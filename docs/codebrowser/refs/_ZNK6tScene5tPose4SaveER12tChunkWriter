@@ -1,0 +1,2 @@
+<def f='Modules/Scene/Src/tSkeleton.cpp' l='116' ll='140' type='void tScene::tPose::Save(tChunkWriter &amp; chunk) const'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='200' u='c' c='_ZNK6tScene9tSkeleton4SaveER12tChunkWriter'/>

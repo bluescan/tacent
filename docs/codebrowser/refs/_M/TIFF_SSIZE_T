@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='38'/>
+<use f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='65' u='c'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='37'>/* Signed size type */</doc>

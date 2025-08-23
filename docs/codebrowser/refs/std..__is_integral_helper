@@ -1,0 +1,52 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='276' ll='277'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='279' ll='281'/>
+<use f='include/c++/11/type_traits' l='280'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='283' ll='285'/>
+<use f='include/c++/11/type_traits' l='284'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='287' ll='289'/>
+<use f='include/c++/11/type_traits' l='288'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='291' ll='293'/>
+<use f='include/c++/11/type_traits' l='292'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='299' ll='301'/>
+<use f='include/c++/11/type_traits' l='300'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='305' ll='307'/>
+<use f='include/c++/11/type_traits' l='306'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='310' ll='312'/>
+<use f='include/c++/11/type_traits' l='311'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='314' ll='316'/>
+<use f='include/c++/11/type_traits' l='315'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='318' ll='320'/>
+<use f='include/c++/11/type_traits' l='319'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='322' ll='324'/>
+<use f='include/c++/11/type_traits' l='323'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='326' ll='328'/>
+<use f='include/c++/11/type_traits' l='327'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='330' ll='332'/>
+<use f='include/c++/11/type_traits' l='331'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='334' ll='336'/>
+<use f='include/c++/11/type_traits' l='335'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='338' ll='340'/>
+<use f='include/c++/11/type_traits' l='339'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='342' ll='344'/>
+<use f='include/c++/11/type_traits' l='343'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='346' ll='348'/>
+<use f='include/c++/11/type_traits' l='347'/>
+<use f='include/c++/11/type_traits' l='393'/>
+<size>1</size>

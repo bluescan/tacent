@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/stl_deque.h' l='1293' u='c' c='_ZNSt5deque6resizeEmRKT_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1655' u='c' c='_ZNSt5deque6insertENSt11_Deque_baseIT_T0_E14const_iteratorEmRKS1_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1938' u='c' c='_ZNSt5deque14_M_fill_assignEmRKT_'/>
+<dec f='include/c++/11/bits/stl_deque.h' l='2008' type='void std::deque::_M_fill_insert(std::deque::iterator __pos, std::deque::size_type __n, const std::deque::value_type &amp; __x)'/>
+<def f='include/c++/11/bits/deque.tcc' l='305' ll='345' type='void std::deque::_M_fill_insert(std::deque::iterator __pos, std::deque::size_type __n, const std::deque::value_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='2004'>// Called by insert(p,n,x), and the range insert when it turns out to be
+      // the same thing.  Can use fill functions in optimal situations,
+      // otherwise passes off to insert_aux(p,n,x).</doc>

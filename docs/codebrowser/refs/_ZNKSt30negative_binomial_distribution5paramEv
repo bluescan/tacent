@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='4270' ll='4272' type='std::negative_binomial_distribution::param_type std::negative_binomial_distribution::param() const'/>
+<doc f='include/c++/11/bits/random.h' l='4267'>/**
+       * @brief Returns the parameter set of the distribution.
+       */</doc>

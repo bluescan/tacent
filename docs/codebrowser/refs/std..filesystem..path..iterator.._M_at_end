@@ -1,0 +1,15 @@
+<use f='include/c++/11/bits/fs_path.h' l='876' u='w' c='_ZNSt10filesystem7__cxx114path8iteratorC1Ev'/>
+<use f='include/c++/11/bits/fs_path.h' l='908' u='r' c='_ZNSt10filesystem7__cxx1120__path_iter_distanceERKNS0_4path8iteratorES4_'/>
+<use f='include/c++/11/bits/fs_path.h' l='908' u='r' c='_ZNSt10filesystem7__cxx1120__path_iter_distanceERKNS0_4path8iteratorES4_'/>
+<use f='include/c++/11/bits/fs_path.h' l='911' u='r' c='_ZNSt10filesystem7__cxx1120__path_iter_distanceERKNS0_4path8iteratorES4_'/>
+<use f='include/c++/11/bits/fs_path.h' l='931' u='w' c='_ZNSt10filesystem7__cxx114path8iteratorC1EPKS1_PKNS1_5_CmptE'/>
+<use f='include/c++/11/bits/fs_path.h' l='935' u='w' c='_ZNSt10filesystem7__cxx114path8iteratorC1EPKS1_b'/>
+<dec f='include/c++/11/bits/fs_path.h' l='942' type='bool'/>
+<use f='include/c++/11/bits/fs_path.h' l='1284' u='r' c='_ZNSt10filesystem7__cxx114path8iteratorppEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1285' u='w' c='_ZNSt10filesystem7__cxx114path8iteratorppEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1301' u='r' c='_ZNSt10filesystem7__cxx114path8iteratormmEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1302' u='w' c='_ZNSt10filesystem7__cxx114path8iteratormmEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1328' u='r' c='_ZNKSt10filesystem7__cxx114path8iterator9_M_equalsES2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1328' u='r' c='_ZNKSt10filesystem7__cxx114path8iterator9_M_equalsES2_'/>
+<offset>128</offset>
+<doc f='include/c++/11/bits/fs_path.h' l='942'>// only used when type != _Multi</doc>

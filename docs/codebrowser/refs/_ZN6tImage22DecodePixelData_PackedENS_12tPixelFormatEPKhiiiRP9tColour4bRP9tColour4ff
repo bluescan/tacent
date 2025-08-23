@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelUtil.h' l='51' type='tImage::DecodeResult tImage::DecodePixelData_Packed(tImage::tPixelFormat , const uint8 * data, int dataSize, int w, int h, tColour4b *&amp; , tColour4f *&amp; , float RGBM_RGBD_MaxRange = 8.F)'/>
+<doc f='Modules/Image/Inc/Image/tPixelUtil.h' l='50'>// These do the same as above except for a subset of pixel formats. The above function ends up calling one of these.</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='75' u='c' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<def f='Modules/Image/Src/tPixelUtil.cpp' l='98' ll='651' type='tImage::DecodeResult tImage::DecodePixelData_Packed(tImage::tPixelFormat fmt, const uint8 * src, int srcSize, int w, int h, tColour4b *&amp; decoded4b, tColour4f *&amp; decoded4f, float RGBM_RGBD_MaxRange = 8.F)'/>

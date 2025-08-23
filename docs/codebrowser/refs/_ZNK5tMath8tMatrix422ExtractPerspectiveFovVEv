@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='110' type='float tMath::tMatrix4::ExtractPerspectiveFovV() const'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='53' u='c' c='_ZNK6tScene7tCamera7GetFovVEv'/>

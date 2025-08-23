@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='442' type='int pipe2(int * __pipedes, int __flags)'/>
+<doc f='include/unistd.h' l='440'>/* Same as pipe but apply flags passed in FLAGS to the new file
+   descriptors.  */</doc>

@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5712' type='VkResult vkGetPhysicalDeviceImageFormatProperties2(VkPhysicalDevice physicalDevice, const VkPhysicalDeviceImageFormatInfo2 * pImageFormatInfo, VkImageFormatProperties2 * pImageFormatProperties)'/>

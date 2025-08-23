@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/fs_path.h' l='702' type='void std::filesystem::filesystem_error::filesystem_error(const std::string &amp; __what_arg, std::error_code __ec)'/>
+<use f='include/c++/11/bits/fs_path.h' l='733' u='c' c='_ZNSt10filesystem7__cxx118__detail24__throw_conversion_errorEv'/>

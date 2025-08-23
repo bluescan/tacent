@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tHash.h' l='71' type='uint32 tHash::tHashStringFast32(const char * , uint32 iv = HashIV32)'/>
+<def f='Modules/Foundation/Inc/Foundation/tHash.h' l='131' ll='136' type='uint32 tHash::tHashStringFast32(const char * string, uint32 iv = HashIV32)'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='141' u='c' c='_ZN5tHash17tHashStringFast32EPKDuj'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='152' u='c' c='_ZN5tHash11tHashStringEPKc'/>
+<doc f='Modules/Foundation/Inc/Foundation/tHash.h' l='128'>// Implementation below this line.</doc>
+<use f='Modules/System/Src/tPrint.cpp' l='209' u='c' c='_ZN7tSystem9tRegisterEPKcy'/>

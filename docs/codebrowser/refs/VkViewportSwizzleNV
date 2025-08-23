@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12194' ll='12199'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12194'/>
+<size>16</size>
+<mbr r='VkViewportSwizzleNV::x' o='0' t='VkViewportCoordinateSwizzleNV'/>
+<mbr r='VkViewportSwizzleNV::y' o='32' t='VkViewportCoordinateSwizzleNV'/>
+<mbr r='VkViewportSwizzleNV::z' o='64' t='VkViewportCoordinateSwizzleNV'/>
+<mbr r='VkViewportSwizzleNV::w' o='96' t='VkViewportCoordinateSwizzleNV'/>

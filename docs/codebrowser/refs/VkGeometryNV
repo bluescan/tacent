@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13182' ll='13188'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13182'/>
+<size>168</size>
+<mbr r='VkGeometryNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkGeometryNV::pNext' o='64' t='const void *'/>
+<mbr r='VkGeometryNV::geometryType' o='128' t='VkGeometryTypeKHR'/>
+<mbr r='VkGeometryNV::geometry' o='192' t='VkGeometryDataNV'/>
+<mbr r='VkGeometryNV::flags' o='1280' t='VkGeometryFlagsKHR'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Scene/Inc/Scene/tWorld.h' l='63' type='4294967295'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='72' c='_ZN6tScene6tWorldC1ERK7tStringj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='75' c='_ZN6tScene6tWorldC1ERK7tItListI7tStringEj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='85' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='86' c='_ZN6tScene6tWorld4LoadERK7tItListI7tStringEj'/>

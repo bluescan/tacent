@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/WebP/include/encode.h' l='86' ll='92'/>
+<use f='Modules/Image/Contrib/WebP/include/encode.h' l='86'/>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='82'>//------------------------------------------------------------------------------
+// Coding parameters
+
+// Image characteristics hint for the underlying encoder.</doc>

@@ -1,0 +1,17 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='28' type='void tMath::tVector2::tVector2()'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='78' u='c' c='_ZNK5tMath8tVector2plERKNS_5tVec2E'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='81' u='c' c='_ZNK5tMath8tVector2miERKNS_5tVec2E'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='82' u='c' c='_ZNK5tMath8tVector2ngEv'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='85' u='c' c='_ZN5tMathmlERKNS_5tVec2Ef'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='86' u='c' c='_ZN5tMathmlEfRKNS_5tVec2E'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='91' u='c' c='_ZNK5tMath8tVector2dvEf'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='359' u='c' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='138' u='c' c='_ZN6tScene5tMesh18CreateVertTableUVsEv'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='146' u='c' c='_ZN6tScene5tMesh27CreateVertTableNormalMapUVsEv'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='87' u='c' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='92' u='c' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='316' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='327' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='314' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='315' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='293' u='c' c='_ZNK11tExpression14GetAtomVector2Ev'/>

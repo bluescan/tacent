@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10415'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10414'>// VK_KHR_workgroup_memory_explicit_layout is a preprocessor guard. Do not pass it to API calls.</doc>

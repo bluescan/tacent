@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='42' type='4'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='64'/>
+<doc f='Modules/Image/Src/tImageDDS.cpp' l='40'>// Use the Four-CC to determine format. That&apos;s another whole thing. tDDS::Format&apos;s FourCC will be valid. Modern
+		// dds files have a Four-CC of &apos;DX10&apos; and another whole header specifies the actual pixel format. Complex-much?</doc>

@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='320' type='WebPWriterFunction'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='388' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>768</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='317'>//   OUTPUT
+  ///////////////
+  // Byte-emission hook, to store compressed bytes as they are ready.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='320'>// can be NULL</doc>

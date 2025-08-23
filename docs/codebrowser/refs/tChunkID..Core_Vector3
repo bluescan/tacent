@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='429' type='24576'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='430'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='429'>// Three 4-byte floating point values.</doc>

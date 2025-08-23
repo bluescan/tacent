@@ -1,0 +1,4 @@
+<def f='Modules/System/Inc/System/tScript.h' l='298' type='void tExprWriter::Indent()'/>
+<use f='Modules/System/Inc/System/tScript.h' l='335' u='c' c='_ZN11tExprWriter3IndEv'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='296'>// Indent and Dedent have no immediate effect. They affect the next Newline call, which does a newline and then
+	// adds the correct number of tabs.</doc>

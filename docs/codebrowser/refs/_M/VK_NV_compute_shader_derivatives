@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13616'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13615'>// VK_NV_compute_shader_derivatives is a preprocessor guard. Do not pass it to API calls.</doc>

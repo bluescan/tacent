@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='120' type='std::streamsize std::__basic_file&lt;char&gt;::xsgetn(char * __s, std::streamsize __n)'/>
+<use f='include/c++/11/bits/fstream.tcc' l='355' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='414' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='718' u='c' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>

@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1350' ll='1351' type='const std::size_t'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1357' u='r' c='_ZNSt12__atomic_refIT_Lb0ELb0EEC1ERS0_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1372' u='c' c='_ZNKSt12__atomic_refIT_Lb0ELb0EE12is_lock_freeEv'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/cmath' l='1569' ll='1571' type='float std::log2(float __x)'/>
+<doc f='include/c++/11/cmath' l='1568'>// DR 568.</doc>

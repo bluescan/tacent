@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/basic_string.h' l='6554' type='basic_istream&lt;_CharT, _Traits&gt; &amp; std::getline(basic_istream&lt;_CharT, _Traits&gt; &amp; __is, basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __str, _CharT __delim)'/>
+<dec f='include/c++/11/bits/basic_string.h' l='6593' type='basic_istream&lt;char&gt; &amp; std::getline(basic_istream&lt;char&gt; &amp; __in, basic_string&lt;char&gt; &amp; __str, char __delim)'/>
+<dec f='include/c++/11/bits/basic_string.h' l='6599' type='basic_istream&lt;wchar_t&gt; &amp; std::getline(basic_istream&lt;wchar_t&gt; &amp; __in, basic_string&lt;wchar_t&gt; &amp; __str, wchar_t __delim)'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='1556' ll='1616' type='basic_istream&lt;_CharT, _Traits&gt; &amp; std::getline(basic_istream&lt;_CharT, _Traits&gt; &amp; __in, basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __str, _CharT __delim)'/>

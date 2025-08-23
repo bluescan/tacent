@@ -1,0 +1,49 @@
+<def f='include/c++/11/bits/exception.h' l='61' ll='77'/>
+<use f='include/c++/11/bits/exception.h' l='67' c='_ZNSt9exceptionC1ERKS_'/>
+<use f='include/c++/11/bits/exception.h' l='68' c='_ZNSt9exceptionaSERKS_'/>
+<use f='include/c++/11/bits/exception.h' l='68' c='_ZNSt9exceptionaSERKS_'/>
+<use f='include/c++/11/bits/exception.h' l='69' c='_ZNSt9exceptionC1EOS_'/>
+<use f='include/c++/11/bits/exception.h' l='70' c='_ZNSt9exceptionaSEOS_'/>
+<use f='include/c++/11/bits/exception.h' l='70' c='_ZNSt9exceptionaSEOS_'/>
+<ovr f='include/c++/11/new' l='55' c='std::bad_alloc'/>
+<use f='include/c++/11/new' l='55'/>
+<ovr f='include/c++/11/typeinfo' l='190' c='std::bad_cast'/>
+<use f='include/c++/11/typeinfo' l='190'/>
+<ovr f='include/c++/11/typeinfo' l='207' c='std::bad_typeid'/>
+<use f='include/c++/11/typeinfo' l='207'/>
+<ovr f='include/c++/11/bits/std_function.h' l='54' c='std::bad_function_call'/>
+<use f='include/c++/11/bits/std_function.h' l='54'/>
+<size>8</size>
+<doc f='include/c++/11/bits/exception.h' l='53'>/**
+   *  @brief Base class for all library exceptions.
+   *
+   *  This is the base class for all exceptions thrown by the standard
+   *  library, and by certain language expressions.  You are free to derive
+   *  your own %exception classes, or use a different hierarchy, or to
+   *  throw non-class data (e.g., fundamental types).
+   */</doc>
+<fun r='_ZNSt9exceptionC1Ev'/>
+<fun r='_ZNSt9exceptionD1Ev'/>
+<fun r='_ZNSt9exceptionC1ERKS_'/>
+<fun r='_ZNSt9exceptionaSERKS_'/>
+<fun r='_ZNSt9exceptionC1EOS_'/>
+<fun r='_ZNSt9exceptionaSEOS_'/>
+<fun r='_ZNKSt9exception4whatEv'/>
+<ovr f='include/c++/11/exception' l='53' c='std::bad_exception'/>
+<use f='include/c++/11/exception' l='53'/>
+<ovr f='include/c++/11/stdexcept' l='113' c='std::logic_error'/>
+<use f='include/c++/11/stdexcept' l='113'/>
+<ovr f='include/c++/11/stdexcept' l='219' c='std::runtime_error'/>
+<use f='include/c++/11/stdexcept' l='219'/>
+<size>8</size>
+<ovr f='include/c++/11/ext/concurrence.h' l='64' c='__gnu_cxx::__concurrence_lock_error'/>
+<use f='include/c++/11/ext/concurrence.h' l='64'/>
+<ovr f='include/c++/11/ext/concurrence.h' l='72' c='__gnu_cxx::__concurrence_unlock_error'/>
+<use f='include/c++/11/ext/concurrence.h' l='72'/>
+<ovr f='include/c++/11/ext/concurrence.h' l='80' c='__gnu_cxx::__concurrence_broadcast_error'/>
+<use f='include/c++/11/ext/concurrence.h' l='80'/>
+<ovr f='include/c++/11/ext/concurrence.h' l='88' c='__gnu_cxx::__concurrence_wait_error'/>
+<use f='include/c++/11/ext/concurrence.h' l='88'/>
+<ovr f='include/c++/11/bits/shared_ptr_base.h' l='82' c='std::bad_weak_ptr'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='82'/>
+<size>8</size>

@@ -1,0 +1,6 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1078'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1076'>/* Define to 1 if POSIX Semaphores with sem_timedwait are available in
+   &lt;semaphore.h&gt;. */</doc>
+<use f='include/c++/11/bits/semaphore_base.h' l='41' u='a'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='55' u='a'/>
+<use f='include/c++/11/semaphore' l='37' u='c'/>

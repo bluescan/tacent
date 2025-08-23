@@ -1,0 +1,5 @@
+<dec f='include/c++/11/chrono' l='2058' type='chrono::month'/>
+<use f='include/c++/11/chrono' l='2065' u='w' c='_ZNSt6chrono13month_weekdayC1ERKNS_5monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='2070' u='r' c='_ZNKSt6chrono13month_weekday5monthEv'/>
+<use f='include/c++/11/chrono' l='2078' u='m' c='_ZNKSt6chrono13month_weekday2okEv'/>
+<offset>0</offset>

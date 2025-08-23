@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15976' ll='15981'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15976'/>
+<size>24</size>
+<mbr r='VkImageCompressionPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageCompressionPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkImageCompressionPropertiesEXT::imageCompressionFlags' o='128' t='VkImageCompressionFlagsEXT'/>
+<mbr r='VkImageCompressionPropertiesEXT::imageCompressionFixedRateFlags' o='160' t='VkImageCompressionFixedRateFlagsEXT'/>

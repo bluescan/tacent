@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5481' ll='5492'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5481'/>
+<size>72</size>
+<mbr r='VkDescriptorUpdateTemplateCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDescriptorUpdateTemplateCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkDescriptorUpdateTemplateCreateInfo::flags' o='128' t='VkDescriptorUpdateTemplateCreateFlags'/>
+<mbr r='VkDescriptorUpdateTemplateCreateInfo::descriptorUpdateEntryCount' o='160' t='uint32_t'/>
+<mbr r='VkDescriptorUpdateTemplateCreateInfo::pDescriptorUpdateEntries' o='192' t='const VkDescriptorUpdateTemplateEntry *'/>
+<mbr r='VkDescriptorUpdateTemplateCreateInfo::templateType' o='256' t='VkDescriptorUpdateTemplateType'/>
+<mbr r='VkDescriptorUpdateTemplateCreateInfo::descriptorSetLayout' o='320' t='VkDescriptorSetLayout'/>
+<mbr r='VkDescriptorUpdateTemplateCreateInfo::pipelineBindPoint' o='384' t='VkPipelineBindPoint'/>
+<mbr r='VkDescriptorUpdateTemplateCreateInfo::pipelineLayout' o='448' t='VkPipelineLayout'/>
+<mbr r='VkDescriptorUpdateTemplateCreateInfo::set' o='512' t='uint32_t'/>

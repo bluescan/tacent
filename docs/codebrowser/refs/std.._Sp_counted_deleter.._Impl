@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='411' ll='425'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='467'/>
+<fun r='_ZNSt19_Sp_counted_deleter5_ImplC1ET_T0_RKT1_'/>
+<fun r='_ZNSt19_Sp_counted_deleter5_Impl6_M_delEv'/>
+<fun r='_ZNSt19_Sp_counted_deleter5_Impl8_M_allocEv'/>
+<mbr r='std::_Sp_counted_deleter::_Impl::_M_ptr' t='_Ptr'/>

@@ -1,0 +1,7 @@
+<use f='Modules/Scene/Src/tMaterial.cpp' l='24' u='w' c='_ZN6tScene9tMaterial5ClearEv'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='56' u='r' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='56' u='r' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='89' u='r' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='176' u='a' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='232' u='w' c='_ZN6tScene9tMaterialaSERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='232' u='r' c='_ZN6tScene9tMaterialaSERKS0_'/>

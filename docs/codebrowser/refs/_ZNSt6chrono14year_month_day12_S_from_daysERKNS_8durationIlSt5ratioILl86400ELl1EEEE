@@ -1,0 +1,7 @@
+<dec f='include/c++/11/chrono' l='2328' type='static std::chrono::year_month_day std::chrono::year_month_day::_S_from_days(const std::chrono::days &amp; __dp)'/>
+<use f='include/c++/11/chrono' l='2346' u='c' c='_ZNSt6chrono14year_month_dayC1ERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<def f='include/c++/11/chrono' l='2476' ll='2510' type='static std::chrono::year_month_day std::chrono::year_month_day::_S_from_days(const std::chrono::days &amp; __dp)'/>
+<doc f='include/c++/11/chrono' l='2472'>// Construct from days since 1970/01/01.
+    // Proposition 6.3 of Neri and Schneider,
+    // &quot;Euclidean Affine Functions and Applications to Calendar Algorithms&quot;.
+    // https://arxiv.org/abs/2102.06959</doc>

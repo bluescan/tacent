@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15587' ll='15592'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15587'/>
+<size>32</size>
+<mbr r='VkAccelerationStructureCaptureDescriptorDataInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkAccelerationStructureCaptureDescriptorDataInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkAccelerationStructureCaptureDescriptorDataInfoEXT::accelerationStructure' o='128' t='VkAccelerationStructureKHR'/>
+<mbr r='VkAccelerationStructureCaptureDescriptorDataInfoEXT::accelerationStructureNV' o='192' t='VkAccelerationStructureNV'/>

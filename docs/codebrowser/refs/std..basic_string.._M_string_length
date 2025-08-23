@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/basic_string.h' l='175' type='std::basic_string::size_type'/>
+<use f='include/c++/11/bits/basic_string.h' l='191' u='w' c='_ZNSt7__cxx1112basic_string9_M_lengthEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeE'/>
+<use f='include/c++/11/bits/basic_string.h' l='921' u='r' c='_ZNKSt7__cxx1112basic_string4sizeEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='927' u='r' c='_ZNKSt7__cxx1112basic_string6lengthEv'/>

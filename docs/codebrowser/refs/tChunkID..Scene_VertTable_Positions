@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='471' type='16859136'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='471'>// Contains xyz&apos;s in local model space.</doc>
+<use f='Modules/Scene/Src/tMesh.cpp' l='280' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='452' u='r' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>

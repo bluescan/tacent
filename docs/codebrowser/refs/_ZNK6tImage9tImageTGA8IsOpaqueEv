@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageTGA.cpp' l='384' u='c' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<def f='Modules/Image/Src/tImageTGA.cpp' l='584' ll='593' type='bool tImage::tImageTGA::IsOpaque() const'/>

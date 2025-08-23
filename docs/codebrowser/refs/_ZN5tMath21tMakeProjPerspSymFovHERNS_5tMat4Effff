@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='636' type='void tMath::tMakeProjPerspSymFovH(tMath::tMat4 &amp; d, float fovY, float aspect, float nearPlane, float farPlane)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='92' u='c' c='_ZN5tMath8tMatrix420MakeProjPerspSymFovHEffff'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='788' ll='794' type='void tMath::tMakeProjPerspSymFovH(tMath::tMat4 &amp; d, float fovY, float aspect, float nearPlane, float farPlane)'/>

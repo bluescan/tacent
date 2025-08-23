@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='794' type='void clearerr_unlocked(FILE * __stream)'/>
+<doc f='include/stdio.h' l='793'>/* Faster versions when locking is not required.  */</doc>

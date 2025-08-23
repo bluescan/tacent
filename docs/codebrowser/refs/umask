@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='380' type='__mode_t umask(__mode_t __mask)'/>
+<doc f='include/x86_64-linux-gnu/sys/stat.h' l='378'>/* Set the file creation mask of the current process to MASK,
+   and return the old creation mask.  */</doc>

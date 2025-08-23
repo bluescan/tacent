@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='990' type='ktx_size_t ktxTexture_GetDataSize(ktxTexture * This)'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='986'>/*
+ * Returns the size of all the image data of a ktxTexture object in bytes.
+ */</doc>

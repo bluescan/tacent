@@ -1,0 +1,3 @@
+<dec f='include/locale.h' l='99' type='char'/>
+<offset>720</offset>
+<doc f='include/locale.h' l='98'>/* 1 if int_curr_symbol precedes a negative value, 0 if succeeds.  */</doc>

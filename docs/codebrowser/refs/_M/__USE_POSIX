@@ -1,0 +1,16 @@
+<dec f='include/features.h' l='325'/>
+<use f='include/string.h' l='365' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/stdio_lim.h' l='29' u='a'/>
+<use f='include/stdio.h' l='291' u='a'/>
+<use f='include/stdio.h' l='807' u='a'/>
+<use f='include/stdio.h' l='835' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/time.h' l='36' u='a'/>
+<use f='include/time.h' l='150' u='a'/>
+<use f='include/time.h' l='192' u='a'/>
+<use f='include/time.h' l='222' u='a'/>
+<use f='include/limits.h' l='193' u='a'/>
+<use f='include/signal.h' l='34' u='a'/>
+<use f='include/signal.h' l='111' u='a'/>
+<use f='include/signal.h' l='196' u='a'/>
+<use f='include/pwd.h' l='118' u='a'/>
+<use f='include/dirent.h' l='176' u='a'/>

@@ -1,0 +1,1 @@
+<dec f='include/c++/11/pstl/glue_algorithm_defs.h' l='532' type='__pstl::__internal::__enable_if_execution_policy&lt;_ExecutionPolicy, std::pair&lt;_ForwardIterator, _ForwardIterator&gt;&gt; std::minmax_element(_ExecutionPolicy &amp;&amp; __exec, _ForwardIterator __first, _ForwardIterator __last, _Compare __comp)'/>

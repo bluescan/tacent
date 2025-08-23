@@ -1,0 +1,12 @@
+<dec f='include/c++/11/bits/basic_string.h' l='945' type='void std::basic_string::resize(std::basic_string::size_type __n, _CharT __c)'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='370' ll='380' type='void std::basic_string::resize(std::basic_string::size_type __n, _CharT __c)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='934'>/**
+       *  @brief  Resizes the %string to the specified number of characters.
+       *  @param  __n  Number of characters the %string should contain.
+       *  @param  __c  Character to fill any new elements.
+       *
+       *  This function will %resize the %string to the specified
+       *  number of characters.  If the number is smaller than the
+       *  %string&apos;s current size the %string is truncated, otherwise
+       *  the %string is extended and new elements are %set to @a __c.
+       */</doc>

@@ -1,0 +1,11 @@
+<dec f='include/c++/11/bits/ios_base.h' l='542' type='void std::ios_base::register_callback(std::ios_base::event_callback __fn, int __index)'/>
+<doc f='include/c++/11/bits/ios_base.h' l='531'>/**
+     *  @brief  Add the callback __fn with parameter __index.
+     *  @param  __fn  The function to add.
+     *  @param  __index  The integer to pass to the function when invoked.
+     *
+     *  Registers a function as an event callback with an integer parameter to
+     *  be passed to the function when invoked.  Multiple copies of the
+     *  function are allowed.  If there are multiple callbacks, they are
+     *  invoked in the order they were registered.
+    */</doc>

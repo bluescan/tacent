@@ -1,0 +1,12 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='235' type='int tcPrintf(const char * format)'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='594' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='596' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='601' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='605' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='620' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='622' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='624' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='626' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<def f='Modules/System/Src/tPrint.cpp' l='619' ll='626' type='int tcPrintf(const char * format)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2135' u='c' c='_ZN7tSystem7tFtostrER7tStringfb'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2180' u='c' c='_ZN7tSystem7tDtostrER7tStringdb'/>

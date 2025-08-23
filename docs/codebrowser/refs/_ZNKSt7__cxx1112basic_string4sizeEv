@@ -1,0 +1,24 @@
+<use f='include/c++/11/bits/basic_string.h' l='807' u='c' c='_ZNKSt7__cxx1112basic_stringcvSt17basic_string_viewIT_T0_EEv'/>
+<def f='include/c++/11/bits/basic_string.h' l='919' ll='921' type='std::basic_string::size_type std::basic_string::size() const'/>
+<use f='include/c++/11/bits/basic_string.h' l='1040' u='c' c='_ZNKSt7__cxx1112basic_stringixEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeE'/>
+<use f='include/c++/11/bits/basic_string.h' l='1059' u='c' c='_ZNSt7__cxx1112basic_stringixEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeE'/>
+<use f='include/c++/11/bits/basic_string.h' l='1099' u='c' c='_ZNSt7__cxx1112basic_string2atEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeE'/>
+<use f='include/c++/11/bits/basic_string.h' l='1887' u='c' c='_ZNSt7__cxx1112basic_string8pop_backEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='6674' u='c' c='_ZNSt7__cxx119to_stringEj'/>
+<use f='include/c++/11/bits/basic_string.h' l='6693' u='c' c='_ZNSt7__cxx119to_stringEm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6713' u='c' c='_ZNSt7__cxx119to_stringEy'/>
+<doc f='include/c++/11/bits/basic_string.h' l='916'>// Capacity:
+      ///  Returns the number of characters in the string, not including any
+      ///  null-termination.</doc>
+<use f='include/c++/11/bits/locale_facets.tcc' l='88' u='c' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='296' u='c' c='_ZNKSt7num_get16_M_extract_floatB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='319' u='c' c='_ZNKSt7num_get16_M_extract_floatB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='355' u='c' c='_ZNKSt7num_get16_M_extract_floatB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='555' u='c' c='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='568' u='c' c='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='86' u='c' c='_ZNSt18__moneypunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='312' u='c' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='317' u='c' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='325' u='c' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='396' u='c' c='_ZNKSt7__cxx119money_get6do_getET0_S1_bRSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIT_St11char_traitsIS7_ESaIS7_EEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='1137' u='c' c='_ZNKSt10filesystem7__cxx114path14generic_stringERKT1_'/>

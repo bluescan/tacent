@@ -1,0 +1,99 @@
+<use f='include/c++/11/bits/memoryfwd.h' l='67'/>
+<def f='include/c++/11/bits/allocator.h' l='71' ll='113'/>
+<use f='include/c++/11/bits/allocator.h' l='72'/>
+<use f='include/c++/11/bits/allocator.h' l='106' c='_ZNSaIvEC1ERKSaIT_E'/>
+<def f='include/c++/11/bits/allocator.h' l='124' ll='214'/>
+<use f='include/c++/11/bits/allocator.h' l='169' c='_ZNSt9allocatorC1ERKSaITL0__E'/>
+<use f='include/c++/11/bits/allocator.h' l='218' c='_ZSteqRKSaIT_ERKSaIT0_E'/>
+<use f='include/c++/11/bits/allocator.h' l='218' c='_ZSteqRKSaIT_ERKSaIT0_E'/>
+<def f='include/c++/11/bits/allocator.h' l='232' ll='238'/>
+<use f='include/c++/11/bits/allocator.h' l='237' c='_ZNSaIKT_EC1ERKSaITL0__E'/>
+<def f='include/c++/11/bits/allocator.h' l='240' ll='246'/>
+<use f='include/c++/11/bits/allocator.h' l='245' c='_ZNSaIVT_EC1ERKSaITL0__E'/>
+<def f='include/c++/11/bits/allocator.h' l='248' ll='254'/>
+<use f='include/c++/11/bits/allocator.h' l='253' c='_ZNSaIVKT_EC1ERKSaITL0__E'/>
+<inh f='include/c++/11/ext/new_allocator.h' l='55' c='__gnu_cxx::new_allocator'/>
+<def f='include/c++/11/bits/allocator.h' l='261'/>
+<use f='include/c++/11/bits/allocator.h' l='261'/>
+<inh f='include/c++/11/ext/new_allocator.h' l='55' c='__gnu_cxx::new_allocator'/>
+<def f='include/c++/11/bits/allocator.h' l='262'/>
+<use f='include/c++/11/bits/allocator.h' l='262'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='411'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='414'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='450'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='453'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='568'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='571'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='607'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='610'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='778'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='792'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='846' c='_ZSt8_DestroyT_S_RSaIT0_E'/>
+<use f='include/c++/11/bits/unordered_map.h' l='46'/>
+<use f='include/c++/11/bits/unordered_map.h' l='63'/>
+<use f='include/c++/11/bits/unordered_map.h' l='101'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1141'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1155'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1244'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2041'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2056'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='332' c='_ZSt22__uninitialized_copy_aT_S_T0_RSaIT1_E'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='381' c='_ZSt22__uninitialized_fill_aT_S_RKT0_RSaIT1_E'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='409' c='_ZSt24__uninitialized_fill_n_aT_T0_RKT1_RSaIT2_E'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='671' c='_ZSt25__uninitialized_default_aT_S_RSaIT0_E'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='703' c='_ZSt27__uninitialized_default_n_aT_T0_RSaIT1_E'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='1007' c='_ZSt14__relocate_a_1PT_S0_S0_RSaIT0_E'/>
+<use f='include/c++/11/bits/stl_vector.h' l='388'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1873'/>
+<size>1</size>
+<doc f='include/c++/11/bits/allocator.h' l='58'>/**
+   *  @addtogroup allocators
+   *  @{
+   */
+
+  // Since C++20 the primary template should be used for allocator&lt;void&gt;,
+  // but then it would have a non-trivial default ctor and dtor for C++20,
+  // but trivial for C++98-17, which would be an ABI incompatibiliy between
+  // different standard dialects. So C++20 still uses the allocator&lt;void&gt;
+  // explicit specialization, with the historical ABI properties, but with
+  // the same members that are present in the primary template.
+
+  /// allocator&lt;void&gt; specialization.</doc>
+<doc f='include/c++/11/bits/allocator.h' l='230'>// Invalid allocator&lt;cv T&gt; partial specializations.
+  // allocator_traits::rebind_alloc can be used to form a valid allocator type.</doc>
+<fun r='_ZNSaIvEC1Ev'/>
+<fun r='_ZNSaIvED1Ev'/>
+<fun r='_ZNSaIvEC1ERKSaIT_E'/>
+<fun r='_ZNSt9allocatorC1Ev'/>
+<fun r='_ZNSt9allocatorC1ERKSaIT_E'/>
+<fun r='_ZNSt9allocatoraSERKSaIT_E'/>
+<fun r='_ZNSt9allocatorC1ERKSaITL0__E'/>
+<fun r='_ZNSt9allocatorD1Ev'/>
+<fun r='_ZNSt9allocator8allocateEm'/>
+<fun r='_ZNSt9allocator10deallocateEPT_m'/>
+<fun r='_ZNSaIKT_EC1ERKSaITL0__E'/>
+<fun r='_ZNSaIVT_EC1ERKSaITL0__E'/>
+<fun r='_ZNSaIVKT_EC1ERKSaITL0__E'/>
+<use f='include/c++/11/bits/stringfwd.h' l='73'/>
+<use f='include/c++/11/iosfwd' l='95'/>
+<use f='include/c++/11/iosfwd' l='99'/>
+<use f='include/c++/11/iosfwd' l='103'/>
+<use f='include/c++/11/iosfwd' l='107'/>
+<use f='include/c++/11/iosfwd' l='213'/>
+<use f='include/c++/11/iosfwd' l='216'/>
+<use f='include/c++/11/bits/basic_string.h' l='6061'/>
+<use f='include/c++/11/bits/basic_string.h' l='6070'/>
+<use f='include/c++/11/bits/basic_string.h' l='6076'/>
+<use f='include/c++/11/bits/stl_deque.h' l='766'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2046' c='_ZNSt5deque15_M_destroy_dataENSt11_Deque_baseIT_T0_E8iteratorES4_RKSaIS1_E'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2228'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='612' c='_ZNSt14__shared_countC1ETL0__St17integral_constantIbLb1EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='618' c='_ZNSt14__shared_countC1ETL0__TL0_0_'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='682' c='_ZNSt14__shared_countC1EOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='683' c='_ZNSt14__shared_countC1EOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1849' c='_ZSt13__make_sharedDpOT1_'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='878' c='_ZSt11make_sharedDpOT0_'/>
+<use f='include/c++/11/bits/locale_conv.h' l='230'/>
+<use f='include/c++/11/bits/locale_conv.h' l='231'/>
+<use f='include/c++/11/bits/fs_path.h' l='415'/>
+<use f='include/c++/11/bits/fs_path.h' l='434'/>

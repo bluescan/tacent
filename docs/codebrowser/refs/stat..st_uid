@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/struct_stat.h' l='47' type='__uid_t'/>
+<offset>224</offset>
+<doc f='include/x86_64-linux-gnu/bits/struct_stat.h' l='47'>/* User ID of the file&apos;s owner.	*/</doc>

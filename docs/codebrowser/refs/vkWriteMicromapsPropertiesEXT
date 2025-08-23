@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16865' type='VkResult vkWriteMicromapsPropertiesEXT(VkDevice device, uint32_t micromapCount, const VkMicromapEXT * pMicromaps, VkQueryType queryType, size_t dataSize, void * pData, size_t stride)'/>

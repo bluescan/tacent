@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/std_thread.h' l='176' u='c' c='_ZNKSt6thread8joinableEv'/>
+<use f='include/c++/11/bits/std_thread.h' l='186' u='c' c='_ZNKSt6thread6get_idEv'/>
+<use f='include/c++/11/stop_token' l='340' u='c' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/thread' l='94' u='c' c='_ZStlsRSt13basic_ostreamIT_T0_ENSt6thread2idE'/>

@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tScript.h' l='147' type='tExpression tExpression::Item1() const'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='49' u='c' c='_ZNK6tImage10tImageTIFF24ReadSoftwarePageDurationEP4tiff'/>

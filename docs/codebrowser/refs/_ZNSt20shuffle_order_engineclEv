@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/random.h' l='1464' type='std::shuffle_order_engine::result_type std::shuffle_order_engine::operator()()'/>
+<def f='include/c++/11/bits/random.tcc' l='835' ll='852' type='typename shuffle_order_engine&lt;_RandomNumberEngine, __k&gt;::result_type std::shuffle_order_engine::operator()()'/>
+<doc f='include/c++/11/bits/random.h' l='1460'>/**
+       * Gets the next value in the generated random number sequence.
+       */</doc>

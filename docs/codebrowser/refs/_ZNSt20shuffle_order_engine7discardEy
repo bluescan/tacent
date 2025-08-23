@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='1453' ll='1458' type='void std::shuffle_order_engine::discard(unsigned long long __z)'/>
+<doc f='include/c++/11/bits/random.h' l='1450'>/**
+       * Discard a sequence of random numbers.
+       */</doc>

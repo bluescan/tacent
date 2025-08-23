@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17141' ll='17145'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17141'/>
+<size>32</size>
+<mbr r='VkRenderPassStripeInfoARM::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderPassStripeInfoARM::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderPassStripeInfoARM::stripeArea' o='128' t='VkRect2D'/>

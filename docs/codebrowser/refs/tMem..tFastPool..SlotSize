@@ -1,0 +1,8 @@
+<use f='Modules/Foundation/Src/tPool.cpp' l='53' u='w' c='_ZN4tMem9tFastPoolC1Eiiib'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='61' u='r' c='_ZN4tMem9tFastPoolC1Eiiib'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='63' u='w' c='_ZN4tMem9tFastPoolC1Eiiib'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='67' u='r' c='_ZN4tMem9tFastPoolC1Eiiib'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='69' u='w' c='_ZN4tMem9tFastPoolC1Eiiib'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='72' u='r' c='_ZN4tMem9tFastPoolC1Eiiib'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='74' u='r' c='_ZN4tMem9tFastPoolC1Eiiib'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='101' u='r' c='_ZN4tMem9tFastPool8GrowPoolEv'/>

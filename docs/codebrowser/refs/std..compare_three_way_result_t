@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/stl_iterator.h' l='537' c='_ZStssRKSt16reverse_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='553' c='_ZStssRKSt16reverse_iteratorIT_ES3_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1595' c='_ZStssRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1654' c='_ZStssRKSt13move_iteratorIT_ES3_'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='893' c='_ZStssRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='902' c='_ZStssRKSt10unique_ptrIT_T0_EDn'/>

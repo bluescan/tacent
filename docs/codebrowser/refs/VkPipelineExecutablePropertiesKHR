@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9942' ll='9949'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9942'/>
+<size>536</size>
+<mbr r='VkPipelineExecutablePropertiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineExecutablePropertiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPipelineExecutablePropertiesKHR::stages' o='128' t='VkShaderStageFlags'/>
+<mbr r='VkPipelineExecutablePropertiesKHR::name' o='160' t='char[256]'/>
+<mbr r='VkPipelineExecutablePropertiesKHR::description' o='2208' t='char[256]'/>
+<mbr r='VkPipelineExecutablePropertiesKHR::subgroupSize' o='4256' t='uint32_t'/>

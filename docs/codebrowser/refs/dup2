@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='555' type='int dup2(int __fd, int __fd2)'/>
+<doc f='include/unistd.h' l='554'>/* Duplicate FD to FD2, closing FD2 and making it open on the same file.  */</doc>

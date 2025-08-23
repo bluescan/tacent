@@ -1,0 +1,9 @@
+<def f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='25' ll='35'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='36' c='_ZN6tInputeqERKNS_7tVidPidES2_'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='36' c='_ZN6tInputeqERKNS_7tVidPidES2_'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='90' c='_ZN6tInput15tLookupContDefnERKNS_7tVidPidE'/>
+<size>4</size>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='24'>// The VidPid acts as a key when retreiving information for a controller.</doc>
+<use f='Modules/Input/Src/tControllerDefinitions.cpp' l='25'/>
+<use f='Modules/Input/Src/tControllerDefinitions.cpp' l='32' c='_ZN6tInput15tLookupContDefnERKNS_7tVidPidE'/>
+<size>4</size>

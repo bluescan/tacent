@@ -1,0 +1,12 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='188' type='float tMath::tArcTan(float y, float x)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='188'>/* Order is y, x. Returns angle of a slope (rise/run). */</doc>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='700' u='c' c='_ZN5tMath23tExtractPerspectiveFovVERKNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='701' u='c' c='_ZN5tMath23tExtractPerspectiveFovHERKNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='958' u='c' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='959' u='c' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='960' u='c' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='961' u='c' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='970' u='c' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='975' u='c' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='132' u='c' c='_ZN5tMath7tRandom7tGetDirERKNS_8tVector3EfRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='133' u='c' c='_ZN5tMath7tRandom7tGetDirERKNS_8tVector3EfRKNS0_10tGeneratorE'/>

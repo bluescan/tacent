@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1475' type='void rgbcx::color32::set_rgb(const rgbcx::color32 &amp; other)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4124' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4125' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4126' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4127' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>

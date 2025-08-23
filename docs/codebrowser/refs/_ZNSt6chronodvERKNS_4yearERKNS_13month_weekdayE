@@ -1,0 +1,5 @@
+<dec f='include/c++/11/chrono' l='1690' type='std::chrono::year_month_weekday std::chrono::operator/(const std::chrono::year &amp; __y, const std::chrono::month_weekday &amp; __mwd)'/>
+<def f='include/c++/11/chrono' l='2874' ll='2876' type='std::chrono::year_month_weekday std::chrono::operator/(const chrono::year &amp; __y, const std::chrono::month_weekday &amp; __mwd)'/>
+<use f='include/c++/11/chrono' l='2880' u='c' c='_ZNSt6chronodvEiRKNS_13month_weekdayE'/>
+<use f='include/c++/11/chrono' l='2884' u='c' c='_ZNSt6chronodvERKNS_13month_weekdayERKNS_4yearE'/>
+<use f='include/c++/11/chrono' l='2888' u='c' c='_ZNSt6chronodvERKNS_13month_weekdayEi'/>

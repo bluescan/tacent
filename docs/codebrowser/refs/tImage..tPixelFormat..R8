@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='117' type='0'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='637' c='_ZN6tImage18tIsLuminanceFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='117'>// 8   bit. Unsigned representing red. Some file-types not supporting A8 or L8 (eg ktx2) will export to this.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='596' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='597' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='598' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='204' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='320' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='321' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='322' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='122' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>

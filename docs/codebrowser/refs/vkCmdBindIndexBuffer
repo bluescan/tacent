@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='4687' type='void vkCmdBindIndexBuffer(VkCommandBuffer commandBuffer, VkBuffer buffer, VkDeviceSize offset, VkIndexType indexType)'/>

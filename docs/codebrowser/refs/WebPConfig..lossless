@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='96' type='int'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='343' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='96'>// Lossless encoding (0=lossy(default), 1=lossless).</doc>

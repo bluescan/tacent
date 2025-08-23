@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1167' ll='1169' type='void std::__atomic_float::store(_Fp __t, std::memory_order __m = memory_order_seq_cst)'/>

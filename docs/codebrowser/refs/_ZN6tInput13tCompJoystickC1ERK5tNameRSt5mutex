@@ -1,0 +1,4 @@
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='40' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='41' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='59' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='60' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>

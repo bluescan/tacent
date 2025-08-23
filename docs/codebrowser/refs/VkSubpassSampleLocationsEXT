@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12594' ll='12597'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12594'/>
+<size>48</size>
+<mbr r='VkSubpassSampleLocationsEXT::subpassIndex' o='0' t='uint32_t'/>
+<mbr r='VkSubpassSampleLocationsEXT::sampleLocationsInfo' o='64' t='VkSampleLocationsInfoEXT'/>

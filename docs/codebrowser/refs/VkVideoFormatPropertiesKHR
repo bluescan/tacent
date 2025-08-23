@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8136' ll='8145'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8136'/>
+<size>56</size>
+<mbr r='VkVideoFormatPropertiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoFormatPropertiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkVideoFormatPropertiesKHR::format' o='128' t='VkFormat'/>
+<mbr r='VkVideoFormatPropertiesKHR::componentMapping' o='160' t='VkComponentMapping'/>
+<mbr r='VkVideoFormatPropertiesKHR::imageCreateFlags' o='288' t='VkImageCreateFlags'/>
+<mbr r='VkVideoFormatPropertiesKHR::imageType' o='320' t='VkImageType'/>
+<mbr r='VkVideoFormatPropertiesKHR::imageTiling' o='352' t='VkImageTiling'/>
+<mbr r='VkVideoFormatPropertiesKHR::imageUsageFlags' o='384' t='VkImageUsageFlags'/>

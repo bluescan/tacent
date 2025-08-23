@@ -1,0 +1,1 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='126' ll='130' type='bool tMath::tMatrix4::ExtractAffineEulerXYZ(tMath::tVec3 &amp; sol1, tMath::tVec3 &amp; sol2, float gimbalZValue = 0.F, tMath::tBias bias = tBias::Low) const'/>

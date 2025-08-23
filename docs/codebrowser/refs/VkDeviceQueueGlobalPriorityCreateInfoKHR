@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9534' ll='9538'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9534'/>
+<size>24</size>
+<mbr r='VkDeviceQueueGlobalPriorityCreateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDeviceQueueGlobalPriorityCreateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkDeviceQueueGlobalPriorityCreateInfoKHR::globalPriority' o='128' t='VkQueueGlobalPriorityKHR'/>

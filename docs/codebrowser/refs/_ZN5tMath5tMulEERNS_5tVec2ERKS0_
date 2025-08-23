@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='479' type='void tMath::tMulE(tMath::tVec2 &amp; v, const tMath::tVec2 &amp; a)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='485' u='c' c='_ZN5tMath5tMulEERNS_5tMat2ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='485' u='c' c='_ZN5tMath5tMulEERNS_5tMat2ERKS0_'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='477'>// Hadamard or entry-wise product. Both matrices must have same dimension. Each position is multiplied independently.
+// Computes d = a * b or vm *= a.</doc>

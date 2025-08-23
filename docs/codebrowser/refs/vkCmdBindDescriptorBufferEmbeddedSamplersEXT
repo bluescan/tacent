@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15638' type='void vkCmdBindDescriptorBufferEmbeddedSamplersEXT(VkCommandBuffer commandBuffer, VkPipelineBindPoint pipelineBindPoint, VkPipelineLayout layout, uint32_t set)'/>

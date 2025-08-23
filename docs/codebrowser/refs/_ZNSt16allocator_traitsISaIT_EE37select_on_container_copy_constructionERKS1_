@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/alloc_traits.h' l='561' ll='563' type='static std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::select_on_container_copy_construction(const std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type &amp; __rhs)'/>
+<doc f='include/c++/11/bits/alloc_traits.h' l='556'>/**
+       *  @brief  Obtain an allocator to use when copying a container.
+       *  @param  __rhs  An allocator.
+       *  @return @c __rhs
+      */</doc>

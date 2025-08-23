@@ -1,0 +1,11 @@
+<def f='Modules/Math/Inc/Math/tSpline.h' l='71' ll='88'/>
+<size>8</size>
+<doc f='Modules/Math/Inc/Math/tSpline.h' l='69'>// A tBezierCurve represents a single segment of a Bezier path. It knows how to interpret 4 CVs using the Bezier basis
+// functions. The class implements cubic Bezier curves -- not linear or quadratic.</doc>
+<use f='Modules/Math/Src/tSpline.cpp' l='425' c='_ZNK5tMath11tBezierPath8GetPointERNS_8tVector3Ef'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='455' c='_ZNK5tMath11tBezierPath10GetTangentERNS_8tVector3Ef'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='525' c='_ZNK5tMath11tBezierPath15GetClosestParamERKNS_8tVector3EjfRKNS0_17tFastSectionStateE'/>
+<size>8</size>
+<fun r='_ZNK5tMath12tBezierCurve8GetPointERNS_8tVector3Ef'/>
+<fun r='_ZNK5tMath12tBezierCurve10GetTangentERNS_8tVector3Ef'/>
+<fun r='_ZNK5tMath12tBezierCurve18GetClosestParamRecERKNS_8tVector3Ejfff'/>

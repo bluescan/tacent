@@ -1,0 +1,10 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='84' u='c' c='_ZN5tListD1Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='94' u='c' c='_ZN5tList5ClearEv'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='96' type='void tList::Empty()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='96'>/* Empties the list. Always deletes the objects. */</doc>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='195' u='c' c='_ZN6tImage8tTexture13RemoveMipmapsEv'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='174' u='c' c='_ZNK5tMath11tBezierPath17tFastSectionState5ClearEv'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='28' u='c' c='_ZN9tPipeline5tRuleD1Ev'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='31' u='c' c='_ZN9tPipeline21tVisualStudioSolutionD1Ev'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='42' u='c' c='_ZN9tPipeline20tVisualStudioProjectD1Ev'/>
+<use f='Modules/System/Src/tMachine.cpp' l='257' u='c' c='_ZN7tSystem21tGetXDGMultipleEnvVarER5tListI11tStringItemERK7tStringS6_'/>

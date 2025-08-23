@@ -1,0 +1,6 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='237' type='int tChunk::GetDataSize() const'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='267' u='c' c='_ZNK6tChunk4SizeEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='770' u='c' c='_ZNK6tChunk14GetDataSizeRawEv'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='235'>// Returns the size of the data in bytes (not including pro or epi-log padding). Returns zero if the chunk is not
+	// valid.</doc>
+<use f='Modules/Scene/Src/tSelection.cpp' l='55' u='c' c='_ZN6tScene10tSelection4LoadERK6tChunk'/>

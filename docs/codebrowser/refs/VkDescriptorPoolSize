@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3754' ll='3757'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3754'/>
+<size>8</size>
+<mbr r='VkDescriptorPoolSize::type' o='0' t='VkDescriptorType'/>
+<mbr r='VkDescriptorPoolSize::descriptorCount' o='32' t='uint32_t'/>

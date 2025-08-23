@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='116'/>
+<doc f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='115'>/* Number of pending realtime signals.  */</doc>

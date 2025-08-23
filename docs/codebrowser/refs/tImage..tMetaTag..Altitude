@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='44' type='8'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='44'>//	float	Altitude in meters relative to sea-level.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='307' u='m' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='679' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

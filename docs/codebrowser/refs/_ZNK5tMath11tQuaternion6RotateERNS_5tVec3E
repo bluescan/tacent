@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='73' type='void tMath::tQuaternion::Rotate(tMath::tVec3 &amp; v) const'/>
+<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='73'>/* Rotates the vector. */</doc>

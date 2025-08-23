@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/ranges_algobase.h' l='211' c='_ZNSt6ranges14__copy_or_moveET0_T1_T2_'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='301' c='_ZNKSt6ranges9__copy_fnclET_T0_T1_'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='311' c='_ZNKSt6ranges9__copy_fnclEOT_T0_'/>

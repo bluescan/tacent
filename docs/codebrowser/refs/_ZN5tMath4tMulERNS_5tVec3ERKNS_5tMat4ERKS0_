@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='445' type='void tMath::tMul(tMath::tVec3 &amp; d, const tMath::tMat4 &amp; a, const tMath::tVec3 &amp; b)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='443'>// Multiplies a 4x4 matrix by a 3x1 vector. Not mathematically defined but convenient for homogeneous coordinates. The
+// vector is interpreted as a 4x1 with the w = 1. If the 4x4 is an affine matrix, it simply transforms the point.</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='144' u='c' c='_ZNK5tMath8tMatrix4mlERKNS_5tVec3E'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='177' ll='185' type='void tMath::tMul(tMath::tVec3 &amp; d, const tMath::tMat4 &amp; a, const tMath::tVec3 &amp; b)'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='402' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='411' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>

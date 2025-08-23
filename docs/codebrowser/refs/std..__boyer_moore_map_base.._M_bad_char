@@ -1,0 +1,6 @@
+<use f='include/c++/11/functional' l='1039' u='w' c='_ZNSt22__boyer_moore_map_baseC1ETL0__mOT1_OT2_'/>
+<use f='include/c++/11/functional' l='1043' u='w' c='_ZNSt22__boyer_moore_map_baseC1ETL0__mOT1_OT2_'/>
+<use f='include/c++/11/functional' l='1051' u='c' c='_ZNKSt22__boyer_moore_map_base9_M_lookupET_T0_'/>
+<use f='include/c++/11/functional' l='1052' u='c' c='_ZNKSt22__boyer_moore_map_base9_M_lookupET_T0_'/>
+<use f='include/c++/11/functional' l='1058' u='c' c='_ZNKSt22__boyer_moore_map_base7_M_predEv'/>
+<dec f='include/c++/11/functional' l='1060' type='std::unordered_map&lt;_Key, _Tp, _Hash, _Pred&gt;'/>

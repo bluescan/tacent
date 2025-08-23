@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='98' type='const std::locale::category'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='89'>/**
+     *  @brief  Category values.
+     *
+     *  The standard category values are none, ctype, numeric, collate, time,
+     *  monetary, and messages.  They form a bitmask that supports union and
+     *  intersection.  The category all is the union of these values.
+     *
+     *  NB: Order must match _S_facet_categories definition in locale.cc
+    */</doc>

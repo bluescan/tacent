@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/basic_string.h' l='6720' ll='6727' type='std::string std::to_string(float __val)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='6718'>// NB: (v)snprintf vs sprintf.</doc>

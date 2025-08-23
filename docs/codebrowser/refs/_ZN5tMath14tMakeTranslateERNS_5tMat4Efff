@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='586' type='void tMath::tMakeTranslate(tMath::tMat4 &amp; d, float x, float y, float z)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='73' u='c' c='_ZN5tMath8tMatrix413MakeTranslateEfff'/>

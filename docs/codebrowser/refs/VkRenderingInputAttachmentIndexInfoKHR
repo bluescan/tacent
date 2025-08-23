@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9755' ll='9762'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9755'/>
+<size>48</size>
+<mbr r='VkRenderingInputAttachmentIndexInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderingInputAttachmentIndexInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderingInputAttachmentIndexInfoKHR::colorAttachmentCount' o='128' t='uint32_t'/>
+<mbr r='VkRenderingInputAttachmentIndexInfoKHR::pColorAttachmentInputIndices' o='192' t='const uint32_t *'/>
+<mbr r='VkRenderingInputAttachmentIndexInfoKHR::pDepthInputAttachmentIndex' o='256' t='const uint32_t *'/>
+<mbr r='VkRenderingInputAttachmentIndexInfoKHR::pStencilInputAttachmentIndex' o='320' t='const uint32_t *'/>

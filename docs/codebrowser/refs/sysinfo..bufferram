@@ -1,0 +1,3 @@
+<dec f='include/linux/sysinfo.h' l='14' type='__kernel_ulong_t'/>
+<offset>448</offset>
+<doc f='include/linux/sysinfo.h' l='14'>/* Memory used by buffers */</doc>

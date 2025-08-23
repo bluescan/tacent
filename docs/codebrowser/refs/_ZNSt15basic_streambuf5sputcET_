@@ -1,0 +1,13 @@
+<def f='include/c++/11/streambuf' l='428' ll='441' type='std::basic_streambuf::int_type std::basic_streambuf::sputc(std::basic_streambuf::char_type __c)'/>
+<doc f='include/c++/11/streambuf' l='416'>/**
+       *  @brief  Entry point for all single-character output functions.
+       *  @param  __c  A character to output.
+       *  @return  @a __c, if possible.
+       *
+       *  One of two public output functions.
+       *
+       *  If a write position is available for the output sequence (i.e.,
+       *  the buffer is not full), stores @a __c in that position, increments
+       *  the position, and returns @c traits::to_int_type(__c).  If a write
+       *  position is not available, returns @c overflow(__c).
+      */</doc>

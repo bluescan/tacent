@@ -1,0 +1,19 @@
+<def f='include/c++/11/bits/stl_vector.h' l='84' ll='365'/>
+<use f='include/c++/11/bits/stl_vector.h' l='389'/>
+<use f='include/c++/11/bits/stl_vector.h' l='409'/>
+<fun r='_ZNSt12_Vector_base19_M_get_Tp_allocatorEv'/>
+<fun r='_ZNKSt12_Vector_base19_M_get_Tp_allocatorEv'/>
+<fun r='_ZNKSt12_Vector_base13get_allocatorEv'/>
+<fun r='_ZNSt12_Vector_baseC1Ev'/>
+<fun r='_ZNSt12_Vector_baseC1ERKT0_'/>
+<fun r='_ZNSt12_Vector_baseC1Em'/>
+<fun r='_ZNSt12_Vector_baseC1EmRKT0_'/>
+<fun r='_ZNSt12_Vector_baseC1EOSt12_Vector_baseIT_T0_E'/>
+<fun r='_ZNSt12_Vector_baseC1EON9__gnu_cxx14__alloc_traitsIT0_NS2_10value_typeEE6rebindIT_E5otherE'/>
+<fun r='_ZNSt12_Vector_baseC1EOSt12_Vector_baseIT_T0_ERKS2_'/>
+<fun r='_ZNSt12_Vector_baseC1ERKT0_OSt12_Vector_baseIT_S0_E'/>
+<fun r='_ZNSt12_Vector_baseD1Ev'/>
+<mbr r='std::_Vector_base::_M_impl' t='std::_Vector_base::_Vector_impl'/>
+<fun r='_ZNSt12_Vector_base11_M_allocateEm'/>
+<fun r='_ZNSt12_Vector_base13_M_deallocateEN9__gnu_cxx14__alloc_traitsINS1_IT0_NS2_10value_typeEE6rebindIT_E5otherENS7_5other10value_typeEE7pointerEm'/>
+<fun r='_ZNSt12_Vector_base17_M_create_storageEm'/>

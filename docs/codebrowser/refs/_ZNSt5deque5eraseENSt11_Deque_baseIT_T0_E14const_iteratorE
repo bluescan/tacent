@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1731' ll='1737' type='std::deque::iterator std::deque::erase(std::deque::const_iterator __position)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1718'>/**
+       *  @brief  Remove element at given position.
+       *  @param  __position  Iterator pointing to element to be erased.
+       *  @return  An iterator pointing to the next element (or end()).
+       *
+       *  This function will erase the element at the given position and thus
+       *  shorten the %deque by one.
+       *
+       *  The user is cautioned that
+       *  this function only erases the element, and that if the element is
+       *  itself a pointer, the pointed-to memory is not touched in any way.
+       *  Managing the pointer is the user&apos;s responsibility.
+       */</doc>

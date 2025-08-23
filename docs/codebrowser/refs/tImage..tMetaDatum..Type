@@ -1,0 +1,23 @@
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='153' u='w' c='_ZN6tImage10tMetaDatumC1Ev'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='156' u='w' c='_ZN6tImage10tMetaDatum5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='158' u='w' c='_ZN6tImage10tMetaDatum3SetEj'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='159' u='w' c='_ZN6tImage10tMetaDatum3SetEf'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='160' u='w' c='_ZN6tImage10tMetaDatum3SetERK7tString'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='161' u='r' c='_ZNK6tImage10tMetaDatum7IsValidEv'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='162' u='r' c='_ZNK6tImage10tMetaDatum5IsSetEv'/>
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='169' type='tImage::tMetaDatum::DatumType'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='229' u='w' c='_ZN6tImage10tMetaDatum3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='229' u='r' c='_ZN6tImage10tMetaDatum3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='230' u='r' c='_ZN6tImage10tMetaDatum3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='241' u='r' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='241' u='r' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='244' u='r' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='244' u='r' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='247' u='r' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='247' u='r' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='248' u='r' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<offset>0</offset>
+<use f='Modules/Image/Src/tMetaData.cpp' l='885' u='r' c='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='886' u='r' c='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='931' u='a' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='932' u='r' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>

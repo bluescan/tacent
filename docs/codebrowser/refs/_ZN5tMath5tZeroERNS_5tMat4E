@@ -1,0 +1,8 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='281' type='void tMath::tZero(tMath::tMat4 &amp; d)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='529' u='c' c='_ZN5tMath9tIdentityERNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1068' u='c' c='_ZN5tMath15tMulByTransposeERNS_5tMat4ERKNS_5tVec3ES4_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1085' u='c' c='_ZN5tMath15tMulByTransposeERNS_5tMat4ERKNS_5tVec4ES4_'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='58' u='c' c='_ZN5tMath8tMatrix44ZeroEv'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='737' u='c' c='_ZN5tMath14tMakeProjPerspERNS_5tMat4Effffff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='770' u='c' c='_ZN5tMath17tMakeProjPerspSymERNS_5tMat4Effff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='831' u='c' c='_ZN5tMath17tMakeProjParallelERNS_5tMat4ERKNS_5tVec3ES4_'/>

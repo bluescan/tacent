@@ -1,0 +1,17 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='329' u='c' c='_ZN7tItList5ResetEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='330' u='c' c='_ZN7tItList5EmptyEv'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='343' type='bool tItList::IsEmpty() const'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='139' u='c' c='_ZNK5tMath12tIntervalSet7IsValidEv'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='140' u='c' c='_ZNK5tMath12tIntervalSet7IsEmptyEv'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='45' u='c' c='_ZNK6tScene9tLodGroup4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='228' u='c' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='243' u='c' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1165' u='c' c='_ZN6tScene6tWorld13LoadMaterialsERK6tChunkR7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1182' u='c' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1183' u='c' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1184' u='c' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1185' u='c' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1186' u='c' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1228' u='c' c='_ZN6tScene6tWorld10LoadGroupsERK6tChunkR7tItListINS_9tLodGroupEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1245' u='c' c='_ZN6tScene6tWorld13LoadInstancesERK6tChunkR7tItListINS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1262' u='c' c='_ZN6tScene6tWorld14LoadSelectionsERK6tChunkR7tItListINS_10tSelectionEE'/>

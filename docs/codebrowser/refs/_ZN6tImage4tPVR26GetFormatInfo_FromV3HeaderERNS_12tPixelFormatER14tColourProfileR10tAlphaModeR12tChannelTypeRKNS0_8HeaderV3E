@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Src/tImagePVR.cpp' l='237' type='void tImage::tPVR::GetFormatInfo_FromV3Header(tImage::tPixelFormat &amp; , tColourProfile &amp; , tAlphaMode &amp; , tChannelType &amp; , const tImage::tPVR::HeaderV3 &amp; )'/>
+<def f='Modules/Image/Src/tImagePVR.cpp' l='348' ll='601' type='void tImage::tPVR::GetFormatInfo_FromV3Header(tImage::tPixelFormat &amp; format, tColourProfile &amp; profile, tAlphaMode &amp; alphaMode, tChannelType &amp; chanType, const tImage::tPVR::HeaderV3 &amp; header)'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='884' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Src/tImagePVR.cpp' l='234'>// For V3 file headers the channel-type, alpha-mode, and colour-space can always be determined. In addition some
+	// V3 pixel-formats imply a particular colour space and alpha-mode. In cases where these do not match the required
+	// type, mode, or space of the pixel-format, the pixel-format&apos;s required setting is chosen.</doc>

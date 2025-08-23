@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='239' type='tFixIntU&lt;N&gt; tCurt(const tFixIntU&lt;N&gt; &amp; )'/>
+<def f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='865' ll='882' type='tFixIntU&lt;N&gt; tCurt(const tFixIntU&lt;N&gt; &amp; v)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='239'>// Cube root.</doc>

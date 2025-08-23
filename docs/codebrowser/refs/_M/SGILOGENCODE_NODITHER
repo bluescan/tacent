@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='645'/>
+<use f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='516' u='c'/>
+<use f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='517' u='c'/>
+<use f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='518' u='c'/>
+<use f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='519' u='c'/>
+<use f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='520' u='c'/>

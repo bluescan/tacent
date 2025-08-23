@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/stl_vector.h' l='1212' type='std::vector::reference std::vector::emplace_back(_Args &amp;&amp;... __args)'/>
+<def f='include/c++/11/bits/vector.tcc' l='102' ll='125' type='typename vector&lt;_Tp, _Alloc&gt;::reference std::vector::emplace_back(_Args &amp;&amp;... __args)'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='49' u='c' c='_ZN6tInput17tControllerSystemC1Eii'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='50' u='c' c='_ZN6tInput17tControllerSystemC1Eii'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='51' u='c' c='_ZN6tInput17tControllerSystemC1Eii'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='52' u='c' c='_ZN6tInput17tControllerSystemC1Eii'/>

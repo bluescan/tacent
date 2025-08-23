@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='4662' type='void vkCmdSetStencilCompareMask(VkCommandBuffer commandBuffer, VkStencilFaceFlags faceMask, uint32_t compareMask)'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18583' ll='18587'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18583'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceLayeredDriverPropertiesMSFT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceLayeredDriverPropertiesMSFT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceLayeredDriverPropertiesMSFT::underlyingAPI' o='128' t='VkLayeredDriverUnderlyingApiMSFT'/>

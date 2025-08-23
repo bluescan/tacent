@@ -1,0 +1,37 @@
+<def f='include/c++/11/bits/uniform_int_dist.h' l='77' ll='271'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='88'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='276' c='_ZNSt24uniform_int_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='275' c='_ZNSt24uniform_int_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='368' c='_ZNSt24uniform_int_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/stl_algo.h' l='3710' c='_ZSt22__gen_two_uniform_intsT_S_OT0_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='3744' c='_ZSt7shuffleT_S_OT0_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='5752' c='_ZSt8__sampleT_S_St18input_iterator_tagT0_St26random_access_iterator_tagT1_OT2_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='5780' c='_ZSt8__sampleT_S_St20forward_iterator_tagT0_T1_T2_OT3_'/>
+<fun r='_ZNSt24uniform_int_distributionC1Ev'/>
+<fun r='_ZNSt24uniform_int_distributionC1ET_S0_'/>
+<fun r='_ZNSt24uniform_int_distributionC1ERKNS_10param_typeE'/>
+<fun r='_ZNSt24uniform_int_distribution5resetEv'/>
+<fun r='_ZNKSt24uniform_int_distribution1aEv'/>
+<fun r='_ZNKSt24uniform_int_distribution1bEv'/>
+<fun r='_ZNKSt24uniform_int_distribution5paramEv'/>
+<fun r='_ZNSt24uniform_int_distribution5paramERKNS_10param_typeE'/>
+<fun r='_ZNKSt24uniform_int_distribution3minEv'/>
+<fun r='_ZNKSt24uniform_int_distribution3maxEv'/>
+<fun r='_ZNSt24uniform_int_distributionclERTL0__'/>
+<fun r='_ZNSt24uniform_int_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt24uniform_int_distribution10__generateETL0__S0_RTL0_0_'/>
+<fun r='_ZNSt24uniform_int_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<fun r='_ZNSt24uniform_int_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt24uniform_int_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<mbr r='std::uniform_int_distribution::_M_param' t='std::uniform_int_distribution::param_type'/>
+<fun r='_ZNSt24uniform_int_distribution5_S_ndERTL0_0_TL0_1_'/>
+<fun r='_ZNSt24uniform_int_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt24uniform_int_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='1700' c='_ZStneRKSt24uniform_int_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='1701' c='_ZStneRKSt24uniform_int_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='1717' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt24uniform_int_distributionIT_E'/>
+<use f='include/c++/11/bits/random.h' l='1731' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt24uniform_int_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='902' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt24uniform_int_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='922' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt24uniform_int_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='925' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt24uniform_int_distributionIT_E'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1564' c='_ZNKSt6ranges11__sample_fnclET_T0_T1_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS8_EE4type15difference_typeEOT2_'/>

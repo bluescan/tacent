@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='139' type='23'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='140'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1143' u='r' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>

@@ -1,0 +1,5 @@
+<def f='Modules/System/Inc/System/tTime.h' l='68' type='void tSystem::tTimer::tTimer(bool start = true, tUnit::tTime unit = tUnit::tTime::Second)'/>
+<doc f='Modules/System/Inc/System/tTime.h' l='64'>// Creates a timer. You can specify whether the timer is constructed started or not. Internally a floating-point
+	// (double) member is used to keep track of the elapsed time. You can choose the units it represents, which has
+	// implications for overall timer precision. In general, use an internal unit that matches your domain - timing
+	// oscillations of visible light? Use nanoseconds. If unit is Unspecified seconds are used.</doc>

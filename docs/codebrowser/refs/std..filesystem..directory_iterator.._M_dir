@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/fs_dir.h' l='430' u='m' c='_ZNSt10filesystem7__cxx11eqERKNS0_18directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='430' u='r' c='_ZNSt10filesystem7__cxx11eqERKNS0_18directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='431' u='m' c='_ZNSt10filesystem7__cxx11eqERKNS0_18directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='431' u='r' c='_ZNSt10filesystem7__cxx11eqERKNS0_18directory_iteratorES3_'/>
+<dec f='include/c++/11/bits/fs_dir.h' l='441' type='std::__shared_ptr&lt;_Dir&gt;'/>
+<offset>0</offset>

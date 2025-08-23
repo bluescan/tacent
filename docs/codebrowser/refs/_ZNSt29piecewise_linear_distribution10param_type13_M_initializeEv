@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/random.h' l='5847' type='void std::piecewise_linear_distribution::param_type::_M_initialize()'/>
+<def f='include/c++/11/bits/random.tcc' l='3029' ll='3067' type='void std::piecewise_linear_distribution::param_type::_M_initialize()'/>
+<use f='include/c++/11/bits/random.tcc' l='3083' u='c' c='_ZNSt29piecewise_linear_distribution10param_typeC1ETL0__S1_TL0_0_'/>
+<use f='include/c++/11/bits/random.tcc' l='3100' u='c' c='_ZNSt29piecewise_linear_distribution10param_typeC1ESt16initializer_listIT_ETL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='3120' u='c' c='_ZNSt29piecewise_linear_distribution10param_typeC1EmT_S1_TL0__'/>

@@ -1,0 +1,26 @@
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1629' ll='1775'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1778'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='424' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='593' c='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_e'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='631' c='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1413'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1413'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1488'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1488'/>
+<use f='include/c++/11/iomanip' l='320' c='_ZStlsRSt13basic_ostreamIT_T0_ESt10_Put_moneyIT1_E'/>
+<size>16</size>
+<smbr r='std::money_put::id' t='locale::id'/>
+<fun r='_ZNSt7__cxx119money_putC1Em'/>
+<fun r='_ZNKSt7__cxx119money_put3putET0_bRSt8ios_baseT_e'/>
+<fun r='_ZNKSt7__cxx119money_put3putET0_bRSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<fun r='_ZNSt7__cxx119money_putD1Ev'/>
+<fun r='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_e'/>
+<fun r='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<fun r='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<smbr r='std::money_put::id' t='locale::id'/>
+<fun r='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<fun r='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_e'/>
+<fun r='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>

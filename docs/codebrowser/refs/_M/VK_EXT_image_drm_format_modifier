@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12756'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12755'>// VK_EXT_image_drm_format_modifier is a preprocessor guard. Do not pass it to API calls.</doc>

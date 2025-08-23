@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='154' type='-1'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='151'>/* ISO C restricts enum values to range of int hence the
+       cast. We do it verbosely instead of using -1 to ensure
+       it is a 32-bit value even if int is 64 bits. */</doc>

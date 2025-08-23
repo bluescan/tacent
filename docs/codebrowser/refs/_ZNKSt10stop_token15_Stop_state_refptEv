@@ -1,0 +1,11 @@
+<use f='include/c++/11/stop_token' l='72' u='c' c='_ZNKSt10stop_token13stop_possibleEv'/>
+<use f='include/c++/11/stop_token' l='79' u='c' c='_ZNKSt10stop_token14stop_requestedEv'/>
+<def f='include/c++/11/stop_token' l='447' type='std::stop_token::_Stop_state_t * std::stop_token::_Stop_state_ref::operator-&gt;() const'/>
+<use f='include/c++/11/stop_token' l='490' u='c' c='_ZNSt11stop_sourceC1ERKS_'/>
+<use f='include/c++/11/stop_token' l='503' u='c' c='_ZNSt11stop_sourceaSERKS_'/>
+<use f='include/c++/11/stop_token' l='514' u='c' c='_ZNSt11stop_sourceD1Ev'/>
+<use f='include/c++/11/stop_token' l='528' u='c' c='_ZNKSt11stop_source14stop_requestedEv'/>
+<use f='include/c++/11/stop_token' l='535' u='c' c='_ZNKSt11stop_source12request_stopEv'/>
+<use f='include/c++/11/stop_token' l='588' u='c' c='_ZNSt13stop_callbackC1ERKSt10stop_tokenOTL0__'/>
+<use f='include/c++/11/stop_token' l='602' u='c' c='_ZNSt13stop_callbackC1EOSt10stop_tokenOTL0__'/>
+<use f='include/c++/11/stop_token' l='611' u='c' c='_ZNSt13stop_callbackD1Ev'/>

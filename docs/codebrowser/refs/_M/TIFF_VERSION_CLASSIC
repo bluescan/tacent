@@ -1,0 +1,18 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='48'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='30'>/*
+ * Tag Image File Format (TIFF)
+ *
+ * Based on Rev 6.0 from:
+ *    Developer&apos;s Desk
+ *    Aldus Corporation
+ *    411 First Ave. South
+ *    Suite 200
+ *    Seattle, WA  98104
+ *    206-622-5500
+ *
+ *    (http://partners.adobe.com/asn/developer/PDFS/TN/TIFF6.pdf)
+ *
+ * For BigTIFF design notes see the following links
+ *    http://www.remotesensing.org/libtiff/bigtiffdesign.html
+ *    http://www.awaresystems.be/imaging/tiff/bigtiff.html
+ */</doc>

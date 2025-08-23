@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1576'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1573'>/* Define if C99 functions in &lt;complex.h&gt; should be used in &lt;complex&gt; for
+   C++98. Using compiler builtins for these functions requires corresponding
+   C99 library functions to be present. */</doc>

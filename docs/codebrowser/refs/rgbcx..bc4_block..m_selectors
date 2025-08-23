@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3830' type='uint8_t[6]'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3838' u='r' c='_ZNK5rgbcx9bc4_block17get_selector_bitsEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3838' u='r' c='_ZNK5rgbcx9bc4_block17get_selector_bitsEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3838' u='r' c='_ZNK5rgbcx9bc4_block17get_selector_bitsEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3838' u='r' c='_ZNK5rgbcx9bc4_block17get_selector_bitsEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3839' u='r' c='_ZNK5rgbcx9bc4_block17get_selector_bitsEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3840' u='r' c='_ZNK5rgbcx9bc4_block17get_selector_bitsEv'/>
+<offset>16</offset>

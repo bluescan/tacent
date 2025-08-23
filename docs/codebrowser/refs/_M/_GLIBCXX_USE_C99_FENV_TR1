@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1676'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1674'>/* Define if C99 functions in &lt;fenv.h&gt; should be imported in &lt;tr1/cfenv&gt; in
+   namespace std::tr1. */</doc>

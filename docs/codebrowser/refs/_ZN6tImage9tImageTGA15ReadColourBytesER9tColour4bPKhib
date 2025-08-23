@@ -1,0 +1,4 @@
+<use f='Modules/Image/Src/tImageTGA.cpp' l='156' u='c' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='183' u='c' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='203' u='c' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImageTGA.cpp' l='238' ll='270' type='void tImage::tImageTGA::ReadColourBytes(tColour4b &amp; dest, const uint8 * src, int bytesPerPixel, bool alphaOpacity)'/>

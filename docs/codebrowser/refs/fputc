@@ -1,0 +1,8 @@
+<dec f='include/stdio.h' l='549' type='int fputc(int __c, FILE * __stream)'/>
+<doc f='include/stdio.h' l='542'>/* Write a character to STREAM.
+
+   These functions are possible cancellation points and therefore not
+   marked with __THROW.
+
+   These functions is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15920'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15919'>// VK_EXT_image_compression_control is a preprocessor guard. Do not pass it to API calls.</doc>

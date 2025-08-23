@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='210' type='int[3][4]'/>
+<offset>352</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='209'>// and mode-partition #0</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='210'>// approximate number of bytes spent for</doc>

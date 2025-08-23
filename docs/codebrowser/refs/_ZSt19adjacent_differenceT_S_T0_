@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_numeric.h' l='336' ll='360' macro='1' type='_OutputIterator std::adjacent_difference(_InputIterator __first, _InputIterator __last, _OutputIterator __result)'/>

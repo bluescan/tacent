@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='281' type='void tExprWriter::WriteComment(const char *  = nullptr)'/>
+<use f='Modules/System/Inc/System/tScript.h' l='326' u='c' c='_ZN11tExprWriter3RemEPKc'/>
+<use f='Modules/System/Inc/System/tScript.h' l='459' u='c' c='_ZN11tExprWriter12WriteCommentEPKDu'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='280'>// Writes a single line comment to the script file.</doc>
+<def f='Modules/System/Src/tScript.cpp' l='953' ll='968' type='void tExprWriter::WriteComment(const char * comment = nullptr)'/>

@@ -1,0 +1,17 @@
+<dec f='include/c++/11/istream' l='486' type='std::basic_istream::__istream_type &amp; std::basic_istream::read(std::basic_istream::char_type * __s, std::streamsize __n)'/>
+<def f='include/c++/11/bits/istream.tcc' l='682' ll='709' type='basic_istream&lt;_CharT, _Traits&gt; &amp; std::basic_istream::read(std::basic_istream::char_type * __s, std::streamsize __n)'/>
+<doc f='include/c++/11/istream' l='470'>/**
+       *  @brief  Extraction without delimiters.
+       *  @param  __s  A character array.
+       *  @param  __n  Maximum number of characters to store.
+       *  @return  *this
+       *
+       *  If the stream state is @c good(), extracts characters and stores
+       *  them into @a __s until one of the following happens:
+       *  - @a __n characters are stored
+       *  - the input sequence reaches end-of-file, in which case the error
+       *    state is set to @c failbit|eofbit.
+       *
+       *  @note  This function is not overloaded on signed char and
+       *         unsigned char.
+      */</doc>

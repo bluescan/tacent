@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13441'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13440'>// VK_EXT_external_memory_host is a preprocessor guard. Do not pass it to API calls.</doc>

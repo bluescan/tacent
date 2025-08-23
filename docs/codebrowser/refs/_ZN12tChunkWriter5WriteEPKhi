@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='161' type='int tChunkWriter::Write(const uint8 * data, int numItems)'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='61' u='c' c='_ZNK6tImage6tLayer4SaveER12tChunkWriter'/>

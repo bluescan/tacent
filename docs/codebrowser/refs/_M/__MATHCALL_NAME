@@ -1,0 +1,72 @@
+<dec f='include/math.h' l='565'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='24' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='27' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='30' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='33' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='36' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='39' u='c'/>
+<use f='include/math.h' l='569' u='w'/>
+<dec f='include/math.h' l='573'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='24' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='27' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='30' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='33' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='36' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='39' u='c'/>
+<use f='include/math.h' l='590' u='w'/>
+<dec f='include/math.h' l='602'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='24' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='27' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='30' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='33' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='36' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='39' u='c'/>
+<use f='include/math.h' l='619' u='w'/>
+<dec f='include/math.h' l='696'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='24' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='27' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='30' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='33' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='36' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='39' u='c'/>
+<use f='include/math.h' l='700' u='w'/>
+<dec f='include/math.h' l='706'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='24' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='27' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='30' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='33' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='36' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='39' u='c'/>
+<use f='include/math.h' l='710' u='w'/>
+<dec f='include/math.h' l='716'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='24' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='27' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='30' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='33' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='36' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='39' u='c'/>
+<use f='include/math.h' l='720' u='w'/>
+<dec f='include/math.h' l='746'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='24' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='27' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='30' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='33' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='36' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='39' u='c'/>
+<use f='include/math.h' l='750' u='w'/>
+<dec f='include/math.h' l='756'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='24' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='27' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='30' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='33' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='36' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='39' u='c'/>
+<use f='include/math.h' l='760' u='w'/>
+<dec f='include/math.h' l='786'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='24' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='27' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='30' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='33' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='36' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='39' u='c'/>
+<use f='include/math.h' l='790' u='w'/>

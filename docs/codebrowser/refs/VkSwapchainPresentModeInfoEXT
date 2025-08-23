@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14791' ll='14796'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14791'/>
+<size>32</size>
+<mbr r='VkSwapchainPresentModeInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSwapchainPresentModeInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkSwapchainPresentModeInfoEXT::swapchainCount' o='128' t='uint32_t'/>
+<mbr r='VkSwapchainPresentModeInfoEXT::pPresentModes' o='192' t='const VkPresentModeKHR *'/>

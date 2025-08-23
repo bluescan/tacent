@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/ios_base.h' l='168' ll='170' type='std::_Ios_Iostate std::operator|(std::_Ios_Iostate __a, std::_Ios_Iostate __b)'/>
+<use f='include/c++/11/bits/ios_base.h' l='182' u='c' c='_ZStoRRSt12_Ios_IostateS_'/>
+<use f='include/c++/11/bits/basic_ios.h' l='202' u='c' c='_ZNKSt9basic_ios4failEv'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='46' u='c' c='_ZNSt9basic_ios5clearESt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/istream.tcc' l='696' u='c' c='_ZNSt13basic_istream4readEPT_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='973' u='c' c='_ZStrsRSt13basic_istreamIT_T0_ERS0_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1239' u='c' c='_ZNKSt7__cxx118time_get3getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_SA_'/>

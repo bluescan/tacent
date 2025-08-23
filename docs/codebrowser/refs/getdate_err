@@ -1,0 +1,12 @@
+<dec f='include/time.h' l='413' type='int'/>
+<doc f='include/time.h' l='402'>/* Set to one of the following values to indicate an error.
+     1  the DATEMSK environment variable is null or undefined,
+     2  the template file cannot be opened for reading,
+     3  failed to get file status information,
+     4  the template file is not a regular file,
+     5  an error is encountered while reading the template file,
+     6  memory allication failed (not enough memory available),
+     7  there is no line in the template that matches the input,
+     8  invalid input specification Example: February 31 or a time is
+	specified that can not be represented in a time_t (representing
+	the time in seconds since 00:00:00 UTC, January 1, 1970) */</doc>

@@ -1,0 +1,6 @@
+<def f='Modules/Foundation/Inc/Foundation/tConstants.h' l='23' type='const float'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='565' u='r' c='_ZN5tMath8tUnitSinEfj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='575' u='r' c='_ZN5tMath12tUnitSinHalfEfj'/>
+<doc f='Modules/Foundation/Inc/Foundation/tConstants.h' l='23'>// 90  degrees.</doc>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='969' u='r' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='974' u='r' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>

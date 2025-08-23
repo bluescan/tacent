@@ -1,0 +1,5 @@
+<dec f='include/c++/11/mutex' l='686' type='__gthread_once_t'/>
+<use f='include/c++/11/mutex' l='783' u='a' c='_ZSt9call_onceRSt9once_flagOT_DpOT0_'/>
+<offset>0</offset>
+<doc f='include/c++/11/mutex' l='684'>// For gthreads targets a pthread_once_t is used with pthread_once, but
+    // for most targets this doesn&apos;t work correctly for exceptional executions.</doc>

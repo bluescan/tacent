@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/unordered_map.h' l='324' ll='326' type='std::unordered_map::iterator std::unordered_map::begin()'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='320'>/**
+       *  Returns a read/write iterator that points to the first element in the
+       *  %unordered_map.
+       */</doc>

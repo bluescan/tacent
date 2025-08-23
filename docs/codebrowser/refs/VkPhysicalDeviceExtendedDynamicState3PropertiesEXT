@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17473' ll='17477'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17473'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3PropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3PropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3PropertiesEXT::dynamicPrimitiveTopologyUnrestricted' o='128' t='VkBool32'/>

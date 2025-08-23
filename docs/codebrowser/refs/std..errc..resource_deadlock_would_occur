@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/error_constants.h' l='146' type='35'/>
+<use f='include/c++/11/bits/unique_lock.h' l='136' u='r' c='_ZNSt11unique_lock4lockEv'/>
+<use f='include/c++/11/bits/unique_lock.h' l='150' u='r' c='_ZNSt11unique_lock8try_lockEv'/>
+<use f='include/c++/11/bits/unique_lock.h' l='165' u='r' c='_ZNSt11unique_lock14try_lock_untilERKNSt6chrono10time_pointITL0__TL0_0_EE'/>
+<use f='include/c++/11/bits/unique_lock.h' l='180' u='r' c='_ZNSt11unique_lock12try_lock_forERKNSt6chrono8durationITL0__TL0_0_EE'/>

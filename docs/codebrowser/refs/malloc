@@ -1,0 +1,8 @@
+<dec f='include/stdlib.h' l='540' type='void * malloc(size_t __size)'/>
+<doc f='include/stdlib.h' l='539'>/* Allocate SIZE bytes of memory.  */</doc>
+<use f='Modules/Foundation/Src/tMemory.cpp' l='25' u='c' c='_ZN4tMem7tMallocEii'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='59' u='c' c='_ZN6tImage9tImageHDR16SetupGammaTablesEf'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='69' u='c' c='_ZN6tImage9tImageHDR16SetupGammaTablesEf'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='70' u='c' c='_ZN6tImage9tImageHDR16SetupGammaTablesEf'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='306' u='c' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='306' u='c' c='qoi_decode'/>

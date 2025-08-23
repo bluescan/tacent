@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='71' type='void tMath::tQuaternion::Nlerp(const tMath::tQuat &amp; a, const tMath::tQuat &amp; b, float t)'/>
+<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='71'>/* Normalized linear interpolation between a and b. */</doc>

@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='379' type='void tFunExpression::tFunExpression(const char8_t * )'/>
+<use f='Modules/System/Inc/System/tScript.h' l='380' u='c' c='_ZN14tFunExpressionC1EPKc'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='378'>// Argument must point to the first character of the function name.</doc>
+<def f='Modules/System/Src/tScript.cpp' l='1048' ll='1125' type='void tFunExpression::tFunExpression(const char8_t * function)'/>
+<use f='Modules/System/Src/tScript.cpp' l='1149' u='c' c='_ZN10tFunScript4LoadERK7tString'/>
+<doc f='Modules/System/Src/tScript.cpp' l='1047'>// Next follow the types for the functional scripts of the form f(a, b).</doc>

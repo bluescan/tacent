@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='406' type='133'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='648' macro='1' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<doc f='Modules/Image/Src/tImageDDS.cpp' l='404'>// These ASTC formats are extended DXGI formats not (yet?) officially supported by microsoft.
+		// The NVTT exporter uses the UNORM versions of these (dx10 header only) when exporting ASTC dds files.</doc>

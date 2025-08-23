@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1786' ll='1789'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='1815' c='std::messages'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1815'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1419' c='std::messages'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1494' c='std::messages'/>
+<size>1</size>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1782'>/**
+   *  @brief  Messages facet base class providing catalog typedef.
+   *  @ingroup locales
+   */</doc>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='3100' ll='3107' type='static _Duration std::chrono::hh_mm_ss::_S_abs(_Duration __d)'/>
+<use f='include/c++/11/chrono' l='3124' u='c' c='_ZNSt6chrono8hh_mm_ssC1ET_'/>

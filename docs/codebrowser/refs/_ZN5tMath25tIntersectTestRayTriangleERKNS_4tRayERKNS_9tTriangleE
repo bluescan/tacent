@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='497' type='bool tMath::tIntersectTestRayTriangle(const tMath::tRay &amp; , const tMath::tTriangle &amp; )'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='495'>// This test assumes that the triangle faces one direction. An anticlockwise winding of the verts allows the right-hand
+// rule to be used in determining the direction of the triangle&apos;s normal -- assuming a right-handed coordinate system.</doc>
+<def f='Modules/Math/Src/tGeometry.cpp' l='481' ll='501' type='bool tMath::tIntersectTestRayTriangle(const tMath::tRay &amp; ray, const tMath::tTriangle &amp; tri)'/>

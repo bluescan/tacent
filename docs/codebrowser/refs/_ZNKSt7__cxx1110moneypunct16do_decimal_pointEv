@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1258' ll='1260' type='std::moneypunct::char_type std::moneypunct::do_decimal_point() const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1250'>/**
+       *  @brief  Return decimal point character.
+       *
+       *  Returns a char_type to use as a decimal point.  This function is a
+       *  hook for derived classes to change the value returned.
+       *
+       *  @return  @a char_type representing a decimal point.
+      */</doc>

@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='964' type='std::size_t'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='982' u='w' c='_ZNSt18__moneypunct_cacheC1Em'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='100' u='w' c='_ZNSt18__moneypunct_cache8_M_cacheERKSt6locale'/>

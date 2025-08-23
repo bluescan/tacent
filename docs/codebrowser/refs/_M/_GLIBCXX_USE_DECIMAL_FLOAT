@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1706'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1704'>/* Define if ISO/IEC TR 24733 decimal floating point types are supported on
+   this host. */</doc>

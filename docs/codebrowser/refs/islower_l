@@ -1,0 +1,1 @@
+<dec f='include/ctype.h' l='255' type='int islower_l(int , locale_t )'/>

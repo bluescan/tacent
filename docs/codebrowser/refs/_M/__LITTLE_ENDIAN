@@ -1,0 +1,10 @@
+<dec f='include/x86_64-linux-gnu/bits/endian.h' l='30'/>
+<use f='include/x86_64-linux-gnu/bits/endian.h' l='43' u='c'/>
+<use f='include/endian.h' l='38' u='c'/>
+<doc f='include/x86_64-linux-gnu/bits/endian.h' l='22'>/* Definitions for byte order, according to significance of bytes,
+   from low addresses to high addresses.  The value is what you get by
+   putting &apos;4&apos; in the most significant byte, &apos;3&apos; in the second most
+   significant byte, &apos;2&apos; in the second least significant byte, and &apos;1&apos;
+   in the least significant byte, and then writing down one digit for
+   each byte, starting with the byte at the lowest address at the left,
+   and proceeding to the byte with the highest address at the right.  */</doc>

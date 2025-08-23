@@ -1,0 +1,7 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='162' macro='1' type='float fabsf(float __x)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2645' u='c' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2645' u='c' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2645' u='c' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3347' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3347' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3347' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>

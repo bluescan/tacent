@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='963' type='ktx_error_code_e ktxTexture_CreateFromStream(ktxStream * stream, ktxTextureCreateFlags createFlags, ktxTexture ** newTex)'/>

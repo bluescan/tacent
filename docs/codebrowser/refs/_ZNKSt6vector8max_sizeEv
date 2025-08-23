@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_vector.h' l='922' ll='924' type='std::vector::size_type std::vector::max_size() const'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1758' u='c' c='_ZNKSt6vector12_M_check_lenEmPKc'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1762' u='c' c='_ZNKSt6vector12_M_check_lenEmPKc'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1762' u='c' c='_ZNKSt6vector12_M_check_lenEmPKc'/>
+<use f='include/c++/11/bits/vector.tcc' l='620' u='c' c='_ZNSt6vector17_M_default_appendEm'/>
+<use f='include/c++/11/bits/vector.tcc' l='620' u='c' c='_ZNSt6vector17_M_default_appendEm'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='921'>/**  Returns the size() of the largest possible %vector.  */</doc>

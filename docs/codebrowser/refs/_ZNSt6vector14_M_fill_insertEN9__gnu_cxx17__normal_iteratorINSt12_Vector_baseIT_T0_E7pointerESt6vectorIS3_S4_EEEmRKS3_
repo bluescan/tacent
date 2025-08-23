@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/stl_vector.h' l='960' u='c' c='_ZNSt6vector6resizeEmRKT_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1338' u='c' c='_ZNSt6vector6insertEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_typeEE13c9011870'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1657' u='c' c='_ZNSt6vector18_M_insert_dispatchEN9__gnu_cxx17__normal_iteratorINSt12_Vector_baseIT_T0_E7pointerESt6vectorIS3_S4_EEETL0__SB_St11__true_type'/>
+<dec f='include/c++/11/bits/stl_vector.h' l='1684' type='void std::vector::_M_fill_insert(std::vector::iterator __pos, std::vector::size_type __n, const std::vector::value_type &amp; __x)'/>
+<def f='include/c++/11/bits/vector.tcc' l='507' ll='606' type='void std::vector::_M_fill_insert(std::vector::iterator __position, std::vector::size_type __n, const std::vector::value_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1681'>// Called by insert(p,n,x), and the range insert when it turns out to be
+      // the same thing.</doc>

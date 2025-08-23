@@ -1,0 +1,4 @@
+<dec f='include/errno.h' l='45' type='char *'/>
+<doc f='include/errno.h' l='42'>/* The full and simple forms of the name with which the program was
+   invoked.  These variables are set up automatically at startup based on
+   the value of argv[0].  */</doc>

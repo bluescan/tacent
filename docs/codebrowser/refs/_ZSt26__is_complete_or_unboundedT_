@@ -1,0 +1,1 @@
+<def f='include/c++/11/type_traits' l='233' ll='239' type='typename __or_&lt;is_reference&lt;_NestedType&gt;, is_function&lt;_NestedType&gt;, is_void&lt;_NestedType&gt;, __is_array_unknown_bounds&lt;_NestedType&gt;&gt;::type std::__is_complete_or_unbounded(_TypeIdentity )'/>

@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18740' ll='18752'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18740'/>
+<size>80</size>
+<mbr r='VkAccelerationStructureBuildGeometryInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkAccelerationStructureBuildGeometryInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkAccelerationStructureBuildGeometryInfoKHR::type' o='128' t='VkAccelerationStructureTypeKHR'/>
+<mbr r='VkAccelerationStructureBuildGeometryInfoKHR::flags' o='160' t='VkBuildAccelerationStructureFlagsKHR'/>
+<mbr r='VkAccelerationStructureBuildGeometryInfoKHR::mode' o='192' t='VkBuildAccelerationStructureModeKHR'/>
+<mbr r='VkAccelerationStructureBuildGeometryInfoKHR::srcAccelerationStructure' o='256' t='VkAccelerationStructureKHR'/>
+<mbr r='VkAccelerationStructureBuildGeometryInfoKHR::dstAccelerationStructure' o='320' t='VkAccelerationStructureKHR'/>
+<mbr r='VkAccelerationStructureBuildGeometryInfoKHR::geometryCount' o='384' t='uint32_t'/>
+<mbr r='VkAccelerationStructureBuildGeometryInfoKHR::pGeometries' o='448' t='const VkAccelerationStructureGeometryKHR *'/>
+<mbr r='VkAccelerationStructureBuildGeometryInfoKHR::ppGeometries' o='512' t='const VkAccelerationStructureGeometryKHR *const *'/>
+<mbr r='VkAccelerationStructureBuildGeometryInfoKHR::scratchData' o='576' t='VkDeviceOrHostAddressKHR'/>

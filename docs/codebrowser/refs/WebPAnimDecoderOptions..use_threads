@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='255' type='int'/>
+<offset>32</offset>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='255'>// If true, use multi-threaded decoding.</doc>

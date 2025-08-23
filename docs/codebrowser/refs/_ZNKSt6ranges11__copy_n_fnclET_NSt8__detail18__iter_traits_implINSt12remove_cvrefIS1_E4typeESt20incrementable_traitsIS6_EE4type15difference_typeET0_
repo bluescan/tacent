@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algobase.h' l='496' ll='511' type='copy_n_result&lt;_Iter, _Out&gt; std::ranges::__copy_n_fn::operator()(_Iter __first, iter_difference_t&lt;_Iter&gt; __n, _Out __result) const'/>

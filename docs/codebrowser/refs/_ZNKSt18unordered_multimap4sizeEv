@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1451' ll='1453' type='std::unordered_multimap::size_type std::unordered_multimap::size() const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1450'>///  Returns the size of the %unordered_multimap.</doc>

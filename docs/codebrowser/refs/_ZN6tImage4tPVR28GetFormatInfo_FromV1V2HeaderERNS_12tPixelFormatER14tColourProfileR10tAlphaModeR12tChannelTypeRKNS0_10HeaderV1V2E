@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Src/tImagePVR.cpp' l='232' type='void tImage::tPVR::GetFormatInfo_FromV1V2Header(tImage::tPixelFormat &amp; , tColourProfile &amp; , tAlphaMode &amp; , tChannelType &amp; , const tImage::tPVR::HeaderV1V2 &amp; )'/>
+<def f='Modules/Image/Src/tImagePVR.cpp' l='263' ll='345' type='void tImage::tPVR::GetFormatInfo_FromV1V2Header(tImage::tPixelFormat &amp; format, tColourProfile &amp; profile, tAlphaMode &amp; alphaMode, tChannelType &amp; chanType, const tImage::tPVR::HeaderV1V2 &amp; header)'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='783' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Src/tImagePVR.cpp' l='228'>// Determine the pixel-format and, if possible, the alpha-mode and channel-type. There is no possibility of
+	// determining the colour-profile for V1V2 file headers but we pass it in anyways so it behaves similarly to the V3
+	// GetFormatInfo. If the pixel format is returned unspecified the headerFmt is not supported or was invalid. In
+	// this case the returned colour-profile, alpha-mode, and channel-type will be unspecified.</doc>

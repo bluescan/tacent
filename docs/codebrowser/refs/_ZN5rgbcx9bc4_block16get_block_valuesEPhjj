@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3875' ll='3881' type='static uint32_t rgbcx::bc4_block::get_block_values(uint8_t * pDst, uint32_t l, uint32_t h)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4141' u='c' c='_ZN5rgbcx10unpack_bc4EPKvPhj'/>

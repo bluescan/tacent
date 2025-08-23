@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/WebP/include/decode.h' l='234' ll='243'/>
+<use f='Modules/Image/Contrib/WebP/include/decode.h' l='234'/>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='231'>//------------------------------------------------------------------------------
+// Enumeration of the status codes</doc>

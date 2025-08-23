@@ -1,0 +1,8 @@
+<dec f='include/c++/11/fstream' l='170' type='std::basic_filebuf::char_type *'/>
+<use f='include/c++/11/fstream' l='208' u='w' c='_ZNSt13basic_filebuf15_M_create_pbackEv'/>
+<use f='include/c++/11/fstream' l='226' u='w' c='_ZNSt13basic_filebuf16_M_destroy_pbackEv'/>
+<use f='include/c++/11/fstream' l='227' c='_ZNSt13basic_filebuf16_M_destroy_pbackEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='85' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='109' u='w' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='143' u='w' c='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='171' c='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>

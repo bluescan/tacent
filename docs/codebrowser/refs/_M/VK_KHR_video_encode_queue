@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10099'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10098'>// VK_KHR_video_encode_queue is a preprocessor guard. Do not pass it to API calls.</doc>

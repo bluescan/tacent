@@ -1,0 +1,15 @@
+<def f='include/c++/11/chrono' l='1554' ll='1557' type='void std::chrono::year::year(int __y)'/>
+<use f='include/c++/11/chrono' l='1561' u='c' c='_ZNSt6chrono4year3minEv'/>
+<use f='include/c++/11/chrono' l='1565' u='c' c='_ZNSt6chrono4year3maxEv'/>
+<use f='include/c++/11/chrono' l='1617' u='c' c='_ZNKSt6chrono4yearngEv'/>
+<use f='include/c++/11/chrono' l='1660' u='c' c='_ZNSt6chronoplERKNS_4yearERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2459' u='c' c='_ZNSt6chronodvEiRKNS_9month_dayE'/>
+<use f='include/c++/11/chrono' l='2467' u='c' c='_ZNSt6chronodvERKNS_9month_dayEi'/>
+<use f='include/c++/11/chrono' l='2508' u='c' c='_ZNSt6chrono14year_month_day12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2689' u='c' c='_ZNSt6chronodvEiRKNS_14month_day_lastE'/>
+<use f='include/c++/11/chrono' l='2698' u='c' c='_ZNSt6chronodvERKNS_14month_day_lastEi'/>
+<use f='include/c++/11/chrono' l='2880' u='c' c='_ZNSt6chronodvEiRKNS_13month_weekdayE'/>
+<use f='include/c++/11/chrono' l='2888' u='c' c='_ZNSt6chronodvERKNS_13month_weekdayEi'/>
+<use f='include/c++/11/chrono' l='3028' u='c' c='_ZNSt6chronodvEiRKNS_18month_weekday_lastE'/>
+<use f='include/c++/11/chrono' l='3037' u='c' c='_ZNSt6chronodvERKNS_18month_weekday_lastEi'/>
+<use f='include/c++/11/chrono' l='3295' u='c' c='_ZNSt8literals15chrono_literalsli1yEy'/>

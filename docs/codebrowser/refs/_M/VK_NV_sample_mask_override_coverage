@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12146'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12145'>// VK_NV_sample_mask_override_coverage is a preprocessor guard. Do not pass it to API calls.</doc>

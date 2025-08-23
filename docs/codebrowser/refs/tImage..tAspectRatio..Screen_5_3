@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='375' type='4'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='375'>// 1.6666666</doc>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='735' u='r' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>

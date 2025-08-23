@@ -1,0 +1,2 @@
+<def f='Modules/Scene/Src/tAttribute.cpp' l='129' ll='138' type='bool tScene::tAttributes::Contains(const tScene::tAttribute &amp; attrib) const'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='166' u='c' c='_ZNK6tScene11tAttributeseqERKS0_'/>

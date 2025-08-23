@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/random.h' l='3563' u='c' c='_ZNSt22bernoulli_distributionC1Ev'/>
+<def f='include/c++/11/bits/random.h' l='3571' ll='3574' type='void std::bernoulli_distribution::bernoulli_distribution(double __p)'/>
+<doc f='include/c++/11/bits/random.h' l='3565'>/**
+     * @brief Constructs a Bernoulli distribution with likelihood @p p.
+     *
+     * @param __p  [IN]  The likelihood of a true result being returned.
+     *                   Must be in the interval @f$[0, 1]@f$.
+     */</doc>

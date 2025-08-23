@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='184' type='uint32 tString::operator unsigned int() const'/>
+<def f='Modules/Foundation/Src/tString.cpp' l='61' ll='64' type='uint32 tString::operator unsigned int() const'/>

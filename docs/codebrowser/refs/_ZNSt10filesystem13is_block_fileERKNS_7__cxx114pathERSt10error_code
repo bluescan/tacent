@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_ops.h' l='172' ll='174' type='bool std::filesystem::is_block_file(const std::filesystem::path &amp; __p, std::error_code &amp; __ec)'/>

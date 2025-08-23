@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/random.h' l='4301' type='std::negative_binomial_distribution::result_type std::negative_binomial_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng)'/>
+<def f='include/c++/11/bits/random.tcc' l='1142' ll='1153' type='typename negative_binomial_distribution&lt;_IntType&gt;::result_type std::negative_binomial_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng)'/>
+<doc f='include/c++/11/bits/random.tcc' l='1141'>// This is Leger&apos;s algorithm, also in Devroye, Ch. X, Example 1.5.</doc>

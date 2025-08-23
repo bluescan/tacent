@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='143' type='128'/>
+<use f='Modules/System/Src/tFile.cpp' l='2049' u='r' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>

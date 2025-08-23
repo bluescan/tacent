@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/ctype_base.h' l='57' type='const std::ctype_base::mask'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2609' c='_ZSt7iscntrlT_RKSt6locale'/>

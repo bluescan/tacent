@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='1698' ll='1711' macro='1' type='bool std::equal(_IIter1 __first1, _IIter1 __last1, _IIter2 __first2, _IIter2 __last2, _BinaryPredicate __binary_pred)'/>

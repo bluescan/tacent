@@ -1,0 +1,17 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='226' type='bool tStd::tItostrT(char * str, int strSize, IntegralType value, int base = 10)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='227' u='c' c='_ZN4tStd7tItostrEPciii'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='228' u='c' c='_ZN4tStd7tItostrEPcixi'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='229' u='c' c='_ZN4tStd7tItostrEPciji'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='230' u='c' c='_ZN4tStd7tItostrEPciyi'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='634' ll='637' type='bool tStd::tItostrT(char * str, int strSize, IntegralType value, int base = 10)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='215'>// Here are the functions for going from integral types to strings. strSize (as opposed to length) must include
+// enough room for the terminating null. strSize should be the full size of the passed-in str buffer. The resulting
+// string, if letter characters are called for (bases &gt; 10) will be capital, not lower case. Base must be E [2, 36].
+// Conversion problems boil down to passing null str, strSize being too small, and specifying an out-of-bounds base.
+// Returns false in these cases, and true on success. The int-to-string functions are mainly available to handle
+// arbitrary base E (2, 36] since tsPrintf only handles octal, decimal, and hex.
+//
+// Floating point conversions to strings should be handled by the tPrintf-style functions due to their superior
+// formatting specifiers. There are helper functions that convert float/double to strings. Due to the complexity of
+// converting to a string, these functions are found in the System module rather than foundation. Examples of these
+// functions are: tFtoa, tDtoa, tFtostr, and tDtostr.</doc>

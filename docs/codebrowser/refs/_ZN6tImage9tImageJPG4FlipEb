@@ -1,0 +1,7 @@
+<use f='Modules/Image/Src/tImageJPG.cpp' l='146' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='150' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='151' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='155' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='159' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='168' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImageJPG.cpp' l='299' ll='314' type='void tImage::tImageJPG::Flip(bool horizontal)'/>

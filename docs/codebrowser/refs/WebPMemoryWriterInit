@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='249' type='void WebPMemoryWriterInit(WebPMemoryWriter * writer)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='387' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>

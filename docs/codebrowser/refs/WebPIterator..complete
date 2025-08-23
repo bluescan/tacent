@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='150' type='int'/>
+<offset>256</offset>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='150'>// true if &apos;fragment&apos; contains a full frame. partial images</doc>

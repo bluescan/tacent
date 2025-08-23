@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15501' ll='15505'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15501'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceDescriptorBufferDensityMapPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDescriptorBufferDensityMapPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDescriptorBufferDensityMapPropertiesEXT::combinedImageSamplerDensityMapDescriptorSize' o='128' t='size_t'/>

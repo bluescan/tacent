@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/struct_stat.h' l='140' type='struct timespec'/>
+<offset>704</offset>
+<doc f='include/x86_64-linux-gnu/bits/struct_stat.h' l='140'>/* Time of last modification.  */</doc>

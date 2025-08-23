@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/std_thread.h' l='325' ll='331' type='void std::this_thread::yield()'/>
+<use f='include/c++/11/stop_token' l='106' u='c' c='_ZNSt10stop_token8_S_yieldEv'/>
+<doc f='include/c++/11/bits/std_thread.h' l='324'>/// this_thread::yield</doc>

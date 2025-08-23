@@ -1,0 +1,2 @@
+<dec f='include/strings.h' l='128' type='int strcasecmp_l(const char * __s1, const char * __s2, locale_t __loc)'/>
+<doc f='include/strings.h' l='127'>/* Compare S1 and S2, ignoring case, using collation rules from LOC.  */</doc>

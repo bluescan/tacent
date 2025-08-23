@@ -1,0 +1,11 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='54' c='tImage::tBaseImage'/>
+<def f='Modules/Image/Inc/Image/tImageWEBP.h' l='26' ll='114'/>
+<size>72</size>
+<fun r='_ZN6tImage10tImageWEBPD1Ev'/>
+<fun r='_ZN6tImage10tImageWEBP3SetEP9tColour4biib'/>
+<fun r='_ZN6tImage10tImageWEBP3SetEPNS_6tFrameEb'/>
+<fun r='_ZN6tImage10tImageWEBP3SetERNS_8tPictureEb'/>
+<fun r='_ZN6tImage10tImageWEBP5ClearEv'/>
+<fun r='_ZNK6tImage10tImageWEBP7IsValidEv'/>
+<fun r='_ZN6tImage10tImageWEBP8GetFrameEb'/>
+<fun r='_ZN6tImage10tImageWEBP5ClearEv'/>

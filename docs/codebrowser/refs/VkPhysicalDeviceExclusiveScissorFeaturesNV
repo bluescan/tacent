@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13721' ll='13725'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13721'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceExclusiveScissorFeaturesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceExclusiveScissorFeaturesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceExclusiveScissorFeaturesNV::exclusiveScissor' o='128' t='VkBool32'/>

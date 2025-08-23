@@ -1,0 +1,9 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/system_error' l='60'/>
+<use f='include/c++/11/system_error' l='73'/>
+<use f='include/c++/11/system_error' l='206'/>
+<use f='include/c++/11/system_error' l='223' c='_ZNSt10error_codeaSET_'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/ios_base.h' l='205'/>
+<use f='include/c++/11/bits/ios_base.h' l='205'/>
+<size>1</size>

@@ -1,0 +1,7 @@
+<def f='include/x86_64-linux-gnu/bits/types/__sigval_t.h' l='24' ll='28'/>
+<use f='include/x86_64-linux-gnu/bits/types/__sigval_t.h' l='30'/>
+<use f='include/signal.h' l='292' c='sigqueue'/>
+<use f='include/x86_64-linux-gnu/bits/sigthread.h' l='41' c='pthread_sigqueue'/>
+<size>8</size>
+<mbr r='sigval::sival_int' o='0' t='int'/>
+<mbr r='sigval::sival_ptr' o='0' t='void *'/>

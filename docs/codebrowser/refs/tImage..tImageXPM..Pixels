@@ -1,0 +1,7 @@
+<use f='Modules/Image/Src/tImageXPM.cpp' l='57' u='w' c='_ZN6tImage9tImageXPM4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageXPM.cpp' l='60' u='r' c='_ZN6tImage9tImageXPM4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageXPM.cpp' l='83' u='w' c='_ZN6tImage9tImageXPM3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageXPM.cpp' l='87' u='w' c='_ZN6tImage9tImageXPM3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageXPM.cpp' l='88' u='r' c='_ZN6tImage9tImageXPM3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageXPM.cpp' l='102' u='r' c='_ZN6tImage9tImageXPM11StealPixelsEv'/>
+<use f='Modules/Image/Src/tImageXPM.cpp' l='103' u='w' c='_ZN6tImage9tImageXPM11StealPixelsEv'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_deque.h' l='1861' type='void std::deque::_M_range_initialize(_ForwardIterator __first, _ForwardIterator __last, std::forward_iterator_tag )'/>
+<def f='include/c++/11/bits/deque.tcc' l='440' ll='477' type='void std::deque::_M_range_initialize(_ForwardIterator __first, _ForwardIterator __last, std::forward_iterator_tag )'/>

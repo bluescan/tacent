@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='213' type='void tMath::tSet(tMath::tVec3 &amp; d, const tMath::tVec3 &amp; s)'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='28' u='c' c='_ZN5tMath8tVector3C1ERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='36' u='c' c='_ZN5tMath8tVector33SetERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='72' u='c' c='_ZN5tMath8tVector3aSERKNS_5tVec3E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='347' u='c' c='_ZN12tChunkWriter5WriteERKN5tMath8tVector3E'/>

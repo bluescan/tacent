@@ -1,0 +1,4 @@
+<def f='include/c++/11/fstream' l='269' ll='271' type='bool std::basic_filebuf::is_open() const'/>
+<doc f='include/c++/11/fstream' l='266'>/**
+       *  @brief  Returns true if the external file is open.
+       */</doc>

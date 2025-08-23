@@ -1,0 +1,5 @@
+<use f='Modules/Image/Inc/Image/tImagePKM.h' l='71' u='c' c='_ZN6tImage9tImagePKMC1ERNS_8tPictureEb'/>
+<dec f='Modules/Image/Inc/Image/tImagePKM.h' l='87' type='bool tImage::tImagePKM::Set(tImage::tPicture &amp; picture, bool steal = true)'/>
+<doc f='Modules/Image/Inc/Image/tImagePKM.h' l='86'>// Sets from a tPicture.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='70' c='_ZN6tImage10tBaseImage3SetERNS_8tPictureEb'/>
+<def f='Modules/Image/Src/tImagePKM.cpp' l='337' ll='356' type='bool tImage::tImagePKM::Set(tImage::tPicture &amp; picture, bool steal = true)'/>

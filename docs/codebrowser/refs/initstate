@@ -1,0 +1,5 @@
+<dec f='include/stdlib.h' l='411' type='char * initstate(unsigned int __seed, char * __statebuf, size_t __statelen)'/>
+<doc f='include/stdlib.h' l='407'>/* Initialize the random number generator to use state buffer STATEBUF,
+   of length STATELEN, and seed it with SEED.  Optimal lengths are 8, 16,
+   32, 64, 128 and 256, the bigger the better; values less than 8 will
+   cause an error and values greater than 256 will be rounded down.  */</doc>

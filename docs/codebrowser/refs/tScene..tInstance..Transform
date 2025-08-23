@@ -1,0 +1,5 @@
+<use f='Modules/Scene/Src/tInstance.cpp' l='32' u='r' c='_ZNK6tScene9tInstance4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tInstance.cpp' l='57' u='a' c='_ZN6tScene9tInstance4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='252' u='w' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='402' u='r' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='406' u='r' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>

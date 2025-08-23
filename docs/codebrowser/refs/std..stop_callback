@@ -1,0 +1,11 @@
+<def f='include/c++/11/stop_token' l='571' ll='643'/>
+<use f='include/c++/11/stop_token' l='646' c='std::{deductionguideforstop_callback}'/>
+<fun r='_ZNSt13stop_callbackC1ERKSt10stop_tokenOTL0__'/>
+<fun r='_ZNSt13stop_callbackC1EOSt10stop_tokenOTL0__'/>
+<fun r='_ZNSt13stop_callbackD1Ev'/>
+<fun r='_ZNSt13stop_callbackC1ERKSt13stop_callbackIT_E'/>
+<fun r='_ZNSt13stop_callbackaSERKSt13stop_callbackIT_E'/>
+<fun r='_ZNSt13stop_callbackC1EOSt13stop_callbackIT_E'/>
+<fun r='_ZNSt13stop_callbackaSEOSt13stop_callbackIT_E'/>
+<mbr r='std::stop_callback::_M_cb' t='std::stop_callback::_Cb_impl'/>
+<mbr r='std::stop_callback::_M_state' t='stop_token::_Stop_state_ref'/>

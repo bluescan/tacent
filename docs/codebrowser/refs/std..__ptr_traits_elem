@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/ptr_traits.h' l='82' ll='83'/>
+<def f='include/c++/11/bits/ptr_traits.h' l='85' ll='93'/>
+<use f='include/c++/11/bits/ptr_traits.h' l='100'/>
+<fun r='_ZNSt17__ptr_traits_elemIT_vE10pointer_toERNSt11conditionalIXsr7is_voidINS0_12element_typeEEE5valueESt11__undefinedS3_E4typeE'/>

@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tImageKTX.h' l='111' type='0'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='163' u='r' c='_ZNK6tImage9tImageKTX7IsValidEv'/>
+<doc f='Modules/Image/Inc/Image/tImageKTX.h' l='110'>// The tImageKTX is considered valid. May be combined with the conditionals below.</doc>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='582' u='r' c='_ZN6tImage9tImageKTX3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='603' u='r' c='_ZN6tImage9tImageKTX3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='977' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1133' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

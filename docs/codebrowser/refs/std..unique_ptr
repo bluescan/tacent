@@ -1,0 +1,125 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='242' ll='470'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='260'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='340' c='_ZNSt10unique_ptrC1EOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='386' c='_ZNSt10unique_ptraSEOSt10unique_ptrITL0__TL0_0_E'/>
+<def f='include/c++/11/bits/unique_ptr.h' l='476' ll='725'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='502'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='603' c='_ZNSt10unique_ptrIA_T_T0_EC1EOS_ITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='638' c='_ZNSt10unique_ptrIA_T_T0_EaSEOS_ITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='738' c='_ZSt4swapRSt10unique_ptrIT_T0_ES3_'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='739' c='_ZSt4swapRSt10unique_ptrIT_T0_ES3_'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='745' c='_ZSt4swapRSt10unique_ptrIT_T0_ES3_'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='746' c='_ZSt4swapRSt10unique_ptrIT_T0_ES3_'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='753' c='_ZSteqRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='754' c='_ZSteqRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='760' c='_ZSteqRKSt10unique_ptrIT_T0_EDn'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='795' c='_ZStltRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='796' c='_ZStltRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='799' c='_ZStltRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='800' c='_ZStltRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='807' c='_ZStltRKSt10unique_ptrIT_T0_EDn'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='809' c='_ZStltRKSt10unique_ptrIT_T0_EDn'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='816' c='_ZStltDnRKSt10unique_ptrIT_T0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='818' c='_ZStltDnRKSt10unique_ptrIT_T0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='826' c='_ZStleRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='827' c='_ZStleRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='833' c='_ZStleRKSt10unique_ptrIT_T0_EDn'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='839' c='_ZStleDnRKSt10unique_ptrIT_T0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='846' c='_ZStgtRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='847' c='_ZStgtRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='853' c='_ZStgtRKSt10unique_ptrIT_T0_EDn'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='855' c='_ZStgtRKSt10unique_ptrIT_T0_EDn'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='862' c='_ZStgtDnRKSt10unique_ptrIT_T0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='864' c='_ZStgtDnRKSt10unique_ptrIT_T0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='872' c='_ZStgeRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='873' c='_ZStgeRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='879' c='_ZStgeRKSt10unique_ptrIT_T0_EDn'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='885' c='_ZStgeDnRKSt10unique_ptrIT_T0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='890'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='891'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='893' c='_ZStssRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='894' c='_ZStssRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='895' c='_ZStssRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='896' c='_ZStssRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='900'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='902' c='_ZStssRKSt10unique_ptrIT_T0_EDn'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='903' c='_ZStssRKSt10unique_ptrIT_T0_EDn'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='905' c='_ZStssRKSt10unique_ptrIT_T0_EDn'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='933'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='934'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='935'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='946'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='950'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='962' c='_ZSt11make_uniqueDpOT0_'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='968' c='_ZSt11make_uniquem'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='980' c='_ZSt25make_unique_for_overwritev'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='986' c='_ZSt25make_unique_for_overwritem'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='1004' c='_ZStlsRSt13basic_ostreamIT_T0_ERKSt10unique_ptrIT1_T2_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='1022'/>
+<use f='include/c++/11/bits/std_thread.h' l='73'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='472'>/// 20.7.1.3 unique_ptr for array objects with a runtime length
+  // [unique.ptr.runtime]
+  // _GLIBCXX_RESOLVE_LIB_DEFECTS
+  // DR 740 - omit specialization for array objects with a compile time length</doc>
+<mbr r='std::unique_ptr::_M_t' t='__uniq_ptr_data&lt;_Tp, _Dp&gt;'/>
+<fun r='_ZNSt10unique_ptrC1Ev'/>
+<fun r='_ZNSt10unique_ptrC1ENSt15__uniq_ptr_implIT_T0_E7pointerE'/>
+<fun r='_ZNSt10unique_ptrC1ENSt15__uniq_ptr_implIT_T0_E7pointerERKS2_'/>
+<fun r='_ZNSt10unique_ptrC1ENSt15__uniq_ptr_implIT_T0_E7pointerENSt9enable_ifIXntsr19is_lvalue_referenceITL0__EE5valueEOS6_E4typeE'/>
+<fun r='_ZNSt10unique_ptrC1ENSt15__uniq_ptr_implIT_T0_E7pointerENSt9enable_ifIXsr19is_lvalue_referenceITL0__EE5valueEOTL0_0_E4typeE'/>
+<fun r='_ZNSt10unique_ptrC1EDn'/>
+<fun r='_ZNSt10unique_ptrC1EOSt10unique_ptrIT_T0_E'/>
+<fun r='_ZNSt10unique_ptrC1EOSt10unique_ptrITL0__TL0_0_E'/>
+<fun r='_ZNSt10unique_ptrC1EOSt8auto_ptrITL0__E'/>
+<fun r='_ZNSt10unique_ptrD1Ev'/>
+<fun r='_ZNSt10unique_ptraSEOSt10unique_ptrIT_T0_E'/>
+<fun r='_ZNSt10unique_ptraSEOSt10unique_ptrITL0__TL0_0_E'/>
+<fun r='_ZNSt10unique_ptraSEDn'/>
+<fun r='_ZNKSt10unique_ptrdeEv'/>
+<fun r='_ZNKSt10unique_ptrptEv'/>
+<fun r='_ZNKSt10unique_ptr3getEv'/>
+<fun r='_ZNSt10unique_ptr11get_deleterEv'/>
+<fun r='_ZNKSt10unique_ptr11get_deleterEv'/>
+<fun r='_ZNKSt10unique_ptrcvbEv'/>
+<fun r='_ZNSt10unique_ptr7releaseEv'/>
+<fun r='_ZNSt10unique_ptr5resetENSt15__uniq_ptr_implIT_T0_E7pointerE'/>
+<fun r='_ZNSt10unique_ptr4swapERSt10unique_ptrIT_T0_E'/>
+<fun r='_ZNSt10unique_ptrC1ERKSt10unique_ptrIT_T0_E'/>
+<fun r='_ZNSt10unique_ptraSERKSt10unique_ptrIT_T0_E'/>
+<mbr r='std::unique_ptr::_M_t' t='__uniq_ptr_data&lt;_Tp, _Dp&gt;'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_EC1Ev'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_EC1ETL0__'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_EC1ETL0__RKS2_'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_EC1ETL0__NSt9enable_ifIXntsr19is_lvalue_referenceITL0_0_EE5valueEOS6_E4typeE'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_EC1ETL0__NSt9enable_ifIXsr19is_lvalue_referenceITL0_0_EE5valueEOTL0_1_E4typeE'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_EC1EOS_IS1_S2_E'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_EC1EDn'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_EC1EOS_ITL0__TL0_0_E'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_ED1Ev'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_EaSEOS_IS1_S2_E'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_EaSEOS_ITL0__TL0_0_E'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_EaSEDn'/>
+<fun r='_ZNKSt10unique_ptrIA_T_T0_EixEm'/>
+<fun r='_ZNKSt10unique_ptrIA_T_T0_E3getEv'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_E11get_deleterEv'/>
+<fun r='_ZNKSt10unique_ptrIA_T_T0_E11get_deleterEv'/>
+<fun r='_ZNKSt10unique_ptrIA_T_T0_EcvbEv'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_E7releaseEv'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_E5resetETL0__'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_E5resetEDn'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_E4swapERS_IS1_S2_E'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_EC1ERKS_IS1_S2_E'/>
+<fun r='_ZNSt10unique_ptrIA_T_T0_EaSERKS_IS1_S2_E'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='670' c='_ZNSt14__shared_countC1EOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='677' c='_ZNSt14__shared_countC1EOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1075'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1188' c='_ZNSt12__shared_ptrC1EOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1264' c='_ZNSt12__shared_ptraSEOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='339'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='340' c='_ZNSt10shared_ptrC1EOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='398' c='_ZNSt10shared_ptraSEOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='399' c='_ZNSt10shared_ptraSEOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='427' c='std::{deductionguideforshared_ptr}'/>
+<use f='include/c++/11/bits/locale_conv.h' l='373'/>
+<use f='include/c++/11/bits/locale_conv.h' l='597'/>
+<use f='include/c++/11/bits/fs_path.h' l='682'/>

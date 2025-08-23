@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17422'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17421'>// VK_EXT_external_memory_acquire_unmodified is a preprocessor guard. Do not pass it to API calls.</doc>

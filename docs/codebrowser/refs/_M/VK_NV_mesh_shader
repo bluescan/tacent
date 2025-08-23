@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13629'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13628'>// VK_NV_mesh_shader is a preprocessor guard. Do not pass it to API calls.</doc>

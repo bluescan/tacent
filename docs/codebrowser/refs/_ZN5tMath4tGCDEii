@@ -1,0 +1,8 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='114' type='int tMath::tGCD(int a, int b)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='115' u='c' c='_ZN5tMath22tGreatestCommonDivisorEii'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='355' ll='365' type='int tMath::tGCD(int a, int b)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='374' u='c' c='_ZN5tMath4tLCMEii'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='110'>// Finds the Greatest Common Divisor of a and b. The biggest natural number that divides into both. Note that any number
+// other than 0 will divide 0, so tGCD(0,12) == 12. Also note tGCD(0,0) returns the biggest number we can: MaxInt.
+// Negatives are well defined. Result is always positive. tGCD(-12,8), tGCD(12,-8), and tGCD(-12,-8) == 4.
+// Note that gcd(a,b,c) = gcd(gcd(a,b),c)</doc>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/iomanip' l='86'/>
+<use f='include/c++/11/iomanip' l='95' c='_ZSt11setiosflagsSt13_Ios_Fmtflags'/>
+<use f='include/c++/11/iomanip' l='101' c='_ZStrsRSt13basic_istreamIT_T0_ESt12_Setiosflags'/>
+<use f='include/c++/11/iomanip' l='109' c='_ZStlsRSt13basic_ostreamIT_T0_ESt12_Setiosflags'/>
+<size>4</size>
+<mbr r='std::_Setiosflags::_M_mask' o='0' t='ios_base::fmtflags'/>

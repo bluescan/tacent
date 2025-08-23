@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/fs_path.h' l='385' u='c' c='_ZNSt10filesystem7__cxx114path6concatERKT_'/>
+<use f='include/c++/11/bits/fs_path.h' l='393' u='c' c='_ZNSt10filesystem7__cxx114path6concatET_S2_'/>
+<dec f='include/c++/11/bits/fs_path.h' l='566' type='void std::filesystem::path::_M_concat(basic_string_view&lt;std::filesystem::path::value_type&gt; )'/>
+<use f='include/c++/11/bits/fs_path.h' l='969' u='c' c='_ZNSt10filesystem7__cxx114pathpLERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='976' u='c' c='_ZNSt10filesystem7__cxx114pathpLEPKc'/>
+<use f='include/c++/11/bits/fs_path.h' l='983' u='c' c='_ZNSt10filesystem7__cxx114pathpLEc'/>
+<use f='include/c++/11/bits/fs_path.h' l='990' u='c' c='_ZNSt10filesystem7__cxx114pathpLESt17basic_string_viewIcSt11char_traitsIcEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='998' u='c' c='_ZNSt10filesystem7__cxx114pathpLET_'/>

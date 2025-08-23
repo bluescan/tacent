@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13244' ll='13246'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13244'/>
+<size>48</size>
+<mbr r='VkTransformMatrixKHR::matrix' o='0' t='float[3][4]'/>

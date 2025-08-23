@@ -1,0 +1,16 @@
+<def f='include/c++/11/bits/locale_facets.h' l='2351' ll='2353' type='std::num_put::iter_type std::num_put::put(std::num_put::iter_type __s, std::ios_base &amp; __io, std::num_put::char_type __fill, bool __v) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='2336'>/**
+       *  @brief  Numeric formatting.
+       *
+       *  Formats the boolean @a v and inserts it into a stream.  It does so
+       *  by calling num_put::do_put().
+       *
+       *  If ios_base::boolalpha is set, writes ctype&lt;CharT&gt;::truename() or
+       *  ctype&lt;CharT&gt;::falsename().  Otherwise formats @a v as an int.
+       *
+       *  @param  __s  Stream to write to.
+       *  @param  __io  Source of locale and flags.
+       *  @param  __fill  Char_type to use for filling.
+       *  @param  __v  Value to format and insert.
+       *  @return  Iterator after writing.
+      */</doc>

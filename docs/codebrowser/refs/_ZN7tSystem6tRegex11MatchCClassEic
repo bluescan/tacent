@@ -1,0 +1,3 @@
+<def f='Modules/System/Src/tRegex.cpp' l='487' ll='541' type='static bool tSystem::tRegex::MatchCClass(int cclass, char c)'/>
+<use f='Modules/System/Src/tRegex.cpp' l='556' u='c' c='_ZNK7tSystem6tRegex10MatchClassEPKNS0_4NodeEc'/>
+<use f='Modules/System/Src/tRegex.cpp' l='743' u='c' c='_ZNK7tSystem6tRegex9MatchNodeEPKNS0_4NodeEPKcS3_'/>

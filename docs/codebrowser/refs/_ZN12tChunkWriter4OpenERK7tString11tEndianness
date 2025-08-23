@@ -1,0 +1,8 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='68' u='c' c='_ZN12tChunkWriterC1ERK7tString11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='71' u='c' c='_ZN12tChunkWriterC1ERK7tString9tPlatform'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='88' type='void tChunkWriter::Open(const tString &amp; filename, tEndianness  = tEndianness::Little)'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='91' u='c' c='_ZN12tChunkWriter4OpenERK7tString9tPlatform'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='85'>// Creates the file if it doesn&apos;t exist, overwrites it if it does. This function won&apos;t overwrite hidden files.
+	// Fixing this problem would slow it down for people who don&apos;t use hidden files, so I have opted to document the
+	// behaviour instead.</doc>
+<def f='Modules/System/Src/tChunk.cpp' l='53' ll='77' type='void tChunkWriter::Open(const tString &amp; fileName, tEndianness dstEndianness = tEndianness::Little)'/>

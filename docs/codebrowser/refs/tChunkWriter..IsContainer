@@ -1,0 +1,14 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='68' u='w' c='_ZN12tChunkWriterC1ERK7tString11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='71' u='w' c='_ZN12tChunkWriterC1ERK7tString9tPlatform'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='79' u='w' c='_ZN12tChunkWriterC1EPhi11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='82' u='w' c='_ZN12tChunkWriterC1Ev'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='213' type='bool'/>
+<offset>8</offset>
+<doc f='Modules/System/Inc/System/tChunk.h' l='213'>// True if the current chunk being created is a container. False for data-only.</doc>
+<use f='Modules/System/Src/tChunk.cpp' l='67' u='w' c='_ZN12tChunkWriter4OpenERK7tString11tEndianness'/>
+<use f='Modules/System/Src/tChunk.cpp' l='94' u='w' c='_ZN12tChunkWriter8OpenSafeERK7tString11tEndianness'/>
+<use f='Modules/System/Src/tChunk.cpp' l='157' u='r' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='173' u='w' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='175' u='w' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='283' u='w' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='297' u='r' c='_ZN12tChunkWriter5WriteEPKvi'/>

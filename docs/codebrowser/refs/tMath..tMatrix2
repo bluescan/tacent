@@ -1,0 +1,101 @@
+<inh f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='156' c='tMath::tMat2'/>
+<def f='Modules/Math/Inc/Math/tMatrix2.h' l='23' ll='81'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='54' c='_ZN5tMath8tMatrix2aSERKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='55' c='_ZN5tMath8tMatrix2pLERKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='56' c='_ZNK5tMath8tMatrix2plERKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='56' c='_ZNK5tMath8tMatrix2plERKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='57' c='_ZN5tMath8tMatrix2mIERKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='58' c='_ZNK5tMath8tMatrix2miERKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='58' c='_ZNK5tMath8tMatrix2miERKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='59' c='_ZNK5tMath8tMatrix2ngEv'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='59' c='_ZNK5tMath8tMatrix2ngEv'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='63' c='_ZN5tMath8tMatrix2mLEf'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='64' c='_ZN5tMath8tMatrix2mLERKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='65' c='_ZNK5tMath8tMatrix2mlERKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='65' c='_ZNK5tMath8tMatrix2mlERKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='67' c='_ZN5tMathmlEfRKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='67' c='_ZN5tMathmlEfRKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='68' c='_ZN5tMathmlERKNS_5tMat2Ef'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='68' c='_ZN5tMathmlERKNS_5tMat2Ef'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='69' c='_ZN5tMath8tMatrix2dVEf'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='70' c='_ZNK5tMath8tMatrix2dvEf'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='70' c='_ZNK5tMath8tMatrix2dvEf'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='79'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='80'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='174' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='524' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='149' c='_ZN12tChunkWriter5WriteERKN5tMath8tMatrix2E'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='168' c='_ZN12tChunkWriter5WriteEPKN5tMath8tMatrix2Ei'/>
+<size>16</size>
+<fun r='_ZN5tMath8tMatrix2C1Ev'/>
+<fun r='_ZN5tMath8tMatrix2C1ERKNS_5tMat2E'/>
+<fun r='_ZN5tMath8tMatrix2C1ERKNS_5tVec2ES3_'/>
+<fun r='_ZN5tMath8tMatrix2C1EPKf'/>
+<fun r='_ZN5tMath8tMatrix2C1Effff'/>
+<fun r='_ZNK5tMath8tMatrix23PodEv'/>
+<fun r='_ZN5tMath8tMatrix23SetERKNS_5tMat2E'/>
+<fun r='_ZN5tMath8tMatrix23SetERKNS_5tVec2ES3_'/>
+<fun r='_ZN5tMath8tMatrix23SetEffff'/>
+<fun r='_ZN5tMath8tMatrix23SetEPKf'/>
+<fun r='_ZNK5tMath8tMatrix23GetEPf'/>
+<fun r='_ZN5tMath8tMatrix24Col1Ev'/>
+<fun r='_ZN5tMath8tMatrix24Col2Ev'/>
+<fun r='_ZN5tMath8tMatrix24ZeroEv'/>
+<fun r='_ZN5tMath8tMatrix24ZeroE8tCompBit'/>
+<fun r='_ZNK5tMath8tMatrix26IsZeroEv'/>
+<fun r='_ZNK5tMath8tMatrix26IsZeroE8tCompBit'/>
+<fun r='_ZNK5tMath8tMatrix211ApproxEqualERKNS_5tMat2Ef'/>
+<fun r='_ZNK5tMath8tMatrix211ApproxEqualERKNS_5tMat2E8tCompBitf'/>
+<fun r='_ZN5tMath8tMatrix28IdentityEv'/>
+<fun r='_ZN5tMath8tMatrix29TransposeEv'/>
+<fun r='_ZNK5tMath8tMatrix211DeterminantEv'/>
+<fun r='_ZNK5tMath8tMatrix25TraceEv'/>
+<fun r='_ZN5tMath8tMatrix26InvertEv'/>
+<fun r='_ZN5tMath8tMatrix211MakeRotateZEf'/>
+<fun r='_ZN5tMath8tMatrix2aSERKNS_5tMat2E'/>
+<fun r='_ZN5tMath8tMatrix2pLERKNS_5tMat2E'/>
+<fun r='_ZNK5tMath8tMatrix2plERKNS_5tMat2E'/>
+<fun r='_ZN5tMath8tMatrix2mIERKNS_5tMat2E'/>
+<fun r='_ZNK5tMath8tMatrix2miERKNS_5tMat2E'/>
+<fun r='_ZNK5tMath8tMatrix2ngEv'/>
+<fun r='_ZN5tMath8tMatrix2mLEf'/>
+<fun r='_ZN5tMath8tMatrix2mLERKNS_5tMat2E'/>
+<fun r='_ZNK5tMath8tMatrix2mlERKNS_5tMat2E'/>
+<fun r='_ZNK5tMath8tMatrix2mlERKNS_5tVec2E'/>
+<fun r='_ZN5tMath8tMatrix2dVEf'/>
+<fun r='_ZNK5tMath8tMatrix2dvEf'/>
+<fun r='_ZN5tMath8tMatrix2cvPKfEv'/>
+<fun r='_ZNK5tMath8tMatrix2cvPKfEv'/>
+<fun r='_ZN5tMath8tMatrix2ixEi'/>
+<fun r='_ZNK5tMath8tMatrix2ixEi'/>
+<smbr r='tMath::tMatrix2::zero' t='const tMath::tMatrix2'/>
+<smbr r='tMath::tMatrix2::identity' t='const tMath::tMatrix2'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='357' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='357' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='360' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='360' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<size>16</size>
+<use f='Modules/System/Inc/System/tScript.h' l='114' c='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='131' c='_ZNK11tExpressioncvN5tMath8tMatrix2EEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='269' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tMatrix2Eb'/>
+<use f='Modules/System/Inc/System/tScript.h' l='318' c='_ZN11tExprWriter4AtomERKN5tMath8tMatrix2Eb'/>
+<size>16</size>
+<use f='Modules/Image/Src/tPicture.cpp' l='157' c='_ZN6tImage8tPicture12RotateCenterEfRK9tColour4bNS_15tResampleFilterES4_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='161' c='_ZN6tImage8tPicture12RotateCenterEfRK9tColour4bNS_15tResampleFilterES4_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='175' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='175' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='233' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='233' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<size>16</size>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='60'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='61'/>
+<size>16</size>
+<smbr r='tMath::tMatrix2::zero' t='const tMath::tMatrix2'/>
+<smbr r='tMath::tMatrix2::identity' t='const tMath::tMatrix2'/>
+<use f='Modules/System/Src/tChunk.cpp' l='387' c='_ZN12tChunkWriter5WriteERKN5tMath8tMatrix2E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='558' c='_ZN12tChunkWriter5WriteEPKN5tMath8tMatrix2Ei'/>
+<size>16</size>
+<use f='Modules/System/Src/tScript.cpp' l='360' c='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='364' c='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='874' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tMatrix2Eb'/>
+<size>16</size>

@@ -1,0 +1,18 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1186' ll='1199' type='void std::vector::push_back(const std::vector::value_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1176'>/**
+       *  @brief  Add data to the end of the %vector.
+       *  @param  __x  Data to be added.
+       *
+       *  This is a typical stack operation.  The function creates an
+       *  element at the end of the %vector and assigns the given data
+       *  to it.  Due to the nature of a %vector this operation can be
+       *  done in constant time if the %vector has preallocated space
+       *  available.
+       */</doc>
+<use f='include/c++/11/bits/random.tcc' l='3052' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='229' u='c' c='_ZN6tImage16tQuantizeSpatial18random_permutationEiRSt6vectorIiSaIiEERSt26linear_congruential_engineImLm16807ELm0ELm2147483647EE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='591' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='592' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='619' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='622' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='880' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>

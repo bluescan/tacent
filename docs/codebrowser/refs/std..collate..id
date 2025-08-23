@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='665' type='locale::id'/>
+<def f='include/c++/11/bits/locale_classes.h' l='798' ll='799' type='locale::id'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='664'>/// Numpunct facet id.</doc>

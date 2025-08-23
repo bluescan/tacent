@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tQuantize.h' l='53' type='bool tImage::tQuantize::ConvertToPixels(tPixel4b * destPixels, int width, int height, const tColour3b * srcPalette, const uint8 * srcIndices, bool preserveDestAlpha = false)'/>
+<doc f='Modules/Image/Inc/Image/tQuantize.h' l='51'>// Same as above but writes to RGBA pixels. If preserveDestAlpha is true, it will not write to the alphs component
+	// of the destPixels. Whatever was there before stays. If true, it writes 255 (fully opaque).</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='545' u='c' c='_ZN6tImage8tPicture13QuantizeFixedEib'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='569' u='c' c='_ZN6tImage8tPicture15QuantizeSpatialEibdi'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='593' u='c' c='_ZN6tImage8tPicture11QuantizeNeuEibi'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='617' u='c' c='_ZN6tImage8tPicture10QuantizeWuEib'/>
+<def f='Modules/Image/Src/tQuantize.cpp' l='128' ll='152' type='bool tImage::tQuantize::ConvertToPixels(tPixel4b * destPixels, int width, int height, const tColour3b * srcPalette, const uint8 * srcIndices, bool preserveDestAlpha = false)'/>

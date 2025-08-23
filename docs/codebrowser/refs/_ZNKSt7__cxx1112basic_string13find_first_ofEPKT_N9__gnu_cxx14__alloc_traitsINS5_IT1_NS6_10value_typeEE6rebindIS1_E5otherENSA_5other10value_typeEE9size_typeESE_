@@ -1,0 +1,14 @@
+<dec f='include/c++/11/bits/basic_string.h' l='2557' type='std::basic_string::size_type std::basic_string::find_first_of(const _CharT * __s, std::basic_string::size_type __pos, std::basic_string::size_type __n) const'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='1298' ll='1312' type='typename basic_string&lt;_CharT, _Traits, _Alloc&gt;::size_type std::basic_string::find_first_of(const _CharT * __s, std::basic_string::size_type __pos, std::basic_string::size_type __n) const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='2544'>/**
+       *  @brief  Find position of a character of C substring.
+       *  @param __s  String containing characters to locate.
+       *  @param __pos  Index of character to search from.
+       *  @param __n  Number of characters from s to search for.
+       *  @return  Index of first occurrence.
+       *
+       *  Starting from @a __pos, searches forward for one of the
+       *  first @a __n characters of @a __s within this string.  If
+       *  found, returns the index where it was found.  If not found,
+       *  returns npos.
+      */</doc>

@@ -1,0 +1,7 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='83' type='bool tMath::tInIntervalII(const T val, const T min, const T max)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='83'>/* Returns val E [min, max]	*/</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='83'>// Implements val E [min, max]</doc>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='356' u='c' c='_ZNK5tMath9tInterval8OverlapsERKS0_b'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='357' u='c' c='_ZNK5tMath9tInterval8OverlapsERKS0_b'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='358' u='c' c='_ZNK5tMath9tInterval8OverlapsERKS0_b'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='359' u='c' c='_ZNK5tMath9tInterval8OverlapsERKS0_b'/>

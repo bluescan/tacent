@@ -1,0 +1,2 @@
+<dec f='include/time.h' l='331' type='int timer_create(clockid_t __clock_id, struct sigevent *__restrict __evp, timer_t *__restrict __timerid)'/>
+<doc f='include/time.h' l='330'>/* Create new per-process timer using CLOCK_ID.  */</doc>

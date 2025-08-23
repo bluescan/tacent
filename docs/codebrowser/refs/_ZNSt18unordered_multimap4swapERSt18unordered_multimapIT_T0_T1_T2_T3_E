@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1744' ll='1747' type='void std::unordered_multimap::swap(unordered_multimap&lt;_Key, _Tp, _Hash, _Pred, _Alloc&gt; &amp; __x)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1734'>/**
+       *  @brief  Swaps data with another %unordered_multimap.
+       *  @param  __x  An %unordered_multimap of the same element and allocator
+       *  types.
+       *
+       *  This exchanges the elements between two %unordered_multimap in
+       *  constant time.
+       *  Note that the global std::swap() function is specialized such that
+       *  std::swap(m1,m2) will feed to this function.
+       */</doc>

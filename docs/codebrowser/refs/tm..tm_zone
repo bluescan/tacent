@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='21' type='const char *'/>
+<offset>384</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='21'>/* Timezone abbreviation.  */</doc>

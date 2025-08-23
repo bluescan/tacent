@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.h' l='3891' ll='3895' type='void std::binomial_distribution::__generate(std::binomial_distribution::result_type * __f, std::binomial_distribution::result_type * __t, _UniformRandomNumberGenerator &amp; __urng, const std::binomial_distribution::param_type &amp; __p)'/>

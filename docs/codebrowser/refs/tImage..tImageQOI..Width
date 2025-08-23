@@ -1,0 +1,15 @@
+<use f='Modules/Image/Src/tImageQOI.cpp' l='60' u='w' c='_ZN6tImage9tImageQOI4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='66' u='r' c='_ZN6tImage9tImageQOI4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='69' u='r' c='_ZN6tImage9tImageQOI4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='70' u='r' c='_ZN6tImage9tImageQOI4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='85' u='w' c='_ZN6tImage9tImageQOI3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='94' u='r' c='_ZN6tImage9tImageQOI3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='95' u='r' c='_ZN6tImage9tImageQOI3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='158' u='r' c='_ZN6tImage9tImageQOI8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='163' u='r' c='_ZN6tImage9tImageQOI8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='209' u='r' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='212' u='r' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='213' u='r' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='222' u='r' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='259' u='r' c='_ZNK6tImage9tImageQOI8IsOpaqueEv'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='273' u='w' c='_ZN6tImage9tImageQOI11StealPixelsEv'/>

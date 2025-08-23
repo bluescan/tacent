@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14913' ll='14917'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14913'/>
+<size>16</size>
+<mbr r='VkBindVertexBufferIndirectCommandNV::bufferAddress' o='0' t='VkDeviceAddress'/>
+<mbr r='VkBindVertexBufferIndirectCommandNV::size' o='64' t='uint32_t'/>
+<mbr r='VkBindVertexBufferIndirectCommandNV::stride' o='96' t='uint32_t'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8109' ll='8114'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8109'/>
+<size>32</size>
+<mbr r='VkVideoProfileListInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoProfileListInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkVideoProfileListInfoKHR::profileCount' o='128' t='uint32_t'/>
+<mbr r='VkVideoProfileListInfoKHR::pProfiles' o='192' t='const VkVideoProfileInfoKHR *'/>

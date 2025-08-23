@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='941' ll='943' type='static time_point&lt;_Clock, _Dur&gt; std::chrono::time_point::min()'/>
+<doc f='include/c++/11/chrono' l='940'>// special values</doc>

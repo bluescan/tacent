@@ -1,0 +1,10 @@
+<use f='Modules/Image/Inc/Image/tImageEXR.h' l='58' u='c' c='_ZN6tImage9tImageEXRD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImageEXR.h' l='79' type='void tImage::tImageEXR::Clear()'/>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Inc/Image/tImageEXR.h' l='156' ll='162' type='void tImage::tImageEXR::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImageEXR.h' l='78'>// After this call no memory will be consumed by the object and it will be invalid.</doc>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='153' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='288' u='c' c='_ZN6tImage9tImageEXR3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='314' u='c' c='_ZN6tImage9tImageEXR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='336' u='c' c='_ZN6tImage9tImageEXR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='356' u='c' c='_ZN6tImage9tImageEXR3SetERNS_8tPictureEb'/>

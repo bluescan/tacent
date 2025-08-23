@@ -1,0 +1,18 @@
+<def f='include/c++/11/bits/unordered_map.h' l='550' ll='552' type='std::pair&lt;iterator, bool&gt; std::unordered_map::insert(const std::unordered_map::value_type &amp; __x)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='533'>/**
+       *  @brief Attempts to insert a std::pair into the %unordered_map.
+
+       *  @param __x Pair to be inserted (see std::make_pair for easy
+       *	     creation of pairs).
+       *
+       *  @return  A pair, of which the first element is an iterator that 
+       *           points to the possibly inserted pair, and the second is 
+       *           a bool that is true if the pair was actually inserted.
+       *
+       *  This function attempts to insert a (key, value) %pair into the
+       *  %unordered_map. An %unordered_map relies on unique keys and thus a
+       *  %pair is only inserted if its first element (the key) is not already
+       *  present in the %unordered_map.
+       *
+       *  Insertion requires amortized constant time.
+       */</doc>

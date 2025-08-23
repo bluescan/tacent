@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='342' type='void setlinebuf(FILE * __stream)'/>
+<doc f='include/stdio.h' l='341'>/* Make STREAM line-buffered.  */</doc>

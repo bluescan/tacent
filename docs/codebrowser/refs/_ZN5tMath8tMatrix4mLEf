@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='141' type='tMath::tMatrix4 &amp; tMath::tMatrix4::operator*=(float a)'/>
+<doc f='Modules/Math/Inc/Math/tMatrix4.h' l='139'>// The multiplication by a vector is not declared as a friend since we treat vectors as column vectors only,
+	// therefore the vector multiplication is not commutable.</doc>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='148' type='int'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='130' u='r' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<offset>192</offset>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='148'>// display duration in milliseconds.</doc>

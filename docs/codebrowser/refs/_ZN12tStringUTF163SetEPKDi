@@ -1,0 +1,4 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='455' u='c' c='_ZN12tStringUTF16C1EPKDi'/>
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='469' type='void tStringUTF16::Set(const char32_t * src)'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='999' ll='1003' type='void tStringUTF16::Set(const char32_t * src)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='469'>// Assumes src is null-terminated.</doc>

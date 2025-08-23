@@ -1,0 +1,10 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='622' type='bool tSystem::tFindFiles(tList&lt;tStringItem&gt; &amp; files, const tString &amp; dir, const tString &amp; ext, bool hidden = true, tSystem::Backend  = Backend::Native)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='615'>// A variant of the above except you can specify only files with a specific extension. Extension can be something like
+// &quot;txt&quot; (no dot). On all platforms the extension is not case sensitive. eg. giF will match Gif. Returns false if ext
+// empty or no files found. Tacent does not consider files that have no extension special. If you want files that have
+// no extension call the previous variant of FindFiles that has no extension argument.
+//
+// In previous Tacent releases all filetypes were returned if ext was empty, but that was awkward as the semantics
+// changed. It is now a separate function.</doc>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='118' u='c' c='_ZN9tPipeline5tRule16AddDependencyDirERK7tStringS3_'/>
+<def f='Modules/System/Src/tFile.cpp' l='2794' ll='2807' type='bool tSystem::tFindFiles(tList&lt;tStringItem&gt; &amp; files, const tString &amp; dir, const tString &amp; ext, bool hidden = true, tSystem::Backend backend = Backend::Native)'/>

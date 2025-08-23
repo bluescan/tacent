@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='495' type='16932864'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='495'>// Children IDs. Chunk won&apos;t be present if there are no children.</doc>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='49' u='r' c='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='90' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>

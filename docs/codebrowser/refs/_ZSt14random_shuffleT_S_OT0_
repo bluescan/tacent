@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='836' type='void std::random_shuffle(_RAIter , _RAIter , _Generator &amp;&amp; )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='4602' ll='4623' type='void std::random_shuffle(_RandomAccessIterator __first, _RandomAccessIterator __last, _RandomNumberGenerator &amp;&amp; __rand)'/>

@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='123' type='tMath::tVector2'/>
+<offset>64</offset>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='123'>// Normalized.</doc>
+<use f='Modules/Math/Src/tGeometry.cpp' l='334' u='r' c='_ZN5tMath20tIntersectFindRaySegERKNS_5tRay2ERKNS_9tLineSeg2ERNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='468' u='m' c='_ZN5tMath24tIntersectFindRayEllipseERfRKNS_5tRay2ERKNS_9tEllipse2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='469' u='m' c='_ZN5tMath24tIntersectFindRayEllipseERfRKNS_5tRay2ERKNS_9tEllipse2E'/>

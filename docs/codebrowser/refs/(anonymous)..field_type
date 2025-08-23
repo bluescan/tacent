@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='550' type='TIFFDataType'/>
+<offset>64</offset>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='550'>/* type of associated data */</doc>

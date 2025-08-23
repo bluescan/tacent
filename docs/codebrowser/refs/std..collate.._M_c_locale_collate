@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='661' type='std::__c_locale'/>
+<use f='include/c++/11/bits/locale_classes.h' l='676' u='w' c='_ZNSt7__cxx117collateC1Em'/>
+<use f='include/c++/11/bits/locale_classes.h' l='690' u='w' c='_ZNSt7__cxx117collateC1EP15__locale_structm'/>
+<use f='include/c++/11/bits/locale_classes.h' l='753' u='a' c='_ZNSt7__cxx117collateD1Ev'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='659'>// Underlying &quot;C&quot; library locale information saved from
+      // initialization, needed by collate_byname as well.</doc>

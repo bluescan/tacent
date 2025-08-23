@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='463' type='_Tp std::max(initializer_list&lt;_Tp&gt; )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='3459' ll='3462' macro='1' type='_Tp std::max(initializer_list&lt;_Tp&gt; __l)'/>

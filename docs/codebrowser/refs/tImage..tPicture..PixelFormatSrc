@@ -1,0 +1,25 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='336' type='tImage::tPixelFormat'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='390' u='w' c='_ZN6tImage8tPicture5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='409' u='w' c='_ZN6tImage8tPicture3SetEiiRK9tColour4b'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='438' u='w' c='_ZN6tImage8tPicture3SetEiiP9tColour4bb'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='475' u='w' c='_ZN6tImage8tPicture3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='475' u='r' c='_ZN6tImage8tPicture3SetERKS0_'/>
+<offset>448</offset>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='199' u='r' c='_ZN6tImage10tImageAPNG3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='256' u='r' c='_ZN6tImage10tImageASTC3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='523' u='r' c='_ZN6tImage9tImageBMP3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='955' u='r' c='_ZN6tImage9tImageDDS3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='360' u='r' c='_ZN6tImage9tImageEXR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='257' u='r' c='_ZN6tImage9tImageGIF3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='444' u='r' c='_ZN6tImage9tImageHDR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='244' u='r' c='_ZN6tImage9tImageICO3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='243' u='r' c='_ZN6tImage9tImageJPG3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='614' u='r' c='_ZN6tImage9tImageKTX3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='343' u='r' c='_ZN6tImage9tImagePKM3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='499' u='r' c='_ZN6tImage9tImagePNG3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='715' u='r' c='_ZN6tImage9tImagePVR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='132' u='r' c='_ZN6tImage9tImageQOI3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='326' u='r' c='_ZN6tImage9tImageTGA3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='207' u='r' c='_ZN6tImage10tImageTIFF3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='294' u='r' c='_ZN6tImage10tImageWEBP3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='130' u='w' c='_ZN6tImage8tPicture4LoadERK6tChunk'/>

@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='516' type='void tImage::tDDS::GetFormatInfo_FromComponentMasks(tImage::tPixelFormat &amp; , tColourProfile &amp; , tAlphaMode &amp; , tChannelType &amp; , const tImage::tDDS::FormatData &amp; )'/>
+<def f='Modules/Image/Src/tImageDDS.cpp' l='793' ll='856' type='void tImage::tDDS::GetFormatInfo_FromComponentMasks(tImage::tPixelFormat &amp; format, tColourProfile &amp; profile, tAlphaMode &amp; alpha, tChannelType &amp; chanType, const tImage::tDDS::FormatData &amp; fmtData)'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1268' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>

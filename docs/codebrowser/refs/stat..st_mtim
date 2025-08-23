@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/struct_stat.h' l='75' type='struct timespec'/>
+<use f='Modules/System/Src/tFile.cpp' l='2144' macro='1' u='m' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<offset>704</offset>
+<doc f='include/x86_64-linux-gnu/bits/struct_stat.h' l='75'>/* Time of last modification.  */</doc>

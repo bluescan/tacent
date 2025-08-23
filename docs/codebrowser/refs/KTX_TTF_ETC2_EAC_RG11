@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1564' type='21'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1561'>/*!&lt; R only (ETC2 EAC R11 unsigned). R = opaque.g or alpha.g, if
+                 KTX_TF_TRANSCODE_ALPHA_DATA_TO_OPAQUE_FORMATS flag is
+                 specified. */</doc>

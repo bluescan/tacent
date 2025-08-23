@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15550' ll='15555'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15550'/>
+<size>32</size>
+<mbr r='VkDescriptorGetInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDescriptorGetInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkDescriptorGetInfoEXT::type' o='128' t='VkDescriptorType'/>
+<mbr r='VkDescriptorGetInfoEXT::data' o='192' t='VkDescriptorDataEXT'/>

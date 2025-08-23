@@ -1,0 +1,8 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='142' type='int tChunkWriter::Write(const tColour4b &amp; c)'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='54' u='c' c='_ZNK6tScene10tAttribute4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='86' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='87' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='88' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='92' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='93' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='94' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>

@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='95' type='int iswalnum(wint_t __wc)'/>
+<doc f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='93'>/* Test for any wide character for which `iswalpha&apos; or `iswdigit&apos; is
+   true.  */</doc>

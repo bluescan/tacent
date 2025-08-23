@@ -1,0 +1,20 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='323' type='T * tItList::Remove()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='323'>/* Removes and returns head. */</doc>
+<use f='Modules/Scene/Src/tWorld.cpp' l='209' u='c' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='212' u='c' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='215' u='c' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='218' u='c' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='221' u='c' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='224' u='c' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='227' u='c' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='230' u='c' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='233' u='c' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='600' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='603' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='606' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='609' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='612' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='615' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='618' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='621' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='624' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>

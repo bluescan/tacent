@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tUnits.cpp source code [Modules/Foundation/Src/tUnits.cpp] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Foundation/Src/tUnits.cpp'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>Modules</a>/<a href='..'>Foundation</a>/<a href='./'>Src</a>/<a href='tUnits.cpp.html'>tUnits.cpp</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tUnits.cpp</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Definitions of various units for length, time, and mass along with the SI multiplier prefixes.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// Copyright (c) 2017, 2020, 2023 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#include "Foundation/tStandard.h"</u>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#include "Foundation/tUnits.h"</u>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><b>namespace</b> <span class="namespace">tUnit</span>&nbsp</td></tr>
+<tr><th id="20">20</th><td>{&nbsp</td></tr>
+<tr><th id="21">21</th><td>	<em>const</em> <em>char</em>* <dfn class="decl def" id="tUnit::TimeUnitNames" title='tUnit::TimeUnitNames' data-ref="tUnit::TimeUnitNames">TimeUnitNames</dfn>[<em>int</em>(<a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a>::<a class="enum" href="../Inc/Foundation/tUnits.h.html#tUnit::tTime::NumTimeUnits" title='tUnit::tTime::NumTimeUnits' data-ref="tUnit::tTime::NumTimeUnits">NumTimeUnits</a>)] =&nbsp</td></tr>
+<tr><th id="22">22</th><td>	{&nbsp</td></tr>
+<tr><th id="23">23</th><td>		<q>"PlankTime"</q>,&nbsp</td></tr>
+<tr><th id="24">24</th><td>		<q>"Chronon"</q>,&nbsp</td></tr>
+<tr><th id="25">25</th><td>		<q>"Attosecond"</q>,&nbsp</td></tr>
+<tr><th id="26">26</th><td>		<q>"Femtosecond"</q>,&nbsp</td></tr>
+<tr><th id="27">27</th><td>		<q>"Picosecond"</q>,&nbsp</td></tr>
+<tr><th id="28">28</th><td>		<q>"Nanosecond"</q>,&nbsp</td></tr>
+<tr><th id="29">29</th><td>		<q>"Microsecond"</q>,&nbsp</td></tr>
+<tr><th id="30">30</th><td>		<q>"Millisecond"</q>,&nbsp</td></tr>
+<tr><th id="31">31</th><td>		<q>"Tick"</q>,&nbsp</td></tr>
+<tr><th id="32">32</th><td>		<q>"Second"</q>,&nbsp</td></tr>
+<tr><th id="33">33</th><td>		<q>"She"</q>,&nbsp</td></tr>
+<tr><th id="34">34</th><td>		<q>"Helek"</q>,&nbsp</td></tr>
+<tr><th id="35">35</th><td>		<q>"Minute"</q>,&nbsp</td></tr>
+<tr><th id="36">36</th><td>		<q>"Hour"</q>,&nbsp</td></tr>
+<tr><th id="37">37</th><td>		<q>"Day"</q>,&nbsp</td></tr>
+<tr><th id="38">38</th><td>		<q>"Week"</q>,&nbsp</td></tr>
+<tr><th id="39">39</th><td>		<q>"Fortnight"</q>,&nbsp</td></tr>
+<tr><th id="40">40</th><td>		<q>"Year"</q>,&nbsp</td></tr>
+<tr><th id="41">41</th><td>		<q>"Annum"</q>,&nbsp</td></tr>
+<tr><th id="42">42</th><td>		<q>"Century"</q>,&nbsp</td></tr>
+<tr><th id="43">43</th><td>		<q>"Millennium"</q>,&nbsp</td></tr>
+<tr><th id="44">44</th><td>		<q>"GalacticYear"</q>&nbsp</td></tr>
+<tr><th id="45">45</th><td>	};&nbsp</td></tr>
+<tr><th id="46">46</th><td>&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td>	<em>const</em> <em>char</em>* <dfn class="decl def" id="tUnit::LengthUnitNames" title='tUnit::LengthUnitNames' data-ref="tUnit::LengthUnitNames">LengthUnitNames</dfn>[<em>int</em>(<a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tLength" title='tUnit::tLength' data-ref="tUnit::tLength">tLength</a>::<a class="enum" href="../Inc/Foundation/tUnits.h.html#tUnit::tLength::NumLengthUnits" title='tUnit::tLength::NumLengthUnits' data-ref="tUnit::tLength::NumLengthUnits">NumLengthUnits</a>)] =&nbsp</td></tr>
+<tr><th id="49">49</th><td>	{&nbsp</td></tr>
+<tr><th id="50">50</th><td>		<q>"Angstrom"</q>,&nbsp</td></tr>
+<tr><th id="51">51</th><td>		<q>"Meter"</q>,&nbsp</td></tr>
+<tr><th id="52">52</th><td>		<q>"Kilometer"</q>,&nbsp</td></tr>
+<tr><th id="53">53</th><td>		<q>"Inch"</q>,&nbsp</td></tr>
+<tr><th id="54">54</th><td>		<q>"Foot"</q>,&nbsp</td></tr>
+<tr><th id="55">55</th><td>		<q>"Yard"</q>,&nbsp</td></tr>
+<tr><th id="56">56</th><td>		<q>"Fathom"</q>,&nbsp</td></tr>
+<tr><th id="57">57</th><td>		<q>"Mile"</q>,&nbsp</td></tr>
+<tr><th id="58">58</th><td>		<q>"NauticalMile"</q>,&nbsp</td></tr>
+<tr><th id="59">59</th><td>		<q>"AstronomicalUnit"</q>&nbsp</td></tr>
+<tr><th id="60">60</th><td>	};&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td>&nbsp</td></tr>
+<tr><th id="63">63</th><td>	<em>const</em> <em>char</em>* <dfn class="decl def" id="tUnit::MassUnitNames" title='tUnit::MassUnitNames' data-ref="tUnit::MassUnitNames">MassUnitNames</dfn>[<em>int</em>(<a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tMass" title='tUnit::tMass' data-ref="tUnit::tMass">tMass</a>::<a class="enum" href="../Inc/Foundation/tUnits.h.html#tUnit::tMass::NumMassUnits" title='tUnit::tMass::NumMassUnits' data-ref="tUnit::tMass::NumMassUnits">NumMassUnits</a>)] =&nbsp</td></tr>
+<tr><th id="64">64</th><td>	{&nbsp</td></tr>
+<tr><th id="65">65</th><td>		<q>"Gram"</q>,&nbsp</td></tr>
+<tr><th id="66">66</th><td>		<q>"Kilogram"</q>,&nbsp</td></tr>
+<tr><th id="67">67</th><td>		<q>"Slug"</q>&nbsp</td></tr>
+<tr><th id="68">68</th><td>	};&nbsp</td></tr>
+<tr><th id="69">69</th><td>}&nbsp</td></tr>
+<tr><th id="70">70</th><td>&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td><em>const</em> <em>char</em>* <span class="namespace">tUnit::</span><dfn class="decl def fn" id="_ZN5tUnit11GetUnitNameENS_5tTimeE" title='tUnit::GetUnitName' data-ref="_ZN5tUnit11GetUnitNameENS_5tTimeE">GetUnitName</dfn>(<a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a> <dfn class="local col1 decl" id="1timeUnit" title='timeUnit' data-type='tUnit::tTime' data-ref="1timeUnit">timeUnit</dfn>)&nbsp</td></tr>
+<tr><th id="73">73</th><td>{&nbsp</td></tr>
+<tr><th id="74">74</th><td>	<b>if</b> (<a class="local col1 ref" href="#1timeUnit" title='timeUnit' data-ref="1timeUnit">timeUnit</a> == <a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a>::<a class="enum" href="../Inc/Foundation/tUnits.h.html#tUnit::tTime::Unspecified" title='tUnit::tTime::Unspecified' data-ref="tUnit::tTime::Unspecified">Unspecified</a>)&nbsp</td></tr>
+<tr><th id="75">75</th><td>		<b>return</b> <b>nullptr</b>;&nbsp</td></tr>
+<tr><th id="76">76</th><td>&nbsp</td></tr>
+<tr><th id="77">77</th><td>	<b>return</b> <a class="ref" href="#tUnit::TimeUnitNames" title='tUnit::TimeUnitNames' data-ref="tUnit::TimeUnitNames">TimeUnitNames</a>[<em>int</em>(<a class="local col1 ref" href="#1timeUnit" title='timeUnit' data-ref="1timeUnit">timeUnit</a>)];&nbsp</td></tr>
+<tr><th id="78">78</th><td>}&nbsp</td></tr>
+<tr><th id="79">79</th><td>&nbsp</td></tr>
+<tr><th id="80">80</th><td>&nbsp</td></tr>
+<tr><th id="81">81</th><td><em>const</em> <em>char</em>* <span class="namespace">tUnit::</span><dfn class="decl def fn" id="_ZN5tUnit11GetUnitNameENS_7tLengthE" title='tUnit::GetUnitName' data-ref="_ZN5tUnit11GetUnitNameENS_7tLengthE">GetUnitName</dfn>(<a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tLength" title='tUnit::tLength' data-ref="tUnit::tLength">tLength</a> <dfn class="local col2 decl" id="2lengthUnit" title='lengthUnit' data-type='tUnit::tLength' data-ref="2lengthUnit">lengthUnit</dfn>)&nbsp</td></tr>
+<tr><th id="82">82</th><td>{&nbsp</td></tr>
+<tr><th id="83">83</th><td>	<b>if</b> (<a class="local col2 ref" href="#2lengthUnit" title='lengthUnit' data-ref="2lengthUnit">lengthUnit</a> == <a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tLength" title='tUnit::tLength' data-ref="tUnit::tLength">tLength</a>::<a class="enum" href="../Inc/Foundation/tUnits.h.html#tUnit::tLength::Unspecified" title='tUnit::tLength::Unspecified' data-ref="tUnit::tLength::Unspecified">Unspecified</a>)&nbsp</td></tr>
+<tr><th id="84">84</th><td>		<b>return</b> <b>nullptr</b>;&nbsp</td></tr>
+<tr><th id="85">85</th><td>&nbsp</td></tr>
+<tr><th id="86">86</th><td>	<b>return</b> <a class="ref" href="#tUnit::LengthUnitNames" title='tUnit::LengthUnitNames' data-ref="tUnit::LengthUnitNames">LengthUnitNames</a>[<em>int</em>(<a class="local col2 ref" href="#2lengthUnit" title='lengthUnit' data-ref="2lengthUnit">lengthUnit</a>)];&nbsp</td></tr>
+<tr><th id="87">87</th><td>}&nbsp</td></tr>
+<tr><th id="88">88</th><td>&nbsp</td></tr>
+<tr><th id="89">89</th><td>&nbsp</td></tr>
+<tr><th id="90">90</th><td><em>const</em> <em>char</em>* <span class="namespace">tUnit::</span><dfn class="decl def fn" id="_ZN5tUnit11GetUnitNameENS_5tMassE" title='tUnit::GetUnitName' data-ref="_ZN5tUnit11GetUnitNameENS_5tMassE">GetUnitName</dfn>(<a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tMass" title='tUnit::tMass' data-ref="tUnit::tMass">tMass</a> <dfn class="local col3 decl" id="3massUnit" title='massUnit' data-type='tUnit::tMass' data-ref="3massUnit">massUnit</dfn>)&nbsp</td></tr>
+<tr><th id="91">91</th><td>{&nbsp</td></tr>
+<tr><th id="92">92</th><td>	<b>if</b> (<a class="local col3 ref" href="#3massUnit" title='massUnit' data-ref="3massUnit">massUnit</a> == <a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tMass" title='tUnit::tMass' data-ref="tUnit::tMass">tMass</a>::<a class="enum" href="../Inc/Foundation/tUnits.h.html#tUnit::tMass::Unspecified" title='tUnit::tMass::Unspecified' data-ref="tUnit::tMass::Unspecified">Unspecified</a>)&nbsp</td></tr>
+<tr><th id="93">93</th><td>		<b>return</b> <b>nullptr</b>;&nbsp</td></tr>
+<tr><th id="94">94</th><td>&nbsp</td></tr>
+<tr><th id="95">95</th><td>	<b>return</b> <a class="ref" href="#tUnit::MassUnitNames" title='tUnit::MassUnitNames' data-ref="tUnit::MassUnitNames">MassUnitNames</a>[<em>int</em>(<a class="local col3 ref" href="#3massUnit" title='massUnit' data-ref="3massUnit">massUnit</a>)];&nbsp</td></tr>
+<tr><th id="96">96</th><td>}&nbsp</td></tr>
+<tr><th id="97">97</th><td>&nbsp</td></tr>
+<tr><th id="98">98</th><td>&nbsp</td></tr>
+<tr><th id="99">99</th><td><span class="namespace">tUnit::</span><a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a> <span class="namespace">tUnit::</span><dfn class="decl def fn" id="_ZN5tUnit11GetTimeUnitEPKc" title='tUnit::GetTimeUnit' data-ref="_ZN5tUnit11GetTimeUnitEPKc">GetTimeUnit</dfn>(<em>const</em> <em>char</em>* <dfn class="local col4 decl" id="4unitName" title='unitName' data-type='const char *' data-ref="4unitName">unitName</dfn>)&nbsp</td></tr>
+<tr><th id="100">100</th><td>{&nbsp</td></tr>
+<tr><th id="101">101</th><td>	<b>for</b> (<em>int</em> <dfn class="local col5 decl" id="5u" title='u' data-type='int' data-ref="5u">u</dfn> = <var>0</var>; <a class="local col5 ref" href="#5u" title='u' data-ref="5u">u</a> &lt; <em>int</em>(<a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a>::<a class="enum" href="../Inc/Foundation/tUnits.h.html#tUnit::tTime::NumTimeUnits" title='tUnit::tTime::NumTimeUnits' data-ref="tUnit::tTime::NumTimeUnits">NumTimeUnits</a>); <a class="local col5 ref" href="#5u" title='u' data-ref="5u">u</a>++)&nbsp</td></tr>
+<tr><th id="102">102</th><td>	{&nbsp</td></tr>
+<tr><th id="103">103</th><td>		<b>if</b> (!<span class="namespace">tStd::</span><a class="ref fn" href="../Inc/Foundation/tStandard.h.html#_ZN4tStd8tStricmpEPKcS1_" title='tStd::tStricmp' data-ref="_ZN4tStd8tStricmpEPKcS1_">tStricmp</a>(<span class='inlayHint'>a:&nbsp;</span><a class="local col4 ref" href="#4unitName" title='unitName' data-ref="4unitName">unitName</a>, <span class='inlayHint'>b:&nbsp;</span><a class="ref" href="#tUnit::TimeUnitNames" title='tUnit::TimeUnitNames' data-ref="tUnit::TimeUnitNames">TimeUnitNames</a>[<a class="local col5 ref" href="#5u" title='u' data-ref="5u">u</a>]))&nbsp</td></tr>
+<tr><th id="104">104</th><td>			<b>return</b> <a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a>(<a class="local col5 ref" href="#5u" title='u' data-ref="5u">u</a>);&nbsp</td></tr>
+<tr><th id="105">105</th><td>	}&nbsp</td></tr>
+<tr><th id="106">106</th><td>&nbsp</td></tr>
+<tr><th id="107">107</th><td>	<b>return</b> <a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a>::<a class="enum" href="../Inc/Foundation/tUnits.h.html#tUnit::tTime::Unspecified" title='tUnit::tTime::Unspecified' data-ref="tUnit::tTime::Unspecified">Unspecified</a>;&nbsp</td></tr>
+<tr><th id="108">108</th><td>}&nbsp</td></tr>
+<tr><th id="109">109</th><td>&nbsp</td></tr>
+<tr><th id="110">110</th><td>&nbsp</td></tr>
+<tr><th id="111">111</th><td><span class="namespace">tUnit::</span><a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tLength" title='tUnit::tLength' data-ref="tUnit::tLength">tLength</a> <span class="namespace">tUnit::</span><dfn class="decl def fn" id="_ZN5tUnit13GetLengthUnitEPKc" title='tUnit::GetLengthUnit' data-ref="_ZN5tUnit13GetLengthUnitEPKc">GetLengthUnit</dfn>(<em>const</em> <em>char</em>* <dfn class="local col6 decl" id="6unitName" title='unitName' data-type='const char *' data-ref="6unitName">unitName</dfn>)&nbsp</td></tr>
+<tr><th id="112">112</th><td>{&nbsp</td></tr>
+<tr><th id="113">113</th><td>	<b>for</b> (<em>int</em> <dfn class="local col7 decl" id="7u" title='u' data-type='int' data-ref="7u">u</dfn> = <var>0</var>; <a class="local col7 ref" href="#7u" title='u' data-ref="7u">u</a> &lt; <em>int</em>(<a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tLength" title='tUnit::tLength' data-ref="tUnit::tLength">tLength</a>::<a class="enum" href="../Inc/Foundation/tUnits.h.html#tUnit::tLength::NumLengthUnits" title='tUnit::tLength::NumLengthUnits' data-ref="tUnit::tLength::NumLengthUnits">NumLengthUnits</a>); <a class="local col7 ref" href="#7u" title='u' data-ref="7u">u</a>++)&nbsp</td></tr>
+<tr><th id="114">114</th><td>	{&nbsp</td></tr>
+<tr><th id="115">115</th><td>		<b>if</b> (!<span class="namespace">tStd::</span><a class="ref fn" href="../Inc/Foundation/tStandard.h.html#_ZN4tStd8tStricmpEPKcS1_" title='tStd::tStricmp' data-ref="_ZN4tStd8tStricmpEPKcS1_">tStricmp</a>(<span class='inlayHint'>a:&nbsp;</span><a class="local col6 ref" href="#6unitName" title='unitName' data-ref="6unitName">unitName</a>, <span class='inlayHint'>b:&nbsp;</span><a class="ref" href="#tUnit::LengthUnitNames" title='tUnit::LengthUnitNames' data-ref="tUnit::LengthUnitNames">LengthUnitNames</a>[<a class="local col7 ref" href="#7u" title='u' data-ref="7u">u</a>]))&nbsp</td></tr>
+<tr><th id="116">116</th><td>			<b>return</b> <a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tLength" title='tUnit::tLength' data-ref="tUnit::tLength">tLength</a>(<a class="local col7 ref" href="#7u" title='u' data-ref="7u">u</a>);&nbsp</td></tr>
+<tr><th id="117">117</th><td>	}&nbsp</td></tr>
+<tr><th id="118">118</th><td>&nbsp</td></tr>
+<tr><th id="119">119</th><td>	<b>return</b> <a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tLength" title='tUnit::tLength' data-ref="tUnit::tLength">tLength</a>::<a class="enum" href="../Inc/Foundation/tUnits.h.html#tUnit::tLength::Unspecified" title='tUnit::tLength::Unspecified' data-ref="tUnit::tLength::Unspecified">Unspecified</a>;&nbsp</td></tr>
+<tr><th id="120">120</th><td>}&nbsp</td></tr>
+<tr><th id="121">121</th><td>&nbsp</td></tr>
+<tr><th id="122">122</th><td>&nbsp</td></tr>
+<tr><th id="123">123</th><td><span class="namespace">tUnit::</span><a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tMass" title='tUnit::tMass' data-ref="tUnit::tMass">tMass</a> <span class="namespace">tUnit::</span><dfn class="decl def fn" id="_ZN5tUnit11GetMassUnitEPKc" title='tUnit::GetMassUnit' data-ref="_ZN5tUnit11GetMassUnitEPKc">GetMassUnit</dfn>(<em>const</em> <em>char</em>* <dfn class="local col8 decl" id="8unitName" title='unitName' data-type='const char *' data-ref="8unitName">unitName</dfn>)&nbsp</td></tr>
+<tr><th id="124">124</th><td>{&nbsp</td></tr>
+<tr><th id="125">125</th><td>	<b>for</b> (<em>int</em> <dfn class="local col9 decl" id="9u" title='u' data-type='int' data-ref="9u">u</dfn> = <var>0</var>; <a class="local col9 ref" href="#9u" title='u' data-ref="9u">u</a> &lt; <em>int</em>(<a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tMass" title='tUnit::tMass' data-ref="tUnit::tMass">tMass</a>::<a class="enum" href="../Inc/Foundation/tUnits.h.html#tUnit::tMass::NumMassUnits" title='tUnit::tMass::NumMassUnits' data-ref="tUnit::tMass::NumMassUnits">NumMassUnits</a>); <a class="local col9 ref" href="#9u" title='u' data-ref="9u">u</a>++)&nbsp</td></tr>
+<tr><th id="126">126</th><td>	{&nbsp</td></tr>
+<tr><th id="127">127</th><td>		<b>if</b> (!<span class="namespace">tStd::</span><a class="ref fn" href="../Inc/Foundation/tStandard.h.html#_ZN4tStd8tStricmpEPKcS1_" title='tStd::tStricmp' data-ref="_ZN4tStd8tStricmpEPKcS1_">tStricmp</a>(<span class='inlayHint'>a:&nbsp;</span><a class="local col8 ref" href="#8unitName" title='unitName' data-ref="8unitName">unitName</a>, <span class='inlayHint'>b:&nbsp;</span><a class="ref" href="#tUnit::MassUnitNames" title='tUnit::MassUnitNames' data-ref="tUnit::MassUnitNames">MassUnitNames</a>[<a class="local col9 ref" href="#9u" title='u' data-ref="9u">u</a>]))&nbsp</td></tr>
+<tr><th id="128">128</th><td>			<b>return</b> <a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tMass" title='tUnit::tMass' data-ref="tUnit::tMass">tMass</a>(<a class="local col9 ref" href="#9u" title='u' data-ref="9u">u</a>);&nbsp</td></tr>
+<tr><th id="129">129</th><td>	}&nbsp</td></tr>
+<tr><th id="130">130</th><td>&nbsp</td></tr>
+<tr><th id="131">131</th><td>	<b>return</b> <a class="type" href="../Inc/Foundation/tUnits.h.html#tUnit::tMass" title='tUnit::tMass' data-ref="tUnit::tMass">tMass</a>::<a class="enum" href="../Inc/Foundation/tUnits.h.html#tUnit::tMass::Unspecified" title='tUnit::tMass::Unspecified' data-ref="tUnit::tMass::Unspecified">Unspecified</a>;&nbsp</td></tr>
+<tr><th id="132">132</th><td>}&nbsp</td></tr>
+<tr><th id="133">133</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='389' type='long a64l(const char * __s)'/>
+<doc f='include/stdlib.h' l='388'>/* Read a number from a string S in base 64 as above.  */</doc>

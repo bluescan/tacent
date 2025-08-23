@@ -1,0 +1,11 @@
+<def f='include/x86_64-linux-gnu/bits/sigaction.h' l='27' ll='53'/>
+<dec f='include/signal.h' l='243' type='int sigaction(int __sig, const struct sigaction *__restrict __act, struct sigaction *__restrict __oact)'/>
+<use f='include/signal.h' l='243' c='sigaction'/>
+<use f='include/signal.h' l='244' c='sigaction'/>
+<size>152</size>
+<doc f='include/signal.h' l='242'>/* Get and/or set the action for signal SIG.  */</doc>
+<doc f='include/x86_64-linux-gnu/bits/sigaction.h' l='26'>/* Structure describing the action to be taken when a signal arrives.  */</doc>
+<mbr r='sigaction::__sigaction_handler' o='0' t='union (unnamed union at /usr/include/x86_64-linux-gnu/bits/sigaction.h:31:5)'/>
+<mbr r='sigaction::sa_mask' o='64' t='__sigset_t'/>
+<mbr r='sigaction::sa_flags' o='1088' t='int'/>
+<mbr r='sigaction::sa_restorer' o='1152' t='void (*)()'/>

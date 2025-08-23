@@ -1,0 +1,2 @@
+<dec f='include/c++/11/exception' l='74' type='std::terminate_handler std::set_terminate(std::terminate_handler )'/>
+<doc f='include/c++/11/exception' l='73'>/// Takes a new handler function as an argument, returns the old function.</doc>

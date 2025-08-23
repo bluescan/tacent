@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='969'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='968'>/* Defined if iswblank exists. */</doc>
+<use f='include/c++/11/cwctype' l='59' u='c'/>
+<use f='include/c++/11/cwctype' l='88' u='c'/>

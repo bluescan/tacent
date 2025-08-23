@@ -1,0 +1,5 @@
+<def f='Modules/Image/Src/tImageICO.cpp' l='45' ll='55'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='132' c='_ZN6tImage9tImageICO4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='132' c='_ZN6tImage9tImageICO4LoadEPKhi'/>
+<size>16</size>
+<doc f='Modules/Image/Src/tImageICO.cpp' l='44'>// These structs represent how the icon information is stored in an ICO file.</doc>

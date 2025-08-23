@@ -1,0 +1,5 @@
+<dec f='include/c++/11/streambuf' l='53' type='std::streamsize std::__copy_streambufs_eof(basic_streambuf&lt;_CharT, _Traits&gt; * , basic_streambuf&lt;_CharT, _Traits&gt; * , bool &amp; )'/>
+<dec f='include/c++/11/streambuf' l='844' type='std::streamsize std::__copy_streambufs_eof(basic_streambuf&lt;char&gt; * __sbin, basic_streambuf&lt;char&gt; * __sbout, bool &amp; __ineof)'/>
+<dec f='include/c++/11/streambuf' l='849' type='std::streamsize std::__copy_streambufs_eof(basic_streambuf&lt;wchar_t&gt; * __sbin, basic_streambuf&lt;wchar_t&gt; * __sbout, bool &amp; __ineof)'/>
+<def f='include/c++/11/bits/streambuf.tcc' l='115' ll='135' type='std::streamsize std::__copy_streambufs_eof(basic_streambuf&lt;_CharT, _Traits&gt; * __sbin, basic_streambuf&lt;_CharT, _Traits&gt; * __sbout, bool &amp; __ineof)'/>
+<doc f='include/c++/11/streambuf' l='841'>// Explicit specialization declarations, defined in src/streambuf.cc.</doc>

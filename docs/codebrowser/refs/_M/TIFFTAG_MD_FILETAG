@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='421'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='418'>/* Tags 33445-33452 are used for GEL fileformat, see
+ * http://research.stowers-institute.org/mcm/efg/ScientificSoftware/Utility/TiffTags/GEL-FileFormat.pdf
+ */</doc>

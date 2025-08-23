@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='619' type='33689856'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='615'>// Material ID, Material Type, Ambient Colour, Diffuse Colour, Specular Colour, Emissive Colour, Opacity,
+			// Shininess (0.0-128.0), Diffuse Textures Completely Opaque (boolean). After all these 4 byte quantities
+			// comes the diffuse texture id table: 16 32bit Texture IDs (0 is for diffuse, 1-7 for swap diffuse textures,
+			// rest for multitexturing of some kind or another). Texture IDs of 0xFFFFFFFF are invalid.</doc>

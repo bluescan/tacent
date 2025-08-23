@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tStream.h' l='41' type='int tSystem::tStream::GetPos() const'/>
+<use f='Modules/System/Inc/System/tStream.h' l='42' u='c' c='_ZNK7tSystem7tStream4TellEv'/>

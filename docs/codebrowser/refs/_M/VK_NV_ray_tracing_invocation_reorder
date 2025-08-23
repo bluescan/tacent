@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18152'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18151'>// VK_NV_ray_tracing_invocation_reorder is a preprocessor guard. Do not pass it to API calls.</doc>

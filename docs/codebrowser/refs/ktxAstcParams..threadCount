@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1266' type='ktx_uint32_t'/>
+<offset>64</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1262'>/*!&lt; If true, prints Astc encoder operation details to
+             @c stdout. Not recommended for GUI apps.
+         */</doc>

@@ -1,0 +1,13 @@
+<use f='Modules/Image/Inc/Image/tPicture.h' l='108' u='c' c='_ZN6tImage8tPictureD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='112' type='void tImage::tPicture::Clear()'/>
+<def f='Modules/Image/Inc/Image/tPicture.h' l='381' ll='391' type='void tImage::tPicture::Clear()'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='469' u='c' c='_ZN6tImage8tPicture3SetERKS0_'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='111'>// Invalidated the picture and frees memory associated with it. The tPicture will be invalid after this.</doc>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='378'>// Implementation below this line.</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='106' u='c' c='_ZN6tImage8tPicture4LoadERK6tChunk'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='145' u='c' c='_ZN6tImage8tPicture8Rotate90Eb'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='282' u='c' c='_ZN6tImage8tPicture4FlipEb'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='317' u='c' c='_ZN6tImage8tPicture4CropEiiiiRK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='340' u='c' c='_ZN6tImage8tPicture4CropEiiiiRK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='945' u='c' c='_ZN6tImage8tPicture9ScaleHalfEv'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='178' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>

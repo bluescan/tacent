@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='862' type='int unlinkat(int __fd, const char * __name, int __flag)'/>
+<doc f='include/unistd.h' l='861'>/* Remove the link NAME relative to FD.  */</doc>

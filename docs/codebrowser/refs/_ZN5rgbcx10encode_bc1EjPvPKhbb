@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='180' type='void rgbcx::encode_bc1(uint32_t level, void * pDst, const uint8_t * pPixels, bool allow_3color, bool use_transparent_texels_for_black)'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2909' ll='3028' type='void rgbcx::encode_bc1(uint32_t level, void * pDst, const uint8_t * pPixels, bool allow_3color, bool allow_transparent_texels_for_black)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4022' u='c' c='_ZN5rgbcx10encode_bc3EjPvPKh'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='323' u='c' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>

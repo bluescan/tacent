@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='525' type='bool tSystem::tFileTypes::IsSelected(tSystem::tFileType ) const'/>
+<def f='Modules/System/Inc/System/tFile.h' l='1049' ll='1057' type='bool tSystem::tFileTypes::IsSelected(tSystem::tFileType type) const'/>

@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='207' type='tString tImage::tMetaData::GetPrettyValue(tImage::tMetaTag ) const'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='202'>// Returns a printable string of the value of a specific tag. Includes units if appropriate. eg. Passing
+	// tMetaTag::Altitude for the tag would yield &quot;55.33 meters&quot;. This function can sometime be a little smart and may
+	// lookup a supplementary tag in the data to generate a better string. eg. Passing in XPixelsPerUnit for the tag
+	// can result in a string line &quot;300 pixels/inch&quot; -- The units, inches, was looked up automatically from the
+	// LengthUnit tag.</doc>
+<def f='Modules/Image/Src/tMetaData.cpp' l='644' ll='863' type='tString tImage::tMetaData::GetPrettyValue(tImage::tMetaTag tag) const'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='834' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

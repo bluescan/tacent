@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='426' type='int TIFFReadRGBAImageOriented(TIFF * , uint32 , uint32 , uint32 * , int  = 4, int  = 0)'/>

@@ -1,0 +1,30 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='2218' ll='2433'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2240' c='_ZNSt16counted_iteratorC1ERKSt16counted_iteratorITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2247' c='_ZNSt16counted_iteratoraSERKSt16counted_iteratorITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2363' c='_ZStmiRKSt16counted_iteratorIT_ERKS_ITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2396' c='_ZSteqRKSt16counted_iteratorIT_ERKS_ITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2406' c='_ZStssRKSt16counted_iteratorIT_ERKS_ITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2421' c='_ZSt9iter_swapRKSt16counted_iteratorIT_ERKS_ITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2437'/>
+<fun r='_ZNSt16counted_iteratorC1Ev'/>
+<fun r='_ZNSt16counted_iteratorC1ET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS0_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<fun r='_ZNSt16counted_iteratorC1ERKSt16counted_iteratorITL0__E'/>
+<fun r='_ZNSt16counted_iteratoraSERKSt16counted_iteratorITL0__E'/>
+<fun r='_ZNKRSt16counted_iterator4baseEv'/>
+<fun r='_ZNOSt16counted_iterator4baseEv'/>
+<fun r='_ZNKSt16counted_iterator5countEv'/>
+<fun r='_ZNSt16counted_iteratordeEv'/>
+<fun r='_ZNKSt16counted_iteratordeEv'/>
+<fun r='_ZNKSt16counted_iteratorptEv'/>
+<fun r='_ZNSt16counted_iteratorppEv'/>
+<fun r='_ZNSt16counted_iteratorppEi'/>
+<fun r='_ZNSt16counted_iteratorppEi'/>
+<fun r='_ZNSt16counted_iteratormmEv'/>
+<fun r='_ZNSt16counted_iteratormmEi'/>
+<fun r='_ZNKSt16counted_iteratorplENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<fun r='_ZNSt16counted_iteratorpLENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<fun r='_ZNKSt16counted_iteratormiENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<fun r='_ZNSt16counted_iteratormIENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<fun r='_ZNKSt16counted_iteratorixENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<mbr r='std::counted_iterator::_M_current' t='_It'/>
+<mbr r='std::counted_iterator::_M_length' t='iter_difference_t&lt;_It&gt;'/>

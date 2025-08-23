@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_vector.h' l='819' ll='821' type='std::vector::const_iterator std::vector::begin() const'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='814'>/**
+       *  Returns a read-only (constant) iterator that points to the
+       *  first element in the %vector.  Iteration is done in ordinary
+       *  element order.
+       */</doc>
+<use f='include/c++/11/bits/random.h' l='6094' u='c' c='_ZNKSt8seed_seq5paramET_'/>

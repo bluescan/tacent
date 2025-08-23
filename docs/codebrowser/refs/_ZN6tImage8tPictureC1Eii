@@ -1,0 +1,3 @@
+<def f='Modules/Image/Inc/Image/tPicture.h' l='88' type='void tImage::tPicture::tPicture(int width, int height)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='86'>// Constructs a picture that is width by height pixels. It will be all black pixels with an opaque alpha of 255.
+	// That is, every pixel will be (0, 0, 0, 255).</doc>

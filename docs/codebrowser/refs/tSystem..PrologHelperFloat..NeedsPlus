@@ -1,0 +1,5 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='155' type='1'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1624' u='r' c='_ZN7tSystem25HandlerHelper_FloatNormalER6tArrayIcERKNS_10FormatSpecEdb'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1714' u='r' c='_ZN7tSystem25HandlerHelper_FloatNormalER6tArrayIcERKNS_10FormatSpecEdb'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1744' c='_ZN7tSystem9Handler_fERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1783' c='_ZN7tSystem9Handler_gERNS_8ReceiverERKNS_10FormatSpecEPv'/>

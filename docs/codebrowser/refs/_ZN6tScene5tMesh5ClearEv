@@ -1,0 +1,4 @@
+<use f='Modules/Scene/Inc/Scene/tPolyModel.h' l='31' u='c' c='_ZN6tScene10tPolyModel5ClearEv'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='27' u='c' c='_ZN6tScene5tMeshaSERKS0_'/>
+<def f='Modules/Scene/Src/tMesh.cpp' l='110' ll='146' type='void tScene::tMesh::Clear()'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='152' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>

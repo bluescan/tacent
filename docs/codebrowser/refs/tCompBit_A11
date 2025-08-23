@@ -1,0 +1,14 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='72' type='16'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='88' u='r'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='92' u='r'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='280' u='r' c='_ZN5tMath5tZeroERNS_5tMat2Ej'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='293' u='r' c='_ZN5tMath7tIsZeroERKNS_5tMat2Ej'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='321' u='r' c='_ZN5tMath6tEqualERKNS_5tMat2ES2_j'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='334' u='r' c='_ZN5tMath9tNotEqualERKNS_5tMat2ES2_j'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='838' u='r' c='_ZN5tMath5tZeroERNS_5tMat4Ej'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='863' u='r' c='_ZN5tMath7tIsZeroERKNS_5tMat4Ej'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='888' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tMat2ES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='899' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tMat4ES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='924' u='r' c='_ZN5tMath6tEqualERKNS_5tMat4ES2_j'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='949' u='r' c='_ZN5tMath9tNotEqualERKNS_5tMat4ES2_j'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='71'>// For matrices the notation Amn means the component at row m and column n (like in linear algebra).</doc>

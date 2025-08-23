@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='19147' ll='19151'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='19147'/>
+<size>12</size>
+<mbr r='VkDrawMeshTasksIndirectCommandEXT::groupCountX' o='0' t='uint32_t'/>
+<mbr r='VkDrawMeshTasksIndirectCommandEXT::groupCountY' o='32' t='uint32_t'/>
+<mbr r='VkDrawMeshTasksIndirectCommandEXT::groupCountZ' o='64' t='uint32_t'/>

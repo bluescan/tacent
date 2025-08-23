@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='575' type='void tMath::tSlerp(tMath::tQuat &amp; d, const tMath::tQuat &amp; a, const tMath::tQuat &amp; b, float t)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='572'>// Spherical (great circle) linear interpolation. Const velocity but not-commutative. t = 0 yields a. t = 1 yields b.
+// The version without the tOrientationPath is a bit faster than choosing shortest in the latter function. a and b may
+// be the same quaternion as d for the lerp functions.</doc>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='70' u='c' c='_ZN5tMath11tQuaternion5SlerpERKNS_5tQuatES3_f'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='217' ll='259' type='void tMath::tSlerp(tMath::tQuat &amp; d, const tMath::tQuat &amp; a, const tMath::tQuat &amp; b, float t)'/>

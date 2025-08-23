@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='424' type='int TIFFWriteScanline(TIFF * tif, void * buf, uint32 row, uint16 sample = 0)'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='328' u='c' c='_ZNK6tImage10tImageTIFF4SaveERK7tStringRKNS0_10SaveParamsE'/>

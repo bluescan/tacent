@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3857' ll='3867'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3857'/>
+<size>64</size>
+<mbr r='VkRenderPassCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderPassCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderPassCreateInfo::flags' o='128' t='VkRenderPassCreateFlags'/>
+<mbr r='VkRenderPassCreateInfo::attachmentCount' o='160' t='uint32_t'/>
+<mbr r='VkRenderPassCreateInfo::pAttachments' o='192' t='const VkAttachmentDescription *'/>
+<mbr r='VkRenderPassCreateInfo::subpassCount' o='256' t='uint32_t'/>
+<mbr r='VkRenderPassCreateInfo::pSubpasses' o='320' t='const VkSubpassDescription *'/>
+<mbr r='VkRenderPassCreateInfo::dependencyCount' o='384' t='uint32_t'/>
+<mbr r='VkRenderPassCreateInfo::pDependencies' o='448' t='const VkSubpassDependency *'/>

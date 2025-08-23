@@ -1,0 +1,13 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='54' c='tImage::tBaseImage'/>
+<def f='Modules/Image/Inc/Image/tImagePNG.h' l='26' ll='156'/>
+<size>48</size>
+<fun r='_ZN6tImage9tImagePNGD1Ev'/>
+<fun r='_ZN6tImage9tImagePNG3SetEP9tColour4biib'/>
+<fun r='_ZN6tImage9tImagePNG3SetEPNS_6tFrameEb'/>
+<fun r='_ZN6tImage9tImagePNG3SetERNS_8tPictureEb'/>
+<fun r='_ZN6tImage9tImagePNG5ClearEv'/>
+<fun r='_ZNK6tImage9tImagePNG7IsValidEv'/>
+<fun r='_ZN6tImage9tImagePNG8GetFrameEb'/>
+<fun r='_ZN6tImage9tImagePNG5ClearEv'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='278' c='_ZN6tImage9tImageICO11CreateFrameEPKhiii'/>
+<size>48</size>

@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='627' type='void std::shuffle(_RAIter , _RAIter , _UGenerator &amp;&amp; )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='3728' ll='3792' type='void std::shuffle(_RandomAccessIterator __first, _RandomAccessIterator __last, _UniformRandomNumberGenerator &amp;&amp; __g)'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='231' u='c' c='_ZN6tImage16tQuantizeSpatial18random_permutationEiRSt6vectorIiSaIiEERSt26linear_congruential_engineImLm16807ELm0ELm2147483647EE'/>

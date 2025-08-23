@@ -1,0 +1,2 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='235' u='c' c='_ZN5tMath4tRayC1ERKNS_8tLineSegE'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='237' type='void tMath::tRay::Set(const tMath::tLineSeg &amp; s)'/>

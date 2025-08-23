@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1142' ll='1147' type='std::vector::reference std::vector::back()'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1138'>/**
+       *  Returns a read/write reference to the data at the last
+       *  element of the %vector.
+       */</doc>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='241' u='c' c='_ZN6tImage16tQuantizeSpatial21random_permutation_2dEiiRSt5dequeISt4pairIiiESaIS3_EERSt26linear_congruential_engineImLm16807ELm0ELm2147483647EE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='599' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='599' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='612' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='621' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='693' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='695' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='702' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>

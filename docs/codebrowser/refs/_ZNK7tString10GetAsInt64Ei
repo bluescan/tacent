@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='343' type='int64 tString::GetAsInt64(int base = -1) const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='359' u='c' c='_ZNK7tString7AsInt64Ei'/>

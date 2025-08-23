@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='433' type='bool tColour4b::Equal(const tColour4b &amp; , comp_t channels = tCompBit_All) const'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1146' ll='1161' type='bool tColour4b::Equal(const tColour4b &amp; colour, comp_t channels = tCompBit_All) const'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='419' u='c' c='_ZNK6tImage8tPicture15GetBordersSizesERK9tColour4bjRiS4_S4_S4_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='438' u='c' c='_ZNK6tImage8tPicture15GetBordersSizesERK9tColour4bjRiS4_S4_S4_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='457' u='c' c='_ZNK6tImage8tPicture15GetBordersSizesERK9tColour4bjRiS4_S4_S4_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='476' u='c' c='_ZNK6tImage8tPicture15GetBordersSizesERK9tColour4bjRiS4_S4_S4_'/>

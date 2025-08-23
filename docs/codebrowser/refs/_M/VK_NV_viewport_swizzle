@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12178'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12177'>// VK_NV_viewport_swizzle is a preprocessor guard. Do not pass it to API calls.</doc>

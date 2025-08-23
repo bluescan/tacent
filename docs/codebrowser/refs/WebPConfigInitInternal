@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='166' type='int WebPConfigInitInternal(WebPConfig * , WebPPreset , float , int )'/>
+<use f='Modules/Image/Contrib/WebP/include/encode.h' l='173' u='c' c='_ZL14WebPConfigInitP10WebPConfig'/>
+<use f='Modules/Image/Contrib/WebP/include/encode.h' l='183' u='c' c='_ZL16WebPConfigPresetP10WebPConfig10WebPPresetf'/>

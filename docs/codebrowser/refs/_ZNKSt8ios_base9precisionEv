@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/ios_base.h' l='718' ll='720' type='std::streamsize std::ios_base::precision() const'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1002' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1002' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<doc f='include/c++/11/bits/ios_base.h' l='711'>/**
+     *  @brief  Flags access.
+     *  @return  The precision to generate on certain output operations.
+     *
+     *  Be careful if you try to give a definition of @a precision here; see
+     *  DR 189.
+    */</doc>

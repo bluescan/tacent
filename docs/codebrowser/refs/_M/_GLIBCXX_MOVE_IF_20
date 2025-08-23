@@ -1,0 +1,12 @@
+<dec f='include/c++/11/bits/stl_numeric.h' l='112'/>
+<use f='include/c++/11/bits/stl_numeric.h' l='141' u='c'/>
+<use f='include/c++/11/bits/stl_numeric.h' l='169' u='c'/>
+<use f='include/c++/11/bits/stl_numeric.h' l='199' u='c'/>
+<use f='include/c++/11/bits/stl_numeric.h' l='234' u='c'/>
+<use f='include/c++/11/bits/stl_numeric.h' l='273' u='c'/>
+<use f='include/c++/11/bits/stl_numeric.h' l='315' u='c'/>
+<use f='include/c++/11/bits/stl_numeric.h' l='356' u='c'/>
+<use f='include/c++/11/bits/stl_numeric.h' l='400' u='c'/>
+<use f='include/c++/11/bits/stl_numeric.h' l='408' u='w'/>
+<doc f='include/c++/11/bits/stl_numeric.h' l='110'>// _GLIBCXX_RESOLVE_LIB_DEFECTS
+// DR 2055. std::move in std::accumulate and other algorithms</doc>

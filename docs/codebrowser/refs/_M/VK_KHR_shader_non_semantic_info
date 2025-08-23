@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10074'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10073'>// VK_KHR_shader_non_semantic_info is a preprocessor guard. Do not pass it to API calls.</doc>

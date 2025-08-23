@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='116' type='std::streamsize std::__basic_file&lt;char&gt;::xsputn_2(const char * __s1, std::streamsize __n1, const char * __s2, std::streamsize __n2)'/>
+<use f='include/c++/11/bits/fstream.tcc' l='780' u='c' c='_ZNSt13basic_filebuf6xsputnEPKT_l'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='456' type='0'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='456'>// No intersection.</doc>
+<use f='Modules/Math/Src/tGeometry.cpp' l='328' u='r' c='_ZN5tMath20tIntersectFindSegSegERKNS_9tLineSeg2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='347' u='r' c='_ZN5tMath20tIntersectFindRaySegERKNS_5tRay2ERKNS_9tLineSeg2ERNS_8tVector2E'/>

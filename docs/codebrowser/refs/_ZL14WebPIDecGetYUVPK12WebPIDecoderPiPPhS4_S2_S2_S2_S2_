@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/WebP/include/decode.h' l='362' ll='367' type='uint8_t * WebPIDecGetYUV(const WebPIDecoder * idec, int * last_y, uint8_t ** u, uint8_t ** v, int * width, int * height, int * stride, int * uv_stride)'/>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='360'>// Deprecated alpha-less version of WebPIDecGetYUVA(): it will ignore the
+// alpha information (if present). Kept for backward compatibility.</doc>

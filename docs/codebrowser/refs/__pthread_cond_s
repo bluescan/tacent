@@ -1,0 +1,11 @@
+<def f='include/x86_64-linux-gnu/bits/thread-shared-types.h' l='94' ll='103'/>
+<use f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='77'/>
+<size>48</size>
+<doc f='include/x86_64-linux-gnu/bits/thread-shared-types.h' l='92'>/* Common definition of pthread_cond_t. */</doc>
+<mbr r='__pthread_cond_s::__wseq' o='0' t='__atomic_wide_counter'/>
+<mbr r='__pthread_cond_s::__g1_start' o='64' t='__atomic_wide_counter'/>
+<mbr r='__pthread_cond_s::__g_refs' o='128' t='unsigned int[2]'/>
+<mbr r='__pthread_cond_s::__g_size' o='192' t='unsigned int[2]'/>
+<mbr r='__pthread_cond_s::__g1_orig_size' o='256' t='unsigned int'/>
+<mbr r='__pthread_cond_s::__wrefs' o='288' t='unsigned int'/>
+<mbr r='__pthread_cond_s::__g_signals' o='320' t='unsigned int[2]'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tHash.h' l='75' type='uint32 tHash::tHashString(const char8_t * )'/>
+<def f='Modules/Foundation/Inc/Foundation/tHash.h' l='153' type='uint32 tHash::tHashString(const char8_t * s)'/>
+<use f='Modules/System/Inc/System/tScript.h' l='104' u='c' c='_ZNK11tExpression11GetAtomHashEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='200' u='c' c='_Z11GetAtomHashR11tExpression'/>

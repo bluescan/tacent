@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='336' type='void tImage::tGetMipmapDims(int &amp; width, int &amp; height, int level)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='332'>// Given level 0 width and height this function returns the width and height at the supplied level. This function
+// reads and writes width and height. The input width and height should be &gt;= 1. If one is &lt;= 0, 0 is returned for that
+// dimension regardless of level. Level should be E [0, NumMipmapLevels). Below this range width and height are
+// left unmodified. Above this range width and height are both set to 1.</doc>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='623' ll='627' type='void tImage::tGetMipmapDims(int &amp; width, int &amp; height, int level)'/>

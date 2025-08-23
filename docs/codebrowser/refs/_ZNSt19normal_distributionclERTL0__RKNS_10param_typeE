@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/random.h' l='2095' type='std::normal_distribution::result_type std::normal_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::normal_distribution::param_type &amp; __p)'/>
+<def f='include/c++/11/bits/random.tcc' l='1800' ll='1835' type='typename normal_distribution&lt;_RealType&gt;::result_type std::normal_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::normal_distribution::param_type &amp; __param)'/>
+<doc f='include/c++/11/bits/random.tcc' l='1794'>/**
+   * Polar method due to Marsaglia.
+   *
+   * Devroye, L. Non-Uniform Random Variates Generation. Springer-Verlag,
+   * New York, 1986, Ch. V, Sect. 4.4.
+   */</doc>

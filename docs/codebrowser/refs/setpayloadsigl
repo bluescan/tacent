@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='427' macro='1' type='int setpayloadsigl(long double * __x, long double __payload)'/>

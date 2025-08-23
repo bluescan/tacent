@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='535' type='tString'/>
+<offset>320</offset>
+<doc f='Modules/System/Inc/System/tFile.h' l='533'>// A user specified name for this collection of file types. Use is optional. Could be something like &quot;Image&quot; if this
+	// collection of types is exclusively comprised of image types.</doc>

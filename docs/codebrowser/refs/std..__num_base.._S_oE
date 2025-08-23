@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1564' type='34'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1564'>// For scientific notation, &apos;E&apos;</doc>
+<dec f='include/c++/11/bits/locale_facets.h' l='1563' type='18'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1563'>// For scientific notation, &apos;e&apos;</doc>

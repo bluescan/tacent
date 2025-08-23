@@ -1,0 +1,9 @@
+<use f='Modules/System/Inc/System/tFile.h' l='442' u='c' c='_ZN7tSystem11tExtensionsC1ENS_9tFileTypeEb'/>
+<dec f='Modules/System/Inc/System/tFile.h' l='456' type='tSystem::tExtensions &amp; tSystem::tExtensions::Add(tSystem::tFileType , bool preferredExtensionOnly = false)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='881' ll='889' type='tSystem::tExtensions &amp; tSystem::tExtensions::Add(tSystem::tFileType fileType, bool preferredExtensionOnly = false)'/>
+<use f='Modules/System/Inc/System/tFile.h' l='895' u='c' c='_ZN7tSystem11tExtensions3AddERKNS_10tFileTypesEb'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='451'>// Populates the extension list based on the supplied filetype(s). If preferredExtensionsOnly is false the extensions
+	// list will contain _all_ extensions for the supplied filetypes. If preferredExtensionsOnly is true, the list will
+	// contain only the preferred extensions. For example, for JPG filetype with preferred true, only the &quot;jpg&quot;
+	// extension would be added. With preferred = false, you&apos;d get both &quot;jpg&quot; and &quot;jpeg&quot;. Returns ref to self so you can
+	// chain the calls.</doc>

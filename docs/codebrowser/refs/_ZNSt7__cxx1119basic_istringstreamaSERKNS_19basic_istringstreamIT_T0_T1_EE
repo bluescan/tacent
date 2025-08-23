@@ -1,0 +1,2 @@
+<def f='include/c++/11/sstream' l='661' ll='662' type='basic_istringstream&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_istringstream::operator=(const basic_istringstream&lt;_CharT, _Traits, _Alloc&gt; &amp; )'/>
+<doc f='include/c++/11/sstream' l='659'>// 27.8.3.2 Assign and swap:</doc>

@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/stl_construct.h' l='200' ll='210'/>
+<def f='include/c++/11/bits/stl_construct.h' l='212' ll='222'/>
+<use f='include/c++/11/bits/stl_construct.h' l='213'/>
+<use f='include/c++/11/bits/stl_construct.h' l='242' c='_ZSt10_Destroy_nT_T0_'/>
+<use f='include/c++/11/bits/stl_construct.h' l='244' c='_ZSt10_Destroy_nT_T0_'/>
+<size>1</size>
+<fun r='_ZNSt14_Destroy_n_aux11__destroy_nETL0__TL0_0_'/>
+<fun r='_ZNSt14_Destroy_n_auxILb1EE11__destroy_nET_T0_'/>

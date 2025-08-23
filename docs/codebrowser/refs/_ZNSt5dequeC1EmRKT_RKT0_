@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/stl_deque.h' l='869' ll='872' type='void std::deque::deque&lt;_Tp, _Alloc&gt;(std::deque::size_type __n, const std::deque::value_type &amp; __value, const std::deque::allocator_type &amp; __a = std::deque::allocator_type())'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='861'>/**
+       *  @brief  Creates a %deque with copies of an exemplar element.
+       *  @param  __n  The number of elements to initially create.
+       *  @param  __value  An element to copy.
+       *  @param  __a  An allocator.
+       *
+       *  This constructor fills the %deque with @a __n copies of @a __value.
+       */</doc>

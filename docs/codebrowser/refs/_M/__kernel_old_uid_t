@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/asm/posix_types_64.h' l='13'/>
+<use f='include/asm-generic/posix_types.h' l='53' u='a'/>

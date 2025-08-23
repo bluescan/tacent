@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='972' type='int pthread_rwlock_destroy(pthread_rwlock_t * __rwlock)'/>
+<doc f='include/pthread.h' l='971'>/* Destroy read-write lock RWLOCK.  */</doc>

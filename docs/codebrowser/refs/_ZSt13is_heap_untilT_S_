@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='335' type='_RAIter std::is_heap_until(_RAIter , _RAIter )'/>
+<def f='include/c++/11/bits/stl_heap.h' l='494' ll='509' macro='1' type='_RandomAccessIterator std::is_heap_until(_RandomAccessIterator __first, _RandomAccessIterator __last)'/>

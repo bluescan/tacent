@@ -1,0 +1,16 @@
+<def f='include/c++/11/bits/hashtable.h' l='294' ll='315'/>
+<use f='include/c++/11/bits/hashtable.h' l='310' c='_ZNSt10_Hashtable12_Scoped_nodeC1ERKS0_'/>
+<use f='include/c++/11/bits/hashtable.h' l='311' c='_ZNSt10_Hashtable12_Scoped_nodeaSERKS0_'/>
+<use f='include/c++/11/bits/hashtable.h' l='311' c='_ZNSt10_Hashtable12_Scoped_nodeaSERKS0_'/>
+<use f='include/c++/11/bits/hashtable.h' l='1966' c='_ZNSt10_Hashtable10_M_emplaceESt17integral_constantIbLb1EEDpOTL0__'/>
+<use f='include/c++/11/bits/hashtable.h' l='1993' c='_ZNSt10_Hashtable10_M_emplaceENSt8__detail7_InsertIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_XsrNSB_20__constant_iteratorsE5valueEE14const_iteratorESt17integral_co8457096'/>
+<use f='include/c++/11/bits/hashtable.h' l='2108' c='_ZNSt10_Hashtable9_M_insertEOTL0__RKTL0_0_St17integral_constantIbLb1EE'/>
+<use f='include/c++/11/bits/hashtable.h' l='2134' c='_ZNSt10_Hashtable9_M_insertENSt8__detail7_InsertIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_XsrNSB_20__constant_iteratorsE5valueEE14const_iteratorEOTL0__RKTL0_0_St111647750'/>
+<doc f='include/c++/11/bits/hashtable.h' l='293'>// Simple RAII type for managing a node containing an element</doc>
+<fun r='_ZNSt10_Hashtable12_Scoped_nodeC1ENSt8__detail16_Hashtable_allocINSt23__allocator_traits_base8__rebindIT1_NS1_10_Hash_nodeIT0_Xsr13__hash_cachedE5valu606864'/>
+<fun r='_ZNSt10_Hashtable12_Scoped_nodeC1EPNSt8__detail16_Hashtable_allocINSt23__allocator_traits_base8__rebindIT1_NS1_10_Hash_nodeIT0_Xsr13__hash_cachedE5val8647054'/>
+<fun r='_ZNSt10_Hashtable12_Scoped_nodeD1Ev'/>
+<fun r='_ZNSt10_Hashtable12_Scoped_nodeC1ERKS0_'/>
+<fun r='_ZNSt10_Hashtable12_Scoped_nodeaSERKS0_'/>
+<mbr r='std::_Hashtable::_Scoped_node::_M_h' t='std::_Hashtable::__hashtable_alloc *'/>
+<mbr r='std::_Hashtable::_Scoped_node::_M_node' t='std::_Hashtable::__node_ptr'/>

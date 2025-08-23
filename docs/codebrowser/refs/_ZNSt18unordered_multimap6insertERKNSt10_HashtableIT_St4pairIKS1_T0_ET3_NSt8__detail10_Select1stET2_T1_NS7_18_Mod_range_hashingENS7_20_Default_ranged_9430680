@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1565' ll='1567' type='std::unordered_multimap::iterator std::unordered_multimap::insert(const std::unordered_multimap::value_type &amp; __x)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1556'>/**
+       *  @brief Inserts a std::pair into the %unordered_multimap.
+       *  @param __x Pair to be inserted (see std::make_pair for easy
+       *	     creation of pairs).
+       *
+       *  @return  An iterator that points to the inserted pair.
+       *
+       *  Insertion requires amortized constant time.
+       */</doc>

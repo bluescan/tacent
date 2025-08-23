@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='807' ll='839'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='841'/>
+<size>1</size>
+<fun r='_ZNKSt6ranges12__replace_fnclET_T0_RKT1_RKT2_T3_'/>
+<fun r='_ZNKSt6ranges12__replace_fnclEOT_RKT0_RKT1_T2_'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='306' ll='311'/>
+<use f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='306'/>
+<size>16</size>
+<mbr r='TinyEXIF::EXIFInfo::GPano_t::PosePitchDegrees' o='0' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::GPano_t::PoseRollDegrees' o='64' t='double'/>
+<fun r='_ZNK8TinyEXIF8EXIFInfo7GPano_t19hasPosePitchDegreesEv'/>
+<fun r='_ZNK8TinyEXIF8EXIFInfo7GPano_t18hasPoseRollDegreesEv'/>

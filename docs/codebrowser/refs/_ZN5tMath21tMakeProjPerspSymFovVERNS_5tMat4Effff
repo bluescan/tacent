@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='635' type='void tMath::tMakeProjPerspSymFovV(tMath::tMat4 &amp; d, float fovX, float aspect, float nearPlane, float farPlane)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='633'>// Angles are named using the axis about which they rotate, so vertical FovV may also be written FovX, and horizontal
+// FovH may be written FovY.</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='91' u='c' c='_ZN5tMath8tMatrix420MakeProjPerspSymFovVEffff'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='779' ll='785' type='void tMath::tMakeProjPerspSymFovV(tMath::tMat4 &amp; d, float fovX, float aspect, float nearPlane, float farPlane)'/>

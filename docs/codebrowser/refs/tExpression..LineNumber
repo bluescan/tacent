@@ -1,0 +1,23 @@
+<use f='Modules/System/Inc/System/tScript.h' l='52' u='w' c='_ZN11tExpressionC1Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='58' u='w' c='_ZN11tExpressionC1ERKS_'/>
+<use f='Modules/System/Inc/System/tScript.h' l='58' u='r' c='_ZN11tExpressionC1ERKS_'/>
+<use f='Modules/System/Inc/System/tScript.h' l='62' u='w' c='_ZN11tExpressionC1EPKDu'/>
+<use f='Modules/System/Inc/System/tScript.h' l='63' u='w' c='_ZN11tExpressionC1EPKc'/>
+<use f='Modules/System/Inc/System/tScript.h' l='67' u='w' c='_ZN11tExpressionC1EPKDui'/>
+<use f='Modules/System/Inc/System/tScript.h' l='68' u='w' c='_ZN11tExpressionC1EPKci'/>
+<use f='Modules/System/Inc/System/tScript.h' l='165' u='r' c='_ZNK11tExpression13GetLineNumberEv'/>
+<dec f='Modules/System/Inc/System/tScript.h' l='176' type='int'/>
+<offset>128</offset>
+<doc f='Modules/System/Inc/System/tScript.h' l='175'>// The first valid line number starts at 1.</doc>
+<use f='Modules/System/Src/tScript.cpp' l='53' u='r' c='_ZNK11tExpression3CarEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='79' u='r' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='204' u='r' c='_ZNK11tExpression19GetExpressionStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='217' u='r' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='228' u='r' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='241' u='r' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='266' u='r' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='269' u='r' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='276' u='r' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='528' u='w' c='_ZN11tExprReaderC1EiPPc'/>
+<use f='Modules/System/Src/tScript.cpp' l='582' u='w' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='583' u='a' c='_ZN11tExprReader4LoadERK7tStringb'/>

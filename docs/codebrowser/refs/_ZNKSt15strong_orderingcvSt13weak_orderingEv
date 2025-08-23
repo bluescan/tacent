@@ -1,0 +1,2 @@
+<def f='include/c++/11/compare' l='252' ll='253' type='std::weak_ordering std::strong_ordering::operator weak_ordering() const'/>
+<use f='include/c++/11/bits/char_traits.h' l='975' u='c' c='_ZNSt8__detail21__char_traits_cmp_catEi'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1622' ll='1637'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1622'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1618'>/**
+ * @~English
+ * @brief Flags guiding transcoding of Basis Universal compressed textures.
+ */</doc>

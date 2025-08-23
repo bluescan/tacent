@@ -1,0 +1,22 @@
+<def f='include/c++/11/bits/random.h' l='1752' ll='1784'/>
+<use f='include/c++/11/bits/random.h' l='1756' c='_ZNSt25uniform_real_distribution10param_typeC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='1774' c='_ZSteqRKNSt25uniform_real_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='1774' c='_ZSteqRKNSt25uniform_real_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='1778' c='_ZStneRKNSt25uniform_real_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='1778' c='_ZStneRKNSt25uniform_real_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='1806' c='_ZNSt25uniform_real_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='1829' c='_ZNKSt25uniform_real_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='1838' c='_ZNSt25uniform_real_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='1866' c='_ZNSt25uniform_real_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='1885' c='_ZNSt25uniform_real_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='1892' c='_ZNSt25uniform_real_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='1910' c='_ZNSt25uniform_real_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='1912'/>
+<use f='include/c++/11/bits/random.tcc' l='947' c='_ZNSt25uniform_real_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<doc f='include/c++/11/bits/random.h' l='1751'>/** Parameter type. */</doc>
+<fun r='_ZNSt25uniform_real_distribution10param_typeC1Ev'/>
+<fun r='_ZNSt25uniform_real_distribution10param_typeC1ET_S1_'/>
+<fun r='_ZNKSt25uniform_real_distribution10param_type1aEv'/>
+<fun r='_ZNKSt25uniform_real_distribution10param_type1bEv'/>
+<mbr r='std::uniform_real_distribution::param_type::_M_a' t='_RealType'/>
+<mbr r='std::uniform_real_distribution::param_type::_M_b' t='_RealType'/>

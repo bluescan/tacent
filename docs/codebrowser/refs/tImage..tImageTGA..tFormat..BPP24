@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tImageTGA.h' l='93' type='1'/>
+<doc f='Modules/Image/Inc/Image/tImageTGA.h' l='93'>// 24 bit colour.</doc>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='385' u='r' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='411' u='r' c='_ZNK6tImage9tImageTGA16SaveUncompressedERK7tStringNS0_7tFormatE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='418' u='r' c='_ZNK6tImage9tImageTGA16SaveUncompressedERK7tStringNS0_7tFormatE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='466' u='r' c='_ZNK6tImage9tImageTGA14SaveCompressedERK7tStringNS0_7tFormatE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='474' u='r' c='_ZNK6tImage9tImageTGA14SaveCompressedERK7tStringNS0_7tFormatE'/>

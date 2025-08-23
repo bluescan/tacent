@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='498' type='2164424704'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='498'>// A skeletal pose... one frame of animation.</doc>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='118' u='r' c='_ZNK6tScene5tPose4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='145' u='r' c='_ZN6tScene5tPose4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='248' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>

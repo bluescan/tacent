@@ -1,0 +1,17 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1755' ll='1761' type='std::deque::iterator std::deque::erase(std::deque::const_iterator __first, std::deque::const_iterator __last)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1739'>/**
+       *  @brief  Remove a range of elements.
+       *  @param  __first  Iterator pointing to the first element to be erased.
+       *  @param  __last  Iterator pointing to one past the last element to be
+       *                erased.
+       *  @return  An iterator pointing to the element pointed to by @a last
+       *           prior to erasing (or end()).
+       *
+       *  This function will erase the elements in the range
+       *  [__first,__last) and shorten the %deque accordingly.
+       *
+       *  The user is cautioned that
+       *  this function only erases the elements, and that if the elements
+       *  themselves are pointers, the pointed-to memory is not touched in any
+       *  way.  Managing the pointer is the user&apos;s responsibility.
+       */</doc>

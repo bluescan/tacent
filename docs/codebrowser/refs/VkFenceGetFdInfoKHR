@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9002' ll='9007'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9002'/>
+<size>32</size>
+<mbr r='VkFenceGetFdInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkFenceGetFdInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkFenceGetFdInfoKHR::fence' o='128' t='VkFence'/>
+<mbr r='VkFenceGetFdInfoKHR::handleType' o='192' t='VkExternalFenceHandleTypeFlagBits'/>

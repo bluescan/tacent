@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='1079' ll='1090' type='remove_copy_if_result&lt;_Iter, _Out&gt; std::ranges::__remove_copy_if_fn::operator()(_Iter __first, _Sent __last, _Out __result, _Pred __pred, _Proj __proj = {}) const'/>

@@ -1,0 +1,12 @@
+<dec f='include/c++/11/bits/random.h' l='314' type='void std::linear_congruential_engine::seed(std::linear_congruential_engine::result_type __s = default_seed)'/>
+<def f='include/c++/11/bits/random.tcc' l='114' ll='124' type='void std::linear_congruential_engine::seed(std::linear_congruential_engine::result_type __s = default_seed)'/>
+<doc f='include/c++/11/bits/random.h' l='307'>/**
+       * @brief Reseeds the %linear_congruential_engine random number generator
+       *        engine sequence to the seed @p __s.
+       *
+       * @param __s The new seed.
+       */</doc>
+<doc f='include/c++/11/bits/random.tcc' l='110'>/**
+   * Seeds the LCR with integral value @p __s, adjusted so that the
+   * ring identity is never a member of the convergence set.
+   */</doc>

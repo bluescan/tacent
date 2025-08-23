@@ -1,0 +1,2 @@
+<def f='include/c++/11/ext/concurrence.h' l='166' ll='167' type='__gthread_mutex_t * __gnu_cxx::__mutex::gthread_mutex()'/>
+<use f='include/c++/11/ext/concurrence.h' l='292' u='c' c='__gnu_cxx::__cond::wait'/>

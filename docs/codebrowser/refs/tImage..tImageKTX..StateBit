@@ -1,0 +1,7 @@
+<def f='Modules/Image/Inc/Image/tImageKTX.h' l='108' ll='140'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='167' c='_ZNK6tImage9tImageKTX10IsStateSetENS0_8StateBitE'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='168' c='_ZN6tImage9tImageKTX12GetStateDescENS0_8StateBitE'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='217' c='_ZN6tImage9tImageKTX11SetStateBitENS0_8StateBitE'/>
+<doc f='Modules/Image/Inc/Image/tImageKTX.h' l='106'>// The state of the tImage is a combination of one or more of the following enumerants.
+	// The values of the enum are used as bit indices into a bitfield.</doc>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1139' c='_ZN6tImage9tImageKTX12GetStateDescENS0_8StateBitE'/>

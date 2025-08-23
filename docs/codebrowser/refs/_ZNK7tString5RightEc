@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='200' type='tString tString::Right(const char marker = &apos; &apos;) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='200'>// Same as Left but chars after last marker.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='79' ll='88' type='tString tString::Right(const char marker = &apos; &apos;) const'/>
+<use f='Modules/System/Src/tFile.cpp' l='201' u='c' c='_ZN7tSystem12tGetFileNameERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='1908' u='c' c='_ZN7tSystem17tGetFileExtensionERK7tString'/>

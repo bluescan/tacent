@@ -1,0 +1,20 @@
+<inh f='include/c++/11/system_error' l='446' c='std::system_error'/>
+<def f='include/c++/11/bits/fs_path.h' l='699' ll='725'/>
+<use f='include/c++/11/bits/fs_path.h' l='710' c='_ZNSt10filesystem7__cxx1116filesystem_errorC1ERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='711' c='_ZNSt10filesystem7__cxx1116filesystem_erroraSERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='711' c='_ZNSt10filesystem7__cxx1116filesystem_erroraSERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='733' c='_ZNSt10filesystem7__cxx118__detail24__throw_conversion_errorEv'/>
+<size>48</size>
+<doc f='include/c++/11/bits/fs_path.h' l='696'>/// @}
+
+  /// Exception type thrown by the Filesystem library</doc>
+<fun r='_ZNSt10filesystem7__cxx1116filesystem_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt10error_code'/>
+<fun r='_ZNSt10filesystem7__cxx1116filesystem_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS0_4pathESt10error_code'/>
+<fun r='_ZNSt10filesystem7__cxx1116filesystem_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS0_4pathESC_St10error_code'/>
+<fun r='_ZNSt10filesystem7__cxx1116filesystem_errorC1ERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1116filesystem_erroraSERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1116filesystem_errorD1Ev'/>
+<fun r='_ZNKSt10filesystem7__cxx1116filesystem_error5path1Ev'/>
+<fun r='_ZNKSt10filesystem7__cxx1116filesystem_error5path2Ev'/>
+<fun r='_ZNKSt10filesystem7__cxx1116filesystem_error4whatEv'/>
+<mbr r='std::filesystem::filesystem_error::_M_impl' o='256' t='std::__shared_ptr&lt;const _Impl&gt;'/>

@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='79' type='0'/>
+<use f='include/c++/11/bits/fs_dir.h' l='58' u='r' c='_ZNSt10filesystem11file_statusC1Ev'/>
+<use f='include/c++/11/bits/fs_dir.h' l='230' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry10is_symlinkEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='238' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry10is_symlinkERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='335' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry12_M_file_typeEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='344' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry12_M_file_typeERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='353'/>
+<use f='include/c++/11/bits/fs_ops.h' l='364' u='r' c='_ZNSt10filesystem12status_knownENS_11file_statusE'/>

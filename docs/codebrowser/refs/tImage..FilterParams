@@ -1,0 +1,14 @@
+<def f='Modules/Image/Src/tResample.cpp' l='28' ll='33'/>
+<use f='Modules/Image/Src/tResample.cpp' l='35' c='_ZN6tImage19KernelFilterNearestEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='36' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='37' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='38' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='39' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='136' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='137' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='240' c='_ZN6tImage19KernelFilterNearestEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='252' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='307' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='381' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='428' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<size>8</size>

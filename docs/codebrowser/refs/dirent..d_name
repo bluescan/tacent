@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/dirent.h' l='33' type='char[256]'/>
+<use f='Modules/System/Src/tFile.cpp' l='2752' u='r' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<offset>152</offset>
+<doc f='include/x86_64-linux-gnu/bits/dirent.h' l='33'>/* We must not include limits.h! */</doc>

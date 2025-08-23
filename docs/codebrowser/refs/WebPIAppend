@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='330' type='VP8StatusCode WebPIAppend(WebPIDecoder * idec, const uint8_t * data, size_t data_size)'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Src/tQuantizeNeu.cpp' l='112' type='int tImage::tQuantizeNeu::getColourMap(tImage::tQuantizeNeu::State &amp; , tColour3b * out)'/>
+<def f='Modules/Image/Src/tQuantizeNeu.cpp' l='181' ll='195' type='int tImage::tQuantizeNeu::getColourMap(tImage::tQuantizeNeu::State &amp; state, tColour3b * out)'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='562' u='c' c='_ZN6tImage12tQuantizeNeu13QuantizeImageEiiiPK9tColour3bPS1_Phbi'/>
+<doc f='Modules/Image/Src/tQuantizeNeu.cpp' l='111'>// This gets the palette in the out variable.</doc>

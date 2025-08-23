@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='460' type='int rand_r(unsigned int * __seed)'/>
+<doc f='include/stdlib.h' l='459'>/* Reentrant interface according to POSIX.1.  */</doc>

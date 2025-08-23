@@ -1,0 +1,2 @@
+<dec f='include/zlib.h' l='203'/>
+<doc f='include/zlib.h' l='201'>/* compression strategy; see deflateInit2() below for details */</doc>

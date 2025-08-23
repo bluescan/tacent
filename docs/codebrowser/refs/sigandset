@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='219' type='int sigandset(sigset_t * __set, const sigset_t * __left, const sigset_t * __right)'/>
+<doc f='include/signal.h' l='218'>/* Build new signal set by combining the two inputs set using logical AND.  */</doc>

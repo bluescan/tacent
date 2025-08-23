@@ -1,0 +1,3 @@
+<dec f='include/linux/stat.h' l='108' type='__u16'/>
+<offset>224</offset>
+<doc f='include/linux/stat.h' l='108'>/* File mode */</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algo.h' l='2299' ll='2320' type='void std::__move_merge_adaptive(_InputIterator1 __first1, _InputIterator1 __last1, _InputIterator2 __first2, _InputIterator2 __last2, _OutputIterator __result, _Compare __comp)'/>

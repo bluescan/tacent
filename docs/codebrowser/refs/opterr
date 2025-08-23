@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/getopt_core.h' l='55' type='int'/>
+<doc f='include/x86_64-linux-gnu/bits/getopt_core.h' l='52'>/* Callers store zero here to inhibit the error message &apos;getopt&apos; prints
+   for unrecognized options.  */</doc>

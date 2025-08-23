@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1224' ll='1231' type='void std::vector::pop_back()'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1215'>/**
+       *  @brief  Removes last element.
+       *
+       *  This is a typical stack operation. It shrinks the %vector by one.
+       *
+       *  Note that no data is returned, and if the last element&apos;s
+       *  data is needed, it should be retrieved before pop_back() is
+       *  called.
+       */</doc>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='242' u='c' c='_ZN6tImage16tQuantizeSpatial21random_permutation_2dEiiRSt5dequeISt4pairIiiESaIS3_EERSt26linear_congruential_engineImLm16807ELm0ELm2147483647EE'/>

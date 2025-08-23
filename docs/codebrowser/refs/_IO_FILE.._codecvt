@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='91' type='struct _IO_codecvt *'/>
+<offset>1216</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='90'>/* Wide character stream stuff.  */</doc>

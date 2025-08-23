@@ -1,0 +1,13 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='216' type='void tMath::tSet(tMath::tVec3 &amp; d, float x, float y, float z)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='988' u='c' c='_ZN5tMath7tRotateERNS_5tVec3ERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1152' u='c' c='_ZN5tMath6tCrossERNS_5tVec3ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='31' u='c' c='_ZN5tMath8tVector3C1Efff'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='39' u='c' c='_ZN5tMath8tVector33SetEfff'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='66' u='c' c='_ZNK5tMath8tVector412GetCartesianEv'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='121' u='c' c='_ZN5tMath4tSetERNS_5tQuatERKNS_5tVec3Ef'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='164' u='c' c='_ZN5tMath4tGetERNS_5tVec3ERfRKNS_5tQuatE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='166' u='c' c='_ZN5tMath4tGetERNS_5tVec3ERfRKNS_5tQuatE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='184' u='c' c='_ZN5tMath4tMulERNS_5tVec3ERKNS_5tMat4ERKS0_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='630' u='c' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3ES4_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='632' u='c' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3ES4_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='634' u='c' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3ES4_'/>

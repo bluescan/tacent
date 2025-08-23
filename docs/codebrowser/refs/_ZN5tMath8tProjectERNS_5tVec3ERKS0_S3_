@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='562' type='void tMath::tProject(tMath::tVec3 &amp; d, const tMath::tVec3 &amp; a, const tMath::tVec3 &amp; b)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='562'>/* Orthogonally projects b onto a. */</doc>

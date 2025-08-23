@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='3358' ll='3360' type='_RealType std::student_t_distribution::n() const'/>
+<use f='include/c++/11/bits/random.h' l='3397' u='c' c='_ZNSt22student_t_distributionclERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='2272' u='c' c='_ZNSt22student_t_distribution15__generate_implETL0__S0_RTL0_0_'/>
+<doc f='include/c++/11/bits/random.h' l='3355'>/**
+       *
+       */</doc>

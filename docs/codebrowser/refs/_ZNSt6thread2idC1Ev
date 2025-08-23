@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/std_thread.h' l='86' type='void std::thread::id::id()'/>
+<use f='include/c++/11/bits/std_thread.h' l='176' u='c' c='_ZNKSt6thread8joinableEv'/>
+<use f='include/c++/11/thread' l='94' u='c' c='_ZStlsRSt13basic_ostreamIT_T0_ENSt6thread2idE'/>

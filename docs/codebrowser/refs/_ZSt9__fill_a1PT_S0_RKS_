@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='929' ll='945' macro='1' type='typename __gnu_cxx::__enable_if&lt;__is_byte&lt;_Tp&gt;::__value, void&gt;::__type std::__fill_a1(_Tp * __first, _Tp * __last, const _Tp &amp; __c)'/>

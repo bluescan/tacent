@@ -1,0 +1,36 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='53' ll='130'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='54'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='66' c='_ZNSt12__basic_fileIcEC1EOS0_P15pthread_mutex_t'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='73' c='_ZNSt12__basic_fileIcEaSERKS0_'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='73' c='_ZNSt12__basic_fileIcEaSERKS0_'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='74' c='_ZNSt12__basic_fileIcEaSEOS0_'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='74' c='_ZNSt12__basic_fileIcEaSEOS0_'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='77' c='_ZNSt12__basic_fileIcE4swapERS0_'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='84' c='_ZNSt12__basic_fileIcE4openEPKcSt13_Ios_Openmodei'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='92' c='_ZNSt12__basic_fileIcE8sys_openEP8_IO_FILESt13_Ios_Openmode'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='95' c='_ZNSt12__basic_fileIcE8sys_openEiSt13_Ios_Openmode'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='98' c='_ZNSt12__basic_fileIcE5closeEv'/>
+<use f='include/c++/11/fstream' l='111'/>
+<size>16</size>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='52'>// Specialization.</doc>
+<mbr r='std::__basic_file::_M_cfile' o='0' t='std::__c_file *'/>
+<mbr r='std::__basic_file::_M_cfile_created' o='64' t='bool'/>
+<fun r='_ZNSt12__basic_fileIcEC1EP15pthread_mutex_t'/>
+<fun r='_ZNSt12__basic_fileIcEC1EOS0_P15pthread_mutex_t'/>
+<fun r='_ZNSt12__basic_fileIcEaSERKS0_'/>
+<fun r='_ZNSt12__basic_fileIcEaSEOS0_'/>
+<fun r='_ZNSt12__basic_fileIcE4swapERS0_'/>
+<fun r='_ZNSt12__basic_fileIcE4openEPKcSt13_Ios_Openmodei'/>
+<fun r='_ZNSt12__basic_fileIcE8sys_openEP8_IO_FILESt13_Ios_Openmode'/>
+<fun r='_ZNSt12__basic_fileIcE8sys_openEiSt13_Ios_Openmode'/>
+<fun r='_ZNSt12__basic_fileIcE5closeEv'/>
+<fun r='_ZNKSt12__basic_fileIcE7is_openEv'/>
+<fun r='_ZNSt12__basic_fileIcE2fdEv'/>
+<fun r='_ZNSt12__basic_fileIcE4fileEv'/>
+<fun r='_ZNSt12__basic_fileIcED1Ev'/>
+<fun r='_ZNSt12__basic_fileIcE6xsputnEPKcl'/>
+<fun r='_ZNSt12__basic_fileIcE8xsputn_2EPKclS2_l'/>
+<fun r='_ZNSt12__basic_fileIcE6xsgetnEPcl'/>
+<fun r='_ZNSt12__basic_fileIcE7seekoffElSt12_Ios_Seekdir'/>
+<fun r='_ZNSt12__basic_fileIcE4syncEv'/>
+<fun r='_ZNSt12__basic_fileIcE9showmanycEv'/>

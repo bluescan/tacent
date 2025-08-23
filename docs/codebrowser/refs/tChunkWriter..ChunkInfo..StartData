@@ -1,0 +1,7 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='206' u='w' c='_ZN12tChunkWriter9ChunkInfoC1Ev'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='207' u='w' c='_ZN12tChunkWriter9ChunkInfoC1Ejj'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='209' type='uint'/>
+<offset>160</offset>
+<doc f='Modules/System/Inc/System/tChunk.h' l='209'>// Start of the data.</doc>
+<use f='Modules/System/Src/tChunk.cpp' l='248' u='r' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='249' u='r' c='_ZN12tChunkWriter8EndChunkEv'/>

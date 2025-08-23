@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='430' ll='432' type='const std::unique_ptr::deleter_type &amp; std::unique_ptr::get_deleter() const'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='429'>/// Return a reference to the stored deleter.</doc>

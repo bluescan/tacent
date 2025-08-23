@@ -1,0 +1,6 @@
+<dec f='include/unistd.h' l='950' type='int profil(unsigned short * __sample_buffer, size_t __size, size_t __offset, unsigned int __scale)'/>
+<doc f='include/unistd.h' l='945'>/* Enable statistical profiling, writing samples of the PC into at most
+   SIZE bytes of SAMPLE_BUFFER; every processor clock tick while profiling
+   is enabled, the system examines the user PC and increments
+   SAMPLE_BUFFER[((PC - OFFSET) / 2) * SCALE / 65536].  If SCALE is zero,
+   disable profiling.  Returns zero on success, -1 on error.  */</doc>

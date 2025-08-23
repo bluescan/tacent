@@ -1,0 +1,1 @@
+<def f='include/c++/11/system_error' l='260' ll='266' type='std::strong_ordering std::operator&lt;=&gt;(const std::error_code &amp; __lhs, const std::error_code &amp; __rhs)'/>

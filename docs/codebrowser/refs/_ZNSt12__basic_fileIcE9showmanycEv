@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='129' type='std::streamsize std::__basic_file&lt;char&gt;::showmanyc()'/>
+<use f='include/c++/11/bits/fstream.tcc' l='316' u='c' c='_ZNSt13basic_filebuf9showmanycEv'/>

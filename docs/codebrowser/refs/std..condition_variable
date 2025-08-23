@@ -1,0 +1,29 @@
+<def f='include/c++/11/condition_variable' l='68' ll='227'/>
+<use f='include/c++/11/condition_variable' l='86' c='_ZNSt18condition_variableC1ERKS_'/>
+<use f='include/c++/11/condition_variable' l='87' c='_ZNSt18condition_variableaSERKS_'/>
+<use f='include/c++/11/condition_variable' l='87' c='_ZNSt18condition_variableaSERKS_'/>
+<use f='include/c++/11/condition_variable' l='230' c='_ZSt25notify_all_at_thread_exitRSt18condition_variableSt11unique_lockISt5mutexE'/>
+<use f='include/c++/11/condition_variable' l='249'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='104'/>
+<size>48</size>
+<doc f='include/c++/11/condition_variable' l='67'>/// condition_variable</doc>
+<mbr r='std::condition_variable::_M_cond' o='0' t='std::__condvar'/>
+<fun r='_ZNSt18condition_variableC1Ev'/>
+<fun r='_ZNSt18condition_variableD1Ev'/>
+<fun r='_ZNSt18condition_variableC1ERKS_'/>
+<fun r='_ZNSt18condition_variableaSERKS_'/>
+<fun r='_ZNSt18condition_variable10notify_oneEv'/>
+<fun r='_ZNSt18condition_variable10notify_allEv'/>
+<fun r='_ZNSt18condition_variable4waitERSt11unique_lockISt5mutexE'/>
+<fun r='_ZNSt18condition_variable4waitERSt11unique_lockISt5mutexET_'/>
+<fun r='_ZNSt18condition_variable10wait_untilERSt11unique_lockISt5mutexERKNSt6chrono10time_pointINS4_3_V212steady_clockET_EE'/>
+<fun r='_ZNSt18condition_variable10wait_untilERSt11unique_lockISt5mutexERKNSt6chrono10time_pointINS4_3_V212system_clockET_EE'/>
+<fun r='_ZNSt18condition_variable10wait_untilERSt11unique_lockISt5mutexERKNSt6chrono10time_pointIT_T0_EE'/>
+<fun r='_ZNSt18condition_variable10wait_untilERSt11unique_lockISt5mutexERKNSt6chrono10time_pointIT_T0_EET1_'/>
+<fun r='_ZNSt18condition_variable8wait_forERSt11unique_lockISt5mutexERKNSt6chrono8durationIT_T0_EE'/>
+<fun r='_ZNSt18condition_variable8wait_forERSt11unique_lockISt5mutexERKNSt6chrono8durationIT_T0_EET1_'/>
+<fun r='_ZNSt18condition_variable13native_handleEv'/>
+<fun r='_ZNSt18condition_variable17__wait_until_implERSt11unique_lockISt5mutexERKNSt6chrono10time_pointINS4_3_V212steady_clockET_EE'/>
+<fun r='_ZNSt18condition_variable17__wait_until_implERSt11unique_lockISt5mutexERKNSt6chrono10time_pointINS4_3_V212system_clockET_EE'/>
+<use f='Modules/Input/Inc/Input/tControllerSystem.h' l='80'/>
+<size>48</size>

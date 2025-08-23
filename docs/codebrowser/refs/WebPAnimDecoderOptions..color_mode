@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='254' type='WEBP_CSP_MODE'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='252'>// Output colorspace. Only the following modes are supported:
+  // MODE_RGBA, MODE_BGRA, MODE_rgbA and MODE_bgrA.</doc>

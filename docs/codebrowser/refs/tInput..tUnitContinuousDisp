@@ -1,0 +1,19 @@
+<inh f='Modules/Input/Inc/Input/tUnit.h' l='29' c='tInput::tUnit'/>
+<def f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='25' ll='67'/>
+<use f='Modules/Input/Inc/Input/tCompDial.h' l='35'/>
+<size>56</size>
+<doc f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='24'>// A continuous displacement unit is a container for a float in [0.0, 1.0].</doc>
+<fun r='_ZN6tInput19tUnitContinuousDispC1ERK5tNameRSt5mutex'/>
+<fun r='_ZN6tInput19tUnitContinuousDispD1Ev'/>
+<fun r='_ZNK6tInput19tUnitContinuousDisp15GetDisplacementEv'/>
+<fun r='_ZN6tInput19tUnitContinuousDisp5ResetEv'/>
+<fun r='_ZN6tInput19tUnitContinuousDisp18SetDisplacementRawEf'/>
+<fun r='_ZN6tInput19tUnitContinuousDisp15SetDisplacementEf'/>
+<mbr r='tInput::tUnitContinuousDisp::DisplacementRaw' o='384' t='float'/>
+<mbr r='tInput::tUnitContinuousDisp::Displacement' o='416' t='float'/>
+<use f='Modules/Input/Inc/Input/tCompPedal.h' l='35'/>
+<size>56</size>
+<use f='Modules/Input/Inc/Input/tCompSlider.h' l='35'/>
+<size>56</size>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='45'/>
+<size>56</size>

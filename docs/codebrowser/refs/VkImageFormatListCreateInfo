@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6060' ll='6065'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6060'/>
+<size>32</size>
+<mbr r='VkImageFormatListCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageFormatListCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkImageFormatListCreateInfo::viewFormatCount' o='128' t='uint32_t'/>
+<mbr r='VkImageFormatListCreateInfo::pViewFormats' o='192' t='const VkFormat *'/>

@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='14' type='int'/>
+<offset>160</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='14'>/* Year	- 1900.  */</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='878' u='w' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1213' u='w' c='_ZNKSt7__cxx118time_get11do_get_yearET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>

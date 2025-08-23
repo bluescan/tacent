@@ -1,0 +1,27 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='62' type='void tString::tString(int length)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='590' u='c' c='_ZN11tStringItemC1Ei'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='789' u='c' c='_ZplRK7tStringS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='393' u='c' c='_ZNK9tBitField14GetAsHexStringEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='431' u='c' c='_ZNK9tBitField17GetAsBinaryStringEv'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='61'>// Construct a string of length null characters.</doc>
+<use f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='513' u='c' c='_ZNK8tFixIntU11GetAsStringEi'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='73' u='c' c='_ZNK7tString4LeftEc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='85' u='c' c='_ZNK7tString5RightEc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='100' u='c' c='_ZNK7tString4LeftEi'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='115' u='c' c='_ZNK7tString3MidEii'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='134' u='c' c='_ZNK7tString5RightEi'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='147' u='c' c='_ZN7tString11ExtractLeftEc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='168' u='c' c='_ZN7tString12ExtractRightEc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='192' u='c' c='_ZN7tString11ExtractLeftEi'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='215' u='c' c='_ZN7tString10ExtractMidEii'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='242' u='c' c='_ZN7tString12ExtractRightEi'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='37' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='53' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='82' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='101' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/System/Inc/System/tRegex.h' l='113' u='c' c='_ZNK7tSystem6tRegex5Match9GetStringERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='208' u='c' c='_ZNK11tExpression19GetExpressionStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='256' u='c' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='280' u='c' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='465' u='c' c='_ZNK11tExpression10GetContextEv'/>
+<use f='Modules/System/Src/tTime.cpp' l='98' u='c' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>

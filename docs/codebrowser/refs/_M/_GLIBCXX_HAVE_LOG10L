@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1017'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='2024' u='a'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1016'>/* Define to 1 if you have the `log10l&apos; function. */</doc>

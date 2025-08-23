@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tPrint.h' l='58' ll='61' type='const tSystem::tChannel'/>
+<use f='Modules/System/Src/tPrint.cpp' l='80' u='r'/>

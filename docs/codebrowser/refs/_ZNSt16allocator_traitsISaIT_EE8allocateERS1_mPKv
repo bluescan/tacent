@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/alloc_traits.h' l='476' ll='484' type='static std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::pointer std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocate(std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type &amp; __a, std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::size_type __n, std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::const_void_pointer __hint)'/>
+<doc f='include/c++/11/bits/alloc_traits.h' l='466'>/**
+       *  @brief  Allocate memory.
+       *  @param  __a  An allocator.
+       *  @param  __n  The number of objects to allocate space for.
+       *  @param  __hint Aid to locality.
+       *  @return Memory of suitable size and alignment for @a n objects
+       *          of type @c value_type
+       *
+       *  Returns &lt;tt&gt; a.allocate(n, hint) &lt;/tt&gt;
+      */</doc>

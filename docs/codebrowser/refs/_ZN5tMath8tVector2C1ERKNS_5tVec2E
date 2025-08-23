@@ -1,0 +1,6 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='29' type='void tMath::tVector2::tVector2(const tMath::tVec2 &amp; v)'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='528' u='c' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='529' u='c' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='530' u='c' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='531' u='c' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='213' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>

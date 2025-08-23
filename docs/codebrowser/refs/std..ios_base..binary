@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/ios_base.h' l='458' type='const std::ios_base::openmode'/>
+<doc f='include/c++/11/bits/ios_base.h' l='455'>/// Perform input and output in binary mode (as opposed to text mode).
+    /// This is probably not what you think it is; see
+    /// https://gcc.gnu.org/onlinedocs/libstdc++/manual/fstreams.html#std.io.filestreams.binary</doc>

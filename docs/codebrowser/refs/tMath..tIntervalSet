@@ -1,0 +1,9 @@
+<def f='Modules/Math/Inc/Math/tInterval.h' l='130' ll='172'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='133' c='_ZN5tMath12tIntervalSetC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='142' c='_ZN5tMath12tIntervalSet3SetERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='161' c='_ZN5tMath12tIntervalSet13MakeInclusiveEv'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='544' c='_ZN5tMath12tIntervalSet13MakeInclusiveEv'/>
+<size>56</size>
+<doc f='Modules/Math/Inc/Math/tInterval.h' l='127'>// This class represents a collection of multiple intervals. The intervals may not overlap, but if they do this class
+// knows how to simplify the collection to the fewest number of intervals possible.
+// @todo In future this will be renamed to tIntervalSetDiscrete and templatized to accept any integral type.</doc>

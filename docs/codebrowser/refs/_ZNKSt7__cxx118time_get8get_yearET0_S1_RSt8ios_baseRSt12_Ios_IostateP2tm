@@ -1,0 +1,22 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='537' ll='540' type='std::time_get::iter_type std::time_get::get_year(std::time_get::iter_type __beg, std::time_get::iter_type __end, std::ios_base &amp; __io, ios_base::iostate &amp; __err, tm * __tm) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='516'>/**
+       *  @brief  Parse input year string.
+       *
+       *  This function reads up to 4 characters to parse a year string and
+       *  puts the results into a user-supplied struct tm.  The result is
+       *  returned by calling time_get::do_get_year().
+       *
+       *  4 consecutive digits are interpreted as a full year.  If there are
+       *  exactly 2 consecutive digits, the library interprets this as the
+       *  number of years since 1900.
+       *
+       *  If an error occurs before the end, err |= ios_base::failbit.  If
+       *  parsing reads all the characters, err |= ios_base::eofbit.
+       *
+       *  @param  __beg  Start of string to parse.
+       *  @param  __end  End of string to parse.
+       *  @param  __io  Source of the locale.
+       *  @param  __err  Error flags to set.
+       *  @param  __tm  Pointer to struct tm to fill in.
+       *  @return  Iterator to first char beyond year.
+      */</doc>

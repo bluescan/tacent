@@ -1,0 +1,3 @@
+<dec f='include/zlib.h' l='93' type='uLong'/>
+<offset>320</offset>
+<doc f='include/zlib.h' l='93'>/* total number of bytes output so far */</doc>

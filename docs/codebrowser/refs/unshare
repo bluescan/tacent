@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/sched.h' l='86' type='int unshare(int __flags)'/>
+<doc f='include/x86_64-linux-gnu/bits/sched.h' l='85'>/* Unshare the specified resources.  */</doc>

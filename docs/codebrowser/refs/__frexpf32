@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='98' macro='1' type='_Float32 __frexpf32(_Float32 __x, int * __exponent)'/>

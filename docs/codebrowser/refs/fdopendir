@@ -1,0 +1,5 @@
+<dec f='include/dirent.h' l='141' type='DIR * fdopendir(int __fd)'/>
+<doc f='include/dirent.h' l='137'>/* Same as opendir, but open the stream on the file descriptor FD.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

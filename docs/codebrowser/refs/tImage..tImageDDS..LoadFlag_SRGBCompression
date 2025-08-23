@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tImageDDS.h' l='42' type='8'/>
+<doc f='Modules/Image/Inc/Image/tImageDDS.h' l='42'>// Same as above but uses the official sRGB transformation. Linear -&gt; sRGB. Approx encoding gamma of 1/2.4 for part of curve.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1408' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1419' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1461' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1542' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>

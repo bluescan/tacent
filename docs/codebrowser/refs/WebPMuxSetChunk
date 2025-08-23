@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='163' type='WebPMuxError WebPMuxSetChunk(WebPMux * mux, const char * fourcc, const WebPData * chunk_data, int copy_data)'/>

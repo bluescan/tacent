@@ -1,0 +1,2 @@
+<def f='include/c++/11/ext/alloc_traits.h' l='112' ll='113' type='static bool __gnu_cxx::__alloc_traits::_S_always_equal()'/>
+<use f='include/c++/11/ext/alloc_traits.h' l='116' u='c' c='__gnu_cxx::__alloc_traits::_S_nothrow_move'/>

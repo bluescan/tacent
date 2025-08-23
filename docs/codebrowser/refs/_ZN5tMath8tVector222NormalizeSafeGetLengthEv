@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='60' type='float tMath::tVector2::NormalizeSafeGetLength()'/>
+<doc f='Modules/Math/Inc/Math/tVector2.h' l='60'>/* Returns pre-normalized length. 0.0f if no go. */</doc>

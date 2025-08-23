@@ -1,0 +1,278 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>time.h source code [include/x86_64-linux-gnu/sys/time.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/sys/time.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>sys</a>/<a href='time.h.html'>time.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 1991-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i></i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i></i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#<span data-ppcond="18">ifndef</span> <span class="macro" data-ref="_M/_SYS_TIME_H">_SYS_TIME_H</span></u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#define <dfn class="macro" id="_M/_SYS_TIME_H" data-ref="_M/_SYS_TIME_H">_SYS_TIME_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#include &lt;features.h&gt;</u>&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="24">24</th><td><u>#include &lt;bits/types/time_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#include &lt;bits/types/struct_timeval.h&gt;</u>&nbsp</td></tr>
+<tr><th id="26">26</th><td>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="27">ifndef</span> <a class="macro" href="types.h.html#139" data-ref="_M/__suseconds_t_defined">__suseconds_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="28">28</th><td><b>typedef</b> __suseconds_t suseconds_t;&nbsp</td></tr>
+<tr><th id="29">29</th><td><u># define __suseconds_t_defined</u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="27">endif</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#include &lt;sys/select.h&gt;</u>&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><a class="macro" href="cdefs.h.html#133" title="extern &quot;C&quot; {" data-ref="_M/__BEGIN_DECLS">__BEGIN_DECLS</a>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="36">ifdef</span> <a class="macro" href="../../features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>/* Macros for converting between `struct timeval' and `struct timespec'.  */</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u># define <dfn class="macro" id="_M/TIMEVAL_TO_TIMESPEC" data-ref="_M/TIMEVAL_TO_TIMESPEC">TIMEVAL_TO_TIMESPEC</dfn>(tv, ts) {                                   \</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>	(ts)-&gt;tv_sec = (tv)-&gt;tv_sec;                                    \</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>	(ts)-&gt;tv_nsec = (tv)-&gt;tv_usec * 1000;                           \</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>}</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u># define <dfn class="macro" id="_M/TIMESPEC_TO_TIMEVAL" data-ref="_M/TIMESPEC_TO_TIMEVAL">TIMESPEC_TO_TIMEVAL</dfn>(tv, ts) {                                   \</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>	(tv)-&gt;tv_sec = (ts)-&gt;tv_sec;                                    \</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>	(tv)-&gt;tv_usec = (ts)-&gt;tv_nsec / 1000;                           \</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>}</u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u>#<span data-ppcond="36">endif</span></u>&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="49">ifdef</span> <a class="macro" href="../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i>/* Structure crudely representing a timezone.</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>   This is obsolete and should never be used.  */</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><b>struct</b> <dfn class="type def" id="timezone" title='timezone' data-ref="timezone">timezone</dfn>&nbsp</td></tr>
+<tr><th id="53">53</th><td>  {&nbsp</td></tr>
+<tr><th id="54">54</th><td>    <em>int</em> <dfn class="decl field" id="timezone::tz_minuteswest" title='timezone::tz_minuteswest' data-ref="timezone::tz_minuteswest">tz_minuteswest</dfn>;		<i>/* Minutes west of GMT.  */</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td>    <em>int</em> <dfn class="decl field" id="timezone::tz_dsttime" title='timezone::tz_dsttime' data-ref="timezone::tz_dsttime">tz_dsttime</dfn>;		<i>/* Nonzero if DST is ever in effect.  */</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td>  };&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#<span data-ppcond="49">endif</span></u>&nbsp</td></tr>
+<tr><th id="58">58</th><td>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>/* Get the current time of day, putting it into *TV.</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i>   If TZ is not null, *TZ must be a struct timezone, and both fields</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i>   will be set to zero.</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i>   Calling this function with a non-null TZ is obsolete;</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i>   use localtime etc. instead.</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><i>   This function itself is semi-obsolete;</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i>   most callers should use time or clock_gettime instead. */</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>#<span data-ppcond="66">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="67">67</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="gettimeofday" title='gettimeofday' data-ref="gettimeofday">gettimeofday</dfn> (<b>struct</b> <a class="type" href="../bits/types/struct_timeval.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> *<b>__restrict</b> <dfn class="local col0 decl" id="2290__tv" title='__tv' data-type='struct timeval *__restrict' data-ref="2290__tv">__tv</dfn>,&nbsp</td></tr>
+<tr><th id="68">68</th><td>			 <em>void</em> *<b>__restrict</b> <dfn class="local col1 decl" id="2291__tz" title='__tz' data-type='void *__restrict' data-ref="2291__tz">__tz</dfn>) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (1)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>1</var>));&nbsp</td></tr>
+<tr><th id="69">69</th><td><u>#<span data-ppcond="66">else</span></u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><u># ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="71">71</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (gettimeofday, (<b>struct</b> timeval *<b>__restrict</b> __tv,&nbsp</td></tr>
+<tr><th id="72">72</th><td>                                          <em>void</em> *<b>__restrict</b> __tz),&nbsp</td></tr>
+<tr><th id="73">73</th><td>                           __gettimeofday64) __nonnull ((<var>1</var>));&nbsp</td></tr>
+<tr><th id="74">74</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#  define gettimeofday __gettimeofday64</u>&nbsp</td></tr>
+<tr><th id="76">76</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="77">77</th><td><u>#<span data-ppcond="66">endif</span></u>&nbsp</td></tr>
+<tr><th id="78">78</th><td>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#<span data-ppcond="79">ifdef</span> <a class="macro" href="../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u># <span data-ppcond="80">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="81">81</th><td><i>/* Set the current time of day and timezone information.</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i>   This call is restricted to the super-user.</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td><i>   Setting the timezone in this way is obsolete, but we don't yet</i>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i>   warn about it because it still has some uses for which there is</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td><i>   no alternative.  */</i>&nbsp</td></tr>
+<tr><th id="86">86</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="settimeofday" title='settimeofday' data-ref="settimeofday">settimeofday</dfn> (<em>const</em> <b>struct</b> <a class="type" href="../bits/types/struct_timeval.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> *<dfn class="local col2 decl" id="2292__tv" title='__tv' data-type='const struct timeval *' data-ref="2292__tv">__tv</dfn>,&nbsp</td></tr>
+<tr><th id="87">87</th><td>			 <em>const</em> <b>struct</b> <a class="type" href="#timezone" title='timezone' data-ref="timezone">timezone</a> *<dfn class="local col3 decl" id="2293__tz" title='__tz' data-type='const struct timezone *' data-ref="2293__tz">__tz</dfn>)&nbsp</td></tr>
+<tr><th id="88">88</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="89">89</th><td>&nbsp</td></tr>
+<tr><th id="90">90</th><td><i>/* Adjust the current time of day by the amount in DELTA.</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i>   If OLDDELTA is not NULL, it is filled in with the amount</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><i>   of time adjustment remaining to be done from the last `adjtime' call.</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td><i>   This call is restricted to the super-user.  */</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="adjtime" title='adjtime' data-ref="adjtime">adjtime</dfn> (<em>const</em> <b>struct</b> <a class="type" href="../bits/types/struct_timeval.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> *<dfn class="local col4 decl" id="2294__delta" title='__delta' data-type='const struct timeval *' data-ref="2294__delta">__delta</dfn>,&nbsp</td></tr>
+<tr><th id="95">95</th><td>		    <b>struct</b> <a class="type" href="../bits/types/struct_timeval.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> *<dfn class="local col5 decl" id="2295__olddelta" title='__olddelta' data-type='struct timeval *' data-ref="2295__olddelta">__olddelta</dfn>) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="96">96</th><td><u># <span data-ppcond="80">else</span></u>&nbsp</td></tr>
+<tr><th id="97">97</th><td><u>#  ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="98">98</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (settimeofday, (<em>const</em> <b>struct</b> timeval *__tv,&nbsp</td></tr>
+<tr><th id="99">99</th><td>                                          <em>const</em> <b>struct</b> timezone *__tz),&nbsp</td></tr>
+<tr><th id="100">100</th><td>                           __settimeofday64);&nbsp</td></tr>
+<tr><th id="101">101</th><td>&nbsp</td></tr>
+<tr><th id="102">102</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (adjtime, (<em>const</em> <b>struct</b> timeval *__delta,&nbsp</td></tr>
+<tr><th id="103">103</th><td>                                     <b>struct</b> timeval *__olddelta),&nbsp</td></tr>
+<tr><th id="104">104</th><td>                           __adjtime64);&nbsp</td></tr>
+<tr><th id="105">105</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="106">106</th><td><u>#   define settimeofday __settimeofday64</u>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u>#   define adjtime __adjtime64</u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u># <span data-ppcond="80">endif</span></u>&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>#<span data-ppcond="79">endif</span></u>&nbsp</td></tr>
+<tr><th id="111">111</th><td>&nbsp</td></tr>
+<tr><th id="112">112</th><td>&nbsp</td></tr>
+<tr><th id="113">113</th><td><i>/* Values for the first argument to `getitimer' and `setitimer'.  */</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td><b>enum</b> <dfn class="type def" id="__itimer_which" title='__itimer_which' data-ref="__itimer_which">__itimer_which</dfn>&nbsp</td></tr>
+<tr><th id="115">115</th><td>  {&nbsp</td></tr>
+<tr><th id="116">116</th><td>    <i>/* Timers run in real time.  */</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td>    <dfn class="enum" id="ITIMER_REAL" title='ITIMER_REAL' data-ref="ITIMER_REAL">ITIMER_REAL</dfn> = <var>0</var>,&nbsp</td></tr>
+<tr><th id="118">118</th><td><u>#define <dfn class="macro" id="_M/ITIMER_REAL" data-ref="_M/ITIMER_REAL">ITIMER_REAL</dfn> ITIMER_REAL</u>&nbsp</td></tr>
+<tr><th id="119">119</th><td>    <i>/* Timers run only when the process is executing.  */</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td>    <dfn class="enum" id="ITIMER_VIRTUAL" title='ITIMER_VIRTUAL' data-ref="ITIMER_VIRTUAL">ITIMER_VIRTUAL</dfn> = <var>1</var>,&nbsp</td></tr>
+<tr><th id="121">121</th><td><u>#define <dfn class="macro" id="_M/ITIMER_VIRTUAL" data-ref="_M/ITIMER_VIRTUAL">ITIMER_VIRTUAL</dfn> ITIMER_VIRTUAL</u>&nbsp</td></tr>
+<tr><th id="122">122</th><td>    <i>/* Timers run when the process is executing and when</i>&nbsp</td></tr>
+<tr><th id="123">123</th><td><i>       the system is executing on behalf of the process.  */</i>&nbsp</td></tr>
+<tr><th id="124">124</th><td>    <dfn class="enum" id="ITIMER_PROF" title='ITIMER_PROF' data-ref="ITIMER_PROF">ITIMER_PROF</dfn> = <var>2</var>&nbsp</td></tr>
+<tr><th id="125">125</th><td><u>#define <dfn class="macro" id="_M/ITIMER_PROF" data-ref="_M/ITIMER_PROF">ITIMER_PROF</dfn> ITIMER_PROF</u>&nbsp</td></tr>
+<tr><th id="126">126</th><td>  };&nbsp</td></tr>
+<tr><th id="127">127</th><td>&nbsp</td></tr>
+<tr><th id="128">128</th><td><i>/* Type of the second argument to `getitimer' and</i>&nbsp</td></tr>
+<tr><th id="129">129</th><td><i>   the second and third arguments `setitimer'.  */</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td><b>struct</b> <dfn class="type def" id="itimerval" title='itimerval' data-ref="itimerval">itimerval</dfn>&nbsp</td></tr>
+<tr><th id="131">131</th><td>  {&nbsp</td></tr>
+<tr><th id="132">132</th><td>    <i>/* Value to put into `it_value' when the timer expires.  */</i>&nbsp</td></tr>
+<tr><th id="133">133</th><td>    <b>struct</b> <a class="type" href="../bits/types/struct_timeval.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="decl field" id="itimerval::it_interval" title='itimerval::it_interval' data-ref="itimerval::it_interval">it_interval</dfn>;&nbsp</td></tr>
+<tr><th id="134">134</th><td>    <i>/* Time to the next timer expiration.  */</i>&nbsp</td></tr>
+<tr><th id="135">135</th><td>    <b>struct</b> <a class="type" href="../bits/types/struct_timeval.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="decl field" id="itimerval::it_value" title='itimerval::it_value' data-ref="itimerval::it_value">it_value</dfn>;&nbsp</td></tr>
+<tr><th id="136">136</th><td>  };&nbsp</td></tr>
+<tr><th id="137">137</th><td>&nbsp</td></tr>
+<tr><th id="138">138</th><td><u>#<span data-ppcond="138">if</span> defined <a class="macro" href="../../features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a> &amp;&amp; !defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="139">139</th><td><i>/* Use the nicer parameter type only in GNU mode and not for C++ since the</i>&nbsp</td></tr>
+<tr><th id="140">140</th><td><i>   strict C++ rules prevent the automatic promotion.  */</i>&nbsp</td></tr>
+<tr><th id="141">141</th><td><b>typedef</b> <b>enum</b> __itimer_which __itimer_which_t;&nbsp</td></tr>
+<tr><th id="142">142</th><td><u>#<span data-ppcond="138">else</span></u>&nbsp</td></tr>
+<tr><th id="143">143</th><td><b>typedef</b> <em>int</em> <dfn class="typedef" id="__itimer_which_t" title='__itimer_which_t' data-type='int' data-ref="__itimer_which_t">__itimer_which_t</dfn>;&nbsp</td></tr>
+<tr><th id="144">144</th><td><u>#<span data-ppcond="138">endif</span></u>&nbsp</td></tr>
+<tr><th id="145">145</th><td>&nbsp</td></tr>
+<tr><th id="146">146</th><td><u>#<span data-ppcond="146">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="147">147</th><td><i>/* Set *VALUE to the current setting of timer WHICH.</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td><i>   Return 0 on success, -1 on errors.  */</i>&nbsp</td></tr>
+<tr><th id="149">149</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="getitimer" title='getitimer' data-ref="getitimer">getitimer</dfn> (<a class="typedef" href="#__itimer_which_t" title='__itimer_which_t' data-type='int' data-ref="__itimer_which_t">__itimer_which_t</a> <dfn class="local col6 decl" id="2296__which" title='__which' data-type='__itimer_which_t' data-ref="2296__which">__which</dfn>,&nbsp</td></tr>
+<tr><th id="150">150</th><td>		      <b>struct</b> <a class="type" href="#itimerval" title='itimerval' data-ref="itimerval">itimerval</a> *<dfn class="local col7 decl" id="2297__value" title='__value' data-type='struct itimerval *' data-ref="2297__value">__value</dfn>) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="151">151</th><td>&nbsp</td></tr>
+<tr><th id="152">152</th><td><i>/* Set the timer WHICH to *NEW.  If OLD is not NULL,</i>&nbsp</td></tr>
+<tr><th id="153">153</th><td><i>   set *OLD to the old value of timer WHICH.</i>&nbsp</td></tr>
+<tr><th id="154">154</th><td><i>   Returns 0 on success, -1 on errors.  */</i>&nbsp</td></tr>
+<tr><th id="155">155</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="setitimer" title='setitimer' data-ref="setitimer">setitimer</dfn> (<a class="typedef" href="#__itimer_which_t" title='__itimer_which_t' data-type='int' data-ref="__itimer_which_t">__itimer_which_t</a> <dfn class="local col8 decl" id="2298__which" title='__which' data-type='__itimer_which_t' data-ref="2298__which">__which</dfn>,&nbsp</td></tr>
+<tr><th id="156">156</th><td>		      <em>const</em> <b>struct</b> <a class="type" href="#itimerval" title='itimerval' data-ref="itimerval">itimerval</a> *<b>__restrict</b> <dfn class="local col9 decl" id="2299__new" title='__new' data-type='const struct itimerval *__restrict' data-ref="2299__new">__new</dfn>,&nbsp</td></tr>
+<tr><th id="157">157</th><td>		      <b>struct</b> <a class="type" href="#itimerval" title='itimerval' data-ref="itimerval">itimerval</a> *<b>__restrict</b> <dfn class="local col0 decl" id="2300__old" title='__old' data-type='struct itimerval *__restrict' data-ref="2300__old">__old</dfn>) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="158">158</th><td>&nbsp</td></tr>
+<tr><th id="159">159</th><td><i>/* Change the access time of FILE to TVP[0] and the modification time of</i>&nbsp</td></tr>
+<tr><th id="160">160</th><td><i>   FILE to TVP[1].  If TVP is a null pointer, use the current time instead.</i>&nbsp</td></tr>
+<tr><th id="161">161</th><td><i>   Returns 0 on success, -1 on errors.  */</i>&nbsp</td></tr>
+<tr><th id="162">162</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="utimes" title='utimes' data-ref="utimes">utimes</dfn> (<em>const</em> <em>char</em> *<dfn class="local col1 decl" id="2301__file" title='__file' data-type='const char *' data-ref="2301__file">__file</dfn>, <em>const</em> <b>struct</b> <a class="type" href="../bits/types/struct_timeval.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="local col2 decl" id="2302__tvp" title='__tvp' data-type='const struct timeval *' data-ref="2302__tvp">__tvp</dfn>[<var>2</var>])&nbsp</td></tr>
+<tr><th id="163">163</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (1)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>1</var>));&nbsp</td></tr>
+<tr><th id="164">164</th><td>&nbsp</td></tr>
+<tr><th id="165">165</th><td><u>#<span data-ppcond="146">else</span></u>&nbsp</td></tr>
+<tr><th id="166">166</th><td><u># ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="167">167</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (getitimer, (__itimer_which_t __which,&nbsp</td></tr>
+<tr><th id="168">168</th><td>                                       <b>struct</b> itimerval *__value),&nbsp</td></tr>
+<tr><th id="169">169</th><td>                           __getitimer64);&nbsp</td></tr>
+<tr><th id="170">170</th><td>&nbsp</td></tr>
+<tr><th id="171">171</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (setitimer, (__itimer_which_t __which,&nbsp</td></tr>
+<tr><th id="172">172</th><td>                                       <em>const</em> <b>struct</b> itimerval *<b>__restrict</b> __new,&nbsp</td></tr>
+<tr><th id="173">173</th><td>                                       <b>struct</b> itimerval *<b>__restrict</b> __old),&nbsp</td></tr>
+<tr><th id="174">174</th><td>                           __setitimer64);&nbsp</td></tr>
+<tr><th id="175">175</th><td>&nbsp</td></tr>
+<tr><th id="176">176</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (utimes, (<em>const</em> <em>char</em> *__file,&nbsp</td></tr>
+<tr><th id="177">177</th><td>                                    <em>const</em> <b>struct</b> timeval __tvp[<var>2</var>]),&nbsp</td></tr>
+<tr><th id="178">178</th><td>                           __utimes64) __nonnull ((<var>1</var>));&nbsp</td></tr>
+<tr><th id="179">179</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>#  define getitimer __getitimer64</u>&nbsp</td></tr>
+<tr><th id="181">181</th><td><u>#  define setitimer __setitimer64</u>&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>#  define utimes __utimes64</u>&nbsp</td></tr>
+<tr><th id="183">183</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="184">184</th><td><u>#<span data-ppcond="146">endif</span></u>&nbsp</td></tr>
+<tr><th id="185">185</th><td>&nbsp</td></tr>
+<tr><th id="186">186</th><td><u>#<span data-ppcond="186">ifdef</span> <a class="macro" href="../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="187">187</th><td><u># <span data-ppcond="187">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="188">188</th><td><i>/* Same as `utimes', but does not follow symbolic links.  */</i>&nbsp</td></tr>
+<tr><th id="189">189</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="lutimes" title='lutimes' data-ref="lutimes">lutimes</dfn> (<em>const</em> <em>char</em> *<dfn class="local col3 decl" id="2303__file" title='__file' data-type='const char *' data-ref="2303__file">__file</dfn>, <em>const</em> <b>struct</b> <a class="type" href="../bits/types/struct_timeval.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="local col4 decl" id="2304__tvp" title='__tvp' data-type='const struct timeval *' data-ref="2304__tvp">__tvp</dfn>[<var>2</var>])&nbsp</td></tr>
+<tr><th id="190">190</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (1)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>1</var>));&nbsp</td></tr>
+<tr><th id="191">191</th><td>&nbsp</td></tr>
+<tr><th id="192">192</th><td><i>/* Same as `utimes', but takes an open file descriptor instead of a name.  */</i>&nbsp</td></tr>
+<tr><th id="193">193</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="futimes" title='futimes' data-ref="futimes">futimes</dfn> (<em>int</em> <dfn class="local col5 decl" id="2305__fd" title='__fd' data-type='int' data-ref="2305__fd">__fd</dfn>, <em>const</em> <b>struct</b> <a class="type" href="../bits/types/struct_timeval.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="local col6 decl" id="2306__tvp" title='__tvp' data-type='const struct timeval *' data-ref="2306__tvp">__tvp</dfn>[<var>2</var>]) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="194">194</th><td><u># <span data-ppcond="187">else</span></u>&nbsp</td></tr>
+<tr><th id="195">195</th><td><u>#  ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="196">196</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (lutimes, (<em>const</em> <em>char</em> *__file,&nbsp</td></tr>
+<tr><th id="197">197</th><td>                                     <em>const</em> <b>struct</b> timeval __tvp[<var>2</var>]),&nbsp</td></tr>
+<tr><th id="198">198</th><td>                           __lutimes64) __nonnull ((<var>1</var>));&nbsp</td></tr>
+<tr><th id="199">199</th><td>&nbsp</td></tr>
+<tr><th id="200">200</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (futimes, (<em>int</em> __fd, <em>const</em> <b>struct</b> timeval __tvp[<var>2</var>]),&nbsp</td></tr>
+<tr><th id="201">201</th><td>                           __futimes64);&nbsp</td></tr>
+<tr><th id="202">202</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="203">203</th><td><u>#   define lutimes __lutimes64</u>&nbsp</td></tr>
+<tr><th id="204">204</th><td><u>#   define futimes __futimes64</u>&nbsp</td></tr>
+<tr><th id="205">205</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="206">206</th><td><u># <span data-ppcond="187">endif</span></u>&nbsp</td></tr>
+<tr><th id="207">207</th><td><u>#<span data-ppcond="186">endif</span></u>&nbsp</td></tr>
+<tr><th id="208">208</th><td>&nbsp</td></tr>
+<tr><th id="209">209</th><td><u>#<span data-ppcond="209">ifdef</span> <a class="macro" href="../../features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="210">210</th><td><u># <span data-ppcond="210">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="211">211</th><td><i>/* Change the access time of FILE relative to FD to TVP[0] and the</i>&nbsp</td></tr>
+<tr><th id="212">212</th><td><i>   modification time of FILE to TVP[1].  If TVP is a null pointer, use</i>&nbsp</td></tr>
+<tr><th id="213">213</th><td><i>   the current time instead.  Returns 0 on success, -1 on errors.  */</i>&nbsp</td></tr>
+<tr><th id="214">214</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="futimesat" title='futimesat' data-ref="futimesat">futimesat</dfn> (<em>int</em> <dfn class="local col7 decl" id="2307__fd" title='__fd' data-type='int' data-ref="2307__fd">__fd</dfn>, <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="2308__file" title='__file' data-type='const char *' data-ref="2308__file">__file</dfn>,&nbsp</td></tr>
+<tr><th id="215">215</th><td>		      <em>const</em> <b>struct</b> <a class="type" href="../bits/types/struct_timeval.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="local col9 decl" id="2309__tvp" title='__tvp' data-type='const struct timeval *' data-ref="2309__tvp">__tvp</dfn>[<var>2</var>]) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="216">216</th><td><u># <span data-ppcond="210">else</span></u>&nbsp</td></tr>
+<tr><th id="217">217</th><td><u>#  ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="218">218</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (futimesat, (<em>int</em> __fd, <em>const</em> <em>char</em> *__file,&nbsp</td></tr>
+<tr><th id="219">219</th><td>                                       <em>const</em> <b>struct</b> timeval __tvp[<var>2</var>]),&nbsp</td></tr>
+<tr><th id="220">220</th><td>                           __futimesat64);&nbsp</td></tr>
+<tr><th id="221">221</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="222">222</th><td><u>#   define futimesat __futimesat64</u>&nbsp</td></tr>
+<tr><th id="223">223</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="224">224</th><td><u># <span data-ppcond="210">endif</span></u>&nbsp</td></tr>
+<tr><th id="225">225</th><td><u>#<span data-ppcond="209">endif</span></u>&nbsp</td></tr>
+<tr><th id="226">226</th><td>&nbsp</td></tr>
+<tr><th id="227">227</th><td>&nbsp</td></tr>
+<tr><th id="228">228</th><td><u>#<span data-ppcond="228">ifdef</span> <a class="macro" href="../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="229">229</th><td><i>/* Convenience macros for operations on timevals.</i>&nbsp</td></tr>
+<tr><th id="230">230</th><td><i>   NOTE: `timercmp' does not work for &gt;= or &lt;=.  */</i>&nbsp</td></tr>
+<tr><th id="231">231</th><td><u># define <dfn class="macro" id="_M/timerisset" data-ref="_M/timerisset">timerisset</dfn>(tvp)	((tvp)-&gt;tv_sec || (tvp)-&gt;tv_usec)</u>&nbsp</td></tr>
+<tr><th id="232">232</th><td><u># define <dfn class="macro" id="_M/timerclear" data-ref="_M/timerclear">timerclear</dfn>(tvp)	((tvp)-&gt;tv_sec = (tvp)-&gt;tv_usec = 0)</u>&nbsp</td></tr>
+<tr><th id="233">233</th><td><u># define <dfn class="macro" id="_M/timercmp" data-ref="_M/timercmp">timercmp</dfn>(a, b, CMP) 						      \</u>&nbsp</td></tr>
+<tr><th id="234">234</th><td><u>  (((a)-&gt;tv_sec == (b)-&gt;tv_sec) 					      \</u>&nbsp</td></tr>
+<tr><th id="235">235</th><td><u>   ? ((a)-&gt;tv_usec CMP (b)-&gt;tv_usec) 					      \</u>&nbsp</td></tr>
+<tr><th id="236">236</th><td><u>   : ((a)-&gt;tv_sec CMP (b)-&gt;tv_sec))</u>&nbsp</td></tr>
+<tr><th id="237">237</th><td><u># define <dfn class="macro" id="_M/timeradd" data-ref="_M/timeradd">timeradd</dfn>(a, b, result)						      \</u>&nbsp</td></tr>
+<tr><th id="238">238</th><td><u>  do {									      \</u>&nbsp</td></tr>
+<tr><th id="239">239</th><td><u>    (result)-&gt;tv_sec = (a)-&gt;tv_sec + (b)-&gt;tv_sec;			      \</u>&nbsp</td></tr>
+<tr><th id="240">240</th><td><u>    (result)-&gt;tv_usec = (a)-&gt;tv_usec + (b)-&gt;tv_usec;			      \</u>&nbsp</td></tr>
+<tr><th id="241">241</th><td><u>    if ((result)-&gt;tv_usec &gt;= 1000000)					      \</u>&nbsp</td></tr>
+<tr><th id="242">242</th><td><u>      {									      \</u>&nbsp</td></tr>
+<tr><th id="243">243</th><td><u>	++(result)-&gt;tv_sec;						      \</u>&nbsp</td></tr>
+<tr><th id="244">244</th><td><u>	(result)-&gt;tv_usec -= 1000000;					      \</u>&nbsp</td></tr>
+<tr><th id="245">245</th><td><u>      }									      \</u>&nbsp</td></tr>
+<tr><th id="246">246</th><td><u>  } while (0)</u>&nbsp</td></tr>
+<tr><th id="247">247</th><td><u># define <dfn class="macro" id="_M/timersub" data-ref="_M/timersub">timersub</dfn>(a, b, result)						      \</u>&nbsp</td></tr>
+<tr><th id="248">248</th><td><u>  do {									      \</u>&nbsp</td></tr>
+<tr><th id="249">249</th><td><u>    (result)-&gt;tv_sec = (a)-&gt;tv_sec - (b)-&gt;tv_sec;			      \</u>&nbsp</td></tr>
+<tr><th id="250">250</th><td><u>    (result)-&gt;tv_usec = (a)-&gt;tv_usec - (b)-&gt;tv_usec;			      \</u>&nbsp</td></tr>
+<tr><th id="251">251</th><td><u>    if ((result)-&gt;tv_usec &lt; 0) {					      \</u>&nbsp</td></tr>
+<tr><th id="252">252</th><td><u>      --(result)-&gt;tv_sec;						      \</u>&nbsp</td></tr>
+<tr><th id="253">253</th><td><u>      (result)-&gt;tv_usec += 1000000;					      \</u>&nbsp</td></tr>
+<tr><th id="254">254</th><td><u>    }									      \</u>&nbsp</td></tr>
+<tr><th id="255">255</th><td><u>  } while (0)</u>&nbsp</td></tr>
+<tr><th id="256">256</th><td><u>#<span data-ppcond="228">endif</span>	/* Misc.  */</u>&nbsp</td></tr>
+<tr><th id="257">257</th><td>&nbsp</td></tr>
+<tr><th id="258">258</th><td><a class="macro" href="cdefs.h.html#134" title="}" data-ref="_M/__END_DECLS">__END_DECLS</a>&nbsp</td></tr>
+<tr><th id="259">259</th><td>&nbsp</td></tr>
+<tr><th id="260">260</th><td><u>#<span data-ppcond="18">endif</span> /* sys/time.h */</u>&nbsp</td></tr>
+<tr><th id="261">261</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tPool.h.html'>Modules/Foundation/Inc/Foundation/tPool.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

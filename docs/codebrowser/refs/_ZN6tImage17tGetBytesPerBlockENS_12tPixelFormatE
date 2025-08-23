@@ -1,0 +1,15 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='307' type='int tImage::tGetBytesPerBlock(tImage::tPixelFormat )'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='301'>// This function must be given a BC format, a PVR format, an ASTC format, or a packed format.
+// BC formats		: 4x4 with different number of bytes per block.
+// PVR formats		: 4x4 or 8x4 for the LDR PVR formats but always 8 bytes. Unknown for the HDR variants.
+// ASTC formats		: Varying MxN but always 16 bytes.
+// Packed Formats	: Considered 1x1 with varying number of bytes per pixel.
+// Returns 0 otherwise.</doc>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='165' u='c' c='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1330' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='921' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='925' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='538' u='c' c='_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='560' u='c' c='_ZN6tImage21tGetBitsPerPixelFloatENS_12tPixelFormatE'/>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='565' ll='580' type='int tImage::tGetBytesPerBlock(tImage::tPixelFormat format)'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1379' u='c' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>

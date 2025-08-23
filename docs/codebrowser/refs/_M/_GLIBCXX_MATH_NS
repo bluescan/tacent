@@ -1,0 +1,50 @@
+<dec f='include/c++/11/tr1/gamma.tcc' l='56'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='292' u='c'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='293' u='c'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='294' u='c'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='459' u='c'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='470' u='w'/>
+<dec f='include/c++/11/tr1/bessel_function.tcc' l='60'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='104' u='c'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='105' u='c'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='320' u='c'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='455' u='c'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='661' u='w'/>
+<dec f='include/c++/11/tr1/beta_function.tcc' l='54'/>
+<use f='include/c++/11/tr1/beta_function.tcc' l='88' u='c'/>
+<use f='include/c++/11/tr1/beta_function.tcc' l='89' u='c'/>
+<use f='include/c++/11/tr1/beta_function.tcc' l='90' u='c'/>
+<use f='include/c++/11/tr1/beta_function.tcc' l='94' u='c'/>
+<use f='include/c++/11/tr1/beta_function.tcc' l='95' u='c'/>
+<use f='include/c++/11/tr1/beta_function.tcc' l='96' u='c'/>
+<use f='include/c++/11/tr1/beta_function.tcc' l='132' u='c'/>
+<use f='include/c++/11/tr1/beta_function.tcc' l='133' u='c'/>
+<use f='include/c++/11/tr1/beta_function.tcc' l='134' u='c'/>
+<use f='include/c++/11/tr1/beta_function.tcc' l='199' u='w'/>
+<dec f='include/c++/11/tr1/hypergeometric.tcc' l='49'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='232' u='c'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='733' u='c'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='734' u='c'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='735' u='c'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='777' u='w'/>
+<dec f='include/c++/11/tr1/legendre_function.tcc' l='54'/>
+<use f='include/c++/11/tr1/legendre_function.tcc' l='248' u='c'/>
+<use f='include/c++/11/tr1/legendre_function.tcc' l='254' u='c'/>
+<use f='include/c++/11/tr1/legendre_function.tcc' l='255' u='c'/>
+<use f='include/c++/11/tr1/legendre_function.tcc' l='296' u='w'/>
+<dec f='include/c++/11/tr1/poly_laguerre.tcc' l='49'/>
+<use f='include/c++/11/tr1/poly_laguerre.tcc' l='90' u='c'/>
+<use f='include/c++/11/tr1/poly_laguerre.tcc' l='91' u='c'/>
+<use f='include/c++/11/tr1/poly_laguerre.tcc' l='321' u='w'/>
+<dec f='include/c++/11/tr1/riemann_zeta.tcc' l='52'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='173' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='183' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='202' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='203' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='204' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='307' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='330' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='385' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='386' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='387' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='435' u='w'/>

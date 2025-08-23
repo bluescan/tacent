@@ -1,0 +1,31 @@
+<dec f='include/c++/11/fstream' l='176' type='const std::basic_filebuf::__codecvt_type *'/>
+<use f='include/c++/11/bits/fstream.tcc' l='86' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='90' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='112' u='w' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='314' c='_ZNSt13basic_filebuf9showmanycEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='316' u='c' c='_ZNSt13basic_filebuf9showmanycEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='353' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='364' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='371' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='424' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='612' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='621' u='c' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='627' u='c' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='650' u='c' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='699' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='764' c='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='836' u='r' c='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='837' u='c' c='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='850' u='c' c='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='935' u='c' c='_ZNSt13basic_filebuf14_M_get_ext_posERNT0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='943' u='c' c='_ZNSt13basic_filebuf14_M_get_ext_posERNT0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='964' c='_ZNSt13basic_filebuf19_M_terminate_outputEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='978' u='c' c='_ZNSt13basic_filebuf19_M_terminate_outputEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1042' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1048' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1059' u='c' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1078' u='w' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1080' u='w' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<doc f='include/c++/11/fstream' l='173'>///@}
+
+      // Cached codecvt facet.</doc>

@@ -1,0 +1,5 @@
+<dec f='include/c++/11/ext/numeric_traits.h' l='95'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='128' u='c'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='131' u='w'/>
+<doc f='include/c++/11/ext/numeric_traits.h' l='93'>// Enable __numeric_traits_integer for types where the __is_integer_nonstrict
+  // primary template doesn&apos;t give the right answer.</doc>

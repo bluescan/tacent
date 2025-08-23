@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11513' ll='11518'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11513'/>
+<size>32</size>
+<mbr r='VkCuModuleCreateInfoNVX::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCuModuleCreateInfoNVX::pNext' o='64' t='const void *'/>
+<mbr r='VkCuModuleCreateInfoNVX::dataSize' o='128' t='size_t'/>
+<mbr r='VkCuModuleCreateInfoNVX::pData' o='192' t='const void *'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/select.h' l='73'/>
+<doc f='include/x86_64-linux-gnu/sys/select.h' l='72'>/* Maximum number of file descriptors in `fd_set&apos;.  */</doc>

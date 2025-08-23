@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/locale_conv.h' l='408' u='w' c='_ZNSt15wbuffer_convertC1EPSt15basic_streambufIcSt11char_traitsIcEEPT_NS5_10state_typeE'/>
+<use f='include/c++/11/bits/locale_conv.h' l='410' u='r' c='_ZNSt15wbuffer_convertC1EPSt15basic_streambufIcSt11char_traitsIcEEPT_NS5_10state_typeE'/>
+<use f='include/c++/11/bits/locale_conv.h' l='413' u='c' c='_ZNSt15wbuffer_convertC1EPSt15basic_streambufIcSt11char_traitsIcEEPT_NS5_10state_typeE'/>
+<use f='include/c++/11/bits/locale_conv.h' l='522' u='c' c='_ZNSt15wbuffer_convert11_M_conv_getEv'/>
+<use f='include/c++/11/bits/locale_conv.h' l='577' u='c' c='_ZNSt15wbuffer_convert11_M_conv_putEv'/>
+<dec f='include/c++/11/bits/locale_conv.h' l='597' type='unique_ptr&lt;_Codecvt&gt;'/>

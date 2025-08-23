@@ -1,0 +1,13 @@
+<use f='include/c++/11/bits/semaphore_base.h' l='192' u='w' c='_ZNSt18__atomic_semaphoreC1Ei'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='217' u='a' c='_ZNSt18__atomic_semaphore10_M_acquireEv'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='218' u='a' c='_ZNSt18__atomic_semaphore10_M_acquireEv'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='225' u='a' c='_ZNSt18__atomic_semaphore14_M_try_acquireEv'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='235' u='a' c='_ZNSt18__atomic_semaphore20_M_try_acquire_untilERKNSt6chrono10time_pointIT_T0_EE'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='237' u='a' c='_ZNSt18__atomic_semaphore20_M_try_acquire_untilERKNSt6chrono10time_pointIT_T0_EE'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='246' u='a' c='_ZNSt18__atomic_semaphore18_M_try_acquire_forERKNSt6chrono8durationIT_T0_EE'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='248' u='a' c='_ZNSt18__atomic_semaphore18_M_try_acquire_forERKNSt6chrono8durationIT_T0_EE'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='254' u='a' c='_ZNSt18__atomic_semaphore10_M_releaseEl'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='257' u='a' c='_ZNSt18__atomic_semaphore10_M_releaseEl'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='259' u='a' c='_ZNSt18__atomic_semaphore10_M_releaseEl'/>
+<dec f='include/c++/11/bits/semaphore_base.h' l='266' type='__detail::__platform_wait_t'/>
+<offset>0</offset>

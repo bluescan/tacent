@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='1005' type='void sync()'/>
+<doc f='include/unistd.h' l='1004'>/* Make all changes done to all files actually appear on disk.  */</doc>

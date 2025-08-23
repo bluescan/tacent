@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/locale_conv.h' l='249' ll='254' type='void std::wstring_convert::wstring_convert&lt;_Codecvt, _Elem, _Wide_alloc, _Byte_alloc&gt;(_Codecvt * __pcvt)'/>
+<doc f='include/c++/11/bits/locale_conv.h' l='243'>/** Constructor.
+       *
+       * @param  __pcvt The facet to use for conversions.
+       *
+       * Takes ownership of @p __pcvt and will delete it in the destructor.
+       */</doc>

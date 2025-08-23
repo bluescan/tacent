@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='219' type='bool tImage::tPicture::Crop(int newWidth, int newHeight, tImage::tPicture::Anchor  = Anchor::MiddleMiddle, const tColour4b &amp; fill = tColour4b::transparent)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='217'>// Cropping. Can also perform a canvas enlargement. If width or height are smaller than the current size the image
+	// is cropped. If larger, the fill colour is used. Fill defaults to transparent-zero-alpha black pixels.</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='258' u='c' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<def f='Modules/Image/Src/tPicture.cpp' l='289' ll='310' type='bool tImage::tPicture::Crop(int newW, int newH, tImage::tPicture::Anchor anchor = Anchor::MiddleMiddle, const tColour4b &amp; fill = tColour4b::transparent)'/>

@@ -1,0 +1,5 @@
+<def f='include/c++/11/type_traits' l='1141' ll='1146'/>
+<use f='include/c++/11/type_traits' l='3230'/>
+<use f='include/c++/11/tuple' l='651' c='_ZNSt5tuple20__nothrow_assignableEv'/>
+<use f='include/c++/11/tuple' l='1024' c='_ZNSt5tupleIJT_T0_EE20__nothrow_assignableEv'/>
+<use f='include/c++/11/tuple' l='1025' c='_ZNSt5tupleIJT_T0_EE20__nothrow_assignableEv'/>

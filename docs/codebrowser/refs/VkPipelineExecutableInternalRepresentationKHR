@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9974' ll='9982'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9974'/>
+<size>552</size>
+<mbr r='VkPipelineExecutableInternalRepresentationKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineExecutableInternalRepresentationKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPipelineExecutableInternalRepresentationKHR::name' o='128' t='char[256]'/>
+<mbr r='VkPipelineExecutableInternalRepresentationKHR::description' o='2176' t='char[256]'/>
+<mbr r='VkPipelineExecutableInternalRepresentationKHR::isText' o='4224' t='VkBool32'/>
+<mbr r='VkPipelineExecutableInternalRepresentationKHR::dataSize' o='4288' t='size_t'/>
+<mbr r='VkPipelineExecutableInternalRepresentationKHR::pData' o='4352' t='void *'/>

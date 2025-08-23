@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2899' ll='2909'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2899'/>
+<size>56</size>
+<mbr r='VkBufferMemoryBarrier::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBufferMemoryBarrier::pNext' o='64' t='const void *'/>
+<mbr r='VkBufferMemoryBarrier::srcAccessMask' o='128' t='VkAccessFlags'/>
+<mbr r='VkBufferMemoryBarrier::dstAccessMask' o='160' t='VkAccessFlags'/>
+<mbr r='VkBufferMemoryBarrier::srcQueueFamilyIndex' o='192' t='uint32_t'/>
+<mbr r='VkBufferMemoryBarrier::dstQueueFamilyIndex' o='224' t='uint32_t'/>
+<mbr r='VkBufferMemoryBarrier::buffer' o='256' t='VkBuffer'/>
+<mbr r='VkBufferMemoryBarrier::offset' o='320' t='VkDeviceSize'/>
+<mbr r='VkBufferMemoryBarrier::size' o='384' t='VkDeviceSize'/>

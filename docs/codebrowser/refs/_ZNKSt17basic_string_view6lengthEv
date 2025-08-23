@@ -1,0 +1,6 @@
+<def f='include/c++/11/string_view' l='214' ll='216' type='std::basic_string_view::size_type std::basic_string_view::length() const'/>
+<use f='include/c++/11/string_view' l='695' u='c' c='_ZNKSt4hashISt17basic_string_viewIcSt11char_traitsIcEEEclERKS3_'/>
+<use f='include/c++/11/string_view' l='710' u='c' c='_ZNKSt4hashISt17basic_string_viewIwSt11char_traitsIwEEEclERKS3_'/>
+<use f='include/c++/11/string_view' l='725' u='c' c='_ZNKSt4hashISt17basic_string_viewIDuSt11char_traitsIDuEEEclERKS3_'/>
+<use f='include/c++/11/string_view' l='740' u='c' c='_ZNKSt4hashISt17basic_string_viewIDsSt11char_traitsIDsEEEclERKS3_'/>
+<use f='include/c++/11/string_view' l='754' u='c' c='_ZNKSt4hashISt17basic_string_viewIDiSt11char_traitsIDiEEEclERKS3_'/>

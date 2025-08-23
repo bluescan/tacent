@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='2052' ll='2054' type='_RealType std::normal_distribution::stddev() const'/>
+<doc f='include/c++/11/bits/random.h' l='2049'>/**
+       * @brief Returns the standard deviation of the distribution.
+       */</doc>

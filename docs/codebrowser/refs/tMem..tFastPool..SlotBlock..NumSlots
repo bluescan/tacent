@@ -1,0 +1,4 @@
+<use f='Modules/Foundation/Src/tPool.cpp' l='24' u='w' c='_ZN4tMem9tFastPool9SlotBlock4InitEii'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='27' u='r' c='_ZN4tMem9tFastPool9SlotBlock4InitEii'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='31' u='r' c='_ZN4tMem9tFastPool9SlotBlock4InitEii'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='35' u='r' c='_ZN4tMem9tFastPool9SlotBlock4InitEii'/>

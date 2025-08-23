@@ -1,0 +1,7 @@
+<dec f='include/locale.h' l='62' type='char *'/>
+<offset>128</offset>
+<doc f='include/locale.h' l='57'>/* Each element is the number of digits in each group;
+     elements with higher indices are farther left.
+     An element with value CHAR_MAX means that no further grouping is done.
+     An element with value 0 means that the previous element is used
+     for all groups farther left.  */</doc>

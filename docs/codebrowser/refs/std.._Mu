@@ -1,0 +1,39 @@
+<def f='include/c++/11/functional' l='299' ll='312'/>
+<def f='include/c++/11/functional' l='320' ll='349'/>
+<def f='include/c++/11/functional' l='356' ll='368'/>
+<def f='include/c++/11/functional' l='375' ll='384'/>
+<use f='include/c++/11/functional' l='421' c='_ZNSt5_BindIFT_DpT0_EE6__callEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<use f='include/c++/11/functional' l='432' c='_ZNKSt5_BindIFT_DpT0_EE8__call_cEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<use f='include/c++/11/functional' l='443' c='_ZNVSt5_BindIFT_DpT0_EE8__call_vEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<use f='include/c++/11/functional' l='454' c='_ZNVKSt5_BindIFT_DpT0_EE10__call_c_vEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<use f='include/c++/11/functional' l='460'/>
+<use f='include/c++/11/functional' l='570' c='_ZNSt12_Bind_resultIT_FT0_DpT1_EE6__callEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<use f='include/c++/11/functional' l='580' c='_ZNKSt12_Bind_resultIT_FT0_DpT1_EE6__callEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<use f='include/c++/11/functional' l='590' c='_ZNVSt12_Bind_resultIT_FT0_DpT1_EE6__callEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<use f='include/c++/11/functional' l='601' c='_ZNVKSt12_Bind_resultIT_FT0_DpT1_EE6__callEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<doc f='include/c++/11/functional' l='294'>/**
+   *  If the argument is reference_wrapper&lt;_Tp&gt;, returns the
+   *  underlying reference.
+   *  C++11 [func.bind.bind] p10 bullet 1.
+   */</doc>
+<doc f='include/c++/11/functional' l='314'>/**
+   *  If the argument is a bind expression, we invoke the underlying
+   *  function object with the same cv-qualifiers as we are given and
+   *  pass along all of our arguments (unwrapped).
+   *  C++11 [func.bind.bind] p10 bullet 2.
+   */</doc>
+<doc f='include/c++/11/functional' l='351'>/**
+   *  If the argument is a placeholder for the Nth argument, returns
+   *  a reference to the Nth argument to the bind function object.
+   *  C++11 [func.bind.bind] p10 bullet 3.
+   */</doc>
+<doc f='include/c++/11/functional' l='370'>/**
+   *  If the argument is just a value, returns a reference to that
+   *  value. The cv-qualifiers on the reference are determined by the caller.
+   *  C++11 [func.bind.bind] p10 bullet 4.
+   */</doc>
+<fun r='_ZNVKSt3_MuISt17reference_wrapperIT_ELb0ELb0EEclERTL0__RTL0_0_'/>
+<fun r='_ZNVKSt3_MuIT_Lb1ELb0EEclERTL0__RSt5tupleIJDpTL0_0_EE'/>
+<fun r='_ZNVKSt3_MuIT_Lb1ELb0EE6__callERTL0__RSt5tupleIJDpTL0_0_EERKSt12_Index_tupleIJXspTL0_1_EEE'/>
+<fun r='_ZNVKSt3_MuIT_Lb0ELb1EEclERVKS0_RTL0__'/>
+<fun r='_ZNVKSt3_MuIT_Lb0ELb0EEclEOTL0__RTL0_0_'/>

@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='978'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='2014' u='a'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='977'>/* Define to 1 if you have the `ldexpl&apos; function. */</doc>

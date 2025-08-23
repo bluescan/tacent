@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageKTX.h' l='49' type='64'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='53' u='r'/>
+<doc f='Modules/Image/Inc/Image/tImageKTX.h' l='49'>// For KTX files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding a ktx is an R-only or L-only format.</doc>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='984' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

@@ -1,0 +1,7 @@
+<dec f='include/unistd.h' l='389' type='ssize_t pread(int __fd, void * __buf, size_t __nbytes, __off_t __offset)'/>
+<doc f='include/unistd.h' l='383'>/* Read NBYTES into BUF from FD at the given position OFFSET without
+   changing the file pointer.  Return the number read, -1 for errors
+   or 0 for EOF.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

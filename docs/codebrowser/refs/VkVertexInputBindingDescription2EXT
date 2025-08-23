@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16158' ll='16165'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16158'/>
+<size>32</size>
+<mbr r='VkVertexInputBindingDescription2EXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVertexInputBindingDescription2EXT::pNext' o='64' t='void *'/>
+<mbr r='VkVertexInputBindingDescription2EXT::binding' o='128' t='uint32_t'/>
+<mbr r='VkVertexInputBindingDescription2EXT::stride' o='160' t='uint32_t'/>
+<mbr r='VkVertexInputBindingDescription2EXT::inputRate' o='192' t='VkVertexInputRate'/>
+<mbr r='VkVertexInputBindingDescription2EXT::divisor' o='224' t='uint32_t'/>

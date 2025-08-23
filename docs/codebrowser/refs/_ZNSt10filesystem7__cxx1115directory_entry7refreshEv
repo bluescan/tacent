@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/fs_dir.h' l='107' u='c' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='127' u='c' c='_ZNSt10filesystem7__cxx1115directory_entry6assignERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='141' u='c' c='_ZNSt10filesystem7__cxx1115directory_entry16replace_filenameERKNS0_4pathE'/>
+<def f='include/c++/11/bits/fs_dir.h' l='151' ll='153' type='void std::filesystem::directory_entry::refresh()'/>

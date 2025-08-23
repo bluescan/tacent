@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/sigthread.h' l='31' type='int pthread_sigmask(int __how, const __sigset_t *__restrict __newmask, __sigset_t *__restrict __oldmask)'/>
+<doc f='include/x86_64-linux-gnu/bits/sigthread.h' l='29'>/* Modify the signal mask for the calling thread.  The arguments have
+   the same meaning as for sigprocmask(2). */</doc>

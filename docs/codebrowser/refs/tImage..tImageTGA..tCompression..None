@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageTGA.h' l='100' type='0'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='108' u='r' c='_ZN6tImage9tImageTGA10SaveParams5ResetEv'/>
+<doc f='Modules/Image/Inc/Image/tImageTGA.h' l='100'>// No compression.</doc>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='393' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>

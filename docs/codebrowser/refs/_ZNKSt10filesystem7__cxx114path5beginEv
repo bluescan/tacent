@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/fs_path.h' l='492' type='std::filesystem::path::iterator std::filesystem::path::begin() const'/>
+<def f='include/c++/11/bits/fs_path.h' l='1257' ll='1263' type='path::iterator std::filesystem::path::begin() const'/>

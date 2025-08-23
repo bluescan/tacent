@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/environments.h' l='61'/>
+<doc f='include/x86_64-linux-gnu/bits/environments.h' l='60'>/* By default we have 64-bit wide `long int&apos;, pointers and `off_t&apos;.  */</doc>

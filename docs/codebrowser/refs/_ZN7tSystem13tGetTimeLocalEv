@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tTime.h' l='39' type='std::tm tSystem::tGetTimeLocal()'/>
+<doc f='Modules/System/Inc/System/tTime.h' l='37'>// Gets the current local time. Takes into account your timezone, DST, etc.
+// std::tm is a field-based time format, HH, MM, SS etc.</doc>
+<use f='Modules/System/Src/tPrint.cpp' l='679' u='c' c='_Z10ttfvPrintfP8_IO_FILEPKcP13__va_list_tag'/>
+<def f='Modules/System/Src/tTime.cpp' l='83' ll='87' type='std::tm tSystem::tGetTimeLocal()'/>

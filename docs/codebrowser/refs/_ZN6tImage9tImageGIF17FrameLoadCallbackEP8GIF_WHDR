@@ -1,0 +1,2 @@
+<def f='Modules/Image/Src/tImageGIF.cpp' l='29' ll='116' type='void tImage::tImageGIF::FrameLoadCallback(struct GIF_WHDR * whdr)'/>
+<doc f='Modules/Image/Src/tImageGIF.cpp' l='28'>// This callback is a essentially the example code from gif_load.</doc>

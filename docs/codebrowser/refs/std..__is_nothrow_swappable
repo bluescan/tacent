@@ -1,0 +1,13 @@
+<use f='include/c++/11/type_traits' l='2685' c='_ZSt4swapRAT0__T_S1_'/>
+<def f='include/c++/11/type_traits' l='2734' ll='2736'/>
+<use f='include/c++/11/bits/move.h' l='221' c='_ZSt4swapRAT0__T_S1_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='440' c='_ZNSt4pair4swapERSt4pairIT_T0_E'/>
+<use f='include/c++/11/bits/stl_pair.h' l='441' c='_ZNSt4pair4swapERSt4pairIT_T0_E'/>
+<use f='include/c++/11/array' l='53'/>
+<use f='include/c++/11/tuple' l='942' c='_ZNSt5tuple4swapERSt5tupleIJDpT_EE'/>
+<use f='include/c++/11/tuple' l='1332' c='_ZNSt5tupleIJT_T0_EE4swapERS_IJS0_S1_EE'/>
+<use f='include/c++/11/tuple' l='1333' c='_ZNSt5tupleIJT_T0_EE4swapERS_IJS0_S1_EE'/>
+<use f='include/c++/11/bits/hashtable.h' l='616' c='_ZNSt10_Hashtable4swapERSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>
+<use f='include/c++/11/bits/hashtable.h' l='617' c='_ZNSt10_Hashtable4swapERSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>
+<use f='include/c++/11/bits/hashtable.h' l='1544' c='_ZNSt10_Hashtable4swapERSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>
+<use f='include/c++/11/bits/hashtable.h' l='1545' c='_ZNSt10_Hashtable4swapERSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>

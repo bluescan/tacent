@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='109'/>
+<use f='include/c++/11/type_traits' l='745' u='c'/>
+<use f='include/c++/11/type_traits' l='3157' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='53' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='54' u='c'/>

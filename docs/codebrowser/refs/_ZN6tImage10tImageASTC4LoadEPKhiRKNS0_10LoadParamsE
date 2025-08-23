@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageASTC.cpp' l='81' u='c' c='_ZN6tImage10tImageASTC4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImageASTC.cpp' l='88' ll='210' type='bool tImage::tImageASTC::Load(const uint8 * astcInMemory, int numBytes, const tImage::tImageASTC::LoadParams &amp; paramsIn = tImage::tImageASTC::LoadParams())'/>

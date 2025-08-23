@@ -1,0 +1,4 @@
+<dec f='include/linux/stat.h' l='116' type='struct statx_timestamp'/>
+<offset>512</offset>
+<doc f='include/linux/stat.h' l='115'>/* 0x40 */</doc>
+<doc f='include/linux/stat.h' l='116'>/* Last access time */</doc>

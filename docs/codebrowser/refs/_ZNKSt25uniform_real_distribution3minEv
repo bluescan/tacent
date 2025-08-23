@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='1844' ll='1846' type='std::uniform_real_distribution::result_type std::uniform_real_distribution::min() const'/>
+<doc f='include/c++/11/bits/random.h' l='1841'>/**
+       * @brief Returns the inclusive lower bound of the distribution range.
+       */</doc>

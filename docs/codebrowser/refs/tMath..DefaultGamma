@@ -1,0 +1,17 @@
+<def f='Modules/Foundation/Inc/Foundation/tConstants.h' l='27' type='const float'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='275' u='r' c='_ZN5tMath14tGammaToLinearEff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='276' u='r' c='_ZN5tMath14tLinearToGammaEff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='882' u='r' c='_ZN9tColour4f13GammaToLinearEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='883' u='r' c='_ZN9tColour4f13LinearToGammaEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='275' u='r' c='_ZN5tMath14tGammaToLinearEff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='276' u='r' c='_ZN5tMath14tLinearToGammaEff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='882' u='r' c='_ZN9tColour4f13GammaToLinearEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='883' u='r' c='_ZN9tColour4f13LinearToGammaEfj'/>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='49' u='r' c='_ZN6tImage10tImageASTC10LoadParams5ResetEv'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='74' u='r' c='_ZN6tImage9tImageDDS10LoadParams5ResetEv'/>
+<use f='Modules/Image/Inc/Image/tImageEXR.h' l='108' u='r' c='_ZN6tImage9tImageEXR10LoadParams5ResetEv'/>
+<use f='Modules/Image/Inc/Image/tImageHDR.h' l='144' u='r' c='_ZN6tImage9tImageHDR10LoadParams5ResetEv'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='77' u='r' c='_ZN6tImage9tImageKTX10LoadParams5ResetEv'/>
+<use f='Modules/Image/Inc/Image/tImagePKM.h' l='49' u='r' c='_ZN6tImage9tImagePKM10LoadParams5ResetEv'/>
+<use f='Modules/Image/Inc/Image/tImagePNG.h' l='53' u='r' c='_ZN6tImage9tImagePNG10LoadParams5ResetEv'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='77' u='r' c='_ZN6tImage9tImagePVR10LoadParams5ResetEv'/>

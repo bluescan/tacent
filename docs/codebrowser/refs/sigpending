@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='247' type='int sigpending(sigset_t * __set)'/>
+<doc f='include/signal.h' l='246'>/* Put in SET all signals that are blocked and waiting to be delivered.  */</doc>

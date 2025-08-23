@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/ranges_algo.h' l='3040' type='_Tp'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3047' u='r' c='_ZNKRSt6ranges14min_max_resultcvNS_14min_max_resultITL0__EEEv'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3053' c='_ZNOSt6ranges14min_max_resultcvNS_14min_max_resultITL0__EEEv'/>

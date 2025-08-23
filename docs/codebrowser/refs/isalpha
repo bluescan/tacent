@@ -1,0 +1,2 @@
+<dec f='include/ctype.h' l='109' type='int isalpha(int )'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='338' u='c' c='_ZN4tStd8tIsalphaEc'/>

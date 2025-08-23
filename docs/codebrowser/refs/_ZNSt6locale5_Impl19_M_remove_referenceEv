@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/locale_classes.h' l='561' ll='574' type='void std::locale::_Impl::_M_remove_reference()'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='53' u='c' c='_ZNSt6localeC1ERKS_PT_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='72' u='c' c='_ZNKSt6locale7combineERKS_'/>

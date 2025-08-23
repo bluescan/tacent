@@ -1,0 +1,8 @@
+<use f='Modules/Math/Src/tSpline.cpp' l='196' u='w' c='_ZN5tMath11tBezierPathC1ERKS0_'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='196' u='r' c='_ZN5tMath11tBezierPathC1ERKS0_'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='227' u='w' c='_ZN5tMath11tBezierPath5ClearEv'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='267' u='w' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='268' u='r' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='381' u='w' c='_ZN5tMath11tBezierPath15SetControlVertsEPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='406' u='r' c='_ZNK5tMath11tBezierPath8GetPointERNS_8tVector3Ef'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='436' u='r' c='_ZNK5tMath11tBezierPath10GetTangentERNS_8tVector3Ef'/>

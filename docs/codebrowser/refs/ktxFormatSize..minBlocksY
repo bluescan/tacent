@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/formatsize.h' l='46' type='unsigned int'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1629' u='w' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='2023' u='w' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='2036' u='w' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<offset>224</offset>

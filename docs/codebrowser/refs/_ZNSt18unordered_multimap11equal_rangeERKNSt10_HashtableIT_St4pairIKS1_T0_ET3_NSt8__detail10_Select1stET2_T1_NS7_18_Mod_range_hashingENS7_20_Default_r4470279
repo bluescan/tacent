@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1877' ll='1879' type='std::pair&lt;iterator, iterator&gt; std::unordered_multimap::equal_range(const std::unordered_multimap::key_type &amp; __x)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1871'>/**
+       *  @brief Finds a subsequence matching given key.
+       *  @param  __x  Key to be located.
+       *  @return  Pair of iterators that possibly points to the subsequence
+       *           matching given key.
+       */</doc>

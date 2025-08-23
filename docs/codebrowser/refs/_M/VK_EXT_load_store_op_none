@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16908'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16907'>// VK_EXT_load_store_op_none is a preprocessor guard. Do not pass it to API calls.</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tStream.h' l='35' type='void tSystem::tStream::tStream(tSystem::tStream::tModes )'/>
+<use f='Modules/System/Inc/System/tFile.h' l='664' u='c' c='_ZN7tSystem5tFileC1ERK7tStringj'/>

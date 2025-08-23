@@ -1,0 +1,1 @@
+<def f='include/c++/11/codecvt' l='168' macro='1' type='void std::codecvt_utf16&lt;wchar_t, _Maxcode, _Mode&gt;::codecvt_utf16&lt;wchar_t, _Maxcode, _Mode&gt;(std::size_t __refs = 0)'/>

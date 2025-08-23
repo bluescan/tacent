@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10505' ll='10510'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10505'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR::rayTracingMaintenance1' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceRayTracingMaintenance1FeaturesKHR::rayTracingPipelineTraceRaysIndirect2' o='160' t='VkBool32'/>

@@ -1,0 +1,9 @@
+<use f='Modules/Image/Src/tImageICO.cpp' l='152' u='m' c='_ZN6tImage9tImageICO4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='155' u='m' c='_ZN6tImage9tImageICO4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='177' u='m' c='_ZN6tImage9tImageICO3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='182' u='m' c='_ZN6tImage9tImageICO3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='205' u='m' c='_ZN6tImage9tImageICO3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='225' u='m' c='_ZN6tImage9tImageICO3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='227' u='m' c='_ZN6tImage9tImageICO3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='265' u='m' c='_ZN6tImage9tImageICO8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='265' u='m' c='_ZN6tImage9tImageICO8GetFrameEb'/>

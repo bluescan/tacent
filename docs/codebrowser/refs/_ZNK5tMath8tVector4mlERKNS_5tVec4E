@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector4.h' l='87' type='float tMath::tVector4::operator*(const tMath::tVec4 &amp; a) const'/>
+<doc f='Modules/Math/Inc/Math/tVector4.h' l='87'>/* Dot (inner) product. Same as Transpose(this) * a. */</doc>

@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10160' ll='10172'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10160'/>
+<size>128</size>
+<mbr r='VkVideoEncodeInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoEncodeInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkVideoEncodeInfoKHR::flags' o='128' t='VkVideoEncodeFlagsKHR'/>
+<mbr r='VkVideoEncodeInfoKHR::dstBuffer' o='192' t='VkBuffer'/>
+<mbr r='VkVideoEncodeInfoKHR::dstBufferOffset' o='256' t='VkDeviceSize'/>
+<mbr r='VkVideoEncodeInfoKHR::dstBufferRange' o='320' t='VkDeviceSize'/>
+<mbr r='VkVideoEncodeInfoKHR::srcPictureResource' o='384' t='VkVideoPictureResourceInfoKHR'/>
+<mbr r='VkVideoEncodeInfoKHR::pSetupReferenceSlot' o='768' t='const VkVideoReferenceSlotInfoKHR *'/>
+<mbr r='VkVideoEncodeInfoKHR::referenceSlotCount' o='832' t='uint32_t'/>
+<mbr r='VkVideoEncodeInfoKHR::pReferenceSlots' o='896' t='const VkVideoReferenceSlotInfoKHR *'/>
+<mbr r='VkVideoEncodeInfoKHR::precedingExternallyEncodedBytes' o='960' t='uint32_t'/>

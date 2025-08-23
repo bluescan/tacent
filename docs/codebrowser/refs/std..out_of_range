@@ -1,0 +1,18 @@
+<inh f='include/c++/11/stdexcept' l='113' c='std::logic_error'/>
+<def f='include/c++/11/stdexcept' l='200' ll='212'/>
+<use f='include/c++/11/stdexcept' l='206' c='_ZNSt12out_of_rangeC1ERKS_'/>
+<use f='include/c++/11/stdexcept' l='207' c='_ZNSt12out_of_rangeaSERKS_'/>
+<use f='include/c++/11/stdexcept' l='207' c='_ZNSt12out_of_rangeaSERKS_'/>
+<use f='include/c++/11/stdexcept' l='208' c='_ZNSt12out_of_rangeC1EOS_'/>
+<use f='include/c++/11/stdexcept' l='209' c='_ZNSt12out_of_rangeaSEOS_'/>
+<use f='include/c++/11/stdexcept' l='209' c='_ZNSt12out_of_rangeaSEOS_'/>
+<size>16</size>
+<doc f='include/c++/11/stdexcept' l='198'>/** This represents an argument whose value is not within the expected
+   *  range (e.g., boundary checks in basic_string).  */</doc>
+<fun r='_ZNSt12out_of_rangeC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt12out_of_rangeC1EPKc'/>
+<fun r='_ZNSt12out_of_rangeC1ERKS_'/>
+<fun r='_ZNSt12out_of_rangeaSERKS_'/>
+<fun r='_ZNSt12out_of_rangeC1EOS_'/>
+<fun r='_ZNSt12out_of_rangeaSEOS_'/>
+<fun r='_ZNSt12out_of_rangeD1Ev'/>

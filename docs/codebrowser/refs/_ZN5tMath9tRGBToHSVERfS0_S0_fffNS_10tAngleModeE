@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='241' type='void tMath::tRGBToHSV(float &amp; h, float &amp; s, float &amp; v, float r, float g, float b, tMath::tAngleMode  = tMath::tAngleMode::Radians)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1325' u='c' c='_ZN9tColour4f8RGBToHSVEv'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='238'>// The floating point colour space conversion functions accept any angle mode. Radians mean angles are in [0.0, 2Pi).
+	// Degrees means angles are in [0.0, 360.0). Norm256 means angles are in [0.0, 256.0). NormOne means angles are
+	// in [0.0, 1.0].</doc>
+<def f='Modules/Math/Src/tColour.cpp' l='332' ll='370' type='void tMath::tRGBToHSV(float &amp; h, float &amp; s, float &amp; v, float r, float g, float b, tMath::tAngleMode angleMode = tMath::tAngleMode::Radians)'/>

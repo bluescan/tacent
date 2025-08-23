@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='132' type='tMath::tVector3 tMath::tRandom::tGetPointOnUnitSquare(const tMath::tPlane &amp; , const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<doc f='Modules/Math/Inc/Math/tRandom.h' l='131'>// Plane must be normalized. Square is centered at (a,b,c).</doc>
+<def f='Modules/Math/Src/tRandom.cpp' l='164' ll='174' type='tMath::tVector3 tMath::tRandom::tGetPointOnUnitSquare(const tMath::tPlane &amp; plane, const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>

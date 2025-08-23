@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1429' type='uint8_t rgbcx::clamp255(int32_t i)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1468' u='c' c='_ZN5rgbcx7color3211set_clampedEiiii'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1468' u='c' c='_ZN5rgbcx7color3211set_clampedEiiii'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1468' u='c' c='_ZN5rgbcx7color3211set_clampedEiiii'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1468' u='c' c='_ZN5rgbcx7color3211set_clampedEiiii'/>

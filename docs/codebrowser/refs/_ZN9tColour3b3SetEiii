@@ -1,0 +1,3 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='302' u='c' c='_ZN9tColour3bC1Eiii'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='306' type='void tColour3b::Set(int r, int g, int b)'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='376' u='c' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>

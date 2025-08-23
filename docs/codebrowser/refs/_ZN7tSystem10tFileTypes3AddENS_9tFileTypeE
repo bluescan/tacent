@@ -1,0 +1,12 @@
+<use f='Modules/System/Inc/System/tFile.h' l='483' u='c' c='_ZN7tSystem10tFileTypesC1ENS_9tFileTypeE'/>
+<dec f='Modules/System/Inc/System/tFile.h' l='495' type='tSystem::tFileTypes &amp; tSystem::tFileTypes::Add(tSystem::tFileType )'/>
+<use f='Modules/System/Inc/System/tFile.h' l='915' u='c' c='_ZN7tSystem10tFileTypesC1ENS_9tFileTypeEz'/>
+<use f='Modules/System/Inc/System/tFile.h' l='926' u='c' c='_ZN7tSystem10tFileTypes3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='934' u='c' c='_ZN7tSystem10tFileTypes3AddEPKc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='940' u='c' c='_ZN7tSystem10tFileTypes3AddERK7tString'/>
+<def f='Modules/System/Inc/System/tFile.h' l='944' ll='954' type='tSystem::tFileTypes &amp; tSystem::tFileTypes::Add(tSystem::tFileType fileType)'/>
+<use f='Modules/System/Inc/System/tFile.h' l='960' u='c' c='_ZN7tSystem10tFileTypes3AddERKNS_11tExtensionsE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='968' u='c' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEz'/>
+<use f='Modules/System/Inc/System/tFile.h' l='985' u='c' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEP13__va_list_tag'/>
+<use f='Modules/System/Inc/System/tFile.h' l='998' u='c' c='_ZN7tSystem10tFileTypes11AddSelectedERKS0_b'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1003' u='c' c='_ZN7tSystem10tFileTypes11AddSelectedERKS0_b'/>

@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='341' type='int'/>
+<offset>544</offset>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='340'>// Transient parameters. Only access between AdjustmentBegin/End.</doc>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='341'>// Used for brightness adjustments.</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='633' u='w' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='648' u='r' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='649' u='w' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='663' u='a' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='690' u='r' c='_ZN6tImage8tPicture16AdjustBrightnessEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='713' u='r' c='_ZN6tImage8tPicture26AdjustGetDefaultBrightnessERf'/>

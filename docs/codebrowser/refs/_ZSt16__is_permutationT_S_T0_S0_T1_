@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algo.h' l='3526' ll='3584' macro='1' type='bool std::__is_permutation(_ForwardIterator1 __first1, _ForwardIterator1 __last1, _ForwardIterator2 __first2, _ForwardIterator2 __last2, _BinaryPredicate __pred)'/>

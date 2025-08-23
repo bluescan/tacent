@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='888' type='int pthread_mutexattr_setpshared(pthread_mutexattr_t * __attr, int __pshared)'/>
+<doc f='include/pthread.h' l='887'>/* Set the process-shared flag of the mutex attribute ATTR.  */</doc>

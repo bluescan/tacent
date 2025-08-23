@@ -1,0 +1,4 @@
+<dec f='include/pthread.h' l='614'/>
+<doc f='include/pthread.h' l='611'>/* Remove a cleanup handler as pthread_cleanup_pop does, but also
+   restores the cancellation type that was in effect when the matching
+   pthread_cleanup_push_defer was called.  */</doc>

@@ -1,0 +1,2 @@
+<use f='Modules/Math/Inc/Math/tVector3.h' l='65' u='c' c='_ZN5tMath8tVector314MulByTransposeERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='65' u='c' c='_ZN5tMath8tVector414MulByTransposeERKNS_5tVec4E'/>

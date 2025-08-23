@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>sched.h source code [include/x86_64-linux-gnu/bits/sched.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/sched.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>bits</a>/<a href='sched.h.html'>sched.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Definitions of constants and data structure for POSIX 1003.1b-1993</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   scheduling interface.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>   Copyright (C) 1996-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i></i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td>&nbsp</td></tr>
+<tr><th id="20">20</th><td><u>#<span data-ppcond="20">ifndef</span> <span class="macro" data-ref="_M/_BITS_SCHED_H">_BITS_SCHED_H</span></u>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#define <dfn class="macro" id="_M/_BITS_SCHED_H" data-ref="_M/_BITS_SCHED_H">_BITS_SCHED_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#<span data-ppcond="23">ifndef</span> <a class="macro" href="../../sched.h.html#20" data-ref="_M/_SCHED_H">_SCHED_H</a></u>&nbsp</td></tr>
+<tr><th id="24">24</th><td><u># error "Never include &lt;bits/sched.h&gt; directly; use &lt;sched.h&gt; instead."</u>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="23">endif</span></u>&nbsp</td></tr>
+<tr><th id="26">26</th><td>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i>/* Scheduling algorithms.  */</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><u>#define <dfn class="macro" id="_M/SCHED_OTHER" data-ref="_M/SCHED_OTHER">SCHED_OTHER</dfn>		0</u>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#define <dfn class="macro" id="_M/SCHED_FIFO" data-ref="_M/SCHED_FIFO">SCHED_FIFO</dfn>		1</u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#define <dfn class="macro" id="_M/SCHED_RR" data-ref="_M/SCHED_RR">SCHED_RR</dfn>		2</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#<span data-ppcond="31">ifdef</span> <a class="macro" href="../../features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u># define <dfn class="macro" id="_M/SCHED_BATCH" data-ref="_M/SCHED_BATCH">SCHED_BATCH</dfn>		3</u>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u># define <dfn class="macro" id="_M/SCHED_ISO" data-ref="_M/SCHED_ISO">SCHED_ISO</dfn>		4</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u># define <dfn class="macro" id="_M/SCHED_IDLE" data-ref="_M/SCHED_IDLE">SCHED_IDLE</dfn>		5</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u># define <dfn class="macro" id="_M/SCHED_DEADLINE" data-ref="_M/SCHED_DEADLINE">SCHED_DEADLINE</dfn>		6</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u># define <dfn class="macro" id="_M/SCHED_RESET_ON_FORK" data-ref="_M/SCHED_RESET_ON_FORK">SCHED_RESET_ON_FORK</dfn>	0x40000000</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#<span data-ppcond="31">endif</span></u>&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#<span data-ppcond="40">ifdef</span> <a class="macro" href="../../features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i>/* Cloning flags.  */</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u># define <dfn class="macro" id="_M/CSIGNAL" data-ref="_M/CSIGNAL">CSIGNAL</dfn>       0x000000ff /* Signal mask to be sent at exit.  */</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u># define <dfn class="macro" id="_M/CLONE_VM" data-ref="_M/CLONE_VM">CLONE_VM</dfn>      0x00000100 /* Set if VM shared between processes.  */</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u># define <dfn class="macro" id="_M/CLONE_FS" data-ref="_M/CLONE_FS">CLONE_FS</dfn>      0x00000200 /* Set if fs info shared between processes.  */</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u># define <dfn class="macro" id="_M/CLONE_FILES" data-ref="_M/CLONE_FILES">CLONE_FILES</dfn>   0x00000400 /* Set if open files shared between processes.  */</u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u># define <dfn class="macro" id="_M/CLONE_SIGHAND" data-ref="_M/CLONE_SIGHAND">CLONE_SIGHAND</dfn> 0x00000800 /* Set if signal handlers shared.  */</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u># define <dfn class="macro" id="_M/CLONE_PIDFD" data-ref="_M/CLONE_PIDFD">CLONE_PIDFD</dfn>   0x00001000 /* Set if a pidfd should be placed</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u>				     in parent.  */</u>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u># define <dfn class="macro" id="_M/CLONE_PTRACE" data-ref="_M/CLONE_PTRACE">CLONE_PTRACE</dfn>  0x00002000 /* Set if tracing continues on the child.  */</u>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u># define <dfn class="macro" id="_M/CLONE_VFORK" data-ref="_M/CLONE_VFORK">CLONE_VFORK</dfn>   0x00004000 /* Set if the parent wants the child to</u>&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>				     wake it up on mm_release.  */</u>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u># define <dfn class="macro" id="_M/CLONE_PARENT" data-ref="_M/CLONE_PARENT">CLONE_PARENT</dfn>  0x00008000 /* Set if we want to have the same</u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><u>				     parent as the cloner.  */</u>&nbsp</td></tr>
+<tr><th id="54">54</th><td><u># define <dfn class="macro" id="_M/CLONE_THREAD" data-ref="_M/CLONE_THREAD">CLONE_THREAD</dfn>  0x00010000 /* Set to add to same thread group.  */</u>&nbsp</td></tr>
+<tr><th id="55">55</th><td><u># define <dfn class="macro" id="_M/CLONE_NEWNS" data-ref="_M/CLONE_NEWNS">CLONE_NEWNS</dfn>   0x00020000 /* Set to create new namespace.  */</u>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u># define <dfn class="macro" id="_M/CLONE_SYSVSEM" data-ref="_M/CLONE_SYSVSEM">CLONE_SYSVSEM</dfn> 0x00040000 /* Set to shared SVID SEM_UNDO semantics.  */</u>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u># define <dfn class="macro" id="_M/CLONE_SETTLS" data-ref="_M/CLONE_SETTLS">CLONE_SETTLS</dfn>  0x00080000 /* Set TLS info.  */</u>&nbsp</td></tr>
+<tr><th id="58">58</th><td><u># define <dfn class="macro" id="_M/CLONE_PARENT_SETTID" data-ref="_M/CLONE_PARENT_SETTID">CLONE_PARENT_SETTID</dfn> 0x00100000 /* Store TID in userlevel buffer</u>&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>					   before MM copy.  */</u>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u># define <dfn class="macro" id="_M/CLONE_CHILD_CLEARTID" data-ref="_M/CLONE_CHILD_CLEARTID">CLONE_CHILD_CLEARTID</dfn> 0x00200000 /* Register exit futex and memory</u>&nbsp</td></tr>
+<tr><th id="61">61</th><td><u>					    location to clear.  */</u>&nbsp</td></tr>
+<tr><th id="62">62</th><td><u># define <dfn class="macro" id="_M/CLONE_DETACHED" data-ref="_M/CLONE_DETACHED">CLONE_DETACHED</dfn> 0x00400000 /* Create clone detached.  */</u>&nbsp</td></tr>
+<tr><th id="63">63</th><td><u># define <dfn class="macro" id="_M/CLONE_UNTRACED" data-ref="_M/CLONE_UNTRACED">CLONE_UNTRACED</dfn> 0x00800000 /* Set if the tracing process can't</u>&nbsp</td></tr>
+<tr><th id="64">64</th><td><u>				      force CLONE_PTRACE on this clone.  */</u>&nbsp</td></tr>
+<tr><th id="65">65</th><td><u># define <dfn class="macro" id="_M/CLONE_CHILD_SETTID" data-ref="_M/CLONE_CHILD_SETTID">CLONE_CHILD_SETTID</dfn> 0x01000000 /* Store TID in userlevel buffer in</u>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>					  the child.  */</u>&nbsp</td></tr>
+<tr><th id="67">67</th><td><u># define <dfn class="macro" id="_M/CLONE_NEWCGROUP" data-ref="_M/CLONE_NEWCGROUP">CLONE_NEWCGROUP</dfn>    0x02000000	/* New cgroup namespace.  */</u>&nbsp</td></tr>
+<tr><th id="68">68</th><td><u># define <dfn class="macro" id="_M/CLONE_NEWUTS" data-ref="_M/CLONE_NEWUTS">CLONE_NEWUTS</dfn>	0x04000000	/* New utsname group.  */</u>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u># define <dfn class="macro" id="_M/CLONE_NEWIPC" data-ref="_M/CLONE_NEWIPC">CLONE_NEWIPC</dfn>	0x08000000	/* New ipcs.  */</u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><u># define <dfn class="macro" id="_M/CLONE_NEWUSER" data-ref="_M/CLONE_NEWUSER">CLONE_NEWUSER</dfn>	0x10000000	/* New user namespace.  */</u>&nbsp</td></tr>
+<tr><th id="71">71</th><td><u># define <dfn class="macro" id="_M/CLONE_NEWPID" data-ref="_M/CLONE_NEWPID">CLONE_NEWPID</dfn>	0x20000000	/* New pid namespace.  */</u>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u># define <dfn class="macro" id="_M/CLONE_NEWNET" data-ref="_M/CLONE_NEWNET">CLONE_NEWNET</dfn>	0x40000000	/* New network namespace.  */</u>&nbsp</td></tr>
+<tr><th id="73">73</th><td><u># define <dfn class="macro" id="_M/CLONE_IO" data-ref="_M/CLONE_IO">CLONE_IO</dfn>	0x80000000	/* Clone I/O context.  */</u>&nbsp</td></tr>
+<tr><th id="74">74</th><td><u>#<span data-ppcond="40">endif</span></u>&nbsp</td></tr>
+<tr><th id="75">75</th><td>&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#include &lt;bits/types/struct_sched_param.h&gt;</u>&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td><a class="macro" href="../sys/cdefs.h.html#133" title="extern &quot;C&quot; {" data-ref="_M/__BEGIN_DECLS">__BEGIN_DECLS</a>&nbsp</td></tr>
+<tr><th id="79">79</th><td>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u>#<span data-ppcond="80">ifdef</span> <a class="macro" href="../../features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="81">81</th><td><i>/* Clone current process.  */</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="clone" title='clone' data-ref="clone">clone</dfn> (<em>int</em> (*<dfn class="local col1 decl" id="1211__fn" title='__fn' data-type='int (*)(void *)' data-ref="1211__fn">__fn</dfn>) (<em>void</em> *<dfn class="local col2 decl" id="1212__arg" title='__arg' data-type='void *' data-ref="1212__arg">__arg</dfn>), <em>void</em> *<dfn class="local col3 decl" id="1213__child_stack" title='__child_stack' data-type='void *' data-ref="1213__child_stack">__child_stack</dfn>,&nbsp</td></tr>
+<tr><th id="83">83</th><td>		  <em>int</em> <dfn class="local col4 decl" id="1214__flags" title='__flags' data-type='int' data-ref="1214__flags">__flags</dfn>, <em>void</em> *<dfn class="local col5 decl" id="1215__arg" title='__arg' data-type='void *' data-ref="1215__arg">__arg</dfn>, ...) <a class="macro" href="../sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="84">84</th><td>&nbsp</td></tr>
+<tr><th id="85">85</th><td><i>/* Unshare the specified resources.  */</i>&nbsp</td></tr>
+<tr><th id="86">86</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="unshare" title='unshare' data-ref="unshare">unshare</dfn> (<em>int</em> <dfn class="local col6 decl" id="1216__flags" title='__flags' data-type='int' data-ref="1216__flags">__flags</dfn>) <a class="macro" href="../sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td><i>/* Get index of currently used CPU.  */</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="sched_getcpu" title='sched_getcpu' data-ref="sched_getcpu">sched_getcpu</dfn> (<em>void</em>) <a class="macro" href="../sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="90">90</th><td>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i>/* Get currently used CPU and NUMA node.  */</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="getcpu" title='getcpu' data-ref="getcpu">getcpu</dfn> (<em>unsigned</em> <em>int</em> *, <em>unsigned</em> <em>int</em> *) <a class="macro" href="../sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="93">93</th><td>&nbsp</td></tr>
+<tr><th id="94">94</th><td><i>/* Switch process to namespace of type NSTYPE indicated by FD.  */</i>&nbsp</td></tr>
+<tr><th id="95">95</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="setns" title='setns' data-ref="setns">setns</dfn> (<em>int</em> <dfn class="local col7 decl" id="1217__fd" title='__fd' data-type='int' data-ref="1217__fd">__fd</dfn>, <em>int</em> <dfn class="local col8 decl" id="1218__nstype" title='__nstype' data-type='int' data-ref="1218__nstype">__nstype</dfn>) <a class="macro" href="../sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="96">96</th><td><u>#<span data-ppcond="80">endif</span></u>&nbsp</td></tr>
+<tr><th id="97">97</th><td>&nbsp</td></tr>
+<tr><th id="98">98</th><td><a class="macro" href="../sys/cdefs.h.html#134" title="}" data-ref="_M/__END_DECLS">__END_DECLS</a>&nbsp</td></tr>
+<tr><th id="99">99</th><td>&nbsp</td></tr>
+<tr><th id="100">100</th><td><u>#<span data-ppcond="20">endif</span> /* bits/sched.h */</u>&nbsp</td></tr>
+<tr><th id="101">101</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

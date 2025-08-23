@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1309' ll='1316' type='std::vector::iterator std::vector::insert(std::vector::const_iterator __position, initializer_list&lt;std::vector::value_type&gt; __l)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1296'>/**
+       *  @brief  Inserts an initializer_list into the %vector.
+       *  @param  __position  An iterator into the %vector.
+       *  @param  __l  An initializer_list.
+       *
+       *  This function will insert copies of the data in the
+       *  initializer_list @a l into the %vector before the location
+       *  specified by @a position.
+       *
+       *  Note that this kind of operation could be expensive for a
+       *  %vector and if it is frequently used the user should
+       *  consider using std::list.
+       */</doc>

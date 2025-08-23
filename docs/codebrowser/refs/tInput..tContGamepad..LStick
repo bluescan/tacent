@@ -1,0 +1,6 @@
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='40' u='w' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='59' u='w' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<dec f='Modules/Input/Inc/Input/tContGamepad.h' l='75' type='tInput::tCompJoystick'/>
+<offset>640</offset>
+<doc f='Modules/Input/Inc/Input/tContGamepad.h' l='75'>// Contains the Button and 2 axes.</doc>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='142' u='m' c='_ZN6tInput12tContGamepad6UpdateEv'/>

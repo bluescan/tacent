@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10490'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10489'>// VK_KHR_format_feature_flags2 is a preprocessor guard. Do not pass it to API calls.</doc>

@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17315' ll='17317'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17315'/>
+<size>8</size>
+<mbr r='VkBindPipelineIndirectCommandNV::pipelineAddress' o='0' t='VkDeviceAddress'/>

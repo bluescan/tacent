@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='848' type='int abs(int __x)'/>
+<doc f='include/stdlib.h' l='847'>/* Return the absolute value of X.  */</doc>

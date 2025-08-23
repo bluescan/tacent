@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1889' ll='1891' type='std::pair&lt;const_iterator, const_iterator&gt; std::unordered_multimap::equal_range(const std::unordered_multimap::key_type &amp; __x) const'/>

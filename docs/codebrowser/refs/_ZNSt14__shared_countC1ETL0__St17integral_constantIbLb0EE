@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='606' ll='608' type='void std::__shared_count::__shared_count&lt;_Lp&gt;(_Ptr __p, std::false_type )'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='606'>/* is_array = */</doc>

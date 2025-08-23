@@ -1,0 +1,95 @@
+<def f='include/c++/11/bits/cpp_type_traits.h' l='127' ll='131'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='137' ll='142'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='138'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='144' ll='149'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='145'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='151' ll='156'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='152'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='158' ll='163'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='159'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='166' ll='171'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='167'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='175' ll='180'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='176'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='184' ll='189'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='185'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='191' ll='196'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='192'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='199' ll='204'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='200'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='206' ll='211'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='207'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='213' ll='218'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='214'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='220' ll='225'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='221'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='227' ll='232'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='228'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='234' ll='239'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='235'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='241' ll='246'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='242'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='248' ll='253'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='249'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='338'/>
+<use f='include/c++/11/ext/type_traits.h' l='68'/>
+<use f='include/c++/11/ext/type_traits.h' l='111'/>
+<use f='include/c++/11/ext/type_traits.h' l='168'/>
+<use f='include/c++/11/cmath' l='97' c='_ZSt4acosT_'/>
+<use f='include/c++/11/cmath' l='116' c='_ZSt4asinT_'/>
+<use f='include/c++/11/cmath' l='135' c='_ZSt4atanT_'/>
+<use f='include/c++/11/cmath' l='175' c='_ZSt4ceilT_'/>
+<use f='include/c++/11/cmath' l='194' c='_ZSt3cosT_'/>
+<use f='include/c++/11/cmath' l='213' c='_ZSt4coshT_'/>
+<use f='include/c++/11/cmath' l='232' c='_ZSt3expT_'/>
+<use f='include/c++/11/cmath' l='251' c='_ZSt4fabsT_'/>
+<use f='include/c++/11/cmath' l='270' c='_ZSt5floorT_'/>
+<use f='include/c++/11/cmath' l='310' c='_ZSt5frexpT_Pi'/>
+<use f='include/c++/11/cmath' l='329' c='_ZSt5ldexpT_i'/>
+<use f='include/c++/11/cmath' l='348' c='_ZSt3logT_'/>
+<use f='include/c++/11/cmath' l='367' c='_ZSt5log10T_'/>
+<use f='include/c++/11/cmath' l='435' c='_ZSt3sinT_'/>
+<use f='include/c++/11/cmath' l='454' c='_ZSt4sinhT_'/>
+<use f='include/c++/11/cmath' l='473' c='_ZSt4sqrtT_'/>
+<use f='include/c++/11/cmath' l='492' c='_ZSt3tanT_'/>
+<use f='include/c++/11/cmath' l='511' c='_ZSt4tanhT_'/>
+<use f='include/c++/11/cmath' l='554' c='_ZSt10fpclassifyT_'/>
+<use f='include/c++/11/cmath' l='576' c='_ZSt8isfiniteT_'/>
+<use f='include/c++/11/cmath' l='603' c='_ZSt5isinfT_'/>
+<use f='include/c++/11/cmath' l='630' c='_ZSt5isnanT_'/>
+<use f='include/c++/11/cmath' l='652' c='_ZSt8isnormalT_'/>
+<use f='include/c++/11/cmath' l='675' c='_ZSt7signbitT_'/>
+<use f='include/c++/11/cmath' l='1224' c='_ZSt5acoshT_'/>
+<use f='include/c++/11/cmath' l='1242' c='_ZSt5asinhT_'/>
+<use f='include/c++/11/cmath' l='1260' c='_ZSt5atanhT_'/>
+<use f='include/c++/11/cmath' l='1278' c='_ZSt4cbrtT_'/>
+<use f='include/c++/11/cmath' l='1316' c='_ZSt3erfT_'/>
+<use f='include/c++/11/cmath' l='1334' c='_ZSt4erfcT_'/>
+<use f='include/c++/11/cmath' l='1352' c='_ZSt4exp2T_'/>
+<use f='include/c++/11/cmath' l='1370' c='_ZSt5expm1T_'/>
+<use f='include/c++/11/cmath' l='1489' c='_ZSt5ilogbT_'/>
+<use f='include/c++/11/cmath' l='1507' c='_ZSt6lgammaT_'/>
+<use f='include/c++/11/cmath' l='1525' c='_ZSt6llrintT_'/>
+<use f='include/c++/11/cmath' l='1543' c='_ZSt7llroundT_'/>
+<use f='include/c++/11/cmath' l='1561' c='_ZSt5log1pT_'/>
+<use f='include/c++/11/cmath' l='1580' c='_ZSt4log2T_'/>
+<use f='include/c++/11/cmath' l='1598' c='_ZSt4logbT_'/>
+<use f='include/c++/11/cmath' l='1616' c='_ZSt5lrintT_'/>
+<use f='include/c++/11/cmath' l='1634' c='_ZSt6lroundT_'/>
+<use f='include/c++/11/cmath' l='1652' c='_ZSt9nearbyintT_'/>
+<use f='include/c++/11/cmath' l='1690' c='_ZSt10nexttowardT_e'/>
+<use f='include/c++/11/cmath' l='1748' c='_ZSt4rintT_'/>
+<use f='include/c++/11/cmath' l='1766' c='_ZSt5roundT_'/>
+<use f='include/c++/11/cmath' l='1784' c='_ZSt7scalblnT_l'/>
+<use f='include/c++/11/cmath' l='1802' c='_ZSt6scalbnT_i'/>
+<use f='include/c++/11/cmath' l='1820' c='_ZSt6tgammaT_'/>
+<use f='include/c++/11/cmath' l='1838' c='_ZSt5truncT_'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='52'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='54'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1208' c='_ZSt12__equal_aux1T_S_T0_'/>
+<size>1</size>
+<doc f='include/c++/11/bits/cpp_type_traits.h' l='133'>// Thirteen specializations (yes there are eleven standard integer
+  // types; &lt;em&gt;long long&lt;/em&gt; and &lt;em&gt;unsigned long long&lt;/em&gt; are
+  // supported as extensions).  Up to four target-specific __int&lt;N&gt;
+  // types are supported as well.</doc>
+<use f='include/c++/11/bits/basic_string.h' l='273' c='_ZNSt7__cxx1112basic_string12_M_constructETL0__S1_'/>

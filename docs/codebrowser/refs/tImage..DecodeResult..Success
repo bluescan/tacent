@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Inc/Image/tPixelUtil.h' l='32' type='0'/>
+<doc f='Modules/Image/Inc/Image/tPixelUtil.h' l='32'>// Must be 0.</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='157' u='r' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1445' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1027' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='220' u='r' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1136' u='r' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='94' u='r' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='650' u='r' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1055' u='r' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1144' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1209' u='r' c='_ZN6tImage19DecodePixelData_PVRENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>

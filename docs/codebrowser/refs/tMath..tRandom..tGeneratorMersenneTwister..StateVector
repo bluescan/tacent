@@ -1,0 +1,33 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='72' type='uint32[624]'/>
+<offset>64</offset>
+<doc f='Modules/Math/Inc/Math/tRandom.h' l='71'>// The complete state information.</doc>
+<use f='Modules/Math/Src/tRandom.cpp' l='27' u='w' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='29' u='w' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='29' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='29' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='42' u='w' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='42' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='42' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='42' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='47' u='w' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='47' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='57' u='w' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='57' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='57' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='57' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='60' u='w' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='60' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='65' u='w' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='79' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='79' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='80' u='w' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='80' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='85' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='85' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='86' u='w' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='86' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='89' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='89' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='90' u='w' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='90' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='94' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>

@@ -1,0 +1,12 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='795' type='long std::collate::do_hash(const _CharT * __lo, const _CharT * __hi) const'/>
+<def f='include/c++/11/bits/locale_classes.tcc' l='253' ll='265' type='long std::collate::do_hash(const _CharT * __lo, const _CharT * __hi) const'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='784'>/**
+       *  @brief  Return hash of a string.
+       *
+       *  This function computes and returns a hash on the input string.  This
+       *  function is a hook for derived classes to change the value returned.
+       *
+       *  @param __lo  Start of string.
+       *  @param __hi  End of string.
+       *  @return  Hash value.
+      */</doc>

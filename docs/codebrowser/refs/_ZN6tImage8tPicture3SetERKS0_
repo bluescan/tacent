@@ -1,0 +1,3 @@
+<use f='Modules/Image/Inc/Image/tPicture.h' l='106' u='c' c='_ZN6tImage8tPictureC1ERKS0_'/>
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='135' type='void tImage::tPicture::Set(const tImage::tPicture &amp; src)'/>
+<def f='Modules/Image/Inc/Image/tPicture.h' l='467' ll='477' type='void tImage::tPicture::Set(const tImage::tPicture &amp; src)'/>

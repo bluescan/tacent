@@ -1,0 +1,16 @@
+<use f='Modules/Image/Src/tImageHDR.cpp' l='53' u='r' c='_ZN6tImage9tImageHDR16SetupGammaTablesEf'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='59' u='w' c='_ZN6tImage9tImageHDR16SetupGammaTablesEf'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='64' u='r' c='_ZN6tImage9tImageHDR16SetupGammaTablesEf'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='91' u='r' c='_ZN6tImage9tImageHDR18CleanupGammaTablesEv'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='91' u='r' c='_ZN6tImage9tImageHDR18CleanupGammaTablesEv'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='92' u='w' c='_ZN6tImage9tImageHDR18CleanupGammaTablesEv'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='204' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='219' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='220' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='221' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='233' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='234' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='235' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='240' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='241' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='242' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/System/Src/tCmdLine.cpp' l='29' type='int tCmdLine::IndentSpaces(tString * dest, int numSpaces)'/>
+<def f='Modules/System/Src/tCmdLine.cpp' l='121' ll='127' type='int tCmdLine::IndentSpaces(tString * dest, int numSpaces)'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='658' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='683' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>

@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='555' type='float tMath::tDistBetweenSq(const tMath::tVec3 &amp; a, const tMath::tVec3 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1038' u='c' c='_ZN5tMath22tColourDiffEuclideanSqERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1046' u='c' c='_ZN5tMath22tColourDiffEuclideanSqERK9tColour4bS2_'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='470' u='c' c='_ZN5tMath11tBezierPath17tFastSectionState15CompareSectionsERKNS1_12tSectionInfoES4_'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='471' u='c' c='_ZN5tMath11tBezierPath17tFastSectionState15CompareSectionsERKNS1_12tSectionInfoES4_'/>

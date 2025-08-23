@@ -1,0 +1,6 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='326' type='tString &amp; tString::ToUpper()'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='330' u='c' c='_ZNK7tString5UpperEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='197' u='c' c='_ZN9tBitField3SetEPKc'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='244' u='c' c='_ZN9tBitField9SetBinaryEPKc'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='324'>// ToUpper and ToLower both modify the object as well as return a reference to it. Returning a reference makes it
+	// easy to string together expressions such as: if (name.ToLower() == &quot;ah&quot;)</doc>

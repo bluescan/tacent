@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7879' ll='7882'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7879'/>
+<size>12</size>
+<mbr r='VkDisplayModeParametersKHR::visibleRegion' o='0' t='VkExtent2D'/>
+<mbr r='VkDisplayModeParametersKHR::refreshRate' o='64' t='uint32_t'/>

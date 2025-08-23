@@ -1,0 +1,22 @@
+<dec f='include/c++/11/fstream' l='148' type='std::size_t'/>
+<use f='include/c++/11/fstream' l='475' u='r' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/fstream' l='476' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/bits/fstream.tcc' l='56' u='r' c='_ZNSt13basic_filebuf27_M_allocate_internal_bufferEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='83' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='104' u='w' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='135' u='w' c='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='163' c='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='346' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='346' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='576' u='r' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='697' u='r' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='697' u='r' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='772' u='r' c='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='773' u='r' c='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='809' u='w' c='_ZNSt13basic_filebuf6setbufEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='821' u='w' c='_ZNSt13basic_filebuf6setbufEPT_l'/>
+<doc f='include/c++/11/fstream' l='143'>/**
+       *  Actual size of internal buffer. This number is equal to the size
+       *  of the put area + 1 position, reserved for the overflow char of
+       *  a full area.
+       */</doc>

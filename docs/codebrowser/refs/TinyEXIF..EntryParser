@@ -1,0 +1,4 @@
+<use f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='137' c='_ZN8TinyEXIF8EXIFInfo13parseIFDImageERNS_11EntryParserERjS3_'/>
+<use f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='139' c='_ZN8TinyEXIF8EXIFInfo12parseIFDExifERNS_11EntryParserE'/>
+<use f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='141' c='_ZN8TinyEXIF8EXIFInfo11parseIFDGPSERNS_11EntryParserE'/>
+<use f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='143' c='_ZN8TinyEXIF8EXIFInfo17parseIFDMakerNoteERNS_11EntryParserE'/>

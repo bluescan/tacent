@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='108' type='long atol(const char * __nptr)'/>
+<doc f='include/stdlib.h' l='107'>/* Convert a string to a long integer.  */</doc>

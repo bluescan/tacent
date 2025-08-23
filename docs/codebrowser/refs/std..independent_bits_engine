@@ -1,0 +1,22 @@
+<def f='include/c++/11/bits/random.h' l='1105' ll='1274'/>
+<use f='include/c++/11/bits/random.h' l='1265' c='_ZStrsRSt13basic_istreamITL0__TL0_0_ERSt23independent_bits_engineIT_XT0_ET1_E'/>
+<use f='include/c++/11/bits/random.h' l='1290' c='_ZStneRKSt23independent_bits_engineIT_XT0_ET1_ES4_'/>
+<use f='include/c++/11/bits/random.h' l='1292' c='_ZStneRKSt23independent_bits_engineIT_XT0_ET1_ES4_'/>
+<use f='include/c++/11/bits/random.h' l='1310' c='_ZStlsRSt13basic_ostreamIT2_T3_ERKSt23independent_bits_engineIT_XT0_ET1_E'/>
+<use f='include/c++/11/bits/random.tcc' l='736' c='_ZNSt23independent_bits_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='734' c='_ZNSt23independent_bits_engineclEv'/>
+<fun r='_ZNSt23independent_bits_engineC1Ev'/>
+<fun r='_ZNSt23independent_bits_engineC1ERKT_'/>
+<fun r='_ZNSt23independent_bits_engineC1EOT_'/>
+<fun r='_ZNSt23independent_bits_engineC1ET1_'/>
+<fun r='_ZNSt23independent_bits_engineC1ERTL0__'/>
+<fun r='_ZNSt23independent_bits_engine4seedEv'/>
+<fun r='_ZNSt23independent_bits_engine4seedET1_'/>
+<fun r='_ZNSt23independent_bits_engine4seedERTL0__'/>
+<fun r='_ZNKSt23independent_bits_engine4baseEv'/>
+<fun r='_ZNSt23independent_bits_engine3minEv'/>
+<fun r='_ZNSt23independent_bits_engine3maxEv'/>
+<fun r='_ZNSt23independent_bits_engine7discardEy'/>
+<fun r='_ZNSt23independent_bits_engineclEv'/>
+<mbr r='std::independent_bits_engine::_M_b' t='_RandomNumberEngine'/>
+<fun r='_ZNSt23independent_bits_engineclEv'/>

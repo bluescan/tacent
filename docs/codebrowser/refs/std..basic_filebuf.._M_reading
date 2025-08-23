@@ -1,0 +1,25 @@
+<dec f='include/c++/11/fstream' l='160' type='bool'/>
+<use f='include/c++/11/bits/fstream.tcc' l='84' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='106' u='w' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='141' u='w' c='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='169' c='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='192' u='w' c='_ZNSt13basic_filebuf4openEPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='379' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='454' u='w' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='463' u='w' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='531' u='w' c='_ZNSt13basic_filebuf9pbackfailENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='550' u='r' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='736' u='w' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='744' u='w' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='765' u='r' c='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='863' u='r' c='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='916' u='w' c='_ZNSt13basic_filebuf7_M_seekENT0_8off_typeESt12_Ios_SeekdirNS0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1041' u='r' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1046' u='r' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<doc f='include/c++/11/fstream' l='153'>/**
+       *  _M_reading == false &amp;&amp; _M_writing == false for @b uncommitted mode;
+       *  _M_reading == true for @b read mode;
+       *  _M_writing == true for @b write mode;
+       *
+       *  NB: _M_reading == true &amp;&amp; _M_writing == true is unused.
+       */</doc>

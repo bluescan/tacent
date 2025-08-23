@@ -1,0 +1,1 @@
+<dec f='include/c++/11/pstl/glue_numeric_defs.h' l='41' type='__pstl::__internal::__enable_if_execution_policy&lt;_ExecutionPolicy, _Tp&gt; std::transform_reduce(_ExecutionPolicy &amp;&amp; __exec, _ForwardIterator1 __first1, _ForwardIterator1 __last1, _ForwardIterator2 __first2, _Tp __init, _BinaryOperation1 __binary_op1, _BinaryOperation2 __binary_op2)'/>

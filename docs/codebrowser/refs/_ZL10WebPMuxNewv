@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/WebP/include/mux.h' l='113' ll='115' type='WebPMux * WebPMuxNew()'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='358' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='109'>// Creates an empty mux object.
+// Returns:
+//   A pointer to the newly created empty mux object.
+//   Or NULL in case of memory error.</doc>

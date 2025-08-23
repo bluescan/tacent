@@ -1,0 +1,9 @@
+<def f='Modules/Math/Inc/Math/tInterval.h' l='30' ll='34'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='74' c='_ZNK5tMath9tInterval3GetER7tStringNS_12tIntervalRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='75' c='_ZNK5tMath9tInterval3GetENS_12tIntervalRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='150' c='_ZNK5tMath12tIntervalSet3GetER7tStringNS_12tIntervalRepENS_15tIntervalSetRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='151' c='_ZNK5tMath12tIntervalSet3GetENS_12tIntervalRepENS_15tIntervalSetRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='224' c='_ZN5tMath9tInterval3SetERK7tString'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='277' c='_ZNK5tMath9tInterval3GetER7tStringNS_12tIntervalRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='429' c='_ZNK5tMath12tIntervalSet3GetER7tStringNS_12tIntervalRepENS_15tIntervalSetRepE'/>
+<doc f='Modules/Math/Inc/Math/tInterval.h' l='29'>// Specifies how intervals are represented when stored as strings.</doc>

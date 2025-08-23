@@ -1,0 +1,36 @@
+<def f='Modules/System/Inc/System/tFile.h' l='44' ll='48'/>
+<use f='Modules/System/Inc/System/tFile.h' l='604' c='_ZN7tSystem9tFindDirsER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='608' c='_ZN7tSystem9tFindDirsER5tListINS_9tFileInfoEERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='613' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='622' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='630' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='634' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='635' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='636' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='641' c='_ZN7tSystem12tFindDirsRecER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='642' c='_ZN7tSystem12tFindDirsRecER5tListINS_9tFileInfoEERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='643' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='644' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='645' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='646' c='_ZN7tSystem13tFindFilesRecER5tListINS_9tFileInfoEERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='647' c='_ZN7tSystem13tFindFilesRecER5tListINS_9tFileInfoEERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='648' c='_ZN7tSystem13tFindFilesRecER5tListINS_9tFileInfoEERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='41'>// Some file-system calls have the option to use the C++ standard std::filesystem backend. This enum lets you choose
+// to use the standard or native APIs. Native is always faster, so that is the usual default, but doing it this way
+// (i.e. not forcing native) is a good way to get unit tests going so we can check the correctness of both paths.</doc>
+<use f='Modules/System/Src/tFile.cpp' l='2563' c='_ZN7tSystem9tFindDirsER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2574' c='_ZN7tSystem9tFindDirsER5tListINS_9tFileInfoEERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2782' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2794' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2810' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2822' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2834' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2850' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2937' c='_ZN7tSystem12tFindDirsRecER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2948' c='_ZN7tSystem12tFindDirsRecER5tListINS_9tFileInfoEERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3028' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3040' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3056' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3068' c='_ZN7tSystem13tFindFilesRecER5tListINS_9tFileInfoEERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3080' c='_ZN7tSystem13tFindFilesRecER5tListINS_9tFileInfoEERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3096' c='_ZN7tSystem13tFindFilesRecER5tListINS_9tFileInfoEERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>

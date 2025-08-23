@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Src/tImageKTX.cpp' l='40' type='void tImage::tKTX::GetFormatInfo_FromGLFormat(tImage::tPixelFormat &amp; , tColourProfile &amp; , tAlphaMode &amp; , tChannelType &amp; , uint32 glType, uint32 glFormat, uint32 glInternalFormat)'/>
+<def f='Modules/Image/Src/tImageKTX.cpp' l='45' ll='276' type='void tImage::tKTX::GetFormatInfo_FromGLFormat(tImage::tPixelFormat &amp; format, tColourProfile &amp; profile, tAlphaMode &amp; alphaMode, tChannelType &amp; chanType, uint32 glType, uint32 glFormat, uint32 glInternalFormat)'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='840' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Src/tImageKTX.cpp' l='36'>// These figure out the pixel-format, colour-profile, alpha-mode, and channe-type. tPixelFormat does not specify
+	// ancilllary properties of the data -- it specified the encoding of the data. The extra information, like the
+	// colour-profile itcwas authored in, is stored in tColourProfile, tAlphaMode, and tChannelType. In many cases this
+	// satellite information cannot be determined, in which case they get set the their &apos;unspecified&apos; enumerants.</doc>

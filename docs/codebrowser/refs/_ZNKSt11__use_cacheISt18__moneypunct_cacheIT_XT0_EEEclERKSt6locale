@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='42' ll='64' type='const __moneypunct_cache&lt;_CharT, _Intl&gt; * std::__use_cache&lt;__moneypunct_cache&lt;type-parameter-0-0, _Intl&gt;&gt;::operator()(const std::locale &amp; __loc) const'/>

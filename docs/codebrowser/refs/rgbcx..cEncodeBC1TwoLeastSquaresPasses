@@ -1,0 +1,24 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='110' type='4'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2689' u='r' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2755' u='r' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2933' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2936' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2941' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2945' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2949' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2954' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2959' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2965' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2971' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2977' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2983' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2989' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2995' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3001' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3007' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3013' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3020' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3551' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3613' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='108'>// Use 2 least squares pass, instead of one (same as stb_dxt&apos;s HIGHQUAL option).
+		// Recommended if you&apos;re enabling cEncodeBC1UseLikelyTotalOrderings.</doc>

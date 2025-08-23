@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/std_thread.h' l='100' type='std::strong_ordering std::operator&lt;=&gt;(std::thread::id __x, std::thread::id __y)'/>
+<def f='include/c++/11/thread' l='61' ll='63' type='std::strong_ordering std::operator&lt;=&gt;(thread::id __x, thread::id __y)'/>

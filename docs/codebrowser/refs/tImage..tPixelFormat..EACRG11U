@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='179' type='53'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='179'>// EAC RG11. Ericsson. Two channels.</doc>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='114' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='415' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='102' u='r' c='_ZN6tImage4tPKM27GetFormatInfo_FromPKMFormatERNS_12tPixelFormatER14tColourProfileji'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='406' c='_ZNK6tImage9tImagePKM8IsOpaqueEv'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='429' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='952' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>

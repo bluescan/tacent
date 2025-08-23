@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/fs_fwd.h' l='66' ll='75'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='73' c='_ZNSt10filesystemeqERKNS_10space_infoES2_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='73' c='_ZNSt10filesystemeqERKNS_10space_infoES2_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='351' c='_ZNSt10filesystem5spaceERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='354' c='_ZNSt10filesystem5spaceERKNS_7__cxx114pathERSt10error_code'/>
+<size>24</size>
+<doc f='include/c++/11/bits/fs_fwd.h' l='65'>/// Information about free space on a disk</doc>
+<mbr r='std::filesystem::space_info::capacity' o='0' t='uintmax_t'/>
+<mbr r='std::filesystem::space_info::free' o='64' t='uintmax_t'/>
+<mbr r='std::filesystem::space_info::available' o='128' t='uintmax_t'/>

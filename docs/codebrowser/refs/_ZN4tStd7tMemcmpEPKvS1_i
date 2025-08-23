@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='41' type='int tStd::tMemcmp(const void * a, const void * b, int numBytes)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='754' u='c' c='_ZNK7tString7IsEqualEPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='446' u='c' c='_ZNK5tName7IsEqualEPKDui'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='58' u='c' c='_ZN4tStd8tMemsrchEPviS0_i'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='41' u='c' c='_ZNK6tImage6tLayereqERKS0_'/>

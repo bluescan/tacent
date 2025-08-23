@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='183' type='void tImage::tMetaData::Clear()'/>
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='259' ll='264' type='void tImage::tMetaData::Clear()'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='209' u='c' c='_ZN6tImage9tMetaData3SetEPKhi'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='910' u='c' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>

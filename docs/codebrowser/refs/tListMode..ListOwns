@@ -1,0 +1,15 @@
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='56' type='2'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='79' u='r' c='_ZN5tListC1Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='252' u='r' c='_ZN7tItListC1Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='252' u='r' c='_ZN7tItListC1Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='253' u='r' c='_ZN7tItListC1E9tListMode'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='344' u='r' c='_ZNK7tItList4OwnsEv'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='169' u='r' c='_ZN5tMath11tBezierPath17tFastSectionStateC1Ev'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='51' u='r' c='_ZN8tCmdLine6tParamC1EiPKcS2_b'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='74' u='r' c='_ZN8tCmdLine7tOptionC1EPKccS2_ib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='87' u='r' c='_ZN8tCmdLine7tOptionC1EPKcS2_cib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='100' u='r' c='_ZN8tCmdLine7tOptionC1EPKccib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='113' u='r' c='_ZN8tCmdLine7tOptionC1EPKcS2_ib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='210' u='r' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='313' u='r' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='361' u='r' c='_ZN8tCmdLine6tParseEPKDubb'/>

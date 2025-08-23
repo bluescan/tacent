@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='751' type='ktx_uint32_t'/>
+<offset>32</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='751'>/*!&lt; VkFormat for texture. Ignored when creating a
+                                  ktxTexture1. */</doc>

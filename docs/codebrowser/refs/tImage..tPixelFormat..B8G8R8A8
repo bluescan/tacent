@@ -1,0 +1,15 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='122' type='5'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='544' c='_ZN6tImage14tIsAlphaFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='122'>// 32  bit. Full alpha. Matches GL_BGRA source ordering. Most drivers do not need to swizzle.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='620' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='621' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='622' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='840' u='r' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='260' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='360' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='361' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='362' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='284' u='r' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='305' u='r' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='587' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='171' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>

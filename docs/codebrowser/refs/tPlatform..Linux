@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='124' type='1'/>
+<use f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='137' u='r'/>
+<doc f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='124'>// Linux.</doc>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='26' u='r' c='_Z12tGetPlatformv'/>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='197' c='_Z14tGetEndianness9tPlatform'/>

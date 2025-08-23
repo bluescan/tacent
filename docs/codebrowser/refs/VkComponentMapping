@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3464' ll='3469'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3464'/>
+<size>16</size>
+<mbr r='VkComponentMapping::r' o='0' t='VkComponentSwizzle'/>
+<mbr r='VkComponentMapping::g' o='32' t='VkComponentSwizzle'/>
+<mbr r='VkComponentMapping::b' o='64' t='VkComponentSwizzle'/>
+<mbr r='VkComponentMapping::a' o='96' t='VkComponentSwizzle'/>

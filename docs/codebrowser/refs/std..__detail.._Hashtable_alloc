@@ -1,0 +1,30 @@
+<use f='include/c++/11/bits/hashtable_policy.h' l='108'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='158'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='803'/>
+<def f='include/c++/11/bits/hashtable_policy.h' l='1802' ll='1863'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1870' c='_ZNSt8__detail16_Hashtable_alloc16_M_allocate_nodeEDpOTL0__'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1892' c='_ZNSt8__detail16_Hashtable_alloc18_M_deallocate_nodeEPNT_10value_typeE'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1900' c='_ZNSt8__detail16_Hashtable_alloc22_M_deallocate_node_ptrEPNT_10value_typeE'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1910' c='_ZNSt8__detail16_Hashtable_alloc19_M_deallocate_nodesEPNT_10value_typeE'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1922' c='_ZNSt8__detail16_Hashtable_alloc19_M_allocate_bucketsEm'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1935' c='_ZNSt8__detail16_Hashtable_alloc21_M_deallocate_bucketsEPPNS_15_Hash_node_baseEm'/>
+<use f='include/c++/11/bits/hashtable.h' l='195'/>
+<use f='include/c++/11/bits/hashtable.h' l='214'/>
+<fun r='_ZNSt8__detail16_Hashtable_allocC1Ev'/>
+<fun r='_ZNSt8__detail16_Hashtable_allocC1ERKNS_16_Hashtable_allocIT_EE'/>
+<fun r='_ZNSt8__detail16_Hashtable_allocC1EONS_16_Hashtable_allocIT_EE'/>
+<fun r='_ZNSt8__detail16_Hashtable_allocC1EOTL0__'/>
+<fun r='_ZNSt8__detail16_Hashtable_alloc17_M_node_allocatorEv'/>
+<fun r='_ZNKSt8__detail16_Hashtable_alloc17_M_node_allocatorEv'/>
+<fun r='_ZNSt8__detail16_Hashtable_alloc16_M_allocate_nodeEDpOTL0__'/>
+<fun r='_ZNSt8__detail16_Hashtable_alloc18_M_deallocate_nodeEPNT_10value_typeE'/>
+<fun r='_ZNSt8__detail16_Hashtable_alloc22_M_deallocate_node_ptrEPNT_10value_typeE'/>
+<fun r='_ZNSt8__detail16_Hashtable_alloc19_M_deallocate_nodesEPNT_10value_typeE'/>
+<fun r='_ZNSt8__detail16_Hashtable_alloc19_M_allocate_bucketsEm'/>
+<fun r='_ZNSt8__detail16_Hashtable_alloc21_M_deallocate_bucketsEPPNS_15_Hash_node_baseEm'/>
+<fun r='_ZNSt8__detail16_Hashtable_alloc16_M_allocate_nodeEDpOTL0__'/>
+<fun r='_ZNSt8__detail16_Hashtable_alloc18_M_deallocate_nodeEPNT_10value_typeE'/>
+<fun r='_ZNSt8__detail16_Hashtable_alloc22_M_deallocate_node_ptrEPNT_10value_typeE'/>
+<fun r='_ZNSt8__detail16_Hashtable_alloc19_M_deallocate_nodesEPNT_10value_typeE'/>
+<fun r='_ZNSt8__detail16_Hashtable_alloc19_M_allocate_bucketsEm'/>
+<fun r='_ZNSt8__detail16_Hashtable_alloc21_M_deallocate_bucketsEPPNS_15_Hash_node_baseEm'/>

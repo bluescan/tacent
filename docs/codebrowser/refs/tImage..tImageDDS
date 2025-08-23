@@ -1,0 +1,27 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='54' c='tImage::tBaseImage'/>
+<def f='Modules/Image/Inc/Image/tImageDDS.h' l='30' ll='253'/>
+<size>848</size>
+<doc f='Modules/Image/Inc/Image/tImageDDS.h' l='25'>// A tImageDDS object represents and knows how to load a dds file. In general a DirectDrawSurface is composed of
+// multiple layers -- each one a mipmap. It loads the data into tLayers. It can either decode to R8G8B8A8 layers, or leave
+// the data as-is. Decode from BCn is supported. The layers may be &apos;stolen&apos; from a tImageDDS so that excessive memcpys
+// are avoided. After they are stolen the tImageDDS is invalid. Cubemaps and mipmaps are supported.
+// @todo 1D and 3D textures are not supported yet.</doc>
+<fun r='_ZN6tImage9tImageDDSD1Ev'/>
+<fun r='_ZN6tImage9tImageDDS3SetEP9tColour4biib'/>
+<fun r='_ZN6tImage9tImageDDS3SetEPNS_6tFrameEb'/>
+<fun r='_ZN6tImage9tImageDDS3SetERNS_8tPictureEb'/>
+<fun r='_ZN6tImage9tImageDDS5ClearEv'/>
+<fun r='_ZNK6tImage9tImageDDS7IsValidEv'/>
+<fun r='_ZNK6tImage9tImageDDS11IsMipmappedEv'/>
+<fun r='_ZNK6tImage9tImageDDS9IsCubemapEv'/>
+<fun r='_ZN6tImage9tImageDDS8GetFrameEb'/>
+<fun r='_ZNK6tImage9tImageDDS9GetLayersER5tListINS_6tLayerEE'/>
+<fun r='_ZNK6tImage9tImageDDS16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<fun r='_ZNK6tImage9tImageDDS12GetAlphaModeEv'/>
+<fun r='_ZNK6tImage9tImageDDS14GetChannelTypeEv'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='59' c='_ZN6tImage8tTextureC1ERNS_9tImageDDSENS_10tFaceIndexE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='88' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>
+<size>848</size>
+<use f='Modules/Image/Src/tTexture.cpp' l='56' c='_ZN6tImage8tTexture4LoadERK7tStringNS_10tFaceIndexEb'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='64' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>
+<size>848</size>

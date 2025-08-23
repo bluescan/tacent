@@ -1,0 +1,19 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3825' ll='3882'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4039' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4136' c='_ZN5rgbcx10unpack_bc4EPKvPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4138' c='_ZN5rgbcx10unpack_bc4EPKvPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4138' c='_ZN5rgbcx10unpack_bc4EPKvPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4161' c='_ZN5rgbcx10unpack_bc3EPKvPvNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4173' c='_ZN5rgbcx10unpack_bc5EPKvPvjjj'/>
+<size>8</size>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3823'>// BC3-5</doc>
+<mbr r='rgbcx::bc4_block::m_endpoints' o='0' t='uint8_t[2]'/>
+<mbr r='rgbcx::bc4_block::m_selectors' o='16' t='uint8_t[6]'/>
+<fun r='_ZNK5rgbcx9bc4_block13get_low_alphaEv'/>
+<fun r='_ZNK5rgbcx9bc4_block14get_high_alphaEv'/>
+<fun r='_ZNK5rgbcx9bc4_block15is_alpha6_blockEv'/>
+<fun r='_ZNK5rgbcx9bc4_block17get_selector_bitsEv'/>
+<fun r='_ZNK5rgbcx9bc4_block12get_selectorEjjm'/>
+<fun r='_ZN5rgbcx9bc4_block17get_block_values6EPhjj'/>
+<fun r='_ZN5rgbcx9bc4_block17get_block_values8EPhjj'/>
+<fun r='_ZN5rgbcx9bc4_block16get_block_valuesEPhjj'/>

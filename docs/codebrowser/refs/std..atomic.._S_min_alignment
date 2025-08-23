@@ -1,0 +1,4 @@
+<def f='include/c++/11/atomic' l='202' ll='204' type='const int'/>
+<use f='include/c++/11/atomic' l='207' u='r'/>
+<use f='include/c++/11/atomic' l='207' u='r'/>
+<doc f='include/c++/11/atomic' l='201'>// Align 1/2/4/8/16-byte types to at least their size.</doc>

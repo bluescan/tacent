@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='166' type='45'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='607' c='_ZN6tImage12tIsHDRFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='166'>// BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='583' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='94' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='398' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='823' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='832' u='r' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>

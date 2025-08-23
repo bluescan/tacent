@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='54' type='14'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='53'>//			The velocity/speed below are from a DJI MakerNotes. I want a DJI mini 3. Looks amazing.</doc>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='54'>//	float	X-Component of velocity in m/s. May be negative. X appears to be forwards direction.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='351' u='m' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='702' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_vector.h' l='1733' type='void std::vector::_M_insert_aux(std::vector::iterator __position, _Arg &amp;&amp; __arg)'/>
+<def f='include/c++/11/bits/vector.tcc' l='392' ll='420' type='void std::vector::_M_insert_aux(std::vector::iterator __position, _Arg &amp;&amp; __arg)'/>

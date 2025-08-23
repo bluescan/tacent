@@ -1,0 +1,3 @@
+<def f='include/c++/11/limits' l='206' type='const bool'/>
+<doc f='include/c++/11/limits' l='204'>/** This will be true for all fundamental types (which have
+	specializations), and false for everything else.  */</doc>

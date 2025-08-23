@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/range_access.h' l='107' c='_ZSt5beginRSt8valarrayIT_E'/>
+<use f='include/c++/11/bits/range_access.h' l='108' c='_ZSt5beginRKSt8valarrayIT_E'/>
+<use f='include/c++/11/bits/range_access.h' l='109' c='_ZSt3endRSt8valarrayIT_E'/>
+<use f='include/c++/11/bits/range_access.h' l='110' c='_ZSt3endRKSt8valarrayIT_E'/>

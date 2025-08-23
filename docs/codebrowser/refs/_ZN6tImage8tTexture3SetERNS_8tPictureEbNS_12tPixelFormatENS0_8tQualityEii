@@ -1,0 +1,12 @@
+<def f='Modules/Image/Src/tTexture.cpp' l='118' ll='180' type='bool tImage::tTexture::Set(tImage::tPicture &amp; image, bool generateMipmaps, tImage::tPixelFormat pixelFormat = tPixelFormat::Auto, tImage::tTexture::tQuality quality = tQuality::Production, int forceWidth = 0, int forceHeight = 0)'/>
+<doc f='Modules/Image/Src/tTexture.cpp' l='105'>/*
+bool tTexture::Load(const tString&amp; imageFile, bool generateMipMaps, tPixelFormat format, tQuality quality, int forceWidth, int forceHeight)
+{
+	Clear();
+	tPicture image(imageFile);
+	if (!image.IsValid())
+		return false;
+
+	return Set(image, generateMipMaps, format, quality, forceWidth, forceHeight);
+}
+*/</doc>

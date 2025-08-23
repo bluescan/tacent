@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/ios_base.h' l='1078' ll='1083' type='std::ios_base &amp; std::scientific(std::ios_base &amp; __base)'/>
+<doc f='include/c++/11/bits/ios_base.h' l='1077'>/// Calls base.setf(ios_base::scientific, ios_base::floatfield).</doc>

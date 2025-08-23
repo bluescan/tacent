@@ -1,0 +1,5 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='92' type='8'/>
+<use f='Modules/System/Src/tPrint.cpp' l='774' u='r' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='786' u='r' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='948' u='r' c='_ZN7tSystem33HandlerHelper_JustificationPrologERNS_8ReceiverEiRKNS_10FormatSpecE'/>
+<use f='Modules/System/Src/tPrint.cpp' l='963' u='r' c='_ZN7tSystem33HandlerHelper_JustificationEpilogERNS_8ReceiverEiRKNS_10FormatSpecE'/>

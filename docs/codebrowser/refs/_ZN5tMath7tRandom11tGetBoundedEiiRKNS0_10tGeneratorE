@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='115' type='int tMath::tRandom::tGetBounded(int min, int max, const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<def f='Modules/Math/Inc/Math/tRandom.h' l='172' ll='176' type='int tMath::tRandom::tGetBounded(int min, int max, const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>
+<doc f='Modules/Math/Inc/Math/tRandom.h' l='114'>// These compute a random value in [min, max]. The templated version can be used for vectors.</doc>
+<use f='Modules/Math/Src/tRandom.cpp' l='183' u='c' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>

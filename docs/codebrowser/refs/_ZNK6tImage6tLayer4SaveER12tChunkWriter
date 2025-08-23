@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tLayer.h' l='62' type='void tImage::tLayer::Save(tChunkWriter &amp; ) const'/>
+<def f='Modules/Image/Src/tLayer.cpp' l='45' ll='66' type='void tImage::tLayer::Save(tChunkWriter &amp; chunk) const'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='401' u='c' c='_ZNK6tImage8tTexture4SaveER12tChunkWriter'/>

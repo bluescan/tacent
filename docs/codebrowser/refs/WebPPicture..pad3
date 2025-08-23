@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='347' type='uint32_t[3]'/>
+<offset>1280</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='345'>// used during callbacks (like progress-report e.g.).</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='347'>// padding for later use</doc>

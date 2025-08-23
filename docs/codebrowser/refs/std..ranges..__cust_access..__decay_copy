@@ -1,0 +1,23 @@
+<def f='include/c++/11/bits/iterator_concepts.h' l='932' ll='939' type='const struct _Decay_copy'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='944' u='c'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='955' u='c'/>
+<use f='include/c++/11/bits/ranges_base.h' l='104' u='c' c='_ZNSt6ranges13__cust_access6_Begin11_S_noexceptEv'/>
+<use f='include/c++/11/bits/ranges_base.h' l='106' u='c' c='_ZNSt6ranges13__cust_access6_Begin11_S_noexceptEv'/>
+<use f='include/c++/11/bits/ranges_base.h' l='131' u='c'/>
+<use f='include/c++/11/bits/ranges_base.h' l='142' u='c'/>
+<use f='include/c++/11/bits/ranges_base.h' l='155' u='c' c='_ZNSt6ranges13__cust_access4_End11_S_noexceptEv'/>
+<use f='include/c++/11/bits/ranges_base.h' l='157' u='c' c='_ZNSt6ranges13__cust_access4_End11_S_noexceptEv'/>
+<use f='include/c++/11/bits/ranges_base.h' l='219' u='c'/>
+<use f='include/c++/11/bits/ranges_base.h' l='229' u='c'/>
+<use f='include/c++/11/bits/ranges_base.h' l='247' u='c' c='_ZNSt6ranges13__cust_access7_RBegin11_S_noexceptEv'/>
+<use f='include/c++/11/bits/ranges_base.h' l='249' u='c' c='_ZNSt6ranges13__cust_access7_RBegin11_S_noexceptEv'/>
+<use f='include/c++/11/bits/ranges_base.h' l='282' u='c'/>
+<use f='include/c++/11/bits/ranges_base.h' l='293' u='c'/>
+<use f='include/c++/11/bits/ranges_base.h' l='305' u='c' c='_ZNSt6ranges13__cust_access5_REnd11_S_noexceptEv'/>
+<use f='include/c++/11/bits/ranges_base.h' l='307' u='c' c='_ZNSt6ranges13__cust_access5_REnd11_S_noexceptEv'/>
+<use f='include/c++/11/bits/ranges_base.h' l='365' u='c'/>
+<use f='include/c++/11/bits/ranges_base.h' l='376' u='c'/>
+<use f='include/c++/11/bits/ranges_base.h' l='401' u='c' c='_ZNSt6ranges13__cust_access5_Size11_S_noexceptEv'/>
+<use f='include/c++/11/bits/ranges_base.h' l='403' u='c' c='_ZNSt6ranges13__cust_access5_Size11_S_noexceptEv'/>
+<use f='include/c++/11/bits/ranges_base.h' l='513' u='c'/>
+<use f='include/c++/11/bits/ranges_base.h' l='527' u='c' c='_ZNSt6ranges13__cust_access5_Data11_S_noexceptEv'/>

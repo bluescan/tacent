@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='513' ll='515' type='long double std::cyl_bessel_il(long double __nu, long double __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='507'>/**
+   * Return the regular modified Bessel function @f$ I_{\nu}(x) @f$
+   * for &lt;tt&gt;long double&lt;/tt&gt; order @f$ \nu @f$ and argument @f$ x &gt;= 0 @f$.
+   *
+   * @see cyl_bessel_i for setails.
+   */</doc>

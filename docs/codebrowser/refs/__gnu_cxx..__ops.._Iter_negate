@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/predefined_ops.h' l='381' ll='396'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='400' c='__gnu_cxx::__ops::__negate'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='402' c='__gnu_cxx::__ops::__negate'/>
+<mbr r='__gnu_cxx::__ops::_Iter_negate::_M_pred' t='_Predicate'/>
+<fun r='__gnu_cxx::__ops::_Iter_negate::_Iter_negate{_Predicate}'/>
+<fun r='__gnu_cxx::__ops::_Iter_negate::operator()'/>

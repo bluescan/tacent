@@ -1,0 +1,16 @@
+<def f='include/c++/11/bits/stream_iterator.h' l='49' ll='161'/>
+<mbr r='std::istream_iterator::_M_stream' t='std::istream_iterator::istream_type *'/>
+<mbr r='std::istream_iterator::_M_value' t='_Tp'/>
+<mbr r='std::istream_iterator::_M_ok' t='bool'/>
+<fun r='_ZNSt16istream_iteratorC1Ev'/>
+<fun r='_ZNSt16istream_iteratorC1ERSt13basic_istreamIT0_T1_E'/>
+<fun r='_ZNSt16istream_iteratorC1ERKSt16istream_iteratorIT_T0_T1_T2_E'/>
+<fun r='_ZNSt16istream_iteratorC1ESt18default_sentinel_t'/>
+<fun r='_ZNSt16istream_iteratoraSERKSt16istream_iteratorIT_T0_T1_T2_E'/>
+<fun r='_ZNSt16istream_iteratorD1Ev'/>
+<fun r='_ZNKSt16istream_iteratordeEv'/>
+<fun r='_ZNKSt16istream_iteratorptEv'/>
+<fun r='_ZNSt16istream_iteratorppEv'/>
+<fun r='_ZNSt16istream_iteratorppEi'/>
+<fun r='_ZNKSt16istream_iterator8_M_equalERKSt16istream_iteratorIT_T0_T1_T2_E'/>
+<fun r='_ZNSt16istream_iterator7_M_readEv'/>

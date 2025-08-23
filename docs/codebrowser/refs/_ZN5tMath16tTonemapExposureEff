@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='288' type='float tMath::tTonemapExposure(float linearComponent, float exposure = 1.F)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1022' ll='1025' type='float tMath::tTonemapExposure(float linearComponent, float exposure = 1.F)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1304' u='c' c='_ZN9tColour4f15TonemapExposureEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1305' u='c' c='_ZN9tColour4f15TonemapExposureEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1306' u='c' c='_ZN9tColour4f15TonemapExposureEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1307' u='c' c='_ZN9tColour4f15TonemapExposureEfj'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='287'>// See https://learnopengl.com/Advanced-Lighting/HDR for this simple exposure map.</doc>

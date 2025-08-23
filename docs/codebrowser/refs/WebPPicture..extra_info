@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='328' type='uint8_t *'/>
+<offset>960</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='325'>// 4: intra-16 prediction mode,
+                          // 5: chroma prediction mode,
+                          // 6: bit cost, 7: distortion</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='328'>// if not NULL, points to an array of size</doc>

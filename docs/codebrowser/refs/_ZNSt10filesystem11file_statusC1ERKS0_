@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/fs_dir.h' l='64' type='void std::filesystem::file_status::file_status(const std::filesystem::file_status &amp; )'/>
+<use f='include/c++/11/bits/fs_ops.h' l='129' u='c' c='_ZNSt10filesystem6existsENS_11file_statusE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='141' u='c' c='_ZNSt10filesystem6existsERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='231' u='c' c='_ZNSt10filesystem8is_otherENS_11file_statusE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='231' u='c' c='_ZNSt10filesystem8is_otherENS_11file_statusE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='231' u='c' c='_ZNSt10filesystem8is_otherENS_11file_statusE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='232' u='c' c='_ZNSt10filesystem8is_otherENS_11file_statusE'/>
+<use f='Modules/System/Src/tFile.cpp' l='516' u='c' c='_ZN7tSystem10tDirExistsERK7tString'/>

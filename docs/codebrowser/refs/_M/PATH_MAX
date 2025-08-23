@@ -1,0 +1,10 @@
+<dec f='include/linux/limits.h' l='13'/>
+<use f='Modules/System/Src/tFile.cpp' l='185' u='c'/>
+<use f='Modules/System/Src/tFile.cpp' l='1359' u='c'/>
+<use f='Modules/System/Src/tFile.cpp' l='1360' u='c'/>
+<use f='Modules/System/Src/tFile.cpp' l='1361' u='c'/>
+<use f='Modules/System/Src/tFile.cpp' l='1398' u='c'/>
+<use f='Modules/System/Src/tFile.cpp' l='1399' u='c'/>
+<use f='Modules/System/Src/tFile.cpp' l='1400' u='c'/>
+<use f='Modules/System/Src/tFile.cpp' l='1430' u='c'/>
+<use f='Modules/System/Src/tFile.cpp' l='1431' u='c'/>

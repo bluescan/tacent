@@ -1,0 +1,3 @@
+<def f='include/c++/11/tuple' l='1035' ll='1039' type='static bool std::tuple&lt;type-parameter-0-0, type-parameter-0-1&gt;::__nothrow_default_constructible()'/>
+<use f='include/c++/11/tuple' l='1050' u='c' c='_ZNSt5tupleIJT_T0_EEC1Ev'/>
+<use f='include/c++/11/tuple' l='1057' u='c' c='_ZNSt5tupleIJT_T0_EEC1Ev'/>

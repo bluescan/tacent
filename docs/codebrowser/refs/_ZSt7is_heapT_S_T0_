@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='330' type='bool std::is_heap(_RAIter , _RAIter , _Compare )'/>
+<def f='include/c++/11/bits/stl_heap.h' l='562' ll='577' macro='1' type='bool std::is_heap(_RandomAccessIterator __first, _RandomAccessIterator __last, _Compare __comp)'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='10'/>
+<use f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='53' u='c'/>

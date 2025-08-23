@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='220' type='const std::locale &amp; std::locale::operator=(const std::locale &amp; __other)'/>
+<use f='include/c++/11/streambuf' l='218' u='c' c='_ZNSt15basic_streambuf8pubimbueERKSt6locale'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='211'>/**
+     *  @brief  Assignment operator.
+     *
+     *  Set this locale to be a copy of @a other.
+     *
+     *  @param  __other  The locale to copy.
+     *  @return  A reference to this locale.
+    */</doc>

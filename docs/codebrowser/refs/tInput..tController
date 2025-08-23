@@ -1,0 +1,12 @@
+<def f='Modules/Input/Inc/Input/tCont.h' l='25' ll='37'/>
+<size>80</size>
+<fun r='_ZN6tInput11tControllerD1Ev'/>
+<ovr f='Modules/Input/Inc/Input/tContGamepad.h' l='34' c='tInput::tContGamepad'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='34'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='39' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='58' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<size>80</size>
+<ovr f='Modules/Input/Inc/Input/tContRacingWheel.h' l='21' c='tInput::tContRacingWheel'/>
+<use f='Modules/Input/Inc/Input/tContRacingWheel.h' l='21'/>
+<use f='Modules/Input/Inc/Input/tContRacingWheel.h' l='24' c='_ZN6tInput16tContRacingWheelC1ERK5tName'/>
+<size>80</size>

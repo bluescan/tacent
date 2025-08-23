@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1594' type='static void std::__num_base::_S_format_float(const std::ios_base &amp; __io, char * __fptr, char __mod)'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1011' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1591'>// num_put
+    // Construct and return valid scanf format for floating point types.</doc>

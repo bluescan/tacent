@@ -1,0 +1,8 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='545' type='tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1103' u='w' c='_ZN7tSystem9tFileInfoC1Ev'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1116' u='w' c='_ZN7tSystem9tFileInfoC1ERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1116' u='r' c='_ZN7tSystem9tFileInfoC1ERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1130' u='m' c='_ZN7tSystem9tFileInfo5ClearEv'/>
+<offset>128</offset>
+<use f='Modules/System/Src/tFile.cpp' l='2024' u='w' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2127' u='w' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>

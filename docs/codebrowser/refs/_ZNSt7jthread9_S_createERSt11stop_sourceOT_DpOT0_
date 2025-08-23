@@ -1,0 +1,1 @@
+<def f='include/c++/11/thread' l='211' ll='227' type='static std::thread std::jthread::_S_create(std::stop_source &amp; __ssrc, _Callable &amp;&amp; __f, _Args &amp;&amp;... __args)'/>

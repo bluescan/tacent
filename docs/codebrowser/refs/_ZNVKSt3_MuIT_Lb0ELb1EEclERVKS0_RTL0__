@@ -1,0 +1,1 @@
+<def f='include/c++/11/functional' l='361' ll='367' macro='1' type='_Safe_tuple_element_t&lt;(is_placeholder&lt;_Arg&gt;::value - 1), _Tuple&gt; &amp;&amp; std::_Mu&lt;type-parameter-0-0, false, true&gt;::operator()(const volatile _Arg &amp; , _Tuple &amp; __tuple) const'/>

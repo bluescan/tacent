@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='593'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='582'>/*
+ * The following are ``pseudo tags&apos;&apos; that can be used to control
+ * codec-specific functionality.  These tags are not written to file.
+ * Note that these values start at 0xffff+1 so that they&apos;ll never
+ * collide with Aldus-assigned tags.
+ *
+ * If you want your private pseudo tags ``registered&apos;&apos; (i.e. added to
+ * this file), please post a bug report via the tracking system at
+ * http://www.remotesensing.org/libtiff/bugs.html with the appropriate
+ * C definitions to add.
+ */</doc>

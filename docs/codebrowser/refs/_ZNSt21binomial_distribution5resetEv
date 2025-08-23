@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='3815' ll='3817' type='void std::binomial_distribution::reset()'/>
+<doc f='include/c++/11/bits/random.h' l='3812'>/**
+       * @brief Resets the distribution state.
+       */</doc>

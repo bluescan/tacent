@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='444' type='2164264960'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='444'>// A scene contains objects (models, lights, cameras etc) and materials (which are used by some of the objects).</doc>
+<use f='Modules/Scene/Src/tWorld.cpp' l='508' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1083' u='r' c='_ZNK6tScene6tWorld4SaveERK7tString'/>

@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='749' type='int setegid(__gid_t __gid)'/>
+<doc f='include/unistd.h' l='748'>/* Set the effective group ID of the calling process to GID.  */</doc>

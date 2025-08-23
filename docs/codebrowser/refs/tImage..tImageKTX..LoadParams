@@ -1,0 +1,7 @@
+<use f='Modules/Image/Src/tImageKTX.cpp' l='527' c='_ZN6tImage9tImageKTXC1ERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='535' c='_ZN6tImage9tImageKTXC1EPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='740' c='_ZN6tImage9tImageKTX4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='778' c='_ZN6tImage9tImageKTX4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='795' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='798' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<size>12</size>

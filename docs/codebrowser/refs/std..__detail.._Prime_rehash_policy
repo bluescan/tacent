@@ -1,0 +1,17 @@
+<def f='include/c++/11/bits/hashtable_policy.h' l='442' ll='488'/>
+<use f='include/c++/11/bits/unordered_map.h' l='53'/>
+<use f='include/c++/11/bits/unordered_map.h' l='70'/>
+<size>16</size>
+<doc f='include/c++/11/bits/hashtable_policy.h' l='440'>/// Default value for rehash policy.  Bucket size is (usually) the
+  /// smallest prime that keeps the load factor small enough.</doc>
+<fun r='_ZNSt8__detail20_Prime_rehash_policyC1Ef'/>
+<fun r='_ZNKSt8__detail20_Prime_rehash_policy15max_load_factorEv'/>
+<fun r='_ZNKSt8__detail20_Prime_rehash_policy11_M_next_bktEm'/>
+<fun r='_ZNKSt8__detail20_Prime_rehash_policy19_M_bkt_for_elementsEm'/>
+<fun r='_ZNKSt8__detail20_Prime_rehash_policy14_M_need_rehashEmmm'/>
+<fun r='_ZNKSt8__detail20_Prime_rehash_policy8_M_stateEv'/>
+<fun r='_ZNSt8__detail20_Prime_rehash_policy8_M_resetEv'/>
+<fun r='_ZNSt8__detail20_Prime_rehash_policy8_M_resetEm'/>
+<smbr r='std::__detail::_Prime_rehash_policy::_S_growth_factor' t='const std::size_t'/>
+<mbr r='std::__detail::_Prime_rehash_policy::_M_max_load_factor' o='0' t='float'/>
+<mbr r='std::__detail::_Prime_rehash_policy::_M_next_resize' o='64' t='std::size_t'/>

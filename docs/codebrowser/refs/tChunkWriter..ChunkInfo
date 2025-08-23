@@ -1,0 +1,15 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='83' c='_ZN12tChunkWriterD1Ev'/>
+<inh f='Modules/Foundation/Inc/Foundation/tList.h' l='37' c='tLink'/>
+<def f='Modules/System/Inc/System/tChunk.h' l='204' ll='210'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='204'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='214'/>
+<size>24</size>
+<fun r='_ZN12tChunkWriter9ChunkInfoC1Ev'/>
+<fun r='_ZN12tChunkWriter9ChunkInfoC1Ejj'/>
+<mbr r='tChunkWriter::ChunkInfo::StartChunk' o='128' t='uint'/>
+<mbr r='tChunkWriter::ChunkInfo::StartData' o='160' t='uint'/>
+<use f='Modules/System/Src/tChunk.cpp' l='126' c='_ZN12tChunkWriter5CloseEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='223' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='223' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='230' c='_ZN12tChunkWriter8EndChunkEv'/>
+<size>24</size>

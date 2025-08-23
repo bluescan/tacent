@@ -1,0 +1,29 @@
+<def f='include/c++/11/bits/random.h' l='2193' ll='2382'/>
+<use f='include/c++/11/bits/random.h' l='2205'/>
+<use f='include/c++/11/bits/random.h' l='2354' c='_ZStlsRSt13basic_ostreamITL0_0_TL0_1_ERKSt22lognormal_distributionITL0__E'/>
+<use f='include/c++/11/bits/random.h' l='2369' c='_ZStrsRSt13basic_istreamITL0_0_TL0_1_ERSt22lognormal_distributionITL0__E'/>
+<use f='include/c++/11/bits/random.h' l='2389' c='_ZStneRKSt22lognormal_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='2390' c='_ZStneRKSt22lognormal_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.tcc' l='1974' c='_ZNSt22lognormal_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1987' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt22lognormal_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2011' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt22lognormal_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2014' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt22lognormal_distributionIT_E'/>
+<fun r='_ZNSt22lognormal_distributionC1Ev'/>
+<fun r='_ZNSt22lognormal_distributionC1ET_S0_'/>
+<fun r='_ZNSt22lognormal_distributionC1ERKNS_10param_typeE'/>
+<fun r='_ZNSt22lognormal_distribution5resetEv'/>
+<fun r='_ZNKSt22lognormal_distribution1mEv'/>
+<fun r='_ZNKSt22lognormal_distribution1sEv'/>
+<fun r='_ZNKSt22lognormal_distribution5paramEv'/>
+<fun r='_ZNSt22lognormal_distribution5paramERKNS_10param_typeE'/>
+<fun r='_ZNKSt22lognormal_distribution3minEv'/>
+<fun r='_ZNKSt22lognormal_distribution3maxEv'/>
+<fun r='_ZNSt22lognormal_distributionclERTL0__'/>
+<fun r='_ZNSt22lognormal_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt22lognormal_distribution10__generateETL0__S0_RTL0_0_'/>
+<fun r='_ZNSt22lognormal_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<fun r='_ZNSt22lognormal_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt22lognormal_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<mbr r='std::lognormal_distribution::_M_param' t='std::lognormal_distribution::param_type'/>
+<mbr r='std::lognormal_distribution::_M_nd' t='std::normal_distribution&lt;result_type&gt;'/>
+<fun r='_ZNSt22lognormal_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>

@@ -1,0 +1,52 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/functional' l='193' ll='194'/>
+<use f='include/c++/11/functional' l='210'/>
+<use f='include/c++/11/functional' l='290'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/functional' l='673' ll='675'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/functional' l='681' ll='683'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/functional' l='689' ll='691'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/functional' l='697' ll='699'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/functional' l='705' ll='707'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/functional' l='713' ll='715'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/functional' l='721' ll='723'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/functional' l='729' ll='731'/>
+<doc f='include/c++/11/functional' l='669'>/**
+   *  @brief Class template _Bind is always a bind expression.
+   *  @ingroup binders
+   */</doc>
+<doc f='include/c++/11/functional' l='677'>/**
+   *  @brief Class template _Bind is always a bind expression.
+   *  @ingroup binders
+   */</doc>
+<doc f='include/c++/11/functional' l='685'>/**
+   *  @brief Class template _Bind is always a bind expression.
+   *  @ingroup binders
+   */</doc>
+<doc f='include/c++/11/functional' l='693'>/**
+   *  @brief Class template _Bind is always a bind expression.
+   *  @ingroup binders
+   */</doc>
+<doc f='include/c++/11/functional' l='701'>/**
+   *  @brief Class template _Bind_result is always a bind expression.
+   *  @ingroup binders
+   */</doc>
+<doc f='include/c++/11/functional' l='709'>/**
+   *  @brief Class template _Bind_result is always a bind expression.
+   *  @ingroup binders
+   */</doc>
+<doc f='include/c++/11/functional' l='717'>/**
+   *  @brief Class template _Bind_result is always a bind expression.
+   *  @ingroup binders
+   */</doc>
+<doc f='include/c++/11/functional' l='725'>/**
+   *  @brief Class template _Bind_result is always a bind expression.
+   *  @ingroup binders
+   */</doc>

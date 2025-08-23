@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/locale_facets.h' l='295' ll='297' type='std::__ctype_abstract_base::char_type std::__ctype_abstract_base::widen(char __c) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='282'>/**
+       *  @brief  Widen char to char_type
+       *
+       *  This function converts the char argument to char_type using the
+       *  simplest reasonable transformation.  It does so by returning
+       *  ctype&lt;char_type&gt;::do_widen(c).
+       *
+       *  Note: this is not what you want for codepage conversions.  See
+       *  codecvt for that.
+       *
+       *  @param __c  The char to convert.
+       *  @return  The converted char_type.
+      */</doc>

@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8170' ll='8177'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8170'/>
+<size>48</size>
+<mbr r='VkBindVideoSessionMemoryInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBindVideoSessionMemoryInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkBindVideoSessionMemoryInfoKHR::memoryBindIndex' o='128' t='uint32_t'/>
+<mbr r='VkBindVideoSessionMemoryInfoKHR::memory' o='192' t='VkDeviceMemory'/>
+<mbr r='VkBindVideoSessionMemoryInfoKHR::memoryOffset' o='256' t='VkDeviceSize'/>
+<mbr r='VkBindVideoSessionMemoryInfoKHR::memorySize' o='320' t='VkDeviceSize'/>

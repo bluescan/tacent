@@ -1,0 +1,11 @@
+<inh f='Modules/System/Inc/System/tThrow.h' l='27' c='tError'/>
+<def f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='101' ll='106'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='74' c='_ZN9tPipeline5tRule13AddDependencyERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='84' c='_ZN9tPipeline5tRule13AddDependencyEP11tStringItem'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='110' c='_ZN9tPipeline5tRule15AddDependenciesER5tListI11tStringItemE'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='147' c='_ZN9tPipeline5tRule9OutOfDateEb'/>
+<size>32</size>
+<fun r='_ZN10tRuleErrorC1EPKcz'/>
+<fun r='_ZN10tRuleErrorC1ERK7tString'/>
+<fun r='_ZN10tRuleErrorC1Ev'/>
+<fun r='_ZN10tRuleErrorC1EPKcz'/>

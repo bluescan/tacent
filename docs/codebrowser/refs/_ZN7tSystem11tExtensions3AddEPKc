@@ -1,0 +1,5 @@
+<use f='Modules/System/Inc/System/tFile.h' l='440' u='c' c='_ZN7tSystem11tExtensionsC1EPKc'/>
+<dec f='Modules/System/Inc/System/tFile.h' l='448' type='tSystem::tExtensions &amp; tSystem::tExtensions::Add(const char * ext)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='858' ll='869' type='tSystem::tExtensions &amp; tSystem::tExtensions::Add(const char * ext)'/>
+<use f='Modules/System/Inc/System/tFile.h' l='877' u='c' c='_ZN7tSystem11tExtensions3AddERK7tString'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='447'>// These Add functions will remove any period and ensure lower-case before adding. They do not check for uniqueness.</doc>

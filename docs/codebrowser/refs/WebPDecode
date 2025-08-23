@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='496' type='VP8StatusCode WebPDecode(const uint8_t * data, size_t data_size, WebPDecoderConfig * config)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='101' u='c' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>

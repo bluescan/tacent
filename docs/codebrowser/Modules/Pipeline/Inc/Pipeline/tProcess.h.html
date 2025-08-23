@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tProcess.h source code [Modules/Pipeline/Inc/Pipeline/tProcess.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Pipeline/Inc/Pipeline/tProcess.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>Modules</a>/<a href='../..'>Pipeline</a>/<a href='..'>Inc</a>/<a href='./'>Pipeline</a>/<a href='tProcess.h.html'>tProcess.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tProcess.h</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// This module contains a class for spawning other processes and receiving their exit-codes as well as some simple</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>// commands for spawning one or many processes at once. Windows platform only.</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// Copyright (c) 2005, 2017, 2020, 2023 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#pragma once</u>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#include &lt;Foundation/tPlatform.h&gt;</u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#include &lt;Foundation/tString.h&gt;</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#include &lt;Foundation/tList.h&gt;</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><u>#<span data-ppcond="20">ifdef</span> <span class="macro" data-ref="_M/PLATFORM_WINDOWS">PLATFORM_WINDOWS</span></u>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#define WIN32_LEAN_AND_MEAN</u>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#include &lt;windows.h&gt;					// Requires windows because the build methods can send windows messages.</u>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#<span data-ppcond="20">endif</span></u>&nbsp</td></tr>
+<tr><th id="24">24</th><td><b>namespace</b> <span class="namespace">tPipeline</span>&nbsp</td></tr>
+<tr><th id="25">25</th><td>{&nbsp</td></tr>
+<tr><th id="26">26</th><td>&nbsp</td></tr>
+<tr><th id="27">27</th><td>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i>// @todo Currently the process stuff, due to the output stream messaging, is windows only. I'm sure with modern C++</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i>// this can be abstracted to be multiplatform.</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifdef</span> <span class="macro" data-ref="_M/PLATFORM_WINDOWS">PLATFORM_WINDOWS</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i>// Core reserved message IDs that won't conflict with Windows messages.</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><b>enum</b> <b>class</b> tMessage&nbsp</td></tr>
+<tr><th id="35">35</th><td>{&nbsp</td></tr>
+<tr><th id="36">36</th><td>	StdOutString = WM_APP,				<i>// Wparam is tString pointer.</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td>	StdErrString,						<i>// Wparam is tString pointer.</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td>	ProcessDone,						<i>// Wparam is the exit code. Lparam is the user data.</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td>	FileChanged,&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td>	<i>// A message for live tuning. wparam contains index(2bytes) and offset (2bytes). Lparam contains value (4bytes).</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td>	Tune,&nbsp</td></tr>
+<tr><th id="43">43</th><td>	TuneFeedback,&nbsp</td></tr>
+<tr><th id="44">44</th><td>	Last								<i>// Users of Tacent that need their own messages should start here.</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td>};&nbsp</td></tr>
+<tr><th id="46">46</th><td>&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>// Once created this object sends messages to the thread that constructed it.</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><b>class</b> tProcess&nbsp</td></tr>
+<tr><th id="50">50</th><td>{&nbsp</td></tr>
+<tr><th id="51">51</th><td><b>public</b>:&nbsp</td></tr>
+<tr><th id="52">52</th><td>	<b>typedef</b> <em>void</em> (*tExitCallback)(<em>void</em>* userPointer, <em>int</em> exitCode);&nbsp</td></tr>
+<tr><th id="53">53</th><td>	<b>typedef</b> <em>void</em> (*tPrintCallback)(<em>void</em>* userPointer, <em>const</em> <em>char</em>* text);&nbsp</td></tr>
+<tr><th id="54">54</th><td>&nbsp</td></tr>
+<tr><th id="55">55</th><td>	<i>// Non-blocking. These constructors send messages to the parent including output and exit-code. This allows the</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><i>	// caller to continue working up till the point at which the destructor is called. At that point the destructor may</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td><i>	// block if still necessary. The messages sent are listed above. In general as a user of this interface you'll do</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i>	// some work while waiting for the ProcessDone message, at which point you may delete the object. User data gets</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>	// sent as the second param to ProcessDone, the exit code is the first.</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td>	tProcess&nbsp</td></tr>
+<tr><th id="61">61</th><td>	(&nbsp</td></tr>
+<tr><th id="62">62</th><td>		<em>const</em> tString&amp; cmdLine, <em>const</em> tString&amp; workingDir, WinHwnd parent,&nbsp</td></tr>
+<tr><th id="63">63</th><td>		uint32 userData = <var>0</var>, <em>bool</em> clearEnvironmentVars = <b>false</b>, <em>int</em> numEnvPairs = <var>0</var>, ...&nbsp</td></tr>
+<tr><th id="64">64</th><td>	);&nbsp</td></tr>
+<tr><th id="65">65</th><td>	tProcess&nbsp</td></tr>
+<tr><th id="66">66</th><td>	(&nbsp</td></tr>
+<tr><th id="67">67</th><td>		<em>const</em> tString&amp; cmdLine, <em>const</em> tString&amp; workingDir, WinHwnd parent, uint32 userData,&nbsp</td></tr>
+<tr><th id="68">68</th><td>		<em>bool</em> clearEnvironmentVars, <em>int</em> numEnvPairs, va_list args&nbsp</td></tr>
+<tr><th id="69">69</th><td>	);&nbsp</td></tr>
+<tr><th id="70">70</th><td>&nbsp</td></tr>
+<tr><th id="71">71</th><td>	<i>// Non-blocking. Clears environment variables. You _must_ wait on waitHandle before the destructor is called.</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td>	tProcess&nbsp</td></tr>
+<tr><th id="73">73</th><td>	(&nbsp</td></tr>
+<tr><th id="74">74</th><td>		<em>const</em> tString&amp; cmdLine, <em>const</em> tString&amp; workingDir, WinHandle&amp; waitHandle,&nbsp</td></tr>
+<tr><th id="75">75</th><td>		ulong* exitCode = <var>0</var>, <em>bool</em> clearEnvironmentVars = <b>true</b>&nbsp</td></tr>
+<tr><th id="76">76</th><td>	);&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td>	<i>// Non-blocking. Supports print and exit callbacks. You simply destroy the object sometime after the exit callback.</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td>	tProcess&nbsp</td></tr>
+<tr><th id="80">80</th><td>	(&nbsp</td></tr>
+<tr><th id="81">81</th><td>		<em>const</em> tString&amp; cmdLine, <em>const</em> tString&amp; workingDir, tExitCallback, <em>void</em>* exitCallbackUserPointer = <b>nullptr</b>,&nbsp</td></tr>
+<tr><th id="82">82</th><td>		tPrintCallback = <b>nullptr</b>, <em>void</em>* printCallbackUserPointer = <b>nullptr</b>&nbsp</td></tr>
+<tr><th id="83">83</th><td>	);&nbsp</td></tr>
+<tr><th id="84">84</th><td>	&nbsp</td></tr>
+<tr><th id="85">85</th><td>	<i>// Non-blocking. Creates a completely detached process. You get no exit code OR process output.</i>&nbsp</td></tr>
+<tr><th id="86">86</th><td>	tProcess(<em>const</em> tString&amp; cmdLine, <em>const</em> tString&amp; workingDir);&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td>	<i>// Blocking. These constructors fill in the exitCode if you supply it. Output is appended to the output arg.</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td>	tProcess&nbsp</td></tr>
+<tr><th id="90">90</th><td>	(&nbsp</td></tr>
+<tr><th id="91">91</th><td>		<em>const</em> tString&amp; cmdLine, <em>const</em> tString&amp; workingDir, tString&amp; output, ulong* exitCode = <var>0</var>,&nbsp</td></tr>
+<tr><th id="92">92</th><td>		<em>bool</em> clearEnvironmentVars = <b>false</b>, <em>int</em> numEnvPairs = <var>0</var>, ...&nbsp</td></tr>
+<tr><th id="93">93</th><td>	);&nbsp</td></tr>
+<tr><th id="94">94</th><td>	tProcess&nbsp</td></tr>
+<tr><th id="95">95</th><td>	(&nbsp</td></tr>
+<tr><th id="96">96</th><td>		<em>const</em> tString&amp; cmdLine, <em>const</em> tString&amp; workingDir, tString&amp; output, ulong* exitCode,&nbsp</td></tr>
+<tr><th id="97">97</th><td>		<em>bool</em> clearEnvironmentVars, <em>int</em> numEnvPairs, va_list args&nbsp</td></tr>
+<tr><th id="98">98</th><td>	);&nbsp</td></tr>
+<tr><th id="99">99</th><td>&nbsp</td></tr>
+<tr><th id="100">100</th><td>	<i>// Blocking. These constructors fill in the exitCode you supply. Output test is sent as it occurs to stdout and to,</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><i>	// optionally, a user-specified print function.</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td>	tProcess&nbsp</td></tr>
+<tr><th id="103">103</th><td>	(&nbsp</td></tr>
+<tr><th id="104">104</th><td>		<em>const</em> tString&amp; cmdLine, <em>const</em> tString&amp; workingDir, ulong* exitCode, <em>bool</em> clearEnvironmentVars = <b>true</b>,&nbsp</td></tr>
+<tr><th id="105">105</th><td>		<em>int</em> numEnvPairs = <var>0</var>, ...&nbsp</td></tr>
+<tr><th id="106">106</th><td>	);&nbsp</td></tr>
+<tr><th id="107">107</th><td>	tProcess&nbsp</td></tr>
+<tr><th id="108">108</th><td>	(&nbsp</td></tr>
+<tr><th id="109">109</th><td>		<em>const</em> tString&amp; cmdLine, <em>const</em> tString&amp; workingDir, ulong* exitCode, <em>bool</em> clearEnvironmentVars,&nbsp</td></tr>
+<tr><th id="110">110</th><td>		<em>int</em> numEnvPairs, va_list args&nbsp</td></tr>
+<tr><th id="111">111</th><td>	);&nbsp</td></tr>
+<tr><th id="112">112</th><td>&nbsp</td></tr>
+<tr><th id="113">113</th><td>	tProcess&nbsp</td></tr>
+<tr><th id="114">114</th><td>	(&nbsp</td></tr>
+<tr><th id="115">115</th><td>		<em>const</em> tString&amp; cmdLine, <em>const</em> tString&amp; workingDir, ulong* exitCode,&nbsp</td></tr>
+<tr><th id="116">116</th><td>		tPrintCallback = <b>nullptr</b>, <em>void</em>* printCallbackUserPointer = <b>nullptr</b>&nbsp</td></tr>
+<tr><th id="117">117</th><td>	);&nbsp</td></tr>
+<tr><th id="118">118</th><td>&nbsp</td></tr>
+<tr><th id="119">119</th><td>	<i>// For non-blocking constructors other than the detached constructor, the destructor blocks until the process is</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td><i>	// complete. i.e. If you delete the object before the exit message is received, you can expect to wait.</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td>	<b>virtual</b> ~tProcess();&nbsp</td></tr>
+<tr><th id="122">122</th><td>&nbsp</td></tr>
+<tr><th id="123">123</th><td>	<em>bool</em> IsRunning() <em>const</em>																								{ <b>return</b> ChildProcess ? <b>true</b> : <b>false</b>; }&nbsp</td></tr>
+<tr><th id="124">124</th><td>	WinHandle GetWaitHandle() <em>const</em>																						{ <b>return</b> MonitorProcessExitThread; }&nbsp</td></tr>
+<tr><th id="125">125</th><td>&nbsp</td></tr>
+<tr><th id="126">126</th><td>	<i>// This will stop a non-blocked running process. Terminate is a bit of a sledge-hammer. It has no effect if the</i>&nbsp</td></tr>
+<tr><th id="127">127</th><td><i>	// process is not running because it's already completed. The done message, if any, will be posted asynchronously.</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td>	<em>void</em> Terminate();&nbsp</td></tr>
+<tr><th id="129">129</th><td>&nbsp</td></tr>
+<tr><th id="130">130</th><td>	<i>// Same as above, but ensures termination before returning (blocks) and will not post any done messages.</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td>	<em>void</em> TerminateHard();&nbsp</td></tr>
+<tr><th id="132">132</th><td>&nbsp</td></tr>
+<tr><th id="133">133</th><td>	<em>static</em> uint32 GetEnvironmentDataLength_Ascii(<em>void</em>* enviro);&nbsp</td></tr>
+<tr><th id="134">134</th><td>	<em>static</em> <em>char</em>* BuildNewEnvironmentData_Ascii(<em>bool</em> appendToExisting, <em>int</em> numPairs, va_list);&nbsp</td></tr>
+<tr><th id="135">135</th><td>&nbsp</td></tr>
+<tr><th id="136">136</th><td><b>private</b>:&nbsp</td></tr>
+<tr><th id="137">137</th><td>	<em>void</em> CreateChildProcess(<em>const</em> tString&amp; cmdLine, <em>const</em> tString&amp; workingDir, <em>bool</em> detached = <b>false</b>);&nbsp</td></tr>
+<tr><th id="138">138</th><td>&nbsp</td></tr>
+<tr><th id="139">139</th><td>	<i>// If Parent is valid, output gets sent via messages to that window handle. If OutputString is valid output gets</i>&nbsp</td></tr>
+<tr><th id="140">140</th><td><i>	// appended to it.</i>&nbsp</td></tr>
+<tr><th id="141">141</th><td>	WinHwnd Parent;&nbsp</td></tr>
+<tr><th id="142">142</th><td>	tString* OutputString;&nbsp</td></tr>
+<tr><th id="143">143</th><td>	tPrintCallback PrintCallback;&nbsp</td></tr>
+<tr><th id="144">144</th><td>	<em>void</em>* PrintCallbackUserPointer;&nbsp</td></tr>
+<tr><th id="145">145</th><td>	tExitCallback ExitCallback;&nbsp</td></tr>
+<tr><th id="146">146</th><td>	<em>void</em>* ExitCallbackUserPointer;&nbsp</td></tr>
+<tr><th id="147">147</th><td>&nbsp</td></tr>
+<tr><th id="148">148</th><td>	WinHandle ChildProcess;&nbsp</td></tr>
+<tr><th id="149">149</th><td>	WinHandle ChildThread;&nbsp</td></tr>
+<tr><th id="150">150</th><td>&nbsp</td></tr>
+<tr><th id="151">151</th><td>	<em>static</em> ulong WinApi MonitorExitBridge(<em>void</em>* process)																{ ((tProcess*)process)-&gt;MonitorExit(); <b>return</b> <var>0</var>; }&nbsp</td></tr>
+<tr><th id="152">152</th><td>	<em>void</em> MonitorExit();&nbsp</td></tr>
+<tr><th id="153">153</th><td>&nbsp</td></tr>
+<tr><th id="154">154</th><td>	<em>static</em> ulong WinApi MonitorStdOutBridge(<em>void</em>* process)																{ ((tProcess*)process)-&gt;MonitorStdOut(); <b>return</b> <var>0</var>; }&nbsp</td></tr>
+<tr><th id="155">155</th><td>	<em>void</em> MonitorStdOut();&nbsp</td></tr>
+<tr><th id="156">156</th><td>&nbsp</td></tr>
+<tr><th id="157">157</th><td>	<em>static</em> ulong WinApi MonitorStdErrBridge(<em>void</em>* process)																{ ((tProcess*)process)-&gt;MonitorStdErr(); <b>return</b> <var>0</var>; }&nbsp</td></tr>
+<tr><th id="158">158</th><td>	<em>void</em> MonitorStdErr();&nbsp</td></tr>
+<tr><th id="159">159</th><td>&nbsp</td></tr>
+<tr><th id="160">160</th><td>	WinHandle MonitorProcessExitThread;&nbsp</td></tr>
+<tr><th id="161">161</th><td>	WinHandle MonitorProcessStdOutThread;&nbsp</td></tr>
+<tr><th id="162">162</th><td>	WinHandle MonitorProcessStdErrThread;&nbsp</td></tr>
+<tr><th id="163">163</th><td>&nbsp</td></tr>
+<tr><th id="164">164</th><td>	WinHandle StdOutRead;				<i>// The read end of the stdout pipe that the MonitorProcessSdtOutThread uses.</i>&nbsp</td></tr>
+<tr><th id="165">165</th><td>	WinHandle StdOutWrite;				<i>// The write end of the stdout pipe that the ChildProcess is using.</i>&nbsp</td></tr>
+<tr><th id="166">166</th><td>&nbsp</td></tr>
+<tr><th id="167">167</th><td>	WinHandle StdErrRead;				<i>// The read end of the stderr pipe that the MonitorProcessSdtOutThread uses.</i>&nbsp</td></tr>
+<tr><th id="168">168</th><td>	WinHandle StdErrWrite;				<i>// The write end of the stderr pipe that the ChildProcess is using.</i>&nbsp</td></tr>
+<tr><th id="169">169</th><td>&nbsp</td></tr>
+<tr><th id="170">170</th><td>	uint32 UserData;&nbsp</td></tr>
+<tr><th id="171">171</th><td>	ulong* ExitCode;&nbsp</td></tr>
+<tr><th id="172">172</th><td>	<em>bool</em> ClearEnvironment;&nbsp</td></tr>
+<tr><th id="173">173</th><td>	&nbsp</td></tr>
+<tr><th id="174">174</th><td>	<i>// If we're blocking we do the wait immediately, otherwise non-blocking and we wait in the destructor.</i>&nbsp</td></tr>
+<tr><th id="175">175</th><td>	<em>bool</em> WaitInDestructor;&nbsp</td></tr>
+<tr><th id="176">176</th><td>	<em>char</em>* Environment;					<i>// Owned by this class.</i>&nbsp</td></tr>
+<tr><th id="177">177</th><td>};&nbsp</td></tr>
+<tr><th id="178">178</th><td>&nbsp</td></tr>
+<tr><th id="179">179</th><td>&nbsp</td></tr>
+<tr><th id="180">180</th><td><i>// @todo Two handy utility functions that are less powerful than tProcess. Neither one prints or captures stdout or</i>&nbsp</td></tr>
+<tr><th id="181">181</th><td><i>// stderr. tRun blocks and returns the exit code, tGo does not block and you have no idea how the forked process is</i>&nbsp</td></tr>
+<tr><th id="182">182</th><td><i>// progressing.</i>&nbsp</td></tr>
+<tr><th id="183">183</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="184">184</th><td><i>// int tRun(const tString&amp; cmdLine, const tString&amp; workingDir);</i>&nbsp</td></tr>
+<tr><th id="185">185</th><td><i>// void tGo(const tString&amp; cmdLine, const tString&amp; workingDir);</i>&nbsp</td></tr>
+<tr><th id="186">186</th><td>&nbsp</td></tr>
+<tr><th id="187">187</th><td><u>#<span data-ppcond="30">endif</span></u>&nbsp</td></tr>
+<tr><th id="188">188</th><td>&nbsp</td></tr>
+<tr><th id="189">189</th><td>}&nbsp</td></tr>
+<tr><th id="190">190</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../Src/tProcess.cpp.html'>Modules/Pipeline/Src/tProcess.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

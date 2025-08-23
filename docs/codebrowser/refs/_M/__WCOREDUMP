@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/waitstatus.h' l='53'/>
+<doc f='include/x86_64-linux-gnu/bits/waitstatus.h' l='52'>/* Nonzero if STATUS indicates the child dumped core.  */</doc>

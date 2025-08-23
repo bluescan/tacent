@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/std_function.h' l='133' ll='143' type='static _Functor * std::_Function_base::_Base_manager::_M_get_pointer(const std::_Any_data &amp; __source)'/>
+<use f='include/c++/11/bits/std_function.h' l='194' u='c' c='_ZNSt14_Function_base13_Base_manager10_M_managerERSt9_Any_dataRKS1_St18_Manager_operation'/>
+<use f='include/c++/11/bits/std_function.h' l='199' u='c' c='_ZNSt14_Function_base13_Base_manager10_M_managerERSt9_Any_dataRKS1_St18_Manager_operation'/>
+<doc f='include/c++/11/bits/std_function.h' l='132'>// Retrieve a pointer to the function object</doc>

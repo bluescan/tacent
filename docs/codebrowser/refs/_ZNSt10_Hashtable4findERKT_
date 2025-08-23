@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/hashtable.h' l='739' type='std::_Hashtable::iterator std::_Hashtable::find(const std::_Hashtable::key_type &amp; __k)'/>
+<def f='include/c++/11/bits/hashtable.h' l='1583' ll='1596' type='std::_Hashtable::iterator std::_Hashtable::find(const std::_Hashtable::key_type &amp; __k)'/>
+<doc f='include/c++/11/bits/hashtable.h' l='737'>// Lookup.</doc>

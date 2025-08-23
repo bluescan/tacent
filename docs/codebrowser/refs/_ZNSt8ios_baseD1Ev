@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/ios_base.h' l='876' type='void std::ios_base::~ios_base()'/>
+<ovr f='include/c++/11/bits/basic_ios.h' l='282' c='_ZNSt9basic_iosD1Ev'/>
+<doc f='include/c++/11/bits/ios_base.h' l='868'>/**
+     *  Invokes each callback with erase_event.  Destroys local storage.
+     *
+     *  Note that the ios_base object for the standard streams never gets
+     *  destroyed.  As a result, any callbacks registered with the standard
+     *  streams will not get invoked with erase_event (unless copyfmt is
+     *  used).
+    */</doc>

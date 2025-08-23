@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='584' type='int execv(const char * __path, char *const * __argv)'/>
+<doc f='include/unistd.h' l='583'>/* Execute PATH with arguments ARGV and environment from `environ&apos;.  */</doc>

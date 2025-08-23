@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1032'/>
+<use f='include/c++/11/cstdlib' l='152' u='a'/>
+<use f='include/c++/11/stdlib.h' l='66' u='a'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1031'>/* Define if mbstate_t exists in wchar.h. */</doc>
+<use f='include/c++/11/cwchar' l='52' u='a'/>

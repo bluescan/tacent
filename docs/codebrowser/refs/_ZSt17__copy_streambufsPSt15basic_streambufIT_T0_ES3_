@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/streambuf.tcc' l='138' ll='144' type='std::streamsize std::__copy_streambufs(basic_streambuf&lt;_CharT, _Traits&gt; * __sbin, basic_streambuf&lt;_CharT, _Traits&gt; * __sbout)'/>

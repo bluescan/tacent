@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='77' type='void tSystem::tSetChannels(tSystem::tChannel channelsToSee)'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='75'>// If you wish top turn on or off channels regardless of computer name, just call this with the channels you want.
+	// Any channel not specified will no longer be displayed.</doc>
+<use f='Modules/System/Src/tPrint.cpp' l='200' u='c' c='_ZN7tSystem9tRegisterEjy'/>
+<def f='Modules/System/Src/tPrint.cpp' l='213' ll='216' type='void tSystem::tSetChannels(tSystem::tChannel channelsToSee)'/>

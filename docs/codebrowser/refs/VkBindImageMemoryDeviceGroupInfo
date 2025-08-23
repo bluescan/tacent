@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5221' ll='5228'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5221'/>
+<size>48</size>
+<mbr r='VkBindImageMemoryDeviceGroupInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBindImageMemoryDeviceGroupInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkBindImageMemoryDeviceGroupInfo::deviceIndexCount' o='128' t='uint32_t'/>
+<mbr r='VkBindImageMemoryDeviceGroupInfo::pDeviceIndices' o='192' t='const uint32_t *'/>
+<mbr r='VkBindImageMemoryDeviceGroupInfo::splitInstanceBindRegionCount' o='256' t='uint32_t'/>
+<mbr r='VkBindImageMemoryDeviceGroupInfo::pSplitInstanceBindRegions' o='320' t='const VkRect2D *'/>

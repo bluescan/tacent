@@ -1,0 +1,9 @@
+<dec f='include/c++/11/bits/char_traits.h' l='126' type='static __gnu_cxx::char_traits::char_type * __gnu_cxx::char_traits::copy(__gnu_cxx::char_traits::char_type * __s1, const __gnu_cxx::char_traits::char_type * __s2, std::size_t __n)'/>
+<use f='include/c++/11/bits/char_traits.h' l='204' u='c' c='__gnu_cxx::char_traits::move'/>
+<use f='include/c++/11/bits/char_traits.h' l='205' u='c' c='__gnu_cxx::char_traits::move'/>
+<def f='include/c++/11/bits/char_traits.h' l='237' ll='246' type='static typename char_traits&lt;_CharT&gt;::char_type * __gnu_cxx::char_traits::copy(__gnu_cxx::char_traits::char_type * __s1, const __gnu_cxx::char_traits::char_type * __s2, std::size_t __n)'/>
+<use f='include/c++/11/bits/char_traits.h' l='435' u='c' c='_ZNSt11char_traitsIcE4copyEPcPKcm'/>
+<use f='include/c++/11/bits/char_traits.h' l='559' u='c' c='_ZNSt11char_traitsIwE4copyEPwPKwm'/>
+<use f='include/c++/11/bits/char_traits.h' l='683' u='c' c='_ZNSt11char_traitsIDuE4copyEPDuPKDum'/>
+<use f='include/c++/11/bits/char_traits.h' l='812' u='c' c='_ZNSt11char_traitsIDsE4copyEPDsPKDsm'/>
+<use f='include/c++/11/bits/char_traits.h' l='926' u='c' c='_ZNSt11char_traitsIDiE4copyEPDiPKDim'/>

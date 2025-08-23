@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tResample.h' l='45' type='11'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='204' c='_ZN6tImage8tPicture12RotateCenterEfRK9tColour4bNS_15tResampleFilterES4_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='205' c='_ZN6tImage8tPicture12RotateCenterEfRK9tColour4bNS_15tResampleFilterES4_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='168' u='r' c='_ZN6tImage8tPicture12RotateCenterEfRK9tColour4bNS_15tResampleFilterES4_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='237' u='r' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='253' u='r' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='989' u='r' c='_ZN6tImage8tPicture14GenerateLayersER5tListINS_6tLayerEENS_15tResampleFilterENS_17tResampleEdgeModeEb'/>

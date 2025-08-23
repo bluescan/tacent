@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='492' type='16920576'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='492'>// Base Pose Scale. 4 floats (x, y, z, 1).</doc>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='37' u='r' c='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='78' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>

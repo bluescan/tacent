@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/fs_path.h' l='293'/>
+<use f='include/c++/11/bits/fs_path.h' l='306'/>
+<use f='include/c++/11/bits/fs_path.h' l='333' c='_ZNSt10filesystem7__cxx114path6assignET_S2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='358' c='_ZNSt10filesystem7__cxx114path6appendET_S2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='378' c='_ZNSt10filesystem7__cxx114pathpLET_'/>
+<use f='include/c++/11/bits/fs_path.h' l='390' c='_ZNSt10filesystem7__cxx114path6concatET_S2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='763'/>
+<use f='include/c++/11/bits/fs_path.h' l='995' c='_ZNSt10filesystem7__cxx114pathpLET_'/>

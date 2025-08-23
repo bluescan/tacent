@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='58' type='float tMath::tQuaternion::NormFast() const'/>
+<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='58'>/* Less accurate but faster. */</doc>

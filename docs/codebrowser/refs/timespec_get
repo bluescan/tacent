@@ -1,0 +1,2 @@
+<dec f='include/time.h' l='371' type='int timespec_get(struct timespec * __ts, int __base)'/>
+<doc f='include/time.h' l='370'>/* Set TS to calendar time based in time base BASE.  */</doc>

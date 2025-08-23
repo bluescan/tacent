@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>struct_FILE.h source code [include/x86_64-linux-gnu/bits/types/struct_FILE.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/types/struct_FILE.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>x86_64-linux-gnu</a>/<a href='..'>bits</a>/<a href='./'>types</a>/<a href='struct_FILE.h.html'>struct_FILE.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 1991-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i></i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i></i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#<span data-ppcond="18">ifndef</span> <span class="macro" data-ref="_M/__struct_FILE_defined">__struct_FILE_defined</span></u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#define <dfn class="macro" id="_M/__struct_FILE_defined" data-ref="_M/__struct_FILE_defined">__struct_FILE_defined</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>/* Caution: The contents of this file are not part of the official</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>   stdio.h API.  However, much of it is part of the official *binary*</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>   interface, and therefore cannot be changed.  */</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">if</span> defined <span class="macro" data-ref="_M/_IO_USE_OLD_IO_FILE">_IO_USE_OLD_IO_FILE</span> &amp;&amp; !defined <span class="macro" data-ref="_M/_LIBC">_LIBC</span></u>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u># error "_IO_USE_OLD_IO_FILE should only be defined when building libc itself"</u>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="25">endif</span></u>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="29">if</span> defined <span class="macro" data-ref="_M/_IO_lock_t_defined">_IO_lock_t_defined</span> &amp;&amp; !defined <span class="macro" data-ref="_M/_LIBC">_LIBC</span></u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u># error "_IO_lock_t_defined should only be defined when building libc itself"</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#<span data-ppcond="29">endif</span></u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><b>struct</b> <a class="type" href="#_IO_FILE" title='_IO_FILE' data-ref="_IO_FILE">_IO_FILE</a>;&nbsp</td></tr>
+<tr><th id="36">36</th><td><b>struct</b> <dfn class="type" id="_IO_marker" title='_IO_marker' data-ref="_IO_marker">_IO_marker</dfn>;&nbsp</td></tr>
+<tr><th id="37">37</th><td><b>struct</b> <dfn class="type" id="_IO_codecvt" title='_IO_codecvt' data-ref="_IO_codecvt">_IO_codecvt</dfn>;&nbsp</td></tr>
+<tr><th id="38">38</th><td><b>struct</b> <dfn class="type" id="_IO_wide_data" title='_IO_wide_data' data-ref="_IO_wide_data">_IO_wide_data</dfn>;&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>/* During the build of glibc itself, _IO_lock_t will already have been</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i>   defined by internal headers.  */</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#<span data-ppcond="42">ifndef</span> <span class="macro" data-ref="_M/_IO_lock_t_defined">_IO_lock_t_defined</span></u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><b>typedef</b> <em>void</em> <dfn class="typedef" id="_IO_lock_t" title='_IO_lock_t' data-type='void' data-ref="_IO_lock_t">_IO_lock_t</dfn>;&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#<span data-ppcond="42">endif</span></u>&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>/* The tag name of this struct is _IO_FILE to preserve historic</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>   C++ mangled names for functions taking FILE* arguments.</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>   That name should not be used in new code.  */</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><b>struct</b> <dfn class="type def" id="_IO_FILE" title='_IO_FILE' data-ref="_IO_FILE">_IO_FILE</dfn>&nbsp</td></tr>
+<tr><th id="50">50</th><td>{&nbsp</td></tr>
+<tr><th id="51">51</th><td>  <em>int</em> <dfn class="decl field" id="_IO_FILE::_flags" title='_IO_FILE::_flags' data-ref="_IO_FILE::_flags">_flags</dfn>;		<i>/* High-order word is _IO_MAGIC; rest is flags. */</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td>&nbsp</td></tr>
+<tr><th id="53">53</th><td>  <i>/* The following pointers correspond to the C++ streambuf protocol. */</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td>  <em>char</em> *<dfn class="decl field" id="_IO_FILE::_IO_read_ptr" title='_IO_FILE::_IO_read_ptr' data-ref="_IO_FILE::_IO_read_ptr">_IO_read_ptr</dfn>;	<i>/* Current read pointer */</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td>  <em>char</em> *<dfn class="decl field" id="_IO_FILE::_IO_read_end" title='_IO_FILE::_IO_read_end' data-ref="_IO_FILE::_IO_read_end">_IO_read_end</dfn>;	<i>/* End of get area. */</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td>  <em>char</em> *<dfn class="decl field" id="_IO_FILE::_IO_read_base" title='_IO_FILE::_IO_read_base' data-ref="_IO_FILE::_IO_read_base">_IO_read_base</dfn>;	<i>/* Start of putback+get area. */</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td>  <em>char</em> *<dfn class="decl field" id="_IO_FILE::_IO_write_base" title='_IO_FILE::_IO_write_base' data-ref="_IO_FILE::_IO_write_base">_IO_write_base</dfn>;	<i>/* Start of put area. */</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td>  <em>char</em> *<dfn class="decl field" id="_IO_FILE::_IO_write_ptr" title='_IO_FILE::_IO_write_ptr' data-ref="_IO_FILE::_IO_write_ptr">_IO_write_ptr</dfn>;	<i>/* Current put pointer. */</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td>  <em>char</em> *<dfn class="decl field" id="_IO_FILE::_IO_write_end" title='_IO_FILE::_IO_write_end' data-ref="_IO_FILE::_IO_write_end">_IO_write_end</dfn>;	<i>/* End of put area. */</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td>  <em>char</em> *<dfn class="decl field" id="_IO_FILE::_IO_buf_base" title='_IO_FILE::_IO_buf_base' data-ref="_IO_FILE::_IO_buf_base">_IO_buf_base</dfn>;	<i>/* Start of reserve area. */</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td>  <em>char</em> *<dfn class="decl field" id="_IO_FILE::_IO_buf_end" title='_IO_FILE::_IO_buf_end' data-ref="_IO_FILE::_IO_buf_end">_IO_buf_end</dfn>;	<i>/* End of reserve area. */</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td>&nbsp</td></tr>
+<tr><th id="63">63</th><td>  <i>/* The following fields are used to support backing up and undo. */</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td>  <em>char</em> *<dfn class="decl field" id="_IO_FILE::_IO_save_base" title='_IO_FILE::_IO_save_base' data-ref="_IO_FILE::_IO_save_base">_IO_save_base</dfn>; <i>/* Pointer to start of non-current get area. */</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td>  <em>char</em> *<dfn class="decl field" id="_IO_FILE::_IO_backup_base" title='_IO_FILE::_IO_backup_base' data-ref="_IO_FILE::_IO_backup_base">_IO_backup_base</dfn>;  <i>/* Pointer to first valid character of backup area */</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td>  <em>char</em> *<dfn class="decl field" id="_IO_FILE::_IO_save_end" title='_IO_FILE::_IO_save_end' data-ref="_IO_FILE::_IO_save_end">_IO_save_end</dfn>; <i>/* Pointer to end of non-current get area. */</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td>  <b>struct</b> <a class="type" href="#_IO_marker" title='_IO_marker' data-ref="_IO_marker">_IO_marker</a> *<dfn class="decl field" id="_IO_FILE::_markers" title='_IO_FILE::_markers' data-ref="_IO_FILE::_markers">_markers</dfn>;&nbsp</td></tr>
+<tr><th id="69">69</th><td>&nbsp</td></tr>
+<tr><th id="70">70</th><td>  <b>struct</b> <a class="type" href="#_IO_FILE" title='_IO_FILE' data-ref="_IO_FILE">_IO_FILE</a> *<dfn class="decl field" id="_IO_FILE::_chain" title='_IO_FILE::_chain' data-ref="_IO_FILE::_chain">_chain</dfn>;&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td>  <em>int</em> <dfn class="decl field" id="_IO_FILE::_fileno" title='_IO_FILE::_fileno' data-ref="_IO_FILE::_fileno">_fileno</dfn>;&nbsp</td></tr>
+<tr><th id="73">73</th><td>  <em>int</em> <dfn class="decl field" id="_IO_FILE::_flags2" title='_IO_FILE::_flags2' data-ref="_IO_FILE::_flags2">_flags2</dfn>;&nbsp</td></tr>
+<tr><th id="74">74</th><td>  <a class="typedef" href="../types.h.html#__off_t" title='__off_t' data-type='long' data-ref="__off_t">__off_t</a> <dfn class="decl field" id="_IO_FILE::_old_offset" title='_IO_FILE::_old_offset' data-ref="_IO_FILE::_old_offset">_old_offset</dfn>; <i>/* This used to be _offset but it's too small.  */</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td>&nbsp</td></tr>
+<tr><th id="76">76</th><td>  <i>/* 1+column number of pbase(); 0 is unknown. */</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td>  <em>unsigned</em> <em>short</em> <dfn class="decl field" id="_IO_FILE::_cur_column" title='_IO_FILE::_cur_column' data-ref="_IO_FILE::_cur_column">_cur_column</dfn>;&nbsp</td></tr>
+<tr><th id="78">78</th><td>  <em>signed</em> <em>char</em> <dfn class="decl field" id="_IO_FILE::_vtable_offset" title='_IO_FILE::_vtable_offset' data-ref="_IO_FILE::_vtable_offset">_vtable_offset</dfn>;&nbsp</td></tr>
+<tr><th id="79">79</th><td>  <em>char</em> <dfn class="decl field" id="_IO_FILE::_shortbuf" title='_IO_FILE::_shortbuf' data-ref="_IO_FILE::_shortbuf">_shortbuf</dfn>[<var>1</var>];&nbsp</td></tr>
+<tr><th id="80">80</th><td>&nbsp</td></tr>
+<tr><th id="81">81</th><td>  <a class="typedef" href="#_IO_lock_t" title='_IO_lock_t' data-type='void' data-ref="_IO_lock_t">_IO_lock_t</a> *<dfn class="decl field" id="_IO_FILE::_lock" title='_IO_FILE::_lock' data-ref="_IO_FILE::_lock">_lock</dfn>;&nbsp</td></tr>
+<tr><th id="82">82</th><td><u>#<span data-ppcond="82">ifdef</span> <span class="macro" data-ref="_M/_IO_USE_OLD_IO_FILE">_IO_USE_OLD_IO_FILE</span></u>&nbsp</td></tr>
+<tr><th id="83">83</th><td>};&nbsp</td></tr>
+<tr><th id="84">84</th><td>&nbsp</td></tr>
+<tr><th id="85">85</th><td><b>struct</b> _IO_FILE_complete&nbsp</td></tr>
+<tr><th id="86">86</th><td>{&nbsp</td></tr>
+<tr><th id="87">87</th><td>  <b>struct</b> _IO_FILE _file;&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#<span data-ppcond="82">endif</span></u>&nbsp</td></tr>
+<tr><th id="89">89</th><td>  <a class="typedef" href="../types.h.html#__off64_t" title='__off64_t' data-type='long' data-ref="__off64_t">__off64_t</a> <dfn class="decl field" id="_IO_FILE::_offset" title='_IO_FILE::_offset' data-ref="_IO_FILE::_offset">_offset</dfn>;&nbsp</td></tr>
+<tr><th id="90">90</th><td>  <i>/* Wide character stream stuff.  */</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td>  <b>struct</b> <a class="type" href="#_IO_codecvt" title='_IO_codecvt' data-ref="_IO_codecvt">_IO_codecvt</a> *<dfn class="decl field" id="_IO_FILE::_codecvt" title='_IO_FILE::_codecvt' data-ref="_IO_FILE::_codecvt">_codecvt</dfn>;&nbsp</td></tr>
+<tr><th id="92">92</th><td>  <b>struct</b> <a class="type" href="#_IO_wide_data" title='_IO_wide_data' data-ref="_IO_wide_data">_IO_wide_data</a> *<dfn class="decl field" id="_IO_FILE::_wide_data" title='_IO_FILE::_wide_data' data-ref="_IO_FILE::_wide_data">_wide_data</dfn>;&nbsp</td></tr>
+<tr><th id="93">93</th><td>  <b>struct</b> <a class="type" href="#_IO_FILE" title='_IO_FILE' data-ref="_IO_FILE">_IO_FILE</a> *<dfn class="decl field" id="_IO_FILE::_freeres_list" title='_IO_FILE::_freeres_list' data-ref="_IO_FILE::_freeres_list">_freeres_list</dfn>;&nbsp</td></tr>
+<tr><th id="94">94</th><td>  <em>void</em> *<dfn class="decl field" id="_IO_FILE::_freeres_buf" title='_IO_FILE::_freeres_buf' data-ref="_IO_FILE::_freeres_buf">_freeres_buf</dfn>;&nbsp</td></tr>
+<tr><th id="95">95</th><td>  <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl field" id="_IO_FILE::__pad5" title='_IO_FILE::__pad5' data-ref="_IO_FILE::__pad5">__pad5</dfn>;&nbsp</td></tr>
+<tr><th id="96">96</th><td>  <em>int</em> <dfn class="decl field" id="_IO_FILE::_mode" title='_IO_FILE::_mode' data-ref="_IO_FILE::_mode">_mode</dfn>;&nbsp</td></tr>
+<tr><th id="97">97</th><td>  <i>/* Make sure we don't get into trouble again.  */</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td>  <em>char</em> <dfn class="decl field" id="_IO_FILE::_unused2" title='_IO_FILE::_unused2' data-ref="_IO_FILE::_unused2">_unused2</dfn>[<var>15</var> * <b>sizeof</b> (<em>int</em>) - <var>4</var> * <b>sizeof</b> (<em>void</em> *) - <b>sizeof</b> (<span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span>)];&nbsp</td></tr>
+<tr><th id="99">99</th><td>};&nbsp</td></tr>
+<tr><th id="100">100</th><td>&nbsp</td></tr>
+<tr><th id="101">101</th><td><i>/* These macros are used by bits/stdio.h and internal headers.  */</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td><u>#define <dfn class="macro" id="_M/__getc_unlocked_body" data-ref="_M/__getc_unlocked_body">__getc_unlocked_body</dfn>(_fp)					\</u>&nbsp</td></tr>
+<tr><th id="103">103</th><td><u>  (__glibc_unlikely ((_fp)-&gt;_IO_read_ptr &gt;= (_fp)-&gt;_IO_read_end)	\</u>&nbsp</td></tr>
+<tr><th id="104">104</th><td><u>   ? __uflow (_fp) : *(unsigned char *) (_fp)-&gt;_IO_read_ptr++)</u>&nbsp</td></tr>
+<tr><th id="105">105</th><td>&nbsp</td></tr>
+<tr><th id="106">106</th><td><u>#define <dfn class="macro" id="_M/__putc_unlocked_body" data-ref="_M/__putc_unlocked_body">__putc_unlocked_body</dfn>(_ch, _fp)					\</u>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u>  (__glibc_unlikely ((_fp)-&gt;_IO_write_ptr &gt;= (_fp)-&gt;_IO_write_end)	\</u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u>   ? __overflow (_fp, (unsigned char) (_ch))				\</u>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>   : (unsigned char) (*(_fp)-&gt;_IO_write_ptr++ = (_ch)))</u>&nbsp</td></tr>
+<tr><th id="110">110</th><td>&nbsp</td></tr>
+<tr><th id="111">111</th><td><u>#define <dfn class="macro" id="_M/_IO_EOF_SEEN" data-ref="_M/_IO_EOF_SEEN">_IO_EOF_SEEN</dfn> 0x0010</u>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>#define <dfn class="macro" id="_M/__feof_unlocked_body" data-ref="_M/__feof_unlocked_body">__feof_unlocked_body</dfn>(_fp) (((_fp)-&gt;_flags &amp; _IO_EOF_SEEN) != 0)</u>&nbsp</td></tr>
+<tr><th id="113">113</th><td>&nbsp</td></tr>
+<tr><th id="114">114</th><td><u>#define <dfn class="macro" id="_M/_IO_ERR_SEEN" data-ref="_M/_IO_ERR_SEEN">_IO_ERR_SEEN</dfn> 0x0020</u>&nbsp</td></tr>
+<tr><th id="115">115</th><td><u>#define <dfn class="macro" id="_M/__ferror_unlocked_body" data-ref="_M/__ferror_unlocked_body">__ferror_unlocked_body</dfn>(_fp) (((_fp)-&gt;_flags &amp; _IO_ERR_SEEN) != 0)</u>&nbsp</td></tr>
+<tr><th id="116">116</th><td>&nbsp</td></tr>
+<tr><th id="117">117</th><td><u>#define <dfn class="macro" id="_M/_IO_USER_LOCK" data-ref="_M/_IO_USER_LOCK">_IO_USER_LOCK</dfn> 0x8000</u>&nbsp</td></tr>
+<tr><th id="118">118</th><td><i>/* Many more flag bits are defined internally.  */</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td>&nbsp</td></tr>
+<tr><th id="120">120</th><td><u>#<span data-ppcond="18">endif</span></u>&nbsp</td></tr>
+<tr><th id="121">121</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

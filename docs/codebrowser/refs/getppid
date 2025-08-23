@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='653' type='__pid_t getppid()'/>
+<doc f='include/unistd.h' l='652'>/* Get the process ID of the calling process&apos;s parent.  */</doc>

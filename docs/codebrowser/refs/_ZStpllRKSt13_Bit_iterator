@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='310' ll='312' type='std::_Bit_iterator::iterator std::operator+(std::iterator&lt;std::random_access_iterator_tag, bool&gt;::difference_type __n, const std::_Bit_iterator::iterator &amp; __x)'/>

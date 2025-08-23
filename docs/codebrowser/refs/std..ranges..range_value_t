@@ -1,0 +1,9 @@
+<use f='include/c++/11/bits/ranges_algo.h' l='1264'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2926'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2927' c='_ZNKSt6ranges8__min_fnclEOT_T1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2980'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2981' c='_ZNKSt6ranges8__max_fnclEOT_T1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3079'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3080' c='_ZNKSt6ranges11__minmax_fnclEOT_T1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3087' c='_ZNKSt6ranges11__minmax_fnclEOT_T1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3105' c='_ZNKSt6ranges11__minmax_fnclEOT_T1_T0_'/>

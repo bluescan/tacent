@@ -1,0 +1,8 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='303' u='c' c='_ZN9tColour3bC1Ehhhh'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='307' type='void tColour3b::Set(uint8 r, uint8 g, uint8 b)'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='219' u='c' c='_ZN6tImage13tPaletteImage3GetEP9tColour3b'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='343' u='c' c='_ZN6tImage14tQuantizeFixed13QuantizeImageEiiiPK9tColour4bP9tColour3bPhb'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='593' u='c' c='_ZN6tImage12tQuantizeNeu13QuantizeImageEiiiPK9tColour4bP9tColour3bPhbi'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='951' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour4bP9tColour3bPhbdi'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='513' u='c' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='564' u='c' c='_ZN6tImage11tQuantizeWu13QuantizeImageEiiiPK9tColour4bP9tColour3bPhb'/>

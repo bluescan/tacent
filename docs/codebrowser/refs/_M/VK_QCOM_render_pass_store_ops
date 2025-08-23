@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15349'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15348'>// VK_QCOM_render_pass_store_ops is a preprocessor guard. Do not pass it to API calls.</doc>

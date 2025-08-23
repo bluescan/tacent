@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/locale_classes.h' l='822' ll='852'/>
+<inh f='include/c++/11/bits/locale_classes.tcc' l='270' c='std::collate'/>
+<def f='include/c++/11/bits/locale_classes.tcc' l='271'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='271'/>
+<inh f='include/c++/11/bits/locale_classes.tcc' l='282' c='std::collate'/>
+<def f='include/c++/11/bits/locale_classes.tcc' l='283'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='283'/>
+<size>24</size>
+<fun r='_ZNSt7__cxx1114collate_bynameC1EPKcm'/>
+<fun r='_ZNSt7__cxx1114collate_bynameC1ERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<fun r='_ZNSt7__cxx1114collate_bynameD1Ev'/>

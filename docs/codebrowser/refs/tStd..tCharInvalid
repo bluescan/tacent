@@ -1,0 +1,14 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='60' type='const int'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='48'>// For character strings we support ASCII and full unicode via UTF-8. The CT (Compile-Time) strlen variant below can
+// compute the string length at compile-time for constant string literals. @todo Apparently in C++23 we will be getting
+// char8_t variants for a lot of the string functions. Until then the ASCII versions work quite well in most cases for
+// UTF-8 strings. For all these functions, char* represents an ASCII string while char8_t* a UTF-8 string. 
+// Note: Later on in this header are functions to convert strings between UTF-8, UTF-16, and UTF-32. When we talk about
+// UTF-16, we mean UTF-16 and not UCS2 -- it&apos;s the real deal. Look at the tUTF8, tUTF16, and tUTF32 functions for
+// straight UTF conversions (not null-terminated). String termination is not part of UTF, but it&apos;s common to support it.
+// Null-terminated versions of the functions have an &apos;s&apos; appended. The &apos;c&apos; versions are for dealing with individual
+// codepoints. Note these functions return exactly -1 if a &lt; b, 0 if equal, and 1 if a &gt; b. This is in contrast to the
+// standard strcmp functions that only guarantee returning &lt; 0, 0, or &gt; 0. That is, standard implementations are free to
+// return either the ASCII difference of the strings or normalize the returns to -1, 0, 1, but it&apos;s not helpful as you
+// can&apos;t be sure of which choice an implementation may have made.</doc>
+<use f='Modules/System/Src/tRegex.cpp' l='49' u='r'/>

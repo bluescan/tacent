@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='152' type='char * strncat(char *__restrict __dest, const char *__restrict __src, size_t __n)'/>
+<doc f='include/string.h' l='151'>/* Append no more than N characters from SRC onto DEST.  */</doc>

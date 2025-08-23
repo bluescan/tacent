@@ -1,0 +1,5 @@
+<dec f='include/c++/11/ext/concurrence.h' l='119' type='__gthread_mutex_t'/>
+<use f='include/c++/11/ext/concurrence.h' l='149' u='a' c='__gnu_cxx::__mutex::lock'/>
+<use f='include/c++/11/ext/concurrence.h' l='160' u='a' c='__gnu_cxx::__mutex::unlock'/>
+<use f='include/c++/11/ext/concurrence.h' l='167' u='a' c='__gnu_cxx::__mutex::gthread_mutex'/>
+<offset>0</offset>

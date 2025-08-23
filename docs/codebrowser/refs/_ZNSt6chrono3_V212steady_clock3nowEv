@@ -1,0 +1,13 @@
+<dec f='include/c++/11/chrono' l='1175' type='static std::chrono::steady_clock::time_point std::chrono::steady_clock::now()'/>
+<use f='include/c++/11/mutex' l='152' u='c' c='_ZNSt18__timed_mutex_impl15_M_try_lock_forERKNSt6chrono8durationITL0__TL0_0_EE'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='61' u='c' c='_ZNSt8__detail15__to_wait_clockERKNSt6chrono10time_pointIT_T0_EE'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='242' u='c' c='_ZNKSt8__detail27__timed_backoff_spin_policyclEv'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='358' u='c' c='_ZNSt8__detail14__timed_waiter16_M_do_wait_for_vETL0__TL0_0_RKNSt6chrono8durationITL0_1_TL0_2_EE'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='377' u='c' c='_ZNSt8__detail14__timed_waiter14_M_do_wait_forETL0__RKNSt6chrono8durationITL0_0_TL0_1_EE'/>
+<use f='include/c++/11/condition_variable' l='130' u='c' c='_ZNSt18condition_variable10wait_untilERSt11unique_lockISt5mutexERKNSt6chrono10time_pointIT_T0_EE'/>
+<use f='include/c++/11/condition_variable' l='164' u='c' c='_ZNSt18condition_variable8wait_forERSt11unique_lockISt5mutexERKNSt6chrono8durationIT_T0_EE'/>
+<use f='include/c++/11/condition_variable' l='176' u='c' c='_ZNSt18condition_variable8wait_forERSt11unique_lockISt5mutexERKNSt6chrono8durationIT_T0_EET1_'/>
+<use f='include/c++/11/condition_variable' l='203' u='c' c='_ZNSt18condition_variable17__wait_until_implERSt11unique_lockISt5mutexERKNSt6chrono10time_pointINS4_3_V212steady_clockET_EE'/>
+<use f='include/c++/11/condition_variable' l='355' u='c' c='_ZNSt3_V222condition_variable_any8wait_forERT_RKNSt6chrono8durationIT0_T1_EE'/>
+<use f='include/c++/11/condition_variable' l='362' u='c' c='_ZNSt3_V222condition_variable_any8wait_forERT_RKNSt6chrono8durationIT0_T1_EET2_'/>
+<use f='include/c++/11/condition_variable' l='434' u='c' c='_ZNSt3_V222condition_variable_any8wait_forERT_St10stop_tokenRKNSt6chrono8durationIT0_T1_EET2_'/>

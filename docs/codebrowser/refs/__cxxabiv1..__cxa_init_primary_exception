@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/cxxabi_init_exception.h' l='70' type='__cxxabiv1::__cxa_refcounted_exception * __cxxabiv1::__cxa_init_primary_exception(void * object, std::type_info * tinfo, void (*)(void *) dest)'/>
+<use f='include/c++/11/bits/exception_ptr.h' l='244' u='c' c='_ZSt18make_exception_ptrT_'/>
+<doc f='include/c++/11/bits/cxxabi_init_exception.h' l='68'>// Initialize exception (this is a GNU extension)</doc>

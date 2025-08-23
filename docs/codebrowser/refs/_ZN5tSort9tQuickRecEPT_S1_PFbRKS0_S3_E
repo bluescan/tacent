@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tSort.h' l='90' type='void tSort::tQuickRec(T * left, T * right, bool (*)(const T &amp;, const T &amp;) compare = tCompLess&lt;T&gt;)'/>
+<def f='Modules/Foundation/Inc/Foundation/tSort.h' l='94' ll='151' type='void tSort::tQuickRec(T * left, T * right, bool (*)(const T &amp;, const T &amp;) compare = tCompLess&lt;T&gt;)'/>

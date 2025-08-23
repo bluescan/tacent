@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/stl_pair.h' l='387' type='void std::pair::pair&lt;_T1, _T2&gt;(std::piecewise_construct_t , tuple&lt;_Args1...&gt; , tuple&lt;_Args2...&gt; )'/>
+<def f='include/c++/11/tuple' l='1800' ll='1810' type='void std::pair::pair&lt;_T1, _T2&gt;(std::piecewise_construct_t , tuple&lt;_Args1...&gt; __first, tuple&lt;_Args2...&gt; __second)'/>
+<doc f='include/c++/11/tuple' l='1792'>/** &quot;piecewise construction&quot; using a tuple of arguments for each member.
+   *
+   * @param __first Arguments for the first member of the pair.
+   * @param __second Arguments for the second member of the pair.
+   *
+   * The elements of each tuple will be used as the constructor arguments
+   * for the data members of the pair.
+  */</doc>

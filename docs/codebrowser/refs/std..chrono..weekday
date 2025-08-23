@@ -1,0 +1,62 @@
+<def f='include/c++/11/chrono' l='1706' ll='1825'/>
+<use f='include/c++/11/chrono' l='1711' c='_ZNSt6chrono7weekday12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1715' c='_ZNSt6chrono7weekday12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1728' c='_ZNSt6chrono7weekdayC1ERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='1733' c='_ZNSt6chrono7weekdayC1ERKNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='1736' c='_ZNSt6chrono7weekdayppEv'/>
+<use f='include/c++/11/chrono' l='1743' c='_ZNSt6chrono7weekdayppEi'/>
+<use f='include/c++/11/chrono' l='1751' c='_ZNSt6chrono7weekdaymmEv'/>
+<use f='include/c++/11/chrono' l='1758' c='_ZNSt6chrono7weekdaymmEi'/>
+<use f='include/c++/11/chrono' l='1766' c='_ZNSt6chrono7weekdaypLERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1773' c='_ZNSt6chrono7weekdaymIERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1799' c='_ZNSt6chronoeqERKNS_7weekdayES2_'/>
+<use f='include/c++/11/chrono' l='1799' c='_ZNSt6chronoeqERKNS_7weekdayES2_'/>
+<use f='include/c++/11/chrono' l='1802' c='_ZNSt6chronoplERKNS_7weekdayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1803' c='_ZNSt6chronoplERKNS_7weekdayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1806' c='_ZNSt6chronoplERKNS_7weekdayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1809' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl86400ELl1EEEERKNS_7weekdayE'/>
+<use f='include/c++/11/chrono' l='1810' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl86400ELl1EEEERKNS_7weekdayE'/>
+<use f='include/c++/11/chrono' l='1813' c='_ZNSt6chronomiERKNS_7weekdayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1814' c='_ZNSt6chronomiERKNS_7weekdayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1818' c='_ZNSt6chronomiERKNS_7weekdayES2_'/>
+<use f='include/c++/11/chrono' l='1818' c='_ZNSt6chronomiERKNS_7weekdayES2_'/>
+<use f='include/c++/11/chrono' l='1827'/>
+<use f='include/c++/11/chrono' l='1828'/>
+<use f='include/c++/11/chrono' l='1829'/>
+<use f='include/c++/11/chrono' l='1830'/>
+<use f='include/c++/11/chrono' l='1831'/>
+<use f='include/c++/11/chrono' l='1832'/>
+<use f='include/c++/11/chrono' l='1833'/>
+<use f='include/c++/11/chrono' l='1840'/>
+<use f='include/c++/11/chrono' l='1847' c='_ZNSt6chrono15weekday_indexedC1ERKNS_7weekdayEj'/>
+<use f='include/c++/11/chrono' l='1851' c='_ZNKSt6chrono15weekday_indexed7weekdayEv'/>
+<use f='include/c++/11/chrono' l='1894'/>
+<use f='include/c++/11/chrono' l='1898' c='_ZNSt6chrono12weekday_lastC1ERKNS_7weekdayE'/>
+<use f='include/c++/11/chrono' l='1902' c='_ZNKSt6chrono12weekday_last7weekdayEv'/>
+<use f='include/c++/11/chrono' l='2730' c='_ZNSt6chrono18year_month_weekday16_S_from_sys_daysERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2792' c='_ZNKSt6chrono18year_month_weekday7weekdayEv'/>
+<use f='include/c++/11/chrono' l='2808' c='_ZNKSt6chrono18year_month_weekdaycvNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2824' c='_ZNKSt6chrono18year_month_weekday2okEv'/>
+<use f='include/c++/11/chrono' l='2947' c='_ZNKSt6chrono23year_month_weekday_last7weekdayEv'/>
+<use f='include/c++/11/chrono' l='2959' c='_ZNKSt6chrono23year_month_weekday_lastcvNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<size>1</size>
+<doc f='include/c++/11/chrono' l='1704'>// WEEKDAY</doc>
+<mbr r='std::chrono::weekday::_M_wd' o='0' t='unsigned char'/>
+<fun r='_ZNSt6chrono7weekday12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<fun r='_ZNSt6chrono7weekdayC1Ev'/>
+<fun r='_ZNSt6chrono7weekdayC1Ej'/>
+<fun r='_ZNSt6chrono7weekdayC1ERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<fun r='_ZNSt6chrono7weekdayC1ERKNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<fun r='_ZNSt6chrono7weekdayppEv'/>
+<fun r='_ZNSt6chrono7weekdayppEi'/>
+<fun r='_ZNSt6chrono7weekdaymmEv'/>
+<fun r='_ZNSt6chrono7weekdaymmEi'/>
+<fun r='_ZNSt6chrono7weekdaypLERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<fun r='_ZNSt6chrono7weekdaymIERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<fun r='_ZNKSt6chrono7weekday10c_encodingEv'/>
+<fun r='_ZNKSt6chrono7weekday12iso_encodingEv'/>
+<fun r='_ZNKSt6chrono7weekday2okEv'/>
+<fun r='_ZNKSt6chrono7weekdayixEj'/>
+<fun r='_ZNKSt6chrono7weekdayixENS_9last_specE'/>
+<fun r='_ZNKSt6chrono7weekdayixEj'/>
+<fun r='_ZNKSt6chrono7weekdayixENS_9last_specE'/>

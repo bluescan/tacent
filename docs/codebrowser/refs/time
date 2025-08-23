@@ -1,0 +1,4 @@
+<dec f='include/time.h' l='76' type='time_t time(time_t * __timer)'/>
+<doc f='include/time.h' l='75'>/* Return the current time and put it in *TIMER if TIMER is not NULL.  */</doc>
+<use f='Modules/System/Src/tTime.cpp' l='72' u='c' c='_ZN7tSystem11tGetTimeUTCEv'/>
+<use f='Modules/System/Src/tTime.cpp' l='85' u='c' c='_ZN7tSystem13tGetTimeLocalEv'/>

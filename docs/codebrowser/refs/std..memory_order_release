@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/atomic_base.h' l='74' type='const std::memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='114' u='r' c='_ZSt24__cmpexch_failure_order2St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='127' u='r' c='_ZSt32__is_valid_cmpexch_failure_orderSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='485' u='r' c='_ZNKSt13__atomic_base4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='496' u='r' c='_ZNVKSt13__atomic_base4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='817' u='r' c='_ZNKSt13__atomic_baseIPT_E4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='828' u='r' c='_ZNVKSt13__atomic_baseIPT_E4loadESt12memory_order'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='254' u='r' c='_ZNSt18__atomic_semaphore10_M_releaseEl'/>

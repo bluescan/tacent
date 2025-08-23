@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='342' ll='428'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='430'/>
+<size>1</size>
+<doc f='include/c++/11/bits/ranges_algo.h' l='340'>// in_in_result, mismatch and search are defined in &lt;bits/ranges_util.h&gt;.</doc>
+<fun r='_ZNKSt6ranges13__search_n_fnclET_T0_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS7_EE4type15difference_typeERKT1_T2_T3_'/>
+<fun r='_ZNKSt6ranges13__search_n_fnclEOT_NSt8__detail18__iter_traits_implINSt12remove_cvrefIDTclsr6ranges13__cust_accessE7__beginclsr3stdE7declvalIRS1_EEEEE411468084'/>

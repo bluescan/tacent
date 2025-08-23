@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/localefwd.h' l='104' type='bool std::isalnum(_CharT , const std::locale &amp; )'/>
+<def f='include/c++/11/bits/locale_facets.h' l='2649' ll='2651' type='bool std::isalnum(_CharT __c, const std::locale &amp; __loc)'/>

@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='335' type='tItList::Iter tItList::Last() const'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='441' u='c' c='_ZNK5tMath12tIntervalSet3GetER7tStringNS_12tIntervalRepENS_15tIntervalSetRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='480' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>

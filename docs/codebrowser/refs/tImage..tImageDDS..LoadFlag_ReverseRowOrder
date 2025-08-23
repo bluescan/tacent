@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tImageDDS.h' l='36' type='2'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='50' u='r'/>
+<doc f='Modules/Image/Inc/Image/tImageDDS.h' l='36'>// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1288' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='55' u='r' c='_ZN6tImage8tTexture4LoadERK7tStringNS_10tFaceIndexEb'/>

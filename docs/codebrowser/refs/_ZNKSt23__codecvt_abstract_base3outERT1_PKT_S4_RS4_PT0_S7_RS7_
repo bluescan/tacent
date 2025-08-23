@@ -1,0 +1,37 @@
+<def f='include/c++/11/bits/codecvt.h' l='118' ll='126' type='std::__codecvt_abstract_base::result std::__codecvt_abstract_base::out(std::__codecvt_abstract_base::state_type &amp; __state, const std::__codecvt_abstract_base::intern_type * __from, const std::__codecvt_abstract_base::intern_type * __from_end, const std::__codecvt_abstract_base::intern_type *&amp; __from_next, std::__codecvt_abstract_base::extern_type * __to, std::__codecvt_abstract_base::extern_type * __to_end, std::__codecvt_abstract_base::extern_type *&amp; __to_next) const'/>
+<doc f='include/c++/11/bits/codecvt.h' l='82'>/**
+       *  @brief  Convert from internal to external character set.
+       *
+       *  Converts input string of intern_type to output string of
+       *  extern_type.  This is analogous to wcsrtombs.  It does this by
+       *  calling codecvt::do_out.
+       *
+       *  The source and destination character sets are determined by the
+       *  facet&apos;s locale, internal and external types.
+       *
+       *  The characters in [from,from_end) are converted and written to
+       *  [to,to_end).  from_next and to_next are set to point to the
+       *  character following the last successfully converted character,
+       *  respectively.  If the result needed no conversion, from_next and
+       *  to_next are not affected.
+       *
+       *  The @a state argument should be initialized if the input is at the
+       *  beginning and carried from a previous call if continuing
+       *  conversion.  There are no guarantees about how @a state is used.
+       *
+       *  The result returned is a member of codecvt_base::result.  If
+       *  all the input is converted, returns codecvt_base::ok.  If no
+       *  conversion is necessary, returns codecvt_base::noconv.  If
+       *  the input ends early or there is insufficient space in the
+       *  output, returns codecvt_base::partial.  Otherwise the
+       *  conversion failed and codecvt_base::error is returned.
+       *
+       *  @param  __state  Persistent conversion state data.
+       *  @param  __from  Start of input.
+       *  @param  __from_end  End of input.
+       *  @param  __from_next  Returns start of unconverted data.
+       *  @param  __to  Start of output buffer.
+       *  @param  __to_end  End of output buffer.
+       *  @param  __to_next  Returns start of unused output area.
+       *  @return  codecvt_base::result.
+      */</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10502'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10501'>// VK_KHR_ray_tracing_maintenance1 is a preprocessor guard. Do not pass it to API calls.</doc>

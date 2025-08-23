@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/random.h' l='645' type='void std::mersenne_twister_engine::_M_gen_rand()'/>
+<def f='include/c++/11/bits/random.tcc' l='388' ll='422' type='void std::mersenne_twister_engine::_M_gen_rand()'/>
+<use f='include/c++/11/bits/random.tcc' l='437' u='c' c='_ZNSt23mersenne_twister_engine7discardEy'/>
+<use f='include/c++/11/bits/random.tcc' l='456' u='c' c='_ZNSt23mersenne_twister_engineclEv'/>

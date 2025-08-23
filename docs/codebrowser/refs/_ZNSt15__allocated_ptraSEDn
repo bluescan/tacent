@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/allocated_ptr.h' l='78' ll='83' type='__allocated_ptr&lt;_Alloc&gt; &amp; std::__allocated_ptr::operator=(std::nullptr_t )'/>
+<doc f='include/c++/11/bits/allocated_ptr.h' l='77'>/// Release ownership of the owned pointer</doc>

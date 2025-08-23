@@ -1,0 +1,4 @@
+<def f='Modules/Image/Inc/Image/tImageTGA.h' l='98' ll='102'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='112'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='118' c='_ZNK6tImage9tImageTGA4SaveERK7tStringNS0_7tFormatENS0_12tCompressionE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='364' c='_ZNK6tImage9tImageTGA4SaveERK7tStringNS0_7tFormatENS0_12tCompressionE'/>

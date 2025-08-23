@@ -1,0 +1,3 @@
+<dec f='include/linux/stat.h' l='107' type='__u32'/>
+<offset>192</offset>
+<doc f='include/linux/stat.h' l='107'>/* Group ID of owner */</doc>

@@ -1,0 +1,13 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='100' type='int tSystem::tPrint(const char * string, tFileHandle )'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='93'>// This is a non-formatting print. Just prints the string you give it to the supplied FileHandle. If the supplied
+	// FileHandle is set to 0 then stdout is used. When stdout is the destination this function performs filtering on
+	// the characters that are printed. On some platforms there are unprintable stdout characters that this function
+	// will skip. If FileHandle is 0 and an OutputCallback is specified the callback is called without any filtering.
+	// Returns the actual number of characters printed which, therefore, may be less than the string length. No
+	// filtering is done if FileHandle is non-zero. Note that this return value is NOT used by other functions in this
+	// header like tPrintf due to the filtering. Not that this function ignores output channels.</doc>
+<use f='Modules/System/Src/tPrint.cpp' l='236' u='c' c='_ZN7tSystem6tPrintEPKcy'/>
+<def f='Modules/System/Src/tPrint.cpp' l='240' ll='299' type='int tSystem::tPrint(const char * text, tFileHandle fileHandle)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='659' u='c' c='_Z9tfvPrintfP8_IO_FILEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='680' u='c' c='_Z10ttfvPrintfP8_IO_FILEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='686' u='c' c='_Z10ttfvPrintfP8_IO_FILEPKcP13__va_list_tag'/>

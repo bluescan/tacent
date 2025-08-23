@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='401' type='int pthread_attr_getaffinity_np(const pthread_attr_t * __attr, size_t __cpusetsize, cpu_set_t * __cpuset)'/>
+<doc f='include/pthread.h' l='399'>/* Get bit set in CPUSET representing the processors threads created with
+   ATTR can run on.  */</doc>

@@ -1,0 +1,20 @@
+<inh f='Modules/Foundation/Inc/Foundation/tList.h' l='37' c='tLink'/>
+<def f='Modules/System/Inc/System/tScript.h' l='373' ll='385'/>
+<use f='Modules/System/Inc/System/tScript.h' l='373'/>
+<use f='Modules/System/Inc/System/tScript.h' l='380' c='_ZN14tFunExpressionC1EPKc'/>
+<use f='Modules/System/Inc/System/tScript.h' l='395' c='_ZN10tFunScript5ClearEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='399' c='_ZNK10tFunScript5FirstEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='400' c='_ZNK10tFunScript4LastEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='403'/>
+<size>96</size>
+<doc f='Modules/System/Inc/System/tScript.h' l='372'>// A tFunExpression takes the form FunctionName(Arg1, Arg2, Arg3...)</doc>
+<fun r='_ZN14tFunExpressionC1Ev'/>
+<fun r='_ZN14tFunExpressionC1EPKDu'/>
+<fun r='_ZN14tFunExpressionC1EPKc'/>
+<fun r='_ZN14tFunExpressionD1Ev'/>
+<mbr r='tFunExpression::Function' o='192' t='tString'/>
+<mbr r='tFunExpression::Arguments' o='448' t='tList&lt;tStringItem&gt;'/>
+<use f='Modules/System/Src/tScript.cpp' l='1149' c='_ZN10tFunScript4LoadERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='1182' c='_ZN10tFunScript4SaveERK7tString'/>
+<size>96</size>
+<fun r='_ZN14tFunExpressionC1EPKDu'/>

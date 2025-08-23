@@ -1,0 +1,8 @@
+<dec f='include/c++/11/chrono' l='1303' type='unsigned char'/>
+<use f='include/c++/11/chrono' l='1310' u='w' c='_ZNSt6chrono3dayC1Ej'/>
+<use f='include/c++/11/chrono' l='1316' u='w' c='_ZNSt6chrono3dayppEv'/>
+<use f='include/c++/11/chrono' l='1331' u='w' c='_ZNSt6chrono3daymmEv'/>
+<use f='include/c++/11/chrono' l='1359' u='r' c='_ZNKSt6chrono3daycvjEv'/>
+<use f='include/c++/11/chrono' l='1363' u='r' c='_ZNKSt6chrono3day2okEv'/>
+<use f='include/c++/11/chrono' l='1363' u='r' c='_ZNKSt6chrono3day2okEv'/>
+<offset>0</offset>

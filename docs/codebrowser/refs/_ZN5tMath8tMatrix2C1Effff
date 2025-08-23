@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tMatrix2.h' l='29' type='void tMath::tMatrix2::tMatrix2(float a11, float a21, float a12, float a22)'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='60' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='61' u='c'/>

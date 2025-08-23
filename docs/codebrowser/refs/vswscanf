@@ -1,0 +1,3 @@
+<dec f='include/wchar.h' l='700' type='int vswscanf(const wchar_t *__restrict __s, const wchar_t *__restrict __format, __va_list_tag * __arg)'/>
+<dec f='include/wchar.h' l='718' type='int vswscanf(const wchar_t *__restrict __s, const wchar_t *__restrict __format, __va_list_tag * __arg)'/>
+<doc f='include/wchar.h' l='699'>/* Read formatted input from S into argument list ARG.  */</doc>

@@ -1,0 +1,5 @@
+<dec f='include/pthread.h' l='211' type='void pthread_exit(void * __retval)'/>
+<doc f='include/pthread.h' l='207'>/* Terminate calling thread.
+
+   The registered cleanup handlers are called via exception handling
+   so we cannot mark this function with __THROW.*/</doc>

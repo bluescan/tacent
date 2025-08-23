@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/node_handle.h' l='381' ll='386'/>
+<use f='include/c++/11/bits/hashtable.h' l='388'/>
+<mbr r='std::_Node_insert_return::position' t='_Iterator'/>
+<mbr r='std::_Node_insert_return::inserted' t='bool'/>
+<mbr r='std::_Node_insert_return::node' t='_NodeHandle'/>

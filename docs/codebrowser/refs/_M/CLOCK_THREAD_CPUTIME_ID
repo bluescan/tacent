@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/time.h' l='52'/>
+<doc f='include/x86_64-linux-gnu/bits/time.h' l='51'>/* Thread-specific CPU-time clock.  */</doc>

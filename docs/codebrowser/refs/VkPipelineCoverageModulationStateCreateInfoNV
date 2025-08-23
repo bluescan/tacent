@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12712' ll='12720'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12712'/>
+<size>40</size>
+<mbr r='VkPipelineCoverageModulationStateCreateInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineCoverageModulationStateCreateInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineCoverageModulationStateCreateInfoNV::flags' o='128' t='VkPipelineCoverageModulationStateCreateFlagsNV'/>
+<mbr r='VkPipelineCoverageModulationStateCreateInfoNV::coverageModulationMode' o='160' t='VkCoverageModulationModeNV'/>
+<mbr r='VkPipelineCoverageModulationStateCreateInfoNV::coverageModulationTableEnable' o='192' t='VkBool32'/>
+<mbr r='VkPipelineCoverageModulationStateCreateInfoNV::coverageModulationTableCount' o='224' t='uint32_t'/>
+<mbr r='VkPipelineCoverageModulationStateCreateInfoNV::pCoverageModulationTable' o='256' t='const float *'/>

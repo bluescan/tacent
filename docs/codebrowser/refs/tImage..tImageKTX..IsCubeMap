@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageKTX.cpp' l='556' u='w' c='_ZN6tImage9tImageKTX5ClearEv'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='824' u='w' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

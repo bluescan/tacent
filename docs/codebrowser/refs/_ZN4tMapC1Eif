@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tQuantize.cpp' l='69' u='c' c='_ZN6tImage9tQuantize18QuantizeImageExactEiiiPK9tColour3bPS1_Ph'/>
+<use f='Modules/Input/Src/tControllerDefinitions.cpp' l='25' u='c'/>

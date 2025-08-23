@@ -1,0 +1,10 @@
+<dec f='include/c++/11/chrono' l='2724' type='chrono::weekday_indexed'/>
+<use f='include/c++/11/chrono' l='2741' u='w' c='_ZNSt6chrono18year_month_weekdayC1ERKNS_4yearERKNS_5monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='2794' u='m' c='_ZNKSt6chrono18year_month_weekday7weekdayEv'/>
+<use f='include/c++/11/chrono' l='2798' u='m' c='_ZNKSt6chrono18year_month_weekday5indexEv'/>
+<use f='include/c++/11/chrono' l='2802' u='r' c='_ZNKSt6chrono18year_month_weekday15weekday_indexedEv'/>
+<use f='include/c++/11/chrono' l='2819' u='m' c='_ZNKSt6chrono18year_month_weekday2okEv'/>
+<use f='include/c++/11/chrono' l='2821' u='m' c='_ZNKSt6chrono18year_month_weekday2okEv'/>
+<use f='include/c++/11/chrono' l='2823' u='m' c='_ZNKSt6chrono18year_month_weekday2okEv'/>
+<use f='include/c++/11/chrono' l='2825' u='m' c='_ZNKSt6chrono18year_month_weekday2okEv'/>
+<offset>24</offset>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='35'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='34'>/* Synchronizing file data is supported.  */</doc>

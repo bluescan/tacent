@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/siginfo-consts.h' l='127' type='4'/>
+<doc f='include/x86_64-linux-gnu/bits/siginfo-consts.h' l='127'>/* Protection key checking failure.  */</doc>

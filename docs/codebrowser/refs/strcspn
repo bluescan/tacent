@@ -1,0 +1,3 @@
+<dec f='include/string.h' l='293' type='size_t strcspn(const char * __s, const char * __reject)'/>
+<doc f='include/string.h' l='291'>/* Return the length of the initial segment of S which
+   consists entirely of characters not in REJECT.  */</doc>

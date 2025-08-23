@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='44'/>
+<doc f='include/stdlib.h' l='43'>/* Define the macros &lt;sys/wait.h&gt; also would define this way.  */</doc>

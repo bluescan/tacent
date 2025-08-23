@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5580' ll='5584'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5580'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceExternalSemaphoreInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceExternalSemaphoreInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkPhysicalDeviceExternalSemaphoreInfo::handleType' o='128' t='VkExternalSemaphoreHandleTypeFlagBits'/>

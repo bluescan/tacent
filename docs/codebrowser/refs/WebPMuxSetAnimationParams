@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='299' type='WebPMuxError WebPMuxSetAnimationParams(WebPMux * mux, const WebPMuxAnimParams * params)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='363' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>

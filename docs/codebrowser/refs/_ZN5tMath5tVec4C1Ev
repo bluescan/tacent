@@ -1,0 +1,4 @@
+<use f='Modules/Math/Inc/Math/tVector4.h' l='94' u='c' c='_ZNK5tMath8tVector4rmERKNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='145' u='c' c='_ZNK5tMath8tMatrix4mlERKNS_5tVec4E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='361' u='c' c='_ZN12tChunkWriter5WriteERKN5tMath8tVector4E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='523' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath8tVector4Ei'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='211' type='-1'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='210'>// Shorter synonyms.</doc>
+<use f='Modules/Math/Src/tColour.cpp' l='131' u='r' c='_Z15tGetChannelTypePKc'/>
+<use f='Modules/Math/Src/tColour.cpp' l='141' u='r' c='_Z15tGetChannelTypePKc'/>

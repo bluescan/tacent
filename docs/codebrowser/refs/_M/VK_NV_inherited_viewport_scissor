@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15026'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15025'>// VK_NV_inherited_viewport_scissor is a preprocessor guard. Do not pass it to API calls.</doc>

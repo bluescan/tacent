@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='211' type='67'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='211'>// 128 bits per 80  pixels. 1.6  bpp. LDR UNORM.</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='60' u='r' c='_ZN6tImage5tASTC28GetFormatFromBlockDimensionsEii'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='688' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='689' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='690' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='161' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='162' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='494' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='495' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='440' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1098' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

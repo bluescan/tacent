@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/basic_string.h' l='425' type='void std::basic_string::_M_mutate(std::basic_string::size_type __pos, std::basic_string::size_type __len1, const _CharT * __s, std::basic_string::size_type __len2)'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='298' ll='320' type='void std::basic_string::_M_mutate(std::basic_string::size_type __pos, std::basic_string::size_type __len1, const _CharT * __s, std::basic_string::size_type __len2)'/>

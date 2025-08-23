@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/random.h' l='3804' u='w' c='_ZNSt21binomial_distributionC1ET_d'/>
+<use f='include/c++/11/bits/random.h' l='3809' u='w' c='_ZNSt21binomial_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3817' u='m' c='_ZNSt21binomial_distribution5resetEv'/>
+<dec f='include/c++/11/bits/random.h' l='3959' type='std::normal_distribution&lt;double&gt;'/>
+<use f='include/c++/11/bits/random.tcc' l='1598' u='c' c='_ZNSt21binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1610' u='c' c='_ZNSt21binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<doc f='include/c++/11/bits/random.h' l='3958'>// NB: Unused when _GLIBCXX_USE_C99_MATH_TR1 is undefined.</doc>

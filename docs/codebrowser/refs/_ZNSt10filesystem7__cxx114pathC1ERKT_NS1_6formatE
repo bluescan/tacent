@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/fs_path.h' l='288' ll='290' type='void std::filesystem::path::path(const _Source &amp; __source, std::filesystem::path::format  = auto_format)'/>
+<use f='Modules/System/Src/tFile.cpp' l='514' u='c' c='_ZN7tSystem10tDirExistsERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='934' u='c' c='_ZN7tSystem9tCopyFileERK7tStringS2_b'/>
+<use f='Modules/System/Src/tFile.cpp' l='935' u='c' c='_ZN7tSystem9tCopyFileERK7tStringS2_b'/>
+<use f='Modules/System/Src/tFile.cpp' l='971' u='c' c='_ZN7tSystem11tRenameFileERK7tStringS2_S2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='975' u='c' c='_ZN7tSystem11tRenameFileERK7tStringS2_S2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='1161' u='c' c='_ZN7tSystem11tDeleteFileERK7tStringbb'/>
+<use f='Modules/System/Src/tFile.cpp' l='1170' u='c' c='_ZN7tSystem11tDeleteFileERK7tStringbb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2460' u='c' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2599' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2870' u='c' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2973' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3129' u='c' c='_ZN7tSystem10tCreateDirERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='3144' u='c' c='_ZN7tSystem11tCreateDirsERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='3248' u='c' c='_ZN7tSystem10tDeleteDirERK7tStringb'/>

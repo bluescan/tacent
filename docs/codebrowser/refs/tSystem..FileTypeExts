@@ -1,0 +1,7 @@
+<def f='Modules/System/Src/tFile.cpp' l='60' ll='64'/>
+<use f='Modules/System/Src/tFile.cpp' l='67'/>
+<use f='Modules/System/Src/tFile.cpp' l='1871'/>
+<use f='Modules/System/Src/tFile.cpp' l='1947' c='_ZN7tSystem14tGetExtensionsER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1959' c='_ZN7tSystem13tGetExtensionER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1970' c='_ZN7tSystem13tGetExtensionENS_9tFileTypeE'/>
+<size>32</size>

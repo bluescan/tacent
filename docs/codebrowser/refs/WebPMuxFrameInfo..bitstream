@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='200' type='WebPData'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='410' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='200'>// image data: can be a raw VP8/VP8L bitstream</doc>

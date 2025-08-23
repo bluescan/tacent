@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='91' type='void tSystem::tSetSupplementaryDebuggerOutput(bool enable = true)'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='88'>// Windows only. Sets supplementary output to include any attached debugger. Defaults to true. Only output
+	// normally destined to stdout will also be sent to the debugger. If a StdoutRedirectCallback is set, it will
+	// still be called regardless of what you call SetSupplementaryDebuggerOutput with.</doc>
+<def f='Modules/System/Src/tPrint.cpp' l='225' ll='228' type='void tSystem::tSetSupplementaryDebuggerOutput(bool enable = true)'/>

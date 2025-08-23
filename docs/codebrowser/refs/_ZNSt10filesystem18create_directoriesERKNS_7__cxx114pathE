@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/fs_ops.h' l='87' type='bool std::filesystem::create_directories(const std::filesystem::path &amp; __p)'/>
+<use f='Modules/System/Src/tFile.cpp' l='3144' u='c' c='_ZN7tSystem11tCreateDirsERK7tString'/>

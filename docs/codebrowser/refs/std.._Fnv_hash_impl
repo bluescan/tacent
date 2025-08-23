@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/functional_hash.h' l='212' ll='228'/>
+<size>1</size>
+<doc f='include/c++/11/bits/functional_hash.h' l='211'>// A hash function similar to FNV-1a (see PR59406 for how it differs).</doc>
+<fun r='_ZNSt14_Fnv_hash_impl4hashEPKvmm'/>
+<fun r='_ZNSt14_Fnv_hash_impl4hashERKT_'/>
+<fun r='_ZNSt14_Fnv_hash_impl14__hash_combineERKT_m'/>

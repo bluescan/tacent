@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unordered_map.h' l='437' ll='439' type='std::unordered_map::insert_return_type std::unordered_map::insert(std::unordered_map::node_type &amp;&amp; __nh)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='436'>/// Re-insert an extracted node.</doc>

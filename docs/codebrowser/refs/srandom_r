@@ -1,0 +1,1 @@
+<dec f='include/stdlib.h' l='438' type='int srandom_r(unsigned int __seed, struct random_data * __buf)'/>

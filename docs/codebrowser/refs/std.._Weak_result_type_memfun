@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/refwrap.h' l='155' ll='157'/>
+<def f='include/c++/11/bits/refwrap.h' l='160' ll='164'/>
+<def f='include/c++/11/bits/refwrap.h' l='167' ll='169'/>
+<use f='include/c++/11/bits/refwrap.h' l='177'/>
+<doc f='include/c++/11/bits/refwrap.h' l='159'>// A pointer to member function has a weak result type.</doc>
+<doc f='include/c++/11/bits/refwrap.h' l='166'>// A pointer to data member doesn&apos;t have a weak result type.</doc>

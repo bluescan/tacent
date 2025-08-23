@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImagePVR.cpp' l='909' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImagePVR.cpp' l='1229' ll='1275' type='bool tImage::tImagePVR::ParseMetaData(const uint8 * metaData, int metaDataSize)'/>

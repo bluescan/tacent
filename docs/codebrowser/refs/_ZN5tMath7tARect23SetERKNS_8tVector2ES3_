@@ -1,0 +1,2 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='143' u='c' c='_ZN5tMath7tARect2C1ERKNS_8tVector2ES3_'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='149' type='void tMath::tARect2::Set(const tMath::tVector2 &amp; min, const tMath::tVector2 &amp; max)'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='309' type='bool TinyEXIF::EXIFInfo::GPano_t::hasPosePitchDegrees() const'/>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='309'>// Return true if PosePitchDegrees is available</doc>

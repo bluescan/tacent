@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6067' ll='6079'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6067'/>
+<size>56</size>
+<mbr r='VkAttachmentDescription2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkAttachmentDescription2::pNext' o='64' t='const void *'/>
+<mbr r='VkAttachmentDescription2::flags' o='128' t='VkAttachmentDescriptionFlags'/>
+<mbr r='VkAttachmentDescription2::format' o='160' t='VkFormat'/>
+<mbr r='VkAttachmentDescription2::samples' o='192' t='VkSampleCountFlagBits'/>
+<mbr r='VkAttachmentDescription2::loadOp' o='224' t='VkAttachmentLoadOp'/>
+<mbr r='VkAttachmentDescription2::storeOp' o='256' t='VkAttachmentStoreOp'/>
+<mbr r='VkAttachmentDescription2::stencilLoadOp' o='288' t='VkAttachmentLoadOp'/>
+<mbr r='VkAttachmentDescription2::stencilStoreOp' o='320' t='VkAttachmentStoreOp'/>
+<mbr r='VkAttachmentDescription2::initialLayout' o='352' t='VkImageLayout'/>
+<mbr r='VkAttachmentDescription2::finalLayout' o='384' t='VkImageLayout'/>

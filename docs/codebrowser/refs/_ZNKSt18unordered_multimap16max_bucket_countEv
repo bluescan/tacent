@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1910' ll='1912' type='std::unordered_multimap::size_type std::unordered_multimap::max_bucket_count() const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1909'>/// Returns the maximum number of buckets of the %unordered_multimap.</doc>

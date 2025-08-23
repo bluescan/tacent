@@ -1,0 +1,42 @@
+_ZSt9iter_moveRKSt16reverse_iteratorIT_E|std::iter_move
+_ZSt9iter_swapRKSt16reverse_iteratorIT_ERKS_ITL0__E|std::iter_swap
+_ZN7tItList4Iter5ClearEv|tItList::Iter::Clear
+_ZNK7tItList4Iter9GetObjectEv|tItList::Iter::GetObject
+_ZNK7tItList4Iter7IsValidEv|tItList::Iter::IsValid
+_ZN7tItList4IterC1Ev|tItList::Iter::Iter
+_ZN7tItList4Iter4NextEv|tItList::Iter::Next
+_ZN7tItList4Iter8NextCircEv|tItList::Iter::NextCirc
+_ZN7tItList4Iter4PrevEv|tItList::Iter::Prev
+_ZN7tItList4Iter8PrevCircEv|tItList::Iter::PrevCirc
+_ZNK7tItList4ItercvbEv|tItList::Iter::operator bool
+_ZNK7tItList4ItercvPKT_Ev|tItList::Iter::operator const type-parameter-0-0 *
+_ZN7tItList4ItercvPT_Ev|tItList::Iter::operator type-parameter-0-0 *
+_ZNK7tItList4IterneERKS0_|tItList::Iter::operator!=
+_ZNK7tItList4IterdeEv|tItList::Iter::operator*
+_ZNK7tItList4IterplEi|tItList::Iter::operator+
+_ZN7tItList4IterppEi|tItList::Iter::operator++
+_ZN7tItList4IterpLEi|tItList::Iter::operator+=
+_ZNK7tItList4ItermiEi|tItList::Iter::operator-
+_ZN7tItList4ItermmEi|tItList::Iter::operator--
+_ZN7tItList4ItermIEi|tItList::Iter::operator-=
+_ZN7tItList4IteraSERKS0_|tItList::Iter::operator=
+_ZNK7tItList4ItereqERKS0_|tItList::Iter::operator==
+_ZNK7tItList8IterNode3GetEv|tItList::IterNode::Get
+_ZN7tItList8IterNodeC1EPKT_|tItList::IterNode::IterNode
+_ZNK6tChunk11ItemAdvanceEi|tChunk::ItemAdvance
+_ZNK6tChunk9ItemResetEv|tChunk::ItemReset
+_ZNK11tExpression5Item0Ev|tExpression::Item0
+_ZNK11tExpression5Item1Ev|tExpression::Item1
+_ZNK11tExpression5Item2Ev|tExpression::Item2
+_ZNK11tExpression5Item3Ev|tExpression::Item3
+_ZNK11tExpression5Item4Ev|tExpression::Item4
+_ZNK11tExpression5Item5Ev|tExpression::Item5
+_ZNK11tExpression5Item6Ev|tExpression::Item6
+_ZNK11tExpression5ItemNEi|tExpression::ItemN
+_ZNKSt10filesystem7__cxx114path8iterator9_M_equalsES2_|std::filesystem::path::iterator::_M_equals
+_ZNKSt10filesystem7__cxx114path8iterator11_M_is_multiEv|std::filesystem::path::iterator::_M_is_multi
+_ZNSt10filesystem7__cxx114path8iteratorC1Ev|std::filesystem::path::iterator::iterator
+_ZNKSt10filesystem7__cxx114path8iteratordeEv|std::filesystem::path::iterator::operator*
+_ZNSt10filesystem7__cxx114path8iteratorppEi|std::filesystem::path::iterator::operator++
+_ZNSt10filesystem7__cxx114path8iteratormmEi|std::filesystem::path::iterator::operator--
+_ZNSt10filesystem7__cxx114path8iteratoraSERKS2_|std::filesystem::path::iterator::operator=

@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='121' type='1'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='132'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='121'>// No ASTC profile equivalent.				      The LDR gRGB colour profile.</doc>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1124' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1080' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='224' type='tString tString::ExtractRight(int count)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='222'>// Returns a tString of the last count chars. Removes these from the current string. If count &gt; length then what&apos;s
+	// available is extracted.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='230' ll='251' type='tString tString::ExtractRight(int count)'/>

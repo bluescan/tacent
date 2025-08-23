@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='3038' ll='3054'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3046' c='_ZNKRSt6ranges14min_max_resultcvNS_14min_max_resultITL0__EEEv'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3052' c='_ZNOSt6ranges14min_max_resultcvNS_14min_max_resultITL0__EEEv'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3057'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3225'/>
+<mbr r='std::ranges::min_max_result::min' t='_Tp'/>
+<mbr r='std::ranges::min_max_result::max' t='_Tp'/>
+<fun r='_ZNKRSt6ranges14min_max_resultcvNS_14min_max_resultITL0__EEEv'/>
+<fun r='_ZNOSt6ranges14min_max_resultcvNS_14min_max_resultITL0__EEEv'/>

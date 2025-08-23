@@ -1,0 +1,11 @@
+<use f='Modules/Image/Inc/Image/tImageJPG.h' l='66' u='c' c='_ZN6tImage9tImageJPGD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImageJPG.h' l='100' type='void tImage::tImageJPG::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImageJPG.h' l='99'>// After this call no memory will be consumed by the object and it will be invalid.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Src/tImageJPG.cpp' l='29' ll='40' type='void tImage::tImageJPG::Clear()'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='45' u='c' c='_ZN6tImage9tImageJPG4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='68' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='129' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='192' u='c' c='_ZN6tImage9tImageJPG3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='219' u='c' c='_ZN6tImage9tImageJPG3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='239' u='c' c='_ZN6tImage9tImageJPG3SetERNS_8tPictureEb'/>

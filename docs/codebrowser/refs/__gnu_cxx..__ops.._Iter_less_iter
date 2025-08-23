@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/predefined_ops.h' l='39' ll='46'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='49' c='__gnu_cxx::__ops::__iter_less_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='51' c='__gnu_cxx::__ops::__iter_less_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='63' c='__gnu_cxx::__ops::_Iter_less_val::_Iter_less_val'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='79' c='__gnu_cxx::__ops::__iter_comp_val'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='92' c='__gnu_cxx::__ops::_Val_less_iter::_Val_less_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='108' c='__gnu_cxx::__ops::__val_comp_iter'/>
+<use f='include/c++/11/bits/stl_heap.h' l='96' c='_ZSt9__is_heapT_T0_'/>
+<use f='include/c++/11/bits/stl_heap.h' l='297' c='_ZSt8pop_heapT_S_'/>
+<use f='include/c++/11/bits/stl_heap.h' l='384' c='_ZSt9make_heapT_S_'/>
+<use f='include/c++/11/bits/stl_heap.h' l='450' c='_ZSt9sort_heapT_S_'/>
+<use f='include/c++/11/bits/stl_heap.h' l='506' c='_ZSt13is_heap_untilT_S_'/>
+<size>1</size>
+<fun r='__gnu_cxx::__ops::_Iter_less_iter::operator()'/>

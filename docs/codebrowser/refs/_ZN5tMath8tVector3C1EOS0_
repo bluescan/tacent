@@ -1,0 +1,14 @@
+<use f='Modules/Math/Inc/Math/tVector3.h' l='77' u='c' c='_ZNK5tMath8tVector3plERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='80' u='c' c='_ZNK5tMath8tVector3miERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='81' u='c' c='_ZNK5tMath8tVector3ngEv'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='84' u='c' c='_ZN5tMathmlERKNS_5tVec3Ef'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='85' u='c' c='_ZN5tMathmlEfRKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='90' u='c' c='_ZNK5tMath8tVector3dvEf'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='150' u='c' c='_ZNK5tMath11tBezierPath8GetPointEf'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='155' u='c' c='_ZNK5tMath11tBezierPath12GetPointNormEf'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='173' u='c' c='_ZN5tMath7tRandom21tGetPointOnUnitSquareERKNS_6tPlaneERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='235' u='c' c='_ZN5tMath7tRandom17tGetPointOnSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='259' u='c' c='_ZN5tMath7tRandom19tGetPointOnCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='293' u='c' c='_ZN5tMath7tRandom17tGetPointInSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='318' u='c' c='_ZN5tMath7tRandom19tGetPointInCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/System/Src/tScript.cpp' l='316' u='c' c='_ZNK11tExpression14GetAtomVector3Ev'/>

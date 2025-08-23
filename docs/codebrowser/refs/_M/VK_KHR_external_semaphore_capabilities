@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8689'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8688'>// VK_KHR_external_semaphore_capabilities is a preprocessor guard. Do not pass it to API calls.</doc>

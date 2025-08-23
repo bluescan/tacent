@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='474' type='void tMath::tMulByTranspose(tMath::tMat4 &amp; d, const tMath::tVec3 &amp; a, const tMath::tVec3 &amp; b)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1066' ll='1080' type='void tMath::tMulByTranspose(tMath::tMat4 &amp; d, const tMath::tVec3 &amp; a, const tMath::tVec3 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='65' u='c' c='_ZN5tMath8tVector314MulByTransposeERKNS_5tVec3E'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='471'>// Vectors in Tacent are column vectors. If you want to multiply a column vector a by the transpose of another vector b,
+// to produce a matrix, use these functions. Note that a row vector by a column is just a dot product. With these
+// functions it is always b that gets transposed. The versions that take tVec3s get interpreted as tVec4s with w = 0.</doc>

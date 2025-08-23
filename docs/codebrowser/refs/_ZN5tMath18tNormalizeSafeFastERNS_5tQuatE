@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='389' type='bool tMath::tNormalizeSafeFast(tMath::tQuat &amp; q)'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='65' u='c' c='_ZN5tMath11tQuaternion17NormalizeSafeFastEv'/>

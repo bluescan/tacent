@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_dir.h' l='161' type='const filesystem::path &amp; std::filesystem::directory_entry::operator const std::filesystem::path &amp;() const'/>

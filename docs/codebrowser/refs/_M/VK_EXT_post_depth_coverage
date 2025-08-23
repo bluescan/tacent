@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12750'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12749'>// VK_EXT_post_depth_coverage is a preprocessor guard. Do not pass it to API calls.</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1424' type='S rgbcx::minimum(S a, S b, S c, S d)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3918' u='c' c='_ZN5rgbcx10encode_bc4EPvPKhj'/>

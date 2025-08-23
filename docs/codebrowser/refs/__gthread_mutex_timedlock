@@ -1,0 +1,3 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='764' ll='772' type='int __gthread_mutex_timedlock(__gthread_mutex_t * __mutex, const __gthread_time_t * __abs_timeout)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='825' u='c' c='__gthread_recursive_mutex_timedlock'/>
+<use f='include/c++/11/mutex' l='267' u='c' c='_ZNSt11timed_mutex12_M_timedlockERK8timespec'/>

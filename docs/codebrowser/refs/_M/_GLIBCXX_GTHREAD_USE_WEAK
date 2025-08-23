@@ -1,0 +1,6 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/os_defines.h' l='68'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/os_defines.h' l='66'>// Since glibc 2.34 all Linux pthreads functions are usable without linking to
+// libpthread.</doc>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr.h' l='144' u='a'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='85' u='c'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='157' u='c'/>

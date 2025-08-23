@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/std_thread.h' l='158' u='c' c='_ZNSt6threadC1EOS_'/>
+<use f='include/c++/11/bits/std_thread.h' l='166' u='c' c='_ZNSt6threadaSEOS_'/>
+<def f='include/c++/11/bits/std_thread.h' l='170' ll='172' type='void std::thread::swap(std::thread &amp; __t)'/>
+<use f='include/c++/11/bits/std_thread.h' l='284' u='c' c='_ZSt4swapRSt6threadS0_'/>

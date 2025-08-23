@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16917' ll='16922'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16917'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceClusterCullingShaderFeaturesHUAWEI::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceClusterCullingShaderFeaturesHUAWEI::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceClusterCullingShaderFeaturesHUAWEI::clustercullingShader' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceClusterCullingShaderFeaturesHUAWEI::multiviewClusterCullingShader' o='160' t='VkBool32'/>

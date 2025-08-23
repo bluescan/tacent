@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='300' type='bool TinyEXIF::EXIFInfo::Geolocation_t::hasLatLon() const'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='270' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='300'>// Return true if (lat,lon) is available</doc>

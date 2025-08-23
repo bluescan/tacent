@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='487' type='bool tMath::tIntersectTestLineSegSphere(const tMath::tLineSeg &amp; , const tMath::tSphere &amp; )'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='607' u='c' c='_ZN5tMath26tIntersectTestCapsulePointERKNS_9tCylinderERKNS_8tVector3E'/>
+<def f='Modules/Math/Src/tGeometry.cpp' l='448' ll='459' type='bool tMath::tIntersectTestLineSegSphere(const tMath::tLineSeg &amp; segmentAB, const tMath::tSphere &amp; sphere)'/>

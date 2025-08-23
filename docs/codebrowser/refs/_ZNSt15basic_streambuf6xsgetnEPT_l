@@ -1,0 +1,15 @@
+<dec f='include/c++/11/streambuf' l='670' type='std::streamsize std::basic_streambuf::xsgetn(std::basic_streambuf::char_type * __s, std::streamsize __n)'/>
+<def f='include/c++/11/bits/streambuf.tcc' l='43' ll='75' type='std::streamsize std::basic_streambuf::xsgetn(std::basic_streambuf::char_type * __s, std::streamsize __n)'/>
+<doc f='include/c++/11/streambuf' l='656'>/**
+       *  @brief  Multiple character extraction.
+       *  @param  __s  A buffer area.
+       *  @param  __n  Maximum number of characters to assign.
+       *  @return  The number of characters assigned.
+       *
+       *  Fills @a __s[0] through @a __s[__n-1] with characters from the input
+       *  sequence, as if by @c sbumpc().  Stops when either @a __n characters
+       *  have been copied, or when @c traits::eof() would be copied.
+       *
+       *  It is expected that derived classes provide a more efficient
+       *  implementation by overriding this definition.
+      */</doc>

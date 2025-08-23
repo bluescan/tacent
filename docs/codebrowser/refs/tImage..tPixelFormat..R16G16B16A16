@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='135' type='17'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='552' c='_ZN6tImage14tIsAlphaFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='135'>// 64  bit. 16 bit each RGBA.</doc>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='291' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='378' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='465' u='r' c='_ZN6tImage9tImagePNG3SetEP9tColour4siib'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='466' u='r' c='_ZN6tImage9tImagePNG3SetEP9tColour4siib'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='566' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='337' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>

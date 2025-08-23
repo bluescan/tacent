@@ -1,0 +1,3 @@
+<def f='include/c++/11/atomic' l='1204' ll='1207' type='bool std::atomic_flag_test_and_set_explicit(std::atomic_flag * __a, std::memory_order __m)'/>
+<use f='include/c++/11/atomic' l='1245' u='c' c='_ZSt24atomic_flag_test_and_setPSt11atomic_flag'/>
+<doc f='include/c++/11/atomic' l='1203'>// Function definitions, atomic_flag operations.</doc>

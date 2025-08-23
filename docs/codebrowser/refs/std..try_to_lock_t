@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/std_mutex.h' l='202'/>
+<use f='include/c++/11/bits/std_mutex.h' l='212'/>
+<use f='include/c++/11/bits/unique_lock.h' l='77' c='_ZNSt11unique_lockC1ERT_St13try_to_lock_t'/>
+<size>1</size>
+<fun r='_ZNSt13try_to_lock_tC1Ev'/>

@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/hashtable_policy.h' l='1669' ll='1682'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1689' c='_ZNKSt8__detail9_EqualityIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_Lb1EE8_M_equalERKSt10_HashtableIS1_S2_S3_S4_S5_S6_S7_S8_S9_SA_E'/>
+<def f='include/c++/11/bits/hashtable_policy.h' l='1721' ll='1734'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1741' c='_ZNKSt8__detail9_EqualityIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_Lb0EE8_M_equalERKSt10_HashtableIS1_S2_S3_S4_S5_S6_S7_S8_S9_SA_E'/>
+<use f='include/c++/11/bits/hashtable.h' l='192'/>
+<use f='include/c++/11/bits/hashtable.h' l='284'/>
+<doc f='include/c++/11/bits/hashtable_policy.h' l='1668'>/// unordered_map and unordered_set specializations.</doc>
+<doc f='include/c++/11/bits/hashtable_policy.h' l='1720'>/// unordered_multiset and unordered_multimap specializations.</doc>
+<fun r='_ZNKSt8__detail9_EqualityIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_Lb1EE8_M_equalERKSt10_HashtableIS1_S2_S3_S4_S5_S6_S7_S8_S9_SA_E'/>
+<fun r='_ZNKSt8__detail9_EqualityIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_Lb1EE8_M_equalERKSt10_HashtableIS1_S2_S3_S4_S5_S6_S7_S8_S9_SA_E'/>
+<fun r='_ZNKSt8__detail9_EqualityIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_Lb0EE8_M_equalERKSt10_HashtableIS1_S2_S3_S4_S5_S6_S7_S8_S9_SA_E'/>
+<fun r='_ZNKSt8__detail9_EqualityIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_Lb0EE8_M_equalERKSt10_HashtableIS1_S2_S3_S4_S5_S6_S7_S8_S9_SA_E'/>

@@ -1,0 +1,10 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='797' type='void tColour4f::tColour4f(const tColour4b &amp; src)'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='628' u='c' c='_ZN6tImage8tPicture16AlphaBlendColourERK9tColour4bji'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='629' u='c' c='_ZN6tImage8tPicture16AlphaBlendColourERK9tColour4bji'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1480' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1062' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='242' u='c' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='388' u='c' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1172' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='195' u='c' c='_ZN6tImage10tImageWEBP10CopyRegionEP9tColour4biiS2_iiiib'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='196' u='c' c='_ZN6tImage10tImageWEBP10CopyRegionEP9tColour4biiS2_iiiib'/>

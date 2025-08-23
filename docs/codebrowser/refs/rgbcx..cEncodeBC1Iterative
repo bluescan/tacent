@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='126' type='32'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3013' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3020' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3689' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='124'>// cEncodeBC1Iterative will greatly increase encode time, but is very slightly higher quality.
+		// Same as squish&apos;s iterative cluster fit option. Not really worth the tiny boost in quality, unless you just don&apos;t care about perf. at all.</doc>

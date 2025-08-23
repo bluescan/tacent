@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='251' type='void tExprWriter::BeginExpression()'/>
+<use f='Modules/System/Inc/System/tScript.h' l='303' u='c' c='_ZN11tExprWriter3BegEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='304' u='c' c='_ZN11tExprWriter5BeginEv'/>
+<def f='Modules/System/Src/tScript.cpp' l='598' ll='604' type='void tExprWriter::BeginExpression()'/>

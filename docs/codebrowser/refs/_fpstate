@@ -1,0 +1,15 @@
+<def f='include/x86_64-linux-gnu/bits/sigcontext.h' l='123' ll='137'/>
+<use f='include/x86_64-linux-gnu/bits/sigcontext.h' l='169'/>
+<use f='include/x86_64-linux-gnu/bits/sigcontext.h' l='191'/>
+<size>512</size>
+<mbr r='_fpstate::cwd' o='0' t='__uint16_t'/>
+<mbr r='_fpstate::swd' o='16' t='__uint16_t'/>
+<mbr r='_fpstate::ftw' o='32' t='__uint16_t'/>
+<mbr r='_fpstate::fop' o='48' t='__uint16_t'/>
+<mbr r='_fpstate::rip' o='64' t='__uint64_t'/>
+<mbr r='_fpstate::rdp' o='128' t='__uint64_t'/>
+<mbr r='_fpstate::mxcsr' o='192' t='__uint32_t'/>
+<mbr r='_fpstate::mxcr_mask' o='224' t='__uint32_t'/>
+<mbr r='_fpstate::_st' o='256' t='struct _fpxreg[8]'/>
+<mbr r='_fpstate::_xmm' o='1280' t='struct _xmmreg[16]'/>
+<mbr r='_fpstate::__glibc_reserved1' o='3328' t='__uint32_t[24]'/>

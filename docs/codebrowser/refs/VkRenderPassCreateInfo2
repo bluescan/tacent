@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6118' ll='6130'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6118'/>
+<size>80</size>
+<mbr r='VkRenderPassCreateInfo2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderPassCreateInfo2::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderPassCreateInfo2::flags' o='128' t='VkRenderPassCreateFlags'/>
+<mbr r='VkRenderPassCreateInfo2::attachmentCount' o='160' t='uint32_t'/>
+<mbr r='VkRenderPassCreateInfo2::pAttachments' o='192' t='const VkAttachmentDescription2 *'/>
+<mbr r='VkRenderPassCreateInfo2::subpassCount' o='256' t='uint32_t'/>
+<mbr r='VkRenderPassCreateInfo2::pSubpasses' o='320' t='const VkSubpassDescription2 *'/>
+<mbr r='VkRenderPassCreateInfo2::dependencyCount' o='384' t='uint32_t'/>
+<mbr r='VkRenderPassCreateInfo2::pDependencies' o='448' t='const VkSubpassDependency2 *'/>
+<mbr r='VkRenderPassCreateInfo2::correlatedViewMaskCount' o='512' t='uint32_t'/>
+<mbr r='VkRenderPassCreateInfo2::pCorrelatedViewMasks' o='576' t='const uint32_t *'/>

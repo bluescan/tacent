@@ -1,0 +1,9 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='686' type='void tMath::tExtractProjectionPlanes(tMath::tVec4 * planes, const tMath::tMat4 &amp; projection, bool outwardNormals = false, bool normalizePlanes = true)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='680'>// This set of functions deal with projection
+// matrices -- extracting FOVs, aspect ratios, clip planes etc. The tExtractProjectionPlanes returns vectors that
+// represent the coefficients of the plane equation ax + by + cz + d = 0. The abcd members of the tVec4 class may be
+// used as a convenience. The plane array is filled in the order Right, Left, Top, Bottom, Near, Far which matches
+// the same order as the tFrustum class (+x,-x,+y,-y,+z,-z). The vectors may also be used to construct tPlane objects.
+// If normalizePlanes is true, the plane normal length |(a,b,c)| = 1 and d is the distance from the origin.</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='104' u='c' c='_ZNK5tMath8tMatrix423ExtractProjectionPlanesEPNS_5tVec4Ebb'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='912' ll='938' type='void tMath::tExtractProjectionPlanes(tMath::tVec4 * planes, const tMath::tMat4 &amp; m, bool outwardNormals = false, bool normalizePlanes = true)'/>

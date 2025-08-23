@@ -1,0 +1,1 @@
+<dec f='include/c++/11/bits/random.h' l='3462' type='std::basic_ostream&lt;_CharT, _Traits&gt; &amp; std::operator&lt;&lt;(std::basic_ostream&lt;_CharT, _Traits&gt; &amp; __os, const std::student_t_distribution&lt;_RealType1&gt; &amp; __x)'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5315' ll='5319'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5315'/>
+<size>536</size>
+<mbr r='VkPhysicalDeviceMemoryProperties2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMemoryProperties2::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMemoryProperties2::memoryProperties' o='128' t='VkPhysicalDeviceMemoryProperties'/>

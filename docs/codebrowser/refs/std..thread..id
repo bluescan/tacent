@@ -1,0 +1,27 @@
+<def f='include/c++/11/bits/std_thread.h' l='81' ll='109'/>
+<use f='include/c++/11/bits/std_thread.h' l='93'/>
+<use f='include/c++/11/bits/std_thread.h' l='96' c='_ZSteqNSt6thread2idES0_'/>
+<use f='include/c++/11/bits/std_thread.h' l='96' c='_ZSteqNSt6thread2idES0_'/>
+<use f='include/c++/11/bits/std_thread.h' l='100' c='_ZStssNSt6thread2idES0_'/>
+<use f='include/c++/11/bits/std_thread.h' l='100' c='_ZStssNSt6thread2idES0_'/>
+<use f='include/c++/11/bits/std_thread.h' l='108' c='_ZStlsRSt13basic_ostreamIT_T0_ENSt6thread2idE'/>
+<use f='include/c++/11/bits/std_thread.h' l='112'/>
+<use f='include/c++/11/bits/std_thread.h' l='176' c='_ZNKSt6thread8joinableEv'/>
+<use f='include/c++/11/bits/std_thread.h' l='184' c='_ZNKSt6thread6get_idEv'/>
+<use f='include/c++/11/bits/std_thread.h' l='287' c='_ZSteqNSt6thread2idES0_'/>
+<use f='include/c++/11/bits/std_thread.h' l='287' c='_ZSteqNSt6thread2idES0_'/>
+<use f='include/c++/11/bits/std_thread.h' l='301'/>
+<use f='include/c++/11/bits/std_thread.h' l='305' c='_ZNKSt4hashINSt6thread2idEEclERKS1_'/>
+<use f='include/c++/11/bits/std_thread.h' l='312' c='_ZNSt11this_thread6get_idEv'/>
+<use f='include/c++/11/bits/std_thread.h' l='318' c='_ZNSt11this_thread6get_idEv'/>
+<use f='include/c++/11/stop_token' l='160'/>
+<use f='include/c++/11/thread' l='62' c='_ZStssNSt6thread2idES0_'/>
+<use f='include/c++/11/thread' l='62' c='_ZStssNSt6thread2idES0_'/>
+<use f='include/c++/11/thread' l='92' c='_ZStlsRSt13basic_ostreamIT_T0_ENSt6thread2idE'/>
+<use f='include/c++/11/thread' l='94' c='_ZStlsRSt13basic_ostreamIT_T0_ENSt6thread2idE'/>
+<use f='include/c++/11/thread' l='106'/>
+<size>8</size>
+<doc f='include/c++/11/bits/std_thread.h' l='80'>/// thread::id</doc>
+<mbr r='std::thread::id::_M_thread' o='0' t='std::thread::native_handle_type'/>
+<fun r='_ZNSt6thread2idC1Ev'/>
+<fun r='_ZNSt6thread2idC1Em'/>

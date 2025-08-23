@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='748' type='ktx_uint32_t'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='748'>/*!&lt; Internal format for the texture, e.g.,
+                                        GL_RGB8. Ignored when creating a
+                                        ktxTexture2. */</doc>

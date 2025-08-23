@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='342' type='int tItList::Count() const'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='80' u='c' c='_ZNK6tScene11tAttributes5CountEv'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tMachine.h' l='39' type='bool tSystem::tOpenSystemFileExplorer(const tString &amp; dir, const tString &amp; file)'/>
+<doc f='Modules/System/Inc/System/tMachine.h' l='37'>// Opens the OS&apos;s file explorer for the folder and file specified. If file doesn&apos;t exist, no file will be selected.
+// If dir doesn&apos;t exist, an explorer window is opened at a location decided by the system.</doc>
+<def f='Modules/System/Src/tMachine.cpp' l='153' ll='219' type='bool tSystem::tOpenSystemFileExplorer(const tString &amp; dir, const tString &amp; file)'/>
+<use f='Modules/System/Src/tMachine.cpp' l='224' u='c' c='_ZN7tSystem23tOpenSystemFileExplorerERK7tString'/>

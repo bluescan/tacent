@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='318' type='int tStd::tUTF32c(char32_t * dst, const char8_t * srcPoint)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='315'>// These are similar to above but return the number of codeunits read. This can be handy for string parsing functions.
+// Note that you may pass nullptr into dst if you just want to count the number of codeunits that would be read. If
+// srcPoint is nullptr these all return 0 and dst (if present) is filled with cCodepoint_Replacement.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='318'>// Returns number of read codeunits. Will be E [1,4] for UTF-8.</doc>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='600' ll='613' type='int tStd::tUTF32c(char32_t * dst, const char8_t * srcPoint)'/>

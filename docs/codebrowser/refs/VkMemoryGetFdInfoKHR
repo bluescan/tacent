@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8664' ll='8669'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8664'/>
+<size>32</size>
+<mbr r='VkMemoryGetFdInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkMemoryGetFdInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkMemoryGetFdInfoKHR::memory' o='128' t='VkDeviceMemory'/>
+<mbr r='VkMemoryGetFdInfoKHR::handleType' o='192' t='VkExternalMemoryHandleTypeFlagBits'/>

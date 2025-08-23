@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/fs_path.h' l='473' type='bool std::filesystem::path::has_root_directory() const'/>
+<use f='include/c++/11/bits/fs_path.h' l='1253' u='c' c='_ZNKSt10filesystem7__cxx114path11is_absoluteEv'/>

@@ -1,0 +1,2 @@
+<def f='Modules/System/Src/tRegex.cpp' l='173' ll='178' type='int tSystem::tRegex::CharClass(int classid)'/>
+<use f='Modules/System/Src/tRegex.cpp' l='215' u='c' c='_ZN7tSystem6tRegex8CharNodeEb'/>

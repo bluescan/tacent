@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='491' type='void tMath::tDiv(tMath::tVec2 &amp; v, float a)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='490'>// Divide. Computes d = a / b or vqm /= a.</doc>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='90' u='c' c='_ZN5tMath8tVector2dVEf'/>

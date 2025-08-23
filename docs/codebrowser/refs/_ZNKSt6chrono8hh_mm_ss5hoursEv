@@ -1,0 +1,4 @@
+<use f='include/c++/11/chrono' l='3090' u='c' c='_ZNSt6chrono8hh_mm_ssC1ET_b'/>
+<use f='include/c++/11/chrono' l='3091' u='c' c='_ZNSt6chrono8hh_mm_ssC1ET_b'/>
+<use f='include/c++/11/chrono' l='3093' u='c' c='_ZNSt6chrono8hh_mm_ssC1ET_b'/>
+<def f='include/c++/11/chrono' l='3131' ll='3133' type='chrono::hours std::chrono::hh_mm_ss::hours() const'/>

@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3876' ll='3882'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3876'/>
+<size>32</size>
+<mbr r='VkCommandBufferAllocateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCommandBufferAllocateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkCommandBufferAllocateInfo::commandPool' o='128' t='VkCommandPool'/>
+<mbr r='VkCommandBufferAllocateInfo::level' o='192' t='VkCommandBufferLevel'/>
+<mbr r='VkCommandBufferAllocateInfo::commandBufferCount' o='224' t='uint32_t'/>

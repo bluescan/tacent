@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tTime.h' l='57' type='double tSystem::tGetTimeDouble()'/>
+<def f='Modules/System/Src/tTime.cpp' l='161' ll='178' type='double tSystem::tGetTimeDouble()'/>

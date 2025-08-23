@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='249' type='bool tSystem::tLoadFile(const tString &amp; file, tString &amp; dst, char convertZeroesTo = 31)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='245'>// Similar to above, but is best used with a text file. If a binary file is supplied and convertZeroesTo is left at
+// default, any null characters &apos;\0&apos; are turned into separators (31). This ensures that the string length will be
+// correct. Use convertZeroesTo = &apos;\0&apos; to leave it unmodified, but expect length to be incorrect if a binary file is
+// supplied.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='1226' ll='1257' type='bool tSystem::tLoadFile(const tString &amp; file, tString &amp; dst, char convertZeroesTo = 31)'/>

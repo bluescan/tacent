@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16257'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16256'>// VK_EXT_primitive_topology_list_restart is a preprocessor guard. Do not pass it to API calls.</doc>

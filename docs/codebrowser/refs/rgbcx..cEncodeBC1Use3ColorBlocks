@@ -1,0 +1,24 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='122' type='16'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2942' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2946' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2950' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2955' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2960' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2966' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2972' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2978' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2984' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2990' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2996' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3002' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3008' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3014' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3021' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3498' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3533' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3795' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3797' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4011' u='r' c='_ZN5rgbcx10encode_bc3EPvPKhjj'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='119'>// If cEncodeBC1Use3ColorBlocks is set, the encoder can use 3-color mode for a small but noticeable gain in average quality, but lower perf.
+		// If you also specify the cEncodeBC1UseLikelyTotalOrderings flag, set the total_orderings_to_try3 paramter to the number of total orderings to try.
+		// Don&apos;t set when encoding to BC3.</doc>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/basic_string.h' l='447' ll='450' type='void std::basic_string::basic_string&lt;_CharT, _Traits, _Alloc&gt;(const _Alloc &amp; __a)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='444'>/**
+       *  @brief  Construct an empty string using allocator @a a.
+       */</doc>

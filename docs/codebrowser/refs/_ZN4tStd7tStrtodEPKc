@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='206' type='double tStd::tStrtod(const char * )'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='207' u='c' c='_ZN4tStd7tStrtodEPKDu'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='211' u='c' c='_ZN4tStd5tAtodEPKc'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='172' u='c' c='_ZN4tStd7tStrtofEPKc'/>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='176' ll='209' type='double tStd::tStrtod(const char * s)'/>

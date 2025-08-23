@@ -1,0 +1,8 @@
+<dec f='include/time.h' l='100' type='size_t strftime(char *__restrict __s, size_t __maxsize, const char *__restrict __format, const struct tm *__restrict __tp)'/>
+<doc f='include/time.h' l='97'>/* Format TP into S according to FORMAT.
+   Write no more than MAXSIZE characters and return the number
+   of characters written, or 0 if it would exceed MAXSIZE.  */</doc>
+<use f='Modules/System/Src/tTime.cpp' l='104' u='c' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>
+<use f='Modules/System/Src/tTime.cpp' l='109' u='c' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>
+<use f='Modules/System/Src/tTime.cpp' l='114' u='c' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>
+<use f='Modules/System/Src/tTime.cpp' l='119' u='c' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>

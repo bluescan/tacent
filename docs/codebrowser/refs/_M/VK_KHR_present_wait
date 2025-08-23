@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9821'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9820'>// VK_KHR_present_wait is a preprocessor guard. Do not pass it to API calls.</doc>

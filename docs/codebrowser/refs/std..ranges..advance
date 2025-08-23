@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/ranges_base.h' l='786' type='const std::ranges::__advance_fn'/>
+<use f='include/c++/11/bits/ranges_base.h' l='835' u='c' c='_ZNKSt6ranges9__next_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/ranges_base.h' l='843' u='c' c='_ZNKSt6ranges9__next_fnclET_T0_'/>
+<use f='include/c++/11/bits/ranges_base.h' l='851' u='c' c='_ZNKSt6ranges9__next_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeET0_'/>
+<use f='include/c++/11/bits/ranges_base.h' l='872' u='c' c='_ZNKSt6ranges9__prev_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/ranges_base.h' l='880' u='c' c='_ZNKSt6ranges9__prev_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeES1_'/>
+<use f='include/c++/11/bits/ranges_util.h' l='333' u='c' c='_ZNSt6ranges8subrange7advanceENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/ranges_util.h' l='340' u='c' c='_ZNSt6ranges8subrange7advanceENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2098' u='c' c='_ZNKSt6ranges16__lower_bound_fnclET_T0_RKT1_T3_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2142' u='c' c='_ZNKSt6ranges16__upper_bound_fnclET_T0_RKT1_T3_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2186' u='c' c='_ZNKSt6ranges16__equal_range_fnclET_T0_RKT1_T3_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2204' u='c' c='_ZNKSt6ranges16__equal_range_fnclET_T0_RKT1_T3_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2486' u='c' c='_ZNKSt6ranges20__partition_point_fnclET_T0_T2_T1_'/>

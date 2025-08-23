@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/hashtable.h' l='855' type='std::pair&lt;iterator, bool&gt; std::_Hashtable::_M_emplace(std::true_type __uks, _Args &amp;&amp;... __args)'/>
+<def f='include/c++/11/bits/hashtable.h' l='1954' ll='1978' type='pair&lt;std::_Hashtable::iterator, bool&gt; std::_Hashtable::_M_emplace(std::true_type , _Args &amp;&amp;... __args)'/>

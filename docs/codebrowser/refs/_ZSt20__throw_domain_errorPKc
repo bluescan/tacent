@@ -1,0 +1,24 @@
+<dec f='include/c++/11/bits/functexcept.h' l='69' type='void std::__throw_domain_error(const char * )'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='236' u='c' c='_ZNSt8__detail11__log_gammaET_'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='451' u='c' c='_ZNSt8__detail5__psiEjT_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='495' u='c' c='_ZNSt8__detail14__cyl_bessel_jET_S0_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='537' u='c' c='_ZNSt8__detail15__cyl_neumann_nET_S0_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='609' u='c' c='_ZNSt8__detail12__sph_besselEjT_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='647' u='c' c='_ZNSt8__detail13__sph_neumannEjT_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='84' u='c' c='_ZNSt8__detail11__ellint_rfET_S0_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='88' u='c' c='_ZNSt8__detail11__ellint_rfET_S0_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='227' u='c' c='_ZNSt8__detail10__ellint_1ET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='324' u='c' c='_ZNSt8__detail11__ellint_rdET_S0_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='327' u='c' c='_ZNSt8__detail11__ellint_rdET_S0_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='409' u='c' c='_ZNSt8__detail15__comp_ellint_2ET_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='441' u='c' c='_ZNSt8__detail10__ellint_2ET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='500' u='c' c='_ZNSt8__detail11__ellint_rcET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='569' u='c' c='_ZNSt8__detail11__ellint_rjET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='573' u='c' c='_ZNSt8__detail11__ellint_rjET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='671' u='c' c='_ZNSt8__detail15__comp_ellint_3ET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='709' u='c' c='_ZNSt8__detail10__ellint_3ET_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='743' u='c' c='_ZNSt8__detail8__hypergET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='272' u='c' c='_ZNSt8__detail14__cyl_bessel_iET_S0_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='308' u='c' c='_ZNSt8__detail14__cyl_bessel_kET_S0_'/>
+<use f='include/c++/11/tr1/poly_laguerre.tcc' l='249' u='c' c='_ZNSt8__detail15__poly_laguerreEjT_T0_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='84' u='c' c='_ZNSt8__detail18__riemann_zeta_sumET_'/>

@@ -1,0 +1,38 @@
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='175' ll='218'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='179' c='_ZN6tImage9tMetaDataC1ERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='184' c='_ZN6tImage9tMetaData3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='195' c='_ZNK6tImage9tMetaDataeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='196' c='_ZNK6tImage9tMetaDataneERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='198' c='_ZN6tImage9tMetaDataaSERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='198' c='_ZN6tImage9tMetaDataaSERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='267' c='_ZN6tImage9tMetaData3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='277' c='_ZNK6tImage9tMetaDataeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tImageJPG.h' l='143'/>
+<size>2016</size>
+<fun r='_ZN6tImage9tMetaDataC1Ev'/>
+<fun r='_ZN6tImage9tMetaDataC1ERKS0_'/>
+<fun r='_ZN6tImage9tMetaDataC1EPKhi'/>
+<fun r='_ZN6tImage9tMetaDataD1Ev'/>
+<fun r='_ZN6tImage9tMetaData5ClearEv'/>
+<fun r='_ZN6tImage9tMetaData3SetERKS0_'/>
+<fun r='_ZN6tImage9tMetaData3SetEPKhi'/>
+<fun r='_ZNK6tImage9tMetaData7IsValidEv'/>
+<fun r='_ZNK6tImage9tMetaData15GetNumValidTagsEv'/>
+<fun r='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>
+<fun r='_ZN6tImage9tMetaData4LoadERK6tChunk'/>
+<fun r='_ZNK6tImage9tMetaDataeqERKS0_'/>
+<fun r='_ZNK6tImage9tMetaDataneERKS0_'/>
+<fun r='_ZN6tImage9tMetaDataaSERKS0_'/>
+<fun r='_ZN6tImage9tMetaDataixENS_8tMetaTagE'/>
+<fun r='_ZNK6tImage9tMetaDataixENS_8tMetaTagE'/>
+<fun r='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<mbr r='tImage::tMetaData::ChunkVersion' o='64' t='const int'/>
+<mbr r='tImage::tMetaData::NumTagsValid' o='96' t='int'/>
+<mbr r='tImage::tMetaData::Data' o='128' t='tImage::tMetaDatum[50]'/>
+<fun r='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
+<fun r='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<fun r='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<fun r='_ZN6tImage9tMetaData19SetTags_AuthorNotesERKN8TinyEXIF8EXIFInfoE'/>
+<fun r='_ZN6tImage9tMetaData5ClearEv'/>
+<fun r='_ZN6tImage9tMetaData3SetERKS0_'/>
+<fun r='_ZNK6tImage9tMetaDataeqERKS0_'/>

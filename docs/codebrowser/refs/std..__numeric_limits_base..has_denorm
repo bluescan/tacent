@@ -1,0 +1,2 @@
+<def f='include/c++/11/limits' l='266' type='const std::float_denorm_style'/>
+<doc f='include/c++/11/limits' l='265'>/** See std::float_denorm_style for more information.  */</doc>

@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/atomic_wait.h' l='260' ll='276' type='void std::__detail::__waiter_pool::_M_do_wait(const std::__detail::__platform_wait_t * __addr, std::__detail::__platform_wait_t __old)'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='393' u='c' c='_ZNSt8__detail8__waiter12_M_do_wait_vETL0__TL0_0_'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='407' u='c' c='_ZNSt8__detail8__waiter10_M_do_waitETL0__'/>

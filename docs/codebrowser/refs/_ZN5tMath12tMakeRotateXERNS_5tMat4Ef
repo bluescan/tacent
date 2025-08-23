@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='589' type='void tMath::tMakeRotateX(tMath::tMat4 &amp; d, float angle)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1182' ll='1192' type='void tMath::tMakeRotateX(tMath::tMat4 &amp; d, float a)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='75' u='c' c='_ZN5tMath8tMatrix411MakeRotateXEf'/>

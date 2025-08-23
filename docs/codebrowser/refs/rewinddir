@@ -1,0 +1,2 @@
+<dec f='include/dirent.h' l='209' type='void rewinddir(DIR * __dirp)'/>
+<doc f='include/dirent.h' l='208'>/* Rewind DIRP to the beginning of the directory.  */</doc>

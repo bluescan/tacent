@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16508'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16507'>// VK_EXT_primitives_generated_query is a preprocessor guard. Do not pass it to API calls.</doc>

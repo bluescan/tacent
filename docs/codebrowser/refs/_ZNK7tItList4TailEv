@@ -1,0 +1,2 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='325' u='c' c='_ZN7tItList4DropEv'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='333' type='tItList::Iter tItList::Tail() const'/>

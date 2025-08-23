@@ -1,0 +1,23 @@
+<def f='include/c++/11/bits/ranges_algobase.h' l='160' ll='178'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='169' c='_ZNKRSt6ranges13in_out_resultcvNS_13in_out_resultITL0__TL0_0_EEEv'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='176' c='_ZNOSt6ranges13in_out_resultcvNS_13in_out_resultITL0__TL0_0_EEEv'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='181'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='184'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='187'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='190'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='490'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='635'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='705'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='875'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='918'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1071'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1110'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1196'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1328'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1509'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1908'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2781'/>
+<mbr r='std::ranges::in_out_result::in' t='_Iter'/>
+<mbr r='std::ranges::in_out_result::out' t='_Out'/>
+<fun r='_ZNKRSt6ranges13in_out_resultcvNS_13in_out_resultITL0__TL0_0_EEEv'/>
+<fun r='_ZNOSt6ranges13in_out_resultcvNS_13in_out_resultITL0__TL0_0_EEEv'/>

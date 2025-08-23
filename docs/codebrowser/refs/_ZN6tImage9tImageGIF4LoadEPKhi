@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageGIF.cpp' l='131' u='c' c='_ZN6tImage9tImageGIF4LoadERK7tString'/>
+<def f='Modules/Image/Src/tImageGIF.cpp' l='138' ll='173' type='bool tImage::tImageGIF::Load(const uint8 * gifFileInMemory, int numBytes)'/>

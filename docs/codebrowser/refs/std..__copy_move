@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='345' ll='356'/>
+<def f='include/c++/11/bits/stl_algobase.h' l='359' ll='371'/>
+<def f='include/c++/11/bits/stl_algobase.h' l='374' ll='391'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='375'/>
+<def f='include/c++/11/bits/stl_algobase.h' l='394' ll='411'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='395'/>
+<def f='include/c++/11/bits/stl_algobase.h' l='414' ll='434'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='491' c='_ZSt14__copy_move_a2T0_S_T1_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='494' c='_ZSt14__copy_move_a2T0_S_T1_'/>
+<size>1</size>
+<fun r='_ZNSt11__copy_move8__copy_mETL0__S0_TL0_0_'/>
+<fun r='_ZNSt11__copy_moveILb1ELb0ET_E8__copy_mETL0__S2_TL0_0_'/>
+<fun r='_ZNSt11__copy_moveILb0ELb0ESt26random_access_iterator_tagE8__copy_mET_S2_T0_'/>
+<fun r='_ZNSt11__copy_moveILb1ELb0ESt26random_access_iterator_tagE8__copy_mET_S2_T0_'/>
+<fun r='_ZNSt11__copy_moveIXT_ELb1ESt26random_access_iterator_tagE8__copy_mEPKTL0__S4_PS2_'/>

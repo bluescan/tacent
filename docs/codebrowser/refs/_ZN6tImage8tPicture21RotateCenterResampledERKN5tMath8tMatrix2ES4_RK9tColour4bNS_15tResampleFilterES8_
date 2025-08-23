@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='358' type='void tImage::tPicture::RotateCenterResampled(const tMath::tMatrix2 &amp; rotMat, const tMath::tMatrix2 &amp; invRot, const tPixel4b &amp; fill, tImage::tResampleFilter upFilter, tImage::tResampleFilter downFilter)'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='171' u='c' c='_ZN6tImage8tPicture12RotateCenterEfRK9tColour4bNS_15tResampleFilterES4_'/>
+<def f='Modules/Image/Src/tPicture.cpp' l='231' ll='268' type='void tImage::tPicture::RotateCenterResampled(const tMath::tMatrix2 &amp; rotMat, const tMath::tMatrix2 &amp; invRot, const tPixel4b &amp; fill, tImage::tResampleFilter upFilter, tImage::tResampleFilter downFilter)'/>

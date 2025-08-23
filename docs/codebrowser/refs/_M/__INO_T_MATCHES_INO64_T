@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/typesizes.h' l='84'/>
+<doc f='include/x86_64-linux-gnu/bits/typesizes.h' l='83'>/* Same for ino_t and ino64_t.  */</doc>
+<use f='include/x86_64-linux-gnu/bits/dirent.h' l='54' u='a'/>

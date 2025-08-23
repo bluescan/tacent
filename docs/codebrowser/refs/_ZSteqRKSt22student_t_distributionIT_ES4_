@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='3444' ll='3448' type='bool std::operator==(const student_t_distribution&lt;_RealType&gt; &amp; __d1, const student_t_distribution&lt;_RealType&gt; &amp; __d2)'/>
+<doc f='include/c++/11/bits/random.h' l='3439'>/**
+       * @brief Return true if two Student t distributions have
+       *        the same parameters and the sequences that would
+       *        be generated are equal.
+       */</doc>

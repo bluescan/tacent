@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/fs_dir.h' l='215' ll='217' type='bool std::filesystem::directory_entry::is_regular_file(std::error_code &amp; __ec) const'/>
+<use f='Modules/System/Src/tFile.cpp' l='2608' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2982' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

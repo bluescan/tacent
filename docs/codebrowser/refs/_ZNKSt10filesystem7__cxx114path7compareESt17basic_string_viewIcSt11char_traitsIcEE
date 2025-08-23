@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/fs_path.h' l='456' type='int std::filesystem::path::compare(basic_string_view&lt;std::filesystem::path::value_type&gt; __s) const'/>
+<use f='include/c++/11/bits/fs_path.h' l='1191' u='c' c='_ZNKSt10filesystem7__cxx114path7compareERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='1195' u='c' c='_ZNKSt10filesystem7__cxx114path7compareEPKc'/>

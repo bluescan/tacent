@@ -1,0 +1,4 @@
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='162' type='bool tImage::tMetaDatum::IsSet() const'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='137' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='651' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='691' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

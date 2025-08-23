@@ -1,0 +1,1 @@
+<def f='include/c++/11/pstl/execution_defs.h' l='59' ll='63' type='static std::true_type __pstl::execution::parallel_policy::__allow_parallel()'/>

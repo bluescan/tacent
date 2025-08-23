@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='125' type='int iswpunct(wint_t __wc)'/>
+<doc f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='122'>/* Test for any printing wide character that is one of a
+   locale-specific et of wide characters for which neither `iswspace&apos;
+   nor `iswalnum&apos; is true.  */</doc>

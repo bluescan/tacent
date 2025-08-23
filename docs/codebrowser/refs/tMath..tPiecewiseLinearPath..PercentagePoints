@@ -1,0 +1,8 @@
+<use f='Modules/Math/Src/tSpline.cpp' l='34' u='w' c='_ZN5tMath20tPiecewiseLinearPath9SetPointsEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='37' u='r' c='_ZN5tMath20tPiecewiseLinearPath9SetPointsEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='42' u='r' c='_ZN5tMath20tPiecewiseLinearPath9SetPointsEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='46' u='r' c='_ZN5tMath20tPiecewiseLinearPath9SetPointsEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='50' u='r' c='_ZN5tMath20tPiecewiseLinearPath9SetPointsEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='52' u='r' c='_ZN5tMath20tPiecewiseLinearPath9SetPointsEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='101' u='r' c='_ZNK5tMath20tPiecewiseLinearPath15GetPercentPointEf'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='102' u='r' c='_ZNK5tMath20tPiecewiseLinearPath15GetPercentPointEf'/>

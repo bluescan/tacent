@@ -1,0 +1,699 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>confname.h source code [include/x86_64-linux-gnu/bits/confname.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/confname.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>bits</a>/<a href='confname.h.html'>confname.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* `sysconf', `pathconf', and `confstr' NAME values.  Generic version.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   Copyright (C) 1993-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i></i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i></i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i></i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#<span data-ppcond="19">ifndef</span> <a class="macro" href="../../unistd.h.html#23" data-ref="_M/_UNISTD_H">_UNISTD_H</a></u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><u># error "Never use &lt;bits/confname.h&gt; directly; include &lt;unistd.h&gt; instead."</u>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#<span data-ppcond="19">endif</span></u>&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>/* Values for the NAME argument to `pathconf' and `fpathconf'.  */</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><b>enum</b>&nbsp</td></tr>
+<tr><th id="25">25</th><td>  {&nbsp</td></tr>
+<tr><th id="26">26</th><td>    <dfn class="enum" id="_PC_LINK_MAX" title='_PC_LINK_MAX' data-ref="_PC_LINK_MAX">_PC_LINK_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#define	<dfn class="macro" id="_M/_PC_LINK_MAX" data-ref="_M/_PC_LINK_MAX">_PC_LINK_MAX</dfn>			_PC_LINK_MAX</u>&nbsp</td></tr>
+<tr><th id="28">28</th><td>    <dfn class="enum" id="_PC_MAX_CANON" title='_PC_MAX_CANON' data-ref="_PC_MAX_CANON">_PC_MAX_CANON</dfn>,&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#define	<dfn class="macro" id="_M/_PC_MAX_CANON" data-ref="_M/_PC_MAX_CANON">_PC_MAX_CANON</dfn>			_PC_MAX_CANON</u>&nbsp</td></tr>
+<tr><th id="30">30</th><td>    <dfn class="enum" id="_PC_MAX_INPUT" title='_PC_MAX_INPUT' data-ref="_PC_MAX_INPUT">_PC_MAX_INPUT</dfn>,&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define	<dfn class="macro" id="_M/_PC_MAX_INPUT" data-ref="_M/_PC_MAX_INPUT">_PC_MAX_INPUT</dfn>			_PC_MAX_INPUT</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>    <dfn class="enum" id="_PC_NAME_MAX" title='_PC_NAME_MAX' data-ref="_PC_NAME_MAX">_PC_NAME_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#define	<dfn class="macro" id="_M/_PC_NAME_MAX" data-ref="_M/_PC_NAME_MAX">_PC_NAME_MAX</dfn>			_PC_NAME_MAX</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>    <dfn class="enum" id="_PC_PATH_MAX" title='_PC_PATH_MAX' data-ref="_PC_PATH_MAX">_PC_PATH_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#define	<dfn class="macro" id="_M/_PC_PATH_MAX" data-ref="_M/_PC_PATH_MAX">_PC_PATH_MAX</dfn>			_PC_PATH_MAX</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td>    <dfn class="enum" id="_PC_PIPE_BUF" title='_PC_PIPE_BUF' data-ref="_PC_PIPE_BUF">_PC_PIPE_BUF</dfn>,&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#define	<dfn class="macro" id="_M/_PC_PIPE_BUF" data-ref="_M/_PC_PIPE_BUF">_PC_PIPE_BUF</dfn>			_PC_PIPE_BUF</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>    <dfn class="enum" id="_PC_CHOWN_RESTRICTED" title='_PC_CHOWN_RESTRICTED' data-ref="_PC_CHOWN_RESTRICTED">_PC_CHOWN_RESTRICTED</dfn>,&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#define	<dfn class="macro" id="_M/_PC_CHOWN_RESTRICTED" data-ref="_M/_PC_CHOWN_RESTRICTED">_PC_CHOWN_RESTRICTED</dfn>		_PC_CHOWN_RESTRICTED</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td>    <dfn class="enum" id="_PC_NO_TRUNC" title='_PC_NO_TRUNC' data-ref="_PC_NO_TRUNC">_PC_NO_TRUNC</dfn>,&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#define	<dfn class="macro" id="_M/_PC_NO_TRUNC" data-ref="_M/_PC_NO_TRUNC">_PC_NO_TRUNC</dfn>			_PC_NO_TRUNC</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td>    <dfn class="enum" id="_PC_VDISABLE" title='_PC_VDISABLE' data-ref="_PC_VDISABLE">_PC_VDISABLE</dfn>,&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#define <dfn class="macro" id="_M/_PC_VDISABLE" data-ref="_M/_PC_VDISABLE">_PC_VDISABLE</dfn>			_PC_VDISABLE</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td>    <dfn class="enum" id="_PC_SYNC_IO" title='_PC_SYNC_IO' data-ref="_PC_SYNC_IO">_PC_SYNC_IO</dfn>,&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#define	<dfn class="macro" id="_M/_PC_SYNC_IO" data-ref="_M/_PC_SYNC_IO">_PC_SYNC_IO</dfn>			_PC_SYNC_IO</u>&nbsp</td></tr>
+<tr><th id="46">46</th><td>    <dfn class="enum" id="_PC_ASYNC_IO" title='_PC_ASYNC_IO' data-ref="_PC_ASYNC_IO">_PC_ASYNC_IO</dfn>,&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#define	<dfn class="macro" id="_M/_PC_ASYNC_IO" data-ref="_M/_PC_ASYNC_IO">_PC_ASYNC_IO</dfn>			_PC_ASYNC_IO</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td>    <dfn class="enum" id="_PC_PRIO_IO" title='_PC_PRIO_IO' data-ref="_PC_PRIO_IO">_PC_PRIO_IO</dfn>,&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#define	<dfn class="macro" id="_M/_PC_PRIO_IO" data-ref="_M/_PC_PRIO_IO">_PC_PRIO_IO</dfn>			_PC_PRIO_IO</u>&nbsp</td></tr>
+<tr><th id="50">50</th><td>    <dfn class="enum" id="_PC_SOCK_MAXBUF" title='_PC_SOCK_MAXBUF' data-ref="_PC_SOCK_MAXBUF">_PC_SOCK_MAXBUF</dfn>,&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>#define	<dfn class="macro" id="_M/_PC_SOCK_MAXBUF" data-ref="_M/_PC_SOCK_MAXBUF">_PC_SOCK_MAXBUF</dfn>			_PC_SOCK_MAXBUF</u>&nbsp</td></tr>
+<tr><th id="52">52</th><td>    <dfn class="enum" id="_PC_FILESIZEBITS" title='_PC_FILESIZEBITS' data-ref="_PC_FILESIZEBITS">_PC_FILESIZEBITS</dfn>,&nbsp</td></tr>
+<tr><th id="53">53</th><td><u>#define <dfn class="macro" id="_M/_PC_FILESIZEBITS" data-ref="_M/_PC_FILESIZEBITS">_PC_FILESIZEBITS</dfn>		_PC_FILESIZEBITS</u>&nbsp</td></tr>
+<tr><th id="54">54</th><td>    <dfn class="enum" id="_PC_REC_INCR_XFER_SIZE" title='_PC_REC_INCR_XFER_SIZE' data-ref="_PC_REC_INCR_XFER_SIZE">_PC_REC_INCR_XFER_SIZE</dfn>,&nbsp</td></tr>
+<tr><th id="55">55</th><td><u>#define <dfn class="macro" id="_M/_PC_REC_INCR_XFER_SIZE" data-ref="_M/_PC_REC_INCR_XFER_SIZE">_PC_REC_INCR_XFER_SIZE</dfn>		_PC_REC_INCR_XFER_SIZE</u>&nbsp</td></tr>
+<tr><th id="56">56</th><td>    <dfn class="enum" id="_PC_REC_MAX_XFER_SIZE" title='_PC_REC_MAX_XFER_SIZE' data-ref="_PC_REC_MAX_XFER_SIZE">_PC_REC_MAX_XFER_SIZE</dfn>,&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#define <dfn class="macro" id="_M/_PC_REC_MAX_XFER_SIZE" data-ref="_M/_PC_REC_MAX_XFER_SIZE">_PC_REC_MAX_XFER_SIZE</dfn>		_PC_REC_MAX_XFER_SIZE</u>&nbsp</td></tr>
+<tr><th id="58">58</th><td>    <dfn class="enum" id="_PC_REC_MIN_XFER_SIZE" title='_PC_REC_MIN_XFER_SIZE' data-ref="_PC_REC_MIN_XFER_SIZE">_PC_REC_MIN_XFER_SIZE</dfn>,&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#define <dfn class="macro" id="_M/_PC_REC_MIN_XFER_SIZE" data-ref="_M/_PC_REC_MIN_XFER_SIZE">_PC_REC_MIN_XFER_SIZE</dfn>		_PC_REC_MIN_XFER_SIZE</u>&nbsp</td></tr>
+<tr><th id="60">60</th><td>    <dfn class="enum" id="_PC_REC_XFER_ALIGN" title='_PC_REC_XFER_ALIGN' data-ref="_PC_REC_XFER_ALIGN">_PC_REC_XFER_ALIGN</dfn>,&nbsp</td></tr>
+<tr><th id="61">61</th><td><u>#define <dfn class="macro" id="_M/_PC_REC_XFER_ALIGN" data-ref="_M/_PC_REC_XFER_ALIGN">_PC_REC_XFER_ALIGN</dfn>		_PC_REC_XFER_ALIGN</u>&nbsp</td></tr>
+<tr><th id="62">62</th><td>    <dfn class="enum" id="_PC_ALLOC_SIZE_MIN" title='_PC_ALLOC_SIZE_MIN' data-ref="_PC_ALLOC_SIZE_MIN">_PC_ALLOC_SIZE_MIN</dfn>,&nbsp</td></tr>
+<tr><th id="63">63</th><td><u>#define <dfn class="macro" id="_M/_PC_ALLOC_SIZE_MIN" data-ref="_M/_PC_ALLOC_SIZE_MIN">_PC_ALLOC_SIZE_MIN</dfn>		_PC_ALLOC_SIZE_MIN</u>&nbsp</td></tr>
+<tr><th id="64">64</th><td>    <dfn class="enum" id="_PC_SYMLINK_MAX" title='_PC_SYMLINK_MAX' data-ref="_PC_SYMLINK_MAX">_PC_SYMLINK_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="65">65</th><td><u>#define <dfn class="macro" id="_M/_PC_SYMLINK_MAX" data-ref="_M/_PC_SYMLINK_MAX">_PC_SYMLINK_MAX</dfn>			_PC_SYMLINK_MAX</u>&nbsp</td></tr>
+<tr><th id="66">66</th><td>    <dfn class="enum" id="_PC_2_SYMLINKS" title='_PC_2_SYMLINKS' data-ref="_PC_2_SYMLINKS">_PC_2_SYMLINKS</dfn>&nbsp</td></tr>
+<tr><th id="67">67</th><td><u>#define <dfn class="macro" id="_M/_PC_2_SYMLINKS" data-ref="_M/_PC_2_SYMLINKS">_PC_2_SYMLINKS</dfn>			_PC_2_SYMLINKS</u>&nbsp</td></tr>
+<tr><th id="68">68</th><td>  };&nbsp</td></tr>
+<tr><th id="69">69</th><td>&nbsp</td></tr>
+<tr><th id="70">70</th><td><i>/* Values for the argument to `sysconf'.  */</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td><b>enum</b>&nbsp</td></tr>
+<tr><th id="72">72</th><td>  {&nbsp</td></tr>
+<tr><th id="73">73</th><td>    <dfn class="enum" id="_SC_ARG_MAX" title='_SC_ARG_MAX' data-ref="_SC_ARG_MAX">_SC_ARG_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="74">74</th><td><u>#define	<dfn class="macro" id="_M/_SC_ARG_MAX" data-ref="_M/_SC_ARG_MAX">_SC_ARG_MAX</dfn>			_SC_ARG_MAX</u>&nbsp</td></tr>
+<tr><th id="75">75</th><td>    <dfn class="enum" id="_SC_CHILD_MAX" title='_SC_CHILD_MAX' data-ref="_SC_CHILD_MAX">_SC_CHILD_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#define	<dfn class="macro" id="_M/_SC_CHILD_MAX" data-ref="_M/_SC_CHILD_MAX">_SC_CHILD_MAX</dfn>			_SC_CHILD_MAX</u>&nbsp</td></tr>
+<tr><th id="77">77</th><td>    <dfn class="enum" id="_SC_CLK_TCK" title='_SC_CLK_TCK' data-ref="_SC_CLK_TCK">_SC_CLK_TCK</dfn>,&nbsp</td></tr>
+<tr><th id="78">78</th><td><u>#define	<dfn class="macro" id="_M/_SC_CLK_TCK" data-ref="_M/_SC_CLK_TCK">_SC_CLK_TCK</dfn>			_SC_CLK_TCK</u>&nbsp</td></tr>
+<tr><th id="79">79</th><td>    <dfn class="enum" id="_SC_NGROUPS_MAX" title='_SC_NGROUPS_MAX' data-ref="_SC_NGROUPS_MAX">_SC_NGROUPS_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="80">80</th><td><u>#define	<dfn class="macro" id="_M/_SC_NGROUPS_MAX" data-ref="_M/_SC_NGROUPS_MAX">_SC_NGROUPS_MAX</dfn>			_SC_NGROUPS_MAX</u>&nbsp</td></tr>
+<tr><th id="81">81</th><td>    <dfn class="enum" id="_SC_OPEN_MAX" title='_SC_OPEN_MAX' data-ref="_SC_OPEN_MAX">_SC_OPEN_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="82">82</th><td><u>#define	<dfn class="macro" id="_M/_SC_OPEN_MAX" data-ref="_M/_SC_OPEN_MAX">_SC_OPEN_MAX</dfn>			_SC_OPEN_MAX</u>&nbsp</td></tr>
+<tr><th id="83">83</th><td>    <dfn class="enum" id="_SC_STREAM_MAX" title='_SC_STREAM_MAX' data-ref="_SC_STREAM_MAX">_SC_STREAM_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="84">84</th><td><u>#define	<dfn class="macro" id="_M/_SC_STREAM_MAX" data-ref="_M/_SC_STREAM_MAX">_SC_STREAM_MAX</dfn>			_SC_STREAM_MAX</u>&nbsp</td></tr>
+<tr><th id="85">85</th><td>    <dfn class="enum" id="_SC_TZNAME_MAX" title='_SC_TZNAME_MAX' data-ref="_SC_TZNAME_MAX">_SC_TZNAME_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="86">86</th><td><u>#define	<dfn class="macro" id="_M/_SC_TZNAME_MAX" data-ref="_M/_SC_TZNAME_MAX">_SC_TZNAME_MAX</dfn>			_SC_TZNAME_MAX</u>&nbsp</td></tr>
+<tr><th id="87">87</th><td>    <dfn class="enum" id="_SC_JOB_CONTROL" title='_SC_JOB_CONTROL' data-ref="_SC_JOB_CONTROL">_SC_JOB_CONTROL</dfn>,&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#define	<dfn class="macro" id="_M/_SC_JOB_CONTROL" data-ref="_M/_SC_JOB_CONTROL">_SC_JOB_CONTROL</dfn>			_SC_JOB_CONTROL</u>&nbsp</td></tr>
+<tr><th id="89">89</th><td>    <dfn class="enum" id="_SC_SAVED_IDS" title='_SC_SAVED_IDS' data-ref="_SC_SAVED_IDS">_SC_SAVED_IDS</dfn>,&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#define	<dfn class="macro" id="_M/_SC_SAVED_IDS" data-ref="_M/_SC_SAVED_IDS">_SC_SAVED_IDS</dfn>			_SC_SAVED_IDS</u>&nbsp</td></tr>
+<tr><th id="91">91</th><td>    <dfn class="enum" id="_SC_REALTIME_SIGNALS" title='_SC_REALTIME_SIGNALS' data-ref="_SC_REALTIME_SIGNALS">_SC_REALTIME_SIGNALS</dfn>,&nbsp</td></tr>
+<tr><th id="92">92</th><td><u>#define	<dfn class="macro" id="_M/_SC_REALTIME_SIGNALS" data-ref="_M/_SC_REALTIME_SIGNALS">_SC_REALTIME_SIGNALS</dfn>		_SC_REALTIME_SIGNALS</u>&nbsp</td></tr>
+<tr><th id="93">93</th><td>    <dfn class="enum" id="_SC_PRIORITY_SCHEDULING" title='_SC_PRIORITY_SCHEDULING' data-ref="_SC_PRIORITY_SCHEDULING">_SC_PRIORITY_SCHEDULING</dfn>,&nbsp</td></tr>
+<tr><th id="94">94</th><td><u>#define	<dfn class="macro" id="_M/_SC_PRIORITY_SCHEDULING" data-ref="_M/_SC_PRIORITY_SCHEDULING">_SC_PRIORITY_SCHEDULING</dfn>		_SC_PRIORITY_SCHEDULING</u>&nbsp</td></tr>
+<tr><th id="95">95</th><td>    <dfn class="enum" id="_SC_TIMERS" title='_SC_TIMERS' data-ref="_SC_TIMERS">_SC_TIMERS</dfn>,&nbsp</td></tr>
+<tr><th id="96">96</th><td><u>#define	<dfn class="macro" id="_M/_SC_TIMERS" data-ref="_M/_SC_TIMERS">_SC_TIMERS</dfn>			_SC_TIMERS</u>&nbsp</td></tr>
+<tr><th id="97">97</th><td>    <dfn class="enum" id="_SC_ASYNCHRONOUS_IO" title='_SC_ASYNCHRONOUS_IO' data-ref="_SC_ASYNCHRONOUS_IO">_SC_ASYNCHRONOUS_IO</dfn>,&nbsp</td></tr>
+<tr><th id="98">98</th><td><u>#define	<dfn class="macro" id="_M/_SC_ASYNCHRONOUS_IO" data-ref="_M/_SC_ASYNCHRONOUS_IO">_SC_ASYNCHRONOUS_IO</dfn>		_SC_ASYNCHRONOUS_IO</u>&nbsp</td></tr>
+<tr><th id="99">99</th><td>    <dfn class="enum" id="_SC_PRIORITIZED_IO" title='_SC_PRIORITIZED_IO' data-ref="_SC_PRIORITIZED_IO">_SC_PRIORITIZED_IO</dfn>,&nbsp</td></tr>
+<tr><th id="100">100</th><td><u>#define	<dfn class="macro" id="_M/_SC_PRIORITIZED_IO" data-ref="_M/_SC_PRIORITIZED_IO">_SC_PRIORITIZED_IO</dfn>		_SC_PRIORITIZED_IO</u>&nbsp</td></tr>
+<tr><th id="101">101</th><td>    <dfn class="enum" id="_SC_SYNCHRONIZED_IO" title='_SC_SYNCHRONIZED_IO' data-ref="_SC_SYNCHRONIZED_IO">_SC_SYNCHRONIZED_IO</dfn>,&nbsp</td></tr>
+<tr><th id="102">102</th><td><u>#define	<dfn class="macro" id="_M/_SC_SYNCHRONIZED_IO" data-ref="_M/_SC_SYNCHRONIZED_IO">_SC_SYNCHRONIZED_IO</dfn>		_SC_SYNCHRONIZED_IO</u>&nbsp</td></tr>
+<tr><th id="103">103</th><td>    <dfn class="enum" id="_SC_FSYNC" title='_SC_FSYNC' data-ref="_SC_FSYNC">_SC_FSYNC</dfn>,&nbsp</td></tr>
+<tr><th id="104">104</th><td><u>#define	<dfn class="macro" id="_M/_SC_FSYNC" data-ref="_M/_SC_FSYNC">_SC_FSYNC</dfn>			_SC_FSYNC</u>&nbsp</td></tr>
+<tr><th id="105">105</th><td>    <dfn class="enum" id="_SC_MAPPED_FILES" title='_SC_MAPPED_FILES' data-ref="_SC_MAPPED_FILES">_SC_MAPPED_FILES</dfn>,&nbsp</td></tr>
+<tr><th id="106">106</th><td><u>#define	<dfn class="macro" id="_M/_SC_MAPPED_FILES" data-ref="_M/_SC_MAPPED_FILES">_SC_MAPPED_FILES</dfn>		_SC_MAPPED_FILES</u>&nbsp</td></tr>
+<tr><th id="107">107</th><td>    <dfn class="enum" id="_SC_MEMLOCK" title='_SC_MEMLOCK' data-ref="_SC_MEMLOCK">_SC_MEMLOCK</dfn>,&nbsp</td></tr>
+<tr><th id="108">108</th><td><u>#define	<dfn class="macro" id="_M/_SC_MEMLOCK" data-ref="_M/_SC_MEMLOCK">_SC_MEMLOCK</dfn>			_SC_MEMLOCK</u>&nbsp</td></tr>
+<tr><th id="109">109</th><td>    <dfn class="enum" id="_SC_MEMLOCK_RANGE" title='_SC_MEMLOCK_RANGE' data-ref="_SC_MEMLOCK_RANGE">_SC_MEMLOCK_RANGE</dfn>,&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>#define	<dfn class="macro" id="_M/_SC_MEMLOCK_RANGE" data-ref="_M/_SC_MEMLOCK_RANGE">_SC_MEMLOCK_RANGE</dfn>		_SC_MEMLOCK_RANGE</u>&nbsp</td></tr>
+<tr><th id="111">111</th><td>    <dfn class="enum" id="_SC_MEMORY_PROTECTION" title='_SC_MEMORY_PROTECTION' data-ref="_SC_MEMORY_PROTECTION">_SC_MEMORY_PROTECTION</dfn>,&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>#define	<dfn class="macro" id="_M/_SC_MEMORY_PROTECTION" data-ref="_M/_SC_MEMORY_PROTECTION">_SC_MEMORY_PROTECTION</dfn>		_SC_MEMORY_PROTECTION</u>&nbsp</td></tr>
+<tr><th id="113">113</th><td>    <dfn class="enum" id="_SC_MESSAGE_PASSING" title='_SC_MESSAGE_PASSING' data-ref="_SC_MESSAGE_PASSING">_SC_MESSAGE_PASSING</dfn>,&nbsp</td></tr>
+<tr><th id="114">114</th><td><u>#define	<dfn class="macro" id="_M/_SC_MESSAGE_PASSING" data-ref="_M/_SC_MESSAGE_PASSING">_SC_MESSAGE_PASSING</dfn>		_SC_MESSAGE_PASSING</u>&nbsp</td></tr>
+<tr><th id="115">115</th><td>    <dfn class="enum" id="_SC_SEMAPHORES" title='_SC_SEMAPHORES' data-ref="_SC_SEMAPHORES">_SC_SEMAPHORES</dfn>,&nbsp</td></tr>
+<tr><th id="116">116</th><td><u>#define	<dfn class="macro" id="_M/_SC_SEMAPHORES" data-ref="_M/_SC_SEMAPHORES">_SC_SEMAPHORES</dfn>			_SC_SEMAPHORES</u>&nbsp</td></tr>
+<tr><th id="117">117</th><td>    <dfn class="enum" id="_SC_SHARED_MEMORY_OBJECTS" title='_SC_SHARED_MEMORY_OBJECTS' data-ref="_SC_SHARED_MEMORY_OBJECTS">_SC_SHARED_MEMORY_OBJECTS</dfn>,&nbsp</td></tr>
+<tr><th id="118">118</th><td><u>#define	<dfn class="macro" id="_M/_SC_SHARED_MEMORY_OBJECTS" data-ref="_M/_SC_SHARED_MEMORY_OBJECTS">_SC_SHARED_MEMORY_OBJECTS</dfn>	_SC_SHARED_MEMORY_OBJECTS</u>&nbsp</td></tr>
+<tr><th id="119">119</th><td>    <dfn class="enum" id="_SC_AIO_LISTIO_MAX" title='_SC_AIO_LISTIO_MAX' data-ref="_SC_AIO_LISTIO_MAX">_SC_AIO_LISTIO_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="120">120</th><td><u>#define	<dfn class="macro" id="_M/_SC_AIO_LISTIO_MAX" data-ref="_M/_SC_AIO_LISTIO_MAX">_SC_AIO_LISTIO_MAX</dfn>		_SC_AIO_LISTIO_MAX</u>&nbsp</td></tr>
+<tr><th id="121">121</th><td>    <dfn class="enum" id="_SC_AIO_MAX" title='_SC_AIO_MAX' data-ref="_SC_AIO_MAX">_SC_AIO_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="122">122</th><td><u>#define	<dfn class="macro" id="_M/_SC_AIO_MAX" data-ref="_M/_SC_AIO_MAX">_SC_AIO_MAX</dfn>			_SC_AIO_MAX</u>&nbsp</td></tr>
+<tr><th id="123">123</th><td>    <dfn class="enum" id="_SC_AIO_PRIO_DELTA_MAX" title='_SC_AIO_PRIO_DELTA_MAX' data-ref="_SC_AIO_PRIO_DELTA_MAX">_SC_AIO_PRIO_DELTA_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="124">124</th><td><u>#define	<dfn class="macro" id="_M/_SC_AIO_PRIO_DELTA_MAX" data-ref="_M/_SC_AIO_PRIO_DELTA_MAX">_SC_AIO_PRIO_DELTA_MAX</dfn>		_SC_AIO_PRIO_DELTA_MAX</u>&nbsp</td></tr>
+<tr><th id="125">125</th><td>    <dfn class="enum" id="_SC_DELAYTIMER_MAX" title='_SC_DELAYTIMER_MAX' data-ref="_SC_DELAYTIMER_MAX">_SC_DELAYTIMER_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="126">126</th><td><u>#define	<dfn class="macro" id="_M/_SC_DELAYTIMER_MAX" data-ref="_M/_SC_DELAYTIMER_MAX">_SC_DELAYTIMER_MAX</dfn>		_SC_DELAYTIMER_MAX</u>&nbsp</td></tr>
+<tr><th id="127">127</th><td>    <dfn class="enum" id="_SC_MQ_OPEN_MAX" title='_SC_MQ_OPEN_MAX' data-ref="_SC_MQ_OPEN_MAX">_SC_MQ_OPEN_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="128">128</th><td><u>#define	<dfn class="macro" id="_M/_SC_MQ_OPEN_MAX" data-ref="_M/_SC_MQ_OPEN_MAX">_SC_MQ_OPEN_MAX</dfn>			_SC_MQ_OPEN_MAX</u>&nbsp</td></tr>
+<tr><th id="129">129</th><td>    <dfn class="enum" id="_SC_MQ_PRIO_MAX" title='_SC_MQ_PRIO_MAX' data-ref="_SC_MQ_PRIO_MAX">_SC_MQ_PRIO_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="130">130</th><td><u>#define	<dfn class="macro" id="_M/_SC_MQ_PRIO_MAX" data-ref="_M/_SC_MQ_PRIO_MAX">_SC_MQ_PRIO_MAX</dfn>			_SC_MQ_PRIO_MAX</u>&nbsp</td></tr>
+<tr><th id="131">131</th><td>    <dfn class="enum" id="_SC_VERSION" title='_SC_VERSION' data-ref="_SC_VERSION">_SC_VERSION</dfn>,&nbsp</td></tr>
+<tr><th id="132">132</th><td><u>#define	<dfn class="macro" id="_M/_SC_VERSION" data-ref="_M/_SC_VERSION">_SC_VERSION</dfn>			_SC_VERSION</u>&nbsp</td></tr>
+<tr><th id="133">133</th><td>    <dfn class="enum" id="_SC_PAGESIZE" title='_SC_PAGESIZE' data-ref="_SC_PAGESIZE">_SC_PAGESIZE</dfn>,&nbsp</td></tr>
+<tr><th id="134">134</th><td><u>#define	<dfn class="macro" id="_M/_SC_PAGESIZE" data-ref="_M/_SC_PAGESIZE">_SC_PAGESIZE</dfn>			_SC_PAGESIZE</u>&nbsp</td></tr>
+<tr><th id="135">135</th><td><u>#define	<dfn class="macro" id="_M/_SC_PAGE_SIZE" data-ref="_M/_SC_PAGE_SIZE">_SC_PAGE_SIZE</dfn>			_SC_PAGESIZE</u>&nbsp</td></tr>
+<tr><th id="136">136</th><td>    <dfn class="enum" id="_SC_RTSIG_MAX" title='_SC_RTSIG_MAX' data-ref="_SC_RTSIG_MAX">_SC_RTSIG_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="137">137</th><td><u>#define	<dfn class="macro" id="_M/_SC_RTSIG_MAX" data-ref="_M/_SC_RTSIG_MAX">_SC_RTSIG_MAX</dfn>			_SC_RTSIG_MAX</u>&nbsp</td></tr>
+<tr><th id="138">138</th><td>    <dfn class="enum" id="_SC_SEM_NSEMS_MAX" title='_SC_SEM_NSEMS_MAX' data-ref="_SC_SEM_NSEMS_MAX">_SC_SEM_NSEMS_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="139">139</th><td><u>#define	<dfn class="macro" id="_M/_SC_SEM_NSEMS_MAX" data-ref="_M/_SC_SEM_NSEMS_MAX">_SC_SEM_NSEMS_MAX</dfn>		_SC_SEM_NSEMS_MAX</u>&nbsp</td></tr>
+<tr><th id="140">140</th><td>    <dfn class="enum" id="_SC_SEM_VALUE_MAX" title='_SC_SEM_VALUE_MAX' data-ref="_SC_SEM_VALUE_MAX">_SC_SEM_VALUE_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="141">141</th><td><u>#define	<dfn class="macro" id="_M/_SC_SEM_VALUE_MAX" data-ref="_M/_SC_SEM_VALUE_MAX">_SC_SEM_VALUE_MAX</dfn>		_SC_SEM_VALUE_MAX</u>&nbsp</td></tr>
+<tr><th id="142">142</th><td>    <dfn class="enum" id="_SC_SIGQUEUE_MAX" title='_SC_SIGQUEUE_MAX' data-ref="_SC_SIGQUEUE_MAX">_SC_SIGQUEUE_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="143">143</th><td><u>#define	<dfn class="macro" id="_M/_SC_SIGQUEUE_MAX" data-ref="_M/_SC_SIGQUEUE_MAX">_SC_SIGQUEUE_MAX</dfn>		_SC_SIGQUEUE_MAX</u>&nbsp</td></tr>
+<tr><th id="144">144</th><td>    <dfn class="enum" id="_SC_TIMER_MAX" title='_SC_TIMER_MAX' data-ref="_SC_TIMER_MAX">_SC_TIMER_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="145">145</th><td><u>#define	<dfn class="macro" id="_M/_SC_TIMER_MAX" data-ref="_M/_SC_TIMER_MAX">_SC_TIMER_MAX</dfn>			_SC_TIMER_MAX</u>&nbsp</td></tr>
+<tr><th id="146">146</th><td>&nbsp</td></tr>
+<tr><th id="147">147</th><td>    <i>/* Values for the argument to `sysconf'</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td><i>       corresponding to _POSIX2_* symbols.  */</i>&nbsp</td></tr>
+<tr><th id="149">149</th><td>    <dfn class="enum" id="_SC_BC_BASE_MAX" title='_SC_BC_BASE_MAX' data-ref="_SC_BC_BASE_MAX">_SC_BC_BASE_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="150">150</th><td><u>#define	<dfn class="macro" id="_M/_SC_BC_BASE_MAX" data-ref="_M/_SC_BC_BASE_MAX">_SC_BC_BASE_MAX</dfn>			_SC_BC_BASE_MAX</u>&nbsp</td></tr>
+<tr><th id="151">151</th><td>    <dfn class="enum" id="_SC_BC_DIM_MAX" title='_SC_BC_DIM_MAX' data-ref="_SC_BC_DIM_MAX">_SC_BC_DIM_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="152">152</th><td><u>#define	<dfn class="macro" id="_M/_SC_BC_DIM_MAX" data-ref="_M/_SC_BC_DIM_MAX">_SC_BC_DIM_MAX</dfn>			_SC_BC_DIM_MAX</u>&nbsp</td></tr>
+<tr><th id="153">153</th><td>    <dfn class="enum" id="_SC_BC_SCALE_MAX" title='_SC_BC_SCALE_MAX' data-ref="_SC_BC_SCALE_MAX">_SC_BC_SCALE_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="154">154</th><td><u>#define	<dfn class="macro" id="_M/_SC_BC_SCALE_MAX" data-ref="_M/_SC_BC_SCALE_MAX">_SC_BC_SCALE_MAX</dfn>		_SC_BC_SCALE_MAX</u>&nbsp</td></tr>
+<tr><th id="155">155</th><td>    <dfn class="enum" id="_SC_BC_STRING_MAX" title='_SC_BC_STRING_MAX' data-ref="_SC_BC_STRING_MAX">_SC_BC_STRING_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="156">156</th><td><u>#define	<dfn class="macro" id="_M/_SC_BC_STRING_MAX" data-ref="_M/_SC_BC_STRING_MAX">_SC_BC_STRING_MAX</dfn>		_SC_BC_STRING_MAX</u>&nbsp</td></tr>
+<tr><th id="157">157</th><td>    <dfn class="enum" id="_SC_COLL_WEIGHTS_MAX" title='_SC_COLL_WEIGHTS_MAX' data-ref="_SC_COLL_WEIGHTS_MAX">_SC_COLL_WEIGHTS_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="158">158</th><td><u>#define	<dfn class="macro" id="_M/_SC_COLL_WEIGHTS_MAX" data-ref="_M/_SC_COLL_WEIGHTS_MAX">_SC_COLL_WEIGHTS_MAX</dfn>		_SC_COLL_WEIGHTS_MAX</u>&nbsp</td></tr>
+<tr><th id="159">159</th><td>    <dfn class="enum" id="_SC_EQUIV_CLASS_MAX" title='_SC_EQUIV_CLASS_MAX' data-ref="_SC_EQUIV_CLASS_MAX">_SC_EQUIV_CLASS_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="160">160</th><td><u>#define	<dfn class="macro" id="_M/_SC_EQUIV_CLASS_MAX" data-ref="_M/_SC_EQUIV_CLASS_MAX">_SC_EQUIV_CLASS_MAX</dfn>		_SC_EQUIV_CLASS_MAX</u>&nbsp</td></tr>
+<tr><th id="161">161</th><td>    <dfn class="enum" id="_SC_EXPR_NEST_MAX" title='_SC_EXPR_NEST_MAX' data-ref="_SC_EXPR_NEST_MAX">_SC_EXPR_NEST_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="162">162</th><td><u>#define	<dfn class="macro" id="_M/_SC_EXPR_NEST_MAX" data-ref="_M/_SC_EXPR_NEST_MAX">_SC_EXPR_NEST_MAX</dfn>		_SC_EXPR_NEST_MAX</u>&nbsp</td></tr>
+<tr><th id="163">163</th><td>    <dfn class="enum" id="_SC_LINE_MAX" title='_SC_LINE_MAX' data-ref="_SC_LINE_MAX">_SC_LINE_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="164">164</th><td><u>#define	<dfn class="macro" id="_M/_SC_LINE_MAX" data-ref="_M/_SC_LINE_MAX">_SC_LINE_MAX</dfn>			_SC_LINE_MAX</u>&nbsp</td></tr>
+<tr><th id="165">165</th><td>    <dfn class="enum" id="_SC_RE_DUP_MAX" title='_SC_RE_DUP_MAX' data-ref="_SC_RE_DUP_MAX">_SC_RE_DUP_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="166">166</th><td><u>#define	<dfn class="macro" id="_M/_SC_RE_DUP_MAX" data-ref="_M/_SC_RE_DUP_MAX">_SC_RE_DUP_MAX</dfn>			_SC_RE_DUP_MAX</u>&nbsp</td></tr>
+<tr><th id="167">167</th><td>    <dfn class="enum" id="_SC_CHARCLASS_NAME_MAX" title='_SC_CHARCLASS_NAME_MAX' data-ref="_SC_CHARCLASS_NAME_MAX">_SC_CHARCLASS_NAME_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="168">168</th><td><u>#define	<dfn class="macro" id="_M/_SC_CHARCLASS_NAME_MAX" data-ref="_M/_SC_CHARCLASS_NAME_MAX">_SC_CHARCLASS_NAME_MAX</dfn>		_SC_CHARCLASS_NAME_MAX</u>&nbsp</td></tr>
+<tr><th id="169">169</th><td>&nbsp</td></tr>
+<tr><th id="170">170</th><td>    <dfn class="enum" id="_SC_2_VERSION" title='_SC_2_VERSION' data-ref="_SC_2_VERSION">_SC_2_VERSION</dfn>,&nbsp</td></tr>
+<tr><th id="171">171</th><td><u>#define	<dfn class="macro" id="_M/_SC_2_VERSION" data-ref="_M/_SC_2_VERSION">_SC_2_VERSION</dfn>			_SC_2_VERSION</u>&nbsp</td></tr>
+<tr><th id="172">172</th><td>    <dfn class="enum" id="_SC_2_C_BIND" title='_SC_2_C_BIND' data-ref="_SC_2_C_BIND">_SC_2_C_BIND</dfn>,&nbsp</td></tr>
+<tr><th id="173">173</th><td><u>#define	<dfn class="macro" id="_M/_SC_2_C_BIND" data-ref="_M/_SC_2_C_BIND">_SC_2_C_BIND</dfn>			_SC_2_C_BIND</u>&nbsp</td></tr>
+<tr><th id="174">174</th><td>    <dfn class="enum" id="_SC_2_C_DEV" title='_SC_2_C_DEV' data-ref="_SC_2_C_DEV">_SC_2_C_DEV</dfn>,&nbsp</td></tr>
+<tr><th id="175">175</th><td><u>#define	<dfn class="macro" id="_M/_SC_2_C_DEV" data-ref="_M/_SC_2_C_DEV">_SC_2_C_DEV</dfn>			_SC_2_C_DEV</u>&nbsp</td></tr>
+<tr><th id="176">176</th><td>    <dfn class="enum" id="_SC_2_FORT_DEV" title='_SC_2_FORT_DEV' data-ref="_SC_2_FORT_DEV">_SC_2_FORT_DEV</dfn>,&nbsp</td></tr>
+<tr><th id="177">177</th><td><u>#define	<dfn class="macro" id="_M/_SC_2_FORT_DEV" data-ref="_M/_SC_2_FORT_DEV">_SC_2_FORT_DEV</dfn>			_SC_2_FORT_DEV</u>&nbsp</td></tr>
+<tr><th id="178">178</th><td>    <dfn class="enum" id="_SC_2_FORT_RUN" title='_SC_2_FORT_RUN' data-ref="_SC_2_FORT_RUN">_SC_2_FORT_RUN</dfn>,&nbsp</td></tr>
+<tr><th id="179">179</th><td><u>#define	<dfn class="macro" id="_M/_SC_2_FORT_RUN" data-ref="_M/_SC_2_FORT_RUN">_SC_2_FORT_RUN</dfn>			_SC_2_FORT_RUN</u>&nbsp</td></tr>
+<tr><th id="180">180</th><td>    <dfn class="enum" id="_SC_2_SW_DEV" title='_SC_2_SW_DEV' data-ref="_SC_2_SW_DEV">_SC_2_SW_DEV</dfn>,&nbsp</td></tr>
+<tr><th id="181">181</th><td><u>#define	<dfn class="macro" id="_M/_SC_2_SW_DEV" data-ref="_M/_SC_2_SW_DEV">_SC_2_SW_DEV</dfn>			_SC_2_SW_DEV</u>&nbsp</td></tr>
+<tr><th id="182">182</th><td>    <dfn class="enum" id="_SC_2_LOCALEDEF" title='_SC_2_LOCALEDEF' data-ref="_SC_2_LOCALEDEF">_SC_2_LOCALEDEF</dfn>,&nbsp</td></tr>
+<tr><th id="183">183</th><td><u>#define	<dfn class="macro" id="_M/_SC_2_LOCALEDEF" data-ref="_M/_SC_2_LOCALEDEF">_SC_2_LOCALEDEF</dfn>			_SC_2_LOCALEDEF</u>&nbsp</td></tr>
+<tr><th id="184">184</th><td>&nbsp</td></tr>
+<tr><th id="185">185</th><td>    <dfn class="enum" id="_SC_PII" title='_SC_PII' data-ref="_SC_PII">_SC_PII</dfn>,&nbsp</td></tr>
+<tr><th id="186">186</th><td><u>#define	<dfn class="macro" id="_M/_SC_PII" data-ref="_M/_SC_PII">_SC_PII</dfn>				_SC_PII</u>&nbsp</td></tr>
+<tr><th id="187">187</th><td>    <dfn class="enum" id="_SC_PII_XTI" title='_SC_PII_XTI' data-ref="_SC_PII_XTI">_SC_PII_XTI</dfn>,&nbsp</td></tr>
+<tr><th id="188">188</th><td><u>#define	<dfn class="macro" id="_M/_SC_PII_XTI" data-ref="_M/_SC_PII_XTI">_SC_PII_XTI</dfn>			_SC_PII_XTI</u>&nbsp</td></tr>
+<tr><th id="189">189</th><td>    <dfn class="enum" id="_SC_PII_SOCKET" title='_SC_PII_SOCKET' data-ref="_SC_PII_SOCKET">_SC_PII_SOCKET</dfn>,&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>#define	<dfn class="macro" id="_M/_SC_PII_SOCKET" data-ref="_M/_SC_PII_SOCKET">_SC_PII_SOCKET</dfn>			_SC_PII_SOCKET</u>&nbsp</td></tr>
+<tr><th id="191">191</th><td>    <dfn class="enum" id="_SC_PII_INTERNET" title='_SC_PII_INTERNET' data-ref="_SC_PII_INTERNET">_SC_PII_INTERNET</dfn>,&nbsp</td></tr>
+<tr><th id="192">192</th><td><u>#define	<dfn class="macro" id="_M/_SC_PII_INTERNET" data-ref="_M/_SC_PII_INTERNET">_SC_PII_INTERNET</dfn>		_SC_PII_INTERNET</u>&nbsp</td></tr>
+<tr><th id="193">193</th><td>    <dfn class="enum" id="_SC_PII_OSI" title='_SC_PII_OSI' data-ref="_SC_PII_OSI">_SC_PII_OSI</dfn>,&nbsp</td></tr>
+<tr><th id="194">194</th><td><u>#define	<dfn class="macro" id="_M/_SC_PII_OSI" data-ref="_M/_SC_PII_OSI">_SC_PII_OSI</dfn>			_SC_PII_OSI</u>&nbsp</td></tr>
+<tr><th id="195">195</th><td>    <dfn class="enum" id="_SC_POLL" title='_SC_POLL' data-ref="_SC_POLL">_SC_POLL</dfn>,&nbsp</td></tr>
+<tr><th id="196">196</th><td><u>#define	<dfn class="macro" id="_M/_SC_POLL" data-ref="_M/_SC_POLL">_SC_POLL</dfn>			_SC_POLL</u>&nbsp</td></tr>
+<tr><th id="197">197</th><td>    <dfn class="enum" id="_SC_SELECT" title='_SC_SELECT' data-ref="_SC_SELECT">_SC_SELECT</dfn>,&nbsp</td></tr>
+<tr><th id="198">198</th><td><u>#define	<dfn class="macro" id="_M/_SC_SELECT" data-ref="_M/_SC_SELECT">_SC_SELECT</dfn>			_SC_SELECT</u>&nbsp</td></tr>
+<tr><th id="199">199</th><td>    <dfn class="enum" id="_SC_UIO_MAXIOV" title='_SC_UIO_MAXIOV' data-ref="_SC_UIO_MAXIOV">_SC_UIO_MAXIOV</dfn>,&nbsp</td></tr>
+<tr><th id="200">200</th><td><u>#define	<dfn class="macro" id="_M/_SC_UIO_MAXIOV" data-ref="_M/_SC_UIO_MAXIOV">_SC_UIO_MAXIOV</dfn>			<a class="enum" href="#_SC_UIO_MAXIOV" title='_SC_UIO_MAXIOV' data-ref="_SC_UIO_MAXIOV">_SC_UIO_MAXIOV</a></u>&nbsp</td></tr>
+<tr><th id="201">201</th><td>    <dfn class="enum" id="_SC_IOV_MAX" title='_SC_IOV_MAX' data-ref="_SC_IOV_MAX">_SC_IOV_MAX</dfn> = <a class="macro" href="#200" title="_SC_UIO_MAXIOV" data-ref="_M/_SC_UIO_MAXIOV">_SC_UIO_MAXIOV</a>,&nbsp</td></tr>
+<tr><th id="202">202</th><td><u>#define <dfn class="macro" id="_M/_SC_IOV_MAX" data-ref="_M/_SC_IOV_MAX">_SC_IOV_MAX</dfn>			_SC_IOV_MAX</u>&nbsp</td></tr>
+<tr><th id="203">203</th><td>    <dfn class="enum" id="_SC_PII_INTERNET_STREAM" title='_SC_PII_INTERNET_STREAM' data-ref="_SC_PII_INTERNET_STREAM">_SC_PII_INTERNET_STREAM</dfn>,&nbsp</td></tr>
+<tr><th id="204">204</th><td><u>#define	<dfn class="macro" id="_M/_SC_PII_INTERNET_STREAM" data-ref="_M/_SC_PII_INTERNET_STREAM">_SC_PII_INTERNET_STREAM</dfn>		_SC_PII_INTERNET_STREAM</u>&nbsp</td></tr>
+<tr><th id="205">205</th><td>    <dfn class="enum" id="_SC_PII_INTERNET_DGRAM" title='_SC_PII_INTERNET_DGRAM' data-ref="_SC_PII_INTERNET_DGRAM">_SC_PII_INTERNET_DGRAM</dfn>,&nbsp</td></tr>
+<tr><th id="206">206</th><td><u>#define	<dfn class="macro" id="_M/_SC_PII_INTERNET_DGRAM" data-ref="_M/_SC_PII_INTERNET_DGRAM">_SC_PII_INTERNET_DGRAM</dfn>		_SC_PII_INTERNET_DGRAM</u>&nbsp</td></tr>
+<tr><th id="207">207</th><td>    <dfn class="enum" id="_SC_PII_OSI_COTS" title='_SC_PII_OSI_COTS' data-ref="_SC_PII_OSI_COTS">_SC_PII_OSI_COTS</dfn>,&nbsp</td></tr>
+<tr><th id="208">208</th><td><u>#define	<dfn class="macro" id="_M/_SC_PII_OSI_COTS" data-ref="_M/_SC_PII_OSI_COTS">_SC_PII_OSI_COTS</dfn>		_SC_PII_OSI_COTS</u>&nbsp</td></tr>
+<tr><th id="209">209</th><td>    <dfn class="enum" id="_SC_PII_OSI_CLTS" title='_SC_PII_OSI_CLTS' data-ref="_SC_PII_OSI_CLTS">_SC_PII_OSI_CLTS</dfn>,&nbsp</td></tr>
+<tr><th id="210">210</th><td><u>#define	<dfn class="macro" id="_M/_SC_PII_OSI_CLTS" data-ref="_M/_SC_PII_OSI_CLTS">_SC_PII_OSI_CLTS</dfn>		_SC_PII_OSI_CLTS</u>&nbsp</td></tr>
+<tr><th id="211">211</th><td>    <dfn class="enum" id="_SC_PII_OSI_M" title='_SC_PII_OSI_M' data-ref="_SC_PII_OSI_M">_SC_PII_OSI_M</dfn>,&nbsp</td></tr>
+<tr><th id="212">212</th><td><u>#define	<dfn class="macro" id="_M/_SC_PII_OSI_M" data-ref="_M/_SC_PII_OSI_M">_SC_PII_OSI_M</dfn>			_SC_PII_OSI_M</u>&nbsp</td></tr>
+<tr><th id="213">213</th><td>    <dfn class="enum" id="_SC_T_IOV_MAX" title='_SC_T_IOV_MAX' data-ref="_SC_T_IOV_MAX">_SC_T_IOV_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="214">214</th><td><u>#define	<dfn class="macro" id="_M/_SC_T_IOV_MAX" data-ref="_M/_SC_T_IOV_MAX">_SC_T_IOV_MAX</dfn>			_SC_T_IOV_MAX</u>&nbsp</td></tr>
+<tr><th id="215">215</th><td>&nbsp</td></tr>
+<tr><th id="216">216</th><td>    <i>/* Values according to POSIX 1003.1c (POSIX threads).  */</i>&nbsp</td></tr>
+<tr><th id="217">217</th><td>    <dfn class="enum" id="_SC_THREADS" title='_SC_THREADS' data-ref="_SC_THREADS">_SC_THREADS</dfn>,&nbsp</td></tr>
+<tr><th id="218">218</th><td><u>#define	<dfn class="macro" id="_M/_SC_THREADS" data-ref="_M/_SC_THREADS">_SC_THREADS</dfn>			_SC_THREADS</u>&nbsp</td></tr>
+<tr><th id="219">219</th><td>    <dfn class="enum" id="_SC_THREAD_SAFE_FUNCTIONS" title='_SC_THREAD_SAFE_FUNCTIONS' data-ref="_SC_THREAD_SAFE_FUNCTIONS">_SC_THREAD_SAFE_FUNCTIONS</dfn>,&nbsp</td></tr>
+<tr><th id="220">220</th><td><u>#define <dfn class="macro" id="_M/_SC_THREAD_SAFE_FUNCTIONS" data-ref="_M/_SC_THREAD_SAFE_FUNCTIONS">_SC_THREAD_SAFE_FUNCTIONS</dfn>	_SC_THREAD_SAFE_FUNCTIONS</u>&nbsp</td></tr>
+<tr><th id="221">221</th><td>    <dfn class="enum" id="_SC_GETGR_R_SIZE_MAX" title='_SC_GETGR_R_SIZE_MAX' data-ref="_SC_GETGR_R_SIZE_MAX">_SC_GETGR_R_SIZE_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="222">222</th><td><u>#define	<dfn class="macro" id="_M/_SC_GETGR_R_SIZE_MAX" data-ref="_M/_SC_GETGR_R_SIZE_MAX">_SC_GETGR_R_SIZE_MAX</dfn>		_SC_GETGR_R_SIZE_MAX</u>&nbsp</td></tr>
+<tr><th id="223">223</th><td>    <dfn class="enum" id="_SC_GETPW_R_SIZE_MAX" title='_SC_GETPW_R_SIZE_MAX' data-ref="_SC_GETPW_R_SIZE_MAX">_SC_GETPW_R_SIZE_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="224">224</th><td><u>#define	<dfn class="macro" id="_M/_SC_GETPW_R_SIZE_MAX" data-ref="_M/_SC_GETPW_R_SIZE_MAX">_SC_GETPW_R_SIZE_MAX</dfn>		_SC_GETPW_R_SIZE_MAX</u>&nbsp</td></tr>
+<tr><th id="225">225</th><td>    <dfn class="enum" id="_SC_LOGIN_NAME_MAX" title='_SC_LOGIN_NAME_MAX' data-ref="_SC_LOGIN_NAME_MAX">_SC_LOGIN_NAME_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="226">226</th><td><u>#define	<dfn class="macro" id="_M/_SC_LOGIN_NAME_MAX" data-ref="_M/_SC_LOGIN_NAME_MAX">_SC_LOGIN_NAME_MAX</dfn>		_SC_LOGIN_NAME_MAX</u>&nbsp</td></tr>
+<tr><th id="227">227</th><td>    <dfn class="enum" id="_SC_TTY_NAME_MAX" title='_SC_TTY_NAME_MAX' data-ref="_SC_TTY_NAME_MAX">_SC_TTY_NAME_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="228">228</th><td><u>#define	<dfn class="macro" id="_M/_SC_TTY_NAME_MAX" data-ref="_M/_SC_TTY_NAME_MAX">_SC_TTY_NAME_MAX</dfn>		_SC_TTY_NAME_MAX</u>&nbsp</td></tr>
+<tr><th id="229">229</th><td>    <dfn class="enum" id="_SC_THREAD_DESTRUCTOR_ITERATIONS" title='_SC_THREAD_DESTRUCTOR_ITERATIONS' data-ref="_SC_THREAD_DESTRUCTOR_ITERATIONS">_SC_THREAD_DESTRUCTOR_ITERATIONS</dfn>,&nbsp</td></tr>
+<tr><th id="230">230</th><td><u>#define	<dfn class="macro" id="_M/_SC_THREAD_DESTRUCTOR_ITERATIONS" data-ref="_M/_SC_THREAD_DESTRUCTOR_ITERATIONS">_SC_THREAD_DESTRUCTOR_ITERATIONS</dfn> _SC_THREAD_DESTRUCTOR_ITERATIONS</u>&nbsp</td></tr>
+<tr><th id="231">231</th><td>    <dfn class="enum" id="_SC_THREAD_KEYS_MAX" title='_SC_THREAD_KEYS_MAX' data-ref="_SC_THREAD_KEYS_MAX">_SC_THREAD_KEYS_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="232">232</th><td><u>#define	<dfn class="macro" id="_M/_SC_THREAD_KEYS_MAX" data-ref="_M/_SC_THREAD_KEYS_MAX">_SC_THREAD_KEYS_MAX</dfn>		_SC_THREAD_KEYS_MAX</u>&nbsp</td></tr>
+<tr><th id="233">233</th><td>    <dfn class="enum" id="_SC_THREAD_STACK_MIN" title='_SC_THREAD_STACK_MIN' data-ref="_SC_THREAD_STACK_MIN">_SC_THREAD_STACK_MIN</dfn>,&nbsp</td></tr>
+<tr><th id="234">234</th><td><u>#define	<dfn class="macro" id="_M/_SC_THREAD_STACK_MIN" data-ref="_M/_SC_THREAD_STACK_MIN">_SC_THREAD_STACK_MIN</dfn>		_SC_THREAD_STACK_MIN</u>&nbsp</td></tr>
+<tr><th id="235">235</th><td>    <dfn class="enum" id="_SC_THREAD_THREADS_MAX" title='_SC_THREAD_THREADS_MAX' data-ref="_SC_THREAD_THREADS_MAX">_SC_THREAD_THREADS_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="236">236</th><td><u>#define	<dfn class="macro" id="_M/_SC_THREAD_THREADS_MAX" data-ref="_M/_SC_THREAD_THREADS_MAX">_SC_THREAD_THREADS_MAX</dfn>		_SC_THREAD_THREADS_MAX</u>&nbsp</td></tr>
+<tr><th id="237">237</th><td>    <dfn class="enum" id="_SC_THREAD_ATTR_STACKADDR" title='_SC_THREAD_ATTR_STACKADDR' data-ref="_SC_THREAD_ATTR_STACKADDR">_SC_THREAD_ATTR_STACKADDR</dfn>,&nbsp</td></tr>
+<tr><th id="238">238</th><td><u>#define	<dfn class="macro" id="_M/_SC_THREAD_ATTR_STACKADDR" data-ref="_M/_SC_THREAD_ATTR_STACKADDR">_SC_THREAD_ATTR_STACKADDR</dfn>	_SC_THREAD_ATTR_STACKADDR</u>&nbsp</td></tr>
+<tr><th id="239">239</th><td>    <dfn class="enum" id="_SC_THREAD_ATTR_STACKSIZE" title='_SC_THREAD_ATTR_STACKSIZE' data-ref="_SC_THREAD_ATTR_STACKSIZE">_SC_THREAD_ATTR_STACKSIZE</dfn>,&nbsp</td></tr>
+<tr><th id="240">240</th><td><u>#define	<dfn class="macro" id="_M/_SC_THREAD_ATTR_STACKSIZE" data-ref="_M/_SC_THREAD_ATTR_STACKSIZE">_SC_THREAD_ATTR_STACKSIZE</dfn>	_SC_THREAD_ATTR_STACKSIZE</u>&nbsp</td></tr>
+<tr><th id="241">241</th><td>    <dfn class="enum" id="_SC_THREAD_PRIORITY_SCHEDULING" title='_SC_THREAD_PRIORITY_SCHEDULING' data-ref="_SC_THREAD_PRIORITY_SCHEDULING">_SC_THREAD_PRIORITY_SCHEDULING</dfn>,&nbsp</td></tr>
+<tr><th id="242">242</th><td><u>#define	<dfn class="macro" id="_M/_SC_THREAD_PRIORITY_SCHEDULING" data-ref="_M/_SC_THREAD_PRIORITY_SCHEDULING">_SC_THREAD_PRIORITY_SCHEDULING</dfn>	_SC_THREAD_PRIORITY_SCHEDULING</u>&nbsp</td></tr>
+<tr><th id="243">243</th><td>    <dfn class="enum" id="_SC_THREAD_PRIO_INHERIT" title='_SC_THREAD_PRIO_INHERIT' data-ref="_SC_THREAD_PRIO_INHERIT">_SC_THREAD_PRIO_INHERIT</dfn>,&nbsp</td></tr>
+<tr><th id="244">244</th><td><u>#define	<dfn class="macro" id="_M/_SC_THREAD_PRIO_INHERIT" data-ref="_M/_SC_THREAD_PRIO_INHERIT">_SC_THREAD_PRIO_INHERIT</dfn>		_SC_THREAD_PRIO_INHERIT</u>&nbsp</td></tr>
+<tr><th id="245">245</th><td>    <dfn class="enum" id="_SC_THREAD_PRIO_PROTECT" title='_SC_THREAD_PRIO_PROTECT' data-ref="_SC_THREAD_PRIO_PROTECT">_SC_THREAD_PRIO_PROTECT</dfn>,&nbsp</td></tr>
+<tr><th id="246">246</th><td><u>#define	<dfn class="macro" id="_M/_SC_THREAD_PRIO_PROTECT" data-ref="_M/_SC_THREAD_PRIO_PROTECT">_SC_THREAD_PRIO_PROTECT</dfn>		_SC_THREAD_PRIO_PROTECT</u>&nbsp</td></tr>
+<tr><th id="247">247</th><td>    <dfn class="enum" id="_SC_THREAD_PROCESS_SHARED" title='_SC_THREAD_PROCESS_SHARED' data-ref="_SC_THREAD_PROCESS_SHARED">_SC_THREAD_PROCESS_SHARED</dfn>,&nbsp</td></tr>
+<tr><th id="248">248</th><td><u>#define	<dfn class="macro" id="_M/_SC_THREAD_PROCESS_SHARED" data-ref="_M/_SC_THREAD_PROCESS_SHARED">_SC_THREAD_PROCESS_SHARED</dfn>	_SC_THREAD_PROCESS_SHARED</u>&nbsp</td></tr>
+<tr><th id="249">249</th><td>&nbsp</td></tr>
+<tr><th id="250">250</th><td>    <dfn class="enum" id="_SC_NPROCESSORS_CONF" title='_SC_NPROCESSORS_CONF' data-ref="_SC_NPROCESSORS_CONF">_SC_NPROCESSORS_CONF</dfn>,&nbsp</td></tr>
+<tr><th id="251">251</th><td><u>#define <dfn class="macro" id="_M/_SC_NPROCESSORS_CONF" data-ref="_M/_SC_NPROCESSORS_CONF">_SC_NPROCESSORS_CONF</dfn>		_SC_NPROCESSORS_CONF</u>&nbsp</td></tr>
+<tr><th id="252">252</th><td>    <dfn class="enum" id="_SC_NPROCESSORS_ONLN" title='_SC_NPROCESSORS_ONLN' data-ref="_SC_NPROCESSORS_ONLN">_SC_NPROCESSORS_ONLN</dfn>,&nbsp</td></tr>
+<tr><th id="253">253</th><td><u>#define <dfn class="macro" id="_M/_SC_NPROCESSORS_ONLN" data-ref="_M/_SC_NPROCESSORS_ONLN">_SC_NPROCESSORS_ONLN</dfn>		_SC_NPROCESSORS_ONLN</u>&nbsp</td></tr>
+<tr><th id="254">254</th><td>    <dfn class="enum" id="_SC_PHYS_PAGES" title='_SC_PHYS_PAGES' data-ref="_SC_PHYS_PAGES">_SC_PHYS_PAGES</dfn>,&nbsp</td></tr>
+<tr><th id="255">255</th><td><u>#define <dfn class="macro" id="_M/_SC_PHYS_PAGES" data-ref="_M/_SC_PHYS_PAGES">_SC_PHYS_PAGES</dfn>			_SC_PHYS_PAGES</u>&nbsp</td></tr>
+<tr><th id="256">256</th><td>    <dfn class="enum" id="_SC_AVPHYS_PAGES" title='_SC_AVPHYS_PAGES' data-ref="_SC_AVPHYS_PAGES">_SC_AVPHYS_PAGES</dfn>,&nbsp</td></tr>
+<tr><th id="257">257</th><td><u>#define <dfn class="macro" id="_M/_SC_AVPHYS_PAGES" data-ref="_M/_SC_AVPHYS_PAGES">_SC_AVPHYS_PAGES</dfn>		_SC_AVPHYS_PAGES</u>&nbsp</td></tr>
+<tr><th id="258">258</th><td>    <dfn class="enum" id="_SC_ATEXIT_MAX" title='_SC_ATEXIT_MAX' data-ref="_SC_ATEXIT_MAX">_SC_ATEXIT_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="259">259</th><td><u>#define <dfn class="macro" id="_M/_SC_ATEXIT_MAX" data-ref="_M/_SC_ATEXIT_MAX">_SC_ATEXIT_MAX</dfn>			_SC_ATEXIT_MAX</u>&nbsp</td></tr>
+<tr><th id="260">260</th><td>    <dfn class="enum" id="_SC_PASS_MAX" title='_SC_PASS_MAX' data-ref="_SC_PASS_MAX">_SC_PASS_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="261">261</th><td><u>#define <dfn class="macro" id="_M/_SC_PASS_MAX" data-ref="_M/_SC_PASS_MAX">_SC_PASS_MAX</dfn>			_SC_PASS_MAX</u>&nbsp</td></tr>
+<tr><th id="262">262</th><td>&nbsp</td></tr>
+<tr><th id="263">263</th><td>    <dfn class="enum" id="_SC_XOPEN_VERSION" title='_SC_XOPEN_VERSION' data-ref="_SC_XOPEN_VERSION">_SC_XOPEN_VERSION</dfn>,&nbsp</td></tr>
+<tr><th id="264">264</th><td><u>#define <dfn class="macro" id="_M/_SC_XOPEN_VERSION" data-ref="_M/_SC_XOPEN_VERSION">_SC_XOPEN_VERSION</dfn>		_SC_XOPEN_VERSION</u>&nbsp</td></tr>
+<tr><th id="265">265</th><td>    <dfn class="enum" id="_SC_XOPEN_XCU_VERSION" title='_SC_XOPEN_XCU_VERSION' data-ref="_SC_XOPEN_XCU_VERSION">_SC_XOPEN_XCU_VERSION</dfn>,&nbsp</td></tr>
+<tr><th id="266">266</th><td><u>#define <dfn class="macro" id="_M/_SC_XOPEN_XCU_VERSION" data-ref="_M/_SC_XOPEN_XCU_VERSION">_SC_XOPEN_XCU_VERSION</dfn>		_SC_XOPEN_XCU_VERSION</u>&nbsp</td></tr>
+<tr><th id="267">267</th><td>    <dfn class="enum" id="_SC_XOPEN_UNIX" title='_SC_XOPEN_UNIX' data-ref="_SC_XOPEN_UNIX">_SC_XOPEN_UNIX</dfn>,&nbsp</td></tr>
+<tr><th id="268">268</th><td><u>#define <dfn class="macro" id="_M/_SC_XOPEN_UNIX" data-ref="_M/_SC_XOPEN_UNIX">_SC_XOPEN_UNIX</dfn>			_SC_XOPEN_UNIX</u>&nbsp</td></tr>
+<tr><th id="269">269</th><td>    <dfn class="enum" id="_SC_XOPEN_CRYPT" title='_SC_XOPEN_CRYPT' data-ref="_SC_XOPEN_CRYPT">_SC_XOPEN_CRYPT</dfn>,&nbsp</td></tr>
+<tr><th id="270">270</th><td><u>#define <dfn class="macro" id="_M/_SC_XOPEN_CRYPT" data-ref="_M/_SC_XOPEN_CRYPT">_SC_XOPEN_CRYPT</dfn>			_SC_XOPEN_CRYPT</u>&nbsp</td></tr>
+<tr><th id="271">271</th><td>    <dfn class="enum" id="_SC_XOPEN_ENH_I18N" title='_SC_XOPEN_ENH_I18N' data-ref="_SC_XOPEN_ENH_I18N">_SC_XOPEN_ENH_I18N</dfn>,&nbsp</td></tr>
+<tr><th id="272">272</th><td><u>#define <dfn class="macro" id="_M/_SC_XOPEN_ENH_I18N" data-ref="_M/_SC_XOPEN_ENH_I18N">_SC_XOPEN_ENH_I18N</dfn>		_SC_XOPEN_ENH_I18N</u>&nbsp</td></tr>
+<tr><th id="273">273</th><td>    <dfn class="enum" id="_SC_XOPEN_SHM" title='_SC_XOPEN_SHM' data-ref="_SC_XOPEN_SHM">_SC_XOPEN_SHM</dfn>,&nbsp</td></tr>
+<tr><th id="274">274</th><td><u>#define <dfn class="macro" id="_M/_SC_XOPEN_SHM" data-ref="_M/_SC_XOPEN_SHM">_SC_XOPEN_SHM</dfn>			_SC_XOPEN_SHM</u>&nbsp</td></tr>
+<tr><th id="275">275</th><td>&nbsp</td></tr>
+<tr><th id="276">276</th><td>    <dfn class="enum" id="_SC_2_CHAR_TERM" title='_SC_2_CHAR_TERM' data-ref="_SC_2_CHAR_TERM">_SC_2_CHAR_TERM</dfn>,&nbsp</td></tr>
+<tr><th id="277">277</th><td><u>#define <dfn class="macro" id="_M/_SC_2_CHAR_TERM" data-ref="_M/_SC_2_CHAR_TERM">_SC_2_CHAR_TERM</dfn>			_SC_2_CHAR_TERM</u>&nbsp</td></tr>
+<tr><th id="278">278</th><td>    <dfn class="enum" id="_SC_2_C_VERSION" title='_SC_2_C_VERSION' data-ref="_SC_2_C_VERSION">_SC_2_C_VERSION</dfn>,&nbsp</td></tr>
+<tr><th id="279">279</th><td><u>#define <dfn class="macro" id="_M/_SC_2_C_VERSION" data-ref="_M/_SC_2_C_VERSION">_SC_2_C_VERSION</dfn>			_SC_2_C_VERSION</u>&nbsp</td></tr>
+<tr><th id="280">280</th><td>    <dfn class="enum" id="_SC_2_UPE" title='_SC_2_UPE' data-ref="_SC_2_UPE">_SC_2_UPE</dfn>,&nbsp</td></tr>
+<tr><th id="281">281</th><td><u>#define <dfn class="macro" id="_M/_SC_2_UPE" data-ref="_M/_SC_2_UPE">_SC_2_UPE</dfn>			_SC_2_UPE</u>&nbsp</td></tr>
+<tr><th id="282">282</th><td>&nbsp</td></tr>
+<tr><th id="283">283</th><td>    <dfn class="enum" id="_SC_XOPEN_XPG2" title='_SC_XOPEN_XPG2' data-ref="_SC_XOPEN_XPG2">_SC_XOPEN_XPG2</dfn>,&nbsp</td></tr>
+<tr><th id="284">284</th><td><u>#define <dfn class="macro" id="_M/_SC_XOPEN_XPG2" data-ref="_M/_SC_XOPEN_XPG2">_SC_XOPEN_XPG2</dfn>			_SC_XOPEN_XPG2</u>&nbsp</td></tr>
+<tr><th id="285">285</th><td>    <dfn class="enum" id="_SC_XOPEN_XPG3" title='_SC_XOPEN_XPG3' data-ref="_SC_XOPEN_XPG3">_SC_XOPEN_XPG3</dfn>,&nbsp</td></tr>
+<tr><th id="286">286</th><td><u>#define <dfn class="macro" id="_M/_SC_XOPEN_XPG3" data-ref="_M/_SC_XOPEN_XPG3">_SC_XOPEN_XPG3</dfn>			_SC_XOPEN_XPG3</u>&nbsp</td></tr>
+<tr><th id="287">287</th><td>    <dfn class="enum" id="_SC_XOPEN_XPG4" title='_SC_XOPEN_XPG4' data-ref="_SC_XOPEN_XPG4">_SC_XOPEN_XPG4</dfn>,&nbsp</td></tr>
+<tr><th id="288">288</th><td><u>#define <dfn class="macro" id="_M/_SC_XOPEN_XPG4" data-ref="_M/_SC_XOPEN_XPG4">_SC_XOPEN_XPG4</dfn>			_SC_XOPEN_XPG4</u>&nbsp</td></tr>
+<tr><th id="289">289</th><td>&nbsp</td></tr>
+<tr><th id="290">290</th><td>    <dfn class="enum" id="_SC_CHAR_BIT" title='_SC_CHAR_BIT' data-ref="_SC_CHAR_BIT">_SC_CHAR_BIT</dfn>,&nbsp</td></tr>
+<tr><th id="291">291</th><td><u>#define	<dfn class="macro" id="_M/_SC_CHAR_BIT" data-ref="_M/_SC_CHAR_BIT">_SC_CHAR_BIT</dfn>			_SC_CHAR_BIT</u>&nbsp</td></tr>
+<tr><th id="292">292</th><td>    <dfn class="enum" id="_SC_CHAR_MAX" title='_SC_CHAR_MAX' data-ref="_SC_CHAR_MAX">_SC_CHAR_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="293">293</th><td><u>#define	<dfn class="macro" id="_M/_SC_CHAR_MAX" data-ref="_M/_SC_CHAR_MAX">_SC_CHAR_MAX</dfn>			_SC_CHAR_MAX</u>&nbsp</td></tr>
+<tr><th id="294">294</th><td>    <dfn class="enum" id="_SC_CHAR_MIN" title='_SC_CHAR_MIN' data-ref="_SC_CHAR_MIN">_SC_CHAR_MIN</dfn>,&nbsp</td></tr>
+<tr><th id="295">295</th><td><u>#define	<dfn class="macro" id="_M/_SC_CHAR_MIN" data-ref="_M/_SC_CHAR_MIN">_SC_CHAR_MIN</dfn>			_SC_CHAR_MIN</u>&nbsp</td></tr>
+<tr><th id="296">296</th><td>    <dfn class="enum" id="_SC_INT_MAX" title='_SC_INT_MAX' data-ref="_SC_INT_MAX">_SC_INT_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="297">297</th><td><u>#define	<dfn class="macro" id="_M/_SC_INT_MAX" data-ref="_M/_SC_INT_MAX">_SC_INT_MAX</dfn>			_SC_INT_MAX</u>&nbsp</td></tr>
+<tr><th id="298">298</th><td>    <dfn class="enum" id="_SC_INT_MIN" title='_SC_INT_MIN' data-ref="_SC_INT_MIN">_SC_INT_MIN</dfn>,&nbsp</td></tr>
+<tr><th id="299">299</th><td><u>#define	<dfn class="macro" id="_M/_SC_INT_MIN" data-ref="_M/_SC_INT_MIN">_SC_INT_MIN</dfn>			_SC_INT_MIN</u>&nbsp</td></tr>
+<tr><th id="300">300</th><td>    <dfn class="enum" id="_SC_LONG_BIT" title='_SC_LONG_BIT' data-ref="_SC_LONG_BIT">_SC_LONG_BIT</dfn>,&nbsp</td></tr>
+<tr><th id="301">301</th><td><u>#define	<dfn class="macro" id="_M/_SC_LONG_BIT" data-ref="_M/_SC_LONG_BIT">_SC_LONG_BIT</dfn>			_SC_LONG_BIT</u>&nbsp</td></tr>
+<tr><th id="302">302</th><td>    <dfn class="enum" id="_SC_WORD_BIT" title='_SC_WORD_BIT' data-ref="_SC_WORD_BIT">_SC_WORD_BIT</dfn>,&nbsp</td></tr>
+<tr><th id="303">303</th><td><u>#define	<dfn class="macro" id="_M/_SC_WORD_BIT" data-ref="_M/_SC_WORD_BIT">_SC_WORD_BIT</dfn>			_SC_WORD_BIT</u>&nbsp</td></tr>
+<tr><th id="304">304</th><td>    <dfn class="enum" id="_SC_MB_LEN_MAX" title='_SC_MB_LEN_MAX' data-ref="_SC_MB_LEN_MAX">_SC_MB_LEN_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="305">305</th><td><u>#define	<dfn class="macro" id="_M/_SC_MB_LEN_MAX" data-ref="_M/_SC_MB_LEN_MAX">_SC_MB_LEN_MAX</dfn>			_SC_MB_LEN_MAX</u>&nbsp</td></tr>
+<tr><th id="306">306</th><td>    <dfn class="enum" id="_SC_NZERO" title='_SC_NZERO' data-ref="_SC_NZERO">_SC_NZERO</dfn>,&nbsp</td></tr>
+<tr><th id="307">307</th><td><u>#define	<dfn class="macro" id="_M/_SC_NZERO" data-ref="_M/_SC_NZERO">_SC_NZERO</dfn>			_SC_NZERO</u>&nbsp</td></tr>
+<tr><th id="308">308</th><td>    <dfn class="enum" id="_SC_SSIZE_MAX" title='_SC_SSIZE_MAX' data-ref="_SC_SSIZE_MAX">_SC_SSIZE_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="309">309</th><td><u>#define	<dfn class="macro" id="_M/_SC_SSIZE_MAX" data-ref="_M/_SC_SSIZE_MAX">_SC_SSIZE_MAX</dfn>			_SC_SSIZE_MAX</u>&nbsp</td></tr>
+<tr><th id="310">310</th><td>    <dfn class="enum" id="_SC_SCHAR_MAX" title='_SC_SCHAR_MAX' data-ref="_SC_SCHAR_MAX">_SC_SCHAR_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="311">311</th><td><u>#define	<dfn class="macro" id="_M/_SC_SCHAR_MAX" data-ref="_M/_SC_SCHAR_MAX">_SC_SCHAR_MAX</dfn>			_SC_SCHAR_MAX</u>&nbsp</td></tr>
+<tr><th id="312">312</th><td>    <dfn class="enum" id="_SC_SCHAR_MIN" title='_SC_SCHAR_MIN' data-ref="_SC_SCHAR_MIN">_SC_SCHAR_MIN</dfn>,&nbsp</td></tr>
+<tr><th id="313">313</th><td><u>#define	<dfn class="macro" id="_M/_SC_SCHAR_MIN" data-ref="_M/_SC_SCHAR_MIN">_SC_SCHAR_MIN</dfn>			_SC_SCHAR_MIN</u>&nbsp</td></tr>
+<tr><th id="314">314</th><td>    <dfn class="enum" id="_SC_SHRT_MAX" title='_SC_SHRT_MAX' data-ref="_SC_SHRT_MAX">_SC_SHRT_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="315">315</th><td><u>#define	<dfn class="macro" id="_M/_SC_SHRT_MAX" data-ref="_M/_SC_SHRT_MAX">_SC_SHRT_MAX</dfn>			_SC_SHRT_MAX</u>&nbsp</td></tr>
+<tr><th id="316">316</th><td>    <dfn class="enum" id="_SC_SHRT_MIN" title='_SC_SHRT_MIN' data-ref="_SC_SHRT_MIN">_SC_SHRT_MIN</dfn>,&nbsp</td></tr>
+<tr><th id="317">317</th><td><u>#define	<dfn class="macro" id="_M/_SC_SHRT_MIN" data-ref="_M/_SC_SHRT_MIN">_SC_SHRT_MIN</dfn>			_SC_SHRT_MIN</u>&nbsp</td></tr>
+<tr><th id="318">318</th><td>    <dfn class="enum" id="_SC_UCHAR_MAX" title='_SC_UCHAR_MAX' data-ref="_SC_UCHAR_MAX">_SC_UCHAR_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="319">319</th><td><u>#define	<dfn class="macro" id="_M/_SC_UCHAR_MAX" data-ref="_M/_SC_UCHAR_MAX">_SC_UCHAR_MAX</dfn>			_SC_UCHAR_MAX</u>&nbsp</td></tr>
+<tr><th id="320">320</th><td>    <dfn class="enum" id="_SC_UINT_MAX" title='_SC_UINT_MAX' data-ref="_SC_UINT_MAX">_SC_UINT_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="321">321</th><td><u>#define	<dfn class="macro" id="_M/_SC_UINT_MAX" data-ref="_M/_SC_UINT_MAX">_SC_UINT_MAX</dfn>			_SC_UINT_MAX</u>&nbsp</td></tr>
+<tr><th id="322">322</th><td>    <dfn class="enum" id="_SC_ULONG_MAX" title='_SC_ULONG_MAX' data-ref="_SC_ULONG_MAX">_SC_ULONG_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="323">323</th><td><u>#define	<dfn class="macro" id="_M/_SC_ULONG_MAX" data-ref="_M/_SC_ULONG_MAX">_SC_ULONG_MAX</dfn>			_SC_ULONG_MAX</u>&nbsp</td></tr>
+<tr><th id="324">324</th><td>    <dfn class="enum" id="_SC_USHRT_MAX" title='_SC_USHRT_MAX' data-ref="_SC_USHRT_MAX">_SC_USHRT_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="325">325</th><td><u>#define	<dfn class="macro" id="_M/_SC_USHRT_MAX" data-ref="_M/_SC_USHRT_MAX">_SC_USHRT_MAX</dfn>			_SC_USHRT_MAX</u>&nbsp</td></tr>
+<tr><th id="326">326</th><td>&nbsp</td></tr>
+<tr><th id="327">327</th><td>    <dfn class="enum" id="_SC_NL_ARGMAX" title='_SC_NL_ARGMAX' data-ref="_SC_NL_ARGMAX">_SC_NL_ARGMAX</dfn>,&nbsp</td></tr>
+<tr><th id="328">328</th><td><u>#define	<dfn class="macro" id="_M/_SC_NL_ARGMAX" data-ref="_M/_SC_NL_ARGMAX">_SC_NL_ARGMAX</dfn>			_SC_NL_ARGMAX</u>&nbsp</td></tr>
+<tr><th id="329">329</th><td>    <dfn class="enum" id="_SC_NL_LANGMAX" title='_SC_NL_LANGMAX' data-ref="_SC_NL_LANGMAX">_SC_NL_LANGMAX</dfn>,&nbsp</td></tr>
+<tr><th id="330">330</th><td><u>#define	<dfn class="macro" id="_M/_SC_NL_LANGMAX" data-ref="_M/_SC_NL_LANGMAX">_SC_NL_LANGMAX</dfn>			_SC_NL_LANGMAX</u>&nbsp</td></tr>
+<tr><th id="331">331</th><td>    <dfn class="enum" id="_SC_NL_MSGMAX" title='_SC_NL_MSGMAX' data-ref="_SC_NL_MSGMAX">_SC_NL_MSGMAX</dfn>,&nbsp</td></tr>
+<tr><th id="332">332</th><td><u>#define	<dfn class="macro" id="_M/_SC_NL_MSGMAX" data-ref="_M/_SC_NL_MSGMAX">_SC_NL_MSGMAX</dfn>			_SC_NL_MSGMAX</u>&nbsp</td></tr>
+<tr><th id="333">333</th><td>    <dfn class="enum" id="_SC_NL_NMAX" title='_SC_NL_NMAX' data-ref="_SC_NL_NMAX">_SC_NL_NMAX</dfn>,&nbsp</td></tr>
+<tr><th id="334">334</th><td><u>#define	<dfn class="macro" id="_M/_SC_NL_NMAX" data-ref="_M/_SC_NL_NMAX">_SC_NL_NMAX</dfn>			_SC_NL_NMAX</u>&nbsp</td></tr>
+<tr><th id="335">335</th><td>    <dfn class="enum" id="_SC_NL_SETMAX" title='_SC_NL_SETMAX' data-ref="_SC_NL_SETMAX">_SC_NL_SETMAX</dfn>,&nbsp</td></tr>
+<tr><th id="336">336</th><td><u>#define	<dfn class="macro" id="_M/_SC_NL_SETMAX" data-ref="_M/_SC_NL_SETMAX">_SC_NL_SETMAX</dfn>			_SC_NL_SETMAX</u>&nbsp</td></tr>
+<tr><th id="337">337</th><td>    <dfn class="enum" id="_SC_NL_TEXTMAX" title='_SC_NL_TEXTMAX' data-ref="_SC_NL_TEXTMAX">_SC_NL_TEXTMAX</dfn>,&nbsp</td></tr>
+<tr><th id="338">338</th><td><u>#define	<dfn class="macro" id="_M/_SC_NL_TEXTMAX" data-ref="_M/_SC_NL_TEXTMAX">_SC_NL_TEXTMAX</dfn>			_SC_NL_TEXTMAX</u>&nbsp</td></tr>
+<tr><th id="339">339</th><td>&nbsp</td></tr>
+<tr><th id="340">340</th><td>    <dfn class="enum" id="_SC_XBS5_ILP32_OFF32" title='_SC_XBS5_ILP32_OFF32' data-ref="_SC_XBS5_ILP32_OFF32">_SC_XBS5_ILP32_OFF32</dfn>,&nbsp</td></tr>
+<tr><th id="341">341</th><td><u>#define <dfn class="macro" id="_M/_SC_XBS5_ILP32_OFF32" data-ref="_M/_SC_XBS5_ILP32_OFF32">_SC_XBS5_ILP32_OFF32</dfn>		_SC_XBS5_ILP32_OFF32</u>&nbsp</td></tr>
+<tr><th id="342">342</th><td>    <dfn class="enum" id="_SC_XBS5_ILP32_OFFBIG" title='_SC_XBS5_ILP32_OFFBIG' data-ref="_SC_XBS5_ILP32_OFFBIG">_SC_XBS5_ILP32_OFFBIG</dfn>,&nbsp</td></tr>
+<tr><th id="343">343</th><td><u>#define <dfn class="macro" id="_M/_SC_XBS5_ILP32_OFFBIG" data-ref="_M/_SC_XBS5_ILP32_OFFBIG">_SC_XBS5_ILP32_OFFBIG</dfn>		_SC_XBS5_ILP32_OFFBIG</u>&nbsp</td></tr>
+<tr><th id="344">344</th><td>    <dfn class="enum" id="_SC_XBS5_LP64_OFF64" title='_SC_XBS5_LP64_OFF64' data-ref="_SC_XBS5_LP64_OFF64">_SC_XBS5_LP64_OFF64</dfn>,&nbsp</td></tr>
+<tr><th id="345">345</th><td><u>#define <dfn class="macro" id="_M/_SC_XBS5_LP64_OFF64" data-ref="_M/_SC_XBS5_LP64_OFF64">_SC_XBS5_LP64_OFF64</dfn>		_SC_XBS5_LP64_OFF64</u>&nbsp</td></tr>
+<tr><th id="346">346</th><td>    <dfn class="enum" id="_SC_XBS5_LPBIG_OFFBIG" title='_SC_XBS5_LPBIG_OFFBIG' data-ref="_SC_XBS5_LPBIG_OFFBIG">_SC_XBS5_LPBIG_OFFBIG</dfn>,&nbsp</td></tr>
+<tr><th id="347">347</th><td><u>#define <dfn class="macro" id="_M/_SC_XBS5_LPBIG_OFFBIG" data-ref="_M/_SC_XBS5_LPBIG_OFFBIG">_SC_XBS5_LPBIG_OFFBIG</dfn>		_SC_XBS5_LPBIG_OFFBIG</u>&nbsp</td></tr>
+<tr><th id="348">348</th><td>&nbsp</td></tr>
+<tr><th id="349">349</th><td>    <dfn class="enum" id="_SC_XOPEN_LEGACY" title='_SC_XOPEN_LEGACY' data-ref="_SC_XOPEN_LEGACY">_SC_XOPEN_LEGACY</dfn>,&nbsp</td></tr>
+<tr><th id="350">350</th><td><u>#define <dfn class="macro" id="_M/_SC_XOPEN_LEGACY" data-ref="_M/_SC_XOPEN_LEGACY">_SC_XOPEN_LEGACY</dfn>		_SC_XOPEN_LEGACY</u>&nbsp</td></tr>
+<tr><th id="351">351</th><td>    <dfn class="enum" id="_SC_XOPEN_REALTIME" title='_SC_XOPEN_REALTIME' data-ref="_SC_XOPEN_REALTIME">_SC_XOPEN_REALTIME</dfn>,&nbsp</td></tr>
+<tr><th id="352">352</th><td><u>#define <dfn class="macro" id="_M/_SC_XOPEN_REALTIME" data-ref="_M/_SC_XOPEN_REALTIME">_SC_XOPEN_REALTIME</dfn>		_SC_XOPEN_REALTIME</u>&nbsp</td></tr>
+<tr><th id="353">353</th><td>    <dfn class="enum" id="_SC_XOPEN_REALTIME_THREADS" title='_SC_XOPEN_REALTIME_THREADS' data-ref="_SC_XOPEN_REALTIME_THREADS">_SC_XOPEN_REALTIME_THREADS</dfn>,&nbsp</td></tr>
+<tr><th id="354">354</th><td><u>#define <dfn class="macro" id="_M/_SC_XOPEN_REALTIME_THREADS" data-ref="_M/_SC_XOPEN_REALTIME_THREADS">_SC_XOPEN_REALTIME_THREADS</dfn>	_SC_XOPEN_REALTIME_THREADS</u>&nbsp</td></tr>
+<tr><th id="355">355</th><td>&nbsp</td></tr>
+<tr><th id="356">356</th><td>    <dfn class="enum" id="_SC_ADVISORY_INFO" title='_SC_ADVISORY_INFO' data-ref="_SC_ADVISORY_INFO">_SC_ADVISORY_INFO</dfn>,&nbsp</td></tr>
+<tr><th id="357">357</th><td><u>#define <dfn class="macro" id="_M/_SC_ADVISORY_INFO" data-ref="_M/_SC_ADVISORY_INFO">_SC_ADVISORY_INFO</dfn>		_SC_ADVISORY_INFO</u>&nbsp</td></tr>
+<tr><th id="358">358</th><td>    <dfn class="enum" id="_SC_BARRIERS" title='_SC_BARRIERS' data-ref="_SC_BARRIERS">_SC_BARRIERS</dfn>,&nbsp</td></tr>
+<tr><th id="359">359</th><td><u>#define <dfn class="macro" id="_M/_SC_BARRIERS" data-ref="_M/_SC_BARRIERS">_SC_BARRIERS</dfn>			_SC_BARRIERS</u>&nbsp</td></tr>
+<tr><th id="360">360</th><td>    <dfn class="enum" id="_SC_BASE" title='_SC_BASE' data-ref="_SC_BASE">_SC_BASE</dfn>,&nbsp</td></tr>
+<tr><th id="361">361</th><td><u>#define <dfn class="macro" id="_M/_SC_BASE" data-ref="_M/_SC_BASE">_SC_BASE</dfn>			_SC_BASE</u>&nbsp</td></tr>
+<tr><th id="362">362</th><td>    <dfn class="enum" id="_SC_C_LANG_SUPPORT" title='_SC_C_LANG_SUPPORT' data-ref="_SC_C_LANG_SUPPORT">_SC_C_LANG_SUPPORT</dfn>,&nbsp</td></tr>
+<tr><th id="363">363</th><td><u>#define <dfn class="macro" id="_M/_SC_C_LANG_SUPPORT" data-ref="_M/_SC_C_LANG_SUPPORT">_SC_C_LANG_SUPPORT</dfn>		_SC_C_LANG_SUPPORT</u>&nbsp</td></tr>
+<tr><th id="364">364</th><td>    <dfn class="enum" id="_SC_C_LANG_SUPPORT_R" title='_SC_C_LANG_SUPPORT_R' data-ref="_SC_C_LANG_SUPPORT_R">_SC_C_LANG_SUPPORT_R</dfn>,&nbsp</td></tr>
+<tr><th id="365">365</th><td><u>#define <dfn class="macro" id="_M/_SC_C_LANG_SUPPORT_R" data-ref="_M/_SC_C_LANG_SUPPORT_R">_SC_C_LANG_SUPPORT_R</dfn>		_SC_C_LANG_SUPPORT_R</u>&nbsp</td></tr>
+<tr><th id="366">366</th><td>    <dfn class="enum" id="_SC_CLOCK_SELECTION" title='_SC_CLOCK_SELECTION' data-ref="_SC_CLOCK_SELECTION">_SC_CLOCK_SELECTION</dfn>,&nbsp</td></tr>
+<tr><th id="367">367</th><td><u>#define <dfn class="macro" id="_M/_SC_CLOCK_SELECTION" data-ref="_M/_SC_CLOCK_SELECTION">_SC_CLOCK_SELECTION</dfn>		_SC_CLOCK_SELECTION</u>&nbsp</td></tr>
+<tr><th id="368">368</th><td>    <dfn class="enum" id="_SC_CPUTIME" title='_SC_CPUTIME' data-ref="_SC_CPUTIME">_SC_CPUTIME</dfn>,&nbsp</td></tr>
+<tr><th id="369">369</th><td><u>#define <dfn class="macro" id="_M/_SC_CPUTIME" data-ref="_M/_SC_CPUTIME">_SC_CPUTIME</dfn>			_SC_CPUTIME</u>&nbsp</td></tr>
+<tr><th id="370">370</th><td>    <dfn class="enum" id="_SC_THREAD_CPUTIME" title='_SC_THREAD_CPUTIME' data-ref="_SC_THREAD_CPUTIME">_SC_THREAD_CPUTIME</dfn>,&nbsp</td></tr>
+<tr><th id="371">371</th><td><u>#define <dfn class="macro" id="_M/_SC_THREAD_CPUTIME" data-ref="_M/_SC_THREAD_CPUTIME">_SC_THREAD_CPUTIME</dfn>		_SC_THREAD_CPUTIME</u>&nbsp</td></tr>
+<tr><th id="372">372</th><td>    <dfn class="enum" id="_SC_DEVICE_IO" title='_SC_DEVICE_IO' data-ref="_SC_DEVICE_IO">_SC_DEVICE_IO</dfn>,&nbsp</td></tr>
+<tr><th id="373">373</th><td><u>#define <dfn class="macro" id="_M/_SC_DEVICE_IO" data-ref="_M/_SC_DEVICE_IO">_SC_DEVICE_IO</dfn>			_SC_DEVICE_IO</u>&nbsp</td></tr>
+<tr><th id="374">374</th><td>    <dfn class="enum" id="_SC_DEVICE_SPECIFIC" title='_SC_DEVICE_SPECIFIC' data-ref="_SC_DEVICE_SPECIFIC">_SC_DEVICE_SPECIFIC</dfn>,&nbsp</td></tr>
+<tr><th id="375">375</th><td><u>#define <dfn class="macro" id="_M/_SC_DEVICE_SPECIFIC" data-ref="_M/_SC_DEVICE_SPECIFIC">_SC_DEVICE_SPECIFIC</dfn>		_SC_DEVICE_SPECIFIC</u>&nbsp</td></tr>
+<tr><th id="376">376</th><td>    <dfn class="enum" id="_SC_DEVICE_SPECIFIC_R" title='_SC_DEVICE_SPECIFIC_R' data-ref="_SC_DEVICE_SPECIFIC_R">_SC_DEVICE_SPECIFIC_R</dfn>,&nbsp</td></tr>
+<tr><th id="377">377</th><td><u>#define <dfn class="macro" id="_M/_SC_DEVICE_SPECIFIC_R" data-ref="_M/_SC_DEVICE_SPECIFIC_R">_SC_DEVICE_SPECIFIC_R</dfn>		_SC_DEVICE_SPECIFIC_R</u>&nbsp</td></tr>
+<tr><th id="378">378</th><td>    <dfn class="enum" id="_SC_FD_MGMT" title='_SC_FD_MGMT' data-ref="_SC_FD_MGMT">_SC_FD_MGMT</dfn>,&nbsp</td></tr>
+<tr><th id="379">379</th><td><u>#define <dfn class="macro" id="_M/_SC_FD_MGMT" data-ref="_M/_SC_FD_MGMT">_SC_FD_MGMT</dfn>			_SC_FD_MGMT</u>&nbsp</td></tr>
+<tr><th id="380">380</th><td>    <dfn class="enum" id="_SC_FIFO" title='_SC_FIFO' data-ref="_SC_FIFO">_SC_FIFO</dfn>,&nbsp</td></tr>
+<tr><th id="381">381</th><td><u>#define <dfn class="macro" id="_M/_SC_FIFO" data-ref="_M/_SC_FIFO">_SC_FIFO</dfn>			_SC_FIFO</u>&nbsp</td></tr>
+<tr><th id="382">382</th><td>    <dfn class="enum" id="_SC_PIPE" title='_SC_PIPE' data-ref="_SC_PIPE">_SC_PIPE</dfn>,&nbsp</td></tr>
+<tr><th id="383">383</th><td><u>#define <dfn class="macro" id="_M/_SC_PIPE" data-ref="_M/_SC_PIPE">_SC_PIPE</dfn>			_SC_PIPE</u>&nbsp</td></tr>
+<tr><th id="384">384</th><td>    <dfn class="enum" id="_SC_FILE_ATTRIBUTES" title='_SC_FILE_ATTRIBUTES' data-ref="_SC_FILE_ATTRIBUTES">_SC_FILE_ATTRIBUTES</dfn>,&nbsp</td></tr>
+<tr><th id="385">385</th><td><u>#define <dfn class="macro" id="_M/_SC_FILE_ATTRIBUTES" data-ref="_M/_SC_FILE_ATTRIBUTES">_SC_FILE_ATTRIBUTES</dfn>		_SC_FILE_ATTRIBUTES</u>&nbsp</td></tr>
+<tr><th id="386">386</th><td>    <dfn class="enum" id="_SC_FILE_LOCKING" title='_SC_FILE_LOCKING' data-ref="_SC_FILE_LOCKING">_SC_FILE_LOCKING</dfn>,&nbsp</td></tr>
+<tr><th id="387">387</th><td><u>#define <dfn class="macro" id="_M/_SC_FILE_LOCKING" data-ref="_M/_SC_FILE_LOCKING">_SC_FILE_LOCKING</dfn>		_SC_FILE_LOCKING</u>&nbsp</td></tr>
+<tr><th id="388">388</th><td>    <dfn class="enum" id="_SC_FILE_SYSTEM" title='_SC_FILE_SYSTEM' data-ref="_SC_FILE_SYSTEM">_SC_FILE_SYSTEM</dfn>,&nbsp</td></tr>
+<tr><th id="389">389</th><td><u>#define <dfn class="macro" id="_M/_SC_FILE_SYSTEM" data-ref="_M/_SC_FILE_SYSTEM">_SC_FILE_SYSTEM</dfn>			_SC_FILE_SYSTEM</u>&nbsp</td></tr>
+<tr><th id="390">390</th><td>    <dfn class="enum" id="_SC_MONOTONIC_CLOCK" title='_SC_MONOTONIC_CLOCK' data-ref="_SC_MONOTONIC_CLOCK">_SC_MONOTONIC_CLOCK</dfn>,&nbsp</td></tr>
+<tr><th id="391">391</th><td><u>#define <dfn class="macro" id="_M/_SC_MONOTONIC_CLOCK" data-ref="_M/_SC_MONOTONIC_CLOCK">_SC_MONOTONIC_CLOCK</dfn>		_SC_MONOTONIC_CLOCK</u>&nbsp</td></tr>
+<tr><th id="392">392</th><td>    <dfn class="enum" id="_SC_MULTI_PROCESS" title='_SC_MULTI_PROCESS' data-ref="_SC_MULTI_PROCESS">_SC_MULTI_PROCESS</dfn>,&nbsp</td></tr>
+<tr><th id="393">393</th><td><u>#define <dfn class="macro" id="_M/_SC_MULTI_PROCESS" data-ref="_M/_SC_MULTI_PROCESS">_SC_MULTI_PROCESS</dfn>		_SC_MULTI_PROCESS</u>&nbsp</td></tr>
+<tr><th id="394">394</th><td>    <dfn class="enum" id="_SC_SINGLE_PROCESS" title='_SC_SINGLE_PROCESS' data-ref="_SC_SINGLE_PROCESS">_SC_SINGLE_PROCESS</dfn>,&nbsp</td></tr>
+<tr><th id="395">395</th><td><u>#define <dfn class="macro" id="_M/_SC_SINGLE_PROCESS" data-ref="_M/_SC_SINGLE_PROCESS">_SC_SINGLE_PROCESS</dfn>		_SC_SINGLE_PROCESS</u>&nbsp</td></tr>
+<tr><th id="396">396</th><td>    <dfn class="enum" id="_SC_NETWORKING" title='_SC_NETWORKING' data-ref="_SC_NETWORKING">_SC_NETWORKING</dfn>,&nbsp</td></tr>
+<tr><th id="397">397</th><td><u>#define <dfn class="macro" id="_M/_SC_NETWORKING" data-ref="_M/_SC_NETWORKING">_SC_NETWORKING</dfn>			_SC_NETWORKING</u>&nbsp</td></tr>
+<tr><th id="398">398</th><td>    <dfn class="enum" id="_SC_READER_WRITER_LOCKS" title='_SC_READER_WRITER_LOCKS' data-ref="_SC_READER_WRITER_LOCKS">_SC_READER_WRITER_LOCKS</dfn>,&nbsp</td></tr>
+<tr><th id="399">399</th><td><u>#define <dfn class="macro" id="_M/_SC_READER_WRITER_LOCKS" data-ref="_M/_SC_READER_WRITER_LOCKS">_SC_READER_WRITER_LOCKS</dfn>		_SC_READER_WRITER_LOCKS</u>&nbsp</td></tr>
+<tr><th id="400">400</th><td>    <dfn class="enum" id="_SC_SPIN_LOCKS" title='_SC_SPIN_LOCKS' data-ref="_SC_SPIN_LOCKS">_SC_SPIN_LOCKS</dfn>,&nbsp</td></tr>
+<tr><th id="401">401</th><td><u>#define <dfn class="macro" id="_M/_SC_SPIN_LOCKS" data-ref="_M/_SC_SPIN_LOCKS">_SC_SPIN_LOCKS</dfn>			_SC_SPIN_LOCKS</u>&nbsp</td></tr>
+<tr><th id="402">402</th><td>    <dfn class="enum" id="_SC_REGEXP" title='_SC_REGEXP' data-ref="_SC_REGEXP">_SC_REGEXP</dfn>,&nbsp</td></tr>
+<tr><th id="403">403</th><td><u>#define <dfn class="macro" id="_M/_SC_REGEXP" data-ref="_M/_SC_REGEXP">_SC_REGEXP</dfn>			_SC_REGEXP</u>&nbsp</td></tr>
+<tr><th id="404">404</th><td>    <dfn class="enum" id="_SC_REGEX_VERSION" title='_SC_REGEX_VERSION' data-ref="_SC_REGEX_VERSION">_SC_REGEX_VERSION</dfn>,&nbsp</td></tr>
+<tr><th id="405">405</th><td><u>#define <dfn class="macro" id="_M/_SC_REGEX_VERSION" data-ref="_M/_SC_REGEX_VERSION">_SC_REGEX_VERSION</dfn>		_SC_REGEX_VERSION</u>&nbsp</td></tr>
+<tr><th id="406">406</th><td>    <dfn class="enum" id="_SC_SHELL" title='_SC_SHELL' data-ref="_SC_SHELL">_SC_SHELL</dfn>,&nbsp</td></tr>
+<tr><th id="407">407</th><td><u>#define <dfn class="macro" id="_M/_SC_SHELL" data-ref="_M/_SC_SHELL">_SC_SHELL</dfn>			_SC_SHELL</u>&nbsp</td></tr>
+<tr><th id="408">408</th><td>    <dfn class="enum" id="_SC_SIGNALS" title='_SC_SIGNALS' data-ref="_SC_SIGNALS">_SC_SIGNALS</dfn>,&nbsp</td></tr>
+<tr><th id="409">409</th><td><u>#define <dfn class="macro" id="_M/_SC_SIGNALS" data-ref="_M/_SC_SIGNALS">_SC_SIGNALS</dfn>			_SC_SIGNALS</u>&nbsp</td></tr>
+<tr><th id="410">410</th><td>    <dfn class="enum" id="_SC_SPAWN" title='_SC_SPAWN' data-ref="_SC_SPAWN">_SC_SPAWN</dfn>,&nbsp</td></tr>
+<tr><th id="411">411</th><td><u>#define <dfn class="macro" id="_M/_SC_SPAWN" data-ref="_M/_SC_SPAWN">_SC_SPAWN</dfn>			_SC_SPAWN</u>&nbsp</td></tr>
+<tr><th id="412">412</th><td>    <dfn class="enum" id="_SC_SPORADIC_SERVER" title='_SC_SPORADIC_SERVER' data-ref="_SC_SPORADIC_SERVER">_SC_SPORADIC_SERVER</dfn>,&nbsp</td></tr>
+<tr><th id="413">413</th><td><u>#define <dfn class="macro" id="_M/_SC_SPORADIC_SERVER" data-ref="_M/_SC_SPORADIC_SERVER">_SC_SPORADIC_SERVER</dfn>		_SC_SPORADIC_SERVER</u>&nbsp</td></tr>
+<tr><th id="414">414</th><td>    <dfn class="enum" id="_SC_THREAD_SPORADIC_SERVER" title='_SC_THREAD_SPORADIC_SERVER' data-ref="_SC_THREAD_SPORADIC_SERVER">_SC_THREAD_SPORADIC_SERVER</dfn>,&nbsp</td></tr>
+<tr><th id="415">415</th><td><u>#define <dfn class="macro" id="_M/_SC_THREAD_SPORADIC_SERVER" data-ref="_M/_SC_THREAD_SPORADIC_SERVER">_SC_THREAD_SPORADIC_SERVER</dfn>	_SC_THREAD_SPORADIC_SERVER</u>&nbsp</td></tr>
+<tr><th id="416">416</th><td>    <dfn class="enum" id="_SC_SYSTEM_DATABASE" title='_SC_SYSTEM_DATABASE' data-ref="_SC_SYSTEM_DATABASE">_SC_SYSTEM_DATABASE</dfn>,&nbsp</td></tr>
+<tr><th id="417">417</th><td><u>#define <dfn class="macro" id="_M/_SC_SYSTEM_DATABASE" data-ref="_M/_SC_SYSTEM_DATABASE">_SC_SYSTEM_DATABASE</dfn>		_SC_SYSTEM_DATABASE</u>&nbsp</td></tr>
+<tr><th id="418">418</th><td>    <dfn class="enum" id="_SC_SYSTEM_DATABASE_R" title='_SC_SYSTEM_DATABASE_R' data-ref="_SC_SYSTEM_DATABASE_R">_SC_SYSTEM_DATABASE_R</dfn>,&nbsp</td></tr>
+<tr><th id="419">419</th><td><u>#define <dfn class="macro" id="_M/_SC_SYSTEM_DATABASE_R" data-ref="_M/_SC_SYSTEM_DATABASE_R">_SC_SYSTEM_DATABASE_R</dfn>		_SC_SYSTEM_DATABASE_R</u>&nbsp</td></tr>
+<tr><th id="420">420</th><td>    <dfn class="enum" id="_SC_TIMEOUTS" title='_SC_TIMEOUTS' data-ref="_SC_TIMEOUTS">_SC_TIMEOUTS</dfn>,&nbsp</td></tr>
+<tr><th id="421">421</th><td><u>#define <dfn class="macro" id="_M/_SC_TIMEOUTS" data-ref="_M/_SC_TIMEOUTS">_SC_TIMEOUTS</dfn>			_SC_TIMEOUTS</u>&nbsp</td></tr>
+<tr><th id="422">422</th><td>    <dfn class="enum" id="_SC_TYPED_MEMORY_OBJECTS" title='_SC_TYPED_MEMORY_OBJECTS' data-ref="_SC_TYPED_MEMORY_OBJECTS">_SC_TYPED_MEMORY_OBJECTS</dfn>,&nbsp</td></tr>
+<tr><th id="423">423</th><td><u>#define <dfn class="macro" id="_M/_SC_TYPED_MEMORY_OBJECTS" data-ref="_M/_SC_TYPED_MEMORY_OBJECTS">_SC_TYPED_MEMORY_OBJECTS</dfn>	_SC_TYPED_MEMORY_OBJECTS</u>&nbsp</td></tr>
+<tr><th id="424">424</th><td>    <dfn class="enum" id="_SC_USER_GROUPS" title='_SC_USER_GROUPS' data-ref="_SC_USER_GROUPS">_SC_USER_GROUPS</dfn>,&nbsp</td></tr>
+<tr><th id="425">425</th><td><u>#define <dfn class="macro" id="_M/_SC_USER_GROUPS" data-ref="_M/_SC_USER_GROUPS">_SC_USER_GROUPS</dfn>			_SC_USER_GROUPS</u>&nbsp</td></tr>
+<tr><th id="426">426</th><td>    <dfn class="enum" id="_SC_USER_GROUPS_R" title='_SC_USER_GROUPS_R' data-ref="_SC_USER_GROUPS_R">_SC_USER_GROUPS_R</dfn>,&nbsp</td></tr>
+<tr><th id="427">427</th><td><u>#define <dfn class="macro" id="_M/_SC_USER_GROUPS_R" data-ref="_M/_SC_USER_GROUPS_R">_SC_USER_GROUPS_R</dfn>		_SC_USER_GROUPS_R</u>&nbsp</td></tr>
+<tr><th id="428">428</th><td>    <dfn class="enum" id="_SC_2_PBS" title='_SC_2_PBS' data-ref="_SC_2_PBS">_SC_2_PBS</dfn>,&nbsp</td></tr>
+<tr><th id="429">429</th><td><u>#define <dfn class="macro" id="_M/_SC_2_PBS" data-ref="_M/_SC_2_PBS">_SC_2_PBS</dfn>			_SC_2_PBS</u>&nbsp</td></tr>
+<tr><th id="430">430</th><td>    <dfn class="enum" id="_SC_2_PBS_ACCOUNTING" title='_SC_2_PBS_ACCOUNTING' data-ref="_SC_2_PBS_ACCOUNTING">_SC_2_PBS_ACCOUNTING</dfn>,&nbsp</td></tr>
+<tr><th id="431">431</th><td><u>#define <dfn class="macro" id="_M/_SC_2_PBS_ACCOUNTING" data-ref="_M/_SC_2_PBS_ACCOUNTING">_SC_2_PBS_ACCOUNTING</dfn>		_SC_2_PBS_ACCOUNTING</u>&nbsp</td></tr>
+<tr><th id="432">432</th><td>    <dfn class="enum" id="_SC_2_PBS_LOCATE" title='_SC_2_PBS_LOCATE' data-ref="_SC_2_PBS_LOCATE">_SC_2_PBS_LOCATE</dfn>,&nbsp</td></tr>
+<tr><th id="433">433</th><td><u>#define <dfn class="macro" id="_M/_SC_2_PBS_LOCATE" data-ref="_M/_SC_2_PBS_LOCATE">_SC_2_PBS_LOCATE</dfn>		_SC_2_PBS_LOCATE</u>&nbsp</td></tr>
+<tr><th id="434">434</th><td>    <dfn class="enum" id="_SC_2_PBS_MESSAGE" title='_SC_2_PBS_MESSAGE' data-ref="_SC_2_PBS_MESSAGE">_SC_2_PBS_MESSAGE</dfn>,&nbsp</td></tr>
+<tr><th id="435">435</th><td><u>#define <dfn class="macro" id="_M/_SC_2_PBS_MESSAGE" data-ref="_M/_SC_2_PBS_MESSAGE">_SC_2_PBS_MESSAGE</dfn>		_SC_2_PBS_MESSAGE</u>&nbsp</td></tr>
+<tr><th id="436">436</th><td>    <dfn class="enum" id="_SC_2_PBS_TRACK" title='_SC_2_PBS_TRACK' data-ref="_SC_2_PBS_TRACK">_SC_2_PBS_TRACK</dfn>,&nbsp</td></tr>
+<tr><th id="437">437</th><td><u>#define <dfn class="macro" id="_M/_SC_2_PBS_TRACK" data-ref="_M/_SC_2_PBS_TRACK">_SC_2_PBS_TRACK</dfn>			_SC_2_PBS_TRACK</u>&nbsp</td></tr>
+<tr><th id="438">438</th><td>    <dfn class="enum" id="_SC_SYMLOOP_MAX" title='_SC_SYMLOOP_MAX' data-ref="_SC_SYMLOOP_MAX">_SC_SYMLOOP_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="439">439</th><td><u>#define <dfn class="macro" id="_M/_SC_SYMLOOP_MAX" data-ref="_M/_SC_SYMLOOP_MAX">_SC_SYMLOOP_MAX</dfn>			_SC_SYMLOOP_MAX</u>&nbsp</td></tr>
+<tr><th id="440">440</th><td>    <dfn class="enum" id="_SC_STREAMS" title='_SC_STREAMS' data-ref="_SC_STREAMS">_SC_STREAMS</dfn>,&nbsp</td></tr>
+<tr><th id="441">441</th><td><u>#define <dfn class="macro" id="_M/_SC_STREAMS" data-ref="_M/_SC_STREAMS">_SC_STREAMS</dfn>			_SC_STREAMS</u>&nbsp</td></tr>
+<tr><th id="442">442</th><td>    <dfn class="enum" id="_SC_2_PBS_CHECKPOINT" title='_SC_2_PBS_CHECKPOINT' data-ref="_SC_2_PBS_CHECKPOINT">_SC_2_PBS_CHECKPOINT</dfn>,&nbsp</td></tr>
+<tr><th id="443">443</th><td><u>#define <dfn class="macro" id="_M/_SC_2_PBS_CHECKPOINT" data-ref="_M/_SC_2_PBS_CHECKPOINT">_SC_2_PBS_CHECKPOINT</dfn>		_SC_2_PBS_CHECKPOINT</u>&nbsp</td></tr>
+<tr><th id="444">444</th><td>&nbsp</td></tr>
+<tr><th id="445">445</th><td>    <dfn class="enum" id="_SC_V6_ILP32_OFF32" title='_SC_V6_ILP32_OFF32' data-ref="_SC_V6_ILP32_OFF32">_SC_V6_ILP32_OFF32</dfn>,&nbsp</td></tr>
+<tr><th id="446">446</th><td><u>#define <dfn class="macro" id="_M/_SC_V6_ILP32_OFF32" data-ref="_M/_SC_V6_ILP32_OFF32">_SC_V6_ILP32_OFF32</dfn>		_SC_V6_ILP32_OFF32</u>&nbsp</td></tr>
+<tr><th id="447">447</th><td>    <dfn class="enum" id="_SC_V6_ILP32_OFFBIG" title='_SC_V6_ILP32_OFFBIG' data-ref="_SC_V6_ILP32_OFFBIG">_SC_V6_ILP32_OFFBIG</dfn>,&nbsp</td></tr>
+<tr><th id="448">448</th><td><u>#define <dfn class="macro" id="_M/_SC_V6_ILP32_OFFBIG" data-ref="_M/_SC_V6_ILP32_OFFBIG">_SC_V6_ILP32_OFFBIG</dfn>		_SC_V6_ILP32_OFFBIG</u>&nbsp</td></tr>
+<tr><th id="449">449</th><td>    <dfn class="enum" id="_SC_V6_LP64_OFF64" title='_SC_V6_LP64_OFF64' data-ref="_SC_V6_LP64_OFF64">_SC_V6_LP64_OFF64</dfn>,&nbsp</td></tr>
+<tr><th id="450">450</th><td><u>#define <dfn class="macro" id="_M/_SC_V6_LP64_OFF64" data-ref="_M/_SC_V6_LP64_OFF64">_SC_V6_LP64_OFF64</dfn>		_SC_V6_LP64_OFF64</u>&nbsp</td></tr>
+<tr><th id="451">451</th><td>    <dfn class="enum" id="_SC_V6_LPBIG_OFFBIG" title='_SC_V6_LPBIG_OFFBIG' data-ref="_SC_V6_LPBIG_OFFBIG">_SC_V6_LPBIG_OFFBIG</dfn>,&nbsp</td></tr>
+<tr><th id="452">452</th><td><u>#define <dfn class="macro" id="_M/_SC_V6_LPBIG_OFFBIG" data-ref="_M/_SC_V6_LPBIG_OFFBIG">_SC_V6_LPBIG_OFFBIG</dfn>		_SC_V6_LPBIG_OFFBIG</u>&nbsp</td></tr>
+<tr><th id="453">453</th><td>&nbsp</td></tr>
+<tr><th id="454">454</th><td>    <dfn class="enum" id="_SC_HOST_NAME_MAX" title='_SC_HOST_NAME_MAX' data-ref="_SC_HOST_NAME_MAX">_SC_HOST_NAME_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="455">455</th><td><u>#define <dfn class="macro" id="_M/_SC_HOST_NAME_MAX" data-ref="_M/_SC_HOST_NAME_MAX">_SC_HOST_NAME_MAX</dfn>		_SC_HOST_NAME_MAX</u>&nbsp</td></tr>
+<tr><th id="456">456</th><td>    <dfn class="enum" id="_SC_TRACE" title='_SC_TRACE' data-ref="_SC_TRACE">_SC_TRACE</dfn>,&nbsp</td></tr>
+<tr><th id="457">457</th><td><u>#define <dfn class="macro" id="_M/_SC_TRACE" data-ref="_M/_SC_TRACE">_SC_TRACE</dfn>			_SC_TRACE</u>&nbsp</td></tr>
+<tr><th id="458">458</th><td>    <dfn class="enum" id="_SC_TRACE_EVENT_FILTER" title='_SC_TRACE_EVENT_FILTER' data-ref="_SC_TRACE_EVENT_FILTER">_SC_TRACE_EVENT_FILTER</dfn>,&nbsp</td></tr>
+<tr><th id="459">459</th><td><u>#define <dfn class="macro" id="_M/_SC_TRACE_EVENT_FILTER" data-ref="_M/_SC_TRACE_EVENT_FILTER">_SC_TRACE_EVENT_FILTER</dfn>		_SC_TRACE_EVENT_FILTER</u>&nbsp</td></tr>
+<tr><th id="460">460</th><td>    <dfn class="enum" id="_SC_TRACE_INHERIT" title='_SC_TRACE_INHERIT' data-ref="_SC_TRACE_INHERIT">_SC_TRACE_INHERIT</dfn>,&nbsp</td></tr>
+<tr><th id="461">461</th><td><u>#define <dfn class="macro" id="_M/_SC_TRACE_INHERIT" data-ref="_M/_SC_TRACE_INHERIT">_SC_TRACE_INHERIT</dfn>		_SC_TRACE_INHERIT</u>&nbsp</td></tr>
+<tr><th id="462">462</th><td>    <dfn class="enum" id="_SC_TRACE_LOG" title='_SC_TRACE_LOG' data-ref="_SC_TRACE_LOG">_SC_TRACE_LOG</dfn>,&nbsp</td></tr>
+<tr><th id="463">463</th><td><u>#define <dfn class="macro" id="_M/_SC_TRACE_LOG" data-ref="_M/_SC_TRACE_LOG">_SC_TRACE_LOG</dfn>			_SC_TRACE_LOG</u>&nbsp</td></tr>
+<tr><th id="464">464</th><td>&nbsp</td></tr>
+<tr><th id="465">465</th><td>    <dfn class="enum" id="_SC_LEVEL1_ICACHE_SIZE" title='_SC_LEVEL1_ICACHE_SIZE' data-ref="_SC_LEVEL1_ICACHE_SIZE">_SC_LEVEL1_ICACHE_SIZE</dfn>,&nbsp</td></tr>
+<tr><th id="466">466</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL1_ICACHE_SIZE" data-ref="_M/_SC_LEVEL1_ICACHE_SIZE">_SC_LEVEL1_ICACHE_SIZE</dfn>		<a class="enum" href="#_SC_LEVEL1_ICACHE_SIZE" title='_SC_LEVEL1_ICACHE_SIZE' data-ref="_SC_LEVEL1_ICACHE_SIZE">_SC_LEVEL1_ICACHE_SIZE</a></u>&nbsp</td></tr>
+<tr><th id="467">467</th><td>    <dfn class="enum" id="_SC_LEVEL1_ICACHE_ASSOC" title='_SC_LEVEL1_ICACHE_ASSOC' data-ref="_SC_LEVEL1_ICACHE_ASSOC">_SC_LEVEL1_ICACHE_ASSOC</dfn>,&nbsp</td></tr>
+<tr><th id="468">468</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL1_ICACHE_ASSOC" data-ref="_M/_SC_LEVEL1_ICACHE_ASSOC">_SC_LEVEL1_ICACHE_ASSOC</dfn>		_SC_LEVEL1_ICACHE_ASSOC</u>&nbsp</td></tr>
+<tr><th id="469">469</th><td>    <dfn class="enum" id="_SC_LEVEL1_ICACHE_LINESIZE" title='_SC_LEVEL1_ICACHE_LINESIZE' data-ref="_SC_LEVEL1_ICACHE_LINESIZE">_SC_LEVEL1_ICACHE_LINESIZE</dfn>,&nbsp</td></tr>
+<tr><th id="470">470</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL1_ICACHE_LINESIZE" data-ref="_M/_SC_LEVEL1_ICACHE_LINESIZE">_SC_LEVEL1_ICACHE_LINESIZE</dfn>	_SC_LEVEL1_ICACHE_LINESIZE</u>&nbsp</td></tr>
+<tr><th id="471">471</th><td>    <dfn class="enum" id="_SC_LEVEL1_DCACHE_SIZE" title='_SC_LEVEL1_DCACHE_SIZE' data-ref="_SC_LEVEL1_DCACHE_SIZE">_SC_LEVEL1_DCACHE_SIZE</dfn>,&nbsp</td></tr>
+<tr><th id="472">472</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL1_DCACHE_SIZE" data-ref="_M/_SC_LEVEL1_DCACHE_SIZE">_SC_LEVEL1_DCACHE_SIZE</dfn>		_SC_LEVEL1_DCACHE_SIZE</u>&nbsp</td></tr>
+<tr><th id="473">473</th><td>    <dfn class="enum" id="_SC_LEVEL1_DCACHE_ASSOC" title='_SC_LEVEL1_DCACHE_ASSOC' data-ref="_SC_LEVEL1_DCACHE_ASSOC">_SC_LEVEL1_DCACHE_ASSOC</dfn>,&nbsp</td></tr>
+<tr><th id="474">474</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL1_DCACHE_ASSOC" data-ref="_M/_SC_LEVEL1_DCACHE_ASSOC">_SC_LEVEL1_DCACHE_ASSOC</dfn>		_SC_LEVEL1_DCACHE_ASSOC</u>&nbsp</td></tr>
+<tr><th id="475">475</th><td>    <dfn class="enum" id="_SC_LEVEL1_DCACHE_LINESIZE" title='_SC_LEVEL1_DCACHE_LINESIZE' data-ref="_SC_LEVEL1_DCACHE_LINESIZE">_SC_LEVEL1_DCACHE_LINESIZE</dfn>,&nbsp</td></tr>
+<tr><th id="476">476</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL1_DCACHE_LINESIZE" data-ref="_M/_SC_LEVEL1_DCACHE_LINESIZE">_SC_LEVEL1_DCACHE_LINESIZE</dfn>	_SC_LEVEL1_DCACHE_LINESIZE</u>&nbsp</td></tr>
+<tr><th id="477">477</th><td>    <dfn class="enum" id="_SC_LEVEL2_CACHE_SIZE" title='_SC_LEVEL2_CACHE_SIZE' data-ref="_SC_LEVEL2_CACHE_SIZE">_SC_LEVEL2_CACHE_SIZE</dfn>,&nbsp</td></tr>
+<tr><th id="478">478</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL2_CACHE_SIZE" data-ref="_M/_SC_LEVEL2_CACHE_SIZE">_SC_LEVEL2_CACHE_SIZE</dfn>		_SC_LEVEL2_CACHE_SIZE</u>&nbsp</td></tr>
+<tr><th id="479">479</th><td>    <dfn class="enum" id="_SC_LEVEL2_CACHE_ASSOC" title='_SC_LEVEL2_CACHE_ASSOC' data-ref="_SC_LEVEL2_CACHE_ASSOC">_SC_LEVEL2_CACHE_ASSOC</dfn>,&nbsp</td></tr>
+<tr><th id="480">480</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL2_CACHE_ASSOC" data-ref="_M/_SC_LEVEL2_CACHE_ASSOC">_SC_LEVEL2_CACHE_ASSOC</dfn>		_SC_LEVEL2_CACHE_ASSOC</u>&nbsp</td></tr>
+<tr><th id="481">481</th><td>    <dfn class="enum" id="_SC_LEVEL2_CACHE_LINESIZE" title='_SC_LEVEL2_CACHE_LINESIZE' data-ref="_SC_LEVEL2_CACHE_LINESIZE">_SC_LEVEL2_CACHE_LINESIZE</dfn>,&nbsp</td></tr>
+<tr><th id="482">482</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL2_CACHE_LINESIZE" data-ref="_M/_SC_LEVEL2_CACHE_LINESIZE">_SC_LEVEL2_CACHE_LINESIZE</dfn>	_SC_LEVEL2_CACHE_LINESIZE</u>&nbsp</td></tr>
+<tr><th id="483">483</th><td>    <dfn class="enum" id="_SC_LEVEL3_CACHE_SIZE" title='_SC_LEVEL3_CACHE_SIZE' data-ref="_SC_LEVEL3_CACHE_SIZE">_SC_LEVEL3_CACHE_SIZE</dfn>,&nbsp</td></tr>
+<tr><th id="484">484</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL3_CACHE_SIZE" data-ref="_M/_SC_LEVEL3_CACHE_SIZE">_SC_LEVEL3_CACHE_SIZE</dfn>		_SC_LEVEL3_CACHE_SIZE</u>&nbsp</td></tr>
+<tr><th id="485">485</th><td>    <dfn class="enum" id="_SC_LEVEL3_CACHE_ASSOC" title='_SC_LEVEL3_CACHE_ASSOC' data-ref="_SC_LEVEL3_CACHE_ASSOC">_SC_LEVEL3_CACHE_ASSOC</dfn>,&nbsp</td></tr>
+<tr><th id="486">486</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL3_CACHE_ASSOC" data-ref="_M/_SC_LEVEL3_CACHE_ASSOC">_SC_LEVEL3_CACHE_ASSOC</dfn>		_SC_LEVEL3_CACHE_ASSOC</u>&nbsp</td></tr>
+<tr><th id="487">487</th><td>    <dfn class="enum" id="_SC_LEVEL3_CACHE_LINESIZE" title='_SC_LEVEL3_CACHE_LINESIZE' data-ref="_SC_LEVEL3_CACHE_LINESIZE">_SC_LEVEL3_CACHE_LINESIZE</dfn>,&nbsp</td></tr>
+<tr><th id="488">488</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL3_CACHE_LINESIZE" data-ref="_M/_SC_LEVEL3_CACHE_LINESIZE">_SC_LEVEL3_CACHE_LINESIZE</dfn>	_SC_LEVEL3_CACHE_LINESIZE</u>&nbsp</td></tr>
+<tr><th id="489">489</th><td>    <dfn class="enum" id="_SC_LEVEL4_CACHE_SIZE" title='_SC_LEVEL4_CACHE_SIZE' data-ref="_SC_LEVEL4_CACHE_SIZE">_SC_LEVEL4_CACHE_SIZE</dfn>,&nbsp</td></tr>
+<tr><th id="490">490</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL4_CACHE_SIZE" data-ref="_M/_SC_LEVEL4_CACHE_SIZE">_SC_LEVEL4_CACHE_SIZE</dfn>		_SC_LEVEL4_CACHE_SIZE</u>&nbsp</td></tr>
+<tr><th id="491">491</th><td>    <dfn class="enum" id="_SC_LEVEL4_CACHE_ASSOC" title='_SC_LEVEL4_CACHE_ASSOC' data-ref="_SC_LEVEL4_CACHE_ASSOC">_SC_LEVEL4_CACHE_ASSOC</dfn>,&nbsp</td></tr>
+<tr><th id="492">492</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL4_CACHE_ASSOC" data-ref="_M/_SC_LEVEL4_CACHE_ASSOC">_SC_LEVEL4_CACHE_ASSOC</dfn>		_SC_LEVEL4_CACHE_ASSOC</u>&nbsp</td></tr>
+<tr><th id="493">493</th><td>    <dfn class="enum" id="_SC_LEVEL4_CACHE_LINESIZE" title='_SC_LEVEL4_CACHE_LINESIZE' data-ref="_SC_LEVEL4_CACHE_LINESIZE">_SC_LEVEL4_CACHE_LINESIZE</dfn>,&nbsp</td></tr>
+<tr><th id="494">494</th><td><u>#define <dfn class="macro" id="_M/_SC_LEVEL4_CACHE_LINESIZE" data-ref="_M/_SC_LEVEL4_CACHE_LINESIZE">_SC_LEVEL4_CACHE_LINESIZE</dfn>	_SC_LEVEL4_CACHE_LINESIZE</u>&nbsp</td></tr>
+<tr><th id="495">495</th><td>    <i>/* Leave room here, maybe we need a few more cache levels some day.  */</i>&nbsp</td></tr>
+<tr><th id="496">496</th><td>&nbsp</td></tr>
+<tr><th id="497">497</th><td>    <dfn class="enum" id="_SC_IPV6" title='_SC_IPV6' data-ref="_SC_IPV6">_SC_IPV6</dfn> = <a class="macro" href="#466" title="_SC_LEVEL1_ICACHE_SIZE" data-ref="_M/_SC_LEVEL1_ICACHE_SIZE">_SC_LEVEL1_ICACHE_SIZE</a> + <var>50</var>,&nbsp</td></tr>
+<tr><th id="498">498</th><td><u>#define <dfn class="macro" id="_M/_SC_IPV6" data-ref="_M/_SC_IPV6">_SC_IPV6</dfn>			_SC_IPV6</u>&nbsp</td></tr>
+<tr><th id="499">499</th><td>    <dfn class="enum" id="_SC_RAW_SOCKETS" title='_SC_RAW_SOCKETS' data-ref="_SC_RAW_SOCKETS">_SC_RAW_SOCKETS</dfn>,&nbsp</td></tr>
+<tr><th id="500">500</th><td><u>#define <dfn class="macro" id="_M/_SC_RAW_SOCKETS" data-ref="_M/_SC_RAW_SOCKETS">_SC_RAW_SOCKETS</dfn>			_SC_RAW_SOCKETS</u>&nbsp</td></tr>
+<tr><th id="501">501</th><td>&nbsp</td></tr>
+<tr><th id="502">502</th><td>    <dfn class="enum" id="_SC_V7_ILP32_OFF32" title='_SC_V7_ILP32_OFF32' data-ref="_SC_V7_ILP32_OFF32">_SC_V7_ILP32_OFF32</dfn>,&nbsp</td></tr>
+<tr><th id="503">503</th><td><u>#define <dfn class="macro" id="_M/_SC_V7_ILP32_OFF32" data-ref="_M/_SC_V7_ILP32_OFF32">_SC_V7_ILP32_OFF32</dfn>		_SC_V7_ILP32_OFF32</u>&nbsp</td></tr>
+<tr><th id="504">504</th><td>    <dfn class="enum" id="_SC_V7_ILP32_OFFBIG" title='_SC_V7_ILP32_OFFBIG' data-ref="_SC_V7_ILP32_OFFBIG">_SC_V7_ILP32_OFFBIG</dfn>,&nbsp</td></tr>
+<tr><th id="505">505</th><td><u>#define <dfn class="macro" id="_M/_SC_V7_ILP32_OFFBIG" data-ref="_M/_SC_V7_ILP32_OFFBIG">_SC_V7_ILP32_OFFBIG</dfn>		_SC_V7_ILP32_OFFBIG</u>&nbsp</td></tr>
+<tr><th id="506">506</th><td>    <dfn class="enum" id="_SC_V7_LP64_OFF64" title='_SC_V7_LP64_OFF64' data-ref="_SC_V7_LP64_OFF64">_SC_V7_LP64_OFF64</dfn>,&nbsp</td></tr>
+<tr><th id="507">507</th><td><u>#define <dfn class="macro" id="_M/_SC_V7_LP64_OFF64" data-ref="_M/_SC_V7_LP64_OFF64">_SC_V7_LP64_OFF64</dfn>		_SC_V7_LP64_OFF64</u>&nbsp</td></tr>
+<tr><th id="508">508</th><td>    <dfn class="enum" id="_SC_V7_LPBIG_OFFBIG" title='_SC_V7_LPBIG_OFFBIG' data-ref="_SC_V7_LPBIG_OFFBIG">_SC_V7_LPBIG_OFFBIG</dfn>,&nbsp</td></tr>
+<tr><th id="509">509</th><td><u>#define <dfn class="macro" id="_M/_SC_V7_LPBIG_OFFBIG" data-ref="_M/_SC_V7_LPBIG_OFFBIG">_SC_V7_LPBIG_OFFBIG</dfn>		_SC_V7_LPBIG_OFFBIG</u>&nbsp</td></tr>
+<tr><th id="510">510</th><td>&nbsp</td></tr>
+<tr><th id="511">511</th><td>    <dfn class="enum" id="_SC_SS_REPL_MAX" title='_SC_SS_REPL_MAX' data-ref="_SC_SS_REPL_MAX">_SC_SS_REPL_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="512">512</th><td><u>#define <dfn class="macro" id="_M/_SC_SS_REPL_MAX" data-ref="_M/_SC_SS_REPL_MAX">_SC_SS_REPL_MAX</dfn>			_SC_SS_REPL_MAX</u>&nbsp</td></tr>
+<tr><th id="513">513</th><td>&nbsp</td></tr>
+<tr><th id="514">514</th><td>    <dfn class="enum" id="_SC_TRACE_EVENT_NAME_MAX" title='_SC_TRACE_EVENT_NAME_MAX' data-ref="_SC_TRACE_EVENT_NAME_MAX">_SC_TRACE_EVENT_NAME_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="515">515</th><td><u>#define <dfn class="macro" id="_M/_SC_TRACE_EVENT_NAME_MAX" data-ref="_M/_SC_TRACE_EVENT_NAME_MAX">_SC_TRACE_EVENT_NAME_MAX</dfn>	_SC_TRACE_EVENT_NAME_MAX</u>&nbsp</td></tr>
+<tr><th id="516">516</th><td>    <dfn class="enum" id="_SC_TRACE_NAME_MAX" title='_SC_TRACE_NAME_MAX' data-ref="_SC_TRACE_NAME_MAX">_SC_TRACE_NAME_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="517">517</th><td><u>#define <dfn class="macro" id="_M/_SC_TRACE_NAME_MAX" data-ref="_M/_SC_TRACE_NAME_MAX">_SC_TRACE_NAME_MAX</dfn>		_SC_TRACE_NAME_MAX</u>&nbsp</td></tr>
+<tr><th id="518">518</th><td>    <dfn class="enum" id="_SC_TRACE_SYS_MAX" title='_SC_TRACE_SYS_MAX' data-ref="_SC_TRACE_SYS_MAX">_SC_TRACE_SYS_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="519">519</th><td><u>#define <dfn class="macro" id="_M/_SC_TRACE_SYS_MAX" data-ref="_M/_SC_TRACE_SYS_MAX">_SC_TRACE_SYS_MAX</dfn>		_SC_TRACE_SYS_MAX</u>&nbsp</td></tr>
+<tr><th id="520">520</th><td>    <dfn class="enum" id="_SC_TRACE_USER_EVENT_MAX" title='_SC_TRACE_USER_EVENT_MAX' data-ref="_SC_TRACE_USER_EVENT_MAX">_SC_TRACE_USER_EVENT_MAX</dfn>,&nbsp</td></tr>
+<tr><th id="521">521</th><td><u>#define <dfn class="macro" id="_M/_SC_TRACE_USER_EVENT_MAX" data-ref="_M/_SC_TRACE_USER_EVENT_MAX">_SC_TRACE_USER_EVENT_MAX</dfn>	_SC_TRACE_USER_EVENT_MAX</u>&nbsp</td></tr>
+<tr><th id="522">522</th><td>&nbsp</td></tr>
+<tr><th id="523">523</th><td>    <dfn class="enum" id="_SC_XOPEN_STREAMS" title='_SC_XOPEN_STREAMS' data-ref="_SC_XOPEN_STREAMS">_SC_XOPEN_STREAMS</dfn>,&nbsp</td></tr>
+<tr><th id="524">524</th><td><u>#define <dfn class="macro" id="_M/_SC_XOPEN_STREAMS" data-ref="_M/_SC_XOPEN_STREAMS">_SC_XOPEN_STREAMS</dfn>		_SC_XOPEN_STREAMS</u>&nbsp</td></tr>
+<tr><th id="525">525</th><td>&nbsp</td></tr>
+<tr><th id="526">526</th><td>    <dfn class="enum" id="_SC_THREAD_ROBUST_PRIO_INHERIT" title='_SC_THREAD_ROBUST_PRIO_INHERIT' data-ref="_SC_THREAD_ROBUST_PRIO_INHERIT">_SC_THREAD_ROBUST_PRIO_INHERIT</dfn>,&nbsp</td></tr>
+<tr><th id="527">527</th><td><u>#define <dfn class="macro" id="_M/_SC_THREAD_ROBUST_PRIO_INHERIT" data-ref="_M/_SC_THREAD_ROBUST_PRIO_INHERIT">_SC_THREAD_ROBUST_PRIO_INHERIT</dfn>	_SC_THREAD_ROBUST_PRIO_INHERIT</u>&nbsp</td></tr>
+<tr><th id="528">528</th><td>    <dfn class="enum" id="_SC_THREAD_ROBUST_PRIO_PROTECT" title='_SC_THREAD_ROBUST_PRIO_PROTECT' data-ref="_SC_THREAD_ROBUST_PRIO_PROTECT">_SC_THREAD_ROBUST_PRIO_PROTECT</dfn>,&nbsp</td></tr>
+<tr><th id="529">529</th><td><u>#define <dfn class="macro" id="_M/_SC_THREAD_ROBUST_PRIO_PROTECT" data-ref="_M/_SC_THREAD_ROBUST_PRIO_PROTECT">_SC_THREAD_ROBUST_PRIO_PROTECT</dfn>	_SC_THREAD_ROBUST_PRIO_PROTECT</u>&nbsp</td></tr>
+<tr><th id="530">530</th><td>&nbsp</td></tr>
+<tr><th id="531">531</th><td>    <dfn class="enum" id="_SC_MINSIGSTKSZ" title='_SC_MINSIGSTKSZ' data-ref="_SC_MINSIGSTKSZ">_SC_MINSIGSTKSZ</dfn>,&nbsp</td></tr>
+<tr><th id="532">532</th><td><u>#define	<dfn class="macro" id="_M/_SC_MINSIGSTKSZ" data-ref="_M/_SC_MINSIGSTKSZ">_SC_MINSIGSTKSZ</dfn>			_SC_MINSIGSTKSZ</u>&nbsp</td></tr>
+<tr><th id="533">533</th><td>&nbsp</td></tr>
+<tr><th id="534">534</th><td>    <dfn class="enum" id="_SC_SIGSTKSZ" title='_SC_SIGSTKSZ' data-ref="_SC_SIGSTKSZ">_SC_SIGSTKSZ</dfn>&nbsp</td></tr>
+<tr><th id="535">535</th><td><u>#define	<dfn class="macro" id="_M/_SC_SIGSTKSZ" data-ref="_M/_SC_SIGSTKSZ">_SC_SIGSTKSZ</dfn>			_SC_SIGSTKSZ</u>&nbsp</td></tr>
+<tr><th id="536">536</th><td>  };&nbsp</td></tr>
+<tr><th id="537">537</th><td>&nbsp</td></tr>
+<tr><th id="538">538</th><td><i>/* Values for the NAME argument to `confstr'.  */</i>&nbsp</td></tr>
+<tr><th id="539">539</th><td><b>enum</b>&nbsp</td></tr>
+<tr><th id="540">540</th><td>  {&nbsp</td></tr>
+<tr><th id="541">541</th><td>    <dfn class="enum" id="_CS_PATH" title='_CS_PATH' data-ref="_CS_PATH">_CS_PATH</dfn>,			<i>/* The default search path.  */</i>&nbsp</td></tr>
+<tr><th id="542">542</th><td><u>#define <dfn class="macro" id="_M/_CS_PATH" data-ref="_M/_CS_PATH">_CS_PATH</dfn>		_CS_PATH</u>&nbsp</td></tr>
+<tr><th id="543">543</th><td>&nbsp</td></tr>
+<tr><th id="544">544</th><td>    <dfn class="enum" id="_CS_V6_WIDTH_RESTRICTED_ENVS" title='_CS_V6_WIDTH_RESTRICTED_ENVS' data-ref="_CS_V6_WIDTH_RESTRICTED_ENVS">_CS_V6_WIDTH_RESTRICTED_ENVS</dfn>,&nbsp</td></tr>
+<tr><th id="545">545</th><td><u>#define <dfn class="macro" id="_M/_CS_V6_WIDTH_RESTRICTED_ENVS" data-ref="_M/_CS_V6_WIDTH_RESTRICTED_ENVS">_CS_V6_WIDTH_RESTRICTED_ENVS</dfn>	_CS_V6_WIDTH_RESTRICTED_ENVS</u>&nbsp</td></tr>
+<tr><th id="546">546</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_WIDTH_RESTRICTED_ENVS" data-ref="_M/_CS_POSIX_V6_WIDTH_RESTRICTED_ENVS">_CS_POSIX_V6_WIDTH_RESTRICTED_ENVS</dfn>	_CS_V6_WIDTH_RESTRICTED_ENVS</u>&nbsp</td></tr>
+<tr><th id="547">547</th><td>&nbsp</td></tr>
+<tr><th id="548">548</th><td>    <dfn class="enum" id="_CS_GNU_LIBC_VERSION" title='_CS_GNU_LIBC_VERSION' data-ref="_CS_GNU_LIBC_VERSION">_CS_GNU_LIBC_VERSION</dfn>,&nbsp</td></tr>
+<tr><th id="549">549</th><td><u>#define <dfn class="macro" id="_M/_CS_GNU_LIBC_VERSION" data-ref="_M/_CS_GNU_LIBC_VERSION">_CS_GNU_LIBC_VERSION</dfn>	_CS_GNU_LIBC_VERSION</u>&nbsp</td></tr>
+<tr><th id="550">550</th><td>    <dfn class="enum" id="_CS_GNU_LIBPTHREAD_VERSION" title='_CS_GNU_LIBPTHREAD_VERSION' data-ref="_CS_GNU_LIBPTHREAD_VERSION">_CS_GNU_LIBPTHREAD_VERSION</dfn>,&nbsp</td></tr>
+<tr><th id="551">551</th><td><u>#define <dfn class="macro" id="_M/_CS_GNU_LIBPTHREAD_VERSION" data-ref="_M/_CS_GNU_LIBPTHREAD_VERSION">_CS_GNU_LIBPTHREAD_VERSION</dfn>	_CS_GNU_LIBPTHREAD_VERSION</u>&nbsp</td></tr>
+<tr><th id="552">552</th><td>&nbsp</td></tr>
+<tr><th id="553">553</th><td>    <dfn class="enum" id="_CS_V5_WIDTH_RESTRICTED_ENVS" title='_CS_V5_WIDTH_RESTRICTED_ENVS' data-ref="_CS_V5_WIDTH_RESTRICTED_ENVS">_CS_V5_WIDTH_RESTRICTED_ENVS</dfn>,&nbsp</td></tr>
+<tr><th id="554">554</th><td><u>#define <dfn class="macro" id="_M/_CS_V5_WIDTH_RESTRICTED_ENVS" data-ref="_M/_CS_V5_WIDTH_RESTRICTED_ENVS">_CS_V5_WIDTH_RESTRICTED_ENVS</dfn>	_CS_V5_WIDTH_RESTRICTED_ENVS</u>&nbsp</td></tr>
+<tr><th id="555">555</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V5_WIDTH_RESTRICTED_ENVS" data-ref="_M/_CS_POSIX_V5_WIDTH_RESTRICTED_ENVS">_CS_POSIX_V5_WIDTH_RESTRICTED_ENVS</dfn>	_CS_V5_WIDTH_RESTRICTED_ENVS</u>&nbsp</td></tr>
+<tr><th id="556">556</th><td>&nbsp</td></tr>
+<tr><th id="557">557</th><td>    <dfn class="enum" id="_CS_V7_WIDTH_RESTRICTED_ENVS" title='_CS_V7_WIDTH_RESTRICTED_ENVS' data-ref="_CS_V7_WIDTH_RESTRICTED_ENVS">_CS_V7_WIDTH_RESTRICTED_ENVS</dfn>,&nbsp</td></tr>
+<tr><th id="558">558</th><td><u>#define <dfn class="macro" id="_M/_CS_V7_WIDTH_RESTRICTED_ENVS" data-ref="_M/_CS_V7_WIDTH_RESTRICTED_ENVS">_CS_V7_WIDTH_RESTRICTED_ENVS</dfn>	_CS_V7_WIDTH_RESTRICTED_ENVS</u>&nbsp</td></tr>
+<tr><th id="559">559</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_WIDTH_RESTRICTED_ENVS" data-ref="_M/_CS_POSIX_V7_WIDTH_RESTRICTED_ENVS">_CS_POSIX_V7_WIDTH_RESTRICTED_ENVS</dfn>	_CS_V7_WIDTH_RESTRICTED_ENVS</u>&nbsp</td></tr>
+<tr><th id="560">560</th><td>&nbsp</td></tr>
+<tr><th id="561">561</th><td>    <dfn class="enum" id="_CS_LFS_CFLAGS" title='_CS_LFS_CFLAGS' data-ref="_CS_LFS_CFLAGS">_CS_LFS_CFLAGS</dfn> = <var>1000</var>,&nbsp</td></tr>
+<tr><th id="562">562</th><td><u>#define <dfn class="macro" id="_M/_CS_LFS_CFLAGS" data-ref="_M/_CS_LFS_CFLAGS">_CS_LFS_CFLAGS</dfn>	_CS_LFS_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="563">563</th><td>    <dfn class="enum" id="_CS_LFS_LDFLAGS" title='_CS_LFS_LDFLAGS' data-ref="_CS_LFS_LDFLAGS">_CS_LFS_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="564">564</th><td><u>#define <dfn class="macro" id="_M/_CS_LFS_LDFLAGS" data-ref="_M/_CS_LFS_LDFLAGS">_CS_LFS_LDFLAGS</dfn>	_CS_LFS_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="565">565</th><td>    <dfn class="enum" id="_CS_LFS_LIBS" title='_CS_LFS_LIBS' data-ref="_CS_LFS_LIBS">_CS_LFS_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="566">566</th><td><u>#define <dfn class="macro" id="_M/_CS_LFS_LIBS" data-ref="_M/_CS_LFS_LIBS">_CS_LFS_LIBS</dfn>		_CS_LFS_LIBS</u>&nbsp</td></tr>
+<tr><th id="567">567</th><td>    <dfn class="enum" id="_CS_LFS_LINTFLAGS" title='_CS_LFS_LINTFLAGS' data-ref="_CS_LFS_LINTFLAGS">_CS_LFS_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="568">568</th><td><u>#define <dfn class="macro" id="_M/_CS_LFS_LINTFLAGS" data-ref="_M/_CS_LFS_LINTFLAGS">_CS_LFS_LINTFLAGS</dfn>	_CS_LFS_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="569">569</th><td>    <dfn class="enum" id="_CS_LFS64_CFLAGS" title='_CS_LFS64_CFLAGS' data-ref="_CS_LFS64_CFLAGS">_CS_LFS64_CFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="570">570</th><td><u>#define <dfn class="macro" id="_M/_CS_LFS64_CFLAGS" data-ref="_M/_CS_LFS64_CFLAGS">_CS_LFS64_CFLAGS</dfn>	_CS_LFS64_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="571">571</th><td>    <dfn class="enum" id="_CS_LFS64_LDFLAGS" title='_CS_LFS64_LDFLAGS' data-ref="_CS_LFS64_LDFLAGS">_CS_LFS64_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="572">572</th><td><u>#define <dfn class="macro" id="_M/_CS_LFS64_LDFLAGS" data-ref="_M/_CS_LFS64_LDFLAGS">_CS_LFS64_LDFLAGS</dfn>	_CS_LFS64_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="573">573</th><td>    <dfn class="enum" id="_CS_LFS64_LIBS" title='_CS_LFS64_LIBS' data-ref="_CS_LFS64_LIBS">_CS_LFS64_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="574">574</th><td><u>#define <dfn class="macro" id="_M/_CS_LFS64_LIBS" data-ref="_M/_CS_LFS64_LIBS">_CS_LFS64_LIBS</dfn>	_CS_LFS64_LIBS</u>&nbsp</td></tr>
+<tr><th id="575">575</th><td>    <dfn class="enum" id="_CS_LFS64_LINTFLAGS" title='_CS_LFS64_LINTFLAGS' data-ref="_CS_LFS64_LINTFLAGS">_CS_LFS64_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="576">576</th><td><u>#define <dfn class="macro" id="_M/_CS_LFS64_LINTFLAGS" data-ref="_M/_CS_LFS64_LINTFLAGS">_CS_LFS64_LINTFLAGS</dfn>	_CS_LFS64_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="577">577</th><td>&nbsp</td></tr>
+<tr><th id="578">578</th><td>    <dfn class="enum" id="_CS_XBS5_ILP32_OFF32_CFLAGS" title='_CS_XBS5_ILP32_OFF32_CFLAGS' data-ref="_CS_XBS5_ILP32_OFF32_CFLAGS">_CS_XBS5_ILP32_OFF32_CFLAGS</dfn> = <var>1100</var>,&nbsp</td></tr>
+<tr><th id="579">579</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_ILP32_OFF32_CFLAGS" data-ref="_M/_CS_XBS5_ILP32_OFF32_CFLAGS">_CS_XBS5_ILP32_OFF32_CFLAGS</dfn> _CS_XBS5_ILP32_OFF32_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="580">580</th><td>    <dfn class="enum" id="_CS_XBS5_ILP32_OFF32_LDFLAGS" title='_CS_XBS5_ILP32_OFF32_LDFLAGS' data-ref="_CS_XBS5_ILP32_OFF32_LDFLAGS">_CS_XBS5_ILP32_OFF32_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="581">581</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_ILP32_OFF32_LDFLAGS" data-ref="_M/_CS_XBS5_ILP32_OFF32_LDFLAGS">_CS_XBS5_ILP32_OFF32_LDFLAGS</dfn> _CS_XBS5_ILP32_OFF32_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="582">582</th><td>    <dfn class="enum" id="_CS_XBS5_ILP32_OFF32_LIBS" title='_CS_XBS5_ILP32_OFF32_LIBS' data-ref="_CS_XBS5_ILP32_OFF32_LIBS">_CS_XBS5_ILP32_OFF32_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="583">583</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_ILP32_OFF32_LIBS" data-ref="_M/_CS_XBS5_ILP32_OFF32_LIBS">_CS_XBS5_ILP32_OFF32_LIBS</dfn> _CS_XBS5_ILP32_OFF32_LIBS</u>&nbsp</td></tr>
+<tr><th id="584">584</th><td>    <dfn class="enum" id="_CS_XBS5_ILP32_OFF32_LINTFLAGS" title='_CS_XBS5_ILP32_OFF32_LINTFLAGS' data-ref="_CS_XBS5_ILP32_OFF32_LINTFLAGS">_CS_XBS5_ILP32_OFF32_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="585">585</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_ILP32_OFF32_LINTFLAGS" data-ref="_M/_CS_XBS5_ILP32_OFF32_LINTFLAGS">_CS_XBS5_ILP32_OFF32_LINTFLAGS</dfn> _CS_XBS5_ILP32_OFF32_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="586">586</th><td>    <dfn class="enum" id="_CS_XBS5_ILP32_OFFBIG_CFLAGS" title='_CS_XBS5_ILP32_OFFBIG_CFLAGS' data-ref="_CS_XBS5_ILP32_OFFBIG_CFLAGS">_CS_XBS5_ILP32_OFFBIG_CFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="587">587</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_ILP32_OFFBIG_CFLAGS" data-ref="_M/_CS_XBS5_ILP32_OFFBIG_CFLAGS">_CS_XBS5_ILP32_OFFBIG_CFLAGS</dfn> _CS_XBS5_ILP32_OFFBIG_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="588">588</th><td>    <dfn class="enum" id="_CS_XBS5_ILP32_OFFBIG_LDFLAGS" title='_CS_XBS5_ILP32_OFFBIG_LDFLAGS' data-ref="_CS_XBS5_ILP32_OFFBIG_LDFLAGS">_CS_XBS5_ILP32_OFFBIG_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="589">589</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_ILP32_OFFBIG_LDFLAGS" data-ref="_M/_CS_XBS5_ILP32_OFFBIG_LDFLAGS">_CS_XBS5_ILP32_OFFBIG_LDFLAGS</dfn> _CS_XBS5_ILP32_OFFBIG_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="590">590</th><td>    <dfn class="enum" id="_CS_XBS5_ILP32_OFFBIG_LIBS" title='_CS_XBS5_ILP32_OFFBIG_LIBS' data-ref="_CS_XBS5_ILP32_OFFBIG_LIBS">_CS_XBS5_ILP32_OFFBIG_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="591">591</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_ILP32_OFFBIG_LIBS" data-ref="_M/_CS_XBS5_ILP32_OFFBIG_LIBS">_CS_XBS5_ILP32_OFFBIG_LIBS</dfn> _CS_XBS5_ILP32_OFFBIG_LIBS</u>&nbsp</td></tr>
+<tr><th id="592">592</th><td>    <dfn class="enum" id="_CS_XBS5_ILP32_OFFBIG_LINTFLAGS" title='_CS_XBS5_ILP32_OFFBIG_LINTFLAGS' data-ref="_CS_XBS5_ILP32_OFFBIG_LINTFLAGS">_CS_XBS5_ILP32_OFFBIG_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="593">593</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_ILP32_OFFBIG_LINTFLAGS" data-ref="_M/_CS_XBS5_ILP32_OFFBIG_LINTFLAGS">_CS_XBS5_ILP32_OFFBIG_LINTFLAGS</dfn> _CS_XBS5_ILP32_OFFBIG_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="594">594</th><td>    <dfn class="enum" id="_CS_XBS5_LP64_OFF64_CFLAGS" title='_CS_XBS5_LP64_OFF64_CFLAGS' data-ref="_CS_XBS5_LP64_OFF64_CFLAGS">_CS_XBS5_LP64_OFF64_CFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="595">595</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_LP64_OFF64_CFLAGS" data-ref="_M/_CS_XBS5_LP64_OFF64_CFLAGS">_CS_XBS5_LP64_OFF64_CFLAGS</dfn> _CS_XBS5_LP64_OFF64_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="596">596</th><td>    <dfn class="enum" id="_CS_XBS5_LP64_OFF64_LDFLAGS" title='_CS_XBS5_LP64_OFF64_LDFLAGS' data-ref="_CS_XBS5_LP64_OFF64_LDFLAGS">_CS_XBS5_LP64_OFF64_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="597">597</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_LP64_OFF64_LDFLAGS" data-ref="_M/_CS_XBS5_LP64_OFF64_LDFLAGS">_CS_XBS5_LP64_OFF64_LDFLAGS</dfn> _CS_XBS5_LP64_OFF64_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="598">598</th><td>    <dfn class="enum" id="_CS_XBS5_LP64_OFF64_LIBS" title='_CS_XBS5_LP64_OFF64_LIBS' data-ref="_CS_XBS5_LP64_OFF64_LIBS">_CS_XBS5_LP64_OFF64_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="599">599</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_LP64_OFF64_LIBS" data-ref="_M/_CS_XBS5_LP64_OFF64_LIBS">_CS_XBS5_LP64_OFF64_LIBS</dfn> _CS_XBS5_LP64_OFF64_LIBS</u>&nbsp</td></tr>
+<tr><th id="600">600</th><td>    <dfn class="enum" id="_CS_XBS5_LP64_OFF64_LINTFLAGS" title='_CS_XBS5_LP64_OFF64_LINTFLAGS' data-ref="_CS_XBS5_LP64_OFF64_LINTFLAGS">_CS_XBS5_LP64_OFF64_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="601">601</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_LP64_OFF64_LINTFLAGS" data-ref="_M/_CS_XBS5_LP64_OFF64_LINTFLAGS">_CS_XBS5_LP64_OFF64_LINTFLAGS</dfn> _CS_XBS5_LP64_OFF64_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="602">602</th><td>    <dfn class="enum" id="_CS_XBS5_LPBIG_OFFBIG_CFLAGS" title='_CS_XBS5_LPBIG_OFFBIG_CFLAGS' data-ref="_CS_XBS5_LPBIG_OFFBIG_CFLAGS">_CS_XBS5_LPBIG_OFFBIG_CFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="603">603</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_LPBIG_OFFBIG_CFLAGS" data-ref="_M/_CS_XBS5_LPBIG_OFFBIG_CFLAGS">_CS_XBS5_LPBIG_OFFBIG_CFLAGS</dfn> _CS_XBS5_LPBIG_OFFBIG_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="604">604</th><td>    <dfn class="enum" id="_CS_XBS5_LPBIG_OFFBIG_LDFLAGS" title='_CS_XBS5_LPBIG_OFFBIG_LDFLAGS' data-ref="_CS_XBS5_LPBIG_OFFBIG_LDFLAGS">_CS_XBS5_LPBIG_OFFBIG_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="605">605</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_LPBIG_OFFBIG_LDFLAGS" data-ref="_M/_CS_XBS5_LPBIG_OFFBIG_LDFLAGS">_CS_XBS5_LPBIG_OFFBIG_LDFLAGS</dfn> _CS_XBS5_LPBIG_OFFBIG_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="606">606</th><td>    <dfn class="enum" id="_CS_XBS5_LPBIG_OFFBIG_LIBS" title='_CS_XBS5_LPBIG_OFFBIG_LIBS' data-ref="_CS_XBS5_LPBIG_OFFBIG_LIBS">_CS_XBS5_LPBIG_OFFBIG_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="607">607</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_LPBIG_OFFBIG_LIBS" data-ref="_M/_CS_XBS5_LPBIG_OFFBIG_LIBS">_CS_XBS5_LPBIG_OFFBIG_LIBS</dfn> _CS_XBS5_LPBIG_OFFBIG_LIBS</u>&nbsp</td></tr>
+<tr><th id="608">608</th><td>    <dfn class="enum" id="_CS_XBS5_LPBIG_OFFBIG_LINTFLAGS" title='_CS_XBS5_LPBIG_OFFBIG_LINTFLAGS' data-ref="_CS_XBS5_LPBIG_OFFBIG_LINTFLAGS">_CS_XBS5_LPBIG_OFFBIG_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="609">609</th><td><u>#define <dfn class="macro" id="_M/_CS_XBS5_LPBIG_OFFBIG_LINTFLAGS" data-ref="_M/_CS_XBS5_LPBIG_OFFBIG_LINTFLAGS">_CS_XBS5_LPBIG_OFFBIG_LINTFLAGS</dfn> _CS_XBS5_LPBIG_OFFBIG_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="610">610</th><td>&nbsp</td></tr>
+<tr><th id="611">611</th><td>    <dfn class="enum" id="_CS_POSIX_V6_ILP32_OFF32_CFLAGS" title='_CS_POSIX_V6_ILP32_OFF32_CFLAGS' data-ref="_CS_POSIX_V6_ILP32_OFF32_CFLAGS">_CS_POSIX_V6_ILP32_OFF32_CFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="612">612</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_ILP32_OFF32_CFLAGS" data-ref="_M/_CS_POSIX_V6_ILP32_OFF32_CFLAGS">_CS_POSIX_V6_ILP32_OFF32_CFLAGS</dfn> _CS_POSIX_V6_ILP32_OFF32_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="613">613</th><td>    <dfn class="enum" id="_CS_POSIX_V6_ILP32_OFF32_LDFLAGS" title='_CS_POSIX_V6_ILP32_OFF32_LDFLAGS' data-ref="_CS_POSIX_V6_ILP32_OFF32_LDFLAGS">_CS_POSIX_V6_ILP32_OFF32_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="614">614</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_ILP32_OFF32_LDFLAGS" data-ref="_M/_CS_POSIX_V6_ILP32_OFF32_LDFLAGS">_CS_POSIX_V6_ILP32_OFF32_LDFLAGS</dfn> _CS_POSIX_V6_ILP32_OFF32_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="615">615</th><td>    <dfn class="enum" id="_CS_POSIX_V6_ILP32_OFF32_LIBS" title='_CS_POSIX_V6_ILP32_OFF32_LIBS' data-ref="_CS_POSIX_V6_ILP32_OFF32_LIBS">_CS_POSIX_V6_ILP32_OFF32_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="616">616</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_ILP32_OFF32_LIBS" data-ref="_M/_CS_POSIX_V6_ILP32_OFF32_LIBS">_CS_POSIX_V6_ILP32_OFF32_LIBS</dfn> _CS_POSIX_V6_ILP32_OFF32_LIBS</u>&nbsp</td></tr>
+<tr><th id="617">617</th><td>    <dfn class="enum" id="_CS_POSIX_V6_ILP32_OFF32_LINTFLAGS" title='_CS_POSIX_V6_ILP32_OFF32_LINTFLAGS' data-ref="_CS_POSIX_V6_ILP32_OFF32_LINTFLAGS">_CS_POSIX_V6_ILP32_OFF32_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="618">618</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_ILP32_OFF32_LINTFLAGS" data-ref="_M/_CS_POSIX_V6_ILP32_OFF32_LINTFLAGS">_CS_POSIX_V6_ILP32_OFF32_LINTFLAGS</dfn> _CS_POSIX_V6_ILP32_OFF32_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="619">619</th><td>    <dfn class="enum" id="_CS_POSIX_V6_ILP32_OFFBIG_CFLAGS" title='_CS_POSIX_V6_ILP32_OFFBIG_CFLAGS' data-ref="_CS_POSIX_V6_ILP32_OFFBIG_CFLAGS">_CS_POSIX_V6_ILP32_OFFBIG_CFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="620">620</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_ILP32_OFFBIG_CFLAGS" data-ref="_M/_CS_POSIX_V6_ILP32_OFFBIG_CFLAGS">_CS_POSIX_V6_ILP32_OFFBIG_CFLAGS</dfn> _CS_POSIX_V6_ILP32_OFFBIG_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="621">621</th><td>    <dfn class="enum" id="_CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS" title='_CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS' data-ref="_CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS">_CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="622">622</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS" data-ref="_M/_CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS">_CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS</dfn> _CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="623">623</th><td>    <dfn class="enum" id="_CS_POSIX_V6_ILP32_OFFBIG_LIBS" title='_CS_POSIX_V6_ILP32_OFFBIG_LIBS' data-ref="_CS_POSIX_V6_ILP32_OFFBIG_LIBS">_CS_POSIX_V6_ILP32_OFFBIG_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="624">624</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_ILP32_OFFBIG_LIBS" data-ref="_M/_CS_POSIX_V6_ILP32_OFFBIG_LIBS">_CS_POSIX_V6_ILP32_OFFBIG_LIBS</dfn> _CS_POSIX_V6_ILP32_OFFBIG_LIBS</u>&nbsp</td></tr>
+<tr><th id="625">625</th><td>    <dfn class="enum" id="_CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS" title='_CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS' data-ref="_CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS">_CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="626">626</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS" data-ref="_M/_CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS">_CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS</dfn> _CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="627">627</th><td>    <dfn class="enum" id="_CS_POSIX_V6_LP64_OFF64_CFLAGS" title='_CS_POSIX_V6_LP64_OFF64_CFLAGS' data-ref="_CS_POSIX_V6_LP64_OFF64_CFLAGS">_CS_POSIX_V6_LP64_OFF64_CFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="628">628</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_LP64_OFF64_CFLAGS" data-ref="_M/_CS_POSIX_V6_LP64_OFF64_CFLAGS">_CS_POSIX_V6_LP64_OFF64_CFLAGS</dfn> _CS_POSIX_V6_LP64_OFF64_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="629">629</th><td>    <dfn class="enum" id="_CS_POSIX_V6_LP64_OFF64_LDFLAGS" title='_CS_POSIX_V6_LP64_OFF64_LDFLAGS' data-ref="_CS_POSIX_V6_LP64_OFF64_LDFLAGS">_CS_POSIX_V6_LP64_OFF64_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="630">630</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_LP64_OFF64_LDFLAGS" data-ref="_M/_CS_POSIX_V6_LP64_OFF64_LDFLAGS">_CS_POSIX_V6_LP64_OFF64_LDFLAGS</dfn> _CS_POSIX_V6_LP64_OFF64_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="631">631</th><td>    <dfn class="enum" id="_CS_POSIX_V6_LP64_OFF64_LIBS" title='_CS_POSIX_V6_LP64_OFF64_LIBS' data-ref="_CS_POSIX_V6_LP64_OFF64_LIBS">_CS_POSIX_V6_LP64_OFF64_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="632">632</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_LP64_OFF64_LIBS" data-ref="_M/_CS_POSIX_V6_LP64_OFF64_LIBS">_CS_POSIX_V6_LP64_OFF64_LIBS</dfn> _CS_POSIX_V6_LP64_OFF64_LIBS</u>&nbsp</td></tr>
+<tr><th id="633">633</th><td>    <dfn class="enum" id="_CS_POSIX_V6_LP64_OFF64_LINTFLAGS" title='_CS_POSIX_V6_LP64_OFF64_LINTFLAGS' data-ref="_CS_POSIX_V6_LP64_OFF64_LINTFLAGS">_CS_POSIX_V6_LP64_OFF64_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="634">634</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_LP64_OFF64_LINTFLAGS" data-ref="_M/_CS_POSIX_V6_LP64_OFF64_LINTFLAGS">_CS_POSIX_V6_LP64_OFF64_LINTFLAGS</dfn> _CS_POSIX_V6_LP64_OFF64_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="635">635</th><td>    <dfn class="enum" id="_CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS" title='_CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS' data-ref="_CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS">_CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="636">636</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS" data-ref="_M/_CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS">_CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS</dfn> _CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="637">637</th><td>    <dfn class="enum" id="_CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS" title='_CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS' data-ref="_CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS">_CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="638">638</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS" data-ref="_M/_CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS">_CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS</dfn> _CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="639">639</th><td>    <dfn class="enum" id="_CS_POSIX_V6_LPBIG_OFFBIG_LIBS" title='_CS_POSIX_V6_LPBIG_OFFBIG_LIBS' data-ref="_CS_POSIX_V6_LPBIG_OFFBIG_LIBS">_CS_POSIX_V6_LPBIG_OFFBIG_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="640">640</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_LPBIG_OFFBIG_LIBS" data-ref="_M/_CS_POSIX_V6_LPBIG_OFFBIG_LIBS">_CS_POSIX_V6_LPBIG_OFFBIG_LIBS</dfn> _CS_POSIX_V6_LPBIG_OFFBIG_LIBS</u>&nbsp</td></tr>
+<tr><th id="641">641</th><td>    <dfn class="enum" id="_CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS" title='_CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS' data-ref="_CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS">_CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="642">642</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS" data-ref="_M/_CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS">_CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS</dfn> _CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="643">643</th><td>&nbsp</td></tr>
+<tr><th id="644">644</th><td>    <dfn class="enum" id="_CS_POSIX_V7_ILP32_OFF32_CFLAGS" title='_CS_POSIX_V7_ILP32_OFF32_CFLAGS' data-ref="_CS_POSIX_V7_ILP32_OFF32_CFLAGS">_CS_POSIX_V7_ILP32_OFF32_CFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="645">645</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_ILP32_OFF32_CFLAGS" data-ref="_M/_CS_POSIX_V7_ILP32_OFF32_CFLAGS">_CS_POSIX_V7_ILP32_OFF32_CFLAGS</dfn> _CS_POSIX_V7_ILP32_OFF32_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="646">646</th><td>    <dfn class="enum" id="_CS_POSIX_V7_ILP32_OFF32_LDFLAGS" title='_CS_POSIX_V7_ILP32_OFF32_LDFLAGS' data-ref="_CS_POSIX_V7_ILP32_OFF32_LDFLAGS">_CS_POSIX_V7_ILP32_OFF32_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="647">647</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_ILP32_OFF32_LDFLAGS" data-ref="_M/_CS_POSIX_V7_ILP32_OFF32_LDFLAGS">_CS_POSIX_V7_ILP32_OFF32_LDFLAGS</dfn> _CS_POSIX_V7_ILP32_OFF32_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="648">648</th><td>    <dfn class="enum" id="_CS_POSIX_V7_ILP32_OFF32_LIBS" title='_CS_POSIX_V7_ILP32_OFF32_LIBS' data-ref="_CS_POSIX_V7_ILP32_OFF32_LIBS">_CS_POSIX_V7_ILP32_OFF32_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="649">649</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_ILP32_OFF32_LIBS" data-ref="_M/_CS_POSIX_V7_ILP32_OFF32_LIBS">_CS_POSIX_V7_ILP32_OFF32_LIBS</dfn> _CS_POSIX_V7_ILP32_OFF32_LIBS</u>&nbsp</td></tr>
+<tr><th id="650">650</th><td>    <dfn class="enum" id="_CS_POSIX_V7_ILP32_OFF32_LINTFLAGS" title='_CS_POSIX_V7_ILP32_OFF32_LINTFLAGS' data-ref="_CS_POSIX_V7_ILP32_OFF32_LINTFLAGS">_CS_POSIX_V7_ILP32_OFF32_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="651">651</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_ILP32_OFF32_LINTFLAGS" data-ref="_M/_CS_POSIX_V7_ILP32_OFF32_LINTFLAGS">_CS_POSIX_V7_ILP32_OFF32_LINTFLAGS</dfn> _CS_POSIX_V7_ILP32_OFF32_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="652">652</th><td>    <dfn class="enum" id="_CS_POSIX_V7_ILP32_OFFBIG_CFLAGS" title='_CS_POSIX_V7_ILP32_OFFBIG_CFLAGS' data-ref="_CS_POSIX_V7_ILP32_OFFBIG_CFLAGS">_CS_POSIX_V7_ILP32_OFFBIG_CFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="653">653</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_ILP32_OFFBIG_CFLAGS" data-ref="_M/_CS_POSIX_V7_ILP32_OFFBIG_CFLAGS">_CS_POSIX_V7_ILP32_OFFBIG_CFLAGS</dfn> _CS_POSIX_V7_ILP32_OFFBIG_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="654">654</th><td>    <dfn class="enum" id="_CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS" title='_CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS' data-ref="_CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS">_CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="655">655</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS" data-ref="_M/_CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS">_CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS</dfn> _CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="656">656</th><td>    <dfn class="enum" id="_CS_POSIX_V7_ILP32_OFFBIG_LIBS" title='_CS_POSIX_V7_ILP32_OFFBIG_LIBS' data-ref="_CS_POSIX_V7_ILP32_OFFBIG_LIBS">_CS_POSIX_V7_ILP32_OFFBIG_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="657">657</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_ILP32_OFFBIG_LIBS" data-ref="_M/_CS_POSIX_V7_ILP32_OFFBIG_LIBS">_CS_POSIX_V7_ILP32_OFFBIG_LIBS</dfn> _CS_POSIX_V7_ILP32_OFFBIG_LIBS</u>&nbsp</td></tr>
+<tr><th id="658">658</th><td>    <dfn class="enum" id="_CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS" title='_CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS' data-ref="_CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS">_CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="659">659</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS" data-ref="_M/_CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS">_CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS</dfn> _CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="660">660</th><td>    <dfn class="enum" id="_CS_POSIX_V7_LP64_OFF64_CFLAGS" title='_CS_POSIX_V7_LP64_OFF64_CFLAGS' data-ref="_CS_POSIX_V7_LP64_OFF64_CFLAGS">_CS_POSIX_V7_LP64_OFF64_CFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="661">661</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_LP64_OFF64_CFLAGS" data-ref="_M/_CS_POSIX_V7_LP64_OFF64_CFLAGS">_CS_POSIX_V7_LP64_OFF64_CFLAGS</dfn> _CS_POSIX_V7_LP64_OFF64_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="662">662</th><td>    <dfn class="enum" id="_CS_POSIX_V7_LP64_OFF64_LDFLAGS" title='_CS_POSIX_V7_LP64_OFF64_LDFLAGS' data-ref="_CS_POSIX_V7_LP64_OFF64_LDFLAGS">_CS_POSIX_V7_LP64_OFF64_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="663">663</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_LP64_OFF64_LDFLAGS" data-ref="_M/_CS_POSIX_V7_LP64_OFF64_LDFLAGS">_CS_POSIX_V7_LP64_OFF64_LDFLAGS</dfn> _CS_POSIX_V7_LP64_OFF64_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="664">664</th><td>    <dfn class="enum" id="_CS_POSIX_V7_LP64_OFF64_LIBS" title='_CS_POSIX_V7_LP64_OFF64_LIBS' data-ref="_CS_POSIX_V7_LP64_OFF64_LIBS">_CS_POSIX_V7_LP64_OFF64_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="665">665</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_LP64_OFF64_LIBS" data-ref="_M/_CS_POSIX_V7_LP64_OFF64_LIBS">_CS_POSIX_V7_LP64_OFF64_LIBS</dfn> _CS_POSIX_V7_LP64_OFF64_LIBS</u>&nbsp</td></tr>
+<tr><th id="666">666</th><td>    <dfn class="enum" id="_CS_POSIX_V7_LP64_OFF64_LINTFLAGS" title='_CS_POSIX_V7_LP64_OFF64_LINTFLAGS' data-ref="_CS_POSIX_V7_LP64_OFF64_LINTFLAGS">_CS_POSIX_V7_LP64_OFF64_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="667">667</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_LP64_OFF64_LINTFLAGS" data-ref="_M/_CS_POSIX_V7_LP64_OFF64_LINTFLAGS">_CS_POSIX_V7_LP64_OFF64_LINTFLAGS</dfn> _CS_POSIX_V7_LP64_OFF64_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="668">668</th><td>    <dfn class="enum" id="_CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS" title='_CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS' data-ref="_CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS">_CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="669">669</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS" data-ref="_M/_CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS">_CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS</dfn> _CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS</u>&nbsp</td></tr>
+<tr><th id="670">670</th><td>    <dfn class="enum" id="_CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS" title='_CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS' data-ref="_CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS">_CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="671">671</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS" data-ref="_M/_CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS">_CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS</dfn> _CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS</u>&nbsp</td></tr>
+<tr><th id="672">672</th><td>    <dfn class="enum" id="_CS_POSIX_V7_LPBIG_OFFBIG_LIBS" title='_CS_POSIX_V7_LPBIG_OFFBIG_LIBS' data-ref="_CS_POSIX_V7_LPBIG_OFFBIG_LIBS">_CS_POSIX_V7_LPBIG_OFFBIG_LIBS</dfn>,&nbsp</td></tr>
+<tr><th id="673">673</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_LPBIG_OFFBIG_LIBS" data-ref="_M/_CS_POSIX_V7_LPBIG_OFFBIG_LIBS">_CS_POSIX_V7_LPBIG_OFFBIG_LIBS</dfn> _CS_POSIX_V7_LPBIG_OFFBIG_LIBS</u>&nbsp</td></tr>
+<tr><th id="674">674</th><td>    <dfn class="enum" id="_CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS" title='_CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS' data-ref="_CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS">_CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS</dfn>,&nbsp</td></tr>
+<tr><th id="675">675</th><td><u>#define <dfn class="macro" id="_M/_CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS" data-ref="_M/_CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS">_CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS</dfn> _CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS</u>&nbsp</td></tr>
+<tr><th id="676">676</th><td>&nbsp</td></tr>
+<tr><th id="677">677</th><td>    <dfn class="enum" id="_CS_V6_ENV" title='_CS_V6_ENV' data-ref="_CS_V6_ENV">_CS_V6_ENV</dfn>,&nbsp</td></tr>
+<tr><th id="678">678</th><td><u>#define <dfn class="macro" id="_M/_CS_V6_ENV" data-ref="_M/_CS_V6_ENV">_CS_V6_ENV</dfn>			_CS_V6_ENV</u>&nbsp</td></tr>
+<tr><th id="679">679</th><td>    <dfn class="enum" id="_CS_V7_ENV" title='_CS_V7_ENV' data-ref="_CS_V7_ENV">_CS_V7_ENV</dfn>&nbsp</td></tr>
+<tr><th id="680">680</th><td><u>#define <dfn class="macro" id="_M/_CS_V7_ENV" data-ref="_M/_CS_V7_ENV">_CS_V7_ENV</dfn>			_CS_V7_ENV</u>&nbsp</td></tr>
+<tr><th id="681">681</th><td>  };&nbsp</td></tr>
+<tr><th id="682">682</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tPool.h.html'>Modules/Foundation/Inc/Foundation/tPool.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

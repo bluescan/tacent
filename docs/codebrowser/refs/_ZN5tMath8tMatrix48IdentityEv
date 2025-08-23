@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='65' type='void tMath::tMatrix4::Identity()'/>
+<use f='Modules/Scene/Inc/Scene/tInstance.h' l='30' u='c' c='_ZN6tScene9tInstance5ClearEv'/>

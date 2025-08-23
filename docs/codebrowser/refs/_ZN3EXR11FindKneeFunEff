@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tImageEXR.cpp' l='48' type='float EXR::FindKneeFun(float x, float y)'/>
+<def f='Modules/Image/Src/tImageEXR.cpp' l='69' ll='89' type='float EXR::FindKneeFun(float x, float y)'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='135' u='c' c='_ZN3EXR5GammaC1Efffff'/>

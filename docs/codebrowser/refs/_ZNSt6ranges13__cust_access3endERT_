@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/ranges_base.h' l='135' type='void std::ranges::__cust_access::end(auto &amp; )'/>
+<doc f='include/c++/11/bits/ranges_base.h' l='134'>// Poison pills so that unqualified lookup doesn&apos;t find std::end.</doc>

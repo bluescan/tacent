@@ -1,0 +1,4 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='86' c='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<def f='Modules/Image/Inc/Image/tImageWEBP.h' l='90' type='bool tImage::tImageWEBP::IsValid() const'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='312' u='c' c='_ZN6tImage10tImageWEBP8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='331' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>

@@ -1,0 +1,7 @@
+<def f='include/c++/11/fstream' l='997' ll='1002' type='void std::basic_ofstream::close()'/>
+<doc f='include/c++/11/fstream' l='991'>/**
+       *  @brief  Close the file.
+       *
+       *  Calls @c std::basic_filebuf::close().  If that function
+       *  fails, @c failbit is set in the stream&apos;s error state.
+       */</doc>

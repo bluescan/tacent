@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13746'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13745'>// VK_NV_device_diagnostic_checkpoints is a preprocessor guard. Do not pass it to API calls.</doc>

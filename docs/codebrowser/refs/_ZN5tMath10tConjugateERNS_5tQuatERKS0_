@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='435' type='void tMath::tConjugate(tMath::tQuat &amp; d, const tMath::tQuat &amp; a)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='985' u='c' c='_ZN5tMath7tRotateERNS_5tVec3ERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='68' u='c' c='_ZNK5tMath11tQuaternion9ConjugateEv'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='1019' u='c' c='_ZN5tMath20tApproachOrientationERNS_5tQuatERKS0_ff'/>

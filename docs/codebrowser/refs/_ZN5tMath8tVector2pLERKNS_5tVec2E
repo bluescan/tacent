@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='77' type='tMath::tVector2 &amp; tMath::tVector2::operator+=(const tMath::tVec2 &amp; a)'/>
+<doc f='Modules/Math/Inc/Math/tVector2.h' l='76'>// Addition is not defined for types other than the same type as the object itself, so no friend needed.</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='214' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>

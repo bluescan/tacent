@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/ios_base.h' l='586' type='void std::ios_base::_M_call_callbacks(std::ios_base::event __ev)'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='80' u='c' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='103' u='c' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>

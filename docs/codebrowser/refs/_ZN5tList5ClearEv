@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='94' type='void tList::Clear()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='94'>/* Clears the list. Deletes items if list owns them. */</doc>
+<use f='Modules/System/Inc/System/tFile.h' l='459' u='c' c='_ZN7tSystem11tExtensions5ClearEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='501' u='c' c='_ZN7tSystem10tFileTypes5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='95' u='c' c='_ZN6tImage8tTexture5ClearEv'/>

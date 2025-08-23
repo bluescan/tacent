@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='169' type='void tImage::tPicture::Intensity(comp_t channels = tCompBit_RGB)'/>
+<def f='Modules/Image/Inc/Image/tPicture.h' l='601' ll='616' type='void tImage::tPicture::Intensity(comp_t channels = tCompBit_RGB)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='168'>// Computes RGB intensity and sets specified channels to that value. Any combination of RGBA allowed.</doc>

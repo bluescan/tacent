@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/fs_path.h' l='901' ll='912' type='std::filesystem::path::iterator::difference_type std::filesystem::__path_iter_distance(const std::filesystem::path::iterator &amp; __first, const std::filesystem::path::iterator &amp; __last)'/>
+<use f='include/c++/11/bits/fs_path.h' l='1347' u='c' c='_ZSt8distanceNSt10filesystem7__cxx114path8iteratorES2_'/>

@@ -1,0 +1,18 @@
+<dec f='include/c++/11/atomic' l='209' type='_Tp'/>
+<use f='include/c++/11/atomic' l='231' u='w' c='_ZNSt6atomicC1ET_'/>
+<use f='include/c++/11/atomic' l='251' u='r' c='_ZNKSt6atomic12is_lock_freeEv'/>
+<use f='include/c++/11/atomic' l='259' u='r' c='_ZNVKSt6atomic12is_lock_freeEv'/>
+<use f='include/c++/11/atomic' l='265' u='r'/>
+<use f='include/c++/11/atomic' l='271' c='_ZNSt6atomic5storeET_St12memory_order'/>
+<use f='include/c++/11/atomic' l='277' c='_ZNVSt6atomic5storeET_St12memory_order'/>
+<use f='include/c++/11/atomic' l='285' c='_ZNKSt6atomic4loadESt12memory_order'/>
+<use f='include/c++/11/atomic' l='294' c='_ZNVKSt6atomic4loadESt12memory_order'/>
+<use f='include/c++/11/atomic' l='303' c='_ZNSt6atomic8exchangeET_St12memory_order'/>
+<use f='include/c++/11/atomic' l='314' c='_ZNVSt6atomic8exchangeET_St12memory_order'/>
+<use f='include/c++/11/atomic' l='325' c='_ZNSt6atomic21compare_exchange_weakERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/atomic' l='337' c='_ZNVSt6atomic21compare_exchange_weakERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/atomic' l='361' c='_ZNSt6atomic23compare_exchange_strongERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/atomic' l='373' c='_ZNVSt6atomic23compare_exchange_strongERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/atomic' l='395' c='_ZNKSt6atomic4waitET_St12memory_order'/>
+<use f='include/c++/11/atomic' l='403' c='_ZNSt6atomic10notify_oneEv'/>
+<use f='include/c++/11/atomic' l='407' c='_ZNSt6atomic10notify_allEv'/>

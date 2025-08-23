@@ -1,0 +1,8 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='112' type='double tMath::tRandom::tGetDouble(const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='168' u='c' c='_ZN5tMath7tRandom9tGetFloatERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='189' u='c' c='_ZN5tMath7tRandom11tGetBoundedEddRKNS0_10tGeneratorE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='209' u='c' c='_ZN6tImage16tQuantizeSpatial11fill_randomERNS0_7array3dIdEERN5tMath7tRandom10tGeneratorE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='877' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='878' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='879' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<def f='Modules/Math/Src/tRandom.cpp' l='106' ll='126' type='double tMath::tRandom::tGetDouble(const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>

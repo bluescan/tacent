@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/predefined_ops.h' l='331' type='_Value &amp;'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='335' u='w' c='__gnu_cxx::__ops::_Iter_comp_to_val::_Iter_comp_to_val{_Compare,_Value}'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='342' c='__gnu_cxx::__ops::_Iter_comp_to_val::operator()'/>

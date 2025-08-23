@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='41' type='int __iseqsig(double __x, double __y)'/>
+<use f='include/math.h' l='1378' u='c' c='__iseqsig_type{double}::__call'/>

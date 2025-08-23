@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tImageXPM.cpp source code [Modules/Image/Src/tImageXPM.cpp] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Src/tImageXPM.cpp'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>Modules</a>/<a href='..'>Image</a>/<a href='./'>Src</a>/<a href='tImageXPM.cpp.html'>tImageXPM.cpp</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tImageXPM.cpp</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// This class knows how to load and save an X-Windows Pix Map (.xpm) file. It knows the details of the xpm file format</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>// and loads the data into a tPixel array. These tPixels may be 'stolen' by the tPicture's constructor if a xpm file is</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// specified. After the array is stolen the tImageXPM is invalid. This is purely for performance.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// Copyright (c) 2020, 2024 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#include &lt;System/tFile.h&gt;</u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#include "Image/tImageXPM.h"</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><b>using</b> <b>namespace</b> <span class="namespace">tSystem</span>;&nbsp</td></tr>
+<tr><th id="22">22</th><td><b>namespace</b> <span class="namespace">tImage</span>&nbsp</td></tr>
+<tr><th id="23">23</th><td>{&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td>&nbsp</td></tr>
+<tr><th id="26">26</th><td><em>bool</em> <a class="type" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM" title='tImage::tImageXPM' data-ref="tImage::tImageXPM">tImageXPM</a>::<dfn class="decl def fn" id="_ZN6tImage9tImageXPM4LoadERK7tString" title='tImage::tImageXPM::Load' data-ref="_ZN6tImage9tImageXPM4LoadERK7tString">Load</dfn>(<em>const</em> <a class="type" href="../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a>&amp; <dfn class="local col1 decl" id="1xpmFile" title='xpmFile' data-type='const tString &amp;' data-ref="1xpmFile">xpmFile</dfn>)&nbsp</td></tr>
+<tr><th id="27">27</th><td>{&nbsp</td></tr>
+<tr><th id="28">28</th><td>	<a class="virtual member fn" href="../Inc/Image/tImageXPM.h.html#_ZN6tImage9tImageXPM5ClearEv" title='tImage::tImageXPM::Clear' data-ref="_ZN6tImage9tImageXPM5ClearEv">Clear</a>();&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td>	<b>if</b> (<span class="namespace">tSystem::</span><a class="ref fn" href="../../System/Inc/System/tFile.h.html#_ZN7tSystem12tGetFileTypeERK7tString" title='tSystem::tGetFileType' data-ref="_ZN7tSystem12tGetFileTypeERK7tString">tGetFileType</a>(<span class='inlayHint'>file:&nbsp;</span><a class="local col1 ref" href="#1xpmFile" title='xpmFile' data-ref="1xpmFile">xpmFile</a>) != <span class="namespace">tSystem::</span><a class="type" href="../../System/Inc/System/tFile.h.html#tSystem::tFileType" title='tSystem::tFileType' data-ref="tSystem::tFileType">tFileType</a>::<a class="enum" href="../../System/Inc/System/tFile.h.html#tSystem::tFileType::XPM" title='tSystem::tFileType::XPM' data-ref="tSystem::tFileType::XPM">XPM</a>)&nbsp</td></tr>
+<tr><th id="31">31</th><td>		<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td>	<b>if</b> (!<a class="ref fn" href="../../System/Inc/System/tFile.h.html#_ZN7tSystem11tFileExistsERK7tString" title='tSystem::tFileExists' data-ref="_ZN7tSystem11tFileExistsERK7tString">tFileExists</a>(<span class='inlayHint'>file:&nbsp;</span><a class="local col1 ref" href="#1xpmFile" title='xpmFile' data-ref="1xpmFile">xpmFile</a>))&nbsp</td></tr>
+<tr><th id="34">34</th><td>		<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td>	<em>int</em> <dfn class="local col2 decl" id="2numBytes" title='numBytes' data-type='int' data-ref="2numBytes">numBytes</dfn> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="37">37</th><td>	<a class="typedef" href="../../Foundation/Inc/Foundation/tPlatform.h.html#uint8" title='uint8' data-type='unsigned char' data-ref="uint8">uint8</a>* <dfn class="local col3 decl" id="3xpmFileInMemory" title='xpmFileInMemory' data-type='uint8 *' data-ref="3xpmFileInMemory">xpmFileInMemory</dfn> = <a class="ref fn" href="../../System/Inc/System/tFile.h.html#_ZN7tSystem9tLoadFileERK7tStringPhPib" title='tSystem::tLoadFile' data-ref="_ZN7tSystem9tLoadFileERK7tStringPhPib">tLoadFile</a>(<span class='inlayHint'>file:&nbsp;</span><a class="local col1 ref" href="#1xpmFile" title='xpmFile' data-ref="1xpmFile">xpmFile</a>, <span class='inlayHint'>buffer:&nbsp;</span><b>nullptr</b>, <span class='inlayHint'>fileSize:&nbsp;</span>&amp;<a class="local col2 ref" href="#2numBytes" title='numBytes' data-ref="2numBytes">numBytes</a>);&nbsp</td></tr>
+<tr><th id="38">38</th><td>	<em>bool</em> <dfn class="local col4 decl" id="4success" title='success' data-type='bool' data-ref="4success">success</dfn> = <a class="member fn" href="#_ZN6tImage9tImageXPM4LoadEPKhi" title='tImage::tImageXPM::Load' data-ref="_ZN6tImage9tImageXPM4LoadEPKhi">Load</a>(<a class="local col3 ref" href="#3xpmFileInMemory" title='xpmFileInMemory' data-ref="3xpmFileInMemory">xpmFileInMemory</a>, <a class="local col2 ref" href="#2numBytes" title='numBytes' data-ref="2numBytes">numBytes</a>);&nbsp</td></tr>
+<tr><th id="39">39</th><td>	<b>delete</b>[] <a class="local col3 ref" href="#3xpmFileInMemory" title='xpmFileInMemory' data-ref="3xpmFileInMemory">xpmFileInMemory</a>;&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td>	<b>return</b> <a class="local col4 ref" href="#4success" title='success' data-ref="4success">success</a>;&nbsp</td></tr>
+<tr><th id="42">42</th><td>}&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td><em>bool</em> <a class="type" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM" title='tImage::tImageXPM' data-ref="tImage::tImageXPM">tImageXPM</a>::<dfn class="decl def fn" id="_ZN6tImage9tImageXPM4LoadEPKhi" title='tImage::tImageXPM::Load' data-ref="_ZN6tImage9tImageXPM4LoadEPKhi">Load</dfn>(<em>const</em> <a class="typedef" href="../../Foundation/Inc/Foundation/tPlatform.h.html#uint8" title='uint8' data-type='unsigned char' data-ref="uint8">uint8</a>* <dfn class="local col5 decl" id="5xpmFileInMemory" title='xpmFileInMemory' data-type='const uint8 *' data-ref="5xpmFileInMemory">xpmFileInMemory</dfn>, <em>int</em> <dfn class="local col6 decl" id="6numBytes" title='numBytes' data-type='int' data-ref="6numBytes">numBytes</dfn>)&nbsp</td></tr>
+<tr><th id="46">46</th><td>{&nbsp</td></tr>
+<tr><th id="47">47</th><td>	<a class="virtual member fn" href="../Inc/Image/tImageXPM.h.html#_ZN6tImage9tImageXPM5ClearEv" title='tImage::tImageXPM::Clear' data-ref="_ZN6tImage9tImageXPM5ClearEv">Clear</a>();&nbsp</td></tr>
+<tr><th id="48">48</th><td>	<b>if</b> ((<a class="local col6 ref" href="#6numBytes" title='numBytes' data-ref="6numBytes">numBytes</a> &lt;= <var>0</var>) || !<a class="local col5 ref" href="#5xpmFileInMemory" title='xpmFileInMemory' data-ref="5xpmFileInMemory">xpmFileInMemory</a>)&nbsp</td></tr>
+<tr><th id="49">49</th><td>		<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td>	<i>// Set Width, Height, Pixels, and SrcPixelFormat.</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i>	// @todo I'm going to build my own xpm parser here. I really found the official libxpm</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i>	// very akward and it required unnecessary platform headers that are not needed for text file parsing.</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td>	<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Width" title='tImage::tImageXPM::Width' data-ref="tImage::tImageXPM::Width">Width</a> = <var>256</var>;&nbsp</td></tr>
+<tr><th id="55">55</th><td>	<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Height" title='tImage::tImageXPM::Height' data-ref="tImage::tImageXPM::Height">Height</a> = <var>256</var>;&nbsp</td></tr>
+<tr><th id="56">56</th><td>	<em>int</em> <dfn class="local col7 decl" id="7numPixels" title='numPixels' data-type='int' data-ref="7numPixels">numPixels</dfn> = <a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Width" title='tImage::tImageXPM::Width' data-ref="tImage::tImageXPM::Width">Width</a> * <a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Height" title='tImage::tImageXPM::Height' data-ref="tImage::tImageXPM::Height">Height</a>;&nbsp</td></tr>
+<tr><th id="57">57</th><td>	<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Pixels" title='tImage::tImageXPM::Pixels' data-ref="tImage::tImageXPM::Pixels">Pixels</a> = <b>new</b> <a class="ref fn fake" href="../../Math/Inc/Math/tColour.h.html#_ZN9tColour4bC1Ev" title='tColour4b::tColour4b' data-ref="_ZN9tColour4bC1Ev"></a><a class="typedef" href="../../Math/Inc/Math/tColour.h.html#tPixel4b" title='tPixel4b' data-type='tColour4b' data-ref="tPixel4b">tPixel4b</a>[<a class="local col7 ref" href="#7numPixels" title='numPixels' data-ref="7numPixels">numPixels</a>];&nbsp</td></tr>
+<tr><th id="58">58</th><td>	<b>for</b> (<em>int</em> <dfn class="local col8 decl" id="8p" title='p' data-type='int' data-ref="8p">p</dfn> = <var>0</var>; <a class="local col8 ref" href="#8p" title='p' data-ref="8p">p</a> &lt; <a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Width" title='tImage::tImageXPM::Width' data-ref="tImage::tImageXPM::Width">Width</a>*<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Height" title='tImage::tImageXPM::Height' data-ref="tImage::tImageXPM::Height">Height</a>; <a class="local col8 ref" href="#8p" title='p' data-ref="8p">p</a>++)&nbsp</td></tr>
+<tr><th id="59">59</th><td>	{&nbsp</td></tr>
+<tr><th id="60">60</th><td>		<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Pixels" title='tImage::tImageXPM::Pixels' data-ref="tImage::tImageXPM::Pixels">Pixels</a>[<a class="local col8 ref" href="#8p" title='p' data-ref="8p">p</a>] <a class="ref fn" href="../../Math/Inc/Math/tColour.h.html#_ZN9tColour4baSERKS_" title='tColour4b::operator=' data-ref="_ZN9tColour4baSERKS_">=</a> <a class="typedef" href="../../Math/Inc/Math/tColour.h.html#tPixel4b" title='tPixel4b' data-type='tColour4b' data-ref="tPixel4b">tPixel4b</a>::<a class="ref" href="../../Math/Inc/Math/tColour.h.html#tColour4b::blue" title='tColour4b::blue' data-ref="tColour4b::blue">blue</a>;&nbsp</td></tr>
+<tr><th id="61">61</th><td>	}&nbsp</td></tr>
+<tr><th id="62">62</th><td>	<a class="member field" href="../Inc/Image/tBaseImage.h.html#tImage::tBaseImage::PixelFormatSrc" title='tImage::tBaseImage::PixelFormatSrc' data-ref="tImage::tBaseImage::PixelFormatSrc">PixelFormatSrc</a> 		= <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::R8G8B8A8" title='tImage::tPixelFormat::R8G8B8A8' data-ref="tImage::tPixelFormat::R8G8B8A8">R8G8B8A8</a>;&nbsp</td></tr>
+<tr><th id="63">63</th><td>	<a class="member field" href="../Inc/Image/tBaseImage.h.html#tImage::tBaseImage::PixelFormat" title='tImage::tBaseImage::PixelFormat' data-ref="tImage::tBaseImage::PixelFormat">PixelFormat</a>			= <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::R8G8B8A8" title='tImage::tPixelFormat::R8G8B8A8' data-ref="tImage::tPixelFormat::R8G8B8A8">R8G8B8A8</a>;&nbsp</td></tr>
+<tr><th id="64">64</th><td>&nbsp</td></tr>
+<tr><th id="65">65</th><td>	<i>// XPM files are assumed to be in sRGB.</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td>	<a class="member field" href="../Inc/Image/tBaseImage.h.html#tImage::tBaseImage::ColourProfileSrc" title='tImage::tBaseImage::ColourProfileSrc' data-ref="tImage::tBaseImage::ColourProfileSrc">ColourProfileSrc</a>	= <a class="type" href="../../Math/Inc/Math/tColour.h.html#tColourProfile" title='tColourProfile' data-ref="tColourProfile">tColourProfile</a>::<a class="enum" href="../../Math/Inc/Math/tColour.h.html#tColourProfile::sRGB" title='tColourProfile::sRGB' data-ref="tColourProfile::sRGB">sRGB</a>;&nbsp</td></tr>
+<tr><th id="67">67</th><td>	<a class="member field" href="../Inc/Image/tBaseImage.h.html#tImage::tBaseImage::ColourProfile" title='tImage::tBaseImage::ColourProfile' data-ref="tImage::tBaseImage::ColourProfile">ColourProfile</a>		= <a class="type" href="../../Math/Inc/Math/tColour.h.html#tColourProfile" title='tColourProfile' data-ref="tColourProfile">tColourProfile</a>::<a class="enum" href="../../Math/Inc/Math/tColour.h.html#tColourProfile::sRGB" title='tColourProfile::sRGB' data-ref="tColourProfile::sRGB">sRGB</a>;&nbsp</td></tr>
+<tr><th id="68">68</th><td>&nbsp</td></tr>
+<tr><th id="69">69</th><td>	<b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="70">70</th><td>}&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td>&nbsp</td></tr>
+<tr><th id="73">73</th><td><em>bool</em> <a class="type" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM" title='tImage::tImageXPM' data-ref="tImage::tImageXPM">tImageXPM</a>::<dfn class="virtual decl def fn" id="_ZN6tImage9tImageXPM3SetEP9tColour4biib" title='tImage::tImageXPM::Set' data-ref="_ZN6tImage9tImageXPM3SetEP9tColour4biib">Set</dfn>(<a class="typedef" href="../../Math/Inc/Math/tColour.h.html#tPixel4b" title='tPixel4b' data-type='tColour4b' data-ref="tPixel4b">tPixel4b</a>* <dfn class="local col9 decl" id="9pixels" title='pixels' data-type='tPixel4b *' data-ref="9pixels">pixels</dfn>, <em>int</em> <dfn class="local col0 decl" id="10width" title='width' data-type='int' data-ref="10width">width</dfn>, <em>int</em> <dfn class="local col1 decl" id="11height" title='height' data-type='int' data-ref="11height">height</dfn>, <em>bool</em> <dfn class="local col2 decl" id="12steal" title='steal' data-type='bool' data-ref="12steal">steal</dfn>)&nbsp</td></tr>
+<tr><th id="74">74</th><td>{&nbsp</td></tr>
+<tr><th id="75">75</th><td>	<a class="virtual member fn" href="../Inc/Image/tImageXPM.h.html#_ZN6tImage9tImageXPM5ClearEv" title='tImage::tImageXPM::Clear' data-ref="_ZN6tImage9tImageXPM5ClearEv">Clear</a>();&nbsp</td></tr>
+<tr><th id="76">76</th><td>	<b>if</b> (!<a class="local col9 ref" href="#9pixels" title='pixels' data-ref="9pixels">pixels</a> || (<a class="local col0 ref" href="#10width" title='width' data-ref="10width">width</a> &lt;= <var>0</var>) || (<a class="local col1 ref" href="#11height" title='height' data-ref="11height">height</a> &lt;= <var>0</var>))&nbsp</td></tr>
+<tr><th id="77">77</th><td>		<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="78">78</th><td>&nbsp</td></tr>
+<tr><th id="79">79</th><td>	<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Width" title='tImage::tImageXPM::Width' data-ref="tImage::tImageXPM::Width">Width</a> = <a class="local col0 ref" href="#10width" title='width' data-ref="10width">width</a>;&nbsp</td></tr>
+<tr><th id="80">80</th><td>	<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Height" title='tImage::tImageXPM::Height' data-ref="tImage::tImageXPM::Height">Height</a> = <a class="local col1 ref" href="#11height" title='height' data-ref="11height">height</a>;&nbsp</td></tr>
+<tr><th id="81">81</th><td>	<b>if</b> (<a class="local col2 ref" href="#12steal" title='steal' data-ref="12steal">steal</a>)&nbsp</td></tr>
+<tr><th id="82">82</th><td>	{&nbsp</td></tr>
+<tr><th id="83">83</th><td>		<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Pixels" title='tImage::tImageXPM::Pixels' data-ref="tImage::tImageXPM::Pixels">Pixels</a> = <a class="local col9 ref" href="#9pixels" title='pixels' data-ref="9pixels">pixels</a>;&nbsp</td></tr>
+<tr><th id="84">84</th><td>	}&nbsp</td></tr>
+<tr><th id="85">85</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="86">86</th><td>	{&nbsp</td></tr>
+<tr><th id="87">87</th><td>		<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Pixels" title='tImage::tImageXPM::Pixels' data-ref="tImage::tImageXPM::Pixels">Pixels</a> = <b>new</b> <a class="ref fn fake" href="../../Math/Inc/Math/tColour.h.html#_ZN9tColour4bC1Ev" title='tColour4b::tColour4b' data-ref="_ZN9tColour4bC1Ev"></a><a class="typedef" href="../../Math/Inc/Math/tColour.h.html#tPixel4b" title='tPixel4b' data-type='tColour4b' data-ref="tPixel4b">tPixel4b</a>[<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Width" title='tImage::tImageXPM::Width' data-ref="tImage::tImageXPM::Width">Width</a>*<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Height" title='tImage::tImageXPM::Height' data-ref="tImage::tImageXPM::Height">Height</a>];&nbsp</td></tr>
+<tr><th id="88">88</th><td>		<span class="namespace">tStd::</span><a class="ref fn" href="../../Foundation/Inc/Foundation/tStandard.h.html#_ZN4tStd7tMemcpyEPvPKvi" title='tStd::tMemcpy' data-ref="_ZN4tStd7tMemcpyEPvPKvi">tMemcpy</a>(<span class='inlayHint'>dest:&nbsp;</span><a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Pixels" title='tImage::tImageXPM::Pixels' data-ref="tImage::tImageXPM::Pixels">Pixels</a>, <span class='inlayHint'>src:&nbsp;</span><a class="local col9 ref" href="#9pixels" title='pixels' data-ref="9pixels">pixels</a>, <span class='inlayHint'>numBytes:&nbsp;</span><a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Width" title='tImage::tImageXPM::Width' data-ref="tImage::tImageXPM::Width">Width</a>*<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Height" title='tImage::tImageXPM::Height' data-ref="tImage::tImageXPM::Height">Height</a>*<b>sizeof</b>(<a class="typedef" href="../../Math/Inc/Math/tColour.h.html#tPixel4b" title='tPixel4b' data-type='tColour4b' data-ref="tPixel4b">tPixel4b</a>));&nbsp</td></tr>
+<tr><th id="89">89</th><td>	}&nbsp</td></tr>
+<tr><th id="90">90</th><td>&nbsp</td></tr>
+<tr><th id="91">91</th><td>	<a class="member field" href="../Inc/Image/tBaseImage.h.html#tImage::tBaseImage::PixelFormatSrc" title='tImage::tBaseImage::PixelFormatSrc' data-ref="tImage::tBaseImage::PixelFormatSrc">PixelFormatSrc</a>		= <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::R8G8B8A8" title='tImage::tPixelFormat::R8G8B8A8' data-ref="tImage::tPixelFormat::R8G8B8A8">R8G8B8A8</a>;&nbsp</td></tr>
+<tr><th id="92">92</th><td>	<a class="member field" href="../Inc/Image/tBaseImage.h.html#tImage::tBaseImage::PixelFormat" title='tImage::tBaseImage::PixelFormat' data-ref="tImage::tBaseImage::PixelFormat">PixelFormat</a>			= <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::R8G8B8A8" title='tImage::tPixelFormat::R8G8B8A8' data-ref="tImage::tPixelFormat::R8G8B8A8">R8G8B8A8</a>;&nbsp</td></tr>
+<tr><th id="93">93</th><td>	<a class="member field" href="../Inc/Image/tBaseImage.h.html#tImage::tBaseImage::ColourProfileSrc" title='tImage::tBaseImage::ColourProfileSrc' data-ref="tImage::tBaseImage::ColourProfileSrc">ColourProfileSrc</a>	= <a class="type" href="../../Math/Inc/Math/tColour.h.html#tColourProfile" title='tColourProfile' data-ref="tColourProfile">tColourProfile</a>::<a class="enum" href="../../Math/Inc/Math/tColour.h.html#tColourProfile::sRGB" title='tColourProfile::sRGB' data-ref="tColourProfile::sRGB">sRGB</a>;		<i>// We assume pixels must be sRGB.</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td>	<a class="member field" href="../Inc/Image/tBaseImage.h.html#tImage::tBaseImage::ColourProfile" title='tImage::tBaseImage::ColourProfile' data-ref="tImage::tBaseImage::ColourProfile">ColourProfile</a>		= <a class="type" href="../../Math/Inc/Math/tColour.h.html#tColourProfile" title='tColourProfile' data-ref="tColourProfile">tColourProfile</a>::<a class="enum" href="../../Math/Inc/Math/tColour.h.html#tColourProfile::sRGB" title='tColourProfile::sRGB' data-ref="tColourProfile::sRGB">sRGB</a>;&nbsp</td></tr>
+<tr><th id="95">95</th><td>&nbsp</td></tr>
+<tr><th id="96">96</th><td>	<b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="97">97</th><td>}&nbsp</td></tr>
+<tr><th id="98">98</th><td>&nbsp</td></tr>
+<tr><th id="99">99</th><td>&nbsp</td></tr>
+<tr><th id="100">100</th><td><a class="typedef" href="../../Math/Inc/Math/tColour.h.html#tPixel4b" title='tPixel4b' data-type='tColour4b' data-ref="tPixel4b">tPixel4b</a>* <a class="type" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM" title='tImage::tImageXPM' data-ref="tImage::tImageXPM">tImageXPM</a>::<dfn class="decl def fn" id="_ZN6tImage9tImageXPM11StealPixelsEv" title='tImage::tImageXPM::StealPixels' data-ref="_ZN6tImage9tImageXPM11StealPixelsEv">StealPixels</dfn>()&nbsp</td></tr>
+<tr><th id="101">101</th><td>{&nbsp</td></tr>
+<tr><th id="102">102</th><td>	<a class="typedef" href="../../Math/Inc/Math/tColour.h.html#tPixel4b" title='tPixel4b' data-type='tColour4b' data-ref="tPixel4b">tPixel4b</a>* <dfn class="local col3 decl" id="13pixels" title='pixels' data-type='tPixel4b *' data-ref="13pixels">pixels</dfn> = <a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Pixels" title='tImage::tImageXPM::Pixels' data-ref="tImage::tImageXPM::Pixels">Pixels</a>;&nbsp</td></tr>
+<tr><th id="103">103</th><td>	<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Pixels" title='tImage::tImageXPM::Pixels' data-ref="tImage::tImageXPM::Pixels">Pixels</a> = <b>nullptr</b>;&nbsp</td></tr>
+<tr><th id="104">104</th><td>	<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Width" title='tImage::tImageXPM::Width' data-ref="tImage::tImageXPM::Width">Width</a> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="105">105</th><td>	<a class="member field" href="../Inc/Image/tImageXPM.h.html#tImage::tImageXPM::Height" title='tImage::tImageXPM::Height' data-ref="tImage::tImageXPM::Height">Height</a> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="106">106</th><td>	<b>return</b> <a class="local col3 ref" href="#13pixels" title='pixels' data-ref="13pixels">pixels</a>;&nbsp</td></tr>
+<tr><th id="107">107</th><td>}&nbsp</td></tr>
+<tr><th id="108">108</th><td>&nbsp</td></tr>
+<tr><th id="109">109</th><td>&nbsp</td></tr>
+<tr><th id="110">110</th><td>}&nbsp</td></tr>
+<tr><th id="111">111</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

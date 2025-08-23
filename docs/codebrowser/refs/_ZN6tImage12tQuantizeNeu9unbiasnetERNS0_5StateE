@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Src/tQuantizeNeu.cpp' l='109' type='void tImage::tQuantizeNeu::unbiasnet(tImage::tQuantizeNeu::State &amp; )'/>
+<def f='Modules/Image/Src/tQuantizeNeu.cpp' l='159' ll='178' type='void tImage::tQuantizeNeu::unbiasnet(tImage::tQuantizeNeu::State &amp; state)'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='561' u='c' c='_ZN6tImage12tQuantizeNeu13QuantizeImageEiiiPK9tColour3bPS1_Phbi'/>
+<doc f='Modules/Image/Src/tQuantizeNeu.cpp' l='108'>// Unbias network to give byte values 0..255 and record position i to prepare for sort.</doc>

@@ -1,0 +1,1 @@
+<dec f='include/wchar.h' l='125' type='int wcsncasecmp_l(const wchar_t * __s1, const wchar_t * __s2, size_t __n, locale_t __loc)'/>

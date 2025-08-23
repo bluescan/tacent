@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/hashtable.h' l='850' type='std::_Hashtable::iterator std::_Hashtable::_M_insert_multi_node(std::_Hashtable::__node_ptr __hint, std::_Hashtable::__hash_code __code, std::_Hashtable::__node_ptr __n)'/>
+<use f='include/c++/11/bits/hashtable.h' l='997' u='c' c='_ZNSt10_Hashtable22_M_reinsert_node_multiENSt8__detail7_InsertIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_XsrNSB_20__constant_iteratorsE5valueEE14const_iteratorEOSt13481314'/>
+<use f='include/c++/11/bits/hashtable.h' l='1998' u='c' c='_ZNSt10_Hashtable10_M_emplaceENSt8__detail7_InsertIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_XsrNSB_20__constant_iteratorsE5valueEE14const_iteratorESt17integral_co8457096'/>
+<def f='include/c++/11/bits/hashtable.h' l='2033' ll='2086' type='std::_Hashtable::iterator std::_Hashtable::_M_insert_multi_node(std::_Hashtable::__node_ptr __hint, std::_Hashtable::__hash_code __code, std::_Hashtable::__node_ptr __node)'/>
+<use f='include/c++/11/bits/hashtable.h' l='2136' u='c' c='_ZNSt10_Hashtable9_M_insertENSt8__detail7_InsertIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_XsrNSB_20__constant_iteratorsE5valueEE14const_iteratorEOTL0__RKTL0_0_St111647750'/>
+<doc f='include/c++/11/bits/hashtable.h' l='847'>// Insert node __n with key __k and hash code __code.
+      // Takes ownership of __n if insertion succeeds, throws otherwise.</doc>

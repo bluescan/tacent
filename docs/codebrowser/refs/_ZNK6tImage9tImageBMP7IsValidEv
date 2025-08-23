@@ -1,0 +1,4 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='86' c='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<def f='Modules/Image/Inc/Image/tImageBMP.h' l='106' type='bool tImage::tImageBMP::IsValid() const'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='541' u='c' c='_ZN6tImage9tImageBMP8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='571' u='c' c='_ZNK6tImage9tImageBMP4SaveERK7tStringRKNS0_10SaveParamsE'/>

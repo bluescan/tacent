@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1541' type='10'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1535'>/*!&lt; Opaque+alpha. Most useful for simple opacity maps. If the
+                 texture doesn&apos;t have an alpha channel KTX_TTF_PVRTC1_4_RGB
+                 will be used instead. Lowest quality of any supported
+                 texture format. */
+
+        // ASTC (mobile, Intel devices, hopefully all desktop GPU&apos;s one day)</doc>

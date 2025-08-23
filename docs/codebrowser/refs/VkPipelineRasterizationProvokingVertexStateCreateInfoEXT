@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14349' ll='14353'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14349'/>
+<size>24</size>
+<mbr r='VkPipelineRasterizationProvokingVertexStateCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineRasterizationProvokingVertexStateCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineRasterizationProvokingVertexStateCreateInfoEXT::provokingVertexMode' o='128' t='VkProvokingVertexModeEXT'/>

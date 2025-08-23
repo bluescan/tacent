@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/locale_conv.h' l='276' ll='285' type='void std::wstring_convert::wstring_convert&lt;_Codecvt, _Elem, _Wide_alloc, _Byte_alloc&gt;(const std::wstring_convert::byte_string &amp; __byte_err, const std::wstring_convert::wide_string &amp; __wide_err = std::wstring_convert::wide_string())'/>
+<doc f='include/c++/11/bits/locale_conv.h' l='271'>/** Construct with error strings.
+       *
+       * @param  __byte_err A string to return on failed conversions.
+       * @param  __wide_err A wide string to return on failed conversions.
+       */</doc>

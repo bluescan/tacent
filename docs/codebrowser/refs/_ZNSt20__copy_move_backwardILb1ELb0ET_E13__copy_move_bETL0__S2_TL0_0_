@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='680' ll='687' macro='1' type='static _BI2 std::__copy_move_backward&lt;true, false, type-parameter-0-0&gt;::__copy_move_b(_BI1 __first, _BI1 __last, _BI2 __result)'/>

@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageTGA.cpp' l='398' u='c' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<def f='Modules/Image/Src/tImageTGA.cpp' l='464' ll='581' type='bool tImage::tImageTGA::SaveCompressed(const tString &amp; tgaFile, tImage::tImageTGA::tFormat format) const'/>

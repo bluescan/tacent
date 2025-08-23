@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='285' type='float tMath::tLinearToSRGB(float linearComponent)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1010' ll='1019' type='float tMath::tLinearToSRGB(float linearComponent)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1295' u='c' c='_ZN9tColour4f12LinearToSRGBEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1296' u='c' c='_ZN9tColour4f12LinearToSRGBEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1297' u='c' c='_ZN9tColour4f12LinearToSRGBEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1298' u='c' c='_ZN9tColour4f12LinearToSRGBEj'/>

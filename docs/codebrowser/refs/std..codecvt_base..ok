@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/codecvt.h' l='54' type='0'/>
+<use f='include/c++/11/bits/fstream.tcc' l='352' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='630' u='r' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='982' u='r' c='_ZNSt13basic_filebuf19_M_terminate_outputEv'/>

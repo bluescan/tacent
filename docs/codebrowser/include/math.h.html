@@ -1,0 +1,1444 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>math.h source code [include/math.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/math.h'; var root_path = '..'; var data_path = '../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='./'>include</a>/<a href='math.h.html'>math.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Declarations for math functions.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   Copyright (C) 1991-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i></i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i></i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i></i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i> *	ISO C99 Standard: 7.12 Mathematics	&lt;math.h&gt;</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#<span data-ppcond="23">ifndef</span>	<span class="macro" data-ref="_M/_MATH_H">_MATH_H</span></u>&nbsp</td></tr>
+<tr><th id="24">24</th><td><u>#define	<dfn class="macro" id="_M/_MATH_H" data-ref="_M/_MATH_H">_MATH_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="25">25</th><td>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#define <dfn class="macro" id="_M/__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION" data-ref="_M/__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION">__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION</dfn></u>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#include &lt;bits/libc-header-start.h&gt;</u>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="29">if</span> defined <span class="macro" data-ref="_M/log">log</span> &amp;&amp; defined <span class="macro" data-ref="_M/__GNUC__">__GNUC__</span></u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u># warning A macro called log was already defined when &lt;math.h&gt; was included.</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u># warning This will cause compilation problems.</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#<span data-ppcond="29">endif</span></u>&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#133" title="extern &quot;C&quot; {" data-ref="_M/__BEGIN_DECLS">__BEGIN_DECLS</a>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i>/* Get definitions of __intmax_t and __uintmax_t.  */</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i>/* Get machine-dependent vector math functions declarations.  */</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;bits/math-vector.h&gt;</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i>/* Gather machine dependent type support.  */</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#include &lt;bits/floatn.h&gt;</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i>/* Value returned on overflow.  With IEEE 754 floating point, this is</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>   +Infinity, otherwise the largest representable positive value.  */</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#<span data-ppcond="47">if</span> <a class="macro" href="features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((3) &lt;&lt; 16) + (3))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (3, 3)</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u># define <dfn class="macro" id="_M/HUGE_VAL" data-ref="_M/HUGE_VAL">HUGE_VAL</dfn> (__builtin_huge_val ())</u>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="47">else</span></u>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i>/* This may provoke compiler warnings, and may not be rounded to</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>   +Infinity in all IEEE 754 rounding modes, but is the best that can</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i>   be done in ISO C while remaining a constant expression.  10,000 is</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i>   greater than the maximum (decimal) exponent for all supported</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i>   floating-point formats and widths.  */</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><u># define HUGE_VAL 1e10000</u>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u>#<span data-ppcond="47">endif</span></u>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#<span data-ppcond="57">ifdef</span> <a class="macro" href="features.h.html#371" data-ref="_M/__USE_ISOC99">__USE_ISOC99</a></u>&nbsp</td></tr>
+<tr><th id="58">58</th><td><u># <span data-ppcond="58">if</span> <a class="macro" href="features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((3) &lt;&lt; 16) + (3))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (3, 3)</u>&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#  define <dfn class="macro" id="_M/HUGE_VALF" data-ref="_M/HUGE_VALF">HUGE_VALF</dfn> (__builtin_huge_valf ())</u>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#  define <dfn class="macro" id="_M/HUGE_VALL" data-ref="_M/HUGE_VALL">HUGE_VALL</dfn> (__builtin_huge_vall ())</u>&nbsp</td></tr>
+<tr><th id="61">61</th><td><u># <span data-ppcond="58">else</span></u>&nbsp</td></tr>
+<tr><th id="62">62</th><td><u>#  define HUGE_VALF 1e10000f</u>&nbsp</td></tr>
+<tr><th id="63">63</th><td><u>#  define HUGE_VALL 1e10000L</u>&nbsp</td></tr>
+<tr><th id="64">64</th><td><u># <span data-ppcond="58">endif</span></u>&nbsp</td></tr>
+<tr><th id="65">65</th><td><u>#<span data-ppcond="57">endif</span></u>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>#<span data-ppcond="66">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT16">__HAVE_FLOAT16</a> &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="67">67</th><td><u># define HUGE_VAL_F16 (__builtin_huge_valf16 ())</u>&nbsp</td></tr>
+<tr><th id="68">68</th><td><u>#<span data-ppcond="66">endif</span></u>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u>#<span data-ppcond="69">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#35" title="1" data-ref="_M/__HAVE_FLOAT32">__HAVE_FLOAT32</a> &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><u># define <dfn class="macro" id="_M/HUGE_VAL_F32" data-ref="_M/HUGE_VAL_F32">HUGE_VAL_F32</dfn> (__builtin_huge_valf32 ())</u>&nbsp</td></tr>
+<tr><th id="71">71</th><td><u>#<span data-ppcond="69">endif</span></u>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#<span data-ppcond="72">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#36" title="1" data-ref="_M/__HAVE_FLOAT64">__HAVE_FLOAT64</a> &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="73">73</th><td><u># define <dfn class="macro" id="_M/HUGE_VAL_F64" data-ref="_M/HUGE_VAL_F64">HUGE_VAL_F64</dfn> (__builtin_huge_valf64 ())</u>&nbsp</td></tr>
+<tr><th id="74">74</th><td><u>#<span data-ppcond="72">endif</span></u>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#<span data-ppcond="75">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT128">__HAVE_FLOAT128</a> &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="76">76</th><td><u># define HUGE_VAL_F128 (__builtin_huge_valf128 ())</u>&nbsp</td></tr>
+<tr><th id="77">77</th><td><u>#<span data-ppcond="75">endif</span></u>&nbsp</td></tr>
+<tr><th id="78">78</th><td><u>#<span data-ppcond="78">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#37" title="1" data-ref="_M/__HAVE_FLOAT32X">__HAVE_FLOAT32X</a> &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u># define <dfn class="macro" id="_M/HUGE_VAL_F32X" data-ref="_M/HUGE_VAL_F32X">HUGE_VAL_F32X</dfn> (__builtin_huge_valf32x ())</u>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u>#<span data-ppcond="78">endif</span></u>&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#<span data-ppcond="81">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#48" title="1" data-ref="_M/__HAVE_FLOAT64X">__HAVE_FLOAT64X</a> &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="82">82</th><td><u># define <dfn class="macro" id="_M/HUGE_VAL_F64X" data-ref="_M/HUGE_VAL_F64X">HUGE_VAL_F64X</dfn> (__builtin_huge_valf64x ())</u>&nbsp</td></tr>
+<tr><th id="83">83</th><td><u>#<span data-ppcond="81">endif</span></u>&nbsp</td></tr>
+<tr><th id="84">84</th><td><u>#<span data-ppcond="84">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#38" title="0" data-ref="_M/__HAVE_FLOAT128X">__HAVE_FLOAT128X</a> &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u># define HUGE_VAL_F128X (__builtin_huge_valf128x ())</u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><u>#<span data-ppcond="84">endif</span></u>&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#<span data-ppcond="88">ifdef</span> <a class="macro" href="features.h.html#371" data-ref="_M/__USE_ISOC99">__USE_ISOC99</a></u>&nbsp</td></tr>
+<tr><th id="89">89</th><td><i>/* IEEE positive infinity.  */</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td><u># <span data-ppcond="90">if</span> <a class="macro" href="features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((3) &lt;&lt; 16) + (3))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (3, 3)</u>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#  define <dfn class="macro" id="_M/INFINITY" data-ref="_M/INFINITY">INFINITY</dfn> (__builtin_inff ())</u>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u># <span data-ppcond="90">else</span></u>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>#  define INFINITY HUGE_VALF</u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u># <span data-ppcond="90">endif</span></u>&nbsp</td></tr>
+<tr><th id="95">95</th><td>&nbsp</td></tr>
+<tr><th id="96">96</th><td><i>/* IEEE Not A Number.  */</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td><u># <span data-ppcond="97">if</span> <a class="macro" href="features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((3) &lt;&lt; 16) + (3))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (3, 3)</u>&nbsp</td></tr>
+<tr><th id="98">98</th><td><u>#  define <dfn class="macro" id="_M/NAN" data-ref="_M/NAN">NAN</dfn> (__builtin_nanf (""))</u>&nbsp</td></tr>
+<tr><th id="99">99</th><td><u># <span data-ppcond="97">else</span></u>&nbsp</td></tr>
+<tr><th id="100">100</th><td><i>/* This will raise an "invalid" exception outside static initializers,</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><i>   but is the best that can be done in ISO C while remaining a</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td><i>   constant expression.  */</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td><u>#  define NAN (0.0f / 0.0f)</u>&nbsp</td></tr>
+<tr><th id="104">104</th><td><u># <span data-ppcond="97">endif</span></u>&nbsp</td></tr>
+<tr><th id="105">105</th><td><u>#<span data-ppcond="88">endif</span> /* __USE_ISOC99 */</u>&nbsp</td></tr>
+<tr><th id="106">106</th><td>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u>#<span data-ppcond="107">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_BFP_EXT)</u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><i>/* Signaling NaN macros, if supported.  */</i>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u># <span data-ppcond="109">if</span> <a class="macro" href="features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((3) &lt;&lt; 16) + (3))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (3, 3)</u>&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>#  define <dfn class="macro" id="_M/SNANF" data-ref="_M/SNANF">SNANF</dfn> (__builtin_nansf (""))</u>&nbsp</td></tr>
+<tr><th id="111">111</th><td><u>#  define <dfn class="macro" id="_M/SNAN" data-ref="_M/SNAN">SNAN</dfn> (__builtin_nans (""))</u>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>#  define <dfn class="macro" id="_M/SNANL" data-ref="_M/SNANL">SNANL</dfn> (__builtin_nansl (""))</u>&nbsp</td></tr>
+<tr><th id="113">113</th><td><u># <span data-ppcond="109">endif</span></u>&nbsp</td></tr>
+<tr><th id="114">114</th><td><u>#<span data-ppcond="107">endif</span></u>&nbsp</td></tr>
+<tr><th id="115">115</th><td><u>#<span data-ppcond="115">if</span> (<a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT16">__HAVE_FLOAT16</a>					\</u>&nbsp</td></tr>
+<tr><th id="116">116</th><td><u>     &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)		\</u>&nbsp</td></tr>
+<tr><th id="117">117</th><td><u>     &amp;&amp; (defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a> || !<a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (ISOC2X)))</u>&nbsp</td></tr>
+<tr><th id="118">118</th><td><u># define SNANF16 (__builtin_nansf16 (""))</u>&nbsp</td></tr>
+<tr><th id="119">119</th><td><u>#<span data-ppcond="115">endif</span></u>&nbsp</td></tr>
+<tr><th id="120">120</th><td><u>#<span data-ppcond="120">if</span> (<a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#35" title="1" data-ref="_M/__HAVE_FLOAT32">__HAVE_FLOAT32</a>					\</u>&nbsp</td></tr>
+<tr><th id="121">121</th><td><u>     &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)		\</u>&nbsp</td></tr>
+<tr><th id="122">122</th><td><u>     &amp;&amp; (defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a> || !<a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (ISOC2X)))</u>&nbsp</td></tr>
+<tr><th id="123">123</th><td><u># define <dfn class="macro" id="_M/SNANF32" data-ref="_M/SNANF32">SNANF32</dfn> (__builtin_nansf32 (""))</u>&nbsp</td></tr>
+<tr><th id="124">124</th><td><u>#<span data-ppcond="120">endif</span></u>&nbsp</td></tr>
+<tr><th id="125">125</th><td><u>#<span data-ppcond="125">if</span> (<a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#36" title="1" data-ref="_M/__HAVE_FLOAT64">__HAVE_FLOAT64</a>					\</u>&nbsp</td></tr>
+<tr><th id="126">126</th><td><u>     &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)		\</u>&nbsp</td></tr>
+<tr><th id="127">127</th><td><u>     &amp;&amp; (defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a> || !<a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (ISOC2X)))</u>&nbsp</td></tr>
+<tr><th id="128">128</th><td><u># define <dfn class="macro" id="_M/SNANF64" data-ref="_M/SNANF64">SNANF64</dfn> (__builtin_nansf64 (""))</u>&nbsp</td></tr>
+<tr><th id="129">129</th><td><u>#<span data-ppcond="125">endif</span></u>&nbsp</td></tr>
+<tr><th id="130">130</th><td><u>#<span data-ppcond="130">if</span> (<a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT128">__HAVE_FLOAT128</a>					\</u>&nbsp</td></tr>
+<tr><th id="131">131</th><td><u>     &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)		\</u>&nbsp</td></tr>
+<tr><th id="132">132</th><td><u>     &amp;&amp; (defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a> || !<a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (ISOC2X)))</u>&nbsp</td></tr>
+<tr><th id="133">133</th><td><u># define SNANF128 (__builtin_nansf128 (""))</u>&nbsp</td></tr>
+<tr><th id="134">134</th><td><u>#<span data-ppcond="130">endif</span></u>&nbsp</td></tr>
+<tr><th id="135">135</th><td><u>#<span data-ppcond="135">if</span> (<a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#37" title="1" data-ref="_M/__HAVE_FLOAT32X">__HAVE_FLOAT32X</a>					\</u>&nbsp</td></tr>
+<tr><th id="136">136</th><td><u>     &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)		\</u>&nbsp</td></tr>
+<tr><th id="137">137</th><td><u>     &amp;&amp; (defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a> || !<a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (ISOC2X)))</u>&nbsp</td></tr>
+<tr><th id="138">138</th><td><u># define <dfn class="macro" id="_M/SNANF32X" data-ref="_M/SNANF32X">SNANF32X</dfn> (__builtin_nansf32x (""))</u>&nbsp</td></tr>
+<tr><th id="139">139</th><td><u>#<span data-ppcond="135">endif</span></u>&nbsp</td></tr>
+<tr><th id="140">140</th><td><u>#<span data-ppcond="140">if</span> (<a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#48" title="1" data-ref="_M/__HAVE_FLOAT64X">__HAVE_FLOAT64X</a>					\</u>&nbsp</td></tr>
+<tr><th id="141">141</th><td><u>     &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)		\</u>&nbsp</td></tr>
+<tr><th id="142">142</th><td><u>     &amp;&amp; (defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a> || !<a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (ISOC2X)))</u>&nbsp</td></tr>
+<tr><th id="143">143</th><td><u># define <dfn class="macro" id="_M/SNANF64X" data-ref="_M/SNANF64X">SNANF64X</dfn> (__builtin_nansf64x (""))</u>&nbsp</td></tr>
+<tr><th id="144">144</th><td><u>#<span data-ppcond="140">endif</span></u>&nbsp</td></tr>
+<tr><th id="145">145</th><td><u>#<span data-ppcond="145">if</span> (<a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#38" title="0" data-ref="_M/__HAVE_FLOAT128X">__HAVE_FLOAT128X</a>					\</u>&nbsp</td></tr>
+<tr><th id="146">146</th><td><u>     &amp;&amp; <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)		\</u>&nbsp</td></tr>
+<tr><th id="147">147</th><td><u>     &amp;&amp; (defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a> || !<a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (ISOC2X)))</u>&nbsp</td></tr>
+<tr><th id="148">148</th><td><u># define SNANF128X (__builtin_nansf128x (""))</u>&nbsp</td></tr>
+<tr><th id="149">149</th><td><u>#<span data-ppcond="145">endif</span></u>&nbsp</td></tr>
+<tr><th id="150">150</th><td>&nbsp</td></tr>
+<tr><th id="151">151</th><td><i>/* Get __GLIBC_FLT_EVAL_METHOD.  */</i>&nbsp</td></tr>
+<tr><th id="152">152</th><td><u>#include &lt;bits/flt-eval-method.h&gt;</u>&nbsp</td></tr>
+<tr><th id="153">153</th><td>&nbsp</td></tr>
+<tr><th id="154">154</th><td><u>#<span data-ppcond="154">ifdef</span> <a class="macro" href="features.h.html#371" data-ref="_M/__USE_ISOC99">__USE_ISOC99</a></u>&nbsp</td></tr>
+<tr><th id="155">155</th><td><i>/* Define the following typedefs.</i>&nbsp</td></tr>
+<tr><th id="156">156</th><td><i></i>&nbsp</td></tr>
+<tr><th id="157">157</th><td><i>    float_t	floating-point type at least as wide as `float' used</i>&nbsp</td></tr>
+<tr><th id="158">158</th><td><i>		to evaluate `float' expressions</i>&nbsp</td></tr>
+<tr><th id="159">159</th><td><i>    double_t	floating-point type at least as wide as `double' used</i>&nbsp</td></tr>
+<tr><th id="160">160</th><td><i>		to evaluate `double' expressions</i>&nbsp</td></tr>
+<tr><th id="161">161</th><td><i>*/</i>&nbsp</td></tr>
+<tr><th id="162">162</th><td><u># <span data-ppcond="162">if</span> <a class="macro" href="x86_64-linux-gnu/bits/flt-eval-method.h.html#27" title="0" data-ref="_M/__GLIBC_FLT_EVAL_METHOD">__GLIBC_FLT_EVAL_METHOD</a> == 0 || <a class="macro" href="x86_64-linux-gnu/bits/flt-eval-method.h.html#27" title="0" data-ref="_M/__GLIBC_FLT_EVAL_METHOD">__GLIBC_FLT_EVAL_METHOD</a> == 16</u>&nbsp</td></tr>
+<tr><th id="163">163</th><td><b>typedef</b> <em>float</em> <dfn class="typedef" id="float_t" title='float_t' data-type='float' data-ref="float_t">float_t</dfn>;&nbsp</td></tr>
+<tr><th id="164">164</th><td><b>typedef</b> <em>double</em> <dfn class="typedef" id="double_t" title='double_t' data-type='double' data-ref="double_t">double_t</dfn>;&nbsp</td></tr>
+<tr><th id="165">165</th><td><u># <span data-ppcond="162">elif</span> __GLIBC_FLT_EVAL_METHOD == 1</u>&nbsp</td></tr>
+<tr><th id="166">166</th><td><b>typedef</b> <em>double</em> float_t;&nbsp</td></tr>
+<tr><th id="167">167</th><td><b>typedef</b> <em>double</em> double_t;&nbsp</td></tr>
+<tr><th id="168">168</th><td><u># elif __GLIBC_FLT_EVAL_METHOD == 2</u>&nbsp</td></tr>
+<tr><th id="169">169</th><td><b>typedef</b> <em>long</em> <em>double</em> float_t;&nbsp</td></tr>
+<tr><th id="170">170</th><td><b>typedef</b> <em>long</em> <em>double</em> double_t;&nbsp</td></tr>
+<tr><th id="171">171</th><td><u># elif __GLIBC_FLT_EVAL_METHOD == 32</u>&nbsp</td></tr>
+<tr><th id="172">172</th><td><b>typedef</b> _Float32 float_t;&nbsp</td></tr>
+<tr><th id="173">173</th><td><b>typedef</b> <em>double</em> double_t;&nbsp</td></tr>
+<tr><th id="174">174</th><td><u># elif __GLIBC_FLT_EVAL_METHOD == 33</u>&nbsp</td></tr>
+<tr><th id="175">175</th><td><b>typedef</b> _Float32x float_t;&nbsp</td></tr>
+<tr><th id="176">176</th><td><b>typedef</b> _Float32x double_t;&nbsp</td></tr>
+<tr><th id="177">177</th><td><u># elif __GLIBC_FLT_EVAL_METHOD == 64</u>&nbsp</td></tr>
+<tr><th id="178">178</th><td><b>typedef</b> _Float64 float_t;&nbsp</td></tr>
+<tr><th id="179">179</th><td><b>typedef</b> _Float64 double_t;&nbsp</td></tr>
+<tr><th id="180">180</th><td><u># elif __GLIBC_FLT_EVAL_METHOD == 65</u>&nbsp</td></tr>
+<tr><th id="181">181</th><td><b>typedef</b> _Float64x float_t;&nbsp</td></tr>
+<tr><th id="182">182</th><td><b>typedef</b> _Float64x double_t;&nbsp</td></tr>
+<tr><th id="183">183</th><td><u># elif __GLIBC_FLT_EVAL_METHOD == 128</u>&nbsp</td></tr>
+<tr><th id="184">184</th><td><b>typedef</b> _Float128 float_t;&nbsp</td></tr>
+<tr><th id="185">185</th><td><b>typedef</b> _Float128 double_t;&nbsp</td></tr>
+<tr><th id="186">186</th><td><u># elif __GLIBC_FLT_EVAL_METHOD == 129</u>&nbsp</td></tr>
+<tr><th id="187">187</th><td><b>typedef</b> _Float128x float_t;&nbsp</td></tr>
+<tr><th id="188">188</th><td><b>typedef</b> _Float128x double_t;&nbsp</td></tr>
+<tr><th id="189">189</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>#  error "Unknown __GLIBC_FLT_EVAL_METHOD"</u>&nbsp</td></tr>
+<tr><th id="191">191</th><td><u># <span data-ppcond="162">endif</span></u>&nbsp</td></tr>
+<tr><th id="192">192</th><td><u>#<span data-ppcond="154">endif</span></u>&nbsp</td></tr>
+<tr><th id="193">193</th><td>&nbsp</td></tr>
+<tr><th id="194">194</th><td><i>/* Define macros for the return values of ilogb and llogb, based on</i>&nbsp</td></tr>
+<tr><th id="195">195</th><td><i>   __FP_LOGB0_IS_MIN and __FP_LOGBNAN_IS_MIN.</i>&nbsp</td></tr>
+<tr><th id="196">196</th><td><i></i>&nbsp</td></tr>
+<tr><th id="197">197</th><td><i>    FP_ILOGB0	Expands to a value returned by `ilogb (0.0)'.</i>&nbsp</td></tr>
+<tr><th id="198">198</th><td><i>    FP_ILOGBNAN	Expands to a value returned by `ilogb (NAN)'.</i>&nbsp</td></tr>
+<tr><th id="199">199</th><td><i>    FP_LLOGB0	Expands to a value returned by `llogb (0.0)'.</i>&nbsp</td></tr>
+<tr><th id="200">200</th><td><i>    FP_LLOGBNAN	Expands to a value returned by `llogb (NAN)'.</i>&nbsp</td></tr>
+<tr><th id="201">201</th><td><i></i>&nbsp</td></tr>
+<tr><th id="202">202</th><td><i>*/</i>&nbsp</td></tr>
+<tr><th id="203">203</th><td>&nbsp</td></tr>
+<tr><th id="204">204</th><td><u>#include &lt;bits/fp-logb.h&gt;</u>&nbsp</td></tr>
+<tr><th id="205">205</th><td><u>#<span data-ppcond="205">ifdef</span> <a class="macro" href="features.h.html#371" data-ref="_M/__USE_ISOC99">__USE_ISOC99</a></u>&nbsp</td></tr>
+<tr><th id="206">206</th><td><u># <span data-ppcond="206">if</span> <a class="macro" href="x86_64-linux-gnu/bits/fp-logb.h.html#23" title="1" data-ref="_M/__FP_LOGB0_IS_MIN">__FP_LOGB0_IS_MIN</a></u>&nbsp</td></tr>
+<tr><th id="207">207</th><td><u>#  define <dfn class="macro" id="_M/FP_ILOGB0" data-ref="_M/FP_ILOGB0">FP_ILOGB0</dfn>	(-2147483647 - 1)</u>&nbsp</td></tr>
+<tr><th id="208">208</th><td><u># <span data-ppcond="206">else</span></u>&nbsp</td></tr>
+<tr><th id="209">209</th><td><u>#  define FP_ILOGB0	(-2147483647)</u>&nbsp</td></tr>
+<tr><th id="210">210</th><td><u># <span data-ppcond="206">endif</span></u>&nbsp</td></tr>
+<tr><th id="211">211</th><td><u># <span data-ppcond="211">if</span> <a class="macro" href="x86_64-linux-gnu/bits/fp-logb.h.html#24" title="1" data-ref="_M/__FP_LOGBNAN_IS_MIN">__FP_LOGBNAN_IS_MIN</a></u>&nbsp</td></tr>
+<tr><th id="212">212</th><td><u>#  define <dfn class="macro" id="_M/FP_ILOGBNAN" data-ref="_M/FP_ILOGBNAN">FP_ILOGBNAN</dfn>	(-2147483647 - 1)</u>&nbsp</td></tr>
+<tr><th id="213">213</th><td><u># <span data-ppcond="211">else</span></u>&nbsp</td></tr>
+<tr><th id="214">214</th><td><u>#  define FP_ILOGBNAN	2147483647</u>&nbsp</td></tr>
+<tr><th id="215">215</th><td><u># <span data-ppcond="211">endif</span></u>&nbsp</td></tr>
+<tr><th id="216">216</th><td><u>#<span data-ppcond="205">endif</span></u>&nbsp</td></tr>
+<tr><th id="217">217</th><td><u>#<span data-ppcond="217">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_BFP_EXT_C2X)</u>&nbsp</td></tr>
+<tr><th id="218">218</th><td><u># <span data-ppcond="218">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 32</u>&nbsp</td></tr>
+<tr><th id="219">219</th><td><u>#  define __FP_LONG_MAX 0x7fffffffL</u>&nbsp</td></tr>
+<tr><th id="220">220</th><td><u># <span data-ppcond="218">else</span></u>&nbsp</td></tr>
+<tr><th id="221">221</th><td><u>#  define <dfn class="macro" id="_M/__FP_LONG_MAX" data-ref="_M/__FP_LONG_MAX">__FP_LONG_MAX</dfn> 0x7fffffffffffffffL</u>&nbsp</td></tr>
+<tr><th id="222">222</th><td><u># <span data-ppcond="218">endif</span></u>&nbsp</td></tr>
+<tr><th id="223">223</th><td><u># <span data-ppcond="223">if</span> <a class="macro" href="x86_64-linux-gnu/bits/fp-logb.h.html#23" title="1" data-ref="_M/__FP_LOGB0_IS_MIN">__FP_LOGB0_IS_MIN</a></u>&nbsp</td></tr>
+<tr><th id="224">224</th><td><u>#  define <dfn class="macro" id="_M/FP_LLOGB0" data-ref="_M/FP_LLOGB0">FP_LLOGB0</dfn>	(-__FP_LONG_MAX - 1)</u>&nbsp</td></tr>
+<tr><th id="225">225</th><td><u># <span data-ppcond="223">else</span></u>&nbsp</td></tr>
+<tr><th id="226">226</th><td><u>#  define FP_LLOGB0	(-__FP_LONG_MAX)</u>&nbsp</td></tr>
+<tr><th id="227">227</th><td><u># <span data-ppcond="223">endif</span></u>&nbsp</td></tr>
+<tr><th id="228">228</th><td><u># <span data-ppcond="228">if</span> <a class="macro" href="x86_64-linux-gnu/bits/fp-logb.h.html#24" title="1" data-ref="_M/__FP_LOGBNAN_IS_MIN">__FP_LOGBNAN_IS_MIN</a></u>&nbsp</td></tr>
+<tr><th id="229">229</th><td><u>#  define <dfn class="macro" id="_M/FP_LLOGBNAN" data-ref="_M/FP_LLOGBNAN">FP_LLOGBNAN</dfn>	(-__FP_LONG_MAX - 1)</u>&nbsp</td></tr>
+<tr><th id="230">230</th><td><u># <span data-ppcond="228">else</span></u>&nbsp</td></tr>
+<tr><th id="231">231</th><td><u>#  define FP_LLOGBNAN	__FP_LONG_MAX</u>&nbsp</td></tr>
+<tr><th id="232">232</th><td><u># <span data-ppcond="228">endif</span></u>&nbsp</td></tr>
+<tr><th id="233">233</th><td><u>#<span data-ppcond="217">endif</span></u>&nbsp</td></tr>
+<tr><th id="234">234</th><td>&nbsp</td></tr>
+<tr><th id="235">235</th><td><i>/* Get the architecture specific values describing the floating-point</i>&nbsp</td></tr>
+<tr><th id="236">236</th><td><i>   evaluation.  The following symbols will get defined:</i>&nbsp</td></tr>
+<tr><th id="237">237</th><td><i></i>&nbsp</td></tr>
+<tr><th id="238">238</th><td><i>    FP_FAST_FMA</i>&nbsp</td></tr>
+<tr><th id="239">239</th><td><i>    FP_FAST_FMAF</i>&nbsp</td></tr>
+<tr><th id="240">240</th><td><i>    FP_FAST_FMAL</i>&nbsp</td></tr>
+<tr><th id="241">241</th><td><i>		If defined it indicates that the `fma' function</i>&nbsp</td></tr>
+<tr><th id="242">242</th><td><i>		generally executes about as fast as a multiply and an add.</i>&nbsp</td></tr>
+<tr><th id="243">243</th><td><i>		This macro is defined only iff the `fma' function is</i>&nbsp</td></tr>
+<tr><th id="244">244</th><td><i>		implemented directly with a hardware multiply-add instructions.</i>&nbsp</td></tr>
+<tr><th id="245">245</th><td><i>*/</i>&nbsp</td></tr>
+<tr><th id="246">246</th><td>&nbsp</td></tr>
+<tr><th id="247">247</th><td><u>#include &lt;bits/fp-fast.h&gt;</u>&nbsp</td></tr>
+<tr><th id="248">248</th><td>&nbsp</td></tr>
+<tr><th id="249">249</th><td><u>#<span data-ppcond="249">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_BFP_EXT_C2X)</u>&nbsp</td></tr>
+<tr><th id="250">250</th><td><i>/* Rounding direction macros for fromfp functions.  */</i>&nbsp</td></tr>
+<tr><th id="251">251</th><td><b>enum</b>&nbsp</td></tr>
+<tr><th id="252">252</th><td>  {&nbsp</td></tr>
+<tr><th id="253">253</th><td>    <dfn class="enum" id="FP_INT_UPWARD" title='FP_INT_UPWARD' data-ref="FP_INT_UPWARD">FP_INT_UPWARD</dfn> =&nbsp</td></tr>
+<tr><th id="254">254</th><td><u># define <dfn class="macro" id="_M/FP_INT_UPWARD" data-ref="_M/FP_INT_UPWARD">FP_INT_UPWARD</dfn> 0</u>&nbsp</td></tr>
+<tr><th id="255">255</th><td>      <a class="macro" href="#254" title="0" data-ref="_M/FP_INT_UPWARD">FP_INT_UPWARD</a>,&nbsp</td></tr>
+<tr><th id="256">256</th><td>    <dfn class="enum" id="FP_INT_DOWNWARD" title='FP_INT_DOWNWARD' data-ref="FP_INT_DOWNWARD">FP_INT_DOWNWARD</dfn> =&nbsp</td></tr>
+<tr><th id="257">257</th><td><u># define <dfn class="macro" id="_M/FP_INT_DOWNWARD" data-ref="_M/FP_INT_DOWNWARD">FP_INT_DOWNWARD</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="258">258</th><td>      <a class="macro" href="#257" title="1" data-ref="_M/FP_INT_DOWNWARD">FP_INT_DOWNWARD</a>,&nbsp</td></tr>
+<tr><th id="259">259</th><td>    <dfn class="enum" id="FP_INT_TOWARDZERO" title='FP_INT_TOWARDZERO' data-ref="FP_INT_TOWARDZERO">FP_INT_TOWARDZERO</dfn> =&nbsp</td></tr>
+<tr><th id="260">260</th><td><u># define <dfn class="macro" id="_M/FP_INT_TOWARDZERO" data-ref="_M/FP_INT_TOWARDZERO">FP_INT_TOWARDZERO</dfn> 2</u>&nbsp</td></tr>
+<tr><th id="261">261</th><td>      <a class="macro" href="#260" title="2" data-ref="_M/FP_INT_TOWARDZERO">FP_INT_TOWARDZERO</a>,&nbsp</td></tr>
+<tr><th id="262">262</th><td>    <dfn class="enum" id="FP_INT_TONEARESTFROMZERO" title='FP_INT_TONEARESTFROMZERO' data-ref="FP_INT_TONEARESTFROMZERO">FP_INT_TONEARESTFROMZERO</dfn> =&nbsp</td></tr>
+<tr><th id="263">263</th><td><u># define <dfn class="macro" id="_M/FP_INT_TONEARESTFROMZERO" data-ref="_M/FP_INT_TONEARESTFROMZERO">FP_INT_TONEARESTFROMZERO</dfn> 3</u>&nbsp</td></tr>
+<tr><th id="264">264</th><td>      <a class="macro" href="#263" title="3" data-ref="_M/FP_INT_TONEARESTFROMZERO">FP_INT_TONEARESTFROMZERO</a>,&nbsp</td></tr>
+<tr><th id="265">265</th><td>    <dfn class="enum" id="FP_INT_TONEAREST" title='FP_INT_TONEAREST' data-ref="FP_INT_TONEAREST">FP_INT_TONEAREST</dfn> =&nbsp</td></tr>
+<tr><th id="266">266</th><td><u># define <dfn class="macro" id="_M/FP_INT_TONEAREST" data-ref="_M/FP_INT_TONEAREST">FP_INT_TONEAREST</dfn> 4</u>&nbsp</td></tr>
+<tr><th id="267">267</th><td>      <a class="macro" href="#266" title="4" data-ref="_M/FP_INT_TONEAREST">FP_INT_TONEAREST</a>,&nbsp</td></tr>
+<tr><th id="268">268</th><td>  };&nbsp</td></tr>
+<tr><th id="269">269</th><td><u>#<span data-ppcond="249">endif</span></u>&nbsp</td></tr>
+<tr><th id="270">270</th><td>&nbsp</td></tr>
+<tr><th id="271">271</th><td><i>/* The file &lt;bits/mathcalls.h&gt; contains the prototypes for all the</i>&nbsp</td></tr>
+<tr><th id="272">272</th><td><i>   actual math functions.  These macros are used for those prototypes,</i>&nbsp</td></tr>
+<tr><th id="273">273</th><td><i>   so we can easily declare each function as both `name' and `__name',</i>&nbsp</td></tr>
+<tr><th id="274">274</th><td><i>   and can declare the float versions `namef' and `__namef'.  */</i>&nbsp</td></tr>
+<tr><th id="275">275</th><td>&nbsp</td></tr>
+<tr><th id="276">276</th><td><u>#define <dfn class="macro" id="_M/__SIMD_DECL" data-ref="_M/__SIMD_DECL">__SIMD_DECL</dfn>(function) __CONCAT (__DECL_SIMD_, function)</u>&nbsp</td></tr>
+<tr><th id="277">277</th><td>&nbsp</td></tr>
+<tr><th id="278">278</th><td><u>#define <dfn class="macro" id="_M/__MATHCALL_VEC" data-ref="_M/__MATHCALL_VEC">__MATHCALL_VEC</dfn>(function, suffix, args) 	\</u>&nbsp</td></tr>
+<tr><th id="279">279</th><td><u>  __SIMD_DECL (__MATH_PRECNAME (function, suffix)) \</u>&nbsp</td></tr>
+<tr><th id="280">280</th><td><u>  __MATHCALL (function, suffix, args)</u>&nbsp</td></tr>
+<tr><th id="281">281</th><td>&nbsp</td></tr>
+<tr><th id="282">282</th><td><u>#define <dfn class="macro" id="_M/__MATHDECL_VEC" data-ref="_M/__MATHDECL_VEC">__MATHDECL_VEC</dfn>(type, function,suffix, args) \</u>&nbsp</td></tr>
+<tr><th id="283">283</th><td><u>  __SIMD_DECL (__MATH_PRECNAME (function, suffix)) \</u>&nbsp</td></tr>
+<tr><th id="284">284</th><td><u>  __MATHDECL(type, function,suffix, args)</u>&nbsp</td></tr>
+<tr><th id="285">285</th><td>&nbsp</td></tr>
+<tr><th id="286">286</th><td><u>#define <dfn class="macro" id="_M/__MATHCALL" data-ref="_M/__MATHCALL">__MATHCALL</dfn>(function,suffix, args)	\</u>&nbsp</td></tr>
+<tr><th id="287">287</th><td><u>  __MATHDECL (_Mdouble_,function,suffix, args)</u>&nbsp</td></tr>
+<tr><th id="288">288</th><td><u>#define <dfn class="macro" id="_M/__MATHDECL" data-ref="_M/__MATHDECL">__MATHDECL</dfn>(type, function,suffix, args) \</u>&nbsp</td></tr>
+<tr><th id="289">289</th><td><u>  __MATHDECL_1(type, function,suffix, args); \</u>&nbsp</td></tr>
+<tr><th id="290">290</th><td><u>  __MATHDECL_1(type, __CONCAT(__,function),suffix, args)</u>&nbsp</td></tr>
+<tr><th id="291">291</th><td><u>#define <dfn class="macro" id="_M/__MATHCALLX" data-ref="_M/__MATHCALLX">__MATHCALLX</dfn>(function,suffix, args, attrib)	\</u>&nbsp</td></tr>
+<tr><th id="292">292</th><td><u>  __MATHDECLX (_Mdouble_,function,suffix, args, attrib)</u>&nbsp</td></tr>
+<tr><th id="293">293</th><td><u>#define <dfn class="macro" id="_M/__MATHDECLX" data-ref="_M/__MATHDECLX">__MATHDECLX</dfn>(type, function,suffix, args, attrib) \</u>&nbsp</td></tr>
+<tr><th id="294">294</th><td><u>  __MATHDECL_1(type, function,suffix, args) __attribute__ (attrib); \</u>&nbsp</td></tr>
+<tr><th id="295">295</th><td><u>  __MATHDECL_1(type, __CONCAT(__,function),suffix, args) __attribute__ (attrib)</u>&nbsp</td></tr>
+<tr><th id="296">296</th><td><u>#define <dfn class="macro" id="_M/__MATHDECL_1_IMPL" data-ref="_M/__MATHDECL_1_IMPL">__MATHDECL_1_IMPL</dfn>(type, function, suffix, args) \</u>&nbsp</td></tr>
+<tr><th id="297">297</th><td><u>  extern type __MATH_PRECNAME(function,suffix) args __THROW</u>&nbsp</td></tr>
+<tr><th id="298">298</th><td><u>#define <dfn class="macro" id="_M/__MATHDECL_1" data-ref="_M/__MATHDECL_1">__MATHDECL_1</dfn>(type, function, suffix, args) \</u>&nbsp</td></tr>
+<tr><th id="299">299</th><td><u>  __MATHDECL_1_IMPL(type, function, suffix, args)</u>&nbsp</td></tr>
+<tr><th id="300">300</th><td><i>/* Ignore the alias by default.  The alias is only useful with</i>&nbsp</td></tr>
+<tr><th id="301">301</th><td><i>   redirections.  */</i>&nbsp</td></tr>
+<tr><th id="302">302</th><td><u>#define <dfn class="macro" id="_M/__MATHDECL_ALIAS" data-ref="_M/__MATHDECL_ALIAS">__MATHDECL_ALIAS</dfn>(type, function, suffix, args, alias) \</u>&nbsp</td></tr>
+<tr><th id="303">303</th><td><u>  __MATHDECL_1(type, function, suffix, args)</u>&nbsp</td></tr>
+<tr><th id="304">304</th><td>&nbsp</td></tr>
+<tr><th id="305">305</th><td><u>#define <dfn class="macro" id="_M/__MATHREDIR" data-ref="_M/__MATHREDIR">__MATHREDIR</dfn>(type, function, suffix, args, to) \</u>&nbsp</td></tr>
+<tr><th id="306">306</th><td><u>  extern type __REDIRECT_NTH (__MATH_PRECNAME (function, suffix), args, to)</u>&nbsp</td></tr>
+<tr><th id="307">307</th><td>&nbsp</td></tr>
+<tr><th id="308">308</th><td><u>#define <dfn class="macro" id="_M/_Mdouble_" data-ref="_M/_Mdouble_">_Mdouble_</dfn>		double</u>&nbsp</td></tr>
+<tr><th id="309">309</th><td><u>#define <dfn class="macro" id="_M/__MATH_PRECNAME" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</dfn>(name,r)	__CONCAT(name,r)</u>&nbsp</td></tr>
+<tr><th id="310">310</th><td><u>#define <dfn class="macro" id="_M/__MATH_DECLARING_DOUBLE" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</dfn>  1</u>&nbsp</td></tr>
+<tr><th id="311">311</th><td><u>#define <dfn class="macro" id="_M/__MATH_DECLARING_FLOATN" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</dfn>  0</u>&nbsp</td></tr>
+<tr><th id="312">312</th><td><u>#include &lt;bits/mathcalls-helper-functions.h&gt;</u>&nbsp</td></tr>
+<tr><th id="313">313</th><td><u>#include &lt;bits/mathcalls.h&gt;</u>&nbsp</td></tr>
+<tr><th id="314">314</th><td><u>#undef	<a class="macro" href="#308" data-ref="_M/_Mdouble_">_Mdouble_</a></u>&nbsp</td></tr>
+<tr><th id="315">315</th><td><u>#undef	<a class="macro" href="#309" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</a></u>&nbsp</td></tr>
+<tr><th id="316">316</th><td><u>#undef <a class="macro" href="#310" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</a></u>&nbsp</td></tr>
+<tr><th id="317">317</th><td><u>#undef <a class="macro" href="#311" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</a></u>&nbsp</td></tr>
+<tr><th id="318">318</th><td>&nbsp</td></tr>
+<tr><th id="319">319</th><td><u>#<span data-ppcond="319">ifdef</span> <a class="macro" href="features.h.html#371" data-ref="_M/__USE_ISOC99">__USE_ISOC99</a></u>&nbsp</td></tr>
+<tr><th id="320">320</th><td>&nbsp</td></tr>
+<tr><th id="321">321</th><td>&nbsp</td></tr>
+<tr><th id="322">322</th><td><i>/* Include the file of declarations again, this time using `float'</i>&nbsp</td></tr>
+<tr><th id="323">323</th><td><i>   instead of `double' and appending f to each function name.  */</i>&nbsp</td></tr>
+<tr><th id="324">324</th><td>&nbsp</td></tr>
+<tr><th id="325">325</th><td><u># define <dfn class="macro" id="_M/_Mdouble_" data-ref="_M/_Mdouble_">_Mdouble_</dfn>		float</u>&nbsp</td></tr>
+<tr><th id="326">326</th><td><u># define <dfn class="macro" id="_M/__MATH_PRECNAME" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</dfn>(name,r) name##f##r</u>&nbsp</td></tr>
+<tr><th id="327">327</th><td><u># define <dfn class="macro" id="_M/__MATH_DECLARING_DOUBLE" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</dfn>  0</u>&nbsp</td></tr>
+<tr><th id="328">328</th><td><u># define <dfn class="macro" id="_M/__MATH_DECLARING_FLOATN" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</dfn>  0</u>&nbsp</td></tr>
+<tr><th id="329">329</th><td><u># include &lt;bits/mathcalls-helper-functions.h&gt;</u>&nbsp</td></tr>
+<tr><th id="330">330</th><td><u># include &lt;bits/mathcalls.h&gt;</u>&nbsp</td></tr>
+<tr><th id="331">331</th><td><u># undef	<a class="macro" href="#325" data-ref="_M/_Mdouble_">_Mdouble_</a></u>&nbsp</td></tr>
+<tr><th id="332">332</th><td><u># undef	<a class="macro" href="#326" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</a></u>&nbsp</td></tr>
+<tr><th id="333">333</th><td><u># undef <a class="macro" href="#327" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</a></u>&nbsp</td></tr>
+<tr><th id="334">334</th><td><u># undef <a class="macro" href="#328" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</a></u>&nbsp</td></tr>
+<tr><th id="335">335</th><td>&nbsp</td></tr>
+<tr><th id="336">336</th><td><u># <span data-ppcond="336">if</span> !(defined <span class="macro" data-ref="_M/__NO_LONG_DOUBLE_MATH">__NO_LONG_DOUBLE_MATH</span> &amp;&amp; defined <span class="macro" data-ref="_M/_LIBC">_LIBC</span>) \</u>&nbsp</td></tr>
+<tr><th id="337">337</th><td><u>     || defined <span class="macro" data-ref="_M/__LDBL_COMPAT">__LDBL_COMPAT</span> \</u>&nbsp</td></tr>
+<tr><th id="338">338</th><td><u>     || defined <span class="macro" data-ref="_M/_LIBC_TEST">_LIBC_TEST</span></u>&nbsp</td></tr>
+<tr><th id="339">339</th><td><u>#  <span data-ppcond="339">ifdef</span> <span class="macro" data-ref="_M/__LDBL_COMPAT">__LDBL_COMPAT</span></u>&nbsp</td></tr>
+<tr><th id="340">340</th><td>&nbsp</td></tr>
+<tr><th id="341">341</th><td><u>#   ifdef __USE_ISOC99</u>&nbsp</td></tr>
+<tr><th id="342">342</th><td><b>extern</b> <em>float</em> __nldbl_nexttowardf (<em>float</em> __x, <em>long</em> <em>double</em> __y)&nbsp</td></tr>
+<tr><th id="343">343</th><td>				  __THROW <b>__attribute__</b> ((<em>__const__</em>));&nbsp</td></tr>
+<tr><th id="344">344</th><td><u>#    ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="345">345</th><td><b>extern</b> <em>float</em> __REDIRECT_NTH (nexttowardf, (<em>float</em> __x, <em>long</em> <em>double</em> __y),&nbsp</td></tr>
+<tr><th id="346">346</th><td>			     __nldbl_nexttowardf)&nbsp</td></tr>
+<tr><th id="347">347</th><td>     <b>__attribute__</b> ((<em>__const__</em>));&nbsp</td></tr>
+<tr><th id="348">348</th><td><b>extern</b> <em>double</em> __REDIRECT_NTH (nexttoward, (<em>double</em> __x, <em>long</em> <em>double</em> __y),&nbsp</td></tr>
+<tr><th id="349">349</th><td>			      nextafter) <b>__attribute__</b> ((<em>__const__</em>));&nbsp</td></tr>
+<tr><th id="350">350</th><td><b>extern</b> <em>long</em> <em>double</em> __REDIRECT_NTH (nexttowardl,&nbsp</td></tr>
+<tr><th id="351">351</th><td>				   (<em>long</em> <em>double</em> __x, <em>long</em> <em>double</em> __y),&nbsp</td></tr>
+<tr><th id="352">352</th><td>				   nextafter) <b>__attribute__</b> ((<em>__const__</em>));&nbsp</td></tr>
+<tr><th id="353">353</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="354">354</th><td><u>#   endif</u>&nbsp</td></tr>
+<tr><th id="355">355</th><td>&nbsp</td></tr>
+<tr><th id="356">356</th><td><u>#   undef __MATHDECL_1</u>&nbsp</td></tr>
+<tr><th id="357">357</th><td><u>#   define __MATHDECL_1(type, function,suffix, args) \</u>&nbsp</td></tr>
+<tr><th id="358">358</th><td><u>  __MATHREDIR(type, function, suffix, args, __CONCAT(function,suffix))</u>&nbsp</td></tr>
+<tr><th id="359">359</th><td>&nbsp</td></tr>
+<tr><th id="360">360</th><td><u>#  <span data-ppcond="339">elif</span> <a class="macro" href="x86_64-linux-gnu/bits/long-double.h.html#21" title="0" data-ref="_M/__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI">__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI</a> == 1</u>&nbsp</td></tr>
+<tr><th id="361">361</th><td><u>#   ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="362">362</th><td><u>#    ifdef __USE_ISOC99</u>&nbsp</td></tr>
+<tr><th id="363">363</th><td><b>extern</b> <em>float</em> __REDIRECT_NTH (nexttowardf, (<em>float</em> __x, <em>long</em> <em>double</em> __y),&nbsp</td></tr>
+<tr><th id="364">364</th><td>			    __nexttowardf_to_ieee128)&nbsp</td></tr>
+<tr><th id="365">365</th><td>  <b>__attribute__</b> ((<em>__const__</em>));&nbsp</td></tr>
+<tr><th id="366">366</th><td><b>extern</b> <em>double</em> __REDIRECT_NTH (nexttoward, (<em>double</em> __x, <em>long</em> <em>double</em> __y),&nbsp</td></tr>
+<tr><th id="367">367</th><td>			     __nexttoward_to_ieee128)&nbsp</td></tr>
+<tr><th id="368">368</th><td>  <b>__attribute__</b> ((<em>__const__</em>));&nbsp</td></tr>
+<tr><th id="369">369</th><td>&nbsp</td></tr>
+<tr><th id="370">370</th><td><u>#define __dremieee128 __remainderieee128</u>&nbsp</td></tr>
+<tr><th id="371">371</th><td><u>#define __gammaieee128 __lgammaieee128</u>&nbsp</td></tr>
+<tr><th id="372">372</th><td>&nbsp</td></tr>
+<tr><th id="373">373</th><td><u>#    endif</u>&nbsp</td></tr>
+<tr><th id="374">374</th><td><u>#   endif</u>&nbsp</td></tr>
+<tr><th id="375">375</th><td>&nbsp</td></tr>
+<tr><th id="376">376</th><td><u>#   undef __MATHDECL_1</u>&nbsp</td></tr>
+<tr><th id="377">377</th><td><u>#   undef __MATHDECL_ALIAS</u>&nbsp</td></tr>
+<tr><th id="378">378</th><td>&nbsp</td></tr>
+<tr><th id="379">379</th><td><u>#   define __REDIRTO(function, suffix) \</u>&nbsp</td></tr>
+<tr><th id="380">380</th><td><u>  __ ## function ## ieee128 ## suffix</u>&nbsp</td></tr>
+<tr><th id="381">381</th><td><u>#   define __REDIRTO_ALT(function, suffix) \</u>&nbsp</td></tr>
+<tr><th id="382">382</th><td><u>  __ ## function ## f128 ## suffix</u>&nbsp</td></tr>
+<tr><th id="383">383</th><td>&nbsp</td></tr>
+<tr><th id="384">384</th><td><u>#   define __MATHDECL_1(type, function, suffix, args) \</u>&nbsp</td></tr>
+<tr><th id="385">385</th><td><u>  __MATHREDIR (type, function, suffix, args, __REDIRTO (function, suffix))</u>&nbsp</td></tr>
+<tr><th id="386">386</th><td><u>#   define __MATHDECL_ALIAS(type, function, suffix, args, alias) \</u>&nbsp</td></tr>
+<tr><th id="387">387</th><td><u>  __MATHREDIR (type, function, suffix, args, __REDIRTO_ALT (alias, suffix))</u>&nbsp</td></tr>
+<tr><th id="388">388</th><td><u>#  <span data-ppcond="339">endif</span></u>&nbsp</td></tr>
+<tr><th id="389">389</th><td>&nbsp</td></tr>
+<tr><th id="390">390</th><td><i>/* Include the file of declarations again, this time using `long double'</i>&nbsp</td></tr>
+<tr><th id="391">391</th><td><i>   instead of `double' and appending l to each function name.  */</i>&nbsp</td></tr>
+<tr><th id="392">392</th><td>&nbsp</td></tr>
+<tr><th id="393">393</th><td><u>#  define <dfn class="macro" id="_M/_Mdouble_" data-ref="_M/_Mdouble_">_Mdouble_</dfn>		long double</u>&nbsp</td></tr>
+<tr><th id="394">394</th><td><u>#  define <dfn class="macro" id="_M/__MATH_PRECNAME" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</dfn>(name,r) name##l##r</u>&nbsp</td></tr>
+<tr><th id="395">395</th><td><u>#  define <dfn class="macro" id="_M/__MATH_DECLARING_DOUBLE" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</dfn>  0</u>&nbsp</td></tr>
+<tr><th id="396">396</th><td><u>#  define <dfn class="macro" id="_M/__MATH_DECLARING_FLOATN" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</dfn>  0</u>&nbsp</td></tr>
+<tr><th id="397">397</th><td><u>#  define <dfn class="macro" id="_M/__MATH_DECLARE_LDOUBLE" data-ref="_M/__MATH_DECLARE_LDOUBLE">__MATH_DECLARE_LDOUBLE</dfn>   1</u>&nbsp</td></tr>
+<tr><th id="398">398</th><td><u>#  include &lt;bits/mathcalls-helper-functions.h&gt;</u>&nbsp</td></tr>
+<tr><th id="399">399</th><td><u>#  include &lt;bits/mathcalls.h&gt;</u>&nbsp</td></tr>
+<tr><th id="400">400</th><td>&nbsp</td></tr>
+<tr><th id="401">401</th><td><u>#  undef <a class="macro" href="#393" data-ref="_M/_Mdouble_">_Mdouble_</a></u>&nbsp</td></tr>
+<tr><th id="402">402</th><td><u>#  undef <a class="macro" href="#394" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</a></u>&nbsp</td></tr>
+<tr><th id="403">403</th><td><u>#  undef <a class="macro" href="#395" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</a></u>&nbsp</td></tr>
+<tr><th id="404">404</th><td><u>#  undef <a class="macro" href="#396" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</a></u>&nbsp</td></tr>
+<tr><th id="405">405</th><td>&nbsp</td></tr>
+<tr><th id="406">406</th><td><u>#  <span data-ppcond="406">if</span> defined <span class="macro" data-ref="_M/__LDBL_COMPAT">__LDBL_COMPAT</span> \</u>&nbsp</td></tr>
+<tr><th id="407">407</th><td><u>      || <a class="macro" href="x86_64-linux-gnu/bits/long-double.h.html#21" title="0" data-ref="_M/__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI">__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI</a> == 1</u>&nbsp</td></tr>
+<tr><th id="408">408</th><td><u>#   undef __REDIRTO</u>&nbsp</td></tr>
+<tr><th id="409">409</th><td><u>#   undef __REDIRTO_ALT</u>&nbsp</td></tr>
+<tr><th id="410">410</th><td><u>#   undef __MATHDECL_1</u>&nbsp</td></tr>
+<tr><th id="411">411</th><td><u>#   undef __MATHDECL_ALIAS</u>&nbsp</td></tr>
+<tr><th id="412">412</th><td><u>#   define __MATHDECL_1(type, function, suffix, args) \</u>&nbsp</td></tr>
+<tr><th id="413">413</th><td><u>  __MATHDECL_1_IMPL(type, function, suffix, args)</u>&nbsp</td></tr>
+<tr><th id="414">414</th><td><u>#   define __MATHDECL_ALIAS(type, function, suffix, args, alias) \</u>&nbsp</td></tr>
+<tr><th id="415">415</th><td><u>  __MATHDECL_1(type, function, suffix, args)</u>&nbsp</td></tr>
+<tr><th id="416">416</th><td><u>#  <span data-ppcond="406">endif</span></u>&nbsp</td></tr>
+<tr><th id="417">417</th><td><u># <span data-ppcond="336">endif</span> /* !(__NO_LONG_DOUBLE_MATH &amp;&amp; _LIBC) || __LDBL_COMPAT */</u>&nbsp</td></tr>
+<tr><th id="418">418</th><td>&nbsp</td></tr>
+<tr><th id="419">419</th><td><u>#<span data-ppcond="319">endif</span>	/* Use ISO C99.  */</u>&nbsp</td></tr>
+<tr><th id="420">420</th><td>&nbsp</td></tr>
+<tr><th id="421">421</th><td><i>/* Include the file of declarations for _FloatN and _FloatNx</i>&nbsp</td></tr>
+<tr><th id="422">422</th><td><i>   types.  */</i>&nbsp</td></tr>
+<tr><th id="423">423</th><td>&nbsp</td></tr>
+<tr><th id="424">424</th><td><u>#<span data-ppcond="424">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#52" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT16">__HAVE_DISTINCT_FLOAT16</a> || (<a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT16">__HAVE_FLOAT16</a> &amp;&amp; !defined <span class="macro" data-ref="_M/_LIBC">_LIBC</span>)</u>&nbsp</td></tr>
+<tr><th id="425">425</th><td><u># define _Mdouble_		_Float16</u>&nbsp</td></tr>
+<tr><th id="426">426</th><td><u># define __MATH_PRECNAME(name,r) name##f16##r</u>&nbsp</td></tr>
+<tr><th id="427">427</th><td><u># define __MATH_DECLARING_DOUBLE  0</u>&nbsp</td></tr>
+<tr><th id="428">428</th><td><u># define __MATH_DECLARING_FLOATN  1</u>&nbsp</td></tr>
+<tr><th id="429">429</th><td><u># if __HAVE_DISTINCT_FLOAT16</u>&nbsp</td></tr>
+<tr><th id="430">430</th><td><u>#  include &lt;bits/mathcalls-helper-functions.h&gt;</u>&nbsp</td></tr>
+<tr><th id="431">431</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="432">432</th><td><u># if __GLIBC_USE (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="433">433</th><td><u>#  include &lt;bits/mathcalls.h&gt;</u>&nbsp</td></tr>
+<tr><th id="434">434</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="435">435</th><td><u># undef _Mdouble_</u>&nbsp</td></tr>
+<tr><th id="436">436</th><td><u># undef __MATH_PRECNAME</u>&nbsp</td></tr>
+<tr><th id="437">437</th><td><u># undef __MATH_DECLARING_DOUBLE</u>&nbsp</td></tr>
+<tr><th id="438">438</th><td><u># undef __MATH_DECLARING_FLOATN</u>&nbsp</td></tr>
+<tr><th id="439">439</th><td><u>#<span data-ppcond="424">endif</span> /* __HAVE_DISTINCT_FLOAT16 || (__HAVE_FLOAT16 &amp;&amp; !_LIBC).  */</u>&nbsp</td></tr>
+<tr><th id="440">440</th><td>&nbsp</td></tr>
+<tr><th id="441">441</th><td><u>#<span data-ppcond="441">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#53" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT32">__HAVE_DISTINCT_FLOAT32</a> || (<a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#35" title="1" data-ref="_M/__HAVE_FLOAT32">__HAVE_FLOAT32</a> &amp;&amp; !defined <span class="macro" data-ref="_M/_LIBC">_LIBC</span>)</u>&nbsp</td></tr>
+<tr><th id="442">442</th><td><u># define <dfn class="macro" id="_M/_Mdouble_" data-ref="_M/_Mdouble_">_Mdouble_</dfn>		_Float32</u>&nbsp</td></tr>
+<tr><th id="443">443</th><td><u># define <dfn class="macro" id="_M/__MATH_PRECNAME" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</dfn>(name,r) name##f32##r</u>&nbsp</td></tr>
+<tr><th id="444">444</th><td><u># define <dfn class="macro" id="_M/__MATH_DECLARING_DOUBLE" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</dfn>  0</u>&nbsp</td></tr>
+<tr><th id="445">445</th><td><u># define <dfn class="macro" id="_M/__MATH_DECLARING_FLOATN" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</dfn>  1</u>&nbsp</td></tr>
+<tr><th id="446">446</th><td><u># <span data-ppcond="446">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#53" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT32">__HAVE_DISTINCT_FLOAT32</a></u>&nbsp</td></tr>
+<tr><th id="447">447</th><td><u>#  include &lt;bits/mathcalls-helper-functions.h&gt;</u>&nbsp</td></tr>
+<tr><th id="448">448</th><td><u># <span data-ppcond="446">endif</span></u>&nbsp</td></tr>
+<tr><th id="449">449</th><td><u># <span data-ppcond="449">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="450">450</th><td><u>#  include &lt;bits/mathcalls.h&gt;</u>&nbsp</td></tr>
+<tr><th id="451">451</th><td><u># <span data-ppcond="449">endif</span></u>&nbsp</td></tr>
+<tr><th id="452">452</th><td><u># undef <a class="macro" href="#442" data-ref="_M/_Mdouble_">_Mdouble_</a></u>&nbsp</td></tr>
+<tr><th id="453">453</th><td><u># undef <a class="macro" href="#443" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</a></u>&nbsp</td></tr>
+<tr><th id="454">454</th><td><u># undef <a class="macro" href="#444" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</a></u>&nbsp</td></tr>
+<tr><th id="455">455</th><td><u># undef <a class="macro" href="#445" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</a></u>&nbsp</td></tr>
+<tr><th id="456">456</th><td><u>#<span data-ppcond="441">endif</span> /* __HAVE_DISTINCT_FLOAT32 || (__HAVE_FLOAT32 &amp;&amp; !_LIBC).  */</u>&nbsp</td></tr>
+<tr><th id="457">457</th><td>&nbsp</td></tr>
+<tr><th id="458">458</th><td><u>#<span data-ppcond="458">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#54" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT64">__HAVE_DISTINCT_FLOAT64</a> || (<a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#36" title="1" data-ref="_M/__HAVE_FLOAT64">__HAVE_FLOAT64</a> &amp;&amp; !defined <span class="macro" data-ref="_M/_LIBC">_LIBC</span>)</u>&nbsp</td></tr>
+<tr><th id="459">459</th><td><u># define <dfn class="macro" id="_M/_Mdouble_" data-ref="_M/_Mdouble_">_Mdouble_</dfn>		_Float64</u>&nbsp</td></tr>
+<tr><th id="460">460</th><td><u># define <dfn class="macro" id="_M/__MATH_PRECNAME" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</dfn>(name,r) name##f64##r</u>&nbsp</td></tr>
+<tr><th id="461">461</th><td><u># define <dfn class="macro" id="_M/__MATH_DECLARING_DOUBLE" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</dfn>  0</u>&nbsp</td></tr>
+<tr><th id="462">462</th><td><u># define <dfn class="macro" id="_M/__MATH_DECLARING_FLOATN" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</dfn>  1</u>&nbsp</td></tr>
+<tr><th id="463">463</th><td><u># <span data-ppcond="463">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#54" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT64">__HAVE_DISTINCT_FLOAT64</a></u>&nbsp</td></tr>
+<tr><th id="464">464</th><td><u>#  include &lt;bits/mathcalls-helper-functions.h&gt;</u>&nbsp</td></tr>
+<tr><th id="465">465</th><td><u># <span data-ppcond="463">endif</span></u>&nbsp</td></tr>
+<tr><th id="466">466</th><td><u># <span data-ppcond="466">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="467">467</th><td><u>#  include &lt;bits/mathcalls.h&gt;</u>&nbsp</td></tr>
+<tr><th id="468">468</th><td><u># <span data-ppcond="466">endif</span></u>&nbsp</td></tr>
+<tr><th id="469">469</th><td><u># undef <a class="macro" href="#459" data-ref="_M/_Mdouble_">_Mdouble_</a></u>&nbsp</td></tr>
+<tr><th id="470">470</th><td><u># undef <a class="macro" href="#460" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</a></u>&nbsp</td></tr>
+<tr><th id="471">471</th><td><u># undef <a class="macro" href="#461" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</a></u>&nbsp</td></tr>
+<tr><th id="472">472</th><td><u># undef <a class="macro" href="#462" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</a></u>&nbsp</td></tr>
+<tr><th id="473">473</th><td><u>#<span data-ppcond="458">endif</span> /* __HAVE_DISTINCT_FLOAT64 || (__HAVE_FLOAT64 &amp;&amp; !_LIBC).  */</u>&nbsp</td></tr>
+<tr><th id="474">474</th><td>&nbsp</td></tr>
+<tr><th id="475">475</th><td><u>#<span data-ppcond="475">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#42" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT128">__HAVE_DISTINCT_FLOAT128</a> || (<a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT128">__HAVE_FLOAT128</a> &amp;&amp; !defined <span class="macro" data-ref="_M/_LIBC">_LIBC</span>)</u>&nbsp</td></tr>
+<tr><th id="476">476</th><td><u># define _Mdouble_		_Float128</u>&nbsp</td></tr>
+<tr><th id="477">477</th><td><u># define __MATH_PRECNAME(name,r) name##f128##r</u>&nbsp</td></tr>
+<tr><th id="478">478</th><td><u># define __MATH_DECLARING_DOUBLE  0</u>&nbsp</td></tr>
+<tr><th id="479">479</th><td><u># define __MATH_DECLARING_FLOATN  1</u>&nbsp</td></tr>
+<tr><th id="480">480</th><td><u># if __HAVE_DISTINCT_FLOAT128</u>&nbsp</td></tr>
+<tr><th id="481">481</th><td><u>#  include &lt;bits/mathcalls-helper-functions.h&gt;</u>&nbsp</td></tr>
+<tr><th id="482">482</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="483">483</th><td><u># if __GLIBC_USE (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="484">484</th><td><u>#  include &lt;bits/mathcalls.h&gt;</u>&nbsp</td></tr>
+<tr><th id="485">485</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="486">486</th><td><u># undef _Mdouble_</u>&nbsp</td></tr>
+<tr><th id="487">487</th><td><u># undef __MATH_PRECNAME</u>&nbsp</td></tr>
+<tr><th id="488">488</th><td><u># undef __MATH_DECLARING_DOUBLE</u>&nbsp</td></tr>
+<tr><th id="489">489</th><td><u># undef __MATH_DECLARING_FLOATN</u>&nbsp</td></tr>
+<tr><th id="490">490</th><td><u>#<span data-ppcond="475">endif</span> /* __HAVE_DISTINCT_FLOAT128 || (__HAVE_FLOAT128 &amp;&amp; !_LIBC).  */</u>&nbsp</td></tr>
+<tr><th id="491">491</th><td>&nbsp</td></tr>
+<tr><th id="492">492</th><td><u>#<span data-ppcond="492">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#55" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT32X">__HAVE_DISTINCT_FLOAT32X</a> || (<a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#37" title="1" data-ref="_M/__HAVE_FLOAT32X">__HAVE_FLOAT32X</a> &amp;&amp; !defined <span class="macro" data-ref="_M/_LIBC">_LIBC</span>)</u>&nbsp</td></tr>
+<tr><th id="493">493</th><td><u># define <dfn class="macro" id="_M/_Mdouble_" data-ref="_M/_Mdouble_">_Mdouble_</dfn>		_Float32x</u>&nbsp</td></tr>
+<tr><th id="494">494</th><td><u># define <dfn class="macro" id="_M/__MATH_PRECNAME" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</dfn>(name,r) name##f32x##r</u>&nbsp</td></tr>
+<tr><th id="495">495</th><td><u># define <dfn class="macro" id="_M/__MATH_DECLARING_DOUBLE" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</dfn>  0</u>&nbsp</td></tr>
+<tr><th id="496">496</th><td><u># define <dfn class="macro" id="_M/__MATH_DECLARING_FLOATN" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</dfn>  1</u>&nbsp</td></tr>
+<tr><th id="497">497</th><td><u># <span data-ppcond="497">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#55" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT32X">__HAVE_DISTINCT_FLOAT32X</a></u>&nbsp</td></tr>
+<tr><th id="498">498</th><td><u>#  include &lt;bits/mathcalls-helper-functions.h&gt;</u>&nbsp</td></tr>
+<tr><th id="499">499</th><td><u># <span data-ppcond="497">endif</span></u>&nbsp</td></tr>
+<tr><th id="500">500</th><td><u># <span data-ppcond="500">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="501">501</th><td><u>#  include &lt;bits/mathcalls.h&gt;</u>&nbsp</td></tr>
+<tr><th id="502">502</th><td><u># <span data-ppcond="500">endif</span></u>&nbsp</td></tr>
+<tr><th id="503">503</th><td><u># undef <a class="macro" href="#493" data-ref="_M/_Mdouble_">_Mdouble_</a></u>&nbsp</td></tr>
+<tr><th id="504">504</th><td><u># undef <a class="macro" href="#494" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</a></u>&nbsp</td></tr>
+<tr><th id="505">505</th><td><u># undef <a class="macro" href="#495" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</a></u>&nbsp</td></tr>
+<tr><th id="506">506</th><td><u># undef <a class="macro" href="#496" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</a></u>&nbsp</td></tr>
+<tr><th id="507">507</th><td><u>#<span data-ppcond="492">endif</span> /* __HAVE_DISTINCT_FLOAT32X || (__HAVE_FLOAT32X &amp;&amp; !_LIBC).  */</u>&nbsp</td></tr>
+<tr><th id="508">508</th><td>&nbsp</td></tr>
+<tr><th id="509">509</th><td><u>#<span data-ppcond="509">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#56" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT64X">__HAVE_DISTINCT_FLOAT64X</a> || (<a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#48" title="1" data-ref="_M/__HAVE_FLOAT64X">__HAVE_FLOAT64X</a> &amp;&amp; !defined <span class="macro" data-ref="_M/_LIBC">_LIBC</span>)</u>&nbsp</td></tr>
+<tr><th id="510">510</th><td><u># define <dfn class="macro" id="_M/_Mdouble_" data-ref="_M/_Mdouble_">_Mdouble_</dfn>		_Float64x</u>&nbsp</td></tr>
+<tr><th id="511">511</th><td><u># define <dfn class="macro" id="_M/__MATH_PRECNAME" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</dfn>(name,r) name##f64x##r</u>&nbsp</td></tr>
+<tr><th id="512">512</th><td><u># define <dfn class="macro" id="_M/__MATH_DECLARING_DOUBLE" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</dfn>  0</u>&nbsp</td></tr>
+<tr><th id="513">513</th><td><u># define <dfn class="macro" id="_M/__MATH_DECLARING_FLOATN" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</dfn>  1</u>&nbsp</td></tr>
+<tr><th id="514">514</th><td><u># <span data-ppcond="514">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#56" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT64X">__HAVE_DISTINCT_FLOAT64X</a></u>&nbsp</td></tr>
+<tr><th id="515">515</th><td><u>#  include &lt;bits/mathcalls-helper-functions.h&gt;</u>&nbsp</td></tr>
+<tr><th id="516">516</th><td><u># <span data-ppcond="514">endif</span></u>&nbsp</td></tr>
+<tr><th id="517">517</th><td><u># <span data-ppcond="517">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="518">518</th><td><u>#  include &lt;bits/mathcalls.h&gt;</u>&nbsp</td></tr>
+<tr><th id="519">519</th><td><u># <span data-ppcond="517">endif</span></u>&nbsp</td></tr>
+<tr><th id="520">520</th><td><u># undef <a class="macro" href="#510" data-ref="_M/_Mdouble_">_Mdouble_</a></u>&nbsp</td></tr>
+<tr><th id="521">521</th><td><u># undef <a class="macro" href="#511" data-ref="_M/__MATH_PRECNAME">__MATH_PRECNAME</a></u>&nbsp</td></tr>
+<tr><th id="522">522</th><td><u># undef <a class="macro" href="#512" data-ref="_M/__MATH_DECLARING_DOUBLE">__MATH_DECLARING_DOUBLE</a></u>&nbsp</td></tr>
+<tr><th id="523">523</th><td><u># undef <a class="macro" href="#513" data-ref="_M/__MATH_DECLARING_FLOATN">__MATH_DECLARING_FLOATN</a></u>&nbsp</td></tr>
+<tr><th id="524">524</th><td><u>#<span data-ppcond="509">endif</span> /* __HAVE_DISTINCT_FLOAT64X || (__HAVE_FLOAT64X &amp;&amp; !_LIBC).  */</u>&nbsp</td></tr>
+<tr><th id="525">525</th><td>&nbsp</td></tr>
+<tr><th id="526">526</th><td><u>#<span data-ppcond="526">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#57" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT128X">__HAVE_DISTINCT_FLOAT128X</a> || (<a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#38" title="0" data-ref="_M/__HAVE_FLOAT128X">__HAVE_FLOAT128X</a> &amp;&amp; !defined <span class="macro" data-ref="_M/_LIBC">_LIBC</span>)</u>&nbsp</td></tr>
+<tr><th id="527">527</th><td><u># define _Mdouble_		_Float128x</u>&nbsp</td></tr>
+<tr><th id="528">528</th><td><u># define __MATH_PRECNAME(name,r) name##f128x##r</u>&nbsp</td></tr>
+<tr><th id="529">529</th><td><u># define __MATH_DECLARING_DOUBLE  0</u>&nbsp</td></tr>
+<tr><th id="530">530</th><td><u># define __MATH_DECLARING_FLOATN  1</u>&nbsp</td></tr>
+<tr><th id="531">531</th><td><u># if __HAVE_DISTINCT_FLOAT128X</u>&nbsp</td></tr>
+<tr><th id="532">532</th><td><u>#  include &lt;bits/mathcalls-helper-functions.h&gt;</u>&nbsp</td></tr>
+<tr><th id="533">533</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="534">534</th><td><u># if __GLIBC_USE (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="535">535</th><td><u>#  include &lt;bits/mathcalls.h&gt;</u>&nbsp</td></tr>
+<tr><th id="536">536</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="537">537</th><td><u># undef _Mdouble_</u>&nbsp</td></tr>
+<tr><th id="538">538</th><td><u># undef __MATH_PRECNAME</u>&nbsp</td></tr>
+<tr><th id="539">539</th><td><u># undef __MATH_DECLARING_DOUBLE</u>&nbsp</td></tr>
+<tr><th id="540">540</th><td><u># undef __MATH_DECLARING_FLOATN</u>&nbsp</td></tr>
+<tr><th id="541">541</th><td><u>#<span data-ppcond="526">endif</span> /* __HAVE_DISTINCT_FLOAT128X || (__HAVE_FLOAT128X &amp;&amp; !_LIBC).  */</u>&nbsp</td></tr>
+<tr><th id="542">542</th><td>&nbsp</td></tr>
+<tr><th id="543">543</th><td><u>#undef	<a class="macro" href="#296" data-ref="_M/__MATHDECL_1_IMPL">__MATHDECL_1_IMPL</a></u>&nbsp</td></tr>
+<tr><th id="544">544</th><td><u>#undef	<a class="macro" href="#298" data-ref="_M/__MATHDECL_1">__MATHDECL_1</a></u>&nbsp</td></tr>
+<tr><th id="545">545</th><td><u>#undef	<a class="macro" href="#302" data-ref="_M/__MATHDECL_ALIAS">__MATHDECL_ALIAS</a></u>&nbsp</td></tr>
+<tr><th id="546">546</th><td><u>#undef	<a class="macro" href="#288" data-ref="_M/__MATHDECL">__MATHDECL</a></u>&nbsp</td></tr>
+<tr><th id="547">547</th><td><u>#undef	<a class="macro" href="#286" data-ref="_M/__MATHCALL">__MATHCALL</a></u>&nbsp</td></tr>
+<tr><th id="548">548</th><td>&nbsp</td></tr>
+<tr><th id="549">549</th><td><i>/* Declare functions returning a narrower type.  */</i>&nbsp</td></tr>
+<tr><th id="550">550</th><td><u>#define <dfn class="macro" id="_M/__MATHCALL_NARROW_ARGS_1" data-ref="_M/__MATHCALL_NARROW_ARGS_1">__MATHCALL_NARROW_ARGS_1</dfn> (_Marg_ __x)</u>&nbsp</td></tr>
+<tr><th id="551">551</th><td><u>#define <dfn class="macro" id="_M/__MATHCALL_NARROW_ARGS_2" data-ref="_M/__MATHCALL_NARROW_ARGS_2">__MATHCALL_NARROW_ARGS_2</dfn> (_Marg_ __x, _Marg_ __y)</u>&nbsp</td></tr>
+<tr><th id="552">552</th><td><u>#define <dfn class="macro" id="_M/__MATHCALL_NARROW_ARGS_3" data-ref="_M/__MATHCALL_NARROW_ARGS_3">__MATHCALL_NARROW_ARGS_3</dfn> (_Marg_ __x, _Marg_ __y, _Marg_ __z)</u>&nbsp</td></tr>
+<tr><th id="553">553</th><td><u>#define <dfn class="macro" id="_M/__MATHCALL_NARROW_NORMAL" data-ref="_M/__MATHCALL_NARROW_NORMAL">__MATHCALL_NARROW_NORMAL</dfn>(func, nargs)			\</u>&nbsp</td></tr>
+<tr><th id="554">554</th><td><u>  extern _Mret_ func __MATHCALL_NARROW_ARGS_ ## nargs __THROW</u>&nbsp</td></tr>
+<tr><th id="555">555</th><td><u>#define <dfn class="macro" id="_M/__MATHCALL_NARROW_REDIR" data-ref="_M/__MATHCALL_NARROW_REDIR">__MATHCALL_NARROW_REDIR</dfn>(func, redir, nargs)			\</u>&nbsp</td></tr>
+<tr><th id="556">556</th><td><u>  extern _Mret_ __REDIRECT_NTH (func, __MATHCALL_NARROW_ARGS_ ## nargs, \</u>&nbsp</td></tr>
+<tr><th id="557">557</th><td><u>				redir)</u>&nbsp</td></tr>
+<tr><th id="558">558</th><td><u>#define <dfn class="macro" id="_M/__MATHCALL_NARROW" data-ref="_M/__MATHCALL_NARROW">__MATHCALL_NARROW</dfn>(func, redir, nargs)	\</u>&nbsp</td></tr>
+<tr><th id="559">559</th><td><u>  __MATHCALL_NARROW_NORMAL (func, nargs)</u>&nbsp</td></tr>
+<tr><th id="560">560</th><td>&nbsp</td></tr>
+<tr><th id="561">561</th><td><u>#<span data-ppcond="561">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_BFP_EXT_C2X)</u>&nbsp</td></tr>
+<tr><th id="562">562</th><td>&nbsp</td></tr>
+<tr><th id="563">563</th><td><u># define <dfn class="macro" id="_M/_Mret_" data-ref="_M/_Mret_">_Mret_</dfn> float</u>&nbsp</td></tr>
+<tr><th id="564">564</th><td><u># define <dfn class="macro" id="_M/_Marg_" data-ref="_M/_Marg_">_Marg_</dfn> double</u>&nbsp</td></tr>
+<tr><th id="565">565</th><td><u># define <dfn class="macro" id="_M/__MATHCALL_NAME" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</dfn>(name) f ## name</u>&nbsp</td></tr>
+<tr><th id="566">566</th><td><u># include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="567">567</th><td><u># undef <a class="macro" href="#563" data-ref="_M/_Mret_">_Mret_</a></u>&nbsp</td></tr>
+<tr><th id="568">568</th><td><u># undef <a class="macro" href="#564" data-ref="_M/_Marg_">_Marg_</a></u>&nbsp</td></tr>
+<tr><th id="569">569</th><td><u># undef <a class="macro" href="#565" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</a></u>&nbsp</td></tr>
+<tr><th id="570">570</th><td>&nbsp</td></tr>
+<tr><th id="571">571</th><td><u># define <dfn class="macro" id="_M/_Mret_" data-ref="_M/_Mret_">_Mret_</dfn> float</u>&nbsp</td></tr>
+<tr><th id="572">572</th><td><u># define <dfn class="macro" id="_M/_Marg_" data-ref="_M/_Marg_">_Marg_</dfn> long double</u>&nbsp</td></tr>
+<tr><th id="573">573</th><td><u># define <dfn class="macro" id="_M/__MATHCALL_NAME" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</dfn>(name) f ## name ## l</u>&nbsp</td></tr>
+<tr><th id="574">574</th><td><u># <span data-ppcond="574">ifdef</span> <span class="macro" data-ref="_M/__LDBL_COMPAT">__LDBL_COMPAT</span></u>&nbsp</td></tr>
+<tr><th id="575">575</th><td><u>#  define __MATHCALL_REDIR_NAME(name) f ## name</u>&nbsp</td></tr>
+<tr><th id="576">576</th><td><u>#  define __MATHCALL_REDIR_NAME2(name) f ## name</u>&nbsp</td></tr>
+<tr><th id="577">577</th><td><u>#  undef __MATHCALL_NARROW</u>&nbsp</td></tr>
+<tr><th id="578">578</th><td><u>#  define __MATHCALL_NARROW(func, redir, nargs) \</u>&nbsp</td></tr>
+<tr><th id="579">579</th><td><u>  __MATHCALL_NARROW_REDIR (func, redir, nargs)</u>&nbsp</td></tr>
+<tr><th id="580">580</th><td><u># <span data-ppcond="574">elif</span> <a class="macro" href="x86_64-linux-gnu/bits/long-double.h.html#21" title="0" data-ref="_M/__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI">__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI</a> == 1</u>&nbsp</td></tr>
+<tr><th id="581">581</th><td><u>#  define __MATHCALL_REDIR_NAME(name) __ ## f32 ## name ## ieee128</u>&nbsp</td></tr>
+<tr><th id="582">582</th><td><u>#  define __MATHCALL_REDIR_NAME2(name) __ ## f32 ## name ## ieee128</u>&nbsp</td></tr>
+<tr><th id="583">583</th><td><u>#  undef __MATHCALL_NARROW</u>&nbsp</td></tr>
+<tr><th id="584">584</th><td><u>#  define __MATHCALL_NARROW(func, redir, nargs) \</u>&nbsp</td></tr>
+<tr><th id="585">585</th><td><u>  __MATHCALL_NARROW_REDIR (func, redir, nargs)</u>&nbsp</td></tr>
+<tr><th id="586">586</th><td><u># <span data-ppcond="574">endif</span></u>&nbsp</td></tr>
+<tr><th id="587">587</th><td><u># include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="588">588</th><td><u># undef <a class="macro" href="#571" data-ref="_M/_Mret_">_Mret_</a></u>&nbsp</td></tr>
+<tr><th id="589">589</th><td><u># undef <a class="macro" href="#572" data-ref="_M/_Marg_">_Marg_</a></u>&nbsp</td></tr>
+<tr><th id="590">590</th><td><u># undef <a class="macro" href="#573" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</a></u>&nbsp</td></tr>
+<tr><th id="591">591</th><td><u># <span data-ppcond="591">if</span> defined <span class="macro" data-ref="_M/__LDBL_COMPAT">__LDBL_COMPAT</span> \</u>&nbsp</td></tr>
+<tr><th id="592">592</th><td><u>     || <a class="macro" href="x86_64-linux-gnu/bits/long-double.h.html#21" title="0" data-ref="_M/__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI">__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI</a> == 1</u>&nbsp</td></tr>
+<tr><th id="593">593</th><td><u>#  undef __MATHCALL_REDIR_NAME</u>&nbsp</td></tr>
+<tr><th id="594">594</th><td><u>#  undef __MATHCALL_REDIR_NAME2</u>&nbsp</td></tr>
+<tr><th id="595">595</th><td><u>#  undef __MATHCALL_NARROW</u>&nbsp</td></tr>
+<tr><th id="596">596</th><td><u>#  define __MATHCALL_NARROW(func, redir, nargs) \</u>&nbsp</td></tr>
+<tr><th id="597">597</th><td><u>  __MATHCALL_NARROW_NORMAL (func, nargs)</u>&nbsp</td></tr>
+<tr><th id="598">598</th><td><u># <span data-ppcond="591">endif</span></u>&nbsp</td></tr>
+<tr><th id="599">599</th><td>&nbsp</td></tr>
+<tr><th id="600">600</th><td><u># define <dfn class="macro" id="_M/_Mret_" data-ref="_M/_Mret_">_Mret_</dfn> double</u>&nbsp</td></tr>
+<tr><th id="601">601</th><td><u># define <dfn class="macro" id="_M/_Marg_" data-ref="_M/_Marg_">_Marg_</dfn> long double</u>&nbsp</td></tr>
+<tr><th id="602">602</th><td><u># define <dfn class="macro" id="_M/__MATHCALL_NAME" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</dfn>(name) d ## name ## l</u>&nbsp</td></tr>
+<tr><th id="603">603</th><td><u># <span data-ppcond="603">ifdef</span> <span class="macro" data-ref="_M/__LDBL_COMPAT">__LDBL_COMPAT</span></u>&nbsp</td></tr>
+<tr><th id="604">604</th><td><u>#  define __MATHCALL_REDIR_NAME(name) __nldbl_d ## name ## l</u>&nbsp</td></tr>
+<tr><th id="605">605</th><td><u>#  define __MATHCALL_REDIR_NAME2(name) name</u>&nbsp</td></tr>
+<tr><th id="606">606</th><td><u>#  undef __MATHCALL_NARROW</u>&nbsp</td></tr>
+<tr><th id="607">607</th><td><u>#  define __MATHCALL_NARROW(func, redir, nargs) \</u>&nbsp</td></tr>
+<tr><th id="608">608</th><td><u>  __MATHCALL_NARROW_REDIR (func, redir, nargs)</u>&nbsp</td></tr>
+<tr><th id="609">609</th><td><u># <span data-ppcond="603">elif</span> <a class="macro" href="x86_64-linux-gnu/bits/long-double.h.html#21" title="0" data-ref="_M/__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI">__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI</a> == 1</u>&nbsp</td></tr>
+<tr><th id="610">610</th><td><u>#  define __MATHCALL_REDIR_NAME(name) __ ## f64 ## name ## ieee128</u>&nbsp</td></tr>
+<tr><th id="611">611</th><td><u>#  define __MATHCALL_REDIR_NAME2(name) __ ## f64 ## name ## ieee128</u>&nbsp</td></tr>
+<tr><th id="612">612</th><td><u>#  undef __MATHCALL_NARROW</u>&nbsp</td></tr>
+<tr><th id="613">613</th><td><u>#  define __MATHCALL_NARROW(func, redir, nargs) \</u>&nbsp</td></tr>
+<tr><th id="614">614</th><td><u>  __MATHCALL_NARROW_REDIR (func, redir, nargs)</u>&nbsp</td></tr>
+<tr><th id="615">615</th><td><u># <span data-ppcond="603">endif</span></u>&nbsp</td></tr>
+<tr><th id="616">616</th><td><u># include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="617">617</th><td><u># undef <a class="macro" href="#600" data-ref="_M/_Mret_">_Mret_</a></u>&nbsp</td></tr>
+<tr><th id="618">618</th><td><u># undef <a class="macro" href="#601" data-ref="_M/_Marg_">_Marg_</a></u>&nbsp</td></tr>
+<tr><th id="619">619</th><td><u># undef <a class="macro" href="#602" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</a></u>&nbsp</td></tr>
+<tr><th id="620">620</th><td><u># <span data-ppcond="620">if</span> defined <span class="macro" data-ref="_M/__LDBL_COMPAT">__LDBL_COMPAT</span> \</u>&nbsp</td></tr>
+<tr><th id="621">621</th><td><u>     || <a class="macro" href="x86_64-linux-gnu/bits/long-double.h.html#21" title="0" data-ref="_M/__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI">__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI</a> == 1</u>&nbsp</td></tr>
+<tr><th id="622">622</th><td><u>#  undef __MATHCALL_REDIR_NAME</u>&nbsp</td></tr>
+<tr><th id="623">623</th><td><u>#  undef __MATHCALL_REDIR_NAME2</u>&nbsp</td></tr>
+<tr><th id="624">624</th><td><u>#  undef __MATHCALL_NARROW</u>&nbsp</td></tr>
+<tr><th id="625">625</th><td><u>#  define __MATHCALL_NARROW(func, redir, nargs) \</u>&nbsp</td></tr>
+<tr><th id="626">626</th><td><u>  __MATHCALL_NARROW_NORMAL (func, nargs)</u>&nbsp</td></tr>
+<tr><th id="627">627</th><td><u># <span data-ppcond="620">endif</span></u>&nbsp</td></tr>
+<tr><th id="628">628</th><td>&nbsp</td></tr>
+<tr><th id="629">629</th><td><u>#<span data-ppcond="561">endif</span></u>&nbsp</td></tr>
+<tr><th id="630">630</th><td>&nbsp</td></tr>
+<tr><th id="631">631</th><td><u>#<span data-ppcond="631">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_TYPES_EXT)</u>&nbsp</td></tr>
+<tr><th id="632">632</th><td>&nbsp</td></tr>
+<tr><th id="633">633</th><td><u># <span data-ppcond="633">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT16">__HAVE_FLOAT16</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#35" title="1" data-ref="_M/__HAVE_FLOAT32">__HAVE_FLOAT32</a></u>&nbsp</td></tr>
+<tr><th id="634">634</th><td><u>#  define _Mret_ _Float16</u>&nbsp</td></tr>
+<tr><th id="635">635</th><td><u>#  define _Marg_ _Float32</u>&nbsp</td></tr>
+<tr><th id="636">636</th><td><u>#  define __MATHCALL_NAME(name) f16 ## name ## f32</u>&nbsp</td></tr>
+<tr><th id="637">637</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="638">638</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="639">639</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="640">640</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="641">641</th><td><u># <span data-ppcond="633">endif</span></u>&nbsp</td></tr>
+<tr><th id="642">642</th><td>&nbsp</td></tr>
+<tr><th id="643">643</th><td><u># <span data-ppcond="643">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT16">__HAVE_FLOAT16</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#37" title="1" data-ref="_M/__HAVE_FLOAT32X">__HAVE_FLOAT32X</a></u>&nbsp</td></tr>
+<tr><th id="644">644</th><td><u>#  define _Mret_ _Float16</u>&nbsp</td></tr>
+<tr><th id="645">645</th><td><u>#  define _Marg_ _Float32x</u>&nbsp</td></tr>
+<tr><th id="646">646</th><td><u>#  define __MATHCALL_NAME(name) f16 ## name ## f32x</u>&nbsp</td></tr>
+<tr><th id="647">647</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="648">648</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="649">649</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="650">650</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="651">651</th><td><u># <span data-ppcond="643">endif</span></u>&nbsp</td></tr>
+<tr><th id="652">652</th><td>&nbsp</td></tr>
+<tr><th id="653">653</th><td><u># <span data-ppcond="653">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT16">__HAVE_FLOAT16</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#36" title="1" data-ref="_M/__HAVE_FLOAT64">__HAVE_FLOAT64</a></u>&nbsp</td></tr>
+<tr><th id="654">654</th><td><u>#  define _Mret_ _Float16</u>&nbsp</td></tr>
+<tr><th id="655">655</th><td><u>#  define _Marg_ _Float64</u>&nbsp</td></tr>
+<tr><th id="656">656</th><td><u>#  define __MATHCALL_NAME(name) f16 ## name ## f64</u>&nbsp</td></tr>
+<tr><th id="657">657</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="658">658</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="659">659</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="660">660</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="661">661</th><td><u># <span data-ppcond="653">endif</span></u>&nbsp</td></tr>
+<tr><th id="662">662</th><td>&nbsp</td></tr>
+<tr><th id="663">663</th><td><u># <span data-ppcond="663">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT16">__HAVE_FLOAT16</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#48" title="1" data-ref="_M/__HAVE_FLOAT64X">__HAVE_FLOAT64X</a></u>&nbsp</td></tr>
+<tr><th id="664">664</th><td><u>#  define _Mret_ _Float16</u>&nbsp</td></tr>
+<tr><th id="665">665</th><td><u>#  define _Marg_ _Float64x</u>&nbsp</td></tr>
+<tr><th id="666">666</th><td><u>#  define __MATHCALL_NAME(name) f16 ## name ## f64x</u>&nbsp</td></tr>
+<tr><th id="667">667</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="668">668</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="669">669</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="670">670</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="671">671</th><td><u># <span data-ppcond="663">endif</span></u>&nbsp</td></tr>
+<tr><th id="672">672</th><td>&nbsp</td></tr>
+<tr><th id="673">673</th><td><u># <span data-ppcond="673">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT16">__HAVE_FLOAT16</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT128">__HAVE_FLOAT128</a></u>&nbsp</td></tr>
+<tr><th id="674">674</th><td><u>#  define _Mret_ _Float16</u>&nbsp</td></tr>
+<tr><th id="675">675</th><td><u>#  define _Marg_ _Float128</u>&nbsp</td></tr>
+<tr><th id="676">676</th><td><u>#  define __MATHCALL_NAME(name) f16 ## name ## f128</u>&nbsp</td></tr>
+<tr><th id="677">677</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="678">678</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="679">679</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="680">680</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="681">681</th><td><u># <span data-ppcond="673">endif</span></u>&nbsp</td></tr>
+<tr><th id="682">682</th><td>&nbsp</td></tr>
+<tr><th id="683">683</th><td><u># <span data-ppcond="683">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT16">__HAVE_FLOAT16</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#38" title="0" data-ref="_M/__HAVE_FLOAT128X">__HAVE_FLOAT128X</a></u>&nbsp</td></tr>
+<tr><th id="684">684</th><td><u>#  define _Mret_ _Float16</u>&nbsp</td></tr>
+<tr><th id="685">685</th><td><u>#  define _Marg_ _Float128x</u>&nbsp</td></tr>
+<tr><th id="686">686</th><td><u>#  define __MATHCALL_NAME(name) f16 ## name ## f128x</u>&nbsp</td></tr>
+<tr><th id="687">687</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="688">688</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="689">689</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="690">690</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="691">691</th><td><u># <span data-ppcond="683">endif</span></u>&nbsp</td></tr>
+<tr><th id="692">692</th><td>&nbsp</td></tr>
+<tr><th id="693">693</th><td><u># <span data-ppcond="693">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#35" title="1" data-ref="_M/__HAVE_FLOAT32">__HAVE_FLOAT32</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#37" title="1" data-ref="_M/__HAVE_FLOAT32X">__HAVE_FLOAT32X</a></u>&nbsp</td></tr>
+<tr><th id="694">694</th><td><u>#  define <dfn class="macro" id="_M/_Mret_" data-ref="_M/_Mret_">_Mret_</dfn> _Float32</u>&nbsp</td></tr>
+<tr><th id="695">695</th><td><u>#  define <dfn class="macro" id="_M/_Marg_" data-ref="_M/_Marg_">_Marg_</dfn> _Float32x</u>&nbsp</td></tr>
+<tr><th id="696">696</th><td><u>#  define <dfn class="macro" id="_M/__MATHCALL_NAME" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</dfn>(name) f32 ## name ## f32x</u>&nbsp</td></tr>
+<tr><th id="697">697</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="698">698</th><td><u>#  undef <a class="macro" href="#694" data-ref="_M/_Mret_">_Mret_</a></u>&nbsp</td></tr>
+<tr><th id="699">699</th><td><u>#  undef <a class="macro" href="#695" data-ref="_M/_Marg_">_Marg_</a></u>&nbsp</td></tr>
+<tr><th id="700">700</th><td><u>#  undef <a class="macro" href="#696" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</a></u>&nbsp</td></tr>
+<tr><th id="701">701</th><td><u># <span data-ppcond="693">endif</span></u>&nbsp</td></tr>
+<tr><th id="702">702</th><td>&nbsp</td></tr>
+<tr><th id="703">703</th><td><u># <span data-ppcond="703">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#35" title="1" data-ref="_M/__HAVE_FLOAT32">__HAVE_FLOAT32</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#36" title="1" data-ref="_M/__HAVE_FLOAT64">__HAVE_FLOAT64</a></u>&nbsp</td></tr>
+<tr><th id="704">704</th><td><u>#  define <dfn class="macro" id="_M/_Mret_" data-ref="_M/_Mret_">_Mret_</dfn> _Float32</u>&nbsp</td></tr>
+<tr><th id="705">705</th><td><u>#  define <dfn class="macro" id="_M/_Marg_" data-ref="_M/_Marg_">_Marg_</dfn> _Float64</u>&nbsp</td></tr>
+<tr><th id="706">706</th><td><u>#  define <dfn class="macro" id="_M/__MATHCALL_NAME" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</dfn>(name) f32 ## name ## f64</u>&nbsp</td></tr>
+<tr><th id="707">707</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="708">708</th><td><u>#  undef <a class="macro" href="#704" data-ref="_M/_Mret_">_Mret_</a></u>&nbsp</td></tr>
+<tr><th id="709">709</th><td><u>#  undef <a class="macro" href="#705" data-ref="_M/_Marg_">_Marg_</a></u>&nbsp</td></tr>
+<tr><th id="710">710</th><td><u>#  undef <a class="macro" href="#706" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</a></u>&nbsp</td></tr>
+<tr><th id="711">711</th><td><u># <span data-ppcond="703">endif</span></u>&nbsp</td></tr>
+<tr><th id="712">712</th><td>&nbsp</td></tr>
+<tr><th id="713">713</th><td><u># <span data-ppcond="713">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#35" title="1" data-ref="_M/__HAVE_FLOAT32">__HAVE_FLOAT32</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#48" title="1" data-ref="_M/__HAVE_FLOAT64X">__HAVE_FLOAT64X</a></u>&nbsp</td></tr>
+<tr><th id="714">714</th><td><u>#  define <dfn class="macro" id="_M/_Mret_" data-ref="_M/_Mret_">_Mret_</dfn> _Float32</u>&nbsp</td></tr>
+<tr><th id="715">715</th><td><u>#  define <dfn class="macro" id="_M/_Marg_" data-ref="_M/_Marg_">_Marg_</dfn> _Float64x</u>&nbsp</td></tr>
+<tr><th id="716">716</th><td><u>#  define <dfn class="macro" id="_M/__MATHCALL_NAME" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</dfn>(name) f32 ## name ## f64x</u>&nbsp</td></tr>
+<tr><th id="717">717</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="718">718</th><td><u>#  undef <a class="macro" href="#714" data-ref="_M/_Mret_">_Mret_</a></u>&nbsp</td></tr>
+<tr><th id="719">719</th><td><u>#  undef <a class="macro" href="#715" data-ref="_M/_Marg_">_Marg_</a></u>&nbsp</td></tr>
+<tr><th id="720">720</th><td><u>#  undef <a class="macro" href="#716" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</a></u>&nbsp</td></tr>
+<tr><th id="721">721</th><td><u># <span data-ppcond="713">endif</span></u>&nbsp</td></tr>
+<tr><th id="722">722</th><td>&nbsp</td></tr>
+<tr><th id="723">723</th><td><u># <span data-ppcond="723">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#35" title="1" data-ref="_M/__HAVE_FLOAT32">__HAVE_FLOAT32</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT128">__HAVE_FLOAT128</a></u>&nbsp</td></tr>
+<tr><th id="724">724</th><td><u>#  define _Mret_ _Float32</u>&nbsp</td></tr>
+<tr><th id="725">725</th><td><u>#  define _Marg_ _Float128</u>&nbsp</td></tr>
+<tr><th id="726">726</th><td><u>#  define __MATHCALL_NAME(name) f32 ## name ## f128</u>&nbsp</td></tr>
+<tr><th id="727">727</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="728">728</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="729">729</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="730">730</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="731">731</th><td><u># <span data-ppcond="723">endif</span></u>&nbsp</td></tr>
+<tr><th id="732">732</th><td>&nbsp</td></tr>
+<tr><th id="733">733</th><td><u># <span data-ppcond="733">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#35" title="1" data-ref="_M/__HAVE_FLOAT32">__HAVE_FLOAT32</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#38" title="0" data-ref="_M/__HAVE_FLOAT128X">__HAVE_FLOAT128X</a></u>&nbsp</td></tr>
+<tr><th id="734">734</th><td><u>#  define _Mret_ _Float32</u>&nbsp</td></tr>
+<tr><th id="735">735</th><td><u>#  define _Marg_ _Float128x</u>&nbsp</td></tr>
+<tr><th id="736">736</th><td><u>#  define __MATHCALL_NAME(name) f32 ## name ## f128x</u>&nbsp</td></tr>
+<tr><th id="737">737</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="738">738</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="739">739</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="740">740</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="741">741</th><td><u># <span data-ppcond="733">endif</span></u>&nbsp</td></tr>
+<tr><th id="742">742</th><td>&nbsp</td></tr>
+<tr><th id="743">743</th><td><u># <span data-ppcond="743">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#37" title="1" data-ref="_M/__HAVE_FLOAT32X">__HAVE_FLOAT32X</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#36" title="1" data-ref="_M/__HAVE_FLOAT64">__HAVE_FLOAT64</a></u>&nbsp</td></tr>
+<tr><th id="744">744</th><td><u>#  define <dfn class="macro" id="_M/_Mret_" data-ref="_M/_Mret_">_Mret_</dfn> _Float32x</u>&nbsp</td></tr>
+<tr><th id="745">745</th><td><u>#  define <dfn class="macro" id="_M/_Marg_" data-ref="_M/_Marg_">_Marg_</dfn> _Float64</u>&nbsp</td></tr>
+<tr><th id="746">746</th><td><u>#  define <dfn class="macro" id="_M/__MATHCALL_NAME" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</dfn>(name) f32x ## name ## f64</u>&nbsp</td></tr>
+<tr><th id="747">747</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="748">748</th><td><u>#  undef <a class="macro" href="#744" data-ref="_M/_Mret_">_Mret_</a></u>&nbsp</td></tr>
+<tr><th id="749">749</th><td><u>#  undef <a class="macro" href="#745" data-ref="_M/_Marg_">_Marg_</a></u>&nbsp</td></tr>
+<tr><th id="750">750</th><td><u>#  undef <a class="macro" href="#746" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</a></u>&nbsp</td></tr>
+<tr><th id="751">751</th><td><u># <span data-ppcond="743">endif</span></u>&nbsp</td></tr>
+<tr><th id="752">752</th><td>&nbsp</td></tr>
+<tr><th id="753">753</th><td><u># <span data-ppcond="753">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#37" title="1" data-ref="_M/__HAVE_FLOAT32X">__HAVE_FLOAT32X</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#48" title="1" data-ref="_M/__HAVE_FLOAT64X">__HAVE_FLOAT64X</a></u>&nbsp</td></tr>
+<tr><th id="754">754</th><td><u>#  define <dfn class="macro" id="_M/_Mret_" data-ref="_M/_Mret_">_Mret_</dfn> _Float32x</u>&nbsp</td></tr>
+<tr><th id="755">755</th><td><u>#  define <dfn class="macro" id="_M/_Marg_" data-ref="_M/_Marg_">_Marg_</dfn> _Float64x</u>&nbsp</td></tr>
+<tr><th id="756">756</th><td><u>#  define <dfn class="macro" id="_M/__MATHCALL_NAME" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</dfn>(name) f32x ## name ## f64x</u>&nbsp</td></tr>
+<tr><th id="757">757</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="758">758</th><td><u>#  undef <a class="macro" href="#754" data-ref="_M/_Mret_">_Mret_</a></u>&nbsp</td></tr>
+<tr><th id="759">759</th><td><u>#  undef <a class="macro" href="#755" data-ref="_M/_Marg_">_Marg_</a></u>&nbsp</td></tr>
+<tr><th id="760">760</th><td><u>#  undef <a class="macro" href="#756" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</a></u>&nbsp</td></tr>
+<tr><th id="761">761</th><td><u># <span data-ppcond="753">endif</span></u>&nbsp</td></tr>
+<tr><th id="762">762</th><td>&nbsp</td></tr>
+<tr><th id="763">763</th><td><u># <span data-ppcond="763">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#37" title="1" data-ref="_M/__HAVE_FLOAT32X">__HAVE_FLOAT32X</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT128">__HAVE_FLOAT128</a></u>&nbsp</td></tr>
+<tr><th id="764">764</th><td><u>#  define _Mret_ _Float32x</u>&nbsp</td></tr>
+<tr><th id="765">765</th><td><u>#  define _Marg_ _Float128</u>&nbsp</td></tr>
+<tr><th id="766">766</th><td><u>#  define __MATHCALL_NAME(name) f32x ## name ## f128</u>&nbsp</td></tr>
+<tr><th id="767">767</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="768">768</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="769">769</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="770">770</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="771">771</th><td><u># <span data-ppcond="763">endif</span></u>&nbsp</td></tr>
+<tr><th id="772">772</th><td>&nbsp</td></tr>
+<tr><th id="773">773</th><td><u># <span data-ppcond="773">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#37" title="1" data-ref="_M/__HAVE_FLOAT32X">__HAVE_FLOAT32X</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#38" title="0" data-ref="_M/__HAVE_FLOAT128X">__HAVE_FLOAT128X</a></u>&nbsp</td></tr>
+<tr><th id="774">774</th><td><u>#  define _Mret_ _Float32x</u>&nbsp</td></tr>
+<tr><th id="775">775</th><td><u>#  define _Marg_ _Float128x</u>&nbsp</td></tr>
+<tr><th id="776">776</th><td><u>#  define __MATHCALL_NAME(name) f32x ## name ## f128x</u>&nbsp</td></tr>
+<tr><th id="777">777</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="778">778</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="779">779</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="780">780</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="781">781</th><td><u># <span data-ppcond="773">endif</span></u>&nbsp</td></tr>
+<tr><th id="782">782</th><td>&nbsp</td></tr>
+<tr><th id="783">783</th><td><u># <span data-ppcond="783">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#36" title="1" data-ref="_M/__HAVE_FLOAT64">__HAVE_FLOAT64</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#48" title="1" data-ref="_M/__HAVE_FLOAT64X">__HAVE_FLOAT64X</a></u>&nbsp</td></tr>
+<tr><th id="784">784</th><td><u>#  define <dfn class="macro" id="_M/_Mret_" data-ref="_M/_Mret_">_Mret_</dfn> _Float64</u>&nbsp</td></tr>
+<tr><th id="785">785</th><td><u>#  define <dfn class="macro" id="_M/_Marg_" data-ref="_M/_Marg_">_Marg_</dfn> _Float64x</u>&nbsp</td></tr>
+<tr><th id="786">786</th><td><u>#  define <dfn class="macro" id="_M/__MATHCALL_NAME" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</dfn>(name) f64 ## name ## f64x</u>&nbsp</td></tr>
+<tr><th id="787">787</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="788">788</th><td><u>#  undef <a class="macro" href="#784" data-ref="_M/_Mret_">_Mret_</a></u>&nbsp</td></tr>
+<tr><th id="789">789</th><td><u>#  undef <a class="macro" href="#785" data-ref="_M/_Marg_">_Marg_</a></u>&nbsp</td></tr>
+<tr><th id="790">790</th><td><u>#  undef <a class="macro" href="#786" data-ref="_M/__MATHCALL_NAME">__MATHCALL_NAME</a></u>&nbsp</td></tr>
+<tr><th id="791">791</th><td><u># <span data-ppcond="783">endif</span></u>&nbsp</td></tr>
+<tr><th id="792">792</th><td>&nbsp</td></tr>
+<tr><th id="793">793</th><td><u># <span data-ppcond="793">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#36" title="1" data-ref="_M/__HAVE_FLOAT64">__HAVE_FLOAT64</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT128">__HAVE_FLOAT128</a></u>&nbsp</td></tr>
+<tr><th id="794">794</th><td><u>#  define _Mret_ _Float64</u>&nbsp</td></tr>
+<tr><th id="795">795</th><td><u>#  define _Marg_ _Float128</u>&nbsp</td></tr>
+<tr><th id="796">796</th><td><u>#  define __MATHCALL_NAME(name) f64 ## name ## f128</u>&nbsp</td></tr>
+<tr><th id="797">797</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="798">798</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="799">799</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="800">800</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="801">801</th><td><u># <span data-ppcond="793">endif</span></u>&nbsp</td></tr>
+<tr><th id="802">802</th><td>&nbsp</td></tr>
+<tr><th id="803">803</th><td><u># <span data-ppcond="803">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#36" title="1" data-ref="_M/__HAVE_FLOAT64">__HAVE_FLOAT64</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#38" title="0" data-ref="_M/__HAVE_FLOAT128X">__HAVE_FLOAT128X</a></u>&nbsp</td></tr>
+<tr><th id="804">804</th><td><u>#  define _Mret_ _Float64</u>&nbsp</td></tr>
+<tr><th id="805">805</th><td><u>#  define _Marg_ _Float128x</u>&nbsp</td></tr>
+<tr><th id="806">806</th><td><u>#  define __MATHCALL_NAME(name) f64 ## name ## f128x</u>&nbsp</td></tr>
+<tr><th id="807">807</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="808">808</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="809">809</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="810">810</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="811">811</th><td><u># <span data-ppcond="803">endif</span></u>&nbsp</td></tr>
+<tr><th id="812">812</th><td>&nbsp</td></tr>
+<tr><th id="813">813</th><td><u># <span data-ppcond="813">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#48" title="1" data-ref="_M/__HAVE_FLOAT64X">__HAVE_FLOAT64X</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT128">__HAVE_FLOAT128</a></u>&nbsp</td></tr>
+<tr><th id="814">814</th><td><u>#  define _Mret_ _Float64x</u>&nbsp</td></tr>
+<tr><th id="815">815</th><td><u>#  define _Marg_ _Float128</u>&nbsp</td></tr>
+<tr><th id="816">816</th><td><u>#  define __MATHCALL_NAME(name) f64x ## name ## f128</u>&nbsp</td></tr>
+<tr><th id="817">817</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="818">818</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="819">819</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="820">820</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="821">821</th><td><u># <span data-ppcond="813">endif</span></u>&nbsp</td></tr>
+<tr><th id="822">822</th><td>&nbsp</td></tr>
+<tr><th id="823">823</th><td><u># <span data-ppcond="823">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#48" title="1" data-ref="_M/__HAVE_FLOAT64X">__HAVE_FLOAT64X</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#38" title="0" data-ref="_M/__HAVE_FLOAT128X">__HAVE_FLOAT128X</a></u>&nbsp</td></tr>
+<tr><th id="824">824</th><td><u>#  define _Mret_ _Float64x</u>&nbsp</td></tr>
+<tr><th id="825">825</th><td><u>#  define _Marg_ _Float128x</u>&nbsp</td></tr>
+<tr><th id="826">826</th><td><u>#  define __MATHCALL_NAME(name) f64x ## name ## f128x</u>&nbsp</td></tr>
+<tr><th id="827">827</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="828">828</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="829">829</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="830">830</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="831">831</th><td><u># <span data-ppcond="823">endif</span></u>&nbsp</td></tr>
+<tr><th id="832">832</th><td>&nbsp</td></tr>
+<tr><th id="833">833</th><td><u># <span data-ppcond="833">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT128">__HAVE_FLOAT128</a> &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#38" title="0" data-ref="_M/__HAVE_FLOAT128X">__HAVE_FLOAT128X</a></u>&nbsp</td></tr>
+<tr><th id="834">834</th><td><u>#  define _Mret_ _Float128</u>&nbsp</td></tr>
+<tr><th id="835">835</th><td><u>#  define _Marg_ _Float128x</u>&nbsp</td></tr>
+<tr><th id="836">836</th><td><u>#  define __MATHCALL_NAME(name) f128 ## name ## f128x</u>&nbsp</td></tr>
+<tr><th id="837">837</th><td><u>#  include &lt;bits/mathcalls-narrow.h&gt;</u>&nbsp</td></tr>
+<tr><th id="838">838</th><td><u>#  undef _Mret_</u>&nbsp</td></tr>
+<tr><th id="839">839</th><td><u>#  undef _Marg_</u>&nbsp</td></tr>
+<tr><th id="840">840</th><td><u>#  undef __MATHCALL_NAME</u>&nbsp</td></tr>
+<tr><th id="841">841</th><td><u># <span data-ppcond="833">endif</span></u>&nbsp</td></tr>
+<tr><th id="842">842</th><td>&nbsp</td></tr>
+<tr><th id="843">843</th><td><u>#<span data-ppcond="631">endif</span></u>&nbsp</td></tr>
+<tr><th id="844">844</th><td>&nbsp</td></tr>
+<tr><th id="845">845</th><td><u>#undef <a class="macro" href="#550" data-ref="_M/__MATHCALL_NARROW_ARGS_1">__MATHCALL_NARROW_ARGS_1</a></u>&nbsp</td></tr>
+<tr><th id="846">846</th><td><u>#undef <a class="macro" href="#551" data-ref="_M/__MATHCALL_NARROW_ARGS_2">__MATHCALL_NARROW_ARGS_2</a></u>&nbsp</td></tr>
+<tr><th id="847">847</th><td><u>#undef <a class="macro" href="#552" data-ref="_M/__MATHCALL_NARROW_ARGS_3">__MATHCALL_NARROW_ARGS_3</a></u>&nbsp</td></tr>
+<tr><th id="848">848</th><td><u>#undef <a class="macro" href="#553" data-ref="_M/__MATHCALL_NARROW_NORMAL">__MATHCALL_NARROW_NORMAL</a></u>&nbsp</td></tr>
+<tr><th id="849">849</th><td><u>#undef <a class="macro" href="#555" data-ref="_M/__MATHCALL_NARROW_REDIR">__MATHCALL_NARROW_REDIR</a></u>&nbsp</td></tr>
+<tr><th id="850">850</th><td><u>#undef <a class="macro" href="#558" data-ref="_M/__MATHCALL_NARROW">__MATHCALL_NARROW</a></u>&nbsp</td></tr>
+<tr><th id="851">851</th><td>&nbsp</td></tr>
+<tr><th id="852">852</th><td><u>#<span data-ppcond="852">if</span> defined <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> || defined <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a></u>&nbsp</td></tr>
+<tr><th id="853">853</th><td><i>/* This variable is used by `gamma' and `lgamma'.  */</i>&nbsp</td></tr>
+<tr><th id="854">854</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="signgam" title='signgam' data-ref="signgam">signgam</dfn>;&nbsp</td></tr>
+<tr><th id="855">855</th><td><u>#<span data-ppcond="852">endif</span></u>&nbsp</td></tr>
+<tr><th id="856">856</th><td>&nbsp</td></tr>
+<tr><th id="857">857</th><td><u>#<span data-ppcond="857">if</span> (<a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#52" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT16">__HAVE_DISTINCT_FLOAT16</a>			\</u>&nbsp</td></tr>
+<tr><th id="858">858</th><td><u>     || <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#53" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT32">__HAVE_DISTINCT_FLOAT32</a>			\</u>&nbsp</td></tr>
+<tr><th id="859">859</th><td><u>     || <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#54" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT64">__HAVE_DISTINCT_FLOAT64</a>			\</u>&nbsp</td></tr>
+<tr><th id="860">860</th><td><u>     || <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#55" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT32X">__HAVE_DISTINCT_FLOAT32X</a>		\</u>&nbsp</td></tr>
+<tr><th id="861">861</th><td><u>     || <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#56" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT64X">__HAVE_DISTINCT_FLOAT64X</a>		\</u>&nbsp</td></tr>
+<tr><th id="862">862</th><td><u>     || <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#57" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT128X">__HAVE_DISTINCT_FLOAT128X</a>)</u>&nbsp</td></tr>
+<tr><th id="863">863</th><td><u># error "Unsupported _FloatN or _FloatNx types for &lt;math.h&gt;."</u>&nbsp</td></tr>
+<tr><th id="864">864</th><td><u>#<span data-ppcond="857">endif</span></u>&nbsp</td></tr>
+<tr><th id="865">865</th><td>&nbsp</td></tr>
+<tr><th id="866">866</th><td><i>/* Depending on the type of TG_ARG, call an appropriately suffixed</i>&nbsp</td></tr>
+<tr><th id="867">867</th><td><i>   version of FUNC with arguments (including parentheses) ARGS.</i>&nbsp</td></tr>
+<tr><th id="868">868</th><td><i>   Suffixed functions may not exist for long double if it has the same</i>&nbsp</td></tr>
+<tr><th id="869">869</th><td><i>   format as double, or for other types with the same format as float,</i>&nbsp</td></tr>
+<tr><th id="870">870</th><td><i>   double or long double.  The behavior is undefined if the argument</i>&nbsp</td></tr>
+<tr><th id="871">871</th><td><i>   does not have a real floating type.  The definition may use a</i>&nbsp</td></tr>
+<tr><th id="872">872</th><td><i>   conditional expression, so all suffixed versions of FUNC must</i>&nbsp</td></tr>
+<tr><th id="873">873</th><td><i>   return the same type (FUNC may include a cast if necessary rather</i>&nbsp</td></tr>
+<tr><th id="874">874</th><td><i>   than being a single identifier).  */</i>&nbsp</td></tr>
+<tr><th id="875">875</th><td><u>#<span data-ppcond="875">ifdef</span> <span class="macro" data-ref="_M/__NO_LONG_DOUBLE_MATH">__NO_LONG_DOUBLE_MATH</span></u>&nbsp</td></tr>
+<tr><th id="876">876</th><td><u># if __HAVE_DISTINCT_FLOAT128</u>&nbsp</td></tr>
+<tr><th id="877">877</th><td><u>#  error "Distinct _Float128 without distinct long double not supported."</u>&nbsp</td></tr>
+<tr><th id="878">878</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="879">879</th><td><u># define __MATH_TG(TG_ARG, FUNC, ARGS)					\</u>&nbsp</td></tr>
+<tr><th id="880">880</th><td><u>  (sizeof (TG_ARG) == sizeof (float) ? FUNC ## f ARGS : FUNC ARGS)</u>&nbsp</td></tr>
+<tr><th id="881">881</th><td><u>#<span data-ppcond="875">elif</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#42" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT128">__HAVE_DISTINCT_FLOAT128</a></u>&nbsp</td></tr>
+<tr><th id="882">882</th><td><u># if __HAVE_GENERIC_SELECTION</u>&nbsp</td></tr>
+<tr><th id="883">883</th><td><u>#  if __HAVE_FLOATN_NOT_TYPEDEF &amp;&amp; __HAVE_FLOAT32</u>&nbsp</td></tr>
+<tr><th id="884">884</th><td><u>#   define __MATH_TG_F32(FUNC, ARGS) _Float32: FUNC ## f ARGS,</u>&nbsp</td></tr>
+<tr><th id="885">885</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="886">886</th><td><u>#   define __MATH_TG_F32(FUNC, ARGS)</u>&nbsp</td></tr>
+<tr><th id="887">887</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="888">888</th><td><u>#  if __HAVE_FLOATN_NOT_TYPEDEF &amp;&amp; __HAVE_FLOAT64X</u>&nbsp</td></tr>
+<tr><th id="889">889</th><td><u>#   if __HAVE_FLOAT64X_LONG_DOUBLE</u>&nbsp</td></tr>
+<tr><th id="890">890</th><td><u>#    define __MATH_TG_F64X(FUNC, ARGS) _Float64x: FUNC ## l ARGS,</u>&nbsp</td></tr>
+<tr><th id="891">891</th><td><u>#   else</u>&nbsp</td></tr>
+<tr><th id="892">892</th><td><u>#    define __MATH_TG_F64X(FUNC, ARGS) _Float64x: FUNC ## f128 ARGS,</u>&nbsp</td></tr>
+<tr><th id="893">893</th><td><u>#   endif</u>&nbsp</td></tr>
+<tr><th id="894">894</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="895">895</th><td><u>#   define __MATH_TG_F64X(FUNC, ARGS)</u>&nbsp</td></tr>
+<tr><th id="896">896</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="897">897</th><td><u>#  define __MATH_TG(TG_ARG, FUNC, ARGS)	\</u>&nbsp</td></tr>
+<tr><th id="898">898</th><td><u>     _Generic ((TG_ARG),			\</u>&nbsp</td></tr>
+<tr><th id="899">899</th><td><u>	       float: FUNC ## f ARGS,		\</u>&nbsp</td></tr>
+<tr><th id="900">900</th><td><u>	       __MATH_TG_F32 (FUNC, ARGS)	\</u>&nbsp</td></tr>
+<tr><th id="901">901</th><td><u>	       default: FUNC ARGS,		\</u>&nbsp</td></tr>
+<tr><th id="902">902</th><td><u>	       long double: FUNC ## l ARGS,	\</u>&nbsp</td></tr>
+<tr><th id="903">903</th><td><u>	       __MATH_TG_F64X (FUNC, ARGS)	\</u>&nbsp</td></tr>
+<tr><th id="904">904</th><td><u>	       _Float128: FUNC ## f128 ARGS)</u>&nbsp</td></tr>
+<tr><th id="905">905</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="906">906</th><td><u>#  if __HAVE_FLOATN_NOT_TYPEDEF</u>&nbsp</td></tr>
+<tr><th id="907">907</th><td><u>#   error "Non-typedef _FloatN but no _Generic."</u>&nbsp</td></tr>
+<tr><th id="908">908</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="909">909</th><td><u>#  define __MATH_TG(TG_ARG, FUNC, ARGS)					\</u>&nbsp</td></tr>
+<tr><th id="910">910</th><td><u>     __builtin_choose_expr						\</u>&nbsp</td></tr>
+<tr><th id="911">911</th><td><u>     (__builtin_types_compatible_p (__typeof (TG_ARG), float),		\</u>&nbsp</td></tr>
+<tr><th id="912">912</th><td><u>      FUNC ## f ARGS,							\</u>&nbsp</td></tr>
+<tr><th id="913">913</th><td><u>      __builtin_choose_expr						\</u>&nbsp</td></tr>
+<tr><th id="914">914</th><td><u>      (__builtin_types_compatible_p (__typeof (TG_ARG), double),	\</u>&nbsp</td></tr>
+<tr><th id="915">915</th><td><u>       FUNC ARGS,							\</u>&nbsp</td></tr>
+<tr><th id="916">916</th><td><u>       __builtin_choose_expr						\</u>&nbsp</td></tr>
+<tr><th id="917">917</th><td><u>       (__builtin_types_compatible_p (__typeof (TG_ARG), long double),	\</u>&nbsp</td></tr>
+<tr><th id="918">918</th><td><u>	FUNC ## l ARGS,							\</u>&nbsp</td></tr>
+<tr><th id="919">919</th><td><u>	FUNC ## f128 ARGS)))</u>&nbsp</td></tr>
+<tr><th id="920">920</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="921">921</th><td><u>#<span data-ppcond="875">else</span></u>&nbsp</td></tr>
+<tr><th id="922">922</th><td><u># define <dfn class="macro" id="_M/__MATH_TG" data-ref="_M/__MATH_TG">__MATH_TG</dfn>(TG_ARG, FUNC, ARGS)		\</u>&nbsp</td></tr>
+<tr><th id="923">923</th><td><u>  (sizeof (TG_ARG) == sizeof (float)		\</u>&nbsp</td></tr>
+<tr><th id="924">924</th><td><u>   ? FUNC ## f ARGS				\</u>&nbsp</td></tr>
+<tr><th id="925">925</th><td><u>   : sizeof (TG_ARG) == sizeof (double)		\</u>&nbsp</td></tr>
+<tr><th id="926">926</th><td><u>   ? FUNC ARGS					\</u>&nbsp</td></tr>
+<tr><th id="927">927</th><td><u>   : FUNC ## l ARGS)</u>&nbsp</td></tr>
+<tr><th id="928">928</th><td><u>#<span data-ppcond="875">endif</span></u>&nbsp</td></tr>
+<tr><th id="929">929</th><td>&nbsp</td></tr>
+<tr><th id="930">930</th><td><i>/* ISO C99 defines some generic macros which work on any data type.  */</i>&nbsp</td></tr>
+<tr><th id="931">931</th><td><u>#<span data-ppcond="931">ifdef</span> <a class="macro" href="features.h.html#371" data-ref="_M/__USE_ISOC99">__USE_ISOC99</a></u>&nbsp</td></tr>
+<tr><th id="932">932</th><td>&nbsp</td></tr>
+<tr><th id="933">933</th><td><i>/* All floating-point numbers can be put in one of these categories.  */</i>&nbsp</td></tr>
+<tr><th id="934">934</th><td><b>enum</b>&nbsp</td></tr>
+<tr><th id="935">935</th><td>  {&nbsp</td></tr>
+<tr><th id="936">936</th><td>    <dfn class="enum" id="FP_NAN" title='FP_NAN' data-ref="FP_NAN">FP_NAN</dfn> =&nbsp</td></tr>
+<tr><th id="937">937</th><td><u># define <dfn class="macro" id="_M/FP_NAN" data-ref="_M/FP_NAN">FP_NAN</dfn> 0</u>&nbsp</td></tr>
+<tr><th id="938">938</th><td>      <a class="macro" href="#937" title="0" data-ref="_M/FP_NAN">FP_NAN</a>,&nbsp</td></tr>
+<tr><th id="939">939</th><td>    <dfn class="enum" id="FP_INFINITE" title='FP_INFINITE' data-ref="FP_INFINITE">FP_INFINITE</dfn> =&nbsp</td></tr>
+<tr><th id="940">940</th><td><u># define <dfn class="macro" id="_M/FP_INFINITE" data-ref="_M/FP_INFINITE">FP_INFINITE</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="941">941</th><td>      <a class="macro" href="#940" title="1" data-ref="_M/FP_INFINITE">FP_INFINITE</a>,&nbsp</td></tr>
+<tr><th id="942">942</th><td>    <dfn class="enum" id="FP_ZERO" title='FP_ZERO' data-ref="FP_ZERO">FP_ZERO</dfn> =&nbsp</td></tr>
+<tr><th id="943">943</th><td><u># define <dfn class="macro" id="_M/FP_ZERO" data-ref="_M/FP_ZERO">FP_ZERO</dfn> 2</u>&nbsp</td></tr>
+<tr><th id="944">944</th><td>      <a class="macro" href="#943" title="2" data-ref="_M/FP_ZERO">FP_ZERO</a>,&nbsp</td></tr>
+<tr><th id="945">945</th><td>    <dfn class="enum" id="FP_SUBNORMAL" title='FP_SUBNORMAL' data-ref="FP_SUBNORMAL">FP_SUBNORMAL</dfn> =&nbsp</td></tr>
+<tr><th id="946">946</th><td><u># define <dfn class="macro" id="_M/FP_SUBNORMAL" data-ref="_M/FP_SUBNORMAL">FP_SUBNORMAL</dfn> 3</u>&nbsp</td></tr>
+<tr><th id="947">947</th><td>      <a class="macro" href="#946" title="3" data-ref="_M/FP_SUBNORMAL">FP_SUBNORMAL</a>,&nbsp</td></tr>
+<tr><th id="948">948</th><td>    <dfn class="enum" id="FP_NORMAL" title='FP_NORMAL' data-ref="FP_NORMAL">FP_NORMAL</dfn> =&nbsp</td></tr>
+<tr><th id="949">949</th><td><u># define <dfn class="macro" id="_M/FP_NORMAL" data-ref="_M/FP_NORMAL">FP_NORMAL</dfn> 4</u>&nbsp</td></tr>
+<tr><th id="950">950</th><td>      <a class="macro" href="#949" title="4" data-ref="_M/FP_NORMAL">FP_NORMAL</a>&nbsp</td></tr>
+<tr><th id="951">951</th><td>  };&nbsp</td></tr>
+<tr><th id="952">952</th><td>&nbsp</td></tr>
+<tr><th id="953">953</th><td><i>/* GCC bug 66462 means we cannot use the math builtins with -fsignaling-nan,</i>&nbsp</td></tr>
+<tr><th id="954">954</th><td><i>   so disable builtins if this is enabled.  When fixed in a newer GCC,</i>&nbsp</td></tr>
+<tr><th id="955">955</th><td><i>   the __SUPPORT_SNAN__ check may be skipped for those versions.  */</i>&nbsp</td></tr>
+<tr><th id="956">956</th><td>&nbsp</td></tr>
+<tr><th id="957">957</th><td><i>/* Return number of classification appropriate for X.  */</i>&nbsp</td></tr>
+<tr><th id="958">958</th><td><u># <span data-ppcond="958">if</span> ((<a class="macro" href="features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (4))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4,4) &amp;&amp; !defined <span class="macro" data-ref="_M/__SUPPORT_SNAN__">__SUPPORT_SNAN__</span>)		      \</u>&nbsp</td></tr>
+<tr><th id="959">959</th><td><u>      || <a class="macro" href="features.h.html#179" title="((14 &lt;&lt; 16) + 0 &gt;= ((2) &lt;&lt; 16) + (8))" data-ref="_M/__glibc_clang_prereq">__glibc_clang_prereq</a> (2,8))					      \</u>&nbsp</td></tr>
+<tr><th id="960">960</th><td><u>     &amp;&amp; (!defined <span class="macro" data-ref="_M/__OPTIMIZE_SIZE__">__OPTIMIZE_SIZE__</span> || defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span>)</u>&nbsp</td></tr>
+<tr><th id="961">961</th><td>     <i>/* The check for __cplusplus allows the use of the builtin, even</i>&nbsp</td></tr>
+<tr><th id="962">962</th><td><i>	when optimization for size is on.  This is provided for</i>&nbsp</td></tr>
+<tr><th id="963">963</th><td><i>	libstdc++, only to let its configure test work when it is built</i>&nbsp</td></tr>
+<tr><th id="964">964</th><td><i>	with -Os.  No further use of this definition of fpclassify is</i>&nbsp</td></tr>
+<tr><th id="965">965</th><td><i>	expected in C++ mode, since libstdc++ provides its own version</i>&nbsp</td></tr>
+<tr><th id="966">966</th><td><i>	of fpclassify in cmath (which undefines fpclassify).  */</i>&nbsp</td></tr>
+<tr><th id="967">967</th><td><u>#  define <dfn class="macro" id="_M/fpclassify" data-ref="_M/fpclassify">fpclassify</dfn>(x) __builtin_fpclassify (FP_NAN, FP_INFINITE,	      \</u>&nbsp</td></tr>
+<tr><th id="968">968</th><td><u>     FP_NORMAL, FP_SUBNORMAL, FP_ZERO, x)</u>&nbsp</td></tr>
+<tr><th id="969">969</th><td><u># <span data-ppcond="958">else</span></u>&nbsp</td></tr>
+<tr><th id="970">970</th><td><u>#  define fpclassify(x) __MATH_TG ((x), __fpclassify, (x))</u>&nbsp</td></tr>
+<tr><th id="971">971</th><td><u># <span data-ppcond="958">endif</span></u>&nbsp</td></tr>
+<tr><th id="972">972</th><td>&nbsp</td></tr>
+<tr><th id="973">973</th><td><i>/* Return nonzero value if sign of X is negative.  */</i>&nbsp</td></tr>
+<tr><th id="974">974</th><td><u># <span data-ppcond="974">if</span> <a class="macro" href="features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((6) &lt;&lt; 16) + (0))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (6,0) || <a class="macro" href="features.h.html#179" title="((14 &lt;&lt; 16) + 0 &gt;= ((3) &lt;&lt; 16) + (3))" data-ref="_M/__glibc_clang_prereq">__glibc_clang_prereq</a> (3,3)</u>&nbsp</td></tr>
+<tr><th id="975">975</th><td><u>#  define <dfn class="macro" id="_M/signbit" data-ref="_M/signbit">signbit</dfn>(x) __builtin_signbit (x)</u>&nbsp</td></tr>
+<tr><th id="976">976</th><td><u># <span data-ppcond="974">elif</span> defined __cplusplus</u>&nbsp</td></tr>
+<tr><th id="977">977</th><td>  <i>/* In C++ mode, __MATH_TG cannot be used, because it relies on</i>&nbsp</td></tr>
+<tr><th id="978">978</th><td><i>     __builtin_types_compatible_p, which is a C-only builtin.</i>&nbsp</td></tr>
+<tr><th id="979">979</th><td><i>     The check for __cplusplus allows the use of the builtin instead of</i>&nbsp</td></tr>
+<tr><th id="980">980</th><td><i>     __MATH_TG. This is provided for libstdc++, only to let its configure</i>&nbsp</td></tr>
+<tr><th id="981">981</th><td><i>     test work. No further use of this definition of signbit is expected</i>&nbsp</td></tr>
+<tr><th id="982">982</th><td><i>     in C++ mode, since libstdc++ provides its own version of signbit</i>&nbsp</td></tr>
+<tr><th id="983">983</th><td><i>     in cmath (which undefines signbit). */</i>&nbsp</td></tr>
+<tr><th id="984">984</th><td><u>#  define signbit(x) __builtin_signbitl (x)</u>&nbsp</td></tr>
+<tr><th id="985">985</th><td><u># elif __GNUC_PREREQ (4,0)</u>&nbsp</td></tr>
+<tr><th id="986">986</th><td><u>#  define signbit(x) __MATH_TG ((x), __builtin_signbit, (x))</u>&nbsp</td></tr>
+<tr><th id="987">987</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="988">988</th><td><u>#  define signbit(x) __MATH_TG ((x), __signbit, (x))</u>&nbsp</td></tr>
+<tr><th id="989">989</th><td><u># <span data-ppcond="974">endif</span></u>&nbsp</td></tr>
+<tr><th id="990">990</th><td>&nbsp</td></tr>
+<tr><th id="991">991</th><td><i>/* Return nonzero value if X is not +-Inf or NaN.  */</i>&nbsp</td></tr>
+<tr><th id="992">992</th><td><u># <span data-ppcond="992">if</span> (<a class="macro" href="features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (4))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4,4) &amp;&amp; !defined <span class="macro" data-ref="_M/__SUPPORT_SNAN__">__SUPPORT_SNAN__</span>) \</u>&nbsp</td></tr>
+<tr><th id="993">993</th><td><u>     || <a class="macro" href="features.h.html#179" title="((14 &lt;&lt; 16) + 0 &gt;= ((2) &lt;&lt; 16) + (8))" data-ref="_M/__glibc_clang_prereq">__glibc_clang_prereq</a> (2,8)</u>&nbsp</td></tr>
+<tr><th id="994">994</th><td><u>#  define <dfn class="macro" id="_M/isfinite" data-ref="_M/isfinite">isfinite</dfn>(x) __builtin_isfinite (x)</u>&nbsp</td></tr>
+<tr><th id="995">995</th><td><u># <span data-ppcond="992">else</span></u>&nbsp</td></tr>
+<tr><th id="996">996</th><td><u>#  define isfinite(x) __MATH_TG ((x), __finite, (x))</u>&nbsp</td></tr>
+<tr><th id="997">997</th><td><u># <span data-ppcond="992">endif</span></u>&nbsp</td></tr>
+<tr><th id="998">998</th><td>&nbsp</td></tr>
+<tr><th id="999">999</th><td><i>/* Return nonzero value if X is neither zero, subnormal, Inf, nor NaN.  */</i>&nbsp</td></tr>
+<tr><th id="1000">1000</th><td><u># <span data-ppcond="1000">if</span> (<a class="macro" href="features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (4))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4,4) &amp;&amp; !defined <span class="macro" data-ref="_M/__SUPPORT_SNAN__">__SUPPORT_SNAN__</span>) \</u>&nbsp</td></tr>
+<tr><th id="1001">1001</th><td><u>     || <a class="macro" href="features.h.html#179" title="((14 &lt;&lt; 16) + 0 &gt;= ((2) &lt;&lt; 16) + (8))" data-ref="_M/__glibc_clang_prereq">__glibc_clang_prereq</a> (2,8)</u>&nbsp</td></tr>
+<tr><th id="1002">1002</th><td><u>#  define <dfn class="macro" id="_M/isnormal" data-ref="_M/isnormal">isnormal</dfn>(x) __builtin_isnormal (x)</u>&nbsp</td></tr>
+<tr><th id="1003">1003</th><td><u># <span data-ppcond="1000">else</span></u>&nbsp</td></tr>
+<tr><th id="1004">1004</th><td><u>#  define isnormal(x) (fpclassify (x) == FP_NORMAL)</u>&nbsp</td></tr>
+<tr><th id="1005">1005</th><td><u># <span data-ppcond="1000">endif</span></u>&nbsp</td></tr>
+<tr><th id="1006">1006</th><td>&nbsp</td></tr>
+<tr><th id="1007">1007</th><td><i>/* Return nonzero value if X is a NaN.  We could use `fpclassify' but</i>&nbsp</td></tr>
+<tr><th id="1008">1008</th><td><i>   we already have this functions `__isnan' and it is faster.  */</i>&nbsp</td></tr>
+<tr><th id="1009">1009</th><td><u># <span data-ppcond="1009">if</span> (<a class="macro" href="features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (4))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4,4) &amp;&amp; !defined <span class="macro" data-ref="_M/__SUPPORT_SNAN__">__SUPPORT_SNAN__</span>) \</u>&nbsp</td></tr>
+<tr><th id="1010">1010</th><td><u>     || <a class="macro" href="features.h.html#179" title="((14 &lt;&lt; 16) + 0 &gt;= ((2) &lt;&lt; 16) + (8))" data-ref="_M/__glibc_clang_prereq">__glibc_clang_prereq</a> (2,8)</u>&nbsp</td></tr>
+<tr><th id="1011">1011</th><td><u>#  define <dfn class="macro" id="_M/isnan" data-ref="_M/isnan">isnan</dfn>(x) __builtin_isnan (x)</u>&nbsp</td></tr>
+<tr><th id="1012">1012</th><td><u># <span data-ppcond="1009">else</span></u>&nbsp</td></tr>
+<tr><th id="1013">1013</th><td><u>#  define isnan(x) __MATH_TG ((x), __isnan, (x))</u>&nbsp</td></tr>
+<tr><th id="1014">1014</th><td><u># <span data-ppcond="1009">endif</span></u>&nbsp</td></tr>
+<tr><th id="1015">1015</th><td>&nbsp</td></tr>
+<tr><th id="1016">1016</th><td><i>/* Return nonzero value if X is positive or negative infinity.  */</i>&nbsp</td></tr>
+<tr><th id="1017">1017</th><td><u># <span data-ppcond="1017">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#42" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT128">__HAVE_DISTINCT_FLOAT128</a> &amp;&amp; !<a class="macro" href="features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((7) &lt;&lt; 16) + (0))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (7,0) \</u>&nbsp</td></tr>
+<tr><th id="1018">1018</th><td><u>     &amp;&amp; !defined <span class="macro" data-ref="_M/__SUPPORT_SNAN__">__SUPPORT_SNAN__</span> &amp;&amp; !defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="1019">1019</th><td>   <i>/* Since __builtin_isinf_sign is broken for float128 before GCC 7.0,</i>&nbsp</td></tr>
+<tr><th id="1020">1020</th><td><i>      use the helper function, __isinff128, with older compilers.  This is</i>&nbsp</td></tr>
+<tr><th id="1021">1021</th><td><i>      only provided for C mode, because in C++ mode, GCC has no support</i>&nbsp</td></tr>
+<tr><th id="1022">1022</th><td><i>      for __builtin_types_compatible_p (and when in C++ mode, this macro is</i>&nbsp</td></tr>
+<tr><th id="1023">1023</th><td><i>      not used anyway, because libstdc++ headers undefine it).  */</i>&nbsp</td></tr>
+<tr><th id="1024">1024</th><td><u>#  define isinf(x) \</u>&nbsp</td></tr>
+<tr><th id="1025">1025</th><td><u>    (__builtin_types_compatible_p (__typeof (x), _Float128) \</u>&nbsp</td></tr>
+<tr><th id="1026">1026</th><td><u>     ? __isinff128 (x) : __builtin_isinf_sign (x))</u>&nbsp</td></tr>
+<tr><th id="1027">1027</th><td><u># <span data-ppcond="1017">elif</span> (<a class="macro" href="features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (4))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4,4) &amp;&amp; !defined <span class="macro" data-ref="_M/__SUPPORT_SNAN__">__SUPPORT_SNAN__</span>) \</u>&nbsp</td></tr>
+<tr><th id="1028">1028</th><td><u>       || <a class="macro" href="features.h.html#179" title="((14 &lt;&lt; 16) + 0 &gt;= ((3) &lt;&lt; 16) + (7))" data-ref="_M/__glibc_clang_prereq">__glibc_clang_prereq</a> (3,7)</u>&nbsp</td></tr>
+<tr><th id="1029">1029</th><td><u>#  define <dfn class="macro" id="_M/isinf" data-ref="_M/isinf">isinf</dfn>(x) __builtin_isinf_sign (x)</u>&nbsp</td></tr>
+<tr><th id="1030">1030</th><td><u># <span data-ppcond="1017">else</span></u>&nbsp</td></tr>
+<tr><th id="1031">1031</th><td><u>#  define isinf(x) __MATH_TG ((x), __isinf, (x))</u>&nbsp</td></tr>
+<tr><th id="1032">1032</th><td><u># <span data-ppcond="1017">endif</span></u>&nbsp</td></tr>
+<tr><th id="1033">1033</th><td>&nbsp</td></tr>
+<tr><th id="1034">1034</th><td><i>/* Bitmasks for the math_errhandling macro.  */</i>&nbsp</td></tr>
+<tr><th id="1035">1035</th><td><u># define <dfn class="macro" id="_M/MATH_ERRNO" data-ref="_M/MATH_ERRNO">MATH_ERRNO</dfn>	1	/* errno set by math functions.  */</u>&nbsp</td></tr>
+<tr><th id="1036">1036</th><td><u># define <dfn class="macro" id="_M/MATH_ERREXCEPT" data-ref="_M/MATH_ERREXCEPT">MATH_ERREXCEPT</dfn>	2	/* Exceptions raised by math functions.  */</u>&nbsp</td></tr>
+<tr><th id="1037">1037</th><td>&nbsp</td></tr>
+<tr><th id="1038">1038</th><td><i>/* By default all math functions support both errno and exception handling</i>&nbsp</td></tr>
+<tr><th id="1039">1039</th><td><i>   (except for soft floating point implementations which may only support</i>&nbsp</td></tr>
+<tr><th id="1040">1040</th><td><i>   errno handling).  If errno handling is disabled, exceptions are still</i>&nbsp</td></tr>
+<tr><th id="1041">1041</th><td><i>   supported by GLIBC.  Set math_errhandling to 0 with -ffast-math (this is</i>&nbsp</td></tr>
+<tr><th id="1042">1042</th><td><i>   nonconforming but it is more useful than leaving it undefined).  */</i>&nbsp</td></tr>
+<tr><th id="1043">1043</th><td><u># <span data-ppcond="1043">ifdef</span> <span class="macro" data-ref="_M/__FAST_MATH__">__FAST_MATH__</span></u>&nbsp</td></tr>
+<tr><th id="1044">1044</th><td><u>#  define math_errhandling	0</u>&nbsp</td></tr>
+<tr><th id="1045">1045</th><td><u># <span data-ppcond="1043">elif</span> defined <span class="macro" data-ref="_M/__NO_MATH_ERRNO__">__NO_MATH_ERRNO__</span></u>&nbsp</td></tr>
+<tr><th id="1046">1046</th><td><u>#  define math_errhandling	(MATH_ERREXCEPT)</u>&nbsp</td></tr>
+<tr><th id="1047">1047</th><td><u># <span data-ppcond="1043">else</span></u>&nbsp</td></tr>
+<tr><th id="1048">1048</th><td><u>#  define <dfn class="macro" id="_M/math_errhandling" data-ref="_M/math_errhandling">math_errhandling</dfn>	(MATH_ERRNO | MATH_ERREXCEPT)</u>&nbsp</td></tr>
+<tr><th id="1049">1049</th><td><u># <span data-ppcond="1043">endif</span></u>&nbsp</td></tr>
+<tr><th id="1050">1050</th><td>&nbsp</td></tr>
+<tr><th id="1051">1051</th><td><u>#<span data-ppcond="931">endif</span> /* Use ISO C99.  */</u>&nbsp</td></tr>
+<tr><th id="1052">1052</th><td>&nbsp</td></tr>
+<tr><th id="1053">1053</th><td><u>#<span data-ppcond="1053">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_BFP_EXT_C2X)</u>&nbsp</td></tr>
+<tr><th id="1054">1054</th><td><u># include &lt;bits/iscanonical.h&gt;</u>&nbsp</td></tr>
+<tr><th id="1055">1055</th><td>&nbsp</td></tr>
+<tr><th id="1056">1056</th><td><i>/* Return nonzero value if X is a signaling NaN.  */</i>&nbsp</td></tr>
+<tr><th id="1057">1057</th><td><u># <span data-ppcond="1057">ifndef</span> <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="1058">1058</th><td><u>#  define issignaling(x) __MATH_TG ((x), __issignaling, (x))</u>&nbsp</td></tr>
+<tr><th id="1059">1059</th><td><u># <span data-ppcond="1057">else</span></u>&nbsp</td></tr>
+<tr><th id="1060">1060</th><td>   <i>/* In C++ mode, __MATH_TG cannot be used, because it relies on</i>&nbsp</td></tr>
+<tr><th id="1061">1061</th><td><i>      __builtin_types_compatible_p, which is a C-only builtin.  On the</i>&nbsp</td></tr>
+<tr><th id="1062">1062</th><td><i>      other hand, overloading provides the means to distinguish between</i>&nbsp</td></tr>
+<tr><th id="1063">1063</th><td><i>      the floating-point types.  The overloading resolution will match</i>&nbsp</td></tr>
+<tr><th id="1064">1064</th><td><i>      the correct parameter (regardless of type qualifiers (i.e.: const</i>&nbsp</td></tr>
+<tr><th id="1065">1065</th><td><i>      and volatile)).  */</i>&nbsp</td></tr>
+<tr><th id="1066">1066</th><td><b>extern</b> <q>"C++"</q> {&nbsp</td></tr>
+<tr><th id="1067">1067</th><td><b>inline</b> <em>int</em> <dfn class="decl def fn" id="_Z11issignalingf" title='issignaling' data-ref="_Z11issignalingf">issignaling</dfn> (<em>float</em> <dfn class="local col5 decl" id="2245__val" title='__val' data-type='float' data-ref="2245__val">__val</dfn>) { <b>return</b> <a class="ref fn" href="x86_64-linux-gnu/bits/mathcalls-helper-functions.h.html#44" title='__issignalingf' data-ref="__issignalingf">__issignalingf</a> (<span class='inlayHint'>value:&nbsp;</span><a class="local col5 ref" href="#2245__val" title='__val' data-ref="2245__val">__val</a>); }&nbsp</td></tr>
+<tr><th id="1068">1068</th><td><b>inline</b> <em>int</em> <dfn class="decl def fn" id="_Z11issignalingd" title='issignaling' data-ref="_Z11issignalingd">issignaling</dfn> (<em>double</em> <dfn class="local col6 decl" id="2246__val" title='__val' data-type='double' data-ref="2246__val">__val</dfn>) { <b>return</b> <a class="ref fn" href="x86_64-linux-gnu/bits/mathcalls-helper-functions.h.html#44" title='__issignaling' data-ref="__issignaling">__issignaling</a> (<span class='inlayHint'>value:&nbsp;</span><a class="local col6 ref" href="#2246__val" title='__val' data-ref="2246__val">__val</a>); }&nbsp</td></tr>
+<tr><th id="1069">1069</th><td><b>inline</b> <em>int</em>&nbsp</td></tr>
+<tr><th id="1070">1070</th><td><dfn class="decl def fn" id="_Z11issignalinge" title='issignaling' data-ref="_Z11issignalinge">issignaling</dfn> (<em>long</em> <em>double</em> <dfn class="local col7 decl" id="2247__val" title='__val' data-type='long double' data-ref="2247__val">__val</dfn>)&nbsp</td></tr>
+<tr><th id="1071">1071</th><td>{&nbsp</td></tr>
+<tr><th id="1072">1072</th><td><u>#  <span data-ppcond="1072">ifdef</span> <span class="macro" data-ref="_M/__NO_LONG_DOUBLE_MATH">__NO_LONG_DOUBLE_MATH</span></u>&nbsp</td></tr>
+<tr><th id="1073">1073</th><td>  <b>return</b> __issignaling (__val);&nbsp</td></tr>
+<tr><th id="1074">1074</th><td><u>#  <span data-ppcond="1072">else</span></u>&nbsp</td></tr>
+<tr><th id="1075">1075</th><td>  <b>return</b> <a class="ref fn" href="x86_64-linux-gnu/bits/mathcalls-helper-functions.h.html#44" title='__issignalingl' data-ref="__issignalingl">__issignalingl</a> (<span class='inlayHint'>value:&nbsp;</span><a class="local col7 ref" href="#2247__val" title='__val' data-ref="2247__val">__val</a>);&nbsp</td></tr>
+<tr><th id="1076">1076</th><td><u>#  <span data-ppcond="1072">endif</span></u>&nbsp</td></tr>
+<tr><th id="1077">1077</th><td>}&nbsp</td></tr>
+<tr><th id="1078">1078</th><td><u>#  <span data-ppcond="1078">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#63" title="(0 &amp;&amp; 64 != 113)" data-ref="_M/__HAVE_FLOAT128_UNLIKE_LDBL">__HAVE_FLOAT128_UNLIKE_LDBL</a></u>&nbsp</td></tr>
+<tr><th id="1079">1079</th><td><i>/* When using an IEEE 128-bit long double, _Float128 is defined as long double</i>&nbsp</td></tr>
+<tr><th id="1080">1080</th><td><i>   in C++.  */</i>&nbsp</td></tr>
+<tr><th id="1081">1081</th><td><b>inline</b> <em>int</em> issignaling (_Float128 __val) { <b>return</b> __issignalingf128 (__val); }&nbsp</td></tr>
+<tr><th id="1082">1082</th><td><u>#  <span data-ppcond="1078">endif</span></u>&nbsp</td></tr>
+<tr><th id="1083">1083</th><td>} <i>/* extern C++ */</i>&nbsp</td></tr>
+<tr><th id="1084">1084</th><td><u># <span data-ppcond="1057">endif</span></u>&nbsp</td></tr>
+<tr><th id="1085">1085</th><td>&nbsp</td></tr>
+<tr><th id="1086">1086</th><td><i>/* Return nonzero value if X is subnormal.  */</i>&nbsp</td></tr>
+<tr><th id="1087">1087</th><td><u># define <dfn class="macro" id="_M/issubnormal" data-ref="_M/issubnormal">issubnormal</dfn>(x) (fpclassify (x) == FP_SUBNORMAL)</u>&nbsp</td></tr>
+<tr><th id="1088">1088</th><td>&nbsp</td></tr>
+<tr><th id="1089">1089</th><td><i>/* Return nonzero value if X is zero.  */</i>&nbsp</td></tr>
+<tr><th id="1090">1090</th><td><u># <span data-ppcond="1090">ifndef</span> <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="1091">1091</th><td><u>#  ifdef __SUPPORT_SNAN__</u>&nbsp</td></tr>
+<tr><th id="1092">1092</th><td><u>#   define iszero(x) (fpclassify (x) == FP_ZERO)</u>&nbsp</td></tr>
+<tr><th id="1093">1093</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="1094">1094</th><td><u>#   define iszero(x) (((__typeof (x)) (x)) == 0)</u>&nbsp</td></tr>
+<tr><th id="1095">1095</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="1096">1096</th><td><u># <span data-ppcond="1090">else</span>	/* __cplusplus */</u>&nbsp</td></tr>
+<tr><th id="1097">1097</th><td><b>extern</b> <q>"C++"</q> {&nbsp</td></tr>
+<tr><th id="1098">1098</th><td><u>#  <span data-ppcond="1098">ifdef</span> <span class="macro" data-ref="_M/__SUPPORT_SNAN__">__SUPPORT_SNAN__</span></u>&nbsp</td></tr>
+<tr><th id="1099">1099</th><td><b>inline</b> <em>int</em>&nbsp</td></tr>
+<tr><th id="1100">1100</th><td>iszero (<em>float</em> __val)&nbsp</td></tr>
+<tr><th id="1101">1101</th><td>{&nbsp</td></tr>
+<tr><th id="1102">1102</th><td>  <b>return</b> __fpclassifyf (__val) == FP_ZERO;&nbsp</td></tr>
+<tr><th id="1103">1103</th><td>}&nbsp</td></tr>
+<tr><th id="1104">1104</th><td><b>inline</b> <em>int</em>&nbsp</td></tr>
+<tr><th id="1105">1105</th><td>iszero (<em>double</em> __val)&nbsp</td></tr>
+<tr><th id="1106">1106</th><td>{&nbsp</td></tr>
+<tr><th id="1107">1107</th><td>  <b>return</b> __fpclassify (__val) == FP_ZERO;&nbsp</td></tr>
+<tr><th id="1108">1108</th><td>}&nbsp</td></tr>
+<tr><th id="1109">1109</th><td><b>inline</b> <em>int</em>&nbsp</td></tr>
+<tr><th id="1110">1110</th><td>iszero (<em>long</em> <em>double</em> __val)&nbsp</td></tr>
+<tr><th id="1111">1111</th><td>{&nbsp</td></tr>
+<tr><th id="1112">1112</th><td><u>#   ifdef __NO_LONG_DOUBLE_MATH</u>&nbsp</td></tr>
+<tr><th id="1113">1113</th><td>  <b>return</b> __fpclassify (__val) == FP_ZERO;&nbsp</td></tr>
+<tr><th id="1114">1114</th><td><u>#   else</u>&nbsp</td></tr>
+<tr><th id="1115">1115</th><td>  <b>return</b> __fpclassifyl (__val) == FP_ZERO;&nbsp</td></tr>
+<tr><th id="1116">1116</th><td><u>#   endif</u>&nbsp</td></tr>
+<tr><th id="1117">1117</th><td>}&nbsp</td></tr>
+<tr><th id="1118">1118</th><td><u>#   if __HAVE_FLOAT128_UNLIKE_LDBL</u>&nbsp</td></tr>
+<tr><th id="1119">1119</th><td>  <i>/* When using an IEEE 128-bit long double, _Float128 is defined as long double</i>&nbsp</td></tr>
+<tr><th id="1120">1120</th><td><i>     in C++.  */</i>&nbsp</td></tr>
+<tr><th id="1121">1121</th><td><b>inline</b> <em>int</em>&nbsp</td></tr>
+<tr><th id="1122">1122</th><td>iszero (_Float128 __val)&nbsp</td></tr>
+<tr><th id="1123">1123</th><td>{&nbsp</td></tr>
+<tr><th id="1124">1124</th><td>  <b>return</b> __fpclassifyf128 (__val) == FP_ZERO;&nbsp</td></tr>
+<tr><th id="1125">1125</th><td>}&nbsp</td></tr>
+<tr><th id="1126">1126</th><td><u>#   endif</u>&nbsp</td></tr>
+<tr><th id="1127">1127</th><td><u>#  <span data-ppcond="1098">else</span></u>&nbsp</td></tr>
+<tr><th id="1128">1128</th><td><b>template</b> &lt;<b>class</b> __T&gt; <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="1129">1129</th><td><dfn class="decl def fn" id="_Z6iszeroT_" title='iszero' data-ref="_Z6iszeroT_">iszero</dfn> (__T <dfn class="local col8 decl" id="2248__val" title='__val' data-type='__T' data-ref="2248__val">__val</dfn>)&nbsp</td></tr>
+<tr><th id="1130">1130</th><td>{&nbsp</td></tr>
+<tr><th id="1131">1131</th><td>  <b>return</b> <a class="local col8 ref" href="#2248__val" title='__val' data-ref="2248__val">__val</a> == <var>0</var>;&nbsp</td></tr>
+<tr><th id="1132">1132</th><td>}&nbsp</td></tr>
+<tr><th id="1133">1133</th><td><u>#  <span data-ppcond="1098">endif</span></u>&nbsp</td></tr>
+<tr><th id="1134">1134</th><td>} <i>/* extern C++ */</i>&nbsp</td></tr>
+<tr><th id="1135">1135</th><td><u># <span data-ppcond="1090">endif</span>	/* __cplusplus */</u>&nbsp</td></tr>
+<tr><th id="1136">1136</th><td><u>#<span data-ppcond="1053">endif</span> /* Use IEC_60559_BFP_EXT.  */</u>&nbsp</td></tr>
+<tr><th id="1137">1137</th><td>&nbsp</td></tr>
+<tr><th id="1138">1138</th><td><u>#<span data-ppcond="1138">ifdef</span> <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a></u>&nbsp</td></tr>
+<tr><th id="1139">1139</th><td><i>/* X/Open wants another strange constant.  */</i>&nbsp</td></tr>
+<tr><th id="1140">1140</th><td><u># define <dfn class="macro" id="_M/MAXFLOAT" data-ref="_M/MAXFLOAT">MAXFLOAT</dfn>	3.40282347e+38F</u>&nbsp</td></tr>
+<tr><th id="1141">1141</th><td><u>#<span data-ppcond="1138">endif</span></u>&nbsp</td></tr>
+<tr><th id="1142">1142</th><td>&nbsp</td></tr>
+<tr><th id="1143">1143</th><td>&nbsp</td></tr>
+<tr><th id="1144">1144</th><td><i>/* Some useful constants.  */</i>&nbsp</td></tr>
+<tr><th id="1145">1145</th><td><u>#<span data-ppcond="1145">if</span> defined <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> || defined <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a></u>&nbsp</td></tr>
+<tr><th id="1146">1146</th><td><u># define <dfn class="macro" id="_M/M_E" data-ref="_M/M_E">M_E</dfn>		2.7182818284590452354	/* e */</u>&nbsp</td></tr>
+<tr><th id="1147">1147</th><td><u># define <dfn class="macro" id="_M/M_LOG2E" data-ref="_M/M_LOG2E">M_LOG2E</dfn>	1.4426950408889634074	/* log_2 e */</u>&nbsp</td></tr>
+<tr><th id="1148">1148</th><td><u># define <dfn class="macro" id="_M/M_LOG10E" data-ref="_M/M_LOG10E">M_LOG10E</dfn>	0.43429448190325182765	/* log_10 e */</u>&nbsp</td></tr>
+<tr><th id="1149">1149</th><td><u># define <dfn class="macro" id="_M/M_LN2" data-ref="_M/M_LN2">M_LN2</dfn>		0.69314718055994530942	/* log_e 2 */</u>&nbsp</td></tr>
+<tr><th id="1150">1150</th><td><u># define <dfn class="macro" id="_M/M_LN10" data-ref="_M/M_LN10">M_LN10</dfn>		2.30258509299404568402	/* log_e 10 */</u>&nbsp</td></tr>
+<tr><th id="1151">1151</th><td><u># define <dfn class="macro" id="_M/M_PI" data-ref="_M/M_PI">M_PI</dfn>		3.14159265358979323846	/* pi */</u>&nbsp</td></tr>
+<tr><th id="1152">1152</th><td><u># define <dfn class="macro" id="_M/M_PI_2" data-ref="_M/M_PI_2">M_PI_2</dfn>		1.57079632679489661923	/* pi/2 */</u>&nbsp</td></tr>
+<tr><th id="1153">1153</th><td><u># define <dfn class="macro" id="_M/M_PI_4" data-ref="_M/M_PI_4">M_PI_4</dfn>		0.78539816339744830962	/* pi/4 */</u>&nbsp</td></tr>
+<tr><th id="1154">1154</th><td><u># define <dfn class="macro" id="_M/M_1_PI" data-ref="_M/M_1_PI">M_1_PI</dfn>		0.31830988618379067154	/* 1/pi */</u>&nbsp</td></tr>
+<tr><th id="1155">1155</th><td><u># define <dfn class="macro" id="_M/M_2_PI" data-ref="_M/M_2_PI">M_2_PI</dfn>		0.63661977236758134308	/* 2/pi */</u>&nbsp</td></tr>
+<tr><th id="1156">1156</th><td><u># define <dfn class="macro" id="_M/M_2_SQRTPI" data-ref="_M/M_2_SQRTPI">M_2_SQRTPI</dfn>	1.12837916709551257390	/* 2/sqrt(pi) */</u>&nbsp</td></tr>
+<tr><th id="1157">1157</th><td><u># define <dfn class="macro" id="_M/M_SQRT2" data-ref="_M/M_SQRT2">M_SQRT2</dfn>	1.41421356237309504880	/* sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1158">1158</th><td><u># define <dfn class="macro" id="_M/M_SQRT1_2" data-ref="_M/M_SQRT1_2">M_SQRT1_2</dfn>	0.70710678118654752440	/* 1/sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1159">1159</th><td><u>#<span data-ppcond="1145">endif</span></u>&nbsp</td></tr>
+<tr><th id="1160">1160</th><td>&nbsp</td></tr>
+<tr><th id="1161">1161</th><td><i>/* GNU extension to provide float constants with similar names.  */</i>&nbsp</td></tr>
+<tr><th id="1162">1162</th><td><u>#<span data-ppcond="1162">ifdef</span> <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="1163">1163</th><td><u># define <dfn class="macro" id="_M/M_Ef" data-ref="_M/M_Ef">M_Ef</dfn>		2.7182818284590452354f	/* e */</u>&nbsp</td></tr>
+<tr><th id="1164">1164</th><td><u># define <dfn class="macro" id="_M/M_LOG2Ef" data-ref="_M/M_LOG2Ef">M_LOG2Ef</dfn>	1.4426950408889634074f	/* log_2 e */</u>&nbsp</td></tr>
+<tr><th id="1165">1165</th><td><u># define <dfn class="macro" id="_M/M_LOG10Ef" data-ref="_M/M_LOG10Ef">M_LOG10Ef</dfn>	0.43429448190325182765f	/* log_10 e */</u>&nbsp</td></tr>
+<tr><th id="1166">1166</th><td><u># define <dfn class="macro" id="_M/M_LN2f" data-ref="_M/M_LN2f">M_LN2f</dfn>		0.69314718055994530942f	/* log_e 2 */</u>&nbsp</td></tr>
+<tr><th id="1167">1167</th><td><u># define <dfn class="macro" id="_M/M_LN10f" data-ref="_M/M_LN10f">M_LN10f</dfn>	2.30258509299404568402f	/* log_e 10 */</u>&nbsp</td></tr>
+<tr><th id="1168">1168</th><td><u># define <dfn class="macro" id="_M/M_PIf" data-ref="_M/M_PIf">M_PIf</dfn>		3.14159265358979323846f	/* pi */</u>&nbsp</td></tr>
+<tr><th id="1169">1169</th><td><u># define <dfn class="macro" id="_M/M_PI_2f" data-ref="_M/M_PI_2f">M_PI_2f</dfn>	1.57079632679489661923f	/* pi/2 */</u>&nbsp</td></tr>
+<tr><th id="1170">1170</th><td><u># define <dfn class="macro" id="_M/M_PI_4f" data-ref="_M/M_PI_4f">M_PI_4f</dfn>	0.78539816339744830962f	/* pi/4 */</u>&nbsp</td></tr>
+<tr><th id="1171">1171</th><td><u># define <dfn class="macro" id="_M/M_1_PIf" data-ref="_M/M_1_PIf">M_1_PIf</dfn>	0.31830988618379067154f	/* 1/pi */</u>&nbsp</td></tr>
+<tr><th id="1172">1172</th><td><u># define <dfn class="macro" id="_M/M_2_PIf" data-ref="_M/M_2_PIf">M_2_PIf</dfn>	0.63661977236758134308f	/* 2/pi */</u>&nbsp</td></tr>
+<tr><th id="1173">1173</th><td><u># define <dfn class="macro" id="_M/M_2_SQRTPIf" data-ref="_M/M_2_SQRTPIf">M_2_SQRTPIf</dfn>	1.12837916709551257390f	/* 2/sqrt(pi) */</u>&nbsp</td></tr>
+<tr><th id="1174">1174</th><td><u># define <dfn class="macro" id="_M/M_SQRT2f" data-ref="_M/M_SQRT2f">M_SQRT2f</dfn>	1.41421356237309504880f	/* sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1175">1175</th><td><u># define <dfn class="macro" id="_M/M_SQRT1_2f" data-ref="_M/M_SQRT1_2f">M_SQRT1_2f</dfn>	0.70710678118654752440f	/* 1/sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1176">1176</th><td><u>#<span data-ppcond="1162">endif</span></u>&nbsp</td></tr>
+<tr><th id="1177">1177</th><td>&nbsp</td></tr>
+<tr><th id="1178">1178</th><td><i>/* The above constants are not adequate for computation using `long double's.</i>&nbsp</td></tr>
+<tr><th id="1179">1179</th><td><i>   Therefore we provide as an extension constants with similar names as a</i>&nbsp</td></tr>
+<tr><th id="1180">1180</th><td><i>   GNU extension.  Provide enough digits for the 128-bit IEEE quad.  */</i>&nbsp</td></tr>
+<tr><th id="1181">1181</th><td><u>#<span data-ppcond="1181">ifdef</span> <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="1182">1182</th><td><u># define <dfn class="macro" id="_M/M_El" data-ref="_M/M_El">M_El</dfn>		2.718281828459045235360287471352662498L /* e */</u>&nbsp</td></tr>
+<tr><th id="1183">1183</th><td><u># define <dfn class="macro" id="_M/M_LOG2El" data-ref="_M/M_LOG2El">M_LOG2El</dfn>	1.442695040888963407359924681001892137L /* log_2 e */</u>&nbsp</td></tr>
+<tr><th id="1184">1184</th><td><u># define <dfn class="macro" id="_M/M_LOG10El" data-ref="_M/M_LOG10El">M_LOG10El</dfn>	0.434294481903251827651128918916605082L /* log_10 e */</u>&nbsp</td></tr>
+<tr><th id="1185">1185</th><td><u># define <dfn class="macro" id="_M/M_LN2l" data-ref="_M/M_LN2l">M_LN2l</dfn>		0.693147180559945309417232121458176568L /* log_e 2 */</u>&nbsp</td></tr>
+<tr><th id="1186">1186</th><td><u># define <dfn class="macro" id="_M/M_LN10l" data-ref="_M/M_LN10l">M_LN10l</dfn>	2.302585092994045684017991454684364208L /* log_e 10 */</u>&nbsp</td></tr>
+<tr><th id="1187">1187</th><td><u># define <dfn class="macro" id="_M/M_PIl" data-ref="_M/M_PIl">M_PIl</dfn>		3.141592653589793238462643383279502884L /* pi */</u>&nbsp</td></tr>
+<tr><th id="1188">1188</th><td><u># define <dfn class="macro" id="_M/M_PI_2l" data-ref="_M/M_PI_2l">M_PI_2l</dfn>	1.570796326794896619231321691639751442L /* pi/2 */</u>&nbsp</td></tr>
+<tr><th id="1189">1189</th><td><u># define <dfn class="macro" id="_M/M_PI_4l" data-ref="_M/M_PI_4l">M_PI_4l</dfn>	0.785398163397448309615660845819875721L /* pi/4 */</u>&nbsp</td></tr>
+<tr><th id="1190">1190</th><td><u># define <dfn class="macro" id="_M/M_1_PIl" data-ref="_M/M_1_PIl">M_1_PIl</dfn>	0.318309886183790671537767526745028724L /* 1/pi */</u>&nbsp</td></tr>
+<tr><th id="1191">1191</th><td><u># define <dfn class="macro" id="_M/M_2_PIl" data-ref="_M/M_2_PIl">M_2_PIl</dfn>	0.636619772367581343075535053490057448L /* 2/pi */</u>&nbsp</td></tr>
+<tr><th id="1192">1192</th><td><u># define <dfn class="macro" id="_M/M_2_SQRTPIl" data-ref="_M/M_2_SQRTPIl">M_2_SQRTPIl</dfn>	1.128379167095512573896158903121545172L /* 2/sqrt(pi) */</u>&nbsp</td></tr>
+<tr><th id="1193">1193</th><td><u># define <dfn class="macro" id="_M/M_SQRT2l" data-ref="_M/M_SQRT2l">M_SQRT2l</dfn>	1.414213562373095048801688724209698079L /* sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1194">1194</th><td><u># define <dfn class="macro" id="_M/M_SQRT1_2l" data-ref="_M/M_SQRT1_2l">M_SQRT1_2l</dfn>	0.707106781186547524400844362104849039L /* 1/sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1195">1195</th><td><u>#<span data-ppcond="1181">endif</span></u>&nbsp</td></tr>
+<tr><th id="1196">1196</th><td>&nbsp</td></tr>
+<tr><th id="1197">1197</th><td><u>#<span data-ppcond="1197">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT16">__HAVE_FLOAT16</a> &amp;&amp; defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="1198">1198</th><td><u># define M_Ef16		__f16 (2.718281828459045235360287471352662498) /* e */</u>&nbsp</td></tr>
+<tr><th id="1199">1199</th><td><u># define M_LOG2Ef16	__f16 (1.442695040888963407359924681001892137) /* log_2 e */</u>&nbsp</td></tr>
+<tr><th id="1200">1200</th><td><u># define M_LOG10Ef16	__f16 (0.434294481903251827651128918916605082) /* log_10 e */</u>&nbsp</td></tr>
+<tr><th id="1201">1201</th><td><u># define M_LN2f16	__f16 (0.693147180559945309417232121458176568) /* log_e 2 */</u>&nbsp</td></tr>
+<tr><th id="1202">1202</th><td><u># define M_LN10f16	__f16 (2.302585092994045684017991454684364208) /* log_e 10 */</u>&nbsp</td></tr>
+<tr><th id="1203">1203</th><td><u># define M_PIf16	__f16 (3.141592653589793238462643383279502884) /* pi */</u>&nbsp</td></tr>
+<tr><th id="1204">1204</th><td><u># define M_PI_2f16	__f16 (1.570796326794896619231321691639751442) /* pi/2 */</u>&nbsp</td></tr>
+<tr><th id="1205">1205</th><td><u># define M_PI_4f16	__f16 (0.785398163397448309615660845819875721) /* pi/4 */</u>&nbsp</td></tr>
+<tr><th id="1206">1206</th><td><u># define M_1_PIf16	__f16 (0.318309886183790671537767526745028724) /* 1/pi */</u>&nbsp</td></tr>
+<tr><th id="1207">1207</th><td><u># define M_2_PIf16	__f16 (0.636619772367581343075535053490057448) /* 2/pi */</u>&nbsp</td></tr>
+<tr><th id="1208">1208</th><td><u># define M_2_SQRTPIf16	__f16 (1.128379167095512573896158903121545172) /* 2/sqrt(pi) */</u>&nbsp</td></tr>
+<tr><th id="1209">1209</th><td><u># define M_SQRT2f16	__f16 (1.414213562373095048801688724209698079) /* sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1210">1210</th><td><u># define M_SQRT1_2f16	__f16 (0.707106781186547524400844362104849039) /* 1/sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1211">1211</th><td><u>#<span data-ppcond="1197">endif</span></u>&nbsp</td></tr>
+<tr><th id="1212">1212</th><td>&nbsp</td></tr>
+<tr><th id="1213">1213</th><td><u>#<span data-ppcond="1213">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#35" title="1" data-ref="_M/__HAVE_FLOAT32">__HAVE_FLOAT32</a> &amp;&amp; defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="1214">1214</th><td><u># define <dfn class="macro" id="_M/M_Ef32" data-ref="_M/M_Ef32">M_Ef32</dfn>		__f32 (2.718281828459045235360287471352662498) /* e */</u>&nbsp</td></tr>
+<tr><th id="1215">1215</th><td><u># define <dfn class="macro" id="_M/M_LOG2Ef32" data-ref="_M/M_LOG2Ef32">M_LOG2Ef32</dfn>	__f32 (1.442695040888963407359924681001892137) /* log_2 e */</u>&nbsp</td></tr>
+<tr><th id="1216">1216</th><td><u># define <dfn class="macro" id="_M/M_LOG10Ef32" data-ref="_M/M_LOG10Ef32">M_LOG10Ef32</dfn>	__f32 (0.434294481903251827651128918916605082) /* log_10 e */</u>&nbsp</td></tr>
+<tr><th id="1217">1217</th><td><u># define <dfn class="macro" id="_M/M_LN2f32" data-ref="_M/M_LN2f32">M_LN2f32</dfn>	__f32 (0.693147180559945309417232121458176568) /* log_e 2 */</u>&nbsp</td></tr>
+<tr><th id="1218">1218</th><td><u># define <dfn class="macro" id="_M/M_LN10f32" data-ref="_M/M_LN10f32">M_LN10f32</dfn>	__f32 (2.302585092994045684017991454684364208) /* log_e 10 */</u>&nbsp</td></tr>
+<tr><th id="1219">1219</th><td><u># define <dfn class="macro" id="_M/M_PIf32" data-ref="_M/M_PIf32">M_PIf32</dfn>	__f32 (3.141592653589793238462643383279502884) /* pi */</u>&nbsp</td></tr>
+<tr><th id="1220">1220</th><td><u># define <dfn class="macro" id="_M/M_PI_2f32" data-ref="_M/M_PI_2f32">M_PI_2f32</dfn>	__f32 (1.570796326794896619231321691639751442) /* pi/2 */</u>&nbsp</td></tr>
+<tr><th id="1221">1221</th><td><u># define <dfn class="macro" id="_M/M_PI_4f32" data-ref="_M/M_PI_4f32">M_PI_4f32</dfn>	__f32 (0.785398163397448309615660845819875721) /* pi/4 */</u>&nbsp</td></tr>
+<tr><th id="1222">1222</th><td><u># define <dfn class="macro" id="_M/M_1_PIf32" data-ref="_M/M_1_PIf32">M_1_PIf32</dfn>	__f32 (0.318309886183790671537767526745028724) /* 1/pi */</u>&nbsp</td></tr>
+<tr><th id="1223">1223</th><td><u># define <dfn class="macro" id="_M/M_2_PIf32" data-ref="_M/M_2_PIf32">M_2_PIf32</dfn>	__f32 (0.636619772367581343075535053490057448) /* 2/pi */</u>&nbsp</td></tr>
+<tr><th id="1224">1224</th><td><u># define <dfn class="macro" id="_M/M_2_SQRTPIf32" data-ref="_M/M_2_SQRTPIf32">M_2_SQRTPIf32</dfn>	__f32 (1.128379167095512573896158903121545172) /* 2/sqrt(pi) */</u>&nbsp</td></tr>
+<tr><th id="1225">1225</th><td><u># define <dfn class="macro" id="_M/M_SQRT2f32" data-ref="_M/M_SQRT2f32">M_SQRT2f32</dfn>	__f32 (1.414213562373095048801688724209698079) /* sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1226">1226</th><td><u># define <dfn class="macro" id="_M/M_SQRT1_2f32" data-ref="_M/M_SQRT1_2f32">M_SQRT1_2f32</dfn>	__f32 (0.707106781186547524400844362104849039) /* 1/sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1227">1227</th><td><u>#<span data-ppcond="1213">endif</span></u>&nbsp</td></tr>
+<tr><th id="1228">1228</th><td>&nbsp</td></tr>
+<tr><th id="1229">1229</th><td><u>#<span data-ppcond="1229">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#36" title="1" data-ref="_M/__HAVE_FLOAT64">__HAVE_FLOAT64</a> &amp;&amp; defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="1230">1230</th><td><u># define <dfn class="macro" id="_M/M_Ef64" data-ref="_M/M_Ef64">M_Ef64</dfn>		__f64 (2.718281828459045235360287471352662498) /* e */</u>&nbsp</td></tr>
+<tr><th id="1231">1231</th><td><u># define <dfn class="macro" id="_M/M_LOG2Ef64" data-ref="_M/M_LOG2Ef64">M_LOG2Ef64</dfn>	__f64 (1.442695040888963407359924681001892137) /* log_2 e */</u>&nbsp</td></tr>
+<tr><th id="1232">1232</th><td><u># define <dfn class="macro" id="_M/M_LOG10Ef64" data-ref="_M/M_LOG10Ef64">M_LOG10Ef64</dfn>	__f64 (0.434294481903251827651128918916605082) /* log_10 e */</u>&nbsp</td></tr>
+<tr><th id="1233">1233</th><td><u># define <dfn class="macro" id="_M/M_LN2f64" data-ref="_M/M_LN2f64">M_LN2f64</dfn>	__f64 (0.693147180559945309417232121458176568) /* log_e 2 */</u>&nbsp</td></tr>
+<tr><th id="1234">1234</th><td><u># define <dfn class="macro" id="_M/M_LN10f64" data-ref="_M/M_LN10f64">M_LN10f64</dfn>	__f64 (2.302585092994045684017991454684364208) /* log_e 10 */</u>&nbsp</td></tr>
+<tr><th id="1235">1235</th><td><u># define <dfn class="macro" id="_M/M_PIf64" data-ref="_M/M_PIf64">M_PIf64</dfn>	__f64 (3.141592653589793238462643383279502884) /* pi */</u>&nbsp</td></tr>
+<tr><th id="1236">1236</th><td><u># define <dfn class="macro" id="_M/M_PI_2f64" data-ref="_M/M_PI_2f64">M_PI_2f64</dfn>	__f64 (1.570796326794896619231321691639751442) /* pi/2 */</u>&nbsp</td></tr>
+<tr><th id="1237">1237</th><td><u># define <dfn class="macro" id="_M/M_PI_4f64" data-ref="_M/M_PI_4f64">M_PI_4f64</dfn>	__f64 (0.785398163397448309615660845819875721) /* pi/4 */</u>&nbsp</td></tr>
+<tr><th id="1238">1238</th><td><u># define <dfn class="macro" id="_M/M_1_PIf64" data-ref="_M/M_1_PIf64">M_1_PIf64</dfn>	__f64 (0.318309886183790671537767526745028724) /* 1/pi */</u>&nbsp</td></tr>
+<tr><th id="1239">1239</th><td><u># define <dfn class="macro" id="_M/M_2_PIf64" data-ref="_M/M_2_PIf64">M_2_PIf64</dfn>	__f64 (0.636619772367581343075535053490057448) /* 2/pi */</u>&nbsp</td></tr>
+<tr><th id="1240">1240</th><td><u># define <dfn class="macro" id="_M/M_2_SQRTPIf64" data-ref="_M/M_2_SQRTPIf64">M_2_SQRTPIf64</dfn>	__f64 (1.128379167095512573896158903121545172) /* 2/sqrt(pi) */</u>&nbsp</td></tr>
+<tr><th id="1241">1241</th><td><u># define <dfn class="macro" id="_M/M_SQRT2f64" data-ref="_M/M_SQRT2f64">M_SQRT2f64</dfn>	__f64 (1.414213562373095048801688724209698079) /* sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1242">1242</th><td><u># define <dfn class="macro" id="_M/M_SQRT1_2f64" data-ref="_M/M_SQRT1_2f64">M_SQRT1_2f64</dfn>	__f64 (0.707106781186547524400844362104849039) /* 1/sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1243">1243</th><td><u>#<span data-ppcond="1229">endif</span></u>&nbsp</td></tr>
+<tr><th id="1244">1244</th><td>&nbsp</td></tr>
+<tr><th id="1245">1245</th><td><u>#<span data-ppcond="1245">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#34" title="0" data-ref="_M/__HAVE_FLOAT128">__HAVE_FLOAT128</a> &amp;&amp; defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="1246">1246</th><td><u># define M_Ef128	__f128 (2.718281828459045235360287471352662498) /* e */</u>&nbsp</td></tr>
+<tr><th id="1247">1247</th><td><u># define M_LOG2Ef128	__f128 (1.442695040888963407359924681001892137) /* log_2 e */</u>&nbsp</td></tr>
+<tr><th id="1248">1248</th><td><u># define M_LOG10Ef128	__f128 (0.434294481903251827651128918916605082) /* log_10 e */</u>&nbsp</td></tr>
+<tr><th id="1249">1249</th><td><u># define M_LN2f128	__f128 (0.693147180559945309417232121458176568) /* log_e 2 */</u>&nbsp</td></tr>
+<tr><th id="1250">1250</th><td><u># define M_LN10f128	__f128 (2.302585092994045684017991454684364208) /* log_e 10 */</u>&nbsp</td></tr>
+<tr><th id="1251">1251</th><td><u># define M_PIf128	__f128 (3.141592653589793238462643383279502884) /* pi */</u>&nbsp</td></tr>
+<tr><th id="1252">1252</th><td><u># define M_PI_2f128	__f128 (1.570796326794896619231321691639751442) /* pi/2 */</u>&nbsp</td></tr>
+<tr><th id="1253">1253</th><td><u># define M_PI_4f128	__f128 (0.785398163397448309615660845819875721) /* pi/4 */</u>&nbsp</td></tr>
+<tr><th id="1254">1254</th><td><u># define M_1_PIf128	__f128 (0.318309886183790671537767526745028724) /* 1/pi */</u>&nbsp</td></tr>
+<tr><th id="1255">1255</th><td><u># define M_2_PIf128	__f128 (0.636619772367581343075535053490057448) /* 2/pi */</u>&nbsp</td></tr>
+<tr><th id="1256">1256</th><td><u># define M_2_SQRTPIf128	__f128 (1.128379167095512573896158903121545172) /* 2/sqrt(pi) */</u>&nbsp</td></tr>
+<tr><th id="1257">1257</th><td><u># define M_SQRT2f128	__f128 (1.414213562373095048801688724209698079) /* sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1258">1258</th><td><u># define M_SQRT1_2f128	__f128 (0.707106781186547524400844362104849039) /* 1/sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1259">1259</th><td><u>#<span data-ppcond="1245">endif</span></u>&nbsp</td></tr>
+<tr><th id="1260">1260</th><td>&nbsp</td></tr>
+<tr><th id="1261">1261</th><td><u>#<span data-ppcond="1261">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#37" title="1" data-ref="_M/__HAVE_FLOAT32X">__HAVE_FLOAT32X</a> &amp;&amp; defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="1262">1262</th><td><u># define <dfn class="macro" id="_M/M_Ef32x" data-ref="_M/M_Ef32x">M_Ef32x</dfn>	__f32x (2.718281828459045235360287471352662498) /* e */</u>&nbsp</td></tr>
+<tr><th id="1263">1263</th><td><u># define <dfn class="macro" id="_M/M_LOG2Ef32x" data-ref="_M/M_LOG2Ef32x">M_LOG2Ef32x</dfn>	__f32x (1.442695040888963407359924681001892137) /* log_2 e */</u>&nbsp</td></tr>
+<tr><th id="1264">1264</th><td><u># define <dfn class="macro" id="_M/M_LOG10Ef32x" data-ref="_M/M_LOG10Ef32x">M_LOG10Ef32x</dfn>	__f32x (0.434294481903251827651128918916605082) /* log_10 e */</u>&nbsp</td></tr>
+<tr><th id="1265">1265</th><td><u># define <dfn class="macro" id="_M/M_LN2f32x" data-ref="_M/M_LN2f32x">M_LN2f32x</dfn>	__f32x (0.693147180559945309417232121458176568) /* log_e 2 */</u>&nbsp</td></tr>
+<tr><th id="1266">1266</th><td><u># define <dfn class="macro" id="_M/M_LN10f32x" data-ref="_M/M_LN10f32x">M_LN10f32x</dfn>	__f32x (2.302585092994045684017991454684364208) /* log_e 10 */</u>&nbsp</td></tr>
+<tr><th id="1267">1267</th><td><u># define <dfn class="macro" id="_M/M_PIf32x" data-ref="_M/M_PIf32x">M_PIf32x</dfn>	__f32x (3.141592653589793238462643383279502884) /* pi */</u>&nbsp</td></tr>
+<tr><th id="1268">1268</th><td><u># define <dfn class="macro" id="_M/M_PI_2f32x" data-ref="_M/M_PI_2f32x">M_PI_2f32x</dfn>	__f32x (1.570796326794896619231321691639751442) /* pi/2 */</u>&nbsp</td></tr>
+<tr><th id="1269">1269</th><td><u># define <dfn class="macro" id="_M/M_PI_4f32x" data-ref="_M/M_PI_4f32x">M_PI_4f32x</dfn>	__f32x (0.785398163397448309615660845819875721) /* pi/4 */</u>&nbsp</td></tr>
+<tr><th id="1270">1270</th><td><u># define <dfn class="macro" id="_M/M_1_PIf32x" data-ref="_M/M_1_PIf32x">M_1_PIf32x</dfn>	__f32x (0.318309886183790671537767526745028724) /* 1/pi */</u>&nbsp</td></tr>
+<tr><th id="1271">1271</th><td><u># define <dfn class="macro" id="_M/M_2_PIf32x" data-ref="_M/M_2_PIf32x">M_2_PIf32x</dfn>	__f32x (0.636619772367581343075535053490057448) /* 2/pi */</u>&nbsp</td></tr>
+<tr><th id="1272">1272</th><td><u># define <dfn class="macro" id="_M/M_2_SQRTPIf32x" data-ref="_M/M_2_SQRTPIf32x">M_2_SQRTPIf32x</dfn>	__f32x (1.128379167095512573896158903121545172) /* 2/sqrt(pi) */</u>&nbsp</td></tr>
+<tr><th id="1273">1273</th><td><u># define <dfn class="macro" id="_M/M_SQRT2f32x" data-ref="_M/M_SQRT2f32x">M_SQRT2f32x</dfn>	__f32x (1.414213562373095048801688724209698079) /* sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1274">1274</th><td><u># define <dfn class="macro" id="_M/M_SQRT1_2f32x" data-ref="_M/M_SQRT1_2f32x">M_SQRT1_2f32x</dfn>	__f32x (0.707106781186547524400844362104849039) /* 1/sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1275">1275</th><td><u>#<span data-ppcond="1261">endif</span></u>&nbsp</td></tr>
+<tr><th id="1276">1276</th><td>&nbsp</td></tr>
+<tr><th id="1277">1277</th><td><u>#<span data-ppcond="1277">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn.h.html#48" title="1" data-ref="_M/__HAVE_FLOAT64X">__HAVE_FLOAT64X</a> &amp;&amp; defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="1278">1278</th><td><u># define <dfn class="macro" id="_M/M_Ef64x" data-ref="_M/M_Ef64x">M_Ef64x</dfn>	__f64x (2.718281828459045235360287471352662498) /* e */</u>&nbsp</td></tr>
+<tr><th id="1279">1279</th><td><u># define <dfn class="macro" id="_M/M_LOG2Ef64x" data-ref="_M/M_LOG2Ef64x">M_LOG2Ef64x</dfn>	__f64x (1.442695040888963407359924681001892137) /* log_2 e */</u>&nbsp</td></tr>
+<tr><th id="1280">1280</th><td><u># define <dfn class="macro" id="_M/M_LOG10Ef64x" data-ref="_M/M_LOG10Ef64x">M_LOG10Ef64x</dfn>	__f64x (0.434294481903251827651128918916605082) /* log_10 e */</u>&nbsp</td></tr>
+<tr><th id="1281">1281</th><td><u># define <dfn class="macro" id="_M/M_LN2f64x" data-ref="_M/M_LN2f64x">M_LN2f64x</dfn>	__f64x (0.693147180559945309417232121458176568) /* log_e 2 */</u>&nbsp</td></tr>
+<tr><th id="1282">1282</th><td><u># define <dfn class="macro" id="_M/M_LN10f64x" data-ref="_M/M_LN10f64x">M_LN10f64x</dfn>	__f64x (2.302585092994045684017991454684364208) /* log_e 10 */</u>&nbsp</td></tr>
+<tr><th id="1283">1283</th><td><u># define <dfn class="macro" id="_M/M_PIf64x" data-ref="_M/M_PIf64x">M_PIf64x</dfn>	__f64x (3.141592653589793238462643383279502884) /* pi */</u>&nbsp</td></tr>
+<tr><th id="1284">1284</th><td><u># define <dfn class="macro" id="_M/M_PI_2f64x" data-ref="_M/M_PI_2f64x">M_PI_2f64x</dfn>	__f64x (1.570796326794896619231321691639751442) /* pi/2 */</u>&nbsp</td></tr>
+<tr><th id="1285">1285</th><td><u># define <dfn class="macro" id="_M/M_PI_4f64x" data-ref="_M/M_PI_4f64x">M_PI_4f64x</dfn>	__f64x (0.785398163397448309615660845819875721) /* pi/4 */</u>&nbsp</td></tr>
+<tr><th id="1286">1286</th><td><u># define <dfn class="macro" id="_M/M_1_PIf64x" data-ref="_M/M_1_PIf64x">M_1_PIf64x</dfn>	__f64x (0.318309886183790671537767526745028724) /* 1/pi */</u>&nbsp</td></tr>
+<tr><th id="1287">1287</th><td><u># define <dfn class="macro" id="_M/M_2_PIf64x" data-ref="_M/M_2_PIf64x">M_2_PIf64x</dfn>	__f64x (0.636619772367581343075535053490057448) /* 2/pi */</u>&nbsp</td></tr>
+<tr><th id="1288">1288</th><td><u># define <dfn class="macro" id="_M/M_2_SQRTPIf64x" data-ref="_M/M_2_SQRTPIf64x">M_2_SQRTPIf64x</dfn>	__f64x (1.128379167095512573896158903121545172) /* 2/sqrt(pi) */</u>&nbsp</td></tr>
+<tr><th id="1289">1289</th><td><u># define <dfn class="macro" id="_M/M_SQRT2f64x" data-ref="_M/M_SQRT2f64x">M_SQRT2f64x</dfn>	__f64x (1.414213562373095048801688724209698079) /* sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1290">1290</th><td><u># define <dfn class="macro" id="_M/M_SQRT1_2f64x" data-ref="_M/M_SQRT1_2f64x">M_SQRT1_2f64x</dfn>	__f64x (0.707106781186547524400844362104849039) /* 1/sqrt(2) */</u>&nbsp</td></tr>
+<tr><th id="1291">1291</th><td><u>#<span data-ppcond="1277">endif</span></u>&nbsp</td></tr>
+<tr><th id="1292">1292</th><td>&nbsp</td></tr>
+<tr><th id="1293">1293</th><td><u>#<span data-ppcond="1293">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#38" title="0" data-ref="_M/__HAVE_FLOAT128X">__HAVE_FLOAT128X</a> &amp;&amp; defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="1294">1294</th><td><u># error "M_* values needed for _Float128x"</u>&nbsp</td></tr>
+<tr><th id="1295">1295</th><td><u>#<span data-ppcond="1293">endif</span></u>&nbsp</td></tr>
+<tr><th id="1296">1296</th><td>&nbsp</td></tr>
+<tr><th id="1297">1297</th><td><u>#<span data-ppcond="1297">ifdef</span> <a class="macro" href="features.h.html#371" data-ref="_M/__USE_ISOC99">__USE_ISOC99</a></u>&nbsp</td></tr>
+<tr><th id="1298">1298</th><td><u># <span data-ppcond="1298">if</span> <a class="macro" href="features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((3) &lt;&lt; 16) + (1))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (3, 1)</u>&nbsp</td></tr>
+<tr><th id="1299">1299</th><td><i>/* ISO C99 defines some macros to compare number while taking care for</i>&nbsp</td></tr>
+<tr><th id="1300">1300</th><td><i>   unordered numbers.  Many FPUs provide special instructions to support</i>&nbsp</td></tr>
+<tr><th id="1301">1301</th><td><i>   these operations.  Generic support in GCC for these as builtins went</i>&nbsp</td></tr>
+<tr><th id="1302">1302</th><td><i>   in 2.97, but not all cpus added their patterns until 3.1.  Therefore</i>&nbsp</td></tr>
+<tr><th id="1303">1303</th><td><i>   we enable the builtins from 3.1 onwards and use a generic implementation</i>&nbsp</td></tr>
+<tr><th id="1304">1304</th><td><i>   othwerwise.  */</i>&nbsp</td></tr>
+<tr><th id="1305">1305</th><td><u>#  define <dfn class="macro" id="_M/isgreater" data-ref="_M/isgreater">isgreater</dfn>(x, y)	__builtin_isgreater(x, y)</u>&nbsp</td></tr>
+<tr><th id="1306">1306</th><td><u>#  define <dfn class="macro" id="_M/isgreaterequal" data-ref="_M/isgreaterequal">isgreaterequal</dfn>(x, y)	__builtin_isgreaterequal(x, y)</u>&nbsp</td></tr>
+<tr><th id="1307">1307</th><td><u>#  define <dfn class="macro" id="_M/isless" data-ref="_M/isless">isless</dfn>(x, y)		__builtin_isless(x, y)</u>&nbsp</td></tr>
+<tr><th id="1308">1308</th><td><u>#  define <dfn class="macro" id="_M/islessequal" data-ref="_M/islessequal">islessequal</dfn>(x, y)	__builtin_islessequal(x, y)</u>&nbsp</td></tr>
+<tr><th id="1309">1309</th><td><u>#  define <dfn class="macro" id="_M/islessgreater" data-ref="_M/islessgreater">islessgreater</dfn>(x, y)	__builtin_islessgreater(x, y)</u>&nbsp</td></tr>
+<tr><th id="1310">1310</th><td><u>#  define <dfn class="macro" id="_M/isunordered" data-ref="_M/isunordered">isunordered</dfn>(x, y)	__builtin_isunordered(x, y)</u>&nbsp</td></tr>
+<tr><th id="1311">1311</th><td><u># <span data-ppcond="1298">else</span></u>&nbsp</td></tr>
+<tr><th id="1312">1312</th><td><u>#  define isgreater(x, y) \</u>&nbsp</td></tr>
+<tr><th id="1313">1313</th><td><u>  (__extension__ ({ __typeof__ (x) __x = (x); __typeof__ (y) __y = (y); \</u>&nbsp</td></tr>
+<tr><th id="1314">1314</th><td><u>		    !isunordered (__x, __y) &amp;&amp; __x &gt; __y; }))</u>&nbsp</td></tr>
+<tr><th id="1315">1315</th><td><u>#  define isgreaterequal(x, y) \</u>&nbsp</td></tr>
+<tr><th id="1316">1316</th><td><u>  (__extension__ ({ __typeof__ (x) __x = (x); __typeof__ (y) __y = (y); \</u>&nbsp</td></tr>
+<tr><th id="1317">1317</th><td><u>		    !isunordered (__x, __y) &amp;&amp; __x &gt;= __y; }))</u>&nbsp</td></tr>
+<tr><th id="1318">1318</th><td><u>#  define isless(x, y) \</u>&nbsp</td></tr>
+<tr><th id="1319">1319</th><td><u>  (__extension__ ({ __typeof__ (x) __x = (x); __typeof__ (y) __y = (y); \</u>&nbsp</td></tr>
+<tr><th id="1320">1320</th><td><u>		    !isunordered (__x, __y) &amp;&amp; __x &lt; __y; }))</u>&nbsp</td></tr>
+<tr><th id="1321">1321</th><td><u>#  define islessequal(x, y) \</u>&nbsp</td></tr>
+<tr><th id="1322">1322</th><td><u>  (__extension__ ({ __typeof__ (x) __x = (x); __typeof__ (y) __y = (y); \</u>&nbsp</td></tr>
+<tr><th id="1323">1323</th><td><u>		    !isunordered (__x, __y) &amp;&amp; __x &lt;= __y; }))</u>&nbsp</td></tr>
+<tr><th id="1324">1324</th><td><u>#  define islessgreater(x, y) \</u>&nbsp</td></tr>
+<tr><th id="1325">1325</th><td><u>  (__extension__ ({ __typeof__ (x) __x = (x); __typeof__ (y) __y = (y); \</u>&nbsp</td></tr>
+<tr><th id="1326">1326</th><td><u>		    !isunordered (__x, __y) &amp;&amp; __x != __y; }))</u>&nbsp</td></tr>
+<tr><th id="1327">1327</th><td><i>/* isunordered must always check both operands first for signaling NaNs.  */</i>&nbsp</td></tr>
+<tr><th id="1328">1328</th><td><u>#  define isunordered(x, y) \</u>&nbsp</td></tr>
+<tr><th id="1329">1329</th><td><u>  (__extension__ ({ __typeof__ (x) __u = (x); __typeof__ (y) __v = (y); \</u>&nbsp</td></tr>
+<tr><th id="1330">1330</th><td><u>		    __u != __v &amp;&amp; (__u != __u || __v != __v); }))</u>&nbsp</td></tr>
+<tr><th id="1331">1331</th><td><u># <span data-ppcond="1298">endif</span></u>&nbsp</td></tr>
+<tr><th id="1332">1332</th><td><u>#<span data-ppcond="1297">endif</span></u>&nbsp</td></tr>
+<tr><th id="1333">1333</th><td>&nbsp</td></tr>
+<tr><th id="1334">1334</th><td><u>#<span data-ppcond="1334">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_BFP_EXT_C2X)</u>&nbsp</td></tr>
+<tr><th id="1335">1335</th><td><i>/* An expression whose type has the widest of the evaluation formats</i>&nbsp</td></tr>
+<tr><th id="1336">1336</th><td><i>   of X and Y (which are of floating-point types).  */</i>&nbsp</td></tr>
+<tr><th id="1337">1337</th><td><u># <span data-ppcond="1337">if</span> <span class="macro" title="0" data-ref="_M/__FLT_EVAL_METHOD__">__FLT_EVAL_METHOD__</span> == 2 || <span class="macro" title="0" data-ref="_M/__FLT_EVAL_METHOD__">__FLT_EVAL_METHOD__</span> &gt; 64</u>&nbsp</td></tr>
+<tr><th id="1338">1338</th><td><u>#  define __MATH_EVAL_FMT2(x, y) ((x) + (y) + 0.0L)</u>&nbsp</td></tr>
+<tr><th id="1339">1339</th><td><u># <span data-ppcond="1337">elif</span> <span class="macro" title="0" data-ref="_M/__FLT_EVAL_METHOD__">__FLT_EVAL_METHOD__</span> == 1 || <span class="macro" title="0" data-ref="_M/__FLT_EVAL_METHOD__">__FLT_EVAL_METHOD__</span> &gt; 32</u>&nbsp</td></tr>
+<tr><th id="1340">1340</th><td><u>#  define __MATH_EVAL_FMT2(x, y) ((x) + (y) + 0.0)</u>&nbsp</td></tr>
+<tr><th id="1341">1341</th><td><u># <span data-ppcond="1337">elif</span> <span class="macro" title="0" data-ref="_M/__FLT_EVAL_METHOD__">__FLT_EVAL_METHOD__</span> == 0 || <span class="macro" title="0" data-ref="_M/__FLT_EVAL_METHOD__">__FLT_EVAL_METHOD__</span> == 32</u>&nbsp</td></tr>
+<tr><th id="1342">1342</th><td><u>#  define <dfn class="macro" id="_M/__MATH_EVAL_FMT2" data-ref="_M/__MATH_EVAL_FMT2">__MATH_EVAL_FMT2</dfn>(x, y) ((x) + (y) + 0.0f)</u>&nbsp</td></tr>
+<tr><th id="1343">1343</th><td><u># <span data-ppcond="1337">else</span></u>&nbsp</td></tr>
+<tr><th id="1344">1344</th><td><u>#  define __MATH_EVAL_FMT2(x, y) ((x) + (y))</u>&nbsp</td></tr>
+<tr><th id="1345">1345</th><td><u># <span data-ppcond="1337">endif</span></u>&nbsp</td></tr>
+<tr><th id="1346">1346</th><td>&nbsp</td></tr>
+<tr><th id="1347">1347</th><td><i>/* Return X == Y but raising "invalid" and setting errno if X or Y is</i>&nbsp</td></tr>
+<tr><th id="1348">1348</th><td><i>   a NaN.  */</i>&nbsp</td></tr>
+<tr><th id="1349">1349</th><td><u># <span data-ppcond="1349">if</span> !defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span> || (<span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt; 201103L &amp;&amp; !defined <span class="macro" data-ref="_M/__GNUC__">__GNUC__</span>)</u>&nbsp</td></tr>
+<tr><th id="1350">1350</th><td><u>#  define iseqsig(x, y) \</u>&nbsp</td></tr>
+<tr><th id="1351">1351</th><td><u>   __MATH_TG (__MATH_EVAL_FMT2 (x, y), __iseqsig, ((x), (y)))</u>&nbsp</td></tr>
+<tr><th id="1352">1352</th><td><u># <span data-ppcond="1349">else</span></u>&nbsp</td></tr>
+<tr><th id="1353">1353</th><td><i>/* In C++ mode, __MATH_TG cannot be used, because it relies on</i>&nbsp</td></tr>
+<tr><th id="1354">1354</th><td><i>   __builtin_types_compatible_p, which is a C-only builtin.  Moreover,</i>&nbsp</td></tr>
+<tr><th id="1355">1355</th><td><i>   the comparison macros from ISO C take two floating-point arguments,</i>&nbsp</td></tr>
+<tr><th id="1356">1356</th><td><i>   which need not have the same type.  Choosing what underlying function</i>&nbsp</td></tr>
+<tr><th id="1357">1357</th><td><i>   to call requires evaluating the formats of the arguments, then</i>&nbsp</td></tr>
+<tr><th id="1358">1358</th><td><i>   selecting which is wider.  The macro __MATH_EVAL_FMT2 provides this</i>&nbsp</td></tr>
+<tr><th id="1359">1359</th><td><i>   information, however, only the type of the macro expansion is</i>&nbsp</td></tr>
+<tr><th id="1360">1360</th><td><i>   relevant (actually evaluating the expression would be incorrect).</i>&nbsp</td></tr>
+<tr><th id="1361">1361</th><td><i>   Thus, the type is used as a template parameter for __iseqsig_type,</i>&nbsp</td></tr>
+<tr><th id="1362">1362</th><td><i>   which calls the appropriate underlying function.  */</i>&nbsp</td></tr>
+<tr><th id="1363">1363</th><td><b>extern</b> <q>"C++"</q> {&nbsp</td></tr>
+<tr><th id="1364">1364</th><td><b>template</b>&lt;<b>typename</b>&gt; <b>struct</b> <dfn class="type" id="__iseqsig_type" title='__iseqsig_type' data-ref="__iseqsig_type">__iseqsig_type</dfn>;&nbsp</td></tr>
+<tr><th id="1365">1365</th><td>&nbsp</td></tr>
+<tr><th id="1366">1366</th><td><b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="__iseqsig_type" title='__iseqsig_type' data-ref="__iseqsig_type"><a class="type" href="#__iseqsig_type" title='__iseqsig_type' data-ref="__iseqsig_type">__iseqsig_type</a></dfn>&lt;<em>float</em>&gt;&nbsp</td></tr>
+<tr><th id="1367">1367</th><td>{&nbsp</td></tr>
+<tr><th id="1368">1368</th><td>  <em>static</em> <em>int</em> <dfn class="decl def fn" id="__iseqsig_type{float}::__call" title='__iseqsig_type&lt;float&gt;::__call' data-ref="__iseqsig_type{float}::__call">__call</dfn> (<em>float</em> <dfn class="local col9 decl" id="2249__x" title='__x' data-type='float' data-ref="2249__x">__x</dfn>, <em>float</em> <dfn class="local col0 decl" id="2250__y" title='__y' data-type='float' data-ref="2250__y">__y</dfn>) <b>throw</b> ()&nbsp</td></tr>
+<tr><th id="1369">1369</th><td>  {&nbsp</td></tr>
+<tr><th id="1370">1370</th><td>    <b>return</b> <a class="ref fn" href="x86_64-linux-gnu/bits/mathcalls-helper-functions.h.html#41" title='__iseqsigf' data-ref="__iseqsigf">__iseqsigf</a> (<a class="local col9 ref" href="#2249__x" title='__x' data-ref="2249__x">__x</a>, <a class="local col0 ref" href="#2250__y" title='__y' data-ref="2250__y">__y</a>);&nbsp</td></tr>
+<tr><th id="1371">1371</th><td>  }&nbsp</td></tr>
+<tr><th id="1372">1372</th><td>};&nbsp</td></tr>
+<tr><th id="1373">1373</th><td>&nbsp</td></tr>
+<tr><th id="1374">1374</th><td><b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="__iseqsig_type" title='__iseqsig_type' data-ref="__iseqsig_type"><a class="type" href="#__iseqsig_type" title='__iseqsig_type' data-ref="__iseqsig_type">__iseqsig_type</a></dfn>&lt;<em>double</em>&gt;&nbsp</td></tr>
+<tr><th id="1375">1375</th><td>{&nbsp</td></tr>
+<tr><th id="1376">1376</th><td>  <em>static</em> <em>int</em> <dfn class="decl def fn" id="__iseqsig_type{double}::__call" title='__iseqsig_type&lt;double&gt;::__call' data-ref="__iseqsig_type{double}::__call">__call</dfn> (<em>double</em> <dfn class="local col1 decl" id="2251__x" title='__x' data-type='double' data-ref="2251__x">__x</dfn>, <em>double</em> <dfn class="local col2 decl" id="2252__y" title='__y' data-type='double' data-ref="2252__y">__y</dfn>) <b>throw</b> ()&nbsp</td></tr>
+<tr><th id="1377">1377</th><td>  {&nbsp</td></tr>
+<tr><th id="1378">1378</th><td>    <b>return</b> <a class="ref fn" href="x86_64-linux-gnu/bits/mathcalls-helper-functions.h.html#41" title='__iseqsig' data-ref="__iseqsig">__iseqsig</a> (<a class="local col1 ref" href="#2251__x" title='__x' data-ref="2251__x">__x</a>, <a class="local col2 ref" href="#2252__y" title='__y' data-ref="2252__y">__y</a>);&nbsp</td></tr>
+<tr><th id="1379">1379</th><td>  }&nbsp</td></tr>
+<tr><th id="1380">1380</th><td>};&nbsp</td></tr>
+<tr><th id="1381">1381</th><td>&nbsp</td></tr>
+<tr><th id="1382">1382</th><td><b>template</b>&lt;&gt; <b>struct</b> <dfn class="type def" id="__iseqsig_type" title='__iseqsig_type' data-ref="__iseqsig_type"><a class="type" href="#__iseqsig_type" title='__iseqsig_type' data-ref="__iseqsig_type">__iseqsig_type</a></dfn>&lt;<em>long</em> <em>double</em>&gt;&nbsp</td></tr>
+<tr><th id="1383">1383</th><td>{&nbsp</td></tr>
+<tr><th id="1384">1384</th><td>  <em>static</em> <em>int</em> <dfn class="decl def fn" id="__iseqsig_type{longdouble}::__call" title='__iseqsig_type&lt;long double&gt;::__call' data-ref="__iseqsig_type{longdouble}::__call">__call</dfn> (<em>long</em> <em>double</em> <dfn class="local col3 decl" id="2253__x" title='__x' data-type='long double' data-ref="2253__x">__x</dfn>, <em>long</em> <em>double</em> <dfn class="local col4 decl" id="2254__y" title='__y' data-type='long double' data-ref="2254__y">__y</dfn>) <b>throw</b> ()&nbsp</td></tr>
+<tr><th id="1385">1385</th><td>  {&nbsp</td></tr>
+<tr><th id="1386">1386</th><td><u>#  <span data-ppcond="1386">ifndef</span> <span class="macro" data-ref="_M/__NO_LONG_DOUBLE_MATH">__NO_LONG_DOUBLE_MATH</span></u>&nbsp</td></tr>
+<tr><th id="1387">1387</th><td>    <b>return</b> <a class="ref fn" href="x86_64-linux-gnu/bits/mathcalls-helper-functions.h.html#41" title='__iseqsigl' data-ref="__iseqsigl">__iseqsigl</a> (<a class="local col3 ref" href="#2253__x" title='__x' data-ref="2253__x">__x</a>, <a class="local col4 ref" href="#2254__y" title='__y' data-ref="2254__y">__y</a>);&nbsp</td></tr>
+<tr><th id="1388">1388</th><td><u>#  <span data-ppcond="1386">else</span></u>&nbsp</td></tr>
+<tr><th id="1389">1389</th><td>    <b>return</b> __iseqsig (__x, __y);&nbsp</td></tr>
+<tr><th id="1390">1390</th><td><u>#  <span data-ppcond="1386">endif</span></u>&nbsp</td></tr>
+<tr><th id="1391">1391</th><td>  }&nbsp</td></tr>
+<tr><th id="1392">1392</th><td>};&nbsp</td></tr>
+<tr><th id="1393">1393</th><td>&nbsp</td></tr>
+<tr><th id="1394">1394</th><td><u>#  <span data-ppcond="1394">if</span> <a class="macro" href="x86_64-linux-gnu/bits/floatn-common.h.html#63" title="(0 &amp;&amp; 64 != 113)" data-ref="_M/__HAVE_FLOAT128_UNLIKE_LDBL">__HAVE_FLOAT128_UNLIKE_LDBL</a></u>&nbsp</td></tr>
+<tr><th id="1395">1395</th><td>  <i>/* When using an IEEE 128-bit long double, _Float128 is defined as long double</i>&nbsp</td></tr>
+<tr><th id="1396">1396</th><td><i>     in C++.  */</i>&nbsp</td></tr>
+<tr><th id="1397">1397</th><td><b>template</b>&lt;&gt; <b>struct</b> __iseqsig_type&lt;_Float128&gt;&nbsp</td></tr>
+<tr><th id="1398">1398</th><td>{&nbsp</td></tr>
+<tr><th id="1399">1399</th><td>  <em>static</em> <em>int</em> __call (_Float128 __x, _Float128 __y) <b>throw</b> ()&nbsp</td></tr>
+<tr><th id="1400">1400</th><td>  {&nbsp</td></tr>
+<tr><th id="1401">1401</th><td>    <b>return</b> __iseqsigf128 (__x, __y);&nbsp</td></tr>
+<tr><th id="1402">1402</th><td>  }&nbsp</td></tr>
+<tr><th id="1403">1403</th><td>};&nbsp</td></tr>
+<tr><th id="1404">1404</th><td><u>#  <span data-ppcond="1394">endif</span></u>&nbsp</td></tr>
+<tr><th id="1405">1405</th><td>&nbsp</td></tr>
+<tr><th id="1406">1406</th><td><b>template</b>&lt;<b>typename</b> _T1, <b>typename</b> _T2&gt;&nbsp</td></tr>
+<tr><th id="1407">1407</th><td><b>inline</b> <em>int</em>&nbsp</td></tr>
+<tr><th id="1408">1408</th><td><dfn class="decl def fn" id="_Z7iseqsigT_T0_" title='iseqsig' data-ref="_Z7iseqsigT_T0_">iseqsig</dfn> (_T1 <dfn class="local col5 decl" id="2255__x" title='__x' data-type='_T1' data-ref="2255__x">__x</dfn>, _T2 <dfn class="local col6 decl" id="2256__y" title='__y' data-type='_T2' data-ref="2256__y">__y</dfn>) <b>throw</b> ()&nbsp</td></tr>
+<tr><th id="1409">1409</th><td>{&nbsp</td></tr>
+<tr><th id="1410">1410</th><td><u>#  <span data-ppcond="1410">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="1411">1411</th><td>  <b>typedef</b> <b>decltype</b> (<a class="macro" href="#1342" title="((__x) + (__y) + 0.0f)" data-ref="_M/__MATH_EVAL_FMT2">__MATH_EVAL_FMT2</a> (<a class="local col5 ref" href="#2255__x" title='__x' data-ref="2255__x">__x</a>, <a class="local col6 ref" href="#2256__y" title='__y' data-ref="2256__y">__y</a>)) <dfn class="local col7 typedef" id="2257_T3" title='_T3' data-type='decltype(((__x) + (__y) + 0.F))' data-ref="2257_T3">_T3</dfn>;&nbsp</td></tr>
+<tr><th id="1412">1412</th><td><u>#  <span data-ppcond="1410">else</span></u>&nbsp</td></tr>
+<tr><th id="1413">1413</th><td>  <b>typedef</b> <b>__typeof</b> (__MATH_EVAL_FMT2 (__x, __y)) _T3;&nbsp</td></tr>
+<tr><th id="1414">1414</th><td><u>#  <span data-ppcond="1410">endif</span></u>&nbsp</td></tr>
+<tr><th id="1415">1415</th><td>  <b>return</b> <a class="type" href="#__iseqsig_type" title='__iseqsig_type' data-ref="__iseqsig_type">__iseqsig_type</a>&lt;<a class="local col7 typedef" href="#2257_T3" title='_T3' data-type='decltype(((__x) + (__y) + 0.F))' data-ref="2257_T3">_T3</a>&gt;::__call (<a class="local col5 ref" href="#2255__x" title='__x' data-ref="2255__x">__x</a>, <a class="local col6 ref" href="#2256__y" title='__y' data-ref="2256__y">__y</a>);&nbsp</td></tr>
+<tr><th id="1416">1416</th><td>}&nbsp</td></tr>
+<tr><th id="1417">1417</th><td>&nbsp</td></tr>
+<tr><th id="1418">1418</th><td>} <i>/* extern "C++" */</i>&nbsp</td></tr>
+<tr><th id="1419">1419</th><td><u># <span data-ppcond="1349">endif</span> /* __cplusplus */</u>&nbsp</td></tr>
+<tr><th id="1420">1420</th><td>&nbsp</td></tr>
+<tr><th id="1421">1421</th><td><u>#<span data-ppcond="1334">endif</span></u>&nbsp</td></tr>
+<tr><th id="1422">1422</th><td>&nbsp</td></tr>
+<tr><th id="1423">1423</th><td><a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#134" title="}" data-ref="_M/__END_DECLS">__END_DECLS</a>&nbsp</td></tr>
+<tr><th id="1424">1424</th><td>&nbsp</td></tr>
+<tr><th id="1425">1425</th><td>&nbsp</td></tr>
+<tr><th id="1426">1426</th><td><u>#<span data-ppcond="23">endif</span> /* math.h  */</u>&nbsp</td></tr>
+<tr><th id="1427">1427</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

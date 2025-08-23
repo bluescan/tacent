@@ -1,0 +1,12 @@
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1605' u='w' c='_ZNSt10__weak_ptrC1Ev'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1629' u='w' c='_ZNSt10__weak_ptrC1ERKSt10__weak_ptrITL0__XT0_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1633' u='w' c='_ZNSt10__weak_ptrC1ERKSt12__shared_ptrITL0__XT0_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1637' u='w' c='_ZNSt10__weak_ptrC1EOSt10__weak_ptrIT_XT0_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1642' u='w' c='_ZNSt10__weak_ptrC1EOSt10__weak_ptrITL0__XT0_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1652' u='w' c='_ZNSt10__weak_ptraSERKSt10__weak_ptrITL0__XT0_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1661' u='w' c='_ZNSt10__weak_ptraSERKSt12__shared_ptrITL0__XT0_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1677' u='w' c='_ZNSt10__weak_ptraSEOSt10__weak_ptrITL0__XT0_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1712' c='_ZNSt10__weak_ptr4swapERSt10__weak_ptrIT_XT0_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1723' u='w' c='_ZNSt10__weak_ptr9_M_assignEPT_RKSt14__shared_countIXT0_EE'/>
+<dec f='include/c++/11/bits/shared_ptr_base.h' l='1733' type='std::__weak_ptr::element_type *'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='1733'>// Contained pointer.</doc>

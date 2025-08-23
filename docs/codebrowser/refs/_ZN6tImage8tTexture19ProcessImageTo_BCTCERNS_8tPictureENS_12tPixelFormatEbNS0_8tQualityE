@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tTexture.cpp' l='170' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<def f='Modules/Image/Src/tTexture.cpp' l='284' ll='368' type='void tImage::tTexture::ProcessImageTo_BCTC(tImage::tPicture &amp; image, tImage::tPixelFormat pixelFormat, bool generateMipmaps, tImage::tTexture::tQuality quality)'/>

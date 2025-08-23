@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='1243' ll='1256'/>
+<def f='include/c++/11/bits/stl_algobase.h' l='1258' ll='1278'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1259'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1289' c='_ZSt30__lexicographical_compare_implT_S_T0_S0_T1_'/>
+<size>1</size>
+<fun r='_ZNSt8__lc_rai10__newlast1ETL0__S0_TL0_0_S1_'/>
+<fun r='_ZNSt8__lc_rai6__cnd2ETL0__S0_'/>
+<fun r='_ZNSt8__lc_raiISt26random_access_iterator_tagS0_E10__newlast1ET_S2_T0_S3_'/>
+<fun r='_ZNSt8__lc_raiISt26random_access_iterator_tagS0_E6__cnd2ET_S2_'/>

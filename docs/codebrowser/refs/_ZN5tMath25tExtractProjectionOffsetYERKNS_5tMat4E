@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='697' type='float tMath::tExtractProjectionOffsetY(const tMath::tMat4 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1273' u='c' c='_ZN5tMath19tExtractPerspectiveERfS0_S0_S0_S0_S0_S0_RKNS_5tMat4E'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='697'>/* Returns offsetY, the vertical oblique pan offset. */</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='109' u='c' c='_ZNK5tMath8tMatrix424ExtractProjectionOffsetYEv'/>

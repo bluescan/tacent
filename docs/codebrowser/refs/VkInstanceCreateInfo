@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3031' ll='3040'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3031'/>
+<size>64</size>
+<mbr r='VkInstanceCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkInstanceCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkInstanceCreateInfo::flags' o='128' t='VkInstanceCreateFlags'/>
+<mbr r='VkInstanceCreateInfo::pApplicationInfo' o='192' t='const VkApplicationInfo *'/>
+<mbr r='VkInstanceCreateInfo::enabledLayerCount' o='256' t='uint32_t'/>
+<mbr r='VkInstanceCreateInfo::ppEnabledLayerNames' o='320' t='const char *const *'/>
+<mbr r='VkInstanceCreateInfo::enabledExtensionCount' o='384' t='uint32_t'/>
+<mbr r='VkInstanceCreateInfo::ppEnabledExtensionNames' o='448' t='const char *const *'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1975' ll='1980' type='std::messages::string_type std::messages::_M_convert_from_char(char * ) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1974'>// Returns a locale and codeset-converted string, given a char* message.</doc>

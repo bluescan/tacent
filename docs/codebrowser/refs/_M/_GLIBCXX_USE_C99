@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1663'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1661'>/* Define if C99 functions or macros from &lt;wchar.h&gt;, &lt;math.h&gt;, &lt;complex.h&gt;,
+   &lt;stdio.h&gt;, and &lt;stdlib.h&gt; can be used or exposed. */</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='831' u='c'/>

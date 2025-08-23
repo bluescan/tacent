@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='194' ll='199' type='for_each_result&lt;borrowed_iterator_t&lt;_Range&gt;, _Fun&gt; std::ranges::__for_each_fn::operator()(_Range &amp;&amp; __r, _Fun __f, _Proj __proj = {}) const'/>

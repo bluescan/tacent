@@ -1,0 +1,17 @@
+<dec f='include/c++/11/bits/stl_iterator.h' l='147' type='_Iterator'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='178' u='w' c='_ZNSt16reverse_iteratorC1Ev'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='184' u='w' c='_ZNSt16reverse_iteratorC1ET_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='191' u='w' c='_ZNSt16reverse_iteratorC1ERKSt16reverse_iteratorIT_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='207' u='w' c='_ZNSt16reverse_iteratorC1ERKSt16reverse_iteratorITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='219' u='w' c='_ZNSt16reverse_iteratoraSERKSt16reverse_iteratorITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='229' u='r' c='_ZNKSt16reverse_iterator4baseEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='244' u='r' c='_ZNKSt16reverse_iteratordeEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='262' u='r' c='_ZNKSt16reverse_iteratorptEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='275' u='w' c='_ZNSt16reverse_iteratorppEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='288' u='w' c='_ZNSt16reverse_iteratorppEi'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='300' u='w' c='_ZNSt16reverse_iteratormmEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='313' u='w' c='_ZNSt16reverse_iteratormmEi'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='324' u='r' c='_ZNKSt16reverse_iteratorplENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='335' u='w' c='_ZNSt16reverse_iteratorpLENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='346' u='r' c='_ZNKSt16reverse_iteratormiENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='357' u='w' c='_ZNSt16reverse_iteratormIENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>

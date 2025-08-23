@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='498' type='tSystem::tFileTypes &amp; tSystem::tFileTypes::AddVA(tSystem::tFileType , __va_list_tag * )'/>
+<use f='Modules/System/Inc/System/tFile.h' l='918' u='c' c='_ZN7tSystem10tFileTypesC1ENS_9tFileTypeEz'/>
+<use f='Modules/System/Inc/System/tFile.h' l='971' u='c' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEz'/>
+<def f='Modules/System/Inc/System/tFile.h' l='977' ll='990' type='tSystem::tFileTypes &amp; tSystem::tFileTypes::AddVA(tSystem::tFileType fileType, __va_list_tag * valist)'/>

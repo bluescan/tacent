@@ -1,0 +1,37 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='249' type='char8_t * tString::Pod() const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='249'>/* Plain Old Data */</doc>
+<use f='Modules/Image/Src/tTexture.cpp' l='145' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='74' u='c' c='_ZN9tPipeline5tRule13AddDependencyERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='84' u='c' c='_ZN9tPipeline5tRule13AddDependencyEP11tStringItem'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='28' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='73' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='262' u='c' c='_ZL17OptionSortFnShortRKN8tCmdLine7tOptionES2_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='262' u='c' c='_ZL17OptionSortFnShortRKN8tCmdLine7tOptionES2_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='268' u='c' c='_ZL16OptionSortFnLongRKN8tCmdLine7tOptionES2_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='268' u='c' c='_ZL16OptionSortFnLongRKN8tCmdLine7tOptionES2_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='502' u='c' c='_ZN8tCmdLine14SyntaxInternalEP7tStringi'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='553' macro='1' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='556' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='558' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='566' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='568' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='594' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='596' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='620' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='622' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='643' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='645' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='659' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='674' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='676' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='686' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='713' u='c' c='_ZN8tCmdLine11tPrintUsageEPKDuS1_iii'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='739' u='c' c='_ZN8tCmdLine12tStringUsageER7tStringPKDuS3_iii'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='765' u='c' c='_ZN8tCmdLine14tStringUsageNIER7tStringPKDuS3_iii'/>
+<use f='Modules/System/Src/tScript.cpp' l='217' u='c' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='266' u='c' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='269' u='c' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='558' u='c' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='594' macro='1' u='c' c='_ZN11tExprWriterC1ERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='639' macro='1' u='c' c='_ZN11tExprWriter9WriteAtomERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='682' macro='1' u='c' c='_ZN11tExprWriter8WriteRawERK7tString'/>

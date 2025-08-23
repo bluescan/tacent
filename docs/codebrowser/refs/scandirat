@@ -1,0 +1,1 @@
+<dec f='include/dirent.h' l='293' type='int scandirat(int __dfd, const char *__restrict __dir, struct dirent ***__restrict __namelist, int (*)(const struct dirent *) __selector, int (*)(const struct dirent **, const struct dirent **) __cmp)'/>

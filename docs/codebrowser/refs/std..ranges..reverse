@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='1325' type='const std::ranges::__reverse_fn'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1446' u='c' c='_ZNKSt6ranges11__rotate_fnclET_S1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1447' u='c' c='_ZNKSt6ranges11__rotate_fnclET_S1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1457' u='c' c='_ZNKSt6ranges11__rotate_fnclET_S1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1462' u='c' c='_ZNKSt6ranges11__rotate_fnclET_S1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3467' u='c' c='_ZNKSt6ranges21__next_permutation_fnclET_T0_T1_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3472' u='c' c='_ZNKSt6ranges21__next_permutation_fnclET_T0_T1_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3529' u='c' c='_ZNKSt6ranges21__prev_permutation_fnclET_T0_T1_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3534' u='c' c='_ZNKSt6ranges21__prev_permutation_fnclET_T0_T1_T2_'/>

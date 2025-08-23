@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='108' type='int iswdigit(wint_t __wc)'/>
+<doc f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='106'>/* Test for any wide character that corresponds to a decimal-digit
+   character.  */</doc>

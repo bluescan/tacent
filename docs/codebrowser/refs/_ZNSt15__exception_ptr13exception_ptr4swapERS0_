@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/exception_ptr.h' l='135' u='c' c='_ZNSt15__exception_ptr13exception_ptraSEOS0_'/>
+<dec f='include/c++/11/bits/exception_ptr.h' l='143' type='void std::__exception_ptr::exception_ptr::swap(std::__exception_ptr::exception_ptr &amp; )'/>
+<use f='include/c++/11/bits/exception_ptr.h' l='208' u='c' c='_ZNSt15__exception_ptr13exception_ptraSERKS0_'/>
+<def f='include/c++/11/bits/exception_ptr.h' l='213' ll='219' type='void std::__exception_ptr::exception_ptr::swap(std::__exception_ptr::exception_ptr &amp; __other)'/>
+<use f='include/c++/11/bits/exception_ptr.h' l='224' u='c' c='_ZNSt15__exception_ptr4swapERNS_13exception_ptrES1_'/>

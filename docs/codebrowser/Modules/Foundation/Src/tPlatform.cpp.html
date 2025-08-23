@@ -1,0 +1,223 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tPlatform.cpp source code [Modules/Foundation/Src/tPlatform.cpp] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Foundation/Src/tPlatform.cpp'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>Modules</a>/<a href='..'>Foundation</a>/<a href='./'>Src</a>/<a href='tPlatform.cpp.html'>tPlatform.cpp</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tPlatform.cpp</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Tacent platform defines, architecture, and endianness detection. The Tacent library has some preprocessor define</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>// requirements. One of PLATFORM_NNN, ARCHITECTURE_NNN, and CONFIG_NNN need to be defined. If you haven't bothered</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// to define these in the project file with a /D switch, an attempt is made to define them automatically for you.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// Copyright (c) 2004-2006, 2015, 2017, 2020, 2021, 2023 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#include "Foundation/tPlatform.h"</u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#include "Foundation/tString.h"</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a> <dfn class="decl def fn" id="_Z12tGetPlatformv" title='tGetPlatform' data-ref="_Z12tGetPlatformv">tGetPlatform</dfn>()&nbsp</td></tr>
+<tr><th id="22">22</th><td>{&nbsp</td></tr>
+<tr><th id="23">23</th><td>	<u>#<span data-ppcond="23">if</span> defined(<span class="macro" data-ref="_M/PLATFORM_WINDOWS">PLATFORM_WINDOWS</span>)</u>&nbsp</td></tr>
+<tr><th id="24">24</th><td>	<b>return</b> tPlatform::Windows;&nbsp</td></tr>
+<tr><th id="25">25</th><td>	<u>#<span data-ppcond="23">elif</span> defined(<span class="macro" data-ref="_M/PLATFORM_LINUX">PLATFORM_LINUX</span>)</u>&nbsp</td></tr>
+<tr><th id="26">26</th><td>	<b>return</b> <a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::Linux" title='tPlatform::Linux' data-ref="tPlatform::Linux">Linux</a>;&nbsp</td></tr>
+<tr><th id="27">27</th><td>	<u>#<span data-ppcond="23">elif</span> defined(PLATFORM_MACOS)</u>&nbsp</td></tr>
+<tr><th id="28">28</th><td>	<b>return</b> tPlatform::MacOS;&nbsp</td></tr>
+<tr><th id="29">29</th><td>	<u>#elif defined(PLATFORM_ANDROID)</u>&nbsp</td></tr>
+<tr><th id="30">30</th><td>	<b>return</b> tPlatform::Android;&nbsp</td></tr>
+<tr><th id="31">31</th><td>	<u>#elif defined(PLATFORM_IOS)</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>	<b>return</b> tPlatform::iOS;&nbsp</td></tr>
+<tr><th id="33">33</th><td>	<u>#else</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>	<b>return</b> tPlatform::Invalid;&nbsp</td></tr>
+<tr><th id="35">35</th><td>	<u>#<span data-ppcond="23">endif</span></u>&nbsp</td></tr>
+<tr><th id="36">36</th><td>}&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a> <dfn class="decl def fn" id="_Z12tGetPlatformRK7tString" title='tGetPlatform' data-ref="_Z12tGetPlatformRK7tString">tGetPlatform</dfn>(<em>const</em> <a class="type" href="../Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a>&amp; <dfn class="local col1 decl" id="1name" title='name' data-type='const tString &amp;' data-ref="1name">name</dfn>)&nbsp</td></tr>
+<tr><th id="40">40</th><td>{&nbsp</td></tr>
+<tr><th id="41">41</th><td>	<b>for</b> (<em>int</em> <dfn class="local col2 decl" id="2p" title='p' data-type='int' data-ref="2p">p</dfn> = <var>0</var>; <a class="local col2 ref" href="#2p" title='p' data-ref="2p">p</a> &lt; <em>int</em>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::NumPlatforms" title='tPlatform::NumPlatforms' data-ref="tPlatform::NumPlatforms">NumPlatforms</a>); <a class="local col2 ref" href="#2p" title='p' data-ref="2p">p</a>++)&nbsp</td></tr>
+<tr><th id="42">42</th><td>		<b>if</b> (<a class="local col1 ref" href="#1name" title='name' data-ref="1name">name</a> == <a class="ref fn" href="#_Z16tGetPlatformName9tPlatform" title='tGetPlatformName' data-ref="_Z16tGetPlatformName9tPlatform">tGetPlatformName</a>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>(<a class="local col2 ref" href="#2p" title='p' data-ref="2p">p</a>)))&nbsp</td></tr>
+<tr><th id="43">43</th><td>			<b>return</b> <a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>(<a class="local col2 ref" href="#2p" title='p' data-ref="2p">p</a>);&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td>	<b>return</b> <a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::Invalid" title='tPlatform::Invalid' data-ref="tPlatform::Invalid">Invalid</a>;&nbsp</td></tr>
+<tr><th id="46">46</th><td>}&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td><em>const</em> <em>char</em>* <dfn class="decl def fn" id="_Z16tGetPlatformName9tPlatform" title='tGetPlatformName' data-ref="_Z16tGetPlatformName9tPlatform">tGetPlatformName</dfn>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a> <dfn class="local col3 decl" id="3plat" title='plat' data-type='tPlatform' data-ref="3plat">plat</dfn>)&nbsp</td></tr>
+<tr><th id="50">50</th><td>{&nbsp</td></tr>
+<tr><th id="51">51</th><td>	<em>const</em> <em>static</em> <em>char</em>* <dfn class="local col4 decl" id="4platNames" title='platNames' data-type='const char *[7]' data-ref="4platNames">platNames</dfn>[] =&nbsp</td></tr>
+<tr><th id="52">52</th><td>	{&nbsp</td></tr>
+<tr><th id="53">53</th><td>		<q>"Windows"</q>,&nbsp</td></tr>
+<tr><th id="54">54</th><td>		<q>"Linux"</q>,&nbsp</td></tr>
+<tr><th id="55">55</th><td>		<q>"MacOS"</q>,&nbsp</td></tr>
+<tr><th id="56">56</th><td>		<q>"Android"</q>,&nbsp</td></tr>
+<tr><th id="57">57</th><td>		<q>"iOS"</q>,&nbsp</td></tr>
+<tr><th id="58">58</th><td>		<q>"All"</q>,&nbsp</td></tr>
+<tr><th id="59">59</th><td>		<q>"Invalid"</q>,&nbsp</td></tr>
+<tr><th id="60">60</th><td>	};&nbsp</td></tr>
+<tr><th id="61">61</th><td>	<a class="macro" href="../Inc/Foundation/tAssert.h.html#30" title="static_assert(((sizeof(platNames)/sizeof(*platNames)) - 2) == int(tPlatform::NumPlatforms), &quot;((sizeof(platNames)/sizeof(*platNames)) - 2) == int(tPlatform::NumPlatforms)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>( ((<b>sizeof</b>(<a class="local col4 ref" href="#4platNames" title='platNames' data-ref="4platNames">platNames</a>)/<b>sizeof</b>(*<a class="local col4 ref" href="#4platNames" title='platNames' data-ref="4platNames">platNames</a>)) - <var>2</var>) == <em>int</em>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::NumPlatforms" title='tPlatform::NumPlatforms' data-ref="tPlatform::NumPlatforms">NumPlatforms</a>) );&nbsp</td></tr>
+<tr><th id="62">62</th><td>&nbsp</td></tr>
+<tr><th id="63">63</th><td>	<b>if</b> (<a class="local col3 ref" href="#3plat" title='plat' data-ref="3plat">plat</a> == <a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::Invalid" title='tPlatform::Invalid' data-ref="tPlatform::Invalid">Invalid</a>)&nbsp</td></tr>
+<tr><th id="64">64</th><td>		<b>return</b> <a class="local col4 ref" href="#4platNames" title='platNames' data-ref="4platNames">platNames</a>[<em>int</em>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::NumPlatforms" title='tPlatform::NumPlatforms' data-ref="tPlatform::NumPlatforms">NumPlatforms</a>)+<var>1</var>];&nbsp</td></tr>
+<tr><th id="65">65</th><td>&nbsp</td></tr>
+<tr><th id="66">66</th><td>	<b>return</b> <a class="local col4 ref" href="#4platNames" title='platNames' data-ref="4platNames">platNames</a>[<em>int</em>(<a class="local col3 ref" href="#3plat" title='plat' data-ref="3plat">plat</a>)];&nbsp</td></tr>
+<tr><th id="67">67</th><td>}&nbsp</td></tr>
+<tr><th id="68">68</th><td>&nbsp</td></tr>
+<tr><th id="69">69</th><td>&nbsp</td></tr>
+<tr><th id="70">70</th><td><em>const</em> <em>char</em>* <dfn class="decl def fn" id="_Z21tGetPlatformNameShort9tPlatform" title='tGetPlatformNameShort' data-ref="_Z21tGetPlatformNameShort9tPlatform">tGetPlatformNameShort</dfn>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a> <dfn class="local col5 decl" id="5plat" title='plat' data-type='tPlatform' data-ref="5plat">plat</dfn>)&nbsp</td></tr>
+<tr><th id="71">71</th><td>{&nbsp</td></tr>
+<tr><th id="72">72</th><td>	<em>const</em> <em>static</em> <em>char</em>* <dfn class="local col6 decl" id="6platNames" title='platNames' data-type='const char *[7]' data-ref="6platNames">platNames</dfn>[] =&nbsp</td></tr>
+<tr><th id="73">73</th><td>	{&nbsp</td></tr>
+<tr><th id="74">74</th><td>		<q>"Win"</q>,&nbsp</td></tr>
+<tr><th id="75">75</th><td>		<q>"Lin"</q>,&nbsp</td></tr>
+<tr><th id="76">76</th><td>		<q>"OSX"</q>,&nbsp</td></tr>
+<tr><th id="77">77</th><td>		<q>"And"</q>,&nbsp</td></tr>
+<tr><th id="78">78</th><td>		<q>"iOS"</q>,&nbsp</td></tr>
+<tr><th id="79">79</th><td>		<q>"All"</q>,&nbsp</td></tr>
+<tr><th id="80">80</th><td>		<q>"N/A"</q>,&nbsp</td></tr>
+<tr><th id="81">81</th><td>	};&nbsp</td></tr>
+<tr><th id="82">82</th><td>	<a class="macro" href="../Inc/Foundation/tAssert.h.html#30" title="static_assert(((sizeof(platNames)/sizeof(*platNames)) - 2) == int(tPlatform::NumPlatforms), &quot;((sizeof(platNames)/sizeof(*platNames)) - 2) == int(tPlatform::NumPlatforms)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>( ((<b>sizeof</b>(<a class="local col6 ref" href="#6platNames" title='platNames' data-ref="6platNames">platNames</a>)/<b>sizeof</b>(*<a class="local col6 ref" href="#6platNames" title='platNames' data-ref="6platNames">platNames</a>)) - <var>2</var>) == <em>int</em>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::NumPlatforms" title='tPlatform::NumPlatforms' data-ref="tPlatform::NumPlatforms">NumPlatforms</a>) );&nbsp</td></tr>
+<tr><th id="83">83</th><td>&nbsp</td></tr>
+<tr><th id="84">84</th><td>	<b>if</b> (<a class="local col5 ref" href="#5plat" title='plat' data-ref="5plat">plat</a> == <a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::Invalid" title='tPlatform::Invalid' data-ref="tPlatform::Invalid">Invalid</a>)&nbsp</td></tr>
+<tr><th id="85">85</th><td>		<b>return</b> <a class="local col6 ref" href="#6platNames" title='platNames' data-ref="6platNames">platNames</a>[<em>int</em>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::NumPlatforms" title='tPlatform::NumPlatforms' data-ref="tPlatform::NumPlatforms">NumPlatforms</a>)+<var>1</var>];&nbsp</td></tr>
+<tr><th id="86">86</th><td>&nbsp</td></tr>
+<tr><th id="87">87</th><td>	<b>return</b> <a class="local col6 ref" href="#6platNames" title='platNames' data-ref="6platNames">platNames</a>[<em>int</em>(<a class="local col5 ref" href="#5plat" title='plat' data-ref="5plat">plat</a>)];&nbsp</td></tr>
+<tr><th id="88">88</th><td>}&nbsp</td></tr>
+<tr><th id="89">89</th><td>&nbsp</td></tr>
+<tr><th id="90">90</th><td>&nbsp</td></tr>
+<tr><th id="91">91</th><td><a class="type" href="../Inc/Foundation/tPlatform.h.html#tArchitecture" title='tArchitecture' data-ref="tArchitecture">tArchitecture</a> <dfn class="decl def fn" id="_Z16tGetArchitecturev" title='tGetArchitecture' data-ref="_Z16tGetArchitecturev">tGetArchitecture</dfn>()&nbsp</td></tr>
+<tr><th id="92">92</th><td>{&nbsp</td></tr>
+<tr><th id="93">93</th><td>	<u>#<span data-ppcond="93">if</span> defined(<span class="macro" data-ref="_M/ARCHITECTURE_X86">ARCHITECTURE_X86</span>)</u>&nbsp</td></tr>
+<tr><th id="94">94</th><td>	<b>return</b> tArchitecture::x86;&nbsp</td></tr>
+<tr><th id="95">95</th><td>&nbsp</td></tr>
+<tr><th id="96">96</th><td>	<u>#<span data-ppcond="93">elif</span> defined(<span class="macro" data-ref="_M/ARCHITECTURE_X64">ARCHITECTURE_X64</span>)</u>&nbsp</td></tr>
+<tr><th id="97">97</th><td>	<b>return</b> <a class="type" href="../Inc/Foundation/tPlatform.h.html#tArchitecture" title='tArchitecture' data-ref="tArchitecture">tArchitecture</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tArchitecture::x64" title='tArchitecture::x64' data-ref="tArchitecture::x64">x64</a>;&nbsp</td></tr>
+<tr><th id="98">98</th><td>&nbsp</td></tr>
+<tr><th id="99">99</th><td>	<u>#<span data-ppcond="93">elif</span> defined(ARCHITECTURE_A32)</u>&nbsp</td></tr>
+<tr><th id="100">100</th><td>	<b>return</b> tArchitecture::A32;&nbsp</td></tr>
+<tr><th id="101">101</th><td>&nbsp</td></tr>
+<tr><th id="102">102</th><td>	<u>#elif defined(ARCHITECTURE_A64)</u>&nbsp</td></tr>
+<tr><th id="103">103</th><td>	<b>return</b> tArchitecture::A64;&nbsp</td></tr>
+<tr><th id="104">104</th><td>&nbsp</td></tr>
+<tr><th id="105">105</th><td>	<u>#else</u>&nbsp</td></tr>
+<tr><th id="106">106</th><td>	<b>return</b> tArchitecture::Invalid;&nbsp</td></tr>
+<tr><th id="107">107</th><td>	<u>#<span data-ppcond="93">endif</span></u>&nbsp</td></tr>
+<tr><th id="108">108</th><td>}&nbsp</td></tr>
+<tr><th id="109">109</th><td>&nbsp</td></tr>
+<tr><th id="110">110</th><td>&nbsp</td></tr>
+<tr><th id="111">111</th><td><em>const</em> <em>char</em>* <dfn class="decl def fn" id="_Z20tGetArchitectureName13tArchitecture" title='tGetArchitectureName' data-ref="_Z20tGetArchitectureName13tArchitecture">tGetArchitectureName</dfn>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tArchitecture" title='tArchitecture' data-ref="tArchitecture">tArchitecture</a> <dfn class="local col7 decl" id="7arch" title='arch' data-type='tArchitecture' data-ref="7arch">arch</dfn>)&nbsp</td></tr>
+<tr><th id="112">112</th><td>{&nbsp</td></tr>
+<tr><th id="113">113</th><td>	<em>const</em> <em>static</em> <em>char</em>* <dfn class="local col8 decl" id="8archNames" title='archNames' data-type='const char *[5]' data-ref="8archNames">archNames</dfn>[] =&nbsp</td></tr>
+<tr><th id="114">114</th><td>	{&nbsp</td></tr>
+<tr><th id="115">115</th><td>		<q>"x86"</q>,&nbsp</td></tr>
+<tr><th id="116">116</th><td>		<q>"x64"</q>,&nbsp</td></tr>
+<tr><th id="117">117</th><td>		<q>"A32"</q>,&nbsp</td></tr>
+<tr><th id="118">118</th><td>		<q>"A64"</q>,&nbsp</td></tr>
+<tr><th id="119">119</th><td>		<q>"Invalid"</q>&nbsp</td></tr>
+<tr><th id="120">120</th><td>	};&nbsp</td></tr>
+<tr><th id="121">121</th><td>	<a class="macro" href="../Inc/Foundation/tAssert.h.html#30" title="static_assert(((sizeof(archNames)/sizeof(*archNames)) - 1) == int(tArchitecture::NumArchitectures), &quot;((sizeof(archNames)/sizeof(*archNames)) - 1) == int(tArchitecture::NumArchitectures)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>( ((<b>sizeof</b>(<a class="local col8 ref" href="#8archNames" title='archNames' data-ref="8archNames">archNames</a>)/<b>sizeof</b>(*<a class="local col8 ref" href="#8archNames" title='archNames' data-ref="8archNames">archNames</a>)) - <var>1</var>) == <em>int</em>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tArchitecture" title='tArchitecture' data-ref="tArchitecture">tArchitecture</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tArchitecture::NumArchitectures" title='tArchitecture::NumArchitectures' data-ref="tArchitecture::NumArchitectures">NumArchitectures</a>) );&nbsp</td></tr>
+<tr><th id="122">122</th><td>&nbsp</td></tr>
+<tr><th id="123">123</th><td>	<b>if</b> (<a class="local col7 ref" href="#7arch" title='arch' data-ref="7arch">arch</a> == <a class="type" href="../Inc/Foundation/tPlatform.h.html#tArchitecture" title='tArchitecture' data-ref="tArchitecture">tArchitecture</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tArchitecture::Invalid" title='tArchitecture::Invalid' data-ref="tArchitecture::Invalid">Invalid</a>)&nbsp</td></tr>
+<tr><th id="124">124</th><td>		<b>return</b> <a class="local col8 ref" href="#8archNames" title='archNames' data-ref="8archNames">archNames</a>[<em>int</em>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tArchitecture" title='tArchitecture' data-ref="tArchitecture">tArchitecture</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tArchitecture::NumArchitectures" title='tArchitecture::NumArchitectures' data-ref="tArchitecture::NumArchitectures">NumArchitectures</a>)];&nbsp</td></tr>
+<tr><th id="125">125</th><td>&nbsp</td></tr>
+<tr><th id="126">126</th><td>	<b>return</b> <a class="local col8 ref" href="#8archNames" title='archNames' data-ref="8archNames">archNames</a>[<em>int</em>(<a class="local col7 ref" href="#7arch" title='arch' data-ref="7arch">arch</a>)];&nbsp</td></tr>
+<tr><th id="127">127</th><td>}&nbsp</td></tr>
+<tr><th id="128">128</th><td>&nbsp</td></tr>
+<tr><th id="129">129</th><td>&nbsp</td></tr>
+<tr><th id="130">130</th><td><em>const</em> <em>char</em>* <dfn class="decl def fn" id="_Z24tGetArchitectureNameLong13tArchitecture" title='tGetArchitectureNameLong' data-ref="_Z24tGetArchitectureNameLong13tArchitecture">tGetArchitectureNameLong</dfn>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tArchitecture" title='tArchitecture' data-ref="tArchitecture">tArchitecture</a> <dfn class="local col9 decl" id="9arch" title='arch' data-type='tArchitecture' data-ref="9arch">arch</dfn>)&nbsp</td></tr>
+<tr><th id="131">131</th><td>{&nbsp</td></tr>
+<tr><th id="132">132</th><td>	<em>const</em> <em>static</em> <em>char</em>* <dfn class="local col0 decl" id="10archNames" title='archNames' data-type='const char *[5]' data-ref="10archNames">archNames</dfn>[] =&nbsp</td></tr>
+<tr><th id="133">133</th><td>	{&nbsp</td></tr>
+<tr><th id="134">134</th><td>		<q>"x86|INTEL32|x86|32bit"</q>,&nbsp</td></tr>
+<tr><th id="135">135</th><td>		<q>"x64|AMD64|x86-64|64bit"</q>,&nbsp</td></tr>
+<tr><th id="136">136</th><td>		<q>"A32|ARM32|ARM|32bit"</q>,&nbsp</td></tr>
+<tr><th id="137">137</th><td>		<q>"A64|ARM64|AArch64|64bit"</q>,&nbsp</td></tr>
+<tr><th id="138">138</th><td>		<q>"Invalid"</q>&nbsp</td></tr>
+<tr><th id="139">139</th><td>	};&nbsp</td></tr>
+<tr><th id="140">140</th><td>	<a class="macro" href="../Inc/Foundation/tAssert.h.html#30" title="static_assert(((sizeof(archNames)/sizeof(*archNames)) - 1) == int(tArchitecture::NumArchitectures), &quot;((sizeof(archNames)/sizeof(*archNames)) - 1) == int(tArchitecture::NumArchitectures)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>( ((<b>sizeof</b>(<a class="local col0 ref" href="#10archNames" title='archNames' data-ref="10archNames">archNames</a>)/<b>sizeof</b>(*<a class="local col0 ref" href="#10archNames" title='archNames' data-ref="10archNames">archNames</a>)) - <var>1</var>) == <em>int</em>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tArchitecture" title='tArchitecture' data-ref="tArchitecture">tArchitecture</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tArchitecture::NumArchitectures" title='tArchitecture::NumArchitectures' data-ref="tArchitecture::NumArchitectures">NumArchitectures</a>) );&nbsp</td></tr>
+<tr><th id="141">141</th><td>&nbsp</td></tr>
+<tr><th id="142">142</th><td>	<b>if</b> (<a class="local col9 ref" href="#9arch" title='arch' data-ref="9arch">arch</a> == <a class="type" href="../Inc/Foundation/tPlatform.h.html#tArchitecture" title='tArchitecture' data-ref="tArchitecture">tArchitecture</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tArchitecture::Invalid" title='tArchitecture::Invalid' data-ref="tArchitecture::Invalid">Invalid</a>)&nbsp</td></tr>
+<tr><th id="143">143</th><td>		<b>return</b> <a class="local col0 ref" href="#10archNames" title='archNames' data-ref="10archNames">archNames</a>[<em>int</em>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tArchitecture" title='tArchitecture' data-ref="tArchitecture">tArchitecture</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tArchitecture::NumArchitectures" title='tArchitecture::NumArchitectures' data-ref="tArchitecture::NumArchitectures">NumArchitectures</a>)];&nbsp</td></tr>
+<tr><th id="144">144</th><td>&nbsp</td></tr>
+<tr><th id="145">145</th><td>	<b>return</b> <a class="local col0 ref" href="#10archNames" title='archNames' data-ref="10archNames">archNames</a>[<em>int</em>(<a class="local col9 ref" href="#9arch" title='arch' data-ref="9arch">arch</a>)];&nbsp</td></tr>
+<tr><th id="146">146</th><td>}&nbsp</td></tr>
+<tr><th id="147">147</th><td>&nbsp</td></tr>
+<tr><th id="148">148</th><td>&nbsp</td></tr>
+<tr><th id="149">149</th><td><a class="type" href="../Inc/Foundation/tPlatform.h.html#tConfiguration" title='tConfiguration' data-ref="tConfiguration">tConfiguration</a> <dfn class="decl def fn" id="_Z17tGetConfigurationv" title='tGetConfiguration' data-ref="_Z17tGetConfigurationv">tGetConfiguration</dfn>()&nbsp</td></tr>
+<tr><th id="150">150</th><td>{&nbsp</td></tr>
+<tr><th id="151">151</th><td>	<u>#<span data-ppcond="151">if</span> defined(<span class="macro" data-ref="_M/CONFIG_DEBUG">CONFIG_DEBUG</span>)</u>&nbsp</td></tr>
+<tr><th id="152">152</th><td>	<b>return</b> tConfiguration::Debug;&nbsp</td></tr>
+<tr><th id="153">153</th><td>&nbsp</td></tr>
+<tr><th id="154">154</th><td>	<u>#<span data-ppcond="151">elif</span> defined(<span class="macro" data-ref="_M/CONFIG_DEVELOP">CONFIG_DEVELOP</span>)</u>&nbsp</td></tr>
+<tr><th id="155">155</th><td>	<b>return</b> tConfiguration::Develop;&nbsp</td></tr>
+<tr><th id="156">156</th><td>&nbsp</td></tr>
+<tr><th id="157">157</th><td>	<u>#<span data-ppcond="151">elif</span> defined(<span class="macro" data-ref="_M/CONFIG_PROFILE">CONFIG_PROFILE</span>)</u>&nbsp</td></tr>
+<tr><th id="158">158</th><td>	<b>return</b> tConfiguration::Profile;&nbsp</td></tr>
+<tr><th id="159">159</th><td>&nbsp</td></tr>
+<tr><th id="160">160</th><td>	<u>#<span data-ppcond="151">elif</span> defined(<span class="macro" data-ref="_M/CONFIG_RELEASE">CONFIG_RELEASE</span>)</u>&nbsp</td></tr>
+<tr><th id="161">161</th><td>	<b>return</b> <a class="type" href="../Inc/Foundation/tPlatform.h.html#tConfiguration" title='tConfiguration' data-ref="tConfiguration">tConfiguration</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tConfiguration::Release" title='tConfiguration::Release' data-ref="tConfiguration::Release">Release</a>;&nbsp</td></tr>
+<tr><th id="162">162</th><td>&nbsp</td></tr>
+<tr><th id="163">163</th><td>	<u>#<span data-ppcond="151">elif</span> defined(CONFIG_SHIP)</u>&nbsp</td></tr>
+<tr><th id="164">164</th><td>	<b>return</b> tConfiguration::Ship;&nbsp</td></tr>
+<tr><th id="165">165</th><td>&nbsp</td></tr>
+<tr><th id="166">166</th><td>	<u>#else</u>&nbsp</td></tr>
+<tr><th id="167">167</th><td>	<b>return</b> tConfiguration::Invalid;&nbsp</td></tr>
+<tr><th id="168">168</th><td>	<u>#<span data-ppcond="151">endif</span></u>&nbsp</td></tr>
+<tr><th id="169">169</th><td>}&nbsp</td></tr>
+<tr><th id="170">170</th><td>&nbsp</td></tr>
+<tr><th id="171">171</th><td>&nbsp</td></tr>
+<tr><th id="172">172</th><td><em>const</em> <em>char</em>* <dfn class="decl def fn" id="_Z21tGetConfigurationName14tConfiguration" title='tGetConfigurationName' data-ref="_Z21tGetConfigurationName14tConfiguration">tGetConfigurationName</dfn>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tConfiguration" title='tConfiguration' data-ref="tConfiguration">tConfiguration</a> <dfn class="local col1 decl" id="11config" title='config' data-type='tConfiguration' data-ref="11config">config</dfn>)&nbsp</td></tr>
+<tr><th id="173">173</th><td>{&nbsp</td></tr>
+<tr><th id="174">174</th><td>	<em>const</em> <em>static</em> <em>char</em>* <dfn class="local col2 decl" id="12configNames" title='configNames' data-type='const char *[6]' data-ref="12configNames">configNames</dfn>[] =&nbsp</td></tr>
+<tr><th id="175">175</th><td>	{&nbsp</td></tr>
+<tr><th id="176">176</th><td>		<q>"Debug"</q>,&nbsp</td></tr>
+<tr><th id="177">177</th><td>		<q>"Develop"</q>,&nbsp</td></tr>
+<tr><th id="178">178</th><td>		<q>"Profile"</q>,&nbsp</td></tr>
+<tr><th id="179">179</th><td>		<q>"Release"</q>,&nbsp</td></tr>
+<tr><th id="180">180</th><td>		<q>"Ship"</q>,&nbsp</td></tr>
+<tr><th id="181">181</th><td>		<q>"Invalid"</q>&nbsp</td></tr>
+<tr><th id="182">182</th><td>	};&nbsp</td></tr>
+<tr><th id="183">183</th><td>	<a class="macro" href="../Inc/Foundation/tAssert.h.html#30" title="static_assert(((sizeof(configNames)/sizeof(*configNames)) - 1) == int(tConfiguration::NumConfigurations), &quot;((sizeof(configNames)/sizeof(*configNames)) - 1) == int(tConfiguration::NumConfigurations)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>( ((<b>sizeof</b>(<a class="local col2 ref" href="#12configNames" title='configNames' data-ref="12configNames">configNames</a>)/<b>sizeof</b>(*<a class="local col2 ref" href="#12configNames" title='configNames' data-ref="12configNames">configNames</a>)) - <var>1</var>) == <em>int</em>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tConfiguration" title='tConfiguration' data-ref="tConfiguration">tConfiguration</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tConfiguration::NumConfigurations" title='tConfiguration::NumConfigurations' data-ref="tConfiguration::NumConfigurations">NumConfigurations</a>) );&nbsp</td></tr>
+<tr><th id="184">184</th><td>&nbsp</td></tr>
+<tr><th id="185">185</th><td>	<b>if</b> (<a class="local col1 ref" href="#11config" title='config' data-ref="11config">config</a> == <a class="type" href="../Inc/Foundation/tPlatform.h.html#tConfiguration" title='tConfiguration' data-ref="tConfiguration">tConfiguration</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tConfiguration::Invalid" title='tConfiguration::Invalid' data-ref="tConfiguration::Invalid">Invalid</a>)&nbsp</td></tr>
+<tr><th id="186">186</th><td>		<b>return</b> <a class="local col2 ref" href="#12configNames" title='configNames' data-ref="12configNames">configNames</a>[<em>int</em>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tConfiguration" title='tConfiguration' data-ref="tConfiguration">tConfiguration</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tConfiguration::NumConfigurations" title='tConfiguration::NumConfigurations' data-ref="tConfiguration::NumConfigurations">NumConfigurations</a>)];&nbsp</td></tr>
+<tr><th id="187">187</th><td>&nbsp</td></tr>
+<tr><th id="188">188</th><td>	<b>return</b> <a class="local col2 ref" href="#12configNames" title='configNames' data-ref="12configNames">configNames</a>[<em>int</em>(<a class="local col1 ref" href="#11config" title='config' data-ref="11config">config</a>)];&nbsp</td></tr>
+<tr><th id="189">189</th><td>}&nbsp</td></tr>
+<tr><th id="190">190</th><td>&nbsp</td></tr>
+<tr><th id="191">191</th><td>&nbsp</td></tr>
+<tr><th id="192">192</th><td><a class="type" href="../Inc/Foundation/tPlatform.h.html#tEndianness" title='tEndianness' data-ref="tEndianness">tEndianness</a> <dfn class="decl def fn" id="_Z14tGetEndianness9tPlatform" title='tGetEndianness' data-ref="_Z14tGetEndianness9tPlatform">tGetEndianness</dfn>(<a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a> <dfn class="local col3 decl" id="13plat" title='plat' data-type='tPlatform' data-ref="13plat">plat</dfn>)&nbsp</td></tr>
+<tr><th id="193">193</th><td>{&nbsp</td></tr>
+<tr><th id="194">194</th><td>	<b>switch</b> (<span class='warning' title="enumeration values &apos;Invalid&apos; and &apos;All&apos; not handled in switch"><a class="local col3 ref" href="#13plat" title='plat' data-ref="13plat">plat</a></span>)&nbsp</td></tr>
+<tr><th id="195">195</th><td>	{&nbsp</td></tr>
+<tr><th id="196">196</th><td>		<b>case</b> <a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::Windows" title='tPlatform::Windows' data-ref="tPlatform::Windows">Windows</a>:&nbsp</td></tr>
+<tr><th id="197">197</th><td>		<b>case</b> <a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::Linux" title='tPlatform::Linux' data-ref="tPlatform::Linux">Linux</a>:&nbsp</td></tr>
+<tr><th id="198">198</th><td>		<b>case</b> <a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::MacOS" title='tPlatform::MacOS' data-ref="tPlatform::MacOS">MacOS</a>:&nbsp</td></tr>
+<tr><th id="199">199</th><td>		<b>case</b> <a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::Android" title='tPlatform::Android' data-ref="tPlatform::Android">Android</a>:&nbsp</td></tr>
+<tr><th id="200">200</th><td>		<b>case</b> <a class="type" href="../Inc/Foundation/tPlatform.h.html#tPlatform" title='tPlatform' data-ref="tPlatform">tPlatform</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tPlatform::iOS" title='tPlatform::iOS' data-ref="tPlatform::iOS">iOS</a>:&nbsp</td></tr>
+<tr><th id="201">201</th><td>			<b>return</b> <a class="type" href="../Inc/Foundation/tPlatform.h.html#tEndianness" title='tEndianness' data-ref="tEndianness">tEndianness</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tEndianness::Little" title='tEndianness::Little' data-ref="tEndianness::Little">Little</a>;&nbsp</td></tr>
+<tr><th id="202">202</th><td>	}&nbsp</td></tr>
+<tr><th id="203">203</th><td>&nbsp</td></tr>
+<tr><th id="204">204</th><td>	<b>return</b> <a class="type" href="../Inc/Foundation/tPlatform.h.html#tEndianness" title='tEndianness' data-ref="tEndianness">tEndianness</a>::<a class="enum" href="../Inc/Foundation/tPlatform.h.html#tEndianness::Invalid" title='tEndianness::Invalid' data-ref="tEndianness::Invalid">Invalid</a>;&nbsp</td></tr>
+<tr><th id="205">205</th><td>}&nbsp</td></tr>
+<tr><th id="206">206</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

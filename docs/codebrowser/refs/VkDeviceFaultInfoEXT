@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16057' ll='16064'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16057'/>
+<size>296</size>
+<mbr r='VkDeviceFaultInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDeviceFaultInfoEXT::pNext' o='64' t='void *'/>
+<mbr r='VkDeviceFaultInfoEXT::description' o='128' t='char[256]'/>
+<mbr r='VkDeviceFaultInfoEXT::pAddressInfos' o='2176' t='VkDeviceFaultAddressInfoEXT *'/>
+<mbr r='VkDeviceFaultInfoEXT::pVendorInfos' o='2240' t='VkDeviceFaultVendorInfoEXT *'/>
+<mbr r='VkDeviceFaultInfoEXT::pVendorBinaryData' o='2304' t='void *'/>

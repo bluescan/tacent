@@ -1,0 +1,14 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='56' type='tFileHandle tSystem::tOpenFile(const char * file, const char * mode)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='697' ll='700' type='tFileHandle tSystem::tOpenFile(const char * file, const char * mode)'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='199' u='c' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='414' u='c' c='_ZNK6tImage9tImageTGA16SaveUncompressedERK7tStringNS0_7tFormatE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='470' u='c' c='_ZNK6tImage9tImageTGA14SaveCompressedERK7tStringNS0_7tFormatE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='771' u='c' c='_ZN12tChunkReader4LoadERK7tStringPh'/>
+<use f='Modules/System/Src/tChunk.cpp' l='818' u='c' c='_ZN12tChunkReader8LoadSafeERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='987' u='c' c='_ZN7tSystem11tCreateFileERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='1005' u='c' c='_ZN7tSystem11tCreateFileERK7tStringPhi'/>
+<use f='Modules/System/Src/tFile.cpp' l='1024' u='c' c='_ZN7tSystem11tCreateFileERK7tStringPDuib'/>
+<use f='Modules/System/Src/tFile.cpp' l='1053' u='c' c='_ZN7tSystem11tCreateFileERK7tStringPDsib'/>
+<use f='Modules/System/Src/tFile.cpp' l='1079' u='c' c='_ZN7tSystem11tCreateFileERK7tStringPDiib'/>
+<use f='Modules/System/Src/tFile.cpp' l='1186' u='c' c='_ZN7tSystem9tLoadFileERK7tStringPhPib'/>
+<use f='Modules/System/Src/tTime.cpp' l='230' u='c' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>

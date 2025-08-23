@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_dir.h' l='251' ll='253' type='uintmax_t std::filesystem::directory_entry::hard_link_count() const'/>

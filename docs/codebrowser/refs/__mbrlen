@@ -1,0 +1,2 @@
+<dec f='include/wchar.h' l='306' type='size_t __mbrlen(const char *__restrict __s, size_t __n, mbstate_t *__restrict __ps)'/>
+<doc f='include/wchar.h' l='305'>/* Return number of bytes in multibyte character pointed to by S.  */</doc>

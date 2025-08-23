@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tUnits.h' l='134' type='3'/>
+<use f='Modules/Foundation/Src/tUnits.cpp' l='63'/>
+<use f='Modules/Foundation/Src/tUnits.cpp' l='125' u='r' c='_ZN5tUnit11GetMassUnitEPKc'/>

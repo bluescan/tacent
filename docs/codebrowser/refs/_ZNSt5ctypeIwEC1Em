@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1222' type='void std::ctype&lt;wchar_t&gt;::ctype(std::size_t __refs = 0)'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1214'>/**
+       *  @brief  Constructor performs initialization.
+       *
+       *  This is the constructor provided by the standard.
+       *
+       *  @param __refs  Passed to the base facet class.
+      */</doc>

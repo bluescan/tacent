@@ -1,0 +1,46 @@
+<def f='Modules/System/Inc/System/tRegex.h' l='87' ll='167'/>
+<size>80</size>
+<doc f='Modules/System/Inc/System/tRegex.h' l='43'>// The format of the regular expression pattern strings is fairly standard. The following is supported:
+//
+// Expressions:
+//		\		Quote the next meta-character.
+//		^		Match the beginning of the string.
+//		.		Match any character.
+//		$		Match the end of the string.
+//		|		Alternation.
+//		()		Grouping (creates a capture).
+//		[]		Character class.
+//
+// Greedy Closures:
+//		*		Match 0 or more times.
+//		+		Match 1 or more times.
+//		?		Match 1 or 0 times.
+//		{n}	Match exactly n times.
+//		{n,}	Match at least n times.
+//		{n,m}	Match at least n but not more than m times.
+//
+// Escape Characters.
+//		\t		Tab (HT, TAB)
+//		\n		Newline (LF, NL)
+//		\r		Return (CR)
+//		\f		Form feed (FF)
+//
+// Predefined Classes:
+//		\l		Lowercase next char.
+//		\u		Uppercase next char.
+//		\a		Letters.
+//		\A		Non-letters.
+//		\w		Alphanumeric [0-9a-zA-Z].
+//		\W		Non-alphanumeric.
+//		\s		Space.
+//		\S		Non-space.
+//		\d		Digits.
+//		\D		Non-digits.
+//		\x		Hexadecimal digits.
+//		\X		Non-hexadecimal digits.
+//		\c		Control characters.
+//		\C		Non-control characters.
+//		\p		Punctuation.
+//		\P		Non-punctuation.
+//		\b		Word boundary.
+//		\B		Non-word boundary.</doc>

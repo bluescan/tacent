@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='264' type='uint16_t'/>
+<offset>512</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='264'>// Unit for measuring FocalPlaneXResolution and FocalPlaneYResolution (may not exist)</doc>

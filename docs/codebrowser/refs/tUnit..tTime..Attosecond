@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tUnits.h' l='85' type='2'/>
+<doc f='Modules/Foundation/Inc/Foundation/tUnits.h' l='83'>// These next 6 should perhaps not be here since we could use the tPrefix and Second units. Still, they are
+		// common enough that perhaps they do deserve their own units.</doc>

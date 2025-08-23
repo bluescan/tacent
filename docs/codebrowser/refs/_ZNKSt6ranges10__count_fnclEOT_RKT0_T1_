@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='300' ll='305' type='range_difference_t&lt;_Range&gt; std::ranges::__count_fn::operator()(_Range &amp;&amp; __r, const _Tp &amp; __value, _Proj __proj = {}) const'/>

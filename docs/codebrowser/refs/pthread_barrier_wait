@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1264' type='int pthread_barrier_wait(pthread_barrier_t * __barrier)'/>
+<doc f='include/pthread.h' l='1263'>/* Wait on barrier BARRIER.  */</doc>

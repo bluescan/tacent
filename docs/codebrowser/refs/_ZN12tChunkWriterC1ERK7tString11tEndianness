@@ -1,0 +1,4 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='68' type='void tChunkWriter::tChunkWriter(const tString &amp; filename, tEndianness endianness = tEndianness::Little)'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='66'>// Creates the file if it doesn&apos;t exist, overwrites it if it does. See the Open() function comment. The endianness
+	// is the desired endianness of the written data.</doc>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1074' u='c' c='_ZNK6tScene6tWorld4SaveERK7tString'/>

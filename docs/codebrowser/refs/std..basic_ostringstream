@@ -1,0 +1,37 @@
+<use f='include/c++/11/iosfwd' l='153'/>
+<use f='include/c++/11/iosfwd' l='193'/>
+<def f='include/c++/11/sstream' l='758' ll='960'/>
+<use f='include/c++/11/sstream' l='1200' c='_ZNSt7__cxx114swapERNS_19basic_ostringstreamIT_T0_T1_EES5_'/>
+<use f='include/c++/11/sstream' l='1201' c='_ZNSt7__cxx114swapERNS_19basic_ostringstreamIT_T0_T1_EES5_'/>
+<inh f='include/c++/11/bits/ostream.tcc' l='359' c='std::basic_ostream'/>
+<def f='include/c++/11/bits/sstream.tcc' l='293'/>
+<use f='include/c++/11/bits/sstream.tcc' l='293'/>
+<inh f='include/c++/11/bits/ostream.tcc' l='382' c='std::basic_ostream'/>
+<def f='include/c++/11/bits/sstream.tcc' l='299'/>
+<use f='include/c++/11/bits/sstream.tcc' l='299'/>
+<use f='include/c++/11/bits/quoted_string.h' l='96' c='_ZNSt8__detaillsERSt13basic_ostreamIT_T0_ERKNS_14_Quoted_stringIPKS1_S1_EE'/>
+<use f='include/c++/11/bits/quoted_string.h' l='120' c='_ZNSt8__detaillsERSt13basic_ostreamIT_T0_ERKNS_14_Quoted_stringIT1_S1_EE'/>
+<size>376</size>
+<mbr r='std::basic_ostringstream::_M_stringbuf' t='std::basic_ostringstream::__stringbuf_type'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstreamC1Ev'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstreamC1ESt13_Ios_Openmode'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstreamC1ERKNS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstreamD1Ev'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstreamC1ERKNS_19basic_ostringstreamIT_T0_T1_EE'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstreamC1EONS_19basic_ostringstreamIT_T0_T1_EE'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstreamC1ESt13_Ios_OpenmodeRKT1_'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstreamC1EONS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstreamC1ERKNS_12basic_stringIT_T0_TL0__EERKT1_'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstreamC1ERKNS_12basic_stringIT_T0_TL0__EESt13_Ios_OpenmodeRKT1_'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstreamC1ERKNS_12basic_stringIT_T0_TL0__EESt13_Ios_Openmode'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstreamaSERKNS_19basic_ostringstreamIT_T0_T1_EE'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstreamaSEONS_19basic_ostringstreamIT_T0_T1_EE'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstream4swapERNS_19basic_ostringstreamIT_T0_T1_EE'/>
+<fun r='_ZNKSt7__cxx1119basic_ostringstream5rdbufEv'/>
+<fun r='_ZNKRSt7__cxx1119basic_ostringstream3strEv'/>
+<fun r='_ZNKSt7__cxx1119basic_ostringstream3strERKTL0__'/>
+<fun r='_ZNOSt7__cxx1119basic_ostringstream3strEv'/>
+<fun r='_ZNKSt7__cxx1119basic_ostringstream4viewEv'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstream3strERKNS_12basic_stringIT_T0_T1_EE'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstream3strERKNS_12basic_stringIT_T0_TL0__EE'/>
+<fun r='_ZNSt7__cxx1119basic_ostringstream3strEONS_12basic_stringIT_T0_T1_EE'/>

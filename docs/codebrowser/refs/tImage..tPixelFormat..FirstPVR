@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='184' type='55'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='185'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='239' u='r'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='517' u='r' c='_ZN6tImage12tIsPVRFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='184'>// PowerVR. Imagination. 8-byte blocks. We do not consider the PVRTC formats to be BC formats because 4 blocks need to be accessed. i.e. The pixels are not &apos;confined&apos; to the block they are in.</doc>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='130' u='a'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='318' u='a'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='504' u='r' c='_ZN6tImage14tGetBlockWidthENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='523' u='r' c='_ZN6tImage15tGetBlockHeightENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='541' u='r' c='_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE'/>

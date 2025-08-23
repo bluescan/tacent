@@ -1,0 +1,25 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='216' u='a' c='_ZN6tsList6InsertEPT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='217' u='a' c='_ZN6tsList6InsertEPT_S1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='218' u='a' c='_ZN6tsList6AppendEPT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='219' u='a' c='_ZN6tsList6AppendEPT_S1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='220' u='a' c='_ZN6tsList6RemoveEPT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='221' u='a' c='_ZN6tsList6RemoveEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='222' u='a' c='_ZN6tsList4DropEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='223' u='a' c='_ZN6tsList5ClearEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='224' u='a' c='_ZN6tsList5ResetEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='225' u='a' c='_ZN6tsList5EmptyEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='226' u='a' c='_ZNK6tsList4HeadEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='227' u='a' c='_ZNK6tsList4TailEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='228' u='a' c='_ZNK6tsList5FirstEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='229' u='a' c='_ZNK6tsList4LastEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='230' u='a' c='_ZNK6tsList8NextCircEPKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='231' u='a' c='_ZNK6tsList8PrevCircEPKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='232' u='a' c='_ZNK6tsList11GetNumItemsEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='233' u='a' c='_ZNK6tsList8NumItemsEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='234' u='a' c='_ZNK6tsList5CountEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='236' u='a' c='_ZNK6tsList7IsEmptyEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='237' u='a' c='_ZNK6tsList8ContainsERKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='238' u='a' c='_ZN6tsList4SortETL0__18tListSortAlgorithm'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='239' u='a' c='_ZN6tsList6InsertEPT_TL0__'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='240' u='a' c='_ZN6tsList6BubbleETL0__bi'/>
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='243' type='std::mutex'/>

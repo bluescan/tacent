@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1051' ll='1053' type='std::unordered_map::const_local_iterator std::unordered_map::begin(std::unordered_map::size_type __n) const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1045'>/**
+       *  @brief  Returns a read-only (constant) iterator pointing to the first
+       *         bucket element.
+       *  @param  __n The bucket index.
+       *  @return  A read-only local iterator.
+       */</doc>

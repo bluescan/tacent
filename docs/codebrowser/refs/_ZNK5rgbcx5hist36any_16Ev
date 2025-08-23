@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1620' ll='1623' type='bool rgbcx::hist3::any_16() const'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1893' u='c' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>

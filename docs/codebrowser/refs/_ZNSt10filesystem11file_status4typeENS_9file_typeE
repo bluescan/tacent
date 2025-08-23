@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/fs_dir.h' l='76' type='void std::filesystem::file_status::type(std::filesystem::file_type __ft)'/>
+<doc f='include/c++/11/bits/fs_dir.h' l='75'>// modifiers</doc>

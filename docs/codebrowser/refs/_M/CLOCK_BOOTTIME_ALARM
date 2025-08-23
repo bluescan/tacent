@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/time.h' l='64'/>
+<doc f='include/x86_64-linux-gnu/bits/time.h' l='63'>/* Like CLOCK_BOOTTIME but also wakes suspended system.  */</doc>

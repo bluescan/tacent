@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/shared_ptr.h' l='398' ll='403' type='_Assignable&lt;unique_ptr&lt;_Yp, _Del&gt;&gt; std::shared_ptr::operator=(unique_ptr&lt;_Yp, _Del&gt; &amp;&amp; __r)'/>

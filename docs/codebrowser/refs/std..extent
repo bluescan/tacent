@@ -1,0 +1,11 @@
+<use f='include/c++/11/type_traits' l='827'/>
+<use f='include/c++/11/type_traits' l='832'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='1382' ll='1383'/>
+<def f='include/c++/11/type_traits' l='1385' ll='1390'/>
+<use f='include/c++/11/type_traits' l='1388'/>
+<def f='include/c++/11/type_traits' l='1392' ll='1397'/>
+<use f='include/c++/11/type_traits' l='1395'/>
+<use f='include/c++/11/type_traits' l='3248'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1041' c='_ZNKSt19__shared_ptr_accessIT_XT0_ELb1ELb0EEixEl'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1041' c='_ZNKSt19__shared_ptr_accessIT_XT0_ELb1ELb0EEixEl'/>

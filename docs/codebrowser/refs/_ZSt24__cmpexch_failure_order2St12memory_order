@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/atomic_base.h' l='110' ll='115' type='std::memory_order std::__cmpexch_failure_order2(std::memory_order __m)'/>
+<use f='include/c++/11/bits/atomic_base.h' l='120' u='c' c='_ZSt23__cmpexch_failure_orderSt12memory_order'/>
+<doc f='include/c++/11/bits/atomic_base.h' l='109'>// Drop release ordering as per [atomics.types.operations.req]/21</doc>

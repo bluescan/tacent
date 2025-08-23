@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/hashtable.h' l='778' type='pair&lt;std::_Hashtable::iterator, std::_Hashtable::iterator&gt; std::_Hashtable::_M_equal_range_tr(const _Kt &amp; __k)'/>
+<def f='include/c++/11/bits/hashtable.h' l='1763' ll='1789' type='pair&lt;std::_Hashtable::iterator, std::_Hashtable::iterator&gt; std::_Hashtable::_M_equal_range_tr(const _Kt &amp; __k)'/>

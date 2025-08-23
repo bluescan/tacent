@@ -1,0 +1,1 @@
+<dec f='include/c++/11/pstl/glue_algorithm_defs.h' l='279' type='__pstl::__internal::__enable_if_execution_policy&lt;_ExecutionPolicy, _BidirectionalIterator&gt; std::stable_partition(_ExecutionPolicy &amp;&amp; __exec, _BidirectionalIterator __first, _BidirectionalIterator __last, _UnaryPredicate __pred)'/>

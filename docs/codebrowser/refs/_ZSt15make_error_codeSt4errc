@@ -1,0 +1,9 @@
+<dec f='include/c++/11/system_error' l='177' type='std::error_code std::make_error_code(std::errc )'/>
+<def f='include/c++/11/system_error' l='255' ll='257' type='std::error_code std::make_error_code(std::errc __e)'/>
+<doc f='include/c++/11/system_error' l='173'>/** @addtogroup diagnostics
+   * @{
+   */</doc>
+<doc f='include/c++/11/system_error' l='251'>// 19.4.2.6 non-member functions
+
+  /// @relates error_code @{</doc>
+<use f='include/c++/11/bits/fs_path.h' l='735' u='c' c='_ZNSt10filesystem7__cxx118__detail24__throw_conversion_errorEv'/>

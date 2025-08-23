@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/std_mutex.h' l='228' u='w' c='_ZNSt10lock_guardC1ERT_'/>
+<use f='include/c++/11/bits/std_mutex.h' l='229' u='c' c='_ZNSt10lock_guardC1ERT_'/>
+<use f='include/c++/11/bits/std_mutex.h' l='231' u='w' c='_ZNSt10lock_guardC1ERT_St12adopt_lock_t'/>
+<use f='include/c++/11/bits/std_mutex.h' l='235' u='c' c='_ZNSt10lock_guardD1Ev'/>
+<dec f='include/c++/11/bits/std_mutex.h' l='241' type='std::lock_guard::mutex_type &amp;'/>

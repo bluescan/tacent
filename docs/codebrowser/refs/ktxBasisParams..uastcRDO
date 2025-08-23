@@ -1,0 +1,15 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1439' type='ktx_bool_t'/>
+<offset>416</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1426'>/*!&lt;  A set of ::ktx_pack_uastc_flag_bits_e controlling UASTC
+             encoding. The most important value is the level given in the
+             least-significant 4 bits which selects a speed vs quality tradeoff
+             as shown in the following table:
+
+                Level/Speed | Quality
+                :-----: | :-------:
+                KTX_PACK_UASTC_LEVEL_FASTEST | 43.45dB
+                KTX_PACK_UASTC_LEVEL_FASTER | 46.49dB
+                KTX_PACK_UASTC_LEVEL_DEFAULT | 47.47dB
+                KTX_PACK_UASTC_LEVEL_SLOWER  | 48.01dB
+                KTX_PACK_UASTC_LEVEL_VERYSLOW | 48.24dB
+         */</doc>

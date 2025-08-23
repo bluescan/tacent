@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1573' type='const char *'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='110' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='111' u='r' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1568'>// A list of valid numeric literals for output.  This array
+    // contains chars that will be passed through the current locale&apos;s
+    // ctype&lt;_CharT&gt;.widen() and then used to render numbers.
+    // For the standard &quot;C&quot; locale, this is
+    // &quot;-+xX0123456789abcdef0123456789ABCDEF&quot;.</doc>

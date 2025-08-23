@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tQuantizeSpatial.cpp' l='166' type='void tImage::tQuantizeSpatial::compute_b_array(array2d&lt;vector_fixed&lt;double, 3&gt;&gt; &amp; filter_weights, array2d&lt;vector_fixed&lt;double, 3&gt;&gt; &amp; b)'/>
+<def f='Modules/Image/Src/tQuantizeSpatial.cpp' l='248' ll='273' type='void tImage::tQuantizeSpatial::compute_b_array(array2d&lt;vector_fixed&lt;double, 3&gt;&gt; &amp; filter_weights, array2d&lt;vector_fixed&lt;double, 3&gt;&gt; &amp; b)'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='584' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>

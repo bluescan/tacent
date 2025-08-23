@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='963' ll='964' type='void std::vector&lt;bool, type-parameter-0-0&gt;::data()'/>
+<doc f='include/c++/11/bits/stl_bvector.h' l='958'>// _GLIBCXX_RESOLVE_LIB_DEFECTS
+      // DR 464. Suggestion for new member functions in standard containers.
+      // N.B. DR 464 says nothing about vector&lt;bool&gt; but we need something
+      // here due to the way we are implementing DR 464 in the debug-mode
+      // vector class.</doc>

@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='1016' type='int getdtablesize()'/>
+<doc f='include/unistd.h' l='1014'>/* Return the maximum number of file descriptors
+   the current process could possibly have.  */</doc>

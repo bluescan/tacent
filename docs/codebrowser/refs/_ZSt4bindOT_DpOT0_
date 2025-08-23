@@ -1,0 +1,1 @@
+<def f='include/c++/11/functional' l='787' ll='794' type='typename _Bind_helper&lt;__is_socketlike&lt;_Func&gt;::value, _Func, _BoundArgs...&gt;::type std::bind(_Func &amp;&amp; __f, _BoundArgs &amp;&amp;... __args)'/>

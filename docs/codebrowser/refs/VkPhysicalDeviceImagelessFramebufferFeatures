@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6319' ll='6323'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6319'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceImagelessFramebufferFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceImagelessFramebufferFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceImagelessFramebufferFeatures::imagelessFramebuffer' o='128' t='VkBool32'/>

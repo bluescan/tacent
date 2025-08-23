@@ -1,0 +1,4 @@
+<def f='Modules/Image/Src/tImageHDR.cpp' l='85' ll='93' type='void tImage::tImageHDR::CleanupGammaTables()'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='311' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='328' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='375' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>

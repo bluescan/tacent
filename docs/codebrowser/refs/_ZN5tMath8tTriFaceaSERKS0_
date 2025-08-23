@@ -1,0 +1,8 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='49' type='tMath::tTriFace &amp; tMath::tTriFace::operator=(const tMath::tTriFace &amp; f)'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='176' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='187' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='198' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='220' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='231' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='242' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='264' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>

@@ -1,0 +1,21 @@
+<dec f='include/c++/11/bits/basic_string.h' l='2966' type='int std::basic_string::compare(std::basic_string::size_type __pos, std::basic_string::size_type __n, const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __str) const'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='1402' ll='1415' type='int std::basic_string::compare(std::basic_string::size_type __pos, std::basic_string::size_type __n, const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __str) const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='2946'>/**
+       *  @brief  Compare substring to a string.
+       *  @param __pos  Index of first character of substring.
+       *  @param __n  Number of characters in substring.
+       *  @param __str  String to compare against.
+       *  @return  Integer &lt; 0, 0, or &gt; 0.
+       *
+       *  Form the substring of this string from the @a __n characters
+       *  starting at @a __pos.  Returns an integer &lt; 0 if the
+       *  substring is ordered before @a __str, 0 if their values are
+       *  equivalent, or &gt; 0 if the substring is ordered after @a
+       *  __str.  Determines the effective length rlen of the strings
+       *  to compare as the smallest of the length of the substring
+       *  and @a __str.size().  The function then compares the two
+       *  strings by calling
+       *  traits::compare(substring.data(),str.data(),rlen).  If the
+       *  result of the comparison is nonzero returns it, otherwise
+       *  the shorter one is ordered first.
+      */</doc>

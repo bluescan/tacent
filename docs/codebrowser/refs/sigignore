@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='363' type='int sigignore(int __sig)'/>
+<doc f='include/signal.h' l='362'>/* Set the disposition of SIG to SIG_IGN.  */</doc>

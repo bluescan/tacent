@@ -1,0 +1,18 @@
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1461' u='c' c='_ZN5rgbcx7color32C1ENS_8eNoClampEjjjj'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1466' type='void rgbcx::color32::set_noclamp_rgba(uint32_t vr, uint32_t vg, uint32_t vb, uint32_t va)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4066' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4067' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4071' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4072' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4075' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4076' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4079' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4080' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4083' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4084' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4090' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4091' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4096' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4099' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4102' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4106' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>

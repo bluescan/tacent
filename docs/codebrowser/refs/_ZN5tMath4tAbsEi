@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='34' type='int tMath::tAbs(int val)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='33'>// For functions below there may be variants starting with &apos;ti&apos;. The &apos;i&apos; means &apos;in-place&apos; (ref var). Supports chaining.</doc>

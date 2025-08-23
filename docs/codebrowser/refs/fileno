@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='809' type='int fileno(FILE * __stream)'/>
+<doc f='include/stdio.h' l='808'>/* Return the system file descriptor for STREAM.  */</doc>

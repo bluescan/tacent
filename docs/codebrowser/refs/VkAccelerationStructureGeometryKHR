@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18732' ll='18738'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18732'/>
+<size>96</size>
+<mbr r='VkAccelerationStructureGeometryKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkAccelerationStructureGeometryKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkAccelerationStructureGeometryKHR::geometryType' o='128' t='VkGeometryTypeKHR'/>
+<mbr r='VkAccelerationStructureGeometryKHR::geometry' o='192' t='VkAccelerationStructureGeometryDataKHR'/>
+<mbr r='VkAccelerationStructureGeometryKHR::flags' o='704' t='VkGeometryFlagsKHR'/>

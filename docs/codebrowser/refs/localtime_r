@@ -1,0 +1,3 @@
+<dec f='include/time.h' l='159' type='struct tm * localtime_r(const time_t *__restrict __timer, struct tm *__restrict __tp)'/>
+<doc f='include/time.h' l='157'>/* Return the `struct tm&apos; representation of *TIMER in local time,
+   using *TP to store the result.  */</doc>

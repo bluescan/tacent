@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1340' ll='1342' type='const int'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1351' u='r'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1351' u='r'/>
+<doc f='include/c++/11/bits/atomic_base.h' l='1339'>// 1/2/4/8/16-byte types must be aligned to at least their size.</doc>

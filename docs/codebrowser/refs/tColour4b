@@ -1,0 +1,371 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='245' c='_ZN5tMath10tGetColourEPKc'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='249' c='_ZN5tMath22tColourDiffEuclideanSqERK9tColour4bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='249' c='_ZN5tMath22tColourDiffEuclideanSqERK9tColour4bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='251' c='_ZN5tMath20tColourDiffEuclideanERK9tColour4bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='251' c='_ZN5tMath20tColourDiffEuclideanERK9tColour4bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='253' c='_ZN5tMath18tColourDiffRedmeanERK9tColour4bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='253' c='_ZN5tMath18tColourDiffRedmeanERK9tColour4bS2_'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='336' ll='482'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='340' c='_ZN9tColour4bC1ERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='353' c='_ZN9tColour4b3SetERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='396' c='_ZNK9tColour4b3GetERS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='433' c='_ZNK9tColour4b5EqualERKS_j'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='434' c='_ZNK9tColour4beqERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='435' c='_ZNK9tColour4bneERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='436' c='_ZN9tColour4baSERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='436' c='_ZN9tColour4baSERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='438' c='_ZN9tColour4bmLEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='439' c='_ZNK9tColour4bmlEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='439' c='_ZNK9tColour4bmlEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='440' c='_ZN9tColour4bpLERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='440' c='_ZN9tColour4bpLERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='441' c='_ZNK9tColour4bplERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='441' c='_ZNK9tColour4bplERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='441' c='_ZNK9tColour4bplERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='449'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='450'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='451'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='453'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='454'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='455'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='457'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='458'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='459'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='461'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='462'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='463'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='465'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='483'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='484'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='538' c='_ZN9tColour4sC1ERK9tColour4b'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='551' c='_ZN9tColour4s3SetERK9tColour4b'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='684' c='_ZN9tColour3fC1ERK9tColour4b'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='695' c='_ZN9tColour3f3SetERK9tColour4b'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='797' c='_ZN9tColour4fC1ERK9tColour4b'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='810' c='_ZN9tColour4f3SetERK9tColour4b'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1042' c='_ZN5tMath22tColourDiffEuclideanSqERK9tColour4bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1042' c='_ZN5tMath22tColourDiffEuclideanSqERK9tColour4bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1058' c='_ZN5tMath20tColourDiffEuclideanERK9tColour4bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1058' c='_ZN5tMath20tColourDiffEuclideanERK9tColour4bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1146' c='_ZNK9tColour4b5EqualERKS_j'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1164' c='_ZN9tColour4s3SetERK9tColour4b'/>
+<size>4</size>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='335'>// The tColour4b class represents a colour in 32 bits and is made of 4 unsigned byte-size integers in the order RGBA.</doc>
+<fun r='_ZN9tColour4bC1Ev'/>
+<fun r='_ZN9tColour4bC1ERKS_'/>
+<fun r='_ZN9tColour4bC1ERK9tColour3bi'/>
+<fun r='_ZN9tColour4bC1Eiiii'/>
+<fun r='_ZN9tColour4bC1Ehhhh'/>
+<fun r='_ZN9tColour4bC1Ej'/>
+<fun r='_ZN9tColour4bC1ERK9tColour4s'/>
+<fun r='_ZN9tColour4bC1ERK9tColour3st'/>
+<fun r='_ZN9tColour4bC1ERK9tColour4f'/>
+<fun r='_ZN9tColour4bC1ERK9tColour3fh'/>
+<fun r='_ZN9tColour4bC1ERK9tColour3ff'/>
+<fun r='_ZN9tColour4bC1Effff'/>
+<fun r='_ZN9tColour4bC1EPKf'/>
+<fun r='_ZN9tColour4b3SetERKS_'/>
+<fun r='_ZN9tColour4b3SetERK9tColour3bi'/>
+<fun r='_ZN9tColour4b3SetEiiii'/>
+<fun r='_ZN9tColour4b3SetEhhhh'/>
+<fun r='_ZN9tColour4b3SetEj'/>
+<fun r='_ZN9tColour4b3SetERK9tColour4s'/>
+<fun r='_ZN9tColour4b3SetERK9tColour3st'/>
+<fun r='_ZN9tColour4b3SetERK9tColour4f'/>
+<fun r='_ZN9tColour4b3SetERK9tColour3fh'/>
+<fun r='_ZN9tColour4b3SetERK9tColour3ff'/>
+<fun r='_ZN9tColour4b3SetEPKf'/>
+<fun r='_ZN9tColour4b6SetRGBEiii'/>
+<fun r='_ZN9tColour4b6SetRGBEhhh'/>
+<fun r='_ZN9tColour4b3SetEffff'/>
+<fun r='_ZN9tColour4b4SetREf'/>
+<fun r='_ZN9tColour4b4SetGEf'/>
+<fun r='_ZN9tColour4b4SetBEf'/>
+<fun r='_ZN9tColour4b4SetAEf'/>
+<fun r='_ZNK9tColour4b4GetREv'/>
+<fun r='_ZNK9tColour4b4GetGEv'/>
+<fun r='_ZNK9tColour4b4GetBEv'/>
+<fun r='_ZNK9tColour4b4GetAEv'/>
+<fun r='_ZNK9tColour4b3GetEPf'/>
+<fun r='_ZNK9tColour4b3GetERN5tMath8tVector3E'/>
+<fun r='_ZNK9tColour4b3GetERN5tMath8tVector4E'/>
+<fun r='_ZNK9tColour4b3GetERfS0_S0_S0_'/>
+<fun r='_ZNK9tColour4b10GetDenormREv'/>
+<fun r='_ZNK9tColour4b10GetDenormGEv'/>
+<fun r='_ZNK9tColour4b10GetDenormBEv'/>
+<fun r='_ZNK9tColour4b10GetDenormAEv'/>
+<fun r='_ZNK9tColour4b9GetDenormEPf'/>
+<fun r='_ZNK9tColour4b9GetDenormERN5tMath8tVector3E'/>
+<fun r='_ZNK9tColour4b9GetDenormERN5tMath8tVector4E'/>
+<fun r='_ZNK9tColour4b9GetDenormERfS0_S0_S0_'/>
+<fun r='_ZNK9tColour4b3GetERS_'/>
+<fun r='_ZNK9tColour4b9IntensityEj'/>
+<fun r='_ZN9tColour4b8MakeZeroEv'/>
+<fun r='_ZN9tColour4b9MakeBlackEv'/>
+<fun r='_ZN9tColour4b9MakeWhiteEv'/>
+<fun r='_ZN9tColour4b8MakePinkEv'/>
+<fun r='_ZN9tColour4b7MakeRedEv'/>
+<fun r='_ZN9tColour4b9MakeGreenEv'/>
+<fun r='_ZN9tColour4b8MakeBlueEv'/>
+<fun r='_ZN9tColour4b8MakeGreyEv'/>
+<fun r='_ZN9tColour4b13MakeLightGreyEv'/>
+<fun r='_ZN9tColour4b12MakeDarkGreyEv'/>
+<fun r='_ZN9tColour4b8MakeCyanEv'/>
+<fun r='_ZN9tColour4b11MakeMagentaEv'/>
+<fun r='_ZN9tColour4b10MakeYellowEv'/>
+<fun r='_ZNK9tColour4b7IsBlackEv'/>
+<fun r='_ZNK9tColour4b7IsWhiteEv'/>
+<fun r='_ZNK9tColour4b5IsRedEv'/>
+<fun r='_ZNK9tColour4b7IsGreenEv'/>
+<fun r='_ZNK9tColour4b6IsBlueEv'/>
+<fun r='_ZN9tColour4b8RGBToHSVEv'/>
+<fun r='_ZN9tColour4b8HSVToRGBEv'/>
+<fun r='_ZNK9tColour4b5EqualERKS_j'/>
+<fun r='_ZNK9tColour4beqERKS_'/>
+<fun r='_ZNK9tColour4bneERKS_'/>
+<fun r='_ZN9tColour4baSERKS_'/>
+<fun r='_ZN9tColour4bmLEf'/>
+<fun r='_ZNK9tColour4bmlEf'/>
+<fun r='_ZN9tColour4bpLERKS_'/>
+<fun r='_ZNK9tColour4bplERKS_'/>
+<fun r='_ZN9tColour4bcvjEv'/>
+<fun r='_ZNK9tColour4bcvjEv'/>
+<smbr r='tColour4b::black' t='const tColour4b'/>
+<smbr r='tColour4b::white' t='const tColour4b'/>
+<smbr r='tColour4b::pink' t='const tColour4b'/>
+<smbr r='tColour4b::red' t='const tColour4b'/>
+<smbr r='tColour4b::green' t='const tColour4b'/>
+<smbr r='tColour4b::blue' t='const tColour4b'/>
+<smbr r='tColour4b::grey' t='const tColour4b'/>
+<smbr r='tColour4b::lightgrey' t='const tColour4b'/>
+<smbr r='tColour4b::darkgrey' t='const tColour4b'/>
+<smbr r='tColour4b::cyan' t='const tColour4b'/>
+<smbr r='tColour4b::magenta' t='const tColour4b'/>
+<smbr r='tColour4b::yellow' t='const tColour4b'/>
+<smbr r='tColour4b::transparent' t='const tColour4b'/>
+<fun r='_ZN9tColour4b3SetERK9tColour3bi'/>
+<fun r='_ZN9tColour4b3SetERK9tColour4s'/>
+<fun r='_ZN9tColour4b3SetERK9tColour3st'/>
+<fun r='_ZN9tColour4b3SetERK9tColour4f'/>
+<fun r='_ZN9tColour4b3SetERK9tColour3fh'/>
+<fun r='_ZN9tColour4b3SetERK9tColour3ff'/>
+<fun r='_ZNK9tColour4b9IntensityEj'/>
+<fun r='_ZN9tColour4b8RGBToHSVEv'/>
+<fun r='_ZN9tColour4b8HSVToRGBEv'/>
+<fun r='_ZNK9tColour4b5EqualERKS_j'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='142' c='_ZN12tChunkWriter5WriteERK9tColour4b'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='142' c='_ZN12tChunkWriter5WriteERK9tColour4b'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='162' c='_ZN12tChunkWriter5WriteEPK9tColour4bi'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='162' c='_ZN12tChunkWriter5WriteEPK9tColour4bi'/>
+<size>4</size>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='140' c='_ZN6tImage9tImageTGA15ReadColourBytesER9tColour4bPKhib'/>
+<size>4</size>
+<use f='Modules/Image/Inc/Image/tImageWEBP.h' l='110'/>
+<size>4</size>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='153' c='_ZN6tImage8tPicture8SetPixelEiiRK9tColour4b'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='154' c='_ZN6tImage8tPicture8SetPixelEiihhhh'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='155' c='_ZN6tImage8tPicture8SetPixelEiiRK9tColour4bj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='156' c='_ZN6tImage8tPicture6SetAllERK9tColour4bj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='156' c='_ZN6tImage8tPicture6SetAllERK9tColour4bj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='182' c='_ZN6tImage8tPicture16AlphaBlendColourERK9tColour4bji'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='219' c='_ZN6tImage8tPicture4CropEiiNS0_6AnchorERK9tColour4b'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='220' c='_ZN6tImage8tPicture4CropEiiiiRK9tColour4b'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='223' c='_ZN6tImage8tPicture10CopyRegionEiiPK9tColour4biij'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='224' c='_ZN6tImage8tPicture10CopyRegionEiiPK9tColour4bNS0_6AnchorEj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='229' c='_ZN6tImage8tPicture8DeborderERK9tColour4bj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='232' c='_ZNK6tImage8tPicture10HasBordersERK9tColour4bj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='367' c='_ZNK6tImage8tPicture15GetBordersSizesERK9tColour4bjRiS4_S4_S4_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='492' c='_ZN6tImage8tPicture8SetPixelEiiRK9tColour4bj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='503' c='_ZN6tImage8tPicture6SetAllERK9tColour4bj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='156' c='_ZN6tImage8tPicture6SetAllERK9tColour4bj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='560' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='561' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='619' c='_ZN6tImage8tPicture16AlphaBlendColourERK9tColour4bji'/>
+<size>4</size>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='44' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='51' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='52' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='54' c='_ZN6tImage19DecodePixelData_PVRENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<size>4</size>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='153' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='185' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<size>4</size>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1437' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1497' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1531' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1531' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<size>4</size>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1019' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1079' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1113' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1113' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<size>4</size>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='218' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='257' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<size>4</size>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='368' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='782' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='797' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<size>4</size>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1127' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1189' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<size>4</size>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='155' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='238' c='_ZN6tImage9tImageTGA15ReadColourBytesER9tColour4bPKhib'/>
+<size>4</size>
+<use f='Modules/System/Inc/System/tScript.h' l='116' c='_ZNK11tExpression13GetAtomColourEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='133' c='_ZNK11tExpressioncv9tColour4bEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='271' c='_ZN11tExprWriter9WriteAtomERK9tColour4b'/>
+<use f='Modules/System/Inc/System/tScript.h' l='320' c='_ZN11tExprWriter4AtomERK9tColour4b'/>
+<size>4</size>
+<use f='Modules/Image/Src/tPicture.cpp' l='289' c='_ZN6tImage8tPicture4CropEiiNS0_6AnchorERK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='313' c='_ZN6tImage8tPicture4CropEiiiiRK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='348' c='_ZN6tImage8tPicture10CopyRegionEiiPK9tColour4biij'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='382' c='_ZN6tImage8tPicture10CopyRegionEiiPK9tColour4bNS0_6AnchorEj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='408' c='_ZNK6tImage8tPicture15GetBordersSizesERK9tColour4bjRiS4_S4_S4_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='500' c='_ZN6tImage8tPicture8DeborderERK9tColour4bj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='518' c='_ZNK6tImage8tPicture10HasBordersERK9tColour4bj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='643' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='695' c='_ZN6tImage8tPicture16AdjustBrightnessEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='696' c='_ZN6tImage8tPicture16AdjustBrightnessEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='730' c='_ZN6tImage8tPicture14AdjustContrastEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='731' c='_ZN6tImage8tPicture14AdjustContrastEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='798' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='799' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<size>4</size>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='62' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='98' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='113' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='116' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='126' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='129' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='136' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='139' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='145' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='148' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='154' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='157' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='163' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='166' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='172' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='175' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='181' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='204' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='210' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='226' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='232' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='248' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='254' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='269' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='275' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='290' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='297' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='302' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='310' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='316' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='324' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='331' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='339' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='347' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='355' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='360' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='368' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='374' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='382' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='389' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='397' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='405' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='654' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='670' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='677' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='694' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='707' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='731' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='735' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='755' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='761' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='783' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='786' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='808' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='815' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='850' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='864' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='877' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='890' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='915' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='919' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='940' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='945' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='967' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='972' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='994' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1001' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1029' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1030' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1031' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1034' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1148' c='_ZN6tImage19DecodePixelData_PVRENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1165' c='_ZN6tImage19DecodePixelData_PVRENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1179' c='_ZN6tImage19DecodePixelData_PVRENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<size>4</size>
+<use f='Modules/Math/Src/tColour.cpp' l='146'/>
+<use f='Modules/Math/Src/tColour.cpp' l='147'/>
+<use f='Modules/Math/Src/tColour.cpp' l='148'/>
+<use f='Modules/Math/Src/tColour.cpp' l='149'/>
+<use f='Modules/Math/Src/tColour.cpp' l='150'/>
+<use f='Modules/Math/Src/tColour.cpp' l='151'/>
+<use f='Modules/Math/Src/tColour.cpp' l='152'/>
+<use f='Modules/Math/Src/tColour.cpp' l='153'/>
+<use f='Modules/Math/Src/tColour.cpp' l='154'/>
+<use f='Modules/Math/Src/tColour.cpp' l='155'/>
+<use f='Modules/Math/Src/tColour.cpp' l='156'/>
+<use f='Modules/Math/Src/tColour.cpp' l='157'/>
+<use f='Modules/Math/Src/tColour.cpp' l='158'/>
+<use f='Modules/Math/Src/tColour.cpp' l='414' c='_ZN5tMath10tGetColourEPKc'/>
+<use f='Modules/Math/Src/tColour.cpp' l='419' c='_ZN5tMath10tGetColourEPKc'/>
+<use f='Modules/Math/Src/tColour.cpp' l='452' c='_ZN5tMath18tColourDiffRedmeanERK9tColour4bS2_'/>
+<use f='Modules/Math/Src/tColour.cpp' l='452' c='_ZN5tMath18tColourDiffRedmeanERK9tColour4bS2_'/>
+<size>4</size>
+<smbr r='tColour4b::black' t='const tColour4b'/>
+<smbr r='tColour4b::white' t='const tColour4b'/>
+<smbr r='tColour4b::pink' t='const tColour4b'/>
+<smbr r='tColour4b::red' t='const tColour4b'/>
+<smbr r='tColour4b::green' t='const tColour4b'/>
+<smbr r='tColour4b::blue' t='const tColour4b'/>
+<smbr r='tColour4b::grey' t='const tColour4b'/>
+<smbr r='tColour4b::lightgrey' t='const tColour4b'/>
+<smbr r='tColour4b::darkgrey' t='const tColour4b'/>
+<smbr r='tColour4b::cyan' t='const tColour4b'/>
+<smbr r='tColour4b::magenta' t='const tColour4b'/>
+<smbr r='tColour4b::yellow' t='const tColour4b'/>
+<smbr r='tColour4b::transparent' t='const tColour4b'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='51' c='_ZNK6tScene10tAttribute11GetAsColourEv'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='51' c='_ZNK6tScene10tAttribute11GetAsColourEv'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='56' c='_ZNK6tScene10tAttributecv9tColour4bEv'/>
+<size>4</size>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='50'/>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='51'/>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='52'/>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='58'/>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='59'/>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='60'/>
+<size>4</size>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='153' c='_ZNK6tScene5tMesh19FindVertColourIndexERK9tColour4b'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='154' c='_ZN6tScene5tMesh22CreateVertTableColoursEv'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='157'/>
+<size>4</size>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='109' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>
+<size>4</size>
+<use f='Modules/Scene/Src/tMesh.cpp' l='97' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='99' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='338' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='339' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='339' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<size>4</size>
+<use f='Modules/Scene/Src/tWorld.cpp' l='316' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='417' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<size>4</size>
+<use f='Modules/System/Src/tScript.cpp' l='401' c='_ZNK11tExpression13GetAtomColourEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='405' c='_ZNK11tExpression13GetAtomColourEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='936' c='_ZN11tExprWriter9WriteAtomERK9tColour4b'/>
+<size>4</size>

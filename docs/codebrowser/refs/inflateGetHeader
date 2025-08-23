@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='1031' type='int inflateGetHeader(z_streamp strm, gz_headerp head)'/>

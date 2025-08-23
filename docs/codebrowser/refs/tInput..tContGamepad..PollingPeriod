@@ -1,0 +1,4 @@
+<dec f='Modules/Input/Inc/Input/tContGamepad.h' l='111' type='int'/>
+<offset>13472</offset>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='37' u='w' c='_ZN6tInput12tContGamepad12StartPollingEiNS_10tGamepadIDE'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='133' u='r' c='_ZN6tInput12tContGamepad4PollEv'/>

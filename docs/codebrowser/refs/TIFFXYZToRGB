@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='533' type='void TIFFXYZToRGB(TIFFCIELabToRGB * , float , float , float , uint32 * , uint32 * , uint32 * )'/>

@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3776' ll='3782'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3776'/>
+<size>24</size>
+<mbr r='VkDescriptorSetLayoutBinding::binding' o='0' t='uint32_t'/>
+<mbr r='VkDescriptorSetLayoutBinding::descriptorType' o='32' t='VkDescriptorType'/>
+<mbr r='VkDescriptorSetLayoutBinding::descriptorCount' o='64' t='uint32_t'/>
+<mbr r='VkDescriptorSetLayoutBinding::stageFlags' o='96' t='VkShaderStageFlags'/>
+<mbr r='VkDescriptorSetLayoutBinding::pImmutableSamplers' o='128' t='const VkSampler *'/>

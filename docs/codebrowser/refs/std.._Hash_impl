@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/functional_hash.h' l='193' ll='209'/>
+<size>1</size>
+<fun r='_ZNSt10_Hash_impl4hashEPKvmm'/>
+<fun r='_ZNSt10_Hash_impl4hashERKT_'/>
+<fun r='_ZNSt10_Hash_impl14__hash_combineERKT_m'/>

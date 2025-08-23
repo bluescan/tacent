@@ -1,0 +1,13 @@
+<use f='Modules/Image/Src/tImageHDR.cpp' l='347' u='w' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='349' u='r' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='350' u='r' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='355' u='r' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='359' u='r' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='361' u='r' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='365' u='r' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='366' u='r' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='398' u='w' c='_ZN6tImage9tImageHDR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='406' u='r' c='_ZN6tImage9tImageHDR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='407' u='r' c='_ZN6tImage9tImageHDR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='470' u='r' c='_ZN6tImage9tImageHDR8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='475' u='r' c='_ZN6tImage9tImageHDR8GetFrameEb'/>

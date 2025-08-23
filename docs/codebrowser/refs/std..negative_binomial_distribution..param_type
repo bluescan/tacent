@@ -1,0 +1,23 @@
+<def f='include/c++/11/bits/random.h' l='4200' ll='4232'/>
+<use f='include/c++/11/bits/random.h' l='4204' c='_ZNSt30negative_binomial_distribution10param_typeC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='4222' c='_ZSteqRKNSt30negative_binomial_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='4222' c='_ZSteqRKNSt30negative_binomial_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='4226' c='_ZStneRKNSt30negative_binomial_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='4226' c='_ZStneRKNSt30negative_binomial_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='4242' c='_ZNSt30negative_binomial_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4270' c='_ZNKSt30negative_binomial_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='4279' c='_ZNSt30negative_binomial_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4306' c='_ZNSt30negative_binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4320' c='_ZNSt30negative_binomial_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4333' c='_ZNSt30negative_binomial_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4388' c='_ZNSt30negative_binomial_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4390'/>
+<use f='include/c++/11/bits/random.tcc' l='1160' c='_ZNSt30negative_binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1198' c='_ZNSt30negative_binomial_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<doc f='include/c++/11/bits/random.h' l='4199'>/** Parameter type. */</doc>
+<fun r='_ZNSt30negative_binomial_distribution10param_typeC1Ev'/>
+<fun r='_ZNSt30negative_binomial_distribution10param_typeC1ET_d'/>
+<fun r='_ZNKSt30negative_binomial_distribution10param_type1kEv'/>
+<fun r='_ZNKSt30negative_binomial_distribution10param_type1pEv'/>
+<mbr r='std::negative_binomial_distribution::param_type::_M_k' t='_IntType'/>
+<mbr r='std::negative_binomial_distribution::param_type::_M_p' t='double'/>

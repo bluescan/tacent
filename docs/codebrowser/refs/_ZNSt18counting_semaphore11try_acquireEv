@@ -1,0 +1,1 @@
+<def f='include/c++/11/semaphore' l='74' ll='76' type='bool std::counting_semaphore::try_acquire()'/>

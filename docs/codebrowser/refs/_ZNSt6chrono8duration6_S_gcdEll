@@ -1,0 +1,3 @@
+<def f='include/c++/11/chrono' l='465' ll='484' type='static intmax_t std::chrono::duration::_S_gcd(intmax_t __m, intmax_t __n)'/>
+<use f='include/c++/11/chrono' l='491' u='c'/>
+<use f='include/c++/11/chrono' l='492' u='c'/>

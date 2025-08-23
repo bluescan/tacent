@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='224' type='void tMath::tLineSeg::tLineSeg(const tMath::tVector3 &amp; a, const tMath::tVector3 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='609' u='c' c='_ZN5tMath26tIntersectTestCapsulePointERKNS_9tCylinderERKNS_8tVector3E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='451' u='c' c='_ZN5tMath27tIntersectTestLineSegSphereERKNS_8tLineSegERKNS_7tSphereE'/>

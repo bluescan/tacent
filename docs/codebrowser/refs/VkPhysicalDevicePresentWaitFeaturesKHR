@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9824' ll='9828'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9824'/>
+<size>24</size>
+<mbr r='VkPhysicalDevicePresentWaitFeaturesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDevicePresentWaitFeaturesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDevicePresentWaitFeaturesKHR::presentWait' o='128' t='VkBool32'/>

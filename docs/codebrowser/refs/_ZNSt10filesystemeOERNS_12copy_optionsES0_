@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_fwd.h' l='133' ll='135' type='std::filesystem::copy_options &amp; std::filesystem::operator^=(std::filesystem::copy_options &amp; __x, std::filesystem::copy_options __y)'/>

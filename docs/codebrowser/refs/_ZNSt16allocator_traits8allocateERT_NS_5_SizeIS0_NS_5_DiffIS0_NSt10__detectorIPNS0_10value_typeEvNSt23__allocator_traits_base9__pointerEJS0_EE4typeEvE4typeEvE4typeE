@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/alloc_traits.h' l='316' ll='318' type='static std::allocator_traits::pointer std::allocator_traits::allocate(_Alloc &amp; __a, std::allocator_traits::size_type __n)'/>
+<doc f='include/c++/11/bits/alloc_traits.h' l='309'>/**
+       *  @brief  Allocate memory.
+       *  @param  __a  An allocator.
+       *  @param  __n  The number of objects to allocate space for.
+       *
+       *  Calls @c a.allocate(n)
+      */</doc>

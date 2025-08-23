@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9025'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9024'>// VK_KHR_performance_query is a preprocessor guard. Do not pass it to API calls.</doc>

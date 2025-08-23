@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='23'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='22'>/* Job control is supported.  */</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='109' type='bool tMath::tRandom::tGetBool(const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<def f='Modules/Math/Inc/Math/tRandom.h' l='154' ll='157' type='bool tMath::tRandom::tGetBool(const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>

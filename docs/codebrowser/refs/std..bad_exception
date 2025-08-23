@@ -1,0 +1,11 @@
+<inh f='include/c++/11/bits/exception.h' l='61' c='std::exception'/>
+<def f='include/c++/11/exception' l='53' ll='65'/>
+<size>8</size>
+<doc f='include/c++/11/exception' l='48'>/** If an %exception is thrown which is not listed in a function&apos;s
+   *  %exception specification, one of these may be thrown.
+   *
+   *  @ingroup exceptions
+   */</doc>
+<fun r='_ZNSt13bad_exceptionC1Ev'/>
+<fun r='_ZNSt13bad_exceptionD1Ev'/>
+<fun r='_ZNKSt13bad_exception4whatEv'/>

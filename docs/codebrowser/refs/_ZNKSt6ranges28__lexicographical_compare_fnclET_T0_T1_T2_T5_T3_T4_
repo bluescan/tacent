@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='3306' ll='3385' type='bool std::ranges::__lexicographical_compare_fn::operator()(_Iter1 __first1, _Sent1 __last1, _Iter2 __first2, _Sent2 __last2, _Comp __comp = {}, _Proj1 __proj1 = {}, _Proj2 __proj2 = {}) const'/>

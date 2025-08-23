@@ -1,0 +1,3 @@
+<def f='Modules/Input/Inc/Input/tUnitContinuousAxis.h' l='27' type='void tInput::tUnitContinuousAxis::tUnitContinuousAxis(const tName &amp; name, std::mutex &amp; mutex)'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='29' macro='1' u='c' c='_ZN6tInput13tCompJoystickC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='30' macro='1' u='c' c='_ZN6tInput13tCompJoystickC1ERK5tNameRSt5mutex'/>

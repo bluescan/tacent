@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/range_access.h' l='140' ll='142' type='decltype(__cont.rbegin()) std::rbegin(_Container &amp; __cont)'/>

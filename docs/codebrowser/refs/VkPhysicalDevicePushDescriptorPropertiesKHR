@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8765' ll='8769'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8765'/>
+<size>24</size>
+<mbr r='VkPhysicalDevicePushDescriptorPropertiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDevicePushDescriptorPropertiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDevicePushDescriptorPropertiesKHR::maxPushDescriptors' o='128' t='uint32_t'/>

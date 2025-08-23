@@ -1,0 +1,2 @@
+<use f='include/c++/11/bits/stl_vector.h' l='1829' u='c' c='_ZNSt6vector14_M_move_assignEOSt6vectorIT_T0_ESt17integral_constantIbLb0EE'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2163' u='c' c='_ZNSt5deque15_M_move_assign1EOSt5dequeIT_T0_ESt17integral_constantIbLb0EE'/>

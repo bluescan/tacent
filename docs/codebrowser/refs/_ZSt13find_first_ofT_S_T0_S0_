@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='727' type='_FIter1 std::find_first_of(_FIter1 , _FIter1 , _FIter2 , _FIter2 )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='3931' ll='3950' macro='1' type='_InputIterator std::find_first_of(_InputIterator __first1, _InputIterator __last1, _ForwardIterator __first2, _ForwardIterator __last2)'/>

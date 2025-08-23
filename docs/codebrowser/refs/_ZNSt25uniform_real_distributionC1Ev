@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='1792' type='void std::uniform_real_distribution::uniform_real_distribution&lt;_RealType&gt;()'/>
+<doc f='include/c++/11/bits/random.h' l='1787'>/**
+       * @brief Constructs a uniform_real_distribution object.
+       *
+       * The lower bound is set to 0.0 and the upper bound to 1.0
+       */</doc>

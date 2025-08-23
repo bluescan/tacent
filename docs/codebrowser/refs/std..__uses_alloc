@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/uses_allocator.h' l='88' ll='102'/>
+<inh f='include/c++/11/bits/uses_allocator.h' l='74' c='std::__uses_alloc0'/>
+<def f='include/c++/11/bits/uses_allocator.h' l='104' ll='106'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='110'/>

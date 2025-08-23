@@ -1,0 +1,17 @@
+<use f='include/c++/11/bits/std_function.h' l='243' u='r' c='_ZNSt14_Function_baseD1Ev'/>
+<use f='include/c++/11/bits/std_function.h' l='244' u='r' c='_ZNSt14_Function_baseD1Ev'/>
+<use f='include/c++/11/bits/std_function.h' l='247' u='r' c='_ZNKSt14_Function_base8_M_emptyEv'/>
+<dec f='include/c++/11/bits/std_function.h' l='253' type='std::_Function_base::_Manager_type'/>
+<use f='include/c++/11/bits/std_function.h' l='393' u='w' c='_ZNSt8functionIFT_DpT0_EEC1ERKS_IS3_E'/>
+<use f='include/c++/11/bits/std_function.h' l='410' u='w' c='_ZNSt8functionIFT_DpT0_EEC1EOS_IS3_E'/>
+<use f='include/c++/11/bits/std_function.h' l='452' u='w' c='_ZNSt8functionIFT_DpT0_EEC1EOTL0__'/>
+<use f='include/c++/11/bits/std_function.h' l='503' u='r' c='_ZNSt8functionIFT_DpT0_EEaSEDn'/>
+<use f='include/c++/11/bits/std_function.h' l='505' u='c' c='_ZNSt8functionIFT_DpT0_EEaSEDn'/>
+<use f='include/c++/11/bits/std_function.h' l='506' u='w' c='_ZNSt8functionIFT_DpT0_EEaSEDn'/>
+<use f='include/c++/11/bits/std_function.h' l='558' c='_ZNSt8functionIFT_DpT0_EE4swapERS_IS3_E'/>
+<use f='include/c++/11/bits/std_function.h' l='607' u='r' c='_ZNKSt8functionIFT_DpT0_EE11target_typeEv'/>
+<use f='include/c++/11/bits/std_function.h' l='610' u='c' c='_ZNKSt8functionIFT_DpT0_EE11target_typeEv'/>
+<use f='include/c++/11/bits/std_function.h' l='650' c='_ZNKSt8functionIFT_DpT0_EE6targetEv'/>
+<use f='include/c++/11/bits/std_function.h' l='652' u='r' c='_ZNKSt8functionIFT_DpT0_EE6targetEv'/>
+<use f='include/c++/11/bits/std_function.h' l='657' u='c' c='_ZNKSt8functionIFT_DpT0_EE6targetEv'/>
+<offset>128</offset>

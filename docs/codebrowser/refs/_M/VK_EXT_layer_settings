@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18220'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18219'>// VK_EXT_layer_settings is a preprocessor guard. Do not pass it to API calls.</doc>

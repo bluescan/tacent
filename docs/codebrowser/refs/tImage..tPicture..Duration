@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='338' type='float'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='448' u='w' c='_ZN6tImage8tPicture3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='476' u='w' c='_ZN6tImage8tPicture3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='476' u='r' c='_ZN6tImage8tPicture3SetERKS0_'/>
+<offset>512</offset>

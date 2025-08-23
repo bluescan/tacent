@@ -1,0 +1,4 @@
+<dec f='include/wchar.h' l='474' type='long wcstol_l(const wchar_t *__restrict __nptr, wchar_t **__restrict __endptr, int __base, locale_t __loc)'/>
+<doc f='include/wchar.h' l='471'>/* Parallel versions of the functions above which take the locale to
+   use as an additional parameter.  These are GNU extensions inspired
+   by the POSIX.1-2008 extended locale API.  */</doc>

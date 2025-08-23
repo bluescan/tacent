@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/nested_exception.h' l='150' ll='152' type='void std::__rethrow_if_nested_impl(const void * )'/>
+<doc f='include/c++/11/bits/nested_exception.h' l='149'>// Otherwise, no effects.</doc>

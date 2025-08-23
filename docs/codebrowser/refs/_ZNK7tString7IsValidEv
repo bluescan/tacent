@@ -1,0 +1,29 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='148' type='bool tString::IsValid() const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='964' u='c' c='_ZN12tStringUTF163SetERK7tString'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1093' u='c' c='_ZN12tStringUTF323SetERK7tString'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='148'>/* Returns true if string is not empty. */</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='228' u='c' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='236' u='c' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='244' u='c' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='253' u='c' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='255' u='c' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='259' u='c' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='370' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='372' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='378' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='378' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='380' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='382' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='384' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='582' u='c' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='593' u='c' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='604' u='c' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='620' u='c' c='_ZN6tImage9tMetaData19SetTags_AuthorNotesERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='628' u='c' c='_ZN6tImage9tMetaData19SetTags_AuthorNotesERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='636' u='c' c='_ZN6tImage9tMetaData19SetTags_AuthorNotesERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='835' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='445' u='c' c='_ZN8tCmdLine14SyntaxInternalEP7tStringi'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='498' u='c' c='_ZN8tCmdLine14SyntaxInternalEP7tStringi'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='548' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='237' u='c' c='_ZN7tSystem19tGetXDGSingleEnvVarER7tStringRKS0_S3_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='262' u='c' c='_ZN7tSystem21tGetXDGMultipleEnvVarER5tListI11tStringItemERK7tStringS6_'/>

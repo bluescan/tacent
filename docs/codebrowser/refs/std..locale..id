@@ -1,0 +1,68 @@
+<use f='include/c++/11/bits/locale_classes.h' l='357'/>
+<use f='include/c++/11/bits/locale_classes.h' l='466' c='_ZNKSt6locale5facet11_M_sso_shimEPKNS_2idE'/>
+<use f='include/c++/11/bits/locale_classes.h' l='467' c='_ZNKSt6locale5facet11_M_cow_shimEPKNS_2idE'/>
+<def f='include/c++/11/bits/locale_classes.h' l='485' ll='520'/>
+<use f='include/c++/11/bits/locale_classes.h' l='508' c='_ZNSt6locale2idaSERKS0_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='510' c='_ZNSt6locale2idC1ERKS0_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='549'/>
+<use f='include/c++/11/bits/locale_classes.h' l='550'/>
+<use f='include/c++/11/bits/locale_classes.h' l='551'/>
+<use f='include/c++/11/bits/locale_classes.h' l='552'/>
+<use f='include/c++/11/bits/locale_classes.h' l='553'/>
+<use f='include/c++/11/bits/locale_classes.h' l='554'/>
+<use f='include/c++/11/bits/locale_classes.h' l='555'/>
+<use f='include/c++/11/bits/locale_classes.h' l='602' c='_ZNSt6locale5_Impl19_M_replace_categoryEPKS0_PKPKNS_2idE'/>
+<use f='include/c++/11/bits/locale_classes.h' l='605' c='_ZNSt6locale5_Impl16_M_replace_facetEPKS0_PKNS_2idE'/>
+<use f='include/c++/11/bits/locale_classes.h' l='608' c='_ZNSt6locale5_Impl16_M_install_facetEPKNS_2idEPKNS_5facetE'/>
+<use f='include/c++/11/bits/locale_classes.h' l='665'/>
+<use f='include/c++/11/bits/locale_classes.h' l='799'/>
+<use f='include/c++/11/bits/locale_facets.h' l='623'/>
+<use f='include/c++/11/bits/locale_facets.h' l='672'/>
+<use f='include/c++/11/bits/locale_facets.h' l='706'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1212'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1689'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1886'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1966'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2297'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2324'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2584'/>
+<size>8</size>
+<doc f='include/c++/11/bits/locale_classes.h' l='475'>/**
+   *  @brief  Facet ID class.
+   *  @ingroup locales
+   *
+   *  The ID class provides facets with an index used to identify them.
+   *  Every facet class must define a public static member locale::id, or be
+   *  derived from a facet that provides this member, otherwise the facet
+   *  cannot be used in a locale.  The locale::id ensures that each class
+   *  type gets a unique identifier.
+  */</doc>
+<mbr r='std::locale::id::_M_index' o='0' t='std::size_t'/>
+<smbr r='std::locale::id::_S_refcount' t='_Atomic_word'/>
+<fun r='_ZNSt6locale2idaSERKS0_'/>
+<fun r='_ZNSt6locale2idC1ERKS0_'/>
+<fun r='_ZNSt6locale2idC1Ev'/>
+<fun r='_ZNKSt6locale2id5_M_idEv'/>
+<use f='include/c++/11/bits/codecvt.h' l='291'/>
+<use f='include/c++/11/bits/codecvt.h' l='337'/>
+<use f='include/c++/11/bits/codecvt.h' l='356'/>
+<use f='include/c++/11/bits/codecvt.h' l='419'/>
+<use f='include/c++/11/bits/codecvt.h' l='480'/>
+<use f='include/c++/11/bits/codecvt.h' l='537'/>
+<use f='include/c++/11/bits/codecvt.h' l='595'/>
+<use f='include/c++/11/bits/codecvt.h' l='652'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='188'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='320'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='379'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='756'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='808'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='889'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1043'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1375'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1480'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1613'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1640'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1778'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1833'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1984'/>
+<size>8</size>

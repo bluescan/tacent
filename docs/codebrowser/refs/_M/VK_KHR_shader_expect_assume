@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11032'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11031'>// VK_KHR_shader_expect_assume is a preprocessor guard. Do not pass it to API calls.</doc>

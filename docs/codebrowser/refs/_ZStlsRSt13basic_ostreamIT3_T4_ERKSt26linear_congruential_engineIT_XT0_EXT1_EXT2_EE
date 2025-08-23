@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.tcc' l='153' ll='170' type='std::basic_ostream&lt;_CharT, _Traits&gt; &amp; std::operator&lt;&lt;(std::basic_ostream&lt;_CharT, _Traits&gt; &amp; __os, const linear_congruential_engine&lt;_UIntType, __a, __c, __m&gt; &amp; __lcr)'/>

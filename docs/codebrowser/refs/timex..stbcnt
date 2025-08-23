@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/timex.h' l='76' type='__syscall_slong_t'/>
+<offset>1216</offset>
+<doc f='include/x86_64-linux-gnu/bits/timex.h' l='76'>/* stability limit exceeded (ro) */</doc>

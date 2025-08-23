@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12772' ll='12779'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12772'/>
+<size>40</size>
+<mbr r='VkPhysicalDeviceImageDrmFormatModifierInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceImageDrmFormatModifierInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkPhysicalDeviceImageDrmFormatModifierInfoEXT::drmFormatModifier' o='128' t='uint64_t'/>
+<mbr r='VkPhysicalDeviceImageDrmFormatModifierInfoEXT::sharingMode' o='192' t='VkSharingMode'/>
+<mbr r='VkPhysicalDeviceImageDrmFormatModifierInfoEXT::queueFamilyIndexCount' o='224' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceImageDrmFormatModifierInfoEXT::pQueueFamilyIndices' o='256' t='const uint32_t *'/>

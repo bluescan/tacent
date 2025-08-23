@@ -1,0 +1,5 @@
+<def f='Modules/Image/Inc/Image/tLayer.h' l='41' type='void tImage::tLayer::tLayer(const tChunk &amp; chunk, bool ownsData = true)'/>
+<doc f='Modules/Image/Inc/Image/tLayer.h' l='38'>// Constructs the layer from the chunk. Normally it copies the layer data from the chunk. However, if ownData is
+	// false no mem-copy is performed and the layer just points into the chunk data. In this case it is vital that the
+	// chunk object exists for the entire lifespan of the layer.</doc>
+<use f='Modules/Image/Src/tTexture.cpp' l='429' u='c' c='_ZN6tImage8tTexture4LoadERK6tChunk'/>

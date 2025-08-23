@@ -1,0 +1,1 @@
+<def f='include/c++/11/sstream' l='1104' ll='1110' type='basic_stringstream&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_stringstream::operator=(basic_stringstream&lt;_CharT, _Traits, _Alloc&gt; &amp;&amp; __rhs)'/>

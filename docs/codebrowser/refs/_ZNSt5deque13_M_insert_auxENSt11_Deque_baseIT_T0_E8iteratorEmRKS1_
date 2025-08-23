@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/stl_deque.h' l='2022' type='void std::deque::_M_insert_aux(std::deque::iterator __pos, std::deque::size_type __n, const std::deque::value_type &amp; __x)'/>
+<def f='include/c++/11/bits/deque.tcc' l='683' ll='766' type='void std::deque::_M_insert_aux(std::deque::iterator __pos, std::deque::size_type __n, const std::deque::value_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='2020'>// called by insert(p,n,x) via fill_insert</doc>

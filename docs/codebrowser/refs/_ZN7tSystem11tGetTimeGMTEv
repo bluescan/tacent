@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tTime.h' l='34' type='std::time_t tSystem::tGetTimeGMT()'/>
+<def f='Modules/System/Src/tTime.cpp' l='77' ll='80' type='std::time_t tSystem::tGetTimeGMT()'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15046'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15045'>// VK_EXT_texel_buffer_alignment is a preprocessor guard. Do not pass it to API calls.</doc>

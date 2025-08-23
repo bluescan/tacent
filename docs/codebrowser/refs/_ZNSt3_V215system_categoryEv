@@ -1,0 +1,3 @@
+<dec f='include/c++/11/system_error' l='168' type='const std::error_category &amp; std::system_category()'/>
+<use f='include/c++/11/system_error' l='200' u='c' c='_ZNSt10error_codeC1Ev'/>
+<use f='include/c++/11/system_error' l='219' u='c' c='_ZNSt10error_code5clearEv'/>

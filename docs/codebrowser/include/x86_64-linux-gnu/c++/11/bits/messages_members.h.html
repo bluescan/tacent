@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>messages_members.h source code [include/x86_64-linux-gnu/c++/11/bits/messages_members.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/c++/11/bits/messages_members.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>include</a>/<a href='../../..'>x86_64-linux-gnu</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='messages_members.h.html'>messages_members.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// std::messages implementation details, GNU version -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2001-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/messages_members.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{locale}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i class="doc">// ISO C++ 14882: 22.2.7.1.2  messages functions</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i class="doc">// Written by Benjamin Kosnik &lt;bko<span class="command">z@redhat</span>.com&gt;</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;libintl.h&gt;</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="39">39</th><td>{&nbsp</td></tr>
+<tr><th id="40">40</th><td><a class="macro" href="c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td>  <i>// Non-virtual member functions.</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="44">44</th><td>    <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;_CharT&gt;::<dfn class="decl def fn" id="_ZNSt7__cxx118messagesC1Em" title='std::messages::messages&lt;_CharT&gt;' data-ref="_ZNSt7__cxx118messagesC1Em">messages</dfn>(<a class="typedef" href="c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col6 decl" id="1146__refs" title='__refs' data-type='std::size_t' data-ref="1146__refs">__refs</dfn>)&nbsp</td></tr>
+<tr><th id="45">45</th><td>    : <a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale::facet" title='std::locale::facet' data-ref="std::locale::facet">facet</a>(<a class="local col6 ref" href="#1146__refs" title='__refs' data-ref="1146__refs">__refs</a>), <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages::_M_c_locale_messages" title='std::messages::_M_c_locale_messages' data-ref="std::messages::_M_c_locale_messages">_M_c_locale_messages</a>(<a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet15_S_get_c_localeEv" title='std::locale::facet::_S_get_c_locale' data-ref="_ZNSt6locale5facet15_S_get_c_localeEv">_S_get_c_locale</a>()),&nbsp</td></tr>
+<tr><th id="46">46</th><td>      <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages::_M_name_messages" title='std::messages::_M_name_messages' data-ref="std::messages::_M_name_messages">_M_name_messages</a>(<a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet13_S_get_c_nameEv" title='std::locale::facet::_S_get_c_name' data-ref="_ZNSt6locale5facet13_S_get_c_nameEv">_S_get_c_name</a>())&nbsp</td></tr>
+<tr><th id="47">47</th><td>    { }&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="50">50</th><td>    <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;_CharT&gt;::<dfn class="decl def fn" id="_ZNSt7__cxx118messagesC1EP15__locale_structPKcm" title='std::messages::messages&lt;_CharT&gt;' data-ref="_ZNSt7__cxx118messagesC1EP15__locale_structPKcm">messages</dfn>(<a class="typedef" href="c++locale.h.html#std::__c_locale" title='std::__c_locale' data-type='__locale_t' data-ref="std::__c_locale">__c_locale</a> <dfn class="local col7 decl" id="1147__cloc" title='__cloc' data-type='std::__c_locale' data-ref="1147__cloc">__cloc</dfn>, <em>const</em> <em>char</em>* <dfn class="local col8 decl" id="1148__s" title='__s' data-type='const char *' data-ref="1148__s">__s</dfn>,&nbsp</td></tr>
+<tr><th id="51">51</th><td>			       <a class="typedef" href="c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col9 decl" id="1149__refs" title='__refs' data-type='std::size_t' data-ref="1149__refs">__refs</dfn>)&nbsp</td></tr>
+<tr><th id="52">52</th><td>    : <a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale::facet" title='std::locale::facet' data-ref="std::locale::facet">facet</a>(<a class="local col9 ref" href="#1149__refs" title='__refs' data-ref="1149__refs">__refs</a>), <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages::_M_c_locale_messages" title='std::messages::_M_c_locale_messages' data-ref="std::messages::_M_c_locale_messages">_M_c_locale_messages</a>(<var>0</var>), <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages::_M_name_messages" title='std::messages::_M_name_messages' data-ref="std::messages::_M_name_messages">_M_name_messages</a>(<var>0</var>)&nbsp</td></tr>
+<tr><th id="53">53</th><td>    {&nbsp</td></tr>
+<tr><th id="54">54</th><td>      <b>if</b> (<a class="ref fn" href="../../../../c++/11/bits/codecvt.h.html#706" title='__builtin_strcmp' data-ref="__builtin_strcmp">__builtin_strcmp</a>(<a class="local col8 ref" href="#1148__s" title='__s' data-ref="1148__s">__s</a>, <a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet13_S_get_c_nameEv" title='std::locale::facet::_S_get_c_name' data-ref="_ZNSt6locale5facet13_S_get_c_nameEv">_S_get_c_name</a>()) != <var>0</var>)&nbsp</td></tr>
+<tr><th id="55">55</th><td>	{&nbsp</td></tr>
+<tr><th id="56">56</th><td>	  <em>const</em> <a class="typedef" href="c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col0 decl" id="1150__len" title='__len' data-type='const std::size_t' data-ref="1150__len">__len</dfn> = <a class="ref fn" href="../../../../c++/11/bits/char_traits.h.html#399" title='__builtin_strlen' data-ref="__builtin_strlen">__builtin_strlen</a>(<a class="local col8 ref" href="#1148__s" title='__s' data-ref="1148__s">__s</a>) + <var>1</var>;&nbsp</td></tr>
+<tr><th id="57">57</th><td>	  <em>char</em>* <dfn class="local col1 decl" id="1151__tmp" title='__tmp' data-type='char *' data-ref="1151__tmp">__tmp</dfn> = <b>new</b> <em>char</em>[<a class="local col0 ref" href="#1150__len" title='__len' data-ref="1150__len">__len</a>];&nbsp</td></tr>
+<tr><th id="58">58</th><td>	  <a class="ref fn" href="../../../../c++/11/bits/char_traits.h.html#437" title='__builtin_memcpy' data-ref="__builtin_memcpy">__builtin_memcpy</a>(<a class="local col1 ref" href="#1151__tmp" title='__tmp' data-ref="1151__tmp">__tmp</a>, <a class="local col8 ref" href="#1148__s" title='__s' data-ref="1148__s">__s</a>, <a class="local col0 ref" href="#1150__len" title='__len' data-ref="1150__len">__len</a>);&nbsp</td></tr>
+<tr><th id="59">59</th><td>	  <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages::_M_name_messages" title='std::messages::_M_name_messages' data-ref="std::messages::_M_name_messages">_M_name_messages</a> = <a class="local col1 ref" href="#1151__tmp" title='__tmp' data-ref="1151__tmp">__tmp</a>;&nbsp</td></tr>
+<tr><th id="60">60</th><td>	}&nbsp</td></tr>
+<tr><th id="61">61</th><td>      <b>else</b>&nbsp</td></tr>
+<tr><th id="62">62</th><td>	<a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages::_M_name_messages" title='std::messages::_M_name_messages' data-ref="std::messages::_M_name_messages">_M_name_messages</a> = <a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet13_S_get_c_nameEv" title='std::locale::facet::_S_get_c_name' data-ref="_ZNSt6locale5facet13_S_get_c_nameEv">_S_get_c_name</a>();&nbsp</td></tr>
+<tr><th id="63">63</th><td>&nbsp</td></tr>
+<tr><th id="64">64</th><td>      <i>// Last to avoid leaking memory if new throws.</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td>      <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages::_M_c_locale_messages" title='std::messages::_M_c_locale_messages' data-ref="std::messages::_M_c_locale_messages">_M_c_locale_messages</a> = <a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet17_S_clone_c_localeERP15__locale_struct" title='std::locale::facet::_S_clone_c_locale' data-ref="_ZNSt6locale5facet17_S_clone_c_localeERP15__locale_struct">_S_clone_c_locale</a>(<span class='refarg'><a class="local col7 ref" href="#1147__cloc" title='__cloc' data-ref="1147__cloc">__cloc</a></span>);&nbsp</td></tr>
+<tr><th id="66">66</th><td>    }&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="69">69</th><td>    <b>typename</b> <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;_CharT&gt;::<a class="typedef" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages_base::catalog" title='std::messages_base::catalog' data-type='int' data-ref="std::messages_base::catalog">catalog</a>&nbsp</td></tr>
+<tr><th id="70">70</th><td>    <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;_CharT&gt;::<dfn class="decl def fn" id="_ZNKSt7__cxx118messages4openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6localePKc" title='std::messages::open' data-ref="_ZNKSt7__cxx118messages4openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6localePKc">open</dfn>(<em>const</em> <a class="type" href="../../../../c++/11/bits/stringfwd.h.html#std::basic_string" title='std::basic_string' data-ref="std::basic_string">basic_string</a>&lt;<em>char</em>&gt;&amp; <dfn class="local col2 decl" id="1152__s" title='__s' data-type='const basic_string&lt;char&gt; &amp;' data-ref="1152__s">__s</dfn>, <em>const</em> <a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&amp; <dfn class="local col3 decl" id="1153__loc" title='__loc' data-type='const std::locale &amp;' data-ref="1153__loc">__loc</dfn>,&nbsp</td></tr>
+<tr><th id="71">71</th><td>			   <em>const</em> <em>char</em>* <dfn class="local col4 decl" id="1154__dir" title='__dir' data-type='const char *' data-ref="1154__dir">__dir</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="72">72</th><td>    {&nbsp</td></tr>
+<tr><th id="73">73</th><td>      <a class="ref fn" href="../../../../libintl.h.html#bindtextdomain" title='bindtextdomain' data-ref="bindtextdomain">bindtextdomain</a>(<span class='inlayHint'>domainname:&nbsp;</span><a class="local col2 ref" href="#1152__s" title='__s' data-ref="1152__s">__s</a>.<a class="ref fn" href="../../../../c++/11/bits/basic_string.h.html#_ZNKSt7__cxx1112basic_string5c_strEv" title='std::basic_string::c_str' data-ref="_ZNKSt7__cxx1112basic_string5c_strEv">c_str</a>(), <span class='inlayHint'>dirname:&nbsp;</span><a class="local col4 ref" href="#1154__dir" title='__dir' data-ref="1154__dir">__dir</a>);&nbsp</td></tr>
+<tr><th id="74">74</th><td>      <b>return</b> <b>this</b>-&gt;do_open(<a class="local col2 ref" href="#1152__s" title='__s' data-ref="1152__s">__s</a>, <a class="local col3 ref" href="#1153__loc" title='__loc' data-ref="1153__loc">__loc</a>);&nbsp</td></tr>
+<tr><th id="75">75</th><td>    }&nbsp</td></tr>
+<tr><th id="76">76</th><td>&nbsp</td></tr>
+<tr><th id="77">77</th><td>  <i>// Virtual member functions.</i>&nbsp</td></tr>
+<tr><th id="78">78</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="79">79</th><td>    <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;_CharT&gt;::<dfn class="virtual decl def fn" id="_ZNSt7__cxx118messagesD1Ev" title='std::messages::~messages&lt;_CharT&gt;' data-ref="_ZNSt7__cxx118messagesD1Ev">~messages</dfn>()&nbsp</td></tr>
+<tr><th id="80">80</th><td>    {&nbsp</td></tr>
+<tr><th id="81">81</th><td>      <b>if</b> (<a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages::_M_name_messages" title='std::messages::_M_name_messages' data-ref="std::messages::_M_name_messages">_M_name_messages</a> != <a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet13_S_get_c_nameEv" title='std::locale::facet::_S_get_c_name' data-ref="_ZNSt6locale5facet13_S_get_c_nameEv">_S_get_c_name</a>())&nbsp</td></tr>
+<tr><th id="82">82</th><td>	<b>delete</b> [] <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages::_M_name_messages" title='std::messages::_M_name_messages' data-ref="std::messages::_M_name_messages">_M_name_messages</a>;&nbsp</td></tr>
+<tr><th id="83">83</th><td>      <a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet19_S_destroy_c_localeERP15__locale_struct" title='std::locale::facet::_S_destroy_c_locale' data-ref="_ZNSt6locale5facet19_S_destroy_c_localeERP15__locale_struct">_S_destroy_c_locale</a>(<span class='inlayHint'>cloc&amp;:&nbsp;</span><span class='refarg'><a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages::_M_c_locale_messages" title='std::messages::_M_c_locale_messages' data-ref="std::messages::_M_c_locale_messages">_M_c_locale_messages</a></span>);&nbsp</td></tr>
+<tr><th id="84">84</th><td>    }&nbsp</td></tr>
+<tr><th id="85">85</th><td>&nbsp</td></tr>
+<tr><th id="86">86</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="87">87</th><td>    <b>typename</b> <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;_CharT&gt;::<a class="typedef" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages_base::catalog" title='std::messages_base::catalog' data-type='int' data-ref="std::messages_base::catalog">catalog</a>&nbsp</td></tr>
+<tr><th id="88">88</th><td>    <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;_CharT&gt;::<dfn class="virtual decl def fn" id="_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale" title='std::messages::do_open' data-ref="_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale">do_open</dfn>(<em>const</em> <a class="type" href="../../../../c++/11/bits/stringfwd.h.html#std::basic_string" title='std::basic_string' data-ref="std::basic_string">basic_string</a>&lt;<em>char</em>&gt;&amp; <dfn class="local col5 decl" id="1155__s" title='__s' data-type='const basic_string&lt;char&gt; &amp;' data-ref="1155__s">__s</dfn>,&nbsp</td></tr>
+<tr><th id="89">89</th><td>			      <em>const</em> <a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&amp;) <em>const</em>&nbsp</td></tr>
+<tr><th id="90">90</th><td>    {&nbsp</td></tr>
+<tr><th id="91">91</th><td>      <i>// No error checking is done, assume the catalog exists and can</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><i>      // be used.</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td>      <a class="ref fn" href="../../../../libintl.h.html#textdomain" title='textdomain' data-ref="textdomain">textdomain</a>(<span class='inlayHint'>domainname:&nbsp;</span><a class="local col5 ref" href="#1155__s" title='__s' data-ref="1155__s">__s</a>.<a class="ref fn" href="../../../../c++/11/bits/basic_string.h.html#_ZNKSt7__cxx1112basic_string5c_strEv" title='std::basic_string::c_str' data-ref="_ZNKSt7__cxx1112basic_string5c_strEv">c_str</a>());&nbsp</td></tr>
+<tr><th id="94">94</th><td>      <b>return</b> <var>0</var>;&nbsp</td></tr>
+<tr><th id="95">95</th><td>    }&nbsp</td></tr>
+<tr><th id="96">96</th><td>&nbsp</td></tr>
+<tr><th id="97">97</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="98">98</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="99">99</th><td>    <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;_CharT&gt;::<dfn class="virtual decl def fn" id="_ZNKSt7__cxx118messages8do_closeEi" title='std::messages::do_close' data-ref="_ZNKSt7__cxx118messages8do_closeEi">do_close</dfn>(<a class="typedef" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages_base::catalog" title='std::messages_base::catalog' data-type='int' data-ref="std::messages_base::catalog">catalog</a>) <em>const</em>&nbsp</td></tr>
+<tr><th id="100">100</th><td>    { }&nbsp</td></tr>
+<tr><th id="101">101</th><td>&nbsp</td></tr>
+<tr><th id="102">102</th><td>  <i>// messages_byname</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="104">104</th><td>    <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages_byname" title='std::messages_byname' data-ref="std::messages_byname">messages_byname</a>&lt;_CharT&gt;::<dfn class="decl def fn" id="_ZNSt7__cxx1115messages_bynameC1EPKcm" title='std::messages_byname::messages_byname&lt;_CharT&gt;' data-ref="_ZNSt7__cxx1115messages_bynameC1EPKcm">messages_byname</dfn>(<em>const</em> <em>char</em>* <dfn class="local col6 decl" id="1156__s" title='__s' data-type='const char *' data-ref="1156__s">__s</dfn>, <a class="typedef" href="c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col7 decl" id="1157__refs" title='__refs' data-type='std::size_t' data-ref="1157__refs">__refs</dfn>)&nbsp</td></tr>
+<tr><th id="105">105</th><td>    : <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;_CharT&gt;(<a class="local col7 ref" href="#1157__refs" title='__refs' data-ref="1157__refs">__refs</a>)&nbsp</td></tr>
+<tr><th id="106">106</th><td>    {&nbsp</td></tr>
+<tr><th id="107">107</th><td>      <b>if</b> (<b>this</b>-&gt;_M_name_messages != <a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>::<a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale::facet" title='std::locale::facet' data-ref="std::locale::facet">facet</a>::<a class="ref fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet13_S_get_c_nameEv" title='std::locale::facet::_S_get_c_name' data-ref="_ZNSt6locale5facet13_S_get_c_nameEv">_S_get_c_name</a>())&nbsp</td></tr>
+<tr><th id="108">108</th><td>	{&nbsp</td></tr>
+<tr><th id="109">109</th><td>	  <b>delete</b> [] <b>this</b>-&gt;_M_name_messages;&nbsp</td></tr>
+<tr><th id="110">110</th><td>	  <b>if</b> (<a class="ref fn" href="../../../../c++/11/bits/codecvt.h.html#706" title='__builtin_strcmp' data-ref="__builtin_strcmp">__builtin_strcmp</a>(<a class="local col6 ref" href="#1156__s" title='__s' data-ref="1156__s">__s</a>, <a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>::<a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale::facet" title='std::locale::facet' data-ref="std::locale::facet">facet</a>::<a class="ref fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet13_S_get_c_nameEv" title='std::locale::facet::_S_get_c_name' data-ref="_ZNSt6locale5facet13_S_get_c_nameEv">_S_get_c_name</a>()) != <var>0</var>)&nbsp</td></tr>
+<tr><th id="111">111</th><td>	    {&nbsp</td></tr>
+<tr><th id="112">112</th><td>	      <em>const</em> <a class="typedef" href="c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col8 decl" id="1158__len" title='__len' data-type='const std::size_t' data-ref="1158__len">__len</dfn> = <a class="ref fn" href="../../../../c++/11/bits/char_traits.h.html#399" title='__builtin_strlen' data-ref="__builtin_strlen">__builtin_strlen</a>(<a class="local col6 ref" href="#1156__s" title='__s' data-ref="1156__s">__s</a>) + <var>1</var>;&nbsp</td></tr>
+<tr><th id="113">113</th><td>	      <em>char</em>* <dfn class="local col9 decl" id="1159__tmp" title='__tmp' data-type='char *' data-ref="1159__tmp">__tmp</dfn> = <b>new</b> <em>char</em>[<a class="local col8 ref" href="#1158__len" title='__len' data-ref="1158__len">__len</a>];&nbsp</td></tr>
+<tr><th id="114">114</th><td>	      <a class="ref fn" href="../../../../c++/11/bits/char_traits.h.html#437" title='__builtin_memcpy' data-ref="__builtin_memcpy">__builtin_memcpy</a>(<a class="local col9 ref" href="#1159__tmp" title='__tmp' data-ref="1159__tmp">__tmp</a>, <a class="local col6 ref" href="#1156__s" title='__s' data-ref="1156__s">__s</a>, <a class="local col8 ref" href="#1158__len" title='__len' data-ref="1158__len">__len</a>);&nbsp</td></tr>
+<tr><th id="115">115</th><td>	      <b>this</b>-&gt;_M_name_messages = <a class="local col9 ref" href="#1159__tmp" title='__tmp' data-ref="1159__tmp">__tmp</a>;&nbsp</td></tr>
+<tr><th id="116">116</th><td>	    }&nbsp</td></tr>
+<tr><th id="117">117</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="118">118</th><td>	    <b>this</b>-&gt;_M_name_messages = <a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>::<a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale::facet" title='std::locale::facet' data-ref="std::locale::facet">facet</a>::<a class="ref fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet13_S_get_c_nameEv" title='std::locale::facet::_S_get_c_name' data-ref="_ZNSt6locale5facet13_S_get_c_nameEv">_S_get_c_name</a>();&nbsp</td></tr>
+<tr><th id="119">119</th><td>	}&nbsp</td></tr>
+<tr><th id="120">120</th><td>&nbsp</td></tr>
+<tr><th id="121">121</th><td>      <b>if</b> (<a class="ref fn" href="../../../../c++/11/bits/codecvt.h.html#706" title='__builtin_strcmp' data-ref="__builtin_strcmp">__builtin_strcmp</a>(<a class="local col6 ref" href="#1156__s" title='__s' data-ref="1156__s">__s</a>, <q>"C"</q>) != <var>0</var>&nbsp</td></tr>
+<tr><th id="122">122</th><td>	  &amp;&amp; <a class="ref fn" href="../../../../c++/11/bits/codecvt.h.html#706" title='__builtin_strcmp' data-ref="__builtin_strcmp">__builtin_strcmp</a>(<a class="local col6 ref" href="#1156__s" title='__s' data-ref="1156__s">__s</a>, <q>"POSIX"</q>) != <var>0</var>)&nbsp</td></tr>
+<tr><th id="123">123</th><td>	{&nbsp</td></tr>
+<tr><th id="124">124</th><td>	  <b>this</b>-&gt;_S_destroy_c_locale(<b>this</b>-&gt;_M_c_locale_messages);&nbsp</td></tr>
+<tr><th id="125">125</th><td>	  <b>this</b>-&gt;_S_create_c_locale(<b>this</b>-&gt;_M_c_locale_messages, <a class="local col6 ref" href="#1156__s" title='__s' data-ref="1156__s">__s</a>);&nbsp</td></tr>
+<tr><th id="126">126</th><td>	}&nbsp</td></tr>
+<tr><th id="127">127</th><td>    }&nbsp</td></tr>
+<tr><th id="128">128</th><td>&nbsp</td></tr>
+<tr><th id="129">129</th><td>   <i>//Specializations.</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="131">131</th><td>    <b>typename</b> <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;<em>char</em>&gt;::<a class="typedef" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages_base::catalog" title='std::messages_base::catalog' data-type='int' data-ref="std::messages_base::catalog">catalog</a>&nbsp</td></tr>
+<tr><th id="132">132</th><td>    <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;<em>char</em>&gt;::<a class="virtual decl fn" href="#_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale" title='std::messages::do_open' data-ref="_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale">do_open</a>(<em>const</em> <a class="type" href="../../../../c++/11/bits/stringfwd.h.html#std::basic_string" title='std::basic_string' data-ref="std::basic_string">basic_string</a>&lt;<em>char</em>&gt;&amp;,&nbsp</td></tr>
+<tr><th id="133">133</th><td>			    <em>const</em> <a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&amp;) <em>const</em>;&nbsp</td></tr>
+<tr><th id="134">134</th><td>&nbsp</td></tr>
+<tr><th id="135">135</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="136">136</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="137">137</th><td>    <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;<em>char</em>&gt;::<a class="virtual decl fn" href="#_ZNKSt7__cxx118messages8do_closeEi" title='std::messages::do_close' data-ref="_ZNKSt7__cxx118messages8do_closeEi">do_close</a>(<a class="typedef" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages_base::catalog" title='std::messages_base::catalog' data-type='int' data-ref="std::messages_base::catalog">catalog</a>) <em>const</em>;&nbsp</td></tr>
+<tr><th id="138">138</th><td>&nbsp</td></tr>
+<tr><th id="139">139</th><td><u>#<span data-ppcond="139">ifdef</span> <a class="macro" href="c++config.h.html#1797" data-ref="_M/_GLIBCXX_USE_WCHAR_T">_GLIBCXX_USE_WCHAR_T</a></u>&nbsp</td></tr>
+<tr><th id="140">140</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="141">141</th><td>    <b>typename</b> <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;<em>wchar_t</em>&gt;::<a class="typedef" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages_base::catalog" title='std::messages_base::catalog' data-type='int' data-ref="std::messages_base::catalog">catalog</a>&nbsp</td></tr>
+<tr><th id="142">142</th><td>    <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;<em>wchar_t</em>&gt;::<a class="virtual decl fn" href="#_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale" title='std::messages::do_open' data-ref="_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale">do_open</a>(<em>const</em> <a class="type" href="../../../../c++/11/bits/stringfwd.h.html#std::basic_string" title='std::basic_string' data-ref="std::basic_string">basic_string</a>&lt;<em>char</em>&gt;&amp;,&nbsp</td></tr>
+<tr><th id="143">143</th><td>			       <em>const</em> <a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&amp;) <em>const</em>;&nbsp</td></tr>
+<tr><th id="144">144</th><td>&nbsp</td></tr>
+<tr><th id="145">145</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="146">146</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="147">147</th><td>    <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::messages" title='std::messages' data-ref="std::messages">messages</a>&lt;<em>wchar_t</em>&gt;::<a class="virtual decl fn" href="#_ZNKSt7__cxx118messages8do_closeEi" title='std::messages::do_close' data-ref="_ZNKSt7__cxx118messages8do_closeEi">do_close</a>(<a class="typedef" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::messages_base::catalog" title='std::messages_base::catalog' data-type='int' data-ref="std::messages_base::catalog">catalog</a>) <em>const</em>;&nbsp</td></tr>
+<tr><th id="148">148</th><td><u>#<span data-ppcond="139">endif</span></u>&nbsp</td></tr>
+<tr><th id="149">149</th><td>&nbsp</td></tr>
+<tr><th id="150">150</th><td><a class="macro" href="c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="151">151</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="152">152</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../../Modules/System/Src/tFile.cpp.html'>Modules/System/Src/tFile.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

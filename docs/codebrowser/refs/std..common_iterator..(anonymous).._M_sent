@@ -1,0 +1,12 @@
+<use f='include/c++/11/bits/stl_iterator.h' l='1813' c='_ZNSt15common_iteratorC1ET0_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1835' u='w' c='_ZNSt15common_iteratorC1ERKSt15common_iteratorITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1837' c='_ZNSt15common_iteratorC1ERKSt15common_iteratorITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1856' u='w' c='_ZNSt15common_iteratorC1ERKSt15common_iteratorIT_T0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1858' c='_ZNSt15common_iteratorC1ERKSt15common_iteratorIT_T0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1877' u='w' c='_ZNSt15common_iteratorC1EOSt15common_iteratorIT_T0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1879' c='_ZNSt15common_iteratorC1EOSt15common_iteratorIT_T0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1939' u='c' c='_ZNSt15common_iteratorD1Ev'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2109' u='w' c='_ZNSt15common_iterator9_M_assignEOTL0__'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2116' u='c' c='_ZNSt15common_iterator9_M_assignEOTL0__'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2123' c='_ZNSt15common_iterator9_M_assignEOTL0__'/>
+<dec f='include/c++/11/bits/stl_iterator.h' l='2132' type='_Sent'/>

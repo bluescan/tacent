@@ -1,0 +1,8 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='326' type='int tStd::tUTF8c(char8_t * dst, char32_t srcPoint)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='322'>// These take a codepoint in UTF-32 (src) and write to the dst array without adding a null-terminator. If dst is nullptr
+// returns 0. If src is invalid, dst receives the special replacement. Returns num charNs written. The size hints in the
+// arrays are worst case amounts of room you may need. If you want a null terminated string after conversion (with the
+// single codepoint in it), make dst 1 bigger than suggested and set the Nth charN to 0, where N is the value returned.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='326'>// Reads srcPoint and returns [0,4].</doc>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='645' ll='648' type='int tStd::tUTF8c(char8_t * dst, char32_t srcPoint)'/>
+<use f='Modules/System/Src/tFile.cpp' l='1031' u='c' c='_ZN7tSystem11tCreateFileERK7tStringPDuib'/>

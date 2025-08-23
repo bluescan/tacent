@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='129'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='125'>/**
+ * @~English
+ * @brief Key string for standard swizzle metadata.
+ */</doc>

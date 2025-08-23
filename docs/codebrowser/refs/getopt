@@ -1,0 +1,30 @@
+<dec f='include/x86_64-linux-gnu/bits/getopt_core.h' l='91' type='int getopt(int ___argc, char *const * ___argv, const char * __shortopts)'/>
+<doc f='include/x86_64-linux-gnu/bits/getopt_core.h' l='61'>/* Get definitions and prototypes for functions to process the
+   arguments in ARGV (ARGC of them, minus the program name) for
+   options given in OPTS.
+
+   Return the option character from OPTS just read.  Return -1 when
+   there are no more options.  For unrecognized options, or options
+   missing arguments, &apos;optopt&apos; is set to the option letter, and &apos;?&apos; is
+   returned.
+
+   The OPTS string is a list of characters which are recognized option
+   letters, optionally followed by colons, specifying that that letter
+   takes an argument, to be placed in &apos;optarg&apos;.
+
+   If a letter in OPTS is followed by two colons, its argument is
+   optional.  This behavior is specific to the GNU &apos;getopt&apos;.
+
+   The argument &apos;--&apos; causes premature termination of argument
+   scanning, explicitly telling &apos;getopt&apos; that there are no more
+   options.
+
+   If OPTS begins with &apos;-&apos;, then non-option arguments are treated as
+   arguments to the option &apos;\1&apos;.  This behavior is specific to the GNU
+   &apos;getopt&apos;.  If OPTS begins with &apos;+&apos;, or POSIXLY_CORRECT is set in
+   the environment, then do not permute arguments.
+
+   For standards compliance, the &apos;argv&apos; argument has the type
+   char *const *, but this is inaccurate; if argument permutation is
+   enabled, the argv array (not the strings it points to) must be
+   writable.  */</doc>

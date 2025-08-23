@@ -1,0 +1,3 @@
+<use f='Modules/Math/Inc/Math/tRandom.h' l='50' u='c' c='_ZN5tMath7tRandom25tGeneratorMersenneTwisterC1Ey'/>
+<inh f='Modules/Math/Inc/Math/tRandom.h' l='35' c='_ZN5tMath7tRandom10tGenerator7SetSeedEy'/>
+<def f='Modules/Math/Inc/Math/tRandom.h' l='55' type='void tMath::tRandom::tGeneratorMersenneTwister::SetSeed(uint64 seed)'/>

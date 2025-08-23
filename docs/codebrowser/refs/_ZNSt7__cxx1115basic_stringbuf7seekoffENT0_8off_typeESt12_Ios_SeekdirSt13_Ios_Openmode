@@ -1,0 +1,2 @@
+<dec f='include/c++/11/sstream' l='387' type='std::basic_stringbuf::pos_type std::basic_stringbuf::seekoff(std::basic_stringbuf::off_type __off, ios_base::seekdir __way, ios_base::openmode __mode = ios_base::in | ios_base::out)'/>
+<def f='include/c++/11/bits/sstream.tcc' l='165' ll='211' type='typename basic_stringbuf&lt;_CharT, _Traits, _Alloc&gt;::pos_type std::basic_stringbuf::seekoff(std::basic_stringbuf::off_type __off, ios_base::seekdir __way, ios_base::openmode __mode = ios_base::in | ios_base::out)'/>

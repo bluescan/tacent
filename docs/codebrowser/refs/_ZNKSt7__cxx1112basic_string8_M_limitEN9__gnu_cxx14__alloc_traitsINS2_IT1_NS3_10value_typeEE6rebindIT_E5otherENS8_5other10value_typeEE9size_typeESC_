@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/basic_string.h' l='336' ll='341' type='std::basic_string::size_type std::basic_string::_M_limit(std::basic_string::size_type __pos, std::basic_string::size_type __off) const'/>
+<use f='include/c++/11/bits/basic_string.h' l='1833' u='c' c='_ZNSt7__cxx1112basic_string5eraseEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_'/>
+<use f='include/c++/11/bits/basic_string.h' l='1961' u='c' c='_ZNSt7__cxx1112basic_string7replaceEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_SC_'/>
+<use f='include/c++/11/bits/basic_string.h' l='2007' u='c' c='_ZNSt7__cxx1112basic_string7replaceEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_SC_S7_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='510' u='c' c='_ZNKSt7__cxx1112basic_string4copyEPT_N9__gnu_cxx14__alloc_traitsINS4_IT1_NS5_10value_typeEE6rebindIS1_E5otherENS9_5other10value_typeEE9size_typeESD_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1408' u='c' c='_ZNKSt7__cxx1112basic_string7compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_RKN8310127'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1425' u='c' c='_ZNKSt7__cxx1112basic_string7compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_RKN5425840'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1457' u='c' c='_ZNKSt7__cxx1112basic_string7compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1474' u='c' c='_ZNKSt7__cxx1112basic_string7compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_SC_'/>
+<doc f='include/c++/11/bits/basic_string.h' l='335'>// NB: _M_limit doesn&apos;t check for a bad __pos value.</doc>

@@ -1,0 +1,7 @@
+<use f='Modules/Image/Inc/Image/tImageHDR.h' l='68' u='c' c='_ZN6tImage9tImageHDRC1EP9tColour4biib'/>
+<dec f='Modules/Image/Inc/Image/tImageHDR.h' l='83' type='bool tImage::tImageHDR::Set(tPixel4b * pixels, int width, int height, bool steal = false)'/>
+<doc f='Modules/Image/Inc/Image/tImageHDR.h' l='82'>// This one sets from a supplied pixel array.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='61' c='_ZN6tImage10tBaseImage3SetEP9tColour4biib'/>
+<def f='Modules/Image/Src/tImageHDR.cpp' l='392' ll='416' type='bool tImage::tImageHDR::Set(tPixel4b * pixels, int width, int height, bool steal = false)'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='430' u='c' c='_ZN6tImage9tImageHDR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='454' u='c' c='_ZN6tImage9tImageHDR3SetERNS_8tPictureEb'/>

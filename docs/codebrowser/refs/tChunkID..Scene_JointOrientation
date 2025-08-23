@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='491' type='16916480'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='491'>// Base Pose Orientation. 4 floats (w, y, x, y). A quaternion.</doc>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='33' u='r' c='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='74' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>

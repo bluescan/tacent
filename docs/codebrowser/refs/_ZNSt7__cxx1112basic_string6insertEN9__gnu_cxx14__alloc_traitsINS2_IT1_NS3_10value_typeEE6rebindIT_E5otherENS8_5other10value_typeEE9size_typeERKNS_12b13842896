@@ -1,0 +1,19 @@
+<def f='include/c++/11/bits/basic_string.h' l='1682' ll='1687' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::insert(std::basic_string::size_type __pos1, const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __str, std::basic_string::size_type __pos2, std::basic_string::size_type __n = npos)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1664'>/**
+       *  @brief  Insert a substring.
+       *  @param __pos1  Position in string to insert at.
+       *  @param __str   The string to insert.
+       *  @param __pos2  Start of characters in str to insert.
+       *  @param __n  Number of characters to insert.
+       *  @return  Reference to this string.
+       *  @throw  std::length_error  If new length exceeds @c max_size().
+       *  @throw  std::out_of_range  If @a pos1 &gt; size() or
+       *  @a __pos2 &gt; @a str.size().
+       *
+       *  Starting at @a pos1, insert @a __n character of @a __str
+       *  beginning with @a __pos2.  If adding characters causes the
+       *  length to exceed max_size(), length_error is thrown.  If @a
+       *  __pos1 is beyond the end of this string or @a __pos2 is
+       *  beyond the end of @a __str, out_of_range is thrown.  The
+       *  value of the string doesn&apos;t change if an error is thrown.
+      */</doc>

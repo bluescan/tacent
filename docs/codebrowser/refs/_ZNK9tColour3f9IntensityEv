@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='713' type='float tColour3f::Intensity() const'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='713'>/* Returns intensity (average of RGB) in range [0.0f, 1.0f]. */</doc>

@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tMachine.h' l='55' type='bool tSystem::tGetXDGCacheHome(tString &amp; xdgCacheHome)'/>
+<doc f='Modules/System/Inc/System/tMachine.h' l='55'>// $XDG_CACHE_HOME</doc>
+<def f='Modules/System/Src/tMachine.cpp' l='348' ll='355' type='bool tSystem::tGetXDGCacheHome(tString &amp; xdgCacheHome)'/>

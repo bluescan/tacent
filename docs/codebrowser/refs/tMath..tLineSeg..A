@@ -1,0 +1,12 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='224' u='w' c='_ZN5tMath8tLineSegC1ERKNS_8tVector3ES3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='225' u='w' c='_ZN5tMath8tLineSegC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='225' u='r' c='_ZN5tMath8tLineSegC1ERKS0_'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='226' type='tMath::tVector3'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='237' u='r' c='_ZN5tMath4tRay3SetERKNS_8tLineSegE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='237' u='r' c='_ZN5tMath4tRay3SetERKNS_8tLineSegE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='251' u='r' c='_ZN5tMath5tLine3SetERKNS_8tLineSegE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='262' u='r' c='_ZN5tMath9tCylinderC1ERKNS_8tLineSegEf'/>
+<offset>0</offset>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='212' u='m' c='_ZN5tMath7tRandom18tGetPointOnLineSegERKNS_8tLineSegERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='212' u='r' c='_ZN5tMath7tRandom18tGetPointOnLineSegERKNS_8tLineSegERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='451' u='r' c='_ZN5tMath27tIntersectTestLineSegSphereERKNS_8tLineSegERKNS_7tSphereE'/>

@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15835' ll='15843'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15835'/>
+<size>144</size>
+<mbr r='VkAccelerationStructureSRTMotionInstanceNV::transformT0' o='0' t='VkSRTDataNV'/>
+<mbr r='VkAccelerationStructureSRTMotionInstanceNV::transformT1' o='512' t='VkSRTDataNV'/>
+<mbr r='VkAccelerationStructureSRTMotionInstanceNV::instanceCustomIndex' o='1024' t='uint32_t'/>
+<mbr r='VkAccelerationStructureSRTMotionInstanceNV::mask' o='1048' t='uint32_t'/>
+<mbr r='VkAccelerationStructureSRTMotionInstanceNV::instanceShaderBindingTableRecordOffset' o='1056' t='uint32_t'/>
+<mbr r='VkAccelerationStructureSRTMotionInstanceNV::flags' o='1080' t='VkGeometryInstanceFlagsKHR'/>
+<mbr r='VkAccelerationStructureSRTMotionInstanceNV::accelerationStructureReference' o='1088' t='uint64_t'/>

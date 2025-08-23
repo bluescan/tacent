@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='407' type='void tMath::tSub(tMath::tVec2 &amp; d, const tMath::tVec2 &amp; a, const tMath::tVec2 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='552' u='c' c='_ZN5tMath12tDistBetweenERKNS_5tVec2ES2_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='553' u='c' c='_ZN5tMath14tDistBetweenSqERKNS_5tVec2ES2_'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='81' u='c' c='_ZNK5tMath8tVector2miERKNS_5tVec2E'/>

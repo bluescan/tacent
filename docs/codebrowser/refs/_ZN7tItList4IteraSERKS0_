@@ -1,0 +1,10 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='281' type='tItList::Iter &amp; tItList::Iter::operator=(const tItList::Iter &amp; i)'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='464' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='474' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='484' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='508' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='433' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='457' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='474' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1040' u='c' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1056' u='c' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>

@@ -1,0 +1,5 @@
+<def f='include/c++/11/iomanip' l='341' ll='345'/>
+<use f='include/c++/11/iomanip' l='357' c='_ZSt8put_timePK2tmPKT_'/>
+<use f='include/c++/11/iomanip' l='363' c='_ZStlsRSt13basic_ostreamIT_T0_ESt9_Put_timeIS0_E'/>
+<mbr r='std::_Put_time::_M_tmb' t='const std::tm *'/>
+<mbr r='std::_Put_time::_M_fmt' t='const _CharT *'/>

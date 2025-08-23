@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3299' ll='3305'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3299'/>
+<size>40</size>
+<mbr r='VkMappedMemoryRange::sType' o='0' t='VkStructureType'/>
+<mbr r='VkMappedMemoryRange::pNext' o='64' t='const void *'/>
+<mbr r='VkMappedMemoryRange::memory' o='128' t='VkDeviceMemory'/>
+<mbr r='VkMappedMemoryRange::offset' o='192' t='VkDeviceSize'/>
+<mbr r='VkMappedMemoryRange::size' o='256' t='VkDeviceSize'/>

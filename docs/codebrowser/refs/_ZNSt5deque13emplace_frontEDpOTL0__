@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_deque.h' l='1483' type='std::deque::reference std::deque::emplace_front(_Args &amp;&amp;... __args)'/>
+<def f='include/c++/11/bits/deque.tcc' l='133' ll='155' type='typename deque&lt;_Tp, _Alloc&gt;::reference std::deque::emplace_front(_Args &amp;&amp;... __args)'/>

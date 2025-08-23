@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='81' type='void tMath::tMatrix4::MakeScale(float scale)'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='39' u='c' c='_ZN6tScene7tCamera5ScaleEf'/>

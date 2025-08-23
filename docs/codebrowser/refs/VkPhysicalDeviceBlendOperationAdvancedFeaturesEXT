@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12657' ll='12661'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12657'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceBlendOperationAdvancedFeaturesEXT::advancedBlendCoherentOperations' o='128' t='VkBool32'/>

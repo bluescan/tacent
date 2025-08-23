@@ -1,0 +1,15 @@
+<use f='Modules/Image/Inc/Image/tImagePNG.h' l='79' u='c' c='_ZN6tImage9tImagePNGD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImagePNG.h' l='131' type='void tImage::tImagePNG::Clear()'/>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Inc/Image/tImagePNG.h' l='162' ll='171' type='void tImage::tImagePNG::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImagePNG.h' l='130'>// After this call no memory will be consumed by the object and it will be invalid.</doc>
+<doc f='Modules/Image/Inc/Image/tImagePNG.h' l='159'>// Implementation below this line.</doc>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='45' u='c' c='_ZN6tImage9tImagePNG4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='220' u='c' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='314' u='c' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='329' u='c' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='342' u='c' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='422' u='c' c='_ZN6tImage9tImagePNG3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='449' u='c' c='_ZN6tImage9tImagePNG3SetEP9tColour4siib'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='476' u='c' c='_ZN6tImage9tImagePNG3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='495' u='c' c='_ZN6tImage9tImagePNG3SetERNS_8tPictureEb'/>

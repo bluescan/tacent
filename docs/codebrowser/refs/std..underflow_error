@@ -1,0 +1,17 @@
+<inh f='include/c++/11/stdexcept' l='219' c='std::runtime_error'/>
+<def f='include/c++/11/stdexcept' l='288' ll='300'/>
+<use f='include/c++/11/stdexcept' l='294' c='_ZNSt15underflow_errorC1ERKS_'/>
+<use f='include/c++/11/stdexcept' l='295' c='_ZNSt15underflow_erroraSERKS_'/>
+<use f='include/c++/11/stdexcept' l='295' c='_ZNSt15underflow_erroraSERKS_'/>
+<use f='include/c++/11/stdexcept' l='296' c='_ZNSt15underflow_errorC1EOS_'/>
+<use f='include/c++/11/stdexcept' l='297' c='_ZNSt15underflow_erroraSEOS_'/>
+<use f='include/c++/11/stdexcept' l='297' c='_ZNSt15underflow_erroraSEOS_'/>
+<size>16</size>
+<doc f='include/c++/11/stdexcept' l='287'>/** Thrown to indicate arithmetic underflow.  */</doc>
+<fun r='_ZNSt15underflow_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt15underflow_errorC1EPKc'/>
+<fun r='_ZNSt15underflow_errorC1ERKS_'/>
+<fun r='_ZNSt15underflow_erroraSERKS_'/>
+<fun r='_ZNSt15underflow_errorC1EOS_'/>
+<fun r='_ZNSt15underflow_erroraSEOS_'/>
+<fun r='_ZNSt15underflow_errorD1Ev'/>

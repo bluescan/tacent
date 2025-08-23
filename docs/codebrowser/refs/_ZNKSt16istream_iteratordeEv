@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stream_iterator.h' l='92' ll='99' type='const _Tp &amp; std::istream_iterator::operator*() const'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='102' u='c' c='_ZNKSt16istream_iteratorptEv'/>

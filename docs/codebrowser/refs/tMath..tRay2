@@ -1,0 +1,13 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='119' ll='124'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='475' c='_ZN5tMath20tIntersectFindRaySegERKNS_5tRay2ERKNS_9tLineSeg2ERNS_8tVector2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='481' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='493' c='_ZN5tMath24tIntersectFindRayEllipseERfRKNS_5tRay2ERKNS_9tEllipse2E'/>
+<size>16</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='118'>// A ray from Start in (normalized) direction Dir.</doc>
+<fun r='_ZN5tMath5tRay2C1Ev'/>
+<mbr r='tMath::tRay2::Start' o='0' t='tMath::tVector2'/>
+<mbr r='tMath::tRay2::Dir' o='64' t='tMath::tVector2'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='332' c='_ZN5tMath20tIntersectFindRaySegERKNS_5tRay2ERKNS_9tLineSeg2ERNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='351' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='462' c='_ZN5tMath24tIntersectFindRayEllipseERfRKNS_5tRay2ERKNS_9tEllipse2E'/>
+<size>16</size>

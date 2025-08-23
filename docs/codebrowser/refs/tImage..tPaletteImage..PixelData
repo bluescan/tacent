@@ -1,0 +1,12 @@
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='39' u='r' c='_ZN6tImage13tPaletteImage3SetERKS0_'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='40' u='w' c='_ZN6tImage13tPaletteImage3SetERKS0_'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='41' u='r' c='_ZN6tImage13tPaletteImage3SetERKS0_'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='41' u='r' c='_ZN6tImage13tPaletteImage3SetERKS0_'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='64' u='w' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='65' u='r' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='88' u='w' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPKhPK9tColour3b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='89' u='r' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPKhPK9tColour3b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='132' u='w' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='165' u='r' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='188' u='r' c='_ZN6tImage13tPaletteImage3GetEP9tColour4b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='212' u='r' c='_ZN6tImage13tPaletteImage3GetEP9tColour3b'/>

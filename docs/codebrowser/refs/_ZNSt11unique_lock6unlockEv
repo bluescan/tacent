@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/unique_lock.h' l='104' u='c' c='_ZNSt11unique_lockD1Ev'/>
+<use f='include/c++/11/bits/unique_lock.h' l='120' u='c' c='_ZNSt11unique_lockaSEOSt11unique_lockIT_E'/>
+<def f='include/c++/11/bits/unique_lock.h' l='188' ll='198' type='void std::unique_lock::unlock()'/>

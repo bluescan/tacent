@@ -1,0 +1,22 @@
+<dec f='include/x86_64-linux-gnu/bits/floatn-common.h' l='34'/>
+<use f='include/x86_64-linux-gnu/bits/floatn-common.h' l='80' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/floatn-common.h' l='138' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/floatn-common.h' l='196' u='c'/>
+<use f='include/stdlib.h' l='134' u='c'/>
+<use f='include/stdlib.h' l='226' u='c'/>
+<use f='include/stdlib.h' l='309' u='c'/>
+<use f='include/math.h' l='66' u='c'/>
+<use f='include/math.h' l='115' u='c'/>
+<use f='include/math.h' l='424' u='c'/>
+<use f='include/math.h' l='633' u='c'/>
+<use f='include/math.h' l='643' u='c'/>
+<use f='include/math.h' l='653' u='c'/>
+<use f='include/math.h' l='663' u='c'/>
+<use f='include/math.h' l='673' u='c'/>
+<use f='include/math.h' l='683' u='c'/>
+<use f='include/math.h' l='1197' u='c'/>
+<doc f='include/x86_64-linux-gnu/bits/floatn-common.h' l='31'>/* Defined to 1 if the current compiler invocation provides a
+   floating-point type with the right format for this type, and this
+   glibc includes corresponding *fN or *fNx interfaces for it.  */</doc>
+<use f='include/wchar.h' l='391' u='c'/>
+<use f='include/wchar.h' l='505' u='c'/>

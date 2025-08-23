@@ -1,0 +1,5 @@
+<dec f='Modules/Scene/Inc/Scene/tAttribute.h' l='35' type='3'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='47' u='r' c='_ZNK6tScene10tAttribute7IsFloatEv'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='52' u='r' c='_ZNK6tScene10tAttribute10GetAsFloatEv'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='57' c='_ZNK6tScene10tAttribute4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='115' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>

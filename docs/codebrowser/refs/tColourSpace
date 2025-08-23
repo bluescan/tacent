@@ -1,0 +1,13 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='52' ll='91'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='40'>// Generally floating point colour representations are considered to be in linear colour-space. Linear is where you
+// want to do all the work. sRGB (gamma corrected) is probably the space of most textures, especially diffuse textures
+// as they were authored on monitors that had a non-linear (gamma) response. Use this enum to indicate
+// the colour-space of pixel data you have... if you know it. Unfortunatly you can&apos;t in general determine the space
+// from, say, the pixel format -- a non sRGB format may contain sRGB data (but an sRGB format should be assumed to
+// actually contain sRGB data). In the below enumerants:
+// l = linear
+// g = gamma
+// q = square
+// s = standard
+// See tColourProfile for an enum that describes which spaces are used for which channels, and whether they are LDR or
+// HDR, in image files.</doc>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImagePKM.h' l='39' type='16'/>
+<doc f='Modules/Image/Inc/Image/tImagePKM.h' l='39'>// Tries to determine whether to apply sRGB compression based on pixel format. Call GetColourSpace to see if it applied.</doc>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='209' u='r' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='212' u='r' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>

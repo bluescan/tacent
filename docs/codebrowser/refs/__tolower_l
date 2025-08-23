@@ -1,0 +1,2 @@
+<dec f='include/ctype.h' l='267' type='int __tolower_l(int __c, locale_t __l)'/>
+<doc f='include/ctype.h' l='266'>/* Return the lowercase version of C in locale L.  */</doc>

@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='458' type='void tMath::tMul(tMath::tQuat &amp; q, const tMath::tVec3 &amp; a)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1021' ll='1028' type='void tMath::tMul(tMath::tQuat &amp; q, const tMath::tVec3 &amp; a)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='458'>// Treats &apos;a&apos; as an augmented (pure) quaternion. w = 0.</doc>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='89' u='c' c='_ZN5tMath11tQuaternionmLERKNS_5tVec3E'/>

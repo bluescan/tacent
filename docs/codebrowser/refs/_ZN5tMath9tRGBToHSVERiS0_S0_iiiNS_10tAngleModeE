@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='235' type='void tMath::tRGBToHSV(int &amp; h, int &amp; s, int &amp; v, int r, int g, int b, tMath::tAngleMode  = tMath::tAngleMode::Degrees)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1126' u='c' c='_ZN9tColour4b8RGBToHSVEv'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='232'>// Colour space conversions. The integer versions accept angle modes of Degrees and Norm256 only. The angle mode
+	// determines the range of the hue. Degrees means angles are in [0, 360). Norm256 means angles are in [0, 256).
+	// Saturation and value are both in [0, 256) for the integer conversion functions.</doc>
+<def f='Modules/Math/Src/tColour.cpp' l='207' ll='244' type='void tMath::tRGBToHSV(int &amp; h, int &amp; s, int &amp; v, int r, int g, int b, tMath::tAngleMode angleMode = tMath::tAngleMode::Degrees)'/>

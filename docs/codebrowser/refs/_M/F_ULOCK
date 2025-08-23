@@ -1,0 +1,7 @@
+<dec f='include/unistd.h' l='1108'/>
+<doc f='include/unistd.h' l='1101'>/* `lockf&apos; is a simpler interface to the locking facilities of `fcntl&apos;.
+   LEN is always relative to the current file position.
+   The CMD argument is one of the following.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

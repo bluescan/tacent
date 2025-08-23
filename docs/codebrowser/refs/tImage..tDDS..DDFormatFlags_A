@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='69' type='2'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='804' u='r' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1197' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>

@@ -1,0 +1,11 @@
+<use f='Modules/Image/Contrib/WebP/include/mux.h' l='70'/>
+<def f='Modules/Image/Contrib/WebP/include/mux.h' l='424' ll='442'/>
+<size>44</size>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='423'>// Global options.</doc>
+<mbr r='WebPAnimEncoderOptions::anim_params' o='0' t='WebPMuxAnimParams'/>
+<mbr r='WebPAnimEncoderOptions::minimize_size' o='64' t='int'/>
+<mbr r='WebPAnimEncoderOptions::kmin' o='96' t='int'/>
+<mbr r='WebPAnimEncoderOptions::kmax' o='128' t='int'/>
+<mbr r='WebPAnimEncoderOptions::allow_mixed' o='160' t='int'/>
+<mbr r='WebPAnimEncoderOptions::verbose' o='192' t='int'/>
+<mbr r='WebPAnimEncoderOptions::padding' o='224' t='uint32_t[4]'/>

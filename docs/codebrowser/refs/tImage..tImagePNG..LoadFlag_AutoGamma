@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImagePNG.h' l='36' type='4'/>
+<doc f='Modules/Image/Inc/Image/tImagePNG.h' l='36'>// Applies sRGB compression for 16 bpc png images. Call GetColourSpace to see final colour profile.</doc>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='301' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='304' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16533'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16532'>// VK_EXT_image_view_min_lod is a preprocessor guard. Do not pass it to API calls.</doc>

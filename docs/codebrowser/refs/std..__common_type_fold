@@ -1,0 +1,10 @@
+<use f='include/c++/11/type_traits' l='2310'/>
+<def f='include/c++/11/type_traits' l='2317' ll='2321'/>
+<def f='include/c++/11/type_traits' l='2324' ll='2326'/>
+<use f='include/c++/11/type_traits' l='3581'/>
+<def f='include/c++/11/type_traits' l='3586' ll='3591'/>
+<doc f='include/c++/11/type_traits' l='2314'>// Let C denote the same type, if any, as common_type_t&lt;T1, T2&gt;.
+  // If there is such a type C, type shall denote the same type, if any,
+  // as common_type_t&lt;C, R...&gt;.</doc>
+<doc f='include/c++/11/type_traits' l='2323'>// Otherwise, there shall be no member type.</doc>
+<doc f='include/c++/11/type_traits' l='3585'>// Reuse __common_type_fold for common_reference&lt;T1, T2, Rest...&gt;</doc>

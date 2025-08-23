@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13388'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13387'>// VK_NV_representative_fragment_test is a preprocessor guard. Do not pass it to API calls.</doc>

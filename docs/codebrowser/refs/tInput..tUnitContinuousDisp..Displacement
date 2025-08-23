@@ -1,0 +1,4 @@
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='36' u='r' c='_ZNK6tInput19tUnitContinuousDisp15GetDisplacementEv'/>
+<dec f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='66' type='float'/>
+<offset>416</offset>
+<doc f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='66'>// Mutel protected.</doc>

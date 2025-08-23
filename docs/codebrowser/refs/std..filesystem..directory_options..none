@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='264' type='0'/>
+<use f='include/c++/11/bits/fs_dir.h' l='387' u='r' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='393' u='r' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='474' u='r' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='484' u='r' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathERSt10error_code'/>

@@ -1,0 +1,9 @@
+<def f='include/c++/11/system_error' l='231' ll='232' type='const std::error_category &amp; std::error_code::category() const'/>
+<use f='include/c++/11/system_error' l='240' u='c' c='_ZNKSt10error_code7messageB5cxx11Ev'/>
+<use f='include/c++/11/system_error' l='263' u='c' c='_ZStssRKSt10error_codeS1_'/>
+<use f='include/c++/11/system_error' l='263' u='c' c='_ZStssRKSt10error_codeS1_'/>
+<use f='include/c++/11/system_error' l='280' u='c' c='_ZStlsRSt13basic_ostreamIT_T0_ERKSt10error_code'/>
+<use f='include/c++/11/system_error' l='363' u='c' c='_ZSteqRKSt10error_codeS1_'/>
+<use f='include/c++/11/system_error' l='363' u='c' c='_ZSteqRKSt10error_codeS1_'/>
+<use f='include/c++/11/system_error' l='370' u='c' c='_ZSteqRKSt10error_codeRKSt15error_condition'/>
+<use f='include/c++/11/system_error' l='504' u='c' c='_ZNKSt4hashISt10error_codeEclERKS0_'/>

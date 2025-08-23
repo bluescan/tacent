@@ -1,0 +1,1 @@
+<def f='include/c++/11/functional' l='1007' ll='1012' macro='1' type='void std::default_searcher::default_searcher&lt;_ForwardIterator1, _BinaryPredicate&gt;(_ForwardIterator1 __pat_first, _ForwardIterator1 __pat_last, _BinaryPredicate __pred = _BinaryPredicate())'/>

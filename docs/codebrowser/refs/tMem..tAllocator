@@ -1,0 +1,17 @@
+<def f='Modules/Foundation/Inc/Foundation/tPool.h' l='37' ll='62'/>
+<ovr f='Modules/Foundation/Inc/Foundation/tPool.h' l='69' c='tMem::tFastPool'/>
+<use f='Modules/Foundation/Inc/Foundation/tPool.h' l='69'/>
+<size>16</size>
+<doc f='Modules/Foundation/Inc/Foundation/tPool.h' l='27'>// Define MEMORY_ALLOCATOR_CHECK for cursory sanity checking of pool pointers.
+// Define MEMORY_ALLOCATOR_CHECK and MEMORY_ALLOCATOR__DEEP_CHECK for slower but more thorough sanity checking of pool pointers.
+// #define MEMORY_ALLOCATOR_CHECK
+// #define MEMORY_ALLOCATOR__DEEP_CHECK
+
+
+// Abstract base class for all types of memory allocators. By having the Malloc and Free calls be virtual, a call to an
+// operator new that passes in the memory pool to use can simply pass in a tAllocator pointer, allowing different types
+// of memory pools without adding complexity to the implementation of new. The overloaded new can just call Malloc. The
+// same reasoning holds for delete and free.</doc>
+<fun r='_ZN4tMem10tAllocatorD1Ev'/>
+<fun r='_ZN4tMem10tAllocator6MallocEi'/>
+<fun r='_ZN4tMem10tAllocator4FreeEPv'/>

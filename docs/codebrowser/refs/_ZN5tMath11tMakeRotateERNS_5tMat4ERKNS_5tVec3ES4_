@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='594' type='void tMath::tMakeRotate(tMath::tMat4 &amp; d, const tMath::tVec3 &amp; a, const tMath::tVec3 &amp; b)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='594'>// Rotates from from a to b. Normalize a and b first.</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='79' u='c' c='_ZN5tMath8tMatrix410MakeRotateERKNS_5tVec3ES3_'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='607' ll='646' type='void tMath::tMakeRotate(tMath::tMat4 &amp; d, const tMath::tVec3 &amp; a, const tMath::tVec3 &amp; b)'/>

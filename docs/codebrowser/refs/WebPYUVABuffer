@@ -1,0 +1,16 @@
+<use f='Modules/Image/Contrib/WebP/include/decode.h' l='30'/>
+<def f='Modules/Image/Contrib/WebP/include/decode.h' l='189' ll='197'/>
+<size>80</size>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='189'>// view as YUVA</doc>
+<mbr r='WebPYUVABuffer::y' o='0' t='uint8_t *'/>
+<mbr r='WebPYUVABuffer::u' o='64' t='uint8_t *'/>
+<mbr r='WebPYUVABuffer::v' o='128' t='uint8_t *'/>
+<mbr r='WebPYUVABuffer::a' o='192' t='uint8_t *'/>
+<mbr r='WebPYUVABuffer::y_stride' o='256' t='int'/>
+<mbr r='WebPYUVABuffer::u_stride' o='288' t='int'/>
+<mbr r='WebPYUVABuffer::v_stride' o='320' t='int'/>
+<mbr r='WebPYUVABuffer::a_stride' o='352' t='int'/>
+<mbr r='WebPYUVABuffer::y_size' o='384' t='size_t'/>
+<mbr r='WebPYUVABuffer::u_size' o='448' t='size_t'/>
+<mbr r='WebPYUVABuffer::v_size' o='512' t='size_t'/>
+<mbr r='WebPYUVABuffer::a_size' o='576' t='size_t'/>

@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3834' ll='3845'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3834'/>
+<size>72</size>
+<mbr r='VkSubpassDescription::flags' o='0' t='VkSubpassDescriptionFlags'/>
+<mbr r='VkSubpassDescription::pipelineBindPoint' o='32' t='VkPipelineBindPoint'/>
+<mbr r='VkSubpassDescription::inputAttachmentCount' o='64' t='uint32_t'/>
+<mbr r='VkSubpassDescription::pInputAttachments' o='128' t='const VkAttachmentReference *'/>
+<mbr r='VkSubpassDescription::colorAttachmentCount' o='192' t='uint32_t'/>
+<mbr r='VkSubpassDescription::pColorAttachments' o='256' t='const VkAttachmentReference *'/>
+<mbr r='VkSubpassDescription::pResolveAttachments' o='320' t='const VkAttachmentReference *'/>
+<mbr r='VkSubpassDescription::pDepthStencilAttachment' o='384' t='const VkAttachmentReference *'/>
+<mbr r='VkSubpassDescription::preserveAttachmentCount' o='448' t='uint32_t'/>
+<mbr r='VkSubpassDescription::pPreserveAttachments' o='512' t='const uint32_t *'/>

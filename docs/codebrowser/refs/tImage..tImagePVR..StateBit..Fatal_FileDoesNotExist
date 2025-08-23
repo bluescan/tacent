@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='122' type='6'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='743' u='r' c='_ZN6tImage9tImagePVR4LoadERK7tStringRKNS0_10LoadParamsE'/>

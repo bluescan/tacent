@@ -1,0 +1,24 @@
+<dec f='include/c++/11/bits/basic_ios.h' l='347' type='basic_streambuf&lt;_CharT, _Traits&gt; * std::basic_ios::rdbuf(basic_streambuf&lt;_CharT, _Traits&gt; * __sb)'/>
+<def f='include/c++/11/bits/basic_ios.tcc' l='51' ll='59' type='basic_streambuf&lt;_CharT, _Traits&gt; * std::basic_ios::rdbuf(basic_streambuf&lt;_CharT, _Traits&gt; * __sb)'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='324'>/**
+       *  @brief  Changing the underlying buffer.
+       *  @param  __sb  The new stream buffer.
+       *  @return  The previous stream buffer.
+       *
+       *  Associates a new buffer with the current stream, and clears the
+       *  error state.
+       *
+       *  Due to historical accidents which the LWG refuses to correct, the
+       *  I/O library suffers from a design error:  this function is hidden
+       *  in derived classes by overrides of the zero-argument @c rdbuf(),
+       *  which is non-virtual for hysterical raisins.  As a result, you
+       *  must use explicit qualifications to access this function via any
+       *  derived class.  For example:
+       *
+       *  @code
+       *  std::fstream     foo;         // or some other derived type
+       *  std::streambuf*  p = .....;
+       *
+       *  foo.ios::rdbuf(p);            // ios == basic_ios&lt;char&gt;
+       *  @endcode
+      */</doc>

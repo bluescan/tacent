@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/random.h' l='4477' u='w' c='_ZNSt20poisson_distributionC1Ed'/>
+<use f='include/c++/11/bits/random.h' l='4482' u='w' c='_ZNSt20poisson_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4497' u='c' c='_ZNKSt20poisson_distribution4meanEv'/>
+<use f='include/c++/11/bits/random.h' l='4504' u='r' c='_ZNKSt20poisson_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='4512' u='w' c='_ZNSt20poisson_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4534' c='_ZNSt20poisson_distributionclERTL0__'/>
+<use f='include/c++/11/bits/random.h' l='4546' c='_ZNSt20poisson_distribution10__generateETL0__S0_RTL0_0_'/>
+<dec f='include/c++/11/bits/random.h' l='4615' type='std::poisson_distribution::param_type'/>

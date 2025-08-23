@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='176' ll='183'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='175'>// Same as a tList but the default constructor puts the list in External mode.</doc>
+<fun r='_ZN6teListC1Ev'/>
+<fun r='_ZN6teListC1E9tListMode'/>
+<fun r='_ZN6teListD1Ev'/>

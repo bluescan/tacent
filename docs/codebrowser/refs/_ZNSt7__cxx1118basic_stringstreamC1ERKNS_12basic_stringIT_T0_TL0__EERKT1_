@@ -1,0 +1,1 @@
+<def f='include/c++/11/sstream' l='1078' ll='1081' type='void std::basic_stringstream::basic_stringstream&lt;_CharT, _Traits, _Alloc&gt;(const basic_string&lt;_CharT, _Traits, _SAlloc&gt; &amp; __str, const std::basic_stringstream::allocator_type &amp; __a)'/>

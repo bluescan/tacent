@@ -1,0 +1,13 @@
+<dec f='include/c++/11/bits/functexcept.h' l='75' type='void std::__throw_length_error(const char * )'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1759' u='c' c='_ZNKSt6vector12_M_check_lenEmPKc'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1770' u='c' c='_ZNSt6vector17_S_check_init_lenEmRKT0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='937' u='c' c='_ZNSt6vectorIbT_E7reserveEm'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1310' u='c' c='_ZNKSt6vectorIbT_E12_M_check_lenEmPKc'/>
+<use f='include/c++/11/bits/vector.tcc' l='70' u='c' c='_ZNSt6vector7reserveEm'/>
+<use f='include/c++/11/bits/basic_string.h' l='331' u='c' c='_ZNKSt7__cxx1112basic_string15_M_check_lengthEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKc'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='138' u='c' c='_ZNSt7__cxx1112basic_string9_M_createERN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1828' u='c' c='_ZNSt5deque17_S_check_init_lenEmRKT0_'/>
+<use f='include/c++/11/bits/deque.tcc' l='493' u='c' c='_ZNSt5deque16_M_push_back_auxEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='532' u='c' c='_ZNSt5deque17_M_push_front_auxEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='885' u='c' c='_ZNSt5deque24_M_new_elements_at_frontEm'/>
+<use f='include/c++/11/bits/deque.tcc' l='910' u='c' c='_ZNSt5deque23_M_new_elements_at_backEm'/>

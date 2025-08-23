@@ -1,0 +1,14 @@
+_ZNSt7jthread9_S_createERSt11stop_sourceOT_DpOT0_|std::jthread::_S_create
+_ZNSt7jthread6detachEv|std::jthread::detach
+_ZNKSt7jthread6get_idEv|std::jthread::get_id
+_ZNSt7jthread15get_stop_sourceEv|std::jthread::get_stop_source
+_ZNKSt7jthread14get_stop_tokenEv|std::jthread::get_stop_token
+_ZNSt7jthread20hardware_concurrencyEv|std::jthread::hardware_concurrency
+_ZNSt7jthread4joinEv|std::jthread::join
+_ZNKSt7jthread8joinableEv|std::jthread::joinable
+_ZNSt7jthreadC1Ev|std::jthread::jthread
+_ZNSt7jthread13native_handleEv|std::jthread::native_handle
+_ZNSt7jthreadaSERKS_|std::jthread::operator=
+_ZNSt7jthread12request_stopEv|std::jthread::request_stop
+_ZNSt7jthread4swapERS_|std::jthread::swap
+_ZNSt7jthreadD1Ev|std::jthread::~jthread

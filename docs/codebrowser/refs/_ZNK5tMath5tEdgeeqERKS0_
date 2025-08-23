@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='34' type='bool tMath::tEdge::operator==(const tMath::tEdge &amp; e) const'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='104' u='c' c='_ZNK6tScene5tMesh13FindEdgeIndexERKN5tMath5tEdgeE'/>

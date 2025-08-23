@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPool.h' l='94' type='void tMem::tFastPool::Free(void * )'/>
+<inh f='Modules/Foundation/Inc/Foundation/tPool.h' l='43' c='_ZN4tMem10tAllocator4FreeEPv'/>
+<def f='Modules/Foundation/Inc/Foundation/tPool.h' l='187' ll='216' type='void tMem::tFastPool::Free(void * slot)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tPool.h' l='93'>// Deallocates the passed in memory.</doc>

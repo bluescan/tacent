@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='966' ll='973' type='void std::vector&lt;bool, type-parameter-0-0&gt;::push_back(bool __x)'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1113' u='c' c='_ZNSt6vectorIbT_E12emplace_backEDpOTL0__'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1191' u='c' c='_ZNSt6vectorIbT_E19_M_initialize_rangeETL0__S2_St18input_iterator_tag'/>

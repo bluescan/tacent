@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7137' ll='7147'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7137'/>
+<size>64</size>
+<mbr r='VkBlitImageInfo2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBlitImageInfo2::pNext' o='64' t='const void *'/>
+<mbr r='VkBlitImageInfo2::srcImage' o='128' t='VkImage'/>
+<mbr r='VkBlitImageInfo2::srcImageLayout' o='192' t='VkImageLayout'/>
+<mbr r='VkBlitImageInfo2::dstImage' o='256' t='VkImage'/>
+<mbr r='VkBlitImageInfo2::dstImageLayout' o='320' t='VkImageLayout'/>
+<mbr r='VkBlitImageInfo2::regionCount' o='352' t='uint32_t'/>
+<mbr r='VkBlitImageInfo2::pRegions' o='384' t='const VkImageBlit2 *'/>
+<mbr r='VkBlitImageInfo2::filter' o='448' t='VkFilter'/>

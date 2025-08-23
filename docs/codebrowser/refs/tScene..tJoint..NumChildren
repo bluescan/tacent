@@ -1,0 +1,8 @@
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='46' u='r' c='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='50' u='r' c='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='87' u='a' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='92' u='r' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='93' u='r' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='94' u='r' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='104' u='r' c='_ZN6tScene6tJoint10AddChildIDEj'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='112' u='w' c='_ZN6tScene6tJoint10AddChildIDEj'/>

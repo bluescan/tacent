@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1964' ll='1966' type='std::unordered_multimap::local_iterator std::unordered_multimap::end(std::unordered_multimap::size_type __n)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1958'>/**
+       *  @brief  Returns a read/write iterator pointing to one past the last
+       *         bucket elements.
+       *  @param  __n The bucket index.
+       *  @return  A read/write local iterator.
+       */</doc>

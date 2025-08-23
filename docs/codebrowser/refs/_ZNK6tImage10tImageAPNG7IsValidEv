@@ -1,0 +1,4 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='86' c='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<def f='Modules/Image/Inc/Image/tImageAPNG.h' l='95' type='bool tImage::tImageAPNG::IsValid() const'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='217' u='c' c='_ZN6tImage10tImageAPNG8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='235' u='c' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

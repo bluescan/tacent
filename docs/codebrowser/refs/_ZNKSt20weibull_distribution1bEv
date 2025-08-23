@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='4933' ll='4935' type='_RealType std::weibull_distribution::b() const'/>
+<doc f='include/c++/11/bits/random.h' l='4930'>/**
+       * @brief Return the @f$b@f$ parameter of the distribution.
+       */</doc>

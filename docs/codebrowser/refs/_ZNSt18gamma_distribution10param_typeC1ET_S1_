@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.h' l='2421' ll='2427' type='void std::gamma_distribution::param_type::param_type(_RealType __alpha_val, _RealType __beta_val = _RealType(1))'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='64' type='4'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1199' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Src/tImageDDS.cpp' l='61'>// Now that the raw format flags are out of the way, here are some combinations representing what you can
+		// expect to find in a real dds file. These are basically just convenience enumerants that contains some
+		// bitwise-ORs of the above flags. You can check for full equality with these enums (no need to check bits).</doc>

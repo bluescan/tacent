@@ -1,0 +1,10 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='76' type='void tSystem::Process(tSystem::Receiver &amp; , const char * format, __va_list_tag * )'/>
+<use f='Modules/System/Src/tPrint.cpp' l='473' u='c' c='_Z8tvPrintfPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='487' u='c' c='_Z8tvPrintfyPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='499' u='c' c='_Z9tsvPrintfPcPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='598' u='c' c='_Z9tsvPrintfPciPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='635' u='c' c='_Z9tcvPrintfPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='658' u='c' c='_Z9tfvPrintfP8_IO_FILEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='685' u='c' c='_Z10ttfvPrintfP8_IO_FILEPKcP13__va_list_tag'/>
+<def f='Modules/System/Src/tPrint.cpp' l='747' ll='939' type='void tSystem::Process(tSystem::Receiver &amp; receiver, const char * format, __va_list_tag * argList)'/>
+<doc f='Modules/System/Src/tPrint.cpp' l='75'>// This is the workhorse. It processes the format string and deposits the resulting formatted text in the receiver.</doc>

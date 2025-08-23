@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7264' ll='7268'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7264'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceDynamicRenderingFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDynamicRenderingFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDynamicRenderingFeatures::dynamicRendering' o='128' t='VkBool32'/>

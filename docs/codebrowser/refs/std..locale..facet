@@ -1,0 +1,129 @@
+<use f='include/c++/11/bits/locale_classes.h' l='74'/>
+<def f='include/c++/11/bits/locale_classes.h' l='373' ll='471'/>
+<use f='include/c++/11/bits/locale_classes.h' l='440' c='_ZNSt6locale5facetC1ERKS0_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='442' c='_ZNSt6locale5facetaSERKS0_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='443' c='_ZNSt6locale5facetaSERKS0_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='466' c='_ZNKSt6locale5facet11_M_sso_shimEPKNS_2idE'/>
+<use f='include/c++/11/bits/locale_classes.h' l='467' c='_ZNKSt6locale5facet11_M_cow_shimEPKNS_2idE'/>
+<use f='include/c++/11/bits/locale_classes.h' l='529'/>
+<use f='include/c++/11/bits/locale_classes.h' l='545'/>
+<use f='include/c++/11/bits/locale_classes.h' l='547'/>
+<use f='include/c++/11/bits/locale_classes.h' l='608' c='_ZNSt6locale5_Impl16_M_install_facetEPKNS_2idEPKNS_5facetE'/>
+<use f='include/c++/11/bits/locale_classes.h' l='624' c='_ZNSt6locale5_Impl16_M_install_cacheEPKNS_5facetEm'/>
+<use f='include/c++/11/bits/locale_classes.h' l='626' c='_ZNSt6locale5_Impl13_M_init_extraEPPNS_5facetE'/>
+<ovr f='include/c++/11/bits/locale_classes.h' l='648' c='std::collate'/>
+<use f='include/c++/11/bits/locale_classes.h' l='648'/>
+<use f='include/c++/11/bits/locale_classes.h' l='676' c='_ZNSt7__cxx117collateC1Em'/>
+<use f='include/c++/11/bits/locale_classes.h' l='690' c='_ZNSt7__cxx117collateC1EP15__locale_structm'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='107' c='_ZSt9has_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='135' c='_ZSt9use_facetRKSt6locale'/>
+<ovr f='include/c++/11/bits/locale_classes.tcc' l='270' c='std::collate'/>
+<ovr f='include/c++/11/bits/locale_classes.tcc' l='282' c='std::collate'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='153' c='std::__ctype_abstract_base'/>
+<use f='include/c++/11/bits/locale_facets.h' l='153'/>
+<use f='include/c++/11/bits/locale_facets.h' l='362' c='_ZNSt21__ctype_abstract_baseC1Em'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='684' c='std::ctype'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='1598' c='std::__numpunct_cache'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1598'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1625' c='_ZNSt16__numpunct_cacheC1Em'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='1673' c='std::numpunct'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1673'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1698' c='_ZNSt7__cxx118numpunctC1Em'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1712' c='_ZNSt7__cxx118numpunctC1EPSt16__numpunct_cacheIT_Em'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1726' c='_ZNSt7__cxx118numpunctC1EP15__locale_structm'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='1955' c='std::num_get'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1955'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1976' c='_ZNSt7num_getC1Em'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='2313' c='std::num_put'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2313'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2334' c='_ZNSt7num_putC1Em'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='56' c='_ZNKSt11__use_cacheISt16__numpunct_cacheIT_EEclERKSt6locale'/>
+<ovr f='include/c++/11/bits/locale_facets.tcc' l='1322' c='std::numpunct'/>
+<ovr f='include/c++/11/bits/locale_facets.tcc' l='1324' c='std::num_get'/>
+<ovr f='include/c++/11/bits/locale_facets.tcc' l='1325' c='std::num_put'/>
+<ovr f='include/c++/11/bits/locale_facets.tcc' l='1361' c='std::numpunct'/>
+<ovr f='include/c++/11/bits/locale_facets.tcc' l='1363' c='std::num_get'/>
+<ovr f='include/c++/11/bits/locale_facets.tcc' l='1364' c='std::num_put'/>
+<size>16</size>
+<doc f='include/c++/11/bits/locale_classes.h' l='363'>/**
+   *  @brief  Localization functionality base class.
+   *  @ingroup locales
+   *
+   *  The facet class is the base class for a localization feature, such as
+   *  money, time, and number printing.  It provides common support for facets
+   *  and reference management.
+   *
+   *  Facets may not be copied or assigned.
+  */</doc>
+<mbr r='std::locale::facet::_M_refcount' o='64' t='_Atomic_word'/>
+<smbr r='std::locale::facet::_S_c_locale' t='std::__c_locale'/>
+<smbr r='std::locale::facet::_S_c_name' t='const char[2]'/>
+<smbr r='std::locale::facet::_S_once' t='__gthread_once_t'/>
+<fun r='_ZNSt6locale5facet18_S_initialize_onceEv'/>
+<fun r='_ZNSt6locale5facetC1Em'/>
+<fun r='_ZNSt6locale5facetD1Ev'/>
+<fun r='_ZNSt6locale5facet18_S_create_c_localeERP15__locale_structPKcS2_'/>
+<fun r='_ZNSt6locale5facet17_S_clone_c_localeERP15__locale_struct'/>
+<fun r='_ZNSt6locale5facet19_S_destroy_c_localeERP15__locale_struct'/>
+<fun r='_ZNSt6locale5facet20_S_lc_ctype_c_localeEP15__locale_structPKc'/>
+<fun r='_ZNSt6locale5facet15_S_get_c_localeEv'/>
+<fun r='_ZNSt6locale5facet13_S_get_c_nameEv'/>
+<fun r='_ZNSt6locale5facetC1ERKS0_'/>
+<fun r='_ZNSt6locale5facetaSERKS0_'/>
+<fun r='_ZNKSt6locale5facet16_M_add_referenceEv'/>
+<fun r='_ZNKSt6locale5facet19_M_remove_referenceEv'/>
+<fun r='_ZNKSt6locale5facet11_M_sso_shimEPKNS_2idE'/>
+<fun r='_ZNKSt6locale5facet11_M_cow_shimEPKNS_2idE'/>
+<ovr f='include/c++/11/bits/codecvt.h' l='71' c='std::__codecvt_abstract_base'/>
+<use f='include/c++/11/bits/codecvt.h' l='72'/>
+<use f='include/c++/11/bits/codecvt.h' l='227' c='_ZNSt23__codecvt_abstract_baseC1Em'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='59' c='std::__timepunct_cache'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='59'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='122' c='_ZNSt17__timepunct_cacheC1Em'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='174' c='std::__timepunct'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='174'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='43' c='_ZNSt11__timepunctC1Em'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='49' c='_ZNSt11__timepunctC1EPSt17__timepunct_cacheIT_Em'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='56' c='_ZNSt11__timepunctC1EP15__locale_structPKcm'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='368' c='std::time_get'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='368'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='390' c='_ZNSt7__cxx118time_getC1Em'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='797' c='std::time_put'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='797'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='819' c='_ZNSt8time_putC1Em'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='954' c='std::__moneypunct_cache'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='954'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='978' c='_ZNSt18__moneypunct_cacheC1Em'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='1024' c='std::moneypunct'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1024'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1054' c='_ZNSt7__cxx1110moneypunctC1Em'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1067' c='_ZNSt7__cxx1110moneypunctC1EPSt18__moneypunct_cacheIT_XT0_EEm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1082' c='_ZNSt7__cxx1110moneypunctC1EP15__locale_structPKcm'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='1468' c='std::money_get'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1468'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1490' c='_ZNSt7__cxx119money_getC1Em'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='1629' c='std::money_put'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1629'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1650' c='_ZNSt7__cxx119money_putC1Em'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='1815' c='std::messages'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1815'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='45' c='_ZNSt7__cxx118messagesC1Em'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='52' c='_ZNSt7__cxx118messagesC1EP15__locale_structPKcm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='46' c='_ZNKSt11__use_cacheISt18__moneypunct_cacheIT_XT0_EEEclERKSt6locale'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1408' c='std::moneypunct'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1409' c='std::moneypunct'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1412' c='std::money_get'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1413' c='std::money_put'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1414' c='std::__timepunct'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1415' c='std::time_put'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1417' c='std::time_get'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1419' c='std::messages'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1483' c='std::moneypunct'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1484' c='std::moneypunct'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1487' c='std::money_get'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1488' c='std::money_put'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1489' c='std::__timepunct'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1490' c='std::time_put'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1492' c='std::time_get'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1494' c='std::messages'/>
+<size>16</size>

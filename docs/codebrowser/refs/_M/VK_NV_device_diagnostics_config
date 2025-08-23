@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15322'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15321'>// VK_NV_device_diagnostics_config is a preprocessor guard. Do not pass it to API calls.</doc>

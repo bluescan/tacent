@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/locale_classes.h' l='404' ll='406' type='void std::locale::facet::facet(std::size_t __refs = 0)'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='395'>/**
+     *  @brief  Facet constructor.
+     *
+     *  This is the constructor provided by the standard.  If refs is 0, the
+     *  facet is destroyed when the last referencing locale is destroyed.
+     *  Otherwise the facet will never be destroyed.
+     *
+     *  @param __refs  The initial value for reference count.
+    */</doc>

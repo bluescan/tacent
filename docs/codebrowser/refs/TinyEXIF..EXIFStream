@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='81' ll='95'/>
+<use f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='103' c='_ZN8TinyEXIF8EXIFInfoC1ERNS_10EXIFStreamE'/>
+<use f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='114' c='_ZN8TinyEXIF8EXIFInfo9parseFromERNS_10EXIFStreamE'/>
+<size>8</size>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='78'>//
+// Interface class responsible for fetching stream data to be parsed
+//</doc>
+<fun r='_ZN8TinyEXIF10EXIFStreamD1Ev'/>
+<fun r='_ZNK8TinyEXIF10EXIFStream7IsValidEv'/>
+<fun r='_ZN8TinyEXIF10EXIFStream9GetBufferEj'/>
+<fun r='_ZN8TinyEXIF10EXIFStream10SkipBufferEj'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageDDS.h' l='141' type='23'/>
+<doc f='Modules/Image/Inc/Image/tImageDDS.h' l='140'>// Since we store states as bits in a 32-bit uint, we need to make sure we don&apos;t have too many.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1589' u='r'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1590' u='r'/>

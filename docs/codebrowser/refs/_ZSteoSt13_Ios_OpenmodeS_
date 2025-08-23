@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/ios_base.h' l='132' ll='134' type='std::_Ios_Openmode std::operator^(std::_Ios_Openmode __a, std::_Ios_Openmode __b)'/>
+<use f='include/c++/11/bits/ios_base.h' l='150' u='c' c='_ZSteORSt13_Ios_OpenmodeS_'/>

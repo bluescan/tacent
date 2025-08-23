@@ -1,0 +1,2 @@
+<def f='Modules/System/Src/tRegex.cpp' l='135' ll='170' type='char tSystem::tRegex::EscapeChar()'/>
+<use f='Modules/System/Src/tRegex.cpp' l='279' u='c' c='_ZN7tSystem6tRegex5ClassEv'/>

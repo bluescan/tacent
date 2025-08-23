@@ -1,0 +1,1 @@
+<dec f='include/dirent.h' l='380' type='int versionsort(const struct dirent ** __e1, const struct dirent ** __e2)'/>

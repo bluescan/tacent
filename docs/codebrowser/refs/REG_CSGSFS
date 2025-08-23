@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/ucontext.h' l='88' type='18'/>
+<doc f='include/x86_64-linux-gnu/sys/ucontext.h' l='88'>/* Actually short cs, gs, fs, __pad0.  */</doc>

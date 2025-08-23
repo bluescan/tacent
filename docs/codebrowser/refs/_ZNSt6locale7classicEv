@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='307' type='static const std::locale &amp; std::locale::classic()'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='303'>/**
+     *  @brief  Return reference to the C locale.
+    */</doc>

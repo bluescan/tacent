@@ -1,0 +1,38 @@
+<use f='include/x86_64-linux-gnu/bits/types/__FILE.h' l='5'/>
+<use f='include/x86_64-linux-gnu/bits/types/FILE.h' l='7'/>
+<def f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='49' ll='99'/>
+<use f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='70'/>
+<use f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='93'/>
+<size>216</size>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='46'>/* The tag name of this struct is _IO_FILE to preserve historic
+   C++ mangled names for functions taking FILE* arguments.
+   That name should not be used in new code.  */</doc>
+<mbr r='_IO_FILE::_flags' o='0' t='int'/>
+<mbr r='_IO_FILE::_IO_read_ptr' o='64' t='char *'/>
+<mbr r='_IO_FILE::_IO_read_end' o='128' t='char *'/>
+<mbr r='_IO_FILE::_IO_read_base' o='192' t='char *'/>
+<mbr r='_IO_FILE::_IO_write_base' o='256' t='char *'/>
+<mbr r='_IO_FILE::_IO_write_ptr' o='320' t='char *'/>
+<mbr r='_IO_FILE::_IO_write_end' o='384' t='char *'/>
+<mbr r='_IO_FILE::_IO_buf_base' o='448' t='char *'/>
+<mbr r='_IO_FILE::_IO_buf_end' o='512' t='char *'/>
+<mbr r='_IO_FILE::_IO_save_base' o='576' t='char *'/>
+<mbr r='_IO_FILE::_IO_backup_base' o='640' t='char *'/>
+<mbr r='_IO_FILE::_IO_save_end' o='704' t='char *'/>
+<mbr r='_IO_FILE::_markers' o='768' t='struct _IO_marker *'/>
+<mbr r='_IO_FILE::_chain' o='832' t='struct _IO_FILE *'/>
+<mbr r='_IO_FILE::_fileno' o='896' t='int'/>
+<mbr r='_IO_FILE::_flags2' o='928' t='int'/>
+<mbr r='_IO_FILE::_old_offset' o='960' t='__off_t'/>
+<mbr r='_IO_FILE::_cur_column' o='1024' t='unsigned short'/>
+<mbr r='_IO_FILE::_vtable_offset' o='1040' t='signed char'/>
+<mbr r='_IO_FILE::_shortbuf' o='1048' t='char[1]'/>
+<mbr r='_IO_FILE::_lock' o='1088' t='_IO_lock_t *'/>
+<mbr r='_IO_FILE::_offset' o='1152' t='__off64_t'/>
+<mbr r='_IO_FILE::_codecvt' o='1216' t='struct _IO_codecvt *'/>
+<mbr r='_IO_FILE::_wide_data' o='1280' t='struct _IO_wide_data *'/>
+<mbr r='_IO_FILE::_freeres_list' o='1344' t='struct _IO_FILE *'/>
+<mbr r='_IO_FILE::_freeres_buf' o='1408' t='void *'/>
+<mbr r='_IO_FILE::__pad5' o='1472' t='size_t'/>
+<mbr r='_IO_FILE::_mode' o='1536' t='int'/>
+<mbr r='_IO_FILE::_unused2' o='1568' t='char[20]'/>

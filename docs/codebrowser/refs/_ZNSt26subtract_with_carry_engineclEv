@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/random.h' l='790' type='std::subtract_with_carry_engine::result_type std::subtract_with_carry_engine::operator()()'/>
+<def f='include/c++/11/bits/random.tcc' l='590' ll='623' type='typename subtract_with_carry_engine&lt;_UIntType, __w, __s, __r&gt;::result_type std::subtract_with_carry_engine::operator()()'/>
+<doc f='include/c++/11/bits/random.h' l='786'>/**
+       * @brief Gets the next random number in the sequence.
+       */</doc>

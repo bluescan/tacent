@@ -1,0 +1,3 @@
+<def f='Modules/Image/Src/tImagePVR.cpp' l='157' ll='213'/>
+<doc f='Modules/Image/Src/tImagePVR.cpp' l='155'>// These match the names of the LS 32-bits of the 64-bit pixel format as specified in the PVR3 file-spec found here:
+	// https://imagination-technologies-cloudfront-assets.s3.eu-west-1.amazonaws.com/website-files/documents/PVR+File+Format.Specification.pdf</doc>

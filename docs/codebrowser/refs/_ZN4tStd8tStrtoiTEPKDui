@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='164' type='IntegralType tStd::tStrtoiT(const char8_t * , int base = -1)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='165' u='c' c='_ZN4tStd9tStrtoi32EPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='166' u='c' c='_ZN4tStd10tStrtoui32EPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='167' u='c' c='_ZN4tStd9tStrtoi64EPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='168' u='c' c='_ZN4tStd10tStrtoui64EPKDui'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='485' ll='546' type='IntegralType tStd::tStrtoiT(const char8_t * str, int base = -1)'/>

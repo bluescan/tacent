@@ -1,0 +1,9 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1233' type='void std::ctype&lt;wchar_t&gt;::ctype(std::__c_locale __cloc, std::size_t __refs = 0)'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1224'>/**
+       *  @brief  Constructor performs static initialization.
+       *
+       *  This constructor is used to construct the initial C locale facet.
+       *
+       *  @param __cloc  Handle to C locale data.
+       *  @param __refs  Passed to the base facet class.
+      */</doc>

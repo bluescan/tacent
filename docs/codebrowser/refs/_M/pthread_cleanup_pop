@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='598'/>
+<doc f='include/pthread.h' l='596'>/* Remove a cleanup handler installed by the matching pthread_cleanup_push.
+   If EXECUTE is non-zero, the handler function is called. */</doc>

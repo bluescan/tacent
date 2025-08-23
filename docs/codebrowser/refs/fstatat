@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='264' type='int fstatat(int __fd, const char *__restrict __file, struct stat *__restrict __buf, int __flag)'/>

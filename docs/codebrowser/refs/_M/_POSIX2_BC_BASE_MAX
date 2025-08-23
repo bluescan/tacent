@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix2_lim.h' l='27'/>
+<doc f='include/x86_64-linux-gnu/bits/posix2_lim.h' l='26'>/* The maximum `ibase&apos; and `obase&apos; values allowed by the `bc&apos; utility.  */</doc>

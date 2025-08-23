@@ -1,0 +1,4 @@
+<dec f='include/string.h' l='330' type='char * strstr(char * __haystack, const char * __needle)'/>
+<dec f='include/string.h' l='332' type='const char * strstr(const char * __haystack, const char * __needle)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='100' u='c' c='_ZN4tStd7tStrstrEPKcS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='111' u='c' c='_ZN4tStd7tStrstrEPKDuS1_'/>

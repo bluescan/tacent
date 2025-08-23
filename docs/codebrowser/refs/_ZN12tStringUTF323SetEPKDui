@@ -1,0 +1,6 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='522' u='c' c='_ZN12tStringUTF32C1EPKDui'/>
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='534' type='void tStringUTF32::Set(const char8_t * src, int length)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1094' u='c' c='_ZN12tStringUTF323SetERK7tString'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1117' u='c' c='_ZN12tStringUTF323SetEPKDu'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='1135' ll='1148' type='void tStringUTF32::Set(const char8_t * src, int lenSrc)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='534'>// As meny nulls as you like.</doc>

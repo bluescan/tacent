@@ -1,0 +1,13 @@
+<def f='Modules/Image/Inc/Image/tPixelUtil.h' l='66' ll='71'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='75' c='_ZN6tImage26DoBC1BlocksHaveBinaryAlphaEPNS_8BC1BlockEi'/>
+<size>8</size>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1347' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<size>8</size>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='930' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<size>8</size>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='41'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='50'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1263' c='_ZN6tImage26DoBC1BlocksHaveBinaryAlphaEPNS_8BC1BlockEi'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1402' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1402' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<size>8</size>

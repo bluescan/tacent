@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='462' ll='464' type='long double std::comp_ellint_3l(long double __k, long double __nu)'/>
+<doc f='include/c++/11/bits/specfun.h' l='456'>/**
+   * @brief Return the complete elliptic integral of the third kind
+   * @f$ \Pi(k,\nu) @f$ for &lt;tt&gt;long double&lt;/tt&gt; modulus @c k.
+   *
+   * @see comp_ellint_3 for details.
+   */</doc>

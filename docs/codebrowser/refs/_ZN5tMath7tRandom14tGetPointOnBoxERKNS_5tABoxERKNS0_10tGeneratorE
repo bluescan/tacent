@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='133' type='tMath::tVector3 tMath::tRandom::tGetPointOnBox(const tMath::tBox &amp; , const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<def f='Modules/Math/Src/tRandom.cpp' l='177' ll='218' type='tMath::tVector3 tMath::tRandom::tGetPointOnBox(const tMath::tBox &amp; box, const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>

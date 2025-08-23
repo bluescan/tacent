@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/fs_dir.h' l='401' type='void std::filesystem::directory_iterator::directory_iterator(std::filesystem::directory_iterator &amp;&amp; __rhs)'/>
+<use f='include/c++/11/bits/fs_dir.h' l='452' u='c' c='_ZNSt10filesystem7__cxx115beginENS0_18directory_iteratorE'/>

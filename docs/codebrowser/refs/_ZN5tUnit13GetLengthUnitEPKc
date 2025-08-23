@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tUnits.h' l='148' type='tUnit::tLength tUnit::GetLengthUnit(const char * name)'/>
+<def f='Modules/Foundation/Src/tUnits.cpp' l='111' ll='120' type='tUnit::tLength tUnit::GetLengthUnit(const char * unitName)'/>

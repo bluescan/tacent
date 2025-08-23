@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='661' type='int puts(const char * __s)'/>
+<doc f='include/stdio.h' l='657'>/* Write a string, followed by a newline, to stdout.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

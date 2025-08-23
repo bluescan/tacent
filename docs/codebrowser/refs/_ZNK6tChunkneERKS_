@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='262' type='bool tChunk::operator!=(const tChunk &amp; c) const'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='261'>// These don&apos;t care about the LastChunk stuff.</doc>

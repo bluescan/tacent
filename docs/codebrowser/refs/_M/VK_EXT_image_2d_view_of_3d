@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16601'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16600'>// VK_EXT_image_2d_view_of_3d is a preprocessor guard. Do not pass it to API calls.</doc>

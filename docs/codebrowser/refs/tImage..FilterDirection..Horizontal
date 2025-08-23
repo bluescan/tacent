@@ -1,0 +1,14 @@
+<dec f='Modules/Image/Src/tResample.cpp' l='24' type='0'/>
+<use f='Modules/Image/Src/tResample.cpp' l='216' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='255' u='r' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='263' u='r' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='264' u='r' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='266' u='r' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='319' u='r' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='323' u='r' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='389' u='r' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='390' u='r' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='392' u='r' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='437' u='r' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='438' u='r' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='440' u='r' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>

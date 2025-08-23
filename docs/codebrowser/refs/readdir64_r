@@ -1,0 +1,1 @@
+<dec f='include/dirent.h' l='201' type='int readdir64_r(DIR *__restrict __dirp, struct dirent64 *__restrict __entry, struct dirent64 **__restrict __result)'/>

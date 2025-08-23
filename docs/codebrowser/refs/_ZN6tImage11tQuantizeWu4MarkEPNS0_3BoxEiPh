@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tQuantizeWu.cpp' l='106' type='void tImage::tQuantizeWu::Mark(tImage::tQuantizeWu::Box * cube, int label, uint8 * tag)'/>
+<def f='Modules/Image/Src/tQuantizeWu.cpp' l='398' ll='405' type='void tImage::tQuantizeWu::Mark(tImage::tQuantizeWu::Box * cube, int label, uint8 * tag)'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='491' u='c' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>

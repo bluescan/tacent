@@ -1,0 +1,3 @@
+<def f='Modules/System/Src/tPrint.cpp' l='80' type='tSystem::tChannel'/>
+<use f='Modules/System/Src/tPrint.cpp' l='215' u='w' c='_ZN7tSystem12tSetChannelsEy'/>
+<use f='Modules/System/Src/tPrint.cpp' l='233' u='r' c='_ZN7tSystem6tPrintEPKcy'/>

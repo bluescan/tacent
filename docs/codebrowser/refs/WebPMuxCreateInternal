@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='126' type='WebPMux * WebPMuxCreateInternal(const WebPData * , int , int )'/>
+<use f='Modules/Image/Contrib/WebP/include/mux.h' l='138' u='c' c='_ZL13WebPMuxCreatePK8WebPDatai'/>

@@ -1,0 +1,22 @@
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1255' ll='1302'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1255'/>
+<size>32</size>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1245'>/**
+ * @memberof ktxTexture
+ * @~English
+ * @brief Structure for passing extended parameters to
+ *        ktxTexture_CompressAstc.
+ *
+ * Passing a struct initialized to 0 (e.g. &quot; = {0};&quot;) will use blockDimension
+ * 4x4, mode LDR and qualityLevel FASTEST. Setting qualityLevel to
+ * KTX_PACK_ASTC_QUALITY_LEVEL_MEDIUM is recommended.
+ */</doc>
+<mbr r='ktxAstcParams::structSize' o='0' t='ktx_uint32_t'/>
+<mbr r='ktxAstcParams::verbose' o='32' t='ktx_bool_t'/>
+<mbr r='ktxAstcParams::threadCount' o='64' t='ktx_uint32_t'/>
+<mbr r='ktxAstcParams::blockDimension' o='96' t='ktx_uint32_t'/>
+<mbr r='ktxAstcParams::mode' o='128' t='ktx_uint32_t'/>
+<mbr r='ktxAstcParams::qualityLevel' o='160' t='ktx_uint32_t'/>
+<mbr r='ktxAstcParams::normalMap' o='192' t='ktx_bool_t'/>
+<mbr r='ktxAstcParams::perceptual' o='200' t='ktx_bool_t'/>
+<mbr r='ktxAstcParams::inputSwizzle' o='208' t='char[4]'/>

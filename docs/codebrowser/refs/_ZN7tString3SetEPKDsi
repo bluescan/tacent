@@ -1,0 +1,3 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='79' u='c' c='_ZN7tStringC1EPKDsi'/>
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='97' type='void tString::Set(const char16_t * src, int srcLen)'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='669' ll='677' type='void tString::Set(const char16_t * src, int srcLen)'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='461' type='int WebPPictureImportRGBA(WebPPicture * picture, const uint8_t * rgba, int rgba_stride)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='382' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>

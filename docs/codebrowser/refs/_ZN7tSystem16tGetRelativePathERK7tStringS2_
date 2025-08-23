@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='138' type='tString tSystem::tGetRelativePath(const tString &amp; basePath, const tString &amp; path)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='136'>// Returns the relative location of path from basePath. Both these input strings must have a common prefix for this to
+// succeed. Returns an empty string if it fails.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='297' ll='335' type='tString tSystem::tGetRelativePath(const tString &amp; basePath, const tString &amp; path)'/>

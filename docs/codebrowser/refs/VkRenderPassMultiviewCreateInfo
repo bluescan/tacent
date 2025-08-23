@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5368' ll='5377'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5368'/>
+<size>64</size>
+<mbr r='VkRenderPassMultiviewCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderPassMultiviewCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderPassMultiviewCreateInfo::subpassCount' o='128' t='uint32_t'/>
+<mbr r='VkRenderPassMultiviewCreateInfo::pViewMasks' o='192' t='const uint32_t *'/>
+<mbr r='VkRenderPassMultiviewCreateInfo::dependencyCount' o='256' t='uint32_t'/>
+<mbr r='VkRenderPassMultiviewCreateInfo::pViewOffsets' o='320' t='const int32_t *'/>
+<mbr r='VkRenderPassMultiviewCreateInfo::correlationMaskCount' o='384' t='uint32_t'/>
+<mbr r='VkRenderPassMultiviewCreateInfo::pCorrelationMasks' o='448' t='const uint32_t *'/>

@@ -1,0 +1,5 @@
+<dec f='include/unistd.h' l='23'/>
+<use f='include/x86_64-linux-gnu/bits/environments.h' l='18' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/confname.h' l='19' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/getopt_posix.h' l='23' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/unistd_ext.h' l='19' u='a'/>

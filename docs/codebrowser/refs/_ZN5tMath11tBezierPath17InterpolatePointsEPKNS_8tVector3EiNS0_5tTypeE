@@ -1,0 +1,1 @@
+<def f='Modules/Math/Src/tSpline.cpp' l='261' ll='370' type='void tMath::tBezierPath::InterpolatePoints(const tMath::tVector3 * knots, int numKnots, tMath::tBezierPath::tType type)'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13998'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13997'>// VK_EXT_scalar_block_layout is a preprocessor guard. Do not pass it to API calls.</doc>

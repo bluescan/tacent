@@ -1,0 +1,8 @@
+<dec f='include/c++/11/limits' l='189' type='1'/>
+<use f='include/c++/11/limits' l='1709'/>
+<use f='include/c++/11/limits' l='1726' u='r'/>
+<use f='include/c++/11/limits' l='1784'/>
+<use f='include/c++/11/limits' l='1801' u='r'/>
+<use f='include/c++/11/limits' l='1859'/>
+<use f='include/c++/11/limits' l='1876' u='r'/>
+<doc f='include/c++/11/limits' l='188'>/// The type allows denormalized values.</doc>

@@ -1,0 +1,86 @@
+<use f='include/c++/11/compare' l='79'/>
+<use f='include/c++/11/compare' l='163'/>
+<def f='include/c++/11/compare' l='233' ll='302'/>
+<use f='include/c++/11/compare' l='244'/>
+<use f='include/c++/11/compare' l='245'/>
+<use f='include/c++/11/compare' l='246'/>
+<use f='include/c++/11/compare' l='247'/>
+<use f='include/c++/11/compare' l='257' c='_ZSteqSt15strong_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='261' c='_ZSteqSt15strong_orderingS_'/>
+<use f='include/c++/11/compare' l='261' c='_ZSteqSt15strong_orderingS_'/>
+<use f='include/c++/11/compare' l='264' c='_ZStltSt15strong_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='268' c='_ZStgtSt15strong_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='272' c='_ZStleSt15strong_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='276' c='_ZStgeSt15strong_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='280' c='_ZStltNSt9__cmp_cat8__unspecESt15strong_ordering'/>
+<use f='include/c++/11/compare' l='284' c='_ZStgtNSt9__cmp_cat8__unspecESt15strong_ordering'/>
+<use f='include/c++/11/compare' l='288' c='_ZStleNSt9__cmp_cat8__unspecESt15strong_ordering'/>
+<use f='include/c++/11/compare' l='292' c='_ZStgeNSt9__cmp_cat8__unspecESt15strong_ordering'/>
+<use f='include/c++/11/compare' l='295' c='_ZStssSt15strong_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='296' c='_ZStssSt15strong_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='299' c='_ZStssNSt9__cmp_cat8__unspecESt15strong_ordering'/>
+<use f='include/c++/11/compare' l='300' c='_ZStssNSt9__cmp_cat8__unspecESt15strong_ordering'/>
+<use f='include/c++/11/compare' l='301' c='_ZStssNSt9__cmp_cat8__unspecESt15strong_ordering'/>
+<use f='include/c++/11/compare' l='305'/>
+<use f='include/c++/11/compare' l='308'/>
+<use f='include/c++/11/compare' l='311'/>
+<use f='include/c++/11/compare' l='314'/>
+<use f='include/c++/11/compare' l='397'/>
+<use f='include/c++/11/compare' l='398'/>
+<use f='include/c++/11/compare' l='402'/>
+<use f='include/c++/11/compare' l='573'/>
+<use f='include/c++/11/compare' l='601'/>
+<use f='include/c++/11/compare' l='615' c='_ZNSt10__cmp_cust13_Strong_order11_S_noexceptEv'/>
+<use f='include/c++/11/compare' l='617' c='_ZNSt10__cmp_cust13_Strong_order11_S_noexceptEv'/>
+<use f='include/c++/11/compare' l='628' c='_ZNKSt10__cmp_cust13_Strong_orderclEOT_OT0_'/>
+<use f='include/c++/11/compare' l='636' c='_ZNKSt10__cmp_cust13_Strong_orderclEOT_OT0_'/>
+<use f='include/c++/11/compare' l='638' c='_ZNKSt10__cmp_cust13_Strong_orderclEOT_OT0_'/>
+<use f='include/c++/11/compare' l='761' c='_ZNKSt10__cmp_cust16_Strong_fallbackclEOT_OT0_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2404' c='_ZStssRKSt16counted_iteratorIT_ERKS_ITL0__E'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='190' c='_ZStssRKSt18_Bit_iterator_baseS1_'/>
+<size>1</size>
+<mbr r='std::strong_ordering::_M_value' o='0' t='__cmp_cat::type'/>
+<fun r='_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE'/>
+<smbr r='std::strong_ordering::less' t='const std::strong_ordering'/>
+<smbr r='std::strong_ordering::equal' t='const std::strong_ordering'/>
+<smbr r='std::strong_ordering::equivalent' t='const std::strong_ordering'/>
+<smbr r='std::strong_ordering::greater' t='const std::strong_ordering'/>
+<fun r='_ZNKSt15strong_orderingcvSt16partial_orderingEv'/>
+<fun r='_ZNKSt15strong_orderingcvSt13weak_orderingEv'/>
+<smbr r='std::strong_ordering::less' t='const std::strong_ordering'/>
+<smbr r='std::strong_ordering::equal' t='const std::strong_ordering'/>
+<smbr r='std::strong_ordering::equivalent' t='const std::strong_ordering'/>
+<smbr r='std::strong_ordering::greater' t='const std::strong_ordering'/>
+<use f='include/c++/11/chrono' l='1369' c='_ZNSt6chronossERKNS_3dayES2_'/>
+<use f='include/c++/11/chrono' l='1478' c='_ZNSt6chronossERKNS_5monthES2_'/>
+<use f='include/c++/11/chrono' l='1654' c='_ZNSt6chronossERKNS_4yearES2_'/>
+<use f='include/c++/11/chrono' l='1966' c='_ZNSt6chronossERKNS_9month_dayES2_'/>
+<use f='include/c++/11/chrono' l='2024' c='_ZNSt6chronossERKNS_14month_day_lastES2_'/>
+<use f='include/c++/11/chrono' l='2255' c='_ZNSt6chronossERKNS_10year_monthES2_'/>
+<use f='include/c++/11/chrono' l='2414' c='_ZNSt6chronossERKNS_14year_month_dayES2_'/>
+<use f='include/c++/11/chrono' l='2640' c='_ZNSt6chronossERKNS_19year_month_day_lastES2_'/>
+<use f='include/c++/11/bits/char_traits.h' l='98'/>
+<use f='include/c++/11/bits/char_traits.h' l='352'/>
+<use f='include/c++/11/bits/char_traits.h' l='487'/>
+<use f='include/c++/11/bits/char_traits.h' l='608'/>
+<use f='include/c++/11/bits/char_traits.h' l='748'/>
+<use f='include/c++/11/bits/char_traits.h' l='862'/>
+<use f='include/c++/11/bits/max_size_type.h' l='384' c='_ZNSt6ranges8__detailssERKNS0_15__max_size_typeES3_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='713' c='_ZNKSt6ranges8__detail15__max_diff_typessERKS1_'/>
+<use f='include/c++/11/system_error' l='148' c='_ZNKSt3_V214error_categoryssERKS0_'/>
+<use f='include/c++/11/system_error' l='260' c='_ZStssRKSt10error_codeS1_'/>
+<use f='include/c++/11/system_error' l='386' c='_ZStssRKSt15error_conditionS1_'/>
+<size>1</size>
+<use f='include/c++/11/bits/std_thread.h' l='99' c='_ZStssNSt6thread2idES0_'/>
+<use f='include/c++/11/thread' l='61' c='_ZStssNSt6thread2idES0_'/>
+<size>1</size>
+<use f='include/c++/11/bits/stl_deque.h' l='282' c='_ZStssRKSt15_Deque_iteratorIT_T0_T1_ES6_'/>
+<size>1</size>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1421' c='_ZStssRKSt12__shared_ptrIT_XT1_EERKS_IT0_XT1_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1427' c='_ZStssRKSt12__shared_ptrIT_XT0_EEDn'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='448' c='_ZStssRKSt10shared_ptrIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='454' c='_ZStssRKSt10shared_ptrIT_EDn'/>
+<size>1</size>
+<use f='include/c++/11/bits/fs_path.h' l='523' c='_ZNSt10filesystem7__cxx11ssERKNS0_4pathES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='289' c='_ZNKSt10filesystem7__cxx1115directory_entryssERKS1_'/>
+<size>1</size>

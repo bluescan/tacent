@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='355' type='void *'/>
+<offset>1792</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='353'>// PRIVATE FIELDS
+  ////////////////////</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='355'>// row chunk of memory for yuva planes</doc>

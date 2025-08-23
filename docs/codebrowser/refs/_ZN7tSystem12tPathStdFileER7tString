@@ -1,0 +1,8 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='103' type='void tSystem::tPathStdFile(tString &amp; path)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='103'>// &quot;C:\Hello\There\&quot; -&gt; &quot;C:/Hello/There&quot;.  &quot;C:\Hello\There&quot; -&gt; &quot;C:/Hello/There&quot;.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='107' ll='112' type='void tSystem::tPathStdFile(tString &amp; path)'/>
+<use f='Modules/System/Src/tFile.cpp' l='513' u='c' c='_ZN7tSystem10tDirExistsERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2614' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2988' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3128' u='c' c='_ZN7tSystem10tCreateDirERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='3142' u='c' c='_ZN7tSystem11tCreateDirsERK7tString'/>

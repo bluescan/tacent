@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='272' type='void tMath::tZero(tMath::tVec2 &amp; d, comp_t c)'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='47' u='c' c='_ZN5tMath8tVector24ZeroEj'/>

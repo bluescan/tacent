@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15252' ll='15256'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15252'/>
+<size>24</size>
+<mbr r='VkSurfaceCapabilitiesPresentBarrierNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSurfaceCapabilitiesPresentBarrierNV::pNext' o='64' t='void *'/>
+<mbr r='VkSurfaceCapabilitiesPresentBarrierNV::presentBarrierSupported' o='128' t='VkBool32'/>

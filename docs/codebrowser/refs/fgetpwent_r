@@ -1,0 +1,8 @@
+<dec f='include/pwd.h' l='169' type='int fgetpwent_r(FILE *__restrict __stream, struct passwd *__restrict __resultbuf, char *__restrict __buffer, size_t __buflen, struct passwd **__restrict __result)'/>
+<doc f='include/pwd.h' l='162'>/* Read a user database entry from STREAM.  This function is not
+   standardized and probably never will.
+
+   This function is not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation it is a cancellation point and
+   therefore not marked with __THROW.  */</doc>

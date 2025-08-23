@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='127' type='__sighandler_t ssignal(int __sig, __sighandler_t __handler)'/>
+<doc f='include/signal.h' l='126'>/* SVID names for the same things.  */</doc>

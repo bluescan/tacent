@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='9' type='int'/>
+<offset>0</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='9'>/* Seconds.	[0-60] (1 leap second) */</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='838' u='w' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/fs_dir.h' l='247' ll='249' type='uintmax_t std::filesystem::directory_entry::file_size(std::error_code &amp; __ec) const'/>
+<use f='Modules/System/Src/tFile.cpp' l='2026' u='c' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>

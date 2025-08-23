@@ -1,0 +1,8 @@
+<def f='include/c++/11/iomanip' l='224' ll='226' type='std::_Setw std::setw(int __n)'/>
+<doc f='include/c++/11/iomanip' l='217'>/**
+   *  @brief  Manipulator for @c width.
+   *  @param  __n  The new width.
+   *
+   *  Sent to a stream object, this manipulator calls @c width(__n) for
+   *  that object.
+  */</doc>

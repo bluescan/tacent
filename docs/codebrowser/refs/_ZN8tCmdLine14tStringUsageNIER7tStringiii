@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tCmdLine.h' l='198' type='void tCmdLine::tStringUsageNI(tString &amp; dest, int versionMajor, int versionMinor = -1, int versionRevision = -1)'/>
+<doc f='Modules/System/Inc/System/tCmdLine.h' l='196'>// These variants of tStringUsage are for cases where a monospaced font will not be used. In this case it makes
+	// little sense to try to indent things nicely. NI = no indentation.</doc>
+<def f='Modules/System/Src/tCmdLine.cpp' l='749' ll='752' type='void tCmdLine::tStringUsageNI(tString &amp; dest, int major, int minor = -1, int revision = -1)'/>

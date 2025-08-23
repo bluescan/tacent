@@ -1,0 +1,8 @@
+<dec f='include/x86_64-linux-gnu/bits/floatn.h' l='54'/>
+<use f='include/x86_64-linux-gnu/bits/floatn-common.h' l='119' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/floatn-common.h' l='177' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/floatn-common.h' l='282' u='c'/>
+<doc f='include/x86_64-linux-gnu/bits/floatn.h' l='50'>/* Defined to 1 if __HAVE_FLOAT64X is 1 and _Float64x has the format
+   of long double.  Otherwise, if __HAVE_FLOAT64X is 1, _Float64x has
+   the format of _Float128, which must be different from that of long
+   double.  */</doc>

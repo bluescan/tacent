@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tPool.h' l='41' type='void tMem::tAllocator::~tAllocator()'/>
+<ovr f='Modules/Foundation/Src/tPool.cpp' l='81' c='_ZN4tMem9tFastPoolD1Ev'/>

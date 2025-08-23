@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='246' type='tString &amp; tsavPrintf(tString &amp; dest, const char * format, __va_list_tag * )'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='245'>// These variants append to the dest string instead of overwriting it.</doc>
+<def f='Modules/System/Src/tPrint.cpp' l='536' ll='546' type='tString &amp; tsavPrintf(tString &amp; dest, const char * format, __va_list_tag * argList)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='553' u='c' c='_Z9tsaPrintfR7tStringPKcz'/>
+<use f='Modules/System/Src/tPrint.cpp' l='564' u='c' c='_Z10tsavPrintfP7tStringPKcP13__va_list_tag'/>

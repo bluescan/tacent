@@ -1,0 +1,4 @@
+<use f='Modules/System/Inc/System/tFile.h' l='480' u='c' c='_ZN7tSystem10tFileTypesC1ERKS0_'/>
+<dec f='Modules/System/Inc/System/tFile.h' l='492' type='tSystem::tFileTypes &amp; tSystem::tFileTypes::Add(const tSystem::tFileTypes &amp; src)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='923' ll='929' type='tSystem::tFileTypes &amp; tSystem::tFileTypes::Add(const tSystem::tFileTypes &amp; src)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='491'>// All the add functions check for uniqueness when adding.</doc>

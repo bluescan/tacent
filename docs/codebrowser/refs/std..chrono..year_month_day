@@ -1,0 +1,65 @@
+<use f='include/c++/11/chrono' l='1401' c='_ZNSt6chronodvERKNS_10year_monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1677' c='_ZNSt6chronodvERKNS_4yearERKNS_9month_dayE'/>
+<use f='include/c++/11/chrono' l='1680' c='_ZNSt6chronodvERKNS_9month_dayERKNS_4yearE'/>
+<use f='include/c++/11/chrono' l='1990' c='_ZNSt6chronodvEiRKNS_9month_dayE'/>
+<use f='include/c++/11/chrono' l='1993' c='_ZNSt6chronodvERKNS_9month_dayEi'/>
+<use f='include/c++/11/chrono' l='2310' c='_ZNSt6chronodvERKNS_10year_monthEi'/>
+<def f='include/c++/11/chrono' l='2321' ll='2470'/>
+<use f='include/c++/11/chrono' l='2328' c='_ZNSt6chrono14year_month_day12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2346' c='_ZNSt6chrono14year_month_dayC1ERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2351' c='_ZNSt6chrono14year_month_dayC1ERKNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2355' c='_ZNSt6chrono14year_month_daypLERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2363' c='_ZNSt6chrono14year_month_daymIERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2370' c='_ZNSt6chrono14year_month_daypLERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2377' c='_ZNSt6chrono14year_month_daymIERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2407' c='_ZNSt6chronoeqERKNS_14year_month_dayES2_'/>
+<use f='include/c++/11/chrono' l='2407' c='_ZNSt6chronoeqERKNS_14year_month_dayES2_'/>
+<use f='include/c++/11/chrono' l='2415' c='_ZNSt6chronossERKNS_14year_month_dayES2_'/>
+<use f='include/c++/11/chrono' l='2415' c='_ZNSt6chronossERKNS_14year_month_dayES2_'/>
+<use f='include/c++/11/chrono' l='2419' c='_ZNSt6chronoplERKNS_14year_month_dayERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2420' c='_ZNSt6chronoplERKNS_14year_month_dayERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2424' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl2629746ELl1EEEERKNS_14year_month_dayE'/>
+<use f='include/c++/11/chrono' l='2425' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl2629746ELl1EEEERKNS_14year_month_dayE'/>
+<use f='include/c++/11/chrono' l='2428' c='_ZNSt6chronoplERKNS_14year_month_dayERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2429' c='_ZNSt6chronoplERKNS_14year_month_dayERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2432' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl31556952ELl1EEEERKNS_14year_month_dayE'/>
+<use f='include/c++/11/chrono' l='2433' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl31556952ELl1EEEERKNS_14year_month_dayE'/>
+<use f='include/c++/11/chrono' l='2437' c='_ZNSt6chronomiERKNS_14year_month_dayERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2438' c='_ZNSt6chronomiERKNS_14year_month_dayERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2441' c='_ZNSt6chronomiERKNS_14year_month_dayERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2442' c='_ZNSt6chronomiERKNS_14year_month_dayERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2445' c='_ZNSt6chronodvERKNS_10year_monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='2449' c='_ZNSt6chronodvERKNS_10year_monthEi'/>
+<use f='include/c++/11/chrono' l='2453' c='_ZNSt6chronodvERKNS_4yearERKNS_9month_dayE'/>
+<use f='include/c++/11/chrono' l='2457' c='_ZNSt6chronodvEiRKNS_9month_dayE'/>
+<use f='include/c++/11/chrono' l='2461' c='_ZNSt6chronodvERKNS_9month_dayERKNS_4yearE'/>
+<use f='include/c++/11/chrono' l='2465' c='_ZNSt6chronodvERKNS_9month_dayEi'/>
+<use f='include/c++/11/chrono' l='2476' c='_ZNSt6chrono14year_month_day12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2508' c='_ZNSt6chrono14year_month_day12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2729' c='_ZNSt6chrono18year_month_weekday16_S_from_sys_daysERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<size>4</size>
+<doc f='include/c++/11/chrono' l='2319'>// YEAR_MONTH_DAY</doc>
+<mbr r='std::chrono::year_month_day::_M_y' o='0' t='chrono::year'/>
+<mbr r='std::chrono::year_month_day::_M_m' o='16' t='chrono::month'/>
+<mbr r='std::chrono::year_month_day::_M_d' o='24' t='chrono::day'/>
+<fun r='_ZNSt6chrono14year_month_day12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<fun r='_ZNKSt6chrono14year_month_day19_M_days_since_epochEv'/>
+<fun r='_ZNSt6chrono14year_month_dayC1Ev'/>
+<fun r='_ZNSt6chrono14year_month_dayC1ERKNS_4yearERKNS_5monthERKNS_3dayE'/>
+<fun r='_ZNSt6chrono14year_month_dayC1ERKNS_19year_month_day_lastE'/>
+<fun r='_ZNSt6chrono14year_month_dayC1ERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<fun r='_ZNSt6chrono14year_month_dayC1ERKNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<fun r='_ZNSt6chrono14year_month_daypLERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<fun r='_ZNSt6chrono14year_month_daymIERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<fun r='_ZNSt6chrono14year_month_daypLERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<fun r='_ZNSt6chrono14year_month_daymIERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<fun r='_ZNKSt6chrono14year_month_day4yearEv'/>
+<fun r='_ZNKSt6chrono14year_month_day5monthEv'/>
+<fun r='_ZNKSt6chrono14year_month_day3dayEv'/>
+<fun r='_ZNKSt6chrono14year_month_daycvNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<fun r='_ZNKSt6chrono14year_month_daycvNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<fun r='_ZNKSt6chrono14year_month_day2okEv'/>
+<fun r='_ZNSt6chrono14year_month_day12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<fun r='_ZNKSt6chrono14year_month_day19_M_days_since_epochEv'/>
+<fun r='_ZNSt6chrono14year_month_dayC1ERKNS_19year_month_day_lastE'/>
+<fun r='_ZNKSt6chrono14year_month_day2okEv'/>

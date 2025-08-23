@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/iterator_concepts.h' l='676'/>
+<inh f='include/c++/11/bits/stl_iterator_base_types.h' l='107' c='std::random_access_iterator_tag'/>
+<def f='include/c++/11/bits/stl_iterator_base_types.h' l='111'/>
+<use f='include/c++/11/bits/stl_iterator_base_types.h' l='200'/>
+<size>1</size>
+<doc f='include/c++/11/bits/stl_iterator_base_types.h' l='110'>/// Contiguous iterators point to objects stored contiguously in memory.</doc>

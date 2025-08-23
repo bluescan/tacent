@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='1364' ll='1494' type='subrange&lt;_Iter&gt; std::ranges::__rotate_fn::operator()(_Iter __first, _Iter __middle, _Sent __last) const'/>

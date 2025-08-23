@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='77' ll='78' type='void std::_Bit_reference::_Bit_reference(std::_Bit_type * __x, std::_Bit_type __y)'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='252' u='c' c='_ZNKSt13_Bit_iteratordeEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='348' u='c' c='_ZNKSt19_Bit_const_iteratordeEv'/>

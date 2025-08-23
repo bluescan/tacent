@@ -1,0 +1,5 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='548' u='c' c='_ZNK12tStringUTF327IsValidEv'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='550' type='int tStringUTF32::Length() const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='699' u='c' c='_ZN7tString3SetERK12tStringUTF32'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='981' u='c' c='_ZN12tStringUTF163SetERK12tStringUTF32'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='434' u='c' c='_ZN5tName3SetERK12tStringUTF32'/>

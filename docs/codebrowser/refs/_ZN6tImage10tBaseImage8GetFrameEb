@@ -1,0 +1,27 @@
+<dec f='Modules/Image/Inc/Image/tBaseImage.h' l='80' type='tImage::tFrame * tImage::tBaseImage::GetFrame(bool steal = true)'/>
+<doc f='Modules/Image/Inc/Image/tBaseImage.h' l='72'>// For some formats (eg. .astc, .dds, .ktx) the internal representation may not be R8G8B8A8 unless a decode was
+	// performed (which is optional). In these cases a new frame will be generated if the decode was performed, and
+	// nullptr otherwise.
+	//
+	// Stealing a frame (the default) may or may-not invalidate an image. For multiframe image types, if there is more
+	// than one frame, stealing just takes one away. Only if it was the last one, will it invalidate the object. In all
+	// cases if steal is false, you are guaranteed the tImage is not modified. A new frame is created for you if
+	// possible (again it won&apos;t force a decode for, say, ktx2 files).</doc>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='459' u='c' c='_ZN6tImage8tPicture3SetERNS_10tBaseImageEb'/>
+<ovr f='Modules/Image/Src/tImageAPNG.cpp' l='215' c='_ZN6tImage10tImageAPNG8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImageASTC.cpp' l='272' c='_ZN6tImage10tImageASTC8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImageBMP.cpp' l='539' c='_ZN6tImage9tImageBMP8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImageDDS.cpp' l='971' c='_ZN6tImage9tImageDDS8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImageEXR.cpp' l='376' c='_ZN6tImage9tImageEXR8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImageGIF.cpp' l='273' c='_ZN6tImage9tImageGIF8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImageHDR.cpp' l='460' c='_ZN6tImage9tImageHDR8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImageICO.cpp' l='260' c='_ZN6tImage9tImageICO8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImageJPG.cpp' l='259' c='_ZN6tImage9tImageJPG8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImageKTX.cpp' l='630' c='_ZN6tImage9tImageKTX8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImagePKM.cpp' l='359' c='_ZN6tImage9tImagePKM8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImagePNG.cpp' l='515' c='_ZN6tImage9tImagePNG8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImagePVR.cpp' l='1284' c='_ZN6tImage9tImagePVR8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImageQOI.cpp' l='148' c='_ZN6tImage9tImageQOI8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImageTGA.cpp' l='342' c='_ZN6tImage9tImageTGA8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImageTIFF.cpp' l='223' c='_ZN6tImage10tImageTIFF8GetFrameEb'/>
+<ovr f='Modules/Image/Src/tImageWEBP.cpp' l='310' c='_ZN6tImage10tImageWEBP8GetFrameEb'/>

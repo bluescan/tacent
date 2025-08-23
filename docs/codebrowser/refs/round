@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='301' type='double round(double __x)'/>
+<use f='include/c++/11/bits/random.tcc' l='1275' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1488' u='c' c='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1492' u='c' c='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>

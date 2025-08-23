@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='232' type='80'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='234'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='242' u='r'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='535' u='r' c='_ZN6tImage16tIsPaletteFormatENS_12tPixelFormatE'/>

@@ -1,0 +1,19 @@
+<use f='include/c++/11/type_traits' l='236' c='_ZSt26__is_complete_or_unboundedT_'/>
+<def f='include/c++/11/type_traits' l='270' ll='272'/>
+<use f='include/c++/11/type_traits' l='571'/>
+<use f='include/c++/11/type_traits' l='579'/>
+<use f='include/c++/11/type_traits' l='859'/>
+<use f='include/c++/11/type_traits' l='913'/>
+<use f='include/c++/11/type_traits' l='1426'/>
+<use f='include/c++/11/type_traits' l='1430'/>
+<use f='include/c++/11/type_traits' l='1467'/>
+<use f='include/c++/11/type_traits' l='1470'/>
+<use f='include/c++/11/type_traits' l='2032'/>
+<use f='include/c++/11/type_traits' l='2877'/>
+<use f='include/c++/11/type_traits' l='3095'/>
+<use f='include/c++/11/bits/ptr_traits.h' l='63'/>
+<use f='include/c++/11/tuple' l='711'/>
+<use f='include/c++/11/tuple' l='718'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='81' c='_ZNKSt14default_deleteclEPT_'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='970'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1101' c='_ZNSt12__shared_ptrC1EPTL0__'/>

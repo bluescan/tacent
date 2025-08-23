@@ -1,0 +1,8 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='469' type='tMath::tIntersectResult tMath::tIntersectFindLineLine(const tMath::tLine2 &amp; , const tMath::tLine2 &amp; , tMath::tVector2 &amp; intersection)'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='463'>// Intersections. These functions determine if various primitives intersect or not. If the function has the word &apos;test&apos;
+// in it, only that determination is made. If the function has the word &apos;find&apos; in it, the location of intersection is
+// also computed and returned. &apos;Find&apos; functions are slower. The functions are named using the convention:
+// tIntersectTestPrim1Prim2(...) and tIntersectFindPrim1Prim2(...).
+
+// Finds the intersection point between 2 2D lines.</doc>
+<def f='Modules/Math/Src/tGeometry.cpp' l='303' ll='312' type='tMath::tIntersectResult tMath::tIntersectFindLineLine(const tMath::tLine2 &amp; a, const tMath::tLine2 &amp; b, tMath::tVector2 &amp; i)'/>

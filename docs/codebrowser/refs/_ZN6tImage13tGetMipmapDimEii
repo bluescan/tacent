@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='330' type='int tImage::tGetMipmapDim(int widthOrHeight, int level)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='327'>// Given a base width or height at level 0 this function computes the corresponding dimension at the supplied level.
+// The width or height should be &gt;= 1. If it is &lt;= 0, 0 is returned regardless of level.
+// Level should be E [0, NumMipmapLevels). Below this range widthOrHeight is returned. Above this range 1 is returned.</doc>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='610' ll='620' type='int tImage::tGetMipmapDim(int widthOrHeight, int level)'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='625' u='c' c='_ZN6tImage14tGetMipmapDimsERiS0_i'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='626' u='c' c='_ZN6tImage14tGetMipmapDimsERiS0_i'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='632' u='c' c='_ZN6tImage14tGetMipmapDimsERiS0_iii'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='633' u='c' c='_ZN6tImage14tGetMipmapDimsERiS0_iii'/>

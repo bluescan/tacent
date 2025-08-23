@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8793'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8792'>// VK_KHR_shader_float16_int8 is a preprocessor guard. Do not pass it to API calls.</doc>

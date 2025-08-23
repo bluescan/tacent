@@ -1,0 +1,10 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='318' u='w' c='_ZN12tChunkReaderC1Ev'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='323' u='w' c='_ZN12tChunkReaderC1ERK7tStringPh'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='327' u='w' c='_ZN12tChunkReaderC1EPhi'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='358' type='bool'/>
+<offset>0</offset>
+<use f='Modules/System/Src/tChunk.cpp' l='788' u='w' c='_ZN12tChunkReader4LoadERK7tStringPh'/>
+<use f='Modules/System/Src/tChunk.cpp' l='809' u='w' c='_ZN12tChunkReader4LoadEPhi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='829' u='w' c='_ZN12tChunkReader8LoadSafeERK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='860' u='r' c='_ZN12tChunkReader6UnLoadEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='865' u='w' c='_ZN12tChunkReader6UnLoadEv'/>

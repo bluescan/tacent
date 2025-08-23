@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Src/tHash.cpp' l='221' type='void tHash_MD5::Encode(uint8 * output, const uint32 * input, int length)'/>
+<def f='Modules/Foundation/Src/tHash.cpp' l='253' ll='262' type='void tHash_MD5::Encode(uint8 * output, const uint32 * input, int length)'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='422' u='c' c='_ZN5tHash12tHashDataMD5EPKhi8tFixIntUILi128EE'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='433' u='c' c='_ZN5tHash12tHashDataMD5EPKhi8tFixIntUILi128EE'/>
+<doc f='Modules/Foundation/Src/tHash.cpp' l='220'>// Encodes input (uint32) into output (uint8). Assumes len is a multiple of 4.</doc>

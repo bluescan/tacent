@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='321' ll='323' type='long double std::betal(long double __a, long double __b)'/>
+<doc f='include/c++/11/bits/specfun.h' l='315'>/**
+   * Return the beta function, @f$B(a,b)@f$, for long double
+   * parameters @c a, @c b.
+   *
+   * @see beta for more details.
+   */</doc>

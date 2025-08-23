@@ -1,0 +1,3 @@
+<dec f='include/c++/11/ext/aligned_buffer.h' l='56' type='unsigned char[sizeof(_Tp)]'/>
+<use f='include/c++/11/ext/aligned_buffer.h' l='65' u='a' c='__gnu_cxx::__aligned_membuf::_M_addr'/>
+<use f='include/c++/11/ext/aligned_buffer.h' l='69' u='a' c='__gnu_cxx::__aligned_membuf::_M_addr'/>

@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/basic_string.h' l='6193' ll='6196' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; std::operator+(const _CharT * __lhs, basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp;&amp; __rhs)'/>
+<use f='include/c++/11/system_error' l='459' u='c' c='_ZNSt12system_errorC1ESt10error_codePKc'/>
+<use f='include/c++/11/system_error' l='459' u='c' c='_ZNSt12system_errorC1ESt10error_codePKc'/>

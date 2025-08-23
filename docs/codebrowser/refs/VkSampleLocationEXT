@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12575' ll='12578'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12575'/>
+<size>8</size>
+<mbr r='VkSampleLocationEXT::x' o='0' t='float'/>
+<mbr r='VkSampleLocationEXT::y' o='32' t='float'/>

@@ -1,0 +1,8 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='162' type='tString tSystem::tGetUpDir(const tString &amp; path, int levels = 1)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='157'>// Given a valid path ending with a slash, this function returns the path n levels higher in the hierarchy. It returns
+// the empty string if you go too high or if path was empty.
+// eg, &quot;c:/HighDir/MedDir/LowDir/&quot; will return &quot;c:/HighDir/MedDir/&quot; if levels = 1.
+// eg. &quot;c:/HighDir/MedDir/LowDir/&quot; will return &quot;c:/HighDir/&quot; if levels = 2.
+// eg. &quot;c:/HighDir/MedDir/LowDir/&quot; will return &quot;&quot; if levels = 4.</doc>
+<use f='Modules/System/Src/tFile.cpp' l='253' u='c' c='_ZN7tSystem18tGetSimplifiedPathERK7tStringb'/>
+<def f='Modules/System/Src/tFile.cpp' l='377' ll='434' type='tString tSystem::tGetUpDir(const tString &amp; path, int levels = 1)'/>

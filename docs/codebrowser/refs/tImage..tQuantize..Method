@@ -1,0 +1,10 @@
+<def f='Modules/Image/Inc/Image/tQuantize.h' l='22' ll='29'/>
+<use f='Modules/Image/Inc/Image/tQuantize.h' l='30' c='_ZN6tImage9tQuantize13GetMethodNameENS0_6MethodE'/>
+<use f='Modules/Image/Inc/Image/tImageGIF.h' l='98'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='54' c='_ZN6tImage13tPaletteImageC1ENS_12tPixelFormatEiiPK9tColour4bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='57' c='_ZN6tImage13tPaletteImageC1ENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='68' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour4bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='69' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='100' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour4bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='120' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='30' c='_ZN6tImage9tQuantize13GetMethodNameENS0_6MethodE'/>

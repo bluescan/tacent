@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='670' type='void tMath::tMakeOrthoNormal(tMath::tMat4 &amp; m)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='666'>// MakeOrthoNormal ensures the upper 3x3 matrix has orthogonal columns AND that they each have length one.
+// MakeOrthoUniform yields orthogonal columns and equalizes (rather than normalizes) their lengths. Uniform scale safe.
+// MakeOrthoNonUniform ensures orthogonal columns AND preserves each columns length separately. Non-uniform scale safe.
+// MakeOrtho is synonymous with MakeOrthoNonUniform which preserves the most information (the safest).</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='97' u='c' c='_ZN5tMath8tMatrix415MakeOrthoNormalEv'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='842' ll='863' type='void tMath::tMakeOrthoNormal(tMath::tMat4 &amp; m)'/>

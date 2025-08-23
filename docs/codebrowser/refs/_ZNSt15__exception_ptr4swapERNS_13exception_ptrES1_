@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/exception_ptr.h' l='222' ll='224' type='void std::__exception_ptr::swap(std::__exception_ptr::exception_ptr &amp; __lhs, std::__exception_ptr::exception_ptr &amp; __rhs)'/>
+<doc f='include/c++/11/bits/exception_ptr.h' l='221'>/// @relates exception_ptr</doc>

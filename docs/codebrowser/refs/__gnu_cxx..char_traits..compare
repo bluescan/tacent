@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/char_traits.h' l='114' type='static int __gnu_cxx::char_traits::compare(const __gnu_cxx::char_traits::char_type * __s1, const __gnu_cxx::char_traits::char_type * __s2, std::size_t __n)'/>
+<def f='include/c++/11/bits/char_traits.h' l='152' ll='163' type='static int __gnu_cxx::char_traits::compare(const __gnu_cxx::char_traits::char_type * __s1, const __gnu_cxx::char_traits::char_type * __s2, std::size_t __n)'/>
+<use f='include/c++/11/bits/char_traits.h' l='511' u='c' c='_ZNSt11char_traitsIwE7compareEPKwS2_m'/>
+<use f='include/c++/11/bits/char_traits.h' l='632' u='c' c='_ZNSt11char_traitsIDuE7compareEPKDuS2_m'/>

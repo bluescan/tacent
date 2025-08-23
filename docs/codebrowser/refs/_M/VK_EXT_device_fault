@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16011'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16010'>// VK_EXT_device_fault is a preprocessor guard. Do not pass it to API calls.</doc>

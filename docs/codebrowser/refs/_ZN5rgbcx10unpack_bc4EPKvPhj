@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='208' type='void rgbcx::unpack_bc4(const void * pBlock_bits, uint8_t * pPixels, uint32_t stride = 4)'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4134' ll='4152' type='void rgbcx::unpack_bc4(const void * pBlock_bits, uint8_t * pPixels, uint32_t stride = 4)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4164' u='c' c='_ZN5rgbcx10unpack_bc3EPKvPvNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4172' u='c' c='_ZN5rgbcx10unpack_bc5EPKvPvjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4173' u='c' c='_ZN5rgbcx10unpack_bc5EPKvPvjjj'/>

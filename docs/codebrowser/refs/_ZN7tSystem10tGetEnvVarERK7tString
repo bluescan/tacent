@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tMachine.h' l='32' type='tString tSystem::tGetEnvVar(const tString &amp; envVarName)'/>
+<doc f='Modules/System/Inc/System/tMachine.h' l='31'>// Returns an environment variable value.</doc>
+<def f='Modules/System/Src/tMachine.cpp' l='115' ll='122' type='tString tSystem::tGetEnvVar(const tString &amp; envVarName)'/>
+<use f='Modules/System/Src/tMachine.cpp' l='236' u='c' c='_ZN7tSystem19tGetXDGSingleEnvVarER7tStringRKS0_S3_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='261' u='c' c='_ZN7tSystem21tGetXDGMultipleEnvVarER5tListI11tStringItemERK7tStringS6_'/>

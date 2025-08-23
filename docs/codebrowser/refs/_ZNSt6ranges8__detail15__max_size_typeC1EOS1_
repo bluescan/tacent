@@ -1,0 +1,13 @@
+<use f='include/c++/11/bits/max_size_type.h' l='103' u='c' c='_ZNSt6ranges8__detail15__max_size_typeppEi'/>
+<use f='include/c++/11/bits/max_size_type.h' l='115' u='c' c='_ZNSt6ranges8__detail15__max_size_typemmEi'/>
+<use f='include/c++/11/bits/max_size_type.h' l='313' u='c' c='_ZNSt6ranges8__detailplENS0_15__max_size_typeERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='320' u='c' c='_ZNSt6ranges8__detailmiENS0_15__max_size_typeERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='327' u='c' c='_ZNSt6ranges8__detailmlENS0_15__max_size_typeERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='334' u='c' c='_ZNSt6ranges8__detaildvENS0_15__max_size_typeERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='341' u='c' c='_ZNSt6ranges8__detailrmENS0_15__max_size_typeERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='348' u='c' c='_ZNSt6ranges8__detaillsENS0_15__max_size_typeERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='355' u='c' c='_ZNSt6ranges8__detailrsENS0_15__max_size_typeERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='362' u='c' c='_ZNSt6ranges8__detailanENS0_15__max_size_typeERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='369' u='c' c='_ZNSt6ranges8__detailorENS0_15__max_size_typeERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='376' u='c' c='_ZNSt6ranges8__detaileoENS0_15__max_size_typeERKS1_'/>
+<use f='include/c++/11/bits/ranges_base.h' l='56' u='c' c='_ZNSt6ranges8__detail18__to_unsigned_likeENS0_15__max_size_typeE'/>

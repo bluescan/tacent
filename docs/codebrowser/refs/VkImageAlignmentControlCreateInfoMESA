@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18667' ll='18671'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18667'/>
+<size>24</size>
+<mbr r='VkImageAlignmentControlCreateInfoMESA::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageAlignmentControlCreateInfoMESA::pNext' o='64' t='const void *'/>
+<mbr r='VkImageAlignmentControlCreateInfoMESA::maximumRequestedAlignment' o='128' t='uint32_t'/>

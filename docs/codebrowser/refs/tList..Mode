@@ -1,0 +1,5 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='79' u='w' c='_ZN5tListC1Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='82' u='w' c='_ZN5tListC1E9tListMode'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='109' u='r' c='_ZNK5tList4OwnsEv'/>
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='168' type='tListMode'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='167'>// Since tList supports static zero-initialization, all defaults for all member vars should be 0.</doc>

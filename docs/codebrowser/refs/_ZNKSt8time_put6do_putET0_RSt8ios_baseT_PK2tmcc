@@ -1,0 +1,18 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='884' type='std::time_put::iter_type std::time_put::do_put(std::time_put::iter_type __s, std::ios_base &amp; __io, std::time_put::char_type __fill, const tm * __tm, char __format, char __mod) const'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1364' ll='1402' type='_OutIter std::time_put::do_put(std::time_put::iter_type __s, std::ios_base &amp; __io, std::time_put::char_type , const tm * __tm, char __format, char __mod) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='867'>/**
+       *  @brief  Format and output a time or date.
+       *
+       *  This function formats the data in struct tm according to the
+       *  provided format char and optional modifier.  This function is a hook
+       *  for derived classes to change the value returned.  @see put() for
+       *  more details.
+       *
+       *  @param  __s  The stream to write to.
+       *  @param  __io  Source of locale.
+       *  @param  __fill  char_type to use for padding.
+       *  @param  __tm  Struct tm with date and time info to format.
+       *  @param  __format  Format char.
+       *  @param  __mod  Optional modifier char.
+       *  @return  Iterator after writing.
+       */</doc>

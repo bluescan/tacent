@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='2230' type='void std::counted_iterator::counted_iterator&lt;_It&gt;()'/>
+<doc f='include/c++/11/bits/stl_iterator.h' l='2227'>// iterator_concept defined in __counted_iter_concept
+      // iterator_category defined in __counted_iter_cat</doc>

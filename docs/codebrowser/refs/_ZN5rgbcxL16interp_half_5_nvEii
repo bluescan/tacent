@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1662' type='int rgbcx::interp_half_5_nv(int v0, int v1)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1700' u='c' c='_ZN5rgbcxL13interp_half_5EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2188' u='c' c='_ZN5rgbcxL21bc1_get_block_colors3EPjS0_S0_jjjjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2188' u='c' c='_ZN5rgbcxL21bc1_get_block_colors3EPjS0_S0_jjjjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4099' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4099' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>

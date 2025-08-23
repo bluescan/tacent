@@ -1,0 +1,6 @@
+<def f='Modules/System/Src/tPrint.cpp' l='116' ll='122'/>
+<use f='Modules/System/Src/tPrint.cpp' l='127'/>
+<use f='Modules/System/Src/tPrint.cpp' l='885' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>
+<doc f='Modules/System/Src/tPrint.cpp' l='113'>// The BaseType indicates what a passed-in type is made of in terms of built-in types. This allows
+	// us to call va_arg with precisely the right type instead of just one with the correct size. The latter
+	// works fine with MSVC but not Clang. No idea why.</doc>

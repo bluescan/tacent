@@ -1,0 +1,11 @@
+<def f='include/c++/11/streambuf' l='595' ll='597' type='basic_streambuf&lt;std::basic_streambuf::char_type, _Traits&gt; * std::basic_streambuf::setbuf(std::basic_streambuf::char_type * , std::streamsize )'/>
+<doc f='include/c++/11/streambuf' l='585'>/**
+       *  @brief  Manipulates the buffer.
+       *
+       *  Each derived class provides its own appropriate behavior.  See
+       *  the next-to-last paragraph of
+       *  https://gcc.gnu.org/onlinedocs/libstdc++/manual/streambufs.html#io.streambuf.buffering
+       *  for more on this function.
+       *
+       *  @note  Base class version does nothing, returns @c this.
+      */</doc>

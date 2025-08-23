@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/sigaction.h' l='56'/>
+<doc f='include/x86_64-linux-gnu/bits/sigaction.h' l='55'>/* Bits in `sa_flags&apos;.  */</doc>

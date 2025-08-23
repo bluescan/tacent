@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tFrame.h' l='54' type='void tImage::tFrame::ReverseRows()'/>
+<def f='Modules/Image/Inc/Image/tFrame.h' l='150' ll='161' type='void tImage::tFrame::ReverseRows()'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='376' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='5936' ll='5941' type='std::piecewise_linear_distribution::result_type std::piecewise_linear_distribution::min() const'/>
+<doc f='include/c++/11/bits/random.h' l='5933'>/**
+       * @brief Returns the greatest lower bound value of the distribution.
+       */</doc>

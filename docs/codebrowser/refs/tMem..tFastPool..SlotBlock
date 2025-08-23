@@ -1,0 +1,10 @@
+<inh f='Modules/Foundation/Inc/Foundation/tList.h' l='37' c='tLink'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='73' c='_ZN4tMem9tFastPoolC1Eiiib'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='73' c='_ZN4tMem9tFastPoolC1Eiiib'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='73' c='_ZN4tMem9tFastPoolC1Eiiib'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='86' c='_ZN4tMem9tFastPoolD1Ev'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='100' c='_ZN4tMem9tFastPool8GrowPoolEv'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='100' c='_ZN4tMem9tFastPool8GrowPoolEv'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='100' c='_ZN4tMem9tFastPool8GrowPoolEv'/>
+<size>32</size>
+<fun r='_ZN4tMem9tFastPool9SlotBlock4InitEii'/>

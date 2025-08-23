@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6452' ll='6456'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6452'/>
+<size>24</size>
+<mbr r='VkMemoryOpaqueCaptureAddressAllocateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkMemoryOpaqueCaptureAddressAllocateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkMemoryOpaqueCaptureAddressAllocateInfo::opaqueCaptureAddress' o='128' t='uint64_t'/>

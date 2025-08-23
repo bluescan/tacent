@@ -1,0 +1,11 @@
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='75' u='c' c='_ZN6tImage10tImageASTCD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImageASTC.h' l='92' type='void tImage::tImageASTC::Clear()'/>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Inc/Image/tImageASTC.h' l='118' ll='123' type='void tImage::tImageASTC::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImageASTC.h' l='91'>// After this call no memory will be consumed by the object and it will be invalid.</doc>
+<doc f='Modules/Image/Inc/Image/tImageASTC.h' l='115'>// Implementation below this line.</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='71' u='c' c='_ZN6tImage10tImageASTC4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='90' u='c' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='215' u='c' c='_ZN6tImage10tImageASTC3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='232' u='c' c='_ZN6tImage10tImageASTC3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='252' u='c' c='_ZN6tImage10tImageASTC3SetERNS_8tPictureEb'/>

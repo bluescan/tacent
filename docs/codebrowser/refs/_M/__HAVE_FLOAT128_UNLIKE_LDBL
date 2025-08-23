@@ -1,0 +1,7 @@
+<dec f='include/x86_64-linux-gnu/bits/floatn-common.h' l='63'/>
+<use f='include/math.h' l='1078' u='c'/>
+<use f='include/math.h' l='1394' u='c'/>
+<doc f='include/x86_64-linux-gnu/bits/floatn-common.h' l='59'>/* Defined to 1 if the corresponding _FloatN type is not binary compatible
+   with the corresponding ISO C type in the current compilation unit as
+   opposed to __HAVE_DISTINCT_FLOATN, which indicates the default types built
+   in glibc.  */</doc>

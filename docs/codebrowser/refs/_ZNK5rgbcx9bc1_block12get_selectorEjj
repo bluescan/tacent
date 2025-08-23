@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1500' type='uint32_t rgbcx::bc1_block::get_selector(uint32_t x, uint32_t y) const'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4114' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4115' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4116' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4117' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4124' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4125' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4126' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4127' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>

@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11108' ll='11117'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11108'/>
+<size>56</size>
+<mbr r='VkSetDescriptorBufferOffsetsInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSetDescriptorBufferOffsetsInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkSetDescriptorBufferOffsetsInfoEXT::stageFlags' o='128' t='VkShaderStageFlags'/>
+<mbr r='VkSetDescriptorBufferOffsetsInfoEXT::layout' o='192' t='VkPipelineLayout'/>
+<mbr r='VkSetDescriptorBufferOffsetsInfoEXT::firstSet' o='256' t='uint32_t'/>
+<mbr r='VkSetDescriptorBufferOffsetsInfoEXT::setCount' o='288' t='uint32_t'/>
+<mbr r='VkSetDescriptorBufferOffsetsInfoEXT::pBufferIndices' o='320' t='const uint32_t *'/>
+<mbr r='VkSetDescriptorBufferOffsetsInfoEXT::pOffsets' o='384' t='const VkDeviceSize *'/>

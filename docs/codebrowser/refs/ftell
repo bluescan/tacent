@@ -1,0 +1,6 @@
+<dec f='include/stdio.h' l='718' type='long ftell(FILE * __stream)'/>
+<doc f='include/stdio.h' l='714'>/* Return the current position of STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>
+<use f='Modules/System/Inc/System/tFile.h' l='765' u='c' c='_ZN7tSystem9tFileTellEP8_IO_FILE'/>

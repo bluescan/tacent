@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='679' type='117858304'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='679'>// XYZ Position, sample ID, inner radius, outer radius, 8 bytes or zeros for future use.</doc>

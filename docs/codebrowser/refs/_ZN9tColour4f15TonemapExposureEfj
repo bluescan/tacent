@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='895' type='void tColour4f::TonemapExposure(float exposure, comp_t  = tCompBit_RGB)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1302' ll='1308' type='void tColour4f::TonemapExposure(float exposure, comp_t chans = tCompBit_RGB)'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='894'>// Simple exposure tonemapping.</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='171' u='c' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1469' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1051' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1161' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>

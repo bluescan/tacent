@@ -1,0 +1,2 @@
+<def f='include/c++/11/string_view' l='231' ll='236' type='std::basic_string_view::const_reference std::basic_string_view::operator[](std::basic_string_view::size_type __pos) const'/>
+<doc f='include/c++/11/string_view' l='229'>// [string.view.access], element access</doc>

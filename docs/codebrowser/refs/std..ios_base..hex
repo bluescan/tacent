@@ -1,0 +1,11 @@
+<dec f='include/c++/11/bits/ios_base.h' l='353' type='const std::ios_base::fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='1056' u='r' c='_ZSt3hexRSt8ios_base'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='392' u='r' c='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='759' u='r' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRPv'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='890' u='r' c='_ZNKSt7num_put13_M_insert_intET0_RSt8ios_baseT_TL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1203' u='r' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_PKv'/>
+<use f='include/c++/11/bits/ostream.tcc' l='97' u='r' c='_ZNSt13basic_ostreamlsEs'/>
+<use f='include/c++/11/bits/ostream.tcc' l='111' u='r' c='_ZNSt13basic_ostreamlsEi'/>
+<doc f='include/c++/11/bits/ios_base.h' l='352'>/// Converts integer input or generates integer output in hexadecimal base.</doc>
+<use f='include/c++/11/iomanip' l='136' u='r' c='_ZStrsRSt13basic_istreamIT_T0_ESt8_Setbase'/>
+<use f='include/c++/11/iomanip' l='147' u='r' c='_ZStlsRSt13basic_ostreamIT_T0_ESt8_Setbase'/>

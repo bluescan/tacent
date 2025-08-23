@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/stl_bvector.h' l='266' u='c' c='_ZNSt13_Bit_iteratorppEi'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='281' u='c' c='_ZNSt13_Bit_iteratormmEi'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='307' u='c' c='_ZStplRKSt13_Bit_iteratorl'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='319' u='c' c='_ZStmiRKSt13_Bit_iteratorl'/>
+<use f='include/c++/11/bits/vector.tcc' l='924' u='c' c='_ZNSt6vectorIbT_E8_M_eraseESt13_Bit_iterator'/>
+<use f='include/c++/11/bits/vector.tcc' l='934' u='c' c='_ZNSt6vectorIbT_E8_M_eraseESt13_Bit_iteratorS2_'/>

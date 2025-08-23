@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='103'/>
+<doc f='include/unistd.h' l='102'>/* We are compatible with the old published standards as well.  */</doc>

@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='723' type='void rewind(FILE * __stream)'/>
+<doc f='include/stdio.h' l='719'>/* Rewind to the beginning of STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

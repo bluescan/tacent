@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_util.h' l='452' ll='457' type='borrowed_iterator_t&lt;_Range&gt; std::ranges::__find_if_fn::operator()(_Range &amp;&amp; __r, _Pred __pred, _Proj __proj = {}) const'/>

@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='208' type='int sigdelset(sigset_t * __set, int __signo)'/>
+<doc f='include/signal.h' l='207'>/* Remove SIGNO from SET.  */</doc>

@@ -1,0 +1,4 @@
+<dec f='include/limits.h' l='32'/>
+<doc f='include/limits.h' l='29'>/* Maximum length of any multibyte character in any locale.
+   We define this value here since the gcc header does not define
+   the correct value.  */</doc>

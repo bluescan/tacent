@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1378' ll='1386' type='std::vector::iterator std::vector::insert(std::vector::const_iterator __position, _InputIterator __first, _InputIterator __last)'/>

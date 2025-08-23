@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16110' ll='16114'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16110'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceRGBA10X6FormatsFeaturesEXT::formatRgba10x6WithoutYCbCrSampler' o='128' t='VkBool32'/>

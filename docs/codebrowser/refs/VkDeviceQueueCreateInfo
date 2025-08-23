@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3253' ll='3260'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3253'/>
+<size>40</size>
+<mbr r='VkDeviceQueueCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDeviceQueueCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkDeviceQueueCreateInfo::flags' o='128' t='VkDeviceQueueCreateFlags'/>
+<mbr r='VkDeviceQueueCreateInfo::queueFamilyIndex' o='160' t='uint32_t'/>
+<mbr r='VkDeviceQueueCreateInfo::queueCount' o='192' t='uint32_t'/>
+<mbr r='VkDeviceQueueCreateInfo::pQueuePriorities' o='256' t='const float *'/>

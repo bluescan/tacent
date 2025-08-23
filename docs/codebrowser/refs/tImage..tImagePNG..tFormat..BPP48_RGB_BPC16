@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImagePNG.h' l='103' type='3'/>
+<doc f='Modules/Image/Inc/Image/tImagePNG.h' l='103'>// 48-bit RGB.  3 16-bit components.</doc>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='764' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='893' u='r' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

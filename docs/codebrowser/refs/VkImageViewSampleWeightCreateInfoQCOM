@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17374' ll='17380'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17374'/>
+<size>40</size>
+<mbr r='VkImageViewSampleWeightCreateInfoQCOM::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageViewSampleWeightCreateInfoQCOM::pNext' o='64' t='const void *'/>
+<mbr r='VkImageViewSampleWeightCreateInfoQCOM::filterCenter' o='128' t='VkOffset2D'/>
+<mbr r='VkImageViewSampleWeightCreateInfoQCOM::filterSize' o='192' t='VkExtent2D'/>
+<mbr r='VkImageViewSampleWeightCreateInfoQCOM::numPhases' o='256' t='uint32_t'/>

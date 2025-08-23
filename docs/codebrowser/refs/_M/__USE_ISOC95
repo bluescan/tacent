@@ -1,0 +1,6 @@
+<dec f='include/features.h' l='264'/>
+<use f='include/features.h' l='342' u='w'/>
+<dec f='include/features.h' l='343'/>
+<use f='include/features.h' l='368' u='w'/>
+<dec f='include/features.h' l='369'/>
+<use f='include/wchar.h' l='585' u='a'/>

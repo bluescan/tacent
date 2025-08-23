@@ -1,0 +1,5 @@
+<dec f='include/signal.h' l='264' type='int sigwaitinfo(const sigset_t *__restrict __set, siginfo_t *__restrict __info)'/>
+<doc f='include/signal.h' l='260'>/* Select any of pending signals from SET and place information in INFO.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

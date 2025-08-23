@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Src/tQuantizeWu.cpp' l='78' type='void tImage::tQuantizeWu::Hist3d(tImage::tQuantizeWu::State &amp; , int32 * vwt, int32 * vmr, int32 * vmg, int32 * vmb, float * m2)'/>
+<def f='Modules/Image/Src/tQuantizeWu.cpp' l='113' ll='136' type='void tImage::tQuantizeWu::Hist3d(tImage::tQuantizeWu::State &amp; state, int32 * vwt, int32 * vmr, int32 * vmg, int32 * vmb, float * m2)'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='444' u='c' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>
+<doc f='Modules/Image/Src/tQuantizeWu.cpp' l='72'>// Build 3-D color histogram of counts, r/g/b, c^2. At conclusion of the histogram step, we can interpret:
+ 	// wt[r][g][b] = sum over voxel of P(c)
+ 	// mr[r][g][b] = sum over voxel of r*P(c),  similarly for mg, mb
+ 	// m2[r][g][b] = sum over voxel of c^2*P(c)
+	// Actually each of these should be divided by &apos;size&apos; to give the usual interpretation of P() as ranging from 0 to 1
+	// but we needn&apos;t do that here.</doc>

@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1607' type='_CharT'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1628' u='w' c='_ZNSt16__numpunct_cacheC1Em'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='106' u='w' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>

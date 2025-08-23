@@ -1,0 +1,238 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ptr_traits.h source code [include/c++/11/bits/ptr_traits.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::__ptr_traits_elem,std::__ptr_traits_elem_1,std::__replace_first_arg,std::pointer_traits "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/ptr_traits.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='ptr_traits.h.html'>ptr_traits.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Pointer Traits -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2011-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/ptr_traits.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{memory}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_PTR_TRAITS_H">_PTR_TRAITS_H</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_PTR_TRAITS_H" data-ref="_M/_PTR_TRAITS_H">_PTR_TRAITS_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="33">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;bits/move.h&gt;</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="37">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#define <dfn class="macro" id="_M/__cpp_lib_constexpr_memory" data-ref="_M/__cpp_lib_constexpr_memory">__cpp_lib_constexpr_memory</dfn> 201811L</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><b>namespace</b> <span class="namespace">__gnu_debug</span> { <b>struct</b> <dfn class="type" id="__gnu_debug::_Safe_iterator_base" title='__gnu_debug::_Safe_iterator_base' data-ref="__gnu_debug::_Safe_iterator_base">_Safe_iterator_base</dfn>; }&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#<span data-ppcond="37">endif</span></u>&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="43">43</th><td>{&nbsp</td></tr>
+<tr><th id="44">44</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td>  <b>class</b> <dfn class="type" id="std::__undefined" title='std::__undefined' data-ref="std::__undefined">__undefined</dfn>;&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td>  <i>// Given Template&lt;T, ...&gt; and U return Template&lt;U, ...&gt;, otherwise invalid.</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="50">50</th><td>    <b>struct</b> <dfn class="type def" id="std::__replace_first_arg" title='std::__replace_first_arg' data-ref="std::__replace_first_arg">__replace_first_arg</dfn>&nbsp</td></tr>
+<tr><th id="51">51</th><td>    { };&nbsp</td></tr>
+<tr><th id="52">52</th><td>&nbsp</td></tr>
+<tr><th id="53">53</th><td>  <b>template</b>&lt;<b>template</b>&lt;<b>typename</b>, <b>typename</b>...&gt; <b>class</b> _Template, <b>typename</b> _Up,&nbsp</td></tr>
+<tr><th id="54">54</th><td>           <b>typename</b> _Tp, <b>typename</b>... _Types&gt;&nbsp</td></tr>
+<tr><th id="55">55</th><td>    <b>struct</b> <dfn class="type def" id="std::__replace_first_arg" title='std::__replace_first_arg' data-ref="std::__replace_first_arg">__replace_first_arg</dfn>&lt;<a class="type" href="#std::__replace_first_arg{{type-parameter-0-2,type-parameter-0-3...},type-parameter-0-1}::_Template" title='std::__replace_first_arg&lt;&lt;type-parameter-0-2, type-parameter-0-3...&gt;, type-parameter-0-1&gt;::_Template' data-ref="std::__replace_first_arg{{type-parameter-0-2,type-parameter-0-3...},type-parameter-0-1}::_Template">_Template</a>&lt;_Tp, _Types...&gt;, _Up&gt;&nbsp</td></tr>
+<tr><th id="56">56</th><td>    { <b>using</b> <dfn class="typedef" id="std::__replace_first_arg{{type-parameter-0-2,type-parameter-0-3...},type-parameter-0-1}::type" title='std::__replace_first_arg&lt;&lt;type-parameter-0-2, type-parameter-0-3...&gt;, type-parameter-0-1&gt;::type' data-type='_Template&lt;_Up, _Types...&gt;' data-ref="std::__replace_first_arg{{type-parameter-0-2,type-parameter-0-3...},type-parameter-0-1}::type">type</dfn> = <a class="type" href="#std::__replace_first_arg{{type-parameter-0-2,type-parameter-0-3...},type-parameter-0-1}::_Template" title='std::__replace_first_arg&lt;&lt;type-parameter-0-2, type-parameter-0-3...&gt;, type-parameter-0-1&gt;::_Template' data-ref="std::__replace_first_arg{{type-parameter-0-2,type-parameter-0-3...},type-parameter-0-1}::_Template">_Template</a>&lt;_Up, _Types...&gt;; };&nbsp</td></tr>
+<tr><th id="57">57</th><td>&nbsp</td></tr>
+<tr><th id="58">58</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="59">59</th><td>    <b>using</b> <dfn class="typedef" id="std::__replace_first_arg_t" title='std::__replace_first_arg_t' data-type='typename __replace_first_arg&lt;_Tp, _Up&gt;::type' data-ref="std::__replace_first_arg_t">__replace_first_arg_t</dfn> = <b>typename</b> <a class="type" href="#std::__replace_first_arg" title='std::__replace_first_arg' data-ref="std::__replace_first_arg">__replace_first_arg</a>&lt;_Tp, _Up&gt;::type;&nbsp</td></tr>
+<tr><th id="60">60</th><td>&nbsp</td></tr>
+<tr><th id="61">61</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="62">62</th><td>    <b>using</b> <dfn class="typedef" id="std::__make_not_void" title='std::__make_not_void' data-type='typename conditional&lt;is_void&lt;_Tp&gt;::value, __undefined, _Tp&gt;::type' data-ref="std::__make_not_void">__make_not_void</dfn>&nbsp</td></tr>
+<tr><th id="63">63</th><td>      = <b>typename</b> <a class="type" href="../type_traits.html#std::conditional" title='std::conditional' data-ref="std::conditional">conditional</a>&lt;<a class="type" href="../type_traits.html#std::is_void" title='std::is_void' data-ref="std::is_void">is_void</a>&lt;_Tp&gt;::value, <a class="type" href="#std::__undefined" title='std::__undefined' data-ref="std::__undefined">__undefined</a>, _Tp&gt;::type;&nbsp</td></tr>
+<tr><th id="64">64</th><td>&nbsp</td></tr>
+<tr><th id="65">65</th><td>  <b>template</b>&lt;<b>typename</b> _Ptr&gt;&nbsp</td></tr>
+<tr><th id="66">66</th><td>    <b>struct</b> <dfn class="type def" id="std::__ptr_traits_elem_1" title='std::__ptr_traits_elem_1' data-ref="std::__ptr_traits_elem_1">__ptr_traits_elem_1</dfn>&nbsp</td></tr>
+<tr><th id="67">67</th><td>    { };&nbsp</td></tr>
+<tr><th id="68">68</th><td>&nbsp</td></tr>
+<tr><th id="69">69</th><td>  <b>template</b>&lt;<b>template</b>&lt;<b>typename</b>, <b>typename</b>...&gt; <b>class</b> _SomePointer, <b>typename</b> _Tp,&nbsp</td></tr>
+<tr><th id="70">70</th><td>	   <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="71">71</th><td>    <b>struct</b> <dfn class="type def" id="std::__ptr_traits_elem_1" title='std::__ptr_traits_elem_1' data-ref="std::__ptr_traits_elem_1">__ptr_traits_elem_1</dfn>&lt;<a class="type" href="#std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::_SomePointer" title='std::__ptr_traits_elem_1&lt;&lt;type-parameter-0-1, type-parameter-0-2...&gt;&gt;::_SomePointer' data-ref="std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::_SomePointer">_SomePointer</a>&lt;_Tp, _Args...&gt;&gt;&nbsp</td></tr>
+<tr><th id="72">72</th><td>    {&nbsp</td></tr>
+<tr><th id="73">73</th><td>      <b>using</b> <dfn class="typedef" id="std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::element_type" title='std::__ptr_traits_elem_1&lt;&lt;type-parameter-0-1, type-parameter-0-2...&gt;&gt;::element_type' data-type='_Tp' data-ref="std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::element_type">element_type</dfn> = _Tp;&nbsp</td></tr>
+<tr><th id="74">74</th><td>      <b>using</b> <dfn class="typedef" id="std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::pointer" title='std::__ptr_traits_elem_1&lt;&lt;type-parameter-0-1, type-parameter-0-2...&gt;&gt;::pointer' data-type='_SomePointer&lt;_Tp, _Args...&gt;' data-ref="std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::pointer">pointer</dfn> = <a class="type" href="#std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::_SomePointer" title='std::__ptr_traits_elem_1&lt;&lt;type-parameter-0-1, type-parameter-0-2...&gt;&gt;::_SomePointer' data-ref="std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::_SomePointer">_SomePointer</a>&lt;_Tp, _Args...&gt;;&nbsp</td></tr>
+<tr><th id="75">75</th><td>&nbsp</td></tr>
+<tr><th id="76">76</th><td>      <em>static</em> <a class="typedef" href="#std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::pointer" title='std::__ptr_traits_elem_1&lt;&lt;type-parameter-0-1, type-parameter-0-2...&gt;&gt;::pointer' data-type='_SomePointer&lt;_Tp, _Args...&gt;' data-ref="std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::pointer">pointer</a>&nbsp</td></tr>
+<tr><th id="77">77</th><td>      <dfn class="decl def fn" id="_ZNSt19__ptr_traits_elem_1IT_IT0_JDpT1_EEE10pointer_toERNSt11conditionalIXsr7is_voidIS1_EE5valueESt11__undefinedS1_E4typeE" title='std::__ptr_traits_elem_1&lt;&lt;type-parameter-0-1, type-parameter-0-2...&gt;&gt;::pointer_to' data-ref="_ZNSt19__ptr_traits_elem_1IT_IT0_JDpT1_EEE10pointer_toERNSt11conditionalIXsr7is_voidIS1_EE5valueESt11__undefinedS1_E4typeE">pointer_to</dfn>(<a class="type" href="#std::__make_not_void" title='std::__make_not_void' data-ref="std::__make_not_void">__make_not_void</a>&lt;<a class="typedef" href="#std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::element_type" title='std::__ptr_traits_elem_1&lt;&lt;type-parameter-0-1, type-parameter-0-2...&gt;&gt;::element_type' data-type='_Tp' data-ref="std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::element_type">element_type</a>&gt;&amp; <dfn class="local col9 decl" id="2789__e" title='__e' data-type='__make_not_void&lt;std::__ptr_traits_elem_1&lt;&lt;type-parameter-0-1, type-parameter-0-2...&gt;&gt;::element_type&gt; &amp;' data-ref="2789__e">__e</dfn>)&nbsp</td></tr>
+<tr><th id="78">78</th><td>      { <b>return</b> <a class="typedef" href="#std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::pointer" title='std::__ptr_traits_elem_1&lt;&lt;type-parameter-0-1, type-parameter-0-2...&gt;&gt;::pointer' data-type='_SomePointer&lt;_Tp, _Args...&gt;' data-ref="std::__ptr_traits_elem_1{{type-parameter-0-1,type-parameter-0-2...}}::pointer">pointer</a>::pointer_to(<a class="local col9 ref" href="#2789__e" title='__e' data-ref="2789__e">__e</a>); }&nbsp</td></tr>
+<tr><th id="79">79</th><td>    };&nbsp</td></tr>
+<tr><th id="80">80</th><td>&nbsp</td></tr>
+<tr><th id="81">81</th><td>  <b>template</b>&lt;<b>typename</b> _Ptr, <b>typename</b> = <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="82">82</th><td>    <b>struct</b> <dfn class="type def" id="std::__ptr_traits_elem" title='std::__ptr_traits_elem' data-ref="std::__ptr_traits_elem">__ptr_traits_elem</dfn> : <a class="type" href="#std::__ptr_traits_elem_1" title='std::__ptr_traits_elem_1' data-ref="std::__ptr_traits_elem_1">__ptr_traits_elem_1</a>&lt;_Ptr&gt;&nbsp</td></tr>
+<tr><th id="83">83</th><td>    { };&nbsp</td></tr>
+<tr><th id="84">84</th><td>&nbsp</td></tr>
+<tr><th id="85">85</th><td>  <b>template</b>&lt;<b>typename</b> _Ptr&gt;&nbsp</td></tr>
+<tr><th id="86">86</th><td>    <b>struct</b> <dfn class="type def" id="std::__ptr_traits_elem" title='std::__ptr_traits_elem' data-ref="std::__ptr_traits_elem">__ptr_traits_elem</dfn>&lt;_Ptr, <a class="type" href="../type_traits.html#std::__void_t" title='std::__void_t' data-ref="std::__void_t">__void_t</a>&lt;<b>typename</b> _Ptr::element_type&gt;&gt;&nbsp</td></tr>
+<tr><th id="87">87</th><td>    {&nbsp</td></tr>
+<tr><th id="88">88</th><td>      <b>using</b> <dfn class="typedef" id="std::__ptr_traits_elem{type-parameter-0-0}::element_type" title='std::__ptr_traits_elem&lt;type-parameter-0-0&gt;::element_type' data-type='typename _Ptr::element_type' data-ref="std::__ptr_traits_elem{type-parameter-0-0}::element_type">element_type</dfn> = <b>typename</b> _Ptr::element_type;&nbsp</td></tr>
+<tr><th id="89">89</th><td>&nbsp</td></tr>
+<tr><th id="90">90</th><td>      <em>static</em> _Ptr&nbsp</td></tr>
+<tr><th id="91">91</th><td>      <dfn class="decl def fn" id="_ZNSt17__ptr_traits_elemIT_vE10pointer_toERNSt11conditionalIXsr7is_voidINS0_12element_typeEEE5valueESt11__undefinedS3_E4typeE" title='std::__ptr_traits_elem&lt;type-parameter-0-0&gt;::pointer_to' data-ref="_ZNSt17__ptr_traits_elemIT_vE10pointer_toERNSt11conditionalIXsr7is_voidINS0_12element_typeEEE5valueESt11__undefinedS3_E4typeE">pointer_to</dfn>(<a class="type" href="#std::__make_not_void" title='std::__make_not_void' data-ref="std::__make_not_void">__make_not_void</a>&lt;<a class="typedef" href="#std::__ptr_traits_elem{type-parameter-0-0}::element_type" title='std::__ptr_traits_elem&lt;type-parameter-0-0&gt;::element_type' data-type='typename _Ptr::element_type' data-ref="std::__ptr_traits_elem{type-parameter-0-0}::element_type">element_type</a>&gt;&amp; <dfn class="local col0 decl" id="2790__e" title='__e' data-type='__make_not_void&lt;std::__ptr_traits_elem&lt;type-parameter-0-0&gt;::element_type&gt; &amp;' data-ref="2790__e">__e</dfn>)&nbsp</td></tr>
+<tr><th id="92">92</th><td>      { <b>return</b> _Ptr::pointer_to(<a class="local col0 ref" href="#2790__e" title='__e' data-ref="2790__e">__e</a>); }&nbsp</td></tr>
+<tr><th id="93">93</th><td>    };&nbsp</td></tr>
+<tr><th id="94">94</th><td>&nbsp</td></tr>
+<tr><th id="95">95</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="96">96</th><td><i class="doc">   * <span class="command">@brief</span>  Uniform interface to all pointer-like types</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td><i class="doc">   * <span class="command">@ingroup</span> <span class="verb">pointer_abstractions</span></i>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td>  <b>template</b>&lt;<b>typename</b> _Ptr&gt;&nbsp</td></tr>
+<tr><th id="100">100</th><td>    <b>struct</b> <dfn class="type def" id="std::pointer_traits" title='std::pointer_traits' data-ref="std::pointer_traits">pointer_traits</dfn> : <a class="type" href="#std::__ptr_traits_elem" title='std::__ptr_traits_elem' data-ref="std::__ptr_traits_elem">__ptr_traits_elem</a>&lt;_Ptr&gt;&nbsp</td></tr>
+<tr><th id="101">101</th><td>    {&nbsp</td></tr>
+<tr><th id="102">102</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="103">103</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="104">104</th><td>	<b>using</b> <dfn class="typedef" id="std::pointer_traits::__difference_type" title='std::pointer_traits::__difference_type' data-type='typename _Tp::difference_type' data-ref="std::pointer_traits::__difference_type">__difference_type</dfn> = <b>typename</b> _Tp::difference_type;&nbsp</td></tr>
+<tr><th id="105">105</th><td>&nbsp</td></tr>
+<tr><th id="106">106</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up, <b>typename</b> = <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="107">107</th><td>	<b>struct</b> <dfn class="type def" id="std::pointer_traits::__rebind" title='std::pointer_traits::__rebind' data-ref="std::pointer_traits::__rebind">__rebind</dfn> : <a class="type" href="#std::__replace_first_arg" title='std::__replace_first_arg' data-ref="std::__replace_first_arg">__replace_first_arg</a>&lt;_Tp, _Up&gt; { };&nbsp</td></tr>
+<tr><th id="108">108</th><td>&nbsp</td></tr>
+<tr><th id="109">109</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="110">110</th><td>	<b>struct</b> <dfn class="type def" id="std::pointer_traits::__rebind" title='std::pointer_traits::__rebind' data-ref="std::pointer_traits::__rebind">__rebind</dfn>&lt;_Tp, _Up, <a class="type" href="../type_traits.html#std::__void_t" title='std::__void_t' data-ref="std::__void_t">__void_t</a>&lt;<b>typename</b> _Tp::<b>template</b> rebind&lt;_Up&gt;&gt;&gt;&nbsp</td></tr>
+<tr><th id="111">111</th><td>	{ <b>using</b> <dfn class="typedef" id="std::pointer_traits::__rebind{type-parameter-1-0,type-parameter-1-1}::type" title='std::pointer_traits::__rebind&lt;type-parameter-1-0, type-parameter-1-1&gt;::type' data-type='typename _Tp::template rebind&lt;_Up&gt;' data-ref="std::pointer_traits::__rebind{type-parameter-1-0,type-parameter-1-1}::type">type</dfn> = <b>typename</b> _Tp::<b>template</b> rebind&lt;_Up&gt;; };&nbsp</td></tr>
+<tr><th id="112">112</th><td>&nbsp</td></tr>
+<tr><th id="113">113</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="114">114</th><td>      <i class="doc">/// The pointer type.</i>&nbsp</td></tr>
+<tr><th id="115">115</th><td>      <b>using</b> <dfn class="typedef" id="std::pointer_traits::pointer" title='std::pointer_traits::pointer' data-type='_Ptr' data-ref="std::pointer_traits::pointer">pointer</dfn> = _Ptr;&nbsp</td></tr>
+<tr><th id="116">116</th><td>&nbsp</td></tr>
+<tr><th id="117">117</th><td>      <i class="doc">/// The type used to represent the difference between two pointers.</i>&nbsp</td></tr>
+<tr><th id="118">118</th><td>      <b>using</b> <dfn class="typedef" id="std::pointer_traits::difference_type" title='std::pointer_traits::difference_type' data-type='__detected_or_t&lt;std::ptrdiff_t, __difference_type, _Ptr&gt;' data-ref="std::pointer_traits::difference_type">difference_type</dfn>&nbsp</td></tr>
+<tr><th id="119">119</th><td>	= <a class="type" href="../type_traits.html#std::__detected_or_t" title='std::__detected_or_t' data-ref="std::__detected_or_t">__detected_or_t</a>&lt;<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::ptrdiff_t" title='std::ptrdiff_t' data-type='long' data-ref="std::ptrdiff_t">ptrdiff_t</a>, __difference_type, _Ptr&gt;;&nbsp</td></tr>
+<tr><th id="120">120</th><td>&nbsp</td></tr>
+<tr><th id="121">121</th><td>      <i class="doc">/// A pointer to a different type.</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td>      <b>template</b>&lt;<b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="123">123</th><td>        <b>using</b> <dfn class="typedef" id="std::pointer_traits::rebind" title='std::pointer_traits::rebind' data-type='typename __rebind&lt;_Ptr, _Up&gt;::type' data-ref="std::pointer_traits::rebind">rebind</dfn> = <b>typename</b> <a class="type" href="#std::pointer_traits::__rebind" title='std::pointer_traits::__rebind' data-ref="std::pointer_traits::__rebind">__rebind</a>&lt;_Ptr, _Up&gt;::type;&nbsp</td></tr>
+<tr><th id="124">124</th><td>    };&nbsp</td></tr>
+<tr><th id="125">125</th><td>&nbsp</td></tr>
+<tr><th id="126">126</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="127">127</th><td><i class="doc">   * <span class="command">@brief</span>  Partial specialization for built-in pointers.</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td><i class="doc">   * <span class="command">@ingroup</span> <span class="verb">pointer_abstractions</span></i>&nbsp</td></tr>
+<tr><th id="129">129</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="131">131</th><td>    <b>struct</b> <dfn class="type def" id="std::pointer_traits" title='std::pointer_traits' data-ref="std::pointer_traits">pointer_traits</dfn>&lt;_Tp*&gt;&nbsp</td></tr>
+<tr><th id="132">132</th><td>    {&nbsp</td></tr>
+<tr><th id="133">133</th><td>      <i class="doc">/// The pointer type</i>&nbsp</td></tr>
+<tr><th id="134">134</th><td>      <b>typedef</b> _Tp* <dfn class="typedef" id="std::pointer_traits{type-parameter-0-0*}::pointer" title='std::pointer_traits&lt;type-parameter-0-0 *&gt;::pointer' data-type='_Tp *' data-ref="std::pointer_traits{type-parameter-0-0*}::pointer">pointer</dfn>;&nbsp</td></tr>
+<tr><th id="135">135</th><td>      <i class="doc">/// The type pointed to</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td>      <b>typedef</b> _Tp  <dfn class="typedef" id="std::pointer_traits{type-parameter-0-0*}::element_type" title='std::pointer_traits&lt;type-parameter-0-0 *&gt;::element_type' data-type='_Tp' data-ref="std::pointer_traits{type-parameter-0-0*}::element_type">element_type</dfn>;&nbsp</td></tr>
+<tr><th id="137">137</th><td>      <i class="doc">/// Type used to represent the difference between two pointers</i>&nbsp</td></tr>
+<tr><th id="138">138</th><td>      <b>typedef</b> <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::ptrdiff_t" title='std::ptrdiff_t' data-type='long' data-ref="std::ptrdiff_t">ptrdiff_t</a> <dfn class="typedef" id="std::pointer_traits{type-parameter-0-0*}::difference_type" title='std::pointer_traits&lt;type-parameter-0-0 *&gt;::difference_type' data-type='std::ptrdiff_t' data-ref="std::pointer_traits{type-parameter-0-0*}::difference_type">difference_type</dfn>;&nbsp</td></tr>
+<tr><th id="139">139</th><td>&nbsp</td></tr>
+<tr><th id="140">140</th><td>      <b>template</b>&lt;<b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="141">141</th><td>        <b>using</b> <dfn class="typedef" id="std::pointer_traits{type-parameter-0-0*}::rebind" title='std::pointer_traits&lt;type-parameter-0-0 *&gt;::rebind' data-type='_Up *' data-ref="std::pointer_traits{type-parameter-0-0*}::rebind">rebind</dfn> = _Up*;&nbsp</td></tr>
+<tr><th id="142">142</th><td>&nbsp</td></tr>
+<tr><th id="143">143</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="144">144</th><td><i class="doc">       *  <span class="command">@brief</span>  Obtain a pointer to an object</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__r</span>  A reference to an object of type<span class="command"> @c</span> <span class="arg">element_type</span></i>&nbsp</td></tr>
+<tr><th id="146">146</th><td><i class="doc">       *  <span class="command">@return</span><span class="command"> @c</span> <span class="arg">addressof(__r)</span></i>&nbsp</td></tr>
+<tr><th id="147">147</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td>      <em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <a class="typedef" href="#std::pointer_traits{type-parameter-0-0*}::pointer" title='std::pointer_traits&lt;type-parameter-0-0 *&gt;::pointer' data-type='_Tp *' data-ref="std::pointer_traits{type-parameter-0-0*}::pointer">pointer</a>&nbsp</td></tr>
+<tr><th id="149">149</th><td>      <dfn class="decl def fn" id="_ZNSt14pointer_traitsIPT_E10pointer_toERNSt11conditionalIXsr7is_voidIS0_EE5valueESt11__undefinedS0_E4typeE" title='std::pointer_traits&lt;type-parameter-0-0 *&gt;::pointer_to' data-ref="_ZNSt14pointer_traitsIPT_E10pointer_toERNSt11conditionalIXsr7is_voidIS0_EE5valueESt11__undefinedS0_E4typeE">pointer_to</dfn>(<a class="type" href="#std::__make_not_void" title='std::__make_not_void' data-ref="std::__make_not_void">__make_not_void</a>&lt;<a class="typedef" href="#std::pointer_traits{type-parameter-0-0*}::element_type" title='std::pointer_traits&lt;type-parameter-0-0 *&gt;::element_type' data-type='_Tp' data-ref="std::pointer_traits{type-parameter-0-0*}::element_type">element_type</a>&gt;&amp; <dfn class="local col1 decl" id="2791__r" title='__r' data-type='__make_not_void&lt;std::pointer_traits&lt;type-parameter-0-0 *&gt;::element_type&gt; &amp;' data-ref="2791__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="150">150</th><td>      { <b>return</b> <span class="namespace">std::</span>addressof(<a class="local col1 ref" href="#2791__r" title='__r' data-ref="2791__r">__r</a>); }&nbsp</td></tr>
+<tr><th id="151">151</th><td>    };&nbsp</td></tr>
+<tr><th id="152">152</th><td>&nbsp</td></tr>
+<tr><th id="153">153</th><td>  <i class="doc">/// Convenience alias for rebinding pointers.</i>&nbsp</td></tr>
+<tr><th id="154">154</th><td>  <b>template</b>&lt;<b>typename</b> _Ptr, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="155">155</th><td>    <b>using</b> <dfn class="typedef" id="std::__ptr_rebind" title='std::__ptr_rebind' data-type='typename pointer_traits&lt;_Ptr&gt;::template rebind&lt;_Tp&gt;' data-ref="std::__ptr_rebind">__ptr_rebind</dfn> = <b>typename</b> <a class="type" href="#std::pointer_traits" title='std::pointer_traits' data-ref="std::pointer_traits">pointer_traits</a>&lt;_Ptr&gt;::<b>template</b> rebind&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="156">156</th><td>&nbsp</td></tr>
+<tr><th id="157">157</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="158">158</th><td>    <b>constexpr</b> _Tp*&nbsp</td></tr>
+<tr><th id="159">159</th><td>    <dfn class="decl def fn" id="_ZSt12__to_addressPT_" title='std::__to_address' data-ref="_ZSt12__to_addressPT_">__to_address</dfn>(_Tp* <dfn class="local col2 decl" id="2792__ptr" title='__ptr' data-type='_Tp *' data-ref="2792__ptr">__ptr</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="160">160</th><td>    {&nbsp</td></tr>
+<tr><th id="161">161</th><td>      <b>static_assert</b>(!<span class="namespace">std::</span><a class="type" href="../type_traits.html#std::is_function" title='std::is_function' data-ref="std::is_function">is_function</a>&lt;_Tp&gt;::value, <q>"not a function pointer"</q>);&nbsp</td></tr>
+<tr><th id="162">162</th><td>      <b>return</b> <a class="local col2 ref" href="#2792__ptr" title='__ptr' data-ref="2792__ptr">__ptr</a>;&nbsp</td></tr>
+<tr><th id="163">163</th><td>    }&nbsp</td></tr>
+<tr><th id="164">164</th><td>&nbsp</td></tr>
+<tr><th id="165">165</th><td><u>#<span data-ppcond="165">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="166">166</th><td>  <b>template</b>&lt;<b>typename</b> _Ptr&gt;&nbsp</td></tr>
+<tr><th id="167">167</th><td>    <b>constexpr</b> <b>typename</b> std::pointer_traits&lt;_Ptr&gt;::element_type*&nbsp</td></tr>
+<tr><th id="168">168</th><td>    __to_address(<em>const</em> _Ptr&amp; __ptr)&nbsp</td></tr>
+<tr><th id="169">169</th><td>    { <b>return</b> std::__to_address(__ptr.<b>operator</b>-&gt;()); }&nbsp</td></tr>
+<tr><th id="170">170</th><td><u>#<span data-ppcond="165">else</span></u>&nbsp</td></tr>
+<tr><th id="171">171</th><td>&nbsp</td></tr>
+<tr><th id="172">172</th><td>  <b>template</b>&lt;<b>typename</b> _Ptr&gt;&nbsp</td></tr>
+<tr><th id="173">173</th><td>    <b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="174">174</th><td>    <dfn class="decl def fn" id="_ZSt12__to_addressRKT_" title='std::__to_address' data-ref="_ZSt12__to_addressRKT_">__to_address</dfn>(<em>const</em> _Ptr&amp; <dfn class="local col3 decl" id="2793__ptr" title='__ptr' data-type='const _Ptr &amp;' data-ref="2793__ptr">__ptr</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="175">175</th><td>    -&gt; <b>decltype</b>(<span class="namespace">std::</span><a class="type" href="#std::pointer_traits" title='std::pointer_traits' data-ref="std::pointer_traits">pointer_traits</a>&lt;_Ptr&gt;::to_address(<a class="local col3 ref" href="#2793__ptr" title='__ptr' data-ref="2793__ptr">__ptr</a>))&nbsp</td></tr>
+<tr><th id="176">176</th><td>    { <b>return</b> <span class="namespace">std::</span><a class="type" href="#std::pointer_traits" title='std::pointer_traits' data-ref="std::pointer_traits">pointer_traits</a>&lt;_Ptr&gt;::to_address(<a class="local col3 ref" href="#2793__ptr" title='__ptr' data-ref="2793__ptr">__ptr</a>); }&nbsp</td></tr>
+<tr><th id="177">177</th><td>&nbsp</td></tr>
+<tr><th id="178">178</th><td>  <b>template</b>&lt;<b>typename</b> _Ptr, <b>typename</b>... _None&gt;&nbsp</td></tr>
+<tr><th id="179">179</th><td>    <b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="180">180</th><td>    <dfn class="decl def fn" id="_ZSt12__to_addressRKT_DpT0_" title='std::__to_address' data-ref="_ZSt12__to_addressRKT_DpT0_">__to_address</dfn>(<em>const</em> _Ptr&amp; <dfn class="local col4 decl" id="2794__ptr" title='__ptr' data-type='const _Ptr &amp;' data-ref="2794__ptr">__ptr</dfn>, _None...) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="181">181</th><td>    {&nbsp</td></tr>
+<tr><th id="182">182</th><td>      <b>if</b> <b>constexpr</b> (is_base_of_v&lt;<span class="namespace">__gnu_debug::</span><a class="type" href="#__gnu_debug::_Safe_iterator_base" title='__gnu_debug::_Safe_iterator_base' data-ref="__gnu_debug::_Safe_iterator_base">_Safe_iterator_base</a>, _Ptr&gt;)&nbsp</td></tr>
+<tr><th id="183">183</th><td>	<b>return</b> <span class="namespace">std::</span>__to_address(<a class="local col4 ref" href="#2794__ptr" title='__ptr' data-ref="2794__ptr">__ptr</a>.base().<b>operator</b>-&gt;());&nbsp</td></tr>
+<tr><th id="184">184</th><td>      <b>else</b>&nbsp</td></tr>
+<tr><th id="185">185</th><td>	<b>return</b> <span class="namespace">std::</span>__to_address(<a class="local col4 ref" href="#2794__ptr" title='__ptr' data-ref="2794__ptr">__ptr</a>.<b>operator</b>-&gt;());&nbsp</td></tr>
+<tr><th id="186">186</th><td>    }&nbsp</td></tr>
+<tr><th id="187">187</th><td>&nbsp</td></tr>
+<tr><th id="188">188</th><td><u>#define <dfn class="macro" id="_M/__cpp_lib_to_address" data-ref="_M/__cpp_lib_to_address">__cpp_lib_to_address</dfn> 201711L</u>&nbsp</td></tr>
+<tr><th id="189">189</th><td>&nbsp</td></tr>
+<tr><th id="190">190</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="191">191</th><td><i class="doc">   * <span class="command">@brief</span> Obtain address referenced by a pointer to an object</i>&nbsp</td></tr>
+<tr><th id="192">192</th><td><i class="doc">   * <span class="command">@param</span> <span class="arg">__ptr</span> A pointer to an object</i>&nbsp</td></tr>
+<tr><th id="193">193</th><td><i class="doc">   * <span class="command">@return</span><span class="command"> @c</span> <span class="arg">__ptr</span></i>&nbsp</td></tr>
+<tr><th id="194">194</th><td><i class="doc">   * <span class="command">@ingroup</span> <span class="verb">pointer_abstractions</span></i>&nbsp</td></tr>
+<tr><th id="195">195</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="196">196</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="197">197</th><td>    <b>constexpr</b> _Tp*&nbsp</td></tr>
+<tr><th id="198">198</th><td>    <dfn class="decl def fn" id="_ZSt10to_addressPT_" title='std::to_address' data-ref="_ZSt10to_addressPT_">to_address</dfn>(_Tp* <dfn class="local col5 decl" id="2795__ptr" title='__ptr' data-type='_Tp *' data-ref="2795__ptr">__ptr</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="199">199</th><td>    { <b>return</b> <span class="namespace">std::</span>__to_address(<a class="local col5 ref" href="#2795__ptr" title='__ptr' data-ref="2795__ptr">__ptr</a>); }&nbsp</td></tr>
+<tr><th id="200">200</th><td>&nbsp</td></tr>
+<tr><th id="201">201</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="202">202</th><td><i class="doc">   * <span class="command">@brief</span> Obtain address referenced by a pointer to an object</i>&nbsp</td></tr>
+<tr><th id="203">203</th><td><i class="doc">   * <span class="command">@param</span> <span class="arg">__ptr</span> A pointer to an object</i>&nbsp</td></tr>
+<tr><th id="204">204</th><td><i class="doc">   * <span class="command">@return</span><span class="command"> @c</span> <span class="arg">pointer_traits&lt;_Ptr&gt;::to_address(__ptr)</span> if that expression is</i>&nbsp</td></tr>
+<tr><th id="205">205</th><td><i class="doc">             well-formed, otherwise<span class="command"> @c</span> <span class="arg">to_address(__ptr.operator-&gt;())</span></i>&nbsp</td></tr>
+<tr><th id="206">206</th><td><i class="doc">   * <span class="command">@ingroup</span> <span class="verb">pointer_abstractions</span></i>&nbsp</td></tr>
+<tr><th id="207">207</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="208">208</th><td>  <b>template</b>&lt;<b>typename</b> _Ptr&gt;&nbsp</td></tr>
+<tr><th id="209">209</th><td>    <b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="210">210</th><td>    <dfn class="decl def fn" id="_ZSt10to_addressRKT_" title='std::to_address' data-ref="_ZSt10to_addressRKT_">to_address</dfn>(<em>const</em> _Ptr&amp; <dfn class="local col6 decl" id="2796__ptr" title='__ptr' data-type='const _Ptr &amp;' data-ref="2796__ptr">__ptr</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="211">211</th><td>    { <b>return</b> <span class="namespace">std::</span>__to_address(<a class="local col6 ref" href="#2796__ptr" title='__ptr' data-ref="2796__ptr">__ptr</a>); }&nbsp</td></tr>
+<tr><th id="212">212</th><td><u>#<span data-ppcond="165">endif</span> // C++2a</u>&nbsp</td></tr>
+<tr><th id="213">213</th><td>&nbsp</td></tr>
+<tr><th id="214">214</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="215">215</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="216">216</th><td>&nbsp</td></tr>
+<tr><th id="217">217</th><td><u>#<span data-ppcond="33">endif</span></u>&nbsp</td></tr>
+<tr><th id="218">218</th><td>&nbsp</td></tr>
+<tr><th id="219">219</th><td><u>#<span data-ppcond="30">endif</span></u>&nbsp</td></tr>
+<tr><th id="220">220</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

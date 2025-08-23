@@ -1,0 +1,3 @@
+<dec f='include/c++/11/stdexcept' l='143' type='const char * std::logic_error::what() const'/>
+<doc f='include/c++/11/stdexcept' l='140'>/** Returns a C-style character string describing the general cause of
+     *  the current error (the same string passed to the ctor).  */</doc>

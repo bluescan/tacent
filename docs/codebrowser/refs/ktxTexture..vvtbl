@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='258' type='struct ktxTexture_vvtbl *'/>
+<offset>128</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='303'>/**
+ * @typedef ktxTexture::vvtbl
+ * @~English
+ * @brief Pointer to the class&apos;s vtble for Vulkan functions.
+ *
+ * A separate vtble is used so this header does not need to include vulkan.h.
+ */</doc>

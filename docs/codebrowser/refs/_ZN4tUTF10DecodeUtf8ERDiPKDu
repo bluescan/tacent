@@ -1,0 +1,9 @@
+<dec f='Modules/Foundation/Src/tStandard.cpp' l='289' type='int tUTF::DecodeUtf8(char32_t &amp; codepoint, const char8_t * src)'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='379' u='c' c='_ZN4tStd6tUTF16EPDsPKDui'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='442' u='c' c='_ZN4tStd6tUTF32EPDiPKDui'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='569' u='c' c='_ZN4tStd7tUTF32cEPKDu'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='610' u='c' c='_ZN4tStd7tUTF32cEPDiPKDu'/>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='764' ll='829' type='int tUTF::DecodeUtf8(char32_t &amp; codepoint, const char8_t * src)'/>
+<doc f='Modules/Foundation/Src/tStandard.cpp' l='286'>// Gets a single codepoint from a UTF-8 string (string does not need null-termination). Returns how many char8s
+	// were read to generate the codepoint. eg. If 3 char8s (surrogates) were read, returns 3.
+	// For invalid encodings, the codepoint is set to the special &apos;replacement&apos; num bytes read from src is returned.</doc>

@@ -1,0 +1,16 @@
+<def f='include/c++/11/bits/locale_facets.h' l='314' ll='316' type='const char * std::__ctype_abstract_base::widen(const char * __lo, const char * __hi, std::__ctype_abstract_base::char_type * __to) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='299'>/**
+       *  @brief  Widen array to char_type
+       *
+       *  This function converts each char in the input to char_type using the
+       *  simplest reasonable transformation.  It does so by returning
+       *  ctype&lt;char_type&gt;::do_widen(c).
+       *
+       *  Note: this is not what you want for codepage conversions.  See
+       *  codecvt for that.
+       *
+       *  @param __lo  Pointer to start of range.
+       *  @param __hi  Pointer to end of range.
+       *  @param __to  Pointer to the destination array.
+       *  @return  @a __hi.
+      */</doc>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='190'/>
+<doc f='include/x86_64-linux-gnu/sys/stat.h' l='189'>/* Read, write, and execute by others.  */</doc>

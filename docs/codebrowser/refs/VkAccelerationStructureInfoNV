@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13190' ll='13198'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13190'/>
+<size>40</size>
+<mbr r='VkAccelerationStructureInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkAccelerationStructureInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkAccelerationStructureInfoNV::type' o='128' t='VkAccelerationStructureTypeNV'/>
+<mbr r='VkAccelerationStructureInfoNV::flags' o='160' t='VkBuildAccelerationStructureFlagsNV'/>
+<mbr r='VkAccelerationStructureInfoNV::instanceCount' o='192' t='uint32_t'/>
+<mbr r='VkAccelerationStructureInfoNV::geometryCount' o='224' t='uint32_t'/>
+<mbr r='VkAccelerationStructureInfoNV::pGeometries' o='256' t='const VkGeometryNV *'/>

@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='1828' type='std::__c_locale'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='45' u='w' c='_ZNSt7__cxx118messagesC1Em'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='52' u='w' c='_ZNSt7__cxx118messagesC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='65' u='w' c='_ZNSt7__cxx118messagesC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='83' u='a' c='_ZNSt7__cxx118messagesD1Ev'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1826'>// Underlying &quot;C&quot; library locale information saved from
+      // initialization, needed by messages_byname as well.</doc>

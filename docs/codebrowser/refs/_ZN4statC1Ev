@@ -1,0 +1,4 @@
+<use f='Modules/System/Src/tFile.cpp' l='470' u='c' c='_ZN7tSystem11tFileExistsERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='586' u='c' c='_ZN7tSystem11tIsReadOnlyERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='639' u='c' c='_ZN7tSystem12tSetReadOnlyERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2130' u='c' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>

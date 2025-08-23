@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='385' type='8'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='385'>// Image. Joint Picture Motion Group (or something like that).</doc>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='47' u='r' c='_ZN6tImage9tImageJPG4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='438' u='r' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>

@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='574' ll='616'/>
+<use f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='574'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='568'>/** @~English
+   @brief Definition of the optical to digital transfer function
+   (&quot;gamma correction&quot;). Most transfer functions are not a pure
+   power function and also include a linear element.
+   LAB and related absolute color representations should use
+   KHR_DF_TRANSFER_UNSPECIFIED. */</doc>

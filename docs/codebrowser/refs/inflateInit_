@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='1767' type='int inflateInit_(z_streamp strm, const char * version, int stream_size)'/>

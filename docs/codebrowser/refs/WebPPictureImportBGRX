@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='474' type='int WebPPictureImportBGRX(WebPPicture * picture, const uint8_t * bgrx, int bgrx_stride)'/>

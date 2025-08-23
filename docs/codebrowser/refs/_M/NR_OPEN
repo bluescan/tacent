@@ -1,0 +1,2 @@
+<dec f='include/linux/limits.h' l='5'/>
+<use f='include/x86_64-linux-gnu/bits/local_lim.h' l='42' u='w'/>

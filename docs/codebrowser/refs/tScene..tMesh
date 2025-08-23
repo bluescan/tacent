@@ -1,0 +1,26 @@
+<def f='Modules/Scene/Inc/Scene/tMesh.h' l='48' ll='166'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='53' c='_ZN6tScene5tMeshC1ERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='63' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='63' c='_ZN6tScene5tMeshaSERKS0_'/>
+<size>216</size>
+<fun r='_ZN6tScene5tMeshD1Ev'/>
+<use f='Modules/Scene/Inc/Scene/tPolyModel.h' l='43'/>
+<size>216</size>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='146' c='_ZN6tScene6tWorld12GetMaterialsERKNS_5tMeshER7tItListINS_9tMaterialEE'/>
+<size>216</size>
+<use f='Modules/Scene/Src/tMesh.cpp' l='23' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='23' c='_ZN6tScene5tMeshaSERKS0_'/>
+<size>216</size>
+<fun r='_ZN6tScene5tMeshaSERKS0_'/>
+<fun r='_ZN6tScene5tMesh5ClearEv'/>
+<fun r='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<fun r='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>
+<fun r='_ZN6tScene5tMesh5ScaleEf'/>
+<fun r='_ZN6tScene5tMesh14ReverseWindingEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='254' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='275' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='336' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='793' c='_ZN6tScene6tWorld18CorrectMaterialIDsER7tItListINS_9tMaterialEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='845' c='_ZN6tScene6tWorld18CorrectSkeletonIDsER7tItListINS_9tSkeletonEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1276' c='_ZN6tScene6tWorld12GetMaterialsERKNS_5tMeshER7tItListINS_9tMaterialEE'/>
+<size>216</size>

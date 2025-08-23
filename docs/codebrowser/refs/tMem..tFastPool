@@ -1,0 +1,12 @@
+<inh f='Modules/Foundation/Inc/Foundation/tPool.h' l='37' c='tMem::tAllocator'/>
+<def f='Modules/Foundation/Inc/Foundation/tPool.h' l='69' ll='130'/>
+<size>120</size>
+<doc f='Modules/Foundation/Inc/Foundation/tPool.h' l='65'>// tFastPool gives you O(1) malloc and free at the expense of some wasted memory. tFastPool is a slot-based pool. It
+// implements a block of slots, each slot big enough for a single item. Initially the free pointer points to the first
+// slot, and the first 4 bytes of each slot point to the next slot. A malloc simply returns the free pointer and then
+// points the free pointer to the next slot. If you run out of slots a new expansion block is created and initialized.</doc>
+<fun r='_ZN4tMem9tFastPoolD1Ev'/>
+<fun r='_ZN4tMem9tFastPool6MallocEi'/>
+<fun r='_ZN4tMem9tFastPool4FreeEPv'/>
+<fun r='_ZN4tMem9tFastPool6MallocEi'/>
+<fun r='_ZN4tMem9tFastPool4FreeEPv'/>

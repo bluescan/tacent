@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='4919' ll='4921' type='void std::weibull_distribution::reset()'/>
+<doc f='include/c++/11/bits/random.h' l='4916'>/**
+       * @brief Resets the distribution state.
+       */</doc>

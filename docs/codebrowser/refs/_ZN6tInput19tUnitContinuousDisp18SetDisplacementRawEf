@@ -1,0 +1,4 @@
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='41' u='c' c='_ZN6tInput19tUnitContinuousDisp5ResetEv'/>
+<def f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='49' ll='54' type='void tInput::tUnitContinuousDisp::SetDisplacementRaw(float disp)'/>
+<doc f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='48'>// Called by the the controller polling thread.</doc>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='41' u='c' c='_ZN6tInput12tCompTrigger18SetDisplacementRawEf'/>

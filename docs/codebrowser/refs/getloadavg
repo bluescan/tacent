@@ -1,0 +1,4 @@
+<dec f='include/stdlib.h' l='1013' type='int getloadavg(double * __loadavg, int __nelem)'/>
+<doc f='include/stdlib.h' l='1010'>/* Put the 1 minute, 5 minute and 15 minute load averages into the first
+   NELEM elements of LOADAVG.  Return the number written (never more than
+   three, but may be less than NELEM), or -1 if an error occurred.  */</doc>

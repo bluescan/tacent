@@ -1,0 +1,24 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='252' u='w' c='_ZN7tItListC1Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='253' u='w' c='_ZN7tItListC1E9tListMode'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='313' u='c' c='_ZN7tItList6InsertEPT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='314' u='c' c='_ZN7tItList6InsertEPT_RKNS_4IterE'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='315' u='c' c='_ZN7tItList6AppendEPT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='316' u='c' c='_ZN7tItList6AppendEPT_RKNS_4IterE'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='318' u='c' c='_ZN7tItList6InsertEPKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='319' u='c' c='_ZN7tItList6InsertEPKT_RKNS_4IterE'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='320' u='c' c='_ZN7tItList6AppendEPKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='321' u='c' c='_ZN7tItList6AppendEPKT_RKNS_4IterE'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='332' u='c' c='_ZNK7tItList4HeadEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='333' u='c' c='_ZNK7tItList4TailEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='334' u='c' c='_ZNK7tItList5FirstEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='335' u='c' c='_ZNK7tItList4LastEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='338' u='c' c='_ZNK7tItList4FindEPKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='340' u='c' c='_ZNK7tItList11GetNumItemsEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='341' u='c' c='_ZNK7tItList8NumItemsEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='342' u='c' c='_ZNK7tItList5CountEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='343' u='c' c='_ZNK7tItList7IsEmptyEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='358' u='c' c='_ZN7tItList4SortETL0__18tListSortAlgorithm'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='361' u='c' c='_ZN7tItList6InsertEPKT_TL0__'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='376' u='c' c='_ZN7tItList6BubbleETL0__bi'/>
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='381' type='tList&lt;tItList::IterNode&gt;'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='778' u='c' c='_ZN7tItList6RemoveERNS_4IterE'/>

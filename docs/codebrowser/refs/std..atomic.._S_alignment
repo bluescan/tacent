@@ -1,0 +1,4 @@
+<def f='include/c++/11/atomic' l='206' ll='207' type='const int'/>
+<use f='include/c++/11/atomic' l='209'/>
+<use f='include/c++/11/atomic' l='252' u='r' c='_ZNKSt6atomic12is_lock_freeEv'/>
+<use f='include/c++/11/atomic' l='260' u='r' c='_ZNVKSt6atomic12is_lock_freeEv'/>

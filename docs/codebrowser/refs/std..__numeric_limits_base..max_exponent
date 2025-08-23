@@ -1,0 +1,4 @@
+<def f='include/c++/11/limits' l='248' type='const int'/>
+<doc f='include/c++/11/limits' l='245'>/** The maximum positive integer such that @c radix raised to the power of
+	(one less than that integer) is a representable finite floating point
+	number.  */</doc>

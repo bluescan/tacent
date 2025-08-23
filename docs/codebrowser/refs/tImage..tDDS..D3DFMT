@@ -1,0 +1,2 @@
+<def f='Modules/Image/Src/tImageDDS.cpp' l='172' ll='277'/>
+<doc f='Modules/Image/Src/tImageDDS.cpp' l='171'>// D3D formats that may appear in DDS files. Would normally not make them uint32s, but they are also used for FourCCs.</doc>

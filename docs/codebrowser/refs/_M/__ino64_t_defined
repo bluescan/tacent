@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/types.h' l='55'/>
+<use f='include/dirent.h' l='40' u='a'/>

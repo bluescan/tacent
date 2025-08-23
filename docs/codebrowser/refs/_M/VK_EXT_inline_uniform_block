@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12552'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12551'>// VK_EXT_inline_uniform_block is a preprocessor guard. Do not pass it to API calls.</doc>

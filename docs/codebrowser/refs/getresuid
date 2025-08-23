@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='755' type='int getresuid(__uid_t * __ruid, __uid_t * __euid, __uid_t * __suid)'/>
+<doc f='include/unistd.h' l='753'>/* Fetch the real user ID, effective user ID, and saved-set user ID,
+   of the calling process.  */</doc>

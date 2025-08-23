@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1766'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1765'>/* Defined if sched_yield is available. */</doc>
+<use f='include/c++/11/bits/atomic_wait.h' l='130' u='a'/>
+<use f='include/c++/11/bits/std_thread.h' l='328' u='a'/>

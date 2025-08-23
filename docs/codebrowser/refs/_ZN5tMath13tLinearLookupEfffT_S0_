@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='780' type='T tMath::tLinearLookup(float d, float dA, float dB, T A, T B)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='778'>// Linear loopup. Requires 2 N-dimensional range points (A and B). As the domain value d goes from dA to dB, the return
+// value (r) goes from A to B. No clamping so extrapolates as well as interpolates.</doc>

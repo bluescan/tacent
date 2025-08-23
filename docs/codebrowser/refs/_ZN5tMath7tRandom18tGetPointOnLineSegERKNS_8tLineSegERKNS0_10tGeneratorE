@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='128' type='tMath::tVector3 tMath::tRandom::tGetPointOnLineSeg(const tMath::tLineSeg &amp; , const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<def f='Modules/Math/Inc/Math/tRandom.h' l='209' ll='213' type='tMath::tVector3 tMath::tRandom::tGetPointOnLineSeg(const tMath::tLineSeg &amp; seg, const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>
+<doc f='Modules/Math/Inc/Math/tRandom.h' l='127'>// Random point generation functions in R3 for various geometric primitives.</doc>

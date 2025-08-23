@@ -1,0 +1,2 @@
+<use f='include/c++/11/bits/stl_vector.h' l='335' u='c' c='_ZNSt12_Vector_baseD1Ev'/>
+<def f='include/c++/11/bits/stl_vector.h' l='349' ll='355' type='void std::_Vector_base::_M_deallocate(std::_Vector_base::pointer __p, std::size_t __n)'/>

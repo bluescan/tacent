@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9108' ll='9114'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9108'/>
+<size>32</size>
+<mbr r='VkQueryPoolPerformanceCreateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkQueryPoolPerformanceCreateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkQueryPoolPerformanceCreateInfoKHR::queueFamilyIndex' o='128' t='uint32_t'/>
+<mbr r='VkQueryPoolPerformanceCreateInfoKHR::counterIndexCount' o='160' t='uint32_t'/>
+<mbr r='VkQueryPoolPerformanceCreateInfoKHR::pCounterIndices' o='192' t='const uint32_t *'/>

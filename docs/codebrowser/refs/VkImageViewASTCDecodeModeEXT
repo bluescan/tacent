@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11841' ll='11845'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11841'/>
+<size>24</size>
+<mbr r='VkImageViewASTCDecodeModeEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageViewASTCDecodeModeEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkImageViewASTCDecodeModeEXT::decodeMode' o='128' t='VkFormat'/>

@@ -1,0 +1,47 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='122' ll='225'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='229' c='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='240' c='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='254' c='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='274' c='_ZNSt16_Sp_counted_base15_M_add_ref_copyEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='279' c='_ZNSt16_Sp_counted_base10_M_releaseEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='291' c='_ZNSt16_Sp_counted_base15_M_weak_add_refEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='296' c='_ZNSt16_Sp_counted_base15_M_weak_releaseEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='304' c='_ZNKSt16_Sp_counted_base16_M_get_use_countEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='339'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='409'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='495'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='718' c='_ZNSt14__shared_countaSERKSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='733' c='_ZNSt14__shared_count7_M_swapERSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='752' c='_ZNKSt14__shared_count7_M_lessERKSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='756' c='_ZNKSt14__shared_count7_M_lessERKSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='766'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='804' c='_ZNSt12__weak_countaSERKSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='816' c='_ZNSt12__weak_countaSERKSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='838' c='_ZNSt12__weak_count7_M_swapERSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='849' c='_ZNKSt12__weak_count7_M_lessERKSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='853' c='_ZNKSt12__weak_count7_M_lessERKSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='863'/>
+<fun r='_ZNSt16_Sp_counted_baseC1Ev'/>
+<fun r='_ZNSt16_Sp_counted_baseD1Ev'/>
+<fun r='_ZNSt16_Sp_counted_base10_M_disposeEv'/>
+<fun r='_ZNSt16_Sp_counted_base10_M_destroyEv'/>
+<fun r='_ZNSt16_Sp_counted_base14_M_get_deleterERKSt9type_info'/>
+<fun r='_ZNSt16_Sp_counted_base15_M_add_ref_copyEv'/>
+<fun r='_ZNSt16_Sp_counted_base15_M_add_ref_lockEv'/>
+<fun r='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<fun r='_ZNSt16_Sp_counted_base10_M_releaseEv'/>
+<fun r='_ZNSt16_Sp_counted_base15_M_weak_add_refEv'/>
+<fun r='_ZNSt16_Sp_counted_base15_M_weak_releaseEv'/>
+<fun r='_ZNKSt16_Sp_counted_base16_M_get_use_countEv'/>
+<fun r='_ZNSt16_Sp_counted_baseC1ERKSt16_Sp_counted_baseIXT_EE'/>
+<fun r='_ZNSt16_Sp_counted_baseaSERKSt16_Sp_counted_baseIXT_EE'/>
+<mbr r='std::_Sp_counted_base::_M_use_count' t='_Atomic_word'/>
+<mbr r='std::_Sp_counted_base::_M_weak_count' t='_Atomic_word'/>
+<fun r='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<fun r='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<fun r='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<fun r='_ZNSt16_Sp_counted_base15_M_add_ref_copyEv'/>
+<fun r='_ZNSt16_Sp_counted_base10_M_releaseEv'/>
+<fun r='_ZNSt16_Sp_counted_base15_M_weak_add_refEv'/>
+<fun r='_ZNSt16_Sp_counted_base15_M_weak_releaseEv'/>
+<fun r='_ZNKSt16_Sp_counted_base16_M_get_use_countEv'/>

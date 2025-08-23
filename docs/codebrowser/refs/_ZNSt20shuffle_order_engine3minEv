@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='1439' ll='1441' type='static std::shuffle_order_engine::result_type std::shuffle_order_engine::min()'/>
+<use f='include/c++/11/bits/random.tcc' l='840' u='c' c='_ZNSt20shuffle_order_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='842' u='c' c='_ZNSt20shuffle_order_engineclEv'/>
+<doc f='include/c++/11/bits/random.h' l='1436'>/**
+       * Gets the minimum value in the generated random number range.
+       */</doc>

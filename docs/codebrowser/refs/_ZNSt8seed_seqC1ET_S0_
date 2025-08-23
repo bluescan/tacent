@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='6080' type='void std::seed_seq::seed_seq(_InputIterator __begin, _InputIterator __end)'/>
+<def f='include/c++/11/bits/random.tcc' l='3244' ll='3252' type='void std::seed_seq::seed_seq(_InputIterator __begin, _InputIterator __end)'/>

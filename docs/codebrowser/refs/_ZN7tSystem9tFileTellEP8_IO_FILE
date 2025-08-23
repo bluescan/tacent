@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='66' type='int tSystem::tFileTell(tFileHandle )'/>
+<def f='Modules/System/Inc/System/tFile.h' l='763' ll='766' type='int tSystem::tFileTell(tFileHandle handle)'/>
+<use f='Modules/System/Src/tChunk.cpp' l='177' u='c' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='196' u='c' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='247' u='c' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tFile.cpp' l='143' u='c' c='_ZN7tSystem12tGetFileSizeEP8_IO_FILE'/>

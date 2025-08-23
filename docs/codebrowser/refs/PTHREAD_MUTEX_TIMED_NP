@@ -1,0 +1,5 @@
+<dec f='include/pthread.h' l='49' type='0'/>
+<use f='include/pthread.h' l='55'/>
+<use f='include/pthread.h' l='62'/>
+<use f='include/c++/11/bits/std_mutex.h' l='63' macro='1'/>
+<use f='include/c++/11/ext/concurrence.h' l='119' macro='1'/>

@@ -1,0 +1,7 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='328' u='c' c='_ZN12tChunkReaderD1Ev'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='347' type='void tChunkReader::UnLoad()'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='346'>// Unloads from memory any buffers being maintained by tChunkReader.</doc>
+<use f='Modules/System/Src/tChunk.cpp' l='770' u='c' c='_ZN12tChunkReader4LoadERK7tStringPh'/>
+<use f='Modules/System/Src/tChunk.cpp' l='805' u='c' c='_ZN12tChunkReader4LoadEPhi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='817' u='c' c='_ZN12tChunkReader8LoadSafeERK7tString'/>
+<def f='Modules/System/Src/tChunk.cpp' l='857' ll='866' type='void tChunkReader::UnLoad()'/>

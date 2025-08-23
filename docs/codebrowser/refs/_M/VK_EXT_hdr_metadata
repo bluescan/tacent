@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12321'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12320'>// VK_EXT_hdr_metadata is a preprocessor guard. Do not pass it to API calls.</doc>

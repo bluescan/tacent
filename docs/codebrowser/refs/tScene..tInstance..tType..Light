@@ -1,0 +1,2 @@
+<dec f='Modules/Scene/Inc/Scene/tInstance.h' l='47' type='4'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='693' u='r' c='_ZN6tScene6tWorld15CorrectLightIDsER7tItListINS_6tLightEERS1_INS_9tInstanceEE'/>

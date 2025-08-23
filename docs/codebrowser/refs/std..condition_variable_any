@@ -1,0 +1,24 @@
+<def f='include/c++/11/condition_variable' l='242' ll='441'/>
+<use f='include/c++/11/condition_variable' l='286' c='_ZNSt3_V222condition_variable_anyC1ERKS0_'/>
+<use f='include/c++/11/condition_variable' l='287' c='_ZNSt3_V222condition_variable_anyaSERKS0_'/>
+<use f='include/c++/11/condition_variable' l='287' c='_ZNSt3_V222condition_variable_anyaSERKS0_'/>
+<size>64</size>
+<doc f='include/c++/11/condition_variable' l='240'>/// condition_variable_any
+  // Like above, but mutex is not required to have try_lock.</doc>
+<mbr r='std::condition_variable_any::_M_cond' o='0' t='std::condition_variable'/>
+<mbr r='std::condition_variable_any::_M_mutex' o='384' t='shared_ptr&lt;std::mutex&gt;'/>
+<fun r='_ZNSt3_V222condition_variable_anyC1Ev'/>
+<fun r='_ZNSt3_V222condition_variable_anyD1Ev'/>
+<fun r='_ZNSt3_V222condition_variable_anyC1ERKS0_'/>
+<fun r='_ZNSt3_V222condition_variable_anyaSERKS0_'/>
+<fun r='_ZNSt3_V222condition_variable_any10notify_oneEv'/>
+<fun r='_ZNSt3_V222condition_variable_any10notify_allEv'/>
+<fun r='_ZNSt3_V222condition_variable_any4waitERT_'/>
+<fun r='_ZNSt3_V222condition_variable_any4waitERT_T0_'/>
+<fun r='_ZNSt3_V222condition_variable_any10wait_untilERT_RKNSt6chrono10time_pointIT0_T1_EE'/>
+<fun r='_ZNSt3_V222condition_variable_any10wait_untilERT_RKNSt6chrono10time_pointIT0_T1_EET2_'/>
+<fun r='_ZNSt3_V222condition_variable_any8wait_forERT_RKNSt6chrono8durationIT0_T1_EE'/>
+<fun r='_ZNSt3_V222condition_variable_any8wait_forERT_RKNSt6chrono8durationIT0_T1_EET2_'/>
+<fun r='_ZNSt3_V222condition_variable_any4waitERT_St10stop_tokenT0_'/>
+<fun r='_ZNSt3_V222condition_variable_any10wait_untilERT_St10stop_tokenRKNSt6chrono10time_pointIT0_T1_EET2_'/>
+<fun r='_ZNSt3_V222condition_variable_any8wait_forERT_St10stop_tokenRKNSt6chrono8durationIT0_T1_EET2_'/>

@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tPrint.h' l='260' type='tString tsrPrint(int8 value)'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='259'>// Non-formatted print. Allows simple conversion from arbitrary type to a string formatted in a reasonabe way.</doc>

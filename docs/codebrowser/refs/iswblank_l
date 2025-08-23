@@ -1,0 +1,4 @@
+<dec f='include/wctype.h' l='113' type='int iswblank_l(wint_t __wc, locale_t __locale)'/>
+<doc f='include/wctype.h' l='110'>/* Test for any wide character that corresponds to a standard blank
+   wide character or a locale-specific set of wide characters for
+   which `iswalnum&apos; is false.  */</doc>

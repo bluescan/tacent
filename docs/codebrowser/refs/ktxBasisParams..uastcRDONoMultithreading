@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1465' type='ktx_bool_t'/>
+<offset>584</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1463'>/*!&lt; Do not favor simpler UASTC modes in RDO mode.
+         */</doc>

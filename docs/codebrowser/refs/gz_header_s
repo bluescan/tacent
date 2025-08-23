@@ -1,0 +1,20 @@
+<def f='include/zlib.h' l='114' ll='129'/>
+<use f='include/zlib.h' l='114'/>
+<size>80</size>
+<doc f='include/zlib.h' l='110'>/*
+     gzip header information passed to and from zlib routines.  See RFC 1952
+  for more details on the meanings of these fields.
+*/</doc>
+<mbr r='gz_header_s::text' o='0' t='int'/>
+<mbr r='gz_header_s::time' o='64' t='uLong'/>
+<mbr r='gz_header_s::xflags' o='128' t='int'/>
+<mbr r='gz_header_s::os' o='160' t='int'/>
+<mbr r='gz_header_s::extra' o='192' t='Bytef *'/>
+<mbr r='gz_header_s::extra_len' o='256' t='uInt'/>
+<mbr r='gz_header_s::extra_max' o='288' t='uInt'/>
+<mbr r='gz_header_s::name' o='320' t='Bytef *'/>
+<mbr r='gz_header_s::name_max' o='384' t='uInt'/>
+<mbr r='gz_header_s::comment' o='448' t='Bytef *'/>
+<mbr r='gz_header_s::comm_max' o='512' t='uInt'/>
+<mbr r='gz_header_s::hcrc' o='544' t='int'/>
+<mbr r='gz_header_s::done' o='576' t='int'/>

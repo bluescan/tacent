@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11398' ll='11402'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11398'/>
+<size>24</size>
+<mbr r='VkDedicatedAllocationImageCreateInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDedicatedAllocationImageCreateInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkDedicatedAllocationImageCreateInfoNV::dedicatedAllocation' o='128' t='VkBool32'/>

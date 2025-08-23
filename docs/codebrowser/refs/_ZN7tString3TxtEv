@@ -1,0 +1,8 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='246' type='char * tString::Txt()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='243'>// Many other functions and libraries that are UTF-8 compliant do not yet (and may never) use the proper char8_t
+	// type and use char* and const char*. These functions allow you to retrieve the tString using the char type.
+	// You can also use these with tPrintf and %s. These are synonyms of the above 4 calls.</doc>
+<use f='Modules/System/Src/tPrint.cpp' l='521' u='c' c='_Z9tsvPrintfR7tStringPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='544' u='c' c='_Z10tsavPrintfR7tStringPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2143' u='c' c='_ZN7tSystem7tFtostrER7tStringfb'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2188' u='c' c='_ZN7tSystem7tDtostrER7tStringdb'/>

@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/refwrap.h' l='127' ll='129'/>
+<def f='include/c++/11/bits/refwrap.h' l='132' ll='134'/>
+<def f='include/c++/11/bits/refwrap.h' l='137' ll='139'/>
+<def f='include/c++/11/bits/refwrap.h' l='142' ll='144'/>
+<def f='include/c++/11/bits/refwrap.h' l='147' ll='150'/>
+<use f='include/c++/11/bits/refwrap.h' l='156'/>
+<doc f='include/c++/11/bits/refwrap.h' l='131'>/// Retrieve the result type for a function type.</doc>
+<doc f='include/c++/11/bits/refwrap.h' l='136'>/// Retrieve the result type for a varargs function type.</doc>
+<doc f='include/c++/11/bits/refwrap.h' l='141'>/// Retrieve the result type for a function pointer.</doc>
+<doc f='include/c++/11/bits/refwrap.h' l='146'>/// Retrieve the result type for a varargs function pointer.</doc>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/basic_string.h' l='857' ll='859' type='std::basic_string::const_reverse_iterator std::basic_string::rbegin() const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='852'>/**
+       *  Returns a read-only (constant) reverse iterator that points
+       *  to the last character in the %string.  Iteration is done in
+       *  reverse element order.
+       */</doc>

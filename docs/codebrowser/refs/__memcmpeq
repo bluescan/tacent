@@ -1,0 +1,14 @@
+<dec f='include/string.h' l='80' type='int __memcmpeq(const void * __s1, const void * __s2, size_t __n)'/>
+<doc f='include/string.h' l='67'>/* Compare N bytes of S1 and S2.  Return zero if S1 and S2 are equal.
+   Return some non-zero value otherwise.
+
+   Essentially __memcmpeq has the exact same semantics as memcmp
+   except the return value is less constrained.  memcmp is always a
+   correct implementation of __memcmpeq.  As well !!memcmp, -memcmp,
+   or bcmp are correct implementations.
+
+   __memcmpeq is meant to be used by compilers when memcmp return is
+   only used for its bolean value.
+
+   __memcmpeq is declared only for use by compilers.  Programs should
+   continue to use memcmp.  */</doc>

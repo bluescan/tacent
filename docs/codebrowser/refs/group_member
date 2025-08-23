@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='715' type='int group_member(__gid_t __gid)'/>
+<doc f='include/unistd.h' l='714'>/* Return nonzero iff the calling process is in group GID.  */</doc>

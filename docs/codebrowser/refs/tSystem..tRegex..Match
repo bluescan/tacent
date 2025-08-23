@@ -1,0 +1,4 @@
+<inh f='Modules/Foundation/Inc/Foundation/tList.h' l='37' c='tLink'/>
+<use f='Modules/System/Src/tRegex.cpp' l='862' c='_ZNK7tSystem6tRegex6SearchEPKcS2_R5tListINS0_5MatchEE'/>
+<use f='Modules/System/Src/tRegex.cpp' l='899' c='_ZNK7tSystem6tRegex6SearchEPKcS2_R5tListINS0_5MatchEE'/>
+<size>24</size>

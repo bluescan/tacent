@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/unique_ptr.h' l='155' u='w' c='_ZNSt15__uniq_ptr_implC1ENS_4_PtrIT_T0_vE4typeE'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='159' u='w' c='_ZNSt15__uniq_ptr_implC1ENS_4_PtrIT_T0_vE4typeEOTL0__'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='162' u='w' c='_ZNSt15__uniq_ptr_implC1EOSt15__uniq_ptr_implIT_T0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='172' c='_ZNSt15__uniq_ptr_impl6_M_ptrEv'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='173' c='_ZNKSt15__uniq_ptr_impl6_M_ptrEv'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='174' c='_ZNSt15__uniq_ptr_impl10_M_deleterEv'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='175' c='_ZNKSt15__uniq_ptr_impl10_M_deleterEv'/>
+<dec f='include/c++/11/bits/unique_ptr.h' l='201' type='tuple&lt;std::__uniq_ptr_impl::pointer, _Dp&gt;'/>

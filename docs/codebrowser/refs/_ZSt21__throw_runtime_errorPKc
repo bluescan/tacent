@@ -1,0 +1,19 @@
+<dec f='include/c++/11/bits/functexcept.h' l='85' type='void std::__throw_runtime_error(const char * )'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='207' u='c' c='_ZNSt8__detail11__bessel_jnET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='264' u='c' c='_ZNSt8__detail11__bessel_jnET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='315' u='c' c='_ZNSt8__detail11__bessel_jnET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='183' u='c' c='_ZNSt8__detail18__expint_En_seriesEjT_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='227' u='c' c='_ZNSt8__detail21__expint_En_cont_fracEjT_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='104' u='c' c='_ZNSt8__detail20__conf_hyperg_seriesET_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='209' u='c' c='_ZNSt8__detail18__conf_hyperg_lukeET_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='292' u='c' c='_ZNSt8__detail15__hyperg_seriesET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='401' u='c' c='_ZNSt8__detail13__hyperg_lukeET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='512' u='c' c='_ZNSt8__detail16__hyperg_reflectET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='575' u='c' c='_ZNSt8__detail16__hyperg_reflectET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='656' u='c' c='_ZNSt8__detail16__hyperg_reflectET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='671' u='c' c='_ZNSt8__detail16__hyperg_reflectET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='687' u='c' c='_ZNSt8__detail16__hyperg_reflectET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='695' u='c' c='_ZNSt8__detail16__hyperg_reflectET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='139' u='c' c='_ZNSt8__detail11__bessel_ikET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='192' u='c' c='_ZNSt8__detail11__bessel_ikET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='228' u='c' c='_ZNSt8__detail11__bessel_ikET_S0_RS0_S1_S1_S1_'/>

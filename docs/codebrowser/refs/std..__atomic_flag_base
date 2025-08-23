@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/atomic_base.h' l='186' ll='189'/>
+<ovr f='include/c++/11/bits/atomic_base.h' l='196' c='std::atomic_flag'/>
+<use f='include/c++/11/bits/atomic_base.h' l='196'/>
+<use f='include/c++/11/bits/atomic_base.h' l='206' c='_ZNSt11atomic_flagC1Eb'/>
+<size>1</size>
+<mbr r='std::__atomic_flag_base::_M_i' o='0' t='std::__atomic_flag_data_type'/>

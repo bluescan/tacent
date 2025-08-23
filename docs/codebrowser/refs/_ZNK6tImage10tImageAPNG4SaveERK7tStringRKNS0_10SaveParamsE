@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='229' u='c' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringNS0_7tFormatEi'/>
+<def f='Modules/Image/Src/tImageAPNG.cpp' l='233' ll='326' type='tImageAPNG::tFormat tImage::tImageAPNG::Save(const tString &amp; apngFile, const tImage::tImageAPNG::SaveParams &amp; params = tImage::tImageAPNG::SaveParams()) const'/>

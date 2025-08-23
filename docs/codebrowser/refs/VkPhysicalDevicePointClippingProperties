@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5337' ll='5341'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5337'/>
+<size>24</size>
+<mbr r='VkPhysicalDevicePointClippingProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDevicePointClippingProperties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDevicePointClippingProperties::pointClippingBehavior' o='128' t='VkPointClippingBehavior'/>

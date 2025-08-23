@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='2059' ll='2061' type='std::normal_distribution::param_type std::normal_distribution::param() const'/>
+<doc f='include/c++/11/bits/random.h' l='2056'>/**
+       * @brief Returns the parameter set of the distribution.
+       */</doc>

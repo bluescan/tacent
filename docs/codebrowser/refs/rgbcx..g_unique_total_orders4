@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='224' ll='257' type='uint8_t[969][4]'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1871' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1872' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1873' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1874' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1983' u='r' c='_ZN5rgbcxL36compute_least_squares_endpoints4_rgbEPNS_5vec3FES1_iiifffjPKjS3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1984' u='r' c='_ZN5rgbcxL36compute_least_squares_endpoints4_rgbEPNS_5vec3FES1_iiifffjPKjS3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1984' u='r' c='_ZN5rgbcxL36compute_least_squares_endpoints4_rgbEPNS_5vec3FES1_iiifffjPKjS3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1985' u='r' c='_ZN5rgbcxL36compute_least_squares_endpoints4_rgbEPNS_5vec3FES1_iiifffjPKjS3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1985' u='r' c='_ZN5rgbcxL36compute_least_squares_endpoints4_rgbEPNS_5vec3FES1_iiifffjPKjS3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1985' u='r' c='_ZN5rgbcxL36compute_least_squares_endpoints4_rgbEPNS_5vec3FES1_iiifffjPKjS3_S3_'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='222'>// All total orderings for 16 pixels 2-bit selectors.
+	// BC1 selector order 0, 2, 3, 1 (i.e. the selectors are reordered into linear order).</doc>

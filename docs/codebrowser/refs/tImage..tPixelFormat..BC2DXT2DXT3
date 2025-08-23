@@ -1,0 +1,20 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='159' type='38'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='555' c='_ZN6tImage14tIsAlphaFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='159'>// BC 2, DXT2 (premult-alpha) and DXT3 share the same format. Large alpha gradients (alpha banding).</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='562' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='563' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='564' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='734' u='r' c='_ZN6tImage4tDDS24GetFormatInfo_FromFourCCERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='735' u='r' c='_ZN6tImage4tDDS24GetFormatInfo_FromFourCCERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='85' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='86' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='386' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='387' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='307' u='r' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='308' u='r' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='411' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='412' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='692' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1362' c='_ZN6tImage20CanReverseRowData_BCENS_12tPixelFormatEi'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1412' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='168' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>

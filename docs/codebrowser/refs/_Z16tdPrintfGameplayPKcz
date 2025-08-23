@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='225' type='int tdPrintfGameplay(const char * format)'/>
+<def f='Modules/System/Inc/System/tPrint.h' l='345' ll='350' type='int tdPrintfGameplay(const char * f)'/>

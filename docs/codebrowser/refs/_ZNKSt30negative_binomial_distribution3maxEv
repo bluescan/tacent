@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='4292' ll='4294' type='std::negative_binomial_distribution::result_type std::negative_binomial_distribution::max() const'/>
+<doc f='include/c++/11/bits/random.h' l='4289'>/**
+       * @brief Returns the least upper bound value of the distribution.
+       */</doc>

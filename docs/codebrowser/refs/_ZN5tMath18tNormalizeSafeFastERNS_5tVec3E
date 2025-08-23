@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='387' type='bool tMath::tNormalizeSafeFast(tMath::tVec3 &amp; v)'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='62' u='c' c='_ZN5tMath8tVector317NormalizeSafeFastEv'/>

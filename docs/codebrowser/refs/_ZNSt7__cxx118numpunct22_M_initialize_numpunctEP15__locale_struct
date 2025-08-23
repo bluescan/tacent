@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/locale_facets.h' l='1699' u='c' c='_ZNSt7__cxx118numpunctC1Em'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1713' u='c' c='_ZNSt7__cxx118numpunctC1EPSt16__numpunct_cacheIT_Em'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1727' u='c' c='_ZNSt7__cxx118numpunctC1EP15__locale_structm'/>
+<dec f='include/c++/11/bits/locale_facets.h' l='1882' type='void std::numpunct::_M_initialize_numpunct(std::__c_locale __cloc = 0)'/>
+<dec f='include/c++/11/bits/locale_facets.h' l='1893' type='void std::numpunct&lt;char&gt;::_M_initialize_numpunct(std::__c_locale __cloc)'/>
+<dec f='include/c++/11/bits/locale_facets.h' l='1901' type='void std::numpunct&lt;wchar_t&gt;::_M_initialize_numpunct(std::__c_locale __cloc)'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1880'>// For use at construction time only.</doc>

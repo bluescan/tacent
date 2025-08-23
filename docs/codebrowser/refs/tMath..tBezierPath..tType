@@ -1,0 +1,9 @@
+<def f='Modules/Math/Inc/Math/tSpline.h' l='103' ll='107'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='115' c='_ZN5tMath11tBezierPathC1EPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='120' c='_ZN5tMath11tBezierPathC1EPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='126' c='_ZNK5tMath11tBezierPath7GetTypeEv'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='142' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='146' c='_ZN5tMath11tBezierPath15SetControlVertsEPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='213'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='261' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='373' c='_ZN5tMath11tBezierPath15SetControlVertsEPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE'/>

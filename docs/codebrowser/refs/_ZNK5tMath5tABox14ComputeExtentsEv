@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='315' type='tMath::tVector3 tMath::tABox::ComputeExtents() const'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='179' u='c' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>

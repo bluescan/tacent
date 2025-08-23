@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='164' type='struct _pthread_cleanup_buffer *'/>
+<offset>192</offset>
+<doc f='include/pthread.h' l='164'>/* Chaining of cleanup functions.  */</doc>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/std_mutex.h' l='114' ll='119' type='void std::mutex::unlock()'/>
+<use f='Modules/Foundation/Inc/Foundation/tPool.h' l='164' u='c' c='_ZN4tMem9tFastPool6MallocEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tPool.h' l='181' u='c' c='_ZN4tMem9tFastPool6MallocEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tPool.h' l='215' u='c' c='_ZN4tMem9tFastPool4FreeEPv'/>

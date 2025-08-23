@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10748' type='void vkGetRenderingAreaGranularityKHR(VkDevice device, const VkRenderingAreaInfoKHR * pRenderingAreaInfo, VkExtent2D * pGranularity)'/>

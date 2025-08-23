@@ -1,0 +1,6 @@
+<dec f='include/stdlib.h' l='738' type='char * mkdtemp(char * __template)'/>
+<doc f='include/stdlib.h' l='733'>/* Create a unique temporary directory from TEMPLATE.
+   The last six characters of TEMPLATE must be &quot;XXXXXX&quot;;
+   they are replaced with a string that makes the directory name unique.
+   Returns TEMPLATE, or a null pointer if it cannot get a unique name.
+   The directory is created mode 700.  */</doc>

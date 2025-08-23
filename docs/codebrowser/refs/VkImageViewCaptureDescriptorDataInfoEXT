@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15569' ll='15573'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15569'/>
+<size>24</size>
+<mbr r='VkImageViewCaptureDescriptorDataInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageViewCaptureDescriptorDataInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkImageViewCaptureDescriptorDataInfoEXT::imageView' o='128' t='VkImageView'/>

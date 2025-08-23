@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='272' type='bool tImage::tIsVendorFormat(tImage::tPixelFormat )'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='527' ll='530' type='bool tImage::tIsVendorFormat(tImage::tPixelFormat format)'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='496' u='c' c='_ZN6tImage14tGetBlockWidthENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='515' u='c' c='_ZN6tImage15tGetBlockHeightENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='543' u='c' c='_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE'/>

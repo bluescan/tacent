@@ -1,0 +1,3 @@
+<dec f='include/wctype.h' l='76' type='int iswdigit_l(wint_t __wc, locale_t __locale)'/>
+<doc f='include/wctype.h' l='74'>/* Test for any wide character that corresponds to a decimal-digit
+   character.  */</doc>

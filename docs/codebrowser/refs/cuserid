@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='844' type='char * cuserid(char * __s)'/>
+<doc f='include/stdio.h' l='843'>/* Return the name of the current user.  */</doc>

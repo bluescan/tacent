@@ -1,0 +1,9 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='132' type='int tString::Reserve(int numUnits)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='145' u='c' c='_ZN7tString4GrowEi'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='703' ll='720' type='int tString::Reserve(int numUnits)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='729' u='c' c='_ZN7tString6ShrinkEv'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='127'>// This function is for efficiency only. It does not modify the string contents. It simply makes sure the capacity
+	// of the string is big enough to hold numUnits units (total). It returns the new capacity after any required
+	// adjustments are made. The returned value will be &gt;= Length(). You can also use this function to shrink the mem
+	// used -- just call it with a value less than the current capacity. It won&apos;t be able to reduce it lower than the
+	// current StringLength (or the MinCapacity) however.</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Src/tImageHDR.cpp' l='251' ll='266' type='static void tImage::tImageHDR::AdjustExposure(tPixel4b * scan, int len, int adjust)'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='359' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>

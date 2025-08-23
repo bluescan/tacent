@@ -1,0 +1,10 @@
+<dec f='include/c++/11/fstream' l='151' type='bool'/>
+<use f='include/c++/11/bits/fstream.tcc' l='54' u='r' c='_ZNSt13basic_filebuf27_M_allocate_internal_bufferEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='57' u='w' c='_ZNSt13basic_filebuf27_M_allocate_internal_bufferEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='66' u='r' c='_ZNSt13basic_filebuf26_M_destroy_internal_bufferEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='70' u='w' c='_ZNSt13basic_filebuf26_M_destroy_internal_bufferEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='84' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='105' u='w' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='136' u='w' c='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='164' c='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>
+<doc f='include/c++/11/fstream' l='150'>// Set iff _M_buf is allocated memory from _M_allocate_internal_buffer.</doc>

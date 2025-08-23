@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1040' u='c' c='_ZNKSt19__shared_ptr_accessIT_XT0_ELb1ELb0EEixEl'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1042' u='c' c='_ZNKSt19__shared_ptr_accessIT_XT0_ELb1ELb0EEixEl'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1046' ll='1048' type='std::__shared_ptr_access&lt;type-parameter-0-0, _Lp, true, false&gt;::element_type * std::__shared_ptr_access&lt;type-parameter-0-0, _Lp, true, false&gt;::_M_get() const'/>

@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/basic_ios.h' l='179' ll='181' type='bool std::basic_ios::good() const'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='173'>/**
+       *  @brief  Fast error checking.
+       *  @return  True if no error flags are set.
+       *
+       *  A wrapper around rdstate.
+      */</doc>

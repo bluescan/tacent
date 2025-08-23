@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='1829' type='const char *'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='46' u='w' c='_ZNSt7__cxx118messagesC1Em'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='52' u='w' c='_ZNSt7__cxx118messagesC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='59' u='w' c='_ZNSt7__cxx118messagesC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='62' u='w' c='_ZNSt7__cxx118messagesC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='81' u='r' c='_ZNSt7__cxx118messagesD1Ev'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='82' u='r' c='_ZNSt7__cxx118messagesD1Ev'/>

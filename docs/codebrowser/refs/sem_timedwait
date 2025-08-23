@@ -1,0 +1,2 @@
+<dec f='include/semaphore.h' l='63' type='int sem_timedwait(sem_t *__restrict __sem, const struct timespec *__restrict __abstime)'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='136' u='c' c='_ZNSt20__platform_semaphore25_M_try_acquire_until_implERKNSt6chrono10time_pointINS0_3_V212system_clockENS0_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13838' ll='13842'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13838'/>
+<size>24</size>
+<mbr r='VkInitializePerformanceApiInfoINTEL::sType' o='0' t='VkStructureType'/>
+<mbr r='VkInitializePerformanceApiInfoINTEL::pNext' o='64' t='const void *'/>
+<mbr r='VkInitializePerformanceApiInfoINTEL::pUserData' o='128' t='void *'/>

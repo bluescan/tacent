@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16355'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16354'>// VK_EXT_pipeline_properties is a preprocessor guard. Do not pass it to API calls.</doc>

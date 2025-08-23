@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2454' ll='2467' type='void rgbcx::precise_round_565_noscale(rgbcx::vec3F xl, rgbcx::vec3F xh, int &amp; trial_lr, int &amp; trial_lg, int &amp; trial_lb, int &amp; trial_hr, int &amp; trial_hg, int &amp; trial_hb)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3202' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>

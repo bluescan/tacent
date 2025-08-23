@@ -1,0 +1,19 @@
+<def f='include/c++/11/bits/node_handle.h' l='177' ll='226'/>
+<use f='include/c++/11/bits/node_handle.h' l='182' c='_ZNSt19_Node_handle_common15_Optional_allocC1EOS0_'/>
+<use f='include/c++/11/bits/node_handle.h' l='183' c='_ZNSt19_Node_handle_common15_Optional_allocaSEOS0_'/>
+<use f='include/c++/11/bits/node_handle.h' l='183' c='_ZNSt19_Node_handle_common15_Optional_allocaSEOS0_'/>
+<use f='include/c++/11/bits/node_handle.h' l='202' c='_ZNSt19_Node_handle_common15_Optional_alloc4swapERS0_'/>
+<use f='include/c++/11/bits/node_handle.h' l='228'/>
+<doc f='include/c++/11/bits/node_handle.h' l='175'>// A simplified, non-copyable std::optional&lt;_NodeAlloc&gt;.
+      // Call release() before destruction iff the allocator member is active.</doc>
+<fun r='_ZNSt19_Node_handle_common15_Optional_allocC1Ev'/>
+<fun r='_ZNSt19_Node_handle_common15_Optional_allocD1Ev'/>
+<fun r='_ZNSt19_Node_handle_common15_Optional_allocC1EOS0_'/>
+<fun r='_ZNSt19_Node_handle_common15_Optional_allocaSEOS0_'/>
+<fun r='_ZNSt19_Node_handle_common15_Optional_allocC1ERKT0_'/>
+<fun r='_ZNSt19_Node_handle_common15_Optional_allocaSEOT0_'/>
+<fun r='_ZNSt19_Node_handle_common15_Optional_alloc4swapERS0_'/>
+<fun r='_ZNSt19_Node_handle_common15_Optional_allocdeEv'/>
+<fun r='_ZNSt19_Node_handle_common15_Optional_alloc7releaseEv'/>
+<mbr r='std::_Node_handle_common::_Optional_alloc::_M_empty' t='std::_Node_handle_common::_Optional_alloc::_Empty'/>
+<mbr r='std::_Node_handle_common::_Optional_alloc::_M_alloc' t='_NodeAlloc'/>

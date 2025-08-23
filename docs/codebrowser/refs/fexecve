@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='578' type='int fexecve(int __fd, char *const * __argv, char *const * __envp)'/>
+<doc f='include/unistd.h' l='576'>/* Execute the file FD refers to, overlaying the running program image.
+   ARGV and ENVP are passed to the new program, as for `execve&apos;.  */</doc>

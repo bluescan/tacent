@@ -1,0 +1,1 @@
+<def f='Modules/Scene/Src/tWorld.cpp' l='1276' ll='1296' type='int tScene::tWorld::GetMaterials(const tScene::tMesh &amp; mesh, tItList&lt;tScene::tMaterial&gt; &amp; materials)'/>

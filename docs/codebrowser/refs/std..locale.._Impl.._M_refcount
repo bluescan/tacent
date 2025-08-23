@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='544' type='_Atomic_word'/>
+<use f='include/c++/11/bits/locale_classes.h' l='559' u='a' c='_ZNSt6locale5_Impl16_M_add_referenceEv'/>
+<use f='include/c++/11/bits/locale_classes.h' l='566' u='a' c='_ZNSt6locale5_Impl19_M_remove_referenceEv'/>
+<offset>0</offset>
+<doc f='include/c++/11/bits/locale_classes.h' l='543'>// Data Members.</doc>

@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_uninitialized.h' l='569' ll='588'/>
+<def f='include/c++/11/bits/stl_uninitialized.h' l='590' ll='607'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='591'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='638' c='_ZSt25__uninitialized_default_nT_T0_'/>
+<size>1</size>
+<fun r='_ZNSt27__uninitialized_default_n_118__uninit_default_nETL0__TL0_0_'/>
+<fun r='_ZNSt27__uninitialized_default_n_1ILb1EE18__uninit_default_nET_T0_'/>

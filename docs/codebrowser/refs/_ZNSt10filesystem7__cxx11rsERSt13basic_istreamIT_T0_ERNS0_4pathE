@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_path.h' l='506' ll='513' type='std::basic_istream&lt;_CharT, _Traits&gt; &amp; std::filesystem::operator&gt;&gt;(std::basic_istream&lt;_CharT, _Traits&gt; &amp; __is, std::filesystem::path &amp; __p)'/>

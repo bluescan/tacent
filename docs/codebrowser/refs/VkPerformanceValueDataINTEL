@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13825' ll='13831'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13825'/>
+<size>8</size>
+<mbr r='VkPerformanceValueDataINTEL::value32' o='0' t='uint32_t'/>
+<mbr r='VkPerformanceValueDataINTEL::value64' o='0' t='uint64_t'/>
+<mbr r='VkPerformanceValueDataINTEL::valueFloat' o='0' t='float'/>
+<mbr r='VkPerformanceValueDataINTEL::valueBool' o='0' t='VkBool32'/>
+<mbr r='VkPerformanceValueDataINTEL::valueString' o='0' t='const char *'/>

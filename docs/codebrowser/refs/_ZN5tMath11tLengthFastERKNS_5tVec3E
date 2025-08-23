@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='349' type='float tMath::tLengthFast(const tMath::tVec3 &amp; v)'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='53' u='c' c='_ZNK5tMath8tVector310LengthFastEv'/>

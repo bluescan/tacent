@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11067' ll='11077'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11067'/>
+<size>64</size>
+<mbr r='VkBindDescriptorSetsInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBindDescriptorSetsInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkBindDescriptorSetsInfoKHR::stageFlags' o='128' t='VkShaderStageFlags'/>
+<mbr r='VkBindDescriptorSetsInfoKHR::layout' o='192' t='VkPipelineLayout'/>
+<mbr r='VkBindDescriptorSetsInfoKHR::firstSet' o='256' t='uint32_t'/>
+<mbr r='VkBindDescriptorSetsInfoKHR::descriptorSetCount' o='288' t='uint32_t'/>
+<mbr r='VkBindDescriptorSetsInfoKHR::pDescriptorSets' o='320' t='const VkDescriptorSet *'/>
+<mbr r='VkBindDescriptorSetsInfoKHR::dynamicOffsetCount' o='384' t='uint32_t'/>
+<mbr r='VkBindDescriptorSetsInfoKHR::pDynamicOffsets' o='448' t='const uint32_t *'/>

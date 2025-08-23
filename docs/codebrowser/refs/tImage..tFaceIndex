@@ -1,0 +1,8 @@
+<def f='Modules/Image/Inc/Image/tBaseImage.h' l='27' ll='37'/>
+<doc f='Modules/Image/Inc/Image/tBaseImage.h' l='26'>// These are hany for all image types that may contain cubemaps.</doc>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='54' c='_ZN6tImage8tTextureC1ERK7tStringNS_10tFaceIndexEb'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='59' c='_ZN6tImage8tTextureC1ERNS_9tImageDDSENS_10tFaceIndexE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='87' c='_ZN6tImage8tTexture4LoadERK7tStringNS_10tFaceIndexEb'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='88' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='49' c='_ZN6tImage8tTexture4LoadERK7tStringNS_10tFaceIndexEb'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='64' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>

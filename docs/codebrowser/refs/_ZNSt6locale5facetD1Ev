@@ -1,0 +1,16 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='410' type='void std::locale::facet::~facet()'/>
+<ovr f='include/c++/11/bits/locale_classes.h' l='752' c='_ZNSt7__cxx117collateD1Ev'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='365' c='_ZNSt21__ctype_abstract_baseD1Ev'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='1646' c='_ZNSt16__numpunct_cacheD1Ev'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='2148' c='_ZNSt7num_getD1Ev'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='2513' c='_ZNSt7num_putD1Ev'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='408'>/// Facet destructor.</doc>
+<ovr f='include/c++/11/bits/codecvt.h' l='230' c='_ZNSt23__codecvt_abstract_baseD1Ev'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='150' c='_ZNSt17__timepunct_cacheD1Ev'/>
+<ovr f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='80' c='_ZNSt11__timepunctD1Ev'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='593' c='_ZNSt7__cxx118time_getD1Ev'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='864' c='_ZNSt8time_putD1Ev'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='1003' c='_ZNSt18__moneypunct_cacheD1Ev'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='1558' c='_ZNSt7__cxx119money_getD1Ev'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='1700' c='_ZNSt7__cxx119money_putD1Ev'/>
+<ovr f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='79' c='_ZNSt7__cxx118messagesD1Ev'/>

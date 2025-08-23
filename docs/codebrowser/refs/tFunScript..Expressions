@@ -1,0 +1,10 @@
+<use f='Modules/System/Inc/System/tScript.h' l='391' u='w' c='_ZN10tFunScriptC1Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='392' u='w' c='_ZN10tFunScriptC1ERK7tString'/>
+<use f='Modules/System/Inc/System/tScript.h' l='395' u='m' c='_ZN10tFunScript5ClearEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='399' u='m' c='_ZNK10tFunScript5FirstEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='400' u='m' c='_ZNK10tFunScript4LastEv'/>
+<dec f='Modules/System/Inc/System/tScript.h' l='403' type='tList&lt;tFunExpression&gt;'/>
+<offset>0</offset>
+<doc f='Modules/System/Inc/System/tScript.h' l='402'>// A tFunScript is just a list of expressions. A tree may be more powerful?</doc>
+<use f='Modules/System/Src/tScript.cpp' l='1149' u='m' c='_ZN10tFunScript4LoadERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='1182' u='m' c='_ZN10tFunScript4SaveERK7tString'/>

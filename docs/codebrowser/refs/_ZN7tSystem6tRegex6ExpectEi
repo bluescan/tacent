@@ -1,0 +1,5 @@
+<def f='Modules/System/Src/tRegex.cpp' l='126' ll='132' type='void tSystem::tRegex::Expect(int n)'/>
+<use f='Modules/System/Src/tRegex.cpp' l='344' u='c' c='_ZN7tSystem6tRegex7ElementEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='353' u='c' c='_ZN7tSystem6tRegex7ElementEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='360' u='c' c='_ZN7tSystem6tRegex7ElementEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='422' u='c' c='_ZN7tSystem6tRegex7ElementEv'/>

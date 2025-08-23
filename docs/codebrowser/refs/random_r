@@ -1,0 +1,1 @@
+<dec f='include/stdlib.h' l='435' type='int random_r(struct random_data *__restrict __buf, int32_t *__restrict __result)'/>

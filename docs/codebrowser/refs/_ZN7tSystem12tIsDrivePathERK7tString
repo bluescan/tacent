@@ -1,0 +1,7 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='142' type='bool tSystem::tIsDrivePath(const tString &amp; path)'/>
+<use f='Modules/System/Inc/System/tFile.h' l='789' u='c' c='_ZN7tSystem15tIsAbsolutePathERK7tString'/>
+<def f='Modules/System/Inc/System/tFile.h' l='805' ll='811' type='bool tSystem::tIsDrivePath(const tString &amp; path)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='140'>// Drive paths are DOS/Windows style absolute paths that begin with a drive letter followed by a colon.
+// For example, &quot;C:/Hello&quot; would return true, &quot;/mnt/c/Hello&quot; would return false.</doc>
+<use f='Modules/System/Src/tFile.cpp' l='228' u='c' c='_ZN7tSystem18tGetSimplifiedPathERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='390' u='c' c='_ZN7tSystem9tGetUpDirERK7tStringi'/>

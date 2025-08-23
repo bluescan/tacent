@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/hashtable.h' l='838' type='std::_Hashtable::__node_base_ptr std::_Hashtable::_M_get_previous_node(std::_Hashtable::size_type __bkt, std::_Hashtable::__node_ptr __n)'/>
+<use f='include/c++/11/bits/hashtable.h' l='1030' u='c' c='_ZNSt10_Hashtable7extractENSt8__detail7_InsertIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_XsrNSB_20__constant_iteratorsE5valueEE14const_iteratorE'/>
+<def f='include/c++/11/bits/hashtable.h' l='1938' ll='1952' type='std::_Hashtable::__node_base_ptr std::_Hashtable::_M_get_previous_node(std::_Hashtable::size_type __bkt, std::_Hashtable::__node_ptr __n)'/>
+<use f='include/c++/11/bits/hashtable.h' l='2157' u='c' c='_ZNSt10_Hashtable5eraseENSt8__detail7_InsertIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_XsrNSB_20__constant_iteratorsE5valueEE14const_iteratorE'/>
+<use f='include/c++/11/bits/hashtable.h' l='2281' u='c' c='_ZNSt10_Hashtable5eraseENSt8__detail7_InsertIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_XsrNSB_20__constant_iteratorsE5valueEE14const_iteratorESD_'/>
+<doc f='include/c++/11/bits/hashtable.h' l='836'>// Get the node before __n in the bucket __bkt</doc>

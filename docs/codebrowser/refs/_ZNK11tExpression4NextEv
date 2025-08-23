@@ -1,0 +1,8 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='83' type='tExpression tExpression::Next() const'/>
+<use f='Modules/System/Inc/System/tScript.h' l='193' u='c' c='_Z13GetAtomStringR11tExpression'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='44' u='c' c='_ZNK6tImage10tImageTIFF24ReadSoftwarePageDurationEP4tiff'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='45' u='c' c='_ZNK6tImage10tImageTIFF24ReadSoftwarePageDurationEP4tiff'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='81'>// If there aren&apos;t enough d&apos;s in the above commands or there are a variable number of items, use this until you get
+	// an invalid expression.</doc>
+<use f='Modules/System/Src/tScript.cpp' l='66' u='c' c='_ZNK11tExpression7CarCdrNEi'/>
+<def f='Modules/System/Src/tScript.cpp' l='73' ll='168' type='tExpression tExpression::Next() const'/>

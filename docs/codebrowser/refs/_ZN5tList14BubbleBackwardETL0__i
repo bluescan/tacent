@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='161' type='int tList::BubbleBackward(CompareFunc , int maxCompares = -1)'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='716' ll='769' type='int tList::BubbleBackward(CompareFunc compare, int maxCompares = -1)'/>

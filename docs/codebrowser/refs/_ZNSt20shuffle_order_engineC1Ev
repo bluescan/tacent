@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='1346' ll='1348' type='void std::shuffle_order_engine::shuffle_order_engine&lt;_RandomNumberEngine, __k&gt;()'/>
+<doc f='include/c++/11/bits/random.h' l='1341'>/**
+       * @brief Constructs a default %shuffle_order_engine engine.
+       *
+       * The underlying engine is default constructed as well.
+       */</doc>

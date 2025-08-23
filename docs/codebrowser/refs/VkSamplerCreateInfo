@@ -1,0 +1,21 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3709' ll='3728'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3709'/>
+<size>80</size>
+<mbr r='VkSamplerCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSamplerCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkSamplerCreateInfo::flags' o='128' t='VkSamplerCreateFlags'/>
+<mbr r='VkSamplerCreateInfo::magFilter' o='160' t='VkFilter'/>
+<mbr r='VkSamplerCreateInfo::minFilter' o='192' t='VkFilter'/>
+<mbr r='VkSamplerCreateInfo::mipmapMode' o='224' t='VkSamplerMipmapMode'/>
+<mbr r='VkSamplerCreateInfo::addressModeU' o='256' t='VkSamplerAddressMode'/>
+<mbr r='VkSamplerCreateInfo::addressModeV' o='288' t='VkSamplerAddressMode'/>
+<mbr r='VkSamplerCreateInfo::addressModeW' o='320' t='VkSamplerAddressMode'/>
+<mbr r='VkSamplerCreateInfo::mipLodBias' o='352' t='float'/>
+<mbr r='VkSamplerCreateInfo::anisotropyEnable' o='384' t='VkBool32'/>
+<mbr r='VkSamplerCreateInfo::maxAnisotropy' o='416' t='float'/>
+<mbr r='VkSamplerCreateInfo::compareEnable' o='448' t='VkBool32'/>
+<mbr r='VkSamplerCreateInfo::compareOp' o='480' t='VkCompareOp'/>
+<mbr r='VkSamplerCreateInfo::minLod' o='512' t='float'/>
+<mbr r='VkSamplerCreateInfo::maxLod' o='544' t='float'/>
+<mbr r='VkSamplerCreateInfo::borderColor' o='576' t='VkBorderColor'/>
+<mbr r='VkSamplerCreateInfo::unnormalizedCoordinates' o='608' t='VkBool32'/>

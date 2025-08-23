@@ -1,0 +1,5 @@
+<dec f='include/unistd.h' l='881' type='char * getlogin()'/>
+<doc f='include/unistd.h' l='877'>/* Return the login name of the user.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

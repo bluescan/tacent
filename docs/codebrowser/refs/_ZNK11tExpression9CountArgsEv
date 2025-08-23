@@ -1,0 +1,3 @@
+<def f='Modules/System/Inc/System/tScript.h' l='144' type='int tExpression::CountArgs() const'/>
+<use f='Modules/System/Inc/System/tScript.h' l='154' u='c' c='_ZNK11tExpression10CountItemsEv'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='144'>/* Not fast. */</doc>

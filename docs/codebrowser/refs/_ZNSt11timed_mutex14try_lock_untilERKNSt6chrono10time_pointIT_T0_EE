@@ -1,0 +1,1 @@
+<def f='include/c++/11/mutex' l='247' ll='249' type='bool std::timed_mutex::try_lock_until(const chrono::time_point&lt;_Clock, _Duration&gt; &amp; __atime)'/>

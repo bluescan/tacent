@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='146' ll='148' type='void std::_Sp_counted_base::_M_add_ref_copy()'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='272' ll='275' type='void std::_Sp_counted_base&lt;__gnu_cxx::_S_single&gt;::_M_add_ref_copy()'/>

@@ -1,0 +1,4 @@
+<dec f='include/string.h' l='87' type='void * memchr(void * __s, int __c, size_t __n)'/>
+<dec f='include/string.h' l='89' type='const void * memchr(const void * __s, int __c, size_t __n)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='39' u='c' c='_ZN4tStd7tMemchrEPvhi'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='40' u='c' c='_ZN4tStd7tMemchrEPKvhi'/>

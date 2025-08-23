@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18640'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18639'>// VK_NV_ray_tracing_validation is a preprocessor guard. Do not pass it to API calls.</doc>

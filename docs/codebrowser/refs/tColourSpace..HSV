@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='80' type='5'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='77'>// I don&apos;t think we&apos;re going to need it, but we could add sRGBA if needed, where A is also in standard space.
+	
+	// Hue, Saturation, and Value.</doc>

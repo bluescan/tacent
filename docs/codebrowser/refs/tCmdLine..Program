@@ -1,0 +1,6 @@
+<def f='Modules/System/Src/tCmdLine.cpp' l='38' type='tString'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='45' u='r' c='_ZN8tCmdLine11tGetProgramEv'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='329' u='m' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='334' u='m' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='540' u='m' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='542' u='r' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1560' type='20'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1555'>/*!&lt; Opaque+alpha. Slower to transcode than cTFPVRTC2_4_RGB.
+                 Premultiplied alpha is highly recommended, otherwise the
+                 color channel can leak into the alpha channel on transparent
+                 blocks. */</doc>

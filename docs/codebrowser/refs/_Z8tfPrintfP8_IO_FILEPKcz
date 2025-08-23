@@ -1,0 +1,15 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='293' type='int tfPrintf(tFileHandle dest, const char * format)'/>
+<def f='Modules/System/Src/tPrint.cpp' l='640' ll='647' type='int tfPrintf(tFileHandle dest, const char * format)'/>
+<use f='Modules/System/Src/tScript.cpp' l='1184' u='c' c='_ZN10tFunScript4SaveERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='1187' u='c' c='_ZN10tFunScript4SaveERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='1191' u='c' c='_ZN10tFunScript4SaveERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='1193' u='c' c='_ZN10tFunScript4SaveERK7tString'/>
+<use f='Modules/System/Src/tTime.cpp' l='232' u='c' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>
+<use f='Modules/System/Src/tTime.cpp' l='235' u='c' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>
+<use f='Modules/System/Src/tTime.cpp' l='237' u='c' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>
+<use f='Modules/System/Src/tTime.cpp' l='239' u='c' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>
+<use f='Modules/System/Src/tTime.cpp' l='243' u='c' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>
+<use f='Modules/System/Src/tTime.cpp' l='245' u='c' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>
+<use f='Modules/System/Src/tTime.cpp' l='247' u='c' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>
+<use f='Modules/System/Src/tTime.cpp' l='251' u='c' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>
+<use f='Modules/System/Src/tTime.cpp' l='253' u='c' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>

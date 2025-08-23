@@ -1,0 +1,5 @@
+<def f='include/c++/11/tuple' l='60'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/tuple' l='63' ll='64'/>
+<use f='include/c++/11/tuple' l='70'/>
+<doc f='include/c++/11/tuple' l='62'>// Using EBO for elements that are tuples causes ambiguous base errors.</doc>

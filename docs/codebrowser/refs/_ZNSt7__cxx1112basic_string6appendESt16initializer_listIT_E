@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/basic_string.h' l='1281' ll='1283' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::append(initializer_list&lt;_CharT&gt; __l)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1276'>/**
+       *  @brief  Append an initializer_list of characters.
+       *  @param __l  The initializer_list of characters to append.
+       *  @return  Reference to this string.
+       */</doc>

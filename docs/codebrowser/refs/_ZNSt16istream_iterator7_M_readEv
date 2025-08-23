@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/stream_iterator.h' l='73' u='c' c='_ZNSt16istream_iteratorC1ERSt13basic_istreamIT0_T1_E'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='110' u='c' c='_ZNSt16istream_iteratorppEv'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='121' u='c' c='_ZNSt16istream_iteratorppEi'/>
+<def f='include/c++/11/bits/stream_iterator.h' l='134' ll='142' type='void std::istream_iterator::_M_read()'/>

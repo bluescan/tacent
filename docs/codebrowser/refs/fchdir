@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='521' type='int fchdir(int __fd)'/>
+<doc f='include/unistd.h' l='520'>/* Change the process&apos;s working directory to the one FD is open on.  */</doc>

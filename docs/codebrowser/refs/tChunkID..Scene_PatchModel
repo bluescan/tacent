@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='479' type='2164375552'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='479'>// Not all models will be geometry. This guy will have a lot of the same chunks as the geom model.</doc>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1217' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>

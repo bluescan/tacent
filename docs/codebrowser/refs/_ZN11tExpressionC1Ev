@@ -1,0 +1,10 @@
+<def f='Modules/System/Inc/System/tScript.h' l='52' type='void tExpression::tExpression()'/>
+<use f='Modules/System/Inc/System/tScript.h' l='215' u='c' c='_ZN11tExprReaderC1Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='218' u='c' c='_ZN11tExprReaderC1ERK7tStringb'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='50'>// Creates an invalid expression. Useful for default arg vals in functions to possibly do something different if
+	// a valid expression isn&apos;t passed in.</doc>
+<use f='Modules/System/Src/tScript.cpp' l='44' u='c' c='_ZNK11tExpression3CarEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='51' u='c' c='_ZNK11tExpression3CarEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='94' u='c' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='165' u='c' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='482' u='c' c='_ZN11tExprReaderC1EiPPc'/>

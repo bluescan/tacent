@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/max_size_type.h' l='132' ll='157' type='std::ranges::__detail::__max_size_type &amp; std::ranges::__detail::__max_size_type::operator*=(std::ranges::__detail::__max_size_type __r)'/>
+<use f='include/c++/11/bits/max_size_type.h' l='326' u='c' c='_ZNSt6ranges8__detailmlENS0_15__max_size_typeERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='517' u='c' c='_ZNSt6ranges8__detail15__max_diff_typemLERKS1_'/>

@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/random.h' l='4465' type='double'/>
+<use f='include/c++/11/bits/random.tcc' l='1268' u='w' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1286' u='w' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>

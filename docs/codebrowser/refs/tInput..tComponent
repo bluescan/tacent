@@ -1,0 +1,48 @@
+<def f='Modules/Input/Inc/Input/tComp.h' l='24' ll='31'/>
+<size>40</size>
+<doc f='Modules/Input/Inc/Input/tComp.h' l='23'>// tComponents will eventually be the things that can be remapped by (controller) configurations.</doc>
+<fun r='_ZN6tInput10tComponentD1Ev'/>
+<ovr f='Modules/Input/Inc/Input/tCompButton.h' l='23' c='tInput::tCompButton'/>
+<use f='Modules/Input/Inc/Input/tCompButton.h' l='23'/>
+<use f='Modules/Input/Inc/Input/tCompButton.h' l='27' c='_ZN6tInput11tCompButtonC1ERK5tNameRSt5mutex'/>
+<size>40</size>
+<ovr f='Modules/Input/Inc/Input/tCompDial.h' l='23' c='tInput::tCompDial'/>
+<use f='Modules/Input/Inc/Input/tCompDial.h' l='23'/>
+<use f='Modules/Input/Inc/Input/tCompDial.h' l='27' c='_ZN6tInput9tCompDialC1ERK5tNameRSt5mutex'/>
+<size>40</size>
+<ovr f='Modules/Input/Inc/Input/tCompDirPad.h' l='23' c='tInput::tCompDirPad'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='23'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='27' c='_ZN6tInput11tCompDirPadC1ERK5tNameRSt5mutex'/>
+<size>40</size>
+<ovr f='Modules/Input/Inc/Input/tCompJoystick.h' l='24' c='tInput::tCompJoystick'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='24'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='28' c='_ZN6tInput13tCompJoystickC1ERK5tNameRSt5mutex'/>
+<size>40</size>
+<ovr f='Modules/Input/Inc/Input/tCompPedal.h' l='23' c='tInput::tCompPedal'/>
+<use f='Modules/Input/Inc/Input/tCompPedal.h' l='23'/>
+<use f='Modules/Input/Inc/Input/tCompPedal.h' l='27' c='_ZN6tInput10tCompPedalC1ERK5tNameRSt5mutex'/>
+<size>40</size>
+<ovr f='Modules/Input/Inc/Input/tCompScrubber.h' l='23' c='tInput::tCompScrubber'/>
+<use f='Modules/Input/Inc/Input/tCompScrubber.h' l='23'/>
+<use f='Modules/Input/Inc/Input/tCompScrubber.h' l='27' c='_ZN6tInput13tCompScrubberC1ERK5tNameRSt5mutex'/>
+<size>40</size>
+<ovr f='Modules/Input/Inc/Input/tCompSelector.h' l='23' c='tInput::tCompSelector'/>
+<use f='Modules/Input/Inc/Input/tCompSelector.h' l='23'/>
+<use f='Modules/Input/Inc/Input/tCompSelector.h' l='27' c='_ZN6tInput13tCompSelectorC1ERK5tNameRSt5mutex'/>
+<size>40</size>
+<ovr f='Modules/Input/Inc/Input/tCompSlider.h' l='23' c='tInput::tCompSlider'/>
+<use f='Modules/Input/Inc/Input/tCompSlider.h' l='23'/>
+<use f='Modules/Input/Inc/Input/tCompSlider.h' l='27' c='_ZN6tInput11tCompSliderC1ERK5tNameRSt5mutex'/>
+<size>40</size>
+<ovr f='Modules/Input/Inc/Input/tCompSwitch.h' l='23' c='tInput::tCompSwitch'/>
+<use f='Modules/Input/Inc/Input/tCompSwitch.h' l='23'/>
+<use f='Modules/Input/Inc/Input/tCompSwitch.h' l='27' c='_ZN6tInput11tCompSwitchC1ERK5tNameRSt5mutex'/>
+<size>40</size>
+<ovr f='Modules/Input/Inc/Input/tCompTrigger.h' l='23' c='tInput::tCompTrigger'/>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='23'/>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='27' c='_ZN6tInput12tCompTriggerC1ERK5tNameRSt5mutex'/>
+<size>40</size>
+<ovr f='Modules/Input/Inc/Input/tCompWheel.h' l='23' c='tInput::tCompWheel'/>
+<use f='Modules/Input/Inc/Input/tCompWheel.h' l='23'/>
+<use f='Modules/Input/Inc/Input/tCompWheel.h' l='27' c='_ZN6tInput10tCompWheelC1ERK5tNameRSt5mutex'/>
+<size>40</size>

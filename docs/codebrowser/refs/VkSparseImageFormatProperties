@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3376' ll='3380'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3376'/>
+<size>20</size>
+<mbr r='VkSparseImageFormatProperties::aspectMask' o='0' t='VkImageAspectFlags'/>
+<mbr r='VkSparseImageFormatProperties::imageGranularity' o='32' t='VkExtent3D'/>
+<mbr r='VkSparseImageFormatProperties::flags' o='128' t='VkSparseImageFormatFlags'/>

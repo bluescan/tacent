@@ -1,0 +1,40 @@
+<def f='include/c++/11/bits/cpp_type_traits.h' l='73'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='82'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='105'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='120'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='141'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='148'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='155'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='162'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='170'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='179'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='188'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='195'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='203'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='210'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='217'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='224'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='231'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='238'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='245'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='252'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='299'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='306'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='313'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='330'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='363'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='371'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='386'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='393'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='400'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='410'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='419'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='99'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='105'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2458'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1620' c='_ZNSt6vector18_M_assign_dispatchETL0__S0_St11__true_type'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1656' c='_ZNSt6vector18_M_insert_dispatchEN9__gnu_cxx17__normal_iteratorINSt12_Vector_baseIT_T0_E7pointerESt6vectorIS3_S4_EEETL0__SB_St11__true_type'/>
+<size>1</size>
+<use f='include/c++/11/bits/basic_string.h' l='262' c='_ZNSt7__cxx1112basic_string16_M_construct_auxETL0__S1_St11__true_type'/>
+<use f='include/c++/11/bits/basic_string.h' l='2265' c='_ZNSt7__cxx1112basic_string19_M_replace_dispatchEN9__gnu_cxx17__normal_iteratorINS1_14__alloc_traitsINS3_IT1_NS4_10value_typeEE6rebindIT_E5otherENS9_56992207'/>
+<size>1</size>

@@ -1,0 +1,5 @@
+<dec f='include/stdlib.h' l='956' type='int rpmatch(const char * __response)'/>
+<doc f='include/stdlib.h' l='952'>/* Determine whether the string value of RESPONSE matches the affirmation
+   or negative response expression as specified by the LC_MESSAGES category
+   in the program&apos;s current locale.  Returns 1 if affirmative, 0 if
+   negative, and -1 if not matching.  */</doc>

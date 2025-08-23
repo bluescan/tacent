@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>special_function_util.h source code [include/c++/11/tr1/special_function_util.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::__detail::__floating_point_constant,std::__detail::__numeric_constants "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/tr1/special_function_util.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>tr1</a>/<a href='special_function_util.h.html'>special_function_util.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Special functions -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2006-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">tr1/special_function_util.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{tr1/cmath}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i class="doc">// ISO C++ 14882 TR1: 5.2  Special functions</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i class="doc">// Written by Edward Smith-Rowland based on numerous mathematics books.</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="36">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_TR1_SPECIAL_FUNCTION_UTIL_H">_GLIBCXX_TR1_SPECIAL_FUNCTION_UTIL_H</span></u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_TR1_SPECIAL_FUNCTION_UTIL_H" data-ref="_M/_GLIBCXX_TR1_SPECIAL_FUNCTION_UTIL_H">_GLIBCXX_TR1_SPECIAL_FUNCTION_UTIL_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="40">40</th><td>{&nbsp</td></tr>
+<tr><th id="41">41</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#<span data-ppcond="43">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#628" title="1" data-ref="_M/_GLIBCXX_USE_STD_SPEC_FUNCS">_GLIBCXX_USE_STD_SPEC_FUNCS</a></u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#<span data-ppcond="43">elif</span> defined(_GLIBCXX_TR1_CMATH)</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><b>namespace</b> tr1&nbsp</td></tr>
+<tr><th id="46">46</th><td>{&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#else</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u># error do not include this header directly, use &lt;cmath&gt; or &lt;tr1/cmath&gt;</u>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="43">endif</span></u>&nbsp</td></tr>
+<tr><th id="50">50</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="51">51</th><td>  {&nbsp</td></tr>
+<tr><th id="52">52</th><td>    <i class="doc">/// A class to encapsulate type dependent floating point</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i class="doc">    /// constants.  Not everything will be able to be expressed as</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i class="doc">    /// type logic.</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="56">56</th><td>    <b>struct</b> <dfn class="type def" id="std::__detail::__floating_point_constant" title='std::__detail::__floating_point_constant' data-ref="std::__detail::__floating_point_constant">__floating_point_constant</dfn>&nbsp</td></tr>
+<tr><th id="57">57</th><td>    {&nbsp</td></tr>
+<tr><th id="58">58</th><td>      <em>static</em> <em>const</em> _Tp <dfn class="decl" id="std::__detail::__floating_point_constant::__value" title='std::__detail::__floating_point_constant::__value' data-ref="std::__detail::__floating_point_constant::__value">__value</dfn>;&nbsp</td></tr>
+<tr><th id="59">59</th><td>    };&nbsp</td></tr>
+<tr><th id="60">60</th><td>&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td>    <i class="doc">/// A structure for numeric constants.</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="64">64</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__numeric_constants" title='std::__detail::__numeric_constants' data-ref="std::__detail::__numeric_constants">__numeric_constants</dfn>&nbsp</td></tr>
+<tr><th id="65">65</th><td>      {&nbsp</td></tr>
+<tr><th id="66">66</th><td>        <i class="doc">///  Constant <span class="command">@f$</span><span class="verb"> \pi @</span>f$.</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td>        <em>static</em> _Tp <dfn class="decl def fn" id="_ZNSt8__detail19__numeric_constants4__piEv" title='std::__detail::__numeric_constants::__pi' data-ref="_ZNSt8__detail19__numeric_constants4__piEv">__pi</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="68">68</th><td>        { <b>return</b> <b>static_cast</b>&lt;_Tp&gt;(<var>3.1415926535897932384626433832795029L</var>); }&nbsp</td></tr>
+<tr><th id="69">69</th><td>        <i class="doc">///  Constant <span class="command">@f$</span><span class="verb"> \pi / 2 @</span>f$.</i>&nbsp</td></tr>
+<tr><th id="70">70</th><td>        <em>static</em> _Tp <dfn class="decl def fn" id="_ZNSt8__detail19__numeric_constants6__pi_2Ev" title='std::__detail::__numeric_constants::__pi_2' data-ref="_ZNSt8__detail19__numeric_constants6__pi_2Ev">__pi_2</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="71">71</th><td>        { <b>return</b> <b>static_cast</b>&lt;_Tp&gt;(<var>1.5707963267948966192313216916397514L</var>); }&nbsp</td></tr>
+<tr><th id="72">72</th><td>        <i class="doc">///  Constant <span class="command">@f$</span><span class="verb"> \pi / 3 @</span>f$.</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td>        <em>static</em> _Tp <dfn class="decl def fn" id="_ZNSt8__detail19__numeric_constants6__pi_3Ev" title='std::__detail::__numeric_constants::__pi_3' data-ref="_ZNSt8__detail19__numeric_constants6__pi_3Ev">__pi_3</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="74">74</th><td>        { <b>return</b> <b>static_cast</b>&lt;_Tp&gt;(<var>1.0471975511965977461542144610931676L</var>); }&nbsp</td></tr>
+<tr><th id="75">75</th><td>        <i class="doc">///  Constant <span class="command">@f$</span><span class="verb"> \pi / 4 @</span>f$.</i>&nbsp</td></tr>
+<tr><th id="76">76</th><td>        <em>static</em> _Tp <dfn class="decl def fn" id="_ZNSt8__detail19__numeric_constants6__pi_4Ev" title='std::__detail::__numeric_constants::__pi_4' data-ref="_ZNSt8__detail19__numeric_constants6__pi_4Ev">__pi_4</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="77">77</th><td>        { <b>return</b> <b>static_cast</b>&lt;_Tp&gt;(<var>0.7853981633974483096156608458198757L</var>); }&nbsp</td></tr>
+<tr><th id="78">78</th><td>        <i class="doc">///  Constant <span class="command">@f$</span><span class="verb"> 1 / \pi @</span>f$.</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td>        <em>static</em> _Tp <dfn class="decl def fn" id="_ZNSt8__detail19__numeric_constants6__1_piEv" title='std::__detail::__numeric_constants::__1_pi' data-ref="_ZNSt8__detail19__numeric_constants6__1_piEv">__1_pi</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="80">80</th><td>        { <b>return</b> <b>static_cast</b>&lt;_Tp&gt;(<var>0.3183098861837906715377675267450287L</var>); }&nbsp</td></tr>
+<tr><th id="81">81</th><td>        <i class="doc">///  Constant <span class="command">@f$</span><span class="verb"> 2 / \sqrt(\pi) @</span>f$.</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td>        <em>static</em> _Tp <dfn class="decl def fn" id="_ZNSt8__detail19__numeric_constants10__2_sqrtpiEv" title='std::__detail::__numeric_constants::__2_sqrtpi' data-ref="_ZNSt8__detail19__numeric_constants10__2_sqrtpiEv">__2_sqrtpi</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="83">83</th><td>        { <b>return</b> <b>static_cast</b>&lt;_Tp&gt;(<var>1.1283791670955125738961589031215452L</var>); }&nbsp</td></tr>
+<tr><th id="84">84</th><td>        <i class="doc">///  Constant <span class="command">@f$</span><span class="verb"> \sqrt(2) @</span>f$.</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td>        <em>static</em> _Tp <dfn class="decl def fn" id="_ZNSt8__detail19__numeric_constants7__sqrt2Ev" title='std::__detail::__numeric_constants::__sqrt2' data-ref="_ZNSt8__detail19__numeric_constants7__sqrt2Ev">__sqrt2</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="86">86</th><td>        { <b>return</b> <b>static_cast</b>&lt;_Tp&gt;(<var>1.4142135623730950488016887242096981L</var>); }&nbsp</td></tr>
+<tr><th id="87">87</th><td>        <i class="doc">///  Constant <span class="command">@f$</span><span class="verb"> \sqrt(3) @</span>f$.</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td>        <em>static</em> _Tp <dfn class="decl def fn" id="_ZNSt8__detail19__numeric_constants7__sqrt3Ev" title='std::__detail::__numeric_constants::__sqrt3' data-ref="_ZNSt8__detail19__numeric_constants7__sqrt3Ev">__sqrt3</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="89">89</th><td>        { <b>return</b> <b>static_cast</b>&lt;_Tp&gt;(<var>1.7320508075688772935274463415058723L</var>); }&nbsp</td></tr>
+<tr><th id="90">90</th><td>        <i class="doc">///  Constant <span class="command">@f$</span><span class="verb"> \sqrt(\pi/2) @</span>f$.</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td>        <em>static</em> _Tp <dfn class="decl def fn" id="_ZNSt8__detail19__numeric_constants10__sqrtpio2Ev" title='std::__detail::__numeric_constants::__sqrtpio2' data-ref="_ZNSt8__detail19__numeric_constants10__sqrtpio2Ev">__sqrtpio2</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="92">92</th><td>        { <b>return</b> <b>static_cast</b>&lt;_Tp&gt;(<var>1.2533141373155002512078826424055226L</var>); }&nbsp</td></tr>
+<tr><th id="93">93</th><td>        <i class="doc">///  Constant <span class="command">@f$</span><span class="verb"> 1 / sqrt(2) @</span>f$.</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td>        <em>static</em> _Tp <dfn class="decl def fn" id="_ZNSt8__detail19__numeric_constants9__sqrt1_2Ev" title='std::__detail::__numeric_constants::__sqrt1_2' data-ref="_ZNSt8__detail19__numeric_constants9__sqrt1_2Ev">__sqrt1_2</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="95">95</th><td>        { <b>return</b> <b>static_cast</b>&lt;_Tp&gt;(<var>0.7071067811865475244008443621048490L</var>); }&nbsp</td></tr>
+<tr><th id="96">96</th><td>        <i class="doc">///  Constant <span class="command">@f$</span><span class="verb"> \log(\pi) @</span>f$.</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td>        <em>static</em> _Tp <dfn class="decl def fn" id="_ZNSt8__detail19__numeric_constants6__lnpiEv" title='std::__detail::__numeric_constants::__lnpi' data-ref="_ZNSt8__detail19__numeric_constants6__lnpiEv">__lnpi</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="98">98</th><td>        { <b>return</b> <b>static_cast</b>&lt;_Tp&gt;(<var>1.1447298858494001741434273513530587L</var>); }&nbsp</td></tr>
+<tr><th id="99">99</th><td>        <i class="doc">///  Constant Euler's constant <span class="command">@f$</span><span class="verb"> \gamma_E @</span>f$.</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td>        <em>static</em> _Tp <dfn class="decl def fn" id="_ZNSt8__detail19__numeric_constants9__gamma_eEv" title='std::__detail::__numeric_constants::__gamma_e' data-ref="_ZNSt8__detail19__numeric_constants9__gamma_eEv">__gamma_e</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="101">101</th><td>        { <b>return</b> <b>static_cast</b>&lt;_Tp&gt;(<var>0.5772156649015328606065120900824024L</var>); }&nbsp</td></tr>
+<tr><th id="102">102</th><td>        <i class="doc">///  Constant Euler-Mascheroni <span class="command">@f$</span><span class="verb"> e @</span>f$</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td>        <em>static</em> _Tp <dfn class="decl def fn" id="_ZNSt8__detail19__numeric_constants7__eulerEv" title='std::__detail::__numeric_constants::__euler' data-ref="_ZNSt8__detail19__numeric_constants7__eulerEv">__euler</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="104">104</th><td>        { <b>return</b> <b>static_cast</b>&lt;_Tp&gt;(<var>2.7182818284590452353602874713526625L</var>); }&nbsp</td></tr>
+<tr><th id="105">105</th><td>      };&nbsp</td></tr>
+<tr><th id="106">106</th><td>&nbsp</td></tr>
+<tr><th id="107">107</th><td>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u>#<span data-ppcond="108">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#658" title="1" data-ref="_M/_GLIBCXX_USE_C99_MATH">_GLIBCXX_USE_C99_MATH</a> &amp;&amp; !_GLIBCXX_USE_C99_FP_MACROS_DYNAMIC</u>&nbsp</td></tr>
+<tr><th id="109">109</th><td>&nbsp</td></tr>
+<tr><th id="110">110</th><td>    <i class="doc">/// This is a wrapper for the isnan function. Otherwise, for NaN,</i>&nbsp</td></tr>
+<tr><th id="111">111</th><td><i class="doc">    /// all comparisons result in false. If/when we build a std::isnan</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td><i class="doc">    /// out of intrinsics, this will disappear completely in favor of</i>&nbsp</td></tr>
+<tr><th id="113">113</th><td><i class="doc">    /// std::isnan.</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="115">115</th><td>    <b>inline</b> <em>bool</em> <dfn class="decl def fn" id="_ZNSt8__detail7__isnanET_" title='std::__detail::__isnan' data-ref="_ZNSt8__detail7__isnanET_">__isnan</dfn>(_Tp <dfn class="local col1 decl" id="3481__x" title='__x' data-type='_Tp' data-ref="3481__x">__x</dfn>)&nbsp</td></tr>
+<tr><th id="116">116</th><td>    { <b>return</b> <span class="namespace">std::</span>isnan(<a class="local col1 ref" href="#3481__x" title='__x' data-ref="3481__x">__x</a>); }&nbsp</td></tr>
+<tr><th id="117">117</th><td>&nbsp</td></tr>
+<tr><th id="118">118</th><td><u>#<span data-ppcond="108">else</span></u>&nbsp</td></tr>
+<tr><th id="119">119</th><td>&nbsp</td></tr>
+<tr><th id="120">120</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="121">121</th><td>    <b>inline</b> <em>bool</em> __isnan(<em>const</em> _Tp __x)&nbsp</td></tr>
+<tr><th id="122">122</th><td>    { <b>return</b> __builtin_isnan(__x); }&nbsp</td></tr>
+<tr><th id="123">123</th><td>&nbsp</td></tr>
+<tr><th id="124">124</th><td>    <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="125">125</th><td>    <b>inline</b> <em>bool</em> __isnan&lt;<em>float</em>&gt;(<em>float</em> __x)&nbsp</td></tr>
+<tr><th id="126">126</th><td>    { <b>return</b> __builtin_isnanf(__x); }&nbsp</td></tr>
+<tr><th id="127">127</th><td>&nbsp</td></tr>
+<tr><th id="128">128</th><td>    <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="129">129</th><td>    <b>inline</b> <em>bool</em> __isnan&lt;<em>long</em> <em>double</em>&gt;(<em>long</em> <em>double</em> __x)&nbsp</td></tr>
+<tr><th id="130">130</th><td>    { <b>return</b> __builtin_isnanl(__x); }&nbsp</td></tr>
+<tr><th id="131">131</th><td>&nbsp</td></tr>
+<tr><th id="132">132</th><td><u>#<span data-ppcond="108">endif</span></u>&nbsp</td></tr>
+<tr><th id="133">133</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="134">134</th><td><u>#<span data-ppcond="134">if</span> ! <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#628" title="1" data-ref="_M/_GLIBCXX_USE_STD_SPEC_FUNCS">_GLIBCXX_USE_STD_SPEC_FUNCS</a> &amp;&amp; defined(<span class="macro" data-ref="_M/_GLIBCXX_TR1_CMATH">_GLIBCXX_TR1_CMATH</span>)</u>&nbsp</td></tr>
+<tr><th id="135">135</th><td>} <i>// namespace tr1</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td><u>#<span data-ppcond="134">endif</span></u>&nbsp</td></tr>
+<tr><th id="137">137</th><td>&nbsp</td></tr>
+<tr><th id="138">138</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="139">139</th><td>}&nbsp</td></tr>
+<tr><th id="140">140</th><td>&nbsp</td></tr>
+<tr><th id="141">141</th><td><u>#<span data-ppcond="36">endif</span> // _GLIBCXX_TR1_SPECIAL_FUNCTION_UTIL_H</u>&nbsp</td></tr>
+<tr><th id="142">142</th><td>&nbsp</td></tr>
+<tr><th id="143">143</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

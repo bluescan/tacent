@@ -1,0 +1,68 @@
+<use f='include/c++/11/bits/stl_algobase.h' l='471' c='_ZSt14__copy_move_a2St19istreambuf_iteratorIT0_St11char_traitsIS0_EES3_PS0_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='472' c='_ZSt14__copy_move_a2St19istreambuf_iteratorIT0_St11char_traitsIS0_EES3_PS0_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='479' c='_ZSt14__copy_move_a2St19istreambuf_iteratorIT0_St11char_traitsIS0_EES3_St15_Deque_iteratorIS0_RS0_PS0_E'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='480' c='_ZSt14__copy_move_a2St19istreambuf_iteratorIT0_St11char_traitsIS0_EES3_St15_Deque_iteratorIS0_RS0_PS0_E'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='580' c='_ZSt10__copy_n_aSt19istreambuf_iteratorIT_St11char_traitsIS0_EET0_PS0_b'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='587' c='_ZSt10__copy_n_aSt19istreambuf_iteratorIT_St11char_traitsIS0_EET0_St15_Deque_iteratorIS0_RS0_PS0_Eb'/>
+<use f='include/c++/11/bits/localefwd.h' l='156'/>
+<use f='include/c++/11/bits/localefwd.h' l='177'/>
+<use f='include/c++/11/bits/localefwd.h' l='179'/>
+<use f='include/c++/11/bits/localefwd.h' l='190'/>
+<use f='include/c++/11/streambuf' l='146'/>
+<use f='include/c++/11/streambuf' l='155' c='_ZSt14__copy_move_a2St19istreambuf_iteratorITL0_0_St11char_traitsIS0_EES3_PS0_'/>
+<use f='include/c++/11/streambuf' l='156' c='_ZSt14__copy_move_a2St19istreambuf_iteratorITL0_0_St11char_traitsIS0_EES3_PS0_'/>
+<use f='include/c++/11/streambuf' l='160' c='_ZSt4findSt19istreambuf_iteratorITL0__St11char_traitsIS0_EES3_RKS0_'/>
+<use f='include/c++/11/streambuf' l='161' c='_ZSt4findSt19istreambuf_iteratorITL0__St11char_traitsIS0_EES3_RKS0_'/>
+<use f='include/c++/11/streambuf' l='161' c='_ZSt4findSt19istreambuf_iteratorITL0__St11char_traitsIS0_EES3_RKS0_'/>
+<use f='include/c++/11/streambuf' l='167' c='_ZSt7advanceRSt19istreambuf_iteratorITL0__St11char_traitsIS0_EETL0_0_'/>
+<def f='include/c++/11/bits/streambuf_iterator.h' l='50' ll='222'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='76' c='_ZSt4copySt19istreambuf_iteratorITL0__St11char_traitsIS0_EES3_St19ostreambuf_iteratorIS0_S2_E'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='76' c='_ZSt4copySt19istreambuf_iteratorITL0__St11char_traitsIS0_EES3_St19ostreambuf_iteratorIS0_S2_E'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='82' c='_ZSt14__copy_move_a2St19istreambuf_iteratorITL0_0_St11char_traitsIS0_EES3_PS0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='83' c='_ZSt14__copy_move_a2St19istreambuf_iteratorITL0_0_St11char_traitsIS0_EES3_PS0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='88' c='_ZSt10__copy_n_aSt19istreambuf_iteratorITL0__St11char_traitsIS0_EETL0_0_PS0_b'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='92' c='_ZSt4findSt19istreambuf_iteratorITL0__St11char_traitsIS0_EES3_RKS0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='93' c='_ZSt4findSt19istreambuf_iteratorITL0__St11char_traitsIS0_EES3_RKS0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='93' c='_ZSt4findSt19istreambuf_iteratorITL0__St11char_traitsIS0_EES3_RKS0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='99' c='_ZSt7advanceRSt19istreambuf_iteratorITL0__St11char_traitsIS0_EETL0_0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='226' c='_ZSteqRKSt19istreambuf_iteratorIT_T0_ES4_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='227' c='_ZSteqRKSt19istreambuf_iteratorIT_T0_ES4_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='232' c='_ZStneRKSt19istreambuf_iteratorIT_T0_ES4_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='233' c='_ZStneRKSt19istreambuf_iteratorIT_T0_ES4_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='257' c='_ZSt4copySt19istreambuf_iteratorITL0__St11char_traitsIS0_EES3_St19ostreambuf_iteratorIS0_S2_E'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='257' c='_ZSt4copySt19istreambuf_iteratorITL0__St11char_traitsIS0_EES3_St19ostreambuf_iteratorIS0_S2_E'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='325' c='_ZSt4copySt19istreambuf_iteratorIT_St11char_traitsIS0_EES3_St19ostreambuf_iteratorIS0_S2_E'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='326' c='_ZSt4copySt19istreambuf_iteratorIT_St11char_traitsIS0_EES3_St19ostreambuf_iteratorIS0_S2_E'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='366' c='_ZSt14__copy_move_a2St19istreambuf_iteratorIT0_St11char_traitsIS0_EES3_PS0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='367' c='_ZSt14__copy_move_a2St19istreambuf_iteratorIT0_St11char_traitsIS0_EES3_PS0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='369' c='_ZSt14__copy_move_a2St19istreambuf_iteratorIT0_St11char_traitsIS0_EES3_PS0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='401' c='_ZSt10__copy_n_aSt19istreambuf_iteratorIT_St11char_traitsIS0_EET0_PS0_b'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='420' c='_ZSt4findSt19istreambuf_iteratorIT_St11char_traitsIS0_EES3_RKS0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='421' c='_ZSt4findSt19istreambuf_iteratorIT_St11char_traitsIS0_EES3_RKS0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='422' c='_ZSt4findSt19istreambuf_iteratorIT_St11char_traitsIS0_EES3_RKS0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='424' c='_ZSt4findSt19istreambuf_iteratorIT_St11char_traitsIS0_EES3_RKS0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='461' c='_ZSt7advanceRSt19istreambuf_iteratorIT_St11char_traitsIS0_EET0_'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='471' c='_ZSt7advanceRSt19istreambuf_iteratorIT_St11char_traitsIS0_EET0_'/>
+<use f='include/c++/11/bits/basic_ios.h' l='90'/>
+<mbr r='std::istreambuf_iterator::_M_sbuf' t='std::istreambuf_iterator::streambuf_type *'/>
+<mbr r='std::istreambuf_iterator::_M_c' t='std::istreambuf_iterator::int_type'/>
+<fun r='_ZNSt19istreambuf_iteratorC1Ev'/>
+<fun r='_ZNSt19istreambuf_iteratorC1ESt18default_sentinel_t'/>
+<fun r='_ZNSt19istreambuf_iteratorC1ERKSt19istreambuf_iteratorIT_T0_E'/>
+<fun r='_ZNSt19istreambuf_iteratorD1Ev'/>
+<fun r='_ZNSt19istreambuf_iteratorC1ERSt13basic_istreamIT_T0_E'/>
+<fun r='_ZNSt19istreambuf_iteratorC1EPSt15basic_streambufIT_T0_E'/>
+<fun r='_ZNSt19istreambuf_iteratoraSERKSt19istreambuf_iteratorIT_T0_E'/>
+<fun r='_ZNKSt19istreambuf_iteratordeEv'/>
+<fun r='_ZNSt19istreambuf_iteratorppEv'/>
+<fun r='_ZNSt19istreambuf_iteratorppEi'/>
+<fun r='_ZNKSt19istreambuf_iterator5equalERKSt19istreambuf_iteratorIT_T0_E'/>
+<fun r='_ZNKSt19istreambuf_iterator6_M_getEv'/>
+<fun r='_ZNKSt19istreambuf_iterator9_M_at_eofEv'/>
+<fun r='_ZNSt19istreambuf_iterator9_S_is_eofENT0_8int_typeE'/>
+<use f='include/c++/11/bits/deque.tcc' l='1076' c='_ZSt14__copy_move_a2St19istreambuf_iteratorIT0_St11char_traitsIS0_EES3_St15_Deque_iteratorIS0_RS0_PS0_E'/>
+<use f='include/c++/11/bits/deque.tcc' l='1077' c='_ZSt14__copy_move_a2St19istreambuf_iteratorIT0_St11char_traitsIS0_EES3_St15_Deque_iteratorIS0_RS0_PS0_E'/>
+<use f='include/c++/11/bits/deque.tcc' l='1103' c='_ZSt10__copy_n_aSt19istreambuf_iteratorIT_St11char_traitsIS0_EET0_St15_Deque_iteratorIS0_RS0_PS0_Eb'/>
+<use f='include/c++/11/istream' l='72'/>
+<use f='include/c++/11/iomanip' l='272' c='_ZStrsRSt13basic_istreamIT_T0_ESt10_Get_moneyIT1_E'/>
+<use f='include/c++/11/iomanip' l='426' c='_ZStrsRSt13basic_istreamIT_T0_ESt9_Get_timeIS0_E'/>

@@ -1,0 +1,4 @@
+<def f='include/x86_64-linux-gnu/bits/uintn-identity.h' l='32' ll='36' type='__uint16_t __uint16_identity(__uint16_t __x)'/>
+<doc f='include/x86_64-linux-gnu/bits/uintn-identity.h' l='28'>/* These inline functions are to ensure the appropriate type
+   conversions and associated diagnostics from macros that convert to
+   a given endianness.  */</doc>

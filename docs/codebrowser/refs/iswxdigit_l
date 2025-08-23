@@ -1,0 +1,4 @@
+<dec f='include/wctype.h' l='108' type='int iswxdigit_l(wint_t __wc, locale_t __locale)'/>
+<doc f='include/wctype.h' l='105'>/* Test for any wide character that corresponds to a hexadecimal-digit
+   character equivalent to that performed be the functions described
+   in the previous subclause.  */</doc>

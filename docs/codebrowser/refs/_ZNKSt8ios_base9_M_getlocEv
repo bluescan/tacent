@@ -1,0 +1,30 @@
+<def f='include/c++/11/bits/ios_base.h' l='803' ll='805' type='const std::locale &amp; std::ios_base::_M_getloc() const'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='155' u='c' c='_ZNKSt7num_get16_M_extract_floatB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='383' u='c' c='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='622' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRb'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='876' u='c' c='_ZNKSt7num_put13_M_insert_intET0_RSt8ios_baseT_TL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='998' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1136' u='c' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_b'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1256' u='c' c='_ZNSt5__pad6_S_padERSt8ios_baseT_PS2_PKS2_ll'/>
+<doc f='include/c++/11/bits/ios_base.h' l='796'>/**
+     *  @brief  Locale access
+     *  @return  A reference to the current locale.
+     *
+     *  Like getloc above, but returns a reference instead of
+     *  generating a copy.
+    */</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='146' u='c' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='390' u='c' c='_ZNKSt7__cxx119money_get6do_getET0_S1_bRSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIT_St11char_traitsIS7_ESaIS7_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='432' u='c' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='697' u='c' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='931' u='c' c='_ZNKSt7__cxx118time_get14_M_extract_numET0_S1_RiiimRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='975' u='c' c='_ZNKSt7__cxx118time_get15_M_extract_nameET0_S1_RiPPKT_mRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1051' u='c' c='_ZNKSt7__cxx118time_get24_M_extract_wday_or_monthET0_S1_RiPPKT_mRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1121' u='c' c='_ZNKSt7__cxx118time_get11do_get_timeET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1138' u='c' c='_ZNKSt7__cxx118time_get11do_get_dateET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1155' u='c' c='_ZNKSt7__cxx118time_get14do_get_weekdayET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1181' u='c' c='_ZNKSt7__cxx118time_get16do_get_monthnameET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1231' u='c' c='_ZNKSt7__cxx118time_get3getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_SA_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1303' u='c' c='_ZNKSt7__cxx118time_get6do_getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmcc'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1335' u='c' c='_ZNKSt8time_put3putET0_RSt8ios_baseT_PK2tmPKS3_S8_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1370' u='c' c='_ZNKSt8time_put6do_putET0_RSt8ios_baseT_PK2tmcc'/>

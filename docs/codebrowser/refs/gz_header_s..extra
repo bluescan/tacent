@@ -1,0 +1,3 @@
+<dec f='include/zlib.h' l='119' type='Bytef *'/>
+<offset>192</offset>
+<doc f='include/zlib.h' l='119'>/* pointer to extra field or Z_NULL if none */</doc>

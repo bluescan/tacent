@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='146' type='const tMath::tMatrix4 tMath::operator*(float a, const tMath::tMat4 &amp; b)'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='86' u='c' c='_ZNK5tMath6tPlane29ComputeOrthogonalBasisVectorsERNS_8tVector3ES2_'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='40' u='c' c='_ZN6tScene7tCamera5ScaleEf'/>

@@ -1,0 +1,19 @@
+<def f='include/linux/stat.h' l='56' ll='60'/>
+<use f='include/linux/stat.h' l='116'/>
+<use f='include/linux/stat.h' l='117'/>
+<use f='include/linux/stat.h' l='118'/>
+<use f='include/linux/stat.h' l='119'/>
+<size>16</size>
+<doc f='include/linux/stat.h' l='46'>/*
+ * Timestamp structure for the timestamps in struct statx.
+ *
+ * tv_sec holds the number of seconds before (negative) or after (positive)
+ * 00:00:00 1st January 1970 UTC.
+ *
+ * tv_nsec holds a number of nanoseconds (0..999,999,999) after the tv_sec time.
+ *
+ * __reserved is held in case we need a yet finer resolution.
+ */</doc>
+<mbr r='statx_timestamp::tv_sec' o='0' t='__s64'/>
+<mbr r='statx_timestamp::tv_nsec' o='64' t='__u32'/>
+<mbr r='statx_timestamp::__reserved' o='96' t='__s32'/>

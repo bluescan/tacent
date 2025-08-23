@@ -1,0 +1,2 @@
+<dec f='include/ctype.h' l='112' type='int islower(int )'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='343' u='c' c='_ZN4tStd8tIslowerEc'/>

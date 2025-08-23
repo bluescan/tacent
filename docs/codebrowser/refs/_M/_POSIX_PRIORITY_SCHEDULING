@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='32'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='28'>/* Priority scheduling is not supported with the correct semantics,
+   but GNU/Linux applications expect that the corresponding interfaces
+   are available, even though the semantics do not meet the POSIX
+   requirements.  See glibc bug 14829.  */</doc>

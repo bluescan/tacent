@@ -1,0 +1,8 @@
+<def f='include/c++/11/pstl/execution_defs.h' l='45' ll='64'/>
+<use f='include/c++/11/pstl/execution_defs.h' l='111'/>
+<use f='include/c++/11/pstl/execution_defs.h' l='126'/>
+<size>1</size>
+<doc f='include/c++/11/pstl/execution_defs.h' l='44'>// 2.5, Parallel execution policy</doc>
+<fun r='__pstl::execution::parallel_policy::__allow_unsequenced'/>
+<fun r='__pstl::execution::parallel_policy::__allow_vector'/>
+<fun r='__pstl::execution::parallel_policy::__allow_parallel'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='674' type='ktx_uint32_t'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='840' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<offset>1056</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='674'>/*!&lt; Type of the texture data, e.g, GL_UNSIGNED_BYTE.*/</doc>

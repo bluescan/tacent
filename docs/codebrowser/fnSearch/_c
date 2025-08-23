@@ -1,0 +1,11 @@
+_ZSt10_ConstructPT_DpOT0_|std::_Construct
+_ZSt18_Construct_novaluePT_|std::_Construct_novalue
+_ZNSt4_PCC18_ConstructiblePairEv|std::_PCC::_ConstructiblePair
+_ZNSt4_PCC13_CopyMovePairEv|std::_PCC::_CopyMovePair
+_ZNSt8ios_base14_Callback_listC1EPFvNS_5eventERS_iEiPS0_|std::ios_base::_Callback_list::_Callback_list
+_ZNSt8ios_base14_Callback_list16_M_add_referenceEv|std::ios_base::_Callback_list::_M_add_reference
+_ZNSt8ios_base14_Callback_list19_M_remove_referenceEv|std::ios_base::_Callback_list::_M_remove_reference
+_ZNSt13stop_callback8_Cb_implC1EOTL0__|std::stop_callback::_Cb_impl::_Cb_impl
+_ZNSt13stop_callback8_Cb_impl10_S_executeEPNSt10stop_token8_Stop_cbE|std::stop_callback::_Cb_impl::_S_execute
+_ZNSt3_V222condition_variable_anyD1Ev|std::condition_variable_any::~condition_variable_any
+_ZNSt10filesystem7__cxx114path5_CmptC1Ev|std::filesystem::path::_Cmpt::_Cmpt

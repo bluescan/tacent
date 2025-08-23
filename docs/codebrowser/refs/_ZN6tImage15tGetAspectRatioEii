@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='466' type='tImage::tAspectRatio tImage::tGetAspectRatio(int numerator, int denominator)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='462'>// Returns the aspect ratio given numerator and denominator. Returns Invalid if either numerator or denominator
+// are &lt;= 0. Returns User if the ratio doesn&apos;t exist in the enum. Returns the most reduced Screen_ ratio
+// otherwise. For example tGetAspectRatio(32,20) returns Screen_8_5 rather than Screen_16_10. Does not return
+// any of the Print_ enumerants.</doc>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='836' ll='862' type='tImage::tAspectRatio tImage::tGetAspectRatio(int numerator, int denominator)'/>

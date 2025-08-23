@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3805' ll='3815'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3805'/>
+<size>36</size>
+<mbr r='VkAttachmentDescription::flags' o='0' t='VkAttachmentDescriptionFlags'/>
+<mbr r='VkAttachmentDescription::format' o='32' t='VkFormat'/>
+<mbr r='VkAttachmentDescription::samples' o='64' t='VkSampleCountFlagBits'/>
+<mbr r='VkAttachmentDescription::loadOp' o='96' t='VkAttachmentLoadOp'/>
+<mbr r='VkAttachmentDescription::storeOp' o='128' t='VkAttachmentStoreOp'/>
+<mbr r='VkAttachmentDescription::stencilLoadOp' o='160' t='VkAttachmentLoadOp'/>
+<mbr r='VkAttachmentDescription::stencilStoreOp' o='192' t='VkAttachmentStoreOp'/>
+<mbr r='VkAttachmentDescription::initialLayout' o='224' t='VkImageLayout'/>
+<mbr r='VkAttachmentDescription::finalLayout' o='256' t='VkImageLayout'/>

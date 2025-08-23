@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14362' ll='14366'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14362'/>
+<size>24</size>
+<mbr r='VkHeadlessSurfaceCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkHeadlessSurfaceCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkHeadlessSurfaceCreateInfoEXT::flags' o='128' t='VkHeadlessSurfaceCreateFlagsEXT'/>

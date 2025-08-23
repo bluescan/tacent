@@ -1,0 +1,3 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='690' ll='694' type='int __gthread_yield()'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='131' u='c' c='_ZNSt8__detail14__thread_yieldEv'/>
+<use f='include/c++/11/bits/std_thread.h' l='329' u='c' c='_ZNSt11this_thread5yieldEv'/>

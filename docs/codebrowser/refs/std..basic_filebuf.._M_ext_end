@@ -1,0 +1,18 @@
+<dec f='include/c++/11/fstream' l='196' type='char *'/>
+<use f='include/c++/11/bits/fstream.tcc' l='76' u='w' c='_ZNSt13basic_filebuf26_M_destroy_internal_bufferEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='87' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='116' u='w' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='140' u='w' c='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='168' c='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='374' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='398' u='w' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='408' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='414' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='419' u='w' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='423' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='425' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='430' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='918' u='w' c='_ZNSt13basic_filebuf7_M_seekENT0_8off_typeESt12_Ios_SeekdirNS0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='945' u='r' c='_ZNSt13basic_filebuf14_M_get_ext_posERNT0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1062' u='r' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1067' u='w' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>

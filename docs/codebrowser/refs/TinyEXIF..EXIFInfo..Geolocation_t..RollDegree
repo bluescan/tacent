@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='278' type='double'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='330' u='r' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<offset>320</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='278'>// Flight roll in degrees</doc>

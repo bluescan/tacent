@@ -1,0 +1,19 @@
+<inh f='include/c++/11/bits/exception.h' l='61' c='std::exception'/>
+<def f='include/c++/11/new' l='55' ll='71'/>
+<use f='include/c++/11/new' l='61' c='_ZNSt9bad_allocC1ERKS_'/>
+<use f='include/c++/11/new' l='62' c='_ZNSt9bad_allocaSERKS_'/>
+<use f='include/c++/11/new' l='62' c='_ZNSt9bad_allocaSERKS_'/>
+<ovr f='include/c++/11/new' l='74' c='std::bad_array_new_length'/>
+<use f='include/c++/11/new' l='74'/>
+<size>8</size>
+<doc f='include/c++/11/new' l='49'>/**
+   *  @brief  Exception possibly thrown by @c new.
+   *  @ingroup exceptions
+   *
+   *  @c bad_alloc (or classes derived from it) is used to report allocation
+   *  errors from the throwing forms of @c new.  */</doc>
+<fun r='_ZNSt9bad_allocC1Ev'/>
+<fun r='_ZNSt9bad_allocC1ERKS_'/>
+<fun r='_ZNSt9bad_allocaSERKS_'/>
+<fun r='_ZNSt9bad_allocD1Ev'/>
+<fun r='_ZNKSt9bad_alloc4whatEv'/>

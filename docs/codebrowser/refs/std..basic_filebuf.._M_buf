@@ -1,0 +1,20 @@
+<dec f='include/c++/11/fstream' l='141' type='std::basic_filebuf::char_type *'/>
+<use f='include/c++/11/fstream' l='227' c='_ZNSt13basic_filebuf16_M_destroy_pbackEv'/>
+<use f='include/c++/11/fstream' l='471' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/fstream' l='471' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/fstream' l='471' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/fstream' l='473' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/fstream' l='473' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/fstream' l='473' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/fstream' l='476' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/fstream' l='476' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/bits/fstream.tcc' l='54' u='r' c='_ZNSt13basic_filebuf27_M_allocate_internal_bufferEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='56' u='w' c='_ZNSt13basic_filebuf27_M_allocate_internal_bufferEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='68' c='_ZNSt13basic_filebuf26_M_destroy_internal_bufferEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='69' u='w' c='_ZNSt13basic_filebuf26_M_destroy_internal_bufferEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='83' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='103' u='w' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='134' u='w' c='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='162' c='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='820' u='w' c='_ZNSt13basic_filebuf6setbufEPT_l'/>
+<doc f='include/c++/11/fstream' l='140'>/// Pointer to the beginning of internal buffer.</doc>

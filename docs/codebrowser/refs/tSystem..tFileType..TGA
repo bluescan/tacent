@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='377' type='0'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='377'>// Image. Targa.</doc>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='70' u='r' c='_ZN6tImage9tImageTGA4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='379' u='r' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>

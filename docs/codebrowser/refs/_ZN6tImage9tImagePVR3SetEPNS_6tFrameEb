@@ -1,0 +1,5 @@
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='99' u='c' c='_ZN6tImage9tImagePVRC1EPNS_6tFrameEb'/>
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='159' type='bool tImage::tImagePVR::Set(tImage::tFrame * , bool steal = true)'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='158'>// Sets from a single frame. After this is called the layer data will be in R8G8B8A8.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='66' c='_ZN6tImage10tBaseImage3SetEPNS_6tFrameEb'/>
+<def f='Modules/Image/Src/tImagePVR.cpp' l='689' ll='706' type='bool tImage::tImagePVR::Set(tImage::tFrame * frame, bool steal = true)'/>

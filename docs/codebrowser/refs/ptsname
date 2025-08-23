@@ -1,0 +1,4 @@
+<dec f='include/stdlib.h' l='995' type='char * ptsname(int __fd)'/>
+<doc f='include/stdlib.h' l='992'>/* Return the pathname of the pseudo terminal slave associated with
+   the master FD is open on, or NULL on errors.
+   The returned storage is good until the next call to this function.  */</doc>

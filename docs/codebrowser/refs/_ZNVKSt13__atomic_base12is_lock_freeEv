@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_base.h' l='447' ll='453' type='bool std::__atomic_base::is_lock_free() const'/>
+<use f='include/c++/11/atomic' l='96' u='c' c='_ZNVKSt6atomicIbE12is_lock_freeEv'/>

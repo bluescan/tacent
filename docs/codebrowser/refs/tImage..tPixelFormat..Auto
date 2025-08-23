@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='111' type='-1'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='74' c='_ZN6tImage8tTextureC1ERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='91' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='152' u='r' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>

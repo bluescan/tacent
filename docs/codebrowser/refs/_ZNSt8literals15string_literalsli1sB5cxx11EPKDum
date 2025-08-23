@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/basic_string.h' l='6971' ll='6974' macro='1' type='basic_string&lt;char8_t&gt; std::string_literals::operator&quot;&quot;s(const char8_t * __str, std::size_t __len)'/>

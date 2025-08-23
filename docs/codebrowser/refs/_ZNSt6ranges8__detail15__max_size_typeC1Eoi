@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/max_size_type.h' l='88' u='c' c='_ZNKSt6ranges8__detail15__max_size_typecoEv'/>
+<def f='include/c++/11/bits/max_size_type.h' l='429' ll='432' type='void std::ranges::__detail::__max_size_type::__max_size_type(std::ranges::__detail::__max_size_type::__rep __val, int __msb)'/>
+<use f='include/c++/11/bits/max_size_type.h' l='791' u='c' c='_ZNSt14numeric_limitsINSt6ranges8__detail15__max_size_typeEE3maxEv'/>
+<use f='include/c++/11/bits/max_size_type.h' l='813' u='c' c='_ZNSt14numeric_limitsINSt6ranges8__detail15__max_diff_typeEE3minEv'/>
+<use f='include/c++/11/bits/max_size_type.h' l='817' u='c' c='_ZNSt14numeric_limitsINSt6ranges8__detail15__max_diff_typeEE3maxEv'/>

@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9099' ll='9106'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9099'/>
+<size>792</size>
+<mbr r='VkPerformanceCounterDescriptionKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPerformanceCounterDescriptionKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPerformanceCounterDescriptionKHR::flags' o='128' t='VkPerformanceCounterDescriptionFlagsKHR'/>
+<mbr r='VkPerformanceCounterDescriptionKHR::name' o='160' t='char[256]'/>
+<mbr r='VkPerformanceCounterDescriptionKHR::category' o='2208' t='char[256]'/>
+<mbr r='VkPerformanceCounterDescriptionKHR::description' o='4256' t='char[256]'/>

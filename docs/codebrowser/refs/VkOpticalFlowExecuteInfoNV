@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17928' ll='17934'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17928'/>
+<size>32</size>
+<mbr r='VkOpticalFlowExecuteInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkOpticalFlowExecuteInfoNV::pNext' o='64' t='void *'/>
+<mbr r='VkOpticalFlowExecuteInfoNV::flags' o='128' t='VkOpticalFlowExecuteFlagsNV'/>
+<mbr r='VkOpticalFlowExecuteInfoNV::regionCount' o='160' t='uint32_t'/>
+<mbr r='VkOpticalFlowExecuteInfoNV::pRegions' o='192' t='const VkRect2D *'/>

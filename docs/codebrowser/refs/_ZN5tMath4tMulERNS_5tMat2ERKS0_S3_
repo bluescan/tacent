@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='464' type='void tMath::tMul(tMath::tMat2 &amp; d, const tMath::tMat2 &amp; a, const tMath::tMat2 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1045' u='c' c='_ZN5tMath4tMulERNS_5tMat2ERKS0_'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1049' ll='1055' type='void tMath::tMul(tMath::tMat2 &amp; d, const tMath::tMat2 &amp; a, const tMath::tMat2 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='65' u='c' c='_ZNK5tMath8tMatrix2mlERKNS_5tMat2E'/>

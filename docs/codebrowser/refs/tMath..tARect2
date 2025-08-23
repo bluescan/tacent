@@ -1,0 +1,40 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='128' ll='182'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='140' c='_ZN5tMath7tARect2C1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='146' c='_ZN5tMath7tARect23SetERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='178' c='_ZNK5tMath7tARect28OverlapsERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='183'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='481' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='527' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='536' c='_ZNK5tMath7tARect28OverlapsERKS0_'/>
+<size>16</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='127'>// An axis aligned rectangle in R2.</doc>
+<fun r='_ZN5tMath7tARect2C1Ev'/>
+<fun r='_ZN5tMath7tARect2C1ERKS0_'/>
+<fun r='_ZN5tMath7tARect2C1ERKNS_8tVector2Ef'/>
+<fun r='_ZN5tMath7tARect2C1ERKNS_8tVector2Eff'/>
+<fun r='_ZN5tMath7tARect2C1ERKNS_8tVector2ES3_'/>
+<fun r='_ZN5tMath7tARect2C1Effff'/>
+<fun r='_ZN5tMath7tARect23SetERKS0_'/>
+<fun r='_ZN5tMath7tARect23SetERKNS_8tVector2Ef'/>
+<fun r='_ZN5tMath7tARect23SetERKNS_8tVector2Eff'/>
+<fun r='_ZN5tMath7tARect23SetERKNS_8tVector2ES3_'/>
+<fun r='_ZN5tMath7tARect23SetEffff'/>
+<fun r='_ZN5tMath7tARect28AddPointERKNS_8tVector2E'/>
+<fun r='_ZN5tMath7tARect26ExpandEf'/>
+<fun r='_ZN5tMath7tARect25ClearEv'/>
+<fun r='_ZN5tMath7tARect25EmptyEv'/>
+<fun r='_ZNK5tMath7tARect213IsPointInsideERKNS_8tVector2E'/>
+<fun r='_ZNK5tMath7tARect213IsPointInsideERKNS_8tVector2Ef'/>
+<fun r='_ZNK5tMath7tARect217IsPointInsideBiasERKNS_8tVector2ENS_5tBiasES4_'/>
+<fun r='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<fun r='_ZNK5tMath7tARect213ComputeCenterEv'/>
+<fun r='_ZNK5tMath7tARect214ComputeExtentsEv'/>
+<fun r='_ZNK5tMath7tARect28OverlapsERKS0_'/>
+<mbr r='tMath::tARect2::Min' o='0' t='tMath::tVector2'/>
+<mbr r='tMath::tARect2::Max' o='64' t='tMath::tVector2'/>
+<fun r='_ZN5tMath7tARect28AddPointERKNS_8tVector2E'/>
+<fun r='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<fun r='_ZNK5tMath7tARect28OverlapsERKS0_'/>
+<fun r='_ZNK5tMath7tARect217IsPointInsideBiasERKNS_8tVector2ENS_5tBiasES4_'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='351' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<size>16</size>

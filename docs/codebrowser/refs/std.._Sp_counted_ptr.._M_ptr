@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/shared_ptr_base.h' l='344' u='w' c='_ZNSt15_Sp_counted_ptrC1ET_'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='348' c='_ZNSt15_Sp_counted_ptr10_M_disposeEv'/>
+<dec f='include/c++/11/bits/shared_ptr_base.h' l='362' type='_Ptr'/>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='4502' ll='4504' type='std::poisson_distribution::param_type std::poisson_distribution::param() const'/>
+<doc f='include/c++/11/bits/random.h' l='4499'>/**
+       * @brief Returns the parameter set of the distribution.
+       */</doc>

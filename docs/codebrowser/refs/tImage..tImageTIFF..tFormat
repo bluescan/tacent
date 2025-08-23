@@ -1,0 +1,4 @@
+<def f='Modules/Image/Inc/Image/tImageTIFF.h' l='67' ll='73'/>
+<use f='Modules/Image/Inc/Image/tImageTIFF.h' l='82'/>
+<use f='Modules/Image/Inc/Image/tImageTIFF.h' l='92' c='_ZNK6tImage10tImageTIFF4SaveERK7tStringNS0_7tFormatEbi'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='242' c='_ZNK6tImage10tImageTIFF4SaveERK7tStringNS0_7tFormatEbi'/>

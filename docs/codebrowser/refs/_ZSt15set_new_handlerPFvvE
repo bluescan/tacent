@@ -1,0 +1,3 @@
+<dec f='include/c++/11/new' l='107' type='std::new_handler std::set_new_handler(std::new_handler )'/>
+<doc f='include/c++/11/new' l='105'>/// Takes a replacement handler as the argument, returns the
+  /// previous handler.</doc>

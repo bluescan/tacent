@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/nested_exception.h' l='54' type='std::__exception_ptr::exception_ptr'/>
+<use f='include/c++/11/bits/nested_exception.h' l='57' u='w' c='_ZNSt16nested_exceptionC1Ev'/>
+<use f='include/c++/11/bits/nested_exception.h' l='69' u='m' c='_ZNKSt16nested_exception14rethrow_nestedEv'/>
+<use f='include/c++/11/bits/nested_exception.h' l='70' u='r' c='_ZNKSt16nested_exception14rethrow_nestedEv'/>
+<use f='include/c++/11/bits/nested_exception.h' l='76' u='r' c='_ZNKSt16nested_exception10nested_ptrEv'/>
+<offset>64</offset>

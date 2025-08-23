@@ -1,0 +1,8 @@
+<dec f='Modules/Foundation/Inc/Foundation/tUnits.h' l='141' type='const char * tUnit::GetUnitName(tUnit::tTime )'/>
+<doc f='Modules/Foundation/Inc/Foundation/tUnits.h' l='137'>// No compound units until we figure out how they&apos;ll work. For example, force (LBS, Newtons, etc) is composed of:
+	// mass-unit * distance-unit / (time-unit * time-unit).
+
+	// These return pointers to persistent (static) char strings. They return nullptr if Unspecified is passed in.</doc>
+<def f='Modules/Foundation/Src/tUnits.cpp' l='72' ll='78' type='const char * tUnit::GetUnitName(tUnit::tTime timeUnit)'/>
+<use f='Modules/System/Src/tTime.cpp' l='235' u='c' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>
+<use f='Modules/System/Src/tTime.cpp' l='243' u='c' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>

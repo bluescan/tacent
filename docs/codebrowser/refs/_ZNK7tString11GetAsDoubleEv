@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='354' type='double tString::GetAsDouble() const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='365' u='c' c='_ZNK7tString8AsDoubleEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='103' u='c' c='_ZNK11tExpression13GetAtomDoubleEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='199' u='c' c='_Z13GetAtomDoubleR11tExpression'/>

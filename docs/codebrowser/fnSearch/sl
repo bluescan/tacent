@@ -1,0 +1,4 @@
+_ZNSt11this_thread9sleep_forERKNSt6chrono8durationIT_T0_EE|std::this_thread::sleep_for
+_ZNSt11this_thread11sleep_untilERKNSt6chrono10time_pointIT_T0_EE|std::this_thread::sleep_until
+_ZN4tMem9tFastPool9SlotBlock4InitEii|tMem::tFastPool::SlotBlock::Init
+_ZN5tMath11tQuaternion5SlerpERKNS_5tQuatES3_f|tMath::tQuaternion::Slerp

@@ -1,0 +1,174 @@
+<use f='include/c++/11/bits/localefwd.h' l='128'/>
+<use f='include/c++/11/bits/localefwd.h' l='130'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1493' c='_ZStrsRSt13basic_istreamIT_T0_ERNSt7__cxx1112basic_stringIS0_S1_T1_EE'/>
+<def f='include/c++/11/bits/locale_facets.h' l='615' ll='669'/>
+<use f='include/c++/11/bits/locale_facets.h' l='672'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<inh f='include/x86_64-linux-gnu/c++/11/bits/ctype_base.h' l='41' c='std::ctype_base'/>
+<def f='include/c++/11/bits/locale_facets.h' l='683' ll='1174'/>
+<use f='include/c++/11/bits/locale_facets.h' l='684'/>
+<inh f='include/c++/11/bits/locale_facets.h' l='153' c='std::__ctype_abstract_base'/>
+<def f='include/c++/11/bits/locale_facets.h' l='1188' ll='1476'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1189'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1481'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1484'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='1502' c='std::ctype_byname'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='1520' c='std::ctype_byname'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h' l='42' c='_ZNKSt5ctypeIcE2isEtc'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h' l='47' c='_ZNKSt5ctypeIcE2isEPKcS2_Pt'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h' l='56' c='_ZNKSt5ctypeIcE7scan_isEtPKcS2_'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h' l='66' c='_ZNKSt5ctypeIcE8scan_notEtPKcS2_'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2597' c='_ZSt7isspaceT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2603' c='_ZSt7isprintT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2609' c='_ZSt7iscntrlT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2615' c='_ZSt7isupperT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2621' c='_ZSt7islowerT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2627' c='_ZSt7isalphaT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2633' c='_ZSt7isdigitT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2639' c='_ZSt7ispunctT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2645' c='_ZSt8isxdigitT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2651' c='_ZSt7isalnumT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2657' c='_ZSt7isgraphT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2664' c='_ZSt7isblankT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2671' c='_ZSt7toupperT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2677' c='_ZSt7tolowerT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='109' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='109' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1062' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1062' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1257' c='_ZNSt5__pad6_S_padERSt8ios_baseT_PS2_PKS2_ll'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1257' c='_ZNSt5__pad6_S_padERSt8ios_baseT_PS2_PKS2_ll'/>
+<use f='include/c++/11/bits/basic_ios.h' l='87'/>
+<use f='include/c++/11/ostream' l='74'/>
+<size>1344</size>
+<doc f='include/c++/11/bits/locale_facets.h' l='674'>/**
+   *  @brief  The ctype&lt;char&gt; specialization.
+   *  @ingroup locales
+   *
+   *  This class defines classification and conversion functions for
+   *  the char type.  It gets used by char streams for many I/O
+   *  operations.  The char specialization provides a number of
+   *  optimizations as well.
+  */</doc>
+<doc f='include/c++/11/bits/locale_facets.h' l='1177'>/**
+   *  @brief  The ctype&lt;wchar_t&gt; specialization.
+   *  @ingroup locales
+   *
+   *  This class defines classification and conversion functions for the
+   *  wchar_t type.  It gets used by wchar_t streams for many I/O operations.
+   *  The wchar_t specialization provides a number of optimizations as well.
+   *
+   *  ctype&lt;wchar_t&gt; inherits its public methods from
+   *  __ctype_abstract_base&lt;wchar_t&gt;.
+  */</doc>
+<smbr r='std::ctype::id' t='locale::id'/>
+<fun r='_ZNSt5ctypeC1Em'/>
+<fun r='_ZNSt5ctypeD1Ev'/>
+<fun r='_ZNKSt5ctype5do_isENSt21__ctype_abstract_baseIT_E4maskES1_'/>
+<fun r='_ZNKSt5ctype5do_isEPKT_S2_PNSt21__ctype_abstract_baseIS0_E4maskE'/>
+<fun r='_ZNKSt5ctype10do_scan_isENSt21__ctype_abstract_baseIT_E4maskEPKS1_S5_'/>
+<fun r='_ZNKSt5ctype11do_scan_notENSt21__ctype_abstract_baseIT_E4maskEPKS1_S5_'/>
+<fun r='_ZNKSt5ctype10do_toupperET_'/>
+<fun r='_ZNKSt5ctype10do_toupperEPT_PKS0_'/>
+<fun r='_ZNKSt5ctype10do_tolowerET_'/>
+<fun r='_ZNKSt5ctype10do_tolowerEPT_PKS0_'/>
+<fun r='_ZNKSt5ctype8do_widenEc'/>
+<fun r='_ZNKSt5ctype8do_widenEPKcS1_PT_'/>
+<fun r='_ZNKSt5ctype9do_narrowET_c'/>
+<fun r='_ZNKSt5ctype9do_narrowEPKT_S2_cPc'/>
+<smbr r='std::ctype::id' t='locale::id'/>
+<mbr r='std::ctype::_M_c_locale_ctype' o='128' t='std::__c_locale'/>
+<mbr r='std::ctype::_M_del' o='192' t='bool'/>
+<mbr r='std::ctype::_M_toupper' o='256' t='std::ctype_base::__to_type'/>
+<mbr r='std::ctype::_M_tolower' o='320' t='std::ctype_base::__to_type'/>
+<mbr r='std::ctype::_M_table' o='384' t='const std::ctype_base::mask *'/>
+<mbr r='std::ctype::_M_widen_ok' o='448' t='char'/>
+<mbr r='std::ctype::_M_widen' o='1248' t='char[256]'/>
+<mbr r='std::ctype::_M_narrow' o='200' t='char[256]'/>
+<mbr r='std::ctype::_M_narrow_ok' o='192' t='char'/>
+<smbr r='std::ctype{char}::id' t='locale::id'/>
+<smbr r='std::ctype{char}::table_size' t='const std::size_t'/>
+<fun r='_ZNSt5ctypeIcEC1EPKtbm'/>
+<fun r='_ZNSt5ctypeIcEC1EP15__locale_structPKtbm'/>
+<fun r='_ZNKSt5ctypeIcE2isEtc'/>
+<fun r='_ZNKSt5ctypeIcE2isEPKcS2_Pt'/>
+<fun r='_ZNKSt5ctypeIcE7scan_isEtPKcS2_'/>
+<fun r='_ZNKSt5ctypeIcE8scan_notEtPKcS2_'/>
+<fun r='_ZNKSt5ctypeIcE7toupperEc'/>
+<fun r='_ZNKSt5ctypeIcE7toupperEPcPKc'/>
+<fun r='_ZNKSt5ctypeIcE7tolowerEc'/>
+<fun r='_ZNKSt5ctypeIcE7tolowerEPcPKc'/>
+<fun r='_ZNKSt5ctypeIcE5widenEc'/>
+<fun r='_ZNKSt5ctypeIcE5widenEPKcS2_Pc'/>
+<fun r='_ZNKSt5ctypeIcE6narrowEcc'/>
+<fun r='_ZNKSt5ctypeIcE6narrowEPKcS2_cPc'/>
+<fun r='_ZNKSt5ctypeIcE5tableEv'/>
+<fun r='_ZNSt5ctypeIcE13classic_tableEv'/>
+<fun r='_ZNSt5ctypeIcED1Ev'/>
+<fun r='_ZNKSt5ctypeIcE10do_toupperEc'/>
+<fun r='_ZNKSt5ctypeIcE10do_toupperEPcPKc'/>
+<fun r='_ZNKSt5ctypeIcE10do_tolowerEc'/>
+<fun r='_ZNKSt5ctypeIcE10do_tolowerEPcPKc'/>
+<fun r='_ZNKSt5ctypeIcE8do_widenEc'/>
+<fun r='_ZNKSt5ctypeIcE8do_widenEPKcS2_Pc'/>
+<fun r='_ZNKSt5ctypeIcE9do_narrowEcc'/>
+<fun r='_ZNKSt5ctypeIcE9do_narrowEPKcS2_cPc'/>
+<fun r='_ZNKSt5ctypeIcE14_M_narrow_initEv'/>
+<fun r='_ZNKSt5ctypeIcE13_M_widen_initEv'/>
+<mbr r='std::ctype::_M_c_locale_ctype' o='128' t='std::__c_locale'/>
+<mbr r='std::ctype::_M_narrow_ok' o='192' t='bool'/>
+<mbr r='std::ctype::_M_narrow' o='200' t='char[128]'/>
+<mbr r='std::ctype::_M_widen' o='1248' t='wint_t[256]'/>
+<mbr r='std::ctype::_M_bit' o='9440' t='std::ctype_base::mask[16]'/>
+<mbr r='std::ctype::_M_wmask' o='9728' t='std::ctype&lt;wchar_t&gt;::__wmask_type[16]'/>
+<smbr r='std::ctype{wchar_t}::id' t='locale::id'/>
+<fun r='_ZNSt5ctypeIwEC1Em'/>
+<fun r='_ZNSt5ctypeIwEC1EP15__locale_structm'/>
+<fun r='_ZNKSt5ctypeIwE19_M_convert_to_wmaskEt'/>
+<fun r='_ZNSt5ctypeIwED1Ev'/>
+<fun r='_ZNKSt5ctypeIwE5do_isEtw'/>
+<fun r='_ZNKSt5ctypeIwE5do_isEPKwS2_Pt'/>
+<fun r='_ZNKSt5ctypeIwE10do_scan_isEtPKwS2_'/>
+<fun r='_ZNKSt5ctypeIwE11do_scan_notEtPKwS2_'/>
+<fun r='_ZNKSt5ctypeIwE10do_toupperEw'/>
+<fun r='_ZNKSt5ctypeIwE10do_toupperEPwPKw'/>
+<fun r='_ZNKSt5ctypeIwE10do_tolowerEw'/>
+<fun r='_ZNKSt5ctypeIwE10do_tolowerEPwPKw'/>
+<fun r='_ZNKSt5ctypeIwE8do_widenEc'/>
+<fun r='_ZNKSt5ctypeIwE8do_widenEPKcS2_Pw'/>
+<fun r='_ZNKSt5ctypeIwE9do_narrowEwc'/>
+<fun r='_ZNKSt5ctypeIwE9do_narrowEPKwS2_cPc'/>
+<fun r='_ZNSt5ctypeIwE19_M_initialize_ctypeEv'/>
+<fun r='_ZNKSt5ctypeIcE2isEtc'/>
+<fun r='_ZNKSt5ctypeIcE2isEPKcS2_Pt'/>
+<fun r='_ZNKSt5ctypeIcE7scan_isEtPKcS2_'/>
+<fun r='_ZNKSt5ctypeIcE8scan_notEtPKcS2_'/>
+<use f='include/c++/11/istream' l='74'/>
+<use f='include/c++/11/bits/istream.tcc' l='997' c='_ZSt17__istream_extractRSt13basic_istreamIT_T0_EPS0_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='1058' c='_ZSt2wsRSt13basic_istreamIT_T0_E'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='112' c='_ZNSt18__moneypunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='112' c='_ZNSt18__moneypunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='147' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='147' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='391' c='_ZNKSt7__cxx119money_get6do_getET0_S1_bRSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIT_St11char_traitsIS7_ESaIS7_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='391' c='_ZNKSt7__cxx119money_get6do_getET0_S1_bRSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIT_St11char_traitsIS7_ESaIS7_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='433' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='433' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='598' c='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_e'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='598' c='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_e'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='699' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='699' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='932' c='_ZNKSt7__cxx118time_get14_M_extract_numET0_S1_RiiimRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='932' c='_ZNKSt7__cxx118time_get14_M_extract_numET0_S1_RiiimRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='976' c='_ZNKSt7__cxx118time_get15_M_extract_nameET0_S1_RiPPKT_mRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='976' c='_ZNKSt7__cxx118time_get15_M_extract_nameET0_S1_RiPPKT_mRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1052' c='_ZNKSt7__cxx118time_get24_M_extract_wday_or_monthET0_S1_RiPPKT_mRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1052' c='_ZNKSt7__cxx118time_get24_M_extract_wday_or_monthET0_S1_RiPPKT_mRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1232' c='_ZNKSt7__cxx118time_get3getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_SA_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1232' c='_ZNKSt7__cxx118time_get3getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_SA_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1304' c='_ZNKSt7__cxx118time_get6do_getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmcc'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1304' c='_ZNKSt7__cxx118time_get6do_getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmcc'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1336' c='_ZNKSt8time_put3putET0_RSt8ios_baseT_PK2tmPKS3_S8_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1336' c='_ZNKSt8time_put3putET0_RSt8ios_baseT_PK2tmPKS3_S8_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1371' c='_ZNKSt8time_put6do_putET0_RSt8ios_baseT_PK2tmcc'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1371' c='_ZNKSt8time_put6do_putET0_RSt8ios_baseT_PK2tmcc'/>

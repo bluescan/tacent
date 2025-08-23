@@ -1,0 +1,6 @@
+<dec f='include/c++/11/streambuf' l='197' type='std::locale'/>
+<use f='include/c++/11/streambuf' l='218' u='w' c='_ZNSt15basic_streambuf8pubimbueERKSt6locale'/>
+<use f='include/c++/11/streambuf' l='232' u='r' c='_ZNKSt15basic_streambuf6getlocEv'/>
+<use f='include/c++/11/streambuf' l='471' u='w' c='_ZNSt15basic_streambufC1Ev'/>
+<use f='include/c++/11/streambuf' l='825' c='_ZNSt15basic_streambuf4swapERSt15basic_streambufIT_T0_E'/>
+<doc f='include/c++/11/streambuf' l='196'>/// Current locale setting.</doc>

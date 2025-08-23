@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='55' type='1'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='51' u='r' c='_ZN4tMem9tFastPoolC1Eiiib'/>

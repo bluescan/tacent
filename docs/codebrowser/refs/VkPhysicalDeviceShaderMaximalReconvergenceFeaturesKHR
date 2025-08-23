@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10596' ll='10600'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10596'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceShaderMaximalReconvergenceFeaturesKHR::shaderMaximalReconvergence' o='128' t='VkBool32'/>

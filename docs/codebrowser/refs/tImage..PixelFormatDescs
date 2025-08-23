@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='350' type='const char *[]'/>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='136' ll='314' type='const char *[81]'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='315' u='r'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='315' u='r'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='316' u='a'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='317' u='a'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='318' u='a'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='319' u='a'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='320' u='a'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='321' u='a'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='649' u='r' c='_ZN6tImage19tGetPixelFormatDescENS_12tPixelFormatE'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='851' type='void std::replace_if(_FIter , _FIter , _Predicate , const _Tp &amp; )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='4387' ll='4404' macro='1' type='void std::replace_if(_ForwardIterator __first, _ForwardIterator __last, _Predicate __pred, const _Tp &amp; __new_value)'/>

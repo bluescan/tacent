@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='631' type='uint32 tColour4s::operator unsigned int()'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='628'>// These allow tColour4s to be keys in a tMap. Doesn&apos;t need to be unique as the tMap deals with hash collisions.
+	// This &apos;hash&apos; function simply places the green 16 bits in the middle left and the blue in middle-right, overlapping
+	// (xor) the red (MSB) and alpha (LSB).</doc>

@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7076' ll='7084'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7076'/>
+<size>88</size>
+<mbr r='VkImageCopy2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageCopy2::pNext' o='64' t='const void *'/>
+<mbr r='VkImageCopy2::srcSubresource' o='128' t='VkImageSubresourceLayers'/>
+<mbr r='VkImageCopy2::srcOffset' o='256' t='VkOffset3D'/>
+<mbr r='VkImageCopy2::dstSubresource' o='352' t='VkImageSubresourceLayers'/>
+<mbr r='VkImageCopy2::dstOffset' o='480' t='VkOffset3D'/>
+<mbr r='VkImageCopy2::extent' o='576' t='VkExtent3D'/>

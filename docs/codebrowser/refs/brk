@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='1070' type='int brk(void * __addr)'/>
+<doc f='include/unistd.h' l='1068'>/* Set the end of accessible data space (aka &quot;the break&quot;) to ADDR.
+   Returns zero on success and -1 for errors (with errno set).  */</doc>

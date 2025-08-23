@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='465' type='WebPDecBuffer'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='98' u='m' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='99' u='m' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='115' u='m' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='116' u='m' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='139' u='m' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='149' u='a' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<offset>320</offset>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='465'>// Output buffer (can point to external mem)</doc>

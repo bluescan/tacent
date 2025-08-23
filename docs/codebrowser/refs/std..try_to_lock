@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/std_mutex.h' l='212' macro='1' type='const std::try_to_lock_t'/>
+<use f='include/c++/11/mutex' l='518' u='r' c='_ZSt13__try_to_lockRT_'/>

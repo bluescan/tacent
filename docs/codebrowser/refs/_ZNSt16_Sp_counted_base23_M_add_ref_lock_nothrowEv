@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/shared_ptr_base.h' l='153' u='c' c='_ZNSt16_Sp_counted_base15_M_add_ref_lockEv'/>
+<dec f='include/c++/11/bits/shared_ptr_base.h' l='158' type='bool std::_Sp_counted_base::_M_add_ref_lock_nothrow()'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='227' ll='236' type='bool std::_Sp_counted_base&lt;__gnu_cxx::_S_single&gt;::_M_add_ref_lock_nothrow()'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='238' ll='250' type='bool std::_Sp_counted_base&lt;__gnu_cxx::_S_mutex&gt;::_M_add_ref_lock_nothrow()'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='252' ll='270' type='bool std::_Sp_counted_base&lt;__gnu_cxx::_S_atomic&gt;::_M_add_ref_lock_nothrow()'/>

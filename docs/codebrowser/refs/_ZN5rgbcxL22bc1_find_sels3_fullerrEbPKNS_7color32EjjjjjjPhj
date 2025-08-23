@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2368' ll='2416' type='uint32_t rgbcx::bc1_find_sels3_fullerr(bool use_black, const rgbcx::color32 * pSrc_pixels, uint32_t lr, uint32_t lg, uint32_t lb, uint32_t hr, uint32_t hg, uint32_t hb, uint8_t * sels, uint32_t cur_err)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2685' u='c' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2713' u='c' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2751' u='c' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2779' u='c' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2870' u='c' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3453' u='c' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>

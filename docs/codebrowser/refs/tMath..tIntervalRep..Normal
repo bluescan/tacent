@@ -1,0 +1,11 @@
+<dec f='Modules/Math/Inc/Math/tInterval.h' l='32' type='0'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='74' c='_ZNK5tMath9tInterval3GetER7tStringNS_12tIntervalRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='75' c='_ZNK5tMath9tInterval3GetENS_12tIntervalRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='150' c='_ZNK5tMath12tIntervalSet3GetER7tStringNS_12tIntervalRepENS_15tIntervalSetRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='151' c='_ZNK5tMath12tIntervalSet3GetENS_12tIntervalRepENS_15tIntervalSetRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='226' u='r' c='_ZN5tMath9tInterval3SetERK7tString'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='229' u='r' c='_ZN5tMath9tInterval3SetERK7tString'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='237' u='r' c='_ZN5tMath9tInterval3SetERK7tString'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='74' c='_ZNK5tMath9tInterval3GetER7tStringNS_12tIntervalRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='150' c='_ZNK5tMath12tIntervalSet3GetER7tStringNS_12tIntervalRepENS_15tIntervalSetRepE'/>
+<doc f='Modules/Math/Inc/Math/tInterval.h' l='32'>// { 4, 5, 6 } represented as string &quot;[4,7)&quot; or some variation. [] means inclusive.</doc>

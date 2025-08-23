@@ -1,0 +1,2 @@
+<def f='include/c++/11/new' l='222' type='const std::destroying_delete_t'/>
+<doc f='include/c++/11/new' l='221'>/// Tag variable of type destroying_delete_t.</doc>

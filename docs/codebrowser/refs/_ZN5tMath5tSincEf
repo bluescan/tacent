@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='194' type='float tMath::tSinc(float x)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='194'>/* Normalized sinc. */</doc>
+<use f='Modules/Image/Src/tResample.cpp' l='421' u='c' c='_ZN6tImage20ComputeLanczosWeightEff'/>
+<use f='Modules/Image/Src/tResample.cpp' l='421' u='c' c='_ZN6tImage20ComputeLanczosWeightEff'/>

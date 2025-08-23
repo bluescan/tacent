@@ -1,0 +1,9 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='363' u='c' c='_ZN9tColour4b3SetEPKf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='370' u='c' c='_ZN9tColour4b3SetEffff'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='371' type='void tColour4b::SetR(float r)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1098' u='c' c='_ZN9tColour4b3SetERK9tColour3fh'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1485' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1067' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='247' u='c' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='393' u='c' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1177' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>

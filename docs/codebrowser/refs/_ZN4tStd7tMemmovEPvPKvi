@@ -1,0 +1,6 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='36' type='void * tStd::tMemmov(void * dest, const void * src, int numBytes)'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='154' u='c' c='_ZN7tString11ExtractLeftEc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='199' u='c' c='_ZN7tString11ExtractLeftEi'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='268' u='c' c='_ZN7tString11ExtractLeftEPKDu'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='499' u='c' c='_ZN7tString14RemoveTrailingEPKc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='510' u='c' c='_ZN7tString11RemoveFirstEv'/>

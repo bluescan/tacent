@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='93' type='uint16'/>
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='97' type='uint16'/>
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='102' type='uint16'/>
+<offset>16</offset>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='93'>/* TIFF version number */</doc>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='97'>/* TIFF version number */</doc>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='102'>/* TIFF version number */</doc>

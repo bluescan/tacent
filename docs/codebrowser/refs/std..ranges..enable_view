@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/ranges_base.h' l='621' type='const bool'/>
+<def f='include/c++/11/string_view' l='804' ll='806' type='const bool'/>
+<doc f='include/c++/11/string_view' l='803'>// Opt-in to view concept</doc>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15531' ll='15535'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15531'/>
+<size>24</size>
+<mbr r='VkDescriptorBufferBindingPushDescriptorBufferHandleEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDescriptorBufferBindingPushDescriptorBufferHandleEXT::pNext' o='64' t='void *'/>
+<mbr r='VkDescriptorBufferBindingPushDescriptorBufferHandleEXT::buffer' o='128' t='VkBuffer'/>

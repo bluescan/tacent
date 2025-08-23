@@ -1,0 +1,1 @@
+<dec f='include/stdlib.h' l='338' type='_Float32x strtof32x_l(const char *__restrict __nptr, char **__restrict __endptr, locale_t __loc)'/>

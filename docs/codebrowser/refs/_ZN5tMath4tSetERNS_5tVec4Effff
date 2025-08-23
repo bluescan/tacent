@@ -1,0 +1,17 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='222' type='void tMath::tSet(tMath::tVec4 &amp; d, float x, float y, float z, float w)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='998' u='c' c='_ZN5tMath7tRotateERNS_5tVec4ERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1169' u='c' c='_ZN5tMath6tCrossERNS_5tVec4ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='31' u='c' c='_ZN5tMath8tVector4C1Effff'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='39' u='c' c='_ZN5tMath8tVector43SetEffff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='196' u='c' c='_ZN5tMath4tMulERNS_5tVec4ERKNS_5tMat4ERKS0_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='563' u='c' c='_ZN5tMath11tMakeLookAtERNS_5tMat4ERKNS_5tVec3ES4_S4_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='564' u='c' c='_ZN5tMath11tMakeLookAtERNS_5tMat4ERKNS_5tVec3ES4_S4_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='565' u='c' c='_ZN5tMath11tMakeLookAtERNS_5tMat4ERKNS_5tVec3ES4_S4_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='566' u='c' c='_ZN5tMath11tMakeLookAtERNS_5tMat4ERKNS_5tVec3ES4_S4_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='915' u='c' c='_ZN5tMath24tExtractProjectionPlanesEPNS_5tVec4ERKNS_5tMat4Ebb'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='916' u='c' c='_ZN5tMath24tExtractProjectionPlanesEPNS_5tVec4ERKNS_5tMat4Ebb'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='917' u='c' c='_ZN5tMath24tExtractProjectionPlanesEPNS_5tVec4ERKNS_5tMat4Ebb'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='918' u='c' c='_ZN5tMath24tExtractProjectionPlanesEPNS_5tVec4ERKNS_5tMat4Ebb'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='919' u='c' c='_ZN5tMath24tExtractProjectionPlanesEPNS_5tVec4ERKNS_5tMat4Ebb'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='920' u='c' c='_ZN5tMath24tExtractProjectionPlanesEPNS_5tVec4ERKNS_5tMat4Ebb'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='407' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>

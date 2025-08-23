@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_base.h' l='645' ll='648' macro='1' type='std::__atomic_base::__int_type std::__atomic_base::fetch_or(std::__atomic_base::__int_type __i, std::memory_order __m = memory_order_seq_cst)'/>

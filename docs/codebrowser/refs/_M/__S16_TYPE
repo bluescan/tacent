@@ -1,0 +1,29 @@
+<dec f='include/x86_64-linux-gnu/bits/types.h' l='109'/>
+<doc f='include/x86_64-linux-gnu/bits/types.h' l='80'>/* The machine-dependent file &lt;bits/typesizes.h&gt; defines __*_T_TYPE
+   macros for each of the OS types we define below.  The definitions
+   of those macros must use the following macros for underlying types.
+   We define __S&lt;SIZE&gt;_TYPE and __U&lt;SIZE&gt;_TYPE for the signed and unsigned
+   variants of each of the following integer types on this machine.
+
+	16		-- &quot;natural&quot; 16-bit type (always short)
+	32		-- &quot;natural&quot; 32-bit type (always int)
+	64		-- &quot;natural&quot; 64-bit type (long or long long)
+	LONG32		-- 32-bit type, traditionally long
+	QUAD		-- 64-bit type, traditionally long long
+	WORD		-- natural type of __WORDSIZE bits (int or long)
+	LONGWORD	-- type of __WORDSIZE bits, traditionally long
+
+   We distinguish WORD/LONGWORD, 32/LONG32, and 64/QUAD so that the
+   conventional uses of `long&apos; or `long long&apos; type modifiers match the
+   types we define, even when a less-adorned type would be the same size.
+   This matters for (somewhat) portably writing printf/scanf formats for
+   these types, where using the appropriate l or ll format modifiers can
+   make the typedefs and the formats match up across all GNU platforms.  If
+   we used `long&apos; when it&apos;s 64 bits where `long long&apos; is expected, then the
+   compiler would warn about the formats not matching the argument types,
+   and the programmer changing them to shut up the compiler would break the
+   program&apos;s portability.
+
+   Here we assume what is presently the case in all the GCC configurations
+   we support: long long is always 64 bits, long is always word/address size,
+   and int is always 32 bits.  */</doc>

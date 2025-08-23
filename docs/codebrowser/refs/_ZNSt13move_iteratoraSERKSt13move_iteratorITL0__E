@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='1455' ll='1460' macro='1' type='move_iterator&lt;_Iterator&gt; &amp; std::move_iterator::operator=(const move_iterator&lt;_Iter&gt; &amp; __i)'/>

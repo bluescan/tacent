@@ -1,0 +1,11 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='28' type='void tMath::tVector3::tVector3(const tMath::tVec3 &amp; v)'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='93' u='c' c='_ZNK5tMath8tVector3rmERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='144' u='c' c='_ZNK5tMath8tMatrix4mlERKNS_5tVec3E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='45' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='46' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='47' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='48' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='49' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='50' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='51' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='52' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>

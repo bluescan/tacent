@@ -1,0 +1,4 @@
+<def f='include/c++/11/cmath' l='1853' ll='1865' type='_Tp std::__hypot3(_Tp __x, _Tp __y, _Tp __z)'/>
+<use f='include/c++/11/cmath' l='1869' u='c' c='_ZSt5hypotfff'/>
+<use f='include/c++/11/cmath' l='1873' u='c' c='_ZSt5hypotddd'/>
+<use f='include/c++/11/cmath' l='1877' u='c' c='_ZSt5hypoteee'/>

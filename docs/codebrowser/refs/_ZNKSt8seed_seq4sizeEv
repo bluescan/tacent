@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/random.h' l='6088' ll='6089' type='std::size_t std::seed_seq::size() const'/>
+<doc f='include/c++/11/bits/random.h' l='6087'>// property functions</doc>

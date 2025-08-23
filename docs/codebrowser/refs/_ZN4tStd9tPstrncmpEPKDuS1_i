@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='83' type='int tStd::tPstrncmp(const char8_t * a, const char8_t * b, int n)'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='469' ll='476' type='int tStd::tPstrncmp(const char8_t * a, const char8_t * b, int n)'/>

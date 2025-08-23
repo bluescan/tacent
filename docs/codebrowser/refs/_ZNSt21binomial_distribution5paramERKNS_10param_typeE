@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='3844' ll='3846' type='void std::binomial_distribution::param(const std::binomial_distribution::param_type &amp; __param)'/>
+<doc f='include/c++/11/bits/random.h' l='3840'>/**
+       * @brief Sets the parameter set of the distribution.
+       * @param __param The new parameter set of the distribution.
+       */</doc>

@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tImagePNG.h' l='45' type='16'/>
+<use f='Modules/Image/Inc/Image/tImagePNG.h' l='46' u='r'/>
+<doc f='Modules/Image/Inc/Image/tImagePNG.h' l='41'>// Crazily some PNG files are actually JPG/JFIF files inside. I don&apos;t much like supporting this, but some
+		// software (ms-paint for example), will happily load such an invalid png. The world would be better if app
+		// developers wouldn&apos;t save things with the wrong extension, but they get away with it because other software
+		// loads this junk... and now this library is yet another.</doc>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='245' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>

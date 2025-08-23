@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='2016' ll='2018' type='bool std::chrono::month_day_last::ok() const'/>
+<use f='include/c++/11/chrono' l='2630' u='c' c='_ZNKSt6chrono19year_month_day_last2okEv'/>

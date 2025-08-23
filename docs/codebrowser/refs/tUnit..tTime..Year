@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tUnits.h' l='103' type='17'/>
+<doc f='Modules/Foundation/Inc/Foundation/tUnits.h' l='102'>// No months because they vary in duration.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tUnits.h' l='103'>// Precisely 365 canonical days.</doc>

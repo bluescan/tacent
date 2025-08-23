@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='792'/>
+<use f='include/c++/11/cstdlib' l='81' u='a'/>
+<use f='include/c++/11/cstdlib' l='131' u='a'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='791'>/* Define to 1 if you have the `aligned_alloc&apos; function. */</doc>

@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='53' u='w' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='788' u='w' c='_ZN6tScene6tWorld18CorrectMaterialIDsER7tItListINS_9tMaterialEERS1_INS_10tPolyModelEE'/>

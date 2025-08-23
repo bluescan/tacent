@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='109' type='35'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='109'>//	uint32	Orientation.</doc>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='136' u='r' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='520' u='m' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='803' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

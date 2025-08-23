@@ -1,0 +1,17 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='382' ll='390'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='393' ll='405'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='411'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='411'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='413'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='414'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='497'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='499'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='381'>/// Specialization using EBO.</doc>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='392'>/// Specialization not using EBO.</doc>
+<fun r='_ZNSt14_Sp_ebo_helperIXT_ET0_Lb1EEC1ERKS0_'/>
+<fun r='_ZNSt14_Sp_ebo_helperIXT_ET0_Lb1EEC1EOS0_'/>
+<fun r='_ZNSt14_Sp_ebo_helperIXT_ET0_Lb1EE6_S_getERS_IXT_ES0_Lb1EE'/>
+<fun r='_ZNSt14_Sp_ebo_helperIXT_ET0_Lb0EEC1ERKS0_'/>
+<fun r='_ZNSt14_Sp_ebo_helperIXT_ET0_Lb0EEC1EOS0_'/>
+<fun r='_ZNSt14_Sp_ebo_helperIXT_ET0_Lb0EE6_S_getERS_IXT_ES0_Lb0EE'/>
+<mbr r='std::_Sp_ebo_helper::_M_tp' t='_Tp'/>

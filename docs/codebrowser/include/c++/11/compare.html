@@ -1,0 +1,944 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>compare source code [include/c++/11/compare] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::__cmp_cat::_Ncmp,std::__cmp_cat::_Ord,std::__cmp_cat::__unspec,std::__cmp_cust::_Partial_fallback,std::__cmp_cust::_Partial_order,std::__cmp_cust::_Strong_fallback,std::__cmp_cust::_Strong_order,std::__cmp_cust::_Weak_fallback,std::__cmp_cust::_Weak_order,std::__detail::_Synth3way,std::__detail::__cmp3way_res_impl,std::common_comparison_category,std::compare_three_way,std::compare_three_way_result,std::partial_ordering,std::strong_ordering,std::weak_ordering "/>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/compare'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>c++</a>/<a href='./'>11</a>/<a href='compare.html'>compare</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// -*- C++ -*- operator&lt;=&gt; three-way comparison support.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2019-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of GCC.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// GCC is free software; you can redistribute it and/or modify</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// it under the terms of the GNU General Public License as published by</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// the Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// GCC is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i></i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">compare</span></i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  This is a Standard C++ Library header.</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_COMPARE">_COMPARE</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_COMPARE" data-ref="_M/_COMPARE">_COMPARE</dfn></u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#<span data-ppcond="35">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L &amp;&amp; <span class="macro" title="201907L" data-ref="_M/__cpp_impl_three_way_comparison">__cpp_impl_three_way_comparison</span> &gt;= 201907L</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#pragma GCC visibility push(default)</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#include &lt;concepts&gt;</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="41">if</span> <a class="macro" href="concepts.html#50" title="202002L" data-ref="_M/__cpp_lib_concepts">__cpp_lib_concepts</a></u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u># define <dfn class="macro" id="_M/__cpp_lib_three_way_comparison" data-ref="_M/__cpp_lib_three_way_comparison">__cpp_lib_three_way_comparison</dfn> 201907L</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#<span data-ppcond="41">endif</span></u>&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td><b>namespace</b> <span class="namespace">std</span>&nbsp</td></tr>
+<tr><th id="46">46</th><td>{&nbsp</td></tr>
+<tr><th id="47">47</th><td>  <i>// [cmp.categories], comparison category types</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td>  <b>namespace</b> <span class="namespace">__cmp_cat</span>&nbsp</td></tr>
+<tr><th id="50">50</th><td>  {&nbsp</td></tr>
+<tr><th id="51">51</th><td>    <b>using</b> <dfn class="typedef" id="std::__cmp_cat::type" title='std::__cmp_cat::type' data-type='signed char' data-ref="std::__cmp_cat::type">type</dfn> = <em>signed</em> <em>char</em>;&nbsp</td></tr>
+<tr><th id="52">52</th><td>&nbsp</td></tr>
+<tr><th id="53">53</th><td>    <b>enum</b> <b>class</b> <dfn class="type def" id="std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</dfn> : <a class="typedef" href="#std::__cmp_cat::type" title='std::__cmp_cat::type' data-type='signed char' data-ref="std::__cmp_cat::type">type</a> { <dfn class="enum" id="std::__cmp_cat::_Ord::equivalent" title='std::__cmp_cat::_Ord::equivalent' data-ref="std::__cmp_cat::_Ord::equivalent">equivalent</dfn> = <var>0</var>, <dfn class="enum" id="std::__cmp_cat::_Ord::less" title='std::__cmp_cat::_Ord::less' data-ref="std::__cmp_cat::_Ord::less">less</dfn> = -<var>1</var>, <dfn class="enum" id="std::__cmp_cat::_Ord::greater" title='std::__cmp_cat::_Ord::greater' data-ref="std::__cmp_cat::_Ord::greater">greater</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="54">54</th><td>&nbsp</td></tr>
+<tr><th id="55">55</th><td>    <b>enum</b> <b>class</b> <dfn class="type def" id="std::__cmp_cat::_Ncmp" title='std::__cmp_cat::_Ncmp' data-ref="std::__cmp_cat::_Ncmp">_Ncmp</dfn> : <a class="typedef" href="#std::__cmp_cat::type" title='std::__cmp_cat::type' data-type='signed char' data-ref="std::__cmp_cat::type">type</a> { <dfn class="enum" id="std::__cmp_cat::_Ncmp::_Unordered" title='std::__cmp_cat::_Ncmp::_Unordered' data-ref="std::__cmp_cat::_Ncmp::_Unordered">_Unordered</dfn> = <var>2</var> };&nbsp</td></tr>
+<tr><th id="56">56</th><td>&nbsp</td></tr>
+<tr><th id="57">57</th><td>    <b>struct</b> <dfn class="type def" id="std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</dfn>&nbsp</td></tr>
+<tr><th id="58">58</th><td>    {&nbsp</td></tr>
+<tr><th id="59">59</th><td>      <b>constexpr</b> <dfn class="decl def fn" id="_ZNSt9__cmp_cat8__unspecC1EPS0_" title='std::__cmp_cat::__unspec::__unspec' data-ref="_ZNSt9__cmp_cat8__unspecC1EPS0_">__unspec</dfn>(<a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>*) <b>noexcept</b> { }&nbsp</td></tr>
+<tr><th id="60">60</th><td>    };&nbsp</td></tr>
+<tr><th id="61">61</th><td>  }&nbsp</td></tr>
+<tr><th id="62">62</th><td>&nbsp</td></tr>
+<tr><th id="63">63</th><td>  <b>class</b> <dfn class="type def" id="std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</dfn>&nbsp</td></tr>
+<tr><th id="64">64</th><td>  {&nbsp</td></tr>
+<tr><th id="65">65</th><td>    <i>// less=0xff, equiv=0x00, greater=0x01, unordered=0x02</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td>    <span class="namespace">__cmp_cat::</span><a class="typedef" href="#std::__cmp_cat::type" title='std::__cmp_cat::type' data-type='signed char' data-ref="std::__cmp_cat::type">type</a> <dfn class="decl field" id="std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</dfn>;&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td>    <b>constexpr</b> <b>explicit</b>&nbsp</td></tr>
+<tr><th id="69">69</th><td>    <dfn class="decl def fn" id="_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE">partial_ordering</dfn>(<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a> <dfn class="local col9 decl" id="2649__v" title='__v' data-type='__cmp_cat::_Ord' data-ref="2649__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="70">70</th><td>    : <a class="member field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a>(<span class="namespace">__cmp_cat::</span><a class="typedef" href="#std::__cmp_cat::type" title='std::__cmp_cat::type' data-type='signed char' data-ref="std::__cmp_cat::type">type</a>(<a class="local col9 ref" href="#2649__v" title='__v' data-ref="2649__v">__v</a>))&nbsp</td></tr>
+<tr><th id="71">71</th><td>    { }&nbsp</td></tr>
+<tr><th id="72">72</th><td>&nbsp</td></tr>
+<tr><th id="73">73</th><td>    <b>constexpr</b> <b>explicit</b>&nbsp</td></tr>
+<tr><th id="74">74</th><td>    <dfn class="decl def fn" id="_ZNSt16partial_orderingC1ENSt9__cmp_cat5_NcmpE" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ENSt9__cmp_cat5_NcmpE">partial_ordering</dfn>(<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ncmp" title='std::__cmp_cat::_Ncmp' data-ref="std::__cmp_cat::_Ncmp">_Ncmp</a> <dfn class="local col0 decl" id="2650__v" title='__v' data-type='__cmp_cat::_Ncmp' data-ref="2650__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="75">75</th><td>    : <a class="member field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a>(<span class="namespace">__cmp_cat::</span><a class="typedef" href="#std::__cmp_cat::type" title='std::__cmp_cat::type' data-type='signed char' data-ref="std::__cmp_cat::type">type</a>(<a class="local col0 ref" href="#2650__v" title='__v' data-ref="2650__v">__v</a>))&nbsp</td></tr>
+<tr><th id="76">76</th><td>    { }&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td>    <b>friend</b> <b>class</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>;&nbsp</td></tr>
+<tr><th id="79">79</th><td>    <b>friend</b> <b>class</b> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>;&nbsp</td></tr>
+<tr><th id="80">80</th><td>&nbsp</td></tr>
+<tr><th id="81">81</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="82">82</th><td>    <i>// valid values</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td>    <em>static</em> <em>const</em> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="decl" id="std::partial_ordering::less" title='std::partial_ordering::less' data-ref="std::partial_ordering::less">less</dfn>;&nbsp</td></tr>
+<tr><th id="84">84</th><td>    <em>static</em> <em>const</em> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="decl" id="std::partial_ordering::equivalent" title='std::partial_ordering::equivalent' data-ref="std::partial_ordering::equivalent">equivalent</dfn>;&nbsp</td></tr>
+<tr><th id="85">85</th><td>    <em>static</em> <em>const</em> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="decl" id="std::partial_ordering::greater" title='std::partial_ordering::greater' data-ref="std::partial_ordering::greater">greater</dfn>;&nbsp</td></tr>
+<tr><th id="86">86</th><td>    <em>static</em> <em>const</em> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="decl" id="std::partial_ordering::unordered" title='std::partial_ordering::unordered' data-ref="std::partial_ordering::unordered">unordered</dfn>;&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td>    <i>// comparisons</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="90">90</th><td>    <dfn class="decl def fn" id="_ZSteqSt16partial_orderingNSt9__cmp_cat8__unspecE" title='std::operator==' data-ref="_ZSteqSt16partial_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>==</dfn>(<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col1 decl" id="2651__v" title='__v' data-type='std::partial_ordering' data-ref="2651__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="91">91</th><td>    { <b>return</b> <a class="local col1 ref" href="#2651__v" title='__v' data-ref="2651__v">__v</a>.<a class="ref field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a> == <var>0</var>; }&nbsp</td></tr>
+<tr><th id="92">92</th><td>&nbsp</td></tr>
+<tr><th id="93">93</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="94">94</th><td>    <dfn class="decl def fn" id="_ZSteqSt16partial_orderingS_" title='std::operator==' data-ref="_ZSteqSt16partial_orderingS_"><b>operator</b>==</dfn>(<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>, <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>) <b>noexcept</b> = <b>default</b>;&nbsp</td></tr>
+<tr><th id="95">95</th><td>&nbsp</td></tr>
+<tr><th id="96">96</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="97">97</th><td>    <dfn class="decl def fn" id="_ZStltSt16partial_orderingNSt9__cmp_cat8__unspecE" title='std::operator&lt;' data-ref="_ZStltSt16partial_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&lt;</dfn> (<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col2 decl" id="2652__v" title='__v' data-type='std::partial_ordering' data-ref="2652__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="98">98</th><td>    { <b>return</b> <a class="local col2 ref" href="#2652__v" title='__v' data-ref="2652__v">__v</a>.<a class="ref field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a> == -<var>1</var>; }&nbsp</td></tr>
+<tr><th id="99">99</th><td>&nbsp</td></tr>
+<tr><th id="100">100</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="101">101</th><td>    <dfn class="decl def fn" id="_ZStgtSt16partial_orderingNSt9__cmp_cat8__unspecE" title='std::operator&gt;' data-ref="_ZStgtSt16partial_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&gt;</dfn> (<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col3 decl" id="2653__v" title='__v' data-type='std::partial_ordering' data-ref="2653__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="102">102</th><td>    { <b>return</b> <a class="local col3 ref" href="#2653__v" title='__v' data-ref="2653__v">__v</a>.<a class="ref field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a> == <var>1</var>; }&nbsp</td></tr>
+<tr><th id="103">103</th><td>&nbsp</td></tr>
+<tr><th id="104">104</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="105">105</th><td>    <dfn class="decl def fn" id="_ZStleSt16partial_orderingNSt9__cmp_cat8__unspecE" title='std::operator&lt;=' data-ref="_ZStleSt16partial_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&lt;=</dfn>(<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col4 decl" id="2654__v" title='__v' data-type='std::partial_ordering' data-ref="2654__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="106">106</th><td>    { <b>return</b> <a class="local col4 ref" href="#2654__v" title='__v' data-ref="2654__v">__v</a>.<a class="ref field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a> &lt;= <var>0</var>; }&nbsp</td></tr>
+<tr><th id="107">107</th><td>&nbsp</td></tr>
+<tr><th id="108">108</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="109">109</th><td>    <dfn class="decl def fn" id="_ZStgeSt16partial_orderingNSt9__cmp_cat8__unspecE" title='std::operator&gt;=' data-ref="_ZStgeSt16partial_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&gt;=</dfn>(<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col5 decl" id="2655__v" title='__v' data-type='std::partial_ordering' data-ref="2655__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="110">110</th><td>    { <b>return</b> <span class="namespace">__cmp_cat::</span><a class="typedef" href="#std::__cmp_cat::type" title='std::__cmp_cat::type' data-type='signed char' data-ref="std::__cmp_cat::type">type</a>(<a class="local col5 ref" href="#2655__v" title='__v' data-ref="2655__v">__v</a>.<a class="ref field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a> &amp; <var>1</var>) == <a class="local col5 ref" href="#2655__v" title='__v' data-ref="2655__v">__v</a>.<a class="ref field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a>; }&nbsp</td></tr>
+<tr><th id="111">111</th><td>&nbsp</td></tr>
+<tr><th id="112">112</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="113">113</th><td>    <dfn class="decl def fn" id="_ZStltNSt9__cmp_cat8__unspecESt16partial_ordering" title='std::operator&lt;' data-ref="_ZStltNSt9__cmp_cat8__unspecESt16partial_ordering"><b>operator</b>&lt;</dfn> (<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col6 decl" id="2656__v" title='__v' data-type='std::partial_ordering' data-ref="2656__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="114">114</th><td>    { <b>return</b> <a class="local col6 ref" href="#2656__v" title='__v' data-ref="2656__v">__v</a>.<a class="ref field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a> == <var>1</var>; }&nbsp</td></tr>
+<tr><th id="115">115</th><td>&nbsp</td></tr>
+<tr><th id="116">116</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="117">117</th><td>    <dfn class="decl def fn" id="_ZStgtNSt9__cmp_cat8__unspecESt16partial_ordering" title='std::operator&gt;' data-ref="_ZStgtNSt9__cmp_cat8__unspecESt16partial_ordering"><b>operator</b>&gt;</dfn> (<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col7 decl" id="2657__v" title='__v' data-type='std::partial_ordering' data-ref="2657__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="118">118</th><td>    { <b>return</b> <a class="local col7 ref" href="#2657__v" title='__v' data-ref="2657__v">__v</a>.<a class="ref field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a> == -<var>1</var>; }&nbsp</td></tr>
+<tr><th id="119">119</th><td>&nbsp</td></tr>
+<tr><th id="120">120</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="121">121</th><td>    <dfn class="decl def fn" id="_ZStleNSt9__cmp_cat8__unspecESt16partial_ordering" title='std::operator&lt;=' data-ref="_ZStleNSt9__cmp_cat8__unspecESt16partial_ordering"><b>operator</b>&lt;=</dfn>(<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col8 decl" id="2658__v" title='__v' data-type='std::partial_ordering' data-ref="2658__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="122">122</th><td>    { <b>return</b> <span class="namespace">__cmp_cat::</span><a class="typedef" href="#std::__cmp_cat::type" title='std::__cmp_cat::type' data-type='signed char' data-ref="std::__cmp_cat::type">type</a>(<a class="local col8 ref" href="#2658__v" title='__v' data-ref="2658__v">__v</a>.<a class="ref field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a> &amp; <var>1</var>) == <a class="local col8 ref" href="#2658__v" title='__v' data-ref="2658__v">__v</a>.<a class="ref field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a>; }&nbsp</td></tr>
+<tr><th id="123">123</th><td>&nbsp</td></tr>
+<tr><th id="124">124</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="125">125</th><td>    <dfn class="decl def fn" id="_ZStgeNSt9__cmp_cat8__unspecESt16partial_ordering" title='std::operator&gt;=' data-ref="_ZStgeNSt9__cmp_cat8__unspecESt16partial_ordering"><b>operator</b>&gt;=</dfn>(<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col9 decl" id="2659__v" title='__v' data-type='std::partial_ordering' data-ref="2659__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="126">126</th><td>    { <b>return</b> <var>0</var> &gt;= <a class="local col9 ref" href="#2659__v" title='__v' data-ref="2659__v">__v</a>.<a class="ref field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a>; }&nbsp</td></tr>
+<tr><th id="127">127</th><td>&nbsp</td></tr>
+<tr><th id="128">128</th><td>    <b>friend</b> <b>constexpr</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>&nbsp</td></tr>
+<tr><th id="129">129</th><td>    <dfn class="decl def fn" id="_ZStssSt16partial_orderingNSt9__cmp_cat8__unspecE" title='std::operator&lt;=&gt;' data-ref="_ZStssSt16partial_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&lt;=&gt;</dfn>(<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col0 decl" id="2660__v" title='__v' data-type='std::partial_ordering' data-ref="2660__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="130">130</th><td>    { <b>return</b> <a class="ref fn fake" href="#63" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1EOS_"></a><a class="local col0 ref" href="#2660__v" title='__v' data-ref="2660__v">__v</a>; }&nbsp</td></tr>
+<tr><th id="131">131</th><td>&nbsp</td></tr>
+<tr><th id="132">132</th><td>    <b>friend</b> <b>constexpr</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>&nbsp</td></tr>
+<tr><th id="133">133</th><td>    <dfn class="decl def fn" id="_ZStssNSt9__cmp_cat8__unspecESt16partial_ordering" title='std::operator&lt;=&gt;' data-ref="_ZStssNSt9__cmp_cat8__unspecESt16partial_ordering"><b>operator</b>&lt;=&gt;</dfn>(<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col1 decl" id="2661__v" title='__v' data-type='std::partial_ordering' data-ref="2661__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="134">134</th><td>    {&nbsp</td></tr>
+<tr><th id="135">135</th><td>      <b>if</b> (<a class="local col1 ref" href="#2661__v" title='__v' data-ref="2661__v">__v</a>.<a class="ref field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a> &amp; <var>1</var>)&nbsp</td></tr>
+<tr><th id="136">136</th><td>	<b>return</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a><a class="ref fn" href="#_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>(-<a class="local col1 ref" href="#2661__v" title='__v' data-ref="2661__v">__v</a>.<a class="ref field" href="#std::partial_ordering::_M_value" title='std::partial_ordering::_M_value' data-ref="std::partial_ordering::_M_value">_M_value</a>));&nbsp</td></tr>
+<tr><th id="137">137</th><td>      <b>else</b>&nbsp</td></tr>
+<tr><th id="138">138</th><td>	<b>return</b> <a class="ref fn fake" href="#63" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1EOS_"></a><a class="local col1 ref" href="#2661__v" title='__v' data-ref="2661__v">__v</a>;&nbsp</td></tr>
+<tr><th id="139">139</th><td>    }&nbsp</td></tr>
+<tr><th id="140">140</th><td>  };&nbsp</td></tr>
+<tr><th id="141">141</th><td>&nbsp</td></tr>
+<tr><th id="142">142</th><td>  <i>// valid values' definitions</i>&nbsp</td></tr>
+<tr><th id="143">143</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>&nbsp</td></tr>
+<tr><th id="144">144</th><td>  <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>::<dfn class="decl def" id="std::partial_ordering::less" title='std::partial_ordering::less' data-ref="std::partial_ordering::less">less</dfn><a class="ref fn" href="#_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>::<a class="enum" href="#std::__cmp_cat::_Ord::less" title='std::__cmp_cat::_Ord::less' data-ref="std::__cmp_cat::_Ord::less">less</a>);&nbsp</td></tr>
+<tr><th id="145">145</th><td>&nbsp</td></tr>
+<tr><th id="146">146</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>&nbsp</td></tr>
+<tr><th id="147">147</th><td>  <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>::<dfn class="decl def" id="std::partial_ordering::equivalent" title='std::partial_ordering::equivalent' data-ref="std::partial_ordering::equivalent">equivalent</dfn><a class="ref fn" href="#_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>::<a class="enum" href="#std::__cmp_cat::_Ord::equivalent" title='std::__cmp_cat::_Ord::equivalent' data-ref="std::__cmp_cat::_Ord::equivalent">equivalent</a>);&nbsp</td></tr>
+<tr><th id="148">148</th><td>&nbsp</td></tr>
+<tr><th id="149">149</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>&nbsp</td></tr>
+<tr><th id="150">150</th><td>  <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>::<dfn class="decl def" id="std::partial_ordering::greater" title='std::partial_ordering::greater' data-ref="std::partial_ordering::greater">greater</dfn><a class="ref fn" href="#_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>::<a class="enum" href="#std::__cmp_cat::_Ord::greater" title='std::__cmp_cat::_Ord::greater' data-ref="std::__cmp_cat::_Ord::greater">greater</a>);&nbsp</td></tr>
+<tr><th id="151">151</th><td>&nbsp</td></tr>
+<tr><th id="152">152</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>&nbsp</td></tr>
+<tr><th id="153">153</th><td>  <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>::<dfn class="decl def" id="std::partial_ordering::unordered" title='std::partial_ordering::unordered' data-ref="std::partial_ordering::unordered">unordered</dfn><a class="ref fn" href="#_ZNSt16partial_orderingC1ENSt9__cmp_cat5_NcmpE" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ENSt9__cmp_cat5_NcmpE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ncmp" title='std::__cmp_cat::_Ncmp' data-ref="std::__cmp_cat::_Ncmp">_Ncmp</a>::<a class="enum" href="#std::__cmp_cat::_Ncmp::_Unordered" title='std::__cmp_cat::_Ncmp::_Unordered' data-ref="std::__cmp_cat::_Ncmp::_Unordered">_Unordered</a>);&nbsp</td></tr>
+<tr><th id="154">154</th><td>&nbsp</td></tr>
+<tr><th id="155">155</th><td>  <b>class</b> <dfn class="type def" id="std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</dfn>&nbsp</td></tr>
+<tr><th id="156">156</th><td>  {&nbsp</td></tr>
+<tr><th id="157">157</th><td>    <span class="namespace">__cmp_cat::</span><a class="typedef" href="#std::__cmp_cat::type" title='std::__cmp_cat::type' data-type='signed char' data-ref="std::__cmp_cat::type">type</a> <dfn class="decl field" id="std::weak_ordering::_M_value" title='std::weak_ordering::_M_value' data-ref="std::weak_ordering::_M_value">_M_value</dfn>;&nbsp</td></tr>
+<tr><th id="158">158</th><td>&nbsp</td></tr>
+<tr><th id="159">159</th><td>    <b>constexpr</b> <b>explicit</b>&nbsp</td></tr>
+<tr><th id="160">160</th><td>    <dfn class="decl def fn" id="_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE" title='std::weak_ordering::weak_ordering' data-ref="_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE">weak_ordering</dfn>(<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a> <dfn class="local col2 decl" id="2662__v" title='__v' data-type='__cmp_cat::_Ord' data-ref="2662__v">__v</dfn>) <b>noexcept</b> : <a class="member field" href="#std::weak_ordering::_M_value" title='std::weak_ordering::_M_value' data-ref="std::weak_ordering::_M_value">_M_value</a>(<span class="namespace">__cmp_cat::</span><a class="typedef" href="#std::__cmp_cat::type" title='std::__cmp_cat::type' data-type='signed char' data-ref="std::__cmp_cat::type">type</a>(<a class="local col2 ref" href="#2662__v" title='__v' data-ref="2662__v">__v</a>))&nbsp</td></tr>
+<tr><th id="161">161</th><td>    { }&nbsp</td></tr>
+<tr><th id="162">162</th><td>&nbsp</td></tr>
+<tr><th id="163">163</th><td>    <b>friend</b> <b>class</b> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>;&nbsp</td></tr>
+<tr><th id="164">164</th><td>&nbsp</td></tr>
+<tr><th id="165">165</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="166">166</th><td>    <i>// valid values</i>&nbsp</td></tr>
+<tr><th id="167">167</th><td>    <em>static</em> <em>const</em> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="decl" id="std::weak_ordering::less" title='std::weak_ordering::less' data-ref="std::weak_ordering::less">less</dfn>;&nbsp</td></tr>
+<tr><th id="168">168</th><td>    <em>static</em> <em>const</em> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="decl" id="std::weak_ordering::equivalent" title='std::weak_ordering::equivalent' data-ref="std::weak_ordering::equivalent">equivalent</dfn>;&nbsp</td></tr>
+<tr><th id="169">169</th><td>    <em>static</em> <em>const</em> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="decl" id="std::weak_ordering::greater" title='std::weak_ordering::greater' data-ref="std::weak_ordering::greater">greater</dfn>;&nbsp</td></tr>
+<tr><th id="170">170</th><td>&nbsp</td></tr>
+<tr><th id="171">171</th><td>    <b>constexpr</b> <dfn class="decl def fn" id="_ZNKSt13weak_orderingcvSt16partial_orderingEv" title='std::weak_ordering::operator partial_ordering' data-ref="_ZNKSt13weak_orderingcvSt16partial_orderingEv"><b>operator</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a></dfn>() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="172">172</th><td>    { <b>return</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a><a class="ref fn" href="#_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>(<a class="member field" href="#std::weak_ordering::_M_value" title='std::weak_ordering::_M_value' data-ref="std::weak_ordering::_M_value">_M_value</a>)); }&nbsp</td></tr>
+<tr><th id="173">173</th><td>&nbsp</td></tr>
+<tr><th id="174">174</th><td>    <i>// comparisons</i>&nbsp</td></tr>
+<tr><th id="175">175</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="176">176</th><td>    <dfn class="decl def fn" id="_ZSteqSt13weak_orderingNSt9__cmp_cat8__unspecE" title='std::operator==' data-ref="_ZSteqSt13weak_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>==</dfn>(<a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="local col3 decl" id="2663__v" title='__v' data-type='std::weak_ordering' data-ref="2663__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="177">177</th><td>    { <b>return</b> <a class="local col3 ref" href="#2663__v" title='__v' data-ref="2663__v">__v</a>.<a class="ref field" href="#std::weak_ordering::_M_value" title='std::weak_ordering::_M_value' data-ref="std::weak_ordering::_M_value">_M_value</a> == <var>0</var>; }&nbsp</td></tr>
+<tr><th id="178">178</th><td>&nbsp</td></tr>
+<tr><th id="179">179</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="180">180</th><td>    <dfn class="decl def fn" id="_ZSteqSt13weak_orderingS_" title='std::operator==' data-ref="_ZSteqSt13weak_orderingS_"><b>operator</b>==</dfn>(<a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>, <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>) <b>noexcept</b> = <b>default</b>;&nbsp</td></tr>
+<tr><th id="181">181</th><td>&nbsp</td></tr>
+<tr><th id="182">182</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="183">183</th><td>    <dfn class="decl def fn" id="_ZStltSt13weak_orderingNSt9__cmp_cat8__unspecE" title='std::operator&lt;' data-ref="_ZStltSt13weak_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&lt;</dfn> (<a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="local col4 decl" id="2664__v" title='__v' data-type='std::weak_ordering' data-ref="2664__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="184">184</th><td>    { <b>return</b> <a class="local col4 ref" href="#2664__v" title='__v' data-ref="2664__v">__v</a>.<a class="ref field" href="#std::weak_ordering::_M_value" title='std::weak_ordering::_M_value' data-ref="std::weak_ordering::_M_value">_M_value</a> &lt; <var>0</var>; }&nbsp</td></tr>
+<tr><th id="185">185</th><td>&nbsp</td></tr>
+<tr><th id="186">186</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="187">187</th><td>    <dfn class="decl def fn" id="_ZStgtSt13weak_orderingNSt9__cmp_cat8__unspecE" title='std::operator&gt;' data-ref="_ZStgtSt13weak_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&gt;</dfn> (<a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="local col5 decl" id="2665__v" title='__v' data-type='std::weak_ordering' data-ref="2665__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="188">188</th><td>    { <b>return</b> <a class="local col5 ref" href="#2665__v" title='__v' data-ref="2665__v">__v</a>.<a class="ref field" href="#std::weak_ordering::_M_value" title='std::weak_ordering::_M_value' data-ref="std::weak_ordering::_M_value">_M_value</a> &gt; <var>0</var>; }&nbsp</td></tr>
+<tr><th id="189">189</th><td>&nbsp</td></tr>
+<tr><th id="190">190</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="191">191</th><td>    <dfn class="decl def fn" id="_ZStleSt13weak_orderingNSt9__cmp_cat8__unspecE" title='std::operator&lt;=' data-ref="_ZStleSt13weak_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&lt;=</dfn>(<a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="local col6 decl" id="2666__v" title='__v' data-type='std::weak_ordering' data-ref="2666__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="192">192</th><td>    { <b>return</b> <a class="local col6 ref" href="#2666__v" title='__v' data-ref="2666__v">__v</a>.<a class="ref field" href="#std::weak_ordering::_M_value" title='std::weak_ordering::_M_value' data-ref="std::weak_ordering::_M_value">_M_value</a> &lt;= <var>0</var>; }&nbsp</td></tr>
+<tr><th id="193">193</th><td>&nbsp</td></tr>
+<tr><th id="194">194</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="195">195</th><td>    <dfn class="decl def fn" id="_ZStgeSt13weak_orderingNSt9__cmp_cat8__unspecE" title='std::operator&gt;=' data-ref="_ZStgeSt13weak_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&gt;=</dfn>(<a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="local col7 decl" id="2667__v" title='__v' data-type='std::weak_ordering' data-ref="2667__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="196">196</th><td>    { <b>return</b> <a class="local col7 ref" href="#2667__v" title='__v' data-ref="2667__v">__v</a>.<a class="ref field" href="#std::weak_ordering::_M_value" title='std::weak_ordering::_M_value' data-ref="std::weak_ordering::_M_value">_M_value</a> &gt;= <var>0</var>; }&nbsp</td></tr>
+<tr><th id="197">197</th><td>&nbsp</td></tr>
+<tr><th id="198">198</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="199">199</th><td>    <dfn class="decl def fn" id="_ZStltNSt9__cmp_cat8__unspecESt13weak_ordering" title='std::operator&lt;' data-ref="_ZStltNSt9__cmp_cat8__unspecESt13weak_ordering"><b>operator</b>&lt;</dfn> (<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="local col8 decl" id="2668__v" title='__v' data-type='std::weak_ordering' data-ref="2668__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="200">200</th><td>    { <b>return</b> <var>0</var> &lt; <a class="local col8 ref" href="#2668__v" title='__v' data-ref="2668__v">__v</a>.<a class="ref field" href="#std::weak_ordering::_M_value" title='std::weak_ordering::_M_value' data-ref="std::weak_ordering::_M_value">_M_value</a>; }&nbsp</td></tr>
+<tr><th id="201">201</th><td>&nbsp</td></tr>
+<tr><th id="202">202</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="203">203</th><td>    <dfn class="decl def fn" id="_ZStgtNSt9__cmp_cat8__unspecESt13weak_ordering" title='std::operator&gt;' data-ref="_ZStgtNSt9__cmp_cat8__unspecESt13weak_ordering"><b>operator</b>&gt;</dfn> (<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="local col9 decl" id="2669__v" title='__v' data-type='std::weak_ordering' data-ref="2669__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="204">204</th><td>    { <b>return</b> <var>0</var> &gt; <a class="local col9 ref" href="#2669__v" title='__v' data-ref="2669__v">__v</a>.<a class="ref field" href="#std::weak_ordering::_M_value" title='std::weak_ordering::_M_value' data-ref="std::weak_ordering::_M_value">_M_value</a>; }&nbsp</td></tr>
+<tr><th id="205">205</th><td>&nbsp</td></tr>
+<tr><th id="206">206</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="207">207</th><td>    <dfn class="decl def fn" id="_ZStleNSt9__cmp_cat8__unspecESt13weak_ordering" title='std::operator&lt;=' data-ref="_ZStleNSt9__cmp_cat8__unspecESt13weak_ordering"><b>operator</b>&lt;=</dfn>(<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="local col0 decl" id="2670__v" title='__v' data-type='std::weak_ordering' data-ref="2670__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="208">208</th><td>    { <b>return</b> <var>0</var> &lt;= <a class="local col0 ref" href="#2670__v" title='__v' data-ref="2670__v">__v</a>.<a class="ref field" href="#std::weak_ordering::_M_value" title='std::weak_ordering::_M_value' data-ref="std::weak_ordering::_M_value">_M_value</a>; }&nbsp</td></tr>
+<tr><th id="209">209</th><td>&nbsp</td></tr>
+<tr><th id="210">210</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="211">211</th><td>    <dfn class="decl def fn" id="_ZStgeNSt9__cmp_cat8__unspecESt13weak_ordering" title='std::operator&gt;=' data-ref="_ZStgeNSt9__cmp_cat8__unspecESt13weak_ordering"><b>operator</b>&gt;=</dfn>(<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="local col1 decl" id="2671__v" title='__v' data-type='std::weak_ordering' data-ref="2671__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="212">212</th><td>    { <b>return</b> <var>0</var> &gt;= <a class="local col1 ref" href="#2671__v" title='__v' data-ref="2671__v">__v</a>.<a class="ref field" href="#std::weak_ordering::_M_value" title='std::weak_ordering::_M_value' data-ref="std::weak_ordering::_M_value">_M_value</a>; }&nbsp</td></tr>
+<tr><th id="213">213</th><td>&nbsp</td></tr>
+<tr><th id="214">214</th><td>    <b>friend</b> <b>constexpr</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>&nbsp</td></tr>
+<tr><th id="215">215</th><td>    <dfn class="decl def fn" id="_ZStssSt13weak_orderingNSt9__cmp_cat8__unspecE" title='std::operator&lt;=&gt;' data-ref="_ZStssSt13weak_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&lt;=&gt;</dfn>(<a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="local col2 decl" id="2672__v" title='__v' data-type='std::weak_ordering' data-ref="2672__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="216">216</th><td>    { <b>return</b> <a class="ref fn fake" href="#155" title='std::weak_ordering::weak_ordering' data-ref="_ZNSt13weak_orderingC1EOS_"></a><a class="local col2 ref" href="#2672__v" title='__v' data-ref="2672__v">__v</a>; }&nbsp</td></tr>
+<tr><th id="217">217</th><td>&nbsp</td></tr>
+<tr><th id="218">218</th><td>    <b>friend</b> <b>constexpr</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>&nbsp</td></tr>
+<tr><th id="219">219</th><td>    <dfn class="decl def fn" id="_ZStssNSt9__cmp_cat8__unspecESt13weak_ordering" title='std::operator&lt;=&gt;' data-ref="_ZStssNSt9__cmp_cat8__unspecESt13weak_ordering"><b>operator</b>&lt;=&gt;</dfn>(<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a> <dfn class="local col3 decl" id="2673__v" title='__v' data-type='std::weak_ordering' data-ref="2673__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="220">220</th><td>    { <b>return</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a><a class="ref fn" href="#_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE" title='std::weak_ordering::weak_ordering' data-ref="_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>(-<a class="local col3 ref" href="#2673__v" title='__v' data-ref="2673__v">__v</a>.<a class="ref field" href="#std::weak_ordering::_M_value" title='std::weak_ordering::_M_value' data-ref="std::weak_ordering::_M_value">_M_value</a>)); }&nbsp</td></tr>
+<tr><th id="221">221</th><td>  };&nbsp</td></tr>
+<tr><th id="222">222</th><td>&nbsp</td></tr>
+<tr><th id="223">223</th><td>  <i>// valid values' definitions</i>&nbsp</td></tr>
+<tr><th id="224">224</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>&nbsp</td></tr>
+<tr><th id="225">225</th><td>  <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<dfn class="decl def" id="std::weak_ordering::less" title='std::weak_ordering::less' data-ref="std::weak_ordering::less">less</dfn><a class="ref fn" href="#_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE" title='std::weak_ordering::weak_ordering' data-ref="_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>::<a class="enum" href="#std::__cmp_cat::_Ord::less" title='std::__cmp_cat::_Ord::less' data-ref="std::__cmp_cat::_Ord::less">less</a>);&nbsp</td></tr>
+<tr><th id="226">226</th><td>&nbsp</td></tr>
+<tr><th id="227">227</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>&nbsp</td></tr>
+<tr><th id="228">228</th><td>  <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<dfn class="decl def" id="std::weak_ordering::equivalent" title='std::weak_ordering::equivalent' data-ref="std::weak_ordering::equivalent">equivalent</dfn><a class="ref fn" href="#_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE" title='std::weak_ordering::weak_ordering' data-ref="_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>::<a class="enum" href="#std::__cmp_cat::_Ord::equivalent" title='std::__cmp_cat::_Ord::equivalent' data-ref="std::__cmp_cat::_Ord::equivalent">equivalent</a>);&nbsp</td></tr>
+<tr><th id="229">229</th><td>&nbsp</td></tr>
+<tr><th id="230">230</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>&nbsp</td></tr>
+<tr><th id="231">231</th><td>  <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<dfn class="decl def" id="std::weak_ordering::greater" title='std::weak_ordering::greater' data-ref="std::weak_ordering::greater">greater</dfn><a class="ref fn" href="#_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE" title='std::weak_ordering::weak_ordering' data-ref="_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>::<a class="enum" href="#std::__cmp_cat::_Ord::greater" title='std::__cmp_cat::_Ord::greater' data-ref="std::__cmp_cat::_Ord::greater">greater</a>);&nbsp</td></tr>
+<tr><th id="232">232</th><td>&nbsp</td></tr>
+<tr><th id="233">233</th><td>  <b>class</b> <dfn class="type def" id="std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</dfn>&nbsp</td></tr>
+<tr><th id="234">234</th><td>  {&nbsp</td></tr>
+<tr><th id="235">235</th><td>    <span class="namespace">__cmp_cat::</span><a class="typedef" href="#std::__cmp_cat::type" title='std::__cmp_cat::type' data-type='signed char' data-ref="std::__cmp_cat::type">type</a> <dfn class="decl field" id="std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</dfn>;&nbsp</td></tr>
+<tr><th id="236">236</th><td>&nbsp</td></tr>
+<tr><th id="237">237</th><td>    <b>constexpr</b> <b>explicit</b>&nbsp</td></tr>
+<tr><th id="238">238</th><td>    <dfn class="decl def fn" id="_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE" title='std::strong_ordering::strong_ordering' data-ref="_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE">strong_ordering</dfn>(<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a> <dfn class="local col4 decl" id="2674__v" title='__v' data-type='__cmp_cat::_Ord' data-ref="2674__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="239">239</th><td>    : <a class="member field" href="#std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</a>(<span class="namespace">__cmp_cat::</span><a class="typedef" href="#std::__cmp_cat::type" title='std::__cmp_cat::type' data-type='signed char' data-ref="std::__cmp_cat::type">type</a>(<a class="local col4 ref" href="#2674__v" title='__v' data-ref="2674__v">__v</a>))&nbsp</td></tr>
+<tr><th id="240">240</th><td>    { }&nbsp</td></tr>
+<tr><th id="241">241</th><td>&nbsp</td></tr>
+<tr><th id="242">242</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="243">243</th><td>    <i>// valid values</i>&nbsp</td></tr>
+<tr><th id="244">244</th><td>    <em>static</em> <em>const</em> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="decl" id="std::strong_ordering::less" title='std::strong_ordering::less' data-ref="std::strong_ordering::less">less</dfn>;&nbsp</td></tr>
+<tr><th id="245">245</th><td>    <em>static</em> <em>const</em> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="decl" id="std::strong_ordering::equal" title='std::strong_ordering::equal' data-ref="std::strong_ordering::equal">equal</dfn>;&nbsp</td></tr>
+<tr><th id="246">246</th><td>    <em>static</em> <em>const</em> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="decl" id="std::strong_ordering::equivalent" title='std::strong_ordering::equivalent' data-ref="std::strong_ordering::equivalent">equivalent</dfn>;&nbsp</td></tr>
+<tr><th id="247">247</th><td>    <em>static</em> <em>const</em> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="decl" id="std::strong_ordering::greater" title='std::strong_ordering::greater' data-ref="std::strong_ordering::greater">greater</dfn>;&nbsp</td></tr>
+<tr><th id="248">248</th><td>&nbsp</td></tr>
+<tr><th id="249">249</th><td>    <b>constexpr</b> <dfn class="decl def fn" id="_ZNKSt15strong_orderingcvSt16partial_orderingEv" title='std::strong_ordering::operator partial_ordering' data-ref="_ZNKSt15strong_orderingcvSt16partial_orderingEv"><b>operator</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a></dfn>() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="250">250</th><td>    { <b>return</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a><a class="ref fn" href="#_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>(<a class="member field" href="#std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</a>)); }&nbsp</td></tr>
+<tr><th id="251">251</th><td>&nbsp</td></tr>
+<tr><th id="252">252</th><td>    <b>constexpr</b> <dfn class="decl def fn" id="_ZNKSt15strong_orderingcvSt13weak_orderingEv" title='std::strong_ordering::operator weak_ordering' data-ref="_ZNKSt15strong_orderingcvSt13weak_orderingEv"><b>operator</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a></dfn>() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="253">253</th><td>    { <b>return</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a><a class="ref fn" href="#_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE" title='std::weak_ordering::weak_ordering' data-ref="_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>(<a class="member field" href="#std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</a>)); }&nbsp</td></tr>
+<tr><th id="254">254</th><td>&nbsp</td></tr>
+<tr><th id="255">255</th><td>    <i>// comparisons</i>&nbsp</td></tr>
+<tr><th id="256">256</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="257">257</th><td>    <dfn class="decl def fn" id="_ZSteqSt15strong_orderingNSt9__cmp_cat8__unspecE" title='std::operator==' data-ref="_ZSteqSt15strong_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>==</dfn>(<a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="local col5 decl" id="2675__v" title='__v' data-type='std::strong_ordering' data-ref="2675__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="258">258</th><td>    { <b>return</b> <a class="local col5 ref" href="#2675__v" title='__v' data-ref="2675__v">__v</a>.<a class="ref field" href="#std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</a> == <var>0</var>; }&nbsp</td></tr>
+<tr><th id="259">259</th><td>&nbsp</td></tr>
+<tr><th id="260">260</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="261">261</th><td>    <dfn class="decl def fn" id="_ZSteqSt15strong_orderingS_" title='std::operator==' data-ref="_ZSteqSt15strong_orderingS_"><b>operator</b>==</dfn>(<a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>, <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>) <b>noexcept</b> = <b>default</b>;&nbsp</td></tr>
+<tr><th id="262">262</th><td>&nbsp</td></tr>
+<tr><th id="263">263</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="264">264</th><td>    <dfn class="decl def fn" id="_ZStltSt15strong_orderingNSt9__cmp_cat8__unspecE" title='std::operator&lt;' data-ref="_ZStltSt15strong_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&lt;</dfn> (<a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="local col6 decl" id="2676__v" title='__v' data-type='std::strong_ordering' data-ref="2676__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="265">265</th><td>    { <b>return</b> <a class="local col6 ref" href="#2676__v" title='__v' data-ref="2676__v">__v</a>.<a class="ref field" href="#std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</a> &lt; <var>0</var>; }&nbsp</td></tr>
+<tr><th id="266">266</th><td>&nbsp</td></tr>
+<tr><th id="267">267</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="268">268</th><td>    <dfn class="decl def fn" id="_ZStgtSt15strong_orderingNSt9__cmp_cat8__unspecE" title='std::operator&gt;' data-ref="_ZStgtSt15strong_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&gt;</dfn> (<a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="local col7 decl" id="2677__v" title='__v' data-type='std::strong_ordering' data-ref="2677__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="269">269</th><td>    { <b>return</b> <a class="local col7 ref" href="#2677__v" title='__v' data-ref="2677__v">__v</a>.<a class="ref field" href="#std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</a> &gt; <var>0</var>; }&nbsp</td></tr>
+<tr><th id="270">270</th><td>&nbsp</td></tr>
+<tr><th id="271">271</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="272">272</th><td>    <dfn class="decl def fn" id="_ZStleSt15strong_orderingNSt9__cmp_cat8__unspecE" title='std::operator&lt;=' data-ref="_ZStleSt15strong_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&lt;=</dfn>(<a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="local col8 decl" id="2678__v" title='__v' data-type='std::strong_ordering' data-ref="2678__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="273">273</th><td>    { <b>return</b> <a class="local col8 ref" href="#2678__v" title='__v' data-ref="2678__v">__v</a>.<a class="ref field" href="#std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</a> &lt;= <var>0</var>; }&nbsp</td></tr>
+<tr><th id="274">274</th><td>&nbsp</td></tr>
+<tr><th id="275">275</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="276">276</th><td>    <dfn class="decl def fn" id="_ZStgeSt15strong_orderingNSt9__cmp_cat8__unspecE" title='std::operator&gt;=' data-ref="_ZStgeSt15strong_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&gt;=</dfn>(<a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="local col9 decl" id="2679__v" title='__v' data-type='std::strong_ordering' data-ref="2679__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="277">277</th><td>    { <b>return</b> <a class="local col9 ref" href="#2679__v" title='__v' data-ref="2679__v">__v</a>.<a class="ref field" href="#std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</a> &gt;= <var>0</var>; }&nbsp</td></tr>
+<tr><th id="278">278</th><td>&nbsp</td></tr>
+<tr><th id="279">279</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="280">280</th><td>    <dfn class="decl def fn" id="_ZStltNSt9__cmp_cat8__unspecESt15strong_ordering" title='std::operator&lt;' data-ref="_ZStltNSt9__cmp_cat8__unspecESt15strong_ordering"><b>operator</b>&lt;</dfn> (<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="local col0 decl" id="2680__v" title='__v' data-type='std::strong_ordering' data-ref="2680__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="281">281</th><td>    { <b>return</b> <var>0</var> &lt; <a class="local col0 ref" href="#2680__v" title='__v' data-ref="2680__v">__v</a>.<a class="ref field" href="#std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</a>; }&nbsp</td></tr>
+<tr><th id="282">282</th><td>&nbsp</td></tr>
+<tr><th id="283">283</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="284">284</th><td>    <dfn class="decl def fn" id="_ZStgtNSt9__cmp_cat8__unspecESt15strong_ordering" title='std::operator&gt;' data-ref="_ZStgtNSt9__cmp_cat8__unspecESt15strong_ordering"><b>operator</b>&gt;</dfn> (<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="local col1 decl" id="2681__v" title='__v' data-type='std::strong_ordering' data-ref="2681__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="285">285</th><td>    { <b>return</b> <var>0</var> &gt; <a class="local col1 ref" href="#2681__v" title='__v' data-ref="2681__v">__v</a>.<a class="ref field" href="#std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</a>; }&nbsp</td></tr>
+<tr><th id="286">286</th><td>&nbsp</td></tr>
+<tr><th id="287">287</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="288">288</th><td>    <dfn class="decl def fn" id="_ZStleNSt9__cmp_cat8__unspecESt15strong_ordering" title='std::operator&lt;=' data-ref="_ZStleNSt9__cmp_cat8__unspecESt15strong_ordering"><b>operator</b>&lt;=</dfn>(<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="local col2 decl" id="2682__v" title='__v' data-type='std::strong_ordering' data-ref="2682__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="289">289</th><td>    { <b>return</b> <var>0</var> &lt;= <a class="local col2 ref" href="#2682__v" title='__v' data-ref="2682__v">__v</a>.<a class="ref field" href="#std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</a>; }&nbsp</td></tr>
+<tr><th id="290">290</th><td>&nbsp</td></tr>
+<tr><th id="291">291</th><td>    <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="292">292</th><td>    <dfn class="decl def fn" id="_ZStgeNSt9__cmp_cat8__unspecESt15strong_ordering" title='std::operator&gt;=' data-ref="_ZStgeNSt9__cmp_cat8__unspecESt15strong_ordering"><b>operator</b>&gt;=</dfn>(<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="local col3 decl" id="2683__v" title='__v' data-type='std::strong_ordering' data-ref="2683__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="293">293</th><td>    { <b>return</b> <var>0</var> &gt;= <a class="local col3 ref" href="#2683__v" title='__v' data-ref="2683__v">__v</a>.<a class="ref field" href="#std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</a>; }&nbsp</td></tr>
+<tr><th id="294">294</th><td>&nbsp</td></tr>
+<tr><th id="295">295</th><td>    <b>friend</b> <b>constexpr</b> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>&nbsp</td></tr>
+<tr><th id="296">296</th><td>    <dfn class="decl def fn" id="_ZStssSt15strong_orderingNSt9__cmp_cat8__unspecE" title='std::operator&lt;=&gt;' data-ref="_ZStssSt15strong_orderingNSt9__cmp_cat8__unspecE"><b>operator</b>&lt;=&gt;</dfn>(<a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="local col4 decl" id="2684__v" title='__v' data-type='std::strong_ordering' data-ref="2684__v">__v</dfn>, <span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="297">297</th><td>    { <b>return</b> <a class="ref fn fake" href="#233" title='std::strong_ordering::strong_ordering' data-ref="_ZNSt15strong_orderingC1EOS_"></a><a class="local col4 ref" href="#2684__v" title='__v' data-ref="2684__v">__v</a>; }&nbsp</td></tr>
+<tr><th id="298">298</th><td>&nbsp</td></tr>
+<tr><th id="299">299</th><td>    <b>friend</b> <b>constexpr</b> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>&nbsp</td></tr>
+<tr><th id="300">300</th><td>    <dfn class="decl def fn" id="_ZStssNSt9__cmp_cat8__unspecESt15strong_ordering" title='std::operator&lt;=&gt;' data-ref="_ZStssNSt9__cmp_cat8__unspecESt15strong_ordering"><b>operator</b>&lt;=&gt;</dfn>(<span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::__unspec" title='std::__cmp_cat::__unspec' data-ref="std::__cmp_cat::__unspec">__unspec</a>, <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a> <dfn class="local col5 decl" id="2685__v" title='__v' data-type='std::strong_ordering' data-ref="2685__v">__v</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="301">301</th><td>    { <b>return</b> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a><a class="ref fn" href="#_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE" title='std::strong_ordering::strong_ordering' data-ref="_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>(-<a class="local col5 ref" href="#2685__v" title='__v' data-ref="2685__v">__v</a>.<a class="ref field" href="#std::strong_ordering::_M_value" title='std::strong_ordering::_M_value' data-ref="std::strong_ordering::_M_value">_M_value</a>)); }&nbsp</td></tr>
+<tr><th id="302">302</th><td>  };&nbsp</td></tr>
+<tr><th id="303">303</th><td>&nbsp</td></tr>
+<tr><th id="304">304</th><td>  <i>// valid values' definitions</i>&nbsp</td></tr>
+<tr><th id="305">305</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>&nbsp</td></tr>
+<tr><th id="306">306</th><td>  <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>::<dfn class="decl def" id="std::strong_ordering::less" title='std::strong_ordering::less' data-ref="std::strong_ordering::less">less</dfn><a class="ref fn" href="#_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE" title='std::strong_ordering::strong_ordering' data-ref="_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>::<a class="enum" href="#std::__cmp_cat::_Ord::less" title='std::__cmp_cat::_Ord::less' data-ref="std::__cmp_cat::_Ord::less">less</a>);&nbsp</td></tr>
+<tr><th id="307">307</th><td>&nbsp</td></tr>
+<tr><th id="308">308</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>&nbsp</td></tr>
+<tr><th id="309">309</th><td>  <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>::<dfn class="decl def" id="std::strong_ordering::equal" title='std::strong_ordering::equal' data-ref="std::strong_ordering::equal">equal</dfn><a class="ref fn" href="#_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE" title='std::strong_ordering::strong_ordering' data-ref="_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>::<a class="enum" href="#std::__cmp_cat::_Ord::equivalent" title='std::__cmp_cat::_Ord::equivalent' data-ref="std::__cmp_cat::_Ord::equivalent">equivalent</a>);&nbsp</td></tr>
+<tr><th id="310">310</th><td>&nbsp</td></tr>
+<tr><th id="311">311</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>&nbsp</td></tr>
+<tr><th id="312">312</th><td>  <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>::<dfn class="decl def" id="std::strong_ordering::equivalent" title='std::strong_ordering::equivalent' data-ref="std::strong_ordering::equivalent">equivalent</dfn><a class="ref fn" href="#_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE" title='std::strong_ordering::strong_ordering' data-ref="_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>::<a class="enum" href="#std::__cmp_cat::_Ord::equivalent" title='std::__cmp_cat::_Ord::equivalent' data-ref="std::__cmp_cat::_Ord::equivalent">equivalent</a>);&nbsp</td></tr>
+<tr><th id="313">313</th><td>&nbsp</td></tr>
+<tr><th id="314">314</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>&nbsp</td></tr>
+<tr><th id="315">315</th><td>  <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>::<dfn class="decl def" id="std::strong_ordering::greater" title='std::strong_ordering::greater' data-ref="std::strong_ordering::greater">greater</dfn><a class="ref fn" href="#_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE" title='std::strong_ordering::strong_ordering' data-ref="_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE">(</a><span class="namespace">__cmp_cat::</span><a class="type" href="#std::__cmp_cat::_Ord" title='std::__cmp_cat::_Ord' data-ref="std::__cmp_cat::_Ord">_Ord</a>::<a class="enum" href="#std::__cmp_cat::_Ord::greater" title='std::__cmp_cat::_Ord::greater' data-ref="std::__cmp_cat::_Ord::greater">greater</a>);&nbsp</td></tr>
+<tr><th id="316">316</th><td>&nbsp</td></tr>
+<tr><th id="317">317</th><td>&nbsp</td></tr>
+<tr><th id="318">318</th><td>  <i>// named comparison functions</i>&nbsp</td></tr>
+<tr><th id="319">319</th><td>  <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="320">320</th><td>  <dfn class="decl def fn" id="_ZSt5is_eqSt16partial_ordering" title='std::is_eq' data-ref="_ZSt5is_eqSt16partial_ordering">is_eq</dfn>(<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col6 decl" id="2686__cmp" title='__cmp' data-type='std::partial_ordering' data-ref="2686__cmp">__cmp</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="321">321</th><td>  { <b>return</b> <a class="ref fn fake" href="#63" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ERKS_"></a><a class="local col6 ref" href="#2686__cmp" title='__cmp' data-ref="2686__cmp">__cmp</a> <a class="ref fn" href="#_ZSteqSt16partial_orderingNSt9__cmp_cat8__unspecE" title='std::operator==' data-ref="_ZSteqSt16partial_orderingNSt9__cmp_cat8__unspecE">==</a> <a class="ref fn fake" href="#_ZNSt9__cmp_cat8__unspecC1EPS0_" title='std::__cmp_cat::__unspec::__unspec' data-ref="_ZNSt9__cmp_cat8__unspecC1EPS0_"></a><var>0</var>; }&nbsp</td></tr>
+<tr><th id="322">322</th><td>&nbsp</td></tr>
+<tr><th id="323">323</th><td>  <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="324">324</th><td>  <dfn class="decl def fn" id="_ZSt6is_neqSt16partial_ordering" title='std::is_neq' data-ref="_ZSt6is_neqSt16partial_ordering">is_neq</dfn>(<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col7 decl" id="2687__cmp" title='__cmp' data-type='std::partial_ordering' data-ref="2687__cmp">__cmp</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="325">325</th><td>  { <b>return</b> <a class="ref fn fake" href="#63" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ERKS_"></a><a class="local col7 ref" href="#2687__cmp" title='__cmp' data-ref="2687__cmp">__cmp</a> != <a class="ref fn fake" href="#_ZNSt9__cmp_cat8__unspecC1EPS0_" title='std::__cmp_cat::__unspec::__unspec' data-ref="_ZNSt9__cmp_cat8__unspecC1EPS0_"></a><var>0</var>; }&nbsp</td></tr>
+<tr><th id="326">326</th><td>&nbsp</td></tr>
+<tr><th id="327">327</th><td>  <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="328">328</th><td>  <dfn class="decl def fn" id="_ZSt5is_ltSt16partial_ordering" title='std::is_lt' data-ref="_ZSt5is_ltSt16partial_ordering">is_lt</dfn>  (<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col8 decl" id="2688__cmp" title='__cmp' data-type='std::partial_ordering' data-ref="2688__cmp">__cmp</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="329">329</th><td>  { <b>return</b> <a class="ref fn fake" href="#63" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ERKS_"></a><a class="local col8 ref" href="#2688__cmp" title='__cmp' data-ref="2688__cmp">__cmp</a> <a class="ref fn" href="#_ZStltSt16partial_orderingNSt9__cmp_cat8__unspecE" title='std::operator&lt;' data-ref="_ZStltSt16partial_orderingNSt9__cmp_cat8__unspecE">&lt;</a> <a class="ref fn fake" href="#_ZNSt9__cmp_cat8__unspecC1EPS0_" title='std::__cmp_cat::__unspec::__unspec' data-ref="_ZNSt9__cmp_cat8__unspecC1EPS0_"></a><var>0</var>; }&nbsp</td></tr>
+<tr><th id="330">330</th><td>&nbsp</td></tr>
+<tr><th id="331">331</th><td>  <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="332">332</th><td>  <dfn class="decl def fn" id="_ZSt7is_lteqSt16partial_ordering" title='std::is_lteq' data-ref="_ZSt7is_lteqSt16partial_ordering">is_lteq</dfn>(<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col9 decl" id="2689__cmp" title='__cmp' data-type='std::partial_ordering' data-ref="2689__cmp">__cmp</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="333">333</th><td>  { <b>return</b> <a class="ref fn fake" href="#63" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ERKS_"></a><a class="local col9 ref" href="#2689__cmp" title='__cmp' data-ref="2689__cmp">__cmp</a> <a class="ref fn" href="#_ZStleSt16partial_orderingNSt9__cmp_cat8__unspecE" title='std::operator&lt;=' data-ref="_ZStleSt16partial_orderingNSt9__cmp_cat8__unspecE">&lt;=</a> <a class="ref fn fake" href="#_ZNSt9__cmp_cat8__unspecC1EPS0_" title='std::__cmp_cat::__unspec::__unspec' data-ref="_ZNSt9__cmp_cat8__unspecC1EPS0_"></a><var>0</var>; }&nbsp</td></tr>
+<tr><th id="334">334</th><td>&nbsp</td></tr>
+<tr><th id="335">335</th><td>  <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="336">336</th><td>  <dfn class="decl def fn" id="_ZSt5is_gtSt16partial_ordering" title='std::is_gt' data-ref="_ZSt5is_gtSt16partial_ordering">is_gt</dfn>  (<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col0 decl" id="2690__cmp" title='__cmp' data-type='std::partial_ordering' data-ref="2690__cmp">__cmp</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="337">337</th><td>  { <b>return</b> <a class="ref fn fake" href="#63" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ERKS_"></a><a class="local col0 ref" href="#2690__cmp" title='__cmp' data-ref="2690__cmp">__cmp</a> <a class="ref fn" href="#_ZStgtSt16partial_orderingNSt9__cmp_cat8__unspecE" title='std::operator&gt;' data-ref="_ZStgtSt16partial_orderingNSt9__cmp_cat8__unspecE">&gt;</a> <a class="ref fn fake" href="#_ZNSt9__cmp_cat8__unspecC1EPS0_" title='std::__cmp_cat::__unspec::__unspec' data-ref="_ZNSt9__cmp_cat8__unspecC1EPS0_"></a><var>0</var>; }&nbsp</td></tr>
+<tr><th id="338">338</th><td>&nbsp</td></tr>
+<tr><th id="339">339</th><td>  <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="340">340</th><td>  <dfn class="decl def fn" id="_ZSt7is_gteqSt16partial_ordering" title='std::is_gteq' data-ref="_ZSt7is_gteqSt16partial_ordering">is_gteq</dfn>(<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a> <dfn class="local col1 decl" id="2691__cmp" title='__cmp' data-type='std::partial_ordering' data-ref="2691__cmp">__cmp</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="341">341</th><td>  { <b>return</b> <a class="ref fn fake" href="#63" title='std::partial_ordering::partial_ordering' data-ref="_ZNSt16partial_orderingC1ERKS_"></a><a class="local col1 ref" href="#2691__cmp" title='__cmp' data-ref="2691__cmp">__cmp</a> <a class="ref fn" href="#_ZStgeSt16partial_orderingNSt9__cmp_cat8__unspecE" title='std::operator&gt;=' data-ref="_ZStgeSt16partial_orderingNSt9__cmp_cat8__unspecE">&gt;=</a> <a class="ref fn fake" href="#_ZNSt9__cmp_cat8__unspecC1EPS0_" title='std::__cmp_cat::__unspec::__unspec' data-ref="_ZNSt9__cmp_cat8__unspecC1EPS0_"></a><var>0</var>; }&nbsp</td></tr>
+<tr><th id="342">342</th><td>&nbsp</td></tr>
+<tr><th id="343">343</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="344">344</th><td>  {&nbsp</td></tr>
+<tr><th id="345">345</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="346">346</th><td>      <b>inline</b> <b>constexpr</b> <em>unsigned</em> <dfn class="decl def" id="std::__detail::__cmp_cat_id" title='std::__detail::__cmp_cat_id' data-ref="std::__detail::__cmp_cat_id">__cmp_cat_id</dfn> = <var>1</var>;&nbsp</td></tr>
+<tr><th id="347">347</th><td>    <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="348">348</th><td>      <b>inline</b> <b>constexpr</b> <em>unsigned</em> <dfn class="decl def" id="std::__detail::__cmp_cat_id" title='std::__detail::__cmp_cat_id' data-ref="std::__detail::__cmp_cat_id">__cmp_cat_id</dfn>&lt;partial_ordering&gt; = <var>2</var>;&nbsp</td></tr>
+<tr><th id="349">349</th><td>    <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="350">350</th><td>      <b>inline</b> <b>constexpr</b> <em>unsigned</em> <dfn class="decl def" id="std::__detail::__cmp_cat_id" title='std::__detail::__cmp_cat_id' data-ref="std::__detail::__cmp_cat_id">__cmp_cat_id</dfn>&lt;weak_ordering&gt; = <var>4</var>;&nbsp</td></tr>
+<tr><th id="351">351</th><td>    <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="352">352</th><td>      <b>inline</b> <b>constexpr</b> <em>unsigned</em> <dfn class="decl def" id="std::__detail::__cmp_cat_id" title='std::__detail::__cmp_cat_id' data-ref="std::__detail::__cmp_cat_id">__cmp_cat_id</dfn>&lt;strong_ordering&gt; = <var>8</var>;&nbsp</td></tr>
+<tr><th id="353">353</th><td>&nbsp</td></tr>
+<tr><th id="354">354</th><td>    <b>template</b>&lt;<b>typename</b>... _Ts&gt;&nbsp</td></tr>
+<tr><th id="355">355</th><td>      <b>constexpr</b> <em>auto</em> <dfn class="decl def fn" id="_ZNSt8__detail16__common_cmp_catEv" title='std::__detail::__common_cmp_cat' data-ref="_ZNSt8__detail16__common_cmp_catEv">__common_cmp_cat</dfn>()&nbsp</td></tr>
+<tr><th id="356">356</th><td>      {&nbsp</td></tr>
+<tr><th id="357">357</th><td>	<b>constexpr</b> <em>unsigned</em> <dfn class="local col2 decl" id="2692__cats" title='__cats' data-type='const unsigned int' data-ref="2692__cats">__cats</dfn> = (__cmp_cat_id&lt;_Ts&gt; | ...);&nbsp</td></tr>
+<tr><th id="358">358</th><td>	<i>// If any Ti is not a comparison category type, U is void.</i>&nbsp</td></tr>
+<tr><th id="359">359</th><td>	<b>if</b> <b>constexpr</b> (<a class="local col2 ref" href="#2692__cats" title='__cats' data-ref="2692__cats">__cats</a> &amp; <var>1</var>)&nbsp</td></tr>
+<tr><th id="360">360</th><td>	  <b>return</b>;&nbsp</td></tr>
+<tr><th id="361">361</th><td>	<i>// Otherwise, if at least one Ti is std::partial_ordering,</i>&nbsp</td></tr>
+<tr><th id="362">362</th><td><i>	// U is std::partial_ordering.</i>&nbsp</td></tr>
+<tr><th id="363">363</th><td>	<b>else</b> <b>if</b> <b>constexpr</b> (<em>bool</em>(<a class="local col2 ref" href="#2692__cats" title='__cats' data-ref="2692__cats">__cats</a> &amp; <a class="ref" href="#std::__detail::__cmp_cat_id" title='std::__detail::__cmp_cat_id' data-ref="std::__detail::__cmp_cat_id">__cmp_cat_id</a>&lt;<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>&gt;))&nbsp</td></tr>
+<tr><th id="364">364</th><td>	  <b>return</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>::<a class="ref" href="#std::partial_ordering::equivalent" title='std::partial_ordering::equivalent' data-ref="std::partial_ordering::equivalent">equivalent</a>;&nbsp</td></tr>
+<tr><th id="365">365</th><td>	<i>// Otherwise, if at least one Ti is std::weak_ordering,</i>&nbsp</td></tr>
+<tr><th id="366">366</th><td><i>	// U is std::weak_ordering.</i>&nbsp</td></tr>
+<tr><th id="367">367</th><td>	<b>else</b> <b>if</b> <b>constexpr</b> (<em>bool</em>(<a class="local col2 ref" href="#2692__cats" title='__cats' data-ref="2692__cats">__cats</a> &amp; <a class="ref" href="#std::__detail::__cmp_cat_id" title='std::__detail::__cmp_cat_id' data-ref="std::__detail::__cmp_cat_id">__cmp_cat_id</a>&lt;<a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>&gt;))&nbsp</td></tr>
+<tr><th id="368">368</th><td>	  <b>return</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<a class="ref" href="#std::weak_ordering::equivalent" title='std::weak_ordering::equivalent' data-ref="std::weak_ordering::equivalent">equivalent</a>;&nbsp</td></tr>
+<tr><th id="369">369</th><td>	<i>// Otherwise, U is std::strong_ordering.</i>&nbsp</td></tr>
+<tr><th id="370">370</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="371">371</th><td>	  <b>return</b> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>::<a class="ref" href="#std::strong_ordering::equivalent" title='std::strong_ordering::equivalent' data-ref="std::strong_ordering::equivalent">equivalent</a>;&nbsp</td></tr>
+<tr><th id="372">372</th><td>      }&nbsp</td></tr>
+<tr><th id="373">373</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="374">374</th><td>&nbsp</td></tr>
+<tr><th id="375">375</th><td>  <i>// [cmp.common], common comparison category type</i>&nbsp</td></tr>
+<tr><th id="376">376</th><td>  <b>template</b>&lt;<b>typename</b>... _Ts&gt;&nbsp</td></tr>
+<tr><th id="377">377</th><td>    <b>struct</b> <dfn class="type def" id="std::common_comparison_category" title='std::common_comparison_category' data-ref="std::common_comparison_category">common_comparison_category</dfn>&nbsp</td></tr>
+<tr><th id="378">378</th><td>    {&nbsp</td></tr>
+<tr><th id="379">379</th><td>      <b>using</b> <dfn class="typedef" id="std::common_comparison_category::type" title='std::common_comparison_category::type' data-type='decltype(__detail::__common_cmp_cat&lt;_Ts...&gt;())' data-ref="std::common_comparison_category::type">type</dfn> = <b>decltype</b>(<span class="namespace">__detail::</span>__common_cmp_cat&lt;_Ts...&gt;());&nbsp</td></tr>
+<tr><th id="380">380</th><td>    };&nbsp</td></tr>
+<tr><th id="381">381</th><td>&nbsp</td></tr>
+<tr><th id="382">382</th><td>  <i>// Partial specializations for one and zero argument cases.</i>&nbsp</td></tr>
+<tr><th id="383">383</th><td>&nbsp</td></tr>
+<tr><th id="384">384</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="385">385</th><td>    <b>struct</b> <dfn class="type def" id="std::common_comparison_category" title='std::common_comparison_category' data-ref="std::common_comparison_category">common_comparison_category</dfn>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="386">386</th><td>    { <b>using</b> <dfn class="typedef" id="std::common_comparison_category{type-parameter-0-0}::type" title='std::common_comparison_category&lt;type-parameter-0-0&gt;::type' data-type='void' data-ref="std::common_comparison_category{type-parameter-0-0}::type">type</dfn> = <em>void</em>; };&nbsp</td></tr>
+<tr><th id="387">387</th><td>&nbsp</td></tr>
+<tr><th id="388">388</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="389">389</th><td>    <b>struct</b> <dfn class="type def" id="std::common_comparison_category" title='std::common_comparison_category' data-ref="std::common_comparison_category"><a class="type" href="#std::common_comparison_category" title='std::common_comparison_category' data-ref="std::common_comparison_category">common_comparison_category</a></dfn>&lt;<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>&gt;&nbsp</td></tr>
+<tr><th id="390">390</th><td>    { <b>using</b> <dfn class="typedef" id="std::common_comparison_category{std::partial_ordering}::type" title='std::common_comparison_category&lt;std::partial_ordering&gt;::type' data-type='std::partial_ordering' data-ref="std::common_comparison_category{std::partial_ordering}::type">type</dfn> = <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>; };&nbsp</td></tr>
+<tr><th id="391">391</th><td>&nbsp</td></tr>
+<tr><th id="392">392</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="393">393</th><td>    <b>struct</b> <dfn class="type def" id="std::common_comparison_category" title='std::common_comparison_category' data-ref="std::common_comparison_category"><a class="type" href="#std::common_comparison_category" title='std::common_comparison_category' data-ref="std::common_comparison_category">common_comparison_category</a></dfn>&lt;<a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>&gt;&nbsp</td></tr>
+<tr><th id="394">394</th><td>    { <b>using</b> <dfn class="typedef" id="std::common_comparison_category{std::weak_ordering}::type" title='std::common_comparison_category&lt;std::weak_ordering&gt;::type' data-type='std::weak_ordering' data-ref="std::common_comparison_category{std::weak_ordering}::type">type</dfn> = <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>; };&nbsp</td></tr>
+<tr><th id="395">395</th><td>&nbsp</td></tr>
+<tr><th id="396">396</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="397">397</th><td>    <b>struct</b> <dfn class="type def" id="std::common_comparison_category" title='std::common_comparison_category' data-ref="std::common_comparison_category"><a class="type" href="#std::common_comparison_category" title='std::common_comparison_category' data-ref="std::common_comparison_category">common_comparison_category</a></dfn>&lt;<a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>&gt;&nbsp</td></tr>
+<tr><th id="398">398</th><td>    { <b>using</b> <dfn class="typedef" id="std::common_comparison_category{std::strong_ordering}::type" title='std::common_comparison_category&lt;std::strong_ordering&gt;::type' data-type='std::strong_ordering' data-ref="std::common_comparison_category{std::strong_ordering}::type">type</dfn> = <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>; };&nbsp</td></tr>
+<tr><th id="399">399</th><td>&nbsp</td></tr>
+<tr><th id="400">400</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="401">401</th><td>    <b>struct</b> <dfn class="type def" id="std::common_comparison_category" title='std::common_comparison_category' data-ref="std::common_comparison_category"><a class="type" href="#std::common_comparison_category" title='std::common_comparison_category' data-ref="std::common_comparison_category">common_comparison_category</a></dfn>&lt;&gt;&nbsp</td></tr>
+<tr><th id="402">402</th><td>    { <b>using</b> <dfn class="typedef" id="std::common_comparison_category{}::type" title='std::common_comparison_category&lt;&gt;::type' data-type='std::strong_ordering' data-ref="std::common_comparison_category{}::type">type</dfn> = <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>; };&nbsp</td></tr>
+<tr><th id="403">403</th><td>&nbsp</td></tr>
+<tr><th id="404">404</th><td>  <b>template</b>&lt;<b>typename</b>... _Ts&gt;&nbsp</td></tr>
+<tr><th id="405">405</th><td>    <b>using</b> <dfn class="typedef" id="std::common_comparison_category_t" title='std::common_comparison_category_t' data-type='typename common_comparison_category&lt;_Ts...&gt;::type' data-ref="std::common_comparison_category_t">common_comparison_category_t</dfn>&nbsp</td></tr>
+<tr><th id="406">406</th><td>      = <b>typename</b> <a class="type" href="#std::common_comparison_category" title='std::common_comparison_category' data-ref="std::common_comparison_category">common_comparison_category</a>&lt;_Ts...&gt;::type;&nbsp</td></tr>
+<tr><th id="407">407</th><td>&nbsp</td></tr>
+<tr><th id="408">408</th><td><u>#<span data-ppcond="408">if</span> <a class="macro" href="concepts.html#50" title="202002L" data-ref="_M/__cpp_lib_concepts">__cpp_lib_concepts</a></u>&nbsp</td></tr>
+<tr><th id="409">409</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="410">410</th><td>  {&nbsp</td></tr>
+<tr><th id="411">411</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Cat&gt;&nbsp</td></tr>
+<tr><th id="412">412</th><td>      <b>concept</b> __compares_as&nbsp</td></tr>
+<tr><th id="413">413</th><td>	= same_as&lt;<a class="type" href="#std::common_comparison_category_t" title='std::common_comparison_category_t' data-ref="std::common_comparison_category_t">common_comparison_category_t</a>&lt;_Tp, _Cat&gt;, _Cat&gt;;&nbsp</td></tr>
+<tr><th id="414">414</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="415">415</th><td>&nbsp</td></tr>
+<tr><th id="416">416</th><td>  <i>// [cmp.concept], concept three_way_comparable</i>&nbsp</td></tr>
+<tr><th id="417">417</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Cat = <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>&gt;&nbsp</td></tr>
+<tr><th id="418">418</th><td>    <b>concept</b> three_way_comparable&nbsp</td></tr>
+<tr><th id="419">419</th><td>      = <span class="namespace">__detail::</span>__weakly_eq_cmp_with&lt;_Tp, _Tp&gt;&nbsp</td></tr>
+<tr><th id="420">420</th><td>      &amp;&amp; <span class="namespace">__detail::</span>__partially_ordered_with&lt;_Tp, _Tp&gt;&nbsp</td></tr>
+<tr><th id="421">421</th><td>      &amp;&amp; <b>requires</b>(<em>const</em> <a class="type" href="type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&amp; <dfn class="local col3 decl" id="2693__a" title='__a' data-type='const remove_reference_t&lt;_Tp&gt; &amp;' data-ref="2693__a">__a</dfn>,&nbsp</td></tr>
+<tr><th id="422">422</th><td>		  <em>const</em> <a class="type" href="type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&amp; <dfn class="local col4 decl" id="2694__b" title='__b' data-type='const remove_reference_t&lt;_Tp&gt; &amp;' data-ref="2694__b">__b</dfn>)&nbsp</td></tr>
+<tr><th id="423">423</th><td>      {&nbsp</td></tr>
+<tr><th id="424">424</th><td>	{ <a class="local col3 ref" href="#2693__a" title='__a' data-ref="2693__a">__a</a> &lt;=&gt; <a class="local col4 ref" href="#2694__b" title='__b' data-ref="2694__b">__b</a> } -&gt; <span class="namespace">__detail::</span>__compares_as&lt;_Cat&gt;;&nbsp</td></tr>
+<tr><th id="425">425</th><td>      };&nbsp</td></tr>
+<tr><th id="426">426</th><td>&nbsp</td></tr>
+<tr><th id="427">427</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up, <b>typename</b> _Cat = <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>&gt;&nbsp</td></tr>
+<tr><th id="428">428</th><td>    <b>concept</b> three_way_comparable_with&nbsp</td></tr>
+<tr><th id="429">429</th><td>      = three_way_comparable&lt;_Tp, _Cat&gt;&nbsp</td></tr>
+<tr><th id="430">430</th><td>      &amp;&amp; three_way_comparable&lt;_Up, _Cat&gt;&nbsp</td></tr>
+<tr><th id="431">431</th><td>      &amp;&amp; common_reference_with&lt;<em>const</em> <a class="type" href="type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&amp;,&nbsp</td></tr>
+<tr><th id="432">432</th><td>			       <em>const</em> <a class="type" href="type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Up&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="433">433</th><td>      &amp;&amp; three_way_comparable&lt;&nbsp</td></tr>
+<tr><th id="434">434</th><td>	  <a class="type" href="type_traits.html#std::common_reference_t" title='std::common_reference_t' data-ref="std::common_reference_t">common_reference_t</a>&lt;<em>const</em> <a class="type" href="type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&amp;,&nbsp</td></tr>
+<tr><th id="435">435</th><td>			     <em>const</em> <a class="type" href="type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Up&gt;&amp;&gt;, _Cat&gt;&nbsp</td></tr>
+<tr><th id="436">436</th><td>      &amp;&amp; <span class="namespace">__detail::</span>__weakly_eq_cmp_with&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="437">437</th><td>      &amp;&amp; <span class="namespace">__detail::</span>__partially_ordered_with&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="438">438</th><td>      &amp;&amp; <b>requires</b>(<em>const</em> <a class="type" href="type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&amp; <dfn class="local col5 decl" id="2695__t" title='__t' data-type='const remove_reference_t&lt;_Tp&gt; &amp;' data-ref="2695__t">__t</dfn>,&nbsp</td></tr>
+<tr><th id="439">439</th><td>		  <em>const</em> <a class="type" href="type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Up&gt;&amp; <dfn class="local col6 decl" id="2696__u" title='__u' data-type='const remove_reference_t&lt;_Up&gt; &amp;' data-ref="2696__u">__u</dfn>)&nbsp</td></tr>
+<tr><th id="440">440</th><td>      {&nbsp</td></tr>
+<tr><th id="441">441</th><td>	{ <a class="local col5 ref" href="#2695__t" title='__t' data-ref="2695__t">__t</a> &lt;=&gt; <a class="local col6 ref" href="#2696__u" title='__u' data-ref="2696__u">__u</a> } -&gt; <span class="namespace">__detail::</span>__compares_as&lt;_Cat&gt;;&nbsp</td></tr>
+<tr><th id="442">442</th><td>	{ <a class="local col6 ref" href="#2696__u" title='__u' data-ref="2696__u">__u</a> &lt;=&gt; <a class="local col5 ref" href="#2695__t" title='__t' data-ref="2695__t">__t</a> } -&gt; <span class="namespace">__detail::</span>__compares_as&lt;_Cat&gt;;&nbsp</td></tr>
+<tr><th id="443">443</th><td>      };&nbsp</td></tr>
+<tr><th id="444">444</th><td>&nbsp</td></tr>
+<tr><th id="445">445</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="446">446</th><td>  {&nbsp</td></tr>
+<tr><th id="447">447</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="448">448</th><td>      <b>using</b> <dfn class="typedef" id="std::__detail::__cmp3way_res_t" title='std::__detail::__cmp3way_res_t' data-type='decltype(std::declval&lt;_Tp&gt;() &lt;=&gt; std::declval&lt;_Up&gt;())' data-ref="std::__detail::__cmp3way_res_t">__cmp3way_res_t</dfn>&nbsp</td></tr>
+<tr><th id="449">449</th><td>	= <b>decltype</b>(<span class="namespace">std::</span>declval&lt;_Tp&gt;() &lt;=&gt; <span class="namespace">std::</span>declval&lt;_Up&gt;());&nbsp</td></tr>
+<tr><th id="450">450</th><td>&nbsp</td></tr>
+<tr><th id="451">451</th><td>    <i>// Implementation of std::compare_three_way_result.</i>&nbsp</td></tr>
+<tr><th id="452">452</th><td><i>    // It is undefined for a program to add specializations of</i>&nbsp</td></tr>
+<tr><th id="453">453</th><td><i>    // std::compare_three_way_result, so the std::compare_three_way_result_t</i>&nbsp</td></tr>
+<tr><th id="454">454</th><td><i>    // alias ignores std::compare_three_way_result and uses</i>&nbsp</td></tr>
+<tr><th id="455">455</th><td><i>    // __detail::__cmp3way_res_impl directly instead.</i>&nbsp</td></tr>
+<tr><th id="456">456</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="457">457</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__cmp3way_res_impl" title='std::__detail::__cmp3way_res_impl' data-ref="std::__detail::__cmp3way_res_impl">__cmp3way_res_impl</dfn>&nbsp</td></tr>
+<tr><th id="458">458</th><td>      { };&nbsp</td></tr>
+<tr><th id="459">459</th><td>&nbsp</td></tr>
+<tr><th id="460">460</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="461">461</th><td>      <b>requires</b> <b>requires</b> { <b>typename</b> __cmp3way_res_t&lt;__cref&lt;_Tp&gt;, __cref&lt;_Up&gt;&gt;; }&nbsp</td></tr>
+<tr><th id="462">462</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__cmp3way_res_impl" title='std::__detail::__cmp3way_res_impl' data-ref="std::__detail::__cmp3way_res_impl">__cmp3way_res_impl</dfn>&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="463">463</th><td>      {&nbsp</td></tr>
+<tr><th id="464">464</th><td>	<b>using</b> <dfn class="typedef" id="std::__detail::__cmp3way_res_impl{type-parameter-0-0,type-parameter-0-1}::type" title='std::__detail::__cmp3way_res_impl&lt;type-parameter-0-0, type-parameter-0-1&gt;::type' data-type='__cmp3way_res_t&lt;__cref&lt;_Tp&gt;, __cref&lt;_Up&gt;&gt;' data-ref="std::__detail::__cmp3way_res_impl{type-parameter-0-0,type-parameter-0-1}::type">type</dfn> = <a class="type" href="#std::__detail::__cmp3way_res_t" title='std::__detail::__cmp3way_res_t' data-ref="std::__detail::__cmp3way_res_t">__cmp3way_res_t</a>&lt;<a class="type" href="concepts.html#std::__detail::__cref" title='std::__detail::__cref' data-ref="std::__detail::__cref">__cref</a>&lt;_Tp&gt;, <a class="type" href="concepts.html#std::__detail::__cref" title='std::__detail::__cref' data-ref="std::__detail::__cref">__cref</a>&lt;_Up&gt;&gt;;&nbsp</td></tr>
+<tr><th id="465">465</th><td>      };&nbsp</td></tr>
+<tr><th id="466">466</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="467">467</th><td>&nbsp</td></tr>
+<tr><th id="468">468</th><td>  <i class="doc">/// [cmp.result], result of three-way comparison</i>&nbsp</td></tr>
+<tr><th id="469">469</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up = _Tp&gt;&nbsp</td></tr>
+<tr><th id="470">470</th><td>    <b>struct</b> <dfn class="type def" id="std::compare_three_way_result" title='std::compare_three_way_result' data-ref="std::compare_three_way_result">compare_three_way_result</dfn>&nbsp</td></tr>
+<tr><th id="471">471</th><td>    : <span class="namespace">__detail::</span><a class="type" href="#std::__detail::__cmp3way_res_impl" title='std::__detail::__cmp3way_res_impl' data-ref="std::__detail::__cmp3way_res_impl">__cmp3way_res_impl</a>&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="472">472</th><td>    { };&nbsp</td></tr>
+<tr><th id="473">473</th><td>&nbsp</td></tr>
+<tr><th id="474">474</th><td>  <i class="doc">/// [cmp.result], result of three-way comparison</i>&nbsp</td></tr>
+<tr><th id="475">475</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up = _Tp&gt;&nbsp</td></tr>
+<tr><th id="476">476</th><td>    <b>using</b> <dfn class="typedef" id="std::compare_three_way_result_t" title='std::compare_three_way_result_t' data-type='typename __detail::__cmp3way_res_impl&lt;_Tp, _Up&gt;::type' data-ref="std::compare_three_way_result_t">compare_three_way_result_t</dfn>&nbsp</td></tr>
+<tr><th id="477">477</th><td>      = <b>typename</b> <span class="namespace">__detail::</span><a class="type" href="#std::__detail::__cmp3way_res_impl" title='std::__detail::__cmp3way_res_impl' data-ref="std::__detail::__cmp3way_res_impl">__cmp3way_res_impl</a>&lt;_Tp, _Up&gt;::type;&nbsp</td></tr>
+<tr><th id="478">478</th><td>&nbsp</td></tr>
+<tr><th id="479">479</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="480">480</th><td>  {&nbsp</td></tr>
+<tr><th id="481">481</th><td>    <i>// BUILTIN-PTR-THREE-WAY(T, U)</i>&nbsp</td></tr>
+<tr><th id="482">482</th><td><i>    // This determines whether t &lt;=&gt; u results in a call to a built-in</i>&nbsp</td></tr>
+<tr><th id="483">483</th><td><i>    // operator&lt;=&gt; comparing pointers. It doesn't work for function pointers</i>&nbsp</td></tr>
+<tr><th id="484">484</th><td><i>    // (PR 93628).</i>&nbsp</td></tr>
+<tr><th id="485">485</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="486">486</th><td>      <b>concept</b> __3way_builtin_ptr_cmp&nbsp</td></tr>
+<tr><th id="487">487</th><td>	= <b>requires</b>(_Tp&amp;&amp; <dfn class="local col7 decl" id="2697__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2697__t">__t</dfn>, _Up&amp;&amp; <dfn class="local col8 decl" id="2698__u" title='__u' data-type='_Up &amp;&amp;' data-ref="2698__u">__u</dfn>)&nbsp</td></tr>
+<tr><th id="488">488</th><td>	  { <b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col7 ref" href="#2697__t" title='__t' data-ref="2697__t">__t</a>) &lt;=&gt; <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col8 ref" href="#2698__u" title='__u' data-ref="2698__u">__u</a>); }&nbsp</td></tr>
+<tr><th id="489">489</th><td>	  &amp;&amp; convertible_to&lt;_Tp, <em>const</em> <em>volatile</em> <em>void</em>*&gt;&nbsp</td></tr>
+<tr><th id="490">490</th><td>	  &amp;&amp; convertible_to&lt;_Up, <em>const</em> <em>volatile</em> <em>void</em>*&gt;&nbsp</td></tr>
+<tr><th id="491">491</th><td>	  &amp;&amp; ! <b>requires</b>(_Tp&amp;&amp; <dfn class="local col9 decl" id="2699__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2699__t">__t</dfn>, _Up&amp;&amp; <dfn class="local col0 decl" id="2700__u" title='__u' data-type='_Up &amp;&amp;' data-ref="2700__u">__u</dfn>)&nbsp</td></tr>
+<tr><th id="492">492</th><td>	  { <b>operator</b>&lt;=&gt;(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col9 ref" href="#2699__t" title='__t' data-ref="2699__t">__t</a>), <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col0 ref" href="#2700__u" title='__u' data-ref="2700__u">__u</a>)); }&nbsp</td></tr>
+<tr><th id="493">493</th><td>	  &amp;&amp; ! <b>requires</b>(_Tp&amp;&amp; <dfn class="local col1 decl" id="2701__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2701__t">__t</dfn>, _Up&amp;&amp; <dfn class="local col2 decl" id="2702__u" title='__u' data-type='_Up &amp;&amp;' data-ref="2702__u">__u</dfn>)&nbsp</td></tr>
+<tr><th id="494">494</th><td>	  { <b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col1 ref" href="#2701__t" title='__t' data-ref="2701__t">__t</a>).<b>operator</b>&lt;=&gt;(<b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col2 ref" href="#2702__u" title='__u' data-ref="2702__u">__u</a>)); };&nbsp</td></tr>
+<tr><th id="495">495</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="496">496</th><td>&nbsp</td></tr>
+<tr><th id="497">497</th><td>  <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="498">498</th><td><i>  // 3530 BUILTIN-PTR-MEOW should not opt the type out of syntactic checks</i>&nbsp</td></tr>
+<tr><th id="499">499</th><td><i></i>&nbsp</td></tr>
+<tr><th id="500">500</th><td><i>  // [cmp.object], typename compare_three_way</i>&nbsp</td></tr>
+<tr><th id="501">501</th><td>  <b>struct</b> <dfn class="type def" id="std::compare_three_way" title='std::compare_three_way' data-ref="std::compare_three_way">compare_three_way</dfn>&nbsp</td></tr>
+<tr><th id="502">502</th><td>  {&nbsp</td></tr>
+<tr><th id="503">503</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="504">504</th><td>      <b>requires</b> three_way_comparable_with&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="505">505</th><td>      <b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="506">506</th><td>      <dfn class="decl def fn" id="_ZNKSt17compare_three_wayclEOT_OT0_" title='std::compare_three_way::operator()' data-ref="_ZNKSt17compare_three_wayclEOT_OT0_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col3 decl" id="2703__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2703__t">__t</dfn>, _Up&amp;&amp; <dfn class="local col4 decl" id="2704__u" title='__u' data-type='_Up &amp;&amp;' data-ref="2704__u">__u</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="507">507</th><td>      <b>noexcept</b>(<b>noexcept</b>(<span class="namespace">std::</span>declval&lt;_Tp&gt;() &lt;=&gt; <span class="namespace">std::</span>declval&lt;_Up&gt;()))&nbsp</td></tr>
+<tr><th id="508">508</th><td>      {&nbsp</td></tr>
+<tr><th id="509">509</th><td>	<b>if</b> <b>constexpr</b> (<span class="namespace">__detail::</span>__3way_builtin_ptr_cmp&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="510">510</th><td>	  {&nbsp</td></tr>
+<tr><th id="511">511</th><td>	    <em>auto</em> <dfn class="local col5 decl" id="2705__pt" title='__pt' data-type='const volatile void *' data-ref="2705__pt">__pt</dfn> = <b>static_cast</b>&lt;<em>const</em> <em>volatile</em> <em>void</em>*&gt;(<a class="local col3 ref" href="#2703__t" title='__t' data-ref="2703__t">__t</a>);&nbsp</td></tr>
+<tr><th id="512">512</th><td>	    <em>auto</em> <dfn class="local col6 decl" id="2706__pu" title='__pu' data-type='const volatile void *' data-ref="2706__pu">__pu</dfn> = <b>static_cast</b>&lt;<em>const</em> <em>volatile</em> <em>void</em>*&gt;(<a class="local col4 ref" href="#2704__u" title='__u' data-ref="2704__u">__u</a>);&nbsp</td></tr>
+<tr><th id="513">513</th><td>	    <b>if</b> (<a class="ref fn" href="type_traits.html#3420" title='__builtin_is_constant_evaluated' data-ref="__builtin_is_constant_evaluated">__builtin_is_constant_evaluated</a>())&nbsp</td></tr>
+<tr><th id="514">514</th><td>	      <b>return</b> <a class="local col5 ref" href="#2705__pt" title='__pt' data-ref="2705__pt">__pt</a> &lt;=&gt; <a class="local col6 ref" href="#2706__pu" title='__pu' data-ref="2706__pu">__pu</a>;&nbsp</td></tr>
+<tr><th id="515">515</th><td>	    <em>auto</em> <dfn class="local col7 decl" id="2707__it" title='__it' data-type='unsigned long' data-ref="2707__it">__it</dfn> = <b>reinterpret_cast</b>&lt;<span class="macro" title="long unsigned int" data-ref="_M/__UINTPTR_TYPE__">__UINTPTR_TYPE__</span>&gt;(<a class="local col5 ref" href="#2705__pt" title='__pt' data-ref="2705__pt">__pt</a>);&nbsp</td></tr>
+<tr><th id="516">516</th><td>	    <em>auto</em> <dfn class="local col8 decl" id="2708__iu" title='__iu' data-type='unsigned long' data-ref="2708__iu">__iu</dfn> = <b>reinterpret_cast</b>&lt;<span class="macro" title="long unsigned int" data-ref="_M/__UINTPTR_TYPE__">__UINTPTR_TYPE__</span>&gt;(<a class="local col6 ref" href="#2706__pu" title='__pu' data-ref="2706__pu">__pu</a>);&nbsp</td></tr>
+<tr><th id="517">517</th><td>	    <b>return</b> <a class="local col7 ref" href="#2707__it" title='__it' data-ref="2707__it">__it</a> &lt;=&gt; <a class="local col8 ref" href="#2708__iu" title='__iu' data-ref="2708__iu">__iu</a>;&nbsp</td></tr>
+<tr><th id="518">518</th><td>	  }&nbsp</td></tr>
+<tr><th id="519">519</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="520">520</th><td>	  <b>return</b> <b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col3 ref" href="#2703__t" title='__t' data-ref="2703__t">__t</a>) &lt;=&gt; <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col4 ref" href="#2704__u" title='__u' data-ref="2704__u">__u</a>);&nbsp</td></tr>
+<tr><th id="521">521</th><td>      }&nbsp</td></tr>
+<tr><th id="522">522</th><td>&nbsp</td></tr>
+<tr><th id="523">523</th><td>    <b>using</b> <dfn class="typedef" id="std::compare_three_way::is_transparent" title='std::compare_three_way::is_transparent' data-type='void' data-ref="std::compare_three_way::is_transparent">is_transparent</dfn> = <em>void</em>;&nbsp</td></tr>
+<tr><th id="524">524</th><td>  };&nbsp</td></tr>
+<tr><th id="525">525</th><td>&nbsp</td></tr>
+<tr><th id="526">526</th><td>  <b>namespace</b> <span class="namespace">__cmp_cust</span>&nbsp</td></tr>
+<tr><th id="527">527</th><td>  {&nbsp</td></tr>
+<tr><th id="528">528</th><td>    <b>template</b>&lt;floating_point _Tp&gt;&nbsp</td></tr>
+<tr><th id="529">529</th><td>      <b>constexpr</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>&nbsp</td></tr>
+<tr><th id="530">530</th><td>      <dfn class="decl def fn" id="_ZNSt10__cmp_cust18__fp_weak_orderingET_S0_" title='std::__cmp_cust::__fp_weak_ordering' data-ref="_ZNSt10__cmp_cust18__fp_weak_orderingET_S0_">__fp_weak_ordering</dfn>(_Tp <dfn class="local col9 decl" id="2709__e" title='__e' data-type='_Tp' data-ref="2709__e">__e</dfn>, _Tp <dfn class="local col0 decl" id="2710__f" title='__f' data-type='_Tp' data-ref="2710__f">__f</dfn>)&nbsp</td></tr>
+<tr><th id="531">531</th><td>      {&nbsp</td></tr>
+<tr><th id="532">532</th><td>	<i>// Returns an integer with the same sign as the argument, and magnitude</i>&nbsp</td></tr>
+<tr><th id="533">533</th><td><i>	// indicating the classification: zero=1 subnorm=2 norm=3 inf=4 nan=5</i>&nbsp</td></tr>
+<tr><th id="534">534</th><td>	<em>auto</em> <dfn class="local col1 decl" id="2711__cat" title='__cat' data-type='auto' data-ref="2711__cat">__cat</dfn> = [](_Tp <dfn class="local col2 decl" id="2712__fp" title='__fp' data-type='_Tp' data-ref="2712__fp">__fp</dfn>) -&gt; <em>int</em> {&nbsp</td></tr>
+<tr><th id="535">535</th><td>	  <em>const</em> <em>int</em> <dfn class="local col3 decl" id="2713__sign" title='__sign' data-type='const int' data-ref="2713__sign">__sign</dfn> = <a class="ref fn" href="cmath.html#662" title='__builtin_signbit' data-ref="__builtin_signbit">__builtin_signbit</a>(<a class="local col2 ref" href="#2712__fp" title='__fp' data-ref="2712__fp">__fp</a>) ? -<var>1</var> : <var>1</var>;&nbsp</td></tr>
+<tr><th id="536">536</th><td>	  <b>if</b> (<a class="ref fn" href="cmath.html#639" title='__builtin_isnormal' data-ref="__builtin_isnormal">__builtin_isnormal</a>(<a class="local col2 ref" href="#2712__fp" title='__fp' data-ref="2712__fp">__fp</a>))&nbsp</td></tr>
+<tr><th id="537">537</th><td>	    <b>return</b> (<a class="local col2 ref" href="#2712__fp" title='__fp' data-ref="2712__fp">__fp</a> == <var>0</var> ? <var>1</var> : <var>3</var>) * <a class="local col3 ref" href="#2713__sign" title='__sign' data-ref="2713__sign">__sign</a>;&nbsp</td></tr>
+<tr><th id="538">538</th><td>	  <b>if</b> (<a class="ref fn" href="cmath.html#612" title='__builtin_isnan' data-ref="__builtin_isnan">__builtin_isnan</a>(<a class="local col2 ref" href="#2712__fp" title='__fp' data-ref="2712__fp">__fp</a>))&nbsp</td></tr>
+<tr><th id="539">539</th><td>	    <b>return</b> <var>5</var> * <a class="local col3 ref" href="#2713__sign" title='__sign' data-ref="2713__sign">__sign</a>;&nbsp</td></tr>
+<tr><th id="540">540</th><td>	  <b>if</b> (<em>int</em> <dfn class="local col4 decl" id="2714__inf" title='__inf' data-type='int' data-ref="2714__inf"><a class="local col4 ref" href="#2714__inf" title='__inf' data-ref="2714__inf">__inf</a></dfn> = <a class="ref fn" href="#540" title='__builtin_isinf_sign' data-ref="__builtin_isinf_sign">__builtin_isinf_sign</a>(<a class="local col2 ref" href="#2712__fp" title='__fp' data-ref="2712__fp">__fp</a>))&nbsp</td></tr>
+<tr><th id="541">541</th><td>	    <b>return</b> <var>4</var> * <a class="local col4 ref" href="#2714__inf" title='__inf' data-ref="2714__inf">__inf</a>;&nbsp</td></tr>
+<tr><th id="542">542</th><td>	  <b>return</b> <var>2</var> * <a class="local col3 ref" href="#2713__sign" title='__sign' data-ref="2713__sign">__sign</a>;&nbsp</td></tr>
+<tr><th id="543">543</th><td>	};&nbsp</td></tr>
+<tr><th id="544">544</th><td>&nbsp</td></tr>
+<tr><th id="545">545</th><td>	<em>auto</em> <dfn class="local col5 decl" id="2715__po" title='__po' data-type='auto' data-ref="2715__po">__po</dfn> = <a class="local col9 ref" href="#2709__e" title='__e' data-ref="2709__e">__e</a> &lt;=&gt; <a class="local col0 ref" href="#2710__f" title='__f' data-ref="2710__f">__f</a>;&nbsp</td></tr>
+<tr><th id="546">546</th><td>	<b>if</b> (is_lt(<a class="local col5 ref" href="#2715__po" title='__po' data-ref="2715__po">__po</a>))&nbsp</td></tr>
+<tr><th id="547">547</th><td>	  <b>return</b> <a class="ref fn fake" href="#155" title='std::weak_ordering::weak_ordering' data-ref="_ZNSt13weak_orderingC1ERKS_"></a><a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<a class="ref" href="#std::weak_ordering::less" title='std::weak_ordering::less' data-ref="std::weak_ordering::less">less</a>;&nbsp</td></tr>
+<tr><th id="548">548</th><td>	<b>else</b> <b>if</b> (is_gt(<a class="local col5 ref" href="#2715__po" title='__po' data-ref="2715__po">__po</a>))&nbsp</td></tr>
+<tr><th id="549">549</th><td>	  <b>return</b> <a class="ref fn fake" href="#155" title='std::weak_ordering::weak_ordering' data-ref="_ZNSt13weak_orderingC1ERKS_"></a><a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<a class="ref" href="#std::weak_ordering::greater" title='std::weak_ordering::greater' data-ref="std::weak_ordering::greater">greater</a>;&nbsp</td></tr>
+<tr><th id="550">550</th><td>	<b>else</b> <b>if</b> (<a class="local col5 ref" href="#2715__po" title='__po' data-ref="2715__po">__po</a> == <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>::<a class="ref" href="#std::partial_ordering::equivalent" title='std::partial_ordering::equivalent' data-ref="std::partial_ordering::equivalent">equivalent</a>)&nbsp</td></tr>
+<tr><th id="551">551</th><td>	  <b>return</b> <a class="ref fn fake" href="#155" title='std::weak_ordering::weak_ordering' data-ref="_ZNSt13weak_orderingC1ERKS_"></a><a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<a class="ref" href="#std::weak_ordering::equivalent" title='std::weak_ordering::equivalent' data-ref="std::weak_ordering::equivalent">equivalent</a>;&nbsp</td></tr>
+<tr><th id="552">552</th><td>	<b>else</b>  <i>// unordered, at least one argument is NaN</i>&nbsp</td></tr>
+<tr><th id="553">553</th><td>	  {&nbsp</td></tr>
+<tr><th id="554">554</th><td>	    <i>// return -1 for negative nan, +1 for positive nan, 0 otherwise.</i>&nbsp</td></tr>
+<tr><th id="555">555</th><td>	    <em>auto</em> <dfn class="local col6 decl" id="2716__isnan_sign" title='__isnan_sign' data-type='auto' data-ref="2716__isnan_sign">__isnan_sign</dfn> = [](_Tp <dfn class="local col7 decl" id="2717__fp" title='__fp' data-type='_Tp' data-ref="2717__fp">__fp</dfn>) -&gt; <em>int</em> {&nbsp</td></tr>
+<tr><th id="556">556</th><td>	      <b>return</b> <a class="ref fn" href="cmath.html#612" title='__builtin_isnan' data-ref="__builtin_isnan">__builtin_isnan</a>(<a class="local col7 ref" href="#2717__fp" title='__fp' data-ref="2717__fp">__fp</a>)&nbsp</td></tr>
+<tr><th id="557">557</th><td>		? <a class="ref fn" href="cmath.html#662" title='__builtin_signbit' data-ref="__builtin_signbit">__builtin_signbit</a>(<a class="local col7 ref" href="#2717__fp" title='__fp' data-ref="2717__fp">__fp</a>) ? -<var>1</var> : <var>1</var>&nbsp</td></tr>
+<tr><th id="558">558</th><td>		: <var>0</var>;&nbsp</td></tr>
+<tr><th id="559">559</th><td>	    };&nbsp</td></tr>
+<tr><th id="560">560</th><td>	    <em>auto</em> <dfn class="local col8 decl" id="2718__ord" title='__ord' data-type='auto' data-ref="2718__ord">__ord</dfn> = <a class="local col6 ref" href="#2716__isnan_sign" title='__isnan_sign' data-ref="2716__isnan_sign">__isnan_sign</a>(<a class="local col9 ref" href="#2709__e" title='__e' data-ref="2709__e">__e</a>) &lt;=&gt; <a class="local col6 ref" href="#2716__isnan_sign" title='__isnan_sign' data-ref="2716__isnan_sign">__isnan_sign</a>(<a class="local col0 ref" href="#2710__f" title='__f' data-ref="2710__f">__f</a>);&nbsp</td></tr>
+<tr><th id="561">561</th><td>	    <b>if</b> (is_eq(<a class="local col8 ref" href="#2718__ord" title='__ord' data-ref="2718__ord">__ord</a>))&nbsp</td></tr>
+<tr><th id="562">562</th><td>	      <b>return</b> <a class="ref fn fake" href="#155" title='std::weak_ordering::weak_ordering' data-ref="_ZNSt13weak_orderingC1ERKS_"></a><a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<a class="ref" href="#std::weak_ordering::equivalent" title='std::weak_ordering::equivalent' data-ref="std::weak_ordering::equivalent">equivalent</a>;&nbsp</td></tr>
+<tr><th id="563">563</th><td>	    <b>else</b> <b>if</b> (is_lt(<a class="local col8 ref" href="#2718__ord" title='__ord' data-ref="2718__ord">__ord</a>))&nbsp</td></tr>
+<tr><th id="564">564</th><td>	      <b>return</b> <a class="ref fn fake" href="#155" title='std::weak_ordering::weak_ordering' data-ref="_ZNSt13weak_orderingC1ERKS_"></a><a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<a class="ref" href="#std::weak_ordering::less" title='std::weak_ordering::less' data-ref="std::weak_ordering::less">less</a>;&nbsp</td></tr>
+<tr><th id="565">565</th><td>	    <b>else</b>&nbsp</td></tr>
+<tr><th id="566">566</th><td>	      <b>return</b> <a class="ref fn fake" href="#155" title='std::weak_ordering::weak_ordering' data-ref="_ZNSt13weak_orderingC1ERKS_"></a><a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<a class="ref" href="#std::weak_ordering::greater" title='std::weak_ordering::greater' data-ref="std::weak_ordering::greater">greater</a>;&nbsp</td></tr>
+<tr><th id="567">567</th><td>	  }&nbsp</td></tr>
+<tr><th id="568">568</th><td>      }&nbsp</td></tr>
+<tr><th id="569">569</th><td>&nbsp</td></tr>
+<tr><th id="570">570</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="571">571</th><td>      <b>concept</b> __adl_strong = <b>requires</b>(_Tp&amp;&amp; <dfn class="local col9 decl" id="2719__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2719__t">__t</dfn>, _Up&amp;&amp; <dfn class="local col0 decl" id="2720__u" title='__u' data-type='_Up &amp;&amp;' data-ref="2720__u">__u</dfn>)&nbsp</td></tr>
+<tr><th id="572">572</th><td>	{&nbsp</td></tr>
+<tr><th id="573">573</th><td>	  <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>(strong_order(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col9 ref" href="#2719__t" title='__t' data-ref="2719__t">__t</a>),&nbsp</td></tr>
+<tr><th id="574">574</th><td>				       <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col0 ref" href="#2720__u" title='__u' data-ref="2720__u">__u</a>)));&nbsp</td></tr>
+<tr><th id="575">575</th><td>	};&nbsp</td></tr>
+<tr><th id="576">576</th><td>&nbsp</td></tr>
+<tr><th id="577">577</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="578">578</th><td>      <b>concept</b> __adl_weak = <b>requires</b>(_Tp&amp;&amp; <dfn class="local col1 decl" id="2721__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2721__t">__t</dfn>, _Up&amp;&amp; <dfn class="local col2 decl" id="2722__u" title='__u' data-type='_Up &amp;&amp;' data-ref="2722__u">__u</dfn>)&nbsp</td></tr>
+<tr><th id="579">579</th><td>	{&nbsp</td></tr>
+<tr><th id="580">580</th><td>	  <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>(weak_order(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col1 ref" href="#2721__t" title='__t' data-ref="2721__t">__t</a>),&nbsp</td></tr>
+<tr><th id="581">581</th><td>				   <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col2 ref" href="#2722__u" title='__u' data-ref="2722__u">__u</a>)));&nbsp</td></tr>
+<tr><th id="582">582</th><td>	};&nbsp</td></tr>
+<tr><th id="583">583</th><td>&nbsp</td></tr>
+<tr><th id="584">584</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="585">585</th><td>      <b>concept</b> __adl_partial = <b>requires</b>(_Tp&amp;&amp; <dfn class="local col3 decl" id="2723__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2723__t">__t</dfn>, _Up&amp;&amp; <dfn class="local col4 decl" id="2724__u" title='__u' data-type='_Up &amp;&amp;' data-ref="2724__u">__u</dfn>)&nbsp</td></tr>
+<tr><th id="586">586</th><td>	{&nbsp</td></tr>
+<tr><th id="587">587</th><td>	  <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>(partial_order(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col3 ref" href="#2723__t" title='__t' data-ref="2723__t">__t</a>),&nbsp</td></tr>
+<tr><th id="588">588</th><td>					 <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col4 ref" href="#2724__u" title='__u' data-ref="2724__u">__u</a>)));&nbsp</td></tr>
+<tr><th id="589">589</th><td>	};&nbsp</td></tr>
+<tr><th id="590">590</th><td>&nbsp</td></tr>
+<tr><th id="591">591</th><td>    <b>template</b>&lt;<b>typename</b> _Ord, <b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="592">592</th><td>      <b>concept</b> __cmp3way = <b>requires</b>(_Tp&amp;&amp; <dfn class="local col5 decl" id="2725__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2725__t">__t</dfn>, _Up&amp;&amp; <dfn class="local col6 decl" id="2726__u" title='__u' data-type='_Up &amp;&amp;' data-ref="2726__u">__u</dfn>, <a class="type" href="#std::compare_three_way" title='std::compare_three_way' data-ref="std::compare_three_way">compare_three_way</a> <dfn class="local col7 decl" id="2727__c" title='__c' data-type='std::compare_three_way' data-ref="2727__c">__c</dfn>)&nbsp</td></tr>
+<tr><th id="593">593</th><td>	{&nbsp</td></tr>
+<tr><th id="594">594</th><td>	  _Ord(<a class="local col7 ref" href="#2727__c" title='__c' data-ref="2727__c">__c</a>(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col5 ref" href="#2725__t" title='__t' data-ref="2725__t">__t</a>), <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col6 ref" href="#2726__u" title='__u' data-ref="2726__u">__u</a>)));&nbsp</td></tr>
+<tr><th id="595">595</th><td>	};&nbsp</td></tr>
+<tr><th id="596">596</th><td>&nbsp</td></tr>
+<tr><th id="597">597</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="598">598</th><td>      <b>concept</b> __strongly_ordered&nbsp</td></tr>
+<tr><th id="599">599</th><td>	= __adl_strong&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="600">600</th><td>	  <i>// FIXME: || floating_point&lt;remove_reference_t&lt;_Tp&gt;&gt;</i>&nbsp</td></tr>
+<tr><th id="601">601</th><td>	  || __cmp3way&lt;<a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>, _Tp, _Up&gt;;&nbsp</td></tr>
+<tr><th id="602">602</th><td>&nbsp</td></tr>
+<tr><th id="603">603</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="604">604</th><td>      <b>concept</b> __decayed_same_as = same_as&lt;<a class="type" href="type_traits.html#std::decay_t" title='std::decay_t' data-ref="std::decay_t">decay_t</a>&lt;_Tp&gt;, <a class="type" href="type_traits.html#std::decay_t" title='std::decay_t' data-ref="std::decay_t">decay_t</a>&lt;_Up&gt;&gt;;&nbsp</td></tr>
+<tr><th id="605">605</th><td>&nbsp</td></tr>
+<tr><th id="606">606</th><td>    <b>class</b> <dfn class="type def" id="std::__cmp_cust::_Strong_order" title='std::__cmp_cust::_Strong_order' data-ref="std::__cmp_cust::_Strong_order">_Strong_order</dfn>&nbsp</td></tr>
+<tr><th id="607">607</th><td>    {&nbsp</td></tr>
+<tr><th id="608">608</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="609">609</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="610">610</th><td>	<dfn class="decl def fn" id="_ZNSt10__cmp_cust13_Strong_order11_S_noexceptEv" title='std::__cmp_cust::_Strong_order::_S_noexcept' data-ref="_ZNSt10__cmp_cust13_Strong_order11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="611">611</th><td>	{&nbsp</td></tr>
+<tr><th id="612">612</th><td>	  <b>if</b> <b>constexpr</b> (floating_point&lt;<a class="type" href="type_traits.html#std::decay_t" title='std::decay_t' data-ref="std::decay_t">decay_t</a>&lt;_Tp&gt;&gt;)&nbsp</td></tr>
+<tr><th id="613">613</th><td>	    <b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="614">614</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__adl_strong&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="615">615</th><td>	    <b>return</b> <b>noexcept</b>(<a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>(strong_order(<span class="namespace">std::</span>declval&lt;_Tp&gt;(),&nbsp</td></tr>
+<tr><th id="616">616</th><td>							 <span class="namespace">std::</span>declval&lt;_Up&gt;())));&nbsp</td></tr>
+<tr><th id="617">617</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__cmp3way&lt;<a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>, _Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="618">618</th><td>	    <b>return</b> <b>noexcept</b>(<a class="type" href="#std::compare_three_way" title='std::compare_three_way' data-ref="std::compare_three_way">compare_three_way</a><a class="ref fn" href="#501" title='std::compare_three_way::compare_three_way' data-ref="_ZNSt17compare_three_wayC1Ev">(</a>)(<span class="namespace">std::</span>declval&lt;_Tp&gt;(),&nbsp</td></tr>
+<tr><th id="619">619</th><td>						<span class="namespace">std::</span>declval&lt;_Up&gt;()));&nbsp</td></tr>
+<tr><th id="620">620</th><td>	}&nbsp</td></tr>
+<tr><th id="621">621</th><td>&nbsp</td></tr>
+<tr><th id="622">622</th><td>      <b>friend</b> <b>class</b> <a class="type" href="#std::__cmp_cust::_Weak_order" title='std::__cmp_cust::_Weak_order' data-ref="std::__cmp_cust::_Weak_order">_Weak_order</a>;&nbsp</td></tr>
+<tr><th id="623">623</th><td>      <b>friend</b> <b>class</b> <a class="type" href="#std::__cmp_cust::_Strong_fallback" title='std::__cmp_cust::_Strong_fallback' data-ref="std::__cmp_cust::_Strong_fallback">_Strong_fallback</a>;&nbsp</td></tr>
+<tr><th id="624">624</th><td>&nbsp</td></tr>
+<tr><th id="625">625</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="626">626</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, __decayed_same_as&lt;_Tp&gt; _Up&gt;&nbsp</td></tr>
+<tr><th id="627">627</th><td>	<b>requires</b> __strongly_ordered&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="628">628</th><td>	<b>constexpr</b> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>&nbsp</td></tr>
+<tr><th id="629">629</th><td>	<dfn class="decl def fn" id="_ZNKSt10__cmp_cust13_Strong_orderclEOT_OT0_" title='std::__cmp_cust::_Strong_order::operator()' data-ref="_ZNKSt10__cmp_cust13_Strong_orderclEOT_OT0_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col8 decl" id="2728__e" title='__e' data-type='_Tp &amp;&amp;' data-ref="2728__e">__e</dfn>, _Up&amp;&amp; <dfn class="local col9 decl" id="2729__f" title='__f' data-type='_Up &amp;&amp;' data-ref="2729__f">__f</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="630">630</th><td>	<b>noexcept</b>(_S_noexcept&lt;_Tp, _Up&gt;())&nbsp</td></tr>
+<tr><th id="631">631</th><td>	{&nbsp</td></tr>
+<tr><th id="632">632</th><td>	  <i>/* FIXME:</i>&nbsp</td></tr>
+<tr><th id="633">633</th><td><i>	  if constexpr (floating_point&lt;decay_t&lt;_Tp&gt;&gt;)</i>&nbsp</td></tr>
+<tr><th id="634">634</th><td><i>	    return __cmp_cust::__fp_strong_order(__e, __f);</i>&nbsp</td></tr>
+<tr><th id="635">635</th><td><i>	  else */</i> <b>if</b> <b>constexpr</b> (__adl_strong&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="636">636</th><td>	    <b>return</b> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>(strong_order(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col8 ref" href="#2728__e" title='__e' data-ref="2728__e">__e</a>),&nbsp</td></tr>
+<tr><th id="637">637</th><td>						<b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col9 ref" href="#2729__f" title='__f' data-ref="2729__f">__f</a>)));&nbsp</td></tr>
+<tr><th id="638">638</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__cmp3way&lt;<a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>, _Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="639">639</th><td>	    <b>return</b> <a class="type" href="#std::compare_three_way" title='std::compare_three_way' data-ref="std::compare_three_way">compare_three_way</a><a class="ref fn" href="#501" title='std::compare_three_way::compare_three_way' data-ref="_ZNSt17compare_three_wayC1Ev">(</a>)(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col8 ref" href="#2728__e" title='__e' data-ref="2728__e">__e</a>),&nbsp</td></tr>
+<tr><th id="640">640</th><td>				       <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col9 ref" href="#2729__f" title='__f' data-ref="2729__f">__f</a>));&nbsp</td></tr>
+<tr><th id="641">641</th><td>	}&nbsp</td></tr>
+<tr><th id="642">642</th><td>    };&nbsp</td></tr>
+<tr><th id="643">643</th><td>&nbsp</td></tr>
+<tr><th id="644">644</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="645">645</th><td>      <b>concept</b> __weakly_ordered&nbsp</td></tr>
+<tr><th id="646">646</th><td>	= floating_point&lt;<a class="type" href="type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="647">647</th><td>	  || __adl_weak&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="648">648</th><td>	  || __cmp3way&lt;<a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>, _Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="649">649</th><td>	  || __strongly_ordered&lt;_Tp, _Up&gt;;&nbsp</td></tr>
+<tr><th id="650">650</th><td>&nbsp</td></tr>
+<tr><th id="651">651</th><td>    <b>class</b> <dfn class="type def" id="std::__cmp_cust::_Weak_order" title='std::__cmp_cust::_Weak_order' data-ref="std::__cmp_cust::_Weak_order">_Weak_order</dfn>&nbsp</td></tr>
+<tr><th id="652">652</th><td>    {&nbsp</td></tr>
+<tr><th id="653">653</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="654">654</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="655">655</th><td>	<dfn class="decl def fn" id="_ZNSt10__cmp_cust11_Weak_order11_S_noexceptEv" title='std::__cmp_cust::_Weak_order::_S_noexcept' data-ref="_ZNSt10__cmp_cust11_Weak_order11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="656">656</th><td>	{&nbsp</td></tr>
+<tr><th id="657">657</th><td>	  <b>if</b> <b>constexpr</b> (floating_point&lt;<a class="type" href="type_traits.html#std::decay_t" title='std::decay_t' data-ref="std::decay_t">decay_t</a>&lt;_Tp&gt;&gt;)&nbsp</td></tr>
+<tr><th id="658">658</th><td>	    <b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="659">659</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__adl_weak&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="660">660</th><td>	    <b>return</b> <b>noexcept</b>(<a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>(weak_order(<span class="namespace">std::</span>declval&lt;_Tp&gt;(),&nbsp</td></tr>
+<tr><th id="661">661</th><td>						     <span class="namespace">std::</span>declval&lt;_Up&gt;())));&nbsp</td></tr>
+<tr><th id="662">662</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__cmp3way&lt;<a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>, _Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="663">663</th><td>	    <b>return</b> <b>noexcept</b>(<a class="type" href="#std::compare_three_way" title='std::compare_three_way' data-ref="std::compare_three_way">compare_three_way</a><a class="ref fn" href="#501" title='std::compare_three_way::compare_three_way' data-ref="_ZNSt17compare_three_wayC1Ev">(</a>)(<span class="namespace">std::</span>declval&lt;_Tp&gt;(),&nbsp</td></tr>
+<tr><th id="664">664</th><td>						<span class="namespace">std::</span>declval&lt;_Up&gt;()));&nbsp</td></tr>
+<tr><th id="665">665</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__strongly_ordered&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="666">666</th><td>	    <b>return</b> <a class="type" href="#std::__cmp_cust::_Strong_order" title='std::__cmp_cust::_Strong_order' data-ref="std::__cmp_cust::_Strong_order">_Strong_order</a>::_S_noexcept&lt;_Tp, _Up&gt;();&nbsp</td></tr>
+<tr><th id="667">667</th><td>	}&nbsp</td></tr>
+<tr><th id="668">668</th><td>&nbsp</td></tr>
+<tr><th id="669">669</th><td>      <b>friend</b> <b>class</b> <a class="type" href="#std::__cmp_cust::_Partial_order" title='std::__cmp_cust::_Partial_order' data-ref="std::__cmp_cust::_Partial_order">_Partial_order</a>;&nbsp</td></tr>
+<tr><th id="670">670</th><td>      <b>friend</b> <b>class</b> <a class="type" href="#std::__cmp_cust::_Weak_fallback" title='std::__cmp_cust::_Weak_fallback' data-ref="std::__cmp_cust::_Weak_fallback">_Weak_fallback</a>;&nbsp</td></tr>
+<tr><th id="671">671</th><td>&nbsp</td></tr>
+<tr><th id="672">672</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="673">673</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, __decayed_same_as&lt;_Tp&gt; _Up&gt;&nbsp</td></tr>
+<tr><th id="674">674</th><td>	<b>requires</b> __weakly_ordered&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="675">675</th><td>	<b>constexpr</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>&nbsp</td></tr>
+<tr><th id="676">676</th><td>	<dfn class="decl def fn" id="_ZNKSt10__cmp_cust11_Weak_orderclEOT_OT0_" title='std::__cmp_cust::_Weak_order::operator()' data-ref="_ZNKSt10__cmp_cust11_Weak_orderclEOT_OT0_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col0 decl" id="2730__e" title='__e' data-type='_Tp &amp;&amp;' data-ref="2730__e">__e</dfn>, _Up&amp;&amp; <dfn class="local col1 decl" id="2731__f" title='__f' data-type='_Up &amp;&amp;' data-ref="2731__f">__f</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="677">677</th><td>	<b>noexcept</b>(_S_noexcept&lt;_Tp, _Up&gt;())&nbsp</td></tr>
+<tr><th id="678">678</th><td>	{&nbsp</td></tr>
+<tr><th id="679">679</th><td>	  <b>if</b> <b>constexpr</b> (floating_point&lt;<a class="type" href="type_traits.html#std::decay_t" title='std::decay_t' data-ref="std::decay_t">decay_t</a>&lt;_Tp&gt;&gt;)&nbsp</td></tr>
+<tr><th id="680">680</th><td>	    <b>return</b> <span class="namespace">__cmp_cust::</span>__fp_weak_ordering(<a class="local col0 ref" href="#2730__e" title='__e' data-ref="2730__e">__e</a>, <a class="local col1 ref" href="#2731__f" title='__f' data-ref="2731__f">__f</a>);&nbsp</td></tr>
+<tr><th id="681">681</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__adl_weak&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="682">682</th><td>	    <b>return</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>(weak_order(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col0 ref" href="#2730__e" title='__e' data-ref="2730__e">__e</a>),&nbsp</td></tr>
+<tr><th id="683">683</th><td>					    <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col1 ref" href="#2731__f" title='__f' data-ref="2731__f">__f</a>)));&nbsp</td></tr>
+<tr><th id="684">684</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__cmp3way&lt;<a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>, _Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="685">685</th><td>	    <b>return</b> <a class="type" href="#std::compare_three_way" title='std::compare_three_way' data-ref="std::compare_three_way">compare_three_way</a><a class="ref fn" href="#501" title='std::compare_three_way::compare_three_way' data-ref="_ZNSt17compare_three_wayC1Ev">(</a>)(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col0 ref" href="#2730__e" title='__e' data-ref="2730__e">__e</a>),&nbsp</td></tr>
+<tr><th id="686">686</th><td>				       <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col1 ref" href="#2731__f" title='__f' data-ref="2731__f">__f</a>));&nbsp</td></tr>
+<tr><th id="687">687</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__strongly_ordered&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="688">688</th><td>	    <b>return</b> <a class="type" href="#std::__cmp_cust::_Strong_order" title='std::__cmp_cust::_Strong_order' data-ref="std::__cmp_cust::_Strong_order">_Strong_order</a>{}(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col0 ref" href="#2730__e" title='__e' data-ref="2730__e">__e</a>),&nbsp</td></tr>
+<tr><th id="689">689</th><td>				   <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col1 ref" href="#2731__f" title='__f' data-ref="2731__f">__f</a>));&nbsp</td></tr>
+<tr><th id="690">690</th><td>	}&nbsp</td></tr>
+<tr><th id="691">691</th><td>    };&nbsp</td></tr>
+<tr><th id="692">692</th><td>&nbsp</td></tr>
+<tr><th id="693">693</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="694">694</th><td>      <b>concept</b> __partially_ordered&nbsp</td></tr>
+<tr><th id="695">695</th><td>	= __adl_partial&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="696">696</th><td>	|| __cmp3way&lt;<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>, _Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="697">697</th><td>	|| __weakly_ordered&lt;_Tp, _Up&gt;;&nbsp</td></tr>
+<tr><th id="698">698</th><td>&nbsp</td></tr>
+<tr><th id="699">699</th><td>    <b>class</b> <dfn class="type def" id="std::__cmp_cust::_Partial_order" title='std::__cmp_cust::_Partial_order' data-ref="std::__cmp_cust::_Partial_order">_Partial_order</dfn>&nbsp</td></tr>
+<tr><th id="700">700</th><td>    {&nbsp</td></tr>
+<tr><th id="701">701</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="702">702</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="703">703</th><td>	<dfn class="decl def fn" id="_ZNSt10__cmp_cust14_Partial_order11_S_noexceptEv" title='std::__cmp_cust::_Partial_order::_S_noexcept' data-ref="_ZNSt10__cmp_cust14_Partial_order11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="704">704</th><td>	{&nbsp</td></tr>
+<tr><th id="705">705</th><td>	  <b>if</b> <b>constexpr</b> (__adl_partial&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="706">706</th><td>	    <b>return</b> <b>noexcept</b>(<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>(partial_order(<span class="namespace">std::</span>declval&lt;_Tp&gt;(),&nbsp</td></tr>
+<tr><th id="707">707</th><td>							 <span class="namespace">std::</span>declval&lt;_Up&gt;())));&nbsp</td></tr>
+<tr><th id="708">708</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__cmp3way&lt;<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>, _Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="709">709</th><td>	    <b>return</b> <b>noexcept</b>(<a class="type" href="#std::compare_three_way" title='std::compare_three_way' data-ref="std::compare_three_way">compare_three_way</a><a class="ref fn" href="#501" title='std::compare_three_way::compare_three_way' data-ref="_ZNSt17compare_three_wayC1Ev">(</a>)(<span class="namespace">std::</span>declval&lt;_Tp&gt;(),&nbsp</td></tr>
+<tr><th id="710">710</th><td>						<span class="namespace">std::</span>declval&lt;_Up&gt;()));&nbsp</td></tr>
+<tr><th id="711">711</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__weakly_ordered&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="712">712</th><td>	    <b>return</b> <a class="type" href="#std::__cmp_cust::_Weak_order" title='std::__cmp_cust::_Weak_order' data-ref="std::__cmp_cust::_Weak_order">_Weak_order</a>::_S_noexcept&lt;_Tp, _Up&gt;();&nbsp</td></tr>
+<tr><th id="713">713</th><td>	}&nbsp</td></tr>
+<tr><th id="714">714</th><td>&nbsp</td></tr>
+<tr><th id="715">715</th><td>      <b>friend</b> <b>class</b> <a class="type" href="#std::__cmp_cust::_Partial_fallback" title='std::__cmp_cust::_Partial_fallback' data-ref="std::__cmp_cust::_Partial_fallback">_Partial_fallback</a>;&nbsp</td></tr>
+<tr><th id="716">716</th><td>&nbsp</td></tr>
+<tr><th id="717">717</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="718">718</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, __decayed_same_as&lt;_Tp&gt; _Up&gt;&nbsp</td></tr>
+<tr><th id="719">719</th><td>	<b>requires</b> __partially_ordered&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="720">720</th><td>	<b>constexpr</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>&nbsp</td></tr>
+<tr><th id="721">721</th><td>	<dfn class="decl def fn" id="_ZNKSt10__cmp_cust14_Partial_orderclEOT_OT0_" title='std::__cmp_cust::_Partial_order::operator()' data-ref="_ZNKSt10__cmp_cust14_Partial_orderclEOT_OT0_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col2 decl" id="2732__e" title='__e' data-type='_Tp &amp;&amp;' data-ref="2732__e">__e</dfn>, _Up&amp;&amp; <dfn class="local col3 decl" id="2733__f" title='__f' data-type='_Up &amp;&amp;' data-ref="2733__f">__f</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="722">722</th><td>	<b>noexcept</b>(_S_noexcept&lt;_Tp, _Up&gt;())&nbsp</td></tr>
+<tr><th id="723">723</th><td>	{&nbsp</td></tr>
+<tr><th id="724">724</th><td>	  <b>if</b> <b>constexpr</b> (__adl_partial&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="725">725</th><td>	    <b>return</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>(partial_order(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col2 ref" href="#2732__e" title='__e' data-ref="2732__e">__e</a>),&nbsp</td></tr>
+<tr><th id="726">726</th><td>						  <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col3 ref" href="#2733__f" title='__f' data-ref="2733__f">__f</a>)));&nbsp</td></tr>
+<tr><th id="727">727</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__cmp3way&lt;<a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>, _Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="728">728</th><td>	    <b>return</b> <a class="type" href="#std::compare_three_way" title='std::compare_three_way' data-ref="std::compare_three_way">compare_three_way</a><a class="ref fn" href="#501" title='std::compare_three_way::compare_three_way' data-ref="_ZNSt17compare_three_wayC1Ev">(</a>)(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col2 ref" href="#2732__e" title='__e' data-ref="2732__e">__e</a>),&nbsp</td></tr>
+<tr><th id="729">729</th><td>				       <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col3 ref" href="#2733__f" title='__f' data-ref="2733__f">__f</a>));&nbsp</td></tr>
+<tr><th id="730">730</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__weakly_ordered&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="731">731</th><td>	    <b>return</b> <a class="type" href="#std::__cmp_cust::_Weak_order" title='std::__cmp_cust::_Weak_order' data-ref="std::__cmp_cust::_Weak_order">_Weak_order</a>{}(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col2 ref" href="#2732__e" title='__e' data-ref="2732__e">__e</a>),&nbsp</td></tr>
+<tr><th id="732">732</th><td>				 <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col3 ref" href="#2733__f" title='__f' data-ref="2733__f">__f</a>));&nbsp</td></tr>
+<tr><th id="733">733</th><td>	}&nbsp</td></tr>
+<tr><th id="734">734</th><td>    };&nbsp</td></tr>
+<tr><th id="735">735</th><td>&nbsp</td></tr>
+<tr><th id="736">736</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="737">737</th><td>      <b>concept</b> __op_eq_lt = <b>requires</b>(_Tp&amp;&amp; <dfn class="local col4 decl" id="2734__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2734__t">__t</dfn>, _Up&amp;&amp; <dfn class="local col5 decl" id="2735__u" title='__u' data-type='_Up &amp;&amp;' data-ref="2735__u">__u</dfn>)&nbsp</td></tr>
+<tr><th id="738">738</th><td>	{&nbsp</td></tr>
+<tr><th id="739">739</th><td>	  { <b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col4 ref" href="#2734__t" title='__t' data-ref="2734__t">__t</a>) == <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col5 ref" href="#2735__u" title='__u' data-ref="2735__u">__u</a>) }&nbsp</td></tr>
+<tr><th id="740">740</th><td>	    -&gt; convertible_to&lt;<em>bool</em>&gt;;&nbsp</td></tr>
+<tr><th id="741">741</th><td>	  { <b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col4 ref" href="#2734__t" title='__t' data-ref="2734__t">__t</a>) &lt; <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col5 ref" href="#2735__u" title='__u' data-ref="2735__u">__u</a>) }&nbsp</td></tr>
+<tr><th id="742">742</th><td>	    -&gt; convertible_to&lt;<em>bool</em>&gt;;&nbsp</td></tr>
+<tr><th id="743">743</th><td>	};&nbsp</td></tr>
+<tr><th id="744">744</th><td>&nbsp</td></tr>
+<tr><th id="745">745</th><td>    <b>class</b> <dfn class="type def" id="std::__cmp_cust::_Strong_fallback" title='std::__cmp_cust::_Strong_fallback' data-ref="std::__cmp_cust::_Strong_fallback">_Strong_fallback</dfn>&nbsp</td></tr>
+<tr><th id="746">746</th><td>    {&nbsp</td></tr>
+<tr><th id="747">747</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="748">748</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="749">749</th><td>	<dfn class="decl def fn" id="_ZNSt10__cmp_cust16_Strong_fallback11_S_noexceptEv" title='std::__cmp_cust::_Strong_fallback::_S_noexcept' data-ref="_ZNSt10__cmp_cust16_Strong_fallback11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="750">750</th><td>	{&nbsp</td></tr>
+<tr><th id="751">751</th><td>	  <b>if</b> <b>constexpr</b> (__strongly_ordered&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="752">752</th><td>	    <b>return</b> <a class="type" href="#std::__cmp_cust::_Strong_order" title='std::__cmp_cust::_Strong_order' data-ref="std::__cmp_cust::_Strong_order">_Strong_order</a>::_S_noexcept&lt;_Tp, _Up&gt;();&nbsp</td></tr>
+<tr><th id="753">753</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="754">754</th><td>	    <b>return</b> <b>noexcept</b>(<em>bool</em>(<span class="namespace">std::</span>declval&lt;_Tp&gt;() == <span class="namespace">std::</span>declval&lt;_Up&gt;()))&nbsp</td></tr>
+<tr><th id="755">755</th><td>	      &amp;&amp; <b>noexcept</b>(<em>bool</em>(<span class="namespace">std::</span>declval&lt;_Tp&gt;() &lt; <span class="namespace">std::</span>declval&lt;_Up&gt;()));&nbsp</td></tr>
+<tr><th id="756">756</th><td>	}&nbsp</td></tr>
+<tr><th id="757">757</th><td>&nbsp</td></tr>
+<tr><th id="758">758</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="759">759</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, __decayed_same_as&lt;_Tp&gt; _Up&gt;&nbsp</td></tr>
+<tr><th id="760">760</th><td>	<b>requires</b> __strongly_ordered&lt;_Tp, _Up&gt; || __op_eq_lt&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="761">761</th><td>	<b>constexpr</b> <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>&nbsp</td></tr>
+<tr><th id="762">762</th><td>	<dfn class="decl def fn" id="_ZNKSt10__cmp_cust16_Strong_fallbackclEOT_OT0_" title='std::__cmp_cust::_Strong_fallback::operator()' data-ref="_ZNKSt10__cmp_cust16_Strong_fallbackclEOT_OT0_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col6 decl" id="2736__e" title='__e' data-type='_Tp &amp;&amp;' data-ref="2736__e">__e</dfn>, _Up&amp;&amp; <dfn class="local col7 decl" id="2737__f" title='__f' data-type='_Up &amp;&amp;' data-ref="2737__f">__f</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="763">763</th><td>	<b>noexcept</b>(_S_noexcept&lt;_Tp, _Up&gt;())&nbsp</td></tr>
+<tr><th id="764">764</th><td>	{&nbsp</td></tr>
+<tr><th id="765">765</th><td>	  <b>if</b> <b>constexpr</b> (__strongly_ordered&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="766">766</th><td>	    <b>return</b> <a class="type" href="#std::__cmp_cust::_Strong_order" title='std::__cmp_cust::_Strong_order' data-ref="std::__cmp_cust::_Strong_order">_Strong_order</a>{}(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col6 ref" href="#2736__e" title='__e' data-ref="2736__e">__e</a>),&nbsp</td></tr>
+<tr><th id="767">767</th><td>				   <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col7 ref" href="#2737__f" title='__f' data-ref="2737__f">__f</a>));&nbsp</td></tr>
+<tr><th id="768">768</th><td>	  <b>else</b> <i>// __op_eq_lt&lt;_Tp, _Up&gt;</i>&nbsp</td></tr>
+<tr><th id="769">769</th><td>	    <b>return</b> <b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col6 ref" href="#2736__e" title='__e' data-ref="2736__e">__e</a>) == <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col7 ref" href="#2737__f" title='__f' data-ref="2737__f">__f</a>)&nbsp</td></tr>
+<tr><th id="770">770</th><td>	      ? <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>::<a class="ref" href="#std::strong_ordering::equal" title='std::strong_ordering::equal' data-ref="std::strong_ordering::equal">equal</a>&nbsp</td></tr>
+<tr><th id="771">771</th><td>	      : <b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col6 ref" href="#2736__e" title='__e' data-ref="2736__e">__e</a>) &lt; <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col7 ref" href="#2737__f" title='__f' data-ref="2737__f">__f</a>)&nbsp</td></tr>
+<tr><th id="772">772</th><td>	      ? <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>::<a class="ref" href="#std::strong_ordering::less" title='std::strong_ordering::less' data-ref="std::strong_ordering::less">less</a>&nbsp</td></tr>
+<tr><th id="773">773</th><td>	      : <a class="type" href="#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>::<a class="ref" href="#std::strong_ordering::greater" title='std::strong_ordering::greater' data-ref="std::strong_ordering::greater">greater</a>;&nbsp</td></tr>
+<tr><th id="774">774</th><td>	}&nbsp</td></tr>
+<tr><th id="775">775</th><td>    };&nbsp</td></tr>
+<tr><th id="776">776</th><td>&nbsp</td></tr>
+<tr><th id="777">777</th><td>    <b>class</b> <dfn class="type def" id="std::__cmp_cust::_Weak_fallback" title='std::__cmp_cust::_Weak_fallback' data-ref="std::__cmp_cust::_Weak_fallback">_Weak_fallback</dfn>&nbsp</td></tr>
+<tr><th id="778">778</th><td>    {&nbsp</td></tr>
+<tr><th id="779">779</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="780">780</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="781">781</th><td>	<dfn class="decl def fn" id="_ZNSt10__cmp_cust14_Weak_fallback11_S_noexceptEv" title='std::__cmp_cust::_Weak_fallback::_S_noexcept' data-ref="_ZNSt10__cmp_cust14_Weak_fallback11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="782">782</th><td>	{&nbsp</td></tr>
+<tr><th id="783">783</th><td>	  <b>if</b> <b>constexpr</b> (__weakly_ordered&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="784">784</th><td>	    <b>return</b> <a class="type" href="#std::__cmp_cust::_Weak_order" title='std::__cmp_cust::_Weak_order' data-ref="std::__cmp_cust::_Weak_order">_Weak_order</a>::_S_noexcept&lt;_Tp, _Up&gt;();&nbsp</td></tr>
+<tr><th id="785">785</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="786">786</th><td>	    <b>return</b> <b>noexcept</b>(<em>bool</em>(<span class="namespace">std::</span>declval&lt;_Tp&gt;() == <span class="namespace">std::</span>declval&lt;_Up&gt;()))&nbsp</td></tr>
+<tr><th id="787">787</th><td>	      &amp;&amp; <b>noexcept</b>(<em>bool</em>(<span class="namespace">std::</span>declval&lt;_Tp&gt;() &lt; <span class="namespace">std::</span>declval&lt;_Up&gt;()));&nbsp</td></tr>
+<tr><th id="788">788</th><td>	}&nbsp</td></tr>
+<tr><th id="789">789</th><td>&nbsp</td></tr>
+<tr><th id="790">790</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="791">791</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, __decayed_same_as&lt;_Tp&gt; _Up&gt;&nbsp</td></tr>
+<tr><th id="792">792</th><td>	<b>requires</b> __weakly_ordered&lt;_Tp, _Up&gt; || __op_eq_lt&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="793">793</th><td>	<b>constexpr</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>&nbsp</td></tr>
+<tr><th id="794">794</th><td>	<dfn class="decl def fn" id="_ZNKSt10__cmp_cust14_Weak_fallbackclEOT_OT0_" title='std::__cmp_cust::_Weak_fallback::operator()' data-ref="_ZNKSt10__cmp_cust14_Weak_fallbackclEOT_OT0_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col8 decl" id="2738__e" title='__e' data-type='_Tp &amp;&amp;' data-ref="2738__e">__e</dfn>, _Up&amp;&amp; <dfn class="local col9 decl" id="2739__f" title='__f' data-type='_Up &amp;&amp;' data-ref="2739__f">__f</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="795">795</th><td>	<b>noexcept</b>(_S_noexcept&lt;_Tp, _Up&gt;())&nbsp</td></tr>
+<tr><th id="796">796</th><td>	{&nbsp</td></tr>
+<tr><th id="797">797</th><td>	  <b>if</b> <b>constexpr</b> (__weakly_ordered&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="798">798</th><td>	    <b>return</b> <a class="type" href="#std::__cmp_cust::_Weak_order" title='std::__cmp_cust::_Weak_order' data-ref="std::__cmp_cust::_Weak_order">_Weak_order</a>{}(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col8 ref" href="#2738__e" title='__e' data-ref="2738__e">__e</a>),&nbsp</td></tr>
+<tr><th id="799">799</th><td>				 <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col9 ref" href="#2739__f" title='__f' data-ref="2739__f">__f</a>));&nbsp</td></tr>
+<tr><th id="800">800</th><td>	  <b>else</b> <i>// __op_eq_lt&lt;_Tp, _Up&gt;</i>&nbsp</td></tr>
+<tr><th id="801">801</th><td>	    <b>return</b> <b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col8 ref" href="#2738__e" title='__e' data-ref="2738__e">__e</a>) == <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col9 ref" href="#2739__f" title='__f' data-ref="2739__f">__f</a>)&nbsp</td></tr>
+<tr><th id="802">802</th><td>	      ? <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<a class="ref" href="#std::weak_ordering::equivalent" title='std::weak_ordering::equivalent' data-ref="std::weak_ordering::equivalent">equivalent</a>&nbsp</td></tr>
+<tr><th id="803">803</th><td>	      : <b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col8 ref" href="#2738__e" title='__e' data-ref="2738__e">__e</a>) &lt; <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col9 ref" href="#2739__f" title='__f' data-ref="2739__f">__f</a>)&nbsp</td></tr>
+<tr><th id="804">804</th><td>	      ? <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<a class="ref" href="#std::weak_ordering::less" title='std::weak_ordering::less' data-ref="std::weak_ordering::less">less</a>&nbsp</td></tr>
+<tr><th id="805">805</th><td>	      : <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<a class="ref" href="#std::weak_ordering::greater" title='std::weak_ordering::greater' data-ref="std::weak_ordering::greater">greater</a>;&nbsp</td></tr>
+<tr><th id="806">806</th><td>	}&nbsp</td></tr>
+<tr><th id="807">807</th><td>    };&nbsp</td></tr>
+<tr><th id="808">808</th><td>&nbsp</td></tr>
+<tr><th id="809">809</th><td>    <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="810">810</th><td><i>    // 3465. compare_partial_order_fallback requires F &lt; E</i>&nbsp</td></tr>
+<tr><th id="811">811</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="812">812</th><td>      <b>concept</b> __op_eq_lt_lt = __op_eq_lt&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="813">813</th><td>	&amp;&amp; <b>requires</b>(_Tp&amp;&amp; <dfn class="local col0 decl" id="2740__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2740__t">__t</dfn>, _Up&amp;&amp; <dfn class="local col1 decl" id="2741__u" title='__u' data-type='_Up &amp;&amp;' data-ref="2741__u">__u</dfn>)&nbsp</td></tr>
+<tr><th id="814">814</th><td>	{&nbsp</td></tr>
+<tr><th id="815">815</th><td>	  { <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col1 ref" href="#2741__u" title='__u' data-ref="2741__u">__u</a>) &lt; <b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col0 ref" href="#2740__t" title='__t' data-ref="2740__t">__t</a>) }&nbsp</td></tr>
+<tr><th id="816">816</th><td>	    -&gt; convertible_to&lt;<em>bool</em>&gt;;&nbsp</td></tr>
+<tr><th id="817">817</th><td>	};&nbsp</td></tr>
+<tr><th id="818">818</th><td>&nbsp</td></tr>
+<tr><th id="819">819</th><td>    <b>class</b> <dfn class="type def" id="std::__cmp_cust::_Partial_fallback" title='std::__cmp_cust::_Partial_fallback' data-ref="std::__cmp_cust::_Partial_fallback">_Partial_fallback</dfn>&nbsp</td></tr>
+<tr><th id="820">820</th><td>    {&nbsp</td></tr>
+<tr><th id="821">821</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="822">822</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="823">823</th><td>	<dfn class="decl def fn" id="_ZNSt10__cmp_cust17_Partial_fallback11_S_noexceptEv" title='std::__cmp_cust::_Partial_fallback::_S_noexcept' data-ref="_ZNSt10__cmp_cust17_Partial_fallback11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="824">824</th><td>	{&nbsp</td></tr>
+<tr><th id="825">825</th><td>	  <b>if</b> <b>constexpr</b> (__partially_ordered&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="826">826</th><td>	    <b>return</b> <a class="type" href="#std::__cmp_cust::_Partial_order" title='std::__cmp_cust::_Partial_order' data-ref="std::__cmp_cust::_Partial_order">_Partial_order</a>::_S_noexcept&lt;_Tp, _Up&gt;();&nbsp</td></tr>
+<tr><th id="827">827</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="828">828</th><td>	    <b>return</b> <b>noexcept</b>(<em>bool</em>(<span class="namespace">std::</span>declval&lt;_Tp&gt;() == <span class="namespace">std::</span>declval&lt;_Up&gt;()))&nbsp</td></tr>
+<tr><th id="829">829</th><td>	      &amp;&amp; <b>noexcept</b>(<em>bool</em>(<span class="namespace">std::</span>declval&lt;_Tp&gt;() &lt; <span class="namespace">std::</span>declval&lt;_Up&gt;()));&nbsp</td></tr>
+<tr><th id="830">830</th><td>	}&nbsp</td></tr>
+<tr><th id="831">831</th><td>&nbsp</td></tr>
+<tr><th id="832">832</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="833">833</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, __decayed_same_as&lt;_Tp&gt; _Up&gt;&nbsp</td></tr>
+<tr><th id="834">834</th><td>	<b>requires</b> __partially_ordered&lt;_Tp, _Up&gt; || __op_eq_lt_lt&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="835">835</th><td>	<b>constexpr</b> <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>&nbsp</td></tr>
+<tr><th id="836">836</th><td>	<dfn class="decl def fn" id="_ZNKSt10__cmp_cust17_Partial_fallbackclEOT_OT0_" title='std::__cmp_cust::_Partial_fallback::operator()' data-ref="_ZNKSt10__cmp_cust17_Partial_fallbackclEOT_OT0_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col2 decl" id="2742__e" title='__e' data-type='_Tp &amp;&amp;' data-ref="2742__e">__e</dfn>, _Up&amp;&amp; <dfn class="local col3 decl" id="2743__f" title='__f' data-type='_Up &amp;&amp;' data-ref="2743__f">__f</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="837">837</th><td>	<b>noexcept</b>(_S_noexcept&lt;_Tp, _Up&gt;())&nbsp</td></tr>
+<tr><th id="838">838</th><td>	{&nbsp</td></tr>
+<tr><th id="839">839</th><td>	  <b>if</b> <b>constexpr</b> (__partially_ordered&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="840">840</th><td>	    <b>return</b> <a class="type" href="#std::__cmp_cust::_Partial_order" title='std::__cmp_cust::_Partial_order' data-ref="std::__cmp_cust::_Partial_order">_Partial_order</a>{}(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col2 ref" href="#2742__e" title='__e' data-ref="2742__e">__e</a>),&nbsp</td></tr>
+<tr><th id="841">841</th><td>				    <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col3 ref" href="#2743__f" title='__f' data-ref="2743__f">__f</a>));&nbsp</td></tr>
+<tr><th id="842">842</th><td>	  <b>else</b> <i>// __op_eq_lt_lt&lt;_Tp, _Up&gt;</i>&nbsp</td></tr>
+<tr><th id="843">843</th><td>	    <b>return</b> <b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col2 ref" href="#2742__e" title='__e' data-ref="2742__e">__e</a>) == <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col3 ref" href="#2743__f" title='__f' data-ref="2743__f">__f</a>)&nbsp</td></tr>
+<tr><th id="844">844</th><td>	      ? <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>::<a class="ref" href="#std::partial_ordering::equivalent" title='std::partial_ordering::equivalent' data-ref="std::partial_ordering::equivalent">equivalent</a>&nbsp</td></tr>
+<tr><th id="845">845</th><td>	      : <b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col2 ref" href="#2742__e" title='__e' data-ref="2742__e">__e</a>) &lt; <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col3 ref" href="#2743__f" title='__f' data-ref="2743__f">__f</a>)&nbsp</td></tr>
+<tr><th id="846">846</th><td>	      ? <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>::<a class="ref" href="#std::partial_ordering::less" title='std::partial_ordering::less' data-ref="std::partial_ordering::less">less</a>&nbsp</td></tr>
+<tr><th id="847">847</th><td>	      : <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col3 ref" href="#2743__f" title='__f' data-ref="2743__f">__f</a>) &lt; <b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col2 ref" href="#2742__e" title='__e' data-ref="2742__e">__e</a>)&nbsp</td></tr>
+<tr><th id="848">848</th><td>	      ? <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>::<a class="ref" href="#std::partial_ordering::greater" title='std::partial_ordering::greater' data-ref="std::partial_ordering::greater">greater</a>&nbsp</td></tr>
+<tr><th id="849">849</th><td>	      : <a class="type" href="#std::partial_ordering" title='std::partial_ordering' data-ref="std::partial_ordering">partial_ordering</a>::<a class="ref" href="#std::partial_ordering::unordered" title='std::partial_ordering::unordered' data-ref="std::partial_ordering::unordered">unordered</a>;&nbsp</td></tr>
+<tr><th id="850">850</th><td>	}&nbsp</td></tr>
+<tr><th id="851">851</th><td>    };&nbsp</td></tr>
+<tr><th id="852">852</th><td>  } <i>// namespace __cmp_cust</i>&nbsp</td></tr>
+<tr><th id="853">853</th><td>&nbsp</td></tr>
+<tr><th id="854">854</th><td>  <i>// [cmp.alg], comparison algorithms</i>&nbsp</td></tr>
+<tr><th id="855">855</th><td>  <b>inline</b> <b>namespace</b> <span class="namespace">__cmp_alg</span>&nbsp</td></tr>
+<tr><th id="856">856</th><td>  {&nbsp</td></tr>
+<tr><th id="857">857</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cmp_cust::</span><a class="type" href="#std::__cmp_cust::_Strong_order" title='std::__cmp_cust::_Strong_order' data-ref="std::__cmp_cust::_Strong_order">_Strong_order</a> <dfn class="decl def" id="std::strong_order" title='std::strong_order' data-ref="std::strong_order">strong_order</dfn>{};&nbsp</td></tr>
+<tr><th id="858">858</th><td>&nbsp</td></tr>
+<tr><th id="859">859</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cmp_cust::</span><a class="type" href="#std::__cmp_cust::_Weak_order" title='std::__cmp_cust::_Weak_order' data-ref="std::__cmp_cust::_Weak_order">_Weak_order</a> <dfn class="decl def" id="std::weak_order" title='std::weak_order' data-ref="std::weak_order">weak_order</dfn>{};&nbsp</td></tr>
+<tr><th id="860">860</th><td>&nbsp</td></tr>
+<tr><th id="861">861</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cmp_cust::</span><a class="type" href="#std::__cmp_cust::_Partial_order" title='std::__cmp_cust::_Partial_order' data-ref="std::__cmp_cust::_Partial_order">_Partial_order</a> <dfn class="decl def" id="std::partial_order" title='std::partial_order' data-ref="std::partial_order">partial_order</dfn>{};&nbsp</td></tr>
+<tr><th id="862">862</th><td>&nbsp</td></tr>
+<tr><th id="863">863</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cmp_cust::</span><a class="type" href="#std::__cmp_cust::_Strong_fallback" title='std::__cmp_cust::_Strong_fallback' data-ref="std::__cmp_cust::_Strong_fallback">_Strong_fallback</a>&nbsp</td></tr>
+<tr><th id="864">864</th><td>    <dfn class="decl def" id="std::compare_strong_order_fallback" title='std::compare_strong_order_fallback' data-ref="std::compare_strong_order_fallback">compare_strong_order_fallback</dfn>{};&nbsp</td></tr>
+<tr><th id="865">865</th><td>&nbsp</td></tr>
+<tr><th id="866">866</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cmp_cust::</span><a class="type" href="#std::__cmp_cust::_Weak_fallback" title='std::__cmp_cust::_Weak_fallback' data-ref="std::__cmp_cust::_Weak_fallback">_Weak_fallback</a>&nbsp</td></tr>
+<tr><th id="867">867</th><td>    <dfn class="decl def" id="std::compare_weak_order_fallback" title='std::compare_weak_order_fallback' data-ref="std::compare_weak_order_fallback">compare_weak_order_fallback</dfn>{};&nbsp</td></tr>
+<tr><th id="868">868</th><td>&nbsp</td></tr>
+<tr><th id="869">869</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cmp_cust::</span><a class="type" href="#std::__cmp_cust::_Partial_fallback" title='std::__cmp_cust::_Partial_fallback' data-ref="std::__cmp_cust::_Partial_fallback">_Partial_fallback</a>&nbsp</td></tr>
+<tr><th id="870">870</th><td>    <dfn class="decl def" id="std::compare_partial_order_fallback" title='std::compare_partial_order_fallback' data-ref="std::compare_partial_order_fallback">compare_partial_order_fallback</dfn>{};&nbsp</td></tr>
+<tr><th id="871">871</th><td>  }&nbsp</td></tr>
+<tr><th id="872">872</th><td>&nbsp</td></tr>
+<tr><th id="873">873</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="874">874</th><td>  {&nbsp</td></tr>
+<tr><th id="875">875</th><td>    <i>// [expos.only.func] synth-three-way</i>&nbsp</td></tr>
+<tr><th id="876">876</th><td>    <b>inline</b> <b>constexpr</b> <b>struct</b> <dfn class="type def" id="std::__detail::_Synth3way" title='std::__detail::_Synth3way' data-ref="std::__detail::_Synth3way"><a class="type" href="#std::__detail::_Synth3way" title='std::__detail::_Synth3way' data-ref="std::__detail::_Synth3way">_Synth3way</a></dfn>&nbsp</td></tr>
+<tr><th id="877">877</th><td>    {&nbsp</td></tr>
+<tr><th id="878">878</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="879">879</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="880">880</th><td>	<dfn class="decl def fn" id="_ZNSt8__detail10_Synth3way11_S_noexceptEPKT_PKT0_" title='std::__detail::_Synth3way::_S_noexcept' data-ref="_ZNSt8__detail10_Synth3way11_S_noexceptEPKT_PKT0_">_S_noexcept</dfn>(<em>const</em> _Tp* <dfn class="local col4 decl" id="2744__t" title='__t' data-type='const _Tp *' data-ref="2744__t">__t</dfn> = <b>nullptr</b>, <em>const</em> _Up* <dfn class="local col5 decl" id="2745__u" title='__u' data-type='const _Up *' data-ref="2745__u">__u</dfn> = <b>nullptr</b>)&nbsp</td></tr>
+<tr><th id="881">881</th><td>	{&nbsp</td></tr>
+<tr><th id="882">882</th><td>	  <b>if</b> <b>constexpr</b> (three_way_comparable_with&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="883">883</th><td>	    <b>return</b> <b>noexcept</b>(*<a class="local col4 ref" href="#2744__t" title='__t' data-ref="2744__t">__t</a> &lt;=&gt; *<a class="local col5 ref" href="#2745__u" title='__u' data-ref="2745__u">__u</a>);&nbsp</td></tr>
+<tr><th id="884">884</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="885">885</th><td>	    <b>return</b> <b>noexcept</b>(*<a class="local col4 ref" href="#2744__t" title='__t' data-ref="2744__t">__t</a> &lt; *<a class="local col5 ref" href="#2745__u" title='__u' data-ref="2745__u">__u</a>) &amp;&amp; <b>noexcept</b>(*<a class="local col5 ref" href="#2745__u" title='__u' data-ref="2745__u">__u</a> &lt; *<a class="local col4 ref" href="#2744__t" title='__t' data-ref="2744__t">__t</a>);&nbsp</td></tr>
+<tr><th id="886">886</th><td>	}&nbsp</td></tr>
+<tr><th id="887">887</th><td>&nbsp</td></tr>
+<tr><th id="888">888</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="889">889</th><td>	<b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="890">890</th><td>	<dfn class="decl def fn" id="_ZNKSt8__detail10_Synth3wayclERKT_RKT0_" title='std::__detail::_Synth3way::operator()' data-ref="_ZNKSt8__detail10_Synth3wayclERKT_RKT0_"><b>operator</b>()</dfn>(<em>const</em> _Tp&amp; <dfn class="local col6 decl" id="2746__t" title='__t' data-type='const _Tp &amp;' data-ref="2746__t">__t</dfn>, <em>const</em> _Up&amp; <dfn class="local col7 decl" id="2747__u" title='__u' data-type='const _Up &amp;' data-ref="2747__u">__u</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="891">891</th><td>	<b>noexcept</b>(_S_noexcept&lt;_Tp, _Up&gt;())&nbsp</td></tr>
+<tr><th id="892">892</th><td>	<b>requires</b> <b>requires</b>&nbsp</td></tr>
+<tr><th id="893">893</th><td>	{&nbsp</td></tr>
+<tr><th id="894">894</th><td>	  { <a class="local col6 ref" href="#2746__t" title='__t' data-ref="2746__t">__t</a> &lt; <a class="local col7 ref" href="#2747__u" title='__u' data-ref="2747__u">__u</a> } -&gt; __boolean_testable;&nbsp</td></tr>
+<tr><th id="895">895</th><td>	  { <a class="local col7 ref" href="#2747__u" title='__u' data-ref="2747__u">__u</a> &lt; <a class="local col6 ref" href="#2746__t" title='__t' data-ref="2746__t">__t</a> } -&gt; __boolean_testable;&nbsp</td></tr>
+<tr><th id="896">896</th><td>	}&nbsp</td></tr>
+<tr><th id="897">897</th><td>	{&nbsp</td></tr>
+<tr><th id="898">898</th><td>	  <b>if</b> <b>constexpr</b> (three_way_comparable_with&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="899">899</th><td>	    <b>return</b> <a class="local col6 ref" href="#2746__t" title='__t' data-ref="2746__t">__t</a> &lt;=&gt; <a class="local col7 ref" href="#2747__u" title='__u' data-ref="2747__u">__u</a>;&nbsp</td></tr>
+<tr><th id="900">900</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="901">901</th><td>	    {&nbsp</td></tr>
+<tr><th id="902">902</th><td>	      <b>if</b> (<a class="local col6 ref" href="#2746__t" title='__t' data-ref="2746__t">__t</a> &lt; <a class="local col7 ref" href="#2747__u" title='__u' data-ref="2747__u">__u</a>)&nbsp</td></tr>
+<tr><th id="903">903</th><td>		<b>return</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<a class="ref" href="#std::weak_ordering::less" title='std::weak_ordering::less' data-ref="std::weak_ordering::less">less</a>;&nbsp</td></tr>
+<tr><th id="904">904</th><td>	      <b>else</b> <b>if</b> (<a class="local col7 ref" href="#2747__u" title='__u' data-ref="2747__u">__u</a> &lt; <a class="local col6 ref" href="#2746__t" title='__t' data-ref="2746__t">__t</a>)&nbsp</td></tr>
+<tr><th id="905">905</th><td>		<b>return</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<a class="ref" href="#std::weak_ordering::greater" title='std::weak_ordering::greater' data-ref="std::weak_ordering::greater">greater</a>;&nbsp</td></tr>
+<tr><th id="906">906</th><td>	      <b>else</b>&nbsp</td></tr>
+<tr><th id="907">907</th><td>		<b>return</b> <a class="type" href="#std::weak_ordering" title='std::weak_ordering' data-ref="std::weak_ordering">weak_ordering</a>::<a class="ref" href="#std::weak_ordering::equivalent" title='std::weak_ordering::equivalent' data-ref="std::weak_ordering::equivalent">equivalent</a>;&nbsp</td></tr>
+<tr><th id="908">908</th><td>	    }&nbsp</td></tr>
+<tr><th id="909">909</th><td>	}&nbsp</td></tr>
+<tr><th id="910">910</th><td>    } <dfn class="decl def" id="std::__detail::__synth3way" title='std::__detail::__synth3way' data-ref="std::__detail::__synth3way">__synth3way</dfn> = {};&nbsp</td></tr>
+<tr><th id="911">911</th><td>&nbsp</td></tr>
+<tr><th id="912">912</th><td>    <i>// [expos.only.func] synth-three-way-result</i>&nbsp</td></tr>
+<tr><th id="913">913</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up = _Tp&gt;&nbsp</td></tr>
+<tr><th id="914">914</th><td>      <b>using</b> <dfn class="typedef" id="std::__detail::__synth3way_t" title='std::__detail::__synth3way_t' data-type='decltype(__detail::__synth3way(std::declval&lt;_Tp &amp;&gt;(), std::declval&lt;_Up &amp;&gt;()))' data-ref="std::__detail::__synth3way_t">__synth3way_t</dfn>&nbsp</td></tr>
+<tr><th id="915">915</th><td>	= <b>decltype</b>(<span class="namespace">__detail::</span><a class="ref" href="#std::__detail::__synth3way" title='std::__detail::__synth3way' data-ref="std::__detail::__synth3way">__synth3way</a>(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;(),&nbsp</td></tr>
+<tr><th id="916">916</th><td>					 <span class="namespace">std::</span>declval&lt;_Up&amp;&gt;()));&nbsp</td></tr>
+<tr><th id="917">917</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="918">918</th><td><u>#<span data-ppcond="408">endif</span> // concepts</u>&nbsp</td></tr>
+<tr><th id="919">919</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="920">920</th><td>&nbsp</td></tr>
+<tr><th id="921">921</th><td><u>#pragma GCC visibility pop</u>&nbsp</td></tr>
+<tr><th id="922">922</th><td>&nbsp</td></tr>
+<tr><th id="923">923</th><td><u>#<span data-ppcond="35">endif</span> // C++20</u>&nbsp</td></tr>
+<tr><th id="924">924</th><td>&nbsp</td></tr>
+<tr><th id="925">925</th><td><u>#<span data-ppcond="30">endif</span> // _COMPARE</u>&nbsp</td></tr>
+<tr><th id="926">926</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

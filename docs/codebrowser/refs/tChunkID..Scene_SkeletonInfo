@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='485' type='16900096'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='485'>// NumJoints, NumPoses, FramePeriod(sec)</doc>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='182' u='r' c='_ZNK6tScene9tSkeleton4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='220' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>

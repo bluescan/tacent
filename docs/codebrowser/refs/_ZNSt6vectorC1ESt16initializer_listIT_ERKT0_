@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_vector.h' l='625' ll='631' type='void std::vector::vector&lt;_Tp, _Alloc&gt;(initializer_list&lt;std::vector::value_type&gt; __l, const std::vector::allocator_type &amp; __a = std::vector::allocator_type())'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='614'>/**
+       *  @brief  Builds a %vector from an initializer list.
+       *  @param  __l  An initializer_list.
+       *  @param  __a  An allocator.
+       *
+       *  Create a %vector consisting of copies of the elements in the
+       *  initializer_list @a __l.
+       *
+       *  This will call the element type&apos;s copy constructor N times
+       *  (where N is @a __l.size()) and do no memory reallocation.
+       */</doc>

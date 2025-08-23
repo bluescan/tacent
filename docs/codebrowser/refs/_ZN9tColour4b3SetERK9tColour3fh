@@ -1,0 +1,3 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='348' u='c' c='_ZN9tColour4bC1ERK9tColour3fh'/>
+<dec f='Modules/Math/Inc/Math/tColour.h' l='361' type='void tColour4b::Set(const tColour3f &amp; c, uint8 a)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1096' ll='1099' type='void tColour4b::Set(const tColour3f &amp; c, uint8 a)'/>

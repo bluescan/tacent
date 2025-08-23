@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3007' ll='3015'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3007'/>
+<size>48</size>
+<mbr r='VkApplicationInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkApplicationInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkApplicationInfo::pApplicationName' o='128' t='const char *'/>
+<mbr r='VkApplicationInfo::applicationVersion' o='192' t='uint32_t'/>
+<mbr r='VkApplicationInfo::pEngineName' o='256' t='const char *'/>
+<mbr r='VkApplicationInfo::engineVersion' o='320' t='uint32_t'/>
+<mbr r='VkApplicationInfo::apiVersion' o='352' t='uint32_t'/>

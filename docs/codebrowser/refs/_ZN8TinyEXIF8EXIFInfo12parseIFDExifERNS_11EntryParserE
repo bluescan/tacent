@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='139' type='void TinyEXIF::EXIFInfo::parseIFDExif(TinyEXIF::EntryParser &amp; )'/>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='138'>// Parse tag as Exif IFD.</doc>

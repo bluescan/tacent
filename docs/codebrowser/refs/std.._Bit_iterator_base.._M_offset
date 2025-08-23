@@ -1,0 +1,27 @@
+<dec f='include/c++/11/bits/stl_bvector.h' l='146' type='unsigned int'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='149' u='w' c='_ZNSt18_Bit_iterator_baseC1EPmj'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='154' u='w' c='_ZNSt18_Bit_iterator_base10_M_bump_upEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='156' u='w' c='_ZNSt18_Bit_iterator_base10_M_bump_upEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='164' u='w' c='_ZNSt18_Bit_iterator_base12_M_bump_downEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='166' u='w' c='_ZNSt18_Bit_iterator_base12_M_bump_downEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='174' u='r' c='_ZNSt18_Bit_iterator_base7_M_incrEl'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='182' u='w' c='_ZNSt18_Bit_iterator_base7_M_incrEl'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='187' u='r' c='_ZSteqRKSt18_Bit_iterator_baseS1_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='187' u='r' c='_ZSteqRKSt18_Bit_iterator_baseS1_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='196' u='r' c='_ZStssRKSt18_Bit_iterator_baseS1_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='196' u='r' c='_ZStssRKSt18_Bit_iterator_baseS1_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='227' u='r' c='_ZStmiRKSt18_Bit_iterator_baseS1_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='227' u='r' c='_ZStmiRKSt18_Bit_iterator_baseS1_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='252' u='r' c='_ZNKSt13_Bit_iteratordeEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='340' u='r' c='_ZNSt19_Bit_const_iteratorC1ERKSt13_Bit_iterator'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='344' u='r' c='_ZNKSt19_Bit_const_iterator13_M_const_castEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='348' u='r' c='_ZNKSt19_Bit_const_iteratordeEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1354' u='r' c='_ZSt9__fill_a1St13_Bit_iteratorS_RKb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1355' u='r' c='_ZSt9__fill_a1St13_Bit_iteratorS_RKb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1360' u='r' c='_ZSt9__fill_a1St13_Bit_iteratorS_RKb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1361' u='r' c='_ZSt9__fill_a1St13_Bit_iteratorS_RKb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1363' u='r' c='_ZSt9__fill_a1St13_Bit_iteratorS_RKb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1363' u='r' c='_ZSt9__fill_a1St13_Bit_iteratorS_RKb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1364' u='r' c='_ZSt9__fill_a1St13_Bit_iteratorS_RKb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1364' u='r' c='_ZSt9__fill_a1St13_Bit_iteratorS_RKb'/>
+<offset>64</offset>

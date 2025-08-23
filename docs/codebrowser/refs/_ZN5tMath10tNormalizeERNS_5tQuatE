@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='356' type='void tMath::tNormalize(tMath::tQuat &amp; q)'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='60' u='c' c='_ZN5tMath11tQuaternion9NormalizeEv'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='349' u='c' c='_ZN5tMath6tNlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='1035' u='c' c='_ZN5tMath20tApproachOrientationERNS_5tQuatERKS0_ff'/>

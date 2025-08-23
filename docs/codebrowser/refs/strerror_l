@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='458' type='char * strerror_l(int __errnum, locale_t __l)'/>
+<doc f='include/string.h' l='457'>/* Translate error number to string according to the locale L.  */</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algo.h' l='1485' ll='1510' macro='1' type='_BidirectionalIterator std::__partition(_BidirectionalIterator __first, _BidirectionalIterator __last, _Predicate __pred, std::bidirectional_iterator_tag )'/>

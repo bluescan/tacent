@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/ranges_util.h' l='491' ll='509'/>
+<use f='include/c++/11/bits/ranges_util.h' l='500' c='_ZNKRSt6ranges12in_in_resultcvNS_12in_in_resultITL0__TL0_0_EEEv'/>
+<use f='include/c++/11/bits/ranges_util.h' l='507' c='_ZNOSt6ranges12in_in_resultcvNS_12in_in_resultITL0__TL0_0_EEEv'/>
+<use f='include/c++/11/bits/ranges_util.h' l='512'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='674'/>
+<mbr r='std::ranges::in_in_result::in1' t='_Iter1'/>
+<mbr r='std::ranges::in_in_result::in2' t='_Iter2'/>
+<fun r='_ZNKRSt6ranges12in_in_resultcvNS_12in_in_resultITL0__TL0_0_EEEv'/>
+<fun r='_ZNOSt6ranges12in_in_resultcvNS_12in_in_resultITL0__TL0_0_EEEv'/>

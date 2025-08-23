@@ -1,0 +1,2 @@
+<dec f='include/wchar.h' l='92' type='wchar_t * wcsncpy(wchar_t *__restrict __dest, const wchar_t *__restrict __src, size_t __n)'/>
+<doc f='include/wchar.h' l='91'>/* Copy no more than N wide-characters of SRC to DEST.  */</doc>

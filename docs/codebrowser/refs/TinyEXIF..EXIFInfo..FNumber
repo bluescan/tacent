@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='177' type='double'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='423' u='r' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<offset>3072</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='177'>// F/stop</doc>

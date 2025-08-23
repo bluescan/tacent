@@ -1,0 +1,59 @@
+<def f='Modules/Math/Inc/Math/tRandom.h' l='27' ll='40'/>
+<ovr f='Modules/Math/Inc/Math/tRandom.h' l='45' c='tMath::tRandom::tGeneratorMersenneTwister'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='45'/>
+<ovr f='Modules/Math/Inc/Math/tRandom.h' l='78' c='tMath::tRandom::tGeneratorFortuna'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='78'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='108' c='_ZN5tMath7tRandom8tGetSignERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='109' c='_ZN5tMath7tRandom8tGetBoolERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='110' c='_ZN5tMath7tRandom8tGetBitsERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='111' c='_ZN5tMath7tRandom9tGetFloatERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='112' c='_ZN5tMath7tRandom10tGetDoubleERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='115' c='_ZN5tMath7tRandom11tGetBoundedEiiRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='116' c='_ZN5tMath7tRandom11tGetBoundedEffRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='117' c='_ZN5tMath7tRandom11tGetBoundedEddRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='118' c='_ZN5tMath7tRandom11tGetBoundedET_S1_RKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='122' c='_ZN5tMath7tRandom17tGetExtentBoundedET_S1_RKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='125' c='_ZN5tMath7tRandom7tGetDirERKNS_8tVector3EfRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='128' c='_ZN5tMath7tRandom18tGetPointOnLineSegERKNS_8tLineSegERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='129' c='_ZN5tMath7tRandom19tGetPointOnTriangleERKNS_9tTriangleERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='132' c='_ZN5tMath7tRandom21tGetPointOnUnitSquareERKNS_6tPlaneERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='133' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='134' c='_ZN5tMath7tRandom17tGetPointOnSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='135' c='_ZN5tMath7tRandom19tGetPointOnCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='136' c='_ZN5tMath7tRandom14tGetPointInBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='137' c='_ZN5tMath7tRandom17tGetPointInSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='138' c='_ZN5tMath7tRandom19tGetPointInCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='148' c='_ZN5tMath7tRandom8tGetSignERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='154' c='_ZN5tMath7tRandom8tGetBoolERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='160' c='_ZN5tMath7tRandom8tGetBitsERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='166' c='_ZN5tMath7tRandom9tGetFloatERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='172' c='_ZN5tMath7tRandom11tGetBoundedEiiRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='179' c='_ZN5tMath7tRandom11tGetBoundedEffRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='186' c='_ZN5tMath7tRandom11tGetBoundedEddRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='193' c='_ZN5tMath7tRandom11tGetBoundedET_S1_RKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='203' c='_ZN5tMath7tRandom17tGetExtentBoundedET_S1_RKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='209' c='_ZN5tMath7tRandom18tGetPointOnLineSegERKNS_8tLineSegERKNS0_10tGeneratorE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='161' c='_ZN6tImage16tQuantizeSpatial11fill_randomERNS0_7array3dIdEERN5tMath7tRandom10tGeneratorE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='183' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='203' c='_ZN6tImage16tQuantizeSpatial11fill_randomERNS0_7array3dIdEERN5tMath7tRandom10tGeneratorE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='569' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<size>8</size>
+<doc f='Modules/Math/Inc/Math/tRandom.h' l='25'>// Abstract base class for all random number generators. A generator is only responsible for generating random bits.
+// Each instance of a generator should have its own state and produces its own random stream.</doc>
+<fun r='_ZN5tMath7tRandom10tGeneratorC1Ev'/>
+<fun r='_ZN5tMath7tRandom10tGeneratorD1Ev'/>
+<fun r='_ZN5tMath7tRandom10tGenerator7SetSeedEj'/>
+<fun r='_ZN5tMath7tRandom10tGenerator7SetSeedEy'/>
+<fun r='_ZN5tMath7tRandom10tGenerator7SetSeedEPKji'/>
+<fun r='_ZNK5tMath7tRandom10tGenerator7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='106' c='_ZN5tMath7tRandom10tGetDoubleERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='129' c='_ZN5tMath7tRandom7tGetDirERKNS_8tVector3EfRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='153' c='_ZN5tMath7tRandom19tGetPointOnTriangleERKNS_9tTriangleERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='164' c='_ZN5tMath7tRandom21tGetPointOnUnitSquareERKNS_6tPlaneERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='177' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='221' c='_ZN5tMath7tRandom17tGetPointOnSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='239' c='_ZN5tMath7tRandom19tGetPointOnCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='263' c='_ZN5tMath7tRandom14tGetPointInBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='278' c='_ZN5tMath7tRandom17tGetPointInSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='297' c='_ZN5tMath7tRandom19tGetPointInCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<size>8</size>

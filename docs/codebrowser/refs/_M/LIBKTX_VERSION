@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/version.h' l='10'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/version.h' l='1'>/*
+// [API version]
+@par API Version
+v4.0
+// [API version]
+// [Code version]
+v4.3.2~4^2-dirty
+// [Code version]
+*/</doc>

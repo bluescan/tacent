@@ -1,0 +1,4 @@
+<def f='include/x86_64-linux-gnu/bits/sigcontext.h' l='184' ll='187'/>
+<use f='include/x86_64-linux-gnu/bits/sigcontext.h' l='193'/>
+<size>256</size>
+<mbr r='_ymmh_state::ymmh_space' o='0' t='__uint32_t[64]'/>

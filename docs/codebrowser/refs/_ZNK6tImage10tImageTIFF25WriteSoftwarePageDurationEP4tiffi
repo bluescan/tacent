@@ -1,0 +1,2 @@
+<def f='Modules/Image/Src/tImageTIFF.cpp' l='58' ll='64' type='bool tImage::tImageTIFF::WriteSoftwarePageDuration(TIFF * tiff, int milliseconds) const'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='301' u='c' c='_ZNK6tImage10tImageTIFF4SaveERK7tStringRKNS0_10SaveParamsE'/>

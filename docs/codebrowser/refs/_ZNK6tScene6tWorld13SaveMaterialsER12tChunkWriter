@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='1085' u='c' c='_ZNK6tScene6tWorld4SaveERK7tString'/>
+<def f='Modules/Scene/Src/tWorld.cpp' l='1095' ll='1103' type='void tScene::tWorld::SaveMaterials(tChunkWriter &amp; chunk) const'/>

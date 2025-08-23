@@ -1,0 +1,293 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tCubemap.cpp source code [Modules/Image/Src/tCubemap.cpp] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Src/tCubemap.cpp'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>Modules</a>/<a href='..'>Image</a>/<a href='./'>Src</a>/<a href='tCubemap.cpp.html'>tCubemap.cpp</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tCubemap.cpp</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// A cubemap is simply a collection of 6 tTextures. By convention each tTexture has layers of the same pixel format. A</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>// tCubemap may be created from a dds file (assuming the dds file contains a cubemap) or from multiple tTextures. When</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// construction from a dds is performed, it chooses a different image to load into the tTexture for each cubemap side.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// When constructing from tTextures directly it is the user's responsibility to supply the necessary tTextures in the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// correct format before constructing a tCubemap. tCubemaps can also save and load themselves into a tChunk-based</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// format. They do this by looping through their tTextures and calling their individual Save/Load functions.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// ATI has a tool called CubeMapGen 1.1 which is useful for making your own cube map dds files. Its installer also</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// installs some example dds cube maps to play with. The CubeMapGen tool (as of v1.1) does NOT generate valid DXT1</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// compressed cubemap files. The header is incorrect and the data is not compressed.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// nVidia's DDS tools can also generate dds cubemaps straight from photoshop. Just pull down the combo-box that usually</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>// says "2D TEXTURE" and there'll be an option for cubemaps. The nVidia dds plugin for photoshop does not have this</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// issues with texture compression and cubemaps.</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// The order of the images for a cubemap are +x -x +y -y +z -z. In the CubeMapGen tool the option for OpenGL and DX</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i>// coord systems only affects the export of cube map faces -- it does not, apparently, affect the output dds cubemap.</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// i.e. It seems the faces should always be specified using a LH coord system. The OpenGL calls for specifying a</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// cubemap are also left handed which is inconsistent with other parts of the OpenGL API.</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// Copyright (c) 2006, 2017, 2019, 2020 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#include "Image/tCubemap.h"</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="34">if</span> 0</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td><b>using</b> <b>namespace</b> tImage;&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><em>bool</em> tCubemap::IsValid() <em>const</em>&nbsp</td></tr>
+<tr><th id="39">39</th><td>{&nbsp</td></tr>
+<tr><th id="40">40</th><td>	<b>for</b> (<em>int</em> side = <var>0</var>; side &lt; <em>int</em>(tSide::NumSides); side++)&nbsp</td></tr>
+<tr><th id="41">41</th><td>		<b>if</b> ((Sides[side].Side != tSide::Invalid) &amp;&amp; Sides[side].Texture.IsValid())&nbsp</td></tr>
+<tr><th id="42">42</th><td>			<b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td>	<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="45">45</th><td>}&nbsp</td></tr>
+<tr><th id="46">46</th><td>&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td><em>bool</em> tCubemap::AllSidesOpaque() <em>const</em>&nbsp</td></tr>
+<tr><th id="49">49</th><td>{&nbsp</td></tr>
+<tr><th id="50">50</th><td>	<b>for</b> (<em>int</em> side = <var>0</var>; side &lt; <em>int</em>(tSide::NumSides); side++)&nbsp</td></tr>
+<tr><th id="51">51</th><td>		<b>if</b> ((Sides[side].Side != tSide::Invalid) &amp;&amp; Sides[side].Texture.IsValid() &amp;&amp; !Sides[side].Texture.IsOpaque())&nbsp</td></tr>
+<tr><th id="52">52</th><td>			<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="53">53</th><td>&nbsp</td></tr>
+<tr><th id="54">54</th><td>	<b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="55">55</th><td>}&nbsp</td></tr>
+<tr><th id="56">56</th><td>&nbsp</td></tr>
+<tr><th id="57">57</th><td>&nbsp</td></tr>
+<tr><th id="58">58</th><td><em>void</em> tCubemap::Clear()&nbsp</td></tr>
+<tr><th id="59">59</th><td>{&nbsp</td></tr>
+<tr><th id="60">60</th><td>	<b>for</b> (<em>int</em> side = <var>0</var>; side &lt; <em>int</em>(tSide::NumSides); side++)&nbsp</td></tr>
+<tr><th id="61">61</th><td>	{&nbsp</td></tr>
+<tr><th id="62">62</th><td>		Sides[side].Side = tSide::Invalid;&nbsp</td></tr>
+<tr><th id="63">63</th><td>		Sides[side].Texture.Clear();&nbsp</td></tr>
+<tr><th id="64">64</th><td>	}&nbsp</td></tr>
+<tr><th id="65">65</th><td>}&nbsp</td></tr>
+<tr><th id="66">66</th><td>&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td><em>bool</em> tCubemap::Load(<em>const</em> tString&amp; ddsFile, <em>bool</em> reverseRowOrder)&nbsp</td></tr>
+<tr><th id="69">69</th><td>{&nbsp</td></tr>
+<tr><th id="70">70</th><td>	Clear();&nbsp</td></tr>
+<tr><th id="71">71</th><td>	<b>if</b> ((tSystem::tGetFileType(ddsFile) != tSystem::tFileType::DDS) || !tSystem::tFileExists(ddsFile))&nbsp</td></tr>
+<tr><th id="72">72</th><td>		<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="73">73</th><td>&nbsp</td></tr>
+<tr><th id="74">74</th><td>	tImageDDS::LoadParams loadParams;&nbsp</td></tr>
+<tr><th id="75">75</th><td>	loadParams.Flags = tImageDDS::LoadFlag_ReverseRowOrder;&nbsp</td></tr>
+<tr><th id="76">76</th><td>	tImageDDS dds(ddsFile, loadParams);&nbsp</td></tr>
+<tr><th id="77">77</th><td>	<b>if</b> (!dds.IsValid() || !dds.IsCubemap())&nbsp</td></tr>
+<tr><th id="78">78</th><td>		<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="79">79</th><td>&nbsp</td></tr>
+<tr><th id="80">80</th><td>	<b>return</b> Set(dds);&nbsp</td></tr>
+<tr><th id="81">81</th><td>}&nbsp</td></tr>
+<tr><th id="82">82</th><td>&nbsp</td></tr>
+<tr><th id="83">83</th><td>&nbsp</td></tr>
+<tr><th id="84">84</th><td><em>bool</em> tCubemap::Set(tImageDDS&amp; dds)&nbsp</td></tr>
+<tr><th id="85">85</th><td>{&nbsp</td></tr>
+<tr><th id="86">86</th><td>	Clear();&nbsp</td></tr>
+<tr><th id="87">87</th><td>	<b>if</b> (!dds.IsValid() || !dds.IsCubemap())&nbsp</td></tr>
+<tr><th id="88">88</th><td>		<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="89">89</th><td>&nbsp</td></tr>
+<tr><th id="90">90</th><td>	tList&lt;tLayer&gt; layerSet[tImageDDS::tSurfIndex_NumSurfaces];&nbsp</td></tr>
+<tr><th id="91">91</th><td>	tStaticAssert(<em>int</em>(tSide::NumSides) == tImageDDS::tSurfIndex_NumSurfaces);&nbsp</td></tr>
+<tr><th id="92">92</th><td>	dds.StealCubemapLayers(layerSet);&nbsp</td></tr>
+<tr><th id="93">93</th><td>&nbsp</td></tr>
+<tr><th id="94">94</th><td>	<b>for</b> (<em>int</em> side = <var>0</var>; side &lt; <em>int</em>(tSide::NumSides); side++)&nbsp</td></tr>
+<tr><th id="95">95</th><td>	{&nbsp</td></tr>
+<tr><th id="96">96</th><td>		Sides[side].Side = tSide(side);&nbsp</td></tr>
+<tr><th id="97">97</th><td>		Sides[side].Texture.Set(layerSet[side]);&nbsp</td></tr>
+<tr><th id="98">98</th><td>	}&nbsp</td></tr>
+<tr><th id="99">99</th><td>&nbsp</td></tr>
+<tr><th id="100">100</th><td>	<b>if</b> (!IsValid())&nbsp</td></tr>
+<tr><th id="101">101</th><td>	{&nbsp</td></tr>
+<tr><th id="102">102</th><td>		Clear();&nbsp</td></tr>
+<tr><th id="103">103</th><td>		<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="104">104</th><td>	}&nbsp</td></tr>
+<tr><th id="105">105</th><td>&nbsp</td></tr>
+<tr><th id="106">106</th><td>	<b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="107">107</th><td>}&nbsp</td></tr>
+<tr><th id="108">108</th><td>&nbsp</td></tr>
+<tr><th id="109">109</th><td>&nbsp</td></tr>
+<tr><th id="110">110</th><td><em>bool</em> tCubemap::Load&nbsp</td></tr>
+<tr><th id="111">111</th><td>(&nbsp</td></tr>
+<tr><th id="112">112</th><td>	<em>const</em> tString&amp; imageFilePosX, <em>const</em> tString&amp; imageFileNegX,&nbsp</td></tr>
+<tr><th id="113">113</th><td>	<em>const</em> tString&amp; imageFilePosY, <em>const</em> tString&amp; imageFileNegY,&nbsp</td></tr>
+<tr><th id="114">114</th><td>	<em>const</em> tString&amp; imageFilePosZ, <em>const</em> tString&amp; imageFileNegZ,&nbsp</td></tr>
+<tr><th id="115">115</th><td>	<em>bool</em> generateMipMaps, tPixelFormat pixelFormat, tTexture::tQuality quality, <em>int</em> forceWidth, <em>int</em> forceHeight&nbsp</td></tr>
+<tr><th id="116">116</th><td>)&nbsp</td></tr>
+<tr><th id="117">117</th><td>{&nbsp</td></tr>
+<tr><th id="118">118</th><td>	Clear();&nbsp</td></tr>
+<tr><th id="119">119</th><td>	tPicture posX(imageFilePosX); tPicture negX(imageFileNegX);&nbsp</td></tr>
+<tr><th id="120">120</th><td>	tPicture posY(imageFilePosY); tPicture negY(imageFileNegY);&nbsp</td></tr>
+<tr><th id="121">121</th><td>	tPicture posZ(imageFilePosZ); tPicture negZ(imageFileNegZ);&nbsp</td></tr>
+<tr><th id="122">122</th><td>	<b>return</b> Set&nbsp</td></tr>
+<tr><th id="123">123</th><td>	(&nbsp</td></tr>
+<tr><th id="124">124</th><td>		posX, negX, posY, negY, posZ, negZ,&nbsp</td></tr>
+<tr><th id="125">125</th><td>		generateMipMaps, pixelFormat, quality, forceWidth, forceHeight&nbsp</td></tr>
+<tr><th id="126">126</th><td>	);&nbsp</td></tr>
+<tr><th id="127">127</th><td>}&nbsp</td></tr>
+<tr><th id="128">128</th><td>&nbsp</td></tr>
+<tr><th id="129">129</th><td>&nbsp</td></tr>
+<tr><th id="130">130</th><td><em>bool</em> tCubemap::Set&nbsp</td></tr>
+<tr><th id="131">131</th><td>(&nbsp</td></tr>
+<tr><th id="132">132</th><td>	tPicture&amp; imagePosX, tPicture&amp; imageNegX,&nbsp</td></tr>
+<tr><th id="133">133</th><td>	tPicture&amp; imagePosY, tPicture&amp; imageNegY,&nbsp</td></tr>
+<tr><th id="134">134</th><td>	tPicture&amp; imagePosZ, tPicture&amp; imageNegZ,&nbsp</td></tr>
+<tr><th id="135">135</th><td>	<em>bool</em> generateMipMaps, tPixelFormat pixelFormat, tTexture::tQuality quality, <em>int</em> forceWidth, <em>int</em> forceHeight&nbsp</td></tr>
+<tr><th id="136">136</th><td>)&nbsp</td></tr>
+<tr><th id="137">137</th><td>{&nbsp</td></tr>
+<tr><th id="138">138</th><td>	Clear();&nbsp</td></tr>
+<tr><th id="139">139</th><td>&nbsp</td></tr>
+<tr><th id="140">140</th><td>	tTexture textures[<em>int</em>(tSide::NumSides)];&nbsp</td></tr>
+<tr><th id="141">141</th><td>	textures[<var>0</var>].Set(imagePosX, generateMipMaps, pixelFormat, quality, forceWidth, forceHeight);&nbsp</td></tr>
+<tr><th id="142">142</th><td>	textures[<var>1</var>].Set(imageNegX, generateMipMaps, pixelFormat, quality, forceWidth, forceHeight);&nbsp</td></tr>
+<tr><th id="143">143</th><td>	textures[<var>2</var>].Set(imagePosY, generateMipMaps, pixelFormat, quality, forceWidth, forceHeight);&nbsp</td></tr>
+<tr><th id="144">144</th><td>	textures[<var>3</var>].Set(imageNegY, generateMipMaps, pixelFormat, quality, forceWidth, forceHeight);&nbsp</td></tr>
+<tr><th id="145">145</th><td>	textures[<var>4</var>].Set(imagePosZ, generateMipMaps, pixelFormat, quality, forceWidth, forceHeight);&nbsp</td></tr>
+<tr><th id="146">146</th><td>	textures[<var>5</var>].Set(imageNegZ, generateMipMaps, pixelFormat, quality, forceWidth, forceHeight);&nbsp</td></tr>
+<tr><th id="147">147</th><td>&nbsp</td></tr>
+<tr><th id="148">148</th><td>	<b>for</b> (<em>int</em> side = <var>0</var>; side &lt; <em>int</em>(tSide::NumSides); side++)&nbsp</td></tr>
+<tr><th id="149">149</th><td>	{&nbsp</td></tr>
+<tr><th id="150">150</th><td>		Sides[side].Side = textures[side].IsValid() ? tSide(side) : tSide::Invalid;&nbsp</td></tr>
+<tr><th id="151">151</th><td>&nbsp</td></tr>
+<tr><th id="152">152</th><td>		<i>// Steal the layers from the texture and give them to the cubemap.</i>&nbsp</td></tr>
+<tr><th id="153">153</th><td>		tList&lt;tLayer&gt; layers;&nbsp</td></tr>
+<tr><th id="154">154</th><td>		textures[side].StealLayers(layers);&nbsp</td></tr>
+<tr><th id="155">155</th><td>		Sides[side].Texture.Set(layers);&nbsp</td></tr>
+<tr><th id="156">156</th><td>	}&nbsp</td></tr>
+<tr><th id="157">157</th><td>&nbsp</td></tr>
+<tr><th id="158">158</th><td>	<b>if</b> (!IsValid())&nbsp</td></tr>
+<tr><th id="159">159</th><td>	{&nbsp</td></tr>
+<tr><th id="160">160</th><td>		Clear();&nbsp</td></tr>
+<tr><th id="161">161</th><td>		<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="162">162</th><td>	}&nbsp</td></tr>
+<tr><th id="163">163</th><td>&nbsp</td></tr>
+<tr><th id="164">164</th><td>	<b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="165">165</th><td>}&nbsp</td></tr>
+<tr><th id="166">166</th><td>&nbsp</td></tr>
+<tr><th id="167">167</th><td>&nbsp</td></tr>
+<tr><th id="168">168</th><td>tTexture* tCubemap::GetSide(tSide side)&nbsp</td></tr>
+<tr><th id="169">169</th><td>{&nbsp</td></tr>
+<tr><th id="170">170</th><td>	<b>if</b> (!IsValid())&nbsp</td></tr>
+<tr><th id="171">171</th><td>		<b>return</b> <b>nullptr</b>;&nbsp</td></tr>
+<tr><th id="172">172</th><td>&nbsp</td></tr>
+<tr><th id="173">173</th><td>	<b>return</b> &amp;Sides[<em>int</em>(side)].Texture;&nbsp</td></tr>
+<tr><th id="174">174</th><td>}&nbsp</td></tr>
+<tr><th id="175">175</th><td>&nbsp</td></tr>
+<tr><th id="176">176</th><td>&nbsp</td></tr>
+<tr><th id="177">177</th><td><em>void</em> tCubemap::Save(tChunkWriter&amp; chunk) <em>const</em>&nbsp</td></tr>
+<tr><th id="178">178</th><td>{&nbsp</td></tr>
+<tr><th id="179">179</th><td>	chunk.Begin(tChunkID::Image_Cubemap);&nbsp</td></tr>
+<tr><th id="180">180</th><td>	{&nbsp</td></tr>
+<tr><th id="181">181</th><td>		chunk.Begin(tChunkID::Image_CubemapProperties);&nbsp</td></tr>
+<tr><th id="182">182</th><td>		{&nbsp</td></tr>
+<tr><th id="183">183</th><td>			chunk.Write( AllSidesOpaque() );&nbsp</td></tr>
+<tr><th id="184">184</th><td>		}&nbsp</td></tr>
+<tr><th id="185">185</th><td>		chunk.End();&nbsp</td></tr>
+<tr><th id="186">186</th><td>&nbsp</td></tr>
+<tr><th id="187">187</th><td>		chunk.Begin(tChunkID::Image_CubemapSides);&nbsp</td></tr>
+<tr><th id="188">188</th><td>		{&nbsp</td></tr>
+<tr><th id="189">189</th><td>			<b>for</b> (<em>int</em> side = <var>0</var>; side &lt; <em>int</em>(tSide::NumSides); side++)&nbsp</td></tr>
+<tr><th id="190">190</th><td>			{&nbsp</td></tr>
+<tr><th id="191">191</th><td>				<b>if</b> ((Sides[side].Side == tSide::Invalid) || !Sides[side].Texture.IsValid())&nbsp</td></tr>
+<tr><th id="192">192</th><td>					<b>continue</b>;&nbsp</td></tr>
+<tr><th id="193">193</th><td>&nbsp</td></tr>
+<tr><th id="194">194</th><td>				chunk.Begin(tChunkID::Image_CubemapSide);&nbsp</td></tr>
+<tr><th id="195">195</th><td>				{&nbsp</td></tr>
+<tr><th id="196">196</th><td>					chunk.Begin(tChunkID::Image_CubemapSideProperties);&nbsp</td></tr>
+<tr><th id="197">197</th><td>					{&nbsp</td></tr>
+<tr><th id="198">198</th><td>						chunk.Write(tSide(side));&nbsp</td></tr>
+<tr><th id="199">199</th><td>					}&nbsp</td></tr>
+<tr><th id="200">200</th><td>					chunk.End();&nbsp</td></tr>
+<tr><th id="201">201</th><td>&nbsp</td></tr>
+<tr><th id="202">202</th><td>					Sides[side].Texture.Save(chunk);&nbsp</td></tr>
+<tr><th id="203">203</th><td>				}&nbsp</td></tr>
+<tr><th id="204">204</th><td>				chunk.End();&nbsp</td></tr>
+<tr><th id="205">205</th><td>			}&nbsp</td></tr>
+<tr><th id="206">206</th><td>		}&nbsp</td></tr>
+<tr><th id="207">207</th><td>		chunk.End();&nbsp</td></tr>
+<tr><th id="208">208</th><td>	}&nbsp</td></tr>
+<tr><th id="209">209</th><td>	chunk.End();&nbsp</td></tr>
+<tr><th id="210">210</th><td>}&nbsp</td></tr>
+<tr><th id="211">211</th><td>&nbsp</td></tr>
+<tr><th id="212">212</th><td>&nbsp</td></tr>
+<tr><th id="213">213</th><td><em>void</em> tCubemap::Load(<em>const</em> tChunk&amp; chunk)&nbsp</td></tr>
+<tr><th id="214">214</th><td>{&nbsp</td></tr>
+<tr><th id="215">215</th><td>	Clear();&nbsp</td></tr>
+<tr><th id="216">216</th><td>	<b>if</b> (chunk.ID() != tChunkID::Image_Cubemap)&nbsp</td></tr>
+<tr><th id="217">217</th><td>		<b>return</b>;&nbsp</td></tr>
+<tr><th id="218">218</th><td>&nbsp</td></tr>
+<tr><th id="219">219</th><td>	<b>for</b> (tChunk ch = chunk.First(); ch.IsValid(); ch = ch.Next())&nbsp</td></tr>
+<tr><th id="220">220</th><td>	{&nbsp</td></tr>
+<tr><th id="221">221</th><td>		<b>switch</b> (ch.ID())&nbsp</td></tr>
+<tr><th id="222">222</th><td>		{&nbsp</td></tr>
+<tr><th id="223">223</th><td>			<b>case</b> tChunkID::Image_CubemapProperties:&nbsp</td></tr>
+<tr><th id="224">224</th><td>			{&nbsp</td></tr>
+<tr><th id="225">225</th><td>				<em>bool</em> allOpaque = <b>false</b>;&nbsp</td></tr>
+<tr><th id="226">226</th><td>				ch.GetItem(allOpaque);&nbsp</td></tr>
+<tr><th id="227">227</th><td>				<b>break</b>;&nbsp</td></tr>
+<tr><th id="228">228</th><td>			}&nbsp</td></tr>
+<tr><th id="229">229</th><td>&nbsp</td></tr>
+<tr><th id="230">230</th><td>			<b>case</b> tChunkID::Image_CubemapSides:&nbsp</td></tr>
+<tr><th id="231">231</th><td>			{&nbsp</td></tr>
+<tr><th id="232">232</th><td>				<b>for</b> (tChunk sideChunk = ch.First(); sideChunk.IsValid(); sideChunk = sideChunk.Next())&nbsp</td></tr>
+<tr><th id="233">233</th><td>				{&nbsp</td></tr>
+<tr><th id="234">234</th><td>					tAssert(sideChunk.ID() == tChunkID::Image_CubemapSide);&nbsp</td></tr>
+<tr><th id="235">235</th><td>					tSide side = tSide::Invalid;&nbsp</td></tr>
+<tr><th id="236">236</th><td>					<b>for</b> (tChunk sideSub = sideChunk.First(); sideSub.IsValid(); sideSub = sideSub.Next())&nbsp</td></tr>
+<tr><th id="237">237</th><td>					{&nbsp</td></tr>
+<tr><th id="238">238</th><td>						<b>switch</b> (sideSub.ID())&nbsp</td></tr>
+<tr><th id="239">239</th><td>						{&nbsp</td></tr>
+<tr><th id="240">240</th><td>							<b>case</b> tChunkID::Image_CubemapSideProperties:&nbsp</td></tr>
+<tr><th id="241">241</th><td>								sideSub.GetItem(side);&nbsp</td></tr>
+<tr><th id="242">242</th><td>								<b>break</b>;&nbsp</td></tr>
+<tr><th id="243">243</th><td>&nbsp</td></tr>
+<tr><th id="244">244</th><td>							<b>case</b> tChunkID::Image_Texture:&nbsp</td></tr>
+<tr><th id="245">245</th><td>								tAssert(side != tSide::Invalid);&nbsp</td></tr>
+<tr><th id="246">246</th><td>								Sides[<em>int</em>(side)].Side = side;&nbsp</td></tr>
+<tr><th id="247">247</th><td>								Sides[<em>int</em>(side)].Texture.Load(sideSub);&nbsp</td></tr>
+<tr><th id="248">248</th><td>								<b>break</b>;&nbsp</td></tr>
+<tr><th id="249">249</th><td>						}&nbsp</td></tr>
+<tr><th id="250">250</th><td>					}&nbsp</td></tr>
+<tr><th id="251">251</th><td>				}&nbsp</td></tr>
+<tr><th id="252">252</th><td>				<b>break</b>;&nbsp</td></tr>
+<tr><th id="253">253</th><td>			}&nbsp</td></tr>
+<tr><th id="254">254</th><td>		}&nbsp</td></tr>
+<tr><th id="255">255</th><td>	}&nbsp</td></tr>
+<tr><th id="256">256</th><td>}&nbsp</td></tr>
+<tr><th id="257">257</th><td>&nbsp</td></tr>
+<tr><th id="258">258</th><td>&nbsp</td></tr>
+<tr><th id="259">259</th><td><em>bool</em> tCubemap::<b>operator</b>==(<em>const</em> tCubemap&amp; src) <em>const</em>&nbsp</td></tr>
+<tr><th id="260">260</th><td>{&nbsp</td></tr>
+<tr><th id="261">261</th><td>	<b>if</b> (!IsValid() || !src.IsValid())&nbsp</td></tr>
+<tr><th id="262">262</th><td>		<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="263">263</th><td>&nbsp</td></tr>
+<tr><th id="264">264</th><td>	<b>for</b> (<em>int</em> side = <var>0</var>; side &lt; <em>int</em>(tSide::NumSides); side++)&nbsp</td></tr>
+<tr><th id="265">265</th><td>	{&nbsp</td></tr>
+<tr><th id="266">266</th><td>		<b>if</b> (Sides[side].Side != src.Sides[side].Side)&nbsp</td></tr>
+<tr><th id="267">267</th><td>			<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="268">268</th><td>&nbsp</td></tr>
+<tr><th id="269">269</th><td>		<b>if</b> (Sides[side].Texture != src.Sides[side].Texture)&nbsp</td></tr>
+<tr><th id="270">270</th><td>			<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="271">271</th><td>	}&nbsp</td></tr>
+<tr><th id="272">272</th><td>&nbsp</td></tr>
+<tr><th id="273">273</th><td>	<b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="274">274</th><td>}&nbsp</td></tr>
+<tr><th id="275">275</th><td><u>#<span data-ppcond="34">endif</span></u>&nbsp</td></tr>
+<tr><th id="276">276</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

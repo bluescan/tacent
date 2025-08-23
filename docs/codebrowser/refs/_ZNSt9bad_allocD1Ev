@@ -1,0 +1,3 @@
+<dec f='include/c++/11/new' l='67' type='void std::bad_alloc::~bad_alloc()'/>
+<doc f='include/c++/11/new' l='65'>// This declaration is not useless:
+    // http://gcc.gnu.org/onlinedocs/gcc-3.0.2/gcc_6.html#SEC118</doc>

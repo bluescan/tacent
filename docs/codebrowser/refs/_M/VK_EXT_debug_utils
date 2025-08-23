@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12379'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12378'>// VK_EXT_debug_utils is a preprocessor guard. Do not pass it to API calls.</doc>

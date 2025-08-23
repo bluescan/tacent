@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>concurrence.h source code [include/c++/11/ext/concurrence.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="__gnu_cxx::_Lock_policy,__gnu_cxx::__concurrence_broadcast_error,__gnu_cxx::__concurrence_lock_error,__gnu_cxx::__concurrence_unlock_error,__gnu_cxx::__concurrence_wait_error,__gnu_cxx::__cond,__gnu_cxx::__mutex,__gnu_cxx::__recursive_mutex,__gnu_cxx::__scoped_lock "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/ext/concurrence.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>ext</a>/<a href='concurrence.h.html'>concurrence.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Support for concurrent programing -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2003-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">ext/concurrence.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This file is a GNU extension to the Standard C++ Library.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="29">ifndef</span> <span class="macro" data-ref="_M/_CONCURRENCE_H">_CONCURRENCE_H</span></u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#define <dfn class="macro" id="_M/_CONCURRENCE_H" data-ref="_M/_CONCURRENCE_H">_CONCURRENCE_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#include &lt;exception&gt;</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;bits/gthr.h&gt;</u> &nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;bits/functexcept.h&gt;</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#include &lt;bits/cpp_type_traits.h&gt;</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#include &lt;ext/type_traits.h&gt;</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td><b>namespace</b> <span class="namespace">__gnu_cxx</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="41">41</th><td>{&nbsp</td></tr>
+<tr><th id="42">42</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td>  <i>// Available locking policies:</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i>  // _S_single    single-threaded code that doesn't need to be locked.</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>  // _S_mutex     multi-threaded code that requires additional support</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>  //              from gthr.h or abstraction layers in concurrence.h.</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>  // _S_atomic    multi-threaded code using atomic operations.</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td>  <b>enum</b> <dfn class="type def" id="__gnu_cxx::_Lock_policy" title='__gnu_cxx::_Lock_policy' data-ref="__gnu_cxx::_Lock_policy">_Lock_policy</dfn> { <dfn class="enum" id="__gnu_cxx::_S_single" title='__gnu_cxx::_S_single' data-ref="__gnu_cxx::_S_single">_S_single</dfn>, <dfn class="enum" id="__gnu_cxx::_S_mutex" title='__gnu_cxx::_S_mutex' data-ref="__gnu_cxx::_S_mutex">_S_mutex</dfn>, <dfn class="enum" id="__gnu_cxx::_S_atomic" title='__gnu_cxx::_S_atomic' data-ref="__gnu_cxx::_S_atomic">_S_atomic</dfn> }; &nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td>  <i>// Compile time constant that indicates prefered locking policy in</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i>  // the current configuration.</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td>  <em>static</em> <em>const</em> <a class="type" href="#__gnu_cxx::_Lock_policy" title='__gnu_cxx::_Lock_policy' data-ref="__gnu_cxx::_Lock_policy">_Lock_policy</a> <dfn class="decl def" id="__gnu_cxx::__default_lock_policy" title='__gnu_cxx::__default_lock_policy' data-ref="__gnu_cxx::__default_lock_policy">__default_lock_policy</dfn> = &nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#<span data-ppcond="54">ifndef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" data-ref="_M/__GTHREADS">__GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="55">55</th><td>  _S_single;&nbsp</td></tr>
+<tr><th id="56">56</th><td><u>#<span data-ppcond="54">elif</span> defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#819" data-ref="_M/_GLIBCXX_HAVE_ATOMIC_LOCK_POLICY">_GLIBCXX_HAVE_ATOMIC_LOCK_POLICY</a></u>&nbsp</td></tr>
+<tr><th id="57">57</th><td>  <a class="enum" href="#__gnu_cxx::_S_atomic" title='__gnu_cxx::_S_atomic' data-ref="__gnu_cxx::_S_atomic">_S_atomic</a>;&nbsp</td></tr>
+<tr><th id="58">58</th><td><u>#<span data-ppcond="54">else</span></u>&nbsp</td></tr>
+<tr><th id="59">59</th><td>  _S_mutex;&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#<span data-ppcond="54">endif</span></u>&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td>  <i>// NB: As this is used in libsupc++, need to only depend on</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i>  // exception. No stdexception classes, no use of std::string.</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td>  <b>class</b> <dfn class="type def" id="__gnu_cxx::__concurrence_lock_error" title='__gnu_cxx::__concurrence_lock_error' data-ref="__gnu_cxx::__concurrence_lock_error">__concurrence_lock_error</dfn> : <b>public</b> <span class="namespace">std::</span><a class="type" href="../bits/exception.h.html#std::exception" title='std::exception' data-ref="std::exception">exception</a>&nbsp</td></tr>
+<tr><th id="65">65</th><td>  {&nbsp</td></tr>
+<tr><th id="66">66</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="67">67</th><td>    <b>virtual</b> <em>char</em> <em>const</em>*&nbsp</td></tr>
+<tr><th id="68">68</th><td>    <dfn class="virtual decl def fn" id="__gnu_cxx::__concurrence_lock_error::what" title='__gnu_cxx::__concurrence_lock_error::what' data-ref="__gnu_cxx::__concurrence_lock_error::what">what</dfn>() <em>const</em> <b>throw</b>()&nbsp</td></tr>
+<tr><th id="69">69</th><td>    { <b>return</b> <q>"__gnu_cxx::__concurrence_lock_error"</q>; }&nbsp</td></tr>
+<tr><th id="70">70</th><td>  };&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td>  <b>class</b> <dfn class="type def" id="__gnu_cxx::__concurrence_unlock_error" title='__gnu_cxx::__concurrence_unlock_error' data-ref="__gnu_cxx::__concurrence_unlock_error">__concurrence_unlock_error</dfn> : <b>public</b> <span class="namespace">std::</span><a class="type" href="../bits/exception.h.html#std::exception" title='std::exception' data-ref="std::exception">exception</a>&nbsp</td></tr>
+<tr><th id="73">73</th><td>  {&nbsp</td></tr>
+<tr><th id="74">74</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="75">75</th><td>    <b>virtual</b> <em>char</em> <em>const</em>*&nbsp</td></tr>
+<tr><th id="76">76</th><td>    <dfn class="virtual decl def fn" id="__gnu_cxx::__concurrence_unlock_error::what" title='__gnu_cxx::__concurrence_unlock_error::what' data-ref="__gnu_cxx::__concurrence_unlock_error::what">what</dfn>() <em>const</em> <b>throw</b>()&nbsp</td></tr>
+<tr><th id="77">77</th><td>    { <b>return</b> <q>"__gnu_cxx::__concurrence_unlock_error"</q>; }&nbsp</td></tr>
+<tr><th id="78">78</th><td>  };&nbsp</td></tr>
+<tr><th id="79">79</th><td>&nbsp</td></tr>
+<tr><th id="80">80</th><td>  <b>class</b> <dfn class="type def" id="__gnu_cxx::__concurrence_broadcast_error" title='__gnu_cxx::__concurrence_broadcast_error' data-ref="__gnu_cxx::__concurrence_broadcast_error">__concurrence_broadcast_error</dfn> : <b>public</b> <span class="namespace">std::</span><a class="type" href="../bits/exception.h.html#std::exception" title='std::exception' data-ref="std::exception">exception</a>&nbsp</td></tr>
+<tr><th id="81">81</th><td>  {&nbsp</td></tr>
+<tr><th id="82">82</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="83">83</th><td>    <b>virtual</b> <em>char</em> <em>const</em>*&nbsp</td></tr>
+<tr><th id="84">84</th><td>    <dfn class="virtual decl def fn" id="__gnu_cxx::__concurrence_broadcast_error::what" title='__gnu_cxx::__concurrence_broadcast_error::what' data-ref="__gnu_cxx::__concurrence_broadcast_error::what">what</dfn>() <em>const</em> <b>throw</b>()&nbsp</td></tr>
+<tr><th id="85">85</th><td>    { <b>return</b> <q>"__gnu_cxx::__concurrence_broadcast_error"</q>; }&nbsp</td></tr>
+<tr><th id="86">86</th><td>  };&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td>  <b>class</b> <dfn class="type def" id="__gnu_cxx::__concurrence_wait_error" title='__gnu_cxx::__concurrence_wait_error' data-ref="__gnu_cxx::__concurrence_wait_error">__concurrence_wait_error</dfn> : <b>public</b> <span class="namespace">std::</span><a class="type" href="../bits/exception.h.html#std::exception" title='std::exception' data-ref="std::exception">exception</a>&nbsp</td></tr>
+<tr><th id="89">89</th><td>  {&nbsp</td></tr>
+<tr><th id="90">90</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="91">91</th><td>    <b>virtual</b> <em>char</em> <em>const</em>*&nbsp</td></tr>
+<tr><th id="92">92</th><td>    <dfn class="virtual decl def fn" id="__gnu_cxx::__concurrence_wait_error::what" title='__gnu_cxx::__concurrence_wait_error::what' data-ref="__gnu_cxx::__concurrence_wait_error::what">what</dfn>() <em>const</em> <b>throw</b>()&nbsp</td></tr>
+<tr><th id="93">93</th><td>    { <b>return</b> <q>"__gnu_cxx::__concurrence_wait_error"</q>; }&nbsp</td></tr>
+<tr><th id="94">94</th><td>  };&nbsp</td></tr>
+<tr><th id="95">95</th><td>&nbsp</td></tr>
+<tr><th id="96">96</th><td>  <i>// Substitute for concurrence_error object in the case of -fno-exceptions.</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td>  <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="98">98</th><td>  <dfn class="decl def fn" id="__gnu_cxx::__throw_concurrence_lock_error" title='__gnu_cxx::__throw_concurrence_lock_error' data-ref="__gnu_cxx::__throw_concurrence_lock_error">__throw_concurrence_lock_error</dfn>()&nbsp</td></tr>
+<tr><th id="99">99</th><td>  { <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#204" title="(throw (__concurrence_lock_error()))" data-ref="_M/_GLIBCXX_THROW_OR_ABORT">_GLIBCXX_THROW_OR_ABORT</a>(<a class="type" href="#__gnu_cxx::__concurrence_lock_error" title='__gnu_cxx::__concurrence_lock_error' data-ref="__gnu_cxx::__concurrence_lock_error">__concurrence_lock_error</a><a class="ref fn" href="#64" title='__gnu_cxx::__concurrence_lock_error::__concurrence_lock_error' data-ref="__gnu_cxx::__concurrence_lock_error::__concurrence_lock_error">(</a>)); }&nbsp</td></tr>
+<tr><th id="100">100</th><td>&nbsp</td></tr>
+<tr><th id="101">101</th><td>  <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="102">102</th><td>  <dfn class="decl def fn" id="__gnu_cxx::__throw_concurrence_unlock_error" title='__gnu_cxx::__throw_concurrence_unlock_error' data-ref="__gnu_cxx::__throw_concurrence_unlock_error">__throw_concurrence_unlock_error</dfn>()&nbsp</td></tr>
+<tr><th id="103">103</th><td>  { <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#204" title="(throw (__concurrence_unlock_error()))" data-ref="_M/_GLIBCXX_THROW_OR_ABORT">_GLIBCXX_THROW_OR_ABORT</a>(<a class="type" href="#__gnu_cxx::__concurrence_unlock_error" title='__gnu_cxx::__concurrence_unlock_error' data-ref="__gnu_cxx::__concurrence_unlock_error">__concurrence_unlock_error</a><a class="ref fn" href="#72" title='__gnu_cxx::__concurrence_unlock_error::__concurrence_unlock_error' data-ref="__gnu_cxx::__concurrence_unlock_error::__concurrence_unlock_error">(</a>)); }&nbsp</td></tr>
+<tr><th id="104">104</th><td>&nbsp</td></tr>
+<tr><th id="105">105</th><td><u>#<span data-ppcond="105">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#57" data-ref="_M/__GTHREAD_HAS_COND">__GTHREAD_HAS_COND</a></u>&nbsp</td></tr>
+<tr><th id="106">106</th><td>  <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="107">107</th><td>  <dfn class="decl def fn" id="__gnu_cxx::__throw_concurrence_broadcast_error" title='__gnu_cxx::__throw_concurrence_broadcast_error' data-ref="__gnu_cxx::__throw_concurrence_broadcast_error">__throw_concurrence_broadcast_error</dfn>()&nbsp</td></tr>
+<tr><th id="108">108</th><td>  { <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#204" title="(throw (__concurrence_broadcast_error()))" data-ref="_M/_GLIBCXX_THROW_OR_ABORT">_GLIBCXX_THROW_OR_ABORT</a>(<a class="type" href="#__gnu_cxx::__concurrence_broadcast_error" title='__gnu_cxx::__concurrence_broadcast_error' data-ref="__gnu_cxx::__concurrence_broadcast_error">__concurrence_broadcast_error</a><a class="ref fn" href="#80" title='__gnu_cxx::__concurrence_broadcast_error::__concurrence_broadcast_error' data-ref="__gnu_cxx::__concurrence_broadcast_error::__concurrence_broadcast_error">(</a>)); }&nbsp</td></tr>
+<tr><th id="109">109</th><td>&nbsp</td></tr>
+<tr><th id="110">110</th><td>  <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="111">111</th><td>  <dfn class="decl def fn" id="__gnu_cxx::__throw_concurrence_wait_error" title='__gnu_cxx::__throw_concurrence_wait_error' data-ref="__gnu_cxx::__throw_concurrence_wait_error">__throw_concurrence_wait_error</dfn>()&nbsp</td></tr>
+<tr><th id="112">112</th><td>  { <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#204" title="(throw (__concurrence_wait_error()))" data-ref="_M/_GLIBCXX_THROW_OR_ABORT">_GLIBCXX_THROW_OR_ABORT</a>(<a class="type" href="#__gnu_cxx::__concurrence_wait_error" title='__gnu_cxx::__concurrence_wait_error' data-ref="__gnu_cxx::__concurrence_wait_error">__concurrence_wait_error</a><a class="ref fn" href="#88" title='__gnu_cxx::__concurrence_wait_error::__concurrence_wait_error' data-ref="__gnu_cxx::__concurrence_wait_error::__concurrence_wait_error">(</a>)); }&nbsp</td></tr>
+<tr><th id="113">113</th><td><u>#<span data-ppcond="105">endif</span></u>&nbsp</td></tr>
+<tr><th id="114">114</th><td> &nbsp</td></tr>
+<tr><th id="115">115</th><td>  <b>class</b> <dfn class="type def" id="__gnu_cxx::__mutex" title='__gnu_cxx::__mutex' data-ref="__gnu_cxx::__mutex">__mutex</dfn> &nbsp</td></tr>
+<tr><th id="116">116</th><td>  {&nbsp</td></tr>
+<tr><th id="117">117</th><td>  <b>private</b>:&nbsp</td></tr>
+<tr><th id="118">118</th><td><u>#<span data-ppcond="118">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a> &amp;&amp; defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#59" data-ref="_M/__GTHREAD_MUTEX_INIT">__GTHREAD_MUTEX_INIT</a></u>&nbsp</td></tr>
+<tr><th id="119">119</th><td>    <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_mutex_t" title='__gthread_mutex_t' data-type='pthread_mutex_t' data-ref="__gthread_mutex_t">__gthread_mutex_t</a> <dfn class="decl field" id="__gnu_cxx::__mutex::_M_mutex" title='__gnu_cxx::__mutex::_M_mutex' data-ref="__gnu_cxx::__mutex::_M_mutex">_M_mutex</dfn> = <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#59" title="{ { 0, 0, 0, 0, PTHREAD_MUTEX_TIMED_NP, 0, 0, { 0, 0 } } }" data-ref="_M/__GTHREAD_MUTEX_INIT">__GTHREAD_MUTEX_INIT</a>;&nbsp</td></tr>
+<tr><th id="120">120</th><td><u>#<span data-ppcond="118">else</span></u>&nbsp</td></tr>
+<tr><th id="121">121</th><td>    __gthread_mutex_t _M_mutex;&nbsp</td></tr>
+<tr><th id="122">122</th><td><u>#<span data-ppcond="118">endif</span></u>&nbsp</td></tr>
+<tr><th id="123">123</th><td>&nbsp</td></tr>
+<tr><th id="124">124</th><td>    <dfn class="decl fn" id="__gnu_cxx::__mutex::__mutex" title='__gnu_cxx::__mutex::__mutex' data-ref="__gnu_cxx::__mutex::__mutex">__mutex</dfn>(<em>const</em> <a class="type" href="#__gnu_cxx::__mutex" title='__gnu_cxx::__mutex' data-ref="__gnu_cxx::__mutex">__mutex</a>&amp;);&nbsp</td></tr>
+<tr><th id="125">125</th><td>    <a class="type" href="#__gnu_cxx::__mutex" title='__gnu_cxx::__mutex' data-ref="__gnu_cxx::__mutex">__mutex</a>&amp; <dfn class="decl fn" id="__gnu_cxx::__mutex::operator=" title='__gnu_cxx::__mutex::operator=' data-ref="__gnu_cxx::__mutex::operator="><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="#__gnu_cxx::__mutex" title='__gnu_cxx::__mutex' data-ref="__gnu_cxx::__mutex">__mutex</a>&amp;);&nbsp</td></tr>
+<tr><th id="126">126</th><td>&nbsp</td></tr>
+<tr><th id="127">127</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="128">128</th><td>    <dfn class="decl def fn" id="__gnu_cxx::__mutex::__mutex" title='__gnu_cxx::__mutex::__mutex' data-ref="__gnu_cxx::__mutex::__mutex">__mutex</dfn>() &nbsp</td></tr>
+<tr><th id="129">129</th><td>    { &nbsp</td></tr>
+<tr><th id="130">130</th><td><u>#<span data-ppcond="130">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a> &amp;&amp; ! defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#59" data-ref="_M/__GTHREAD_MUTEX_INIT">__GTHREAD_MUTEX_INIT</a></u>&nbsp</td></tr>
+<tr><th id="131">131</th><td>      <b>if</b> (__gthread_active_p())&nbsp</td></tr>
+<tr><th id="132">132</th><td>	__GTHREAD_MUTEX_INIT_FUNCTION(&amp;_M_mutex);&nbsp</td></tr>
+<tr><th id="133">133</th><td><u>#<span data-ppcond="130">endif</span></u>&nbsp</td></tr>
+<tr><th id="134">134</th><td>    }&nbsp</td></tr>
+<tr><th id="135">135</th><td>&nbsp</td></tr>
+<tr><th id="136">136</th><td><u>#<span data-ppcond="136">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a> &amp;&amp; ! defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#59" data-ref="_M/__GTHREAD_MUTEX_INIT">__GTHREAD_MUTEX_INIT</a></u>&nbsp</td></tr>
+<tr><th id="137">137</th><td>    ~__mutex() &nbsp</td></tr>
+<tr><th id="138">138</th><td>    { &nbsp</td></tr>
+<tr><th id="139">139</th><td>      <b>if</b> (__gthread_active_p())&nbsp</td></tr>
+<tr><th id="140">140</th><td>	__gthread_mutex_destroy(&amp;_M_mutex); &nbsp</td></tr>
+<tr><th id="141">141</th><td>    }&nbsp</td></tr>
+<tr><th id="142">142</th><td><u>#<span data-ppcond="136">endif</span></u> &nbsp</td></tr>
+<tr><th id="143">143</th><td>&nbsp</td></tr>
+<tr><th id="144">144</th><td>    <em>void</em> <dfn class="decl def fn" id="__gnu_cxx::__mutex::lock" title='__gnu_cxx::__mutex::lock' data-ref="__gnu_cxx::__mutex::lock">lock</dfn>()&nbsp</td></tr>
+<tr><th id="145">145</th><td>    {&nbsp</td></tr>
+<tr><th id="146">146</th><td><u>#<span data-ppcond="146">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="147">147</th><td>      <b>if</b> (<a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_active_p" title='__gthread_active_p' data-ref="__gthread_active_p">__gthread_active_p</a>())&nbsp</td></tr>
+<tr><th id="148">148</th><td>	{&nbsp</td></tr>
+<tr><th id="149">149</th><td>	  <b>if</b> (<a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_mutex_lock" title='__gthread_mutex_lock' data-ref="__gthread_mutex_lock">__gthread_mutex_lock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="#__gnu_cxx::__mutex::_M_mutex" title='__gnu_cxx::__mutex::_M_mutex' data-ref="__gnu_cxx::__mutex::_M_mutex">_M_mutex</a>) != <var>0</var>)&nbsp</td></tr>
+<tr><th id="150">150</th><td>	    <a class="ref fn" href="#__gnu_cxx::__throw_concurrence_lock_error" title='__gnu_cxx::__throw_concurrence_lock_error' data-ref="__gnu_cxx::__throw_concurrence_lock_error">__throw_concurrence_lock_error</a>();&nbsp</td></tr>
+<tr><th id="151">151</th><td>	}&nbsp</td></tr>
+<tr><th id="152">152</th><td><u>#<span data-ppcond="146">endif</span></u>&nbsp</td></tr>
+<tr><th id="153">153</th><td>    }&nbsp</td></tr>
+<tr><th id="154">154</th><td>    &nbsp</td></tr>
+<tr><th id="155">155</th><td>    <em>void</em> <dfn class="decl def fn" id="__gnu_cxx::__mutex::unlock" title='__gnu_cxx::__mutex::unlock' data-ref="__gnu_cxx::__mutex::unlock">unlock</dfn>()&nbsp</td></tr>
+<tr><th id="156">156</th><td>    {&nbsp</td></tr>
+<tr><th id="157">157</th><td><u>#<span data-ppcond="157">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="158">158</th><td>      <b>if</b> (<a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_active_p" title='__gthread_active_p' data-ref="__gthread_active_p">__gthread_active_p</a>())&nbsp</td></tr>
+<tr><th id="159">159</th><td>	{&nbsp</td></tr>
+<tr><th id="160">160</th><td>	  <b>if</b> (<a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_mutex_unlock" title='__gthread_mutex_unlock' data-ref="__gthread_mutex_unlock">__gthread_mutex_unlock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="#__gnu_cxx::__mutex::_M_mutex" title='__gnu_cxx::__mutex::_M_mutex' data-ref="__gnu_cxx::__mutex::_M_mutex">_M_mutex</a>) != <var>0</var>)&nbsp</td></tr>
+<tr><th id="161">161</th><td>	    <a class="ref fn" href="#__gnu_cxx::__throw_concurrence_unlock_error" title='__gnu_cxx::__throw_concurrence_unlock_error' data-ref="__gnu_cxx::__throw_concurrence_unlock_error">__throw_concurrence_unlock_error</a>();&nbsp</td></tr>
+<tr><th id="162">162</th><td>	}&nbsp</td></tr>
+<tr><th id="163">163</th><td><u>#<span data-ppcond="157">endif</span></u>&nbsp</td></tr>
+<tr><th id="164">164</th><td>    }&nbsp</td></tr>
+<tr><th id="165">165</th><td>&nbsp</td></tr>
+<tr><th id="166">166</th><td>    <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_mutex_t" title='__gthread_mutex_t' data-type='pthread_mutex_t' data-ref="__gthread_mutex_t">__gthread_mutex_t</a>* <dfn class="decl def fn" id="__gnu_cxx::__mutex::gthread_mutex" title='__gnu_cxx::__mutex::gthread_mutex' data-ref="__gnu_cxx::__mutex::gthread_mutex">gthread_mutex</dfn>(<em>void</em>)&nbsp</td></tr>
+<tr><th id="167">167</th><td>      { <b>return</b> &amp;<a class="member field" href="#__gnu_cxx::__mutex::_M_mutex" title='__gnu_cxx::__mutex::_M_mutex' data-ref="__gnu_cxx::__mutex::_M_mutex">_M_mutex</a>; }&nbsp</td></tr>
+<tr><th id="168">168</th><td>  };&nbsp</td></tr>
+<tr><th id="169">169</th><td>&nbsp</td></tr>
+<tr><th id="170">170</th><td>  <b>class</b> <dfn class="type def" id="__gnu_cxx::__recursive_mutex" title='__gnu_cxx::__recursive_mutex' data-ref="__gnu_cxx::__recursive_mutex">__recursive_mutex</dfn> &nbsp</td></tr>
+<tr><th id="171">171</th><td>  {&nbsp</td></tr>
+<tr><th id="172">172</th><td>  <b>private</b>:&nbsp</td></tr>
+<tr><th id="173">173</th><td><u>#<span data-ppcond="173">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a> &amp;&amp; defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#65" data-ref="_M/__GTHREAD_RECURSIVE_MUTEX_INIT">__GTHREAD_RECURSIVE_MUTEX_INIT</a></u>&nbsp</td></tr>
+<tr><th id="174">174</th><td>    <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_recursive_mutex_t" title='__gthread_recursive_mutex_t' data-type='pthread_mutex_t' data-ref="__gthread_recursive_mutex_t">__gthread_recursive_mutex_t</a> <dfn class="decl field" id="__gnu_cxx::__recursive_mutex::_M_mutex" title='__gnu_cxx::__recursive_mutex::_M_mutex' data-ref="__gnu_cxx::__recursive_mutex::_M_mutex">_M_mutex</dfn> = <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#65" title="{ { 0, 0, 0, 0, PTHREAD_MUTEX_RECURSIVE_NP, 0, 0, { 0, 0 } } }" data-ref="_M/__GTHREAD_RECURSIVE_MUTEX_INIT">__GTHREAD_RECURSIVE_MUTEX_INIT</a>;&nbsp</td></tr>
+<tr><th id="175">175</th><td><u>#<span data-ppcond="173">else</span></u>&nbsp</td></tr>
+<tr><th id="176">176</th><td>    __gthread_recursive_mutex_t _M_mutex;&nbsp</td></tr>
+<tr><th id="177">177</th><td><u>#<span data-ppcond="173">endif</span></u>&nbsp</td></tr>
+<tr><th id="178">178</th><td>&nbsp</td></tr>
+<tr><th id="179">179</th><td>    <dfn class="decl fn" id="__gnu_cxx::__recursive_mutex::__recursive_mutex" title='__gnu_cxx::__recursive_mutex::__recursive_mutex' data-ref="__gnu_cxx::__recursive_mutex::__recursive_mutex">__recursive_mutex</dfn>(<em>const</em> <a class="type" href="#__gnu_cxx::__recursive_mutex" title='__gnu_cxx::__recursive_mutex' data-ref="__gnu_cxx::__recursive_mutex">__recursive_mutex</a>&amp;);&nbsp</td></tr>
+<tr><th id="180">180</th><td>    <a class="type" href="#__gnu_cxx::__recursive_mutex" title='__gnu_cxx::__recursive_mutex' data-ref="__gnu_cxx::__recursive_mutex">__recursive_mutex</a>&amp; <dfn class="decl fn" id="__gnu_cxx::__recursive_mutex::operator=" title='__gnu_cxx::__recursive_mutex::operator=' data-ref="__gnu_cxx::__recursive_mutex::operator="><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="#__gnu_cxx::__recursive_mutex" title='__gnu_cxx::__recursive_mutex' data-ref="__gnu_cxx::__recursive_mutex">__recursive_mutex</a>&amp;);&nbsp</td></tr>
+<tr><th id="181">181</th><td>&nbsp</td></tr>
+<tr><th id="182">182</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="183">183</th><td>    <dfn class="decl def fn" id="__gnu_cxx::__recursive_mutex::__recursive_mutex" title='__gnu_cxx::__recursive_mutex::__recursive_mutex' data-ref="__gnu_cxx::__recursive_mutex::__recursive_mutex">__recursive_mutex</dfn>() &nbsp</td></tr>
+<tr><th id="184">184</th><td>    { &nbsp</td></tr>
+<tr><th id="185">185</th><td><u>#<span data-ppcond="185">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a> &amp;&amp; ! defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#65" data-ref="_M/__GTHREAD_RECURSIVE_MUTEX_INIT">__GTHREAD_RECURSIVE_MUTEX_INIT</a></u>&nbsp</td></tr>
+<tr><th id="186">186</th><td>      <b>if</b> (__gthread_active_p())&nbsp</td></tr>
+<tr><th id="187">187</th><td>	__GTHREAD_RECURSIVE_MUTEX_INIT_FUNCTION(&amp;_M_mutex);&nbsp</td></tr>
+<tr><th id="188">188</th><td><u>#<span data-ppcond="185">endif</span></u>&nbsp</td></tr>
+<tr><th id="189">189</th><td>    }&nbsp</td></tr>
+<tr><th id="190">190</th><td>&nbsp</td></tr>
+<tr><th id="191">191</th><td><u>#<span data-ppcond="191">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a> &amp;&amp; ! defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#65" data-ref="_M/__GTHREAD_RECURSIVE_MUTEX_INIT">__GTHREAD_RECURSIVE_MUTEX_INIT</a></u>&nbsp</td></tr>
+<tr><th id="192">192</th><td>    ~__recursive_mutex()&nbsp</td></tr>
+<tr><th id="193">193</th><td>    {&nbsp</td></tr>
+<tr><th id="194">194</th><td>      <b>if</b> (__gthread_active_p())&nbsp</td></tr>
+<tr><th id="195">195</th><td>	__gthread_recursive_mutex_destroy(&amp;_M_mutex);&nbsp</td></tr>
+<tr><th id="196">196</th><td>    }&nbsp</td></tr>
+<tr><th id="197">197</th><td><u>#<span data-ppcond="191">endif</span></u>&nbsp</td></tr>
+<tr><th id="198">198</th><td>&nbsp</td></tr>
+<tr><th id="199">199</th><td>    <em>void</em> <dfn class="decl def fn" id="__gnu_cxx::__recursive_mutex::lock" title='__gnu_cxx::__recursive_mutex::lock' data-ref="__gnu_cxx::__recursive_mutex::lock">lock</dfn>()&nbsp</td></tr>
+<tr><th id="200">200</th><td>    { &nbsp</td></tr>
+<tr><th id="201">201</th><td><u>#<span data-ppcond="201">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="202">202</th><td>      <b>if</b> (<a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_active_p" title='__gthread_active_p' data-ref="__gthread_active_p">__gthread_active_p</a>())&nbsp</td></tr>
+<tr><th id="203">203</th><td>	{&nbsp</td></tr>
+<tr><th id="204">204</th><td>	  <b>if</b> (<a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_recursive_mutex_lock" title='__gthread_recursive_mutex_lock' data-ref="__gthread_recursive_mutex_lock">__gthread_recursive_mutex_lock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="#__gnu_cxx::__recursive_mutex::_M_mutex" title='__gnu_cxx::__recursive_mutex::_M_mutex' data-ref="__gnu_cxx::__recursive_mutex::_M_mutex">_M_mutex</a>) != <var>0</var>)&nbsp</td></tr>
+<tr><th id="205">205</th><td>	    <a class="ref fn" href="#__gnu_cxx::__throw_concurrence_lock_error" title='__gnu_cxx::__throw_concurrence_lock_error' data-ref="__gnu_cxx::__throw_concurrence_lock_error">__throw_concurrence_lock_error</a>();&nbsp</td></tr>
+<tr><th id="206">206</th><td>	}&nbsp</td></tr>
+<tr><th id="207">207</th><td><u>#<span data-ppcond="201">endif</span></u>&nbsp</td></tr>
+<tr><th id="208">208</th><td>    }&nbsp</td></tr>
+<tr><th id="209">209</th><td>    &nbsp</td></tr>
+<tr><th id="210">210</th><td>    <em>void</em> <dfn class="decl def fn" id="__gnu_cxx::__recursive_mutex::unlock" title='__gnu_cxx::__recursive_mutex::unlock' data-ref="__gnu_cxx::__recursive_mutex::unlock">unlock</dfn>()&nbsp</td></tr>
+<tr><th id="211">211</th><td>    { &nbsp</td></tr>
+<tr><th id="212">212</th><td><u>#<span data-ppcond="212">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="213">213</th><td>      <b>if</b> (<a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_active_p" title='__gthread_active_p' data-ref="__gthread_active_p">__gthread_active_p</a>())&nbsp</td></tr>
+<tr><th id="214">214</th><td>	{&nbsp</td></tr>
+<tr><th id="215">215</th><td>	  <b>if</b> (<a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_recursive_mutex_unlock" title='__gthread_recursive_mutex_unlock' data-ref="__gthread_recursive_mutex_unlock">__gthread_recursive_mutex_unlock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="#__gnu_cxx::__recursive_mutex::_M_mutex" title='__gnu_cxx::__recursive_mutex::_M_mutex' data-ref="__gnu_cxx::__recursive_mutex::_M_mutex">_M_mutex</a>) != <var>0</var>)&nbsp</td></tr>
+<tr><th id="216">216</th><td>	    <a class="ref fn" href="#__gnu_cxx::__throw_concurrence_unlock_error" title='__gnu_cxx::__throw_concurrence_unlock_error' data-ref="__gnu_cxx::__throw_concurrence_unlock_error">__throw_concurrence_unlock_error</a>();&nbsp</td></tr>
+<tr><th id="217">217</th><td>	}&nbsp</td></tr>
+<tr><th id="218">218</th><td><u>#<span data-ppcond="212">endif</span></u>&nbsp</td></tr>
+<tr><th id="219">219</th><td>    }&nbsp</td></tr>
+<tr><th id="220">220</th><td>&nbsp</td></tr>
+<tr><th id="221">221</th><td>    <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_recursive_mutex_t" title='__gthread_recursive_mutex_t' data-type='pthread_mutex_t' data-ref="__gthread_recursive_mutex_t">__gthread_recursive_mutex_t</a>* <dfn class="decl def fn" id="__gnu_cxx::__recursive_mutex::gthread_recursive_mutex" title='__gnu_cxx::__recursive_mutex::gthread_recursive_mutex' data-ref="__gnu_cxx::__recursive_mutex::gthread_recursive_mutex">gthread_recursive_mutex</dfn>(<em>void</em>)&nbsp</td></tr>
+<tr><th id="222">222</th><td>    { <b>return</b> &amp;<a class="member field" href="#__gnu_cxx::__recursive_mutex::_M_mutex" title='__gnu_cxx::__recursive_mutex::_M_mutex' data-ref="__gnu_cxx::__recursive_mutex::_M_mutex">_M_mutex</a>; }&nbsp</td></tr>
+<tr><th id="223">223</th><td>  };&nbsp</td></tr>
+<tr><th id="224">224</th><td>&nbsp</td></tr>
+<tr><th id="225">225</th><td>  <i class="doc">/// Scoped lock idiom.</i>&nbsp</td></tr>
+<tr><th id="226">226</th><td><i class="doc">  // Acquire the mutex here with a constructor call, then release with</i>&nbsp</td></tr>
+<tr><th id="227">227</th><td><i class="doc">  // the destructor call in accordance with RAII style.</i>&nbsp</td></tr>
+<tr><th id="228">228</th><td>  <b>class</b> <dfn class="type def" id="__gnu_cxx::__scoped_lock" title='__gnu_cxx::__scoped_lock' data-ref="__gnu_cxx::__scoped_lock">__scoped_lock</dfn>&nbsp</td></tr>
+<tr><th id="229">229</th><td>  {&nbsp</td></tr>
+<tr><th id="230">230</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="231">231</th><td>    <b>typedef</b> <a class="type" href="#__gnu_cxx::__mutex" title='__gnu_cxx::__mutex' data-ref="__gnu_cxx::__mutex">__mutex</a> <dfn class="typedef" id="__gnu_cxx::__scoped_lock::__mutex_type" title='__gnu_cxx::__scoped_lock::__mutex_type' data-type='__gnu_cxx::__mutex' data-ref="__gnu_cxx::__scoped_lock::__mutex_type">__mutex_type</dfn>;&nbsp</td></tr>
+<tr><th id="232">232</th><td>&nbsp</td></tr>
+<tr><th id="233">233</th><td>  <b>private</b>:&nbsp</td></tr>
+<tr><th id="234">234</th><td>    <a class="typedef" href="#__gnu_cxx::__scoped_lock::__mutex_type" title='__gnu_cxx::__scoped_lock::__mutex_type' data-type='__gnu_cxx::__mutex' data-ref="__gnu_cxx::__scoped_lock::__mutex_type">__mutex_type</a>&amp; <dfn class="decl field" id="__gnu_cxx::__scoped_lock::_M_device" title='__gnu_cxx::__scoped_lock::_M_device' data-ref="__gnu_cxx::__scoped_lock::_M_device">_M_device</dfn>;&nbsp</td></tr>
+<tr><th id="235">235</th><td>&nbsp</td></tr>
+<tr><th id="236">236</th><td>    <dfn class="decl fn" id="__gnu_cxx::__scoped_lock::__scoped_lock" title='__gnu_cxx::__scoped_lock::__scoped_lock' data-ref="__gnu_cxx::__scoped_lock::__scoped_lock">__scoped_lock</dfn>(<em>const</em> <a class="type" href="#__gnu_cxx::__scoped_lock" title='__gnu_cxx::__scoped_lock' data-ref="__gnu_cxx::__scoped_lock">__scoped_lock</a>&amp;);&nbsp</td></tr>
+<tr><th id="237">237</th><td>    <a class="type" href="#__gnu_cxx::__scoped_lock" title='__gnu_cxx::__scoped_lock' data-ref="__gnu_cxx::__scoped_lock">__scoped_lock</a>&amp; <dfn class="decl fn" id="__gnu_cxx::__scoped_lock::operator=" title='__gnu_cxx::__scoped_lock::operator=' data-ref="__gnu_cxx::__scoped_lock::operator="><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="#__gnu_cxx::__scoped_lock" title='__gnu_cxx::__scoped_lock' data-ref="__gnu_cxx::__scoped_lock">__scoped_lock</a>&amp;);&nbsp</td></tr>
+<tr><th id="238">238</th><td>&nbsp</td></tr>
+<tr><th id="239">239</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="240">240</th><td>    <b>explicit</b> <dfn class="decl def fn" id="__gnu_cxx::__scoped_lock::__scoped_lock" title='__gnu_cxx::__scoped_lock::__scoped_lock' data-ref="__gnu_cxx::__scoped_lock::__scoped_lock">__scoped_lock</dfn>(<a class="typedef" href="#__gnu_cxx::__scoped_lock::__mutex_type" title='__gnu_cxx::__scoped_lock::__mutex_type' data-type='__gnu_cxx::__mutex' data-ref="__gnu_cxx::__scoped_lock::__mutex_type">__mutex_type</a>&amp; <dfn class="local col7 decl" id="7__name" title='__name' data-type='__gnu_cxx::__scoped_lock::__mutex_type &amp;' data-ref="7__name">__name</dfn>) : <a class="member field" href="#__gnu_cxx::__scoped_lock::_M_device" title='__gnu_cxx::__scoped_lock::_M_device' data-ref="__gnu_cxx::__scoped_lock::_M_device">_M_device</a>(<a class="local col7 ref" href="#7__name" title='__name' data-ref="7__name">__name</a>)&nbsp</td></tr>
+<tr><th id="241">241</th><td>    { <a class="member field" href="#__gnu_cxx::__scoped_lock::_M_device" title='__gnu_cxx::__scoped_lock::_M_device' data-ref="__gnu_cxx::__scoped_lock::_M_device">_M_device</a>.<a class="ref fn" href="#__gnu_cxx::__mutex::lock" title='__gnu_cxx::__mutex::lock' data-ref="__gnu_cxx::__mutex::lock">lock</a>(); }&nbsp</td></tr>
+<tr><th id="242">242</th><td>&nbsp</td></tr>
+<tr><th id="243">243</th><td>    <dfn class="decl def fn" id="__gnu_cxx::__scoped_lock::~__scoped_lock" title='__gnu_cxx::__scoped_lock::~__scoped_lock' data-ref="__gnu_cxx::__scoped_lock::~__scoped_lock">~__scoped_lock</dfn>() <b>throw</b>()&nbsp</td></tr>
+<tr><th id="244">244</th><td>    { <a class="member field" href="#__gnu_cxx::__scoped_lock::_M_device" title='__gnu_cxx::__scoped_lock::_M_device' data-ref="__gnu_cxx::__scoped_lock::_M_device">_M_device</a>.<a class="ref fn" href="#__gnu_cxx::__mutex::unlock" title='__gnu_cxx::__mutex::unlock' data-ref="__gnu_cxx::__mutex::unlock">unlock</a>(); }&nbsp</td></tr>
+<tr><th id="245">245</th><td>  };&nbsp</td></tr>
+<tr><th id="246">246</th><td>&nbsp</td></tr>
+<tr><th id="247">247</th><td><u>#<span data-ppcond="247">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#57" data-ref="_M/__GTHREAD_HAS_COND">__GTHREAD_HAS_COND</a></u>&nbsp</td></tr>
+<tr><th id="248">248</th><td>  <b>class</b> <dfn class="type def" id="__gnu_cxx::__cond" title='__gnu_cxx::__cond' data-ref="__gnu_cxx::__cond">__cond</dfn>&nbsp</td></tr>
+<tr><th id="249">249</th><td>  {&nbsp</td></tr>
+<tr><th id="250">250</th><td>  <b>private</b>:&nbsp</td></tr>
+<tr><th id="251">251</th><td><u>#<span data-ppcond="251">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a> &amp;&amp; defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#69" data-ref="_M/__GTHREAD_COND_INIT">__GTHREAD_COND_INIT</a></u>&nbsp</td></tr>
+<tr><th id="252">252</th><td>    <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_cond_t" title='__gthread_cond_t' data-type='pthread_cond_t' data-ref="__gthread_cond_t">__gthread_cond_t</a> <dfn class="decl field" id="__gnu_cxx::__cond::_M_cond" title='__gnu_cxx::__cond::_M_cond' data-ref="__gnu_cxx::__cond::_M_cond">_M_cond</dfn> = <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#69" title="{ { {0}, {0}, {0, 0}, {0, 0}, 0, 0, {0, 0} } }" data-ref="_M/__GTHREAD_COND_INIT">__GTHREAD_COND_INIT</a>;&nbsp</td></tr>
+<tr><th id="253">253</th><td><u>#<span data-ppcond="251">else</span></u>&nbsp</td></tr>
+<tr><th id="254">254</th><td>    __gthread_cond_t _M_cond;&nbsp</td></tr>
+<tr><th id="255">255</th><td><u>#<span data-ppcond="251">endif</span></u>&nbsp</td></tr>
+<tr><th id="256">256</th><td>&nbsp</td></tr>
+<tr><th id="257">257</th><td>    <dfn class="decl fn" id="__gnu_cxx::__cond::__cond" title='__gnu_cxx::__cond::__cond' data-ref="__gnu_cxx::__cond::__cond">__cond</dfn>(<em>const</em> <a class="type" href="#__gnu_cxx::__cond" title='__gnu_cxx::__cond' data-ref="__gnu_cxx::__cond">__cond</a>&amp;);&nbsp</td></tr>
+<tr><th id="258">258</th><td>    <a class="type" href="#__gnu_cxx::__cond" title='__gnu_cxx::__cond' data-ref="__gnu_cxx::__cond">__cond</a>&amp; <dfn class="decl fn" id="__gnu_cxx::__cond::operator=" title='__gnu_cxx::__cond::operator=' data-ref="__gnu_cxx::__cond::operator="><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="#__gnu_cxx::__cond" title='__gnu_cxx::__cond' data-ref="__gnu_cxx::__cond">__cond</a>&amp;);&nbsp</td></tr>
+<tr><th id="259">259</th><td>&nbsp</td></tr>
+<tr><th id="260">260</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="261">261</th><td>    <dfn class="decl def fn" id="__gnu_cxx::__cond::__cond" title='__gnu_cxx::__cond::__cond' data-ref="__gnu_cxx::__cond::__cond">__cond</dfn>() &nbsp</td></tr>
+<tr><th id="262">262</th><td>    { &nbsp</td></tr>
+<tr><th id="263">263</th><td><u>#<span data-ppcond="263">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a> &amp;&amp; ! defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#69" data-ref="_M/__GTHREAD_COND_INIT">__GTHREAD_COND_INIT</a></u>&nbsp</td></tr>
+<tr><th id="264">264</th><td>      <b>if</b> (__gthread_active_p())&nbsp</td></tr>
+<tr><th id="265">265</th><td>	__GTHREAD_COND_INIT_FUNCTION(&amp;_M_cond);&nbsp</td></tr>
+<tr><th id="266">266</th><td><u>#<span data-ppcond="263">endif</span></u>&nbsp</td></tr>
+<tr><th id="267">267</th><td>    }&nbsp</td></tr>
+<tr><th id="268">268</th><td>&nbsp</td></tr>
+<tr><th id="269">269</th><td><u>#<span data-ppcond="269">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a> &amp;&amp; ! defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#69" data-ref="_M/__GTHREAD_COND_INIT">__GTHREAD_COND_INIT</a></u>&nbsp</td></tr>
+<tr><th id="270">270</th><td>    ~__cond() &nbsp</td></tr>
+<tr><th id="271">271</th><td>    { &nbsp</td></tr>
+<tr><th id="272">272</th><td>      <b>if</b> (__gthread_active_p())&nbsp</td></tr>
+<tr><th id="273">273</th><td>	__gthread_cond_destroy(&amp;_M_cond); &nbsp</td></tr>
+<tr><th id="274">274</th><td>    }&nbsp</td></tr>
+<tr><th id="275">275</th><td><u>#<span data-ppcond="269">endif</span></u> &nbsp</td></tr>
+<tr><th id="276">276</th><td>&nbsp</td></tr>
+<tr><th id="277">277</th><td>    <em>void</em> <dfn class="decl def fn" id="__gnu_cxx::__cond::broadcast" title='__gnu_cxx::__cond::broadcast' data-ref="__gnu_cxx::__cond::broadcast">broadcast</dfn>()&nbsp</td></tr>
+<tr><th id="278">278</th><td>    {&nbsp</td></tr>
+<tr><th id="279">279</th><td><u>#<span data-ppcond="279">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="280">280</th><td>      <b>if</b> (<a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_active_p" title='__gthread_active_p' data-ref="__gthread_active_p">__gthread_active_p</a>())&nbsp</td></tr>
+<tr><th id="281">281</th><td>	{&nbsp</td></tr>
+<tr><th id="282">282</th><td>	  <b>if</b> (<a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_cond_broadcast" title='__gthread_cond_broadcast' data-ref="__gthread_cond_broadcast">__gthread_cond_broadcast</a>(<span class='inlayHint'>cond:&nbsp;</span>&amp;<a class="member field" href="#__gnu_cxx::__cond::_M_cond" title='__gnu_cxx::__cond::_M_cond' data-ref="__gnu_cxx::__cond::_M_cond">_M_cond</a>) != <var>0</var>)&nbsp</td></tr>
+<tr><th id="283">283</th><td>	    <a class="ref fn" href="#__gnu_cxx::__throw_concurrence_broadcast_error" title='__gnu_cxx::__throw_concurrence_broadcast_error' data-ref="__gnu_cxx::__throw_concurrence_broadcast_error">__throw_concurrence_broadcast_error</a>();&nbsp</td></tr>
+<tr><th id="284">284</th><td>	}&nbsp</td></tr>
+<tr><th id="285">285</th><td><u>#<span data-ppcond="279">endif</span></u>&nbsp</td></tr>
+<tr><th id="286">286</th><td>    }&nbsp</td></tr>
+<tr><th id="287">287</th><td>&nbsp</td></tr>
+<tr><th id="288">288</th><td>    <em>void</em> <dfn class="decl def fn" id="__gnu_cxx::__cond::wait" title='__gnu_cxx::__cond::wait' data-ref="__gnu_cxx::__cond::wait">wait</dfn>(<a class="type" href="#__gnu_cxx::__mutex" title='__gnu_cxx::__mutex' data-ref="__gnu_cxx::__mutex">__mutex</a> *<dfn class="local col8 decl" id="8mutex" title='mutex' data-type='__gnu_cxx::__mutex *' data-ref="8mutex">mutex</dfn>)&nbsp</td></tr>
+<tr><th id="289">289</th><td>    {&nbsp</td></tr>
+<tr><th id="290">290</th><td><u>#<span data-ppcond="290">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="291">291</th><td>      {&nbsp</td></tr>
+<tr><th id="292">292</th><td>	  <b>if</b> (<a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_cond_wait" title='__gthread_cond_wait' data-ref="__gthread_cond_wait">__gthread_cond_wait</a>(<span class='inlayHint'>cond:&nbsp;</span>&amp;<a class="member field" href="#__gnu_cxx::__cond::_M_cond" title='__gnu_cxx::__cond::_M_cond' data-ref="__gnu_cxx::__cond::_M_cond">_M_cond</a>, <span class='inlayHint'>mutex:&nbsp;</span><a class="local col8 ref" href="#8mutex" title='mutex' data-ref="8mutex">mutex</a>-&gt;<a class="ref fn" href="#__gnu_cxx::__mutex::gthread_mutex" title='__gnu_cxx::__mutex::gthread_mutex' data-ref="__gnu_cxx::__mutex::gthread_mutex">gthread_mutex</a>()) != <var>0</var>)&nbsp</td></tr>
+<tr><th id="293">293</th><td>	    <a class="ref fn" href="#__gnu_cxx::__throw_concurrence_wait_error" title='__gnu_cxx::__throw_concurrence_wait_error' data-ref="__gnu_cxx::__throw_concurrence_wait_error">__throw_concurrence_wait_error</a>();&nbsp</td></tr>
+<tr><th id="294">294</th><td>      }&nbsp</td></tr>
+<tr><th id="295">295</th><td><u>#<span data-ppcond="290">endif</span></u>&nbsp</td></tr>
+<tr><th id="296">296</th><td>    }&nbsp</td></tr>
+<tr><th id="297">297</th><td>&nbsp</td></tr>
+<tr><th id="298">298</th><td>    <em>void</em> <dfn class="decl def fn" id="__gnu_cxx::__cond::wait_recursive" title='__gnu_cxx::__cond::wait_recursive' data-ref="__gnu_cxx::__cond::wait_recursive">wait_recursive</dfn>(<a class="type" href="#__gnu_cxx::__recursive_mutex" title='__gnu_cxx::__recursive_mutex' data-ref="__gnu_cxx::__recursive_mutex">__recursive_mutex</a> *<dfn class="local col9 decl" id="9mutex" title='mutex' data-type='__gnu_cxx::__recursive_mutex *' data-ref="9mutex">mutex</dfn>)&nbsp</td></tr>
+<tr><th id="299">299</th><td>    {&nbsp</td></tr>
+<tr><th id="300">300</th><td><u>#<span data-ppcond="300">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#32" title="1" data-ref="_M/__GTHREADS">__GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="301">301</th><td>      {&nbsp</td></tr>
+<tr><th id="302">302</th><td>	  <b>if</b> (<a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_cond_wait_recursive" title='__gthread_cond_wait_recursive' data-ref="__gthread_cond_wait_recursive">__gthread_cond_wait_recursive</a>(<span class='inlayHint'>cond:&nbsp;</span>&amp;<a class="member field" href="#__gnu_cxx::__cond::_M_cond" title='__gnu_cxx::__cond::_M_cond' data-ref="__gnu_cxx::__cond::_M_cond">_M_cond</a>,&nbsp</td></tr>
+<tr><th id="303">303</th><td>					    <span class='inlayHint'>mutex:&nbsp;</span><a class="local col9 ref" href="#9mutex" title='mutex' data-ref="9mutex">mutex</a>-&gt;<a class="ref fn" href="#__gnu_cxx::__recursive_mutex::gthread_recursive_mutex" title='__gnu_cxx::__recursive_mutex::gthread_recursive_mutex' data-ref="__gnu_cxx::__recursive_mutex::gthread_recursive_mutex">gthread_recursive_mutex</a>())&nbsp</td></tr>
+<tr><th id="304">304</th><td>	      != <var>0</var>)&nbsp</td></tr>
+<tr><th id="305">305</th><td>	    <a class="ref fn" href="#__gnu_cxx::__throw_concurrence_wait_error" title='__gnu_cxx::__throw_concurrence_wait_error' data-ref="__gnu_cxx::__throw_concurrence_wait_error">__throw_concurrence_wait_error</a>();&nbsp</td></tr>
+<tr><th id="306">306</th><td>      }&nbsp</td></tr>
+<tr><th id="307">307</th><td><u>#<span data-ppcond="300">endif</span></u>&nbsp</td></tr>
+<tr><th id="308">308</th><td>    }&nbsp</td></tr>
+<tr><th id="309">309</th><td>  };&nbsp</td></tr>
+<tr><th id="310">310</th><td><u>#<span data-ppcond="247">endif</span></u>&nbsp</td></tr>
+<tr><th id="311">311</th><td>&nbsp</td></tr>
+<tr><th id="312">312</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="313">313</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="314">314</th><td>&nbsp</td></tr>
+<tr><th id="315">315</th><td><u>#<span data-ppcond="29">endif</span></u>&nbsp</td></tr>
+<tr><th id="316">316</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Input/Inc/Input/tContGamepad.h.html'>Modules/Input/Inc/Input/tContGamepad.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

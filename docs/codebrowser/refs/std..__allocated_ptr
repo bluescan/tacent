@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/allocated_ptr.h' l='47' ll='91'/>
+<use f='include/c++/11/bits/allocated_ptr.h' l='95' c='_ZSt18__allocate_guardedRT_'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='448' c='_ZNSt19_Sp_counted_deleter10_M_destroyEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='536' c='_ZNSt23_Sp_counted_ptr_inplace10_M_destroyEv'/>
+<fun r='_ZNSt15__allocated_ptrC1ERT_NSt16allocator_traitsIS0_E7pointerE'/>
+<fun r='_ZNSt15__allocated_ptrC1ERT_TL0__'/>
+<fun r='_ZNSt15__allocated_ptrC1EOSt15__allocated_ptrIT_E'/>
+<fun r='_ZNSt15__allocated_ptrD1Ev'/>
+<fun r='_ZNSt15__allocated_ptraSEDn'/>
+<fun r='_ZNSt15__allocated_ptr3getEv'/>
+<mbr r='std::__allocated_ptr::_M_alloc' t='_Alloc *'/>
+<mbr r='std::__allocated_ptr::_M_ptr' t='std::__allocated_ptr::pointer'/>

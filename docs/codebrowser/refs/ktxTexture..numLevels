@@ -1,0 +1,16 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='268' type='ktx_uint32_t'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='803' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<offset>416</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='361'>/**
+ * @typedef ktxTexture::numLevels
+ * @~English
+ * @brief Number of mip levels in the texture.
+ *
+ * Must be 1, if @c generateMipmaps is KTX_TRUE. Can be less than a
+ * full pyramid but always starts at the base level.
+ */</doc>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='369'>/**
+ * @typedef ktxTexture::numLevels
+ * @~English
+ * @brief Number of array layers in the texture.
+ */</doc>

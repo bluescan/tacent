@@ -1,0 +1,309 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>functional_hash.h source code [include/c++/11/bits/functional_hash.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::_Fnv_hash_impl,std::_Hash_impl,std::__hash_base,std::__hash_enum,std::__is_fast_hash,std::__poison_hash,std::hash "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/functional_hash.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='functional_hash.h.html'>functional_hash.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// functional_hash.h header -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2007-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/functional_hash.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{functional}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_FUNCTIONAL_HASH_H">_FUNCTIONAL_HASH_H</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_FUNCTIONAL_HASH_H" data-ref="_M/_FUNCTIONAL_HASH_H">_FUNCTIONAL_HASH_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;type_traits&gt;</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;bits/hash_bytes.h&gt;</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="39">39</th><td>{&nbsp</td></tr>
+<tr><th id="40">40</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td>  <i class="doc">/** <span class="command">@defgroup</span> <span class="verb">hashes Hashes</span></i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i class="doc">   *  <span class="command">@ingroup</span> <span class="verb">functors</span></i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i class="doc">   *   Hashing functors taking a variable type and returning a<span class="command"> @c</span> <span class="arg">std::size_t.</span></i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i class="doc">   *  @{</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td>&nbsp</td></tr>
+<tr><th id="50">50</th><td>  <b>template</b>&lt;<b>typename</b> _Result, <b>typename</b> _Arg&gt;&nbsp</td></tr>
+<tr><th id="51">51</th><td>    <b>struct</b> <dfn class="type def" id="std::__hash_base" title='std::__hash_base' data-ref="std::__hash_base">__hash_base</dfn>&nbsp</td></tr>
+<tr><th id="52">52</th><td>    {&nbsp</td></tr>
+<tr><th id="53">53</th><td>      <b>typedef</b> _Result     <dfn class="typedef" id="std::__hash_base::result_type" title='std::__hash_base::result_type' data-type='_Result' data-ref="std::__hash_base::result_type">result_type</dfn> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#109" title="[[__deprecated__]]" data-ref="_M/_GLIBCXX17_DEPRECATED">_GLIBCXX17_DEPRECATED</a>;&nbsp</td></tr>
+<tr><th id="54">54</th><td>      <b>typedef</b> _Arg      <dfn class="typedef" id="std::__hash_base::argument_type" title='std::__hash_base::argument_type' data-type='_Arg' data-ref="std::__hash_base::argument_type">argument_type</dfn> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#109" title="[[__deprecated__]]" data-ref="_M/_GLIBCXX17_DEPRECATED">_GLIBCXX17_DEPRECATED</a>;&nbsp</td></tr>
+<tr><th id="55">55</th><td>    };&nbsp</td></tr>
+<tr><th id="56">56</th><td>&nbsp</td></tr>
+<tr><th id="57">57</th><td>  <i class="doc">/// Primary class template hash.</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="59">59</th><td>    <b>struct</b> <a class="type" href="#std::hash" title='std::hash' data-ref="std::hash">hash</a>;&nbsp</td></tr>
+<tr><th id="60">60</th><td>&nbsp</td></tr>
+<tr><th id="61">61</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> = <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="62">62</th><td>    <b>struct</b> <dfn class="type def" id="std::__poison_hash" title='std::__poison_hash' data-ref="std::__poison_hash">__poison_hash</dfn>&nbsp</td></tr>
+<tr><th id="63">63</th><td>    {&nbsp</td></tr>
+<tr><th id="64">64</th><td>      <em>static</em> <b>constexpr</b> <em>bool</em> <dfn class="decl def" id="std::__poison_hash::__enable_hash_call" title='std::__poison_hash::__enable_hash_call' data-ref="std::__poison_hash::__enable_hash_call">__enable_hash_call</dfn> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="65">65</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="66">66</th><td>      <i>// Private rather than deleted to be non-trivially-copyable.</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td>      <dfn class="decl fn" id="_ZNSt13__poison_hashC1EOSt13__poison_hashIT_T0_E" title='std::__poison_hash::__poison_hash&lt;_Tp, type-parameter-0-1&gt;' data-ref="_ZNSt13__poison_hashC1EOSt13__poison_hashIT_T0_E">__poison_hash</dfn>(__poison_hash&amp;&amp;);&nbsp</td></tr>
+<tr><th id="68">68</th><td>      <dfn class="decl fn" id="_ZNSt13__poison_hashD1Ev" title='std::__poison_hash::~__poison_hash&lt;_Tp, type-parameter-0-1&gt;' data-ref="_ZNSt13__poison_hashD1Ev">~__poison_hash</dfn>();&nbsp</td></tr>
+<tr><th id="69">69</th><td>    };&nbsp</td></tr>
+<tr><th id="70">70</th><td>&nbsp</td></tr>
+<tr><th id="71">71</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="72">72</th><td>    <b>struct</b> <dfn class="type def" id="std::__poison_hash" title='std::__poison_hash' data-ref="std::__poison_hash">__poison_hash</dfn>&lt;_Tp, <a class="type" href="../type_traits.html#std::__void_t" title='std::__void_t' data-ref="std::__void_t">__void_t</a>&lt;<b>decltype</b>(<a class="type" href="#std::hash" title='std::hash' data-ref="std::hash">hash</a>&lt;_Tp&gt;()(declval&lt;_Tp&gt;()))&gt;&gt;&nbsp</td></tr>
+<tr><th id="73">73</th><td>    {&nbsp</td></tr>
+<tr><th id="74">74</th><td>      <em>static</em> <b>constexpr</b> <em>bool</em> <dfn class="decl def" id="std::__poison_hash{type-parameter-0-0}::__enable_hash_call" title='std::__poison_hash&lt;type-parameter-0-0&gt;::__enable_hash_call' data-ref="std::__poison_hash{type-parameter-0-0}::__enable_hash_call">__enable_hash_call</dfn> = <b>true</b>;&nbsp</td></tr>
+<tr><th id="75">75</th><td>    };&nbsp</td></tr>
+<tr><th id="76">76</th><td>&nbsp</td></tr>
+<tr><th id="77">77</th><td>  <i>// Helper struct for SFINAE-poisoning non-enum types.</i>&nbsp</td></tr>
+<tr><th id="78">78</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <em>bool</em> = <a class="type" href="../type_traits.html#std::is_enum" title='std::is_enum' data-ref="std::is_enum">is_enum</a>&lt;_Tp&gt;::value&gt;&nbsp</td></tr>
+<tr><th id="79">79</th><td>    <b>struct</b> <dfn class="type def" id="std::__hash_enum" title='std::__hash_enum' data-ref="std::__hash_enum">__hash_enum</dfn>&nbsp</td></tr>
+<tr><th id="80">80</th><td>    {&nbsp</td></tr>
+<tr><th id="81">81</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="82">82</th><td>      <i>// Private rather than deleted to be non-trivially-copyable.</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td>      <dfn class="decl fn" id="_ZNSt11__hash_enumC1EOSt11__hash_enumIT_XT0_EE" title='std::__hash_enum::__hash_enum&lt;_Tp, &gt;' data-ref="_ZNSt11__hash_enumC1EOSt11__hash_enumIT_XT0_EE">__hash_enum</dfn>(__hash_enum&amp;&amp;);&nbsp</td></tr>
+<tr><th id="84">84</th><td>      <dfn class="decl fn" id="_ZNSt11__hash_enumD1Ev" title='std::__hash_enum::~__hash_enum&lt;_Tp, &gt;' data-ref="_ZNSt11__hash_enumD1Ev">~__hash_enum</dfn>();&nbsp</td></tr>
+<tr><th id="85">85</th><td>    };&nbsp</td></tr>
+<tr><th id="86">86</th><td>&nbsp</td></tr>
+<tr><th id="87">87</th><td>  <i>// Helper struct for hash with enum types.</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="89">89</th><td>    <b>struct</b> <dfn class="type def" id="std::__hash_enum" title='std::__hash_enum' data-ref="std::__hash_enum">__hash_enum</dfn>&lt;_Tp, <b>true</b>&gt; : <b>public</b> <a class="type" href="#std::__hash_base" title='std::__hash_base' data-ref="std::__hash_base">__hash_base</a>&lt;<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>, _Tp&gt;&nbsp</td></tr>
+<tr><th id="90">90</th><td>    {&nbsp</td></tr>
+<tr><th id="91">91</th><td>      <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="92">92</th><td>      <dfn class="decl def fn" id="_ZNKSt11__hash_enumIT_Lb1EEclES0_" title='std::__hash_enum&lt;type-parameter-0-0, true&gt;::operator()' data-ref="_ZNKSt11__hash_enumIT_Lb1EEclES0_"><b>operator</b>()</dfn>(_Tp <dfn class="local col8 decl" id="5788__val" title='__val' data-type='_Tp' data-ref="5788__val">__val</dfn>) <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="93">93</th><td>      {&nbsp</td></tr>
+<tr><th id="94">94</th><td>       <b>using</b> <dfn class="local col9 typedef" id="5789__type" title='__type' data-type='typename underlying_type&lt;_Tp&gt;::type' data-ref="5789__type">__type</dfn> = <b>typename</b> <a class="type" href="../type_traits.html#std::underlying_type" title='std::underlying_type' data-ref="std::underlying_type">underlying_type</a>&lt;_Tp&gt;::type;&nbsp</td></tr>
+<tr><th id="95">95</th><td>       <b>return</b> <a class="type" href="#std::hash" title='std::hash' data-ref="std::hash">hash</a>&lt;<a class="local col9 typedef" href="#5789__type" title='__type' data-type='typename underlying_type&lt;_Tp&gt;::type' data-ref="5789__type">__type</a>&gt;{}(<b>static_cast</b>&lt;<a class="local col9 typedef" href="#5789__type" title='__type' data-type='typename underlying_type&lt;_Tp&gt;::type' data-ref="5789__type">__type</a>&gt;(<a class="local col8 ref" href="#5788__val" title='__val' data-ref="5788__val">__val</a>));&nbsp</td></tr>
+<tr><th id="96">96</th><td>      }&nbsp</td></tr>
+<tr><th id="97">97</th><td>    };&nbsp</td></tr>
+<tr><th id="98">98</th><td>&nbsp</td></tr>
+<tr><th id="99">99</th><td>  <i class="doc">/// Primary class template hash, usable for enum types only.</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td><i class="doc">  // Use with non-enum types still SFINAES.</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="102">102</th><td>    <b>struct</b> <dfn class="type def" id="std::hash" title='std::hash' data-ref="std::hash">hash</dfn> : <a class="type" href="#std::__hash_enum" title='std::__hash_enum' data-ref="std::__hash_enum">__hash_enum</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="103">103</th><td>    { };&nbsp</td></tr>
+<tr><th id="104">104</th><td>&nbsp</td></tr>
+<tr><th id="105">105</th><td>  <i class="doc">/// Partial specializations for pointer types.</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="107">107</th><td>    <b>struct</b> <dfn class="type def" id="std::hash" title='std::hash' data-ref="std::hash">hash</dfn>&lt;_Tp*&gt; : <b>public</b> <a class="type" href="#std::__hash_base" title='std::__hash_base' data-ref="std::__hash_base">__hash_base</a>&lt;<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>, _Tp*&gt;&nbsp</td></tr>
+<tr><th id="108">108</th><td>    {&nbsp</td></tr>
+<tr><th id="109">109</th><td>      <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="110">110</th><td>      <dfn class="decl def fn" id="_ZNKSt4hashIPT_EclES1_" title='std::hash&lt;type-parameter-0-0 *&gt;::operator()' data-ref="_ZNKSt4hashIPT_EclES1_"><b>operator</b>()</dfn>(_Tp* <dfn class="local col0 decl" id="5790__p" title='__p' data-type='_Tp *' data-ref="5790__p">__p</dfn>) <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="111">111</th><td>      { <b>return</b> <b>reinterpret_cast</b>&lt;<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&gt;(<a class="local col0 ref" href="#5790__p" title='__p' data-ref="5790__p">__p</a>); }&nbsp</td></tr>
+<tr><th id="112">112</th><td>    };&nbsp</td></tr>
+<tr><th id="113">113</th><td>&nbsp</td></tr>
+<tr><th id="114">114</th><td>  <i>// Explicit specializations for integer types.</i>&nbsp</td></tr>
+<tr><th id="115">115</th><td><u>#define <dfn class="macro" id="_M/_Cxx_hashtable_define_trivial_hash" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</dfn>(_Tp) 	\</u>&nbsp</td></tr>
+<tr><th id="116">116</th><td><u>  template&lt;&gt;						\</u>&nbsp</td></tr>
+<tr><th id="117">117</th><td><u>    struct <dfn class="type def" id="std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash">hash</a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></dfn>&lt;_Tp&gt; : public __hash_base&lt;size_t, _Tp&gt;  \</u>&nbsp</td></tr>
+<tr><th id="118">118</th><td><u>    {                                                   \</u>&nbsp</td></tr>
+<tr><th id="119">119</th><td><u>      <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>                                            \</u>&nbsp</td></tr>
+<tr><th id="120">120</th><td><u>      operator()(_Tp <dfn class="local col1 decl" id="5791__val" title='__val' data-type='bool' data-ref="5791__val"><dfn class="local col2 decl" id="5792__val" title='__val' data-type='char' data-ref="5792__val"><dfn class="local col3 decl" id="5793__val" title='__val' data-type='signed char' data-ref="5793__val"><dfn class="local col4 decl" id="5794__val" title='__val' data-type='unsigned char' data-ref="5794__val"><dfn class="local col5 decl" id="5795__val" title='__val' data-type='wchar_t' data-ref="5795__val"><dfn class="local col6 decl" id="5796__val" title='__val' data-type='char8_t' data-ref="5796__val"><dfn class="local col7 decl" id="5797__val" title='__val' data-type='char16_t' data-ref="5797__val"><dfn class="local col8 decl" id="5798__val" title='__val' data-type='char32_t' data-ref="5798__val"><dfn class="local col9 decl" id="5799__val" title='__val' data-type='short' data-ref="5799__val"><dfn class="local col0 decl" id="5800__val" title='__val' data-type='int' data-ref="5800__val"><dfn class="local col1 decl" id="5801__val" title='__val' data-type='long' data-ref="5801__val"><dfn class="local col2 decl" id="5802__val" title='__val' data-type='long long' data-ref="5802__val"><dfn class="local col3 decl" id="5803__val" title='__val' data-type='unsigned short' data-ref="5803__val"><dfn class="local col4 decl" id="5804__val" title='__val' data-type='unsigned int' data-ref="5804__val"><dfn class="local col5 decl" id="5805__val" title='__val' data-type='unsigned long' data-ref="5805__val"><dfn class="local col6 decl" id="5806__val" title='__val' data-type='unsigned long long' data-ref="5806__val">__val</dfn></dfn></dfn></dfn></dfn></dfn></dfn></dfn></dfn></dfn></dfn></dfn></dfn></dfn></dfn></dfn>) const noexcept              \</u>&nbsp</td></tr>
+<tr><th id="121">121</th><td><u>      { return static_cast&lt;<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&gt;(<a class="local col1 ref" href="#125" title='__val' data-ref="5791__val"><a class="local col2 ref" href="#128" title='__val' data-ref="5792__val"><a class="local col3 ref" href="#131" title='__val' data-ref="5793__val"><a class="local col4 ref" href="#134" title='__val' data-ref="5794__val"><a class="local col5 ref" href="#137" title='__val' data-ref="5795__val"><a class="local col6 ref" href="#141" title='__val' data-ref="5796__val"><a class="local col7 ref" href="#145" title='__val' data-ref="5797__val"><a class="local col8 ref" href="#148" title='__val' data-ref="5798__val"><a class="local col9 ref" href="#151" title='__val' data-ref="5799__val"><a class="local col0 ref" href="#154" title='__val' data-ref="5800__val"><a class="local col1 ref" href="#157" title='__val' data-ref="5801__val"><a class="local col2 ref" href="#160" title='__val' data-ref="5802__val"><a class="local col3 ref" href="#163" title='__val' data-ref="5803__val"><a class="local col4 ref" href="#166" title='__val' data-ref="5804__val"><a class="local col5 ref" href="#169" title='__val' data-ref="5805__val"><a class="local col6 ref" href="#172" title='__val' data-ref="5806__val">__val</a></a></a></a></a></a></a></a></a></a></a></a></a></a></a></a>); }            \</u>&nbsp</td></tr>
+<tr><th id="122">122</th><td><u>    };</u>&nbsp</td></tr>
+<tr><th id="123">123</th><td>&nbsp</td></tr>
+<tr><th id="124">124</th><td>  <i class="doc">/// Explicit specialization for bool.</i>&nbsp</td></tr>
+<tr><th id="125">125</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;bool&gt; : public __hash_base&lt;size_t, bool&gt; { size_t operator()(bool __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>bool</em>)&nbsp</td></tr>
+<tr><th id="126">126</th><td>&nbsp</td></tr>
+<tr><th id="127">127</th><td>  <i class="doc">/// Explicit specialization for char.</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;char&gt; : public __hash_base&lt;size_t, char&gt; { size_t operator()(char __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>char</em>)&nbsp</td></tr>
+<tr><th id="129">129</th><td>&nbsp</td></tr>
+<tr><th id="130">130</th><td>  <i class="doc">/// Explicit specialization for signed char.</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;signed char&gt; : public __hash_base&lt;size_t, signed char&gt; { size_t operator()(signed char __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>signed</em> <em>char</em>)&nbsp</td></tr>
+<tr><th id="132">132</th><td>&nbsp</td></tr>
+<tr><th id="133">133</th><td>  <i class="doc">/// Explicit specialization for unsigned char.</i>&nbsp</td></tr>
+<tr><th id="134">134</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;unsigned char&gt; : public __hash_base&lt;size_t, unsigned char&gt; { size_t operator()(unsigned char __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>unsigned</em> <em>char</em>)&nbsp</td></tr>
+<tr><th id="135">135</th><td>&nbsp</td></tr>
+<tr><th id="136">136</th><td>  <i class="doc">/// Explicit specialization for wchar_t.</i>&nbsp</td></tr>
+<tr><th id="137">137</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;wchar_t&gt; : public __hash_base&lt;size_t, wchar_t&gt; { size_t operator()(wchar_t __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>wchar_t</em>)&nbsp</td></tr>
+<tr><th id="138">138</th><td>&nbsp</td></tr>
+<tr><th id="139">139</th><td><u>#<span data-ppcond="139">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#694" data-ref="_M/_GLIBCXX_USE_CHAR8_T">_GLIBCXX_USE_CHAR8_T</a></u>&nbsp</td></tr>
+<tr><th id="140">140</th><td>  <i class="doc">/// Explicit specialization for char8_t.</i>&nbsp</td></tr>
+<tr><th id="141">141</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;char8_t&gt; : public __hash_base&lt;size_t, char8_t&gt; { size_t operator()(char8_t __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<b>char8_t</b>)&nbsp</td></tr>
+<tr><th id="142">142</th><td><u>#<span data-ppcond="139">endif</span></u>&nbsp</td></tr>
+<tr><th id="143">143</th><td>&nbsp</td></tr>
+<tr><th id="144">144</th><td>  <i class="doc">/// Explicit specialization for char16_t.</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;char16_t&gt; : public __hash_base&lt;size_t, char16_t&gt; { size_t operator()(char16_t __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>char16_t</em>)&nbsp</td></tr>
+<tr><th id="146">146</th><td>&nbsp</td></tr>
+<tr><th id="147">147</th><td>  <i class="doc">/// Explicit specialization for char32_t.</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;char32_t&gt; : public __hash_base&lt;size_t, char32_t&gt; { size_t operator()(char32_t __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>char32_t</em>)&nbsp</td></tr>
+<tr><th id="149">149</th><td>&nbsp</td></tr>
+<tr><th id="150">150</th><td>  <i class="doc">/// Explicit specialization for short.</i>&nbsp</td></tr>
+<tr><th id="151">151</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;short&gt; : public __hash_base&lt;size_t, short&gt; { size_t operator()(short __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>short</em>)&nbsp</td></tr>
+<tr><th id="152">152</th><td>&nbsp</td></tr>
+<tr><th id="153">153</th><td>  <i class="doc">/// Explicit specialization for int.</i>&nbsp</td></tr>
+<tr><th id="154">154</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;int&gt; : public __hash_base&lt;size_t, int&gt; { size_t operator()(int __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>int</em>)&nbsp</td></tr>
+<tr><th id="155">155</th><td>&nbsp</td></tr>
+<tr><th id="156">156</th><td>  <i class="doc">/// Explicit specialization for long.</i>&nbsp</td></tr>
+<tr><th id="157">157</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;long&gt; : public __hash_base&lt;size_t, long&gt; { size_t operator()(long __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>long</em>)&nbsp</td></tr>
+<tr><th id="158">158</th><td>&nbsp</td></tr>
+<tr><th id="159">159</th><td>  <i class="doc">/// Explicit specialization for long long.</i>&nbsp</td></tr>
+<tr><th id="160">160</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;long long&gt; : public __hash_base&lt;size_t, long long&gt; { size_t operator()(long long __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>long</em> <em>long</em>)&nbsp</td></tr>
+<tr><th id="161">161</th><td>&nbsp</td></tr>
+<tr><th id="162">162</th><td>  <i class="doc">/// Explicit specialization for unsigned short.</i>&nbsp</td></tr>
+<tr><th id="163">163</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;unsigned short&gt; : public __hash_base&lt;size_t, unsigned short&gt; { size_t operator()(unsigned short __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>unsigned</em> <em>short</em>)&nbsp</td></tr>
+<tr><th id="164">164</th><td>&nbsp</td></tr>
+<tr><th id="165">165</th><td>  <i class="doc">/// Explicit specialization for unsigned int.</i>&nbsp</td></tr>
+<tr><th id="166">166</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;unsigned int&gt; : public __hash_base&lt;size_t, unsigned int&gt; { size_t operator()(unsigned int __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>unsigned</em> <em>int</em>)&nbsp</td></tr>
+<tr><th id="167">167</th><td>&nbsp</td></tr>
+<tr><th id="168">168</th><td>  <i class="doc">/// Explicit specialization for unsigned long.</i>&nbsp</td></tr>
+<tr><th id="169">169</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;unsigned long&gt; : public __hash_base&lt;size_t, unsigned long&gt; { size_t operator()(unsigned long __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>unsigned</em> <em>long</em>)&nbsp</td></tr>
+<tr><th id="170">170</th><td>&nbsp</td></tr>
+<tr><th id="171">171</th><td>  <i class="doc">/// Explicit specialization for unsigned long long.</i>&nbsp</td></tr>
+<tr><th id="172">172</th><td>  <a class="macro" href="#115" title="template&lt;&gt; struct hash&lt;unsigned long long&gt; : public __hash_base&lt;size_t, unsigned long long&gt; { size_t operator()(unsigned long long __val) const noexcept { return static_cast&lt;size_t&gt;(__val); } };" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a>(<em>unsigned</em> <em>long</em> <em>long</em>)&nbsp</td></tr>
+<tr><th id="173">173</th><td>&nbsp</td></tr>
+<tr><th id="174">174</th><td><u>#<span data-ppcond="174">ifdef</span> <span class="macro" data-ref="_M/__GLIBCXX_TYPE_INT_N_0">__GLIBCXX_TYPE_INT_N_0</span></u>&nbsp</td></tr>
+<tr><th id="175">175</th><td>  _Cxx_hashtable_define_trivial_hash(__GLIBCXX_TYPE_INT_N_0)&nbsp</td></tr>
+<tr><th id="176">176</th><td>  _Cxx_hashtable_define_trivial_hash(__GLIBCXX_TYPE_INT_N_0 <em>unsigned</em>)&nbsp</td></tr>
+<tr><th id="177">177</th><td><u>#<span data-ppcond="174">endif</span></u>&nbsp</td></tr>
+<tr><th id="178">178</th><td><u>#<span data-ppcond="178">ifdef</span> <span class="macro" data-ref="_M/__GLIBCXX_TYPE_INT_N_1">__GLIBCXX_TYPE_INT_N_1</span></u>&nbsp</td></tr>
+<tr><th id="179">179</th><td>  _Cxx_hashtable_define_trivial_hash(__GLIBCXX_TYPE_INT_N_1)&nbsp</td></tr>
+<tr><th id="180">180</th><td>  _Cxx_hashtable_define_trivial_hash(__GLIBCXX_TYPE_INT_N_1 <em>unsigned</em>)&nbsp</td></tr>
+<tr><th id="181">181</th><td><u>#<span data-ppcond="178">endif</span></u>&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>#<span data-ppcond="182">ifdef</span> <span class="macro" data-ref="_M/__GLIBCXX_TYPE_INT_N_2">__GLIBCXX_TYPE_INT_N_2</span></u>&nbsp</td></tr>
+<tr><th id="183">183</th><td>  _Cxx_hashtable_define_trivial_hash(__GLIBCXX_TYPE_INT_N_2)&nbsp</td></tr>
+<tr><th id="184">184</th><td>  _Cxx_hashtable_define_trivial_hash(__GLIBCXX_TYPE_INT_N_2 <em>unsigned</em>)&nbsp</td></tr>
+<tr><th id="185">185</th><td><u>#<span data-ppcond="182">endif</span></u>&nbsp</td></tr>
+<tr><th id="186">186</th><td><u>#<span data-ppcond="186">ifdef</span> <span class="macro" data-ref="_M/__GLIBCXX_TYPE_INT_N_3">__GLIBCXX_TYPE_INT_N_3</span></u>&nbsp</td></tr>
+<tr><th id="187">187</th><td>  _Cxx_hashtable_define_trivial_hash(__GLIBCXX_TYPE_INT_N_3)&nbsp</td></tr>
+<tr><th id="188">188</th><td>  _Cxx_hashtable_define_trivial_hash(__GLIBCXX_TYPE_INT_N_3 <em>unsigned</em>)&nbsp</td></tr>
+<tr><th id="189">189</th><td><u>#<span data-ppcond="186">endif</span></u>&nbsp</td></tr>
+<tr><th id="190">190</th><td>&nbsp</td></tr>
+<tr><th id="191">191</th><td><u>#undef <a class="macro" href="#115" data-ref="_M/_Cxx_hashtable_define_trivial_hash">_Cxx_hashtable_define_trivial_hash</a></u>&nbsp</td></tr>
+<tr><th id="192">192</th><td>&nbsp</td></tr>
+<tr><th id="193">193</th><td>  <b>struct</b> <dfn class="type def" id="std::_Hash_impl" title='std::_Hash_impl' data-ref="std::_Hash_impl">_Hash_impl</dfn>&nbsp</td></tr>
+<tr><th id="194">194</th><td>  {&nbsp</td></tr>
+<tr><th id="195">195</th><td>    <em>static</em> <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="196">196</th><td>    <dfn class="decl def fn" id="_ZNSt10_Hash_impl4hashEPKvmm" title='std::_Hash_impl::hash' data-ref="_ZNSt10_Hash_impl4hashEPKvmm">hash</dfn>(<em>const</em> <em>void</em>* <dfn class="local col7 decl" id="5807__ptr" title='__ptr' data-type='const void *' data-ref="5807__ptr">__ptr</dfn>, <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col8 decl" id="5808__clength" title='__clength' data-type='std::size_t' data-ref="5808__clength">__clength</dfn>,&nbsp</td></tr>
+<tr><th id="197">197</th><td>	 <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col9 decl" id="5809__seed" title='__seed' data-type='std::size_t' data-ref="5809__seed">__seed</dfn> = <b>static_cast</b>&lt;<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&gt;(<var>0xc70f6907UL</var>))&nbsp</td></tr>
+<tr><th id="198">198</th><td>    { <b>return</b> <a class="ref fn" href="hash_bytes.h.html#_ZSt11_Hash_bytesPKvmm" title='std::_Hash_bytes' data-ref="_ZSt11_Hash_bytesPKvmm">_Hash_bytes</a>(<a class="local col7 ref" href="#5807__ptr" title='__ptr' data-ref="5807__ptr">__ptr</a>, <span class='inlayHint'>len:&nbsp;</span><a class="local col8 ref" href="#5808__clength" title='__clength' data-ref="5808__clength">__clength</a>, <a class="local col9 ref" href="#5809__seed" title='__seed' data-ref="5809__seed">__seed</a>); }&nbsp</td></tr>
+<tr><th id="199">199</th><td>&nbsp</td></tr>
+<tr><th id="200">200</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="201">201</th><td>      <em>static</em> <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="202">202</th><td>      <dfn class="decl def fn" id="_ZNSt10_Hash_impl4hashERKT_" title='std::_Hash_impl::hash' data-ref="_ZNSt10_Hash_impl4hashERKT_">hash</dfn>(<em>const</em> _Tp&amp; <dfn class="local col0 decl" id="5810__val" title='__val' data-type='const _Tp &amp;' data-ref="5810__val">__val</dfn>)&nbsp</td></tr>
+<tr><th id="203">203</th><td>      { <b>return</b> hash(&amp;<a class="local col0 ref" href="#5810__val" title='__val' data-ref="5810__val">__val</a>, <b>sizeof</b>(<a class="local col0 ref" href="#5810__val" title='__val' data-ref="5810__val">__val</a>)); }&nbsp</td></tr>
+<tr><th id="204">204</th><td>&nbsp</td></tr>
+<tr><th id="205">205</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="206">206</th><td>      <em>static</em> <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="207">207</th><td>      <dfn class="decl def fn" id="_ZNSt10_Hash_impl14__hash_combineERKT_m" title='std::_Hash_impl::__hash_combine' data-ref="_ZNSt10_Hash_impl14__hash_combineERKT_m">__hash_combine</dfn>(<em>const</em> _Tp&amp; <dfn class="local col1 decl" id="5811__val" title='__val' data-type='const _Tp &amp;' data-ref="5811__val">__val</dfn>, <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col2 decl" id="5812__hash" title='__hash' data-type='std::size_t' data-ref="5812__hash">__hash</dfn>)&nbsp</td></tr>
+<tr><th id="208">208</th><td>      { <b>return</b> hash(&amp;<a class="local col1 ref" href="#5811__val" title='__val' data-ref="5811__val">__val</a>, <b>sizeof</b>(<a class="local col1 ref" href="#5811__val" title='__val' data-ref="5811__val">__val</a>), <a class="local col2 ref" href="#5812__hash" title='__hash' data-ref="5812__hash">__hash</a>); }&nbsp</td></tr>
+<tr><th id="209">209</th><td>  };&nbsp</td></tr>
+<tr><th id="210">210</th><td>&nbsp</td></tr>
+<tr><th id="211">211</th><td>  <i>// A hash function similar to FNV-1a (see PR59406 for how it differs).</i>&nbsp</td></tr>
+<tr><th id="212">212</th><td>  <b>struct</b> <dfn class="type def" id="std::_Fnv_hash_impl" title='std::_Fnv_hash_impl' data-ref="std::_Fnv_hash_impl">_Fnv_hash_impl</dfn>&nbsp</td></tr>
+<tr><th id="213">213</th><td>  {&nbsp</td></tr>
+<tr><th id="214">214</th><td>    <em>static</em> <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="215">215</th><td>    <dfn class="decl def fn" id="_ZNSt14_Fnv_hash_impl4hashEPKvmm" title='std::_Fnv_hash_impl::hash' data-ref="_ZNSt14_Fnv_hash_impl4hashEPKvmm">hash</dfn>(<em>const</em> <em>void</em>* <dfn class="local col3 decl" id="5813__ptr" title='__ptr' data-type='const void *' data-ref="5813__ptr">__ptr</dfn>, <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col4 decl" id="5814__clength" title='__clength' data-type='std::size_t' data-ref="5814__clength">__clength</dfn>,&nbsp</td></tr>
+<tr><th id="216">216</th><td>	 <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col5 decl" id="5815__seed" title='__seed' data-type='std::size_t' data-ref="5815__seed">__seed</dfn> = <b>static_cast</b>&lt;<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&gt;(<var>2166136261UL</var>))&nbsp</td></tr>
+<tr><th id="217">217</th><td>    { <b>return</b> <a class="ref fn" href="hash_bytes.h.html#_ZSt15_Fnv_hash_bytesPKvmm" title='std::_Fnv_hash_bytes' data-ref="_ZSt15_Fnv_hash_bytesPKvmm">_Fnv_hash_bytes</a>(<a class="local col3 ref" href="#5813__ptr" title='__ptr' data-ref="5813__ptr">__ptr</a>, <span class='inlayHint'>len:&nbsp;</span><a class="local col4 ref" href="#5814__clength" title='__clength' data-ref="5814__clength">__clength</a>, <a class="local col5 ref" href="#5815__seed" title='__seed' data-ref="5815__seed">__seed</a>); }&nbsp</td></tr>
+<tr><th id="218">218</th><td>&nbsp</td></tr>
+<tr><th id="219">219</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="220">220</th><td>      <em>static</em> <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="221">221</th><td>      <dfn class="decl def fn" id="_ZNSt14_Fnv_hash_impl4hashERKT_" title='std::_Fnv_hash_impl::hash' data-ref="_ZNSt14_Fnv_hash_impl4hashERKT_">hash</dfn>(<em>const</em> _Tp&amp; <dfn class="local col6 decl" id="5816__val" title='__val' data-type='const _Tp &amp;' data-ref="5816__val">__val</dfn>)&nbsp</td></tr>
+<tr><th id="222">222</th><td>      { <b>return</b> hash(&amp;<a class="local col6 ref" href="#5816__val" title='__val' data-ref="5816__val">__val</a>, <b>sizeof</b>(<a class="local col6 ref" href="#5816__val" title='__val' data-ref="5816__val">__val</a>)); }&nbsp</td></tr>
+<tr><th id="223">223</th><td>&nbsp</td></tr>
+<tr><th id="224">224</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="225">225</th><td>      <em>static</em> <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="226">226</th><td>      <dfn class="decl def fn" id="_ZNSt14_Fnv_hash_impl14__hash_combineERKT_m" title='std::_Fnv_hash_impl::__hash_combine' data-ref="_ZNSt14_Fnv_hash_impl14__hash_combineERKT_m">__hash_combine</dfn>(<em>const</em> _Tp&amp; <dfn class="local col7 decl" id="5817__val" title='__val' data-type='const _Tp &amp;' data-ref="5817__val">__val</dfn>, <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col8 decl" id="5818__hash" title='__hash' data-type='std::size_t' data-ref="5818__hash">__hash</dfn>)&nbsp</td></tr>
+<tr><th id="227">227</th><td>      { <b>return</b> hash(&amp;<a class="local col7 ref" href="#5817__val" title='__val' data-ref="5817__val">__val</a>, <b>sizeof</b>(<a class="local col7 ref" href="#5817__val" title='__val' data-ref="5817__val">__val</a>), <a class="local col8 ref" href="#5818__hash" title='__hash' data-ref="5818__hash">__hash</a>); }&nbsp</td></tr>
+<tr><th id="228">228</th><td>  };&nbsp</td></tr>
+<tr><th id="229">229</th><td>&nbsp</td></tr>
+<tr><th id="230">230</th><td>  <i class="doc">/// Specialization for float.</i>&nbsp</td></tr>
+<tr><th id="231">231</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="232">232</th><td>    <b>struct</b> <dfn class="type def" id="std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash">hash</a></dfn>&lt;<em>float</em>&gt; : <b>public</b> __hash_base&lt;size_t, <em>float</em>&gt;&nbsp</td></tr>
+<tr><th id="233">233</th><td>    {&nbsp</td></tr>
+<tr><th id="234">234</th><td>      <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="235">235</th><td>      <dfn class="decl def fn" id="_ZNKSt4hashIfEclEf" title='std::hash&lt;float&gt;::operator()' data-ref="_ZNKSt4hashIfEclEf"><b>operator</b>()</dfn>(<em>float</em> <dfn class="local col9 decl" id="5819__val" title='__val' data-type='float' data-ref="5819__val">__val</dfn>) <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="236">236</th><td>      {&nbsp</td></tr>
+<tr><th id="237">237</th><td>	<i>// 0 and -0 both hash to zero.</i>&nbsp</td></tr>
+<tr><th id="238">238</th><td>	<b>return</b> <a class="local col9 ref" href="#5819__val" title='__val' data-ref="5819__val">__val</a> != <var>0.0f</var> ? <span class="namespace">std::</span><a class="type" href="#std::_Hash_impl" title='std::_Hash_impl' data-ref="std::_Hash_impl">_Hash_impl</a>::<a class="ref fn" href="#_ZNSt10_Hash_impl4hashERKT_" title='std::_Hash_impl::hash' data-ref="_ZNSt10_Hash_impl4hashERKT_">hash</a>(<a class="local col9 ref" href="#5819__val" title='__val' data-ref="5819__val">__val</a>) : <var>0</var>;&nbsp</td></tr>
+<tr><th id="239">239</th><td>      }&nbsp</td></tr>
+<tr><th id="240">240</th><td>    };&nbsp</td></tr>
+<tr><th id="241">241</th><td>&nbsp</td></tr>
+<tr><th id="242">242</th><td>  <i class="doc">/// Specialization for double.</i>&nbsp</td></tr>
+<tr><th id="243">243</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="244">244</th><td>    <b>struct</b> <dfn class="type def" id="std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash">hash</a></dfn>&lt;<em>double</em>&gt; : <b>public</b> __hash_base&lt;size_t, <em>double</em>&gt;&nbsp</td></tr>
+<tr><th id="245">245</th><td>    {&nbsp</td></tr>
+<tr><th id="246">246</th><td>      <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="247">247</th><td>      <dfn class="decl def fn" id="_ZNKSt4hashIdEclEd" title='std::hash&lt;double&gt;::operator()' data-ref="_ZNKSt4hashIdEclEd"><b>operator</b>()</dfn>(<em>double</em> <dfn class="local col0 decl" id="5820__val" title='__val' data-type='double' data-ref="5820__val">__val</dfn>) <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="248">248</th><td>      {&nbsp</td></tr>
+<tr><th id="249">249</th><td>	<i>// 0 and -0 both hash to zero.</i>&nbsp</td></tr>
+<tr><th id="250">250</th><td>	<b>return</b> <a class="local col0 ref" href="#5820__val" title='__val' data-ref="5820__val">__val</a> != <var>0.0</var> ? <span class="namespace">std::</span><a class="type" href="#std::_Hash_impl" title='std::_Hash_impl' data-ref="std::_Hash_impl">_Hash_impl</a>::<a class="ref fn" href="#_ZNSt10_Hash_impl4hashERKT_" title='std::_Hash_impl::hash' data-ref="_ZNSt10_Hash_impl4hashERKT_">hash</a>(<a class="local col0 ref" href="#5820__val" title='__val' data-ref="5820__val">__val</a>) : <var>0</var>;&nbsp</td></tr>
+<tr><th id="251">251</th><td>      }&nbsp</td></tr>
+<tr><th id="252">252</th><td>    };&nbsp</td></tr>
+<tr><th id="253">253</th><td>&nbsp</td></tr>
+<tr><th id="254">254</th><td>  <i class="doc">/// Specialization for long double.</i>&nbsp</td></tr>
+<tr><th id="255">255</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="256">256</th><td>    <b>struct</b> <dfn class="type def" id="std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash">hash</a></dfn>&lt;<em>long</em> <em>double</em>&gt;&nbsp</td></tr>
+<tr><th id="257">257</th><td>    : <b>public</b> __hash_base&lt;size_t, <em>long</em> <em>double</em>&gt;&nbsp</td></tr>
+<tr><th id="258">258</th><td>    {&nbsp</td></tr>
+<tr><th id="259">259</th><td>      <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#46" title="__attribute__ ((__pure__))" data-ref="_M/_GLIBCXX_PURE">_GLIBCXX_PURE</a> <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="260">260</th><td>      <dfn class="decl fn" id="_ZNKSt4hashIeEclEe" title='std::hash&lt;long double&gt;::operator()' data-ref="_ZNKSt4hashIeEclEe"><b>operator</b>()</dfn>(<em>long</em> <em>double</em> <dfn class="local col1 decl" id="5821__val" title='__val' data-type='long double' data-ref="5821__val">__val</dfn>) <em>const</em> <b>noexcept</b>;&nbsp</td></tr>
+<tr><th id="261">261</th><td>    };&nbsp</td></tr>
+<tr><th id="262">262</th><td>&nbsp</td></tr>
+<tr><th id="263">263</th><td><u>#<span data-ppcond="263">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="264">264</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="265">265</th><td>    <b>struct</b> <dfn class="type def" id="std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="#std::hash" title='std::hash' data-ref="std::hash">hash</a></dfn>&lt;<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::nullptr_t" title='std::nullptr_t' data-type='decltype(nullptr)' data-ref="std::nullptr_t">nullptr_t</a>&gt; : <b>public</b> __hash_base&lt;size_t, nullptr_t&gt;&nbsp</td></tr>
+<tr><th id="266">266</th><td>    {&nbsp</td></tr>
+<tr><th id="267">267</th><td>      <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="268">268</th><td>      <dfn class="decl def fn" id="_ZNKSt4hashIDnEclEDn" title='std::hash&lt;std::nullptr_t&gt;::operator()' data-ref="_ZNKSt4hashIDnEclEDn"><b>operator</b>()</dfn>(<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::nullptr_t" title='std::nullptr_t' data-type='decltype(nullptr)' data-ref="std::nullptr_t">nullptr_t</a>) <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="269">269</th><td>      { <b>return</b> <var>0</var>; }&nbsp</td></tr>
+<tr><th id="270">270</th><td>    };&nbsp</td></tr>
+<tr><th id="271">271</th><td><u>#<span data-ppcond="263">endif</span></u>&nbsp</td></tr>
+<tr><th id="272">272</th><td>&nbsp</td></tr>
+<tr><th id="273">273</th><td>  <i class="doc">/// @} group hashes</i>&nbsp</td></tr>
+<tr><th id="274">274</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="275">275</th><td><i class="doc">  // Hint about performance of hash functor. If not fast the hash-based</i>&nbsp</td></tr>
+<tr><th id="276">276</th><td><i class="doc">  // containers will cache the hash code.</i>&nbsp</td></tr>
+<tr><th id="277">277</th><td><i class="doc">  // Default behavior is to consider that hashers are fast unless specified</i>&nbsp</td></tr>
+<tr><th id="278">278</th><td><i class="doc">  // otherwise.</i>&nbsp</td></tr>
+<tr><th id="279">279</th><td>  <b>template</b>&lt;<b>typename</b> _Hash&gt;&nbsp</td></tr>
+<tr><th id="280">280</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_fast_hash" title='std::__is_fast_hash' data-ref="std::__is_fast_hash">__is_fast_hash</dfn> : <b>public</b> <span class="namespace">std::</span><a class="typedef" href="../type_traits.html#std::true_type" title='std::true_type' data-type='integral_constant&lt;bool, true&gt;' data-ref="std::true_type">true_type</a>&nbsp</td></tr>
+<tr><th id="281">281</th><td>    { };&nbsp</td></tr>
+<tr><th id="282">282</th><td>&nbsp</td></tr>
+<tr><th id="283">283</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="284">284</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_fast_hash" title='std::__is_fast_hash' data-ref="std::__is_fast_hash"><a class="type" href="#std::__is_fast_hash" title='std::__is_fast_hash' data-ref="std::__is_fast_hash">__is_fast_hash</a></dfn>&lt;<a class="type" href="#std::hash" title='std::hash' data-ref="std::hash">hash</a>&lt;<em>long</em> <em>double</em>&gt;&gt; : <b>public</b> std::false_type&nbsp</td></tr>
+<tr><th id="285">285</th><td>    { };&nbsp</td></tr>
+<tr><th id="286">286</th><td>&nbsp</td></tr>
+<tr><th id="287">287</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="288">288</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="289">289</th><td>&nbsp</td></tr>
+<tr><th id="290">290</th><td><u>#<span data-ppcond="30">endif</span> // _FUNCTIONAL_HASH_H</u>&nbsp</td></tr>
+<tr><th id="291">291</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

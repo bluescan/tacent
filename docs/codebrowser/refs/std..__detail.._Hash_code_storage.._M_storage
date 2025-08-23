@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/hashtable_policy.h' l='1326' type='__gnu_cxx::__aligned_buffer&lt;_Tp&gt;'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1329' u='c' c='_ZNSt8__detail18_Hash_code_storage4_M_hEv'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1332' u='c' c='_ZNKSt8__detail18_Hash_code_storage4_M_hEv'/>

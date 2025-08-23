@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='310' macro='1' type='float __remquof(float __x, float __y, int * __quo)'/>

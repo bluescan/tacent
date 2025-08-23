@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='121' type='int TinyEXIF::EXIFInfo::parseFromEXIFSegment(const uint8_t * buf, unsigned int len)'/>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='118'>// Parsing function for an EXIF segment. This is used internally by parseFrom()
+	// but can be called for special cases where only the EXIF section is 
+	// available (i.e., a blob starting with the bytes &quot;Exif\0\0&quot;).</doc>

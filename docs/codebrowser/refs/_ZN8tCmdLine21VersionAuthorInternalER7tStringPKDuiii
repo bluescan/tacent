@@ -1,0 +1,5 @@
+<dec f='Modules/System/Src/tCmdLine.cpp' l='32' type='void tCmdLine::VersionAuthorInternal(tString &amp; verAuthDest, const char8_t * author, int major, int minor = -1, int revision = -1)'/>
+<def f='Modules/System/Src/tCmdLine.cpp' l='518' ll='534' type='void tCmdLine::VersionAuthorInternal(tString &amp; verAuth, const char8_t * author, int major, int minor = -1, int revision = -1)'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='712' u='c' c='_ZN8tCmdLine11tPrintUsageEPKDuS1_iii'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='738' u='c' c='_ZN8tCmdLine12tStringUsageER7tStringPKDuS3_iii'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='764' u='c' c='_ZN8tCmdLine14tStringUsageNIER7tStringPKDuS3_iii'/>

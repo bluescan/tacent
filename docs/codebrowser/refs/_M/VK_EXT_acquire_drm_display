@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15169'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15168'>// VK_EXT_acquire_drm_display is a preprocessor guard. Do not pass it to API calls.</doc>

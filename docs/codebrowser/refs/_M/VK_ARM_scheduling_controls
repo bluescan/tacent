@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17011'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17010'>// VK_ARM_scheduling_controls is a preprocessor guard. Do not pass it to API calls.</doc>

@@ -1,0 +1,6 @@
+<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='123' ll='141'/>
+<size>4</size>
+<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='121'>// This is a packed is exactly the same as the above except the the first (MSBs) float is the 10-bit one and the two
+// 11-bit floats go in the LSBs. All other comments apply.</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='558' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<size>4</size>

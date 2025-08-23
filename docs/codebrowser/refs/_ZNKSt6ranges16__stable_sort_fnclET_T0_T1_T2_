@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='1841' ll='1849' type='_Iter std::ranges::__stable_sort_fn::operator()(_Iter __first, _Sent __last, _Comp __comp = {}, _Proj __proj = {}) const'/>

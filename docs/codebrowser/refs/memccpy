@@ -1,0 +1,1 @@
+<dec f='include/string.h' l='54' type='void * memccpy(void *__restrict __dest, const void *__restrict __src, int __c, size_t __n)'/>

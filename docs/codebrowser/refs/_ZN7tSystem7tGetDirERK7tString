@@ -1,0 +1,13 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='155' type='tString tSystem::tGetDir(const tString &amp; path)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='148'>// Given a path, this function returns the directory portion. If the input was only a filename, it returns the current
+// directory string &quot;./&quot;. If input is a path specifying a directory, it will return that same path.
+// eg. &quot;c:/Stuff/Mess.max&quot; will return &quot;c:/Stuff/&quot;
+// eg. &quot;Hello.txt&quot; will return &quot;./&quot;
+// eg. &quot;/Only/Path/No/File/&quot; will return &quot;/Only/Path/No/File/&quot;
+// Windows network shares retain only required backslashes.
+// eg. &quot;\\machine\share/dir/subdir/file.txt&quot; will return &quot;\\machine\share/dir/subdir/&quot;</doc>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='34' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='79' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='546' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<def f='Modules/System/Src/tFile.cpp' l='355' ll='374' type='tString tSystem::tGetDir(const tString &amp; path)'/>
+<use f='Modules/System/Src/tMachine.cpp' l='224' u='c' c='_ZN7tSystem23tOpenSystemFileExplorerERK7tString'/>

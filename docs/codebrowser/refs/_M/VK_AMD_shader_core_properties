@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13534'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13533'>// VK_AMD_shader_core_properties is a preprocessor guard. Do not pass it to API calls.</doc>

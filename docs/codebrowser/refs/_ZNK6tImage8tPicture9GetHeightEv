@@ -1,0 +1,24 @@
+<def f='Modules/Image/Inc/Image/tPicture.h' l='185' type='int tImage::tPicture::GetHeight() const'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='209' u='c' c='_ZN6tImage10tImageAPNG3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='266' u='c' c='_ZN6tImage10tImageASTC3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='533' u='c' c='_ZN6tImage9tImageBMP3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='965' u='c' c='_ZN6tImage9tImageDDS3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='370' u='c' c='_ZN6tImage9tImageEXR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='267' u='c' c='_ZN6tImage9tImageGIF3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='454' u='c' c='_ZN6tImage9tImageHDR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='254' u='c' c='_ZN6tImage9tImageICO3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='253' u='c' c='_ZN6tImage9tImageJPG3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='624' u='c' c='_ZN6tImage9tImageKTX3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='353' u='c' c='_ZN6tImage9tImagePKM3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='509' u='c' c='_ZN6tImage9tImagePNG3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='725' u='c' c='_ZN6tImage9tImagePVR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='142' u='c' c='_ZN6tImage9tImageQOI3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='336' u='c' c='_ZN6tImage9tImageTGA3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='217' u='c' c='_ZN6tImage10tImageTIFF3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='304' u='c' c='_ZN6tImage10tImageWEBP3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='135' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='187' u='c' c='_ZN6tImage8tTexture33ProcessImageTo_R8G8B8_Or_R8G8B8A8ERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='236' u='c' c='_ZN6tImage8tTexture23ProcessImageTo_G3B5R5G3ERNS_8tPictureEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='287' u='c' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='360' u='c' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='364' u='c' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>

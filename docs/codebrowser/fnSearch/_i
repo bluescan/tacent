@@ -1,0 +1,15 @@
+_ZNKSt9_IdentityclERT_|std::_Identity::operator()
+_ZNSt4_PCC26_ImplicitlyConvertiblePairEv|std::_PCC::_ImplicitlyConvertiblePair
+_ZNSt4_PCC30_ImplicitlyMoveConvertiblePairEv|std::_PCC::_ImplicitlyMoveConvertiblePair
+_ZNSt6locale5_Impl16_M_add_referenceEv|std::locale::_Impl::_M_add_reference
+_ZNSt6locale5_Impl18_M_check_same_nameEv|std::locale::_Impl::_M_check_same_name
+_ZNSt6locale5_Impl13_M_init_facetEPT_|std::locale::_Impl::_M_init_facet
+_ZNSt6locale5_Impl23_M_init_facet_uncheckedEPT_|std::locale::_Impl::_M_init_facet_unchecked
+_ZNSt6locale5_Impl19_M_remove_referenceEv|std::locale::_Impl::_M_remove_reference
+_ZNSt6thread8_Invoker9_M_invokeESt12_Index_tupleIJXspTL0__EEE|std::thread::_Invoker::_M_invoke
+_ZNSt6thread8_InvokerclEv|std::thread::_Invoker::operator()
+_ZNSt19_Sp_counted_deleter5_ImplC1ET_T0_RKT1_|std::_Sp_counted_deleter::_Impl::_Impl
+_ZNSt19_Sp_counted_deleter5_Impl8_M_allocEv|std::_Sp_counted_deleter::_Impl::_M_alloc
+_ZNSt19_Sp_counted_deleter5_Impl6_M_delEv|std::_Sp_counted_deleter::_Impl::_M_del
+_ZNSt23_Sp_counted_ptr_inplace5_ImplC1ET0_|std::_Sp_counted_ptr_inplace::_Impl::_Impl
+_ZNSt23_Sp_counted_ptr_inplace5_Impl8_M_allocEv|std::_Sp_counted_ptr_inplace::_Impl::_M_alloc

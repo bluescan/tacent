@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Src/tImagePKM.cpp' l='83' type='void tImage::tPKM::GetFormatInfo_FromPKMFormat(tImage::tPixelFormat &amp; , tColourProfile &amp; , uint32 pkmFmt, int version)'/>
+<def f='Modules/Image/Src/tImagePKM.cpp' l='87' ll='117' type='void tImage::tPKM::GetFormatInfo_FromPKMFormat(tImage::tPixelFormat &amp; fmt, tColourProfile &amp; pro, uint32 pkmFmt, int version)'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='182' u='c' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Src/tImagePKM.cpp' l='79'>// These figure out the pixel format and the colour-profile. tPixelFormat does not specify ancilllary
+	// properties of the data -- it specified the encoding of the data. The extra information, like the colour-space it
+	// was authored in, is stored in tColourProfile. In many cases this satellite information cannot be determined, in
+	// which case colour-profile will be set to their &apos;unspecified&apos; enumerant.</doc>

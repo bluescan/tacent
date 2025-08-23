@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='753' type='ktx_uint32_t *'/>
+<offset>64</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='753'>/*!&lt; Pointer to DFD. Used only when creating a
+                                  ktxTexture2 and only if vkFormat is
+                                  VK_FORMAT_UNDEFINED. */</doc>

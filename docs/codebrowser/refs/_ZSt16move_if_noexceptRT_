@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/move.h' l='123' ll='126' type='typename conditional&lt;__move_if_noexcept_cond&lt;_Tp&gt;::value, const _Tp &amp;, _Tp &amp;&amp;&gt;::type std::move_if_noexcept(_Tp &amp; __x)'/>

@@ -1,0 +1,9 @@
+<use f='include/c++/11/type_traits' l='2187'/>
+<use f='include/c++/11/type_traits' l='2244' c='_ZNSt21__do_common_type_impl7_S_testEi'/>
+<use f='include/c++/11/type_traits' l='2277'/>
+<use f='include/c++/11/type_traits' l='2277'/>
+<use f='include/c++/11/type_traits' l='2515'/>
+<use f='include/c++/11/type_traits' l='2521'/>
+<use f='include/c++/11/bits/std_function.h' l='357'/>
+<use f='include/c++/11/bits/std_function.h' l='439' c='_ZNSt8functionIFT_DpT0_EEC1EOTL0__'/>
+<use f='include/c++/11/bits/std_function.h' l='441' c='_ZNSt8functionIFT_DpT0_EEC1EOTL0__'/>

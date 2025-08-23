@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='580' type='17040144'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='580'>// Version (4 bytes).</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='870' u='r' c='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='918' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>

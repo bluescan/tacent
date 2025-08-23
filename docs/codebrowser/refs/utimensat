@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='433' type='int utimensat(int __fd, const char * __path, const struct timespec * __times, int __flags)'/>
+<doc f='include/x86_64-linux-gnu/sys/stat.h' l='431'>/* Set file access and modification times relative to directory file
+   descriptor.  */</doc>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/compare' l='876' ll='910'/>
+<use f='include/c++/11/compare' l='876'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1835' c='_ZSt33lexicographical_compare_three_wayT_S_T0_S0_T1_'/>
+<size>1</size>
+<fun r='_ZNSt8__detail10_Synth3way11_S_noexceptEPKT_PKT0_'/>
+<fun r='_ZNKSt8__detail10_Synth3wayclERKT_RKT0_'/>

@@ -1,0 +1,20 @@
+<dec f='include/c++/11/ext/numeric_traits.h' l='147'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='163' u='c'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='181' u='w'/>
+<dec f='include/c++/11/limits' l='152'/>
+<use f='include/c++/11/limits' l='469' u='c'/>
+<use f='include/c++/11/limits' l='537' u='c'/>
+<use f='include/c++/11/limits' l='608' u='c'/>
+<use f='include/c++/11/limits' l='680' u='c'/>
+<use f='include/c++/11/limits' l='746' u='c'/>
+<use f='include/c++/11/limits' l='811' u='c'/>
+<use f='include/c++/11/limits' l='872' u='c'/>
+<use f='include/c++/11/limits' l='936' u='c'/>
+<use f='include/c++/11/limits' l='1005' u='c'/>
+<use f='include/c++/11/limits' l='1076' u='c'/>
+<use f='include/c++/11/limits' l='1145' u='c'/>
+<use f='include/c++/11/limits' l='1215' u='c'/>
+<use f='include/c++/11/limits' l='1284' u='c'/>
+<use f='include/c++/11/limits' l='1357' u='c'/>
+<use f='include/c++/11/limits' l='1427' u='c'/>
+<use f='include/c++/11/limits' l='1898' u='w'/>

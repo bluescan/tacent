@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='156' type='4290772992'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3423' u='r' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3533' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3810' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/fs_path.h' l='454' type='int std::filesystem::path::compare(const std::filesystem::path::string_type &amp; __s) const'/>
+<def f='include/c++/11/bits/fs_path.h' l='1189' ll='1191' type='int std::filesystem::path::compare(const std::filesystem::path::string_type &amp; __s) const'/>

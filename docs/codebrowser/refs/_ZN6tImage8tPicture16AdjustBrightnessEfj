@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='270' type='bool tImage::tPicture::AdjustBrightness(float brightness, comp_t  = tCompBit_RGB)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='260'>// Adjust brightness based on the tPicture pixels and write them into the adjustment pixel buffer. Brightness is in
+	// [0.0,1.0]. When brightness at 0.0 adjustment buffer will be completely black. When brightness at 1.0, pure white,
+	// Note that the range of the brigtness is computed so that all values between [0,1] have an effect on the image.
+	// This is possible because the min and max colour values were computed by inspecting every pixel when begin was
+	// called. In other words the values the colours move up or down for a particular brightness are image dependent,
+	// Returns success.
+	//
+	// The AdjustGetDefaultNNN functions get the parameters needed to have zero affect on the image. For brightness in
+	// particular it is dependent on the image contents and may not be exactly 0.5. If the min/max colour values did not
+	// reach 0 and full, the default brightness may be offset from 0.5.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='680' ll='704' type='bool tImage::tPicture::AdjustBrightness(float brightness, comp_t comps = tCompBit_RGB)'/>

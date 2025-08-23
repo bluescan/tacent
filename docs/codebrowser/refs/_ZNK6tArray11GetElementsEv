@@ -1,0 +1,6 @@
+<use f='Modules/System/Src/tPrint.cpp' l='401' u='c' c='_ZN7tSystem8Receiver7ReceiveERK6tArrayIcE'/>
+<use f='Modules/System/Src/tPrint.cpp' l='474' u='c' c='_Z8tvPrintfPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='488' u='c' c='_Z8tvPrintfyPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='659' u='c' c='_Z9tfvPrintfP8_IO_FILEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='686' u='c' c='_Z10ttfvPrintfP8_IO_FILEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1671' u='c' c='_ZN7tSystem25HandlerHelper_FloatNormalER6tArrayIcERKNS_10FormatSpecEdb'/>

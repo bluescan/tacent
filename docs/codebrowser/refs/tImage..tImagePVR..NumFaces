@@ -1,0 +1,10 @@
+<use f='Modules/Image/Src/tImagePVR.cpp' l='642' u='w' c='_ZN6tImage9tImagePVR5ClearEv'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='672' u='w' c='_ZN6tImage9tImagePVR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='792' u='w' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='851' u='w' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='893' u='w' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='911' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='955' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='997' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1027' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1061' u='r' c='_ZNK6tImage9tImagePVR8LayerIdxEiiii'/>

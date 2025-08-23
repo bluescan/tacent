@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='132' type='1'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='132'>// Currently not found in files, but may be converted to.</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='181' u='r' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1543' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='293' u='r' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='414' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1051' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>

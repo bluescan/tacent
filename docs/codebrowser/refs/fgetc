@@ -1,0 +1,6 @@
+<dec f='include/stdio.h' l='513' type='int fgetc(FILE * __stream)'/>
+<doc f='include/stdio.h' l='509'>/* Read a character from STREAM.
+
+   These functions are possible cancellation points and therefore not
+   marked with __THROW.  */</doc>
+<use f='Modules/System/Inc/System/tFile.h' l='759' u='c' c='_ZN7tSystem5tGetcEP8_IO_FILE'/>

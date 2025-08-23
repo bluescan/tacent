@@ -1,0 +1,12 @@
+<def f='include/x86_64-linux-gnu/sys/ucontext.h' l='142' ll='151'/>
+<use f='include/x86_64-linux-gnu/sys/ucontext.h' l='145'/>
+<use f='include/x86_64-linux-gnu/sys/ucontext.h' l='142'/>
+<size>968</size>
+<doc f='include/x86_64-linux-gnu/sys/ucontext.h' l='141'>/* Userlevel context.  */</doc>
+<mbr r='ucontext_t::uc_flags' o='0' t='unsigned long'/>
+<mbr r='ucontext_t::uc_link' o='64' t='struct ucontext_t *'/>
+<mbr r='ucontext_t::uc_stack' o='128' t='stack_t'/>
+<mbr r='ucontext_t::uc_mcontext' o='320' t='mcontext_t'/>
+<mbr r='ucontext_t::uc_sigmask' o='2368' t='sigset_t'/>
+<mbr r='ucontext_t::__fpregs_mem' o='3392' t='struct _libc_fpstate'/>
+<mbr r='ucontext_t::__ssp' o='7488' t='unsigned long long[4]'/>

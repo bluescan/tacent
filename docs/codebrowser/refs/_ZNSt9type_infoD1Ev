@@ -1,0 +1,5 @@
+<dec f='include/c++/11/typeinfo' l='95' type='void std::type_info::~type_info()'/>
+<doc f='include/c++/11/typeinfo' l='91'>/** Destructor first. Being the first non-inline virtual function, this
+     *  controls in which translation unit the vtable is emitted. The
+     *  compiler makes use of that information to know where to emit
+     *  the runtime-mandated type_info structures in the new-abi.  */</doc>

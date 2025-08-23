@@ -1,0 +1,14 @@
+<use f='include/c++/11/chrono' l='1197'/>
+<def f='include/c++/11/chrono' l='3359' ll='3414'/>
+<use f='include/c++/11/chrono' l='3364'/>
+<use f='include/c++/11/chrono' l='3398' c='_ZNSt10filesystem12__file_clock11_S_from_sysERKNSt6chrono10time_pointINS1_3_V212system_clockET_EE'/>
+<use f='include/c++/11/chrono' l='3401' c='_ZNSt10filesystem12__file_clock11_S_from_sysERKNSt6chrono10time_pointINS1_3_V212system_clockET_EE'/>
+<use f='include/c++/11/chrono' l='3409' c='_ZNSt10filesystem12__file_clock9_S_to_sysERKNSt6chrono10time_pointIS0_T_EE'/>
+<size>1</size>
+<smbr r='std::filesystem::__file_clock::is_steady' t='const bool'/>
+<fun r='_ZNSt10filesystem12__file_clock3nowEv'/>
+<fun r='_ZNSt10filesystem12__file_clock8from_sysERKNSt6chrono10time_pointINS1_3_V212system_clockET_EE'/>
+<fun r='_ZNSt10filesystem12__file_clock6to_sysERKNSt6chrono10time_pointIS0_T_EE'/>
+<smbr r='std::filesystem::__file_clock::_S_epoch_diff' t='const chrono::seconds'/>
+<fun r='_ZNSt10filesystem12__file_clock11_S_from_sysERKNSt6chrono10time_pointINS1_3_V212system_clockET_EE'/>
+<fun r='_ZNSt10filesystem12__file_clock9_S_to_sysERKNSt6chrono10time_pointIS0_T_EE'/>

@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/basic_string.h' l='1423' ll='1427' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::assign(const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __str, std::basic_string::size_type __pos, std::basic_string::size_type __n = npos)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1410'>/**
+       *  @brief  Set value to a substring of a string.
+       *  @param __str  The string to use.
+       *  @param __pos  Index of the first character of str.
+       *  @param __n  Number of characters to use.
+       *  @return  Reference to this string.
+       *  @throw  std::out_of_range if @a pos is not a valid index.
+       *
+       *  This function sets this string to the substring of @a __str
+       *  consisting of @a __n characters at @a __pos.  If @a __n is
+       *  is larger than the number of available characters in @a
+       *  __str, the remainder of @a __str is used.
+       */</doc>

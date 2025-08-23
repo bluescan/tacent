@@ -1,0 +1,23 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='137' type='float tMath::tRound(float v)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='385' u='c' c='_ZN5tMath6tRoundEff'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='136'>// The &apos;nearest&apos; round variants let you round to the nearest [value]. For example, tRound(5.17f, 0.2f) = 5.2f</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='279' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='280' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='281' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='294' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='295' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='296' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='219' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='220' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tResample.cpp' l='296' u='c' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='297' u='c' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='298' u='c' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='299' u='c' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='410' u='c' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='411' u='c' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='412' u='c' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='413' u='c' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='458' u='c' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='459' u='c' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='460' u='c' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='461' u='c' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>

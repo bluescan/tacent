@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/predefined_ops.h' l='82' ll='99'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='102' c='__gnu_cxx::__ops::__val_less_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='104' c='__gnu_cxx::__ops::__val_less_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='107' c='__gnu_cxx::__ops::__val_comp_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='109' c='__gnu_cxx::__ops::__val_comp_iter'/>
+<size>1</size>
+<fun r='__gnu_cxx::__ops::_Val_less_iter::_Val_less_iter'/>
+<fun r='__gnu_cxx::__ops::_Val_less_iter::_Val_less_iter'/>
+<fun r='__gnu_cxx::__ops::_Val_less_iter::operator()'/>

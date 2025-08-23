@@ -1,0 +1,13 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='86' c='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<def f='Modules/Image/Inc/Image/tImageKTX.h' l='163' type='bool tImage::tImageKTX::IsValid() const'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='178' u='c' c='_ZNK6tImage9tImageKTX8GetWidthEv'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='179' u='c' c='_ZNK6tImage9tImageKTX9GetHeightEv'/>
+<doc f='Modules/Image/Inc/Image/tImageKTX.h' l='161'>// Will return true if a ktx/ktx2 file has been successfully loaded or otherwise populated.
+	// This includes conditional valid results.</doc>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='633' u='c' c='_ZN6tImage9tImageKTX8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='665' u='c' c='_ZN6tImage9tImageKTX11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='681' u='c' c='_ZNK6tImage9tImageKTX9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='693' u='c' c='_ZN6tImage9tImageKTX18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='719' u='c' c='_ZNK6tImage9tImageKTX16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='978' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1134' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

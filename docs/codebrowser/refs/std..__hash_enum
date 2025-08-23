@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/functional_hash.h' l='79' ll='85'/>
+<def f='include/c++/11/bits/functional_hash.h' l='88' ll='97'/>
+<use f='include/c++/11/bits/functional_hash.h' l='102'/>
+<doc f='include/c++/11/bits/functional_hash.h' l='87'>// Helper struct for hash with enum types.</doc>
+<fun r='_ZNSt11__hash_enumC1EOSt11__hash_enumIT_XT0_EE'/>
+<fun r='_ZNSt11__hash_enumD1Ev'/>
+<fun r='_ZNKSt11__hash_enumIT_Lb1EEclES0_'/>

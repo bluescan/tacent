@@ -1,0 +1,28 @@
+<def f='Modules/Foundation/Inc/Foundation/tConstants.h' l='21' type='const float'/>
+<use f='Modules/Foundation/Inc/Foundation/tConstants.h' l='22' u='r'/>
+<use f='Modules/Foundation/Inc/Foundation/tConstants.h' l='23' u='r'/>
+<use f='Modules/Foundation/Inc/Foundation/tConstants.h' l='24' u='r'/>
+<use f='Modules/Foundation/Inc/Foundation/tConstants.h' l='25' u='r'/>
+<use f='Modules/Foundation/Inc/Foundation/tConstants.h' l='26' u='r'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='174' u='r' c='_ZN5tMath9tDegToRadEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='175' u='r' c='_ZN5tMath9tRadToDegEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='176' u='r' c='_ZN5tMath10tiDegToRadERf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='177' u='r' c='_ZN5tMath10tiRadToDegERf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='194' u='r' c='_ZN5tMath5tSincEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='222' u='r' c='_ZN5tMath11tNormalDistEff'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='545' u='r' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='546' u='r' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='565' u='r' c='_ZN5tMath8tUnitSinEfj'/>
+<doc f='Modules/Foundation/Inc/Foundation/tConstants.h' l='21'>// 180 degrees.</doc>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='199' u='r' c='_ZNK5tMath8tCircle24AreaEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='210' u='r' c='_ZNK5tMath9tEllipse24AreaEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='341' u='r' c='_ZNK5tMath7tCircle4AreaEv'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='168' u='r' c='_ZN5tMath4tGetERNS_5tVec3ERfRKNS_5tQuatE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='636' u='r' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3ES4_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='954' u='r' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='997' u='r' c='_ZN5tMath14tApproachAngleERffff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='1000' u='r' c='_ZN5tMath14tApproachAngleERffff'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='134' u='r' c='_ZN5tMath7tRandom7tGetDirERKNS_8tVector3EfRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='134' u='r' c='_ZN5tMath7tRandom7tGetDirERKNS_8tVector3EfRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='225' u='r' c='_ZN5tMath7tRandom17tGetPointOnSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='282' u='r' c='_ZN5tMath7tRandom17tGetPointInSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>

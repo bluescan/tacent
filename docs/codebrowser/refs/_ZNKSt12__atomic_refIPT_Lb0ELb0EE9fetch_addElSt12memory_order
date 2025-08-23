@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1864' ll='1867' macro='1' type='std::__atomic_ref&lt;type-parameter-0-0 *, false, false&gt;::value_type std::__atomic_ref&lt;type-parameter-0-0 *, false, false&gt;::fetch_add(std::__atomic_ref&lt;type-parameter-0-0 *, false, false&gt;::difference_type __d, std::memory_order __m = memory_order_seq_cst) const'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1876' u='c' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EEppEi'/>

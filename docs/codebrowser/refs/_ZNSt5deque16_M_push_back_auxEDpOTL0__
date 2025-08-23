@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/stl_deque.h' l='1955' type='void std::deque::_M_push_back_aux(_Args &amp;&amp;... __args)'/>
+<def f='include/c++/11/bits/deque.tcc' l='480' ll='516' type='void std::deque::_M_push_back_aux(_Args &amp;&amp;... __args)'/>
+<doc f='include/c++/11/bits/deque.tcc' l='479'>// Called only if _M_impl._M_finish._M_cur == _M_impl._M_finish._M_last - 1.</doc>

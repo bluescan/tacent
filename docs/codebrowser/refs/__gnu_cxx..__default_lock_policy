@@ -1,0 +1,11 @@
+<def f='include/c++/11/ext/concurrence.h' l='53' ll='57' type='const __gnu_cxx::_Lock_policy'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='121' u='r'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='309' u='r'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='312' u='r'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='315' u='r'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='330' u='r'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='333' u='r'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1832' u='r'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1843' u='r'/>
+<doc f='include/c++/11/ext/concurrence.h' l='51'>// Compile time constant that indicates prefered locking policy in
+  // the current configuration.</doc>

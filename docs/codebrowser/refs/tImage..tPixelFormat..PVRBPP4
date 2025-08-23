@@ -1,0 +1,14 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='185' type='55'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='185'>// PVRTC Version 1. 4BPP representing RGB or RGBA channels. One block can encode 4x4 pixels (but needs access to adjacent blocks during decompress).</doc>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='122' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='123' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='124' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='125' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='421' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='422' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='292' u='r' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='303' u='r' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='401' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='402' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='799' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1163' c='_ZN6tImage19DecodePixelData_PVRENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>

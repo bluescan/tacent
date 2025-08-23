@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/std_function.h' l='468' ll='473' type='function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt; &amp; std::function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt;::operator=(const function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt; &amp; __x)'/>
+<doc f='include/c++/11/bits/std_function.h' l='456'>/**
+       *  @brief %Function assignment operator.
+       *  @param __x A %function with identical call signature.
+       *  @post @c (bool)*this == (bool)x
+       *  @returns @c *this
+       *
+       *  The target of @a __x is copied to @c *this. If @a __x has no
+       *  target, then @c *this will be empty.
+       *
+       *  If @a __x targets a function pointer or a reference to a function
+       *  object, then this operation will not throw an %exception.
+       */</doc>

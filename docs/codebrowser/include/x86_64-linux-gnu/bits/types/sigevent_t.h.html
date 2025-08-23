@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>sigevent_t.h source code [include/x86_64-linux-gnu/bits/types/sigevent_t.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/types/sigevent_t.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>x86_64-linux-gnu</a>/<a href='..'>bits</a>/<a href='./'>types</a>/<a href='sigevent_t.h.html'>sigevent_t.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/__sigevent_t_defined">__sigevent_t_defined</span></u>&nbsp</td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/__sigevent_t_defined" data-ref="_M/__sigevent_t_defined">__sigevent_t_defined</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="3">3</th><td>&nbsp</td></tr>
+<tr><th id="4">4</th><td><u>#include &lt;bits/wordsize.h&gt;</u>&nbsp</td></tr>
+<tr><th id="5">5</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="6">6</th><td><u>#include &lt;bits/types/__sigval_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="7">7</th><td>&nbsp</td></tr>
+<tr><th id="8">8</th><td><u>#define <dfn class="macro" id="_M/__SIGEV_MAX_SIZE" data-ref="_M/__SIGEV_MAX_SIZE">__SIGEV_MAX_SIZE</dfn>	64</u>&nbsp</td></tr>
+<tr><th id="9">9</th><td><u>#<span data-ppcond="9">if</span> <a class="macro" href="../wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="10">10</th><td><u># define <dfn class="macro" id="_M/__SIGEV_PAD_SIZE" data-ref="_M/__SIGEV_PAD_SIZE">__SIGEV_PAD_SIZE</dfn>	((__SIGEV_MAX_SIZE / sizeof (int)) - 4)</u>&nbsp</td></tr>
+<tr><th id="11">11</th><td><u>#<span data-ppcond="9">else</span></u>&nbsp</td></tr>
+<tr><th id="12">12</th><td><u># define __SIGEV_PAD_SIZE	((__SIGEV_MAX_SIZE / sizeof (int)) - 3)</u>&nbsp</td></tr>
+<tr><th id="13">13</th><td><u>#<span data-ppcond="9">endif</span></u>&nbsp</td></tr>
+<tr><th id="14">14</th><td>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>/* Forward declaration.  */</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#<span data-ppcond="16">ifndef</span> <a class="macro" href="../pthreadtypes.h.html#63" data-ref="_M/__have_pthread_attr_t">__have_pthread_attr_t</a></u>&nbsp</td></tr>
+<tr><th id="17">17</th><td><b>typedef</b> <b>union</b> pthread_attr_t pthread_attr_t;&nbsp</td></tr>
+<tr><th id="18">18</th><td><u># define __have_pthread_attr_t	1</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#<span data-ppcond="16">endif</span></u>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>/* Structure to transport application-defined values with signals.  */</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><b>typedef</b> <b>struct</b> <dfn class="type def" id="sigevent" title='sigevent' data-ref="sigevent"><a class="type" href="#sigevent" title='sigevent' data-ref="sigevent">sigevent</a></dfn>&nbsp</td></tr>
+<tr><th id="23">23</th><td>  {&nbsp</td></tr>
+<tr><th id="24">24</th><td>    <a class="typedef" href="__sigval_t.h.html#__sigval_t" title='__sigval_t' data-type='union sigval' data-ref="__sigval_t">__sigval_t</a> <dfn class="decl field" id="sigevent::sigev_value" title='sigevent::sigev_value' data-ref="sigevent::sigev_value">sigev_value</dfn>;&nbsp</td></tr>
+<tr><th id="25">25</th><td>    <em>int</em> <dfn class="decl field" id="sigevent::sigev_signo" title='sigevent::sigev_signo' data-ref="sigevent::sigev_signo">sigev_signo</dfn>;&nbsp</td></tr>
+<tr><th id="26">26</th><td>    <em>int</em> <dfn class="decl field" id="sigevent::sigev_notify" title='sigevent::sigev_notify' data-ref="sigevent::sigev_notify">sigev_notify</dfn>;&nbsp</td></tr>
+<tr><th id="27">27</th><td>&nbsp</td></tr>
+<tr><th id="28">28</th><td>    <b>union</b>&nbsp</td></tr>
+<tr><th id="29">29</th><td>      {&nbsp</td></tr>
+<tr><th id="30">30</th><td>	<em>int</em> <dfn class="decl field" id="sigevent::(anonymous)::_pad" title='sigevent::(anonymous union)::_pad' data-ref="sigevent::(anonymous)::_pad">_pad</dfn>[<a class="macro" href="#10" title="((64 / sizeof (int)) - 4)" data-ref="_M/__SIGEV_PAD_SIZE">__SIGEV_PAD_SIZE</a>];&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td>	<i>/* When SIGEV_SIGNAL and SIGEV_THREAD_ID set, LWP ID of the</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i>	   thread to receive the signal.  */</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td>	<a class="typedef" href="../types.h.html#__pid_t" title='__pid_t' data-type='int' data-ref="__pid_t">__pid_t</a> <dfn class="decl field" id="sigevent::(anonymous)::_tid" title='sigevent::(anonymous union)::_tid' data-ref="sigevent::(anonymous)::_tid">_tid</dfn>;&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td>	<b>struct</b>&nbsp</td></tr>
+<tr><th id="37">37</th><td>	  {&nbsp</td></tr>
+<tr><th id="38">38</th><td>	    <em>void</em> (*<dfn class="decl field" id="sigevent::(anonymousunion)::(anonymous)::_function" title='sigevent::(anonymous union)::(anonymous struct)::_function' data-ref="sigevent::(anonymousunion)::(anonymous)::_function">_function</dfn>) (<a class="typedef" href="__sigval_t.h.html#__sigval_t" title='__sigval_t' data-type='union sigval' data-ref="__sigval_t">__sigval_t</a>);	<i>/* Function to start.  */</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td>	    <a class="typedef" href="../pthreadtypes.h.html#pthread_attr_t" title='pthread_attr_t' data-type='union pthread_attr_t' data-ref="pthread_attr_t">pthread_attr_t</a> *<dfn class="decl field" id="sigevent::(anonymousunion)::(anonymous)::_attribute" title='sigevent::(anonymous union)::(anonymous struct)::_attribute' data-ref="sigevent::(anonymousunion)::(anonymous)::_attribute">_attribute</dfn>;		<i>/* Thread attributes.  */</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td>	  } <dfn class="decl field" id="sigevent::(anonymous)::_sigev_thread" title='sigevent::(anonymous union)::_sigev_thread' data-ref="sigevent::(anonymous)::_sigev_thread">_sigev_thread</dfn>;&nbsp</td></tr>
+<tr><th id="41">41</th><td>      } <dfn class="decl field" id="sigevent::_sigev_un" title='sigevent::_sigev_un' data-ref="sigevent::_sigev_un">_sigev_un</dfn>;&nbsp</td></tr>
+<tr><th id="42">42</th><td>  } <dfn class="typedef" id="sigevent_t" title='sigevent_t' data-type='struct sigevent' data-ref="sigevent_t">sigevent_t</dfn>;&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i>/* POSIX names to access some of the members.  */</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#define <dfn class="macro" id="_M/sigev_notify_function" data-ref="_M/sigev_notify_function">sigev_notify_function</dfn>   _sigev_un._sigev_thread._function</u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u>#define <dfn class="macro" id="_M/sigev_notify_attributes" data-ref="_M/sigev_notify_attributes">sigev_notify_attributes</dfn> _sigev_un._sigev_thread._attribute</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u>#<span data-ppcond="1">endif</span></u>&nbsp</td></tr>
+<tr><th id="49">49</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Src/tAssert.cpp.html'>Modules/Foundation/Src/tAssert.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

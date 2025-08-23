@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='439' type='int'/>
+<offset>192</offset>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='438'>// either lossy and lossless for each frame.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='439'>// If true, print info and warning messages to stderr.</doc>

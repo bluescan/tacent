@@ -1,0 +1,26 @@
+<def f='include/c++/11/bits/random.h' l='70' ll='71'/>
+<def f='include/c++/11/bits/random.h' l='73' ll='75'/>
+<use f='include/c++/11/bits/random.h' l='490'/>
+<use f='include/c++/11/bits/random.h' l='492'/>
+<use f='include/c++/11/bits/random.h' l='494'/>
+<use f='include/c++/11/bits/random.h' l='496'/>
+<use f='include/c++/11/bits/random.h' l='498'/>
+<use f='include/c++/11/bits/random.h' l='563' c='_ZNSt23mersenne_twister_engine3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='774' c='_ZNSt26subtract_with_carry_engine3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='1215' c='_ZNSt23independent_bits_engine3maxEv'/>
+<use f='include/c++/11/bits/random.tcc' l='146' c='_ZNSt26linear_congruential_engine4seedERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='328' c='_ZNSt23mersenne_twister_engine4seedET_'/>
+<use f='include/c++/11/bits/random.tcc' l='337' c='_ZNSt23mersenne_twister_engine4seedET_'/>
+<use f='include/c++/11/bits/random.tcc' l='367' c='_ZNSt23mersenne_twister_engine4seedERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='370' c='_ZNSt23mersenne_twister_engine4seedERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='384' c='_ZNSt23mersenne_twister_engine4seedERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='552' c='_ZNSt26subtract_with_carry_engine4seedET_'/>
+<use f='include/c++/11/bits/random.tcc' l='554' c='_ZNSt26subtract_with_carry_engine4seedET_'/>
+<use f='include/c++/11/bits/random.tcc' l='557' c='_ZNSt26subtract_with_carry_engine4seedET_'/>
+<use f='include/c++/11/bits/random.tcc' l='581' c='_ZNSt26subtract_with_carry_engine4seedERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='584' c='_ZNSt26subtract_with_carry_engine4seedERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='612' c='_ZNSt26subtract_with_carry_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3240' c='_ZNSt8seed_seqC1ESt16initializer_listIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='3251' c='_ZNSt8seed_seqC1ET_S0_'/>
+<smbr r='std::__detail::_Shift::__value' t='const _UIntType'/>
+<smbr r='std::__detail::_Shift{type-parameter-0-0,__w,true}::__value' t='const _UIntType'/>

@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='281' type='char * strchrnul(char * __s, int __c)'/>
+<dec f='include/string.h' l='283' type='const char * strchrnul(const char * __s, int __c)'/>

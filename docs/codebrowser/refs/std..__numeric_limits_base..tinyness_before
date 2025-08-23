@@ -1,0 +1,2 @@
+<def f='include/c++/11/limits' l='294' type='const bool'/>
+<doc f='include/c++/11/limits' l='293'>/** True if tininess is detected before rounding.  (see IEC 559)  */</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Math/Src/tSpline.cpp' l='152' ll='186' type='float tMath::tBezierCurve::GetClosestParamRec(const tMath::tVector3 &amp; p, comp_t components, float start, float end, float threshold) const'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='185' u='c' c='_ZNK5tMath12tBezierCurve18GetClosestParamRecERKNS_8tVector3Ejfff'/>

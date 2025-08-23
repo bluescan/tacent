@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='549' type='void tMath::tInvertAffine(tMath::tMat4 &amp; m)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1139' ll='1144' type='void tMath::tInvertAffine(tMath::tMat4 &amp; m)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='547'>// Faster if inverting a matrix where the 4th column is the translation, and the upper-left 3x3 is the
+// rotation/scale/skew.</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='70' u='c' c='_ZN5tMath8tMatrix412InvertAffineEv'/>

@@ -1,0 +1,9 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='274' type='T &amp; tItList::Iter::operator*() const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='273'>// Iterators may be dereferenced to get to the object.</doc>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='142' u='c' c='_ZN5tMath12tIntervalSet3SetERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='461' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='505' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='86' u='c' c='_ZN6tScene6tWorld4LoadERK7tItListI7tStringEj'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='133' u='c' c='_ZNK6tScene11tAttributes8ContainsERKNS_10tAttributeE'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='166' u='c' c='_ZNK6tScene11tAttributeseqERKS0_'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='181' u='c' c='_ZN6tScene11tAttributesaSERKS0_'/>

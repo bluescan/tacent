@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_function.h' l='810' ll='816'/>
+<def f='include/c++/11/bits/stl_function.h' l='845' ll='857'/>
+<use f='include/c++/11/bits/stl_function.h' l='846'/>
+<size>1</size>
+<doc f='include/c++/11/bits/stl_function.h' l='844'>/// One of the @link logical_functors Boolean operations functors@endlink.</doc>
+<fun r='_ZNKSt10logical_orclERKT_S2_'/>
+<fun r='_ZNKSt10logical_orIvEclEOT_OT0_'/>

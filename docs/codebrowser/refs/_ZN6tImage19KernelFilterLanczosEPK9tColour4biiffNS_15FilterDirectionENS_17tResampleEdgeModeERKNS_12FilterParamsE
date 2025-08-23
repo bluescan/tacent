@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Src/tResample.cpp' l='39' type='tPixel4b tImage::KernelFilterLanczos(const tPixel4b * src, int srcW, int srcH, float x, float y, tImage::FilterDirection , tImage::tResampleEdgeMode , const tImage::FilterParams &amp; )'/>
+<use f='Modules/Image/Src/tResample.cpp' l='187' u='r' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='192' u='r' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='197' u='r' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<def f='Modules/Image/Src/tResample.cpp' l='425' ll='463' type='tPixel4b tImage::KernelFilterLanczos(const tPixel4b * src, int srcW, int srcH, float x, float y, tImage::FilterDirection dir, tImage::tResampleEdgeMode edgeMode, const tImage::FilterParams &amp; params)'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/random.h' l='1618' type='void std::random_device::random_device()'/>
+<doc f='include/c++/11/bits/random.h' l='1616'>// constructors, destructors and member functions</doc>

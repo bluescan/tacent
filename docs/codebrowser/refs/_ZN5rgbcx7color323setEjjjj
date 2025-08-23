@@ -1,0 +1,3 @@
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1460' u='c' c='_ZN5rgbcx7color32C1Ejjjj'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1463' type='void rgbcx::color32::set(uint32_t vr, uint32_t vg, uint32_t vb, uint32_t va)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1466' u='c' c='_ZN5rgbcx7color3216set_noclamp_rgbaEjjjj'/>

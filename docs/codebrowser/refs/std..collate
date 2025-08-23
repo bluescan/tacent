@@ -1,0 +1,48 @@
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_classes.h' l='648' ll='796'/>
+<use f='include/c++/11/bits/locale_classes.h' l='799'/>
+<use f='include/c++/11/bits/locale_classes.h' l='804' c='_ZNKSt7__cxx117collate10_M_compareEPKT_S3_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='808' c='_ZNKSt7__cxx117collate12_M_transformEPT_PKS1_m'/>
+<use f='include/c++/11/bits/locale_classes.h' l='813' c='_ZNKSt7__cxx117collate10_M_compareEPKT_S3_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='817' c='_ZNKSt7__cxx117collate12_M_transformEPT_PKS1_m'/>
+<use f='include/c++/11/bits/locale_classes.h' l='822'/>
+<use f='include/c++/11/bits/locale_classes.h' l='833' c='_ZNSt7__cxx1114collate_bynameC1EPKcm'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='84' c='_ZNKSt6localeclERKNSt7__cxx1112basic_stringIT_T0_T1_EES7_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='149' c='_ZNKSt7__cxx117collate10_M_compareEPKT_S3_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='155' c='_ZNKSt7__cxx117collate12_M_transformEPT_PKS1_m'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='160' c='_ZNKSt7__cxx117collate10do_compareEPKT_S3_S3_S3_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='199' c='_ZNKSt7__cxx117collate12do_transformEPKT_S3_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='198' c='_ZNKSt7__cxx117collate12do_transformEPKT_S3_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='255' c='_ZNKSt7__cxx117collate7do_hashEPKT_S3_'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_classes.tcc' l='270'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='270'/>
+<ovr f='include/c++/11/bits/locale_classes.tcc' l='271' c='std::collate_byname'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_classes.tcc' l='282'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='282'/>
+<ovr f='include/c++/11/bits/locale_classes.tcc' l='283' c='std::collate_byname'/>
+<size>24</size>
+<mbr r='std::collate::_M_c_locale_collate' t='std::__c_locale'/>
+<smbr r='std::collate::id' t='locale::id'/>
+<fun r='_ZNSt7__cxx117collateC1Em'/>
+<fun r='_ZNSt7__cxx117collateC1EP15__locale_structm'/>
+<fun r='_ZNKSt7__cxx117collate7compareEPKT_S3_S3_S3_'/>
+<fun r='_ZNKSt7__cxx117collate9transformEPKT_S3_'/>
+<fun r='_ZNKSt7__cxx117collate4hashEPKT_S3_'/>
+<fun r='_ZNKSt7__cxx117collate10_M_compareEPKT_S3_'/>
+<fun r='_ZNKSt7__cxx117collate12_M_transformEPT_PKS1_m'/>
+<fun r='_ZNSt7__cxx117collateD1Ev'/>
+<fun r='_ZNKSt7__cxx117collate10do_compareEPKT_S3_S3_S3_'/>
+<fun r='_ZNKSt7__cxx117collate12do_transformEPKT_S3_'/>
+<fun r='_ZNKSt7__cxx117collate7do_hashEPKT_S3_'/>
+<smbr r='std::collate::id' t='locale::id'/>
+<fun r='_ZNKSt7__cxx117collate10_M_compareEPKT_S3_'/>
+<fun r='_ZNKSt7__cxx117collate12_M_transformEPT_PKS1_m'/>
+<fun r='_ZNKSt7__cxx117collate10_M_compareEPKT_S3_'/>
+<fun r='_ZNKSt7__cxx117collate12_M_transformEPT_PKS1_m'/>
+<fun r='_ZNKSt7__cxx117collate10_M_compareEPKT_S3_'/>
+<fun r='_ZNKSt7__cxx117collate12_M_transformEPT_PKS1_m'/>
+<fun r='_ZNKSt7__cxx117collate10do_compareEPKT_S3_S3_S3_'/>
+<fun r='_ZNKSt7__cxx117collate12do_transformEPKT_S3_'/>
+<fun r='_ZNKSt7__cxx117collate7do_hashEPKT_S3_'/>

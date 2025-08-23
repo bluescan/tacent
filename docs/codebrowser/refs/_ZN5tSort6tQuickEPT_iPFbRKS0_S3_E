@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tSort.h' l='36' type='void tSort::tQuick(T * array, int numItems, bool (*)(const T &amp;, const T &amp;) compare = tCompLess&lt;T&gt;)'/>
+<def f='Modules/Foundation/Inc/Foundation/tSort.h' l='154' ll='157' type='void tSort::tQuick(T * A, int N, bool (*)(const T &amp;, const T &amp;) compare = tCompLess&lt;T&gt;)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tSort.h' l='35'>// Quicksort. O(n log n). Not stable but fast. Good with unordered data. Uses shellsort when numItems &lt; 32.</doc>

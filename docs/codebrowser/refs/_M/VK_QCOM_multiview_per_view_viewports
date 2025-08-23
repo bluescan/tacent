@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18140'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18139'>// VK_QCOM_multiview_per_view_viewports is a preprocessor guard. Do not pass it to API calls.</doc>

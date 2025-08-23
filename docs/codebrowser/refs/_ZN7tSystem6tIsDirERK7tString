@@ -1,0 +1,7 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='82' type='bool tSystem::tIsDir(const tString &amp; path)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='769' ll='775' type='bool tSystem::tIsDir(const tString &amp; path)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='77'>//
+// Path-based functions work on the syntax of a path but generally do not need to access the filesystem.
+//
+
+// Directories are paths that end in a /.</doc>

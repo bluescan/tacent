@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='34' type='23'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='36' u='r' c='_Z17tGetComponentName5tComp'/>

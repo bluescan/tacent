@@ -1,0 +1,2 @@
+<def f='Modules/Scene/Src/tAttribute.cpp' l='141' ll='147' type='void tScene::tAttributes::Save(tChunkWriter &amp; chunk) const'/>
+<use f='Modules/Scene/Src/tObject.cpp' l='32' u='c' c='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>

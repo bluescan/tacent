@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/WebP/include/mux_types.h' l='65' ll='69' type='void WebPDataInit(WebPData * webp_data)'/>
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='76' u='c' c='_ZL13WebPDataClearP8WebPData'/>
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='84' u='c' c='_ZL12WebPDataCopyPK8WebPDataPS_'/>
+<doc f='Modules/Image/Contrib/WebP/include/mux_types.h' l='64'>// Initializes the contents of the &apos;webp_data&apos; object with default values.</doc>

@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1292' ll='1294' type='std::vector::iterator std::vector::insert(std::vector::const_iterator __position, std::vector::value_type &amp;&amp; __x)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1281'>/**
+       *  @brief  Inserts given rvalue into %vector before specified iterator.
+       *  @param  __position  A const_iterator into the %vector.
+       *  @param  __x  Data to be inserted.
+       *  @return  An iterator that points to the inserted data.
+       *
+       *  This function will insert a copy of the given rvalue before
+       *  the specified location.  Note that this kind of operation
+       *  could be expensive for a %vector and if it is frequently
+       *  used the user should consider using std::list.
+       */</doc>

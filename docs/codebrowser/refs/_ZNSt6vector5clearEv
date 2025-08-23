@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1497' ll='1499' type='void std::vector::clear()'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1569' u='c' c='_ZNSt6vector19_M_range_initializeETL0__S0_St18input_iterator_tag'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1491'>/**
+       *  Erases all the elements.  Note that this function only erases the
+       *  elements, and that if the elements themselves are pointers, the
+       *  pointed-to memory is not touched in any way.  Managing the pointer is
+       *  the user&apos;s responsibility.
+       */</doc>
+<use f='include/c++/11/bits/random.tcc' l='2661' u='c' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2826' u='c' c='_ZNSt31piecewise_constant_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3041' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='227' u='c' c='_ZN6tImage16tQuantizeSpatial18random_permutationEiRSt6vectorIiSaIiEERSt26linear_congruential_engineImLm16807ELm0ELm2147483647EE'/>

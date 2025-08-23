@@ -1,0 +1,4 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='754' ll='761' type='int __gthread_mutex_trylock(__gthread_mutex_t * __mutex)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='817' u='c' c='__gthread_recursive_mutex_trylock'/>
+<use f='include/c++/11/bits/std_mutex.h' l='111' u='c' c='_ZNSt5mutex8try_lockEv'/>
+<use f='include/c++/11/mutex' l='238' u='c' c='_ZNSt11timed_mutex8try_lockEv'/>

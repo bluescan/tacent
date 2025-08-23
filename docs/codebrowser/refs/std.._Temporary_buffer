@@ -1,0 +1,17 @@
+<def f='include/c++/11/bits/stl_tempbuf.h' l='136' ll='191'/>
+<use f='include/c++/11/bits/stl_tempbuf.h' l='257' c='_ZNSt17_Temporary_bufferC1ET_l'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1596' c='_ZSt18__stable_partitionT_S_T0_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='2526' c='_ZSt15__inplace_mergeT_S_S_T0_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='5011' c='_ZSt13__stable_sortT_S_T0_'/>
+<mbr r='std::_Temporary_buffer::_M_original_len' t='std::_Temporary_buffer::size_type'/>
+<mbr r='std::_Temporary_buffer::_M_len' t='std::_Temporary_buffer::size_type'/>
+<mbr r='std::_Temporary_buffer::_M_buffer' t='std::_Temporary_buffer::pointer'/>
+<fun r='_ZNKSt17_Temporary_buffer4sizeEv'/>
+<fun r='_ZNKSt17_Temporary_buffer14requested_sizeEv'/>
+<fun r='_ZNSt17_Temporary_buffer5beginEv'/>
+<fun r='_ZNSt17_Temporary_buffer3endEv'/>
+<fun r='_ZNSt17_Temporary_bufferC1ET_l'/>
+<fun r='_ZNSt17_Temporary_bufferD1Ev'/>
+<fun r='_ZNSt17_Temporary_bufferC1ERKSt17_Temporary_bufferIT_T0_E'/>
+<fun r='_ZNSt17_Temporary_bufferaSERKSt17_Temporary_bufferIT_T0_E'/>
+<fun r='_ZNSt17_Temporary_bufferC1ET_l'/>

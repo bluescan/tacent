@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='117' type='double tMath::tRandom::tGetBounded(double min, double max, const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<def f='Modules/Math/Inc/Math/tRandom.h' l='186' ll='190' type='double tMath::tRandom::tGetBounded(double min, double max, const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>

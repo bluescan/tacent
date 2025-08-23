@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='91' type='const tMath::tQuaternion tMath::tQuaternion::operator*(const tMath::tVec3 &amp; a) const'/>
+<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='91'>/* Treats &apos;a&apos; as an augmented (pure) quaternion. w = 0. */</doc>

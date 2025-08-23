@@ -1,0 +1,18 @@
+<def f='include/c++/11/ext/type_traits.h' l='65' ll='72'/>
+<def f='include/c++/11/ext/type_traits.h' l='74' ll='76'/>
+<use f='include/c++/11/ext/type_traits.h' l='75'/>
+<def f='include/c++/11/ext/type_traits.h' l='78' ll='80'/>
+<use f='include/c++/11/ext/type_traits.h' l='79'/>
+<def f='include/c++/11/ext/type_traits.h' l='82' ll='84'/>
+<use f='include/c++/11/ext/type_traits.h' l='83'/>
+<def f='include/c++/11/ext/type_traits.h' l='86' ll='88'/>
+<use f='include/c++/11/ext/type_traits.h' l='87'/>
+<def f='include/c++/11/ext/type_traits.h' l='90' ll='92'/>
+<use f='include/c++/11/ext/type_traits.h' l='91'/>
+<def f='include/c++/11/ext/type_traits.h' l='94' ll='96'/>
+<use f='include/c++/11/ext/type_traits.h' l='95'/>
+<use f='include/c++/11/ext/type_traits.h' l='100'/>
+<use f='include/c++/11/ext/type_traits.h' l='103'/>
+<size>1</size>
+<use f='include/c++/11/bits/locale_facets.tcc' l='380' c='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='873' c='_ZNKSt7num_put13_M_insert_intET0_RSt8ios_baseT_TL0__'/>

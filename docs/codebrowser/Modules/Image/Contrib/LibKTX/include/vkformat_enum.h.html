@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>vkformat_enum.h source code [Modules/Image/Contrib/LibKTX/include/vkformat_enum.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Contrib/LibKTX/include/vkformat_enum.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>Modules</a>/<a href='../../..'>Image</a>/<a href='../..'>Contrib</a>/<a href='..'>LibKTX</a>/<a href='./'>include</a>/<a href='vkformat_enum.h.html'>vkformat_enum.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// clang-format off: CI is complicated if formatting checks on generated files are enforced.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><u>#<span data-ppcond="2">if</span> !defined(<span class="macro" data-ref="_M/_VKFORMAT_ENUM_H_">_VKFORMAT_ENUM_H_</span>) &amp;&amp; !defined(<a class="macro" href="vulkan_core.h.html#2" data-ref="_M/VULKAN_CORE_H_">VULKAN_CORE_H_</a>)</u>&nbsp</td></tr>
+<tr><th id="3">3</th><td><u>#define _VKFORMAT_ENUM_H_</u>&nbsp</td></tr>
+<tr><th id="4">4</th><td>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>/***************************** Do not edit.  *****************************</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i> Automatically generated from vulkan_core.h version 287 by mkvkformatfiles.</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i> *************************************************************************/</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>** Copyright 2015-2024 The Khronos Group Inc.</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>**</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>** SPDX-License-Identifier: Apache-2.0</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>*/</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#if defined(_MSC_VER) &amp;&amp; _MSC_VER &lt; 1900 // Older than VS 2015.</u>&nbsp</td></tr>
+<tr><th id="16">16</th><td><b>typedef</b> <em>unsigned</em> __int32 VkFlags;&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#else</u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#include &lt;stdint.h&gt;</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><b>typedef</b> uint32_t VkFlags;&nbsp</td></tr>
+<tr><th id="20">20</th><td><u>#endif</u>&nbsp</td></tr>
+<tr><th id="21">21</th><td>&nbsp</td></tr>
+<tr><th id="22">22</th><td><b>typedef</b> <b>enum</b> VkFormat {&nbsp</td></tr>
+<tr><th id="23">23</th><td>    VK_FORMAT_UNDEFINED = <var>0</var>,&nbsp</td></tr>
+<tr><th id="24">24</th><td>    VK_FORMAT_R4G4_UNORM_PACK8 = <var>1</var>,&nbsp</td></tr>
+<tr><th id="25">25</th><td>    VK_FORMAT_R4G4B4A4_UNORM_PACK16 = <var>2</var>,&nbsp</td></tr>
+<tr><th id="26">26</th><td>    VK_FORMAT_B4G4R4A4_UNORM_PACK16 = <var>3</var>,&nbsp</td></tr>
+<tr><th id="27">27</th><td>    VK_FORMAT_R5G6B5_UNORM_PACK16 = <var>4</var>,&nbsp</td></tr>
+<tr><th id="28">28</th><td>    VK_FORMAT_B5G6R5_UNORM_PACK16 = <var>5</var>,&nbsp</td></tr>
+<tr><th id="29">29</th><td>    VK_FORMAT_R5G5B5A1_UNORM_PACK16 = <var>6</var>,&nbsp</td></tr>
+<tr><th id="30">30</th><td>    VK_FORMAT_B5G5R5A1_UNORM_PACK16 = <var>7</var>,&nbsp</td></tr>
+<tr><th id="31">31</th><td>    VK_FORMAT_A1R5G5B5_UNORM_PACK16 = <var>8</var>,&nbsp</td></tr>
+<tr><th id="32">32</th><td>    VK_FORMAT_R8_UNORM = <var>9</var>,&nbsp</td></tr>
+<tr><th id="33">33</th><td>    VK_FORMAT_R8_SNORM = <var>10</var>,&nbsp</td></tr>
+<tr><th id="34">34</th><td>    VK_FORMAT_R8_USCALED = <var>11</var>,&nbsp</td></tr>
+<tr><th id="35">35</th><td>    VK_FORMAT_R8_SSCALED = <var>12</var>,&nbsp</td></tr>
+<tr><th id="36">36</th><td>    VK_FORMAT_R8_UINT = <var>13</var>,&nbsp</td></tr>
+<tr><th id="37">37</th><td>    VK_FORMAT_R8_SINT = <var>14</var>,&nbsp</td></tr>
+<tr><th id="38">38</th><td>    VK_FORMAT_R8_SRGB = <var>15</var>,&nbsp</td></tr>
+<tr><th id="39">39</th><td>    VK_FORMAT_R8G8_UNORM = <var>16</var>,&nbsp</td></tr>
+<tr><th id="40">40</th><td>    VK_FORMAT_R8G8_SNORM = <var>17</var>,&nbsp</td></tr>
+<tr><th id="41">41</th><td>    VK_FORMAT_R8G8_USCALED = <var>18</var>,&nbsp</td></tr>
+<tr><th id="42">42</th><td>    VK_FORMAT_R8G8_SSCALED = <var>19</var>,&nbsp</td></tr>
+<tr><th id="43">43</th><td>    VK_FORMAT_R8G8_UINT = <var>20</var>,&nbsp</td></tr>
+<tr><th id="44">44</th><td>    VK_FORMAT_R8G8_SINT = <var>21</var>,&nbsp</td></tr>
+<tr><th id="45">45</th><td>    VK_FORMAT_R8G8_SRGB = <var>22</var>,&nbsp</td></tr>
+<tr><th id="46">46</th><td>    VK_FORMAT_R8G8B8_UNORM = <var>23</var>,&nbsp</td></tr>
+<tr><th id="47">47</th><td>    VK_FORMAT_R8G8B8_SNORM = <var>24</var>,&nbsp</td></tr>
+<tr><th id="48">48</th><td>    VK_FORMAT_R8G8B8_USCALED = <var>25</var>,&nbsp</td></tr>
+<tr><th id="49">49</th><td>    VK_FORMAT_R8G8B8_SSCALED = <var>26</var>,&nbsp</td></tr>
+<tr><th id="50">50</th><td>    VK_FORMAT_R8G8B8_UINT = <var>27</var>,&nbsp</td></tr>
+<tr><th id="51">51</th><td>    VK_FORMAT_R8G8B8_SINT = <var>28</var>,&nbsp</td></tr>
+<tr><th id="52">52</th><td>    VK_FORMAT_R8G8B8_SRGB = <var>29</var>,&nbsp</td></tr>
+<tr><th id="53">53</th><td>    VK_FORMAT_B8G8R8_UNORM = <var>30</var>,&nbsp</td></tr>
+<tr><th id="54">54</th><td>    VK_FORMAT_B8G8R8_SNORM = <var>31</var>,&nbsp</td></tr>
+<tr><th id="55">55</th><td>    VK_FORMAT_B8G8R8_USCALED = <var>32</var>,&nbsp</td></tr>
+<tr><th id="56">56</th><td>    VK_FORMAT_B8G8R8_SSCALED = <var>33</var>,&nbsp</td></tr>
+<tr><th id="57">57</th><td>    VK_FORMAT_B8G8R8_UINT = <var>34</var>,&nbsp</td></tr>
+<tr><th id="58">58</th><td>    VK_FORMAT_B8G8R8_SINT = <var>35</var>,&nbsp</td></tr>
+<tr><th id="59">59</th><td>    VK_FORMAT_B8G8R8_SRGB = <var>36</var>,&nbsp</td></tr>
+<tr><th id="60">60</th><td>    VK_FORMAT_R8G8B8A8_UNORM = <var>37</var>,&nbsp</td></tr>
+<tr><th id="61">61</th><td>    VK_FORMAT_R8G8B8A8_SNORM = <var>38</var>,&nbsp</td></tr>
+<tr><th id="62">62</th><td>    VK_FORMAT_R8G8B8A8_USCALED = <var>39</var>,&nbsp</td></tr>
+<tr><th id="63">63</th><td>    VK_FORMAT_R8G8B8A8_SSCALED = <var>40</var>,&nbsp</td></tr>
+<tr><th id="64">64</th><td>    VK_FORMAT_R8G8B8A8_UINT = <var>41</var>,&nbsp</td></tr>
+<tr><th id="65">65</th><td>    VK_FORMAT_R8G8B8A8_SINT = <var>42</var>,&nbsp</td></tr>
+<tr><th id="66">66</th><td>    VK_FORMAT_R8G8B8A8_SRGB = <var>43</var>,&nbsp</td></tr>
+<tr><th id="67">67</th><td>    VK_FORMAT_B8G8R8A8_UNORM = <var>44</var>,&nbsp</td></tr>
+<tr><th id="68">68</th><td>    VK_FORMAT_B8G8R8A8_SNORM = <var>45</var>,&nbsp</td></tr>
+<tr><th id="69">69</th><td>    VK_FORMAT_B8G8R8A8_USCALED = <var>46</var>,&nbsp</td></tr>
+<tr><th id="70">70</th><td>    VK_FORMAT_B8G8R8A8_SSCALED = <var>47</var>,&nbsp</td></tr>
+<tr><th id="71">71</th><td>    VK_FORMAT_B8G8R8A8_UINT = <var>48</var>,&nbsp</td></tr>
+<tr><th id="72">72</th><td>    VK_FORMAT_B8G8R8A8_SINT = <var>49</var>,&nbsp</td></tr>
+<tr><th id="73">73</th><td>    VK_FORMAT_B8G8R8A8_SRGB = <var>50</var>,&nbsp</td></tr>
+<tr><th id="74">74</th><td>    VK_FORMAT_A8B8G8R8_UNORM_PACK32 = <var>51</var>,&nbsp</td></tr>
+<tr><th id="75">75</th><td>    VK_FORMAT_A8B8G8R8_SNORM_PACK32 = <var>52</var>,&nbsp</td></tr>
+<tr><th id="76">76</th><td>    VK_FORMAT_A8B8G8R8_USCALED_PACK32 = <var>53</var>,&nbsp</td></tr>
+<tr><th id="77">77</th><td>    VK_FORMAT_A8B8G8R8_SSCALED_PACK32 = <var>54</var>,&nbsp</td></tr>
+<tr><th id="78">78</th><td>    VK_FORMAT_A8B8G8R8_UINT_PACK32 = <var>55</var>,&nbsp</td></tr>
+<tr><th id="79">79</th><td>    VK_FORMAT_A8B8G8R8_SINT_PACK32 = <var>56</var>,&nbsp</td></tr>
+<tr><th id="80">80</th><td>    VK_FORMAT_A8B8G8R8_SRGB_PACK32 = <var>57</var>,&nbsp</td></tr>
+<tr><th id="81">81</th><td>    VK_FORMAT_A2R10G10B10_UNORM_PACK32 = <var>58</var>,&nbsp</td></tr>
+<tr><th id="82">82</th><td>    VK_FORMAT_A2R10G10B10_SNORM_PACK32 = <var>59</var>,&nbsp</td></tr>
+<tr><th id="83">83</th><td>    VK_FORMAT_A2R10G10B10_USCALED_PACK32 = <var>60</var>,&nbsp</td></tr>
+<tr><th id="84">84</th><td>    VK_FORMAT_A2R10G10B10_SSCALED_PACK32 = <var>61</var>,&nbsp</td></tr>
+<tr><th id="85">85</th><td>    VK_FORMAT_A2R10G10B10_UINT_PACK32 = <var>62</var>,&nbsp</td></tr>
+<tr><th id="86">86</th><td>    VK_FORMAT_A2R10G10B10_SINT_PACK32 = <var>63</var>,&nbsp</td></tr>
+<tr><th id="87">87</th><td>    VK_FORMAT_A2B10G10R10_UNORM_PACK32 = <var>64</var>,&nbsp</td></tr>
+<tr><th id="88">88</th><td>    VK_FORMAT_A2B10G10R10_SNORM_PACK32 = <var>65</var>,&nbsp</td></tr>
+<tr><th id="89">89</th><td>    VK_FORMAT_A2B10G10R10_USCALED_PACK32 = <var>66</var>,&nbsp</td></tr>
+<tr><th id="90">90</th><td>    VK_FORMAT_A2B10G10R10_SSCALED_PACK32 = <var>67</var>,&nbsp</td></tr>
+<tr><th id="91">91</th><td>    VK_FORMAT_A2B10G10R10_UINT_PACK32 = <var>68</var>,&nbsp</td></tr>
+<tr><th id="92">92</th><td>    VK_FORMAT_A2B10G10R10_SINT_PACK32 = <var>69</var>,&nbsp</td></tr>
+<tr><th id="93">93</th><td>    VK_FORMAT_R16_UNORM = <var>70</var>,&nbsp</td></tr>
+<tr><th id="94">94</th><td>    VK_FORMAT_R16_SNORM = <var>71</var>,&nbsp</td></tr>
+<tr><th id="95">95</th><td>    VK_FORMAT_R16_USCALED = <var>72</var>,&nbsp</td></tr>
+<tr><th id="96">96</th><td>    VK_FORMAT_R16_SSCALED = <var>73</var>,&nbsp</td></tr>
+<tr><th id="97">97</th><td>    VK_FORMAT_R16_UINT = <var>74</var>,&nbsp</td></tr>
+<tr><th id="98">98</th><td>    VK_FORMAT_R16_SINT = <var>75</var>,&nbsp</td></tr>
+<tr><th id="99">99</th><td>    VK_FORMAT_R16_SFLOAT = <var>76</var>,&nbsp</td></tr>
+<tr><th id="100">100</th><td>    VK_FORMAT_R16G16_UNORM = <var>77</var>,&nbsp</td></tr>
+<tr><th id="101">101</th><td>    VK_FORMAT_R16G16_SNORM = <var>78</var>,&nbsp</td></tr>
+<tr><th id="102">102</th><td>    VK_FORMAT_R16G16_USCALED = <var>79</var>,&nbsp</td></tr>
+<tr><th id="103">103</th><td>    VK_FORMAT_R16G16_SSCALED = <var>80</var>,&nbsp</td></tr>
+<tr><th id="104">104</th><td>    VK_FORMAT_R16G16_UINT = <var>81</var>,&nbsp</td></tr>
+<tr><th id="105">105</th><td>    VK_FORMAT_R16G16_SINT = <var>82</var>,&nbsp</td></tr>
+<tr><th id="106">106</th><td>    VK_FORMAT_R16G16_SFLOAT = <var>83</var>,&nbsp</td></tr>
+<tr><th id="107">107</th><td>    VK_FORMAT_R16G16B16_UNORM = <var>84</var>,&nbsp</td></tr>
+<tr><th id="108">108</th><td>    VK_FORMAT_R16G16B16_SNORM = <var>85</var>,&nbsp</td></tr>
+<tr><th id="109">109</th><td>    VK_FORMAT_R16G16B16_USCALED = <var>86</var>,&nbsp</td></tr>
+<tr><th id="110">110</th><td>    VK_FORMAT_R16G16B16_SSCALED = <var>87</var>,&nbsp</td></tr>
+<tr><th id="111">111</th><td>    VK_FORMAT_R16G16B16_UINT = <var>88</var>,&nbsp</td></tr>
+<tr><th id="112">112</th><td>    VK_FORMAT_R16G16B16_SINT = <var>89</var>,&nbsp</td></tr>
+<tr><th id="113">113</th><td>    VK_FORMAT_R16G16B16_SFLOAT = <var>90</var>,&nbsp</td></tr>
+<tr><th id="114">114</th><td>    VK_FORMAT_R16G16B16A16_UNORM = <var>91</var>,&nbsp</td></tr>
+<tr><th id="115">115</th><td>    VK_FORMAT_R16G16B16A16_SNORM = <var>92</var>,&nbsp</td></tr>
+<tr><th id="116">116</th><td>    VK_FORMAT_R16G16B16A16_USCALED = <var>93</var>,&nbsp</td></tr>
+<tr><th id="117">117</th><td>    VK_FORMAT_R16G16B16A16_SSCALED = <var>94</var>,&nbsp</td></tr>
+<tr><th id="118">118</th><td>    VK_FORMAT_R16G16B16A16_UINT = <var>95</var>,&nbsp</td></tr>
+<tr><th id="119">119</th><td>    VK_FORMAT_R16G16B16A16_SINT = <var>96</var>,&nbsp</td></tr>
+<tr><th id="120">120</th><td>    VK_FORMAT_R16G16B16A16_SFLOAT = <var>97</var>,&nbsp</td></tr>
+<tr><th id="121">121</th><td>    VK_FORMAT_R32_UINT = <var>98</var>,&nbsp</td></tr>
+<tr><th id="122">122</th><td>    VK_FORMAT_R32_SINT = <var>99</var>,&nbsp</td></tr>
+<tr><th id="123">123</th><td>    VK_FORMAT_R32_SFLOAT = <var>100</var>,&nbsp</td></tr>
+<tr><th id="124">124</th><td>    VK_FORMAT_R32G32_UINT = <var>101</var>,&nbsp</td></tr>
+<tr><th id="125">125</th><td>    VK_FORMAT_R32G32_SINT = <var>102</var>,&nbsp</td></tr>
+<tr><th id="126">126</th><td>    VK_FORMAT_R32G32_SFLOAT = <var>103</var>,&nbsp</td></tr>
+<tr><th id="127">127</th><td>    VK_FORMAT_R32G32B32_UINT = <var>104</var>,&nbsp</td></tr>
+<tr><th id="128">128</th><td>    VK_FORMAT_R32G32B32_SINT = <var>105</var>,&nbsp</td></tr>
+<tr><th id="129">129</th><td>    VK_FORMAT_R32G32B32_SFLOAT = <var>106</var>,&nbsp</td></tr>
+<tr><th id="130">130</th><td>    VK_FORMAT_R32G32B32A32_UINT = <var>107</var>,&nbsp</td></tr>
+<tr><th id="131">131</th><td>    VK_FORMAT_R32G32B32A32_SINT = <var>108</var>,&nbsp</td></tr>
+<tr><th id="132">132</th><td>    VK_FORMAT_R32G32B32A32_SFLOAT = <var>109</var>,&nbsp</td></tr>
+<tr><th id="133">133</th><td>    VK_FORMAT_R64_UINT = <var>110</var>,&nbsp</td></tr>
+<tr><th id="134">134</th><td>    VK_FORMAT_R64_SINT = <var>111</var>,&nbsp</td></tr>
+<tr><th id="135">135</th><td>    VK_FORMAT_R64_SFLOAT = <var>112</var>,&nbsp</td></tr>
+<tr><th id="136">136</th><td>    VK_FORMAT_R64G64_UINT = <var>113</var>,&nbsp</td></tr>
+<tr><th id="137">137</th><td>    VK_FORMAT_R64G64_SINT = <var>114</var>,&nbsp</td></tr>
+<tr><th id="138">138</th><td>    VK_FORMAT_R64G64_SFLOAT = <var>115</var>,&nbsp</td></tr>
+<tr><th id="139">139</th><td>    VK_FORMAT_R64G64B64_UINT = <var>116</var>,&nbsp</td></tr>
+<tr><th id="140">140</th><td>    VK_FORMAT_R64G64B64_SINT = <var>117</var>,&nbsp</td></tr>
+<tr><th id="141">141</th><td>    VK_FORMAT_R64G64B64_SFLOAT = <var>118</var>,&nbsp</td></tr>
+<tr><th id="142">142</th><td>    VK_FORMAT_R64G64B64A64_UINT = <var>119</var>,&nbsp</td></tr>
+<tr><th id="143">143</th><td>    VK_FORMAT_R64G64B64A64_SINT = <var>120</var>,&nbsp</td></tr>
+<tr><th id="144">144</th><td>    VK_FORMAT_R64G64B64A64_SFLOAT = <var>121</var>,&nbsp</td></tr>
+<tr><th id="145">145</th><td>    VK_FORMAT_B10G11R11_UFLOAT_PACK32 = <var>122</var>,&nbsp</td></tr>
+<tr><th id="146">146</th><td>    VK_FORMAT_E5B9G9R9_UFLOAT_PACK32 = <var>123</var>,&nbsp</td></tr>
+<tr><th id="147">147</th><td>    VK_FORMAT_D16_UNORM = <var>124</var>,&nbsp</td></tr>
+<tr><th id="148">148</th><td>    VK_FORMAT_X8_D24_UNORM_PACK32 = <var>125</var>,&nbsp</td></tr>
+<tr><th id="149">149</th><td>    VK_FORMAT_D32_SFLOAT = <var>126</var>,&nbsp</td></tr>
+<tr><th id="150">150</th><td>    VK_FORMAT_S8_UINT = <var>127</var>,&nbsp</td></tr>
+<tr><th id="151">151</th><td>    VK_FORMAT_D16_UNORM_S8_UINT = <var>128</var>,&nbsp</td></tr>
+<tr><th id="152">152</th><td>    VK_FORMAT_D24_UNORM_S8_UINT = <var>129</var>,&nbsp</td></tr>
+<tr><th id="153">153</th><td>    VK_FORMAT_D32_SFLOAT_S8_UINT = <var>130</var>,&nbsp</td></tr>
+<tr><th id="154">154</th><td>    VK_FORMAT_BC1_RGB_UNORM_BLOCK = <var>131</var>,&nbsp</td></tr>
+<tr><th id="155">155</th><td>    VK_FORMAT_BC1_RGB_SRGB_BLOCK = <var>132</var>,&nbsp</td></tr>
+<tr><th id="156">156</th><td>    VK_FORMAT_BC1_RGBA_UNORM_BLOCK = <var>133</var>,&nbsp</td></tr>
+<tr><th id="157">157</th><td>    VK_FORMAT_BC1_RGBA_SRGB_BLOCK = <var>134</var>,&nbsp</td></tr>
+<tr><th id="158">158</th><td>    VK_FORMAT_BC2_UNORM_BLOCK = <var>135</var>,&nbsp</td></tr>
+<tr><th id="159">159</th><td>    VK_FORMAT_BC2_SRGB_BLOCK = <var>136</var>,&nbsp</td></tr>
+<tr><th id="160">160</th><td>    VK_FORMAT_BC3_UNORM_BLOCK = <var>137</var>,&nbsp</td></tr>
+<tr><th id="161">161</th><td>    VK_FORMAT_BC3_SRGB_BLOCK = <var>138</var>,&nbsp</td></tr>
+<tr><th id="162">162</th><td>    VK_FORMAT_BC4_UNORM_BLOCK = <var>139</var>,&nbsp</td></tr>
+<tr><th id="163">163</th><td>    VK_FORMAT_BC4_SNORM_BLOCK = <var>140</var>,&nbsp</td></tr>
+<tr><th id="164">164</th><td>    VK_FORMAT_BC5_UNORM_BLOCK = <var>141</var>,&nbsp</td></tr>
+<tr><th id="165">165</th><td>    VK_FORMAT_BC5_SNORM_BLOCK = <var>142</var>,&nbsp</td></tr>
+<tr><th id="166">166</th><td>    VK_FORMAT_BC6H_UFLOAT_BLOCK = <var>143</var>,&nbsp</td></tr>
+<tr><th id="167">167</th><td>    VK_FORMAT_BC6H_SFLOAT_BLOCK = <var>144</var>,&nbsp</td></tr>
+<tr><th id="168">168</th><td>    VK_FORMAT_BC7_UNORM_BLOCK = <var>145</var>,&nbsp</td></tr>
+<tr><th id="169">169</th><td>    VK_FORMAT_BC7_SRGB_BLOCK = <var>146</var>,&nbsp</td></tr>
+<tr><th id="170">170</th><td>    VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK = <var>147</var>,&nbsp</td></tr>
+<tr><th id="171">171</th><td>    VK_FORMAT_ETC2_R8G8B8_SRGB_BLOCK = <var>148</var>,&nbsp</td></tr>
+<tr><th id="172">172</th><td>    VK_FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK = <var>149</var>,&nbsp</td></tr>
+<tr><th id="173">173</th><td>    VK_FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK = <var>150</var>,&nbsp</td></tr>
+<tr><th id="174">174</th><td>    VK_FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK = <var>151</var>,&nbsp</td></tr>
+<tr><th id="175">175</th><td>    VK_FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK = <var>152</var>,&nbsp</td></tr>
+<tr><th id="176">176</th><td>    VK_FORMAT_EAC_R11_UNORM_BLOCK = <var>153</var>,&nbsp</td></tr>
+<tr><th id="177">177</th><td>    VK_FORMAT_EAC_R11_SNORM_BLOCK = <var>154</var>,&nbsp</td></tr>
+<tr><th id="178">178</th><td>    VK_FORMAT_EAC_R11G11_UNORM_BLOCK = <var>155</var>,&nbsp</td></tr>
+<tr><th id="179">179</th><td>    VK_FORMAT_EAC_R11G11_SNORM_BLOCK = <var>156</var>,&nbsp</td></tr>
+<tr><th id="180">180</th><td>    VK_FORMAT_ASTC_4x4_UNORM_BLOCK = <var>157</var>,&nbsp</td></tr>
+<tr><th id="181">181</th><td>    VK_FORMAT_ASTC_4x4_SRGB_BLOCK = <var>158</var>,&nbsp</td></tr>
+<tr><th id="182">182</th><td>    VK_FORMAT_ASTC_5x4_UNORM_BLOCK = <var>159</var>,&nbsp</td></tr>
+<tr><th id="183">183</th><td>    VK_FORMAT_ASTC_5x4_SRGB_BLOCK = <var>160</var>,&nbsp</td></tr>
+<tr><th id="184">184</th><td>    VK_FORMAT_ASTC_5x5_UNORM_BLOCK = <var>161</var>,&nbsp</td></tr>
+<tr><th id="185">185</th><td>    VK_FORMAT_ASTC_5x5_SRGB_BLOCK = <var>162</var>,&nbsp</td></tr>
+<tr><th id="186">186</th><td>    VK_FORMAT_ASTC_6x5_UNORM_BLOCK = <var>163</var>,&nbsp</td></tr>
+<tr><th id="187">187</th><td>    VK_FORMAT_ASTC_6x5_SRGB_BLOCK = <var>164</var>,&nbsp</td></tr>
+<tr><th id="188">188</th><td>    VK_FORMAT_ASTC_6x6_UNORM_BLOCK = <var>165</var>,&nbsp</td></tr>
+<tr><th id="189">189</th><td>    VK_FORMAT_ASTC_6x6_SRGB_BLOCK = <var>166</var>,&nbsp</td></tr>
+<tr><th id="190">190</th><td>    VK_FORMAT_ASTC_8x5_UNORM_BLOCK = <var>167</var>,&nbsp</td></tr>
+<tr><th id="191">191</th><td>    VK_FORMAT_ASTC_8x5_SRGB_BLOCK = <var>168</var>,&nbsp</td></tr>
+<tr><th id="192">192</th><td>    VK_FORMAT_ASTC_8x6_UNORM_BLOCK = <var>169</var>,&nbsp</td></tr>
+<tr><th id="193">193</th><td>    VK_FORMAT_ASTC_8x6_SRGB_BLOCK = <var>170</var>,&nbsp</td></tr>
+<tr><th id="194">194</th><td>    VK_FORMAT_ASTC_8x8_UNORM_BLOCK = <var>171</var>,&nbsp</td></tr>
+<tr><th id="195">195</th><td>    VK_FORMAT_ASTC_8x8_SRGB_BLOCK = <var>172</var>,&nbsp</td></tr>
+<tr><th id="196">196</th><td>    VK_FORMAT_ASTC_10x5_UNORM_BLOCK = <var>173</var>,&nbsp</td></tr>
+<tr><th id="197">197</th><td>    VK_FORMAT_ASTC_10x5_SRGB_BLOCK = <var>174</var>,&nbsp</td></tr>
+<tr><th id="198">198</th><td>    VK_FORMAT_ASTC_10x6_UNORM_BLOCK = <var>175</var>,&nbsp</td></tr>
+<tr><th id="199">199</th><td>    VK_FORMAT_ASTC_10x6_SRGB_BLOCK = <var>176</var>,&nbsp</td></tr>
+<tr><th id="200">200</th><td>    VK_FORMAT_ASTC_10x8_UNORM_BLOCK = <var>177</var>,&nbsp</td></tr>
+<tr><th id="201">201</th><td>    VK_FORMAT_ASTC_10x8_SRGB_BLOCK = <var>178</var>,&nbsp</td></tr>
+<tr><th id="202">202</th><td>    VK_FORMAT_ASTC_10x10_UNORM_BLOCK = <var>179</var>,&nbsp</td></tr>
+<tr><th id="203">203</th><td>    VK_FORMAT_ASTC_10x10_SRGB_BLOCK = <var>180</var>,&nbsp</td></tr>
+<tr><th id="204">204</th><td>    VK_FORMAT_ASTC_12x10_UNORM_BLOCK = <var>181</var>,&nbsp</td></tr>
+<tr><th id="205">205</th><td>    VK_FORMAT_ASTC_12x10_SRGB_BLOCK = <var>182</var>,&nbsp</td></tr>
+<tr><th id="206">206</th><td>    VK_FORMAT_ASTC_12x12_UNORM_BLOCK = <var>183</var>,&nbsp</td></tr>
+<tr><th id="207">207</th><td>    VK_FORMAT_ASTC_12x12_SRGB_BLOCK = <var>184</var>,&nbsp</td></tr>
+<tr><th id="208">208</th><td>    VK_FORMAT_G8B8G8R8_422_UNORM = <var>1000156000</var>,&nbsp</td></tr>
+<tr><th id="209">209</th><td>    VK_FORMAT_B8G8R8G8_422_UNORM = <var>1000156001</var>,&nbsp</td></tr>
+<tr><th id="210">210</th><td>    VK_FORMAT_G8_B8_R8_3PLANE_420_UNORM = <var>1000156002</var>,&nbsp</td></tr>
+<tr><th id="211">211</th><td>    VK_FORMAT_G8_B8R8_2PLANE_420_UNORM = <var>1000156003</var>,&nbsp</td></tr>
+<tr><th id="212">212</th><td>    VK_FORMAT_G8_B8_R8_3PLANE_422_UNORM = <var>1000156004</var>,&nbsp</td></tr>
+<tr><th id="213">213</th><td>    VK_FORMAT_G8_B8R8_2PLANE_422_UNORM = <var>1000156005</var>,&nbsp</td></tr>
+<tr><th id="214">214</th><td>    VK_FORMAT_G8_B8_R8_3PLANE_444_UNORM = <var>1000156006</var>,&nbsp</td></tr>
+<tr><th id="215">215</th><td>    VK_FORMAT_R10X6_UNORM_PACK16 = <var>1000156007</var>,&nbsp</td></tr>
+<tr><th id="216">216</th><td>    VK_FORMAT_R10X6G10X6_UNORM_2PACK16 = <var>1000156008</var>,&nbsp</td></tr>
+<tr><th id="217">217</th><td>    VK_FORMAT_R10X6G10X6B10X6A10X6_UNORM_4PACK16 = <var>1000156009</var>,&nbsp</td></tr>
+<tr><th id="218">218</th><td>    VK_FORMAT_G10X6B10X6G10X6R10X6_422_UNORM_4PACK16 = <var>1000156010</var>,&nbsp</td></tr>
+<tr><th id="219">219</th><td>    VK_FORMAT_B10X6G10X6R10X6G10X6_422_UNORM_4PACK16 = <var>1000156011</var>,&nbsp</td></tr>
+<tr><th id="220">220</th><td>    VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_420_UNORM_3PACK16 = <var>1000156012</var>,&nbsp</td></tr>
+<tr><th id="221">221</th><td>    VK_FORMAT_G10X6_B10X6R10X6_2PLANE_420_UNORM_3PACK16 = <var>1000156013</var>,&nbsp</td></tr>
+<tr><th id="222">222</th><td>    VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_422_UNORM_3PACK16 = <var>1000156014</var>,&nbsp</td></tr>
+<tr><th id="223">223</th><td>    VK_FORMAT_G10X6_B10X6R10X6_2PLANE_422_UNORM_3PACK16 = <var>1000156015</var>,&nbsp</td></tr>
+<tr><th id="224">224</th><td>    VK_FORMAT_G10X6_B10X6_R10X6_3PLANE_444_UNORM_3PACK16 = <var>1000156016</var>,&nbsp</td></tr>
+<tr><th id="225">225</th><td>    VK_FORMAT_R12X4_UNORM_PACK16 = <var>1000156017</var>,&nbsp</td></tr>
+<tr><th id="226">226</th><td>    VK_FORMAT_R12X4G12X4_UNORM_2PACK16 = <var>1000156018</var>,&nbsp</td></tr>
+<tr><th id="227">227</th><td>    VK_FORMAT_R12X4G12X4B12X4A12X4_UNORM_4PACK16 = <var>1000156019</var>,&nbsp</td></tr>
+<tr><th id="228">228</th><td>    VK_FORMAT_G12X4B12X4G12X4R12X4_422_UNORM_4PACK16 = <var>1000156020</var>,&nbsp</td></tr>
+<tr><th id="229">229</th><td>    VK_FORMAT_B12X4G12X4R12X4G12X4_422_UNORM_4PACK16 = <var>1000156021</var>,&nbsp</td></tr>
+<tr><th id="230">230</th><td>    VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_420_UNORM_3PACK16 = <var>1000156022</var>,&nbsp</td></tr>
+<tr><th id="231">231</th><td>    VK_FORMAT_G12X4_B12X4R12X4_2PLANE_420_UNORM_3PACK16 = <var>1000156023</var>,&nbsp</td></tr>
+<tr><th id="232">232</th><td>    VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_422_UNORM_3PACK16 = <var>1000156024</var>,&nbsp</td></tr>
+<tr><th id="233">233</th><td>    VK_FORMAT_G12X4_B12X4R12X4_2PLANE_422_UNORM_3PACK16 = <var>1000156025</var>,&nbsp</td></tr>
+<tr><th id="234">234</th><td>    VK_FORMAT_G12X4_B12X4_R12X4_3PLANE_444_UNORM_3PACK16 = <var>1000156026</var>,&nbsp</td></tr>
+<tr><th id="235">235</th><td>    VK_FORMAT_G16B16G16R16_422_UNORM = <var>1000156027</var>,&nbsp</td></tr>
+<tr><th id="236">236</th><td>    VK_FORMAT_B16G16R16G16_422_UNORM = <var>1000156028</var>,&nbsp</td></tr>
+<tr><th id="237">237</th><td>    VK_FORMAT_G16_B16_R16_3PLANE_420_UNORM = <var>1000156029</var>,&nbsp</td></tr>
+<tr><th id="238">238</th><td>    VK_FORMAT_G16_B16R16_2PLANE_420_UNORM = <var>1000156030</var>,&nbsp</td></tr>
+<tr><th id="239">239</th><td>    VK_FORMAT_G16_B16_R16_3PLANE_422_UNORM = <var>1000156031</var>,&nbsp</td></tr>
+<tr><th id="240">240</th><td>    VK_FORMAT_G16_B16R16_2PLANE_422_UNORM = <var>1000156032</var>,&nbsp</td></tr>
+<tr><th id="241">241</th><td>    VK_FORMAT_G16_B16_R16_3PLANE_444_UNORM = <var>1000156033</var>,&nbsp</td></tr>
+<tr><th id="242">242</th><td>    VK_FORMAT_G8_B8R8_2PLANE_444_UNORM = <var>1000330000</var>,&nbsp</td></tr>
+<tr><th id="243">243</th><td>    VK_FORMAT_G10X6_B10X6R10X6_2PLANE_444_UNORM_3PACK16 = <var>1000330001</var>,&nbsp</td></tr>
+<tr><th id="244">244</th><td>    VK_FORMAT_G12X4_B12X4R12X4_2PLANE_444_UNORM_3PACK16 = <var>1000330002</var>,&nbsp</td></tr>
+<tr><th id="245">245</th><td>    VK_FORMAT_G16_B16R16_2PLANE_444_UNORM = <var>1000330003</var>,&nbsp</td></tr>
+<tr><th id="246">246</th><td>    VK_FORMAT_A4R4G4B4_UNORM_PACK16 = <var>1000340000</var>,&nbsp</td></tr>
+<tr><th id="247">247</th><td>    VK_FORMAT_A4B4G4R4_UNORM_PACK16 = <var>1000340001</var>,&nbsp</td></tr>
+<tr><th id="248">248</th><td>    VK_FORMAT_ASTC_4x4_SFLOAT_BLOCK = <var>1000066000</var>,&nbsp</td></tr>
+<tr><th id="249">249</th><td>    VK_FORMAT_ASTC_5x4_SFLOAT_BLOCK = <var>1000066001</var>,&nbsp</td></tr>
+<tr><th id="250">250</th><td>    VK_FORMAT_ASTC_5x5_SFLOAT_BLOCK = <var>1000066002</var>,&nbsp</td></tr>
+<tr><th id="251">251</th><td>    VK_FORMAT_ASTC_6x5_SFLOAT_BLOCK = <var>1000066003</var>,&nbsp</td></tr>
+<tr><th id="252">252</th><td>    VK_FORMAT_ASTC_6x6_SFLOAT_BLOCK = <var>1000066004</var>,&nbsp</td></tr>
+<tr><th id="253">253</th><td>    VK_FORMAT_ASTC_8x5_SFLOAT_BLOCK = <var>1000066005</var>,&nbsp</td></tr>
+<tr><th id="254">254</th><td>    VK_FORMAT_ASTC_8x6_SFLOAT_BLOCK = <var>1000066006</var>,&nbsp</td></tr>
+<tr><th id="255">255</th><td>    VK_FORMAT_ASTC_8x8_SFLOAT_BLOCK = <var>1000066007</var>,&nbsp</td></tr>
+<tr><th id="256">256</th><td>    VK_FORMAT_ASTC_10x5_SFLOAT_BLOCK = <var>1000066008</var>,&nbsp</td></tr>
+<tr><th id="257">257</th><td>    VK_FORMAT_ASTC_10x6_SFLOAT_BLOCK = <var>1000066009</var>,&nbsp</td></tr>
+<tr><th id="258">258</th><td>    VK_FORMAT_ASTC_10x8_SFLOAT_BLOCK = <var>1000066010</var>,&nbsp</td></tr>
+<tr><th id="259">259</th><td>    VK_FORMAT_ASTC_10x10_SFLOAT_BLOCK = <var>1000066011</var>,&nbsp</td></tr>
+<tr><th id="260">260</th><td>    VK_FORMAT_ASTC_12x10_SFLOAT_BLOCK = <var>1000066012</var>,&nbsp</td></tr>
+<tr><th id="261">261</th><td>    VK_FORMAT_ASTC_12x12_SFLOAT_BLOCK = <var>1000066013</var>,&nbsp</td></tr>
+<tr><th id="262">262</th><td>    VK_FORMAT_PVRTC1_2BPP_UNORM_BLOCK_IMG = <var>1000054000</var>,&nbsp</td></tr>
+<tr><th id="263">263</th><td>    VK_FORMAT_PVRTC1_4BPP_UNORM_BLOCK_IMG = <var>1000054001</var>,&nbsp</td></tr>
+<tr><th id="264">264</th><td>    VK_FORMAT_PVRTC2_2BPP_UNORM_BLOCK_IMG = <var>1000054002</var>,&nbsp</td></tr>
+<tr><th id="265">265</th><td>    VK_FORMAT_PVRTC2_4BPP_UNORM_BLOCK_IMG = <var>1000054003</var>,&nbsp</td></tr>
+<tr><th id="266">266</th><td>    VK_FORMAT_PVRTC1_2BPP_SRGB_BLOCK_IMG = <var>1000054004</var>,&nbsp</td></tr>
+<tr><th id="267">267</th><td>    VK_FORMAT_PVRTC1_4BPP_SRGB_BLOCK_IMG = <var>1000054005</var>,&nbsp</td></tr>
+<tr><th id="268">268</th><td>    VK_FORMAT_PVRTC2_2BPP_SRGB_BLOCK_IMG = <var>1000054006</var>,&nbsp</td></tr>
+<tr><th id="269">269</th><td>    VK_FORMAT_PVRTC2_4BPP_SRGB_BLOCK_IMG = <var>1000054007</var>,&nbsp</td></tr>
+<tr><th id="270">270</th><td>    VK_FORMAT_ASTC_3x3x3_UNORM_BLOCK_EXT = <var>1000288000</var>,&nbsp</td></tr>
+<tr><th id="271">271</th><td>    VK_FORMAT_ASTC_3x3x3_SRGB_BLOCK_EXT = <var>1000288001</var>,&nbsp</td></tr>
+<tr><th id="272">272</th><td>    VK_FORMAT_ASTC_3x3x3_SFLOAT_BLOCK_EXT = <var>1000288002</var>,&nbsp</td></tr>
+<tr><th id="273">273</th><td>    VK_FORMAT_ASTC_4x3x3_UNORM_BLOCK_EXT = <var>1000288003</var>,&nbsp</td></tr>
+<tr><th id="274">274</th><td>    VK_FORMAT_ASTC_4x3x3_SRGB_BLOCK_EXT = <var>1000288004</var>,&nbsp</td></tr>
+<tr><th id="275">275</th><td>    VK_FORMAT_ASTC_4x3x3_SFLOAT_BLOCK_EXT = <var>1000288005</var>,&nbsp</td></tr>
+<tr><th id="276">276</th><td>    VK_FORMAT_ASTC_4x4x3_UNORM_BLOCK_EXT = <var>1000288006</var>,&nbsp</td></tr>
+<tr><th id="277">277</th><td>    VK_FORMAT_ASTC_4x4x3_SRGB_BLOCK_EXT = <var>1000288007</var>,&nbsp</td></tr>
+<tr><th id="278">278</th><td>    VK_FORMAT_ASTC_4x4x3_SFLOAT_BLOCK_EXT = <var>1000288008</var>,&nbsp</td></tr>
+<tr><th id="279">279</th><td>    VK_FORMAT_ASTC_4x4x4_UNORM_BLOCK_EXT = <var>1000288009</var>,&nbsp</td></tr>
+<tr><th id="280">280</th><td>    VK_FORMAT_ASTC_4x4x4_SRGB_BLOCK_EXT = <var>1000288010</var>,&nbsp</td></tr>
+<tr><th id="281">281</th><td>    VK_FORMAT_ASTC_4x4x4_SFLOAT_BLOCK_EXT = <var>1000288011</var>,&nbsp</td></tr>
+<tr><th id="282">282</th><td>    VK_FORMAT_ASTC_5x4x4_UNORM_BLOCK_EXT = <var>1000288012</var>,&nbsp</td></tr>
+<tr><th id="283">283</th><td>    VK_FORMAT_ASTC_5x4x4_SRGB_BLOCK_EXT = <var>1000288013</var>,&nbsp</td></tr>
+<tr><th id="284">284</th><td>    VK_FORMAT_ASTC_5x4x4_SFLOAT_BLOCK_EXT = <var>1000288014</var>,&nbsp</td></tr>
+<tr><th id="285">285</th><td>    VK_FORMAT_ASTC_5x5x4_UNORM_BLOCK_EXT = <var>1000288015</var>,&nbsp</td></tr>
+<tr><th id="286">286</th><td>    VK_FORMAT_ASTC_5x5x4_SRGB_BLOCK_EXT = <var>1000288016</var>,&nbsp</td></tr>
+<tr><th id="287">287</th><td>    VK_FORMAT_ASTC_5x5x4_SFLOAT_BLOCK_EXT = <var>1000288017</var>,&nbsp</td></tr>
+<tr><th id="288">288</th><td>    VK_FORMAT_ASTC_5x5x5_UNORM_BLOCK_EXT = <var>1000288018</var>,&nbsp</td></tr>
+<tr><th id="289">289</th><td>    VK_FORMAT_ASTC_5x5x5_SRGB_BLOCK_EXT = <var>1000288019</var>,&nbsp</td></tr>
+<tr><th id="290">290</th><td>    VK_FORMAT_ASTC_5x5x5_SFLOAT_BLOCK_EXT = <var>1000288020</var>,&nbsp</td></tr>
+<tr><th id="291">291</th><td>    VK_FORMAT_ASTC_6x5x5_UNORM_BLOCK_EXT = <var>1000288021</var>,&nbsp</td></tr>
+<tr><th id="292">292</th><td>    VK_FORMAT_ASTC_6x5x5_SRGB_BLOCK_EXT = <var>1000288022</var>,&nbsp</td></tr>
+<tr><th id="293">293</th><td>    VK_FORMAT_ASTC_6x5x5_SFLOAT_BLOCK_EXT = <var>1000288023</var>,&nbsp</td></tr>
+<tr><th id="294">294</th><td>    VK_FORMAT_ASTC_6x6x5_UNORM_BLOCK_EXT = <var>1000288024</var>,&nbsp</td></tr>
+<tr><th id="295">295</th><td>    VK_FORMAT_ASTC_6x6x5_SRGB_BLOCK_EXT = <var>1000288025</var>,&nbsp</td></tr>
+<tr><th id="296">296</th><td>    VK_FORMAT_ASTC_6x6x5_SFLOAT_BLOCK_EXT = <var>1000288026</var>,&nbsp</td></tr>
+<tr><th id="297">297</th><td>    VK_FORMAT_ASTC_6x6x6_UNORM_BLOCK_EXT = <var>1000288027</var>,&nbsp</td></tr>
+<tr><th id="298">298</th><td>    VK_FORMAT_ASTC_6x6x6_SRGB_BLOCK_EXT = <var>1000288028</var>,&nbsp</td></tr>
+<tr><th id="299">299</th><td>    VK_FORMAT_ASTC_6x6x6_SFLOAT_BLOCK_EXT = <var>1000288029</var>,&nbsp</td></tr>
+<tr><th id="300">300</th><td>    VK_FORMAT_R16G16_SFIXED5_NV = <var>1000464000</var>,&nbsp</td></tr>
+<tr><th id="301">301</th><td>    VK_FORMAT_A1B5G5R5_UNORM_PACK16_KHR = <var>1000470000</var>,&nbsp</td></tr>
+<tr><th id="302">302</th><td>    VK_FORMAT_A8_UNORM_KHR = <var>1000470001</var>,&nbsp</td></tr>
+<tr><th id="303">303</th><td>    VK_FORMAT_MAX_ENUM = <var>0x7FFFFFFF</var>&nbsp</td></tr>
+<tr><th id="304">304</th><td>} VkFormat;&nbsp</td></tr>
+<tr><th id="305">305</th><td><u>#if defined(_MSC_VER) &amp;&amp; _MSC_VER &lt; 1900 // Older than VS 2015.</u>&nbsp</td></tr>
+<tr><th id="306">306</th><td><b>typedef</b> <em>unsigned</em> __int32 VkFlags;&nbsp</td></tr>
+<tr><th id="307">307</th><td><u>#else</u>&nbsp</td></tr>
+<tr><th id="308">308</th><td><u>#include &lt;stdint.h&gt;</u>&nbsp</td></tr>
+<tr><th id="309">309</th><td><b>typedef</b> uint64_t VkFlags64;&nbsp</td></tr>
+<tr><th id="310">310</th><td><u>#endif</u>&nbsp</td></tr>
+<tr><th id="311">311</th><td>&nbsp</td></tr>
+<tr><th id="312">312</th><td>&nbsp</td></tr>
+<tr><th id="313">313</th><td><u>#define VK_FORMAT_MAX_STANDARD_ENUM 184</u>&nbsp</td></tr>
+<tr><th id="314">314</th><td>&nbsp</td></tr>
+<tr><th id="315">315</th><td><u>#<span data-ppcond="2">endif</span> /* _VKFORMAT_ENUM_H_ */</u>&nbsp</td></tr>
+<tr><th id="316">316</th><td><i>// clang-format on</i>&nbsp</td></tr>
+<tr><th id="317">317</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Src/tImageKTX.cpp.html'>Modules/Image/Src/tImageKTX.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

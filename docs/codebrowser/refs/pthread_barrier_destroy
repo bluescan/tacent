@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1260' type='int pthread_barrier_destroy(pthread_barrier_t * __barrier)'/>
+<doc f='include/pthread.h' l='1259'>/* Destroy a previously dynamically initialized barrier BARRIER.  */</doc>

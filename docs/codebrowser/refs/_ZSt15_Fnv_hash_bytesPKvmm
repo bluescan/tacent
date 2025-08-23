@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/hash_bytes.h' l='54' type='std::size_t std::_Fnv_hash_bytes(const void * __ptr, std::size_t __len, std::size_t __seed)'/>
+<use f='include/c++/11/bits/functional_hash.h' l='217' u='c' c='_ZNSt14_Fnv_hash_impl4hashEPKvmm'/>
+<doc f='include/c++/11/bits/hash_bytes.h' l='49'>// A similar hash primitive, using the FNV hash algorithm. This
+  // algorithm is guaranteed to stay the same from release to release.
+  // (although it might not produce the same values on different
+  // machines.)</doc>

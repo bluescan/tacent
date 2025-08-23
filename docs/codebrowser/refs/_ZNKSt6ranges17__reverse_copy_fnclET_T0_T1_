@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='1335' ll='1347' type='reverse_copy_result&lt;_Iter, _Out&gt; std::ranges::__reverse_copy_fn::operator()(_Iter __first, _Sent __last, _Out __result) const'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9800' ll='9804'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9800'/>
+<size>24</size>
+<mbr r='VkSurfaceProtectedCapabilitiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSurfaceProtectedCapabilitiesKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkSurfaceProtectedCapabilitiesKHR::supportsProtected' o='128' t='VkBool32'/>

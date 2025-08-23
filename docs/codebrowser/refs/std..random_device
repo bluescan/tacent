@@ -1,0 +1,24 @@
+<def f='include/c++/11/bits/random.h' l='1610' ll='1676'/>
+<use f='include/c++/11/bits/random.h' l='1651' c='_ZNSt13random_deviceC1ERKS_'/>
+<use f='include/c++/11/bits/random.h' l='1652' c='_ZNSt13random_deviceaSERKS_'/>
+<size>5000</size>
+<doc f='include/c++/11/bits/random.h' l='1606'>/**
+   * A standard interface to a platform-specific non-deterministic
+   * random number generator (if any are available).
+   */</doc>
+<fun r='_ZNSt13random_deviceC1Ev'/>
+<fun r='_ZNSt13random_deviceC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt13random_deviceD1Ev'/>
+<fun r='_ZNSt13random_device3minEv'/>
+<fun r='_ZNSt13random_device3maxEv'/>
+<fun r='_ZNKSt13random_device7entropyEv'/>
+<fun r='_ZNSt13random_deviceclEv'/>
+<fun r='_ZNSt13random_deviceC1ERKS_'/>
+<fun r='_ZNSt13random_deviceaSERKS_'/>
+<fun r='_ZNSt13random_device7_M_initERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt13random_device14_M_init_pretr1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt13random_device7_M_finiEv'/>
+<fun r='_ZNSt13random_device9_M_getvalEv'/>
+<fun r='_ZNSt13random_device16_M_getval_pretr1Ev'/>
+<fun r='_ZNKSt13random_device13_M_getentropyEv'/>
+<fun r='_ZNSt13random_device7_M_initEPKcm'/>

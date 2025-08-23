@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10683' ll='10692'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10683'/>
+<size>40</size>
+<mbr r='VkPhysicalDeviceMaintenance5PropertiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMaintenance5PropertiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMaintenance5PropertiesKHR::earlyFragmentMultisampleCoverageAfterSampleCounting' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMaintenance5PropertiesKHR::earlyFragmentSampleMaskTestBeforeSampleCounting' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMaintenance5PropertiesKHR::depthStencilSwizzleOneSupport' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMaintenance5PropertiesKHR::polygonModePointSize' o='224' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMaintenance5PropertiesKHR::nonStrictSinglePixelWideLinesUseParallelogram' o='256' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMaintenance5PropertiesKHR::nonStrictWideLinesUseParallelogram' o='288' t='VkBool32'/>

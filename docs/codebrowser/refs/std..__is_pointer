@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/cpp_type_traits.h' l='320' ll='324'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='326' ll='331'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='346'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1209' c='_ZSt12__equal_aux1T_S_T0_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1372' c='_ZSt30__lexicographical_compare_aux1T_S_T0_S0_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1373' c='_ZSt30__lexicographical_compare_aux1T_S_T0_S0_'/>
+<use f='include/c++/11/bits/deque.tcc' l='1276' c='_ZSt13__lex_cmp_ditSt15_Deque_iteratorIT_T0_T1_ES3_PKT2_S6_'/>
+<use f='include/c++/11/bits/deque.tcc' l='1332' c='_ZSt30__lexicographical_compare_aux1St15_Deque_iteratorIT_T0_T1_ES3_S_IT2_T3_T4_ES7_'/>
+<use f='include/c++/11/bits/deque.tcc' l='1333' c='_ZSt30__lexicographical_compare_aux1St15_Deque_iteratorIT_T0_T1_ES3_S_IT2_T3_T4_ES7_'/>

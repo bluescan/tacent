@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='91' ll='93' type='void std::__throw_bad_weak_ptr()'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='154' u='c' c='_ZNSt16_Sp_counted_base15_M_add_ref_lockEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='873' u='c' c='_ZNSt14__shared_countC1ERKSt12__weak_countIXT_EE'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='90'>// Substitute for bad_weak_ptr object in the case of -fno-exceptions.</doc>

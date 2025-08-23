@@ -1,0 +1,22 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='340' type='void tColour4b::tColour4b(const tColour4b &amp; c)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='439' u='c' c='_ZNK9tColour4bmlEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='439' u='c' c='_ZNK9tColour4bmlEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='441' u='c' c='_ZNK9tColour4bplERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='441' u='c' c='_ZNK9tColour4bplERKS_'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='84' u='c' c='_ZNK6tImage6tLayer8GetPixelEii'/>
+<use f='Modules/Image/Inc/Image/tImageWEBP.h' l='110' u='c'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='148' u='c' c='_ZNK6tImage8tPicture8GetPixelEii'/>
+<use f='Modules/System/Inc/System/tScript.h' l='133' u='c' c='_ZNK11tExpressioncv9tColour4bEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='217' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tResample.cpp' l='245' u='c' c='_ZN6tImage19KernelFilterNearestEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='271' u='c' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='282' u='c' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='318' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='319' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='397' u='c' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='445' u='c' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='419' u='c' c='_ZN5tMath10tGetColourEPKc'/>
+<use f='Modules/Math/Src/tColour.cpp' l='429' u='c' c='_ZN5tMath10tGetColourEPKc'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='51' u='c' c='_ZNK6tScene10tAttribute11GetAsColourEv'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='51' u='c' c='_ZNK6tScene10tAttribute11GetAsColourEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='417' u='c' c='_ZNK11tExpression13GetAtomColourEv'/>

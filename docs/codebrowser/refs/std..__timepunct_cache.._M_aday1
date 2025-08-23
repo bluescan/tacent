@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='84' type='const _CharT *'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='128' u='w' c='_ZNSt17__timepunct_cacheC1Em'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='83'>// Abbreviated day names, starting with &quot;C&quot;&apos;s Sun.</doc>

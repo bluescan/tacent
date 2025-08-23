@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/fs_dir.h' l='268' ll='270' type='std::filesystem::file_status std::filesystem::directory_entry::status() const'/>
+<use f='include/c++/11/bits/fs_dir.h' l='337' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry12_M_file_typeEv'/>

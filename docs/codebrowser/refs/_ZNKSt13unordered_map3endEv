@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/unordered_map.h' l='355' ll='357' type='std::unordered_map::const_iterator std::unordered_map::end() const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='351'>/**
+       *  Returns a read-only (constant) iterator that points one past the last
+       *  element in the %unordered_map.
+       */</doc>

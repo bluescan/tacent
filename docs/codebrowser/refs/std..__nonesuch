@@ -1,0 +1,8 @@
+<inh f='include/c++/11/type_traits' l='2990' c='std::__nonesuchbase'/>
+<def f='include/c++/11/type_traits' l='2991' ll='2995'/>
+<use f='include/c++/11/type_traits' l='2993' c='_ZNSt10__nonesuchC1ERKS_'/>
+<use f='include/c++/11/type_traits' l='2994' c='_ZNSt10__nonesuchaSERKS_'/>
+<size>1</size>
+<fun r='_ZNSt10__nonesuchD1Ev'/>
+<fun r='_ZNSt10__nonesuchC1ERKS_'/>
+<fun r='_ZNSt10__nonesuchaSERKS_'/>

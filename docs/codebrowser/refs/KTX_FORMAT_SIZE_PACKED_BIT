@@ -1,0 +1,14 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/formatsize.h' l='25' type='1'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1784' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1792' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1800' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1808' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1816' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1824' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1832' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1840' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1848' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1856' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1864' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1872' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1881' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>

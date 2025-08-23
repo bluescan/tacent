@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/time.h' l='189' type='int lutimes(const char * __file, const struct timeval * __tvp)'/>
+<doc f='include/x86_64-linux-gnu/sys/time.h' l='188'>/* Same as `utimes&apos;, but does not follow symbolic links.  */</doc>

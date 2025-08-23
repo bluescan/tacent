@@ -1,0 +1,37 @@
+<def f='include/c++/11/bits/random.h' l='3750' ll='3796'/>
+<use f='include/c++/11/bits/random.h' l='3755' c='_ZNSt21binomial_distribution10param_typeC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='3776' c='_ZSteqRKNSt21binomial_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='3776' c='_ZSteqRKNSt21binomial_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='3780' c='_ZStneRKNSt21binomial_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='3780' c='_ZStneRKNSt21binomial_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='3808' c='_ZNSt21binomial_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3836' c='_ZNKSt21binomial_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='3845' c='_ZNSt21binomial_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3873' c='_ZNSt21binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3887' c='_ZNSt21binomial_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3894' c='_ZNSt21binomial_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3949' c='_ZNSt21binomial_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3956'/>
+<use f='include/c++/11/bits/random.tcc' l='1559' c='_ZNSt21binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1680' c='_ZNSt21binomial_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<doc f='include/c++/11/bits/random.h' l='3749'>/** Parameter type. */</doc>
+<fun r='_ZNSt21binomial_distribution10param_typeC1Ev'/>
+<fun r='_ZNSt21binomial_distribution10param_typeC1ET_d'/>
+<fun r='_ZNKSt21binomial_distribution10param_type1tEv'/>
+<fun r='_ZNKSt21binomial_distribution10param_type1pEv'/>
+<fun r='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>
+<mbr r='std::binomial_distribution::param_type::_M_t' t='_IntType'/>
+<mbr r='std::binomial_distribution::param_type::_M_p' t='double'/>
+<mbr r='std::binomial_distribution::param_type::_M_q' t='double'/>
+<mbr r='std::binomial_distribution::param_type::_M_d1' t='double'/>
+<mbr r='std::binomial_distribution::param_type::_M_d2' t='double'/>
+<mbr r='std::binomial_distribution::param_type::_M_s1' t='double'/>
+<mbr r='std::binomial_distribution::param_type::_M_s2' t='double'/>
+<mbr r='std::binomial_distribution::param_type::_M_c' t='double'/>
+<mbr r='std::binomial_distribution::param_type::_M_a1' t='double'/>
+<mbr r='std::binomial_distribution::param_type::_M_a123' t='double'/>
+<mbr r='std::binomial_distribution::param_type::_M_s' t='double'/>
+<mbr r='std::binomial_distribution::param_type::_M_lf' t='double'/>
+<mbr r='std::binomial_distribution::param_type::_M_lp1p' t='double'/>
+<mbr r='std::binomial_distribution::param_type::_M_easy' t='bool'/>
+<fun r='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>

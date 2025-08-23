@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='404' type='28'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='405'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='668' u='r' c='_ZN6tImage13tIsPrintRatioENS_12tAspectRatioE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='402'>// Print sizes listed by lower of the two dimensions and ordered by the lower size.
+	// L means landscape.</doc>

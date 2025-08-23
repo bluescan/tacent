@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='396' type='void tMath::tAdd(tMath::tVec4 &amp; v, const tMath::tVec4 &amp; a)'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='77' u='c' c='_ZN5tMath8tVector4pLERKNS_5tVec4E'/>

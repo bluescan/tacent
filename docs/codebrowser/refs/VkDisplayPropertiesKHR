@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7913' ll='7921'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7913'/>
+<size>48</size>
+<mbr r='VkDisplayPropertiesKHR::display' o='0' t='VkDisplayKHR'/>
+<mbr r='VkDisplayPropertiesKHR::displayName' o='64' t='const char *'/>
+<mbr r='VkDisplayPropertiesKHR::physicalDimensions' o='128' t='VkExtent2D'/>
+<mbr r='VkDisplayPropertiesKHR::physicalResolution' o='192' t='VkExtent2D'/>
+<mbr r='VkDisplayPropertiesKHR::supportedTransforms' o='256' t='VkSurfaceTransformFlagsKHR'/>
+<mbr r='VkDisplayPropertiesKHR::planeReorderPossible' o='288' t='VkBool32'/>
+<mbr r='VkDisplayPropertiesKHR::persistentContent' o='320' t='VkBool32'/>

@@ -1,0 +1,4 @@
+_ZNKSt11unique_lock9owns_lockEv|std::unique_lock::owns_lock
+_ZNK7tItList4OwnsEv|tItList::Owns
+_ZNK5tList4OwnsEv|tList::Owns
+_ZNK6tsList4OwnsEv|tsList::Owns

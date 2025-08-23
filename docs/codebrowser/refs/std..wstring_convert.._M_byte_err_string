@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/locale_conv.h' l='280' u='w' c='_ZNSt7__cxx1115wstring_convertC1ERKNS_12basic_stringIcSt11char_traitsIcET2_EERKNS1_IT0_S2_IS8_ET1_EE'/>
+<use f='include/c++/11/bits/locale_conv.h' l='354' u='c' c='_ZNSt7__cxx1115wstring_convert8to_bytesEPKT0_S3_'/>
+<use f='include/c++/11/bits/locale_conv.h' l='359' u='r' c='_ZNSt7__cxx1115wstring_convert8to_bytesEPKT0_S3_'/>
+<dec f='include/c++/11/bits/locale_conv.h' l='374' type='std::wstring_convert::byte_string'/>

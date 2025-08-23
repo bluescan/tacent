@@ -1,0 +1,6 @@
+<def f='include/c++/11/chrono' l='2784' ll='2786' type='chrono::year std::chrono::year_month_weekday::year() const'/>
+<use f='include/c++/11/chrono' l='2807' u='c' c='_ZNKSt6chrono18year_month_weekdaycvNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2834' u='c' c='_ZNSt6chronoeqERKNS_18year_month_weekdayES2_'/>
+<use f='include/c++/11/chrono' l='2834' u='c' c='_ZNSt6chronoeqERKNS_18year_month_weekdayES2_'/>
+<use f='include/c++/11/chrono' l='2843' u='c' c='_ZNSt6chronoplERKNS_18year_month_weekdayERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2854' u='c' c='_ZNSt6chronoplERKNS_18year_month_weekdayERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>

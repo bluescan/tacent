@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='319' type='void std::inplace_merge(_BIter , _BIter , _BIter , _Compare )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='2607' ll='2625' type='void std::inplace_merge(_BidirectionalIterator __first, _BidirectionalIterator __middle, _BidirectionalIterator __last, _Compare __comp)'/>

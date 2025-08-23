@@ -1,0 +1,9 @@
+<use f='include/c++/11/sstream' l='245' u='c' c='_ZNKRSt7__cxx1115basic_stringbuf3strEv'/>
+<use f='include/c++/11/sstream' l='266' u='c' c='_ZNOSt7__cxx1115basic_stringbuf3strEv'/>
+<use f='include/c++/11/sstream' l='269' u='c' c='_ZNOSt7__cxx1115basic_stringbuf3strEv'/>
+<use f='include/c++/11/sstream' l='280' u='c' c='_ZNKSt7__cxx1115basic_stringbuf4viewEv'/>
+<def f='include/c++/11/sstream' l='428' ll='441' type='std::basic_stringbuf::char_type * std::basic_stringbuf::_M_high_mark() const'/>
+<doc f='include/c++/11/sstream' l='424'>// Return a pointer to the end of the underlying character sequence.
+      // This might not be the same character as _M_string.end() because
+      // basic_stringbuf::overflow might have written to unused capacity
+      // in _M_string without updating its length.</doc>

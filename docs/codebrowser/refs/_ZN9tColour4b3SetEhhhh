@@ -1,0 +1,5 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='343' u='c' c='_ZN9tColour4bC1Ehhhh'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='356' type='void tColour4b::Set(uint8 r, uint8 g, uint8 b, uint8 a = 255)'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='594' u='c' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='195' u='c' c='_ZN6tImage13tPaletteImage3GetEP9tColour4b'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='147' u='c' c='_ZN6tImage9tQuantize15ConvertToPixelsEP9tColour4biiPK9tColour3bPKhb'/>

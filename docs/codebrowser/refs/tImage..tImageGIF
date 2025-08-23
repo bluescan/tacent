@@ -1,0 +1,13 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='54' c='tImage::tBaseImage'/>
+<def f='Modules/Image/Inc/Image/tImageGIF.h' l='27' ll='143'/>
+<use f='Modules/Image/Inc/Image/tImageGIF.h' l='151' c='_ZN6tImage9tImageGIF23FrameLoadCallbackBridgeEPvPNS_8GIF_WHDRE'/>
+<use f='Modules/Image/Inc/Image/tImageGIF.h' l='151' c='_ZN6tImage9tImageGIF23FrameLoadCallbackBridgeEPvPNS_8GIF_WHDRE'/>
+<size>96</size>
+<fun r='_ZN6tImage9tImageGIFD1Ev'/>
+<fun r='_ZN6tImage9tImageGIF3SetEP9tColour4biib'/>
+<fun r='_ZN6tImage9tImageGIF3SetEPNS_6tFrameEb'/>
+<fun r='_ZN6tImage9tImageGIF3SetERNS_8tPictureEb'/>
+<fun r='_ZN6tImage9tImageGIF5ClearEv'/>
+<fun r='_ZNK6tImage9tImageGIF7IsValidEv'/>
+<fun r='_ZN6tImage9tImageGIF8GetFrameEb'/>
+<fun r='_ZN6tImage9tImageGIF5ClearEv'/>

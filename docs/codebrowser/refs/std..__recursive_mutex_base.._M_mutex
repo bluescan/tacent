@@ -1,0 +1,12 @@
+<dec f='include/c++/11/mutex' l='76' type='std::__recursive_mutex_base::__native_type'/>
+<use f='include/c++/11/mutex' l='108' u='a' c='_ZNSt15recursive_mutex4lockEv'/>
+<use f='include/c++/11/mutex' l='119' u='a' c='_ZNSt15recursive_mutex8try_lockEv'/>
+<use f='include/c++/11/mutex' l='126' u='a' c='_ZNSt15recursive_mutex6unlockEv'/>
+<use f='include/c++/11/mutex' l='131' u='a' c='_ZNSt15recursive_mutex13native_handleEv'/>
+<use f='include/c++/11/mutex' l='293' u='a' c='_ZNSt21recursive_timed_mutex4lockEv'/>
+<use f='include/c++/11/mutex' l='304' u='a' c='_ZNSt21recursive_timed_mutex8try_lockEv'/>
+<use f='include/c++/11/mutex' l='321' u='a' c='_ZNSt21recursive_timed_mutex6unlockEv'/>
+<use f='include/c++/11/mutex' l='326' u='a' c='_ZNSt21recursive_timed_mutex13native_handleEv'/>
+<use f='include/c++/11/mutex' l='333' u='a' c='_ZNSt21recursive_timed_mutex12_M_timedlockERK8timespec'/>
+<use f='include/c++/11/mutex' l='338' u='a' c='_ZNSt21recursive_timed_mutex12_M_clocklockEiRK8timespec'/>
+<offset>0</offset>

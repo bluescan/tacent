@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='210' type='union (unnamed union at /mnt/c/GitHub/tacent/Modules/Image/Contrib/WebP/include/./decode.h:207:3)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='139' u='m' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<offset>128</offset>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='204'>// used. If value is &apos;2&apos; or more, the external
+                             // memory is considered &apos;slow&apos; and multiple
+                             // read/write will be avoided.</doc>

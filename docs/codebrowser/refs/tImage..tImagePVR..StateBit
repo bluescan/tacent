@@ -1,0 +1,5 @@
+<def f='Modules/Image/Inc/Image/tImagePVR.h' l='106' ll='145'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='172' c='_ZNK6tImage9tImagePVR10IsStateSetENS0_8StateBitE'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='173' c='_ZN6tImage9tImagePVR12GetStateDescENS0_8StateBitE'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='233' c='_ZN6tImage9tImagePVR11SetStateBitENS0_8StateBitE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1278' c='_ZN6tImage9tImagePVR12GetStateDescENS0_8StateBitE'/>

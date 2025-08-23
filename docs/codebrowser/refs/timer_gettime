@@ -1,0 +1,2 @@
+<dec f='include/time.h' l='345' type='int timer_gettime(timer_t __timerid, struct itimerspec * __value)'/>
+<doc f='include/time.h' l='344'>/* Get current value of timer TIMERID and store it in VALUE.  */</doc>

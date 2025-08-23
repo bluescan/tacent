@@ -1,0 +1,11 @@
+<use f='Modules/Scene/Src/tMaterial.cpp' l='33' u='m' c='_ZN6tScene9tMaterial5ClearEv'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='72' u='r' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='72' u='r' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='141' u='m' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='144' u='r' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='210' u='a' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='248' u='w' c='_ZN6tScene9tMaterialaSERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='248' u='r' c='_ZN6tScene9tMaterialaSERKS0_'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='572' u='m' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='573' u='w' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='573' u='r' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>

@@ -1,0 +1,8 @@
+<inh f='include/c++/11/bits/atomic_wait.h' l='280' c='std::__detail::__waiter_base'/>
+<def f='include/c++/11/bits/atomic_wait.h' l='366' ll='411'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='413'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='414'/>
+<fun r='_ZNSt8__detail8__waiterC1EPKTL0__'/>
+<fun r='_ZNSt8__detail8__waiterD1Ev'/>
+<fun r='_ZNSt8__detail8__waiter12_M_do_wait_vETL0__TL0_0_'/>
+<fun r='_ZNSt8__detail8__waiter10_M_do_waitETL0__'/>

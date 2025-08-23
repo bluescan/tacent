@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/basic_ios.h' l='389' ll='395' type='std::basic_ios::char_type std::basic_ios::fill(std::basic_ios::char_type __ch)'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='380'>/**
+       *  @brief  Sets a new @a empty character.
+       *  @param  __ch  The new character.
+       *  @return  The previous fill character.
+       *
+       *  The fill character is used to fill out space when P+ characters
+       *  have been requested (e.g., via setw), Q characters are actually
+       *  used, and Q&lt;P.  It defaults to a space (&apos; &apos;) in the current locale.
+      */</doc>

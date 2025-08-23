@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tMachine.h' l='25' type='bool tSystem::tSupportsSSE()'/>
+<doc f='Modules/System/Inc/System/tMachine.h' l='24'>// Returns true if the processor and the OS support Streaming SIMD Extensions.</doc>
+<def f='Modules/System/Src/tMachine.cpp' l='39' ll='57' type='bool tSystem::tSupportsSSE()'/>

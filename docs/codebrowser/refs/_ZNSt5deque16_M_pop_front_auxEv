@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/stl_deque.h' l='1543' u='c' c='_ZNSt5deque9pop_frontEv'/>
+<dec f='include/c++/11/bits/stl_deque.h' l='1963' type='void std::deque::_M_pop_front_aux()'/>
+<def f='include/c++/11/bits/deque.tcc' l='575' ll='584' type='void std::deque::_M_pop_front_aux()'/>
+<doc f='include/c++/11/bits/deque.tcc' l='570'>// Called only if _M_impl._M_start._M_cur == _M_impl._M_start._M_last - 1.
+  // Note that if the deque has at least one element (a precondition for this
+  // member function), and if
+  //   _M_impl._M_start._M_cur == _M_impl._M_start._M_last,
+  // then the deque must have at least two nodes.</doc>

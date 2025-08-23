@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='55'/>
+<doc f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='54'>/* Maximum link count of a file.  */</doc>

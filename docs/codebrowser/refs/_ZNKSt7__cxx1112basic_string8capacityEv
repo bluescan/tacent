@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/basic_string.h' l='975' ll='980' type='std::basic_string::size_type std::basic_string::capacity() const'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='260' u='c' c='_ZNSt7__cxx1112basic_string9_M_assignERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='283' u='c' c='_ZNSt7__cxx1112basic_string7reserveEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='307' u='c' c='_ZNSt7__cxx1112basic_string9_M_mutateEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_SC_'/>
+<doc f='include/c++/11/bits/basic_string.h' l='971'>/**
+       *  Returns the total number of characters that the %string can hold
+       *  before needing to allocate more memory.
+       */</doc>

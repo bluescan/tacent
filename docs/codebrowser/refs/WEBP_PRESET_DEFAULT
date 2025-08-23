@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='157' type='0'/>
+<use f='Modules/Image/Contrib/WebP/include/encode.h' l='173' u='r' c='_ZL14WebPConfigInitP10WebPConfig'/>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='157'>// default preset.</doc>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14091' ll='14095'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14091'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceMemoryPriorityFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMemoryPriorityFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMemoryPriorityFeaturesEXT::memoryPriority' o='128' t='VkBool32'/>

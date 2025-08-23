@@ -1,0 +1,11 @@
+<use f='Modules/Image/Contrib/WebP/include/decode.h' l='31'/>
+<def f='Modules/Image/Contrib/WebP/include/decode.h' l='200' ll='216'/>
+<size>120</size>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='199'>// Output buffer</doc>
+<mbr r='WebPDecBuffer::colorspace' o='0' t='WEBP_CSP_MODE'/>
+<mbr r='WebPDecBuffer::width' o='32' t='int'/>
+<mbr r='WebPDecBuffer::height' o='64' t='int'/>
+<mbr r='WebPDecBuffer::is_external_memory' o='96' t='int'/>
+<mbr r='WebPDecBuffer::u' o='128' t='union (unnamed union at /mnt/c/GitHub/tacent/Modules/Image/Contrib/WebP/include/./decode.h:207:3)'/>
+<mbr r='WebPDecBuffer::pad' o='768' t='uint32_t[4]'/>
+<mbr r='WebPDecBuffer::private_memory' o='896' t='uint8_t *'/>

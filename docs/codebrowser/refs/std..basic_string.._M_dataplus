@@ -1,0 +1,19 @@
+<dec f='include/c++/11/bits/basic_string.h' l='174' type='std::basic_string::_Alloc_hider'/>
+<use f='include/c++/11/bits/basic_string.h' l='187' u='w' c='_ZNSt7__cxx1112basic_string7_M_dataEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE7pointerE'/>
+<use f='include/c++/11/bits/basic_string.h' l='195' u='r' c='_ZNKSt7__cxx1112basic_string7_M_dataEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='295' u='a' c='_ZNSt7__cxx1112basic_string16_M_get_allocatorEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='299' u='a' c='_ZNKSt7__cxx1112basic_string16_M_get_allocatorEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='441' u='w' c='_ZNSt7__cxx1112basic_stringC1Ev'/>
+<use f='include/c++/11/bits/basic_string.h' l='449' u='w' c='_ZNSt7__cxx1112basic_stringC1ERKT1_'/>
+<use f='include/c++/11/bits/basic_string.h' l='457' u='w' c='_ZNSt7__cxx1112basic_stringC1ERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.h' l='471' u='w' c='_ZNSt7__cxx1112basic_stringC1ERKNS_12basic_stringIT_T0_T1_EEN9__gnu_cxx14__alloc_traitsINSA_IS4_NS4_10value_typeEE6rebindIS2_E5otherENSE_5other10value7217046'/>
+<use f='include/c++/11/bits/basic_string.h' l='486' u='w' c='_ZNSt7__cxx1112basic_stringC1ERKNS_12basic_stringIT_T0_T1_EEN9__gnu_cxx14__alloc_traitsINSA_IS4_NS4_10value_typeEE6rebindIS2_E5otherENSE_5other10value3769144'/>
+<use f='include/c++/11/bits/basic_string.h' l='502' u='w' c='_ZNSt7__cxx1112basic_stringC1ERKNS_12basic_stringIT_T0_T1_EEN9__gnu_cxx14__alloc_traitsINSA_IS4_NS4_10value_typeEE6rebindIS2_E5otherENSE_5other10value3717343'/>
+<use f='include/c++/11/bits/basic_string.h' l='520' u='w' c='_ZNSt7__cxx1112basic_stringC1EPKT_N9__gnu_cxx14__alloc_traitsINS5_IT1_NS6_10value_typeEE6rebindIS1_E5otherENSA_5other10value_typeEE9size_typeERKS6_'/>
+<use f='include/c++/11/bits/basic_string.h' l='534' u='w' c='_ZNSt7__cxx1112basic_stringC1EPKT_RKT1_'/>
+<use f='include/c++/11/bits/basic_string.h' l='554' u='w' c='_ZNSt7__cxx1112basic_stringC1EN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeES7_RKS3_'/>
+<use f='include/c++/11/bits/basic_string.h' l='566' u='w' c='_ZNSt7__cxx1112basic_stringC1EONS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.h' l='593' u='w' c='_ZNSt7__cxx1112basic_stringC1ESt16initializer_listIT_ERKT1_'/>
+<use f='include/c++/11/bits/basic_string.h' l='597' u='w' c='_ZNSt7__cxx1112basic_stringC1ERKNS_12basic_stringIT_T0_T1_EERKS4_'/>
+<use f='include/c++/11/bits/basic_string.h' l='602' u='w' c='_ZNSt7__cxx1112basic_stringC1EONS_12basic_stringIT_T0_T1_EERKS4_'/>
+<use f='include/c++/11/bits/basic_string.h' l='640' u='w' c='_ZNSt7__cxx1112basic_stringC1ETL0__S1_RKT1_'/>

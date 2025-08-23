@@ -1,0 +1,21 @@
+<use f='include/c++/11/bits/hashtable.h' l='392' u='a'/>
+<dec f='include/c++/11/bits/hashtable.h' l='404' type='std::_Hashtable::__node_base_ptr'/>
+<use f='include/c++/11/bits/hashtable.h' l='422' u='a' c='_ZNKSt10_Hashtable21_M_uses_single_bucketENSt8__detail16_Hashtable_allocINSt23__allocator_traits_base8__rebindIT1_NS0_10_Hash_nodeIT0_Xsr13__hash_cach6251731'/>
+<use f='include/c++/11/bits/hashtable.h' l='436' u='w' c='_ZNSt10_Hashtable19_M_allocate_bucketsENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeE'/>
+<use f='include/c++/11/bits/hashtable.h' l='437' u='a' c='_ZNSt10_Hashtable19_M_allocate_bucketsENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeE'/>
+<use f='include/c++/11/bits/hashtable.h' l='1343' u='w' c='_ZNSt10_Hashtable8_M_resetEv'/>
+<use f='include/c++/11/bits/hashtable.h' l='1344' u='a' c='_ZNSt10_Hashtable8_M_resetEv'/>
+<use f='include/c++/11/bits/hashtable.h' l='1369' u='a' c='_ZNSt10_Hashtable14_M_move_assignEOSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_ESt17integral_constantIbLb1EE'/>
+<use f='include/c++/11/bits/hashtable.h' l='1370' u='w' c='_ZNSt10_Hashtable14_M_move_assignEOSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_ESt17integral_constantIbLb1EE'/>
+<use f='include/c++/11/bits/hashtable.h' l='1447' u='a' c='_ZNSt10_HashtableC1EOSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_EONSt23__allocator_traits_base8__rebindIS3_NSt8__detail10_Hash_nodeIS2_Xsr13__hash_ca7917131'/>
+<use f='include/c++/11/bits/hashtable.h' l='1448' u='w' c='_ZNSt10_HashtableC1EOSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_EONSt23__allocator_traits_base8__rebindIS3_NSt8__detail10_Hash_nodeIS2_Xsr13__hash_ca7917131'/>
+<use f='include/c++/11/bits/hashtable.h' l='1500' u='a' c='_ZNSt10_HashtableC1EOSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_EONSt23__allocator_traits_base8__rebindIS3_NSt8__detail10_Hash_nodeIS2_Xsr13__hash_ca5077237'/>
+<use f='include/c++/11/bits/hashtable.h' l='1501' u='w' c='_ZNSt10_HashtableC1EOSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_EONSt23__allocator_traits_base8__rebindIS3_NSt8__detail10_Hash_nodeIS2_Xsr13__hash_ca5077237'/>
+<use f='include/c++/11/bits/hashtable.h' l='1567' u='a' c='_ZNSt10_Hashtable4swapERSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>
+<use f='include/c++/11/bits/hashtable.h' l='1575' c='_ZNSt10_Hashtable4swapERSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>
+<doc f='include/c++/11/bits/hashtable.h' l='398'>// A single bucket used when only need for 1 bucket. Especially
+      // interesting in move semantic to leave hashtable with only 1 bucket
+      // which is not allocated so that we can have those operations noexcept
+      // qualified.
+      // Note that we can&apos;t leave hashtable with 0 bucket without adding
+      // numerous checks in the code to avoid 0 modulus.</doc>

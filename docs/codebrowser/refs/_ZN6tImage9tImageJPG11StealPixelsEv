@@ -1,0 +1,2 @@
+<def f='Modules/Image/Src/tImageJPG.cpp' l='489' ll='496' type='tPixel4b * tImage::tImageJPG::StealPixels()'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='258' u='c' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>

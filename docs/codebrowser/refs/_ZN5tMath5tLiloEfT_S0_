@@ -1,0 +1,7 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='776' type='T tMath::tLilo(float p, T A, T B)'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='80' u='c' c='_ZNK5tMath20tPiecewiseLinearPath8GetPointEf'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='81' u='c' c='_ZNK5tMath20tPiecewiseLinearPath8GetPointEf'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='82' u='c' c='_ZNK5tMath20tPiecewiseLinearPath8GetPointEf'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='113' u='c' c='_ZNK5tMath20tPiecewiseLinearPath15GetPercentPointEf'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='114' u='c' c='_ZNK5tMath20tPiecewiseLinearPath15GetPercentPointEf'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='115' u='c' c='_ZNK5tMath20tPiecewiseLinearPath15GetPercentPointEf'/>

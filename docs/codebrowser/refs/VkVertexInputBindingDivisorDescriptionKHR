@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10888' ll='10891'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10888'/>
+<size>8</size>
+<mbr r='VkVertexInputBindingDivisorDescriptionKHR::binding' o='0' t='uint32_t'/>
+<mbr r='VkVertexInputBindingDivisorDescriptionKHR::divisor' o='32' t='uint32_t'/>

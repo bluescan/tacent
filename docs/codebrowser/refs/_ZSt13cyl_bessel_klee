@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='605' ll='607' type='long double std::cyl_bessel_kl(long double __nu, long double __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='599'>/**
+   * Return the irregular modified Bessel function @f$ K_{\nu}(x) @f$
+   * for &lt;tt&gt;long double&lt;/tt&gt; order @f$ \nu @f$ and argument @f$ x &gt;= 0 @f$.
+   *
+   * @see cyl_bessel_k for setails.
+   */</doc>

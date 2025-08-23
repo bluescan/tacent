@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='533' type='void tColour4s::tColour4s(const tColour4s &amp; c)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='624' u='c' c='_ZNK9tColour4smlEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='624' u='c' c='_ZNK9tColour4smlEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='626' u='c' c='_ZNK9tColour4splERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='626' u='c' c='_ZNK9tColour4splERKS_'/>

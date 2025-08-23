@@ -1,0 +1,14 @@
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='153' u='w' c='_ZN10tBitArray83SetEi'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='154' u='r' c='_ZN10tBitArray83SetEi'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='167' u='w' c='_ZN10tBitArray83SetEPhib'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='171' u='w' c='_ZN10tBitArray83SetEPhib'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='172' u='r' c='_ZN10tBitArray83SetEPhib'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='189' u='w' c='_ZN10tBitArray83SetERKS_'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='190' u='r' c='_ZN10tBitArray83SetERKS_'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='190' u='r' c='_ZN10tBitArray83SetERKS_'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='196' u='r' c='_ZNK10tBitArray86AreAllEb'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='200' u='r' c='_ZNK10tBitArray86AreAllEb'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='210' u='r' c='_ZNK10tBitArray86AreAllEb'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='218' u='r' c='_ZNK10tBitArray89CountBitsEb'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='224' u='r' c='_ZNK10tBitArray89CountBitsEb'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='241' u='r' c='_ZNK10tBitArray817FindFirstClearBitEv'/>

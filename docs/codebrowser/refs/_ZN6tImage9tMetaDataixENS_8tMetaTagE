@@ -1,0 +1,2 @@
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='199' type='tImage::tMetaDatum &amp; tImage::tMetaData::operator[](tImage::tMetaTag tag)'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='136' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>

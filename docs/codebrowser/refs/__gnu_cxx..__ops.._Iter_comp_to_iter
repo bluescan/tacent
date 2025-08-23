@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/predefined_ops.h' l='354' ll='369'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='373' c='__gnu_cxx::__ops::__iter_comp_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='376' c='__gnu_cxx::__ops::__iter_comp_iter'/>
+<mbr r='__gnu_cxx::__ops::_Iter_comp_to_iter::_M_comp' t='_Compare'/>
+<mbr r='__gnu_cxx::__ops::_Iter_comp_to_iter::_M_it1' t='_Iterator1'/>
+<fun r='__gnu_cxx::__ops::_Iter_comp_to_iter::_Iter_comp_to_iter{_Compare,_Iterator1}'/>
+<fun r='__gnu_cxx::__ops::_Iter_comp_to_iter::operator()'/>

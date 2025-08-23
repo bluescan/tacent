@@ -1,0 +1,2 @@
+<use f='Modules/Foundation/Src/tPool.cpp' l='55' u='w' c='_ZN4tMem9tFastPoolC1Eiiib'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='101' u='r' c='_ZN4tMem9tFastPool8GrowPoolEv'/>

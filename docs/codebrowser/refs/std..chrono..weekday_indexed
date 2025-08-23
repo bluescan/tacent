@@ -1,0 +1,32 @@
+<use f='include/c++/11/chrono' l='1517' c='_ZNSt6chronodvERKNS_5monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='1520' c='_ZNSt6chronodvERKNS_15weekday_indexedERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='1792' c='_ZNKSt6chrono7weekdayixEj'/>
+<def f='include/c++/11/chrono' l='1837' ll='1883'/>
+<use f='include/c++/11/chrono' l='1864' c='_ZNSt6chronoeqERKNS_15weekday_indexedES2_'/>
+<use f='include/c++/11/chrono' l='1864' c='_ZNSt6chronoeqERKNS_15weekday_indexedES2_'/>
+<use f='include/c++/11/chrono' l='1868' c='_ZNSt6chronodvERKNS_5monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='1871' c='_ZNSt6chronodvEiRKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='1874' c='_ZNSt6chronodvERKNS_15weekday_indexedERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='1877' c='_ZNSt6chronodvERKNS_15weekday_indexedEi'/>
+<use f='include/c++/11/chrono' l='1880' c='_ZNSt6chronodvERKNS_10year_monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='1885' c='_ZNKSt6chrono7weekdayixEj'/>
+<use f='include/c++/11/chrono' l='2059'/>
+<use f='include/c++/11/chrono' l='2064' c='_ZNSt6chrono13month_weekdayC1ERKNS_5monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='2072' c='_ZNKSt6chrono13month_weekday15weekday_indexedEv'/>
+<use f='include/c++/11/chrono' l='2089' c='_ZNSt6chronodvERKNS_5monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='2093' c='_ZNSt6chronodvEiRKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='2097' c='_ZNSt6chronodvERKNS_15weekday_indexedERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='2102' c='_ZNSt6chronodvERKNS_15weekday_indexedEi'/>
+<use f='include/c++/11/chrono' l='2724'/>
+<use f='include/c++/11/chrono' l='2740' c='_ZNSt6chrono18year_month_weekdayC1ERKNS_4yearERKNS_5monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='2800' c='_ZNKSt6chrono18year_month_weekday15weekday_indexedEv'/>
+<use f='include/c++/11/chrono' l='2871' c='_ZNSt6chronodvERKNS_10year_monthERKNS_15weekday_indexedE'/>
+<size>2</size>
+<doc f='include/c++/11/chrono' l='1835'>// WEEKDAY_INDEXED</doc>
+<mbr r='std::chrono::weekday_indexed::_M_wd' o='0' t='chrono::weekday'/>
+<mbr r='std::chrono::weekday_indexed::_M_index' o='8' t='unsigned char'/>
+<fun r='_ZNSt6chrono15weekday_indexedC1Ev'/>
+<fun r='_ZNSt6chrono15weekday_indexedC1ERKNS_7weekdayEj'/>
+<fun r='_ZNKSt6chrono15weekday_indexed7weekdayEv'/>
+<fun r='_ZNKSt6chrono15weekday_indexed5indexEv'/>
+<fun r='_ZNKSt6chrono15weekday_indexed2okEv'/>

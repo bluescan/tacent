@@ -1,0 +1,14 @@
+<dec f='include/c++/11/fstream' l='366' type='std::basic_filebuf::__filebuf_type * std::basic_filebuf::close()'/>
+<def f='include/c++/11/bits/fstream.tcc' l='247' ll='293' type='typename basic_filebuf&lt;_CharT, _Traits&gt;::__filebuf_type * std::basic_filebuf::close()'/>
+<doc f='include/c++/11/fstream' l='353'>/**
+       *  @brief  Closes the currently associated file.
+       *  @return  @c this on success, NULL on failure
+       *
+       *  If no file is currently open, this function immediately fails.
+       *
+       *  If a &lt;em&gt;put buffer area&lt;/em&gt; exists, @c overflow(eof) is
+       *  called to flush all the characters.  The file is then
+       *  closed.
+       *
+       *  If any operations fail, this function also fails.
+       */</doc>

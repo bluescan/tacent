@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tImageKTX.h' l='124' type='6'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='747' u='r' c='_ZN6tImage9tImageKTX4LoadERK7tStringRKNS0_10LoadParamsE'/>

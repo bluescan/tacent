@@ -1,0 +1,13 @@
+_ZSt5applyOT_OT0_|std::apply
+_ZNSt7__cxx1112basic_string6appendERKNS_12basic_stringIT_T0_T1_EE|std::basic_string::append
+_ZN7tItList6AppendEPT_|tItList::Append
+_ZN5tList6AppendEPT_|tList::Append
+_ZN7tString6AppendERKS_|tString::Append
+_ZN6tsList6AppendEPT_|tsList::Append
+_ZNK5tMath8tVector311ApproxEqualERKNS_5tVec3Ef|tMath::tVector3::ApproxEqual
+_ZNK5tMath8tVector411ApproxEqualERKNS_5tVec4Ef|tMath::tVector4::ApproxEqual
+_ZNK5tMath8tMatrix211ApproxEqualERKNS_5tMat2Ef|tMath::tMatrix2::ApproxEqual
+_ZNK5tMath8tMatrix411ApproxEqualERKNS_5tMat4Ef|tMath::tMatrix4::ApproxEqual
+_ZNK5tMath11tQuaternion11ApproxEqualERKNS_5tQuatEf|tMath::tQuaternion::ApproxEqual
+_ZNK5tMath8tVector211ApproxEqualERKNS_5tVec2Ef|tMath::tVector2::ApproxEqual
+_ZNSt10filesystem7__cxx114path6appendERKT_|std::filesystem::path::append

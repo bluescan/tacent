@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/confname.h' l='149' type='36'/>
+<doc f='include/x86_64-linux-gnu/bits/confname.h' l='147'>/* Values for the argument to `sysconf&apos;
+       corresponding to _POSIX2_* symbols.  */</doc>

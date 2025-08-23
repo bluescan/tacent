@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tCompJoystick.h source code [Modules/Input/Inc/Input/tCompJoystick.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="tInput::tCompJoystick "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Input/Inc/Input/tCompJoystick.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>Modules</a>/<a href='../..'>Input</a>/<a href='..'>Inc</a>/<a href='./'>Input</a>/<a href='tCompJoystick.h.html'>tCompJoystick.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tCompJoystick.h</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// This file implements a joystick input component. Components are input classes that are grouped together</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>// in a device.</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// Copyright (c) 2025 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#pragma <span class='warning' title="#pragma once in main file">once</span></u>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#include "Input/tComp.h"</u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#include "Input/tUnitContinuousAxis.h"</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#include "Input/tUnitDiscreteBool.h"</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><b>namespace</b> <span class="namespace">tInput</span>&nbsp</td></tr>
+<tr><th id="21">21</th><td>{&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td>&nbsp</td></tr>
+<tr><th id="24">24</th><td><b>class</b> <dfn class="type def" id="tInput::tCompJoystick" title='tInput::tCompJoystick' data-ref="tInput::tCompJoystick">tCompJoystick</dfn> : <b>public</b> <a class="type" href="tComp.h.html#tInput::tComponent" title='tInput::tComponent' data-ref="tInput::tComponent">tComponent</a>&nbsp</td></tr>
+<tr><th id="25">25</th><td>{&nbsp</td></tr>
+<tr><th id="26">26</th><td><b>public</b>:&nbsp</td></tr>
+<tr><th id="27">27</th><td>	<dfn class="tu decl def fn" id="_ZN6tInput13tCompJoystickC1ERK5tNameRSt5mutex" title='tInput::tCompJoystick::tCompJoystick' data-type='void tInput::tCompJoystick::tCompJoystick(const tName &amp; name, std::mutex &amp; mutex)' data-ref="_ZN6tInput13tCompJoystickC1ERK5tNameRSt5mutex">tCompJoystick</dfn>(<em>const</em> <a class="type" href="../../../Foundation/Inc/Foundation/tName.h.html#tName" title='tName' data-ref="tName">tName</a>&amp; <dfn class="local col3 decl" id="3name" title='name' data-type='const tName &amp;' data-ref="3name">name</dfn>, <span class="namespace">std::</span><a class="type" href="../../../../include/c++/11/bits/std_mutex.h.html#std::mutex" title='std::mutex' data-ref="std::mutex">mutex</a>&amp; <dfn class="local col4 decl" id="4mutex" title='mutex' data-type='std::mutex &amp;' data-ref="4mutex">mutex</dfn>) :&nbsp</td></tr>
+<tr><th id="28">28</th><td>		<a class="type" href="tComp.h.html#tInput::tComponent" title='tInput::tComponent' data-ref="tInput::tComponent">tComponent</a><a class="ref fn" href="tComp.h.html#_ZN6tInput10tComponentC1ERK5tName" title='tInput::tComponent::tComponent' data-ref="_ZN6tInput10tComponentC1ERK5tName">(</a><a class="local col3 ref" href="#3name" title='name' data-ref="3name">name</a>),&nbsp</td></tr>
+<tr><th id="29">29</th><td>		<a class="macro" href="tUnit.h.html#24" title="XAxis(name+&quot;|&quot; &quot;XAxis&quot;, mutex)" data-ref="_M/InitUnit">InitUnit</a>(<a class="tu member field" href="#tInput::tCompJoystick::XAxis" title='tInput::tCompJoystick::XAxis' data-use='w' data-ref="tInput::tCompJoystick::XAxis">XAxis</a>),&nbsp</td></tr>
+<tr><th id="30">30</th><td>		<a class="macro" href="tUnit.h.html#24" title="YAxis(name+&quot;|&quot; &quot;YAxis&quot;, mutex)" data-ref="_M/InitUnit">InitUnit</a>(<a class="tu member field" href="#tInput::tCompJoystick::YAxis" title='tInput::tCompJoystick::YAxis' data-use='w' data-ref="tInput::tCompJoystick::YAxis">YAxis</a>),&nbsp</td></tr>
+<tr><th id="31">31</th><td>		<a class="macro" href="tUnit.h.html#24" title="Button(name+&quot;|&quot; &quot;Button&quot;, mutex)" data-ref="_M/InitUnit">InitUnit</a>(<a class="tu member field" href="#tInput::tCompJoystick::Button" title='tInput::tCompJoystick::Button' data-use='w' data-ref="tInput::tCompJoystick::Button">Button</a>)																								{ }&nbsp</td></tr>
+<tr><th id="32">32</th><td>	<b>virtual</b> <dfn class="virtual decl def fn" id="_ZN6tInput13tCompJoystickD1Ev" title='tInput::tCompJoystick::~tCompJoystick' data-ref="_ZN6tInput13tCompJoystickD1Ev">~tCompJoystick</dfn>()																							{ }&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td>	<em>void</em> <dfn class="tu decl def fn" id="_ZN6tInput13tCompJoystick6UpdateEv" title='tInput::tCompJoystick::Update' data-type='void tInput::tCompJoystick::Update()' data-ref="_ZN6tInput13tCompJoystick6UpdateEv">Update</dfn>()																										{ }&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><b>private</b>:&nbsp</td></tr>
+<tr><th id="37">37</th><td>	<i  data-doc="tInput::tCompJoystick::XAxis">// These are private because they need to be mutex-protected. Use the accessors.</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td>	<a class="type" href="tUnitContinuousAxis.h.html#tInput::tUnitContinuousAxis" title='tInput::tUnitContinuousAxis' data-ref="tInput::tUnitContinuousAxis">tUnitContinuousAxis</a> <dfn class="tu decl field" id="tInput::tCompJoystick::XAxis" title='tInput::tCompJoystick::XAxis' data-type='tInput::tUnitContinuousAxis' data-ref="tInput::tCompJoystick::XAxis">XAxis</dfn>;		<i  data-doc="tInput::tCompJoystick::XAxis">// Horizontal.</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td>	<a class="type" href="tUnitContinuousAxis.h.html#tInput::tUnitContinuousAxis" title='tInput::tUnitContinuousAxis' data-ref="tInput::tUnitContinuousAxis">tUnitContinuousAxis</a> <dfn class="tu decl field" id="tInput::tCompJoystick::YAxis" title='tInput::tCompJoystick::YAxis' data-type='tInput::tUnitContinuousAxis' data-ref="tInput::tCompJoystick::YAxis">YAxis</dfn>;		<i  data-doc="tInput::tCompJoystick::YAxis">// Vertical.</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td>	<i  data-doc="tInput::tCompJoystick::Button">// Pressing down on the stick. By having this button in the joystick component we can, if we want, deal with the</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i  data-doc="tInput::tCompJoystick::Button">	// fact that there is mechanical linkage between the button and the axes. There is likely more unwanted movement in</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i  data-doc="tInput::tCompJoystick::Button">	// the axes after the button is pressed. Of course before the actual click-down there will be extra movement also,</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i  data-doc="tInput::tCompJoystick::Button">	// but we have no way to detect that.</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td>	<a class="type" href="tUnitDiscreteBool.h.html#tInput::tUnitDiscreteBool" title='tInput::tUnitDiscreteBool' data-ref="tInput::tUnitDiscreteBool">tUnitDiscreteBool</a> <dfn class="tu decl field" id="tInput::tCompJoystick::Button" title='tInput::tCompJoystick::Button' data-type='tInput::tUnitDiscreteBool' data-ref="tInput::tCompJoystick::Button">Button</dfn>;&nbsp</td></tr>
+<tr><th id="46">46</th><td>};&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td>}&nbsp</td></tr>
+<tr><th id="50">50</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix2_lim.h' l='33'/>
+<doc f='include/x86_64-linux-gnu/bits/posix2_lim.h' l='32'>/* The maximum `scale&apos; value allowed by the `bc&apos; utility.  */</doc>

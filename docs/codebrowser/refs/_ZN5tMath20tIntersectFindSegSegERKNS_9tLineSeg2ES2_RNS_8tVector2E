@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='474' type='tMath::tIntersectResult tMath::tIntersectFindSegSeg(const tMath::tLineSeg2 &amp; , const tMath::tLineSeg2 &amp; , tMath::tVector2 &amp; intersection)'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='471'>// The segment intersection functions are currently not mathematically consistent since &apos;coincident&apos; is returned if
+// the segments lie on the same line even if they do not intersect. What should be returned in this case is either
+// &apos;None&apos; or, if they overlap, a line segment for the overlap region.</doc>
+<def f='Modules/Math/Src/tGeometry.cpp' l='315' ll='329' type='tMath::tIntersectResult tMath::tIntersectFindSegSeg(const tMath::tLineSeg2 &amp; a, const tMath::tLineSeg2 &amp; b, tMath::tVector2 &amp; i)'/>

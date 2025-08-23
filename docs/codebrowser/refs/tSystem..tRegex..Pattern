@@ -1,0 +1,10 @@
+<use f='Modules/System/Src/tRegex.cpp' l='763' u='r' c='_ZN7tSystem6tRegex15CompileInternalEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='764' u='r' c='_ZN7tSystem6tRegex15CompileInternalEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='765' u='r' c='_ZN7tSystem6tRegex15CompileInternalEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='814' u='r' c='_ZN7tSystem6tRegex5ClearEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='815' u='r' c='_ZN7tSystem6tRegex5ClearEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='816' u='w' c='_ZN7tSystem6tRegex5ClearEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='826' u='w' c='_ZN7tSystem6tRegex7CompileERK7tString'/>
+<use f='Modules/System/Src/tRegex.cpp' l='827' u='r' c='_ZN7tSystem6tRegex7CompileERK7tString'/>
+<use f='Modules/System/Src/tRegex.cpp' l='842' u='w' c='_ZN7tSystem6tRegex7CompileEPKc'/>
+<use f='Modules/System/Src/tRegex.cpp' l='843' u='r' c='_ZN7tSystem6tRegex7CompileEPKc'/>

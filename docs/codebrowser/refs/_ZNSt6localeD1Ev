@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='209' type='void std::locale::~locale()'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='208'>/// Locale destructor.</doc>

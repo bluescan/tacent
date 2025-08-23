@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14078' ll='14083'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14078'/>
+<size>272</size>
+<mbr r='VkPhysicalDeviceMemoryBudgetPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMemoryBudgetPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMemoryBudgetPropertiesEXT::heapBudget' o='128' t='VkDeviceSize[16]'/>
+<mbr r='VkPhysicalDeviceMemoryBudgetPropertiesEXT::heapUsage' o='1152' t='VkDeviceSize[16]'/>

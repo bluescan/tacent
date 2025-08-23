@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='490' type='16912384'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='490'>// Base Pose Translation. 4 floats (x, y, z, 0). Homogeneous coords.</doc>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='29' u='r' c='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='70' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>

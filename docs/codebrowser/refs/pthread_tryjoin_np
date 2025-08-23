@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='224' type='int pthread_tryjoin_np(pthread_t __th, void ** __thread_return)'/>
+<doc f='include/pthread.h' l='222'>/* Check whether thread TH has terminated.  If yes return the status of
+   the thread in *THREAD_RETURN, if THREAD_RETURN is not NULL.  */</doc>

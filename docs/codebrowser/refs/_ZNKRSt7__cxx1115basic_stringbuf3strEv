@@ -1,0 +1,9 @@
+<def f='include/c++/11/sstream' l='241' ll='250' type='std::basic_stringbuf::__string_type std::basic_stringbuf::str() const'/>
+<doc f='include/c++/11/sstream' l='233'>/**
+       *  @brief  Copying out the string buffer.
+       *  @return  A copy of one of the underlying sequences.
+       *
+       *  &lt;em&gt;If the buffer is only created in input mode, the underlying
+       *  character sequence is equal to the input sequence; otherwise, it
+       *  is equal to the output sequence.&lt;/em&gt; [27.7.1.2]/1
+      */</doc>

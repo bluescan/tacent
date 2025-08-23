@@ -1,0 +1,10 @@
+<dec f='include/x86_64-linux-gnu/bits/struct_stat.h' l='74' type='struct timespec'/>
+<use f='Modules/System/Src/tFile.cpp' l='2145' macro='1' u='m' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<offset>576</offset>
+<doc f='include/x86_64-linux-gnu/bits/struct_stat.h' l='68'>/* Nanosecond resolution timestamps are stored in a format
+       equivalent to &apos;struct timespec&apos;.  This is the type used
+       whenever possible but the Unix namespace rules do not allow the
+       identifier &apos;timespec&apos; to appear in the &lt;sys/stat.h&gt; header.
+       Therefore we have to handle the use of this header in strictly
+       standard-compliant sources special.  */</doc>
+<doc f='include/x86_64-linux-gnu/bits/struct_stat.h' l='74'>/* Time of last access.  */</doc>

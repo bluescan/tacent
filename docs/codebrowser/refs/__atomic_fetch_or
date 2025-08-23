@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/atomic_base.h' l='648' u='c' c='_ZNSt13__atomic_base8fetch_orET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='653' u='c' c='_ZNVSt13__atomic_base8fetch_orET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1033' u='c' c='_ZNSt13__atomic_impl8fetch_orEPT_NSt15remove_volatileIS0_E4typeESt12memory_order'/>

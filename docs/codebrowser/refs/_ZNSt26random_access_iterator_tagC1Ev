@@ -1,0 +1,14 @@
+<use f='include/c++/11/bits/stl_vector.h' l='630' u='c' c='_ZNSt6vectorC1ESt16initializer_listIT_ERKT0_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='733' u='c' c='_ZNSt6vectoraSESt16initializer_listIT_E'/>
+<use f='include/c++/11/bits/stl_vector.h' l='797' u='c' c='_ZNSt6vector6assignESt16initializer_listIT_E'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1314' u='c' c='_ZNSt6vector6insertEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_typeEE13c8335942'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1836' u='c' c='_ZNSt6vector14_M_move_assignEOSt6vectorIT_T0_ESt17integral_constantIbLb0EE'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='707' u='c' c='_ZNSt6vectorIbT_EC1ESt16initializer_listIbERKS0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='827' u='c' c='_ZNSt6vectorIbT_E6assignESt16initializer_listIbE'/>
+<use f='include/c++/11/bits/basic_string.h' l='539' u='c' c='_ZNSt7__cxx1112basic_stringC1EPKT_RKT1_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='960' u='c' c='_ZNSt5dequeC1ESt16initializer_listIT_ERKT0_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1053' u='c' c='_ZNSt5dequeaSESt16initializer_listIT_E'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1114' u='c' c='_ZNSt5deque6assignESt16initializer_listIT_E'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1637' u='c' c='_ZNSt5deque6insertENSt11_Deque_baseIT_T0_E14const_iteratorESt16initializer_listIS1_E'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2218' u='c' c='_ZNSt5deque15_M_move_assign2EOSt5dequeIT_T0_ESt17integral_constantIbLb0EE'/>
+<use f='include/c++/11/bits/deque.tcc' l='126' u='c' c='_ZNSt5dequeaSERKSt5dequeIT_T0_E'/>

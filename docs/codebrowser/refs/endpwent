@@ -1,0 +1,5 @@
+<dec f='include/pwd.h' l='78' type='void endpwent()'/>
+<doc f='include/pwd.h' l='74'>/* Close the user database stream.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

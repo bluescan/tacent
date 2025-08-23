@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='183' type='uint32 tString::operator unsigned int()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='181'>// These return the fast 32bit hash of the string data (code units). They take into account the full represented
+	// string -- not just up to the first null. That is, they use StringLength as the data-set size.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='54' ll='58' type='uint32 tString::operator unsigned int()'/>

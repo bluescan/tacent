@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageKTX.h' l='39' type='2'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='53' u='r'/>
+<doc f='Modules/Image/Inc/Image/tImageKTX.h' l='39'>// OpenGL uses the lower left as the orig DirectX uses the upper left. Set flag for OpenGL.</doc>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='869' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/signum-arch.h' l='29'/>
+<doc f='include/x86_64-linux-gnu/bits/signum-arch.h' l='26'>/* Adjustments and additions to the signal number constants for
+   most Linux systems.  */</doc>

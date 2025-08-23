@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='654' type='void tMath::tMakeProjPerspFovHOffset(tMath::tMat4 &amp; d, float fovY, float aspect, float nearPlane, float farPlane, float offsetX, float offsetY)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='95' u='c' c='_ZN5tMath8tMatrix423MakeProjPerspFovHOffsetEffffff'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='817' ll='826' type='void tMath::tMakeProjPerspFovHOffset(tMath::tMat4 &amp; d, float fovY, float aspect, float nearPlane, float farPlane, float offsetX, float offsetY)'/>

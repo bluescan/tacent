@@ -1,0 +1,4 @@
+<use f='Modules/Scene/Inc/Scene/tSelection.h' l='25' u='c' c='_ZN6tScene10tSelectionC1ERK6tChunk'/>
+<dec f='Modules/Scene/Inc/Scene/tSelection.h' l='33' type='void tScene::tSelection::Load(const tChunk &amp; )'/>
+<inh f='Modules/Scene/Inc/Scene/tObject.h' l='33' c='_ZN6tScene7tObject4LoadERK6tChunk'/>
+<def f='Modules/Scene/Src/tSelection.cpp' l='40' ll='66' type='void tScene::tSelection::Load(const tChunk &amp; selSetChunk)'/>

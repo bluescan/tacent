@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12625' ll='12629'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12625'/>
+<size>24</size>
+<mbr r='VkMultisamplePropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkMultisamplePropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkMultisamplePropertiesEXT::maxSampleLocationGridSize' o='128' t='VkExtent2D'/>

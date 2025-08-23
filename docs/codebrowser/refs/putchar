@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='556' type='int putchar(int __c)'/>
+<doc f='include/stdio.h' l='552'>/* Write a character to stdout.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

@@ -1,0 +1,2 @@
+<dec f='include/ctype.h' l='116' type='int isspace(int )'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='333' u='c' c='_ZN4tStd8tIsspaceEc'/>

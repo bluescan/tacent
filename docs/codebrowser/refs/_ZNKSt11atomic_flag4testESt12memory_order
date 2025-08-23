@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/atomic_base.h' l='224' ll='230' macro='1' type='bool std::atomic_flag::test(std::memory_order __m = memory_order_seq_cst) const'/>
+<use f='include/c++/11/atomic' l='1217' u='c' c='_ZSt16atomic_flag_testPKSt11atomic_flag'/>
+<use f='include/c++/11/atomic' l='1226' u='c' c='_ZSt25atomic_flag_test_explicitPKSt11atomic_flagSt12memory_order'/>

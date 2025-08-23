@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='44' macro='1' type='int __issignalingf(float __value)'/>
+<use f='include/math.h' l='1067' u='c' c='_Z11issignalingf'/>

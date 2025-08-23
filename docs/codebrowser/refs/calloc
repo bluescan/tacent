@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='543' type='void * calloc(size_t __nmemb, size_t __size)'/>
+<doc f='include/stdlib.h' l='542'>/* Allocate NMEMB elements of SIZE bytes each, all initialized to 0.  */</doc>

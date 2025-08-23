@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='422'/>
+<doc f='include/pthread.h' l='420'>/* Special return value from pthread_attr_getsigmask_np if the signal
+   mask has not been set.  */</doc>

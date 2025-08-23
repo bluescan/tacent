@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17390' ll='17397'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17390'/>
+<size>48</size>
+<mbr r='VkPhysicalDeviceImageProcessingPropertiesQCOM::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceImageProcessingPropertiesQCOM::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceImageProcessingPropertiesQCOM::maxWeightFilterPhases' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceImageProcessingPropertiesQCOM::maxWeightFilterDimension' o='160' t='VkExtent2D'/>
+<mbr r='VkPhysicalDeviceImageProcessingPropertiesQCOM::maxBlockMatchRegion' o='224' t='VkExtent2D'/>
+<mbr r='VkPhysicalDeviceImageProcessingPropertiesQCOM::maxBoxFilterBlockSize' o='288' t='VkExtent2D'/>

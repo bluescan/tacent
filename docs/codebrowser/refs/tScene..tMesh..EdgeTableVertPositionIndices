@@ -1,0 +1,14 @@
+<use f='Modules/Scene/Src/tMesh.cpp' l='67' u='w' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='67' u='r' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='68' u='r' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='69' u='r' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='69' u='r' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='272' u='w' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='275' u='r' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='443' u='r' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='446' u='r' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='310' u='w' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='393' u='r' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='393' u='r' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='396' u='r' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='397' u='r' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>

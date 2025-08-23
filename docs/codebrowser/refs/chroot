@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='977' type='int chroot(const char * __path)'/>
+<doc f='include/unistd.h' l='975'>/* Make PATH be the root directory (the starting point for absolute paths).
+   This call is restricted to the super-user.  */</doc>

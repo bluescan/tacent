@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='565' type='17039440'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='58' u='r' c='_ZNK6tImage6tLayer4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='89' c='_ZN6tImage6tLayer4LoadERK6tChunkb'/>

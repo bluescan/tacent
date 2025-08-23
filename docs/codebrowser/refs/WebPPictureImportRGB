@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='458' type='int WebPPictureImportRGB(WebPPicture * picture, const uint8_t * rgb, int rgb_stride)'/>

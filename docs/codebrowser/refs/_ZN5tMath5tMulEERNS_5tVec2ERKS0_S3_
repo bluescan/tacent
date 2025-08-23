@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='480' type='void tMath::tMulE(tMath::tVec2 &amp; d, const tMath::tVec2 &amp; a, const tMath::tVec2 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='486' u='c' c='_ZN5tMath5tMulEERNS_5tMat2ERKS0_S3_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='486' u='c' c='_ZN5tMath5tMulEERNS_5tMat2ERKS0_S3_'/>

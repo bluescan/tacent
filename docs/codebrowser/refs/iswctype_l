@@ -1,0 +1,3 @@
+<dec f='include/wctype.h' l='122' type='int iswctype_l(wint_t __wc, wctype_t __desc, locale_t __locale)'/>
+<doc f='include/wctype.h' l='120'>/* Determine whether the wide-character WC has the property described by
+   DESC.  */</doc>

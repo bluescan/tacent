@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='446' type='2164269056'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='446'>// An object can be a model, camera, light, skeleton, etc.</doc>
+<use f='Modules/Scene/Src/tWorld.cpp' l='519' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1108' u='r' c='_ZNK6tScene6tWorld11SaveObjectsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1181' u='r' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>

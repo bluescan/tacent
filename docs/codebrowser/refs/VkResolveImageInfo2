@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7159' ll='7168'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7159'/>
+<size>56</size>
+<mbr r='VkResolveImageInfo2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkResolveImageInfo2::pNext' o='64' t='const void *'/>
+<mbr r='VkResolveImageInfo2::srcImage' o='128' t='VkImage'/>
+<mbr r='VkResolveImageInfo2::srcImageLayout' o='192' t='VkImageLayout'/>
+<mbr r='VkResolveImageInfo2::dstImage' o='256' t='VkImage'/>
+<mbr r='VkResolveImageInfo2::dstImageLayout' o='320' t='VkImageLayout'/>
+<mbr r='VkResolveImageInfo2::regionCount' o='352' t='uint32_t'/>
+<mbr r='VkResolveImageInfo2::pRegions' o='384' t='const VkImageResolve2 *'/>

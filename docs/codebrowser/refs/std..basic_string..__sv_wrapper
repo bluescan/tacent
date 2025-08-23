@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/basic_string.h' l='140' ll='144'/>
+<use f='include/c++/11/bits/basic_string.h' l='153' c='_ZNSt7__cxx1112basic_stringC1ENS0_12__sv_wrapperERKT1_'/>
+<use f='include/c++/11/bits/basic_string.h' l='665' c='_ZNSt7__cxx1112basic_stringC1ERKTL0__RKT1_'/>
+<doc f='include/c++/11/bits/basic_string.h' l='136'>// Wraps a string_view by explicit conversion and thus
+      // allows to add an internal constructor that does not
+      // participate in overload resolution when a string_view
+      // is provided.</doc>
+<fun r='_ZNSt7__cxx1112basic_string12__sv_wrapperC1ESt17basic_string_viewIT_T0_E'/>
+<mbr r='std::basic_string::__sv_wrapper::_M_sv' t='std::basic_string::__sv_type'/>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>c++io.h source code [include/x86_64-linux-gnu/c++/11/bits/c++io.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/c++/11/bits/c++io.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>include</a>/<a href='../../..'>x86_64-linux-gnu</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='c++io.h.html'>c++io.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Underlying io library details -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2000-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/c++io.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{ios}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc">// c_io_stdio.h - Defines for using "C" stdio.h</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#<span data-ppcond="32">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_CXX_IO_H">_GLIBCXX_CXX_IO_H</span></u>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_CXX_IO_H" data-ref="_M/_GLIBCXX_CXX_IO_H">_GLIBCXX_CXX_IO_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;cstdio&gt;</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;bits/gthr.h&gt;</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="39">39</th><td>{&nbsp</td></tr>
+<tr><th id="40">40</th><td><a class="macro" href="c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td>  <b>typedef</b> <a class="typedef" href="gthr-default.h.html#__gthread_mutex_t" title='__gthread_mutex_t' data-type='pthread_mutex_t' data-ref="__gthread_mutex_t">__gthread_mutex_t</a> <dfn class="typedef" id="std::__c_lock" title='std::__c_lock' data-type='__gthread_mutex_t' data-ref="std::__c_lock">__c_lock</dfn>;&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td>  <i>// for basic_file.h</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td>  <b>typedef</b> FILE <dfn class="typedef" id="std::__c_file" title='std::__c_file' data-type='FILE' data-ref="std::__c_file">__c_file</dfn>;&nbsp</td></tr>
+<tr><th id="46">46</th><td>&nbsp</td></tr>
+<tr><th id="47">47</th><td><a class="macro" href="c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="48">48</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u>#<span data-ppcond="32">endif</span></u>&nbsp</td></tr>
+<tr><th id="51">51</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../../Modules/System/Src/tFile.cpp.html'>Modules/System/Src/tFile.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

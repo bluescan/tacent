@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/uses_allocator.h' l='72'/>
+<ovr f='include/c++/11/bits/uses_allocator.h' l='74' c='std::__uses_alloc0'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='74'/>
+<ovr f='include/c++/11/bits/uses_allocator.h' l='80' c='std::__uses_alloc1'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='80'/>
+<ovr f='include/c++/11/bits/uses_allocator.h' l='83' c='std::__uses_alloc2'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='83'/>
+<size>1</size>

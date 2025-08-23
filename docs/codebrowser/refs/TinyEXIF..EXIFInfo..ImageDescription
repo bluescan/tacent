@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='152' type='std::string'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='627' u='m' c='_ZN6tImage9tMetaData19SetTags_AuthorNotesERKN8TinyEXIF8EXIFInfoE'/>
+<offset>192</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='152'>// Image description</doc>

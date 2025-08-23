@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='314' type='bool tMath::tEqual(const tMath::tVec3 &amp; a, const tMath::tVec3 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='95' u='c' c='_ZN5tMatheqERKNS_5tVec3ES2_'/>

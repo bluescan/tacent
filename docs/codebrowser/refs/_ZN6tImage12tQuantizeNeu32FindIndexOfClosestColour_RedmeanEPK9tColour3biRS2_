@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tQuantizeNeu.cpp' l='129' type='int tImage::tQuantizeNeu::FindIndexOfClosestColour_Redmean(const tColour3b * searchSpace, int searchSize, const tColour3b &amp; searchColour)'/>
+<def f='Modules/Image/Src/tQuantizeNeu.cpp' l='514' ll='529' type='int tImage::tQuantizeNeu::FindIndexOfClosestColour_Redmean(const tColour3b * searchSpace, int searchSize, const tColour3b &amp; colour)'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='571' u='c' c='_ZN6tImage12tQuantizeNeu13QuantizeImageEiiiPK9tColour3bPS1_Phbi'/>

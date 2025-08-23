@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='599' type='33624064'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='599'>// Each element is an index into the vertex table. The indices represent a triangle strip.</doc>

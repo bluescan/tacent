@@ -1,0 +1,5 @@
+<dec f='include/wchar.h' l='429' type='long wcstol(const wchar_t *__restrict __nptr, wchar_t **__restrict __endptr, int __base)'/>
+<use f='include/c++/11/bits/basic_string.h' l='6751' u='a' c='_ZNSt7__cxx114stoiERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPmi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6756' u='a' c='_ZNSt7__cxx114stolERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPmi'/>
+<doc f='include/wchar.h' l='427'>/* Convert initial portion of wide string NPTR to `long int&apos;
+   representation.  */</doc>

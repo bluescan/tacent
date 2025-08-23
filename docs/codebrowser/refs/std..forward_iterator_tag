@@ -1,0 +1,43 @@
+<use f='include/c++/11/bits/iterator_concepts.h' l='416'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='645'/>
+<inh f='include/c++/11/bits/stl_iterator_base_types.h' l='93' c='std::input_iterator_tag'/>
+<def f='include/c++/11/bits/stl_iterator_base_types.h' l='99'/>
+<ovr f='include/c++/11/bits/stl_iterator_base_types.h' l='103' c='std::bidirectional_iterator_tag'/>
+<use f='include/c++/11/bits/stl_iterator_base_types.h' l='103'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1402' c='_ZNSt13move_iterator15_S_iter_conceptEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2169' c='_ZNSt15iterator_traitsISt15common_iteratorIT_T0_EE11_S_iter_catEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2170' c='_ZNSt15iterator_traitsISt15common_iteratorIT_T0_EE11_S_iter_catEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2177'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='72' c='_ZNSt8__detail13__distance_fwET_S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='327'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='377'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1455'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1507'/>
+<use f='include/c++/11/bits/stl_algo.h' l='196' c='_ZSt14__search_n_auxT_S_T0_T1_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='279' c='_ZSt10__find_endT_S_T0_S0_St20forward_iterator_tagS1_T1_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='279' c='_ZSt10__find_endT_S_T0_S0_St20forward_iterator_tagS1_T1_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1011' c='_ZSt13__unique_copyT_S_T0_T1_St20forward_iterator_tagSt19output_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1074' c='_ZSt13__unique_copyT_S_T0_T1_St18input_iterator_tagSt20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1220' c='_ZNSt3_V28__rotateET_S0_S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1462' c='_ZSt11__partitionT_S_T0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='5776' c='_ZSt8__sampleT_S_St20forward_iterator_tagT0_T1_T2_OT3_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1578' c='_ZNSt6vector19_M_range_initializeETL0__S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1640' c='_ZNSt6vector13_M_assign_auxETL0__S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1679' c='_ZNSt6vector15_M_range_insertEN9__gnu_cxx17__normal_iteratorINSt12_Vector_baseIT_T0_E7pointerESt6vectorIS3_S4_EEETL0__SB_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1197' c='_ZNSt6vectorIbT_E19_M_initialize_rangeETL0__S2_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1251' c='_ZNSt6vectorIbT_E13_M_assign_auxETL0__S2_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1301' c='_ZNSt6vectorIbT_E15_M_insert_rangeESt13_Bit_iteratorTL0__S3_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/vector.tcc' l='302' c='_ZNSt6vector13_M_assign_auxETL0__S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/vector.tcc' l='723' c='_ZNSt6vector15_M_range_insertEN9__gnu_cxx17__normal_iteratorINSt12_Vector_baseIT_T0_E7pointerESt6vectorIS3_S4_EEETL0__SB_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/vector.tcc' l='858' c='_ZNSt6vectorIbT_E15_M_insert_rangeESt13_Bit_iteratorTL0__S3_St20forward_iterator_tag'/>
+<size>1</size>
+<doc f='include/c++/11/bits/stl_iterator_base_types.h' l='98'>/// Forward iterators support a superset of input iterator operations.</doc>
+<use f='include/c++/11/bits/basic_string.h' l='288' c='_ZNSt7__cxx1112basic_string12_M_constructETL0__S1_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='208' c='_ZNSt7__cxx1112basic_string12_M_constructETL0__S1_St20forward_iterator_tag'/>
+<size>1</size>
+<use f='include/c++/11/bits/stl_deque.h' l='1862' c='_ZNSt5deque19_M_range_initializeETL0__S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1915' c='_ZNSt5deque13_M_assign_auxETL0__S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2002' c='_ZNSt5deque19_M_range_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/deque.tcc' l='445' c='_ZNSt5deque19_M_range_initializeETL0__S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/deque.tcc' l='601' c='_ZNSt5deque19_M_range_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_St20forward_iterator_tag'/>
+<size>1</size>

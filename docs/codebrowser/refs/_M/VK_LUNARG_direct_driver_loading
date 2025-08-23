@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17726'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17725'>// VK_LUNARG_direct_driver_loading is a preprocessor guard. Do not pass it to API calls.</doc>

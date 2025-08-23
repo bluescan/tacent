@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='661' type='bool tSystem::tDeleteDir(const tString &amp; directory, bool deleteReadOnly = true)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='658'>// A relentless delete. Doesn&apos;t care about read-only unless deleteReadOnly is false. This call does a recursive delete.
+// If a file has an open handle, however, this fn will fail. If the directory didn&apos;t exist before the call then this
+// function silently returns. Returns true if dir existed and was deleted.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='3152' ll='3257' type='bool tSystem::tDeleteDir(const tString &amp; dir, bool deleteReadOnly = true)'/>

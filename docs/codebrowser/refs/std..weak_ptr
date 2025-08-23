@@ -1,0 +1,37 @@
+<use f='include/c++/11/bits/shared_ptr.h' l='142'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='324'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='325' c='_ZNSt10shared_ptrC1ERKSt8weak_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='417' c='_ZNSt10shared_ptrC1ERKSt8weak_ptrIT_ESt9nothrow_t'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='420'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='425' c='std::{deductionguideforshared_ptr}'/>
+<def f='include/c++/11/bits/shared_ptr.h' l='686' ll='751'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='708'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='709' c='_ZNSt8weak_ptrC1ERKSt8weak_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='714'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='715' c='_ZNSt8weak_ptrC1EOSt8weak_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='722' c='_ZNSt8weak_ptraSERKSt8weak_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='723' c='_ZNSt8weak_ptraSERKSt8weak_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='741' c='_ZNSt8weak_ptraSEOSt8weak_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='742' c='_ZNSt8weak_ptraSEOSt8weak_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='755' c='std::{deductionguideforweak_ptr}'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='763' c='_ZSt4swapRSt8weak_ptrIT_ES2_'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='763' c='_ZSt4swapRSt8weak_ptrIT_ES2_'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='779'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='784'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='785'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='816' c='_ZNSt23enable_shared_from_this14weak_from_thisEv'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='820' c='_ZNKSt23enable_shared_from_this14weak_from_thisEv'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='840'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='912'/>
+<fun r='_ZNSt8weak_ptrC1Ev'/>
+<fun r='_ZNSt8weak_ptrC1ERKSt10shared_ptrITL0__E'/>
+<fun r='_ZNSt8weak_ptrC1ERKSt8weak_ptrIT_E'/>
+<fun r='_ZNSt8weak_ptrC1ERKSt8weak_ptrITL0__E'/>
+<fun r='_ZNSt8weak_ptrC1EOSt8weak_ptrIT_E'/>
+<fun r='_ZNSt8weak_ptrC1EOSt8weak_ptrITL0__E'/>
+<fun r='_ZNSt8weak_ptraSERKSt8weak_ptrIT_E'/>
+<fun r='_ZNSt8weak_ptraSERKSt8weak_ptrITL0__E'/>
+<fun r='_ZNSt8weak_ptraSERKSt10shared_ptrITL0__E'/>
+<fun r='_ZNSt8weak_ptraSEOSt8weak_ptrIT_E'/>
+<fun r='_ZNSt8weak_ptraSEOSt8weak_ptrITL0__E'/>
+<fun r='_ZNKSt8weak_ptr4lockEv'/>

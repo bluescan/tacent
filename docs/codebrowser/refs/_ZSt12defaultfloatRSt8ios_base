@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/ios_base.h' l='1098' ll='1103' type='std::ios_base &amp; std::defaultfloat(std::ios_base &amp; __base)'/>
+<doc f='include/c++/11/bits/ios_base.h' l='1097'>/// Calls @c base.unsetf(ios_base::floatfield)</doc>

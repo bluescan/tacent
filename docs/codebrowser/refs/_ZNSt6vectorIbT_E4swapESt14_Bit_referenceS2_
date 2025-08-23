@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='988' ll='994' type='static void std::vector&lt;bool, type-parameter-0-0&gt;::swap(std::vector&lt;bool, type-parameter-0-0&gt;::reference __x, std::vector&lt;bool, type-parameter-0-0&gt;::reference __y)'/>
+<doc f='include/c++/11/bits/stl_bvector.h' l='987'>// [23.2.5]/1, third-to-last entry in synopsis listing</doc>

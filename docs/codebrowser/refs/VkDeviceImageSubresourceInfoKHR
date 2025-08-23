@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10710' ll='10715'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10710'/>
+<size>32</size>
+<mbr r='VkDeviceImageSubresourceInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDeviceImageSubresourceInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkDeviceImageSubresourceInfoKHR::pCreateInfo' o='128' t='const VkImageCreateInfo *'/>
+<mbr r='VkDeviceImageSubresourceInfoKHR::pSubresource' o='192' t='const VkImageSubresource2KHR *'/>

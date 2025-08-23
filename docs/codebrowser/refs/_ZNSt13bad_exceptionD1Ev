@@ -1,0 +1,3 @@
+<dec f='include/c++/11/exception' l='60' type='void std::bad_exception::~bad_exception()'/>
+<doc f='include/c++/11/exception' l='58'>// This declaration is not useless:
+    // http://gcc.gnu.org/onlinedocs/gcc-3.0.2/gcc_6.html#SEC118</doc>

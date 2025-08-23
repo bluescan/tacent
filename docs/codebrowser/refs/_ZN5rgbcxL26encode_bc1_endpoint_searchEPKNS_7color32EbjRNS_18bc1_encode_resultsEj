@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3415' ll='3478' type='void rgbcx::encode_bc1_endpoint_search(const rgbcx::color32 * pSrc_pixels, bool any_black_pixels, uint32_t flags, rgbcx::bc1_encode_results &amp; results, uint32_t cur_err)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3814' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3414'>// From icbc&apos;s high quality mode.</doc>

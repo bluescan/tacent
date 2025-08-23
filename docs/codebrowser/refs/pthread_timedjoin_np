@@ -1,0 +1,7 @@
+<dec f='include/pthread.h' l='233' type='int pthread_timedjoin_np(pthread_t __th, void ** __thread_return, const struct timespec * __abstime)'/>
+<doc f='include/pthread.h' l='227'>/* Make calling thread wait for termination of the thread TH, but only
+   until TIMEOUT.  The exit status of the thread is stored in
+   *THREAD_RETURN, if THREAD_RETURN is not NULL.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

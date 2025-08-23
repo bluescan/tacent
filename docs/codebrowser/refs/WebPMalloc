@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/types.h' l='59' type='void * WebPMalloc(size_t size)'/>
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='86' u='c' c='_ZL12WebPDataCopyPK8WebPDataPS_'/>

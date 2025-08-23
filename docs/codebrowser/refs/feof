@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='788' type='int feof(FILE * __stream)'/>
+<doc f='include/stdio.h' l='787'>/* Return the EOF indicator for STREAM.  */</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/string_view' l='555' ll='560' type='decltype(__detail::__char_traits_cmp_cat&lt;_Traits&gt;(0)) std::operator&lt;=&gt;(basic_string_view&lt;_CharT, _Traits&gt; __x, __type_identity_t&lt;basic_string_view&lt;_CharT, _Traits&gt;&gt; __y)'/>

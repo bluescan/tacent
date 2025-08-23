@@ -1,0 +1,2 @@
+<dec f='include/time.h' l='65'/>
+<doc f='include/time.h' l='64'>/* Time base values for timespec_get.  */</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='159' type='const uint32_t'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3741' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

@@ -1,0 +1,3 @@
+<dec f='include/string.h' l='156' type='int strcmp(const char * __s1, const char * __s2)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='61' u='c' c='_ZN4tStd7tStrcmpEPKcS1_'/>
+<doc f='include/string.h' l='155'>/* Compare S1 and S2.  */</doc>

@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='349' type='int pthread_attr_setscope(pthread_attr_t * __attr, int __scope)'/>
+<doc f='include/pthread.h' l='348'>/* Set scheduling contention scope in *ATTR according to SCOPE.  */</doc>

@@ -1,0 +1,4 @@
+<dec f='include/pthread.h' l='417' type='int pthread_attr_getsigmask_np(const pthread_attr_t * __attr, __sigset_t * sigmask)'/>
+<doc f='include/pthread.h' l='414'>/* Store the signal mask of *ATTR in *SIGMASK.  If there is no signal
+   mask stored, return PTHREAD_ATTR_NOSIGMASK_NP.  Return zero on
+   success.  */</doc>

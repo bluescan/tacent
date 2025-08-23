@@ -1,0 +1,56 @@
+<def f='include/c++/11/bits/uses_allocator.h' l='51'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='53'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='54'/>
+<use f='include/c++/11/tuple' l='94' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt15allocator_arg_tSt13__uses_alloc0'/>
+<use f='include/c++/11/tuple' l='99' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt15allocator_arg_tSt13__uses_alloc1ITL0__E'/>
+<use f='include/c++/11/tuple' l='104' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt15allocator_arg_tSt13__uses_alloc2ITL0__E'/>
+<use f='include/c++/11/tuple' l='203' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt15allocator_arg_tSt13__uses_alloc0'/>
+<use f='include/c++/11/tuple' l='208' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt15allocator_arg_tSt13__uses_alloc1ITL0__E'/>
+<use f='include/c++/11/tuple' l='213' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt15allocator_arg_tSt13__uses_alloc2ITL0__E'/>
+<use f='include/c++/11/tuple' l='321' c='_ZNSt11_Tuple_implIXT_EJT0_DpT1_EEC1ESt15allocator_arg_tRKTL0__'/>
+<use f='include/c++/11/tuple' l='328' c='_ZNSt11_Tuple_implIXT_EJT0_DpT1_EEC1ESt15allocator_arg_tRKTL0__RKS0_DpRKS1_'/>
+<use f='include/c++/11/tuple' l='337' c='_ZNSt11_Tuple_implIXT_EJT0_DpT1_EEC1ESt15allocator_arg_tRKTL0__OTL0_0_DpOTL0_1_'/>
+<use f='include/c++/11/tuple' l='346' c='_ZNSt11_Tuple_implIXT_EJT0_DpT1_EEC1ESt15allocator_arg_tRKTL0__RKS_IXT_EJS0_S2_EE'/>
+<use f='include/c++/11/tuple' l='354' c='_ZNSt11_Tuple_implIXT_EJT0_DpT1_EEC1ESt15allocator_arg_tRKTL0__OS_IXT_EJS0_S2_EE'/>
+<use f='include/c++/11/tuple' l='363' c='_ZNSt11_Tuple_implIXT_EJT0_DpT1_EEC1ESt15allocator_arg_tRKTL0__RKS_IXT_EJTL0_0_DpTL0_1_EE'/>
+<use f='include/c++/11/tuple' l='373' c='_ZNSt11_Tuple_implIXT_EJT0_DpT1_EEC1ESt15allocator_arg_tRKTL0__OS_IXT_EJTL0_0_DpTL0_1_EE'/>
+<use f='include/c++/11/tuple' l='474' c='_ZNSt11_Tuple_implIXT_EJT0_EEC1ESt15allocator_arg_tRKTL0__'/>
+<use f='include/c++/11/tuple' l='480' c='_ZNSt11_Tuple_implIXT_EJT0_EEC1ESt15allocator_arg_tRKTL0__RKS0_'/>
+<use f='include/c++/11/tuple' l='487' c='_ZNSt11_Tuple_implIXT_EJT0_EEC1ESt15allocator_arg_tRKTL0__OTL0_0_'/>
+<use f='include/c++/11/tuple' l='495' c='_ZNSt11_Tuple_implIXT_EJT0_EEC1ESt15allocator_arg_tRKTL0__RKS_IXT_EJS0_EE'/>
+<use f='include/c++/11/tuple' l='502' c='_ZNSt11_Tuple_implIXT_EJT0_EEC1ESt15allocator_arg_tRKTL0__OS_IXT_EJS0_EE'/>
+<use f='include/c++/11/tuple' l='510' c='_ZNSt11_Tuple_implIXT_EJT0_EEC1ESt15allocator_arg_tRKTL0__RKS_IXT_EJTL0_0_EE'/>
+<use f='include/c++/11/tuple' l='518' c='_ZNSt11_Tuple_implIXT_EJT0_EEC1ESt15allocator_arg_tRKTL0__OS_IXT_EJTL0_0_EE'/>
+<use f='include/c++/11/tuple' l='801' c='_ZNSt5tupleC1ESt15allocator_arg_tRKTL0__'/>
+<use f='include/c++/11/tuple' l='807' c='_ZNSt5tupleC1ESt15allocator_arg_tRKTL0__DpRKT_'/>
+<use f='include/c++/11/tuple' l='815' c='_ZNSt5tupleC1ESt15allocator_arg_tRKTL0__DpRKT_'/>
+<use f='include/c++/11/tuple' l='823' c='_ZNSt5tupleC1ESt15allocator_arg_tRKTL0__DpOTL0_0_'/>
+<use f='include/c++/11/tuple' l='833' c='_ZNSt5tupleC1ESt15allocator_arg_tRKTL0__DpOTL0_0_'/>
+<use f='include/c++/11/tuple' l='840' c='_ZNSt5tupleC1ESt15allocator_arg_tRKTL0__RKSt5tupleIJDpT_EE'/>
+<use f='include/c++/11/tuple' l='845' c='_ZNSt5tupleC1ESt15allocator_arg_tRKTL0__OSt5tupleIJDpT_EE'/>
+<use f='include/c++/11/tuple' l='853' c='_ZNSt5tupleC1ESt15allocator_arg_tRKTL0__RKSt5tupleIJDpTL0_0_EE'/>
+<use f='include/c++/11/tuple' l='865' c='_ZNSt5tupleC1ESt15allocator_arg_tRKTL0__RKSt5tupleIJDpTL0_0_EE'/>
+<use f='include/c++/11/tuple' l='876' c='_ZNSt5tupleC1ESt15allocator_arg_tRKTL0__OSt5tupleIJDpTL0_0_EE'/>
+<use f='include/c++/11/tuple' l='888' c='_ZNSt5tupleC1ESt15allocator_arg_tRKTL0__OSt5tupleIJDpTL0_0_EE'/>
+<use f='include/c++/11/tuple' l='952' c='std::{deductionguidefortuple}'/>
+<use f='include/c++/11/tuple' l='954' c='std::{deductionguidefortuple}'/>
+<use f='include/c++/11/tuple' l='956' c='std::{deductionguidefortuple}'/>
+<use f='include/c++/11/tuple' l='972' c='_ZNSt5tupleIJEEC1ESt15allocator_arg_tRKT_'/>
+<use f='include/c++/11/tuple' l='975' c='_ZNSt5tupleIJEEC1ESt15allocator_arg_tRKT_RKS0_'/>
+<use f='include/c++/11/tuple' l='1155' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__'/>
+<use f='include/c++/11/tuple' l='1161' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__RKS0_RKS1_'/>
+<use f='include/c++/11/tuple' l='1169' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__RKS0_RKS1_'/>
+<use f='include/c++/11/tuple' l='1176' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__OTL0_0_OTL0_1_'/>
+<use f='include/c++/11/tuple' l='1184' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__OTL0_0_OTL0_1_'/>
+<use f='include/c++/11/tuple' l='1191' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__RKS_IJS0_S1_EE'/>
+<use f='include/c++/11/tuple' l='1196' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__OS_IJS0_S1_EE'/>
+<use f='include/c++/11/tuple' l='1202' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__RKS_IJTL0_0_TL0_1_EE'/>
+<use f='include/c++/11/tuple' l='1212' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__RKS_IJTL0_0_TL0_1_EE'/>
+<use f='include/c++/11/tuple' l='1221' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__OS_IJTL0_0_TL0_1_EE'/>
+<use f='include/c++/11/tuple' l='1229' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__OS_IJTL0_0_TL0_1_EE'/>
+<use f='include/c++/11/tuple' l='1236' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__RKSt4pairITL0_0_TL0_1_E'/>
+<use f='include/c++/11/tuple' l='1244' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__RKSt4pairITL0_0_TL0_1_E'/>
+<use f='include/c++/11/tuple' l='1251' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__OSt4pairITL0_0_TL0_1_E'/>
+<use f='include/c++/11/tuple' l='1259' c='_ZNSt5tupleIJT_T0_EEC1ESt15allocator_arg_tRKTL0__OSt4pairITL0_0_TL0_1_E'/>
+<size>1</size>
+<fun r='_ZNSt15allocator_arg_tC1Ev'/>

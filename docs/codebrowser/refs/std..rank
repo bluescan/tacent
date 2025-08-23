@@ -1,0 +1,7 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='1369' ll='1370'/>
+<def f='include/c++/11/type_traits' l='1372' ll='1374'/>
+<use f='include/c++/11/type_traits' l='1374'/>
+<def f='include/c++/11/type_traits' l='1376' ll='1378'/>
+<use f='include/c++/11/type_traits' l='1378'/>
+<use f='include/c++/11/type_traits' l='3246'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/sstream' l='351' type='std::basic_stringbuf::int_type std::basic_stringbuf::pbackfail(std::basic_stringbuf::int_type __c = traits_type::eof())'/>
+<def f='include/c++/11/bits/sstream.tcc' l='43' ll='75' type='typename basic_stringbuf&lt;_CharT, _Traits, _Alloc&gt;::int_type std::basic_stringbuf::pbackfail(std::basic_stringbuf::int_type __c = traits_type::eof())'/>

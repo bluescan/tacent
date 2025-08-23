@@ -1,0 +1,3 @@
+<dec f='include/c++/11/fstream' l='377' type='std::streamsize std::basic_filebuf::showmanyc()'/>
+<def f='include/c++/11/bits/fstream.tcc' l='295' ll='319' type='std::streamsize std::basic_filebuf::showmanyc()'/>
+<doc f='include/c++/11/fstream' l='375'>// [27.8.1.4] overridden virtual functions</doc>

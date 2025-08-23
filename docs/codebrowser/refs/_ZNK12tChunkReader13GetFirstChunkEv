@@ -1,0 +1,3 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='351' type='tChunk tChunkReader::GetFirstChunk() const'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='352' u='c' c='_ZNK12tChunkReader5FirstEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='353' u='c' c='_ZNK12tChunkReader5ChunkEv'/>

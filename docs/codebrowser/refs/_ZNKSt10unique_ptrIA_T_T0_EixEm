@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='656' ll='661' type='typename std::add_lvalue_reference&lt;element_type&gt;::type std::unique_ptr&lt;type-parameter-0-0[], type-parameter-0-1&gt;::operator[](std::size_t __i) const'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='653'>// Observers.
+
+      /// Access an element of owned array.</doc>

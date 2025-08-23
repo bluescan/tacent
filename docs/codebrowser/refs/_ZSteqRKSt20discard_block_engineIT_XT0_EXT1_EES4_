@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/random.h' l='1034' ll='1037' type='bool std::operator==(const discard_block_engine&lt;_RandomNumberEngine, __p, __r&gt; &amp; __lhs, const discard_block_engine&lt;_RandomNumberEngine, __p, __r&gt; &amp; __rhs)'/>
+<doc f='include/c++/11/bits/random.h' l='1023'>/**
+       * @brief Compares two %discard_block_engine random number generator
+       *        objects of the same type for equality.
+       *
+       * @param __lhs A %discard_block_engine random number generator object.
+       * @param __rhs Another %discard_block_engine random number generator
+       *              object.
+       *
+       * @returns true if the infinite sequences of generated values
+       *          would be equal, false otherwise.
+       */</doc>

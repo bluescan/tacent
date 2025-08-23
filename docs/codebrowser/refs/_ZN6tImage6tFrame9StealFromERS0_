@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tFrame.h' l='41' type='bool tImage::tFrame::StealFrom(tImage::tFrame &amp; src)'/>
+<def f='Modules/Image/Inc/Image/tFrame.h' l='109' ll='122' type='bool tImage::tFrame::StealFrom(tImage::tFrame &amp; frame)'/>
+<doc f='Modules/Image/Inc/Image/tFrame.h' l='40'>// Steals the pixels from the src frame.</doc>

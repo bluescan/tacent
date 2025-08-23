@@ -1,0 +1,56 @@
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_facets.h' l='1955' ll='2294'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2297'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='148' c='_ZNKSt7num_get16_M_extract_floatB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='374' c='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='594' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRb'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='690' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRf'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='705' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRd'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='737' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRe'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='752' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRPv'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_facets.tcc' l='1324'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1324'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_facets.tcc' l='1363'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1363'/>
+<use f='include/c++/11/bits/basic_ios.h' l='90'/>
+<size>16</size>
+<smbr r='std::num_get::id' t='locale::id'/>
+<fun r='_ZNSt7num_getC1Em'/>
+<fun r='_ZNKSt7num_get3getET0_S0_RSt8ios_baseRSt12_Ios_IostateRb'/>
+<fun r='_ZNKSt7num_get3getET0_S0_RSt8ios_baseRSt12_Ios_IostateRl'/>
+<fun r='_ZNKSt7num_get3getET0_S0_RSt8ios_baseRSt12_Ios_IostateRt'/>
+<fun r='_ZNKSt7num_get3getET0_S0_RSt8ios_baseRSt12_Ios_IostateRj'/>
+<fun r='_ZNKSt7num_get3getET0_S0_RSt8ios_baseRSt12_Ios_IostateRm'/>
+<fun r='_ZNKSt7num_get3getET0_S0_RSt8ios_baseRSt12_Ios_IostateRx'/>
+<fun r='_ZNKSt7num_get3getET0_S0_RSt8ios_baseRSt12_Ios_IostateRy'/>
+<fun r='_ZNKSt7num_get3getET0_S0_RSt8ios_baseRSt12_Ios_IostateRf'/>
+<fun r='_ZNKSt7num_get3getET0_S0_RSt8ios_baseRSt12_Ios_IostateRd'/>
+<fun r='_ZNKSt7num_get3getET0_S0_RSt8ios_baseRSt12_Ios_IostateRe'/>
+<fun r='_ZNKSt7num_get3getET0_S0_RSt8ios_baseRSt12_Ios_IostateRPv'/>
+<fun r='_ZNSt7num_getD1Ev'/>
+<fun r='_ZNKSt7num_get16_M_extract_floatB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<fun r='_ZNKSt7num_get7_M_findEPKTL0__mS0_'/>
+<fun r='_ZNKSt7num_get7_M_findEPKTL0__mS0_'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRb'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRl'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRt'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRj'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRm'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRx'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRy'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRf'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRd'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRe'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRPv'/>
+<smbr r='std::num_get::id' t='locale::id'/>
+<fun r='_ZNKSt7num_get16_M_extract_floatB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRb'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRf'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRd'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRe'/>
+<fun r='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRPv'/>
+<use f='include/c++/11/istream' l='72'/>

@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='43' type='int tMath::tMod(int n, int d)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='41'>// A mathematical modulo. Does not just return remainder like the % operator. i.e. Handles negatives &apos;properly&apos;.
+// The &amp; and fmod functions are also here but called more appropriately tRem (for remainder). </doc>
+<use f='Modules/Image/Src/tResample.cpp' l='106' u='c' c='_ZN6tImage11GetSrcIndexEiiNS_17tResampleEdgeModeE'/>

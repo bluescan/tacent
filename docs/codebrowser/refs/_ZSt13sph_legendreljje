@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/specfun.h' l='1127' ll='1129' type='long double std::sph_legendrel(unsigned int __l, unsigned int __m, long double __theta)'/>
+<doc f='include/c++/11/bits/specfun.h' l='1120'>/**
+   * Return the spherical Legendre function of nonnegative integral
+   * degree @c l and order @c m and &lt;tt&gt;long double&lt;/tt&gt; angle @f$ \theta @f$
+   * in radians.
+   *
+   * @see sph_legendre for details.
+   */</doc>

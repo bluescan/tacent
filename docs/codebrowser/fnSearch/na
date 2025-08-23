@@ -1,0 +1,10 @@
+_ZNKSt9type_info4nameEv|std::type_info::name
+_ZNSt5mutex13native_handleEv|std::mutex::native_handle
+_ZNSt15recursive_mutex13native_handleEv|std::recursive_mutex::native_handle
+_ZNSt21recursive_timed_mutex13native_handleEv|std::recursive_timed_mutex::native_handle
+_ZNSt11timed_mutex13native_handleEv|std::timed_mutex::native_handle
+_ZNKSt9basic_ios6narrowET_c|std::basic_ios::narrow
+_ZNSt7jthread13native_handleEv|std::jthread::native_handle
+_ZNSt6thread13native_handleEv|std::thread::native_handle
+_ZNSt18condition_variable13native_handleEv|std::condition_variable::native_handle
+_ZNKSt10filesystem7__cxx114path6nativeEv|std::filesystem::path::native

@@ -1,0 +1,9 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='83' type='tMath::tVector3 &amp; tMath::tVector3::operator*=(float a)'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='233' u='c' c='_ZN5tMath7tRandom17tGetPointOnSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='252' u='c' c='_ZN5tMath7tRandom19tGetPointOnCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='291' u='c' c='_ZN5tMath7tRandom17tGetPointInSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='310' u='c' c='_ZN5tMath7tRandom19tGetPointInCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='304' u='c' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='356' u='c' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Scene/Inc/Scene/tPath.h' l='39' u='c' c='_ZN6tScene5tPath5ScaleEf'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='506' u='c' c='_ZN6tScene5tMesh5ScaleEf'/>

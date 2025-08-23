@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='103' ll='108'/>
+<inh f='include/c++/11/ext/concurrence.h' l='115' c='__gnu_cxx::__mutex'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='110' ll='119'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='111'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='123'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='173' c='_ZNSt16_Sp_counted_base10_M_releaseEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='201' c='_ZNSt16_Sp_counted_base15_M_weak_releaseEv'/>
+<size>40</size>

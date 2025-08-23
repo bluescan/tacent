@@ -1,0 +1,8 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='415' type='const int'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='707' u='r' c='_ZN7tString7ReserveEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='708' u='r' c='_ZN7tString7ReserveEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='725' u='r' c='_ZN7tString6ShrinkEv'/>
+<offset>64</offset>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='414'>// This could be made to be dynamic. Just didn&apos;t want to waste 4 bytes for every tString instance.</doc>
+<use f='Modules/Foundation/Src/tString.cpp' l='703' u='r' c='_ZN7tString14UpdateCapacityEib'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='704' u='r' c='_ZN7tString14UpdateCapacityEib'/>

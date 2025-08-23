@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3822' ll='3832'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3822'/>
+<size>64</size>
+<mbr r='VkFramebufferCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkFramebufferCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkFramebufferCreateInfo::flags' o='128' t='VkFramebufferCreateFlags'/>
+<mbr r='VkFramebufferCreateInfo::renderPass' o='192' t='VkRenderPass'/>
+<mbr r='VkFramebufferCreateInfo::attachmentCount' o='256' t='uint32_t'/>
+<mbr r='VkFramebufferCreateInfo::pAttachments' o='320' t='const VkImageView *'/>
+<mbr r='VkFramebufferCreateInfo::width' o='384' t='uint32_t'/>
+<mbr r='VkFramebufferCreateInfo::height' o='416' t='uint32_t'/>
+<mbr r='VkFramebufferCreateInfo::layers' o='448' t='uint32_t'/>

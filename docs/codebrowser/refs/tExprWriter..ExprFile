@@ -1,0 +1,28 @@
+<use f='Modules/System/Inc/System/tScript.h' l='246' u='r' c='_ZN11tExprWriterD1Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='360' u='r' c='_ZN11tExprWriter12WriteIndentsEv'/>
+<dec f='Modules/System/Inc/System/tScript.h' l='368' type='tFileHandle'/>
+<offset>64</offset>
+<use f='Modules/System/Src/tScript.cpp' l='591' u='w' c='_ZN11tExprWriterC1ERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='593' u='r' c='_ZN11tExprWriterC1ERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='601' u='r' c='_ZN11tExprWriter15BeginExpressionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='610' u='r' c='_ZN11tExprWriter13EndExpressionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='628' u='r' c='_ZN11tExprWriter9WriteAtomERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='631' u='r' c='_ZN11tExprWriter9WriteAtomERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='633' u='r' c='_ZN11tExprWriter9WriteAtomERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='636' u='r' c='_ZN11tExprWriter9WriteAtomERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='656' u='r' c='_ZN11tExprWriter9WriteAtomEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='659' u='r' c='_ZN11tExprWriter9WriteAtomEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='661' u='r' c='_ZN11tExprWriter9WriteAtomEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='664' u='r' c='_ZN11tExprWriter9WriteAtomEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='676' u='r' c='_ZN11tExprWriter8WriteRawERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='679' u='r' c='_ZN11tExprWriter8WriteRawERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='691' u='r' c='_ZN11tExprWriter8WriteRawEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='694' u='r' c='_ZN11tExprWriter8WriteRawEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='956' u='r' c='_ZN11tExprWriter12WriteCommentEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='961' u='r' c='_ZN11tExprWriter12WriteCommentEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='978' u='r' c='_ZN11tExprWriter16WriteCommentLineEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='992' u='r' c='_ZN11tExprWriter15WriteCommentEndEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1002' u='r' c='_ZN11tExprWriter23WriteCommentInlineBeginEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1015' u='r' c='_ZN11tExprWriter18WriteCommentInlineEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='1027' u='r' c='_ZN11tExprWriter21WriteCommentInlineEndEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1038' u='r' c='_ZN11tExprWriter7NewLineEv'/>

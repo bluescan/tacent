@@ -1,0 +1,18 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='587' type='void tStringItem::tStringItem(const tString &amp; s)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='586'>// The tStringItem copy cons is missing, because as an intrusive list-item it can only be on one list at a time.</doc>
+<use f='Modules/Foundation/Src/tString.cpp' l='743' u='c' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='748' u='c' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='863' u='c' c='_ZN7tSystem11tExtensions3AddEPKc'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='66' u='c' c='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='60' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='108' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='108' u='c' c='_ZN8tCmdLine6tParam3SetERK7tString'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='242' u='c' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1950' u='c' c='_ZN7tSystem14tGetExtensionsER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1961' u='c' c='_ZN7tSystem13tGetExtensionER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2483' u='c' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2625' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2764' u='c' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2896' u='c' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2999' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tScript.cpp' l='1121' u='c' c='_ZN14tFunExpressionC1EPKDu'/>

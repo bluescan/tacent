@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3017' ll='3021'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3017'/>
+<size>12</size>
+<mbr r='VkFormatProperties::linearTilingFeatures' o='0' t='VkFormatFeatureFlags'/>
+<mbr r='VkFormatProperties::optimalTilingFeatures' o='32' t='VkFormatFeatureFlags'/>
+<mbr r='VkFormatProperties::bufferFeatures' o='64' t='VkFormatFeatureFlags'/>

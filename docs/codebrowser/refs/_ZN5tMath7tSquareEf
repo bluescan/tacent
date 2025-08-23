@@ -1,0 +1,8 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='167' type='float tMath::tSquare(float v)'/>
+<use f='Modules/Image/Src/tResample.cpp' l='353' u='c' c='_ZN6tImage18ComputeCubicWeightEfff'/>
+<use f='Modules/Math/Src/tColour.cpp' l='440' u='c' c='_ZN5tMath18tColourDiffRedmeanERK9tColour3bS2_'/>
+<use f='Modules/Math/Src/tColour.cpp' l='441' u='c' c='_ZN5tMath18tColourDiffRedmeanERK9tColour3bS2_'/>
+<use f='Modules/Math/Src/tColour.cpp' l='442' u='c' c='_ZN5tMath18tColourDiffRedmeanERK9tColour3bS2_'/>
+<use f='Modules/Math/Src/tColour.cpp' l='459' u='c' c='_ZN5tMath18tColourDiffRedmeanERK9tColour4bS2_'/>
+<use f='Modules/Math/Src/tColour.cpp' l='460' u='c' c='_ZN5tMath18tColourDiffRedmeanERK9tColour4bS2_'/>
+<use f='Modules/Math/Src/tColour.cpp' l='461' u='c' c='_ZN5tMath18tColourDiffRedmeanERK9tColour4bS2_'/>

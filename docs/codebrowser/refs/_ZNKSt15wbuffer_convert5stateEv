@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/locale_conv.h' l='442' type='std::wbuffer_convert::state_type std::wbuffer_convert::state() const'/>
+<doc f='include/c++/11/bits/locale_conv.h' l='441'>/// The conversion state following the last conversion.</doc>

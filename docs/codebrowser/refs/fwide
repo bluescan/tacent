@@ -1,0 +1,2 @@
+<dec f='include/wchar.h' l='588' type='int fwide(__FILE * __fp, int __mode)'/>
+<doc f='include/wchar.h' l='587'>/* Select orientation for stream.  */</doc>

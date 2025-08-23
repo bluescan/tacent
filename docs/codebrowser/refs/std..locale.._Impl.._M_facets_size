@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='546' type='std::size_t'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='108' u='r' c='_ZSt9has_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='136' u='r' c='_ZSt9use_facetRKSt6locale'/>
+<offset>128</offset>

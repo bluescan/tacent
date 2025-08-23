@@ -1,0 +1,14 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='894' ll='896'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='898' ll='901'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='903' ll='906'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='908' ll='911'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='913' ll='916'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='918' ll='921'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1067'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1077'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1595'/>

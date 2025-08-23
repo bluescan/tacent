@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/std_function.h' l='404' ll='414' type='void std::function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt;::function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt;(function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt; &amp;&amp; __x)'/>
+<doc f='include/c++/11/bits/std_function.h' l='397'>/**
+       *  @brief %Function move constructor.
+       *  @param __x A %function object rvalue with identical call signature.
+       *
+       *  The newly-created %function contains the target of `__x`
+       *  (if it has one).
+       */</doc>

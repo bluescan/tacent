@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='321' type='void *'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='389' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>832</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='321'>// can be used by the writer.</doc>

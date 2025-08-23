@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/allocated_ptr.h' l='66' ll='68' type='void std::__allocated_ptr::__allocated_ptr&lt;_Alloc&gt;(__allocated_ptr&lt;_Alloc&gt; &amp;&amp; __gd)'/>
+<doc f='include/c++/11/bits/allocated_ptr.h' l='65'>/// Transfer ownership of the owned pointer</doc>

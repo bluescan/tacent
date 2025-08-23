@@ -1,0 +1,1 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='87' type='void tMath::tMatrix4::MakeLookAt(const tMath::tVec3 &amp; eye, const tMath::tVec3 &amp; look, const tMath::tVec3 &amp; up)'/>

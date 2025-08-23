@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stl_numeric.h' l='132' ll='143' macro='1' type='_Tp std::accumulate(_InputIterator __first, _InputIterator __last, _Tp __init)'/>
+<use f='include/c++/11/bits/random.tcc' l='2665' u='c' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2830' u='c' c='_ZNSt31piecewise_constant_distribution10param_type13_M_initializeEv'/>

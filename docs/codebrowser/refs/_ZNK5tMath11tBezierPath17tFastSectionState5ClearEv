@@ -1,0 +1,3 @@
+<use f='Modules/Math/Src/tSpline.cpp' l='478' u='c' c='_ZNK5tMath11tBezierPath17tFastSectionState3SetERKNS_8tVector3EjPS3_i'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='505' u='c' c='_ZNK5tMath11tBezierPath15GetClosestParamERKNS_8tVector3EjfRKNS0_17tFastSectionStateE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='508' u='c' c='_ZNK5tMath11tBezierPath15GetClosestParamERKNS_8tVector3EjfRKNS0_17tFastSectionStateE'/>

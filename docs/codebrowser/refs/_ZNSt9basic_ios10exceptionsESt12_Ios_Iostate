@@ -1,0 +1,32 @@
+<def f='include/c++/11/bits/basic_ios.h' l='256' ll='261' type='void std::basic_ios::exceptions(std::ios_base::iostate __except)'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='225'>/**
+       *  @brief  Throwing exceptions on errors.
+       *  @param  __except  The new exceptions mask.
+       *
+       *  By default, error flags are set silently.  You can set an
+       *  exceptions mask for each stream; if a bit in the mask becomes set
+       *  in the error flags, then an exception of type
+       *  std::ios_base::failure is thrown.
+       *
+       *  If the error flag is already set when the exceptions mask is
+       *  added, the exception is immediately thrown.  Try running the
+       *  following under GCC 3.1 or later:
+       *  @code
+       *  #include &lt;iostream&gt;
+       *  #include &lt;fstream&gt;
+       *  #include &lt;exception&gt;
+       *
+       *  int main()
+       *  {
+       *      std::set_terminate (__gnu_cxx::__verbose_terminate_handler);
+       *
+       *      std::ifstream f (&quot;/etc/motd&quot;);
+       *
+       *      std::cerr &lt;&lt; &quot;Setting badbit\n&quot;;
+       *      f.setstate (std::ios_base::badbit);
+       *
+       *      std::cerr &lt;&lt; &quot;Setting exception mask\n&quot;;
+       *      f.exceptions (std::ios_base::badbit);
+       *  }
+       *  @endcode
+      */</doc>

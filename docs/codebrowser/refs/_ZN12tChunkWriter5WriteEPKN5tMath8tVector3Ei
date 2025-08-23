@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='165' type='int tChunkWriter::Write(const tMath::tVector3 * data, int numItems)'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='404' u='c' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='453' u='c' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='467' u='c' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='56' u='c' c='_ZNK6tScene5tPath4SaveER12tChunkWriter'/>
+<def f='Modules/System/Src/tChunk.cpp' l='495' ll='513' type='int tChunkWriter::Write(const tMath::tVector3 * data, int numItems)'/>

@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='324' type='int WebPAnimDecoderGetNext(WebPAnimDecoder * dec, uint8_t ** buf, int * timestamp)'/>

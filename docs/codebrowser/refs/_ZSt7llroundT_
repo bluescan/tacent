@@ -1,0 +1,1 @@
+<def f='include/c++/11/cmath' l='1543' ll='1546' type='typename __gnu_cxx::__enable_if&lt;__is_integer&lt;_Tp&gt;::__value, long long&gt;::__type std::llround(_Tp __x)'/>

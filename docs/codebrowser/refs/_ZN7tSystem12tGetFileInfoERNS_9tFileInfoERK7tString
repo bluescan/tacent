@@ -1,0 +1,7 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='560' type='bool tSystem::tGetFileInfo(tSystem::tFileInfo &amp; , const tString &amp; path)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='558'>// Returns true if the FileInfo struct was filled out. Returns false if there was a problem like the file didn&apos;t exist.
+// In this case the struct is left unmodified. This function can be used to get file or directory information.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='2100' ll='2151' type='bool tSystem::tGetFileInfo(tSystem::tFileInfo &amp; fileInfo, const tString &amp; path)'/>
+<use f='Modules/System/Src/tFile.cpp' l='2630' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2771' u='c' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3004' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

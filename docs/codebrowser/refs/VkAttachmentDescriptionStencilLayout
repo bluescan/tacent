@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6375' ll='6380'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6375'/>
+<size>24</size>
+<mbr r='VkAttachmentDescriptionStencilLayout::sType' o='0' t='VkStructureType'/>
+<mbr r='VkAttachmentDescriptionStencilLayout::pNext' o='64' t='void *'/>
+<mbr r='VkAttachmentDescriptionStencilLayout::stencilInitialLayout' o='128' t='VkImageLayout'/>
+<mbr r='VkAttachmentDescriptionStencilLayout::stencilFinalLayout' o='160' t='VkImageLayout'/>

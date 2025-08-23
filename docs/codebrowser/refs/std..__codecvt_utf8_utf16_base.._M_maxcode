@@ -1,0 +1,7 @@
+<use f='include/c++/11/codecvt' l='99' u='w' c='_ZNSt25__codecvt_utf8_utf16_baseIDsEC1EmSt12codecvt_modem'/>
+<dec f='include/c++/11/codecvt' l='136' type='unsigned long'/>
+<use f='include/c++/11/codecvt' l='99' u='w' c='_ZNSt25__codecvt_utf8_utf16_baseIDiEC1EmSt12codecvt_modem'/>
+<dec f='include/c++/11/codecvt' l='136' type='unsigned long'/>
+<use f='include/c++/11/codecvt' l='99' u='w' c='_ZNSt25__codecvt_utf8_utf16_baseIwEC1EmSt12codecvt_modem'/>
+<dec f='include/c++/11/codecvt' l='136' type='unsigned long'/>
+<offset>192</offset>

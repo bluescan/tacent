@@ -1,0 +1,16 @@
+<def f='include/c++/11/bits/locale_facets.h' l='333' ll='335' type='char std::__ctype_abstract_base::narrow(std::__ctype_abstract_base::char_type __c, char __dfault) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='318'>/**
+       *  @brief  Narrow char_type to char
+       *
+       *  This function converts the char_type to char using the simplest
+       *  reasonable transformation.  If the conversion fails, dfault is
+       *  returned instead.  It does so by returning
+       *  ctype&lt;char_type&gt;::do_narrow(__c).
+       *
+       *  Note: this is not what you want for codepage conversions.  See
+       *  codecvt for that.
+       *
+       *  @param __c  The char_type to convert.
+       *  @param __dfault  Char to return if conversion fails.
+       *  @return  The converted char.
+      */</doc>

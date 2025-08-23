@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/ios_base.h' l='592' ll='597'/>
+<use f='include/c++/11/bits/ios_base.h' l='600'/>
+<use f='include/c++/11/bits/ios_base.h' l='605'/>
+<use f='include/c++/11/bits/ios_base.h' l='609'/>
+<use f='include/c++/11/bits/ios_base.h' l='611' c='_ZNSt8ios_base13_M_grow_wordsEib'/>
+<use f='include/c++/11/bits/ios_base.h' l='841' c='_ZNSt8ios_base5iwordEi'/>
+<use f='include/c++/11/bits/ios_base.h' l='862' c='_ZNSt8ios_base5pwordEi'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='73' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='74' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>
+<size>16</size>
+<doc f='include/c++/11/bits/ios_base.h' l='591'>// 27.4.2.5  Members for iword/pword storage</doc>
+<mbr r='std::ios_base::_Words::_M_pword' o='0' t='void *'/>
+<mbr r='std::ios_base::_Words::_M_iword' o='64' t='long'/>
+<fun r='_ZNSt8ios_base6_WordsC1Ev'/>

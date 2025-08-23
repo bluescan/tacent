@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1771' ll='1774'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1776' ll='1779'/>
+<inh f='include/c++/11/bits/shared_ptr_base.h' l='1760' c='std::_Sp_owner_less'/>
+<def f='include/c++/11/bits/shared_ptr.h' l='772' ll='774'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='773'/>
+<def f='include/c++/11/bits/shared_ptr.h' l='777' ll='780'/>
+<def f='include/c++/11/bits/shared_ptr.h' l='783' ll='786'/>
+<size>1</size>
+<doc f='include/c++/11/bits/shared_ptr.h' l='771'>/// Void specialization of owner_less compares either shared_ptr or weak_ptr</doc>
+<doc f='include/c++/11/bits/shared_ptr.h' l='776'>/// Partial specialization of owner_less for shared_ptr.</doc>
+<doc f='include/c++/11/bits/shared_ptr.h' l='782'>/// Partial specialization of owner_less for weak_ptr.</doc>

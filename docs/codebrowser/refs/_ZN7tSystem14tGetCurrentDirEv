@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='274' type='tString tSystem::tGetCurrentDir()'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='273'>// Includes the trailing slash. Gets the current directory.</doc>
+<use f='Modules/System/Src/tFile.cpp' l='288' u='c' c='_ZN7tSystem16tGetAbsolutePathERK7tStringS2_'/>
+<def f='Modules/System/Src/tFile.cpp' l='1413' ll='1437' type='tString tSystem::tGetCurrentDir()'/>
+<use f='Modules/System/Src/tFile.cpp' l='2646' u='c' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

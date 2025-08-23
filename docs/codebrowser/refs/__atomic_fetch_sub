@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/atomic_base.h' l='628' u='c' c='_ZNSt13__atomic_base9fetch_subET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='633' u='c' c='_ZNVSt13__atomic_base9fetch_subET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='909' u='c' c='_ZNSt13__atomic_baseIPT_E9fetch_subElSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='914' u='c' c='_ZNVSt13__atomic_baseIPT_E9fetch_subElSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1023' u='c' c='_ZNSt13__atomic_impl9fetch_subEPT_NSt11conditionalIX12is_pointer_vIS0_EElNSt15remove_volatileIS0_E4typeEE4typeESt12memory_order'/>

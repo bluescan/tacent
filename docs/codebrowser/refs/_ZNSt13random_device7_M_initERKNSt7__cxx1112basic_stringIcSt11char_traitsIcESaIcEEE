@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/random.h' l='1618' u='c' c='_ZNSt13random_deviceC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='1621' u='c' c='_ZNSt13random_deviceC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<dec f='include/c++/11/bits/random.h' l='1656' type='void std::random_device::_M_init(const std::string &amp; __token)'/>

@@ -1,0 +1,2 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='110' c='_ZNK6tImage10tBaseImage12GetAlphaModeEv'/>
+<def f='Modules/Image/Inc/Image/tImagePVR.h' l='224' type='tAlphaMode tImage::tImagePVR::GetAlphaMode() const'/>

@@ -1,0 +1,3 @@
+<dec f='include/wchar.h' l='372' type='int wcswidth(const wchar_t * __s, size_t __n)'/>
+<doc f='include/wchar.h' l='370'>/* Determine number of column positions required for first N wide
+   characters (or fewer if S ends before this) in S.  */</doc>

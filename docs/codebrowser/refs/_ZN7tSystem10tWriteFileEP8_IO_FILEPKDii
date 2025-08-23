@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='63' type='int tSystem::tWriteFile(tFileHandle , const char32_t * buffer, int length)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='741' ll='745' type='int tSystem::tWriteFile(tFileHandle handle, const char32_t * buffer, int length)'/>
+<use f='Modules/System/Src/tFile.cpp' l='1085' u='c' c='_ZN7tSystem11tCreateFileERK7tStringPDiib'/>
+<use f='Modules/System/Src/tFile.cpp' l='1094' u='c' c='_ZN7tSystem11tCreateFileERK7tStringPDiib'/>

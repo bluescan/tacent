@@ -1,0 +1,9 @@
+<def f='Modules/System/Inc/System/tScript.h' l='98' type='bool tExpression::GetAtomBool() const'/>
+<use f='Modules/System/Inc/System/tScript.h' l='121' u='c' c='_ZNK11tExpressioncvbEv'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='91'>// These get the values of atom expressions. They are the base types. eg: the atom &apos;True&apos; would return true if you
+	// called GetAtomBool on it. &apos;67&apos; would return 67 if you called GetAtomInt, etc. It is worth mentioning GetAtomFloat
+	// and GetAtomDouble. They can take atoms of the form &apos;67.3677&apos; or &apos;67.3677#FB0933CE&apos;. The value after the # is a
+	// base-16 number that is the binary representation of a float (IEEE 754). It would be twice as long for a double.
+	// If there is a # and hex value, it is used instead of the base 10 text. This essentially removes &apos;wobble&apos; like
+	// you see in many engines from saving and reloading floats, and keeps it human-readable/editable. Note, I have
+	// very little confidence FB0933CE actually represents 67.3677 -- I just chose a random 32 bit hex number.</doc>

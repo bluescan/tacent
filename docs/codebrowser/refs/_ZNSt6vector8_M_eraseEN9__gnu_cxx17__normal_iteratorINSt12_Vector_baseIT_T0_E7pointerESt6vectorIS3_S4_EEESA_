@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_vector.h' l='1807' type='std::vector::iterator std::vector::_M_erase(std::vector::iterator __first, std::vector::iterator __last)'/>
+<def f='include/c++/11/bits/vector.tcc' l='182' ll='194' type='typename vector&lt;_Tp, _Alloc&gt;::iterator std::vector::_M_erase(std::vector::iterator __first, std::vector::iterator __last)'/>

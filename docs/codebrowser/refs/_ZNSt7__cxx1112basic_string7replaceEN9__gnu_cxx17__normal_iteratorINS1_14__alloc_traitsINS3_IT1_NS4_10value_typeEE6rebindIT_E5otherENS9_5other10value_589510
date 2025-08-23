@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/basic_string.h' l='2253' ll='2258' type='_If_sv&lt;_Tp, basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp;&gt; std::basic_string::replace(std::basic_string::const_iterator __i1, std::basic_string::const_iterator __i2, const _Tp &amp; __svt)'/>

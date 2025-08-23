@@ -1,0 +1,17 @@
+<def f='include/c++/11/bits/std_function.h' l='114' ll='254'/>
+<ovr f='include/c++/11/bits/std_function.h' l='334' c='std::function'/>
+<use f='include/c++/11/bits/std_function.h' l='336'/>
+<use f='include/c++/11/bits/std_function.h' l='369' c='_ZNSt8functionIFT_DpT0_EEC1Ev'/>
+<use f='include/c++/11/bits/std_function.h' l='376' c='_ZNSt8functionIFT_DpT0_EEC1EDn'/>
+<use f='include/c++/11/bits/std_function.h' l='387' c='_ZNSt8functionIFT_DpT0_EEC1ERKS_IS3_E'/>
+<use f='include/c++/11/bits/std_function.h' l='405' c='_ZNSt8functionIFT_DpT0_EEC1EOS_IS3_E'/>
+<use f='include/c++/11/bits/std_function.h' l='437' c='_ZNSt8functionIFT_DpT0_EEC1EOTL0__'/>
+<size>24</size>
+<doc f='include/c++/11/bits/std_function.h' l='113'>/// Base class of all polymorphic function object wrappers.</doc>
+<smbr r='std::_Function_base::_M_max_size' t='const std::size_t'/>
+<smbr r='std::_Function_base::_M_max_align' t='const std::size_t'/>
+<fun r='_ZNSt14_Function_baseC1Ev'/>
+<fun r='_ZNSt14_Function_baseD1Ev'/>
+<fun r='_ZNKSt14_Function_base8_M_emptyEv'/>
+<mbr r='std::_Function_base::_M_functor' o='0' t='std::_Any_data'/>
+<mbr r='std::_Function_base::_M_manager' o='128' t='std::_Function_base::_Manager_type'/>

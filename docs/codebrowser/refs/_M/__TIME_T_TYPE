@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/typesizes.h' l='64'/>
+<use f='include/x86_64-linux-gnu/bits/types.h' l='160' u='c'/>

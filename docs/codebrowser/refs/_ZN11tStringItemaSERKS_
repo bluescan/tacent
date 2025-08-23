@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='595' type='tStringItem &amp; tStringItem::operator=(const tStringItem &amp; )'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='1212' ll='1223' type='tStringItem &amp; tStringItem::operator=(const tStringItem &amp; src)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='594'>// This call does NOT change the list that the tStringItem is on. The link remains unmodified.</doc>

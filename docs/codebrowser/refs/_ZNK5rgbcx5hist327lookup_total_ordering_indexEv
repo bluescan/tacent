@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1625' ll='1636' type='uint32_t rgbcx::hist3::lookup_total_ordering_index() const'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2802' u='c' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>

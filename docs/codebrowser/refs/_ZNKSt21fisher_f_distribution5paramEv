@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='3143' ll='3145' type='std::fisher_f_distribution::param_type std::fisher_f_distribution::param() const'/>
+<doc f='include/c++/11/bits/random.h' l='3140'>/**
+       * @brief Returns the parameter set of the distribution.
+       */</doc>

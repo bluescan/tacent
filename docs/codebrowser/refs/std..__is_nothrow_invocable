@@ -1,0 +1,7 @@
+<def f='include/c++/11/type_traits' l='2983' ll='2986'/>
+<use f='include/c++/11/bits/invoke.h' l='91' c='_ZSt8__invokeOT_DpOT0_'/>
+<use f='include/c++/11/bits/hashtable.h' l='51'/>
+<use f='include/c++/11/functional' l='950' c='_ZNRSt7_Not_fnclEDpOTL0__'/>
+<use f='include/c++/11/functional' l='950' c='_ZNKRSt7_Not_fnclEDpOTL0__'/>
+<use f='include/c++/11/functional' l='950' c='_ZNOSt7_Not_fnclEDpOTL0__'/>
+<use f='include/c++/11/functional' l='950' c='_ZNKOSt7_Not_fnclEDpOTL0__'/>

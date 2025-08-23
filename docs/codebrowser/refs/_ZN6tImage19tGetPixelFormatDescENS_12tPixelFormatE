@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='357' type='const char * tImage::tGetPixelFormatDesc(tImage::tPixelFormat )'/>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='645' ll='650' type='const char * tImage::tGetPixelFormatDesc(tImage::tPixelFormat fmt)'/>

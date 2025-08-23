@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='540' type='float tMath::tTrace(const tMath::tMat4 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='68' u='c' c='_ZNK5tMath8tMatrix45TraceEv'/>

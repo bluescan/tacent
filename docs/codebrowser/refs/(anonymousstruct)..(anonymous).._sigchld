@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='86' type='struct (unnamed struct at /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h:79:2)'/>
+<offset>0</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='78'>/* SIGCHLD.  */</doc>

@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='552' type='int dup(int __fd)'/>
+<doc f='include/unistd.h' l='551'>/* Duplicate FD, returning a new file descriptor on the same file.  */</doc>

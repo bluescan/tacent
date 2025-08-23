@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5287' ll='5291'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5287'/>
+<size>32</size>
+<mbr r='VkFormatProperties2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkFormatProperties2::pNext' o='64' t='void *'/>
+<mbr r='VkFormatProperties2::formatProperties' o='128' t='VkFormatProperties'/>

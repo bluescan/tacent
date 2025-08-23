@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='526' type='void tMath::tLerp(tMath::tVec4 &amp; d, const tMath::tVec4 &amp; a, const tMath::tVec4 &amp; b, float t)'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='64' u='c' c='_ZN5tMath8tVector44LerpERKNS_5tVec4ES3_f'/>

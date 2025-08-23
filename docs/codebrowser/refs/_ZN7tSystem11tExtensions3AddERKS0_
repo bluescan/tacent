@@ -1,0 +1,3 @@
+<use f='Modules/System/Inc/System/tFile.h' l='439' u='c' c='_ZN7tSystem11tExtensionsC1ERKS0_'/>
+<dec f='Modules/System/Inc/System/tFile.h' l='445' type='tSystem::tExtensions &amp; tSystem::tExtensions::Add(const tSystem::tExtensions &amp; src)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='849' ll='855' type='tSystem::tExtensions &amp; tSystem::tExtensions::Add(const tSystem::tExtensions &amp; src)'/>

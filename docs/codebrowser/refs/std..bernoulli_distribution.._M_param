@@ -1,0 +1,11 @@
+<use f='include/c++/11/bits/random.h' l='3573' u='w' c='_ZNSt22bernoulli_distributionC1Ed'/>
+<use f='include/c++/11/bits/random.h' l='3578' u='w' c='_ZNSt22bernoulli_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3594' u='m' c='_ZNKSt22bernoulli_distribution1pEv'/>
+<use f='include/c++/11/bits/random.h' l='3601' u='r' c='_ZNKSt22bernoulli_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='3609' u='w' c='_ZNSt22bernoulli_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3631' c='_ZNSt22bernoulli_distributionclERT_'/>
+<use f='include/c++/11/bits/random.h' l='3651' c='_ZNSt22bernoulli_distribution10__generateET_S0_RT0_'/>
+<use f='include/c++/11/bits/random.h' l='3674' u='r' c='_ZSteqRKSt22bernoulli_distributionS1_'/>
+<use f='include/c++/11/bits/random.h' l='3674' u='r' c='_ZSteqRKSt22bernoulli_distributionS1_'/>
+<dec f='include/c++/11/bits/random.h' l='3684' type='std::bernoulli_distribution::param_type'/>
+<offset>0</offset>

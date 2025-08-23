@@ -1,0 +1,4 @@
+<use f='Modules/Image/Src/tImageBMP.cpp' l='66' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='593' c='_ZNK6tImage9tImageBMP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='605' c='_ZNK6tImage9tImageBMP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<size>40</size>

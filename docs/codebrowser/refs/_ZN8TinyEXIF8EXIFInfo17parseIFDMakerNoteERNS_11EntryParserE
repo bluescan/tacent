@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='143' type='void TinyEXIF::EXIFInfo::parseIFDMakerNote(TinyEXIF::EntryParser &amp; )'/>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='142'>// Parse tag as MakerNote IFD.</doc>

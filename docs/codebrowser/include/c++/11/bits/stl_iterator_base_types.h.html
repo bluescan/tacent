@@ -1,0 +1,290 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>stl_iterator_base_types.h source code [include/c++/11/bits/stl_iterator_base_types.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::__is_random_access_iter,std::__iterator_traits,std::bidirectional_iterator_tag,std::contiguous_iterator_tag,std::forward_iterator_tag,std::input_iterator_tag,std::iterator,std::iterator_traits,std::output_iterator_tag,std::random_access_iterator_tag "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/stl_iterator_base_types.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='stl_iterator_base_types.h.html'>stl_iterator_base_types.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Types used in iterator implementation -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2001-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i> * Copyright (c) 1994</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i> * Hewlett-Packard Company</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i> * Permission to use, copy, modify, distribute and sell this software</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i> * and its documentation for any purpose is hereby granted without fee,</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i> * provided that the above copyright notice appear in all copies and</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i> * that both that copyright notice and this permission notice appear</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i> * in supporting documentation.  Hewlett-Packard Company makes no</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i> * representations about the suitability of this software for any</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i> * purpose.  It is provided "as is" without express or implied warranty.</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i> * Copyright (c) 1996-1998</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i> * Silicon Graphics Computer Systems, Inc.</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i> * Permission to use, copy, modify, distribute and sell this software</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i> * and its documentation for any purpose is hereby granted without fee,</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i> * provided that the above copyright notice appear in all copies and</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i> * that both that copyright notice and this permission notice appear</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i> * in supporting documentation.  Silicon Graphics makes no</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i> * representations about the suitability of this software for any</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i> * purpose.  It is provided "as is" without express or implied warranty.</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/stl_iterator_base_types.h</span></i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{iterator}</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i class="doc"> *</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i class="doc"> *  This file contains all of the general iterator-related utility types,</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><i class="doc"> *  such as iterator_traits and struct iterator.</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td>&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#<span data-ppcond="59">ifndef</span> <span class="macro" data-ref="_M/_STL_ITERATOR_BASE_TYPES_H">_STL_ITERATOR_BASE_TYPES_H</span></u>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#define <dfn class="macro" id="_M/_STL_ITERATOR_BASE_TYPES_H" data-ref="_M/_STL_ITERATOR_BASE_TYPES_H">_STL_ITERATOR_BASE_TYPES_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="63">63</th><td>&nbsp</td></tr>
+<tr><th id="64">64</th><td><u>#include &lt;bits/c++config.h&gt;</u>&nbsp</td></tr>
+<tr><th id="65">65</th><td>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>#<span data-ppcond="66">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="67">67</th><td><u># include &lt;type_traits&gt;  // For __void_t, is_convertible</u>&nbsp</td></tr>
+<tr><th id="68">68</th><td><u>#<span data-ppcond="66">endif</span></u>&nbsp</td></tr>
+<tr><th id="69">69</th><td>&nbsp</td></tr>
+<tr><th id="70">70</th><td><u>#<span data-ppcond="70">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L &amp;&amp; <span class="macro" title="201907L" data-ref="_M/__cpp_concepts">__cpp_concepts</span> &gt;= 201907L</u>&nbsp</td></tr>
+<tr><th id="71">71</th><td><u># include &lt;bits/iterator_concepts.h&gt;</u>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#<span data-ppcond="70">endif</span></u>&nbsp</td></tr>
+<tr><th id="73">73</th><td>&nbsp</td></tr>
+<tr><th id="74">74</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="75">75</th><td>{&nbsp</td></tr>
+<tr><th id="76">76</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><i class="doc">   *  <span class="command">@defgroup</span> <span class="verb">iterators Iterators</span></i>&nbsp</td></tr>
+<tr><th id="80">80</th><td><i class="doc">   *  Abstractions for uniform iterating through various underlying types.</i>&nbsp</td></tr>
+<tr><th id="81">81</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i class="doc">  ///@{</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td>&nbsp</td></tr>
+<tr><th id="84">84</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td><i class="doc">   *  <span class="command">@defgroup</span> <span class="verb">iterator_tags Iterator Tags</span></i>&nbsp</td></tr>
+<tr><th id="86">86</th><td><i class="doc">   *  These are empty types, used to distinguish different iterators.  The</i>&nbsp</td></tr>
+<tr><th id="87">87</th><td><i class="doc">   *  distinction is not made by what they contain, but simply by what they</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td><i class="doc">   *  are.  Different underlying algorithms can then be used based on the</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td><i class="doc">   *  different operations supported by different iterator types.</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i class="doc">  ///@{</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><i class="doc">  ///  Marking input iterators.</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td>  <b>struct</b> <dfn class="type def" id="std::input_iterator_tag" title='std::input_iterator_tag' data-ref="std::input_iterator_tag">input_iterator_tag</dfn> { };&nbsp</td></tr>
+<tr><th id="94">94</th><td>&nbsp</td></tr>
+<tr><th id="95">95</th><td>  <i class="doc">///  Marking output iterators.</i>&nbsp</td></tr>
+<tr><th id="96">96</th><td>  <b>struct</b> <dfn class="type def" id="std::output_iterator_tag" title='std::output_iterator_tag' data-ref="std::output_iterator_tag">output_iterator_tag</dfn> { };&nbsp</td></tr>
+<tr><th id="97">97</th><td>&nbsp</td></tr>
+<tr><th id="98">98</th><td>  <i class="doc">/// Forward iterators support a superset of input iterator operations.</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td>  <b>struct</b> <dfn class="type def" id="std::forward_iterator_tag" title='std::forward_iterator_tag' data-ref="std::forward_iterator_tag">forward_iterator_tag</dfn> : <b>public</b> <a class="type" href="#std::input_iterator_tag" title='std::input_iterator_tag' data-ref="std::input_iterator_tag">input_iterator_tag</a> { };&nbsp</td></tr>
+<tr><th id="100">100</th><td>&nbsp</td></tr>
+<tr><th id="101">101</th><td>  <i class="doc">/// Bidirectional iterators support a superset of forward iterator</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td><i class="doc">  /// operations.</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td>  <b>struct</b> <dfn class="type def" id="std::bidirectional_iterator_tag" title='std::bidirectional_iterator_tag' data-ref="std::bidirectional_iterator_tag">bidirectional_iterator_tag</dfn> : <b>public</b> <a class="type" href="#std::forward_iterator_tag" title='std::forward_iterator_tag' data-ref="std::forward_iterator_tag">forward_iterator_tag</a> { };&nbsp</td></tr>
+<tr><th id="104">104</th><td>&nbsp</td></tr>
+<tr><th id="105">105</th><td>  <i class="doc">/// Random-access iterators support a superset of bidirectional</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><i class="doc">  /// iterator operations.</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td>  <b>struct</b> <dfn class="type def" id="std::random_access_iterator_tag" title='std::random_access_iterator_tag' data-ref="std::random_access_iterator_tag">random_access_iterator_tag</dfn> : <b>public</b> <a class="type" href="#std::bidirectional_iterator_tag" title='std::bidirectional_iterator_tag' data-ref="std::bidirectional_iterator_tag">bidirectional_iterator_tag</a> { };&nbsp</td></tr>
+<tr><th id="108">108</th><td>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>#<span data-ppcond="109">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="110">110</th><td>  <i class="doc">/// Contiguous iterators point to objects stored contiguously in memory.</i>&nbsp</td></tr>
+<tr><th id="111">111</th><td>  <b>struct</b> <dfn class="type def" id="std::contiguous_iterator_tag" title='std::contiguous_iterator_tag' data-ref="std::contiguous_iterator_tag">contiguous_iterator_tag</dfn> : <b>public</b> <a class="type" href="#std::random_access_iterator_tag" title='std::random_access_iterator_tag' data-ref="std::random_access_iterator_tag">random_access_iterator_tag</a> { };&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>#<span data-ppcond="109">endif</span></u>&nbsp</td></tr>
+<tr><th id="113">113</th><td>  <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td>&nbsp</td></tr>
+<tr><th id="115">115</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="116">116</th><td><i class="doc">   *  <span class="command">@brief</span>  Common %iterator class.</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="118">118</th><td><i class="doc">   *  This class does nothing but define nested typedefs.  %Iterator classes</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td><i class="doc">   *  can inherit from this class to save some work.  The typedefs are then</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td><i class="doc">   *  used in specializations and overloading.</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td><i class="doc">   *  In particular, there are no default implementations of requirements</i>&nbsp</td></tr>
+<tr><th id="123">123</th><td><i class="doc">   *  such as<span class="command"> @c</span> <span class="arg">operator++</span> and the like.  (How could there be?)</i>&nbsp</td></tr>
+<tr><th id="124">124</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="125">125</th><td>  <b>template</b>&lt;<b>typename</b> _Category, <b>typename</b> _Tp, <b>typename</b> _Distance = <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::ptrdiff_t" title='std::ptrdiff_t' data-type='long' data-ref="std::ptrdiff_t">ptrdiff_t</a>,&nbsp</td></tr>
+<tr><th id="126">126</th><td>           <b>typename</b> _Pointer = _Tp*, <b>typename</b> _Reference = _Tp&amp;&gt;&nbsp</td></tr>
+<tr><th id="127">127</th><td>    <b>struct</b> <dfn class="type def" id="std::iterator" title='std::iterator' data-ref="std::iterator">iterator</dfn>&nbsp</td></tr>
+<tr><th id="128">128</th><td>    {&nbsp</td></tr>
+<tr><th id="129">129</th><td>      <i class="doc">/// One of the <span class="command">@link</span><span class="verb"> iterator_tags tag types@endlink.</span></i>&nbsp</td></tr>
+<tr><th id="130">130</th><td><i class="doc"><span class="verb"></span></i>      <b>typedef</b> _Category  <dfn class="typedef" id="std::iterator::iterator_category" title='std::iterator::iterator_category' data-type='_Category' data-ref="std::iterator::iterator_category">iterator_category</dfn>;&nbsp</td></tr>
+<tr><th id="131">131</th><td>      <i class="doc">/// The type "pointed to" by the iterator.</i>&nbsp</td></tr>
+<tr><th id="132">132</th><td>      <b>typedef</b> _Tp        <dfn class="typedef" id="std::iterator::value_type" title='std::iterator::value_type' data-type='_Tp' data-ref="std::iterator::value_type">value_type</dfn>;&nbsp</td></tr>
+<tr><th id="133">133</th><td>      <i class="doc">/// Distance between iterators is represented as this type.</i>&nbsp</td></tr>
+<tr><th id="134">134</th><td>      <b>typedef</b> _Distance  <dfn class="typedef" id="std::iterator::difference_type" title='std::iterator::difference_type' data-type='_Distance' data-ref="std::iterator::difference_type">difference_type</dfn>;&nbsp</td></tr>
+<tr><th id="135">135</th><td>      <i class="doc">/// This type represents a pointer-to-value_type.</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td>      <b>typedef</b> _Pointer   <dfn class="typedef" id="std::iterator::pointer" title='std::iterator::pointer' data-type='_Pointer' data-ref="std::iterator::pointer">pointer</dfn>;&nbsp</td></tr>
+<tr><th id="137">137</th><td>      <i class="doc">/// This type represents a reference-to-value_type.</i>&nbsp</td></tr>
+<tr><th id="138">138</th><td>      <b>typedef</b> _Reference <dfn class="typedef" id="std::iterator::reference" title='std::iterator::reference' data-type='_Reference' data-ref="std::iterator::reference">reference</dfn>;&nbsp</td></tr>
+<tr><th id="139">139</th><td>    };&nbsp</td></tr>
+<tr><th id="140">140</th><td>&nbsp</td></tr>
+<tr><th id="141">141</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td><i class="doc">   *  <span class="command">@brief</span>  Traits class for iterators.</i>&nbsp</td></tr>
+<tr><th id="143">143</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="144">144</th><td><i class="doc">   *  This class does nothing but define nested typedefs.  The general</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td><i class="doc">   *  version simply<span class="command"> @a</span> <span class="arg">forwards</span> the nested typedefs from the Iterator</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td><i class="doc">   *  argument.  Specialized versions for pointers and pointers-to-const</i>&nbsp</td></tr>
+<tr><th id="147">147</th><td><i class="doc">   *  provide tighter, more correct semantics.</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="149">149</th><td>  <b>template</b>&lt;<b>typename</b> _Iterator&gt;&nbsp</td></tr>
+<tr><th id="150">150</th><td>    <b>struct</b> <a class="type" href="#std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits">iterator_traits</a>;&nbsp</td></tr>
+<tr><th id="151">151</th><td>&nbsp</td></tr>
+<tr><th id="152">152</th><td><u>#<span data-ppcond="152">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="153">153</th><td>  <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="154">154</th><td><i>  // 2408. SFINAE-friendly common_type/iterator_traits is missing in C++14</i>&nbsp</td></tr>
+<tr><th id="155">155</th><td>  <b>template</b>&lt;<b>typename</b> _Iterator, <b>typename</b> = <a class="type" href="../type_traits.html#std::__void_t" title='std::__void_t' data-ref="std::__void_t">__void_t</a>&lt;&gt;&gt;&nbsp</td></tr>
+<tr><th id="156">156</th><td>    <b>struct</b> <dfn class="type def" id="std::__iterator_traits" title='std::__iterator_traits' data-ref="std::__iterator_traits">__iterator_traits</dfn> { };&nbsp</td></tr>
+<tr><th id="157">157</th><td>&nbsp</td></tr>
+<tr><th id="158">158</th><td><u>#<span data-ppcond="158">if</span> ! <a class="macro" href="../concepts.html#50" title="202002L" data-ref="_M/__cpp_lib_concepts">__cpp_lib_concepts</a></u>&nbsp</td></tr>
+<tr><th id="159">159</th><td>&nbsp</td></tr>
+<tr><th id="160">160</th><td>  <b>template</b>&lt;<b>typename</b> _Iterator&gt;&nbsp</td></tr>
+<tr><th id="161">161</th><td>    <b>struct</b> __iterator_traits&lt;_Iterator,&nbsp</td></tr>
+<tr><th id="162">162</th><td>			     __void_t&lt;<b>typename</b> _Iterator::iterator_category,&nbsp</td></tr>
+<tr><th id="163">163</th><td>				      <b>typename</b> _Iterator::value_type,&nbsp</td></tr>
+<tr><th id="164">164</th><td>				      <b>typename</b> _Iterator::difference_type,&nbsp</td></tr>
+<tr><th id="165">165</th><td>				      <b>typename</b> _Iterator::pointer,&nbsp</td></tr>
+<tr><th id="166">166</th><td>				      <b>typename</b> _Iterator::reference&gt;&gt;&nbsp</td></tr>
+<tr><th id="167">167</th><td>    {&nbsp</td></tr>
+<tr><th id="168">168</th><td>      <b>typedef</b> <b>typename</b> _Iterator::iterator_category iterator_category;&nbsp</td></tr>
+<tr><th id="169">169</th><td>      <b>typedef</b> <b>typename</b> _Iterator::value_type        value_type;&nbsp</td></tr>
+<tr><th id="170">170</th><td>      <b>typedef</b> <b>typename</b> _Iterator::difference_type   difference_type;&nbsp</td></tr>
+<tr><th id="171">171</th><td>      <b>typedef</b> <b>typename</b> _Iterator::pointer           pointer;&nbsp</td></tr>
+<tr><th id="172">172</th><td>      <b>typedef</b> <b>typename</b> _Iterator::reference         reference;&nbsp</td></tr>
+<tr><th id="173">173</th><td>    };&nbsp</td></tr>
+<tr><th id="174">174</th><td><u>#<span data-ppcond="158">endif</span> // ! concepts</u>&nbsp</td></tr>
+<tr><th id="175">175</th><td>&nbsp</td></tr>
+<tr><th id="176">176</th><td>  <b>template</b>&lt;<b>typename</b> _Iterator&gt;&nbsp</td></tr>
+<tr><th id="177">177</th><td>    <b>struct</b> <dfn class="type def" id="std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits">iterator_traits</dfn>&nbsp</td></tr>
+<tr><th id="178">178</th><td>    : <b>public</b> <a class="type" href="iterator_concepts.h.html#std::__iterator_traits" title='std::__iterator_traits' data-ref="std::__iterator_traits">__iterator_traits</a>&lt;_Iterator&gt; { };&nbsp</td></tr>
+<tr><th id="179">179</th><td>&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>#<span data-ppcond="152">else</span> // ! C++11</u>&nbsp</td></tr>
+<tr><th id="181">181</th><td>  <b>template</b>&lt;<b>typename</b> _Iterator&gt;&nbsp</td></tr>
+<tr><th id="182">182</th><td>    <b>struct</b> iterator_traits&nbsp</td></tr>
+<tr><th id="183">183</th><td>    {&nbsp</td></tr>
+<tr><th id="184">184</th><td>      <b>typedef</b> <b>typename</b> _Iterator::iterator_category iterator_category;&nbsp</td></tr>
+<tr><th id="185">185</th><td>      <b>typedef</b> <b>typename</b> _Iterator::value_type        value_type;&nbsp</td></tr>
+<tr><th id="186">186</th><td>      <b>typedef</b> <b>typename</b> _Iterator::difference_type   difference_type;&nbsp</td></tr>
+<tr><th id="187">187</th><td>      <b>typedef</b> <b>typename</b> _Iterator::pointer           pointer;&nbsp</td></tr>
+<tr><th id="188">188</th><td>      <b>typedef</b> <b>typename</b> _Iterator::reference         reference;&nbsp</td></tr>
+<tr><th id="189">189</th><td>    };&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>#<span data-ppcond="152">endif</span> // C++11</u>&nbsp</td></tr>
+<tr><th id="191">191</th><td>&nbsp</td></tr>
+<tr><th id="192">192</th><td><u>#<span data-ppcond="192">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="193">193</th><td>  <i class="doc">/// Partial specialization for object pointer types.</i>&nbsp</td></tr>
+<tr><th id="194">194</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="195">195</th><td><u>#<span data-ppcond="195">if</span> <span class="macro" title="201907L" data-ref="_M/__cpp_concepts">__cpp_concepts</span> &gt;= 201907L</u>&nbsp</td></tr>
+<tr><th id="196">196</th><td>    <b>requires</b> is_object_v&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="197">197</th><td><u>#<span data-ppcond="195">endif</span></u>&nbsp</td></tr>
+<tr><th id="198">198</th><td>    <b>struct</b> <dfn class="type def" id="std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits">iterator_traits</dfn>&lt;_Tp*&gt;&nbsp</td></tr>
+<tr><th id="199">199</th><td>    {&nbsp</td></tr>
+<tr><th id="200">200</th><td>      <b>using</b> <dfn class="typedef" id="std::iterator_traits{type-parameter-0-0*}::iterator_concept" title='std::iterator_traits&lt;type-parameter-0-0 *&gt;::iterator_concept' data-type='std::contiguous_iterator_tag' data-ref="std::iterator_traits{type-parameter-0-0*}::iterator_concept">iterator_concept</dfn>  = <a class="type" href="#std::contiguous_iterator_tag" title='std::contiguous_iterator_tag' data-ref="std::contiguous_iterator_tag">contiguous_iterator_tag</a>;&nbsp</td></tr>
+<tr><th id="201">201</th><td>      <b>using</b> <dfn class="typedef" id="std::iterator_traits{type-parameter-0-0*}::iterator_category" title='std::iterator_traits&lt;type-parameter-0-0 *&gt;::iterator_category' data-type='std::random_access_iterator_tag' data-ref="std::iterator_traits{type-parameter-0-0*}::iterator_category">iterator_category</dfn> = <a class="type" href="#std::random_access_iterator_tag" title='std::random_access_iterator_tag' data-ref="std::random_access_iterator_tag">random_access_iterator_tag</a>;&nbsp</td></tr>
+<tr><th id="202">202</th><td>      <b>using</b> <dfn class="typedef" id="std::iterator_traits{type-parameter-0-0*}::value_type" title='std::iterator_traits&lt;type-parameter-0-0 *&gt;::value_type' data-type='remove_cv_t&lt;_Tp&gt;' data-ref="std::iterator_traits{type-parameter-0-0*}::value_type">value_type</dfn>	      = <a class="type" href="../type_traits.html#std::remove_cv_t" title='std::remove_cv_t' data-ref="std::remove_cv_t">remove_cv_t</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="203">203</th><td>      <b>using</b> <dfn class="typedef" id="std::iterator_traits{type-parameter-0-0*}::difference_type" title='std::iterator_traits&lt;type-parameter-0-0 *&gt;::difference_type' data-type='std::ptrdiff_t' data-ref="std::iterator_traits{type-parameter-0-0*}::difference_type">difference_type</dfn>   = <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::ptrdiff_t" title='std::ptrdiff_t' data-type='long' data-ref="std::ptrdiff_t">ptrdiff_t</a>;&nbsp</td></tr>
+<tr><th id="204">204</th><td>      <b>using</b> <dfn class="typedef" id="std::iterator_traits{type-parameter-0-0*}::pointer" title='std::iterator_traits&lt;type-parameter-0-0 *&gt;::pointer' data-type='_Tp *' data-ref="std::iterator_traits{type-parameter-0-0*}::pointer">pointer</dfn>	      = _Tp*;&nbsp</td></tr>
+<tr><th id="205">205</th><td>      <b>using</b> <dfn class="typedef" id="std::iterator_traits{type-parameter-0-0*}::reference" title='std::iterator_traits&lt;type-parameter-0-0 *&gt;::reference' data-type='_Tp &amp;' data-ref="std::iterator_traits{type-parameter-0-0*}::reference">reference</dfn>	      = _Tp&amp;;&nbsp</td></tr>
+<tr><th id="206">206</th><td>    };&nbsp</td></tr>
+<tr><th id="207">207</th><td><u>#<span data-ppcond="192">else</span></u>&nbsp</td></tr>
+<tr><th id="208">208</th><td>  <i class="doc">/// Partial specialization for pointer types.</i>&nbsp</td></tr>
+<tr><th id="209">209</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="210">210</th><td>    <b>struct</b> iterator_traits&lt;_Tp*&gt;&nbsp</td></tr>
+<tr><th id="211">211</th><td>    {&nbsp</td></tr>
+<tr><th id="212">212</th><td>      <b>typedef</b> random_access_iterator_tag iterator_category;&nbsp</td></tr>
+<tr><th id="213">213</th><td>      <b>typedef</b> _Tp                         value_type;&nbsp</td></tr>
+<tr><th id="214">214</th><td>      <b>typedef</b> ptrdiff_t                   difference_type;&nbsp</td></tr>
+<tr><th id="215">215</th><td>      <b>typedef</b> _Tp*                        pointer;&nbsp</td></tr>
+<tr><th id="216">216</th><td>      <b>typedef</b> _Tp&amp;                        reference;&nbsp</td></tr>
+<tr><th id="217">217</th><td>    };&nbsp</td></tr>
+<tr><th id="218">218</th><td>&nbsp</td></tr>
+<tr><th id="219">219</th><td>  <i class="doc">/// Partial specialization for const pointer types.</i>&nbsp</td></tr>
+<tr><th id="220">220</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="221">221</th><td>    <b>struct</b> iterator_traits&lt;<em>const</em> _Tp*&gt;&nbsp</td></tr>
+<tr><th id="222">222</th><td>    {&nbsp</td></tr>
+<tr><th id="223">223</th><td>      <b>typedef</b> random_access_iterator_tag iterator_category;&nbsp</td></tr>
+<tr><th id="224">224</th><td>      <b>typedef</b> _Tp                         value_type;&nbsp</td></tr>
+<tr><th id="225">225</th><td>      <b>typedef</b> ptrdiff_t                   difference_type;&nbsp</td></tr>
+<tr><th id="226">226</th><td>      <b>typedef</b> <em>const</em> _Tp*                  pointer;&nbsp</td></tr>
+<tr><th id="227">227</th><td>      <b>typedef</b> <em>const</em> _Tp&amp;                  reference;&nbsp</td></tr>
+<tr><th id="228">228</th><td>    };&nbsp</td></tr>
+<tr><th id="229">229</th><td><u>#<span data-ppcond="192">endif</span></u>&nbsp</td></tr>
+<tr><th id="230">230</th><td>&nbsp</td></tr>
+<tr><th id="231">231</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="232">232</th><td><i class="doc">   *  This function is not a part of the C++ standard but is syntactic</i>&nbsp</td></tr>
+<tr><th id="233">233</th><td><i class="doc">   *  sugar for internal library use only.</i>&nbsp</td></tr>
+<tr><th id="234">234</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="235">235</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="236">236</th><td>    <b>inline</b> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#143" title="constexpr" data-ref="_M/_GLIBCXX_CONSTEXPR">_GLIBCXX_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="237">237</th><td>    <b>typename</b> <a class="type" href="cpp_type_traits.h.html#std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits">iterator_traits</a>&lt;_Iter&gt;::iterator_category&nbsp</td></tr>
+<tr><th id="238">238</th><td>    <dfn class="decl def fn" id="_ZSt19__iterator_categoryRKT_" title='std::__iterator_category' data-ref="_ZSt19__iterator_categoryRKT_">__iterator_category</dfn>(<em>const</em> _Iter&amp;)&nbsp</td></tr>
+<tr><th id="239">239</th><td>    { <b>return</b> <b>typename</b> <a class="type" href="cpp_type_traits.h.html#std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits">iterator_traits</a>&lt;_Iter&gt;::iterator_category(); }&nbsp</td></tr>
+<tr><th id="240">240</th><td>&nbsp</td></tr>
+<tr><th id="241">241</th><td>  <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="242">242</th><td>&nbsp</td></tr>
+<tr><th id="243">243</th><td><u>#<span data-ppcond="243">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="244">244</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="245">245</th><td>    <b>using</b> <dfn class="typedef" id="std::__iterator_category_t" title='std::__iterator_category_t' data-type='typename iterator_traits&lt;_Iter&gt;::iterator_category' data-ref="std::__iterator_category_t">__iterator_category_t</dfn>&nbsp</td></tr>
+<tr><th id="246">246</th><td>      = <b>typename</b> <a class="type" href="cpp_type_traits.h.html#std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits">iterator_traits</a>&lt;_Iter&gt;::iterator_category;&nbsp</td></tr>
+<tr><th id="247">247</th><td>&nbsp</td></tr>
+<tr><th id="248">248</th><td>  <b>template</b>&lt;<b>typename</b> _InIter&gt;&nbsp</td></tr>
+<tr><th id="249">249</th><td>    <b>using</b> <dfn class="typedef" id="std::_RequireInputIter" title='std::_RequireInputIter' data-type='__enable_if_t&lt;is_convertible&lt;__iterator_category_t&lt;_InIter&gt;, input_iterator_tag&gt;::value&gt;' data-ref="std::_RequireInputIter">_RequireInputIter</dfn> =&nbsp</td></tr>
+<tr><th id="250">250</th><td>      <a class="type" href="../type_traits.html#std::__enable_if_t" title='std::__enable_if_t' data-ref="std::__enable_if_t">__enable_if_t</a>&lt;<a class="type" href="../type_traits.html#std::is_convertible" title='std::is_convertible' data-ref="std::is_convertible">is_convertible</a>&lt;<a class="type" href="#std::__iterator_category_t" title='std::__iterator_category_t' data-ref="std::__iterator_category_t">__iterator_category_t</a>&lt;_InIter&gt;,&nbsp</td></tr>
+<tr><th id="251">251</th><td>				   <a class="type" href="#std::input_iterator_tag" title='std::input_iterator_tag' data-ref="std::input_iterator_tag">input_iterator_tag</a>&gt;::value&gt;;&nbsp</td></tr>
+<tr><th id="252">252</th><td>&nbsp</td></tr>
+<tr><th id="253">253</th><td>  <b>template</b>&lt;<b>typename</b> _It,&nbsp</td></tr>
+<tr><th id="254">254</th><td>	   <b>typename</b> _Cat = <a class="type" href="#std::__iterator_category_t" title='std::__iterator_category_t' data-ref="std::__iterator_category_t">__iterator_category_t</a>&lt;_It&gt;&gt;&nbsp</td></tr>
+<tr><th id="255">255</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_random_access_iter" title='std::__is_random_access_iter' data-ref="std::__is_random_access_iter">__is_random_access_iter</dfn>&nbsp</td></tr>
+<tr><th id="256">256</th><td>      : <a class="type" href="../type_traits.html#std::is_base_of" title='std::is_base_of' data-ref="std::is_base_of">is_base_of</a>&lt;<a class="type" href="#std::random_access_iterator_tag" title='std::random_access_iterator_tag' data-ref="std::random_access_iterator_tag">random_access_iterator_tag</a>, _Cat&gt;&nbsp</td></tr>
+<tr><th id="257">257</th><td>    {&nbsp</td></tr>
+<tr><th id="258">258</th><td>      <b>typedef</b> <a class="type" href="../type_traits.html#std::is_base_of" title='std::is_base_of' data-ref="std::is_base_of">is_base_of</a>&lt;<a class="type" href="#std::random_access_iterator_tag" title='std::random_access_iterator_tag' data-ref="std::random_access_iterator_tag">random_access_iterator_tag</a>, _Cat&gt; <dfn class="typedef" id="std::__is_random_access_iter::_Base" title='std::__is_random_access_iter::_Base' data-type='is_base_of&lt;std::random_access_iterator_tag, _Cat&gt;' data-ref="std::__is_random_access_iter::_Base">_Base</dfn>;&nbsp</td></tr>
+<tr><th id="259">259</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_random_access_iter::__value" title='std::__is_random_access_iter::__value' data-ref="std::__is_random_access_iter::__value">__value</dfn> = <a class="typedef" href="#std::__is_random_access_iter::_Base" title='std::__is_random_access_iter::_Base' data-type='is_base_of&lt;std::random_access_iterator_tag, _Cat&gt;' data-ref="std::__is_random_access_iter::_Base">_Base</a>::value };&nbsp</td></tr>
+<tr><th id="260">260</th><td>    };&nbsp</td></tr>
+<tr><th id="261">261</th><td><u>#<span data-ppcond="243">else</span></u>&nbsp</td></tr>
+<tr><th id="262">262</th><td>  <b>template</b>&lt;<b>typename</b> _It, <b>typename</b> _Traits = iterator_traits&lt;_It&gt;,&nbsp</td></tr>
+<tr><th id="263">263</th><td>	   <b>typename</b> _Cat = <b>typename</b> _Traits::iterator_category&gt;&nbsp</td></tr>
+<tr><th id="264">264</th><td>    <b>struct</b> __is_random_access_iter&nbsp</td></tr>
+<tr><th id="265">265</th><td>    { <b>enum</b> { __value = <b>__is_base_of</b>(random_access_iterator_tag, _Cat) }; };&nbsp</td></tr>
+<tr><th id="266">266</th><td><u>#<span data-ppcond="243">endif</span></u>&nbsp</td></tr>
+<tr><th id="267">267</th><td>&nbsp</td></tr>
+<tr><th id="268">268</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="269">269</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="270">270</th><td>&nbsp</td></tr>
+<tr><th id="271">271</th><td><u>#<span data-ppcond="59">endif</span> /* _STL_ITERATOR_BASE_TYPES_H */</u>&nbsp</td></tr>
+<tr><th id="272">272</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

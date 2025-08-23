@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_base.h' l='97' ll='101' type='std::memory_order std::operator|(std::memory_order __m, std::__memory_order_modifier __mod)'/>
+<use f='include/c++/11/bits/atomic_base.h' l='121' u='c' c='_ZSt23__cmpexch_failure_orderSt12memory_order'/>

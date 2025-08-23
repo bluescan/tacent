@@ -1,0 +1,5 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='277' u='w' c='_ZN5tMath9tTriangleC1ERKNS_8tVector3ES3_S3_'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='279' type='tMath::tVector3'/>
+<offset>96</offset>
+<use f='Modules/Math/Src/tGeometry.cpp' l='485' u='m' c='_ZN5tMath25tIntersectTestRayTriangleERKNS_4tRayERKNS_9tTriangleE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='160' u='r' c='_ZN5tMath7tRandom19tGetPointOnTriangleERKNS_9tTriangleERKNS0_10tGeneratorE'/>

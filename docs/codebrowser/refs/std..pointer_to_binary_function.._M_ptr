@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/stl_function.h' l='1128' type='_Result (*)(_Arg1, _Arg2)'/>
+<use f='include/c++/11/bits/stl_function.h' l='1135' u='w' c='_ZNSt26pointer_to_binary_functionC1EPFT1_T_T0_E'/>
+<use f='include/c++/11/bits/stl_function.h' l='1139' u='c' c='_ZNKSt26pointer_to_binary_functionclET_T0_'/>

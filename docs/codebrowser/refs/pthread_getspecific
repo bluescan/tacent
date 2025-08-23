@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='1305' type='void * pthread_getspecific(pthread_key_t __key)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='720' u='c' c='__gthread_getspecific'/>
+<doc f='include/pthread.h' l='1304'>/* Return current value of the thread-specific data slot identified by KEY.  */</doc>

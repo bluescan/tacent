@@ -1,0 +1,2 @@
+<def f='Modules/Math/Src/tSpline.cpp' l='476' ll='488' type='void tMath::tBezierPath::tFastSectionState::Set(const tMath::tVector3 &amp; pos, comp_t components, const tMath::tVector3 * cvs, int numCVs) const'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='511' u='c' c='_ZNK5tMath11tBezierPath15GetClosestParamERKNS_8tVector3EjfRKNS0_17tFastSectionStateE'/>

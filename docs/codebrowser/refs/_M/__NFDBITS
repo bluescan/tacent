@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/select.h' l='54'/>
+<use f='include/x86_64-linux-gnu/sys/select.h' l='64' u='c'/>
+<doc f='include/x86_64-linux-gnu/sys/select.h' l='53'>/* It&apos;s easier to assume 8-bit bytes than to get CHAR_BIT.  */</doc>

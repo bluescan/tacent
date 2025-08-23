@@ -1,0 +1,38 @@
+<dec f='include/x86_64-linux-gnu/bits/wordsize.h' l='4'/>
+<dec f='include/x86_64-linux-gnu/bits/wordsize.h' l='4'/>
+<dec f='include/x86_64-linux-gnu/bits/wordsize.h' l='4'/>
+<dec f='include/x86_64-linux-gnu/bits/wordsize.h' l='4'/>
+<dec f='include/x86_64-linux-gnu/bits/wordsize.h' l='4'/>
+<use f='include/x86_64-linux-gnu/bits/types.h' l='43' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/types.h' l='62' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/types.h' l='71' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/types.h' l='115' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/types.h' l='127' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/types/struct_timespec.h' l='18' u='c'/>
+<dec f='include/x86_64-linux-gnu/bits/wordsize.h' l='4'/>
+<use f='include/x86_64-linux-gnu/bits/pthreadtypes-arch.h' l='24' u='c'/>
+<use f='include/math.h' l='218' u='c'/>
+<use f='include/stdint.h' l='59' u='c'/>
+<use f='include/stdint.h' l='72' u='c'/>
+<use f='include/stdint.h' l='85' u='c'/>
+<use f='include/stdint.h' l='105' u='c'/>
+<use f='include/stdint.h' l='153' u='c'/>
+<use f='include/stdint.h' l='163' u='c'/>
+<use f='include/stdint.h' l='174' u='c'/>
+<use f='include/stdint.h' l='185' u='c'/>
+<use f='include/stdint.h' l='208' u='c'/>
+<use f='include/stdint.h' l='226' u='c'/>
+<use f='include/stdint.h' l='251' u='c'/>
+<use f='include/stdint.h' l='261' u='c'/>
+<use f='include/stdint.h' l='268' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/timex.h' l='28' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/setjmp.h' l='30' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='168' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/environments.h' l='42' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/semaphore.h' l='25' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='9' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/siginfo-arch.h' l='5' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='47' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/types/sigevent_t.h' l='9' u='c'/>
+<use f='include/inttypes.h' l='43' u='c'/>
+<use f='include/inttypes.h' l='268' u='c'/>

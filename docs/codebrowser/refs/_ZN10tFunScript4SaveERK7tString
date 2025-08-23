@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='397' type='void tFunScript::Save(const tString &amp; fileName)'/>
+<def f='Modules/System/Src/tScript.cpp' l='1174' ll='1197' type='void tFunScript::Save(const tString &amp; fileName)'/>

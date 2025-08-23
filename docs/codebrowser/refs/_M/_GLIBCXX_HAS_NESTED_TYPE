@@ -1,0 +1,5 @@
+<dec f='include/c++/11/type_traits' l='2639'/>
+<doc f='include/c++/11/type_traits' l='2635'>/**
+   *  Use SFINAE to determine if the type _Tp has a publicly-accessible
+   *  member type _NTYPE.
+   */</doc>

@@ -1,0 +1,4 @@
+<dec f='Modules/Scene/Inc/Scene/tSelection.h' l='32' type='void tScene::tSelection::Save(tChunkWriter &amp; ) const'/>
+<inh f='Modules/Scene/Inc/Scene/tObject.h' l='32' c='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>
+<def f='Modules/Scene/Src/tSelection.cpp' l='20' ll='37' type='void tScene::tSelection::Save(tChunkWriter &amp; chunk) const'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1156' u='c' c='_ZNK6tScene6tWorld14SaveSelectionsER12tChunkWriter'/>

@@ -1,0 +1,29 @@
+<use f='include/c++/11/chrono' l='1516' c='_ZNSt6chronodvERKNS_5monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='1519' c='_ZNSt6chronodvERKNS_15weekday_indexedERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='1690' c='_ZNSt6chronodvERKNS_4yearERKNS_13month_weekdayE'/>
+<use f='include/c++/11/chrono' l='1693' c='_ZNSt6chronodvERKNS_13month_weekdayERKNS_4yearE'/>
+<use f='include/c++/11/chrono' l='1867' c='_ZNSt6chronodvERKNS_5monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='1870' c='_ZNSt6chronodvEiRKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='1873' c='_ZNSt6chronodvERKNS_15weekday_indexedERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='1876' c='_ZNSt6chronodvERKNS_15weekday_indexedEi'/>
+<def f='include/c++/11/chrono' l='2055' ll='2112'/>
+<use f='include/c++/11/chrono' l='2081' c='_ZNSt6chronoeqERKNS_13month_weekdayES2_'/>
+<use f='include/c++/11/chrono' l='2081' c='_ZNSt6chronoeqERKNS_13month_weekdayES2_'/>
+<use f='include/c++/11/chrono' l='2087' c='_ZNSt6chronodvERKNS_5monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='2092' c='_ZNSt6chronodvEiRKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='2096' c='_ZNSt6chronodvERKNS_15weekday_indexedERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='2101' c='_ZNSt6chronodvERKNS_15weekday_indexedEi'/>
+<use f='include/c++/11/chrono' l='2106' c='_ZNSt6chronodvEiRKNS_13month_weekdayE'/>
+<use f='include/c++/11/chrono' l='2109' c='_ZNSt6chronodvERKNS_13month_weekdayEi'/>
+<use f='include/c++/11/chrono' l='2875' c='_ZNSt6chronodvERKNS_4yearERKNS_13month_weekdayE'/>
+<use f='include/c++/11/chrono' l='2879' c='_ZNSt6chronodvEiRKNS_13month_weekdayE'/>
+<use f='include/c++/11/chrono' l='2883' c='_ZNSt6chronodvERKNS_13month_weekdayERKNS_4yearE'/>
+<use f='include/c++/11/chrono' l='2887' c='_ZNSt6chronodvERKNS_13month_weekdayEi'/>
+<size>3</size>
+<doc f='include/c++/11/chrono' l='2053'>// MONTH_WEEKDAY</doc>
+<mbr r='std::chrono::month_weekday::_M_m' o='0' t='chrono::month'/>
+<mbr r='std::chrono::month_weekday::_M_wdi' o='8' t='chrono::weekday_indexed'/>
+<fun r='_ZNSt6chrono13month_weekdayC1ERKNS_5monthERKNS_15weekday_indexedE'/>
+<fun r='_ZNKSt6chrono13month_weekday5monthEv'/>
+<fun r='_ZNKSt6chrono13month_weekday15weekday_indexedEv'/>
+<fun r='_ZNKSt6chrono13month_weekday2okEv'/>

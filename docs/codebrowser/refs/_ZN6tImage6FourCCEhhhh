@@ -1,0 +1,42 @@
+<dec f='Modules/Image/Inc/Image/tPixelUtil.h' l='57' type='uint32 tImage::FourCC(uint8 ch0, uint8 ch1, uint8 ch2, uint8 ch3)'/>
+<def f='Modules/Image/Inc/Image/tPixelUtil.h' l='92' ll='95' type='uint32 tImage::FourCC(uint8 ch0, uint8 ch1, uint8 ch2, uint8 ch3)'/>
+<doc f='Modules/Image/Inc/Image/tPixelUtil.h' l='89'>// Implementation only below this line.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='208' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='209' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='210' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='211' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='213' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='214' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='215' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='216' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='217' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='219' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='220' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='221' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='222' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='224' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='225' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='226' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='227' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='229' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='230' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='231' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='232' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='233' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='235' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='236' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='237' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='238' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='239' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='263' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='274' u='c'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1120' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='472' u='c' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='493' u='c' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='514' u='c' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='536' u='c' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='549' u='c' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='573' u='c' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='583' u='c' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='864' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1242' u='c' c='_ZN6tImage9tImagePVR13ParseMetaDataEPKhi'/>

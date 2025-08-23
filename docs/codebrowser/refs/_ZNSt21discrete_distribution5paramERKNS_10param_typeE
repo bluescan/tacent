@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='5389' ll='5391' type='void std::discrete_distribution::param(const std::discrete_distribution::param_type &amp; __param)'/>
+<doc f='include/c++/11/bits/random.h' l='5385'>/**
+       * @brief Sets the parameter set of the distribution.
+       * @param __param The new parameter set of the distribution.
+       */</doc>

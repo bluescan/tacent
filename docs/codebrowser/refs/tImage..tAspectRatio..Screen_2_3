@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='392' type='21'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='392'>// 0.6666666</doc>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='732' u='r' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='737' u='r' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='757' u='r' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='765' u='r' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='767' u='r' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>

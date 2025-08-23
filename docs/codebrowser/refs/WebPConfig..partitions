@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='129' type='int'/>
+<offset>576</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='128'>// 0=none, 1=segment-smooth, 2=pseudo-random dithering</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='129'>// log2(number of token partitions) in [0..3]. Default</doc>

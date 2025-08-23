@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/fs_path.h' l='270' type='void std::filesystem::path::path()'/>
+<use f='include/c++/11/bits/fs_path.h' l='404' u='c' c='_ZNSt10filesystem7__cxx114path17replace_extensionERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1201' u='c' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1207' u='c' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1212' u='c' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1221' u='c' c='_ZNKSt10filesystem7__cxx114path4stemEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1230' u='c' c='_ZNKSt10filesystem7__cxx114path9extensionEv'/>
+<doc f='include/c++/11/bits/fs_path.h' l='268'>// constructors and destructor</doc>

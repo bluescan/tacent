@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14742' ll='14746'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14742'/>
+<size>24</size>
+<mbr r='VkSurfacePresentModeEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSurfacePresentModeEXT::pNext' o='64' t='void *'/>
+<mbr r='VkSurfacePresentModeEXT::presentMode' o='128' t='VkPresentModeKHR'/>

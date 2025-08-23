@@ -1,0 +1,15 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='270' type='bool tImage::tIsASTCFormat(tImage::tPixelFormat )'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='521' ll='524' type='bool tImage::tIsASTCFormat(tImage::tPixelFormat format)'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='573' u='c' c='_ZN6tImage14tIsAlphaFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='268'>// Is it one of the ASTC (Adaptive Scalable Texture Compression) block formats. Block sizes are avail from 4x4 up
+// to 12x12. The 4x4 ASTC variant is not considered a BC format by tIsBCFormat.</doc>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='164' u='c' c='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='122' u='c' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1323' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='914' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='506' u='c' c='_ZN6tImage14tGetBlockWidthENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='525' u='c' c='_ZN6tImage15tGetBlockHeightENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='573' u='c' c='_ZN6tImage17tGetBytesPerBlockENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='67' u='c' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='81' u='c' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1064' u='c' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

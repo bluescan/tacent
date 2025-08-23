@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='140' type='int tString::ShrinkNullTerminated()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='138'>// If you know you are dealing with a null-terminated string, this function will reduce the length to the number of
+	// characters before the null terminator and can reduce the memory used. Returns the new length.</doc>

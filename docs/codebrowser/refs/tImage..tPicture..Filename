@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='335' type='tString'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='383' u='m' c='_ZN6tImage8tPicture5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='474' u='w' c='_ZN6tImage8tPicture3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='474' u='r' c='_ZN6tImage8tPicture3SetERKS0_'/>
+<offset>192</offset>
+<use f='Modules/Image/Src/tTexture.cpp' l='145' u='r' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>

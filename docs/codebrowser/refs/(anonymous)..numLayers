@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='763' type='ktx_uint32_t'/>
+<offset>288</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='763'>/*!&lt; Number of array layers in the texture. */</doc>

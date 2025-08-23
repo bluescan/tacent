@@ -1,0 +1,2 @@
+<def f='include/c++/11/limits' l='1788' ll='1789' type='static double std::numeric_limits&lt;double&gt;::infinity()'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='685' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>

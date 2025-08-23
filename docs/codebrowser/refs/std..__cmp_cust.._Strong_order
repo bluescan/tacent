@@ -1,0 +1,7 @@
+<def f='include/c++/11/compare' l='606' ll='642'/>
+<use f='include/c++/11/compare' l='688' c='_ZNKSt10__cmp_cust11_Weak_orderclEOT_OT0_'/>
+<use f='include/c++/11/compare' l='766' c='_ZNKSt10__cmp_cust16_Strong_fallbackclEOT_OT0_'/>
+<use f='include/c++/11/compare' l='857'/>
+<size>1</size>
+<fun r='_ZNSt10__cmp_cust13_Strong_order11_S_noexceptEv'/>
+<fun r='_ZNKSt10__cmp_cust13_Strong_orderclEOT_OT0_'/>

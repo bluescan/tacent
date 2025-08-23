@@ -1,0 +1,15 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3361' ll='3374'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3361'/>
+<size>96</size>
+<mbr r='VkBindSparseInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBindSparseInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkBindSparseInfo::waitSemaphoreCount' o='128' t='uint32_t'/>
+<mbr r='VkBindSparseInfo::pWaitSemaphores' o='192' t='const VkSemaphore *'/>
+<mbr r='VkBindSparseInfo::bufferBindCount' o='256' t='uint32_t'/>
+<mbr r='VkBindSparseInfo::pBufferBinds' o='320' t='const VkSparseBufferMemoryBindInfo *'/>
+<mbr r='VkBindSparseInfo::imageOpaqueBindCount' o='384' t='uint32_t'/>
+<mbr r='VkBindSparseInfo::pImageOpaqueBinds' o='448' t='const VkSparseImageOpaqueMemoryBindInfo *'/>
+<mbr r='VkBindSparseInfo::imageBindCount' o='512' t='uint32_t'/>
+<mbr r='VkBindSparseInfo::pImageBinds' o='576' t='const VkSparseImageMemoryBindInfo *'/>
+<mbr r='VkBindSparseInfo::signalSemaphoreCount' o='640' t='uint32_t'/>
+<mbr r='VkBindSparseInfo::pSignalSemaphores' o='704' t='const VkSemaphore *'/>

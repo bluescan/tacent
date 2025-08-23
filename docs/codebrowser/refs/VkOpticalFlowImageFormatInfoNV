@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17894' ll='17898'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17894'/>
+<size>24</size>
+<mbr r='VkOpticalFlowImageFormatInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkOpticalFlowImageFormatInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkOpticalFlowImageFormatInfoNV::usage' o='128' t='VkOpticalFlowUsageFlagsNV'/>

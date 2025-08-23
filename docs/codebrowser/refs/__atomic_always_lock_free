@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/atomic_base.h' l='1129' u='c'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1348' u='c'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1460' u='c'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1636' u='c'/>
+<use f='include/c++/11/atomic' l='265' u='c'/>

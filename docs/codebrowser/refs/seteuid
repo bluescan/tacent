@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='732' type='int seteuid(__uid_t __uid)'/>
+<doc f='include/unistd.h' l='731'>/* Set the effective user ID of the calling process to UID.  */</doc>

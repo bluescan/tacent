@@ -1,0 +1,2 @@
+<def f='include/c++/11/ext/aligned_buffer.h' l='63' ll='65' type='void * __gnu_cxx::__aligned_membuf::_M_addr()'/>
+<def f='include/c++/11/ext/aligned_buffer.h' l='67' ll='69' type='const void * __gnu_cxx::__aligned_membuf::_M_addr() const'/>

@@ -1,0 +1,12 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='207' ll='214'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='493' c='_ZN5tMath24tIntersectFindRayEllipseERfRKNS_5tRay2ERKNS_9tEllipse2E'/>
+<size>16</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='205'>// An ellipse in R2. The ellipse equation is: (x-a)^2 / r1^2  +  (y-b)^2 / r2^2 = 1 where (a, b) is the center location,
+// r1 is the x &apos;radius&apos;, and r2 is the y &apos;radius&apos;.</doc>
+<fun r='_ZN5tMath9tEllipse2C1Ev'/>
+<fun r='_ZNK5tMath9tEllipse24AreaEv'/>
+<mbr r='tMath::tEllipse2::RadiusX' o='0' t='float'/>
+<mbr r='tMath::tEllipse2::RadiusY' o='32' t='float'/>
+<mbr r='tMath::tEllipse2::Center' o='64' t='tMath::tVector2'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='462' c='_ZN5tMath24tIntersectFindRayEllipseERfRKNS_5tRay2ERKNS_9tEllipse2E'/>
+<size>16</size>

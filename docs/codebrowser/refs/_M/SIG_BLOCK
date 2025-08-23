@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/sigaction.h' l='79'/>
+<doc f='include/x86_64-linux-gnu/bits/sigaction.h' l='78'>/* Values for the HOW argument to `sigprocmask&apos;.  */</doc>

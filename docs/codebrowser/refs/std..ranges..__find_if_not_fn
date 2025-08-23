@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/ranges_util.h' l='462' ll='486'/>
+<use f='include/c++/11/bits/ranges_util.h' l='488'/>
+<size>1</size>
+<fun r='_ZNKSt6ranges16__find_if_not_fnclET_T0_T2_T1_'/>
+<fun r='_ZNKSt6ranges16__find_if_not_fnclEOT_T1_T0_'/>

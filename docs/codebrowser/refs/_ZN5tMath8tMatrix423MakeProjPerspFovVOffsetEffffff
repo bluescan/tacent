@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='94' type='void tMath::tMatrix4::MakeProjPerspFovVOffset(float fovX, float aspect, float nearPlane, float farPlane, float offX, float offY)'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='32' u='c' c='_ZN6tScene7tCamera5ScaleEf'/>

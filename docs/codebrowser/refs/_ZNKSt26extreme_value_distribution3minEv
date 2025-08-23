@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='5165' ll='5167' type='std::extreme_value_distribution::result_type std::extreme_value_distribution::min() const'/>
+<doc f='include/c++/11/bits/random.h' l='5162'>/**
+       * @brief Returns the greatest lower bound value of the distribution.
+       */</doc>

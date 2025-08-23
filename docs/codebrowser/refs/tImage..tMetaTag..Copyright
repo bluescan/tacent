@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='139' type='49'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='139'>//	string	Copyright notice.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='638' u='m' c='_ZN6tImage9tMetaData19SetTags_AuthorNotesERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='858' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

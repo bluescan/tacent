@@ -1,0 +1,6 @@
+<def f='include/c++/11/chrono' l='3392' type='const chrono::seconds'/>
+<use f='include/c++/11/chrono' l='3402' c='_ZNSt10filesystem12__file_clock11_S_from_sysERKNSt6chrono10time_pointINS1_3_V212system_clockET_EE'/>
+<use f='include/c++/11/chrono' l='3412' c='_ZNSt10filesystem12__file_clock9_S_to_sysERKNSt6chrono10time_pointIS0_T_EE'/>
+<doc f='include/c++/11/chrono' l='3389'>// This clock&apos;s (unspecified) epoch is 2174-01-01 00:00:00 UTC.
+      // A signed 64-bit duration with nanosecond resolution gives roughly
+      // +/- 292 years, which covers the 1901-2446 date range for ext4.</doc>

@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='619' type='int nice(int __inc)'/>
+<doc f='include/unistd.h' l='618'>/* Add INC to priority of the current process.  */</doc>

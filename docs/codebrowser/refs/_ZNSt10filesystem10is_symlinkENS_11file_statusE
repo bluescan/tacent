@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='355' type='bool std::filesystem::is_symlink(std::filesystem::file_status )'/>
+<use f='include/c++/11/bits/fs_ops.h' l='232' u='c' c='_ZNSt10filesystem8is_otherENS_11file_statusE'/>
+<def f='include/c++/11/bits/fs_ops.h' l='276' ll='278' type='bool std::filesystem::is_symlink(std::filesystem::file_status __s)'/>
+<use f='include/c++/11/bits/fs_ops.h' l='283' u='c' c='_ZNSt10filesystem10is_symlinkERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='288' u='c' c='_ZNSt10filesystem10is_symlinkERKNS_7__cxx114pathERSt10error_code'/>

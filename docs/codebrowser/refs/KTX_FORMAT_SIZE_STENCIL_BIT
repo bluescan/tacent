@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/formatsize.h' l='29' type='16'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='2378' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='2386' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='2394' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='2402' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='2410' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='2419' u='r' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>

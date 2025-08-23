@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='373' type='WebPMuxError WebPMuxNumChunks(const WebPMux * mux, WebPChunkId id, int * num_elements)'/>

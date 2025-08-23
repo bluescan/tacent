@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18288' ll='18292'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18288'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDynamicRenderingUnusedAttachmentsFeaturesEXT::dynamicRenderingUnusedAttachments' o='128' t='VkBool32'/>

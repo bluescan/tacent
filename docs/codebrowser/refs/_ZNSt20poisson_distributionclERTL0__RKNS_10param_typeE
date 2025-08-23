@@ -1,0 +1,12 @@
+<dec f='include/c++/11/bits/random.h' l='4538' type='std::poisson_distribution::result_type std::poisson_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::poisson_distribution::param_type &amp; __p)'/>
+<def f='include/c++/11/bits/random.tcc' l='1299' ll='1405' type='typename poisson_distribution&lt;_IntType&gt;::result_type std::poisson_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::poisson_distribution::param_type &amp; __param)'/>
+<doc f='include/c++/11/bits/random.tcc' l='1289'>/**
+   * A rejection algorithm when mean &gt;= 12 and a simple method based
+   * upon the multiplication of uniform random variates otherwise.
+   * NB: The former is available only if _GLIBCXX_USE_C99_MATH_TR1
+   * is defined.
+   *
+   * Reference:
+   * Devroye, L. Non-Uniform Random Variates Generation. Springer-Verlag,
+   * New York, 1986, Ch. X, Sects. 3.3 &amp; 3.4 (+ Errata!).
+   */</doc>

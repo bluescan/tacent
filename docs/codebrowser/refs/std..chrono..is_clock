@@ -1,0 +1,24 @@
+<use f='include/c++/11/chrono' l='296'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/chrono' l='300' ll='301'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/chrono' l='303' ll='318'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/chrono' l='1202'/>
+<use f='include/c++/11/chrono' l='1202'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/chrono' l='1203'/>
+<use f='include/c++/11/chrono' l='1203'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/chrono' l='1204'/>
+<use f='include/c++/11/chrono' l='1204'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/chrono' l='1232'/>
+<use f='include/c++/11/chrono' l='1232'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/chrono' l='1233'/>
+<use f='include/c++/11/chrono' l='1233'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/chrono' l='1234'/>
+<use f='include/c++/11/chrono' l='1234'/>
+<size>1</size>

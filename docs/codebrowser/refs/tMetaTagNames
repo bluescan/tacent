@@ -1,0 +1,4 @@
+<def f='Modules/Image/Src/tMetaData.cpp' l='25' ll='84' type='const char *[50]'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='85' u='r'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='85' u='r'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='197' u='r' c='_ZN6tImage15tGetMetaTagNameENS_8tMetaTagE'/>

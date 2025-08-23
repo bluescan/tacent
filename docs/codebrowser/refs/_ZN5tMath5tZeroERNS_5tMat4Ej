@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='282' type='void tMath::tZero(tMath::tMat4 &amp; d, comp_t c)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='836' ll='857' type='void tMath::tZero(tMath::tMat4 &amp; d, comp_t c)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='59' u='c' c='_ZN5tMath8tMatrix44ZeroEj'/>

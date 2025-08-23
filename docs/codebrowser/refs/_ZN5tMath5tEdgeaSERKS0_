@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='36' type='tMath::tEdge &amp; tMath::tEdge::operator=(const tMath::tEdge &amp; e)'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='275' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>

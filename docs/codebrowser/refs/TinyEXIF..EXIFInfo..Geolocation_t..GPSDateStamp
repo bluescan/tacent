@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='292' type='std::string'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='368' u='m' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<offset>1472</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='292'>// A character string recording date and time information relative to UTC (Coordinated Universal Time) YYYY:MM:DD (may not exist)</doc>

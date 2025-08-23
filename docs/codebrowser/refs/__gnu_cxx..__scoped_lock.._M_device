@@ -1,0 +1,5 @@
+<dec f='include/c++/11/ext/concurrence.h' l='234' type='__gnu_cxx::__scoped_lock::__mutex_type &amp;'/>
+<use f='include/c++/11/ext/concurrence.h' l='240' u='w' c='__gnu_cxx::__scoped_lock::__scoped_lock'/>
+<use f='include/c++/11/ext/concurrence.h' l='241' u='m' c='__gnu_cxx::__scoped_lock::__scoped_lock'/>
+<use f='include/c++/11/ext/concurrence.h' l='244' u='m' c='__gnu_cxx::__scoped_lock::~__scoped_lock'/>
+<offset>0</offset>

@@ -1,0 +1,2 @@
+<def f='Modules/Scene/Src/tMesh.cpp' l='361' ll='500' type='void tScene::tMesh::Save(tChunkWriter &amp; chunk) const'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='34' u='c' c='_ZNK6tScene10tPolyModel4SaveER12tChunkWriter'/>

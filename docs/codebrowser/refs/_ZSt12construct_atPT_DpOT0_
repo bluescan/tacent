@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_construct.h' l='93' ll='97' type='decltype(::new ((void *)0) _Tp((std::declval&lt;_Args&gt;()...))) std::construct_at(_Tp * __location, _Args &amp;&amp;... __args)'/>

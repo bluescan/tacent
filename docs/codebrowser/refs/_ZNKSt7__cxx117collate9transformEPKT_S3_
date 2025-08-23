@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/locale_classes.h' l='724' ll='726' type='std::collate::string_type std::collate::transform(const _CharT * __lo, const _CharT * __hi) const'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='710'>/**
+       *  @brief  Transform string to comparable form.
+       *
+       *  This function is a wrapper for strxfrm functionality.  It takes the
+       *  input string and returns a modified string that can be directly
+       *  compared to other transformed strings.  In the C locale, this
+       *  function just returns a copy of the input string.  In some other
+       *  locales, it may replace two chars with one, change a char for
+       *  another, etc.  It does so by returning collate::do_transform().
+       *
+       *  @param __lo  Start of string.
+       *  @param __hi  End of string.
+       *  @return  Transformed string_type.
+      */</doc>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/stop_token' l='76' ll='80' type='bool std::stop_token::stop_requested() const'/>
+<use f='include/c++/11/condition_variable' l='370' u='c' c='_ZNSt3_V222condition_variable_any4waitERT_St10stop_tokenT0_'/>
+<use f='include/c++/11/condition_variable' l='380' u='c' c='_ZNSt3_V222condition_variable_any4waitERT_St10stop_tokenT0_'/>
+<use f='include/c++/11/condition_variable' l='399' u='c' c='_ZNSt3_V222condition_variable_any10wait_untilERT_St10stop_tokenRKNSt6chrono10time_pointIT0_T1_EET2_'/>
+<use f='include/c++/11/condition_variable' l='411' u='c' c='_ZNSt3_V222condition_variable_any10wait_untilERT_St10stop_tokenRKNSt6chrono10time_pointIT0_T1_EET2_'/>
+<use f='include/c++/11/condition_variable' l='418' u='c' c='_ZNSt3_V222condition_variable_any10wait_untilERT_St10stop_tokenRKNSt6chrono10time_pointIT0_T1_EET2_'/>

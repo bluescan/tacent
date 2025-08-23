@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='127' type='int TinyEXIF::EXIFInfo::parseFromXMPSegment(const uint8_t * buf, unsigned int len)'/>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='124'>// Parsing function for an XMP segment. This is used internally by parseFrom()
+	// but can be called for special cases where only the XMP section is 
+	// available (i.e., a blob starting with the bytes &quot;http://ns.adobe.com/xap/1.0/\0&quot;).</doc>

@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14561' ll='14570'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14561'/>
+<size>72</size>
+<mbr r='VkMemoryToImageCopyEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkMemoryToImageCopyEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkMemoryToImageCopyEXT::pHostPointer' o='128' t='const void *'/>
+<mbr r='VkMemoryToImageCopyEXT::memoryRowLength' o='192' t='uint32_t'/>
+<mbr r='VkMemoryToImageCopyEXT::memoryImageHeight' o='224' t='uint32_t'/>
+<mbr r='VkMemoryToImageCopyEXT::imageSubresource' o='256' t='VkImageSubresourceLayers'/>
+<mbr r='VkMemoryToImageCopyEXT::imageOffset' o='384' t='VkOffset3D'/>
+<mbr r='VkMemoryToImageCopyEXT::imageExtent' o='480' t='VkExtent3D'/>

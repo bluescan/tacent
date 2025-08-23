@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='2018' type='void std::normal_distribution::normal_distribution&lt;_RealType&gt;()'/>
+<use f='include/c++/11/bits/random.h' l='3804' u='c' c='_ZNSt21binomial_distributionC1ET_d'/>
+<use f='include/c++/11/bits/random.h' l='3809' u='c' c='_ZNSt21binomial_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4477' u='c' c='_ZNSt20poisson_distributionC1Ed'/>
+<use f='include/c++/11/bits/random.h' l='4482' u='c' c='_ZNSt20poisson_distributionC1ERKNS_10param_typeE'/>

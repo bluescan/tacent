@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7646' ll='7657'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7646'/>
+<size>52</size>
+<mbr r='VkSurfaceCapabilitiesKHR::minImageCount' o='0' t='uint32_t'/>
+<mbr r='VkSurfaceCapabilitiesKHR::maxImageCount' o='32' t='uint32_t'/>
+<mbr r='VkSurfaceCapabilitiesKHR::currentExtent' o='64' t='VkExtent2D'/>
+<mbr r='VkSurfaceCapabilitiesKHR::minImageExtent' o='128' t='VkExtent2D'/>
+<mbr r='VkSurfaceCapabilitiesKHR::maxImageExtent' o='192' t='VkExtent2D'/>
+<mbr r='VkSurfaceCapabilitiesKHR::maxImageArrayLayers' o='256' t='uint32_t'/>
+<mbr r='VkSurfaceCapabilitiesKHR::supportedTransforms' o='288' t='VkSurfaceTransformFlagsKHR'/>
+<mbr r='VkSurfaceCapabilitiesKHR::currentTransform' o='320' t='VkSurfaceTransformFlagBitsKHR'/>
+<mbr r='VkSurfaceCapabilitiesKHR::supportedCompositeAlpha' o='352' t='VkCompositeAlphaFlagsKHR'/>
+<mbr r='VkSurfaceCapabilitiesKHR::supportedUsageFlags' o='384' t='VkImageUsageFlags'/>

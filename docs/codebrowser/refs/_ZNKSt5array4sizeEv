@@ -1,0 +1,4 @@
+<use f='include/c++/11/array' l='118' u='c' c='_ZNSt5array4fillERKT_'/>
+<def f='include/c++/11/array' l='175' ll='176' type='std::array::size_type std::array::size() const'/>
+<use f='include/c++/11/array' l='182' u='c' c='_ZNKSt5array5emptyEv'/>
+<doc f='include/c++/11/array' l='174'>// Capacity.</doc>

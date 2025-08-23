@@ -1,0 +1,3 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='188' u='c' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='586' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<def f='Modules/Scene/Src/tWorld.cpp' l='831' ll='888' type='void tScene::tWorld::CorrectSkeletonIDs(tItList&lt;tScene::tSkeleton&gt; &amp; newSkeletons, tItList&lt;tScene::tPolyModel&gt; &amp; newPolyModels)'/>

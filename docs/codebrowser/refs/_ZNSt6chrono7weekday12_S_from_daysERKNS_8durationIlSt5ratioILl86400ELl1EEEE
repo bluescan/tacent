@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='1711' ll='1716' type='static std::chrono::weekday std::chrono::weekday::_S_from_days(const std::chrono::days &amp; __d)'/>
+<use f='include/c++/11/chrono' l='1728' u='c' c='_ZNSt6chrono7weekdayC1ERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>

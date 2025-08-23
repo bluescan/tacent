@@ -1,0 +1,3 @@
+<dec f='include/sched.h' l='68' type='int sched_yield()'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='693' u='c' c='__gthread_yield'/>
+<doc f='include/sched.h' l='67'>/* Yield the processor.  */</doc>

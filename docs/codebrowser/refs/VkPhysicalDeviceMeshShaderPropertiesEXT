@@ -1,0 +1,33 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='19114' ll='19145'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='19114'/>
+<size>160</size>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxTaskWorkGroupTotalCount' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxTaskWorkGroupCount' o='160' t='uint32_t[3]'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxTaskWorkGroupInvocations' o='256' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxTaskWorkGroupSize' o='288' t='uint32_t[3]'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxTaskPayloadSize' o='384' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxTaskSharedMemorySize' o='416' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxTaskPayloadAndSharedMemorySize' o='448' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxMeshWorkGroupTotalCount' o='480' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxMeshWorkGroupCount' o='512' t='uint32_t[3]'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxMeshWorkGroupInvocations' o='608' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxMeshWorkGroupSize' o='640' t='uint32_t[3]'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxMeshSharedMemorySize' o='736' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxMeshPayloadAndSharedMemorySize' o='768' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxMeshOutputMemorySize' o='800' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxMeshPayloadAndOutputMemorySize' o='832' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxMeshOutputComponents' o='864' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxMeshOutputVertices' o='896' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxMeshOutputPrimitives' o='928' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxMeshOutputLayers' o='960' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxMeshMultiviewViewCount' o='992' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::meshOutputPerVertexGranularity' o='1024' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::meshOutputPerPrimitiveGranularity' o='1056' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxPreferredTaskWorkGroupInvocations' o='1088' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::maxPreferredMeshWorkGroupInvocations' o='1120' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::prefersLocalInvocationVertexOutput' o='1152' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::prefersLocalInvocationPrimitiveOutput' o='1184' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::prefersCompactVertexOutput' o='1216' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesEXT::prefersCompactPrimitiveOutput' o='1248' t='VkBool32'/>

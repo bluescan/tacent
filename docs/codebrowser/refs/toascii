@@ -1,0 +1,3 @@
+<dec f='include/ctype.h' l='146' type='int toascii(int __c)'/>
+<doc f='include/ctype.h' l='144'>/* Return the part of C that is in the ASCII set
+   (i.e., the low-order 7 bits of C).  */</doc>

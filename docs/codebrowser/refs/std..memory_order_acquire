@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/atomic_base.h' l='73' type='const std::memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='113' u='r' c='_ZSt24__cmpexch_failure_order2St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='274' u='r' c='_ZNSt11atomic_flag5clearESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='286' u='r' c='_ZNVSt11atomic_flag5clearESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='460' u='r' c='_ZNSt13__atomic_base5storeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='473' u='r' c='_ZNVSt13__atomic_base5storeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='792' u='r' c='_ZNSt13__atomic_baseIPT_E5storeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='805' u='r' c='_ZNVSt13__atomic_baseIPT_E5storeES1_St12memory_order'/>

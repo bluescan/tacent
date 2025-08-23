@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/cpp_type_traits.h' l='443' ll='446'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='448' ll='451'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='453' ll='456'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='494' c='_ZSt14__copy_move_a2T0_S_T1_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='759' c='_ZSt23__copy_move_backward_a2T0_S_T1_'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='256' c='_ZNSt6ranges14__copy_or_moveET0_T1_T2_'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='393' c='_ZNSt6ranges23__copy_or_move_backwardET0_T1_T2_'/>

@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='699' type='char[256]'/>
+<use f='include/c++/11/bits/locale_facets.h' l='878' u='r' c='_ZNKSt5ctypeIcE5widenEc'/>
+<dec f='include/c++/11/bits/locale_facets.h' l='1203' type='wint_t[256]'/>
+<offset>1248</offset>

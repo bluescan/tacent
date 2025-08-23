@@ -1,0 +1,9 @@
+<use f='include/c++/11/bits/fs_path.h' l='519' u='c' c='_ZNSt10filesystem7__cxx11eqERKNS0_4pathES3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='525' u='c' c='_ZNSt10filesystem7__cxx11ssERKNS0_4pathES3_'/>
+<dec f='include/c++/11/bits/fs_path.h' l='626' type='static int std::filesystem::path::_S_compare(const std::filesystem::path &amp; __lhs, const std::filesystem::path &amp; __rhs)'/>
+<def f='include/c++/11/bits/fs_path.h' l='1335' ll='1337' type='static int std::filesystem::path::_S_compare(const std::filesystem::path &amp; __lhs, const std::filesystem::path &amp; __rhs)'/>
+<doc f='include/c++/11/bits/fs_path.h' l='623'>// Returns lhs.compare(rhs), but defined after path::iterator is complete.</doc>
+<doc f='include/c++/11/bits/fs_path.h' l='1331'>// Define this now that path and path::iterator are complete.
+  // It needs to consider the string_view(Range&amp;&amp;) constructor during
+  // overload resolution, which depends on whether range&lt;path&gt; is satisfied,
+  // which depends on whether path::iterator is complete.</doc>

@@ -1,0 +1,4 @@
+<dec f='include/c++/11/numeric' l='746'/>
+<dec f='include/c++/11/algorithm' l='79'/>
+<doc f='include/c++/11/numeric' l='745'>// Feature test macro for parallel algorithms</doc>
+<doc f='include/c++/11/algorithm' l='78'>// Feature test macro for parallel algorithms</doc>

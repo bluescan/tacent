@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='301' type='uint8 * tChunk::GetItemCurrent(int size) const'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='300'>// Gets the current item as a uint8 pointer, and increments the item pointer by size bytes.</doc>

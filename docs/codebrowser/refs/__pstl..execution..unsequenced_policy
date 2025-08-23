@@ -1,0 +1,7 @@
+<def f='include/c++/11/pstl/execution_defs.h' l='88' ll='107'/>
+<use f='include/c++/11/pstl/execution_defs.h' l='113'/>
+<use f='include/c++/11/pstl/execution_defs.h' l='134'/>
+<size>1</size>
+<fun r='__pstl::execution::unsequenced_policy::__allow_unsequenced'/>
+<fun r='__pstl::execution::unsequenced_policy::__allow_vector'/>
+<fun r='__pstl::execution::unsequenced_policy::__allow_parallel'/>

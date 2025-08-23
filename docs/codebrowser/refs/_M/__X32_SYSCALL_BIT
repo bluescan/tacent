@@ -1,0 +1,9 @@
+<dec f='include/x86_64-linux-gnu/asm/unistd.h' l='13'/>
+<doc f='include/x86_64-linux-gnu/asm/unistd.h' l='5'>/*
+ * x32 syscall flag bit.  Some user programs expect syscall NR macros
+ * and __X32_SYSCALL_BIT to have type int, even though syscall numbers
+ * are, for practical purposes, unsigned long.
+ *
+ * Fortunately, expressions like (nr &amp; ~__X32_SYSCALL_BIT) do the right
+ * thing regardless.
+ */</doc>

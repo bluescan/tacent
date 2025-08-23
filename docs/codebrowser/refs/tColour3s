@@ -1,0 +1,30 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='346' c='_ZN9tColour4bC1ERK9tColour3st'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='359' c='_ZN9tColour4b3SetERK9tColour3st'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='489' ll='522'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='493' c='_ZN9tColour3sC1ERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='497' c='_ZN9tColour3s3SetERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='514' c='_ZNK9tColour3seqERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='524'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='525'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='534' c='_ZN9tColour4sC1ERK9tColour3si'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='547' c='_ZN9tColour4s3SetERK9tColour3si'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1081' c='_ZN9tColour4b3SetERK9tColour3st'/>
+<size>6</size>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='488'>// The tColour3s class represents a colour in 48 bits and is made of 3 unsigned short (16-bit) integers in the order RGB.</doc>
+<fun r='_ZN9tColour3sC1Ev'/>
+<fun r='_ZN9tColour3sC1ERKS_'/>
+<fun r='_ZN9tColour3sC1Eiii'/>
+<fun r='_ZN9tColour3sC1Etttt'/>
+<fun r='_ZN9tColour3s3SetERKS_'/>
+<fun r='_ZN9tColour3s3SetEiii'/>
+<fun r='_ZN9tColour3s3SetEttt'/>
+<fun r='_ZNK9tColour3s10GetDenormREv'/>
+<fun r='_ZNK9tColour3s10GetDenormGEv'/>
+<fun r='_ZNK9tColour3s10GetDenormBEv'/>
+<fun r='_ZNK9tColour3s9GetDenormEPf'/>
+<fun r='_ZNK9tColour3s9GetDenormERN5tMath8tVector3E'/>
+<fun r='_ZNK9tColour3s9GetDenormERfS0_S0_'/>
+<fun r='_ZNK9tColour3s9IntensityEv'/>
+<fun r='_ZN9tColour3scvjEv'/>
+<fun r='_ZNK9tColour3scvjEv'/>
+<fun r='_ZNK9tColour3seqERKS_'/>

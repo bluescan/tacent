@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11395'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11394'>// VK_NV_dedicated_allocation is a preprocessor guard. Do not pass it to API calls.</doc>

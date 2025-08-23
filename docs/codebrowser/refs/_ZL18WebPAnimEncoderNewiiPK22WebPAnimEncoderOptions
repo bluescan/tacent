@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/WebP/include/mux.h' l='469' ll='473' type='WebPAnimEncoder * WebPAnimEncoderNew(int width, int height, const WebPAnimEncoderOptions * enc_options)'/>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='461'>// Creates and initializes a WebPAnimEncoder object.
+// Parameters:
+//   width/height - (in) canvas width and height of the animation.
+//   enc_options - (in) encoding options; can be passed NULL to pick
+//                      reasonable defaults.
+// Returns:
+//   A pointer to the newly created WebPAnimEncoder object.
+//   Or NULL in case of memory error.</doc>

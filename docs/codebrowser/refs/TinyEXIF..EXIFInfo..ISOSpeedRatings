@@ -1,0 +1,13 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='188' type='uint16_t'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='438' u='r' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<offset>3152</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='179'>// 0: not defined
+	                                    // 1: manual
+	                                    // 2: normal program
+	                                    // 3: aperture priority
+	                                    // 4: shutter priority
+	                                    // 5: creative program
+	                                    // 6: action program
+	                                    // 7: portrait mode
+	                                    // 8: landscape mode</doc>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='188'>// ISO speed</doc>

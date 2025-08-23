@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='1128' ll='1132' type='std::__detail::__synth3way_t&lt;_IteratorR, _IteratorL&gt; __gnu_cxx::operator&lt;=&gt;(const __normal_iterator&lt;_IteratorL, _Container&gt; &amp; __lhs, const __normal_iterator&lt;_IteratorR, _Container&gt; &amp; __rhs)'/>
+<def f='include/c++/11/bits/stl_iterator.h' l='1145' ll='1149' type='std::__detail::__synth3way_t&lt;_Iterator&gt; __gnu_cxx::operator&lt;=&gt;(const __normal_iterator&lt;_Iterator, _Container&gt; &amp; __lhs, const __normal_iterator&lt;_Iterator, _Container&gt; &amp; __rhs)'/>

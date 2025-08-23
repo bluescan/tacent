@@ -1,0 +1,21 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='429' ll='432' type='std::time_get::iter_type std::time_get::get_time(std::time_get::iter_type __beg, std::time_get::iter_type __end, std::ios_base &amp; __io, ios_base::iostate &amp; __err, tm * __tm) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='409'>/**
+       *  @brief  Parse input time string.
+       *
+       *  This function parses a time according to the format @a X and puts the
+       *  results into a user-supplied struct tm.  The result is returned by
+       *  calling time_get::do_get_time().
+       *
+       *  If there is a valid time string according to format @a X, @a tm will
+       *  be filled in accordingly and the returned iterator will point to the
+       *  first character beyond the time string.  If an error occurs before
+       *  the end, err |= ios_base::failbit.  If parsing reads all the
+       *  characters, err |= ios_base::eofbit.
+       *
+       *  @param  __beg  Start of string to parse.
+       *  @param  __end  End of string to parse.
+       *  @param  __io  Source of the locale.
+       *  @param  __err  Error flags to set.
+       *  @param  __tm  Pointer to struct tm to fill in.
+       *  @return  Iterator to first char beyond time string.
+      */</doc>

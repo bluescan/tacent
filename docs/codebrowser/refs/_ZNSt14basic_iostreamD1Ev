@@ -1,0 +1,4 @@
+<def f='include/c++/11/istream' l='921' ll='922' type='void std::basic_iostream::~basic_iostream&lt;_CharT, _Traits&gt;()'/>
+<doc f='include/c++/11/istream' l='918'>/**
+       *  @brief  Destructor does nothing.
+      */</doc>

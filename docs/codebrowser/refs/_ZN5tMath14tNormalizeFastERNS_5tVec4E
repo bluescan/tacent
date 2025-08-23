@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='383' type='void tMath::tNormalizeFast(tMath::tVec4 &amp; v)'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='61' u='c' c='_ZN5tMath8tVector413NormalizeFastEv'/>

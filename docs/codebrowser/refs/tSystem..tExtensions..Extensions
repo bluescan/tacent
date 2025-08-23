@@ -1,0 +1,20 @@
+<use f='Modules/System/Inc/System/tFile.h' l='438' u='w' c='_ZN7tSystem11tExtensionsC1Ev'/>
+<use f='Modules/System/Inc/System/tFile.h' l='439' u='w' c='_ZN7tSystem11tExtensionsC1ERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='440' u='w' c='_ZN7tSystem11tExtensionsC1EPKc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='441' u='w' c='_ZN7tSystem11tExtensionsC1ERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='442' u='w' c='_ZN7tSystem11tExtensionsC1ENS_9tFileTypeEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='443' u='w' c='_ZN7tSystem11tExtensionsC1ERKNS_10tFileTypesEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='459' u='m' c='_ZN7tSystem11tExtensions5ClearEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='460' u='m' c='_ZNK7tSystem11tExtensions5CountEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='461' u='m' c='_ZNK7tSystem11tExtensions7IsEmptyEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='465' u='m' c='_ZNK7tSystem11tExtensions5FirstEv'/>
+<dec f='Modules/System/Inc/System/tFile.h' l='469' type='tList&lt;tStringItem&gt;'/>
+<use f='Modules/System/Inc/System/tFile.h' l='851' u='m' c='_ZN7tSystem11tExtensions3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='852' u='m' c='_ZN7tSystem11tExtensions3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='866' u='m' c='_ZN7tSystem11tExtensions3AddEPKc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='884' u='a' c='_ZN7tSystem11tExtensions3AddENS_9tFileTypeEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='886' u='a' c='_ZN7tSystem11tExtensions3AddENS_9tFileTypeEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='903' u='m' c='_ZNK7tSystem11tExtensions8ContainsERK7tString'/>
+<offset>0</offset>
+<doc f='Modules/System/Inc/System/tFile.h' l='467'>// This list stores the extensions lower-case without the dot.
+	// @todo Could use a BST, maybe a balanced AVL BST tree. Would make &apos;Contains&apos; much faster.</doc>

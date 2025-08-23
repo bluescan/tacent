@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/iscanonical.h' l='23' type='int __iscanonicall(long double __x)'/>
+<use f='include/x86_64-linux-gnu/bits/iscanonical.h' l='49' u='c' c='_Z11iscanonicale'/>

@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='339' ll='363'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='367' c='_ZNSt15_Sp_counted_ptr10_M_disposeEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='371' c='_ZNSt15_Sp_counted_ptr10_M_disposeEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='375' c='_ZNSt15_Sp_counted_ptr10_M_disposeEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='596' c='_ZNSt14__shared_countC1ETL0__'/>
+<fun r='_ZNSt15_Sp_counted_ptrC1ET_'/>
+<fun r='_ZNSt15_Sp_counted_ptr10_M_disposeEv'/>
+<fun r='_ZNSt15_Sp_counted_ptr10_M_destroyEv'/>
+<fun r='_ZNSt15_Sp_counted_ptr14_M_get_deleterERKSt9type_info'/>
+<fun r='_ZNSt15_Sp_counted_ptrC1ERKSt15_Sp_counted_ptrIT_XT0_EE'/>
+<fun r='_ZNSt15_Sp_counted_ptraSERKSt15_Sp_counted_ptrIT_XT0_EE'/>
+<mbr r='std::_Sp_counted_ptr::_M_ptr' t='_Ptr'/>
+<fun r='_ZNSt15_Sp_counted_ptr10_M_disposeEv'/>
+<fun r='_ZNSt15_Sp_counted_ptr10_M_disposeEv'/>
+<fun r='_ZNSt15_Sp_counted_ptr10_M_disposeEv'/>

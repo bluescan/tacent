@@ -1,0 +1,15 @@
+<def f='include/c++/11/system_error' l='199' ll='200' type='void std::error_code::error_code()'/>
+<use f='include/c++/11/system_error' l='452' u='c' c='_ZNSt12system_errorC1ESt10error_code'/>
+<use f='Modules/System/Src/tFile.cpp' l='977' u='c' c='_ZN7tSystem11tRenameFileERK7tStringS2_S2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='1171' u='c' c='_ZN7tSystem11tDeleteFileERK7tStringbb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2025' u='c' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2062' u='c' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2459' u='c' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2469' u='c' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2598' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2607' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2869' u='c' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2879' u='c' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2972' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2981' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3249' u='c' c='_ZN7tSystem10tDeleteDirERK7tStringb'/>

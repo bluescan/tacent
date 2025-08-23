@@ -1,0 +1,5 @@
+<use f='Modules/Image/Inc/Image/tLayer.h' l='41' u='c' c='_ZN6tImage6tLayerC1ERK6tChunkb'/>
+<dec f='Modules/Image/Inc/Image/tLayer.h' l='66' type='void tImage::tLayer::Load(const tChunk &amp; , bool ownData)'/>
+<doc f='Modules/Image/Inc/Image/tLayer.h' l='64'>// Loads the layer from a chunk. Any previous layer data gets destroyed. The bool ownData works the same as with
+	// the constructor.</doc>
+<def f='Modules/Image/Src/tLayer.cpp' l='69' ll='109' type='void tImage::tLayer::Load(const tChunk &amp; chunk, bool ownsData)'/>

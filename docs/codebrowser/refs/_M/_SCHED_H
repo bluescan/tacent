@@ -1,0 +1,3 @@
+<dec f='include/sched.h' l='20'/>
+<use f='include/x86_64-linux-gnu/bits/sched.h' l='23' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/cpu-set.h' l='23' u='a'/>

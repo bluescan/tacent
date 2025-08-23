@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='155' type='22'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='156' u='r'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2983' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2989' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2995' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3001' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3007' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3013' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3020' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3423' u='r' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='154'>// Try refining the final endpoints by examining nearby colors.</doc>

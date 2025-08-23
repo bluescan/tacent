@@ -1,0 +1,8 @@
+<def f='include/c++/11/ostream' l='107' ll='114' type='std::basic_ostream::__ostream_type &amp; std::basic_ostream::operator&lt;&lt;(std::basic_ostream::__ostream_type &amp;(*)(std::basic_ostream::__ostream_type &amp;) __pf)'/>
+<doc f='include/c++/11/ostream' l='100'>/**
+       *  @brief  Interface for manipulators.
+       *
+       *  Manipulators such as @c std::endl and @c std::hex use these
+       *  functions in constructs like &quot;std::cout &lt;&lt; std::endl&quot;.  For more
+       *  information, see the iomanip header.
+      */</doc>

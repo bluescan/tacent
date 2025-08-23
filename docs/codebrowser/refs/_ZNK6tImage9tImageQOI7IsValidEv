@@ -1,0 +1,4 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='86' c='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<def f='Modules/Image/Inc/Image/tImageQOI.h' l='91' type='bool tImage::tImageQOI::IsValid() const'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='150' u='c' c='_ZN6tImage9tImageQOI8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='183' u='c' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>

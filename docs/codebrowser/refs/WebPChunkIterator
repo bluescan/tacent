@@ -1,0 +1,10 @@
+<use f='Modules/Image/Contrib/WebP/include/demux.h' l='66'/>
+<def f='Modules/Image/Contrib/WebP/include/demux.h' l='185' ll='194'/>
+<size>56</size>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='182'>//------------------------------------------------------------------------------
+// Chunk iteration.</doc>
+<mbr r='WebPChunkIterator::chunk_num' o='0' t='int'/>
+<mbr r='WebPChunkIterator::num_chunks' o='32' t='int'/>
+<mbr r='WebPChunkIterator::chunk' o='64' t='WebPData'/>
+<mbr r='WebPChunkIterator::pad' o='192' t='uint32_t[6]'/>
+<mbr r='WebPChunkIterator::private_' o='384' t='void *'/>

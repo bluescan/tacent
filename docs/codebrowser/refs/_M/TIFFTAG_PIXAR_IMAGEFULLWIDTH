@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='402'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='395'>/*
+ * TIFFTAG_PIXAR_IMAGEFULLWIDTH and TIFFTAG_PIXAR_IMAGEFULLLENGTH
+ * are set when an image has been cropped out of a larger image.  
+ * They reflect the size of the original uncropped image.
+ * The TIFFTAG_XPOSITION and TIFFTAG_YPOSITION can be used
+ * to determine the position of the smaller image in the larger one.
+ */</doc>

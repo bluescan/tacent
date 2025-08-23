@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='235' type='81'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='127' u='r'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='315' u='r'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='658' u='r' c='_ZN6tImage15tGetPixelFormatEPKc'/>

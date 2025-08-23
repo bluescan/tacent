@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tCmdLine.h' l='204' type='tString tCmdLine::tGetProgram()'/>
+<doc f='Modules/System/Inc/System/tCmdLine.h' l='203'>// Returns the program name assuming you have already called tParse.</doc>
+<def f='Modules/System/Src/tCmdLine.cpp' l='43' ll='46' type='tString tCmdLine::tGetProgram()'/>

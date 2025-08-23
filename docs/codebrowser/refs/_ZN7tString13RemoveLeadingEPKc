@@ -1,0 +1,8 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='300' type='int tString::RemoveLeading(const char * theseChars)'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='418' u='c' c='_ZNK9tBitField14GetAsHexStringEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='441' u='c' c='_ZNK9tBitField17GetAsBinaryStringEv'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='297'>// Removes all leading characters in this string that match any of the characters in the null-terminated theseChars
+	// eg. Calling RemoveLeading on &quot;cbbabZINGabc&quot; with &quot;abc&quot; yields &quot;ZINGabc&quot;. Returns the number of characters removed.
+	// Note that theseChars are ASCII.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='426' ll='460' type='int tString::RemoveLeading(const char * removeThese)'/>
+<use f='Modules/System/Src/tFile.cpp' l='244' u='c' c='_ZN7tSystem18tGetSimplifiedPathERK7tStringb'/>

@@ -1,0 +1,13 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='140' type='void tSystem::HandlerHelper_IntegerNative(tArray&lt;char&gt; &amp; , const tSystem::FormatSpec &amp; , void * data, bool treatAsUnsigned, int bitSize, bool upperCase, int base, bool forcePrefixLowerCase = false)'/>
+<def f='Modules/System/Src/tPrint.cpp' l='972' ll='1092' type='void tSystem::HandlerHelper_IntegerNative(tArray&lt;char&gt; &amp; convBuf, const tSystem::FormatSpec &amp; spec, void * data, bool treatAsUnsigned, int bitSize, bool upperCase, int base, bool forcePrefixLowerCase = false)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1242' u='c' c='_ZN7tSystem9Handler_bERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1266' u='c' c='_ZN7tSystem9Handler_oERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1290' u='c' c='_ZN7tSystem9Handler_dERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1314' u='c' c='_ZN7tSystem9Handler_iERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1338' u='c' c='_ZN7tSystem9Handler_uERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1362' u='c' c='_ZN7tSystem9Handler_xERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1386' u='c' c='_ZN7tSystem9Handler_XERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1408' u='c' c='_ZN7tSystem9Handler_pERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<doc f='Modules/System/Src/tPrint.cpp' l='137'>// Does the heavy-lifting of converting (built-in) integer types to strings. This function can handle both 32 and
+	// 64 bit integers (signed and unsigned). To print Tacent integral types or bit-fields of 128, 256, or 512 bits
+	// please see the function HandlerHelper_IntegerTacent.</doc>

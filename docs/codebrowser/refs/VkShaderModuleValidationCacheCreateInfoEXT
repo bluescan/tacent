@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12844' ll='12848'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12844'/>
+<size>24</size>
+<mbr r='VkShaderModuleValidationCacheCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkShaderModuleValidationCacheCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkShaderModuleValidationCacheCreateInfoEXT::validationCache' o='128' t='VkValidationCacheEXT'/>

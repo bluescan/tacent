@@ -1,0 +1,118 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1334' ll='1447'/>
+<def f='include/c++/11/bits/atomic_base.h' l='1450' ll='1623'/>
+<def f='include/c++/11/bits/atomic_base.h' l='1626' ll='1755'/>
+<def f='include/c++/11/bits/atomic_base.h' l='1758' ll='1915'/>
+<use f='include/c++/11/atomic' l='1668'/>
+<use f='include/c++/11/atomic' l='1671' c='_ZNSt10atomic_refC1ERT_'/>
+<use f='include/c++/11/atomic' l='1678'/>
+<doc f='include/c++/11/bits/atomic_base.h' l='1333'>// base class for non-integral, non-floating-point, non-pointer types</doc>
+<doc f='include/c++/11/bits/atomic_base.h' l='1449'>// base class for atomic_ref&lt;integral-type&gt;</doc>
+<doc f='include/c++/11/bits/atomic_base.h' l='1625'>// base class for atomic_ref&lt;floating-point-type&gt;</doc>
+<doc f='include/c++/11/bits/atomic_base.h' l='1757'>// base class for atomic_ref&lt;pointer-type&gt;</doc>
+<smbr r='std::__atomic_ref{type-parameter-0-0,false,false}::_S_min_alignment' t='const int'/>
+<smbr r='std::__atomic_ref{type-parameter-0-0,false,false}::is_always_lock_free' t='const bool'/>
+<smbr r='std::__atomic_ref{type-parameter-0-0,false,false}::required_alignment' t='const std::size_t'/>
+<fun r='_ZNSt12__atomic_refIT_Lb0ELb0EEaSERKS_IS0_Lb0ELb0EE'/>
+<fun r='_ZNSt12__atomic_refIT_Lb0ELb0EEC1ERS0_'/>
+<fun r='_ZNSt12__atomic_refIT_Lb0ELb0EEC1ERKS_IS0_Lb0ELb0EE'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb0EEaSES0_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb0EEcvS0_Ev'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb0EE12is_lock_freeEv'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb0EE5storeES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb0EE4loadESt12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb0EE8exchangeES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb0EE21compare_exchange_weakERS0_S0_St12memory_orderS3_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb0EE23compare_exchange_strongERS0_S0_St12memory_orderS3_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb0EE21compare_exchange_weakERS0_S0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb0EE23compare_exchange_strongERS0_S0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb0EE4waitES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb0EE10notify_oneEv'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb0EE10notify_allEv'/>
+<mbr r='std::__atomic_ref::_M_ptr' t='_Tp *'/>
+<smbr r='std::__atomic_ref{type-parameter-0-0,true,false}::is_always_lock_free' t='const bool'/>
+<smbr r='std::__atomic_ref{type-parameter-0-0,true,false}::required_alignment' t='const std::size_t'/>
+<fun r='_ZNSt12__atomic_refIT_Lb1ELb0EEC1Ev'/>
+<fun r='_ZNSt12__atomic_refIT_Lb1ELb0EEaSERKS_IS0_Lb1ELb0EE'/>
+<fun r='_ZNSt12__atomic_refIT_Lb1ELb0EEC1ERS0_'/>
+<fun r='_ZNSt12__atomic_refIT_Lb1ELb0EEC1ERKS_IS0_Lb1ELb0EE'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EEaSES0_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EEcvS0_Ev'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE12is_lock_freeEv'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE5storeES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE4loadESt12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE8exchangeES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE21compare_exchange_weakERS0_S0_St12memory_orderS3_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE23compare_exchange_strongERS0_S0_St12memory_orderS3_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE21compare_exchange_weakERS0_S0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE23compare_exchange_strongERS0_S0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE4waitES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE10notify_oneEv'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE10notify_allEv'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE9fetch_addES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE9fetch_subES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE9fetch_andES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE8fetch_orES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EE9fetch_xorES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EEppEi'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EEmmEi'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EEppEv'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EEmmEv'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EEpLES0_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EEmIES0_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EEaNES0_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EEoRES0_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb1ELb0EEeOES0_'/>
+<mbr r='std::__atomic_ref::_M_ptr' t='_Tp *'/>
+<smbr r='std::__atomic_ref{type-parameter-0-0,false,true}::is_always_lock_free' t='const bool'/>
+<smbr r='std::__atomic_ref{type-parameter-0-0,false,true}::required_alignment' t='const std::size_t'/>
+<fun r='_ZNSt12__atomic_refIT_Lb0ELb1EEC1Ev'/>
+<fun r='_ZNSt12__atomic_refIT_Lb0ELb1EEaSERKS_IS0_Lb0ELb1EE'/>
+<fun r='_ZNSt12__atomic_refIT_Lb0ELb1EEC1ERS0_'/>
+<fun r='_ZNSt12__atomic_refIT_Lb0ELb1EEC1ERKS_IS0_Lb0ELb1EE'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EEaSES0_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EEcvS0_Ev'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EE12is_lock_freeEv'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EE5storeES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EE4loadESt12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EE8exchangeES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EE21compare_exchange_weakERS0_S0_St12memory_orderS3_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EE23compare_exchange_strongERS0_S0_St12memory_orderS3_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EE21compare_exchange_weakERS0_S0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EE23compare_exchange_strongERS0_S0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EE4waitES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EE10notify_oneEv'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EE10notify_allEv'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EE9fetch_addES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EE9fetch_subES0_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EEpLES0_'/>
+<fun r='_ZNKSt12__atomic_refIT_Lb0ELb1EEmIES0_'/>
+<mbr r='std::__atomic_ref::_M_ptr' t='_Fp *'/>
+<smbr r='std::__atomic_ref{type-parameter-0-0*,false,false}::is_always_lock_free' t='const bool'/>
+<smbr r='std::__atomic_ref{type-parameter-0-0*,false,false}::required_alignment' t='const std::size_t'/>
+<fun r='_ZNSt12__atomic_refIPT_Lb0ELb0EEC1Ev'/>
+<fun r='_ZNSt12__atomic_refIPT_Lb0ELb0EEaSERKS_IS1_Lb0ELb0EE'/>
+<fun r='_ZNSt12__atomic_refIPT_Lb0ELb0EEC1ERS1_'/>
+<fun r='_ZNSt12__atomic_refIPT_Lb0ELb0EEC1ERKS_IS1_Lb0ELb0EE'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EEaSES1_'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EEcvS1_Ev'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EE12is_lock_freeEv'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EE5storeES1_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EE4loadESt12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EE8exchangeES1_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EE21compare_exchange_weakERS1_S1_St12memory_orderS4_'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EE23compare_exchange_strongERS1_S1_St12memory_orderS4_'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EE21compare_exchange_weakERS1_S1_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EE23compare_exchange_strongERS1_S1_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EE4waitES1_St12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EE10notify_oneEv'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EE10notify_allEv'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EE9fetch_addElSt12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EE9fetch_subElSt12memory_order'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EEppEi'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EEmmEi'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EEppEv'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EEmmEv'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EEpLEl'/>
+<fun r='_ZNKSt12__atomic_refIPT_Lb0ELb0EEmIEl'/>
+<fun r='_ZNSt12__atomic_refIPT_Lb0ELb0EE12_S_type_sizeEl'/>
+<mbr r='std::__atomic_ref::_M_ptr' t='_Tp **'/>

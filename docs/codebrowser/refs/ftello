@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='741' type='__off_t ftello(FILE * __stream)'/>
+<doc f='include/stdio.h' l='737'>/* Return the current position of STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

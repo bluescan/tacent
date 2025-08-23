@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/basic_string.h' l='280' type='void std::basic_string::_M_construct(_InIterator __beg, _InIterator __end, std::input_iterator_tag )'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='160' ll='201' type='void std::basic_string::_M_construct(_InIterator __beg, _InIterator __end, std::input_iterator_tag )'/>
+<doc f='include/c++/11/bits/basic_string.tcc' l='156'>// NB: This is the special case for Input Iterators, used in
+  // istreambuf_iterators, etc.
+  // Input Iterators have a cost structure very different from
+  // pointers, calling for a different coding style.</doc>

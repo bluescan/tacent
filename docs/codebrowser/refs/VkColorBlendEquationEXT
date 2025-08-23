@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17479' ll='17486'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17479'/>
+<size>24</size>
+<mbr r='VkColorBlendEquationEXT::srcColorBlendFactor' o='0' t='VkBlendFactor'/>
+<mbr r='VkColorBlendEquationEXT::dstColorBlendFactor' o='32' t='VkBlendFactor'/>
+<mbr r='VkColorBlendEquationEXT::colorBlendOp' o='64' t='VkBlendOp'/>
+<mbr r='VkColorBlendEquationEXT::srcAlphaBlendFactor' o='96' t='VkBlendFactor'/>
+<mbr r='VkColorBlendEquationEXT::dstAlphaBlendFactor' o='128' t='VkBlendFactor'/>
+<mbr r='VkColorBlendEquationEXT::alphaBlendOp' o='160' t='VkBlendOp'/>

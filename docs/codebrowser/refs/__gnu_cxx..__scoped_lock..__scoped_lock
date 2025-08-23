@@ -1,0 +1,3 @@
+<dec f='include/c++/11/ext/concurrence.h' l='236' type='void __gnu_cxx::__scoped_lock::__scoped_lock(const __gnu_cxx::__scoped_lock &amp; )'/>
+<def f='include/c++/11/ext/concurrence.h' l='240' ll='241' type='void __gnu_cxx::__scoped_lock::__scoped_lock(__gnu_cxx::__scoped_lock::__mutex_type &amp; __name)'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='243' u='c' c='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>

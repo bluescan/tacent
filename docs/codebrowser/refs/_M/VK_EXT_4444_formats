@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15998'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15997'>// VK_EXT_4444_formats is a preprocessor guard. Do not pass it to API calls.</doc>

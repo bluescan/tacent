@@ -1,0 +1,30 @@
+<use f='include/c++/11/iosfwd' l='162'/>
+<use f='include/c++/11/iosfwd' l='202'/>
+<def f='include/c++/11/fstream' l='497' ll='740'/>
+<use f='include/c++/11/fstream' l='1276' c='_ZSt4swapRSt14basic_ifstreamIT_T0_ES3_'/>
+<use f='include/c++/11/fstream' l='1277' c='_ZSt4swapRSt14basic_ifstreamIT_T0_ES3_'/>
+<inh f='include/c++/11/bits/istream.tcc' l='1077' c='std::basic_istream'/>
+<def f='include/c++/11/bits/fstream.tcc' l='1087'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1087'/>
+<inh f='include/c++/11/bits/istream.tcc' l='1100' c='std::basic_istream'/>
+<def f='include/c++/11/bits/fstream.tcc' l='1093'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1093'/>
+<size>520</size>
+<mbr r='std::basic_ifstream::_M_filebuf' t='std::basic_ifstream::__filebuf_type'/>
+<fun r='_ZNSt14basic_ifstreamC1Ev'/>
+<fun r='_ZNSt14basic_ifstreamC1EPKcSt13_Ios_Openmode'/>
+<fun r='_ZNSt14basic_ifstreamC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt13_Ios_Openmode'/>
+<fun r='_ZNSt14basic_ifstreamC1ERKTL0__St13_Ios_Openmode'/>
+<fun r='_ZNSt14basic_ifstreamC1ERKSt14basic_ifstreamIT_T0_E'/>
+<fun r='_ZNSt14basic_ifstreamC1EOSt14basic_ifstreamIT_T0_E'/>
+<fun r='_ZNSt14basic_ifstreamD1Ev'/>
+<fun r='_ZNSt14basic_ifstreamaSERKSt14basic_ifstreamIT_T0_E'/>
+<fun r='_ZNSt14basic_ifstreamaSEOSt14basic_ifstreamIT_T0_E'/>
+<fun r='_ZNSt14basic_ifstream4swapERSt14basic_ifstreamIT_T0_E'/>
+<fun r='_ZNKSt14basic_ifstream5rdbufEv'/>
+<fun r='_ZNSt14basic_ifstream7is_openEv'/>
+<fun r='_ZNKSt14basic_ifstream7is_openEv'/>
+<fun r='_ZNSt14basic_ifstream4openEPKcSt13_Ios_Openmode'/>
+<fun r='_ZNSt14basic_ifstream4openERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt13_Ios_Openmode'/>
+<fun r='_ZNSt14basic_ifstream4openERKTL0__St13_Ios_Openmode'/>
+<fun r='_ZNSt14basic_ifstream5closeEv'/>

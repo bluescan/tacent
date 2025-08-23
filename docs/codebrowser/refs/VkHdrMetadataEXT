@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12329' ll='12340'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12329'/>
+<size>64</size>
+<mbr r='VkHdrMetadataEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkHdrMetadataEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkHdrMetadataEXT::displayPrimaryRed' o='128' t='VkXYColorEXT'/>
+<mbr r='VkHdrMetadataEXT::displayPrimaryGreen' o='192' t='VkXYColorEXT'/>
+<mbr r='VkHdrMetadataEXT::displayPrimaryBlue' o='256' t='VkXYColorEXT'/>
+<mbr r='VkHdrMetadataEXT::whitePoint' o='320' t='VkXYColorEXT'/>
+<mbr r='VkHdrMetadataEXT::maxLuminance' o='384' t='float'/>
+<mbr r='VkHdrMetadataEXT::minLuminance' o='416' t='float'/>
+<mbr r='VkHdrMetadataEXT::maxContentLightLevel' o='448' t='float'/>
+<mbr r='VkHdrMetadataEXT::maxFrameAverageLightLevel' o='480' t='float'/>

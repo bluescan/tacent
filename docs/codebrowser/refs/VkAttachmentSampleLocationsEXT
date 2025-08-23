@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12589' ll='12592'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12589'/>
+<size>48</size>
+<mbr r='VkAttachmentSampleLocationsEXT::attachmentIndex' o='0' t='uint32_t'/>
+<mbr r='VkAttachmentSampleLocationsEXT::sampleLocationsInfo' o='64' t='VkSampleLocationsInfoEXT'/>

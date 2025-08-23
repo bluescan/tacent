@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='258' type='void tMath::tGet(tMath::tVec3 &amp; axis, float &amp; angle, const tMath::tQuat &amp; )'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='258'>// Angle always returned E [0,Pi].</doc>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='44' u='c' c='_ZNK5tMath11tQuaternion3GetERNS_5tVec3ERf'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='159' ll='174' type='void tMath::tGet(tMath::tVec3 &amp; axis, float &amp; angle, const tMath::tQuat &amp; q)'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='1025' u='c' c='_ZN5tMath20tApproachOrientationERNS_5tQuatERKS0_ff'/>

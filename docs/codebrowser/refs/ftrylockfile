@@ -1,0 +1,3 @@
+<dec f='include/stdio.h' l='871' type='int ftrylockfile(FILE * __stream)'/>
+<doc f='include/stdio.h' l='869'>/* Try to acquire ownership of STREAM but do not block if it is not
+   possible.  */</doc>

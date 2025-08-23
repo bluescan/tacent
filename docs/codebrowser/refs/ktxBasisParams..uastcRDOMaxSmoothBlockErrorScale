@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1452' type='float'/>
+<offset>512</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1449'>/*!&lt; UASTC RDO dictionary size in bytes. Default is 4096. Lower
+             values=faster, but give less compression. Range is [64,65536].
+         */</doc>

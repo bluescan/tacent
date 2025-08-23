@@ -1,0 +1,14 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='151' type='void std::locale::locale(const std::locale &amp; __base, const char * __s, std::locale::category __cat)'/>
+<use f='include/c++/11/bits/locale_classes.h' l='178' u='c' c='_ZNSt6localeC1ERKS_RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEi'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='139'>/**
+     *  @brief  Construct locale with facets from another locale.
+     *
+     *  Constructs a copy of the locale @a base.  The facets specified by @a
+     *  cat are replaced with those from the locale named by @a s.  If base is
+     *  named, this locale instance will also be named.
+     *
+     *  @param  __base  The locale to copy.
+     *  @param  __s  Name of the locale to use facets from.
+     *  @param  __cat  Set of categories defining the facets to use from __s.
+     *  @throw  std::runtime_error if __s is null or an undefined locale.
+    */</doc>

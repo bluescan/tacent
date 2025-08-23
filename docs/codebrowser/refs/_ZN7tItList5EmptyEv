@@ -1,0 +1,19 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='254' u='c' c='_ZN7tItListD1Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='328' u='c' c='_ZN7tItList5ClearEv'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='330' type='void tItList::Empty()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='330'>/* Empties the list. Always deletes the objects. */</doc>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='136' u='c' c='_ZN5tMath12tIntervalSet5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='76' u='c' c='_ZN6tScene11tAttributes5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='55' u='c' c='_ZN6tScene9tLodGroup5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tSelection.h' l='30' u='c' c='_ZN6tScene10tSelection5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='113' u='c' c='_ZN6tScene9tSkeleton5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='114' u='c' c='_ZN6tScene9tSkeleton5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='36' u='c' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='37' u='c' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='38' u='c' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='39' u='c' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='40' u='c' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='41' u='c' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='42' u='c' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='43' u='c' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='44' u='c' c='_ZN6tScene6tWorld5ClearEv'/>

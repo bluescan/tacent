@@ -1,0 +1,7 @@
+<dec f='include/c++/11/fstream' l='120' type='std::__c_lock'/>
+<use f='include/c++/11/bits/fstream.tcc' l='81' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='81' u='a' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='98' u='w' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='98' u='a' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<doc f='include/c++/11/fstream' l='118'>// Data Members:
+      // MT lock inherited from libio or other low-level io library.</doc>

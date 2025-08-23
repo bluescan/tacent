@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_numeric.h' l='296' ll='319' macro='1' type='_OutputIterator std::partial_sum(_InputIterator __first, _InputIterator __last, _OutputIterator __result, _BinaryOperation __binary_op)'/>

@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/atomic_timed_wait.h' l='227' type='__wait_clock_t::time_point'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='235' u='w' c='_ZNSt8__detail27__timed_backoff_spin_policyC1ENSt6chrono10time_pointIT_T0_EES5_'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='248' u='r' c='_ZNKSt8__detail27__timed_backoff_spin_policyclEv'/>
+<offset>64</offset>

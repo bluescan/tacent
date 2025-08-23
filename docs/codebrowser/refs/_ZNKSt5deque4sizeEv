@@ -1,0 +1,16 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1232' ll='1234' type='std::deque::size_type std::deque::size() const'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1254' u='c' c='_ZNSt5deque6resizeEm'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1291' u='c' c='_ZNSt5deque6resizeEmRKT_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1918' u='c' c='_ZNSt5deque13_M_assign_auxETL0__S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1921' u='c' c='_ZNSt5deque13_M_assign_auxETL0__S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1935' u='c' c='_ZNSt5deque14_M_fill_assignEmRKT_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1938' u='c' c='_ZNSt5deque14_M_fill_assignEmRKT_'/>
+<use f='include/c++/11/bits/deque.tcc' l='117' u='c' c='_ZNSt5dequeaSERKSt5dequeIT_T0_E'/>
+<use f='include/c++/11/bits/deque.tcc' l='241' u='c' c='_ZNSt5deque8_M_eraseENSt11_Deque_baseIT_T0_E8iteratorE'/>
+<use f='include/c++/11/bits/deque.tcc' l='272' u='c' c='_ZNSt5deque8_M_eraseENSt11_Deque_baseIT_T0_E8iteratorES4_'/>
+<use f='include/c++/11/bits/deque.tcc' l='492' u='c' c='_ZNSt5deque16_M_push_back_auxEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='531' u='c' c='_ZNSt5deque17_M_push_front_auxEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='657' u='c' c='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='777' u='c' c='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_m'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='656' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1231'>/**  Returns the number of elements in the %deque.  */</doc>

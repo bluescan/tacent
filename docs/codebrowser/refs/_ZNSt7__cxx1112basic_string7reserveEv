@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/basic_string.h' l='1009' type='void std::basic_string::reserve()'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='335' ll='368' type='void std::basic_string::reserve()'/>

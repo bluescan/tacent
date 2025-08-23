@@ -1,0 +1,7 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='341' type='float tMath::tLengthSq(const tMath::tQuat &amp; q)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='346' u='c' c='_ZN5tMath7tLengthERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='351' u='c' c='_ZN5tMath11tLengthFastERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='384' u='c' c='_ZN5tMath14tNormalizeFastERNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='389' u='c' c='_ZN5tMath18tNormalizeSafeFastERNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='53' u='c' c='_ZNK5tMath11tQuaternion8LengthSqEv'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='56' u='c' c='_ZNK5tMath11tQuaternion6NormSqEv'/>

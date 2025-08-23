@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='752' type='_OIter std::generate_n(_OIter , _Size , _Generator )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='4454' ll='4468' macro='1' type='_OutputIterator std::generate_n(_OutputIterator __first, _Size __n, _Generator __gen)'/>

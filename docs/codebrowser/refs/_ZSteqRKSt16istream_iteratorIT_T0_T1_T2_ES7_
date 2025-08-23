@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stream_iterator.h' l='146' ll='148' type='bool std::operator==(const istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt; &amp; __x, const istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt; &amp; __y)'/>
+<doc f='include/c++/11/bits/stream_iterator.h' l='144'>/// Return true if the iterators refer to the same stream,
+      /// or are both at end-of-stream.</doc>

@@ -1,0 +1,24 @@
+<def f='include/x86_64-linux-gnu/bits/timex.h' l='26' ll='85'/>
+<use f='include/x86_64-linux-gnu/bits/time.h' l='78' c='clock_adjtime'/>
+<size>208</size>
+<doc f='include/x86_64-linux-gnu/bits/timex.h' l='24'>/* These definitions from linux/timex.h as of 3.18.  */</doc>
+<mbr r='timex::modes' o='0' t='unsigned int'/>
+<mbr r='timex::offset' o='64' t='__syscall_slong_t'/>
+<mbr r='timex::freq' o='128' t='__syscall_slong_t'/>
+<mbr r='timex::maxerror' o='192' t='__syscall_slong_t'/>
+<mbr r='timex::esterror' o='256' t='__syscall_slong_t'/>
+<mbr r='timex::status' o='320' t='int'/>
+<mbr r='timex::constant' o='384' t='__syscall_slong_t'/>
+<mbr r='timex::precision' o='448' t='__syscall_slong_t'/>
+<mbr r='timex::tolerance' o='512' t='__syscall_slong_t'/>
+<mbr r='timex::time' o='576' t='struct timeval'/>
+<mbr r='timex::tick' o='704' t='__syscall_slong_t'/>
+<mbr r='timex::ppsfreq' o='768' t='__syscall_slong_t'/>
+<mbr r='timex::jitter' o='832' t='__syscall_slong_t'/>
+<mbr r='timex::shift' o='896' t='int'/>
+<mbr r='timex::stabil' o='960' t='__syscall_slong_t'/>
+<mbr r='timex::jitcnt' o='1024' t='__syscall_slong_t'/>
+<mbr r='timex::calcnt' o='1088' t='__syscall_slong_t'/>
+<mbr r='timex::errcnt' o='1152' t='__syscall_slong_t'/>
+<mbr r='timex::stbcnt' o='1216' t='__syscall_slong_t'/>
+<mbr r='timex::tai' o='1280' t='int'/>

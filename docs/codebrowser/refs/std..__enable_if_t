@@ -1,0 +1,36 @@
+<use f='include/c++/11/type_traits' l='2209'/>
+<use f='include/c++/11/type_traits' l='2683' c='_ZSt4swapRAT0__T_S1_'/>
+<use f='include/c++/11/bits/stl_iterator_base_types.h' l='250'/>
+<use f='include/c++/11/tuple' l='288'/>
+<use f='include/c++/11/tuple' l='335'/>
+<use f='include/c++/11/tuple' l='618'/>
+<use f='include/c++/11/tuple' l='624'/>
+<use f='include/c++/11/tuple' l='630'/>
+<use f='include/c++/11/tuple' l='636'/>
+<use f='include/c++/11/tuple' l='642' c='_ZNSt5tuple12__assignableEv'/>
+<use f='include/c++/11/tuple' l='920' c='_ZNSt5tupleaSERKSt5tupleIJDpTL0__EE'/>
+<use f='include/c++/11/tuple' l='930' c='_ZNSt5tupleaSEOSt5tupleIJDpTL0__EE'/>
+<use f='include/c++/11/tuple' l='987'/>
+<use f='include/c++/11/tuple' l='994'/>
+<use f='include/c++/11/tuple' l='1004'/>
+<use f='include/c++/11/tuple' l='1010'/>
+<use f='include/c++/11/tuple' l='1289' c='_ZNSt5tupleIJT_T0_EEaSERKS_IJTL0__TL0_0_EE'/>
+<use f='include/c++/11/tuple' l='1299' c='_ZNSt5tupleIJT_T0_EEaSEOS_IJTL0__TL0_0_EE'/>
+<use f='include/c++/11/tuple' l='1309' c='_ZNSt5tupleIJT_T0_EEaSERKSt4pairITL0__TL0_0_E'/>
+<use f='include/c++/11/tuple' l='1320' c='_ZNSt5tupleIJT_T0_EEaSEOSt4pairITL0__TL0_0_E'/>
+<use f='include/c++/11/tuple' l='1387' c='_ZSt12__get_helperRKSt5tupleIJDpT0_EE'/>
+<use f='include/c++/11/bits/std_function.h' l='343'/>
+<use f='include/c++/11/bits/std_function.h' l='353'/>
+<use f='include/c++/11/ext/alloc_traits.h' l='80' c='__gnu_cxx::__alloc_traits::construct'/>
+<use f='include/c++/11/ext/alloc_traits.h' l='92' c='__gnu_cxx::__alloc_traits::destroy'/>
+<use f='include/c++/11/bits/hashtable.h' l='2513'/>
+<use f='include/c++/11/bits/unordered_map.h' l='561' c='_ZNSt13unordered_map6insertEOTL0__'/>
+<use f='include/c++/11/bits/unordered_map.h' l='600' c='_ZNSt13unordered_map6insertENSt10_HashtableIT_St4pairIKS1_T0_ET3_NSt8__detail10_Select1stET2_T1_NS7_18_Mod_range_hashingENS7_20_Default_ranged_hashENS9080422'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1574' c='_ZNSt18unordered_multimap6insertEOTL0__'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1610' c='_ZNSt18unordered_multimap6insertENSt10_HashtableIT_St4pairIKS1_T0_ET3_NSt8__detail10_Select1stET2_T1_NS7_18_Mod_range_hashingENS7_20_Default_ranged_ha8607932'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='1005' c='_ZSt14__relocate_a_1PT_S0_S0_RSaIT0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='307' c='_ZNSt10unique_ptrC1ENSt15__uniq_ptr_implIT_T0_E7pointerENSt9enable_ifIXntsr19is_lvalue_referenceITL0__EE5valueEOS6_E4typeE'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='315' c='_ZNSt10unique_ptrC1ENSt15__uniq_ptr_implIT_T0_E7pointerENSt9enable_ifIXsr19is_lvalue_referenceITL0__EE5valueEOTL0_0_E4typeE'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='577' c='_ZNSt10unique_ptrIA_T_T0_EC1ETL0__NSt9enable_ifIXntsr19is_lvalue_referenceITL0_0_EE5valueEOS6_E4typeE'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='586' c='_ZNSt10unique_ptrIA_T_T0_EC1ETL0__NSt9enable_ifIXsr19is_lvalue_referenceITL0_0_EE5valueEOTL0_1_E4typeE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1076'/>

@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1049' type='ktx_error_code_e ktxTexture1_WriteKTX2ToNamedFile(ktxTexture1 * This, const char *const dstname)'/>

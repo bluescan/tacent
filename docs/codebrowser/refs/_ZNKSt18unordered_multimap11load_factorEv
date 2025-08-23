@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1987' ll='1989' type='float std::unordered_multimap::load_factor() const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1982'>///@}
+
+      // hash policy.
+
+      /// Returns the average number of elements per bucket.</doc>

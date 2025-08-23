@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='251' type='void tMath::tGet(float * a, const tMath::tVec2 &amp; s)'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='44' u='c' c='_ZNK5tMath8tVector23GetEPf'/>

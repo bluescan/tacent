@@ -1,0 +1,3 @@
+<inh f='include/c++/11/bits/locale_classes.h' l='410' c='_ZNSt6locale5facetD1Ev'/>
+<def f='include/c++/11/bits/locale_classes.h' l='751' ll='753' type='void std::collate::~collate&lt;_CharT&gt;()'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='750'>/// Destructor.</doc>

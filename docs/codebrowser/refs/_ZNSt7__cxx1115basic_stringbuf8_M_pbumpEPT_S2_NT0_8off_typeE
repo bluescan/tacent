@@ -1,0 +1,8 @@
+<dec f='include/c++/11/sstream' l='421' type='void std::basic_stringbuf::_M_pbump(std::basic_stringbuf::char_type * __pbeg, std::basic_stringbuf::char_type * __pend, std::basic_stringbuf::off_type __off)'/>
+<use f='include/c++/11/bits/sstream.tcc' l='97' u='c' c='_ZNSt7__cxx1115basic_stringbuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/sstream.tcc' l='206' u='c' c='_ZNSt7__cxx1115basic_stringbuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/sstream.tcc' l='236' u='c' c='_ZNSt7__cxx1115basic_stringbuf7seekposENT0_8pos_typeESt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/sstream.tcc' l='265' u='c' c='_ZNSt7__cxx1115basic_stringbuf7_M_syncEPT_NS_12basic_stringIS1_T0_T1_E9size_typeES7_'/>
+<def f='include/c++/11/bits/sstream.tcc' l='274' ll='286' type='void std::basic_stringbuf::_M_pbump(std::basic_stringbuf::char_type * __pbeg, std::basic_stringbuf::char_type * __pend, std::basic_stringbuf::off_type __off)'/>
+<doc f='include/c++/11/sstream' l='418'>// Works around the issue with pbump, part of the protected
+      // interface of basic_streambuf, taking just an int.</doc>

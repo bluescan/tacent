@@ -1,0 +1,7 @@
+<dec f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='59' type='__uid_t'/>
+<dec f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='74' type='__uid_t'/>
+<dec f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='82' type='__uid_t'/>
+<offset>32</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='59'>/* Real user ID of sending process.  */</doc>
+<doc f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='74'>/* Real user ID of sending process.  */</doc>
+<doc f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='82'>/* Real user ID of sending process.  */</doc>

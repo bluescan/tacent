@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='554' type='const char32_t * tStringUTF32::Chars() const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='554'>/* Unlike tString, will be nullptr if empty. */</doc>

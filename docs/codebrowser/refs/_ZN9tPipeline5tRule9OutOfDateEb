@@ -1,0 +1,5 @@
+<dec f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='78' type='bool tPipeline::tRule::OutOfDate(bool checkCleanFlag = true)'/>
+<def f='Modules/Pipeline/Src/tRule.cpp' l='136' ll='168' type='bool tPipeline::tRule::OutOfDate(bool checkClean = true)'/>
+<doc f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='75'>// Returns true if target has been specified and target doesn&apos;t exist or is older than any dependency or if a clean
+	// build is requested (the latter only if checkCleanFlag == true). Returns false if there is no need to build.
+	// Throws a tRuleError if any dependency doesn&apos;t exist.</doc>

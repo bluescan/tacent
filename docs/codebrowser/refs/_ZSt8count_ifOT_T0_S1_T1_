@@ -1,0 +1,1 @@
+<dec f='include/c++/11/pstl/glue_algorithm_defs.h' l='106' type='__pstl::__internal::__enable_if_execution_policy&lt;_ExecutionPolicy, typename iterator_traits&lt;_ForwardIterator&gt;::difference_type&gt; std::count_if(_ExecutionPolicy &amp;&amp; __exec, _ForwardIterator __first, _ForwardIterator __last, _Predicate __pred)'/>

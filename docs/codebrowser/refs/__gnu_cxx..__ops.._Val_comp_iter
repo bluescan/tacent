@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/predefined_ops.h' l='212' ll='241'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='245' c='__gnu_cxx::__ops::__val_comp_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='247' c='__gnu_cxx::__ops::__val_comp_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='251' c='__gnu_cxx::__ops::__val_comp_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='253' c='__gnu_cxx::__ops::__val_comp_iter'/>
+<mbr r='__gnu_cxx::__ops::_Val_comp_iter::_M_comp' t='_Compare'/>
+<fun r='__gnu_cxx::__ops::_Val_comp_iter::_Val_comp_iter{_Compare}'/>
+<fun r='__gnu_cxx::__ops::_Val_comp_iter::_Val_comp_iter{_Compare}'/>
+<fun r='__gnu_cxx::__ops::_Val_comp_iter::_Val_comp_iter{_Compare}'/>
+<fun r='__gnu_cxx::__ops::_Val_comp_iter::operator()'/>

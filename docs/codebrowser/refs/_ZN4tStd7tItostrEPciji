@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='229' type='bool tStd::tItostr(char * str, int strSize, uint32 value, int base = 10)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='233' u='c' c='_ZN4tStd5tItoaEPciji'/>

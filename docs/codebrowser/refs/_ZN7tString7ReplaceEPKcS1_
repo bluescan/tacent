@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='288' type='int tString::Replace(const char * search, const char * replace)'/>
+<use f='Modules/System/Src/tFile.cpp' l='236' u='c' c='_ZN7tSystem18tGetSimplifiedPathERK7tStringb'/>

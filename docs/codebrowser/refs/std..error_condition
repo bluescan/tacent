@@ -1,0 +1,41 @@
+<use f='include/c++/11/system_error' l='134' c='_ZNKSt3_V214error_category23default_error_conditionEi'/>
+<use f='include/c++/11/system_error' l='138' c='_ZNKSt3_V214error_category10equivalentEiRKSt15error_condition'/>
+<use f='include/c++/11/system_error' l='234' c='_ZNKSt10error_code23default_error_conditionEv'/>
+<use f='include/c++/11/system_error' l='284' c='_ZSt20make_error_conditionSt4errc'/>
+<def f='include/c++/11/system_error' l='297' ll='348'/>
+<use f='include/c++/11/system_error' l='354' c='_ZSt20make_error_conditionSt4errc'/>
+<use f='include/c++/11/system_error' l='356' c='_ZSt20make_error_conditionSt4errc'/>
+<use f='include/c++/11/system_error' l='368' c='_ZSteqRKSt10error_codeRKSt15error_condition'/>
+<use f='include/c++/11/system_error' l='376' c='_ZSteqRKSt15error_conditionS1_'/>
+<use f='include/c++/11/system_error' l='377' c='_ZSteqRKSt15error_conditionS1_'/>
+<use f='include/c++/11/system_error' l='387' c='_ZStssRKSt15error_conditionS1_'/>
+<use f='include/c++/11/system_error' l='388' c='_ZStssRKSt15error_conditionS1_'/>
+<use f='include/c++/11/system_error' l='514'/>
+<use f='include/c++/11/system_error' l='518' c='_ZNKSt4hashISt15error_conditionEclERKS0_'/>
+<size>16</size>
+<doc f='include/c++/11/system_error' l='286'>/** Class error_condition
+   *
+   * This class represents error conditions that may be visible at an API
+   * boundary. Different `error_code` values that can occur within a library
+   * or module might map to the same `error_condition`.
+   *
+   * An `error_condition` represents something that the program can test for,
+   * and subsequently take appropriate action.
+   *
+   * @since C++11
+   */</doc>
+<fun r='_ZNSt15error_conditionC1Ev'/>
+<fun r='_ZNSt15error_conditionC1EiRKNSt3_V214error_categoryE'/>
+<fun r='_ZNSt15error_conditionC1ET_'/>
+<fun r='_ZNSt15error_condition6assignEiRKNSt3_V214error_categoryE'/>
+<fun r='_ZNSt15error_conditionaSET_'/>
+<fun r='_ZNSt15error_condition5clearEv'/>
+<fun r='_ZNKSt15error_condition5valueEv'/>
+<fun r='_ZNKSt15error_condition8categoryEv'/>
+<fun r='_ZNKSt15error_condition7messageB5cxx11Ev'/>
+<fun r='_ZNKSt15error_conditioncvbEv'/>
+<mbr r='std::error_condition::_M_value' o='0' t='int'/>
+<mbr r='std::error_condition::_M_cat' o='64' t='const std::error_category *'/>
+<use f='include/c++/11/bits/ios_base.h' l='213' c='_ZSt20make_error_conditionSt7io_errc'/>
+<use f='include/c++/11/bits/ios_base.h' l='215' c='_ZSt20make_error_conditionSt7io_errc'/>
+<size>16</size>

@@ -1,0 +1,5 @@
+<dec f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='53' type='void tPipeline::tRule::AddDependency(const tString &amp; fullDepName)'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='81' u='c' c='_ZN9tPipeline5tRule6AddDepERK7tString'/>
+<def f='Modules/Pipeline/Src/tRule.cpp' l='71' ll='77' type='void tPipeline::tRule::AddDependency(const tString &amp; dep)'/>
+<doc f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='51'>// Adds a dependency. If the dependency doesn&apos;t exist a tRuleError object is thrown and the dependency is not
+	// added. If the dependency was already added, this function does nothing.</doc>

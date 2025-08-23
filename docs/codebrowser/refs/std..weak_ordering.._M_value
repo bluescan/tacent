@@ -1,0 +1,14 @@
+<dec f='include/c++/11/compare' l='157' type='__cmp_cat::type'/>
+<use f='include/c++/11/compare' l='160' u='w' c='_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE'/>
+<use f='include/c++/11/compare' l='172' u='r' c='_ZNKSt13weak_orderingcvSt16partial_orderingEv'/>
+<use f='include/c++/11/compare' l='177' u='r' c='_ZSteqSt13weak_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='184' u='r' c='_ZStltSt13weak_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='188' u='r' c='_ZStgtSt13weak_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='192' u='r' c='_ZStleSt13weak_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='196' u='r' c='_ZStgeSt13weak_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='200' u='r' c='_ZStltNSt9__cmp_cat8__unspecESt13weak_ordering'/>
+<use f='include/c++/11/compare' l='204' u='r' c='_ZStgtNSt9__cmp_cat8__unspecESt13weak_ordering'/>
+<use f='include/c++/11/compare' l='208' u='r' c='_ZStleNSt9__cmp_cat8__unspecESt13weak_ordering'/>
+<use f='include/c++/11/compare' l='212' u='r' c='_ZStgeNSt9__cmp_cat8__unspecESt13weak_ordering'/>
+<use f='include/c++/11/compare' l='220' u='r' c='_ZStssNSt9__cmp_cat8__unspecESt13weak_ordering'/>
+<offset>0</offset>

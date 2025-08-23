@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/bcdec/bcdec.h' l='104' type='void bcdec_bc6h_half(const void * compressedBlock, void * decompressedBlock, int destinationPitch, int isSigned)'/>

@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/uses_allocator.h' l='68' ll='70'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='110'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='129'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='135'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/tuple' l='1788' ll='1789'/>
+<doc f='include/c++/11/tuple' l='1787'>/// Partial specialization for tuples</doc>

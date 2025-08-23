@@ -1,0 +1,7 @@
+<dec f='include/c++/11/fstream' l='433' type='int std::basic_filebuf::_M_get_ext_pos(std::basic_filebuf::__state_type &amp; __state)'/>
+<use f='include/c++/11/bits/fstream.tcc' l='553' u='c' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='866' u='c' c='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<def f='include/c++/11/bits/fstream.tcc' l='931' ll='947' type='int std::basic_filebuf::_M_get_ext_pos(std::basic_filebuf::__state_type &amp; __state)'/>
+<doc f='include/c++/11/bits/fstream.tcc' l='928'>// Returns the distance from the end of the ext buffer to the point
+  // corresponding to gptr(). This is a negative value. Updates __state
+  // from eback() correspondence to gptr().</doc>

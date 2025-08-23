@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stream_iterator.h' l='227' ll='237' type='ostream_iterator&lt;_Tp, _CharT, _Traits&gt; &amp; std::ostream_iterator::operator=(const _Tp &amp; __value)'/>
+<doc f='include/c++/11/bits/stream_iterator.h' l='225'>/// Writes @a value to underlying ostream using operator&lt;&lt;.  If
+      /// constructed with delimiter string, writes delimiter to ostream.</doc>

@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='245' type='tColour4b tMath::tGetColour(const char * colourName)'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='244'>// Convert a standard web colour name (as may be found in rgb.txt for example) into a 32bit RGBA tColour4b.</doc>
+<def f='Modules/Math/Src/tColour.cpp' l='414' ll='430' type='tColour4b tMath::tGetColour(const char * colourName)'/>

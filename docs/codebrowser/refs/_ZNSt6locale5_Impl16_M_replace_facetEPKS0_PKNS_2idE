@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='605' type='void std::locale::_Impl::_M_replace_facet(const std::locale::_Impl * , const locale::id * )'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='68' u='c' c='_ZNKSt6locale7combineERKS_'/>

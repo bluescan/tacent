@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3817' ll='3820'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3817'/>
+<size>8</size>
+<mbr r='VkAttachmentReference::attachment' o='0' t='uint32_t'/>
+<mbr r='VkAttachmentReference::layout' o='32' t='VkImageLayout'/>

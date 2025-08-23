@@ -1,0 +1,22 @@
+<def f='include/c++/11/bits/random.h' l='3530' ll='3557'/>
+<use f='include/c++/11/bits/random.h' l='3534' c='_ZNSt22bernoulli_distribution10param_typeC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='3548' c='_ZSteqRKNSt22bernoulli_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='3548' c='_ZSteqRKNSt22bernoulli_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='3552' c='_ZStneRKNSt22bernoulli_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='3552' c='_ZStneRKNSt22bernoulli_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='3577' c='_ZNSt22bernoulli_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3599' c='_ZNKSt22bernoulli_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='3608' c='_ZNSt22bernoulli_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3636' c='_ZNSt22bernoulli_distributionclERT_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3657' c='_ZNSt22bernoulli_distribution10__generateET_S0_RT0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3664' c='_ZNSt22bernoulli_distribution10__generateEPbS0_RT_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3682' c='_ZNSt22bernoulli_distribution15__generate_implET_S0_RT0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='3684'/>
+<use f='include/c++/11/bits/random.h' l='3727' c='_ZStrsRSt13basic_istreamIT_T0_ERSt22bernoulli_distribution'/>
+<use f='include/c++/11/bits/random.tcc' l='1007' c='_ZNSt22bernoulli_distribution15__generate_implET_S0_RT0_RKNS_10param_typeE'/>
+<size>8</size>
+<doc f='include/c++/11/bits/random.h' l='3529'>/** Parameter type. */</doc>
+<fun r='_ZNSt22bernoulli_distribution10param_typeC1Ev'/>
+<fun r='_ZNSt22bernoulli_distribution10param_typeC1Ed'/>
+<fun r='_ZNKSt22bernoulli_distribution10param_type1pEv'/>
+<mbr r='std::bernoulli_distribution::param_type::_M_p' o='0' t='double'/>

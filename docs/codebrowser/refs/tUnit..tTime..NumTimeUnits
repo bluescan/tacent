@@ -1,0 +1,11 @@
+<dec f='Modules/Foundation/Inc/Foundation/tUnits.h' l='109' type='22'/>
+<use f='Modules/Foundation/Src/tUnits.cpp' l='21'/>
+<use f='Modules/Foundation/Src/tUnits.cpp' l='101' u='r' c='_ZN5tUnit11GetTimeUnitEPKc'/>
+<use f='Modules/System/Inc/System/tTime.h' l='87'/>
+<use f='Modules/System/Inc/System/tTime.h' l='87'/>
+<use f='Modules/System/Src/tTime.cpp' l='204' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>
+<use f='Modules/System/Src/tTime.cpp' l='233' u='r' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>
+<use f='Modules/System/Src/tTime.cpp' l='241' u='r' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>
+<use f='Modules/System/Src/tTime.cpp' l='248' u='r' c='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>
+<use f='Modules/System/Src/tTime.cpp' l='261'/>
+<use f='Modules/System/Src/tTime.cpp' l='261'/>

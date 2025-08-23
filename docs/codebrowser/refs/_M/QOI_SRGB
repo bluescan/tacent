@@ -1,0 +1,13 @@
+<dec f='Modules/Image/Contrib/QOI/qoi.h' l='233'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='207' u='c'/>
+<doc f='Modules/Image/Contrib/QOI/qoi.h' l='221'>/* A pointer to a qoi_desc struct has to be supplied to all of qoi&apos;s functions.
+It describes either the input format (for qoi_write and qoi_encode), or is
+filled with the description read from the file header (for qoi_read and
+qoi_decode).
+
+The colorspace in this qoi_desc is an enum where
+	0 = sRGB, i.e. gamma scaled RGB channels and a linear alpha channel
+	1 = all channels are linear
+You may use the constants QOI_SRGB or QOI_LINEAR. The colorspace is purely
+informative. It will be saved to the file header, but does not affect
+how chunks are en-/decoded. */</doc>

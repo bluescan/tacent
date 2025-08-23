@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageTGA.h' l='95' type='3'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='108' u='r' c='_ZN6tImage9tImageTGA10SaveParams5ResetEv'/>
+<doc f='Modules/Image/Inc/Image/tImageTGA.h' l='95'>// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.</doc>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='382' u='r' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>

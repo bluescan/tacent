@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tConstants.h' l='35' type='const float'/>
+<doc f='Modules/Foundation/Inc/Foundation/tConstants.h' l='34'>// This is the smallest effective positive float such that 1.0f+EpsilonEff != 1.0f.</doc>

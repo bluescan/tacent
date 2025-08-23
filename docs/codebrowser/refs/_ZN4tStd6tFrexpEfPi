@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='374' type='float tStd::tFrexp(float arg, int * exp)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='436' u='c' c='_ZN8tFixIntU3SetEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='469' u='c' c='_ZN8tFixIntU3SetEd'/>
+<use f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='1094' u='c' c='_ZN7tFixInt3SetEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='1131' u='c' c='_ZN7tFixInt3SetEd'/>

@@ -1,0 +1,2 @@
+<dec f='include/dirent.h' l='105' type='4'/>
+<use f='Modules/System/Src/tFile.cpp' l='2744' macro='1' u='r' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

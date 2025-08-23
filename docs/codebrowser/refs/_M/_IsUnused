@@ -1,0 +1,5 @@
+<dec f='include/c++/11/streambuf' l='49'/>
+<use f='include/c++/11/streambuf' l='581' u='c'/>
+<use f='include/c++/11/streambuf' l='729' u='c'/>
+<use f='include/c++/11/streambuf' l='773' u='c'/>
+<use f='include/c++/11/streambuf' l='853' u='w'/>

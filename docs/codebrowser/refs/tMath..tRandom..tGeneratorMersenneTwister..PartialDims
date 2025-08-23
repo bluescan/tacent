@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='61' type='const int'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='77' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='80' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='83' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='86' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='90' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>

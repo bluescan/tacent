@@ -1,0 +1,19 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1455' ll='1462' type='std::vector::iterator std::vector::erase(std::vector::const_iterator __first, std::vector::const_iterator __last)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1437'>/**
+       *  @brief  Remove a range of elements.
+       *  @param  __first  Iterator pointing to the first element to be erased.
+       *  @param  __last  Iterator pointing to one past the last element to be
+       *                  erased.
+       *  @return  An iterator pointing to the element pointed to by @a __last
+       *           prior to erasing (or end()).
+       *
+       *  This function will erase the elements in the range
+       *  [__first,__last) and shorten the %vector accordingly.
+       *
+       *  Note This operation could be expensive and if it is
+       *  frequently used the user should consider using std::list.
+       *  The user is also cautioned that this function only erases
+       *  the elements, and that if the elements themselves are
+       *  pointers, the pointed-to memory is not touched in any way.
+       *  Managing the pointer is the user&apos;s responsibility.
+       */</doc>

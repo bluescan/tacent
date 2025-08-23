@@ -1,0 +1,9 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='872' type='void tColour4f::SquareToLinear(comp_t  = tCompBit_RGB)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1248' ll='1254' type='void tColour4f::SquareToLinear(comp_t chans = tCompBit_RGB)'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='865'>// Colours in textures in files may be in &apos;Gamma-space&apos; and ought to be converted to linear space before lighting
+	// calculations are made. They should then be converted back to Gamma space before being displayed. SquareToLinear
+	// and LinearToSquare are identical to GammaToLinear and LinearToGamme with a gamma value of 2.0. They&apos;re a bit
+	// faster because they don&apos;t use the tPow function, only square and square-root.
+	//
+	// SquareToLinear will darken  the image. Gamma = 2.0 (decoding). Gamma expansion.
+	// LinearToSquare Will lighten the image. Gamma = 0.5 (encoding). Gamma compression.</doc>

@@ -1,0 +1,25 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1487' ll='1534'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1908' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1908' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2469' c='_ZN5rgbcxL11bc1_encode4EPNS_9bc1_blockEiiiiiiPKh'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2526' c='_ZN5rgbcxL11bc1_encode3EPNS_9bc1_blockEiiiiiiPKh'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3485' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3485' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4038' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4041' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4041' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<size>8</size>
+<mbr r='rgbcx::bc1_block::m_low_color' o='0' t='uint8_t[2]'/>
+<mbr r='rgbcx::bc1_block::m_high_color' o='16' t='uint8_t[2]'/>
+<mbr r='rgbcx::bc1_block::m_selectors' o='32' t='uint8_t[4]'/>
+<fun r='_ZNK5rgbcx9bc1_block13get_low_colorEv'/>
+<fun r='_ZNK5rgbcx9bc1_block14get_high_colorEv'/>
+<fun r='_ZNK5rgbcx9bc1_block9is_3colorEv'/>
+<fun r='_ZN5rgbcx9bc1_block13set_low_colorEt'/>
+<fun r='_ZN5rgbcx9bc1_block14set_high_colorEt'/>
+<fun r='_ZNK5rgbcx9bc1_block12get_selectorEjj'/>
+<fun r='_ZN5rgbcx9bc1_block12set_selectorEjjj'/>
+<fun r='_ZN5rgbcx9bc1_block10pack_colorERKNS_7color32Ebj'/>
+<fun r='_ZN5rgbcx9bc1_block19pack_unscaled_colorEjjj'/>
+<fun r='_ZN5rgbcx9bc1_block12unpack_colorEjRjS1_S1_'/>
+<fun r='_ZN5rgbcx9bc1_block21unpack_color_unscaledEjRjS1_S1_'/>

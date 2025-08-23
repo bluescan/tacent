@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tSort.h' l='30' type='void tSort::tInsertion(T * array, int numItems, bool (*)(const T &amp;, const T &amp;) compare = tCompLess&lt;T&gt;)'/>
+<def f='Modules/Foundation/Inc/Foundation/tSort.h' l='45' ll='57' type='void tSort::tInsertion(T * A, int N, bool (*)(const T &amp;, const T &amp;) compare = tCompLess&lt;T&gt;)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tSort.h' l='28'>// Insertion sort. O(n^2) in worst case. Faster on already sorted data. This function is stable in that objects with
+	// equal values will not be reordered.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tSort.h' l='42'>// Implementation below this line.</doc>

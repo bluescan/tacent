@@ -1,0 +1,1 @@
+<def f='include/c++/11/functional' l='93' ll='99' type='invoke_result_t&lt;_Callable, _Args...&gt; std::invoke(_Callable &amp;&amp; __fn, _Args &amp;&amp;... __args)'/>

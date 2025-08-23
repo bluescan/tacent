@@ -1,0 +1,1 @@
+<def f='Modules/Image/Inc/Image/tFrame.h' l='32' type='void tImage::tFrame::tFrame(const tPixel4b * src, int width, int height, float duration)'/>

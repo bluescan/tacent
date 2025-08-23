@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='129' type='5'/>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='41' u='r' c='_Z12tGetPlatformRK7tString'/>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='61' u='r' c='_Z16tGetPlatformName9tPlatform'/>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='64' u='r' c='_Z16tGetPlatformName9tPlatform'/>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='82' u='r' c='_Z21tGetPlatformNameShort9tPlatform'/>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='85' u='r' c='_Z21tGetPlatformNameShort9tPlatform'/>

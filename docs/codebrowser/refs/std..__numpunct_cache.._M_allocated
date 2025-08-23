@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1622' type='bool'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1629' u='w' c='_ZNSt16__numpunct_cacheC1Em'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1648' u='r' c='_ZNSt16__numpunct_cacheD1Ev'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='120' u='w' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>

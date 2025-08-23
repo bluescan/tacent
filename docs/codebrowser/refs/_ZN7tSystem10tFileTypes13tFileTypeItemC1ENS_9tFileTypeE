@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tFile.h' l='509' type='void tSystem::tFileTypes::tFileTypeItem::tFileTypeItem(tSystem::tFileType fileType)'/>
+<use f='Modules/System/Inc/System/tFile.h' l='952' u='c' c='_ZN7tSystem10tFileTypes3AddENS_9tFileTypeE'/>

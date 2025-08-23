@@ -1,0 +1,17 @@
+<use f='Modules/System/Inc/System/tFile.h' l='479' u='w' c='_ZN7tSystem10tFileTypesC1Ev'/>
+<use f='Modules/System/Inc/System/tFile.h' l='480' u='w' c='_ZN7tSystem10tFileTypesC1ERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='481' u='w' c='_ZN7tSystem10tFileTypesC1EPKc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='482' u='w' c='_ZN7tSystem10tFileTypesC1ERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='483' u='w' c='_ZN7tSystem10tFileTypesC1ENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='484' u='w' c='_ZN7tSystem10tFileTypesC1ERKNS_11tExtensionsE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='501' u='m' c='_ZN7tSystem10tFileTypes5ClearEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='502' u='m' c='_ZNK7tSystem10tFileTypes5CountEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='503' u='m' c='_ZNK7tSystem10tFileTypes7IsEmptyEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='517' u='m' c='_ZNK7tSystem10tFileTypes5FirstEv'/>
+<dec f='Modules/System/Inc/System/tFile.h' l='531' type='tList&lt;tSystem::tFileTypes::tFileTypeItem&gt;'/>
+<use f='Modules/System/Inc/System/tFile.h' l='894' u='m' c='_ZN7tSystem11tExtensions3AddERKNS_10tFileTypesEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='925' u='m' c='_ZN7tSystem10tFileTypes3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='952' u='m' c='_ZN7tSystem10tFileTypes3AddENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1011' u='m' c='_ZNK7tSystem10tFileTypes8ContainsENS_9tFileTypeE'/>
+<offset>0</offset>
+<doc f='Modules/System/Inc/System/tFile.h' l='530'>// @todo Could use a BST, maybe a balanced AVL BST tree. Would make &apos;Contains&apos; much faster, plus it would deal</doc>

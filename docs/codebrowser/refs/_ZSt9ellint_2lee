@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='753' ll='755' type='long double std::ellint_2l(long double __k, long double __phi)'/>
+<doc f='include/c++/11/bits/specfun.h' l='747'>/**
+   * @brief Return the incomplete elliptic integral of the second kind
+   * @f$ E(k,\phi) @f$.
+   *
+   * @see ellint_2 for details.
+   */</doc>

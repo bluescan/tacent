@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/fs_dir.h' l='489' type='void std::filesystem::recursive_directory_iterator::recursive_directory_iterator(std::filesystem::recursive_directory_iterator &amp;&amp; )'/>
+<use f='include/c++/11/bits/fs_dir.h' l='550' u='c' c='_ZNSt10filesystem7__cxx115beginENS0_28recursive_directory_iteratorE'/>

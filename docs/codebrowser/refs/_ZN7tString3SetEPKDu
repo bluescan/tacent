@@ -1,0 +1,5 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='74' u='c' c='_ZN7tStringC1EPKDu'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='91' u='c' c='_ZN7tString3SetEPKc'/>
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='92' type='void tString::Set(const char8_t * src)'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='644' ll='654' type='void tString::Set(const char8_t * src)'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='329' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>

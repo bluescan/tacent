@@ -1,0 +1,2 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='698' u='c' c='_ZN9tColour3f3SetEiii'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='700' type='void tColour3f::SetG(int g)'/>

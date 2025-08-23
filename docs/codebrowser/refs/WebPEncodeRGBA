@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='55' type='size_t WebPEncodeRGBA(const uint8_t * rgba, int width, int height, int stride, float quality_factor, uint8_t ** output)'/>

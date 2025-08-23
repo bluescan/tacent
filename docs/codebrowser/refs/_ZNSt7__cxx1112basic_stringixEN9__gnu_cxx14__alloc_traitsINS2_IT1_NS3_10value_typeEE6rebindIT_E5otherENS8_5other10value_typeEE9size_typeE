@@ -1,0 +1,18 @@
+<def f='include/c++/11/bits/basic_string.h' l='1054' ll='1063' type='std::basic_string::reference std::basic_string::operator[](std::basic_string::size_type __pos)'/>
+<use f='include/c++/11/bits/basic_string.h' l='6666' u='c' c='_ZNSt7__cxx119to_stringEi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6674' u='c' c='_ZNSt7__cxx119to_stringEj'/>
+<use f='include/c++/11/bits/basic_string.h' l='6685' u='c' c='_ZNSt7__cxx119to_stringEl'/>
+<use f='include/c++/11/bits/basic_string.h' l='6693' u='c' c='_ZNSt7__cxx119to_stringEm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6705' u='c' c='_ZNSt7__cxx119to_stringEx'/>
+<use f='include/c++/11/bits/basic_string.h' l='6713' u='c' c='_ZNSt7__cxx119to_stringEy'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1044'>/**
+       *  @brief  Subscript access to the data contained in the %string.
+       *  @param  __pos  The index of the character to access.
+       *  @return  Read/write reference to the character.
+       *
+       *  This operator allows for easy, array-style, data access.
+       *  Note that data access with this operator is unchecked and
+       *  out_of_range lookups are not defined. (For checked lookups
+       *  see at().)
+       */</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='321' u='c' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>

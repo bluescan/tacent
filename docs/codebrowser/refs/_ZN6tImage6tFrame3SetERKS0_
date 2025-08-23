@@ -1,0 +1,5 @@
+<use f='Modules/Image/Inc/Image/tFrame.h' l='31' u='c' c='_ZN6tImage6tFrameC1ERKS0_'/>
+<dec f='Modules/Image/Inc/Image/tFrame.h' l='37' type='bool tImage::tFrame::Set(const tImage::tFrame &amp; src)'/>
+<def f='Modules/Image/Inc/Image/tFrame.h' l='71' ll='89' type='bool tImage::tFrame::Set(const tImage::tFrame &amp; frame)'/>
+<doc f='Modules/Image/Inc/Image/tFrame.h' l='36'>// These mem copy the pixels from src.</doc>
+<doc f='Modules/Image/Inc/Image/tFrame.h' l='68'>// Implementation below this line.</doc>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11926' ll='11930'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11926'/>
+<size>24</size>
+<mbr r='VkCommandBufferInheritanceConditionalRenderingInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCommandBufferInheritanceConditionalRenderingInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkCommandBufferInheritanceConditionalRenderingInfoEXT::conditionalRenderingEnable' o='128' t='VkBool32'/>

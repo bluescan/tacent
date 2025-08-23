@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1114' type='void ktxTexture2_GetComponentInfo(ktxTexture2 * This, ktx_uint32_t * numComponents, ktx_uint32_t * componentByteLength)'/>

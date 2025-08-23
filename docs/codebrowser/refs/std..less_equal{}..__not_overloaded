@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/stl_function.h' l='762'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/stl_function.h' l='765' ll='768'/>
+<use f='include/c++/11/bits/stl_function.h' l='771'/>
+<doc f='include/c++/11/bits/stl_function.h' l='764'>// False if we can call operator&lt;=(T,U)</doc>

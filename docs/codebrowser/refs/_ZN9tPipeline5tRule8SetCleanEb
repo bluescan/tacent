@@ -1,0 +1,2 @@
+<def f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='33' type='void tPipeline::tRule::SetClean(bool clean = true)'/>
+<doc f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='32'>// If clean is set to true, the OutOfDate() function will always return true.</doc>

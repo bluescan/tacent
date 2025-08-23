@@ -1,0 +1,2 @@
+<def f='Modules/Image/Src/tImageHDR.cpp' l='130' ll='199' type='bool tImage::tImageHDR::ReadRadianceColours(tPixel4b * scanline, int len)'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='355' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>

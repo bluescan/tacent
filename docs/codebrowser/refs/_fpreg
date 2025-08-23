@@ -1,0 +1,4 @@
+<def f='include/x86_64-linux-gnu/bits/sigcontext.h' l='40' ll='44'/>
+<size>10</size>
+<mbr r='_fpreg::significand' o='0' t='unsigned short[4]'/>
+<mbr r='_fpreg::exponent' o='64' t='unsigned short'/>

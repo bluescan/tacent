@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='146' type='tString tSystem::tGetLinuxPath(const tString &amp; path, const tString &amp; mountPoint = &quot;/mnt/&quot;)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='144'>// Converts to a Linux-style path. That is, all backslashes become forward slashes, and drive letters get converted to
+// mount points. eg. &quot;D:\Stuff\Mess.max&quot; will return &quot;/mnt/d/Stuff/Mess.max&quot;</doc>
+<def f='Modules/System/Src/tFile.cpp' l='338' ll='352' type='tString tSystem::tGetLinuxPath(const tString &amp; path, const tString &amp; mountPoint = &quot;/mnt/&quot;)'/>

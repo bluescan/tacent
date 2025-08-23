@@ -1,0 +1,5 @@
+<def f='include/c++/11/type_traits' l='2378'/>
+<use f='include/c++/11/type_traits' l='2531' c='_ZNSt22__result_of_other_impl7_S_testEi'/>
+<use f='include/c++/11/type_traits' l='2965' c='_ZSt12__call_is_ntSt14__invoke_other'/>
+<use f='include/c++/11/bits/invoke.h' l='60' c='_ZSt13__invoke_implSt14__invoke_otherOT0_DpOT1_'/>
+<size>1</size>

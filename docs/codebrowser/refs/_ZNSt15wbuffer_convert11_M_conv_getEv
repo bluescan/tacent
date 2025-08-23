@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/locale_conv.h' l='465' u='c' c='_ZNSt15wbuffer_convert9underflowEv'/>
+<def f='include/c++/11/bits/locale_conv.h' l='490' ll='542' type='bool std::wbuffer_convert::_M_conv_get()'/>
+<doc f='include/c++/11/bits/locale_conv.h' l='489'>// fill the get area from converted contents of the byte stream buffer</doc>

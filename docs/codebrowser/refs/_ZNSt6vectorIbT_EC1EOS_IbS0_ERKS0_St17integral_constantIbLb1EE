@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='671' ll='673' type='void std::vector&lt;bool, type-parameter-0-0&gt;::vector&lt;bool, type-parameter-0-0&gt;(vector&lt;bool, type-parameter-0-0&gt; &amp;&amp; __x, const std::vector&lt;bool, type-parameter-0-0&gt;::allocator_type &amp; __a, std::true_type )'/>

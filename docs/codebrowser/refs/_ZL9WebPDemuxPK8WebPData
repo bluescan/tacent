@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/WebP/include/demux.h' l='94' ll='96' type='WebPDemuxer * WebPDemux(const WebPData * data)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='59' u='c' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='91'>// Parses the full WebP file given by &apos;data&apos;. For single images the WebP file
+// header alone or the file header and the chunk header may be absent.
+// Returns a WebPDemuxer object on successful parse, NULL otherwise.</doc>

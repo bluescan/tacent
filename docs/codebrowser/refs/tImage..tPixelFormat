@@ -1,0 +1,215 @@
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='108' ll='243'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='246' c='_ZN6tImage14tIsValidFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='249' c='_ZN6tImage19tIsContiguousFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='252' c='_ZN6tImage15tIsPackedFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='256' c='_ZN6tImage11tIsBCFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='260' c='_ZN6tImage12tIsETCFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='263' c='_ZN6tImage12tIsEACFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='266' c='_ZN6tImage12tIsPVRFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='270' c='_ZN6tImage13tIsASTCFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='272' c='_ZN6tImage15tIsVendorFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='273' c='_ZN6tImage16tIsPaletteFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='274' c='_ZN6tImage14tIsAlphaFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='275' c='_ZN6tImage15tIsOpaqueFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='276' c='_ZN6tImage12tIsHDRFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='277' c='_ZN6tImage12tIsLDRFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='278' c='_ZN6tImage18tIsLuminanceFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='283' c='_ZN6tImage14tGetBlockWidthENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='284' c='_ZN6tImage15tGetBlockHeightENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='295' c='_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='299' c='_ZN6tImage21tGetBitsPerPixelFloatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='307' c='_ZN6tImage17tGetBytesPerBlockENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='348' c='_ZN6tImage19tGetPixelFormatNameENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='357' c='_ZN6tImage19tGetPixelFormatDescENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='360' c='_ZN6tImage15tGetPixelFormatEPKc'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='479' c='_ZN6tImage14tIsValidFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='485' c='_ZN6tImage19tIsContiguousFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='491' c='_ZN6tImage15tIsPackedFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='497' c='_ZN6tImage11tIsBCFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='503' c='_ZN6tImage12tIsETCFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='509' c='_ZN6tImage12tIsEACFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='515' c='_ZN6tImage12tIsPVRFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='521' c='_ZN6tImage13tIsASTCFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='527' c='_ZN6tImage15tIsVendorFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='533' c='_ZN6tImage16tIsPaletteFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='539' c='_ZN6tImage14tIsAlphaFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='584' c='_ZN6tImage15tIsOpaqueFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='590' c='_ZN6tImage12tIsHDRFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='626' c='_ZN6tImage12tIsLDRFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='632' c='_ZN6tImage18tIsLuminanceFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tFrame.h' l='60'/>
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='91' c='_ZNK6tImage10tBaseImage17GetPixelFormatSrcEv'/>
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='98' c='_ZNK6tImage10tBaseImage14GetPixelFormatEv'/>
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='124'/>
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='125'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='21'>// Unlike DirectX, which assumes all machines are little-endian, the enumeration below specifies the components in the
+// order they appear _in memory_. This means formats commonly called things like B5G6R5 are actually G3R5B5G3. The
+// latter is what they are referred to in Tacent, This inconsistent naming gets worse since when things are byte-aligned
+// most vendor pixel formats are actually correct for the mempry representation. In any case, in Tacent, it&apos;s always the
+// in-memory representation that gets named. BC stands for Block Compression.
+//
+// A note regarding sRGB. We are _not_ indicating via the pixel format what space/profilr the colour encoded by the
+// format is in. Tacent separates the encoding (the pixel format) from how the encoded data is to be interpreted. This
+// is in contrast to all the MS DXGI formats where they effectively at least double the number of formats unnecessarily.
+//
+// A way to think of it is as follows -- You have some input data (Din) that gets encoded using a pixel format (Epf)
+// resulting in some output data (Dout). Din -&gt; Epf -&gt; Dout. Without changing Din, if changing Epf would result in
+// different Dout, it is correct to have separate formats (eg. BCH6_S vs BCH6_U. DXT1 vs DXT1BA). If changing Epf would
+// not result in different Dout then the formats are not different and satellite info should be used if what&apos;s stored in
+// Din (and Dout) has certain properties (eg. sRGB space vs Linear, premultiplied vs not, DXT2 and DXT3 are the same).
+//
+// This is also why we don&apos;t distinguish between UNORM and UINT for example, as this is just a runtime distinction, not
+// an encoding difference (For example, UNORM gets converted to a float in [0.0, 1.0] in shaders, UINT doesn&apos;t).
+//
+// The only exception to this rule is the Tacent pixel format _does_ make distinctions between formats based on the
+// colour components being represented. It&apos;s not ideal, but pixel formats do generally specify R, G, B, A, L etc and
+// what order they appear in. In a perfect world (in my perfect world anyways), R8G8B8 would just be C8C8C8 (C8X3) and
+// satellite info would describe what the data represented (RGB in this case). Anyway, that&apos;s too much of a divergence.
+// This exception is why there is a tPixelFormat R8 (Vulkan has one of these), A8, and L8, all 3 with the same internal
+// representation.
+//
+// Summary of Satellite and Pixel-Format information:
+//
+// Colour Profile (Satellite)
+//    A colour profile basically specifies the colour space for the various components. Sometimes
+//    the same space is not used for all components. It is common for RGB to be sRGB but alpha to be linear -- there is
+//    a profile for that. See tColourProfile and tColourSpace enum in tColour.h.
+//
+// Component Format (Pixel-Format)
+//    The encoding is different for unsigned int, int, unsigned float, and float. Since the encoding is different,
+//    this information IS specified by the pixel format. In particular a lower-case suffix is used for the packed
+//    pixel-formats if it is not unsigned int:
+//    no suffix	-&gt; unsigned int.
+//    s			-&gt; signed int (2&apos;s complimemt).
+//    uf		-&gt; unsigned float (always &gt;= 0.0). No sign bit.
+//    f			-&gt; signed float.
+//
+//    Some non-packed pixel-formats like BC and EAC distinguich between the encoding of signed vs unsigned data. In
+//    these cases we use a single capital letter suffix. If a non-packed encoding does not distinguish, no suffix.
+//    No Suffix	-&gt; Format does not distinguish.
+//    S			-&gt; Signed Variant.
+//    U			-&gt; Unsigned Variant.
+//
+// Channel Type (Satellite)
+//    Sometimes it is intended that the data stored with each component is further modified before being used. In
+//    particular it may be normalized. ChannelType is additional satellite information that is not entirely specified
+//    by the pixel format so it belongs as satellite information here. In particular the part that isn&apos;t specified is
+//    whether the component data of each colour channel should be normalized or not afterwards. It gets a little tricky
+//    here because Vulkan, OpenGL, and DirectX have all decided on variant pixel-format names with channel-type
+//    information like UNORM, SNORM, UINT, SINT, and FLOAT. This naming _includes_ both information about how the data
+//    is encoded (integer or float, signed or unsigned) as well as whether to normalize after decoding or not. We have a
+//    choice here, either ONLY make this satellite info contain whether to normalize of not afterwards, or have a litte
+//    redundant information in order to keep the naming as close as possible to UNORM, UINT, etc. I have decided on the
+//    latter.
+//
+//    The reason it is not part of the pixel format is it is quite common for the data to be encoded as, say, an
+//    unsigned integer, but &apos;converted&apos; to a float when it is passed off the video memory by the graphics API so it is
+//    available as a float in the fragment/pixel shader. In short the ChannelType indicates intent for what should
+//    happen to the value AFTER decoding. For example, UNORM means the data is stored (or decoded for compressed
+//    formats) as an unsigned integer (which is already known by looking at the pixel-format) -- it is then converted to
+//    a normalized value in [0.0, 1.0]. SNORM means it&apos;s stored as a signed integer and then normalized to the
+//    [0.0, 1.0] range. The actual number of bits used is NOT specified here -- that is also specified by the
+//    pixel-format itself (either explicitly or implicitly by inspecting the compression method used). I bring this up
+//    because, for example, the PVR3 filetype &apos;channel type&apos; field does contain size information, but it doesn&apos;t need to
+//    (and probably shouldn&apos;t).
+//
+//    Example 1. PixelFormat: G3B5R5G3  ChanelType: UNORM
+//    We know the R and B are stored as 5-bit unsigned ints and the G with six bits. We know this from the PixelFormat
+//    alone because it does not contain a &apos;s&apos;, &apos;f&apos;, or &apos;uf&apos;. We further know the intent is to &apos;normalize&apos; it after
+//    decoding. R would be in [0, 31] and converted to [0.0, 1.0]. The &apos;U&apos; part of &apos;UNORM&apos; is redundant because the
+//    pixel-format already told us it was an unsigned integer.
+//
+//    Example 2. PixelFormat: R11G11B10uf  ChanelType: UFLOAT
+//    RG stored as 11-bit unsigned floats (5 exponent, 6 mantissa, no sign bit). B stored as a 10-bit (5,5) float. In
+//    this case the ChannelType is completely redundant because we already know we&apos;re using unsigned floats from the &apos;uf&apos;.
+//
+//    Example 3. PixelFormat: R8G8  ChanelType: UINT
+//    RG stored as 8-bit unsigned ints (from pixel-format). In this case the ChannelType indicates _not_ to normalize so
+//    each component should be read as an unsigned integer in [0, 255].
+//</doc>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='46' c='_ZN6tImage6tLayerC1ENS_12tPixelFormatEiiPhb'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='53' c='_ZN6tImage6tLayer3SetENS_12tPixelFormatEiiPhb'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='86'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='101' c='_ZN6tImage6tLayer3SetENS_12tPixelFormatEiiPhb'/>
+<use f='Modules/Image/Inc/Image/tImageGIF.h' l='97'/>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='102' c='_ZNK6tImage9tImageICO21GetBestSrcPixelFormatEv'/>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='152' c='_ZNK6tImage9tImageICO21GetBestSrcPixelFormatEv'/>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='154' c='_ZNK6tImage9tImageICO21GetBestSrcPixelFormatEv'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='41' c='_ZN6tImage13tPaletteImageC1ENS_12tPixelFormatEii'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='49' c='_ZN6tImage13tPaletteImageC1ENS_12tPixelFormatEiiPKhPK9tColour3b'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='54' c='_ZN6tImage13tPaletteImageC1ENS_12tPixelFormatEiiPK9tColour4bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='57' c='_ZN6tImage13tPaletteImageC1ENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='66' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEii'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='67' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPKhPK9tColour3b'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='68' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour4bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='69' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='87'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='336'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='43' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='51' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='52' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='53' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='54' c='_ZN6tImage19DecodePixelData_PVRENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='79' c='_ZN6tImage17CanReverseRowDataENS_12tPixelFormatEi'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='83' c='_ZN6tImage21CreateReversedRowDataEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='74' c='_ZN6tImage8tTextureC1ERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='91' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='99' c='_ZNK6tImage8tTexture14GetPixelFormatEv'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='125' c='_ZN6tImage8tTexture20DeterminePixelFormatERKNS_8tPictureE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='129' c='_ZN6tImage8tTexture33ProcessImageTo_R8G8B8_Or_R8G8B8A8ERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='131' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='156' c='_ZN6tImage8tTexture20DeterminePixelFormatERKNS_8tPictureE'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='41' c='_ZN6tImage5tASTC28GetFormatFromBlockDimensionsEii'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='45' c='_ZN6tImage5tASTC28GetFormatFromBlockDimensionsEii'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='121' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='514' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='515' c='_ZN6tImage4tDDS24GetFormatInfo_FromFourCCERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='516' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='520' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='714' c='_ZN6tImage4tDDS24GetFormatInfo_FromFourCCERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='793' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='305' c='_ZN6tImage9tImageICO11CreateFrameEPKhiii'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='40' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='41' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='45' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='279' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='83' c='_ZN6tImage4tPKM27GetFormatInfo_FromPKMFormatERNS_12tPixelFormatER14tColourProfileji'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='87' c='_ZN6tImage4tPKM27GetFormatInfo_FromPKMFormatERNS_12tPixelFormatER14tColourProfileji'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='180' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='232' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='237' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='263' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='348' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='82' c='_ZN6tImage10tImageTIFF4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='89' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='52' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='76' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPKhPK9tColour3b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='100' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour4bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='120' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='494' c='_ZN6tImage14tGetBlockWidthENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='513' c='_ZN6tImage15tGetBlockHeightENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='532' c='_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='553' c='_ZN6tImage21tGetBitsPerPixelFloatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='565' c='_ZN6tImage17tGetBytesPerBlockENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='637' c='_ZN6tImage19tGetPixelFormatNameENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='645' c='_ZN6tImage19tGetPixelFormatDescENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='653' c='_ZN6tImage15tGetPixelFormatEPKc'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='660' c='_ZN6tImage15tGetPixelFormatEPKc'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='30' c='_ZN6tImage24CanReverseRowData_PackedENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='31' c='_ZN6tImage20CanReverseRowData_BCENS_12tPixelFormatEi'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='33' c='_ZN6tImage28CreateReversedRowData_PackedEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='34' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='62' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='98' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='654' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1059' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1148' c='_ZN6tImage19DecodePixelData_PVRENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1296' c='_ZN6tImage17CanReverseRowDataENS_12tPixelFormatEi'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1308' c='_ZN6tImage21CreateReversedRowDataEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1320' c='_ZN6tImage24CanReverseRowData_PackedENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1330' c='_ZN6tImage28CreateReversedRowData_PackedEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1356' c='_ZN6tImage20CanReverseRowData_BCENS_12tPixelFormatEi'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1373' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='118' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='183' c='_ZN6tImage8tTexture33ProcessImageTo_R8G8B8_Or_R8G8B8A8ERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='284' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>

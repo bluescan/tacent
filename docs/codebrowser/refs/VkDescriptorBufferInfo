@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3742' ll='3746'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3742'/>
+<size>24</size>
+<mbr r='VkDescriptorBufferInfo::buffer' o='0' t='VkBuffer'/>
+<mbr r='VkDescriptorBufferInfo::offset' o='64' t='VkDeviceSize'/>
+<mbr r='VkDescriptorBufferInfo::range' o='128' t='VkDeviceSize'/>

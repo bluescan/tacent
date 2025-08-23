@@ -1,0 +1,3 @@
+<dec f='include/dirent.h' l='315' type='int scandirat64(int __dfd, const char *__restrict __dir, struct dirent64 ***__restrict __namelist, int (*)(const struct dirent64 *) __selector, int (*)(const struct dirent64 **, const struct dirent64 **) __cmp)'/>
+<doc f='include/dirent.h' l='313'>/* This function is like `scandir&apos; but it uses the 64bit dirent structure.
+   Please note that the CMP function must now work with struct dirent64 **.  */</doc>

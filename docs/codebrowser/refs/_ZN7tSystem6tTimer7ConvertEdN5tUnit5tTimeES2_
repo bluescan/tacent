@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tTime.h' l='83' type='static double tSystem::tTimer::Convert(double time, tUnit::tTime from, tUnit::tTime to)'/>
+<use f='Modules/System/Src/tTime.cpp' l='189' u='c' c='_ZN7tSystem6tTimer6UpdateEfN5tUnit5tTimeE'/>
+<use f='Modules/System/Src/tTime.cpp' l='198' u='c' c='_ZNK7tSystem6tTimer7GetTimeEN5tUnit5tTimeE'/>
+<def f='Modules/System/Src/tTime.cpp' l='289' ll='296' type='static double tSystem::tTimer::Convert(double time, tUnit::tTime unitFrom, tUnit::tTime unitTo)'/>

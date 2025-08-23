@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1335' type='ktx_bool_t'/>
+<offset>40</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1334'>/*!&lt;  True to use UASTC base, false to use ETC1S base. */</doc>

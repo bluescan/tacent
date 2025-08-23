@@ -1,0 +1,2 @@
+<def f='include/c++/11/tr1/special_function_util.h' l='70' ll='71' type='static _Tp std::__detail::__numeric_constants::__pi_2()'/>
+<doc f='include/c++/11/tr1/special_function_util.h' l='69'>///  Constant @f$ \pi / 2 @f$.</doc>

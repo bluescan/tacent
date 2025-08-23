@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/basic_string.h' l='553' ll='555' type='void std::basic_string::basic_string&lt;_CharT, _Traits, _Alloc&gt;(std::basic_string::size_type __n, _CharT __c, const _Alloc &amp; __a = _Alloc())'/>
+<use f='include/c++/11/bits/basic_string.h' l='6665' u='c' c='_ZNSt7__cxx119to_stringEi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6673' u='c' c='_ZNSt7__cxx119to_stringEj'/>
+<use f='include/c++/11/bits/basic_string.h' l='6684' u='c' c='_ZNSt7__cxx119to_stringEl'/>
+<use f='include/c++/11/bits/basic_string.h' l='6692' u='c' c='_ZNSt7__cxx119to_stringEm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6704' u='c' c='_ZNSt7__cxx119to_stringEx'/>
+<use f='include/c++/11/bits/basic_string.h' l='6712' u='c' c='_ZNSt7__cxx119to_stringEy'/>

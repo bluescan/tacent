@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/codecvt.h' l='57' type='3'/>
+<use f='include/c++/11/bits/fstream.tcc' l='428' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='632' u='r' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/locale_conv.h' l='93' u='r' c='_ZSt16__do_str_codecvtPKT0_S1_RT_RKT1_RT2_RmT3_'/>
+<use f='include/c++/11/bits/locale_conv.h' l='517' u='r' c='_ZNSt15wbuffer_convert11_M_conv_getEv'/>
+<use f='include/c++/11/bits/locale_conv.h' l='527' u='r' c='_ZNSt15wbuffer_convert11_M_conv_getEv'/>
+<use f='include/c++/11/bits/locale_conv.h' l='581' c='_ZNSt15wbuffer_convert11_M_conv_putEv'/>

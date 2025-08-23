@@ -1,0 +1,11 @@
+<def f='include/c++/11/type_traits' l='2235' ll='2262'/>
+<ovr f='include/c++/11/type_traits' l='2286' c='std::__common_type_impl'/>
+<use f='include/c++/11/type_traits' l='2287'/>
+<size>1</size>
+<doc f='include/c++/11/type_traits' l='2232'>// Sfinae-friendly common_type implementation:
+
+  /// @cond undocumented</doc>
+<fun r='_ZNSt21__do_common_type_impl7_S_testEi'/>
+<fun r='_ZNSt21__do_common_type_impl9_S_test_2Ei'/>
+<fun r='_ZNSt21__do_common_type_impl9_S_test_2Ez'/>
+<fun r='_ZNSt21__do_common_type_impl7_S_testEz'/>

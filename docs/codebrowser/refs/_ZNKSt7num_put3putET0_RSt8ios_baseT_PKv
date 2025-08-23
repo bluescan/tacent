@@ -1,0 +1,16 @@
+<def f='include/c++/11/bits/locale_facets.h' l='2481' ll='2484' type='std::num_put::iter_type std::num_put::put(std::num_put::iter_type __s, std::ios_base &amp; __io, std::num_put::char_type __fill, const void * __v) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='2466'>/**
+       *  @brief  Numeric formatting.
+       *
+       *  Formats the pointer value @a v and inserts it into a stream.  It
+       *  does so by calling num_put::do_put().
+       *
+       *  This function formats @a v as an unsigned long with ios_base::hex
+       *  and ios_base::showbase set.
+       *
+       *  @param  __s  Stream to write to.
+       *  @param  __io  Source of locale and flags.
+       *  @param  __fill  Char_type to use for filling.
+       *  @param  __v  Value to format and insert.
+       *  @return  Iterator after writing.
+      */</doc>

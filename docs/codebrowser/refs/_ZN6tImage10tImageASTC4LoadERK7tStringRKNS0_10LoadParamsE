@@ -1,0 +1,1 @@
+<def f='Modules/Image/Src/tImageASTC.cpp' l='69' ll='85' type='bool tImage::tImageASTC::Load(const tString &amp; astcFile, const tImage::tImageASTC::LoadParams &amp; params = tImage::tImageASTC::LoadParams())'/>

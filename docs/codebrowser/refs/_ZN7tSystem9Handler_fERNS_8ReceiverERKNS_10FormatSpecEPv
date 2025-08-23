@@ -1,0 +1,10 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='182' type='void tSystem::Handler_f(tSystem::Receiver &amp; out, const tSystem::FormatSpec &amp; , void * data)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='420'/>
+<def f='Modules/System/Src/tPrint.cpp' l='1726' ll='1753' type='void tSystem::Handler_f(tSystem::Receiver &amp; receiver, const tSystem::FormatSpec &amp; spec, void * data)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1929' u='c' c='_ZN7tSystem20HandlerHelper_VectorERNS_8ReceiverERKNS_10FormatSpecEPKfi'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1940' u='c' c='_ZN7tSystem20HandlerHelper_VectorERNS_8ReceiverERKNS_10FormatSpecEPKfi'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1969' u='c' c='_ZN7tSystem9Handler_qERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1973' u='c' c='_ZN7tSystem9Handler_qERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1977' u='c' c='_ZN7tSystem9Handler_qERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1981' u='c' c='_ZN7tSystem9Handler_qERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1991' u='c' c='_ZN7tSystem9Handler_qERNS_8ReceiverERKNS_10FormatSpecEPv'/>

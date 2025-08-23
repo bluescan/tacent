@@ -1,0 +1,45 @@
+<inh f='Modules/Scene/Inc/Scene/tObject.h' l='24' c='tScene::tObject'/>
+<def f='Modules/Scene/Inc/Scene/tMaterial.h' l='23' ll='74'/>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='30' c='_ZN6tScene9tMaterialC1ERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='43' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='46' c='_ZNK6tScene9tMaterialeqERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='47' c='_ZNK6tScene9tMaterialneERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='48' c='_ZN6tScene9tMaterialaSERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='48' c='_ZN6tScene9tMaterialaSERKS0_'/>
+<size>408</size>
+<fun r='_ZN6tScene9tMaterialD1Ev'/>
+<fun r='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<fun r='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='113' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='146' c='_ZN6tScene6tWorld12GetMaterialsERKNS_5tMeshER7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='148' c='_ZN6tScene6tWorld14InsertMaterialEPNS_9tMaterialE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='149' c='_ZNK6tScene6tWorld12FindMaterialERK7tString'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='150' c='_ZNK6tScene6tWorld12FindMaterialEj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='204' c='_ZN6tScene6tWorld13LoadMaterialsERK6tChunkR7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='218' c='_ZN6tScene6tWorld18CorrectMaterialIDsER7tItListINS_9tMaterialEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='234'/>
+<size>408</size>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='45' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='221' c='_ZN6tScene9tMaterialaSERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='221' c='_ZN6tScene9tMaterialaSERKS0_'/>
+<size>408</size>
+<fun r='_ZN6tScene9tMaterial5ClearEv'/>
+<fun r='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<fun r='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<fun r='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<fun r='_ZN6tScene9tMaterialaSERKS0_'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='147' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='155' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='165' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='218' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='492' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='609' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='774' c='_ZN6tScene6tWorld18CorrectMaterialIDsER7tItListINS_9tMaterialEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1162' c='_ZN6tScene6tWorld13LoadMaterialsERK6tChunkR7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1172' c='_ZN6tScene6tWorld13LoadMaterialsERK6tChunkR7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1276' c='_ZN6tScene6tWorld12GetMaterialsERKNS_5tMeshER7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1284' c='_ZN6tScene6tWorld12GetMaterialsERKNS_5tMeshER7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1313' c='_ZN6tScene6tWorld14InsertMaterialEPNS_9tMaterialE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1319' c='_ZNK6tScene6tWorld12FindMaterialERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1329' c='_ZNK6tScene6tWorld12FindMaterialEj'/>
+<size>408</size>

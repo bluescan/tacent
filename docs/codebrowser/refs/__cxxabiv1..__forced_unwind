@@ -1,0 +1,56 @@
+<def f='include/c++/11/bits/cxxabi_forced.h' l='48' ll='54'/>
+<use f='include/c++/11/bits/ostream_insert.h' l='105' c='_ZSt16__ostream_insertRSt13basic_ostreamIT_T0_EPKS0_l'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='363' c='_ZNSt7__cxx1112basic_string7reserveEv'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1534' c='_ZStrsRSt13basic_istreamIT_T0_ERNSt7__cxx1112basic_stringIS0_S1_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1598' c='_ZSt7getlineRSt13basic_istreamIT_T0_ERNSt7__cxx1112basic_stringIS0_S1_T1_EES0_'/>
+<size>8</size>
+<doc f='include/c++/11/bits/cxxabi_forced.h' l='41'>/** 
+   *  @brief Thrown as part of forced unwinding.
+   *  @ingroup exceptions
+   *
+   *  A magic placeholder class that can be caught by reference to
+   *  recognize forced unwinding.
+   */</doc>
+<fun r='__cxxabiv1::__forced_unwind::~__forced_unwind'/>
+<fun r='__cxxabiv1::__forced_unwind::__pure_dummy'/>
+<use f='include/c++/11/bits/ostream.tcc' l='76' c='_ZNSt13basic_ostream9_M_insertETL0__'/>
+<use f='include/c++/11/bits/ostream.tcc' l='131' c='_ZNSt13basic_ostreamlsEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/ostream.tcc' l='167' c='_ZNSt13basic_ostream3putET_'/>
+<use f='include/c++/11/bits/ostream.tcc' l='197' c='_ZNSt13basic_ostream5writeEPKT_l'/>
+<use f='include/c++/11/bits/ostream.tcc' l='222' c='_ZNSt13basic_ostream5flushEv'/>
+<use f='include/c++/11/bits/ostream.tcc' l='245' c='_ZNSt13basic_ostream5tellpEv'/>
+<use f='include/c++/11/bits/ostream.tcc' l='275' c='_ZNSt13basic_ostream5seekpENT0_8pos_typeE'/>
+<use f='include/c++/11/bits/ostream.tcc' l='307' c='_ZNSt13basic_ostream5seekpENT0_8off_typeESt12_Ios_Seekdir'/>
+<use f='include/c++/11/bits/ostream.tcc' l='345' c='_ZStlsRSt13basic_ostreamIT_T0_EPKc'/>
+<size>8</size>
+<use f='include/c++/11/condition_variable' l='266' c='_ZNSt3_V222condition_variable_any7_UnlockD1Ev'/>
+<size>8</size>
+<use f='include/c++/11/bits/istream.tcc' l='74' c='_ZNSt13basic_istream6sentryC1ERSt13basic_istreamIT_T0_Eb'/>
+<use f='include/c++/11/bits/istream.tcc' l='106' c='_ZNSt13basic_istream10_M_extractERTL0__'/>
+<use f='include/c++/11/bits/istream.tcc' l='151' c='_ZNSt13basic_istreamrsERs'/>
+<use f='include/c++/11/bits/istream.tcc' l='196' c='_ZNSt13basic_istreamrsERi'/>
+<use f='include/c++/11/bits/istream.tcc' l='226' c='_ZNSt13basic_istreamrsEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/istream.tcc' l='262' c='_ZNSt13basic_istream3getEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='299' c='_ZNSt13basic_istream3getERT_'/>
+<use f='include/c++/11/bits/istream.tcc' l='342' c='_ZNSt13basic_istream3getEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='397' c='_ZNSt13basic_istream3getERSt15basic_streambufIT_T0_ES1_'/>
+<use f='include/c++/11/bits/istream.tcc' l='450' c='_ZNSt13basic_istream7getlineEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='492' c='_ZNSt13basic_istream6ignoreEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='562' c='_ZNSt13basic_istream6ignoreEl'/>
+<use f='include/c++/11/bits/istream.tcc' l='639' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='669' c='_ZNSt13basic_istream4peekEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='698' c='_ZNSt13basic_istream4readEPT_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='730' c='_ZNSt13basic_istream8readsomeEPT_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='765' c='_ZNSt13basic_istream7putbackET_'/>
+<use f='include/c++/11/bits/istream.tcc' l='800' c='_ZNSt13basic_istream5ungetEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='836' c='_ZNSt13basic_istream4syncEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='866' c='_ZNSt13basic_istream5tellgEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='903' c='_ZNSt13basic_istream5seekgENT0_8pos_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='942' c='_ZNSt13basic_istream5seekgENT0_8off_typeESt12_Ios_Seekdir'/>
+<use f='include/c++/11/bits/istream.tcc' l='975' c='_ZStrsRSt13basic_istreamIT_T0_ERS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='1036' c='_ZSt17__istream_extractRSt13basic_istreamIT_T0_EPS0_l'/>
+<use f='include/c++/11/iomanip' l='279' c='_ZStrsRSt13basic_istreamIT_T0_ESt10_Get_moneyIT1_E'/>
+<use f='include/c++/11/iomanip' l='327' c='_ZStlsRSt13basic_ostreamIT_T0_ESt10_Put_moneyIT1_E'/>
+<use f='include/c++/11/iomanip' l='382' c='_ZStlsRSt13basic_ostreamIT_T0_ESt9_Put_timeIS0_E'/>
+<use f='include/c++/11/iomanip' l='436' c='_ZStrsRSt13basic_istreamIT_T0_ESt9_Get_timeIS0_E'/>
+<size>8</size>

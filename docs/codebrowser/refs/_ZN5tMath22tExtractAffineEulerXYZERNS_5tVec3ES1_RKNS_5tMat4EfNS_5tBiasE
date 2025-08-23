@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='745' type='bool tMath::tExtractAffineEulerXYZ(tMath::tVec3 &amp; sol1, tMath::tVec3 &amp; sol2, const tMath::tMat4 &amp; aff, float gimbalZValue = 0.F, tMath::tBias  = tBias::Low)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='130' u='c' c='_ZNK5tMath8tMatrix421ExtractAffineEulerXYZERNS_5tVec3ES2_fNS_5tBiasE'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='984' ll='991' type='bool tMath::tExtractAffineEulerXYZ(tMath::tVec3 &amp; sol1, tMath::tVec3 &amp; sol2, const tMath::tMat4 &amp; affine, float gimbalZ = 0.F, tMath::tBias bias = tBias::Low)'/>

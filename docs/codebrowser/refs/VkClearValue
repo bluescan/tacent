@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3935' ll='3938'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3935'/>
+<size>16</size>
+<mbr r='VkClearValue::color' o='0' t='VkClearColorValue'/>
+<mbr r='VkClearValue::depthStencil' o='0' t='VkClearDepthStencilValue'/>

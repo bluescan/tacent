@@ -1,0 +1,11 @@
+<def f='include/c++/11/type_traits' l='2088' ll='2092'/>
+<def f='include/c++/11/type_traits' l='2094' ll='2103'/>
+<use f='include/c++/11/type_traits' l='2098'/>
+<use f='include/c++/11/type_traits' l='2099'/>
+<use f='include/c++/11/type_traits' l='2101'/>
+<use f='include/c++/11/type_traits' l='2102'/>
+<use f='include/c++/11/type_traits' l='2121'/>
+<smbr r='std::__strictest_alignment::_S_alignment' t='const std::size_t'/>
+<smbr r='std::__strictest_alignment::_S_size' t='const std::size_t'/>
+<smbr r='std::__strictest_alignment{type-parameter-0-0,type-parameter-0-1...}::_S_alignment' t='const std::size_t'/>
+<smbr r='std::__strictest_alignment{type-parameter-0-0,type-parameter-0-1...}::_S_size' t='const std::size_t'/>

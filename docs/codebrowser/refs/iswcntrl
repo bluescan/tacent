@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='104' type='int iswcntrl(wint_t __wc)'/>
+<doc f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='103'>/* Test for any control wide character.  */</doc>

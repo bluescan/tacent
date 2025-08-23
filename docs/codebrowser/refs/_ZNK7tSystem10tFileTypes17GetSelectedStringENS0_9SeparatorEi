@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='528' type='tString tSystem::tFileTypes::GetSelectedString(tSystem::tFileTypes::Separator sepType = Separator::CommaSpace, int maxBeforeEllipsis = -1) const'/>
+<def f='Modules/System/Inc/System/tFile.h' l='1069' ll='1099' type='tString tSystem::tFileTypes::GetSelectedString(tSystem::tFileTypes::Separator sepType = Separator::CommaSpace, int maxBeforeEllipsis = -1) const'/>

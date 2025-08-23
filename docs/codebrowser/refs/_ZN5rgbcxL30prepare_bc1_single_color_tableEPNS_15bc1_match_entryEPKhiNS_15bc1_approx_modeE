@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1762' ll='1797' type='void rgbcx::prepare_bc1_single_color_table(rgbcx::bc1_match_entry * pTable, const uint8_t * pExpand, int size, rgbcx::bc1_approx_mode mode)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1859' u='c' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1865' u='c' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>

@@ -1,0 +1,5 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='543' u='c' c='_ZN9tColour4sC1Effff'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='563' type='void tColour4s::Set(float r, float g, float b, float a = 1.F)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1184' u='c' c='_ZN9tColour4s3SetERK9tColour4f'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1196' u='c' c='_ZN9tColour4s3SetERK9tColour3ff'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='562'>// The floating point set methods use a range of [0.0, 1.0] for each component.</doc>

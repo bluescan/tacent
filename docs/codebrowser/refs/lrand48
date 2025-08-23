@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='472' type='long lrand48()'/>
+<doc f='include/stdlib.h' l='471'>/* Return non-negative, long integer in [0,2^31).  */</doc>

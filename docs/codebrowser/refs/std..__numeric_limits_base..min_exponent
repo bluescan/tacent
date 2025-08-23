@@ -1,0 +1,3 @@
+<def f='include/c++/11/limits' l='239' type='const int'/>
+<doc f='include/c++/11/limits' l='237'>/** The minimum negative integer such that @c radix raised to the power of
+	(one less than that integer) is a normalized floating point number.  */</doc>

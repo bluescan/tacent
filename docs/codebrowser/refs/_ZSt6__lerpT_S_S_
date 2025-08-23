@@ -1,0 +1,4 @@
+<def f='include/c++/11/cmath' l='1893' ll='1908' type='_Fp std::__lerp(_Fp __a, _Fp __b, _Fp __t)'/>
+<use f='include/c++/11/cmath' l='1912' u='c' c='_ZSt4lerpfff'/>
+<use f='include/c++/11/cmath' l='1916' u='c' c='_ZSt4lerpddd'/>
+<use f='include/c++/11/cmath' l='1920' u='c' c='_ZSt4lerpeee'/>

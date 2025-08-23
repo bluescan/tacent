@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7659' ll='7662'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7659'/>
+<size>8</size>
+<mbr r='VkSurfaceFormatKHR::format' o='0' t='VkFormat'/>
+<mbr r='VkSurfaceFormatKHR::colorSpace' o='32' t='VkColorSpaceKHR'/>

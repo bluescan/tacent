@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/stl_vector.h' l='769' u='c' c='_ZNSt6vector6assignETL0__S0_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1384' u='c' c='_ZNSt6vector6insertEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_typeEE13c15230752'/>
+<use f='include/c++/11/bits/basic_string.h' l='2120' u='c' c='_ZNSt7__cxx1112basic_string7replaceEN9__gnu_cxx17__normal_iteratorINS1_14__alloc_traitsINS3_IT1_NS4_10value_typeEE6rebindIT_E5otherENS9_5other10value_13627538'/>

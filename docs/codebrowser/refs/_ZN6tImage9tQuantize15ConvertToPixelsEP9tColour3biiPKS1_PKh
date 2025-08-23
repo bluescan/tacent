@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tQuantize.h' l='45' type='bool tImage::tQuantize::ConvertToPixels(tPixel3b * destPixels, int width, int height, const tColour3b * srcPalette, const uint8 * srcIndices)'/>
+<doc f='Modules/Image/Inc/Image/tQuantize.h' l='41'>// Given a palette, array of indices, and the width and height of an image, this funcion converts back into a raw
+	// pixel array. You must ensure there is enough room for width*height pixels in destPixels and that all indices
+	// stay in the range of the palette you provide. srcIndices shoudd also have width*height entries.
+	// Returns true on success.</doc>
+<def f='Modules/Image/Src/tQuantize.cpp' l='104' ll='125' type='bool tImage::tQuantize::ConvertToPixels(tPixel3b * destPixels, int width, int height, const tColour3b * srcPalette, const uint8 * srcIndices)'/>

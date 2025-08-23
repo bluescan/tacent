@@ -1,0 +1,9 @@
+<use f='include/time.h' l='332' c='timer_create'/>
+<def f='include/x86_64-linux-gnu/bits/types/sigevent_t.h' l='22' ll='42'/>
+<use f='include/x86_64-linux-gnu/bits/types/sigevent_t.h' l='22'/>
+<size>64</size>
+<doc f='include/x86_64-linux-gnu/bits/types/sigevent_t.h' l='21'>/* Structure to transport application-defined values with signals.  */</doc>
+<mbr r='sigevent::sigev_value' o='0' t='__sigval_t'/>
+<mbr r='sigevent::sigev_signo' o='64' t='int'/>
+<mbr r='sigevent::sigev_notify' o='96' t='int'/>
+<mbr r='sigevent::_sigev_un' o='128' t='union (unnamed union at /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:28:5)'/>

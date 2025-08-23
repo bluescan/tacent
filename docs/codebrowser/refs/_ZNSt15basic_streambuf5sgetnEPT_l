@@ -1,0 +1,10 @@
+<def f='include/c++/11/streambuf' l='361' ll='363' type='std::streamsize std::basic_streambuf::sgetn(std::basic_streambuf::char_type * __s, std::streamsize __n)'/>
+<doc f='include/c++/11/streambuf' l='353'>/**
+       *  @brief  Entry point for xsgetn.
+       *  @param  __s  A buffer area.
+       *  @param  __n  A count.
+       *
+       *  Returns xsgetn(__s,__n).  The effect is to fill @a __s[0] through
+       *  @a __s[__n-1] with characters from the input sequence, if possible.
+      */</doc>
+<use f='include/c++/11/bits/locale_conv.h' l='504' u='c' c='_ZNSt15wbuffer_convert11_M_conv_getEv'/>

@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='233' type='void tMath::tSet(tMath::tMat2 &amp; d, float a11, float a21, float a12, float a22)'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='29' u='c' c='_ZN5tMath8tMatrix2C1Effff'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='34' u='c' c='_ZN5tMath8tMatrix23SetEffff'/>

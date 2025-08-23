@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/random.h' l='2211' u='w' c='_ZNSt22lognormal_distribution10param_typeC1ET_S1_'/>
+<use f='include/c++/11/bits/random.h' l='2220' u='r' c='_ZNKSt22lognormal_distribution10param_type1sEv'/>
+<dec f='include/c++/11/bits/random.h' l='2232' type='_RealType'/>

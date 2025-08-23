@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/fs_path.h' l='557' ll='559'/>
+<use f='include/c++/11/bits/fs_path.h' l='561' c='_ZNSt10filesystem7__cxx114pathC1ESt17basic_string_viewIcSt11char_traitsIcEENS1_5_TypeE'/>
+<use f='include/c++/11/bits/fs_path.h' l='630' c='_ZNKSt10filesystem7__cxx114path7_M_typeEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='649' c='_ZNKSt10filesystem7__cxx114path5_List4typeEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='650' c='_ZNKSt10filesystem7__cxx114path5_List4typeEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='652' c='_ZNSt10filesystem7__cxx114path5_List4typeENS1_5_TypeE'/>
+<use f='include/c++/11/bits/fs_path.h' l='807' c='_ZNSt10filesystem7__cxx114path5_CmptC1ESt17basic_string_viewIcSt11char_traitsIcEENS1_5_TypeEm'/>

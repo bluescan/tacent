@@ -1,0 +1,7 @@
+<dec f='include/stdlib.h' l='808' type='char * realpath(const char *__restrict __name, char *__restrict __resolved)'/>
+<doc f='include/stdlib.h' l='803'>/* Return the canonical absolute name of file NAME.  If RESOLVED is
+   null, the result is malloc&apos;d; otherwise, if the canonical name is
+   PATH_MAX chars or more, returns null with `errno&apos; set to
+   ENAMETOOLONG; if the name fits in fewer than PATH_MAX chars,
+   returns the name in RESOLVED.  */</doc>
+<use f='Modules/System/Src/tFile.cpp' l='188' u='c' c='_ZN7tSystem16tGetFileFullNameERK7tString'/>

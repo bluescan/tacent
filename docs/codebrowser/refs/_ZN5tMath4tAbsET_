@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='165' type='T tMath::tAbs(T v)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='161'>// The following Abs function deserves a little explanation. Some linear algebra texts use the term absolute value and
+// norm interchangeably. Others suggest that the absolute value of a matrix is the matrix with each component
+// being the absolute value of the original. This is what the following template function returns -- not the L2 norm
+// (scalar length).</doc>

@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tTime.h' l='27' type='int64 tSystem::tGetHardwareTimerFrequency()'/>
+<doc f='Modules/System/Inc/System/tTime.h' l='25'>// High accuracy cross platform timing functions. For windows the frequency is whatever the HW reports. For other
+// platforms it&apos;s 1/1ns = 1000000000Hz but counts increment by whatever the internal timer resulution is in ns.</doc>
+<use f='Modules/System/Src/tTime.cpp' l='30' u='c'/>
+<def f='Modules/System/Src/tTime.cpp' l='34' ll='48' type='int64 tSystem::tGetHardwareTimerFrequency()'/>

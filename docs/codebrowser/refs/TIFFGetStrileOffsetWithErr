@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='502' type='uint64 TIFFGetStrileOffsetWithErr(TIFF * tif, uint32 strile, int * pbErr)'/>

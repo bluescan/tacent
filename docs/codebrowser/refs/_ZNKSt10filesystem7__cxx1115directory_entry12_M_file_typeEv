@@ -1,0 +1,10 @@
+<use f='include/c++/11/bits/fs_dir.h' l='165' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry6existsEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='173' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry13is_block_fileEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='181' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry17is_character_fileEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='189' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry12is_directoryEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='197' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry7is_fifoEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='205' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry8is_otherEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='213' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry15is_regular_fileEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='221' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry9is_socketEv'/>
+<def f='include/c++/11/bits/fs_dir.h' l='332' ll='338' type='std::filesystem::file_type std::filesystem::directory_entry::_M_file_type() const'/>
+<doc f='include/c++/11/bits/fs_dir.h' l='331'>// Equivalent to status().type() but uses cached value, if any.</doc>

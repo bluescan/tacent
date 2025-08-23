@@ -1,0 +1,14 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='681' type='void tColour3f::tColour3f(float r, float g, float b)'/>
+<use f='Modules/Math/Src/tColour.cpp' l='176' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='177' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='178' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='179' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='180' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='181' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='182' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='183' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='184' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='185' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='186' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='187' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='188' u='c'/>

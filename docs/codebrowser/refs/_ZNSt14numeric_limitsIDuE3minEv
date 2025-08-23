@@ -1,0 +1,2 @@
+<def f='include/c++/11/limits' l='736' ll='737' type='static char8_t std::numeric_limits&lt;char8_t&gt;::min()'/>
+<use f='include/c++/11/limits' l='743' u='c' c='_ZNSt14numeric_limitsIDuE6lowestEv'/>

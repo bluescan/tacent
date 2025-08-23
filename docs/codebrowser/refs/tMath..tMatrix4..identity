@@ -1,0 +1,8 @@
+<dec f='Modules/Math/Inc/Math/tMatrix4.h' l='159' type='const tMath::tMatrix4'/>
+<doc f='Modules/Math/Inc/Math/tMatrix4.h' l='159'>// Identity matrix.</doc>
+<use f='Modules/Math/Src/tGeometry.cpp' l='86' u='m' c='_ZNK5tMath6tPlane29ComputeOrthogonalBasisVectorsERNS_8tVector3ES2_'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='64' type='const tMath::tMatrix4'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='32' u='r' c='_ZN6tScene7tCamera5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='59' u='r'/>
+<use f='Modules/Scene/Inc/Scene/tInstance.h' l='57' u='r'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='252' u='r' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>

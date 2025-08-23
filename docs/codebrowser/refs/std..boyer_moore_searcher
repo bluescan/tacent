@@ -1,0 +1,13 @@
+<def f='include/c++/11/functional' l='1113' ll='1164'/>
+<use f='include/c++/11/functional' l='1219' c='_ZNSt20boyer_moore_searcherC1ET_S0_T0_T1_'/>
+<use f='include/c++/11/functional' l='1247' c='_ZNKSt20boyer_moore_searcherclETL0__S0_'/>
+<fun r='_ZNSt20boyer_moore_searcherC1ET_S0_T0_T1_'/>
+<fun r='_ZNKSt20boyer_moore_searcherclETL0__S0_'/>
+<fun r='_ZNSt20boyer_moore_searcher12_M_is_prefixET_NS_11__diff_typeES1_'/>
+<fun r='_ZNSt20boyer_moore_searcher16_M_suffix_lengthET_NS_11__diff_typeES1_'/>
+<fun r='_ZNKSt20boyer_moore_searcher17_M_bad_char_shiftETL0__'/>
+<mbr r='std::boyer_moore_searcher::_M_pat' t='_RAIter'/>
+<mbr r='std::boyer_moore_searcher::_M_pat_end' t='_RAIter'/>
+<mbr r='std::boyer_moore_searcher::_M_good_suffix' t='std::vector&lt;__diff_type&gt;'/>
+<fun r='_ZNSt20boyer_moore_searcherC1ET_S0_T0_T1_'/>
+<fun r='_ZNKSt20boyer_moore_searcherclETL0__S0_'/>

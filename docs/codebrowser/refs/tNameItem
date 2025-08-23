@@ -1,0 +1,10 @@
+<inh f='Modules/Foundation/Inc/Foundation/tList.h' l='37' c='tLink'/>
+<inh f='Modules/Foundation/Inc/Foundation/tName.h' l='45' c='tName'/>
+<def f='Modules/Foundation/Inc/Foundation/tName.h' l='281' ll='295'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='281'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='294' c='_ZN9tNameItemaSERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='294' c='_ZN9tNameItemaSERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='578' c='_ZN9tNameItemaSERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='578' c='_ZN9tNameItemaSERKS_'/>
+<size>48</size>
+<doc f='Modules/Foundation/Inc/Foundation/tName.h' l='280'>// The tNameItem class is just the tName class except they can be placed on tLists.</doc>

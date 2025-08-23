@@ -1,0 +1,17 @@
+<def f='include/c++/11/bits/semaphore_base.h' l='56' ll='184'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='70' c='_ZNSt20__platform_semaphoreC1ERKS_'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='71' c='_ZNSt20__platform_semaphoreaSERKS_'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='71' c='_ZNSt20__platform_semaphoreaSERKS_'/>
+<size>32</size>
+<smbr r='std::__platform_semaphore::_S_max' t='const std::ptrdiff_t'/>
+<fun r='_ZNSt20__platform_semaphoreC1El'/>
+<fun r='_ZNSt20__platform_semaphoreC1ERKS_'/>
+<fun r='_ZNSt20__platform_semaphoreaSERKS_'/>
+<fun r='_ZNSt20__platform_semaphoreD1Ev'/>
+<fun r='_ZNSt20__platform_semaphore10_M_acquireEv'/>
+<fun r='_ZNSt20__platform_semaphore14_M_try_acquireEv'/>
+<fun r='_ZNSt20__platform_semaphore10_M_releaseEl'/>
+<fun r='_ZNSt20__platform_semaphore25_M_try_acquire_until_implERKNSt6chrono10time_pointINS0_3_V212system_clockENS0_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>
+<fun r='_ZNSt20__platform_semaphore20_M_try_acquire_untilERKNSt6chrono10time_pointIT_T0_EE'/>
+<fun r='_ZNSt20__platform_semaphore18_M_try_acquire_forERKNSt6chrono8durationIT_T0_EE'/>
+<mbr r='std::__platform_semaphore::_M_semaphore' o='0' t='sem_t'/>

@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/basic_string.h' l='2872' ll='2883' type='int std::basic_string::compare(const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __str) const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='2858'>/**
+       *  @brief  Compare to a string.
+       *  @param __str  String to compare against.
+       *  @return  Integer &lt; 0, 0, or &gt; 0.
+       *
+       *  Returns an integer &lt; 0 if this string is ordered before @a
+       *  __str, 0 if their values are equivalent, or &gt; 0 if this
+       *  string is ordered after @a __str.  Determines the effective
+       *  length rlen of the strings to compare as the smallest of
+       *  size() and str.size().  The function then compares the two
+       *  strings by calling traits::compare(data(), str.data(),rlen).
+       *  If the result of the comparison is nonzero returns it,
+       *  otherwise the shorter one is ordered first.
+      */</doc>

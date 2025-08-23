@@ -1,0 +1,1 @@
+<dec f='include/wchar.h' l='417' type='_Float64x wcstof64x(const wchar_t *__restrict __nptr, wchar_t **__restrict __endptr)'/>

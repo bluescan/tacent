@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/PVRTDecompress/PVRTDecompress.h' l='20' type='uint32_t pvr::PVRTDecompressPVRTC(const void * compressedData, uint32_t do2bitMode, uint32_t xDim, uint32_t yDim, uint8_t * outResultImage)'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1167' u='c' c='_ZN6tImage19DecodePixelData_PVRENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1181' u='c' c='_ZN6tImage19DecodePixelData_PVRENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<doc f='Modules/Image/Contrib/PVRTDecompress/PVRTDecompress.h' l='13'>/// &lt;summary&gt;Decompresses PVRTC to RGBA 8888.&lt;/summary&gt;
+/// &lt;param name=&quot;compressedData&quot;&gt;The PVRTC texture data to decompress&lt;/param&gt;
+/// &lt;param name=&quot;do2bitMode&quot;&gt;Signifies whether the data is PVRTC2 or PVRTC4&lt;/param&gt;
+/// &lt;param name=&quot;xDim&quot;&gt;X dimension of the texture&lt;/param&gt;
+/// &lt;param name=&quot;yDim&quot;&gt;Y dimension of the texture&lt;/param&gt;
+/// &lt;param name=&quot;outResultImage&quot;&gt;The decompressed texture data&lt;/param&gt;
+/// &lt;returns&gt;Return the amount of data that was decompressed.&lt;/returns&gt;</doc>

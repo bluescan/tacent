@@ -1,0 +1,16 @@
+<def f='include/c++/11/bits/basic_ios.h' l='448' ll='450' type='std::basic_ios::char_type std::basic_ios::widen(char __c) const'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='433'>/**
+       *  @brief  Widens characters.
+       *  @param  __c  The character to widen.
+       *  @return  The widened character.
+       *
+       *  Maps a character of @c char to a character of @c char_type.
+       *
+       *  Returns the result of
+       *  @code
+       *    std::use_facet&lt;ctype&lt;char_type&gt; &gt;(getloc()).widen(c)
+       *  @endcode
+       *
+       *  Additional l10n notes are at
+       *  http://gcc.gnu.org/onlinedocs/libstdc++/manual/localization.html
+      */</doc>

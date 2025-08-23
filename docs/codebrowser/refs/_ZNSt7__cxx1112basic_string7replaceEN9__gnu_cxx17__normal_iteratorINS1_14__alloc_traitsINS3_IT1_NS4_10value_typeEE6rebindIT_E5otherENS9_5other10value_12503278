@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/basic_string.h' l='2085' ll='2092' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::replace(std::basic_string::__const_iterator __i1, std::basic_string::__const_iterator __i2, std::basic_string::size_type __n, _CharT __c)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='2071'>/**
+       *  @brief  Replace range of characters with multiple characters
+       *  @param __i1  Iterator referencing start of range to replace.
+       *  @param __i2  Iterator referencing end of range to replace.
+       *  @param __n  Number of characters to insert.
+       *  @param __c  Character to insert.
+       *  @return  Reference to this string.
+       *  @throw  std::length_error  If new length exceeds @c max_size().
+       *
+       *  Removes the characters in the range [__i1,__i2).  In place,
+       *  @a __n copies of @a __c are inserted.  If the length of
+       *  result exceeds max_size(), length_error is thrown.  The
+       *  value of the string doesn&apos;t change if an error is thrown.
+      */</doc>

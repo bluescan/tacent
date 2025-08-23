@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tResample.h' l='58' type='1'/>
+<use f='Modules/Image/Src/tResample.cpp' l='105' c='_ZN6tImage11GetSrcIndexEiiNS_17tResampleEdgeModeE'/>

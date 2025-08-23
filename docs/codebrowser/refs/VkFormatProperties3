@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7332' ll='7338'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7332'/>
+<size>40</size>
+<mbr r='VkFormatProperties3::sType' o='0' t='VkStructureType'/>
+<mbr r='VkFormatProperties3::pNext' o='64' t='void *'/>
+<mbr r='VkFormatProperties3::linearTilingFeatures' o='128' t='VkFormatFeatureFlags2'/>
+<mbr r='VkFormatProperties3::optimalTilingFeatures' o='192' t='VkFormatFeatureFlags2'/>
+<mbr r='VkFormatProperties3::bufferFeatures' o='256' t='VkFormatFeatureFlags2'/>

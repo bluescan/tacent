@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tQuantize.h' l='30' type='const char * tImage::tQuantize::GetMethodName(tImage::tQuantize::Method )'/>
+<def f='Modules/Image/Src/tQuantize.cpp' l='30' ll='40' type='const char * tImage::tQuantize::GetMethodName(tImage::tQuantize::Method method)'/>

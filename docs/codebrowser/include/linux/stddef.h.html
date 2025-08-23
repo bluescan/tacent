@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>stddef.h source code [include/linux/stddef.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/linux/stddef.h'; var root_path = '../..'; var data_path = '../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='..'>include</a>/<a href='./'>linux</a>/<a href='stddef.h.html'>stddef.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><u>#<span data-ppcond="2">ifndef</span> <span class="macro" data-ref="_M/_LINUX_STDDEF_H">_LINUX_STDDEF_H</span></u>&nbsp</td></tr>
+<tr><th id="3">3</th><td><u>#define <dfn class="macro" id="_M/_LINUX_STDDEF_H" data-ref="_M/_LINUX_STDDEF_H">_LINUX_STDDEF_H</dfn></u>&nbsp</td></tr>
+<tr><th id="4">4</th><td>&nbsp</td></tr>
+<tr><th id="5">5</th><td>&nbsp</td></tr>
+<tr><th id="6">6</th><td>&nbsp</td></tr>
+<tr><th id="7">7</th><td><u>#<span data-ppcond="7">ifndef</span> <a class="macro" href="../x86_64-linux-gnu/sys/cdefs.h.html#424" data-ref="_M/__always_inline">__always_inline</a></u>&nbsp</td></tr>
+<tr><th id="8">8</th><td><u>#define __always_inline __inline__</u>&nbsp</td></tr>
+<tr><th id="9">9</th><td><u>#<span data-ppcond="7">endif</span></u>&nbsp</td></tr>
+<tr><th id="10">10</th><td>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i class="doc"> * __struct_group() - Create a mirrored named and anonyomous struct</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i class="doc"> *</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i class="doc"> *<span class="command"> @TAG</span>: The tag name for the named sub-struct (usually empty)</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i class="doc"> *<span class="command"> @NAME</span>: The identifier name of the mirrored sub-struct</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i class="doc"> *<span class="command"> @ATTRS</span>: Any struct attributes (usually empty)</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i class="doc"> *<span class="command"> @MEMBERS</span>: The member declarations for the mirrored structs</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i class="doc"> *</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i class="doc"> * Used to create an anonymous union of two structs with identical layout</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i class="doc"> * and size: one anonymous and one named. The former's members can be used</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i class="doc"> * normally without sub-struct naming, and the latter can be used to</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i class="doc"> * reason about the start, end, and size of the group of struct members.</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i class="doc"> * The named struct can also be explicitly tagged for layer reuse, as well</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i class="doc"> * as both having struct attributes appended.</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#define <dfn class="macro" id="_M/__struct_group" data-ref="_M/__struct_group">__struct_group</dfn>(TAG, NAME, ATTRS, MEMBERS...) \</u>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>	union { \</u>&nbsp</td></tr>
+<tr><th id="28">28</th><td><u>		struct { MEMBERS } ATTRS; \</u>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>		struct TAG { MEMBERS } ATTRS NAME; \</u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>	}</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i class="doc"> * __DECLARE_FLEX_ARRAY() - Declare a flexible array usable in a union</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i class="doc"> *</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i class="doc"> *<span class="command"> @TYPE</span>: The type of each flexible array element</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i class="doc"> *<span class="command"> @NAME</span>: The name of the flexible array member</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i class="doc"> *</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i class="doc"> * In order to have a flexible array member in a union or alone in a</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i class="doc"> * struct, it needs to be wrapped in an anonymous struct with at least 1</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i class="doc"> * named member, but that member can be empty.</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#define <dfn class="macro" id="_M/__DECLARE_FLEX_ARRAY" data-ref="_M/__DECLARE_FLEX_ARRAY">__DECLARE_FLEX_ARRAY</dfn>(TYPE, NAME)	\</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>	struct { \</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>		struct { } __empty_ ## NAME; \</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>		TYPE NAME[]; \</u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u>	}</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#<span data-ppcond="2">endif</span></u>&nbsp</td></tr>
+<tr><th id="48">48</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../Modules/System/Src/tFile.cpp.html'>Modules/System/Src/tFile.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

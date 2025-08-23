@@ -1,0 +1,8 @@
+<dec f='include/pthread.h' l='219' type='int pthread_join(pthread_t __th, void ** __thread_return)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='669' u='c' c='__gthread_join'/>
+<doc f='include/pthread.h' l='213'>/* Make calling thread wait for termination of the thread TH.  The
+   exit status of the thread is stored in *THREAD_RETURN, if THREAD_RETURN
+   is not NULL.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

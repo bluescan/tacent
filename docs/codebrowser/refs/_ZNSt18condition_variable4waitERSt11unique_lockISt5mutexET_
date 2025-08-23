@@ -1,0 +1,1 @@
+<def f='include/c++/11/condition_variable' l='99' ll='104' type='void std::condition_variable::wait(unique_lock&lt;std::mutex&gt; &amp; __lock, _Predicate __p)'/>

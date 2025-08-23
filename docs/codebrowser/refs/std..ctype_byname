@@ -1,0 +1,20 @@
+<def f='include/c++/11/bits/locale_facets.h' l='1481' ll='1498'/>
+<inh f='include/c++/11/bits/locale_facets.h' l='684' c='std::ctype'/>
+<def f='include/c++/11/bits/locale_facets.h' l='1501' ll='1516'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1502'/>
+<inh f='include/c++/11/bits/locale_facets.h' l='1189' c='std::ctype'/>
+<def f='include/c++/11/bits/locale_facets.h' l='1519' ll='1534'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1520'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1326'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1365'/>
+<size>1344</size>
+<doc f='include/c++/11/bits/locale_facets.h' l='1500'>/// 22.2.1.4  Class ctype_byname specializations.</doc>
+<fun r='_ZNSt12ctype_bynameC1EPKcm'/>
+<fun r='_ZNSt12ctype_bynameC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<fun r='_ZNSt12ctype_bynameD1Ev'/>
+<fun r='_ZNSt12ctype_bynameIcEC1EPKcm'/>
+<fun r='_ZNSt12ctype_bynameIcEC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<fun r='_ZNSt12ctype_bynameIcED1Ev'/>
+<fun r='_ZNSt12ctype_bynameIwEC1EPKcm'/>
+<fun r='_ZNSt12ctype_bynameIwEC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<fun r='_ZNSt12ctype_bynameIwED1Ev'/>

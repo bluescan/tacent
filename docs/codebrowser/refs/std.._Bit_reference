@@ -1,0 +1,27 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='72' ll='114'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='83' c='_ZNSt14_Bit_referenceC1ERKS_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='89' c='_ZNSt14_Bit_referenceaSEb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='99' c='_ZNSt14_Bit_referenceaSERKS_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='100' c='_ZNSt14_Bit_referenceaSERKS_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='104' c='_ZNKSt14_Bit_referenceeqERKS_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='108' c='_ZNKSt14_Bit_referenceltERKS_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='118' c='_ZSt4swapSt14_Bit_referenceS_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='118' c='_ZSt4swapSt14_Bit_referenceS_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='126' c='_ZSt4swapSt14_Bit_referenceRb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='134' c='_ZSt4swapRbSt14_Bit_reference'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='233'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='348' c='_ZNKSt19_Bit_const_iteratordeEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='610'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='612'/>
+<size>16</size>
+<mbr r='std::_Bit_reference::_M_p' o='0' t='std::_Bit_type *'/>
+<mbr r='std::_Bit_reference::_M_mask' o='64' t='std::_Bit_type'/>
+<fun r='_ZNSt14_Bit_referenceC1EPmm'/>
+<fun r='_ZNSt14_Bit_referenceC1Ev'/>
+<fun r='_ZNSt14_Bit_referenceC1ERKS_'/>
+<fun r='_ZNKSt14_Bit_referencecvbEv'/>
+<fun r='_ZNSt14_Bit_referenceaSEb'/>
+<fun r='_ZNSt14_Bit_referenceaSERKS_'/>
+<fun r='_ZNKSt14_Bit_referenceeqERKS_'/>
+<fun r='_ZNKSt14_Bit_referenceltERKS_'/>
+<fun r='_ZNSt14_Bit_reference4flipEv'/>

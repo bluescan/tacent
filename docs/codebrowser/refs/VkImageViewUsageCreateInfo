@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5356' ll='5360'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5356'/>
+<size>24</size>
+<mbr r='VkImageViewUsageCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageViewUsageCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkImageViewUsageCreateInfo::usage' o='128' t='VkImageUsageFlags'/>

@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='113' type='std::streamsize std::__basic_file&lt;char&gt;::xsputn(const char * __s, std::streamsize __n)'/>
+<use f='include/c++/11/bits/fstream.tcc' l='614' u='c' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='642' u='c' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='656' u='c' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='988' u='c' c='_ZNSt13basic_filebuf19_M_terminate_outputEv'/>

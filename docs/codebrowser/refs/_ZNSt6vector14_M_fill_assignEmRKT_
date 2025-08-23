@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/stl_vector.h' l='750' u='c' c='_ZNSt6vector6assignEmRKT_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1621' u='c' c='_ZNSt6vector18_M_assign_dispatchETL0__S0_St11__true_type'/>
+<dec f='include/c++/11/bits/stl_vector.h' l='1645' type='void std::vector::_M_fill_assign(std::vector::size_type __n, const std::vector::value_type &amp; __val)'/>
+<def f='include/c++/11/bits/vector.tcc' l='255' ll='277' type='void std::vector::_M_fill_assign(std::size_t __n, const std::vector::value_type &amp; __val)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1642'>// Called by assign(n,t), and the range assign when it turns out
+      // to be the same thing.</doc>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/localefwd.h' l='84' type='bool std::islower(_CharT , const std::locale &amp; )'/>
+<def f='include/c++/11/bits/locale_facets.h' l='2619' ll='2621' type='bool std::islower(_CharT __c, const std::locale &amp; __loc)'/>

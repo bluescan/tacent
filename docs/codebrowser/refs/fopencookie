@@ -1,0 +1,3 @@
+<dec f='include/stdio.h' l='300' type='FILE * fopencookie(void *__restrict __magic_cookie, const char *__restrict __modes, cookie_io_functions_t __io_funcs)'/>
+<doc f='include/stdio.h' l='298'>/* Create a new stream that refers to the given magic cookie,
+   and uses the given functions for input and output.  */</doc>

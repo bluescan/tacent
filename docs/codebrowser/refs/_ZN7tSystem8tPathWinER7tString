@@ -1,0 +1,6 @@
+<dec f='Modules/System/Src/tFile.cpp' l='45' type='void tSystem::tPathWin(tString &amp; path)'/>
+<def f='Modules/System/Src/tFile.cpp' l='115' ll='118' type='void tSystem::tPathWin(tString &amp; path)'/>
+<use f='Modules/System/Src/tFile.cpp' l='123' u='c' c='_ZN7tSystem11tPathWinDirER7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='131' u='c' c='_ZN7tSystem12tPathWinFileER7tString'/>
+<doc f='Modules/System/Src/tFile.cpp' l='44'>// Conversions to windows-standard paths. Backwards slashes. Not seen externally.</doc>
+<doc f='Modules/System/Src/tFile.cpp' l='45'>// &quot;C:/Hello/There/&quot; -&gt; &quot;C:\Hello\There\&quot;. &quot;C:/Hello/There&quot; -&gt; &quot;C:\Hello\There&quot;.</doc>

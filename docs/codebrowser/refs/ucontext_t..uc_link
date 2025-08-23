@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/ucontext.h' l='145' type='struct ucontext_t *'/>
+<offset>64</offset>

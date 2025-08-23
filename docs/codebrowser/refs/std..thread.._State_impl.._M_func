@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/std_thread.h' l='203' type='_Callable'/>
+<use f='include/c++/11/bits/std_thread.h' l='207' u='w' c='_ZNSt6thread11_State_implC1EDpOTL0__'/>
+<use f='include/c++/11/bits/std_thread.h' l='211' u='c' c='_ZNSt6thread11_State_impl6_M_runEv'/>

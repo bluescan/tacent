@@ -1,0 +1,1 @@
+<dec f='include/string.h' l='499' type='char * stpncpy(char *__restrict __dest, const char *__restrict __src, size_t __n)'/>

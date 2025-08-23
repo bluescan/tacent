@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/hashtable.h' l='986' ll='1000' type='std::_Hashtable::iterator std::_Hashtable::_M_reinsert_node_multi(std::_Hashtable::const_iterator __hint, std::_Hashtable::node_type &amp;&amp; __nh)'/>
+<use f='include/c++/11/bits/hashtable.h' l='1084' u='c' c='_ZNSt10_Hashtable14_M_merge_multiERTL0__'/>
+<doc f='include/c++/11/bits/hashtable.h' l='985'>/// Re-insert an extracted node into a container with equivalent keys.</doc>

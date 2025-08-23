@@ -1,0 +1,4 @@
+<def f='include/c++/11/ext/concurrence.h' l='97' ll='99' type='void __gnu_cxx::__throw_concurrence_lock_error()'/>
+<use f='include/c++/11/ext/concurrence.h' l='150' u='c' c='__gnu_cxx::__mutex::lock'/>
+<use f='include/c++/11/ext/concurrence.h' l='205' u='c' c='__gnu_cxx::__recursive_mutex::lock'/>
+<doc f='include/c++/11/ext/concurrence.h' l='96'>// Substitute for concurrence_error object in the case of -fno-exceptions.</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2173' ll='2190' type='void rgbcx::bc1_get_block_colors3(uint32_t * block_r, uint32_t * block_g, uint32_t * block_b, uint32_t lr, uint32_t lg, uint32_t lb, uint32_t hr, uint32_t hg, uint32_t hb)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2371' u='c' c='_ZN5rgbcxL22bc1_find_sels3_fullerrEbPKNS_7color32EjjjjjjPhj'/>

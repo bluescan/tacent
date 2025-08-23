@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='584' type='void tMath::tRotate(tMath::tVec4 &amp; v, const tMath::tQuat &amp; q)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='992' ll='999' type='void tMath::tRotate(tMath::tVec4 &amp; v, const tMath::tQuat &amp; q)'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='74' u='c' c='_ZNK5tMath11tQuaternion6RotateERNS_5tVec4E'/>

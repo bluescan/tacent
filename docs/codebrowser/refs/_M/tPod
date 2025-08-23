@@ -1,0 +1,7 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='91'/>
+<doc f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='89'>// Many objects have a Pod member function that returns a plain-old-data version of itself. Useful for cases where POD
+// is required, like to printf functions.</doc>
+<use f='Modules/System/Src/tCmdLine.cpp' l='553' u='c'/>
+<use f='Modules/System/Src/tScript.cpp' l='594' u='c'/>
+<use f='Modules/System/Src/tScript.cpp' l='639' u='c'/>
+<use f='Modules/System/Src/tScript.cpp' l='682' u='c'/>

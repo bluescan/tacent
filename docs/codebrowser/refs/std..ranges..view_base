@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/ranges_base.h' l='617'/>
+<use f='include/c++/11/bits/ranges_base.h' l='621'/>
+<size>1</size>
+<doc f='include/c++/11/bits/ranges_base.h' l='616'>/// [range.view] The ranges::view_base type.</doc>
+<ovr f='include/c++/11/bits/ranges_util.h' l='63' c='std::ranges::view_interface'/>
+<use f='include/c++/11/bits/ranges_util.h' l='63'/>
+<size>1</size>

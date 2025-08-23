@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='37' type='const char *'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='36'>// Verion information for the image loaders and libraries they may use. This is all in the tImage namespace.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='57' type='const char *'/>

@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='513' type='void * memfrob(void * __s, size_t __n)'/>
+<doc f='include/string.h' l='512'>/* Frobnicate N bytes of S.  */</doc>

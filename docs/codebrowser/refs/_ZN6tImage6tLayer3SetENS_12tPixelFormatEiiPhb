@@ -1,0 +1,6 @@
+<use f='Modules/Image/Inc/Image/tLayer.h' l='46' u='c' c='_ZN6tImage6tLayerC1ENS_12tPixelFormatEiiPhb'/>
+<dec f='Modules/Image/Inc/Image/tLayer.h' l='53' type='void tImage::tLayer::Set(tImage::tPixelFormat format, int width, int height, uint8 * data, bool steal = false)'/>
+<def f='Modules/Image/Inc/Image/tLayer.h' l='101' ll='123' type='void tImage::tLayer::Set(tImage::tPixelFormat format, int width, int height, uint8 * data, bool steal = false)'/>
+<doc f='Modules/Image/Inc/Image/tLayer.h' l='98'>// Implementation below this line.</doc>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1097' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1103' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>

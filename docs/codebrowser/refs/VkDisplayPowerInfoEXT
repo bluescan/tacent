@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12044' ll='12048'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12044'/>
+<size>24</size>
+<mbr r='VkDisplayPowerInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDisplayPowerInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkDisplayPowerInfoEXT::powerState' o='128' t='VkDisplayPowerStateEXT'/>

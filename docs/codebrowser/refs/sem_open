@@ -1,0 +1,2 @@
+<dec f='include/semaphore.h' l='42' type='sem_t * sem_open(const char * __name, int __oflag)'/>
+<doc f='include/semaphore.h' l='41'>/* Open a named semaphore NAME with open flags OFLAG.  */</doc>

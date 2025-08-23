@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='1304' ll='1335'/>
+<def f='include/c++/11/bits/stl_algobase.h' l='1337' ll='1360'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1338'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1383' c='_ZSt30__lexicographical_compare_aux1T_S_T0_S0_'/>
+<size>1</size>
+<fun r='_ZNSt25__lexicographical_compare4__lcETL0__S0_TL0_0_S1_'/>
+<fun r='_ZNSt25__lexicographical_compare6__3wayETL0__S0_TL0_0_S1_'/>
+<fun r='_ZNSt25__lexicographical_compareILb1EE4__lcEPKT_S3_PKT0_S6_'/>
+<fun r='_ZNSt25__lexicographical_compareILb1EE6__3wayEPKT_S3_PKT0_S6_'/>
+<use f='include/c++/11/bits/deque.tcc' l='1285' c='_ZSt13__lex_cmp_ditSt15_Deque_iteratorIT_T0_T1_ES3_PKT2_S6_'/>
+<use f='include/c++/11/bits/deque.tcc' l='1342' c='_ZSt30__lexicographical_compare_aux1St15_Deque_iteratorIT_T0_T1_ES3_S_IT2_T3_T4_ES7_'/>

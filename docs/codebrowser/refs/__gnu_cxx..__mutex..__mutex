@@ -1,0 +1,2 @@
+<dec f='include/c++/11/ext/concurrence.h' l='124' type='void __gnu_cxx::__mutex::__mutex(const __gnu_cxx::__mutex &amp; )'/>
+<def f='include/c++/11/ext/concurrence.h' l='128' ll='134' type='void __gnu_cxx::__mutex::__mutex()'/>

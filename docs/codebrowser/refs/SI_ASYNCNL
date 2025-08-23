@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/siginfo-consts.h' l='37' type='-60'/>
+<doc f='include/x86_64-linux-gnu/bits/siginfo-consts.h' l='37'>/* Sent by asynch name lookup completion.  */</doc>

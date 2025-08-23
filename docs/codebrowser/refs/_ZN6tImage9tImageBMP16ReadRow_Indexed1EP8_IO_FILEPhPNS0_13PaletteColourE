@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageBMP.cpp' l='156' u='c' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<def f='Modules/Image/Src/tImageBMP.cpp' l='286' ll='309' type='void tImage::tImageBMP::ReadRow_Indexed1(tFileHandle file, uint8 * dest, tImage::tImageBMP::PaletteColour * palette)'/>

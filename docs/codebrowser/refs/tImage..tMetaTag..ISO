@@ -1,0 +1,13 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='78' type='25'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='69'>//			0: Not Defined.
+					//			1: Manual.
+					//			2: Normal Program.
+					//			3: Aperture Priority.
+					//			4: Shutter Priority.
+					//			5: Creative Program.
+					//			6: Action Program.
+					//			7: Portrait Mode.
+					//			8: Landscape Mode.</doc>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='78'>//	uint32	Equivalent ISO film speed rating.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='441' u='m' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='745' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

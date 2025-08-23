@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='463'/>
+<use f='include/c++/11/bits/localefwd.h' l='155' u='c'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1939' u='c'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='143' u='c'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='852' u='c'/>

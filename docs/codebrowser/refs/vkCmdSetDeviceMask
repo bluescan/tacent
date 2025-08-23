@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5665' type='void vkCmdSetDeviceMask(VkCommandBuffer commandBuffer, uint32_t deviceMask)'/>

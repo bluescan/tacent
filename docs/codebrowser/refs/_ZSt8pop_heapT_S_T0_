@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='536' type='void std::pop_heap(_RAIter , _RAIter , _Compare )'/>
+<def f='include/c++/11/bits/stl_heap.h' l='314' ll='334' macro='1' type='void std::pop_heap(_RandomAccessIterator __first, _RandomAccessIterator __last, _Compare __comp)'/>

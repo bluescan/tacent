@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='257' type='void tMath::tGet(float * a, const tMath::tQuat &amp; s)'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='43' u='c' c='_ZNK5tMath11tQuaternion3GetEPf'/>

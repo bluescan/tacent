@@ -1,0 +1,12 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='1857' type='void std::messages::messages&lt;_CharT&gt;(std::__c_locale __cloc, const char * __s, std::size_t __refs = 0)'/>
+<def f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='49' ll='66' type='void std::messages::messages&lt;_CharT&gt;(std::__c_locale __cloc, const char * __s, std::size_t __refs = 0)'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1846'>/**
+       *  @brief  Internal constructor.  Not for general use.
+       *
+       *  This is a constructor for use by the library itself to set up new
+       *  locales.
+       *
+       *  @param  __cloc  The C locale.
+       *  @param  __s  The name of a locale.
+       *  @param  __refs  Refcount to pass to the base class.
+       */</doc>

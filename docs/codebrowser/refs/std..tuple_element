@@ -1,0 +1,36 @@
+<use f='include/c++/11/utility' l='118'/>
+<def f='include/c++/11/utility' l='120' ll='124'/>
+<def f='include/c++/11/utility' l='126' ll='130'/>
+<def f='include/c++/11/utility' l='132' ll='136'/>
+<use f='include/c++/11/utility' l='145'/>
+<def f='include/c++/11/utility' l='161' ll='163'/>
+<def f='include/c++/11/utility' l='166' ll='168'/>
+<use f='include/c++/11/utility' l='222' c='_ZSt3getRSt4pairIT0_T1_E'/>
+<use f='include/c++/11/utility' l='227' c='_ZSt3getOSt4pairIT0_T1_E'/>
+<use f='include/c++/11/utility' l='232' c='_ZSt3getRKSt4pairIT0_T1_E'/>
+<use f='include/c++/11/utility' l='237' c='_ZSt3getOKSt4pairIT0_T1_E'/>
+<def f='include/c++/11/array' l='445' ll='450'/>
+<def f='include/c++/11/tuple' l='1352' ll='1354'/>
+<use f='include/c++/11/tuple' l='1354'/>
+<def f='include/c++/11/tuple' l='1359' ll='1363'/>
+<def f='include/c++/11/tuple' l='1368' ll='1373'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='652'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='675'/>
+<use f='include/c++/11/functional' l='276'/>
+<doc f='include/c++/11/tuple' l='1348'>/**
+   * Recursive case for tuple_element: strip off the first element in
+   * the tuple and retrieve the (i-1)th element of the remaining tuple.
+   */</doc>
+<doc f='include/c++/11/tuple' l='1356'>/**
+   * Basis case for tuple_element: The first element is the one we&apos;re seeking.
+   */</doc>
+<doc f='include/c++/11/tuple' l='1365'>/**
+   * Error case for tuple_element: invalid index.
+   */</doc>
+<doc f='include/c++/11/utility' l='160'>/// Partial specialization for std::pair</doc>
+<doc f='include/c++/11/utility' l='165'>/// Partial specialization for std::pair</doc>
+<doc f='include/c++/11/array' l='444'>/// Partial specialization for std::array</doc>
+<def f='include/c++/11/bits/ranges_util.h' l='627' ll='629'/>
+<def f='include/c++/11/bits/ranges_util.h' l='631' ll='633'/>
+<def f='include/c++/11/bits/ranges_util.h' l='635' ll='637'/>
+<def f='include/c++/11/bits/ranges_util.h' l='639' ll='641'/>

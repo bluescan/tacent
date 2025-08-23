@@ -1,0 +1,21 @@
+<def f='include/c++/11/bits/random.h' l='6065' ll='6102'/>
+<use f='include/c++/11/bits/random.h' l='6097' c='_ZNSt8seed_seqC1ERKS_'/>
+<use f='include/c++/11/bits/random.h' l='6098' c='_ZNSt8seed_seqaSERKS_'/>
+<use f='include/c++/11/bits/random.h' l='6098' c='_ZNSt8seed_seqaSERKS_'/>
+<size>24</size>
+<doc f='include/c++/11/bits/random.h' l='6061'>/**
+   * @brief The seed_seq class generates sequences of seeds for random
+   *        number generators.
+   */</doc>
+<fun r='_ZNSt8seed_seqC1Ev'/>
+<fun r='_ZNSt8seed_seqC1ESt16initializer_listIT_E'/>
+<fun r='_ZNSt8seed_seqC1ET_S0_'/>
+<fun r='_ZNSt8seed_seq8generateET_S0_'/>
+<fun r='_ZNKSt8seed_seq4sizeEv'/>
+<fun r='_ZNKSt8seed_seq5paramET_'/>
+<fun r='_ZNSt8seed_seqC1ERKS_'/>
+<fun r='_ZNSt8seed_seqaSERKS_'/>
+<mbr r='std::seed_seq::_M_v' o='0' t='std::vector&lt;result_type&gt;'/>
+<fun r='_ZNSt8seed_seqC1ESt16initializer_listIT_E'/>
+<fun r='_ZNSt8seed_seqC1ET_S0_'/>
+<fun r='_ZNSt8seed_seq8generateET_S0_'/>

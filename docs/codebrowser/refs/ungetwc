@@ -1,0 +1,5 @@
+<dec f='include/wchar.h' l='788' type='wint_t ungetwc(wint_t __wc, __FILE * __stream)'/>
+<doc f='include/wchar.h' l='784'>/* Push a character back onto the input buffer of STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

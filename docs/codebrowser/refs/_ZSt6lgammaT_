@@ -1,0 +1,1 @@
+<def f='include/c++/11/cmath' l='1507' ll='1510' type='typename __gnu_cxx::__enable_if&lt;__is_integer&lt;_Tp&gt;::__value, double&gt;::__type std::lgamma(_Tp __x)'/>

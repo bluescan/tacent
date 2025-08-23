@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tTime.h' l='33' type='std::time_t tSystem::tGetTimeUTC()'/>
+<doc f='Modules/System/Inc/System/tTime.h' l='31'>// Gets the number of seconds since the absolute time reference of 00:00:00 Coordinated Universal Time (UTC),
+// Thursday, 1 January 1970. The std::time_t is essentially a big integer.</doc>
+<def f='Modules/System/Src/tTime.cpp' l='70' ll='74' type='std::time_t tSystem::tGetTimeUTC()'/>
+<use f='Modules/System/Src/tTime.cpp' l='79' u='c' c='_ZN7tSystem11tGetTimeGMTEv'/>

@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8193' ll='8199'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8193'/>
+<size>40</size>
+<mbr r='VkVideoSessionParametersCreateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoSessionParametersCreateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkVideoSessionParametersCreateInfoKHR::flags' o='128' t='VkVideoSessionParametersCreateFlagsKHR'/>
+<mbr r='VkVideoSessionParametersCreateInfoKHR::videoSessionParametersTemplate' o='192' t='VkVideoSessionParametersKHR'/>
+<mbr r='VkVideoSessionParametersCreateInfoKHR::videoSession' o='256' t='VkVideoSessionKHR'/>

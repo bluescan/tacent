@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='191' type='void tImage::tMetaData::Load(const tChunk &amp; )'/>
+<def f='Modules/Image/Src/tMetaData.cpp' l='908' ll='951' type='void tImage::tMetaData::Load(const tChunk &amp; chunk)'/>

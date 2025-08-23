@@ -1,0 +1,13 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='1036' type='std::moneypunct::__cache_type *'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1054' u='w' c='_ZNSt7__cxx1110moneypunctC1Em'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1067' u='w' c='_ZNSt7__cxx1110moneypunctC1EPSt18__moneypunct_cacheIT_XT0_EEm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1082' u='w' c='_ZNSt7__cxx1110moneypunctC1EP15__locale_structPKcm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1260' u='r' c='_ZNKSt7__cxx1110moneypunct16do_decimal_pointEv'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1272' u='r' c='_ZNKSt7__cxx1110moneypunct16do_thousands_sepEv'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1285' u='r' c='_ZNKSt7__cxx1110moneypunct11do_groupingEv'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1298' u='r' c='_ZNKSt7__cxx1110moneypunct14do_curr_symbolEv'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1311' u='r' c='_ZNKSt7__cxx1110moneypunct16do_positive_signEv'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1324' u='r' c='_ZNKSt7__cxx1110moneypunct16do_negative_signEv'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1338' u='r' c='_ZNKSt7__cxx1110moneypunct14do_frac_digitsEv'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1352' u='r' c='_ZNKSt7__cxx1110moneypunct13do_pos_formatEv'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1366' u='r' c='_ZNKSt7__cxx1110moneypunct13do_neg_formatEv'/>

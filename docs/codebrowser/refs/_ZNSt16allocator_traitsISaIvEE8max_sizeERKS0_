@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/alloc_traits.h' l='651' ll='652' type='static std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::size_type std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::max_size(const std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::allocator_type &amp; )'/>
+<doc f='include/c++/11/bits/alloc_traits.h' l='650'>/// max_size is ill-formed for allocator&lt;void&gt;</doc>

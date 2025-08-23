@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1122' type='const std::size_t'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1157' u='c' c='_ZNVKSt14__atomic_float12is_lock_freeEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1161' u='c' c='_ZNKSt14__atomic_float12is_lock_freeEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1325'/>

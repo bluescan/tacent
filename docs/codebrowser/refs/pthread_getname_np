@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='458' type='int pthread_getname_np(pthread_t __target_thread, char * __buf, size_t __buflen)'/>
+<doc f='include/pthread.h' l='457'>/* Get thread name visible in the kernel and its interfaces.  */</doc>

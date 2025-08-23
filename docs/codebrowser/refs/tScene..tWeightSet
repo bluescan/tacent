@@ -1,0 +1,19 @@
+<def f='Modules/Scene/Inc/Scene/tMesh.h' l='33' ll='45'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='35' c='_ZN6tScene10tWeightSetC1Ev'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='36' c='_ZNK6tScene10tWeightSeteqERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='37' c='_ZNK6tScene10tWeightSetneERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='121' c='_ZNK6tScene5tMesh18FindWeightSetIndexERKNS_10tWeightSetE'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='122' c='_ZN6tScene5tMesh25CreateVertTableWeightSetsEv'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='125'/>
+<size>100</size>
+<use f='Modules/Scene/Src/tMesh.cpp' l='77' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='79' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='294' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='295' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='295' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='460' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>
+<size>100</size>
+<use f='Modules/Scene/Src/tWorld.cpp' l='312' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='404' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='853' c='_ZN6tScene6tWorld18CorrectSkeletonIDsER7tItListINS_9tSkeletonEERS1_INS_10tPolyModelEE'/>
+<size>100</size>

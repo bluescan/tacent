@@ -1,0 +1,18 @@
+<dec f='Modules/Foundation/Inc/Foundation/tHash.h' l='95' type='uint32 tHash::tHashData32(const uint8 * data, int length, uint32 iv = HashIV32)'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='154' u='c' c='_ZN5tHash13tHashString32EPKcj'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='155' u='c' c='_ZN5tHash13tHashString32EPKDuj'/>
+<doc f='Modules/Foundation/Inc/Foundation/tHash.h' l='82'>// The HashData32/64/128/256 and variants do _not_ guarantee the same hash value if they are chained together compared
+// to the hash of the same data computed as a single block. This is because the entire state is not stored in the hash
+// itself since these are much better hash functions than the Fast32 versions. Chaining is still useful as uniqueness is
+// still guaranteed and if any data changes in any of the sources the end result will vary. Chaining is performed in the
+// same manner as HashDataFast32. Algorithms in use for below functions:
+//
+// tHash*32:  Robert J. Jenkins Jr., 1997. See http://burtleburtle.net/bob/hash/evahash.html
+// tHash*64:  Robert J. Jenkins Jr., 1997. See http://burtleburtle.net/bob/hash/evahash.html
+// tHash*128: MD5. Not cryptographically secure any more.
+// tHash*256: Robert J. Jenkins Jr., 1997. See http://burtleburtle.net/bob/hash/evahash.html
+//
+// If you want SHA-256 call it directly.
+// If you want MD5 call it directly with the default default MD5 initialization vector.</doc>
+<def f='Modules/Foundation/Src/tHash.cpp' l='74' ll='111' type='uint32 tHash::tHashData32(const uint8 * data, int length, uint32 iv = HashIV32)'/>
+<use f='Modules/System/Src/tFile.cpp' l='3280' u='c' c='_ZN7tSystem11tHashFile32ERK7tStringj'/>

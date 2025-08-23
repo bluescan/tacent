@@ -1,0 +1,4 @@
+<def f='Modules/System/Src/tPrint.cpp' l='87' ll='96'/>
+<doc f='Modules/System/Src/tPrint.cpp' l='84'>// A format specification consists of the information stored in the expression:
+	// %[flags] [width] [.precision] [:typesize][|typesize]type
+	// except for the type character.</doc>

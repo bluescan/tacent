@@ -1,0 +1,5 @@
+<def f='include/c++/11/stop_token' l='154' type='const std::stop_token::_Stop_state_t::value_type'/>
+<use f='include/c++/11/stop_token' l='169' u='r' c='_ZNSt10stop_token13_Stop_state_t16_M_stop_possibleEv'/>
+<use f='include/c++/11/stop_token' l='218' u='r' c='_ZNSt10stop_token13_Stop_state_t9_M_unlockEv'/>
+<use f='include/c++/11/stop_token' l='380' u='r' c='_ZNSt10stop_token13_Stop_state_t14_M_do_try_lockERjjSt12memory_orderS2_'/>
+<use f='include/c++/11/stop_token' l='386' u='r' c='_ZNSt10stop_token13_Stop_state_t14_M_do_try_lockERjjSt12memory_orderS2_'/>

@@ -1,0 +1,5 @@
+_ZNSt14_Fnv_hash_impl4hashEPKvmm|std::_Fnv_hash_impl::hash
+_ZNSt14_Function_baseC1Ev|std::_Function_base::_Function_base
+_ZNKSt14_Function_base8_M_emptyEv|std::_Function_base::_M_empty
+_ZNSt14_Function_baseD1Ev|std::_Function_base::~_Function_base
+_ZNSt10filesystem11file_statusD1Ev|std::filesystem::file_status::~file_status

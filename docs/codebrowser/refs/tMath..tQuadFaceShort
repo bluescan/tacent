@@ -1,0 +1,14 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='83' ll='91'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='86' c='_ZN5tMath14tQuadFaceShortC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='87' c='_ZNK5tMath14tQuadFaceShorteqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='88' c='_ZNK5tMath14tQuadFaceShortneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='89' c='_ZN5tMath14tQuadFaceShortaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='89' c='_ZN5tMath14tQuadFaceShortaSERKS0_'/>
+<size>8</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='82'>// The same as a tQuadFace but using only 16 bit indices.</doc>
+<fun r='_ZN5tMath14tQuadFaceShortC1Ev'/>
+<fun r='_ZN5tMath14tQuadFaceShortC1ERKS0_'/>
+<fun r='_ZNK5tMath14tQuadFaceShorteqERKS0_'/>
+<fun r='_ZNK5tMath14tQuadFaceShortneERKS0_'/>
+<fun r='_ZN5tMath14tQuadFaceShortaSERKS0_'/>
+<mbr r='tMath::tQuadFaceShort::Index' o='0' t='uint16[4]'/>

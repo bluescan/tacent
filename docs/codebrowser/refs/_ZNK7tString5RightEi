@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='204' type='tString tString::Right(int count) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='204'>// Same as Left but returns last count chars.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='121' ll='137' type='tString tString::Right(int count) const'/>

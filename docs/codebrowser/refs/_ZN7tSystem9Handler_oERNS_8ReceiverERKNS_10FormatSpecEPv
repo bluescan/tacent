@@ -1,0 +1,3 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='173' type='void tSystem::Handler_o(tSystem::Receiver &amp; out, const tSystem::FormatSpec &amp; , void * data)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='412'/>
+<def f='Modules/System/Src/tPrint.cpp' l='1252' ll='1273' type='void tSystem::Handler_o(tSystem::Receiver &amp; receiver, const tSystem::FormatSpec &amp; spec, void * data)'/>

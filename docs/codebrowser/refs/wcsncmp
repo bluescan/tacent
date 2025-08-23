@@ -1,0 +1,2 @@
+<dec f='include/wchar.h' l='109' type='int wcsncmp(const wchar_t * __s1, const wchar_t * __s2, size_t __n)'/>
+<doc f='include/wchar.h' l='108'>/* Compare N wide-characters of S1 and S2.  */</doc>

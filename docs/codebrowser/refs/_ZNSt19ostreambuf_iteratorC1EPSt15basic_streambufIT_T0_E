@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/streambuf_iterator.h' l='277' ll='278' type='void std::ostreambuf_iterator::ostreambuf_iterator&lt;_CharT, _Traits&gt;(std::ostreambuf_iterator::streambuf_type * __s)'/>
+<doc f='include/c++/11/bits/streambuf_iterator.h' l='276'>///  Construct output iterator from streambuf.</doc>

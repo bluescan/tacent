@@ -1,0 +1,14 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='252' type='bool tImage::tIsPackedFormat(tImage::tPixelFormat )'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='491' ll='494' type='bool tImage::tIsPackedFormat(tImage::tPixelFormat format)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='251'>// Simple RGB and RGBA formats with different numbers of bits per component and different orderings.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1323' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='914' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='496' u='c' c='_ZN6tImage14tGetBlockWidthENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='515' u='c' c='_ZN6tImage15tGetBlockHeightENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='534' u='c' c='_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='576' u='c' c='_ZN6tImage17tGetBytesPerBlockENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='67' u='c' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='73' u='c' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='103' u='c' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1298' u='c' c='_ZN6tImage17CanReverseRowDataENS_12tPixelFormatEi'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1310' u='c' c='_ZN6tImage21CreateReversedRowDataEPKhNS_12tPixelFormatEii'/>

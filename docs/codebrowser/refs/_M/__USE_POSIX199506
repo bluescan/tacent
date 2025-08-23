@@ -1,0 +1,10 @@
+<dec f='include/features.h' l='337'/>
+<use f='include/x86_64-linux-gnu/sys/types.h' l='226' u='a'/>
+<use f='include/stdlib.h' l='458' u='a'/>
+<use f='include/stdio.h' l='522' u='a'/>
+<use f='include/stdio.h' l='568' u='a'/>
+<use f='include/stdio.h' l='863' u='a'/>
+<use f='include/pthread.h' l='79' u='a'/>
+<use f='include/unistd.h' l='882' u='a'/>
+<use f='include/signal.h' l='250' u='a'/>
+<use f='include/signal.h' l='372' u='a'/>

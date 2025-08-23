@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/locale_conv.h' l='241' type='void std::wstring_convert::wstring_convert&lt;_Codecvt, _Elem, _Wide_alloc, _Byte_alloc&gt;()'/>
+<doc f='include/c++/11/bits/locale_conv.h' l='240'>/// Default constructor.</doc>

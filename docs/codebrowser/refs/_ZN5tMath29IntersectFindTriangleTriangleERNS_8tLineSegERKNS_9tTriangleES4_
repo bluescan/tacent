@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='506' type='bool tMath::IntersectFindTriangleTriangle(tMath::tLineSeg &amp; intersection, const tMath::tTriangle &amp; , const tMath::tTriangle &amp; )'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='505'>// @todo Not implemented.</doc>

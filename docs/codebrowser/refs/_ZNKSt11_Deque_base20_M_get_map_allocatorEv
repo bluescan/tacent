@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stl_deque.h' l='554' ll='556' type='std::_Deque_base::_Map_alloc_type std::_Deque_base::_M_get_map_allocator() const'/>
+<use f='include/c++/11/bits/stl_deque.h' l='575' u='c' c='_ZNSt11_Deque_base15_M_allocate_mapEm'/>
+<use f='include/c++/11/bits/stl_deque.h' l='582' u='c' c='_ZNSt11_Deque_base17_M_deallocate_mapENSt15_Deque_iteratorIT_RS1_N9__gnu_cxx14__alloc_traitsINS4_IT0_NS5_10value_typeEE6rebindIS1_E5otherENS9_5other108112144'/>

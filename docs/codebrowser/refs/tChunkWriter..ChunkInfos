@@ -1,0 +1,12 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='68' u='w' c='_ZN12tChunkWriterC1ERK7tString11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='71' u='w' c='_ZN12tChunkWriterC1ERK7tString9tPlatform'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='79' u='w' c='_ZN12tChunkWriterC1EPhi11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='82' u='w' c='_ZN12tChunkWriterC1Ev'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='83' u='m' c='_ZN12tChunkWriterD1Ev'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='214' type='tList&lt;tChunkWriter::ChunkInfo&gt;'/>
+<offset>64</offset>
+<use f='Modules/System/Src/tChunk.cpp' l='120' u='m' c='_ZN12tChunkWriter5CloseEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='123' u='m' c='_ZN12tChunkWriter5CloseEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='126' u='m' c='_ZN12tChunkWriter5CloseEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='224' u='m' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='230' u='m' c='_ZN12tChunkWriter8EndChunkEv'/>

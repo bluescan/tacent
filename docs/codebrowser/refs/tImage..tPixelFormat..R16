@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='132' type='14'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='638' c='_ZN6tImage18tIsLuminanceFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='132'>// 16  bit. 16 bit Red.</doc>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='486' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='295' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>

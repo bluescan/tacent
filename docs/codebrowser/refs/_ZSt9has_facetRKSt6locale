@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/localefwd.h' l='59' type='bool std::has_facet(const std::locale &amp; )'/>
+<dec f='include/c++/11/bits/locale_classes.h' l='79' type='bool std::has_facet(const std::locale &amp; )'/>
+<dec f='include/c++/11/bits/locale_classes.h' l='497' type='bool std::has_facet(const std::locale &amp; )'/>
+<dec f='include/c++/11/bits/locale_classes.h' l='533' type='bool std::has_facet(const std::locale &amp; )'/>
+<def f='include/c++/11/bits/locale_classes.tcc' l='103' ll='114' type='bool std::has_facet(const std::locale &amp; __loc)'/>

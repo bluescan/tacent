@@ -1,0 +1,11 @@
+<def f='include/c++/11/array' l='49' ll='62'/>
+<def f='include/c++/11/array' l='64' ll='78'/>
+<use f='include/c++/11/array' l='110'/>
+<use f='include/c++/11/array' l='343' c='_ZSt4swapRSt5arrayIT_XT0_EES2_'/>
+<use f='include/c++/11/array' l='355' c='_ZSt4swapRSt5arrayIT_XT0_EES2_'/>
+<use f='include/c++/11/array' l='364' c='_ZSt3getRSt5arrayIT0_XT1_EE'/>
+<use f='include/c++/11/array' l='380' c='_ZSt3getRKSt5arrayIT0_XT1_EE'/>
+<fun r='_ZNSt14__array_traits6_S_refERAT0__KT_m'/>
+<fun r='_ZNSt14__array_traits6_S_ptrERAT0__KT_'/>
+<fun r='_ZNSt14__array_traitsIT_Lm0EE6_S_refERKNS1_5_TypeEm'/>
+<fun r='_ZNSt14__array_traitsIT_Lm0EE6_S_ptrERKNS1_5_TypeE'/>

@@ -1,0 +1,6 @@
+<dec f='include/stdlib.h' l='682' type='char * mktemp(char * __template)'/>
+<doc f='include/stdlib.h' l='677'>/* Generate a unique temporary file name from TEMPLATE.
+   The last six characters of TEMPLATE must be &quot;XXXXXX&quot;;
+   they are replaced with a string that makes the file name unique.
+   Always returns TEMPLATE, it&apos;s either a temporary file name or a null
+   string if it cannot get a unique file name.  */</doc>

@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1620' type='_CharT[26]'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='115' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1616'>// A list of valid numeric literals for input: in the standard
+      // &quot;C&quot; locale, this is &quot;-+xX0123456789abcdefABCDEF&quot;
+      // This array contains the chars after having been passed
+      // through the current locale&apos;s ctype&lt;_CharT&gt;.widen().</doc>

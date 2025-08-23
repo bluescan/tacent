@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='196' type='bool tStd::tStrtob(const char * )'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='197' u='c' c='_ZN4tStd7tStrtobEPKDu'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='194'>// String to bool. Case insensitive. Interprets &quot;true&quot;, &quot;t&quot;, &quot;yes&quot;, &quot;y&quot;, &quot;on&quot;, &quot;enable&quot;, &quot;enabled&quot;, &quot;1&quot;, &quot;+&quot;, and
+// strings that represent non-zero integers as boolean true. Otherwise false.</doc>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='141' ll='156' type='bool tStd::tStrtob(const char * str)'/>

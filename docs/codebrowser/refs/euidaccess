@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='292' type='int euidaccess(const char * __name, int __type)'/>
+<doc f='include/unistd.h' l='290'>/* Test for access to NAME using the effective UID and GID
+   (as normal file operations use).  */</doc>

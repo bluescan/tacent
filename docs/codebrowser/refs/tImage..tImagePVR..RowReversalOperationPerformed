@@ -1,0 +1,9 @@
+<use f='Modules/Image/Src/tImagePVR.cpp' l='639' u='w' c='_ZN6tImage9tImagePVR5ClearEv'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='669' u='w' c='_ZN6tImage9tImagePVR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1072' u='w' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1106' u='w' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1111' u='r' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1209' u='r' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1219' u='r' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1220' u='w' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1222' u='r' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>

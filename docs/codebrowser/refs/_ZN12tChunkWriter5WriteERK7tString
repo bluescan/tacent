@@ -1,0 +1,14 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='144' type='int tChunkWriter::Write(const tString &amp; s)'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='163' u='c' c='_ZN12tChunkWriter5WriteEPK7tStringi'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='144'>/* Writes the null character as well. */</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='897' u='c' c='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='30' u='c' c='_ZNK6tScene10tAttribute4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='102' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='109' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='116' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='123' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='130' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='137' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='144' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='151' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tObject.cpp' l='29' u='c' c='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>

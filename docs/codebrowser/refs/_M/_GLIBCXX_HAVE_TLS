@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1250'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1249'>/* Define to 1 if the target supports thread-local storage. */</doc>
+<use f='include/c++/11/mutex' l='51' u='a'/>
+<use f='include/c++/11/mutex' l='696' u='a'/>

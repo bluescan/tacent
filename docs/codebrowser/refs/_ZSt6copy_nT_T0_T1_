@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='251' type='_OIter std::copy_n(_IIter , _Size , _OIter )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='741' ll='759' macro='1' type='_OutputIterator std::copy_n(_InputIterator __first, _Size __n, _OutputIterator __result)'/>

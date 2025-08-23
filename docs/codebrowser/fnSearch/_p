@@ -1,0 +1,10 @@
+_ZNSt4_PCC18_ConstructiblePairEv|std::_PCC::_ConstructiblePair
+_ZNSt4_PCC13_CopyMovePairEv|std::_PCC::_CopyMovePair
+_ZNSt4_PCC26_ImplicitlyConvertiblePairEv|std::_PCC::_ImplicitlyConvertiblePair
+_ZNSt4_PCC30_ImplicitlyMoveConvertiblePairEv|std::_PCC::_ImplicitlyMoveConvertiblePair
+_ZNSt4_PCC22_MoveConstructiblePairEv|std::_PCC::_MoveConstructiblePair
+_ZNSt4_PCC13_MoveCopyPairEv|std::_PCC::_MoveCopyPair
+_ZNSt9once_flag18_Prepare_executionC1ERT_|std::once_flag::_Prepare_execution::_Prepare_execution
+_ZNSt9once_flag18_Prepare_executionaSERKS0_|std::once_flag::_Prepare_execution::operator=
+_ZNSt9once_flag18_Prepare_executionD1Ev|std::once_flag::_Prepare_execution::~_Prepare_execution
+_ZNSt10filesystem7__cxx114pathD1Ev|std::filesystem::path::~path

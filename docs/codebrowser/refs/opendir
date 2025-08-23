@@ -1,0 +1,7 @@
+<dec f='include/dirent.h' l='134' type='DIR * opendir(const char * __name)'/>
+<use f='Modules/System/Src/tFile.cpp' l='2737' u='c' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<doc f='include/dirent.h' l='129'>/* Open a directory stream on NAME.
+   Return a DIR stream on the directory, or NULL if it could not be opened.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

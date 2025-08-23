@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='10' type='int'/>
+<offset>32</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='10'>/* Minutes.	[0-59] */</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='813' u='w' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>

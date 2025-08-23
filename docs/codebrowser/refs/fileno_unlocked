@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='814' type='int fileno_unlocked(FILE * __stream)'/>
+<doc f='include/stdio.h' l='813'>/* Faster version when locking is not required.  */</doc>

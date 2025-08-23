@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2526' ll='2562' type='void rgbcx::bc1_encode3(rgbcx::bc1_block * pDst_block, int lr, int lg, int lb, int hr, int hg, int hb, const uint8_t * sels)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3818' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

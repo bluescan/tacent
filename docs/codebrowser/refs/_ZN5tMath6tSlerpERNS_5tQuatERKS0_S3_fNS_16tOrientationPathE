@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='576' type='void tMath::tSlerp(tMath::tQuat &amp; d, const tMath::tQuat &amp; a, const tMath::tQuat &amp; b, float t, tMath::tOrientationPath )'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='262' ll='310' type='void tMath::tSlerp(tMath::tQuat &amp; d, const tMath::tQuat &amp; a, const tMath::tQuat &amp; bb, float t, tMath::tOrientationPath path)'/>

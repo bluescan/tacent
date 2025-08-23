@@ -1,0 +1,7 @@
+<use f='include/c++/11/fstream' l='347' c='_ZNSt13basic_filebuf4openERKTL0__St13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='583'/>
+<use f='include/c++/11/fstream' l='722' c='_ZNSt14basic_ifstream4openERKTL0__St13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='846'/>
+<use f='include/c++/11/fstream' l='985' c='_ZNSt14basic_ofstream4openERKTL0__St13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='1102'/>
+<use f='include/c++/11/fstream' l='1244' c='_ZNSt13basic_fstream4openERKTL0__St13_Ios_Openmode'/>

@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/allocator.h' l='124'/>
+<use f='include/c++/11/bits/allocator.h' l='160' c='_ZNSt9allocatorC1ERKSaIT_E'/>
+<use f='include/c++/11/bits/allocator.h' l='185' c='_ZNSt9allocator8allocateEm'/>
+<use f='include/c++/11/bits/allocator.h' l='199' c='_ZNSt9allocator10deallocateEPT_m'/>

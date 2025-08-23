@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='190' type='bool tString::IsAlphabetic(bool includeUnderscore = true) const'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='797' ll='807' type='bool tString::IsAlphabetic(bool includeUnderscore = true) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='189'>// All non-null characters must meet the criteria for these functions to return true.</doc>

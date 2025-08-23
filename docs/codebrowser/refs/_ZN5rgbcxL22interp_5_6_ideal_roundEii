@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1656' type='int rgbcx::interp_5_6_ideal_round(int c0, int c1)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1677' u='c' c='_ZN5rgbcxL8interp_5EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1691' u='c' c='_ZN5rgbcxL8interp_6EiiiiNS_15bc1_approx_modeE'/>

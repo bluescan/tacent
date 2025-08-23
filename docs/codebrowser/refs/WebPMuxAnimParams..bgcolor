@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='282' type='uint32_t'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='361' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='282'>// Background color of the canvas stored (in MSB order) as:</doc>

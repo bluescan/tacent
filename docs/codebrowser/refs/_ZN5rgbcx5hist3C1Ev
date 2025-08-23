@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1600' ll='1603' type='void rgbcx::hist3::hist3()'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1888' u='c' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2795' u='c' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>

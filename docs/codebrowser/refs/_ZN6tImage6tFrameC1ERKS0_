@@ -1,0 +1,21 @@
+<def f='Modules/Image/Inc/Image/tFrame.h' l='31' type='void tImage::tFrame::tFrame(const tImage::tFrame &amp; src)'/>
+<doc f='Modules/Image/Inc/Image/tFrame.h' l='30'>// These mem copy the pixels from src.</doc>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='145' u='c' c='_ZN6tImage10tImageAPNG3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='188' u='c' c='_ZN6tImage10tImageAPNG3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='220' u='c' c='_ZN6tImage10tImageAPNG8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='305' u='c' c='_ZN6tImage9tImageEXR3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='348' u='c' c='_ZN6tImage9tImageEXR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='381' u='c' c='_ZN6tImage9tImageEXR8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='198' u='c' c='_ZN6tImage9tImageGIF3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='245' u='c' c='_ZN6tImage9tImageGIF3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='278' u='c' c='_ZN6tImage9tImageGIF8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='182' u='c' c='_ZN6tImage9tImageICO3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='227' u='c' c='_ZN6tImage9tImageICO3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='265' u='c' c='_ZN6tImage9tImageICO8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='152' u='c' c='_ZN6tImage10tImageTIFF3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='195' u='c' c='_ZN6tImage10tImageTIFF3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='228' u='c' c='_ZN6tImage10tImageTIFF8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='239' u='c' c='_ZN6tImage10tImageWEBP3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='282' u='c' c='_ZN6tImage10tImageWEBP3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='315' u='c' c='_ZN6tImage10tImageWEBP8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='375' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>

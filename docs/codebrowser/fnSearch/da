@@ -1,0 +1,19 @@
+_ZNSt5array4dataEv|std::array::data
+_ZSt4dataRT_|std::data
+_ZNSt6vector4dataEv|std::vector::data
+_ZNKSt7__cxx1112basic_string4dataEv|std::basic_string::data
+_ZNKSt17basic_string_view4dataEv|std::basic_string_view::data
+_ZNSt6chrono3dayC1Ev|std::chrono::day::day
+_ZNKSt6chrono3day2okEv|std::chrono::day::ok
+_ZNKSt6chrono3daycvjEv|std::chrono::day::operator unsigned int
+_ZNSt6chrono3dayppEv|std::chrono::day::operator++
+_ZNSt6chrono3daypLERKNS_8durationIlSt5ratioILl86400ELl1EEEE|std::chrono::day::operator+=
+_ZNSt6chrono3daymmEv|std::chrono::day::operator--
+_ZNSt6chrono3daymIERKNS_8durationIlSt5ratioILl86400ELl1EEEE|std::chrono::day::operator-=
+_ZNKSt6chrono9month_day3dayEv|std::chrono::month_day::day
+_ZNKSt6chrono14year_month_day3dayEv|std::chrono::year_month_day::day
+_ZNKSt6chrono19year_month_day_last3dayEv|std::chrono::year_month_day_last::day
+_ZNSt6ranges8danglingC1Ev|std::ranges::dangling::dangling
+_ZNK6tChunk4DataEv|tChunk::Data
+_ZNSt6ranges14view_interface4dataEv|std::ranges::view_interface::data
+_ZNKSt7__cxx118time_get10date_orderEv|std::time_get::date_order

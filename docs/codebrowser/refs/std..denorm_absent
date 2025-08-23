@@ -1,0 +1,24 @@
+<dec f='include/c++/11/limits' l='187' type='0'/>
+<use f='include/c++/11/limits' l='266'/>
+<use f='include/c++/11/limits' l='423'/>
+<use f='include/c++/11/limits' l='493'/>
+<use f='include/c++/11/limits' l='561'/>
+<use f='include/c++/11/limits' l='632'/>
+<use f='include/c++/11/limits' l='704'/>
+<use f='include/c++/11/limits' l='768'/>
+<use f='include/c++/11/limits' l='832'/>
+<use f='include/c++/11/limits' l='893'/>
+<use f='include/c++/11/limits' l='960'/>
+<use f='include/c++/11/limits' l='1029'/>
+<use f='include/c++/11/limits' l='1100'/>
+<use f='include/c++/11/limits' l='1169'/>
+<use f='include/c++/11/limits' l='1239'/>
+<use f='include/c++/11/limits' l='1308'/>
+<use f='include/c++/11/limits' l='1381'/>
+<use f='include/c++/11/limits' l='1451'/>
+<use f='include/c++/11/limits' l='1519'/>
+<use f='include/c++/11/limits' l='1587'/>
+<use f='include/c++/11/limits' l='1709'/>
+<use f='include/c++/11/limits' l='1784'/>
+<use f='include/c++/11/limits' l='1859'/>
+<doc f='include/c++/11/limits' l='186'>/// The type does not allow denormalized values.</doc>

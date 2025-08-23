@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='147' ll='150' type='bool std::atomic&lt;bool&gt;::compare_exchange_strong(bool &amp; __i1, bool __i2, std::memory_order __m1, std::memory_order __m2)'/>

@@ -1,0 +1,8 @@
+<dec f='include/stdlib.h' l='555' type='void free(void * __ptr)'/>
+<doc f='include/stdlib.h' l='554'>/* Free a block allocated by `malloc&apos;, `realloc&apos; or `calloc&apos;.  */</doc>
+<use f='Modules/Foundation/Src/tMemory.cpp' l='49' u='c' c='_ZN4tMem5tFreeEPv'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='87' u='c' c='_ZN6tImage9tImageHDR18CleanupGammaTablesEv'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='89' u='c' c='_ZN6tImage9tImageHDR18CleanupGammaTablesEv'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='91' u='c' c='_ZN6tImage9tImageHDR18CleanupGammaTablesEv'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='73' u='c' c='_ZN6tImage9tImageQOI4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='248' u='c' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>

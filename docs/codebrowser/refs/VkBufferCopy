@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3902' ll='3906'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3902'/>
+<size>24</size>
+<mbr r='VkBufferCopy::srcOffset' o='0' t='VkDeviceSize'/>
+<mbr r='VkBufferCopy::dstOffset' o='64' t='VkDeviceSize'/>
+<mbr r='VkBufferCopy::size' o='128' t='VkDeviceSize'/>

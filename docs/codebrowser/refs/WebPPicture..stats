@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='336' type='WebPAuxStats *'/>
+<offset>1024</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='329'>// ((width + 15) / 16) * ((height + 15) / 16) that
+                          // will be filled with a macroblock map, depending
+                          // on extra_info_type.
+
+  //   STATS AND REPORTS
+  ///////////////////////////
+  // Pointer to side statistics (updated only if not NULL)</doc>

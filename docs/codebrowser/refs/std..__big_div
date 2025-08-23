@@ -1,0 +1,18 @@
+<def f='include/c++/11/ratio' l='211' ll='247'/>
+<use f='include/c++/11/ratio' l='465'/>
+<use f='include/c++/11/ratio' l='467'/>
+<use f='include/c++/11/ratio' l='494'/>
+<use f='include/c++/11/ratio' l='496'/>
+<smbr r='std::__big_div::__shift' t='const int'/>
+<smbr r='std::__big_div::__coshift_' t='const int'/>
+<smbr r='std::__big_div::__coshift' t='const int'/>
+<smbr r='std::__big_div::__c1' t='const uintmax_t'/>
+<smbr r='std::__big_div::__c2' t='const uintmax_t'/>
+<smbr r='std::__big_div::__new_d' t='const uintmax_t'/>
+<smbr r='std::__big_div::__new_n0' t='const uintmax_t'/>
+<smbr r='std::__big_div::__n1_shifted' t='const uintmax_t'/>
+<smbr r='std::__big_div::__n0_top' t='const uintmax_t'/>
+<smbr r='std::__big_div::__new_n1' t='const uintmax_t'/>
+<smbr r='std::__big_div::__quot_hi' t='const uintmax_t'/>
+<smbr r='std::__big_div::__quot_lo' t='const uintmax_t'/>
+<smbr r='std::__big_div::__rem' t='const uintmax_t'/>

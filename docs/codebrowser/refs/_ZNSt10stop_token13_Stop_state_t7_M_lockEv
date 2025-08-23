@@ -1,0 +1,4 @@
+<def f='include/c++/11/stop_token' l='204' ll='212' type='void std::stop_token::_Stop_state_t::_M_lock()'/>
+<use f='include/c++/11/stop_token' l='270' u='c' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<use f='include/c++/11/stop_token' l='313' u='c' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<doc f='include/c++/11/stop_token' l='203'>// Obtain lock.</doc>

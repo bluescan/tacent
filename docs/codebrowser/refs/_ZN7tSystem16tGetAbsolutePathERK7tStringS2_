@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='134' type='tString tSystem::tGetAbsolutePath(const tString &amp; path, const tString &amp; basePath = tString())'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='131'>// Converts the path into a simplified absolute path. It will work whether the path was originally absolute or
+// relative. If you do not supply a basePath dir, the current working dir will be used. The basePath is only used if
+// the supplied path was relative.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='281' ll='294' type='tString tSystem::tGetAbsolutePath(const tString &amp; path, const tString &amp; basePath = tString())'/>

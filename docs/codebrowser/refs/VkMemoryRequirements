@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3314' ll='3318'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3314'/>
+<size>24</size>
+<mbr r='VkMemoryRequirements::size' o='0' t='VkDeviceSize'/>
+<mbr r='VkMemoryRequirements::alignment' o='64' t='VkDeviceSize'/>
+<mbr r='VkMemoryRequirements::memoryTypeBits' o='128' t='uint32_t'/>

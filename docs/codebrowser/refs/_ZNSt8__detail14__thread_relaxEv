@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_wait.h' l='135' ll='143' type='void std::__detail::__thread_relax()'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='166' u='c' c='_ZNSt8__detail13__atomic_spinERT_T0_'/>

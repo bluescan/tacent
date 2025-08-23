@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3940' ll='3944'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3940'/>
+<size>24</size>
+<mbr r='VkClearAttachment::aspectMask' o='0' t='VkImageAspectFlags'/>
+<mbr r='VkClearAttachment::colorAttachment' o='32' t='uint32_t'/>
+<mbr r='VkClearAttachment::clearValue' o='64' t='VkClearValue'/>

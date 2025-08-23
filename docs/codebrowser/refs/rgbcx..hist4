@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1549' ll='1594'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1566' c='_ZNK5rgbcx5hist4eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1806' c='_ZN5rgbcxL25compute_selector_factors4ERKNS_5hist4ERfS3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1870' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3694' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<size>4</size>
+<mbr r='rgbcx::hist4::m_hist' o='0' t='uint8_t[4]'/>
+<fun r='_ZN5rgbcx5hist4C1Ev'/>
+<fun r='_ZN5rgbcx5hist4C1Ejjjj'/>
+<fun r='_ZNK5rgbcx5hist4eqERKS0_'/>
+<fun r='_ZNK5rgbcx5hist46any_16Ev'/>
+<fun r='_ZNK5rgbcx5hist427lookup_total_ordering_indexEv'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='115' type='int TinyEXIF::EXIFInfo::parseFrom(std::istream &amp; stream)'/>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='115'>// NB: the stream must have been opened in binary mode</doc>

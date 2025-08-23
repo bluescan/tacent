@@ -1,0 +1,6 @@
+<dec f='include/unistd.h' l='371' type='ssize_t read(int __fd, void * __buf, size_t __nbytes)'/>
+<doc f='include/unistd.h' l='366'>/* Read NBYTES into BUF from FD.  Return the
+   number read, -1 for errors or 0 for EOF.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

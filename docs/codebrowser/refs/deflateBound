@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='761' type='uLong deflateBound(z_streamp strm, uLong sourceLen)'/>

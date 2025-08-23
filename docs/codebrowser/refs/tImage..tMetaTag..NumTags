@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='141' type='50'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='212'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='262' u='r' c='_ZN6tImage9tMetaData5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='270' u='r' c='_ZN6tImage9tMetaData3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='285' u='r' c='_ZNK6tImage9tMetaDataeqERKS0_'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='85' u='r'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='192' u='r'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='876' u='r' c='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>

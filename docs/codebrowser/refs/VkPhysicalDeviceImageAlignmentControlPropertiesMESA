@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18661' ll='18665'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18661'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceImageAlignmentControlPropertiesMESA::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceImageAlignmentControlPropertiesMESA::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceImageAlignmentControlPropertiesMESA::supportedImageAlignmentMask' o='128' t='uint32_t'/>

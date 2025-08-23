@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='415' ll='417' type='long double std::comp_ellint_2l(long double __k)'/>
+<doc f='include/c++/11/bits/specfun.h' l='409'>/**
+   * Return the complete elliptic integral of the second kind @f$ E(k) @f$
+   * for long double modulus @c k.
+   *
+   * @see comp_ellint_2 for details.
+   */</doc>

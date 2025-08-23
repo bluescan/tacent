@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='426' type='int pthread_setattr_default_np(const pthread_attr_t * __attr)'/>
+<doc f='include/pthread.h' l='424'>/* Set the default attributes to be used by pthread_create in this
+   process.  */</doc>

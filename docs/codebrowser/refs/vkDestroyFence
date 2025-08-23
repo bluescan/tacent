@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='4313' type='void vkDestroyFence(VkDevice device, VkFence fence, const VkAllocationCallbacks * pAllocator)'/>

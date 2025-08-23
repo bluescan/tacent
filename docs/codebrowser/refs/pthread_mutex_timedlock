@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='800' type='int pthread_mutex_timedlock(pthread_mutex_t *__restrict __mutex, const struct timespec *__restrict __abstime)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='769' u='c' c='__gthread_mutex_timedlock'/>

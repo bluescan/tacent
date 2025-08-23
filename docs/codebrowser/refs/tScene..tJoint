@@ -1,0 +1,15 @@
+<inh f='Modules/Scene/Inc/Scene/tObject.h' l='24' c='tScene::tObject'/>
+<def f='Modules/Scene/Inc/Scene/tSkeleton.h' l='21' ll='43'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='76' c='_ZN6tScene9tSkeleton8GetJointEj'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='77' c='_ZN6tScene9tSkeleton12GetRootJointEv'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='86'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='118' c='_ZN6tScene9tSkeleton8GetJointEj'/>
+<size>176</size>
+<fun r='_ZN6tScene6tJointD1Ev'/>
+<fun r='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<fun r='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='234' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<size>176</size>
+<fun r='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<fun r='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<fun r='_ZN6tScene6tJoint10AddChildIDEj'/>

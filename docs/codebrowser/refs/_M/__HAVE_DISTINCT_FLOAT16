@@ -1,0 +1,15 @@
+<dec f='include/x86_64-linux-gnu/bits/floatn-common.h' l='52'/>
+<use f='include/math.h' l='424' u='c'/>
+<use f='include/math.h' l='857' u='c'/>
+<doc f='include/x86_64-linux-gnu/bits/floatn-common.h' l='40'>/* Defined to 1 if the corresponding __HAVE_&lt;type&gt; macro is 1 and the
+   type is the first with its format in the sequence of (the default
+   choices for) float, double, long double, _Float16, _Float32,
+   _Float64, _Float128, _Float32x, _Float64x, _Float128x for this
+   glibc; that is, if functions present once per floating-point format
+   rather than once per type are present for this type.
+
+   All configurations supported by glibc have _Float32 the same format
+   as float, _Float64 and _Float32x the same format as double, the
+   _Float64x the same format as either long double or _Float128.  No
+   configurations support _Float128x or, as of GCC 7, have compiler
+   support for a type meeting the requirements for _Float128x.  */</doc>

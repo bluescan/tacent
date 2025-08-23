@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='318' type='void tChunkReader::tChunkReader()'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='317'>// If you want to load in the file at a later time. You must load it before calling any other function.</doc>

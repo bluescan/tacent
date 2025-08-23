@@ -1,0 +1,31 @@
+<use f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='177'/>
+<def f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='197' ll='231'/>
+<size>144</size>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='194'>/*
+ * RGBA-reader state.
+ */</doc>
+<mbr r='_TIFFRGBAImage::tif' o='0' t='TIFF *'/>
+<mbr r='_TIFFRGBAImage::stoponerr' o='64' t='int'/>
+<mbr r='_TIFFRGBAImage::isContig' o='96' t='int'/>
+<mbr r='_TIFFRGBAImage::alpha' o='128' t='int'/>
+<mbr r='_TIFFRGBAImage::width' o='160' t='uint32'/>
+<mbr r='_TIFFRGBAImage::height' o='192' t='uint32'/>
+<mbr r='_TIFFRGBAImage::bitspersample' o='224' t='uint16'/>
+<mbr r='_TIFFRGBAImage::samplesperpixel' o='240' t='uint16'/>
+<mbr r='_TIFFRGBAImage::orientation' o='256' t='uint16'/>
+<mbr r='_TIFFRGBAImage::req_orientation' o='272' t='uint16'/>
+<mbr r='_TIFFRGBAImage::photometric' o='288' t='uint16'/>
+<mbr r='_TIFFRGBAImage::redcmap' o='320' t='uint16 *'/>
+<mbr r='_TIFFRGBAImage::greencmap' o='384' t='uint16 *'/>
+<mbr r='_TIFFRGBAImage::bluecmap' o='448' t='uint16 *'/>
+<mbr r='_TIFFRGBAImage::get' o='512' t='int (*)(TIFFRGBAImage *, uint32 *, uint32, uint32)'/>
+<mbr r='_TIFFRGBAImage::put' o='576' t='union (unnamed union at /mnt/c/GitHub/tacent/Modules/Image/Contrib/LibTIFF/include/tiffio.h:215:2)'/>
+<mbr r='_TIFFRGBAImage::Map' o='640' t='TIFFRGBValue *'/>
+<mbr r='_TIFFRGBAImage::BWmap' o='704' t='uint32 **'/>
+<mbr r='_TIFFRGBAImage::PALmap' o='768' t='uint32 **'/>
+<mbr r='_TIFFRGBAImage::ycbcr' o='832' t='TIFFYCbCrToRGB *'/>
+<mbr r='_TIFFRGBAImage::cielab' o='896' t='TIFFCIELabToRGB *'/>
+<mbr r='_TIFFRGBAImage::UaToAa' o='960' t='uint8 *'/>
+<mbr r='_TIFFRGBAImage::Bitdepth16To8' o='1024' t='uint8 *'/>
+<mbr r='_TIFFRGBAImage::row_offset' o='1088' t='int'/>
+<mbr r='_TIFFRGBAImage::col_offset' o='1120' t='int'/>

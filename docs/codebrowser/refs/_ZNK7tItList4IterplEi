@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='288' type='const tItList::Iter tItList::Iter::operator+(int offset) const'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='331' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='440' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='462' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>

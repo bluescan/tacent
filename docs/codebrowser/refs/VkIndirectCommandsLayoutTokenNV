@@ -1,0 +1,18 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14928' ll='14944'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14928'/>
+<size>88</size>
+<mbr r='VkIndirectCommandsLayoutTokenNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::pNext' o='64' t='const void *'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::tokenType' o='128' t='VkIndirectCommandsTokenTypeNV'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::stream' o='160' t='uint32_t'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::offset' o='192' t='uint32_t'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::vertexBindingUnit' o='224' t='uint32_t'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::vertexDynamicStride' o='256' t='VkBool32'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::pushconstantPipelineLayout' o='320' t='VkPipelineLayout'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::pushconstantShaderStageFlags' o='384' t='VkShaderStageFlags'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::pushconstantOffset' o='416' t='uint32_t'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::pushconstantSize' o='448' t='uint32_t'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::indirectStateFlags' o='480' t='VkIndirectStateFlagsNV'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::indexTypeCount' o='512' t='uint32_t'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::pIndexTypes' o='576' t='const VkIndexType *'/>
+<mbr r='VkIndirectCommandsLayoutTokenNV::pIndexTypeValues' o='640' t='const uint32_t *'/>

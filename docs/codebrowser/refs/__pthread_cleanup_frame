@@ -1,0 +1,7 @@
+<def f='include/pthread.h' l='557' ll='563'/>
+<size>24</size>
+<doc f='include/pthread.h' l='556'>/* Structure to hold the cleanup handler information.  */</doc>
+<mbr r='__pthread_cleanup_frame::__cancel_routine' o='0' t='void (*)(void *)'/>
+<mbr r='__pthread_cleanup_frame::__cancel_arg' o='64' t='void *'/>
+<mbr r='__pthread_cleanup_frame::__do_it' o='128' t='int'/>
+<mbr r='__pthread_cleanup_frame::__cancel_type' o='160' t='int'/>

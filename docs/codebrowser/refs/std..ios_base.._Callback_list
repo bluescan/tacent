@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/ios_base.h' l='553' ll='581'/>
+<use f='include/c++/11/bits/ios_base.h' l='556'/>
+<use f='include/c++/11/bits/ios_base.h' l='562' c='_ZNSt8ios_base14_Callback_listC1EPFvNS_5eventERS_iEiPS0_'/>
+<use f='include/c++/11/bits/ios_base.h' l='583'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='77' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>
+<size>24</size>
+<doc f='include/c++/11/bits/ios_base.h' l='551'>// 27.4.2.6  Members for callbacks
+    // 27.4.2.6  ios_base callbacks</doc>
+<mbr r='std::ios_base::_Callback_list::_M_next' o='0' t='std::ios_base::_Callback_list *'/>
+<mbr r='std::ios_base::_Callback_list::_M_fn' o='64' t='ios_base::event_callback'/>
+<mbr r='std::ios_base::_Callback_list::_M_index' o='128' t='int'/>
+<mbr r='std::ios_base::_Callback_list::_M_refcount' o='160' t='_Atomic_word'/>
+<fun r='_ZNSt8ios_base14_Callback_listC1EPFvNS_5eventERS_iEiPS0_'/>
+<fun r='_ZNSt8ios_base14_Callback_list16_M_add_referenceEv'/>
+<fun r='_ZNSt8ios_base14_Callback_list19_M_remove_referenceEv'/>

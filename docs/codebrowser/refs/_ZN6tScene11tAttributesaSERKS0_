@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='39' u='c' c='_ZN6tScene7tObjectaSERKS0_'/>
+<def f='Modules/Scene/Src/tAttribute.cpp' l='174' ll='184' type='tScene::tAttributes &amp; tScene::tAttributes::operator=(const tScene::tAttributes &amp; attribs)'/>

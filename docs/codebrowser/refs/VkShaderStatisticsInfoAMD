@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11690' ll='11698'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11690'/>
+<size>72</size>
+<mbr r='VkShaderStatisticsInfoAMD::shaderStageMask' o='0' t='VkShaderStageFlags'/>
+<mbr r='VkShaderStatisticsInfoAMD::resourceUsage' o='64' t='VkShaderResourceUsageAMD'/>
+<mbr r='VkShaderStatisticsInfoAMD::numPhysicalVgprs' o='320' t='uint32_t'/>
+<mbr r='VkShaderStatisticsInfoAMD::numPhysicalSgprs' o='352' t='uint32_t'/>
+<mbr r='VkShaderStatisticsInfoAMD::numAvailableVgprs' o='384' t='uint32_t'/>
+<mbr r='VkShaderStatisticsInfoAMD::numAvailableSgprs' o='416' t='uint32_t'/>
+<mbr r='VkShaderStatisticsInfoAMD::computeWorkGroupSize' o='448' t='uint32_t[3]'/>

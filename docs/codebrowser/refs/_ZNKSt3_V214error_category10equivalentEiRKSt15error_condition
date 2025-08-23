@@ -1,0 +1,2 @@
+<dec f='include/c++/11/system_error' l='138' type='bool std::error_category::equivalent(int __i, const std::error_condition &amp; __cond) const'/>
+<use f='include/c++/11/system_error' l='370' u='c' c='_ZSteqRKSt10error_codeRKSt15error_condition'/>

@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='498' type='int fchown(int __fd, __uid_t __owner, __gid_t __group)'/>
+<doc f='include/unistd.h' l='497'>/* Change the owner and group of the file that FD is open on.  */</doc>

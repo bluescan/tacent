@@ -1,0 +1,18 @@
+<inh f='include/c++/11/stdexcept' l='113' c='std::logic_error'/>
+<def f='include/c++/11/stdexcept' l='184' ll='196'/>
+<use f='include/c++/11/stdexcept' l='190' c='_ZNSt12length_errorC1ERKS_'/>
+<use f='include/c++/11/stdexcept' l='191' c='_ZNSt12length_erroraSERKS_'/>
+<use f='include/c++/11/stdexcept' l='191' c='_ZNSt12length_erroraSERKS_'/>
+<use f='include/c++/11/stdexcept' l='192' c='_ZNSt12length_errorC1EOS_'/>
+<use f='include/c++/11/stdexcept' l='193' c='_ZNSt12length_erroraSEOS_'/>
+<use f='include/c++/11/stdexcept' l='193' c='_ZNSt12length_erroraSEOS_'/>
+<size>16</size>
+<doc f='include/c++/11/stdexcept' l='182'>/** Thrown when an object is constructed that would exceed its maximum
+   *  permitted size (e.g., a basic_string instance).  */</doc>
+<fun r='_ZNSt12length_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt12length_errorC1EPKc'/>
+<fun r='_ZNSt12length_errorC1ERKS_'/>
+<fun r='_ZNSt12length_erroraSERKS_'/>
+<fun r='_ZNSt12length_errorC1EOS_'/>
+<fun r='_ZNSt12length_erroraSEOS_'/>
+<fun r='_ZNSt12length_errorD1Ev'/>

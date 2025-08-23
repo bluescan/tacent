@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='208' type='WebPMuxAnimDispose'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='413' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>256</offset>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='207'>// or WEBP_CHUNK_IMAGE</doc>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='208'>// Disposal method for the frame.</doc>

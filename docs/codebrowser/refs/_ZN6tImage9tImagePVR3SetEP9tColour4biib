@@ -1,0 +1,8 @@
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='96' u='c' c='_ZN6tImage9tImagePVRC1EP9tColour4biib'/>
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='156' type='bool tImage::tImagePVR::Set(tPixel4b * pixels, int width, int height, bool steal = false)'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='154'>// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='61' c='_ZN6tImage10tBaseImage3SetEP9tColour4biib'/>
+<def f='Modules/Image/Src/tImagePVR.cpp' l='656' ll='686' type='bool tImage::tImagePVR::Set(tPixel4b * pixels, int width, int height, bool steal = false)'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='701' u='c' c='_ZN6tImage9tImagePVR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='725' u='c' c='_ZN6tImage9tImagePVR3SetERNS_8tPictureEb'/>

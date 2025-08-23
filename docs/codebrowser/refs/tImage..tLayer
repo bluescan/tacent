@@ -1,0 +1,157 @@
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='119' c='_ZNK6tImage10tBaseImage9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='120' c='_ZNK6tImage10tBaseImage16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<inh f='Modules/Foundation/Inc/Foundation/tList.h' l='37' c='tLink'/>
+<def f='Modules/Image/Inc/Image/tLayer.h' l='33' ll='95'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='33'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='48' c='_ZN6tImage6tLayerC1ERKS0_'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='54' c='_ZN6tImage6tLayer3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='78' c='_ZNK6tImage6tLayereqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='79' c='_ZNK6tImage6tLayerneERKS0_'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='126' c='_ZN6tImage6tLayer3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='104' c='_ZN6tImage10tImageASTC10StealLayerEv'/>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='104' c='_ZN6tImage10tImageASTC10StealLayerEv'/>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='105' c='_ZNK6tImage10tImageASTC8GetLayerEv'/>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='111'/>
+<size>56</size>
+<fun r='_ZN6tImage6tLayerC1Ev'/>
+<fun r='_ZN6tImage6tLayerC1ERK6tChunkb'/>
+<fun r='_ZN6tImage6tLayerC1ENS_12tPixelFormatEiiPhb'/>
+<fun r='_ZN6tImage6tLayerC1ERKS0_'/>
+<fun r='_ZN6tImage6tLayerD1Ev'/>
+<fun r='_ZNK6tImage6tLayer7IsValidEv'/>
+<fun r='_ZN6tImage6tLayer3SetENS_12tPixelFormatEiiPhb'/>
+<fun r='_ZN6tImage6tLayer3SetERKS0_'/>
+<fun r='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<fun r='_ZNK6tImage6tLayer4SaveER12tChunkWriter'/>
+<fun r='_ZN6tImage6tLayer4LoadERK6tChunkb'/>
+<fun r='_ZN6tImage6tLayer5ClearEv'/>
+<fun r='_ZNK6tImage6tLayer14IsOpaqueFormatEv'/>
+<fun r='_ZN6tImage6tLayer9StealDataEv'/>
+<fun r='_ZNK6tImage6tLayereqERKS0_'/>
+<fun r='_ZNK6tImage6tLayerneERKS0_'/>
+<fun r='_ZNK6tImage6tLayer8GetIndexEii'/>
+<fun r='_ZNK6tImage6tLayer8GetPixelEii'/>
+<mbr r='tImage::tLayer::PixelFormat' o='192' t='tImage::tPixelFormat'/>
+<mbr r='tImage::tLayer::Width' o='224' t='int'/>
+<mbr r='tImage::tLayer::Height' o='256' t='int'/>
+<mbr r='tImage::tLayer::Data' o='320' t='uint8 *'/>
+<mbr r='tImage::tLayer::OwnsData' o='384' t='bool'/>
+<smbr r='tImage::tLayer::MaxLayerDimension' t='const int'/>
+<smbr r='tImage::tLayer::MinLayerDimension' t='const int'/>
+<fun r='_ZN6tImage6tLayer3SetENS_12tPixelFormatEiiPhb'/>
+<fun r='_ZN6tImage6tLayer3SetERKS0_'/>
+<fun r='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='199' c='_ZN6tImage9tImageDDS11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='204' c='_ZNK6tImage9tImageDDS9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='211' c='_ZN6tImage9tImageDDS18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='215' c='_ZNK6tImage9tImageDDS16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='218' c='_ZNK6tImage9tImageDDS8GetLayerEii'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='249'/>
+<size>56</size>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='192' c='_ZN6tImage9tImageKTX11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='197' c='_ZNK6tImage9tImageKTX9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='204' c='_ZN6tImage9tImageKTX18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='208' c='_ZNK6tImage9tImageKTX16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='211' c='_ZNK6tImage9tImageKTX8GetLayerEii'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='238'/>
+<size>56</size>
+<use f='Modules/Image/Inc/Image/tImagePKM.h' l='102' c='_ZN6tImage9tImagePKM10StealLayerEv'/>
+<use f='Modules/Image/Inc/Image/tImagePKM.h' l='102' c='_ZN6tImage9tImagePKM10StealLayerEv'/>
+<use f='Modules/Image/Inc/Image/tImagePKM.h' l='103' c='_ZNK6tImage9tImagePKM8GetLayerEv'/>
+<use f='Modules/Image/Inc/Image/tImagePKM.h' l='109'/>
+<size>56</size>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='203' c='_ZN6tImage9tImagePVR11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='208' c='_ZNK6tImage9tImagePVR9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='215' c='_ZN6tImage9tImagePVR18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='219' c='_ZNK6tImage9tImagePVR16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='222' c='_ZNK6tImage9tImagePVR8GetLayerEii'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='232' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='283'/>
+<size>56</size>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='328' c='_ZN6tImage8tPicture14GenerateLayersER5tListINS_6tLayerEENS_15tResampleFilterENS_17tResampleEdgeModeEb'/>
+<size>56</size>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='47' c='_ZN6tImage8tTextureC1ER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='86' c='_ZN6tImage8tTexture3SetER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='105' c='_ZNK6tImage8tTexture13GetFirstLayerEv'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='106' c='_ZNK6tImage8tTexture12GetMainLayerEv'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='107' c='_ZN6tImage8tTexture11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='108' c='_ZN6tImage8tTexture9GetLayersEv'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='137'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='149' c='_ZNK6tImage8tTexture21GetTotalPixelDataSizeEv'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='194' c='_ZN6tImage8tTexture13RemoveMipmapsEv'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='200' c='_ZN6tImage8tTexture11StealLayersER5tListINS_6tLayerEE'/>
+<size>56</size>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='138' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='192' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='219' c='_ZN6tImage10tImageASTC3SetEP9tColour4biib'/>
+<size>56</size>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='909' c='_ZN6tImage9tImageDDS3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1004' c='_ZN6tImage9tImageDDS11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1020' c='_ZNK6tImage9tImageDDS9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1032' c='_ZN6tImage9tImageDDS18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1044' c='_ZN6tImage9tImageDDS18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1058' c='_ZNK6tImage9tImageDDS16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1070' c='_ZNK6tImage9tImageDDS16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1361' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1367' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1430' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<size>56</size>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='571' c='_ZN6tImage9tImageKTX3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='663' c='_ZN6tImage9tImageKTX11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='679' c='_ZNK6tImage9tImageKTX9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='691' c='_ZN6tImage9tImageKTX18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='703' c='_ZN6tImage9tImageKTX18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='717' c='_ZNK6tImage9tImageKTX16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='729' c='_ZNK6tImage9tImageKTX16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='944' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='949' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1012' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<size>56</size>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='199' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='278' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='307' c='_ZN6tImage9tImagePKM3SetEP9tColour4biib'/>
+<size>56</size>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='239' c='_ZN6tImage4tPVR4FlipEPNS_6tLayerEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='604' c='_ZN6tImage4tPVR4FlipEPNS_6tLayerEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='679' c='_ZN6tImage9tImagePVR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='682' c='_ZN6tImage9tImagePVR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='918' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='969' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1005' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1034' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1067' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1069' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1069' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1287' c='_ZN6tImage9tImagePVR8GetFrameEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1312' c='_ZN6tImage9tImagePVR11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1328' c='_ZNK6tImage9tImagePVR9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1340' c='_ZN6tImage9tImagePVR18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1352' c='_ZN6tImage9tImagePVR18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1356' c='_ZN6tImage9tImagePVR18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1368' c='_ZNK6tImage9tImagePVR16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1380' c='_ZNK6tImage9tImagePVR16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1384' c='_ZNK6tImage9tImagePVR16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<size>56</size>
+<use f='Modules/Image/Src/tLayer.cpp' l='29' c='_ZNK6tImage6tLayereqERKS0_'/>
+<size>56</size>
+<fun r='_ZNK6tImage6tLayereqERKS0_'/>
+<fun r='_ZNK6tImage6tLayer4SaveER12tChunkWriter'/>
+<fun r='_ZN6tImage6tLayer4LoadERK6tChunkb'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='978' c='_ZN6tImage8tPicture14GenerateLayersER5tListINS_6tLayerEENS_15tResampleFilterENS_17tResampleEdgeModeEb'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='986' c='_ZN6tImage8tPicture14GenerateLayersER5tListINS_6tLayerEENS_15tResampleFilterENS_17tResampleEdgeModeEb'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='1012' c='_ZN6tImage8tPicture14GenerateLayersER5tListINS_6tLayerEENS_15tResampleFilterENS_17tResampleEdgeModeEb'/>
+<size>56</size>
+<use f='Modules/Image/Src/tTexture.cpp' l='35' c='_ZN6tImage8tTexture3SetER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='76' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='87' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='212' c='_ZN6tImage8tTexture33ProcessImageTo_R8G8B8_Or_R8G8B8A8ERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='212' c='_ZN6tImage8tTexture33ProcessImageTo_R8G8B8_Or_R8G8B8A8ERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='263' c='_ZN6tImage8tTexture23ProcessImageTo_G3B5R5G3ERNS_8tPictureEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='263' c='_ZN6tImage8tTexture23ProcessImageTo_G3B5R5G3ERNS_8tPictureEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='338' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='338' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='400' c='_ZNK6tImage8tTexture4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='429' c='_ZN6tImage8tTexture4LoadERK6tChunk'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='448' c='_ZNK6tImage8tTextureeqERKS0_'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='449' c='_ZNK6tImage8tTextureeqERKS0_'/>
+<size>56</size>

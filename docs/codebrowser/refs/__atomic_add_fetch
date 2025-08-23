@@ -1,0 +1,9 @@
+<use f='include/c++/11/bits/atomic_base.h' l='385' u='c' c='_ZNSt13__atomic_baseppEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='389' u='c' c='_ZNVSt13__atomic_baseppEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='401' u='c' c='_ZNSt13__atomic_basepLET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='405' u='c' c='_ZNVSt13__atomic_basepLET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='731' u='c' c='_ZNSt13__atomic_baseIPT_EppEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='736' u='c' c='_ZNVSt13__atomic_baseIPT_EppEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='751' u='c' c='_ZNSt13__atomic_baseIPT_EpLEl'/>
+<use f='include/c++/11/bits/atomic_base.h' l='756' u='c' c='_ZNVSt13__atomic_baseIPT_EpLEl'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1043' u='c' c='_ZNSt13__atomic_impl11__add_fetchEPT_NSt11conditionalIX12is_pointer_vIS0_EElNSt15remove_volatileIS0_E4typeEE4typeE'/>

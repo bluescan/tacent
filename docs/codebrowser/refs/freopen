@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='265' type='FILE * freopen(const char *__restrict __filename, const char *__restrict __modes, FILE *__restrict __stream)'/>
+<doc f='include/stdio.h' l='261'>/* Open a file, replacing an existing stream with it.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

@@ -1,0 +1,13 @@
+<def f='include/c++/11/streambuf' l='580' ll='582' type='void std::basic_streambuf::imbue(const std::locale &amp; __loc)'/>
+<doc f='include/c++/11/streambuf' l='568'>/**
+       *  @brief  Changes translations.
+       *  @param  __loc  A new locale.
+       *
+       *  Translations done during I/O which depend on the current
+       *  locale are changed by this call.  The standard adds,
+       *  &lt;em&gt;Between invocations of this function a class derived
+       *  from streambuf can safely cache results of calls to locale
+       *  functions and to members of facets so obtained.&lt;/em&gt;
+       *
+       *  @note  Base class version does nothing.
+      */</doc>

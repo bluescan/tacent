@@ -1,0 +1,1 @@
+<def f='Modules/Math/Src/tSpline.cpp' l='430' ll='457' type='void tMath::tBezierPath::GetTangent(tMath::tVector3 &amp; v, float t) const'/>

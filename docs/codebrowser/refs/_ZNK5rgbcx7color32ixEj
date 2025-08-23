@@ -1,0 +1,17 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1470' type='uint8_t rgbcx::color32::operator[](uint32_t idx) const'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1477' u='c' c='_ZN5rgbcx7color328comp_minERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1477' u='c' c='_ZN5rgbcx7color328comp_minERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1477' u='c' c='_ZN5rgbcx7color328comp_minERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1477' u='c' c='_ZN5rgbcx7color328comp_minERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1477' u='c' c='_ZN5rgbcx7color328comp_minERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1477' u='c' c='_ZN5rgbcx7color328comp_minERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1477' u='c' c='_ZN5rgbcx7color328comp_minERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1477' u='c' c='_ZN5rgbcx7color328comp_minERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1478' u='c' c='_ZN5rgbcx7color328comp_maxERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1478' u='c' c='_ZN5rgbcx7color328comp_maxERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1478' u='c' c='_ZN5rgbcx7color328comp_maxERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1478' u='c' c='_ZN5rgbcx7color328comp_maxERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1478' u='c' c='_ZN5rgbcx7color328comp_maxERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1478' u='c' c='_ZN5rgbcx7color328comp_maxERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1478' u='c' c='_ZN5rgbcx7color328comp_maxERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1478' u='c' c='_ZN5rgbcx7color328comp_maxERKS0_S2_'/>

@@ -1,0 +1,20 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5924' ll='5942'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5924'/>
+<size>112</size>
+<mbr r='VkPhysicalDeviceVulkan11Properties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::deviceUUID' o='128' t='uint8_t[16]'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::driverUUID' o='256' t='uint8_t[16]'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::deviceLUID' o='384' t='uint8_t[8]'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::deviceNodeMask' o='448' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::deviceLUIDValid' o='480' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::subgroupSize' o='512' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::subgroupSupportedStages' o='544' t='VkShaderStageFlags'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::subgroupSupportedOperations' o='576' t='VkSubgroupFeatureFlags'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::subgroupQuadOperationsInAllStages' o='608' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::pointClippingBehavior' o='640' t='VkPointClippingBehavior'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::maxMultiviewViewCount' o='672' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::maxMultiviewInstanceIndex' o='704' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::protectedNoFault' o='736' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::maxPerSetDescriptors' o='768' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceVulkan11Properties::maxMemoryAllocationSize' o='832' t='VkDeviceSize'/>

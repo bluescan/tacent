@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='668' type='uint32 tSystem::tHashFile32(const tString &amp; filename, uint32 iv = tHash::HashIV32)'/>
+<def f='Modules/System/Src/tFile.cpp' l='3273' ll='3283' type='uint32 tSystem::tHashFile32(const tString &amp; filename, uint32 iv = tHash::HashIV32)'/>

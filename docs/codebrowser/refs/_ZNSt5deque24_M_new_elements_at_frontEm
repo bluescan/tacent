@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/stl_deque.h' l='2095' u='c' c='_ZNSt5deque28_M_reserve_elements_at_frontEm'/>
+<dec f='include/c++/11/bits/stl_deque.h' l='2110' type='void std::deque::_M_new_elements_at_front(std::deque::size_type __new_elements)'/>
+<def f='include/c++/11/bits/deque.tcc' l='879' ll='902' type='void std::deque::_M_new_elements_at_front(std::deque::size_type __new_elems)'/>

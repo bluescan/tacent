@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='30' type='void tMath::tMatrix4::tMatrix4(const tMath::tQuat &amp; q)'/>
+<doc f='Modules/Math/Inc/Math/tMatrix4.h' l='30'>/* Creates a rotation matrix from the quaternion. */</doc>

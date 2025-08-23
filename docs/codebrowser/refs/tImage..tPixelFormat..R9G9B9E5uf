@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='150' type='32'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='604' c='_ZN6tImage12tIsHDRFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='150'>// 32  bit. Unsigned 14-bit floats for RGB. Always denorm and each share the same 5-bit exponent.</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='567' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>

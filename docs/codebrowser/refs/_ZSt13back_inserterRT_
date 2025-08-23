@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='735' ll='738' macro='1' type='back_insert_iterator&lt;_Container&gt; std::back_inserter(_Container &amp; __x)'/>
+<use f='include/c++/11/bits/random.tcc' l='2674' u='c' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2839' u='c' c='_ZNSt31piecewise_constant_distribution10param_type13_M_initializeEv'/>

@@ -1,0 +1,10 @@
+_ZSt7scalblnfl|std::scalbln
+_ZSt6scalbnfi|std::scalbn
+_ZNSt11scoped_lockaSERKSt11scoped_lockIJDpT_EE|std::scoped_lock::operator=
+_ZSt10scientificRSt8ios_base|std::scientific
+_ZN6tImage8tPicture9ScaleHalfEv|tImage::tPicture::ScaleHalf
+_ZN5rgbcxL12scale_5_to_8Ei|rgbcx::scale_5_to_8
+_ZN5rgbcxL12scale_6_to_8Ei|rgbcx::scale_6_to_8
+_ZN6tScene7tCamera5ScaleEf|tScene::tCamera::Scale
+_ZN6tScene5tMesh5ScaleEf|tScene::tMesh::Scale
+_ZN6tScene6tWorld5ScaleEf|tScene::tWorld::Scale

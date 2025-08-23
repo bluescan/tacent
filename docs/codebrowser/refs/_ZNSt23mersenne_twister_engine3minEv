@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='554' ll='556' type='static std::mersenne_twister_engine::result_type std::mersenne_twister_engine::min()'/>
+<doc f='include/c++/11/bits/random.h' l='551'>/**
+       * @brief Gets the smallest possible value in the output range.
+       */</doc>

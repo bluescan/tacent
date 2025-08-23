@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tCmdLine.h' l='172' type='void tCmdLine::tParse(int argc, char ** argv, bool sortOptions = true)'/>
+<doc f='Modules/System/Inc/System/tCmdLine.h' l='171'>// All strings are UTF-8 for the next two functions -- including the char** one.</doc>
+<def f='Modules/System/Src/tCmdLine.cpp' l='140' ll='165' type='void tCmdLine::tParse(int argc, char ** argv, bool sortOptions = true)'/>

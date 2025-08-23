@@ -1,0 +1,2 @@
+<dec f='include/semaphore.h' l='49' type='int sem_unlink(const char * __name)'/>
+<doc f='include/semaphore.h' l='48'>/* Remove named semaphore NAME.  */</doc>

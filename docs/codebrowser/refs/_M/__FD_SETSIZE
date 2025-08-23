@@ -1,0 +1,6 @@
+<dec f='include/x86_64-linux-gnu/bits/typesizes.h' l='103'/>
+<use f='include/x86_64-linux-gnu/sys/select.h' l='64' u='c'/>
+<doc f='include/x86_64-linux-gnu/bits/typesizes.h' l='102'>/* Number of descriptors that can fit in an `fd_set&apos;.  */</doc>
+<use f='include/linux/posix_types.h' l='22' u='w'/>
+<dec f='include/linux/posix_types.h' l='23'/>
+<use f='include/linux/posix_types.h' l='26' u='c'/>

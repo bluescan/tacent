@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/fs_path.h' l='558' type='3'/>
+<use f='include/c++/11/bits/fs_path.h' l='1151' u='r' c='_ZNKSt10filesystem7__cxx114path14generic_stringERKT1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1202' u='r' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1209' u='r' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>

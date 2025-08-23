@@ -1,0 +1,19 @@
+<def f='include/c++/11/bits/predefined_ops.h' l='145' ll='159'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='163' c='__gnu_cxx::__ops::__iter_comp_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='165' c='__gnu_cxx::__ops::__iter_comp_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='180' c='__gnu_cxx::__ops::_Iter_comp_val::_Iter_comp_val{_Compare}'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='187' c='__gnu_cxx::__ops::_Iter_comp_val::_Iter_comp_val{_Compare}'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='208' c='__gnu_cxx::__ops::__iter_comp_val'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='224' c='__gnu_cxx::__ops::_Val_comp_iter::_Val_comp_iter{_Compare}'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='231' c='__gnu_cxx::__ops::_Val_comp_iter::_Val_comp_iter{_Compare}'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='252' c='__gnu_cxx::__ops::__val_comp_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='374' c='__gnu_cxx::__ops::__iter_comp_iter'/>
+<use f='include/c++/11/bits/stl_heap.h' l='107' c='_ZSt9__is_heapT_T0_T1_'/>
+<use f='include/c++/11/bits/stl_heap.h' l='330' c='_ZSt8pop_heapT_S_T0_'/>
+<use f='include/c++/11/bits/stl_heap.h' l='411' c='_ZSt9make_heapT_S_T0_'/>
+<use f='include/c++/11/bits/stl_heap.h' l='478' c='_ZSt9sort_heapT_S_T0_'/>
+<use f='include/c++/11/bits/stl_heap.h' l='535' c='_ZSt13is_heap_untilT_S_T0_'/>
+<use f='include/c++/11/bits/stl_heap.h' l='575' c='_ZSt7is_heapT_S_T0_'/>
+<mbr r='__gnu_cxx::__ops::_Iter_comp_iter::_M_comp' t='_Compare'/>
+<fun r='__gnu_cxx::__ops::_Iter_comp_iter::_Iter_comp_iter{_Compare}'/>
+<fun r='__gnu_cxx::__ops::_Iter_comp_iter::operator()'/>

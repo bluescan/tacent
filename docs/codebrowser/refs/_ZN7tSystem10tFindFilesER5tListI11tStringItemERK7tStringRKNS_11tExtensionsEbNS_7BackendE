@@ -1,0 +1,8 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='630' type='bool tSystem::tFindFiles(tList&lt;tStringItem&gt; &amp; files, const tString &amp; dir, const tSystem::tExtensions &amp; , bool hidden = true, tSystem::Backend  = Backend::Native)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='624'>// This is similar to the above function but lets you specify more than one extension at a time. This has huge
+// performance implications (esp on Linux) if you need to find more than one extension in a directory. If tExtensions
+// is empty false will be returned. The order of items in files is not defined. Returns success.
+//
+// In previous Tacent releases all filetypes were returned if extensions was empty, but that was awkward as the
+// semantics changed. It is now a separate function.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='2810' ll='2819' type='bool tSystem::tFindFiles(tList&lt;tStringItem&gt; &amp; files, const tString &amp; dir, const tSystem::tExtensions &amp; extensions, bool hidden = true, tSystem::Backend backend = Backend::Native)'/>

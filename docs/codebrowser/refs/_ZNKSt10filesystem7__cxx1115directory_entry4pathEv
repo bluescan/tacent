@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/fs_dir.h' l='160' type='const filesystem::path &amp; std::filesystem::directory_entry::path() const'/>
+<use f='include/c++/11/bits/fs_dir.h' l='325' u='c' c='_ZNSt10filesystem7__cxx11lsERSt13basic_ostreamIT_T0_ERKNS0_15directory_entryE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2476' u='c' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2613' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2885' u='c' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2987' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<doc f='include/c++/11/bits/fs_dir.h' l='159'>// observers</doc>

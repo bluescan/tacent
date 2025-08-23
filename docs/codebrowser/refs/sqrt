@@ -1,0 +1,11 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='143' type='double sqrt(double __x)'/>
+<use f='include/c++/11/bits/random.tcc' l='1270' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1273' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1277' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1280' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1486' u='c' c='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1496' u='c' c='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1497' u='c' c='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3153' u='c' c='_ZNSt29piecewise_linear_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='899' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='911' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>

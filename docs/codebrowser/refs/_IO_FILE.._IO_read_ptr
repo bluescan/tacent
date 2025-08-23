@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='54' type='char *'/>
+<offset>64</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='53'>/* The following pointers correspond to the C++ streambuf protocol. */</doc>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='54'>/* Current read pointer */</doc>

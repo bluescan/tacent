@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='288' type='bool tImage::tPicture::AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma = true, comp_t  = tCompBit_RGB)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='279'>// Adjust levels. All values are E [0, 1]. Ensure blackPoint &lt;= midPoint &lt;= whitePoint and blackOut &lt;= whiteOut.
+	// If these conditions are not met they are silently enforced starting at black (unmodified). The powerMidGamma
+	// option lets you decide between 2 algorithms to determine the curve on the gamma. If false it uses some code that
+	// tries to mimic Photoshop. See https://stackoverflow.com/questions/39510072/algorithm-for-adjustment-of-image-levels
+	// The curve for the above is C1 discontinuous at gamma 1, so I didn&apos;t like it. powerMidGamma, the default, uses
+	// a continuous base-10 power curve that smoothly goes from gamma 0.1 to gamma 10.
+	// For the power curve the gamma range is [0.1,  10.0] where 1.0 is linear. This approximates GIMP.
+	// For the photo curve the gamma range is [0.01, 9.99] where 1.0 is linear. This approximates PS.
+	// The defaults to result in no change are the same for both algorithms.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='752' ll='820' type='bool tImage::tPicture::AdjustLevels(float blackPoint, float midPoint, float whitePoint, float blackOut, float whiteOut, bool powerMidGamma = true, comp_t comps = tCompBit_RGB)'/>

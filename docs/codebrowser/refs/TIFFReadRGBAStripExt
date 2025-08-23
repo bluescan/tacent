@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='438' type='int TIFFReadRGBAStripExt(TIFF * , uint32 , uint32 * , int stop_on_error)'/>

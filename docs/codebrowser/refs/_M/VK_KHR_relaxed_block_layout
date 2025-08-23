@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9317'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9316'>// VK_KHR_relaxed_block_layout is a preprocessor guard. Do not pass it to API calls.</doc>

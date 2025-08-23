@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16542' ll='16546'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16542'/>
+<size>24</size>
+<mbr r='VkImageViewMinLodCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageViewMinLodCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkImageViewMinLodCreateInfoEXT::minLod' o='128' t='float'/>

@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1999' ll='2018'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='104' c='_ZNSt7__cxx1115messages_bynameC1EPKcm'/>
+<inh f='include/c++/11/bits/locale_facets_nonio.tcc' l='1419' c='std::messages'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1420'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1420'/>
+<inh f='include/c++/11/bits/locale_facets_nonio.tcc' l='1494' c='std::messages'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1495'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1495'/>
+<size>32</size>
+<fun r='_ZNSt7__cxx1115messages_bynameC1EPKcm'/>
+<fun r='_ZNSt7__cxx1115messages_bynameC1ERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<fun r='_ZNSt7__cxx1115messages_bynameD1Ev'/>
+<fun r='_ZNSt7__cxx1115messages_bynameC1EPKcm'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9323'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9322'>// VK_KHR_get_memory_requirements2 is a preprocessor guard. Do not pass it to API calls.</doc>

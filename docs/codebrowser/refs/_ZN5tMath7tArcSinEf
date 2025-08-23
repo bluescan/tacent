@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='186' type='float tMath::tArcSin(float x)'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='953' u='c' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>

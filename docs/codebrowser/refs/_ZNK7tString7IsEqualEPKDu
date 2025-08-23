@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='157' type='bool tString::IsEqual(const char8_t * str) const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='572' u='c' c='_ZeqRK7tStringPKDu'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='573' u='c' c='_ZneRK7tStringPKDu'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='574' u='c' c='_ZeqPKDuRK7tString'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='575' u='c' c='_ZnePKDuRK7tString'/>

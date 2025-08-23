@@ -1,0 +1,34 @@
+<def f='include/c++/11/codecvt' l='47' ll='52'/>
+<use f='include/c++/11/codecvt' l='55'/>
+<use f='include/c++/11/codecvt' l='55'/>
+<use f='include/c++/11/codecvt' l='66'/>
+<use f='include/c++/11/codecvt' l='66'/>
+<use f='include/c++/11/codecvt' l='77'/>
+<use f='include/c++/11/codecvt' l='77'/>
+<use f='include/c++/11/codecvt' l='98' c='_ZNSt19__codecvt_utf8_baseIDsEC1EmSt12codecvt_modem'/>
+<use f='include/c++/11/codecvt' l='137'/>
+<use f='include/c++/11/codecvt' l='142'/>
+<use f='include/c++/11/codecvt' l='98' c='_ZNSt20__codecvt_utf16_baseIDsEC1EmSt12codecvt_modem'/>
+<use f='include/c++/11/codecvt' l='137'/>
+<use f='include/c++/11/codecvt' l='142'/>
+<use f='include/c++/11/codecvt' l='98' c='_ZNSt25__codecvt_utf8_utf16_baseIDsEC1EmSt12codecvt_modem'/>
+<use f='include/c++/11/codecvt' l='137'/>
+<use f='include/c++/11/codecvt' l='142'/>
+<use f='include/c++/11/codecvt' l='98' c='_ZNSt19__codecvt_utf8_baseIDiEC1EmSt12codecvt_modem'/>
+<use f='include/c++/11/codecvt' l='137'/>
+<use f='include/c++/11/codecvt' l='142'/>
+<use f='include/c++/11/codecvt' l='98' c='_ZNSt20__codecvt_utf16_baseIDiEC1EmSt12codecvt_modem'/>
+<use f='include/c++/11/codecvt' l='137'/>
+<use f='include/c++/11/codecvt' l='142'/>
+<use f='include/c++/11/codecvt' l='98' c='_ZNSt25__codecvt_utf8_utf16_baseIDiEC1EmSt12codecvt_modem'/>
+<use f='include/c++/11/codecvt' l='137'/>
+<use f='include/c++/11/codecvt' l='142'/>
+<use f='include/c++/11/codecvt' l='98' c='_ZNSt19__codecvt_utf8_baseIwEC1EmSt12codecvt_modem'/>
+<use f='include/c++/11/codecvt' l='137'/>
+<use f='include/c++/11/codecvt' l='142'/>
+<use f='include/c++/11/codecvt' l='98' c='_ZNSt20__codecvt_utf16_baseIwEC1EmSt12codecvt_modem'/>
+<use f='include/c++/11/codecvt' l='137'/>
+<use f='include/c++/11/codecvt' l='142'/>
+<use f='include/c++/11/codecvt' l='98' c='_ZNSt25__codecvt_utf8_utf16_baseIwEC1EmSt12codecvt_modem'/>
+<use f='include/c++/11/codecvt' l='137'/>
+<use f='include/c++/11/codecvt' l='142'/>

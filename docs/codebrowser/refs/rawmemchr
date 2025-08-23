@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='115' type='void * rawmemchr(void * __s, int __c)'/>
+<dec f='include/string.h' l='117' type='const void * rawmemchr(const void * __s, int __c)'/>

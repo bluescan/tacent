@@ -1,0 +1,14 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='431' type='static const char * std::locale::facet::_S_get_c_name()'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='44' u='c' c='_ZNSt11__timepunctC1Em'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='50' u='c' c='_ZNSt11__timepunctC1EPSt17__timepunct_cacheIT_Em'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='59' u='c' c='_ZNSt11__timepunctC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='67' u='c' c='_ZNSt11__timepunctC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='73' u='c' c='_ZNSt11__timepunctC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='82' u='c' c='_ZNSt11__timepunctD1Ev'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='46' u='c' c='_ZNSt7__cxx118messagesC1Em'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='54' u='c' c='_ZNSt7__cxx118messagesC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='62' u='c' c='_ZNSt7__cxx118messagesC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='81' u='c' c='_ZNSt7__cxx118messagesD1Ev'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='107' u='c' c='_ZNSt7__cxx1115messages_bynameC1EPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='110' u='c' c='_ZNSt7__cxx1115messages_bynameC1EPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='118' u='c' c='_ZNSt7__cxx1115messages_bynameC1EPKcm'/>

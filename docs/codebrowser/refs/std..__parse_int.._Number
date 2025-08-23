@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/parse_numbers.h' l='215' ll='217'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='219' ll='222'/>
+<use f='include/c++/11/bits/parse_numbers.h' l='231'/>
+<use f='include/c++/11/bits/parse_numbers.h' l='236'/>
+<use f='include/c++/11/bits/parse_numbers.h' l='241'/>
+<use f='include/c++/11/bits/parse_numbers.h' l='246'/>
+<use f='include/c++/11/bits/parse_numbers.h' l='251'/>
+<use f='include/c++/11/bits/parse_numbers.h' l='256'/>

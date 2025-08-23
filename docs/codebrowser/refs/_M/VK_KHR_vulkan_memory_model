@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9643'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9642'>// VK_KHR_vulkan_memory_model is a preprocessor guard. Do not pass it to API calls.</doc>

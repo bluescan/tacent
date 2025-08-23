@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5548' ll='5552'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5548'/>
+<size>24</size>
+<mbr r='VkExportMemoryAllocateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkExportMemoryAllocateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkExportMemoryAllocateInfo::handleTypes' o='128' t='VkExternalMemoryHandleTypeFlags'/>

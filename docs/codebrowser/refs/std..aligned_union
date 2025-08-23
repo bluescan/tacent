@@ -1,0 +1,6 @@
+<def f='include/c++/11/type_traits' l='2116' ll='2129'/>
+<use f='include/c++/11/type_traits' l='2132'/>
+<use f='include/c++/11/type_traits' l='2571'/>
+<smbr r='std::aligned_union::_S_len' t='const std::size_t'/>
+<smbr r='std::aligned_union::alignment_value' t='const std::size_t'/>
+<smbr r='std::aligned_union::alignment_value' t='const std::size_t'/>

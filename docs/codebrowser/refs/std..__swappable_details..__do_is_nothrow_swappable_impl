@@ -1,0 +1,8 @@
+<def f='include/c++/11/type_traits' l='2701' ll='2710'/>
+<ovr f='include/c++/11/type_traits' l='2722' c='std::__is_nothrow_swappable_impl'/>
+<use f='include/c++/11/type_traits' l='2723'/>
+<ovr f='include/c++/11/type_traits' l='2828' c='std::__is_nothrow_swappable_with_impl'/>
+<use f='include/c++/11/type_traits' l='2829'/>
+<size>1</size>
+<fun r='_ZNSt19__swappable_details30__do_is_nothrow_swappable_impl6__testEi'/>
+<fun r='_ZNSt19__swappable_details30__do_is_nothrow_swappable_impl6__testEz'/>

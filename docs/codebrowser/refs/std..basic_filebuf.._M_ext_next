@@ -1,0 +1,26 @@
+<dec f='include/c++/11/fstream' l='195' type='const char *'/>
+<use f='include/c++/11/bits/fstream.tcc' l='75' u='w' c='_ZNSt13basic_filebuf26_M_destroy_internal_bufferEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='86' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='115' u='w' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='139' u='w' c='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='167' c='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='374' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='388' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='395' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='397' u='w' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='423' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='424' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='425' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='435' u='w' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='918' u='w' c='_ZNSt13basic_filebuf7_M_seekENT0_8off_typeESt12_Ios_SeekdirNS0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='943' c='_ZNSt13basic_filebuf14_M_get_ext_posERNT0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1058' u='w' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1060' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1062' u='r' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1064' u='r' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1066' u='w' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<doc f='include/c++/11/fstream' l='190'>/**
+       *  Pointers into the buffer held by _M_ext_buf that delimit a
+       *  subsequence of bytes that have been read but not yet converted.
+       *  When valid, _M_ext_next corresponds to egptr().
+       */</doc>

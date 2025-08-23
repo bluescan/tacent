@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='586' type='int posix_memalign(void ** __memptr, size_t __alignment, size_t __size)'/>
+<doc f='include/stdlib.h' l='585'>/* Allocate memory of SIZE bytes with an alignment of ALIGNMENT.  */</doc>

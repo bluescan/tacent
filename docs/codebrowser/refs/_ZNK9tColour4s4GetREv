@@ -1,0 +1,6 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='570' type='float tColour4s::GetR() const'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='574' u='c' c='_ZNK9tColour4s3GetEPf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='575' u='c' c='_ZNK9tColour4s3GetERN5tMath8tVector3E'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='576' u='c' c='_ZNK9tColour4s3GetERN5tMath8tVector4E'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='577' u='c' c='_ZNK9tColour4s3GetERfS0_S0_S0_'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='569'>// The floating point get methods use a range of [0.0, 1.0] for each component.</doc>

@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16192' ll='16201'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16192'/>
+<size>56</size>
+<mbr r='VkPhysicalDeviceDrmPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDrmPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDrmPropertiesEXT::hasPrimary' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDrmPropertiesEXT::hasRender' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDrmPropertiesEXT::primaryMajor' o='192' t='int64_t'/>
+<mbr r='VkPhysicalDeviceDrmPropertiesEXT::primaryMinor' o='256' t='int64_t'/>
+<mbr r='VkPhysicalDeviceDrmPropertiesEXT::renderMajor' o='320' t='int64_t'/>
+<mbr r='VkPhysicalDeviceDrmPropertiesEXT::renderMinor' o='384' t='int64_t'/>

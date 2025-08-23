@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/basic_string.h' l='408' ll='419' type='static int std::basic_string::_S_compare(std::basic_string::size_type __n1, std::basic_string::size_type __n2)'/>
+<use f='include/c++/11/bits/basic_string.h' l='2881' u='c' c='_ZNKSt7__cxx1112basic_string7compareERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.h' l='2903' u='c' c='_ZNKSt7__cxx1112basic_string7compareERKTL0__'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1413' u='c' c='_ZNKSt7__cxx1112basic_string7compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_RKN8310127'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1431' u='c' c='_ZNKSt7__cxx1112basic_string7compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_RKN5425840'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1446' u='c' c='_ZNKSt7__cxx1112basic_string7compareEPKT_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1462' u='c' c='_ZNKSt7__cxx1112basic_string7compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1478' u='c' c='_ZNKSt7__cxx1112basic_string7compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_SC_'/>

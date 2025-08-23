@@ -1,0 +1,5 @@
+<use f='Modules/Image/Inc/Image/tFrame.h' l='34' u='c' c='_ZN6tImage6tFrameD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tFrame.h' l='52' type='void tImage::tFrame::Clear()'/>
+<use f='Modules/Image/Inc/Image/tFrame.h' l='73' u='c' c='_ZN6tImage6tFrame3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tFrame.h' l='94' u='c' c='_ZN6tImage6tFrame3SetEPK9tColour4biif'/>
+<def f='Modules/Image/Inc/Image/tFrame.h' l='139' ll='147' type='void tImage::tFrame::Clear()'/>

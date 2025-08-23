@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='125' type='char tStd::tToUpper(char c)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='326' u='c' c='_ZN7tString7ToUpperEv'/>

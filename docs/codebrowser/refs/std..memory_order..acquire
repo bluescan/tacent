@@ -1,0 +1,11 @@
+<dec f='include/c++/11/bits/atomic_base.h' l='65' type='2'/>
+<use f='include/c++/11/bits/atomic_base.h' l='73'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='203' u='r' c='_ZNSt18__atomic_semaphore17_S_do_try_acquireEPi'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='209' u='r' c='_ZNSt18__atomic_semaphore17_S_do_try_acquireEPi'/>
+<use f='include/c++/11/stop_token' l='169' u='r' c='_ZNSt10stop_token13_Stop_state_t16_M_stop_possibleEv'/>
+<use f='include/c++/11/stop_token' l='175' u='r' c='_ZNSt10stop_token13_Stop_state_t17_M_stop_requestedEv'/>
+<use f='include/c++/11/stop_token' l='225' u='r' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<use f='include/c++/11/stop_token' l='281' u='r' c='_ZNSt10stop_token13_Stop_state_t20_M_register_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='358' c='_ZNSt10stop_token13_Stop_state_t11_M_try_lockERjSt12memory_order'/>
+<use f='include/c++/11/stop_token' l='360' u='r' c='_ZNSt10stop_token13_Stop_state_t11_M_try_lockERjSt12memory_order'/>
+<use f='include/c++/11/stop_token' l='373' u='r' c='_ZNSt10stop_token13_Stop_state_t20_M_try_lock_and_stopERj'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_vector.h' l='1678' type='void std::vector::_M_range_insert(std::vector::iterator __pos, _ForwardIterator __first, _ForwardIterator __last, std::forward_iterator_tag )'/>
+<def f='include/c++/11/bits/vector.tcc' l='718' ll='804' type='void std::vector::_M_range_insert(std::vector::iterator __position, _ForwardIterator __first, _ForwardIterator __last, std::forward_iterator_tag )'/>

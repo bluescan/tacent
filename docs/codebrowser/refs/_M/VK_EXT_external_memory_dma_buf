@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12366'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12365'>// VK_EXT_external_memory_dma_buf is a preprocessor guard. Do not pass it to API calls.</doc>

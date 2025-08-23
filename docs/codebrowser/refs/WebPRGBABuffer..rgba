@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='184' type='uint8_t *'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='139' u='r' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='184'>// pointer to RGBA samples</doc>

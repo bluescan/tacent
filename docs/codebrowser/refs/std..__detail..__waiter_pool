@@ -1,0 +1,6 @@
+<inh f='include/c++/11/bits/atomic_wait.h' l='188' c='std::__detail::__waiter_pool_base'/>
+<def f='include/c++/11/bits/atomic_wait.h' l='258' ll='277'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='366'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='368'/>
+<size>128</size>
+<fun r='_ZNSt8__detail13__waiter_pool10_M_do_waitEPKii'/>

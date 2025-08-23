@@ -1,0 +1,3 @@
+<use f='Modules/Image/Src/tImageTGA.cpp' l='366' c='_ZNK6tImage9tImageTGA4SaveERK7tStringNS0_7tFormatENS0_12tCompressionE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='373' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<size>8</size>

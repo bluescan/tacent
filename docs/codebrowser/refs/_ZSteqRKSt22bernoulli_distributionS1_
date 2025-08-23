@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='3671' ll='3674' type='bool std::operator==(const std::bernoulli_distribution &amp; __d1, const std::bernoulli_distribution &amp; __d2)'/>
+<use f='include/c++/11/bits/random.h' l='3694' u='c' c='_ZStneRKSt22bernoulli_distributionS1_'/>
+<doc f='include/c++/11/bits/random.h' l='3667'>/**
+     * @brief Return true if two Bernoulli distributions have
+     *        the same parameters.
+     */</doc>

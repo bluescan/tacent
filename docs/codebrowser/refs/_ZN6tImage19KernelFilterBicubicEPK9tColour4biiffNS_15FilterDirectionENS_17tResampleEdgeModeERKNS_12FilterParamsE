@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Src/tResample.cpp' l='38' type='tPixel4b tImage::KernelFilterBicubic(const tPixel4b * src, int srcW, int srcH, float x, float y, tImage::FilterDirection , tImage::tResampleEdgeMode , const tImage::FilterParams &amp; )'/>
+<use f='Modules/Image/Src/tResample.cpp' l='158' u='r' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='164' u='r' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='170' u='r' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='176' u='r' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='182' u='r' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<def f='Modules/Image/Src/tResample.cpp' l='378' ll='415' type='tPixel4b tImage::KernelFilterBicubic(const tPixel4b * src, int srcW, int srcH, float x, float y, tImage::FilterDirection dir, tImage::tResampleEdgeMode edgeMode, const tImage::FilterParams &amp; params)'/>

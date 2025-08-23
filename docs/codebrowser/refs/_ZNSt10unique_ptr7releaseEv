@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='441' ll='443' type='std::unique_ptr::pointer std::unique_ptr::release()'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='438'>// Modifiers.
+
+      /// Release ownership of any stored pointer.</doc>

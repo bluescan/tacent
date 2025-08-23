@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1412' type='uint32_t rgbcx::iabs(int32_t i)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1739' u='c' c='_ZN5rgbcxL35prepare_bc1_single_color_table_halfEPNS_15bc1_match_entryEPKhiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1743' u='c' c='_ZN5rgbcxL35prepare_bc1_single_color_table_halfEPNS_15bc1_match_entryEPKhiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1777' u='c' c='_ZN5rgbcxL30prepare_bc1_single_color_tableEPNS_15bc1_match_entryEPKhiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1780' u='c' c='_ZN5rgbcxL30prepare_bc1_single_color_tableEPNS_15bc1_match_entryEPKhiNS_15bc1_approx_modeE'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='208' type='void tImage::tPicture::Flip(bool horizontal)'/>
+<def f='Modules/Image/Src/tPicture.cpp' l='271' ll='286' type='void tImage::tPicture::Flip(bool horizontal)'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/ext/new_allocator.h' l='131' ll='150' type='void __gnu_cxx::new_allocator::deallocate(_Tp * __p, __gnu_cxx::new_allocator::size_type __t)'/>
+<doc f='include/c++/11/ext/new_allocator.h' l='130'>// __p is not permitted to be a null pointer.</doc>

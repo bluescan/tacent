@@ -1,0 +1,7 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='788' type='T tMath::tLinearInterp(float d, float dA, float dB, T A, T B)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='787'>// Linear interpolate. Same as tLinearLookup except that it clamps d to [dA, dB].</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='691' u='c' c='_ZN6tImage8tPicture16AdjustBrightnessEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='714' u='c' c='_ZN6tImage8tPicture26AdjustGetDefaultBrightnessERf'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='724' u='c' c='_ZN6tImage8tPicture14AdjustContrastEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='776' u='c' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='783' u='c' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>

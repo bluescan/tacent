@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='292' type='bool tMath::tIsZero(const tMath::tMat2 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='42' u='c' c='_ZNK5tMath8tMatrix26IsZeroEv'/>

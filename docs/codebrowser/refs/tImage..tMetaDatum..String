@@ -1,0 +1,17 @@
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='156' u='m' c='_ZN6tImage10tMetaDatum5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='160' u='w' c='_ZN6tImage10tMetaDatum3SetERK7tString'/>
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='171' type='tString'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='234' u='w' c='_ZN6tImage10tMetaDatum3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='234' u='r' c='_ZN6tImage10tMetaDatum3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='252' u='r' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='252' u='r' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<offset>64</offset>
+<use f='Modules/Image/Src/tMetaData.cpp' l='660' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='668' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='676' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='684' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='692' u='m' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='711' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='859' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='897' u='r' c='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='943' u='a' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>

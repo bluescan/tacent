@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18574'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18573'>// VK_MSFT_layered_driver is a preprocessor guard. Do not pass it to API calls.</doc>

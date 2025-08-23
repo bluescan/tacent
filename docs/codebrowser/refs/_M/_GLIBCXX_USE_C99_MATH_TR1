@@ -1,0 +1,31 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1688'/>
+<use f='include/c++/11/cmath' l='954' u='a'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='291' u='c'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='458' u='c'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='103' u='c'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='319' u='c'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='454' u='c'/>
+<use f='include/c++/11/tr1/beta_function.tcc' l='85' u='c'/>
+<use f='include/c++/11/tr1/beta_function.tcc' l='131' u='c'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='231' u='c'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='732' u='c'/>
+<use f='include/c++/11/tr1/legendre_function.tcc' l='247' u='c'/>
+<use f='include/c++/11/tr1/legendre_function.tcc' l='253' u='c'/>
+<use f='include/c++/11/tr1/poly_laguerre.tcc' l='89' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='172' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='182' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='201' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='306' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='329' u='c'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='384' u='c'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1686'>/* Define if C99 functions or macros in &lt;math.h&gt; should be imported in
+   &lt;tr1/cmath&gt; in namespace std::tr1. */</doc>
+<use f='include/c++/11/bits/random.h' l='3791' u='c'/>
+<use f='include/c++/11/bits/random.h' l='3905' u='a'/>
+<use f='include/c++/11/bits/random.h' l='4466' u='c'/>
+<use f='include/c++/11/bits/random.h' l='4571' u='a'/>
+<use f='include/c++/11/bits/random.tcc' l='1264' u='c'/>
+<use f='include/c++/11/bits/random.tcc' l='1308' u='c'/>
+<use f='include/c++/11/bits/random.tcc' l='1476' u='c'/>
+<use f='include/c++/11/bits/random.tcc' l='1568' u='c'/>
+<use f='include/c++/11/bits/random.tcc' l='3372' u='c'/>

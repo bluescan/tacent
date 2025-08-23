@@ -1,0 +1,51 @@
+<def f='include/x86_64-linux-gnu/bits/types/struct_timespec.h' l='11' ll='31'/>
+<use f='include/x86_64-linux-gnu/sys/select.h' l='130' c='pselect'/>
+<size>16</size>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_timespec.h' l='9'>/* POSIX.1b structure for a time value.  This is like a `struct timeval&apos; but
+   has nanoseconds instead of microseconds.  */</doc>
+<mbr r='timespec::tv_sec' o='0' t='__time_t'/>
+<mbr r='timespec::tv_nsec' o='64' t='__syscall_slong_t'/>
+<use f='include/x86_64-linux-gnu/bits/types/struct_itimerspec.h' l='10'/>
+<use f='include/x86_64-linux-gnu/bits/types/struct_itimerspec.h' l='11'/>
+<use f='include/time.h' l='272' c='nanosleep'/>
+<use f='include/time.h' l='273' c='nanosleep'/>
+<use f='include/time.h' l='276' c='clock_getres'/>
+<use f='include/time.h' l='279' c='clock_gettime'/>
+<use f='include/time.h' l='282' c='clock_settime'/>
+<use f='include/time.h' l='312' c='clock_nanosleep'/>
+<use f='include/time.h' l='313' c='clock_nanosleep'/>
+<use f='include/time.h' l='371' c='timespec_get'/>
+<use f='include/time.h' l='387' c='timespec_getres'/>
+<use f='include/sched.h' l='78' c='sched_rr_get_interval'/>
+<use f='include/pthread.h' l='234' c='pthread_timedjoin_np'/>
+<use f='include/pthread.h' l='245' c='pthread_clockjoin_np'/>
+<use f='include/pthread.h' l='801' c='pthread_mutex_timedlock'/>
+<use f='include/pthread.h' l='819' c='pthread_mutex_clocklock'/>
+<use f='include/pthread.h' l='987' c='pthread_rwlock_timedrdlock'/>
+<use f='include/pthread.h' l='1006' c='pthread_rwlock_clockrdlock'/>
+<use f='include/pthread.h' l='1034' c='pthread_rwlock_timedwrlock'/>
+<use f='include/pthread.h' l='1053' c='pthread_rwlock_clockwrlock'/>
+<use f='include/pthread.h' l='1147' c='pthread_cond_timedwait'/>
+<use f='include/pthread.h' l='1174' c='pthread_cond_clockwait'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='53'/>
+<size>16</size>
+<use f='include/c++/11/bits/this_thread_sleep.h' l='77' c='_ZNSt11this_thread9sleep_forERKNSt6chrono8durationIT_T0_EE'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='89' c='_ZNSt8__detail26__platform_wait_until_implEPKiiRKNSt6chrono10time_pointINS2_3_V212steady_clockET_EE'/>
+<use f='include/semaphore.h' l='64' c='sem_timedwait'/>
+<use f='include/semaphore.h' l='83' c='sem_clockwait'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='128' c='_ZNSt20__platform_semaphore25_M_try_acquire_until_implERKNSt6chrono10time_pointINS0_3_V212system_clockENS0_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>
+<size>16</size>
+<use f='include/signal.h' l='275' c='sigtimedwait'/>
+<size>16</size>
+<use f='include/x86_64-linux-gnu/bits/struct_stat.h' l='74'/>
+<use f='include/x86_64-linux-gnu/bits/struct_stat.h' l='75'/>
+<use f='include/x86_64-linux-gnu/bits/struct_stat.h' l='76'/>
+<use f='include/x86_64-linux-gnu/bits/struct_stat.h' l='139'/>
+<use f='include/x86_64-linux-gnu/bits/struct_stat.h' l='140'/>
+<use f='include/x86_64-linux-gnu/bits/struct_stat.h' l='141'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='434' c='utimensat'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='452' c='futimens'/>
+<size>16</size>
+<use f='Modules/System/Src/tTime.cpp' l='59' c='_ZN7tSystem22tGetHardwareTimerCountEv'/>
+<use f='Modules/System/Src/tTime.cpp' l='133' c='_ZN7tSystem6tSleepEi'/>
+<size>16</size>

@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='500' type='bool tMath::tIntersectTestFrustumSphere(const tMath::tFrustum &amp; , const tMath::tSphere &amp; )'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='499'>// Returns true if the sphere is partly or completely inside the volume of the view frustum.</doc>
+<def f='Modules/Math/Src/tGeometry.cpp' l='504' ll='514' type='bool tMath::tIntersectTestFrustumSphere(const tMath::tFrustum &amp; f, const tMath::tSphere &amp; s)'/>

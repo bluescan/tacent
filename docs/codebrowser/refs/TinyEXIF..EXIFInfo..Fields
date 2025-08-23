@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='147' type='uint32_t'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='146'>// Data fields</doc>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='147'>// Store if EXIF and/or XMP data fields are available</doc>

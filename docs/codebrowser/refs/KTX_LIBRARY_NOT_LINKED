@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='188' type='18'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='188'>/*!&lt; Library dependency (OpenGL or Vulkan) not linked into application. */</doc>

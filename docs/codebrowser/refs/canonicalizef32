@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='370' macro='1' type='int canonicalizef32(_Float32 * __cx, const _Float32 * __x)'/>

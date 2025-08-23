@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='163' type='const char * tGetAlphaModeName(tAlphaMode )'/>
+<def f='Modules/Math/Src/tColour.cpp' l='76' ll='80' type='const char * tGetAlphaModeName(tAlphaMode mode)'/>

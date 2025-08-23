@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/floatn-common.h' l='53'/>
+<use f='include/math.h' l='441' u='c'/>
+<use f='include/math.h' l='446' u='c'/>
+<use f='include/math.h' l='858' u='c'/>

@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='202' type='int sigfillset(sigset_t * __set)'/>
+<doc f='include/signal.h' l='201'>/* Set all signals in SET.  */</doc>

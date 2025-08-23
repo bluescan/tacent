@@ -1,0 +1,8 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='282' type='void tChunk::ItemReset() const'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='275'>// These item functions are completely optional. They are a more convenient way of parsing multiple items out of a
+	// single chunk data. Instead of using GetData and casting and incrementing the pointer for each item, you can just
+	// use these accessors. They are considered const as they do not modify the chunk data. However they do need to be
+	// called on the correct order (they are not idempotent) since a mutable internal current item pointer is
+	// maintained. ItemReset can reset it to the beginning if necessary. In most cases this isn&apos;t necessary as that&apos;s
+	// where you start. All the GetItem functions return the number of bytes read from the chunk stream. In some cases
+	// this does not match the size of the item being read. For example, bools are stored as 4 bytes by tChunkWriter.</doc>

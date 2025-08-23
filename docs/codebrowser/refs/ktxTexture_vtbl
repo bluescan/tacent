@@ -1,0 +1,25 @@
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='257'/>
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='506' ll='522'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='257'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='257'/>
+<size>120</size>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='501'>/**
+ * @memberof ktxTexture
+ * @~English
+ * @brief Table of virtual ktxTexture methods.
+ */</doc>
+<mbr r='ktxTexture_vtbl::Destroy' o='0' t='PFNKTEXDESTROY'/>
+<mbr r='ktxTexture_vtbl::GetImageOffset' o='64' t='PFNKTEXGETIMAGEOFFSET'/>
+<mbr r='ktxTexture_vtbl::GetDataSizeUncompressed' o='128' t='PFNKTEXGETDATASIZEUNCOMPRESSED'/>
+<mbr r='ktxTexture_vtbl::GetImageSize' o='192' t='PFNKTEXGETIMAGESIZE'/>
+<mbr r='ktxTexture_vtbl::GetLevelSize' o='256' t='PFNKTEXGETLEVELSIZE'/>
+<mbr r='ktxTexture_vtbl::IterateLevels' o='320' t='PFNKTEXITERATELEVELS'/>
+<mbr r='ktxTexture_vtbl::IterateLoadLevelFaces' o='384' t='PFNKTEXITERATELOADLEVELFACES'/>
+<mbr r='ktxTexture_vtbl::NeedsTranscoding' o='448' t='PFNKTEXNEEDSTRANSCODING'/>
+<mbr r='ktxTexture_vtbl::LoadImageData' o='512' t='PFNKTEXLOADIMAGEDATA'/>
+<mbr r='ktxTexture_vtbl::SetImageFromMemory' o='576' t='PFNKTEXSETIMAGEFROMMEMORY'/>
+<mbr r='ktxTexture_vtbl::SetImageFromStdioStream' o='640' t='PFNKTEXSETIMAGEFROMSTDIOSTREAM'/>
+<mbr r='ktxTexture_vtbl::WriteToStdioStream' o='704' t='PFNKTEXWRITETOSTDIOSTREAM'/>
+<mbr r='ktxTexture_vtbl::WriteToNamedFile' o='768' t='PFNKTEXWRITETONAMEDFILE'/>
+<mbr r='ktxTexture_vtbl::WriteToMemory' o='832' t='PFNKTEXWRITETOMEMORY'/>
+<mbr r='ktxTexture_vtbl::WriteToStream' o='896' t='PFNKTEXWRITETOSTREAM'/>

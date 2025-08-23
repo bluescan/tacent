@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tImageDDS.h' l='204' type='int tImage::tImageDDS::GetLayers(tList&lt;tImage::tLayer&gt; &amp; ) const'/>
+<doc f='Modules/Image/Inc/Image/tImageDDS.h' l='202'>// Gets the layers but you&apos;re not allowed to delete them, they&apos;re not yours. Make sure the list you supply doesn&apos;t
+	// delete them when it&apos;s destructed. Returns the number of items appended to the list.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='119' c='_ZNK6tImage10tBaseImage9GetLayersER5tListINS_6tLayerEE'/>
+<def f='Modules/Image/Src/tImageDDS.cpp' l='1020' ll='1029' type='int tImage::tImageDDS::GetLayers(tList&lt;tImage::tLayer&gt; &amp; layers) const'/>

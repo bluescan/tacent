@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='263' type='double'/>
+<offset>448</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='263'>// Number of pixels in the image width (Y) direction per FocalPlaneResolutionUnit on the camera focal plane (may not exist)</doc>

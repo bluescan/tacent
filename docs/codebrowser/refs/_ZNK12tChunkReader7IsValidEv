@@ -1,0 +1,4 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='349' type='bool tChunkReader::IsValid() const'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='350' u='c' c='_ZNK12tChunkReader5ValidEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='351' u='c' c='_ZNK12tChunkReader13GetFirstChunkEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='843' u='c' c='_ZN12tChunkReader4SaveERK7tString'/>

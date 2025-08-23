@@ -1,0 +1,15 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='428' type='static std::__c_locale std::locale::facet::_S_get_c_locale()'/>
+<use f='include/c++/11/bits/locale_classes.h' l='676' u='c' c='_ZNSt7__cxx117collateC1Em'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='697' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRf'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='712' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRd'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='744' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRe'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1023' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1026' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1035' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1038' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='425'>// Returns data from the underlying &quot;C&quot; library data for the
+    // classic locale.</doc>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='45' u='c' c='_ZNSt7__cxx118messagesC1Em'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='378' u='c' c='_ZNKSt7__cxx119money_get6do_getET0_S1_bRSt8ios_baseRSt12_Ios_IostateRe'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='605' u='c' c='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_e'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='612' u='c' c='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_e'/>

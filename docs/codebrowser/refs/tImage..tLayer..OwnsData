@@ -1,0 +1,14 @@
+<use f='Modules/Image/Inc/Image/tLayer.h' l='69' u='r' c='_ZN6tImage6tLayer5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='69' u='w' c='_ZN6tImage6tLayer5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='74' u='r' c='_ZN6tImage6tLayer9StealDataEv'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='74' u='w' c='_ZN6tImage6tLayer9StealDataEv'/>
+<dec f='Modules/Image/Inc/Image/tLayer.h' l='90' type='bool'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='111' u='w' c='_ZN6tImage6tLayer3SetENS_12tPixelFormatEiiPhb'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='134' u='w' c='_ZN6tImage6tLayer3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='134' u='r' c='_ZN6tImage6tLayer3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='136' u='r' c='_ZN6tImage6tLayer3SetERKS0_'/>
+<offset>384</offset>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='193' u='r' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='279' u='r' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='75' u='w' c='_ZN6tImage6tLayer4LoadERK6tChunkb'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='96' u='r' c='_ZN6tImage6tLayer4LoadERK6tChunkb'/>

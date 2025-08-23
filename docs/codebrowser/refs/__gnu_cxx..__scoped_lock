@@ -1,0 +1,14 @@
+<def f='include/c++/11/ext/concurrence.h' l='228' ll='245'/>
+<use f='include/c++/11/ext/concurrence.h' l='236' c='__gnu_cxx::__scoped_lock::__scoped_lock'/>
+<use f='include/c++/11/ext/concurrence.h' l='237' c='__gnu_cxx::__scoped_lock::operator='/>
+<use f='include/c++/11/ext/concurrence.h' l='237' c='__gnu_cxx::__scoped_lock::operator='/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='243' c='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<size>8</size>
+<doc f='include/c++/11/ext/concurrence.h' l='225'>/// Scoped lock idiom.
+  // Acquire the mutex here with a constructor call, then release with
+  // the destructor call in accordance with RAII style.</doc>
+<mbr r='__gnu_cxx::__scoped_lock::_M_device' o='0' t='__gnu_cxx::__scoped_lock::__mutex_type &amp;'/>
+<fun r='__gnu_cxx::__scoped_lock::__scoped_lock'/>
+<fun r='__gnu_cxx::__scoped_lock::operator='/>
+<fun r='__gnu_cxx::__scoped_lock::__scoped_lock'/>
+<fun r='__gnu_cxx::__scoped_lock::~__scoped_lock'/>

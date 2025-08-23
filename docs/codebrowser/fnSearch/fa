@@ -1,0 +1,8 @@
+_ZSt4fabsf|std::fabs
+_ZNKSt9basic_ios4failEv|std::basic_ios::fail
+_ZNKSt6locale5facet16_M_add_referenceEv|std::locale::facet::_M_add_reference
+_ZNKSt6locale5facet19_M_remove_referenceEv|std::locale::facet::_M_remove_reference
+_ZNSt6locale5facetC1Em|std::locale::facet::facet
+_ZNSt6locale5facetaSERKS0_|std::locale::facet::operator=
+_ZNKSt7__cxx118numpunct9falsenameEv|std::numpunct::falsename
+_ZNKSt19ostreambuf_iterator6failedEv|std::ostreambuf_iterator::failed

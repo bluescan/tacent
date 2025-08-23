@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/ios_base.h' l='727' ll='733' type='std::streamsize std::ios_base::precision(std::streamsize __prec)'/>
+<doc f='include/c++/11/bits/ios_base.h' l='722'>/**
+     *  @brief  Changing flags.
+     *  @param  __prec  The new precision value.
+     *  @return  The previous value of precision().
+    */</doc>

@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1027' type='int pthread_rwlock_trywrlock(pthread_rwlock_t * __rwlock)'/>
+<doc f='include/pthread.h' l='1026'>/* Try to acquire write lock for RWLOCK.  */</doc>

@@ -1,0 +1,18 @@
+<def f='include/c++/11/bits/random.h' l='2642' ll='2667'/>
+<use f='include/c++/11/bits/random.h' l='2646' c='_ZNSt24chi_squared_distribution10param_typeC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='2658' c='_ZSteqRKNSt24chi_squared_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='2658' c='_ZSteqRKNSt24chi_squared_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='2662' c='_ZStneRKNSt24chi_squared_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='2662' c='_ZStneRKNSt24chi_squared_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='2677' c='_ZNSt24chi_squared_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2698' c='_ZNKSt24chi_squared_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='2707' c='_ZNSt24chi_squared_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2740' c='_ZNSt24chi_squared_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2759' c='_ZNSt24chi_squared_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2774' c='_ZNSt24chi_squared_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2834'/>
+<doc f='include/c++/11/bits/random.h' l='2641'>/** Parameter type. */</doc>
+<fun r='_ZNSt24chi_squared_distribution10param_typeC1Ev'/>
+<fun r='_ZNSt24chi_squared_distribution10param_typeC1ET_'/>
+<fun r='_ZNKSt24chi_squared_distribution10param_type1nEv'/>
+<mbr r='std::chi_squared_distribution::param_type::_M_n' t='_RealType'/>

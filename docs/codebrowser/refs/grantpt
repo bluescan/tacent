@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='986' type='int grantpt(int __fd)'/>
+<doc f='include/stdlib.h' l='985'>/* Chown the slave to the calling user.  */</doc>

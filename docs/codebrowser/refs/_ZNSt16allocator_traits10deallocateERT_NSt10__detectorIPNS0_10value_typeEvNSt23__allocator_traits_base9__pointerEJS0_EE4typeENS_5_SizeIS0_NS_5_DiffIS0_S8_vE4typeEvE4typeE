@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/alloc_traits.h' l='343' ll='345' type='static void std::allocator_traits::deallocate(_Alloc &amp; __a, std::allocator_traits::pointer __p, std::allocator_traits::size_type __n)'/>
+<doc f='include/c++/11/bits/alloc_traits.h' l='335'>/**
+       *  @brief  Deallocate memory.
+       *  @param  __a  An allocator.
+       *  @param  __p  Pointer to the memory to deallocate.
+       *  @param  __n  The number of objects space was allocated for.
+       *
+       *  Calls &lt;tt&gt; a.deallocate(p, n) &lt;/tt&gt;
+      */</doc>

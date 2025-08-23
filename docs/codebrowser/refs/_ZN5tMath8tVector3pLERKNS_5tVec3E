@@ -1,0 +1,7 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='76' type='tMath::tVector3 &amp; tMath::tVector3::operator+=(const tMath::tVec3 &amp; a)'/>
+<doc f='Modules/Math/Inc/Math/tVector3.h' l='75'>// Addition is not defined for types other than the same type as the object itself, so no friend needed.</doc>
+<use f='Modules/Math/Src/tGeometry.cpp' l='162' u='c' c='_ZN5tMath28tComputeSmallEnclosingSphereERNS_7tSphereEPKNS_8tVector3Eif'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='234' u='c' c='_ZN5tMath7tRandom17tGetPointOnSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='258' u='c' c='_ZN5tMath7tRandom19tGetPointOnCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='292' u='c' c='_ZN5tMath7tRandom17tGetPointInSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='317' u='c' c='_ZN5tMath7tRandom19tGetPointInCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>

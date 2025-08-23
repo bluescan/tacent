@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='205' ll='207' type='float std::assoc_laguerref(unsigned int __n, unsigned int __m, float __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='199'>/**
+   * Return the associated Laguerre polynomial of order @c n,
+   * degree @c m: @f$ L_n^m(x) @f$ for @c float argument.
+   *
+   * @see assoc_laguerre for more details.
+   */</doc>

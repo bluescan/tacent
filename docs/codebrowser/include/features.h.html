@@ -1,0 +1,531 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>features.h source code [include/features.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/features.h'; var root_path = '..'; var data_path = '../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='./'>include</a>/<a href='features.h.html'>features.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 1991-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i></i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i></i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#<span data-ppcond="18">ifndef</span>	<span class="macro" data-ref="_M/_FEATURES_H">_FEATURES_H</span></u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#define	<dfn class="macro" id="_M/_FEATURES_H" data-ref="_M/_FEATURES_H">_FEATURES_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>/* These are defined by the user (or the compiler)</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>   to specify the desired environment:</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i></i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i>   __STRICT_ANSI__	ISO Standard C.</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>   _ISOC99_SOURCE	Extensions to ISO C89 from ISO C99.</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i>   _ISOC11_SOURCE	Extensions to ISO C99 from ISO C11.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i>   _ISOC2X_SOURCE	Extensions to ISO C99 from ISO C2X.</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i>   __STDC_WANT_LIB_EXT2__</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i>			Extensions to ISO C99 from TR 27431-2:2010.</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>   __STDC_WANT_IEC_60559_BFP_EXT__</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>			Extensions to ISO C11 from TS 18661-1:2014.</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>   __STDC_WANT_IEC_60559_FUNCS_EXT__</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i>			Extensions to ISO C11 from TS 18661-4:2015.</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>   __STDC_WANT_IEC_60559_TYPES_EXT__</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i>			Extensions to ISO C11 from TS 18661-3:2015.</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i>   __STDC_WANT_IEC_60559_EXT__</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>			ISO C2X interfaces defined only in Annex F.</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i></i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i>   _POSIX_SOURCE	IEEE Std 1003.1.</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>   _POSIX_C_SOURCE	If ==1, like _POSIX_SOURCE; if &gt;=2 add IEEE Std 1003.2;</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i>			if &gt;=199309L, add IEEE Std 1003.1b-1993;</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i>			if &gt;=199506L, add IEEE Std 1003.1c-1995;</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i>			if &gt;=200112L, all of IEEE 1003.1-2004</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i>			if &gt;=200809L, all of IEEE 1003.1-2008</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i>   _XOPEN_SOURCE	Includes POSIX and XPG things.  Set to 500 if</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>			Single Unix conformance is wanted, to 600 for the</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>			sixth revision, to 700 for the seventh revision.</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>   _XOPEN_SOURCE_EXTENDED XPG things and X/Open Unix extensions.</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i>   _LARGEFILE_SOURCE	Some more functions for correct standard I/O.</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i>   _LARGEFILE64_SOURCE	Additional functionality from LFS for large files.</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>   _FILE_OFFSET_BITS=N	Select default filesystem interface.</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i>   _ATFILE_SOURCE	Additional *at interfaces.</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i>   _DYNAMIC_STACK_SIZE_SOURCE Select correct (but non compile-time constant)</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i>			MINSIGSTKSZ, SIGSTKSZ and PTHREAD_STACK_MIN.</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i>   _GNU_SOURCE		All of the above, plus GNU extensions.</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><i>   _DEFAULT_SOURCE	The default set of features (taking precedence over</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td><i>			__STRICT_ANSI__).</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i></i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>   _FORTIFY_SOURCE	Add security hardening to many library functions.</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i>			Set to 1 or 2; 2 performs stricter checks than 1.</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i></i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i>   _REENTRANT, _THREAD_SAFE</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i>			Obsolete; equivalent to _POSIX_C_SOURCE=199506L.</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><i></i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i>   The `-ansi' switch to the GNU C compiler, and standards conformance</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i>   options such as `-std=c99', define __STRICT_ANSI__.  If none of</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i>   these are defined, or if _DEFAULT_SOURCE is defined, the default is</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td><i>   to have _POSIX_SOURCE set to one and _POSIX_C_SOURCE set to</i>&nbsp</td></tr>
+<tr><th id="69">69</th><td><i>   200809L, as well as enabling miscellaneous functions from BSD and</i>&nbsp</td></tr>
+<tr><th id="70">70</th><td><i>   SVID.  If more than one of these are defined, they accumulate.  For</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i>   example __STRICT_ANSI__, _POSIX_SOURCE and _POSIX_C_SOURCE together</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i>   give you ISO C, 1003.1, and 1003.2, but nothing else.</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td><i></i>&nbsp</td></tr>
+<tr><th id="74">74</th><td><i>   These are defined by this file and are used by the</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td><i>   header files to decide what to declare or define:</i>&nbsp</td></tr>
+<tr><th id="76">76</th><td><i></i>&nbsp</td></tr>
+<tr><th id="77">77</th><td><i>   __GLIBC_USE (F)	Define things from feature set F.  This is defined</i>&nbsp</td></tr>
+<tr><th id="78">78</th><td><i>			to 1 or 0; the subsequent macros are either defined</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><i>			or undefined, and those tests should be moved to</i>&nbsp</td></tr>
+<tr><th id="80">80</th><td><i>			__GLIBC_USE.</i>&nbsp</td></tr>
+<tr><th id="81">81</th><td><i>   __USE_ISOC11		Define ISO C11 things.</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i>   __USE_ISOC99		Define ISO C99 things.</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td><i>   __USE_ISOC95		Define ISO C90 AMD1 (C95) things.</i>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i>   __USE_ISOCXX11	Define ISO C++11 things.</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td><i>   __USE_POSIX		Define IEEE Std 1003.1 things.</i>&nbsp</td></tr>
+<tr><th id="86">86</th><td><i>   __USE_POSIX2		Define IEEE Std 1003.2 things.</i>&nbsp</td></tr>
+<tr><th id="87">87</th><td><i>   __USE_POSIX199309	Define IEEE Std 1003.1, and .1b things.</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td><i>   __USE_POSIX199506	Define IEEE Std 1003.1, .1b, .1c and .1i things.</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td><i>   __USE_XOPEN		Define XPG things.</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td><i>   __USE_XOPEN_EXTENDED	Define X/Open Unix things.</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i>   __USE_UNIX98		Define Single Unix V2 things.</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><i>   __USE_XOPEN2K        Define XPG6 things.</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td><i>   __USE_XOPEN2KXSI     Define XPG6 XSI things.</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td><i>   __USE_XOPEN2K8       Define XPG7 things.</i>&nbsp</td></tr>
+<tr><th id="95">95</th><td><i>   __USE_XOPEN2K8XSI    Define XPG7 XSI things.</i>&nbsp</td></tr>
+<tr><th id="96">96</th><td><i>   __USE_LARGEFILE	Define correct standard I/O things.</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td><i>   __USE_LARGEFILE64	Define LFS things with separate names.</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i>   __USE_FILE_OFFSET64	Define 64bit interface as default.</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><i>   __USE_MISC		Define things from 4.3BSD or System V Unix.</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td><i>   __USE_ATFILE		Define *at interfaces and AT_* constants for them.</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><i>   __USE_DYNAMIC_STACK_SIZE Define correct (but non compile-time constant)</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td><i>			MINSIGSTKSZ, SIGSTKSZ and PTHREAD_STACK_MIN.</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td><i>   __USE_GNU		Define GNU extensions.</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td><i>   __USE_FORTIFY_LEVEL	Additional security measures used, according to level.</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td><i></i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><i>   The macros `__GNU_LIBRARY__', `__GLIBC__', and `__GLIBC_MINOR__' are</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td><i>   defined by this file unconditionally.  `__GNU_LIBRARY__' is provided</i>&nbsp</td></tr>
+<tr><th id="108">108</th><td><i>   only for compatibility.  All new code should use the other symbols</i>&nbsp</td></tr>
+<tr><th id="109">109</th><td><i>   to test for features.</i>&nbsp</td></tr>
+<tr><th id="110">110</th><td><i></i>&nbsp</td></tr>
+<tr><th id="111">111</th><td><i>   All macros listed above as possibly being defined by this file are</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td><i>   explicitly undefined if they are not explicitly defined.</i>&nbsp</td></tr>
+<tr><th id="113">113</th><td><i>   Feature-test macros that are not defined by the user or compiler</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td><i>   but are implied by the other feature-test macros defined (or by the</i>&nbsp</td></tr>
+<tr><th id="115">115</th><td><i>   lack of any definitions) are defined by the file.</i>&nbsp</td></tr>
+<tr><th id="116">116</th><td><i></i>&nbsp</td></tr>
+<tr><th id="117">117</th><td><i>   ISO C feature test macros depend on the definition of the macro</i>&nbsp</td></tr>
+<tr><th id="118">118</th><td><i>   when an affected header is included, not when the first system</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td><i>   header is included, and so they are handled in</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td><i>   &lt;bits/libc-header-start.h&gt;, which does not have a multiple include</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td><i>   guard.  Feature test macros that can be handled from the first</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td><i>   system header included are handled here.  */</i>&nbsp</td></tr>
+<tr><th id="123">123</th><td>&nbsp</td></tr>
+<tr><th id="124">124</th><td>&nbsp</td></tr>
+<tr><th id="125">125</th><td><i>/* Undefine everything, so we get a clean slate.  */</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_ISOC11">__USE_ISOC11</span></u>&nbsp</td></tr>
+<tr><th id="127">127</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_ISOC99">__USE_ISOC99</span></u>&nbsp</td></tr>
+<tr><th id="128">128</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_ISOC95">__USE_ISOC95</span></u>&nbsp</td></tr>
+<tr><th id="129">129</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_ISOCXX11">__USE_ISOCXX11</span></u>&nbsp</td></tr>
+<tr><th id="130">130</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_POSIX">__USE_POSIX</span></u>&nbsp</td></tr>
+<tr><th id="131">131</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_POSIX2">__USE_POSIX2</span></u>&nbsp</td></tr>
+<tr><th id="132">132</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_POSIX199309">__USE_POSIX199309</span></u>&nbsp</td></tr>
+<tr><th id="133">133</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_POSIX199506">__USE_POSIX199506</span></u>&nbsp</td></tr>
+<tr><th id="134">134</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_XOPEN">__USE_XOPEN</span></u>&nbsp</td></tr>
+<tr><th id="135">135</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_XOPEN_EXTENDED">__USE_XOPEN_EXTENDED</span></u>&nbsp</td></tr>
+<tr><th id="136">136</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_UNIX98">__USE_UNIX98</span></u>&nbsp</td></tr>
+<tr><th id="137">137</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</span></u>&nbsp</td></tr>
+<tr><th id="138">138</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_XOPEN2KXSI">__USE_XOPEN2KXSI</span></u>&nbsp</td></tr>
+<tr><th id="139">139</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</span></u>&nbsp</td></tr>
+<tr><th id="140">140</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_XOPEN2K8XSI">__USE_XOPEN2K8XSI</span></u>&nbsp</td></tr>
+<tr><th id="141">141</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_LARGEFILE">__USE_LARGEFILE</span></u>&nbsp</td></tr>
+<tr><th id="142">142</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_LARGEFILE64">__USE_LARGEFILE64</span></u>&nbsp</td></tr>
+<tr><th id="143">143</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_FILE_OFFSET64">__USE_FILE_OFFSET64</span></u>&nbsp</td></tr>
+<tr><th id="144">144</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_MISC">__USE_MISC</span></u>&nbsp</td></tr>
+<tr><th id="145">145</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_ATFILE">__USE_ATFILE</span></u>&nbsp</td></tr>
+<tr><th id="146">146</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_DYNAMIC_STACK_SIZE">__USE_DYNAMIC_STACK_SIZE</span></u>&nbsp</td></tr>
+<tr><th id="147">147</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_GNU">__USE_GNU</span></u>&nbsp</td></tr>
+<tr><th id="148">148</th><td><u>#undef	<span class="macro" data-ref="_M/__USE_FORTIFY_LEVEL">__USE_FORTIFY_LEVEL</span></u>&nbsp</td></tr>
+<tr><th id="149">149</th><td><u>#undef	<span class="macro" data-ref="_M/__KERNEL_STRICT_NAMES">__KERNEL_STRICT_NAMES</span></u>&nbsp</td></tr>
+<tr><th id="150">150</th><td><u>#undef	<span class="macro" data-ref="_M/__GLIBC_USE_ISOC2X">__GLIBC_USE_ISOC2X</span></u>&nbsp</td></tr>
+<tr><th id="151">151</th><td><u>#undef	<span class="macro" data-ref="_M/__GLIBC_USE_DEPRECATED_GETS">__GLIBC_USE_DEPRECATED_GETS</span></u>&nbsp</td></tr>
+<tr><th id="152">152</th><td><u>#undef	<span class="macro" data-ref="_M/__GLIBC_USE_DEPRECATED_SCANF">__GLIBC_USE_DEPRECATED_SCANF</span></u>&nbsp</td></tr>
+<tr><th id="153">153</th><td>&nbsp</td></tr>
+<tr><th id="154">154</th><td><i>/* Suppress kernel-name space pollution unless user expressedly asks</i>&nbsp</td></tr>
+<tr><th id="155">155</th><td><i>   for it.  */</i>&nbsp</td></tr>
+<tr><th id="156">156</th><td><u>#<span data-ppcond="156">ifndef</span> <span class="macro" data-ref="_M/_LOOSE_KERNEL_NAMES">_LOOSE_KERNEL_NAMES</span></u>&nbsp</td></tr>
+<tr><th id="157">157</th><td><u># define <dfn class="macro" id="_M/__KERNEL_STRICT_NAMES" data-ref="_M/__KERNEL_STRICT_NAMES">__KERNEL_STRICT_NAMES</dfn></u>&nbsp</td></tr>
+<tr><th id="158">158</th><td><u>#<span data-ppcond="156">endif</span></u>&nbsp</td></tr>
+<tr><th id="159">159</th><td>&nbsp</td></tr>
+<tr><th id="160">160</th><td><i>/* Convenience macro to test the version of gcc.</i>&nbsp</td></tr>
+<tr><th id="161">161</th><td><i>   Use like this:</i>&nbsp</td></tr>
+<tr><th id="162">162</th><td><i>   #if __GNUC_PREREQ (2,8)</i>&nbsp</td></tr>
+<tr><th id="163">163</th><td><i>   ... code requiring gcc 2.8 or later ...</i>&nbsp</td></tr>
+<tr><th id="164">164</th><td><i>   #endif</i>&nbsp</td></tr>
+<tr><th id="165">165</th><td><i>   Note: only works for GCC 2.0 and later, because __GNUC_MINOR__ was</i>&nbsp</td></tr>
+<tr><th id="166">166</th><td><i>   added in 2.0.  */</i>&nbsp</td></tr>
+<tr><th id="167">167</th><td><u>#<span data-ppcond="167">if</span> defined <span class="macro" data-ref="_M/__GNUC__">__GNUC__</span> &amp;&amp; defined <span class="macro" data-ref="_M/__GNUC_MINOR__">__GNUC_MINOR__</span></u>&nbsp</td></tr>
+<tr><th id="168">168</th><td><u># define <dfn class="macro" id="_M/__GNUC_PREREQ" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</dfn>(maj, min) \</u>&nbsp</td></tr>
+<tr><th id="169">169</th><td><u>	((__GNUC__ &lt;&lt; 16) + __GNUC_MINOR__ &gt;= ((maj) &lt;&lt; 16) + (min))</u>&nbsp</td></tr>
+<tr><th id="170">170</th><td><u>#<span data-ppcond="167">else</span></u>&nbsp</td></tr>
+<tr><th id="171">171</th><td><u># define __GNUC_PREREQ(maj, min) 0</u>&nbsp</td></tr>
+<tr><th id="172">172</th><td><u>#<span data-ppcond="167">endif</span></u>&nbsp</td></tr>
+<tr><th id="173">173</th><td>&nbsp</td></tr>
+<tr><th id="174">174</th><td><i>/* Similarly for clang.  Features added to GCC after version 4.2 may</i>&nbsp</td></tr>
+<tr><th id="175">175</th><td><i>   or may not also be available in clang, and clang's definitions of</i>&nbsp</td></tr>
+<tr><th id="176">176</th><td><i>   __GNUC(_MINOR)__ are fixed at 4 and 2 respectively.  Not all such</i>&nbsp</td></tr>
+<tr><th id="177">177</th><td><i>   features can be queried via __has_extension/__has_feature.  */</i>&nbsp</td></tr>
+<tr><th id="178">178</th><td><u>#<span data-ppcond="178">if</span> defined <span class="macro" data-ref="_M/__clang_major__">__clang_major__</span> &amp;&amp; defined <span class="macro" data-ref="_M/__clang_minor__">__clang_minor__</span></u>&nbsp</td></tr>
+<tr><th id="179">179</th><td><u># define <dfn class="macro" id="_M/__glibc_clang_prereq" data-ref="_M/__glibc_clang_prereq">__glibc_clang_prereq</dfn>(maj, min) \</u>&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>  ((__clang_major__ &lt;&lt; 16) + __clang_minor__ &gt;= ((maj) &lt;&lt; 16) + (min))</u>&nbsp</td></tr>
+<tr><th id="181">181</th><td><u>#<span data-ppcond="178">else</span></u>&nbsp</td></tr>
+<tr><th id="182">182</th><td><u># define __glibc_clang_prereq(maj, min) 0</u>&nbsp</td></tr>
+<tr><th id="183">183</th><td><u>#<span data-ppcond="178">endif</span></u>&nbsp</td></tr>
+<tr><th id="184">184</th><td>&nbsp</td></tr>
+<tr><th id="185">185</th><td><i>/* Whether to use feature set F.  */</i>&nbsp</td></tr>
+<tr><th id="186">186</th><td><u>#define <dfn class="macro" id="_M/__GLIBC_USE" data-ref="_M/__GLIBC_USE">__GLIBC_USE</dfn>(F)	__GLIBC_USE_ ## F</u>&nbsp</td></tr>
+<tr><th id="187">187</th><td>&nbsp</td></tr>
+<tr><th id="188">188</th><td><i>/* _BSD_SOURCE and _SVID_SOURCE are deprecated aliases for</i>&nbsp</td></tr>
+<tr><th id="189">189</th><td><i>   _DEFAULT_SOURCE.  If _DEFAULT_SOURCE is present we do not</i>&nbsp</td></tr>
+<tr><th id="190">190</th><td><i>   issue a warning; the expectation is that the source is being</i>&nbsp</td></tr>
+<tr><th id="191">191</th><td><i>   transitioned to use the new macro.  */</i>&nbsp</td></tr>
+<tr><th id="192">192</th><td><u>#<span data-ppcond="192">if</span> (defined <span class="macro" data-ref="_M/_BSD_SOURCE">_BSD_SOURCE</span> || defined <span class="macro" data-ref="_M/_SVID_SOURCE">_SVID_SOURCE</span>) \</u>&nbsp</td></tr>
+<tr><th id="193">193</th><td><u>    &amp;&amp; !defined <span class="macro" data-ref="_M/_DEFAULT_SOURCE">_DEFAULT_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="194">194</th><td><u># warning "_BSD_SOURCE and _SVID_SOURCE are deprecated, use _DEFAULT_SOURCE"</u>&nbsp</td></tr>
+<tr><th id="195">195</th><td><u># undef  _DEFAULT_SOURCE</u>&nbsp</td></tr>
+<tr><th id="196">196</th><td><u># define _DEFAULT_SOURCE	1</u>&nbsp</td></tr>
+<tr><th id="197">197</th><td><u>#<span data-ppcond="192">endif</span></u>&nbsp</td></tr>
+<tr><th id="198">198</th><td>&nbsp</td></tr>
+<tr><th id="199">199</th><td><i>/* If _GNU_SOURCE was defined by the user, turn on all the other features.  */</i>&nbsp</td></tr>
+<tr><th id="200">200</th><td><u>#<span data-ppcond="200">ifdef</span> <span class="macro" data-ref="_M/_GNU_SOURCE">_GNU_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="201">201</th><td><u># undef  <span class="macro" data-ref="_M/_ISOC95_SOURCE">_ISOC95_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="202">202</th><td><u># define <dfn class="macro" id="_M/_ISOC95_SOURCE" data-ref="_M/_ISOC95_SOURCE">_ISOC95_SOURCE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="203">203</th><td><u># undef  <span class="macro" data-ref="_M/_ISOC99_SOURCE">_ISOC99_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="204">204</th><td><u># define <dfn class="macro" id="_M/_ISOC99_SOURCE" data-ref="_M/_ISOC99_SOURCE">_ISOC99_SOURCE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="205">205</th><td><u># undef  <span class="macro" data-ref="_M/_ISOC11_SOURCE">_ISOC11_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="206">206</th><td><u># define <dfn class="macro" id="_M/_ISOC11_SOURCE" data-ref="_M/_ISOC11_SOURCE">_ISOC11_SOURCE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="207">207</th><td><u># undef  <span class="macro" data-ref="_M/_ISOC2X_SOURCE">_ISOC2X_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="208">208</th><td><u># define <dfn class="macro" id="_M/_ISOC2X_SOURCE" data-ref="_M/_ISOC2X_SOURCE">_ISOC2X_SOURCE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="209">209</th><td><u># undef  <span class="macro" data-ref="_M/_POSIX_SOURCE">_POSIX_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="210">210</th><td><u># define <dfn class="macro" id="_M/_POSIX_SOURCE" data-ref="_M/_POSIX_SOURCE">_POSIX_SOURCE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="211">211</th><td><u># undef  <span class="macro" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="212">212</th><td><u># define <dfn class="macro" id="_M/_POSIX_C_SOURCE" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="213">213</th><td><u># undef  <span class="macro" data-ref="_M/_XOPEN_SOURCE">_XOPEN_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="214">214</th><td><u># define <dfn class="macro" id="_M/_XOPEN_SOURCE" data-ref="_M/_XOPEN_SOURCE">_XOPEN_SOURCE</dfn>	700</u>&nbsp</td></tr>
+<tr><th id="215">215</th><td><u># undef  <span class="macro" data-ref="_M/_XOPEN_SOURCE_EXTENDED">_XOPEN_SOURCE_EXTENDED</span></u>&nbsp</td></tr>
+<tr><th id="216">216</th><td><u># define <dfn class="macro" id="_M/_XOPEN_SOURCE_EXTENDED" data-ref="_M/_XOPEN_SOURCE_EXTENDED">_XOPEN_SOURCE_EXTENDED</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="217">217</th><td><u># undef	 <span class="macro" data-ref="_M/_LARGEFILE64_SOURCE">_LARGEFILE64_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="218">218</th><td><u># define <dfn class="macro" id="_M/_LARGEFILE64_SOURCE" data-ref="_M/_LARGEFILE64_SOURCE">_LARGEFILE64_SOURCE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="219">219</th><td><u># undef  <span class="macro" data-ref="_M/_DEFAULT_SOURCE">_DEFAULT_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="220">220</th><td><u># define <dfn class="macro" id="_M/_DEFAULT_SOURCE" data-ref="_M/_DEFAULT_SOURCE">_DEFAULT_SOURCE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="221">221</th><td><u># undef  <span class="macro" data-ref="_M/_ATFILE_SOURCE">_ATFILE_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="222">222</th><td><u># define <dfn class="macro" id="_M/_ATFILE_SOURCE" data-ref="_M/_ATFILE_SOURCE">_ATFILE_SOURCE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="223">223</th><td><u># undef  <span class="macro" data-ref="_M/_DYNAMIC_STACK_SIZE_SOURCE">_DYNAMIC_STACK_SIZE_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="224">224</th><td><u># define <dfn class="macro" id="_M/_DYNAMIC_STACK_SIZE_SOURCE" data-ref="_M/_DYNAMIC_STACK_SIZE_SOURCE">_DYNAMIC_STACK_SIZE_SOURCE</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="225">225</th><td><u>#<span data-ppcond="200">endif</span></u>&nbsp</td></tr>
+<tr><th id="226">226</th><td>&nbsp</td></tr>
+<tr><th id="227">227</th><td><i>/* If nothing (other than _GNU_SOURCE and _DEFAULT_SOURCE) is defined,</i>&nbsp</td></tr>
+<tr><th id="228">228</th><td><i>   define _DEFAULT_SOURCE.  */</i>&nbsp</td></tr>
+<tr><th id="229">229</th><td><u>#<span data-ppcond="229">if</span> (defined <a class="macro" href="#220" data-ref="_M/_DEFAULT_SOURCE">_DEFAULT_SOURCE</a>					\</u>&nbsp</td></tr>
+<tr><th id="230">230</th><td><u>     || (!defined <span class="macro" data-ref="_M/__STRICT_ANSI__">__STRICT_ANSI__</span>				\</u>&nbsp</td></tr>
+<tr><th id="231">231</th><td><u>	 &amp;&amp; !defined <a class="macro" href="#204" data-ref="_M/_ISOC99_SOURCE">_ISOC99_SOURCE</a> &amp;&amp; !defined <a class="macro" href="#206" data-ref="_M/_ISOC11_SOURCE">_ISOC11_SOURCE</a>	\</u>&nbsp</td></tr>
+<tr><th id="232">232</th><td><u>	 &amp;&amp; !defined <a class="macro" href="#208" data-ref="_M/_ISOC2X_SOURCE">_ISOC2X_SOURCE</a>				\</u>&nbsp</td></tr>
+<tr><th id="233">233</th><td><u>	 &amp;&amp; !defined <a class="macro" href="#210" data-ref="_M/_POSIX_SOURCE">_POSIX_SOURCE</a> &amp;&amp; !defined <a class="macro" href="#212" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a>	\</u>&nbsp</td></tr>
+<tr><th id="234">234</th><td><u>	 &amp;&amp; !defined <a class="macro" href="#214" data-ref="_M/_XOPEN_SOURCE">_XOPEN_SOURCE</a>))</u>&nbsp</td></tr>
+<tr><th id="235">235</th><td><u># undef  <a class="macro" href="#220" data-ref="_M/_DEFAULT_SOURCE">_DEFAULT_SOURCE</a></u>&nbsp</td></tr>
+<tr><th id="236">236</th><td><u># define <dfn class="macro" id="_M/_DEFAULT_SOURCE" data-ref="_M/_DEFAULT_SOURCE">_DEFAULT_SOURCE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="237">237</th><td><u>#<span data-ppcond="229">endif</span></u>&nbsp</td></tr>
+<tr><th id="238">238</th><td>&nbsp</td></tr>
+<tr><th id="239">239</th><td><i>/* This is to enable the ISO C2X extension.  */</i>&nbsp</td></tr>
+<tr><th id="240">240</th><td><u>#<span data-ppcond="240">if</span> (defined <a class="macro" href="#208" data-ref="_M/_ISOC2X_SOURCE">_ISOC2X_SOURCE</a> \</u>&nbsp</td></tr>
+<tr><th id="241">241</th><td><u>     || (defined <span class="macro" data-ref="_M/__STDC_VERSION__">__STDC_VERSION__</span> &amp;&amp; __STDC_VERSION__ &gt; 201710L))</u>&nbsp</td></tr>
+<tr><th id="242">242</th><td><u># define <dfn class="macro" id="_M/__GLIBC_USE_ISOC2X" data-ref="_M/__GLIBC_USE_ISOC2X">__GLIBC_USE_ISOC2X</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="243">243</th><td><u>#<span data-ppcond="240">else</span></u>&nbsp</td></tr>
+<tr><th id="244">244</th><td><u># define __GLIBC_USE_ISOC2X	0</u>&nbsp</td></tr>
+<tr><th id="245">245</th><td><u>#<span data-ppcond="240">endif</span></u>&nbsp</td></tr>
+<tr><th id="246">246</th><td>&nbsp</td></tr>
+<tr><th id="247">247</th><td><i>/* This is to enable the ISO C11 extension.  */</i>&nbsp</td></tr>
+<tr><th id="248">248</th><td><u>#<span data-ppcond="248">if</span> (defined <a class="macro" href="#206" data-ref="_M/_ISOC11_SOURCE">_ISOC11_SOURCE</a> || defined <a class="macro" href="#208" data-ref="_M/_ISOC2X_SOURCE">_ISOC2X_SOURCE</a> \</u>&nbsp</td></tr>
+<tr><th id="249">249</th><td><u>     || (defined <span class="macro" data-ref="_M/__STDC_VERSION__">__STDC_VERSION__</span> &amp;&amp; __STDC_VERSION__ &gt;= 201112L))</u>&nbsp</td></tr>
+<tr><th id="250">250</th><td><u># define <dfn class="macro" id="_M/__USE_ISOC11" data-ref="_M/__USE_ISOC11">__USE_ISOC11</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="251">251</th><td><u>#<span data-ppcond="248">endif</span></u>&nbsp</td></tr>
+<tr><th id="252">252</th><td>&nbsp</td></tr>
+<tr><th id="253">253</th><td><i>/* This is to enable the ISO C99 extension.  */</i>&nbsp</td></tr>
+<tr><th id="254">254</th><td><u>#<span data-ppcond="254">if</span> (defined <a class="macro" href="#204" data-ref="_M/_ISOC99_SOURCE">_ISOC99_SOURCE</a> || defined <a class="macro" href="#206" data-ref="_M/_ISOC11_SOURCE">_ISOC11_SOURCE</a>			\</u>&nbsp</td></tr>
+<tr><th id="255">255</th><td><u>     || defined <a class="macro" href="#208" data-ref="_M/_ISOC2X_SOURCE">_ISOC2X_SOURCE</a>						\</u>&nbsp</td></tr>
+<tr><th id="256">256</th><td><u>     || (defined <span class="macro" data-ref="_M/__STDC_VERSION__">__STDC_VERSION__</span> &amp;&amp; __STDC_VERSION__ &gt;= 199901L))</u>&nbsp</td></tr>
+<tr><th id="257">257</th><td><u># define <dfn class="macro" id="_M/__USE_ISOC99" data-ref="_M/__USE_ISOC99">__USE_ISOC99</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="258">258</th><td><u>#<span data-ppcond="254">endif</span></u>&nbsp</td></tr>
+<tr><th id="259">259</th><td>&nbsp</td></tr>
+<tr><th id="260">260</th><td><i>/* This is to enable the ISO C90 Amendment 1:1995 extension.  */</i>&nbsp</td></tr>
+<tr><th id="261">261</th><td><u>#<span data-ppcond="261">if</span> (defined <a class="macro" href="#204" data-ref="_M/_ISOC99_SOURCE">_ISOC99_SOURCE</a> || defined <a class="macro" href="#206" data-ref="_M/_ISOC11_SOURCE">_ISOC11_SOURCE</a>			\</u>&nbsp</td></tr>
+<tr><th id="262">262</th><td><u>     || defined <a class="macro" href="#208" data-ref="_M/_ISOC2X_SOURCE">_ISOC2X_SOURCE</a>						\</u>&nbsp</td></tr>
+<tr><th id="263">263</th><td><u>     || (defined <span class="macro" data-ref="_M/__STDC_VERSION__">__STDC_VERSION__</span> &amp;&amp; __STDC_VERSION__ &gt;= 199409L))</u>&nbsp</td></tr>
+<tr><th id="264">264</th><td><u># define <dfn class="macro" id="_M/__USE_ISOC95" data-ref="_M/__USE_ISOC95">__USE_ISOC95</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="265">265</th><td><u>#<span data-ppcond="261">endif</span></u>&nbsp</td></tr>
+<tr><th id="266">266</th><td>&nbsp</td></tr>
+<tr><th id="267">267</th><td><u>#<span data-ppcond="267">ifdef</span> <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="268">268</th><td><i>/* This is to enable compatibility for ISO C++17.  */</i>&nbsp</td></tr>
+<tr><th id="269">269</th><td><u># <span data-ppcond="269">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="270">270</th><td><u>#  define <dfn class="macro" id="_M/__USE_ISOC11" data-ref="_M/__USE_ISOC11">__USE_ISOC11</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="271">271</th><td><u># <span data-ppcond="269">endif</span></u>&nbsp</td></tr>
+<tr><th id="272">272</th><td><i>/* This is to enable compatibility for ISO C++11.</i>&nbsp</td></tr>
+<tr><th id="273">273</th><td><i>   Check the temporary macro for now, too.  */</i>&nbsp</td></tr>
+<tr><th id="274">274</th><td><u># <span data-ppcond="274">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L || defined <span class="macro" data-ref="_M/__GXX_EXPERIMENTAL_CXX0X__">__GXX_EXPERIMENTAL_CXX0X__</span></u>&nbsp</td></tr>
+<tr><th id="275">275</th><td><u>#  define <dfn class="macro" id="_M/__USE_ISOCXX11" data-ref="_M/__USE_ISOCXX11">__USE_ISOCXX11</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="276">276</th><td><u>#  define <dfn class="macro" id="_M/__USE_ISOC99" data-ref="_M/__USE_ISOC99">__USE_ISOC99</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="277">277</th><td><u># <span data-ppcond="274">endif</span></u>&nbsp</td></tr>
+<tr><th id="278">278</th><td><u>#<span data-ppcond="267">endif</span></u>&nbsp</td></tr>
+<tr><th id="279">279</th><td>&nbsp</td></tr>
+<tr><th id="280">280</th><td><i>/* If none of the ANSI/POSIX macros are defined, or if _DEFAULT_SOURCE</i>&nbsp</td></tr>
+<tr><th id="281">281</th><td><i>   is defined, use POSIX.1-2008 (or another version depending on</i>&nbsp</td></tr>
+<tr><th id="282">282</th><td><i>   _XOPEN_SOURCE).  */</i>&nbsp</td></tr>
+<tr><th id="283">283</th><td><u>#<span data-ppcond="283">ifdef</span> <a class="macro" href="#236" data-ref="_M/_DEFAULT_SOURCE">_DEFAULT_SOURCE</a></u>&nbsp</td></tr>
+<tr><th id="284">284</th><td><u># <span data-ppcond="284">if</span> !defined <a class="macro" href="#210" data-ref="_M/_POSIX_SOURCE">_POSIX_SOURCE</a> &amp;&amp; !defined <a class="macro" href="#212" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a></u>&nbsp</td></tr>
+<tr><th id="285">285</th><td><u>#  define __USE_POSIX_IMPLICITLY	1</u>&nbsp</td></tr>
+<tr><th id="286">286</th><td><u># <span data-ppcond="284">endif</span></u>&nbsp</td></tr>
+<tr><th id="287">287</th><td><u># undef  <a class="macro" href="#210" data-ref="_M/_POSIX_SOURCE">_POSIX_SOURCE</a></u>&nbsp</td></tr>
+<tr><th id="288">288</th><td><u># define <dfn class="macro" id="_M/_POSIX_SOURCE" data-ref="_M/_POSIX_SOURCE">_POSIX_SOURCE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="289">289</th><td><u># undef  <a class="macro" href="#212" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a></u>&nbsp</td></tr>
+<tr><th id="290">290</th><td><u># define <dfn class="macro" id="_M/_POSIX_C_SOURCE" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="291">291</th><td><u>#<span data-ppcond="283">endif</span></u>&nbsp</td></tr>
+<tr><th id="292">292</th><td>&nbsp</td></tr>
+<tr><th id="293">293</th><td><u>#<span data-ppcond="293">if</span> ((!defined <span class="macro" data-ref="_M/__STRICT_ANSI__">__STRICT_ANSI__</span>					\</u>&nbsp</td></tr>
+<tr><th id="294">294</th><td><u>      || (defined <a class="macro" href="#214" data-ref="_M/_XOPEN_SOURCE">_XOPEN_SOURCE</a> &amp;&amp; (<a class="macro" href="#214" title="700" data-ref="_M/_XOPEN_SOURCE">_XOPEN_SOURCE</a> - 0) &gt;= 500))	\</u>&nbsp</td></tr>
+<tr><th id="295">295</th><td><u>     &amp;&amp; !defined <a class="macro" href="#288" data-ref="_M/_POSIX_SOURCE">_POSIX_SOURCE</a> &amp;&amp; !defined <a class="macro" href="#290" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a>)</u>&nbsp</td></tr>
+<tr><th id="296">296</th><td><u># define _POSIX_SOURCE	1</u>&nbsp</td></tr>
+<tr><th id="297">297</th><td><u># if defined _XOPEN_SOURCE &amp;&amp; (_XOPEN_SOURCE - 0) &lt; 500</u>&nbsp</td></tr>
+<tr><th id="298">298</th><td><u>#  define _POSIX_C_SOURCE	2</u>&nbsp</td></tr>
+<tr><th id="299">299</th><td><u># elif defined _XOPEN_SOURCE &amp;&amp; (_XOPEN_SOURCE - 0) &lt; 600</u>&nbsp</td></tr>
+<tr><th id="300">300</th><td><u>#  define _POSIX_C_SOURCE	199506L</u>&nbsp</td></tr>
+<tr><th id="301">301</th><td><u># elif defined _XOPEN_SOURCE &amp;&amp; (_XOPEN_SOURCE - 0) &lt; 700</u>&nbsp</td></tr>
+<tr><th id="302">302</th><td><u>#  define _POSIX_C_SOURCE	200112L</u>&nbsp</td></tr>
+<tr><th id="303">303</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="304">304</th><td><u>#  define _POSIX_C_SOURCE	200809L</u>&nbsp</td></tr>
+<tr><th id="305">305</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="306">306</th><td><u># define __USE_POSIX_IMPLICITLY	1</u>&nbsp</td></tr>
+<tr><th id="307">307</th><td><u>#<span data-ppcond="293">endif</span></u>&nbsp</td></tr>
+<tr><th id="308">308</th><td>&nbsp</td></tr>
+<tr><th id="309">309</th><td><i>/* Some C libraries once required _REENTRANT and/or _THREAD_SAFE to be</i>&nbsp</td></tr>
+<tr><th id="310">310</th><td><i>   defined in all multithreaded code.  GNU libc has not required this</i>&nbsp</td></tr>
+<tr><th id="311">311</th><td><i>   for many years.  We now treat them as compatibility synonyms for</i>&nbsp</td></tr>
+<tr><th id="312">312</th><td><i>   _POSIX_C_SOURCE=199506L, which is the earliest level of POSIX with</i>&nbsp</td></tr>
+<tr><th id="313">313</th><td><i>   comprehensive support for multithreaded code.  Using them never</i>&nbsp</td></tr>
+<tr><th id="314">314</th><td><i>   lowers the selected level of POSIX conformance, only raises it.  */</i>&nbsp</td></tr>
+<tr><th id="315">315</th><td><u>#<span data-ppcond="315">if</span> ((!defined <a class="macro" href="#290" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> || (<a class="macro" href="#290" title="200809L" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> - 0) &lt; 199506L) \</u>&nbsp</td></tr>
+<tr><th id="316">316</th><td><u>     &amp;&amp; (defined <span class="macro" data-ref="_M/_REENTRANT">_REENTRANT</span> || defined <span class="macro" data-ref="_M/_THREAD_SAFE">_THREAD_SAFE</span>))</u>&nbsp</td></tr>
+<tr><th id="317">317</th><td><u># define _POSIX_SOURCE   1</u>&nbsp</td></tr>
+<tr><th id="318">318</th><td><u># undef  _POSIX_C_SOURCE</u>&nbsp</td></tr>
+<tr><th id="319">319</th><td><u># define _POSIX_C_SOURCE 199506L</u>&nbsp</td></tr>
+<tr><th id="320">320</th><td><u>#<span data-ppcond="315">endif</span></u>&nbsp</td></tr>
+<tr><th id="321">321</th><td>&nbsp</td></tr>
+<tr><th id="322">322</th><td><u>#<span data-ppcond="322">if</span> (defined <a class="macro" href="#288" data-ref="_M/_POSIX_SOURCE">_POSIX_SOURCE</a>					\</u>&nbsp</td></tr>
+<tr><th id="323">323</th><td><u>     || (defined <a class="macro" href="#290" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> &amp;&amp; <a class="macro" href="#290" title="200809L" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> &gt;= 1)	\</u>&nbsp</td></tr>
+<tr><th id="324">324</th><td><u>     || defined <a class="macro" href="#214" data-ref="_M/_XOPEN_SOURCE">_XOPEN_SOURCE</a>)</u>&nbsp</td></tr>
+<tr><th id="325">325</th><td><u># define <dfn class="macro" id="_M/__USE_POSIX" data-ref="_M/__USE_POSIX">__USE_POSIX</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="326">326</th><td><u>#<span data-ppcond="322">endif</span></u>&nbsp</td></tr>
+<tr><th id="327">327</th><td>&nbsp</td></tr>
+<tr><th id="328">328</th><td><u>#<span data-ppcond="328">if</span> defined <a class="macro" href="#290" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> &amp;&amp; <a class="macro" href="#290" title="200809L" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> &gt;= 2 || defined <a class="macro" href="#214" data-ref="_M/_XOPEN_SOURCE">_XOPEN_SOURCE</a></u>&nbsp</td></tr>
+<tr><th id="329">329</th><td><u># define <dfn class="macro" id="_M/__USE_POSIX2" data-ref="_M/__USE_POSIX2">__USE_POSIX2</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="330">330</th><td><u>#<span data-ppcond="328">endif</span></u>&nbsp</td></tr>
+<tr><th id="331">331</th><td>&nbsp</td></tr>
+<tr><th id="332">332</th><td><u>#<span data-ppcond="332">if</span> defined <a class="macro" href="#290" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> &amp;&amp; (<a class="macro" href="#290" title="200809L" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> - 0) &gt;= 199309L</u>&nbsp</td></tr>
+<tr><th id="333">333</th><td><u># define <dfn class="macro" id="_M/__USE_POSIX199309" data-ref="_M/__USE_POSIX199309">__USE_POSIX199309</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="334">334</th><td><u>#<span data-ppcond="332">endif</span></u>&nbsp</td></tr>
+<tr><th id="335">335</th><td>&nbsp</td></tr>
+<tr><th id="336">336</th><td><u>#<span data-ppcond="336">if</span> defined <a class="macro" href="#290" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> &amp;&amp; (<a class="macro" href="#290" title="200809L" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> - 0) &gt;= 199506L</u>&nbsp</td></tr>
+<tr><th id="337">337</th><td><u># define <dfn class="macro" id="_M/__USE_POSIX199506" data-ref="_M/__USE_POSIX199506">__USE_POSIX199506</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="338">338</th><td><u>#<span data-ppcond="336">endif</span></u>&nbsp</td></tr>
+<tr><th id="339">339</th><td>&nbsp</td></tr>
+<tr><th id="340">340</th><td><u>#<span data-ppcond="340">if</span> defined <a class="macro" href="#290" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> &amp;&amp; (<a class="macro" href="#290" title="200809L" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> - 0) &gt;= 200112L</u>&nbsp</td></tr>
+<tr><th id="341">341</th><td><u># define <dfn class="macro" id="_M/__USE_XOPEN2K" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</dfn>		1</u>&nbsp</td></tr>
+<tr><th id="342">342</th><td><u># undef <a class="macro" href="#264" data-ref="_M/__USE_ISOC95">__USE_ISOC95</a></u>&nbsp</td></tr>
+<tr><th id="343">343</th><td><u># define <dfn class="macro" id="_M/__USE_ISOC95" data-ref="_M/__USE_ISOC95">__USE_ISOC95</dfn>		1</u>&nbsp</td></tr>
+<tr><th id="344">344</th><td><u># undef <a class="macro" href="#276" data-ref="_M/__USE_ISOC99">__USE_ISOC99</a></u>&nbsp</td></tr>
+<tr><th id="345">345</th><td><u># define <dfn class="macro" id="_M/__USE_ISOC99" data-ref="_M/__USE_ISOC99">__USE_ISOC99</dfn>		1</u>&nbsp</td></tr>
+<tr><th id="346">346</th><td><u>#<span data-ppcond="340">endif</span></u>&nbsp</td></tr>
+<tr><th id="347">347</th><td>&nbsp</td></tr>
+<tr><th id="348">348</th><td><u>#<span data-ppcond="348">if</span> defined <a class="macro" href="#290" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> &amp;&amp; (<a class="macro" href="#290" title="200809L" data-ref="_M/_POSIX_C_SOURCE">_POSIX_C_SOURCE</a> - 0) &gt;= 200809L</u>&nbsp</td></tr>
+<tr><th id="349">349</th><td><u># define <dfn class="macro" id="_M/__USE_XOPEN2K8" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</dfn>		1</u>&nbsp</td></tr>
+<tr><th id="350">350</th><td><u># undef  <a class="macro" href="#222" data-ref="_M/_ATFILE_SOURCE">_ATFILE_SOURCE</a></u>&nbsp</td></tr>
+<tr><th id="351">351</th><td><u># define <dfn class="macro" id="_M/_ATFILE_SOURCE" data-ref="_M/_ATFILE_SOURCE">_ATFILE_SOURCE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="352">352</th><td><u>#<span data-ppcond="348">endif</span></u>&nbsp</td></tr>
+<tr><th id="353">353</th><td>&nbsp</td></tr>
+<tr><th id="354">354</th><td><u>#<span data-ppcond="354">ifdef</span>	<a class="macro" href="#214" data-ref="_M/_XOPEN_SOURCE">_XOPEN_SOURCE</a></u>&nbsp</td></tr>
+<tr><th id="355">355</th><td><u># define <dfn class="macro" id="_M/__USE_XOPEN" data-ref="_M/__USE_XOPEN">__USE_XOPEN</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="356">356</th><td><u># <span data-ppcond="356">if</span> (<a class="macro" href="#214" title="700" data-ref="_M/_XOPEN_SOURCE">_XOPEN_SOURCE</a> - 0) &gt;= 500</u>&nbsp</td></tr>
+<tr><th id="357">357</th><td><u>#  define <dfn class="macro" id="_M/__USE_XOPEN_EXTENDED" data-ref="_M/__USE_XOPEN_EXTENDED">__USE_XOPEN_EXTENDED</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="358">358</th><td><u>#  define <dfn class="macro" id="_M/__USE_UNIX98" data-ref="_M/__USE_UNIX98">__USE_UNIX98</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="359">359</th><td><u>#  undef <span class="macro" data-ref="_M/_LARGEFILE_SOURCE">_LARGEFILE_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="360">360</th><td><u>#  define <dfn class="macro" id="_M/_LARGEFILE_SOURCE" data-ref="_M/_LARGEFILE_SOURCE">_LARGEFILE_SOURCE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="361">361</th><td><u>#  <span data-ppcond="361">if</span> (<a class="macro" href="#214" title="700" data-ref="_M/_XOPEN_SOURCE">_XOPEN_SOURCE</a> - 0) &gt;= 600</u>&nbsp</td></tr>
+<tr><th id="362">362</th><td><u>#   <span data-ppcond="362">if</span> (<a class="macro" href="#214" title="700" data-ref="_M/_XOPEN_SOURCE">_XOPEN_SOURCE</a> - 0) &gt;= 700</u>&nbsp</td></tr>
+<tr><th id="363">363</th><td><u>#    define <dfn class="macro" id="_M/__USE_XOPEN2K8" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="364">364</th><td><u>#    define <dfn class="macro" id="_M/__USE_XOPEN2K8XSI" data-ref="_M/__USE_XOPEN2K8XSI">__USE_XOPEN2K8XSI</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="365">365</th><td><u>#   <span data-ppcond="362">endif</span></u>&nbsp</td></tr>
+<tr><th id="366">366</th><td><u>#   define <dfn class="macro" id="_M/__USE_XOPEN2K" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="367">367</th><td><u>#   define <dfn class="macro" id="_M/__USE_XOPEN2KXSI" data-ref="_M/__USE_XOPEN2KXSI">__USE_XOPEN2KXSI</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="368">368</th><td><u>#   undef <a class="macro" href="#343" data-ref="_M/__USE_ISOC95">__USE_ISOC95</a></u>&nbsp</td></tr>
+<tr><th id="369">369</th><td><u>#   define <dfn class="macro" id="_M/__USE_ISOC95" data-ref="_M/__USE_ISOC95">__USE_ISOC95</dfn>		1</u>&nbsp</td></tr>
+<tr><th id="370">370</th><td><u>#   undef <a class="macro" href="#345" data-ref="_M/__USE_ISOC99">__USE_ISOC99</a></u>&nbsp</td></tr>
+<tr><th id="371">371</th><td><u>#   define <dfn class="macro" id="_M/__USE_ISOC99" data-ref="_M/__USE_ISOC99">__USE_ISOC99</dfn>		1</u>&nbsp</td></tr>
+<tr><th id="372">372</th><td><u>#  <span data-ppcond="361">endif</span></u>&nbsp</td></tr>
+<tr><th id="373">373</th><td><u># <span data-ppcond="356">else</span></u>&nbsp</td></tr>
+<tr><th id="374">374</th><td><u>#  ifdef _XOPEN_SOURCE_EXTENDED</u>&nbsp</td></tr>
+<tr><th id="375">375</th><td><u>#   define __USE_XOPEN_EXTENDED	1</u>&nbsp</td></tr>
+<tr><th id="376">376</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="377">377</th><td><u># <span data-ppcond="356">endif</span></u>&nbsp</td></tr>
+<tr><th id="378">378</th><td><u>#<span data-ppcond="354">endif</span></u>&nbsp</td></tr>
+<tr><th id="379">379</th><td>&nbsp</td></tr>
+<tr><th id="380">380</th><td><u>#<span data-ppcond="380">ifdef</span> <a class="macro" href="#360" data-ref="_M/_LARGEFILE_SOURCE">_LARGEFILE_SOURCE</a></u>&nbsp</td></tr>
+<tr><th id="381">381</th><td><u># define <dfn class="macro" id="_M/__USE_LARGEFILE" data-ref="_M/__USE_LARGEFILE">__USE_LARGEFILE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="382">382</th><td><u>#<span data-ppcond="380">endif</span></u>&nbsp</td></tr>
+<tr><th id="383">383</th><td>&nbsp</td></tr>
+<tr><th id="384">384</th><td><u>#<span data-ppcond="384">ifdef</span> <a class="macro" href="#218" data-ref="_M/_LARGEFILE64_SOURCE">_LARGEFILE64_SOURCE</a></u>&nbsp</td></tr>
+<tr><th id="385">385</th><td><u># define <dfn class="macro" id="_M/__USE_LARGEFILE64" data-ref="_M/__USE_LARGEFILE64">__USE_LARGEFILE64</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="386">386</th><td><u>#<span data-ppcond="384">endif</span></u>&nbsp</td></tr>
+<tr><th id="387">387</th><td>&nbsp</td></tr>
+<tr><th id="388">388</th><td><u>#<span data-ppcond="388">if</span> defined <span class="macro" data-ref="_M/_FILE_OFFSET_BITS">_FILE_OFFSET_BITS</span> &amp;&amp; _FILE_OFFSET_BITS == 64</u>&nbsp</td></tr>
+<tr><th id="389">389</th><td><u># define __USE_FILE_OFFSET64	1</u>&nbsp</td></tr>
+<tr><th id="390">390</th><td><u>#<span data-ppcond="388">endif</span></u>&nbsp</td></tr>
+<tr><th id="391">391</th><td>&nbsp</td></tr>
+<tr><th id="392">392</th><td><u>#include &lt;features-time64.h&gt;</u>&nbsp</td></tr>
+<tr><th id="393">393</th><td>&nbsp</td></tr>
+<tr><th id="394">394</th><td><u>#<span data-ppcond="394">if</span> defined <a class="macro" href="#236" data-ref="_M/_DEFAULT_SOURCE">_DEFAULT_SOURCE</a></u>&nbsp</td></tr>
+<tr><th id="395">395</th><td><u># define <dfn class="macro" id="_M/__USE_MISC" data-ref="_M/__USE_MISC">__USE_MISC</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="396">396</th><td><u>#<span data-ppcond="394">endif</span></u>&nbsp</td></tr>
+<tr><th id="397">397</th><td>&nbsp</td></tr>
+<tr><th id="398">398</th><td><u>#<span data-ppcond="398">ifdef</span>	<a class="macro" href="#351" data-ref="_M/_ATFILE_SOURCE">_ATFILE_SOURCE</a></u>&nbsp</td></tr>
+<tr><th id="399">399</th><td><u># define <dfn class="macro" id="_M/__USE_ATFILE" data-ref="_M/__USE_ATFILE">__USE_ATFILE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="400">400</th><td><u>#<span data-ppcond="398">endif</span></u>&nbsp</td></tr>
+<tr><th id="401">401</th><td>&nbsp</td></tr>
+<tr><th id="402">402</th><td><u>#<span data-ppcond="402">ifdef</span>	<a class="macro" href="#224" data-ref="_M/_DYNAMIC_STACK_SIZE_SOURCE">_DYNAMIC_STACK_SIZE_SOURCE</a></u>&nbsp</td></tr>
+<tr><th id="403">403</th><td><u># define <dfn class="macro" id="_M/__USE_DYNAMIC_STACK_SIZE" data-ref="_M/__USE_DYNAMIC_STACK_SIZE">__USE_DYNAMIC_STACK_SIZE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="404">404</th><td><u>#<span data-ppcond="402">endif</span></u>&nbsp</td></tr>
+<tr><th id="405">405</th><td>&nbsp</td></tr>
+<tr><th id="406">406</th><td><u>#<span data-ppcond="406">ifdef</span>	<span class="macro" data-ref="_M/_GNU_SOURCE">_GNU_SOURCE</span></u>&nbsp</td></tr>
+<tr><th id="407">407</th><td><u># define <dfn class="macro" id="_M/__USE_GNU" data-ref="_M/__USE_GNU">__USE_GNU</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="408">408</th><td><u>#<span data-ppcond="406">endif</span></u>&nbsp</td></tr>
+<tr><th id="409">409</th><td>&nbsp</td></tr>
+<tr><th id="410">410</th><td><u>#<span data-ppcond="410">if</span> defined <span class="macro" data-ref="_M/_FORTIFY_SOURCE">_FORTIFY_SOURCE</span> &amp;&amp; _FORTIFY_SOURCE &gt; 0</u>&nbsp</td></tr>
+<tr><th id="411">411</th><td><u># if !defined __OPTIMIZE__ || __OPTIMIZE__ &lt;= 0</u>&nbsp</td></tr>
+<tr><th id="412">412</th><td><u># elif !__GNUC_PREREQ (4, 1)</u>&nbsp</td></tr>
+<tr><th id="413">413</th><td><u># elif _FORTIFY_SOURCE &gt; 2 &amp;&amp; (__glibc_clang_prereq (9, 0)		      \</u>&nbsp</td></tr>
+<tr><th id="414">414</th><td><u>			       || __GNUC_PREREQ (12, 0))</u>&nbsp</td></tr>
+<tr><th id="415">415</th><td>&nbsp</td></tr>
+<tr><th id="416">416</th><td><u>#  if _FORTIFY_SOURCE &gt; 3</u>&nbsp</td></tr>
+<tr><th id="417">417</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="418">418</th><td><u>#  define __USE_FORTIFY_LEVEL 3</u>&nbsp</td></tr>
+<tr><th id="419">419</th><td><u># elif _FORTIFY_SOURCE &gt; 1</u>&nbsp</td></tr>
+<tr><th id="420">420</th><td><u>#  if _FORTIFY_SOURCE &gt; 2</u>&nbsp</td></tr>
+<tr><th id="421">421</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="422">422</th><td><u>#  define __USE_FORTIFY_LEVEL 2</u>&nbsp</td></tr>
+<tr><th id="423">423</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="424">424</th><td><u>#  define __USE_FORTIFY_LEVEL 1</u>&nbsp</td></tr>
+<tr><th id="425">425</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="426">426</th><td><u>#<span data-ppcond="410">endif</span></u>&nbsp</td></tr>
+<tr><th id="427">427</th><td><u>#<span data-ppcond="427">ifndef</span> <span class="macro" data-ref="_M/__USE_FORTIFY_LEVEL">__USE_FORTIFY_LEVEL</span></u>&nbsp</td></tr>
+<tr><th id="428">428</th><td><u># define <dfn class="macro" id="_M/__USE_FORTIFY_LEVEL" data-ref="_M/__USE_FORTIFY_LEVEL">__USE_FORTIFY_LEVEL</dfn> 0</u>&nbsp</td></tr>
+<tr><th id="429">429</th><td><u>#<span data-ppcond="427">endif</span></u>&nbsp</td></tr>
+<tr><th id="430">430</th><td>&nbsp</td></tr>
+<tr><th id="431">431</th><td><i>/* The function 'gets' existed in C89, but is impossible to use</i>&nbsp</td></tr>
+<tr><th id="432">432</th><td><i>   safely.  It has been removed from ISO C11 and ISO C++14.  Note: for</i>&nbsp</td></tr>
+<tr><th id="433">433</th><td><i>   compatibility with various implementations of &lt;cstdio&gt;, this test</i>&nbsp</td></tr>
+<tr><th id="434">434</th><td><i>   must consider only the value of __cplusplus when compiling C++.  */</i>&nbsp</td></tr>
+<tr><th id="435">435</th><td><u>#<span data-ppcond="435">if</span> defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span> ? <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201402L : defined <a class="macro" href="#270" data-ref="_M/__USE_ISOC11">__USE_ISOC11</a></u>&nbsp</td></tr>
+<tr><th id="436">436</th><td><u># define <dfn class="macro" id="_M/__GLIBC_USE_DEPRECATED_GETS" data-ref="_M/__GLIBC_USE_DEPRECATED_GETS">__GLIBC_USE_DEPRECATED_GETS</dfn> 0</u>&nbsp</td></tr>
+<tr><th id="437">437</th><td><u>#<span data-ppcond="435">else</span></u>&nbsp</td></tr>
+<tr><th id="438">438</th><td><u># define __GLIBC_USE_DEPRECATED_GETS 1</u>&nbsp</td></tr>
+<tr><th id="439">439</th><td><u>#<span data-ppcond="435">endif</span></u>&nbsp</td></tr>
+<tr><th id="440">440</th><td>&nbsp</td></tr>
+<tr><th id="441">441</th><td><i>/* GNU formerly extended the scanf functions with modified format</i>&nbsp</td></tr>
+<tr><th id="442">442</th><td><i>   specifiers %as, %aS, and %a[...] that allocate a buffer for the</i>&nbsp</td></tr>
+<tr><th id="443">443</th><td><i>   input using malloc.  This extension conflicts with ISO C99, which</i>&nbsp</td></tr>
+<tr><th id="444">444</th><td><i>   defines %a as a standalone format specifier that reads a floating-</i>&nbsp</td></tr>
+<tr><th id="445">445</th><td><i>   point number; moreover, POSIX.1-2008 provides the same feature</i>&nbsp</td></tr>
+<tr><th id="446">446</th><td><i>   using the modifier letter 'm' instead (%ms, %mS, %m[...]).</i>&nbsp</td></tr>
+<tr><th id="447">447</th><td><i></i>&nbsp</td></tr>
+<tr><th id="448">448</th><td><i>   We now follow C99 unless GNU extensions are active and the compiler</i>&nbsp</td></tr>
+<tr><th id="449">449</th><td><i>   is specifically in C89 or C++98 mode (strict or not).  For</i>&nbsp</td></tr>
+<tr><th id="450">450</th><td><i>   instance, with GCC, -std=gnu11 will have C99-compliant scanf with</i>&nbsp</td></tr>
+<tr><th id="451">451</th><td><i>   or without -D_GNU_SOURCE, but -std=c89 -D_GNU_SOURCE will have the</i>&nbsp</td></tr>
+<tr><th id="452">452</th><td><i>   old extension.  */</i>&nbsp</td></tr>
+<tr><th id="453">453</th><td><u>#<span data-ppcond="453">if</span> (defined <a class="macro" href="#407" data-ref="_M/__USE_GNU">__USE_GNU</a>							\</u>&nbsp</td></tr>
+<tr><th id="454">454</th><td><u>     &amp;&amp; (defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span>						\</u>&nbsp</td></tr>
+<tr><th id="455">455</th><td><u>	 ? (<span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt; 201103L &amp;&amp; !defined <span class="macro" data-ref="_M/__GXX_EXPERIMENTAL_CXX0X__">__GXX_EXPERIMENTAL_CXX0X__</span>) \</u>&nbsp</td></tr>
+<tr><th id="456">456</th><td><u>	 : (!defined <span class="macro" data-ref="_M/__STDC_VERSION__">__STDC_VERSION__</span> || __STDC_VERSION__ &lt; 199901L)))</u>&nbsp</td></tr>
+<tr><th id="457">457</th><td><u># define __GLIBC_USE_DEPRECATED_SCANF 1</u>&nbsp</td></tr>
+<tr><th id="458">458</th><td><u>#<span data-ppcond="453">else</span></u>&nbsp</td></tr>
+<tr><th id="459">459</th><td><u># define <dfn class="macro" id="_M/__GLIBC_USE_DEPRECATED_SCANF" data-ref="_M/__GLIBC_USE_DEPRECATED_SCANF">__GLIBC_USE_DEPRECATED_SCANF</dfn> 0</u>&nbsp</td></tr>
+<tr><th id="460">460</th><td><u>#<span data-ppcond="453">endif</span></u>&nbsp</td></tr>
+<tr><th id="461">461</th><td>&nbsp</td></tr>
+<tr><th id="462">462</th><td><i>/* Get definitions of __STDC_* predefined macros, if the compiler has</i>&nbsp</td></tr>
+<tr><th id="463">463</th><td><i>   not preincluded this header automatically.  */</i>&nbsp</td></tr>
+<tr><th id="464">464</th><td><u>#include &lt;stdc-predef.h&gt;</u>&nbsp</td></tr>
+<tr><th id="465">465</th><td>&nbsp</td></tr>
+<tr><th id="466">466</th><td><i>/* This macro indicates that the installed library is the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="467">467</th><td><i>   For historic reasons the value now is 6 and this will stay from now</i>&nbsp</td></tr>
+<tr><th id="468">468</th><td><i>   on.  The use of this variable is deprecated.  Use __GLIBC__ and</i>&nbsp</td></tr>
+<tr><th id="469">469</th><td><i>   __GLIBC_MINOR__ now (see below) when you want to test for a specific</i>&nbsp</td></tr>
+<tr><th id="470">470</th><td><i>   GNU C library version and use the values in &lt;gnu/lib-names.h&gt; to get</i>&nbsp</td></tr>
+<tr><th id="471">471</th><td><i>   the sonames of the shared libraries.  */</i>&nbsp</td></tr>
+<tr><th id="472">472</th><td><u>#undef  <span class="macro" data-ref="_M/__GNU_LIBRARY__">__GNU_LIBRARY__</span></u>&nbsp</td></tr>
+<tr><th id="473">473</th><td><u>#define <dfn class="macro" id="_M/__GNU_LIBRARY__" data-ref="_M/__GNU_LIBRARY__">__GNU_LIBRARY__</dfn> 6</u>&nbsp</td></tr>
+<tr><th id="474">474</th><td>&nbsp</td></tr>
+<tr><th id="475">475</th><td><i>/* Major and minor version number of the GNU C library package.  Use</i>&nbsp</td></tr>
+<tr><th id="476">476</th><td><i>   these macros to test for features in specific releases.  */</i>&nbsp</td></tr>
+<tr><th id="477">477</th><td><u>#define	<dfn class="macro" id="_M/__GLIBC__" data-ref="_M/__GLIBC__">__GLIBC__</dfn>	2</u>&nbsp</td></tr>
+<tr><th id="478">478</th><td><u>#define	<dfn class="macro" id="_M/__GLIBC_MINOR__" data-ref="_M/__GLIBC_MINOR__">__GLIBC_MINOR__</dfn>	35</u>&nbsp</td></tr>
+<tr><th id="479">479</th><td>&nbsp</td></tr>
+<tr><th id="480">480</th><td><u>#define <dfn class="macro" id="_M/__GLIBC_PREREQ" data-ref="_M/__GLIBC_PREREQ">__GLIBC_PREREQ</dfn>(maj, min) \</u>&nbsp</td></tr>
+<tr><th id="481">481</th><td><u>	((__GLIBC__ &lt;&lt; 16) + __GLIBC_MINOR__ &gt;= ((maj) &lt;&lt; 16) + (min))</u>&nbsp</td></tr>
+<tr><th id="482">482</th><td>&nbsp</td></tr>
+<tr><th id="483">483</th><td><i>/* This is here only because every header file already includes this one.  */</i>&nbsp</td></tr>
+<tr><th id="484">484</th><td><u>#<span data-ppcond="484">ifndef</span> <span class="macro" data-ref="_M/__ASSEMBLER__">__ASSEMBLER__</span></u>&nbsp</td></tr>
+<tr><th id="485">485</th><td><u># <span data-ppcond="485">ifndef</span> <span class="macro" data-ref="_M/_SYS_CDEFS_H">_SYS_CDEFS_H</span></u>&nbsp</td></tr>
+<tr><th id="486">486</th><td><u>#  include &lt;sys/cdefs.h&gt;</u>&nbsp</td></tr>
+<tr><th id="487">487</th><td><u># <span data-ppcond="485">endif</span></u>&nbsp</td></tr>
+<tr><th id="488">488</th><td>&nbsp</td></tr>
+<tr><th id="489">489</th><td><i>/* If we don't have __REDIRECT, prototypes will be missing if</i>&nbsp</td></tr>
+<tr><th id="490">490</th><td><i>   __USE_FILE_OFFSET64 but not __USE_LARGEFILE[64]. */</i>&nbsp</td></tr>
+<tr><th id="491">491</th><td><u># <span data-ppcond="491">if</span> defined <span class="macro" data-ref="_M/__USE_FILE_OFFSET64">__USE_FILE_OFFSET64</span> &amp;&amp; !defined <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#247" data-ref="_M/__REDIRECT">__REDIRECT</a></u>&nbsp</td></tr>
+<tr><th id="492">492</th><td><u>#  define __USE_LARGEFILE	1</u>&nbsp</td></tr>
+<tr><th id="493">493</th><td><u>#  define __USE_LARGEFILE64	1</u>&nbsp</td></tr>
+<tr><th id="494">494</th><td><u># <span data-ppcond="491">endif</span></u>&nbsp</td></tr>
+<tr><th id="495">495</th><td>&nbsp</td></tr>
+<tr><th id="496">496</th><td><u>#<span data-ppcond="484">endif</span>	/* !ASSEMBLER */</u>&nbsp</td></tr>
+<tr><th id="497">497</th><td>&nbsp</td></tr>
+<tr><th id="498">498</th><td><i>/* Decide whether we can define 'extern inline' functions in headers.  */</i>&nbsp</td></tr>
+<tr><th id="499">499</th><td><u>#<span data-ppcond="499">if</span> <a class="macro" href="#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((2) &lt;&lt; 16) + (7))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (2, 7) &amp;&amp; defined <span class="macro" data-ref="_M/__OPTIMIZE__">__OPTIMIZE__</span> \</u>&nbsp</td></tr>
+<tr><th id="500">500</th><td><u>    &amp;&amp; !defined <span class="macro" data-ref="_M/__OPTIMIZE_SIZE__">__OPTIMIZE_SIZE__</span> &amp;&amp; !defined <span class="macro" data-ref="_M/__NO_INLINE__">__NO_INLINE__</span> \</u>&nbsp</td></tr>
+<tr><th id="501">501</th><td><u>    &amp;&amp; defined <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#451" data-ref="_M/__extern_inline">__extern_inline</a></u>&nbsp</td></tr>
+<tr><th id="502">502</th><td><u># define __USE_EXTERN_INLINES	1</u>&nbsp</td></tr>
+<tr><th id="503">503</th><td><u>#<span data-ppcond="499">endif</span></u>&nbsp</td></tr>
+<tr><th id="504">504</th><td>&nbsp</td></tr>
+<tr><th id="505">505</th><td>&nbsp</td></tr>
+<tr><th id="506">506</th><td><i>/* This is here only because every header file already includes this one.</i>&nbsp</td></tr>
+<tr><th id="507">507</th><td><i>   Get the definitions of all the appropriate `__stub_FUNCTION' symbols.</i>&nbsp</td></tr>
+<tr><th id="508">508</th><td><i>   &lt;gnu/stubs.h&gt; contains `#define __stub_FUNCTION' when FUNCTION is a stub</i>&nbsp</td></tr>
+<tr><th id="509">509</th><td><i>   that will always return failure (and set errno to ENOSYS).  */</i>&nbsp</td></tr>
+<tr><th id="510">510</th><td><u>#include &lt;gnu/stubs.h&gt;</u>&nbsp</td></tr>
+<tr><th id="511">511</th><td>&nbsp</td></tr>
+<tr><th id="512">512</th><td>&nbsp</td></tr>
+<tr><th id="513">513</th><td><u>#<span data-ppcond="18">endif</span>	/* features.h  */</u>&nbsp</td></tr>
+<tr><th id="514">514</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

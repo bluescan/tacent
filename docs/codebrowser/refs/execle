@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='589' type='int execle(const char * __path, const char * __arg)'/>
+<doc f='include/unistd.h' l='587'>/* Execute PATH with all arguments after PATH until a NULL pointer,
+   and the argument after that for environment.  */</doc>

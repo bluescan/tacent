@@ -1,0 +1,214 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>sigcontext.h source code [include/x86_64-linux-gnu/bits/sigcontext.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/sigcontext.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>bits</a>/<a href='sigcontext.h.html'>sigcontext.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 2002-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i></i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.	 See the GNU</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i></i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#<span data-ppcond="18">ifndef</span> <span class="macro" data-ref="_M/_BITS_SIGCONTEXT_H">_BITS_SIGCONTEXT_H</span></u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#define <dfn class="macro" id="_M/_BITS_SIGCONTEXT_H" data-ref="_M/_BITS_SIGCONTEXT_H">_BITS_SIGCONTEXT_H</dfn>  1</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#<span data-ppcond="21">if</span> !defined <a class="macro" href="../../signal.h.html#23" data-ref="_M/_SIGNAL_H">_SIGNAL_H</a> &amp;&amp; !defined <span class="macro" data-ref="_M/_SYS_UCONTEXT_H">_SYS_UCONTEXT_H</span></u>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u># error "Never use &lt;bits/sigcontext.h&gt; directly; include &lt;signal.h&gt; instead."</u>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#<span data-ppcond="21">endif</span></u>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="26">26</th><td>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#define <dfn class="macro" id="_M/FP_XSTATE_MAGIC1" data-ref="_M/FP_XSTATE_MAGIC1">FP_XSTATE_MAGIC1</dfn>	0x46505853U</u>&nbsp</td></tr>
+<tr><th id="28">28</th><td><u>#define <dfn class="macro" id="_M/FP_XSTATE_MAGIC2" data-ref="_M/FP_XSTATE_MAGIC2">FP_XSTATE_MAGIC2</dfn>	0x46505845U</u>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#define <dfn class="macro" id="_M/FP_XSTATE_MAGIC2_SIZE" data-ref="_M/FP_XSTATE_MAGIC2_SIZE">FP_XSTATE_MAGIC2_SIZE</dfn>	sizeof (FP_XSTATE_MAGIC2)</u>&nbsp</td></tr>
+<tr><th id="30">30</th><td>&nbsp</td></tr>
+<tr><th id="31">31</th><td><b>struct</b> <dfn class="type def" id="_fpx_sw_bytes" title='_fpx_sw_bytes' data-ref="_fpx_sw_bytes">_fpx_sw_bytes</dfn>&nbsp</td></tr>
+<tr><th id="32">32</th><td>{&nbsp</td></tr>
+<tr><th id="33">33</th><td>  <a class="typedef" href="types.h.html#__uint32_t" title='__uint32_t' data-type='unsigned int' data-ref="__uint32_t">__uint32_t</a> <dfn class="decl field" id="_fpx_sw_bytes::magic1" title='_fpx_sw_bytes::magic1' data-ref="_fpx_sw_bytes::magic1">magic1</dfn>;&nbsp</td></tr>
+<tr><th id="34">34</th><td>  <a class="typedef" href="types.h.html#__uint32_t" title='__uint32_t' data-type='unsigned int' data-ref="__uint32_t">__uint32_t</a> <dfn class="decl field" id="_fpx_sw_bytes::extended_size" title='_fpx_sw_bytes::extended_size' data-ref="_fpx_sw_bytes::extended_size">extended_size</dfn>;&nbsp</td></tr>
+<tr><th id="35">35</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="_fpx_sw_bytes::xstate_bv" title='_fpx_sw_bytes::xstate_bv' data-ref="_fpx_sw_bytes::xstate_bv">xstate_bv</dfn>;&nbsp</td></tr>
+<tr><th id="36">36</th><td>  <a class="typedef" href="types.h.html#__uint32_t" title='__uint32_t' data-type='unsigned int' data-ref="__uint32_t">__uint32_t</a> <dfn class="decl field" id="_fpx_sw_bytes::xstate_size" title='_fpx_sw_bytes::xstate_size' data-ref="_fpx_sw_bytes::xstate_size">xstate_size</dfn>;&nbsp</td></tr>
+<tr><th id="37">37</th><td>  <a class="typedef" href="types.h.html#__uint32_t" title='__uint32_t' data-type='unsigned int' data-ref="__uint32_t">__uint32_t</a> <dfn class="decl field" id="_fpx_sw_bytes::__glibc_reserved1" title='_fpx_sw_bytes::__glibc_reserved1' data-ref="_fpx_sw_bytes::__glibc_reserved1">__glibc_reserved1</dfn>[<var>7</var>];&nbsp</td></tr>
+<tr><th id="38">38</th><td>};&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td><b>struct</b> <dfn class="type def" id="_fpreg" title='_fpreg' data-ref="_fpreg">_fpreg</dfn>&nbsp</td></tr>
+<tr><th id="41">41</th><td>{&nbsp</td></tr>
+<tr><th id="42">42</th><td>  <em>unsigned</em> <em>short</em> <dfn class="decl field" id="_fpreg::significand" title='_fpreg::significand' data-ref="_fpreg::significand">significand</dfn>[<var>4</var>];&nbsp</td></tr>
+<tr><th id="43">43</th><td>  <em>unsigned</em> <em>short</em> <dfn class="decl field" id="_fpreg::exponent" title='_fpreg::exponent' data-ref="_fpreg::exponent">exponent</dfn>;&nbsp</td></tr>
+<tr><th id="44">44</th><td>};&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td><b>struct</b> <dfn class="type def" id="_fpxreg" title='_fpxreg' data-ref="_fpxreg">_fpxreg</dfn>&nbsp</td></tr>
+<tr><th id="47">47</th><td>{&nbsp</td></tr>
+<tr><th id="48">48</th><td>  <em>unsigned</em> <em>short</em> <dfn class="decl field" id="_fpxreg::significand" title='_fpxreg::significand' data-ref="_fpxreg::significand">significand</dfn>[<var>4</var>];&nbsp</td></tr>
+<tr><th id="49">49</th><td>  <em>unsigned</em> <em>short</em> <dfn class="decl field" id="_fpxreg::exponent" title='_fpxreg::exponent' data-ref="_fpxreg::exponent">exponent</dfn>;&nbsp</td></tr>
+<tr><th id="50">50</th><td>  <em>unsigned</em> <em>short</em> <dfn class="decl field" id="_fpxreg::__glibc_reserved1" title='_fpxreg::__glibc_reserved1' data-ref="_fpxreg::__glibc_reserved1">__glibc_reserved1</dfn>[<var>3</var>];&nbsp</td></tr>
+<tr><th id="51">51</th><td>};&nbsp</td></tr>
+<tr><th id="52">52</th><td>&nbsp</td></tr>
+<tr><th id="53">53</th><td><b>struct</b> <dfn class="type def" id="_xmmreg" title='_xmmreg' data-ref="_xmmreg">_xmmreg</dfn>&nbsp</td></tr>
+<tr><th id="54">54</th><td>{&nbsp</td></tr>
+<tr><th id="55">55</th><td>  <a class="typedef" href="types.h.html#__uint32_t" title='__uint32_t' data-type='unsigned int' data-ref="__uint32_t">__uint32_t</a>	<dfn class="decl field" id="_xmmreg::element" title='_xmmreg::element' data-ref="_xmmreg::element">element</dfn>[<var>4</var>];&nbsp</td></tr>
+<tr><th id="56">56</th><td>};&nbsp</td></tr>
+<tr><th id="57">57</th><td>&nbsp</td></tr>
+<tr><th id="58">58</th><td>&nbsp</td></tr>
+<tr><th id="59">59</th><td>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#<span data-ppcond="60">ifndef</span> <span class="macro" data-ref="_M/__x86_64__">__x86_64__</span></u>&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td><b>struct</b> _fpstate&nbsp</td></tr>
+<tr><th id="63">63</th><td>{&nbsp</td></tr>
+<tr><th id="64">64</th><td>  <i>/* Regular FPU environment.  */</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td>  __uint32_t	cw;&nbsp</td></tr>
+<tr><th id="66">66</th><td>  __uint32_t		sw;&nbsp</td></tr>
+<tr><th id="67">67</th><td>  __uint32_t		tag;&nbsp</td></tr>
+<tr><th id="68">68</th><td>  __uint32_t		ipoff;&nbsp</td></tr>
+<tr><th id="69">69</th><td>  __uint32_t		cssel;&nbsp</td></tr>
+<tr><th id="70">70</th><td>  __uint32_t		dataoff;&nbsp</td></tr>
+<tr><th id="71">71</th><td>  __uint32_t		datasel;&nbsp</td></tr>
+<tr><th id="72">72</th><td>  <b>struct</b> _fpreg	_st[<var>8</var>];&nbsp</td></tr>
+<tr><th id="73">73</th><td>  <em>unsigned</em> <em>short</em> status;&nbsp</td></tr>
+<tr><th id="74">74</th><td>  <em>unsigned</em> <em>short</em> magic;&nbsp</td></tr>
+<tr><th id="75">75</th><td>&nbsp</td></tr>
+<tr><th id="76">76</th><td>  <i>/* FXSR FPU environment.  */</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td>  __uint32_t		_fxsr_env[<var>6</var>];&nbsp</td></tr>
+<tr><th id="78">78</th><td>  __uint32_t		mxcsr;&nbsp</td></tr>
+<tr><th id="79">79</th><td>  __uint32_t		__glibc_reserved1;&nbsp</td></tr>
+<tr><th id="80">80</th><td>  <b>struct</b> _fpxreg	_fxsr_st[<var>8</var>];&nbsp</td></tr>
+<tr><th id="81">81</th><td>  <b>struct</b> _xmmreg	_xmm[<var>8</var>];&nbsp</td></tr>
+<tr><th id="82">82</th><td>  __uint32_t		__glibc_reserved2[<var>56</var>];&nbsp</td></tr>
+<tr><th id="83">83</th><td>};&nbsp</td></tr>
+<tr><th id="84">84</th><td>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#ifndef sigcontext_struct</u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><i>/* Kernel headers before 2.1.1 define a struct sigcontext_struct, but</i>&nbsp</td></tr>
+<tr><th id="87">87</th><td><i>   we need sigcontext.  Some packages have come to rely on</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td><i>   sigcontext_struct being defined on 32-bit x86, so define this for</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td><i>   their benefit.  */</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td><u># define sigcontext_struct sigcontext</u>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#endif</u>&nbsp</td></tr>
+<tr><th id="92">92</th><td>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>#define X86_FXSR_MAGIC		0x0000</u>&nbsp</td></tr>
+<tr><th id="94">94</th><td>&nbsp</td></tr>
+<tr><th id="95">95</th><td><b>struct</b> sigcontext&nbsp</td></tr>
+<tr><th id="96">96</th><td>{&nbsp</td></tr>
+<tr><th id="97">97</th><td>  <em>unsigned</em> <em>short</em> gs, __gsh;&nbsp</td></tr>
+<tr><th id="98">98</th><td>  <em>unsigned</em> <em>short</em> fs, __fsh;&nbsp</td></tr>
+<tr><th id="99">99</th><td>  <em>unsigned</em> <em>short</em> es, __esh;&nbsp</td></tr>
+<tr><th id="100">100</th><td>  <em>unsigned</em> <em>short</em> ds, __dsh;&nbsp</td></tr>
+<tr><th id="101">101</th><td>  <em>unsigned</em> <em>long</em> edi;&nbsp</td></tr>
+<tr><th id="102">102</th><td>  <em>unsigned</em> <em>long</em> esi;&nbsp</td></tr>
+<tr><th id="103">103</th><td>  <em>unsigned</em> <em>long</em> ebp;&nbsp</td></tr>
+<tr><th id="104">104</th><td>  <em>unsigned</em> <em>long</em> esp;&nbsp</td></tr>
+<tr><th id="105">105</th><td>  <em>unsigned</em> <em>long</em> ebx;&nbsp</td></tr>
+<tr><th id="106">106</th><td>  <em>unsigned</em> <em>long</em> edx;&nbsp</td></tr>
+<tr><th id="107">107</th><td>  <em>unsigned</em> <em>long</em> ecx;&nbsp</td></tr>
+<tr><th id="108">108</th><td>  <em>unsigned</em> <em>long</em> eax;&nbsp</td></tr>
+<tr><th id="109">109</th><td>  <em>unsigned</em> <em>long</em> trapno;&nbsp</td></tr>
+<tr><th id="110">110</th><td>  <em>unsigned</em> <em>long</em> err;&nbsp</td></tr>
+<tr><th id="111">111</th><td>  <em>unsigned</em> <em>long</em> eip;&nbsp</td></tr>
+<tr><th id="112">112</th><td>  <em>unsigned</em> <em>short</em> cs, __csh;&nbsp</td></tr>
+<tr><th id="113">113</th><td>  <em>unsigned</em> <em>long</em> eflags;&nbsp</td></tr>
+<tr><th id="114">114</th><td>  <em>unsigned</em> <em>long</em> esp_at_signal;&nbsp</td></tr>
+<tr><th id="115">115</th><td>  <em>unsigned</em> <em>short</em> ss, __ssh;&nbsp</td></tr>
+<tr><th id="116">116</th><td>  <b>struct</b> _fpstate * fpstate;&nbsp</td></tr>
+<tr><th id="117">117</th><td>  <em>unsigned</em> <em>long</em> oldmask;&nbsp</td></tr>
+<tr><th id="118">118</th><td>  <em>unsigned</em> <em>long</em> cr2;&nbsp</td></tr>
+<tr><th id="119">119</th><td>};&nbsp</td></tr>
+<tr><th id="120">120</th><td>&nbsp</td></tr>
+<tr><th id="121">121</th><td><u>#<span data-ppcond="60">else</span> /* __x86_64__ */</u>&nbsp</td></tr>
+<tr><th id="122">122</th><td>&nbsp</td></tr>
+<tr><th id="123">123</th><td><b>struct</b> <dfn class="type def" id="_fpstate" title='_fpstate' data-ref="_fpstate">_fpstate</dfn>&nbsp</td></tr>
+<tr><th id="124">124</th><td>{&nbsp</td></tr>
+<tr><th id="125">125</th><td>  <i>/* FPU environment matching the 64-bit FXSAVE layout.  */</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td>  <a class="typedef" href="types.h.html#__uint16_t" title='__uint16_t' data-type='unsigned short' data-ref="__uint16_t">__uint16_t</a>		<dfn class="decl field" id="_fpstate::cwd" title='_fpstate::cwd' data-ref="_fpstate::cwd">cwd</dfn>;&nbsp</td></tr>
+<tr><th id="127">127</th><td>  <a class="typedef" href="types.h.html#__uint16_t" title='__uint16_t' data-type='unsigned short' data-ref="__uint16_t">__uint16_t</a>		<dfn class="decl field" id="_fpstate::swd" title='_fpstate::swd' data-ref="_fpstate::swd">swd</dfn>;&nbsp</td></tr>
+<tr><th id="128">128</th><td>  <a class="typedef" href="types.h.html#__uint16_t" title='__uint16_t' data-type='unsigned short' data-ref="__uint16_t">__uint16_t</a>		<dfn class="decl field" id="_fpstate::ftw" title='_fpstate::ftw' data-ref="_fpstate::ftw">ftw</dfn>;&nbsp</td></tr>
+<tr><th id="129">129</th><td>  <a class="typedef" href="types.h.html#__uint16_t" title='__uint16_t' data-type='unsigned short' data-ref="__uint16_t">__uint16_t</a>		<dfn class="decl field" id="_fpstate::fop" title='_fpstate::fop' data-ref="_fpstate::fop">fop</dfn>;&nbsp</td></tr>
+<tr><th id="130">130</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a>		<dfn class="decl field" id="_fpstate::rip" title='_fpstate::rip' data-ref="_fpstate::rip">rip</dfn>;&nbsp</td></tr>
+<tr><th id="131">131</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a>		<dfn class="decl field" id="_fpstate::rdp" title='_fpstate::rdp' data-ref="_fpstate::rdp">rdp</dfn>;&nbsp</td></tr>
+<tr><th id="132">132</th><td>  <a class="typedef" href="types.h.html#__uint32_t" title='__uint32_t' data-type='unsigned int' data-ref="__uint32_t">__uint32_t</a>		<dfn class="decl field" id="_fpstate::mxcsr" title='_fpstate::mxcsr' data-ref="_fpstate::mxcsr">mxcsr</dfn>;&nbsp</td></tr>
+<tr><th id="133">133</th><td>  <a class="typedef" href="types.h.html#__uint32_t" title='__uint32_t' data-type='unsigned int' data-ref="__uint32_t">__uint32_t</a>		<dfn class="decl field" id="_fpstate::mxcr_mask" title='_fpstate::mxcr_mask' data-ref="_fpstate::mxcr_mask">mxcr_mask</dfn>;&nbsp</td></tr>
+<tr><th id="134">134</th><td>  <b>struct</b> <a class="type" href="#_fpxreg" title='_fpxreg' data-ref="_fpxreg">_fpxreg</a>	<dfn class="decl field" id="_fpstate::_st" title='_fpstate::_st' data-ref="_fpstate::_st">_st</dfn>[<var>8</var>];&nbsp</td></tr>
+<tr><th id="135">135</th><td>  <b>struct</b> <a class="type" href="#_xmmreg" title='_xmmreg' data-ref="_xmmreg">_xmmreg</a>	<dfn class="decl field" id="_fpstate::_xmm" title='_fpstate::_xmm' data-ref="_fpstate::_xmm">_xmm</dfn>[<var>16</var>];&nbsp</td></tr>
+<tr><th id="136">136</th><td>  <a class="typedef" href="types.h.html#__uint32_t" title='__uint32_t' data-type='unsigned int' data-ref="__uint32_t">__uint32_t</a>		<dfn class="decl field" id="_fpstate::__glibc_reserved1" title='_fpstate::__glibc_reserved1' data-ref="_fpstate::__glibc_reserved1">__glibc_reserved1</dfn>[<var>24</var>];&nbsp</td></tr>
+<tr><th id="137">137</th><td>};&nbsp</td></tr>
+<tr><th id="138">138</th><td>&nbsp</td></tr>
+<tr><th id="139">139</th><td><b>struct</b> <dfn class="type def" id="sigcontext" title='sigcontext' data-ref="sigcontext">sigcontext</dfn>&nbsp</td></tr>
+<tr><th id="140">140</th><td>{&nbsp</td></tr>
+<tr><th id="141">141</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::r8" title='sigcontext::r8' data-ref="sigcontext::r8">r8</dfn>;&nbsp</td></tr>
+<tr><th id="142">142</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::r9" title='sigcontext::r9' data-ref="sigcontext::r9">r9</dfn>;&nbsp</td></tr>
+<tr><th id="143">143</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::r10" title='sigcontext::r10' data-ref="sigcontext::r10">r10</dfn>;&nbsp</td></tr>
+<tr><th id="144">144</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::r11" title='sigcontext::r11' data-ref="sigcontext::r11">r11</dfn>;&nbsp</td></tr>
+<tr><th id="145">145</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::r12" title='sigcontext::r12' data-ref="sigcontext::r12">r12</dfn>;&nbsp</td></tr>
+<tr><th id="146">146</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::r13" title='sigcontext::r13' data-ref="sigcontext::r13">r13</dfn>;&nbsp</td></tr>
+<tr><th id="147">147</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::r14" title='sigcontext::r14' data-ref="sigcontext::r14">r14</dfn>;&nbsp</td></tr>
+<tr><th id="148">148</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::r15" title='sigcontext::r15' data-ref="sigcontext::r15">r15</dfn>;&nbsp</td></tr>
+<tr><th id="149">149</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::rdi" title='sigcontext::rdi' data-ref="sigcontext::rdi">rdi</dfn>;&nbsp</td></tr>
+<tr><th id="150">150</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::rsi" title='sigcontext::rsi' data-ref="sigcontext::rsi">rsi</dfn>;&nbsp</td></tr>
+<tr><th id="151">151</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::rbp" title='sigcontext::rbp' data-ref="sigcontext::rbp">rbp</dfn>;&nbsp</td></tr>
+<tr><th id="152">152</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::rbx" title='sigcontext::rbx' data-ref="sigcontext::rbx">rbx</dfn>;&nbsp</td></tr>
+<tr><th id="153">153</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::rdx" title='sigcontext::rdx' data-ref="sigcontext::rdx">rdx</dfn>;&nbsp</td></tr>
+<tr><th id="154">154</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::rax" title='sigcontext::rax' data-ref="sigcontext::rax">rax</dfn>;&nbsp</td></tr>
+<tr><th id="155">155</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::rcx" title='sigcontext::rcx' data-ref="sigcontext::rcx">rcx</dfn>;&nbsp</td></tr>
+<tr><th id="156">156</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::rsp" title='sigcontext::rsp' data-ref="sigcontext::rsp">rsp</dfn>;&nbsp</td></tr>
+<tr><th id="157">157</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::rip" title='sigcontext::rip' data-ref="sigcontext::rip">rip</dfn>;&nbsp</td></tr>
+<tr><th id="158">158</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::eflags" title='sigcontext::eflags' data-ref="sigcontext::eflags">eflags</dfn>;&nbsp</td></tr>
+<tr><th id="159">159</th><td>  <em>unsigned</em> <em>short</em> <dfn class="decl field" id="sigcontext::cs" title='sigcontext::cs' data-ref="sigcontext::cs">cs</dfn>;&nbsp</td></tr>
+<tr><th id="160">160</th><td>  <em>unsigned</em> <em>short</em> <dfn class="decl field" id="sigcontext::gs" title='sigcontext::gs' data-ref="sigcontext::gs">gs</dfn>;&nbsp</td></tr>
+<tr><th id="161">161</th><td>  <em>unsigned</em> <em>short</em> <dfn class="decl field" id="sigcontext::fs" title='sigcontext::fs' data-ref="sigcontext::fs">fs</dfn>;&nbsp</td></tr>
+<tr><th id="162">162</th><td>  <em>unsigned</em> <em>short</em> <dfn class="decl field" id="sigcontext::__pad0" title='sigcontext::__pad0' data-ref="sigcontext::__pad0">__pad0</dfn>;&nbsp</td></tr>
+<tr><th id="163">163</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::err" title='sigcontext::err' data-ref="sigcontext::err">err</dfn>;&nbsp</td></tr>
+<tr><th id="164">164</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::trapno" title='sigcontext::trapno' data-ref="sigcontext::trapno">trapno</dfn>;&nbsp</td></tr>
+<tr><th id="165">165</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::oldmask" title='sigcontext::oldmask' data-ref="sigcontext::oldmask">oldmask</dfn>;&nbsp</td></tr>
+<tr><th id="166">166</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::cr2" title='sigcontext::cr2' data-ref="sigcontext::cr2">cr2</dfn>;&nbsp</td></tr>
+<tr><th id="167">167</th><td>  <b>__extension__</b> <b>union</b>&nbsp</td></tr>
+<tr><th id="168">168</th><td>    {&nbsp</td></tr>
+<tr><th id="169">169</th><td>      <b>struct</b> <a class="type" href="#_fpstate" title='_fpstate' data-ref="_fpstate">_fpstate</a> * <dfn class="decl field" id="sigcontext::(anonymous)::fpstate" title='sigcontext::(anonymous union)::fpstate' data-ref="sigcontext::(anonymous)::fpstate">fpstate</dfn>;&nbsp</td></tr>
+<tr><th id="170">170</th><td>      <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::(anonymous)::__fpstate_word" title='sigcontext::(anonymous union)::__fpstate_word' data-ref="sigcontext::(anonymous)::__fpstate_word">__fpstate_word</dfn>;&nbsp</td></tr>
+<tr><th id="171">171</th><td>    };&nbsp</td></tr>
+<tr><th id="172">172</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="sigcontext::__reserved1" title='sigcontext::__reserved1' data-ref="sigcontext::__reserved1">__reserved1</dfn> [<var>8</var>];&nbsp</td></tr>
+<tr><th id="173">173</th><td>};&nbsp</td></tr>
+<tr><th id="174">174</th><td>&nbsp</td></tr>
+<tr><th id="175">175</th><td><u>#<span data-ppcond="60">endif</span> /* __x86_64__ */</u>&nbsp</td></tr>
+<tr><th id="176">176</th><td>&nbsp</td></tr>
+<tr><th id="177">177</th><td><b>struct</b> <dfn class="type def" id="_xsave_hdr" title='_xsave_hdr' data-ref="_xsave_hdr">_xsave_hdr</dfn>&nbsp</td></tr>
+<tr><th id="178">178</th><td>{&nbsp</td></tr>
+<tr><th id="179">179</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="_xsave_hdr::xstate_bv" title='_xsave_hdr::xstate_bv' data-ref="_xsave_hdr::xstate_bv">xstate_bv</dfn>;&nbsp</td></tr>
+<tr><th id="180">180</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="_xsave_hdr::__glibc_reserved1" title='_xsave_hdr::__glibc_reserved1' data-ref="_xsave_hdr::__glibc_reserved1">__glibc_reserved1</dfn>[<var>2</var>];&nbsp</td></tr>
+<tr><th id="181">181</th><td>  <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="decl field" id="_xsave_hdr::__glibc_reserved2" title='_xsave_hdr::__glibc_reserved2' data-ref="_xsave_hdr::__glibc_reserved2">__glibc_reserved2</dfn>[<var>5</var>];&nbsp</td></tr>
+<tr><th id="182">182</th><td>};&nbsp</td></tr>
+<tr><th id="183">183</th><td>&nbsp</td></tr>
+<tr><th id="184">184</th><td><b>struct</b> <dfn class="type def" id="_ymmh_state" title='_ymmh_state' data-ref="_ymmh_state">_ymmh_state</dfn>&nbsp</td></tr>
+<tr><th id="185">185</th><td>{&nbsp</td></tr>
+<tr><th id="186">186</th><td>  <a class="typedef" href="types.h.html#__uint32_t" title='__uint32_t' data-type='unsigned int' data-ref="__uint32_t">__uint32_t</a> <dfn class="decl field" id="_ymmh_state::ymmh_space" title='_ymmh_state::ymmh_space' data-ref="_ymmh_state::ymmh_space">ymmh_space</dfn>[<var>64</var>];&nbsp</td></tr>
+<tr><th id="187">187</th><td>};&nbsp</td></tr>
+<tr><th id="188">188</th><td>&nbsp</td></tr>
+<tr><th id="189">189</th><td><b>struct</b> <dfn class="type def" id="_xstate" title='_xstate' data-ref="_xstate">_xstate</dfn>&nbsp</td></tr>
+<tr><th id="190">190</th><td>{&nbsp</td></tr>
+<tr><th id="191">191</th><td>  <b>struct</b> <a class="type" href="#_fpstate" title='_fpstate' data-ref="_fpstate">_fpstate</a> <dfn class="decl field" id="_xstate::fpstate" title='_xstate::fpstate' data-ref="_xstate::fpstate">fpstate</dfn>;&nbsp</td></tr>
+<tr><th id="192">192</th><td>  <b>struct</b> <a class="type" href="#_xsave_hdr" title='_xsave_hdr' data-ref="_xsave_hdr">_xsave_hdr</a> <dfn class="decl field" id="_xstate::xstate_hdr" title='_xstate::xstate_hdr' data-ref="_xstate::xstate_hdr">xstate_hdr</dfn>;&nbsp</td></tr>
+<tr><th id="193">193</th><td>  <b>struct</b> <a class="type" href="#_ymmh_state" title='_ymmh_state' data-ref="_ymmh_state">_ymmh_state</a> <dfn class="decl field" id="_xstate::ymmh" title='_xstate::ymmh' data-ref="_xstate::ymmh">ymmh</dfn>;&nbsp</td></tr>
+<tr><th id="194">194</th><td>};&nbsp</td></tr>
+<tr><th id="195">195</th><td>&nbsp</td></tr>
+<tr><th id="196">196</th><td><u>#<span data-ppcond="18">endif</span> /* _BITS_SIGCONTEXT_H */</u>&nbsp</td></tr>
+<tr><th id="197">197</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Src/tAssert.cpp.html'>Modules/Foundation/Src/tAssert.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

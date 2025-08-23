@@ -1,0 +1,11 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='214' type='void tMath::tSet(tMath::tVec3 &amp; d, const tMath::tVec4 &amp; s)'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='29' u='c' c='_ZN5tMath8tVector3C1ERKNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='37' u='c' c='_ZN5tMath8tVector33SetERKNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='73' u='c' c='_ZN5tMath8tVector3aSERKNS_5tVec4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='845' u='c' c='_ZN5tMath16tMakeOrthoNormalERNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='849' u='c' c='_ZN5tMath16tMakeOrthoNormalERNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='869' u='c' c='_ZN5tMath17tMakeOrthoUniformERNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='873' u='c' c='_ZN5tMath17tMakeOrthoUniformERNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='890' u='c' c='_ZN5tMath20tMakeOrthoNonUniformERNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='893' u='c' c='_ZN5tMath20tMakeOrthoNonUniformERNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='933' u='c' c='_ZN5tMath24tExtractProjectionPlanesEPNS_5tVec4ERKNS_5tMat4Ebb'/>

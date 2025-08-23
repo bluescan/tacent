@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7013' ll='7020'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7013'/>
+<size>48</size>
+<mbr r='VkSemaphoreSubmitInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSemaphoreSubmitInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkSemaphoreSubmitInfo::semaphore' o='128' t='VkSemaphore'/>
+<mbr r='VkSemaphoreSubmitInfo::value' o='192' t='uint64_t'/>
+<mbr r='VkSemaphoreSubmitInfo::stageMask' o='256' t='VkPipelineStageFlags2'/>
+<mbr r='VkSemaphoreSubmitInfo::deviceIndex' o='320' t='uint32_t'/>

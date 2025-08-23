@@ -1,0 +1,6 @@
+<use f='Modules/Image/Src/tImageGIF.cpp' l='48' u='w' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='52' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='95' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='96' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='147' u='w' c='_ZN6tImage9tImageGIF4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='151' u='r' c='_ZN6tImage9tImageGIF4LoadEPKhi'/>

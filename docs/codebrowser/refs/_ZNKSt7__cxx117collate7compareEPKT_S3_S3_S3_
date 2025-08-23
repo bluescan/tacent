@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/locale_classes.h' l='705' ll='708' type='int std::collate::compare(const _CharT * __lo1, const _CharT * __hi1, const _CharT * __lo2, const _CharT * __hi2) const'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='693'>/**
+       *  @brief  Compare two strings.
+       *
+       *  This function compares two strings and returns the result by calling
+       *  collate::do_compare().
+       *
+       *  @param __lo1  Start of string 1.
+       *  @param __hi1  End of string 1.
+       *  @param __lo2  Start of string 2.
+       *  @param __hi2  End of string 2.
+       *  @return  1 if string1 &gt; string2, -1 if string1 &lt; string2, else 0.
+      */</doc>

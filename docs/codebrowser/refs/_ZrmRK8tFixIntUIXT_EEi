@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='196' type='int operator%(const tFixIntU&lt;NumBits&gt; &amp; a, int b)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1176' u='c' c='_ZN7tSystem27HandlerHelper_IntegerTacentER6tArrayIcERKNS_10FormatSpecEPvbibib'/>

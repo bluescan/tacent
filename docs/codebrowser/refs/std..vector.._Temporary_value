@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1705' ll='1727'/>
+<use f='include/c++/11/bits/vector.tcc' l='153' c='_ZNSt6vector6insertEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_typeEE13c13419350'/>
+<use f='include/c++/11/bits/vector.tcc' l='383' c='_ZNSt6vector14_M_emplace_auxEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_6105016'/>
+<use f='include/c++/11/bits/vector.tcc' l='520' c='_ZNSt6vector14_M_fill_insertEN9__gnu_cxx17__normal_iteratorINSt12_Vector_baseIT_T0_E7pointerESt6vectorIS3_S4_EEEmRKS3_'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1703'>// A value_type object constructed with _Alloc_traits::construct()
+      // and destroyed with _Alloc_traits::destroy().</doc>
+<fun r='_ZNSt6vector16_Temporary_valueC1EPSt6vectorIT_T0_EDpOTL0__'/>
+<fun r='_ZNSt6vector16_Temporary_valueD1Ev'/>
+<fun r='_ZNSt6vector16_Temporary_value6_M_valEv'/>
+<fun r='_ZNSt6vector16_Temporary_value6_M_ptrEv'/>
+<mbr r='std::vector::_Temporary_value::_M_this' t='vector&lt;_Tp, _Alloc&gt; *'/>
+<mbr r='std::vector::_Temporary_value::__buf' t='typename aligned_storage&lt;sizeof(_Tp), alignof(_Tp)&gt;::type'/>

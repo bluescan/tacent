@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18823' ll='18829'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18823'/>
+<size>40</size>
+<mbr r='VkCopyAccelerationStructureInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCopyAccelerationStructureInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkCopyAccelerationStructureInfoKHR::src' o='128' t='VkAccelerationStructureKHR'/>
+<mbr r='VkCopyAccelerationStructureInfoKHR::dst' o='192' t='VkAccelerationStructureKHR'/>
+<mbr r='VkCopyAccelerationStructureInfoKHR::mode' o='256' t='VkCopyAccelerationStructureModeKHR'/>

@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='930' type='int getdomainname(char * __name, size_t __len)'/>
+<doc f='include/unistd.h' l='927'>/* Get and set the NIS (aka YP) domain name, if any.
+   Called just like `gethostname&apos; and `sethostname&apos;.
+   The NIS domain name is usually the empty string when not using NIS.  */</doc>

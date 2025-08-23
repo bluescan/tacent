@@ -1,0 +1,7 @@
+<dec f='include/stdio.h' l='356' type='int printf(const char *__restrict __format)'/>
+<doc f='include/stdio.h' l='352'>/* Write formatted output to stdout.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>
+<use f='Modules/Foundation/Src/tAssert.cpp' l='29' u='c' c='_Z6tAbortv'/>
+<use f='Modules/Foundation/Src/tAssert.cpp' l='55' u='c' c='_Z17tAssertPrintBreakPKcS0_iS0_'/>

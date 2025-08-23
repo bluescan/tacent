@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/gifenc/gifenc.h' l='27' type='void ge_add_frame(ge_GIF * gif, uint16_t delay)'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='437' u='c' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>

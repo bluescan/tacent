@@ -1,0 +1,14 @@
+<dec f='Modules/Image/Contrib/GifLoad/gif_load.h' l='54' type='long'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='267' u='w' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='271' u='r' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='271' u='r' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='272' u='w' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='274' u='r' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='281' u='w' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='284' u='w' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='285' u='r' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='312' u='r' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='312' u='r' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='43' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='94' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<offset>768</offset>

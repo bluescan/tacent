@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_dir.h' l='199' ll='201' type='bool std::filesystem::directory_entry::is_fifo(std::error_code &amp; __ec) const'/>

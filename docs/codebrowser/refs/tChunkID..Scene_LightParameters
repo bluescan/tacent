@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='511' type='16954624'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='511'>// Near Atten start, Near Atten end, far atten start, far atten end, 32 bytes for future.</doc>
+<use f='Modules/Scene/Src/tLight.cpp' l='43' u='r' c='_ZNK6tScene6tLight4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tLight.cpp' l='73' c='_ZN6tScene6tLight4LoadERK6tChunk'/>

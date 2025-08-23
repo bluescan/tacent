@@ -1,0 +1,13 @@
+<dec f='Modules/Image/Inc/Image/tQuantize.h' l='36' type='bool tImage::tQuantize::QuantizeImageExact(int numColours, int width, int height, const tPixel3b * pixels, tColour3b * destPalette, uint8 * destIndices)'/>
+<doc f='Modules/Image/Inc/Image/tQuantize.h' l='32'>// This performs an exact palettization of an image if the number of unique colours in an image is less-than-or-equal
+	// to the supplied numColours (palette size). If there are too many unique colours, this function does nothing to
+	// either destPalette or destIndices and returns false. destPalette should have space for numColours colours,
+	// destIndices should have space for width*height indices.</doc>
+<def f='Modules/Image/Src/tQuantize.cpp' l='58' ll='101' type='bool tImage::tQuantize::QuantizeImageExact(int numColours, int width, int height, const tPixel3b * pixels, tColour3b * destPalette, uint8 * destIndices)'/>
+<doc f='Modules/Image/Src/tQuantize.cpp' l='53'>//
+// The functions below make up the external interface.
+//</doc>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='255' u='c' c='_ZN6tImage14tQuantizeFixed13QuantizeImageEiiiPK9tColour3bPS1_Phb'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='551' u='c' c='_ZN6tImage12tQuantizeNeu13QuantizeImageEiiiPK9tColour3bPS1_Phbi'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='855' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='543' u='c' c='_ZN6tImage11tQuantizeWu13QuantizeImageEiiiPK9tColour3bPS1_Phb'/>

@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8179' ll='8191'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8179'/>
+<size>64</size>
+<mbr r='VkVideoSessionCreateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoSessionCreateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkVideoSessionCreateInfoKHR::queueFamilyIndex' o='128' t='uint32_t'/>
+<mbr r='VkVideoSessionCreateInfoKHR::flags' o='160' t='VkVideoSessionCreateFlagsKHR'/>
+<mbr r='VkVideoSessionCreateInfoKHR::pVideoProfile' o='192' t='const VkVideoProfileInfoKHR *'/>
+<mbr r='VkVideoSessionCreateInfoKHR::pictureFormat' o='256' t='VkFormat'/>
+<mbr r='VkVideoSessionCreateInfoKHR::maxCodedExtent' o='288' t='VkExtent2D'/>
+<mbr r='VkVideoSessionCreateInfoKHR::referencePictureFormat' o='352' t='VkFormat'/>
+<mbr r='VkVideoSessionCreateInfoKHR::maxDpbSlots' o='384' t='uint32_t'/>
+<mbr r='VkVideoSessionCreateInfoKHR::maxActiveReferencePictures' o='416' t='uint32_t'/>
+<mbr r='VkVideoSessionCreateInfoKHR::pStdHeaderVersion' o='448' t='const VkExtensionProperties *'/>

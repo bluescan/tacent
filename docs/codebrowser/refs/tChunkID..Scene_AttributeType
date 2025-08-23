@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='453' type='16888320'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='453'>// See class aAttrib for supported types.</doc>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='34' u='r' c='_ZNK6tScene10tAttribute4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='81' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>

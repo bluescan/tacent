@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='156' type='void tImage::tPicture::SetAll(const tColour4b &amp;  = tColour4b(0, 0, 0), comp_t channels = tCompBit_RGBA)'/>
+<def f='Modules/Image/Inc/Image/tPicture.h' l='503' ll='524' type='void tImage::tPicture::SetAll(const tColour4b &amp; clearColour = tColour4b(0, 0, 0), comp_t channels = tCompBit_RGBA)'/>

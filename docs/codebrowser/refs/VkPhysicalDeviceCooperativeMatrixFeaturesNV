@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14233' ll='14238'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14233'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceCooperativeMatrixFeaturesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceCooperativeMatrixFeaturesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceCooperativeMatrixFeaturesNV::cooperativeMatrix' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceCooperativeMatrixFeaturesNV::cooperativeMatrixRobustBufferAccess' o='160' t='VkBool32'/>

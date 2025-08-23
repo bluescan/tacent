@@ -1,0 +1,11 @@
+<def f='include/c++/11/streambuf' l='376' ll='390' type='std::basic_streambuf::int_type std::basic_streambuf::sputbackc(std::basic_streambuf::char_type __c)'/>
+<doc f='include/c++/11/streambuf' l='366'>/**
+       *  @brief  Pushing characters back into the input stream.
+       *  @param  __c  The character to push back.
+       *  @return  The previous character, if possible.
+       *
+       *  Similar to sungetc(), but @a __c is pushed onto the stream
+       *  instead of &lt;em&gt;the previous character.&lt;/em&gt; If successful,
+       *  the next character fetched from the input stream will be @a
+       *  __c.
+      */</doc>

@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='145' type='int tString::Grow(int numUnits)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='142'>// This is like Reserve except it takes in the number of _extra_ code-units you want. It will attempt to add or
+	// subtract from the current capacity. Putting in a negative to shrink is supported. Again, it cannot shrink below
+	// the current string length or lower than the minimum capacity. Returns the new capacity.</doc>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='1642' ll='1644' type='int std::chrono::year::operator int() const'/>
+<use f='include/c++/11/chrono' l='2522' u='c' c='_ZNKSt6chrono14year_month_day19_M_days_since_epochEv'/>

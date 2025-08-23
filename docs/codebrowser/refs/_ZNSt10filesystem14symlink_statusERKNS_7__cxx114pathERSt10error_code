@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='352' type='std::filesystem::file_status std::filesystem::symlink_status(const std::filesystem::path &amp; , std::error_code &amp; )'/>
+<use f='include/c++/11/bits/fs_dir.h' l='282' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry14symlink_statusERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='288' u='c' c='_ZNSt10filesystem10is_symlinkERKNS_7__cxx114pathERSt10error_code'/>
+<dec f='include/c++/11/bits/fs_ops.h' l='370' type='std::filesystem::file_status std::filesystem::symlink_status(const std::filesystem::path &amp; __p, std::error_code &amp; __ec)'/>

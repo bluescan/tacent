@@ -1,0 +1,9 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPool.h' l='91' type='void * tMem::tFastPool::Malloc(int numBytes = 0)'/>
+<inh f='Modules/Foundation/Inc/Foundation/tPool.h' l='42' c='_ZN4tMem10tAllocator6MallocEi'/>
+<def f='Modules/Foundation/Inc/Foundation/tPool.h' l='139' ll='184' type='void * tMem::tFastPool::Malloc(int numBytes = 0)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tPool.h' l='86'>// Allocates some memory. If numBytes is over slotSize it will return nullptr. If slotsPerExpansionBlock is set to 0
+	// and all initial slots are used, it will return nullptr. This can be handy if you want to fall-back onto regular
+	// memory allocation when dealing with variable sized objects like strings. Extraneous large mallocs can be dealt
+	// with by a different strategy while you still get the speed benefit for all of the smaller mallocs. Calling
+	// without an argument will return memory at least slotSize big.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tPool.h' l='136'>// Implementation below this line.</doc>

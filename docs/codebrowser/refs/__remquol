@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='310' macro='1' type='long double __remquol(long double __x, long double __y, int * __quo)'/>

@@ -1,0 +1,7 @@
+<def f='Modules/System/Inc/System/tPrint.h' l='256' type='tString tsrvPrintf(const char * format, __va_list_tag * args)'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='257' u='c' c='_Z9tsrPrintfPKcz'/>
+<use f='Modules/System/Inc/System/tFile.h' l='682' u='c' c='_ZN10tFileErrorC1EPKcz'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='254'>// Similar to above but return a tString (sr). Useful if you want to convert formatted input to a tString directly.
+// These required different function names than above so compilers do not confuse with the first vararg being a char*.</doc>
+<use f='Modules/System/Src/tThrow.cpp' l='27' u='c' c='_ZN6tErrorC1EPKcz'/>
+<use f='Modules/System/Src/tThrow.cpp' l='49' u='c' c='_ZN8tWarningC1EPKcz'/>

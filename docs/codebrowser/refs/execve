@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='572' type='int execve(const char * __path, char *const * __argv, char *const * __envp)'/>
+<doc f='include/unistd.h' l='570'>/* Replace the current process, executing PATH with arguments ARGV and
+   environment ENVP.  ARGV and ENVP are terminated by NULL pointers.  */</doc>

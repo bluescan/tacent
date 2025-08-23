@@ -1,0 +1,497 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>atomic_wait.h source code [include/c++/11/bits/atomic_wait.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::__detail::__default_spin_policy,std::__detail::__futex_wait_flags,std::__detail::__waiter,std::__detail::__waiter_base,std::__detail::__waiter_pool,std::__detail::__waiter_pool_base "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/atomic_wait.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='atomic_wait.h.html'>atomic_wait.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// -*- C++ -*- header.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2020-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/atomic_wait.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{atomic}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_ATOMIC_WAIT_H">_GLIBCXX_ATOMIC_WAIT_H</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_ATOMIC_WAIT_H" data-ref="_M/_GLIBCXX_ATOMIC_WAIT_H">_GLIBCXX_ATOMIC_WAIT_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;bits/c++config.h&gt;</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="36">if</span> defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1605" data-ref="_M/_GLIBCXX_HAS_GTHREADS">_GLIBCXX_HAS_GTHREADS</a> || defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1002" data-ref="_M/_GLIBCXX_HAVE_LINUX_FUTEX">_GLIBCXX_HAVE_LINUX_FUTEX</a></u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#include &lt;bits/functional_hash.h&gt;</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#include &lt;bits/gthr.h&gt;</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#include &lt;ext/numeric_traits.h&gt;</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="41">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1002" data-ref="_M/_GLIBCXX_HAVE_LINUX_FUTEX">_GLIBCXX_HAVE_LINUX_FUTEX</a></u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u># include &lt;cerrno&gt;</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u># include &lt;climits&gt;</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u># include &lt;unistd.h&gt;</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u># include &lt;syscall.h&gt;</u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u># include &lt;bits/functexcept.h&gt;</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#<span data-ppcond="41">endif</span></u>&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u># include &lt;bits/std_mutex.h&gt;  // std::mutex, std::__condvar</u>&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>#define <dfn class="macro" id="_M/__cpp_lib_atomic_wait" data-ref="_M/__cpp_lib_atomic_wait">__cpp_lib_atomic_wait</dfn> 201907L</u>&nbsp</td></tr>
+<tr><th id="52">52</th><td>&nbsp</td></tr>
+<tr><th id="53">53</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="54">54</th><td>{&nbsp</td></tr>
+<tr><th id="55">55</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="56">56</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="57">57</th><td>  {&nbsp</td></tr>
+<tr><th id="58">58</th><td><u>#<span data-ppcond="58">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1002" data-ref="_M/_GLIBCXX_HAVE_LINUX_FUTEX">_GLIBCXX_HAVE_LINUX_FUTEX</a></u>&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_HAVE_PLATFORM_WAIT" data-ref="_M/_GLIBCXX_HAVE_PLATFORM_WAIT">_GLIBCXX_HAVE_PLATFORM_WAIT</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="60">60</th><td>    <b>using</b> <dfn class="typedef" id="std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</dfn> = <em>int</em>;&nbsp</td></tr>
+<tr><th id="61">61</th><td>    <em>static</em> <b>constexpr</b> <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="decl def" id="std::__detail::__platform_wait_alignment" title='std::__detail::__platform_wait_alignment' data-ref="std::__detail::__platform_wait_alignment">__platform_wait_alignment</dfn> = <var>4</var>;&nbsp</td></tr>
+<tr><th id="62">62</th><td><u>#<span data-ppcond="58">else</span></u>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i>// define _GLIBCX_HAVE_PLATFORM_WAIT and implement __platform_wait()</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><i>// and __platform_notify() if there is a more efficient primitive supported</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i>// by the platform (e.g. __ulock_wait()/__ulock_wake()) which is better than</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i>// a mutex/condvar based wait.</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td>    <b>using</b> __platform_wait_t = uint64_t;&nbsp</td></tr>
+<tr><th id="68">68</th><td>    <em>static</em> <b>constexpr</b> size_t __platform_wait_alignment&nbsp</td></tr>
+<tr><th id="69">69</th><td>      = <b>__alignof__</b>(__platform_wait_t);&nbsp</td></tr>
+<tr><th id="70">70</th><td><u>#<span data-ppcond="58">endif</span></u>&nbsp</td></tr>
+<tr><th id="71">71</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td>&nbsp</td></tr>
+<tr><th id="73">73</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="74">74</th><td>    <b>inline</b> <b>constexpr</b> <em>bool</em> <dfn class="decl def" id="std::__platform_wait_uses_type" title='std::__platform_wait_uses_type' data-ref="std::__platform_wait_uses_type">__platform_wait_uses_type</dfn>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#<span data-ppcond="75">ifdef</span> <a class="macro" href="#59" data-ref="_M/_GLIBCXX_HAVE_PLATFORM_WAIT">_GLIBCXX_HAVE_PLATFORM_WAIT</a></u>&nbsp</td></tr>
+<tr><th id="76">76</th><td>      = is_scalar_v&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="77">77</th><td>	&amp;&amp; ((<b>sizeof</b>(_Tp) == <b>sizeof</b>(<span class="namespace">__detail::</span><a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>))&nbsp</td></tr>
+<tr><th id="78">78</th><td>	&amp;&amp; (<b>alignof</b>(_Tp*) &gt;= <span class="namespace">__detail::</span><a class="ref" href="#std::__detail::__platform_wait_alignment" title='std::__detail::__platform_wait_alignment' data-ref="std::__detail::__platform_wait_alignment">__platform_wait_alignment</a>));&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#<span data-ppcond="75">else</span></u>&nbsp</td></tr>
+<tr><th id="80">80</th><td>      = <b>false</b>;&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#<span data-ppcond="75">endif</span></u>&nbsp</td></tr>
+<tr><th id="82">82</th><td>&nbsp</td></tr>
+<tr><th id="83">83</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="84">84</th><td>  {&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#<span data-ppcond="85">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1002" data-ref="_M/_GLIBCXX_HAVE_LINUX_FUTEX">_GLIBCXX_HAVE_LINUX_FUTEX</a></u>&nbsp</td></tr>
+<tr><th id="86">86</th><td>    <b>enum</b> <b>class</b> <dfn class="type def" id="std::__detail::__futex_wait_flags" title='std::__detail::__futex_wait_flags' data-ref="std::__detail::__futex_wait_flags">__futex_wait_flags</dfn> : <em>int</em>&nbsp</td></tr>
+<tr><th id="87">87</th><td>    {&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#<span data-ppcond="88">ifdef</span> <span class="macro" data-ref="_M/_GLIBCXX_HAVE_LINUX_FUTEX_PRIVATE">_GLIBCXX_HAVE_LINUX_FUTEX_PRIVATE</span></u>&nbsp</td></tr>
+<tr><th id="89">89</th><td>      __private_flag = <var>128</var>,&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#<span data-ppcond="88">else</span></u>&nbsp</td></tr>
+<tr><th id="91">91</th><td>      <dfn class="enum" id="std::__detail::__futex_wait_flags::__private_flag" title='std::__detail::__futex_wait_flags::__private_flag' data-ref="std::__detail::__futex_wait_flags::__private_flag">__private_flag</dfn> = <var>0</var>,&nbsp</td></tr>
+<tr><th id="92">92</th><td><u>#<span data-ppcond="88">endif</span></u>&nbsp</td></tr>
+<tr><th id="93">93</th><td>      <dfn class="enum" id="std::__detail::__futex_wait_flags::__wait" title='std::__detail::__futex_wait_flags::__wait' data-ref="std::__detail::__futex_wait_flags::__wait">__wait</dfn> = <var>0</var>,&nbsp</td></tr>
+<tr><th id="94">94</th><td>      <dfn class="enum" id="std::__detail::__futex_wait_flags::__wake" title='std::__detail::__futex_wait_flags::__wake' data-ref="std::__detail::__futex_wait_flags::__wake">__wake</dfn> = <var>1</var>,&nbsp</td></tr>
+<tr><th id="95">95</th><td>      <dfn class="enum" id="std::__detail::__futex_wait_flags::__wait_bitset" title='std::__detail::__futex_wait_flags::__wait_bitset' data-ref="std::__detail::__futex_wait_flags::__wait_bitset">__wait_bitset</dfn> = <var>9</var>,&nbsp</td></tr>
+<tr><th id="96">96</th><td>      <dfn class="enum" id="std::__detail::__futex_wait_flags::__wake_bitset" title='std::__detail::__futex_wait_flags::__wake_bitset' data-ref="std::__detail::__futex_wait_flags::__wake_bitset">__wake_bitset</dfn> = <var>10</var>,&nbsp</td></tr>
+<tr><th id="97">97</th><td>      <dfn class="enum" id="std::__detail::__futex_wait_flags::__wait_private" title='std::__detail::__futex_wait_flags::__wait_private' data-ref="std::__detail::__futex_wait_flags::__wait_private">__wait_private</dfn> = <a class="enum" href="#std::__detail::__futex_wait_flags::__wait" title='std::__detail::__futex_wait_flags::__wait' data-ref="std::__detail::__futex_wait_flags::__wait">__wait</a> | <a class="enum" href="#std::__detail::__futex_wait_flags::__private_flag" title='std::__detail::__futex_wait_flags::__private_flag' data-ref="std::__detail::__futex_wait_flags::__private_flag">__private_flag</a>,&nbsp</td></tr>
+<tr><th id="98">98</th><td>      <dfn class="enum" id="std::__detail::__futex_wait_flags::__wake_private" title='std::__detail::__futex_wait_flags::__wake_private' data-ref="std::__detail::__futex_wait_flags::__wake_private">__wake_private</dfn> = <a class="enum" href="#std::__detail::__futex_wait_flags::__wake" title='std::__detail::__futex_wait_flags::__wake' data-ref="std::__detail::__futex_wait_flags::__wake">__wake</a> | <a class="enum" href="#std::__detail::__futex_wait_flags::__private_flag" title='std::__detail::__futex_wait_flags::__private_flag' data-ref="std::__detail::__futex_wait_flags::__private_flag">__private_flag</a>,&nbsp</td></tr>
+<tr><th id="99">99</th><td>      <dfn class="enum" id="std::__detail::__futex_wait_flags::__wait_bitset_private" title='std::__detail::__futex_wait_flags::__wait_bitset_private' data-ref="std::__detail::__futex_wait_flags::__wait_bitset_private">__wait_bitset_private</dfn> = <a class="enum" href="#std::__detail::__futex_wait_flags::__wait_bitset" title='std::__detail::__futex_wait_flags::__wait_bitset' data-ref="std::__detail::__futex_wait_flags::__wait_bitset">__wait_bitset</a> | <a class="enum" href="#std::__detail::__futex_wait_flags::__private_flag" title='std::__detail::__futex_wait_flags::__private_flag' data-ref="std::__detail::__futex_wait_flags::__private_flag">__private_flag</a>,&nbsp</td></tr>
+<tr><th id="100">100</th><td>      <dfn class="enum" id="std::__detail::__futex_wait_flags::__wake_bitset_private" title='std::__detail::__futex_wait_flags::__wake_bitset_private' data-ref="std::__detail::__futex_wait_flags::__wake_bitset_private">__wake_bitset_private</dfn> = <a class="enum" href="#std::__detail::__futex_wait_flags::__wake_bitset" title='std::__detail::__futex_wait_flags::__wake_bitset' data-ref="std::__detail::__futex_wait_flags::__wake_bitset">__wake_bitset</a> | <a class="enum" href="#std::__detail::__futex_wait_flags::__private_flag" title='std::__detail::__futex_wait_flags::__private_flag' data-ref="std::__detail::__futex_wait_flags::__private_flag">__private_flag</a>,&nbsp</td></tr>
+<tr><th id="101">101</th><td>      <dfn class="enum" id="std::__detail::__futex_wait_flags::__bitset_match_any" title='std::__detail::__futex_wait_flags::__bitset_match_any' data-ref="std::__detail::__futex_wait_flags::__bitset_match_any">__bitset_match_any</dfn> = -<var>1</var>&nbsp</td></tr>
+<tr><th id="102">102</th><td>    };&nbsp</td></tr>
+<tr><th id="103">103</th><td>&nbsp</td></tr>
+<tr><th id="104">104</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="105">105</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="106">106</th><td>      <dfn class="decl def fn" id="_ZNSt8__detail15__platform_waitEPKT_i" title='std::__detail::__platform_wait' data-ref="_ZNSt8__detail15__platform_waitEPKT_i">__platform_wait</dfn>(<em>const</em> _Tp* <dfn class="local col9 decl" id="229__addr" title='__addr' data-type='const _Tp *' data-ref="229__addr">__addr</dfn>, <a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a> <dfn class="local col0 decl" id="230__val" title='__val' data-type='std::__detail::__platform_wait_t' data-ref="230__val">__val</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="107">107</th><td>      {&nbsp</td></tr>
+<tr><th id="108">108</th><td>	<em>auto</em> <dfn class="local col1 decl" id="231__e" title='__e' data-type='long' data-ref="231__e">__e</dfn> = <a class="ref fn" href="../../../unistd.h.html#syscall" title='syscall' data-ref="syscall">syscall</a> (<a class="macro" href="../../../x86_64-linux-gnu/bits/syscall.h.html#491" title="202" data-ref="_M/SYS_futex">SYS_futex</a>, <b>static_cast</b>&lt;<em>const</em> <em>void</em>*&gt;(<a class="local col9 ref" href="#229__addr" title='__addr' data-ref="229__addr">__addr</a>),&nbsp</td></tr>
+<tr><th id="109">109</th><td>			    <b>static_cast</b>&lt;<em>int</em>&gt;(<a class="type" href="#std::__detail::__futex_wait_flags" title='std::__detail::__futex_wait_flags' data-ref="std::__detail::__futex_wait_flags">__futex_wait_flags</a>::<a class="enum" href="#std::__detail::__futex_wait_flags::__wait_private" title='std::__detail::__futex_wait_flags::__wait_private' data-ref="std::__detail::__futex_wait_flags::__wait_private">__wait_private</a>),&nbsp</td></tr>
+<tr><th id="110">110</th><td>			    <a class="local col0 ref" href="#230__val" title='__val' data-ref="230__val">__val</a>, <b>nullptr</b>);&nbsp</td></tr>
+<tr><th id="111">111</th><td>	<b>if</b> (!<a class="local col1 ref" href="#231__e" title='__e' data-ref="231__e">__e</a> || <a class="macro" href="../../../errno.h.html#38" title="(*__errno_location ())" data-ref="_M/errno">errno</a> == <a class="macro" href="../../../asm-generic/errno-base.h.html#15" title="11" data-ref="_M/EAGAIN">EAGAIN</a>)&nbsp</td></tr>
+<tr><th id="112">112</th><td>	  <b>return</b>;&nbsp</td></tr>
+<tr><th id="113">113</th><td>	<b>if</b> (<a class="macro" href="../../../errno.h.html#38" title="(*__errno_location ())" data-ref="_M/errno">errno</a> != <a class="macro" href="../../../asm-generic/errno-base.h.html#8" title="4" data-ref="_M/EINTR">EINTR</a>)&nbsp</td></tr>
+<tr><th id="114">114</th><td>	  <a class="ref fn" href="functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<a class="macro" href="../../../errno.h.html#38" title="(*__errno_location ())" data-ref="_M/errno">errno</a>);&nbsp</td></tr>
+<tr><th id="115">115</th><td>      }&nbsp</td></tr>
+<tr><th id="116">116</th><td>&nbsp</td></tr>
+<tr><th id="117">117</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="118">118</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="119">119</th><td>      <dfn class="decl def fn" id="_ZNSt8__detail17__platform_notifyEPKT_b" title='std::__detail::__platform_notify' data-ref="_ZNSt8__detail17__platform_notifyEPKT_b">__platform_notify</dfn>(<em>const</em> _Tp* <dfn class="local col2 decl" id="232__addr" title='__addr' data-type='const _Tp *' data-ref="232__addr">__addr</dfn>, <em>bool</em> <dfn class="local col3 decl" id="233__all" title='__all' data-type='bool' data-ref="233__all">__all</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="120">120</th><td>      {&nbsp</td></tr>
+<tr><th id="121">121</th><td>	<a class="ref fn" href="../../../unistd.h.html#syscall" title='syscall' data-ref="syscall">syscall</a> (<a class="macro" href="../../../x86_64-linux-gnu/bits/syscall.h.html#491" title="202" data-ref="_M/SYS_futex">SYS_futex</a>, <b>static_cast</b>&lt;<em>const</em> <em>void</em>*&gt;(<a class="local col2 ref" href="#232__addr" title='__addr' data-ref="232__addr">__addr</a>),&nbsp</td></tr>
+<tr><th id="122">122</th><td>		 <b>static_cast</b>&lt;<em>int</em>&gt;(<a class="type" href="#std::__detail::__futex_wait_flags" title='std::__detail::__futex_wait_flags' data-ref="std::__detail::__futex_wait_flags">__futex_wait_flags</a>::<a class="enum" href="#std::__detail::__futex_wait_flags::__wake_private" title='std::__detail::__futex_wait_flags::__wake_private' data-ref="std::__detail::__futex_wait_flags::__wake_private">__wake_private</a>),&nbsp</td></tr>
+<tr><th id="123">123</th><td>		 <a class="local col3 ref" href="#233__all" title='__all' data-ref="233__all">__all</a> ? <span class="macro" title="2147483647" data-ref="_M/INT_MAX">INT_MAX</span> : <var>1</var>);&nbsp</td></tr>
+<tr><th id="124">124</th><td>      }&nbsp</td></tr>
+<tr><th id="125">125</th><td><u>#<span data-ppcond="85">endif</span></u>&nbsp</td></tr>
+<tr><th id="126">126</th><td>&nbsp</td></tr>
+<tr><th id="127">127</th><td>    <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="128">128</th><td>    <dfn class="decl def fn" id="_ZNSt8__detail14__thread_yieldEv" title='std::__detail::__thread_yield' data-ref="_ZNSt8__detail14__thread_yieldEv">__thread_yield</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="129">129</th><td>    {&nbsp</td></tr>
+<tr><th id="130">130</th><td><u>#<span data-ppcond="130">if</span> defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1605" data-ref="_M/_GLIBCXX_HAS_GTHREADS">_GLIBCXX_HAS_GTHREADS</a> &amp;&amp; defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1766" data-ref="_M/_GLIBCXX_USE_SCHED_YIELD">_GLIBCXX_USE_SCHED_YIELD</a></u>&nbsp</td></tr>
+<tr><th id="131">131</th><td>     <a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_yield" title='__gthread_yield' data-ref="__gthread_yield">__gthread_yield</a>();&nbsp</td></tr>
+<tr><th id="132">132</th><td><u>#<span data-ppcond="130">endif</span></u>&nbsp</td></tr>
+<tr><th id="133">133</th><td>    }&nbsp</td></tr>
+<tr><th id="134">134</th><td>&nbsp</td></tr>
+<tr><th id="135">135</th><td>    <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="136">136</th><td>    <dfn class="decl def fn" id="_ZNSt8__detail14__thread_relaxEv" title='std::__detail::__thread_relax' data-ref="_ZNSt8__detail14__thread_relaxEv">__thread_relax</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="137">137</th><td>    {&nbsp</td></tr>
+<tr><th id="138">138</th><td><u>#<span data-ppcond="138">if</span> defined <span class="macro" data-ref="_M/__i386__">__i386__</span> || defined <span class="macro" data-ref="_M/__x86_64__">__x86_64__</span></u>&nbsp</td></tr>
+<tr><th id="139">139</th><td>      <a class="ref fn" href="#139" title='__builtin_ia32_pause' data-ref="__builtin_ia32_pause">__builtin_ia32_pause</a>();&nbsp</td></tr>
+<tr><th id="140">140</th><td><u>#<span data-ppcond="138">else</span></u>&nbsp</td></tr>
+<tr><th id="141">141</th><td>      __thread_yield();&nbsp</td></tr>
+<tr><th id="142">142</th><td><u>#<span data-ppcond="138">endif</span></u>&nbsp</td></tr>
+<tr><th id="143">143</th><td>    }&nbsp</td></tr>
+<tr><th id="144">144</th><td>&nbsp</td></tr>
+<tr><th id="145">145</th><td>    <b>constexpr</b> <em>auto</em> <dfn class="decl def" id="std::__detail::__atomic_spin_count_relax" title='std::__detail::__atomic_spin_count_relax' data-ref="std::__detail::__atomic_spin_count_relax">__atomic_spin_count_relax</dfn> = <var>12</var>;&nbsp</td></tr>
+<tr><th id="146">146</th><td>    <b>constexpr</b> <em>auto</em> <dfn class="decl def" id="std::__detail::__atomic_spin_count" title='std::__detail::__atomic_spin_count' data-ref="std::__detail::__atomic_spin_count">__atomic_spin_count</dfn> = <var>16</var>;&nbsp</td></tr>
+<tr><th id="147">147</th><td>&nbsp</td></tr>
+<tr><th id="148">148</th><td>    <b>struct</b> <dfn class="type def" id="std::__detail::__default_spin_policy" title='std::__detail::__default_spin_policy' data-ref="std::__detail::__default_spin_policy">__default_spin_policy</dfn>&nbsp</td></tr>
+<tr><th id="149">149</th><td>    {&nbsp</td></tr>
+<tr><th id="150">150</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="151">151</th><td>      <dfn class="decl def fn" id="_ZNKSt8__detail21__default_spin_policyclEv" title='std::__detail::__default_spin_policy::operator()' data-ref="_ZNKSt8__detail21__default_spin_policyclEv"><b>operator</b>()</dfn>() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="152">152</th><td>      { <b>return</b> <b>false</b>; }&nbsp</td></tr>
+<tr><th id="153">153</th><td>    };&nbsp</td></tr>
+<tr><th id="154">154</th><td>&nbsp</td></tr>
+<tr><th id="155">155</th><td>    <b>template</b>&lt;<b>typename</b> _Pred,&nbsp</td></tr>
+<tr><th id="156">156</th><td>	     <b>typename</b> _Spin = <a class="type" href="#std::__detail::__default_spin_policy" title='std::__detail::__default_spin_policy' data-ref="std::__detail::__default_spin_policy">__default_spin_policy</a>&gt;&nbsp</td></tr>
+<tr><th id="157">157</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="158">158</th><td>      <dfn class="decl def fn" id="_ZNSt8__detail13__atomic_spinERT_T0_" title='std::__detail::__atomic_spin' data-ref="_ZNSt8__detail13__atomic_spinERT_T0_">__atomic_spin</dfn>(_Pred&amp; <dfn class="local col4 decl" id="234__pred" title='__pred' data-type='_Pred &amp;' data-ref="234__pred">__pred</dfn>, _Spin <dfn class="local col5 decl" id="235__spin" title='__spin' data-type='_Spin' data-ref="235__spin">__spin</dfn> = _Spin{ }) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="159">159</th><td>      {&nbsp</td></tr>
+<tr><th id="160">160</th><td>	<b>for</b> (<em>auto</em> <dfn class="local col6 decl" id="236__i" title='__i' data-type='int' data-ref="236__i">__i</dfn> = <var>0</var>; <a class="local col6 ref" href="#236__i" title='__i' data-ref="236__i">__i</a> &lt; <a class="ref" href="#std::__detail::__atomic_spin_count" title='std::__detail::__atomic_spin_count' data-ref="std::__detail::__atomic_spin_count">__atomic_spin_count</a>; ++<a class="local col6 ref" href="#236__i" title='__i' data-ref="236__i">__i</a>)&nbsp</td></tr>
+<tr><th id="161">161</th><td>	  {&nbsp</td></tr>
+<tr><th id="162">162</th><td>	    <b>if</b> (<a class="local col4 ref" href="#234__pred" title='__pred' data-ref="234__pred">__pred</a>())&nbsp</td></tr>
+<tr><th id="163">163</th><td>	      <b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="164">164</th><td>&nbsp</td></tr>
+<tr><th id="165">165</th><td>	    <b>if</b> (<a class="local col6 ref" href="#236__i" title='__i' data-ref="236__i">__i</a> &lt; <a class="ref" href="#std::__detail::__atomic_spin_count_relax" title='std::__detail::__atomic_spin_count_relax' data-ref="std::__detail::__atomic_spin_count_relax">__atomic_spin_count_relax</a>)&nbsp</td></tr>
+<tr><th id="166">166</th><td>	      <span class="namespace">__detail::</span><a class="ref fn" href="#_ZNSt8__detail14__thread_relaxEv" title='std::__detail::__thread_relax' data-ref="_ZNSt8__detail14__thread_relaxEv">__thread_relax</a>();&nbsp</td></tr>
+<tr><th id="167">167</th><td>	    <b>else</b>&nbsp</td></tr>
+<tr><th id="168">168</th><td>	      <span class="namespace">__detail::</span><a class="ref fn" href="#_ZNSt8__detail14__thread_yieldEv" title='std::__detail::__thread_yield' data-ref="_ZNSt8__detail14__thread_yieldEv">__thread_yield</a>();&nbsp</td></tr>
+<tr><th id="169">169</th><td>	  }&nbsp</td></tr>
+<tr><th id="170">170</th><td>&nbsp</td></tr>
+<tr><th id="171">171</th><td>	<b>while</b> (<a class="local col5 ref" href="#235__spin" title='__spin' data-ref="235__spin">__spin</a>())&nbsp</td></tr>
+<tr><th id="172">172</th><td>	  {&nbsp</td></tr>
+<tr><th id="173">173</th><td>	    <b>if</b> (<a class="local col4 ref" href="#234__pred" title='__pred' data-ref="234__pred">__pred</a>())&nbsp</td></tr>
+<tr><th id="174">174</th><td>	      <b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="175">175</th><td>	  }&nbsp</td></tr>
+<tr><th id="176">176</th><td>&nbsp</td></tr>
+<tr><th id="177">177</th><td>	<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="178">178</th><td>      }&nbsp</td></tr>
+<tr><th id="179">179</th><td>&nbsp</td></tr>
+<tr><th id="180">180</th><td>    <i>// return true if equal</i>&nbsp</td></tr>
+<tr><th id="181">181</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="182">182</th><td>      <em>bool</em> <dfn class="decl def fn" id="_ZNSt8__detail16__atomic_compareERKT_S2_" title='std::__detail::__atomic_compare' data-ref="_ZNSt8__detail16__atomic_compareERKT_S2_">__atomic_compare</dfn>(<em>const</em> _Tp&amp; <dfn class="local col7 decl" id="237__a" title='__a' data-type='const _Tp &amp;' data-ref="237__a">__a</dfn>, <em>const</em> _Tp&amp; <dfn class="local col8 decl" id="238__b" title='__b' data-type='const _Tp &amp;' data-ref="238__b">__b</dfn>)&nbsp</td></tr>
+<tr><th id="183">183</th><td>      {&nbsp</td></tr>
+<tr><th id="184">184</th><td>	<i>// TODO make this do the correct padding bit ignoring comparison</i>&nbsp</td></tr>
+<tr><th id="185">185</th><td>	<b>return</b> <a class="ref fn" href="stl_algobase.h.html#105" title='__builtin_memcmp' data-ref="__builtin_memcmp">__builtin_memcmp</a>(&amp;<a class="local col7 ref" href="#237__a" title='__a' data-ref="237__a">__a</a>, &amp;<a class="local col8 ref" href="#238__b" title='__b' data-ref="238__b">__b</a>, <b>sizeof</b>(_Tp)) == <var>0</var>;&nbsp</td></tr>
+<tr><th id="186">186</th><td>      }&nbsp</td></tr>
+<tr><th id="187">187</th><td>&nbsp</td></tr>
+<tr><th id="188">188</th><td>    <b>struct</b> <dfn class="type def" id="std::__detail::__waiter_pool_base" title='std::__detail::__waiter_pool_base' data-ref="std::__detail::__waiter_pool_base">__waiter_pool_base</dfn>&nbsp</td></tr>
+<tr><th id="189">189</th><td>    {&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>#<span data-ppcond="190">ifdef</span> <span class="macro" data-ref="_M/__cpp_lib_hardware_interference_size">__cpp_lib_hardware_interference_size</span></u>&nbsp</td></tr>
+<tr><th id="191">191</th><td>    <em>static</em> <b>constexpr</b> <em>auto</em> _S_align = hardware_destructive_interference_size;&nbsp</td></tr>
+<tr><th id="192">192</th><td><u>#<span data-ppcond="190">else</span></u>&nbsp</td></tr>
+<tr><th id="193">193</th><td>    <em>static</em> <b>constexpr</b> <em>auto</em> <dfn class="decl def" id="std::__detail::__waiter_pool_base::_S_align" title='std::__detail::__waiter_pool_base::_S_align' data-ref="std::__detail::__waiter_pool_base::_S_align">_S_align</dfn> = <var>64</var>;&nbsp</td></tr>
+<tr><th id="194">194</th><td><u>#<span data-ppcond="190">endif</span></u>&nbsp</td></tr>
+<tr><th id="195">195</th><td>&nbsp</td></tr>
+<tr><th id="196">196</th><td>      <b>alignas</b>(<a class="ref" href="#std::__detail::__waiter_pool_base::_S_align" title='std::__detail::__waiter_pool_base::_S_align' data-ref="std::__detail::__waiter_pool_base::_S_align">_S_align</a>) <a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a> <dfn class="decl field" id="std::__detail::__waiter_pool_base::_M_wait" title='std::__detail::__waiter_pool_base::_M_wait' data-ref="std::__detail::__waiter_pool_base::_M_wait">_M_wait</dfn> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="197">197</th><td>&nbsp</td></tr>
+<tr><th id="198">198</th><td><u>#<span data-ppcond="198">ifndef</span> <a class="macro" href="#59" data-ref="_M/_GLIBCXX_HAVE_PLATFORM_WAIT">_GLIBCXX_HAVE_PLATFORM_WAIT</a></u>&nbsp</td></tr>
+<tr><th id="199">199</th><td>      mutex _M_mtx;&nbsp</td></tr>
+<tr><th id="200">200</th><td><u>#<span data-ppcond="198">endif</span></u>&nbsp</td></tr>
+<tr><th id="201">201</th><td>&nbsp</td></tr>
+<tr><th id="202">202</th><td>      <b>alignas</b>(<a class="ref" href="#std::__detail::__waiter_pool_base::_S_align" title='std::__detail::__waiter_pool_base::_S_align' data-ref="std::__detail::__waiter_pool_base::_S_align">_S_align</a>) <a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a> <dfn class="decl field" id="std::__detail::__waiter_pool_base::_M_ver" title='std::__detail::__waiter_pool_base::_M_ver' data-ref="std::__detail::__waiter_pool_base::_M_ver">_M_ver</dfn> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="203">203</th><td>&nbsp</td></tr>
+<tr><th id="204">204</th><td><u>#<span data-ppcond="204">ifndef</span> <a class="macro" href="#59" data-ref="_M/_GLIBCXX_HAVE_PLATFORM_WAIT">_GLIBCXX_HAVE_PLATFORM_WAIT</a></u>&nbsp</td></tr>
+<tr><th id="205">205</th><td>      __condvar _M_cv;&nbsp</td></tr>
+<tr><th id="206">206</th><td><u>#<span data-ppcond="204">endif</span></u>&nbsp</td></tr>
+<tr><th id="207">207</th><td>      <dfn class="decl def fn" id="_ZNSt8__detail18__waiter_pool_baseC1Ev" title='std::__detail::__waiter_pool_base::__waiter_pool_base' data-ref="_ZNSt8__detail18__waiter_pool_baseC1Ev">__waiter_pool_base</dfn>() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="208">208</th><td>&nbsp</td></tr>
+<tr><th id="209">209</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="210">210</th><td>      <dfn class="decl def fn" id="_ZNSt8__detail18__waiter_pool_base13_M_enter_waitEv" title='std::__detail::__waiter_pool_base::_M_enter_wait' data-ref="_ZNSt8__detail18__waiter_pool_base13_M_enter_waitEv">_M_enter_wait</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="211">211</th><td>      { __atomic_fetch_add(&amp;<a class="member field" href="#std::__detail::__waiter_pool_base::_M_wait" title='std::__detail::__waiter_pool_base::_M_wait' data-ref="std::__detail::__waiter_pool_base::_M_wait">_M_wait</a>, <var>1</var>, <span class="macro" title="5" data-ref="_M/__ATOMIC_SEQ_CST">__ATOMIC_SEQ_CST</span>); }&nbsp</td></tr>
+<tr><th id="212">212</th><td>&nbsp</td></tr>
+<tr><th id="213">213</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="214">214</th><td>      <dfn class="decl def fn" id="_ZNSt8__detail18__waiter_pool_base13_M_leave_waitEv" title='std::__detail::__waiter_pool_base::_M_leave_wait' data-ref="_ZNSt8__detail18__waiter_pool_base13_M_leave_waitEv">_M_leave_wait</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="215">215</th><td>      { __atomic_fetch_sub(&amp;<a class="member field" href="#std::__detail::__waiter_pool_base::_M_wait" title='std::__detail::__waiter_pool_base::_M_wait' data-ref="std::__detail::__waiter_pool_base::_M_wait">_M_wait</a>, <var>1</var>, <span class="macro" title="3" data-ref="_M/__ATOMIC_RELEASE">__ATOMIC_RELEASE</span>); }&nbsp</td></tr>
+<tr><th id="216">216</th><td>&nbsp</td></tr>
+<tr><th id="217">217</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="218">218</th><td>      <dfn class="decl def fn" id="_ZNKSt8__detail18__waiter_pool_base10_M_waitingEv" title='std::__detail::__waiter_pool_base::_M_waiting' data-ref="_ZNKSt8__detail18__waiter_pool_base10_M_waitingEv">_M_waiting</dfn>() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="219">219</th><td>      {&nbsp</td></tr>
+<tr><th id="220">220</th><td>	<a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a> <dfn class="local col9 decl" id="239__res" title='__res' data-type='std::__detail::__platform_wait_t' data-ref="239__res">__res</dfn>;&nbsp</td></tr>
+<tr><th id="221">221</th><td>	__atomic_load(&amp;<a class="member field" href="#std::__detail::__waiter_pool_base::_M_wait" title='std::__detail::__waiter_pool_base::_M_wait' data-ref="std::__detail::__waiter_pool_base::_M_wait">_M_wait</a>, &amp;<a class="local col9 ref" href="#239__res" title='__res' data-ref="239__res">__res</a>, <span class="macro" title="5" data-ref="_M/__ATOMIC_SEQ_CST">__ATOMIC_SEQ_CST</span>);&nbsp</td></tr>
+<tr><th id="222">222</th><td>	<b>return</b> <a class="local col9 ref" href="#239__res" title='__res' data-ref="239__res">__res</a> != <var>0</var>;&nbsp</td></tr>
+<tr><th id="223">223</th><td>      }&nbsp</td></tr>
+<tr><th id="224">224</th><td>&nbsp</td></tr>
+<tr><th id="225">225</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="226">226</th><td>      <dfn class="decl def fn" id="_ZNSt8__detail18__waiter_pool_base9_M_notifyEPibb" title='std::__detail::__waiter_pool_base::_M_notify' data-ref="_ZNSt8__detail18__waiter_pool_base9_M_notifyEPibb">_M_notify</dfn>(<a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>* <dfn class="local col0 decl" id="240__addr" title='__addr' data-type='std::__detail::__platform_wait_t *' data-ref="240__addr">__addr</dfn>, [[maybe_unused]] <em>bool</em> <dfn class="local col1 decl" id="241__all" title='__all' data-type='bool' data-ref="241__all">__all</dfn>,&nbsp</td></tr>
+<tr><th id="227">227</th><td>		<em>bool</em> <dfn class="local col2 decl" id="242__bare" title='__bare' data-type='bool' data-ref="242__bare">__bare</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="228">228</th><td>      {&nbsp</td></tr>
+<tr><th id="229">229</th><td><u>#<span data-ppcond="229">ifdef</span> <a class="macro" href="#59" data-ref="_M/_GLIBCXX_HAVE_PLATFORM_WAIT">_GLIBCXX_HAVE_PLATFORM_WAIT</a></u>&nbsp</td></tr>
+<tr><th id="230">230</th><td>	<b>if</b> (<a class="local col0 ref" href="#240__addr" title='__addr' data-ref="240__addr">__addr</a> == &amp;<a class="member field" href="#std::__detail::__waiter_pool_base::_M_ver" title='std::__detail::__waiter_pool_base::_M_ver' data-ref="std::__detail::__waiter_pool_base::_M_ver">_M_ver</a>)&nbsp</td></tr>
+<tr><th id="231">231</th><td>	  {&nbsp</td></tr>
+<tr><th id="232">232</th><td>	    __atomic_fetch_add(<a class="local col0 ref" href="#240__addr" title='__addr' data-ref="240__addr">__addr</a>, <var>1</var>, <span class="macro" title="5" data-ref="_M/__ATOMIC_SEQ_CST">__ATOMIC_SEQ_CST</span>);&nbsp</td></tr>
+<tr><th id="233">233</th><td>	    <a class="local col1 ref" href="#241__all" title='__all' data-ref="241__all">__all</a> = <b>true</b>;&nbsp</td></tr>
+<tr><th id="234">234</th><td>	  }&nbsp</td></tr>
+<tr><th id="235">235</th><td>&nbsp</td></tr>
+<tr><th id="236">236</th><td>	<b>if</b> (<a class="local col2 ref" href="#242__bare" title='__bare' data-ref="242__bare">__bare</a> || <a class="member fn" href="#_ZNKSt8__detail18__waiter_pool_base10_M_waitingEv" title='std::__detail::__waiter_pool_base::_M_waiting' data-ref="_ZNKSt8__detail18__waiter_pool_base10_M_waitingEv">_M_waiting</a>())&nbsp</td></tr>
+<tr><th id="237">237</th><td>	  <a class="ref fn" href="#_ZNSt8__detail17__platform_notifyEPKT_b" title='std::__detail::__platform_notify' data-ref="_ZNSt8__detail17__platform_notifyEPKT_b">__platform_notify</a>(<a class="local col0 ref" href="#240__addr" title='__addr' data-ref="240__addr">__addr</a>, <a class="local col1 ref" href="#241__all" title='__all' data-ref="241__all">__all</a>);&nbsp</td></tr>
+<tr><th id="238">238</th><td><u>#<span data-ppcond="229">else</span></u>&nbsp</td></tr>
+<tr><th id="239">239</th><td>	{&nbsp</td></tr>
+<tr><th id="240">240</th><td>	  lock_guard&lt;mutex&gt; __l(_M_mtx);&nbsp</td></tr>
+<tr><th id="241">241</th><td>	  __atomic_fetch_add(__addr, <var>1</var>, __ATOMIC_RELAXED);&nbsp</td></tr>
+<tr><th id="242">242</th><td>	}&nbsp</td></tr>
+<tr><th id="243">243</th><td>	<b>if</b> (__bare || _M_waiting())&nbsp</td></tr>
+<tr><th id="244">244</th><td>	  _M_cv.notify_all();&nbsp</td></tr>
+<tr><th id="245">245</th><td><u>#<span data-ppcond="229">endif</span></u>&nbsp</td></tr>
+<tr><th id="246">246</th><td>      }&nbsp</td></tr>
+<tr><th id="247">247</th><td>&nbsp</td></tr>
+<tr><th id="248">248</th><td>      <em>static</em> <a class="type" href="#std::__detail::__waiter_pool_base" title='std::__detail::__waiter_pool_base' data-ref="std::__detail::__waiter_pool_base">__waiter_pool_base</a>&amp;&nbsp</td></tr>
+<tr><th id="249">249</th><td>      <dfn class="decl def fn" id="_ZNSt8__detail18__waiter_pool_base6_S_forEPKv" title='std::__detail::__waiter_pool_base::_S_for' data-ref="_ZNSt8__detail18__waiter_pool_base6_S_forEPKv">_S_for</dfn>(<em>const</em> <em>void</em>* <dfn class="local col3 decl" id="243__addr" title='__addr' data-type='const void *' data-ref="243__addr">__addr</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="250">250</th><td>      {&nbsp</td></tr>
+<tr><th id="251">251</th><td>	<b>constexpr</b> uintptr_t <dfn class="local col4 decl" id="244__ct" title='__ct' data-type='const uintptr_t' data-ref="244__ct">__ct</dfn> = <var>16</var>;&nbsp</td></tr>
+<tr><th id="252">252</th><td>	<em>static</em> <a class="type" href="#std::__detail::__waiter_pool_base" title='std::__detail::__waiter_pool_base' data-ref="std::__detail::__waiter_pool_base">__waiter_pool_base</a> <a class="ref fn fake" href="#_ZNSt8__detail18__waiter_pool_baseC1Ev" title='std::__detail::__waiter_pool_base::__waiter_pool_base' data-ref="_ZNSt8__detail18__waiter_pool_baseC1Ev"></a><dfn class="local col5 decl" id="245__w" title='__w' data-type='std::__detail::__waiter_pool_base[16]' data-ref="245__w">__w</dfn>[<a class="local col4 ref" href="#244__ct" title='__ct' data-ref="244__ct">__ct</a>];&nbsp</td></tr>
+<tr><th id="253">253</th><td>	<em>auto</em> <dfn class="local col6 decl" id="246__key" title='__key' data-type='unsigned long' data-ref="246__key">__key</dfn> = (uintptr_t(<a class="local col3 ref" href="#243__addr" title='__addr' data-ref="243__addr">__addr</a>) &gt;&gt; <var>2</var>) % <a class="local col4 ref" href="#244__ct" title='__ct' data-ref="244__ct">__ct</a>;&nbsp</td></tr>
+<tr><th id="254">254</th><td>	<b>return</b> <a class="local col5 ref" href="#245__w" title='__w' data-ref="245__w">__w</a>[<a class="local col6 ref" href="#246__key" title='__key' data-ref="246__key">__key</a>];&nbsp</td></tr>
+<tr><th id="255">255</th><td>      }&nbsp</td></tr>
+<tr><th id="256">256</th><td>    };&nbsp</td></tr>
+<tr><th id="257">257</th><td>&nbsp</td></tr>
+<tr><th id="258">258</th><td>    <b>struct</b> <dfn class="type def" id="std::__detail::__waiter_pool" title='std::__detail::__waiter_pool' data-ref="std::__detail::__waiter_pool">__waiter_pool</dfn> : <a class="type" href="#std::__detail::__waiter_pool_base" title='std::__detail::__waiter_pool_base' data-ref="std::__detail::__waiter_pool_base">__waiter_pool_base</a>&nbsp</td></tr>
+<tr><th id="259">259</th><td>    {&nbsp</td></tr>
+<tr><th id="260">260</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="261">261</th><td>      <dfn class="decl def fn" id="_ZNSt8__detail13__waiter_pool10_M_do_waitEPKii" title='std::__detail::__waiter_pool::_M_do_wait' data-ref="_ZNSt8__detail13__waiter_pool10_M_do_waitEPKii">_M_do_wait</dfn>(<em>const</em> <a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>* <dfn class="local col7 decl" id="247__addr" title='__addr' data-type='const std::__detail::__platform_wait_t *' data-ref="247__addr">__addr</dfn>, <a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a> <dfn class="local col8 decl" id="248__old" title='__old' data-type='std::__detail::__platform_wait_t' data-ref="248__old">__old</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="262">262</th><td>      {&nbsp</td></tr>
+<tr><th id="263">263</th><td><u>#<span data-ppcond="263">ifdef</span> <a class="macro" href="#59" data-ref="_M/_GLIBCXX_HAVE_PLATFORM_WAIT">_GLIBCXX_HAVE_PLATFORM_WAIT</a></u>&nbsp</td></tr>
+<tr><th id="264">264</th><td>	<a class="ref fn" href="#_ZNSt8__detail15__platform_waitEPKT_i" title='std::__detail::__platform_wait' data-ref="_ZNSt8__detail15__platform_waitEPKT_i">__platform_wait</a>(<a class="local col7 ref" href="#247__addr" title='__addr' data-ref="247__addr">__addr</a>, <span class='inlayHint'>val:&nbsp;</span><a class="local col8 ref" href="#248__old" title='__old' data-ref="248__old">__old</a>);&nbsp</td></tr>
+<tr><th id="265">265</th><td><u>#<span data-ppcond="263">else</span></u>&nbsp</td></tr>
+<tr><th id="266">266</th><td>	__platform_wait_t __val;&nbsp</td></tr>
+<tr><th id="267">267</th><td>	__atomic_load(__addr, &amp;__val, __ATOMIC_SEQ_CST);&nbsp</td></tr>
+<tr><th id="268">268</th><td>	<b>if</b> (__val == __old)&nbsp</td></tr>
+<tr><th id="269">269</th><td>	  {&nbsp</td></tr>
+<tr><th id="270">270</th><td>	    lock_guard&lt;mutex&gt; __l(_M_mtx);&nbsp</td></tr>
+<tr><th id="271">271</th><td>	    __atomic_load(__addr, &amp;__val, __ATOMIC_RELAXED);&nbsp</td></tr>
+<tr><th id="272">272</th><td>	    <b>if</b> (__val == __old)&nbsp</td></tr>
+<tr><th id="273">273</th><td>	      _M_cv.wait(_M_mtx);&nbsp</td></tr>
+<tr><th id="274">274</th><td>	  }&nbsp</td></tr>
+<tr><th id="275">275</th><td><u>#<span data-ppcond="263">endif</span> // __GLIBCXX_HAVE_PLATFORM_WAIT</u>&nbsp</td></tr>
+<tr><th id="276">276</th><td>      }&nbsp</td></tr>
+<tr><th id="277">277</th><td>    };&nbsp</td></tr>
+<tr><th id="278">278</th><td>&nbsp</td></tr>
+<tr><th id="279">279</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="280">280</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__waiter_base" title='std::__detail::__waiter_base' data-ref="std::__detail::__waiter_base">__waiter_base</dfn>&nbsp</td></tr>
+<tr><th id="281">281</th><td>      {&nbsp</td></tr>
+<tr><th id="282">282</th><td>	<b>using</b> <dfn class="typedef" id="std::__detail::__waiter_base::__waiter_type" title='std::__detail::__waiter_base::__waiter_type' data-type='_Tp' data-ref="std::__detail::__waiter_base::__waiter_type">__waiter_type</dfn> = _Tp;&nbsp</td></tr>
+<tr><th id="283">283</th><td>&nbsp</td></tr>
+<tr><th id="284">284</th><td>	<a class="typedef" href="#std::__detail::__waiter_base::__waiter_type" title='std::__detail::__waiter_base::__waiter_type' data-type='_Tp' data-ref="std::__detail::__waiter_base::__waiter_type">__waiter_type</a>&amp; <dfn class="decl field" id="std::__detail::__waiter_base::_M_w" title='std::__detail::__waiter_base::_M_w' data-ref="std::__detail::__waiter_base::_M_w">_M_w</dfn>;&nbsp</td></tr>
+<tr><th id="285">285</th><td>	<a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>* <dfn class="decl field" id="std::__detail::__waiter_base::_M_addr" title='std::__detail::__waiter_base::_M_addr' data-ref="std::__detail::__waiter_base::_M_addr">_M_addr</dfn>;&nbsp</td></tr>
+<tr><th id="286">286</th><td>&nbsp</td></tr>
+<tr><th id="287">287</th><td>	<b>template</b>&lt;<b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="288">288</th><td>	  <em>static</em> <a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>*&nbsp</td></tr>
+<tr><th id="289">289</th><td>	  <dfn class="decl def fn" id="_ZNSt8__detail13__waiter_base12_S_wait_addrEPKTL0__Pi" title='std::__detail::__waiter_base::_S_wait_addr' data-ref="_ZNSt8__detail13__waiter_base12_S_wait_addrEPKTL0__Pi">_S_wait_addr</dfn>(<em>const</em> _Up* <dfn class="local col9 decl" id="249__a" title='__a' data-type='const _Up *' data-ref="249__a">__a</dfn>, <a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>* <dfn class="local col0 decl" id="250__b" title='__b' data-type='std::__detail::__platform_wait_t *' data-ref="250__b">__b</dfn>)&nbsp</td></tr>
+<tr><th id="290">290</th><td>	  {&nbsp</td></tr>
+<tr><th id="291">291</th><td>	    <b>if</b> <b>constexpr</b> (__platform_wait_uses_type&lt;_Up&gt;)&nbsp</td></tr>
+<tr><th id="292">292</th><td>	      <b>return</b> <b>reinterpret_cast</b>&lt;<a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>*&gt;(<b>const_cast</b>&lt;_Up*&gt;(<a class="local col9 ref" href="#249__a" title='__a' data-ref="249__a">__a</a>));&nbsp</td></tr>
+<tr><th id="293">293</th><td>	    <b>else</b>&nbsp</td></tr>
+<tr><th id="294">294</th><td>	      <b>return</b> <a class="local col0 ref" href="#250__b" title='__b' data-ref="250__b">__b</a>;&nbsp</td></tr>
+<tr><th id="295">295</th><td>	  }&nbsp</td></tr>
+<tr><th id="296">296</th><td>&nbsp</td></tr>
+<tr><th id="297">297</th><td>	<em>static</em> <a class="typedef" href="#std::__detail::__waiter_base::__waiter_type" title='std::__detail::__waiter_base::__waiter_type' data-type='_Tp' data-ref="std::__detail::__waiter_base::__waiter_type">__waiter_type</a>&amp;&nbsp</td></tr>
+<tr><th id="298">298</th><td>	<dfn class="decl def fn" id="_ZNSt8__detail13__waiter_base6_S_forEPKv" title='std::__detail::__waiter_base::_S_for' data-ref="_ZNSt8__detail13__waiter_base6_S_forEPKv">_S_for</dfn>(<em>const</em> <em>void</em>* <dfn class="local col1 decl" id="251__addr" title='__addr' data-type='const void *' data-ref="251__addr">__addr</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="299">299</th><td>	{&nbsp</td></tr>
+<tr><th id="300">300</th><td>	  <b>static_assert</b>(<b>sizeof</b>(<a class="typedef" href="#std::__detail::__waiter_base::__waiter_type" title='std::__detail::__waiter_base::__waiter_type' data-type='_Tp' data-ref="std::__detail::__waiter_base::__waiter_type">__waiter_type</a>) == <b>sizeof</b>(<a class="type" href="#std::__detail::__waiter_pool_base" title='std::__detail::__waiter_pool_base' data-ref="std::__detail::__waiter_pool_base">__waiter_pool_base</a>));&nbsp</td></tr>
+<tr><th id="301">301</th><td>	  <em>auto</em>&amp; <dfn class="local col2 decl" id="252res" title='res' data-type='std::__detail::__waiter_pool_base &amp;' data-ref="252res">res</dfn> = <a class="type" href="#std::__detail::__waiter_pool_base" title='std::__detail::__waiter_pool_base' data-ref="std::__detail::__waiter_pool_base">__waiter_pool_base</a>::<a class="ref fn" href="#_ZNSt8__detail18__waiter_pool_base6_S_forEPKv" title='std::__detail::__waiter_pool_base::_S_for' data-ref="_ZNSt8__detail18__waiter_pool_base6_S_forEPKv">_S_for</a>(<a class="local col1 ref" href="#251__addr" title='__addr' data-ref="251__addr">__addr</a>);&nbsp</td></tr>
+<tr><th id="302">302</th><td>	  <b>return</b> <b>reinterpret_cast</b>&lt;<a class="typedef" href="#std::__detail::__waiter_base::__waiter_type" title='std::__detail::__waiter_base::__waiter_type' data-type='_Tp' data-ref="std::__detail::__waiter_base::__waiter_type">__waiter_type</a>&amp;&gt;(<a class="local col2 ref" href="#252res" title='res' data-ref="252res">res</a>);&nbsp</td></tr>
+<tr><th id="303">303</th><td>	}&nbsp</td></tr>
+<tr><th id="304">304</th><td>&nbsp</td></tr>
+<tr><th id="305">305</th><td>	<b>template</b>&lt;<b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="306">306</th><td>	  <b>explicit</b> <dfn class="decl def fn" id="_ZNSt8__detail13__waiter_baseC1EPKTL0__" title='std::__detail::__waiter_base::__waiter_base&lt;_Tp&gt;' data-ref="_ZNSt8__detail13__waiter_baseC1EPKTL0__">__waiter_base</dfn>(<em>const</em> _Up* <dfn class="local col3 decl" id="253__addr" title='__addr' data-type='const _Up *' data-ref="253__addr">__addr</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="307">307</th><td>	    : <a class="member field" href="#std::__detail::__waiter_base::_M_w" title='std::__detail::__waiter_base::_M_w' data-ref="std::__detail::__waiter_base::_M_w">_M_w</a>(<a class="member fn" href="#_ZNSt8__detail13__waiter_base6_S_forEPKv" title='std::__detail::__waiter_base::_S_for' data-ref="_ZNSt8__detail13__waiter_base6_S_forEPKv">_S_for</a>(<a class="local col3 ref" href="#253__addr" title='__addr' data-ref="253__addr">__addr</a>))&nbsp</td></tr>
+<tr><th id="308">308</th><td>	    , <a class="member field" href="#std::__detail::__waiter_base::_M_addr" title='std::__detail::__waiter_base::_M_addr' data-ref="std::__detail::__waiter_base::_M_addr">_M_addr</a>(_S_wait_addr(<a class="local col3 ref" href="#253__addr" title='__addr' data-ref="253__addr">__addr</a>, &amp;<a class="member field" href="#std::__detail::__waiter_base::_M_w" title='std::__detail::__waiter_base::_M_w' data-ref="std::__detail::__waiter_base::_M_w">_M_w</a>._M_ver))&nbsp</td></tr>
+<tr><th id="309">309</th><td>	  { }&nbsp</td></tr>
+<tr><th id="310">310</th><td>&nbsp</td></tr>
+<tr><th id="311">311</th><td>	<em>void</em>&nbsp</td></tr>
+<tr><th id="312">312</th><td>	<dfn class="decl def fn" id="_ZNSt8__detail13__waiter_base9_M_notifyEbb" title='std::__detail::__waiter_base::_M_notify' data-ref="_ZNSt8__detail13__waiter_base9_M_notifyEbb">_M_notify</dfn>(<em>bool</em> <dfn class="local col4 decl" id="254__all" title='__all' data-type='bool' data-ref="254__all">__all</dfn>, <em>bool</em> <dfn class="local col5 decl" id="255__bare" title='__bare' data-type='bool' data-ref="255__bare">__bare</dfn> = <b>false</b>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="313">313</th><td>	{ <a class="member field" href="#std::__detail::__waiter_base::_M_w" title='std::__detail::__waiter_base::_M_w' data-ref="std::__detail::__waiter_base::_M_w">_M_w</a>._M_notify(<a class="member field" href="#std::__detail::__waiter_base::_M_addr" title='std::__detail::__waiter_base::_M_addr' data-ref="std::__detail::__waiter_base::_M_addr">_M_addr</a>, <a class="local col4 ref" href="#254__all" title='__all' data-ref="254__all">__all</a>, <a class="local col5 ref" href="#255__bare" title='__bare' data-ref="255__bare">__bare</a>); }&nbsp</td></tr>
+<tr><th id="314">314</th><td>&nbsp</td></tr>
+<tr><th id="315">315</th><td>	<b>template</b>&lt;<b>typename</b> _Up, <b>typename</b> _ValFn,&nbsp</td></tr>
+<tr><th id="316">316</th><td>		 <b>typename</b> _Spin = <a class="type" href="#std::__detail::__default_spin_policy" title='std::__detail::__default_spin_policy' data-ref="std::__detail::__default_spin_policy">__default_spin_policy</a>&gt;&nbsp</td></tr>
+<tr><th id="317">317</th><td>	  <em>static</em> <em>bool</em>&nbsp</td></tr>
+<tr><th id="318">318</th><td>	  <dfn class="decl def fn" id="_ZNSt8__detail13__waiter_base12_S_do_spin_vEPiRKTL0__TL0_0_RiTL0_1_" title='std::__detail::__waiter_base::_S_do_spin_v' data-ref="_ZNSt8__detail13__waiter_base12_S_do_spin_vEPiRKTL0__TL0_0_RiTL0_1_">_S_do_spin_v</dfn>(<a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>* <dfn class="local col6 decl" id="256__addr" title='__addr' data-type='std::__detail::__platform_wait_t *' data-ref="256__addr">__addr</dfn>,&nbsp</td></tr>
+<tr><th id="319">319</th><td>		       <em>const</em> _Up&amp; <dfn class="local col7 decl" id="257__old" title='__old' data-type='const _Up &amp;' data-ref="257__old">__old</dfn>, _ValFn <dfn class="local col8 decl" id="258__vfn" title='__vfn' data-type='_ValFn' data-ref="258__vfn">__vfn</dfn>,&nbsp</td></tr>
+<tr><th id="320">320</th><td>		       <a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>&amp; <dfn class="local col9 decl" id="259__val" title='__val' data-type='std::__detail::__platform_wait_t &amp;' data-ref="259__val">__val</dfn>,&nbsp</td></tr>
+<tr><th id="321">321</th><td>		       _Spin <dfn class="local col0 decl" id="260__spin" title='__spin' data-type='_Spin' data-ref="260__spin">__spin</dfn> = _Spin{ })&nbsp</td></tr>
+<tr><th id="322">322</th><td>	  {&nbsp</td></tr>
+<tr><th id="323">323</th><td>	    <em>auto</em> <em>const</em> <dfn class="local col1 decl" id="261__pred" title='__pred' data-type='const auto' data-ref="261__pred">__pred</dfn> = [=]&nbsp</td></tr>
+<tr><th id="324">324</th><td>	      { <b>return</b> !<span class="namespace">__detail::</span>__atomic_compare(<a class="local col7 ref" href="#257__old" title='__old' data-ref="257__old">__old</a>, <a class="local col8 ref" href="#258__vfn" title='__vfn' data-ref="258__vfn">__vfn</a>()); };&nbsp</td></tr>
+<tr><th id="325">325</th><td>&nbsp</td></tr>
+<tr><th id="326">326</th><td>	    <b>if</b> <b>constexpr</b> (__platform_wait_uses_type&lt;_Up&gt;)&nbsp</td></tr>
+<tr><th id="327">327</th><td>	      {&nbsp</td></tr>
+<tr><th id="328">328</th><td>		<a class="ref fn" href="char_traits.h.html#437" title='__builtin_memcpy' data-ref="__builtin_memcpy">__builtin_memcpy</a>(&amp;<a class="local col9 ref" href="#259__val" title='__val' data-ref="259__val">__val</a>, &amp;<a class="local col7 ref" href="#257__old" title='__old' data-ref="257__old">__old</a>, <b>sizeof</b>(<a class="local col9 ref" href="#259__val" title='__val' data-ref="259__val">__val</a>));&nbsp</td></tr>
+<tr><th id="329">329</th><td>	      }&nbsp</td></tr>
+<tr><th id="330">330</th><td>	    <b>else</b>&nbsp</td></tr>
+<tr><th id="331">331</th><td>	      {&nbsp</td></tr>
+<tr><th id="332">332</th><td>		__atomic_load(<a class="local col6 ref" href="#256__addr" title='__addr' data-ref="256__addr">__addr</a>, &amp;<a class="local col9 ref" href="#259__val" title='__val' data-ref="259__val">__val</a>, <span class="macro" title="2" data-ref="_M/__ATOMIC_ACQUIRE">__ATOMIC_ACQUIRE</span>);&nbsp</td></tr>
+<tr><th id="333">333</th><td>	      }&nbsp</td></tr>
+<tr><th id="334">334</th><td>	    <b>return</b> __atomic_spin(<a class="local col1 ref" href="#261__pred" title='__pred' data-ref="261__pred">__pred</a>, <a class="local col0 ref" href="#260__spin" title='__spin' data-ref="260__spin">__spin</a>);&nbsp</td></tr>
+<tr><th id="335">335</th><td>	  }&nbsp</td></tr>
+<tr><th id="336">336</th><td>&nbsp</td></tr>
+<tr><th id="337">337</th><td>	<b>template</b>&lt;<b>typename</b> _Up, <b>typename</b> _ValFn,&nbsp</td></tr>
+<tr><th id="338">338</th><td>		 <b>typename</b> _Spin = <a class="type" href="#std::__detail::__default_spin_policy" title='std::__detail::__default_spin_policy' data-ref="std::__detail::__default_spin_policy">__default_spin_policy</a>&gt;&nbsp</td></tr>
+<tr><th id="339">339</th><td>	  <em>bool</em>&nbsp</td></tr>
+<tr><th id="340">340</th><td>	  <dfn class="decl def fn" id="_ZNSt8__detail13__waiter_base12_M_do_spin_vERKTL0__TL0_0_RiTL0_1_" title='std::__detail::__waiter_base::_M_do_spin_v' data-ref="_ZNSt8__detail13__waiter_base12_M_do_spin_vERKTL0__TL0_0_RiTL0_1_">_M_do_spin_v</dfn>(<em>const</em> _Up&amp; <dfn class="local col2 decl" id="262__old" title='__old' data-type='const _Up &amp;' data-ref="262__old">__old</dfn>, _ValFn <dfn class="local col3 decl" id="263__vfn" title='__vfn' data-type='_ValFn' data-ref="263__vfn">__vfn</dfn>,&nbsp</td></tr>
+<tr><th id="341">341</th><td>		       <a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>&amp; <dfn class="local col4 decl" id="264__val" title='__val' data-type='std::__detail::__platform_wait_t &amp;' data-ref="264__val">__val</dfn>,&nbsp</td></tr>
+<tr><th id="342">342</th><td>		       _Spin <dfn class="local col5 decl" id="265__spin" title='__spin' data-type='_Spin' data-ref="265__spin">__spin</dfn> = _Spin{ })&nbsp</td></tr>
+<tr><th id="343">343</th><td>	  { <b>return</b> _S_do_spin_v(<a class="member field" href="#std::__detail::__waiter_base::_M_addr" title='std::__detail::__waiter_base::_M_addr' data-ref="std::__detail::__waiter_base::_M_addr">_M_addr</a>, <a class="local col2 ref" href="#262__old" title='__old' data-ref="262__old">__old</a>, <a class="local col3 ref" href="#263__vfn" title='__vfn' data-ref="263__vfn">__vfn</a>, <a class="local col4 ref" href="#264__val" title='__val' data-ref="264__val">__val</a>, <a class="local col5 ref" href="#265__spin" title='__spin' data-ref="265__spin">__spin</a>); }&nbsp</td></tr>
+<tr><th id="344">344</th><td>&nbsp</td></tr>
+<tr><th id="345">345</th><td>	<b>template</b>&lt;<b>typename</b> _Pred,&nbsp</td></tr>
+<tr><th id="346">346</th><td>		 <b>typename</b> _Spin = <a class="type" href="#std::__detail::__default_spin_policy" title='std::__detail::__default_spin_policy' data-ref="std::__detail::__default_spin_policy">__default_spin_policy</a>&gt;&nbsp</td></tr>
+<tr><th id="347">347</th><td>	  <em>static</em> <em>bool</em>&nbsp</td></tr>
+<tr><th id="348">348</th><td>	  <dfn class="decl def fn" id="_ZNSt8__detail13__waiter_base10_S_do_spinEPKiTL0__RiTL0_0_" title='std::__detail::__waiter_base::_S_do_spin' data-ref="_ZNSt8__detail13__waiter_base10_S_do_spinEPKiTL0__RiTL0_0_">_S_do_spin</dfn>(<em>const</em> <a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>* <dfn class="local col6 decl" id="266__addr" title='__addr' data-type='const std::__detail::__platform_wait_t *' data-ref="266__addr">__addr</dfn>,&nbsp</td></tr>
+<tr><th id="349">349</th><td>		     _Pred <dfn class="local col7 decl" id="267__pred" title='__pred' data-type='_Pred' data-ref="267__pred">__pred</dfn>,&nbsp</td></tr>
+<tr><th id="350">350</th><td>		     <a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>&amp; <dfn class="local col8 decl" id="268__val" title='__val' data-type='std::__detail::__platform_wait_t &amp;' data-ref="268__val">__val</dfn>,&nbsp</td></tr>
+<tr><th id="351">351</th><td>		     _Spin <dfn class="local col9 decl" id="269__spin" title='__spin' data-type='_Spin' data-ref="269__spin">__spin</dfn> = _Spin{ })&nbsp</td></tr>
+<tr><th id="352">352</th><td>	  {&nbsp</td></tr>
+<tr><th id="353">353</th><td>	    __atomic_load(<a class="local col6 ref" href="#266__addr" title='__addr' data-ref="266__addr">__addr</a>, &amp;<a class="local col8 ref" href="#268__val" title='__val' data-ref="268__val">__val</a>, <span class="macro" title="2" data-ref="_M/__ATOMIC_ACQUIRE">__ATOMIC_ACQUIRE</span>);&nbsp</td></tr>
+<tr><th id="354">354</th><td>	    <b>return</b> __atomic_spin(<a class="local col7 ref" href="#267__pred" title='__pred' data-ref="267__pred">__pred</a>, <a class="local col9 ref" href="#269__spin" title='__spin' data-ref="269__spin">__spin</a>);&nbsp</td></tr>
+<tr><th id="355">355</th><td>	  }&nbsp</td></tr>
+<tr><th id="356">356</th><td>&nbsp</td></tr>
+<tr><th id="357">357</th><td>	<b>template</b>&lt;<b>typename</b> _Pred,&nbsp</td></tr>
+<tr><th id="358">358</th><td>		 <b>typename</b> _Spin = <a class="type" href="#std::__detail::__default_spin_policy" title='std::__detail::__default_spin_policy' data-ref="std::__detail::__default_spin_policy">__default_spin_policy</a>&gt;&nbsp</td></tr>
+<tr><th id="359">359</th><td>	  <em>bool</em>&nbsp</td></tr>
+<tr><th id="360">360</th><td>	  <dfn class="decl def fn" id="_ZNSt8__detail13__waiter_base10_M_do_spinETL0__RiTL0_0_" title='std::__detail::__waiter_base::_M_do_spin' data-ref="_ZNSt8__detail13__waiter_base10_M_do_spinETL0__RiTL0_0_">_M_do_spin</dfn>(_Pred <dfn class="local col0 decl" id="270__pred" title='__pred' data-type='_Pred' data-ref="270__pred">__pred</dfn>, <a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>&amp; <dfn class="local col1 decl" id="271__val" title='__val' data-type='std::__detail::__platform_wait_t &amp;' data-ref="271__val">__val</dfn>,&nbsp</td></tr>
+<tr><th id="361">361</th><td>		     _Spin <dfn class="local col2 decl" id="272__spin" title='__spin' data-type='_Spin' data-ref="272__spin">__spin</dfn> = _Spin{ })&nbsp</td></tr>
+<tr><th id="362">362</th><td>	  { <b>return</b> _S_do_spin(<a class="member field" href="#std::__detail::__waiter_base::_M_addr" title='std::__detail::__waiter_base::_M_addr' data-ref="std::__detail::__waiter_base::_M_addr">_M_addr</a>, <a class="local col0 ref" href="#270__pred" title='__pred' data-ref="270__pred">__pred</a>, <a class="local col1 ref" href="#271__val" title='__val' data-ref="271__val">__val</a>, <a class="local col2 ref" href="#272__spin" title='__spin' data-ref="272__spin">__spin</a>); }&nbsp</td></tr>
+<tr><th id="363">363</th><td>      };&nbsp</td></tr>
+<tr><th id="364">364</th><td>&nbsp</td></tr>
+<tr><th id="365">365</th><td>    <b>template</b>&lt;<b>typename</b> _EntersWait&gt;&nbsp</td></tr>
+<tr><th id="366">366</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__waiter" title='std::__detail::__waiter' data-ref="std::__detail::__waiter">__waiter</dfn> : <a class="type" href="#std::__detail::__waiter_base" title='std::__detail::__waiter_base' data-ref="std::__detail::__waiter_base">__waiter_base</a>&lt;<a class="type" href="#std::__detail::__waiter_pool" title='std::__detail::__waiter_pool' data-ref="std::__detail::__waiter_pool">__waiter_pool</a>&gt;&nbsp</td></tr>
+<tr><th id="367">367</th><td>      {&nbsp</td></tr>
+<tr><th id="368">368</th><td>	<b>using</b> <dfn class="typedef" id="std::__detail::__waiter::__base_type" title='std::__detail::__waiter::__base_type' data-type='__waiter_base&lt;std::__detail::__waiter_pool&gt;' data-ref="std::__detail::__waiter::__base_type">__base_type</dfn> = <a class="type" href="#std::__detail::__waiter_base" title='std::__detail::__waiter_base' data-ref="std::__detail::__waiter_base">__waiter_base</a>&lt;<a class="type" href="#std::__detail::__waiter_pool" title='std::__detail::__waiter_pool' data-ref="std::__detail::__waiter_pool">__waiter_pool</a>&gt;;&nbsp</td></tr>
+<tr><th id="369">369</th><td>&nbsp</td></tr>
+<tr><th id="370">370</th><td>	<b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="371">371</th><td>	  <b>explicit</b> <dfn class="decl def fn" id="_ZNSt8__detail8__waiterC1EPKTL0__" title='std::__detail::__waiter::__waiter&lt;_EntersWait&gt;' data-ref="_ZNSt8__detail8__waiterC1EPKTL0__">__waiter</dfn>(<em>const</em> _Tp* <dfn class="local col3 decl" id="273__addr" title='__addr' data-type='const _Tp *' data-ref="273__addr">__addr</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="372">372</th><td>	    : <a class="typedef" href="#std::__detail::__waiter::__base_type" title='std::__detail::__waiter::__base_type' data-type='__waiter_base&lt;std::__detail::__waiter_pool&gt;' data-ref="std::__detail::__waiter::__base_type">__base_type</a>(<a class="local col3 ref" href="#273__addr" title='__addr' data-ref="273__addr">__addr</a>)&nbsp</td></tr>
+<tr><th id="373">373</th><td>	  {&nbsp</td></tr>
+<tr><th id="374">374</th><td>	    <b>if</b> <b>constexpr</b> (_EntersWait::value)&nbsp</td></tr>
+<tr><th id="375">375</th><td>	      <a class="member field" href="#std::__detail::__waiter_base::_M_w" title='std::__detail::__waiter_base&lt;std::__detail::__waiter_pool&gt;::_M_w' data-ref="std::__detail::__waiter_base::_M_w">_M_w</a>.<a class="ref fn" href="#_ZNSt8__detail18__waiter_pool_base13_M_enter_waitEv" title='std::__detail::__waiter_pool_base::_M_enter_wait' data-ref="_ZNSt8__detail18__waiter_pool_base13_M_enter_waitEv">_M_enter_wait</a>();&nbsp</td></tr>
+<tr><th id="376">376</th><td>	  }&nbsp</td></tr>
+<tr><th id="377">377</th><td>&nbsp</td></tr>
+<tr><th id="378">378</th><td>	<dfn class="decl def fn" id="_ZNSt8__detail8__waiterD1Ev" title='std::__detail::__waiter::~__waiter&lt;_EntersWait&gt;' data-ref="_ZNSt8__detail8__waiterD1Ev">~__waiter</dfn>()&nbsp</td></tr>
+<tr><th id="379">379</th><td>	{&nbsp</td></tr>
+<tr><th id="380">380</th><td>	  <b>if</b> <b>constexpr</b> (_EntersWait::value)&nbsp</td></tr>
+<tr><th id="381">381</th><td>	    <a class="member field" href="#std::__detail::__waiter_base::_M_w" title='std::__detail::__waiter_base&lt;std::__detail::__waiter_pool&gt;::_M_w' data-ref="std::__detail::__waiter_base::_M_w">_M_w</a>.<a class="ref fn" href="#_ZNSt8__detail18__waiter_pool_base13_M_leave_waitEv" title='std::__detail::__waiter_pool_base::_M_leave_wait' data-ref="_ZNSt8__detail18__waiter_pool_base13_M_leave_waitEv">_M_leave_wait</a>();&nbsp</td></tr>
+<tr><th id="382">382</th><td>	}&nbsp</td></tr>
+<tr><th id="383">383</th><td>&nbsp</td></tr>
+<tr><th id="384">384</th><td>	<b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _ValFn&gt;&nbsp</td></tr>
+<tr><th id="385">385</th><td>	  <em>void</em>&nbsp</td></tr>
+<tr><th id="386">386</th><td>	  <dfn class="decl def fn" id="_ZNSt8__detail8__waiter12_M_do_wait_vETL0__TL0_0_" title='std::__detail::__waiter::_M_do_wait_v' data-ref="_ZNSt8__detail8__waiter12_M_do_wait_vETL0__TL0_0_">_M_do_wait_v</dfn>(_Tp <dfn class="local col4 decl" id="274__old" title='__old' data-type='_Tp' data-ref="274__old">__old</dfn>, _ValFn <dfn class="local col5 decl" id="275__vfn" title='__vfn' data-type='_ValFn' data-ref="275__vfn">__vfn</dfn>)&nbsp</td></tr>
+<tr><th id="387">387</th><td>	  {&nbsp</td></tr>
+<tr><th id="388">388</th><td>	    <b>do</b>&nbsp</td></tr>
+<tr><th id="389">389</th><td>	      {&nbsp</td></tr>
+<tr><th id="390">390</th><td>		<a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a> <dfn class="local col6 decl" id="276__val" title='__val' data-type='std::__detail::__platform_wait_t' data-ref="276__val">__val</dfn>;&nbsp</td></tr>
+<tr><th id="391">391</th><td>		<b>if</b> (<a class="typedef" href="#std::__detail::__waiter::__base_type" title='std::__detail::__waiter::__base_type' data-type='__waiter_base&lt;std::__detail::__waiter_pool&gt;' data-ref="std::__detail::__waiter::__base_type">__base_type</a>::_M_do_spin_v(<a class="local col4 ref" href="#274__old" title='__old' data-ref="274__old">__old</a>, <a class="local col5 ref" href="#275__vfn" title='__vfn' data-ref="275__vfn">__vfn</a>, <a class="local col6 ref" href="#276__val" title='__val' data-ref="276__val">__val</a>))&nbsp</td></tr>
+<tr><th id="392">392</th><td>		  <b>return</b>;&nbsp</td></tr>
+<tr><th id="393">393</th><td>		<a class="typedef" href="#std::__detail::__waiter::__base_type" title='std::__detail::__waiter::__base_type' data-type='__waiter_base&lt;std::__detail::__waiter_pool&gt;' data-ref="std::__detail::__waiter::__base_type">__base_type</a>::<a class="member field" href="#std::__detail::__waiter_base::_M_w" title='std::__detail::__waiter_base&lt;std::__detail::__waiter_pool&gt;::_M_w' data-ref="std::__detail::__waiter_base::_M_w">_M_w</a>.<a class="ref fn" href="#_ZNSt8__detail13__waiter_pool10_M_do_waitEPKii" title='std::__detail::__waiter_pool::_M_do_wait' data-ref="_ZNSt8__detail13__waiter_pool10_M_do_waitEPKii">_M_do_wait</a>(<span class='inlayHint'>addr:&nbsp;</span><a class="typedef" href="#std::__detail::__waiter::__base_type" title='std::__detail::__waiter::__base_type' data-type='__waiter_base&lt;std::__detail::__waiter_pool&gt;' data-ref="std::__detail::__waiter::__base_type">__base_type</a>::<a class="member field" href="#std::__detail::__waiter_base::_M_addr" title='std::__detail::__waiter_base&lt;std::__detail::__waiter_pool&gt;::_M_addr' data-ref="std::__detail::__waiter_base::_M_addr">_M_addr</a>, <span class='inlayHint'>old:&nbsp;</span><a class="local col6 ref" href="#276__val" title='__val' data-ref="276__val">__val</a>);&nbsp</td></tr>
+<tr><th id="394">394</th><td>	      }&nbsp</td></tr>
+<tr><th id="395">395</th><td>	    <b>while</b> (<span class="namespace">__detail::</span>__atomic_compare(<a class="local col4 ref" href="#274__old" title='__old' data-ref="274__old">__old</a>, <a class="local col5 ref" href="#275__vfn" title='__vfn' data-ref="275__vfn">__vfn</a>()));&nbsp</td></tr>
+<tr><th id="396">396</th><td>	  }&nbsp</td></tr>
+<tr><th id="397">397</th><td>&nbsp</td></tr>
+<tr><th id="398">398</th><td>	<b>template</b>&lt;<b>typename</b> _Pred&gt;&nbsp</td></tr>
+<tr><th id="399">399</th><td>	  <em>void</em>&nbsp</td></tr>
+<tr><th id="400">400</th><td>	  <dfn class="decl def fn" id="_ZNSt8__detail8__waiter10_M_do_waitETL0__" title='std::__detail::__waiter::_M_do_wait' data-ref="_ZNSt8__detail8__waiter10_M_do_waitETL0__">_M_do_wait</dfn>(_Pred <dfn class="local col7 decl" id="277__pred" title='__pred' data-type='_Pred' data-ref="277__pred">__pred</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="401">401</th><td>	  {&nbsp</td></tr>
+<tr><th id="402">402</th><td>	    <b>do</b>&nbsp</td></tr>
+<tr><th id="403">403</th><td>	      {&nbsp</td></tr>
+<tr><th id="404">404</th><td>		<a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a> <dfn class="local col8 decl" id="278__val" title='__val' data-type='std::__detail::__platform_wait_t' data-ref="278__val">__val</dfn>;&nbsp</td></tr>
+<tr><th id="405">405</th><td>		<b>if</b> (<a class="typedef" href="#std::__detail::__waiter::__base_type" title='std::__detail::__waiter::__base_type' data-type='__waiter_base&lt;std::__detail::__waiter_pool&gt;' data-ref="std::__detail::__waiter::__base_type">__base_type</a>::_M_do_spin(<a class="local col7 ref" href="#277__pred" title='__pred' data-ref="277__pred">__pred</a>, <a class="local col8 ref" href="#278__val" title='__val' data-ref="278__val">__val</a>))&nbsp</td></tr>
+<tr><th id="406">406</th><td>		  <b>return</b>;&nbsp</td></tr>
+<tr><th id="407">407</th><td>		<a class="typedef" href="#std::__detail::__waiter::__base_type" title='std::__detail::__waiter::__base_type' data-type='__waiter_base&lt;std::__detail::__waiter_pool&gt;' data-ref="std::__detail::__waiter::__base_type">__base_type</a>::<a class="member field" href="#std::__detail::__waiter_base::_M_w" title='std::__detail::__waiter_base&lt;std::__detail::__waiter_pool&gt;::_M_w' data-ref="std::__detail::__waiter_base::_M_w">_M_w</a>.<a class="ref fn" href="#_ZNSt8__detail13__waiter_pool10_M_do_waitEPKii" title='std::__detail::__waiter_pool::_M_do_wait' data-ref="_ZNSt8__detail13__waiter_pool10_M_do_waitEPKii">_M_do_wait</a>(<span class='inlayHint'>addr:&nbsp;</span><a class="typedef" href="#std::__detail::__waiter::__base_type" title='std::__detail::__waiter::__base_type' data-type='__waiter_base&lt;std::__detail::__waiter_pool&gt;' data-ref="std::__detail::__waiter::__base_type">__base_type</a>::<a class="member field" href="#std::__detail::__waiter_base::_M_addr" title='std::__detail::__waiter_base&lt;std::__detail::__waiter_pool&gt;::_M_addr' data-ref="std::__detail::__waiter_base::_M_addr">_M_addr</a>, <span class='inlayHint'>old:&nbsp;</span><a class="local col8 ref" href="#278__val" title='__val' data-ref="278__val">__val</a>);&nbsp</td></tr>
+<tr><th id="408">408</th><td>	      }&nbsp</td></tr>
+<tr><th id="409">409</th><td>	    <b>while</b> (!<a class="local col7 ref" href="#277__pred" title='__pred' data-ref="277__pred">__pred</a>());&nbsp</td></tr>
+<tr><th id="410">410</th><td>	  }&nbsp</td></tr>
+<tr><th id="411">411</th><td>      };&nbsp</td></tr>
+<tr><th id="412">412</th><td>&nbsp</td></tr>
+<tr><th id="413">413</th><td>    <b>using</b> <dfn class="typedef" id="std::__detail::__enters_wait" title='std::__detail::__enters_wait' data-type='__waiter&lt;std::true_type&gt;' data-ref="std::__detail::__enters_wait">__enters_wait</dfn> = <a class="type" href="#std::__detail::__waiter" title='std::__detail::__waiter' data-ref="std::__detail::__waiter">__waiter</a>&lt;<span class="namespace">std::</span><a class="typedef" href="../type_traits.html#std::true_type" title='std::true_type' data-type='integral_constant&lt;bool, true&gt;' data-ref="std::true_type">true_type</a>&gt;;&nbsp</td></tr>
+<tr><th id="414">414</th><td>    <b>using</b> <dfn class="typedef" id="std::__detail::__bare_wait" title='std::__detail::__bare_wait' data-type='__waiter&lt;std::false_type&gt;' data-ref="std::__detail::__bare_wait">__bare_wait</dfn> = <a class="type" href="#std::__detail::__waiter" title='std::__detail::__waiter' data-ref="std::__detail::__waiter">__waiter</a>&lt;<span class="namespace">std::</span><a class="typedef" href="../type_traits.html#std::false_type" title='std::false_type' data-type='integral_constant&lt;bool, false&gt;' data-ref="std::false_type">false_type</a>&gt;;&nbsp</td></tr>
+<tr><th id="415">415</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="416">416</th><td>&nbsp</td></tr>
+<tr><th id="417">417</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _ValFn&gt;&nbsp</td></tr>
+<tr><th id="418">418</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="419">419</th><td>    <dfn class="decl def fn" id="_ZSt23__atomic_wait_address_vPKT_S_T0_" title='std::__atomic_wait_address_v' data-ref="_ZSt23__atomic_wait_address_vPKT_S_T0_">__atomic_wait_address_v</dfn>(<em>const</em> _Tp* <dfn class="local col9 decl" id="279__addr" title='__addr' data-type='const _Tp *' data-ref="279__addr">__addr</dfn>, _Tp <dfn class="local col0 decl" id="280__old" title='__old' data-type='_Tp' data-ref="280__old">__old</dfn>,&nbsp</td></tr>
+<tr><th id="420">420</th><td>			    _ValFn <dfn class="local col1 decl" id="281__vfn" title='__vfn' data-type='_ValFn' data-ref="281__vfn">__vfn</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="421">421</th><td>    {&nbsp</td></tr>
+<tr><th id="422">422</th><td>      <span class="namespace">__detail::</span><a class="typedef" href="#std::__detail::__enters_wait" title='std::__detail::__enters_wait' data-type='__waiter&lt;std::true_type&gt;' data-ref="std::__detail::__enters_wait">__enters_wait</a> <dfn class="local col2 decl" id="282__w" title='__w' data-type='__detail::__enters_wait' data-ref="282__w">__w</dfn>(<a class="local col9 ref" href="#279__addr" title='__addr' data-ref="279__addr">__addr</a>);&nbsp</td></tr>
+<tr><th id="423">423</th><td>      <a class="local col2 ref" href="#282__w" title='__w' data-ref="282__w">__w</a>._M_do_wait_v(<a class="local col0 ref" href="#280__old" title='__old' data-ref="280__old">__old</a>, <a class="local col1 ref" href="#281__vfn" title='__vfn' data-ref="281__vfn">__vfn</a>);&nbsp</td></tr>
+<tr><th id="424">424</th><td>    }&nbsp</td></tr>
+<tr><th id="425">425</th><td>&nbsp</td></tr>
+<tr><th id="426">426</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Pred&gt;&nbsp</td></tr>
+<tr><th id="427">427</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="428">428</th><td>    <dfn class="decl def fn" id="_ZSt21__atomic_wait_addressPKT_T0_" title='std::__atomic_wait_address' data-ref="_ZSt21__atomic_wait_addressPKT_T0_">__atomic_wait_address</dfn>(<em>const</em> _Tp* <dfn class="local col3 decl" id="283__addr" title='__addr' data-type='const _Tp *' data-ref="283__addr">__addr</dfn>, _Pred <dfn class="local col4 decl" id="284__pred" title='__pred' data-type='_Pred' data-ref="284__pred">__pred</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="429">429</th><td>    {&nbsp</td></tr>
+<tr><th id="430">430</th><td>      <span class="namespace">__detail::</span><a class="typedef" href="#std::__detail::__enters_wait" title='std::__detail::__enters_wait' data-type='__waiter&lt;std::true_type&gt;' data-ref="std::__detail::__enters_wait">__enters_wait</a> <dfn class="local col5 decl" id="285__w" title='__w' data-type='__detail::__enters_wait' data-ref="285__w">__w</dfn>(<a class="local col3 ref" href="#283__addr" title='__addr' data-ref="283__addr">__addr</a>);&nbsp</td></tr>
+<tr><th id="431">431</th><td>      <a class="local col5 ref" href="#285__w" title='__w' data-ref="285__w">__w</a>._M_do_wait(<a class="local col4 ref" href="#284__pred" title='__pred' data-ref="284__pred">__pred</a>);&nbsp</td></tr>
+<tr><th id="432">432</th><td>    }&nbsp</td></tr>
+<tr><th id="433">433</th><td>&nbsp</td></tr>
+<tr><th id="434">434</th><td>  <i>// This call is to be used by atomic types which track contention externally</i>&nbsp</td></tr>
+<tr><th id="435">435</th><td>  <b>template</b>&lt;<b>typename</b> _Pred&gt;&nbsp</td></tr>
+<tr><th id="436">436</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="437">437</th><td>    <dfn class="decl def fn" id="_ZSt26__atomic_wait_address_barePKiT_" title='std::__atomic_wait_address_bare' data-ref="_ZSt26__atomic_wait_address_barePKiT_">__atomic_wait_address_bare</dfn>(<em>const</em> <span class="namespace">__detail::</span><a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>* <dfn class="local col6 decl" id="286__addr" title='__addr' data-type='const __detail::__platform_wait_t *' data-ref="286__addr">__addr</dfn>,&nbsp</td></tr>
+<tr><th id="438">438</th><td>			       _Pred <dfn class="local col7 decl" id="287__pred" title='__pred' data-type='_Pred' data-ref="287__pred">__pred</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="439">439</th><td>    {&nbsp</td></tr>
+<tr><th id="440">440</th><td><u>#<span data-ppcond="440">ifdef</span> <a class="macro" href="#59" data-ref="_M/_GLIBCXX_HAVE_PLATFORM_WAIT">_GLIBCXX_HAVE_PLATFORM_WAIT</a></u>&nbsp</td></tr>
+<tr><th id="441">441</th><td>      <b>do</b>&nbsp</td></tr>
+<tr><th id="442">442</th><td>	{&nbsp</td></tr>
+<tr><th id="443">443</th><td>	  <span class="namespace">__detail::</span><a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a> <dfn class="local col8 decl" id="288__val" title='__val' data-type='__detail::__platform_wait_t' data-ref="288__val">__val</dfn>;&nbsp</td></tr>
+<tr><th id="444">444</th><td>	  <b>if</b> (<span class="namespace">__detail::</span><a class="typedef" href="#std::__detail::__bare_wait" title='std::__detail::__bare_wait' data-type='__waiter&lt;std::false_type&gt;' data-ref="std::__detail::__bare_wait">__bare_wait</a>::_S_do_spin(<a class="local col6 ref" href="#286__addr" title='__addr' data-ref="286__addr">__addr</a>, <a class="local col7 ref" href="#287__pred" title='__pred' data-ref="287__pred">__pred</a>, <a class="local col8 ref" href="#288__val" title='__val' data-ref="288__val">__val</a>))&nbsp</td></tr>
+<tr><th id="445">445</th><td>	    <b>return</b>;&nbsp</td></tr>
+<tr><th id="446">446</th><td>	  <span class="namespace">__detail::</span><a class="ref fn" href="#_ZNSt8__detail15__platform_waitEPKT_i" title='std::__detail::__platform_wait' data-ref="_ZNSt8__detail15__platform_waitEPKT_i">__platform_wait</a>(<a class="local col6 ref" href="#286__addr" title='__addr' data-ref="286__addr">__addr</a>, <a class="local col8 ref" href="#288__val" title='__val' data-ref="288__val">__val</a>);&nbsp</td></tr>
+<tr><th id="447">447</th><td>	}&nbsp</td></tr>
+<tr><th id="448">448</th><td>      <b>while</b> (!<a class="local col7 ref" href="#287__pred" title='__pred' data-ref="287__pred">__pred</a>());&nbsp</td></tr>
+<tr><th id="449">449</th><td><u>#<span data-ppcond="440">else</span> // !_GLIBCXX_HAVE_PLATFORM_WAIT</u>&nbsp</td></tr>
+<tr><th id="450">450</th><td>      __detail::__bare_wait __w(__addr);&nbsp</td></tr>
+<tr><th id="451">451</th><td>      __w._M_do_wait(__pred);&nbsp</td></tr>
+<tr><th id="452">452</th><td><u>#<span data-ppcond="440">endif</span></u>&nbsp</td></tr>
+<tr><th id="453">453</th><td>    }&nbsp</td></tr>
+<tr><th id="454">454</th><td>&nbsp</td></tr>
+<tr><th id="455">455</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="456">456</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="457">457</th><td>    <dfn class="decl def fn" id="_ZSt23__atomic_notify_addressPKT_b" title='std::__atomic_notify_address' data-ref="_ZSt23__atomic_notify_addressPKT_b">__atomic_notify_address</dfn>(<em>const</em> _Tp* <dfn class="local col9 decl" id="289__addr" title='__addr' data-type='const _Tp *' data-ref="289__addr">__addr</dfn>, <em>bool</em> <dfn class="local col0 decl" id="290__all" title='__all' data-type='bool' data-ref="290__all">__all</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="458">458</th><td>    {&nbsp</td></tr>
+<tr><th id="459">459</th><td>      <span class="namespace">__detail::</span><a class="typedef" href="#std::__detail::__bare_wait" title='std::__detail::__bare_wait' data-type='__waiter&lt;std::false_type&gt;' data-ref="std::__detail::__bare_wait">__bare_wait</a> <dfn class="local col1 decl" id="291__w" title='__w' data-type='__detail::__bare_wait' data-ref="291__w">__w</dfn>(<a class="local col9 ref" href="#289__addr" title='__addr' data-ref="289__addr">__addr</a>);&nbsp</td></tr>
+<tr><th id="460">460</th><td>      <a class="local col1 ref" href="#291__w" title='__w' data-ref="291__w">__w</a>.<a class="ref fn" href="#_ZNSt8__detail13__waiter_base9_M_notifyEbb" title='std::__detail::__waiter_base::_M_notify' data-ref="_ZNSt8__detail13__waiter_base9_M_notifyEbb">_M_notify</a>(<a class="local col0 ref" href="#290__all" title='__all' data-ref="290__all">__all</a>);&nbsp</td></tr>
+<tr><th id="461">461</th><td>    }&nbsp</td></tr>
+<tr><th id="462">462</th><td>&nbsp</td></tr>
+<tr><th id="463">463</th><td>  <i>// This call is to be used by atomic types which track contention externally</i>&nbsp</td></tr>
+<tr><th id="464">464</th><td>  <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="465">465</th><td>  <dfn class="decl def fn" id="_ZSt28__atomic_notify_address_barePKib" title='std::__atomic_notify_address_bare' data-ref="_ZSt28__atomic_notify_address_barePKib">__atomic_notify_address_bare</dfn>(<em>const</em> <span class="namespace">__detail::</span><a class="typedef" href="#std::__detail::__platform_wait_t" title='std::__detail::__platform_wait_t' data-type='int' data-ref="std::__detail::__platform_wait_t">__platform_wait_t</a>* <dfn class="local col2 decl" id="292__addr" title='__addr' data-type='const __detail::__platform_wait_t *' data-ref="292__addr">__addr</dfn>,&nbsp</td></tr>
+<tr><th id="466">466</th><td>			       <em>bool</em> <dfn class="local col3 decl" id="293__all" title='__all' data-type='bool' data-ref="293__all">__all</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="467">467</th><td>  {&nbsp</td></tr>
+<tr><th id="468">468</th><td><u>#<span data-ppcond="468">ifdef</span> <a class="macro" href="#59" data-ref="_M/_GLIBCXX_HAVE_PLATFORM_WAIT">_GLIBCXX_HAVE_PLATFORM_WAIT</a></u>&nbsp</td></tr>
+<tr><th id="469">469</th><td>    <span class="namespace">__detail::</span><a class="ref fn" href="#_ZNSt8__detail17__platform_notifyEPKT_b" title='std::__detail::__platform_notify' data-ref="_ZNSt8__detail17__platform_notifyEPKT_b">__platform_notify</a>(<a class="local col2 ref" href="#292__addr" title='__addr' data-ref="292__addr">__addr</a>, <a class="local col3 ref" href="#293__all" title='__all' data-ref="293__all">__all</a>);&nbsp</td></tr>
+<tr><th id="470">470</th><td><u>#<span data-ppcond="468">else</span></u>&nbsp</td></tr>
+<tr><th id="471">471</th><td>    __detail::__bare_wait __w(__addr);&nbsp</td></tr>
+<tr><th id="472">472</th><td>    __w._M_notify(__all, <b>true</b>);&nbsp</td></tr>
+<tr><th id="473">473</th><td><u>#<span data-ppcond="468">endif</span></u>&nbsp</td></tr>
+<tr><th id="474">474</th><td>  }&nbsp</td></tr>
+<tr><th id="475">475</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="476">476</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="477">477</th><td><u>#<span data-ppcond="36">endif</span> // GTHREADS || LINUX_FUTEX</u>&nbsp</td></tr>
+<tr><th id="478">478</th><td><u>#<span data-ppcond="30">endif</span> // _GLIBCXX_ATOMIC_WAIT_H</u>&nbsp</td></tr>
+<tr><th id="479">479</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tPool.h.html'>Modules/Foundation/Inc/Foundation/tPool.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

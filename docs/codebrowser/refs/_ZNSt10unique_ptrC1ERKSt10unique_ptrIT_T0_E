@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='468' type='void std::unique_ptr::unique_ptr&lt;_Tp, _Dp&gt;(const unique_ptr&lt;_Tp, _Dp&gt; &amp; )'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='467'>// Disable copy from lvalue.</doc>

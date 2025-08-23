@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17695' ll='17699'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17695'/>
+<size>24</size>
+<mbr r='VkRenderPassCreationControlEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderPassCreationControlEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderPassCreationControlEXT::disallowMerging' o='128' t='VkBool32'/>

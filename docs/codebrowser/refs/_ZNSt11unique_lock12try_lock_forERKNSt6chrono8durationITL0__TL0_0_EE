@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/unique_lock.h' l='174' ll='186' type='bool std::unique_lock::try_lock_for(const chrono::duration&lt;_Rep, _Period&gt; &amp; __rtime)'/>

@@ -1,0 +1,8 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='72' type='1'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='88' c='_ZN5tMath11tInIntervalET_S0_S0_NS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='266' c='_ZN5tMath9tBiasLessENS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='278' c='_ZN5tMath9tBiasGrtrENS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='110' u='r' c='_ZN5tMath9tInterval13InclusiveLeftENS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='113' u='r' c='_ZN5tMath9tInterval14ExclusiveRightENS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='269' u='r' c='_ZN5tMath9tInterval3SetERK7tString'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='307' u='r' c='_ZN5tMath9tInterval13MakeInclusiveEv'/>

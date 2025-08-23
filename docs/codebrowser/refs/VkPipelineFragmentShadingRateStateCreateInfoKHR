@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9678' ll='9683'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9678'/>
+<size>32</size>
+<mbr r='VkPipelineFragmentShadingRateStateCreateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineFragmentShadingRateStateCreateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineFragmentShadingRateStateCreateInfoKHR::fragmentSize' o='128' t='VkExtent2D'/>
+<mbr r='VkPipelineFragmentShadingRateStateCreateInfoKHR::combinerOps' o='192' t='VkFragmentShadingRateCombinerOpKHR[2]'/>

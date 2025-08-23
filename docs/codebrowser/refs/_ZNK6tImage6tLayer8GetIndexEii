@@ -1,0 +1,4 @@
+<def f='Modules/Image/Inc/Image/tLayer.h' l='83' type='int tImage::tLayer::GetIndex(int x, int y) const'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='84' u='c' c='_ZNK6tImage6tLayer8GetPixelEii'/>
+<doc f='Modules/Image/Inc/Image/tLayer.h' l='81'>// The following functions are a convenience if the layer pixel format happens to be R8G8B8A8. For example,
+	// block compressed images may have been told to decompress in which case the layers they contain will be R8G8B8A8.</doc>

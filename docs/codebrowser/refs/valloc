@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='580' type='void * valloc(size_t __size)'/>
+<doc f='include/stdlib.h' l='579'>/* Allocate SIZE bytes on a page boundary.  The storage cannot be freed.  */</doc>

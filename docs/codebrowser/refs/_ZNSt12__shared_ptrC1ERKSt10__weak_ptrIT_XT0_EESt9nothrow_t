@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1352' ll='1356' type='void std::__shared_ptr::__shared_ptr&lt;_Tp, _Lp&gt;(const __weak_ptr&lt;_Tp, _Lp&gt; &amp; __r, std::nothrow_t )'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='1350'>// This constructor is used by __weak_ptr::lock() and
+      // shared_ptr::shared_ptr(const weak_ptr&amp;, std::nothrow_t).</doc>

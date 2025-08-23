@@ -1,0 +1,1 @@
+<def f='Modules/Foundation/Src/tPool.cpp' l='50' ll='78' type='void tMem::tFastPool::tFastPool(int maxItemSizeInBytes, int initialSlotsInBlock = 256, int slotsPerExpansionBlock = 128, bool threadSafe = true)'/>

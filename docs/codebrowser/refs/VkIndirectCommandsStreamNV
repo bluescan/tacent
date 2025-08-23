@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14923' ll='14926'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14923'/>
+<size>16</size>
+<mbr r='VkIndirectCommandsStreamNV::buffer' o='0' t='VkBuffer'/>
+<mbr r='VkIndirectCommandsStreamNV::offset' o='64' t='VkDeviceSize'/>

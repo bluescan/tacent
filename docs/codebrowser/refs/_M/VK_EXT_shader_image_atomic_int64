@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14062'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14061'>// VK_EXT_shader_image_atomic_int64 is a preprocessor guard. Do not pass it to API calls.</doc>

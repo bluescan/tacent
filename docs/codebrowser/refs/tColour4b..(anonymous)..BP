@@ -1,0 +1,24 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='353' u='w' c='_ZN9tColour4b3SetERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='353' u='r' c='_ZN9tColour4b3SetERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='357' u='w' c='_ZN9tColour4b3SetEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='396' u='w' c='_ZNK9tColour4b3GetERS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='396' u='r' c='_ZNK9tColour4b3GetERS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='434' u='r' c='_ZNK9tColour4beqERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='434' u='r' c='_ZNK9tColour4beqERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='435' u='r' c='_ZNK9tColour4bneERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='435' u='r' c='_ZNK9tColour4bneERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='436' u='w' c='_ZN9tColour4baSERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='436' u='r' c='_ZN9tColour4baSERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='444' u='r' c='_ZN9tColour4bcvjEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='445' u='r' c='_ZNK9tColour4bcvjEv'/>
+<dec f='Modules/Math/Inc/Math/tColour.h' l='477' type='uint32'/>
+<offset>0</offset>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='472'>// Bit Pattern member.
+		// Accessing the colour as a 32 bit value using the BP member means you must take the machine&apos;s endianness into
+		// account. This explains why the member isn&apos;t named something like RGBA. For example, in memory it&apos;s always in the
+		// RGBA no matter what endianness, but on a little endian machine you&apos;d access the blue component with something
+		// like (colour.BP &gt;&gt; 16) % 0xFF</doc>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='69' u='w' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='98' u='w' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='98' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='113' u='w' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>

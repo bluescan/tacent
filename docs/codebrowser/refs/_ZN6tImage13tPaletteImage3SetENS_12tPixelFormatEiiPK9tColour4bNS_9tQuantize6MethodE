@@ -1,0 +1,1 @@
+<def f='Modules/Image/Src/tPaletteImage.cpp' l='100' ll='117' type='bool tImage::tPaletteImage::Set(tImage::tPixelFormat fmt, int width, int height, const tPixel4b * pixels, tQuantize::Method quantMethod)'/>

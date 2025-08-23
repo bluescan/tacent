@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3693' ll='3697'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3693'/>
+<size>12</size>
+<mbr r='VkPushConstantRange::stageFlags' o='0' t='VkShaderStageFlags'/>
+<mbr r='VkPushConstantRange::offset' o='32' t='uint32_t'/>
+<mbr r='VkPushConstantRange::size' o='64' t='uint32_t'/>

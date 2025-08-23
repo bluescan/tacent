@@ -1,0 +1,6 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='350' type='bool tString::GetAsBool() const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='363' u='c' c='_ZNK7tString6AsBoolEv'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='348'>// Case insensitive. Interprets &quot;true&quot;, &quot;t&quot;, &quot;yes&quot;, &quot;y&quot;, &quot;on&quot;, &quot;enable&quot;, &quot;enabled&quot;, &quot;1&quot;, &quot;+&quot;, and strings that
+	// represent non-zero integers as boolean true. Otherwise false.</doc>
+<use f='Modules/System/Inc/System/tScript.h' l='98' u='c' c='_ZNK11tExpression11GetAtomBoolEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='194' u='c' c='_Z11GetAtomBoolR11tExpression'/>

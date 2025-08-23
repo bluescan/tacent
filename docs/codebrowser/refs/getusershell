@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='962' type='char * getusershell()'/>
+<doc f='include/unistd.h' l='961'>/* Successive calls return the shells listed in `/etc/shells&apos;.  */</doc>

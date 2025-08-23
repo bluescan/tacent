@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='146' type='8192'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2842' u='r' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2845' u='r' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3020' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3741' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3744' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='145'>// Check all total orderings - *very* slow. The encoder is not designed to be used in this way.</doc>

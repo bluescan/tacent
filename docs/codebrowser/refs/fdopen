@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='293' type='FILE * fdopen(int __fd, const char * __modes)'/>
+<doc f='include/stdio.h' l='292'>/* Create a new stream that refers to an existing system file descriptor.  */</doc>

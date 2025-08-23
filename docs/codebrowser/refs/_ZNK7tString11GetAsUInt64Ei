@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='346' type='uint64 tString::GetAsUInt64(int base = -1) const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='362' u='c' c='_ZNK7tString8AsUInt64Ei'/>
+<use f='Modules/System/Inc/System/tScript.h' l='100' u='c' c='_ZNK11tExpression13GetAtomUint64Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='196' u='c' c='_Z13GetAtomUint64R11tExpression'/>

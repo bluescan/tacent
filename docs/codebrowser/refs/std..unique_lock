@@ -1,0 +1,51 @@
+<def f='include/c++/11/bits/unique_lock.h' l='57' ll='230'/>
+<use f='include/c++/11/bits/unique_lock.h' l='236' c='_ZSt4swapRSt11unique_lockIT_ES2_'/>
+<use f='include/c++/11/bits/unique_lock.h' l='236' c='_ZSt4swapRSt11unique_lockIT_ES2_'/>
+<use f='include/c++/11/mutex' l='516' c='_ZSt13__try_to_lockRT_'/>
+<use f='include/c++/11/mutex' l='518' c='_ZSt13__try_to_lockRT_'/>
+<use f='include/c++/11/mutex' l='596' c='_ZSt4lockRT_RT0_DpRT1_'/>
+<fun r='_ZNSt11unique_lockC1Ev'/>
+<fun r='_ZNSt11unique_lockC1ERT_'/>
+<fun r='_ZNSt11unique_lockC1ERT_St12defer_lock_t'/>
+<fun r='_ZNSt11unique_lockC1ERT_St13try_to_lock_t'/>
+<fun r='_ZNSt11unique_lockC1ERT_St12adopt_lock_t'/>
+<fun r='_ZNSt11unique_lockC1ERT_RKNSt6chrono10time_pointITL0__TL0_0_EE'/>
+<fun r='_ZNSt11unique_lockC1ERT_RKNSt6chrono8durationITL0__TL0_0_EE'/>
+<fun r='_ZNSt11unique_lockD1Ev'/>
+<fun r='_ZNSt11unique_lockC1ERKSt11unique_lockIT_E'/>
+<fun r='_ZNSt11unique_lockaSERKSt11unique_lockIT_E'/>
+<fun r='_ZNSt11unique_lockC1EOSt11unique_lockIT_E'/>
+<fun r='_ZNSt11unique_lockaSEOSt11unique_lockIT_E'/>
+<fun r='_ZNSt11unique_lock4lockEv'/>
+<fun r='_ZNSt11unique_lock8try_lockEv'/>
+<fun r='_ZNSt11unique_lock14try_lock_untilERKNSt6chrono10time_pointITL0__TL0_0_EE'/>
+<fun r='_ZNSt11unique_lock12try_lock_forERKNSt6chrono8durationITL0__TL0_0_EE'/>
+<fun r='_ZNSt11unique_lock6unlockEv'/>
+<fun r='_ZNSt11unique_lock4swapERSt11unique_lockIT_E'/>
+<fun r='_ZNSt11unique_lock7releaseEv'/>
+<fun r='_ZNKSt11unique_lock9owns_lockEv'/>
+<fun r='_ZNKSt11unique_lockcvbEv'/>
+<fun r='_ZNKSt11unique_lock5mutexEv'/>
+<mbr r='std::unique_lock::_M_device' t='std::unique_lock::mutex_type *'/>
+<mbr r='std::unique_lock::_M_owns' t='bool'/>
+<use f='include/c++/11/condition_variable' l='96' c='_ZNSt18condition_variable4waitERSt11unique_lockISt5mutexE'/>
+<use f='include/c++/11/condition_variable' l='100' c='_ZNSt18condition_variable4waitERSt11unique_lockISt5mutexET_'/>
+<use f='include/c++/11/condition_variable' l='109' c='_ZNSt18condition_variable10wait_untilERSt11unique_lockISt5mutexERKNSt6chrono10time_pointINS4_3_V212steady_clockET_EE'/>
+<use f='include/c++/11/condition_variable' l='116' c='_ZNSt18condition_variable10wait_untilERSt11unique_lockISt5mutexERKNSt6chrono10time_pointINS4_3_V212system_clockET_EE'/>
+<use f='include/c++/11/condition_variable' l='122' c='_ZNSt18condition_variable10wait_untilERSt11unique_lockISt5mutexERKNSt6chrono10time_pointIT_T0_EE'/>
+<use f='include/c++/11/condition_variable' l='147' c='_ZNSt18condition_variable10wait_untilERSt11unique_lockISt5mutexERKNSt6chrono10time_pointIT_T0_EET1_'/>
+<use f='include/c++/11/condition_variable' l='159' c='_ZNSt18condition_variable8wait_forERSt11unique_lockISt5mutexERKNSt6chrono8durationIT_T0_EE'/>
+<use f='include/c++/11/condition_variable' l='170' c='_ZNSt18condition_variable8wait_forERSt11unique_lockISt5mutexERKNSt6chrono8durationIT_T0_EET1_'/>
+<use f='include/c++/11/condition_variable' l='189' c='_ZNSt18condition_variable17__wait_until_implERSt11unique_lockISt5mutexERKNSt6chrono10time_pointINS4_3_V212steady_clockET_EE'/>
+<use f='include/c++/11/condition_variable' l='210' c='_ZNSt18condition_variable17__wait_until_implERSt11unique_lockISt5mutexERKNSt6chrono10time_pointINS4_3_V212system_clockET_EE'/>
+<use f='include/c++/11/condition_variable' l='230' c='_ZSt25notify_all_at_thread_exitRSt18condition_variableSt11unique_lockISt5mutexE'/>
+<use f='include/c++/11/condition_variable' l='308' c='_ZNSt3_V222condition_variable_any4waitERT_'/>
+<use f='include/c++/11/condition_variable' l='312' c='_ZNSt3_V222condition_variable_any4waitERT_'/>
+<use f='include/c++/11/condition_variable' l='331' c='_ZNSt3_V222condition_variable_any10wait_untilERT_RKNSt6chrono10time_pointIT0_T1_EE'/>
+<use f='include/c++/11/condition_variable' l='335' c='_ZNSt3_V222condition_variable_any10wait_untilERT_RKNSt6chrono10time_pointIT0_T1_EE'/>
+<use f='include/c++/11/condition_variable' l='379' c='_ZNSt3_V222condition_variable_any4waitERT_St10stop_tokenT0_'/>
+<use f='include/c++/11/condition_variable' l='387' c='_ZNSt3_V222condition_variable_any4waitERT_St10stop_tokenT0_'/>
+<use f='include/c++/11/condition_variable' l='410' c='_ZNSt3_V222condition_variable_any10wait_untilERT_St10stop_tokenRKNSt6chrono10time_pointIT0_T1_EET2_'/>
+<use f='include/c++/11/condition_variable' l='416' c='_ZNSt3_V222condition_variable_any10wait_untilERT_St10stop_tokenRKNSt6chrono10time_pointIT0_T1_EET2_'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='132' c='_ZN6tInput12tContGamepad4PollEv'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='144' c='_ZN6tInput17tControllerSystem6DetectEv'/>

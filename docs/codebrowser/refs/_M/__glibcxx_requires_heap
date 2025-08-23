@@ -1,0 +1,4 @@
+<dec f='include/c++/11/debug/debug.h' l='79'/>
+<use f='include/c++/11/bits/stl_heap.h' l='174' u='c'/>
+<use f='include/c++/11/bits/stl_heap.h' l='292' u='c'/>
+<use f='include/c++/11/bits/stl_heap.h' l='448' u='c'/>

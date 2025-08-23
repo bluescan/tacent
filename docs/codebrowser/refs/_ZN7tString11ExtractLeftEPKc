@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='228' type='tString tString::ExtractLeft(const char * prefix)'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='198' u='c' c='_ZN9tBitField3SetEPKc'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='245' u='c' c='_ZN9tBitField9SetBinaryEPKc'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='226'>// If this string starts with prefix, removes and returns it. If not, returns empty string and no modification.
+	// Prefix is assumed to be null-terminated.</doc>

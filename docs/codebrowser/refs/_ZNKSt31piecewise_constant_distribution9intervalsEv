@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='5622' ll='5633' type='std::vector&lt;_RealType&gt; std::piecewise_constant_distribution::intervals() const'/>
+<doc f='include/c++/11/bits/random.h' l='5619'>/**
+       * @brief Returns a vector of the intervals.
+       */</doc>

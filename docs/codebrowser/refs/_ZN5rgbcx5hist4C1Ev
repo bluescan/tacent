@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1553' ll='1556' type='void rgbcx::hist4::hist4()'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1870' u='c' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3694' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

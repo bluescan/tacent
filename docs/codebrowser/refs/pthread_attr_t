@@ -1,0 +1,5 @@
+<def f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='56' ll='60'/>
+<use f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='62'/>
+<size>56</size>
+<mbr r='pthread_attr_t::__size' o='0' t='char[56]'/>
+<mbr r='pthread_attr_t::__align' o='0' t='long'/>

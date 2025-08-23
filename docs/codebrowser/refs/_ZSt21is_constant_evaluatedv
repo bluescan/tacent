@@ -1,0 +1,30 @@
+<def f='include/c++/11/type_traits' l='3418' ll='3420' type='bool std::is_constant_evaluated()'/>
+<use f='include/c++/11/bits/ranges_cmp.h' l='123' u='c' c='_ZNKSt6ranges4lessclEOT_OT0_'/>
+<use f='include/c++/11/bits/stl_construct.h' l='192' u='c' c='_ZSt8_DestroyT_S_'/>
+<use f='include/c++/11/bits/stl_construct.h' l='241' u='c' c='_ZSt10_Destroy_nT_T0_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='96' u='c' c='_ZSt8__memcmpPKT_PKT0_m'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='490' u='c' c='_ZSt14__copy_move_a2T0_S_T1_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='754' u='c' c='_ZSt23__copy_move_backward_a2T0_S_T1_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='936' u='c' c='_ZSt9__fill_a1PT_S0_RKS_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1834' u='c' c='_ZSt33lexicographical_compare_three_wayT_S_T0_S0_T1_'/>
+<use f='include/c++/11/array' l='286' u='c' c='_ZStssRKSt5arrayIT_XT0_EES3_'/>
+<use f='include/c++/11/bits/allocator.h' l='182' u='c' c='_ZNSt9allocator8allocateEm'/>
+<use f='include/c++/11/bits/allocator.h' l='193' u='c' c='_ZNSt9allocator10deallocateEPT_m'/>
+<doc f='include/c++/11/type_traits' l='3417'>/// Returns true only when called during constant evaluation.</doc>
+<use f='include/c++/11/bits/char_traits.h' l='196' u='c' c='__gnu_cxx::char_traits::move'/>
+<use f='include/c++/11/bits/char_traits.h' l='422' u='c' c='_ZNSt11char_traitsIcE4moveEPcPKcm'/>
+<use f='include/c++/11/bits/char_traits.h' l='434' u='c' c='_ZNSt11char_traitsIcE4copyEPcPKcm'/>
+<use f='include/c++/11/bits/char_traits.h' l='446' u='c' c='_ZNSt11char_traitsIcE6assignEPcmc'/>
+<use f='include/c++/11/bits/char_traits.h' l='546' u='c' c='_ZNSt11char_traitsIwE4moveEPwPKwm'/>
+<use f='include/c++/11/bits/char_traits.h' l='558' u='c' c='_ZNSt11char_traitsIwE4copyEPwPKwm'/>
+<use f='include/c++/11/bits/char_traits.h' l='570' u='c' c='_ZNSt11char_traitsIwE6assignEPwmw'/>
+<use f='include/c++/11/bits/char_traits.h' l='670' u='c' c='_ZNSt11char_traitsIDuE4moveEPDuPKDum'/>
+<use f='include/c++/11/bits/char_traits.h' l='682' u='c' c='_ZNSt11char_traitsIDuE4copyEPDuPKDum'/>
+<use f='include/c++/11/bits/char_traits.h' l='694' u='c' c='_ZNSt11char_traitsIDuE6assignEPDumDu'/>
+<use f='include/c++/11/bits/char_traits.h' l='798' u='c' c='_ZNSt11char_traitsIDsE4moveEPDsPKDsm'/>
+<use f='include/c++/11/bits/char_traits.h' l='811' u='c' c='_ZNSt11char_traitsIDsE4copyEPDsPKDsm'/>
+<use f='include/c++/11/bits/char_traits.h' l='912' u='c' c='_ZNSt11char_traitsIDiE4moveEPDiPKDim'/>
+<use f='include/c++/11/bits/char_traits.h' l='925' u='c' c='_ZNSt11char_traitsIDiE4copyEPDiPKDim'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='253' u='c' c='_ZNSt6ranges14__copy_or_moveET0_T1_T2_'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='390' u='c' c='_ZNSt6ranges23__copy_or_move_backwardET0_T1_T2_'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='537' u='c' c='_ZNKSt6ranges11__fill_n_fnclET0_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeERKT_'/>

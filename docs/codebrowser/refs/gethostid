@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='1002' type='long gethostid()'/>
+<doc f='include/unistd.h' l='1001'>/* Return identifier for the current host.  */</doc>

@@ -1,0 +1,4 @@
+<dec f='include/wctype.h' l='103' type='int iswupper_l(wint_t __wc, locale_t __locale)'/>
+<doc f='include/wctype.h' l='100'>/* Test for any wide character that corresponds to an uppercase letter
+   or is one of a locale-specific set of wide character for which none
+   of `iswcntrl&apos;, `iswdigit&apos;, `iswpunct&apos;, or `iswspace&apos; is true.  */</doc>

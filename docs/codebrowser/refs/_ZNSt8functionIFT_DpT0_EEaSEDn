@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/std_function.h' l='500' ll='510' type='function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt; &amp; std::function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt;::operator=(std::nullptr_t )'/>
+<doc f='include/c++/11/bits/std_function.h' l='493'>/**
+       *  @brief %Function assignment to zero.
+       *  @post @c !(bool)*this
+       *  @returns @c *this
+       *
+       *  The target of @c *this is deallocated, leaving it empty.
+       */</doc>

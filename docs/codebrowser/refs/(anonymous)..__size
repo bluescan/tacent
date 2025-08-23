@@ -1,0 +1,11 @@
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='34' type='char[4]'/>
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='43' type='char[4]'/>
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='70' type='char[40]'/>
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='78' type='char[48]'/>
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='89' type='char[56]'/>
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='95' type='char[8]'/>
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='110' type='char[32]'/>
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='116' type='char[4]'/>
+<offset>0</offset>
+<dec f='include/x86_64-linux-gnu/bits/semaphore.h' l='37' type='char[32]'/>
+<offset>0</offset>

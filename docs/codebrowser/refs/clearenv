@@ -1,0 +1,4 @@
+<dec f='include/stdlib.h' l='671' type='int clearenv()'/>
+<doc f='include/stdlib.h' l='668'>/* The `clearenv&apos; was planned to be added to POSIX.1 but probably
+   never made it.  Nevertheless the POSIX.9 standard (POSIX bindings
+   for Fortran 77) requires this function.  */</doc>

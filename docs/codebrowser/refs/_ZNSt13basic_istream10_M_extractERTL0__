@@ -1,0 +1,2 @@
+<dec f='include/c++/11/istream' l='641' type='std::basic_istream::__istream_type &amp; std::basic_istream::_M_extract(_ValueT &amp; __v)'/>
+<def f='include/c++/11/bits/istream.tcc' l='91' ll='117' type='basic_istream&lt;_CharT, _Traits&gt; &amp; std::basic_istream::_M_extract(_ValueT &amp; __v)'/>

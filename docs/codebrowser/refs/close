@@ -1,0 +1,5 @@
+<dec f='include/unistd.h' l='358' type='int close(int __fd)'/>
+<doc f='include/unistd.h' l='354'>/* Close the file descriptor FD.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

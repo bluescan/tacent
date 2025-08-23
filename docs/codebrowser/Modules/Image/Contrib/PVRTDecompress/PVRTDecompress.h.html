@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>PVRTDecompress.h source code [Modules/Image/Contrib/PVRTDecompress/PVRTDecompress.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Contrib/PVRTDecompress/PVRTDecompress.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>Modules</a>/<a href='../..'>Image</a>/<a href='..'>Contrib</a>/<a href='./'>PVRTDecompress</a>/<a href='PVRTDecompress.h.html'>PVRTDecompress.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i class="doc">/*!</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i class="doc"><span class="command">\brief</span> Contains functions to decompress PVRTC or ETC formats into RGBA8888.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i class="doc"><span class="command">\file</span> <span class="verb">PVRCore/texture/PVRTDecompress.h</span></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i class="doc"><span class="command">\author</span> PowerVR by Imagination, Developer Technology Team</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i class="doc"><span class="command">\copyright</span> Copyright (c) Imagination Technologies Limited.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i class="doc">*/</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i class="doc">// See MIT License info in Licence_PowerVRNativeSDK.txt</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><u>#pragma once</u>&nbsp</td></tr>
+<tr><th id="10">10</th><td><u>#include &lt;stdint.h&gt;</u>&nbsp</td></tr>
+<tr><th id="11">11</th><td><b>namespace</b> <span class="namespace">pvr</span> {&nbsp</td></tr>
+<tr><th id="12">12</th><td>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i class="doc">/// &lt;summary&gt;Decompresses PVRTC to RGBA 8888.&lt;/summary&gt;</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i class="doc">/// &lt;param name="compressedData"&gt;The PVRTC texture data to decompress&lt;/param&gt;</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i class="doc">/// &lt;param name="do2bitMode"&gt;Signifies whether the data is PVRTC2 or PVRTC4&lt;/param&gt;</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i class="doc">/// &lt;param name="xDim"&gt;X dimension of the texture&lt;/param&gt;</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i class="doc">/// &lt;param name="yDim"&gt;Y dimension of the texture&lt;/param&gt;</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i class="doc">/// &lt;param name="outResultImage"&gt;The decompressed texture data&lt;/param&gt;</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i class="doc">/// &lt;returns&gt;Return the amount of data that was decompressed.&lt;/returns&gt;</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl fn" id="_ZN3pvr19PVRTDecompressPVRTCEPKvjjjPh" title='pvr::PVRTDecompressPVRTC' data-ref="_ZN3pvr19PVRTDecompressPVRTCEPKvjjjPh">PVRTDecompressPVRTC</dfn>(<em>const</em> <em>void</em>* <dfn class="local col1 decl" id="1compressedData" title='compressedData' data-type='const void *' data-ref="1compressedData">compressedData</dfn>, <a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="local col2 decl" id="2do2bitMode" title='do2bitMode' data-type='uint32_t' data-ref="2do2bitMode">do2bitMode</dfn>, <a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="local col3 decl" id="3xDim" title='xDim' data-type='uint32_t' data-ref="3xDim">xDim</dfn>, <a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="local col4 decl" id="4yDim" title='yDim' data-type='uint32_t' data-ref="4yDim">yDim</dfn>, <a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint8_t" title='uint8_t' data-type='__uint8_t' data-ref="uint8_t">uint8_t</a>* <dfn class="local col5 decl" id="5outResultImage" title='outResultImage' data-type='uint8_t *' data-ref="5outResultImage">outResultImage</dfn>);&nbsp</td></tr>
+<tr><th id="21">21</th><td>&nbsp</td></tr>
+<tr><th id="22">22</th><td>} <i>// namespace pvr</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../Src/tPixelUtil.cpp.html'>Modules/Image/Src/tPixelUtil.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

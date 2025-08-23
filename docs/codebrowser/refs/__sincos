@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='79' macro='1' type='void __sincos(double __x, double * __sinx, double * __cosx)'/>

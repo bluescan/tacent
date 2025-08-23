@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/basic_ios.h' l='482' u='c' c='_ZNSt9basic_ios4moveERSt9basic_iosIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.h' l='497' u='c' c='_ZNSt9basic_ios4swapERSt9basic_iosIT_T0_E'/>
+<dec f='include/c++/11/bits/basic_ios.h' l='510' type='void std::basic_ios::_M_cache_locale(const std::locale &amp; __loc)'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='101' u='c' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='118' u='c' c='_ZNSt9basic_ios5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='132' u='c' c='_ZNSt9basic_ios4initEPSt15basic_streambufIT_T0_E'/>
+<def f='include/c++/11/bits/basic_ios.tcc' l='155' ll='173' type='void std::basic_ios::_M_cache_locale(const std::locale &amp; __loc)'/>

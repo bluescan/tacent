@@ -1,0 +1,8 @@
+<def f='include/c++/11/stop_token' l='215' ll='219' type='void std::stop_token::_Stop_state_t::_M_unlock()'/>
+<use f='include/c++/11/stop_token' l='249' u='c' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<use f='include/c++/11/stop_token' l='273' u='c' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<use f='include/c++/11/stop_token' l='304' u='c' c='_ZNSt10stop_token13_Stop_state_t20_M_register_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='320' u='c' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='328' u='c' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='332' u='c' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<doc f='include/c++/11/stop_token' l='214'>// Precondition: calling thread holds the lock.</doc>

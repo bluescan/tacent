@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/ios_base.h' l='608' type='int'/>
+<use f='include/c++/11/bits/ios_base.h' l='841' u='r' c='_ZNSt8ios_base5iwordEi'/>
+<use f='include/c++/11/bits/ios_base.h' l='862' u='r' c='_ZNSt8ios_base5pwordEi'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='93' u='w' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>
+<offset>1536</offset>
+<doc f='include/c++/11/bits/ios_base.h' l='607'>// Allocated storage.</doc>

@@ -1,0 +1,15 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3626' ll='3639'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3626'/>
+<size>104</size>
+<mbr r='VkPipelineDepthStencilStateCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineDepthStencilStateCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineDepthStencilStateCreateInfo::flags' o='128' t='VkPipelineDepthStencilStateCreateFlags'/>
+<mbr r='VkPipelineDepthStencilStateCreateInfo::depthTestEnable' o='160' t='VkBool32'/>
+<mbr r='VkPipelineDepthStencilStateCreateInfo::depthWriteEnable' o='192' t='VkBool32'/>
+<mbr r='VkPipelineDepthStencilStateCreateInfo::depthCompareOp' o='224' t='VkCompareOp'/>
+<mbr r='VkPipelineDepthStencilStateCreateInfo::depthBoundsTestEnable' o='256' t='VkBool32'/>
+<mbr r='VkPipelineDepthStencilStateCreateInfo::stencilTestEnable' o='288' t='VkBool32'/>
+<mbr r='VkPipelineDepthStencilStateCreateInfo::front' o='320' t='VkStencilOpState'/>
+<mbr r='VkPipelineDepthStencilStateCreateInfo::back' o='544' t='VkStencilOpState'/>
+<mbr r='VkPipelineDepthStencilStateCreateInfo::minDepthBounds' o='768' t='float'/>
+<mbr r='VkPipelineDepthStencilStateCreateInfo::maxDepthBounds' o='800' t='float'/>

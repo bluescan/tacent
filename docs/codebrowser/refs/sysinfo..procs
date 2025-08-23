@@ -1,0 +1,3 @@
+<dec f='include/linux/sysinfo.h' l='17' type='__u16'/>
+<offset>640</offset>
+<doc f='include/linux/sysinfo.h' l='17'>/* Number of current processes */</doc>

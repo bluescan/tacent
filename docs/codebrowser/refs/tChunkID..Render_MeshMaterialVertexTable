@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='600' type='33628160'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='600'>// Each element contains a position, a unit normal, UV texture coords, and a colour.</doc>

@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1672'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1670'>/* Define if C99 functions in &lt;ctype.h&gt; should be imported in &lt;tr1/cctype&gt; in
+   namespace std::tr1. */</doc>
+<use f='include/c++/11/cctype' l='81' u='a'/>

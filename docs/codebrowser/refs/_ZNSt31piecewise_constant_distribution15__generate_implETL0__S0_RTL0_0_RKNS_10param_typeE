@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='5760' type='void std::piecewise_constant_distribution::__generate_impl(_ForwardIterator __f, _ForwardIterator __t, _UniformRandomNumberGenerator &amp; __urng, const std::piecewise_constant_distribution::param_type &amp; __p)'/>
+<def f='include/c++/11/bits/random.tcc' l='2933' ll='2966' type='void std::piecewise_constant_distribution::__generate_impl(_ForwardIterator __f, _ForwardIterator __t, _UniformRandomNumberGenerator &amp; __urng, const std::piecewise_constant_distribution::param_type &amp; __param)'/>

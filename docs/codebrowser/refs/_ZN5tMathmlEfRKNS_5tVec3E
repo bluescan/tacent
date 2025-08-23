@@ -1,0 +1,11 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='85' type='const tMath::tVector3 tMath::operator*(float a, const tMath::tVec3 &amp; b)'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='148' u='c' c='_ZN5tMath28tComputeSmallEnclosingSphereERNS_7tSphereEPKNS_8tVector3Eif'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='148' u='c' c='_ZN5tMath28tComputeSmallEnclosingSphereERNS_7tSphereEPKNS_8tVector3Eif'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='190' u='c' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='191' u='c' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='198' u='c' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='199' u='c' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='206' u='c' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='207' u='c' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='258' u='c' c='_ZN5tMath7tRandom19tGetPointOnCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='317' u='c' c='_ZN5tMath7tRandom19tGetPointInCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>

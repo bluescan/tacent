@@ -1,0 +1,1 @@
+<dec f='include/c++/11/pstl/glue_algorithm_defs.h' l='253' type='__pstl::__internal::__enable_if_execution_policy&lt;_ExecutionPolicy, _ForwardIterator&gt; std::reverse_copy(_ExecutionPolicy &amp;&amp; __exec, _BidirectionalIterator __first, _BidirectionalIterator __last, _ForwardIterator __d_first)'/>

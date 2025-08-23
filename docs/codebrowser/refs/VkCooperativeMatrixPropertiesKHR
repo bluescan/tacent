@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10820' ll='10832'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10820'/>
+<size>56</size>
+<mbr r='VkCooperativeMatrixPropertiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCooperativeMatrixPropertiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkCooperativeMatrixPropertiesKHR::MSize' o='128' t='uint32_t'/>
+<mbr r='VkCooperativeMatrixPropertiesKHR::NSize' o='160' t='uint32_t'/>
+<mbr r='VkCooperativeMatrixPropertiesKHR::KSize' o='192' t='uint32_t'/>
+<mbr r='VkCooperativeMatrixPropertiesKHR::AType' o='224' t='VkComponentTypeKHR'/>
+<mbr r='VkCooperativeMatrixPropertiesKHR::BType' o='256' t='VkComponentTypeKHR'/>
+<mbr r='VkCooperativeMatrixPropertiesKHR::CType' o='288' t='VkComponentTypeKHR'/>
+<mbr r='VkCooperativeMatrixPropertiesKHR::ResultType' o='320' t='VkComponentTypeKHR'/>
+<mbr r='VkCooperativeMatrixPropertiesKHR::saturatingAccumulation' o='352' t='VkBool32'/>
+<mbr r='VkCooperativeMatrixPropertiesKHR::scope' o='384' t='VkScopeKHR'/>

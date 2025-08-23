@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='304' type='bool tMath::tApproxEqual(const tMath::tVec4 &amp; a, const tMath::tVec4 &amp; b, comp_t c, float e = Epsilon)'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='49' u='c' c='_ZNK5tMath8tVector411ApproxEqualERKNS_5tVec4Ejf'/>

@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1462' type='ktx_bool_t'/>
+<offset>576</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1458'>/*!&lt; UASTC RDO max smooth block standard deviation. Range is
+             [.01,65536.0]. Default is 18.0. Larger values expand the range of
+             blocks considered smooth.
+         */</doc>

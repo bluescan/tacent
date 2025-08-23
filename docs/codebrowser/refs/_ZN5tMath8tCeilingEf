@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='127' type='float tMath::tCeiling(float v)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='126'>// tCeiling and tFloor both need to change the FPU from round mode to truncate. Could have performance hit.</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='193' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='194' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>

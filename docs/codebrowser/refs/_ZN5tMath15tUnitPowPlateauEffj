@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='246' type='float tMath::tUnitPowPlateau(float x, float c = 1.F, uint32  = tUnitFlip_None)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='591' ll='604' type='float tMath::tUnitPowPlateau(float x, float c = 1.F, uint32 flip = tUnitFlip_None)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='245'>// Plot: http://www.wolframalpha.com/input/?i=Plot+Piecewise%5B%7B%7Bpow%282x%2C+3%29%2F2%2C+x%3C0.5%7D%2C+%7B1+-+%28pow%281-2%28x-1%2F2%29%2C+3%29%29%2F2%2C+x%3E0.5%7D%7D%5D%2C+%7Bx%2C0%2C1%7D</doc>

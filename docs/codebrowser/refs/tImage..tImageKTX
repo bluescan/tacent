@@ -1,0 +1,21 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='54' c='tImage::tBaseImage'/>
+<def f='Modules/Image/Inc/Image/tImageKTX.h' l='33' ll='242'/>
+<size>848</size>
+<doc f='Modules/Image/Inc/Image/tImageKTX.h' l='27'>// A tImageKTX object represents and knows how to load a ktx and ktx2 files. In general a Khronos Texture is composed of
+// multiple layers -- each one a mipmap. It loads the data into tLayers. It can either decode to R8G8B8A8 layers, or leave
+// the data as-is. Decode from BCn is supported. The layers may be &apos;stolen&apos; from a tImageKTX so that excessive memcpys
+// are avoided. After they are stolen the tImageKTX is invalid. Cubemaps and mipmaps are supported.
+// @todo 1D and 3D textures are not supported yet.
+// @todo ASTC is not supported yet.</doc>
+<fun r='_ZN6tImage9tImageKTXD1Ev'/>
+<fun r='_ZN6tImage9tImageKTX3SetEP9tColour4biib'/>
+<fun r='_ZN6tImage9tImageKTX3SetEPNS_6tFrameEb'/>
+<fun r='_ZN6tImage9tImageKTX3SetERNS_8tPictureEb'/>
+<fun r='_ZN6tImage9tImageKTX5ClearEv'/>
+<fun r='_ZNK6tImage9tImageKTX7IsValidEv'/>
+<fun r='_ZNK6tImage9tImageKTX11IsMipmappedEv'/>
+<fun r='_ZNK6tImage9tImageKTX9IsCubemapEv'/>
+<fun r='_ZN6tImage9tImageKTX8GetFrameEb'/>
+<fun r='_ZNK6tImage9tImageKTX9GetLayersER5tListINS_6tLayerEE'/>
+<fun r='_ZNK6tImage9tImageKTX16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<fun r='_ZNK6tImage9tImageKTX12GetAlphaModeEv'/>

@@ -1,0 +1,13 @@
+<use f='include/c++/11/chrono' l='1577' u='c' c='_ZNSt6chrono4yearppEi'/>
+<use f='include/c++/11/chrono' l='1592' u='c' c='_ZNSt6chrono4yearmmEi'/>
+<use f='include/c++/11/chrono' l='1613' u='c' c='_ZNKSt6chrono4yearpsEv'/>
+<use f='include/c++/11/chrono' l='2206' u='c' c='_ZNSt6chrono10year_monthC1ERKNS_4yearERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='2211' u='c' c='_ZNKSt6chrono10year_month4yearEv'/>
+<use f='include/c++/11/chrono' l='2338' u='c' c='_ZNSt6chrono14year_month_dayC1ERKNS_4yearERKNS_5monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='2386' u='c' c='_ZNKSt6chrono14year_month_day4yearEv'/>
+<use f='include/c++/11/chrono' l='2551' u='c' c='_ZNSt6chrono19year_month_day_lastC1ERKNS_4yearERKNS_14month_day_lastE'/>
+<use f='include/c++/11/chrono' l='2586' u='c' c='_ZNKSt6chrono19year_month_day_last4yearEv'/>
+<use f='include/c++/11/chrono' l='2741' u='c' c='_ZNSt6chrono18year_month_weekdayC1ERKNS_4yearERKNS_5monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='2786' u='c' c='_ZNKSt6chrono18year_month_weekday4yearEv'/>
+<use f='include/c++/11/chrono' l='2906' u='c' c='_ZNSt6chrono23year_month_weekday_lastC1ERKNS_4yearERKNS_5monthERKNS_12weekday_lastE'/>
+<use f='include/c++/11/chrono' l='2941' u='c' c='_ZNKSt6chrono23year_month_weekday_last4yearEv'/>

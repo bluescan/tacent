@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='515' type='16954704'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='515'>// IsClosed (4 bytes), num CVs (4 bytes).</doc>
+<use f='Modules/Scene/Src/tPath.cpp' l='49' u='r' c='_ZNK6tScene5tPath4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='76' c='_ZN6tScene5tPath4LoadERK6tChunk'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='85' type='bool tSystem::tIsFile(const tString &amp; path)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='778' ll='784' type='bool tSystem::tIsFile(const tString &amp; path)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='84'>// Files are paths that don&apos;t end in a /.</doc>
+<use f='Modules/System/Src/tFile.cpp' l='664' u='c' c='_ZN7tSystem9tIsHiddenERK7tString'/>

@@ -1,0 +1,11 @@
+<dec f='include/c++/11/bits/ios_base.h' l='376' type='const std::ios_base::fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='926' u='r' c='_ZSt8showbaseRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='934' u='r' c='_ZSt10noshowbaseRSt8ios_base'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='923' u='r' c='_ZNKSt7num_put13_M_insert_intET0_RSt8ios_baseT_TL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1203' u='r' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_PKv'/>
+<doc f='include/c++/11/bits/ios_base.h' l='374'>/// Generates a prefix indicating the numeric base of generated integer
+    /// output.</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='189' u='r' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='208' u='r' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='511' u='r' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='527' u='r' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>

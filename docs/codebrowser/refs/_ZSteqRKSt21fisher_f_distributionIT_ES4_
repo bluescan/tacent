@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='3221' ll='3226' type='bool std::operator==(const fisher_f_distribution&lt;_RealType&gt; &amp; __d1, const fisher_f_distribution&lt;_RealType&gt; &amp; __d2)'/>
+<doc f='include/c++/11/bits/random.h' l='3216'>/**
+       * @brief Return true if two Fisher f distributions have
+       *        the same parameters and the sequences that would
+       *        be generated are equal.
+       */</doc>

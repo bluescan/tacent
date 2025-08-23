@@ -1,0 +1,3 @@
+<dec f='include/c++/11/stop_token' l='39'/>
+<use f='include/c++/11/thread' l='100' u='a'/>
+<use f='include/c++/11/condition_variable' l='364' u='a'/>

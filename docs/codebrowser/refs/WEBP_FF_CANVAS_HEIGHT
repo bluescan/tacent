@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='121' type='2'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='61' u='r' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>

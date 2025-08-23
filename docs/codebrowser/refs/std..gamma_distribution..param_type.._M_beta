@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/random.h' l='2423' u='w' c='_ZNSt18gamma_distribution10param_typeC1ET_S1_'/>
+<use f='include/c++/11/bits/random.h' l='2435' u='r' c='_ZNKSt18gamma_distribution10param_type4betaEv'/>
+<dec f='include/c++/11/bits/random.h' l='2451' type='_RealType'/>

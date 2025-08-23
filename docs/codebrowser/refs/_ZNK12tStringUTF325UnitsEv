@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='555' type='char32_t * tStringUTF32::Units() const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='699' u='c' c='_ZN7tString3SetERK12tStringUTF32'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='981' u='c' c='_ZN12tStringUTF163SetERK12tStringUTF32'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='555'>/* Unicode naming. Code &apos;units&apos;. */</doc>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='434' u='c' c='_ZN5tName3SetERK12tStringUTF32'/>

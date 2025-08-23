@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17041'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17040'>// VK_EXT_image_sliced_view_of_3d is a preprocessor guard. Do not pass it to API calls.</doc>

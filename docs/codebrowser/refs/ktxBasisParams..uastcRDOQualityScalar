@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1442' type='float'/>
+<offset>448</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1440'>/*!&lt; Enable Rate Distortion Optimization (RDO) post-processing.
+         */</doc>

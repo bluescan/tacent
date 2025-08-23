@@ -1,0 +1,10 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='91' type='tString tSystem::tGetFileName(const tString &amp; file)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='90'>// c:/Stuff/Mess.max to Mess.max</doc>
+<use f='Modules/System/Src/tCmdLine.cpp' l='542' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='547' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<def f='Modules/System/Src/tFile.cpp' l='196' ll='203' type='tString tSystem::tGetFileName(const tString &amp; file)'/>
+<use f='Modules/System/Src/tFile.cpp' l='208' u='c' c='_ZN7tSystem16tGetFileBaseNameERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='666' u='c' c='_ZN7tSystem9tIsHiddenERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='674' u='c' c='_ZN7tSystem9tIsHiddenERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='1169' u='c' c='_ZN7tSystem11tDeleteFileERK7tStringbb'/>
+<use f='Modules/System/Src/tMachine.cpp' l='224' u='c' c='_ZN7tSystem23tOpenSystemFileExplorerERK7tString'/>

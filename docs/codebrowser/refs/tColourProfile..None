@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='130' type='-1'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='704' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='783' u='r' c='_ZN6tImage4tDDS24GetFormatInfo_FromFourCCERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='853' u='r' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='338' u='r' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='456' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Math/Src/tColour.cpp' l='55' u='r' c='_Z26tGetColourProfileShortName14tColourProfile'/>

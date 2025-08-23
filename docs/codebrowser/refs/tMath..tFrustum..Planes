@@ -1,0 +1,14 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='426' type='tMath::tPlane[6]'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='594' u='w' c='_ZN5tMath8tFrustum3SetEPKNS_6tPlaneE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='601' u='w' c='_ZN5tMath8tFrustum3SetEPKNS_8tVector4E'/>
+<offset>0</offset>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='425'>// Normals are interior-facing. The near distance (mNear.mDist) will be the negative of the far.</doc>
+<use f='Modules/Math/Src/tGeometry.cpp' l='104' u='m' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='105' u='m' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='106' u='m' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='107' u='m' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='108' u='m' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='109' u='m' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='112' u='m' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='509' u='m' c='_ZN5tMath27tIntersectTestFrustumSphereERKNS_8tFrustumERKNS_7tSphereE'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='509' u='m' c='_ZN5tMath27tIntersectTestFrustumSphereERKNS_8tFrustumERKNS_7tSphereE'/>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/fs_fwd.h' l='164' ll='170' type='std::filesystem::perms std::filesystem::operator&amp;(std::filesystem::perms __x, std::filesystem::perms __y)'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='197' u='c' c='_ZNSt10filesystemaNERNS_5permsES0_'/>
+<use f='Modules/System/Src/tFile.cpp' l='2049' u='c' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2050' u='c' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<doc f='include/c++/11/bits/fs_fwd.h' l='162'>/// @{
+  /// @relates perms</doc>

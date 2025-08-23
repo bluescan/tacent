@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='3543' ll='3545' type='double std::bernoulli_distribution::param_type::p() const'/>
+<use f='include/c++/11/bits/random.h' l='3594' u='c' c='_ZNKSt22bernoulli_distribution1pEv'/>
+<use f='include/c++/11/bits/random.h' l='3641' u='c' c='_ZNSt22bernoulli_distributionclERT_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1012' u='c' c='_ZNSt22bernoulli_distribution15__generate_implET_S0_RT0_RKNS_10param_typeE'/>

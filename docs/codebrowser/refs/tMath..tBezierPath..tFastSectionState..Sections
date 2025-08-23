@@ -1,0 +1,6 @@
+<use f='Modules/Math/Src/tSpline.cpp' l='481' u='m' c='_ZNK5tMath11tBezierPath17tFastSectionState3SetERKNS_8tVector3EjPS3_i'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='487' u='m' c='_ZNK5tMath11tBezierPath17tFastSectionState3SetERKNS_8tVector3EjPS3_i'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='496' u='m' c='_ZNK5tMath11tBezierPath17tFastSectionState6UpdateERKNS_8tVector3EPS3_'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='504' u='m' c='_ZNK5tMath11tBezierPath15GetClosestParamERKNS_8tVector3EjfRKNS0_17tFastSectionStateE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='510' u='m' c='_ZNK5tMath11tBezierPath15GetClosestParamERKNS_8tVector3EjfRKNS0_17tFastSectionStateE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='517' u='m' c='_ZNK5tMath11tBezierPath15GetClosestParamERKNS_8tVector3EjfRKNS0_17tFastSectionStateE'/>

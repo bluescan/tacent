@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/gifenc/gifenc.h' l='18' type='uint8_t *'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='428' u='r' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>256</offset>

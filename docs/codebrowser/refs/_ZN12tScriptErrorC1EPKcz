@@ -1,0 +1,22 @@
+<def f='Modules/System/Inc/System/tScript.h' l='413' ll='420' type='void tScriptError::tScriptError(const char * format)'/>
+<use f='Modules/System/Src/tScript.cpp' l='116' u='c' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='118' u='c' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='134' u='c' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='136' u='c' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='558' u='c' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='594' u='c' c='_ZN11tExprWriterC1ERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='603' u='c' c='_ZN11tExprWriter15BeginExpressionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='612' u='c' c='_ZN11tExprWriter13EndExpressionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='639' u='c' c='_ZN11tExprWriter9WriteAtomERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='667' u='c' c='_ZN11tExprWriter9WriteAtomEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='682' u='c' c='_ZN11tExprWriter8WriteRawERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='697' u='c' c='_ZN11tExprWriter8WriteRawEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='965' u='c' c='_ZN11tExprWriter12WriteCommentEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='982' u='c' c='_ZN11tExprWriter16WriteCommentLineEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='994' u='c' c='_ZN11tExprWriter15WriteCommentEndEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1004' u='c' c='_ZN11tExprWriter23WriteCommentInlineBeginEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1019' u='c' c='_ZN11tExprWriter18WriteCommentInlineEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='1029' u='c' c='_ZN11tExprWriter21WriteCommentInlineEndEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1043' u='c' c='_ZN11tExprWriter7NewLineEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1076' u='c' c='_ZN14tFunExpressionC1EPKDu'/>
+<use f='Modules/System/Src/tScript.cpp' l='1179' u='c' c='_ZN10tFunScript4SaveERK7tString'/>

@@ -1,0 +1,5 @@
+<use f='Modules/Scene/Src/tAttribute.cpp' l='36' u='r' c='_ZNK6tScene10tAttribute4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='43' u='r' c='_ZNK6tScene10tAttribute4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='82' u='a' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='86' u='r' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='89' u='r' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>

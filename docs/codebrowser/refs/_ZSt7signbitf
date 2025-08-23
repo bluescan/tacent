@@ -1,0 +1,2 @@
+<def f='include/c++/11/cmath' l='660' ll='662' type='bool std::signbit(float __x)'/>
+<doc f='include/c++/11/cmath' l='659'>// Note: middle-end/36757 is fixed, __builtin_signbit is type-generic.</doc>

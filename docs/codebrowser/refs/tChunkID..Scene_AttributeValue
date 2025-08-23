@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='454' type='16888576'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='454'>// Value is to be interpreted based on what type the attribute is.</doc>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='41' u='r' c='_ZNK6tScene10tAttribute4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='85' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>

@@ -1,0 +1,16 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='239' type='const char8_t * tString::Chars() const'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='151' u='c' c='_ZN5tHash17tHashStringFast32ERK7tStringj'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='156' u='c' c='_ZN5tHash13tHashString32ERK7tStringj'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='159' u='c' c='_ZN5tHash13tHashString64ERK7tStringy'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='162' u='c' c='_ZN5tHash14tHashStringMD5ERK7tString8tFixIntUILi128EE'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='166' u='c' c='_ZN5tHash14tHashString128ERK7tString8tFixIntUILi128EE'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='169' u='c' c='_ZN5tHash14tHashString256ERK7tString8tFixIntUILi256EE'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='172' u='c' c='_ZN5tHash17tHashStringSHA256ERK7tString8tFixIntUILi256EE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='53' u='c' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='580' u='c' c='_ZNK6tImage9tImageBMP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='475' u='c' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/System/Inc/System/tRegex.h' l='113' u='c' c='_ZNK7tSystem6tRegex5Match9GetStringERK7tString'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='329' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tFile.cpp' l='271' u='c' c='_ZN7tSystem13tComparePathsERK7tStringS2_b'/>
+<use f='Modules/System/Src/tFile.cpp' l='271' u='c' c='_ZN7tSystem13tComparePathsERK7tStringS2_b'/>
+<use f='Modules/System/Src/tScript.cpp' l='1131' u='c' c='_ZN10tFunScript4LoadERK7tString'/>

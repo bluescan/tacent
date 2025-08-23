@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1049' ll='1055' type='deque&lt;_Tp, _Alloc&gt; &amp; std::deque::operator=(initializer_list&lt;std::deque::value_type&gt; __l)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1038'>/**
+       *  @brief  Assigns an initializer list to a %deque.
+       *  @param  __l  An initializer_list.
+       *
+       *  This function fills a %deque with copies of the elements in the
+       *  initializer_list @a __l.
+       *
+       *  Note that the assignment completely changes the %deque and that the
+       *  resulting %deque&apos;s size is the same as the number of elements
+       *  assigned.
+       */</doc>

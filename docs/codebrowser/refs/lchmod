@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='359' type='int lchmod(const char * __file, __mode_t __mode)'/>
+<doc f='include/x86_64-linux-gnu/sys/stat.h' l='356'>/* Set file access permissions for FILE to MODE.
+   If FILE is a symbolic link, this affects the link itself
+   rather than its target.  */</doc>

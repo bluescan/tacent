@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/basic_string.h' l='2164' ll='2173' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::replace(std::basic_string::__const_iterator __i1, std::basic_string::__const_iterator __i2, std::basic_string::iterator __k1, std::basic_string::iterator __k2)'/>

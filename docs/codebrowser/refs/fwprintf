@@ -1,0 +1,5 @@
+<dec f='include/wchar.h' l='595' type='int fwprintf(__FILE *__restrict __stream, const wchar_t *__restrict __format)'/>
+<doc f='include/wchar.h' l='591'>/* Write formatted output to STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

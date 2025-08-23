@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='65' type='const tMath::tMat4 tMath::tVector3::MulByTranspose(const tMath::tVec3 &amp; a)'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='84' u='c' c='_ZNK5tMath6tPlane29ComputeOrthogonalBasisVectorsERNS_8tVector3ES2_'/>

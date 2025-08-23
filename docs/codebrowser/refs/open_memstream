@@ -1,0 +1,4 @@
+<dec f='include/stdio.h' l='314' type='FILE * open_memstream(char ** __bufloc, size_t * __sizeloc)'/>
+<doc f='include/stdio.h' l='311'>/* Open a stream that writes into a malloc&apos;d buffer that is expanded as
+   necessary.  *BUFLOC and *SIZELOC are updated with the buffer&apos;s location
+   and the number of characters written on fflush or fclose.  */</doc>

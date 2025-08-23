@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_deque.h' l='95' ll='98' macro='1' type='std::size_t std::__deque_buf_size(std::size_t __size)'/>
+<use f='include/c++/11/bits/stl_deque.h' l='132' u='c' c='_ZNSt15_Deque_iterator14_S_buffer_sizeEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='562' u='c' c='_ZNSt11_Deque_base16_M_allocate_nodeEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='569' u='c' c='_ZNSt11_Deque_base18_M_deallocate_nodeEN9__gnu_cxx14__alloc_traitsINS1_IT0_NS2_10value_typeEE6rebindIT_E5otherENS7_5other10value_typeEE7pointerE'/>
+<use f='include/c++/11/bits/stl_deque.h' l='620' u='c' c='_ZNSt11_Deque_base17_M_initialize_mapEm'/>
+<use f='include/c++/11/bits/stl_deque.h' l='651' u='c' c='_ZNSt11_Deque_base17_M_initialize_mapEm'/>
+<use f='include/c++/11/bits/stl_deque.h' l='808' u='c' c='_ZNSt5deque14_S_buffer_sizeEv'/>

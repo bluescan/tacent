@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='169' type='const uint32_t'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='186' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='193' u='r' c='_ZN5rgbcx10encode_bc3EPvPKhjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='186' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='193' u='r' c='_ZN5rgbcx10encode_bc3EPvPKhjj'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='168'>// DEFAULT_TOTAL_ORDERINGS_TO_TRY is around 3x faster than libsquish at slightly higher average quality. 10-16 is a good range to start to compete against libsquish.</doc>

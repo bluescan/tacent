@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='668' type='int ungetc(int __c, FILE * __stream)'/>
+<doc f='include/stdio.h' l='664'>/* Push a character back onto the input buffer of STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

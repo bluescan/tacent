@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/ios_base.h' l='559' type='_Atomic_word'/>
+<use f='include/c++/11/bits/ios_base.h' l='563' u='w' c='_ZNSt8ios_base14_Callback_listC1EPFvNS_5eventERS_iEiPS0_'/>
+<use f='include/c++/11/bits/ios_base.h' l='566' u='a' c='_ZNSt8ios_base14_Callback_list16_M_add_referenceEv'/>
+<use f='include/c++/11/bits/ios_base.h' l='574' u='a' c='_ZNSt8ios_base14_Callback_list19_M_remove_referenceEv'/>
+<offset>160</offset>
+<doc f='include/c++/11/bits/ios_base.h' l='559'>// 0 means one reference.</doc>

@@ -1,0 +1,6 @@
+_ZNKSt10error_code5valueEv|std::error_code::value
+_ZNKSt15error_condition5valueEv|std::error_condition::value
+_ZNK6tChunk5ValidEv|tChunk::Valid
+_ZNK12tChunkReader5ValidEv|tChunkReader::Valid
+_ZNK11tExpression5ValidEv|tExpression::Valid
+_ZN6tImage11tQuantizeWu3VarERNS0_5StateEPNS0_3BoxE|tImage::tQuantizeWu::Var

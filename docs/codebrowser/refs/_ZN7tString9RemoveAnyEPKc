@@ -1,0 +1,7 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='317' type='int tString::RemoveAny(const char * theseChars)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='314'>// Same as the above two but removes _any_ occurrences of characters specified in the null-terminated theseChars.
+	// eg. Calling RemoveAny on &quot;abcZaIbNcGabcaab&quot; with &quot;abc&quot; yields &quot;ZING&quot;. Returns the number of characters removed.
+	// Note that theseChars are ASCII.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='527' ll='558' type='int tString::RemoveAny(const char * theseChars)'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='256' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='284' u='c' c='_ZNK11tExpression18GetAtomTupleStringEv'/>

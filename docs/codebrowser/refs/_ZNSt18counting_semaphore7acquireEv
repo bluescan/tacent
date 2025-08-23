@@ -1,0 +1,2 @@
+<def f='include/c++/11/semaphore' l='70' ll='72' type='void std::counting_semaphore::acquire()'/>
+<use f='include/c++/11/stop_token' l='343' u='c' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>

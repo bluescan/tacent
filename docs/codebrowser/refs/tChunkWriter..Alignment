@@ -1,0 +1,7 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='105' ll='117'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='120' c='_ZN12tChunkWriter10BeginChunkEjNS_9AlignmentE'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='192' c='_ZN12tChunkWriter5BeginEjNS_9AlignmentE'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='101'>// Use this enum to enforce data alignment of written chunks. Alignment of data within chunk data is the user&apos;s
+	// responsibility. The enum here guarantees the starting address of the data in a data chunk to be aligned to the
+	// specified amount. Numbers are in bytes. You can _not_ add additional alignments to this enum. The file format
+	// uses a set 3 bits (8 enum entries) to specify the alignment.</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='892' ll='897' type='compare_three_way_result_t&lt;typename unique_ptr&lt;_Tp, _Dp&gt;::pointer, typename unique_ptr&lt;_Up, _Ep&gt;::pointer&gt; std::operator&lt;=&gt;(const unique_ptr&lt;_Tp, _Dp&gt; &amp; __x, const unique_ptr&lt;_Up, _Ep&gt; &amp; __y)'/>

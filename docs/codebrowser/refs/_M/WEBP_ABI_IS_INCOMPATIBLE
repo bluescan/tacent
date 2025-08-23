@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/types.h' l='50'/>
+<doc f='Modules/Image/Contrib/WebP/include/types.h' l='49'>// Macro to check ABI compatibility (same major revision number)</doc>

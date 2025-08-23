@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/ios_base.h' l='548' type='std::ios_base::iostate'/>
+<use f='include/c++/11/bits/basic_ios.h' l='223' u='r' c='_ZNKSt9basic_ios10exceptionsEv'/>
+<use f='include/c++/11/bits/basic_ios.h' l='259' u='w' c='_ZNSt9basic_ios10exceptionsESt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='150' u='w' c='_ZNSt9basic_ios4initEPSt15basic_streambufIT_T0_E'/>
+<offset>224</offset>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='4381' type='void std::negative_binomial_distribution::__generate_impl(_ForwardIterator __f, _ForwardIterator __t, _UniformRandomNumberGenerator &amp; __urng)'/>
+<def f='include/c++/11/bits/random.tcc' l='1172' ll='1189' type='void std::negative_binomial_distribution::__generate_impl(_ForwardIterator __f, _ForwardIterator __t, _UniformRandomNumberGenerator &amp; __urng)'/>

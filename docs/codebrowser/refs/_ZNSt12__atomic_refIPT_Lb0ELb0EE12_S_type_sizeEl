@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/atomic_base.h' l='1867' u='c' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EE9fetch_addElSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1872' u='c' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EE9fetch_subElSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1885' u='c' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EEppEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1891' u='c' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EEmmEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1897' u='c' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EEpLEl'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1903' u='c' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EEmIEl'/>
+<def f='include/c++/11/bits/atomic_base.h' l='1907' ll='1912' type='static std::ptrdiff_t std::__atomic_ref&lt;type-parameter-0-0 *, false, false&gt;::_S_type_size(std::ptrdiff_t __d)'/>

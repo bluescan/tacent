@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='502' type='int drand48_r(struct drand48_data *__restrict __buffer, double *__restrict __result)'/>
+<doc f='include/stdlib.h' l='501'>/* Return non-negative, double-precision floating-point value in [0.0,1.0).  */</doc>

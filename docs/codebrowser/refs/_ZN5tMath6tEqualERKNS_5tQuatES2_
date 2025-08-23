@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='318' type='bool tMath::tEqual(const tMath::tQuat &amp; a, const tMath::tQuat &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='98' u='c' c='_ZN5tMatheqERKNS_5tQuatES2_'/>

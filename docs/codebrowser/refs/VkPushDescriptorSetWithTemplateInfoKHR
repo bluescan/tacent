@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11099' ll='11106'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11099'/>
+<size>48</size>
+<mbr r='VkPushDescriptorSetWithTemplateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPushDescriptorSetWithTemplateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkPushDescriptorSetWithTemplateInfoKHR::descriptorUpdateTemplate' o='128' t='VkDescriptorUpdateTemplate'/>
+<mbr r='VkPushDescriptorSetWithTemplateInfoKHR::layout' o='192' t='VkPipelineLayout'/>
+<mbr r='VkPushDescriptorSetWithTemplateInfoKHR::set' o='256' t='uint32_t'/>
+<mbr r='VkPushDescriptorSetWithTemplateInfoKHR::pData' o='320' t='const void *'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='229' type='bool tImage::tPicture::Deborder(const tColour4b &amp;  = tColour4b::transparent, comp_t channels = tCompBit_A)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='226'>// Crops sides that match the specified colour. Optionally select only some channels to be considered.
+	// If this function wants to remove everything it returns false and leaves the image untouched.
+	// If this function wants to remove nothing it returns false and leaves the image untouched.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='500' ll='515' type='bool tImage::tPicture::Deborder(const tColour4b &amp; colour = tColour4b::transparent, comp_t channels = tCompBit_A)'/>

@@ -1,0 +1,6 @@
+_ZNKSt8identityclEOT_|std::identity::operator()
+_ZNSt6locale2idC1Ev|std::locale::id::id
+_ZNSt6thread2idC1Ev|std::thread::id::id
+_ZNK6tChunk2IDEv|tChunk::ID
+_ZN5tMath8tMatrix28IdentityEv|tMath::tMatrix2::Identity
+_ZN5tMath8tMatrix48IdentityEv|tMath::tMatrix4::Identity

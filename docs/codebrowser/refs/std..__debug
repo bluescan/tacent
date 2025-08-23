@@ -1,0 +1,4 @@
+<doc f='include/c++/11/debug/debug.h' l='44'>/**
+ * @namespace std::__debug
+ * @brief GNU debug code, replaces standard behavior with debug behavior.
+ */</doc>

@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='791' type='int deflatePrime(z_streamp strm, int bits, int value)'/>

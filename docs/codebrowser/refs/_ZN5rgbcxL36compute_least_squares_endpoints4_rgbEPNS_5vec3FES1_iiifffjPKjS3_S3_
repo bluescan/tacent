@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1975' ll='2002' type='void rgbcx::compute_least_squares_endpoints4_rgb(rgbcx::vec3F * pXl, rgbcx::vec3F * pXh, int total_r, int total_g, int total_b, float iz00, float iz10, float iz11, uint32_t s, const uint32_t * r_sum, const uint32_t * g_sum, const uint32_t * b_sum)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3762' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

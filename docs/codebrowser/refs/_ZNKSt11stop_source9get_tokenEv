@@ -1,0 +1,3 @@
+<def f='include/c++/11/stop_token' l='540' ll='544' type='std::stop_token std::stop_source::get_token() const'/>
+<use f='include/c++/11/thread' l='196' u='c' c='_ZNKSt7jthread14get_stop_tokenEv'/>
+<use f='include/c++/11/thread' l='216' u='c' c='_ZNSt7jthread9_S_createERSt11stop_sourceOT_DpOT0_'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/string_view' l='123' ll='126' type='void std::basic_string_view::basic_string_view&lt;_CharT, _Traits&gt;()'/>
+<doc f='include/c++/11/string_view' l='121'>// [string.view.cons], construction and assignment</doc>

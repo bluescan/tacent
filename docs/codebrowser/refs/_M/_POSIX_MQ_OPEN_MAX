@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='68'/>
+<doc f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='67'>/* Maximum number of message queues open for a process.  */</doc>

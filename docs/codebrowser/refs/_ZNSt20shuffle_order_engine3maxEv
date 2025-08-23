@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='1446' ll='1448' type='static std::shuffle_order_engine::result_type std::shuffle_order_engine::max()'/>
+<use f='include/c++/11/bits/random.tcc' l='840' u='c' c='_ZNSt20shuffle_order_engineclEv'/>
+<doc f='include/c++/11/bits/random.h' l='1443'>/**
+       * Gets the maximum value in the generated random number range.
+       */</doc>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='2487' ll='2489' type='_RealType std::gamma_distribution::alpha() const'/>
+<doc f='include/c++/11/bits/random.h' l='2484'>/**
+       * @brief Returns the @f$\alpha@f$ of the distribution.
+       */</doc>

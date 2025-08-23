@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='283' type='int tImage::tGetBlockWidth(tImage::tPixelFormat )'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='280'>// Gets the width/height in pixels of a block in the specified pixel-format. BC blocks are all 4x4. PVR blocks are
+// either 4x4 or 8x4. ASTC blocks have varying width/height depending on specific ASTC format -- they vary from 4x4 to
+// 12x12. Packed, Vendor, and Palette formats return 1 for width and height. Invalid pixel-formats return 0.</doc>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='155' u='c' c='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1328' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='919' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='923' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1088' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='494' ll='510' type='int tImage::tGetBlockWidth(tImage::tPixelFormat format)'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='559' u='c' c='_ZN6tImage21tGetBitsPerPixelFloatENS_12tPixelFormatE'/>

@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux_types.h' l='53' type='1'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='412' u='r' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/WebP/include/mux_types.h' l='53'>// Do not blend.</doc>

@@ -1,0 +1,46 @@
+<def f='include/c++/11/ext/type_traits.h' l='169' ll='170'/>
+<def f='include/c++/11/ext/type_traits.h' l='175' ll='177'/>
+<def f='include/c++/11/ext/type_traits.h' l='179' ll='181'/>
+<use f='include/c++/11/ext/type_traits.h' l='180'/>
+<def f='include/c++/11/ext/type_traits.h' l='183' ll='185'/>
+<use f='include/c++/11/ext/type_traits.h' l='184'/>
+<def f='include/c++/11/ext/type_traits.h' l='187' ll='189'/>
+<use f='include/c++/11/ext/type_traits.h' l='188'/>
+<use f='include/c++/11/ext/type_traits.h' l='193'/>
+<use f='include/c++/11/ext/type_traits.h' l='197'/>
+<use f='include/c++/11/ext/type_traits.h' l='198'/>
+<use f='include/c++/11/ext/type_traits.h' l='205'/>
+<use f='include/c++/11/ext/type_traits.h' l='206'/>
+<use f='include/c++/11/ext/type_traits.h' l='207'/>
+<use f='include/c++/11/ext/type_traits.h' l='214'/>
+<use f='include/c++/11/ext/type_traits.h' l='215'/>
+<use f='include/c++/11/ext/type_traits.h' l='216'/>
+<use f='include/c++/11/ext/type_traits.h' l='217'/>
+<use f='include/c++/11/bits/specfun.h' l='251' c='_ZSt14assoc_laguerrejjT_'/>
+<use f='include/c++/11/bits/specfun.h' l='254' c='_ZSt14assoc_laguerrejjT_'/>
+<use f='include/c++/11/bits/specfun.h' l='297' c='_ZSt14assoc_legendrejjT_'/>
+<use f='include/c++/11/bits/specfun.h' l='300' c='_ZSt14assoc_legendrejjT_'/>
+<use f='include/c++/11/bits/specfun.h' l='390' c='_ZSt13comp_ellint_1T_'/>
+<use f='include/c++/11/bits/specfun.h' l='393' c='_ZSt13comp_ellint_1T_'/>
+<use f='include/c++/11/bits/specfun.h' l='437' c='_ZSt13comp_ellint_2T_'/>
+<use f='include/c++/11/bits/specfun.h' l='440' c='_ZSt13comp_ellint_2T_'/>
+<use f='include/c++/11/bits/specfun.h' l='869' c='_ZSt6expintT_'/>
+<use f='include/c++/11/bits/specfun.h' l='872' c='_ZSt6expintT_'/>
+<use f='include/c++/11/bits/specfun.h' l='917' c='_ZSt7hermitejT_'/>
+<use f='include/c++/11/bits/specfun.h' l='920' c='_ZSt7hermitejT_'/>
+<use f='include/c++/11/bits/specfun.h' l='961' c='_ZSt8laguerrejT_'/>
+<use f='include/c++/11/bits/specfun.h' l='964' c='_ZSt8laguerrejT_'/>
+<use f='include/c++/11/bits/specfun.h' l='1006' c='_ZSt8legendrejT_'/>
+<use f='include/c++/11/bits/specfun.h' l='1009' c='_ZSt8legendrejT_'/>
+<use f='include/c++/11/bits/specfun.h' l='1057' c='_ZSt12riemann_zetaT_'/>
+<use f='include/c++/11/bits/specfun.h' l='1060' c='_ZSt12riemann_zetaT_'/>
+<use f='include/c++/11/bits/specfun.h' l='1101' c='_ZSt10sph_besseljT_'/>
+<use f='include/c++/11/bits/specfun.h' l='1104' c='_ZSt10sph_besseljT_'/>
+<use f='include/c++/11/bits/specfun.h' l='1148' c='_ZSt12sph_legendrejjT_'/>
+<use f='include/c++/11/bits/specfun.h' l='1151' c='_ZSt12sph_legendrejjT_'/>
+<use f='include/c++/11/bits/specfun.h' l='1192' c='_ZSt11sph_neumannjT_'/>
+<use f='include/c++/11/bits/specfun.h' l='1195' c='_ZSt11sph_neumannjT_'/>
+<size>1</size>
+<doc f='include/c++/11/ext/type_traits.h' l='172'>// No nested __type member for non-integer non-floating point types,
+  // allows this type to be used for SFINAE to constrain overloads in
+  // &lt;cmath&gt; and &lt;complex&gt; to only the intended types.</doc>

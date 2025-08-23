@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14907' ll='14911'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14907'/>
+<size>16</size>
+<mbr r='VkBindIndexBufferIndirectCommandNV::bufferAddress' o='0' t='VkDeviceAddress'/>
+<mbr r='VkBindIndexBufferIndirectCommandNV::size' o='64' t='uint32_t'/>
+<mbr r='VkBindIndexBufferIndirectCommandNV::indexType' o='96' t='VkIndexType'/>

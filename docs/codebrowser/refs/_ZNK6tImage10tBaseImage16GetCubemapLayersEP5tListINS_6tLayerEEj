@@ -1,0 +1,4 @@
+<def f='Modules/Image/Inc/Image/tBaseImage.h' l='120' type='int tImage::tBaseImage::GetCubemapLayers(tList&lt;tImage::tLayer&gt; * layers, uint32 faceFlags = tFaceFlag_All) const'/>
+<ovr f='Modules/Image/Src/tImageDDS.cpp' l='1058' c='_ZNK6tImage9tImageDDS16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<ovr f='Modules/Image/Src/tImageKTX.cpp' l='717' c='_ZNK6tImage9tImageKTX16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<ovr f='Modules/Image/Src/tImagePVR.cpp' l='1368' c='_ZNK6tImage9tImagePVR16GetCubemapLayersEP5tListINS_6tLayerEEj'/>

@@ -1,0 +1,12 @@
+<use f='include/c++/11/bits/stl_vector.h' l='294' u='w' c='_ZNSt12_Vector_baseC1ERKT0_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='299' u='w' c='_ZNSt12_Vector_baseC1Em'/>
+<use f='include/c++/11/bits/stl_vector.h' l='304' u='w' c='_ZNSt12_Vector_baseC1EmRKT0_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='313' u='w' c='_ZNSt12_Vector_baseC1EON9__gnu_cxx14__alloc_traitsIT0_NS2_10value_typeEE6rebindIT_E5otherE'/>
+<use f='include/c++/11/bits/stl_vector.h' l='316' u='w' c='_ZNSt12_Vector_baseC1EOSt12_Vector_baseIT_T0_ERKS2_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='329' u='w' c='_ZNSt12_Vector_baseC1ERKT0_OSt12_Vector_baseIT_S0_E'/>
+<use f='include/c++/11/bits/stl_vector.h' l='335' u='r' c='_ZNSt12_Vector_baseD1Ev'/>
+<use f='include/c++/11/bits/stl_vector.h' l='336' c='_ZNSt12_Vector_baseD1Ev'/>
+<use f='include/c++/11/bits/stl_vector.h' l='336' c='_ZNSt12_Vector_baseD1Ev'/>
+<dec f='include/c++/11/bits/stl_vector.h' l='340' type='std::_Vector_base::_Vector_impl'/>
+<use f='include/c++/11/bits/stl_vector.h' l='346' c='_ZNSt12_Vector_base11_M_allocateEm'/>
+<use f='include/c++/11/bits/stl_vector.h' l='354' c='_ZNSt12_Vector_base13_M_deallocateEN9__gnu_cxx14__alloc_traitsINS1_IT0_NS2_10value_typeEE6rebindIT_E5otherENS7_5other10value_typeEE7pointerEm'/>

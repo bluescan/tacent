@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='1295' ll='1297' type='bool std::atomic_is_lock_free(const volatile atomic&lt;_ITp&gt; * __a)'/>

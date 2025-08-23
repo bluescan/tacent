@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='499' type='tSystem::tFileTypes &amp; tSystem::tFileTypes::AddSelected(const tSystem::tFileTypes &amp; src, bool addAllIfNoneSelected = false)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='993' ll='1006' type='tSystem::tFileTypes &amp; tSystem::tFileTypes::AddSelected(const tSystem::tFileTypes &amp; src, bool addAllIfNoneSelected = false)'/>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>wctype.h source code [include/wctype.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/wctype.h'; var root_path = '..'; var data_path = '../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='./'>include</a>/<a href='wctype.h.html'>wctype.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 1996-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i></i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i></i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i> *	ISO C99 Standard: 7.25</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i> *	Wide character classification and mapping utilities  &lt;wctype.h&gt;</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#<span data-ppcond="23">ifndef</span> <span class="macro" data-ref="_M/_WCTYPE_H">_WCTYPE_H</span></u>&nbsp</td></tr>
+<tr><th id="24">24</th><td><u>#define <dfn class="macro" id="_M/_WCTYPE_H" data-ref="_M/_WCTYPE_H">_WCTYPE_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="25">25</th><td>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#include &lt;features.h&gt;</u>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="28">28</th><td><u>#include &lt;bits/types/wint_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>/* Constant expression of type `wint_t' whose value does not correspond</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>   to any member of the extended character set.  */</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#<span data-ppcond="32">ifndef</span> <a class="macro" href="wchar.h.html#64" data-ref="_M/WEOF">WEOF</a></u>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u># define WEOF (0xffffffffu)</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="32">endif</span></u>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i>/* Some definitions from this header also appear in &lt;wchar.h&gt; in</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>   Unix98 mode.  */</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#include &lt;bits/wctype-wchar.h&gt;</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i> * Extensible wide-character mapping functions: 7.15.3.2.</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td><a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#133" title="extern &quot;C&quot; {" data-ref="_M/__BEGIN_DECLS">__BEGIN_DECLS</a>&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>/* Scalar type that can hold values which represent locale-specific</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>   character mappings.  */</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><b>typedef</b> <em>const</em> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__int32_t" title='__int32_t' data-type='int' data-ref="__int32_t">__int32_t</a> *<dfn class="typedef" id="wctrans_t" title='wctrans_t' data-type='const __int32_t *' data-ref="wctrans_t">wctrans_t</dfn>;&nbsp</td></tr>
+<tr><th id="49">49</th><td>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i>/* Construct value that describes a mapping between wide characters</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>   identified by the string argument PROPERTY.  */</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><b>extern</b> <a class="typedef" href="#wctrans_t" title='wctrans_t' data-type='const __int32_t *' data-ref="wctrans_t">wctrans_t</a> <dfn class="decl fn" id="wctrans" title='wctrans' data-ref="wctrans">wctrans</dfn> (<em>const</em> <em>char</em> *<dfn class="local col7 decl" id="1277__property" title='__property' data-type='const char *' data-ref="1277__property">__property</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="53">53</th><td>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i>/* Map the wide character WC using the mapping described by DESC.  */</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="decl fn" id="towctrans" title='towctrans' data-ref="towctrans">towctrans</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col8 decl" id="1278__wc" title='__wc' data-type='wint_t' data-ref="1278__wc">__wc</dfn>, <a class="typedef" href="#wctrans_t" title='wctrans_t' data-type='const __int32_t *' data-ref="wctrans_t">wctrans_t</a> <dfn class="local col9 decl" id="1279__desc" title='__desc' data-type='wctrans_t' data-ref="1279__desc">__desc</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="56">56</th><td>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u># <span data-ppcond="57">ifdef</span> <a class="macro" href="features.h.html#363" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</a></u>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i>/* POSIX.1-2008 extended locale interface (see locale.h).  */</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#  include &lt;bits/types/locale_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="60">60</th><td>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i>/* Test for any wide character for which `iswalpha' or `iswdigit' is</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i>   true.  */</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="iswalnum_l" title='iswalnum_l' data-ref="iswalnum_l">iswalnum_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col0 decl" id="1280__wc" title='__wc' data-type='wint_t' data-ref="1280__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col1 decl" id="1281__locale" title='__locale' data-type='locale_t' data-ref="1281__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="64">64</th><td>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i>/* Test for any wide character for which `iswupper' or 'iswlower' is</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i>   true, or any wide character that is one of a locale-specific set of</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i>   wide-characters for which none of `iswcntrl', `iswdigit',</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td><i>   `iswpunct', or `iswspace' is true.  */</i>&nbsp</td></tr>
+<tr><th id="69">69</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="iswalpha_l" title='iswalpha_l' data-ref="iswalpha_l">iswalpha_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col2 decl" id="1282__wc" title='__wc' data-type='wint_t' data-ref="1282__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col3 decl" id="1283__locale" title='__locale' data-type='locale_t' data-ref="1283__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="70">70</th><td>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i>/* Test for any control wide character.  */</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="iswcntrl_l" title='iswcntrl_l' data-ref="iswcntrl_l">iswcntrl_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col4 decl" id="1284__wc" title='__wc' data-type='wint_t' data-ref="1284__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col5 decl" id="1285__locale" title='__locale' data-type='locale_t' data-ref="1285__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="73">73</th><td>&nbsp</td></tr>
+<tr><th id="74">74</th><td><i>/* Test for any wide character that corresponds to a decimal-digit</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td><i>   character.  */</i>&nbsp</td></tr>
+<tr><th id="76">76</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="iswdigit_l" title='iswdigit_l' data-ref="iswdigit_l">iswdigit_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col6 decl" id="1286__wc" title='__wc' data-type='wint_t' data-ref="1286__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col7 decl" id="1287__locale" title='__locale' data-type='locale_t' data-ref="1287__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td><i>/* Test for any wide character for which `iswprint' is true and</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><i>   `iswspace' is false.  */</i>&nbsp</td></tr>
+<tr><th id="80">80</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="iswgraph_l" title='iswgraph_l' data-ref="iswgraph_l">iswgraph_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col8 decl" id="1288__wc" title='__wc' data-type='wint_t' data-ref="1288__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col9 decl" id="1289__locale" title='__locale' data-type='locale_t' data-ref="1289__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="81">81</th><td>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i>/* Test for any wide character that corresponds to a lowercase letter</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td><i>   or is one of a locale-specific set of wide characters for which</i>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i>   none of `iswcntrl', `iswdigit', `iswpunct', or `iswspace' is true.  */</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="iswlower_l" title='iswlower_l' data-ref="iswlower_l">iswlower_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col0 decl" id="1290__wc" title='__wc' data-type='wint_t' data-ref="1290__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col1 decl" id="1291__locale" title='__locale' data-type='locale_t' data-ref="1291__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="86">86</th><td>&nbsp</td></tr>
+<tr><th id="87">87</th><td><i>/* Test for any printing wide character.  */</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="iswprint_l" title='iswprint_l' data-ref="iswprint_l">iswprint_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col2 decl" id="1292__wc" title='__wc' data-type='wint_t' data-ref="1292__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col3 decl" id="1293__locale" title='__locale' data-type='locale_t' data-ref="1293__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="89">89</th><td>&nbsp</td></tr>
+<tr><th id="90">90</th><td><i>/* Test for any printing wide character that is one of a</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i>   locale-specific et of wide characters for which neither `iswspace'</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><i>   nor `iswalnum' is true.  */</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="iswpunct_l" title='iswpunct_l' data-ref="iswpunct_l">iswpunct_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col4 decl" id="1294__wc" title='__wc' data-type='wint_t' data-ref="1294__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col5 decl" id="1295__locale" title='__locale' data-type='locale_t' data-ref="1295__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="94">94</th><td>&nbsp</td></tr>
+<tr><th id="95">95</th><td><i>/* Test for any wide character that corresponds to a locale-specific</i>&nbsp</td></tr>
+<tr><th id="96">96</th><td><i>   set of wide characters for which none of `iswalnum', `iswgraph', or</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td><i>   `iswpunct' is true.  */</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="iswspace_l" title='iswspace_l' data-ref="iswspace_l">iswspace_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col6 decl" id="1296__wc" title='__wc' data-type='wint_t' data-ref="1296__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col7 decl" id="1297__locale" title='__locale' data-type='locale_t' data-ref="1297__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="99">99</th><td>&nbsp</td></tr>
+<tr><th id="100">100</th><td><i>/* Test for any wide character that corresponds to an uppercase letter</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><i>   or is one of a locale-specific set of wide character for which none</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td><i>   of `iswcntrl', `iswdigit', `iswpunct', or `iswspace' is true.  */</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="iswupper_l" title='iswupper_l' data-ref="iswupper_l">iswupper_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col8 decl" id="1298__wc" title='__wc' data-type='wint_t' data-ref="1298__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col9 decl" id="1299__locale" title='__locale' data-type='locale_t' data-ref="1299__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="104">104</th><td>&nbsp</td></tr>
+<tr><th id="105">105</th><td><i>/* Test for any wide character that corresponds to a hexadecimal-digit</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><i>   character equivalent to that performed be the functions described</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td><i>   in the previous subclause.  */</i>&nbsp</td></tr>
+<tr><th id="108">108</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="iswxdigit_l" title='iswxdigit_l' data-ref="iswxdigit_l">iswxdigit_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col0 decl" id="1300__wc" title='__wc' data-type='wint_t' data-ref="1300__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col1 decl" id="1301__locale" title='__locale' data-type='locale_t' data-ref="1301__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="109">109</th><td>&nbsp</td></tr>
+<tr><th id="110">110</th><td><i>/* Test for any wide character that corresponds to a standard blank</i>&nbsp</td></tr>
+<tr><th id="111">111</th><td><i>   wide character or a locale-specific set of wide characters for</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td><i>   which `iswalnum' is false.  */</i>&nbsp</td></tr>
+<tr><th id="113">113</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="iswblank_l" title='iswblank_l' data-ref="iswblank_l">iswblank_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col2 decl" id="1302__wc" title='__wc' data-type='wint_t' data-ref="1302__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col3 decl" id="1303__locale" title='__locale' data-type='locale_t' data-ref="1303__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="114">114</th><td>&nbsp</td></tr>
+<tr><th id="115">115</th><td><i>/* Construct value that describes a class of wide characters identified</i>&nbsp</td></tr>
+<tr><th id="116">116</th><td><i>   by the string argument PROPERTY.  */</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/wctype-wchar.h.html#wctype_t" title='wctype_t' data-type='unsigned long' data-ref="wctype_t">wctype_t</a> <dfn class="decl fn" id="wctype_l" title='wctype_l' data-ref="wctype_l">wctype_l</dfn> (<em>const</em> <em>char</em> *<dfn class="local col4 decl" id="1304__property" title='__property' data-type='const char *' data-ref="1304__property">__property</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col5 decl" id="1305__locale" title='__locale' data-type='locale_t' data-ref="1305__locale">__locale</dfn>)&nbsp</td></tr>
+<tr><th id="118">118</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="119">119</th><td>&nbsp</td></tr>
+<tr><th id="120">120</th><td><i>/* Determine whether the wide-character WC has the property described by</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td><i>   DESC.  */</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="iswctype_l" title='iswctype_l' data-ref="iswctype_l">iswctype_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col6 decl" id="1306__wc" title='__wc' data-type='wint_t' data-ref="1306__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/wctype-wchar.h.html#wctype_t" title='wctype_t' data-type='unsigned long' data-ref="wctype_t">wctype_t</a> <dfn class="local col7 decl" id="1307__desc" title='__desc' data-type='wctype_t' data-ref="1307__desc">__desc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col8 decl" id="1308__locale" title='__locale' data-type='locale_t' data-ref="1308__locale">__locale</dfn>)&nbsp</td></tr>
+<tr><th id="123">123</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="124">124</th><td>&nbsp</td></tr>
+<tr><th id="125">125</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td><i> * Wide-character case-mapping functions.</i>&nbsp</td></tr>
+<tr><th id="127">127</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td>&nbsp</td></tr>
+<tr><th id="129">129</th><td><i>/* Converts an uppercase letter to the corresponding lowercase letter.  */</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="decl fn" id="towlower_l" title='towlower_l' data-ref="towlower_l">towlower_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col9 decl" id="1309__wc" title='__wc' data-type='wint_t' data-ref="1309__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col0 decl" id="1310__locale" title='__locale' data-type='locale_t' data-ref="1310__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="131">131</th><td>&nbsp</td></tr>
+<tr><th id="132">132</th><td><i>/* Converts an lowercase letter to the corresponding uppercase letter.  */</i>&nbsp</td></tr>
+<tr><th id="133">133</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="decl fn" id="towupper_l" title='towupper_l' data-ref="towupper_l">towupper_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col1 decl" id="1311__wc" title='__wc' data-type='wint_t' data-ref="1311__wc">__wc</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col2 decl" id="1312__locale" title='__locale' data-type='locale_t' data-ref="1312__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="134">134</th><td>&nbsp</td></tr>
+<tr><th id="135">135</th><td><i>/* Construct value that describes a mapping between wide characters</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td><i>   identified by the string argument PROPERTY.  */</i>&nbsp</td></tr>
+<tr><th id="137">137</th><td><b>extern</b> <a class="typedef" href="#wctrans_t" title='wctrans_t' data-type='const __int32_t *' data-ref="wctrans_t">wctrans_t</a> <dfn class="decl fn" id="wctrans_l" title='wctrans_l' data-ref="wctrans_l">wctrans_l</dfn> (<em>const</em> <em>char</em> *<dfn class="local col3 decl" id="1313__property" title='__property' data-type='const char *' data-ref="1313__property">__property</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col4 decl" id="1314__locale" title='__locale' data-type='locale_t' data-ref="1314__locale">__locale</dfn>)&nbsp</td></tr>
+<tr><th id="138">138</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="139">139</th><td>&nbsp</td></tr>
+<tr><th id="140">140</th><td><i>/* Map the wide character WC using the mapping described by DESC.  */</i>&nbsp</td></tr>
+<tr><th id="141">141</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="decl fn" id="towctrans_l" title='towctrans_l' data-ref="towctrans_l">towctrans_l</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/wint_t.h.html#wint_t" title='wint_t' data-type='unsigned int' data-ref="wint_t">wint_t</a> <dfn class="local col5 decl" id="1315__wc" title='__wc' data-type='wint_t' data-ref="1315__wc">__wc</dfn>, <a class="typedef" href="#wctrans_t" title='wctrans_t' data-type='const __int32_t *' data-ref="wctrans_t">wctrans_t</a> <dfn class="local col6 decl" id="1316__desc" title='__desc' data-type='wctrans_t' data-ref="1316__desc">__desc</dfn>,&nbsp</td></tr>
+<tr><th id="142">142</th><td>			   <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col7 decl" id="1317__locale" title='__locale' data-type='locale_t' data-ref="1317__locale">__locale</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="143">143</th><td>&nbsp</td></tr>
+<tr><th id="144">144</th><td><u># <span data-ppcond="57">endif</span> /* Use POSIX 2008.  */</u>&nbsp</td></tr>
+<tr><th id="145">145</th><td>&nbsp</td></tr>
+<tr><th id="146">146</th><td><a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#134" title="}" data-ref="_M/__END_DECLS">__END_DECLS</a>&nbsp</td></tr>
+<tr><th id="147">147</th><td>&nbsp</td></tr>
+<tr><th id="148">148</th><td><u>#<span data-ppcond="23">endif</span> /* wctype.h  */</u>&nbsp</td></tr>
+<tr><th id="149">149</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../Modules/Foundation/Inc/Foundation/tPool.h.html'>Modules/Foundation/Inc/Foundation/tPool.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

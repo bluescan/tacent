@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1483' type='3'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1500' u='r' c='_ZNK5rgbcx9bc1_block12get_selectorEjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1501' u='r' c='_ZN5rgbcx9bc1_block12set_selectorEjjj'/>

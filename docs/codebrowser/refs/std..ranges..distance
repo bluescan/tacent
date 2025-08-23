@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/ranges_base.h' l='819' type='const std::ranges::__distance_fn'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='101' u='c' c='_ZNKSt6ranges10__equal_fnclET_T0_T1_T2_T3_T4_T5_'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='102' u='c' c='_ZNKSt6ranges10__equal_fnclET_T0_T1_T2_T3_T4_T5_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='565' u='c' c='_ZNKSt6ranges19__is_permutation_fnclET_T0_T1_T2_T5_T3_T4_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='566' u='c' c='_ZNKSt6ranges19__is_permutation_fnclET_T0_T1_T2_T5_T3_T4_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='587' u='c' c='_ZNKSt6ranges19__is_permutation_fnclET_T0_T1_T2_T5_T3_T4_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='588' u='c' c='_ZNKSt6ranges19__is_permutation_fnclET_T0_T1_T2_T5_T3_T4_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1751' u='c' c='_ZNKSt6ranges18__is_heap_until_fnclET_T0_T2_T1_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2092' u='c' c='_ZNKSt6ranges16__lower_bound_fnclET_T0_RKT1_T3_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2136' u='c' c='_ZNKSt6ranges16__upper_bound_fnclET_T0_RKT1_T3_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2180' u='c' c='_ZNKSt6ranges16__equal_range_fnclET_T0_RKT1_T3_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2480' u='c' c='_ZNKSt6ranges20__partition_point_fnclET_T0_T2_T1_'/>

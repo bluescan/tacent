@@ -1,0 +1,13 @@
+<dec f='include/string.h' l='43' type='void * memcpy(void *__restrict __dest, const void *__restrict __src, size_t __n)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='35' u='c' c='_ZN4tStd7tMemcpyEPvPKvi'/>
+<doc f='include/string.h' l='42'>/* Copy N bytes of SRC to DEST.  */</doc>
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='88' u='c' c='_ZL12WebPDataCopyPK8WebPDataPS_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2720' u='c' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2736' u='c' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2786' u='c' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2884' u='c' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2899' u='c' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3470' u='c' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3654' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3679' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3784' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

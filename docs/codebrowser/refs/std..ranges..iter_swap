@@ -1,0 +1,26 @@
+<def f='include/c++/11/bits/iterator_concepts.h' l='868' type='const __cust_iswap::_IterSwap'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='879' u='c'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='880' u='c'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='881' u='c'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='882' u='c'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='386' u='c' c='_ZSt9iter_swapRKSt16reverse_iteratorIT_ERKS_ITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='391' u='c' c='_ZSt9iter_swapRKSt16reverse_iteratorIT_ERKS_ITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1578' u='c' c='_ZSt9iter_swapRKSt13move_iteratorIT_ERKS_ITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1579' u='c' c='_ZSt9iter_swapRKSt13move_iteratorIT_ERKS_ITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2084' u='c' c='_ZSt9iter_swapRKSt15common_iteratorIT_T0_ERKS_ITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2089' u='c' c='_ZSt9iter_swapRKSt15common_iteratorIT_T0_ERKS_ITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2422' u='c' c='_ZSt9iter_swapRKSt16counted_iteratorIT_ERKS_ITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2425' u='c' c='_ZSt9iter_swapRKSt16counted_iteratorIT_ERKS_ITL0__E'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='687' u='c' c='_ZNKSt6ranges16__swap_ranges_fnclET_T0_T1_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1295' u='c' c='_ZNKSt6ranges12__reverse_fnclET_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1309' u='c' c='_ZNKSt6ranges12__reverse_fnclET_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1404' u='c' c='_ZNKSt6ranges11__rotate_fnclET_S1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1433' u='c' c='_ZNKSt6ranges11__rotate_fnclET_S1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1451' u='c' c='_ZNKSt6ranges11__rotate_fnclET_S1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1471' u='c' c='_ZNKSt6ranges11__rotate_fnclET_S1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1484' u='c' c='_ZNKSt6ranges11__rotate_fnclET_S1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1884' u='c' c='_ZNKSt6ranges17__partial_sort_fnclET_S1_T0_T1_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2326' u='c' c='_ZNKSt6ranges14__partition_fnclET_T0_T2_T1_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2343' u='c' c='_ZNKSt6ranges14__partition_fnclET_T0_T2_T1_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3466' u='c' c='_ZNKSt6ranges21__next_permutation_fnclET_T0_T1_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3528' u='c' c='_ZNKSt6ranges21__prev_permutation_fnclET_T0_T1_T2_'/>

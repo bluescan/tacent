@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='304' type='bool tImage::tPicture::ScaleHalf()'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='297'>// This function scales the image by half using a box filter. Useful for generating mipmaps. This function returns
+	// false if the rescale could not be performed. For this function to succeed:
+	//  - The image needs to be valid AND
+	//  - The width must be divisible by two if it is not equal to 1 AND
+	//  - The height must be divisible by two if it is not equal to 1.
+	// Dimensions of 1 are handled since it&apos;s handy for mipmap generation. If width=10 and height=1, we&apos;d end up with a
+	// 5x1 image. An 11x1 image would yield an error and return false. A 1x1 successfully yields the same 1x1 image.</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='261' u='c' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='262' u='c' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<def f='Modules/Image/Src/tPicture.cpp' l='858' ll='950' type='bool tImage::tPicture::ScaleHalf()'/>

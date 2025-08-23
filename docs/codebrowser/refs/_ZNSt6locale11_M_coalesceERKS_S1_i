@@ -1,0 +1,1 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='354' type='void std::locale::_M_coalesce(const std::locale &amp; __base, const std::locale &amp; __add, std::locale::category __cat)'/>

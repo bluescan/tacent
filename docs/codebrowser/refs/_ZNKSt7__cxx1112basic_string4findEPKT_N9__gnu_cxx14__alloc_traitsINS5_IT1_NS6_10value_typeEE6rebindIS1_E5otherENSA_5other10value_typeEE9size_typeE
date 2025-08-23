@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/basic_string.h' l='2412' ll='2417' type='std::basic_string::size_type std::basic_string::find(const _CharT * __s, std::basic_string::size_type __pos = 0) const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='2402'>/**
+       *  @brief  Find position of a C string.
+       *  @param __s  C string to locate.
+       *  @param __pos  Index of character to search from (default 0).
+       *  @return  Index of start of first occurrence.
+       *
+       *  Starting from @a __pos, searches forward for the value of @a
+       *  __s within this string.  If found, returns the index where
+       *  it begins.  If not found, returns npos.
+      */</doc>

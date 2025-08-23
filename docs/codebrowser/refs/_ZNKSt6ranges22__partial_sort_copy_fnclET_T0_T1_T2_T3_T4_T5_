@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='1921' ll='1958' type='partial_sort_copy_result&lt;_Iter1, _Iter2&gt; std::ranges::__partial_sort_copy_fn::operator()(_Iter1 __first, _Sent1 __last, _Iter2 __result_first, _Sent2 __result_last, _Comp __comp = {}, _Proj1 __proj1 = {}, _Proj2 __proj2 = {}) const'/>

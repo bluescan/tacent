@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/functexcept.h' l='59' type='void std::__throw_bad_cast()'/>
+<doc f='include/c++/11/bits/functexcept.h' l='57'>// Helper for exception objects in &lt;typeinfo&gt;</doc>
+<use f='include/c++/11/bits/locale_classes.tcc' l='137' u='c' c='_ZSt9use_facetRKSt6locale'/>
+<use f='include/c++/11/bits/basic_ios.h' l='50' u='c' c='_ZSt13__check_facetPKT_'/>

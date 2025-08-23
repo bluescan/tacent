@@ -1,0 +1,2 @@
+<dec f='include/sched.h' l='74' type='int sched_get_priority_min(int __algorithm)'/>
+<doc f='include/sched.h' l='73'>/* Get minimum priority value for a scheduler.  */</doc>

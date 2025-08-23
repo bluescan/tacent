@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='379' type='2'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='379'>// Image. Quite OK Image Format.</doc>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='31' u='r' c='_ZN6tImage9tImageQOI4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='186' u='r' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>

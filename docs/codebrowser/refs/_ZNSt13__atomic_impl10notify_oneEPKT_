@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1001' ll='1003' macro='1' type='void std::__atomic_impl::notify_one(const _Tp * __ptr)'/>

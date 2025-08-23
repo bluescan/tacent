@@ -1,0 +1,1 @@
+<def f='Modules/System/Src/tRegex.cpp' l='862' ll='901' type='void tSystem::tRegex::Search(const char * textBegin, const char * textEnd, tList&lt;tSystem::tRegex::Match&gt; &amp; matches) const'/>

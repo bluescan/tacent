@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3884' ll='3893'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3884'/>
+<size>56</size>
+<mbr r='VkCommandBufferInheritanceInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCommandBufferInheritanceInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkCommandBufferInheritanceInfo::renderPass' o='128' t='VkRenderPass'/>
+<mbr r='VkCommandBufferInheritanceInfo::subpass' o='192' t='uint32_t'/>
+<mbr r='VkCommandBufferInheritanceInfo::framebuffer' o='256' t='VkFramebuffer'/>
+<mbr r='VkCommandBufferInheritanceInfo::occlusionQueryEnable' o='320' t='VkBool32'/>
+<mbr r='VkCommandBufferInheritanceInfo::queryFlags' o='352' t='VkQueryControlFlags'/>
+<mbr r='VkCommandBufferInheritanceInfo::pipelineStatistics' o='384' t='VkQueryPipelineStatisticFlags'/>

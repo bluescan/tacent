@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tVersion.cmake.h' l='2' type='int'/>
+<def f='Modules/Foundation/Src/tVersion.cpp' l='23' type='int'/>
+<use f='Modules/Foundation/Src/tVersion.cpp' l='43' u='w' c='_ZN8tVersion6ParserC1EPKc'/>
+<doc f='Modules/Foundation/Src/tVersion.cpp' l='21'>// Any break in binary compatibility must increment the major number, although non-breaking major improvements may
+	// also justify a major version update.</doc>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='61' u='r' c='_ZNK6tImage10tImageTIFF25WriteSoftwarePageDurationEP4tiffi'/>

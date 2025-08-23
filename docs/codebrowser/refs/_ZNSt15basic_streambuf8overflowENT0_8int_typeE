@@ -1,0 +1,24 @@
+<def f='include/c++/11/streambuf' l='772' ll='774' type='std::basic_streambuf::int_type std::basic_streambuf::overflow(std::basic_streambuf::int_type __c = traits_type::eof())'/>
+<doc f='include/c++/11/streambuf' l='749'>/**
+       *  @brief  Consumes data from the buffer; writes to the
+       *          controlled sequence.
+       *  @param  __c  An additional character to consume.
+       *  @return  eof() to indicate failure, something else (usually
+       *           @a __c, or not_eof())
+       *
+       *  Informally, this function is called when the output buffer
+       *  is full (or does not exist, as buffering need not actually
+       *  be done).  If a buffer exists, it is @a consumed, with
+       *  &lt;em&gt;some effect&lt;/em&gt; on the controlled sequence.
+       *  (Typically, the buffer is written out to the sequence
+       *  verbatim.)  In either case, the character @a c is also
+       *  written out, if @a __c is not @c eof().
+       *
+       *  For a formal definition of this function, see a good text
+       *  such as Langer &amp; Kreft, or [27.5.2.4.5]/3-7.
+       *
+       *  A functioning output streambuf can be created by overriding only
+       *  this function (no buffer area will be used).
+       *
+       *  @note  Base class version does nothing, returns eof().
+      */</doc>

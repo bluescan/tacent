@@ -1,0 +1,3 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='139' u='c' c='_ZN5tMath7tARect2C1Ev'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='154' type='void tMath::tARect2::Clear()'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='155' u='c' c='_ZN5tMath7tARect25EmptyEv'/>

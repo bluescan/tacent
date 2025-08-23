@@ -1,0 +1,292 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='249' ll='382'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='306'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='307' c='_ZN7tItList4IterC1EPNS_8IterNodeEPK7tItListIT_E'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='309'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='772' c='_ZN7tItList6RemoveERNS_4IterE'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='247'>// The tItList implements a doubly linked non-intrusive iterator-based list. This list class is implemented by using a
+// tList of structs that point to the objects in the list.</doc>
+<fun r='_ZN7tItListC1Ev'/>
+<fun r='_ZN7tItListC1E9tListMode'/>
+<fun r='_ZN7tItListD1Ev'/>
+<fun r='_ZN7tItList6InsertEPT_'/>
+<fun r='_ZN7tItList6InsertEPT_RKNS_4IterE'/>
+<fun r='_ZN7tItList6AppendEPT_'/>
+<fun r='_ZN7tItList6AppendEPT_RKNS_4IterE'/>
+<fun r='_ZN7tItList6InsertEPKT_'/>
+<fun r='_ZN7tItList6InsertEPKT_RKNS_4IterE'/>
+<fun r='_ZN7tItList6AppendEPKT_'/>
+<fun r='_ZN7tItList6AppendEPKT_RKNS_4IterE'/>
+<fun r='_ZN7tItList6RemoveEv'/>
+<fun r='_ZN7tItList6RemoveERNS_4IterE'/>
+<fun r='_ZN7tItList4DropEv'/>
+<fun r='_ZN7tItList4DropERNS_4IterE'/>
+<fun r='_ZN7tItList5ClearEv'/>
+<fun r='_ZN7tItList5ResetEv'/>
+<fun r='_ZN7tItList5EmptyEv'/>
+<fun r='_ZNK7tItList4HeadEv'/>
+<fun r='_ZNK7tItList4TailEv'/>
+<fun r='_ZNK7tItList5FirstEv'/>
+<fun r='_ZNK7tItList4LastEv'/>
+<fun r='_ZNK7tItList4FindEPKT_'/>
+<fun r='_ZNK7tItList11GetNumItemsEv'/>
+<fun r='_ZNK7tItList8NumItemsEv'/>
+<fun r='_ZNK7tItList5CountEv'/>
+<fun r='_ZNK7tItList7IsEmptyEv'/>
+<fun r='_ZNK7tItList4OwnsEv'/>
+<fun r='_ZNK7tItList5beginEv'/>
+<fun r='_ZNK7tItList3endEv'/>
+<fun r='_ZNK7tItListixERKNS_4IterE'/>
+<fun r='_ZN7tItListixERKNS_4IterE'/>
+<fun r='_ZN7tItList4SortETL0__18tListSortAlgorithm'/>
+<fun r='_ZN7tItList6InsertEPKT_TL0__'/>
+<fun r='_ZN7tItList6BubbleETL0__bi'/>
+<mbr r='tItList::Mode' t='tListMode'/>
+<mbr r='tItList::Nodes' t='tList&lt;tItList::IterNode&gt;'/>
+<fun r='_ZN7tItList6RemoveERNS_4IterE'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='62'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='103' c='_ZN4tMap4IterC1EPK4tMapIT_T0_EiN7tItListINS_4PairEE4IterE'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='106'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='112' c='_ZNK4tMap3endEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='262' c='_ZN4tMap4Iter4NextEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='274' c='_ZNK4tMap5FirstEv'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='142' c='_ZN5tMath12tIntervalSet3SetERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='171'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='438' c='_ZNK5tMath12tIntervalSet3GetER7tStringNS_12tIntervalRepENS_15tIntervalSetRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='453' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='456' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='468' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='479' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='501' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='87'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='60'/>
+<use f='Modules/Scene/Inc/Scene/tSelection.h' l='35'/>
+<use f='Modules/Scene/Inc/Scene/tSelection.h' l='44' c='_ZNK6tScene10tSelection16ContainsInstanceEj'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='74' c='_ZN6tScene9tSkeleton5ScaleEf'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='86'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='87'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='120' c='_ZN6tScene9tSkeleton8GetJointEj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='75' c='_ZN6tScene6tWorldC1ERK7tItListI7tStringEj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='86' c='_ZN6tScene6tWorld4LoadERK7tItListI7tStringEj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='86' c='_ZN6tScene6tWorld4LoadERK7tItListI7tStringEj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='112' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='112' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='112' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='113' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='113' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='113' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='114' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='114' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='114' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='121' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='146' c='_ZN6tScene6tWorld12GetMaterialsERKNS_5tMeshER7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='181' c='_ZNK6tScene6tWorld24FindSelectionsContainingER7tItListIPNS_10tSelectionEERK7tString'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='204' c='_ZN6tScene6tWorld13LoadMaterialsERK6tChunkR7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='208' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='208' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='208' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='208' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='208' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='211' c='_ZN6tScene6tWorld10LoadGroupsERK6tChunkR7tItListINS_9tLodGroupEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='212' c='_ZN6tScene6tWorld13LoadInstancesERK6tChunkR7tItListINS_9tInstanceEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='213' c='_ZN6tScene6tWorld14LoadSelectionsERK6tChunkR7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='215' c='_ZN6tScene6tWorld16CorrectCameraIDsER7tItListINS_7tCameraEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='215' c='_ZN6tScene6tWorld16CorrectCameraIDsER7tItListINS_7tCameraEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='216' c='_ZN6tScene6tWorld15CorrectLightIDsER7tItListINS_6tLightEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='216' c='_ZN6tScene6tWorld15CorrectLightIDsER7tItListINS_6tLightEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='217' c='_ZN6tScene6tWorld14CorrectPathIDsER7tItListINS_5tPathEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='217' c='_ZN6tScene6tWorld14CorrectPathIDsER7tItListINS_5tPathEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='218' c='_ZN6tScene6tWorld18CorrectMaterialIDsER7tItListINS_9tMaterialEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='218' c='_ZN6tScene6tWorld18CorrectMaterialIDsER7tItListINS_9tMaterialEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='219' c='_ZN6tScene6tWorld18CorrectSkeletonIDsER7tItListINS_9tSkeletonEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='219' c='_ZN6tScene6tWorld18CorrectSkeletonIDsER7tItListINS_9tSkeletonEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='220' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='220' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='220' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='221' c='_ZN6tScene6tWorld18CorrectLodGroupIDsER7tItListINS_9tLodGroupEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='222' c='_ZN6tScene6tWorld18CorrectInstanceIDsER7tItListINS_9tInstanceEERS1_INS_10tSelectionEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='222' c='_ZN6tScene6tWorld18CorrectInstanceIDsER7tItListINS_9tInstanceEERS1_INS_10tSelectionEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='223' c='_ZN6tScene6tWorld19CorrectSelectionIDsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='224' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='231'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='232'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='233'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='234'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='235'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='238'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='241'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='244'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='247'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='131' c='_ZNK6tScene11tAttributes8ContainsERKNS_10tAttributeE'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='144' c='_ZNK6tScene11tAttributes4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='164' c='_ZNK6tScene11tAttributeseqERKS0_'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='180' c='_ZN6tScene11tAttributesaSERKS0_'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='49' c='_ZNK6tScene9tLodGroup4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSelection.cpp' l='28' c='_ZNK6tScene10tSelection4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='192' c='_ZNK6tScene9tSkeleton4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='199' c='_ZNK6tScene9tSkeleton4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='265' c='_ZN6tScene9tSkeleton4PoseEi'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='273' c='_ZN6tScene9tSkeleton4PoseEi'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='64' c='_ZN6tScene6tWorld5ScaleEf'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='67' c='_ZN6tScene6tWorld5ScaleEf'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='70' c='_ZN6tScene6tWorld5ScaleEf'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='73' c='_ZN6tScene6tWorld5ScaleEf'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='76' c='_ZN6tScene6tWorld5ScaleEf'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='79' c='_ZN6tScene6tWorld5ScaleEf'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='97' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='100' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='103' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='106' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='109' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='112' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='123' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='126' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='132' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='135' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='146' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='146' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='146' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='147' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='147' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='147' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='148' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='148' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='148' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='152' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='153' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='154' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='155' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='156' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='157' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='158' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='159' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='160' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='162' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='163' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='164' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='165' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='166' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='167' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='168' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='169' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='170' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='240' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='267' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='268' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='329' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='331' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='437' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='438' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='440' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='444' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='460' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='462' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='464' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='489' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='490' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='491' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='492' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='493' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='494' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='495' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='496' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='497' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='548' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='629' c='_ZN6tScene6tWorld16CorrectCameraIDsER7tItListINS_7tCameraEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='629' c='_ZN6tScene6tWorld16CorrectCameraIDsER7tItListINS_7tCameraEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='642' c='_ZN6tScene6tWorld16CorrectCameraIDsER7tItListINS_7tCameraEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='652' c='_ZN6tScene6tWorld16CorrectCameraIDsER7tItListINS_7tCameraEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='671' c='_ZN6tScene6tWorld16CorrectCameraIDsER7tItListINS_7tCameraEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='678' c='_ZN6tScene6tWorld15CorrectLightIDsER7tItListINS_6tLightEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='678' c='_ZN6tScene6tWorld15CorrectLightIDsER7tItListINS_6tLightEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='691' c='_ZN6tScene6tWorld15CorrectLightIDsER7tItListINS_6tLightEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='701' c='_ZN6tScene6tWorld15CorrectLightIDsER7tItListINS_6tLightEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='720' c='_ZN6tScene6tWorld15CorrectLightIDsER7tItListINS_6tLightEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='727' c='_ZN6tScene6tWorld14CorrectPathIDsER7tItListINS_5tPathEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='727' c='_ZN6tScene6tWorld14CorrectPathIDsER7tItListINS_5tPathEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='740' c='_ZN6tScene6tWorld14CorrectPathIDsER7tItListINS_5tPathEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='750' c='_ZN6tScene6tWorld14CorrectPathIDsER7tItListINS_5tPathEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='767' c='_ZN6tScene6tWorld14CorrectPathIDsER7tItListINS_5tPathEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='774' c='_ZN6tScene6tWorld18CorrectMaterialIDsER7tItListINS_9tMaterialEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='774' c='_ZN6tScene6tWorld18CorrectMaterialIDsER7tItListINS_9tMaterialEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='791' c='_ZN6tScene6tWorld18CorrectMaterialIDsER7tItListINS_9tMaterialEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='805' c='_ZN6tScene6tWorld18CorrectMaterialIDsER7tItListINS_9tMaterialEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='823' c='_ZN6tScene6tWorld18CorrectMaterialIDsER7tItListINS_9tMaterialEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='831' c='_ZN6tScene6tWorld18CorrectSkeletonIDsER7tItListINS_9tSkeletonEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='831' c='_ZN6tScene6tWorld18CorrectSkeletonIDsER7tItListINS_9tSkeletonEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='843' c='_ZN6tScene6tWorld18CorrectSkeletonIDsER7tItListINS_9tSkeletonEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='862' c='_ZN6tScene6tWorld18CorrectSkeletonIDsER7tItListINS_9tSkeletonEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='881' c='_ZN6tScene6tWorld18CorrectSkeletonIDsER7tItListINS_9tSkeletonEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='891' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='891' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='891' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='904' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='906' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='913' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='930' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='940' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='959' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='966' c='_ZN6tScene6tWorld18CorrectLodGroupIDsER7tItListINS_9tLodGroupEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='969' c='_ZN6tScene6tWorld18CorrectLodGroupIDsER7tItListINS_9tLodGroupEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='977' c='_ZN6tScene6tWorld18CorrectInstanceIDsER7tItListINS_9tInstanceEERS1_INS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='977' c='_ZN6tScene6tWorld18CorrectInstanceIDsER7tItListINS_9tInstanceEERS1_INS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='990' c='_ZN6tScene6tWorld18CorrectInstanceIDsER7tItListINS_9tInstanceEERS1_INS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='993' c='_ZN6tScene6tWorld18CorrectInstanceIDsER7tItListINS_9tInstanceEERS1_INS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1001' c='_ZN6tScene6tWorld18CorrectInstanceIDsER7tItListINS_9tInstanceEERS1_INS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1021' c='_ZN6tScene6tWorld18CorrectInstanceIDsER7tItListINS_9tInstanceEERS1_INS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1028' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1030' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1033' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1045' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1061' c='_ZN6tScene6tWorld19CorrectSelectionIDsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1064' c='_ZN6tScene6tWorld19CorrectSelectionIDsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1099' c='_ZNK6tScene6tWorld13SaveMaterialsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1110' c='_ZNK6tScene6tWorld11SaveObjectsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1113' c='_ZNK6tScene6tWorld11SaveObjectsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1116' c='_ZNK6tScene6tWorld11SaveObjectsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1119' c='_ZNK6tScene6tWorld11SaveObjectsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1122' c='_ZNK6tScene6tWorld11SaveObjectsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1133' c='_ZNK6tScene6tWorld10SaveGroupsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1144' c='_ZNK6tScene6tWorld13SaveInstancesER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1155' c='_ZNK6tScene6tWorld14SaveSelectionsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1162' c='_ZN6tScene6tWorld13LoadMaterialsERK6tChunkR7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1179' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1179' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1179' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1179' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1179' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1225' c='_ZN6tScene6tWorld10LoadGroupsERK6tChunkR7tItListINS_9tLodGroupEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1242' c='_ZN6tScene6tWorld13LoadInstancesERK6tChunkR7tItListINS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1259' c='_ZN6tScene6tWorld14LoadSelectionsERK6tChunkR7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1276' c='_ZN6tScene6tWorld12GetMaterialsERKNS_5tMeshER7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1305' c='_ZNK6tScene6tWorld15GetNumMaterialsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1321' c='_ZNK6tScene6tWorld12FindMaterialERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1331' c='_ZNK6tScene6tWorld12FindMaterialEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1345' c='_ZNK6tScene6tWorld15GetNumSkeletonsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1361' c='_ZNK6tScene6tWorld12FindSkeletonERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1371' c='_ZNK6tScene6tWorld12FindSkeletonEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1385' c='_ZNK6tScene6tWorld12GetNumModelsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1401' c='_ZNK6tScene6tWorld13FindPolyModelERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1411' c='_ZNK6tScene6tWorld13FindPolyModelEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1425' c='_ZNK6tScene6tWorld13GetNumCamerasERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1441' c='_ZNK6tScene6tWorld10FindCameraERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1451' c='_ZNK6tScene6tWorld10FindCameraEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1465' c='_ZNK6tScene6tWorld12GetNumLightsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1481' c='_ZNK6tScene6tWorld9FindLightERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1491' c='_ZNK6tScene6tWorld9FindLightEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1505' c='_ZNK6tScene6tWorld11GetNumPathsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1521' c='_ZNK6tScene6tWorld8FindPathERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1531' c='_ZNK6tScene6tWorld8FindPathEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1545' c='_ZNK6tScene6tWorld15GetNumLodGroupsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1561' c='_ZNK6tScene6tWorld12FindLodGroupERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1571' c='_ZNK6tScene6tWorld12FindLodGroupEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1585' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1592' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1633' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1646' c='_ZNK6tScene6tWorld15GetNumInstancesERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1662' c='_ZNK6tScene6tWorld12FindInstanceERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1672' c='_ZNK6tScene6tWorld12FindInstanceEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1695' c='_ZNK6tScene6tWorld16GetNumSelectionsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1711' c='_ZNK6tScene6tWorld13FindSelectionERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1719' c='_ZNK6tScene6tWorld24FindSelectionsContainingER7tItListIPNS_10tSelectionEERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1721' c='_ZNK6tScene6tWorld24FindSelectionsContainingER7tItListIPNS_10tSelectionEERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1735' c='_ZNK6tScene6tWorld13FindSelectionEj'/>

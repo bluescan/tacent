@@ -1,0 +1,4 @@
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='32' u='c' c='_ZN6tScene9tMaterialC1ERK6tChunk'/>
+<dec f='Modules/Scene/Inc/Scene/tMaterial.h' l='36' type='void tScene::tMaterial::Load(const tChunk &amp; )'/>
+<inh f='Modules/Scene/Inc/Scene/tObject.h' l='33' c='_ZN6tScene7tObject4LoadERK6tChunk'/>
+<def f='Modules/Scene/Src/tMaterial.cpp' l='159' ll='218' type='void tScene::tMaterial::Load(const tChunk &amp; matChunk)'/>

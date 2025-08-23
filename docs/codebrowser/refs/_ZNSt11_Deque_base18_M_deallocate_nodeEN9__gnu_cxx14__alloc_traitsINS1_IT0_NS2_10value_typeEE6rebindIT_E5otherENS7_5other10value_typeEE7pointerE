@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_deque.h' l='565' ll='570' type='void std::_Deque_base::_M_deallocate_node(std::_Deque_base::_Ptr __p)'/>
+<use f='include/c++/11/bits/stl_deque.h' l='679' u='c' c='_ZNSt11_Deque_base16_M_destroy_nodesENSt15_Deque_iteratorIT_RS1_N9__gnu_cxx14__alloc_traitsINS4_IT0_NS5_10value_typeEE6rebindIS1_E5otherENS9_5other10v1126462'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='598' type='33619968'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='598'>// The ID of a material in the global material list. This ID can also be considered a unique identifier for the mesh material within the current model.</doc>

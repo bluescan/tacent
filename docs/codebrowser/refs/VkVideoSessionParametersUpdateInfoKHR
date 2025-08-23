@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8201' ll='8205'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8201'/>
+<size>24</size>
+<mbr r='VkVideoSessionParametersUpdateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoSessionParametersUpdateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkVideoSessionParametersUpdateInfoKHR::updateSequenceCount' o='128' t='uint32_t'/>

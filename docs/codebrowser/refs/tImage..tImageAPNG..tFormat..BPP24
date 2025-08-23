@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageAPNG.h' l='69' type='1'/>
+<doc f='Modules/Image/Inc/Image/tImageAPNG.h' l='69'>// RGB.  24 bit colour.</doc>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='261' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='325' u='r' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

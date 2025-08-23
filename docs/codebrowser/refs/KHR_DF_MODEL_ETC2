@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='304' type='161'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='298'>/** A format of ETC2 is permitted to use ETC2 encodings on top of
+        the baseline ETC1 specification.
+        The ETC2 format has channels &quot;red&quot;, &quot;green&quot;, &quot;RGB&quot; and &quot;alpha&quot;,
+        which should be cosited samples.
+        Punch-through alpha can be distinguished from full alpha by
+        the plane size in bytes required for the texel block */</doc>

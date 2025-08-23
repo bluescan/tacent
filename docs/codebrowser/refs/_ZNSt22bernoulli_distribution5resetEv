@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='3586' ll='3587' type='void std::bernoulli_distribution::reset()'/>
+<doc f='include/c++/11/bits/random.h' l='3581'>/**
+     * @brief Resets the distribution state.
+     *
+     * Does nothing for a Bernoulli distribution.
+     */</doc>

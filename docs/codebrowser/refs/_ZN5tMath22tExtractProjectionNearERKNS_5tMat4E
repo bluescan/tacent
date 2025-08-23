@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='693' type='float tMath::tExtractProjectionNear(const tMath::tMat4 &amp; )'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1237' ll='1248' type='float tMath::tExtractProjectionNear(const tMath::tMat4 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1264' u='c' c='_ZN5tMath19tExtractPerspectiveERfS0_S0_S0_S0_RKNS_5tMat4E'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='692'>// These work with generic (perspective, oblique, and parallel) projections.</doc>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='693'>// Returns near plane dist (assumes frustum is not oblique).</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='105' u='c' c='_ZNK5tMath8tMatrix421ExtractProjectionNearEv'/>

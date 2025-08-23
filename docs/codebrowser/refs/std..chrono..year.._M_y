@@ -1,0 +1,14 @@
+<dec f='include/c++/11/chrono' l='1549' type='short'/>
+<use f='include/c++/11/chrono' l='1556' u='w' c='_ZNSt6chrono4yearC1Ei'/>
+<use f='include/c++/11/chrono' l='1570' u='w' c='_ZNSt6chrono4yearppEv'/>
+<use f='include/c++/11/chrono' l='1585' u='w' c='_ZNSt6chrono4yearmmEv'/>
+<use f='include/c++/11/chrono' l='1617' u='r' c='_ZNKSt6chrono4yearngEv'/>
+<use f='include/c++/11/chrono' l='1638' u='r' c='_ZNKSt6chrono4year7is_leapEv'/>
+<use f='include/c++/11/chrono' l='1639' u='r' c='_ZNKSt6chrono4year7is_leapEv'/>
+<use f='include/c++/11/chrono' l='1639' u='r' c='_ZNKSt6chrono4year7is_leapEv'/>
+<use f='include/c++/11/chrono' l='1644' u='r' c='_ZNKSt6chrono4yearcviEv'/>
+<use f='include/c++/11/chrono' l='1648' u='r' c='_ZNKSt6chrono4year2okEv'/>
+<use f='include/c++/11/chrono' l='1648' u='r' c='_ZNKSt6chrono4year2okEv'/>
+<use f='include/c++/11/chrono' l='1648' u='r' c='_ZNKSt6chrono4year2okEv'/>
+<use f='include/c++/11/chrono' l='1648' u='r' c='_ZNKSt6chrono4year2okEv'/>
+<offset>0</offset>

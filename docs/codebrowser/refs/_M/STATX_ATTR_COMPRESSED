@@ -1,0 +1,15 @@
+<dec f='include/linux/stat.h' l='179'/>
+<doc f='include/linux/stat.h' l='165'>/*
+ * Attributes to be found in stx_attributes and masked in stx_attributes_mask.
+ *
+ * These give information about the features or the state of a file that might
+ * be of use to ordinary userspace programs such as GUIs or ls rather than
+ * specialised tools.
+ *
+ * Note that the flags marked [I] correspond to the FS_IOC_SETFLAGS flags
+ * semantically.  Where possible, the numerical value is picked to correspond
+ * also.  Note that the DAX attribute indicates that the file is in the CPU
+ * direct access state.  It does not correspond to the per-inode flag that
+ * some filesystems support.
+ *
+ */</doc>

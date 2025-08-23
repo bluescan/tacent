@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/semaphore_base.h' l='221' ll='227' type='bool std::__atomic_semaphore::_M_try_acquire()'/>
+<use f='include/c++/11/semaphore' l='75' u='c' c='_ZNSt18counting_semaphore11try_acquireEv'/>
+<use f='include/c++/11/semaphore' l='76' u='c' c='_ZNSt18counting_semaphore11try_acquireEv'/>

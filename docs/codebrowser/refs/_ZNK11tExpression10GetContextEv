@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='164' type='tString tExpression::GetContext() const'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='163'>// Some stuff for error reporting. In an error condition this returns the context of the problem.</doc>
+<use f='Modules/System/Src/tScript.cpp' l='217' u='c' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='266' u='c' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='269' u='c' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<def f='Modules/System/Src/tScript.cpp' l='463' ll='478' type='tString tExpression::GetContext() const'/>

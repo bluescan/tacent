@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='258' type='bool tImage::tPicture::AdjustmentBegin()'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='251'>// Ideally adjustments (brightness, contrast etc) would be done in a fragment shader and then &apos;committed&apos; to the
+	// tPicture with a simple adjust call. However currently the clients of tPicture don&apos;t have that ability so we&apos;re
+	// going with a begin/adjust/end setup where a new &apos;original&apos; pixel buffer is allocated on begin, and an adjustment
+	// writes to the current buffer. End deletes the temporary original buffer. Adjustments are always based on the
+	// original source pixels. It stops the issue, for example, of setting the brightness to full and losing all the
+	// colour data when you move back down. This function also precomputes the internal min/max colour values
+	// and histograms. Essentially this starts an adjustment session. Returns false if the image is invalid.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='624' ll='677' type='bool tImage::tPicture::AdjustmentBegin()'/>

@@ -1,0 +1,21 @@
+<def f='include/c++/11/bits/max_size_type.h' l='65' ll='68' type='void std::ranges::__detail::__max_size_type::__max_size_type(_Tp __i)'/>
+<use f='include/c++/11/bits/max_size_type.h' l='92' u='c' c='_ZNKSt6ranges8__detail15__max_size_typengEv'/>
+<use f='include/c++/11/bits/max_size_type.h' l='96' u='c' c='_ZNSt6ranges8__detail15__max_size_typeppEv'/>
+<use f='include/c++/11/bits/max_size_type.h' l='108' u='c' c='_ZNSt6ranges8__detail15__max_size_typemmEv'/>
+<use f='include/c++/11/bits/max_size_type.h' l='136' u='c' c='_ZNSt6ranges8__detail15__max_size_typemLES1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='137' u='c' c='_ZNSt6ranges8__detail15__max_size_typemLES1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='148' u='c' c='_ZNSt6ranges8__detail15__max_size_typemLES1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='149' u='c' c='_ZNSt6ranges8__detail15__max_size_typemLES1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='152' u='c' c='_ZNSt6ranges8__detail15__max_size_typemLES1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='153' u='c' c='_ZNSt6ranges8__detail15__max_size_typemLES1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='162' u='c' c='_ZNSt6ranges8__detail15__max_size_typedVERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='180' u='c' c='_ZNSt6ranges8__detail15__max_size_typedVERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='182' u='c' c='_ZNSt6ranges8__detail15__max_size_typedVERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='202' u='c' c='_ZNSt6ranges8__detail15__max_size_typelSERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='203' u='c' c='_ZNSt6ranges8__detail15__max_size_typelSERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='218' u='c' c='_ZNSt6ranges8__detail15__max_size_typerSERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='219' u='c' c='_ZNSt6ranges8__detail15__max_size_typerSERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='462' u='c' c='_ZNKSt6ranges8__detail15__max_diff_typecvbEv'/>
+<use f='include/c++/11/bits/max_size_type.h' l='563' u='c' c='_ZNSt6ranges8__detail15__max_diff_typerSERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='753' u='c'/>
+<use f='include/c++/11/bits/max_size_type.h' l='787' u='c' c='_ZNSt14numeric_limitsINSt6ranges8__detail15__max_size_typeEE3minEv'/>

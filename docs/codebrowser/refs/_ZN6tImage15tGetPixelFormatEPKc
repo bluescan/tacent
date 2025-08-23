@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='360' type='tImage::tPixelFormat tImage::tGetPixelFormat(const char * name)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='359'>// Gets the pixel format from its name. Case sensitive. Slow. Use for testing/unit-tests only.</doc>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='653' ll='663' type='tImage::tPixelFormat tImage::tGetPixelFormat(const char * name)'/>

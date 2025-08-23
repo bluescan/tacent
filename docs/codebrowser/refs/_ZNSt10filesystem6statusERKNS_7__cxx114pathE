@@ -1,0 +1,12 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='346' type='std::filesystem::file_status std::filesystem::status(const std::filesystem::path &amp; )'/>
+<use f='include/c++/11/bits/fs_dir.h' l='270' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry6statusEv'/>
+<use f='include/c++/11/bits/fs_ops.h' l='134' u='c' c='_ZNSt10filesystem6existsERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='169' u='c' c='_ZNSt10filesystem13is_block_fileERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='184' u='c' c='_ZNSt10filesystem17is_character_fileERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='199' u='c' c='_ZNSt10filesystem12is_directoryERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='220' u='c' c='_ZNSt10filesystem7is_fifoERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='238' u='c' c='_ZNSt10filesystem8is_otherERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='253' u='c' c='_ZNSt10filesystem15is_regular_fileERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='268' u='c' c='_ZNSt10filesystem9is_socketERKNS_7__cxx114pathE'/>
+<dec f='include/c++/11/bits/fs_ops.h' l='357' type='std::filesystem::file_status std::filesystem::status(const std::filesystem::path &amp; __p)'/>
+<use f='Modules/System/Src/tFile.cpp' l='514' u='c' c='_ZN7tSystem10tDirExistsERK7tString'/>

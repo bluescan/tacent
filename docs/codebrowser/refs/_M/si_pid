@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='128'/>
+<doc f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='127'>/* X/Open requires some more fields with fixed names.  */</doc>

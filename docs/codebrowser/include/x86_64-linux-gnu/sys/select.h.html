@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>select.h source code [include/x86_64-linux-gnu/sys/select.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/sys/select.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>sys</a>/<a href='select.h.html'>select.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* `fd_set' type and related macros, and `select'/`pselect' declarations.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   Copyright (C) 1996-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i></i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i></i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i></i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i>/*	POSIX 1003.1g: 6.2 Select from File Descriptor Sets &lt;sys/select.h&gt;  */</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#<span data-ppcond="21">ifndef</span> <span class="macro" data-ref="_M/_SYS_SELECT_H">_SYS_SELECT_H</span></u>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#define <dfn class="macro" id="_M/_SYS_SELECT_H" data-ref="_M/_SYS_SELECT_H">_SYS_SELECT_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="23">23</th><td>&nbsp</td></tr>
+<tr><th id="24">24</th><td><u>#include &lt;features.h&gt;</u>&nbsp</td></tr>
+<tr><th id="25">25</th><td>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i>/* Get definition of needed basic types.  */</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i>/* Get __FD_* definitions.  */</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#include &lt;bits/select.h&gt;</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>/* Get sigset_t.  */</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#include &lt;bits/types/sigset_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i>/* Get definition of timer specification structures.  */</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;bits/types/time_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#include &lt;bits/types/struct_timeval.h&gt;</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#<span data-ppcond="38">ifdef</span> <a class="macro" href="../../features.h.html#366" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</a></u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u># include &lt;bits/types/struct_timespec.h&gt;</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#<span data-ppcond="38">endif</span></u>&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#<span data-ppcond="42">ifndef</span> <a class="macro" href="types.h.html#139" data-ref="_M/__suseconds_t_defined">__suseconds_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><b>typedef</b> __suseconds_t suseconds_t;&nbsp</td></tr>
+<tr><th id="44">44</th><td><u># define __suseconds_t_defined</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#<span data-ppcond="42">endif</span></u>&nbsp</td></tr>
+<tr><th id="46">46</th><td>&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>/* The fd_set member is required to be an array of longs.  */</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><b>typedef</b> <em>long</em> <em>int</em> <dfn class="typedef" id="__fd_mask" title='__fd_mask' data-type='long' data-ref="__fd_mask">__fd_mask</dfn>;&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>/* Some versions of &lt;linux/posix_types.h&gt; define this macros.  */</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u>#undef	<span class="macro" data-ref="_M/__NFDBITS">__NFDBITS</span></u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i>/* It's easier to assume 8-bit bytes than to get CHAR_BIT.  */</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#define <dfn class="macro" id="_M/__NFDBITS" data-ref="_M/__NFDBITS">__NFDBITS</dfn>	(8 * (int) sizeof (<a class="typedef" href="#__fd_mask" title='__fd_mask' data-type='long' data-ref="__fd_mask">__fd_mask</a>))</u>&nbsp</td></tr>
+<tr><th id="55">55</th><td><u>#define	<dfn class="macro" id="_M/__FD_ELT" data-ref="_M/__FD_ELT">__FD_ELT</dfn>(d)	((d) / __NFDBITS)</u>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u>#define	<dfn class="macro" id="_M/__FD_MASK" data-ref="_M/__FD_MASK">__FD_MASK</dfn>(d)	((__fd_mask) (1UL &lt;&lt; ((d) % __NFDBITS)))</u>&nbsp</td></tr>
+<tr><th id="57">57</th><td>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i>/* fd_set for select and pselect.  */</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><b>typedef</b> <b>struct</b>&nbsp</td></tr>
+<tr><th id="60">60</th><td>  {&nbsp</td></tr>
+<tr><th id="61">61</th><td>    <i>/* XPG4.2 requires this member name.  Otherwise avoid the name</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i>       from the global namespace.  */</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><u>#<span data-ppcond="63">ifdef</span> <a class="macro" href="../../features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a></u>&nbsp</td></tr>
+<tr><th id="64">64</th><td>    <a class="typedef" href="#__fd_mask" title='__fd_mask' data-type='long' data-ref="__fd_mask">__fd_mask</a> <dfn class="decl field" id="(anonymous)::fds_bits" title='(anonymous struct)::fds_bits' data-ref="(anonymous)::fds_bits">fds_bits</dfn>[<a class="macro" href="../bits/typesizes.h.html#103" title="1024" data-ref="_M/__FD_SETSIZE">__FD_SETSIZE</a> / <a class="macro" href="#54" title="(8 * (int) sizeof (__fd_mask))" data-ref="_M/__NFDBITS">__NFDBITS</a>];&nbsp</td></tr>
+<tr><th id="65">65</th><td><u># define <dfn class="macro" id="_M/__FDS_BITS" data-ref="_M/__FDS_BITS">__FDS_BITS</dfn>(set) ((set)-&gt;fds_bits)</u>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>#<span data-ppcond="63">else</span></u>&nbsp</td></tr>
+<tr><th id="67">67</th><td>    __fd_mask __fds_bits[__FD_SETSIZE / __NFDBITS];&nbsp</td></tr>
+<tr><th id="68">68</th><td><u># define __FDS_BITS(set) ((set)-&gt;__fds_bits)</u>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u>#<span data-ppcond="63">endif</span></u>&nbsp</td></tr>
+<tr><th id="70">70</th><td>  } <dfn class="typedef" id="fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</dfn>;&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i>/* Maximum number of file descriptors in `fd_set'.  */</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td><u>#define	<dfn class="macro" id="_M/FD_SETSIZE" data-ref="_M/FD_SETSIZE">FD_SETSIZE</dfn>		__FD_SETSIZE</u>&nbsp</td></tr>
+<tr><th id="74">74</th><td>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#<span data-ppcond="75">ifdef</span> <a class="macro" href="../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="76">76</th><td><i>/* Sometimes the fd_set member is assumed to have this type.  */</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td><b>typedef</b> <a class="typedef" href="#__fd_mask" title='__fd_mask' data-type='long' data-ref="__fd_mask">__fd_mask</a> <dfn class="typedef" id="fd_mask" title='fd_mask' data-type='__fd_mask' data-ref="fd_mask">fd_mask</dfn>;&nbsp</td></tr>
+<tr><th id="78">78</th><td>&nbsp</td></tr>
+<tr><th id="79">79</th><td><i>/* Number of bits per word of `fd_set' (some code assumes this is 32).  */</i>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u># define <dfn class="macro" id="_M/NFDBITS" data-ref="_M/NFDBITS">NFDBITS</dfn>		__NFDBITS</u>&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#<span data-ppcond="75">endif</span></u>&nbsp</td></tr>
+<tr><th id="82">82</th><td>&nbsp</td></tr>
+<tr><th id="83">83</th><td>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i>/* Access macros for `fd_set'.  */</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#define	<dfn class="macro" id="_M/FD_SET" data-ref="_M/FD_SET">FD_SET</dfn>(fd, fdsetp)	__FD_SET (fd, fdsetp)</u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><u>#define	<dfn class="macro" id="_M/FD_CLR" data-ref="_M/FD_CLR">FD_CLR</dfn>(fd, fdsetp)	__FD_CLR (fd, fdsetp)</u>&nbsp</td></tr>
+<tr><th id="87">87</th><td><u>#define	<dfn class="macro" id="_M/FD_ISSET" data-ref="_M/FD_ISSET">FD_ISSET</dfn>(fd, fdsetp)	__FD_ISSET (fd, fdsetp)</u>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#define	<dfn class="macro" id="_M/FD_ZERO" data-ref="_M/FD_ZERO">FD_ZERO</dfn>(fdsetp)		__FD_ZERO (fdsetp)</u>&nbsp</td></tr>
+<tr><th id="89">89</th><td>&nbsp</td></tr>
+<tr><th id="90">90</th><td>&nbsp</td></tr>
+<tr><th id="91">91</th><td><a class="macro" href="cdefs.h.html#133" title="extern &quot;C&quot; {" data-ref="_M/__BEGIN_DECLS">__BEGIN_DECLS</a>&nbsp</td></tr>
+<tr><th id="92">92</th><td>&nbsp</td></tr>
+<tr><th id="93">93</th><td><i>/* Check the first NFDS descriptors each in READFDS (if not NULL) for read</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td><i>   readiness, in WRITEFDS (if not NULL) for write readiness, and in EXCEPTFDS</i>&nbsp</td></tr>
+<tr><th id="95">95</th><td><i>   (if not NULL) for exceptional conditions.  If TIMEOUT is not NULL, time out</i>&nbsp</td></tr>
+<tr><th id="96">96</th><td><i>   after waiting the interval specified therein.  Returns the number of ready</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td><i>   descriptors, or -1 for errors.</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i></i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><i>   This function is a cancellation point and therefore not marked with</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td><i>   __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><u>#<span data-ppcond="101">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="102">102</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="select" title='select' data-ref="select">select</dfn> (<em>int</em> <dfn class="local col7 decl" id="297__nfds" title='__nfds' data-type='int' data-ref="297__nfds">__nfds</dfn>, <a class="typedef" href="#fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</a> *<b>__restrict</b> <dfn class="local col8 decl" id="298__readfds" title='__readfds' data-type='fd_set *__restrict' data-ref="298__readfds">__readfds</dfn>,&nbsp</td></tr>
+<tr><th id="103">103</th><td>		   <a class="typedef" href="#fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</a> *<b>__restrict</b> <dfn class="local col9 decl" id="299__writefds" title='__writefds' data-type='fd_set *__restrict' data-ref="299__writefds">__writefds</dfn>,&nbsp</td></tr>
+<tr><th id="104">104</th><td>		   <a class="typedef" href="#fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</a> *<b>__restrict</b> <dfn class="local col0 decl" id="300__exceptfds" title='__exceptfds' data-type='fd_set *__restrict' data-ref="300__exceptfds">__exceptfds</dfn>,&nbsp</td></tr>
+<tr><th id="105">105</th><td>		   <b>struct</b> <a class="type" href="../bits/types/struct_timeval.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> *<b>__restrict</b> <dfn class="local col1 decl" id="301__timeout" title='__timeout' data-type='struct timeval *__restrict' data-ref="301__timeout">__timeout</dfn>);&nbsp</td></tr>
+<tr><th id="106">106</th><td><u>#<span data-ppcond="101">else</span></u>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u># ifdef __REDIRECT</u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><b>extern</b> <em>int</em> __REDIRECT (select,&nbsp</td></tr>
+<tr><th id="109">109</th><td>                       (<em>int</em> __nfds, fd_set *<b>__restrict</b> __readfds,&nbsp</td></tr>
+<tr><th id="110">110</th><td>                        fd_set *<b>__restrict</b> __writefds,&nbsp</td></tr>
+<tr><th id="111">111</th><td>                        fd_set *<b>__restrict</b> __exceptfds,&nbsp</td></tr>
+<tr><th id="112">112</th><td>                        <b>struct</b> timeval *<b>__restrict</b> __timeout),&nbsp</td></tr>
+<tr><th id="113">113</th><td>                       __select64);&nbsp</td></tr>
+<tr><th id="114">114</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="115">115</th><td><u>#  define select __select64</u>&nbsp</td></tr>
+<tr><th id="116">116</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="117">117</th><td><u>#<span data-ppcond="101">endif</span></u>&nbsp</td></tr>
+<tr><th id="118">118</th><td>&nbsp</td></tr>
+<tr><th id="119">119</th><td><u>#<span data-ppcond="119">ifdef</span> <a class="macro" href="../../features.h.html#366" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</a></u>&nbsp</td></tr>
+<tr><th id="120">120</th><td><i>/* Same as above only that the TIMEOUT value is given with higher</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td><i>   resolution and a sigmask which is been set temporarily.  This version</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td><i>   should be used.</i>&nbsp</td></tr>
+<tr><th id="123">123</th><td><i></i>&nbsp</td></tr>
+<tr><th id="124">124</th><td><i>   This function is a cancellation point and therefore not marked with</i>&nbsp</td></tr>
+<tr><th id="125">125</th><td><i>   __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td><u># <span data-ppcond="126">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="127">127</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="pselect" title='pselect' data-ref="pselect">pselect</dfn> (<em>int</em> <dfn class="local col2 decl" id="302__nfds" title='__nfds' data-type='int' data-ref="302__nfds">__nfds</dfn>, <a class="typedef" href="#fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</a> *<b>__restrict</b> <dfn class="local col3 decl" id="303__readfds" title='__readfds' data-type='fd_set *__restrict' data-ref="303__readfds">__readfds</dfn>,&nbsp</td></tr>
+<tr><th id="128">128</th><td>		    <a class="typedef" href="#fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</a> *<b>__restrict</b> <dfn class="local col4 decl" id="304__writefds" title='__writefds' data-type='fd_set *__restrict' data-ref="304__writefds">__writefds</dfn>,&nbsp</td></tr>
+<tr><th id="129">129</th><td>		    <a class="typedef" href="#fd_set" title='fd_set' data-type='struct fd_set' data-ref="fd_set">fd_set</a> *<b>__restrict</b> <dfn class="local col5 decl" id="305__exceptfds" title='__exceptfds' data-type='fd_set *__restrict' data-ref="305__exceptfds">__exceptfds</dfn>,&nbsp</td></tr>
+<tr><th id="130">130</th><td>		    <em>const</em> <b>struct</b> <a class="type" href="../bits/types/struct_timespec.h.html#timespec" title='timespec' data-ref="timespec">timespec</a> *<b>__restrict</b> <dfn class="local col6 decl" id="306__timeout" title='__timeout' data-type='const struct timespec *__restrict' data-ref="306__timeout">__timeout</dfn>,&nbsp</td></tr>
+<tr><th id="131">131</th><td>		    <em>const</em> <a class="typedef" href="../bits/types/__sigset_t.h.html#__sigset_t" title='__sigset_t' data-type='struct __sigset_t' data-ref="__sigset_t">__sigset_t</a> *<b>__restrict</b> <dfn class="local col7 decl" id="307__sigmask" title='__sigmask' data-type='const __sigset_t *__restrict' data-ref="307__sigmask">__sigmask</dfn>);&nbsp</td></tr>
+<tr><th id="132">132</th><td><u># <span data-ppcond="126">else</span></u>&nbsp</td></tr>
+<tr><th id="133">133</th><td><u>#  ifdef __REDIRECT</u>&nbsp</td></tr>
+<tr><th id="134">134</th><td><b>extern</b> <em>int</em> __REDIRECT (pselect,&nbsp</td></tr>
+<tr><th id="135">135</th><td>                       (<em>int</em> __nfds, fd_set *<b>__restrict</b> __readfds,&nbsp</td></tr>
+<tr><th id="136">136</th><td>                        fd_set *<b>__restrict</b> __writefds,&nbsp</td></tr>
+<tr><th id="137">137</th><td>                        fd_set *<b>__restrict</b> __exceptfds,&nbsp</td></tr>
+<tr><th id="138">138</th><td>                        <em>const</em> <b>struct</b> timespec *<b>__restrict</b> __timeout,&nbsp</td></tr>
+<tr><th id="139">139</th><td>                        <em>const</em> __sigset_t *<b>__restrict</b> __sigmask),&nbsp</td></tr>
+<tr><th id="140">140</th><td>                       __pselect64);&nbsp</td></tr>
+<tr><th id="141">141</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="142">142</th><td><u>#   define pselect __pselect64</u>&nbsp</td></tr>
+<tr><th id="143">143</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="144">144</th><td><u># <span data-ppcond="126">endif</span></u>&nbsp</td></tr>
+<tr><th id="145">145</th><td><u>#<span data-ppcond="119">endif</span></u>&nbsp</td></tr>
+<tr><th id="146">146</th><td>&nbsp</td></tr>
+<tr><th id="147">147</th><td>&nbsp</td></tr>
+<tr><th id="148">148</th><td><i>/* Define some inlines helping to catch common problems.  */</i>&nbsp</td></tr>
+<tr><th id="149">149</th><td><u>#<span data-ppcond="149">if</span> <a class="macro" href="../../features.h.html#428" title="0" data-ref="_M/__USE_FORTIFY_LEVEL">__USE_FORTIFY_LEVEL</a> &gt; 0 &amp;&amp; defined <span class="macro" data-ref="_M/__GNUC__">__GNUC__</span></u>&nbsp</td></tr>
+<tr><th id="150">150</th><td><u># include &lt;bits/select2.h&gt;</u>&nbsp</td></tr>
+<tr><th id="151">151</th><td><u>#<span data-ppcond="149">endif</span></u>&nbsp</td></tr>
+<tr><th id="152">152</th><td>&nbsp</td></tr>
+<tr><th id="153">153</th><td><a class="macro" href="cdefs.h.html#134" title="}" data-ref="_M/__END_DECLS">__END_DECLS</a>&nbsp</td></tr>
+<tr><th id="154">154</th><td>&nbsp</td></tr>
+<tr><th id="155">155</th><td><u>#<span data-ppcond="21">endif</span> /* sys/select.h */</u>&nbsp</td></tr>
+<tr><th id="156">156</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

@@ -1,0 +1,13 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='398' ll='399'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='401' ll='403'/>
+<use f='include/c++/11/type_traits' l='402'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='405' ll='407'/>
+<use f='include/c++/11/type_traits' l='406'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='409' ll='411'/>
+<use f='include/c++/11/type_traits' l='410'/>
+<use f='include/c++/11/type_traits' l='423'/>
+<size>1</size>

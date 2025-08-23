@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='308' type='FILE * fmemopen(void * __s, size_t __len, const char * __modes)'/>
+<doc f='include/stdio.h' l='307'>/* Create a new stream that refers to a memory buffer.  */</doc>

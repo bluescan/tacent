@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='628' type='33694464'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='628'>// TextureID (consecutive starting at 0), pixel format (see Texture.h), boolean mipmapped, num mipmap layers (including first) this will be 1 if no mipmapping.</doc>

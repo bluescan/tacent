@@ -1,0 +1,2 @@
+<def f='include/c++/11/system_error' l='367' ll='372' type='bool std::operator==(const std::error_code &amp; __lhs, const std::error_condition &amp; __rhs)'/>
+<doc f='include/c++/11/system_error' l='366'>/// @relates error_code</doc>

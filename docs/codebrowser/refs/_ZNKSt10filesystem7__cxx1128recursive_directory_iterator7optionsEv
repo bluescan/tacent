@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/fs_dir.h' l='494' type='std::filesystem::directory_options std::filesystem::recursive_directory_iterator::options() const'/>
+<doc f='include/c++/11/bits/fs_dir.h' l='493'>// observers</doc>

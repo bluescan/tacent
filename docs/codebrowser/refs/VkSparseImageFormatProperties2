@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5321' ll='5325'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5321'/>
+<size>40</size>
+<mbr r='VkSparseImageFormatProperties2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSparseImageFormatProperties2::pNext' o='64' t='void *'/>
+<mbr r='VkSparseImageFormatProperties2::properties' o='128' t='VkSparseImageFormatProperties'/>

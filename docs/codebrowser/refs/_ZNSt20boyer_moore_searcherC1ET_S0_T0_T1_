@@ -1,0 +1,2 @@
+<dec f='include/c++/11/functional' l='1120' type='void std::boyer_moore_searcher::boyer_moore_searcher&lt;_RAIter, _Hash, _BinaryPredicate&gt;(_RAIter __pat_first, _RAIter __pat_last, _Hash __hf = _Hash(), _BinaryPredicate __pred = _BinaryPredicate())'/>
+<def f='include/c++/11/functional' l='1218' ll='1242' type='void std::boyer_moore_searcher::boyer_moore_searcher&lt;_RAIter, _Hash, _BinaryPredicate&gt;(_RAIter __pat, _RAIter __pat_end, _Hash __hf = _Hash(), _BinaryPredicate __pred = _BinaryPredicate())'/>

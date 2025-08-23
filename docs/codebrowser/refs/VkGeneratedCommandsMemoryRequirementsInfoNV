@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14975' ll='14982'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14975'/>
+<size>48</size>
+<mbr r='VkGeneratedCommandsMemoryRequirementsInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkGeneratedCommandsMemoryRequirementsInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkGeneratedCommandsMemoryRequirementsInfoNV::pipelineBindPoint' o='128' t='VkPipelineBindPoint'/>
+<mbr r='VkGeneratedCommandsMemoryRequirementsInfoNV::pipeline' o='192' t='VkPipeline'/>
+<mbr r='VkGeneratedCommandsMemoryRequirementsInfoNV::indirectCommandsLayout' o='256' t='VkIndirectCommandsLayoutNV'/>
+<mbr r='VkGeneratedCommandsMemoryRequirementsInfoNV::maxSequencesCount' o='320' t='uint32_t'/>

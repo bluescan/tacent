@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='136' type='const tMath::tMatrix4 tMath::tMatrix4::operator-(const tMath::tMat4 &amp; a) const'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='86' u='c' c='_ZNK5tMath6tPlane29ComputeOrthogonalBasisVectorsERNS_8tVector3ES2_'/>

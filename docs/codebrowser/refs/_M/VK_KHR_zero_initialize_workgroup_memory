@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10407'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10406'>// VK_KHR_zero_initialize_workgroup_memory is a preprocessor guard. Do not pass it to API calls.</doc>

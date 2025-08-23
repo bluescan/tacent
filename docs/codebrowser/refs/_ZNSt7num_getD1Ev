@@ -1,0 +1,3 @@
+<inh f='include/c++/11/bits/locale_classes.h' l='410' c='_ZNSt6locale5facetD1Ev'/>
+<def f='include/c++/11/bits/locale_facets.h' l='2148' type='void std::num_get::~num_get&lt;_CharT, _InIter&gt;()'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='2147'>/// Destructor.</doc>

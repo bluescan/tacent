@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/time.h' l='124' type='2'/>
+<doc f='include/x86_64-linux-gnu/sys/time.h' l='122'>/* Timers run when the process is executing and when
+       the system is executing on behalf of the process.  */</doc>

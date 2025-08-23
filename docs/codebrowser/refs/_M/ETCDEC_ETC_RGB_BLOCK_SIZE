@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Contrib/etcdec/etcdec.h' l='60'/>
+<doc f='Modules/Image/Contrib/etcdec/etcdec.h' l='49'>/*  Used information sources:
+
+    ETC1 compression
+    https://registry.khronos.org/OpenGL/extensions/OES/OES_compressed_ETC1_RGB8_texture.txt
+    http://www.jacobstrom.com/publications/packman_sketch.pdf
+
+    ETC2/EAC compression
+    https://registry.khronos.org/OpenGL/specs/gl/glspec43.core.pdf
+*/</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='870' u='c'/>

@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='368' type='float tMath::tNormalizeSafeGetLength(tMath::tVec2 &amp; v)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='368'>/* Returns pre-normalized length. 0.0f if no go. */</doc>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='60' u='c' c='_ZN5tMath8tVector222NormalizeSafeGetLengthEv'/>

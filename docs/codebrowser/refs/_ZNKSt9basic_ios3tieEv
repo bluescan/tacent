@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/basic_ios.h' l='294' ll='296' type='basic_ostream&lt;_CharT, _Traits&gt; * std::basic_ios::tie() const'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='285'>/**
+       *  @brief  Fetches the current @e tied stream.
+       *  @return  A pointer to the tied stream, or NULL if the stream is
+       *           not tied.
+       *
+       *  A stream may be @e tied (or synchronized) to a second output
+       *  stream.  When this stream performs any I/O, the tied stream is
+       *  first flushed.  For example, @c std::cin is tied to @c std::cout.
+      */</doc>

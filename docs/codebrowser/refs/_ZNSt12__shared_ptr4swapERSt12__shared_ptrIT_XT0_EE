@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1313' ll='1318' type='void std::__shared_ptr::swap(__shared_ptr&lt;_Tp, _Lp&gt; &amp; __other)'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='1312'>/// Exchange both the owned pointer and the stored pointer.</doc>

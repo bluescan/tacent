@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='452' type='bool tImage::tIsPrintRatio(tImage::tAspectRatio )'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='666' ll='669' type='bool tImage::tIsPrintRatio(tImage::tAspectRatio ratio)'/>

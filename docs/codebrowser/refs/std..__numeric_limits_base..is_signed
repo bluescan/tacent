@@ -1,0 +1,2 @@
+<def f='include/c++/11/limits' l='223' type='const bool'/>
+<doc f='include/c++/11/limits' l='222'>/** True if the type is signed.  */</doc>

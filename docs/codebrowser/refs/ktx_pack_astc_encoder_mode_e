@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1236' ll='1241'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1236'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1231'>/**
+ * @~English
+ * @brief Options specifying ASTC encoder profile mode
+ *        This and function is used later to derive the profile.
+ */</doc>

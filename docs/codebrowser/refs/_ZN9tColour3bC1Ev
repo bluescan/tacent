@@ -1,0 +1,16 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='300' type='void tColour3b::tColour3b()'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='300'>/* Does NOT set the colour values. */</doc>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='375' u='c' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='45' u='c' c='_ZN6tImage13tPaletteImage3SetERKS0_'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='69' u='c' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='93' u='c' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPKhPK9tColour3b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='106' u='c' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour4bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='130' u='c' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='533' u='c' c='_ZN6tImage8tPicture13QuantizeFixedEib'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='557' u='c' c='_ZN6tImage8tPicture15QuantizeSpatialEibdi'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='581' u='c' c='_ZN6tImage8tPicture11QuantizeNeuEibi'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='605' u='c' c='_ZN6tImage8tPicture10QuantizeWuEib'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='341' u='c' c='_ZN6tImage14tQuantizeFixed13QuantizeImageEiiiPK9tColour4bP9tColour3bPhb'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='591' u='c' c='_ZN6tImage12tQuantizeNeu13QuantizeImageEiiiPK9tColour4bP9tColour3bPhbi'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='949' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour4bP9tColour3bPhbdi'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='562' u='c' c='_ZN6tImage11tQuantizeWu13QuantizeImageEiiiPK9tColour4bP9tColour3bPhb'/>

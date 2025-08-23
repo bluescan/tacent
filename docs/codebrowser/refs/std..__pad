@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/locale_facets.h' l='98' ll='103'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='803' c='_ZNKSt7num_put6_M_padET_lRSt8ios_basePS0_PKS0_Ri'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1235' c='_ZNSt5__pad6_S_padERSt8ios_baseT_PS2_PKS2_ll'/>
+<fun r='_ZNSt5__pad6_S_padERSt8ios_baseT_PS2_PKS2_ll'/>
+<fun r='_ZNSt5__pad6_S_padERSt8ios_baseT_PS2_PKS2_ll'/>

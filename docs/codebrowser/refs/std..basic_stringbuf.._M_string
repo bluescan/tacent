@@ -1,0 +1,35 @@
+<dec f='include/c++/11/sstream' l='103' type='std::basic_stringbuf::__string_type'/>
+<use f='include/c++/11/sstream' l='115' u='w' c='_ZNSt7__cxx1115basic_stringbufC1Ev'/>
+<use f='include/c++/11/sstream' l='127' u='w' c='_ZNSt7__cxx1115basic_stringbufC1ESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='142' u='w' c='_ZNSt7__cxx1115basic_stringbufC1ERKNS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='160' u='w' c='_ZNSt7__cxx1115basic_stringbufC1ESt13_Ios_OpenmodeRKT1_'/>
+<use f='include/c++/11/sstream' l='167' u='w' c='_ZNSt7__cxx1115basic_stringbufC1EONS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='181' u='w' c='_ZNSt7__cxx1115basic_stringbufC1ERKNS_12basic_stringIT_T0_TL0__EESt13_Ios_OpenmodeRKT1_'/>
+<use f='include/c++/11/sstream' l='197' u='c' c='_ZNKSt7__cxx1115basic_stringbuf13get_allocatorEv'/>
+<use f='include/c++/11/sstream' l='213' u='w' c='_ZNSt7__cxx1115basic_stringbufaSEONS_15basic_stringbufIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='227' c='_ZNSt7__cxx1115basic_stringbuf4swapERNS_15basic_stringbufIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='244' u='c' c='_ZNKRSt7__cxx1115basic_stringbuf3strEv'/>
+<use f='include/c++/11/sstream' l='248' u='r' c='_ZNKRSt7__cxx1115basic_stringbuf3strEv'/>
+<use f='include/c++/11/sstream' l='269' u='c' c='_ZNOSt7__cxx1115basic_stringbuf3strEv'/>
+<use f='include/c++/11/sstream' l='271' c='_ZNOSt7__cxx1115basic_stringbuf3strEv'/>
+<use f='include/c++/11/sstream' l='272' u='c' c='_ZNOSt7__cxx1115basic_stringbuf3strEv'/>
+<use f='include/c++/11/sstream' l='273' u='c' c='_ZNOSt7__cxx1115basic_stringbuf3strEv'/>
+<use f='include/c++/11/sstream' l='283' u='r' c='_ZNKSt7__cxx1115basic_stringbuf4viewEv'/>
+<use f='include/c++/11/sstream' l='299' u='c' c='_ZNSt7__cxx1115basic_stringbuf3strERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='310' u='c' c='_ZNSt7__cxx1115basic_stringbuf3strERKNS_12basic_stringIT_T0_TL0__EE'/>
+<use f='include/c++/11/sstream' l='318' u='w' c='_ZNSt7__cxx1115basic_stringbuf3strEONS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='331' u='c' c='_ZNSt7__cxx1115basic_stringbuf17_M_stringbuf_initESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='332' u='c' c='_ZNSt7__cxx1115basic_stringbuf17_M_stringbuf_initESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='378' u='c' c='_ZNSt7__cxx1115basic_stringbuf6setbufEPT_l'/>
+<use f='include/c++/11/sstream' l='505' u='w' c='_ZNSt7__cxx1115basic_stringbufC1EONS_15basic_stringbufIT_T0_T1_EEONS0_14__xfer_bufptrsE'/>
+<use f='include/c++/11/sstream' l='514' u='w' c='_ZNSt7__cxx1115basic_stringbufC1EONS_15basic_stringbufIT_T0_T1_EERKS4_ONS0_14__xfer_bufptrsE'/>
+<use f='include/c++/11/bits/sstream.tcc' l='90' u='c' c='_ZNSt7__cxx1115basic_stringbuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/sstream.tcc' l='96' u='c' c='_ZNSt7__cxx1115basic_stringbuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/sstream.tcc' l='110' u='c' c='_ZNSt7__cxx1115basic_stringbuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/sstream.tcc' l='132' u='c' c='_ZNSt7__cxx1115basic_stringbuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/sstream.tcc' l='137' u='c' c='_ZNSt7__cxx1115basic_stringbuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/sstream.tcc' l='138' u='c' c='_ZNSt7__cxx1115basic_stringbuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/sstream.tcc' l='250' u='c' c='_ZNSt7__cxx1115basic_stringbuf7_M_syncEPT_NS_12basic_stringIS1_T0_T1_E9size_typeES7_'/>
+<use f='include/c++/11/bits/sstream.tcc' l='251' u='c' c='_ZNSt7__cxx1115basic_stringbuf7_M_syncEPT_NS_12basic_stringIS1_T0_T1_E9size_typeES7_'/>
+<use f='include/c++/11/bits/sstream.tcc' l='253' u='c' c='_ZNSt7__cxx1115basic_stringbuf7_M_syncEPT_NS_12basic_stringIS1_T0_T1_E9size_typeES7_'/>
+<doc f='include/c++/11/sstream' l='102'>// Data Members:</doc>

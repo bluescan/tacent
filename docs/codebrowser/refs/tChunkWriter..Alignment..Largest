@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='116' type='7'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='355' u='r' c='_ZN12tChunkReader24GetBufferAlignmentNeededEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='161' u='r' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='782' u='r' c='_ZN12tChunkReader4LoadERK7tStringPh'/>
+<use f='Modules/System/Src/tChunk.cpp' l='806' u='r' c='_ZN12tChunkReader4LoadEPhi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='825' u='r' c='_ZN12tChunkReader8LoadSafeERK7tString'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8156' ll='8161'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8156'/>
+<size>32</size>
+<mbr r='VkVideoReferenceSlotInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoReferenceSlotInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkVideoReferenceSlotInfoKHR::slotIndex' o='128' t='int32_t'/>
+<mbr r='VkVideoReferenceSlotInfoKHR::pPictureResource' o='192' t='const VkVideoPictureResourceInfoKHR *'/>

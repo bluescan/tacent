@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/unordered_map.h' l='289' ll='294' type='unordered_map&lt;_Key, _Tp, _Hash, _Pred, _Alloc&gt; &amp; std::unordered_map::operator=(initializer_list&lt;std::unordered_map::value_type&gt; __l)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='278'>/**
+       *  @brief  %Unordered_map list assignment operator.
+       *  @param  __l  An initializer_list.
+       *
+       *  This function fills an %unordered_map with copies of the elements in
+       *  the initializer list @a __l.
+       *
+       *  Note that the assignment completely changes the %unordered_map and
+       *  that the resulting %unordered_map&apos;s size is the same as the number
+       *  of elements assigned.
+       */</doc>

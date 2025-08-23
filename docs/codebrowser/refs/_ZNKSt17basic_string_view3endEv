@@ -1,0 +1,2 @@
+<def f='include/c++/11/string_view' l='180' ll='182' type='std::basic_string_view::const_iterator std::basic_string_view::end() const'/>
+<use f='include/c++/11/string_view' l='368' u='c' c='_ZNKSt17basic_string_view9ends_withESt17basic_string_viewIT_T0_E'/>

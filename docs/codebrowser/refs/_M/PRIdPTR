@@ -1,0 +1,2 @@
+<dec f='include/inttypes.h' l='160'/>
+<doc f='include/inttypes.h' l='159'>/* Macros for printing `intptr_t&apos; and `uintptr_t&apos;.  */</doc>

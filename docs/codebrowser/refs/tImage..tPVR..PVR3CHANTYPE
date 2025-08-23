@@ -1,0 +1,3 @@
+<def f='Modules/Image/Src/tImagePVR.cpp' l='137' ll='153'/>
+<doc f='Modules/Image/Src/tImagePVR.cpp' l='135'>// These match the names of the channel type in the official PVR3 filespec found here:
+	// https://imagination-technologies-cloudfront-assets.s3.eu-west-1.amazonaws.com/website-files/documents/PVR+File+Format.Specification.pdf</doc>

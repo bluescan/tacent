@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tQuaternion.h' l='105' type='const tMath::tQuaternion'/>
+<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='105'>// Zero quaternion (0, 0, 0, 0).</doc>
+<use f='Modules/System/Inc/System/tScript.h' l='130' u='r' c='_ZNK11tExpressioncvN5tMath11tQuaternionEEv'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='57' type='const tMath::tQuaternion'/>

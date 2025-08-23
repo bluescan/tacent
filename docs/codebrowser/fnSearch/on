@@ -1,0 +1,2 @@
+_ZNSt9once_flagC1Ev|std::once_flag::once_flag
+_ZNSt9once_flagaSERKS_|std::once_flag::operator=

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='123'/>
+<doc f='include/x86_64-linux-gnu/sys/stat.h' l='121'>/* Test macros for file types.	*/</doc>

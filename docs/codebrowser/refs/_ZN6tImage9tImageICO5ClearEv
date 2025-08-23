@@ -1,0 +1,11 @@
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='63' u='c' c='_ZN6tImage9tImageICOD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImageICO.h' l='83' type='void tImage::tImageICO::Clear()'/>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Inc/Image/tImageICO.h' l='143' ll='149' type='void tImage::tImageICO::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImageICO.h' l='82'>// After this call no memory will be consumed by the object and it will be invalid.</doc>
+<use f='Modules/Image/Src/tImageICO.cpp' l='95' u='c' c='_ZN6tImage9tImageICO4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='114' u='c' c='_ZN6tImage9tImageICO4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='170' u='c' c='_ZN6tImage9tImageICO3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='196' u='c' c='_ZN6tImage9tImageICO3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='218' u='c' c='_ZN6tImage9tImageICO3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='240' u='c' c='_ZN6tImage9tImageICO3SetERNS_8tPictureEb'/>

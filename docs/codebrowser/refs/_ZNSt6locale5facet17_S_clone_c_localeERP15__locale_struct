@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='417' type='static std::__c_locale std::locale::facet::_S_clone_c_locale(std::__c_locale &amp; __cloc)'/>
+<use f='include/c++/11/bits/locale_classes.h' l='690' u='c' c='_ZNSt7__cxx117collateC1EP15__locale_structm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='65' u='c' c='_ZNSt7__cxx118messagesC1EP15__locale_structPKcm'/>

@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/fs_path.h' l='692' type='void std::filesystem::swap(std::filesystem::path &amp; __lhs, std::filesystem::path &amp; __rhs)'/>
+<doc f='include/c++/11/bits/fs_path.h' l='689'>/// @{
+  /// @relates std::filesystem::path</doc>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='106'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='105'>/* Real-time signals are supported.  */</doc>

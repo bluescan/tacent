@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='248' u='c' c='_ZNK6tImage10tImageTIFF4SaveERK7tStringNS0_7tFormatEbi'/>
+<def f='Modules/Image/Src/tImageTIFF.cpp' l='252' ll='339' type='bool tImage::tImageTIFF::Save(const tString &amp; tiffFile, const tImage::tImageTIFF::SaveParams &amp; params = tImage::tImageTIFF::SaveParams()) const'/>

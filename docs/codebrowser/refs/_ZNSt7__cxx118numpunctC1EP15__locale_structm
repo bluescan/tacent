@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/locale_facets.h' l='1724' ll='1727' type='void std::numpunct::numpunct&lt;_CharT&gt;(std::__c_locale __cloc, std::size_t __refs = 0)'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1715'>/**
+       *  @brief  Internal constructor.  Not for general use.
+       *
+       *  This is a constructor for use by the library itself to set up new
+       *  locales.
+       *
+       *  @param  __cloc  The C locale.
+       *  @param  __refs  Refcount to pass to the base class.
+       */</doc>

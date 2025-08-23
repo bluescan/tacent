@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1150' ll='1152' type='std::moneypunct::string_type std::moneypunct::curr_symbol() const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1141'>/**
+       *  @brief  Return currency symbol string.
+       *
+       *  This function returns a string_type to use as a currency symbol.  It
+       *  does so by returning returning
+       *  moneypunct&lt;char_type&gt;::do_curr_symbol().
+       *
+       *  @return  @a string_type representing a currency symbol.
+      */</doc>

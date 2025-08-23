@@ -1,0 +1,9 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='204' type='float tStd::tStrtof(const char * )'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='205' u='c' c='_ZN4tStd7tStrtofEPKDu'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='210' u='c' c='_ZN4tStd5tAtofEPKc'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='199'>// These are both base 10 only. They return 0.0f (or 0.0) if there is no conversion. They also handle converting an
+// optional binary representation in the string -- if it contains a hash(#) and the next 8 (or 16) digits are valid
+// hex digits, they are interpreted as the binary IEEE 754 floating point rep directly. This stops &apos;wobble&apos; when
+// serializing/deserializing from disk multiple times as would be present in the approximate base 10 representations.
+// Valid tStrtof example input stings include: &quot;45.838#FADD23BB&quot;, and &quot;45.838&quot;.</doc>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='159' ll='173' type='float tStd::tStrtof(const char * s)'/>

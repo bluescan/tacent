@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='537' type='2164449280'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='537'>// A list of lod infos.</doc>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='47' u='r' c='_ZNK6tScene9tLodGroup4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='72' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>

@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3521' ll='3529'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3521'/>
+<size>96</size>
+<mbr r='VkComputePipelineCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkComputePipelineCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkComputePipelineCreateInfo::flags' o='128' t='VkPipelineCreateFlags'/>
+<mbr r='VkComputePipelineCreateInfo::stage' o='192' t='VkPipelineShaderStageCreateInfo'/>
+<mbr r='VkComputePipelineCreateInfo::layout' o='576' t='VkPipelineLayout'/>
+<mbr r='VkComputePipelineCreateInfo::basePipelineHandle' o='640' t='VkPipeline'/>
+<mbr r='VkComputePipelineCreateInfo::basePipelineIndex' o='704' t='int32_t'/>

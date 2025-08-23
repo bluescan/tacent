@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h' l='59' type='cookie_seek_function_t *'/>
+<offset>128</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h' l='59'>/* Seek/tell file position.  */</doc>

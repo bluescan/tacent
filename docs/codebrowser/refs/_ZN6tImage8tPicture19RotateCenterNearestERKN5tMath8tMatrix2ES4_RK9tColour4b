@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='357' type='void tImage::tPicture::RotateCenterNearest(const tMath::tMatrix2 &amp; rotMat, const tMath::tMatrix2 &amp; invRot, const tPixel4b &amp; fill)'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='169' u='c' c='_ZN6tImage8tPicture12RotateCenterEfRK9tColour4bNS_15tResampleFilterES4_'/>
+<def f='Modules/Image/Src/tPicture.cpp' l='175' ll='228' type='void tImage::tPicture::RotateCenterNearest(const tMath::tMatrix2 &amp; rotMat, const tMath::tMatrix2 &amp; invRot, const tPixel4b &amp; fill)'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='248' u='c' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>

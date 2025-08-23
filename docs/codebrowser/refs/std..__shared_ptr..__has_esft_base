@@ -1,0 +1,5 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1369' ll='1370'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1372' ll='1374'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1377' c='_ZNSt12__shared_ptr31_M_enable_shared_from_this_withEPTL0__'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1385' c='_ZNSt12__shared_ptr31_M_enable_shared_from_this_withEPTL0__'/>

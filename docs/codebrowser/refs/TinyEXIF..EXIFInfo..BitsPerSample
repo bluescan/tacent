@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='169' type='uint16_t'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='546' u='r' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<offset>1424</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='166'>// 1: no absolute unit of measurement. Used for images that may have a non-square aspect ratio, but no meaningful absolute dimensions
+									    // 2: inch
+									    // 3: centimeter</doc>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='169'>// Number of bits per component</doc>

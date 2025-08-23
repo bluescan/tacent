@@ -1,0 +1,13 @@
+<dec f='include/x86_64-linux-gnu/sys/cdefs.h' l='249'/>
+<use f='include/stdio.h' l='439' u='c'/>
+<use f='include/stdio.h' l='487' u='c'/>
+<use f='include/wchar.h' l='664' u='c'/>
+<use f='include/wchar.h' l='718' u='c'/>
+<use f='include/pthread.h' l='478' u='a'/>
+<use f='include/pthread.h' l='479' u='c'/>
+<use f='include/pthread.h' l='858' u='a'/>
+<use f='include/pthread.h' l='859' u='c'/>
+<use f='include/pthread.h' l='934' u='a'/>
+<use f='include/pthread.h' l='935' u='c'/>
+<use f='include/pthread.h' l='950' u='a'/>
+<use f='include/pthread.h' l='951' u='c'/>

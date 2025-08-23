@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='206' type='float[5]'/>
+<offset>32</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='206'>// peak-signal-to-noise ratio for Y/U/V/All/Alpha</doc>

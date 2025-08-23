@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/ios_base.h' l='372' type='const std::ios_base::fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='1081' u='r' c='_ZSt10scientificRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='1093' u='r' c='_ZSt8hexfloatRSt8ios_base'/>
+<doc f='include/c++/11/bits/ios_base.h' l='371'>/// Generates floating-point output in scientific notation.</doc>

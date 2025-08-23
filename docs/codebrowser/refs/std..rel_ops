@@ -1,0 +1,3 @@
+<doc f='include/c++/11/bits/stl_relops.h' l='73'>/** @namespace std::rel_ops
+     *  @brief  The generated relational operators are sequestered here.
+     */</doc>

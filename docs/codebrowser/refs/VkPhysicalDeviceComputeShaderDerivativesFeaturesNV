@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13619' ll='13624'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13619'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceComputeShaderDerivativesFeaturesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceComputeShaderDerivativesFeaturesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceComputeShaderDerivativesFeaturesNV::computeDerivativeGroupQuads' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceComputeShaderDerivativesFeaturesNV::computeDerivativeGroupLinear' o='160' t='VkBool32'/>

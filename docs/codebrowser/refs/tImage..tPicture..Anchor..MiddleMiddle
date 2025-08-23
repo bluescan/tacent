@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='213' type='4'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='219' c='_ZN6tImage8tPicture4CropEiiNS0_6AnchorERK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='258' u='r' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='301' c='_ZN6tImage8tPicture4CropEiiNS0_6AnchorERK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='394' c='_ZN6tImage8tPicture10CopyRegionEiiPK9tColour4bNS0_6AnchorEj'/>

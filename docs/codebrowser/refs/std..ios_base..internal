@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/ios_base.h' l='358' type='const std::ios_base::fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='1023' u='r' c='_ZSt8internalRSt8ios_base'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1251' u='r' c='_ZNSt5__pad6_S_padERSt8ios_baseT_PS2_PKS2_ll'/>
+<doc f='include/c++/11/bits/ios_base.h' l='355'>/// Adds fill characters at a designated internal point in certain
+    /// generated output, or identical to @c right if no such point is
+    /// designated.</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='518' u='r' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>

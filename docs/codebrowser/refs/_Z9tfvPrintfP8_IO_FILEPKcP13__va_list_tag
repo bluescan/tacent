@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='292' type='int tfvPrintf(tFileHandle dest, const char * format, __va_list_tag * )'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='463' u='c' c='_Z9tmfPrintfP8_IO_FILEPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='472' u='c' c='_Z9tmfPrintfyP8_IO_FILEPKcz'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='291'>// Here is the file handle print</doc>
+<use f='Modules/System/Src/tPrint.cpp' l='644' u='c' c='_Z8tfPrintfP8_IO_FILEPKcz'/>
+<def f='Modules/System/Src/tPrint.cpp' l='650' ll='661' type='int tfvPrintf(tFileHandle dest, const char * format, __va_list_tag * argList)'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/basic_string.h' l='1598' ll='1605' type='std::basic_string::iterator std::basic_string::insert(std::basic_string::const_iterator __p, _InputIterator __beg, _InputIterator __end)'/>

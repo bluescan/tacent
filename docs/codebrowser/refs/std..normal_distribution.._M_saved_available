@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/random.h' l='2040' u='w' c='_ZNSt19normal_distribution5resetEv'/>
+<dec f='include/c++/11/bits/random.h' l='2170' type='bool'/>
+<use f='include/c++/11/bits/random.tcc' l='1811' u='r' c='_ZNSt19normal_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1813' u='w' c='_ZNSt19normal_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1829' u='w' c='_ZNSt19normal_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1851' u='r' c='_ZNSt19normal_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1853' u='w' c='_ZNSt19normal_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1892' u='w' c='_ZNSt19normal_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>

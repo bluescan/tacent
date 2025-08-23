@@ -1,0 +1,11 @@
+<use f='include/c++/11/bits/stl_bvector.h' l='664' u='c' c='_ZNSt6vectorIbT_EC1ERKS_IbS0_E'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='683' u='c' c='_ZNSt6vectorIbT_EC1EOS_IbS0_ERKS0_St17integral_constantIbLb0EE'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='699' u='c' c='_ZNSt6vectorIbT_EC1ERKS_IbS0_ERKS0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='760' u='c' c='_ZNSt6vectorIbT_EaSERKS_IbS0_E'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='784' u='c' c='_ZNSt6vectorIbT_EaSEOS_IbS0_E'/>
+<def f='include/c++/11/bits/stl_bvector.h' l='1127' ll='1134' type='std::vector&lt;bool, type-parameter-0-0&gt;::iterator std::vector&lt;bool, type-parameter-0-0&gt;::_M_copy_aligned(std::vector&lt;bool, type-parameter-0-0&gt;::const_iterator __first, std::vector&lt;bool, type-parameter-0-0&gt;::const_iterator __last, std::vector&lt;bool, type-parameter-0-0&gt;::iterator __result)'/>
+<use f='include/c++/11/bits/vector.tcc' l='815' u='c' c='_ZNSt6vectorIbT_E13_M_reallocateEm'/>
+<use f='include/c++/11/bits/vector.tcc' l='842' u='c' c='_ZNSt6vectorIbT_E14_M_fill_insertESt13_Bit_iteratormb'/>
+<use f='include/c++/11/bits/vector.tcc' l='877' u='c' c='_ZNSt6vectorIbT_E15_M_insert_rangeESt13_Bit_iteratorTL0__S3_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/vector.tcc' l='906' u='c' c='_ZNSt6vectorIbT_E13_M_insert_auxESt13_Bit_iteratorb'/>
+<doc f='include/c++/11/bits/stl_bvector.h' l='1126'>// Precondition: __first._M_offset == 0 &amp;&amp; __result._M_offset == 0.</doc>

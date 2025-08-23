@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/fs_fwd.h' l='226' ll='232' type='std::filesystem::perm_options std::filesystem::operator|(std::filesystem::perm_options __x, std::filesystem::perm_options __y)'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='255' u='c' c='_ZNSt10filesystemoRERNS_12perm_optionsES0_'/>

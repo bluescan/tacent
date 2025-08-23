@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='148' type='const char * tGetPlatformNameShort(tPlatform )'/>
+<doc f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='148'>// Three letter abbreviations.</doc>
+<def f='Modules/Foundation/Src/tPlatform.cpp' l='70' ll='88' type='const char * tGetPlatformNameShort(tPlatform plat)'/>

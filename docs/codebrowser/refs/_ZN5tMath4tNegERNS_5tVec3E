@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='422' type='void tMath::tNeg(tMath::tVec3 &amp; v)'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='171' u='c' c='_ZN5tMath4tGetERNS_5tVec3ERfRKNS_5tQuatE'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1628' type='4'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1624'>/*!&lt; PVRTC1: decode non-pow2 ETC1S texture level to the next larger
+             power of 2 (not implemented yet, but we&apos;re going to support it).
+             Ignored if the slice&apos;s dimensions are already a power of 2.
+         */</doc>

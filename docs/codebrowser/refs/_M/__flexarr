@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/cdefs.h' l='221'/>
+<doc f='include/x86_64-linux-gnu/sys/cdefs.h' l='219'>/* GCC 2.97 and clang support C99 flexible array members as an extension,
+   even when in C89 mode or compiling C++ (any version).  */</doc>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12608' ll='12613'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12608'/>
+<size>64</size>
+<mbr r='VkPipelineSampleLocationsStateCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineSampleLocationsStateCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineSampleLocationsStateCreateInfoEXT::sampleLocationsEnable' o='128' t='VkBool32'/>
+<mbr r='VkPipelineSampleLocationsStateCreateInfoEXT::sampleLocationsInfo' o='192' t='VkSampleLocationsInfoEXT'/>

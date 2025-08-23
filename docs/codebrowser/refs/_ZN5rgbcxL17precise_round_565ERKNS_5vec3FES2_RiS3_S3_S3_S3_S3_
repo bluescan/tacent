@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2418' ll='2452' type='void rgbcx::precise_round_565(const rgbcx::vec3F &amp; xl, const rgbcx::vec3F &amp; xh, int &amp; trial_lr, int &amp; trial_lg, int &amp; trial_lb, int &amp; trial_hr, int &amp; trial_hg, int &amp; trial_hb)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2466' u='c' c='_ZN5rgbcxL25precise_round_565_noscaleENS_5vec3FES0_RiS1_S1_S1_S1_S1_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2706' u='c' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2772' u='c' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2866' u='c' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3245' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3572' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3634' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3765' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

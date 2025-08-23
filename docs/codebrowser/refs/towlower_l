@@ -1,0 +1,2 @@
+<dec f='include/wctype.h' l='130' type='wint_t towlower_l(wint_t __wc, locale_t __locale)'/>
+<doc f='include/wctype.h' l='129'>/* Converts an uppercase letter to the corresponding lowercase letter.  */</doc>

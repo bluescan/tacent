@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tScript.h' l='99' type='uint tExpression::GetAtomUint() const'/>
+<use f='Modules/System/Inc/System/tScript.h' l='123' u='c' c='_ZNK11tExpressioncvjEv'/>

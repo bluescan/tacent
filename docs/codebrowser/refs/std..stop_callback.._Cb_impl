@@ -1,0 +1,7 @@
+<inh f='include/c++/11/stop_token' l='132' c='std::stop_token::_Stop_cb'/>
+<def f='include/c++/11/stop_token' l='621' ll='639'/>
+<use f='include/c++/11/stop_token' l='636' c='_ZNSt13stop_callback8_Cb_impl10_S_executeEPNSt10stop_token8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='641'/>
+<fun r='_ZNSt13stop_callback8_Cb_implC1EOTL0__'/>
+<mbr r='std::stop_callback::_Cb_impl::_M_cb' t='_Callback'/>
+<fun r='_ZNSt13stop_callback8_Cb_impl10_S_executeEPNSt10stop_token8_Stop_cbE'/>

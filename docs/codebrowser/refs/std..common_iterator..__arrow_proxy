@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='1764' ll='1778'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1971' c='_ZNKSt15common_iteratorptEv'/>
+<mbr r='std::common_iterator::__arrow_proxy::_M_keep' t='iter_value_t&lt;_It&gt;'/>
+<fun r='_ZNSt15common_iterator13__arrow_proxyC1EODTdeclsr3stdE7declvalIRT_EEE'/>
+<fun r='_ZNKSt15common_iterator13__arrow_proxyptEv'/>

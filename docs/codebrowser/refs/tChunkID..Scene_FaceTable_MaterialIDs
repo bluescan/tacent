@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='468' type='16850944'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='468'>// Each entry is the material ID. The material table may not be present on some models. This decision is, of course, debatable, but I think a model could still look good and be, for example, only be CBV&apos;d.</doc>
+<use f='Modules/Scene/Src/tMesh.cpp' l='247' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='431' u='r' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>

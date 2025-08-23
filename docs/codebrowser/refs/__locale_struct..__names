@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/types/__locale_t.h' l='38' type='const char *[13]'/>
+<offset>1024</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/__locale_t.h' l='37'>/* Note: LC_ALL is not a valid index into this array.  */</doc>

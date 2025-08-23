@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageBMP.cpp' l='564' u='c' c='_ZNK6tImage9tImageBMP4SaveERK7tStringNS0_7tFormatE'/>
+<def f='Modules/Image/Src/tImageBMP.cpp' l='568' ll='628' type='tImageBMP::tFormat tImage::tImageBMP::Save(const tString &amp; bmpFile, const tImage::tImageBMP::SaveParams &amp; params = tImage::tImageBMP::SaveParams()) const'/>

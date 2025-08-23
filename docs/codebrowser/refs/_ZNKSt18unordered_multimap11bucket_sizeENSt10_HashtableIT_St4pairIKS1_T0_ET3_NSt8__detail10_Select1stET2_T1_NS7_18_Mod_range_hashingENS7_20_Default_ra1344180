@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1919' ll='1921' type='std::unordered_multimap::size_type std::unordered_multimap::bucket_size(std::unordered_multimap::size_type __n) const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1914'>/*
+       * @brief  Returns the number of elements in a given bucket.
+       * @param  __n  A bucket index.
+       * @return  The number of elements in the bucket.
+       */</doc>

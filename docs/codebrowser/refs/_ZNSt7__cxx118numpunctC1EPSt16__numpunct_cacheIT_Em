@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/locale_facets.h' l='1710' ll='1713' type='void std::numpunct::numpunct&lt;_CharT&gt;(std::numpunct::__cache_type * __cache, std::size_t __refs = 0)'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1701'>/**
+       *  @brief  Internal constructor.  Not for general use.
+       *
+       *  This is a constructor for use by the library itself to set up the
+       *  predefined locale facets.
+       *
+       *  @param  __cache  __numpunct_cache object.
+       *  @param  __refs  Refcount to pass to the base class.
+       */</doc>

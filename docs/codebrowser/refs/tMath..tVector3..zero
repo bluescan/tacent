@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tVector3.h' l='102' type='const tMath::tVector3'/>
+<doc f='Modules/Math/Inc/Math/tVector3.h' l='102'>// Zero vector  (0, 0, 0).</doc>
+<use f='Modules/System/Inc/System/tScript.h' l='128' u='r' c='_ZNK11tExpressioncvN5tMath8tVector3EEv'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='44' type='const tMath::tVector3'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='91' u='r' c='_ZNK5tMath20tPiecewiseLinearPath15GetPercentPointEf'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='190' u='r'/>

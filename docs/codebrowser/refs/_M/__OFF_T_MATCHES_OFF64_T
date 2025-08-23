@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/bits/typesizes.h' l='81'/>
+<doc f='include/x86_64-linux-gnu/bits/typesizes.h' l='78'>/* Tell the libc code that off_t and off64_t are actually the same type
+   for all ABI purposes, even if possibly expressed as different base types
+   for C type-checking purposes.  */</doc>
+<use f='include/x86_64-linux-gnu/bits/dirent.h' l='54' u='a'/>

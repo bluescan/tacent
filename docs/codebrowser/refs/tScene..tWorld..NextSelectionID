@@ -1,0 +1,3 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='58' u='w' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1066' u='r' c='_ZN6tScene6tWorld19CorrectSelectionIDsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1067' u='w' c='_ZN6tScene6tWorld19CorrectSelectionIDsER7tItListINS_10tSelectionEE'/>

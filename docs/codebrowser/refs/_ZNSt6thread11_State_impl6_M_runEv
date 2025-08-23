@@ -1,0 +1,2 @@
+<inh f='include/c++/11/bits/std_thread.h' l='71' c='_ZNSt6thread6_State6_M_runEv'/>
+<def f='include/c++/11/bits/std_thread.h' l='210' ll='211' type='void std::thread::_State_impl::_M_run()'/>

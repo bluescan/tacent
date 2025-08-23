@@ -1,0 +1,8 @@
+<dec f='include/c++/11/iomanip' l='116' type='int'/>
+<use f='include/c++/11/iomanip' l='134' u='r' c='_ZStrsRSt13basic_istreamIT_T0_ESt8_Setbase'/>
+<use f='include/c++/11/iomanip' l='135' u='r' c='_ZStrsRSt13basic_istreamIT_T0_ESt8_Setbase'/>
+<use f='include/c++/11/iomanip' l='136' u='r' c='_ZStrsRSt13basic_istreamIT_T0_ESt8_Setbase'/>
+<use f='include/c++/11/iomanip' l='145' u='r' c='_ZStlsRSt13basic_ostreamIT_T0_ESt8_Setbase'/>
+<use f='include/c++/11/iomanip' l='146' u='r' c='_ZStlsRSt13basic_ostreamIT_T0_ESt8_Setbase'/>
+<use f='include/c++/11/iomanip' l='147' u='r' c='_ZStlsRSt13basic_ostreamIT_T0_ESt8_Setbase'/>
+<offset>0</offset>

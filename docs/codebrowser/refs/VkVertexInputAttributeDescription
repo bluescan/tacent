@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3537' ll='3542'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3537'/>
+<size>16</size>
+<mbr r='VkVertexInputAttributeDescription::location' o='0' t='uint32_t'/>
+<mbr r='VkVertexInputAttributeDescription::binding' o='32' t='uint32_t'/>
+<mbr r='VkVertexInputAttributeDescription::format' o='64' t='VkFormat'/>
+<mbr r='VkVertexInputAttributeDescription::offset' o='96' t='uint32_t'/>

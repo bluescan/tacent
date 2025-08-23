@@ -1,0 +1,15 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='559' type='void tMath::tCross(tMath::tVec3 &amp; d, const tMath::tVec3 &amp; a, const tMath::tVec3 &amp; b)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1156' ll='1161' type='void tMath::tCross(tMath::tVec3 &amp; d, const tMath::tVec3 &amp; a, const tMath::tVec3 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='92' u='c' c='_ZN5tMath8tVector3rMERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='93' u='c' c='_ZNK5tMath8tVector3rmERKNS_5tVec3E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='489' u='c' c='_ZN5tMath25tIntersectTestRayTriangleERKNS_4tRayERKNS_9tTriangleE'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='496' u='c' c='_ZN5tMath25tIntersectTestRayTriangleERKNS_4tRayERKNS_9tTriangleE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='557' u='c' c='_ZN5tMath11tMakeLookAtERNS_5tMat4ERKNS_5tVec3ES4_S4_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='558' u='c' c='_ZN5tMath11tMakeLookAtERNS_5tMat4ERKNS_5tVec3ES4_S4_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='613' u='c' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3ES4_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='852' u='c' c='_ZN5tMath16tMakeOrthoNormalERNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='856' u='c' c='_ZN5tMath16tMakeOrthoNormalERNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='876' u='c' c='_ZN5tMath17tMakeOrthoUniformERNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='878' u='c' c='_ZN5tMath17tMakeOrthoUniformERNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='900' u='c' c='_ZN5tMath20tMakeOrthoNonUniformERNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='903' u='c' c='_ZN5tMath20tMakeOrthoNonUniformERNS_5tMat4E'/>

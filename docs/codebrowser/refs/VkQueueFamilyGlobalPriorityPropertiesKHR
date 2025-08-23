@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9546' ll='9551'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9546'/>
+<size>88</size>
+<mbr r='VkQueueFamilyGlobalPriorityPropertiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkQueueFamilyGlobalPriorityPropertiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkQueueFamilyGlobalPriorityPropertiesKHR::priorityCount' o='128' t='uint32_t'/>
+<mbr r='VkQueueFamilyGlobalPriorityPropertiesKHR::priorities' o='160' t='VkQueueGlobalPriorityKHR[16]'/>

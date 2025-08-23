@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10192' ll='10198'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10192'/>
+<size>32</size>
+<mbr r='VkVideoEncodeUsageInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoEncodeUsageInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkVideoEncodeUsageInfoKHR::videoUsageHints' o='128' t='VkVideoEncodeUsageFlagsKHR'/>
+<mbr r='VkVideoEncodeUsageInfoKHR::videoContentHints' o='160' t='VkVideoEncodeContentFlagsKHR'/>
+<mbr r='VkVideoEncodeUsageInfoKHR::tuningMode' o='192' t='VkVideoEncodeTuningModeKHR'/>

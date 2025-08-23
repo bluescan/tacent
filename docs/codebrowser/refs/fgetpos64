@@ -1,0 +1,1 @@
+<dec f='include/stdio.h' l='781' type='int fgetpos64(FILE *__restrict __stream, fpos64_t *__restrict __pos)'/>

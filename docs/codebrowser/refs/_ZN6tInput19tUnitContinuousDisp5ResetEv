@@ -1,0 +1,2 @@
+<def f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='39' ll='43' type='void tInput::tUnitContinuousDisp::Reset()'/>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='32' u='c' c='_ZN6tInput12tCompTrigger5ResetEv'/>

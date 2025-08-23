@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='1689' type='uLong adler32(uLong adler, const Bytef * buf, uInt len)'/>

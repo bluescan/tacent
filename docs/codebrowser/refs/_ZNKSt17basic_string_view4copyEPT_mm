@@ -1,0 +1,1 @@
+<def f='include/c++/11/string_view' l='290' ll='301' macro='1' type='std::basic_string_view::size_type std::basic_string_view::copy(_CharT * __str, std::basic_string_view::size_type __n, std::basic_string_view::size_type __pos = 0) const'/>

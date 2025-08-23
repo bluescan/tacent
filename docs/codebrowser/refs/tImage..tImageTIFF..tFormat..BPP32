@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tImageTIFF.h' l='71' type='2'/>
+<doc f='Modules/Image/Inc/Image/tImageTIFF.h' l='71'>// RGBA. 24 bit colour and 8 bits opacity in the alpha channel.</doc>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='278' c='_ZNK6tImage10tImageTIFF4SaveERK7tStringRKNS0_10SaveParamsE'/>

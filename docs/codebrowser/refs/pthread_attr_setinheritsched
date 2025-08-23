@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='338' type='int pthread_attr_setinheritsched(pthread_attr_t * __attr, int __inherit)'/>
+<doc f='include/pthread.h' l='337'>/* Set scheduling inheritance mode in *ATTR according to INHERIT.  */</doc>

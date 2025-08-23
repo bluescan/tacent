@@ -1,0 +1,9 @@
+<def f='include/c++/11/streambuf' l='631' ll='632' type='int std::basic_streambuf::sync()'/>
+<doc f='include/c++/11/streambuf' l='623'>/**
+       *  @brief  Synchronizes the buffer arrays with the controlled sequences.
+       *  @return  -1 on failure.
+       *
+       *  Each derived class provides its own appropriate behavior,
+       *  including the definition of @a failure.
+       *  @note  Base class version does nothing, returns zero.
+      */</doc>

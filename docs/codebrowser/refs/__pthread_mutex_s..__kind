@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/struct_mutex.h' l='32' type='int'/>
+<offset>128</offset>
+<doc f='include/x86_64-linux-gnu/bits/struct_mutex.h' l='30'>/* KIND must stay at this position in the structure to maintain
+     binary compatibility with static initializers.  */</doc>

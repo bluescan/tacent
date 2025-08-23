@@ -1,0 +1,2 @@
+<use f='include/c++/11/chrono' l='2935' u='c' c='_ZNSt6chrono23year_month_weekday_lastmIERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<def f='include/c++/11/chrono' l='3011' ll='3014' type='std::chrono::year_month_weekday_last std::chrono::operator-(const std::chrono::year_month_weekday_last &amp; __ymwdl, const std::chrono::years &amp; __dy)'/>

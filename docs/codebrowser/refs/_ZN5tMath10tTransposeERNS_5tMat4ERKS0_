@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='534' type='void tMath::tTranspose(tMath::tMat4 &amp; d, const tMath::tMat4 &amp; a)'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='483' u='c' c='_ZN5tMath7tInvertERNS_5tMat4ERKS0_'/>

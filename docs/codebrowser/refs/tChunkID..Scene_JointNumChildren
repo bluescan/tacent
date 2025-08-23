@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='494' type='16928768'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='494'>// Number of children joints.</doc>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='45' u='r' c='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='86' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>

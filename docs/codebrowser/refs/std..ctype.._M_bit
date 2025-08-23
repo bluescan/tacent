@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1206' type='std::ctype_base::mask[16]'/>
+<offset>9440</offset>
+<doc f='include/c++/11/bits/locale_facets.h' l='1205'>// Pre-computed elements for do_is.</doc>

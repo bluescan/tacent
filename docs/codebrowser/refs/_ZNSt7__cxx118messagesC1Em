@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='1843' type='void std::messages::messages&lt;_CharT&gt;(std::size_t __refs = 0)'/>
+<def f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='43' ll='47' type='void std::messages::messages&lt;_CharT&gt;(std::size_t __refs = 0)'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1835'>/**
+       *  @brief  Constructor performs initialization.
+       *
+       *  This is the constructor provided by the standard.
+       *
+       *  @param __refs  Passed to the base facet class.
+      */</doc>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='42'>// Non-virtual member functions.</doc>

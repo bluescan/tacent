@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='375' type='void tMath::tNormalizeScale(tMath::tVec4 &amp; v, float s)'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='59' u='c' c='_ZN5tMath8tVector414NormalizeScaleEf'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='375'>/* Normalize then scale. Resizes the vector. */</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.h' l='5439' ll='5443' type='void std::discrete_distribution::__generate(std::discrete_distribution::result_type * __f, std::discrete_distribution::result_type * __t, _UniformRandomNumberGenerator &amp; __urng, const std::discrete_distribution::param_type &amp; __p)'/>

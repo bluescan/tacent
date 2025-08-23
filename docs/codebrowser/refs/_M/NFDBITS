@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/select.h' l='80'/>
+<doc f='include/x86_64-linux-gnu/sys/select.h' l='79'>/* Number of bits per word of `fd_set&apos; (some code assumes this is 32).  */</doc>

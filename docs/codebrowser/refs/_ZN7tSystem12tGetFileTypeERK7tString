@@ -1,0 +1,34 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='418' type='tSystem::tFileType tSystem::tGetFileType(const tString &amp; file)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='416'>// The file does not need to exist for this function to work. This function only uses the extension to determine the
+// file type.</doc>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='57' u='c' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='238' u='c' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='238' u='c' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='73' u='c' c='_ZN6tImage10tImageASTC4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='50' u='c' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='574' u='c' c='_ZNK6tImage9tImageBMP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1085' u='c' c='_ZN6tImage9tImageDDS4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='154' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='123' u='c' c='_ZN6tImage9tImageGIF4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='285' u='c' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='273' u='c' c='_ZN6tImage9tImageHDR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='97' u='c' c='_ZN6tImage9tImageICO4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='47' u='c' c='_ZN6tImage9tImageJPG4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='438' u='c' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='744' u='c' c='_ZN6tImage9tImageKTX4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='837' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='149' u='c' c='_ZN6tImage9tImagePKM4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='47' u='c' c='_ZN6tImage9tImagePNG4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='756' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='735' u='c' c='_ZN6tImage9tImagePVR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='31' u='c' c='_ZN6tImage9tImageQOI4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='186' u='c' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='70' u='c' c='_ZN6tImage9tImageTGA4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='379' u='c' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='71' u='c' c='_ZN6tImage10tImageTIFF4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='257' u='c' c='_ZNK6tImage10tImageTIFF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='33' u='c' c='_ZN6tImage10tImageWEBP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='334' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageXPM.cpp' l='30' u='c' c='_ZN6tImage9tImageXPM4LoadERK7tString'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='52' u='c' c='_ZN6tImage8tTexture4LoadERK7tStringNS_10tFaceIndexEb'/>
+<def f='Modules/System/Src/tFile.cpp' l='1932' ll='1939' type='tSystem::tFileType tSystem::tGetFileType(const tString &amp; file)'/>

@@ -1,0 +1,20 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='342' type='void tColour4b::tColour4b(int r, int g, int b, int a = 255)'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='156' u='c' c='_ZN6tImage8tPicture6SetAllERK9tColour4bj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='156' u='c' c='_ZN6tImage8tPicture6SetAllERK9tColour4bj'/>
+<use f='Modules/Image/Src/tResample.cpp' l='295' u='c' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='334' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='409' u='c' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='457' u='c' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='146' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='147' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='148' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='149' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='150' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='151' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='152' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='153' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='154' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='155' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='156' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='157' u='c'/>
+<use f='Modules/Math/Src/tColour.cpp' l='158' u='c'/>

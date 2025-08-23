@@ -1,0 +1,1 @@
+<dec f='include/c++/11/bits/random.h' l='411' type='std::basic_istream&lt;_CharT, _Traits&gt; &amp; std::operator&gt;&gt;(std::basic_istream&lt;_CharT, _Traits&gt; &amp; __is, std::linear_congruential_engine&lt;_UIntType1, __a1, __c1, __m1&gt; &amp; __lcr)'/>

@@ -1,0 +1,912 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>mutex source code [include/c++/11/mutex] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::__recursive_mutex_base,std::__timed_mutex_impl,std::__try_lock_impl,std::once_flag,std::recursive_mutex,std::recursive_timed_mutex,std::scoped_lock,std::timed_mutex "/>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/mutex'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>c++</a>/<a href='./'>11</a>/<a href='mutex.html'>mutex</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// &lt;mutex&gt; -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2003-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">include/mutex</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is a Standard C++ Library header.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="29">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_MUTEX">_GLIBCXX_MUTEX</span></u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_MUTEX" data-ref="_M/_GLIBCXX_MUTEX">_GLIBCXX_MUTEX</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="34">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt; 201103L</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u># include &lt;bits/c++0x_warning.h&gt;</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="34">else</span></u>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#include &lt;tuple&gt;</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#include &lt;chrono&gt;</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;exception&gt;</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#include &lt;type_traits&gt;</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#include &lt;system_error&gt;</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#include &lt;bits/std_mutex.h&gt;</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#include &lt;bits/unique_lock.h&gt;</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#<span data-ppcond="45">if</span> ! <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1809" title="1" data-ref="_M/_GTHREAD_USE_MUTEX_TIMEDLOCK">_GTHREAD_USE_MUTEX_TIMEDLOCK</a></u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u># include &lt;condition_variable&gt;</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u># include &lt;thread&gt;</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u>#<span data-ppcond="45">endif</span></u>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#include &lt;ext/atomicity.h&gt;     // __gnu_cxx::__is_single_threaded</u>&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>#<span data-ppcond="51">if</span> defined <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1605" data-ref="_M/_GLIBCXX_HAS_GTHREADS">_GLIBCXX_HAS_GTHREADS</a> &amp;&amp; ! defined <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1250" data-ref="_M/_GLIBCXX_HAVE_TLS">_GLIBCXX_HAVE_TLS</a></u>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u># include &lt;bits/std_function.h&gt;  // std::function</u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><u>#<span data-ppcond="51">endif</span></u>&nbsp</td></tr>
+<tr><th id="54">54</th><td>&nbsp</td></tr>
+<tr><th id="55">55</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="56">56</th><td>{&nbsp</td></tr>
+<tr><th id="57">57</th><td><a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="58">58</th><td>&nbsp</td></tr>
+<tr><th id="59">59</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i class="doc">   * <span class="command">@addtogroup</span> <span class="verb">mutexes</span></i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i class="doc">   * @{</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td>&nbsp</td></tr>
+<tr><th id="64">64</th><td><u>#<span data-ppcond="64">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1605" data-ref="_M/_GLIBCXX_HAS_GTHREADS">_GLIBCXX_HAS_GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="65">65</th><td>&nbsp</td></tr>
+<tr><th id="66">66</th><td>  <i>// Common base class for std::recursive_mutex and std::recursive_timed_mutex</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td>  <b>class</b> <dfn class="type def" id="std::__recursive_mutex_base" title='std::__recursive_mutex_base' data-ref="std::__recursive_mutex_base">__recursive_mutex_base</dfn>&nbsp</td></tr>
+<tr><th id="68">68</th><td>  {&nbsp</td></tr>
+<tr><th id="69">69</th><td>  <b>protected</b>:&nbsp</td></tr>
+<tr><th id="70">70</th><td>    <b>typedef</b> <a class="typedef" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_recursive_mutex_t" title='__gthread_recursive_mutex_t' data-type='pthread_mutex_t' data-ref="__gthread_recursive_mutex_t">__gthread_recursive_mutex_t</a>		<dfn class="typedef" id="std::__recursive_mutex_base::__native_type" title='std::__recursive_mutex_base::__native_type' data-type='__gthread_recursive_mutex_t' data-ref="std::__recursive_mutex_base::__native_type">__native_type</dfn>;&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td>    <dfn class="decl def fn" id="_ZNSt22__recursive_mutex_baseC1ERKS_" title='std::__recursive_mutex_base::__recursive_mutex_base' data-ref="_ZNSt22__recursive_mutex_baseC1ERKS_">__recursive_mutex_base</dfn>(<em>const</em> <a class="type" href="#std::__recursive_mutex_base" title='std::__recursive_mutex_base' data-ref="std::__recursive_mutex_base">__recursive_mutex_base</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="73">73</th><td>    <a class="type" href="#std::__recursive_mutex_base" title='std::__recursive_mutex_base' data-ref="std::__recursive_mutex_base">__recursive_mutex_base</a>&amp; <dfn class="decl def fn" id="_ZNSt22__recursive_mutex_baseaSERKS_" title='std::__recursive_mutex_base::operator=' data-ref="_ZNSt22__recursive_mutex_baseaSERKS_"><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="#std::__recursive_mutex_base" title='std::__recursive_mutex_base' data-ref="std::__recursive_mutex_base">__recursive_mutex_base</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="74">74</th><td>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#<span data-ppcond="75">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#65" data-ref="_M/__GTHREAD_RECURSIVE_MUTEX_INIT">__GTHREAD_RECURSIVE_MUTEX_INIT</a></u>&nbsp</td></tr>
+<tr><th id="76">76</th><td>    <a class="typedef" href="#std::__recursive_mutex_base::__native_type" title='std::__recursive_mutex_base::__native_type' data-type='__gthread_recursive_mutex_t' data-ref="std::__recursive_mutex_base::__native_type">__native_type</a>  <dfn class="decl field" id="std::__recursive_mutex_base::_M_mutex" title='std::__recursive_mutex_base::_M_mutex' data-ref="std::__recursive_mutex_base::_M_mutex">_M_mutex</dfn> = <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#65" title="{ { 0, 0, 0, 0, PTHREAD_MUTEX_RECURSIVE_NP, 0, 0, { 0, 0 } } }" data-ref="_M/__GTHREAD_RECURSIVE_MUTEX_INIT">__GTHREAD_RECURSIVE_MUTEX_INIT</a>;&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td>    <dfn class="decl def fn" id="_ZNSt22__recursive_mutex_baseC1Ev" title='std::__recursive_mutex_base::__recursive_mutex_base' data-ref="_ZNSt22__recursive_mutex_baseC1Ev">__recursive_mutex_base</dfn>() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#<span data-ppcond="75">else</span></u>&nbsp</td></tr>
+<tr><th id="80">80</th><td>    __native_type  _M_mutex;&nbsp</td></tr>
+<tr><th id="81">81</th><td>&nbsp</td></tr>
+<tr><th id="82">82</th><td>    __recursive_mutex_base()&nbsp</td></tr>
+<tr><th id="83">83</th><td>    {&nbsp</td></tr>
+<tr><th id="84">84</th><td>      <i>// XXX EAGAIN, ENOMEM, EPERM, EBUSY(may), EINVAL(may)</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td>      __GTHREAD_RECURSIVE_MUTEX_INIT_FUNCTION(&amp;_M_mutex);&nbsp</td></tr>
+<tr><th id="86">86</th><td>    }&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td>    ~__recursive_mutex_base()&nbsp</td></tr>
+<tr><th id="89">89</th><td>    { __gthread_recursive_mutex_destroy(&amp;_M_mutex); }&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#<span data-ppcond="75">endif</span></u>&nbsp</td></tr>
+<tr><th id="91">91</th><td>  };&nbsp</td></tr>
+<tr><th id="92">92</th><td>&nbsp</td></tr>
+<tr><th id="93">93</th><td>  <i class="doc">/// The standard recursive mutex type.</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td>  <b>class</b> <dfn class="type def" id="std::recursive_mutex" title='std::recursive_mutex' data-ref="std::recursive_mutex">recursive_mutex</dfn> : <b>private</b> <a class="type" href="#std::__recursive_mutex_base" title='std::__recursive_mutex_base' data-ref="std::__recursive_mutex_base">__recursive_mutex_base</a>&nbsp</td></tr>
+<tr><th id="95">95</th><td>  {&nbsp</td></tr>
+<tr><th id="96">96</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="97">97</th><td>    <b>typedef</b> <a class="typedef" href="#std::__recursive_mutex_base::__native_type" title='std::__recursive_mutex_base::__native_type' data-type='__gthread_recursive_mutex_t' data-ref="std::__recursive_mutex_base::__native_type">__native_type</a>* 			<dfn class="typedef" id="std::recursive_mutex::native_handle_type" title='std::recursive_mutex::native_handle_type' data-type='std::__recursive_mutex_base::__native_type *' data-ref="std::recursive_mutex::native_handle_type">native_handle_type</dfn>;&nbsp</td></tr>
+<tr><th id="98">98</th><td>&nbsp</td></tr>
+<tr><th id="99">99</th><td>    <dfn class="decl def fn" id="_ZNSt15recursive_mutexC1Ev" title='std::recursive_mutex::recursive_mutex' data-ref="_ZNSt15recursive_mutexC1Ev">recursive_mutex</dfn>() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="100">100</th><td>    <dfn class="decl def fn" id="_ZNSt15recursive_mutexD1Ev" title='std::recursive_mutex::~recursive_mutex' data-ref="_ZNSt15recursive_mutexD1Ev">~recursive_mutex</dfn>() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="101">101</th><td>&nbsp</td></tr>
+<tr><th id="102">102</th><td>    <dfn class="decl def fn" id="_ZNSt15recursive_mutexC1ERKS_" title='std::recursive_mutex::recursive_mutex' data-ref="_ZNSt15recursive_mutexC1ERKS_">recursive_mutex</dfn>(<em>const</em> <a class="type" href="#std::recursive_mutex" title='std::recursive_mutex' data-ref="std::recursive_mutex">recursive_mutex</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="103">103</th><td>    <a class="type" href="#std::recursive_mutex" title='std::recursive_mutex' data-ref="std::recursive_mutex">recursive_mutex</a>&amp; <dfn class="decl def fn" id="_ZNSt15recursive_mutexaSERKS_" title='std::recursive_mutex::operator=' data-ref="_ZNSt15recursive_mutexaSERKS_"><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="#std::recursive_mutex" title='std::recursive_mutex' data-ref="std::recursive_mutex">recursive_mutex</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="104">104</th><td>&nbsp</td></tr>
+<tr><th id="105">105</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="106">106</th><td>    <dfn class="decl def fn" id="_ZNSt15recursive_mutex4lockEv" title='std::recursive_mutex::lock' data-ref="_ZNSt15recursive_mutex4lockEv">lock</dfn>()&nbsp</td></tr>
+<tr><th id="107">107</th><td>    {&nbsp</td></tr>
+<tr><th id="108">108</th><td>      <em>int</em> <dfn class="local col4 decl" id="2804__e" title='__e' data-type='int' data-ref="2804__e">__e</dfn> = <a class="ref fn" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_recursive_mutex_lock" title='__gthread_recursive_mutex_lock' data-ref="__gthread_recursive_mutex_lock">__gthread_recursive_mutex_lock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="#std::__recursive_mutex_base::_M_mutex" title='std::__recursive_mutex_base::_M_mutex' data-ref="std::__recursive_mutex_base::_M_mutex">_M_mutex</a>);&nbsp</td></tr>
+<tr><th id="109">109</th><td>&nbsp</td></tr>
+<tr><th id="110">110</th><td>      <i>// EINVAL, EAGAIN, EBUSY, EINVAL, EDEADLK(may)</i>&nbsp</td></tr>
+<tr><th id="111">111</th><td>      <b>if</b> (<a class="local col4 ref" href="#2804__e" title='__e' data-ref="2804__e">__e</a>)&nbsp</td></tr>
+<tr><th id="112">112</th><td>	<a class="ref fn" href="bits/functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<a class="local col4 ref" href="#2804__e" title='__e' data-ref="2804__e">__e</a>);&nbsp</td></tr>
+<tr><th id="113">113</th><td>    }&nbsp</td></tr>
+<tr><th id="114">114</th><td>&nbsp</td></tr>
+<tr><th id="115">115</th><td>    <em>bool</em>&nbsp</td></tr>
+<tr><th id="116">116</th><td>    <dfn class="decl def fn" id="_ZNSt15recursive_mutex8try_lockEv" title='std::recursive_mutex::try_lock' data-ref="_ZNSt15recursive_mutex8try_lockEv">try_lock</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="117">117</th><td>    {&nbsp</td></tr>
+<tr><th id="118">118</th><td>      <i>// XXX EINVAL, EAGAIN, EBUSY</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td>      <b>return</b> !<a class="ref fn" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_recursive_mutex_trylock" title='__gthread_recursive_mutex_trylock' data-ref="__gthread_recursive_mutex_trylock">__gthread_recursive_mutex_trylock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="#std::__recursive_mutex_base::_M_mutex" title='std::__recursive_mutex_base::_M_mutex' data-ref="std::__recursive_mutex_base::_M_mutex">_M_mutex</a>);&nbsp</td></tr>
+<tr><th id="120">120</th><td>    }&nbsp</td></tr>
+<tr><th id="121">121</th><td>&nbsp</td></tr>
+<tr><th id="122">122</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="123">123</th><td>    <dfn class="decl def fn" id="_ZNSt15recursive_mutex6unlockEv" title='std::recursive_mutex::unlock' data-ref="_ZNSt15recursive_mutex6unlockEv">unlock</dfn>()&nbsp</td></tr>
+<tr><th id="124">124</th><td>    {&nbsp</td></tr>
+<tr><th id="125">125</th><td>      <i>// XXX EINVAL, EAGAIN, EBUSY</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td>      <a class="ref fn" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_recursive_mutex_unlock" title='__gthread_recursive_mutex_unlock' data-ref="__gthread_recursive_mutex_unlock">__gthread_recursive_mutex_unlock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="#std::__recursive_mutex_base::_M_mutex" title='std::__recursive_mutex_base::_M_mutex' data-ref="std::__recursive_mutex_base::_M_mutex">_M_mutex</a>);&nbsp</td></tr>
+<tr><th id="127">127</th><td>    }&nbsp</td></tr>
+<tr><th id="128">128</th><td>&nbsp</td></tr>
+<tr><th id="129">129</th><td>    <a class="typedef" href="#std::recursive_mutex::native_handle_type" title='std::recursive_mutex::native_handle_type' data-type='std::__recursive_mutex_base::__native_type *' data-ref="std::recursive_mutex::native_handle_type">native_handle_type</a>&nbsp</td></tr>
+<tr><th id="130">130</th><td>    <dfn class="decl def fn" id="_ZNSt15recursive_mutex13native_handleEv" title='std::recursive_mutex::native_handle' data-ref="_ZNSt15recursive_mutex13native_handleEv">native_handle</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="131">131</th><td>    { <b>return</b> &amp;<a class="member field" href="#std::__recursive_mutex_base::_M_mutex" title='std::__recursive_mutex_base::_M_mutex' data-ref="std::__recursive_mutex_base::_M_mutex">_M_mutex</a>; }&nbsp</td></tr>
+<tr><th id="132">132</th><td>  };&nbsp</td></tr>
+<tr><th id="133">133</th><td>&nbsp</td></tr>
+<tr><th id="134">134</th><td><u>#<span data-ppcond="134">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1809" title="1" data-ref="_M/_GTHREAD_USE_MUTEX_TIMEDLOCK">_GTHREAD_USE_MUTEX_TIMEDLOCK</a></u>&nbsp</td></tr>
+<tr><th id="135">135</th><td>  <b>template</b>&lt;<b>typename</b> _Derived&gt;&nbsp</td></tr>
+<tr><th id="136">136</th><td>    <b>class</b> <dfn class="type def" id="std::__timed_mutex_impl" title='std::__timed_mutex_impl' data-ref="std::__timed_mutex_impl">__timed_mutex_impl</dfn>&nbsp</td></tr>
+<tr><th id="137">137</th><td>    {&nbsp</td></tr>
+<tr><th id="138">138</th><td>    <b>protected</b>:&nbsp</td></tr>
+<tr><th id="139">139</th><td>      <b>template</b>&lt;<b>typename</b> _Rep, <b>typename</b> _Period&gt;&nbsp</td></tr>
+<tr><th id="140">140</th><td>	<em>bool</em>&nbsp</td></tr>
+<tr><th id="141">141</th><td>	<dfn class="decl def fn" id="_ZNSt18__timed_mutex_impl15_M_try_lock_forERKNSt6chrono8durationITL0__TL0_0_EE" title='std::__timed_mutex_impl::_M_try_lock_for' data-ref="_ZNSt18__timed_mutex_impl15_M_try_lock_forERKNSt6chrono8durationITL0__TL0_0_EE">_M_try_lock_for</dfn>(<em>const</em> <span class="namespace">chrono::</span><a class="type" href="chrono.html#std::chrono::duration" title='std::chrono::duration' data-ref="std::chrono::duration">duration</a>&lt;_Rep, _Period&gt;&amp; <dfn class="local col5 decl" id="2805__rtime" title='__rtime' data-type='const chrono::duration&lt;_Rep, _Period&gt; &amp;' data-ref="2805__rtime">__rtime</dfn>)&nbsp</td></tr>
+<tr><th id="142">142</th><td>	{&nbsp</td></tr>
+<tr><th id="143">143</th><td><u>#<span data-ppcond="143">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1749" title="1" data-ref="_M/_GLIBCXX_USE_PTHREAD_MUTEX_CLOCKLOCK">_GLIBCXX_USE_PTHREAD_MUTEX_CLOCKLOCK</a></u>&nbsp</td></tr>
+<tr><th id="144">144</th><td>	  <b>using</b> <dfn class="local col6 typedef" id="2806__clock" title='__clock' data-type='chrono::steady_clock' data-ref="2806__clock">__clock</dfn> = <span class="namespace">chrono::</span><a class="type" href="chrono.html#std::chrono::steady_clock" title='std::chrono::steady_clock' data-ref="std::chrono::steady_clock">steady_clock</a>;&nbsp</td></tr>
+<tr><th id="145">145</th><td><u>#<span data-ppcond="143">else</span></u>&nbsp</td></tr>
+<tr><th id="146">146</th><td>	  <b>using</b> __clock = chrono::system_clock;&nbsp</td></tr>
+<tr><th id="147">147</th><td><u>#<span data-ppcond="143">endif</span></u>&nbsp</td></tr>
+<tr><th id="148">148</th><td>&nbsp</td></tr>
+<tr><th id="149">149</th><td>	  <em>auto</em> <dfn class="local col7 decl" id="2807__rt" title='__rt' data-type='auto' data-ref="2807__rt">__rt</dfn> = <span class="namespace">chrono::</span>duration_cast&lt;<a class="local col6 typedef" href="#2806__clock" title='__clock' data-type='chrono::steady_clock' data-ref="2806__clock">__clock</a>::<a class="typedef" href="chrono.html#std::chrono::steady_clock::duration" title='std::chrono::steady_clock::duration' data-type='chrono::nanoseconds' data-ref="std::chrono::steady_clock::duration">duration</a>&gt;(<a class="local col5 ref" href="#2805__rtime" title='__rtime' data-ref="2805__rtime">__rtime</a>);&nbsp</td></tr>
+<tr><th id="150">150</th><td>	  <b>if</b> (<a class="type" href="ratio.html#std::ratio_greater" title='std::ratio_greater' data-ref="std::ratio_greater">ratio_greater</a>&lt;<a class="local col6 typedef" href="#2806__clock" title='__clock' data-type='chrono::steady_clock' data-ref="2806__clock">__clock</a>::<a class="typedef" href="chrono.html#std::chrono::steady_clock::period" title='std::chrono::steady_clock::period' data-type='duration::period' data-ref="std::chrono::steady_clock::period">period</a>, _Period&gt;())&nbsp</td></tr>
+<tr><th id="151">151</th><td>	    ++<a class="local col7 ref" href="#2807__rt" title='__rt' data-ref="2807__rt">__rt</a>;&nbsp</td></tr>
+<tr><th id="152">152</th><td>	  <b>return</b> _M_try_lock_until(<a class="local col6 typedef" href="#2806__clock" title='__clock' data-type='chrono::steady_clock' data-ref="2806__clock">__clock</a>::<a class="ref fn" href="chrono.html#_ZNSt6chrono3_V212steady_clock3nowEv" title='std::chrono::steady_clock::now' data-ref="_ZNSt6chrono3_V212steady_clock3nowEv">now</a>() + <a class="local col7 ref" href="#2807__rt" title='__rt' data-ref="2807__rt">__rt</a>);&nbsp</td></tr>
+<tr><th id="153">153</th><td>	}&nbsp</td></tr>
+<tr><th id="154">154</th><td>&nbsp</td></tr>
+<tr><th id="155">155</th><td>      <b>template</b>&lt;<b>typename</b> _Duration&gt;&nbsp</td></tr>
+<tr><th id="156">156</th><td>	<em>bool</em>&nbsp</td></tr>
+<tr><th id="157">157</th><td>	<dfn class="decl def fn" id="_ZNSt18__timed_mutex_impl17_M_try_lock_untilERKNSt6chrono10time_pointINS0_3_V212system_clockETL0__EE" title='std::__timed_mutex_impl::_M_try_lock_until' data-ref="_ZNSt18__timed_mutex_impl17_M_try_lock_untilERKNSt6chrono10time_pointINS0_3_V212system_clockETL0__EE">_M_try_lock_until</dfn>(<em>const</em> <span class="namespace">chrono::</span><a class="type" href="chrono.html#std::chrono::time_point" title='std::chrono::time_point' data-ref="std::chrono::time_point">time_point</a>&lt;<span class="namespace">chrono::</span><a class="type" href="chrono.html#std::chrono::system_clock" title='std::chrono::system_clock' data-ref="std::chrono::system_clock">system_clock</a>,&nbsp</td></tr>
+<tr><th id="158">158</th><td>						   _Duration&gt;&amp; <dfn class="local col8 decl" id="2808__atime" title='__atime' data-type='const chrono::time_point&lt;chrono::system_clock, _Duration&gt; &amp;' data-ref="2808__atime">__atime</dfn>)&nbsp</td></tr>
+<tr><th id="159">159</th><td>	{&nbsp</td></tr>
+<tr><th id="160">160</th><td>	  <em>auto</em> <dfn class="local col9 decl" id="2809__s" title='__s' data-type='auto' data-ref="2809__s">__s</dfn> = <span class="namespace">chrono::</span>time_point_cast&lt;<span class="namespace">chrono::</span><a class="typedef" href="chrono.html#std::chrono::seconds" title='std::chrono::seconds' data-type='duration&lt;int64_t&gt;' data-ref="std::chrono::seconds">seconds</a>&gt;(<a class="local col8 ref" href="#2808__atime" title='__atime' data-ref="2808__atime">__atime</a>);&nbsp</td></tr>
+<tr><th id="161">161</th><td>	  <em>auto</em> <dfn class="local col0 decl" id="2810__ns" title='__ns' data-type='auto' data-ref="2810__ns">__ns</dfn> = <span class="namespace">chrono::</span>duration_cast&lt;<span class="namespace">chrono::</span><a class="typedef" href="chrono.html#std::chrono::nanoseconds" title='std::chrono::nanoseconds' data-type='duration&lt;int64_t, std::nano&gt;' data-ref="std::chrono::nanoseconds">nanoseconds</a>&gt;(<a class="local col8 ref" href="#2808__atime" title='__atime' data-ref="2808__atime">__atime</a> - <a class="local col9 ref" href="#2809__s" title='__s' data-ref="2809__s">__s</a>);&nbsp</td></tr>
+<tr><th id="162">162</th><td>&nbsp</td></tr>
+<tr><th id="163">163</th><td>	  <a class="typedef" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_time_t" title='__gthread_time_t' data-type='struct timespec' data-ref="__gthread_time_t">__gthread_time_t</a> <dfn class="local col1 decl" id="2811__ts" title='__ts' data-type='__gthread_time_t' data-ref="2811__ts">__ts</dfn> = {&nbsp</td></tr>
+<tr><th id="164">164</th><td>	    <span class='inlayHint'>.tv_sec:&nbsp;</span><b>static_cast</b>&lt;<span class="namespace">std::</span>time_t&gt;(<a class="local col9 ref" href="#2809__s" title='__s' data-ref="2809__s">__s</a>.time_since_epoch().count()),&nbsp</td></tr>
+<tr><th id="165">165</th><td>	    <span class='inlayHint'>.tv_nsec:&nbsp;</span><b>static_cast</b>&lt;<em>long</em>&gt;(<a class="local col0 ref" href="#2810__ns" title='__ns' data-ref="2810__ns">__ns</a>.count())&nbsp</td></tr>
+<tr><th id="166">166</th><td>	  };&nbsp</td></tr>
+<tr><th id="167">167</th><td>&nbsp</td></tr>
+<tr><th id="168">168</th><td>	  <b>return</b> <b>static_cast</b>&lt;_Derived*&gt;(<b>this</b>)-&gt;_M_timedlock(<a class="local col1 ref" href="#2811__ts" title='__ts' data-ref="2811__ts">__ts</a>);&nbsp</td></tr>
+<tr><th id="169">169</th><td>	}&nbsp</td></tr>
+<tr><th id="170">170</th><td>&nbsp</td></tr>
+<tr><th id="171">171</th><td><u>#<span data-ppcond="171">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1749" data-ref="_M/_GLIBCXX_USE_PTHREAD_MUTEX_CLOCKLOCK">_GLIBCXX_USE_PTHREAD_MUTEX_CLOCKLOCK</a></u>&nbsp</td></tr>
+<tr><th id="172">172</th><td>      <b>template</b>&lt;<b>typename</b> _Duration&gt;&nbsp</td></tr>
+<tr><th id="173">173</th><td>	<em>bool</em>&nbsp</td></tr>
+<tr><th id="174">174</th><td>	<dfn class="decl def fn" id="_ZNSt18__timed_mutex_impl17_M_try_lock_untilERKNSt6chrono10time_pointINS0_3_V212steady_clockETL0__EE" title='std::__timed_mutex_impl::_M_try_lock_until' data-ref="_ZNSt18__timed_mutex_impl17_M_try_lock_untilERKNSt6chrono10time_pointINS0_3_V212steady_clockETL0__EE">_M_try_lock_until</dfn>(<em>const</em> <span class="namespace">chrono::</span><a class="type" href="chrono.html#std::chrono::time_point" title='std::chrono::time_point' data-ref="std::chrono::time_point">time_point</a>&lt;<span class="namespace">chrono::</span><a class="type" href="chrono.html#std::chrono::steady_clock" title='std::chrono::steady_clock' data-ref="std::chrono::steady_clock">steady_clock</a>,&nbsp</td></tr>
+<tr><th id="175">175</th><td>						   _Duration&gt;&amp; <dfn class="local col2 decl" id="2812__atime" title='__atime' data-type='const chrono::time_point&lt;chrono::steady_clock, _Duration&gt; &amp;' data-ref="2812__atime">__atime</dfn>)&nbsp</td></tr>
+<tr><th id="176">176</th><td>	{&nbsp</td></tr>
+<tr><th id="177">177</th><td>	  <em>auto</em> <dfn class="local col3 decl" id="2813__s" title='__s' data-type='auto' data-ref="2813__s">__s</dfn> = <span class="namespace">chrono::</span>time_point_cast&lt;<span class="namespace">chrono::</span><a class="typedef" href="chrono.html#std::chrono::seconds" title='std::chrono::seconds' data-type='duration&lt;int64_t&gt;' data-ref="std::chrono::seconds">seconds</a>&gt;(<a class="local col2 ref" href="#2812__atime" title='__atime' data-ref="2812__atime">__atime</a>);&nbsp</td></tr>
+<tr><th id="178">178</th><td>	  <em>auto</em> <dfn class="local col4 decl" id="2814__ns" title='__ns' data-type='auto' data-ref="2814__ns">__ns</dfn> = <span class="namespace">chrono::</span>duration_cast&lt;<span class="namespace">chrono::</span><a class="typedef" href="chrono.html#std::chrono::nanoseconds" title='std::chrono::nanoseconds' data-type='duration&lt;int64_t, std::nano&gt;' data-ref="std::chrono::nanoseconds">nanoseconds</a>&gt;(<a class="local col2 ref" href="#2812__atime" title='__atime' data-ref="2812__atime">__atime</a> - <a class="local col3 ref" href="#2813__s" title='__s' data-ref="2813__s">__s</a>);&nbsp</td></tr>
+<tr><th id="179">179</th><td>&nbsp</td></tr>
+<tr><th id="180">180</th><td>	  <a class="typedef" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_time_t" title='__gthread_time_t' data-type='struct timespec' data-ref="__gthread_time_t">__gthread_time_t</a> <dfn class="local col5 decl" id="2815__ts" title='__ts' data-type='__gthread_time_t' data-ref="2815__ts">__ts</dfn> = {&nbsp</td></tr>
+<tr><th id="181">181</th><td>	    <span class='inlayHint'>.tv_sec:&nbsp;</span><b>static_cast</b>&lt;<span class="namespace">std::</span>time_t&gt;(<a class="local col3 ref" href="#2813__s" title='__s' data-ref="2813__s">__s</a>.time_since_epoch().count()),&nbsp</td></tr>
+<tr><th id="182">182</th><td>	    <span class='inlayHint'>.tv_nsec:&nbsp;</span><b>static_cast</b>&lt;<em>long</em>&gt;(<a class="local col4 ref" href="#2814__ns" title='__ns' data-ref="2814__ns">__ns</a>.count())&nbsp</td></tr>
+<tr><th id="183">183</th><td>	  };&nbsp</td></tr>
+<tr><th id="184">184</th><td>&nbsp</td></tr>
+<tr><th id="185">185</th><td>	  <b>return</b> <b>static_cast</b>&lt;_Derived*&gt;(<b>this</b>)-&gt;_M_clocklock(<a class="macro" href="../../x86_64-linux-gnu/bits/time.h.html#48" title="1" data-ref="_M/CLOCK_MONOTONIC">CLOCK_MONOTONIC</a>,&nbsp</td></tr>
+<tr><th id="186">186</th><td>							    <a class="local col5 ref" href="#2815__ts" title='__ts' data-ref="2815__ts">__ts</a>);&nbsp</td></tr>
+<tr><th id="187">187</th><td>	}&nbsp</td></tr>
+<tr><th id="188">188</th><td><u>#<span data-ppcond="171">endif</span></u>&nbsp</td></tr>
+<tr><th id="189">189</th><td>&nbsp</td></tr>
+<tr><th id="190">190</th><td>      <b>template</b>&lt;<b>typename</b> _Clock, <b>typename</b> _Duration&gt;&nbsp</td></tr>
+<tr><th id="191">191</th><td>	<em>bool</em>&nbsp</td></tr>
+<tr><th id="192">192</th><td>	<dfn class="decl def fn" id="_ZNSt18__timed_mutex_impl17_M_try_lock_untilERKNSt6chrono10time_pointITL0__TL0_0_EE" title='std::__timed_mutex_impl::_M_try_lock_until' data-ref="_ZNSt18__timed_mutex_impl17_M_try_lock_untilERKNSt6chrono10time_pointITL0__TL0_0_EE">_M_try_lock_until</dfn>(<em>const</em> <span class="namespace">chrono::</span><a class="type" href="chrono.html#std::chrono::time_point" title='std::chrono::time_point' data-ref="std::chrono::time_point">time_point</a>&lt;_Clock, _Duration&gt;&amp; <dfn class="local col6 decl" id="2816__atime" title='__atime' data-type='const chrono::time_point&lt;_Clock, _Duration&gt; &amp;' data-ref="2816__atime">__atime</dfn>)&nbsp</td></tr>
+<tr><th id="193">193</th><td>	{&nbsp</td></tr>
+<tr><th id="194">194</th><td><u>#<span data-ppcond="194">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="195">195</th><td>	  <b>static_assert</b>(<span class="namespace">chrono::</span>is_clock_v&lt;_Clock&gt;);&nbsp</td></tr>
+<tr><th id="196">196</th><td><u>#<span data-ppcond="194">endif</span></u>&nbsp</td></tr>
+<tr><th id="197">197</th><td>	  <i>// The user-supplied clock may not tick at the same rate as</i>&nbsp</td></tr>
+<tr><th id="198">198</th><td><i>	  // steady_clock, so we must loop in order to guarantee that</i>&nbsp</td></tr>
+<tr><th id="199">199</th><td><i>	  // the timeout has expired before returning false.</i>&nbsp</td></tr>
+<tr><th id="200">200</th><td>	  <em>auto</em> <dfn class="local col7 decl" id="2817__now" title='__now' data-type='auto' data-ref="2817__now">__now</dfn> = _Clock::now();&nbsp</td></tr>
+<tr><th id="201">201</th><td>	  <b>do</b> {&nbsp</td></tr>
+<tr><th id="202">202</th><td>	    <em>auto</em> <dfn class="local col8 decl" id="2818__rtime" title='__rtime' data-type='auto' data-ref="2818__rtime">__rtime</dfn> = <a class="local col6 ref" href="#2816__atime" title='__atime' data-ref="2816__atime">__atime</a> - <a class="local col7 ref" href="#2817__now" title='__now' data-ref="2817__now">__now</a>;&nbsp</td></tr>
+<tr><th id="203">203</th><td>	    <b>if</b> (_M_try_lock_for(<a class="local col8 ref" href="#2818__rtime" title='__rtime' data-ref="2818__rtime">__rtime</a>))&nbsp</td></tr>
+<tr><th id="204">204</th><td>	      <b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="205">205</th><td>	    <a class="local col7 ref" href="#2817__now" title='__now' data-ref="2817__now">__now</a> = _Clock::now();&nbsp</td></tr>
+<tr><th id="206">206</th><td>	  } <b>while</b> (<a class="local col6 ref" href="#2816__atime" title='__atime' data-ref="2816__atime">__atime</a> &gt; <a class="local col7 ref" href="#2817__now" title='__now' data-ref="2817__now">__now</a>);&nbsp</td></tr>
+<tr><th id="207">207</th><td>	  <b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="208">208</th><td>	}&nbsp</td></tr>
+<tr><th id="209">209</th><td>    };&nbsp</td></tr>
+<tr><th id="210">210</th><td>&nbsp</td></tr>
+<tr><th id="211">211</th><td>  <i class="doc">/// The standard timed mutex type.</i>&nbsp</td></tr>
+<tr><th id="212">212</th><td>  <b>class</b> <dfn class="type def" id="std::timed_mutex" title='std::timed_mutex' data-ref="std::timed_mutex">timed_mutex</dfn>&nbsp</td></tr>
+<tr><th id="213">213</th><td>  : <b>private</b> <a class="type" href="bits/std_mutex.h.html#std::__mutex_base" title='std::__mutex_base' data-ref="std::__mutex_base">__mutex_base</a>, <b>public</b> <a class="type" href="#std::__timed_mutex_impl" title='std::__timed_mutex_impl' data-ref="std::__timed_mutex_impl">__timed_mutex_impl</a>&lt;<a class="type" href="#std::timed_mutex" title='std::timed_mutex' data-ref="std::timed_mutex">timed_mutex</a>&gt;&nbsp</td></tr>
+<tr><th id="214">214</th><td>  {&nbsp</td></tr>
+<tr><th id="215">215</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="216">216</th><td>    <b>typedef</b> <a class="typedef" href="bits/std_mutex.h.html#std::__mutex_base::__native_type" title='std::__mutex_base::__native_type' data-type='__gthread_mutex_t' data-ref="std::__mutex_base::__native_type">__native_type</a>* 		  	<dfn class="typedef" id="std::timed_mutex::native_handle_type" title='std::timed_mutex::native_handle_type' data-type='std::__mutex_base::__native_type *' data-ref="std::timed_mutex::native_handle_type">native_handle_type</dfn>;&nbsp</td></tr>
+<tr><th id="217">217</th><td>&nbsp</td></tr>
+<tr><th id="218">218</th><td>    <dfn class="decl def fn" id="_ZNSt11timed_mutexC1Ev" title='std::timed_mutex::timed_mutex' data-ref="_ZNSt11timed_mutexC1Ev">timed_mutex</dfn>() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="219">219</th><td>    <dfn class="decl def fn" id="_ZNSt11timed_mutexD1Ev" title='std::timed_mutex::~timed_mutex' data-ref="_ZNSt11timed_mutexD1Ev">~timed_mutex</dfn>() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="220">220</th><td>&nbsp</td></tr>
+<tr><th id="221">221</th><td>    <dfn class="decl def fn" id="_ZNSt11timed_mutexC1ERKS_" title='std::timed_mutex::timed_mutex' data-ref="_ZNSt11timed_mutexC1ERKS_">timed_mutex</dfn>(<em>const</em> <a class="type" href="#std::timed_mutex" title='std::timed_mutex' data-ref="std::timed_mutex">timed_mutex</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="222">222</th><td>    <a class="type" href="#std::timed_mutex" title='std::timed_mutex' data-ref="std::timed_mutex">timed_mutex</a>&amp; <dfn class="decl def fn" id="_ZNSt11timed_mutexaSERKS_" title='std::timed_mutex::operator=' data-ref="_ZNSt11timed_mutexaSERKS_"><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="#std::timed_mutex" title='std::timed_mutex' data-ref="std::timed_mutex">timed_mutex</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="223">223</th><td>&nbsp</td></tr>
+<tr><th id="224">224</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="225">225</th><td>    <dfn class="decl def fn" id="_ZNSt11timed_mutex4lockEv" title='std::timed_mutex::lock' data-ref="_ZNSt11timed_mutex4lockEv">lock</dfn>()&nbsp</td></tr>
+<tr><th id="226">226</th><td>    {&nbsp</td></tr>
+<tr><th id="227">227</th><td>      <em>int</em> <dfn class="local col9 decl" id="2819__e" title='__e' data-type='int' data-ref="2819__e">__e</dfn> = <a class="ref fn" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_mutex_lock" title='__gthread_mutex_lock' data-ref="__gthread_mutex_lock">__gthread_mutex_lock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="bits/std_mutex.h.html#std::__mutex_base::_M_mutex" title='std::__mutex_base::_M_mutex' data-ref="std::__mutex_base::_M_mutex">_M_mutex</a>);&nbsp</td></tr>
+<tr><th id="228">228</th><td>&nbsp</td></tr>
+<tr><th id="229">229</th><td>      <i>// EINVAL, EAGAIN, EBUSY, EINVAL, EDEADLK(may)</i>&nbsp</td></tr>
+<tr><th id="230">230</th><td>      <b>if</b> (<a class="local col9 ref" href="#2819__e" title='__e' data-ref="2819__e">__e</a>)&nbsp</td></tr>
+<tr><th id="231">231</th><td>	<a class="ref fn" href="bits/functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<a class="local col9 ref" href="#2819__e" title='__e' data-ref="2819__e">__e</a>);&nbsp</td></tr>
+<tr><th id="232">232</th><td>    }&nbsp</td></tr>
+<tr><th id="233">233</th><td>&nbsp</td></tr>
+<tr><th id="234">234</th><td>    <em>bool</em>&nbsp</td></tr>
+<tr><th id="235">235</th><td>    <dfn class="decl def fn" id="_ZNSt11timed_mutex8try_lockEv" title='std::timed_mutex::try_lock' data-ref="_ZNSt11timed_mutex8try_lockEv">try_lock</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="236">236</th><td>    {&nbsp</td></tr>
+<tr><th id="237">237</th><td>      <i>// XXX EINVAL, EAGAIN, EBUSY</i>&nbsp</td></tr>
+<tr><th id="238">238</th><td>      <b>return</b> !<a class="ref fn" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_mutex_trylock" title='__gthread_mutex_trylock' data-ref="__gthread_mutex_trylock">__gthread_mutex_trylock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="bits/std_mutex.h.html#std::__mutex_base::_M_mutex" title='std::__mutex_base::_M_mutex' data-ref="std::__mutex_base::_M_mutex">_M_mutex</a>);&nbsp</td></tr>
+<tr><th id="239">239</th><td>    }&nbsp</td></tr>
+<tr><th id="240">240</th><td>&nbsp</td></tr>
+<tr><th id="241">241</th><td>    <b>template</b> &lt;<b>class</b> _Rep, <b>class</b> _Period&gt;&nbsp</td></tr>
+<tr><th id="242">242</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="243">243</th><td>      <dfn class="decl def fn" id="_ZNSt11timed_mutex12try_lock_forERKNSt6chrono8durationIT_T0_EE" title='std::timed_mutex::try_lock_for' data-ref="_ZNSt11timed_mutex12try_lock_forERKNSt6chrono8durationIT_T0_EE">try_lock_for</dfn>(<em>const</em> <span class="namespace">chrono::</span><a class="type" href="chrono.html#std::chrono::duration" title='std::chrono::duration' data-ref="std::chrono::duration">duration</a>&lt;_Rep, _Period&gt;&amp; <dfn class="local col0 decl" id="2820__rtime" title='__rtime' data-type='const chrono::duration&lt;_Rep, _Period&gt; &amp;' data-ref="2820__rtime">__rtime</dfn>)&nbsp</td></tr>
+<tr><th id="244">244</th><td>      { <b>return</b> _M_try_lock_for(<a class="local col0 ref" href="#2820__rtime" title='__rtime' data-ref="2820__rtime">__rtime</a>); }&nbsp</td></tr>
+<tr><th id="245">245</th><td>&nbsp</td></tr>
+<tr><th id="246">246</th><td>    <b>template</b> &lt;<b>class</b> _Clock, <b>class</b> _Duration&gt;&nbsp</td></tr>
+<tr><th id="247">247</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="248">248</th><td>      <dfn class="decl def fn" id="_ZNSt11timed_mutex14try_lock_untilERKNSt6chrono10time_pointIT_T0_EE" title='std::timed_mutex::try_lock_until' data-ref="_ZNSt11timed_mutex14try_lock_untilERKNSt6chrono10time_pointIT_T0_EE">try_lock_until</dfn>(<em>const</em> <span class="namespace">chrono::</span><a class="type" href="chrono.html#std::chrono::time_point" title='std::chrono::time_point' data-ref="std::chrono::time_point">time_point</a>&lt;_Clock, _Duration&gt;&amp; <dfn class="local col1 decl" id="2821__atime" title='__atime' data-type='const chrono::time_point&lt;_Clock, _Duration&gt; &amp;' data-ref="2821__atime">__atime</dfn>)&nbsp</td></tr>
+<tr><th id="249">249</th><td>      { <b>return</b> _M_try_lock_until(<a class="local col1 ref" href="#2821__atime" title='__atime' data-ref="2821__atime">__atime</a>); }&nbsp</td></tr>
+<tr><th id="250">250</th><td>&nbsp</td></tr>
+<tr><th id="251">251</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="252">252</th><td>    <dfn class="decl def fn" id="_ZNSt11timed_mutex6unlockEv" title='std::timed_mutex::unlock' data-ref="_ZNSt11timed_mutex6unlockEv">unlock</dfn>()&nbsp</td></tr>
+<tr><th id="253">253</th><td>    {&nbsp</td></tr>
+<tr><th id="254">254</th><td>      <i>// XXX EINVAL, EAGAIN, EBUSY</i>&nbsp</td></tr>
+<tr><th id="255">255</th><td>      <a class="ref fn" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_mutex_unlock" title='__gthread_mutex_unlock' data-ref="__gthread_mutex_unlock">__gthread_mutex_unlock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="bits/std_mutex.h.html#std::__mutex_base::_M_mutex" title='std::__mutex_base::_M_mutex' data-ref="std::__mutex_base::_M_mutex">_M_mutex</a>);&nbsp</td></tr>
+<tr><th id="256">256</th><td>    }&nbsp</td></tr>
+<tr><th id="257">257</th><td>&nbsp</td></tr>
+<tr><th id="258">258</th><td>    <a class="typedef" href="#std::timed_mutex::native_handle_type" title='std::timed_mutex::native_handle_type' data-type='std::__mutex_base::__native_type *' data-ref="std::timed_mutex::native_handle_type">native_handle_type</a>&nbsp</td></tr>
+<tr><th id="259">259</th><td>    <dfn class="decl def fn" id="_ZNSt11timed_mutex13native_handleEv" title='std::timed_mutex::native_handle' data-ref="_ZNSt11timed_mutex13native_handleEv">native_handle</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="260">260</th><td>    { <b>return</b> &amp;<a class="member field" href="bits/std_mutex.h.html#std::__mutex_base::_M_mutex" title='std::__mutex_base::_M_mutex' data-ref="std::__mutex_base::_M_mutex">_M_mutex</a>; }&nbsp</td></tr>
+<tr><th id="261">261</th><td>&nbsp</td></tr>
+<tr><th id="262">262</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="263">263</th><td>      <b>friend</b> <b>class</b> <a class="type" href="#std::__timed_mutex_impl" title='std::__timed_mutex_impl' data-ref="std::__timed_mutex_impl">__timed_mutex_impl</a>&lt;<a class="type" href="#std::timed_mutex" title='std::timed_mutex' data-ref="std::timed_mutex">timed_mutex</a>&gt;;&nbsp</td></tr>
+<tr><th id="264">264</th><td>&nbsp</td></tr>
+<tr><th id="265">265</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="266">266</th><td>      <dfn class="decl def fn" id="_ZNSt11timed_mutex12_M_timedlockERK8timespec" title='std::timed_mutex::_M_timedlock' data-ref="_ZNSt11timed_mutex12_M_timedlockERK8timespec">_M_timedlock</dfn>(<em>const</em> <a class="typedef" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_time_t" title='__gthread_time_t' data-type='struct timespec' data-ref="__gthread_time_t">__gthread_time_t</a>&amp; <dfn class="local col2 decl" id="2822__ts" title='__ts' data-type='const __gthread_time_t &amp;' data-ref="2822__ts">__ts</dfn>)&nbsp</td></tr>
+<tr><th id="267">267</th><td>      { <b>return</b> !<a class="ref fn" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_mutex_timedlock" title='__gthread_mutex_timedlock' data-ref="__gthread_mutex_timedlock">__gthread_mutex_timedlock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="bits/std_mutex.h.html#std::__mutex_base::_M_mutex" title='std::__mutex_base::_M_mutex' data-ref="std::__mutex_base::_M_mutex">_M_mutex</a>, <span class='inlayHint'>abs_timeout:&nbsp;</span>&amp;<a class="local col2 ref" href="#2822__ts" title='__ts' data-ref="2822__ts">__ts</a>); }&nbsp</td></tr>
+<tr><th id="268">268</th><td>&nbsp</td></tr>
+<tr><th id="269">269</th><td><u>#<span data-ppcond="269">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1749" title="1" data-ref="_M/_GLIBCXX_USE_PTHREAD_MUTEX_CLOCKLOCK">_GLIBCXX_USE_PTHREAD_MUTEX_CLOCKLOCK</a></u>&nbsp</td></tr>
+<tr><th id="270">270</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="271">271</th><td>      <dfn class="decl def fn" id="_ZNSt11timed_mutex12_M_clocklockEiRK8timespec" title='std::timed_mutex::_M_clocklock' data-ref="_ZNSt11timed_mutex12_M_clocklockEiRK8timespec">_M_clocklock</dfn>(<a class="typedef" href="../../x86_64-linux-gnu/bits/types/clockid_t.h.html#clockid_t" title='clockid_t' data-type='__clockid_t' data-ref="clockid_t">clockid_t</a> <dfn class="local col3 decl" id="2823clockid" title='clockid' data-type='clockid_t' data-ref="2823clockid">clockid</dfn>, <em>const</em> <a class="typedef" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_time_t" title='__gthread_time_t' data-type='struct timespec' data-ref="__gthread_time_t">__gthread_time_t</a>&amp; <dfn class="local col4 decl" id="2824__ts" title='__ts' data-type='const __gthread_time_t &amp;' data-ref="2824__ts">__ts</dfn>)&nbsp</td></tr>
+<tr><th id="272">272</th><td>      { <b>return</b> !<a class="ref fn" href="../../pthread.h.html#pthread_mutex_clocklock" title='pthread_mutex_clocklock' data-ref="pthread_mutex_clocklock">pthread_mutex_clocklock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="bits/std_mutex.h.html#std::__mutex_base::_M_mutex" title='std::__mutex_base::_M_mutex' data-ref="std::__mutex_base::_M_mutex">_M_mutex</a>, <span class='inlayHint'>clockid:&nbsp;</span><a class="local col3 ref" href="#2823clockid" title='clockid' data-ref="2823clockid">clockid</a>, <span class='inlayHint'>abstime:&nbsp;</span>&amp;<a class="local col4 ref" href="#2824__ts" title='__ts' data-ref="2824__ts">__ts</a>); }&nbsp</td></tr>
+<tr><th id="273">273</th><td><u>#<span data-ppcond="269">endif</span></u>&nbsp</td></tr>
+<tr><th id="274">274</th><td>  };&nbsp</td></tr>
+<tr><th id="275">275</th><td>&nbsp</td></tr>
+<tr><th id="276">276</th><td>  <i class="doc">/// recursive_timed_mutex</i>&nbsp</td></tr>
+<tr><th id="277">277</th><td>  <b>class</b> <dfn class="type def" id="std::recursive_timed_mutex" title='std::recursive_timed_mutex' data-ref="std::recursive_timed_mutex">recursive_timed_mutex</dfn>&nbsp</td></tr>
+<tr><th id="278">278</th><td>  : <b>private</b> <a class="type" href="#std::__recursive_mutex_base" title='std::__recursive_mutex_base' data-ref="std::__recursive_mutex_base">__recursive_mutex_base</a>,&nbsp</td></tr>
+<tr><th id="279">279</th><td>    <b>public</b> <a class="type" href="#std::__timed_mutex_impl" title='std::__timed_mutex_impl' data-ref="std::__timed_mutex_impl">__timed_mutex_impl</a>&lt;<a class="type" href="#std::recursive_timed_mutex" title='std::recursive_timed_mutex' data-ref="std::recursive_timed_mutex">recursive_timed_mutex</a>&gt;&nbsp</td></tr>
+<tr><th id="280">280</th><td>  {&nbsp</td></tr>
+<tr><th id="281">281</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="282">282</th><td>    <b>typedef</b> <a class="typedef" href="#std::__recursive_mutex_base::__native_type" title='std::__recursive_mutex_base::__native_type' data-type='__gthread_recursive_mutex_t' data-ref="std::__recursive_mutex_base::__native_type">__native_type</a>* 			<dfn class="typedef" id="std::recursive_timed_mutex::native_handle_type" title='std::recursive_timed_mutex::native_handle_type' data-type='std::__recursive_mutex_base::__native_type *' data-ref="std::recursive_timed_mutex::native_handle_type">native_handle_type</dfn>;&nbsp</td></tr>
+<tr><th id="283">283</th><td>&nbsp</td></tr>
+<tr><th id="284">284</th><td>    <dfn class="decl def fn" id="_ZNSt21recursive_timed_mutexC1Ev" title='std::recursive_timed_mutex::recursive_timed_mutex' data-ref="_ZNSt21recursive_timed_mutexC1Ev">recursive_timed_mutex</dfn>() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="285">285</th><td>    <dfn class="decl def fn" id="_ZNSt21recursive_timed_mutexD1Ev" title='std::recursive_timed_mutex::~recursive_timed_mutex' data-ref="_ZNSt21recursive_timed_mutexD1Ev">~recursive_timed_mutex</dfn>() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="286">286</th><td>&nbsp</td></tr>
+<tr><th id="287">287</th><td>    <dfn class="decl def fn" id="_ZNSt21recursive_timed_mutexC1ERKS_" title='std::recursive_timed_mutex::recursive_timed_mutex' data-ref="_ZNSt21recursive_timed_mutexC1ERKS_">recursive_timed_mutex</dfn>(<em>const</em> <a class="type" href="#std::recursive_timed_mutex" title='std::recursive_timed_mutex' data-ref="std::recursive_timed_mutex">recursive_timed_mutex</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="288">288</th><td>    <a class="type" href="#std::recursive_timed_mutex" title='std::recursive_timed_mutex' data-ref="std::recursive_timed_mutex">recursive_timed_mutex</a>&amp; <dfn class="decl def fn" id="_ZNSt21recursive_timed_mutexaSERKS_" title='std::recursive_timed_mutex::operator=' data-ref="_ZNSt21recursive_timed_mutexaSERKS_"><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="#std::recursive_timed_mutex" title='std::recursive_timed_mutex' data-ref="std::recursive_timed_mutex">recursive_timed_mutex</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="289">289</th><td>&nbsp</td></tr>
+<tr><th id="290">290</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="291">291</th><td>    <dfn class="decl def fn" id="_ZNSt21recursive_timed_mutex4lockEv" title='std::recursive_timed_mutex::lock' data-ref="_ZNSt21recursive_timed_mutex4lockEv">lock</dfn>()&nbsp</td></tr>
+<tr><th id="292">292</th><td>    {&nbsp</td></tr>
+<tr><th id="293">293</th><td>      <em>int</em> <dfn class="local col5 decl" id="2825__e" title='__e' data-type='int' data-ref="2825__e">__e</dfn> = <a class="ref fn" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_recursive_mutex_lock" title='__gthread_recursive_mutex_lock' data-ref="__gthread_recursive_mutex_lock">__gthread_recursive_mutex_lock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="#std::__recursive_mutex_base::_M_mutex" title='std::__recursive_mutex_base::_M_mutex' data-ref="std::__recursive_mutex_base::_M_mutex">_M_mutex</a>);&nbsp</td></tr>
+<tr><th id="294">294</th><td>&nbsp</td></tr>
+<tr><th id="295">295</th><td>      <i>// EINVAL, EAGAIN, EBUSY, EINVAL, EDEADLK(may)</i>&nbsp</td></tr>
+<tr><th id="296">296</th><td>      <b>if</b> (<a class="local col5 ref" href="#2825__e" title='__e' data-ref="2825__e">__e</a>)&nbsp</td></tr>
+<tr><th id="297">297</th><td>	<a class="ref fn" href="bits/functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<a class="local col5 ref" href="#2825__e" title='__e' data-ref="2825__e">__e</a>);&nbsp</td></tr>
+<tr><th id="298">298</th><td>    }&nbsp</td></tr>
+<tr><th id="299">299</th><td>&nbsp</td></tr>
+<tr><th id="300">300</th><td>    <em>bool</em>&nbsp</td></tr>
+<tr><th id="301">301</th><td>    <dfn class="decl def fn" id="_ZNSt21recursive_timed_mutex8try_lockEv" title='std::recursive_timed_mutex::try_lock' data-ref="_ZNSt21recursive_timed_mutex8try_lockEv">try_lock</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="302">302</th><td>    {&nbsp</td></tr>
+<tr><th id="303">303</th><td>      <i>// XXX EINVAL, EAGAIN, EBUSY</i>&nbsp</td></tr>
+<tr><th id="304">304</th><td>      <b>return</b> !<a class="ref fn" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_recursive_mutex_trylock" title='__gthread_recursive_mutex_trylock' data-ref="__gthread_recursive_mutex_trylock">__gthread_recursive_mutex_trylock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="#std::__recursive_mutex_base::_M_mutex" title='std::__recursive_mutex_base::_M_mutex' data-ref="std::__recursive_mutex_base::_M_mutex">_M_mutex</a>);&nbsp</td></tr>
+<tr><th id="305">305</th><td>    }&nbsp</td></tr>
+<tr><th id="306">306</th><td>&nbsp</td></tr>
+<tr><th id="307">307</th><td>    <b>template</b> &lt;<b>class</b> _Rep, <b>class</b> _Period&gt;&nbsp</td></tr>
+<tr><th id="308">308</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="309">309</th><td>      <dfn class="decl def fn" id="_ZNSt21recursive_timed_mutex12try_lock_forERKNSt6chrono8durationIT_T0_EE" title='std::recursive_timed_mutex::try_lock_for' data-ref="_ZNSt21recursive_timed_mutex12try_lock_forERKNSt6chrono8durationIT_T0_EE">try_lock_for</dfn>(<em>const</em> <span class="namespace">chrono::</span><a class="type" href="chrono.html#std::chrono::duration" title='std::chrono::duration' data-ref="std::chrono::duration">duration</a>&lt;_Rep, _Period&gt;&amp; <dfn class="local col6 decl" id="2826__rtime" title='__rtime' data-type='const chrono::duration&lt;_Rep, _Period&gt; &amp;' data-ref="2826__rtime">__rtime</dfn>)&nbsp</td></tr>
+<tr><th id="310">310</th><td>      { <b>return</b> _M_try_lock_for(<a class="local col6 ref" href="#2826__rtime" title='__rtime' data-ref="2826__rtime">__rtime</a>); }&nbsp</td></tr>
+<tr><th id="311">311</th><td>&nbsp</td></tr>
+<tr><th id="312">312</th><td>    <b>template</b> &lt;<b>class</b> _Clock, <b>class</b> _Duration&gt;&nbsp</td></tr>
+<tr><th id="313">313</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="314">314</th><td>      <dfn class="decl def fn" id="_ZNSt21recursive_timed_mutex14try_lock_untilERKNSt6chrono10time_pointIT_T0_EE" title='std::recursive_timed_mutex::try_lock_until' data-ref="_ZNSt21recursive_timed_mutex14try_lock_untilERKNSt6chrono10time_pointIT_T0_EE">try_lock_until</dfn>(<em>const</em> <span class="namespace">chrono::</span><a class="type" href="chrono.html#std::chrono::time_point" title='std::chrono::time_point' data-ref="std::chrono::time_point">time_point</a>&lt;_Clock, _Duration&gt;&amp; <dfn class="local col7 decl" id="2827__atime" title='__atime' data-type='const chrono::time_point&lt;_Clock, _Duration&gt; &amp;' data-ref="2827__atime">__atime</dfn>)&nbsp</td></tr>
+<tr><th id="315">315</th><td>      { <b>return</b> _M_try_lock_until(<a class="local col7 ref" href="#2827__atime" title='__atime' data-ref="2827__atime">__atime</a>); }&nbsp</td></tr>
+<tr><th id="316">316</th><td>&nbsp</td></tr>
+<tr><th id="317">317</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="318">318</th><td>    <dfn class="decl def fn" id="_ZNSt21recursive_timed_mutex6unlockEv" title='std::recursive_timed_mutex::unlock' data-ref="_ZNSt21recursive_timed_mutex6unlockEv">unlock</dfn>()&nbsp</td></tr>
+<tr><th id="319">319</th><td>    {&nbsp</td></tr>
+<tr><th id="320">320</th><td>      <i>// XXX EINVAL, EAGAIN, EBUSY</i>&nbsp</td></tr>
+<tr><th id="321">321</th><td>      <a class="ref fn" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_recursive_mutex_unlock" title='__gthread_recursive_mutex_unlock' data-ref="__gthread_recursive_mutex_unlock">__gthread_recursive_mutex_unlock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="#std::__recursive_mutex_base::_M_mutex" title='std::__recursive_mutex_base::_M_mutex' data-ref="std::__recursive_mutex_base::_M_mutex">_M_mutex</a>);&nbsp</td></tr>
+<tr><th id="322">322</th><td>    }&nbsp</td></tr>
+<tr><th id="323">323</th><td>&nbsp</td></tr>
+<tr><th id="324">324</th><td>    <a class="typedef" href="#std::recursive_timed_mutex::native_handle_type" title='std::recursive_timed_mutex::native_handle_type' data-type='std::__recursive_mutex_base::__native_type *' data-ref="std::recursive_timed_mutex::native_handle_type">native_handle_type</a>&nbsp</td></tr>
+<tr><th id="325">325</th><td>    <dfn class="decl def fn" id="_ZNSt21recursive_timed_mutex13native_handleEv" title='std::recursive_timed_mutex::native_handle' data-ref="_ZNSt21recursive_timed_mutex13native_handleEv">native_handle</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="326">326</th><td>    { <b>return</b> &amp;<a class="member field" href="#std::__recursive_mutex_base::_M_mutex" title='std::__recursive_mutex_base::_M_mutex' data-ref="std::__recursive_mutex_base::_M_mutex">_M_mutex</a>; }&nbsp</td></tr>
+<tr><th id="327">327</th><td>&nbsp</td></tr>
+<tr><th id="328">328</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="329">329</th><td>      <b>friend</b> <b>class</b> <a class="type" href="#std::__timed_mutex_impl" title='std::__timed_mutex_impl' data-ref="std::__timed_mutex_impl">__timed_mutex_impl</a>&lt;<a class="type" href="#std::recursive_timed_mutex" title='std::recursive_timed_mutex' data-ref="std::recursive_timed_mutex">recursive_timed_mutex</a>&gt;;&nbsp</td></tr>
+<tr><th id="330">330</th><td>&nbsp</td></tr>
+<tr><th id="331">331</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="332">332</th><td>      <dfn class="decl def fn" id="_ZNSt21recursive_timed_mutex12_M_timedlockERK8timespec" title='std::recursive_timed_mutex::_M_timedlock' data-ref="_ZNSt21recursive_timed_mutex12_M_timedlockERK8timespec">_M_timedlock</dfn>(<em>const</em> <a class="typedef" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_time_t" title='__gthread_time_t' data-type='struct timespec' data-ref="__gthread_time_t">__gthread_time_t</a>&amp; <dfn class="local col8 decl" id="2828__ts" title='__ts' data-type='const __gthread_time_t &amp;' data-ref="2828__ts">__ts</dfn>)&nbsp</td></tr>
+<tr><th id="333">333</th><td>      { <b>return</b> !<a class="ref fn" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_recursive_mutex_timedlock" title='__gthread_recursive_mutex_timedlock' data-ref="__gthread_recursive_mutex_timedlock">__gthread_recursive_mutex_timedlock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="#std::__recursive_mutex_base::_M_mutex" title='std::__recursive_mutex_base::_M_mutex' data-ref="std::__recursive_mutex_base::_M_mutex">_M_mutex</a>, <span class='inlayHint'>abs_timeout:&nbsp;</span>&amp;<a class="local col8 ref" href="#2828__ts" title='__ts' data-ref="2828__ts">__ts</a>); }&nbsp</td></tr>
+<tr><th id="334">334</th><td>&nbsp</td></tr>
+<tr><th id="335">335</th><td><u>#<span data-ppcond="335">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1749" data-ref="_M/_GLIBCXX_USE_PTHREAD_MUTEX_CLOCKLOCK">_GLIBCXX_USE_PTHREAD_MUTEX_CLOCKLOCK</a></u>&nbsp</td></tr>
+<tr><th id="336">336</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="337">337</th><td>      <dfn class="decl def fn" id="_ZNSt21recursive_timed_mutex12_M_clocklockEiRK8timespec" title='std::recursive_timed_mutex::_M_clocklock' data-ref="_ZNSt21recursive_timed_mutex12_M_clocklockEiRK8timespec">_M_clocklock</dfn>(<a class="typedef" href="../../x86_64-linux-gnu/bits/types/clockid_t.h.html#clockid_t" title='clockid_t' data-type='__clockid_t' data-ref="clockid_t">clockid_t</a> <dfn class="local col9 decl" id="2829clockid" title='clockid' data-type='clockid_t' data-ref="2829clockid">clockid</dfn>, <em>const</em> <a class="typedef" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_time_t" title='__gthread_time_t' data-type='struct timespec' data-ref="__gthread_time_t">__gthread_time_t</a>&amp; <dfn class="local col0 decl" id="2830__ts" title='__ts' data-type='const __gthread_time_t &amp;' data-ref="2830__ts">__ts</dfn>)&nbsp</td></tr>
+<tr><th id="338">338</th><td>      { <b>return</b> !<a class="ref fn" href="../../pthread.h.html#pthread_mutex_clocklock" title='pthread_mutex_clocklock' data-ref="pthread_mutex_clocklock">pthread_mutex_clocklock</a>(<span class='inlayHint'>mutex:&nbsp;</span>&amp;<a class="member field" href="#std::__recursive_mutex_base::_M_mutex" title='std::__recursive_mutex_base::_M_mutex' data-ref="std::__recursive_mutex_base::_M_mutex">_M_mutex</a>, <span class='inlayHint'>clockid:&nbsp;</span><a class="local col9 ref" href="#2829clockid" title='clockid' data-ref="2829clockid">clockid</a>, <span class='inlayHint'>abstime:&nbsp;</span>&amp;<a class="local col0 ref" href="#2830__ts" title='__ts' data-ref="2830__ts">__ts</a>); }&nbsp</td></tr>
+<tr><th id="339">339</th><td><u>#<span data-ppcond="335">endif</span></u>&nbsp</td></tr>
+<tr><th id="340">340</th><td>  };&nbsp</td></tr>
+<tr><th id="341">341</th><td>&nbsp</td></tr>
+<tr><th id="342">342</th><td><u>#<span data-ppcond="134">else</span> // !_GTHREAD_USE_MUTEX_TIMEDLOCK</u>&nbsp</td></tr>
+<tr><th id="343">343</th><td>&nbsp</td></tr>
+<tr><th id="344">344</th><td>  <i class="doc">/// timed_mutex</i>&nbsp</td></tr>
+<tr><th id="345">345</th><td>  <b>class</b> timed_mutex&nbsp</td></tr>
+<tr><th id="346">346</th><td>  {&nbsp</td></tr>
+<tr><th id="347">347</th><td>    mutex		_M_mut;&nbsp</td></tr>
+<tr><th id="348">348</th><td>    condition_variable	_M_cv;&nbsp</td></tr>
+<tr><th id="349">349</th><td>    <em>bool</em>		_M_locked = <b>false</b>;&nbsp</td></tr>
+<tr><th id="350">350</th><td>&nbsp</td></tr>
+<tr><th id="351">351</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="352">352</th><td>&nbsp</td></tr>
+<tr><th id="353">353</th><td>    timed_mutex() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="354">354</th><td>    ~timed_mutex() { __glibcxx_assert( !_M_locked ); }&nbsp</td></tr>
+<tr><th id="355">355</th><td>&nbsp</td></tr>
+<tr><th id="356">356</th><td>    timed_mutex(<em>const</em> timed_mutex&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="357">357</th><td>    timed_mutex&amp; <b>operator</b>=(<em>const</em> timed_mutex&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="358">358</th><td>&nbsp</td></tr>
+<tr><th id="359">359</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="360">360</th><td>    lock()&nbsp</td></tr>
+<tr><th id="361">361</th><td>    {&nbsp</td></tr>
+<tr><th id="362">362</th><td>      unique_lock&lt;mutex&gt; __lk(_M_mut);&nbsp</td></tr>
+<tr><th id="363">363</th><td>      _M_cv.wait(__lk, [&amp;]{ <b>return</b> !_M_locked; });&nbsp</td></tr>
+<tr><th id="364">364</th><td>      _M_locked = <b>true</b>;&nbsp</td></tr>
+<tr><th id="365">365</th><td>    }&nbsp</td></tr>
+<tr><th id="366">366</th><td>&nbsp</td></tr>
+<tr><th id="367">367</th><td>    <em>bool</em>&nbsp</td></tr>
+<tr><th id="368">368</th><td>    try_lock()&nbsp</td></tr>
+<tr><th id="369">369</th><td>    {&nbsp</td></tr>
+<tr><th id="370">370</th><td>      lock_guard&lt;mutex&gt; __lk(_M_mut);&nbsp</td></tr>
+<tr><th id="371">371</th><td>      <b>if</b> (_M_locked)&nbsp</td></tr>
+<tr><th id="372">372</th><td>	<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="373">373</th><td>      _M_locked = <b>true</b>;&nbsp</td></tr>
+<tr><th id="374">374</th><td>      <b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="375">375</th><td>    }&nbsp</td></tr>
+<tr><th id="376">376</th><td>&nbsp</td></tr>
+<tr><th id="377">377</th><td>    <b>template</b>&lt;<b>typename</b> _Rep, <b>typename</b> _Period&gt;&nbsp</td></tr>
+<tr><th id="378">378</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="379">379</th><td>      try_lock_for(<em>const</em> chrono::duration&lt;_Rep, _Period&gt;&amp; __rtime)&nbsp</td></tr>
+<tr><th id="380">380</th><td>      {&nbsp</td></tr>
+<tr><th id="381">381</th><td>	unique_lock&lt;mutex&gt; __lk(_M_mut);&nbsp</td></tr>
+<tr><th id="382">382</th><td>	<b>if</b> (!_M_cv.wait_for(__lk, __rtime, [&amp;]{ <b>return</b> !_M_locked; }))&nbsp</td></tr>
+<tr><th id="383">383</th><td>	  <b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="384">384</th><td>	_M_locked = <b>true</b>;&nbsp</td></tr>
+<tr><th id="385">385</th><td>	<b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="386">386</th><td>      }&nbsp</td></tr>
+<tr><th id="387">387</th><td>&nbsp</td></tr>
+<tr><th id="388">388</th><td>    <b>template</b>&lt;<b>typename</b> _Clock, <b>typename</b> _Duration&gt;&nbsp</td></tr>
+<tr><th id="389">389</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="390">390</th><td>      try_lock_until(<em>const</em> chrono::time_point&lt;_Clock, _Duration&gt;&amp; __atime)&nbsp</td></tr>
+<tr><th id="391">391</th><td>      {&nbsp</td></tr>
+<tr><th id="392">392</th><td>	unique_lock&lt;mutex&gt; __lk(_M_mut);&nbsp</td></tr>
+<tr><th id="393">393</th><td>	<b>if</b> (!_M_cv.wait_until(__lk, __atime, [&amp;]{ <b>return</b> !_M_locked; }))&nbsp</td></tr>
+<tr><th id="394">394</th><td>	  <b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="395">395</th><td>	_M_locked = <b>true</b>;&nbsp</td></tr>
+<tr><th id="396">396</th><td>	<b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="397">397</th><td>      }&nbsp</td></tr>
+<tr><th id="398">398</th><td>&nbsp</td></tr>
+<tr><th id="399">399</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="400">400</th><td>    unlock()&nbsp</td></tr>
+<tr><th id="401">401</th><td>    {&nbsp</td></tr>
+<tr><th id="402">402</th><td>      lock_guard&lt;mutex&gt; __lk(_M_mut);&nbsp</td></tr>
+<tr><th id="403">403</th><td>      __glibcxx_assert( _M_locked );&nbsp</td></tr>
+<tr><th id="404">404</th><td>      _M_locked = <b>false</b>;&nbsp</td></tr>
+<tr><th id="405">405</th><td>      _M_cv.notify_one();&nbsp</td></tr>
+<tr><th id="406">406</th><td>    }&nbsp</td></tr>
+<tr><th id="407">407</th><td>  };&nbsp</td></tr>
+<tr><th id="408">408</th><td>&nbsp</td></tr>
+<tr><th id="409">409</th><td>  <i class="doc">/// recursive_timed_mutex</i>&nbsp</td></tr>
+<tr><th id="410">410</th><td>  <b>class</b> recursive_timed_mutex&nbsp</td></tr>
+<tr><th id="411">411</th><td>  {&nbsp</td></tr>
+<tr><th id="412">412</th><td>    mutex		_M_mut;&nbsp</td></tr>
+<tr><th id="413">413</th><td>    condition_variable	_M_cv;&nbsp</td></tr>
+<tr><th id="414">414</th><td>    thread::id		_M_owner;&nbsp</td></tr>
+<tr><th id="415">415</th><td>    <em>unsigned</em>		_M_count = <var>0</var>;&nbsp</td></tr>
+<tr><th id="416">416</th><td>&nbsp</td></tr>
+<tr><th id="417">417</th><td>    <i>// Predicate type that tests whether the current thread can lock a mutex.</i>&nbsp</td></tr>
+<tr><th id="418">418</th><td>    <b>struct</b> _Can_lock&nbsp</td></tr>
+<tr><th id="419">419</th><td>    {&nbsp</td></tr>
+<tr><th id="420">420</th><td>      <i>// Returns true if the mutex is unlocked or is locked by _M_caller.</i>&nbsp</td></tr>
+<tr><th id="421">421</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="422">422</th><td>      <b>operator</b>()() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="423">423</th><td>      { <b>return</b> _M_mx-&gt;_M_count == <var>0</var> || _M_mx-&gt;_M_owner == _M_caller; }&nbsp</td></tr>
+<tr><th id="424">424</th><td>&nbsp</td></tr>
+<tr><th id="425">425</th><td>      <em>const</em> recursive_timed_mutex* _M_mx;&nbsp</td></tr>
+<tr><th id="426">426</th><td>      thread::id _M_caller;&nbsp</td></tr>
+<tr><th id="427">427</th><td>    };&nbsp</td></tr>
+<tr><th id="428">428</th><td>&nbsp</td></tr>
+<tr><th id="429">429</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="430">430</th><td>&nbsp</td></tr>
+<tr><th id="431">431</th><td>    recursive_timed_mutex() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="432">432</th><td>    ~recursive_timed_mutex() { __glibcxx_assert( _M_count == <var>0</var> ); }&nbsp</td></tr>
+<tr><th id="433">433</th><td>&nbsp</td></tr>
+<tr><th id="434">434</th><td>    recursive_timed_mutex(<em>const</em> recursive_timed_mutex&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="435">435</th><td>    recursive_timed_mutex&amp; <b>operator</b>=(<em>const</em> recursive_timed_mutex&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="436">436</th><td>&nbsp</td></tr>
+<tr><th id="437">437</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="438">438</th><td>    lock()&nbsp</td></tr>
+<tr><th id="439">439</th><td>    {&nbsp</td></tr>
+<tr><th id="440">440</th><td>      <em>auto</em> __id = this_thread::get_id();&nbsp</td></tr>
+<tr><th id="441">441</th><td>      _Can_lock __can_lock{<b>this</b>, __id};&nbsp</td></tr>
+<tr><th id="442">442</th><td>      unique_lock&lt;mutex&gt; __lk(_M_mut);&nbsp</td></tr>
+<tr><th id="443">443</th><td>      _M_cv.wait(__lk, __can_lock);&nbsp</td></tr>
+<tr><th id="444">444</th><td>      <b>if</b> (_M_count == -<var>1u</var>)&nbsp</td></tr>
+<tr><th id="445">445</th><td>	__throw_system_error(EAGAIN); <i>// [thread.timedmutex.recursive]/3</i>&nbsp</td></tr>
+<tr><th id="446">446</th><td>      _M_owner = __id;&nbsp</td></tr>
+<tr><th id="447">447</th><td>      ++_M_count;&nbsp</td></tr>
+<tr><th id="448">448</th><td>    }&nbsp</td></tr>
+<tr><th id="449">449</th><td>&nbsp</td></tr>
+<tr><th id="450">450</th><td>    <em>bool</em>&nbsp</td></tr>
+<tr><th id="451">451</th><td>    try_lock()&nbsp</td></tr>
+<tr><th id="452">452</th><td>    {&nbsp</td></tr>
+<tr><th id="453">453</th><td>      <em>auto</em> __id = this_thread::get_id();&nbsp</td></tr>
+<tr><th id="454">454</th><td>      _Can_lock __can_lock{<b>this</b>, __id};&nbsp</td></tr>
+<tr><th id="455">455</th><td>      lock_guard&lt;mutex&gt; __lk(_M_mut);&nbsp</td></tr>
+<tr><th id="456">456</th><td>      <b>if</b> (!__can_lock())&nbsp</td></tr>
+<tr><th id="457">457</th><td>	<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="458">458</th><td>      <b>if</b> (_M_count == -<var>1u</var>)&nbsp</td></tr>
+<tr><th id="459">459</th><td>	<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="460">460</th><td>      _M_owner = __id;&nbsp</td></tr>
+<tr><th id="461">461</th><td>      ++_M_count;&nbsp</td></tr>
+<tr><th id="462">462</th><td>      <b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="463">463</th><td>    }&nbsp</td></tr>
+<tr><th id="464">464</th><td>&nbsp</td></tr>
+<tr><th id="465">465</th><td>    <b>template</b>&lt;<b>typename</b> _Rep, <b>typename</b> _Period&gt;&nbsp</td></tr>
+<tr><th id="466">466</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="467">467</th><td>      try_lock_for(<em>const</em> chrono::duration&lt;_Rep, _Period&gt;&amp; __rtime)&nbsp</td></tr>
+<tr><th id="468">468</th><td>      {&nbsp</td></tr>
+<tr><th id="469">469</th><td>	<em>auto</em> __id = this_thread::get_id();&nbsp</td></tr>
+<tr><th id="470">470</th><td>	_Can_lock __can_lock{<b>this</b>, __id};&nbsp</td></tr>
+<tr><th id="471">471</th><td>	unique_lock&lt;mutex&gt; __lk(_M_mut);&nbsp</td></tr>
+<tr><th id="472">472</th><td>	<b>if</b> (!_M_cv.wait_for(__lk, __rtime, __can_lock))&nbsp</td></tr>
+<tr><th id="473">473</th><td>	  <b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="474">474</th><td>	<b>if</b> (_M_count == -<var>1u</var>)&nbsp</td></tr>
+<tr><th id="475">475</th><td>	  <b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="476">476</th><td>	_M_owner = __id;&nbsp</td></tr>
+<tr><th id="477">477</th><td>	++_M_count;&nbsp</td></tr>
+<tr><th id="478">478</th><td>	<b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="479">479</th><td>      }&nbsp</td></tr>
+<tr><th id="480">480</th><td>&nbsp</td></tr>
+<tr><th id="481">481</th><td>    <b>template</b>&lt;<b>typename</b> _Clock, <b>typename</b> _Duration&gt;&nbsp</td></tr>
+<tr><th id="482">482</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="483">483</th><td>      try_lock_until(<em>const</em> chrono::time_point&lt;_Clock, _Duration&gt;&amp; __atime)&nbsp</td></tr>
+<tr><th id="484">484</th><td>      {&nbsp</td></tr>
+<tr><th id="485">485</th><td>	<em>auto</em> __id = this_thread::get_id();&nbsp</td></tr>
+<tr><th id="486">486</th><td>	_Can_lock __can_lock{<b>this</b>, __id};&nbsp</td></tr>
+<tr><th id="487">487</th><td>	unique_lock&lt;mutex&gt; __lk(_M_mut);&nbsp</td></tr>
+<tr><th id="488">488</th><td>	<b>if</b> (!_M_cv.wait_until(__lk, __atime, __can_lock))&nbsp</td></tr>
+<tr><th id="489">489</th><td>	  <b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="490">490</th><td>	<b>if</b> (_M_count == -<var>1u</var>)&nbsp</td></tr>
+<tr><th id="491">491</th><td>	  <b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="492">492</th><td>	_M_owner = __id;&nbsp</td></tr>
+<tr><th id="493">493</th><td>	++_M_count;&nbsp</td></tr>
+<tr><th id="494">494</th><td>	<b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="495">495</th><td>      }&nbsp</td></tr>
+<tr><th id="496">496</th><td>&nbsp</td></tr>
+<tr><th id="497">497</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="498">498</th><td>    unlock()&nbsp</td></tr>
+<tr><th id="499">499</th><td>    {&nbsp</td></tr>
+<tr><th id="500">500</th><td>      lock_guard&lt;mutex&gt; __lk(_M_mut);&nbsp</td></tr>
+<tr><th id="501">501</th><td>      __glibcxx_assert( _M_owner == this_thread::get_id() );&nbsp</td></tr>
+<tr><th id="502">502</th><td>      __glibcxx_assert( _M_count &gt; <var>0</var> );&nbsp</td></tr>
+<tr><th id="503">503</th><td>      <b>if</b> (--_M_count == <var>0</var>)&nbsp</td></tr>
+<tr><th id="504">504</th><td>	{&nbsp</td></tr>
+<tr><th id="505">505</th><td>	  _M_owner = {};&nbsp</td></tr>
+<tr><th id="506">506</th><td>	  _M_cv.notify_one();&nbsp</td></tr>
+<tr><th id="507">507</th><td>	}&nbsp</td></tr>
+<tr><th id="508">508</th><td>    }&nbsp</td></tr>
+<tr><th id="509">509</th><td>  };&nbsp</td></tr>
+<tr><th id="510">510</th><td>&nbsp</td></tr>
+<tr><th id="511">511</th><td><u>#<span data-ppcond="134">endif</span></u>&nbsp</td></tr>
+<tr><th id="512">512</th><td><u>#<span data-ppcond="64">endif</span> // _GLIBCXX_HAS_GTHREADS</u>&nbsp</td></tr>
+<tr><th id="513">513</th><td>&nbsp</td></tr>
+<tr><th id="514">514</th><td>  <i class="doc">/// <span class="command">@cond</span> <span class="verb">undocumented</span></i>&nbsp</td></tr>
+<tr><th id="515">515</th><td>  <b>template</b>&lt;<b>typename</b> _Lock&gt;&nbsp</td></tr>
+<tr><th id="516">516</th><td>    <b>inline</b> <a class="type" href="bits/unique_lock.h.html#std::unique_lock" title='std::unique_lock' data-ref="std::unique_lock">unique_lock</a>&lt;_Lock&gt;&nbsp</td></tr>
+<tr><th id="517">517</th><td>    <dfn class="decl def fn" id="_ZSt13__try_to_lockRT_" title='std::__try_to_lock' data-ref="_ZSt13__try_to_lockRT_">__try_to_lock</dfn>(_Lock&amp; <dfn class="local col1 decl" id="2831__l" title='__l' data-type='_Lock &amp;' data-ref="2831__l">__l</dfn>)&nbsp</td></tr>
+<tr><th id="518">518</th><td>    { <b>return</b> <a class="type" href="bits/unique_lock.h.html#std::unique_lock" title='std::unique_lock' data-ref="std::unique_lock">unique_lock</a>&lt;_Lock&gt;{<a class="local col1 ref" href="#2831__l" title='__l' data-ref="2831__l">__l</a>, <a class="ref" href="bits/std_mutex.h.html#std::try_to_lock" title='std::try_to_lock' data-ref="std::try_to_lock">try_to_lock</a>}; }&nbsp</td></tr>
+<tr><th id="519">519</th><td>&nbsp</td></tr>
+<tr><th id="520">520</th><td>  <b>template</b>&lt;<em>int</em> _Idx, <em>bool</em> _Continue = <b>true</b>&gt;&nbsp</td></tr>
+<tr><th id="521">521</th><td>    <b>struct</b> <dfn class="type def" id="std::__try_lock_impl" title='std::__try_lock_impl' data-ref="std::__try_lock_impl">__try_lock_impl</dfn>&nbsp</td></tr>
+<tr><th id="522">522</th><td>    {&nbsp</td></tr>
+<tr><th id="523">523</th><td>      <b>template</b>&lt;<b>typename</b>... _Lock&gt;&nbsp</td></tr>
+<tr><th id="524">524</th><td>	<em>static</em> <em>void</em>&nbsp</td></tr>
+<tr><th id="525">525</th><td>	<dfn class="decl def fn" id="_ZNSt15__try_lock_impl13__do_try_lockERSt5tupleIJDpRTL0__EERi" title='std::__try_lock_impl::__do_try_lock' data-ref="_ZNSt15__try_lock_impl13__do_try_lockERSt5tupleIJDpRTL0__EERi">__do_try_lock</dfn>(<a class="type" href="type_traits.html#std::tuple" title='std::tuple' data-ref="std::tuple">tuple</a>&lt;_Lock&amp;...&gt;&amp; <dfn class="local col2 decl" id="2832__locks" title='__locks' data-type='tuple&lt;_Lock &amp;...&gt; &amp;' data-ref="2832__locks">__locks</dfn>, <em>int</em>&amp; <dfn class="local col3 decl" id="2833__idx" title='__idx' data-type='int &amp;' data-ref="2833__idx">__idx</dfn>)&nbsp</td></tr>
+<tr><th id="526">526</th><td>	{&nbsp</td></tr>
+<tr><th id="527">527</th><td>          <a class="local col3 ref" href="#2833__idx" title='__idx' data-ref="2833__idx">__idx</a> = <a class="tu member" href="#std::__try_lock_impl::_Idx" title='std::__try_lock_impl::_Idx' data-use='r' data-ref="std::__try_lock_impl::_Idx">_Idx</a>;&nbsp</td></tr>
+<tr><th id="528">528</th><td>          <em>auto</em> <dfn class="local col4 decl" id="2834__lock" title='__lock' data-type='auto' data-ref="2834__lock">__lock</dfn> = <span class="namespace">std::</span>__try_to_lock(<span class="namespace">std::</span>get&lt;<a class="tu member" href="#std::__try_lock_impl::_Idx" title='std::__try_lock_impl::_Idx' data-use='c' data-ref="std::__try_lock_impl::_Idx">_Idx</a>&gt;(<a class="local col2 ref" href="#2832__locks" title='__locks' data-ref="2832__locks">__locks</a>));&nbsp</td></tr>
+<tr><th id="529">529</th><td>          <b>if</b> (<a class="local col4 ref" href="#2834__lock" title='__lock' data-ref="2834__lock">__lock</a>.owns_lock())&nbsp</td></tr>
+<tr><th id="530">530</th><td>            {&nbsp</td></tr>
+<tr><th id="531">531</th><td>	      <b>constexpr</b> <em>bool</em> <dfn class="local col5 decl" id="2835__cont" title='__cont' data-type='const bool' data-ref="2835__cont">__cont</dfn> = <a class="tu member" href="#std::__try_lock_impl::_Idx" title='std::__try_lock_impl::_Idx' data-use='r' data-ref="std::__try_lock_impl::_Idx">_Idx</a> + <var>2</var> &lt; <b>sizeof</b>...(_Lock);&nbsp</td></tr>
+<tr><th id="532">532</th><td>	      <b>using</b> <dfn class="local col6 typedef" id="2836__try_locker" title='__try_locker' data-type='__try_lock_impl&lt;_Idx + 1, __cont&gt;' data-ref="2836__try_locker">__try_locker</dfn> = <a class="type" href="#std::__try_lock_impl" title='std::__try_lock_impl' data-ref="std::__try_lock_impl">__try_lock_impl</a>&lt;<a class="tu member" href="#std::__try_lock_impl::_Idx" title='std::__try_lock_impl::_Idx' data-use='r' data-ref="std::__try_lock_impl::_Idx">_Idx</a> + <var>1</var>, <a class="local col5 ref" href="#2835__cont" title='__cont' data-ref="2835__cont">__cont</a>&gt;;&nbsp</td></tr>
+<tr><th id="533">533</th><td>	      <a class="local col6 typedef" href="#2836__try_locker" title='__try_locker' data-type='__try_lock_impl&lt;_Idx + 1, __cont&gt;' data-ref="2836__try_locker">__try_locker</a>::__do_try_lock(<a class="local col2 ref" href="#2832__locks" title='__locks' data-ref="2832__locks">__locks</a>, <a class="local col3 ref" href="#2833__idx" title='__idx' data-ref="2833__idx">__idx</a>);&nbsp</td></tr>
+<tr><th id="534">534</th><td>              <b>if</b> (<a class="local col3 ref" href="#2833__idx" title='__idx' data-ref="2833__idx">__idx</a> == -<var>1</var>)&nbsp</td></tr>
+<tr><th id="535">535</th><td>                <a class="local col4 ref" href="#2834__lock" title='__lock' data-ref="2834__lock">__lock</a>.release();&nbsp</td></tr>
+<tr><th id="536">536</th><td>            }&nbsp</td></tr>
+<tr><th id="537">537</th><td>	}&nbsp</td></tr>
+<tr><th id="538">538</th><td>    };&nbsp</td></tr>
+<tr><th id="539">539</th><td>&nbsp</td></tr>
+<tr><th id="540">540</th><td>  <b>template</b>&lt;<em>int</em> _Idx&gt;&nbsp</td></tr>
+<tr><th id="541">541</th><td>    <b>struct</b> <dfn class="type def" id="std::__try_lock_impl" title='std::__try_lock_impl' data-ref="std::__try_lock_impl">__try_lock_impl</dfn>&lt;<a class="tu ref" href="#std::__try_lock_impl{_Idx,false}::_Idx" title='std::__try_lock_impl&lt;_Idx, false&gt;::_Idx' data-ref="std::__try_lock_impl{_Idx,false}::_Idx">_Idx</a>, <b>false</b>&gt;&nbsp</td></tr>
+<tr><th id="542">542</th><td>    {&nbsp</td></tr>
+<tr><th id="543">543</th><td>      <b>template</b>&lt;<b>typename</b>... _Lock&gt;&nbsp</td></tr>
+<tr><th id="544">544</th><td>	<em>static</em> <em>void</em>&nbsp</td></tr>
+<tr><th id="545">545</th><td>	<dfn class="decl def fn" id="_ZNSt15__try_lock_implIXT_ELb0EE13__do_try_lockERSt5tupleIJDpRTL0__EERi" title='std::__try_lock_impl&lt;_Idx, false&gt;::__do_try_lock' data-ref="_ZNSt15__try_lock_implIXT_ELb0EE13__do_try_lockERSt5tupleIJDpRTL0__EERi">__do_try_lock</dfn>(<a class="type" href="type_traits.html#std::tuple" title='std::tuple' data-ref="std::tuple">tuple</a>&lt;_Lock&amp;...&gt;&amp; <dfn class="local col7 decl" id="2837__locks" title='__locks' data-type='tuple&lt;_Lock &amp;...&gt; &amp;' data-ref="2837__locks">__locks</dfn>, <em>int</em>&amp; <dfn class="local col8 decl" id="2838__idx" title='__idx' data-type='int &amp;' data-ref="2838__idx">__idx</dfn>)&nbsp</td></tr>
+<tr><th id="546">546</th><td>	{&nbsp</td></tr>
+<tr><th id="547">547</th><td>          <a class="local col8 ref" href="#2838__idx" title='__idx' data-ref="2838__idx">__idx</a> = <a class="tu member" href="#std::__try_lock_impl{_Idx,false}::_Idx" title='std::__try_lock_impl&lt;_Idx, false&gt;::_Idx' data-use='r' data-ref="std::__try_lock_impl{_Idx,false}::_Idx">_Idx</a>;&nbsp</td></tr>
+<tr><th id="548">548</th><td>          <em>auto</em> <dfn class="local col9 decl" id="2839__lock" title='__lock' data-type='auto' data-ref="2839__lock">__lock</dfn> = <span class="namespace">std::</span>__try_to_lock(<span class="namespace">std::</span>get&lt;<a class="tu member" href="#std::__try_lock_impl{_Idx,false}::_Idx" title='std::__try_lock_impl&lt;_Idx, false&gt;::_Idx' data-use='c' data-ref="std::__try_lock_impl{_Idx,false}::_Idx">_Idx</a>&gt;(<a class="local col7 ref" href="#2837__locks" title='__locks' data-ref="2837__locks">__locks</a>));&nbsp</td></tr>
+<tr><th id="549">549</th><td>          <b>if</b> (<a class="local col9 ref" href="#2839__lock" title='__lock' data-ref="2839__lock">__lock</a>.owns_lock())&nbsp</td></tr>
+<tr><th id="550">550</th><td>            {&nbsp</td></tr>
+<tr><th id="551">551</th><td>              <a class="local col8 ref" href="#2838__idx" title='__idx' data-ref="2838__idx">__idx</a> = -<var>1</var>;&nbsp</td></tr>
+<tr><th id="552">552</th><td>              <a class="local col9 ref" href="#2839__lock" title='__lock' data-ref="2839__lock">__lock</a>.release();&nbsp</td></tr>
+<tr><th id="553">553</th><td>            }&nbsp</td></tr>
+<tr><th id="554">554</th><td>	}&nbsp</td></tr>
+<tr><th id="555">555</th><td>    };&nbsp</td></tr>
+<tr><th id="556">556</th><td>  <i class="doc">/// <span class="command">@endcond</span></i>&nbsp</td></tr>
+<tr><th id="557">557</th><td>&nbsp</td></tr>
+<tr><th id="558">558</th><td>  <i class="doc">/** <span class="command">@brief</span> Generic try_lock.</i>&nbsp</td></tr>
+<tr><th id="559">559</th><td><i class="doc">   *  <span class="command">@param</span> <span class="arg">__l1</span> Meets Lockable requirements (try_lock() may throw).</i>&nbsp</td></tr>
+<tr><th id="560">560</th><td><i class="doc">   *  <span class="command">@param</span> <span class="arg">__l2</span> Meets Lockable requirements (try_lock() may throw).</i>&nbsp</td></tr>
+<tr><th id="561">561</th><td><i class="doc">   *  <span class="command">@param</span> <span class="arg">__l3</span> Meets Lockable requirements (try_lock() may throw).</i>&nbsp</td></tr>
+<tr><th id="562">562</th><td><i class="doc">   *  <span class="command">@return</span> Returns -1 if all try_lock() calls return true. Otherwise returns</i>&nbsp</td></tr>
+<tr><th id="563">563</th><td><i class="doc">   *          a 0-based index corresponding to the argument that returned false.</i>&nbsp</td></tr>
+<tr><th id="564">564</th><td><i class="doc">   *  <span class="command">@post</span> Either all arguments are locked, or none will be.</i>&nbsp</td></tr>
+<tr><th id="565">565</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="566">566</th><td><i class="doc">   *  Sequentially calls try_lock() on each argument.</i>&nbsp</td></tr>
+<tr><th id="567">567</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="568">568</th><td>  <b>template</b>&lt;<b>typename</b> _Lock1, <b>typename</b> _Lock2, <b>typename</b>... _Lock3&gt;&nbsp</td></tr>
+<tr><th id="569">569</th><td>    <em>int</em>&nbsp</td></tr>
+<tr><th id="570">570</th><td>    <dfn class="decl def fn" id="_ZSt8try_lockRT_RT0_DpRT1_" title='std::try_lock' data-ref="_ZSt8try_lockRT_RT0_DpRT1_">try_lock</dfn>(_Lock1&amp; <dfn class="local col0 decl" id="2840__l1" title='__l1' data-type='_Lock1 &amp;' data-ref="2840__l1">__l1</dfn>, _Lock2&amp; <dfn class="local col1 decl" id="2841__l2" title='__l2' data-type='_Lock2 &amp;' data-ref="2841__l2">__l2</dfn>, _Lock3&amp;... <dfn class="local col2 decl" id="2842__l3" title='__l3' data-type='_Lock3 &amp;...' data-ref="2842__l3">__l3</dfn>)&nbsp</td></tr>
+<tr><th id="571">571</th><td>    {&nbsp</td></tr>
+<tr><th id="572">572</th><td>      <em>int</em> <dfn class="local col3 decl" id="2843__idx" title='__idx' data-type='int' data-ref="2843__idx">__idx</dfn>;&nbsp</td></tr>
+<tr><th id="573">573</th><td>      <em>auto</em> <dfn class="local col4 decl" id="2844__locks" title='__locks' data-type='auto' data-ref="2844__locks">__locks</dfn> = <span class="namespace">std::</span>tie(<a class="local col0 ref" href="#2840__l1" title='__l1' data-ref="2840__l1">__l1</a>, <a class="local col1 ref" href="#2841__l2" title='__l2' data-ref="2841__l2">__l2</a>, <a class="local col2 ref" href="#2842__l3" title='__l3' data-ref="2842__l3">__l3</a>...);&nbsp</td></tr>
+<tr><th id="574">574</th><td>      <a class="type" href="#std::__try_lock_impl" title='std::__try_lock_impl' data-ref="std::__try_lock_impl">__try_lock_impl</a>&lt;<var>0</var>&gt;::__do_try_lock(<a class="local col4 ref" href="#2844__locks" title='__locks' data-ref="2844__locks">__locks</a>, <a class="local col3 ref" href="#2843__idx" title='__idx' data-ref="2843__idx">__idx</a>);&nbsp</td></tr>
+<tr><th id="575">575</th><td>      <b>return</b> <a class="local col3 ref" href="#2843__idx" title='__idx' data-ref="2843__idx">__idx</a>;&nbsp</td></tr>
+<tr><th id="576">576</th><td>    }&nbsp</td></tr>
+<tr><th id="577">577</th><td>&nbsp</td></tr>
+<tr><th id="578">578</th><td>  <i class="doc">/** <span class="command">@brief</span> Generic lock.</i>&nbsp</td></tr>
+<tr><th id="579">579</th><td><i class="doc">   *  <span class="command">@param</span> <span class="arg">__l1</span> Meets Lockable requirements (try_lock() may throw).</i>&nbsp</td></tr>
+<tr><th id="580">580</th><td><i class="doc">   *  <span class="command">@param</span> <span class="arg">__l2</span> Meets Lockable requirements (try_lock() may throw).</i>&nbsp</td></tr>
+<tr><th id="581">581</th><td><i class="doc">   *  <span class="command">@param</span> <span class="arg">__l3</span> Meets Lockable requirements (try_lock() may throw).</i>&nbsp</td></tr>
+<tr><th id="582">582</th><td><i class="doc">   *  <span class="command">@throw</span> An exception thrown by an argument's lock() or try_lock() member.</i>&nbsp</td></tr>
+<tr><th id="583">583</th><td><i class="doc">   *  <span class="command">@post</span> All arguments are locked.</i>&nbsp</td></tr>
+<tr><th id="584">584</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="585">585</th><td><i class="doc">   *  All arguments are locked via a sequence of calls to lock(), try_lock()</i>&nbsp</td></tr>
+<tr><th id="586">586</th><td><i class="doc">   *  and unlock().  If the call exits via an exception any locks that were</i>&nbsp</td></tr>
+<tr><th id="587">587</th><td><i class="doc">   *  obtained will be released.</i>&nbsp</td></tr>
+<tr><th id="588">588</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="589">589</th><td>  <b>template</b>&lt;<b>typename</b> _L1, <b>typename</b> _L2, <b>typename</b>... _L3&gt;&nbsp</td></tr>
+<tr><th id="590">590</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="591">591</th><td>    <dfn class="decl def fn" id="_ZSt4lockRT_RT0_DpRT1_" title='std::lock' data-ref="_ZSt4lockRT_RT0_DpRT1_">lock</dfn>(_L1&amp; <dfn class="local col5 decl" id="2845__l1" title='__l1' data-type='_L1 &amp;' data-ref="2845__l1">__l1</dfn>, _L2&amp; <dfn class="local col6 decl" id="2846__l2" title='__l2' data-type='_L2 &amp;' data-ref="2846__l2">__l2</dfn>, _L3&amp;... <dfn class="local col7 decl" id="2847__l3" title='__l3' data-type='_L3 &amp;...' data-ref="2847__l3">__l3</dfn>)&nbsp</td></tr>
+<tr><th id="592">592</th><td>    {&nbsp</td></tr>
+<tr><th id="593">593</th><td>      <b>while</b> (<b>true</b>)&nbsp</td></tr>
+<tr><th id="594">594</th><td>        {&nbsp</td></tr>
+<tr><th id="595">595</th><td>          <b>using</b> <dfn class="local col8 typedef" id="2848__try_locker" title='__try_locker' data-type='__try_lock_impl&lt;0, sizeof...(_L3) != 0&gt;' data-ref="2848__try_locker">__try_locker</dfn> = <a class="type" href="#std::__try_lock_impl" title='std::__try_lock_impl' data-ref="std::__try_lock_impl">__try_lock_impl</a>&lt;<var>0</var>, <b>sizeof</b>...(_L3) != <var>0</var>&gt;;&nbsp</td></tr>
+<tr><th id="596">596</th><td>          <a class="type" href="bits/unique_lock.h.html#std::unique_lock" title='std::unique_lock' data-ref="std::unique_lock">unique_lock</a>&lt;_L1&gt; <dfn class="local col9 decl" id="2849__first" title='__first' data-type='unique_lock&lt;_L1&gt;' data-ref="2849__first">__first</dfn>(<a class="local col5 ref" href="#2845__l1" title='__l1' data-ref="2845__l1">__l1</a>);&nbsp</td></tr>
+<tr><th id="597">597</th><td>          <em>int</em> <dfn class="local col0 decl" id="2850__idx" title='__idx' data-type='int' data-ref="2850__idx">__idx</dfn>;&nbsp</td></tr>
+<tr><th id="598">598</th><td>          <em>auto</em> <dfn class="local col1 decl" id="2851__locks" title='__locks' data-type='auto' data-ref="2851__locks">__locks</dfn> = <span class="namespace">std::</span>tie(<a class="local col6 ref" href="#2846__l2" title='__l2' data-ref="2846__l2">__l2</a>, <a class="local col7 ref" href="#2847__l3" title='__l3' data-ref="2847__l3">__l3</a>...);&nbsp</td></tr>
+<tr><th id="599">599</th><td>          <a class="local col8 typedef" href="#2848__try_locker" title='__try_locker' data-type='__try_lock_impl&lt;0, sizeof...(_L3) != 0&gt;' data-ref="2848__try_locker">__try_locker</a>::__do_try_lock(<a class="local col1 ref" href="#2851__locks" title='__locks' data-ref="2851__locks">__locks</a>, <a class="local col0 ref" href="#2850__idx" title='__idx' data-ref="2850__idx">__idx</a>);&nbsp</td></tr>
+<tr><th id="600">600</th><td>          <b>if</b> (<a class="local col0 ref" href="#2850__idx" title='__idx' data-ref="2850__idx">__idx</a> == -<var>1</var>)&nbsp</td></tr>
+<tr><th id="601">601</th><td>            {&nbsp</td></tr>
+<tr><th id="602">602</th><td>              <a class="local col9 ref" href="#2849__first" title='__first' data-ref="2849__first">__first</a>.release();&nbsp</td></tr>
+<tr><th id="603">603</th><td>              <b>return</b>;&nbsp</td></tr>
+<tr><th id="604">604</th><td>            }&nbsp</td></tr>
+<tr><th id="605">605</th><td>        }&nbsp</td></tr>
+<tr><th id="606">606</th><td>    }&nbsp</td></tr>
+<tr><th id="607">607</th><td>&nbsp</td></tr>
+<tr><th id="608">608</th><td><u>#<span data-ppcond="608">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="609">609</th><td><u>#define <dfn class="macro" id="_M/__cpp_lib_scoped_lock" data-ref="_M/__cpp_lib_scoped_lock">__cpp_lib_scoped_lock</dfn> 201703</u>&nbsp</td></tr>
+<tr><th id="610">610</th><td>  <i class="doc">/** <span class="command">@brief</span> A scoped lock type for multiple lockable objects.</i>&nbsp</td></tr>
+<tr><th id="611">611</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="612">612</th><td><i class="doc">   * A scoped_lock controls mutex ownership within a scope, releasing</i>&nbsp</td></tr>
+<tr><th id="613">613</th><td><i class="doc">   * ownership in the destructor.</i>&nbsp</td></tr>
+<tr><th id="614">614</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="615">615</th><td>  <b>template</b>&lt;<b>typename</b>... _MutexTypes&gt;&nbsp</td></tr>
+<tr><th id="616">616</th><td>    <b>class</b> <dfn class="type def" id="std::scoped_lock" title='std::scoped_lock' data-ref="std::scoped_lock">scoped_lock</dfn>&nbsp</td></tr>
+<tr><th id="617">617</th><td>    {&nbsp</td></tr>
+<tr><th id="618">618</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="619">619</th><td>      <b>explicit</b> <dfn class="decl def fn" id="_ZNSt11scoped_lockC1EDpRT_" title='std::scoped_lock::scoped_lock&lt;_MutexTypes...&gt;' data-ref="_ZNSt11scoped_lockC1EDpRT_">scoped_lock</dfn>(_MutexTypes&amp;... <dfn class="local col2 decl" id="2852__m" title='__m' data-type='_MutexTypes &amp;...' data-ref="2852__m">__m</dfn>) : <a class="member field" href="#std::scoped_lock::_M_devices" title='std::scoped_lock::_M_devices' data-ref="std::scoped_lock::_M_devices">_M_devices</a>(<span class="namespace">std::</span>tie(<a class="local col2 ref" href="#2852__m" title='__m' data-ref="2852__m">__m</a>...))&nbsp</td></tr>
+<tr><th id="620">620</th><td>      { <span class="namespace">std::</span>lock(<a class="local col2 ref" href="#2852__m" title='__m' data-ref="2852__m">__m</a>...); }&nbsp</td></tr>
+<tr><th id="621">621</th><td>&nbsp</td></tr>
+<tr><th id="622">622</th><td>      <b>explicit</b> <dfn class="decl def fn" id="_ZNSt11scoped_lockC1ESt12adopt_lock_tDpRT_" title='std::scoped_lock::scoped_lock&lt;_MutexTypes...&gt;' data-ref="_ZNSt11scoped_lockC1ESt12adopt_lock_tDpRT_">scoped_lock</dfn>(<a class="type" href="bits/std_mutex.h.html#std::adopt_lock_t" title='std::adopt_lock_t' data-ref="std::adopt_lock_t">adopt_lock_t</a>, _MutexTypes&amp;... <dfn class="local col3 decl" id="2853__m" title='__m' data-type='_MutexTypes &amp;...' data-ref="2853__m">__m</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="623">623</th><td>      : <a class="member field" href="#std::scoped_lock::_M_devices" title='std::scoped_lock::_M_devices' data-ref="std::scoped_lock::_M_devices">_M_devices</a>(<span class="namespace">std::</span>tie(<a class="local col3 ref" href="#2853__m" title='__m' data-ref="2853__m">__m</a>...))&nbsp</td></tr>
+<tr><th id="624">624</th><td>      { } <i>// calling thread owns mutex</i>&nbsp</td></tr>
+<tr><th id="625">625</th><td>&nbsp</td></tr>
+<tr><th id="626">626</th><td>      <dfn class="decl def fn" id="_ZNSt11scoped_lockD1Ev" title='std::scoped_lock::~scoped_lock&lt;_MutexTypes...&gt;' data-ref="_ZNSt11scoped_lockD1Ev">~scoped_lock</dfn>()&nbsp</td></tr>
+<tr><th id="627">627</th><td>      { <span class="namespace">std::</span>apply([](<em>auto</em>&amp;... <dfn class="local col4 decl" id="2854__m" title='__m' data-type='auto &amp;...' data-ref="2854__m">__m</dfn>) { (<a class="local col4 ref" href="#2854__m" title='__m' data-ref="2854__m">__m</a>.unlock(), ...); }, <a class="member field" href="#std::scoped_lock::_M_devices" title='std::scoped_lock::_M_devices' data-ref="std::scoped_lock::_M_devices">_M_devices</a>); }&nbsp</td></tr>
+<tr><th id="628">628</th><td>&nbsp</td></tr>
+<tr><th id="629">629</th><td>      <dfn class="decl def fn" id="_ZNSt11scoped_lockC1ERKSt11scoped_lockIJDpT_EE" title='std::scoped_lock::scoped_lock&lt;_MutexTypes...&gt;' data-ref="_ZNSt11scoped_lockC1ERKSt11scoped_lockIJDpT_EE">scoped_lock</dfn>(<em>const</em> scoped_lock&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="630">630</th><td>      scoped_lock&amp; <dfn class="decl def fn" id="_ZNSt11scoped_lockaSERKSt11scoped_lockIJDpT_EE" title='std::scoped_lock::operator=' data-ref="_ZNSt11scoped_lockaSERKSt11scoped_lockIJDpT_EE"><b>operator</b>=</dfn>(<em>const</em> scoped_lock&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="631">631</th><td>&nbsp</td></tr>
+<tr><th id="632">632</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="633">633</th><td>      <a class="type" href="type_traits.html#std::tuple" title='std::tuple' data-ref="std::tuple">tuple</a>&lt;_MutexTypes&amp;...&gt; <dfn class="decl field" id="std::scoped_lock::_M_devices" title='std::scoped_lock::_M_devices' data-ref="std::scoped_lock::_M_devices">_M_devices</dfn>;&nbsp</td></tr>
+<tr><th id="634">634</th><td>    };&nbsp</td></tr>
+<tr><th id="635">635</th><td>&nbsp</td></tr>
+<tr><th id="636">636</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="637">637</th><td>    <b>class</b> <dfn class="type def" id="std::scoped_lock" title='std::scoped_lock' data-ref="std::scoped_lock"><a class="type" href="#std::scoped_lock" title='std::scoped_lock' data-ref="std::scoped_lock">scoped_lock</a></dfn>&lt;&gt;&nbsp</td></tr>
+<tr><th id="638">638</th><td>    {&nbsp</td></tr>
+<tr><th id="639">639</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="640">640</th><td>      <b>explicit</b> <dfn class="decl def fn" id="_ZNSt11scoped_lockIJEEC1Ev" title='std::scoped_lock&lt;&gt;::scoped_lock' data-ref="_ZNSt11scoped_lockIJEEC1Ev">scoped_lock</dfn>() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="641">641</th><td>      <b>explicit</b> <dfn class="decl def fn" id="_ZNSt11scoped_lockIJEEC1ESt12adopt_lock_t" title='std::scoped_lock&lt;&gt;::scoped_lock' data-ref="_ZNSt11scoped_lockIJEEC1ESt12adopt_lock_t">scoped_lock</dfn>(<a class="type" href="bits/std_mutex.h.html#std::adopt_lock_t" title='std::adopt_lock_t' data-ref="std::adopt_lock_t">adopt_lock_t</a>) <b>noexcept</b> { }&nbsp</td></tr>
+<tr><th id="642">642</th><td>      <dfn class="decl def fn" id="_ZNSt11scoped_lockIJEED1Ev" title='std::scoped_lock&lt;&gt;::~scoped_lock' data-ref="_ZNSt11scoped_lockIJEED1Ev">~scoped_lock</dfn>() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="643">643</th><td>&nbsp</td></tr>
+<tr><th id="644">644</th><td>      <dfn class="decl def fn" id="_ZNSt11scoped_lockIJEEC1ERKS0_" title='std::scoped_lock&lt;&gt;::scoped_lock' data-ref="_ZNSt11scoped_lockIJEEC1ERKS0_">scoped_lock</dfn>(<em>const</em> <a class="type" href="#std::scoped_lock" title='std::scoped_lock' data-ref="std::scoped_lock">scoped_lock</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="645">645</th><td>      <a class="type" href="#std::scoped_lock" title='std::scoped_lock' data-ref="std::scoped_lock">scoped_lock</a>&amp; <dfn class="decl def fn" id="_ZNSt11scoped_lockIJEEaSERKS0_" title='std::scoped_lock&lt;&gt;::operator=' data-ref="_ZNSt11scoped_lockIJEEaSERKS0_"><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="#std::scoped_lock" title='std::scoped_lock' data-ref="std::scoped_lock">scoped_lock</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="646">646</th><td>    };&nbsp</td></tr>
+<tr><th id="647">647</th><td>&nbsp</td></tr>
+<tr><th id="648">648</th><td>  <b>template</b>&lt;<b>typename</b> _Mutex&gt;&nbsp</td></tr>
+<tr><th id="649">649</th><td>    <b>class</b> <dfn class="type def" id="std::scoped_lock" title='std::scoped_lock' data-ref="std::scoped_lock">scoped_lock</dfn>&lt;_Mutex&gt;&nbsp</td></tr>
+<tr><th id="650">650</th><td>    {&nbsp</td></tr>
+<tr><th id="651">651</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="652">652</th><td>      <b>using</b> <dfn class="typedef" id="std::scoped_lock{type-parameter-0-0}::mutex_type" title='std::scoped_lock&lt;type-parameter-0-0&gt;::mutex_type' data-type='_Mutex' data-ref="std::scoped_lock{type-parameter-0-0}::mutex_type">mutex_type</dfn> = _Mutex;&nbsp</td></tr>
+<tr><th id="653">653</th><td>&nbsp</td></tr>
+<tr><th id="654">654</th><td>      <b>explicit</b> <dfn class="decl def fn" id="_ZNSt11scoped_lockIJT_EEC1ERS0_" title='std::scoped_lock&lt;type-parameter-0-0&gt;::scoped_lock&lt;type-parameter-0-0&gt;' data-ref="_ZNSt11scoped_lockIJT_EEC1ERS0_">scoped_lock</dfn>(<a class="typedef" href="#std::scoped_lock{type-parameter-0-0}::mutex_type" title='std::scoped_lock&lt;type-parameter-0-0&gt;::mutex_type' data-type='_Mutex' data-ref="std::scoped_lock{type-parameter-0-0}::mutex_type">mutex_type</a>&amp; <dfn class="local col5 decl" id="2855__m" title='__m' data-type='std::scoped_lock&lt;type-parameter-0-0&gt;::mutex_type &amp;' data-ref="2855__m">__m</dfn>) : <a class="member field" href="#std::scoped_lock::_M_device" title='std::scoped_lock&lt;type-parameter-0-0&gt;::_M_device' data-ref="std::scoped_lock::_M_device">_M_device</a>(<a class="local col5 ref" href="#2855__m" title='__m' data-ref="2855__m">__m</a>)&nbsp</td></tr>
+<tr><th id="655">655</th><td>      { <a class="member field" href="#std::scoped_lock::_M_device" title='std::scoped_lock&lt;type-parameter-0-0&gt;::_M_device' data-ref="std::scoped_lock::_M_device">_M_device</a>.lock(); }&nbsp</td></tr>
+<tr><th id="656">656</th><td>&nbsp</td></tr>
+<tr><th id="657">657</th><td>      <b>explicit</b> <dfn class="decl def fn" id="_ZNSt11scoped_lockIJT_EEC1ESt12adopt_lock_tRS0_" title='std::scoped_lock&lt;type-parameter-0-0&gt;::scoped_lock&lt;type-parameter-0-0&gt;' data-ref="_ZNSt11scoped_lockIJT_EEC1ESt12adopt_lock_tRS0_">scoped_lock</dfn>(<a class="type" href="bits/std_mutex.h.html#std::adopt_lock_t" title='std::adopt_lock_t' data-ref="std::adopt_lock_t">adopt_lock_t</a>, <a class="typedef" href="#std::scoped_lock{type-parameter-0-0}::mutex_type" title='std::scoped_lock&lt;type-parameter-0-0&gt;::mutex_type' data-type='_Mutex' data-ref="std::scoped_lock{type-parameter-0-0}::mutex_type">mutex_type</a>&amp; <dfn class="local col6 decl" id="2856__m" title='__m' data-type='std::scoped_lock&lt;type-parameter-0-0&gt;::mutex_type &amp;' data-ref="2856__m">__m</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="658">658</th><td>      : <a class="member field" href="#std::scoped_lock::_M_device" title='std::scoped_lock&lt;type-parameter-0-0&gt;::_M_device' data-ref="std::scoped_lock::_M_device">_M_device</a>(<a class="local col6 ref" href="#2856__m" title='__m' data-ref="2856__m">__m</a>)&nbsp</td></tr>
+<tr><th id="659">659</th><td>      { } <i>// calling thread owns mutex</i>&nbsp</td></tr>
+<tr><th id="660">660</th><td>&nbsp</td></tr>
+<tr><th id="661">661</th><td>      <dfn class="decl def fn" id="_ZNSt11scoped_lockIJT_EED1Ev" title='std::scoped_lock&lt;type-parameter-0-0&gt;::~scoped_lock&lt;type-parameter-0-0&gt;' data-ref="_ZNSt11scoped_lockIJT_EED1Ev">~scoped_lock</dfn>()&nbsp</td></tr>
+<tr><th id="662">662</th><td>      { <a class="member field" href="#std::scoped_lock::_M_device" title='std::scoped_lock&lt;type-parameter-0-0&gt;::_M_device' data-ref="std::scoped_lock::_M_device">_M_device</a>.unlock(); }&nbsp</td></tr>
+<tr><th id="663">663</th><td>&nbsp</td></tr>
+<tr><th id="664">664</th><td>      <dfn class="decl def fn" id="_ZNSt11scoped_lockIJT_EEC1ERKS_IJS0_EE" title='std::scoped_lock&lt;type-parameter-0-0&gt;::scoped_lock&lt;type-parameter-0-0&gt;' data-ref="_ZNSt11scoped_lockIJT_EEC1ERKS_IJS0_EE">scoped_lock</dfn>(<em>const</em> scoped_lock&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="665">665</th><td>      scoped_lock&amp; <dfn class="decl def fn" id="_ZNSt11scoped_lockIJT_EEaSERKS_IJS0_EE" title='std::scoped_lock&lt;type-parameter-0-0&gt;::operator=' data-ref="_ZNSt11scoped_lockIJT_EEaSERKS_IJS0_EE"><b>operator</b>=</dfn>(<em>const</em> scoped_lock&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="666">666</th><td>&nbsp</td></tr>
+<tr><th id="667">667</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="668">668</th><td>      <a class="typedef" href="#std::scoped_lock{type-parameter-0-0}::mutex_type" title='std::scoped_lock&lt;type-parameter-0-0&gt;::mutex_type' data-type='_Mutex' data-ref="std::scoped_lock{type-parameter-0-0}::mutex_type">mutex_type</a>&amp;  <dfn class="decl field" id="std::scoped_lock::_M_device" title='std::scoped_lock&lt;type-parameter-0-0&gt;::_M_device' data-ref="std::scoped_lock::_M_device">_M_device</dfn>;&nbsp</td></tr>
+<tr><th id="669">669</th><td>    };&nbsp</td></tr>
+<tr><th id="670">670</th><td><u>#<span data-ppcond="608">endif</span> // C++17</u>&nbsp</td></tr>
+<tr><th id="671">671</th><td>&nbsp</td></tr>
+<tr><th id="672">672</th><td><u>#<span data-ppcond="672">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1605" data-ref="_M/_GLIBCXX_HAS_GTHREADS">_GLIBCXX_HAS_GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="673">673</th><td>  <i class="doc">/// Flag type used by std::call_once</i>&nbsp</td></tr>
+<tr><th id="674">674</th><td>  <b>struct</b> <dfn class="type def" id="std::once_flag" title='std::once_flag' data-ref="std::once_flag">once_flag</dfn>&nbsp</td></tr>
+<tr><th id="675">675</th><td>  {&nbsp</td></tr>
+<tr><th id="676">676</th><td>    <b>constexpr</b> <dfn class="decl def fn" id="_ZNSt9once_flagC1Ev" title='std::once_flag::once_flag' data-ref="_ZNSt9once_flagC1Ev">once_flag</dfn>() <b>noexcept</b> = <b>default</b>;&nbsp</td></tr>
+<tr><th id="677">677</th><td>&nbsp</td></tr>
+<tr><th id="678">678</th><td>    <i class="doc">/// Deleted copy constructor</i>&nbsp</td></tr>
+<tr><th id="679">679</th><td>    <dfn class="decl def fn" id="_ZNSt9once_flagC1ERKS_" title='std::once_flag::once_flag' data-ref="_ZNSt9once_flagC1ERKS_">once_flag</dfn>(<em>const</em> <a class="type" href="#std::once_flag" title='std::once_flag' data-ref="std::once_flag">once_flag</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="680">680</th><td>    <i class="doc">/// Deleted assignment operator</i>&nbsp</td></tr>
+<tr><th id="681">681</th><td>    <a class="type" href="#std::once_flag" title='std::once_flag' data-ref="std::once_flag">once_flag</a>&amp; <dfn class="decl def fn" id="_ZNSt9once_flagaSERKS_" title='std::once_flag::operator=' data-ref="_ZNSt9once_flagaSERKS_"><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="#std::once_flag" title='std::once_flag' data-ref="std::once_flag">once_flag</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="682">682</th><td>&nbsp</td></tr>
+<tr><th id="683">683</th><td>  <b>private</b>:&nbsp</td></tr>
+<tr><th id="684">684</th><td>    <i>// For gthreads targets a pthread_once_t is used with pthread_once, but</i>&nbsp</td></tr>
+<tr><th id="685">685</th><td><i>    // for most targets this doesn't work correctly for exceptional executions.</i>&nbsp</td></tr>
+<tr><th id="686">686</th><td>    <a class="typedef" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_once_t" title='__gthread_once_t' data-type='pthread_once_t' data-ref="__gthread_once_t">__gthread_once_t</a> <dfn class="decl field" id="std::once_flag::_M_once" title='std::once_flag::_M_once' data-ref="std::once_flag::_M_once">_M_once</dfn> = <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#61" title="0" data-ref="_M/__GTHREAD_ONCE_INIT">__GTHREAD_ONCE_INIT</a>;&nbsp</td></tr>
+<tr><th id="687">687</th><td>&nbsp</td></tr>
+<tr><th id="688">688</th><td>    <b>struct</b> <a class="type" href="#std::once_flag::_Prepare_execution" title='std::once_flag::_Prepare_execution' data-ref="std::once_flag::_Prepare_execution">_Prepare_execution</a>;&nbsp</td></tr>
+<tr><th id="689">689</th><td>&nbsp</td></tr>
+<tr><th id="690">690</th><td>    <b>template</b>&lt;<b>typename</b> _Callable, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="691">691</th><td>      <b>friend</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="692">692</th><td>      <a class="decl fn" href="#_ZSt9call_onceRSt9once_flagOT_DpOT0_" title='std::call_once' data-ref="_ZSt9call_onceRSt9once_flagOT_DpOT0_">call_once</a>(<a class="type" href="#std::once_flag" title='std::once_flag' data-ref="std::once_flag">once_flag</a>&amp; <dfn class="local col7 decl" id="2857__once" title='__once' data-type='std::once_flag &amp;' data-ref="2857__once">__once</dfn>, _Callable&amp;&amp; <dfn class="local col8 decl" id="2858__f" title='__f' data-type='_Callable &amp;&amp;' data-ref="2858__f">__f</dfn>, _Args&amp;&amp;... <dfn class="local col9 decl" id="2859__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="2859__args">__args</dfn>);&nbsp</td></tr>
+<tr><th id="693">693</th><td>  };&nbsp</td></tr>
+<tr><th id="694">694</th><td>&nbsp</td></tr>
+<tr><th id="695">695</th><td>  <i class="doc">/// <span class="command">@cond</span> <span class="verb">undocumented</span></i>&nbsp</td></tr>
+<tr><th id="696">696</th><td><u># <span data-ppcond="696">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1250" data-ref="_M/_GLIBCXX_HAVE_TLS">_GLIBCXX_HAVE_TLS</a></u>&nbsp</td></tr>
+<tr><th id="697">697</th><td>  <i>// If TLS is available use thread-local state for the type-erased callable</i>&nbsp</td></tr>
+<tr><th id="698">698</th><td><i>  // that is being run by std::call_once in the current thread.</i>&nbsp</td></tr>
+<tr><th id="699">699</th><td>  <b>extern</b> <b>__thread</b> <em>void</em>* <dfn class="decl" id="std::__once_callable" title='std::__once_callable' data-ref="std::__once_callable">__once_callable</dfn>;&nbsp</td></tr>
+<tr><th id="700">700</th><td>  <b>extern</b> <b>__thread</b> <em>void</em> (*<dfn class="decl" id="std::__once_call" title='std::__once_call' data-ref="std::__once_call">__once_call</dfn>)();&nbsp</td></tr>
+<tr><th id="701">701</th><td>&nbsp</td></tr>
+<tr><th id="702">702</th><td>  <i>// RAII type to set up state for pthread_once call.</i>&nbsp</td></tr>
+<tr><th id="703">703</th><td>  <b>struct</b> <a class="type" href="#std::once_flag" title='std::once_flag' data-ref="std::once_flag">once_flag</a>::<dfn class="type def" id="std::once_flag::_Prepare_execution" title='std::once_flag::_Prepare_execution' data-ref="std::once_flag::_Prepare_execution">_Prepare_execution</dfn>&nbsp</td></tr>
+<tr><th id="704">704</th><td>  {&nbsp</td></tr>
+<tr><th id="705">705</th><td>    <b>template</b>&lt;<b>typename</b> _Callable&gt;&nbsp</td></tr>
+<tr><th id="706">706</th><td>      <b>explicit</b>&nbsp</td></tr>
+<tr><th id="707">707</th><td>      <dfn class="decl def fn" id="_ZNSt9once_flag18_Prepare_executionC1ERT_" title='std::once_flag::_Prepare_execution::_Prepare_execution' data-ref="_ZNSt9once_flag18_Prepare_executionC1ERT_">_Prepare_execution</dfn>(_Callable&amp; <dfn class="local col0 decl" id="2860__c" title='__c' data-type='_Callable &amp;' data-ref="2860__c">__c</dfn>)&nbsp</td></tr>
+<tr><th id="708">708</th><td>      {&nbsp</td></tr>
+<tr><th id="709">709</th><td>	<i>// Store address in thread-local pointer:</i>&nbsp</td></tr>
+<tr><th id="710">710</th><td>	<a class="ref" href="#std::__once_callable" title='std::__once_callable' data-ref="std::__once_callable">__once_callable</a> = <span class="namespace">std::</span>__addressof(<a class="local col0 ref" href="#2860__c" title='__c' data-ref="2860__c">__c</a>);&nbsp</td></tr>
+<tr><th id="711">711</th><td>	<i>// Trampoline function to invoke the closure via thread-local pointer:</i>&nbsp</td></tr>
+<tr><th id="712">712</th><td>	<a class="ref" href="#std::__once_call" title='std::__once_call' data-ref="std::__once_call">__once_call</a> = [] { (*<b>static_cast</b>&lt;_Callable*&gt;(<a class="ref" href="#std::__once_callable" title='std::__once_callable' data-ref="std::__once_callable">__once_callable</a>))(); };&nbsp</td></tr>
+<tr><th id="713">713</th><td>      }&nbsp</td></tr>
+<tr><th id="714">714</th><td>&nbsp</td></tr>
+<tr><th id="715">715</th><td>    <dfn class="decl def fn" id="_ZNSt9once_flag18_Prepare_executionD1Ev" title='std::once_flag::_Prepare_execution::~_Prepare_execution' data-ref="_ZNSt9once_flag18_Prepare_executionD1Ev">~_Prepare_execution</dfn>()&nbsp</td></tr>
+<tr><th id="716">716</th><td>    {&nbsp</td></tr>
+<tr><th id="717">717</th><td>      <i>// PR libstdc++/82481</i>&nbsp</td></tr>
+<tr><th id="718">718</th><td>      <a class="ref" href="#std::__once_callable" title='std::__once_callable' data-ref="std::__once_callable">__once_callable</a> = <b>nullptr</b>;&nbsp</td></tr>
+<tr><th id="719">719</th><td>      <a class="ref" href="#std::__once_call" title='std::__once_call' data-ref="std::__once_call">__once_call</a> = <b>nullptr</b>;&nbsp</td></tr>
+<tr><th id="720">720</th><td>    }&nbsp</td></tr>
+<tr><th id="721">721</th><td>&nbsp</td></tr>
+<tr><th id="722">722</th><td>    <dfn class="decl def fn" id="_ZNSt9once_flag18_Prepare_executionC1ERKS0_" title='std::once_flag::_Prepare_execution::_Prepare_execution' data-ref="_ZNSt9once_flag18_Prepare_executionC1ERKS0_">_Prepare_execution</dfn>(<em>const</em> <a class="type" href="#std::once_flag::_Prepare_execution" title='std::once_flag::_Prepare_execution' data-ref="std::once_flag::_Prepare_execution">_Prepare_execution</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="723">723</th><td>    <a class="type" href="#std::once_flag::_Prepare_execution" title='std::once_flag::_Prepare_execution' data-ref="std::once_flag::_Prepare_execution">_Prepare_execution</a>&amp; <dfn class="decl def fn" id="_ZNSt9once_flag18_Prepare_executionaSERKS0_" title='std::once_flag::_Prepare_execution::operator=' data-ref="_ZNSt9once_flag18_Prepare_executionaSERKS0_"><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="#std::once_flag::_Prepare_execution" title='std::once_flag::_Prepare_execution' data-ref="std::once_flag::_Prepare_execution">_Prepare_execution</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="724">724</th><td>  };&nbsp</td></tr>
+<tr><th id="725">725</th><td>&nbsp</td></tr>
+<tr><th id="726">726</th><td><u># <span data-ppcond="696">else</span></u>&nbsp</td></tr>
+<tr><th id="727">727</th><td>  <i>// Without TLS use a global std::mutex and store the callable in a</i>&nbsp</td></tr>
+<tr><th id="728">728</th><td><i>  // global std::function.</i>&nbsp</td></tr>
+<tr><th id="729">729</th><td>  <b>extern</b> function&lt;<em>void</em>()&gt; __once_functor;&nbsp</td></tr>
+<tr><th id="730">730</th><td>&nbsp</td></tr>
+<tr><th id="731">731</th><td>  <b>extern</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="732">732</th><td>  __set_once_functor_lock_ptr(unique_lock&lt;mutex&gt;*);&nbsp</td></tr>
+<tr><th id="733">733</th><td>&nbsp</td></tr>
+<tr><th id="734">734</th><td>  <b>extern</b> mutex&amp;&nbsp</td></tr>
+<tr><th id="735">735</th><td>  __get_once_mutex();&nbsp</td></tr>
+<tr><th id="736">736</th><td>&nbsp</td></tr>
+<tr><th id="737">737</th><td>  <i>// RAII type to set up state for pthread_once call.</i>&nbsp</td></tr>
+<tr><th id="738">738</th><td>  <b>struct</b> once_flag::_Prepare_execution&nbsp</td></tr>
+<tr><th id="739">739</th><td>  {&nbsp</td></tr>
+<tr><th id="740">740</th><td>    <b>template</b>&lt;<b>typename</b> _Callable&gt;&nbsp</td></tr>
+<tr><th id="741">741</th><td>      <b>explicit</b>&nbsp</td></tr>
+<tr><th id="742">742</th><td>      _Prepare_execution(_Callable&amp; __c)&nbsp</td></tr>
+<tr><th id="743">743</th><td>      {&nbsp</td></tr>
+<tr><th id="744">744</th><td>	<i>// Store the callable in the global std::function</i>&nbsp</td></tr>
+<tr><th id="745">745</th><td>	__once_functor = __c;&nbsp</td></tr>
+<tr><th id="746">746</th><td>	__set_once_functor_lock_ptr(&amp;_M_functor_lock);&nbsp</td></tr>
+<tr><th id="747">747</th><td>      }&nbsp</td></tr>
+<tr><th id="748">748</th><td>&nbsp</td></tr>
+<tr><th id="749">749</th><td>    ~_Prepare_execution()&nbsp</td></tr>
+<tr><th id="750">750</th><td>    {&nbsp</td></tr>
+<tr><th id="751">751</th><td>      <b>if</b> (_M_functor_lock)&nbsp</td></tr>
+<tr><th id="752">752</th><td>	__set_once_functor_lock_ptr(<b>nullptr</b>);&nbsp</td></tr>
+<tr><th id="753">753</th><td>    }&nbsp</td></tr>
+<tr><th id="754">754</th><td>&nbsp</td></tr>
+<tr><th id="755">755</th><td>  <b>private</b>:&nbsp</td></tr>
+<tr><th id="756">756</th><td>    <i>// XXX This deadlocks if used recursively (PR 97949)</i>&nbsp</td></tr>
+<tr><th id="757">757</th><td>    unique_lock&lt;mutex&gt; _M_functor_lock{__get_once_mutex()};&nbsp</td></tr>
+<tr><th id="758">758</th><td>&nbsp</td></tr>
+<tr><th id="759">759</th><td>    _Prepare_execution(<em>const</em> _Prepare_execution&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="760">760</th><td>    _Prepare_execution&amp; <b>operator</b>=(<em>const</em> _Prepare_execution&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="761">761</th><td>  };&nbsp</td></tr>
+<tr><th id="762">762</th><td><u># <span data-ppcond="696">endif</span></u>&nbsp</td></tr>
+<tr><th id="763">763</th><td>  <i class="doc">/// <span class="command">@endcond</span></i>&nbsp</td></tr>
+<tr><th id="764">764</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="765">765</th><td><i class="doc">  // This function is passed to pthread_once by std::call_once.</i>&nbsp</td></tr>
+<tr><th id="766">766</th><td><i class="doc">  // It runs __once_call() or __once_functor().</i>&nbsp</td></tr>
+<tr><th id="767">767</th><td>  <b>extern</b> <q>"C"</q> <em>void</em> <dfn class="decl fn" id="std::__once_proxy" title='std::__once_proxy' data-ref="std::__once_proxy">__once_proxy</dfn>(<em>void</em>);&nbsp</td></tr>
+<tr><th id="768">768</th><td>&nbsp</td></tr>
+<tr><th id="769">769</th><td>  <i class="doc">/// Invoke a callable and synchronize with other calls using the same flag</i>&nbsp</td></tr>
+<tr><th id="770">770</th><td>  <b>template</b>&lt;<b>typename</b> _Callable, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="771">771</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="772">772</th><td>    <dfn class="decl def fn" id="_ZSt9call_onceRSt9once_flagOT_DpOT0_" title='std::call_once' data-ref="_ZSt9call_onceRSt9once_flagOT_DpOT0_">call_once</dfn>(<a class="type" href="#std::once_flag" title='std::once_flag' data-ref="std::once_flag">once_flag</a>&amp; <dfn class="local col1 decl" id="2861__once" title='__once' data-type='std::once_flag &amp;' data-ref="2861__once">__once</dfn>, _Callable&amp;&amp; <dfn class="local col2 decl" id="2862__f" title='__f' data-type='_Callable &amp;&amp;' data-ref="2862__f">__f</dfn>, _Args&amp;&amp;... <dfn class="local col3 decl" id="2863__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="2863__args">__args</dfn>)&nbsp</td></tr>
+<tr><th id="773">773</th><td>    {&nbsp</td></tr>
+<tr><th id="774">774</th><td>      <i>// Closure type that runs the function</i>&nbsp</td></tr>
+<tr><th id="775">775</th><td>      <em>auto</em> <dfn class="local col4 decl" id="2864__callable" title='__callable' data-type='auto' data-ref="2864__callable">__callable</dfn> = [&amp;] {&nbsp</td></tr>
+<tr><th id="776">776</th><td>	  <span class="namespace">std::</span>__invoke(<span class="namespace">std::</span>forward&lt;_Callable&gt;(<a class="local col2 ref" href="#2862__f" title='__f' data-ref="2862__f">__f</a>),&nbsp</td></tr>
+<tr><th id="777">777</th><td>			<span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col3 ref" href="#2863__args" title='__args' data-ref="2863__args">__args</a>)...);&nbsp</td></tr>
+<tr><th id="778">778</th><td>      };&nbsp</td></tr>
+<tr><th id="779">779</th><td>&nbsp</td></tr>
+<tr><th id="780">780</th><td>      <a class="type" href="#std::once_flag" title='std::once_flag' data-ref="std::once_flag">once_flag</a>::<a class="type" href="#std::once_flag::_Prepare_execution" title='std::once_flag::_Prepare_execution' data-ref="std::once_flag::_Prepare_execution">_Prepare_execution</a> <dfn class="local col5 decl" id="2865__exec" title='__exec' data-type='once_flag::_Prepare_execution' data-ref="2865__exec">__exec</dfn>(<a class="local col4 ref" href="#2864__callable" title='__callable' data-ref="2864__callable">__callable</a>);&nbsp</td></tr>
+<tr><th id="781">781</th><td>&nbsp</td></tr>
+<tr><th id="782">782</th><td>      <i>// XXX pthread_once does not reset the flag if an exception is thrown.</i>&nbsp</td></tr>
+<tr><th id="783">783</th><td>      <b>if</b> (<em>int</em> <dfn class="local col6 decl" id="2866__e" title='__e' data-type='int' data-ref="2866__e"><a class="local col6 ref" href="#2866__e" title='__e' data-ref="2866__e">__e</a></dfn> = <a class="ref fn" href="../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_once" title='__gthread_once' data-ref="__gthread_once">__gthread_once</a>(<span class='inlayHint'>once:&nbsp;</span>&amp;<a class="local col1 ref" href="#2861__once" title='__once' data-ref="2861__once">__once</a>.<a class="ref field" href="#std::once_flag::_M_once" title='std::once_flag::_M_once' data-ref="std::once_flag::_M_once">_M_once</a>, <span class='inlayHint'>func:&nbsp;</span>&amp;<a class="ref fn" href="#std::__once_proxy" title='std::__once_proxy' data-ref="std::__once_proxy">__once_proxy</a>))&nbsp</td></tr>
+<tr><th id="784">784</th><td>	<a class="ref fn" href="bits/functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<a class="local col6 ref" href="#2866__e" title='__e' data-ref="2866__e">__e</a>);&nbsp</td></tr>
+<tr><th id="785">785</th><td>    }&nbsp</td></tr>
+<tr><th id="786">786</th><td>&nbsp</td></tr>
+<tr><th id="787">787</th><td><u>#<span data-ppcond="672">else</span> // _GLIBCXX_HAS_GTHREADS</u>&nbsp</td></tr>
+<tr><th id="788">788</th><td>&nbsp</td></tr>
+<tr><th id="789">789</th><td>  <i class="doc">/// Flag type used by std::call_once</i>&nbsp</td></tr>
+<tr><th id="790">790</th><td>  <b>struct</b> once_flag&nbsp</td></tr>
+<tr><th id="791">791</th><td>  {&nbsp</td></tr>
+<tr><th id="792">792</th><td>    <b>constexpr</b> once_flag() <b>noexcept</b> = <b>default</b>;&nbsp</td></tr>
+<tr><th id="793">793</th><td>&nbsp</td></tr>
+<tr><th id="794">794</th><td>    <i class="doc">/// Deleted copy constructor</i>&nbsp</td></tr>
+<tr><th id="795">795</th><td>    once_flag(<em>const</em> once_flag&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="796">796</th><td>    <i class="doc">/// Deleted assignment operator</i>&nbsp</td></tr>
+<tr><th id="797">797</th><td>    once_flag&amp; <b>operator</b>=(<em>const</em> once_flag&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="798">798</th><td>&nbsp</td></tr>
+<tr><th id="799">799</th><td>  <b>private</b>:&nbsp</td></tr>
+<tr><th id="800">800</th><td>    <i>// There are two different std::once_flag interfaces, abstracting four</i>&nbsp</td></tr>
+<tr><th id="801">801</th><td><i>    // different implementations.</i>&nbsp</td></tr>
+<tr><th id="802">802</th><td><i>    // The single-threaded interface uses the _M_activate() and _M_finish(bool)</i>&nbsp</td></tr>
+<tr><th id="803">803</th><td><i>    // functions, which start and finish an active execution respectively.</i>&nbsp</td></tr>
+<tr><th id="804">804</th><td><i>    // See [thread.once.callonce] in C++11 for the definition of</i>&nbsp</td></tr>
+<tr><th id="805">805</th><td><i>    // active/passive/returning/exceptional executions.</i>&nbsp</td></tr>
+<tr><th id="806">806</th><td>    <b>enum</b> _Bits : <em>int</em> { _Init = <var>0</var>, _Active = <var>1</var>, _Done = <var>2</var> };&nbsp</td></tr>
+<tr><th id="807">807</th><td>&nbsp</td></tr>
+<tr><th id="808">808</th><td>    <em>int</em> _M_once = _Bits::_Init;&nbsp</td></tr>
+<tr><th id="809">809</th><td>&nbsp</td></tr>
+<tr><th id="810">810</th><td>    <i>// Check to see if all executions will be passive now.</i>&nbsp</td></tr>
+<tr><th id="811">811</th><td>    <em>bool</em>&nbsp</td></tr>
+<tr><th id="812">812</th><td>    _M_passive() <em>const</em> <b>noexcept</b>;&nbsp</td></tr>
+<tr><th id="813">813</th><td>&nbsp</td></tr>
+<tr><th id="814">814</th><td>    <i>// Attempts to begin an active execution.</i>&nbsp</td></tr>
+<tr><th id="815">815</th><td>    <em>bool</em> _M_activate();&nbsp</td></tr>
+<tr><th id="816">816</th><td>&nbsp</td></tr>
+<tr><th id="817">817</th><td>    <i>// Must be called to complete an active execution.</i>&nbsp</td></tr>
+<tr><th id="818">818</th><td><i>    // The argument is true if the active execution was a returning execution,</i>&nbsp</td></tr>
+<tr><th id="819">819</th><td><i>    // false if it was an exceptional execution.</i>&nbsp</td></tr>
+<tr><th id="820">820</th><td>    <em>void</em> _M_finish(<em>bool</em> __returning) <b>noexcept</b>;&nbsp</td></tr>
+<tr><th id="821">821</th><td>&nbsp</td></tr>
+<tr><th id="822">822</th><td>    <i>// RAII helper to call _M_finish.</i>&nbsp</td></tr>
+<tr><th id="823">823</th><td>    <b>struct</b> _Active_execution&nbsp</td></tr>
+<tr><th id="824">824</th><td>    {&nbsp</td></tr>
+<tr><th id="825">825</th><td>      <b>explicit</b> _Active_execution(once_flag&amp; __flag) : _M_flag(__flag) { }&nbsp</td></tr>
+<tr><th id="826">826</th><td>&nbsp</td></tr>
+<tr><th id="827">827</th><td>      ~_Active_execution() { _M_flag._M_finish(_M_returning); }&nbsp</td></tr>
+<tr><th id="828">828</th><td>&nbsp</td></tr>
+<tr><th id="829">829</th><td>      _Active_execution(<em>const</em> _Active_execution&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="830">830</th><td>      _Active_execution&amp; <b>operator</b>=(<em>const</em> _Active_execution&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="831">831</th><td>&nbsp</td></tr>
+<tr><th id="832">832</th><td>      once_flag&amp; _M_flag;&nbsp</td></tr>
+<tr><th id="833">833</th><td>      <em>bool</em> _M_returning = <b>false</b>;&nbsp</td></tr>
+<tr><th id="834">834</th><td>    };&nbsp</td></tr>
+<tr><th id="835">835</th><td>&nbsp</td></tr>
+<tr><th id="836">836</th><td>    <b>template</b>&lt;<b>typename</b> _Callable, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="837">837</th><td>      <b>friend</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="838">838</th><td>      call_once(once_flag&amp; __once, _Callable&amp;&amp; __f, _Args&amp;&amp;... __args);&nbsp</td></tr>
+<tr><th id="839">839</th><td>  };&nbsp</td></tr>
+<tr><th id="840">840</th><td>&nbsp</td></tr>
+<tr><th id="841">841</th><td>  <i>// Inline definitions of std::once_flag members for single-threaded targets.</i>&nbsp</td></tr>
+<tr><th id="842">842</th><td>&nbsp</td></tr>
+<tr><th id="843">843</th><td>  <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="844">844</th><td>  once_flag::_M_passive() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="845">845</th><td>  { <b>return</b> _M_once == _Bits::_Done; }&nbsp</td></tr>
+<tr><th id="846">846</th><td>&nbsp</td></tr>
+<tr><th id="847">847</th><td>  <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="848">848</th><td>  once_flag::_M_activate()&nbsp</td></tr>
+<tr><th id="849">849</th><td>  {&nbsp</td></tr>
+<tr><th id="850">850</th><td>    <b>if</b> (_M_once == _Bits::_Init) [[__likely__]]&nbsp</td></tr>
+<tr><th id="851">851</th><td>      {&nbsp</td></tr>
+<tr><th id="852">852</th><td>	_M_once = _Bits::_Active;&nbsp</td></tr>
+<tr><th id="853">853</th><td>	<b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="854">854</th><td>      }&nbsp</td></tr>
+<tr><th id="855">855</th><td>    <b>else</b> <b>if</b> (_M_passive()) <i>// Caller should have checked this already.</i>&nbsp</td></tr>
+<tr><th id="856">856</th><td>      <b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="857">857</th><td>    <b>else</b>&nbsp</td></tr>
+<tr><th id="858">858</th><td>      __throw_system_error(EDEADLK);&nbsp</td></tr>
+<tr><th id="859">859</th><td>  }&nbsp</td></tr>
+<tr><th id="860">860</th><td>&nbsp</td></tr>
+<tr><th id="861">861</th><td>  <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="862">862</th><td>  once_flag::_M_finish(<em>bool</em> __returning) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="863">863</th><td>  { _M_once = __returning ? _Bits::_Done : _Bits::_Init; }&nbsp</td></tr>
+<tr><th id="864">864</th><td>&nbsp</td></tr>
+<tr><th id="865">865</th><td>  <i class="doc">/// Invoke a callable and synchronize with other calls using the same flag</i>&nbsp</td></tr>
+<tr><th id="866">866</th><td>  <b>template</b>&lt;<b>typename</b> _Callable, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="867">867</th><td>    <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="868">868</th><td>    call_once(once_flag&amp; __once, _Callable&amp;&amp; __f, _Args&amp;&amp;... __args)&nbsp</td></tr>
+<tr><th id="869">869</th><td>    {&nbsp</td></tr>
+<tr><th id="870">870</th><td>      <b>if</b> (__once._M_passive())&nbsp</td></tr>
+<tr><th id="871">871</th><td>	<b>return</b>;&nbsp</td></tr>
+<tr><th id="872">872</th><td>      <b>else</b> <b>if</b> (__once._M_activate())&nbsp</td></tr>
+<tr><th id="873">873</th><td>	{&nbsp</td></tr>
+<tr><th id="874">874</th><td>	  once_flag::_Active_execution __exec(__once);&nbsp</td></tr>
+<tr><th id="875">875</th><td>&nbsp</td></tr>
+<tr><th id="876">876</th><td>	  <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="877">877</th><td><i>	  // 2442. call_once() shouldn't DECAY_COPY()</i>&nbsp</td></tr>
+<tr><th id="878">878</th><td>	  std::__invoke(std::forward&lt;_Callable&gt;(__f),&nbsp</td></tr>
+<tr><th id="879">879</th><td>			std::forward&lt;_Args&gt;(__args)...);&nbsp</td></tr>
+<tr><th id="880">880</th><td>&nbsp</td></tr>
+<tr><th id="881">881</th><td>	  <i>// __f(__args...) did not throw</i>&nbsp</td></tr>
+<tr><th id="882">882</th><td>	  __exec._M_returning = <b>true</b>;&nbsp</td></tr>
+<tr><th id="883">883</th><td>	}&nbsp</td></tr>
+<tr><th id="884">884</th><td>    }&nbsp</td></tr>
+<tr><th id="885">885</th><td><u>#<span data-ppcond="672">endif</span> // _GLIBCXX_HAS_GTHREADS</u>&nbsp</td></tr>
+<tr><th id="886">886</th><td>&nbsp</td></tr>
+<tr><th id="887">887</th><td>  <i class="doc">/// @} group mutexes</i>&nbsp</td></tr>
+<tr><th id="888">888</th><td><a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="889">889</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="890">890</th><td>&nbsp</td></tr>
+<tr><th id="891">891</th><td><u>#<span data-ppcond="34">endif</span> // C++11</u>&nbsp</td></tr>
+<tr><th id="892">892</th><td>&nbsp</td></tr>
+<tr><th id="893">893</th><td><u>#<span data-ppcond="29">endif</span> // _GLIBCXX_MUTEX</u>&nbsp</td></tr>
+<tr><th id="894">894</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

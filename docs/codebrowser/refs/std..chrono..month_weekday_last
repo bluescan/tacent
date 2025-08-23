@@ -1,0 +1,27 @@
+<use f='include/c++/11/chrono' l='1522' c='_ZNSt6chronodvERKNS_5monthERKNS_12weekday_lastE'/>
+<use f='include/c++/11/chrono' l='1525' c='_ZNSt6chronodvERKNS_12weekday_lastERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='1696' c='_ZNSt6chronodvERKNS_4yearERKNS_18month_weekday_lastE'/>
+<use f='include/c++/11/chrono' l='1699' c='_ZNSt6chronodvERKNS_18month_weekday_lastERKNS_4yearE'/>
+<use f='include/c++/11/chrono' l='1914' c='_ZNSt6chronodvEiRKNS_12weekday_lastE'/>
+<use f='include/c++/11/chrono' l='1917' c='_ZNSt6chronodvERKNS_12weekday_lastEi'/>
+<def f='include/c++/11/chrono' l='2116' ll='2174'/>
+<use f='include/c++/11/chrono' l='2142' c='_ZNSt6chronoeqERKNS_18month_weekday_lastES2_'/>
+<use f='include/c++/11/chrono' l='2143' c='_ZNSt6chronoeqERKNS_18month_weekday_lastES2_'/>
+<use f='include/c++/11/chrono' l='2149' c='_ZNSt6chronodvERKNS_5monthERKNS_12weekday_lastE'/>
+<use f='include/c++/11/chrono' l='2154' c='_ZNSt6chronodvEiRKNS_12weekday_lastE'/>
+<use f='include/c++/11/chrono' l='2158' c='_ZNSt6chronodvERKNS_12weekday_lastERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='2163' c='_ZNSt6chronodvERKNS_12weekday_lastEi'/>
+<use f='include/c++/11/chrono' l='2168' c='_ZNSt6chronodvEiRKNS_18month_weekday_lastE'/>
+<use f='include/c++/11/chrono' l='2171' c='_ZNSt6chronodvERKNS_18month_weekday_lastEi'/>
+<use f='include/c++/11/chrono' l='3023' c='_ZNSt6chronodvERKNS_4yearERKNS_18month_weekday_lastE'/>
+<use f='include/c++/11/chrono' l='3027' c='_ZNSt6chronodvEiRKNS_18month_weekday_lastE'/>
+<use f='include/c++/11/chrono' l='3031' c='_ZNSt6chronodvERKNS_18month_weekday_lastERKNS_4yearE'/>
+<use f='include/c++/11/chrono' l='3036' c='_ZNSt6chronodvERKNS_18month_weekday_lastEi'/>
+<size>2</size>
+<doc f='include/c++/11/chrono' l='2114'>// MONTH_WEEKDAY_LAST</doc>
+<mbr r='std::chrono::month_weekday_last::_M_m' o='0' t='chrono::month'/>
+<mbr r='std::chrono::month_weekday_last::_M_wdl' o='8' t='chrono::weekday_last'/>
+<fun r='_ZNSt6chrono18month_weekday_lastC1ERKNS_5monthERKNS_12weekday_lastE'/>
+<fun r='_ZNKSt6chrono18month_weekday_last5monthEv'/>
+<fun r='_ZNKSt6chrono18month_weekday_last12weekday_lastEv'/>
+<fun r='_ZNKSt6chrono18month_weekday_last2okEv'/>

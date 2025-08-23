@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='605' type='int execlp(const char * __file, const char * __arg)'/>
+<doc f='include/unistd.h' l='602'>/* Execute FILE, searching in the `PATH&apos; environment variable if
+   it contains no slashes, with all arguments after FILE until a
+   NULL pointer and environment from `environ&apos;.  */</doc>

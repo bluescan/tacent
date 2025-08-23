@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='519' type='float tMath::tDot(const tMath::tQuat &amp; a, const tMath::tQuat &amp; b)'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='231' u='c' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_f'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='278' u='c' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='329' u='c' c='_ZN5tMath6tNlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>

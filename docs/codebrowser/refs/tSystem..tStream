@@ -1,0 +1,15 @@
+<def f='Modules/System/Inc/System/tStream.h' l='23' ll='57'/>
+<ovr f='Modules/System/Inc/System/tFile.h' l='664' c='tSystem::tFile'/>
+<use f='Modules/System/Inc/System/tFile.h' l='664'/>
+<use f='Modules/System/Inc/System/tFile.h' l='664' c='_ZN7tSystem5tFileC1ERK7tStringj'/>
+<size>16</size>
+<fun r='_ZN7tSystem7tStreamC1Ej'/>
+<fun r='_ZN7tSystem7tStreamD1Ev'/>
+<fun r='_ZN7tSystem7tStream7SetModeEj'/>
+<fun r='_ZNK7tSystem7tStream7GetModeEv'/>
+<fun r='_ZNK7tSystem7tStream6GetPosEv'/>
+<fun r='_ZNK7tSystem7tStream4TellEv'/>
+<fun r='_ZN7tSystem7tStream4ReadEPhi'/>
+<fun r='_ZN7tSystem7tStream5WriteEPKhi'/>
+<mbr r='tSystem::tStream::Modes' o='64' t='tSystem::tStream::tModes'/>
+<mbr r='tSystem::tStream::Position' o='96' t='int'/>

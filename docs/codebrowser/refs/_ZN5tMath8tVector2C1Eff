@@ -1,0 +1,22 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='33' type='void tMath::tVector2::tVector2(float x, float y)'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='154' u='c' c='_ZN5tMath7tARect25ClearEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='154' u='c' c='_ZN5tMath7tARect25ClearEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='188' u='c' c='_ZN5tMath7tORect2C1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='188' u='c' c='_ZN5tMath7tORect2C1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='528' u='c' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='529' u='c' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='530' u='c' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='531' u='c' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='185' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='186' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='187' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='188' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='212' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='214' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='215' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='356' u='c' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='357' u='c' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='39' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='40' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='41' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='42' u='c'/>

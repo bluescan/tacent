@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_base.h' l='575' ll='581' macro='1' type='bool std::__atomic_base::compare_exchange_strong(std::__atomic_base::__int_type &amp; __i1, std::__atomic_base::__int_type __i2, std::memory_order __m = memory_order_seq_cst)'/>
+<use f='include/c++/11/atomic' l='160' u='c' c='_ZNSt6atomicIbE23compare_exchange_strongERbbSt12memory_order'/>

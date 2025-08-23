@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='117' type='5'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='118'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='117'>// V1 V2 files have a mipmaps present flag. If set there should be more than one mipmap. If not set there should be one.</doc>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='834' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>

@@ -1,0 +1,51 @@
+<def f='include/c++/11/ratio' l='266' ll='280'/>
+<use f='include/c++/11/ratio' l='279'/>
+<use f='include/c++/11/ratio' l='283'/>
+<use f='include/c++/11/ratio' l='286'/>
+<use f='include/c++/11/ratio' l='300'/>
+<use f='include/c++/11/ratio' l='331'/>
+<use f='include/c++/11/ratio' l='389'/>
+<use f='include/c++/11/ratio' l='390'/>
+<use f='include/c++/11/ratio' l='441'/>
+<use f='include/c++/11/ratio' l='442'/>
+<use f='include/c++/11/ratio' l='447'/>
+<use f='include/c++/11/ratio' l='448'/>
+<use f='include/c++/11/ratio' l='450'/>
+<use f='include/c++/11/ratio' l='475'/>
+<use f='include/c++/11/ratio' l='504'/>
+<use f='include/c++/11/ratio' l='534'/>
+<use f='include/c++/11/ratio' l='553'/>
+<use f='include/c++/11/ratio' l='554'/>
+<use f='include/c++/11/ratio' l='555'/>
+<use f='include/c++/11/ratio' l='556'/>
+<use f='include/c++/11/ratio' l='557'/>
+<use f='include/c++/11/ratio' l='558'/>
+<use f='include/c++/11/ratio' l='559'/>
+<use f='include/c++/11/ratio' l='560'/>
+<use f='include/c++/11/ratio' l='561'/>
+<use f='include/c++/11/ratio' l='562'/>
+<use f='include/c++/11/ratio' l='563'/>
+<use f='include/c++/11/ratio' l='564'/>
+<use f='include/c++/11/ratio' l='565'/>
+<use f='include/c++/11/ratio' l='566'/>
+<use f='include/c++/11/ratio' l='567'/>
+<use f='include/c++/11/ratio' l='568'/>
+<use f='include/c++/11/chrono' l='76'/>
+<use f='include/c++/11/chrono' l='104'/>
+<use f='include/c++/11/chrono' l='452'/>
+<use f='include/c++/11/chrono' l='493'/>
+<use f='include/c++/11/chrono' l='850'/>
+<use f='include/c++/11/chrono' l='853'/>
+<use f='include/c++/11/chrono' l='857'/>
+<use f='include/c++/11/chrono' l='860'/>
+<use f='include/c++/11/chrono' l='863'/>
+<use f='include/c++/11/chrono' l='866'/>
+<use f='include/c++/11/chrono' l='3115'/>
+<use f='include/c++/11/chrono' l='3223' c='_ZNSt8literals15chrono_literalsli1hEe'/>
+<use f='include/c++/11/chrono' l='3225' c='_ZNSt8literals15chrono_literalsli1hEe'/>
+<use f='include/c++/11/chrono' l='3234' c='_ZNSt8literals15chrono_literalsli3minEe'/>
+<use f='include/c++/11/chrono' l='3236' c='_ZNSt8literals15chrono_literalsli3minEe'/>
+<smbr r='std::ratio::num' t='const intmax_t'/>
+<smbr r='std::ratio::den' t='const intmax_t'/>
+<smbr r='std::ratio::num' t='const intmax_t'/>
+<smbr r='std::ratio::den' t='const intmax_t'/>

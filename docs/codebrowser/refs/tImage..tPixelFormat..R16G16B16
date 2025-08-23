@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='134' type='16'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='134'>// 48  bit. 16 bit each RGB.</doc>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='291' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='529' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='322' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>

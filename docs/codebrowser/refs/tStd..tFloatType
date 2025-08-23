@@ -1,0 +1,11 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='353' ll='367'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='368' c='_ZN4tStd13tGetFloatTypeEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='369' c='_ZN4tStd13tGetFloatTypeEd'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='370' c='_ZN4tStd6tIsNANEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='371' c='_ZN4tStd6tIsNANEd'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='372' c='_ZN4tStd10tIsSpecialEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='373' c='_ZN4tStd10tIsSpecialEd'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='692' c='_ZN4tStd13tGetFloatTypeEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='721' c='_ZN4tStd13tGetFloatTypeEd'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='352'>// NAN means not a number. P for positive. N for negative. I for indefinite. S for signaling. Q for quiet.</doc>
+<use f='Modules/System/Src/tPrint.cpp' l='1445' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>

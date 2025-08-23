@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='382' type='5'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='382'>// Image. Graphics Interchange Format. Pronounced like the peanut butter.</doc>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='123' u='r' c='_ZN6tImage9tImageGIF4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='285' u='r' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>

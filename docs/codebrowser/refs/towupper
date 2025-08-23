@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='169' type='wint_t towupper(wint_t __wc)'/>
+<doc f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='168'>/* Converts an lowercase letter to the corresponding uppercase letter.  */</doc>

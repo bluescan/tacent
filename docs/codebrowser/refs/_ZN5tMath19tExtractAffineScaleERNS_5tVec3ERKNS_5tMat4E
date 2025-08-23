@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='678' type='void tMath::tExtractAffineScale(tMath::tVec3 &amp; scale, const tMath::tMat4 &amp; affine)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1229' ll='1234' type='void tMath::tExtractAffineScale(tMath::tVec3 &amp; scale, const tMath::tMat4 &amp; affine)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='675'>// The following functions are used to extract information from various types of homogeneous matrix. We use the word
+// extract here rather than decompose since decomposition of a matrix usually means factorizing (finding BC in A = BC).
+// The naming generally follows tExtract_MatrixType_PropertiesExtracted.</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='103' u='c' c='_ZNK5tMath8tMatrix418ExtractAffineScaleERNS_5tVec3E'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11591' ll='11596'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11591'/>
+<size>32</size>
+<mbr r='VkImageViewAddressPropertiesNVX::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageViewAddressPropertiesNVX::pNext' o='64' t='void *'/>
+<mbr r='VkImageViewAddressPropertiesNVX::deviceAddress' o='128' t='VkDeviceAddress'/>
+<mbr r='VkImageViewAddressPropertiesNVX::size' o='192' t='VkDeviceSize'/>

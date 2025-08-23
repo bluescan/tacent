@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/stl_function.h' l='385' ll='391'/>
+<def f='include/c++/11/bits/stl_function.h' l='424' ll='440'/>
+<def f='include/c++/11/bits/stl_function.h' l='529' ll='588'/>
+<use f='include/c++/11/bits/stl_function.h' l='530'/>
+<use f='include/c++/11/bits/stl_function.h' l='545' c='_ZNKSt7greaterIvEclEPT_PT0_'/>
+<use f='include/c++/11/bits/stl_function.h' l='559' c='_ZNSt7greaterIvE6_S_cmpEOT_OT0_St17integral_constantIbLb1EE'/>
+<size>1</size>
+<doc f='include/c++/11/bits/stl_function.h' l='423'>// Partial specialization of std::greater for pointers.</doc>
+<doc f='include/c++/11/bits/stl_function.h' l='528'>/// One of the @link comparison_functors comparison functors@endlink.</doc>
+<fun r='_ZNKSt7greaterclERKT_S2_'/>
+<fun r='_ZNKSt7greaterIPT_EclES1_S1_'/>
+<fun r='_ZNKSt7greaterIvEclEOT_OT0_'/>
+<fun r='_ZNKSt7greaterIvEclEPT_PT0_'/>
+<fun r='_ZNSt7greaterIvE6_S_cmpEOT_OT0_St17integral_constantIbLb0EE'/>
+<fun r='_ZNSt7greaterIvE6_S_cmpEOT_OT0_St17integral_constantIbLb1EE'/>

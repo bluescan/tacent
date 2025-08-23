@@ -1,0 +1,1 @@
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='51' type='bool tMath::tQuaternion::ApproxEqual(const tMath::tQuat &amp; q, comp_t c, float e = Epsilon) const'/>

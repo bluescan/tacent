@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1420' type='S rgbcx::maximum(S a, S b, S c, S d)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3919' u='c' c='_ZN5rgbcx10encode_bc4EPvPKhj'/>

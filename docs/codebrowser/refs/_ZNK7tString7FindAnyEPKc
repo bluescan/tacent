@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='269' type='int tString::FindAny(const char * searchChars) const'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='886' ll='903' type='int tString::FindAny(const char * chars) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='267'>// Returns the index of the first character in the tString that is also somewhere in the null-terminated string
+	// searchChars. Returns -1 if none of them match.</doc>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='225' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>

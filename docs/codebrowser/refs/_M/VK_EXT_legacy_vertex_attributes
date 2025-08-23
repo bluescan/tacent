@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18202'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18201'>// VK_EXT_legacy_vertex_attributes is a preprocessor guard. Do not pass it to API calls.</doc>

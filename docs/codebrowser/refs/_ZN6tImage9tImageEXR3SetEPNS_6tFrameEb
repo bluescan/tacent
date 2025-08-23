@@ -1,0 +1,5 @@
+<use f='Modules/Image/Inc/Image/tImageEXR.h' l='53' u='c' c='_ZN6tImage9tImageEXRC1EPNS_6tFrameEb'/>
+<dec f='Modules/Image/Inc/Image/tImageEXR.h' l='73' type='bool tImage::tImageEXR::Set(tImage::tFrame * , bool steal = true)'/>
+<doc f='Modules/Image/Inc/Image/tImageEXR.h' l='72'>// Sets from a single frame.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='66' c='_ZN6tImage10tBaseImage3SetEPNS_6tFrameEb'/>
+<def f='Modules/Image/Src/tImageEXR.cpp' l='334' ll='351' type='bool tImage::tImageEXR::Set(tImage::tFrame * frame, bool steal = true)'/>

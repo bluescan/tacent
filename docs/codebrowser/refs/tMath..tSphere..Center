@@ -1,0 +1,13 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='352' u='w' c='_ZN5tMath7tSphereC1ERKNS_8tVector3Ef'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='353' u='w' c='_ZN5tMath7tSphere3SetERKNS_8tVector3Ef'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='355' type='tMath::tVector3'/>
+<offset>0</offset>
+<use f='Modules/Math/Src/tGeometry.cpp' l='125' u='a' c='_ZN5tMath28tComputeSmallEnclosingSphereERNS_7tSphereEPKNS_8tVector3Eif'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='176' u='a' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='415' u='r' c='_ZN5tMath23tIntersectFindRaySphereERfRKNS_4tRayERKNS_7tSphereE'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='509' u='m' c='_ZN5tMath27tIntersectTestFrustumSphereERKNS_8tFrustumERKNS_7tSphereE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='234' u='r' c='_ZN5tMath7tRandom17tGetPointOnSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='292' u='r' c='_ZN5tMath7tRandom17tGetPointInSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='465' u='m' c='_ZN12tChunkWriter5WriteERKN5tMath7tSphereE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='674' u='m' c='_ZN12tChunkWriter5WriteEPKN5tMath7tSphereEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='674' u='m' c='_ZN12tChunkWriter5WriteEPKN5tMath7tSphereEi'/>

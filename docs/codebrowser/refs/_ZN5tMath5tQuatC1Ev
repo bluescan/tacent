@@ -1,0 +1,10 @@
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='985' u='c' c='_ZN5tMath7tRotateERNS_5tVec3ERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='986' u='c' c='_ZN5tMath7tRotateERNS_5tVec3ERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='987' u='c' c='_ZN5tMath7tRotateERNS_5tVec3ERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='68' u='c' c='_ZNK5tMath11tQuaternion9ConjugateEv'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='276' u='c' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='327' u='c' c='_ZN5tMath6tNlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='1018' u='c' c='_ZN5tMath20tApproachOrientationERNS_5tQuatERKS0_ff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='1032' u='c' c='_ZN5tMath20tApproachOrientationERNS_5tQuatERKS0_ff'/>
+<use f='Modules/System/Src/tChunk.cpp' l='376' u='c' c='_ZN12tChunkWriter5WriteERKN5tMath11tQuaternionE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='544' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath11tQuaternionEi'/>

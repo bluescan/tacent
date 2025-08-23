@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Src/tQuantizeSpatial.cpp' l='167' type='vector_fixed&lt;double, 3&gt; tImage::tQuantizeSpatial::b_value(array2d&lt;vector_fixed&lt;double, 3&gt;&gt; &amp; b, int i_x, int i_y, int j_x, int j_y)'/>
+<def f='Modules/Image/Src/tQuantizeSpatial.cpp' l='276' ll='285' type='tQuantizeSpatial::vector_fixed&lt;double, 3&gt; tImage::tQuantizeSpatial::b_value(array2d&lt;vector_fixed&lt;double, 3&gt;&gt; &amp; b, int i_x, int i_y, int j_x, int j_y)'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='305' u='c' c='_ZN6tImage16tQuantizeSpatial15compute_a_imageERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_S5_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='432' u='c' c='_ZN6tImage16tQuantizeSpatial17compute_initial_sERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='452' u='c' c='_ZN6tImage16tQuantizeSpatial17compute_initial_sERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='486' u='c' c='_ZN6tImage16tQuantizeSpatial8update_sERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_iiid'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='504' u='c' c='_ZN6tImage16tQuantizeSpatial8update_sERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_iiid'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='612' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='643' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='674' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>

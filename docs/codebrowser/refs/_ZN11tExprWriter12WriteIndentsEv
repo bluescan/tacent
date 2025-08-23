@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tScript.h' l='356' ll='362' type='int tExprWriter::WriteIndents()'/>
+<use f='Modules/System/Src/tScript.cpp' l='1039' u='c' c='_ZN11tExprWriter7NewLineEv'/>

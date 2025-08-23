@@ -1,0 +1,2 @@
+<def f='Modules/Image/Inc/Image/tPicture.h' l='186' type='int tImage::tPicture::GetArea() const'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='187' u='c' c='_ZNK6tImage8tPicture12GetNumPixelsEv'/>

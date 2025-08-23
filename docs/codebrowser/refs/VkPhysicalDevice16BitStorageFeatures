@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5152' ll='5159'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5152'/>
+<size>32</size>
+<mbr r='VkPhysicalDevice16BitStorageFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDevice16BitStorageFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDevice16BitStorageFeatures::storageBuffer16BitAccess' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDevice16BitStorageFeatures::uniformAndStorageBuffer16BitAccess' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDevice16BitStorageFeatures::storagePushConstant16' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDevice16BitStorageFeatures::storageInputOutput16' o='224' t='VkBool32'/>

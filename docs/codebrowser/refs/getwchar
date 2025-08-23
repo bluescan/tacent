@@ -1,0 +1,5 @@
+<dec f='include/wchar.h' l='751' type='wint_t getwchar()'/>
+<doc f='include/wchar.h' l='747'>/* Read a character from stdin.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

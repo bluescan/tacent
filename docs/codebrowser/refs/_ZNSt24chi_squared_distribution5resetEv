@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='2684' ll='2686' type='void std::chi_squared_distribution::reset()'/>
+<doc f='include/c++/11/bits/random.h' l='2681'>/**
+       * @brief Resets the distribution state.
+       */</doc>

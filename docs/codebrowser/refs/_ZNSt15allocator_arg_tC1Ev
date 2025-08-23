@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/uses_allocator.h' l='51' type='void std::allocator_arg_t::allocator_arg_t()'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='54' u='c'/>

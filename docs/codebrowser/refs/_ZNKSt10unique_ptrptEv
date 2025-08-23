@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='412' ll='417' type='std::unique_ptr::pointer std::unique_ptr::operator-&gt;() const'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='411'>/// Return the stored pointer.</doc>

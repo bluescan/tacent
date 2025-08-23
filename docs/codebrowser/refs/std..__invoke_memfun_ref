@@ -1,0 +1,6 @@
+<def f='include/c++/11/type_traits' l='2374'/>
+<use f='include/c++/11/type_traits' l='2391' c='_ZNSt27__result_of_memfun_ref_impl7_S_testEi'/>
+<use f='include/c++/11/type_traits' l='2937' c='_ZSt12__call_is_ntSt19__invoke_memfun_ref'/>
+<use f='include/c++/11/bits/invoke.h' l='65' c='_ZSt13__invoke_implSt19__invoke_memfun_refOT0_OT1_DpOT2_'/>
+<size>1</size>
+<doc f='include/c++/11/type_traits' l='2373'>/// @cond undocumented</doc>

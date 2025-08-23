@@ -1,0 +1,6 @@
+<def f='include/x86_64-linux-gnu/bits/sigcontext.h' l='46' ll='51'/>
+<use f='include/x86_64-linux-gnu/bits/sigcontext.h' l='134'/>
+<size>16</size>
+<mbr r='_fpxreg::significand' o='0' t='unsigned short[4]'/>
+<mbr r='_fpxreg::exponent' o='64' t='unsigned short'/>
+<mbr r='_fpxreg::__glibc_reserved1' o='80' t='unsigned short[3]'/>

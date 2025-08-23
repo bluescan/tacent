@@ -1,0 +1,10 @@
+<def f='include/c++/11/compare' l='59' type='void std::__cmp_cat::__unspec::__unspec(std::__cmp_cat::__unspec * )'/>
+<use f='include/c++/11/compare' l='321' u='c' c='_ZSt5is_eqSt16partial_ordering'/>
+<use f='include/c++/11/compare' l='325' u='c' c='_ZSt6is_neqSt16partial_ordering'/>
+<use f='include/c++/11/compare' l='329' u='c' c='_ZSt5is_ltSt16partial_ordering'/>
+<use f='include/c++/11/compare' l='333' u='c' c='_ZSt7is_lteqSt16partial_ordering'/>
+<use f='include/c++/11/compare' l='337' u='c' c='_ZSt5is_gtSt16partial_ordering'/>
+<use f='include/c++/11/compare' l='341' u='c' c='_ZSt7is_gteqSt16partial_ordering'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='194' u='c' c='_ZStssRKSt18_Bit_iterator_baseS1_'/>
+<use f='include/c++/11/system_error' l='263' u='c' c='_ZStssRKSt10error_codeS1_'/>
+<use f='include/c++/11/system_error' l='390' u='c' c='_ZStssRKSt15error_conditionS1_'/>

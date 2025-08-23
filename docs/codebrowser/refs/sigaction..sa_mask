@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/sigaction.h' l='46' type='__sigset_t'/>
+<offset>64</offset>
+<doc f='include/x86_64-linux-gnu/bits/sigaction.h' l='45'>/* Additional set of signals to be blocked.  */</doc>

@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='275' type='ktx_size_t'/>
+<offset>832</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='403'>/**
+ * @typedef ktxTexture::dataSize
+ * @~English
+ * @brief Byte length of the texture&apos;s uncompressed image data.
+ */</doc>

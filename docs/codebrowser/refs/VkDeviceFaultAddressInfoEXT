@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16045' ll='16049'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16045'/>
+<size>24</size>
+<mbr r='VkDeviceFaultAddressInfoEXT::addressType' o='0' t='VkDeviceFaultAddressTypeEXT'/>
+<mbr r='VkDeviceFaultAddressInfoEXT::reportedAddress' o='64' t='VkDeviceAddress'/>
+<mbr r='VkDeviceFaultAddressInfoEXT::addressPrecision' o='128' t='VkDeviceSize'/>

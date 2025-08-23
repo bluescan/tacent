@@ -1,0 +1,3 @@
+<dec f='Modules/System/Src/tFile.cpp' l='47' type='void tSystem::tPathWinFile(tString &amp; path)'/>
+<def f='Modules/System/Src/tFile.cpp' l='129' ll='134' type='void tSystem::tPathWinFile(tString &amp; path)'/>
+<doc f='Modules/System/Src/tFile.cpp' l='47'>// &quot;C:/Hello/There/&quot; -&gt; &quot;C:\Hello\There&quot;.  &quot;C:/Hello/There&quot; -&gt; &quot;C:\Hello\There&quot;.</doc>

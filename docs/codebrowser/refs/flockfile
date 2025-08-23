@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='867' type='void flockfile(FILE * __stream)'/>
+<doc f='include/stdio.h' l='866'>/* Acquire ownership of STREAM.  */</doc>

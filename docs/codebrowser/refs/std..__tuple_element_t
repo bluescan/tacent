@@ -1,0 +1,12 @@
+<use f='include/c++/11/utility' l='123'/>
+<use f='include/c++/11/utility' l='129'/>
+<use f='include/c++/11/utility' l='135'/>
+<use f='include/c++/11/tuple' l='1392' c='_ZSt3getRSt5tupleIJDpT0_EE'/>
+<use f='include/c++/11/tuple' l='1398' c='_ZSt3getRKSt5tupleIJDpT0_EE'/>
+<use f='include/c++/11/tuple' l='1404' c='_ZSt3getOSt5tupleIJDpT0_EE'/>
+<use f='include/c++/11/tuple' l='1407' c='_ZSt3getOSt5tupleIJDpT0_EE'/>
+<use f='include/c++/11/tuple' l='1413' c='_ZSt3getOKSt5tupleIJDpT0_EE'/>
+<use f='include/c++/11/tuple' l='1416' c='_ZSt3getOKSt5tupleIJDpT0_EE'/>
+<use f='include/c++/11/tuple' l='1626'/>
+<use f='include/c++/11/functional' l='390' c='_ZSt8__volgetRVSt5tupleIJDpT0_EE'/>
+<use f='include/c++/11/functional' l='397' c='_ZSt8__volgetRVKSt5tupleIJDpT0_EE'/>

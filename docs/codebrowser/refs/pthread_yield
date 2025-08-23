@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='477' type='int pthread_yield()'/>
+<dec f='include/pthread.h' l='479' type='int pthread_yield()'/>

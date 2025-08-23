@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='301' type='int'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='295'>//   INPUT
+  //////////////
+  // Main flag for encoder selecting between ARGB or YUV input.
+  // It is recommended to use ARGB input (*argb, argb_stride) for lossless
+  // compression, and YUV input (*y, *u, *v, etc.) for lossy compression
+  // since these are the respective native colorspace for these formats.</doc>

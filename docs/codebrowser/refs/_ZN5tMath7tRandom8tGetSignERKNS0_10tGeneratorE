@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='108' type='float tMath::tRandom::tGetSign(const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<def f='Modules/Math/Inc/Math/tRandom.h' l='148' ll='151' type='float tMath::tRandom::tGetSign(const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>
+<doc f='Modules/Math/Inc/Math/tRandom.h' l='104'>// Useful interface functions for generating random quantities in a variety of types from bool to double. Before
+// calling these make sure the generator being used is initialized properly. For the global default generator, waiting
+// till main() is safe, but during static initialization could cause problems. The random numbers from GetFloat and
+// GetDouble are E [0.0, 1.0], and GetSign is either -1.0 or 1.0.</doc>
+<doc f='Modules/Math/Inc/Math/tRandom.h' l='145'>// Implementation below this line.</doc>

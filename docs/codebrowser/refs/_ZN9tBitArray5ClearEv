@@ -1,0 +1,3 @@
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='35' u='c' c='_ZN9tBitArray3SetEi'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='47' u='c' c='_ZN9tBitArray3SetEPjib'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='72' u='c' c='_ZN9tBitArray3SetERKS_'/>

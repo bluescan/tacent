@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector4.h' l='94' type='tMath::tVector4 tMath::tVector4::operator%(const tMath::tVec4 &amp; v) const'/>
+<doc f='Modules/Math/Inc/Math/tVector4.h' l='94'>/* Cross product for homogeneous coords. */</doc>

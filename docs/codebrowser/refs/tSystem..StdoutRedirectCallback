@@ -1,0 +1,4 @@
+<def f='Modules/System/Src/tPrint.cpp' l='82' type='tSystem::RedirectCallback *'/>
+<use f='Modules/System/Src/tPrint.cpp' l='221' u='w' c='_ZN7tSystem26tSetStdoutRedirectCallbackEPFvPKciE'/>
+<use f='Modules/System/Src/tPrint.cpp' l='253' u='r' c='_ZN7tSystem6tPrintEPKcP8_IO_FILE'/>
+<use f='Modules/System/Src/tPrint.cpp' l='256' u='r' c='_ZN7tSystem6tPrintEPKcP8_IO_FILE'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/getopt_core.h' l='59' type='int'/>
+<doc f='include/x86_64-linux-gnu/bits/getopt_core.h' l='57'>/* Set to an option character which was unrecognized.  */</doc>

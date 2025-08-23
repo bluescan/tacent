@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/ios_base.h' l='609' type='std::ios_base::_Words *'/>
+<use f='include/c++/11/bits/ios_base.h' l='842' u='r' c='_ZNSt8ios_base5iwordEi'/>
+<use f='include/c++/11/bits/ios_base.h' l='863' u='r' c='_ZNSt8ios_base5pwordEi'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='81' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='83' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='84' u='w' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='92' u='w' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>
+<offset>1600</offset>

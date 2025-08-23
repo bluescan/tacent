@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>libc-header-start.h source code [include/x86_64-linux-gnu/bits/libc-header-start.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/libc-header-start.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>bits</a>/<a href='libc-header-start.h.html'>libc-header-start.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Handle feature test macros at the start of a header.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   Copyright (C) 2016-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i></i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i></i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i></i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i>/* This header is internal to glibc and should not be included outside</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>   of glibc headers.  Headers including it must define</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>   __GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION first.  This header</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>   cannot have multiple include guards because ISO C feature test</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>   macros depend on the definition of the macro when an affected</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i>   header is included, not when the first system header is</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>   included.  */</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="27">ifndef</span> <a class="macro" href="../../string.h.html#25" data-ref="_M/__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION">__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION</a></u>&nbsp</td></tr>
+<tr><th id="28">28</th><td><u># error "Never include &lt;bits/libc-header-start.h&gt; directly."</u>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="27">endif</span></u>&nbsp</td></tr>
+<tr><th id="30">30</th><td>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#undef <a class="macro" href="../../string.h.html#25" data-ref="_M/__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION">__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION</a></u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#include &lt;features.h&gt;</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i>/* ISO/IEC TR 24731-2:2010 defines the __STDC_WANT_LIB_EXT2__</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i>   macro.  */</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#undef <span class="macro" data-ref="_M/__GLIBC_USE_LIB_EXT2">__GLIBC_USE_LIB_EXT2</span></u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#<span data-ppcond="38">if</span> (defined <a class="macro" href="../../features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a>							\</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>     || (defined <span class="macro" data-ref="_M/__STDC_WANT_LIB_EXT2__">__STDC_WANT_LIB_EXT2__</span> &amp;&amp; __STDC_WANT_LIB_EXT2__ &gt; 0))</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u># define <dfn class="macro" id="_M/__GLIBC_USE_LIB_EXT2" data-ref="_M/__GLIBC_USE_LIB_EXT2">__GLIBC_USE_LIB_EXT2</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="38">else</span></u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u># define __GLIBC_USE_LIB_EXT2 0</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#<span data-ppcond="38">endif</span></u>&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i>/* ISO/IEC TS 18661-1:2014 defines the __STDC_WANT_IEC_60559_BFP_EXT__</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>   macro.  Most but not all symbols enabled by that macro in TS</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>   18661-1 are enabled unconditionally in C2X.  In C2X, the symbols in</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>   Annex F still require a new feature test macro</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i>   __STDC_WANT_IEC_60559_EXT__ instead (C2X does not define</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i>   __STDC_WANT_IEC_60559_BFP_EXT__), while a few features from TS</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>   18661-1 are not included in C2X (and thus should depend on</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i>   __STDC_WANT_IEC_60559_BFP_EXT__ even when C2X features are</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i>   enabled).</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i></i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i>   __GLIBC_USE (IEC_60559_BFP_EXT) controls those features from TS</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><i>   18661-1 not included in C2X.</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td><i></i>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i>   __GLIBC_USE (IEC_60559_BFP_EXT_C2X) controls those features from TS</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>   18661-1 that are also included in C2X (with no feature test macro</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i>   required in C2X).</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i></i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i>   __GLIBC_USE (IEC_60559_EXT) controls those features from TS 18661-1</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i>   that are included in C2X but conditional on</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><i>   __STDC_WANT_IEC_60559_EXT__.  (There are currently no features</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i>   conditional on __STDC_WANT_IEC_60559_EXT__ that are not in TS</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i>   18661-1.)  */</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><u>#undef <span class="macro" data-ref="_M/__GLIBC_USE_IEC_60559_BFP_EXT">__GLIBC_USE_IEC_60559_BFP_EXT</span></u>&nbsp</td></tr>
+<tr><th id="68">68</th><td><u>#<span data-ppcond="68">if</span> defined <a class="macro" href="../../features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a> || defined <span class="macro" data-ref="_M/__STDC_WANT_IEC_60559_BFP_EXT__">__STDC_WANT_IEC_60559_BFP_EXT__</span></u>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u># define <dfn class="macro" id="_M/__GLIBC_USE_IEC_60559_BFP_EXT" data-ref="_M/__GLIBC_USE_IEC_60559_BFP_EXT">__GLIBC_USE_IEC_60559_BFP_EXT</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><u>#<span data-ppcond="68">else</span></u>&nbsp</td></tr>
+<tr><th id="71">71</th><td><u># define __GLIBC_USE_IEC_60559_BFP_EXT 0</u>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#<span data-ppcond="68">endif</span></u>&nbsp</td></tr>
+<tr><th id="73">73</th><td><u>#undef <span class="macro" data-ref="_M/__GLIBC_USE_IEC_60559_BFP_EXT_C2X">__GLIBC_USE_IEC_60559_BFP_EXT_C2X</span></u>&nbsp</td></tr>
+<tr><th id="74">74</th><td><u>#<span data-ppcond="74">if</span> <a class="macro" href="../../features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_BFP_EXT) || <a class="macro" href="../../features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (ISOC2X)</u>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u># define <dfn class="macro" id="_M/__GLIBC_USE_IEC_60559_BFP_EXT_C2X" data-ref="_M/__GLIBC_USE_IEC_60559_BFP_EXT_C2X">__GLIBC_USE_IEC_60559_BFP_EXT_C2X</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#<span data-ppcond="74">else</span></u>&nbsp</td></tr>
+<tr><th id="77">77</th><td><u># define __GLIBC_USE_IEC_60559_BFP_EXT_C2X 0</u>&nbsp</td></tr>
+<tr><th id="78">78</th><td><u>#<span data-ppcond="74">endif</span></u>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#undef <span class="macro" data-ref="_M/__GLIBC_USE_IEC_60559_EXT">__GLIBC_USE_IEC_60559_EXT</span></u>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u>#<span data-ppcond="80">if</span> <a class="macro" href="../../features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_BFP_EXT) || defined <span class="macro" data-ref="_M/__STDC_WANT_IEC_60559_EXT__">__STDC_WANT_IEC_60559_EXT__</span></u>&nbsp</td></tr>
+<tr><th id="81">81</th><td><u># define <dfn class="macro" id="_M/__GLIBC_USE_IEC_60559_EXT" data-ref="_M/__GLIBC_USE_IEC_60559_EXT">__GLIBC_USE_IEC_60559_EXT</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="82">82</th><td><u>#<span data-ppcond="80">else</span></u>&nbsp</td></tr>
+<tr><th id="83">83</th><td><u># define __GLIBC_USE_IEC_60559_EXT 0</u>&nbsp</td></tr>
+<tr><th id="84">84</th><td><u>#<span data-ppcond="80">endif</span></u>&nbsp</td></tr>
+<tr><th id="85">85</th><td>&nbsp</td></tr>
+<tr><th id="86">86</th><td><i>/* ISO/IEC TS 18661-4:2015 defines the</i>&nbsp</td></tr>
+<tr><th id="87">87</th><td><i>   __STDC_WANT_IEC_60559_FUNCS_EXT__ macro.  Other than the reduction</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td><i>   functions, the symbols from this TS are enabled unconditionally in</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td><i>   C2X.  */</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#undef <span class="macro" data-ref="_M/__GLIBC_USE_IEC_60559_FUNCS_EXT">__GLIBC_USE_IEC_60559_FUNCS_EXT</span></u>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#<span data-ppcond="91">if</span> defined <a class="macro" href="../../features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a> || defined <span class="macro" data-ref="_M/__STDC_WANT_IEC_60559_FUNCS_EXT__">__STDC_WANT_IEC_60559_FUNCS_EXT__</span></u>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u># define <dfn class="macro" id="_M/__GLIBC_USE_IEC_60559_FUNCS_EXT" data-ref="_M/__GLIBC_USE_IEC_60559_FUNCS_EXT">__GLIBC_USE_IEC_60559_FUNCS_EXT</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>#<span data-ppcond="91">else</span></u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u># define __GLIBC_USE_IEC_60559_FUNCS_EXT 0</u>&nbsp</td></tr>
+<tr><th id="95">95</th><td><u>#<span data-ppcond="91">endif</span></u>&nbsp</td></tr>
+<tr><th id="96">96</th><td><u>#undef <span class="macro" data-ref="_M/__GLIBC_USE_IEC_60559_FUNCS_EXT_C2X">__GLIBC_USE_IEC_60559_FUNCS_EXT_C2X</span></u>&nbsp</td></tr>
+<tr><th id="97">97</th><td><u>#<span data-ppcond="97">if</span> <a class="macro" href="../../features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_FUNCS_EXT) || <a class="macro" href="../../features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (ISOC2X)</u>&nbsp</td></tr>
+<tr><th id="98">98</th><td><u># define <dfn class="macro" id="_M/__GLIBC_USE_IEC_60559_FUNCS_EXT_C2X" data-ref="_M/__GLIBC_USE_IEC_60559_FUNCS_EXT_C2X">__GLIBC_USE_IEC_60559_FUNCS_EXT_C2X</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="99">99</th><td><u>#<span data-ppcond="97">else</span></u>&nbsp</td></tr>
+<tr><th id="100">100</th><td><u># define __GLIBC_USE_IEC_60559_FUNCS_EXT_C2X 0</u>&nbsp</td></tr>
+<tr><th id="101">101</th><td><u>#<span data-ppcond="97">endif</span></u>&nbsp</td></tr>
+<tr><th id="102">102</th><td>&nbsp</td></tr>
+<tr><th id="103">103</th><td><i>/* ISO/IEC TS 18661-3:2015 defines the</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td><i>   __STDC_WANT_IEC_60559_TYPES_EXT__ macro.  */</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td><u>#undef <span class="macro" data-ref="_M/__GLIBC_USE_IEC_60559_TYPES_EXT">__GLIBC_USE_IEC_60559_TYPES_EXT</span></u>&nbsp</td></tr>
+<tr><th id="106">106</th><td><u>#<span data-ppcond="106">if</span> defined <a class="macro" href="../../features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a> || defined <span class="macro" data-ref="_M/__STDC_WANT_IEC_60559_TYPES_EXT__">__STDC_WANT_IEC_60559_TYPES_EXT__</span></u>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u># define <dfn class="macro" id="_M/__GLIBC_USE_IEC_60559_TYPES_EXT" data-ref="_M/__GLIBC_USE_IEC_60559_TYPES_EXT">__GLIBC_USE_IEC_60559_TYPES_EXT</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u>#<span data-ppcond="106">else</span></u>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u># define __GLIBC_USE_IEC_60559_TYPES_EXT 0</u>&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>#<span data-ppcond="106">endif</span></u>&nbsp</td></tr>
+<tr><th id="111">111</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

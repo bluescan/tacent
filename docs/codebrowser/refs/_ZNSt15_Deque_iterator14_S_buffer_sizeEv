@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/stl_deque.h' l='131' ll='132' type='static std::size_t std::_Deque_iterator::_S_buffer_size()'/>
+<use f='include/c++/11/bits/stl_deque.h' l='149' u='c' c='_ZNSt15_Deque_iteratorC1ENSt14pointer_traitsIT1_E6rebindIT_EENS3_IS5_EE'/>
+<use f='include/c++/11/bits/stl_deque.h' l='231' u='c' c='_ZNSt15_Deque_iteratorpLEl'/>
+<use f='include/c++/11/bits/stl_deque.h' l='236' u='c' c='_ZNSt15_Deque_iteratorpLEl'/>
+<use f='include/c++/11/bits/stl_deque.h' l='238' u='c' c='_ZNSt15_Deque_iteratorpLEl'/>
+<use f='include/c++/11/bits/stl_deque.h' l='241' u='c' c='_ZNSt15_Deque_iteratorpLEl'/>
+<use f='include/c++/11/bits/stl_deque.h' l='264' u='c' c='_ZNSt15_Deque_iterator11_M_set_nodeENSt14pointer_traitsIT1_E6rebindINS3_IT_EEEE'/>
+<use f='include/c++/11/bits/stl_deque.h' l='355' u='c' c='_ZStmiRKSt15_Deque_iteratorIT_T0_T1_ES6_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='371' u='c' c='_ZStmiRKSt15_Deque_iteratorIT_T0_T1_ERKS_IS0_TL0__TL0_0_E'/>

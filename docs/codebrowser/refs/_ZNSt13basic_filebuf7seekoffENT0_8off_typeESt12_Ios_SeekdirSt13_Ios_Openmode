@@ -1,0 +1,4 @@
+<dec f='include/c++/11/fstream' l='421' type='std::basic_filebuf::pos_type std::basic_filebuf::seekoff(std::basic_filebuf::off_type __off, ios_base::seekdir __way, ios_base::openmode __mode = ios_base::in | ios_base::out)'/>
+<def f='include/c++/11/bits/fstream.tcc' l='830' ll='884' type='typename basic_filebuf&lt;_CharT, _Traits&gt;::pos_type std::basic_filebuf::seekoff(std::basic_filebuf::off_type __off, ios_base::seekdir __way, ios_base::openmode  = ios_base::in | ios_base::out)'/>
+<doc f='include/c++/11/bits/fstream.tcc' l='828'>// According to 27.8.1.4 p11 - 13, seekoff should ignore the last
+  // argument (of type openmode).</doc>

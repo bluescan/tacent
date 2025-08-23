@@ -1,0 +1,4 @@
+<dec f='include/stdlib.h' l='36'/>
+<use f='include/x86_64-linux-gnu/bits/waitflags.h' l='19' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/waitstatus.h' l='19' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/stdlib-float.h' l='19' u='a'/>

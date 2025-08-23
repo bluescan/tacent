@@ -1,0 +1,3 @@
+<dec f='include/wchar.h' l='859' type='size_t wcsftime_l(wchar_t *__restrict __s, size_t __maxsize, const wchar_t *__restrict __format, const struct tm *__restrict __tp, locale_t __loc)'/>
+<doc f='include/wchar.h' l='857'>/* Similar to `wcsftime&apos; but takes the information from
+   the provided locale and not the global locale.  */</doc>

@@ -1,0 +1,17 @@
+<dec f='include/c++/11/limits' l='150'/>
+<use f='include/c++/11/limits' l='468' u='c'/>
+<use f='include/c++/11/limits' l='535' u='c'/>
+<use f='include/c++/11/limits' l='606' u='c'/>
+<use f='include/c++/11/limits' l='678' u='c'/>
+<use f='include/c++/11/limits' l='745' u='c'/>
+<use f='include/c++/11/limits' l='810' u='c'/>
+<use f='include/c++/11/limits' l='871' u='c'/>
+<use f='include/c++/11/limits' l='935' u='c'/>
+<use f='include/c++/11/limits' l='1003' u='c'/>
+<use f='include/c++/11/limits' l='1075' u='c'/>
+<use f='include/c++/11/limits' l='1143' u='c'/>
+<use f='include/c++/11/limits' l='1214' u='c'/>
+<use f='include/c++/11/limits' l='1282' u='c'/>
+<use f='include/c++/11/limits' l='1355' u='c'/>
+<use f='include/c++/11/limits' l='1425' u='c'/>
+<use f='include/c++/11/limits' l='1897' u='w'/>

@@ -1,0 +1,2 @@
+<def f='Modules/Scene/Src/tMesh.cpp' l='149' ll='358' type='void tScene::tMesh::Load(const tChunk &amp; meshChunk)'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='58' u='c' c='_ZN6tScene10tPolyModel4LoadERK6tChunk'/>

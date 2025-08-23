@@ -1,0 +1,3 @@
+<use f='Modules/System/Src/tRegex.cpp' l='690' u='w' c='_ZNK7tSystem6tRegex9MatchNodeEPKNS0_4NodeEPKcS3_'/>
+<use f='Modules/System/Src/tRegex.cpp' l='698' u='w' c='_ZNK7tSystem6tRegex9MatchNodeEPKNS0_4NodeEPKcS3_'/>
+<use f='Modules/System/Src/tRegex.cpp' l='899' u='r' c='_ZNK7tSystem6tRegex6SearchEPKcS2_R5tListINS0_5MatchEE'/>

@@ -1,0 +1,7 @@
+<use f='include/c++/11/array' l='396' c='_ZSt10__to_arrayRAsZT1__T0_St16integer_sequenceImJXspT1_EEE'/>
+<use f='include/c++/11/tuple' l='1538' c='_ZSt11__tuple_cmpRKT0_RKT1_St16integer_sequenceImJEE'/>
+<use f='include/c++/11/tuple' l='1545' c='_ZSt11__tuple_cmpRKT0_RKT1_St16integer_sequenceImJXT2_EXspT3_EEE'/>
+<use f='include/c++/11/tuple' l='1551' c='_ZSt11__tuple_cmpRKT0_RKT1_St16integer_sequenceImJXT2_EXspT3_EEE'/>
+<use f='include/c++/11/tuple' l='1852' c='_ZSt12__apply_implOT_OT0_St16integer_sequenceImJXspT1_EEE'/>
+<use f='include/c++/11/tuple' l='1874' c='_ZSt22__make_from_tuple_implOT0_St16integer_sequenceImJXspT1_EEE'/>
+<use f='include/c++/11/functional' l='894' c='_ZNSt11_Bind_front7_S_callEOTL0__St16integer_sequenceImJXspTL0_0_EEEDpOTL0_1_'/>

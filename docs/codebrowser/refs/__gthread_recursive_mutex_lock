@@ -1,0 +1,4 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='808' ll='812' type='int __gthread_recursive_mutex_lock(__gthread_recursive_mutex_t * __mutex)'/>
+<use f='include/c++/11/mutex' l='108' u='c' c='_ZNSt15recursive_mutex4lockEv'/>
+<use f='include/c++/11/mutex' l='293' u='c' c='_ZNSt21recursive_timed_mutex4lockEv'/>
+<use f='include/c++/11/ext/concurrence.h' l='204' u='c' c='__gnu_cxx::__recursive_mutex::lock'/>

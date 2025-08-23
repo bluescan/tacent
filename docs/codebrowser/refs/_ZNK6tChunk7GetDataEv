@@ -1,0 +1,8 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='233' type='uint8 * tChunk::GetData() const'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='251' u='c' c='_ZNK6tChunk13GetFirstChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='266' u='c' c='_ZNK6tChunk4DataEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='282' u='c' c='_ZNK6tChunk9ItemResetEv'/>
+<def f='Modules/System/Inc/System/tChunk.h' l='743' ll='755' type='uint8 * tChunk::GetData() const'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='232'>// Returns nullptr if this is not a valid chunk.</doc>
+<use f='Modules/Scene/Src/tMesh.cpp' l='295' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='85' u='c' c='_ZN6tScene5tPath4LoadERK6tChunk'/>

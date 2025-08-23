@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8100' ll='8107'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8100'/>
+<size>32</size>
+<mbr r='VkVideoProfileInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoProfileInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkVideoProfileInfoKHR::videoCodecOperation' o='128' t='VkVideoCodecOperationFlagBitsKHR'/>
+<mbr r='VkVideoProfileInfoKHR::chromaSubsampling' o='160' t='VkVideoChromaSubsamplingFlagsKHR'/>
+<mbr r='VkVideoProfileInfoKHR::lumaBitDepth' o='192' t='VkVideoComponentBitDepthFlagsKHR'/>
+<mbr r='VkVideoProfileInfoKHR::chromaBitDepth' o='224' t='VkVideoComponentBitDepthFlagsKHR'/>

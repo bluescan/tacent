@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='472' type='16863232'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='472'>// A table of tWeightSets. Each tWeightSet is an array of MaxJointInfluences tWeights. A tWeight is a triple (SkelID, JointID, Weight).</doc>
+<use f='Modules/Scene/Src/tMesh.cpp' l='291' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='459' u='r' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>

@@ -1,0 +1,9 @@
+<use f='include/c++/11/bits/shared_ptr_base.h' l='127' u='w' c='_ZNSt16_Sp_counted_baseC1Ev'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='180' u='a' c='_ZNSt16_Sp_counted_base10_M_releaseEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='191' u='a' c='_ZNSt16_Sp_counted_base15_M_weak_add_refEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='198' u='a' c='_ZNSt16_Sp_counted_base15_M_weak_releaseEv'/>
+<dec f='include/c++/11/bits/shared_ptr_base.h' l='224' type='_Atomic_word'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='284' u='w' c='_ZNSt16_Sp_counted_base10_M_releaseEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='292' u='w' c='_ZNSt16_Sp_counted_base15_M_weak_add_refEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='298' u='w' c='_ZNSt16_Sp_counted_base15_M_weak_releaseEv'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='224'>// #weak + (#shared != 0)</doc>

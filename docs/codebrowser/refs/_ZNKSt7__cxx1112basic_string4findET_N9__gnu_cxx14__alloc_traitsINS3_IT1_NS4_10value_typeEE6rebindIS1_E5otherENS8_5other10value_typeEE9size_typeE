@@ -1,0 +1,12 @@
+<dec f='include/c++/11/bits/basic_string.h' l='2430' type='std::basic_string::size_type std::basic_string::find(_CharT __c, std::basic_string::size_type __pos = 0) const'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='1241' ll='1257' type='typename basic_string&lt;_CharT, _Traits, _Alloc&gt;::size_type std::basic_string::find(_CharT __c, std::basic_string::size_type __pos = 0) const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='2419'>/**
+       *  @brief  Find position of a character.
+       *  @param __c  Character to locate.
+       *  @param __pos  Index of character to search from (default 0).
+       *  @return  Index of first occurrence.
+       *
+       *  Starting from @a __pos, searches forward for @a __c within
+       *  this string.  If found, returns the index where it was
+       *  found.  If not found, returns npos.
+      */</doc>

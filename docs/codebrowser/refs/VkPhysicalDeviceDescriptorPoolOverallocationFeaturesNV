@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18595' ll='18599'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18595'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceDescriptorPoolOverallocationFeaturesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDescriptorPoolOverallocationFeaturesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDescriptorPoolOverallocationFeaturesNV::descriptorPoolOverallocation' o='128' t='VkBool32'/>

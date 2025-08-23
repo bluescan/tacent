@@ -1,0 +1,11 @@
+<inh f='include/c++/11/bits/uses_allocator.h' l='72' c='std::__uses_alloc_base'/>
+<def f='include/c++/11/bits/uses_allocator.h' l='74' ll='77'/>
+<ovr f='include/c++/11/bits/uses_allocator.h' l='105' c='std::__uses_alloc'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='106'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='166' c='_ZSt31__uses_allocator_construct_implSt13__uses_alloc0PT_DpOT0_'/>
+<use f='include/c++/11/tuple' l='94' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt15allocator_arg_tSt13__uses_alloc0'/>
+<use f='include/c++/11/tuple' l='109' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt13__uses_alloc0OTL0__'/>
+<use f='include/c++/11/tuple' l='203' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt15allocator_arg_tSt13__uses_alloc0'/>
+<use f='include/c++/11/tuple' l='218' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt13__uses_alloc0OTL0__'/>
+<size>1</size>
+<mbr r='std::__uses_alloc0::_M_a' o='0' t='struct _Sink'/>

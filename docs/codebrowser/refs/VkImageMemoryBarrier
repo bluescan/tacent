@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2940' ll='2951'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2940'/>
+<size>72</size>
+<mbr r='VkImageMemoryBarrier::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageMemoryBarrier::pNext' o='64' t='const void *'/>
+<mbr r='VkImageMemoryBarrier::srcAccessMask' o='128' t='VkAccessFlags'/>
+<mbr r='VkImageMemoryBarrier::dstAccessMask' o='160' t='VkAccessFlags'/>
+<mbr r='VkImageMemoryBarrier::oldLayout' o='192' t='VkImageLayout'/>
+<mbr r='VkImageMemoryBarrier::newLayout' o='224' t='VkImageLayout'/>
+<mbr r='VkImageMemoryBarrier::srcQueueFamilyIndex' o='256' t='uint32_t'/>
+<mbr r='VkImageMemoryBarrier::dstQueueFamilyIndex' o='288' t='uint32_t'/>
+<mbr r='VkImageMemoryBarrier::image' o='320' t='VkImage'/>
+<mbr r='VkImageMemoryBarrier::subresourceRange' o='384' t='VkImageSubresourceRange'/>

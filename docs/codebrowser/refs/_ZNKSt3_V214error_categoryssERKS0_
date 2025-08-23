@@ -1,0 +1,3 @@
+<def f='include/c++/11/system_error' l='148' ll='150' type='std::strong_ordering std::error_category::operator&lt;=&gt;(const std::error_category &amp; __rhs) const'/>
+<use f='include/c++/11/system_error' l='263' u='c' c='_ZStssRKSt10error_codeS1_'/>
+<use f='include/c++/11/system_error' l='390' u='c' c='_ZStssRKSt15error_conditionS1_'/>

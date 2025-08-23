@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='71' type='int tStd::tStricmp(const char * a, const char * b)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='72' u='c' c='_ZN4tStd8tStricmpEPKDuS1_'/>
+<use f='Modules/Foundation/Src/tUnits.cpp' l='103' u='c' c='_ZN5tUnit11GetTimeUnitEPKc'/>
+<use f='Modules/Foundation/Src/tUnits.cpp' l='115' u='c' c='_ZN5tUnit13GetLengthUnitEPKc'/>
+<use f='Modules/Foundation/Src/tUnits.cpp' l='127' u='c' c='_ZN5tUnit11GetMassUnitEPKc'/>

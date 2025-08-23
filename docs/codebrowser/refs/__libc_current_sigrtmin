@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='383' type='int __libc_current_sigrtmin()'/>
+<doc f='include/signal.h' l='382'>/* Return number of available real-time signal with highest priority.  */</doc>

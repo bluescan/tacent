@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_function.h' l='322' ll='327' macro='1' type='decltype(- std::forward&lt;_Tp&gt;(__t)) std::negate&lt;&gt;::operator()(_Tp &amp;&amp; __t) const'/>

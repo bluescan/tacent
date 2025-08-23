@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='906' ll='907' type='void std::discard_block_engine::discard_block_engine&lt;_RandomNumberEngine, __p, __r&gt;()'/>
+<doc f='include/c++/11/bits/random.h' l='901'>/**
+       * @brief Constructs a default %discard_block_engine engine.
+       *
+       * The underlying engine is default constructed as well.
+       */</doc>

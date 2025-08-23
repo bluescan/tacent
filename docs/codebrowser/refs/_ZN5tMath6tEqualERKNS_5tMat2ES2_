@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='320' type='bool tMath::tEqual(const tMath::tMat2 &amp; a, const tMath::tMat2 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='72' u='c' c='_ZN5tMatheqERKNS_5tMat2ES2_'/>

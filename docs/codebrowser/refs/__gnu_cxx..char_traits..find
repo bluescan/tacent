@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/char_traits.h' l='120' type='static const __gnu_cxx::char_traits::char_type * __gnu_cxx::char_traits::find(const __gnu_cxx::char_traits::char_type * __s, std::size_t __n, const __gnu_cxx::char_traits::char_type &amp; __a)'/>
+<def f='include/c++/11/bits/char_traits.h' l='176' ll='185' type='static const typename char_traits&lt;_CharT&gt;::char_type * __gnu_cxx::char_traits::find(const __gnu_cxx::char_traits::char_type * __s, std::size_t __n, const __gnu_cxx::char_traits::char_type &amp; __a)'/>
+<use f='include/c++/11/bits/char_traits.h' l='411' u='c' c='_ZNSt11char_traitsIcE4findEPKcmRS1_'/>
+<use f='include/c++/11/bits/char_traits.h' l='535' u='c' c='_ZNSt11char_traitsIwE4findEPKwmRS1_'/>
+<use f='include/c++/11/bits/char_traits.h' l='659' u='c' c='_ZNSt11char_traitsIDuE4findEPKDumRS1_'/>

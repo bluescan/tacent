@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tImagePKM.cpp' l='65' type='2'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='96' c='_ZN6tImage4tPKM27GetFormatInfo_FromPKMFormatERNS_12tPixelFormatER14tColourProfileji'/>
+<doc f='Modules/Image/Src/tImagePKM.cpp' l='65'>// GL_COMPRESSED_RGBA8_ETC2_EAC. Should not be encountered. Interpret as RGBA if it is.</doc>

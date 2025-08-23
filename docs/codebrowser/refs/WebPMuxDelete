@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='120' type='void WebPMuxDelete(WebPMux * mux)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='429' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>

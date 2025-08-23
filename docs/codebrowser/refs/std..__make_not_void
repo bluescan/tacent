@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/ptr_traits.h' l='77' c='_ZNSt19__ptr_traits_elem_1IT_IT0_JDpT1_EEE10pointer_toERNSt11conditionalIXsr7is_voidIS1_EE5valueESt11__undefinedS1_E4typeE'/>
+<use f='include/c++/11/bits/ptr_traits.h' l='91' c='_ZNSt17__ptr_traits_elemIT_vE10pointer_toERNSt11conditionalIXsr7is_voidINS0_12element_typeEEE5valueESt11__undefinedS3_E4typeE'/>
+<use f='include/c++/11/bits/ptr_traits.h' l='149' c='_ZNSt14pointer_traitsIPT_E10pointer_toERNSt11conditionalIXsr7is_voidIS0_EE5valueESt11__undefinedS0_E4typeE'/>

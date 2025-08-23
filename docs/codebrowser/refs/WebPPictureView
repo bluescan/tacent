@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='439' type='int WebPPictureView(const WebPPicture * src, int left, int top, int width, int height, WebPPicture * dst)'/>

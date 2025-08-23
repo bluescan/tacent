@@ -1,0 +1,9 @@
+<use f='include/c++/11/bits/random.h' l='5295' u='w' c='_ZNSt21discrete_distribution10param_typeC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='5301' u='w' c='_ZNSt21discrete_distribution10param_typeC1ETL0__S1_'/>
+<use f='include/c++/11/bits/random.h' l='5305' u='w' c='_ZNSt21discrete_distribution10param_typeC1ESt16initializer_listIdE'/>
+<dec f='include/c++/11/bits/random.h' l='5333' type='std::vector&lt;double&gt;'/>
+<use f='include/c++/11/bits/random.tcc' l='2672' u='m' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2674' u='a' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2676' u='m' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2676' u='m' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2683' u='w' c='_ZNSt21discrete_distribution10param_typeC1EmddTL0__'/>

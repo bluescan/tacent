@@ -1,0 +1,13 @@
+<def f='include/c++/11/ext/string_conversions.h' l='98' ll='116' type='_String __gnu_cxx::__to_xstring(int (*)(_CharT *, std::size_t, const _CharT *, __va_list_tag *) __convf, std::size_t __n, const _CharT * __fmt)'/>
+<use f='include/c++/11/bits/basic_string.h' l='6725' u='c' c='_ZNSt7__cxx119to_stringEf'/>
+<use f='include/c++/11/bits/basic_string.h' l='6734' u='c' c='_ZNSt7__cxx119to_stringEd'/>
+<use f='include/c++/11/bits/basic_string.h' l='6743' u='c' c='_ZNSt7__cxx119to_stringEe'/>
+<use f='include/c++/11/bits/basic_string.h' l='6791' u='c' c='_ZNSt7__cxx1110to_wstringEi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6796' u='c' c='_ZNSt7__cxx1110to_wstringEj'/>
+<use f='include/c++/11/bits/basic_string.h' l='6802' u='c' c='_ZNSt7__cxx1110to_wstringEl'/>
+<use f='include/c++/11/bits/basic_string.h' l='6807' u='c' c='_ZNSt7__cxx1110to_wstringEm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6813' u='c' c='_ZNSt7__cxx1110to_wstringEx'/>
+<use f='include/c++/11/bits/basic_string.h' l='6819' u='c' c='_ZNSt7__cxx1110to_wstringEy'/>
+<use f='include/c++/11/bits/basic_string.h' l='6828' u='c' c='_ZNSt7__cxx1110to_wstringEf'/>
+<use f='include/c++/11/bits/basic_string.h' l='6837' u='c' c='_ZNSt7__cxx1110to_wstringEd'/>
+<use f='include/c++/11/bits/basic_string.h' l='6846' u='c' c='_ZNSt7__cxx1110to_wstringEe'/>

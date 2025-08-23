@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='355' type='uint8_t * WebPIDecGetYUVA(const WebPIDecoder * idec, int * last_y, uint8_t ** u, uint8_t ** v, uint8_t ** a, int * width, int * height, int * stride, int * uv_stride, int * a_stride)'/>
+<use f='Modules/Image/Contrib/WebP/include/decode.h' l='365' u='c' c='_ZL14WebPIDecGetYUVPK12WebPIDecoderPiPPhS4_S2_S2_S2_S2_'/>

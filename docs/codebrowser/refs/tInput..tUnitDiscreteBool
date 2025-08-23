@@ -1,0 +1,15 @@
+<inh f='Modules/Input/Inc/Input/tUnit.h' l='29' c='tInput::tUnit'/>
+<def f='Modules/Input/Inc/Input/tUnitDiscreteBool.h' l='23' ll='28'/>
+<use f='Modules/Input/Inc/Input/tCompButton.h' l='35'/>
+<size>48</size>
+<fun r='_ZN6tInput17tUnitDiscreteBoolC1ERK5tNameRSt5mutex'/>
+<fun r='_ZN6tInput17tUnitDiscreteBoolD1Ev'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='38'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='39'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='40'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='41'/>
+<size>48</size>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='45'/>
+<size>48</size>
+<use f='Modules/Input/Inc/Input/tCompSwitch.h' l='35'/>
+<size>48</size>

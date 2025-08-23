@@ -1,0 +1,5 @@
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='154' u='c' c='_ZN6tImage10tMetaDatumC1ERKS0_'/>
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='157' type='void tImage::tMetaDatum::Set(const tImage::tMetaDatum &amp; src)'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='167' u='c' c='_ZN6tImage10tMetaDatumaSERKS0_'/>
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='227' ll='236' type='void tImage::tMetaDatum::Set(const tImage::tMetaDatum &amp; src)'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='224'>// Implementation below this line.</doc>

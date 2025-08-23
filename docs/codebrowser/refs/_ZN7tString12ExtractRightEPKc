@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='233' type='tString tString::ExtractRight(const char * suffix)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='231'>// If this string ends with suffix, removes and returns it. If not, returns empty string and no modification.
+	// Suffix is assumed to be null-terminated.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='257' u='c' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>

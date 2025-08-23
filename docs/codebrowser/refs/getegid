@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='706' type='__gid_t getegid()'/>
+<doc f='include/unistd.h' l='705'>/* Get the effective group ID of the calling process.  */</doc>

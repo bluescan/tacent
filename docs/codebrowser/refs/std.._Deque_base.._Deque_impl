@@ -1,0 +1,13 @@
+<inh f='include/c++/11/bits/stl_deque.h' l='488' c='std::_Deque_base::_Deque_impl_data'/>
+<def f='include/c++/11/bits/stl_deque.h' l='521' ll='544'/>
+<use f='include/c++/11/bits/stl_deque.h' l='534' c='_ZNSt11_Deque_base11_Deque_implC1EOS0_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='540' c='_ZNSt11_Deque_base11_Deque_implC1EOS0_ON9__gnu_cxx14__alloc_traitsIT0_NS4_10value_typeEE6rebindIT_E5otherE'/>
+<use f='include/c++/11/bits/stl_deque.h' l='592'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='518'>// This struct encapsulates the implementation of the std::deque
+      // standard container and at the same time makes use of the EBO
+      // for empty allocators.</doc>
+<fun r='_ZNSt11_Deque_base11_Deque_implC1Ev'/>
+<fun r='_ZNSt11_Deque_base11_Deque_implC1ERKN9__gnu_cxx14__alloc_traitsIT0_NS3_10value_typeEE6rebindIT_E5otherE'/>
+<fun r='_ZNSt11_Deque_base11_Deque_implC1EOS0_'/>
+<fun r='_ZNSt11_Deque_base11_Deque_implC1EON9__gnu_cxx14__alloc_traitsIT0_NS3_10value_typeEE6rebindIT_E5otherE'/>
+<fun r='_ZNSt11_Deque_base11_Deque_implC1EOS0_ON9__gnu_cxx14__alloc_traitsIT0_NS4_10value_typeEE6rebindIT_E5otherE'/>

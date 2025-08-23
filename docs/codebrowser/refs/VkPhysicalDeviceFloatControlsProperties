@@ -1,0 +1,22 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6174' ll='6194'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6174'/>
+<size>88</size>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::denormBehaviorIndependence' o='128' t='VkShaderFloatControlsIndependence'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::roundingModeIndependence' o='160' t='VkShaderFloatControlsIndependence'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderSignedZeroInfNanPreserveFloat16' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderSignedZeroInfNanPreserveFloat32' o='224' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderSignedZeroInfNanPreserveFloat64' o='256' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderDenormPreserveFloat16' o='288' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderDenormPreserveFloat32' o='320' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderDenormPreserveFloat64' o='352' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderDenormFlushToZeroFloat16' o='384' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderDenormFlushToZeroFloat32' o='416' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderDenormFlushToZeroFloat64' o='448' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderRoundingModeRTEFloat16' o='480' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderRoundingModeRTEFloat32' o='512' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderRoundingModeRTEFloat64' o='544' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderRoundingModeRTZFloat16' o='576' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderRoundingModeRTZFloat32' o='608' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFloatControlsProperties::shaderRoundingModeRTZFloat64' o='640' t='VkBool32'/>

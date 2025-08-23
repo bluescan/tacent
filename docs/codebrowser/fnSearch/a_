@@ -1,0 +1,10 @@
+_ZNKSt24uniform_int_distribution1aEv|std::uniform_int_distribution::a
+_ZNKSt24uniform_int_distribution10param_type1aEv|std::uniform_int_distribution::param_type::a
+_ZNKSt19cauchy_distribution1aEv|std::cauchy_distribution::a
+_ZNKSt19cauchy_distribution10param_type1aEv|std::cauchy_distribution::param_type::a
+_ZNKSt26extreme_value_distribution1aEv|std::extreme_value_distribution::a
+_ZNKSt26extreme_value_distribution10param_type1aEv|std::extreme_value_distribution::param_type::a
+_ZNKSt25uniform_real_distribution1aEv|std::uniform_real_distribution::a
+_ZNKSt25uniform_real_distribution10param_type1aEv|std::uniform_real_distribution::param_type::a
+_ZNKSt20weibull_distribution1aEv|std::weibull_distribution::a
+_ZNKSt20weibull_distribution10param_type1aEv|std::weibull_distribution::param_type::a

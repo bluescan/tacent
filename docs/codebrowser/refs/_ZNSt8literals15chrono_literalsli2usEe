@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='3267' ll='3269' type='chrono::duration&lt;long double, micro&gt; std::operator&quot;&quot;us(long double __usecs)'/>
+<doc f='include/c++/11/chrono' l='3266'>/// Literal suffix for durations representing non-integer microseconds</doc>

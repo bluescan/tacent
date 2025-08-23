@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='208' type='void tsList::tsList&lt;T&gt;(tListMode mode)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='207'>// Mode must be External or Static for thread-safe tsLists.</doc>

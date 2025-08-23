@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='672' type='tuint128 tSystem::tHashFileMD5(const tString &amp; filename, tuint128 iv = tHash::HashIVMD5)'/>
+<def f='Modules/System/Src/tFile.cpp' l='3312' ll='3322' type='tuint128 tSystem::tHashFileMD5(const tString &amp; filename, tuint128 iv = tHash::HashIVMD5)'/>

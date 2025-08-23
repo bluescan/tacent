@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14280' ll='14287'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14280'/>
+<size>32</size>
+<mbr r='VkFramebufferMixedSamplesCombinationNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkFramebufferMixedSamplesCombinationNV::pNext' o='64' t='void *'/>
+<mbr r='VkFramebufferMixedSamplesCombinationNV::coverageReductionMode' o='128' t='VkCoverageReductionModeNV'/>
+<mbr r='VkFramebufferMixedSamplesCombinationNV::rasterizationSamples' o='160' t='VkSampleCountFlagBits'/>
+<mbr r='VkFramebufferMixedSamplesCombinationNV::depthStencilSamples' o='192' t='VkSampleCountFlags'/>
+<mbr r='VkFramebufferMixedSamplesCombinationNV::colorSamples' o='224' t='VkSampleCountFlags'/>

@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/iterator_concepts.h' l='482' ll='485'/>
+<def f='include/c++/11/bits/iterator_concepts.h' l='488' ll='492'/>
+<def f='include/c++/11/bits/iterator_concepts.h' l='495' ll='500'/>
+<def f='include/c++/11/bits/iterator_concepts.h' l='504' ll='505'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='509'/>
+<doc f='include/c++/11/bits/iterator_concepts.h' l='481'>// ITER_CONCEPT(I) is ITER_TRAITS(I)::iterator_concept if that is valid.</doc>
+<doc f='include/c++/11/bits/iterator_concepts.h' l='487'>// Otherwise, ITER_TRAITS(I)::iterator_category if that is valid.</doc>
+<doc f='include/c++/11/bits/iterator_concepts.h' l='494'>// Otherwise, random_access_tag if iterator_traits&lt;I&gt; is not specialized.</doc>

@@ -1,0 +1,53 @@
+<def f='Modules/System/Inc/System/tFile.h' l='369' ll='406'/>
+<use f='Modules/System/Inc/System/tFile.h' l='413' c='_ZN7tSystem25tGetFileTypeFromExtensionERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='414' c='_ZN7tSystem25tGetFileTypeFromExtensionEPKc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='418' c='_ZN7tSystem12tGetFileTypeERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='421' c='_ZN7tSystem14tGetExtensionsER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='424' c='_ZN7tSystem13tGetExtensionER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='425' c='_ZN7tSystem13tGetExtensionENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='429' c='_ZN7tSystem16tGetFileTypeNameENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='433' c='_ZN7tSystem20tGetFileTypeFromNameERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='442' c='_ZN7tSystem11tExtensionsC1ENS_9tFileTypeEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='456' c='_ZN7tSystem11tExtensions3AddENS_9tFileTypeEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='483' c='_ZN7tSystem10tFileTypesC1ENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='489' c='_ZN7tSystem10tFileTypesC1ENS_9tFileTypeEz'/>
+<use f='Modules/System/Inc/System/tFile.h' l='495' c='_ZN7tSystem10tFileTypes3AddENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='497' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEz'/>
+<use f='Modules/System/Inc/System/tFile.h' l='498' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEP13__va_list_tag'/>
+<use f='Modules/System/Inc/System/tFile.h' l='504' c='_ZNK7tSystem10tFileTypes8ContainsENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='509' c='_ZN7tSystem10tFileTypes13tFileTypeItemC1ENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='512'/>
+<use f='Modules/System/Inc/System/tFile.h' l='524' c='_ZN7tSystem10tFileTypes6SelectENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='525' c='_ZNK7tSystem10tFileTypes10IsSelectedENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='526' c='_ZNK7tSystem10tFileTypes20GetFirstSelectedTypeEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='837' c='_ZN7tSystem16tGetFileTypeNameENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='843' c='_ZN7tSystem20tGetFileTypeFromNameERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='881' c='_ZN7tSystem11tExtensions3AddENS_9tFileTypeEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='913' c='_ZN7tSystem10tFileTypesC1ENS_9tFileTypeEz'/>
+<use f='Modules/System/Inc/System/tFile.h' l='944' c='_ZN7tSystem10tFileTypes3AddENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='966' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEz'/>
+<use f='Modules/System/Inc/System/tFile.h' l='977' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEP13__va_list_tag'/>
+<use f='Modules/System/Inc/System/tFile.h' l='982' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEP13__va_list_tag'/>
+<use f='Modules/System/Inc/System/tFile.h' l='982' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEP13__va_list_tag'/>
+<use f='Modules/System/Inc/System/tFile.h' l='986' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEP13__va_list_tag'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1009' c='_ZNK7tSystem10tFileTypes8ContainsENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1035' c='_ZN7tSystem10tFileTypes6SelectENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1049' c='_ZNK7tSystem10tFileTypes10IsSelectedENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1060' c='_ZNK7tSystem10tFileTypes20GetFirstSelectedTypeEv'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='362'>//
+// File types, extensions, and file details.
+//
+// File types are based on file extensions only. If this enum is modified there is an extension mapping table in
+// tFile.cpp that needs to be updated as well. The compiler will static-assert if the number of entries does not match.
+// In order to be clear about the distinction between filetype and extensions, the types here do not have any synonyms.
+// A single filetype may map to multiple extensions.</doc>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='57' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='744' c='_ZN6tImage9tImageKTX4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='837' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1912' c='_ZN7tSystem25tGetFileTypeFromExtensionERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='1919' c='_ZN7tSystem25tGetFileTypeFromExtensionERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='1925' c='_ZN7tSystem25tGetFileTypeFromExtensionEPKc'/>
+<use f='Modules/System/Src/tFile.cpp' l='1932' c='_ZN7tSystem12tGetFileTypeERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='1942' c='_ZN7tSystem14tGetExtensionsER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1954' c='_ZN7tSystem13tGetExtensionER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1965' c='_ZN7tSystem13tGetExtensionENS_9tFileTypeE'/>

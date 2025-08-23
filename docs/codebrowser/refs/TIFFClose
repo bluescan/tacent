@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='345' type='void TIFFClose(TIFF * tif)'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='118' u='c' c='_ZN6tImage10tImageTIFF4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='336' u='c' c='_ZNK6tImage10tImageTIFF4SaveERK7tStringRKNS0_10SaveParamsE'/>

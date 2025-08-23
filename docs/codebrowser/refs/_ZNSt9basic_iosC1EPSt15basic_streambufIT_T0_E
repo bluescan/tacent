@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/basic_ios.h' l='269' ll='273' type='void std::basic_ios::basic_ios&lt;_CharT, _Traits&gt;(basic_streambuf&lt;_CharT, _Traits&gt; * __sb)'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='264'>/**
+       *  @brief  Constructor performs initialization.
+       *
+       *  The parameter is passed by derived streams.
+      */</doc>

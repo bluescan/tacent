@@ -1,0 +1,10 @@
+<dec f='Modules/Math/Inc/Math/tSpline.h' l='99' type='0'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='110' u='r' c='_ZN5tMath11tBezierPathC1Ev'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='115' u='r' c='_ZN5tMath11tBezierPathC1EPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='120' u='r' c='_ZN5tMath11tBezierPathC1EPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE'/>
+<doc f='Modules/Math/Inc/Math/tSpline.h' l='99'>// Supplied points are copied on construction and managed by BezierPath.</doc>
+<use f='Modules/Math/Src/tSpline.cpp' l='208' c='_ZN5tMath11tBezierPathC1ERKS0_'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='222' u='r' c='_ZN5tMath11tBezierPath5ClearEv'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='226' u='r' c='_ZN5tMath11tBezierPath5ClearEv'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='266' u='r' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='387' c='_ZN5tMath11tBezierPath15SetControlVertsEPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE'/>

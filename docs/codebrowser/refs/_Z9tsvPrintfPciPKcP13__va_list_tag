@@ -1,0 +1,11 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='288' type='int tsvPrintf(char * dest, int destSize, const char * format, __va_list_tag * )'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='445' u='c' c='_Z9tmsPrintfPciPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='454' u='c' c='_Z9tmsPrintfyPciPKcz'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='282'>// These overloads are &apos;safe&apos; in that they guarantee no overrun of the dest buffer. You enter the full number of bytes
+// in the dest buffer. The dest buffer is guaranteed to be null terminated afterwards, and the number of characters
+// (not including the terminator) is returned. The dest may contain a truncated version of the formatted string if the
+// dest buffer is not big enough. Returns the number of non-null characters inserted into the buffer. destSize must
+// be greater than 0, but if that&apos;s all you give it, there&apos;s only room for the terminator. Dest sizes &lt;= 1 always
+// return zero.</doc>
+<def f='Modules/System/Src/tPrint.cpp' l='586' ll='606' type='int tsvPrintf(char * dest, int destSize, const char * format, __va_list_tag * argList)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='613' u='c' c='_Z8tsPrintfPciPKcz'/>

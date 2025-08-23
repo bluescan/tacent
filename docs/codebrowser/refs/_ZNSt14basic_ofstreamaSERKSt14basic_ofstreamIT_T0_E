@@ -1,0 +1,2 @@
+<def f='include/c++/11/fstream' l='873' ll='874' type='basic_ofstream&lt;_CharT, _Traits&gt; &amp; std::basic_ofstream::operator=(const basic_ofstream&lt;_CharT, _Traits&gt; &amp; )'/>
+<doc f='include/c++/11/fstream' l='871'>// 27.8.3.2 Assign and swap:</doc>

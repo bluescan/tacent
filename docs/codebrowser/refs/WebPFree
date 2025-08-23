@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/types.h' l='62' type='void WebPFree(void * ptr)'/>
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='75' u='c' c='_ZL13WebPDataClearP8WebPData'/>

@@ -1,0 +1,14 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='48' type='T tMath::tMin(const T &amp; a, const T &amp; b)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='590' u='c' c='_ZNK8tFixIntU12AssignHelperclER8tFixIntUIXT_EERKTL1__'/>
+<use f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='1155' u='c' c='_ZNK7tFixInt12AssignHelperclER7tFixIntIXT_EERKTL1__'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='519' u='c' c='_ZN5tMath7tARect28AddPointERKNS_8tVector2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='520' u='c' c='_ZN5tMath7tARect28AddPointERKNS_8tVector2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='567' u='c' c='_ZN5tMath5tABox8AddPointERKNS_8tVector3E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='568' u='c' c='_ZN5tMath5tABox8AddPointERKNS_8tVector3E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='569' u='c' c='_ZN5tMath5tABox8AddPointERKNS_8tVector3E'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='785' u='c' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<use f='Modules/Image/Src/tResample.cpp' l='275' u='c' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='377' u='c' c='_ZN5tMath9tInterval6ExtendERKS0_b'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='390' u='c' c='_ZN5tMath9tInterval11EncapsulateERKS0_'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='90' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='113' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>

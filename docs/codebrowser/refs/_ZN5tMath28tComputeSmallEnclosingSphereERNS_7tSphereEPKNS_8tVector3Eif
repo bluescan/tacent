@@ -1,0 +1,14 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='442' type='bool tMath::tComputeSmallEnclosingSphere(tMath::tSphere &amp; result, const tMath::tVector3 * points, int numPoints, float minRadius = 1.0000000000000001E-5)'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='430'>// This function finds a small sphere that encloses the supplied points. The algorithm is &apos;stable&apos; in that continuous
+// changes in source positions do not result in discontinuities in the output sphere. Runs in expected O(n) time and
+// finds the smallest, or rather something close to the smallest, sphere that encloses them all. If numpoints is &lt;= 0
+// or points is nullptr returns false and does not modify the sphere. For numPoints = 1 returns a sphere with the
+// center at the point and radius minRadius. This also happens if all points have identical positions.
+//
+// Uses the Bouncing Bubble solution to the minimal enclosing ball problem. See
+// &quot;https://en.wikipedia.org/wiki/Bounding_sphere#Bouncing_Bubble&quot;. The minRadius must not be too close to zero or
+// the algorithm will not work. The minRadius is forced to be &gt;= Epsilon if too small a value is passed in. The
+// implementation is based on Andres Hernandez&apos;s code as shown here:
+// http://stackoverflow.com/questions/17331203/bouncing-bubble-algorithm-for-smallest-enclosing-sphere which is
+// based on a paper by Tian Bo.</doc>
+<def f='Modules/Math/Src/tGeometry.cpp' l='116' ll='167' type='bool tMath::tComputeSmallEnclosingSphere(tMath::tSphere &amp; sphere, const tMath::tVector3 * points, int numPoints, float minRadius = 1.0000000000000001E-5)'/>

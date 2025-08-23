@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Src/tUnits.cpp' l='63' ll='68' type='const char *[3]'/>
+<use f='Modules/Foundation/Src/tUnits.cpp' l='95' u='r' c='_ZN5tUnit11GetUnitNameENS_5tMassE'/>
+<use f='Modules/Foundation/Src/tUnits.cpp' l='127' u='r' c='_ZN5tUnit11GetMassUnitEPKc'/>

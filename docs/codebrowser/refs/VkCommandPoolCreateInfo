@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3869' ll='3874'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3869'/>
+<size>24</size>
+<mbr r='VkCommandPoolCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCommandPoolCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkCommandPoolCreateInfo::flags' o='128' t='VkCommandPoolCreateFlags'/>
+<mbr r='VkCommandPoolCreateInfo::queueFamilyIndex' o='160' t='uint32_t'/>

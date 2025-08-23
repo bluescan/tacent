@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tHash.h' l='117' type='tuint128 tHash::tHashStringMD5(const tString &amp; , tuint128 iv = HashIVMD5)'/>
+<def f='Modules/Foundation/Inc/Foundation/tHash.h' l='162' type='tuint128 tHash::tHashStringMD5(const tString &amp; s, tuint128 iv = HashIVMD5)'/>

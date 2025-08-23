@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13397' ll='13401'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13397'/>
+<size>24</size>
+<mbr r='VkPipelineRepresentativeFragmentTestStateCreateInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineRepresentativeFragmentTestStateCreateInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineRepresentativeFragmentTestStateCreateInfoNV::representativeFragmentTestEnable' o='128' t='VkBool32'/>

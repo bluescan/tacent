@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/random.h' l='375' ll='378' type='bool std::operator==(const linear_congruential_engine&lt;_UIntType, __a, __c, __m&gt; &amp; __lhs, const linear_congruential_engine&lt;_UIntType, __a, __c, __m&gt; &amp; __rhs)'/>
+<doc f='include/c++/11/bits/random.h' l='364'>/**
+       * @brief Compares two linear congruential random number generator
+       * objects of the same type for equality.
+       *
+       * @param __lhs A linear congruential random number generator object.
+       * @param __rhs Another linear congruential random number generator
+       *              object.
+       *
+       * @returns true if the infinite sequences of generated values
+       *          would be equal, false otherwise.
+       */</doc>

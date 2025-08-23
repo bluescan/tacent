@@ -1,0 +1,19 @@
+<use f='Modules/Image/Contrib/WebP/include/decode.h' l='34'/>
+<def f='Modules/Image/Contrib/WebP/include/decode.h' l='445' ll='460'/>
+<size>76</size>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='444'>// Decoding options</doc>
+<mbr r='WebPDecoderOptions::bypass_filtering' o='0' t='int'/>
+<mbr r='WebPDecoderOptions::no_fancy_upsampling' o='32' t='int'/>
+<mbr r='WebPDecoderOptions::use_cropping' o='64' t='int'/>
+<mbr r='WebPDecoderOptions::crop_left' o='96' t='int'/>
+<mbr r='WebPDecoderOptions::crop_top' o='128' t='int'/>
+<mbr r='WebPDecoderOptions::crop_width' o='160' t='int'/>
+<mbr r='WebPDecoderOptions::crop_height' o='192' t='int'/>
+<mbr r='WebPDecoderOptions::use_scaling' o='224' t='int'/>
+<mbr r='WebPDecoderOptions::scaled_width' o='256' t='int'/>
+<mbr r='WebPDecoderOptions::scaled_height' o='288' t='int'/>
+<mbr r='WebPDecoderOptions::use_threads' o='320' t='int'/>
+<mbr r='WebPDecoderOptions::dithering_strength' o='352' t='int'/>
+<mbr r='WebPDecoderOptions::flip' o='384' t='int'/>
+<mbr r='WebPDecoderOptions::alpha_dithering_strength' o='416' t='int'/>
+<mbr r='WebPDecoderOptions::pad' o='448' t='uint32_t[5]'/>

@@ -1,0 +1,3 @@
+<def f='Modules/System/Inc/System/tPrint.h' l='36' type='const tSystem::tChannel'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='59' u='r'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='348' u='r' c='_Z16tdPrintfGameplayPKcz'/>

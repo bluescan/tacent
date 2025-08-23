@@ -1,0 +1,7 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='338' ll='346'/>
+<size>28</size>
+<fun r='_ZN5tMath7tCircleC1Ev'/>
+<fun r='_ZNK5tMath7tCircle4AreaEv'/>
+<mbr r='tMath::tCircle::Radius' o='0' t='float'/>
+<mbr r='tMath::tCircle::Center' o='32' t='tMath::tVector3'/>
+<mbr r='tMath::tCircle::Normal' o='128' t='tMath::tVector3'/>

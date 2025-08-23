@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='1281' ll='1301' macro='1' type='bool std::__lexicographical_compare_impl(_II1 __first1, _II1 __last1, _II2 __first2, _II2 __last2, _Compare __comp)'/>

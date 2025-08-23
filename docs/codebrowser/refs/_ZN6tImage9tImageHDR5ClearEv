@@ -1,0 +1,11 @@
+<use f='Modules/Image/Inc/Image/tImageHDR.h' l='76' u='c' c='_ZN6tImage9tImageHDRD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImageHDR.h' l='92' type='void tImage::tImageHDR::Clear()'/>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Inc/Image/tImageHDR.h' l='149' ll='156' type='void tImage::tImageHDR::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImageHDR.h' l='91'>// After this call no memory will be consumed by the object and it will be invalid.</doc>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='271' u='c' c='_ZN6tImage9tImageHDR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='290' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='394' u='c' c='_ZN6tImage9tImageHDR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='421' u='c' c='_ZN6tImage9tImageHDR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='440' u='c' c='_ZN6tImage9tImageHDR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='486' u='c' c='_ZN6tImage9tImageHDR11StealPixelsEv'/>

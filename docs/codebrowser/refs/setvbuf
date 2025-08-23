@@ -1,0 +1,4 @@
+<dec f='include/stdio.h' l='332' type='int setvbuf(FILE *__restrict __stream, char *__restrict __buf, int __modes, size_t __n)'/>
+<doc f='include/stdio.h' l='329'>/* Make STREAM use buffering mode MODE.
+   If BUF is not NULL, use N bytes of it for buffering;
+   else allocate an internal buffer N bytes long.  */</doc>

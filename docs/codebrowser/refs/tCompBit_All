@@ -1,0 +1,10 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='97' type='4294967295'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='433' c='_ZNK9tColour4b5EqualERKS_j'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='618' c='_ZNK9tColour4s5EqualERKS_j'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='433' c='_ZNK9tColour4b5EqualERKS_j'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='618' c='_ZNK9tColour4s5EqualERKS_j'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='81' c='_ZNK5tMath12tBezierCurve15GetClosestParamERKNS_8tVector3Ejf'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='138' c='_ZNK5tMath11tBezierPath35ComputeApproxParamPerCoordinateUnitEj'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='169' u='r' c='_ZN5tMath11tBezierPath17tFastSectionStateC1Ev'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='174' u='r' c='_ZNK5tMath11tBezierPath17tFastSectionState5ClearEv'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='189'/>

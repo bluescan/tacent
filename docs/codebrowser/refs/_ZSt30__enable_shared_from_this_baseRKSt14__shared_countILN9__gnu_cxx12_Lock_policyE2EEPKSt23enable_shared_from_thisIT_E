@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/shared_ptr.h' l='832' ll='835' type='const enable_shared_from_this&lt;_Tp&gt; * std::__enable_shared_from_this_base(const __shared_count&lt;&gt; &amp; , const enable_shared_from_this&lt;_Tp&gt; * __p)'/>
+<doc f='include/c++/11/bits/shared_ptr.h' l='831'>// Found by ADL when this is an associated class.</doc>

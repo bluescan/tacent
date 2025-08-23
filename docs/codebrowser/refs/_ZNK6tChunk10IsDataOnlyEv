@@ -1,0 +1,11 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='248' type='bool tChunk::IsDataOnly() const'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='282' u='c' c='_ZNK6tChunk9ItemResetEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='291' u='c' c='_ZNK6tChunk7GetItemERb'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='292' u='c' c='_ZNK6tChunk7GetItemER7tString'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='293' u='c' c='_ZNK6tChunk7GetItemERT_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='296' u='c' c='_ZNK6tChunk8GetItemsEPbi'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='297' u='c' c='_ZNK6tChunk8GetItemsEP7tStringi'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='298' u='c' c='_ZNK6tChunk8GetItemsEPT_i'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='301' u='c' c='_ZNK6tChunk14GetItemCurrentEi'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='302' u='c' c='_ZNK6tChunk14GetItemCurrentEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='303' u='c' c='_ZNK6tChunk11ItemAdvanceEi'/>

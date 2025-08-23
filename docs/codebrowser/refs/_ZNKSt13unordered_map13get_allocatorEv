@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unordered_map.h' l='297' ll='299' type='std::unordered_map::allocator_type std::unordered_map::get_allocator() const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='296'>///  Returns the allocator object used by the %unordered_map.</doc>

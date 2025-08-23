@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='86' type='bool TinyEXIF::EXIFStream::IsValid() const'/>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='85'>// Check the state of the stream.</doc>

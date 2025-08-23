@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='2508' type='void std::num_put::_M_pad(std::num_put::char_type __fill, std::streamsize __w, std::ios_base &amp; __io, std::num_put::char_type * __new, const std::num_put::char_type * __cs, int &amp; __len) const'/>
+<def f='include/c++/11/bits/locale_facets.tcc' l='795' ll='806' type='void std::num_put::_M_pad(_CharT __fill, std::streamsize __w, std::ios_base &amp; __io, _CharT * __new, const _CharT * __cs, int &amp; __len) const'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='944' u='c' c='_ZNKSt7num_put13_M_insert_intET0_RSt8ios_baseT_TL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1111' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<doc f='include/c++/11/bits/locale_facets.tcc' l='793'>// For use by integer and floating-point types after they have been
+  // converted into a char_type string.</doc>

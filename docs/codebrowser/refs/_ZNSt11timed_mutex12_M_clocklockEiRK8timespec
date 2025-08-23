@@ -1,0 +1,1 @@
+<def f='include/c++/11/mutex' l='270' ll='272' type='bool std::timed_mutex::_M_clocklock(clockid_t clockid, const __gthread_time_t &amp; __ts)'/>

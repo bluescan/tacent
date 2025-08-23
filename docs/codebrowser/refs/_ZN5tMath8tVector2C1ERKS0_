@@ -1,0 +1,11 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='100' u='c' c='_ZN5tMath9tLineSeg2C1ERKNS_8tVector2ES3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='100' u='c' c='_ZN5tMath9tLineSeg2C1ERKNS_8tVector2ES3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='101' u='c' c='_ZN5tMath9tLineSeg2C1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='101' u='c' c='_ZN5tMath9tLineSeg2C1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='111' u='c' c='_ZN5tMath6tLine2C1ERKNS_8tVector2ES3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='111' u='c' c='_ZN5tMath6tLine2C1ERKNS_8tVector2ES3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='112' u='c' c='_ZN5tMath6tLine2C1ERKNS_9tLineSeg2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='112' u='c' c='_ZN5tMath6tLine2C1ERKNS_9tLineSeg2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='113' u='c' c='_ZN5tMath6tLine2C1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='113' u='c' c='_ZN5tMath6tLine2C1ERKS0_'/>
+<use f='Modules/System/Inc/System/tScript.h' l='127' u='c' c='_ZNK11tExpressioncvN5tMath8tVector2EEv'/>

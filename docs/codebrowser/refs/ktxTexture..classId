@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='256' type='class_id'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='828' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='829' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='290'>/**
+ * @typedef ktxTexture::classId
+ * @~English
+ * @brief Identify the class type.
+ *
+ * Since there are no public ktxTexture constructors, this can only have
+ * values of ktxTexture1_c or ktxTexture2_c.
+ */</doc>

@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='123' type='3'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='134'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='954' c='_ZN5tMath21tIsProfileLinearInRGBE14tColourProfile'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='966' c='_ZN5tMath18tIsProfileHDRInRGBE14tColourProfile'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='123'>// Equiv ASTC profile: ASTCENC_PRF_HDR_RGB_LDR_A. The HDR RGB with LDR alpha colour profile.</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1082' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

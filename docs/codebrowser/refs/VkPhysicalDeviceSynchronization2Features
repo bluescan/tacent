@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7041' ll='7045'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7041'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceSynchronization2Features::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceSynchronization2Features::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceSynchronization2Features::synchronization2' o='128' t='VkBool32'/>

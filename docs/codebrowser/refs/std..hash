@@ -1,0 +1,220 @@
+<use f='include/c++/11/bits/functional_hash.h' l='72'/>
+<use f='include/c++/11/bits/functional_hash.h' l='95' c='_ZNKSt11__hash_enumIT_Lb1EEclES0_'/>
+<def f='include/c++/11/bits/functional_hash.h' l='102' ll='103'/>
+<def f='include/c++/11/bits/functional_hash.h' l='106' ll='112'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='125' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='128' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='131' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='134' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='137' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='141' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='145' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='148' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='151' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='154' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='157' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='160' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='163' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='166' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='169' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='172' macro='1'/>
+<use f='include/c++/11/bits/functional_hash.h' l='117'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='231' ll='240'/>
+<use f='include/c++/11/bits/functional_hash.h' l='232'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='243' ll='252'/>
+<use f='include/c++/11/bits/functional_hash.h' l='244'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='255' ll='261'/>
+<use f='include/c++/11/bits/functional_hash.h' l='256'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/functional_hash.h' l='264' ll='270'/>
+<use f='include/c++/11/bits/functional_hash.h' l='265'/>
+<use f='include/c++/11/bits/functional_hash.h' l='284'/>
+<use f='include/c++/11/bits/unordered_map.h' l='44'/>
+<use f='include/c++/11/bits/unordered_map.h' l='61'/>
+<use f='include/c++/11/bits/unordered_map.h' l='99'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1139'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1153'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1171' c='std::{deductionguideforunordered_map}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1181' c='std::{deductionguideforunordered_map}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1201' c='std::{deductionguideforunordered_map}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1206' c='std::{deductionguideforunordered_map}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1242'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2039'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2054'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2073' c='std::{deductionguideforunordered_multimap}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2082' c='std::{deductionguideforunordered_multimap}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2101' c='std::{deductionguideforunordered_multimap}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2106' c='std::{deductionguideforunordered_multimap}'/>
+<use f='include/c++/11/unordered_map' l='62'/>
+<use f='include/c++/11/unordered_map' l='67'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='603'/>
+<def f='include/c++/11/bits/stl_bvector.h' l='1370' ll='1376'/>
+<use f='include/c++/11/bits/vector.tcc' l='973' c='_ZNKSt4hashISt6vectorIbT_EEclERKS2_'/>
+<use f='include/c++/11/functional' l='1111'/>
+<use f='include/c++/11/functional' l='1167'/>
+<size>1</size>
+<doc f='include/c++/11/bits/functional_hash.h' l='105'>/// Partial specializations for pointer types.</doc>
+<doc f='include/c++/11/bits/functional_hash.h' l='230'>/// Specialization for float.</doc>
+<doc f='include/c++/11/bits/functional_hash.h' l='242'>/// Specialization for double.</doc>
+<doc f='include/c++/11/bits/functional_hash.h' l='254'>/// Specialization for long double.</doc>
+<doc f='include/c++/11/bits/stl_bvector.h' l='1368'>// DR 1182.
+  /// std::hash specialization for vector&lt;bool&gt;.</doc>
+<fun r='_ZNKSt4hashIPT_EclES1_'/>
+<fun r='_ZNKSt4hashIfEclEf'/>
+<fun r='_ZNKSt4hashIdEclEd'/>
+<fun r='_ZNKSt4hashIeEclEe'/>
+<fun r='_ZNKSt4hashIDnEclEDn'/>
+<fun r='_ZNKSt4hashISt6vectorIbT_EEclERKS2_'/>
+<fun r='_ZNKSt4hashISt6vectorIbT_EEclERKS2_'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/string_view' l='689' ll='696'/>
+<use f='include/c++/11/string_view' l='690'/>
+<use f='include/c++/11/string_view' l='699'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/string_view' l='703' ll='711'/>
+<use f='include/c++/11/string_view' l='704'/>
+<use f='include/c++/11/string_view' l='714'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/string_view' l='719' ll='726'/>
+<use f='include/c++/11/string_view' l='720'/>
+<use f='include/c++/11/string_view' l='729'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/string_view' l='733' ll='741'/>
+<use f='include/c++/11/string_view' l='734'/>
+<use f='include/c++/11/string_view' l='744'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/string_view' l='747' ll='755'/>
+<use f='include/c++/11/string_view' l='748'/>
+<use f='include/c++/11/string_view' l='758'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/basic_string.h' l='6870' ll='6877'/>
+<use f='include/c++/11/bits/basic_string.h' l='6871'/>
+<use f='include/c++/11/bits/basic_string.h' l='6880'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/basic_string.h' l='6885' ll='6893'/>
+<use f='include/c++/11/bits/basic_string.h' l='6886'/>
+<use f='include/c++/11/bits/basic_string.h' l='6896'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/basic_string.h' l='6903' ll='6911'/>
+<use f='include/c++/11/bits/basic_string.h' l='6904'/>
+<use f='include/c++/11/bits/basic_string.h' l='6914'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/basic_string.h' l='6919' ll='6927'/>
+<use f='include/c++/11/bits/basic_string.h' l='6920'/>
+<use f='include/c++/11/bits/basic_string.h' l='6930'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/basic_string.h' l='6934' ll='6942'/>
+<use f='include/c++/11/bits/basic_string.h' l='6935'/>
+<use f='include/c++/11/bits/basic_string.h' l='6945'/>
+<use f='include/c++/11/string' l='84' c='_ZNKSt18__hash_string_baseclERKT_'/>
+<inh f='include/c++/11/string' l='79' c='std::__hash_string_base'/>
+<def f='include/c++/11/string' l='87' ll='90'/>
+<use f='include/c++/11/string' l='88'/>
+<inh f='include/c++/11/string' l='79' c='std::__hash_string_base'/>
+<def f='include/c++/11/string' l='92' ll='95'/>
+<use f='include/c++/11/string' l='93'/>
+<inh f='include/c++/11/string' l='79' c='std::__hash_string_base'/>
+<def f='include/c++/11/string' l='97' ll='100'/>
+<use f='include/c++/11/string' l='98'/>
+<inh f='include/c++/11/string' l='79' c='std::__hash_string_base'/>
+<def f='include/c++/11/string' l='101' ll='104'/>
+<use f='include/c++/11/string' l='102'/>
+<inh f='include/c++/11/string' l='79' c='std::__hash_string_base'/>
+<def f='include/c++/11/string' l='106' ll='109'/>
+<use f='include/c++/11/string' l='107'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/system_error' l='496' ll='506'/>
+<use f='include/c++/11/system_error' l='497'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/system_error' l='513' ll='523'/>
+<use f='include/c++/11/system_error' l='514'/>
+<size>1</size>
+<doc f='include/c++/11/system_error' l='493'>// DR 1182.
+  /// std::hash specialization for error_code.
+  /// @relates error_code</doc>
+<doc f='include/c++/11/system_error' l='510'>// DR 2686.
+  /// std::hash specialization for error_condition.
+  /// @relates error_condition</doc>
+<doc f='include/c++/11/bits/basic_string.h' l='6869'>/// std::hash specialization for string.</doc>
+<doc f='include/c++/11/bits/basic_string.h' l='6884'>/// std::hash specialization for wstring.</doc>
+<doc f='include/c++/11/bits/basic_string.h' l='6902'>/// std::hash specialization for u8string.</doc>
+<doc f='include/c++/11/bits/basic_string.h' l='6918'>/// std::hash specialization for u16string.</doc>
+<doc f='include/c++/11/bits/basic_string.h' l='6933'>/// std::hash specialization for u32string.</doc>
+<fun r='_ZNKSt4hashISt17basic_string_viewIcSt11char_traitsIcEEEclERKS3_'/>
+<fun r='_ZNKSt4hashISt17basic_string_viewIwSt11char_traitsIwEEEclERKS3_'/>
+<fun r='_ZNKSt4hashISt17basic_string_viewIDuSt11char_traitsIDuEEEclERKS3_'/>
+<fun r='_ZNKSt4hashISt17basic_string_viewIDsSt11char_traitsIDsEEEclERKS3_'/>
+<fun r='_ZNKSt4hashISt17basic_string_viewIDiSt11char_traitsIDiEEEclERKS3_'/>
+<fun r='_ZNKSt4hashINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEclERKS5_'/>
+<fun r='_ZNKSt4hashINSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEEEclERKS5_'/>
+<fun r='_ZNKSt4hashINSt7__cxx1112basic_stringIDuSt11char_traitsIDuESaIDuEEEEclERKS5_'/>
+<fun r='_ZNKSt4hashINSt7__cxx1112basic_stringIDsSt11char_traitsIDsESaIDsEEEEclERKS5_'/>
+<fun r='_ZNKSt4hashINSt7__cxx1112basic_stringIDiSt11char_traitsIDiESaIDiEEEEclERKS5_'/>
+<fun r='_ZNKSt4hashISt10error_codeEclERKS0_'/>
+<fun r='_ZNKSt4hashISt15error_conditionEclERKS0_'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='921' c='_ZNKSt15__uniq_ptr_hashclERKT_'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='922' c='_ZNKSt15__uniq_ptr_hashclERKT_'/>
+<def f='include/c++/11/bits/unique_ptr.h' l='932' ll='936'/>
+<use f='include/c++/11/bits/std_thread.h' l='93'/>
+<inh f='include/c++/11/bits/functional_hash.h' l='51' c='std::__hash_base'/>
+<def f='include/c++/11/bits/std_thread.h' l='300' ll='307'/>
+<use f='include/c++/11/bits/std_thread.h' l='301'/>
+<size>1</size>
+<doc f='include/c++/11/bits/std_thread.h' l='296'>// N.B. other comparison operators are defined in &lt;thread&gt;
+
+  // DR 889.
+  /// std::hash specialization for thread::id.</doc>
+<doc f='include/c++/11/bits/unique_ptr.h' l='929'>/// @endcond
+
+  /// std::hash specialization for unique_ptr.</doc>
+<fun r='_ZNKSt4hashINSt6thread2idEEclERKS1_'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1854' ll='1864'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1861' c='_ZNKSt4hashISt12__shared_ptrIT_XT0_EEEclERKS2_'/>
+<def f='include/c++/11/bits/shared_ptr.h' l='883' ll='892'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='890' c='_ZNKSt4hashISt10shared_ptrIT_EEclERKS2_'/>
+<doc f='include/c++/11/bits/shared_ptr.h' l='882'>/// std::hash specialization for shared_ptr.</doc>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='1853'>/// std::hash specialization for __shared_ptr.</doc>
+<fun r='_ZNKSt4hashISt12__shared_ptrIT_XT0_EEEclERKS2_'/>
+<fun r='_ZNKSt4hashISt10shared_ptrIT_EEclERKS2_'/>
+<def f='include/c++/11/bits/fs_path.h' l='1360' ll='1366'/>
+<use f='include/c++/11/bits/fs_path.h' l='1361'/>
+<size>1</size>
+<doc f='include/c++/11/bits/fs_path.h' l='1356'>/// @endcond
+
+// _GLIBCXX_RESOLVE_LIB_DEFECTS
+// 3657. std::hash&lt;std::filesystem::path&gt; is not enabled</doc>
+<fun r='_ZNKSt4hashINSt10filesystem7__cxx114pathEEclERKS2_'/>

@@ -1,0 +1,36 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1551' type='uint8_t[4]'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1555' u='r' c='_ZN5rgbcx5hist4C1Ev'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1555' u='r' c='_ZN5rgbcx5hist4C1Ev'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1560' u='w' c='_ZN5rgbcx5hist4C1Ejjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1561' u='w' c='_ZN5rgbcx5hist4C1Ejjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1562' u='w' c='_ZN5rgbcx5hist4C1Ejjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1563' u='w' c='_ZN5rgbcx5hist4C1Ejjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1568' u='r' c='_ZNK5rgbcx5hist4eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1568' u='r' c='_ZNK5rgbcx5hist4eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1569' u='r' c='_ZNK5rgbcx5hist4eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1569' u='r' c='_ZNK5rgbcx5hist4eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1570' u='r' c='_ZNK5rgbcx5hist4eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1570' u='r' c='_ZNK5rgbcx5hist4eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1571' u='r' c='_ZNK5rgbcx5hist4eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1571' u='r' c='_ZNK5rgbcx5hist4eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1577' u='r' c='_ZNK5rgbcx5hist46any_16Ev'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1577' u='r' c='_ZNK5rgbcx5hist46any_16Ev'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1577' u='r' c='_ZNK5rgbcx5hist46any_16Ev'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1577' u='r' c='_ZNK5rgbcx5hist46any_16Ev'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1582' u='r' c='_ZNK5rgbcx5hist427lookup_total_ordering_indexEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1584' u='r' c='_ZNK5rgbcx5hist427lookup_total_ordering_indexEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1586' u='r' c='_ZNK5rgbcx5hist427lookup_total_ordering_indexEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1588' u='r' c='_ZNK5rgbcx5hist427lookup_total_ordering_indexEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1592' u='r' c='_ZNK5rgbcx5hist427lookup_total_ordering_indexEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1592' u='r' c='_ZNK5rgbcx5hist427lookup_total_ordering_indexEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1592' u='r' c='_ZNK5rgbcx5hist427lookup_total_ordering_indexEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1810' u='r' c='_ZN5rgbcxL25compute_selector_factors4ERKNS_5hist4ERfS3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1871' u='w' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1872' u='w' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1873' u='w' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1874' u='w' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1878' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1878' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1878' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3698' u='w' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<offset>0</offset>

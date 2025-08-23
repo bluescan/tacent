@@ -1,0 +1,23 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='54' c='tImage::tBaseImage'/>
+<def f='Modules/Image/Inc/Image/tImagePVR.h' l='33' ll='291'/>
+<size>120</size>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='26'>// A tImagePVR object represents and knows how to load a pvr file. A pvr file is a container format much like ktx or
+// dds. It comes in 3 different versions: V1, V2, and V3. All three use the same pvr extension. This class loads the
+// data into tLayers. It can either decode to R8G8B8A8 layers, or leave the data as-is. There are many pixel formats
+// supported by pvr V3 files including ASTC, BCn, and the PVRTC formats. The PVRTC formats also come in two main
+// versions: V1 and V2. If a V1 format is used, the file should be checked to ensure it is POT. The layers may be
+// &apos;stolen&apos; from a tImagePVR so that excessive memcpys are avoided. After they are stolen the tImagePVR is invalid.
+// Cubemaps, mipmaps, texture arrays, and 3D textures are supported.</doc>
+<fun r='_ZN6tImage9tImagePVRD1Ev'/>
+<fun r='_ZN6tImage9tImagePVR5ClearEv'/>
+<fun r='_ZNK6tImage9tImagePVR7IsValidEv'/>
+<fun r='_ZN6tImage9tImagePVR3SetEP9tColour4biib'/>
+<fun r='_ZN6tImage9tImagePVR3SetEPNS_6tFrameEb'/>
+<fun r='_ZN6tImage9tImagePVR3SetERNS_8tPictureEb'/>
+<fun r='_ZNK6tImage9tImagePVR11IsMipmappedEv'/>
+<fun r='_ZNK6tImage9tImagePVR9IsCubemapEv'/>
+<fun r='_ZN6tImage9tImagePVR8GetFrameEb'/>
+<fun r='_ZNK6tImage9tImagePVR9GetLayersER5tListINS_6tLayerEE'/>
+<fun r='_ZNK6tImage9tImagePVR16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<fun r='_ZNK6tImage9tImagePVR12GetAlphaModeEv'/>
+<fun r='_ZNK6tImage9tImagePVR14GetChannelTypeEv'/>

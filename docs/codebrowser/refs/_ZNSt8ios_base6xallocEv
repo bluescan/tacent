@@ -1,0 +1,15 @@
+<dec f='include/c++/11/bits/ios_base.h' l='823' type='static int std::ios_base::xalloc()'/>
+<doc f='include/c++/11/bits/ios_base.h' l='808'>/**
+     *  @brief  Access to unique indices.
+     *  @return  An integer different from all previous calls.
+     *
+     *  This function returns a unique integer every time it is called.  It
+     *  can be used for any purpose, but is primarily intended to be a unique
+     *  index for the iword and pword functions.  The expectation is that an
+     *  application calls xalloc in order to obtain an index in the iword and
+     *  pword arrays that can be used without fear of conflict.
+     *
+     *  The implementation maintains a static variable that is incremented and
+     *  returned on each invocation.  xalloc is guaranteed to return an index
+     *  that is safe to use in the iword and pword arrays.
+    */</doc>

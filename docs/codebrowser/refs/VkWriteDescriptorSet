@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3792' ll='3803'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3792'/>
+<size>64</size>
+<mbr r='VkWriteDescriptorSet::sType' o='0' t='VkStructureType'/>
+<mbr r='VkWriteDescriptorSet::pNext' o='64' t='const void *'/>
+<mbr r='VkWriteDescriptorSet::dstSet' o='128' t='VkDescriptorSet'/>
+<mbr r='VkWriteDescriptorSet::dstBinding' o='192' t='uint32_t'/>
+<mbr r='VkWriteDescriptorSet::dstArrayElement' o='224' t='uint32_t'/>
+<mbr r='VkWriteDescriptorSet::descriptorCount' o='256' t='uint32_t'/>
+<mbr r='VkWriteDescriptorSet::descriptorType' o='288' t='VkDescriptorType'/>
+<mbr r='VkWriteDescriptorSet::pImageInfo' o='320' t='const VkDescriptorImageInfo *'/>
+<mbr r='VkWriteDescriptorSet::pBufferInfo' o='384' t='const VkDescriptorBufferInfo *'/>
+<mbr r='VkWriteDescriptorSet::pTexelBufferView' o='448' t='const VkBufferView *'/>

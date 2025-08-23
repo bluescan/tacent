@@ -1,0 +1,6 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='39' type='void tMath::tVector3::Set(float x, float y, float z)'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='328' u='c' c='_ZN5tMath5tOBoxC1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='328' u='c' c='_ZN5tMath5tOBoxC1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='328' u='c' c='_ZN5tMath5tOBoxC1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='373' u='c' c='_ZN5tMath6tPlane3SetEffff'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='236' u='c' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>

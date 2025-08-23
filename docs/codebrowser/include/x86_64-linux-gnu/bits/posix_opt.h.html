@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>posix_opt.h source code [include/x86_64-linux-gnu/bits/posix_opt.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/posix_opt.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>bits</a>/<a href='posix_opt.h.html'>posix_opt.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Define POSIX options for Linux.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   Copyright (C) 1996-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i></i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   modify it under the terms of the GNU Lesser General Public License as</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   published by the Free Software Foundation; either version 2.1 of the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i></i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i></i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   License along with the GNU C Library; see the file COPYING.LIB.  If</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>   not, see &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#<span data-ppcond="19">ifndef</span>	<span class="macro" data-ref="_M/_BITS_POSIX_OPT_H">_BITS_POSIX_OPT_H</span></u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><u>#define	<dfn class="macro" id="_M/_BITS_POSIX_OPT_H" data-ref="_M/_BITS_POSIX_OPT_H">_BITS_POSIX_OPT_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="21">21</th><td>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>/* Job control is supported.  */</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#define	<dfn class="macro" id="_M/_POSIX_JOB_CONTROL" data-ref="_M/_POSIX_JOB_CONTROL">_POSIX_JOB_CONTROL</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>/* Processes have a saved set-user-ID and a saved set-group-ID.  */</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#define	<dfn class="macro" id="_M/_POSIX_SAVED_IDS" data-ref="_M/_POSIX_SAVED_IDS">_POSIX_SAVED_IDS</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="27">27</th><td>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i>/* Priority scheduling is not supported with the correct semantics,</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i>   but GNU/Linux applications expect that the corresponding interfaces</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>   are available, even though the semantics do not meet the POSIX</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>   requirements.  See glibc bug 14829.  */</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#define	<dfn class="macro" id="_M/_POSIX_PRIORITY_SCHEDULING" data-ref="_M/_POSIX_PRIORITY_SCHEDULING">_POSIX_PRIORITY_SCHEDULING</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>/* Synchronizing file data is supported.  */</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#define	<dfn class="macro" id="_M/_POSIX_SYNCHRONIZED_IO" data-ref="_M/_POSIX_SYNCHRONIZED_IO">_POSIX_SYNCHRONIZED_IO</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>/* The fsync function is present.  */</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#define	<dfn class="macro" id="_M/_POSIX_FSYNC" data-ref="_M/_POSIX_FSYNC">_POSIX_FSYNC</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>/* Mapping of files to memory is supported.  */</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#define	<dfn class="macro" id="_M/_POSIX_MAPPED_FILES" data-ref="_M/_POSIX_MAPPED_FILES">_POSIX_MAPPED_FILES</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i>/* Locking of all memory is supported.  */</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#define	<dfn class="macro" id="_M/_POSIX_MEMLOCK" data-ref="_M/_POSIX_MEMLOCK">_POSIX_MEMLOCK</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>/* Locking of ranges of memory is supported.  */</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#define	<dfn class="macro" id="_M/_POSIX_MEMLOCK_RANGE" data-ref="_M/_POSIX_MEMLOCK_RANGE">_POSIX_MEMLOCK_RANGE</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i>/* Setting of memory protections is supported.  */</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u>#define	<dfn class="macro" id="_M/_POSIX_MEMORY_PROTECTION" data-ref="_M/_POSIX_MEMORY_PROTECTION">_POSIX_MEMORY_PROTECTION</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="51">51</th><td>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i>/* Some filesystems allow all users to change file ownership.  */</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><u>#define	<dfn class="macro" id="_M/_POSIX_CHOWN_RESTRICTED" data-ref="_M/_POSIX_CHOWN_RESTRICTED">_POSIX_CHOWN_RESTRICTED</dfn>	0</u>&nbsp</td></tr>
+<tr><th id="54">54</th><td>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i>/* `c_cc' member of 'struct termios' structure can be disabled by</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><i>   using the value _POSIX_VDISABLE.  */</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#define	<dfn class="macro" id="_M/_POSIX_VDISABLE" data-ref="_M/_POSIX_VDISABLE">_POSIX_VDISABLE</dfn>	'\0'</u>&nbsp</td></tr>
+<tr><th id="58">58</th><td>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>/* Filenames are not silently truncated.  */</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#define	<dfn class="macro" id="_M/_POSIX_NO_TRUNC" data-ref="_M/_POSIX_NO_TRUNC">_POSIX_NO_TRUNC</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i>/* X/Open realtime support is available.  */</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><u>#define <dfn class="macro" id="_M/_XOPEN_REALTIME" data-ref="_M/_XOPEN_REALTIME">_XOPEN_REALTIME</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="64">64</th><td>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i>/* X/Open thread realtime support is available.  */</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>#define <dfn class="macro" id="_M/_XOPEN_REALTIME_THREADS" data-ref="_M/_XOPEN_REALTIME_THREADS">_XOPEN_REALTIME_THREADS</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td><i>/* XPG4.2 shared memory is supported.  */</i>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u>#define	<dfn class="macro" id="_M/_XOPEN_SHM" data-ref="_M/_XOPEN_SHM">_XOPEN_SHM</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="70">70</th><td>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i>/* Tell we have POSIX threads.  */</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#define <dfn class="macro" id="_M/_POSIX_THREADS" data-ref="_M/_POSIX_THREADS">_POSIX_THREADS</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="73">73</th><td>&nbsp</td></tr>
+<tr><th id="74">74</th><td><i>/* We have the reentrant functions described in POSIX.  */</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#define <dfn class="macro" id="_M/_POSIX_REENTRANT_FUNCTIONS" data-ref="_M/_POSIX_REENTRANT_FUNCTIONS">_POSIX_REENTRANT_FUNCTIONS</dfn>      1</u>&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#define <dfn class="macro" id="_M/_POSIX_THREAD_SAFE_FUNCTIONS" data-ref="_M/_POSIX_THREAD_SAFE_FUNCTIONS">_POSIX_THREAD_SAFE_FUNCTIONS</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td><i>/* We provide priority scheduling for threads.  */</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#define <dfn class="macro" id="_M/_POSIX_THREAD_PRIORITY_SCHEDULING" data-ref="_M/_POSIX_THREAD_PRIORITY_SCHEDULING">_POSIX_THREAD_PRIORITY_SCHEDULING</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="80">80</th><td>&nbsp</td></tr>
+<tr><th id="81">81</th><td><i>/* We support user-defined stack sizes.  */</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td><u>#define <dfn class="macro" id="_M/_POSIX_THREAD_ATTR_STACKSIZE" data-ref="_M/_POSIX_THREAD_ATTR_STACKSIZE">_POSIX_THREAD_ATTR_STACKSIZE</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="83">83</th><td>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i>/* We support user-defined stacks.  */</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#define <dfn class="macro" id="_M/_POSIX_THREAD_ATTR_STACKADDR" data-ref="_M/_POSIX_THREAD_ATTR_STACKADDR">_POSIX_THREAD_ATTR_STACKADDR</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="86">86</th><td>&nbsp</td></tr>
+<tr><th id="87">87</th><td><i>/* We support priority inheritence.  */</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#define <dfn class="macro" id="_M/_POSIX_THREAD_PRIO_INHERIT" data-ref="_M/_POSIX_THREAD_PRIO_INHERIT">_POSIX_THREAD_PRIO_INHERIT</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="89">89</th><td>&nbsp</td></tr>
+<tr><th id="90">90</th><td><i>/* We support priority protection, though only for non-robust</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i>   mutexes.  */</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u>#define <dfn class="macro" id="_M/_POSIX_THREAD_PRIO_PROTECT" data-ref="_M/_POSIX_THREAD_PRIO_PROTECT">_POSIX_THREAD_PRIO_PROTECT</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="93">93</th><td>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u>#<span data-ppcond="94">ifdef</span> <a class="macro" href="../../features.h.html#363" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</a></u>&nbsp</td></tr>
+<tr><th id="95">95</th><td><i>/* We support priority inheritence for robust mutexes.  */</i>&nbsp</td></tr>
+<tr><th id="96">96</th><td><u># define <dfn class="macro" id="_M/_POSIX_THREAD_ROBUST_PRIO_INHERIT" data-ref="_M/_POSIX_THREAD_ROBUST_PRIO_INHERIT">_POSIX_THREAD_ROBUST_PRIO_INHERIT</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="97">97</th><td>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i>/* We do not support priority protection for robust mutexes.  */</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><u># define <dfn class="macro" id="_M/_POSIX_THREAD_ROBUST_PRIO_PROTECT" data-ref="_M/_POSIX_THREAD_ROBUST_PRIO_PROTECT">_POSIX_THREAD_ROBUST_PRIO_PROTECT</dfn>	-1</u>&nbsp</td></tr>
+<tr><th id="100">100</th><td><u>#<span data-ppcond="94">endif</span></u>&nbsp</td></tr>
+<tr><th id="101">101</th><td>&nbsp</td></tr>
+<tr><th id="102">102</th><td><i>/* We support POSIX.1b semaphores.  */</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td><u>#define <dfn class="macro" id="_M/_POSIX_SEMAPHORES" data-ref="_M/_POSIX_SEMAPHORES">_POSIX_SEMAPHORES</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="104">104</th><td>&nbsp</td></tr>
+<tr><th id="105">105</th><td><i>/* Real-time signals are supported.  */</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><u>#define <dfn class="macro" id="_M/_POSIX_REALTIME_SIGNALS" data-ref="_M/_POSIX_REALTIME_SIGNALS">_POSIX_REALTIME_SIGNALS</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="107">107</th><td>&nbsp</td></tr>
+<tr><th id="108">108</th><td><i>/* We support asynchronous I/O.  */</i>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>#define <dfn class="macro" id="_M/_POSIX_ASYNCHRONOUS_IO" data-ref="_M/_POSIX_ASYNCHRONOUS_IO">_POSIX_ASYNCHRONOUS_IO</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>#define <dfn class="macro" id="_M/_POSIX_ASYNC_IO" data-ref="_M/_POSIX_ASYNC_IO">_POSIX_ASYNC_IO</dfn>		1</u>&nbsp</td></tr>
+<tr><th id="111">111</th><td><i>/* Alternative name for Unix98.  */</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>#define <dfn class="macro" id="_M/_LFS_ASYNCHRONOUS_IO" data-ref="_M/_LFS_ASYNCHRONOUS_IO">_LFS_ASYNCHRONOUS_IO</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="113">113</th><td><i>/* Support for prioritization is also available.  */</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td><u>#define <dfn class="macro" id="_M/_POSIX_PRIORITIZED_IO" data-ref="_M/_POSIX_PRIORITIZED_IO">_POSIX_PRIORITIZED_IO</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="115">115</th><td>&nbsp</td></tr>
+<tr><th id="116">116</th><td><i>/* The LFS support in asynchronous I/O is also available.  */</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td><u>#define <dfn class="macro" id="_M/_LFS64_ASYNCHRONOUS_IO" data-ref="_M/_LFS64_ASYNCHRONOUS_IO">_LFS64_ASYNCHRONOUS_IO</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="118">118</th><td>&nbsp</td></tr>
+<tr><th id="119">119</th><td><i>/* The rest of the LFS is also available.  */</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td><u>#define <dfn class="macro" id="_M/_LFS_LARGEFILE" data-ref="_M/_LFS_LARGEFILE">_LFS_LARGEFILE</dfn>		1</u>&nbsp</td></tr>
+<tr><th id="121">121</th><td><u>#define <dfn class="macro" id="_M/_LFS64_LARGEFILE" data-ref="_M/_LFS64_LARGEFILE">_LFS64_LARGEFILE</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="122">122</th><td><u>#define <dfn class="macro" id="_M/_LFS64_STDIO" data-ref="_M/_LFS64_STDIO">_LFS64_STDIO</dfn>		1</u>&nbsp</td></tr>
+<tr><th id="123">123</th><td>&nbsp</td></tr>
+<tr><th id="124">124</th><td><i>/* POSIX shared memory objects are implemented.  */</i>&nbsp</td></tr>
+<tr><th id="125">125</th><td><u>#define <dfn class="macro" id="_M/_POSIX_SHARED_MEMORY_OBJECTS" data-ref="_M/_POSIX_SHARED_MEMORY_OBJECTS">_POSIX_SHARED_MEMORY_OBJECTS</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="126">126</th><td>&nbsp</td></tr>
+<tr><th id="127">127</th><td><i>/* CPU-time clocks support needs to be checked at runtime.  */</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td><u>#define <dfn class="macro" id="_M/_POSIX_CPUTIME" data-ref="_M/_POSIX_CPUTIME">_POSIX_CPUTIME</dfn>	0</u>&nbsp</td></tr>
+<tr><th id="129">129</th><td>&nbsp</td></tr>
+<tr><th id="130">130</th><td><i>/* Clock support in threads must be also checked at runtime.  */</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td><u>#define <dfn class="macro" id="_M/_POSIX_THREAD_CPUTIME" data-ref="_M/_POSIX_THREAD_CPUTIME">_POSIX_THREAD_CPUTIME</dfn>	0</u>&nbsp</td></tr>
+<tr><th id="132">132</th><td>&nbsp</td></tr>
+<tr><th id="133">133</th><td><i>/* GNU libc provides regular expression handling.  */</i>&nbsp</td></tr>
+<tr><th id="134">134</th><td><u>#define <dfn class="macro" id="_M/_POSIX_REGEXP" data-ref="_M/_POSIX_REGEXP">_POSIX_REGEXP</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="135">135</th><td>&nbsp</td></tr>
+<tr><th id="136">136</th><td><i>/* Reader/Writer locks are available.  */</i>&nbsp</td></tr>
+<tr><th id="137">137</th><td><u>#define <dfn class="macro" id="_M/_POSIX_READER_WRITER_LOCKS" data-ref="_M/_POSIX_READER_WRITER_LOCKS">_POSIX_READER_WRITER_LOCKS</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="138">138</th><td>&nbsp</td></tr>
+<tr><th id="139">139</th><td><i>/* We have a POSIX shell.  */</i>&nbsp</td></tr>
+<tr><th id="140">140</th><td><u>#define <dfn class="macro" id="_M/_POSIX_SHELL" data-ref="_M/_POSIX_SHELL">_POSIX_SHELL</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="141">141</th><td>&nbsp</td></tr>
+<tr><th id="142">142</th><td><i>/* We support the Timeouts option.  */</i>&nbsp</td></tr>
+<tr><th id="143">143</th><td><u>#define <dfn class="macro" id="_M/_POSIX_TIMEOUTS" data-ref="_M/_POSIX_TIMEOUTS">_POSIX_TIMEOUTS</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="144">144</th><td>&nbsp</td></tr>
+<tr><th id="145">145</th><td><i>/* We support spinlocks.  */</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td><u>#define <dfn class="macro" id="_M/_POSIX_SPIN_LOCKS" data-ref="_M/_POSIX_SPIN_LOCKS">_POSIX_SPIN_LOCKS</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="147">147</th><td>&nbsp</td></tr>
+<tr><th id="148">148</th><td><i>/* The `spawn' function family is supported.  */</i>&nbsp</td></tr>
+<tr><th id="149">149</th><td><u>#define <dfn class="macro" id="_M/_POSIX_SPAWN" data-ref="_M/_POSIX_SPAWN">_POSIX_SPAWN</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="150">150</th><td>&nbsp</td></tr>
+<tr><th id="151">151</th><td><i>/* We have POSIX timers.  */</i>&nbsp</td></tr>
+<tr><th id="152">152</th><td><u>#define <dfn class="macro" id="_M/_POSIX_TIMERS" data-ref="_M/_POSIX_TIMERS">_POSIX_TIMERS</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="153">153</th><td>&nbsp</td></tr>
+<tr><th id="154">154</th><td><i>/* The barrier functions are available.  */</i>&nbsp</td></tr>
+<tr><th id="155">155</th><td><u>#define <dfn class="macro" id="_M/_POSIX_BARRIERS" data-ref="_M/_POSIX_BARRIERS">_POSIX_BARRIERS</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="156">156</th><td>&nbsp</td></tr>
+<tr><th id="157">157</th><td><i>/* POSIX message queues are available.  */</i>&nbsp</td></tr>
+<tr><th id="158">158</th><td><u>#define	<dfn class="macro" id="_M/_POSIX_MESSAGE_PASSING" data-ref="_M/_POSIX_MESSAGE_PASSING">_POSIX_MESSAGE_PASSING</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="159">159</th><td>&nbsp</td></tr>
+<tr><th id="160">160</th><td><i>/* Thread process-shared synchronization is supported.  */</i>&nbsp</td></tr>
+<tr><th id="161">161</th><td><u>#define <dfn class="macro" id="_M/_POSIX_THREAD_PROCESS_SHARED" data-ref="_M/_POSIX_THREAD_PROCESS_SHARED">_POSIX_THREAD_PROCESS_SHARED</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="162">162</th><td>&nbsp</td></tr>
+<tr><th id="163">163</th><td><i>/* The monotonic clock might be available.  */</i>&nbsp</td></tr>
+<tr><th id="164">164</th><td><u>#define <dfn class="macro" id="_M/_POSIX_MONOTONIC_CLOCK" data-ref="_M/_POSIX_MONOTONIC_CLOCK">_POSIX_MONOTONIC_CLOCK</dfn>	0</u>&nbsp</td></tr>
+<tr><th id="165">165</th><td>&nbsp</td></tr>
+<tr><th id="166">166</th><td><i>/* The clock selection interfaces are available.  */</i>&nbsp</td></tr>
+<tr><th id="167">167</th><td><u>#define <dfn class="macro" id="_M/_POSIX_CLOCK_SELECTION" data-ref="_M/_POSIX_CLOCK_SELECTION">_POSIX_CLOCK_SELECTION</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="168">168</th><td>&nbsp</td></tr>
+<tr><th id="169">169</th><td><i>/* Advisory information interfaces are available.  */</i>&nbsp</td></tr>
+<tr><th id="170">170</th><td><u>#define <dfn class="macro" id="_M/_POSIX_ADVISORY_INFO" data-ref="_M/_POSIX_ADVISORY_INFO">_POSIX_ADVISORY_INFO</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="171">171</th><td>&nbsp</td></tr>
+<tr><th id="172">172</th><td><i>/* IPv6 support is available.  */</i>&nbsp</td></tr>
+<tr><th id="173">173</th><td><u>#define <dfn class="macro" id="_M/_POSIX_IPV6" data-ref="_M/_POSIX_IPV6">_POSIX_IPV6</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="174">174</th><td>&nbsp</td></tr>
+<tr><th id="175">175</th><td><i>/* Raw socket support is available.  */</i>&nbsp</td></tr>
+<tr><th id="176">176</th><td><u>#define <dfn class="macro" id="_M/_POSIX_RAW_SOCKETS" data-ref="_M/_POSIX_RAW_SOCKETS">_POSIX_RAW_SOCKETS</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="177">177</th><td>&nbsp</td></tr>
+<tr><th id="178">178</th><td><i>/* We have at least one terminal.  */</i>&nbsp</td></tr>
+<tr><th id="179">179</th><td><u>#define <dfn class="macro" id="_M/_POSIX2_CHAR_TERM" data-ref="_M/_POSIX2_CHAR_TERM">_POSIX2_CHAR_TERM</dfn>	200809L</u>&nbsp</td></tr>
+<tr><th id="180">180</th><td>&nbsp</td></tr>
+<tr><th id="181">181</th><td><i>/* Neither process nor thread sporadic server interfaces is available.  */</i>&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>#define <dfn class="macro" id="_M/_POSIX_SPORADIC_SERVER" data-ref="_M/_POSIX_SPORADIC_SERVER">_POSIX_SPORADIC_SERVER</dfn>	-1</u>&nbsp</td></tr>
+<tr><th id="183">183</th><td><u>#define <dfn class="macro" id="_M/_POSIX_THREAD_SPORADIC_SERVER" data-ref="_M/_POSIX_THREAD_SPORADIC_SERVER">_POSIX_THREAD_SPORADIC_SERVER</dfn>	-1</u>&nbsp</td></tr>
+<tr><th id="184">184</th><td>&nbsp</td></tr>
+<tr><th id="185">185</th><td><i>/* trace.h is not available.  */</i>&nbsp</td></tr>
+<tr><th id="186">186</th><td><u>#define <dfn class="macro" id="_M/_POSIX_TRACE" data-ref="_M/_POSIX_TRACE">_POSIX_TRACE</dfn>	-1</u>&nbsp</td></tr>
+<tr><th id="187">187</th><td><u>#define <dfn class="macro" id="_M/_POSIX_TRACE_EVENT_FILTER" data-ref="_M/_POSIX_TRACE_EVENT_FILTER">_POSIX_TRACE_EVENT_FILTER</dfn>	-1</u>&nbsp</td></tr>
+<tr><th id="188">188</th><td><u>#define <dfn class="macro" id="_M/_POSIX_TRACE_INHERIT" data-ref="_M/_POSIX_TRACE_INHERIT">_POSIX_TRACE_INHERIT</dfn>	-1</u>&nbsp</td></tr>
+<tr><th id="189">189</th><td><u>#define <dfn class="macro" id="_M/_POSIX_TRACE_LOG" data-ref="_M/_POSIX_TRACE_LOG">_POSIX_TRACE_LOG</dfn>	-1</u>&nbsp</td></tr>
+<tr><th id="190">190</th><td>&nbsp</td></tr>
+<tr><th id="191">191</th><td><i>/* Typed memory objects are not available.  */</i>&nbsp</td></tr>
+<tr><th id="192">192</th><td><u>#define <dfn class="macro" id="_M/_POSIX_TYPED_MEMORY_OBJECTS" data-ref="_M/_POSIX_TYPED_MEMORY_OBJECTS">_POSIX_TYPED_MEMORY_OBJECTS</dfn>	-1</u>&nbsp</td></tr>
+<tr><th id="193">193</th><td>&nbsp</td></tr>
+<tr><th id="194">194</th><td><u>#<span data-ppcond="19">endif</span> /* bits/posix_opt.h */</u>&nbsp</td></tr>
+<tr><th id="195">195</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tPool.h.html'>Modules/Foundation/Inc/Foundation/tPool.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

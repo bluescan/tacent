@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tVersion.cmake.h' l='2' type='int'/>
+<def f='Modules/Foundation/Src/tVersion.cpp' l='30' type='int'/>
+<use f='Modules/Foundation/Src/tVersion.cpp' l='45' u='w' c='_ZN8tVersion6ParserC1EPKc'/>
+<doc f='Modules/Foundation/Src/tVersion.cpp' l='29'>// The revision number is for minor bug fixes and the like. It Resets to 0 when the minor version increments.</doc>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='61' u='r' c='_ZNK6tImage10tImageTIFF25WriteSoftwarePageDurationEP4tiffi'/>

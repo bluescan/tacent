@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='205' type='void tsList::tsList&lt;T&gt;()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='204'>// The default constructor uses list-mode External.</doc>

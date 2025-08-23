@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='4351' type='void vkDestroyEvent(VkDevice device, VkEvent event, const VkAllocationCallbacks * pAllocator)'/>

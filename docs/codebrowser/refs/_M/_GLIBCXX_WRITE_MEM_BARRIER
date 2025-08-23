@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/atomic_word.h' l='38'/>
+<use f='include/c++/11/ext/atomicity.h' l='123' u='a'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/atomic_word.h' l='37'>// This is a memory order release fence.</doc>

@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18700' ll='18710'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18700'/>
+<size>64</size>
+<mbr r='VkAccelerationStructureGeometryTrianglesDataKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkAccelerationStructureGeometryTrianglesDataKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkAccelerationStructureGeometryTrianglesDataKHR::vertexFormat' o='128' t='VkFormat'/>
+<mbr r='VkAccelerationStructureGeometryTrianglesDataKHR::vertexData' o='192' t='VkDeviceOrHostAddressConstKHR'/>
+<mbr r='VkAccelerationStructureGeometryTrianglesDataKHR::vertexStride' o='256' t='VkDeviceSize'/>
+<mbr r='VkAccelerationStructureGeometryTrianglesDataKHR::maxVertex' o='320' t='uint32_t'/>
+<mbr r='VkAccelerationStructureGeometryTrianglesDataKHR::indexType' o='352' t='VkIndexType'/>
+<mbr r='VkAccelerationStructureGeometryTrianglesDataKHR::indexData' o='384' t='VkDeviceOrHostAddressConstKHR'/>
+<mbr r='VkAccelerationStructureGeometryTrianglesDataKHR::transformData' o='448' t='VkDeviceOrHostAddressConstKHR'/>

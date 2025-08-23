@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11446' ll='11451'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11446'/>
+<size>24</size>
+<mbr r='VkPipelineRasterizationStateStreamCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineRasterizationStateStreamCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineRasterizationStateStreamCreateInfoEXT::flags' o='128' t='VkPipelineRasterizationStateStreamCreateFlagsEXT'/>
+<mbr r='VkPipelineRasterizationStateStreamCreateInfoEXT::rasterizationStream' o='160' t='uint32_t'/>

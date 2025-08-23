@@ -1,0 +1,6 @@
+<use f='Modules/Scene/Src/tAttribute.cpp' l='131' u='m' c='_ZNK6tScene11tAttributes8ContainsERKNS_10tAttributeE'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='144' u='m' c='_ZNK6tScene11tAttributes4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='155' u='m' c='_ZN6tScene11tAttributes4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='164' u='m' c='_ZNK6tScene11tAttributeseqERKS0_'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='180' u='m' c='_ZN6tScene11tAttributesaSERKS0_'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='181' u='m' c='_ZN6tScene11tAttributesaSERKS0_'/>

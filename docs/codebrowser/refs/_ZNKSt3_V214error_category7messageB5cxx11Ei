@@ -1,0 +1,3 @@
+<dec f='include/c++/11/system_error' l='123' type='std::string std::error_category::message(int ) const'/>
+<use f='include/c++/11/system_error' l='240' u='c' c='_ZNKSt10error_code7messageB5cxx11Ev'/>
+<use f='include/c++/11/system_error' l='339' u='c' c='_ZNKSt15error_condition7messageB5cxx11Ev'/>

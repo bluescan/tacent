@@ -1,0 +1,4 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='160' type='tSystem::PrologHelperFloat tSystem::HandlerHelper_FloatNormal(tArray&lt;char&gt; &amp; , const tSystem::FormatSpec &amp; , double value, bool treatPrecisionAsSigDigits = false)'/>
+<def f='Modules/System/Src/tPrint.cpp' l='1605' ll='1723' type='tSystem::PrologHelperFloat tSystem::HandlerHelper_FloatNormal(tArray&lt;char&gt; &amp; convBuf, const tSystem::FormatSpec &amp; spec, double value, bool treatPrecisionAsSigDigits = false)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1737' u='c' c='_ZN7tSystem9Handler_fERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1776' u='c' c='_ZN7tSystem9Handler_gERNS_8ReceiverERKNS_10FormatSpecEPv'/>

@@ -1,0 +1,14 @@
+_ZSt10sph_besseljT_|std::sph_bessel
+_ZSt11sph_besselfjf|std::sph_besself
+_ZSt11sph_bessellje|std::sph_bessell
+_ZSt12sph_legendrejjT_|std::sph_legendre
+_ZSt13sph_legendrefjjf|std::sph_legendref
+_ZSt13sph_legendreljje|std::sph_legendrel
+_ZSt11sph_neumannjT_|std::sph_neumann
+_ZSt12sph_neumannfjf|std::sph_neumannf
+_ZSt12sph_neumannlje|std::sph_neumannl
+_ZNSt15basic_streambuf9sputbackcET_|std::basic_streambuf::sputbackc
+_ZNSt15basic_streambuf5sputcET_|std::basic_streambuf::sputc
+_ZNSt15basic_streambuf5sputnEPKT_l|std::basic_streambuf::sputn
+_ZN6tImage8tPicture6SpreadE5tComp|tImage::tPicture::Spread
+_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788|tImage::tQuantizeSpatial::spatial_color_quant

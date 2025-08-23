@@ -1,0 +1,2 @@
+<dec f='include/wctype.h' l='55' type='wint_t towctrans(wint_t __wc, wctrans_t __desc)'/>
+<doc f='include/wctype.h' l='54'>/* Map the wide character WC using the mapping described by DESC.  */</doc>

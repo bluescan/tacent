@@ -1,0 +1,6 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='328' u='m' c='_ZN5tMath5tOBoxC1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='328' u='m' c='_ZN5tMath5tOBoxC1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='328' u='m' c='_ZN5tMath5tOBoxC1Ev'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='332' type='tMath::tVector3[3]'/>
+<offset>96</offset>
+<use f='Modules/Math/Src/tGeometry.cpp' l='63' u='r' c='_ZNK5tMath5tOBox8IsInsideERKNS_8tVector3E'/>

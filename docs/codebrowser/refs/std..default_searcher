@@ -1,0 +1,4 @@
+<def f='include/c++/11/functional' l='1004' ll='1031'/>
+<fun r='_ZNSt16default_searcherC1ET_S0_T0_'/>
+<fun r='_ZNKSt16default_searcherclETL0__S0_'/>
+<mbr r='std::default_searcher::_M_m' t='tuple&lt;_ForwardIterator1, _ForwardIterator1, _BinaryPredicate&gt;'/>

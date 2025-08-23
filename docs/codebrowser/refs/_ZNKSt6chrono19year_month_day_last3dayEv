@@ -1,0 +1,6 @@
+<def f='include/c++/11/chrono' l='2597' ll='2618' type='chrono::day std::chrono::year_month_day_last::day() const'/>
+<use f='include/c++/11/chrono' l='2622' u='c' c='_ZNKSt6chrono19year_month_day_lastcvNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2706' u='c' c='_ZNSt6chrono14year_month_dayC1ERKNS_19year_month_day_lastE'/>
+<use f='include/c++/11/chrono' l='2714' u='c' c='_ZNKSt6chrono14year_month_day2okEv'/>
+<use f='include/c++/11/chrono' l='2827' u='c' c='_ZNKSt6chrono18year_month_weekday2okEv'/>
+<doc f='include/c++/11/chrono' l='2596'>// Return A day representing the last day of this year, month pair.</doc>

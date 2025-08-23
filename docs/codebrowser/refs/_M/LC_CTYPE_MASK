@@ -1,0 +1,5 @@
+<dec f='include/locale.h' l='148'/>
+<doc f='include/locale.h' l='144'>/* These are the bits that can be set in the CATEGORY_MASK argument to
+   `newlocale&apos;.  In the GNU implementation, LC_FOO_MASK has the value
+   of (1 &lt;&lt; LC_FOO), but this is not a part of the interface that
+   callers can assume will be true.  */</doc>

@@ -1,0 +1,26 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='101' type='void tSystem::tPathStd(tString &amp; path)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='96'>// Conversions to tacent-standard paths. Forward slashes where possible. Windows does not allow forward slashes when
+// dealing with network shares, a path like \\machinename\sharename/dir/subdir/ must have two backslashes before the
+// machine name and 1 backslash before the sharename. If this case is detected the three backslashes remain in-tact.
+// This function does not simplify &quot;.&quot; or &quot;..&quot; strings that may be present. See tGetSimplifiedPath. This function _does_
+// remove any &quot;s since they are invalid characters in a path but are sometimes present when paths have spaces.</doc>
+<doc f='Modules/System/Inc/System/tFile.h' l='101'>// &quot;C:\Hello\There\&quot; -&gt; &quot;C:/Hello/There/&quot;. &quot;C:\Hello\There&quot; -&gt; &quot;C:/Hello/There&quot;.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='84' ll='96' type='void tSystem::tPathStd(tString &amp; path)'/>
+<use f='Modules/System/Src/tFile.cpp' l='101' u='c' c='_ZN7tSystem11tPathStdDirER7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='109' u='c' c='_ZN7tSystem12tPathStdFileER7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='184' u='c' c='_ZN7tSystem16tGetFileFullNameERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='199' u='c' c='_ZN7tSystem12tGetFileNameERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='218' u='c' c='_ZN7tSystem18tGetSimplifiedPathERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='263' u='c' c='_ZN7tSystem13tComparePathsERK7tStringS2_b'/>
+<use f='Modules/System/Src/tFile.cpp' l='264' u='c' c='_ZN7tSystem13tComparePathsERK7tStringS2_b'/>
+<use f='Modules/System/Src/tFile.cpp' l='284' u='c' c='_ZN7tSystem16tGetAbsolutePathERK7tStringS2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='341' u='c' c='_ZN7tSystem13tGetLinuxPathERK7tStringS2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='358' u='c' c='_ZN7tSystem7tGetDirERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='385' u='c' c='_ZN7tSystem9tGetUpDirERK7tStringi'/>
+<use f='Modules/System/Src/tFile.cpp' l='468' u='c' c='_ZN7tSystem11tFileExistsERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='584' u='c' c='_ZN7tSystem11tIsReadOnlyERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='637' u='c' c='_ZN7tSystem12tSetReadOnlyERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='970' u='c' c='_ZN7tSystem11tRenameFileERK7tStringS2_S2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='974' u='c' c='_ZN7tSystem11tRenameFileERK7tStringS2_S2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='1480' u='c' c='_ZN7tSystem14tSetCurrentDirERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2126' u='c' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>

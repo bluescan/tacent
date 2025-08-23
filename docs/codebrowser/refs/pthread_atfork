@@ -1,0 +1,11 @@
+<dec f='include/pthread.h' l='1332' type='int pthread_atfork(void (*)() __prepare, void (*)() __parent, void (*)() __child)'/>
+<doc f='include/pthread.h' l='1321'>/* Install handlers to be called when a new process is created with FORK.
+   The PREPARE handler is called in the parent process just before performing
+   FORK. The PARENT handler is called in the parent process just after FORK.
+   The CHILD handler is called in the child process.  Each of the three
+   handlers can be NULL, meaning that no handler needs to be called at that
+   point.
+   PTHREAD_ATFORK can be called several times, in which case the PREPARE
+   handlers are called in LIFO order (last added with PTHREAD_ATFORK,
+   first called before FORK), and the PARENT and CHILD handlers are called
+   in FIFO (first added, first called).  */</doc>

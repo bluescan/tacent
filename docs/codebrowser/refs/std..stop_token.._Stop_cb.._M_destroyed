@@ -1,0 +1,6 @@
+<dec f='include/c++/11/stop_token' l='138' type='bool *'/>
+<use f='include/c++/11/stop_token' l='252' u='w' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<use f='include/c++/11/stop_token' l='259' u='w' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<use f='include/c++/11/stop_token' l='348' u='r' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='349' u='r' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<offset>192</offset>

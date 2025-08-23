@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='37' type='3'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='37'>//	string	All 3 combined. Useful to uniquely identify camera used: &quot;Make | Model | Serial&quot;</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='261' u='m' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='659' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

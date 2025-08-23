@@ -1,0 +1,11 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='54' c='tImage::tBaseImage'/>
+<def f='Modules/Image/Inc/Image/tImageICO.h' l='43' ll='107'/>
+<size>64</size>
+<fun r='_ZN6tImage9tImageICOD1Ev'/>
+<fun r='_ZN6tImage9tImageICO3SetEP9tColour4biib'/>
+<fun r='_ZN6tImage9tImageICO3SetEPNS_6tFrameEb'/>
+<fun r='_ZN6tImage9tImageICO3SetERNS_8tPictureEb'/>
+<fun r='_ZN6tImage9tImageICO5ClearEv'/>
+<fun r='_ZNK6tImage9tImageICO7IsValidEv'/>
+<fun r='_ZN6tImage9tImageICO8GetFrameEb'/>
+<fun r='_ZN6tImage9tImageICO5ClearEv'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='104' macro='1' type='float logf(float __x)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='192' u='c' c='_ZN5tMath4tLogEf'/>

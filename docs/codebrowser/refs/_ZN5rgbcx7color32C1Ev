@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1458' type='void rgbcx::color32::color32()'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4046' u='c' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>

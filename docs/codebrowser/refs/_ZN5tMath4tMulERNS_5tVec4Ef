@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='450' type='void tMath::tMul(tMath::tVec4 &amp; v, float a)'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='84' u='c' c='_ZN5tMath8tVector4mLEf'/>
+<use f='Modules/Scene/Inc/Scene/tInstance.h' l='35' u='c' c='_ZN6tScene9tInstance5ScaleEf'/>

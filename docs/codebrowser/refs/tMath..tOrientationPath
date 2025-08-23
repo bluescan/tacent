@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='564' ll='570'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='576' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='580' c='_ZN5tMath6tNlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='262' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='313' c='_ZN5tMath6tNlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>

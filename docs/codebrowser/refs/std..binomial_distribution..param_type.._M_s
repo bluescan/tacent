@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='3793' type='double'/>
+<use f='include/c++/11/bits/random.tcc' l='1506' u='w' c='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>

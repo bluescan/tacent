@@ -1,0 +1,4 @@
+<def f='include/c++/11/chrono' l='2068' ll='2070' type='chrono::month std::chrono::month_weekday::month() const'/>
+<use f='include/c++/11/chrono' l='2083' u='c' c='_ZNSt6chronoeqERKNS_13month_weekdayES2_'/>
+<use f='include/c++/11/chrono' l='2083' u='c' c='_ZNSt6chronoeqERKNS_13month_weekdayES2_'/>
+<use f='include/c++/11/chrono' l='2876' u='c' c='_ZNSt6chronodvERKNS_4yearERKNS_13month_weekdayE'/>

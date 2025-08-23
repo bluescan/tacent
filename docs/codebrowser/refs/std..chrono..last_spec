@@ -1,0 +1,16 @@
+<def f='include/c++/11/chrono' l='1265' ll='1274'/>
+<use f='include/c++/11/chrono' l='1270' c='_ZNSt6chronodvEiNS_9last_specE'/>
+<use f='include/c++/11/chrono' l='1273' c='_ZNSt6chronodvENS_9last_specEi'/>
+<use f='include/c++/11/chrono' l='1276'/>
+<use f='include/c++/11/chrono' l='1511' c='_ZNSt6chronodvERKNS_5monthENS_9last_specE'/>
+<use f='include/c++/11/chrono' l='1514' c='_ZNSt6chronodvENS_9last_specERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='1796' c='_ZNKSt6chrono7weekdayixENS_9last_specE'/>
+<use f='include/c++/11/chrono' l='1927' c='_ZNKSt6chrono7weekdayixENS_9last_specE'/>
+<use f='include/c++/11/chrono' l='2029' c='_ZNSt6chronodvERKNS_5monthENS_9last_specE'/>
+<use f='include/c++/11/chrono' l='2033' c='_ZNSt6chronodvEiNS_9last_specE'/>
+<use f='include/c++/11/chrono' l='2037' c='_ZNSt6chronodvENS_9last_specERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='2041' c='_ZNSt6chronodvENS_9last_specEi'/>
+<use f='include/c++/11/chrono' l='2314' c='_ZNSt6chronodvERKNS_10year_monthENS_9last_specE'/>
+<use f='include/c++/11/chrono' l='2679' c='_ZNSt6chronodvERKNS_10year_monthENS_9last_specE'/>
+<size>1</size>
+<fun r='_ZNSt6chrono9last_specC1Ev'/>

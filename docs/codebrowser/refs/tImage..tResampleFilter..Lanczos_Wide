@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tResample.h' l='40' type='10'/>
+<doc f='Modules/Image/Inc/Image/tResample.h' l='40'>// Sinc-based.				A = 4</doc>
+<use f='Modules/Image/Src/tResample.cpp' l='195' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>

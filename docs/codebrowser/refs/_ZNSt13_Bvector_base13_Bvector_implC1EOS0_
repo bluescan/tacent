@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='492' ll='494' type='void std::_Bvector_base::_Bvector_impl::_Bvector_impl(std::_Bvector_base::_Bvector_impl &amp;&amp; __x)'/>
+<doc f='include/c++/11/bits/stl_bvector.h' l='490'>// Not defaulted, to enforce noexcept(true) even when
+	// !is_nothrow_move_constructible&lt;_Bit_alloc_type&gt;.</doc>

@@ -1,0 +1,9 @@
+<use f='include/c++/11/sstream' l='450' u='w' c='_ZNSt7__cxx1115basic_stringbuf14__xfer_bufptrsC1ERKNS_15basic_stringbufIT_T0_T1_EEPS7_'/>
+<use f='include/c++/11/sstream' l='456' u='w' c='_ZNSt7__cxx1115basic_stringbuf14__xfer_bufptrsC1ERKNS_15basic_stringbufIT_T0_T1_EEPS7_'/>
+<use f='include/c++/11/sstream' l='457' u='w' c='_ZNSt7__cxx1115basic_stringbuf14__xfer_bufptrsC1ERKNS_15basic_stringbufIT_T0_T1_EEPS7_'/>
+<use f='include/c++/11/sstream' l='458' u='w' c='_ZNSt7__cxx1115basic_stringbuf14__xfer_bufptrsC1ERKNS_15basic_stringbufIT_T0_T1_EEPS7_'/>
+<use f='include/c++/11/sstream' l='483' c='_ZNSt7__cxx1115basic_stringbuf14__xfer_bufptrsD1Ev'/>
+<use f='include/c++/11/sstream' l='484' c='_ZNSt7__cxx1115basic_stringbuf14__xfer_bufptrsD1Ev'/>
+<use f='include/c++/11/sstream' l='484' c='_ZNSt7__cxx1115basic_stringbuf14__xfer_bufptrsD1Ev'/>
+<use f='include/c++/11/sstream' l='484' c='_ZNSt7__cxx1115basic_stringbuf14__xfer_bufptrsD1Ev'/>
+<dec f='include/c++/11/sstream' l='490' type='std::basic_stringbuf::off_type[3]'/>

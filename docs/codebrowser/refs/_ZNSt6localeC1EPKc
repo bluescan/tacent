@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='137' type='void std::locale::locale(const char * __s)'/>
+<use f='include/c++/11/bits/locale_classes.h' l='163' u='c' c='_ZNSt6localeC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='128'>/**
+     *  @brief  Named locale constructor.
+     *
+     *  Constructs a copy of the named C library locale.
+     *
+     *  @param  __s  Name of the locale to construct.
+     *  @throw  std::runtime_error if __s is null or an undefined locale.
+    */</doc>

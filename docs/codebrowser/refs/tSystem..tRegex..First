@@ -1,0 +1,4 @@
+<use f='Modules/System/Src/tRegex.cpp' l='768' u='w' c='_ZN7tSystem6tRegex15CompileInternalEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='770' u='r' c='_ZN7tSystem6tRegex15CompileInternalEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='809' u='w' c='_ZN7tSystem6tRegex5ClearEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='865' u='r' c='_ZNK7tSystem6tRegex6SearchEPKcS2_R5tListINS0_5MatchEE'/>

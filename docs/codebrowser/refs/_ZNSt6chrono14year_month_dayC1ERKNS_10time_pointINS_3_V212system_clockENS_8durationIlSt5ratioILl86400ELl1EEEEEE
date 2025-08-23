@@ -1,0 +1,3 @@
+<def f='include/c++/11/chrono' l='2344' ll='2347' type='void std::chrono::year_month_day::year_month_day(const std::chrono::sys_days &amp; __dp)'/>
+<use f='include/c++/11/chrono' l='2351' u='c' c='_ZNSt6chrono14year_month_dayC1ERKNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2729' u='c' c='_ZNSt6chrono18year_month_weekday16_S_from_sys_daysERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>

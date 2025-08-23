@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='40' type='int'/>
+<offset>32</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='40'>/* If non-zero, an errno value associated with
+				   this signal, as defined in &lt;errno.h&gt;.  */</doc>

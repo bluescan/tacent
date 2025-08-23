@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='537' type='char * get_current_dir_name()'/>
+<doc f='include/unistd.h' l='534'>/* Return a malloc&apos;d string containing the current directory name.
+   If the environment variable `PWD&apos; is set, and its value is correct,
+   that value is used.  */</doc>

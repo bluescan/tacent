@@ -1,0 +1,8 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='52' ll='57'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='82' c='_ZN5tListC1E9tListMode'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='168'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='181' c='_ZN6teListC1E9tListMode'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='192' c='_ZN6tzListC1E9tListMode'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='208' c='_ZN6tsListC1E9tListMode'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='253' c='_ZN7tItListC1E9tListMode'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='380'/>

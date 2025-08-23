@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algo.h' l='2725' ll='2751' type='void std::__stable_sort_adaptive(_RandomAccessIterator __first, _RandomAccessIterator __last, _Pointer __buffer, _Distance __buffer_size, _Compare __comp)'/>

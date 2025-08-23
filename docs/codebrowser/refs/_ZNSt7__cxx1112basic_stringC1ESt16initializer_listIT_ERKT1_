@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/basic_string.h' l='592' ll='594' type='void std::basic_string::basic_string&lt;_CharT, _Traits, _Alloc&gt;(initializer_list&lt;_CharT&gt; __l, const _Alloc &amp; __a = _Alloc())'/>
+<doc f='include/c++/11/bits/basic_string.h' l='587'>/**
+       *  @brief  Construct string from an initializer %list.
+       *  @param  __l  std::initializer_list of characters.
+       *  @param  __a  Allocator to use (default is default allocator).
+       */</doc>

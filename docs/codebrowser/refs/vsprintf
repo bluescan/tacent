@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='373' type='int vsprintf(char *__restrict __s, const char *__restrict __format, __va_list_tag * __arg)'/>
+<doc f='include/stdio.h' l='372'>/* Write formatted output to S from argument list ARG.  */</doc>

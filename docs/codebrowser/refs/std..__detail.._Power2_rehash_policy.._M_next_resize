@@ -1,0 +1,11 @@
+<use f='include/c++/11/bits/hashtable_policy.h' l='525' u='w' c='_ZNSt8__detail21_Power2_rehash_policyC1Ef'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='558' u='w' c='_ZNSt8__detail21_Power2_rehash_policy11_M_next_bktEm'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='560' u='w' c='_ZNSt8__detail21_Power2_rehash_policy11_M_next_bktEm'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='579' u='r' c='_ZNSt8__detail21_Power2_rehash_policy14_M_need_rehashEmmm'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='585' u='r' c='_ZNSt8__detail21_Power2_rehash_policy14_M_need_rehashEmmm'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='592' u='w' c='_ZNSt8__detail21_Power2_rehash_policy14_M_need_rehashEmmm'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='604' u='r' c='_ZNKSt8__detail21_Power2_rehash_policy8_M_stateEv'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='608' u='w' c='_ZNSt8__detail21_Power2_rehash_policy8_M_resetEv'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='612' u='w' c='_ZNSt8__detail21_Power2_rehash_policy8_M_resetEm'/>
+<dec f='include/c++/11/bits/hashtable_policy.h' l='617' type='std::size_t'/>
+<offset>64</offset>

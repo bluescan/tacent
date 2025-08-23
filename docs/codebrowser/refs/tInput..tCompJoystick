@@ -1,0 +1,7 @@
+<inh f='Modules/Input/Inc/Input/tComp.h' l='24' c='tInput::tComponent'/>
+<def f='Modules/Input/Inc/Input/tCompJoystick.h' l='24' ll='46'/>
+<size>200</size>
+<fun r='_ZN6tInput13tCompJoystickD1Ev'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='75'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='76'/>
+<size>200</size>

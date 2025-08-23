@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux_types.h' l='46' type='1'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='108' u='r' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='413' u='r' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/WebP/include/mux_types.h' l='46'>// Dispose to background color.</doc>

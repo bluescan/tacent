@@ -1,0 +1,3 @@
+<def f='Modules/Math/Src/tSpline.cpp' l='220' ll='230' type='void tMath::tBezierPath::Clear()'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='264' u='c' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='379' u='c' c='_ZN5tMath11tBezierPath15SetControlVertsEPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE'/>

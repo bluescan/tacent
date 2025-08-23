@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='404' type='27'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='404'>// Generic. Text File.</doc>

@@ -1,0 +1,8 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='72' type='tMath::tVector2 &amp; tMath::tVector2::operator=(const tMath::tVec2 &amp; v)'/>
+<doc f='Modules/Math/Inc/Math/tVector2.h' l='69'>// Friend is used for commutative binary operators where one of the operators is a built-in type. This essentially
+	// puts these operators outside of the class where they belong. If the other operand type is user-defined, the
+	// operator should be completely outside as there would be ambiguity as to which one owned the friend declaration.</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='189' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='189' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='189' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='189' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17116' ll='17120'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17116'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceNonSeamlessCubeMapFeaturesEXT::nonSeamlessCubeMap' o='128' t='VkBool32'/>

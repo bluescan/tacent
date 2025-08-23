@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14326'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14325'>// VK_EXT_provoking_vertex is a preprocessor guard. Do not pass it to API calls.</doc>

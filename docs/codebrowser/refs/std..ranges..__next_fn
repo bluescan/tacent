@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/ranges_base.h' l='821' ll='854'/>
+<use f='include/c++/11/bits/ranges_base.h' l='856'/>
+<size>1</size>
+<fun r='_ZNKSt6ranges9__next_fnclET_'/>
+<fun r='_ZNKSt6ranges9__next_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE'/>
+<fun r='_ZNKSt6ranges9__next_fnclET_T0_'/>
+<fun r='_ZNKSt6ranges9__next_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeET0_'/>

@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tMatrix2.h' l='80' type='const tMath::tMatrix2'/>
+<doc f='Modules/Math/Inc/Math/tMatrix2.h' l='80'>// Identity matrix.</doc>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='61' type='const tMath::tMatrix2'/>

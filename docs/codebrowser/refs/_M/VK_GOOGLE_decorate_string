@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14014'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14013'>// VK_GOOGLE_decorate_string is a preprocessor guard. Do not pass it to API calls.</doc>

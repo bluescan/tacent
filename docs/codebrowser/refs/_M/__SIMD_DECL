@@ -1,0 +1,5 @@
+<dec f='include/math.h' l='276'/>
+<doc f='include/math.h' l='271'>/* The file &lt;bits/mathcalls.h&gt; contains the prototypes for all the
+   actual math functions.  These macros are used for those prototypes,
+   so we can easily declare each function as both `name&apos; and `__name&apos;,
+   and can declare the float versions `namef&apos; and `__namef&apos;.  */</doc>

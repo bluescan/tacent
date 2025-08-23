@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='5813' type='void std::piecewise_linear_distribution::param_type::param_type(std::size_t __nw, _RealType __xmin, _RealType __xmax, _Func __fw)'/>
+<def f='include/c++/11/bits/random.tcc' l='3103' ll='3121' type='void std::piecewise_linear_distribution::param_type::param_type(std::size_t __nw, _RealType __xmin, _RealType __xmax, _Func __fw)'/>

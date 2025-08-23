@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/fs_dir.h' l='359' u='a' c='_ZNKRSt10filesystem7__cxx1126__directory_iterator_proxydeEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='361' u='a' c='_ZNOSt10filesystem7__cxx1126__directory_iterator_proxydeEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='368' u='w' c='_ZNSt10filesystem7__cxx1126__directory_iterator_proxyC1ERKNS0_15directory_entryE'/>
+<dec f='include/c++/11/bits/fs_dir.h' l='370' type='std::filesystem::directory_entry'/>
+<offset>0</offset>

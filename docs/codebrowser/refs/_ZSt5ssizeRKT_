@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/range_access.h' l='325' ll='332' type='common_type_t&lt;std::ptrdiff_t, make_signed_t&lt;decltype(__cont.size())&gt;&gt; std::ssize(const _Container &amp; __cont)'/>

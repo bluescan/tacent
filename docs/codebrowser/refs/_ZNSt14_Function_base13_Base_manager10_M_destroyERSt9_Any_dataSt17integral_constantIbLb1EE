@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/std_function.h' l='165' ll='169' type='static void std::_Function_base::_Base_manager::_M_destroy(std::_Any_data &amp; __victim, std::true_type )'/>
+<doc f='include/c++/11/bits/std_function.h' l='164'>// Destroy an object stored in the internal buffer.</doc>

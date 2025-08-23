@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='240' type='int tChunk::GetDataSizeRaw() const'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='251' u='c' c='_ZNK6tChunk13GetFirstChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='255' u='c' c='_ZNK6tChunk12GetNextChunkEv'/>
+<def f='Modules/System/Inc/System/tChunk.h' l='758' ll='775' type='int tChunk::GetDataSizeRaw() const'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='239'>// Same as above except returns data size including all padding.</doc>

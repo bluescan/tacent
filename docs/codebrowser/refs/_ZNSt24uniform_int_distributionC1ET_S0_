@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/uniform_int_dist.h' l='130' ll='135' type='void std::uniform_int_distribution::uniform_int_distribution&lt;_IntType&gt;(_IntType __a, _IntType __b = __gnu_cxx::__int_traits&lt;_IntType&gt;::__max)'/>
+<doc f='include/c++/11/bits/uniform_int_dist.h' l='127'>/**
+       * @brief Constructs a uniform distribution object.
+       */</doc>

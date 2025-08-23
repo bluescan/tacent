@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12315'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12314'>// VK_EXT_swapchain_colorspace is a preprocessor guard. Do not pass it to API calls.</doc>

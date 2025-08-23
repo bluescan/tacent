@@ -1,0 +1,30 @@
+<dec f='include/c++/11/istream' l='416' type='std::basic_istream::__istream_type &amp; std::basic_istream::getline(std::basic_istream::char_type * __s, std::streamsize __n, std::basic_istream::char_type __delim)'/>
+<dec f='include/c++/11/istream' l='648' type='basic_istream&lt;char&gt; &amp; std::basic_istream&lt;char&gt;::getline(std::basic_istream&lt;char&gt;::char_type * __s, std::streamsize __n, std::basic_istream&lt;char&gt;::char_type __delim)'/>
+<dec f='include/c++/11/istream' l='664' type='basic_istream&lt;wchar_t&gt; &amp; std::basic_istream&lt;wchar_t&gt;::getline(std::basic_istream&lt;wchar_t&gt;::char_type * __s, std::streamsize __n, std::basic_istream&lt;wchar_t&gt;::char_type __delim)'/>
+<def f='include/c++/11/bits/istream.tcc' l='412' ll='467' type='basic_istream&lt;_CharT, _Traits&gt; &amp; std::basic_istream::getline(std::basic_istream::char_type * __s, std::streamsize __n, std::basic_istream::char_type __delim)'/>
+<doc f='include/c++/11/istream' l='390'>/**
+       *  @brief  String extraction.
+       *  @param  __s  A character array in which to store the data.
+       *  @param  __n  Maximum number of characters to extract.
+       *  @param  __delim  A &quot;stop&quot; character.
+       *  @return  *this
+       *
+       *  Extracts and stores characters into @a __s until one of the
+       *  following happens.  Note that these criteria are required to be
+       *  tested in the order listed here, to allow an input line to exactly
+       *  fill the @a __s array without setting failbit.
+       *
+       *  -# the input sequence reaches end-of-file, in which case eofbit
+       *     is set in the stream error state
+       *  -# the next character equals @c __delim, in which case the character
+       *     is extracted (and therefore counted in @c gcount()) but not stored
+       *  -# @c __n-1 characters are stored, in which case failbit is set
+       *     in the stream error state
+       *
+       *  If no characters are extracted, failbit is set.  (An empty line of
+       *  input should therefore not cause failbit to be set.)
+       *
+       *  In any case, a null character is stored in the next location in
+       *  the array.
+      */</doc>
+<doc f='include/c++/11/istream' l='644'>/// Explicit specialization declarations, defined in src/istream.cc.</doc>

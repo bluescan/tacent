@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='365' type='int fchmod(int __fd, __mode_t __mode)'/>

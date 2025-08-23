@@ -1,0 +1,31 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='73' u='w' c='_ZN5tMath9tQuadFaceC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='73' u='r' c='_ZN5tMath9tQuadFaceC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='74' u='r' c='_ZNK5tMath9tQuadFaceeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='74' u='r' c='_ZNK5tMath9tQuadFaceeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='74' u='r' c='_ZNK5tMath9tQuadFaceeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='74' u='r' c='_ZNK5tMath9tQuadFaceeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='74' u='r' c='_ZNK5tMath9tQuadFaceeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='74' u='r' c='_ZNK5tMath9tQuadFaceeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='74' u='r' c='_ZNK5tMath9tQuadFaceeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='74' u='r' c='_ZNK5tMath9tQuadFaceeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='75' u='r' c='_ZNK5tMath9tQuadFaceneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='75' u='r' c='_ZNK5tMath9tQuadFaceneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='75' u='r' c='_ZNK5tMath9tQuadFaceneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='75' u='r' c='_ZNK5tMath9tQuadFaceneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='75' u='r' c='_ZNK5tMath9tQuadFaceneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='75' u='r' c='_ZNK5tMath9tQuadFaceneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='75' u='r' c='_ZNK5tMath9tQuadFaceneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='75' u='r' c='_ZNK5tMath9tQuadFaceneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='76' u='w' c='_ZN5tMath9tQuadFaceaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='76' u='r' c='_ZN5tMath9tQuadFaceaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='76' u='w' c='_ZN5tMath9tQuadFaceaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='76' u='r' c='_ZN5tMath9tQuadFaceaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='76' u='w' c='_ZN5tMath9tQuadFaceaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='76' u='r' c='_ZN5tMath9tQuadFaceaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='76' u='w' c='_ZN5tMath9tQuadFaceaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='76' u='r' c='_ZN5tMath9tQuadFaceaSERKS0_'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='77' type='int[4]'/>
+<offset>0</offset>
+<use f='Modules/System/Src/tChunk.cpp' l='451' u='a' c='_ZN12tChunkWriter5WriteERKN5tMath9tQuadFaceE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='652' u='w' c='_ZN12tChunkWriter5WriteEPKN5tMath9tQuadFaceEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='652' u='r' c='_ZN12tChunkWriter5WriteEPKN5tMath9tQuadFaceEi'/>

@@ -1,0 +1,26 @@
+<use f='include/c++/11/bits/fs_dir.h' l='106' u='w' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='110' u='w' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='114' u='m' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='126' u='w' c='_ZNSt10filesystem7__cxx1115directory_entry6assignERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='133' u='w' c='_ZNSt10filesystem7__cxx1115directory_entry6assignERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='140' u='m' c='_ZNSt10filesystem7__cxx1115directory_entry16replace_filenameERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='147' u='m' c='_ZNSt10filesystem7__cxx1115directory_entry16replace_filenameERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='160' u='a' c='_ZNKSt10filesystem7__cxx1115directory_entry4pathEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='161' u='a' c='_ZNKSt10filesystem7__cxx1115directory_entrycvRKNS0_4pathEEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='245' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry9file_sizeEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='249' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry9file_sizeERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='253' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry15hard_link_countEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='257' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry15hard_link_countERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='261' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry15last_write_timeEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='266' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry15last_write_timeERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='270' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry6statusEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='274' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry6statusERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='278' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry14symlink_statusEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='282' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry14symlink_statusERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='286' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entryeqERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='286' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entryeqERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='291' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entryssERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='291' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entryssERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='328' u='w' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathENS_9file_typeE'/>
+<dec f='include/c++/11/bits/fs_dir.h' l='352' type='filesystem::path'/>
+<offset>0</offset>

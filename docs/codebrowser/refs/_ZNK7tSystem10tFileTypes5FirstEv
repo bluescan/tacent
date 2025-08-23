@@ -1,0 +1,9 @@
+<def f='Modules/System/Inc/System/tFile.h' l='517' type='tSystem::tFileTypes::tFileTypeItem * tSystem::tFileTypes::First() const'/>
+<use f='Modules/System/Inc/System/tFile.h' l='997' u='c' c='_ZN7tSystem10tFileTypes11AddSelectedERKS0_b'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1001' u='c' c='_ZN7tSystem10tFileTypes11AddSelectedERKS0_b'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1021' u='c' c='_ZN7tSystem10tFileTypes13ClearSelectedEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1028' u='c' c='_ZNK7tSystem10tFileTypes11AnySelectedEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1037' u='c' c='_ZN7tSystem10tFileTypes6SelectENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1051' u='c' c='_ZNK7tSystem10tFileTypes10IsSelectedENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1062' u='c' c='_ZNK7tSystem10tFileTypes20GetFirstSelectedTypeEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1080' u='c' c='_ZNK7tSystem10tFileTypes17GetSelectedStringENS0_9SeparatorEi'/>

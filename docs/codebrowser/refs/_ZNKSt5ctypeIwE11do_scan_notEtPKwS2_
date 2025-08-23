@@ -1,0 +1,16 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1312' type='const std::ctype&lt;wchar_t&gt;::char_type * std::ctype&lt;wchar_t&gt;::do_scan_not(std::ctype_base::mask __m, const std::ctype&lt;wchar_t&gt;::char_type * __lo, const std::ctype&lt;wchar_t&gt;::char_type * __hi) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1296'>/**
+       *  @brief  Find wchar_t not matching mask
+       *
+       *  This function searches for and returns a pointer to the first
+       *  wchar_t c of [__lo,__hi) for which is(__m,c) is false.
+       *
+       *  do_scan_is() is a hook for a derived facet to change the behavior of
+       *  match searching.  do_is() must always return the same result for the
+       *  same input.
+       *
+       *  @param __m  The mask to compare against.
+       *  @param __lo  Pointer to start of range.
+       *  @param __hi  Pointer to end of range.
+       *  @return  Pointer to a non-matching wchar_t if found, else @a __hi.
+      */</doc>

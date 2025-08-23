@@ -1,0 +1,1 @@
+<def f='include/c++/11/chrono' l='926' ll='931' macro='1' type='time_point&lt;_Clock, _Dur&gt; &amp; std::chrono::time_point::operator+=(const std::chrono::time_point::duration &amp; __dur)'/>

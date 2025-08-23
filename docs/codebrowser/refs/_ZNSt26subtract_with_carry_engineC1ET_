@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='722' ll='724' type='void std::subtract_with_carry_engine::subtract_with_carry_engine&lt;_UIntType, __w, __s, __r&gt;(std::subtract_with_carry_engine::result_type __sd)'/>
+<doc f='include/c++/11/bits/random.h' l='718'>/**
+       * @brief Constructs an explicitly seeded %subtract_with_carry_engine
+       *        random number generator.
+       */</doc>

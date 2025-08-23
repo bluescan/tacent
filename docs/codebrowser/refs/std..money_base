@@ -1,0 +1,22 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='928' ll='951'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='1024' c='std::moneypunct'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1024'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1408' c='std::moneypunct'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1409' c='std::moneypunct'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1483' c='std::moneypunct'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1484' c='std::moneypunct'/>
+<size>1</size>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='917'>/**
+   *  @brief  Money format ordering data.
+   *  @ingroup locales
+   *
+   *  This class contains an ordered array of 4 fields to represent the
+   *  pattern for formatting a money amount.  Each field may contain one entry
+   *  from the part enum.  symbol, sign, and value must be present and the
+   *  remaining field must contain either none or space.  @see
+   *  moneypunct::pos_format() and moneypunct::neg_format() for details of how
+   *  these fields are interpreted.
+  */</doc>
+<smbr r='std::money_base::_S_default_pattern' t='const std::money_base::pattern'/>
+<smbr r='std::money_base::_S_atoms' t='const char *'/>
+<fun r='_ZNSt10money_base20_S_construct_patternEccc'/>

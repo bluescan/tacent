@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='29' ll='33'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='138' c='_ZN5tList4SortETL0__18tListSortAlgorithm'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='238' c='_ZN6tsList4SortETL0__18tListSortAlgorithm'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='358' c='_ZN7tItList4SortETL0__18tListSortAlgorithm'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='524' c='_ZN5tList4SortETL0__18tListSortAlgorithm'/>

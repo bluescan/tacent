@@ -1,0 +1,2 @@
+<dec f='include/c++/11/chrono' l='1681' type='std::chrono::year_month_day std::chrono::operator/(const std::chrono::month_day &amp; __md, const std::chrono::year &amp; __y)'/>
+<def f='include/c++/11/chrono' l='2461' ll='2463' type='std::chrono::year_month_day std::chrono::operator/(const std::chrono::month_day &amp; __md, const chrono::year &amp; __y)'/>

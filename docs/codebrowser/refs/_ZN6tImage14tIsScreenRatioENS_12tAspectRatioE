@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='451' type='bool tImage::tIsScreenRatio(tImage::tAspectRatio )'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='660' ll='663' type='bool tImage::tIsScreenRatio(tImage::tAspectRatio ratio)'/>

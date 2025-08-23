@@ -1,0 +1,6 @@
+<dec f='include/unistd.h' l='398' type='ssize_t pwrite(int __fd, const void * __buf, size_t __n, __off_t __offset)'/>
+<doc f='include/unistd.h' l='393'>/* Write N bytes of BUF to FD at the given position OFFSET without
+   changing the file pointer.  Return the number written, or -1.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

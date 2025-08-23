@@ -1,0 +1,2 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='796' u='c' c='_ZN9tColour4fC1ERKN5tMath8tVector4E'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='809' type='void tColour4f::Set(const tMath::tVector4 &amp; ca)'/>

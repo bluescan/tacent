@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12152'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12151'>// VK_NV_geometry_shader_passthrough is a preprocessor guard. Do not pass it to API calls.</doc>

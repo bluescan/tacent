@@ -1,0 +1,43 @@
+<def f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='118' ll='184'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='124' c='_ZN10tBitArray8C1ERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='129' c='_ZN10tBitArray83SetERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='168' c='_ZN10tBitArray8aSERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='168' c='_ZN10tBitArray8aSERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='169' c='_ZN10tBitArray8aNERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='169' c='_ZN10tBitArray8aNERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='170' c='_ZN10tBitArray8oRERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='170' c='_ZN10tBitArray8oRERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='171' c='_ZN10tBitArray8eOERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='171' c='_ZN10tBitArray8eOERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='173' c='_ZNK10tBitArray8coEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='173' c='_ZNK10tBitArray8coEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='175' c='_ZNK10tBitArray8eqERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='176' c='_ZNK10tBitArray8neERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='454' c='_ZN10tBitArray8aNERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='454' c='_ZN10tBitArray8aNERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='465' c='_ZN10tBitArray8oRERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='465' c='_ZN10tBitArray8oRERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='476' c='_ZN10tBitArray8eOERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='476' c='_ZN10tBitArray8eOERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='487' c='_ZNK10tBitArray8eqERKS_'/>
+<size>16</size>
+<doc f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='110'>// This class uses 8-bit elements to store the bit array for efficiency. Unlike tBitArray the bits are ordered from MSB
+// to LSB so that the 7th bit (on the left) is the first one, 6th bit is the second, and so on down to the 0th bit which
+// is the eighth. For example, with 19-bits:
+// 1                   19
+// 10101111 11110000 101	   The array we want to represent.
+// 10101111 11110000 10100000  As 3 8-bit elements.
+// 10101111 11110000 10100000  In memory regardless of endianness.
+//</doc>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='178' c='_ZN10tBitArray83SetERKS_'/>
+<size>16</size>
+<fun r='_ZN10tBitArray83SetEi'/>
+<fun r='_ZN10tBitArray83SetEPhib'/>
+<fun r='_ZN10tBitArray83SetERKS_'/>
+<fun r='_ZNK10tBitArray86AreAllEb'/>
+<fun r='_ZNK10tBitArray89CountBitsEb'/>
+<fun r='_ZNK10tBitArray817FindFirstClearBitEv'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='165' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='188' c='_ZN6tImage13tPaletteImage3GetEP9tColour4b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='212' c='_ZN6tImage13tPaletteImage3GetEP9tColour3b'/>
+<size>16</size>

@@ -1,0 +1,5 @@
+<dec f='include/c++/11/istream' l='689' type='bool'/>
+<use f='include/c++/11/istream' l='735' u='r' c='_ZNKSt13basic_istream6sentrycvbEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='47' u='w' c='_ZNSt13basic_istream6sentryC1ERSt13basic_istreamIT_T0_Eb'/>
+<use f='include/c++/11/bits/istream.tcc' l='83' u='w' c='_ZNSt13basic_istream6sentryC1ERSt13basic_istreamIT_T0_Eb'/>
+<doc f='include/c++/11/istream' l='688'>// Data Members.</doc>

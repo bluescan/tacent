@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/predefined_ops.h' l='282' type='_Iterator1'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='287' u='w' c='__gnu_cxx::__ops::_Iter_equals_iter::_Iter_equals_iter{_Iterator1}'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='294' u='r' c='__gnu_cxx::__ops::_Iter_equals_iter::operator()'/>

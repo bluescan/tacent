@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='344' type='void tColour4b::tColour4b(uint32 bits)'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='112' u='c' c='_ZN6tImage10tImageTIFF4LoadERK7tString'/>
+<use f='Modules/Math/Src/tColour.cpp' l='424' u='c' c='_ZN5tMath10tGetColourEPKc'/>
+<use f='Modules/Math/Src/tColour.cpp' l='425' u='c' c='_ZN5tMath10tGetColourEPKc'/>

@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12270' ll='12282'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12270'/>
+<size>56</size>
+<mbr r='VkPhysicalDeviceConservativeRasterizationPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceConservativeRasterizationPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceConservativeRasterizationPropertiesEXT::primitiveOverestimationSize' o='128' t='float'/>
+<mbr r='VkPhysicalDeviceConservativeRasterizationPropertiesEXT::maxExtraPrimitiveOverestimationSize' o='160' t='float'/>
+<mbr r='VkPhysicalDeviceConservativeRasterizationPropertiesEXT::extraPrimitiveOverestimationSizeGranularity' o='192' t='float'/>
+<mbr r='VkPhysicalDeviceConservativeRasterizationPropertiesEXT::primitiveUnderestimation' o='224' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceConservativeRasterizationPropertiesEXT::conservativePointAndLineRasterization' o='256' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceConservativeRasterizationPropertiesEXT::degenerateTrianglesRasterized' o='288' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceConservativeRasterizationPropertiesEXT::degenerateLinesRasterized' o='320' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceConservativeRasterizationPropertiesEXT::fullyCoveredFragmentShaderInputVariable' o='352' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceConservativeRasterizationPropertiesEXT::conservativeRasterizationPostDepthCoverage' o='384' t='VkBool32'/>

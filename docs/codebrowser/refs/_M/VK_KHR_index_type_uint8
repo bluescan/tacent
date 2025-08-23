@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10928'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10927'>// VK_KHR_index_type_uint8 is a preprocessor guard. Do not pass it to API calls.</doc>

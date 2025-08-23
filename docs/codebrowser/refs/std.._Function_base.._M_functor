@@ -1,0 +1,13 @@
+<use f='include/c++/11/bits/std_function.h' l='244' c='_ZNSt14_Function_baseD1Ev'/>
+<use f='include/c++/11/bits/std_function.h' l='244' c='_ZNSt14_Function_baseD1Ev'/>
+<dec f='include/c++/11/bits/std_function.h' l='252' type='std::_Any_data'/>
+<use f='include/c++/11/bits/std_function.h' l='391' c='_ZNSt8functionIFT_DpT0_EEC1ERKS_IS3_E'/>
+<use f='include/c++/11/bits/std_function.h' l='409' u='w' c='_ZNSt8functionIFT_DpT0_EEC1EOS_IS3_E'/>
+<use f='include/c++/11/bits/std_function.h' l='449' c='_ZNSt8functionIFT_DpT0_EEC1EOTL0__'/>
+<use f='include/c++/11/bits/std_function.h' l='505' c='_ZNSt8functionIFT_DpT0_EEaSEDn'/>
+<use f='include/c++/11/bits/std_function.h' l='505' c='_ZNSt8functionIFT_DpT0_EEaSEDn'/>
+<use f='include/c++/11/bits/std_function.h' l='557' c='_ZNSt8functionIFT_DpT0_EE4swapERS_IS3_E'/>
+<use f='include/c++/11/bits/std_function.h' l='590' c='_ZNKSt8functionIFT_DpT0_EEclES2_'/>
+<use f='include/c++/11/bits/std_function.h' l='610' c='_ZNKSt8functionIFT_DpT0_EE11target_typeEv'/>
+<use f='include/c++/11/bits/std_function.h' l='657' c='_ZNKSt8functionIFT_DpT0_EE6targetEv'/>
+<offset>0</offset>

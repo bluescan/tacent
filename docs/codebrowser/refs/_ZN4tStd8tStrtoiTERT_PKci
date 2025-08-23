@@ -1,0 +1,8 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='176' type='bool tStd::tStrtoiT(IntegralType &amp; , const char * , int base = -1)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='177' u='c' c='_ZN4tStd9tStrtoi32ERiPKci'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='178' u='c' c='_ZN4tStd10tStrtoui32ERjPKci'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='179' u='c' c='_ZN4tStd9tStrtoi64ERxPKci'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='180' u='c' c='_ZN4tStd10tStrtoui64ERyPKci'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='173'>// These are just variants of above that are strict. If the conversion encounters any parsing errors (all characters are
+// invalid, the passed in string is null, or the passed in string is empty) instead of returning the default value
+// IntegralType(0), false is returned.</doc>

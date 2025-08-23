@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='191' type='void tzList::tzList&lt;T&gt;()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='190'>// The default constructor sets the list mode as Static.</doc>

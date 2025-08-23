@@ -1,0 +1,10 @@
+<def f='include/c++/11/type_traits' l='1007' ll='1012'/>
+<use f='include/c++/11/type_traits' l='2674' c='_ZSt4swapRT_S0_'/>
+<use f='include/c++/11/type_traits' l='3183'/>
+<use f='include/c++/11/bits/move.h' l='191' c='_ZSt4swapRT_S0_'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='793'/>
+<use f='include/c++/11/bits/nested_exception.h' l='122' c='_ZSt17throw_with_nestedOT_'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='206'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='305'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='575'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1079'/>

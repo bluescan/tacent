@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17289'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17288'>// VK_NV_device_generated_commands_compute is a preprocessor guard. Do not pass it to API calls.</doc>

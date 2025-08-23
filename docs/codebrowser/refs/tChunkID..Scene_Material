@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='542' type='2164457472'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='542'>// ID plus other stuff.</doc>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='80' u='r' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='162' u='r' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1171' c='_ZN6tScene6tWorld13LoadMaterialsERK6tChunkR7tItListINS_9tMaterialEE'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7282' ll='7286'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7282'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductFeatures::shaderIntegerDotProduct' o='128' t='VkBool32'/>

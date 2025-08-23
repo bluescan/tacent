@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3402' ll='3406'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3402'/>
+<size>24</size>
+<mbr r='VkEventCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkEventCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkEventCreateInfo::flags' o='128' t='VkEventCreateFlags'/>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/ext/atomicity.h' l='104' ll='112' type='void __gnu_cxx::__atomic_add_dispatch(_Atomic_word * __mem, int __val)'/>
+<use f='include/c++/11/bits/locale_classes.h' l='449' u='c' c='_ZNKSt6locale5facet16_M_add_referenceEv'/>
+<use f='include/c++/11/bits/locale_classes.h' l='559' u='c' c='_ZNSt6locale5_Impl16_M_add_referenceEv'/>
+<use f='include/c++/11/bits/ios_base.h' l='566' u='c' c='_ZNSt8ios_base14_Callback_list16_M_add_referenceEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='148' u='c' c='_ZNSt16_Sp_counted_base15_M_add_ref_copyEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='191' u='c' c='_ZNSt16_Sp_counted_base15_M_weak_add_refEv'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='168' type='double fmod(double __x, double __y)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='44' u='c' c='_ZN5tMath4tModEff'/>

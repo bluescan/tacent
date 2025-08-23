@@ -1,0 +1,13 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='291' type='int tChunk::GetItem(bool &amp; item) const'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='284'>// Here&apos;s the generic form of GetItem. It will work on most basic data types. The functions after are
+	// specializations for cases that would not work otherwise. The list of types known to work are: char, int8, uint8,
+	// int16, uint16, int32, uint32, int64, uint64, float, double, tVec2, tVec3, tVec4, tQuat, tMat2, tMat4, tEdge,
+	// tTri, tQuad, tSphere, tPixel, and any type of enum or enum class. As intended these reading function do not do
+	// any endian conversions. The chunk data is already in the correct format for the destination platform. These
+	// functions return the number of bytes read. OK, turns out overloads are matched before specializations, so we
+	// can keep it simple and just do that.</doc>
+<use f='Modules/Image/Src/tTexture.cpp' l='422' u='c' c='_ZN6tImage8tTexture4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='94' u='c' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='182' u='c' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='79' u='c' c='_ZN6tScene5tPath4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='54' u='c' c='_ZN6tScene10tPolyModel4LoadERK6tChunk'/>

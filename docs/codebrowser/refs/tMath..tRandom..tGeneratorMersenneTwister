@@ -1,0 +1,27 @@
+<inh f='Modules/Math/Inc/Math/tRandom.h' l='27' c='tMath::tRandom::tGenerator'/>
+<def f='Modules/Math/Inc/Math/tRandom.h' l='45' ll='74'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='99'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='861' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<size>2512</size>
+<doc f='Modules/Math/Inc/Math/tRandom.h' l='43'>// A random generator using the Mersenne Twistor algorithm by M. Matsumoto &amp; T. Nishimura, Transactions of the
+// Association for Computing Machinery, Vol 8, 1998. This generator has a large memory footprint: 19937 bits of state.</doc>
+<fun r='_ZN5tMath7tRandom25tGeneratorMersenneTwisterC1Ev'/>
+<fun r='_ZN5tMath7tRandom25tGeneratorMersenneTwisterC1Ej'/>
+<fun r='_ZN5tMath7tRandom25tGeneratorMersenneTwisterC1Ey'/>
+<fun r='_ZN5tMath7tRandom25tGeneratorMersenneTwisterC1EPKji'/>
+<fun r='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj'/>
+<fun r='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEy'/>
+<fun r='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<fun r='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<smbr r='tMath::tRandom::tGeneratorMersenneTwister::Dimensions' t='const int'/>
+<smbr r='tMath::tRandom::tGeneratorMersenneTwister::PartialDims' t='const int'/>
+<smbr r='tMath::tRandom::tGeneratorMersenneTwister::LeftShift' t='const int'/>
+<smbr r='tMath::tRandom::tGeneratorMersenneTwister::Toggle' t='const uint32'/>
+<smbr r='tMath::tRandom::tGeneratorMersenneTwister::TemperShiftA' t='const int'/>
+<smbr r='tMath::tRandom::tGeneratorMersenneTwister::TemperShiftB' t='const int'/>
+<smbr r='tMath::tRandom::tGeneratorMersenneTwister::TemperShiftC' t='const int'/>
+<smbr r='tMath::tRandom::tGeneratorMersenneTwister::TemperShiftD' t='const int'/>
+<smbr r='tMath::tRandom::tGeneratorMersenneTwister::TemperB' t='const uint32'/>
+<smbr r='tMath::tRandom::tGeneratorMersenneTwister::TemperC' t='const uint32'/>
+<mbr r='tMath::tRandom::tGeneratorMersenneTwister::StateVector' o='64' t='uint32[624]'/>
+<mbr r='tMath::tRandom::tGeneratorMersenneTwister::StateIndex' o='20032' t='int'/>

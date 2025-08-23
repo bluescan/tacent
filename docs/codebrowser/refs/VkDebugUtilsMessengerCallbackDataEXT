@@ -1,0 +1,15 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12418' ll='12431'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12418'/>
+<size>96</size>
+<mbr r='VkDebugUtilsMessengerCallbackDataEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDebugUtilsMessengerCallbackDataEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkDebugUtilsMessengerCallbackDataEXT::flags' o='128' t='VkDebugUtilsMessengerCallbackDataFlagsEXT'/>
+<mbr r='VkDebugUtilsMessengerCallbackDataEXT::pMessageIdName' o='192' t='const char *'/>
+<mbr r='VkDebugUtilsMessengerCallbackDataEXT::messageIdNumber' o='256' t='int32_t'/>
+<mbr r='VkDebugUtilsMessengerCallbackDataEXT::pMessage' o='320' t='const char *'/>
+<mbr r='VkDebugUtilsMessengerCallbackDataEXT::queueLabelCount' o='384' t='uint32_t'/>
+<mbr r='VkDebugUtilsMessengerCallbackDataEXT::pQueueLabels' o='448' t='const VkDebugUtilsLabelEXT *'/>
+<mbr r='VkDebugUtilsMessengerCallbackDataEXT::cmdBufLabelCount' o='512' t='uint32_t'/>
+<mbr r='VkDebugUtilsMessengerCallbackDataEXT::pCmdBufLabels' o='576' t='const VkDebugUtilsLabelEXT *'/>
+<mbr r='VkDebugUtilsMessengerCallbackDataEXT::objectCount' o='640' t='uint32_t'/>
+<mbr r='VkDebugUtilsMessengerCallbackDataEXT::pObjects' o='704' t='const VkDebugUtilsObjectNameInfoEXT *'/>

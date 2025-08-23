@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='117' type='void std::locale::locale()'/>
+<use f='include/c++/11/streambuf' l='471' u='c' c='_ZNSt15basic_streambufC1Ev'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='111'>/**
+     *  @brief  Default constructor.
+     *
+     *  Constructs a copy of the global locale.  If no locale has been
+     *  explicitly set, this is the C locale.
+    */</doc>

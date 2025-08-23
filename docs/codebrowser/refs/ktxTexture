@@ -1,0 +1,33 @@
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='216' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='287' ll='289'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='287'/>
+<size>120</size>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='279'>/**
+ * @class ktxTexture
+ * @~English
+ * @brief Base class representing a texture.
+ *
+ * ktxTextures should be created only by one of the provided
+ * functions and these fields should be considered read-only.
+ */</doc>
+<mbr r='ktxTexture::classId' o='0' t='class_id'/>
+<mbr r='ktxTexture::vtbl' o='64' t='struct ktxTexture_vtbl *'/>
+<mbr r='ktxTexture::vvtbl' o='128' t='struct ktxTexture_vvtbl *'/>
+<mbr r='ktxTexture::_protected' o='192' t='struct ktxTexture_protected *'/>
+<mbr r='ktxTexture::isArray' o='256' t='ktx_bool_t'/>
+<mbr r='ktxTexture::isCubemap' o='264' t='ktx_bool_t'/>
+<mbr r='ktxTexture::isCompressed' o='272' t='ktx_bool_t'/>
+<mbr r='ktxTexture::generateMipmaps' o='280' t='ktx_bool_t'/>
+<mbr r='ktxTexture::baseWidth' o='288' t='ktx_uint32_t'/>
+<mbr r='ktxTexture::baseHeight' o='320' t='ktx_uint32_t'/>
+<mbr r='ktxTexture::baseDepth' o='352' t='ktx_uint32_t'/>
+<mbr r='ktxTexture::numDimensions' o='384' t='ktx_uint32_t'/>
+<mbr r='ktxTexture::numLevels' o='416' t='ktx_uint32_t'/>
+<mbr r='ktxTexture::numLayers' o='448' t='ktx_uint32_t'/>
+<mbr r='ktxTexture::numFaces' o='480' t='ktx_uint32_t'/>
+<mbr r='ktxTexture::orientation' o='512' t='struct ktxOrientation'/>
+<mbr r='ktxTexture::kvDataHead' o='640' t='ktxHashList'/>
+<mbr r='ktxTexture::kvDataLen' o='704' t='ktx_uint32_t'/>
+<mbr r='ktxTexture::kvData' o='768' t='ktx_uint8_t *'/>
+<mbr r='ktxTexture::dataSize' o='832' t='ktx_size_t'/>
+<mbr r='ktxTexture::pData' o='896' t='ktx_uint8_t *'/>

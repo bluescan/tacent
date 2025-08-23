@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_tempbuf.h' l='195' ll='223'/>
+<def f='include/c++/11/bits/stl_tempbuf.h' l='225' ll='231'/>
+<use f='include/c++/11/bits/stl_tempbuf.h' l='226'/>
+<use f='include/c++/11/bits/stl_tempbuf.h' l='251' c='_ZSt29__uninitialized_construct_bufT_S_T0_'/>
+<size>1</size>
+<fun r='_ZNSt38__uninitialized_construct_buf_dispatch5__ucrETL0__S0_TL0_0_'/>
+<fun r='_ZNSt38__uninitialized_construct_buf_dispatchILb1EE5__ucrET_S1_T0_'/>

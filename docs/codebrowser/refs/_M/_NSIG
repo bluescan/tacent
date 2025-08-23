@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/signum-generic.h' l='79'/>
+<doc f='include/x86_64-linux-gnu/bits/signum-generic.h' l='78'>/* Biggest signal number + 1 (including real-time signals).  */</doc>

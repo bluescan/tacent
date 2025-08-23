@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/locale_facets.h' l='1696' ll='1699' type='void std::numpunct::numpunct&lt;_CharT&gt;(std::size_t __refs = 0)'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1691'>/**
+       *  @brief  Numpunct constructor.
+       *
+       *  @param  __refs  Refcount to pass to the base class.
+       */</doc>

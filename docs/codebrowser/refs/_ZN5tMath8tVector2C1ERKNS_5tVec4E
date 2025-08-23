@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='31' type='void tMath::tVector2::tVector2(const tMath::tVec4 &amp; v)'/>
+<doc f='Modules/Math/Inc/Math/tVector2.h' l='31'>/* Discards v.z and v.w. */</doc>

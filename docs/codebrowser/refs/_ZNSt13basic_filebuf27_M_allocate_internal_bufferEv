@@ -1,0 +1,3 @@
+<dec f='include/c++/11/fstream' l='370' type='void std::basic_filebuf::_M_allocate_internal_buffer()'/>
+<def f='include/c++/11/bits/fstream.tcc' l='47' ll='59' type='void std::basic_filebuf::_M_allocate_internal_buffer()'/>
+<use f='include/c++/11/bits/fstream.tcc' l='188' u='c' c='_ZNSt13basic_filebuf4openEPKcSt13_Ios_Openmode'/>

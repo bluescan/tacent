@@ -1,0 +1,5 @@
+<dec f='include/c++/11/pstl/pstl_config.h' l='54'/>
+<use f='include/c++/11/pstl/pstl_config.h' l='62' u='c'/>
+<use f='include/c++/11/pstl/pstl_config.h' l='107' u='c'/>
+<doc f='include/c++/11/pstl/pstl_config.h' l='52'>// note that when ICC or Clang is in use, _PSTL_GCC_VERSION might not fully match
+// the actual GCC version on the system.</doc>

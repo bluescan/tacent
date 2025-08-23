@@ -1,0 +1,14 @@
+<use f='include/c++/11/type_traits' l='3510'/>
+<def f='include/c++/11/type_traits' l='3513' ll='3515'/>
+<use f='include/c++/11/type_traits' l='3514'/>
+<def f='include/c++/11/type_traits' l='3518' ll='3520'/>
+<def f='include/c++/11/type_traits' l='3529' ll='3532'/>
+<def f='include/c++/11/type_traits' l='3579' ll='3583'/>
+<use f='include/c++/11/type_traits' l='3581'/>
+<use f='include/c++/11/type_traits' l='3587'/>
+<use f='include/c++/11/type_traits' l='3590'/>
+<size>1</size>
+<doc f='include/c++/11/type_traits' l='3512'>// If sizeof...(T) is zero, there shall be no member type.</doc>
+<doc f='include/c++/11/type_traits' l='3517'>// If sizeof...(T) is one ...</doc>
+<doc f='include/c++/11/type_traits' l='3528'>// If sizeof...(T) is two ...</doc>
+<doc f='include/c++/11/type_traits' l='3578'>// Otherwise, if sizeof...(T) is greater than two, ...</doc>

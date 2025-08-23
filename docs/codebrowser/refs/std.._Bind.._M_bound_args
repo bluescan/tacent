@@ -1,0 +1,7 @@
+<dec f='include/c++/11/functional' l='412' type='tuple&lt;_Bound_args...&gt;'/>
+<use f='include/c++/11/functional' l='421' c='_ZNSt5_BindIFT_DpT0_EE6__callEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<use f='include/c++/11/functional' l='432' c='_ZNKSt5_BindIFT_DpT0_EE8__call_cEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<use f='include/c++/11/functional' l='443' c='_ZNVSt5_BindIFT_DpT0_EE8__call_vEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<use f='include/c++/11/functional' l='454' c='_ZNVKSt5_BindIFT_DpT0_EE10__call_c_vEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<use f='include/c++/11/functional' l='484' u='w' c='_ZNSt5_BindIFT_DpT0_EEC1ERKS0_DpOTL0__'/>
+<use f='include/c++/11/functional' l='490' u='w' c='_ZNSt5_BindIFT_DpT0_EEC1EOS0_DpOTL0__'/>

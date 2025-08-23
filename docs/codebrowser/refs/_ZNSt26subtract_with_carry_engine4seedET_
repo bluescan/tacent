@@ -1,0 +1,14 @@
+<dec f='include/c++/11/bits/random.h' l='750' type='void std::subtract_with_carry_engine::seed(std::subtract_with_carry_engine::result_type __sd = default_seed)'/>
+<def f='include/c++/11/bits/random.tcc' l='535' ll='561' type='void std::subtract_with_carry_engine::seed(std::subtract_with_carry_engine::result_type __value = default_seed)'/>
+<doc f='include/c++/11/bits/random.h' l='737'>/**
+       * @brief Seeds the initial state @f$x_0@f$ of the random number
+       *        generator.
+       *
+       * N1688[4.19] modifies this as follows.  If @p __value == 0,
+       * sets value to 19780503.  In any case, with a linear
+       * congruential generator lcg(i) having parameters @f$ m_{lcg} =
+       * 2147483563, a_{lcg} = 40014, c_{lcg} = 0, and lcg(0) = value
+       * @f$, sets @f$ x_{-r} \dots x_{-1} @f$ to @f$ lcg(1) \bmod m
+       * \dots lcg(r) \bmod m @f$ respectively.  If @f$ x_{-1} = 0 @f$
+       * set carry to 1, otherwise sets carry to 0.
+       */</doc>

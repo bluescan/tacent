@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='133' type='17'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='133'>// Same as conditional but fatal for strict loading.</doc>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='831' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>

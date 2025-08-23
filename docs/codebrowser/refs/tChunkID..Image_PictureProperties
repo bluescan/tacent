@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='560' type='17039376'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='560'>// Width, height.</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='87' u='r' c='_ZNK6tImage8tPicture4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='114' c='_ZN6tImage8tPicture4LoadERK6tChunk'/>

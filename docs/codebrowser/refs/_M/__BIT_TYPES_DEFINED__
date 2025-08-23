@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/types.h' l='171'/>
+<doc f='include/x86_64-linux-gnu/sys/types.h' l='169'>/* Some code from BIND tests this macro to see if the types above are
+   defined.  */</doc>

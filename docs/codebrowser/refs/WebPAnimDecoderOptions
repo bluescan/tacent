@@ -1,0 +1,7 @@
+<use f='Modules/Image/Contrib/WebP/include/demux.h' l='68'/>
+<def f='Modules/Image/Contrib/WebP/include/demux.h' l='251' ll='257'/>
+<size>36</size>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='250'>// Global options.</doc>
+<mbr r='WebPAnimDecoderOptions::color_mode' o='0' t='WEBP_CSP_MODE'/>
+<mbr r='WebPAnimDecoderOptions::use_threads' o='32' t='int'/>
+<mbr r='WebPAnimDecoderOptions::padding' o='64' t='uint32_t[7]'/>

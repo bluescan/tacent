@@ -1,0 +1,9 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='279' u='c' c='_ZN7tItList4ItercvPT_Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='280' u='c' c='_ZNK7tItList4ItercvPKT_Ev'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='303' type='T * tItList::Iter::GetObject() const'/>
+<use f='Modules/Scene/Inc/Scene/tSelection.h' l='45' u='c' c='_ZNK6tScene10tSelection16ContainsInstanceEj'/>
+<use f='Modules/Scene/Src/tSelection.cpp' l='30' u='c' c='_ZNK6tScene10tSelection4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='137' u='c' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='995' u='c' c='_ZN6tScene6tWorld18CorrectInstanceIDsER7tItListINS_9tInstanceEERS1_INS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1047' u='c' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1726' u='c' c='_ZNK6tScene6tWorld24FindSelectionsContainingER7tItListIPNS_10tSelectionEERK7tString'/>

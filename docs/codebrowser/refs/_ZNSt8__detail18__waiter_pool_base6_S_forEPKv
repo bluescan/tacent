@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_wait.h' l='248' ll='255' type='static std::__detail::__waiter_pool_base &amp; std::__detail::__waiter_pool_base::_S_for(const void * __addr)'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='301' u='c' c='_ZNSt8__detail13__waiter_base6_S_forEPKv'/>

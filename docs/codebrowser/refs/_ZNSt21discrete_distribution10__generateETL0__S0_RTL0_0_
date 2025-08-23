@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.h' l='5425' ll='5428' type='void std::discrete_distribution::__generate(_ForwardIterator __f, _ForwardIterator __t, _UniformRandomNumberGenerator &amp; __urng)'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18719' ll='18724'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18719'/>
+<size>32</size>
+<mbr r='VkAccelerationStructureGeometryInstancesDataKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkAccelerationStructureGeometryInstancesDataKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkAccelerationStructureGeometryInstancesDataKHR::arrayOfPointers' o='128' t='VkBool32'/>
+<mbr r='VkAccelerationStructureGeometryInstancesDataKHR::data' o='192' t='VkDeviceOrHostAddressConstKHR'/>

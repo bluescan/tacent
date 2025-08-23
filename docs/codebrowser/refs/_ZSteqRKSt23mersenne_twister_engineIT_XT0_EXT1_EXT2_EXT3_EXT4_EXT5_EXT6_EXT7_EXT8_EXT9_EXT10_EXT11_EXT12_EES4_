@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/random.h' l='586' ll='590' type='bool std::operator==(const mersenne_twister_engine&lt;_UIntType, __w, __n, __m, __r, __a, __u, __d, __s, __b, __t, __c, __l, __f&gt; &amp; __lhs, const mersenne_twister_engine&lt;_UIntType, __w, __n, __m, __r, __a, __u, __d, __s, __b, __t, __c, __l, __f&gt; &amp; __rhs)'/>
+<doc f='include/c++/11/bits/random.h' l='574'>/**
+       * @brief Compares two % mersenne_twister_engine random number generator
+       *        objects of the same type for equality.
+       *
+       * @param __lhs A % mersenne_twister_engine random number generator
+       *              object.
+       * @param __rhs Another % mersenne_twister_engine random number
+       *              generator object.
+       *
+       * @returns true if the infinite sequences of generated values
+       *          would be equal, false otherwise.
+       */</doc>

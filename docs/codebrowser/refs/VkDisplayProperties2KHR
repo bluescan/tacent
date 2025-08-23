@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9240' ll='9244'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9240'/>
+<size>64</size>
+<mbr r='VkDisplayProperties2KHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDisplayProperties2KHR::pNext' o='64' t='void *'/>
+<mbr r='VkDisplayProperties2KHR::displayProperties' o='128' t='VkDisplayPropertiesKHR'/>

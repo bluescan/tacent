@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/atomic_wait.h' l='101' type='-1'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='100' c='_ZNSt8__detail26__platform_wait_until_implEPKiiRKNSt6chrono10time_pointINS2_3_V212steady_clockET_EE'/>

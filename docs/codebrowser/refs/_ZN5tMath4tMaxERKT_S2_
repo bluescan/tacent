@@ -1,0 +1,18 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='49' type='T tMath::tMax(const T &amp; a, const T &amp; b)'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='409' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='517' u='c' c='_ZN5tMath7tARect28AddPointERKNS_8tVector2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='518' u='c' c='_ZN5tMath7tARect28AddPointERKNS_8tVector2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='563' u='c' c='_ZN5tMath5tABox8AddPointERKNS_8tVector3E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='564' u='c' c='_ZN5tMath5tABox8AddPointERKNS_8tVector3E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='565' u='c' c='_ZN5tMath5tABox8AddPointERKNS_8tVector3E'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='791' u='c' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='588' u='c' c='_ZN6tImage19tGetNumMipmapLevelsEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1118' u='c' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='307' u='c' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='307' u='c' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='376' u='c' c='_ZNK6tImage8tTexture25ComputeMaxNumberOfMipmapsEv'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='378' u='c' c='_ZN5tMath9tInterval6ExtendERKS0_b'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='391' u='c' c='_ZN5tMath9tInterval11EncapsulateERKS0_'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='39' u='c' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='609' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='629' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>

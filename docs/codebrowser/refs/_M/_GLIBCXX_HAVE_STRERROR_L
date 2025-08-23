@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1147'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1146'>/* Define if strerror_l is available in &lt;string.h&gt;. */</doc>

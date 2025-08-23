@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/ctype_base.h' l='49' type='const std::ctype_base::mask'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2615' c='_ZSt7isupperT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='882' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>

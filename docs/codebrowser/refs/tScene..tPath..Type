@@ -1,0 +1,3 @@
+<use f='Modules/Scene/Src/tPath.cpp' l='27' u='w' c='_ZN6tScene5tPathC1ERKN5tMath11tBezierPathERK7tStringj'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='50' u='r' c='_ZNK6tScene5tPath4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='77' u='a' c='_ZN6tScene5tPath4LoadERK6tChunk'/>

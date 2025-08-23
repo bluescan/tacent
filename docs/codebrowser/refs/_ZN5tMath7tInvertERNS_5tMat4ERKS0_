@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='545' type='bool tMath::tInvert(tMath::tMat4 &amp; d, const tMath::tMat4 &amp; a)'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='387' u='c' c='_ZN5tMath7tInvertERNS_5tMat4E'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='391' ll='526' type='bool tMath::tInvert(tMath::tMat4 &amp; d, const tMath::tMat4 &amp; s)'/>

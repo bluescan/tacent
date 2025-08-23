@@ -1,0 +1,6 @@
+<dec f='include/stdint.h' l='129'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2685' u='c'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2751' u='c'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2870' u='c'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3536' u='c'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3611' u='c'/>

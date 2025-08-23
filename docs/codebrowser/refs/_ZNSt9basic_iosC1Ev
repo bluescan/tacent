@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/basic_ios.h' l='460' ll='463' type='void std::basic_ios::basic_ios&lt;_CharT, _Traits&gt;()'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='454'>/**
+       *  @brief  Empty.
+       *
+       *  The default constructor does nothing and is not normally
+       *  accessible to users.
+      */</doc>

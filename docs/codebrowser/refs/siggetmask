@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='179' type='int siggetmask()'/>
+<doc f='include/signal.h' l='178'>/* Return currently selected signal mask.  */</doc>

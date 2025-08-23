@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='433' type='tSystem::tFileType tSystem::tGetFileTypeFromName(const tString &amp; name)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='843' ll='846' type='tSystem::tFileType tSystem::tGetFileTypeFromName(const tString &amp; name)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='431'>// This does the reverse. Gets the file-type from the supplied file-type name. Essentially this does the same thing as
+// tGetFileTypeFromExtension.</doc>

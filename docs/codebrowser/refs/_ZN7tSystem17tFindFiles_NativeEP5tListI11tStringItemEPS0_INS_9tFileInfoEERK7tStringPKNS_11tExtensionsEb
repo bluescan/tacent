@@ -1,0 +1,9 @@
+<dec f='Modules/System/Src/tFile.cpp' l='74' type='bool tSystem::tFindFiles_Native(tList&lt;tStringItem&gt; * files, tList&lt;tSystem::tFileInfo&gt; * infos, const tString &amp; dir, const tSystem::tExtensions * , bool hidden)'/>
+<def f='Modules/System/Src/tFile.cpp' l='2639' ll='2779' type='bool tSystem::tFindFiles_Native(tList&lt;tStringItem&gt; * files, tList&lt;tSystem::tFileInfo&gt; * infos, const tString &amp; dir, const tSystem::tExtensions * extensions, bool hidden)'/>
+<use f='Modules/System/Src/tFile.cpp' l='2788' u='c' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2804' u='c' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2816' u='c' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2828' u='c' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2844' u='c' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2856' u='c' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3016' u='c' c='_ZN7tSystem20tFindFilesRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

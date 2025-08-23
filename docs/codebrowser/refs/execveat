@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='300' type='int execveat(int __fd, const char * __path, char *const * __argv, char *const * __envp, int __flags)'/>
+<doc f='include/unistd.h' l='299'>/* Execute program relative to a directory file descriptor.  */</doc>

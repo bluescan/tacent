@@ -1,0 +1,10 @@
+<use f='Modules/Image/Inc/Image/tPicture.h' l='93' u='c' c='_ZN6tImage8tPictureC1EiiP9tColour4bb'/>
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='123' type='void tImage::tPicture::Set(int width, int height, tPixel4b * pixelBuffer, bool copyPixels = true)'/>
+<def f='Modules/Image/Inc/Image/tPicture.h' l='413' ll='439' type='void tImage::tPicture::Set(int width, int height, tPixel4b * pixelBuffer, bool copyPixels = true)'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='447' u='c' c='_ZN6tImage8tPicture3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='473' u='c' c='_ZN6tImage8tPicture3SetERKS0_'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='118'>// Sets the image to the dimensions provided. Allows you to specify an external buffer of pixels to use. If
+	// copyPixels is true, it simply copies the values from the buffer you supply. In this case it will attempt to
+	// reuse it&apos;s existing buffer if it can. If copyPixels is false, it means you are giving the buffer to the
+	// tPicture. In this case the tPicture will delete[] the buffer for you when appropriate. In all cases, existing
+	// pixel data is lost. Other members of the tPicture are unmodified.</doc>

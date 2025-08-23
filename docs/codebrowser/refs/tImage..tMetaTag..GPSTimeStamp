@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='59' type='19'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='59'>//	string	UTC Date and time as string in format &quot;YYYY-MM-DD hh:mm:ss&quot;.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='386' u='m' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='710' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

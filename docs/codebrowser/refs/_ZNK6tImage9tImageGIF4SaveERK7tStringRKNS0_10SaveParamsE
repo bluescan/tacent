@@ -1,0 +1,1 @@
+<def f='Modules/Image/Src/tImageGIF.cpp' l='282' ll='447' type='bool tImage::tImageGIF::Save(const tString &amp; gifFile, const tImage::tImageGIF::SaveParams &amp; saveParams = tImage::tImageGIF::SaveParams()) const'/>

@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='444' type='uint32 tColour4b::operator unsigned int()'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='443'>// These allow tColour4b to be keys in a tMap.</doc>

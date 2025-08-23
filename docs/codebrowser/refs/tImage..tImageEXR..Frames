@@ -1,0 +1,8 @@
+<use f='Modules/Image/Src/tImageEXR.cpp' l='275' u='m' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='300' u='m' c='_ZN6tImage9tImageEXR3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='305' u='m' c='_ZN6tImage9tImageEXR3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='323' u='m' c='_ZN6tImage9tImageEXR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='346' u='m' c='_ZN6tImage9tImageEXR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='348' u='m' c='_ZN6tImage9tImageEXR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='381' u='m' c='_ZN6tImage9tImageEXR8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='381' u='m' c='_ZN6tImage9tImageEXR8GetFrameEb'/>

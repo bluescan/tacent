@@ -1,0 +1,3 @@
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='36' u='c' c='_ZNK6tScene7tObject18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='37' u='c' c='_ZNK6tScene7tObjecteqERKS0_'/>
+<def f='Modules/Scene/Src/tAttribute.cpp' l='159' ll='171' type='bool tScene::tAttributes::operator==(const tScene::tAttributes &amp; attribs) const'/>

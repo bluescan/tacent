@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>cstdio source code [include/c++/11/cstdio] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/cstdio'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>c++</a>/<a href='./'>11</a>/<a href='cstdio.html'>cstdio</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// -*- C++ -*- forwarding header.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 1997-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">include/cstdio</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is a Standard C++ Library file.  You should<span class="command"> @c</span> <span class="arg">\#includ</span>e this file</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  in your programs, rather than any of the<span class="command"> @a</span> <span class="arg">*.h</span> implementation files.</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> *</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc"> *  This is the C++ version of the Standard C Library header<span class="command"> @c</span> <span class="arg">stdio.h,</span></i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc"> *  and its contents are (mostly) the same as that header, but are all</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i class="doc"> *  contained in the namespace<span class="command"> @c</span> <span class="arg">std</span> (except for names which are defined</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i class="doc"> *  as macros in C).</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i class="doc">// ISO C++ 14882: 27.8.2  C Library files</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#include &lt;bits/c++config.h&gt;</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#include &lt;stdio.h&gt;</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#<span data-ppcond="44">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_CSTDIO">_GLIBCXX_CSTDIO</span></u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_CSTDIO" data-ref="_M/_GLIBCXX_CSTDIO">_GLIBCXX_CSTDIO</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="46">46</th><td>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#<span data-ppcond="47">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201103L &amp;&amp; !defined(<a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#921" data-ref="_M/_GLIBCXX_HAVE_GETS">_GLIBCXX_HAVE_GETS</a>)</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td><b>extern</b> <q>"C"</q> <em>char</em>* gets (<em>char</em>* __s) <b>__attribute__</b>((__deprecated__));&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="47">endif</span></u>&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>// Get rid of those macros defined in &lt;stdio.h&gt; in lieu of real functions.</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u>#undef <span class="macro" data-ref="_M/clearerr">clearerr</span></u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><u>#undef <span class="macro" data-ref="_M/fclose">fclose</span></u>&nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#undef <span class="macro" data-ref="_M/feof">feof</span></u>&nbsp</td></tr>
+<tr><th id="55">55</th><td><u>#undef <span class="macro" data-ref="_M/ferror">ferror</span></u>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u>#undef <span class="macro" data-ref="_M/fflush">fflush</span></u>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#undef <span class="macro" data-ref="_M/fgetc">fgetc</span></u>&nbsp</td></tr>
+<tr><th id="58">58</th><td><u>#undef <span class="macro" data-ref="_M/fgetpos">fgetpos</span></u>&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#undef <span class="macro" data-ref="_M/fgets">fgets</span></u>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#undef <span class="macro" data-ref="_M/fopen">fopen</span></u>&nbsp</td></tr>
+<tr><th id="61">61</th><td><u>#undef <span class="macro" data-ref="_M/fprintf">fprintf</span></u>&nbsp</td></tr>
+<tr><th id="62">62</th><td><u>#undef <span class="macro" data-ref="_M/fputc">fputc</span></u>&nbsp</td></tr>
+<tr><th id="63">63</th><td><u>#undef <span class="macro" data-ref="_M/fputs">fputs</span></u>&nbsp</td></tr>
+<tr><th id="64">64</th><td><u>#undef <span class="macro" data-ref="_M/fread">fread</span></u>&nbsp</td></tr>
+<tr><th id="65">65</th><td><u>#undef <span class="macro" data-ref="_M/freopen">freopen</span></u>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>#undef <span class="macro" data-ref="_M/fscanf">fscanf</span></u>&nbsp</td></tr>
+<tr><th id="67">67</th><td><u>#undef <span class="macro" data-ref="_M/fseek">fseek</span></u>&nbsp</td></tr>
+<tr><th id="68">68</th><td><u>#undef <span class="macro" data-ref="_M/fsetpos">fsetpos</span></u>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u>#undef <span class="macro" data-ref="_M/ftell">ftell</span></u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><u>#undef <span class="macro" data-ref="_M/fwrite">fwrite</span></u>&nbsp</td></tr>
+<tr><th id="71">71</th><td><u>#undef <span class="macro" data-ref="_M/getc">getc</span></u>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#undef <span class="macro" data-ref="_M/getchar">getchar</span></u>&nbsp</td></tr>
+<tr><th id="73">73</th><td><u>#<span data-ppcond="73">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="74">74</th><td><u># undef gets</u>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#<span data-ppcond="73">endif</span></u>&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#undef <span class="macro" data-ref="_M/perror">perror</span></u>&nbsp</td></tr>
+<tr><th id="77">77</th><td><u>#undef <span class="macro" data-ref="_M/printf">printf</span></u>&nbsp</td></tr>
+<tr><th id="78">78</th><td><u>#undef <span class="macro" data-ref="_M/putc">putc</span></u>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#undef <span class="macro" data-ref="_M/putchar">putchar</span></u>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u>#undef <span class="macro" data-ref="_M/puts">puts</span></u>&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#undef <span class="macro" data-ref="_M/remove">remove</span></u>&nbsp</td></tr>
+<tr><th id="82">82</th><td><u>#undef <span class="macro" data-ref="_M/rename">rename</span></u>&nbsp</td></tr>
+<tr><th id="83">83</th><td><u>#undef <span class="macro" data-ref="_M/rewind">rewind</span></u>&nbsp</td></tr>
+<tr><th id="84">84</th><td><u>#undef <span class="macro" data-ref="_M/scanf">scanf</span></u>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#undef <span class="macro" data-ref="_M/setbuf">setbuf</span></u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><u>#undef <span class="macro" data-ref="_M/setvbuf">setvbuf</span></u>&nbsp</td></tr>
+<tr><th id="87">87</th><td><u>#undef <span class="macro" data-ref="_M/sprintf">sprintf</span></u>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#undef <span class="macro" data-ref="_M/sscanf">sscanf</span></u>&nbsp</td></tr>
+<tr><th id="89">89</th><td><u>#undef <span class="macro" data-ref="_M/tmpfile">tmpfile</span></u>&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#undef <span class="macro" data-ref="_M/tmpnam">tmpnam</span></u>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#undef <span class="macro" data-ref="_M/ungetc">ungetc</span></u>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u>#undef <span class="macro" data-ref="_M/vfprintf">vfprintf</span></u>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>#undef <span class="macro" data-ref="_M/vprintf">vprintf</span></u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u>#undef <span class="macro" data-ref="_M/vsprintf">vsprintf</span></u>&nbsp</td></tr>
+<tr><th id="95">95</th><td>&nbsp</td></tr>
+<tr><th id="96">96</th><td><b>namespace</b> <span class="namespace">std</span>&nbsp</td></tr>
+<tr><th id="97">97</th><td>{&nbsp</td></tr>
+<tr><th id="98">98</th><td>  <b>using</b> ::FILE;&nbsp</td></tr>
+<tr><th id="99">99</th><td>  <b>using</b> ::fpos_t;&nbsp</td></tr>
+<tr><th id="100">100</th><td>&nbsp</td></tr>
+<tr><th id="101">101</th><td>  <b>using</b> ::clearerr;&nbsp</td></tr>
+<tr><th id="102">102</th><td>  <b>using</b> ::fclose;&nbsp</td></tr>
+<tr><th id="103">103</th><td>  <b>using</b> ::feof;&nbsp</td></tr>
+<tr><th id="104">104</th><td>  <b>using</b> ::ferror;&nbsp</td></tr>
+<tr><th id="105">105</th><td>  <b>using</b> ::fflush;&nbsp</td></tr>
+<tr><th id="106">106</th><td>  <b>using</b> ::fgetc;&nbsp</td></tr>
+<tr><th id="107">107</th><td>  <b>using</b> ::fgetpos;&nbsp</td></tr>
+<tr><th id="108">108</th><td>  <b>using</b> ::fgets;&nbsp</td></tr>
+<tr><th id="109">109</th><td>  <b>using</b> ::fopen;&nbsp</td></tr>
+<tr><th id="110">110</th><td>  <b>using</b> ::fprintf;&nbsp</td></tr>
+<tr><th id="111">111</th><td>  <b>using</b> ::fputc;&nbsp</td></tr>
+<tr><th id="112">112</th><td>  <b>using</b> ::fputs;&nbsp</td></tr>
+<tr><th id="113">113</th><td>  <b>using</b> ::fread;&nbsp</td></tr>
+<tr><th id="114">114</th><td>  <b>using</b> ::freopen;&nbsp</td></tr>
+<tr><th id="115">115</th><td>  <b>using</b> ::fscanf;&nbsp</td></tr>
+<tr><th id="116">116</th><td>  <b>using</b> ::fseek;&nbsp</td></tr>
+<tr><th id="117">117</th><td>  <b>using</b> ::fsetpos;&nbsp</td></tr>
+<tr><th id="118">118</th><td>  <b>using</b> ::ftell;&nbsp</td></tr>
+<tr><th id="119">119</th><td>  <b>using</b> ::fwrite;&nbsp</td></tr>
+<tr><th id="120">120</th><td>  <b>using</b> ::getc;&nbsp</td></tr>
+<tr><th id="121">121</th><td>  <b>using</b> ::getchar;&nbsp</td></tr>
+<tr><th id="122">122</th><td><u>#<span data-ppcond="122">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="123">123</th><td>  <i>// LWG 2249</i>&nbsp</td></tr>
+<tr><th id="124">124</th><td>  <b>using</b> ::gets;&nbsp</td></tr>
+<tr><th id="125">125</th><td><u>#<span data-ppcond="122">endif</span></u>&nbsp</td></tr>
+<tr><th id="126">126</th><td>  <b>using</b> ::perror;&nbsp</td></tr>
+<tr><th id="127">127</th><td>  <b>using</b> ::printf;&nbsp</td></tr>
+<tr><th id="128">128</th><td>  <b>using</b> ::putc;&nbsp</td></tr>
+<tr><th id="129">129</th><td>  <b>using</b> ::putchar;&nbsp</td></tr>
+<tr><th id="130">130</th><td>  <b>using</b> ::puts;&nbsp</td></tr>
+<tr><th id="131">131</th><td>  <b>using</b> ::remove;&nbsp</td></tr>
+<tr><th id="132">132</th><td>  <b>using</b> ::rename;&nbsp</td></tr>
+<tr><th id="133">133</th><td>  <b>using</b> ::rewind;&nbsp</td></tr>
+<tr><th id="134">134</th><td>  <b>using</b> ::scanf;&nbsp</td></tr>
+<tr><th id="135">135</th><td>  <b>using</b> ::setbuf;&nbsp</td></tr>
+<tr><th id="136">136</th><td>  <b>using</b> ::setvbuf;&nbsp</td></tr>
+<tr><th id="137">137</th><td>  <b>using</b> ::sprintf;&nbsp</td></tr>
+<tr><th id="138">138</th><td>  <b>using</b> ::sscanf;&nbsp</td></tr>
+<tr><th id="139">139</th><td>  <b>using</b> ::tmpfile;&nbsp</td></tr>
+<tr><th id="140">140</th><td><u>#<span data-ppcond="140">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1787" title="1" data-ref="_M/_GLIBCXX_USE_TMPNAM">_GLIBCXX_USE_TMPNAM</a></u>&nbsp</td></tr>
+<tr><th id="141">141</th><td>  <b>using</b> ::tmpnam;&nbsp</td></tr>
+<tr><th id="142">142</th><td><u>#<span data-ppcond="140">endif</span></u>&nbsp</td></tr>
+<tr><th id="143">143</th><td>  <b>using</b> ::ungetc;&nbsp</td></tr>
+<tr><th id="144">144</th><td>  <b>using</b> ::vfprintf;&nbsp</td></tr>
+<tr><th id="145">145</th><td>  <b>using</b> ::vprintf;&nbsp</td></tr>
+<tr><th id="146">146</th><td>  <b>using</b> ::vsprintf;&nbsp</td></tr>
+<tr><th id="147">147</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td>&nbsp</td></tr>
+<tr><th id="149">149</th><td><u>#<span data-ppcond="149">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#664" title="1" data-ref="_M/_GLIBCXX_USE_C99_STDIO">_GLIBCXX_USE_C99_STDIO</a></u>&nbsp</td></tr>
+<tr><th id="150">150</th><td>&nbsp</td></tr>
+<tr><th id="151">151</th><td><u>#undef <span class="macro" data-ref="_M/snprintf">snprintf</span></u>&nbsp</td></tr>
+<tr><th id="152">152</th><td><u>#undef <span class="macro" data-ref="_M/vfscanf">vfscanf</span></u>&nbsp</td></tr>
+<tr><th id="153">153</th><td><u>#undef <span class="macro" data-ref="_M/vscanf">vscanf</span></u>&nbsp</td></tr>
+<tr><th id="154">154</th><td><u>#undef <span class="macro" data-ref="_M/vsnprintf">vsnprintf</span></u>&nbsp</td></tr>
+<tr><th id="155">155</th><td><u>#undef <span class="macro" data-ref="_M/vsscanf">vsscanf</span></u>&nbsp</td></tr>
+<tr><th id="156">156</th><td>&nbsp</td></tr>
+<tr><th id="157">157</th><td><b>namespace</b> <span class="namespace">__gnu_cxx</span>&nbsp</td></tr>
+<tr><th id="158">158</th><td>{&nbsp</td></tr>
+<tr><th id="159">159</th><td><u>#<span data-ppcond="159">if</span> _GLIBCXX_USE_C99_CHECK || _GLIBCXX_USE_C99_DYNAMIC</u>&nbsp</td></tr>
+<tr><th id="160">160</th><td>  <b>extern</b> <q>"C"</q> <em>int</em>&nbsp</td></tr>
+<tr><th id="161">161</th><td>  (snprintf)(<em>char</em> * <b>__restrict</b>, std::size_t, <em>const</em> <em>char</em> * <b>__restrict</b>, ...)&nbsp</td></tr>
+<tr><th id="162">162</th><td>  <b>throw</b> ();&nbsp</td></tr>
+<tr><th id="163">163</th><td>  <b>extern</b> <q>"C"</q> <em>int</em>&nbsp</td></tr>
+<tr><th id="164">164</th><td>  (vfscanf)(FILE * <b>__restrict</b>, <em>const</em> <em>char</em> * <b>__restrict</b>, __gnuc_va_list);&nbsp</td></tr>
+<tr><th id="165">165</th><td>  <b>extern</b> <q>"C"</q> <em>int</em> (vscanf)(<em>const</em> <em>char</em> * <b>__restrict</b>, __gnuc_va_list);&nbsp</td></tr>
+<tr><th id="166">166</th><td>  <b>extern</b> <q>"C"</q> <em>int</em>&nbsp</td></tr>
+<tr><th id="167">167</th><td>  (vsnprintf)(<em>char</em> * <b>__restrict</b>, std::size_t, <em>const</em> <em>char</em> * <b>__restrict</b>,&nbsp</td></tr>
+<tr><th id="168">168</th><td>	      __gnuc_va_list) <b>throw</b> ();&nbsp</td></tr>
+<tr><th id="169">169</th><td>  <b>extern</b> <q>"C"</q> <em>int</em>&nbsp</td></tr>
+<tr><th id="170">170</th><td>  (vsscanf)(<em>const</em> <em>char</em> * <b>__restrict</b>, <em>const</em> <em>char</em> * <b>__restrict</b>, __gnuc_va_list)&nbsp</td></tr>
+<tr><th id="171">171</th><td>  <b>throw</b> ();&nbsp</td></tr>
+<tr><th id="172">172</th><td><u>#<span data-ppcond="159">endif</span></u>&nbsp</td></tr>
+<tr><th id="173">173</th><td>&nbsp</td></tr>
+<tr><th id="174">174</th><td><u>#<span data-ppcond="174">if</span> !_GLIBCXX_USE_C99_DYNAMIC</u>&nbsp</td></tr>
+<tr><th id="175">175</th><td>  <b>using</b> ::snprintf;&nbsp</td></tr>
+<tr><th id="176">176</th><td>  <b>using</b> ::vfscanf;&nbsp</td></tr>
+<tr><th id="177">177</th><td>  <b>using</b> ::vscanf;&nbsp</td></tr>
+<tr><th id="178">178</th><td>  <b>using</b> ::vsnprintf;&nbsp</td></tr>
+<tr><th id="179">179</th><td>  <b>using</b> ::vsscanf;&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>#<span data-ppcond="174">endif</span></u>&nbsp</td></tr>
+<tr><th id="181">181</th><td>} <i>// namespace __gnu_cxx</i>&nbsp</td></tr>
+<tr><th id="182">182</th><td>&nbsp</td></tr>
+<tr><th id="183">183</th><td><b>namespace</b> <span class="namespace">std</span>&nbsp</td></tr>
+<tr><th id="184">184</th><td>{&nbsp</td></tr>
+<tr><th id="185">185</th><td>  <b>using</b> <span class="namespace">::__gnu_cxx::</span>snprintf;&nbsp</td></tr>
+<tr><th id="186">186</th><td>  <b>using</b> <span class="namespace">::__gnu_cxx::</span>vfscanf;&nbsp</td></tr>
+<tr><th id="187">187</th><td>  <b>using</b> <span class="namespace">::__gnu_cxx::</span>vscanf;&nbsp</td></tr>
+<tr><th id="188">188</th><td>  <b>using</b> <span class="namespace">::__gnu_cxx::</span>vsnprintf;&nbsp</td></tr>
+<tr><th id="189">189</th><td>  <b>using</b> <span class="namespace">::__gnu_cxx::</span>vsscanf;&nbsp</td></tr>
+<tr><th id="190">190</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="191">191</th><td>&nbsp</td></tr>
+<tr><th id="192">192</th><td><u>#<span data-ppcond="149">endif</span> // _GLIBCXX_USE_C99_STDIO</u>&nbsp</td></tr>
+<tr><th id="193">193</th><td>&nbsp</td></tr>
+<tr><th id="194">194</th><td><u>#<span data-ppcond="44">endif</span></u>&nbsp</td></tr>
+<tr><th id="195">195</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

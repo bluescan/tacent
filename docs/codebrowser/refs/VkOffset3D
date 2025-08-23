@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2878' ll='2882'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2878'/>
+<size>12</size>
+<mbr r='VkOffset3D::x' o='0' t='int32_t'/>
+<mbr r='VkOffset3D::y' o='32' t='int32_t'/>
+<mbr r='VkOffset3D::z' o='64' t='int32_t'/>

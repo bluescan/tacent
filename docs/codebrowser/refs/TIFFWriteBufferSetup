@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='399' type='int TIFFWriteBufferSetup(TIFF * tif, void * bp, tmsize_t size)'/>

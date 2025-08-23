@@ -1,0 +1,2 @@
+<def f='include/c++/11/limits' l='320' ll='321' type='static _Tp std::numeric_limits::max()'/>
+<doc f='include/c++/11/limits' l='319'>/** The maximum finite value.  */</doc>

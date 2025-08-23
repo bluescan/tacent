@@ -1,0 +1,1 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='667' type='const std::ctype::char_type * std::ctype::do_narrow(const std::ctype::char_type * __lo, const std::ctype::char_type * __hi, char __dfault, char * __to) const'/>

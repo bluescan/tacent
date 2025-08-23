@@ -1,0 +1,2 @@
+<dec f='include/time.h' l='326' type='int clock_getcpuclockid(pid_t __pid, clockid_t * __clock_id)'/>
+<doc f='include/time.h' l='325'>/* Return clock ID for CPU-time clock.  */</doc>

@@ -1,0 +1,5 @@
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='42' u='c' c='_ZN6tInput19tUnitContinuousDisp5ResetEv'/>
+<def f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='58' ll='63' type='void tInput::tUnitContinuousDisp::SetDisplacement(float disp)'/>
+<doc f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='56'>// Called by the the controller component in the update function of the main thread. It is the component that does
+	// anti-jitter and dead zone to read the raw value and convert it to the actual.</doc>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='42' u='c' c='_ZN6tInput12tCompTrigger15SetDisplacementEf'/>

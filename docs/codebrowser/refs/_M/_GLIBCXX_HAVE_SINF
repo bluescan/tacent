@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1111'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='2084' u='a'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1110'>/* Define to 1 if you have the `sinf&apos; function. */</doc>

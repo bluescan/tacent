@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15355'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15354'>// VK_NV_cuda_kernel_launch is a preprocessor guard. Do not pass it to API calls.</doc>

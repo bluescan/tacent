@@ -1,0 +1,2 @@
+<dec f='include/c++/11/string_view' l='464' type='std::basic_string_view::size_type std::basic_string_view::find_first_not_of(_CharT __c, std::basic_string_view::size_type __pos = 0) const'/>
+<def f='include/c++/11/bits/string_view.tcc' l='183' ll='192' type='typename basic_string_view&lt;_CharT, _Traits&gt;::size_type std::basic_string_view::find_first_not_of(_CharT __c, std::basic_string_view::size_type __pos = 0) const'/>

@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tImageJPG.h' l='113' type='2'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='345' c='_ZNK6tImage9tImageJPG29CanDoPerfectLosslessTransformENS0_9TransformE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='375' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>

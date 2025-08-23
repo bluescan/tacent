@@ -1,0 +1,5 @@
+<use f='include/c++/11/functional' l='1159' c='_ZNKSt20boyer_moore_searcher17_M_bad_char_shiftETL0__'/>
+<dec f='include/c++/11/functional' l='1161' type='_RAIter'/>
+<use f='include/c++/11/functional' l='1223' u='w' c='_ZNSt20boyer_moore_searcherC1ET_S0_T0_T1_'/>
+<use f='include/c++/11/functional' l='1251' c='_ZNKSt20boyer_moore_searcherclETL0__S0_'/>
+<use f='include/c++/11/functional' l='1260' c='_ZNKSt20boyer_moore_searcherclETL0__S0_'/>

@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7891' ll='7894'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7891'/>
+<size>24</size>
+<mbr r='VkDisplayModePropertiesKHR::displayMode' o='0' t='VkDisplayModeKHR'/>
+<mbr r='VkDisplayModePropertiesKHR::parameters' o='64' t='VkDisplayModeParametersKHR'/>

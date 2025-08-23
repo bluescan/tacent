@@ -1,0 +1,1 @@
+<def f='include/c++/11/numeric' l='342' ll='348' macro='1' type='typename iterator_traits&lt;_InputIterator&gt;::value_type std::reduce(_InputIterator __first, _InputIterator __last)'/>

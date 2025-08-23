@@ -1,0 +1,6 @@
+<use f='include/c++/11/compare' l='321' u='c' c='_ZSt5is_eqSt16partial_ordering'/>
+<use f='include/c++/11/compare' l='325' u='c' c='_ZSt6is_neqSt16partial_ordering'/>
+<use f='include/c++/11/compare' l='329' u='c' c='_ZSt5is_ltSt16partial_ordering'/>
+<use f='include/c++/11/compare' l='333' u='c' c='_ZSt7is_lteqSt16partial_ordering'/>
+<use f='include/c++/11/compare' l='337' u='c' c='_ZSt5is_gtSt16partial_ordering'/>
+<use f='include/c++/11/compare' l='341' u='c' c='_ZSt7is_gteqSt16partial_ordering'/>

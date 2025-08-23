@@ -1,0 +1,8 @@
+<dec f='include/c++/11/ext/numeric_traits.h' l='143'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='159' u='c'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='180' u='w'/>
+<dec f='include/c++/11/limits' l='155'/>
+<use f='include/c++/11/limits' l='1687' u='c'/>
+<use f='include/c++/11/limits' l='1762' u='c'/>
+<use f='include/c++/11/limits' l='1837' u='c'/>
+<use f='include/c++/11/limits' l='1899' u='w'/>

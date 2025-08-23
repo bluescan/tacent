@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='5615' ll='5617' type='void std::piecewise_constant_distribution::reset()'/>
+<doc f='include/c++/11/bits/random.h' l='5612'>/**
+       * @brief Resets the distribution state.
+       */</doc>

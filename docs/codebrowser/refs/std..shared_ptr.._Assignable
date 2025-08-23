@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/shared_ptr.h' l='362' c='_ZNSt10shared_ptraSERKSt10shared_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='373' c='_ZNSt10shared_ptraSEOSt8auto_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='390' c='_ZNSt10shared_ptraSEOSt10shared_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='398' c='_ZNSt10shared_ptraSEOSt10unique_ptrITL0__TL0_0_E'/>

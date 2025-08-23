@@ -1,0 +1,26 @@
+<dec f='include/c++/11/atomic' l='67' type='__atomic_base&lt;bool&gt;'/>
+<use f='include/c++/11/atomic' l='76' u='w' c='_ZNSt6atomicIbEC1Eb'/>
+<use f='include/c++/11/atomic' l='80' u='m' c='_ZNSt6atomicIbEaSEb'/>
+<use f='include/c++/11/atomic' l='84' u='m' c='_ZNVSt6atomicIbEaSEb'/>
+<use f='include/c++/11/atomic' l='87' u='m' c='_ZNKSt6atomicIbEcvbEv'/>
+<use f='include/c++/11/atomic' l='90' u='m' c='_ZNVKSt6atomicIbEcvbEv'/>
+<use f='include/c++/11/atomic' l='93' u='m' c='_ZNKSt6atomicIbE12is_lock_freeEv'/>
+<use f='include/c++/11/atomic' l='96' u='m' c='_ZNVKSt6atomicIbE12is_lock_freeEv'/>
+<use f='include/c++/11/atomic' l='104' u='m' c='_ZNSt6atomicIbE5storeEbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='108' u='m' c='_ZNVSt6atomicIbE5storeEbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='112' u='m' c='_ZNKSt6atomicIbE4loadESt12memory_order'/>
+<use f='include/c++/11/atomic' l='116' u='m' c='_ZNVKSt6atomicIbE4loadESt12memory_order'/>
+<use f='include/c++/11/atomic' l='120' u='m' c='_ZNSt6atomicIbE8exchangeEbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='125' u='m' c='_ZNVSt6atomicIbE8exchangeEbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='130' u='m' c='_ZNSt6atomicIbE21compare_exchange_weakERbbSt12memory_orderS2_'/>
+<use f='include/c++/11/atomic' l='135' u='m' c='_ZNVSt6atomicIbE21compare_exchange_weakERbbSt12memory_orderS2_'/>
+<use f='include/c++/11/atomic' l='140' u='m' c='_ZNSt6atomicIbE21compare_exchange_weakERbbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='145' u='m' c='_ZNVSt6atomicIbE21compare_exchange_weakERbbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='150' u='m' c='_ZNSt6atomicIbE23compare_exchange_strongERbbSt12memory_orderS2_'/>
+<use f='include/c++/11/atomic' l='155' u='m' c='_ZNVSt6atomicIbE23compare_exchange_strongERbbSt12memory_orderS2_'/>
+<use f='include/c++/11/atomic' l='160' u='m' c='_ZNSt6atomicIbE23compare_exchange_strongERbbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='165' u='m' c='_ZNVSt6atomicIbE23compare_exchange_strongERbbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='170' u='m' c='_ZNKSt6atomicIbE4waitEbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='176' u='m' c='_ZNSt6atomicIbE10notify_oneEv'/>
+<use f='include/c++/11/atomic' l='180' u='m' c='_ZNSt6atomicIbE10notify_allEv'/>
+<offset>0</offset>

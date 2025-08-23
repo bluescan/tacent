@@ -1,0 +1,9 @@
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='90' type='T * tList::Remove(T * item)'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='507' ll='521' type='T * tList::Remove(T * item)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='90'>// Removes and returns item.</doc>
+<use f='Modules/Image/Inc/Image/tImageAPNG.h' l='148' u='c' c='_ZN6tImage10tImageAPNG10StealFrameEi'/>
+<use f='Modules/Image/Inc/Image/tImageEXR.h' l='132' u='c' c='_ZN6tImage9tImageEXR10StealFrameEi'/>
+<use f='Modules/Image/Inc/Image/tImageGIF.h' l='162' u='c' c='_ZN6tImage9tImageGIF10StealFrameEi'/>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='119' u='c' c='_ZN6tImage9tImageICO10StealFrameEi'/>
+<use f='Modules/Image/Inc/Image/tImageTIFF.h' l='132' u='c' c='_ZN6tImage10tImageTIFF10StealFrameEi'/>
+<use f='Modules/Image/Inc/Image/tImageWEBP.h' l='126' u='c' c='_ZN6tImage10tImageWEBP10StealFrameEi'/>

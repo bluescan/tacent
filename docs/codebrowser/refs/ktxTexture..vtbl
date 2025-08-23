@@ -1,0 +1,14 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='257' type='struct ktxTexture_vtbl *'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='812' macro='1' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='819' macro='1' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='832' macro='1' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='856' macro='1' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='904' macro='1' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='907' macro='1' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1132' macro='1' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<offset>64</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='298'>/**
+ * @typedef ktxTexture::vtbl
+ * @~English
+ * @brief Pointer to the class&apos;s vtble.
+ */</doc>

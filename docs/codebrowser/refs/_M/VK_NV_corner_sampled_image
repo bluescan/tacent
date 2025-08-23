@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11720'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11719'>// VK_NV_corner_sampled_image is a preprocessor guard. Do not pass it to API calls.</doc>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/stop_token' l='493' type='void std::stop_source::stop_source(std::stop_source &amp;&amp; )'/>
+<use f='include/c++/11/stop_token' l='500' u='c' c='_ZNSt11stop_sourceaSERKS_'/>

@@ -1,0 +1,13 @@
+<def f='include/c++/11/ext/concurrence.h' l='170' ll='223'/>
+<use f='include/c++/11/ext/concurrence.h' l='179' c='__gnu_cxx::__recursive_mutex::__recursive_mutex'/>
+<use f='include/c++/11/ext/concurrence.h' l='180' c='__gnu_cxx::__recursive_mutex::operator='/>
+<use f='include/c++/11/ext/concurrence.h' l='180' c='__gnu_cxx::__recursive_mutex::operator='/>
+<use f='include/c++/11/ext/concurrence.h' l='298' c='__gnu_cxx::__cond::wait_recursive'/>
+<size>40</size>
+<mbr r='__gnu_cxx::__recursive_mutex::_M_mutex' o='0' t='__gthread_recursive_mutex_t'/>
+<fun r='__gnu_cxx::__recursive_mutex::__recursive_mutex'/>
+<fun r='__gnu_cxx::__recursive_mutex::operator='/>
+<fun r='__gnu_cxx::__recursive_mutex::__recursive_mutex'/>
+<fun r='__gnu_cxx::__recursive_mutex::lock'/>
+<fun r='__gnu_cxx::__recursive_mutex::unlock'/>
+<fun r='__gnu_cxx::__recursive_mutex::gthread_recursive_mutex'/>

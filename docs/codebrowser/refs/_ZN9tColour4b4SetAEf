@@ -1,0 +1,3 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='363' u='c' c='_ZN9tColour4b3SetEPKf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='370' u='c' c='_ZN9tColour4b3SetEffff'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='374' type='void tColour4b::SetA(float a)'/>

@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='307' type='bool tImage::tPicture::Resample(int width, int height, tImage::tResampleFilter  = tResampleFilter::Bilinear, tImage::tResampleEdgeMode  = tResampleEdgeMode::Clamp)'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='316' u='c' c='_ZN6tImage8tPicture6ResizeEiiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='306'>// Resizes the image using the specified filter. Returns success. If the resample fails the tPicture is unmodified.</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='240' u='c' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='241' u='c' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='245' u='c' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='266' u='c' c='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<def f='Modules/Image/Src/tPicture.cpp' l='953' ll='975' type='bool tImage::tPicture::Resample(int width, int height, tImage::tResampleFilter filter = tResampleFilter::Bilinear, tImage::tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp)'/>

@@ -1,0 +1,2 @@
+<use f='include/c++/11/bits/hashtable_policy.h' l='590' u='r' c='_ZNSt8__detail21_Power2_rehash_policy14_M_need_rehashEmmm'/>
+<dec f='include/c++/11/bits/hashtable_policy.h' l='614' type='const std::size_t'/>

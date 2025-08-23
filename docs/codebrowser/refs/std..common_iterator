@@ -1,0 +1,33 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='1747' ll='2138'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1820' c='_ZNSt15common_iteratorC1ERKSt15common_iteratorITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1922' c='_ZNSt15common_iteratoraSERKSt15common_iteratorITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2006' c='_ZSteqRKSt15common_iteratorIT_T0_ERKS_ITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2028' c='_ZSteqRKSt15common_iteratorIT_T0_ERKS_ITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2051' c='_ZStmiRKSt15common_iteratorIT_T0_ERKS_ITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2083' c='_ZSt9iter_swapRKSt15common_iteratorIT_T0_ERKS_ITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2141'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2147'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2160'/>
+<fun r='_ZNSt15common_iterator12_S_noexcept1Ev'/>
+<fun r='_ZNSt15common_iterator11_S_noexceptEv'/>
+<fun r='_ZNSt15common_iteratorC1Ev'/>
+<fun r='_ZNSt15common_iteratorC1ET_'/>
+<fun r='_ZNSt15common_iteratorC1ET0_'/>
+<fun r='_ZNSt15common_iteratorC1ERKSt15common_iteratorITL0__TL0_0_E'/>
+<fun r='_ZNSt15common_iteratorC1ERKSt15common_iteratorIT_T0_E'/>
+<fun r='_ZNSt15common_iteratorC1EOSt15common_iteratorIT_T0_E'/>
+<fun r='_ZNSt15common_iteratoraSERKSt15common_iteratorIT_T0_E'/>
+<fun r='_ZNSt15common_iteratoraSERKSt15common_iteratorIT_T0_E'/>
+<fun r='_ZNSt15common_iteratoraSEOSt15common_iteratorIT_T0_E'/>
+<fun r='_ZNSt15common_iteratoraSEOSt15common_iteratorIT_T0_E'/>
+<fun r='_ZNSt15common_iteratoraSERKSt15common_iteratorITL0__TL0_0_E'/>
+<fun r='_ZNSt15common_iteratorD1Ev'/>
+<fun r='_ZNSt15common_iteratordeEv'/>
+<fun r='_ZNKSt15common_iteratordeEv'/>
+<fun r='_ZNKSt15common_iteratorptEv'/>
+<fun r='_ZNSt15common_iteratorppEv'/>
+<fun r='_ZNSt15common_iteratorppEi'/>
+<fun r='_ZNKSt15common_iterator12_M_has_valueEv'/>
+<fun r='_ZNSt15common_iterator9_M_assignEOTL0__'/>
+<mbr r='std::common_iterator::_M_index' t='unsigned char'/>
+<smbr r='std::common_iterator::_S_valueless' t='const unsigned char'/>

@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='126' type='void * memrchr(void * __s, int __c, size_t __n)'/>
+<dec f='include/string.h' l='129' type='const void * memrchr(const void * __s, int __c, size_t __n)'/>

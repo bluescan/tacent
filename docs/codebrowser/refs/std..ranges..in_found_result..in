@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/ranges_algo.h' l='3413' type='_Iter'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3420' u='r' c='_ZNKRSt6ranges15in_found_resultcvNS_15in_found_resultITL0__EEEv'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3426' c='_ZNOSt6ranges15in_found_resultcvNS_15in_found_resultITL0__EEEv'/>

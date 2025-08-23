@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='201' type='void rgbcx::encode_bc5(void * pDst, const uint8_t * pPixels, uint32_t chan0 = 0, uint32_t chan1 = 1, uint32_t stride = 4)'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4025' ll='4031' type='void rgbcx::encode_bc5(void * pDst, const uint8_t * pPixels, uint32_t chan0 = 0, uint32_t chan1 = 1, uint32_t stride = 4)'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='199'>// Encodes two channels to BC5. 
+	// chan0/chan1 control which channels, stride is the source pixel stride in bytes.</doc>

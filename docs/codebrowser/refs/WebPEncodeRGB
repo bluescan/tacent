@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='49' type='size_t WebPEncodeRGB(const uint8_t * rgb, int width, int height, int stride, float quality_factor, uint8_t ** output)'/>

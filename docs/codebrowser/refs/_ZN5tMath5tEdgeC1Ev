@@ -1,0 +1,6 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='32' type='void tMath::tEdge::tEdge()'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='105' u='c' c='_ZN6tScene5tMesh34CreateEdgeTableVertPositionIndicesEv'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='67' u='c' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='272' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='310' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='607' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath5tEdgeEi'/>

@@ -1,0 +1,26 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='128' ll='202'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='208'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='210'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='216'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='218'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='224'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='226'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='232'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='234'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='246'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='251'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='481'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='495'/>
+<fun r='_ZNSt15__uniq_ptr_implC1Ev'/>
+<fun r='_ZNSt15__uniq_ptr_implC1ENS_4_PtrIT_T0_vE4typeE'/>
+<fun r='_ZNSt15__uniq_ptr_implC1ENS_4_PtrIT_T0_vE4typeEOTL0__'/>
+<fun r='_ZNSt15__uniq_ptr_implC1EOSt15__uniq_ptr_implIT_T0_E'/>
+<fun r='_ZNSt15__uniq_ptr_implaSEOSt15__uniq_ptr_implIT_T0_E'/>
+<fun r='_ZNSt15__uniq_ptr_impl6_M_ptrEv'/>
+<fun r='_ZNKSt15__uniq_ptr_impl6_M_ptrEv'/>
+<fun r='_ZNSt15__uniq_ptr_impl10_M_deleterEv'/>
+<fun r='_ZNKSt15__uniq_ptr_impl10_M_deleterEv'/>
+<fun r='_ZNSt15__uniq_ptr_impl5resetENS_4_PtrIT_T0_vE4typeE'/>
+<fun r='_ZNSt15__uniq_ptr_impl7releaseEv'/>
+<fun r='_ZNSt15__uniq_ptr_impl4swapERSt15__uniq_ptr_implIT_T0_E'/>
+<mbr r='std::__uniq_ptr_impl::_M_t' t='tuple&lt;std::__uniq_ptr_impl::pointer, _Dp&gt;'/>

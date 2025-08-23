@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13610'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13609'>// VK_NV_shader_subgroup_partitioned is a preprocessor guard. Do not pass it to API calls.</doc>

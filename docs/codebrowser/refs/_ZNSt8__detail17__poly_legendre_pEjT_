@@ -1,0 +1,3 @@
+<def f='include/c++/11/tr1/legendre_function.tcc' l='81' ll='114' type='_Tp std::__detail::__poly_legendre_p(unsigned int __l, _Tp __x)'/>
+<use f='include/c++/11/bits/specfun.h' l='978' u='c' c='_ZSt9legendrefjf'/>
+<use f='include/c++/11/bits/specfun.h' l='988' u='c' c='_ZSt9legendrelje'/>

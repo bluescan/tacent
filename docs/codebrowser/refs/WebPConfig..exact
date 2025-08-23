@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='143' type='int'/>
+<offset>768</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='142'>// (default)].</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='143'>// if non-zero, preserve the exact RGB values under</doc>

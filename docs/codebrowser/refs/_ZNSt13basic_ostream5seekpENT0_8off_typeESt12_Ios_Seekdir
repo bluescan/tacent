@@ -1,0 +1,11 @@
+<dec f='include/c++/11/ostream' l='394' type='std::basic_ostream::__ostream_type &amp; std::basic_ostream::seekp(std::basic_ostream::off_type , ios_base::seekdir )'/>
+<def f='include/c++/11/bits/ostream.tcc' l='287' ll='317' type='basic_ostream&lt;_CharT, _Traits&gt; &amp; std::basic_ostream::seekp(std::basic_ostream::off_type __off, ios_base::seekdir __dir)'/>
+<doc f='include/c++/11/ostream' l='384'>/**
+       *  @brief  Changing the current write position.
+       *  @param  __off  A file offset object.
+       *  @param  __dir  The direction in which to seek.
+       *  @return  *this
+       *
+       *  If @c fail() is not true, calls @c rdbuf()-&gt;pubseekoff(off,dir).
+       *  If that function fails, sets failbit.
+      */</doc>

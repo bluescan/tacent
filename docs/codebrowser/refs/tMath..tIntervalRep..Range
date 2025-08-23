@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tInterval.h' l='33' type='1'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='224' u='r' c='_ZN5tMath9tInterval3SetERK7tString'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='281' u='r' c='_ZNK5tMath9tInterval3GetER7tStringNS_12tIntervalRepE'/>
+<doc f='Modules/Math/Inc/Math/tInterval.h' l='33'>// { 4, 5, 6 } represented as string &quot;!3-7!&quot; or some variation. ! means exclusive. Does not handle negative ranges.</doc>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='75'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='74'>/* We have the reentrant functions described in POSIX.  */</doc>

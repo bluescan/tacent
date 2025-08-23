@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/unordered_map.h' l='227' ll='233' type='void std::unordered_map::unordered_map&lt;_Key, _Tp, _Hash, _Pred, _Alloc&gt;(initializer_list&lt;std::unordered_map::value_type&gt; __l, std::unordered_map::size_type __n = 0, const std::unordered_map::hasher &amp; __hf = std::unordered_map::hasher(), const std::unordered_map::key_equal &amp; __eql = std::unordered_map::key_equal(), const std::unordered_map::allocator_type &amp; __a = std::unordered_map::allocator_type())'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='216'>/**
+       *  @brief  Builds an %unordered_map from an initializer_list.
+       *  @param  __l  An initializer_list.
+       *  @param __n  Minimal initial number of buckets.
+       *  @param __hf  A hash functor.
+       *  @param __eql  A key equality functor.
+       *  @param  __a  An allocator object.
+       *
+       *  Create an %unordered_map consisting of copies of the elements in the
+       *  list. This is linear in N (where N is @a __l.size()).
+       */</doc>

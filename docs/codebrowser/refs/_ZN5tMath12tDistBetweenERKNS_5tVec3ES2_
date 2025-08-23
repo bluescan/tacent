@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='554' type='float tMath::tDistBetween(const tMath::tVec3 &amp; a, const tMath::tVec3 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1054' u='c' c='_ZN5tMath20tColourDiffEuclideanERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1062' u='c' c='_ZN5tMath20tColourDiffEuclideanERK9tColour4bS2_'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='41' u='c' c='_ZN5tMath20tPiecewiseLinearPath9SetPointsEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='251' u='c' c='_ZNK5tMath11tBezierPath35ComputeApproxParamPerCoordinateUnitEj'/>

@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/node_handle.h' l='263' u='r' c='_ZNKSt12_Node_handle6mappedEv'/>
+<use f='include/c++/11/bits/node_handle.h' l='272' c='_ZNSt12_Node_handle4swapERSt12_Node_handleIT_T0_T1_E'/>
+<use f='include/c++/11/bits/node_handle.h' l='291' u='w' c='_ZNSt12_Node_handleC1ENSt16allocator_traitsIT1_E7pointerERKS1_'/>
+<use f='include/c++/11/bits/node_handle.h' l='296' u='w' c='_ZNSt12_Node_handleC1ENSt16allocator_traitsIT1_E7pointerERKS1_'/>
+<dec f='include/c++/11/bits/node_handle.h' l='306' type='__pointer&lt;typename _Value::second_type&gt;'/>

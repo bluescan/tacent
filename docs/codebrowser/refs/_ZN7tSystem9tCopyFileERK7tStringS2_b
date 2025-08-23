@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='216' type='bool tSystem::tCopyFile(const tString &amp; destFile, const tString &amp; srcFile, bool overWriteReadOnly = true)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='214'>// Overwrites dest if it exists. Returns true if success. Will return false and not copy if overWriteReadOnly is false
+// and the file already exists and is read-only.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='909' ll='946' type='bool tSystem::tCopyFile(const tString &amp; destFile, const tString &amp; srcFile, bool overWriteReadOnly = true)'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='54' type='512'/>
+<doc f='Modules/Image/Src/tImageDDS.cpp' l='51'>// Legacy. Some dds files use this for YUV pixels. tDDS::Format&apos;s RGBBitCount will be the number of bits used
+		// for YUV (not RGB). Similarly, MaskRed, MaskGreen, and MaskBlue will contain the masks for each YUV component.
+		// Red for Y, green for U, and blue for V.</doc>

@@ -1,0 +1,5 @@
+<use f='Modules/Math/Src/tSpline.cpp' l='200' u='c' c='_ZN5tMath11tBezierPathC1ERKS0_'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='235' u='c' c='_ZNK5tMath11tBezierPath35ComputeApproxParamPerCoordinateUnitEj'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='402' u='c' c='_ZNK5tMath11tBezierPath8GetPointERNS_8tVector3Ef'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='432' u='c' c='_ZNK5tMath11tBezierPath10GetTangentERNS_8tVector3Ef'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='24' u='c' c='_ZN6tScene5tPathC1ERKN5tMath11tBezierPathERK7tStringj'/>

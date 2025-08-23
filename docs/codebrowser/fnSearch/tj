@@ -1,0 +1,4 @@
+_ZN6tScene6tJointD1Ev|tScene::tJoint::~tJoint
+_ZN6tScene6tJoint10AddChildIDEj|tScene::tJoint::AddChildID
+_ZN6tScene6tJoint4LoadERK6tChunk|tScene::tJoint::Load
+_ZNK6tScene6tJoint4SaveER12tChunkWriter|tScene::tJoint::Save

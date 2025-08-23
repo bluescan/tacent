@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.tcc' l='651' ll='667' type='std::basic_istream&lt;_CharT, _Traits&gt; &amp; std::operator&gt;&gt;(std::basic_istream&lt;_CharT, _Traits&gt; &amp; __is, subtract_with_carry_engine&lt;_UIntType, __w, __s, __r&gt; &amp; __x)'/>

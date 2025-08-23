@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='828' type='_BIter std::partition(_BIter , _BIter , _Predicate )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='4642' ll='4656' macro='1' type='_ForwardIterator std::partition(_ForwardIterator __first, _ForwardIterator __last, _Predicate __pred)'/>

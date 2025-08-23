@@ -1,0 +1,31 @@
+<def f='include/c++/11/bits/random.h' l='3980' ll='4138'/>
+<use f='include/c++/11/bits/random.h' l='3992'/>
+<use f='include/c++/11/bits/random.h' l='3993'/>
+<use f='include/c++/11/bits/random.h' l='4146' c='_ZStneRKSt22geometric_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='4147' c='_ZStneRKSt22geometric_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='4164' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt22geometric_distributionIT_E'/>
+<use f='include/c++/11/bits/random.h' l='4179' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt22geometric_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1044' c='_ZNSt22geometric_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1043' c='_ZNSt22geometric_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1070' c='_ZNSt22geometric_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1102' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt22geometric_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1125' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt22geometric_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1127' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt22geometric_distributionIT_E'/>
+<fun r='_ZNSt22geometric_distributionC1Ev'/>
+<fun r='_ZNSt22geometric_distributionC1Ed'/>
+<fun r='_ZNSt22geometric_distributionC1ERKNS_10param_typeE'/>
+<fun r='_ZNSt22geometric_distribution5resetEv'/>
+<fun r='_ZNKSt22geometric_distribution1pEv'/>
+<fun r='_ZNKSt22geometric_distribution5paramEv'/>
+<fun r='_ZNSt22geometric_distribution5paramERKNS_10param_typeE'/>
+<fun r='_ZNKSt22geometric_distribution3minEv'/>
+<fun r='_ZNKSt22geometric_distribution3maxEv'/>
+<fun r='_ZNSt22geometric_distributionclERTL0__'/>
+<fun r='_ZNSt22geometric_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt22geometric_distribution10__generateETL0__S0_RTL0_0_'/>
+<fun r='_ZNSt22geometric_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<fun r='_ZNSt22geometric_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt22geometric_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<mbr r='std::geometric_distribution::_M_param' t='std::geometric_distribution::param_type'/>
+<fun r='_ZNSt22geometric_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt22geometric_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>

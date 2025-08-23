@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='4697' ll='4700' type='void std::exponential_distribution::exponential_distribution&lt;_RealType&gt;(_RealType __lambda)'/>
+<doc f='include/c++/11/bits/random.h' l='4693'>/**
+       * @brief Constructs an exponential distribution with inverse scale
+       *        parameter @f$\lambda@f$.
+       */</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_wait.h' l='427' ll='432' type='void std::__atomic_wait_address(const _Tp * __addr, _Pred __pred)'/>

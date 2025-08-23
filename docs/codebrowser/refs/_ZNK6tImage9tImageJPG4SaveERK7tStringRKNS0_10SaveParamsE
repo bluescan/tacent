@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageJPG.cpp' l='429' u='c' c='_ZNK6tImage9tImageJPG4SaveERK7tStringi'/>
+<def f='Modules/Image/Src/tImageJPG.cpp' l='433' ll='486' type='bool tImage::tImageJPG::Save(const tString &amp; jpgFile, const tImage::tImageJPG::SaveParams &amp; params = tImage::tImageJPG::SaveParams()) const'/>

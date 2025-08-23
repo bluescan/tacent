@@ -1,0 +1,2 @@
+<def f='Modules/Image/Src/tImageHDR.cpp' l='202' ll='248' type='bool tImage::tImageHDR::ConvertRadianceToGammaCorrected(tPixel4b * scan, int len)'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='361' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>

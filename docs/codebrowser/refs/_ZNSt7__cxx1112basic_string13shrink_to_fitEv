@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/basic_string.h' l='965' ll='967' type='void std::basic_string::shrink_to_fit()'/>
+<doc f='include/c++/11/bits/basic_string.h' l='964'>///  A non-binding request to reduce capacity() to size().</doc>

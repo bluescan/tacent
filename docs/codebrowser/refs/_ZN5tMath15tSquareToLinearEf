@@ -1,0 +1,16 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='265' type='float tMath::tSquareToLinear(float squareComponent)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='974' ll='977' type='float tMath::tSquareToLinear(float squareComponent)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1250' u='c' c='_ZN9tColour4f14SquareToLinearEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1251' u='c' c='_ZN9tColour4f14SquareToLinearEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1252' u='c' c='_ZN9tColour4f14SquareToLinearEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1253' u='c' c='_ZN9tColour4f14SquareToLinearEj'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='255'>// Some colour-space component conversion functions. Gamma-space is probably more ubiquitous than the more accurate
+	// sRGB space. Unless speed is an issue, probably best to stay away from the Square functions (gamma = 2.0).
+	//
+	// Colours in textures in files may be in &apos;Gamma-space&apos; and ought to be converted to linear space before lighting
+	// calculations are made. They should then be converted back to Gamma space before being displayed. SquareToLinear
+	// and LinearToSquare are identical to GammaToLinear and LinearToGamme with a gamma value of 2.0. They&apos;re a bit
+	// faster because they don&apos;t use the tPow function, only square and square-root.
+	//
+	// SquareToLinear will darken  the image. Gamma = 2.0 (decoding). Gamma expansion.
+	// LinearToSquare Will lighten the image. Gamma = 0.5 (encoding). Gamma compression.</doc>

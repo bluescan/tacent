@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='431' type='void tColour4b::HSVToRGB()'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1133' ll='1143' type='void tColour4b::HSVToRGB()'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='431'>// Assumes current values are HSV.</doc>

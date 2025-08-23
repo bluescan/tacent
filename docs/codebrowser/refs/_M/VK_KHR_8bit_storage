@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9489'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9488'>// VK_KHR_8bit_storage is a preprocessor guard. Do not pass it to API calls.</doc>

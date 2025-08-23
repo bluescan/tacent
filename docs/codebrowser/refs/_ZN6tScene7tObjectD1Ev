@@ -1,0 +1,11 @@
+<def f='Modules/Scene/Inc/Scene/tObject.h' l='30' type='void tScene::tObject::~tObject()'/>
+<ovr f='Modules/Scene/Inc/Scene/tCamera.h' l='28' c='_ZN6tScene7tCameraD1Ev'/>
+<ovr f='Modules/Scene/Inc/Scene/tInstance.h' l='28' c='_ZN6tScene9tInstanceD1Ev'/>
+<ovr f='Modules/Scene/Inc/Scene/tLight.h' l='26' c='_ZN6tScene6tLightD1Ev'/>
+<ovr f='Modules/Scene/Inc/Scene/tLodGroup.h' l='51' c='_ZN6tScene9tLodGroupD1Ev'/>
+<ovr f='Modules/Scene/Inc/Scene/tMaterial.h' l='33' c='_ZN6tScene9tMaterialD1Ev'/>
+<ovr f='Modules/Scene/Inc/Scene/tPath.h' l='28' c='_ZN6tScene5tPathD1Ev'/>
+<ovr f='Modules/Scene/Inc/Scene/tPolyModel.h' l='27' c='_ZN6tScene10tPolyModelD1Ev'/>
+<ovr f='Modules/Scene/Inc/Scene/tSelection.h' l='26' c='_ZN6tScene10tSelectionD1Ev'/>
+<ovr f='Modules/Scene/Inc/Scene/tSkeleton.h' l='26' c='_ZN6tScene6tJointD1Ev'/>
+<ovr f='Modules/Scene/Inc/Scene/tSkeleton.h' l='70' c='_ZN6tScene9tSkeletonD1Ev'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/hashtable.h' l='612' type='void std::_Hashtable::~_Hashtable&lt;_Key, _Value, _Alloc, _ExtractKey, _Equal, _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits&gt;()'/>
+<def f='include/c++/11/bits/hashtable.h' l='1524' ll='1534' type='void std::_Hashtable::~_Hashtable&lt;_Key, _Value, _Alloc, _ExtractKey, _Equal, _Hash, _RangeHash, _Unused, _RehashPolicy, _Traits&gt;()'/>

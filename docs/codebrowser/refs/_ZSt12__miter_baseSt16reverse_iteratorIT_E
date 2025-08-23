@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='629' ll='633' macro='1' type='decltype(__make_reverse_iterator(__miter_base(__it.base()))) std::__miter_base(reverse_iterator&lt;_Iterator&gt; __it)'/>

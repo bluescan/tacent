@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='143' type='24'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='142'>// Since we store states as bits in a 32-bit uint, we need to make sure we don&apos;t too many.</doc>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1422' u='r'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1423' u='r'/>

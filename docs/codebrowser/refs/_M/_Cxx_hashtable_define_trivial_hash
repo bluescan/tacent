@@ -1,0 +1,19 @@
+<dec f='include/c++/11/bits/functional_hash.h' l='115'/>
+<use f='include/c++/11/bits/functional_hash.h' l='125' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='128' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='131' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='134' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='137' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='141' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='145' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='148' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='151' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='154' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='157' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='160' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='163' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='166' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='169' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='172' u='c'/>
+<use f='include/c++/11/bits/functional_hash.h' l='191' u='w'/>
+<doc f='include/c++/11/bits/functional_hash.h' l='114'>// Explicit specializations for integer types.</doc>

@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/stl_deque.h' l='1070' u='c' c='_ZNSt5deque6assignEmRKT_'/>
+<def f='include/c++/11/bits/stl_deque.h' l='1932' ll='1945' type='void std::deque::_M_fill_assign(std::deque::size_type __n, const std::deque::value_type &amp; __val)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1930'>// Called by assign(n,t), and the range assign when it turns out
+      // to be the same thing.</doc>

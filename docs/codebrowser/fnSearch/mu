@@ -1,0 +1,11 @@
+_ZNKSt10multipliesclERKT_S2_|std::multiplies::operator()
+_ZNSt5mutex4lockEv|std::mutex::lock
+_ZNSt5mutexC1Ev|std::mutex::mutex
+_ZNSt5mutex13native_handleEv|std::mutex::native_handle
+_ZNSt5mutexaSERKS_|std::mutex::operator=
+_ZNSt5mutex8try_lockEv|std::mutex::try_lock
+_ZNSt5mutex6unlockEv|std::mutex::unlock
+_ZNSt5mutexD1Ev|std::mutex::~mutex
+_ZNKSt11unique_lock5mutexEv|std::unique_lock::mutex
+_ZN5tMath8tVector314MulByTransposeERKNS_5tVec3E|tMath::tVector3::MulByTranspose
+_ZN5tMath8tVector414MulByTransposeERKNS_5tVec4E|tMath::tVector4::MulByTranspose

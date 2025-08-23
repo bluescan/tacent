@@ -1,0 +1,11 @@
+<dec f='include/linux/stat.h' l='141'/>
+<use f='include/x86_64-linux-gnu/bits/statx.h' l='32' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/statx-generic.h' l='28' u='a'/>
+<doc f='include/linux/stat.h' l='133'>/*
+ * Flags to be stx_mask
+ *
+ * Query request/result mask for statx() and struct statx::stx_mask.
+ *
+ * These bits should be set in the mask argument of statx() to request
+ * particular items when calling statx().
+ */</doc>

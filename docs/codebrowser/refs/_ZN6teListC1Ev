@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='180' type='void teList::teList&lt;T&gt;()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='179'>// The default constructor has the list not owning the items. List mode is External.</doc>

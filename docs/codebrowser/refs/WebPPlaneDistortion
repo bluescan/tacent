@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='400' type='int WebPPlaneDistortion(const uint8_t * src, size_t src_stride, const uint8_t * ref, size_t ref_stride, int width, int height, size_t x_step, int type, float * distortion, float * result)'/>

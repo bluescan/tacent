@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/time.h' l='60'/>
+<doc f='include/x86_64-linux-gnu/bits/time.h' l='59'>/* Monotonic system-wide clock that includes time spent in suspension.  */</doc>

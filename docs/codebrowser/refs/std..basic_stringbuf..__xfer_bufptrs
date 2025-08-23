@@ -1,0 +1,15 @@
+<use f='include/c++/11/sstream' l='149' c='_ZNSt7__cxx1115basic_stringbufC1EONS_15basic_stringbufIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='193' c='_ZNSt7__cxx1115basic_stringbufC1EONS_15basic_stringbufIT_T0_T1_EERKS4_'/>
+<use f='include/c++/11/sstream' l='208' c='_ZNSt7__cxx1115basic_stringbufaSEONS_15basic_stringbufIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='221' c='_ZNSt7__cxx1115basic_stringbuf4swapERNS_15basic_stringbufIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='222' c='_ZNSt7__cxx1115basic_stringbuf4swapERNS_15basic_stringbufIT_T0_T1_EE'/>
+<def f='include/c++/11/sstream' l='447' ll='492'/>
+<use f='include/c++/11/sstream' l='503' c='_ZNSt7__cxx1115basic_stringbufC1EONS_15basic_stringbufIT_T0_T1_EEONS0_14__xfer_bufptrsE'/>
+<use f='include/c++/11/sstream' l='512' c='_ZNSt7__cxx1115basic_stringbufC1EONS_15basic_stringbufIT_T0_T1_EERKS4_ONS0_14__xfer_bufptrsE'/>
+<doc f='include/c++/11/sstream' l='445'>// This type captures the state of the gptr / pptr pointers as offsets
+      // so they can be restored in another object after moving the string.</doc>
+<fun r='_ZNSt7__cxx1115basic_stringbuf14__xfer_bufptrsC1ERKNS_15basic_stringbufIT_T0_T1_EEPS7_'/>
+<fun r='_ZNSt7__cxx1115basic_stringbuf14__xfer_bufptrsD1Ev'/>
+<mbr r='std::basic_stringbuf::__xfer_bufptrs::_M_to' t='basic_stringbuf&lt;_CharT, _Traits, _Alloc&gt; *'/>
+<mbr r='std::basic_stringbuf::__xfer_bufptrs::_M_goff' t='std::basic_stringbuf::off_type[3]'/>
+<mbr r='std::basic_stringbuf::__xfer_bufptrs::_M_poff' t='std::basic_stringbuf::off_type[3]'/>

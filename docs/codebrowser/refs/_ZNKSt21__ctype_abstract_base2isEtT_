@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/locale_facets.h' l='171' ll='173' type='bool std::__ctype_abstract_base::is(std::ctype_base::mask __m, std::__ctype_abstract_base::char_type __c) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='160'>/**
+       *  @brief  Test char_type classification.
+       *
+       *  This function finds a mask M for @a __c and compares it to
+       *  mask @a __m.  It does so by returning the value of
+       *  ctype&lt;char_type&gt;::do_is().
+       *
+       *  @param __c  The char_type to compare the mask of.
+       *  @param __m  The mask to compare against.
+       *  @return  (M &amp; __m) != 0.
+      */</doc>

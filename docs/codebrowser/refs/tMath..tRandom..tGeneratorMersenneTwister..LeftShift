@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='62' type='const int'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='73' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='74' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>

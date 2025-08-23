@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9311'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9310'>// VK_KHR_storage_buffer_storage_class is a preprocessor guard. Do not pass it to API calls.</doc>

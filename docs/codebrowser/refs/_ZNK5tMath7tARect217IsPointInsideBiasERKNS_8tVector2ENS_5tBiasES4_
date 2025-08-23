@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='166' type='bool tMath::tARect2::IsPointInsideBias(const tMath::tVector2 &amp; point, tMath::tBias biasX = tBias::Low, tMath::tBias biasY = tBias::Low) const'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='547' ll='558' type='bool tMath::tARect2::IsPointInsideBias(const tMath::tVector2 &amp; point, tMath::tBias biasX = tBias::Low, tMath::tBias biasY = tBias::Low) const'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='163'>// Similar to above except you can control which boundary sides are included. With default bias values this
+	// function includes the 2 minimum boundary lines and does not include the 2 maximum lines. This is useful for
+	// situations such as spatial partitioning where a single point must not be inside multiple adjacent boxes.</doc>

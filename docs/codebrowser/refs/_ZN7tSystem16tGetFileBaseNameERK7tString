@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='94' type='tString tSystem::tGetFileBaseName(const tString &amp; file)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='93'>// c:/Stuff/Mess.max to Mess</doc>
+<use f='Modules/Image/Src/tTexture.cpp' l='145' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='553' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<def f='Modules/System/Src/tFile.cpp' l='206' ll='212' type='tString tSystem::tGetFileBaseName(const tString &amp; file)'/>

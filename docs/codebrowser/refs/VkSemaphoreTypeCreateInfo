@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6400' ll='6405'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6400'/>
+<size>32</size>
+<mbr r='VkSemaphoreTypeCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSemaphoreTypeCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkSemaphoreTypeCreateInfo::semaphoreType' o='128' t='VkSemaphoreType'/>
+<mbr r='VkSemaphoreTypeCreateInfo::initialValue' o='192' t='uint64_t'/>

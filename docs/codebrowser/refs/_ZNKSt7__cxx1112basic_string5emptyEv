@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/basic_string.h' l='1022' ll='1024' type='bool std::basic_string::empty() const'/>
+<use f='include/c++/11/bits/basic_string.h' l='1115' u='c' c='_ZNSt7__cxx1112basic_string5frontEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='1126' u='c' c='_ZNKSt7__cxx1112basic_string5frontEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='1137' u='c' c='_ZNSt7__cxx1112basic_string4backEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='1148' u='c' c='_ZNKSt7__cxx1112basic_string4backEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='1886' u='c' c='_ZNSt7__cxx1112basic_string8pop_backEv'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1018'>/**
+       *  Returns true if the %string is empty.  Equivalent to 
+       *  &lt;code&gt;*this == &quot;&quot;&lt;/code&gt;.
+       */</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='361' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='277' u='c' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='471' u='c' c='_ZNKSt10filesystem7__cxx114path5emptyEv'/>

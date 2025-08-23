@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/basic_string.h' l='469' ll='476' type='void std::basic_string::basic_string&lt;_CharT, _Traits, _Alloc&gt;(const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __str, std::basic_string::size_type __pos, const _Alloc &amp; __a = _Alloc())'/>
+<doc f='include/c++/11/bits/basic_string.h' l='463'>/**
+       *  @brief  Construct string as copy of a substring.
+       *  @param  __str  Source string.
+       *  @param  __pos  Index of first character to copy from.
+       *  @param  __a  Allocator to use.
+       */</doc>

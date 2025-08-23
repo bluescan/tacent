@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='305' type='int tString::RemoveTrailing(const char * theseChars)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='302'>// Removes all trailing characters in this string that match any of the characters in the null-terminated theseChars
+	// eg. Calling RemoveTrailing on &quot;abcZINGabcaab&quot; with &quot;abc&quot; yields &quot;abcZING&quot;. Returns the number of characters removed.
+	// Note that theseChars are ASCII.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='463' ll='502' type='int tString::RemoveTrailing(const char * removeThese)'/>

@@ -1,0 +1,2 @@
+<use f='include/c++/11/bits/random.h' l='4002' u='c' c='_ZNSt22geometric_distribution10param_typeC1Ed'/>
+<def f='include/c++/11/bits/random.h' l='4018' ll='4020' type='void std::geometric_distribution::param_type::_M_initialize()'/>

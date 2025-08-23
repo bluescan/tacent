@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='227' type='void tChunk::tChunk()'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='255' u='c' c='_ZNK6tChunk12GetNextChunkEv'/>

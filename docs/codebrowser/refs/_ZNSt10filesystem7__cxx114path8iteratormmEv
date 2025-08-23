@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/fs_path.h' l='887' type='std::filesystem::path::iterator &amp; std::filesystem::path::iterator::operator--()'/>
+<use f='include/c++/11/bits/fs_path.h' l='888' u='c' c='_ZNSt10filesystem7__cxx114path8iteratormmEi'/>
+<use f='include/c++/11/bits/fs_path.h' l='920' u='c' c='_ZNSt10filesystem7__cxx1119__path_iter_advanceERNS0_4path8iteratorEl'/>
+<use f='include/c++/11/bits/fs_path.h' l='1208' u='c' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>
+<def f='include/c++/11/bits/fs_path.h' l='1290' ll='1305' type='path::iterator &amp; std::filesystem::path::iterator::operator--()'/>

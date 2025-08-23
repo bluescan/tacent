@@ -1,0 +1,17 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/pstl/execution_defs.h' l='117' ll='119'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/pstl/execution_defs.h' l='121' ll='124'/>
+<use f='include/c++/11/pstl/execution_defs.h' l='122'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/pstl/execution_defs.h' l='125' ll='128'/>
+<use f='include/c++/11/pstl/execution_defs.h' l='126'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/pstl/execution_defs.h' l='129' ll='132'/>
+<use f='include/c++/11/pstl/execution_defs.h' l='130'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/pstl/execution_defs.h' l='133' ll='136'/>
+<use f='include/c++/11/pstl/execution_defs.h' l='134'/>
+<use f='include/c++/11/pstl/execution_defs.h' l='140'/>
+<use f='include/c++/11/pstl/execution_defs.h' l='151'/>
+<size>1</size>

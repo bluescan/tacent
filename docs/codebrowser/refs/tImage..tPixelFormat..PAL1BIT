@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='224' type='73'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='224'>// 1-bit indexes to a palette. 2 colour.   1 bpp. Often dithered B/W.</doc>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='157' u='r' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='159' u='r' c='_ZN6tImage9tImageGIF4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='299' u='r' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='411' u='r' c='_ZN6tImage9tImageICO11CreateFrameEPKhiii'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='274' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>

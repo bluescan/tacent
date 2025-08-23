@@ -1,0 +1,3 @@
+<dec f='include/libintl.h' l='27'/>
+<doc f='include/libintl.h' l='25'>/* We define an additional symbol to signal that we use the GNU
+   implementation of gettext.  */</doc>

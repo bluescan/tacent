@@ -1,0 +1,43 @@
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_facets.h' l='1673' ll='1883'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1886'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1889' c='_ZNSt7__cxx118numpunctIcED1Ev'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1893' c='_ZNSt7__cxx118numpunct22_M_initialize_numpunctEP15__locale_struct'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1897' c='_ZNSt7__cxx118numpunctIwED1Ev'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1901' c='_ZNSt7__cxx118numpunct22_M_initialize_numpunctEP15__locale_struct'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1906'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1914' c='_ZNSt7__cxx1115numpunct_bynameC1EPKcm'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='55' c='_ZNKSt11__use_cacheISt16__numpunct_cacheIT_EEclERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='80' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='80' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_facets.tcc' l='1322'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1322'/>
+<ovr f='include/c++/11/bits/locale_facets.tcc' l='1323' c='std::numpunct_byname'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_facets.tcc' l='1361'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1361'/>
+<ovr f='include/c++/11/bits/locale_facets.tcc' l='1362' c='std::numpunct_byname'/>
+<size>24</size>
+<mbr r='std::numpunct::_M_data' t='std::numpunct::__cache_type *'/>
+<smbr r='std::numpunct::id' t='locale::id'/>
+<fun r='_ZNSt7__cxx118numpunctC1Em'/>
+<fun r='_ZNSt7__cxx118numpunctC1EPSt16__numpunct_cacheIT_Em'/>
+<fun r='_ZNSt7__cxx118numpunctC1EP15__locale_structm'/>
+<fun r='_ZNKSt7__cxx118numpunct13decimal_pointEv'/>
+<fun r='_ZNKSt7__cxx118numpunct13thousands_sepEv'/>
+<fun r='_ZNKSt7__cxx118numpunct8groupingEv'/>
+<fun r='_ZNKSt7__cxx118numpunct8truenameEv'/>
+<fun r='_ZNKSt7__cxx118numpunct9falsenameEv'/>
+<fun r='_ZNSt7__cxx118numpunctD1Ev'/>
+<fun r='_ZNKSt7__cxx118numpunct16do_decimal_pointEv'/>
+<fun r='_ZNKSt7__cxx118numpunct16do_thousands_sepEv'/>
+<fun r='_ZNKSt7__cxx118numpunct11do_groupingEv'/>
+<fun r='_ZNKSt7__cxx118numpunct11do_truenameEv'/>
+<fun r='_ZNKSt7__cxx118numpunct12do_falsenameEv'/>
+<fun r='_ZNSt7__cxx118numpunct22_M_initialize_numpunctEP15__locale_struct'/>
+<smbr r='std::numpunct::id' t='locale::id'/>
+<fun r='_ZNSt7__cxx118numpunctIcED1Ev'/>
+<fun r='_ZNSt7__cxx118numpunct22_M_initialize_numpunctEP15__locale_struct'/>
+<fun r='_ZNSt7__cxx118numpunctIwED1Ev'/>
+<fun r='_ZNSt7__cxx118numpunct22_M_initialize_numpunctEP15__locale_struct'/>

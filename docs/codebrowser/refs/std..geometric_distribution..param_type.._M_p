@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/random.h' l='3999' u='w' c='_ZNSt22geometric_distribution10param_typeC1Ed'/>
+<use f='include/c++/11/bits/random.h' l='4001' u='r' c='_ZNSt22geometric_distribution10param_typeC1Ed'/>
+<use f='include/c++/11/bits/random.h' l='4001' u='r' c='_ZNSt22geometric_distribution10param_typeC1Ed'/>
+<use f='include/c++/11/bits/random.h' l='4007' u='r' c='_ZNKSt22geometric_distribution10param_type1pEv'/>
+<use f='include/c++/11/bits/random.h' l='4020' u='r' c='_ZNSt22geometric_distribution10param_type13_M_initializeEv'/>
+<dec f='include/c++/11/bits/random.h' l='4022' type='double'/>

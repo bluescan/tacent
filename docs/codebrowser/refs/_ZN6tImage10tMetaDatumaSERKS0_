@@ -1,0 +1,2 @@
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='167' type='tImage::tMetaDatum &amp; tImage::tMetaDatum::operator=(const tImage::tMetaDatum &amp; src)'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='271' u='c' c='_ZN6tImage9tMetaData3SetERKS0_'/>

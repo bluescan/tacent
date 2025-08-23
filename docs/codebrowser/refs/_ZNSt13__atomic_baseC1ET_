@@ -1,0 +1,18 @@
+<def f='include/c++/11/bits/atomic_base.h' l='345' type='void std::__atomic_base::__atomic_base&lt;_IntTp&gt;(std::__atomic_base::__int_type __i)'/>
+<use f='include/c++/11/atomic' l='76' u='c' c='_ZNSt6atomicIbEC1Eb'/>
+<use f='include/c++/11/atomic' l='718' u='c' c='_ZNSt6atomicIcEC1Ec'/>
+<use f='include/c++/11/atomic' l='741' u='c' c='_ZNSt6atomicIaEC1Ea'/>
+<use f='include/c++/11/atomic' l='764' u='c' c='_ZNSt6atomicIhEC1Eh'/>
+<use f='include/c++/11/atomic' l='787' u='c' c='_ZNSt6atomicIsEC1Es'/>
+<use f='include/c++/11/atomic' l='810' u='c' c='_ZNSt6atomicItEC1Et'/>
+<use f='include/c++/11/atomic' l='833' u='c' c='_ZNSt6atomicIiEC1Ei'/>
+<use f='include/c++/11/atomic' l='856' u='c' c='_ZNSt6atomicIjEC1Ej'/>
+<use f='include/c++/11/atomic' l='879' u='c' c='_ZNSt6atomicIlEC1El'/>
+<use f='include/c++/11/atomic' l='902' u='c' c='_ZNSt6atomicImEC1Em'/>
+<use f='include/c++/11/atomic' l='925' u='c' c='_ZNSt6atomicIxEC1Ex'/>
+<use f='include/c++/11/atomic' l='948' u='c' c='_ZNSt6atomicIyEC1Ey'/>
+<use f='include/c++/11/atomic' l='971' u='c' c='_ZNSt6atomicIwEC1Ew'/>
+<use f='include/c++/11/atomic' l='995' u='c' c='_ZNSt6atomicIDuEC1EDu'/>
+<use f='include/c++/11/atomic' l='1019' u='c' c='_ZNSt6atomicIDsEC1EDs'/>
+<use f='include/c++/11/atomic' l='1042' u='c' c='_ZNSt6atomicIDiEC1EDi'/>
+<doc f='include/c++/11/bits/atomic_base.h' l='344'>// Requires __int_type convertible to _M_i.</doc>

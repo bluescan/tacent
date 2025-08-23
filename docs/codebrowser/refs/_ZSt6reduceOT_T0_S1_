@@ -1,0 +1,1 @@
+<dec f='include/c++/11/pstl/glue_numeric_defs.h' l='31' type='__pstl::__internal::__enable_if_execution_policy&lt;_ExecutionPolicy, typename iterator_traits&lt;_ForwardIterator&gt;::value_type&gt; std::reduce(_ExecutionPolicy &amp;&amp; __exec, _ForwardIterator __first, _ForwardIterator __last)'/>

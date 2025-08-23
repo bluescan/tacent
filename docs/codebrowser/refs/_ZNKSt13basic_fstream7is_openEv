@@ -1,0 +1,3 @@
+<def f='include/c++/11/fstream' l='1169' ll='1171' type='bool std::basic_fstream::is_open() const'/>
+<doc f='include/c++/11/fstream' l='1167'>// _GLIBCXX_RESOLVE_LIB_DEFECTS
+      // 365. Lack of const-qualification in clause 27</doc>

@@ -1,0 +1,13 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='274' type='int tString::FindString(const char8_t * str, int startIndex = 0) const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='275' u='c' c='_ZNK7tString10FindStringEPKci'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='906' ll='917' type='int tString::FindString(const char8_t * str, int start = 0) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='271'>// Returns index of first character of the string str in the string. Returns -1 if not found.
+	// It is valid to perform this for ASCII strings as well so the function is overridden for const char*.
+	// For both versions of FindString the src input is assumed to be null-terminated.</doc>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='42' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='63' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='88' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='89' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='111' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='112' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1723' u='c' c='_ZNK6tScene6tWorld24FindSelectionsContainingER7tItListIPNS_10tSelectionEERK7tString'/>

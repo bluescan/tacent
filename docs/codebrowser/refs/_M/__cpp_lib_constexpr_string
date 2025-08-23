@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/basic_string.h' l='57'/>
+<doc f='include/c++/11/bits/basic_string.h' l='56'>// Support P1032R1 in C++20 (but not P0980R1 yet).</doc>

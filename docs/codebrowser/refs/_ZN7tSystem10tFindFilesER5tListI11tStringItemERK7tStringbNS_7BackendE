@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='613' type='bool tSystem::tFindFiles(tList&lt;tStringItem&gt; &amp; files, const tString &amp; dir, bool hidden = true, tSystem::Backend  = Backend::Native)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='610'>// This function finds files in a directory. The files list is always appended to. You must clear it first if that&apos;s what you intend. If empty dir
+// argument, the contents of the current directory are returned. If false returned files is unmodified. The order of
+// items in files is not defined.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='2782' ll='2791' type='bool tSystem::tFindFiles(tList&lt;tStringItem&gt; &amp; files, const tString &amp; dir, bool hidden = true, tSystem::Backend backend = Backend::Native)'/>

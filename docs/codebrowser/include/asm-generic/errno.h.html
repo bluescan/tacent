@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>errno.h source code [include/asm-generic/errno.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/asm-generic/errno.h'; var root_path = '../..'; var data_path = '../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='..'>include</a>/<a href='./'>asm-generic</a>/<a href='errno.h.html'>errno.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><u>#<span data-ppcond="2">ifndef</span> <span class="macro" data-ref="_M/_ASM_GENERIC_ERRNO_H">_ASM_GENERIC_ERRNO_H</span></u>&nbsp</td></tr>
+<tr><th id="3">3</th><td><u>#define <dfn class="macro" id="_M/_ASM_GENERIC_ERRNO_H" data-ref="_M/_ASM_GENERIC_ERRNO_H">_ASM_GENERIC_ERRNO_H</dfn></u>&nbsp</td></tr>
+<tr><th id="4">4</th><td>&nbsp</td></tr>
+<tr><th id="5">5</th><td><u>#include &lt;asm-generic/errno-base.h&gt;</u>&nbsp</td></tr>
+<tr><th id="6">6</th><td>&nbsp</td></tr>
+<tr><th id="7">7</th><td><u>#define	<dfn class="macro" id="_M/EDEADLK" data-ref="_M/EDEADLK">EDEADLK</dfn>		35	/* Resource deadlock would occur */</u>&nbsp</td></tr>
+<tr><th id="8">8</th><td><u>#define	<dfn class="macro" id="_M/ENAMETOOLONG" data-ref="_M/ENAMETOOLONG">ENAMETOOLONG</dfn>	36	/* File name too long */</u>&nbsp</td></tr>
+<tr><th id="9">9</th><td><u>#define	<dfn class="macro" id="_M/ENOLCK" data-ref="_M/ENOLCK">ENOLCK</dfn>		37	/* No record locks available */</u>&nbsp</td></tr>
+<tr><th id="10">10</th><td>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i> * This error code is special: arch syscall entry code will return</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i> * -ENOSYS if users try to call a syscall that doesn't exist.  To keep</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i> * failures of syscalls that really do exist distinguishable from</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i> * failures due to attempts to use a nonexistent syscall, syscall</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i> * implementations should refrain from returning -ENOSYS.</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#define	<dfn class="macro" id="_M/ENOSYS" data-ref="_M/ENOSYS">ENOSYS</dfn>		38	/* Invalid system call number */</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td>&nbsp</td></tr>
+<tr><th id="20">20</th><td><u>#define	<dfn class="macro" id="_M/ENOTEMPTY" data-ref="_M/ENOTEMPTY">ENOTEMPTY</dfn>	39	/* Directory not empty */</u>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#define	<dfn class="macro" id="_M/ELOOP" data-ref="_M/ELOOP">ELOOP</dfn>		40	/* Too many symbolic links encountered */</u>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#define	<dfn class="macro" id="_M/EWOULDBLOCK" data-ref="_M/EWOULDBLOCK">EWOULDBLOCK</dfn>	EAGAIN	/* Operation would block */</u>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#define	<dfn class="macro" id="_M/ENOMSG" data-ref="_M/ENOMSG">ENOMSG</dfn>		42	/* No message of desired type */</u>&nbsp</td></tr>
+<tr><th id="24">24</th><td><u>#define	<dfn class="macro" id="_M/EIDRM" data-ref="_M/EIDRM">EIDRM</dfn>		43	/* Identifier removed */</u>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#define	<dfn class="macro" id="_M/ECHRNG" data-ref="_M/ECHRNG">ECHRNG</dfn>		44	/* Channel number out of range */</u>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#define	<dfn class="macro" id="_M/EL2NSYNC" data-ref="_M/EL2NSYNC">EL2NSYNC</dfn>	45	/* Level 2 not synchronized */</u>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#define	<dfn class="macro" id="_M/EL3HLT" data-ref="_M/EL3HLT">EL3HLT</dfn>		46	/* Level 3 halted */</u>&nbsp</td></tr>
+<tr><th id="28">28</th><td><u>#define	<dfn class="macro" id="_M/EL3RST" data-ref="_M/EL3RST">EL3RST</dfn>		47	/* Level 3 reset */</u>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#define	<dfn class="macro" id="_M/ELNRNG" data-ref="_M/ELNRNG">ELNRNG</dfn>		48	/* Link number out of range */</u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#define	<dfn class="macro" id="_M/EUNATCH" data-ref="_M/EUNATCH">EUNATCH</dfn>		49	/* Protocol driver not attached */</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define	<dfn class="macro" id="_M/ENOCSI" data-ref="_M/ENOCSI">ENOCSI</dfn>		50	/* No CSI structure available */</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#define	<dfn class="macro" id="_M/EL2HLT" data-ref="_M/EL2HLT">EL2HLT</dfn>		51	/* Level 2 halted */</u>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#define	<dfn class="macro" id="_M/EBADE" data-ref="_M/EBADE">EBADE</dfn>		52	/* Invalid exchange */</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#define	<dfn class="macro" id="_M/EBADR" data-ref="_M/EBADR">EBADR</dfn>		53	/* Invalid request descriptor */</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#define	<dfn class="macro" id="_M/EXFULL" data-ref="_M/EXFULL">EXFULL</dfn>		54	/* Exchange full */</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#define	<dfn class="macro" id="_M/ENOANO" data-ref="_M/ENOANO">ENOANO</dfn>		55	/* No anode */</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#define	<dfn class="macro" id="_M/EBADRQC" data-ref="_M/EBADRQC">EBADRQC</dfn>		56	/* Invalid request code */</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#define	<dfn class="macro" id="_M/EBADSLT" data-ref="_M/EBADSLT">EBADSLT</dfn>		57	/* Invalid slot */</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#define	<dfn class="macro" id="_M/EDEADLOCK" data-ref="_M/EDEADLOCK">EDEADLOCK</dfn>	EDEADLK</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#define	<dfn class="macro" id="_M/EBFONT" data-ref="_M/EBFONT">EBFONT</dfn>		59	/* Bad font file format */</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#define	<dfn class="macro" id="_M/ENOSTR" data-ref="_M/ENOSTR">ENOSTR</dfn>		60	/* Device not a stream */</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#define	<dfn class="macro" id="_M/ENODATA" data-ref="_M/ENODATA">ENODATA</dfn>		61	/* No data available */</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#define	<dfn class="macro" id="_M/ETIME" data-ref="_M/ETIME">ETIME</dfn>		62	/* Timer expired */</u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u>#define	<dfn class="macro" id="_M/ENOSR" data-ref="_M/ENOSR">ENOSR</dfn>		63	/* Out of streams resources */</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#define	<dfn class="macro" id="_M/ENONET" data-ref="_M/ENONET">ENONET</dfn>		64	/* Machine is not on the network */</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u>#define	<dfn class="macro" id="_M/ENOPKG" data-ref="_M/ENOPKG">ENOPKG</dfn>		65	/* Package not installed */</u>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#define	<dfn class="macro" id="_M/EREMOTE" data-ref="_M/EREMOTE">EREMOTE</dfn>		66	/* Object is remote */</u>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u>#define	<dfn class="macro" id="_M/ENOLINK" data-ref="_M/ENOLINK">ENOLINK</dfn>		67	/* Link has been severed */</u>&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>#define	<dfn class="macro" id="_M/EADV" data-ref="_M/EADV">EADV</dfn>		68	/* Advertise error */</u>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u>#define	<dfn class="macro" id="_M/ESRMNT" data-ref="_M/ESRMNT">ESRMNT</dfn>		69	/* Srmount error */</u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><u>#define	<dfn class="macro" id="_M/ECOMM" data-ref="_M/ECOMM">ECOMM</dfn>		70	/* Communication error on send */</u>&nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#define	<dfn class="macro" id="_M/EPROTO" data-ref="_M/EPROTO">EPROTO</dfn>		71	/* Protocol error */</u>&nbsp</td></tr>
+<tr><th id="55">55</th><td><u>#define	<dfn class="macro" id="_M/EMULTIHOP" data-ref="_M/EMULTIHOP">EMULTIHOP</dfn>	72	/* Multihop attempted */</u>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u>#define	<dfn class="macro" id="_M/EDOTDOT" data-ref="_M/EDOTDOT">EDOTDOT</dfn>		73	/* RFS specific error */</u>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#define	<dfn class="macro" id="_M/EBADMSG" data-ref="_M/EBADMSG">EBADMSG</dfn>		74	/* Not a data message */</u>&nbsp</td></tr>
+<tr><th id="58">58</th><td><u>#define	<dfn class="macro" id="_M/EOVERFLOW" data-ref="_M/EOVERFLOW">EOVERFLOW</dfn>	75	/* Value too large for defined data type */</u>&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#define	<dfn class="macro" id="_M/ENOTUNIQ" data-ref="_M/ENOTUNIQ">ENOTUNIQ</dfn>	76	/* Name not unique on network */</u>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#define	<dfn class="macro" id="_M/EBADFD" data-ref="_M/EBADFD">EBADFD</dfn>		77	/* File descriptor in bad state */</u>&nbsp</td></tr>
+<tr><th id="61">61</th><td><u>#define	<dfn class="macro" id="_M/EREMCHG" data-ref="_M/EREMCHG">EREMCHG</dfn>		78	/* Remote address changed */</u>&nbsp</td></tr>
+<tr><th id="62">62</th><td><u>#define	<dfn class="macro" id="_M/ELIBACC" data-ref="_M/ELIBACC">ELIBACC</dfn>		79	/* Can not access a needed shared library */</u>&nbsp</td></tr>
+<tr><th id="63">63</th><td><u>#define	<dfn class="macro" id="_M/ELIBBAD" data-ref="_M/ELIBBAD">ELIBBAD</dfn>		80	/* Accessing a corrupted shared library */</u>&nbsp</td></tr>
+<tr><th id="64">64</th><td><u>#define	<dfn class="macro" id="_M/ELIBSCN" data-ref="_M/ELIBSCN">ELIBSCN</dfn>		81	/* .lib section in a.out corrupted */</u>&nbsp</td></tr>
+<tr><th id="65">65</th><td><u>#define	<dfn class="macro" id="_M/ELIBMAX" data-ref="_M/ELIBMAX">ELIBMAX</dfn>		82	/* Attempting to link in too many shared libraries */</u>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>#define	<dfn class="macro" id="_M/ELIBEXEC" data-ref="_M/ELIBEXEC">ELIBEXEC</dfn>	83	/* Cannot exec a shared library directly */</u>&nbsp</td></tr>
+<tr><th id="67">67</th><td><u>#define	<dfn class="macro" id="_M/EILSEQ" data-ref="_M/EILSEQ">EILSEQ</dfn>		84	/* Illegal byte sequence */</u>&nbsp</td></tr>
+<tr><th id="68">68</th><td><u>#define	<dfn class="macro" id="_M/ERESTART" data-ref="_M/ERESTART">ERESTART</dfn>	85	/* Interrupted system call should be restarted */</u>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u>#define	<dfn class="macro" id="_M/ESTRPIPE" data-ref="_M/ESTRPIPE">ESTRPIPE</dfn>	86	/* Streams pipe error */</u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><u>#define	<dfn class="macro" id="_M/EUSERS" data-ref="_M/EUSERS">EUSERS</dfn>		87	/* Too many users */</u>&nbsp</td></tr>
+<tr><th id="71">71</th><td><u>#define	<dfn class="macro" id="_M/ENOTSOCK" data-ref="_M/ENOTSOCK">ENOTSOCK</dfn>	88	/* Socket operation on non-socket */</u>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#define	<dfn class="macro" id="_M/EDESTADDRREQ" data-ref="_M/EDESTADDRREQ">EDESTADDRREQ</dfn>	89	/* Destination address required */</u>&nbsp</td></tr>
+<tr><th id="73">73</th><td><u>#define	<dfn class="macro" id="_M/EMSGSIZE" data-ref="_M/EMSGSIZE">EMSGSIZE</dfn>	90	/* Message too long */</u>&nbsp</td></tr>
+<tr><th id="74">74</th><td><u>#define	<dfn class="macro" id="_M/EPROTOTYPE" data-ref="_M/EPROTOTYPE">EPROTOTYPE</dfn>	91	/* Protocol wrong type for socket */</u>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#define	<dfn class="macro" id="_M/ENOPROTOOPT" data-ref="_M/ENOPROTOOPT">ENOPROTOOPT</dfn>	92	/* Protocol not available */</u>&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#define	<dfn class="macro" id="_M/EPROTONOSUPPORT" data-ref="_M/EPROTONOSUPPORT">EPROTONOSUPPORT</dfn>	93	/* Protocol not supported */</u>&nbsp</td></tr>
+<tr><th id="77">77</th><td><u>#define	<dfn class="macro" id="_M/ESOCKTNOSUPPORT" data-ref="_M/ESOCKTNOSUPPORT">ESOCKTNOSUPPORT</dfn>	94	/* Socket type not supported */</u>&nbsp</td></tr>
+<tr><th id="78">78</th><td><u>#define	<dfn class="macro" id="_M/EOPNOTSUPP" data-ref="_M/EOPNOTSUPP">EOPNOTSUPP</dfn>	95	/* Operation not supported on transport endpoint */</u>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#define	<dfn class="macro" id="_M/EPFNOSUPPORT" data-ref="_M/EPFNOSUPPORT">EPFNOSUPPORT</dfn>	96	/* Protocol family not supported */</u>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u>#define	<dfn class="macro" id="_M/EAFNOSUPPORT" data-ref="_M/EAFNOSUPPORT">EAFNOSUPPORT</dfn>	97	/* Address family not supported by protocol */</u>&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#define	<dfn class="macro" id="_M/EADDRINUSE" data-ref="_M/EADDRINUSE">EADDRINUSE</dfn>	98	/* Address already in use */</u>&nbsp</td></tr>
+<tr><th id="82">82</th><td><u>#define	<dfn class="macro" id="_M/EADDRNOTAVAIL" data-ref="_M/EADDRNOTAVAIL">EADDRNOTAVAIL</dfn>	99	/* Cannot assign requested address */</u>&nbsp</td></tr>
+<tr><th id="83">83</th><td><u>#define	<dfn class="macro" id="_M/ENETDOWN" data-ref="_M/ENETDOWN">ENETDOWN</dfn>	100	/* Network is down */</u>&nbsp</td></tr>
+<tr><th id="84">84</th><td><u>#define	<dfn class="macro" id="_M/ENETUNREACH" data-ref="_M/ENETUNREACH">ENETUNREACH</dfn>	101	/* Network is unreachable */</u>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#define	<dfn class="macro" id="_M/ENETRESET" data-ref="_M/ENETRESET">ENETRESET</dfn>	102	/* Network dropped connection because of reset */</u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><u>#define	<dfn class="macro" id="_M/ECONNABORTED" data-ref="_M/ECONNABORTED">ECONNABORTED</dfn>	103	/* Software caused connection abort */</u>&nbsp</td></tr>
+<tr><th id="87">87</th><td><u>#define	<dfn class="macro" id="_M/ECONNRESET" data-ref="_M/ECONNRESET">ECONNRESET</dfn>	104	/* Connection reset by peer */</u>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#define	<dfn class="macro" id="_M/ENOBUFS" data-ref="_M/ENOBUFS">ENOBUFS</dfn>		105	/* No buffer space available */</u>&nbsp</td></tr>
+<tr><th id="89">89</th><td><u>#define	<dfn class="macro" id="_M/EISCONN" data-ref="_M/EISCONN">EISCONN</dfn>		106	/* Transport endpoint is already connected */</u>&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#define	<dfn class="macro" id="_M/ENOTCONN" data-ref="_M/ENOTCONN">ENOTCONN</dfn>	107	/* Transport endpoint is not connected */</u>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#define	<dfn class="macro" id="_M/ESHUTDOWN" data-ref="_M/ESHUTDOWN">ESHUTDOWN</dfn>	108	/* Cannot send after transport endpoint shutdown */</u>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u>#define	<dfn class="macro" id="_M/ETOOMANYREFS" data-ref="_M/ETOOMANYREFS">ETOOMANYREFS</dfn>	109	/* Too many references: cannot splice */</u>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>#define	<dfn class="macro" id="_M/ETIMEDOUT" data-ref="_M/ETIMEDOUT">ETIMEDOUT</dfn>	110	/* Connection timed out */</u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u>#define	<dfn class="macro" id="_M/ECONNREFUSED" data-ref="_M/ECONNREFUSED">ECONNREFUSED</dfn>	111	/* Connection refused */</u>&nbsp</td></tr>
+<tr><th id="95">95</th><td><u>#define	<dfn class="macro" id="_M/EHOSTDOWN" data-ref="_M/EHOSTDOWN">EHOSTDOWN</dfn>	112	/* Host is down */</u>&nbsp</td></tr>
+<tr><th id="96">96</th><td><u>#define	<dfn class="macro" id="_M/EHOSTUNREACH" data-ref="_M/EHOSTUNREACH">EHOSTUNREACH</dfn>	113	/* No route to host */</u>&nbsp</td></tr>
+<tr><th id="97">97</th><td><u>#define	<dfn class="macro" id="_M/EALREADY" data-ref="_M/EALREADY">EALREADY</dfn>	114	/* Operation already in progress */</u>&nbsp</td></tr>
+<tr><th id="98">98</th><td><u>#define	<dfn class="macro" id="_M/EINPROGRESS" data-ref="_M/EINPROGRESS">EINPROGRESS</dfn>	115	/* Operation now in progress */</u>&nbsp</td></tr>
+<tr><th id="99">99</th><td><u>#define	<dfn class="macro" id="_M/ESTALE" data-ref="_M/ESTALE">ESTALE</dfn>		116	/* Stale file handle */</u>&nbsp</td></tr>
+<tr><th id="100">100</th><td><u>#define	<dfn class="macro" id="_M/EUCLEAN" data-ref="_M/EUCLEAN">EUCLEAN</dfn>		117	/* Structure needs cleaning */</u>&nbsp</td></tr>
+<tr><th id="101">101</th><td><u>#define	<dfn class="macro" id="_M/ENOTNAM" data-ref="_M/ENOTNAM">ENOTNAM</dfn>		118	/* Not a XENIX named type file */</u>&nbsp</td></tr>
+<tr><th id="102">102</th><td><u>#define	<dfn class="macro" id="_M/ENAVAIL" data-ref="_M/ENAVAIL">ENAVAIL</dfn>		119	/* No XENIX semaphores available */</u>&nbsp</td></tr>
+<tr><th id="103">103</th><td><u>#define	<dfn class="macro" id="_M/EISNAM" data-ref="_M/EISNAM">EISNAM</dfn>		120	/* Is a named type file */</u>&nbsp</td></tr>
+<tr><th id="104">104</th><td><u>#define	<dfn class="macro" id="_M/EREMOTEIO" data-ref="_M/EREMOTEIO">EREMOTEIO</dfn>	121	/* Remote I/O error */</u>&nbsp</td></tr>
+<tr><th id="105">105</th><td><u>#define	<dfn class="macro" id="_M/EDQUOT" data-ref="_M/EDQUOT">EDQUOT</dfn>		122	/* Quota exceeded */</u>&nbsp</td></tr>
+<tr><th id="106">106</th><td>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u>#define	<dfn class="macro" id="_M/ENOMEDIUM" data-ref="_M/ENOMEDIUM">ENOMEDIUM</dfn>	123	/* No medium found */</u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u>#define	<dfn class="macro" id="_M/EMEDIUMTYPE" data-ref="_M/EMEDIUMTYPE">EMEDIUMTYPE</dfn>	124	/* Wrong medium type */</u>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>#define	<dfn class="macro" id="_M/ECANCELED" data-ref="_M/ECANCELED">ECANCELED</dfn>	125	/* Operation Canceled */</u>&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>#define	<dfn class="macro" id="_M/ENOKEY" data-ref="_M/ENOKEY">ENOKEY</dfn>		126	/* Required key not available */</u>&nbsp</td></tr>
+<tr><th id="111">111</th><td><u>#define	<dfn class="macro" id="_M/EKEYEXPIRED" data-ref="_M/EKEYEXPIRED">EKEYEXPIRED</dfn>	127	/* Key has expired */</u>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>#define	<dfn class="macro" id="_M/EKEYREVOKED" data-ref="_M/EKEYREVOKED">EKEYREVOKED</dfn>	128	/* Key has been revoked */</u>&nbsp</td></tr>
+<tr><th id="113">113</th><td><u>#define	<dfn class="macro" id="_M/EKEYREJECTED" data-ref="_M/EKEYREJECTED">EKEYREJECTED</dfn>	129	/* Key was rejected by service */</u>&nbsp</td></tr>
+<tr><th id="114">114</th><td>&nbsp</td></tr>
+<tr><th id="115">115</th><td><i>/* for robust mutexes */</i>&nbsp</td></tr>
+<tr><th id="116">116</th><td><u>#define	<dfn class="macro" id="_M/EOWNERDEAD" data-ref="_M/EOWNERDEAD">EOWNERDEAD</dfn>	130	/* Owner died */</u>&nbsp</td></tr>
+<tr><th id="117">117</th><td><u>#define	<dfn class="macro" id="_M/ENOTRECOVERABLE" data-ref="_M/ENOTRECOVERABLE">ENOTRECOVERABLE</dfn>	131	/* State not recoverable */</u>&nbsp</td></tr>
+<tr><th id="118">118</th><td>&nbsp</td></tr>
+<tr><th id="119">119</th><td><u>#define <dfn class="macro" id="_M/ERFKILL" data-ref="_M/ERFKILL">ERFKILL</dfn>		132	/* Operation not possible due to RF-kill */</u>&nbsp</td></tr>
+<tr><th id="120">120</th><td>&nbsp</td></tr>
+<tr><th id="121">121</th><td><u>#define <dfn class="macro" id="_M/EHWPOISON" data-ref="_M/EHWPOISON">EHWPOISON</dfn>	133	/* Memory page has hardware error */</u>&nbsp</td></tr>
+<tr><th id="122">122</th><td>&nbsp</td></tr>
+<tr><th id="123">123</th><td><u>#<span data-ppcond="2">endif</span></u>&nbsp</td></tr>
+<tr><th id="124">124</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

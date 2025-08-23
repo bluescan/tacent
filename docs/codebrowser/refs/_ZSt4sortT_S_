@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='922' type='void std::sort(_RAIter , _RAIter )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='4830' ll='4843' macro='1' type='void std::sort(_RandomAccessIterator __first, _RandomAccessIterator __last)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2821' u='c' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3720' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

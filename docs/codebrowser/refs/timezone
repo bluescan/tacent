@@ -1,0 +1,8 @@
+<dec f='include/time.h' l='233' type='long'/>
+<def f='include/x86_64-linux-gnu/sys/time.h' l='52' ll='56'/>
+<use f='include/x86_64-linux-gnu/sys/time.h' l='87' c='settimeofday'/>
+<size>8</size>
+<doc f='include/x86_64-linux-gnu/sys/time.h' l='50'>/* Structure crudely representing a timezone.
+   This is obsolete and should never be used.  */</doc>
+<mbr r='timezone::tz_minuteswest' o='0' t='int'/>
+<mbr r='timezone::tz_dsttime' o='32' t='int'/>

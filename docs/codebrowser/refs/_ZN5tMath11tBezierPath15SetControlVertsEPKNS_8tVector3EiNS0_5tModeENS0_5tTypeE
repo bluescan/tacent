@@ -1,0 +1,1 @@
+<def f='Modules/Math/Src/tSpline.cpp' l='373' ll='397' type='void tMath::tBezierPath::SetControlVerts(const tMath::tVector3 * cvs, int numCVs, tMath::tBezierPath::tMode mode, tMath::tBezierPath::tType type)'/>

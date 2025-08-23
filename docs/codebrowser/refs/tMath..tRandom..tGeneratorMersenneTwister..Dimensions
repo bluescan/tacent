@@ -1,0 +1,16 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='60' type='const int'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='72'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='28' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='39' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='45' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='47' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='55' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='58' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='60' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='71' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='77' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='83' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='83' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='86' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='89' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='90' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9203' ll='9207'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9203'/>
+<size>24</size>
+<mbr r='VkSurfaceFormat2KHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSurfaceFormat2KHR::pNext' o='64' t='void *'/>
+<mbr r='VkSurfaceFormat2KHR::surfaceFormat' o='128' t='VkSurfaceFormatKHR'/>

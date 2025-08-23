@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/ios_base.h' l='595' type='long'/>
+<use f='include/c++/11/bits/ios_base.h' l='596' u='w' c='_ZNSt8ios_base6_WordsC1Ev'/>
+<use f='include/c++/11/bits/ios_base.h' l='843' u='a' c='_ZNSt8ios_base5iwordEi'/>
+<offset>64</offset>

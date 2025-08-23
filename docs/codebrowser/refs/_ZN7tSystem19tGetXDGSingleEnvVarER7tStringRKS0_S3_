@@ -1,0 +1,7 @@
+<dec f='Modules/System/Src/tMachine.cpp' l='33' type='bool tSystem::tGetXDGSingleEnvVar(tString &amp; xdgEnvVar, const tString &amp; xdgEnvVarName, const tString &amp; xdgEnvVarDefault)'/>
+<def f='Modules/System/Src/tMachine.cpp' l='229' ll='252' type='bool tSystem::tGetXDGSingleEnvVar(tString &amp; xdgEnvVar, const tString &amp; xdgEnvVarName, const tString &amp; xdgEnvVarDefault)'/>
+<use f='Modules/System/Src/tMachine.cpp' l='296' u='c' c='_ZN7tSystem15tGetXDGDataHomeER7tString'/>
+<use f='Modules/System/Src/tMachine.cpp' l='306' u='c' c='_ZN7tSystem17tGetXDGConfigHomeER7tString'/>
+<use f='Modules/System/Src/tMachine.cpp' l='316' u='c' c='_ZN7tSystem16tGetXDGStateHomeER7tString'/>
+<use f='Modules/System/Src/tMachine.cpp' l='354' u='c' c='_ZN7tSystem16tGetXDGCacheHomeER7tString'/>
+<use f='Modules/System/Src/tMachine.cpp' l='366' u='c' c='_ZN7tSystem17tGetXDGRuntimeDirER7tString'/>

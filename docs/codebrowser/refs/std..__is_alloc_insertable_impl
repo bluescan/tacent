@@ -1,0 +1,6 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/alloc_traits.h' l='755' ll='757'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/alloc_traits.h' l='759' ll='765'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='772'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='787'/>

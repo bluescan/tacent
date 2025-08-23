@@ -1,0 +1,5 @@
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='30' u='r' c='_ZNK6tScene10tPolyModel4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='54' u='a' c='_ZN6tScene10tPolyModel4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='245' u='w' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1595' u='r' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1610' u='w' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>

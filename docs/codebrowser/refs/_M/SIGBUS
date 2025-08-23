@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/signum-arch.h' l='33'/>
+<doc f='include/x86_64-linux-gnu/bits/signum-arch.h' l='32'>/* Historical signals specified by POSIX. */</doc>

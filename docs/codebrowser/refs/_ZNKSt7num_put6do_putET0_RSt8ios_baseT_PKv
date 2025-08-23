@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='2566' type='std::num_put::iter_type std::num_put::do_put(std::num_put::iter_type , std::ios_base &amp; , std::num_put::char_type , const void * ) const'/>
+<def f='include/c++/11/bits/locale_facets.tcc' l='1194' ll='1213' type='_OutIter std::num_put::do_put(std::num_put::iter_type __s, std::ios_base &amp; __io, std::num_put::char_type __fill, const void * __v) const'/>

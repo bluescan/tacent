@@ -1,0 +1,2 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='249' u='c' c='_ZN5tMath5tLineC1ERKNS_8tLineSegE'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='251' type='void tMath::tLine::Set(const tMath::tLineSeg &amp; seg)'/>

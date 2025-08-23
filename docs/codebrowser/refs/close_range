@@ -1,0 +1,6 @@
+<dec f='include/unistd.h' l='1208' type='int close_range(unsigned int __fd, unsigned int __max_fd, int __flags)'/>
+<doc f='include/unistd.h' l='1203'>/* Close all file descriptors in the range FD up to MAX_FD.  The flag FLAGS
+   are define by the CLOSE_RANGE prefix.  This function behaves like close
+   on the range and gaps where the file descriptor is invalid or errors
+   encountered while closing file descriptors are ignored.   Returns 0 on
+   successor or -1 for failure (and sets errno accordingly).  */</doc>

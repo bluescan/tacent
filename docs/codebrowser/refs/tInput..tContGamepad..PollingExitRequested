@@ -1,0 +1,5 @@
+<dec f='Modules/Input/Inc/Input/tContGamepad.h' l='103' type='bool'/>
+<offset>12896</offset>
+<doc f='Modules/Input/Inc/Input/tContGamepad.h' l='102'>// The PollExitRequested predicate is required to avoid &apos;spurious wakeups&apos;. Mutex protected.</doc>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='53' u='w' c='_ZN6tInput12tContGamepad11StopPollingEv'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='133' u='r' c='_ZN6tInput12tContGamepad4PollEv'/>

@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tUnits.h' l='63' type='21'/>
+<doc f='Modules/Foundation/Inc/Foundation/tUnits.h' l='58'>// Non SI prefixes.
+		// Bi and Di are missing on purpose because they are ambiguous. In chemistry they both mean &apos;2 of&apos; like
+		// sodium-BIcarbonate and carbon DIoxide, but sometimes they mean half. Never mind confusion about being paid
+		// bi-monthly. Certainly semi-monthly is clear. Actually, we should look here for more:
+		// https://en.wikipedia.org/wiki/Numeral_prefix like Duo, Quad, Sept, Hex, etc.</doc>

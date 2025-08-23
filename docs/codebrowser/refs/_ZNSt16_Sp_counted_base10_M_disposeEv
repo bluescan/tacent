@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/shared_ptr_base.h' l='136' type='void std::_Sp_counted_base::_M_dispose()'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='168' u='c' c='_ZNSt16_Sp_counted_base10_M_releaseEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='283' u='c' c='_ZNSt16_Sp_counted_base10_M_releaseEv'/>
+<ovr f='include/c++/11/bits/shared_ptr_base.h' l='367' c='_ZNSt15_Sp_counted_ptr10_M_disposeEv'/>
+<ovr f='include/c++/11/bits/shared_ptr_base.h' l='371' c='_ZNSt15_Sp_counted_ptr10_M_disposeEv'/>
+<ovr f='include/c++/11/bits/shared_ptr_base.h' l='375' c='_ZNSt15_Sp_counted_ptr10_M_disposeEv'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='133'>// Called when _M_use_count drops to zero, to release the resources
+      // managed by *this.</doc>

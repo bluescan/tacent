@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='140' type='double pow(double __x, double __y)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='196' u='c' c='_ZN5tMath4tPowEdd'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='64' u='c' c='_ZN6tImage9tImageHDR16SetupGammaTablesEf'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='75' u='c' c='_ZN6tImage9tImageHDR16SetupGammaTablesEf'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='628' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>

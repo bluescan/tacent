@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='220' type='const char *[6]'/>
+<def f='Modules/Math/Src/tColour.cpp' l='90' ll='98' type='const char *[6]'/>
+<use f='Modules/Math/Src/tColour.cpp' l='99' u='r'/>
+<use f='Modules/Math/Src/tColour.cpp' l='99' u='r'/>
+<use f='Modules/Math/Src/tColour.cpp' l='117' u='r' c='_Z19tGetChannelTypeName12tChannelType'/>
+<use f='Modules/Math/Src/tColour.cpp' l='138' u='r' c='_Z15tGetChannelTypePKc'/>

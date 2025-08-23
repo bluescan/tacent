@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tImagePNG.h' l='108' type='5'/>
+<use f='Modules/Image/Inc/Image/tImagePNG.h' l='115' u='r' c='_ZN6tImage9tImagePNG10SaveParams5ResetEv'/>
+<doc f='Modules/Image/Inc/Image/tImagePNG.h' l='106'>// Save function will decide format. If image is 8-bpc, RGB_24BIT_8BPC if all image pixels are opaque and
+		// RGBA_32BIT_8BPC otherwise. If image is 16-bpc, RGB_48BIT_16BPC for opaque, RGB_64BIT_16BPC otherwise.</doc>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='766' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

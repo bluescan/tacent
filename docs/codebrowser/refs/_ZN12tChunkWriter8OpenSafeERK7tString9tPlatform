@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='94' type='bool tChunkWriter::OpenSafe(const tString &amp; filename, tPlatform platform)'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='93'>// Same as above except returns false at first sign of failure.</doc>

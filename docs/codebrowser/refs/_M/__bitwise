@@ -1,0 +1,10 @@
+<dec f='include/linux/types.h' l='22'/>
+<use f='include/linux/types.h' l='24' u='c'/>
+<use f='include/linux/types.h' l='25' u='c'/>
+<use f='include/linux/types.h' l='26' u='c'/>
+<use f='include/linux/types.h' l='27' u='c'/>
+<use f='include/linux/types.h' l='28' u='c'/>
+<use f='include/linux/types.h' l='29' u='c'/>
+<use f='include/linux/types.h' l='31' u='c'/>
+<use f='include/linux/types.h' l='32' u='c'/>
+<use f='include/linux/types.h' l='47' u='c'/>

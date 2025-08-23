@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='122' type='tMath::tVector2'/>
+<offset>0</offset>
+<use f='Modules/Math/Src/tGeometry.cpp' l='334' u='r' c='_ZN5tMath20tIntersectFindRaySegERKNS_5tRay2ERKNS_9tLineSeg2ERNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='334' u='m' c='_ZN5tMath20tIntersectFindRaySegERKNS_5tRay2ERKNS_9tLineSeg2ERNS_8tVector2E'/>

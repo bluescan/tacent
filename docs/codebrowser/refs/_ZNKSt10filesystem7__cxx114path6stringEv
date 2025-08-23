@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/fs_path.h' l='419' type='std::string std::filesystem::path::string() const'/>
+<def f='include/c++/11/bits/fs_path.h' l='1084' ll='1085' type='std::string std::filesystem::path::string() const'/>

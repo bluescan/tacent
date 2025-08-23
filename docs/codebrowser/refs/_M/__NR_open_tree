@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/asm/unistd_64.h' l='343'/>
+<use f='include/x86_64-linux-gnu/bits/syscall.h' l='1122' u='a'/>

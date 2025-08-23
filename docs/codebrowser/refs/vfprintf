@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='365' type='int vfprintf(FILE *__restrict __s, const char *__restrict __format, __va_list_tag * __arg)'/>
+<doc f='include/stdio.h' l='361'>/* Write formatted output to S from argument list ARG.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

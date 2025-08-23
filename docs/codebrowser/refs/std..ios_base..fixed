@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/ios_base.h' l='350' type='const std::ios_base::fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='1073' u='r' c='_ZSt5fixedRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='1093' u='r' c='_ZSt8hexfloatRSt8ios_base'/>
+<doc f='include/c++/11/bits/ios_base.h' l='349'>/// Generate floating-point output in fixed-point notation.</doc>

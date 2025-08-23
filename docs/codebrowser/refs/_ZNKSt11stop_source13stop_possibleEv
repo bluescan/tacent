@@ -1,0 +1,2 @@
+<def f='include/c++/11/stop_token' l='518' ll='522' type='bool std::stop_source::stop_possible() const'/>
+<use f='include/c++/11/stop_token' l='534' u='c' c='_ZNKSt11stop_source12request_stopEv'/>

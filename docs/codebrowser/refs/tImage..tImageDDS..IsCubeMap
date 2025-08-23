@@ -1,0 +1,5 @@
+<use f='Modules/Image/Src/tImageDDS.cpp' l='895' u='w' c='_ZN6tImage9tImageDDS5ClearEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='912' u='w' c='_ZN6tImage9tImageDDS3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1221' u='w' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1225' u='w' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1254' u='w' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>

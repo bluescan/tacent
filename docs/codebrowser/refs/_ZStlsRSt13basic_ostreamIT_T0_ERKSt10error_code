@@ -1,0 +1,1 @@
+<def f='include/c++/11/system_error' l='278' ll='280' type='basic_ostream&lt;_CharT, _Traits&gt; &amp; std::operator&lt;&lt;(basic_ostream&lt;_CharT, _Traits&gt; &amp; __os, const std::error_code &amp; __e)'/>

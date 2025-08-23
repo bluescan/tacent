@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/localefwd.h' l='80' type='bool std::isupper(_CharT , const std::locale &amp; )'/>
+<def f='include/c++/11/bits/locale_facets.h' l='2613' ll='2615' type='bool std::isupper(_CharT __c, const std::locale &amp; __loc)'/>

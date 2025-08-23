@@ -1,0 +1,13 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='292' type='int tChunk::GetItem(tString &amp; item) const'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='297' u='c' c='_ZNK6tChunk8GetItemsEP7tStringi'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='943' u='c' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='78' u='c' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='186' u='c' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='190' u='c' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='194' u='c' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='198' u='c' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='202' u='c' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='206' u='c' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='210' u='c' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='214' u='c' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tObject.cpp' l='52' u='c' c='_ZN6tScene7tObject4LoadERK6tChunk'/>

@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='112' ll='124'/>
+<use f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='112'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='111'>/* Offsets relative to the start of a sample */</doc>

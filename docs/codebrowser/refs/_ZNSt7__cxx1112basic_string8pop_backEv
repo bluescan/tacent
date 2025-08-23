@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/basic_string.h' l='1883' ll='1888' type='void std::basic_string::pop_back()'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1878'>/**
+       *  @brief  Remove the last character.
+       *
+       *  The string must be non-empty.
+       */</doc>

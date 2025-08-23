@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/stl_function.h' l='1051' type='_Predicate'/>
+<use f='include/c++/11/bits/stl_function.h' l='1056' u='w' c='_ZNSt13binary_negateC1ERKT_'/>
+<use f='include/c++/11/bits/stl_function.h' l='1062' u='c' c='_ZNKSt13binary_negateclERKNT_19first_argument_typeERKNS0_20second_argument_typeE'/>

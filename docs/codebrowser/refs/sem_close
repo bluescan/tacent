@@ -1,0 +1,2 @@
+<dec f='include/semaphore.h' l='46' type='int sem_close(sem_t * __sem)'/>
+<doc f='include/semaphore.h' l='45'>/* Close descriptor for named semaphore SEM.  */</doc>

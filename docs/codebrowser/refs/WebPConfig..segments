@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='110' type='int'/>
+<offset>192</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='109'>// try to achieve. Takes precedence over target_size.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='110'>// maximum number of segments to use, in [1..4]</doc>

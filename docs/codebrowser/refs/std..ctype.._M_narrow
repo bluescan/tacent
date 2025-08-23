@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='700' type='char[256]'/>
+<use f='include/c++/11/bits/locale_facets.h' l='936' u='r' c='_ZNKSt5ctypeIcE6narrowEcc'/>
+<use f='include/c++/11/bits/locale_facets.h' l='937' u='r' c='_ZNKSt5ctypeIcE6narrowEcc'/>
+<use f='include/c++/11/bits/locale_facets.h' l='940' u='w' c='_ZNKSt5ctypeIcE6narrowEcc'/>
+<dec f='include/c++/11/bits/locale_facets.h' l='1202' type='char[128]'/>
+<offset>200</offset>

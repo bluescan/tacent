@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/std_function.h' l='386' ll='395' type='void std::function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt;::function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt;(const function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt; &amp; __x)'/>
+<doc f='include/c++/11/bits/std_function.h' l='378'>/**
+       *  @brief %Function copy constructor.
+       *  @param __x A %function object with identical call signature.
+       *  @post `bool(*this) == bool(__x)`
+       *
+       *  The newly-created %function contains a copy of the target of
+       *  `__x` (if it has one).
+       */</doc>

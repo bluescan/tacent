@@ -1,0 +1,460 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>time.h source code [include/time.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/time.h'; var root_path = '..'; var data_path = '../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='./'>include</a>/<a href='time.h.html'>time.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 1991-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i></i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i></i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i> *	ISO C99 Standard: 7.23 Date and time	&lt;time.h&gt;</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#<span data-ppcond="22">ifndef</span>	<span class="macro" data-ref="_M/_TIME_H">_TIME_H</span></u>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#define <dfn class="macro" id="_M/_TIME_H" data-ref="_M/_TIME_H">_TIME_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#include &lt;features.h&gt;</u>&nbsp</td></tr>
+<tr><th id="26">26</th><td>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#define <dfn class="macro" id="_M/__need_size_t" data-ref="_M/__need_size_t">__need_size_t</dfn></u>&nbsp</td></tr>
+<tr><th id="28">28</th><td><u>#define <dfn class="macro" id="_M/__need_NULL" data-ref="_M/__need_NULL">__need_NULL</dfn></u>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#include &lt;stddef.h&gt;</u>&nbsp</td></tr>
+<tr><th id="30">30</th><td>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>/* This defines CLOCKS_PER_SEC, which is the number of processor clock</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>   ticks per second, and possibly a number of other constants.   */</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#include &lt;bits/time.h&gt;</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i>/* Many of the typedefs and structs whose official home is this header</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i>   may also need to be defined by other headers.  */</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#include &lt;bits/types/clock_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#include &lt;bits/types/time_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#include &lt;bits/types/struct_tm.h&gt;</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="41">if</span> defined <a class="macro" href="features.h.html#333" data-ref="_M/__USE_POSIX199309">__USE_POSIX199309</a> || defined <a class="macro" href="features.h.html#270" data-ref="_M/__USE_ISOC11">__USE_ISOC11</a></u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u># include &lt;bits/types/struct_timespec.h&gt;</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#<span data-ppcond="41">endif</span></u>&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#<span data-ppcond="45">ifdef</span> <a class="macro" href="features.h.html#333" data-ref="_M/__USE_POSIX199309">__USE_POSIX199309</a></u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u># include &lt;bits/types/clockid_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u># include &lt;bits/types/timer_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u># include &lt;bits/types/struct_itimerspec.h&gt;</u>&nbsp</td></tr>
+<tr><th id="49">49</th><td><b>struct</b> <dfn class="type" id="sigevent" title='sigevent' data-ref="sigevent">sigevent</dfn>;&nbsp</td></tr>
+<tr><th id="50">50</th><td><u>#<span data-ppcond="45">endif</span></u>&nbsp</td></tr>
+<tr><th id="51">51</th><td>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u>#<span data-ppcond="52">ifdef</span> <a class="macro" href="features.h.html#366" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</a></u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><u># <span data-ppcond="53">ifndef</span> <a class="macro" href="x86_64-linux-gnu/sys/types.h.html#98" data-ref="_M/__pid_t_defined">__pid_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="54">54</th><td><b>typedef</b> __pid_t pid_t;&nbsp</td></tr>
+<tr><th id="55">55</th><td><u>#  define __pid_t_defined</u>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u># <span data-ppcond="53">endif</span></u>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#<span data-ppcond="52">endif</span></u>&nbsp</td></tr>
+<tr><th id="58">58</th><td>&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#<span data-ppcond="59">ifdef</span> <a class="macro" href="features.h.html#363" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</a></u>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u># include &lt;bits/types/locale_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="61">61</th><td><u>#<span data-ppcond="59">endif</span></u>&nbsp</td></tr>
+<tr><th id="62">62</th><td>&nbsp</td></tr>
+<tr><th id="63">63</th><td><u>#<span data-ppcond="63">ifdef</span> <a class="macro" href="features.h.html#270" data-ref="_M/__USE_ISOC11">__USE_ISOC11</a></u>&nbsp</td></tr>
+<tr><th id="64">64</th><td><i>/* Time base values for timespec_get.  */</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><u># define <dfn class="macro" id="_M/TIME_UTC" data-ref="_M/TIME_UTC">TIME_UTC</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>#<span data-ppcond="63">endif</span></u>&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td><a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#133" title="extern &quot;C&quot; {" data-ref="_M/__BEGIN_DECLS">__BEGIN_DECLS</a>&nbsp</td></tr>
+<tr><th id="69">69</th><td>&nbsp</td></tr>
+<tr><th id="70">70</th><td><i>/* Time used by the program so far (user time + system time).</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i>   The result / CLOCKS_PER_SEC is program time in seconds.  */</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/clock_t.h.html#clock_t" title='clock_t' data-type='__clock_t' data-ref="clock_t">clock_t</a> <dfn class="decl fn" id="clock" title='clock' data-ref="clock">clock</dfn> (<em>void</em>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="73">73</th><td>&nbsp</td></tr>
+<tr><th id="74">74</th><td><u>#<span data-ppcond="74">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="75">75</th><td><i>/* Return the current time and put it in *TIMER if TIMER is not NULL.  */</i>&nbsp</td></tr>
+<tr><th id="76">76</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/time_t.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="decl fn" id="time" title='time' data-ref="time">time</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/time_t.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> *<dfn class="local col3 decl" id="3__timer" title='__timer' data-type='time_t *' data-ref="3__timer">__timer</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td><i>/* Return the difference between TIME1 and TIME0.  */</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><b>extern</b> <em>double</em> <dfn class="decl fn" id="difftime" title='difftime' data-ref="difftime">difftime</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/time_t.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col4 decl" id="4__time1" title='__time1' data-type='time_t' data-ref="4__time1">__time1</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/time_t.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="local col5 decl" id="5__time0" title='__time0' data-type='time_t' data-ref="5__time0">__time0</dfn>)&nbsp</td></tr>
+<tr><th id="80">80</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <b>__attribute__</b> ((<em>__const__</em>));&nbsp</td></tr>
+<tr><th id="81">81</th><td>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i>/* Return the `time_t' representation of TP and normalize TP.  */</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/time_t.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="decl fn" id="mktime" title='mktime' data-ref="mktime">mktime</dfn> (<b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="local col6 decl" id="6__tp" title='__tp' data-type='struct tm *' data-ref="6__tp">__tp</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="84">84</th><td><u>#<span data-ppcond="74">else</span></u>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u># ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><b>extern</b> time_t __REDIRECT_NTH (time, (time_t *__timer), __time64);&nbsp</td></tr>
+<tr><th id="87">87</th><td><b>extern</b> <em>double</em> __REDIRECT_NTH (difftime, (time_t __time1, time_t __time0),&nbsp</td></tr>
+<tr><th id="88">88</th><td>                              __difftime64) <b>__attribute__</b> ((<em>__const__</em>));&nbsp</td></tr>
+<tr><th id="89">89</th><td><b>extern</b> time_t __REDIRECT_NTH (mktime, (<b>struct</b> tm *__tp), __mktime64);&nbsp</td></tr>
+<tr><th id="90">90</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#  define time __time64</u>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u>#  define difftime __difftime64</u>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>#  define mktime __mktime64</u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="95">95</th><td><u>#<span data-ppcond="74">endif</span></u>&nbsp</td></tr>
+<tr><th id="96">96</th><td>&nbsp</td></tr>
+<tr><th id="97">97</th><td><i>/* Format TP into S according to FORMAT.</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i>   Write no more than MAXSIZE characters and return the number</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><i>   of characters written, or 0 if it would exceed MAXSIZE.  */</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td><b>extern</b> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl fn" id="strftime" title='strftime' data-ref="strftime">strftime</dfn> (<em>char</em> *<b>__restrict</b> <dfn class="local col7 decl" id="7__s" title='__s' data-type='char *__restrict' data-ref="7__s">__s</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col8 decl" id="8__maxsize" title='__maxsize' data-type='size_t' data-ref="8__maxsize">__maxsize</dfn>,&nbsp</td></tr>
+<tr><th id="101">101</th><td>			<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col9 decl" id="9__format" title='__format' data-type='const char *__restrict' data-ref="9__format">__format</dfn>,&nbsp</td></tr>
+<tr><th id="102">102</th><td>			<em>const</em> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<b>__restrict</b> <dfn class="local col0 decl" id="10__tp" title='__tp' data-type='const struct tm *__restrict' data-ref="10__tp">__tp</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="103">103</th><td>&nbsp</td></tr>
+<tr><th id="104">104</th><td><u>#<span data-ppcond="104">ifdef</span> <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a></u>&nbsp</td></tr>
+<tr><th id="105">105</th><td><i>/* Parse S according to FORMAT and store binary time information in TP.</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><i>   The return value is a pointer to the first unparsed character in S.  */</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td><b>extern</b> <em>char</em> *<dfn class="decl fn" id="strptime" title='strptime' data-ref="strptime">strptime</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col1 decl" id="11__s" title='__s' data-type='const char *__restrict' data-ref="11__s">__s</dfn>,&nbsp</td></tr>
+<tr><th id="108">108</th><td>		       <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col2 decl" id="12__fmt" title='__fmt' data-type='const char *__restrict' data-ref="12__fmt">__fmt</dfn>, <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="local col3 decl" id="13__tp" title='__tp' data-type='struct tm *' data-ref="13__tp">__tp</dfn>)&nbsp</td></tr>
+<tr><th id="109">109</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>#<span data-ppcond="104">endif</span></u>&nbsp</td></tr>
+<tr><th id="111">111</th><td>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>#<span data-ppcond="112">ifdef</span> <a class="macro" href="features.h.html#363" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</a></u>&nbsp</td></tr>
+<tr><th id="113">113</th><td><i>/* Similar to the two functions above but take the information from</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td><i>   the provided locale and not the global locale.  */</i>&nbsp</td></tr>
+<tr><th id="115">115</th><td>&nbsp</td></tr>
+<tr><th id="116">116</th><td><b>extern</b> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl fn" id="strftime_l" title='strftime_l' data-ref="strftime_l">strftime_l</dfn> (<em>char</em> *<b>__restrict</b> <dfn class="local col4 decl" id="14__s" title='__s' data-type='char *__restrict' data-ref="14__s">__s</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col5 decl" id="15__maxsize" title='__maxsize' data-type='size_t' data-ref="15__maxsize">__maxsize</dfn>,&nbsp</td></tr>
+<tr><th id="117">117</th><td>			  <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col6 decl" id="16__format" title='__format' data-type='const char *__restrict' data-ref="16__format">__format</dfn>,&nbsp</td></tr>
+<tr><th id="118">118</th><td>			  <em>const</em> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<b>__restrict</b> <dfn class="local col7 decl" id="17__tp" title='__tp' data-type='const struct tm *__restrict' data-ref="17__tp">__tp</dfn>,&nbsp</td></tr>
+<tr><th id="119">119</th><td>			  <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col8 decl" id="18__loc" title='__loc' data-type='locale_t' data-ref="18__loc">__loc</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="120">120</th><td><u>#<span data-ppcond="112">endif</span></u>&nbsp</td></tr>
+<tr><th id="121">121</th><td>&nbsp</td></tr>
+<tr><th id="122">122</th><td><u>#<span data-ppcond="122">ifdef</span> <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="123">123</th><td><b>extern</b> <em>char</em> *<dfn class="decl fn" id="strptime_l" title='strptime_l' data-ref="strptime_l">strptime_l</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col9 decl" id="19__s" title='__s' data-type='const char *__restrict' data-ref="19__s">__s</dfn>,&nbsp</td></tr>
+<tr><th id="124">124</th><td>			 <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col0 decl" id="20__fmt" title='__fmt' data-type='const char *__restrict' data-ref="20__fmt">__fmt</dfn>, <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="local col1 decl" id="21__tp" title='__tp' data-type='struct tm *' data-ref="21__tp">__tp</dfn>,&nbsp</td></tr>
+<tr><th id="125">125</th><td>			 <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col2 decl" id="22__loc" title='__loc' data-type='locale_t' data-ref="22__loc">__loc</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="126">126</th><td><u>#<span data-ppcond="122">endif</span></u>&nbsp</td></tr>
+<tr><th id="127">127</th><td>&nbsp</td></tr>
+<tr><th id="128">128</th><td>&nbsp</td></tr>
+<tr><th id="129">129</th><td><u>#<span data-ppcond="129">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="130">130</th><td><i>/* Return the `struct tm' representation of *TIMER</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td><i>   in Universal Coordinated Time (aka Greenwich Mean Time).  */</i>&nbsp</td></tr>
+<tr><th id="132">132</th><td><b>extern</b> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="decl fn" id="gmtime" title='gmtime' data-ref="gmtime">gmtime</dfn> (<em>const</em> <a class="typedef" href="x86_64-linux-gnu/bits/types/time_t.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> *<dfn class="local col3 decl" id="23__timer" title='__timer' data-type='const time_t *' data-ref="23__timer">__timer</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="133">133</th><td>&nbsp</td></tr>
+<tr><th id="134">134</th><td><i>/* Return the `struct tm' representation</i>&nbsp</td></tr>
+<tr><th id="135">135</th><td><i>   of *TIMER in the local timezone.  */</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td><b>extern</b> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="decl fn" id="localtime" title='localtime' data-ref="localtime">localtime</dfn> (<em>const</em> <a class="typedef" href="x86_64-linux-gnu/bits/types/time_t.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> *<dfn class="local col4 decl" id="24__timer" title='__timer' data-type='const time_t *' data-ref="24__timer">__timer</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="137">137</th><td>&nbsp</td></tr>
+<tr><th id="138">138</th><td><u>#<span data-ppcond="129">else</span></u>&nbsp</td></tr>
+<tr><th id="139">139</th><td><u># ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="140">140</th><td><b>extern</b> <b>struct</b> tm*__REDIRECT_NTH (gmtime, (<em>const</em> time_t *__timer), __gmtime64);&nbsp</td></tr>
+<tr><th id="141">141</th><td><b>extern</b> <b>struct</b> tm *__REDIRECT_NTH (localtime, (<em>const</em> time_t *__timer),&nbsp</td></tr>
+<tr><th id="142">142</th><td>				  __localtime64);&nbsp</td></tr>
+<tr><th id="143">143</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="144">144</th><td><u>#  define gmtime __gmtime64</u>&nbsp</td></tr>
+<tr><th id="145">145</th><td><u>#  define localtime __localtime64</u>&nbsp</td></tr>
+<tr><th id="146">146</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="147">147</th><td><u>#<span data-ppcond="129">endif</span></u>&nbsp</td></tr>
+<tr><th id="148">148</th><td>&nbsp</td></tr>
+<tr><th id="149">149</th><td>&nbsp</td></tr>
+<tr><th id="150">150</th><td><u>#<span data-ppcond="150">if</span> defined <a class="macro" href="features.h.html#325" data-ref="_M/__USE_POSIX">__USE_POSIX</a> || <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (ISOC2X)</u>&nbsp</td></tr>
+<tr><th id="151">151</th><td><u># <span data-ppcond="151">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="152">152</th><td><i>/* Return the `struct tm' representation of *TIMER in UTC,</i>&nbsp</td></tr>
+<tr><th id="153">153</th><td><i>   using *TP to store the result.  */</i>&nbsp</td></tr>
+<tr><th id="154">154</th><td><b>extern</b> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="decl fn" id="gmtime_r" title='gmtime_r' data-ref="gmtime_r">gmtime_r</dfn> (<em>const</em> <a class="typedef" href="x86_64-linux-gnu/bits/types/time_t.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> *<b>__restrict</b> <dfn class="local col5 decl" id="25__timer" title='__timer' data-type='const time_t *__restrict' data-ref="25__timer">__timer</dfn>,&nbsp</td></tr>
+<tr><th id="155">155</th><td>			    <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<b>__restrict</b> <dfn class="local col6 decl" id="26__tp" title='__tp' data-type='struct tm *__restrict' data-ref="26__tp">__tp</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="156">156</th><td>&nbsp</td></tr>
+<tr><th id="157">157</th><td><i>/* Return the `struct tm' representation of *TIMER in local time,</i>&nbsp</td></tr>
+<tr><th id="158">158</th><td><i>   using *TP to store the result.  */</i>&nbsp</td></tr>
+<tr><th id="159">159</th><td><b>extern</b> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="decl fn" id="localtime_r" title='localtime_r' data-ref="localtime_r">localtime_r</dfn> (<em>const</em> <a class="typedef" href="x86_64-linux-gnu/bits/types/time_t.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> *<b>__restrict</b> <dfn class="local col7 decl" id="27__timer" title='__timer' data-type='const time_t *__restrict' data-ref="27__timer">__timer</dfn>,&nbsp</td></tr>
+<tr><th id="160">160</th><td>			       <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<b>__restrict</b> <dfn class="local col8 decl" id="28__tp" title='__tp' data-type='struct tm *__restrict' data-ref="28__tp">__tp</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="161">161</th><td><u># <span data-ppcond="151">else</span></u>&nbsp</td></tr>
+<tr><th id="162">162</th><td><u>#  ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="163">163</th><td><b>extern</b> <b>struct</b> tm*__REDIRECT_NTH (gmtime_r, (<em>const</em> time_t *<b>__restrict</b> __timer,&nbsp</td></tr>
+<tr><th id="164">164</th><td>                                            <b>struct</b> tm *<b>__restrict</b> __tp),&nbsp</td></tr>
+<tr><th id="165">165</th><td>                                 __gmtime64_r);&nbsp</td></tr>
+<tr><th id="166">166</th><td>&nbsp</td></tr>
+<tr><th id="167">167</th><td><b>extern</b> <b>struct</b> tm*__REDIRECT_NTH (localtime_r, (<em>const</em> time_t *<b>__restrict</b> __t,&nbsp</td></tr>
+<tr><th id="168">168</th><td>                                               <b>struct</b> tm *<b>__restrict</b> __tp),&nbsp</td></tr>
+<tr><th id="169">169</th><td>                                 __localtime64_r);&nbsp</td></tr>
+<tr><th id="170">170</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="171">171</th><td><u>#   define gmtime_r __gmtime64_r</u>&nbsp</td></tr>
+<tr><th id="172">172</th><td><u>#   define localtime_r __localtime_r</u>&nbsp</td></tr>
+<tr><th id="173">173</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="174">174</th><td><u># <span data-ppcond="151">endif</span></u>&nbsp</td></tr>
+<tr><th id="175">175</th><td><u>#<span data-ppcond="150">endif</span>	/* POSIX || C2X */</u>&nbsp</td></tr>
+<tr><th id="176">176</th><td>&nbsp</td></tr>
+<tr><th id="177">177</th><td><i>/* Return a string of the form "Day Mon dd hh:mm:ss yyyy\n"</i>&nbsp</td></tr>
+<tr><th id="178">178</th><td><i>   that is the representation of TP in this format.  */</i>&nbsp</td></tr>
+<tr><th id="179">179</th><td><b>extern</b> <em>char</em> *<dfn class="decl fn" id="asctime" title='asctime' data-ref="asctime">asctime</dfn> (<em>const</em> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="local col9 decl" id="29__tp" title='__tp' data-type='const struct tm *' data-ref="29__tp">__tp</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="180">180</th><td>&nbsp</td></tr>
+<tr><th id="181">181</th><td><i>/* Equivalent to `asctime (localtime (timer))'.  */</i>&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>#<span data-ppcond="182">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="183">183</th><td><b>extern</b> <em>char</em> *<dfn class="decl fn" id="ctime" title='ctime' data-ref="ctime">ctime</dfn> (<em>const</em> <a class="typedef" href="x86_64-linux-gnu/bits/types/time_t.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> *<dfn class="local col0 decl" id="30__timer" title='__timer' data-type='const time_t *' data-ref="30__timer">__timer</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="184">184</th><td><u>#<span data-ppcond="182">else</span></u>&nbsp</td></tr>
+<tr><th id="185">185</th><td><u># ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="186">186</th><td><b>extern</b> <em>char</em> *__REDIRECT_NTH (ctime, (<em>const</em> time_t *__timer), __ctime64);&nbsp</td></tr>
+<tr><th id="187">187</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="188">188</th><td><u>#  define ctime __ctime64</u>&nbsp</td></tr>
+<tr><th id="189">189</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>#<span data-ppcond="182">endif</span></u>&nbsp</td></tr>
+<tr><th id="191">191</th><td>&nbsp</td></tr>
+<tr><th id="192">192</th><td><u>#<span data-ppcond="192">ifdef</span> <a class="macro" href="features.h.html#325" data-ref="_M/__USE_POSIX">__USE_POSIX</a></u>&nbsp</td></tr>
+<tr><th id="193">193</th><td><i>/* Reentrant versions of the above functions.  */</i>&nbsp</td></tr>
+<tr><th id="194">194</th><td>&nbsp</td></tr>
+<tr><th id="195">195</th><td><i>/* Return in BUF a string of the form "Day Mon dd hh:mm:ss yyyy\n"</i>&nbsp</td></tr>
+<tr><th id="196">196</th><td><i>   that is the representation of TP in this format.  */</i>&nbsp</td></tr>
+<tr><th id="197">197</th><td><b>extern</b> <em>char</em> *<dfn class="decl fn" id="asctime_r" title='asctime_r' data-ref="asctime_r">asctime_r</dfn> (<em>const</em> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<b>__restrict</b> <dfn class="local col1 decl" id="31__tp" title='__tp' data-type='const struct tm *__restrict' data-ref="31__tp">__tp</dfn>,&nbsp</td></tr>
+<tr><th id="198">198</th><td>			<em>char</em> *<b>__restrict</b> <dfn class="local col2 decl" id="32__buf" title='__buf' data-type='char *__restrict' data-ref="32__buf">__buf</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="199">199</th><td>&nbsp</td></tr>
+<tr><th id="200">200</th><td><i>/* Equivalent to `asctime_r (localtime_r (timer, *TMP*), buf)'.  */</i>&nbsp</td></tr>
+<tr><th id="201">201</th><td><u>#<span data-ppcond="201">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="202">202</th><td><b>extern</b> <em>char</em> *<dfn class="decl fn" id="ctime_r" title='ctime_r' data-ref="ctime_r">ctime_r</dfn> (<em>const</em> <a class="typedef" href="x86_64-linux-gnu/bits/types/time_t.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> *<b>__restrict</b> <dfn class="local col3 decl" id="33__timer" title='__timer' data-type='const time_t *__restrict' data-ref="33__timer">__timer</dfn>,&nbsp</td></tr>
+<tr><th id="203">203</th><td>		      <em>char</em> *<b>__restrict</b> <dfn class="local col4 decl" id="34__buf" title='__buf' data-type='char *__restrict' data-ref="34__buf">__buf</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="204">204</th><td><u>#<span data-ppcond="201">else</span></u>&nbsp</td></tr>
+<tr><th id="205">205</th><td><u># ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="206">206</th><td><b>extern</b> <em>char</em> *__REDIRECT_NTH (ctime_r, (<em>const</em> time_t *<b>__restrict</b> __timer,&nbsp</td></tr>
+<tr><th id="207">207</th><td>                                       <em>char</em> *<b>__restrict</b> __buf), __ctime64_r);&nbsp</td></tr>
+<tr><th id="208">208</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="209">209</th><td><u>#  define ctime_r __ctime64_r</u>&nbsp</td></tr>
+<tr><th id="210">210</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="211">211</th><td><u>#<span data-ppcond="201">endif</span></u>&nbsp</td></tr>
+<tr><th id="212">212</th><td>&nbsp</td></tr>
+<tr><th id="213">213</th><td><u>#<span data-ppcond="192">endif</span>	/* POSIX */</u>&nbsp</td></tr>
+<tr><th id="214">214</th><td>&nbsp</td></tr>
+<tr><th id="215">215</th><td>&nbsp</td></tr>
+<tr><th id="216">216</th><td><i>/* Defined in localtime.c.  */</i>&nbsp</td></tr>
+<tr><th id="217">217</th><td><b>extern</b> <em>char</em> *<dfn class="decl" id="__tzname" title='__tzname' data-ref="__tzname">__tzname</dfn>[<var>2</var>];	<i>/* Current timezone names.  */</i>&nbsp</td></tr>
+<tr><th id="218">218</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="__daylight" title='__daylight' data-ref="__daylight">__daylight</dfn>;		<i>/* If daylight-saving time is ever in use.  */</i>&nbsp</td></tr>
+<tr><th id="219">219</th><td><b>extern</b> <em>long</em> <em>int</em> <dfn class="decl" id="__timezone" title='__timezone' data-ref="__timezone">__timezone</dfn>;	<i>/* Seconds west of UTC.  */</i>&nbsp</td></tr>
+<tr><th id="220">220</th><td>&nbsp</td></tr>
+<tr><th id="221">221</th><td>&nbsp</td></tr>
+<tr><th id="222">222</th><td><u>#<span data-ppcond="222">ifdef</span>	<a class="macro" href="features.h.html#325" data-ref="_M/__USE_POSIX">__USE_POSIX</a></u>&nbsp</td></tr>
+<tr><th id="223">223</th><td><i>/* Same as above.  */</i>&nbsp</td></tr>
+<tr><th id="224">224</th><td><b>extern</b> <em>char</em> *<dfn class="decl" id="tzname" title='tzname' data-ref="tzname">tzname</dfn>[<var>2</var>];&nbsp</td></tr>
+<tr><th id="225">225</th><td>&nbsp</td></tr>
+<tr><th id="226">226</th><td><i>/* Set time conversion information from the TZ environment variable.</i>&nbsp</td></tr>
+<tr><th id="227">227</th><td><i>   If TZ is not defined, a locale-dependent default is used.  */</i>&nbsp</td></tr>
+<tr><th id="228">228</th><td><b>extern</b> <em>void</em> <dfn class="decl fn" id="tzset" title='tzset' data-ref="tzset">tzset</dfn> (<em>void</em>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="229">229</th><td><u>#<span data-ppcond="222">endif</span></u>&nbsp</td></tr>
+<tr><th id="230">230</th><td>&nbsp</td></tr>
+<tr><th id="231">231</th><td><u>#<span data-ppcond="231">if</span> defined <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> || defined <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a></u>&nbsp</td></tr>
+<tr><th id="232">232</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="daylight" title='daylight' data-ref="daylight">daylight</dfn>;&nbsp</td></tr>
+<tr><th id="233">233</th><td><b>extern</b> <em>long</em> <em>int</em> <dfn class="decl" id="timezone" title='timezone' data-ref="timezone">timezone</dfn>;&nbsp</td></tr>
+<tr><th id="234">234</th><td><u>#<span data-ppcond="231">endif</span></u>&nbsp</td></tr>
+<tr><th id="235">235</th><td>&nbsp</td></tr>
+<tr><th id="236">236</th><td>&nbsp</td></tr>
+<tr><th id="237">237</th><td><i>/* Nonzero if YEAR is a leap year (every 4 years,</i>&nbsp</td></tr>
+<tr><th id="238">238</th><td><i>   except every 100th isn't, and every 400th is).  */</i>&nbsp</td></tr>
+<tr><th id="239">239</th><td><u>#define <dfn class="macro" id="_M/__isleap" data-ref="_M/__isleap">__isleap</dfn>(year)	\</u>&nbsp</td></tr>
+<tr><th id="240">240</th><td><u>  ((year) % 4 == 0 &amp;&amp; ((year) % 100 != 0 || (year) % 400 == 0))</u>&nbsp</td></tr>
+<tr><th id="241">241</th><td>&nbsp</td></tr>
+<tr><th id="242">242</th><td>&nbsp</td></tr>
+<tr><th id="243">243</th><td><u>#<span data-ppcond="243">ifdef</span> <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="244">244</th><td><i>/* Miscellaneous functions many Unices inherited from the public domain</i>&nbsp</td></tr>
+<tr><th id="245">245</th><td><i>   localtime package.  These are included only for compatibility.  */</i>&nbsp</td></tr>
+<tr><th id="246">246</th><td>&nbsp</td></tr>
+<tr><th id="247">247</th><td><u>#<span data-ppcond="247">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="248">248</th><td><i>/* Like `mktime', but for TP represents Universal Time, not local time.  */</i>&nbsp</td></tr>
+<tr><th id="249">249</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/time_t.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="decl fn" id="timegm" title='timegm' data-ref="timegm">timegm</dfn> (<b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="local col5 decl" id="35__tp" title='__tp' data-type='struct tm *' data-ref="35__tp">__tp</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="250">250</th><td><i>/* Another name for `mktime'.  */</i>&nbsp</td></tr>
+<tr><th id="251">251</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/time_t.h.html#time_t" title='time_t' data-type='__time_t' data-ref="time_t">time_t</a> <dfn class="decl fn" id="timelocal" title='timelocal' data-ref="timelocal">timelocal</dfn> (<b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="local col6 decl" id="36__tp" title='__tp' data-type='struct tm *' data-ref="36__tp">__tp</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="252">252</th><td><u>#<span data-ppcond="247">else</span></u>&nbsp</td></tr>
+<tr><th id="253">253</th><td><u># ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="254">254</th><td><b>extern</b> time_t __REDIRECT_NTH (timegm, (<b>struct</b> tm *__tp), __timegm64);&nbsp</td></tr>
+<tr><th id="255">255</th><td><b>extern</b> time_t __REDIRECT_NTH (timelocal, (<b>struct</b> tm *__tp), __mktime64);&nbsp</td></tr>
+<tr><th id="256">256</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="257">257</th><td><u>#  define timegm __timegm64</u>&nbsp</td></tr>
+<tr><th id="258">258</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="259">259</th><td><u>#<span data-ppcond="247">endif</span></u>&nbsp</td></tr>
+<tr><th id="260">260</th><td>&nbsp</td></tr>
+<tr><th id="261">261</th><td><i>/* Return the number of days in YEAR.  */</i>&nbsp</td></tr>
+<tr><th id="262">262</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="dysize" title='dysize' data-ref="dysize">dysize</dfn> (<em>int</em> <dfn class="local col7 decl" id="37__year" title='__year' data-type='int' data-ref="37__year">__year</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>  <b>__attribute__</b> ((<em>__const__</em>));&nbsp</td></tr>
+<tr><th id="263">263</th><td><u>#<span data-ppcond="243">endif</span></u>&nbsp</td></tr>
+<tr><th id="264">264</th><td>&nbsp</td></tr>
+<tr><th id="265">265</th><td>&nbsp</td></tr>
+<tr><th id="266">266</th><td><u>#<span data-ppcond="266">ifdef</span> <a class="macro" href="features.h.html#333" data-ref="_M/__USE_POSIX199309">__USE_POSIX199309</a></u>&nbsp</td></tr>
+<tr><th id="267">267</th><td><u># <span data-ppcond="267">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="268">268</th><td><i>/* Pause execution for a number of nanoseconds.</i>&nbsp</td></tr>
+<tr><th id="269">269</th><td><i></i>&nbsp</td></tr>
+<tr><th id="270">270</th><td><i>   This function is a cancellation point and therefore not marked with</i>&nbsp</td></tr>
+<tr><th id="271">271</th><td><i>   __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="272">272</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="nanosleep" title='nanosleep' data-ref="nanosleep">nanosleep</dfn> (<em>const</em> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_timespec.h.html#timespec" title='timespec' data-ref="timespec">timespec</a> *<dfn class="local col8 decl" id="38__requested_time" title='__requested_time' data-type='const struct timespec *' data-ref="38__requested_time">__requested_time</dfn>,&nbsp</td></tr>
+<tr><th id="273">273</th><td>		      <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_timespec.h.html#timespec" title='timespec' data-ref="timespec">timespec</a> *<dfn class="local col9 decl" id="39__remaining" title='__remaining' data-type='struct timespec *' data-ref="39__remaining">__remaining</dfn>);&nbsp</td></tr>
+<tr><th id="274">274</th><td>&nbsp</td></tr>
+<tr><th id="275">275</th><td><i>/* Get resolution of clock CLOCK_ID.  */</i>&nbsp</td></tr>
+<tr><th id="276">276</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="clock_getres" title='clock_getres' data-ref="clock_getres">clock_getres</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/clockid_t.h.html#clockid_t" title='clockid_t' data-type='__clockid_t' data-ref="clockid_t">clockid_t</a> <dfn class="local col0 decl" id="40__clock_id" title='__clock_id' data-type='clockid_t' data-ref="40__clock_id">__clock_id</dfn>, <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_timespec.h.html#timespec" title='timespec' data-ref="timespec">timespec</a> *<dfn class="local col1 decl" id="41__res" title='__res' data-type='struct timespec *' data-ref="41__res">__res</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="277">277</th><td>&nbsp</td></tr>
+<tr><th id="278">278</th><td><i>/* Get current value of clock CLOCK_ID and store it in TP.  */</i>&nbsp</td></tr>
+<tr><th id="279">279</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="clock_gettime" title='clock_gettime' data-ref="clock_gettime">clock_gettime</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/clockid_t.h.html#clockid_t" title='clockid_t' data-type='__clockid_t' data-ref="clockid_t">clockid_t</a> <dfn class="local col2 decl" id="42__clock_id" title='__clock_id' data-type='clockid_t' data-ref="42__clock_id">__clock_id</dfn>, <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_timespec.h.html#timespec" title='timespec' data-ref="timespec">timespec</a> *<dfn class="local col3 decl" id="43__tp" title='__tp' data-type='struct timespec *' data-ref="43__tp">__tp</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="280">280</th><td>&nbsp</td></tr>
+<tr><th id="281">281</th><td><i>/* Set clock CLOCK_ID to value TP.  */</i>&nbsp</td></tr>
+<tr><th id="282">282</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="clock_settime" title='clock_settime' data-ref="clock_settime">clock_settime</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/clockid_t.h.html#clockid_t" title='clockid_t' data-type='__clockid_t' data-ref="clockid_t">clockid_t</a> <dfn class="local col4 decl" id="44__clock_id" title='__clock_id' data-type='clockid_t' data-ref="44__clock_id">__clock_id</dfn>, <em>const</em> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_timespec.h.html#timespec" title='timespec' data-ref="timespec">timespec</a> *<dfn class="local col5 decl" id="45__tp" title='__tp' data-type='const struct timespec *' data-ref="45__tp">__tp</dfn>)&nbsp</td></tr>
+<tr><th id="283">283</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="284">284</th><td><u># <span data-ppcond="267">else</span></u>&nbsp</td></tr>
+<tr><th id="285">285</th><td><u>#  ifdef __REDIRECT</u>&nbsp</td></tr>
+<tr><th id="286">286</th><td><b>extern</b> <em>int</em> __REDIRECT (nanosleep, (<em>const</em> <b>struct</b> timespec *__requested_time,&nbsp</td></tr>
+<tr><th id="287">287</th><td>                                   <b>struct</b> timespec *__remaining),&nbsp</td></tr>
+<tr><th id="288">288</th><td>                       __nanosleep64);&nbsp</td></tr>
+<tr><th id="289">289</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (clock_getres, (clockid_t __clock_id,&nbsp</td></tr>
+<tr><th id="290">290</th><td>                                          <b>struct</b> timespec *__res),&nbsp</td></tr>
+<tr><th id="291">291</th><td>                           __clock_getres64);&nbsp</td></tr>
+<tr><th id="292">292</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (clock_gettime, (clockid_t __clock_id, <b>struct</b>&nbsp</td></tr>
+<tr><th id="293">293</th><td>                                           timespec *__tp), __clock_gettime64);&nbsp</td></tr>
+<tr><th id="294">294</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (clock_settime, (clockid_t __clock_id, <em>const</em> <b>struct</b>&nbsp</td></tr>
+<tr><th id="295">295</th><td>                                           timespec *__tp), __clock_settime64);&nbsp</td></tr>
+<tr><th id="296">296</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="297">297</th><td><u>#   define nanosleep __nanosleep64</u>&nbsp</td></tr>
+<tr><th id="298">298</th><td><u>#   define clock_getres __clock_getres64</u>&nbsp</td></tr>
+<tr><th id="299">299</th><td><u>#   define clock_gettime __clock_gettime64</u>&nbsp</td></tr>
+<tr><th id="300">300</th><td><u>#   define clock_settime __clock_settime64</u>&nbsp</td></tr>
+<tr><th id="301">301</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="302">302</th><td><u># <span data-ppcond="267">endif</span></u>&nbsp</td></tr>
+<tr><th id="303">303</th><td>&nbsp</td></tr>
+<tr><th id="304">304</th><td>&nbsp</td></tr>
+<tr><th id="305">305</th><td><u># <span data-ppcond="305">ifdef</span> <a class="macro" href="features.h.html#366" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</a></u>&nbsp</td></tr>
+<tr><th id="306">306</th><td><i>/* High-resolution sleep with the specified clock.</i>&nbsp</td></tr>
+<tr><th id="307">307</th><td><i></i>&nbsp</td></tr>
+<tr><th id="308">308</th><td><i>   This function is a cancellation point and therefore not marked with</i>&nbsp</td></tr>
+<tr><th id="309">309</th><td><i>   __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="310">310</th><td><u>#  <span data-ppcond="310">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="311">311</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="clock_nanosleep" title='clock_nanosleep' data-ref="clock_nanosleep">clock_nanosleep</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/clockid_t.h.html#clockid_t" title='clockid_t' data-type='__clockid_t' data-ref="clockid_t">clockid_t</a> <dfn class="local col6 decl" id="46__clock_id" title='__clock_id' data-type='clockid_t' data-ref="46__clock_id">__clock_id</dfn>, <em>int</em> <dfn class="local col7 decl" id="47__flags" title='__flags' data-type='int' data-ref="47__flags">__flags</dfn>,&nbsp</td></tr>
+<tr><th id="312">312</th><td>			    <em>const</em> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_timespec.h.html#timespec" title='timespec' data-ref="timespec">timespec</a> *<dfn class="local col8 decl" id="48__req" title='__req' data-type='const struct timespec *' data-ref="48__req">__req</dfn>,&nbsp</td></tr>
+<tr><th id="313">313</th><td>			    <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_timespec.h.html#timespec" title='timespec' data-ref="timespec">timespec</a> *<dfn class="local col9 decl" id="49__rem" title='__rem' data-type='struct timespec *' data-ref="49__rem">__rem</dfn>);&nbsp</td></tr>
+<tr><th id="314">314</th><td><u>#  <span data-ppcond="310">else</span></u>&nbsp</td></tr>
+<tr><th id="315">315</th><td><u>#   ifdef __REDIRECT</u>&nbsp</td></tr>
+<tr><th id="316">316</th><td><b>extern</b> <em>int</em> __REDIRECT (clock_nanosleep, (clockid_t __clock_id, <em>int</em> __flags,&nbsp</td></tr>
+<tr><th id="317">317</th><td>                                         <em>const</em> <b>struct</b> timespec *__req,&nbsp</td></tr>
+<tr><th id="318">318</th><td>                                         <b>struct</b> timespec *__rem),&nbsp</td></tr>
+<tr><th id="319">319</th><td>                       __clock_nanosleep_time64);&nbsp</td></tr>
+<tr><th id="320">320</th><td><u>#   else</u>&nbsp</td></tr>
+<tr><th id="321">321</th><td><u>#    define clock_nanosleep __clock_nanosleep_time64</u>&nbsp</td></tr>
+<tr><th id="322">322</th><td><u>#   endif</u>&nbsp</td></tr>
+<tr><th id="323">323</th><td><u>#  <span data-ppcond="310">endif</span></u>&nbsp</td></tr>
+<tr><th id="324">324</th><td>&nbsp</td></tr>
+<tr><th id="325">325</th><td><i>/* Return clock ID for CPU-time clock.  */</i>&nbsp</td></tr>
+<tr><th id="326">326</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="clock_getcpuclockid" title='clock_getcpuclockid' data-ref="clock_getcpuclockid">clock_getcpuclockid</dfn> (<a class="typedef" href="x86_64-linux-gnu/sys/types.h.html#pid_t" title='pid_t' data-type='__pid_t' data-ref="pid_t">pid_t</a> <dfn class="local col0 decl" id="50__pid" title='__pid' data-type='pid_t' data-ref="50__pid">__pid</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/clockid_t.h.html#clockid_t" title='clockid_t' data-type='__clockid_t' data-ref="clockid_t">clockid_t</a> *<dfn class="local col1 decl" id="51__clock_id" title='__clock_id' data-type='clockid_t *' data-ref="51__clock_id">__clock_id</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="327">327</th><td><u># <span data-ppcond="305">endif</span></u>&nbsp</td></tr>
+<tr><th id="328">328</th><td>&nbsp</td></tr>
+<tr><th id="329">329</th><td>&nbsp</td></tr>
+<tr><th id="330">330</th><td><i>/* Create new per-process timer using CLOCK_ID.  */</i>&nbsp</td></tr>
+<tr><th id="331">331</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="timer_create" title='timer_create' data-ref="timer_create">timer_create</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/clockid_t.h.html#clockid_t" title='clockid_t' data-type='__clockid_t' data-ref="clockid_t">clockid_t</a> <dfn class="local col2 decl" id="52__clock_id" title='__clock_id' data-type='clockid_t' data-ref="52__clock_id">__clock_id</dfn>,&nbsp</td></tr>
+<tr><th id="332">332</th><td>			 <b>struct</b> <a class="type" href="#sigevent" title='sigevent' data-ref="sigevent">sigevent</a> *<b>__restrict</b> <dfn class="local col3 decl" id="53__evp" title='__evp' data-type='struct sigevent *__restrict' data-ref="53__evp">__evp</dfn>,&nbsp</td></tr>
+<tr><th id="333">333</th><td>			 <a class="typedef" href="x86_64-linux-gnu/bits/types/timer_t.h.html#timer_t" title='timer_t' data-type='__timer_t' data-ref="timer_t">timer_t</a> *<b>__restrict</b> <dfn class="local col4 decl" id="54__timerid" title='__timerid' data-type='timer_t *__restrict' data-ref="54__timerid">__timerid</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="334">334</th><td>&nbsp</td></tr>
+<tr><th id="335">335</th><td><i>/* Delete timer TIMERID.  */</i>&nbsp</td></tr>
+<tr><th id="336">336</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="timer_delete" title='timer_delete' data-ref="timer_delete">timer_delete</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/timer_t.h.html#timer_t" title='timer_t' data-type='__timer_t' data-ref="timer_t">timer_t</a> <dfn class="local col5 decl" id="55__timerid" title='__timerid' data-type='timer_t' data-ref="55__timerid">__timerid</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="337">337</th><td>&nbsp</td></tr>
+<tr><th id="338">338</th><td><i>/* Set timer TIMERID to VALUE, returning old value in OVALUE.  */</i>&nbsp</td></tr>
+<tr><th id="339">339</th><td><u># <span data-ppcond="339">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="340">340</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="timer_settime" title='timer_settime' data-ref="timer_settime">timer_settime</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/timer_t.h.html#timer_t" title='timer_t' data-type='__timer_t' data-ref="timer_t">timer_t</a> <dfn class="local col6 decl" id="56__timerid" title='__timerid' data-type='timer_t' data-ref="56__timerid">__timerid</dfn>, <em>int</em> <dfn class="local col7 decl" id="57__flags" title='__flags' data-type='int' data-ref="57__flags">__flags</dfn>,&nbsp</td></tr>
+<tr><th id="341">341</th><td>			  <em>const</em> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_itimerspec.h.html#itimerspec" title='itimerspec' data-ref="itimerspec">itimerspec</a> *<b>__restrict</b> <dfn class="local col8 decl" id="58__value" title='__value' data-type='const struct itimerspec *__restrict' data-ref="58__value">__value</dfn>,&nbsp</td></tr>
+<tr><th id="342">342</th><td>			  <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_itimerspec.h.html#itimerspec" title='itimerspec' data-ref="itimerspec">itimerspec</a> *<b>__restrict</b> <dfn class="local col9 decl" id="59__ovalue" title='__ovalue' data-type='struct itimerspec *__restrict' data-ref="59__ovalue">__ovalue</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="343">343</th><td>&nbsp</td></tr>
+<tr><th id="344">344</th><td><i>/* Get current value of timer TIMERID and store it in VALUE.  */</i>&nbsp</td></tr>
+<tr><th id="345">345</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="timer_gettime" title='timer_gettime' data-ref="timer_gettime">timer_gettime</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/timer_t.h.html#timer_t" title='timer_t' data-type='__timer_t' data-ref="timer_t">timer_t</a> <dfn class="local col0 decl" id="60__timerid" title='__timerid' data-type='timer_t' data-ref="60__timerid">__timerid</dfn>, <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_itimerspec.h.html#itimerspec" title='itimerspec' data-ref="itimerspec">itimerspec</a> *<dfn class="local col1 decl" id="61__value" title='__value' data-type='struct itimerspec *' data-ref="61__value">__value</dfn>)&nbsp</td></tr>
+<tr><th id="346">346</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="347">347</th><td><u># <span data-ppcond="339">else</span></u>&nbsp</td></tr>
+<tr><th id="348">348</th><td><u>#  ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="349">349</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (timer_settime, (timer_t __timerid, <em>int</em> __flags,&nbsp</td></tr>
+<tr><th id="350">350</th><td>     <em>const</em> <b>struct</b> itimerspec *<b>__restrict</b> __value,&nbsp</td></tr>
+<tr><th id="351">351</th><td>     <b>struct</b> itimerspec *<b>__restrict</b> __ovalue),&nbsp</td></tr>
+<tr><th id="352">352</th><td>                          __timer_settime64);&nbsp</td></tr>
+<tr><th id="353">353</th><td>&nbsp</td></tr>
+<tr><th id="354">354</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (timer_gettime, (timer_t __timerid,&nbsp</td></tr>
+<tr><th id="355">355</th><td>                                           <b>struct</b> itimerspec *__value),&nbsp</td></tr>
+<tr><th id="356">356</th><td>                           __timer_gettime64);&nbsp</td></tr>
+<tr><th id="357">357</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="358">358</th><td><u>#   define timer_settime __timer_settime64</u>&nbsp</td></tr>
+<tr><th id="359">359</th><td><u>#   define timer_gettime __timer_gettime64</u>&nbsp</td></tr>
+<tr><th id="360">360</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="361">361</th><td><u># <span data-ppcond="339">endif</span></u>&nbsp</td></tr>
+<tr><th id="362">362</th><td>&nbsp</td></tr>
+<tr><th id="363">363</th><td><i>/* Get expiration overrun for timer TIMERID.  */</i>&nbsp</td></tr>
+<tr><th id="364">364</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="timer_getoverrun" title='timer_getoverrun' data-ref="timer_getoverrun">timer_getoverrun</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/timer_t.h.html#timer_t" title='timer_t' data-type='__timer_t' data-ref="timer_t">timer_t</a> <dfn class="local col2 decl" id="62__timerid" title='__timerid' data-type='timer_t' data-ref="62__timerid">__timerid</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="365">365</th><td><u>#<span data-ppcond="266">endif</span></u>&nbsp</td></tr>
+<tr><th id="366">366</th><td>&nbsp</td></tr>
+<tr><th id="367">367</th><td>&nbsp</td></tr>
+<tr><th id="368">368</th><td><u>#<span data-ppcond="368">ifdef</span> <a class="macro" href="features.h.html#270" data-ref="_M/__USE_ISOC11">__USE_ISOC11</a></u>&nbsp</td></tr>
+<tr><th id="369">369</th><td><u># <span data-ppcond="369">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="370">370</th><td><i>/* Set TS to calendar time based in time base BASE.  */</i>&nbsp</td></tr>
+<tr><th id="371">371</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="timespec_get" title='timespec_get' data-ref="timespec_get">timespec_get</dfn> (<b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_timespec.h.html#timespec" title='timespec' data-ref="timespec">timespec</a> *<dfn class="local col3 decl" id="63__ts" title='__ts' data-type='struct timespec *' data-ref="63__ts">__ts</dfn>, <em>int</em> <dfn class="local col4 decl" id="64__base" title='__base' data-type='int' data-ref="64__base">__base</dfn>)&nbsp</td></tr>
+<tr><th id="372">372</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#390" title="__attribute__ ((__nonnull__ (1)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>1</var>));&nbsp</td></tr>
+<tr><th id="373">373</th><td><u># <span data-ppcond="369">else</span></u>&nbsp</td></tr>
+<tr><th id="374">374</th><td><u>#  ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="375">375</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (timespec_get, (<b>struct</b> timespec *__ts, <em>int</em> __base),&nbsp</td></tr>
+<tr><th id="376">376</th><td>                           __timespec_get64) __nonnull ((<var>1</var>));&nbsp</td></tr>
+<tr><th id="377">377</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="378">378</th><td><u>#   define timespec_get __timespec_get64</u>&nbsp</td></tr>
+<tr><th id="379">379</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="380">380</th><td><u># <span data-ppcond="369">endif</span></u>&nbsp</td></tr>
+<tr><th id="381">381</th><td><u>#<span data-ppcond="368">endif</span></u>&nbsp</td></tr>
+<tr><th id="382">382</th><td>&nbsp</td></tr>
+<tr><th id="383">383</th><td>&nbsp</td></tr>
+<tr><th id="384">384</th><td><u>#<span data-ppcond="384">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (ISOC2X)</u>&nbsp</td></tr>
+<tr><th id="385">385</th><td><u># <span data-ppcond="385">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="386">386</th><td><i>/* Set TS to resolution of time base BASE.  */</i>&nbsp</td></tr>
+<tr><th id="387">387</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="timespec_getres" title='timespec_getres' data-ref="timespec_getres">timespec_getres</dfn> (<b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_timespec.h.html#timespec" title='timespec' data-ref="timespec">timespec</a> *<dfn class="local col5 decl" id="65__ts" title='__ts' data-type='struct timespec *' data-ref="65__ts">__ts</dfn>, <em>int</em> <dfn class="local col6 decl" id="66__base" title='__base' data-type='int' data-ref="66__base">__base</dfn>)&nbsp</td></tr>
+<tr><th id="388">388</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="389">389</th><td><u># <span data-ppcond="385">else</span></u>&nbsp</td></tr>
+<tr><th id="390">390</th><td><u>#  ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="391">391</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (timespec_getres, (<b>struct</b> timespec *__ts,&nbsp</td></tr>
+<tr><th id="392">392</th><td>                                             <em>int</em> __base),&nbsp</td></tr>
+<tr><th id="393">393</th><td>                           __timespec_getres64);&nbsp</td></tr>
+<tr><th id="394">394</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="395">395</th><td><u>#   define timespec_getres __timespec_getres64</u>&nbsp</td></tr>
+<tr><th id="396">396</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="397">397</th><td><u># <span data-ppcond="385">endif</span></u>&nbsp</td></tr>
+<tr><th id="398">398</th><td><u>#<span data-ppcond="384">endif</span></u>&nbsp</td></tr>
+<tr><th id="399">399</th><td>&nbsp</td></tr>
+<tr><th id="400">400</th><td>&nbsp</td></tr>
+<tr><th id="401">401</th><td><u>#<span data-ppcond="401">ifdef</span> <a class="macro" href="features.h.html#357" data-ref="_M/__USE_XOPEN_EXTENDED">__USE_XOPEN_EXTENDED</a></u>&nbsp</td></tr>
+<tr><th id="402">402</th><td><i>/* Set to one of the following values to indicate an error.</i>&nbsp</td></tr>
+<tr><th id="403">403</th><td><i>     1  the DATEMSK environment variable is null or undefined,</i>&nbsp</td></tr>
+<tr><th id="404">404</th><td><i>     2  the template file cannot be opened for reading,</i>&nbsp</td></tr>
+<tr><th id="405">405</th><td><i>     3  failed to get file status information,</i>&nbsp</td></tr>
+<tr><th id="406">406</th><td><i>     4  the template file is not a regular file,</i>&nbsp</td></tr>
+<tr><th id="407">407</th><td><i>     5  an error is encountered while reading the template file,</i>&nbsp</td></tr>
+<tr><th id="408">408</th><td><i>     6  memory allication failed (not enough memory available),</i>&nbsp</td></tr>
+<tr><th id="409">409</th><td><i>     7  there is no line in the template that matches the input,</i>&nbsp</td></tr>
+<tr><th id="410">410</th><td><i>     8  invalid input specification Example: February 31 or a time is</i>&nbsp</td></tr>
+<tr><th id="411">411</th><td><i>	specified that can not be represented in a time_t (representing</i>&nbsp</td></tr>
+<tr><th id="412">412</th><td><i>	the time in seconds since 00:00:00 UTC, January 1, 1970) */</i>&nbsp</td></tr>
+<tr><th id="413">413</th><td><b>extern</b> <em>int</em> <dfn class="decl" id="getdate_err" title='getdate_err' data-ref="getdate_err">getdate_err</dfn>;&nbsp</td></tr>
+<tr><th id="414">414</th><td>&nbsp</td></tr>
+<tr><th id="415">415</th><td><i>/* Parse the given string as a date specification and return a value</i>&nbsp</td></tr>
+<tr><th id="416">416</th><td><i>   representing the value.  The templates from the file identified by</i>&nbsp</td></tr>
+<tr><th id="417">417</th><td><i>   the environment variable DATEMSK are used.  In case of an error</i>&nbsp</td></tr>
+<tr><th id="418">418</th><td><i>   `getdate_err' is set.</i>&nbsp</td></tr>
+<tr><th id="419">419</th><td><i></i>&nbsp</td></tr>
+<tr><th id="420">420</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="421">421</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="422">422</th><td><b>extern</b> <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<dfn class="decl fn" id="getdate" title='getdate' data-ref="getdate">getdate</dfn> (<em>const</em> <em>char</em> *<dfn class="local col7 decl" id="67__string" title='__string' data-type='const char *' data-ref="67__string">__string</dfn>);&nbsp</td></tr>
+<tr><th id="423">423</th><td><u>#<span data-ppcond="401">endif</span></u>&nbsp</td></tr>
+<tr><th id="424">424</th><td>&nbsp</td></tr>
+<tr><th id="425">425</th><td><u>#<span data-ppcond="425">ifdef</span> <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="426">426</th><td><i>/* Since `getdate' is not reentrant because of the use of `getdate_err'</i>&nbsp</td></tr>
+<tr><th id="427">427</th><td><i>   and the static buffer to return the result in, we provide a thread-safe</i>&nbsp</td></tr>
+<tr><th id="428">428</th><td><i>   variant.  The functionality is the same.  The result is returned in</i>&nbsp</td></tr>
+<tr><th id="429">429</th><td><i>   the buffer pointed to by RESBUFP and in case of an error the return</i>&nbsp</td></tr>
+<tr><th id="430">430</th><td><i>   value is != 0 with the same values as given above for `getdate_err'.</i>&nbsp</td></tr>
+<tr><th id="431">431</th><td><i></i>&nbsp</td></tr>
+<tr><th id="432">432</th><td><i>   This function is not part of POSIX and therefore no official</i>&nbsp</td></tr>
+<tr><th id="433">433</th><td><i>   cancellation point.  But due to similarity with an POSIX interface</i>&nbsp</td></tr>
+<tr><th id="434">434</th><td><i>   or due to the implementation it is a cancellation point and</i>&nbsp</td></tr>
+<tr><th id="435">435</th><td><i>   therefore not marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="436">436</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="getdate_r" title='getdate_r' data-ref="getdate_r">getdate_r</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col8 decl" id="68__string" title='__string' data-type='const char *__restrict' data-ref="68__string">__string</dfn>,&nbsp</td></tr>
+<tr><th id="437">437</th><td>		      <b>struct</b> <a class="type" href="x86_64-linux-gnu/bits/types/struct_tm.h.html#tm" title='tm' data-ref="tm">tm</a> *<b>__restrict</b> <dfn class="local col9 decl" id="69__resbufp" title='__resbufp' data-type='struct tm *__restrict' data-ref="69__resbufp">__resbufp</dfn>);&nbsp</td></tr>
+<tr><th id="438">438</th><td><u>#<span data-ppcond="425">endif</span></u>&nbsp</td></tr>
+<tr><th id="439">439</th><td>&nbsp</td></tr>
+<tr><th id="440">440</th><td><a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#134" title="}" data-ref="_M/__END_DECLS">__END_DECLS</a>&nbsp</td></tr>
+<tr><th id="441">441</th><td>&nbsp</td></tr>
+<tr><th id="442">442</th><td><u>#<span data-ppcond="22">endif</span> /* time.h.  */</u>&nbsp</td></tr>
+<tr><th id="443">443</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

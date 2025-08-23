@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='126' type='3'/>
+<use f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='139' u='r'/>
+<doc f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='126'>// Google Android.</doc>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='199' c='_Z14tGetEndianness9tPlatform'/>

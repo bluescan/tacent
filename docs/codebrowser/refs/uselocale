@@ -1,0 +1,7 @@
+<dec f='include/locale.h' l='187' type='locale_t uselocale(locale_t __dataset)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/c++locale.h' l='52' c='__gnu_cxx::__uselocale'/>
+<doc f='include/locale.h' l='182'>/* Switch the current thread&apos;s locale to DATASET.
+   If DATASET is null, instead just return the current setting.
+   The special value LC_GLOBAL_LOCALE is the initial setting
+   for all threads and can also be installed any time, meaning
+   the thread uses the global settings controlled by `setlocale&apos;.  */</doc>

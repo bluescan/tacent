@@ -1,0 +1,26 @@
+<def f='include/c++/11/bits/postypes.h' l='112' ll='213'/>
+<use f='include/c++/11/bits/postypes.h' l='222' c='_ZSteqRKSt4fposIT_ES3_'/>
+<use f='include/c++/11/bits/postypes.h' l='222' c='_ZSteqRKSt4fposIT_ES3_'/>
+<use f='include/c++/11/bits/postypes.h' l='227' c='_ZStneRKSt4fposIT_ES3_'/>
+<use f='include/c++/11/bits/postypes.h' l='227' c='_ZStneRKSt4fposIT_ES3_'/>
+<use f='include/c++/11/bits/postypes.h' l='234'/>
+<use f='include/c++/11/bits/postypes.h' l='236'/>
+<use f='include/c++/11/bits/postypes.h' l='240'/>
+<use f='include/c++/11/bits/postypes.h' l='245'/>
+<use f='include/c++/11/bits/postypes.h' l='247'/>
+<mbr r='std::fpos::_M_off' t='std::streamoff'/>
+<mbr r='std::fpos::_M_state' t='_StateT'/>
+<fun r='_ZNSt4fposC1Ev'/>
+<fun r='_ZNSt4fposC1El'/>
+<fun r='_ZNSt4fposC1ERKSt4fposIT_E'/>
+<fun r='_ZNSt4fposaSERKSt4fposIT_E'/>
+<fun r='_ZNSt4fposD1Ev'/>
+<fun r='_ZNKSt4fposcvlEv'/>
+<fun r='_ZNSt4fpos5stateET_'/>
+<fun r='_ZNKSt4fpos5stateEv'/>
+<fun r='_ZNSt4fpospLEl'/>
+<fun r='_ZNSt4fposmIEl'/>
+<fun r='_ZNKSt4fposplEl'/>
+<fun r='_ZNKSt4fposmiEl'/>
+<fun r='_ZNKSt4fposmiERKSt4fposIT_E'/>
+<use f='include/c++/11/fstream' l='98'/>

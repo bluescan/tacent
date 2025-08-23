@@ -1,0 +1,4 @@
+<dec f='include/zlib.h' l='190'/>
+<doc f='include/zlib.h' l='186'>/* Return codes for the compression/decompression functions. Negative values
+ * are errors, positive values are used for special but normal events.
+ */</doc>

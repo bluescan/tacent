@@ -1,0 +1,3 @@
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='148' u='c' c='_ZN10tBitArray83SetEi'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='160' u='c' c='_ZN10tBitArray83SetEPhib'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='183' u='c' c='_ZN10tBitArray83SetERKS_'/>

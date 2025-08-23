@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16248' ll='16252'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16248'/>
+<size>24</size>
+<mbr r='VkPipelineViewportDepthClipControlCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineViewportDepthClipControlCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineViewportDepthClipControlCreateInfoEXT::negativeOneToOne' o='128' t='VkBool32'/>

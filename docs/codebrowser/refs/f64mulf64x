@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='33' macro='1' type='_Float64 f64mulf64x(_Float64x __x, _Float64x __y)'/>

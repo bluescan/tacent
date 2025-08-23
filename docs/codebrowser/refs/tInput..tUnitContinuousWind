@@ -1,0 +1,8 @@
+<inh f='Modules/Input/Inc/Input/tUnit.h' l='29' c='tInput::tUnit'/>
+<def f='Modules/Input/Inc/Input/tUnitContinuousWind.h' l='23' ll='28'/>
+<use f='Modules/Input/Inc/Input/tCompScrubber.h' l='35'/>
+<size>48</size>
+<fun r='_ZN6tInput19tUnitContinuousWindC1ERK5tNameRSt5mutex'/>
+<fun r='_ZN6tInput19tUnitContinuousWindD1Ev'/>
+<use f='Modules/Input/Inc/Input/tCompWheel.h' l='35'/>
+<size>48</size>

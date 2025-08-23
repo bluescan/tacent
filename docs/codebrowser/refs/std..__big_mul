@@ -1,0 +1,28 @@
+<def f='include/c++/11/ratio' l='141' ll='161'/>
+<use f='include/c++/11/ratio' l='204'/>
+<use f='include/c++/11/ratio' l='237'/>
+<use f='include/c++/11/ratio' l='238'/>
+<use f='include/c++/11/ratio' l='365'/>
+<use f='include/c++/11/ratio' l='366'/>
+<use f='include/c++/11/ratio' l='460'/>
+<use f='include/c++/11/ratio' l='461'/>
+<use f='include/c++/11/ratio' l='462'/>
+<use f='include/c++/11/ratio' l='471'/>
+<use f='include/c++/11/ratio' l='490'/>
+<use f='include/c++/11/ratio' l='491'/>
+<use f='include/c++/11/ratio' l='492'/>
+<use f='include/c++/11/ratio' l='500'/>
+<smbr r='std::__big_mul::__c' t='const uintmax_t'/>
+<smbr r='std::__big_mul::__x0' t='const uintmax_t'/>
+<smbr r='std::__big_mul::__x1' t='const uintmax_t'/>
+<smbr r='std::__big_mul::__y0' t='const uintmax_t'/>
+<smbr r='std::__big_mul::__y1' t='const uintmax_t'/>
+<smbr r='std::__big_mul::__x0y0' t='const uintmax_t'/>
+<smbr r='std::__big_mul::__x0y1' t='const uintmax_t'/>
+<smbr r='std::__big_mul::__x1y0' t='const uintmax_t'/>
+<smbr r='std::__big_mul::__x1y1' t='const uintmax_t'/>
+<smbr r='std::__big_mul::__mix' t='const uintmax_t'/>
+<smbr r='std::__big_mul::__mix_lo' t='const uintmax_t'/>
+<smbr r='std::__big_mul::__mix_hi' t='const uintmax_t'/>
+<smbr r='std::__big_mul::__hi' t='const uintmax_t'/>
+<smbr r='std::__big_mul::__lo' t='const uintmax_t'/>

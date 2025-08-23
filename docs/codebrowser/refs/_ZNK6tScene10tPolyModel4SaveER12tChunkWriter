@@ -1,0 +1,4 @@
+<dec f='Modules/Scene/Inc/Scene/tPolyModel.h' l='29' type='void tScene::tPolyModel::Save(tChunkWriter &amp; ) const'/>
+<inh f='Modules/Scene/Inc/Scene/tObject.h' l='32' c='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>
+<def f='Modules/Scene/Src/tPolyModel.cpp' l='22' ll='37' type='void tScene::tPolyModel::Save(tChunkWriter &amp; chunk) const'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1114' u='c' c='_ZNK6tScene6tWorld11SaveObjectsER12tChunkWriter'/>

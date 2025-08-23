@@ -1,0 +1,14 @@
+<use f='Modules/Image/Src/tImageBMP.cpp' l='266' u='c' c='_ZN6tImage9tImageBMP16ReadRow_Indexed4EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='290' u='c' c='_ZN6tImage9tImageBMP16ReadRow_Indexed1EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1240' u='c' c='_ZN7tSystem9Handler_bERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1264' u='c' c='_ZN7tSystem9Handler_oERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1288' u='c' c='_ZN7tSystem9Handler_dERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1312' u='c' c='_ZN7tSystem9Handler_iERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1336' u='c' c='_ZN7tSystem9Handler_uERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1360' u='c' c='_ZN7tSystem9Handler_xERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1384' u='c' c='_ZN7tSystem9Handler_XERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1407' u='c' c='_ZN7tSystem9Handler_pERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1478' u='c' c='_ZN7tSystem9Handler_eERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1607' u='c' c='_ZN7tSystem25HandlerHelper_FloatNormalER6tArrayIcERKNS_10FormatSpecEdb'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1730' u='c' c='_ZN7tSystem9Handler_fERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1760' u='c' c='_ZN7tSystem9Handler_gERNS_8ReceiverERKNS_10FormatSpecEPv'/>

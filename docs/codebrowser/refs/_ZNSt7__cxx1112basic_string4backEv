@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/basic_string.h' l='1134' ll='1139' type='std::basic_string::reference std::basic_string::back()'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1130'>/**
+       *  Returns a read/write reference to the data at the last
+       *  element of the %string.
+       */</doc>

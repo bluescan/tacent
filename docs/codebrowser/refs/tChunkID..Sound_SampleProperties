@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='675' type='117846016'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='675'>// SampleNumber (0 is default), size in bytes, frequency in Hz, looping, format as an ALenum value.</doc>

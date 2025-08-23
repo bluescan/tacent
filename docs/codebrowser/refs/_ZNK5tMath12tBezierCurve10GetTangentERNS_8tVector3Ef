@@ -1,0 +1,2 @@
+<def f='Modules/Math/Src/tSpline.cpp' l='136' ll='149' type='void tMath::tBezierCurve::GetTangent(tMath::tVector3 &amp; v, float t) const'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='456' u='c' c='_ZNK5tMath11tBezierPath10GetTangentERNS_8tVector3Ef'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='348' type='int TIFFGetField(TIFF * tif, uint32 tag)'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='35' u='c' c='_ZNK6tImage10tImageTIFF24ReadSoftwarePageDurationEP4tiff'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='86' u='c' c='_ZN6tImage10tImageTIFF4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='87' u='c' c='_ZN6tImage10tImageTIFF4LoadERK7tString'/>

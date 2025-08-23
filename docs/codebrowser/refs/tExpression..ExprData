@@ -1,0 +1,29 @@
+<use f='Modules/System/Inc/System/tScript.h' l='52' u='w' c='_ZN11tExpressionC1Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='58' u='w' c='_ZN11tExpressionC1ERKS_'/>
+<use f='Modules/System/Inc/System/tScript.h' l='58' u='r' c='_ZN11tExpressionC1ERKS_'/>
+<use f='Modules/System/Inc/System/tScript.h' l='62' u='w' c='_ZN11tExpressionC1EPKDu'/>
+<use f='Modules/System/Inc/System/tScript.h' l='63' u='w' c='_ZN11tExpressionC1EPKc'/>
+<use f='Modules/System/Inc/System/tScript.h' l='67' u='w' c='_ZN11tExpressionC1EPKDui'/>
+<use f='Modules/System/Inc/System/tScript.h' l='68' u='w' c='_ZN11tExpressionC1EPKci'/>
+<use f='Modules/System/Inc/System/tScript.h' l='85' u='r' c='_ZNK11tExpression7IsValidEv'/>
+<dec f='Modules/System/Inc/System/tScript.h' l='173' type='const char8_t *'/>
+<offset>64</offset>
+<doc f='Modules/System/Inc/System/tScript.h' l='172'>// The memory for this is owned by the tScriptRead class. The ExprData is UTF-8.</doc>
+<use f='Modules/System/Src/tScript.cpp' l='41' u='r' c='_ZNK11tExpression3CarEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='77' u='r' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='173' u='r' c='_ZNK11tExpression6IsAtomEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='173' u='r' c='_ZNK11tExpression6IsAtomEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='183' u='r' c='_ZNK11tExpression19GetExpressionStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='189' u='r' c='_ZNK11tExpression19GetExpressionStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='190' u='r' c='_ZNK11tExpression19GetExpressionStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='221' u='r' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='223' u='r' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='232' u='r' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='234' u='r' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='245' u='r' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='246' u='r' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='268' u='r' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='271' u='r' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='468' u='r' c='_ZNK11tExpression10GetContextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='527' u='w' c='_ZN11tExprReaderC1EiPPc'/>
+<use f='Modules/System/Src/tScript.cpp' l='583' u='w' c='_ZN11tExprReader4LoadERK7tStringb'/>

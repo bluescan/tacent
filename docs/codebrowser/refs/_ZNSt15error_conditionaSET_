@@ -1,0 +1,1 @@
+<def f='include/c++/11/system_error' l='320' ll='323' type='typename enable_if&lt;is_error_condition_enum&lt;_ErrorConditionEnum&gt;::value, error_condition &amp;&gt;::type std::error_condition::operator=(_ErrorConditionEnum __e)'/>

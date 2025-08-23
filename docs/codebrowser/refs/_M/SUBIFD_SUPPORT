@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='98'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='97'>/* Enable SubIFD tag (330) support */</doc>

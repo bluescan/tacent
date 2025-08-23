@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='406' type='char8_t * tFunScript::EatWhiteAndComments(char8_t * c)'/>
+<use f='Modules/System/Src/tScript.cpp' l='1146' u='c' c='_ZN10tFunScript4LoadERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='1167' u='c' c='_ZN10tFunScript4LoadERK7tString'/>
+<def f='Modules/System/Src/tScript.cpp' l='1200' ll='1215' type='char8_t * tFunScript::EatWhiteAndComments(char8_t * c)'/>

@@ -1,0 +1,55 @@
+<use f='include/c++/11/bits/fs_path.h' l='490'/>
+<use f='include/c++/11/bits/fs_path.h' l='492' c='_ZNKSt10filesystem7__cxx114path5beginEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='493' c='_ZNKSt10filesystem7__cxx114path3endEv'/>
+<def f='include/c++/11/bits/fs_path.h' l='867' ll='943'/>
+<use f='include/c++/11/bits/fs_path.h' l='878' c='_ZNSt10filesystem7__cxx114path8iteratorC1ERKS2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='879' c='_ZNSt10filesystem7__cxx114path8iteratoraSERKS2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='879' c='_ZNSt10filesystem7__cxx114path8iteratoraSERKS2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='884' c='_ZNSt10filesystem7__cxx114path8iteratorppEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='885' c='_ZNSt10filesystem7__cxx114path8iteratorppEi'/>
+<use f='include/c++/11/bits/fs_path.h' l='887' c='_ZNSt10filesystem7__cxx114path8iteratormmEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='888' c='_ZNSt10filesystem7__cxx114path8iteratormmEi'/>
+<use f='include/c++/11/bits/fs_path.h' l='890' c='_ZNSt10filesystem7__cxx11eqERKNS0_4path8iteratorES4_'/>
+<use f='include/c++/11/bits/fs_path.h' l='890' c='_ZNSt10filesystem7__cxx11eqERKNS0_4path8iteratorES4_'/>
+<use f='include/c++/11/bits/fs_path.h' l='893' c='_ZNSt10filesystem7__cxx11neERKNS0_4path8iteratorES4_'/>
+<use f='include/c++/11/bits/fs_path.h' l='893' c='_ZNSt10filesystem7__cxx11neERKNS0_4path8iteratorES4_'/>
+<use f='include/c++/11/bits/fs_path.h' l='902' c='_ZNSt10filesystem7__cxx1120__path_iter_distanceERKNS0_4path8iteratorES4_'/>
+<use f='include/c++/11/bits/fs_path.h' l='902' c='_ZNSt10filesystem7__cxx1120__path_iter_distanceERKNS0_4path8iteratorES4_'/>
+<use f='include/c++/11/bits/fs_path.h' l='915' c='_ZNSt10filesystem7__cxx1119__path_iter_advanceERNS0_4path8iteratorEl'/>
+<use f='include/c++/11/bits/fs_path.h' l='938' c='_ZNKSt10filesystem7__cxx114path8iterator9_M_equalsES2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1257' c='_ZNKSt10filesystem7__cxx114path5beginEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1261' c='_ZNKSt10filesystem7__cxx114path5beginEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1262' c='_ZNKSt10filesystem7__cxx114path5beginEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1265' c='_ZNKSt10filesystem7__cxx114path3endEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1269' c='_ZNKSt10filesystem7__cxx114path3endEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1270' c='_ZNKSt10filesystem7__cxx114path3endEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1273' c='_ZNSt10filesystem7__cxx114path8iteratorppEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1290' c='_ZNSt10filesystem7__cxx114path8iteratormmEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1320' c='_ZNKSt10filesystem7__cxx114path8iterator9_M_equalsES2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1346' c='_ZSt8distanceNSt10filesystem7__cxx114path8iteratorES2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1346' c='_ZSt8distanceNSt10filesystem7__cxx114path8iteratorES2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1351' c='_ZSt7advanceRNSt10filesystem7__cxx114path8iteratorET_'/>
+<size>24</size>
+<doc f='include/c++/11/bits/fs_path.h' l='864'>/// @endcond
+
+  /// An iterator for the components of a path</doc>
+<fun r='_ZNSt10filesystem7__cxx114path8iteratorC1Ev'/>
+<fun r='_ZNSt10filesystem7__cxx114path8iteratorC1ERKS2_'/>
+<fun r='_ZNSt10filesystem7__cxx114path8iteratoraSERKS2_'/>
+<fun r='_ZNKSt10filesystem7__cxx114path8iteratordeEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path8iteratorptEv'/>
+<fun r='_ZNSt10filesystem7__cxx114path8iteratorppEv'/>
+<fun r='_ZNSt10filesystem7__cxx114path8iteratorppEi'/>
+<fun r='_ZNSt10filesystem7__cxx114path8iteratormmEv'/>
+<fun r='_ZNSt10filesystem7__cxx114path8iteratormmEi'/>
+<fun r='_ZNKSt10filesystem7__cxx114path8iterator11_M_is_multiEv'/>
+<fun r='_ZNSt10filesystem7__cxx114path8iteratorC1EPKS1_PKNS1_5_CmptE'/>
+<fun r='_ZNSt10filesystem7__cxx114path8iteratorC1EPKS1_b'/>
+<fun r='_ZNKSt10filesystem7__cxx114path8iterator9_M_equalsES2_'/>
+<mbr r='std::filesystem::path::iterator::_M_path' o='0' t='const std::filesystem::path *'/>
+<mbr r='std::filesystem::path::iterator::_M_cur' o='64' t='path::_List::const_iterator'/>
+<mbr r='std::filesystem::path::iterator::_M_at_end' o='128' t='bool'/>
+<fun r='_ZNSt10filesystem7__cxx114path8iteratorppEv'/>
+<fun r='_ZNSt10filesystem7__cxx114path8iteratormmEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path8iteratordeEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path8iterator9_M_equalsES2_'/>

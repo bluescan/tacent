@@ -1,0 +1,17 @@
+<dec f='include/c++/11/ext/numeric_traits.h' l='71' type='const int'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='76' u='r'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='90' ll='91' type='const int'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='91' type='const int'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='91' type='const int'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='515' u='r' c='_ZNSt8__detail6__clp2Em'/>
+<use f='include/c++/11/bits/ranges_base.h' l='443' c='_ZNKSt6ranges13__cust_access6_SSizeclEOT_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='263' u='r' c='_ZNKSt7__cxx117collate7do_hashEPKT_S3_'/>
+<use f='include/c++/11/bit' l='141' u='r' c='_ZSt13__countl_zeroT_'/>
+<use f='include/c++/11/bit' l='142' u='r' c='_ZSt13__countl_zeroT_'/>
+<use f='include/c++/11/bit' l='143' u='r' c='_ZSt13__countl_zeroT_'/>
+<use f='include/c++/11/bit' l='194' u='r' c='_ZSt13__countr_zeroT_'/>
+<use f='include/c++/11/bit' l='195' u='r' c='_ZSt13__countr_zeroT_'/>
+<use f='include/c++/11/bit' l='196' u='r' c='_ZSt13__countr_zeroT_'/>
+<use f='include/c++/11/bit' l='232' u='r' c='_ZSt10__popcountT_'/>
+<use f='include/c++/11/bit' l='233' u='r' c='_ZSt10__popcountT_'/>
+<use f='include/c++/11/bit' l='234' u='r' c='_ZSt10__popcountT_'/>

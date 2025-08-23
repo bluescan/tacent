@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='31' ll='37' type='void tMath::tMatrix4::tMatrix4(float a11, float a21, float a31, float a41, float a12, float a22, float a32, float a42, float a13, float a23, float a33, float a43, float a14, float a24, float a34, float a44)'/>
+<doc f='Modules/Math/Inc/Math/tMatrix4.h' l='31'>/* Subscript is row# followed by col# for each element. */</doc>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='63' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='64' u='c'/>

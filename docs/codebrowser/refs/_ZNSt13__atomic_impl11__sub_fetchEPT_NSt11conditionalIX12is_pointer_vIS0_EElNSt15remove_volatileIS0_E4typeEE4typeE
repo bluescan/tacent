@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1046' ll='1048' macro='1' type='_Tp std::__atomic_impl::__sub_fetch(_Tp * __ptr, _Diff&lt;_Tp&gt; __i)'/>

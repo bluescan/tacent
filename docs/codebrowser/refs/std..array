@@ -1,0 +1,50 @@
+<def f='include/c++/11/array' l='95' ll='263'/>
+<use f='include/c++/11/array' l='268' c='std::{deductionguideforarray}'/>
+<use f='include/c++/11/array' l='276' c='_ZSteqRKSt5arrayIT_XT0_EES3_'/>
+<use f='include/c++/11/array' l='276' c='_ZSteqRKSt5arrayIT_XT0_EES3_'/>
+<use f='include/c++/11/array' l='282' c='_ZStssRKSt5arrayIT_XT0_EES3_'/>
+<use f='include/c++/11/array' l='282' c='_ZStssRKSt5arrayIT_XT0_EES3_'/>
+<use f='include/c++/11/array' l='348' c='_ZSt4swapRSt5arrayIT_XT0_EES2_'/>
+<use f='include/c++/11/array' l='348' c='_ZSt4swapRSt5arrayIT_XT0_EES2_'/>
+<use f='include/c++/11/array' l='356' c='_ZSt4swapRSt5arrayIT_XT0_EES2_'/>
+<use f='include/c++/11/array' l='356' c='_ZSt4swapRSt5arrayIT_XT0_EES2_'/>
+<use f='include/c++/11/array' l='361' c='_ZSt3getRSt5arrayIT0_XT1_EE'/>
+<use f='include/c++/11/array' l='369' c='_ZSt3getOSt5arrayIT0_XT1_EE'/>
+<use f='include/c++/11/array' l='377' c='_ZSt3getRKSt5arrayIT0_XT1_EE'/>
+<use f='include/c++/11/array' l='385' c='_ZSt3getOKSt5arrayIT0_XT1_EE'/>
+<use f='include/c++/11/array' l='395' c='_ZSt10__to_arrayRAsZT1__T0_St16integer_sequenceImJXspT1_EEE'/>
+<use f='include/c++/11/array' l='405' c='_ZSt8to_arrayRAT0__T_'/>
+<use f='include/c++/11/array' l='417' c='_ZSt8to_arrayOAT0__T_'/>
+<use f='include/c++/11/array' l='437'/>
+<use f='include/c++/11/array' l='446'/>
+<use f='include/c++/11/array' l='453'/>
+<use f='include/c++/11/functional' l='1069' c='_ZNSt24__boyer_moore_array_baseC1ETL0__mOTL0_0_OT1_'/>
+<use f='include/c++/11/functional' l='1097'/>
+<mbr r='std::array::_M_elems' t='typename _AT_Type::_Type'/>
+<fun r='_ZNSt5array4fillERKT_'/>
+<fun r='_ZNSt5array4swapERSt5arrayIT_XT0_EE'/>
+<fun r='_ZNSt5array5beginEv'/>
+<fun r='_ZNKSt5array5beginEv'/>
+<fun r='_ZNSt5array3endEv'/>
+<fun r='_ZNKSt5array3endEv'/>
+<fun r='_ZNSt5array6rbeginEv'/>
+<fun r='_ZNKSt5array6rbeginEv'/>
+<fun r='_ZNSt5array4rendEv'/>
+<fun r='_ZNKSt5array4rendEv'/>
+<fun r='_ZNKSt5array6cbeginEv'/>
+<fun r='_ZNKSt5array4cendEv'/>
+<fun r='_ZNKSt5array7crbeginEv'/>
+<fun r='_ZNKSt5array5crendEv'/>
+<fun r='_ZNKSt5array4sizeEv'/>
+<fun r='_ZNKSt5array8max_sizeEv'/>
+<fun r='_ZNKSt5array5emptyEv'/>
+<fun r='_ZNSt5arrayixEm'/>
+<fun r='_ZNKSt5arrayixEm'/>
+<fun r='_ZNSt5array2atEm'/>
+<fun r='_ZNKSt5array2atEm'/>
+<fun r='_ZNSt5array5frontEv'/>
+<fun r='_ZNKSt5array5frontEv'/>
+<fun r='_ZNSt5array4backEv'/>
+<fun r='_ZNKSt5array4backEv'/>
+<fun r='_ZNSt5array4dataEv'/>
+<fun r='_ZNKSt5array4dataEv'/>

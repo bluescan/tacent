@@ -1,0 +1,15 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11431' ll='11444'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11431'/>
+<size>64</size>
+<mbr r='VkPhysicalDeviceTransformFeedbackPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackPropertiesEXT::maxTransformFeedbackStreams' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackPropertiesEXT::maxTransformFeedbackBuffers' o='160' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackPropertiesEXT::maxTransformFeedbackBufferSize' o='192' t='VkDeviceSize'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackPropertiesEXT::maxTransformFeedbackStreamDataSize' o='256' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackPropertiesEXT::maxTransformFeedbackBufferDataSize' o='288' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackPropertiesEXT::maxTransformFeedbackBufferDataStride' o='320' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackPropertiesEXT::transformFeedbackQueries' o='352' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackPropertiesEXT::transformFeedbackStreamsLinesTriangles' o='384' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackPropertiesEXT::transformFeedbackRasterizationStreamSelect' o='416' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackPropertiesEXT::transformFeedbackDraw' o='448' t='VkBool32'/>

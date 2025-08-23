@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='602' type='int atexit(void (*)() __func)'/>
+<doc f='include/stdlib.h' l='601'>/* Register a function to be called when `exit&apos; is called.  */</doc>

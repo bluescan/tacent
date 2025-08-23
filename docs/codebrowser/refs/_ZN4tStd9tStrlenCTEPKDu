@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='107' type='int tStd::tStrlenCT(const char8_t * s)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='107' u='c' c='_ZN4tStd9tStrlenCTEPKDu'/>

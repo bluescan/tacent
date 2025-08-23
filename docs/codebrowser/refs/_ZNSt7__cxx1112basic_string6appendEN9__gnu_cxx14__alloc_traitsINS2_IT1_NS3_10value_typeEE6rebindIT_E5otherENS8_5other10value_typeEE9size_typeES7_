@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/basic_string.h' l='1271' ll='1273' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::append(std::basic_string::size_type __n, _CharT __c)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1263'>/**
+       *  @brief  Append multiple characters.
+       *  @param __n  The number of characters to append.
+       *  @param __c  The character to use.
+       *  @return  Reference to this string.
+       *
+       *  Appends __n copies of __c to this string.
+       */</doc>

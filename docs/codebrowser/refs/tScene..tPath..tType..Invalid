@@ -1,0 +1,4 @@
+<dec f='Modules/Scene/Inc/Scene/tPath.h' l='32' type='-1'/>
+<use f='Modules/Scene/Inc/Scene/tPath.h' l='38' u='r' c='_ZNK6tScene5tPath7IsValidEv'/>
+<use f='Modules/Scene/Inc/Scene/tPath.h' l='40' u='r' c='_ZN6tScene5tPath5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tPath.h' l='45'/>

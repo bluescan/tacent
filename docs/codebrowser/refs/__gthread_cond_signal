@@ -1,0 +1,2 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='856' ll='860' type='int __gthread_cond_signal(__gthread_cond_t * __cond)'/>
+<use f='include/c++/11/bits/std_mutex.h' l='177' u='c' c='_ZNSt9__condvar10notify_oneEv'/>

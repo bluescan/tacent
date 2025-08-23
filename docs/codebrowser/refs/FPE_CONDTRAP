@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/siginfo-consts.h' l='114' type='15'/>
+<doc f='include/x86_64-linux-gnu/bits/siginfo-consts.h' l='114'>/* Trap on condition.  */</doc>

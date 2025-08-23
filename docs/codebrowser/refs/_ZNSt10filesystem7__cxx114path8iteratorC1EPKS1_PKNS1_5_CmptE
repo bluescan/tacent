@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/fs_path.h' l='930' ll='932' type='void std::filesystem::path::iterator::iterator(const std::filesystem::path * __path, path::_List::const_iterator __iter)'/>
+<use f='include/c++/11/bits/fs_path.h' l='1261' u='c' c='_ZNKSt10filesystem7__cxx114path5beginEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1269' u='c' c='_ZNKSt10filesystem7__cxx114path3endEv'/>

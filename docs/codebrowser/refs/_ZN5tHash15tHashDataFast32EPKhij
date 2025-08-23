@@ -1,0 +1,13 @@
+<dec f='Modules/Foundation/Inc/Foundation/tHash.h' l='70' type='uint32 tHash::tHashDataFast32(const uint8 * data, int length, uint32 iv = HashIV32)'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='135' u='c' c='_ZN5tHash17tHashStringFast32EPKcj'/>
+<doc f='Modules/Foundation/Inc/Foundation/tHash.h' l='65'>// Normally the initial iv should not be modified for these fast hash functions. The fast hash functions are the only
+// ones that store the entire state in the hash. Allows you to concatenate hashes of separate strings/data-sequences
+// together by passing the hash of the previous call into the function again. This way you don&apos;t need to create a
+// concatenated string/data-set to get its hash, you simply chain multiple calls together. The fast hash functions
+// are the only ones that guarantee the same hash value whether computed in parts or as a single data-set.</doc>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='321' u='c' c='_ZN5tNamecvjEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='331' u='c' c='_ZNK5tNamecvjEv'/>
+<def f='Modules/Foundation/Src/tHash.cpp' l='43' ll='53' type='uint32 tHash::tHashDataFast32(const uint8 * data, int length, uint32 iv = HashIV32)'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='57' u='c' c='_ZN7tStringcvjEv'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='63' u='c' c='_ZNK7tStringcvjEv'/>
+<use f='Modules/System/Src/tFile.cpp' l='3267' u='c' c='_ZN7tSystem15tHashFileFast32ERK7tStringj'/>

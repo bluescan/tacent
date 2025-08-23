@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='784' type='T tMath::tLinearInterp(float p, T A, T B)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='783'>// Linear interpolate. Same as tLinearLookup except that it clamps p to [0, 1].</doc>

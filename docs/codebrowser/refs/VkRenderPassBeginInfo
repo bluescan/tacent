@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3975' ll='3983'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3975'/>
+<size>64</size>
+<mbr r='VkRenderPassBeginInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderPassBeginInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderPassBeginInfo::renderPass' o='128' t='VkRenderPass'/>
+<mbr r='VkRenderPassBeginInfo::framebuffer' o='192' t='VkFramebuffer'/>
+<mbr r='VkRenderPassBeginInfo::renderArea' o='256' t='VkRect2D'/>
+<mbr r='VkRenderPassBeginInfo::clearValueCount' o='384' t='uint32_t'/>
+<mbr r='VkRenderPassBeginInfo::pClearValues' o='448' t='const VkClearValue *'/>

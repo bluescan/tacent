@@ -1,0 +1,11 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='159' type='double ceil(double __x)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='128' u='c' c='_ZN5tMath8tCeilingEd'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='130' u='c' c='_ZN5tMath9tiCeilingERd'/>
+<use f='include/c++/11/bits/random.tcc' l='1355' u='c' c='_ZNSt20poisson_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1377' u='c' c='_ZNSt20poisson_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='394' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='394' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='395' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='396' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='398' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='400' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>

@@ -1,0 +1,6 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='164' type='bool tSystem::HandlerHelper_HandleSpecialFloatTypes(tArray&lt;char&gt; &amp; , double value)'/>
+<def f='Modules/System/Src/tPrint.cpp' l='1443' ll='1469' type='bool tSystem::HandlerHelper_HandleSpecialFloatTypes(tArray&lt;char&gt; &amp; convBuf, double value)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1479' u='c' c='_ZN7tSystem9Handler_eERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1734' u='c' c='_ZN7tSystem9Handler_fERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1773' u='c' c='_ZN7tSystem9Handler_gERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1796' u='c' c='_ZN7tSystem9Handler_gERNS_8ReceiverERKNS_10FormatSpecEPv'/>

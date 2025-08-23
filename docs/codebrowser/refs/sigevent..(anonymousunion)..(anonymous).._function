@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/types/sigevent_t.h' l='38' type='void (*)(__sigval_t)'/>
+<offset>0</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/sigevent_t.h' l='38'>/* Function to start.  */</doc>

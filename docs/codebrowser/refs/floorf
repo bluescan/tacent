@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='165' macro='1' type='float floorf(float __x)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='131' u='c' c='_ZN5tMath6tFloorEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='133' u='c' c='_ZN5tMath7tiFloorERf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='137' u='c' c='_ZN5tMath6tRoundEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='138' u='c' c='_ZN5tMath7tiRoundERf'/>

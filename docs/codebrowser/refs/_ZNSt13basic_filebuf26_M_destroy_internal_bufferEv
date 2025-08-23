@@ -1,0 +1,2 @@
+<dec f='include/c++/11/fstream' l='373' type='void std::basic_filebuf::_M_destroy_internal_buffer()'/>
+<def f='include/c++/11/bits/fstream.tcc' l='61' ll='77' type='void std::basic_filebuf::_M_destroy_internal_buffer()'/>

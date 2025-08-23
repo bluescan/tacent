@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='804' type='void perror(const char * __s)'/>
+<doc f='include/stdio.h' l='800'>/* Print a message describing the meaning of the value of errno.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

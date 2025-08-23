@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/fs_dir.h' l='367' ll='368' type='void std::filesystem::__directory_iterator_proxy::__directory_iterator_proxy(const std::filesystem::directory_entry &amp; __e)'/>
+<use f='include/c++/11/bits/fs_dir.h' l='418' u='c' c='_ZNSt10filesystem7__cxx1118directory_iteratorppEi'/>
+<use f='include/c++/11/bits/fs_dir.h' l='512' u='c' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorppEi'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/exception' l='90' type='std::unexpected_handler std::get_unexpected()'/>
+<doc f='include/c++/11/exception' l='89'>/// Return the current unexpected handler.</doc>

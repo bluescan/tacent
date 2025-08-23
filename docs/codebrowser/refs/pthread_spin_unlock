@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1246' type='int pthread_spin_unlock(pthread_spinlock_t * __lock)'/>
+<doc f='include/pthread.h' l='1245'>/* Release spinlock LOCK.  */</doc>

@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='134' type='void psignal(int __sig, const char * __s)'/>
+<doc f='include/signal.h' l='133'>/* Print a message describing the meaning of the given signal number.  */</doc>

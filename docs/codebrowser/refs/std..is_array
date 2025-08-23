@@ -1,0 +1,18 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='428' ll='429'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='431' ll='433'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='435' ll='437'/>
+<use f='include/c++/11/type_traits' l='832'/>
+<use f='include/c++/11/type_traits' l='1427'/>
+<use f='include/c++/11/type_traits' l='1468'/>
+<use f='include/c++/11/type_traits' l='2139'/>
+<use f='include/c++/11/type_traits' l='3103'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='261'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='506'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='970'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1099' c='_ZNSt12__shared_ptrC1EPTL0__'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1374'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1837' c='_ZSt17__allocate_sharedRKT1_DpOT2_'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='860' c='_ZSt15allocate_sharedRKT0_DpOT1_'/>

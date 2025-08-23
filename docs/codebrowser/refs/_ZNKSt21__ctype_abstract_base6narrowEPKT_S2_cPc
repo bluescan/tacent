@@ -1,0 +1,19 @@
+<def f='include/c++/11/bits/locale_facets.h' l='355' ll='358' type='const std::__ctype_abstract_base::char_type * std::__ctype_abstract_base::narrow(const std::__ctype_abstract_base::char_type * __lo, const std::__ctype_abstract_base::char_type * __hi, char __dfault, char * __to) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='337'>/**
+       *  @brief  Narrow array to char array
+       *
+       *  This function converts each char_type in the input to char using the
+       *  simplest reasonable transformation and writes the results to the
+       *  destination array.  For any char_type in the input that cannot be
+       *  converted, @a dfault is used instead.  It does so by returning
+       *  ctype&lt;char_type&gt;::do_narrow(__lo, __hi, __dfault, __to).
+       *
+       *  Note: this is not what you want for codepage conversions.  See
+       *  codecvt for that.
+       *
+       *  @param __lo  Pointer to start of range.
+       *  @param __hi  Pointer to end of range.
+       *  @param __dfault  Char to use if conversion fails.
+       *  @param __to  Pointer to the destination array.
+       *  @return  @a __hi.
+      */</doc>

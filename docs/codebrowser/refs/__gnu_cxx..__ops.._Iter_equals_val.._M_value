@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/predefined_ops.h' l='258' type='_Value &amp;'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='263' u='w' c='__gnu_cxx::__ops::_Iter_equals_val::_Iter_equals_val{_Value}'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='270' c='__gnu_cxx::__ops::_Iter_equals_val::operator()'/>

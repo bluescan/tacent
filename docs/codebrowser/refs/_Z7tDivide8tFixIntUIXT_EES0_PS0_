@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='250' type='tFixIntU&lt;N&gt; tDivide(tFixIntU&lt;N&gt; a, tFixIntU&lt;N&gt; b, tFixIntU&lt;N&gt; * remainder = nullptr)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='605' ll='641' type='tFixIntU&lt;N&gt; tDivide(tFixIntU&lt;N&gt; a, tFixIntU&lt;N&gt; b, tFixIntU&lt;N&gt; * remainder = nullptr)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='248'>// tDivide is here because it offers divide with remainder unlike the binary operator/(). There&apos;s also a version here
+// that is faster if you only need to divide by a smaller (positive) integer.</doc>

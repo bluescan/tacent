@@ -1,0 +1,6 @@
+<def f='include/c++/11/tuple' l='1683' ll='1687'/>
+<use f='include/c++/11/tuple' l='1684'/>
+<def f='include/c++/11/tuple' l='1689' ll='1694'/>
+<use f='include/c++/11/tuple' l='1709' c='_ZNSt16__tuple_concaterIT_St12_Index_tupleIJXspT0_EEEJT1_DpT2_EE5_S_doEOS3_DpOS4_DpOTL0__'/>
+<use f='include/c++/11/tuple' l='1736' c='_ZSt9tuple_catDpOT_'/>
+<size>1</size>

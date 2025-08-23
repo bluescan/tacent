@@ -1,0 +1,169 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tUnits.h source code [Modules/Foundation/Inc/Foundation/tUnits.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="tUnit::tLength,tUnit::tMass,tUnit::tPrefix,tUnit::tTime "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Foundation/Inc/Foundation/tUnits.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>Modules</a>/<a href='../..'>Foundation</a>/<a href='..'>Inc</a>/<a href='./'>Foundation</a>/<a href='tUnits.h.html'>tUnits.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tUnits.h</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Definitions of various units for length, time, and mass along with the SI multiplier prefixes.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// Copyright (c) 2017, 2020, 2023 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#pragma <span class='warning' title="#pragma once in main file">once</span></u>&nbsp</td></tr>
+<tr><th id="16">16</th><td>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><b>namespace</b> <span class="namespace">tUnit</span>&nbsp</td></tr>
+<tr><th id="19">19</th><td>{&nbsp</td></tr>
+<tr><th id="20">20</th><td>	<i  data-doc="tUnit::Conv_Km_per_mi">// Conversion constants.</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i  data-doc="tUnit::Conv_Km_per_mi">	// Prefixes (SI):</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i  data-doc="tUnit::Conv_Km_per_mi">	//	n=nano, u=micro, m=milli</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i  data-doc="tUnit::Conv_Km_per_mi">	//	K=kilo, M=mega, G=giga.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i  data-doc="tUnit::Conv_Km_per_mi">	// p=per</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i  data-doc="tUnit::Conv_Km_per_mi">	// Units:</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i  data-doc="tUnit::Conv_Km_per_mi">	// mi = mile.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i  data-doc="tUnit::Conv_Km_per_mi">	// m = meter.</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i  data-doc="tUnit::Conv_Km_per_mi">	// L = litre.</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>	<em>const</em> <em>float</em> <dfn class="tu decl def" id="tUnit::Conv_Km_per_mi" title='tUnit::Conv_Km_per_mi' data-type='const float' data-ref="tUnit::Conv_Km_per_mi">Conv_Km_per_mi</dfn>			= <var>1.609344f</var>;&nbsp</td></tr>
+<tr><th id="30">30</th><td>	<em>const</em> <em>float</em> <dfn class="tu decl def" id="tUnit::Conv_Kmph_per_mps" title='tUnit::Conv_Kmph_per_mps' data-type='const float' data-ref="tUnit::Conv_Kmph_per_mps">Conv_Kmph_per_mps</dfn>		= <var>3.6f</var>;&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td>	<b>enum</b> <b>class</b> <dfn class="type def" id="tUnit::tPrefix" title='tUnit::tPrefix' data-ref="tUnit::tPrefix">tPrefix</dfn>&nbsp</td></tr>
+<tr><th id="33">33</th><td>	{&nbsp</td></tr>
+<tr><th id="34">34</th><td>		<dfn class="enum" id="tUnit::tPrefix::Invalid" title='tUnit::tPrefix::Invalid' data-ref="tUnit::tPrefix::Invalid">Invalid</dfn>																											= -<var>1</var>,&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td>		<dfn class="enum" id="tUnit::tPrefix::Yocto" title='tUnit::tPrefix::Yocto' data-ref="tUnit::tPrefix::Yocto">Yocto</dfn>,							<i>// 10^-24</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td>		<dfn class="enum" id="tUnit::tPrefix::Zepto" title='tUnit::tPrefix::Zepto' data-ref="tUnit::tPrefix::Zepto">Zepto</dfn>,							<i>// 10^-21</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td>		<dfn class="enum" id="tUnit::tPrefix::Atto" title='tUnit::tPrefix::Atto' data-ref="tUnit::tPrefix::Atto">Atto</dfn>,							<i>// 10^-18</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td>		<dfn class="enum" id="tUnit::tPrefix::Femto" title='tUnit::tPrefix::Femto' data-ref="tUnit::tPrefix::Femto">Femto</dfn>,							<i>// 10^-15</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td>		<dfn class="enum" id="tUnit::tPrefix::Pico" title='tUnit::tPrefix::Pico' data-ref="tUnit::tPrefix::Pico">Pico</dfn>,							<i>// 10^-12</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td>		<dfn class="enum" id="tUnit::tPrefix::Nano" title='tUnit::tPrefix::Nano' data-ref="tUnit::tPrefix::Nano">Nano</dfn>,							<i>// 10^-9</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td>		<dfn class="enum" id="tUnit::tPrefix::Micro" title='tUnit::tPrefix::Micro' data-ref="tUnit::tPrefix::Micro">Micro</dfn>,							<i>// 10^-6</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td>		<dfn class="enum" id="tUnit::tPrefix::Milli" title='tUnit::tPrefix::Milli' data-ref="tUnit::tPrefix::Milli">Milli</dfn>,							<i>// 10^-3</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td>		<dfn class="enum" id="tUnit::tPrefix::Centi" title='tUnit::tPrefix::Centi' data-ref="tUnit::tPrefix::Centi">Centi</dfn>,							<i>// 10^-2</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td>		<dfn class="enum" id="tUnit::tPrefix::Deci" title='tUnit::tPrefix::Deci' data-ref="tUnit::tPrefix::Deci">Deci</dfn>,							<i>// 10^-1</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td>		<dfn class="enum" id="tUnit::tPrefix::Unit" title='tUnit::tPrefix::Unit' data-ref="tUnit::tPrefix::Unit">Unit</dfn>,							<i>// 10^0 Not an SI prefix, but a handy one.</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td>		<dfn class="enum" id="tUnit::tPrefix::Deca" title='tUnit::tPrefix::Deca' data-ref="tUnit::tPrefix::Deca">Deca</dfn>,							<i>// 10^1</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td>		<dfn class="enum" id="tUnit::tPrefix::Hecto" title='tUnit::tPrefix::Hecto' data-ref="tUnit::tPrefix::Hecto">Hecto</dfn>,							<i>// 10^2</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td>		<dfn class="enum" id="tUnit::tPrefix::Kilo" title='tUnit::tPrefix::Kilo' data-ref="tUnit::tPrefix::Kilo">Kilo</dfn>,							<i>// 10^3</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td>		<dfn class="enum" id="tUnit::tPrefix::Mega" title='tUnit::tPrefix::Mega' data-ref="tUnit::tPrefix::Mega">Mega</dfn>,							<i>// 10^6</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td>		<dfn class="enum" id="tUnit::tPrefix::Giga" title='tUnit::tPrefix::Giga' data-ref="tUnit::tPrefix::Giga">Giga</dfn>,							<i>// 10^9</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td>		<dfn class="enum" id="tUnit::tPrefix::Tera" title='tUnit::tPrefix::Tera' data-ref="tUnit::tPrefix::Tera">Tera</dfn>,							<i>// 10^12</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td>		<dfn class="enum" id="tUnit::tPrefix::Peta" title='tUnit::tPrefix::Peta' data-ref="tUnit::tPrefix::Peta">Peta</dfn>,							<i>// 10^15</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td>		<dfn class="enum" id="tUnit::tPrefix::Exa" title='tUnit::tPrefix::Exa' data-ref="tUnit::tPrefix::Exa">Exa</dfn>,							<i>// 10^18</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td>		<dfn class="enum" id="tUnit::tPrefix::Zetta" title='tUnit::tPrefix::Zetta' data-ref="tUnit::tPrefix::Zetta">Zetta</dfn>,							<i>// 10^21</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td>		<dfn class="enum" id="tUnit::tPrefix::Yotta" title='tUnit::tPrefix::Yotta' data-ref="tUnit::tPrefix::Yotta">Yotta</dfn>,							<i>// 10^24</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td>		&nbsp</td></tr>
+<tr><th id="58">58</th><td>		<i>// Non SI prefixes.</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>		// Bi and Di are missing on purpose because they are ambiguous. In chemistry they both mean '2 of' like</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i>		// sodium-BIcarbonate and carbon DIoxide, but sometimes they mean half. Never mind confusion about being paid</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i>		// bi-monthly. Certainly semi-monthly is clear. Actually, we should look here for more:</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i>		// <a href="https://en.wikipedia.org/wiki/Numeral_prefix">https://en.wikipedia.org/wiki/Numeral_prefix</a> like Duo, Quad, Sept, Hex, etc.</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td>		<dfn class="enum" id="tUnit::tPrefix::Thrice" title='tUnit::tPrefix::Thrice' data-ref="tUnit::tPrefix::Thrice">Thrice</dfn>,&nbsp</td></tr>
+<tr><th id="64">64</th><td>		<dfn class="enum" id="tUnit::tPrefix::Twice" title='tUnit::tPrefix::Twice' data-ref="tUnit::tPrefix::Twice">Twice</dfn>,&nbsp</td></tr>
+<tr><th id="65">65</th><td>		<dfn class="enum" id="tUnit::tPrefix::Semi" title='tUnit::tPrefix::Semi' data-ref="tUnit::tPrefix::Semi">Semi</dfn>,							<i>// Half of.</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td>		<dfn class="enum" id="tUnit::tPrefix::Half" title='tUnit::tPrefix::Half' data-ref="tUnit::tPrefix::Half">Half</dfn>,&nbsp</td></tr>
+<tr><th id="67">67</th><td>		<dfn class="enum" id="tUnit::tPrefix::Quarter" title='tUnit::tPrefix::Quarter' data-ref="tUnit::tPrefix::Quarter">Quarter</dfn>,&nbsp</td></tr>
+<tr><th id="68">68</th><td>		<dfn class="enum" id="tUnit::tPrefix::Eighth" title='tUnit::tPrefix::Eighth' data-ref="tUnit::tPrefix::Eighth">Eighth</dfn>,&nbsp</td></tr>
+<tr><th id="69">69</th><td>		<dfn class="enum" id="tUnit::tPrefix::Sixteenth" title='tUnit::tPrefix::Sixteenth' data-ref="tUnit::tPrefix::Sixteenth">Sixteenth</dfn>,&nbsp</td></tr>
+<tr><th id="70">70</th><td>		<dfn class="enum" id="tUnit::tPrefix::Thirtysecondth" title='tUnit::tPrefix::Thirtysecondth' data-ref="tUnit::tPrefix::Thirtysecondth">Thirtysecondth</dfn>,&nbsp</td></tr>
+<tr><th id="71">71</th><td>		<dfn class="enum" id="tUnit::tPrefix::Sixtyfourth" title='tUnit::tPrefix::Sixtyfourth' data-ref="tUnit::tPrefix::Sixtyfourth">Sixtyfourth</dfn>,&nbsp</td></tr>
+<tr><th id="72">72</th><td>&nbsp</td></tr>
+<tr><th id="73">73</th><td>		<dfn class="enum" id="tUnit::tPrefix::PrefixCount" title='tUnit::tPrefix::PrefixCount' data-ref="tUnit::tPrefix::PrefixCount">PrefixCount</dfn>&nbsp</td></tr>
+<tr><th id="74">74</th><td>	};&nbsp</td></tr>
+<tr><th id="75">75</th><td>	&nbsp</td></tr>
+<tr><th id="76">76</th><td>	<b>enum</b> <b>class</b> <dfn class="type def" id="tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</dfn>&nbsp</td></tr>
+<tr><th id="77">77</th><td>	{&nbsp</td></tr>
+<tr><th id="78">78</th><td>		<dfn class="enum" id="tUnit::tTime::Unspecified" title='tUnit::tTime::Unspecified' data-ref="tUnit::tTime::Unspecified">Unspecified</dfn>																										= -<var>1</var>,&nbsp</td></tr>
+<tr><th id="79">79</th><td>		&nbsp</td></tr>
+<tr><th id="80">80</th><td>		<dfn class="enum" id="tUnit::tTime::PlankTime" title='tUnit::tTime::PlankTime' data-ref="tUnit::tTime::PlankTime">PlankTime</dfn>,						<i>// 5.39E-44 seconds.</i>&nbsp</td></tr>
+<tr><th id="81">81</th><td>		<dfn class="enum" id="tUnit::tTime::Chronon" title='tUnit::tTime::Chronon' data-ref="tUnit::tTime::Chronon">Chronon</dfn>,						<i>// 6.97E-24 seconds. Smallest indivisible unit?!</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td>&nbsp</td></tr>
+<tr><th id="83">83</th><td>		<i>// These next 6 should perhaps not be here since we could use the tPrefix and Second units. Still, they are</i>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i>		// common enough that perhaps they do deserve their own units.</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td>		<dfn class="enum" id="tUnit::tTime::Attosecond" title='tUnit::tTime::Attosecond' data-ref="tUnit::tTime::Attosecond">Attosecond</dfn>,&nbsp</td></tr>
+<tr><th id="86">86</th><td>		<dfn class="enum" id="tUnit::tTime::Femtosecond" title='tUnit::tTime::Femtosecond' data-ref="tUnit::tTime::Femtosecond">Femtosecond</dfn>,&nbsp</td></tr>
+<tr><th id="87">87</th><td>		<dfn class="enum" id="tUnit::tTime::Picosecond" title='tUnit::tTime::Picosecond' data-ref="tUnit::tTime::Picosecond">Picosecond</dfn>,&nbsp</td></tr>
+<tr><th id="88">88</th><td>		<dfn class="enum" id="tUnit::tTime::Nanosecond" title='tUnit::tTime::Nanosecond' data-ref="tUnit::tTime::Nanosecond">Nanosecond</dfn>,&nbsp</td></tr>
+<tr><th id="89">89</th><td>		<dfn class="enum" id="tUnit::tTime::Microsecond" title='tUnit::tTime::Microsecond' data-ref="tUnit::tTime::Microsecond">Microsecond</dfn>,&nbsp</td></tr>
+<tr><th id="90">90</th><td>		<dfn class="enum" id="tUnit::tTime::Millisecond" title='tUnit::tTime::Millisecond' data-ref="tUnit::tTime::Millisecond">Millisecond</dfn>,&nbsp</td></tr>
+<tr><th id="91">91</th><td>		&nbsp</td></tr>
+<tr><th id="92">92</th><td>		<dfn class="enum" id="tUnit::tTime::Tick" title='tUnit::tTime::Tick' data-ref="tUnit::tTime::Tick">Tick</dfn>,							<i>// 1/60 of a second.</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td>		<dfn class="enum" id="tUnit::tTime::Second" title='tUnit::tTime::Second' data-ref="tUnit::tTime::Second">Second</dfn>,&nbsp</td></tr>
+<tr><th id="94">94</th><td>		<dfn class="enum" id="tUnit::tTime::She" title='tUnit::tTime::She' data-ref="tUnit::tTime::She">She</dfn>,							<i>// Babylonian. 0.3 seconds.</i>&nbsp</td></tr>
+<tr><th id="95">95</th><td>		<dfn class="enum" id="tUnit::tTime::Helek" title='tUnit::tTime::Helek' data-ref="tUnit::tTime::Helek">Helek</dfn>,							<i>// Hebrew. Plural: halakim. 10/3 seconds.</i>&nbsp</td></tr>
+<tr><th id="96">96</th><td>		<dfn class="enum" id="tUnit::tTime::Minute" title='tUnit::tTime::Minute' data-ref="tUnit::tTime::Minute">Minute</dfn>,&nbsp</td></tr>
+<tr><th id="97">97</th><td>		<dfn class="enum" id="tUnit::tTime::Hour" title='tUnit::tTime::Hour' data-ref="tUnit::tTime::Hour">Hour</dfn>,&nbsp</td></tr>
+<tr><th id="98">98</th><td>		<dfn class="enum" id="tUnit::tTime::Day" title='tUnit::tTime::Day' data-ref="tUnit::tTime::Day">Day</dfn>,							<i>// Precisely 24 hours. Not an Earth rotation 23h 59m 56s.</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td>		<dfn class="enum" id="tUnit::tTime::Week" title='tUnit::tTime::Week' data-ref="tUnit::tTime::Week">Week</dfn>,							<i>// Precisely 7 days.</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td>&nbsp</td></tr>
+<tr><th id="101">101</th><td>		<dfn class="enum" id="tUnit::tTime::Fortnight" title='tUnit::tTime::Fortnight' data-ref="tUnit::tTime::Fortnight">Fortnight</dfn>,						<i>// Precisely 2 weeks.</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td>										<i>// No months because they vary in duration.</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td>		<dfn class="enum" id="tUnit::tTime::Year" title='tUnit::tTime::Year' data-ref="tUnit::tTime::Year">Year</dfn>,							<i>// Precisely 365 canonical days.</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td>		<dfn class="enum" id="tUnit::tTime::Annum" title='tUnit::tTime::Annum' data-ref="tUnit::tTime::Annum">Annum</dfn>,							<i>// Precisely 365 canonical days.</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td>		<dfn class="enum" id="tUnit::tTime::Century" title='tUnit::tTime::Century' data-ref="tUnit::tTime::Century">Century</dfn>,						<i>// 100 years.</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td>		<dfn class="enum" id="tUnit::tTime::Millennium" title='tUnit::tTime::Millennium' data-ref="tUnit::tTime::Millennium">Millennium</dfn>,						<i>// 1000 years.</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td>		<dfn class="enum" id="tUnit::tTime::GalacticYear" title='tUnit::tTime::GalacticYear' data-ref="tUnit::tTime::GalacticYear">GalacticYear</dfn>,					<i>// One GY is 250 million years.</i>&nbsp</td></tr>
+<tr><th id="108">108</th><td>		&nbsp</td></tr>
+<tr><th id="109">109</th><td>		<dfn class="enum" id="tUnit::tTime::NumTimeUnits" title='tUnit::tTime::NumTimeUnits' data-ref="tUnit::tTime::NumTimeUnits">NumTimeUnits</dfn>&nbsp</td></tr>
+<tr><th id="110">110</th><td>	};&nbsp</td></tr>
+<tr><th id="111">111</th><td>	&nbsp</td></tr>
+<tr><th id="112">112</th><td>	<b>enum</b> <b>class</b> <dfn class="type def" id="tUnit::tLength" title='tUnit::tLength' data-ref="tUnit::tLength">tLength</dfn>&nbsp</td></tr>
+<tr><th id="113">113</th><td>	{&nbsp</td></tr>
+<tr><th id="114">114</th><td>		<dfn class="enum" id="tUnit::tLength::Unspecified" title='tUnit::tLength::Unspecified' data-ref="tUnit::tLength::Unspecified">Unspecified</dfn>																										= -<var>1</var>,&nbsp</td></tr>
+<tr><th id="115">115</th><td>		<dfn class="enum" id="tUnit::tLength::Angstrom" title='tUnit::tLength::Angstrom' data-ref="tUnit::tLength::Angstrom">Angstrom</dfn>,&nbsp</td></tr>
+<tr><th id="116">116</th><td>		<dfn class="enum" id="tUnit::tLength::Meter" title='tUnit::tLength::Meter' data-ref="tUnit::tLength::Meter">Meter</dfn>,&nbsp</td></tr>
+<tr><th id="117">117</th><td>		<dfn class="enum" id="tUnit::tLength::Kilometer" title='tUnit::tLength::Kilometer' data-ref="tUnit::tLength::Kilometer">Kilometer</dfn>,						<i>// Could use the tPrefix, but it's a common measure.</i>&nbsp</td></tr>
+<tr><th id="118">118</th><td>		<dfn class="enum" id="tUnit::tLength::Inch" title='tUnit::tLength::Inch' data-ref="tUnit::tLength::Inch">Inch</dfn>,&nbsp</td></tr>
+<tr><th id="119">119</th><td>		<dfn class="enum" id="tUnit::tLength::Foot" title='tUnit::tLength::Foot' data-ref="tUnit::tLength::Foot">Foot</dfn>,&nbsp</td></tr>
+<tr><th id="120">120</th><td>		<dfn class="enum" id="tUnit::tLength::Yard" title='tUnit::tLength::Yard' data-ref="tUnit::tLength::Yard">Yard</dfn>,&nbsp</td></tr>
+<tr><th id="121">121</th><td>		<dfn class="enum" id="tUnit::tLength::Fathom" title='tUnit::tLength::Fathom' data-ref="tUnit::tLength::Fathom">Fathom</dfn>,&nbsp</td></tr>
+<tr><th id="122">122</th><td>		<dfn class="enum" id="tUnit::tLength::Mile" title='tUnit::tLength::Mile' data-ref="tUnit::tLength::Mile">Mile</dfn>,&nbsp</td></tr>
+<tr><th id="123">123</th><td>		<dfn class="enum" id="tUnit::tLength::NauticalMile" title='tUnit::tLength::NauticalMile' data-ref="tUnit::tLength::NauticalMile">NauticalMile</dfn>,&nbsp</td></tr>
+<tr><th id="124">124</th><td>		<dfn class="enum" id="tUnit::tLength::AstronomicalUnit" title='tUnit::tLength::AstronomicalUnit' data-ref="tUnit::tLength::AstronomicalUnit">AstronomicalUnit</dfn>,&nbsp</td></tr>
+<tr><th id="125">125</th><td>		<dfn class="enum" id="tUnit::tLength::NumLengthUnits" title='tUnit::tLength::NumLengthUnits' data-ref="tUnit::tLength::NumLengthUnits">NumLengthUnits</dfn>&nbsp</td></tr>
+<tr><th id="126">126</th><td>	};&nbsp</td></tr>
+<tr><th id="127">127</th><td>	&nbsp</td></tr>
+<tr><th id="128">128</th><td>	<b>enum</b> <b>class</b> <dfn class="type def" id="tUnit::tMass" title='tUnit::tMass' data-ref="tUnit::tMass">tMass</dfn>&nbsp</td></tr>
+<tr><th id="129">129</th><td>	{&nbsp</td></tr>
+<tr><th id="130">130</th><td>		<dfn class="enum" id="tUnit::tMass::Unspecified" title='tUnit::tMass::Unspecified' data-ref="tUnit::tMass::Unspecified">Unspecified</dfn>																										= -<var>1</var>,&nbsp</td></tr>
+<tr><th id="131">131</th><td>		<dfn class="enum" id="tUnit::tMass::Gram" title='tUnit::tMass::Gram' data-ref="tUnit::tMass::Gram">Gram</dfn>,&nbsp</td></tr>
+<tr><th id="132">132</th><td>		<dfn class="enum" id="tUnit::tMass::Kilogram" title='tUnit::tMass::Kilogram' data-ref="tUnit::tMass::Kilogram">Kilogram</dfn>,						<i>// Could use the tPrefix, but it's a common measure.</i>&nbsp</td></tr>
+<tr><th id="133">133</th><td>		<dfn class="enum" id="tUnit::tMass::Slug" title='tUnit::tMass::Slug' data-ref="tUnit::tMass::Slug">Slug</dfn>,&nbsp</td></tr>
+<tr><th id="134">134</th><td>		<dfn class="enum" id="tUnit::tMass::NumMassUnits" title='tUnit::tMass::NumMassUnits' data-ref="tUnit::tMass::NumMassUnits">NumMassUnits</dfn>&nbsp</td></tr>
+<tr><th id="135">135</th><td>	};&nbsp</td></tr>
+<tr><th id="136">136</th><td>	&nbsp</td></tr>
+<tr><th id="137">137</th><td>	<i>// No compound units until we figure out how they'll work. For example, force (LBS, Newtons, etc) is composed of:</i>&nbsp</td></tr>
+<tr><th id="138">138</th><td><i>	// mass-unit * distance-unit / (time-unit * time-unit).</i>&nbsp</td></tr>
+<tr><th id="139">139</th><td><i></i>&nbsp</td></tr>
+<tr><th id="140">140</th><td><i>	// These return pointers to persistent (static) char strings. They return nullptr if Unspecified is passed in.</i>&nbsp</td></tr>
+<tr><th id="141">141</th><td>	<em>const</em> <em>char</em>* <dfn class="decl fn" id="_ZN5tUnit11GetUnitNameENS_5tTimeE" title='tUnit::GetUnitName' data-ref="_ZN5tUnit11GetUnitNameENS_5tTimeE">GetUnitName</dfn>(<a class="type" href="#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a>);&nbsp</td></tr>
+<tr><th id="142">142</th><td>	<em>const</em> <em>char</em>* <dfn class="decl fn" id="_ZN5tUnit11GetUnitNameENS_7tLengthE" title='tUnit::GetUnitName' data-ref="_ZN5tUnit11GetUnitNameENS_7tLengthE">GetUnitName</dfn>(<a class="type" href="#tUnit::tLength" title='tUnit::tLength' data-ref="tUnit::tLength">tLength</a>);&nbsp</td></tr>
+<tr><th id="143">143</th><td>	<em>const</em> <em>char</em>* <dfn class="decl fn" id="_ZN5tUnit11GetUnitNameENS_5tMassE" title='tUnit::GetUnitName' data-ref="_ZN5tUnit11GetUnitNameENS_5tMassE">GetUnitName</dfn>(<a class="type" href="#tUnit::tMass" title='tUnit::tMass' data-ref="tUnit::tMass">tMass</a>);&nbsp</td></tr>
+<tr><th id="144">144</th><td>&nbsp</td></tr>
+<tr><th id="145">145</th><td>	<i>// Given a unit name, these return the associated unit. Case insensitive compares, but no other fuzziness. They</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td><i>	// return Unspecified if the name can't be found.</i>&nbsp</td></tr>
+<tr><th id="147">147</th><td>	<a class="type" href="#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a> <dfn class="decl fn" id="_ZN5tUnit11GetTimeUnitEPKc" title='tUnit::GetTimeUnit' data-ref="_ZN5tUnit11GetTimeUnitEPKc">GetTimeUnit</dfn>(<em>const</em> <em>char</em>* <dfn class="local col1 decl" id="1name" title='name' data-type='const char *' data-ref="1name">name</dfn>);&nbsp</td></tr>
+<tr><th id="148">148</th><td>	<a class="type" href="#tUnit::tLength" title='tUnit::tLength' data-ref="tUnit::tLength">tLength</a> <dfn class="decl fn" id="_ZN5tUnit13GetLengthUnitEPKc" title='tUnit::GetLengthUnit' data-ref="_ZN5tUnit13GetLengthUnitEPKc">GetLengthUnit</dfn>(<em>const</em> <em>char</em>* <dfn class="local col2 decl" id="2name" title='name' data-type='const char *' data-ref="2name">name</dfn>);&nbsp</td></tr>
+<tr><th id="149">149</th><td>	<a class="type" href="#tUnit::tMass" title='tUnit::tMass' data-ref="tUnit::tMass">tMass</a> <dfn class="decl fn" id="_ZN5tUnit11GetMassUnitEPKc" title='tUnit::GetMassUnit' data-ref="_ZN5tUnit11GetMassUnitEPKc">GetMassUnit</dfn>(<em>const</em> <em>char</em>* <dfn class="local col3 decl" id="3name" title='name' data-type='const char *' data-ref="3name">name</dfn>);&nbsp</td></tr>
+<tr><th id="150">150</th><td>}&nbsp</td></tr>
+<tr><th id="151">151</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

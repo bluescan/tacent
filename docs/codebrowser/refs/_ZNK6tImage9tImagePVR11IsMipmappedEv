@@ -1,0 +1,2 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='114' c='_ZNK6tImage10tBaseImage11IsMipmappedEv'/>
+<def f='Modules/Image/Inc/Image/tImagePVR.h' l='175' type='bool tImage::tImagePVR::IsMipmapped() const'/>

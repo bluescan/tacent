@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='115' type='int tMath::tGreatestCommonDivisor(int a, int b)'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='842' u='c' c='_ZN6tImage15tGetAspectRatioEii'/>

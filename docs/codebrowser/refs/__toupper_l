@@ -1,0 +1,2 @@
+<dec f='include/ctype.h' l='271' type='int __toupper_l(int __c, locale_t __l)'/>
+<doc f='include/ctype.h' l='270'>/* Return the uppercase version of C.  */</doc>

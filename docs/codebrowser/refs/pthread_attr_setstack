@@ -1,0 +1,4 @@
+<dec f='include/pthread.h' l='387' type='int pthread_attr_setstack(pthread_attr_t * __attr, void * __stackaddr, size_t __stacksize)'/>
+<doc f='include/pthread.h' l='384'>/* The following two interfaces are intended to replace the last two.  They
+   require setting the address as well as the size since only setting the
+   address will make the implementation on some architectures impossible.  */</doc>

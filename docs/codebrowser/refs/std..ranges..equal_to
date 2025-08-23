@@ -1,0 +1,44 @@
+<def f='include/c++/11/bits/ranges_cmp.h' l='86' ll='96'/>
+<use f='include/c++/11/bits/ranges_cmp.h' l='106' c='_ZNKSt6ranges12not_equal_toclEOT_OT0_'/>
+<size>1</size>
+<doc f='include/c++/11/bits/ranges_cmp.h' l='80'>// [range.cmp] Concept-constrained comparisons
+
+  // _GLIBCXX_RESOLVE_LIB_DEFECTS
+  // 3530 BUILTIN-PTR-MEOW should not opt the type out of syntactic checks
+
+  /// ranges::equal_to function object type.</doc>
+<fun r='_ZNKSt6ranges8equal_toclEOT_OT0_'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='76'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='110' c='_ZNKSt6ranges10__equal_fnclET_T0_T1_T2_T3_T4_T5_'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='142'/>
+<use f='include/c++/11/bits/ranges_util.h' l='408'/>
+<use f='include/c++/11/bits/ranges_util.h' l='421'/>
+<use f='include/c++/11/bits/ranges_util.h' l='518'/>
+<use f='include/c++/11/bits/ranges_util.h' l='538'/>
+<use f='include/c++/11/bits/ranges_util.h' l='559'/>
+<use f='include/c++/11/bits/ranges_util.h' l='602'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='243'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='261'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='282'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='297'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='345'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='417'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='436'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='492'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='515'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='536'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='554'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='620'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='812'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='828'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='883'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='901'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1041'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1057'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1117'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1136'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1155'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1176'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1203'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1261'/>
+<size>1</size>

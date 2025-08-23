@@ -1,0 +1,9 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='326' ll='334'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='335'/>
+<size>60</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='325'>// @todo The oriented box is mostly unimplemented.</doc>
+<fun r='_ZN5tMath5tOBoxC1Ev'/>
+<fun r='_ZNK5tMath5tOBox8IsInsideERKNS_8tVector3E'/>
+<mbr r='tMath::tOBox::Center' o='0' t='tMath::tVector3'/>
+<mbr r='tMath::tOBox::Axes' o='96' t='tMath::tVector3[3]'/>
+<mbr r='tMath::tOBox::Extents' o='384' t='tMath::tVector3'/>

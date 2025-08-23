@@ -1,0 +1,164 @@
+<def f='Modules/System/Inc/System/tScript.h' l='47' ll='186'/>
+<use f='Modules/System/Inc/System/tScript.h' l='58' c='_ZN11tExpressionC1ERKS_'/>
+<use f='Modules/System/Inc/System/tScript.h' l='72' c='_ZNK11tExpression3CarEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='73' c='_ZNK11tExpression4CadrEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='74' c='_ZNK11tExpression5CaddrEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='75' c='_ZNK11tExpression6CadddrEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='76' c='_ZNK11tExpression7CaddddrEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='77' c='_ZNK11tExpression8CadddddrEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='78' c='_ZNK11tExpression9CaddddddrEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='79' c='_ZNK11tExpression7CarCdrNEi'/>
+<use f='Modules/System/Inc/System/tScript.h' l='83' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='136' c='_ZNK11tExpression4Arg0Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='137' c='_ZNK11tExpression4Arg1Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='138' c='_ZNK11tExpression4Arg2Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='139' c='_ZNK11tExpression4Arg3Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='140' c='_ZNK11tExpression4Arg4Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='141' c='_ZNK11tExpression4Arg5Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='142' c='_ZNK11tExpression4Arg6Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='143' c='_ZNK11tExpression4ArgNEi'/>
+<use f='Modules/System/Inc/System/tScript.h' l='146' c='_ZNK11tExpression5Item0Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='147' c='_ZNK11tExpression5Item1Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='148' c='_ZNK11tExpression5Item2Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='149' c='_ZNK11tExpression5Item3Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='150' c='_ZNK11tExpression5Item4Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='151' c='_ZNK11tExpression5Item5Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='152' c='_ZNK11tExpression5Item6Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='153' c='_ZNK11tExpression5ItemNEi'/>
+<use f='Modules/System/Inc/System/tScript.h' l='156' c='_ZNK11tExpression3CmdEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='157' c='_ZNK11tExpression7CommandEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='158' c='_ZNK11tExpression5FirstEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='189'/>
+<use f='Modules/System/Inc/System/tScript.h' l='193' c='_Z13GetAtomStringR11tExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='194' c='_Z11GetAtomBoolR11tExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='195' c='_Z11GetAtomUintR11tExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='196' c='_Z13GetAtomUint64R11tExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='197' c='_Z10GetAtomIntR11tExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='198' c='_Z12GetAtomFloatR11tExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='199' c='_Z13GetAtomDoubleR11tExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='200' c='_Z11GetAtomHashR11tExpression'/>
+<ovr f='Modules/System/Inc/System/tScript.h' l='211' c='tExprReader'/>
+<use f='Modules/System/Inc/System/tScript.h' l='211'/>
+<use f='Modules/System/Inc/System/tScript.h' l='215' c='_ZN11tExprReaderC1Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='218' c='_ZN11tExprReaderC1ERK7tStringb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='41' c='_ZNK6tImage10tImageTIFF24ReadSoftwarePageDurationEP4tiff'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='44' c='_ZNK6tImage10tImageTIFF24ReadSoftwarePageDurationEP4tiff'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='45' c='_ZNK6tImage10tImageTIFF24ReadSoftwarePageDurationEP4tiff'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='46' c='_ZNK6tImage10tImageTIFF24ReadSoftwarePageDurationEP4tiff'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='49' c='_ZNK6tImage10tImageTIFF24ReadSoftwarePageDurationEP4tiff'/>
+<size>24</size>
+<doc f='Modules/System/Inc/System/tScript.h' l='39'>// An s-expression has the following syntax: [expr expr ...] OR atom. That is, an s-expression is either a list of
+// s-expressions enclosed in square brackets or it is an &apos;atom&apos; (base value type, not divisible, as in an atom).
+// By convention s-expressions often take the more restricted form [command argument1 argument2 argument3] where the
+// the command is a string atom and arguments are arbitrary expressions. At the leaf level an expression is an atom.
+//
+// In comparison to Lisp expressions made of pairs, we support the list-syntax, not the pair syntax. eg. Lisp&apos;s
+// (a.(b.(c.()))) where () is null is represented as [a b c]. Cdr is not much use in proper lists, but Car, Cadr,
+// Caddr, etc are. i.e. Car([a b c]) = a. Cadr([a b c]) = b. etc. </doc>
+<fun r='_ZN11tExpressionC1Ev'/>
+<fun r='_ZN11tExpressionC1ERKS_'/>
+<fun r='_ZN11tExpressionC1EPKDu'/>
+<fun r='_ZN11tExpressionC1EPKc'/>
+<fun r='_ZN11tExpressionC1EPKDui'/>
+<fun r='_ZN11tExpressionC1EPKci'/>
+<fun r='_ZN11tExpressionD1Ev'/>
+<fun r='_ZNK11tExpression3CarEv'/>
+<fun r='_ZNK11tExpression4CadrEv'/>
+<fun r='_ZNK11tExpression5CaddrEv'/>
+<fun r='_ZNK11tExpression6CadddrEv'/>
+<fun r='_ZNK11tExpression7CaddddrEv'/>
+<fun r='_ZNK11tExpression8CadddddrEv'/>
+<fun r='_ZNK11tExpression9CaddddddrEv'/>
+<fun r='_ZNK11tExpression7CarCdrNEi'/>
+<fun r='_ZNK11tExpression4NextEv'/>
+<fun r='_ZNK11tExpression7IsValidEv'/>
+<fun r='_ZNK11tExpression6IsAtomEv'/>
+<fun r='_ZNK11tExpression19GetExpressionStringEv'/>
+<fun r='_ZNK11tExpression13GetAtomStringEv'/>
+<fun r='_ZNK11tExpression11GetAtomBoolEv'/>
+<fun r='_ZNK11tExpression11GetAtomUintEv'/>
+<fun r='_ZNK11tExpression13GetAtomUint64Ev'/>
+<fun r='_ZNK11tExpression10GetAtomIntEv'/>
+<fun r='_ZNK11tExpression12GetAtomFloatEv'/>
+<fun r='_ZNK11tExpression13GetAtomDoubleEv'/>
+<fun r='_ZNK11tExpression11GetAtomHashEv'/>
+<fun r='_ZNK11tExpression4HashEv'/>
+<fun r='_ZNK11tExpression14GetAtomVector2Ev'/>
+<fun r='_ZNK11tExpression14GetAtomVector3Ev'/>
+<fun r='_ZNK11tExpression14GetAtomVector4Ev'/>
+<fun r='_ZNK11tExpression17GetAtomQuaternionEv'/>
+<fun r='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<fun r='_ZNK11tExpression14GetAtomMatrix4Ev'/>
+<fun r='_ZNK11tExpression13GetAtomColourEv'/>
+<fun r='_ZNK11tExpressioncv7tStringEv'/>
+<fun r='_ZNK11tExpressioncvbEv'/>
+<fun r='_ZNK11tExpressioncviEv'/>
+<fun r='_ZNK11tExpressioncvjEv'/>
+<fun r='_ZNK11tExpressioncvlEv'/>
+<fun r='_ZNK11tExpressioncvfEv'/>
+<fun r='_ZNK11tExpressioncvdEv'/>
+<fun r='_ZNK11tExpressioncvN5tMath8tVector2EEv'/>
+<fun r='_ZNK11tExpressioncvN5tMath8tVector3EEv'/>
+<fun r='_ZNK11tExpressioncvN5tMath8tVector4EEv'/>
+<fun r='_ZNK11tExpressioncvN5tMath11tQuaternionEEv'/>
+<fun r='_ZNK11tExpressioncvN5tMath8tMatrix2EEv'/>
+<fun r='_ZNK11tExpressioncvN5tMath8tMatrix4EEv'/>
+<fun r='_ZNK11tExpressioncv9tColour4bEv'/>
+<fun r='_ZNK11tExpression4Arg0Ev'/>
+<fun r='_ZNK11tExpression4Arg1Ev'/>
+<fun r='_ZNK11tExpression4Arg2Ev'/>
+<fun r='_ZNK11tExpression4Arg3Ev'/>
+<fun r='_ZNK11tExpression4Arg4Ev'/>
+<fun r='_ZNK11tExpression4Arg5Ev'/>
+<fun r='_ZNK11tExpression4Arg6Ev'/>
+<fun r='_ZNK11tExpression4ArgNEi'/>
+<fun r='_ZNK11tExpression9CountArgsEv'/>
+<fun r='_ZNK11tExpression5Item0Ev'/>
+<fun r='_ZNK11tExpression5Item1Ev'/>
+<fun r='_ZNK11tExpression5Item2Ev'/>
+<fun r='_ZNK11tExpression5Item3Ev'/>
+<fun r='_ZNK11tExpression5Item4Ev'/>
+<fun r='_ZNK11tExpression5Item5Ev'/>
+<fun r='_ZNK11tExpression5Item6Ev'/>
+<fun r='_ZNK11tExpression5ItemNEi'/>
+<fun r='_ZNK11tExpression10CountItemsEv'/>
+<fun r='_ZNK11tExpression3CmdEv'/>
+<fun r='_ZNK11tExpression7CommandEv'/>
+<fun r='_ZNK11tExpression5FirstEv'/>
+<fun r='_ZNK11tExpression5ValidEv'/>
+<fun r='_ZNK11tExpression4AtomEv'/>
+<fun r='_ZNK11tExpression10GetContextEv'/>
+<fun r='_ZNK11tExpression13GetLineNumberEv'/>
+<fun r='_ZN11tExpression19EatWhiteAndCommentsEPKDuRi'/>
+<mbr r='tExpression::ExprData' o='64' t='const char8_t *'/>
+<mbr r='tExpression::LineNumber' o='128' t='int'/>
+<smbr r='tExpression::ContextSize' t='const int'/>
+<fun r='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='37' c='_ZNK11tExpression3CarEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='44' c='_ZNK11tExpression3CarEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='51' c='_ZNK11tExpression3CarEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='53' c='_ZNK11tExpression3CarEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='57' c='_ZNK11tExpression7CarCdrNEi'/>
+<use f='Modules/System/Src/tScript.cpp' l='59' c='_ZNK11tExpression7CarCdrNEi'/>
+<use f='Modules/System/Src/tScript.cpp' l='73' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='94' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='165' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='167' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='482' c='_ZN11tExprReaderC1EiPPc'/>
+<size>24</size>
+<fun r='_ZNK11tExpression3CarEv'/>
+<fun r='_ZNK11tExpression7CarCdrNEi'/>
+<fun r='_ZNK11tExpression4NextEv'/>
+<fun r='_ZNK11tExpression6IsAtomEv'/>
+<fun r='_ZNK11tExpression19GetExpressionStringEv'/>
+<fun r='_ZNK11tExpression13GetAtomStringEv'/>
+<fun r='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<fun r='_ZNK11tExpression14GetAtomVector2Ev'/>
+<fun r='_ZNK11tExpression14GetAtomVector3Ev'/>
+<fun r='_ZNK11tExpression14GetAtomVector4Ev'/>
+<fun r='_ZNK11tExpression17GetAtomQuaternionEv'/>
+<fun r='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<fun r='_ZNK11tExpression14GetAtomMatrix4Ev'/>
+<fun r='_ZNK11tExpression13GetAtomColourEv'/>
+<fun r='_ZN11tExpression19EatWhiteAndCommentsEPKDuRi'/>
+<fun r='_ZNK11tExpression10GetContextEv'/>

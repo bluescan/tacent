@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='738' type='std::time_get::iter_type std::time_get::_M_extract_name(std::time_get::iter_type __beg, std::time_get::iter_type __end, int &amp; __member, const _CharT ** __names, std::size_t __indexlen, std::ios_base &amp; __io, ios_base::iostate &amp; __err) const'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='721' u='c' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='730' u='c' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='740' u='c' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='749' u='c' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='885' u='c' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='967' ll='1041' type='_InIter std::time_get::_M_extract_name(std::time_get::iter_type __beg, std::time_get::iter_type __end, int &amp; __member, const _CharT ** __names, std::size_t __indexlen, std::ios_base &amp; __io, ios_base::iostate &amp; __err) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='736'>// Extract any unique array of string literals in a const _CharT* array.</doc>
+<doc f='include/c++/11/bits/locale_facets_nonio.tcc' l='965'>// Assumptions:
+  // All elements in __names are unique.</doc>

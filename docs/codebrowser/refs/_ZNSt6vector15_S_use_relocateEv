@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_vector.h' l='443' ll='450' type='static bool std::vector::_S_use_relocate()'/>
+<use f='include/c++/11/bits/stl_vector.h' l='468' u='c' c='_ZNSt6vector11_S_relocateENSt12_Vector_baseIT_T0_E7pointerES4_S4_RNS3_14_Tp_alloc_typeE'/>
+<use f='include/c++/11/bits/vector.tcc' l='76' u='c' c='_ZNSt6vector7reserveEm'/>
+<use f='include/c++/11/bits/vector.tcc' l='459' u='c' c='_ZNSt6vector17_M_realloc_insertEN9__gnu_cxx17__normal_iteratorINSt12_Vector_baseIT_T0_E7pointerESt6vectorIS3_S4_EEEDpOTL0__'/>
+<use f='include/c++/11/bits/vector.tcc' l='496' u='c' c='_ZNSt6vector17_M_realloc_insertEN9__gnu_cxx17__normal_iteratorINSt12_Vector_baseIT_T0_E7pointerESt6vectorIS3_S4_EEEDpOTL0__'/>
+<use f='include/c++/11/bits/vector.tcc' l='636' u='c' c='_ZNSt6vector17_M_default_appendEm'/>

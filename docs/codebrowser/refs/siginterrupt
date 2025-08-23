@@ -1,0 +1,4 @@
+<dec f='include/signal.h' l='324' type='int siginterrupt(int __sig, int __interrupt)'/>
+<doc f='include/signal.h' l='321'>/* If INTERRUPT is nonzero, make signal SIG interrupt system calls
+   (causing them to fail with EINTR); if INTERRUPT is zero, make system
+   calls be restarted after signal SIG.  */</doc>

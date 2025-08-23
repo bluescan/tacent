@@ -1,0 +1,38 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='30' ll='38'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='33' c='_ZN5tMath5tEdgeC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='34' c='_ZNK5tMath5tEdgeeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='35' c='_ZNK5tMath5tEdgeneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='36' c='_ZN5tMath5tEdgeaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='36' c='_ZN5tMath5tEdgeaSERKS0_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='151' c='_ZN12tChunkWriter5WriteERKN5tMath5tEdgeE'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='170' c='_ZN12tChunkWriter5WriteEPKN5tMath5tEdgeEi'/>
+<size>8</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='28'>// Edges are simply line segments with two end points. The tEdge data structure is just a set of 2 indexes into any
+// sort of vertex array. It is therefore dimension-agnostic and can be used for edges in R2 and R3.</doc>
+<fun r='_ZN5tMath5tEdgeC1Ev'/>
+<fun r='_ZN5tMath5tEdgeC1ERKS0_'/>
+<fun r='_ZNK5tMath5tEdgeeqERKS0_'/>
+<fun r='_ZNK5tMath5tEdgeneERKS0_'/>
+<fun r='_ZN5tMath5tEdgeaSERKS0_'/>
+<mbr r='tMath::tEdge::Index' o='0' t='int[2]'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='104' c='_ZNK6tScene5tMesh13FindEdgeIndexERKN5tMath5tEdgeE'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='105' c='_ZN6tScene5tMesh34CreateEdgeTableVertPositionIndicesEv'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='108'/>
+<size>8</size>
+<use f='Modules/Scene/Src/tMesh.cpp' l='67' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='69' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='272' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='273' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='273' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<size>8</size>
+<use f='Modules/Scene/Src/tWorld.cpp' l='310' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='393' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<size>8</size>
+<use f='Modules/System/Src/tChunk.cpp' l='417' c='_ZN12tChunkWriter5WriteERKN5tMath5tEdgeE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='421' c='_ZN12tChunkWriter5WriteERKN5tMath5tEdgeE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='600' c='_ZN12tChunkWriter5WriteEPKN5tMath5tEdgeEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='607' c='_ZN12tChunkWriter5WriteEPKN5tMath5tEdgeEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='607' c='_ZN12tChunkWriter5WriteEPKN5tMath5tEdgeEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='612' c='_ZN12tChunkWriter5WriteEPKN5tMath5tEdgeEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='617' c='_ZN12tChunkWriter5WriteEPKN5tMath5tEdgeEi'/>
+<size>8</size>

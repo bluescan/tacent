@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/random.h' l='4238' u='w' c='_ZNSt30negative_binomial_distributionC1ET_d'/>
+<use f='include/c++/11/bits/random.h' l='4243' u='w' c='_ZNSt30negative_binomial_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4258' u='c' c='_ZNKSt30negative_binomial_distribution1kEv'/>
+<use f='include/c++/11/bits/random.h' l='4265' u='c' c='_ZNKSt30negative_binomial_distribution1pEv'/>
+<use f='include/c++/11/bits/random.h' l='4272' u='r' c='_ZNKSt30negative_binomial_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='4280' u='w' c='_ZNSt30negative_binomial_distribution5paramERKNS_10param_typeE'/>
+<dec f='include/c++/11/bits/random.h' l='4390' type='std::negative_binomial_distribution::param_type'/>

@@ -1,0 +1,7 @@
+<def f='include/c++/11/type_traits' l='2496' ll='2499'/>
+<def f='include/c++/11/type_traits' l='2501' ll='2505'/>
+<use f='include/c++/11/type_traits' l='2516'/>
+<use f='include/c++/11/type_traits' l='2522'/>
+<use f='include/c++/11/type_traits' l='2939' c='_ZSt12__call_is_ntSt19__invoke_memfun_ref'/>
+<use f='include/c++/11/type_traits' l='2954' c='_ZSt12__call_is_ntSt19__invoke_memobj_ref'/>
+<use f='include/c++/11/bits/invoke.h' l='53'/>

@@ -1,0 +1,127 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='248' c='_ZN5tMath22tColourDiffEuclideanSqERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='248' c='_ZN5tMath22tColourDiffEuclideanSqERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='250' c='_ZN5tMath20tColourDiffEuclideanERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='250' c='_ZN5tMath20tColourDiffEuclideanERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='252' c='_ZN5tMath18tColourDiffRedmeanERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='252' c='_ZN5tMath18tColourDiffRedmeanERK9tColour3bS2_'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='297' ll='329'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='301' c='_ZN9tColour3bC1ERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='305' c='_ZN9tColour3b3SetERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='321' c='_ZNK9tColour3beqERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='331'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='332'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='341' c='_ZN9tColour4bC1ERK9tColour3bi'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='354' c='_ZN9tColour4b3SetERK9tColour3bi'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='539' c='_ZN9tColour4sC1ERK9tColour3bh'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='552' c='_ZN9tColour4s3SetERK9tColour3bh'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1034' c='_ZN5tMath22tColourDiffEuclideanSqERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1034' c='_ZN5tMath22tColourDiffEuclideanSqERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1050' c='_ZN5tMath20tColourDiffEuclideanERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1050' c='_ZN5tMath20tColourDiffEuclideanERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1066' c='_ZN9tColour4b3SetERK9tColour3bi'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1173' c='_ZN9tColour4s3SetERK9tColour3bh'/>
+<size>3</size>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='296'>// The tColour3b class represents a colour in 24 bits and is made of 3 unsigned byte-size integers in the order RGB.</doc>
+<fun r='_ZN9tColour3bC1Ev'/>
+<fun r='_ZN9tColour3bC1ERKS_'/>
+<fun r='_ZN9tColour3bC1Eiii'/>
+<fun r='_ZN9tColour3bC1Ehhhh'/>
+<fun r='_ZN9tColour3b3SetERKS_'/>
+<fun r='_ZN9tColour3b3SetEiii'/>
+<fun r='_ZN9tColour3b3SetEhhh'/>
+<fun r='_ZNK9tColour3b10GetDenormREv'/>
+<fun r='_ZNK9tColour3b10GetDenormGEv'/>
+<fun r='_ZNK9tColour3b10GetDenormBEv'/>
+<fun r='_ZNK9tColour3b9GetDenormEPf'/>
+<fun r='_ZNK9tColour3b9GetDenormERN5tMath8tVector3E'/>
+<fun r='_ZNK9tColour3b9GetDenormERfS0_S0_'/>
+<fun r='_ZNK9tColour3b9IntensityEv'/>
+<fun r='_ZN9tColour3bcvjEv'/>
+<fun r='_ZNK9tColour3bcvjEv'/>
+<fun r='_ZNK9tColour3beqERKS_'/>
+<use f='Modules/Image/Inc/Image/tQuantize.h' l='38' c='_ZN6tImage9tQuantize18QuantizeImageExactEiiiPK9tColour3bPS1_Ph'/>
+<use f='Modules/Image/Inc/Image/tQuantize.h' l='48' c='_ZN6tImage9tQuantize15ConvertToPixelsEP9tColour3biiPKS1_PKh'/>
+<use f='Modules/Image/Inc/Image/tQuantize.h' l='56' c='_ZN6tImage9tQuantize15ConvertToPixelsEP9tColour4biiPK9tColour3bPKhb'/>
+<use f='Modules/Image/Inc/Image/tQuantize.h' l='86' c='_ZN6tImage14tQuantizeFixed13QuantizeImageEiiiPK9tColour3bPS1_Phb'/>
+<use f='Modules/Image/Inc/Image/tQuantize.h' l='91' c='_ZN6tImage14tQuantizeFixed13QuantizeImageEiiiPK9tColour4bP9tColour3bPhb'/>
+<use f='Modules/Image/Inc/Image/tQuantize.h' l='110' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<use f='Modules/Image/Inc/Image/tQuantize.h' l='115' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour4bP9tColour3bPhbdi'/>
+<use f='Modules/Image/Inc/Image/tQuantize.h' l='138' c='_ZN6tImage12tQuantizeNeu13QuantizeImageEiiiPK9tColour3bPS1_Phbi'/>
+<use f='Modules/Image/Inc/Image/tQuantize.h' l='143' c='_ZN6tImage12tQuantizeNeu13QuantizeImageEiiiPK9tColour4bP9tColour3bPhbi'/>
+<use f='Modules/Image/Inc/Image/tQuantize.h' l='160' c='_ZN6tImage11tQuantizeWu13QuantizeImageEiiiPK9tColour3bPS1_Phb'/>
+<use f='Modules/Image/Inc/Image/tQuantize.h' l='165' c='_ZN6tImage11tQuantizeWu13QuantizeImageEiiiPK9tColour4bP9tColour3bPhb'/>
+<size>3</size>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='49' c='_ZN6tImage13tPaletteImageC1ENS_12tPixelFormatEiiPKhPK9tColour3b'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='67' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPKhPK9tColour3b'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='91'/>
+<size>3</size>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='375' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='375' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<size>3</size>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='45' c='_ZN6tImage13tPaletteImage3SetERKS0_'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='46' c='_ZN6tImage13tPaletteImage3SetERKS0_'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='69' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='70' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='76' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPKhPK9tColour3b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='93' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPKhPK9tColour3b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='94' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPKhPK9tColour3b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='130' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='194' c='_ZN6tImage13tPaletteImage3GetEP9tColour4b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='218' c='_ZN6tImage13tPaletteImage3GetEP9tColour3b'/>
+<size>3</size>
+<use f='Modules/Image/Src/tPicture.cpp' l='533' c='_ZN6tImage8tPicture13QuantizeFixedEib'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='533' c='_ZN6tImage8tPicture13QuantizeFixedEib'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='557' c='_ZN6tImage8tPicture15QuantizeSpatialEibdi'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='557' c='_ZN6tImage8tPicture15QuantizeSpatialEibdi'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='581' c='_ZN6tImage8tPicture11QuantizeNeuEibi'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='581' c='_ZN6tImage8tPicture11QuantizeNeuEibi'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='605' c='_ZN6tImage8tPicture10QuantizeWuEib'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='605' c='_ZN6tImage8tPicture10QuantizeWuEib'/>
+<size>3</size>
+<use f='Modules/Image/Src/tQuantize.cpp' l='26' c='_ZN6tImage9tQuantize22FindIndexOfExactColourEPK9tColour3biRS2_'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='26' c='_ZN6tImage9tQuantize22FindIndexOfExactColourEPK9tColour3biRS2_'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='43' c='_ZN6tImage9tQuantize22FindIndexOfExactColourEPK9tColour3biRS2_'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='43' c='_ZN6tImage9tQuantize22FindIndexOfExactColourEPK9tColour3biRS2_'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='61' c='_ZN6tImage9tQuantize18QuantizeImageExactEiiiPK9tColour3bPS1_Ph'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='87' c='_ZN6tImage9tQuantize18QuantizeImageExactEiiiPK9tColour3bPS1_Ph'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='107' c='_ZN6tImage9tQuantize15ConvertToPixelsEP9tColour3biiPKS1_PKh'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='119' c='_ZN6tImage9tQuantize15ConvertToPixelsEP9tColour3biiPKS1_PKh'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='131' c='_ZN6tImage9tQuantize15ConvertToPixelsEP9tColour4biiPK9tColour3bPKhb'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='143' c='_ZN6tImage9tQuantize15ConvertToPixelsEP9tColour4biiPK9tColour3bPKhb'/>
+<size>3</size>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='28' c='_ZN6tImage14tQuantizeFixed32FindIndexOfClosestColour_RedmeanEPK9tColour3biRS2_'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='28' c='_ZN6tImage14tQuantizeFixed32FindIndexOfClosestColour_RedmeanEPK9tColour3biRS2_'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='106'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='143'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='164'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='177'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='186'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='193'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='199'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='205'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='211' c='_ZN6tImage14tQuantizeFixed32FindIndexOfClosestColour_RedmeanEPK9tColour3biRS2_'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='211' c='_ZN6tImage14tQuantizeFixed32FindIndexOfClosestColour_RedmeanEPK9tColour3biRS2_'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='236' c='_ZN6tImage14tQuantizeFixed13QuantizeImageEiiiPK9tColour3bPS1_Phb'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='295' c='_ZN6tImage14tQuantizeFixed13QuantizeImageEiiiPK9tColour3bPS1_Phb'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='334' c='_ZN6tImage14tQuantizeFixed13QuantizeImageEiiiPK9tColour4bP9tColour3bPhb'/>
+<size>3</size>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='112' c='_ZN6tImage12tQuantizeNeu12getColourMapERNS0_5StateEP9tColour3b'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='129' c='_ZN6tImage12tQuantizeNeu32FindIndexOfClosestColour_RedmeanEPK9tColour3biRS2_'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='129' c='_ZN6tImage12tQuantizeNeu32FindIndexOfClosestColour_RedmeanEPK9tColour3biRS2_'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='181' c='_ZN6tImage12tQuantizeNeu12getColourMapERNS0_5StateEP9tColour3b'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='514' c='_ZN6tImage12tQuantizeNeu32FindIndexOfClosestColour_RedmeanEPK9tColour3biRS2_'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='514' c='_ZN6tImage12tQuantizeNeu32FindIndexOfClosestColour_RedmeanEPK9tColour3biRS2_'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='539' c='_ZN6tImage12tQuantizeNeu13QuantizeImageEiiiPK9tColour3bPS1_Phbi'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='584' c='_ZN6tImage12tQuantizeNeu13QuantizeImageEiiiPK9tColour4bP9tColour3bPhbi'/>
+<size>3</size>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='840' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='942' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour4bP9tColour3bPhbdi'/>
+<size>3</size>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='109' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='408' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='534' c='_ZN6tImage11tQuantizeWu13QuantizeImageEiiiPK9tColour3bPS1_Phb'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='555' c='_ZN6tImage11tQuantizeWu13QuantizeImageEiiiPK9tColour4bP9tColour3bPhb'/>
+<size>3</size>
+<use f='Modules/Math/Src/tColour.cpp' l='433' c='_ZN5tMath18tColourDiffRedmeanERK9tColour3bS2_'/>
+<use f='Modules/Math/Src/tColour.cpp' l='433' c='_ZN5tMath18tColourDiffRedmeanERK9tColour3bS2_'/>
+<size>3</size>

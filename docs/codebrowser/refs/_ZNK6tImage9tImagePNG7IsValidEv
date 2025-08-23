@@ -1,0 +1,5 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='86' c='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<def f='Modules/Image/Inc/Image/tImagePNG.h' l='132' type='bool tImage::tImagePNG::IsValid() const'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='279' u='c' c='_ZN6tImage9tImageICO11CreateFrameEPKhiii'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='517' u='c' c='_ZN6tImage9tImagePNG8GetFrameEb'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='753' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

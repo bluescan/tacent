@@ -1,0 +1,3 @@
+<dec f='include/string.h' l='64' type='int memcmp(const void * __s1, const void * __s2, size_t __n)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='41' u='c' c='_ZN4tStd7tMemcmpEPKvS1_i'/>
+<doc f='include/string.h' l='63'>/* Compare N bytes of S1 and S2.  */</doc>

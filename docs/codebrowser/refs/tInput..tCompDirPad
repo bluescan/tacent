@@ -1,0 +1,6 @@
+<inh f='Modules/Input/Inc/Input/tComp.h' l='24' c='tInput::tComponent'/>
+<def f='Modules/Input/Inc/Input/tCompDirPad.h' l='23' ll='42'/>
+<size>232</size>
+<fun r='_ZN6tInput11tCompDirPadD1Ev'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='77'/>
+<size>232</size>

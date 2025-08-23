@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/stl_pair.h' l='101' ll='158'/>
+<def f='include/c++/11/bits/stl_pair.h' l='160' ll='186'/>
+<use f='include/c++/11/bits/stl_pair.h' l='256'/>
+<use f='include/c++/11/bits/stl_pair.h' l='289'/>
+<fun r='_ZNSt4_PCC18_ConstructiblePairEv'/>
+<fun r='_ZNSt4_PCC26_ImplicitlyConvertiblePairEv'/>
+<fun r='_ZNSt4_PCC22_MoveConstructiblePairEv'/>
+<fun r='_ZNSt4_PCC30_ImplicitlyMoveConvertiblePairEv'/>
+<fun r='_ZNSt4_PCC13_CopyMovePairEv'/>
+<fun r='_ZNSt4_PCC13_MoveCopyPairEv'/>
+<fun r='_ZNSt4_PCCILb0ET_T0_E18_ConstructiblePairEv'/>
+<fun r='_ZNSt4_PCCILb0ET_T0_E26_ImplicitlyConvertiblePairEv'/>
+<fun r='_ZNSt4_PCCILb0ET_T0_E22_MoveConstructiblePairEv'/>
+<fun r='_ZNSt4_PCCILb0ET_T0_E30_ImplicitlyMoveConvertiblePairEv'/>

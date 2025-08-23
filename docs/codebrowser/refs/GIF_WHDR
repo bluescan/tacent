@@ -1,0 +1,24 @@
+<def f='Modules/Image/Contrib/GifLoad/gif_load.h' l='49' ll='59'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='167' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='168' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='222' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='222' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='29' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<size>128</size>
+<doc f='Modules/Image/Contrib/GifLoad/gif_load.h' l='49'>/** ======== frame writer info: ======== **/</doc>
+<mbr r='GIF_WHDR::xdim' o='0' t='long'/>
+<mbr r='GIF_WHDR::ydim' o='64' t='long'/>
+<mbr r='GIF_WHDR::clrs' o='128' t='long'/>
+<mbr r='GIF_WHDR::bkgd' o='192' t='long'/>
+<mbr r='GIF_WHDR::tran' o='256' t='long'/>
+<mbr r='GIF_WHDR::intr' o='320' t='long'/>
+<mbr r='GIF_WHDR::mode' o='384' t='long'/>
+<mbr r='GIF_WHDR::frxd' o='448' t='long'/>
+<mbr r='GIF_WHDR::fryd' o='512' t='long'/>
+<mbr r='GIF_WHDR::frxo' o='576' t='long'/>
+<mbr r='GIF_WHDR::fryo' o='640' t='long'/>
+<mbr r='GIF_WHDR::time' o='704' t='long'/>
+<mbr r='GIF_WHDR::ifrm' o='768' t='long'/>
+<mbr r='GIF_WHDR::nfrm' o='832' t='long'/>
+<mbr r='GIF_WHDR::bptr' o='896' t='uint8_t *'/>
+<mbr r='GIF_WHDR::cpal' o='960' t='struct (unnamed struct at /mnt/c/GitHub/tacent/Modules/Image/Contrib/GifLoad/gif_load.h:56:5) *'/>

@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/locale_classes.h' l='688' ll='691' type='void std::collate::collate&lt;_CharT&gt;(std::__c_locale __cloc, std::size_t __refs = 0)'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='679'>/**
+       *  @brief  Internal constructor. Not for general use.
+       *
+       *  This is a constructor for use by the library itself to set up new
+       *  locales.
+       *
+       *  @param __cloc  The C locale.
+       *  @param __refs  Passed to the base facet class.
+      */</doc>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unique_lock.h' l='216' ll='218' type='bool std::unique_lock::owns_lock() const'/>
+<use f='include/c++/11/bits/unique_lock.h' l='221' u='c' c='_ZNKSt11unique_lockcvbEv'/>

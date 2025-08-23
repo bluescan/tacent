@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='542' type='bool tMath::tInvert(tMath::tMat2 &amp; m)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1131' ll='1136' type='bool tMath::tInvert(tMath::tMat2 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='51' u='c' c='_ZN5tMath8tMatrix26InvertEv'/>

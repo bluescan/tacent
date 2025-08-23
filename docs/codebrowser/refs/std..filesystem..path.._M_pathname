@@ -1,0 +1,24 @@
+<use f='include/c++/11/bits/fs_path.h' l='278' u='w' c='_ZNSt10filesystem7__cxx114pathC1EOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='278' u='a' c='_ZNSt10filesystem7__cxx114pathC1EOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='283' u='w' c='_ZNSt10filesystem7__cxx114pathC1EONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='289' u='w' c='_ZNSt10filesystem7__cxx114pathC1ERKT_NS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='295' u='w' c='_ZNSt10filesystem7__cxx114pathC1ET_S2_NS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='302' u='w' c='_ZNSt10filesystem7__cxx114pathC1ERKT_RKSt6localeNS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='310' u='w' c='_ZNSt10filesystem7__cxx114pathC1ET_S2_RKSt6localeNS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='399' u='m' c='_ZNSt10filesystem7__cxx114path5clearEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='410' u='a' c='_ZNKSt10filesystem7__cxx114path6nativeEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='411' u='m' c='_ZNKSt10filesystem7__cxx114path5c_strEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='412' u='r' c='_ZNKSt10filesystem7__cxx114pathcvNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='471' u='m' c='_ZNKSt10filesystem7__cxx114path5emptyEv'/>
+<dec f='include/c++/11/bits/fs_path.h' l='632' type='std::filesystem::path::string_type'/>
+<use f='include/c++/11/bits/fs_path.h' l='952' u='w' c='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='952' u='a' c='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1014' u='m' c='_ZNSt10filesystem7__cxx114path4swapERS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1014' u='a' c='_ZNSt10filesystem7__cxx114path4swapERS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1079' u='m' c='_ZNKSt10filesystem7__cxx114path6stringERKT1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1079' u='m' c='_ZNKSt10filesystem7__cxx114path6stringERKT1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1081' c='_ZNKSt10filesystem7__cxx114path6stringERKT1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1137' u='m' c='_ZNKSt10filesystem7__cxx114path14generic_stringERKT1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1150' u='m' c='_ZNKSt10filesystem7__cxx114path14generic_stringERKT1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1206' u='m' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>
+<offset>0</offset>

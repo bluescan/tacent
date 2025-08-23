@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='296' type='int tChunk::GetItems(bool * dest, int numItems) const'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='295'>// Here are versions that get multiple items at once. numItems must be &gt;= 1.</doc>

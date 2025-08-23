@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/fs_path.h' l='518' ll='519' type='bool std::filesystem::__cxx11::operator==(const std::filesystem::path &amp; __lhs, const std::filesystem::path &amp; __rhs)'/>
+<use f='include/c++/11/bits/fs_dir.h' l='286' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entryeqERKS1_'/>
+<doc f='include/c++/11/bits/fs_path.h' l='515'>// non-member operators
+
+    /// Compare paths</doc>

@@ -1,0 +1,11 @@
+<def f='include/c++/11/chrono' l='885' ll='887' type='void std::chrono::time_point::time_point&lt;_Clock, _Dur&gt;(const std::chrono::time_point::duration &amp; __dur)'/>
+<use f='include/c++/11/chrono' l='1154' u='c' c='_ZNSt6chrono3_V212system_clock11from_time_tEl'/>
+<use f='include/c++/11/chrono' l='1733' u='c' c='_ZNSt6chrono7weekdayC1ERKNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2351' u='c' c='_ZNSt6chrono14year_month_dayC1ERKNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2398' u='c' c='_ZNKSt6chrono14year_month_daycvNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2402' u='c' c='_ZNKSt6chrono14year_month_daycvNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2626' u='c' c='_ZNKSt6chrono19year_month_day_lastcvNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2751' u='c' c='_ZNSt6chrono18year_month_weekdayC1ERKNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2814' u='c' c='_ZNKSt6chrono18year_month_weekdaycvNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2959' u='c' c='_ZNKSt6chrono23year_month_weekday_lastcvNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2965' u='c' c='_ZNKSt6chrono23year_month_weekday_lastcvNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>

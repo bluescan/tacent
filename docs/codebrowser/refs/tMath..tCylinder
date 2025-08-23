@@ -1,0 +1,16 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='258' ll='266'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='271'/>
+<size>28</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='257'>// A cylinder. Represented as a line segment with a radius.</doc>
+<fun r='_ZN5tMath9tCylinderC1Ev'/>
+<fun r='_ZN5tMath9tCylinderC1ERKNS_8tVector3ES3_f'/>
+<fun r='_ZN5tMath9tCylinderC1ERKNS_8tLineSegEf'/>
+<mbr r='tMath::tCylinder::Radius' o='0' t='float'/>
+<mbr r='tMath::tCylinder::A' o='32' t='tMath::tVector3'/>
+<mbr r='tMath::tCylinder::B' o='128' t='tMath::tVector3'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='135' c='_ZN5tMath7tRandom19tGetPointOnCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='138' c='_ZN5tMath7tRandom19tGetPointInCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<size>28</size>
+<use f='Modules/Math/Src/tRandom.cpp' l='239' c='_ZN5tMath7tRandom19tGetPointOnCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='297' c='_ZN5tMath7tRandom19tGetPointInCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<size>28</size>

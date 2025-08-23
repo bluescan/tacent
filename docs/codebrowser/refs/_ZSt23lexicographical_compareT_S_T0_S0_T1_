@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='1765' ll='1779' macro='1' type='bool std::lexicographical_compare(_II1 __first1, _II1 __last1, _II2 __first2, _II2 __last2, _Compare __comp)'/>
+<dec f='include/c++/11/bits/algorithmfwd.h' l='762' type='bool std::lexicographical_compare(_IIter1 , _IIter1 , _IIter2 , _IIter2 , _Compare )'/>

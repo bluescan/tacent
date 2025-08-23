@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2004' ll='2050' type='bool rgbcx::compute_least_squares_endpoints4_rgb(const rgbcx::color32 * pColors, const uint8_t * pSelectors, rgbcx::vec3F * pXl, rgbcx::vec3F * pXh, int total_r, int total_g, int total_b)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3557' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3619' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

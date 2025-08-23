@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/random.h' l='126' type='static _Tp std::__detail::_Mod&lt;type-parameter-0-0, __m, __a, __c, false, true&gt;::__calc(_Tp __x)'/>
+<def f='include/c++/11/bits/random.tcc' l='49' ll='78' type='static _Tp std::__detail::_Mod&lt;type-parameter-0-0, __m, __a, __c, false, true&gt;::__calc(_Tp __x)'/>
+<doc f='include/c++/11/bits/random.tcc' l='43'>// General case for x = (ax + c) mod m -- use Schrage&apos;s algorithm
+    // to avoid integer overflow.
+    //
+    // Preconditions:  a &gt; 0, m &gt; 0.
+    //
+    // Note: only works correctly for __m % __a &lt; __m / __a.</doc>

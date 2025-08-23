@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='494' type='int pthread_getaffinity_np(pthread_t __th, size_t __cpusetsize, cpu_set_t * __cpuset)'/>
+<doc f='include/pthread.h' l='493'>/* Get bit set in CPUSET representing the processors TH can run on.  */</doc>

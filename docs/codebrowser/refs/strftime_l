@@ -1,0 +1,3 @@
+<dec f='include/time.h' l='116' type='size_t strftime_l(char *__restrict __s, size_t __maxsize, const char *__restrict __format, const struct tm *__restrict __tp, locale_t __loc)'/>
+<doc f='include/time.h' l='113'>/* Similar to the two functions above but take the information from
+   the provided locale and not the global locale.  */</doc>

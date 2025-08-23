@@ -1,0 +1,4 @@
+<use f='Modules/Image/Src/tImageKTX.cpp' l='555' u='w' c='_ZN6tImage9tImageKTX5ClearEv'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='573' u='w' c='_ZN6tImage9tImageKTX3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='840' u='a' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='846' u='a' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

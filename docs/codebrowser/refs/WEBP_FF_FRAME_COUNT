@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='124' type='5'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='63' u='r' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='124'>// Number of frames present in the demux object.</doc>

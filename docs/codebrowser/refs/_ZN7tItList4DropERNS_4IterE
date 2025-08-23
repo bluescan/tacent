@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='326' type='T * tItList::Drop(tItList::Iter &amp; iter)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='326'>/* Same a Remove. */</doc>

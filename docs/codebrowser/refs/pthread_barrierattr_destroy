@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1273' type='int pthread_barrierattr_destroy(pthread_barrierattr_t * __attr)'/>
+<doc f='include/pthread.h' l='1272'>/* Destroy previously dynamically initialized barrier attribute ATTR.  */</doc>

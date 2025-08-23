@@ -1,0 +1,24 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='165' type='tMath::tVec2'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='231' u='w' c='_ZN5tMath4tSetERNS_5tMat2ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='231' u='r' c='_ZN5tMath4tSetERNS_5tMat2ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='232' u='w' c='_ZN5tMath4tSetERNS_5tMat2ERKNS_5tVec2ES4_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='279' u='a' c='_ZN5tMath5tZeroERNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='292' u='r' c='_ZN5tMath7tIsZeroERKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='307' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tMat2ES2_f'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='307' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tMat2ES2_f'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='320' u='r' c='_ZN5tMath6tEqualERKNS_5tMat2ES2_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='320' u='r' c='_ZN5tMath6tEqualERKNS_5tMat2ES2_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='333' u='r' c='_ZN5tMath9tNotEqualERKNS_5tMat2ES2_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='333' u='r' c='_ZN5tMath9tNotEqualERKNS_5tMat2ES2_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='485' u='a' c='_ZN5tMath5tMulEERNS_5tMat2ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='485' u='r' c='_ZN5tMath5tMulEERNS_5tMat2ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='486' u='a' c='_ZN5tMath5tMulEERNS_5tMat2ERKS0_S3_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='486' u='r' c='_ZN5tMath5tMulEERNS_5tMat2ERKS0_S3_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='486' u='r' c='_ZN5tMath5tMulEERNS_5tMat2ERKS0_S3_'/>
+<offset>64</offset>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='38' u='a' c='_ZN5tMath8tMatrix24Col2Ev'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2053' u='m' c='_ZN7tSystem9Handler_mERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2054' u='m' c='_ZN7tSystem9Handler_mERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2064' u='m' c='_ZN7tSystem9Handler_mERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tScript.cpp' l='373' u='m' c='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='375' u='m' c='_ZNK11tExpression14GetAtomMatrix2Ev'/>

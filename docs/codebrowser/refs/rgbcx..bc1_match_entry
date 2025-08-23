@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1639' ll='1644'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1647'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1647'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1648'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1648'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1724' c='_ZN5rgbcxL35prepare_bc1_single_color_table_halfEPNS_15bc1_match_entryEPKhiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1762' c='_ZN5rgbcxL30prepare_bc1_single_color_tableEPNS_15bc1_match_entryEPKhiNS_15bc1_approx_modeE'/>
+<size>3</size>
+<mbr r='rgbcx::bc1_match_entry::m_hi' o='0' t='uint8_t'/>
+<mbr r='rgbcx::bc1_match_entry::m_lo' o='8' t='uint8_t'/>
+<mbr r='rgbcx::bc1_match_entry::m_e' o='16' t='uint8_t'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11758' ll='11763'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11758'/>
+<size>48</size>
+<mbr r='VkExternalImageFormatPropertiesNV::imageFormatProperties' o='0' t='VkImageFormatProperties'/>
+<mbr r='VkExternalImageFormatPropertiesNV::externalMemoryFeatures' o='256' t='VkExternalMemoryFeatureFlagsNV'/>
+<mbr r='VkExternalImageFormatPropertiesNV::exportFromImportedHandleTypes' o='288' t='VkExternalMemoryHandleTypeFlagsNV'/>
+<mbr r='VkExternalImageFormatPropertiesNV::compatibleHandleTypes' o='320' t='VkExternalMemoryHandleTypeFlagsNV'/>

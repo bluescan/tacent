@@ -1,0 +1,14 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='86' c='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<def f='Modules/Image/Inc/Image/tImagePVR.h' l='152' type='bool tImage::tImagePVR::IsValid() const'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='181' u='c' c='_ZNK6tImage9tImagePVR10GetVersionEv'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='189' u='c' c='_ZNK6tImage9tImagePVR8GetWidthEv'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='190' u='c' c='_ZNK6tImage9tImagePVR9GetHeightEv'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='150'>// Will return true if a dds file has been successfully loaded or otherwise populated.
+	// This includes conditional valid results.</doc>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='705' u='c' c='_ZN6tImage9tImagePVR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1054' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1288' u='c' c='_ZN6tImage9tImagePVR8GetFrameEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1314' u='c' c='_ZN6tImage9tImagePVR11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1330' u='c' c='_ZNK6tImage9tImagePVR9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1342' u='c' c='_ZN6tImage9tImagePVR18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1370' u='c' c='_ZNK6tImage9tImagePVR16GetCubemapLayersEP5tListINS_6tLayerEEj'/>

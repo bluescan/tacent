@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='568' type='2'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='284' u='r' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='335' u='r' c='_ZN5tMath6tNlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='631' type='void tMath::tMakeProjPerspSym(tMath::tMat4 &amp; d, float right, float top, float nearPlane, float farPlane)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='90' u='c' c='_ZN5tMath8tMatrix416MakeProjPerspSymEffff'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='763' ll='776' type='void tMath::tMakeProjPerspSym(tMath::tMat4 &amp; d, float right, float top, float nearPlane, float farPlane)'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='784' u='c' c='_ZN5tMath21tMakeProjPerspSymFovVERNS_5tMat4Effff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='793' u='c' c='_ZN5tMath21tMakeProjPerspSymFovHERNS_5tMat4Effff'/>

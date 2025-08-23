@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='2913' ll='2915' type='void std::cauchy_distribution::reset()'/>
+<doc f='include/c++/11/bits/random.h' l='2910'>/**
+       * @brief Resets the distribution state.
+       */</doc>

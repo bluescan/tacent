@@ -1,0 +1,5 @@
+<use f='include/c++/11/chrono' l='3090' u='w' c='_ZNSt6chrono8hh_mm_ssC1ET_b'/>
+<use f='include/c++/11/chrono' l='3137' u='r' c='_ZNKSt6chrono8hh_mm_ss7minutesEv'/>
+<use f='include/c++/11/chrono' l='3155' u='r' c='_ZNKSt6chrono8hh_mm_ss11to_durationEv'/>
+<use f='include/c++/11/chrono' l='3157' u='r' c='_ZNKSt6chrono8hh_mm_ss11to_durationEv'/>
+<dec f='include/c++/11/chrono' l='3165' type='chrono::minutes'/>

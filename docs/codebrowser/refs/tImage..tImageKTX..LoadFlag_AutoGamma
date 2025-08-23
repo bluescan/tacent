@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tImageKTX.h' l='47' type='16'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='53' u='r'/>
+<doc f='Modules/Image/Inc/Image/tImageKTX.h' l='47'>// Tries to determine whether to apply sRGB compression based on pixel format. Call GetColourProfile to see if it applied.</doc>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='988' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='991' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

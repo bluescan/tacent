@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/WebP/include/decode.h' l='437' ll='442' type='VP8StatusCode WebPGetFeatures(const uint8_t * data, size_t data_size, WebPBitstreamFeatures * features)'/>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='426'>// Retrieve features from the bitstream. The *features structure is filled
+// with information gathered from the bitstream.
+// Returns VP8_STATUS_OK when the features are successfully retrieved. Returns
+// VP8_STATUS_NOT_ENOUGH_DATA when more data is needed to retrieve the
+// features from headers. Returns error in other cases.
+// Note: The following chunk sequences (before the raw VP8/VP8L data) are
+// considered valid by this function:
+// RIFF + VP8(L)
+// RIFF + VP8X + (optional chunks) + VP8(L)
+// ALPH + VP8 &lt;-- Not a valid WebP format: only allowed for internal purpose.
+// VP8(L)     &lt;-- Not a valid WebP format: only allowed for internal purpose.</doc>

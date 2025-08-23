@@ -1,0 +1,20 @@
+<def f='include/c++/11/functional' l='555' ll='666'/>
+<use f='include/c++/11/functional' l='706'/>
+<use f='include/c++/11/functional' l='714'/>
+<use f='include/c++/11/functional' l='722'/>
+<use f='include/c++/11/functional' l='730'/>
+<use f='include/c++/11/functional' l='801'/>
+<mbr r='std::_Bind_result::_M_f' t='_Functor'/>
+<mbr r='std::_Bind_result::_M_bound_args' t='tuple&lt;_Bound_args...&gt;'/>
+<fun r='_ZNSt12_Bind_resultIT_FT0_DpT1_EE6__callEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<fun r='_ZNKSt12_Bind_resultIT_FT0_DpT1_EE6__callEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<fun r='_ZNVSt12_Bind_resultIT_FT0_DpT1_EE6__callEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<fun r='_ZNVKSt12_Bind_resultIT_FT0_DpT1_EE6__callEOSt5tupleIJDpTL0_0_EESt12_Index_tupleIJXspTL0_1_EEE'/>
+<fun r='_ZNSt12_Bind_resultIT_FT0_DpT1_EEC1ERKS1_DpOTL0__'/>
+<fun r='_ZNSt12_Bind_resultIT_FT0_DpT1_EEC1EOS1_DpOTL0__'/>
+<fun r='_ZNSt12_Bind_resultIT_FT0_DpT1_EEC1ERKS_IS0_S4_E'/>
+<fun r='_ZNSt12_Bind_resultIT_FT0_DpT1_EEC1EOS_IS0_S4_E'/>
+<fun r='_ZNSt12_Bind_resultIT_FT0_DpT1_EEclEDpOTL0__'/>
+<fun r='_ZNKSt12_Bind_resultIT_FT0_DpT1_EEclEDpOTL0__'/>
+<fun r='_ZNVSt12_Bind_resultIT_FT0_DpT1_EEclEDpOTL0__'/>
+<fun r='_ZNVKSt12_Bind_resultIT_FT0_DpT1_EEclEDpOTL0__'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='152' type='32768'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2920' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3247' u='r' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='151'>// Same as cEncodeBC1BoundingBox, but implemented using integer math (faster, slightly less quality)</doc>

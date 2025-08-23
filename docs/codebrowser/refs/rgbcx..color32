@@ -1,0 +1,46 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1441' ll='1479'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1473' c='_ZNK5rgbcx7color32eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1475' c='_ZN5rgbcx7color327set_rgbERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1477' c='_ZN5rgbcx7color328comp_minERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1477' c='_ZN5rgbcx7color328comp_minERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1477' c='_ZN5rgbcx7color328comp_minERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1477' c='_ZN5rgbcx7color328comp_minERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1478' c='_ZN5rgbcx7color328comp_maxERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1478' c='_ZN5rgbcx7color328comp_maxERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1478' c='_ZN5rgbcx7color328comp_maxERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1478' c='_ZN5rgbcx7color328comp_maxERKS0_S2_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1503' c='_ZN5rgbcx9bc1_block10pack_colorERKNS_7color32Ebj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2004' c='_ZN5rgbcxL36compute_least_squares_endpoints4_rgbEPKNS_7color32EPKhPNS_5vec3FES6_iii'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2081' c='_ZN5rgbcxL36compute_least_squares_endpoints3_rgbEbPKNS_7color32EPKhPNS_5vec3FES6_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2192' c='_ZN5rgbcxL20bc1_find_sels4_noerrEPKNS_7color32EjjjjjjPh'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2223' c='_ZN5rgbcxL22bc1_find_sels4_fasterrEPKNS_7color32EjjjjjjPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2271' c='_ZN5rgbcxL25bc1_find_sels4_check2_errEPKNS_7color32EjjjjjjPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2318' c='_ZN5rgbcxL22bc1_find_sels4_fullerrEPKNS_7color32EjjjjjjPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2354' c='_ZN5rgbcxL14bc1_find_sels4EjPKNS_7color32EjjjjjjPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2368' c='_ZN5rgbcxL22bc1_find_sels3_fullerrEbPKNS_7color32EjjjjjjPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2572' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2746' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3030' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3415' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3484' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3484' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4036' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4036' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4046' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4157' c='_ZN5rgbcx10unpack_bc3EPKvPvNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4157' c='_ZN5rgbcx10unpack_bc3EPKvPvNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4164' c='_ZN5rgbcx10unpack_bc3EPKvPvNS_15bc1_approx_modeE'/>
+<size>4</size>
+<fun r='_ZN5rgbcx7color32C1Ev'/>
+<fun r='_ZN5rgbcx7color32C1Ejjjj'/>
+<fun r='_ZN5rgbcx7color32C1ENS_8eNoClampEjjjj'/>
+<fun r='_ZN5rgbcx7color323setEjjjj'/>
+<fun r='_ZN5rgbcx7color3215set_noclamp_rgbEjjj'/>
+<fun r='_ZN5rgbcx7color3216set_noclamp_rgbaEjjjj'/>
+<fun r='_ZN5rgbcx7color3211set_clampedEiiii'/>
+<fun r='_ZNK5rgbcx7color32ixEj'/>
+<fun r='_ZN5rgbcx7color32ixEj'/>
+<fun r='_ZNK5rgbcx7color32eqERKS0_'/>
+<fun r='_ZN5rgbcx7color327set_rgbERKS0_'/>
+<fun r='_ZN5rgbcx7color328comp_minERKS0_S2_'/>
+<fun r='_ZN5rgbcx7color328comp_maxERKS0_S2_'/>

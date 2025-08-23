@@ -1,0 +1,24 @@
+<def f='include/c++/11/chrono' l='1125' ll='1156'/>
+<use f='include/c++/11/chrono' l='1130'/>
+<use f='include/c++/11/chrono' l='1152' c='_ZNSt6chrono3_V212system_clock11from_time_tEl'/>
+<use f='include/c++/11/chrono' l='1187'/>
+<use f='include/c++/11/chrono' l='1193'/>
+<use f='include/c++/11/chrono' l='1202'/>
+<use f='include/c++/11/chrono' l='3387'/>
+<use f='include/c++/11/mutex' l='157' c='_ZNSt18__timed_mutex_impl17_M_try_lock_untilERKNSt6chrono10time_pointINS0_3_V212system_clockETL0__EE'/>
+<size>1</size>
+<doc f='include/c++/11/chrono' l='1119'>/**
+     *  @brief System clock.
+     *
+     *  Time returned represents wall time from the system-wide clock.
+     *  @ingroup chrono
+    */</doc>
+<smbr r='std::chrono::system_clock::is_steady' t='const bool'/>
+<fun r='_ZNSt6chrono3_V212system_clock3nowEv'/>
+<fun r='_ZNSt6chrono3_V212system_clock9to_time_tERKNS_10time_pointIS1_NS_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>
+<fun r='_ZNSt6chrono3_V212system_clock11from_time_tEl'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='182' c='_ZNSt8__detail17__cond_wait_untilERSt9__condvarRSt5mutexRKNSt6chrono10time_pointIT_T0_EE'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='58'/>
+<size>1</size>
+<use f='include/c++/11/condition_variable' l='71'/>
+<size>1</size>

@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='644' type='bool tSystem::tFindFilesRec(tList&lt;tStringItem&gt; &amp; files, const tString &amp; dir, const tString &amp; ext, bool hidden = true, tSystem::Backend  = Backend::Native)'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='129' u='c' c='_ZN9tPipeline5tRule19AddDependencyDirRecERK7tStringS3_'/>
+<def f='Modules/System/Src/tFile.cpp' l='3040' ll='3053' type='bool tSystem::tFindFilesRec(tList&lt;tStringItem&gt; &amp; files, const tString &amp; dir, const tString &amp; ext, bool hidden = true, tSystem::Backend backend = Backend::Native)'/>

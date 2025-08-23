@@ -1,0 +1,24 @@
+<inh f='Modules/Foundation/Inc/Foundation/tList.h' l='37' c='tLink'/>
+<def f='Modules/System/Inc/System/tFile.h' l='506' ll='516'/>
+<use f='Modules/System/Inc/System/tFile.h' l='506'/>
+<use f='Modules/System/Inc/System/tFile.h' l='510' c='_ZN7tSystem10tFileTypes13tFileTypeItemC1ERKS1_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='517' c='_ZNK7tSystem10tFileTypes5FirstEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='531'/>
+<use f='Modules/System/Inc/System/tFile.h' l='894' c='_ZN7tSystem11tExtensions3AddERKNS_10tFileTypesEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='925' c='_ZN7tSystem10tFileTypes3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='952' c='_ZN7tSystem10tFileTypes3AddENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='997' c='_ZN7tSystem10tFileTypes11AddSelectedERKS0_b'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1001' c='_ZN7tSystem10tFileTypes11AddSelectedERKS0_b'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1011' c='_ZNK7tSystem10tFileTypes8ContainsENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1021' c='_ZN7tSystem10tFileTypes13ClearSelectedEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1028' c='_ZNK7tSystem10tFileTypes11AnySelectedEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1037' c='_ZN7tSystem10tFileTypes6SelectENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1051' c='_ZNK7tSystem10tFileTypes10IsSelectedENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1062' c='_ZNK7tSystem10tFileTypes20GetFirstSelectedTypeEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1080' c='_ZNK7tSystem10tFileTypes17GetSelectedStringENS0_9SeparatorEi'/>
+<size>24</size>
+<fun r='_ZN7tSystem10tFileTypes13tFileTypeItemC1Ev'/>
+<fun r='_ZN7tSystem10tFileTypes13tFileTypeItemC1ENS_9tFileTypeE'/>
+<fun r='_ZN7tSystem10tFileTypes13tFileTypeItemC1ERKS1_'/>
+<mbr r='tSystem::tFileTypes::tFileTypeItem::FileType' o='128' t='tSystem::tFileType'/>
+<mbr r='tSystem::tFileTypes::tFileTypeItem::Selected' o='160' t='bool'/>

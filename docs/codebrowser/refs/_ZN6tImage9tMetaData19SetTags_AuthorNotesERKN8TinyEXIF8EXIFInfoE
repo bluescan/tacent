@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='217' type='void tImage::tMetaData::SetTags_AuthorNotes(const TinyEXIF::EXIFInfo &amp; )'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='218' u='c' c='_ZN6tImage9tMetaData3SetEPKhi'/>
+<def f='Modules/Image/Src/tMetaData.cpp' l='616' ll='641' type='void tImage::tMetaData::SetTags_AuthorNotes(const TinyEXIF::EXIFInfo &amp; exifInfo)'/>

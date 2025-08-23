@@ -1,0 +1,6 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='126' type='char tStd::tToLower(char c)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='327' u='c' c='_ZN7tString7ToLowerEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='764' u='c' c='_ZNK7tString9IsEqualCIEPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='764' u='c' c='_ZNK7tString9IsEqualCIEPKDui'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='120' u='c' c='_ZN4tStd8tNstrcmpEPKcS1_'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='120' u='c' c='_ZN4tStd8tNstrcmpEPKcS1_'/>

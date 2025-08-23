@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='1255' ll='1257' type='void std::atomic_flag_clear(volatile std::atomic_flag * __a)'/>

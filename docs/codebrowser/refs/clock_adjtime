@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/time.h' l='78' type='int clock_adjtime(__clockid_t __clock_id, struct timex * __utx)'/>
+<doc f='include/x86_64-linux-gnu/bits/time.h' l='77'>/* Tune a POSIX clock.  */</doc>

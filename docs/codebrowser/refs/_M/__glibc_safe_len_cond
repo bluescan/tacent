@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/cdefs.h' l='159'/>
+<doc f='include/x86_64-linux-gnu/sys/cdefs.h' l='155'>/* Compile time conditions to choose between the regular, _chk and _chk_warn
+   variants.  These conditions should get evaluated to constant and optimized
+   away.  */</doc>

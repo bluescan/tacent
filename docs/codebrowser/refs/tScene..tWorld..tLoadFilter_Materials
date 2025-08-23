@@ -1,0 +1,2 @@
+<dec f='Modules/Scene/Inc/Scene/tWorld.h' l='57' type='8'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='515' u='r' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>

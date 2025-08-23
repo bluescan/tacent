@@ -1,0 +1,7 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='308'/>
+<use f='include/c++/11/bits/locale_classes.h' l='648' u='c'/>
+<use f='include/c++/11/bits/locale_classes.h' l='822' u='c'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1322' u='c'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1323' u='c'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1361' u='c'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1362' u='c'/>

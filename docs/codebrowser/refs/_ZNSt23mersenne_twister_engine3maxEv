@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='561' ll='563' type='static std::mersenne_twister_engine::result_type std::mersenne_twister_engine::max()'/>
+<doc f='include/c++/11/bits/random.h' l='558'>/**
+       * @brief Gets the largest possible value in the output range.
+       */</doc>

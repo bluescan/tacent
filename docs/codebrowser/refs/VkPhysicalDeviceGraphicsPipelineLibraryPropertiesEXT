@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15690' ll='15695'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15690'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT::graphicsPipelineLibraryFastLinking' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceGraphicsPipelineLibraryPropertiesEXT::graphicsPipelineLibraryIndependentInterpolationDecoration' o='160' t='VkBool32'/>

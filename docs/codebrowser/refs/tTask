@@ -1,0 +1,11 @@
+<def f='Modules/System/Inc/System/tTask.h' l='20' ll='28'/>
+<use f='Modules/System/Inc/System/tTask.h' l='49' c='_ZN8tTaskSet6InsertEP5tTask'/>
+<use f='Modules/System/Inc/System/tTask.h' l='53' c='_ZN8tTaskSet6RemoveEP5tTask'/>
+<use f='Modules/System/Inc/System/tTask.h' l='62'/>
+<size>8</size>
+<doc f='Modules/System/Inc/System/tTask.h' l='19'>// The tTask class is virtual. All tasks that you want in a collection must be derived from a tTask.</doc>
+<fun r='_ZN5tTaskD1Ev'/>
+<fun r='_ZN5tTask7ExecuteEd'/>
+<use f='Modules/System/Src/tTask.cpp' l='47' c='_ZN8tTaskSet6UpdateEx'/>
+<use f='Modules/System/Src/tTask.cpp' l='47' c='_ZN8tTaskSet6UpdateEx'/>
+<size>8</size>

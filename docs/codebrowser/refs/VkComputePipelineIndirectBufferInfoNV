@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17300' ll='17306'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17300'/>
+<size>40</size>
+<mbr r='VkComputePipelineIndirectBufferInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkComputePipelineIndirectBufferInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkComputePipelineIndirectBufferInfoNV::deviceAddress' o='128' t='VkDeviceAddress'/>
+<mbr r='VkComputePipelineIndirectBufferInfoNV::size' o='192' t='VkDeviceSize'/>
+<mbr r='VkComputePipelineIndirectBufferInfoNV::pipelineDeviceAddressCaptureReplay' o='256' t='VkDeviceAddress'/>

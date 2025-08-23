@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='1230' type='int pthread_spin_init(pthread_spinlock_t * __lock, int __pshared)'/>
+<doc f='include/pthread.h' l='1228'>/* Initialize the spinlock LOCK.  If PSHARED is nonzero the spinlock can
+   be shared between different processes.  */</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='863' type='bool tColour4f::IsHDR() const'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='862'>// Returns true if any component (including alpha currently) is above 1.0f.</doc>

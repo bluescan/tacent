@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/types/sigevent_t.h' l='45'/>
+<doc f='include/x86_64-linux-gnu/bits/types/sigevent_t.h' l='44'>/* POSIX names to access some of the members.  */</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/array' l='395' ll='402' type='array&lt;remove_cv_t&lt;_Tp&gt;, sizeof...(_Idx)&gt; std::__to_array(_Tp (&amp;)[sizeof...(_Idx)] __a, index_sequence&lt;_Idx...&gt; )'/>

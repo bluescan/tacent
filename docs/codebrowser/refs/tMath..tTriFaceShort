@@ -1,0 +1,15 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='56' ll='64'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='59' c='_ZN5tMath13tTriFaceShortC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='60' c='_ZNK5tMath13tTriFaceShorteqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='61' c='_ZNK5tMath13tTriFaceShortneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='62' c='_ZN5tMath13tTriFaceShortaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='62' c='_ZN5tMath13tTriFaceShortaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='65'/>
+<size>6</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='55'>// The same as a tTriFace but using only 16 bit indices.</doc>
+<fun r='_ZN5tMath13tTriFaceShortC1Ev'/>
+<fun r='_ZN5tMath13tTriFaceShortC1ERKS0_'/>
+<fun r='_ZNK5tMath13tTriFaceShorteqERKS0_'/>
+<fun r='_ZNK5tMath13tTriFaceShortneERKS0_'/>
+<fun r='_ZN5tMath13tTriFaceShortaSERKS0_'/>
+<mbr r='tMath::tTriFaceShort::Index' o='0' t='uint16[3]'/>

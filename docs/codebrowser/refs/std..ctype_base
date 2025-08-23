@@ -1,0 +1,18 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/ctype_base.h' l='41' ll='63'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='153' c='std::__ctype_abstract_base'/>
+<use f='include/c++/11/bits/locale_facets.h' l='153'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='684' c='std::ctype'/>
+<size>1</size>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/ctype_base.h' l='40'>/// @brief  Base class for ctype.</doc>
+<smbr r='std::ctype_base::upper' t='const std::ctype_base::mask'/>
+<smbr r='std::ctype_base::lower' t='const std::ctype_base::mask'/>
+<smbr r='std::ctype_base::alpha' t='const std::ctype_base::mask'/>
+<smbr r='std::ctype_base::digit' t='const std::ctype_base::mask'/>
+<smbr r='std::ctype_base::xdigit' t='const std::ctype_base::mask'/>
+<smbr r='std::ctype_base::space' t='const std::ctype_base::mask'/>
+<smbr r='std::ctype_base::print' t='const std::ctype_base::mask'/>
+<smbr r='std::ctype_base::graph' t='const std::ctype_base::mask'/>
+<smbr r='std::ctype_base::cntrl' t='const std::ctype_base::mask'/>
+<smbr r='std::ctype_base::punct' t='const std::ctype_base::mask'/>
+<smbr r='std::ctype_base::alnum' t='const std::ctype_base::mask'/>
+<smbr r='std::ctype_base::blank' t='const std::ctype_base::mask'/>

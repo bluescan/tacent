@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='92' type='uint16'/>
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='96' type='uint16'/>
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='101' type='uint16'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='92'>/* magic number (defines byte order) */</doc>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='96'>/* magic number (defines byte order) */</doc>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='101'>/* magic number (defines byte order) */</doc>

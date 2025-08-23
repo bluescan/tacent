@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='216' type='int sigisemptyset(const sigset_t * __set)'/>
+<doc f='include/signal.h' l='215'>/* Return non-empty value is SET is not empty.  */</doc>

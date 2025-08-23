@@ -1,0 +1,56 @@
+<dec f='include/c++/11/istream' l='82' type='std::streamsize'/>
+<use f='include/c++/11/istream' l='94' u='w' c='_ZNSt13basic_istreamC1EPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/istream' l='104' u='w' c='_ZNSt13basic_istreamD1Ev'/>
+<use f='include/c++/11/istream' l='270' u='r' c='_ZNKSt13basic_istream6gcountEv'/>
+<use f='include/c++/11/istream' l='607' u='w' c='_ZNSt13basic_istreamC1Ev'/>
+<use f='include/c++/11/istream' l='614' u='w' c='_ZNSt13basic_istreamC1EOSt13basic_istreamIT_T0_E'/>
+<use f='include/c++/11/istream' l='635' c='_ZNSt13basic_istream4swapERSt13basic_istreamIT_T0_E'/>
+<use f='include/c++/11/bits/istream.tcc' l='248' u='w' c='_ZNSt13basic_istream3getEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='258' u='w' c='_ZNSt13basic_istream3getEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='270' u='r' c='_ZNSt13basic_istream3getEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='282' u='w' c='_ZNSt13basic_istream3getERT_'/>
+<use f='include/c++/11/bits/istream.tcc' l='293' u='w' c='_ZNSt13basic_istream3getERT_'/>
+<use f='include/c++/11/bits/istream.tcc' l='307' u='r' c='_ZNSt13basic_istream3getERT_'/>
+<use f='include/c++/11/bits/istream.tcc' l='319' u='w' c='_ZNSt13basic_istream3getEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='331' u='r' c='_ZNSt13basic_istream3getEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='336' u='w' c='_ZNSt13basic_istream3getEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='354' u='r' c='_ZNSt13basic_istream3getEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='366' u='w' c='_ZNSt13basic_istream3getERSt15basic_streambufIT_T0_ES1_'/>
+<use f='include/c++/11/bits/istream.tcc' l='393' u='w' c='_ZNSt13basic_istream3getERSt15basic_streambufIT_T0_ES1_'/>
+<use f='include/c++/11/bits/istream.tcc' l='395' u='w' c='_ZNSt13basic_istream3getERSt15basic_streambufIT_T0_ES1_'/>
+<use f='include/c++/11/bits/istream.tcc' l='405' u='r' c='_ZNSt13basic_istream3getERSt15basic_streambufIT_T0_ES1_'/>
+<use f='include/c++/11/bits/istream.tcc' l='417' u='w' c='_ZNSt13basic_istream7getlineEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='429' u='r' c='_ZNSt13basic_istream7getlineEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='435' u='w' c='_ZNSt13basic_istream7getlineEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='444' u='w' c='_ZNSt13basic_istream7getlineEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='462' u='r' c='_ZNSt13basic_istream7getlineEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='477' u='w' c='_ZNSt13basic_istream6ignoreEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='490' u='w' c='_ZNSt13basic_istream6ignoreEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='510' u='w' c='_ZNSt13basic_istream6ignoreEl'/>
+<use f='include/c++/11/bits/istream.tcc' l='531' u='r' c='_ZNSt13basic_istream6ignoreEl'/>
+<use f='include/c++/11/bits/istream.tcc' l='534' u='w' c='_ZNSt13basic_istream6ignoreEl'/>
+<use f='include/c++/11/bits/istream.tcc' l='540' u='w' c='_ZNSt13basic_istream6ignoreEl'/>
+<use f='include/c++/11/bits/istream.tcc' l='551' u='w' c='_ZNSt13basic_istream6ignoreEl'/>
+<use f='include/c++/11/bits/istream.tcc' l='556' u='r' c='_ZNSt13basic_istream6ignoreEl'/>
+<use f='include/c++/11/bits/istream.tcc' l='580' u='w' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='595' u='r' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='599' u='w' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='606' u='w' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='617' u='w' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='623' u='r' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='624' u='w' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='628' u='r' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='634' u='w' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='658' u='w' c='_ZNSt13basic_istream4peekEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='687' u='w' c='_ZNSt13basic_istream4readEPT_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='694' u='w' c='_ZNSt13basic_istream4readEPT_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='695' u='r' c='_ZNSt13basic_istream4readEPT_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='716' u='w' c='_ZNSt13basic_istream8readsomeEPT_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='726' u='w' c='_ZNSt13basic_istream8readsomeEPT_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='740' u='r' c='_ZNSt13basic_istream8readsomeEPT_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='750' u='w' c='_ZNSt13basic_istream7putbackET_'/>
+<use f='include/c++/11/bits/istream.tcc' l='785' u='w' c='_ZNSt13basic_istream5ungetEv'/>
+<doc f='include/c++/11/istream' l='78'>/**
+       *  The number of characters extracted in the previous unformatted
+       *  function; see gcount().
+      */</doc>

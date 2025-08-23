@@ -1,0 +1,10 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='234' u='w' c='_ZN5tMath4tRayC1ERKNS_8tVector3ES3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='236' u='w' c='_ZN5tMath4tRay3SetERKNS_8tVector3ES3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='237' u='w' c='_ZN5tMath4tRay3SetERKNS_8tLineSegE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='237' u='m' c='_ZN5tMath4tRay3SetERKNS_8tLineSegE'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='240' type='tMath::tVector3'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='250' u='r' c='_ZN5tMath5tLine3SetERKNS_4tRayE'/>
+<offset>96</offset>
+<use f='Modules/Math/Src/tGeometry.cpp' l='414' u='r' c='_ZN5tMath23tIntersectFindRaySphereERfRKNS_4tRayERKNS_7tSphereE'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='489' u='r' c='_ZN5tMath25tIntersectTestRayTriangleERKNS_4tRayERKNS_9tTriangleE'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='496' u='r' c='_ZN5tMath25tIntersectTestRayTriangleERKNS_4tRayERKNS_9tTriangleE'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1269' ll='1271' macro='1' type='void std::__atomic_float::wait(_Fp __old, std::memory_order __m = memory_order_seq_cst) const'/>

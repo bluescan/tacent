@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='274' ll='278' type='void std::atomic::store(_Tp __i, std::memory_order __m = memory_order_seq_cst)'/>

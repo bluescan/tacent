@@ -1,0 +1,9 @@
+<dec f='include/c++/11/bits/hashtable.h' l='459' type='std::_Hashtable::__node_ptr std::_Hashtable::_M_bucket_begin(std::_Hashtable::size_type __bkt) const'/>
+<use f='include/c++/11/bits/hashtable.h' l='687' u='c' c='_ZNSt10_Hashtable5beginENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeE'/>
+<use f='include/c++/11/bits/hashtable.h' l='698' u='c' c='_ZNKSt10_Hashtable5beginENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeE'/>
+<use f='include/c++/11/bits/hashtable.h' l='710' u='c' c='_ZNKSt10_Hashtable6cbeginENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeE'/>
+<def f='include/c++/11/bits/hashtable.h' l='1102' ll='1114' type='std::_Hashtable::__node_ptr std::_Hashtable::_M_bucket_begin(std::_Hashtable::size_type __bkt) const'/>
+<use f='include/c++/11/bits/hashtable.h' l='2282' u='c' c='_ZNSt10_Hashtable5eraseENSt8__detail7_InsertIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_XsrNSB_20__constant_iteratorsE5valueEE14const_iteratorESD_'/>
+<doc f='include/c++/11/bits/hashtable.h' l='456'>// Gets bucket begin, deals with the fact that non-empty buckets contain
+      // their before begin node.</doc>
+<doc f='include/c++/11/bits/hashtable.h' l='1101'>// Definitions of class template _Hashtable&apos;s out-of-line member functions.</doc>

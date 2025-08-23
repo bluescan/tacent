@@ -1,0 +1,7 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='792' type='void tColour4f::tColour4f(const tColour4f &amp; src)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='910' u='c' c='_ZNK9tColour4fmlEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='910' u='c' c='_ZNK9tColour4fmlEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='912' u='c' c='_ZNK9tColour4fplERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='912' u='c' c='_ZNK9tColour4fplERKS_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='630' u='c' c='_ZN6tImage8tPicture16AlphaBlendColourERK9tColour4bji'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='200' u='c' c='_ZN6tImage10tImageWEBP10CopyRegionEP9tColour4biiS2_iiiib'/>

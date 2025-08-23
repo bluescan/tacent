@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/basic_ios.h' l='306' ll='312' type='basic_ostream&lt;_CharT, _Traits&gt; * std::basic_ios::tie(basic_ostream&lt;_CharT, _Traits&gt; * __tiestr)'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='298'>/**
+       *  @brief  Ties this stream to an output stream.
+       *  @param  __tiestr  The output stream.
+       *  @return  The previously tied output stream, or NULL if the stream
+       *           was not tied.
+       *
+       *  This sets up a new tie; see tie() for more.
+      */</doc>

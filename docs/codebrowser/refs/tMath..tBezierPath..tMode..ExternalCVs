@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tSpline.h' l='100' type='1'/>
+<doc f='Modules/Math/Inc/Math/tSpline.h' l='100'>// Points are referenced by the BezierCurve and must have required lifetime.</doc>
+<use f='Modules/Math/Src/tSpline.cpp' l='213' c='_ZN5tMath11tBezierPathC1ERKS0_'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='392' c='_ZN5tMath11tBezierPath15SetControlVertsEPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='971' type='ktx_uint8_t * ktxTexture_GetData(ktxTexture * This)'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='912' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='967'>/*
+ * Returns a pointer to the image data of a ktxTexture object.
+ */</doc>

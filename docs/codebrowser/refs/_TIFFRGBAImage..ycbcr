@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='223' type='TIFFYCbCrToRGB *'/>
+<offset>832</offset>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='223'>/* YCbCr conversion state */</doc>

@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='702' type='void tMath::tExtractPerspective(float &amp; fovV, float &amp; fovH, float &amp; aspect, float &amp; nearPlane, float &amp; farPlane, const tMath::tMat4 &amp; )'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1259' ll='1266' type='void tMath::tExtractPerspective(float &amp; fovV, float &amp; fovH, float &amp; aspect, float &amp; nearPlane, float &amp; farPlane, const tMath::tMat4 &amp; persp)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1271' u='c' c='_ZN5tMath19tExtractPerspectiveERfS0_S0_S0_S0_S0_S0_RKNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='112' u='c' c='_ZNK5tMath8tMatrix418ExtractPerspectiveERfS1_S1_S1_S1_'/>

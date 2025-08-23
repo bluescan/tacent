@@ -1,0 +1,489 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>stat.h source code [include/x86_64-linux-gnu/sys/stat.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/sys/stat.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>sys</a>/<a href='stat.h.html'>stat.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 1991-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i></i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i></i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i> *	POSIX Standard: 5.6 File Characteristics	&lt;sys/stat.h&gt;</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#<span data-ppcond="22">ifndef</span>	<span class="macro" data-ref="_M/_SYS_STAT_H">_SYS_STAT_H</span></u>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#define	<dfn class="macro" id="_M/_SYS_STAT_H" data-ref="_M/_SYS_STAT_H">_SYS_STAT_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#include &lt;features.h&gt;</u>&nbsp</td></tr>
+<tr><th id="26">26</th><td>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#include &lt;bits/types.h&gt;		/* For __mode_t and __dev_t.  */</u>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="29">ifdef</span> <a class="macro" href="../../features.h.html#363" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</a></u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u># include &lt;bits/types/struct_timespec.h&gt;</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#<span data-ppcond="29">endif</span></u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="33">if</span> defined <a class="macro" href="../../features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a> || defined <a class="macro" href="../../features.h.html#366" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</a></u>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>/* The Single Unix specification says that some more types are</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i>   available here.  */</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u># include &lt;bits/types/time_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u># <span data-ppcond="39">ifndef</span> <a class="macro" href="types.h.html#60" data-ref="_M/__dev_t_defined">__dev_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><b>typedef</b> __dev_t dev_t;&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#  define __dev_t_defined</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u># <span data-ppcond="39">endif</span></u>&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u># <span data-ppcond="44">ifndef</span> <a class="macro" href="types.h.html#65" data-ref="_M/__gid_t_defined">__gid_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><b>typedef</b> __gid_t gid_t;&nbsp</td></tr>
+<tr><th id="46">46</th><td><u>#  define __gid_t_defined</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u># <span data-ppcond="44">endif</span></u>&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u># <span data-ppcond="49">ifndef</span> <a class="macro" href="types.h.html#51" data-ref="_M/__ino_t_defined">__ino_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u>#  ifndef __USE_FILE_OFFSET64</u>&nbsp</td></tr>
+<tr><th id="51">51</th><td><b>typedef</b> __ino_t ino_t;&nbsp</td></tr>
+<tr><th id="52">52</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><b>typedef</b> __ino64_t ino_t;&nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="55">55</th><td><u>#  define __ino_t_defined</u>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u># <span data-ppcond="49">endif</span></u>&nbsp</td></tr>
+<tr><th id="57">57</th><td>&nbsp</td></tr>
+<tr><th id="58">58</th><td><u># <span data-ppcond="58">ifndef</span> <a class="macro" href="types.h.html#70" data-ref="_M/__mode_t_defined">__mode_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="59">59</th><td><b>typedef</b> __mode_t mode_t;&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#  define __mode_t_defined</u>&nbsp</td></tr>
+<tr><th id="61">61</th><td><u># <span data-ppcond="58">endif</span></u>&nbsp</td></tr>
+<tr><th id="62">62</th><td>&nbsp</td></tr>
+<tr><th id="63">63</th><td><u># <span data-ppcond="63">ifndef</span> <a class="macro" href="types.h.html#75" data-ref="_M/__nlink_t_defined">__nlink_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="64">64</th><td><b>typedef</b> __nlink_t nlink_t;&nbsp</td></tr>
+<tr><th id="65">65</th><td><u>#  define __nlink_t_defined</u>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u># <span data-ppcond="63">endif</span></u>&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td><u># <span data-ppcond="68">ifndef</span> <a class="macro" href="../../stdio.h.html#67" data-ref="_M/__off_t_defined">__off_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u>#  ifndef __USE_FILE_OFFSET64</u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><b>typedef</b> __off_t off_t;&nbsp</td></tr>
+<tr><th id="71">71</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="72">72</th><td><b>typedef</b> __off64_t off_t;&nbsp</td></tr>
+<tr><th id="73">73</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="74">74</th><td><u>#  define __off_t_defined</u>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u># <span data-ppcond="68">endif</span></u>&nbsp</td></tr>
+<tr><th id="76">76</th><td>&nbsp</td></tr>
+<tr><th id="77">77</th><td><u># <span data-ppcond="77">ifndef</span> <a class="macro" href="types.h.html#80" data-ref="_M/__uid_t_defined">__uid_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="78">78</th><td><b>typedef</b> __uid_t uid_t;&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#  define __uid_t_defined</u>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u># <span data-ppcond="77">endif</span></u>&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#<span data-ppcond="33">endif</span>	/* X/Open */</u>&nbsp</td></tr>
+<tr><th id="82">82</th><td>&nbsp</td></tr>
+<tr><th id="83">83</th><td><u>#<span data-ppcond="83">ifdef</span> <a class="macro" href="../../features.h.html#358" data-ref="_M/__USE_UNIX98">__USE_UNIX98</a></u>&nbsp</td></tr>
+<tr><th id="84">84</th><td><u># <span data-ppcond="84">ifndef</span> <a class="macro" href="types.h.html#193" data-ref="_M/__blkcnt_t_defined">__blkcnt_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#  ifndef __USE_FILE_OFFSET64</u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><b>typedef</b> __blkcnt_t blkcnt_t;&nbsp</td></tr>
+<tr><th id="87">87</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="88">88</th><td><b>typedef</b> __blkcnt64_t blkcnt_t;&nbsp</td></tr>
+<tr><th id="89">89</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#  define __blkcnt_t_defined</u>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u># <span data-ppcond="84">endif</span></u>&nbsp</td></tr>
+<tr><th id="92">92</th><td>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u># <span data-ppcond="93">ifndef</span> <a class="macro" href="types.h.html#186" data-ref="_M/__blksize_t_defined">__blksize_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><b>typedef</b> __blksize_t blksize_t;&nbsp</td></tr>
+<tr><th id="95">95</th><td><u>#  define __blksize_t_defined</u>&nbsp</td></tr>
+<tr><th id="96">96</th><td><u># <span data-ppcond="93">endif</span></u>&nbsp</td></tr>
+<tr><th id="97">97</th><td><u>#<span data-ppcond="83">endif</span>	/* Unix98 */</u>&nbsp</td></tr>
+<tr><th id="98">98</th><td>&nbsp</td></tr>
+<tr><th id="99">99</th><td><a class="macro" href="cdefs.h.html#133" title="extern &quot;C&quot; {" data-ref="_M/__BEGIN_DECLS">__BEGIN_DECLS</a>&nbsp</td></tr>
+<tr><th id="100">100</th><td>&nbsp</td></tr>
+<tr><th id="101">101</th><td><u>#include &lt;bits/stat.h&gt;</u>&nbsp</td></tr>
+<tr><th id="102">102</th><td>&nbsp</td></tr>
+<tr><th id="103">103</th><td><u>#<span data-ppcond="103">if</span> defined <a class="macro" href="../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> || defined <a class="macro" href="../../features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a></u>&nbsp</td></tr>
+<tr><th id="104">104</th><td><u># define <dfn class="macro" id="_M/S_IFMT" data-ref="_M/S_IFMT">S_IFMT</dfn>		__S_IFMT</u>&nbsp</td></tr>
+<tr><th id="105">105</th><td><u># define <dfn class="macro" id="_M/S_IFDIR" data-ref="_M/S_IFDIR">S_IFDIR</dfn>	__S_IFDIR</u>&nbsp</td></tr>
+<tr><th id="106">106</th><td><u># define <dfn class="macro" id="_M/S_IFCHR" data-ref="_M/S_IFCHR">S_IFCHR</dfn>	__S_IFCHR</u>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u># define <dfn class="macro" id="_M/S_IFBLK" data-ref="_M/S_IFBLK">S_IFBLK</dfn>	__S_IFBLK</u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u># define <dfn class="macro" id="_M/S_IFREG" data-ref="_M/S_IFREG">S_IFREG</dfn>	__S_IFREG</u>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u># <span data-ppcond="109">ifdef</span> <a class="macro" href="../bits/stat.h.html#36" data-ref="_M/__S_IFIFO">__S_IFIFO</a></u>&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>#  define <dfn class="macro" id="_M/S_IFIFO" data-ref="_M/S_IFIFO">S_IFIFO</dfn>	__S_IFIFO</u>&nbsp</td></tr>
+<tr><th id="111">111</th><td><u># <span data-ppcond="109">endif</span></u>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u># <span data-ppcond="112">ifdef</span> <a class="macro" href="../bits/stat.h.html#37" data-ref="_M/__S_IFLNK">__S_IFLNK</a></u>&nbsp</td></tr>
+<tr><th id="113">113</th><td><u>#  define <dfn class="macro" id="_M/S_IFLNK" data-ref="_M/S_IFLNK">S_IFLNK</dfn>	__S_IFLNK</u>&nbsp</td></tr>
+<tr><th id="114">114</th><td><u># <span data-ppcond="112">endif</span></u>&nbsp</td></tr>
+<tr><th id="115">115</th><td><u># <span data-ppcond="115">if</span> (defined <a class="macro" href="../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> || defined <a class="macro" href="../../features.h.html#357" data-ref="_M/__USE_XOPEN_EXTENDED">__USE_XOPEN_EXTENDED</a>) \</u>&nbsp</td></tr>
+<tr><th id="116">116</th><td><u>     &amp;&amp; defined <a class="macro" href="../bits/stat.h.html#38" data-ref="_M/__S_IFSOCK">__S_IFSOCK</a></u>&nbsp</td></tr>
+<tr><th id="117">117</th><td><u>#  define <dfn class="macro" id="_M/S_IFSOCK" data-ref="_M/S_IFSOCK">S_IFSOCK</dfn>	__S_IFSOCK</u>&nbsp</td></tr>
+<tr><th id="118">118</th><td><u># <span data-ppcond="115">endif</span></u>&nbsp</td></tr>
+<tr><th id="119">119</th><td><u>#<span data-ppcond="103">endif</span></u>&nbsp</td></tr>
+<tr><th id="120">120</th><td>&nbsp</td></tr>
+<tr><th id="121">121</th><td><i>/* Test macros for file types.	*/</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td>&nbsp</td></tr>
+<tr><th id="123">123</th><td><u>#define	<dfn class="macro" id="_M/__S_ISTYPE" data-ref="_M/__S_ISTYPE">__S_ISTYPE</dfn>(mode, mask)	(((mode) &amp; __S_IFMT) == (mask))</u>&nbsp</td></tr>
+<tr><th id="124">124</th><td>&nbsp</td></tr>
+<tr><th id="125">125</th><td><u>#define	<dfn class="macro" id="_M/S_ISDIR" data-ref="_M/S_ISDIR">S_ISDIR</dfn>(mode)	 __S_ISTYPE((mode), __S_IFDIR)</u>&nbsp</td></tr>
+<tr><th id="126">126</th><td><u>#define	<dfn class="macro" id="_M/S_ISCHR" data-ref="_M/S_ISCHR">S_ISCHR</dfn>(mode)	 __S_ISTYPE((mode), __S_IFCHR)</u>&nbsp</td></tr>
+<tr><th id="127">127</th><td><u>#define	<dfn class="macro" id="_M/S_ISBLK" data-ref="_M/S_ISBLK">S_ISBLK</dfn>(mode)	 __S_ISTYPE((mode), __S_IFBLK)</u>&nbsp</td></tr>
+<tr><th id="128">128</th><td><u>#define	<dfn class="macro" id="_M/S_ISREG" data-ref="_M/S_ISREG">S_ISREG</dfn>(mode)	 __S_ISTYPE((mode), __S_IFREG)</u>&nbsp</td></tr>
+<tr><th id="129">129</th><td><u>#<span data-ppcond="129">ifdef</span> <a class="macro" href="../bits/stat.h.html#36" data-ref="_M/__S_IFIFO">__S_IFIFO</a></u>&nbsp</td></tr>
+<tr><th id="130">130</th><td><u># define <dfn class="macro" id="_M/S_ISFIFO" data-ref="_M/S_ISFIFO">S_ISFIFO</dfn>(mode)	 __S_ISTYPE((mode), __S_IFIFO)</u>&nbsp</td></tr>
+<tr><th id="131">131</th><td><u>#<span data-ppcond="129">endif</span></u>&nbsp</td></tr>
+<tr><th id="132">132</th><td><u>#<span data-ppcond="132">ifdef</span> <a class="macro" href="../bits/stat.h.html#37" data-ref="_M/__S_IFLNK">__S_IFLNK</a></u>&nbsp</td></tr>
+<tr><th id="133">133</th><td><u># define <dfn class="macro" id="_M/S_ISLNK" data-ref="_M/S_ISLNK">S_ISLNK</dfn>(mode)	 __S_ISTYPE((mode), __S_IFLNK)</u>&nbsp</td></tr>
+<tr><th id="134">134</th><td><u>#<span data-ppcond="132">endif</span></u>&nbsp</td></tr>
+<tr><th id="135">135</th><td>&nbsp</td></tr>
+<tr><th id="136">136</th><td><u>#<span data-ppcond="136">if</span> defined <a class="macro" href="../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> &amp;&amp; !defined <a class="macro" href="../bits/stat.h.html#37" data-ref="_M/__S_IFLNK">__S_IFLNK</a></u>&nbsp</td></tr>
+<tr><th id="137">137</th><td><u># define S_ISLNK(mode)  0</u>&nbsp</td></tr>
+<tr><th id="138">138</th><td><u>#<span data-ppcond="136">endif</span></u>&nbsp</td></tr>
+<tr><th id="139">139</th><td>&nbsp</td></tr>
+<tr><th id="140">140</th><td><u>#<span data-ppcond="140">if</span> (defined <a class="macro" href="../../features.h.html#357" data-ref="_M/__USE_XOPEN_EXTENDED">__USE_XOPEN_EXTENDED</a> || defined <a class="macro" href="../../features.h.html#366" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</a>) \</u>&nbsp</td></tr>
+<tr><th id="141">141</th><td><u>    &amp;&amp; defined <a class="macro" href="../bits/stat.h.html#38" data-ref="_M/__S_IFSOCK">__S_IFSOCK</a></u>&nbsp</td></tr>
+<tr><th id="142">142</th><td><u># define <dfn class="macro" id="_M/S_ISSOCK" data-ref="_M/S_ISSOCK">S_ISSOCK</dfn>(mode) __S_ISTYPE((mode), __S_IFSOCK)</u>&nbsp</td></tr>
+<tr><th id="143">143</th><td><u>#<span data-ppcond="140">elif</span> defined __USE_XOPEN2K</u>&nbsp</td></tr>
+<tr><th id="144">144</th><td><u># define S_ISSOCK(mode) 0</u>&nbsp</td></tr>
+<tr><th id="145">145</th><td><u>#<span data-ppcond="140">endif</span></u>&nbsp</td></tr>
+<tr><th id="146">146</th><td>&nbsp</td></tr>
+<tr><th id="147">147</th><td><i>/* These are from POSIX.1b.  If the objects are not implemented using separate</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td><i>   distinct file types, the macros always will evaluate to zero.  Unlike the</i>&nbsp</td></tr>
+<tr><th id="149">149</th><td><i>   other S_* macros the following three take a pointer to a `struct stat'</i>&nbsp</td></tr>
+<tr><th id="150">150</th><td><i>   object as the argument.  */</i>&nbsp</td></tr>
+<tr><th id="151">151</th><td><u>#<span data-ppcond="151">ifdef</span>	<a class="macro" href="../../features.h.html#333" data-ref="_M/__USE_POSIX199309">__USE_POSIX199309</a></u>&nbsp</td></tr>
+<tr><th id="152">152</th><td><u># define <dfn class="macro" id="_M/S_TYPEISMQ" data-ref="_M/S_TYPEISMQ">S_TYPEISMQ</dfn>(buf) __S_TYPEISMQ(buf)</u>&nbsp</td></tr>
+<tr><th id="153">153</th><td><u># define <dfn class="macro" id="_M/S_TYPEISSEM" data-ref="_M/S_TYPEISSEM">S_TYPEISSEM</dfn>(buf) __S_TYPEISSEM(buf)</u>&nbsp</td></tr>
+<tr><th id="154">154</th><td><u># define <dfn class="macro" id="_M/S_TYPEISSHM" data-ref="_M/S_TYPEISSHM">S_TYPEISSHM</dfn>(buf) __S_TYPEISSHM(buf)</u>&nbsp</td></tr>
+<tr><th id="155">155</th><td><u>#<span data-ppcond="151">endif</span></u>&nbsp</td></tr>
+<tr><th id="156">156</th><td>&nbsp</td></tr>
+<tr><th id="157">157</th><td>&nbsp</td></tr>
+<tr><th id="158">158</th><td><i>/* Protection bits.  */</i>&nbsp</td></tr>
+<tr><th id="159">159</th><td>&nbsp</td></tr>
+<tr><th id="160">160</th><td><u>#define	<dfn class="macro" id="_M/S_ISUID" data-ref="_M/S_ISUID">S_ISUID</dfn> __S_ISUID	/* Set user ID on execution.  */</u>&nbsp</td></tr>
+<tr><th id="161">161</th><td><u>#define	<dfn class="macro" id="_M/S_ISGID" data-ref="_M/S_ISGID">S_ISGID</dfn>	__S_ISGID	/* Set group ID on execution.  */</u>&nbsp</td></tr>
+<tr><th id="162">162</th><td>&nbsp</td></tr>
+<tr><th id="163">163</th><td><u>#<span data-ppcond="163">if</span> defined <a class="macro" href="../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> || defined <a class="macro" href="../../features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a></u>&nbsp</td></tr>
+<tr><th id="164">164</th><td><i>/* Save swapped text after use (sticky bit).  This is pretty well obsolete.  */</i>&nbsp</td></tr>
+<tr><th id="165">165</th><td><u># define <dfn class="macro" id="_M/S_ISVTX" data-ref="_M/S_ISVTX">S_ISVTX</dfn>	__S_ISVTX</u>&nbsp</td></tr>
+<tr><th id="166">166</th><td><u>#<span data-ppcond="163">endif</span></u>&nbsp</td></tr>
+<tr><th id="167">167</th><td>&nbsp</td></tr>
+<tr><th id="168">168</th><td><u>#define	<dfn class="macro" id="_M/S_IRUSR" data-ref="_M/S_IRUSR">S_IRUSR</dfn>	__S_IREAD	/* Read by owner.  */</u>&nbsp</td></tr>
+<tr><th id="169">169</th><td><u>#define	<dfn class="macro" id="_M/S_IWUSR" data-ref="_M/S_IWUSR">S_IWUSR</dfn>	__S_IWRITE	/* Write by owner.  */</u>&nbsp</td></tr>
+<tr><th id="170">170</th><td><u>#define	<dfn class="macro" id="_M/S_IXUSR" data-ref="_M/S_IXUSR">S_IXUSR</dfn>	__S_IEXEC	/* Execute by owner.  */</u>&nbsp</td></tr>
+<tr><th id="171">171</th><td><i>/* Read, write, and execute by owner.  */</i>&nbsp</td></tr>
+<tr><th id="172">172</th><td><u>#define	<dfn class="macro" id="_M/S_IRWXU" data-ref="_M/S_IRWXU">S_IRWXU</dfn>	(__S_IREAD|__S_IWRITE|__S_IEXEC)</u>&nbsp</td></tr>
+<tr><th id="173">173</th><td>&nbsp</td></tr>
+<tr><th id="174">174</th><td><u>#<span data-ppcond="174">ifdef</span> <a class="macro" href="../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="175">175</th><td><u># define <dfn class="macro" id="_M/S_IREAD" data-ref="_M/S_IREAD">S_IREAD</dfn>	S_IRUSR</u>&nbsp</td></tr>
+<tr><th id="176">176</th><td><u># define <dfn class="macro" id="_M/S_IWRITE" data-ref="_M/S_IWRITE">S_IWRITE</dfn>	S_IWUSR</u>&nbsp</td></tr>
+<tr><th id="177">177</th><td><u># define <dfn class="macro" id="_M/S_IEXEC" data-ref="_M/S_IEXEC">S_IEXEC</dfn>	S_IXUSR</u>&nbsp</td></tr>
+<tr><th id="178">178</th><td><u>#<span data-ppcond="174">endif</span></u>&nbsp</td></tr>
+<tr><th id="179">179</th><td>&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>#define	<dfn class="macro" id="_M/S_IRGRP" data-ref="_M/S_IRGRP">S_IRGRP</dfn>	(S_IRUSR &gt;&gt; 3)	/* Read by group.  */</u>&nbsp</td></tr>
+<tr><th id="181">181</th><td><u>#define	<dfn class="macro" id="_M/S_IWGRP" data-ref="_M/S_IWGRP">S_IWGRP</dfn>	(S_IWUSR &gt;&gt; 3)	/* Write by group.  */</u>&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>#define	<dfn class="macro" id="_M/S_IXGRP" data-ref="_M/S_IXGRP">S_IXGRP</dfn>	(S_IXUSR &gt;&gt; 3)	/* Execute by group.  */</u>&nbsp</td></tr>
+<tr><th id="183">183</th><td><i>/* Read, write, and execute by group.  */</i>&nbsp</td></tr>
+<tr><th id="184">184</th><td><u>#define	<dfn class="macro" id="_M/S_IRWXG" data-ref="_M/S_IRWXG">S_IRWXG</dfn>	(S_IRWXU &gt;&gt; 3)</u>&nbsp</td></tr>
+<tr><th id="185">185</th><td>&nbsp</td></tr>
+<tr><th id="186">186</th><td><u>#define	<dfn class="macro" id="_M/S_IROTH" data-ref="_M/S_IROTH">S_IROTH</dfn>	(S_IRGRP &gt;&gt; 3)	/* Read by others.  */</u>&nbsp</td></tr>
+<tr><th id="187">187</th><td><u>#define	<dfn class="macro" id="_M/S_IWOTH" data-ref="_M/S_IWOTH">S_IWOTH</dfn>	(S_IWGRP &gt;&gt; 3)	/* Write by others.  */</u>&nbsp</td></tr>
+<tr><th id="188">188</th><td><u>#define	<dfn class="macro" id="_M/S_IXOTH" data-ref="_M/S_IXOTH">S_IXOTH</dfn>	(S_IXGRP &gt;&gt; 3)	/* Execute by others.  */</u>&nbsp</td></tr>
+<tr><th id="189">189</th><td><i>/* Read, write, and execute by others.  */</i>&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>#define	<dfn class="macro" id="_M/S_IRWXO" data-ref="_M/S_IRWXO">S_IRWXO</dfn>	(S_IRWXG &gt;&gt; 3)</u>&nbsp</td></tr>
+<tr><th id="191">191</th><td>&nbsp</td></tr>
+<tr><th id="192">192</th><td>&nbsp</td></tr>
+<tr><th id="193">193</th><td><u>#<span data-ppcond="193">ifdef</span>	<a class="macro" href="../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="194">194</th><td><i>/* Macros for common mode bit masks.  */</i>&nbsp</td></tr>
+<tr><th id="195">195</th><td><u># define <dfn class="macro" id="_M/ACCESSPERMS" data-ref="_M/ACCESSPERMS">ACCESSPERMS</dfn> (S_IRWXU|S_IRWXG|S_IRWXO) /* 0777 */</u>&nbsp</td></tr>
+<tr><th id="196">196</th><td><u># define <dfn class="macro" id="_M/ALLPERMS" data-ref="_M/ALLPERMS">ALLPERMS</dfn> (S_ISUID|S_ISGID|S_ISVTX|S_IRWXU|S_IRWXG|S_IRWXO)/* 07777 */</u>&nbsp</td></tr>
+<tr><th id="197">197</th><td><u># define <dfn class="macro" id="_M/DEFFILEMODE" data-ref="_M/DEFFILEMODE">DEFFILEMODE</dfn> (S_IRUSR|S_IWUSR|S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH)/* 0666*/</u>&nbsp</td></tr>
+<tr><th id="198">198</th><td>&nbsp</td></tr>
+<tr><th id="199">199</th><td><u># define <dfn class="macro" id="_M/S_BLKSIZE" data-ref="_M/S_BLKSIZE">S_BLKSIZE</dfn>	512	/* Block size for `st_blocks'.  */</u>&nbsp</td></tr>
+<tr><th id="200">200</th><td><u>#<span data-ppcond="193">endif</span></u>&nbsp</td></tr>
+<tr><th id="201">201</th><td>&nbsp</td></tr>
+<tr><th id="202">202</th><td>&nbsp</td></tr>
+<tr><th id="203">203</th><td><u>#<span data-ppcond="203">ifndef</span> <span class="macro" data-ref="_M/__USE_FILE_OFFSET64">__USE_FILE_OFFSET64</span></u>&nbsp</td></tr>
+<tr><th id="204">204</th><td><i>/* Get file attributes for FILE and put them in BUF.  */</i>&nbsp</td></tr>
+<tr><th id="205">205</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="stat" title='stat' data-ref="stat">stat</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col1 decl" id="1__file" title='__file' data-type='const char *__restrict' data-ref="1__file">__file</dfn>,&nbsp</td></tr>
+<tr><th id="206">206</th><td>		 <b>struct</b> <a class="type" href="../bits/struct_stat.h.html#stat" title='stat' data-ref="stat">stat</a> *<b>__restrict</b> <dfn class="local col2 decl" id="2__buf" title='__buf' data-type='struct stat *__restrict' data-ref="2__buf">__buf</dfn>) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (1, 2)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>1</var>, <var>2</var>));&nbsp</td></tr>
+<tr><th id="207">207</th><td>&nbsp</td></tr>
+<tr><th id="208">208</th><td><i>/* Get file attributes for the file, device, pipe, or socket</i>&nbsp</td></tr>
+<tr><th id="209">209</th><td><i>   that file descriptor FD is open on and put them in BUF.  */</i>&nbsp</td></tr>
+<tr><th id="210">210</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fstat" title='fstat' data-ref="fstat">fstat</dfn> (<em>int</em> <dfn class="local col3 decl" id="3__fd" title='__fd' data-type='int' data-ref="3__fd">__fd</dfn>, <b>struct</b> <a class="type" href="../bits/struct_stat.h.html#stat" title='stat' data-ref="stat">stat</a> *<dfn class="local col4 decl" id="4__buf" title='__buf' data-type='struct stat *' data-ref="4__buf">__buf</dfn>) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (2)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>2</var>));&nbsp</td></tr>
+<tr><th id="211">211</th><td><u>#<span data-ppcond="203">else</span></u>&nbsp</td></tr>
+<tr><th id="212">212</th><td><u># ifdef __USE_TIME_BITS64</u>&nbsp</td></tr>
+<tr><th id="213">213</th><td><u>#  ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="214">214</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (stat, (<em>const</em> <em>char</em> *<b>__restrict</b> __file,&nbsp</td></tr>
+<tr><th id="215">215</th><td>				  <b>struct</b> stat *<b>__restrict</b> __buf),&nbsp</td></tr>
+<tr><th id="216">216</th><td>				  __stat64_time64)&nbsp</td></tr>
+<tr><th id="217">217</th><td>     __nonnull ((<var>1</var>, <var>2</var>));&nbsp</td></tr>
+<tr><th id="218">218</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (fstat, (<em>int</em> __fd, <b>struct</b> stat *__buf),&nbsp</td></tr>
+<tr><th id="219">219</th><td>				   __fstat64_time64)&nbsp</td></tr>
+<tr><th id="220">220</th><td>     __nonnull ((<var>2</var>));&nbsp</td></tr>
+<tr><th id="221">221</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="222">222</th><td><u>#   define stat __stat64_time64</u>&nbsp</td></tr>
+<tr><th id="223">223</th><td><u>#   define fstat __fstat64_time64</u>&nbsp</td></tr>
+<tr><th id="224">224</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="225">225</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="226">226</th><td><u>#  ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="227">227</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (stat, (<em>const</em> <em>char</em> *<b>__restrict</b> __file,&nbsp</td></tr>
+<tr><th id="228">228</th><td>				  <b>struct</b> stat *<b>__restrict</b> __buf), stat64)&nbsp</td></tr>
+<tr><th id="229">229</th><td>     __nonnull ((<var>1</var>, <var>2</var>));&nbsp</td></tr>
+<tr><th id="230">230</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (fstat, (<em>int</em> __fd, <b>struct</b> stat *__buf), fstat64)&nbsp</td></tr>
+<tr><th id="231">231</th><td>     __nonnull ((<var>2</var>));&nbsp</td></tr>
+<tr><th id="232">232</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="233">233</th><td><u>#   define stat stat64</u>&nbsp</td></tr>
+<tr><th id="234">234</th><td><u>#   define fstat fstat64</u>&nbsp</td></tr>
+<tr><th id="235">235</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="236">236</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="237">237</th><td><u>#<span data-ppcond="203">endif</span></u>&nbsp</td></tr>
+<tr><th id="238">238</th><td><u>#<span data-ppcond="238">ifdef</span> <a class="macro" href="../../features.h.html#385" data-ref="_M/__USE_LARGEFILE64">__USE_LARGEFILE64</a></u>&nbsp</td></tr>
+<tr><th id="239">239</th><td><u># <span data-ppcond="239">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="240">240</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="stat64" title='stat64' data-ref="stat64">stat64</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col5 decl" id="5__file" title='__file' data-type='const char *__restrict' data-ref="5__file">__file</dfn>,&nbsp</td></tr>
+<tr><th id="241">241</th><td>		   <b>struct</b> <a class="type" href="../bits/struct_stat.h.html#stat64" title='stat64' data-ref="stat64">stat64</a> *<b>__restrict</b> <dfn class="local col6 decl" id="6__buf" title='__buf' data-type='struct stat64 *__restrict' data-ref="6__buf">__buf</dfn>) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (1, 2)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>1</var>, <var>2</var>));&nbsp</td></tr>
+<tr><th id="242">242</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fstat64" title='fstat64' data-ref="fstat64">fstat64</dfn> (<em>int</em> <dfn class="local col7 decl" id="7__fd" title='__fd' data-type='int' data-ref="7__fd">__fd</dfn>, <b>struct</b> <a class="type" href="../bits/struct_stat.h.html#stat64" title='stat64' data-ref="stat64">stat64</a> *<dfn class="local col8 decl" id="8__buf" title='__buf' data-type='struct stat64 *' data-ref="8__buf">__buf</dfn>) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (2)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>2</var>));&nbsp</td></tr>
+<tr><th id="243">243</th><td><u># <span data-ppcond="239">else</span></u>&nbsp</td></tr>
+<tr><th id="244">244</th><td><u>#  ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="245">245</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (stat64, (<em>const</em> <em>char</em> *<b>__restrict</b> __file,&nbsp</td></tr>
+<tr><th id="246">246</th><td>				    <b>struct</b> stat64 *<b>__restrict</b> __buf),&nbsp</td></tr>
+<tr><th id="247">247</th><td>			   __stat64_time64)&nbsp</td></tr>
+<tr><th id="248">248</th><td>     __nonnull ((<var>1</var>, <var>2</var>));&nbsp</td></tr>
+<tr><th id="249">249</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (fstat64, (<em>int</em> __fd, <b>struct</b> stat64 *__buf),&nbsp</td></tr>
+<tr><th id="250">250</th><td>			   __fstat64_time64)&nbsp</td></tr>
+<tr><th id="251">251</th><td>     __nonnull ((<var>2</var>));&nbsp</td></tr>
+<tr><th id="252">252</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="253">253</th><td><u>#   define stat64 __stat64_time64</u>&nbsp</td></tr>
+<tr><th id="254">254</th><td><u>#   define fstat64 __fstat64_time</u>&nbsp</td></tr>
+<tr><th id="255">255</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="256">256</th><td><u># <span data-ppcond="239">endif</span></u>&nbsp</td></tr>
+<tr><th id="257">257</th><td><u>#<span data-ppcond="238">endif</span></u>&nbsp</td></tr>
+<tr><th id="258">258</th><td>&nbsp</td></tr>
+<tr><th id="259">259</th><td><u>#<span data-ppcond="259">ifdef</span> <a class="macro" href="../../features.h.html#399" data-ref="_M/__USE_ATFILE">__USE_ATFILE</a></u>&nbsp</td></tr>
+<tr><th id="260">260</th><td><i>/* Similar to stat, get the attributes for FILE and put them in BUF.</i>&nbsp</td></tr>
+<tr><th id="261">261</th><td><i>   Relative path names are interpreted relative to FD unless FD is</i>&nbsp</td></tr>
+<tr><th id="262">262</th><td><i>   AT_FDCWD.  */</i>&nbsp</td></tr>
+<tr><th id="263">263</th><td><u># <span data-ppcond="263">ifndef</span> <span class="macro" data-ref="_M/__USE_FILE_OFFSET64">__USE_FILE_OFFSET64</span></u>&nbsp</td></tr>
+<tr><th id="264">264</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fstatat" title='fstatat' data-ref="fstatat">fstatat</dfn> (<em>int</em> <dfn class="local col9 decl" id="9__fd" title='__fd' data-type='int' data-ref="9__fd">__fd</dfn>, <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col0 decl" id="10__file" title='__file' data-type='const char *__restrict' data-ref="10__file">__file</dfn>,&nbsp</td></tr>
+<tr><th id="265">265</th><td>		    <b>struct</b> <a class="type" href="../bits/struct_stat.h.html#stat" title='stat' data-ref="stat">stat</a> *<b>__restrict</b> <dfn class="local col1 decl" id="11__buf" title='__buf' data-type='struct stat *__restrict' data-ref="11__buf">__buf</dfn>, <em>int</em> <dfn class="local col2 decl" id="12__flag" title='__flag' data-type='int' data-ref="12__flag">__flag</dfn>)&nbsp</td></tr>
+<tr><th id="266">266</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (2, 3)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>2</var>, <var>3</var>));&nbsp</td></tr>
+<tr><th id="267">267</th><td><u># <span data-ppcond="263">else</span></u>&nbsp</td></tr>
+<tr><th id="268">268</th><td><u>#  ifdef __USE_TIME_BITS64</u>&nbsp</td></tr>
+<tr><th id="269">269</th><td><u>#   ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="270">270</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (fstatat, (<em>int</em> __fd, <em>const</em> <em>char</em> *<b>__restrict</b> __file,&nbsp</td></tr>
+<tr><th id="271">271</th><td>				     <b>struct</b> stat *<b>__restrict</b> __buf,&nbsp</td></tr>
+<tr><th id="272">272</th><td>				     <em>int</em> __flag),&nbsp</td></tr>
+<tr><th id="273">273</th><td>			   __fstatat64_time64) __nonnull ((<var>2</var>, <var>3</var>));&nbsp</td></tr>
+<tr><th id="274">274</th><td><u>#   else</u>&nbsp</td></tr>
+<tr><th id="275">275</th><td><u>#    define fstatat __fstatat64_time64</u>&nbsp</td></tr>
+<tr><th id="276">276</th><td><u>#   endif</u>&nbsp</td></tr>
+<tr><th id="277">277</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="278">278</th><td><u>#   ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="279">279</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (fstatat, (<em>int</em> __fd, <em>const</em> <em>char</em> *<b>__restrict</b> __file,&nbsp</td></tr>
+<tr><th id="280">280</th><td>				     <b>struct</b> stat *<b>__restrict</b> __buf,&nbsp</td></tr>
+<tr><th id="281">281</th><td>				     <em>int</em> __flag),&nbsp</td></tr>
+<tr><th id="282">282</th><td>			   fstatat64) __nonnull ((<var>2</var>, <var>3</var>));&nbsp</td></tr>
+<tr><th id="283">283</th><td><u>#   else</u>&nbsp</td></tr>
+<tr><th id="284">284</th><td><u>#    define fstatat fstatat64</u>&nbsp</td></tr>
+<tr><th id="285">285</th><td><u>#   endif</u>&nbsp</td></tr>
+<tr><th id="286">286</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="287">287</th><td><u># <span data-ppcond="263">endif</span></u>&nbsp</td></tr>
+<tr><th id="288">288</th><td>&nbsp</td></tr>
+<tr><th id="289">289</th><td><u># <span data-ppcond="289">ifdef</span> <a class="macro" href="../../features.h.html#385" data-ref="_M/__USE_LARGEFILE64">__USE_LARGEFILE64</a></u>&nbsp</td></tr>
+<tr><th id="290">290</th><td><u>#  <span data-ppcond="290">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="291">291</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fstatat64" title='fstatat64' data-ref="fstatat64">fstatat64</dfn> (<em>int</em> <dfn class="local col3 decl" id="13__fd" title='__fd' data-type='int' data-ref="13__fd">__fd</dfn>, <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col4 decl" id="14__file" title='__file' data-type='const char *__restrict' data-ref="14__file">__file</dfn>,&nbsp</td></tr>
+<tr><th id="292">292</th><td>		      <b>struct</b> <a class="type" href="../bits/struct_stat.h.html#stat64" title='stat64' data-ref="stat64">stat64</a> *<b>__restrict</b> <dfn class="local col5 decl" id="15__buf" title='__buf' data-type='struct stat64 *__restrict' data-ref="15__buf">__buf</dfn>, <em>int</em> <dfn class="local col6 decl" id="16__flag" title='__flag' data-type='int' data-ref="16__flag">__flag</dfn>)&nbsp</td></tr>
+<tr><th id="293">293</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (2, 3)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>2</var>, <var>3</var>));&nbsp</td></tr>
+<tr><th id="294">294</th><td><u>#  <span data-ppcond="290">else</span></u>&nbsp</td></tr>
+<tr><th id="295">295</th><td><u>#   ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="296">296</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (fstatat64, (<em>int</em> __fd,&nbsp</td></tr>
+<tr><th id="297">297</th><td>				       <em>const</em> <em>char</em> *<b>__restrict</b> __file,&nbsp</td></tr>
+<tr><th id="298">298</th><td>				       <b>struct</b> stat64 *<b>__restrict</b> __buf,&nbsp</td></tr>
+<tr><th id="299">299</th><td>				       <em>int</em> __flag),&nbsp</td></tr>
+<tr><th id="300">300</th><td>			   __fstatat64_time64)&nbsp</td></tr>
+<tr><th id="301">301</th><td>     __nonnull ((<var>2</var>, <var>3</var>));&nbsp</td></tr>
+<tr><th id="302">302</th><td><u>#   else</u>&nbsp</td></tr>
+<tr><th id="303">303</th><td><u>#    define fstatat64 __fstatat64_time64</u>&nbsp</td></tr>
+<tr><th id="304">304</th><td><u>#   endif</u>&nbsp</td></tr>
+<tr><th id="305">305</th><td><u>#  <span data-ppcond="290">endif</span></u>&nbsp</td></tr>
+<tr><th id="306">306</th><td><u># <span data-ppcond="289">endif</span></u>&nbsp</td></tr>
+<tr><th id="307">307</th><td><u>#<span data-ppcond="259">endif</span></u>&nbsp</td></tr>
+<tr><th id="308">308</th><td>&nbsp</td></tr>
+<tr><th id="309">309</th><td><u>#<span data-ppcond="309">if</span> defined <a class="macro" href="../../features.h.html#357" data-ref="_M/__USE_XOPEN_EXTENDED">__USE_XOPEN_EXTENDED</a> || defined <a class="macro" href="../../features.h.html#366" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</a></u>&nbsp</td></tr>
+<tr><th id="310">310</th><td><u># <span data-ppcond="310">ifndef</span> <span class="macro" data-ref="_M/__USE_FILE_OFFSET64">__USE_FILE_OFFSET64</span></u>&nbsp</td></tr>
+<tr><th id="311">311</th><td><i>/* Get file attributes about FILE and put them in BUF.</i>&nbsp</td></tr>
+<tr><th id="312">312</th><td><i>   If FILE is a symbolic link, do not follow it.  */</i>&nbsp</td></tr>
+<tr><th id="313">313</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="lstat" title='lstat' data-ref="lstat">lstat</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col7 decl" id="17__file" title='__file' data-type='const char *__restrict' data-ref="17__file">__file</dfn>,&nbsp</td></tr>
+<tr><th id="314">314</th><td>		  <b>struct</b> <a class="type" href="../bits/struct_stat.h.html#stat" title='stat' data-ref="stat">stat</a> *<b>__restrict</b> <dfn class="local col8 decl" id="18__buf" title='__buf' data-type='struct stat *__restrict' data-ref="18__buf">__buf</dfn>) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (1, 2)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>1</var>, <var>2</var>));&nbsp</td></tr>
+<tr><th id="315">315</th><td><u># <span data-ppcond="310">else</span></u>&nbsp</td></tr>
+<tr><th id="316">316</th><td><u>#  ifdef __USE_TIME_BITS64</u>&nbsp</td></tr>
+<tr><th id="317">317</th><td><u>#   ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="318">318</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (lstat,&nbsp</td></tr>
+<tr><th id="319">319</th><td>			   (<em>const</em> <em>char</em> *<b>__restrict</b> __file,&nbsp</td></tr>
+<tr><th id="320">320</th><td>			    <b>struct</b> stat *<b>__restrict</b> __buf), __lstat64_time64)&nbsp</td></tr>
+<tr><th id="321">321</th><td>     __nonnull ((<var>1</var>, <var>2</var>));&nbsp</td></tr>
+<tr><th id="322">322</th><td><u>#   else</u>&nbsp</td></tr>
+<tr><th id="323">323</th><td><u>#    define lstat __lstat64_time64</u>&nbsp</td></tr>
+<tr><th id="324">324</th><td><u>#   endif</u>&nbsp</td></tr>
+<tr><th id="325">325</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="326">326</th><td><u>#   ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="327">327</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (lstat,&nbsp</td></tr>
+<tr><th id="328">328</th><td>			   (<em>const</em> <em>char</em> *<b>__restrict</b> __file,&nbsp</td></tr>
+<tr><th id="329">329</th><td>			    <b>struct</b> stat *<b>__restrict</b> __buf), lstat64)&nbsp</td></tr>
+<tr><th id="330">330</th><td>     __nonnull ((<var>1</var>, <var>2</var>));&nbsp</td></tr>
+<tr><th id="331">331</th><td><u>#   else</u>&nbsp</td></tr>
+<tr><th id="332">332</th><td><u>#    define lstat lstat64</u>&nbsp</td></tr>
+<tr><th id="333">333</th><td><u>#   endif</u>&nbsp</td></tr>
+<tr><th id="334">334</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="335">335</th><td><u># <span data-ppcond="310">endif</span></u>&nbsp</td></tr>
+<tr><th id="336">336</th><td><u># <span data-ppcond="336">ifdef</span> <a class="macro" href="../../features.h.html#385" data-ref="_M/__USE_LARGEFILE64">__USE_LARGEFILE64</a></u>&nbsp</td></tr>
+<tr><th id="337">337</th><td><u>#  <span data-ppcond="337">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="338">338</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="lstat64" title='lstat64' data-ref="lstat64">lstat64</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col9 decl" id="19__file" title='__file' data-type='const char *__restrict' data-ref="19__file">__file</dfn>,&nbsp</td></tr>
+<tr><th id="339">339</th><td>		    <b>struct</b> <a class="type" href="../bits/struct_stat.h.html#stat64" title='stat64' data-ref="stat64">stat64</a> *<b>__restrict</b> <dfn class="local col0 decl" id="20__buf" title='__buf' data-type='struct stat64 *__restrict' data-ref="20__buf">__buf</dfn>)&nbsp</td></tr>
+<tr><th id="340">340</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (1, 2)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>1</var>, <var>2</var>));&nbsp</td></tr>
+<tr><th id="341">341</th><td><u>#  <span data-ppcond="337">else</span></u>&nbsp</td></tr>
+<tr><th id="342">342</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (lstat64, (<em>const</em> <em>char</em> *<b>__restrict</b> __file,&nbsp</td></tr>
+<tr><th id="343">343</th><td>				     <b>struct</b> stat64 *<b>__restrict</b> __buf),&nbsp</td></tr>
+<tr><th id="344">344</th><td>			   __lstat64_time64)&nbsp</td></tr>
+<tr><th id="345">345</th><td>     __nonnull ((<var>1</var>, <var>2</var>));&nbsp</td></tr>
+<tr><th id="346">346</th><td><u>#  <span data-ppcond="337">endif</span></u>&nbsp</td></tr>
+<tr><th id="347">347</th><td><u># <span data-ppcond="336">endif</span></u>&nbsp</td></tr>
+<tr><th id="348">348</th><td><u>#<span data-ppcond="309">endif</span></u>&nbsp</td></tr>
+<tr><th id="349">349</th><td>&nbsp</td></tr>
+<tr><th id="350">350</th><td><i>/* Set file access permissions for FILE to MODE.</i>&nbsp</td></tr>
+<tr><th id="351">351</th><td><i>   If FILE is a symbolic link, this affects its target instead.  */</i>&nbsp</td></tr>
+<tr><th id="352">352</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="chmod" title='chmod' data-ref="chmod">chmod</dfn> (<em>const</em> <em>char</em> *<dfn class="local col1 decl" id="21__file" title='__file' data-type='const char *' data-ref="21__file">__file</dfn>, <a class="typedef" href="../bits/types.h.html#__mode_t" title='__mode_t' data-type='unsigned int' data-ref="__mode_t">__mode_t</a> <dfn class="local col2 decl" id="22__mode" title='__mode' data-type='__mode_t' data-ref="22__mode">__mode</dfn>)&nbsp</td></tr>
+<tr><th id="353">353</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (1)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>1</var>));&nbsp</td></tr>
+<tr><th id="354">354</th><td>&nbsp</td></tr>
+<tr><th id="355">355</th><td><u>#<span data-ppcond="355">ifdef</span> <a class="macro" href="../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="356">356</th><td><i>/* Set file access permissions for FILE to MODE.</i>&nbsp</td></tr>
+<tr><th id="357">357</th><td><i>   If FILE is a symbolic link, this affects the link itself</i>&nbsp</td></tr>
+<tr><th id="358">358</th><td><i>   rather than its target.  */</i>&nbsp</td></tr>
+<tr><th id="359">359</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="lchmod" title='lchmod' data-ref="lchmod">lchmod</dfn> (<em>const</em> <em>char</em> *<dfn class="local col3 decl" id="23__file" title='__file' data-type='const char *' data-ref="23__file">__file</dfn>, <a class="typedef" href="../bits/types.h.html#__mode_t" title='__mode_t' data-type='unsigned int' data-ref="__mode_t">__mode_t</a> <dfn class="local col4 decl" id="24__mode" title='__mode' data-type='__mode_t' data-ref="24__mode">__mode</dfn>)&nbsp</td></tr>
+<tr><th id="360">360</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (1)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>1</var>));&nbsp</td></tr>
+<tr><th id="361">361</th><td><u>#<span data-ppcond="355">endif</span></u>&nbsp</td></tr>
+<tr><th id="362">362</th><td>&nbsp</td></tr>
+<tr><th id="363">363</th><td><i>/* Set file access permissions of the file FD is open on to MODE.  */</i>&nbsp</td></tr>
+<tr><th id="364">364</th><td><u>#<span data-ppcond="364">if</span> defined <a class="macro" href="../../features.h.html#333" data-ref="_M/__USE_POSIX199309">__USE_POSIX199309</a> || defined <a class="macro" href="../../features.h.html#357" data-ref="_M/__USE_XOPEN_EXTENDED">__USE_XOPEN_EXTENDED</a></u>&nbsp</td></tr>
+<tr><th id="365">365</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fchmod" title='fchmod' data-ref="fchmod">fchmod</dfn> (<em>int</em> <dfn class="local col5 decl" id="25__fd" title='__fd' data-type='int' data-ref="25__fd">__fd</dfn>, <a class="typedef" href="../bits/types.h.html#__mode_t" title='__mode_t' data-type='unsigned int' data-ref="__mode_t">__mode_t</a> <dfn class="local col6 decl" id="26__mode" title='__mode' data-type='__mode_t' data-ref="26__mode">__mode</dfn>) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="366">366</th><td><u>#<span data-ppcond="364">endif</span></u>&nbsp</td></tr>
+<tr><th id="367">367</th><td>&nbsp</td></tr>
+<tr><th id="368">368</th><td><u>#<span data-ppcond="368">ifdef</span> <a class="macro" href="../../features.h.html#399" data-ref="_M/__USE_ATFILE">__USE_ATFILE</a></u>&nbsp</td></tr>
+<tr><th id="369">369</th><td><i>/* Set file access permissions of FILE relative to</i>&nbsp</td></tr>
+<tr><th id="370">370</th><td><i>   the directory FD is open on.  */</i>&nbsp</td></tr>
+<tr><th id="371">371</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fchmodat" title='fchmodat' data-ref="fchmodat">fchmodat</dfn> (<em>int</em> <dfn class="local col7 decl" id="27__fd" title='__fd' data-type='int' data-ref="27__fd">__fd</dfn>, <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="28__file" title='__file' data-type='const char *' data-ref="28__file">__file</dfn>, <a class="typedef" href="../bits/types.h.html#__mode_t" title='__mode_t' data-type='unsigned int' data-ref="__mode_t">__mode_t</a> <dfn class="local col9 decl" id="29__mode" title='__mode' data-type='__mode_t' data-ref="29__mode">__mode</dfn>,&nbsp</td></tr>
+<tr><th id="372">372</th><td>		     <em>int</em> <dfn class="local col0 decl" id="30__flag" title='__flag' data-type='int' data-ref="30__flag">__flag</dfn>)&nbsp</td></tr>
+<tr><th id="373">373</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (2)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>2</var>)) <a class="macro" href="cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="374">374</th><td><u>#<span data-ppcond="368">endif</span> /* Use ATFILE.  */</u>&nbsp</td></tr>
+<tr><th id="375">375</th><td>&nbsp</td></tr>
+<tr><th id="376">376</th><td>&nbsp</td></tr>
+<tr><th id="377">377</th><td>&nbsp</td></tr>
+<tr><th id="378">378</th><td><i>/* Set the file creation mask of the current process to MASK,</i>&nbsp</td></tr>
+<tr><th id="379">379</th><td><i>   and return the old creation mask.  */</i>&nbsp</td></tr>
+<tr><th id="380">380</th><td><b>extern</b> <a class="typedef" href="../bits/types.h.html#__mode_t" title='__mode_t' data-type='unsigned int' data-ref="__mode_t">__mode_t</a> <dfn class="decl fn" id="umask" title='umask' data-ref="umask">umask</dfn> (<a class="typedef" href="../bits/types.h.html#__mode_t" title='__mode_t' data-type='unsigned int' data-ref="__mode_t">__mode_t</a> <dfn class="local col1 decl" id="31__mask" title='__mask' data-type='__mode_t' data-ref="31__mask">__mask</dfn>) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="381">381</th><td>&nbsp</td></tr>
+<tr><th id="382">382</th><td><u>#<span data-ppcond="382">ifdef</span>	<a class="macro" href="../../features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="383">383</th><td><i>/* Get the current `umask' value without changing it.</i>&nbsp</td></tr>
+<tr><th id="384">384</th><td><i>   This function is only available under the GNU Hurd.  */</i>&nbsp</td></tr>
+<tr><th id="385">385</th><td><b>extern</b> <a class="typedef" href="../bits/types.h.html#__mode_t" title='__mode_t' data-type='unsigned int' data-ref="__mode_t">__mode_t</a> <dfn class="decl fn" id="getumask" title='getumask' data-ref="getumask">getumask</dfn> (<em>void</em>) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="386">386</th><td><u>#<span data-ppcond="382">endif</span></u>&nbsp</td></tr>
+<tr><th id="387">387</th><td>&nbsp</td></tr>
+<tr><th id="388">388</th><td><i>/* Create a new directory named PATH, with permission bits MODE.  */</i>&nbsp</td></tr>
+<tr><th id="389">389</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="mkdir" title='mkdir' data-ref="mkdir">mkdir</dfn> (<em>const</em> <em>char</em> *<dfn class="local col2 decl" id="32__path" title='__path' data-type='const char *' data-ref="32__path">__path</dfn>, <a class="typedef" href="../bits/types.h.html#__mode_t" title='__mode_t' data-type='unsigned int' data-ref="__mode_t">__mode_t</a> <dfn class="local col3 decl" id="33__mode" title='__mode' data-type='__mode_t' data-ref="33__mode">__mode</dfn>)&nbsp</td></tr>
+<tr><th id="390">390</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (1)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>1</var>));&nbsp</td></tr>
+<tr><th id="391">391</th><td>&nbsp</td></tr>
+<tr><th id="392">392</th><td><u>#<span data-ppcond="392">ifdef</span> <a class="macro" href="../../features.h.html#399" data-ref="_M/__USE_ATFILE">__USE_ATFILE</a></u>&nbsp</td></tr>
+<tr><th id="393">393</th><td><i>/* Like mkdir, create a new directory with permission bits MODE.  But</i>&nbsp</td></tr>
+<tr><th id="394">394</th><td><i>   interpret relative PATH names relative to the directory associated</i>&nbsp</td></tr>
+<tr><th id="395">395</th><td><i>   with FD.  */</i>&nbsp</td></tr>
+<tr><th id="396">396</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="mkdirat" title='mkdirat' data-ref="mkdirat">mkdirat</dfn> (<em>int</em> <dfn class="local col4 decl" id="34__fd" title='__fd' data-type='int' data-ref="34__fd">__fd</dfn>, <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="35__path" title='__path' data-type='const char *' data-ref="35__path">__path</dfn>, <a class="typedef" href="../bits/types.h.html#__mode_t" title='__mode_t' data-type='unsigned int' data-ref="__mode_t">__mode_t</a> <dfn class="local col6 decl" id="36__mode" title='__mode' data-type='__mode_t' data-ref="36__mode">__mode</dfn>)&nbsp</td></tr>
+<tr><th id="397">397</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (2)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>2</var>));&nbsp</td></tr>
+<tr><th id="398">398</th><td><u>#<span data-ppcond="392">endif</span></u>&nbsp</td></tr>
+<tr><th id="399">399</th><td>&nbsp</td></tr>
+<tr><th id="400">400</th><td><i>/* Create a device file named PATH, with permission and special bits MODE</i>&nbsp</td></tr>
+<tr><th id="401">401</th><td><i>   and device number DEV (which can be constructed from major and minor</i>&nbsp</td></tr>
+<tr><th id="402">402</th><td><i>   device numbers with the `makedev' macro above).  */</i>&nbsp</td></tr>
+<tr><th id="403">403</th><td><u>#<span data-ppcond="403">if</span> defined <a class="macro" href="../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> || defined <a class="macro" href="../../features.h.html#357" data-ref="_M/__USE_XOPEN_EXTENDED">__USE_XOPEN_EXTENDED</a></u>&nbsp</td></tr>
+<tr><th id="404">404</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="mknod" title='mknod' data-ref="mknod">mknod</dfn> (<em>const</em> <em>char</em> *<dfn class="local col7 decl" id="37__path" title='__path' data-type='const char *' data-ref="37__path">__path</dfn>, <a class="typedef" href="../bits/types.h.html#__mode_t" title='__mode_t' data-type='unsigned int' data-ref="__mode_t">__mode_t</a> <dfn class="local col8 decl" id="38__mode" title='__mode' data-type='__mode_t' data-ref="38__mode">__mode</dfn>, <a class="typedef" href="../bits/types.h.html#__dev_t" title='__dev_t' data-type='unsigned long' data-ref="__dev_t">__dev_t</a> <dfn class="local col9 decl" id="39__dev" title='__dev' data-type='__dev_t' data-ref="39__dev">__dev</dfn>)&nbsp</td></tr>
+<tr><th id="405">405</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (1)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>1</var>));&nbsp</td></tr>
+<tr><th id="406">406</th><td>&nbsp</td></tr>
+<tr><th id="407">407</th><td><u># <span data-ppcond="407">ifdef</span> <a class="macro" href="../../features.h.html#399" data-ref="_M/__USE_ATFILE">__USE_ATFILE</a></u>&nbsp</td></tr>
+<tr><th id="408">408</th><td><i>/* Like mknod, create a new device file with permission bits MODE and</i>&nbsp</td></tr>
+<tr><th id="409">409</th><td><i>   device number DEV.  But interpret relative PATH names relative to</i>&nbsp</td></tr>
+<tr><th id="410">410</th><td><i>   the directory associated with FD.  */</i>&nbsp</td></tr>
+<tr><th id="411">411</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="mknodat" title='mknodat' data-ref="mknodat">mknodat</dfn> (<em>int</em> <dfn class="local col0 decl" id="40__fd" title='__fd' data-type='int' data-ref="40__fd">__fd</dfn>, <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="41__path" title='__path' data-type='const char *' data-ref="41__path">__path</dfn>, <a class="typedef" href="../bits/types.h.html#__mode_t" title='__mode_t' data-type='unsigned int' data-ref="__mode_t">__mode_t</a> <dfn class="local col2 decl" id="42__mode" title='__mode' data-type='__mode_t' data-ref="42__mode">__mode</dfn>,&nbsp</td></tr>
+<tr><th id="412">412</th><td>		    <a class="typedef" href="../bits/types.h.html#__dev_t" title='__dev_t' data-type='unsigned long' data-ref="__dev_t">__dev_t</a> <dfn class="local col3 decl" id="43__dev" title='__dev' data-type='__dev_t' data-ref="43__dev">__dev</dfn>) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (2)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>2</var>));&nbsp</td></tr>
+<tr><th id="413">413</th><td><u># <span data-ppcond="407">endif</span></u>&nbsp</td></tr>
+<tr><th id="414">414</th><td><u>#<span data-ppcond="403">endif</span></u>&nbsp</td></tr>
+<tr><th id="415">415</th><td>&nbsp</td></tr>
+<tr><th id="416">416</th><td>&nbsp</td></tr>
+<tr><th id="417">417</th><td><i>/* Create a new FIFO named PATH, with permission bits MODE.  */</i>&nbsp</td></tr>
+<tr><th id="418">418</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="mkfifo" title='mkfifo' data-ref="mkfifo">mkfifo</dfn> (<em>const</em> <em>char</em> *<dfn class="local col4 decl" id="44__path" title='__path' data-type='const char *' data-ref="44__path">__path</dfn>, <a class="typedef" href="../bits/types.h.html#__mode_t" title='__mode_t' data-type='unsigned int' data-ref="__mode_t">__mode_t</a> <dfn class="local col5 decl" id="45__mode" title='__mode' data-type='__mode_t' data-ref="45__mode">__mode</dfn>)&nbsp</td></tr>
+<tr><th id="419">419</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (1)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>1</var>));&nbsp</td></tr>
+<tr><th id="420">420</th><td>&nbsp</td></tr>
+<tr><th id="421">421</th><td><u>#<span data-ppcond="421">ifdef</span> <a class="macro" href="../../features.h.html#399" data-ref="_M/__USE_ATFILE">__USE_ATFILE</a></u>&nbsp</td></tr>
+<tr><th id="422">422</th><td><i>/* Like mkfifo, create a new FIFO with permission bits MODE.  But</i>&nbsp</td></tr>
+<tr><th id="423">423</th><td><i>   interpret relative PATH names relative to the directory associated</i>&nbsp</td></tr>
+<tr><th id="424">424</th><td><i>   with FD.  */</i>&nbsp</td></tr>
+<tr><th id="425">425</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="mkfifoat" title='mkfifoat' data-ref="mkfifoat">mkfifoat</dfn> (<em>int</em> <dfn class="local col6 decl" id="46__fd" title='__fd' data-type='int' data-ref="46__fd">__fd</dfn>, <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="47__path" title='__path' data-type='const char *' data-ref="47__path">__path</dfn>, <a class="typedef" href="../bits/types.h.html#__mode_t" title='__mode_t' data-type='unsigned int' data-ref="__mode_t">__mode_t</a> <dfn class="local col8 decl" id="48__mode" title='__mode' data-type='__mode_t' data-ref="48__mode">__mode</dfn>)&nbsp</td></tr>
+<tr><th id="426">426</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (2)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>2</var>));&nbsp</td></tr>
+<tr><th id="427">427</th><td><u>#<span data-ppcond="421">endif</span></u>&nbsp</td></tr>
+<tr><th id="428">428</th><td>&nbsp</td></tr>
+<tr><th id="429">429</th><td><u>#<span data-ppcond="429">ifdef</span> <a class="macro" href="../../features.h.html#399" data-ref="_M/__USE_ATFILE">__USE_ATFILE</a></u>&nbsp</td></tr>
+<tr><th id="430">430</th><td><u># <span data-ppcond="430">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="431">431</th><td><i>/* Set file access and modification times relative to directory file</i>&nbsp</td></tr>
+<tr><th id="432">432</th><td><i>   descriptor.  */</i>&nbsp</td></tr>
+<tr><th id="433">433</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="utimensat" title='utimensat' data-ref="utimensat">utimensat</dfn> (<em>int</em> <dfn class="local col9 decl" id="49__fd" title='__fd' data-type='int' data-ref="49__fd">__fd</dfn>, <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="50__path" title='__path' data-type='const char *' data-ref="50__path">__path</dfn>,&nbsp</td></tr>
+<tr><th id="434">434</th><td>		      <em>const</em> <b>struct</b> <a class="type" href="../bits/types/struct_timespec.h.html#timespec" title='timespec' data-ref="timespec">timespec</a> <dfn class="local col1 decl" id="51__times" title='__times' data-type='const struct timespec *' data-ref="51__times">__times</dfn>[<var>2</var>],&nbsp</td></tr>
+<tr><th id="435">435</th><td>		      <em>int</em> <dfn class="local col2 decl" id="52__flags" title='__flags' data-type='int' data-ref="52__flags">__flags</dfn>)&nbsp</td></tr>
+<tr><th id="436">436</th><td>     <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="cdefs.h.html#390" title="__attribute__ ((__nonnull__ (2)))" data-ref="_M/__nonnull">__nonnull</a> ((<var>2</var>));&nbsp</td></tr>
+<tr><th id="437">437</th><td><u># <span data-ppcond="430">else</span></u>&nbsp</td></tr>
+<tr><th id="438">438</th><td><u>#  ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="439">439</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (utimensat, (<em>int</em> fd, <em>const</em> <em>char</em> *__path,&nbsp</td></tr>
+<tr><th id="440">440</th><td>                                       <em>const</em> <b>struct</b> timespec __times[<var>2</var>],&nbsp</td></tr>
+<tr><th id="441">441</th><td>                                       <em>int</em> flags),&nbsp</td></tr>
+<tr><th id="442">442</th><td>                           __utimensat64) __nonnull ((<var>2</var>));&nbsp</td></tr>
+<tr><th id="443">443</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="444">444</th><td><u>#   define utimensat __utimensat64</u>&nbsp</td></tr>
+<tr><th id="445">445</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="446">446</th><td><u># <span data-ppcond="430">endif</span></u>&nbsp</td></tr>
+<tr><th id="447">447</th><td><u>#<span data-ppcond="429">endif</span></u>&nbsp</td></tr>
+<tr><th id="448">448</th><td>&nbsp</td></tr>
+<tr><th id="449">449</th><td><u>#<span data-ppcond="449">ifdef</span> <a class="macro" href="../../features.h.html#363" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</a></u>&nbsp</td></tr>
+<tr><th id="450">450</th><td><u># <span data-ppcond="450">ifndef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="451">451</th><td><i>/* Set file access and modification times of the file associated with FD.  */</i>&nbsp</td></tr>
+<tr><th id="452">452</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="futimens" title='futimens' data-ref="futimens">futimens</dfn> (<em>int</em> <dfn class="local col3 decl" id="53__fd" title='__fd' data-type='int' data-ref="53__fd">__fd</dfn>, <em>const</em> <b>struct</b> <a class="type" href="../bits/types/struct_timespec.h.html#timespec" title='timespec' data-ref="timespec">timespec</a> <dfn class="local col4 decl" id="54__times" title='__times' data-type='const struct timespec *' data-ref="54__times">__times</dfn>[<var>2</var>]) <a class="macro" href="cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="453">453</th><td>&nbsp</td></tr>
+<tr><th id="454">454</th><td><u># <span data-ppcond="450">else</span></u>&nbsp</td></tr>
+<tr><th id="455">455</th><td><u>#  ifdef __REDIRECT_NTH</u>&nbsp</td></tr>
+<tr><th id="456">456</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (futimens, (<em>int</em> fd, <em>const</em> <b>struct</b> timespec __times[<var>2</var>]),&nbsp</td></tr>
+<tr><th id="457">457</th><td>                           __futimens64);&nbsp</td></tr>
+<tr><th id="458">458</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="459">459</th><td><u>#   define futimens __futimens64</u>&nbsp</td></tr>
+<tr><th id="460">460</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="461">461</th><td><u># <span data-ppcond="450">endif</span></u>&nbsp</td></tr>
+<tr><th id="462">462</th><td><u>#<span data-ppcond="449">endif</span></u>&nbsp</td></tr>
+<tr><th id="463">463</th><td>&nbsp</td></tr>
+<tr><th id="464">464</th><td><u>#<span data-ppcond="464">ifdef</span> <a class="macro" href="../../features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="465">465</th><td><u># include &lt;bits/statx.h&gt;</u>&nbsp</td></tr>
+<tr><th id="466">466</th><td><u>#<span data-ppcond="464">endif</span></u>&nbsp</td></tr>
+<tr><th id="467">467</th><td>&nbsp</td></tr>
+<tr><th id="468">468</th><td><a class="macro" href="cdefs.h.html#134" title="}" data-ref="_M/__END_DECLS">__END_DECLS</a>&nbsp</td></tr>
+<tr><th id="469">469</th><td>&nbsp</td></tr>
+<tr><th id="470">470</th><td>&nbsp</td></tr>
+<tr><th id="471">471</th><td><u>#<span data-ppcond="22">endif</span> /* sys/stat.h  */</u>&nbsp</td></tr>
+<tr><th id="472">472</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/System/Src/tFile.cpp.html'>Modules/System/Src/tFile.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

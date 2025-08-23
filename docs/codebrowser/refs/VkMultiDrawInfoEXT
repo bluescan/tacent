@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16566' ll='16569'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16566'/>
+<size>8</size>
+<mbr r='VkMultiDrawInfoEXT::firstVertex' o='0' t='uint32_t'/>
+<mbr r='VkMultiDrawInfoEXT::vertexCount' o='32' t='uint32_t'/>

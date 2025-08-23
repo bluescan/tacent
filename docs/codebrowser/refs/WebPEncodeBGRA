@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='58' type='size_t WebPEncodeBGRA(const uint8_t * bgra, int width, int height, int stride, float quality_factor, uint8_t ** output)'/>

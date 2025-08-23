@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='19104' ll='19112'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='19104'/>
+<size>40</size>
+<mbr r='VkPhysicalDeviceMeshShaderFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMeshShaderFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMeshShaderFeaturesEXT::taskShader' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMeshShaderFeaturesEXT::meshShader' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMeshShaderFeaturesEXT::multiviewMeshShader' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMeshShaderFeaturesEXT::primitiveFragmentShadingRateMeshShader' o='224' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMeshShaderFeaturesEXT::meshShaderQueries' o='256' t='VkBool32'/>

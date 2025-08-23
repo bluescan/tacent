@@ -1,0 +1,10 @@
+<use f='Modules/System/Inc/System/tTime.h' l='68' u='w' c='_ZN7tSystem6tTimerC1EbN5tUnit5tTimeE'/>
+<use f='Modules/System/Inc/System/tTime.h' l='68' u='r' c='_ZN7tSystem6tTimerC1EbN5tUnit5tTimeE'/>
+<use f='Modules/System/Inc/System/tTime.h' l='68' u='w' c='_ZN7tSystem6tTimerC1EbN5tUnit5tTimeE'/>
+<use f='Modules/System/Inc/System/tTime.h' l='81' u='r' c='_ZNK7tSystem6tTimer15GetInternalUnitEv'/>
+<dec f='Modules/System/Inc/System/tTime.h' l='89' type='tUnit::tTime'/>
+<offset>0</offset>
+<use f='Modules/System/Src/tTime.cpp' l='187' u='r' c='_ZN7tSystem6tTimer6UpdateEfN5tUnit5tTimeE'/>
+<use f='Modules/System/Src/tTime.cpp' l='189' u='r' c='_ZN7tSystem6tTimer6UpdateEfN5tUnit5tTimeE'/>
+<use f='Modules/System/Src/tTime.cpp' l='196' u='r' c='_ZNK7tSystem6tTimer7GetTimeEN5tUnit5tTimeE'/>
+<use f='Modules/System/Src/tTime.cpp' l='198' u='r' c='_ZNK7tSystem6tTimer7GetTimeEN5tUnit5tTimeE'/>

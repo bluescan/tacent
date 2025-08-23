@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_pair.h' l='315' type='void std::pair::pair&lt;_T1, _T2&gt;(pair&lt;_T1, _T2&gt; &amp;&amp; )'/>
+<doc f='include/c++/11/bits/stl_pair.h' l='315'>///&lt; Move constructor</doc>

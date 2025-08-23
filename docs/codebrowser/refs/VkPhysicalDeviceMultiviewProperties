@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5387' ll='5392'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5387'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceMultiviewProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMultiviewProperties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMultiviewProperties::maxMultiviewViewCount' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMultiviewProperties::maxMultiviewInstanceIndex' o='160' t='uint32_t'/>

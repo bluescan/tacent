@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/stl_vector.h' l='509' ll='512' type='void std::vector::vector&lt;_Tp, _Alloc&gt;(std::vector::size_type __n, const std::vector::allocator_type &amp; __a = std::vector::allocator_type())'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='501'>/**
+       *  @brief  Creates a %vector with default constructed elements.
+       *  @param  __n  The number of elements to initially create.
+       *  @param  __a  An allocator.
+       *
+       *  This constructor fills the %vector with @a __n default
+       *  constructed elements.
+       */</doc>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='519' u='c' c='_ZN6tImage16tQuantizeSpatial14refine_paletteERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_RSt6vectorIS3_SaIS3_EE'/>

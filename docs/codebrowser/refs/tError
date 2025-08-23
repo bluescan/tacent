@@ -1,0 +1,61 @@
+<def f='Modules/System/Inc/System/tThrow.h' l='27' ll='33'/>
+<ovr f='Modules/System/Inc/System/tFile.h' l='680' c='tFileError'/>
+<use f='Modules/System/Inc/System/tFile.h' l='680'/>
+<use f='Modules/System/Inc/System/tFile.h' l='682' c='_ZN10tFileErrorC1EPKcz'/>
+<use f='Modules/System/Inc/System/tFile.h' l='683' c='_ZN10tFileErrorC1ERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='684' c='_ZN10tFileErrorC1Ev'/>
+<ovr f='Modules/System/Inc/System/tChunk.h' l='688' c='tChunkError'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='688'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='690' c='_ZN11tChunkErrorC1EPKcz'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='691' c='_ZN11tChunkErrorC1ERK7tString'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='692' c='_ZN11tChunkErrorC1Ev'/>
+<size>32</size>
+<doc f='Modules/System/Inc/System/tThrow.h' l='24'>// All errors that can be thrown by any library module are derived from this. By catching exceptions of the tError
+// type all possibilities can be covered. Conversely, derived classes can be caught for more control over who
+// handles what type of error.</doc>
+<fun r='_ZN6tErrorC1EPKcz'/>
+<fun r='_ZN6tErrorC1ERK7tString'/>
+<fun r='_ZN6tErrorC1Ev'/>
+<mbr r='tError::Message' o='0' t='tString'/>
+<ovr f='Modules/System/Inc/System/tScript.h' l='411' c='tScriptError'/>
+<use f='Modules/System/Inc/System/tScript.h' l='411'/>
+<use f='Modules/System/Inc/System/tScript.h' l='414' c='_ZN12tScriptErrorC1EPKcz'/>
+<use f='Modules/System/Inc/System/tScript.h' l='423' c='_ZN12tScriptErrorC1EiPKcz'/>
+<use f='Modules/System/Inc/System/tScript.h' l='436' c='_ZN12tScriptErrorC1Ev'/>
+<size>32</size>
+<use f='Modules/Image/Src/tTexture.cpp' l='124' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='127' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='145' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='174' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='290' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='331' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<size>32</size>
+<ovr f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='101' c='tRuleError'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='101'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='104' c='_ZN10tRuleErrorC1ERK7tString'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='105' c='_ZN10tRuleErrorC1Ev'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='27' c='_ZN10tRuleErrorC1EPKcz'/>
+<size>32</size>
+<ovr f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='53' c='tSolutionError'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='53'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='55' c='_ZN14tSolutionErrorC1EPKcz'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='56' c='_ZN14tSolutionErrorC1ERK7tString'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='57' c='_ZN14tSolutionErrorC1Ev'/>
+<size>32</size>
+<use f='Modules/Scene/Src/tWorld.cpp' l='664' c='_ZN6tScene6tWorld16CorrectCameraIDsER7tItListINS_7tCameraEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='713' c='_ZN6tScene6tWorld15CorrectLightIDsER7tItListINS_6tLightEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='952' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1013' c='_ZN6tScene6tWorld18CorrectInstanceIDsER7tItListINS_9tInstanceEERS1_INS_10tSelectionEE'/>
+<size>32</size>
+<use f='Modules/System/Src/tRegex.cpp' l='129' c='_ZN7tSystem6tRegex6ExpectEi'/>
+<use f='Modules/System/Src/tRegex.cpp' l='167' c='_ZN7tSystem6tRegex10EscapeCharEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='238' c='_ZN7tSystem6tRegex8CharNodeEb'/>
+<use f='Modules/System/Src/tRegex.cpp' l='259' c='_ZN7tSystem6tRegex5ClassEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='269' c='_ZN7tSystem6tRegex5ClassEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='273' c='_ZN7tSystem6tRegex5ClassEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='276' c='_ZN7tSystem6tRegex5ClassEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='322' c='_ZN7tSystem6tRegex11ParseNumberEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='407' c='_ZN7tSystem6tRegex7ElementEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='426' c='_ZN7tSystem6tRegex7ElementEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='772' c='_ZN7tSystem6tRegex15CompileInternalEv'/>
+<size>32</size>

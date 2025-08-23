@@ -1,0 +1,18 @@
+<dec f='include/c++/11/istream' l='505' type='std::streamsize std::basic_istream::readsome(std::basic_istream::char_type * __s, std::streamsize __n)'/>
+<def f='include/c++/11/bits/istream.tcc' l='711' ll='741' type='std::streamsize std::basic_istream::readsome(std::basic_istream::char_type * __s, std::streamsize __n)'/>
+<doc f='include/c++/11/istream' l='488'>/**
+       *  @brief  Extraction until the buffer is exhausted, but no more.
+       *  @param  __s  A character array.
+       *  @param  __n  Maximum number of characters to store.
+       *  @return  The number of characters extracted.
+       *
+       *  Extracts characters and stores them into @a __s depending on the
+       *  number of characters remaining in the streambuf&apos;s buffer,
+       *  @c rdbuf()-&gt;in_avail(), called @c A here:
+       *  - if @c A @c == @c -1, sets eofbit and extracts no characters
+       *  - if @c A @c == @c 0, extracts no characters
+       *  - if @c A @c &gt; @c 0, extracts @c min(A,n)
+       *
+       *  The goal is to empty the current buffer, and to not request any
+       *  more from the external input sequence controlled by the streambuf.
+      */</doc>

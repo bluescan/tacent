@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='228' type='77'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='565' c='_ZN6tImage14tIsAlphaFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='228'>// 5-bit indexes to a palette. 32 colour.  5 bpp.</doc>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='163' u='r' c='_ZN6tImage9tImageGIF4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='278' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>

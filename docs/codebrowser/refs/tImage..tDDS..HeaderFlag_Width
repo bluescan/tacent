@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='141' type='4'/>
+<doc f='Modules/Image/Src/tImageDDS.cpp' l='141'>// Always included. Width of largest image if mipmaps included.</doc>

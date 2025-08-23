@@ -1,0 +1,14 @@
+<def f='include/c++/11/sstream' l='604' ll='608' type='void std::basic_istringstream::basic_istringstream&lt;_CharT, _Traits, _Alloc&gt;(const std::basic_istringstream::__string_type &amp; __str, ios_base::openmode __mode = ios_base::in)'/>
+<doc f='include/c++/11/sstream' l='591'>/**
+       *  @brief  Starts with an existing string buffer.
+       *  @param  __str  A string to copy as a starting buffer.
+       *  @param  __mode  Whether the buffer can read, or write, or both.
+       *
+       *  @c ios_base::in is automatically included in @a mode.
+       *
+       *  Initializes @c sb using @a str and @c mode|in, and passes @c &amp;sb
+       *  to the base class initializer.
+       *
+       *  That&apos;s a lie.  We initialize the base class with NULL, because the
+       *  string class does its own memory management.
+      */</doc>

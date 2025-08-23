@@ -1,0 +1,15 @@
+<def f='Modules/Foundation/Inc/Foundation/tMap.h' l='30' ll='113'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='103' c='_ZN4tMap4IterC1EPK4tMapIT_T0_EiN7tItListINS_4PairEE4IterE'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='104'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='119' c='_ZN4tMapC1Eif'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='134' c='_ZN4tMapD1Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='140' c='_ZN4tMap9GetInsertERKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='165' c='_ZN4tMap8GetValueERKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='183' c='_ZN4tMapixERKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='189' c='_ZN4tMap6RemoveERKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='214' c='_ZN4tMap5RekeyEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='240' c='_ZN4tMap4Iter4NextEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='266' c='_ZNK4tMap5FirstEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='266' c='_ZNK4tMap5FirstEv'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='69' c='_ZN6tImage9tQuantize18QuantizeImageExactEiiiPK9tColour3bPS1_Ph'/>
+<use f='Modules/Input/Src/tControllerDefinitions.cpp' l='25'/>

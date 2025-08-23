@@ -1,0 +1,21 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='86' type='bool tExpression::IsAtom() const'/>
+<use f='Modules/System/Inc/System/tScript.h' l='120' u='c' c='_ZNK11tExpressioncv7tStringEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='121' u='c' c='_ZNK11tExpressioncvbEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='122' u='c' c='_ZNK11tExpressioncviEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='123' u='c' c='_ZNK11tExpressioncvjEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='124' u='c' c='_ZNK11tExpressioncvlEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='125' u='c' c='_ZNK11tExpressioncvfEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='126' u='c' c='_ZNK11tExpressioncvdEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='127' u='c' c='_ZNK11tExpressioncvN5tMath8tVector2EEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='128' u='c' c='_ZNK11tExpressioncvN5tMath8tVector3EEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='129' u='c' c='_ZNK11tExpressioncvN5tMath8tVector4EEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='130' u='c' c='_ZNK11tExpressioncvN5tMath11tQuaternionEEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='131' u='c' c='_ZNK11tExpressioncvN5tMath8tMatrix2EEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='132' u='c' c='_ZNK11tExpressioncvN5tMath8tMatrix4EEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='133' u='c' c='_ZNK11tExpressioncv9tColour4bEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='161' u='c' c='_ZNK11tExpression4AtomEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='81' u='c' c='_ZNK11tExpression4NextEv'/>
+<def f='Modules/System/Src/tScript.cpp' l='171' ll='177' type='bool tExpression::IsAtom() const'/>
+<use f='Modules/System/Src/tScript.cpp' l='186' u='c' c='_ZNK11tExpression19GetExpressionStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='216' u='c' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='265' u='c' c='_ZNK11tExpression18GetAtomTupleStringEv'/>

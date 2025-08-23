@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/fs_path.h' l='266'/>
+<use f='include/c++/11/bits/fs_path.h' l='282' c='_ZNSt10filesystem7__cxx114pathC1EONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='288' c='_ZNSt10filesystem7__cxx114pathC1ERKT_NS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='294' c='_ZNSt10filesystem7__cxx114pathC1ET_S2_NS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='301' c='_ZNSt10filesystem7__cxx114pathC1ERKT_RKSt6localeNS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='309' c='_ZNSt10filesystem7__cxx114pathC1ET_S2_RKSt6localeNS1_6formatE'/>

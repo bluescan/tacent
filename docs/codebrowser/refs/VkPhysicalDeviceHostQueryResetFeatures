@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6382' ll='6386'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6382'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceHostQueryResetFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceHostQueryResetFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceHostQueryResetFeatures::hostQueryReset' o='128' t='VkBool32'/>

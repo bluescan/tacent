@@ -1,0 +1,4 @@
+<dec f='include/inttypes.h' l='134'/>
+<doc f='include/inttypes.h' l='133'>/* UPPERCASE hexadecimal notation.  */</doc>
+<dec f='include/inttypes.h' l='118'/>
+<doc f='include/inttypes.h' l='117'>/* lowercase hexadecimal notation.  */</doc>

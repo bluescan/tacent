@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_deque.h' l='2089' ll='2097' type='std::deque::iterator std::deque::_M_reserve_elements_at_front(std::deque::size_type __n)'/>
+<use f='include/c++/11/bits/deque.tcc' l='312' u='c' c='_ZNSt5deque14_M_fill_insertENSt11_Deque_baseIT_T0_E8iteratorEmRKS1_'/>
+<use f='include/c++/11/bits/deque.tcc' l='606' u='c' c='_ZNSt5deque19_M_range_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/deque.tcc' l='693' u='c' c='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorEmRKS1_'/>
+<use f='include/c++/11/bits/deque.tcc' l='780' u='c' c='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_m'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='2087'>///@{
+      /// Memory-handling helpers for the previous internal insert functions.</doc>

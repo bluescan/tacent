@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Src/tResample.cpp' l='42' type='float tImage::ComputeCubicWeight(float x, float b, float c)'/>
+<def f='Modules/Image/Src/tResample.cpp' l='341' ll='375' type='float tImage::ComputeCubicWeight(float x, float b, float c)'/>
+<use f='Modules/Image/Src/tResample.cpp' l='393' u='c' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<doc f='Modules/Image/Src/tResample.cpp' l='338'>// This function is the cubic filter workhorse. It implements the weight function k(x) found
+// at https://entropymine.com/imageworsener/bicubic/
+// If that site ever goes down, the original paper is from Mitchell and Netravali (1988).</doc>

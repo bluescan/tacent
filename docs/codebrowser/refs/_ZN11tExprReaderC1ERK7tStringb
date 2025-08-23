@@ -1,0 +1,3 @@
+<def f='Modules/System/Inc/System/tScript.h' l='218' type='void tExprReader::tExprReader(const tString &amp; name, bool isFile = true)'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='40' u='c' c='_ZNK6tImage10tImageTIFF24ReadSoftwarePageDurationEP4tiff'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='217'>// If isFile is true then the file &apos;name&apos; is loaded, otherwise treats &apos;name&apos; as the actual script string.</doc>

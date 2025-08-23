@@ -1,0 +1,1 @@
+<def f='Modules/Image/Src/tImageTIFF.cpp' l='242' ll='249' type='bool tImage::tImageTIFF::Save(const tString &amp; tiffFilename, tImage::tImageTIFF::tFormat format, bool useZLibComp = true, int overrideFrameDuration = -1) const'/>

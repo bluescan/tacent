@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='211'/>
+<doc f='include/string.h' l='210'>/* Return an alloca&apos;d copy of at most N bytes of string.  */</doc>

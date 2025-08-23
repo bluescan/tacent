@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='120' type='0'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='131'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='120'>// Equiv ASTC profile: ASTCENC_PRF_LDR_SRGB.      The LDR sRGB colour profile.</doc>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='49' u='r' c='_ZN6tImage10tImageASTC10LoadParams5ResetEv'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1123' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1079' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

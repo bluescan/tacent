@@ -1,0 +1,6 @@
+<dec f='include/c++/11/fstream' l='403' type='bool std::basic_filebuf::_M_convert_to_external(std::basic_filebuf::char_type * , std::streamsize )'/>
+<use f='include/c++/11/bits/fstream.tcc' l='569' u='c' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='594' u='c' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<def f='include/c++/11/bits/fstream.tcc' l='604' ll='665' type='bool std::basic_filebuf::_M_convert_to_external(_CharT * __ibuf, std::streamsize __ilen)'/>
+<doc f='include/c++/11/fstream' l='400'>// Convert internal byte sequence to external, char-based
+      // sequence via codecvt.</doc>

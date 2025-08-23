@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tMachine.h' l='26' type='bool tSystem::tSupportsSSE2()'/>
+<def f='Modules/System/Src/tMachine.cpp' l='60' ll='79' type='bool tSystem::tSupportsSSE2()'/>

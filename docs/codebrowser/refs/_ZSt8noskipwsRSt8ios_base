@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/ios_base.h' l='979' ll='984' type='std::ios_base &amp; std::noskipws(std::ios_base &amp; __base)'/>
+<doc f='include/c++/11/bits/ios_base.h' l='978'>/// Calls base.unsetf(ios_base::skipws).</doc>

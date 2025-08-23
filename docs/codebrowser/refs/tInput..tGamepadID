@@ -1,0 +1,9 @@
+<def f='Modules/Input/Inc/Input/tContGamepad.h' l='26' ll='31'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='57' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='89' c='_ZN6tInput12tContGamepad12StartPollingEiNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='100'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='110'/>
+<use f='Modules/Input/Inc/Input/tControllerSystem.h' l='49' c='_ZN6tInput17tControllerSystem9GetGetpadENS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tControllerSystem.h' l='61' c='_ZN6tInput17tControllerSystem45DetermineGamepadPollingPeriodFromHardwareInfoENS_10tGamepadIDE'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='27' c='_ZN6tInput12tContGamepad12StartPollingEiNS_10tGamepadIDE'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='152' c='_ZN6tInput17tControllerSystem45DetermineGamepadPollingPeriodFromHardwareInfoENS_10tGamepadIDE'/>

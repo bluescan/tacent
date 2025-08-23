@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='765' type='ktx_bool_t'/>
+<offset>352</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='765'>/*!&lt; Set to KTX_TRUE if the texture is to be an
+                                array texture. Means OpenGL will use a
+                                GL_TEXTURE_*_ARRAY target. */</doc>

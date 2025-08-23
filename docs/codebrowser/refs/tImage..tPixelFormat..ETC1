@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='170' type='47'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='170'>// ETC1. Ericsson Texture Compression. Similar to BC1. RGB-only. No alpha.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='755' u='r' c='_ZN6tImage4tDDS24GetFormatInfo_FromFourCCERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='756' u='r' c='_ZN6tImage4tDDS24GetFormatInfo_FromFourCCERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='103' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='93' u='r' c='_ZN6tImage4tPKM27GetFormatInfo_FromPKMFormatERNS_12tPixelFormatER14tColourProfileji'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='115' u='r' c='_ZN6tImage4tPKM27GetFormatInfo_FromPKMFormatERNS_12tPixelFormatER14tColourProfileji'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='408' c='_ZNK6tImage9tImagePKM8IsOpaqueEv'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='330' u='r' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='408' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='861' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>

@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1141'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1140'>/* Define to 1 if you have the &lt;stdint.h&gt; header file. */</doc>
+<use f='include/c++/11/cstdint' l='40' u='c'/>

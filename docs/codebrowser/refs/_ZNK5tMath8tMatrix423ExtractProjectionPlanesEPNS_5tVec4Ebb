@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='104' type='void tMath::tMatrix4::ExtractProjectionPlanes(tMath::tVec4 * planes, bool outwardNormals = false, bool normalizePlanes = true) const'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='47' u='c' c='_ZN6tScene7tCamera23ExtractProjectionPlanesEPN5tMath8tVector4Ebb'/>

@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='375' type='const WebPDecBuffer * WebPIDecodedArea(const WebPIDecoder * idec, int * left, int * top, int * width, int * height)'/>

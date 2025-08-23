@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18592'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18591'>// VK_NV_descriptor_pool_overallocation is a preprocessor guard. Do not pass it to API calls.</doc>

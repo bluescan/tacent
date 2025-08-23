@@ -1,0 +1,13 @@
+<def f='include/c++/11/type_traits' l='1022' ll='1027'/>
+<use f='include/c++/11/type_traits' l='3218'/>
+<use f='include/c++/11/tuple' l='659' c='_ZNSt5tuple23__nothrow_constructibleEv'/>
+<use f='include/c++/11/tuple' l='1031' c='_ZNSt5tupleIJT_T0_EE23__nothrow_constructibleEv'/>
+<use f='include/c++/11/tuple' l='1032' c='_ZNSt5tupleIJT_T0_EE23__nothrow_constructibleEv'/>
+<use f='include/c++/11/bits/std_function.h' l='213' c='_ZNSt14_Function_base13_Base_manager15_M_init_functorERSt9_Any_dataOTL0__'/>
+<use f='include/c++/11/bits/std_function.h' l='299' c='_ZNSt17_Function_handlerIFT_DpT1_ET0_E15_S_nothrow_initEv'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='258' c='_ZNSt16allocator_traits12_S_constructERT_PTL0__DpOTL0_0_'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='513' c='_ZNSt16allocator_traitsISaIT_EE9constructERS1_PTL0__DpOTL0_0_'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='634' c='_ZNSt16allocator_traitsISaIvEE9constructERS0_PT_DpOT0_'/>
+<use f='include/c++/11/functional' l='834' c='_ZNSt11_Bind_frontC1EiOTL0__DpOTL0_0_'/>
+<use f='include/c++/11/functional' l='835' c='_ZNSt11_Bind_frontC1EiOTL0__DpOTL0_0_'/>
+<use f='include/c++/11/functional' l='995' c='_ZSt6not_fnOT_'/>

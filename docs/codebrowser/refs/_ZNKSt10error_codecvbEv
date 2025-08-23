@@ -1,0 +1,16 @@
+<def f='include/c++/11/system_error' l='242' ll='243' type='bool std::error_code::operator bool() const'/>
+<use f='include/c++/11/bits/fs_dir.h' l='113' u='c' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathERSt10error_code'/>
+<use f='Modules/System/Src/tFile.cpp' l='979' u='c' c='_ZN7tSystem11tRenameFileERK7tStringS2_S2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='1173' u='c' c='_ZN7tSystem11tDeleteFileERK7tStringbb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2027' u='c' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2038' u='c' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2046' u='c' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2462' u='c' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2473' u='c' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2601' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2610' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2873' u='c' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2882' u='c' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2975' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2984' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3251' u='c' c='_ZN7tSystem10tDeleteDirERK7tStringb'/>

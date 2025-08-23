@@ -1,0 +1,14 @@
+<dec f='include/features.h' l='399'/>
+<use f='include/stdio.h' l='156' u='a'/>
+<use f='include/unistd.h' l='305' u='a'/>
+<use f='include/unistd.h' l='508' u='a'/>
+<use f='include/unistd.h' l='822' u='a'/>
+<use f='include/unistd.h' l='845' u='a'/>
+<use f='include/unistd.h' l='860' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/stat.h' l='55' u='a'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='259' u='a'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='368' u='a'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='392' u='a'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='407' u='a'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='421' u='a'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='429' u='a'/>

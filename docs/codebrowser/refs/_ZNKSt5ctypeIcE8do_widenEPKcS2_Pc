@@ -1,0 +1,21 @@
+<use f='include/c++/11/bits/locale_facets.h' l='912' u='c' c='_ZNKSt5ctypeIcE5widenEPKcS2_Pc'/>
+<def f='include/c++/11/bits/locale_facets.h' l='1109' ll='1115' type='const char * std::ctype&lt;char&gt;::do_widen(const char * __lo, const char * __hi, std::ctype&lt;char&gt;::char_type * __to) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1090'>/**
+       *  @brief  Widen char array
+       *
+       *  This function converts each char in the range [lo,hi) to char using
+       *  the simplest reasonable transformation.  For an underived
+       *  ctype&lt;char&gt; facet, the argument will be copied unchanged.
+       *
+       *  do_widen() is a hook for a derived facet to change the behavior of
+       *  widening.  do_widen() must always return the same result for the
+       *  same input.
+       *
+       *  Note: this is not what you want for codepage conversions.  See
+       *  codecvt for that.
+       *
+       *  @param __lo  Pointer to start of range.
+       *  @param __hi  Pointer to end of range.
+       *  @param __to  Pointer to the destination array.
+       *  @return  @a __hi.
+      */</doc>

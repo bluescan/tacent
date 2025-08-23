@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='3599' ll='3601' type='std::bernoulli_distribution::param_type std::bernoulli_distribution::param() const'/>
+<doc f='include/c++/11/bits/random.h' l='3596'>/**
+     * @brief Returns the parameter set of the distribution.
+     */</doc>

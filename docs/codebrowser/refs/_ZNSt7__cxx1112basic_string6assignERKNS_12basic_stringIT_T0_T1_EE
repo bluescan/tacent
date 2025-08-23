@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/basic_string.h' l='1355' ll='1389' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::assign(const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __str)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1350'>/**
+       *  @brief  Set value to contents of another string.
+       *  @param  __str  Source string to use.
+       *  @return  Reference to this string.
+       */</doc>

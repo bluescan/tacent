@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3047' ll='3050'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3047'/>
+<size>8</size>
+<mbr r='VkMemoryType::propertyFlags' o='0' t='VkMemoryPropertyFlags'/>
+<mbr r='VkMemoryType::heapIndex' o='32' t='uint32_t'/>

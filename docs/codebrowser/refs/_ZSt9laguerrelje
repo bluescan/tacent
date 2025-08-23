@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='942' ll='944' type='long double std::laguerrel(unsigned int __n, long double __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='936'>/**
+   * Returns the Laguerre polynomial @f$ L_n(x) @f$ of nonnegative degree @c n
+   * and &lt;tt&gt;long double&lt;/tt&gt; argument @f$ x &gt;= 0 @f$.
+   *
+   * @see laguerre for more details.
+   */</doc>

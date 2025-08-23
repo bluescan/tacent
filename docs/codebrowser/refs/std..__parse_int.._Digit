@@ -1,0 +1,31 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='51' ll='55'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='57' ll='61'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='70' ll='72'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='74' ll='76'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='78' ll='80'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='82' ll='84'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='86' ll='88'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='90' ll='92'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='94' ll='96'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='98' ll='100'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='102' ll='104'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='106' ll='108'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='110' ll='112'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='114' ll='116'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='118' ll='120'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='122' ll='124'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='126' ll='128'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='130' ll='132'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='134' ll='136'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='138' ll='140'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='142' ll='144'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='146' ll='148'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/parse_numbers.h' l='151' ll='155'/>
+<use f='include/c++/11/bits/parse_numbers.h' l='166'/>
+<use f='include/c++/11/bits/parse_numbers.h' l='174'/>
+<use f='include/c++/11/bits/parse_numbers.h' l='191'/>
+<use f='include/c++/11/bits/parse_numbers.h' l='211'/>
+<doc f='include/c++/11/bits/parse_numbers.h' l='150'>//  Digit separator</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/chrono' l='3147' ll='3149' type='std::chrono::hh_mm_ss::precision std::chrono::hh_mm_ss::operator duration&lt;typename common_type&lt;typename type-parameter-0-0::rep, long&gt;::type, ratio&lt;1L, __detail::__pow10(fractional_width)&gt; &gt;() const'/>

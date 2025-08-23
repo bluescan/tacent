@@ -1,0 +1,6 @@
+<def f='include/pthread.h' l='538' ll='542'/>
+<use f='include/pthread.h' l='546'/>
+<size>72</size>
+<doc f='include/pthread.h' l='536'>/* Cancellation handling with integration into exception handling.  */</doc>
+<mbr r='__cancel_jmp_buf_tag::__cancel_jmp_buf' o='0' t='__jmp_buf'/>
+<mbr r='__cancel_jmp_buf_tag::__mask_was_saved' o='512' t='int'/>

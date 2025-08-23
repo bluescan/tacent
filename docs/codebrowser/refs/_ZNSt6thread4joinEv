@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/std_thread.h' l='179' type='void std::thread::join()'/>
+<use f='include/c++/11/thread' l='160' u='c' c='_ZNSt7jthread4joinEv'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='57' u='c' c='_ZN6tInput12tContGamepad11StopPollingEv'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='87' u='c' c='_ZN6tInput17tControllerSystemD1Ev'/>

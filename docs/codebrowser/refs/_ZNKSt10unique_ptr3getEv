@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/unique_ptr.h' l='407' u='c' c='_ZNKSt10unique_ptrdeEv'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='408' u='c' c='_ZNKSt10unique_ptrdeEv'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='416' u='c' c='_ZNKSt10unique_ptrptEv'/>
+<def f='include/c++/11/bits/unique_ptr.h' l='420' ll='422' type='std::unique_ptr::pointer std::unique_ptr::get() const'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='436' u='c' c='_ZNKSt10unique_ptrcvbEv'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='419'>/// Return the stored pointer.</doc>
+<use f='include/c++/11/bits/fs_path.h' l='650' u='c' c='_ZNKSt10filesystem7__cxx114path5_List4typeEv'/>

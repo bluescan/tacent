@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1237' ll='1239' type='std::deque::size_type std::deque::max_size() const'/>
+<use f='include/c++/11/bits/deque.tcc' l='492' u='c' c='_ZNSt5deque16_M_push_back_auxEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='531' u='c' c='_ZNSt5deque17_M_push_front_auxEDpOTL0__'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1236'>/**  Returns the size() of the largest possible %deque.  */</doc>

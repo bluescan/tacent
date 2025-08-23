@@ -1,0 +1,5 @@
+<dec f='include/stdlib.h' l='181' type='unsigned long strtoul(const char *__restrict __nptr, char **__restrict __endptr, int __base)'/>
+<doc f='include/stdlib.h' l='180'>/* Convert a string to an unsigned long integer.  */</doc>
+<use f='include/c++/11/bits/basic_string.h' l='6630' u='a' c='_ZNSt7__cxx115stoulERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEPmi'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='99' u='c' c='_ZN4tStd8tNstrcmpEPKcS1_'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='102' u='c' c='_ZN4tStd8tNstrcmpEPKcS1_'/>

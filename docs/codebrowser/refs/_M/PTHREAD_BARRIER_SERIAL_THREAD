@@ -1,0 +1,4 @@
+<dec f='include/pthread.h' l='193'/>
+<doc f='include/pthread.h' l='190'>/* Value returned by &apos;pthread_barrier_wait&apos; for one of the threads after
+   the required number of threads have called this function.
+   -1 is distinct from 0 and all errno constants */</doc>

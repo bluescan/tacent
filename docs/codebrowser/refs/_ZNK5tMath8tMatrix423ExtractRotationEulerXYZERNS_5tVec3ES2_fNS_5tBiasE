@@ -1,0 +1,1 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='120' ll='124' type='bool tMath::tMatrix4::ExtractRotationEulerXYZ(tMath::tVec3 &amp; sol1, tMath::tVec3 &amp; sol2, float gimbalZValue = 0.F, tMath::tBias bias = tBias::Low) const'/>

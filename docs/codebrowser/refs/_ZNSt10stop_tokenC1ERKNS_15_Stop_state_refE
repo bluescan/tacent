@@ -1,0 +1,2 @@
+<def f='include/c++/11/stop_token' l='470' ll='473' type='void std::stop_token::stop_token(const std::stop_token::_Stop_state_ref &amp; __state)'/>
+<use f='include/c++/11/stop_token' l='543' u='c' c='_ZNKSt11stop_source9get_tokenEv'/>

@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='405' ll='407' type='float std::comp_ellint_2f(float __k)'/>
+<doc f='include/c++/11/bits/specfun.h' l='399'>/**
+   * Return the complete elliptic integral of the second kind @f$ E(k) @f$
+   * for @c float modulus @c k.
+   *
+   * @see comp_ellint_2 for details.
+   */</doc>

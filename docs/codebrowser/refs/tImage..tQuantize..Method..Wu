@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tQuantize.h' l='27' type='3'/>
+<use f='Modules/Image/Inc/Image/tImageGIF.h' l='94' u='r' c='_ZN6tImage9tImageGIF10SaveParams5ResetEv'/>
+<doc f='Modules/Image/Inc/Image/tQuantize.h' l='27'>// AKA XiaolinWu. Supports from 2 to 256 colours. Best for 64 to 256.</doc>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='389' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='151' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='37' c='_ZN6tImage9tQuantize13GetMethodNameENS0_6MethodE'/>

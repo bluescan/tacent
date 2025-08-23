@@ -1,0 +1,7 @@
+<use f='Modules/Image/Inc/Image/tImageGIF.h' l='42' u='c' c='_ZN6tImage9tImageGIFC1EP9tColour4biib'/>
+<dec f='Modules/Image/Inc/Image/tImageGIF.h' l='60' type='bool tImage::tImageGIF::Set(tPixel4b * pixels, int width, int height, bool steal = false)'/>
+<doc f='Modules/Image/Inc/Image/tImageGIF.h' l='58'>// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='61' c='_ZN6tImage10tBaseImage3SetEP9tColour4biib'/>
+<def f='Modules/Image/Src/tImageGIF.cpp' l='205' ll='226' type='bool tImage::tImageGIF::Set(tPixel4b * pixels, int width, int height, bool steal = false)'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='267' u='c' c='_ZN6tImage9tImageGIF3SetERNS_8tPictureEb'/>

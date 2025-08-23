@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='505' type='16953856'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='505'>// Aspect ratio, Horizontal FOV, Vertical FOV, Near Clip, Far Clip, 12 Bytes future growth.</doc>
+<use f='Modules/Scene/Src/tCamera.cpp' l='55' u='r' c='_ZNK6tScene7tCamera4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='80' c='_ZN6tScene7tCamera4LoadERK6tChunk'/>

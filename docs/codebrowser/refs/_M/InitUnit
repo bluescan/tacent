@@ -1,0 +1,17 @@
+<dec f='Modules/Input/Inc/Input/tUnit.h' l='24'/>
+<use f='Modules/Input/Inc/Input/tCompButton.h' l='28' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompDial.h' l='28' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='28' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='29' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='30' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='31' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='29' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='30' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='31' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompPedal.h' l='28' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompScrubber.h' l='28' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompSelector.h' l='28' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompSlider.h' l='28' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompSwitch.h' l='28' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='28' u='c'/>
+<use f='Modules/Input/Inc/Input/tCompWheel.h' l='28' u='c'/>

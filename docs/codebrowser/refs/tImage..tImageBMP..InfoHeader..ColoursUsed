@@ -1,0 +1,5 @@
+<use f='Modules/Image/Src/tImageBMP.cpp' l='99' u='r' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='108' u='w' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='110' u='r' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='111' u='r' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='603' u='w' c='_ZNK6tImage9tImageBMP4SaveERK7tStringRKNS0_10SaveParamsE'/>

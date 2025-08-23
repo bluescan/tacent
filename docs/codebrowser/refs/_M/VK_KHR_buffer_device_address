@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9850'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9849'>// VK_KHR_buffer_device_address is a preprocessor guard. Do not pass it to API calls.</doc>

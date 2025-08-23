@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12439' ll='12447'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12439'/>
+<size>48</size>
+<mbr r='VkDebugUtilsMessengerCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDebugUtilsMessengerCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkDebugUtilsMessengerCreateInfoEXT::flags' o='128' t='VkDebugUtilsMessengerCreateFlagsEXT'/>
+<mbr r='VkDebugUtilsMessengerCreateInfoEXT::messageSeverity' o='160' t='VkDebugUtilsMessageSeverityFlagsEXT'/>
+<mbr r='VkDebugUtilsMessengerCreateInfoEXT::messageType' o='192' t='VkDebugUtilsMessageTypeFlagsEXT'/>
+<mbr r='VkDebugUtilsMessengerCreateInfoEXT::pfnUserCallback' o='256' t='PFN_vkDebugUtilsMessengerCallbackEXT'/>
+<mbr r='VkDebugUtilsMessengerCreateInfoEXT::pUserData' o='320' t='void *'/>

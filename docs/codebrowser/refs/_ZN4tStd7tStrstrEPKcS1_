@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='100' type='char * tStd::tStrstr(const char * s, const char * r)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='100'>/* Search s for r. */</doc>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='322' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='323' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>

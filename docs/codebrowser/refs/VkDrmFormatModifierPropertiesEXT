@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12759' ll='12763'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12759'/>
+<size>16</size>
+<mbr r='VkDrmFormatModifierPropertiesEXT::drmFormatModifier' o='0' t='uint64_t'/>
+<mbr r='VkDrmFormatModifierPropertiesEXT::drmFormatModifierPlaneCount' o='64' t='uint32_t'/>
+<mbr r='VkDrmFormatModifierPropertiesEXT::drmFormatModifierTilingFeatures' o='96' t='VkFormatFeatureFlags'/>

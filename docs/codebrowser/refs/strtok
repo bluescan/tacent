@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='356' type='char * strtok(char *__restrict __s, const char *__restrict __delim)'/>
+<doc f='include/string.h' l='355'>/* Divide S into tokens separated by characters in DELIM.  */</doc>

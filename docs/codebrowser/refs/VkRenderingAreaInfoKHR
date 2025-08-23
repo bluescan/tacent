@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10694' ll='10702'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10694'/>
+<size>40</size>
+<mbr r='VkRenderingAreaInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderingAreaInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderingAreaInfoKHR::viewMask' o='128' t='uint32_t'/>
+<mbr r='VkRenderingAreaInfoKHR::colorAttachmentCount' o='160' t='uint32_t'/>
+<mbr r='VkRenderingAreaInfoKHR::pColorAttachmentFormats' o='192' t='const VkFormat *'/>
+<mbr r='VkRenderingAreaInfoKHR::depthAttachmentFormat' o='256' t='VkFormat'/>
+<mbr r='VkRenderingAreaInfoKHR::stencilAttachmentFormat' o='288' t='VkFormat'/>

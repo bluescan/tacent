@@ -1,0 +1,5 @@
+<dec f='include/time.h' l='136' type='struct tm * localtime(const time_t * __timer)'/>
+<doc f='include/time.h' l='134'>/* Return the `struct tm&apos; representation
+   of *TIMER in the local timezone.  */</doc>
+<use f='Modules/System/Src/tTime.cpp' l='86' u='c' c='_ZN7tSystem13tGetTimeLocalEv'/>
+<use f='Modules/System/Src/tTime.cpp' l='92' u='c' c='_ZN7tSystem19tConvertTimeToLocalEl'/>

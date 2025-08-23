@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_numeric.h' l='221' ll='237' macro='1' type='_Tp std::inner_product(_InputIterator1 __first1, _InputIterator1 __last1, _InputIterator2 __first2, _Tp __init, _BinaryOperation1 __binary_op1, _BinaryOperation2 __binary_op2)'/>

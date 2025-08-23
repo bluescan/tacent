@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9453'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9452'>// VK_KHR_draw_indirect_count is a preprocessor guard. Do not pass it to API calls.</doc>

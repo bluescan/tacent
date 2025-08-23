@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='456' type='void tMath::tMul(tMath::tQuat &amp; q, const tMath::tQuat &amp; a)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='987' u='c' c='_ZN5tMath7tRotateERNS_5tVec3ERKNS_5tQuatE'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1002' ll='1009' type='void tMath::tMul(tMath::tQuat &amp; q, const tMath::tQuat &amp; a)'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='88' u='c' c='_ZN5tMath11tQuaternionmLERKNS_5tQuatE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='1020' u='c' c='_ZN5tMath20tApproachOrientationERNS_5tQuatERKS0_ff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='1034' u='c' c='_ZN5tMath20tApproachOrientationERNS_5tQuatERKS0_ff'/>

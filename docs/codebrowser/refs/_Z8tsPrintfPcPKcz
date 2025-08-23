@@ -1,0 +1,18 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='241' type='int tsPrintf(char * dest, const char * format)'/>
+<def f='Modules/System/Src/tPrint.cpp' l='504' ll='511' type='int tsPrintf(char * dest, const char * format)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2144' u='c' c='_ZN7tSystem7tFtostrER7tStringfb'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2158' u='c' c='_ZN7tSystem7tFtostrER7tStringfb'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2189' u='c' c='_ZN7tSystem7tDtostrER7tStringdb'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2203' u='c' c='_ZN7tSystem7tDtostrER7tStringdb'/>
+<use f='Modules/System/Src/tScript.cpp' l='761' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tVector2Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='770' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tVector2Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='792' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tVector3Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='801' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tVector3Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='823' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tVector4Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='832' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tVector4Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='854' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath11tQuaternionEb'/>
+<use f='Modules/System/Src/tScript.cpp' l='863' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath11tQuaternionEb'/>
+<use f='Modules/System/Src/tScript.cpp' l='885' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tMatrix2Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='894' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tMatrix2Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='916' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tMatrix4Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='925' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tMatrix4Eb'/>

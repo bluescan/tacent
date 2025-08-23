@@ -1,0 +1,20 @@
+<use f='include/c++/11/type_traits' l='3350'/>
+<use f='include/c++/11/compare' l='604'/>
+<use f='include/c++/11/compare' l='604'/>
+<use f='include/c++/11/compare' l='612' c='_ZNSt10__cmp_cust13_Strong_order11_S_noexceptEv'/>
+<use f='include/c++/11/compare' l='657' c='_ZNSt10__cmp_cust11_Weak_order11_S_noexceptEv'/>
+<use f='include/c++/11/compare' l='679' c='_ZNKSt10__cmp_cust11_Weak_orderclEOT_OT0_'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='935' c='_ZNKSt6ranges13__cust_access11_Decay_copyclEOT_'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='937' c='_ZNKSt6ranges13__cust_access11_Decay_copyclEOT_'/>
+<use f='include/c++/11/functional' l='907'/>
+<use f='include/c++/11/functional' l='907'/>
+<use f='include/c++/11/functional' l='995' c='_ZSt6not_fnOT_'/>
+<use f='include/c++/11/functional' l='997' c='_ZSt6not_fnOT_'/>
+<use f='include/c++/11/thread' l='214' c='_ZNSt7jthread9_S_createERSt11stop_sourceOT_DpOT0_'/>
+<use f='include/c++/11/thread' l='215' c='_ZNSt7jthread9_S_createERSt11stop_sourceOT_DpOT0_'/>
+<use f='include/c++/11/thread' l='220' c='_ZNSt7jthread9_S_createERSt11stop_sourceOT_DpOT0_'/>
+<use f='include/c++/11/thread' l='221' c='_ZNSt7jthread9_S_createERSt11stop_sourceOT_DpOT0_'/>
+<use f='include/c++/11/bits/ranges_util.h' l='172'/>
+<use f='include/c++/11/bits/ranges_util.h' l='173'/>
+<use f='include/c++/11/bits/fs_path.h' l='118'/>
+<use f='include/c++/11/bits/fs_path.h' l='174' c='_ZNSt10filesystem7__cxx118__detail17__effective_rangeERKT_'/>

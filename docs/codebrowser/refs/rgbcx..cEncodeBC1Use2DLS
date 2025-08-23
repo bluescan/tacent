@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='140' type='512'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2924' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3054' u='r' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3597' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='138'>// Use 2D least squares+inset+optimal rounding (the method used in Humus&apos;s GPU texture encoding demo), instead of PCA. 
+		// Around 18% faster, very slightly lower average quality to better (depends on the content).</doc>

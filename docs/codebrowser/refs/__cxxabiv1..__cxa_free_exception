@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/cxxabi_init_exception.h' l='66' type='void __cxxabiv1::__cxa_free_exception(void * )'/>
+<use f='include/c++/11/bits/exception_ptr.h' l='254' u='c' c='_ZSt18make_exception_ptrT_'/>

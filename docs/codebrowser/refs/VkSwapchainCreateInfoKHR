@@ -1,0 +1,21 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7724' ll='7743'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7724'/>
+<size>104</size>
+<mbr r='VkSwapchainCreateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSwapchainCreateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkSwapchainCreateInfoKHR::flags' o='128' t='VkSwapchainCreateFlagsKHR'/>
+<mbr r='VkSwapchainCreateInfoKHR::surface' o='192' t='VkSurfaceKHR'/>
+<mbr r='VkSwapchainCreateInfoKHR::minImageCount' o='256' t='uint32_t'/>
+<mbr r='VkSwapchainCreateInfoKHR::imageFormat' o='288' t='VkFormat'/>
+<mbr r='VkSwapchainCreateInfoKHR::imageColorSpace' o='320' t='VkColorSpaceKHR'/>
+<mbr r='VkSwapchainCreateInfoKHR::imageExtent' o='352' t='VkExtent2D'/>
+<mbr r='VkSwapchainCreateInfoKHR::imageArrayLayers' o='416' t='uint32_t'/>
+<mbr r='VkSwapchainCreateInfoKHR::imageUsage' o='448' t='VkImageUsageFlags'/>
+<mbr r='VkSwapchainCreateInfoKHR::imageSharingMode' o='480' t='VkSharingMode'/>
+<mbr r='VkSwapchainCreateInfoKHR::queueFamilyIndexCount' o='512' t='uint32_t'/>
+<mbr r='VkSwapchainCreateInfoKHR::pQueueFamilyIndices' o='576' t='const uint32_t *'/>
+<mbr r='VkSwapchainCreateInfoKHR::preTransform' o='640' t='VkSurfaceTransformFlagBitsKHR'/>
+<mbr r='VkSwapchainCreateInfoKHR::compositeAlpha' o='672' t='VkCompositeAlphaFlagBitsKHR'/>
+<mbr r='VkSwapchainCreateInfoKHR::presentMode' o='704' t='VkPresentModeKHR'/>
+<mbr r='VkSwapchainCreateInfoKHR::clipped' o='736' t='VkBool32'/>
+<mbr r='VkSwapchainCreateInfoKHR::oldSwapchain' o='768' t='VkSwapchainKHR'/>

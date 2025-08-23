@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/stl_vector.h' l='496' ll='498' type='void std::vector::vector&lt;_Tp, _Alloc&gt;(const std::vector::allocator_type &amp; __a)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='492'>/**
+       *  @brief  Creates a %vector with no elements.
+       *  @param  __a  An allocator object.
+       */</doc>

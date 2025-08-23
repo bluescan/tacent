@@ -1,0 +1,4 @@
+<dec f='include/pthread.h' l='533' type='void pthread_testcancel()'/>
+<doc f='include/pthread.h' l='530'>/* Test for pending cancellation for the current thread and terminate
+   the thread as per pthread_exit(PTHREAD_CANCELED) if it has been
+   cancelled.  */</doc>

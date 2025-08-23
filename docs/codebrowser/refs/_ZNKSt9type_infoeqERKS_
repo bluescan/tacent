@@ -1,0 +1,3 @@
+<def f='include/c++/11/typeinfo' l='120' ll='125' type='bool std::type_info::operator==(const std::type_info &amp; __arg) const'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='458' u='c' c='_ZNSt19_Sp_counted_deleter14_M_get_deleterERKSt9type_info'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='556' u='c' c='_ZNSt23_Sp_counted_ptr_inplace14_M_get_deleterERKSt9type_info'/>

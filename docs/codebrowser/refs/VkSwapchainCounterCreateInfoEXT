@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12062' ll='12066'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12062'/>
+<size>24</size>
+<mbr r='VkSwapchainCounterCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSwapchainCounterCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkSwapchainCounterCreateInfoEXT::surfaceCounters' o='128' t='VkSurfaceCounterFlagsEXT'/>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/iomanip' l='185'/>
+<use f='include/c++/11/iomanip' l='194' c='_ZSt12setprecisioni'/>
+<use f='include/c++/11/iomanip' l='200' c='_ZStrsRSt13basic_istreamIT_T0_ESt13_Setprecision'/>
+<use f='include/c++/11/iomanip' l='208' c='_ZStlsRSt13basic_ostreamIT_T0_ESt13_Setprecision'/>
+<size>4</size>
+<mbr r='std::_Setprecision::_M_n' o='0' t='int'/>

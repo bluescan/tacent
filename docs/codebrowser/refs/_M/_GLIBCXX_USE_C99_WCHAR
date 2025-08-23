@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='670'/>
+<use f='include/c++/11/cwchar' l='238' u='c'/>
+<use f='include/c++/11/cwchar' l='295' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='6748' u='c'/>

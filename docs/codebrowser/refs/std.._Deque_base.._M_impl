@@ -1,0 +1,11 @@
+<use f='include/c++/11/bits/stl_deque.h' l='438' u='w' c='_ZNSt11_Deque_baseC1Ev'/>
+<use f='include/c++/11/bits/stl_deque.h' l='442' u='w' c='_ZNSt11_Deque_baseC1Em'/>
+<use f='include/c++/11/bits/stl_deque.h' l='446' u='w' c='_ZNSt11_Deque_baseC1ERKT0_m'/>
+<use f='include/c++/11/bits/stl_deque.h' l='450' u='w' c='_ZNSt11_Deque_baseC1ERKT0_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='455' u='w' c='_ZNSt11_Deque_baseC1EOSt11_Deque_baseIT_T0_E'/>
+<use f='include/c++/11/bits/stl_deque.h' l='463' u='w' c='_ZNSt11_Deque_baseC1EOSt11_Deque_baseIT_T0_ERKS2_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='467' u='w' c='_ZNSt11_Deque_baseC1EOSt11_Deque_baseIT_T0_ERKS2_m'/>
+<use f='include/c++/11/bits/stl_deque.h' l='562' c='_ZNSt11_Deque_base16_M_allocate_nodeEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='569' c='_ZNSt11_Deque_base18_M_deallocate_nodeEN9__gnu_cxx14__alloc_traitsINS1_IT0_NS2_10value_typeEE6rebindIT_E5otherENS7_5other10value_typeEE7pointerE'/>
+<dec f='include/c++/11/bits/stl_deque.h' l='592' type='std::_Deque_base::_Deque_impl'/>
+<use f='include/c++/11/bits/stl_deque.h' l='648' u='r' c='_ZNSt11_Deque_base17_M_initialize_mapEm'/>

@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='508' type='PFNKTEXGETIMAGEOFFSET'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='904' macro='1' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<offset>64</offset>

@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1649' c='_ZNSt10__weak_ptraSERKSt10__weak_ptrITL0__XT0_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1658' c='_ZNSt10__weak_ptraSERKSt12__shared_ptrITL0__XT0_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1674' c='_ZNSt10__weak_ptraSEOSt10__weak_ptrITL0__XT0_EE'/>

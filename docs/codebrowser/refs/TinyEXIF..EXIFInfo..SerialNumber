@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='155' type='std::string'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='243' u='m' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
+<offset>960</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='155'>// Serial number of the body of the camera</doc>

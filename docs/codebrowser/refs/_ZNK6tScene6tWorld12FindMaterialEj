@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='1284' u='c' c='_ZN6tScene6tWorld12GetMaterialsERKNS_5tMeshER7tItListINS_9tMaterialEE'/>
+<def f='Modules/Scene/Src/tWorld.cpp' l='1329' ll='1336' type='tScene::tMaterial * tScene::tWorld::FindMaterial(uint32 id) const'/>

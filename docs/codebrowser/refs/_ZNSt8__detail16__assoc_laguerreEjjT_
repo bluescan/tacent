@@ -1,0 +1,3 @@
+<def f='include/c++/11/tr1/poly_laguerre.tcc' l='297' ll='299' type='_Tp std::__detail::__assoc_laguerre(unsigned int __n, unsigned int __m, _Tp __x)'/>
+<use f='include/c++/11/bits/specfun.h' l='207' u='c' c='_ZSt15assoc_laguerrefjjf'/>
+<use f='include/c++/11/bits/specfun.h' l='217' u='c' c='_ZSt15assoc_laguerreljje'/>

@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/locale_facets.h' l='1906' ll='1935'/>
+<inh f='include/c++/11/bits/locale_facets.tcc' l='1322' c='std::numpunct'/>
+<def f='include/c++/11/bits/locale_facets.tcc' l='1323'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1323'/>
+<inh f='include/c++/11/bits/locale_facets.tcc' l='1361' c='std::numpunct'/>
+<def f='include/c++/11/bits/locale_facets.tcc' l='1362'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1362'/>
+<size>24</size>
+<fun r='_ZNSt7__cxx1115numpunct_bynameC1EPKcm'/>
+<fun r='_ZNSt7__cxx1115numpunct_bynameC1ERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<fun r='_ZNSt7__cxx1115numpunct_bynameD1Ev'/>

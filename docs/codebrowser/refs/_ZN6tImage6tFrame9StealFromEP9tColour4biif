@@ -1,0 +1,15 @@
+<dec f='Modules/Image/Inc/Image/tFrame.h' l='44' type='bool tImage::tFrame::StealFrom(tPixel4b * src, int width, int height, float duration = 0.F)'/>
+<def f='Modules/Image/Inc/Image/tFrame.h' l='125' ll='136' type='bool tImage::tFrame::StealFrom(tPixel4b * src, int width, int height, float duration = 0.F)'/>
+<doc f='Modules/Image/Inc/Image/tFrame.h' l='43'>// Takes ownership of the src pixel array.</doc>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='160' u='c' c='_ZN6tImage10tImageAPNG3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='549' u='c' c='_ZN6tImage9tImageBMP8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='320' u='c' c='_ZN6tImage9tImageEXR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='215' u='c' c='_ZN6tImage9tImageGIF3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='470' u='c' c='_ZN6tImage9tImageHDR8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='202' u='c' c='_ZN6tImage9tImageICO3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='269' u='c' c='_ZN6tImage9tImageJPG8GetFrameEb'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='525' u='c' c='_ZN6tImage9tImagePNG8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='158' u='c' c='_ZN6tImage9tImageQOI8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='352' u='c' c='_ZN6tImage9tImageTGA8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='167' u='c' c='_ZN6tImage10tImageTIFF3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='254' u='c' c='_ZN6tImage10tImageWEBP3SetEP9tColour4biib'/>

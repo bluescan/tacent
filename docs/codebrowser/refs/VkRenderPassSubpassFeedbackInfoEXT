@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17711' ll='17715'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17711'/>
+<size>264</size>
+<mbr r='VkRenderPassSubpassFeedbackInfoEXT::subpassMergeStatus' o='0' t='VkSubpassMergeStatusEXT'/>
+<mbr r='VkRenderPassSubpassFeedbackInfoEXT::description' o='32' t='char[256]'/>
+<mbr r='VkRenderPassSubpassFeedbackInfoEXT::postMergeIndex' o='2080' t='uint32_t'/>

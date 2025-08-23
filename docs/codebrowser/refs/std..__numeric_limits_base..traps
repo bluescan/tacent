@@ -1,0 +1,2 @@
+<def f='include/c++/11/limits' l='291' type='const bool'/>
+<doc f='include/c++/11/limits' l='290'>/** True if trapping is implemented for this type.  */</doc>

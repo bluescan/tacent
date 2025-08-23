@@ -1,0 +1,7 @@
+<use f='Modules/Image/Inc/Image/tPicture.h' l='103' u='c' c='_ZN6tImage8tPictureC1ERNS_10tBaseImageEb'/>
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='133' type='void tImage::tPicture::Set(tImage::tBaseImage &amp; image, bool steal = true)'/>
+<def f='Modules/Image/Inc/Image/tPicture.h' l='454' ll='464' type='void tImage::tPicture::Set(tImage::tBaseImage &amp; image, bool steal = true)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='129'>// Sets from any type derived from tImageBase (eg. tImageASTC). If steal is true the tImageBase MAY be
+	// modified. In particular it may be invalid afterwards because the pixels may have been stolen from it. For
+	// multiframe images it meay still be valid after but down a frame. On the other hand with steal false you are
+	// guaranteed that image remains unmodified, but at the cost of duplicating memory for the pixels.</doc>

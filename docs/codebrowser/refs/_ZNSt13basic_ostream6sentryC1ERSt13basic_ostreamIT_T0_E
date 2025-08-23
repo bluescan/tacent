@@ -1,0 +1,13 @@
+<dec f='include/c++/11/ostream' l='458' type='void std::basic_ostream::sentry::sentry(basic_ostream&lt;_CharT, _Traits&gt; &amp; __os)'/>
+<def f='include/c++/11/bits/ostream.tcc' l='45' ll='58' type='void std::basic_ostream::sentry::sentry(basic_ostream&lt;_CharT, _Traits&gt; &amp; __os)'/>
+<doc f='include/c++/11/ostream' l='446'>/**
+       *  @brief  The constructor performs preparatory work.
+       *  @param  __os  The output stream to guard.
+       *
+       *  If the stream state is good (@a __os.good() is true), then if the
+       *  stream is tied to another output stream, @c is.tie()-&gt;flush()
+       *  is called to synchronize the output sequences.
+       *
+       *  If the stream state is still good, then the sentry state becomes
+       *  true (@a okay).
+      */</doc>

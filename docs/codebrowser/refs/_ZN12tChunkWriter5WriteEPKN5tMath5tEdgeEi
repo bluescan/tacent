@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='170' type='int tChunkWriter::Write(const tMath::tEdge * data, int numItems)'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='446' u='c' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>
+<def f='Modules/System/Src/tChunk.cpp' l='600' ll='618' type='int tChunkWriter::Write(const tMath::tEdge * data, int numItems)'/>

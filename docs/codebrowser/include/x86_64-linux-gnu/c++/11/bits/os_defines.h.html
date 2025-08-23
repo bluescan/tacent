@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>os_defines.h source code [include/x86_64-linux-gnu/c++/11/bits/os_defines.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/c++/11/bits/os_defines.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>include</a>/<a href='../../..'>x86_64-linux-gnu</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='os_defines.h.html'>os_defines.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Specific definitions for GNU/Linux  -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2000-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/os_defines.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{iosfwd}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_OS_DEFINES">_GLIBCXX_OS_DEFINES</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_OS_DEFINES" data-ref="_M/_GLIBCXX_OS_DEFINES">_GLIBCXX_OS_DEFINES</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i>// System-specific #define, typedefs, corrections, etc, go here.  This</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>// file will come before all others.</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i></i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i>// This keeps isanum, et al from being propagated as macros.</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#define <dfn class="macro" id="_M/__NO_CTYPE" data-ref="_M/__NO_CTYPE">__NO_CTYPE</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#include &lt;features.h&gt;</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i>// Provide a declaration for the possibly deprecated gets function, as</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i>// glibc 2.15 and later does not declare gets for ISO C11 when</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i>// __GNU_SOURCE is defined.</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#<span data-ppcond="44">if</span> <a class="macro" href="../../../../features.h.html#480" title="((2 &lt;&lt; 16) + 35 &gt;= ((2) &lt;&lt; 16) + (15))" data-ref="_M/__GLIBC_PREREQ">__GLIBC_PREREQ</a>(2,15) &amp;&amp; defined(<span class="macro" data-ref="_M/_GNU_SOURCE">_GNU_SOURCE</span>)</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u># undef <span class="macro" data-ref="_M/_GLIBCXX_HAVE_GETS">_GLIBCXX_HAVE_GETS</span></u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u>#<span data-ppcond="44">endif</span></u>&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>// Glibc 2.23 removed the obsolete isinf and isnan declarations. Check the</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i>// version dynamically in case it has changed since libstdc++ was configured.</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_NO_OBSOLETE_ISINF_ISNAN_DYNAMIC" data-ref="_M/_GLIBCXX_NO_OBSOLETE_ISINF_ISNAN_DYNAMIC">_GLIBCXX_NO_OBSOLETE_ISINF_ISNAN_DYNAMIC</dfn> __GLIBC_PREREQ(2,23)</u>&nbsp</td></tr>
+<tr><th id="51">51</th><td>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u>#<span data-ppcond="52">ifdef</span> <span class="macro" data-ref="_M/__linux__">__linux__</span></u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><u># <span data-ppcond="53">if</span> <a class="macro" href="../../../../features.h.html#480" title="((2 &lt;&lt; 16) + 35 &gt;= ((2) &lt;&lt; 16) + (27))" data-ref="_M/__GLIBC_PREREQ">__GLIBC_PREREQ</a>(2, 27)</u>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i>// Since glibc 2.27 Linux' pthread_self() is usable without linking to libpthread.</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><u>#  define <dfn class="macro" id="_M/_GLIBCXX_NATIVE_THREAD_ID" data-ref="_M/_GLIBCXX_NATIVE_THREAD_ID">_GLIBCXX_NATIVE_THREAD_ID</dfn> pthread_self()</u>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u># <span data-ppcond="53">else</span></u>&nbsp</td></tr>
+<tr><th id="57">57</th><td><i>// Before then it was in libc.so.6 but not libc.a, and always returns 0,</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i>// which breaks the invariant this_thread::get_id() != thread::id{}.</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>// So only use it if we know the libpthread version is available.</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i>// Otherwise use (__gthread_t)1 as the ID of the main (and only) thread.</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><u>#  define _GLIBCXX_NATIVE_THREAD_ID \</u>&nbsp</td></tr>
+<tr><th id="62">62</th><td><u>   (__gthread_active_p() ? __gthread_self() : (__gthread_t)1)</u>&nbsp</td></tr>
+<tr><th id="63">63</th><td><u># <span data-ppcond="53">endif</span></u>&nbsp</td></tr>
+<tr><th id="64">64</th><td>&nbsp</td></tr>
+<tr><th id="65">65</th><td><u># <span data-ppcond="65">if</span> <a class="macro" href="../../../../features.h.html#480" title="((2 &lt;&lt; 16) + 35 &gt;= ((2) &lt;&lt; 16) + (34))" data-ref="_M/__GLIBC_PREREQ">__GLIBC_PREREQ</a>(2, 34)</u>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i>// Since glibc 2.34 all Linux pthreads functions are usable without linking to</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i>// libpthread.</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td><u>#  define <dfn class="macro" id="_M/_GLIBCXX_GTHREAD_USE_WEAK" data-ref="_M/_GLIBCXX_GTHREAD_USE_WEAK">_GLIBCXX_GTHREAD_USE_WEAK</dfn> 0</u>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u># <span data-ppcond="65">endif</span></u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><u>#<span data-ppcond="52">endif</span></u>&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#<span data-ppcond="30">endif</span></u>&nbsp</td></tr>
+<tr><th id="73">73</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

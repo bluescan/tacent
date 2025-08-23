@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2192' ll='2221' type='void rgbcx::bc1_find_sels4_noerr(const rgbcx::color32 * pSrc_pixels, uint32_t lr, uint32_t lg, uint32_t lb, uint32_t hr, uint32_t hg, uint32_t hb, uint8_t * sels)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3549' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3578' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

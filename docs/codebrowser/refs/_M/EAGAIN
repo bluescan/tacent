@@ -1,0 +1,5 @@
+<dec f='include/asm-generic/errno-base.h' l='15'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/error_constants.h' l='147' u='c'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='111' u='c'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='106' u='c'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='99' u='c'/>

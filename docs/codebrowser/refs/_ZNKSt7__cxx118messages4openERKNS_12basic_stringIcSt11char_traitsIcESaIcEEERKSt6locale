@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1869' ll='1871' type='std::messages_base::catalog std::messages::open(const basic_string&lt;char&gt; &amp; __s, const std::locale &amp; __loc) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1859'>/*
+       *  @brief  Open a message catalog.
+       *
+       *  This function opens and returns a handle to a message catalog by
+       *  returning do_open(__s, __loc).
+       *
+       *  @param  __s  The catalog to open.
+       *  @param  __loc  Locale to use for character set conversions.
+       *  @return  Handle to the catalog or value &lt; 0 if open fails.
+      */</doc>

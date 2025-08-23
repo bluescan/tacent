@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='2340' ll='2343' type='counted_iterator&lt;_It&gt; std::operator+(iter_difference_t&lt;_It&gt; __n, const counted_iterator&lt;_It&gt; &amp; __x)'/>

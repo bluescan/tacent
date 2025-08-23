@@ -1,0 +1,12 @@
+<def f='Modules/Scene/Inc/Scene/tObject.h' l='34' type='void tScene::tObject::Clear()'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='39' u='c' c='_ZN6tScene7tObjectaSERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tInstance.h' l='30' u='c' c='_ZN6tScene9tInstance5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='55' u='c' c='_ZN6tScene9tLodGroup5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tPath.h' l='40' u='c' c='_ZN6tScene5tPath5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tPolyModel.h' l='31' u='c' c='_ZN6tScene10tPolyModel5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tSelection.h' l='30' u='c' c='_ZN6tScene10tSelection5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='96' u='c' c='_ZN6tScene6tJoint5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='109' u='c' c='_ZN6tScene9tSkeleton5ClearEv'/>
+<use f='Modules/Scene/Src/tLight.cpp' l='22' u='c' c='_ZN6tScene6tLight5ClearEv'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='23' u='c' c='_ZN6tScene9tMaterial5ClearEv'/>
+<use f='Modules/Scene/Src/tObject.cpp' l='40' u='c' c='_ZN6tScene7tObject4LoadERK6tChunk'/>

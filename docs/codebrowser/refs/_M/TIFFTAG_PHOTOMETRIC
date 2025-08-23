@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='200'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='292' u='c'/>

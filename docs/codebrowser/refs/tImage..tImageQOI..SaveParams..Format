@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageQOI.cpp' l='173' u='w' c='_ZNK6tImage9tImageQOI4SaveERK7tStringNS0_7tFormatE14tColourProfile'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='181' u='r' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>

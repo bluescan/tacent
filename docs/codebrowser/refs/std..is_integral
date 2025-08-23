@@ -1,0 +1,24 @@
+<def f='include/c++/11/type_traits' l='392' ll='394'/>
+<use f='include/c++/11/type_traits' l='565'/>
+<use f='include/c++/11/type_traits' l='1737'/>
+<use f='include/c++/11/type_traits' l='1893'/>
+<use f='include/c++/11/type_traits' l='3099'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1089' c='_ZSt10__fill_n_aT_T0_RKT1_St19output_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1101' c='_ZSt10__fill_n_aT_T0_RKT1_St18input_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1113' c='_ZSt10__fill_n_aT_T0_RKT1_St26random_access_iterator_tag'/>
+<use f='include/c++/11/bits/hashtable.h' l='2513'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='79'/>
+<use f='include/c++/11/bits/stl_algo.h' l='5860' c='_ZSt6sampleT_S_T0_T1_OT2_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='294' c='_ZSt20uninitialized_fill_nT_T0_RKT1_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='636' c='_ZSt25__uninitialized_default_nT_T0_'/>
+<use f='include/c++/11/functional' l='765'/>
+<use f='include/c++/11/functional' l='971'/>
+<use f='include/c++/11/functional' l='975'/>
+<use f='include/c++/11/bits/charconv.h' l='49' c='_ZNSt8__detail14__to_chars_lenET_i'/>
+<use f='include/c++/11/bits/charconv.h' l='74' c='_ZNSt8__detail18__to_chars_10_implEPcjT_'/>
+<use f='include/c++/11/bits/random.h' l='3742'/>
+<use f='include/c++/11/bits/random.h' l='3982'/>
+<use f='include/c++/11/bits/random.h' l='4192'/>
+<use f='include/c++/11/bits/random.h' l='4423'/>
+<use f='include/c++/11/bits/random.h' l='5281'/>
+<use f='include/c++/11/bits/random.h' l='6076'/>

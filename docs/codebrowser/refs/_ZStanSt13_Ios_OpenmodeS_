@@ -1,0 +1,22 @@
+<def f='include/c++/11/bits/ios_base.h' l='124' ll='126' type='std::_Ios_Openmode std::operator&amp;(std::_Ios_Openmode __a, std::_Ios_Openmode __b)'/>
+<use f='include/c++/11/bits/ios_base.h' l='146' u='c' c='_ZStaNRSt13_Ios_OpenmodeS_'/>
+<use f='include/c++/11/fstream' l='466' u='c' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/fstream' l='467' u='c' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/fstream' l='468' u='c' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/bits/fstream.tcc' l='200' u='c' c='_ZNSt13basic_filebuf4openEPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='301' u='c' c='_ZNSt13basic_filebuf9showmanycEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='327' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='486' u='c' c='_ZNSt13basic_filebuf9pbackfailENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='546' u='c' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='547' u='c' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='696' u='c' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='762' u='c' c='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='763' u='c' c='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
+<use f='include/c++/11/sstream' l='330' u='c' c='_ZNSt7__cxx1115basic_stringbuf17_M_stringbuf_initESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='339' u='c' c='_ZNSt7__cxx1115basic_stringbuf9showmanycEv'/>
+<use f='include/c++/11/sstream' l='410' u='c' c='_ZNSt7__cxx1115basic_stringbuf15_M_update_egptrEv'/>
+<use f='include/c++/11/bits/sstream.tcc' l='98' u='c' c='_ZNSt7__cxx1115basic_stringbuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/sstream.tcc' l='174' u='c' c='_ZNSt7__cxx1115basic_stringbuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/sstream.tcc' l='175' u='c' c='_ZNSt7__cxx1115basic_stringbuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/sstream.tcc' l='248' u='c' c='_ZNSt7__cxx1115basic_stringbuf7_M_syncEPT_NS_12basic_stringIS1_T0_T1_E9size_typeES7_'/>
+<use f='include/c++/11/bits/sstream.tcc' l='249' u='c' c='_ZNSt7__cxx1115basic_stringbuf7_M_syncEPT_NS_12basic_stringIS1_T0_T1_E9size_typeES7_'/>

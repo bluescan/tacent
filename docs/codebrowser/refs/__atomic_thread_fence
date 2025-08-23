@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/atomic_base.h' l='133' u='c' c='_ZSt19atomic_thread_fenceSt12memory_order'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='175' u='c' c='_ZNSt16_Sp_counted_base10_M_releaseEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='205' u='c' c='_ZNSt16_Sp_counted_base15_M_weak_releaseEv'/>

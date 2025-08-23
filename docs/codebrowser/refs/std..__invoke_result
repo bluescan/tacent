@@ -1,0 +1,15 @@
+<def f='include/c++/11/type_traits' l='2546' ll='2556'/>
+<use f='include/c++/11/type_traits' l='2561'/>
+<use f='include/c++/11/type_traits' l='2933'/>
+<use f='include/c++/11/type_traits' l='2979'/>
+<use f='include/c++/11/type_traits' l='3005'/>
+<use f='include/c++/11/type_traits' l='3021'/>
+<use f='include/c++/11/type_traits' l='3033'/>
+<use f='include/c++/11/type_traits' l='3047'/>
+<use f='include/c++/11/type_traits' l='3066'/>
+<use f='include/c++/11/bits/invoke.h' l='89' c='_ZSt8__invokeOT_DpOT0_'/>
+<use f='include/c++/11/bits/invoke.h' l='93' c='_ZSt8__invokeOT_DpOT0_'/>
+<use f='include/c++/11/bits/invoke.h' l='107' c='_ZSt10__invoke_rOT0_DpOT1_'/>
+<use f='include/c++/11/bits/std_function.h' l='347'/>
+<use f='include/c++/11/functional' l='926'/>
+<use f='include/c++/11/bits/std_thread.h' l='253'/>

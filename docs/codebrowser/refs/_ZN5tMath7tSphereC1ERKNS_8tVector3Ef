@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='352' type='void tMath::tSphere::tSphere(const tMath::tVector3 &amp; center, float radius)'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='610' u='c' c='_ZN5tMath26tIntersectTestCapsulePointERKNS_9tCylinderERKNS_8tVector3E'/>

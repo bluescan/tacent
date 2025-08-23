@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='492' type='void tMath::tDiv(tMath::tVec2 &amp; d, const tMath::tVec2 &amp; a, float b)'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='91' u='c' c='_ZNK5tMath8tVector2dvEf'/>

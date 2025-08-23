@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='571' ll='574' type='void std::atomic&lt;type-parameter-0-0 *&gt;::store(std::atomic&lt;type-parameter-0-0 *&gt;::__pointer_type __p, std::memory_order __m = memory_order_seq_cst)'/>

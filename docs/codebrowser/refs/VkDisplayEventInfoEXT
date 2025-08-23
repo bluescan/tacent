@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12056' ll='12060'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12056'/>
+<size>24</size>
+<mbr r='VkDisplayEventInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDisplayEventInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkDisplayEventInfoEXT::displayEvent' o='128' t='VkDisplayEventTypeEXT'/>

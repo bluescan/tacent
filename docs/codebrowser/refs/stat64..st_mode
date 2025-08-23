@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/struct_stat.h' l='112' type='__mode_t'/>
+<offset>192</offset>
+<doc f='include/x86_64-linux-gnu/bits/struct_stat.h' l='112'>/* File mode.  */</doc>

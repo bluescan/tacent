@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14075'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14074'>// VK_EXT_memory_budget is a preprocessor guard. Do not pass it to API calls.</doc>

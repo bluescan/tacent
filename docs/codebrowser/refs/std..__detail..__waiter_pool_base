@@ -1,0 +1,18 @@
+<def f='include/c++/11/bits/atomic_wait.h' l='188' ll='256'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='248' c='_ZNSt8__detail18__waiter_pool_base6_S_forEPKv'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='252' c='_ZNSt8__detail18__waiter_pool_base6_S_forEPKv'/>
+<ovr f='include/c++/11/bits/atomic_wait.h' l='258' c='std::__detail::__waiter_pool'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='258'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='300' c='_ZNSt8__detail13__waiter_base6_S_forEPKv'/>
+<ovr f='include/c++/11/bits/atomic_timed_wait.h' l='200' c='std::__detail::__timed_waiter_pool'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='200'/>
+<size>128</size>
+<smbr r='std::__detail::__waiter_pool_base::_S_align' t='const int'/>
+<mbr r='std::__detail::__waiter_pool_base::_M_wait' o='0' t='std::__detail::__platform_wait_t'/>
+<mbr r='std::__detail::__waiter_pool_base::_M_ver' o='512' t='std::__detail::__platform_wait_t'/>
+<fun r='_ZNSt8__detail18__waiter_pool_baseC1Ev'/>
+<fun r='_ZNSt8__detail18__waiter_pool_base13_M_enter_waitEv'/>
+<fun r='_ZNSt8__detail18__waiter_pool_base13_M_leave_waitEv'/>
+<fun r='_ZNKSt8__detail18__waiter_pool_base10_M_waitingEv'/>
+<fun r='_ZNSt8__detail18__waiter_pool_base9_M_notifyEPibb'/>
+<fun r='_ZNSt8__detail18__waiter_pool_base6_S_forEPKv'/>

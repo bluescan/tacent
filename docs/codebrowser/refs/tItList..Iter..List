@@ -1,0 +1,10 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='270' u='w' c='_ZN7tItList4IterC1Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='271' u='w' c='_ZN7tItList4IterC1ERKS0_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='281' u='w' c='_ZN7tItList4IteraSERKS0_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='292' u='r' c='_ZNK7tItList4ItereqERKS0_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='293' u='r' c='_ZNK7tItList4IterneERKS0_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='296' u='w' c='_ZN7tItList4Iter5ClearEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='301' u='c' c='_ZN7tItList4Iter8NextCircEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='302' u='c' c='_ZN7tItList4Iter8PrevCircEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='307' u='w' c='_ZN7tItList4IterC1EPNS_8IterNodeEPK7tItListIT_E'/>
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='309' type='const tItList&lt;T&gt; *'/>

@@ -1,0 +1,4 @@
+<dec f='include/linux/stat.h' l='101' type='__u32'/>
+<offset>0</offset>
+<doc f='include/linux/stat.h' l='100'>/* 0x00 */</doc>
+<doc f='include/linux/stat.h' l='101'>/* What results were written [uncond] */</doc>

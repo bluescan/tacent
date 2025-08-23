@@ -1,0 +1,22 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='237' u='c' c='_ZNK6tChunk11GetDataSizeEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='244' u='c' c='_ZNK6tChunk5GetIDEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='245' u='c' c='_ZNK6tChunk8GetIDRawEv'/>
+<def f='Modules/System/Inc/System/tChunk.h' l='246' type='bool tChunk::IsValid() const'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='247' u='c' c='_ZNK6tChunk11IsContainerEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='248' u='c' c='_ZNK6tChunk10IsDataOnlyEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='255' u='c' c='_ZNK6tChunk12GetNextChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='269' u='c' c='_ZNK6tChunk5ValidEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='745' u='c' c='_ZNK6tChunk7GetDataEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='760' u='c' c='_ZNK6tChunk14GetDataSizeRawEv'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='76' u='c' c='_ZN6tImage6tLayer4LoadERK6tChunkb'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='914' u='c' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='110' u='c' c='_ZN6tImage8tPicture4LoadERK6tChunk'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='416' u='c' c='_ZN6tImage8tTexture4LoadERK6tChunk'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='428' u='c' c='_ZN6tImage8tTexture4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='73' u='c' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='64' u='c' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='62' u='c' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='147' u='c' c='_ZN6tScene5tPose4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='212' u='c' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='229' u='c' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='244' u='c' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>

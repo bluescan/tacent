@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='464' type='16834560'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='464'>// Face normals. Each entry is the actual face normal.</doc>
+<use f='Modules/Scene/Src/tMesh.cpp' l='203' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='403' u='r' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>

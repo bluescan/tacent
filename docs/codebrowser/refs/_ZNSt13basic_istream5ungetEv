@@ -1,0 +1,15 @@
+<dec f='include/c++/11/istream' l='538' type='std::basic_istream::__istream_type &amp; std::basic_istream::unget()'/>
+<def f='include/c++/11/bits/istream.tcc' l='778' ll='811' type='basic_istream&lt;_CharT, _Traits&gt; &amp; std::basic_istream::unget()'/>
+<doc f='include/c++/11/istream' l='524'>/**
+       *  @brief  Unextracting the previous character.
+       *  @return  *this
+       *
+       *  If @c rdbuf() is not null, calls @c rdbuf()-&gt;sungetc(c).
+       *
+       *  If @c rdbuf() is null or if @c sungetc() fails, sets badbit in
+       *  the error state.
+       *
+       *  @note  This function first clears eofbit.  Since no characters
+       *         are extracted, the next call to @c gcount() will return 0,
+       *         as required by DR 60.
+      */</doc>

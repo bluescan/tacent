@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3569' ll='3576'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3569'/>
+<size>24</size>
+<mbr r='VkViewport::x' o='0' t='float'/>
+<mbr r='VkViewport::y' o='32' t='float'/>
+<mbr r='VkViewport::width' o='64' t='float'/>
+<mbr r='VkViewport::height' o='96' t='float'/>
+<mbr r='VkViewport::minDepth' o='128' t='float'/>
+<mbr r='VkViewport::maxDepth' o='160' t='float'/>

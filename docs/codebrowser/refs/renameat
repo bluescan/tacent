@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='158' type='int renameat(int __oldfd, const char * __old, int __newfd, const char * __new)'/>
+<doc f='include/stdio.h' l='157'>/* Rename file OLD relative to OLDFD to NEW relative to NEWFD.  */</doc>

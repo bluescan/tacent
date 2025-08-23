@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unordered_map.h' l='424' ll='429' type='std::unordered_map::node_type std::unordered_map::extract(std::unordered_map::const_iterator __pos)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='423'>/// Extract a node.</doc>

@@ -1,0 +1,2 @@
+<use f='Modules/Image/Inc/Image/tFrame.h' l='50' u='c' c='_ZN6tImage6tFrame8SetPixelEiiRK9tColour4b'/>
+<def f='Modules/Image/Inc/Image/tFrame.h' l='64' type='int tImage::tFrame::GetIndex(int x, int y) const'/>

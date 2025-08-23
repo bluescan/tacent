@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/ranges_cmp.h' l='140' ll='150'/>
+<size>1</size>
+<doc f='include/c++/11/bits/ranges_cmp.h' l='139'>/// ranges::greater function object type.</doc>
+<fun r='_ZNKSt6ranges7greaterclEOT_OT0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3340' c='_ZNKSt6ranges28__lexicographical_compare_fnclET_T0_T1_T2_T5_T3_T4_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3359' c='_ZNKSt6ranges28__lexicographical_compare_fnclET_T0_T1_T2_T5_T3_T4_'/>
+<size>1</size>

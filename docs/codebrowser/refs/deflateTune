@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='744' type='int deflateTune(z_streamp strm, int good_length, int max_lazy, int nice_length, int max_chain)'/>

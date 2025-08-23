@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='903' type='void tColour4f::RGBToHSV()'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1320' ll='1326' type='void tColour4f::RGBToHSV()'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='900'>// When using the HSV representation of a tColour4f, the hue is in NormOne angle mode. See the tRGBToHSV and
+	// tHSVToRGB functions if you wish to use different angle units. All the components (h, s, v, r, g, b, a) are in
+	// [0.0, 1.0]. Both of the functions below leave the alpha unchanged.</doc>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='903'>// Assumes current values are RGB.</doc>

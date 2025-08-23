@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='253' type='char * strrchr(char * __s, int __c)'/>
+<dec f='include/string.h' l='255' type='const char * strrchr(const char * __s, int __c)'/>

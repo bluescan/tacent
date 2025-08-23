@@ -1,0 +1,2 @@
+<def f='Modules/Image/Inc/Image/tPicture.h' l='146' type='tPixel4b &amp; tImage::tPicture::Pixel(int x, int y)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='145'>// These functions allow reading and writing pixels.</doc>

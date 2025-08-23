@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='288' type='int pthread_attr_destroy(pthread_attr_t * __attr)'/>
+<doc f='include/pthread.h' l='287'>/* Destroy thread attribute *ATTR.  */</doc>

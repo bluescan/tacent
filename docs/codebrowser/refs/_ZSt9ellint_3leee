@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='801' ll='803' type='long double std::ellint_3l(long double __k, long double __nu, long double __phi)'/>
+<doc f='include/c++/11/bits/specfun.h' l='795'>/**
+   * @brief Return the incomplete elliptic integral of the third kind
+   * @f$ \Pi(k,\nu,\phi) @f$.
+   *
+   * @see ellint_3 for details.
+   */</doc>

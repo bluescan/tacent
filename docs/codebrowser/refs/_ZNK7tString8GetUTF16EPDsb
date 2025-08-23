@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='380' type='int tString::GetUTF16(char16_t * dst, bool incNullTerminator = true) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='376'>// tString UTF encoding/decoding functions. tString is encoded in UTF-8. These functions allow you to convert from
+	// tString to UTF-16/32 arrays. If dst is nullptr returns the number of charN codeunits needed. If incNullTerminator
+	// is false the number needed will be one fewer. If dst is valid, writes the codeunits to dst and returns number
+	// of charNN codeunits written. If tString is invalid, 0 is returned and dst (if provided) is not modified.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='602' ll='618' type='int tString::GetUTF16(char16_t * dst, bool incNullTerminator = true) const'/>

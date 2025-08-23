@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/atomic_base.h' l='124' ll='129' type='bool std::__is_valid_cmpexch_failure_order(std::memory_order __m)'/>
+<use f='include/c++/11/bits/atomic_base.h' l='521' u='c' c='_ZNSt13__atomic_base21compare_exchange_weakERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='532' u='c' c='_ZNVSt13__atomic_base21compare_exchange_weakERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='558' u='c' c='_ZNSt13__atomic_base23compare_exchange_strongERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='569' u='c' c='_ZNVSt13__atomic_base23compare_exchange_strongERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='854' u='c' c='_ZNSt13__atomic_baseIPT_E23compare_exchange_strongERS1_S1_St12memory_orderS4_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='865' u='c' c='_ZNVSt13__atomic_baseIPT_E23compare_exchange_strongERS1_S1_St12memory_orderS4_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='968' u='c' c='_ZNSt13__atomic_impl21compare_exchange_weakEPT_RNSt15remove_volatileIS0_E4typeES4_St12memory_orderS6_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='981' u='c' c='_ZNSt13__atomic_impl23compare_exchange_strongEPT_RNSt15remove_volatileIS0_E4typeES4_St12memory_orderS6_'/>
+<use f='include/c++/11/atomic' l='323' u='c' c='_ZNSt6atomic21compare_exchange_weakERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/atomic' l='335' u='c' c='_ZNVSt6atomic21compare_exchange_weakERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/atomic' l='359' u='c' c='_ZNSt6atomic23compare_exchange_strongERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/atomic' l='371' u='c' c='_ZNVSt6atomic23compare_exchange_strongERT_S0_St12memory_orderS2_'/>

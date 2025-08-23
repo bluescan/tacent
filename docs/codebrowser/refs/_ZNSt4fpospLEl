@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/postypes.h' l='159' ll='164' type='fpos&lt;_StateT&gt; &amp; std::fpos::operator+=(std::streamoff __off)'/>
+<doc f='include/c++/11/bits/postypes.h' l='155'>// The standard requires that this operator must be defined, but
+      // gives no semantics. In this implementation it just adds its
+      // argument to the stored offset and returns *this.
+      /// Add offset to this position.</doc>

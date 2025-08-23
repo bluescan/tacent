@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8147' ll='8154'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8147'/>
+<size>48</size>
+<mbr r='VkVideoPictureResourceInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoPictureResourceInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkVideoPictureResourceInfoKHR::codedOffset' o='128' t='VkOffset2D'/>
+<mbr r='VkVideoPictureResourceInfoKHR::codedExtent' o='192' t='VkExtent2D'/>
+<mbr r='VkVideoPictureResourceInfoKHR::baseArrayLayer' o='256' t='uint32_t'/>
+<mbr r='VkVideoPictureResourceInfoKHR::imageViewBinding' o='320' t='VkImageView'/>

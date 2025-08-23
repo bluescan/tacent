@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/uniform_int_dist.h' l='176' ll='178' type='std::uniform_int_distribution::result_type std::uniform_int_distribution::min() const'/>
+<doc f='include/c++/11/bits/uniform_int_dist.h' l='173'>/**
+       * @brief Returns the inclusive lower bound of the distribution range.
+       */</doc>

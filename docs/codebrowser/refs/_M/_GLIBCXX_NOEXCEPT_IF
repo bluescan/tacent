@@ -1,0 +1,12 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='187'/>
+<use f='include/c++/11/bits/move.h' l='197' u='c'/>
+<use f='include/c++/11/bits/move.h' l='221' u='c'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1292' u='c'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='314' u='c'/>
+<use f='include/c++/11/bits/stl_vector.h' l='131' u='c'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1963' u='c'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='480' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='440' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='6495' u='c'/>
+<use f='include/c++/11/bits/stl_deque.h' l='524' u='c'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2318' u='c'/>

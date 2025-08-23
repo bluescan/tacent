@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='358' type='int tItList::Sort(CompareFunc compare, tListSortAlgorithm algo = tListSortAlgorithm::Merge)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='355'>// Sorts the list using the algorithm specified. The supplied compare function should never return true on equal.
+	// To sort ascending return the truth of a &lt; b. Return a &gt; b to sort in descending order. Returns the number of
+	// compares performed. The compare function should implement bool CompareFunc(const T&amp; a, const T&amp; b)</doc>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='59' u='c' c='_ZN6tScene9tLodGroup4SortEv'/>

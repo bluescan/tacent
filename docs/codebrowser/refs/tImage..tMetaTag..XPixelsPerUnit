@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='125' type='37'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='122'>//			1: Not Specified.
+					//			2: Inch.
+					//			3: cm.</doc>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='125'>//	float	Horizontal pixels per DistanceUnit. AKA: XResolution.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='535' u='m' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='831' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

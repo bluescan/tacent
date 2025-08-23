@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9965' ll='9972'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9965'/>
+<size>544</size>
+<mbr r='VkPipelineExecutableStatisticKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineExecutableStatisticKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPipelineExecutableStatisticKHR::name' o='128' t='char[256]'/>
+<mbr r='VkPipelineExecutableStatisticKHR::description' o='2176' t='char[256]'/>
+<mbr r='VkPipelineExecutableStatisticKHR::format' o='4224' t='VkPipelineExecutableStatisticFormatKHR'/>
+<mbr r='VkPipelineExecutableStatisticKHR::value' o='4288' t='VkPipelineExecutableStatisticValueKHR'/>

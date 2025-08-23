@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='314' type='int pthread_attr_getschedparam(const pthread_attr_t *__restrict __attr, struct sched_param *__restrict __param)'/>
+<doc f='include/pthread.h' l='313'>/* Return in *PARAM the scheduling parameters of *ATTR.  */</doc>

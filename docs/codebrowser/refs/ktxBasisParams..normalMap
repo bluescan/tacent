@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1396' type='ktx_bool_t'/>
+<offset>320</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1391'>/*!&lt; A swizzle to apply before encoding. It must match the regular
+             expression /^[rgba01]{4}$/. If both this and preSwizzle
+             are specified ktxTexture_CompressBasisEx will raise
+             KTX_INVALID_OPERATION. Usable with both ETC1S and UASTC.
+         */</doc>

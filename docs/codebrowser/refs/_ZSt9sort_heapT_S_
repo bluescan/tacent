@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='633' type='void std::sort_heap(_RAIter , _RAIter )'/>
+<def f='include/c++/11/bits/stl_heap.h' l='437' ll='452' macro='1' type='void std::sort_heap(_RandomAccessIterator __first, _RandomAccessIterator __last)'/>

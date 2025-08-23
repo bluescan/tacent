@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/postypes.h' l='116' type='_StateT'/>
+<use f='include/c++/11/bits/postypes.h' l='124' u='w' c='_ZNSt4fposC1Ev'/>
+<use f='include/c++/11/bits/postypes.h' l='134' u='w' c='_ZNSt4fposC1El'/>
+<use f='include/c++/11/bits/postypes.h' l='148' u='w' c='_ZNSt4fpos5stateET_'/>
+<use f='include/c++/11/bits/postypes.h' l='153' u='r' c='_ZNKSt4fpos5stateEv'/>

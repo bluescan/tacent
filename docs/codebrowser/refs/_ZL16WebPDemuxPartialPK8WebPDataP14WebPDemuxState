@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/WebP/include/demux.h' l='106' ll='109' type='WebPDemuxer * WebPDemuxPartial(const WebPData * data, WebPDemuxState * state)'/>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='98'>// Parses the possibly incomplete WebP file given by &apos;data&apos;.
+// If &apos;state&apos; is non-NULL it will be set to indicate the status of the demuxer.
+// Returns NULL in case of error or if there isn&apos;t enough data to start parsing;
+// and a WebPDemuxer object on successful parse.
+// Note that WebPDemuxer keeps internal pointers to &apos;data&apos; memory segment.
+// If this data is volatile, the demuxer object should be deleted (by calling
+// WebPDemuxDelete()) and WebPDemuxPartial() called again on the new data.
+// This is usually an inexpensive operation.</doc>

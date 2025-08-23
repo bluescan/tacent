@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_vector.h' l='956' ll='963' type='void std::vector::resize(std::vector::size_type __new_size, const std::vector::value_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='945'>/**
+       *  @brief  Resizes the %vector to the specified number of elements.
+       *  @param  __new_size  Number of elements the %vector should contain.
+       *  @param  __x  Data with which new elements should be populated.
+       *
+       *  This function will %resize the %vector to the specified
+       *  number of elements.  If the number is smaller than the
+       *  %vector&apos;s current size the %vector is truncated, otherwise
+       *  the %vector is extended and new elements are populated with
+       *  given data.
+       */</doc>

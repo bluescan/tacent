@@ -1,0 +1,16 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='121' type='36'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='110'>//			Note the descriptions below describe the transformations that are present in the data in the current file.
+					//			Reverse ops in reverse order to obtain an untransformed image.
+					//			0: Unspecified.
+					//			1: NoTransforms.		Image data is not mirrored or rotated.
+					//			2: Flip-Y.				Image is mirrored about vertical axis (right &lt;-&gt; left).
+					//			3: Flip-XY.				Same as 180 Degrees Rotation.
+					//			4: Flip-X.				The image is mirrored about horizontal axis (top &lt;-&gt; bottom).
+					//			5: Rot-CW90 Flip-Y.		The image is rotated 90 degrees clockwise and then flipped about verical axis.
+					//			6: Rot-ACW90.			The image is rotated 90 degrees anti-clockwise.
+					//			7: Rot-ACW90 Flip-Y.	The image is rotated 90 degrees clockwise and then flipped about verical axis.
+					//			8: Rot-CW90.			The image is rotated 90 degrees anti-clockwise.</doc>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='121'>//	uint32	The length unit used for XPixelsPerUnit and YPixelsPerUnit. AKA: ResolutionUnit.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='528' u='m' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='820' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='834' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

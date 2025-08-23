@@ -1,0 +1,2 @@
+<use f='include/c++/11/bits/random.h' l='1640' u='c' c='_ZNKSt13random_device7entropyEv'/>
+<dec f='include/c++/11/bits/random.h' l='1662' type='double std::random_device::_M_getentropy() const'/>

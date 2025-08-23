@@ -1,0 +1,2 @@
+<def f='include/c++/11/string_view' l='268' ll='274' type='void std::basic_string_view::remove_prefix(std::basic_string_view::size_type __n)'/>
+<doc f='include/c++/11/string_view' l='266'>// [string.view.modifiers], modifiers:</doc>

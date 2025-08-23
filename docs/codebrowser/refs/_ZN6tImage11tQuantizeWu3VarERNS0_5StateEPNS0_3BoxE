@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Src/tQuantizeWu.cpp' l='98' type='float tImage::tQuantizeWu::Var(tImage::tQuantizeWu::State &amp; , tImage::tQuantizeWu::Box * cube)'/>
+<def f='Modules/Image/Src/tQuantizeWu.cpp' l='269' ll='286' type='float tImage::tQuantizeWu::Var(tImage::tQuantizeWu::State &amp; state, tImage::tQuantizeWu::Box * cube)'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='461' u='c' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='462' u='c' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>
+<doc f='Modules/Image/Src/tQuantizeWu.cpp' l='97'>// Compute the weighted variance of a box NB: as with the raw statistics, this is really the variance * size.</doc>

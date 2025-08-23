@@ -1,0 +1,34 @@
+<def f='include/c++/11/thread' l='103' ll='231'/>
+<use f='include/c++/11/thread' l='115'/>
+<use f='include/c++/11/thread' l='122' c='_ZNSt7jthreadC1ERKS_'/>
+<use f='include/c++/11/thread' l='123' c='_ZNSt7jthreadC1EOS_'/>
+<use f='include/c++/11/thread' l='134' c='_ZNSt7jthreadaSERKS_'/>
+<use f='include/c++/11/thread' l='135' c='_ZNSt7jthreadaSERKS_'/>
+<use f='include/c++/11/thread' l='137' c='_ZNSt7jthreadaSEOS_'/>
+<use f='include/c++/11/thread' l='138' c='_ZNSt7jthreadaSEOS_'/>
+<use f='include/c++/11/thread' l='140' c='_ZNSt7jthreadaSEOS_'/>
+<use f='include/c++/11/thread' l='145' c='_ZNSt7jthread4swapERS_'/>
+<use f='include/c++/11/thread' l='204' c='_ZSt4swapRSt7jthreadS0_'/>
+<use f='include/c++/11/thread' l='204' c='_ZSt4swapRSt7jthreadS0_'/>
+<size>16</size>
+<doc f='include/c++/11/thread' l='102'>/// A thread that can be requested to stop and automatically joined.</doc>
+<fun r='_ZNSt7jthreadC1Ev'/>
+<fun r='_ZNSt7jthreadC1EOT_DpOT0_'/>
+<fun r='_ZNSt7jthreadC1ERKS_'/>
+<fun r='_ZNSt7jthreadC1EOS_'/>
+<fun r='_ZNSt7jthreadD1Ev'/>
+<fun r='_ZNSt7jthreadaSERKS_'/>
+<fun r='_ZNSt7jthreadaSEOS_'/>
+<fun r='_ZNSt7jthread4swapERS_'/>
+<fun r='_ZNKSt7jthread8joinableEv'/>
+<fun r='_ZNSt7jthread4joinEv'/>
+<fun r='_ZNSt7jthread6detachEv'/>
+<fun r='_ZNKSt7jthread6get_idEv'/>
+<fun r='_ZNSt7jthread13native_handleEv'/>
+<fun r='_ZNSt7jthread20hardware_concurrencyEv'/>
+<fun r='_ZNSt7jthread15get_stop_sourceEv'/>
+<fun r='_ZNKSt7jthread14get_stop_tokenEv'/>
+<fun r='_ZNSt7jthread12request_stopEv'/>
+<fun r='_ZNSt7jthread9_S_createERSt11stop_sourceOT_DpOT0_'/>
+<mbr r='std::jthread::_M_stop_source' o='0' t='std::stop_source'/>
+<mbr r='std::jthread::_M_thread' o='64' t='std::thread'/>

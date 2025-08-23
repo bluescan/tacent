@@ -1,0 +1,6 @@
+<use f='Modules/System/Inc/System/tFile.h' l='852' u='c' c='_ZN7tSystem11tExtensions3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='223' u='c' c='_ZNK8tCmdLine7tOption7GetArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='351' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='385' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='401' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2920' u='c' c='_ZN7tSystem19tFindDirsRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>

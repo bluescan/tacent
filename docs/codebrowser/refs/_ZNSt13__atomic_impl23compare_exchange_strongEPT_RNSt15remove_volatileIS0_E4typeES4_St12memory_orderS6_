@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_base.h' l='976' ll='986' macro='1' type='bool std::__atomic_impl::compare_exchange_strong(_Tp * __ptr, _Val&lt;_Tp&gt; &amp; __expected, _Val&lt;_Tp&gt; __desired, std::memory_order __success, std::memory_order __failure)'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='207' u='c' c='_ZNSt18__atomic_semaphore17_S_do_try_acquireEPi'/>

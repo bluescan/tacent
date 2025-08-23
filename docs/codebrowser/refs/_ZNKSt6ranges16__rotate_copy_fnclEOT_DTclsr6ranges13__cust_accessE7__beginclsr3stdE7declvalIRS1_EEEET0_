@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='1531' ll='1536' type='rotate_copy_result&lt;borrowed_iterator_t&lt;_Range&gt;, _Out&gt; std::ranges::__rotate_copy_fn::operator()(_Range &amp;&amp; __r, iterator_t&lt;_Range&gt; __middle, _Out __result) const'/>

@@ -1,0 +1,3 @@
+<dec f='include/string.h' l='471' type='char * strsep(char **__restrict __stringp, const char *__restrict __delim)'/>
+<doc f='include/string.h' l='469'>/* Return the next DELIM-delimited token from *STRINGP,
+   terminating it with a &apos;\0&apos;, and update *STRINGP to point past it.  */</doc>

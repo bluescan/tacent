@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='44' type='float tMath::tMod(float n, float d)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='973' u='c' c='_ZN5tMath14tRotationAngleERKNS_5tQuatE'/>

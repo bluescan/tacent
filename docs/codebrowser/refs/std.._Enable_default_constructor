@@ -1,0 +1,17 @@
+<def f='include/c++/11/bits/enable_special_members.h' l='53' ll='68'/>
+<use f='include/c++/11/bits/enable_special_members.h' l='101'/>
+<def f='include/c++/11/bits/enable_special_members.h' l='110' ll='126'/>
+<use f='include/c++/11/bits/hashtable.h' l='58'/>
+<doc f='include/c++/11/bits/enable_special_members.h' l='108'>// Boilerplate follows.</doc>
+<fun r='_ZNSt27_Enable_default_constructorC1Ev'/>
+<fun r='_ZNSt27_Enable_default_constructorC1ERKSt27_Enable_default_constructorIXT_ET0_E'/>
+<fun r='_ZNSt27_Enable_default_constructorC1EOSt27_Enable_default_constructorIXT_ET0_E'/>
+<fun r='_ZNSt27_Enable_default_constructoraSERKSt27_Enable_default_constructorIXT_ET0_E'/>
+<fun r='_ZNSt27_Enable_default_constructoraSEOSt27_Enable_default_constructorIXT_ET0_E'/>
+<fun r='_ZNSt27_Enable_default_constructorC1ESt31_Enable_default_constructor_tag'/>
+<fun r='_ZNSt27_Enable_default_constructorILb0ET_EC1Ev'/>
+<fun r='_ZNSt27_Enable_default_constructorILb0ET_EC1ERKS_ILb0ES0_E'/>
+<fun r='_ZNSt27_Enable_default_constructorILb0ET_EC1EOS_ILb0ES0_E'/>
+<fun r='_ZNSt27_Enable_default_constructorILb0ET_EaSERKS_ILb0ES0_E'/>
+<fun r='_ZNSt27_Enable_default_constructorILb0ET_EaSEOS_ILb0ES0_E'/>
+<fun r='_ZNSt27_Enable_default_constructorILb0ET_EC1ESt31_Enable_default_constructor_tag'/>

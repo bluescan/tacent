@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='431' ll='432' type='void std::_Sp_counted_deleter::_Sp_counted_deleter&lt;_Ptr, _Deleter, _Alloc, _Lp&gt;(_Ptr __p, _Deleter __d)'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='430'>// __d(__p) must not throw.</doc>

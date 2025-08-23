@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='425' type='tString tSystem::tGetExtension(tSystem::tFileType )'/>
+<use f='Modules/System/Inc/System/tFile.h' l='839' u='c' c='_ZN7tSystem16tGetFileTypeNameENS_9tFileTypeE'/>
+<def f='Modules/System/Src/tFile.cpp' l='1965' ll='1974' type='tString tSystem::tGetExtension(tSystem::tFileType fileType)'/>

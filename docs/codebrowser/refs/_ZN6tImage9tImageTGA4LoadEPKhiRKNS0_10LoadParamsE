@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageTGA.cpp' l='78' u='c' c='_ZN6tImage9tImageTGA4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImageTGA.cpp' l='85' ll='235' type='bool tImage::tImageTGA::Load(const uint8 * tgaFileInMemory, int numBytes, const tImage::tImageTGA::LoadParams &amp; params = tImage::tImageTGA::LoadParams())'/>

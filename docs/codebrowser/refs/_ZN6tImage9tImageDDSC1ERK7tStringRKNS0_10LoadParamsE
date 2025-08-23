@@ -1,0 +1,2 @@
+<def f='Modules/Image/Src/tImageDDS.cpp' l='865' ll='870' type='void tImage::tImageDDS::tImageDDS(const tString &amp; ddsFile, const tImage::tImageDDS::LoadParams &amp; loadParams = tImage::tImageDDS::LoadParams())'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='56' u='c' c='_ZN6tImage8tTexture4LoadERK7tStringNS_10tFaceIndexEb'/>

@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tConstants.h' l='28' type='const float'/>
+<use f='Modules/Foundation/Inc/Foundation/tConstants.h' l='39' u='r'/>
+<use f='Modules/Foundation/Inc/Foundation/tConstants.h' l='43' u='r'/>
+<use f='Modules/Foundation/Inc/Foundation/tConstants.h' l='44' u='r'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='518' u='r' c='_ZNK5tMath11tBezierPath15GetClosestParamERKNS_8tVector3EjfRKNS0_17tFastSectionStateE'/>

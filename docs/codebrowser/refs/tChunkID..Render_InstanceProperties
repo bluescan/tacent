@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='610' type='33653504'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='610'>// 32bit hash of the instance name, InstanceType, InstanceRole, ModelID being instanced, Instance behaviour mode (rotate mode and alignment (VP or VP))</doc>

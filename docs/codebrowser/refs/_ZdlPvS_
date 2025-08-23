@@ -1,0 +1,2 @@
+<def f='include/c++/11/new' l='180' type='void operator delete(void * , void * )'/>
+<doc f='include/c++/11/new' l='179'>// Default placement versions of operator delete.</doc>

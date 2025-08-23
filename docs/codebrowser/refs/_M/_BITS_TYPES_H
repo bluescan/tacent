@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/types.h' l='24'/>
+<use f='include/x86_64-linux-gnu/bits/typesizes.h' l='19' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/time64.h' l='19' u='a'/>

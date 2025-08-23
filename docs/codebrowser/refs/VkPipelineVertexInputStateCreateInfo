@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3544' ll='3552'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3544'/>
+<size>48</size>
+<mbr r='VkPipelineVertexInputStateCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineVertexInputStateCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineVertexInputStateCreateInfo::flags' o='128' t='VkPipelineVertexInputStateCreateFlags'/>
+<mbr r='VkPipelineVertexInputStateCreateInfo::vertexBindingDescriptionCount' o='160' t='uint32_t'/>
+<mbr r='VkPipelineVertexInputStateCreateInfo::pVertexBindingDescriptions' o='192' t='const VkVertexInputBindingDescription *'/>
+<mbr r='VkPipelineVertexInputStateCreateInfo::vertexAttributeDescriptionCount' o='256' t='uint32_t'/>
+<mbr r='VkPipelineVertexInputStateCreateInfo::pVertexAttributeDescriptions' o='320' t='const VkVertexInputAttributeDescription *'/>

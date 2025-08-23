@@ -1,0 +1,20 @@
+<use f='include/c++/11/bits/stl_iterator.h' l='2234' u='w' c='_ZNSt16counted_iteratorC1ET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS0_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2241' u='w' c='_ZNSt16counted_iteratorC1ERKSt16counted_iteratorITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2250' u='w' c='_ZNSt16counted_iteratoraSERKSt16counted_iteratorITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2264' u='r' c='_ZNKSt16counted_iterator5countEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2270' c='_ZNSt16counted_iteratordeEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2279' c='_ZNKSt16counted_iteratordeEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2291' c='_ZNSt16counted_iteratorppEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2293' u='w' c='_ZNSt16counted_iteratorppEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2300' c='_ZNSt16counted_iteratorppEi'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2301' u='w' c='_ZNSt16counted_iteratorppEi'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2306' u='w' c='_ZNSt16counted_iteratorppEi'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2323' u='w' c='_ZNSt16counted_iteratormmEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2338' c='_ZNKSt16counted_iteratorplENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2349' c='_ZNSt16counted_iteratorpLENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2351' u='w' c='_ZNSt16counted_iteratorpLENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2358' c='_ZNKSt16counted_iteratormiENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2378' c='_ZNSt16counted_iteratormIENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2380' u='w' c='_ZNSt16counted_iteratormIENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2389' c='_ZNKSt16counted_iteratorixENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<dec f='include/c++/11/bits/stl_iterator.h' l='2432' type='iter_difference_t&lt;_It&gt;'/>

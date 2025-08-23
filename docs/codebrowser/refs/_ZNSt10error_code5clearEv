@@ -1,0 +1,8 @@
+<def f='include/c++/11/system_error' l='217' ll='219' type='void std::error_code::clear()'/>
+<use f='include/c++/11/bits/fs_dir.h' l='346' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry12_M_file_typeERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='143' u='c' c='_ZNSt10filesystem6existsERKNS_7__cxx114pathERSt10error_code'/>
+<use f='Modules/System/Src/tFile.cpp' l='2030' u='c' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2464' u='c' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2603' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2875' u='c' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2977' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

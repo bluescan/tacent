@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tVector2.h' l='103' type='const tMath::tVector2'/>
+<doc f='Modules/Math/Inc/Math/tVector2.h' l='103'>// One vector   (1, 1).</doc>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='42' type='const tMath::tVector2'/>

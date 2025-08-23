@@ -1,0 +1,7 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='234' type='int tcvPrintf(const char * format, __va_list_tag * )'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='232'>// In some cases, possibly before reserving buffer space, you need to know how many characters would be used in an
+// actual printf call. The next two functions work that out. They are not affected by what channels are turned on.</doc>
+<use f='Modules/System/Src/tPrint.cpp' l='519' u='c' c='_Z9tsvPrintfR7tStringPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='542' u='c' c='_Z10tsavPrintfR7tStringPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='623' u='c' c='_Z8tcPrintfPKcz'/>
+<def f='Modules/System/Src/tPrint.cpp' l='629' ll='637' type='int tcvPrintf(const char * format, __va_list_tag * argList)'/>

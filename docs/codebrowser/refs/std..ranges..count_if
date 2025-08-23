@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='338' type='const std::ranges::__count_if_fn'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='606' u='c' c='_ZNKSt6ranges19__is_permutation_fnclET_T0_T1_T2_T5_T3_T4_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='609' u='c' c='_ZNKSt6ranges19__is_permutation_fnclET_T0_T1_T2_T5_T3_T4_'/>

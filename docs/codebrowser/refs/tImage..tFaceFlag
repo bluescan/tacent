@@ -1,0 +1,2 @@
+<def f='Modules/Image/Inc/Image/tBaseImage.h' l='40' ll='49'/>
+<doc f='Modules/Image/Inc/Image/tBaseImage.h' l='39'>// Faces are always specified using a left-handed coord system even when using the OpenGL functions.</doc>

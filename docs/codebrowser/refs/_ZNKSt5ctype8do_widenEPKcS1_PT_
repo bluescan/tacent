@@ -1,0 +1,1 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='661' type='const char * std::ctype::do_widen(const char * __lo, const char * __hi, std::ctype::char_type * __dest) const'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unordered_map.h' l='309' ll='311' type='std::unordered_map::size_type std::unordered_map::size() const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='308'>///  Returns the size of the %unordered_map.</doc>

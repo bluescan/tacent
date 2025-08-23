@@ -1,0 +1,5 @@
+<def f='Modules/Image/Src/tImageEXR.cpp' l='54' ll='59'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='237' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='238' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='239' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<size>24</size>

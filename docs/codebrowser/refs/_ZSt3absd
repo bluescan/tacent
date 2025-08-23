@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/std_abs.h' l='70' ll='72' type='double std::abs(double __x)'/>
+<use f='include/c++/11/bits/random.tcc' l='1345' u='c' c='_ZNSt20poisson_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1354' u='c' c='_ZNSt20poisson_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1599' u='c' c='_ZNSt21binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1611' u='c' c='_ZNSt21binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='721' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>

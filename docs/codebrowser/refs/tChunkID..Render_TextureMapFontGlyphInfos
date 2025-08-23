@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='636' type='33698816'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='636'>// Each glyphinfo consists of 2 UVs. There will as many of these as there are characters.</doc>

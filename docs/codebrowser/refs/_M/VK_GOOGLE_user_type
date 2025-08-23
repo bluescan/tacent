@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15237'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15236'>// VK_GOOGLE_user_type is a preprocessor guard. Do not pass it to API calls.</doc>

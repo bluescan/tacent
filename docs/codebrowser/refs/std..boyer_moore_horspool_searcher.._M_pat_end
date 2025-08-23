@@ -1,0 +1,4 @@
+<use f='include/c++/11/functional' l='1182' u='w' c='_ZNSt29boyer_moore_horspool_searcherC1ET_S0_T0_T1_'/>
+<use f='include/c++/11/functional' l='1191' c='_ZNKSt29boyer_moore_horspool_searcherclETL0__S0_'/>
+<use f='include/c++/11/functional' l='1212' c='_ZNKSt29boyer_moore_horspool_searcher17_M_bad_char_shiftETL0__'/>
+<dec f='include/c++/11/functional' l='1215' type='_RAIter'/>

@@ -1,0 +1,35 @@
+<use f='include/c++/11/iosfwd' l='156'/>
+<use f='include/c++/11/iosfwd' l='196'/>
+<def f='include/c++/11/sstream' l='979' ll='1179'/>
+<use f='include/c++/11/sstream' l='1207' c='_ZNSt7__cxx114swapERNS_18basic_stringstreamIT_T0_T1_EES5_'/>
+<use f='include/c++/11/sstream' l='1208' c='_ZNSt7__cxx114swapERNS_18basic_stringstreamIT_T0_T1_EES5_'/>
+<inh f='include/c++/11/bits/istream.tcc' l='1097' c='std::basic_iostream'/>
+<def f='include/c++/11/bits/sstream.tcc' l='294'/>
+<use f='include/c++/11/bits/sstream.tcc' l='294'/>
+<inh f='include/c++/11/bits/istream.tcc' l='1119' c='std::basic_iostream'/>
+<def f='include/c++/11/bits/sstream.tcc' l='300'/>
+<use f='include/c++/11/bits/sstream.tcc' l='300'/>
+<size>392</size>
+<mbr r='std::basic_stringstream::_M_stringbuf' t='std::basic_stringstream::__stringbuf_type'/>
+<fun r='_ZNSt7__cxx1118basic_stringstreamC1Ev'/>
+<fun r='_ZNSt7__cxx1118basic_stringstreamC1ESt13_Ios_Openmode'/>
+<fun r='_ZNSt7__cxx1118basic_stringstreamC1ERKNS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<fun r='_ZNSt7__cxx1118basic_stringstreamD1Ev'/>
+<fun r='_ZNSt7__cxx1118basic_stringstreamC1ERKNS_18basic_stringstreamIT_T0_T1_EE'/>
+<fun r='_ZNSt7__cxx1118basic_stringstreamC1EONS_18basic_stringstreamIT_T0_T1_EE'/>
+<fun r='_ZNSt7__cxx1118basic_stringstreamC1ESt13_Ios_OpenmodeRKT1_'/>
+<fun r='_ZNSt7__cxx1118basic_stringstreamC1EONS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<fun r='_ZNSt7__cxx1118basic_stringstreamC1ERKNS_12basic_stringIT_T0_TL0__EERKT1_'/>
+<fun r='_ZNSt7__cxx1118basic_stringstreamC1ERKNS_12basic_stringIT_T0_TL0__EESt13_Ios_OpenmodeRKT1_'/>
+<fun r='_ZNSt7__cxx1118basic_stringstreamC1ERKNS_12basic_stringIT_T0_TL0__EESt13_Ios_Openmode'/>
+<fun r='_ZNSt7__cxx1118basic_stringstreamaSERKNS_18basic_stringstreamIT_T0_T1_EE'/>
+<fun r='_ZNSt7__cxx1118basic_stringstreamaSEONS_18basic_stringstreamIT_T0_T1_EE'/>
+<fun r='_ZNSt7__cxx1118basic_stringstream4swapERNS_18basic_stringstreamIT_T0_T1_EE'/>
+<fun r='_ZNKSt7__cxx1118basic_stringstream5rdbufEv'/>
+<fun r='_ZNKRSt7__cxx1118basic_stringstream3strEv'/>
+<fun r='_ZNKSt7__cxx1118basic_stringstream3strERKTL0__'/>
+<fun r='_ZNOSt7__cxx1118basic_stringstream3strEv'/>
+<fun r='_ZNKSt7__cxx1118basic_stringstream4viewEv'/>
+<fun r='_ZNSt7__cxx1118basic_stringstream3strERKNS_12basic_stringIT_T0_T1_EE'/>
+<fun r='_ZNSt7__cxx1118basic_stringstream3strERKNS_12basic_stringIT_T0_TL0__EE'/>
+<fun r='_ZNSt7__cxx1118basic_stringstream3strEONS_12basic_stringIT_T0_T1_EE'/>

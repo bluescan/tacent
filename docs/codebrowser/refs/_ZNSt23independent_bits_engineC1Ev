@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='1125' ll='1126' type='void std::independent_bits_engine::independent_bits_engine&lt;_RandomNumberEngine, __w, _UIntType&gt;()'/>
+<doc f='include/c++/11/bits/random.h' l='1120'>/**
+       * @brief Constructs a default %independent_bits_engine engine.
+       *
+       * The underlying engine is default constructed as well.
+       */</doc>

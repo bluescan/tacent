@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/shared_ptr.h' l='304' ll='305' type='void std::shared_ptr::shared_ptr&lt;_Tp&gt;(shared_ptr&lt;_Tp&gt; &amp;&amp; __r)'/>
+<doc f='include/c++/11/bits/shared_ptr.h' l='299'>/**
+       *  @brief  Move-constructs a %shared_ptr instance from @a __r.
+       *  @param  __r  A %shared_ptr rvalue.
+       *  @post   *this contains the old value of @a __r, @a __r is empty.
+       */</doc>

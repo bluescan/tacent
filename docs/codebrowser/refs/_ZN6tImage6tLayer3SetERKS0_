@@ -1,0 +1,3 @@
+<use f='Modules/Image/Inc/Image/tLayer.h' l='48' u='c' c='_ZN6tImage6tLayerC1ERKS0_'/>
+<dec f='Modules/Image/Inc/Image/tLayer.h' l='54' type='void tImage::tLayer::Set(const tImage::tLayer &amp; layer)'/>
+<def f='Modules/Image/Inc/Image/tLayer.h' l='126' ll='146' type='void tImage::tLayer::Set(const tImage::tLayer &amp; layer)'/>

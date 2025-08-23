@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5574' ll='5578'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5574'/>
+<size>24</size>
+<mbr r='VkExportSemaphoreCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkExportSemaphoreCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkExportSemaphoreCreateInfo::handleTypes' o='128' t='VkExternalSemaphoreHandleTypeFlags'/>

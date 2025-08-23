@@ -1,0 +1,9 @@
+<def f='Modules/Foundation/Src/tHash.cpp' l='549' ll='557'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='561' c='_ZN12tHash_SHA2564InitEPNS_5StateEPh8tFixIntUILi256EE'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='562' c='_ZN12tHash_SHA2565WriteEPNS_5StateEPKhi'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='563' c='_ZN12tHash_SHA2565CloseEPNS_5StateE'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='635' c='_ZN12tHash_SHA2564InitEPNS_5StateEPh8tFixIntUILi256EE'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='653' c='_ZN12tHash_SHA2565WriteEPNS_5StateEPKhi'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='687' c='_ZN12tHash_SHA2565CloseEPNS_5StateE'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='732' c='_ZN12tHash_SHA2564CalcEPhPKhi8tFixIntUILi256EE'/>
+<size>120</size>

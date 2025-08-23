@@ -1,0 +1,9 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='257' type='void tExprWriter::WriteAtom(const char * )'/>
+<use f='Modules/System/Inc/System/tScript.h' l='307' u='c' c='_ZN11tExprWriter4AtomEPKc'/>
+<use f='Modules/System/Inc/System/tScript.h' l='446' u='c' c='_ZN11tExprWriter9WriteAtomEPKDu'/>
+<def f='Modules/System/Src/tScript.cpp' l='643' ll='668' type='void tExprWriter::WriteAtom(const char * atom)'/>
+<use f='Modules/System/Src/tScript.cpp' l='704' u='c' c='_ZN11tExprWriter9WriteAtomEb'/>
+<use f='Modules/System/Src/tScript.cpp' l='706' u='c' c='_ZN11tExprWriter9WriteAtomEb'/>
+<use f='Modules/System/Src/tScript.cpp' l='714' u='c' c='_ZN11tExprWriter9WriteAtomEj'/>
+<use f='Modules/System/Src/tScript.cpp' l='722' u='c' c='_ZN11tExprWriter9WriteAtomEy'/>
+<use f='Modules/System/Src/tScript.cpp' l='730' u='c' c='_ZN11tExprWriter9WriteAtomEi'/>

@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/stl_function.h' l='1314' u='w' c='_ZNSt16const_mem_fun1_tC1EMT0_KFT_T1_E'/>
+<use f='include/c++/11/bits/stl_function.h' l='1318' u='r' c='_ZNKSt16const_mem_fun1_tclEPKT0_T1_'/>
+<dec f='include/c++/11/bits/stl_function.h' l='1321' type='_Ret (_Tp::*)(_Arg) const'/>

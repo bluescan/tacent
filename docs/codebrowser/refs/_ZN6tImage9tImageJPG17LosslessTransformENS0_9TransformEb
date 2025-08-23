@@ -1,0 +1,1 @@
+<def f='Modules/Image/Src/tImageJPG.cpp' l='361' ll='414' type='bool tImage::tImageJPG::LosslessTransform(tImage::tImageJPG::Transform trans, bool allowImperfect = true)'/>

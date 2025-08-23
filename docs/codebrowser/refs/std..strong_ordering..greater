@@ -1,0 +1,6 @@
+<dec f='include/c++/11/compare' l='247' type='const std::strong_ordering'/>
+<def f='include/c++/11/compare' l='314' ll='315' type='const std::strong_ordering'/>
+<use f='include/c++/11/compare' l='773' u='r' c='_ZNKSt10__cmp_cust16_Strong_fallbackclEOT_OT0_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1855' u='r' c='_ZSt33lexicographical_compare_three_wayT_S_T0_S0_T1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='388' u='r' c='_ZNSt6ranges8__detailssERKNS0_15__max_size_typeES3_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='719' u='r' c='_ZNKSt6ranges8__detail15__max_diff_typessERKS1_'/>

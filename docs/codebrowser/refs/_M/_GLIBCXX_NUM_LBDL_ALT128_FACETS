@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='69'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='67'>// Facets duplicated for alt128 long double format
+// num_get, num_put, money_get, money_put (+ cxx11 money_get, money_put)</doc>

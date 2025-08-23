@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1515' type='static uint16_t rgbcx::bc1_block::pack_unscaled_color(uint32_t r, uint32_t g, uint32_t b)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2471' u='c' c='_ZN5rgbcxL11bc1_encode4EPNS_9bc1_blockEiiiiiiPKh'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2472' u='c' c='_ZN5rgbcxL11bc1_encode4EPNS_9bc1_blockEiiiiiiPKh'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2528' u='c' c='_ZN5rgbcxL11bc1_encode3EPNS_9bc1_blockEiiiiiiPKh'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2529' u='c' c='_ZN5rgbcxL11bc1_encode3EPNS_9bc1_blockEiiiiiiPKh'/>

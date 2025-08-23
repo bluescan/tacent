@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1020' type='ktx_error_code_e ktxTexture1_CreateFromNamedFile(const char *const filename, ktxTextureCreateFlags createFlags, ktxTexture1 ** newTex)'/>

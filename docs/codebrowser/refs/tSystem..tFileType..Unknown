@@ -1,0 +1,10 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='372' type='-1'/>
+<use f='Modules/System/Inc/System/tFile.h' l='373'/>
+<use f='Modules/System/Inc/System/tFile.h' l='374'/>
+<use f='Modules/System/Inc/System/tFile.h' l='375'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='371'>//	Type						Description</doc>
+<use f='Modules/System/Src/tFile.cpp' l='1915' u='r' c='_ZN7tSystem25tGetFileTypeFromExtensionERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='1921' u='r' c='_ZN7tSystem25tGetFileTypeFromExtensionERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='1935' u='r' c='_ZN7tSystem12tGetFileTypeERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='1956' u='r' c='_ZN7tSystem13tGetExtensionER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1967' u='r' c='_ZN7tSystem13tGetExtensionENS_9tFileTypeE'/>

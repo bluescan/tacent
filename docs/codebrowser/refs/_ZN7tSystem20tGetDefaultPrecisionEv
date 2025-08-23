@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='109' type='int tSystem::tGetDefaultPrecision()'/>
+<def f='Modules/System/Src/tPrint.cpp' l='308' ll='311' type='int tSystem::tGetDefaultPrecision()'/>

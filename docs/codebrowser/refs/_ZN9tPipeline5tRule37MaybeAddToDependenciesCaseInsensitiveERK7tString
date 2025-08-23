@@ -1,0 +1,5 @@
+<dec f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='94' type='bool tPipeline::tRule::MaybeAddToDependenciesCaseInsensitive(const tString &amp; )'/>
+<def f='Modules/Pipeline/Src/tRule.cpp' l='44' ll='68' type='bool tPipeline::tRule::MaybeAddToDependenciesCaseInsensitive(const tString &amp; dep)'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='76' u='c' c='_ZN9tPipeline5tRule13AddDependencyERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='86' u='c' c='_ZN9tPipeline5tRule13AddDependencyEP11tStringItem'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='105' u='c' c='_ZN9tPipeline5tRule15AddDependenciesER5tListI11tStringItemE'/>

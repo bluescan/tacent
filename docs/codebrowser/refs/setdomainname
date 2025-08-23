@@ -1,0 +1,1 @@
+<dec f='include/unistd.h' l='933' type='int setdomainname(const char * __name, size_t __len)'/>

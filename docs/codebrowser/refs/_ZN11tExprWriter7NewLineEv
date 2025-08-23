@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='300' type='void tExprWriter::NewLine()'/>
+<use f='Modules/System/Inc/System/tScript.h' l='337' u='c' c='_ZN11tExprWriter2CREv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='338' u='c' c='_ZN11tExprWriter6ReturnEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='967' u='c' c='_ZN11tExprWriter12WriteCommentEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='984' u='c' c='_ZN11tExprWriter16WriteCommentLineEPKc'/>
+<def f='Modules/System/Src/tScript.cpp' l='1033' ll='1044' type='void tExprWriter::NewLine()'/>

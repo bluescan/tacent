@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='756' type='bool tMath::tApproachAngle(float &amp; angle, float dest, float rate, float dt)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='755'>// Angle approaches destination via shortest angular direction. Angle gets modified and will be E [0, 2Pi].</doc>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='994' ll='1012' type='bool tMath::tApproachAngle(float &amp; angle, float dest, float rate, float dt)'/>

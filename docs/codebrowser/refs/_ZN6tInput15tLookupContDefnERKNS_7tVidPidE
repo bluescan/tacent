@@ -1,0 +1,3 @@
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='90' type='const tInput::tContDefn * tInput::tLookupContDefn(const tInput::tVidPid &amp; vidpid)'/>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='89'>// The lookup calls are fast since the dictionary uses a tMap. The Find calls are slow because they have to iterate.</doc>
+<def f='Modules/Input/Src/tControllerDefinitions.cpp' l='32' ll='41' type='const tInput::tContDefn * tInput::tLookupContDefn(const tInput::tVidPid &amp; vidpid)'/>

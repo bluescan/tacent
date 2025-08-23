@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='213' type='void rgbcx::unpack_bc5(const void * pBlock_bits, void * pPixels, uint32_t chan0 = 0, uint32_t chan1 = 1, uint32_t stride = 4)'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4170' ll='4174' type='void rgbcx::unpack_bc5(const void * pBlock_bits, void * pPixels, uint32_t chan0 = 0, uint32_t chan1 = 1, uint32_t stride = 4)'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4169'>// writes RG</doc>

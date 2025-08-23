@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='245' type='std::vector&lt;uint16_t&gt;'/>
+<offset>3648</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='242'>// 0: unknown projection
+									    // 1: perspective projection
+									    // 2: equirectangular/spherical projection</doc>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='245'>// Location and area of the main subject in the overall scene expressed in relation to the upper left as origin, prior to rotation</doc>

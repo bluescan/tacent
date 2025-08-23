@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/basic_string.h' l='1112' ll='1117' type='std::basic_string::reference std::basic_string::front()'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1108'>/**
+       *  Returns a read/write reference to the data at the first
+       *  element of the %string.
+       */</doc>

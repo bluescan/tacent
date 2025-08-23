@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/basic_string.h' l='716' ll='778' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::operator=(basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp;&amp; __str)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='707'>/**
+       *  @brief  Move assign the value of @a str to this string.
+       *  @param  __str  Source string.
+       *
+       *  The contents of @a str are moved into this string (without copying).
+       *  @a str is a valid, but unspecified string.
+       */
+      // _GLIBCXX_RESOLVE_LIB_DEFECTS
+      // 2063. Contradictory requirements for string move assignment</doc>
+<use f='include/c++/11/bits/fs_path.h' l='952' u='c' c='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>

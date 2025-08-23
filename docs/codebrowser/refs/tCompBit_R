@@ -1,0 +1,20 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='63' type='1'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1111' u='r' c='_ZNK9tColour4b9IntensityEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1148' u='r' c='_ZNK9tColour4b5EqualERKS_j'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1203' u='r' c='_ZNK9tColour4s9IntensityEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1214' u='r' c='_ZNK9tColour4s5EqualERKS_j'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1250' u='r' c='_ZN9tColour4f14SquareToLinearEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1259' u='r' c='_ZN9tColour4f14LinearToSquareEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1268' u='r' c='_ZN9tColour4f13GammaToLinearEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1277' u='r' c='_ZN9tColour4f13LinearToGammaEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1286' u='r' c='_ZN9tColour4f12SRGBToLinearEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1295' u='r' c='_ZN9tColour4f12LinearToSRGBEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1304' u='r' c='_ZN9tColour4f15TonemapExposureEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1313' u='r' c='_ZN9tColour4f15TonemapReinhardEj'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='62'>// Colour components use the same values as the vector components. Colours are also vectors.</doc>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='496' u='r' c='_ZN6tImage8tPicture8SetPixelEiiRK9tColour4bj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='518' u='r' c='_ZN6tImage8tPicture6SetAllERK9tColour4bj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='611' u='r' c='_ZN6tImage8tPicture9IntensityEj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='634' u='r' c='_ZN6tImage8tPicture16AlphaBlendColourERK9tColour4bji'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='697' u='r' c='_ZN6tImage8tPicture16AdjustBrightnessEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='732' u='r' c='_ZN6tImage8tPicture14AdjustContrastEfj'/>

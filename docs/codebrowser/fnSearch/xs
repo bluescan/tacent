@@ -1,0 +1,5 @@
+_ZNSt15basic_streambuf6xsgetnEPT_l|std::basic_streambuf::xsgetn
+_ZNSt15basic_streambuf6xsputnEPKT_l|std::basic_streambuf::xsputn
+_ZNSt13basic_filebuf6xsgetnEPT_l|std::basic_filebuf::xsgetn
+_ZNSt13basic_filebuf6xsputnEPKT_l|std::basic_filebuf::xsputn
+_ZNSt15wbuffer_convert6xsputnEPKNSt15basic_streambufIT0_T1_E9char_typeEl|std::wbuffer_convert::xsputn

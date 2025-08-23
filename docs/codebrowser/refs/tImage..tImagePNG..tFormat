@@ -1,0 +1,8 @@
+<def f='Modules/Image/Inc/Image/tImagePNG.h' l='98' ll='109'/>
+<use f='Modules/Image/Inc/Image/tImagePNG.h' l='117'/>
+<use f='Modules/Image/Inc/Image/tImagePNG.h' l='127' c='_ZNK6tImage9tImagePNG4SaveERK7tStringNS0_7tFormatE'/>
+<use f='Modules/Image/Inc/Image/tImagePNG.h' l='127' c='_ZNK6tImage9tImagePNG4SaveERK7tStringNS0_7tFormatE'/>
+<use f='Modules/Image/Inc/Image/tImagePNG.h' l='128' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='537' c='_ZNK6tImage9tImagePNG4SaveERK7tStringNS0_7tFormatE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='537' c='_ZNK6tImage9tImagePNG4SaveERK7tStringNS0_7tFormatE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='751' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

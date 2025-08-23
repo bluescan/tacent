@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='151' type='int tChunkWriter::Write(const tMath::tEdge &amp; )'/>
+<def f='Modules/System/Src/tChunk.cpp' l='417' ll='428' type='int tChunkWriter::Write(const tMath::tEdge &amp; e)'/>

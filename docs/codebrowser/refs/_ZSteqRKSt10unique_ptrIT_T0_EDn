@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='759' ll='761' type='bool std::operator==(const unique_ptr&lt;_Tp, _Dp&gt; &amp; __x, std::nullptr_t )'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1605' ll='1607' type='std::__atomic_ref&lt;type-parameter-0-0, true, false&gt;::value_type std::__atomic_ref&lt;type-parameter-0-0, true, false&gt;::operator-=(std::__atomic_ref&lt;type-parameter-0-0, true, false&gt;::value_type __i) const'/>

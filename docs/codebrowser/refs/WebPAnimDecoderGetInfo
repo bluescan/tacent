@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='309' type='int WebPAnimDecoderGetInfo(const WebPAnimDecoder * dec, WebPAnimInfo * info)'/>

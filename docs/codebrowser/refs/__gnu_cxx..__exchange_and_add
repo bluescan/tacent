@@ -1,0 +1,2 @@
+<def f='include/c++/11/ext/atomicity.h' l='63' ll='66' type='_Atomic_word __gnu_cxx::__exchange_and_add(volatile _Atomic_word * __mem, int __val)'/>
+<use f='include/c++/11/ext/atomicity.h' l='101' u='c' c='__gnu_cxx::__exchange_and_add_dispatch'/>

@@ -1,0 +1,1 @@
+<dec f='include/time.h' l='123' type='char * strptime_l(const char *__restrict __s, const char *__restrict __fmt, struct tm * __tp, locale_t __loc)'/>

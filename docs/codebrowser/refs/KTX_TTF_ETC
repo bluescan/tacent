@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1585' type='22'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1598'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1580'>/*!&lt; 16bpp RGBA image stored in raster (not block) order in memory,
+                 R at bit position 12, A at bit position 0. */
+
+        // Values for automatic selection of RGB or RGBA depending if alpha
+        // present.</doc>

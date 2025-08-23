@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algo.h' l='3329' ll='3386' macro='1' type='pair&lt;_ForwardIterator, _ForwardIterator&gt; std::__minmax_element(_ForwardIterator __first, _ForwardIterator __last, _Compare __comp)'/>

@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='326' type='std::filesystem::path std::filesystem::current_path()'/>
+<dec f='include/c++/11/bits/fs_ops.h' l='110' type='std::filesystem::path std::filesystem::current_path()'/>
+<use f='include/c++/11/bits/fs_ops.h' l='314' u='c' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='317' u='c' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='330' u='c' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='333' u='c' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathES3_'/>
+<use f='Modules/System/Src/tFile.cpp' l='2457' u='c' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2593' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2866' u='c' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2967' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

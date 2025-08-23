@@ -1,0 +1,9 @@
+<def f='include/c++/11/istream' l='353' ll='355' type='std::basic_istream::__istream_type &amp; std::basic_istream::get(std::basic_istream::char_type * __s, std::streamsize __n)'/>
+<doc f='include/c++/11/istream' l='345'>/**
+       *  @brief  Simple multiple-character extraction.
+       *  @param  __s  Pointer to an array.
+       *  @param  __n  Maximum number of characters to store in @a s.
+       *  @return  *this
+       *
+       *  Returns @c get(__s,__n,widen(&amp;apos;\\n&amp;apos;)).
+      */</doc>

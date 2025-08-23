@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='248' type='const char * tString::Chz() const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='248'>/* Like Chr() but returns nullptr if the string is empty, not a pointer to &quot;&quot;. */</doc>

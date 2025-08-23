@@ -1,0 +1,19 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='311' type='std::locale::_Impl *'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='47' u='w' c='_ZNSt6localeC1ERKS_PT_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='47' u='r' c='_ZNSt6localeC1ERKS_PT_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='50' u='r' c='_ZNSt6localeC1ERKS_PT_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='53' u='r' c='_ZNSt6localeC1ERKS_PT_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='56' u='r' c='_ZNSt6localeC1ERKS_PT_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='57' u='r' c='_ZNSt6localeC1ERKS_PT_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='65' u='r' c='_ZNKSt6locale7combineERKS_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='68' u='r' c='_ZNKSt6locale7combineERKS_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='107' u='r' c='_ZSt9has_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='108' u='r' c='_ZSt9has_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='135' u='r' c='_ZSt9use_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='136' u='r' c='_ZSt9use_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='56' u='r' c='_ZNKSt11__use_cacheISt16__numpunct_cacheIT_EEclERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='70' u='r' c='_ZNKSt11__use_cacheISt16__numpunct_cacheIT_EEclERKSt6locale'/>
+<offset>0</offset>
+<doc f='include/c++/11/bits/locale_classes.h' l='310'>// The (shared) implementation</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='46' u='r' c='_ZNKSt11__use_cacheISt18__moneypunct_cacheIT_XT0_EEEclERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='60' u='r' c='_ZNKSt11__use_cacheISt18__moneypunct_cacheIT_XT0_EEEclERKSt6locale'/>

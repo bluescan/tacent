@@ -1,0 +1,9 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='132' type='tSystem::HandlerInfo[]'/>
+<def f='Modules/System/Src/tPrint.cpp' l='408' ll='428' type='tSystem::HandlerInfo[17]'/>
+<use f='Modules/System/Src/tPrint.cpp' l='433' u='r'/>
+<use f='Modules/System/Src/tPrint.cpp' l='433' u='r'/>
+<use f='Modules/System/Src/tPrint.cpp' l='706' u='a' c='_ZN7tSystem11FindHandlerEc'/>
+<use f='Modules/System/Src/tPrint.cpp' l='715' u='a' c='_ZN7tSystem11FindHandlerEc'/>
+<doc f='Modules/System/Src/tPrint.cpp' l='405'>// Don&apos;t forget to update the jump table if you add a new handler to this table. Also note that the
+// default size may be overridden by the format spec. For example, %d can be used for tint256 with the
+// string &quot;%:8X&quot;, &quot;%!32X&quot;, or &quot;%|256d&quot;.</doc>

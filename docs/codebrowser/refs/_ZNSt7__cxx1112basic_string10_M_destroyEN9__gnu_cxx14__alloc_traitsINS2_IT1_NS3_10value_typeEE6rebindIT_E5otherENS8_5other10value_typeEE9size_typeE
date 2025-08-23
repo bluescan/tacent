@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/basic_string.h' l='240' u='c' c='_ZNSt7__cxx1112basic_string10_M_disposeEv'/>
+<def f='include/c++/11/bits/basic_string.h' l='243' ll='245' type='void std::basic_string::_M_destroy(std::basic_string::size_type __size)'/>
+<use f='include/c++/11/bits/basic_string.h' l='725' u='c' c='_ZNSt7__cxx1112basic_stringaSEONS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.h' l='760' u='c' c='_ZNSt7__cxx1112basic_stringaSEONS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.h' l='1368' u='c' c='_ZNSt7__cxx1112basic_string6assignERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.h' l='1378' u='c' c='_ZNSt7__cxx1112basic_string6assignERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='349' u='c' c='_ZNSt7__cxx1112basic_string7reserveEv'/>

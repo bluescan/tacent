@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14624' ll='14628'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14624'/>
+<size>24</size>
+<mbr r='VkSubresourceHostMemcpySizeEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSubresourceHostMemcpySizeEXT::pNext' o='64' t='void *'/>
+<mbr r='VkSubresourceHostMemcpySizeEXT::size' o='128' t='VkDeviceSize'/>

@@ -1,0 +1,8 @@
+<dec f='include/c++/11/chrono' l='2326' type='chrono::day'/>
+<use f='include/c++/11/chrono' l='2338' u='w' c='_ZNSt6chrono14year_month_dayC1ERKNS_4yearERKNS_5monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='2394' u='r' c='_ZNKSt6chrono14year_month_day3dayEv'/>
+<use f='include/c++/11/chrono' l='2524' u='m' c='_ZNKSt6chrono14year_month_day19_M_days_since_epochEv'/>
+<use f='include/c++/11/chrono' l='2706' u='w' c='_ZNSt6chrono14year_month_dayC1ERKNS_19year_month_day_lastE'/>
+<use f='include/c++/11/chrono' l='2714' u='r' c='_ZNKSt6chrono14year_month_day2okEv'/>
+<use f='include/c++/11/chrono' l='2714' u='r' c='_ZNKSt6chrono14year_month_day2okEv'/>
+<offset>24</offset>

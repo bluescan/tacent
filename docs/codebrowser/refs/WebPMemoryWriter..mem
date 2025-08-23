@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='242' type='uint8_t *'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='399' u='r' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='242'>// final buffer (of size &apos;max_size&apos;, larger than &apos;size&apos;).</doc>

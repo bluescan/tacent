@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1475' type='void std::ctype&lt;wchar_t&gt;::_M_initialize_ctype()'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1473'>// For use at construction time only.</doc>

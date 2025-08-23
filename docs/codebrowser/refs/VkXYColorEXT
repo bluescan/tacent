@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12324' ll='12327'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12324'/>
+<size>8</size>
+<mbr r='VkXYColorEXT::x' o='0' t='float'/>
+<mbr r='VkXYColorEXT::y' o='32' t='float'/>

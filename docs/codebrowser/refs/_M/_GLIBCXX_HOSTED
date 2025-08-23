@@ -1,0 +1,8 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1608'/>
+<use f='include/c++/11/cstdlib' l='46' u='c'/>
+<use f='include/c++/11/stdlib.h' l='50' u='c'/>
+<use f='include/c++/11/bits/concept_check.h' l='46' u='c'/>
+<use f='include/c++/11/bits/stl_algo.h' l='4554' u='c'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1607'>/* Define to 1 if a full hosted library is built, or 0 if freestanding. */</doc>
+<use f='include/c++/11/bits/atomic_base.h' l='40' u='c'/>
+<use f='include/c++/11/bit' l='38' u='c'/>

@@ -1,0 +1,3 @@
+<dec f='include/c++/11/ext/numeric_traits.h' l='159' type='const int'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='167' ll='168' type='const int'/>
+<doc f='include/c++/11/ext/numeric_traits.h' l='158'>// Only floating point types. See N1822.</doc>

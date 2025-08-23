@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='52' ll='56'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.h' l='368' c='std::time_get'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='368'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1417' c='std::time_get'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1492' c='std::time_get'/>
+<size>1</size>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='45'>/**
+   *  @brief  Time format ordering data.
+   *  @ingroup locales
+   *
+   *  This class provides an enum representing different orderings of
+   *  time: day, month, and year.
+  */</doc>

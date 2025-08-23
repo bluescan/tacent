@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='361' type='T * tItList::Insert(const T * item, CompareFunc compare)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='360'>// Inserts item in a sorted list. It will remain sorted.</doc>

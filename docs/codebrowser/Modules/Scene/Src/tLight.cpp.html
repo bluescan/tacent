@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tLight.cpp source code [Modules/Scene/Src/tLight.cpp] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Scene/Src/tLight.cpp'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>Modules</a>/<a href='..'>Scene</a>/<a href='./'>Src</a>/<a href='tLight.cpp.html'>tLight.cpp</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tLight.cpp</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// This file implements scene lights. It supports point, spot, directional, and ambient lights.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#include "Scene/tLight.h"</u>&nbsp</td></tr>
+<tr><th id="16">16</th><td><b>namespace</b> <span class="namespace">tScene</span>&nbsp</td></tr>
+<tr><th id="17">17</th><td>{&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td>&nbsp</td></tr>
+<tr><th id="20">20</th><td><em>void</em> <a class="type" href="../Inc/Scene/tLight.h.html#tScene::tLight" title='tScene::tLight' data-ref="tScene::tLight">tLight</a>::<dfn class="decl def fn" id="_ZN6tScene6tLight5ClearEv" title='tScene::tLight::Clear' data-ref="_ZN6tScene6tLight5ClearEv">Clear</dfn>()&nbsp</td></tr>
+<tr><th id="21">21</th><td>{&nbsp</td></tr>
+<tr><th id="22">22</th><td>	<a class="type" href="../Inc/Scene/tObject.h.html#tScene::tObject" title='tScene::tObject' data-ref="tScene::tObject">tObject</a>::<a class="member fn" href="../Inc/Scene/tObject.h.html#_ZN6tScene7tObject5ClearEv" title='tScene::tObject::Clear' data-ref="_ZN6tScene7tObject5ClearEv">Clear</a>();&nbsp</td></tr>
+<tr><th id="23">23</th><td>	<a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::Type" title='tScene::tLight::Type' data-ref="tScene::tLight::Type">Type</a> = <a class="type" href="../Inc/Scene/tLight.h.html#tScene::tLight::tType" title='tScene::tLight::tType' data-ref="tScene::tLight::tType">tType</a>::<a class="enum" href="../Inc/Scene/tLight.h.html#tScene::tLight::tType::Point" title='tScene::tLight::tType::Point' data-ref="tScene::tLight::tType::Point">Point</a>;&nbsp</td></tr>
+<tr><th id="24">24</th><td>	<a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::AttenNearStart" title='tScene::tLight::AttenNearStart' data-ref="tScene::tLight::AttenNearStart">AttenNearStart</a> = <var>0.0f</var>;&nbsp</td></tr>
+<tr><th id="25">25</th><td>	<a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::AttenNearEnd" title='tScene::tLight::AttenNearEnd' data-ref="tScene::tLight::AttenNearEnd">AttenNearEnd</a> = <var>0.0f</var>;&nbsp</td></tr>
+<tr><th id="26">26</th><td>	<a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::AttenFarStart" title='tScene::tLight::AttenFarStart' data-ref="tScene::tLight::AttenFarStart">AttenFarStart</a> = <var>0.0f</var>;&nbsp</td></tr>
+<tr><th id="27">27</th><td>	<a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::AttenFarEnd" title='tScene::tLight::AttenFarEnd' data-ref="tScene::tLight::AttenFarEnd">AttenFarEnd</a> = <var>0.0f</var>;&nbsp</td></tr>
+<tr><th id="28">28</th><td>}&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td>&nbsp</td></tr>
+<tr><th id="31">31</th><td><em>void</em> <a class="type" href="../Inc/Scene/tLight.h.html#tScene::tLight" title='tScene::tLight' data-ref="tScene::tLight">tLight</a>::<dfn class="virtual decl def fn" id="_ZNK6tScene6tLight4SaveER12tChunkWriter" title='tScene::tLight::Save' data-ref="_ZNK6tScene6tLight4SaveER12tChunkWriter">Save</dfn>(<a class="type" href="../../System/Inc/System/tChunk.h.html#tChunkWriter" title='tChunkWriter' data-ref="tChunkWriter">tChunkWriter</a>&amp; <dfn class="local col1 decl" id="1chunk" title='chunk' data-type='tChunkWriter &amp;' data-ref="1chunk">chunk</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="32">32</th><td>{&nbsp</td></tr>
+<tr><th id="33">33</th><td>	<a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZN12tChunkWriter5BeginEjNS_9AlignmentE" title='tChunkWriter::Begin' data-ref="_ZN12tChunkWriter5BeginEjNS_9AlignmentE">Begin</a>(<span class='inlayHint'>chunkID:&nbsp;</span><span class="namespace">tChunkID::</span><a class="enum" href="../../System/Inc/System/tChunk.h.html#tChunkID::Scene_Light" title='tChunkID::Scene_Light' data-ref="tChunkID::Scene_Light">Scene_Light</a>);&nbsp</td></tr>
+<tr><th id="34">34</th><td>	{&nbsp</td></tr>
+<tr><th id="35">35</th><td>		<a class="type" href="../Inc/Scene/tObject.h.html#tScene::tObject" title='tScene::tObject' data-ref="tScene::tObject">tObject</a>::<a class="virtual member fn" href="../Inc/Scene/tObject.h.html#_ZNK6tScene7tObject4SaveER12tChunkWriter" title='tScene::tObject::Save' data-ref="_ZNK6tScene7tObject4SaveER12tChunkWriter">Save</a>(<span class='refarg'><a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a></span>);&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td>		<a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZN12tChunkWriter5BeginEjNS_9AlignmentE" title='tChunkWriter::Begin' data-ref="_ZN12tChunkWriter5BeginEjNS_9AlignmentE">Begin</a>(<span class='inlayHint'>chunkID:&nbsp;</span><span class="namespace">tChunkID::</span><a class="enum" href="../../System/Inc/System/tChunk.h.html#tChunkID::Scene_LightType" title='tChunkID::Scene_LightType' data-ref="tChunkID::Scene_LightType">Scene_LightType</a>);&nbsp</td></tr>
+<tr><th id="38">38</th><td>		{&nbsp</td></tr>
+<tr><th id="39">39</th><td>			<a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZN12tChunkWriter5WriteET_" title='tChunkWriter::Write' data-ref="_ZN12tChunkWriter5WriteET_">Write</a>(<span class='inlayHint'>obj:&nbsp;</span><a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::Type" title='tScene::tLight::Type' data-ref="tScene::tLight::Type">Type</a>);&nbsp</td></tr>
+<tr><th id="40">40</th><td>		}&nbsp</td></tr>
+<tr><th id="41">41</th><td>		<a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZN12tChunkWriter3EndEv" title='tChunkWriter::End' data-ref="_ZN12tChunkWriter3EndEv">End</a>();&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td>		<a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZN12tChunkWriter5BeginEjNS_9AlignmentE" title='tChunkWriter::Begin' data-ref="_ZN12tChunkWriter5BeginEjNS_9AlignmentE">Begin</a>(<span class='inlayHint'>chunkID:&nbsp;</span><span class="namespace">tChunkID::</span><a class="enum" href="../../System/Inc/System/tChunk.h.html#tChunkID::Scene_LightParameters" title='tChunkID::Scene_LightParameters' data-ref="tChunkID::Scene_LightParameters">Scene_LightParameters</a>);&nbsp</td></tr>
+<tr><th id="44">44</th><td>		{&nbsp</td></tr>
+<tr><th id="45">45</th><td>			<a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZN12tChunkWriter5WriteET_" title='tChunkWriter::Write' data-ref="_ZN12tChunkWriter5WriteET_">Write</a>(<span class='inlayHint'>obj:&nbsp;</span><a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::AttenNearStart" title='tScene::tLight::AttenNearStart' data-ref="tScene::tLight::AttenNearStart">AttenNearStart</a>);&nbsp</td></tr>
+<tr><th id="46">46</th><td>			<a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZN12tChunkWriter5WriteET_" title='tChunkWriter::Write' data-ref="_ZN12tChunkWriter5WriteET_">Write</a>(<span class='inlayHint'>obj:&nbsp;</span><a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::AttenNearEnd" title='tScene::tLight::AttenNearEnd' data-ref="tScene::tLight::AttenNearEnd">AttenNearEnd</a>);&nbsp</td></tr>
+<tr><th id="47">47</th><td>			<a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZN12tChunkWriter5WriteET_" title='tChunkWriter::Write' data-ref="_ZN12tChunkWriter5WriteET_">Write</a>(<span class='inlayHint'>obj:&nbsp;</span><a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::AttenFarStart" title='tScene::tLight::AttenFarStart' data-ref="tScene::tLight::AttenFarStart">AttenFarStart</a>);&nbsp</td></tr>
+<tr><th id="48">48</th><td>			<a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZN12tChunkWriter5WriteET_" title='tChunkWriter::Write' data-ref="_ZN12tChunkWriter5WriteET_">Write</a>(<span class='inlayHint'>obj:&nbsp;</span><a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::AttenFarEnd" title='tScene::tLight::AttenFarEnd' data-ref="tScene::tLight::AttenFarEnd">AttenFarEnd</a>);&nbsp</td></tr>
+<tr><th id="49">49</th><td>		}&nbsp</td></tr>
+<tr><th id="50">50</th><td>		<a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZN12tChunkWriter3EndEv" title='tChunkWriter::End' data-ref="_ZN12tChunkWriter3EndEv">End</a>();&nbsp</td></tr>
+<tr><th id="51">51</th><td>	}&nbsp</td></tr>
+<tr><th id="52">52</th><td>	<a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZN12tChunkWriter3EndEv" title='tChunkWriter::End' data-ref="_ZN12tChunkWriter3EndEv">End</a>();&nbsp</td></tr>
+<tr><th id="53">53</th><td>}&nbsp</td></tr>
+<tr><th id="54">54</th><td>&nbsp</td></tr>
+<tr><th id="55">55</th><td>&nbsp</td></tr>
+<tr><th id="56">56</th><td><em>void</em> <a class="type" href="../Inc/Scene/tLight.h.html#tScene::tLight" title='tScene::tLight' data-ref="tScene::tLight">tLight</a>::<dfn class="virtual decl def fn" id="_ZN6tScene6tLight4LoadERK6tChunk" title='tScene::tLight::Load' data-ref="_ZN6tScene6tLight4LoadERK6tChunk">Load</dfn>(<em>const</em> <a class="type" href="../../System/Inc/System/tChunk.h.html#tChunk" title='tChunk' data-ref="tChunk">tChunk</a>&amp; <dfn class="local col2 decl" id="2lightChunk" title='lightChunk' data-type='const tChunk &amp;' data-ref="2lightChunk">lightChunk</dfn>)&nbsp</td></tr>
+<tr><th id="57">57</th><td>{&nbsp</td></tr>
+<tr><th id="58">58</th><td>	<a class="macro" href="../../Foundation/Inc/Foundation/tAssert.h.html#26" title="if (!(lightChunk.ID() == tChunkID::Scene_Light)) tAssertPrintBreak(&quot;lightChunk.ID() == tChunkID::Scene_Light&quot;, &quot;/mnt/c/GitHub/tacent/Modules/Scene/Src/tLight.cpp&quot;, 58, nullptr)" data-ref="_M/tAssert">tAssert</a>(<a class="local col2 ref" href="#2lightChunk" title='lightChunk' data-ref="2lightChunk">lightChunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZNK6tChunk2IDEv" title='tChunk::ID' data-ref="_ZNK6tChunk2IDEv">ID</a>() == tChunkID::<a class="enum" href="../../System/Inc/System/tChunk.h.html#tChunkID::Scene_Light" title='tChunkID::Scene_Light' data-ref="tChunkID::Scene_Light">Scene_Light</a>);&nbsp</td></tr>
+<tr><th id="59">59</th><td>	<a class="member fn" href="#_ZN6tScene6tLight5ClearEv" title='tScene::tLight::Clear' data-ref="_ZN6tScene6tLight5ClearEv">Clear</a>();&nbsp</td></tr>
+<tr><th id="60">60</th><td>&nbsp</td></tr>
+<tr><th id="61">61</th><td>	<b>for</b> (<a class="type" href="../../System/Inc/System/tChunk.h.html#tChunk" title='tChunk' data-ref="tChunk">tChunk</a> <dfn class="local col3 decl" id="3chunk" title='chunk' data-type='tChunk' data-ref="3chunk">chunk</dfn> = <a class="local col2 ref" href="#2lightChunk" title='lightChunk' data-ref="2lightChunk">lightChunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZNK6tChunk5FirstEv" title='tChunk::First' data-ref="_ZNK6tChunk5FirstEv">First</a>(); <a class="local col3 ref" href="#3chunk" title='chunk' data-ref="3chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZNK6tChunk5ValidEv" title='tChunk::Valid' data-ref="_ZNK6tChunk5ValidEv">Valid</a>(); <a class="local col3 ref" href="#3chunk" title='chunk' data-ref="3chunk">chunk</a> <a class="ref fn" href="../../System/Inc/System/tChunk.h.html#224" title='tChunk::operator=' data-ref="_ZN6tChunkaSEOS_">=</a> <a class="local col3 ref" href="#3chunk" title='chunk' data-ref="3chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZNK6tChunk4NextEv" title='tChunk::Next' data-ref="_ZNK6tChunk4NextEv">Next</a>())&nbsp</td></tr>
+<tr><th id="62">62</th><td>	{&nbsp</td></tr>
+<tr><th id="63">63</th><td>		<b>switch</b> (<a class="local col3 ref" href="#3chunk" title='chunk' data-ref="3chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZNK6tChunk2IDEv" title='tChunk::ID' data-ref="_ZNK6tChunk2IDEv">ID</a>())&nbsp</td></tr>
+<tr><th id="64">64</th><td>		{&nbsp</td></tr>
+<tr><th id="65">65</th><td>			<b>case</b> <span class="namespace">tChunkID::</span><a class="enum" href="../../System/Inc/System/tChunk.h.html#tChunkID::Scene_Object" title='tChunkID::Scene_Object' data-ref="tChunkID::Scene_Object">Scene_Object</a>:&nbsp</td></tr>
+<tr><th id="66">66</th><td>				<a class="type" href="../Inc/Scene/tObject.h.html#tScene::tObject" title='tScene::tObject' data-ref="tScene::tObject">tObject</a>::<a class="virtual member fn" href="../Inc/Scene/tObject.h.html#_ZN6tScene7tObject4LoadERK6tChunk" title='tScene::tObject::Load' data-ref="_ZN6tScene7tObject4LoadERK6tChunk">Load</a>(<a class="local col3 ref" href="#3chunk" title='chunk' data-ref="3chunk">chunk</a>);&nbsp</td></tr>
+<tr><th id="67">67</th><td>				<b>break</b>;&nbsp</td></tr>
+<tr><th id="68">68</th><td>&nbsp</td></tr>
+<tr><th id="69">69</th><td>			<b>case</b> <span class="namespace">tChunkID::</span><a class="enum" href="../../System/Inc/System/tChunk.h.html#tChunkID::Scene_LightType" title='tChunkID::Scene_LightType' data-ref="tChunkID::Scene_LightType">Scene_LightType</a>:&nbsp</td></tr>
+<tr><th id="70">70</th><td>				<a class="local col3 ref" href="#3chunk" title='chunk' data-ref="3chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZNK6tChunk7GetItemERT_" title='tChunk::GetItem' data-ref="_ZNK6tChunk7GetItemERT_">GetItem</a>(<span class='inlayHint'>item&amp;:&nbsp;</span><span class='refarg'><a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::Type" title='tScene::tLight::Type' data-ref="tScene::tLight::Type">Type</a></span>);&nbsp</td></tr>
+<tr><th id="71">71</th><td>				<b>break</b>;&nbsp</td></tr>
+<tr><th id="72">72</th><td>&nbsp</td></tr>
+<tr><th id="73">73</th><td>			<b>case</b> <span class="namespace">tChunkID::</span><a class="enum" href="../../System/Inc/System/tChunk.h.html#tChunkID::Scene_LightParameters" title='tChunkID::Scene_LightParameters' data-ref="tChunkID::Scene_LightParameters">Scene_LightParameters</a>:&nbsp</td></tr>
+<tr><th id="74">74</th><td>				<a class="local col3 ref" href="#3chunk" title='chunk' data-ref="3chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZNK6tChunk7GetItemERT_" title='tChunk::GetItem' data-ref="_ZNK6tChunk7GetItemERT_">GetItem</a>(<span class='inlayHint'>item&amp;:&nbsp;</span><span class='refarg'><a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::AttenNearStart" title='tScene::tLight::AttenNearStart' data-ref="tScene::tLight::AttenNearStart">AttenNearStart</a></span>);&nbsp</td></tr>
+<tr><th id="75">75</th><td>				<a class="local col3 ref" href="#3chunk" title='chunk' data-ref="3chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZNK6tChunk7GetItemERT_" title='tChunk::GetItem' data-ref="_ZNK6tChunk7GetItemERT_">GetItem</a>(<span class='inlayHint'>item&amp;:&nbsp;</span><span class='refarg'><a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::AttenNearEnd" title='tScene::tLight::AttenNearEnd' data-ref="tScene::tLight::AttenNearEnd">AttenNearEnd</a></span>);&nbsp</td></tr>
+<tr><th id="76">76</th><td>				<a class="local col3 ref" href="#3chunk" title='chunk' data-ref="3chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZNK6tChunk7GetItemERT_" title='tChunk::GetItem' data-ref="_ZNK6tChunk7GetItemERT_">GetItem</a>(<span class='inlayHint'>item&amp;:&nbsp;</span><span class='refarg'><a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::AttenFarStart" title='tScene::tLight::AttenFarStart' data-ref="tScene::tLight::AttenFarStart">AttenFarStart</a></span>);&nbsp</td></tr>
+<tr><th id="77">77</th><td>				<a class="local col3 ref" href="#3chunk" title='chunk' data-ref="3chunk">chunk</a>.<a class="ref fn" href="../../System/Inc/System/tChunk.h.html#_ZNK6tChunk7GetItemERT_" title='tChunk::GetItem' data-ref="_ZNK6tChunk7GetItemERT_">GetItem</a>(<span class='inlayHint'>item&amp;:&nbsp;</span><span class='refarg'><a class="member field" href="../Inc/Scene/tLight.h.html#tScene::tLight::AttenFarEnd" title='tScene::tLight::AttenFarEnd' data-ref="tScene::tLight::AttenFarEnd">AttenFarEnd</a></span>);&nbsp</td></tr>
+<tr><th id="78">78</th><td>				<b>break</b>;&nbsp</td></tr>
+<tr><th id="79">79</th><td>		}&nbsp</td></tr>
+<tr><th id="80">80</th><td>	}&nbsp</td></tr>
+<tr><th id="81">81</th><td>}&nbsp</td></tr>
+<tr><th id="82">82</th><td>&nbsp</td></tr>
+<tr><th id="83">83</th><td>&nbsp</td></tr>
+<tr><th id="84">84</th><td>}&nbsp</td></tr>
+<tr><th id="85">85</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

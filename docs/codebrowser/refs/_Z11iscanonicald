@@ -1,0 +1,1 @@
+<def f='include/x86_64-linux-gnu/bits/iscanonical.h' l='48' type='int iscanonical(double __val)'/>

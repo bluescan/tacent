@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1273' ll='1297' type='void std::deque::resize(std::deque::size_type __new_size, const std::deque::value_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1262'>/**
+       *  @brief  Resizes the %deque to the specified number of elements.
+       *  @param  __new_size  Number of elements the %deque should contain.
+       *  @param  __x  Data with which new elements should be populated.
+       *
+       *  This function will %resize the %deque to the specified
+       *  number of elements.  If the number is smaller than the
+       *  %deque&apos;s current size the %deque is truncated, otherwise the
+       *  %deque is extended and new elements are populated with given
+       *  data.
+       */</doc>

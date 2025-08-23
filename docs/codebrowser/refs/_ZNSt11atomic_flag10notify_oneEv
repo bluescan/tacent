@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_base.h' l='254' ll='256' macro='1' type='void std::atomic_flag::notify_one()'/>
+<use f='include/c++/11/atomic' l='1271' u='c' c='_ZSt22atomic_flag_notify_onePSt11atomic_flag'/>

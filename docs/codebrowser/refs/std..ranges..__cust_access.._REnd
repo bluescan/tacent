@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/ranges_base.h' l='297' ll='335'/>
+<use f='include/c++/11/bits/ranges_base.h' l='354' c='_ZNKSt6ranges13__cust_access6_CREndclEOT_'/>
+<use f='include/c++/11/bits/ranges_base.h' l='355' c='_ZNKSt6ranges13__cust_access6_CREndclEOT_'/>
+<use f='include/c++/11/bits/ranges_base.h' l='357' c='_ZNKSt6ranges13__cust_access6_CREndclEOT_'/>
+<use f='include/c++/11/bits/ranges_base.h' l='566'/>
+<size>1</size>
+<fun r='_ZNSt6ranges13__cust_access5_REnd11_S_noexceptEv'/>
+<fun r='_ZNKSt6ranges13__cust_access5_REndclEOT_'/>

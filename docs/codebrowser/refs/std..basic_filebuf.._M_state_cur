@@ -1,0 +1,17 @@
+<dec f='include/c++/11/fstream' l='134' type='std::basic_filebuf::__state_type'/>
+<use f='include/c++/11/bits/fstream.tcc' l='82' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='101' u='w' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='132' u='w' c='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='160' c='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='197' u='w' c='_ZNSt13basic_filebuf4openEPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='399' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='424' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='627' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='650' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='920' u='w' c='_ZNSt13basic_filebuf7_M_seekENT0_8off_typeESt12_Ios_SeekdirNS0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='922' c='_ZNSt13basic_filebuf7_M_seekENT0_8off_typeESt12_Ios_SeekdirNS0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='978' c='_ZNSt13basic_filebuf19_M_terminate_outputEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1069' u='w' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<doc f='include/c++/11/fstream' l='131'>// During output, the state that corresponds to pptr(),
+      // during input, the state that corresponds to egptr() and
+      // _M_ext_next.</doc>

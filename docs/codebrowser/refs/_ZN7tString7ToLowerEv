@@ -1,0 +1,8 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='327' type='tString &amp; tString::ToLower()'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='331' u='c' c='_ZNK7tString5LowerEv'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='144' u='c' c='_ZN4tStd7tStrtobEPKc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='864' u='c' c='_ZN7tSystem11tExtensions3AddEPKc'/>
+<use f='Modules/Math/Src/tColour.cpp' l='417' u='c' c='_ZN5tMath10tGetColourEPKc'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='53' u='c' c='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='59' u='c' c='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1606' u='c' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>

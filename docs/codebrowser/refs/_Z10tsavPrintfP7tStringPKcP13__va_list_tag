@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='251' type='int tsavPrintf(tString * dest, const char * format, __va_list_tag * )'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='249'>// These variants also append, but if the dest tString pointer is nullptr a regular print is performed.
+// They both return the number of characters printed or appended.</doc>
+<def f='Modules/System/Src/tPrint.cpp' l='559' ll='569' type='int tsavPrintf(tString * dest, const char * format, __va_list_tag * argList)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='578' u='c' c='_Z9tsaPrintfP7tStringPKcz'/>

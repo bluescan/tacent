@@ -1,0 +1,7 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='256' type='void tExprWriter::WriteAtom(const tString &amp; )'/>
+<use f='Modules/System/Inc/System/tScript.h' l='306' u='c' c='_ZN11tExprWriter4AtomERK7tString'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='254'>// For the WriteAtom calls any attempt to write a floating point value that is a &quot;special&quot; IEEE bit-pattern (like
+	// Infinity, NAN, etc) will result in a value of 0.0 being written.</doc>
+<def f='Modules/System/Src/tScript.cpp' l='616' ll='640' type='void tExprWriter::WriteAtom(const tString &amp; atom)'/>
+<use f='Modules/System/Src/tScript.cpp' l='738' u='c' c='_ZN11tExprWriter9WriteAtomEfb'/>
+<use f='Modules/System/Src/tScript.cpp' l='746' u='c' c='_ZN11tExprWriter9WriteAtomEdb'/>

@@ -1,0 +1,8 @@
+<dec f='include/c++/11/ext/numeric_traits.h' l='164' type='const int'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='176' ll='177' type='const int'/>
+<use f='include/c++/11/bits/basic_string.h' l='6724' u='r' c='_ZNSt7__cxx119to_stringEf'/>
+<use f='include/c++/11/bits/basic_string.h' l='6733' u='r' c='_ZNSt7__cxx119to_stringEd'/>
+<use f='include/c++/11/bits/basic_string.h' l='6742' u='r' c='_ZNSt7__cxx119to_stringEe'/>
+<use f='include/c++/11/bits/basic_string.h' l='6827' u='r' c='_ZNSt7__cxx1110to_wstringEf'/>
+<use f='include/c++/11/bits/basic_string.h' l='6836' u='r' c='_ZNSt7__cxx1110to_wstringEd'/>
+<use f='include/c++/11/bits/basic_string.h' l='6845' u='r' c='_ZNSt7__cxx1110to_wstringEe'/>

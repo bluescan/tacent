@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='255' ll='271'/>
+<use f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='255'/>
+<size>136</size>
+<mbr r='TinyEXIF::EXIFInfo::LensInfo_t::FStopMin' o='0' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::LensInfo_t::FStopMax' o='64' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::LensInfo_t::FocalLengthMin' o='128' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::LensInfo_t::FocalLengthMax' o='192' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::LensInfo_t::DigitalZoomRatio' o='256' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::LensInfo_t::FocalLengthIn35mm' o='320' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::LensInfo_t::FocalPlaneXResolution' o='384' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::LensInfo_t::FocalPlaneYResolution' o='448' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::LensInfo_t::FocalPlaneResolutionUnit' o='512' t='uint16_t'/>
+<mbr r='TinyEXIF::EXIFInfo::LensInfo_t::Make' o='576' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::LensInfo_t::Model' o='832' t='std::string'/>

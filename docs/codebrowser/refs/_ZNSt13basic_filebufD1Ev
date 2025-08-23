@@ -1,0 +1,4 @@
+<def f='include/c++/11/fstream' l='250' ll='257' type='void std::basic_filebuf::~basic_filebuf&lt;_CharT, _Traits&gt;()'/>
+<doc f='include/c++/11/fstream' l='247'>/**
+       *  @brief  The destructor closes the file first.
+       */</doc>

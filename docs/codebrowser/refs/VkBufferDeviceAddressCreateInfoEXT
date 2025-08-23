@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14133' ll='14137'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14133'/>
+<size>24</size>
+<mbr r='VkBufferDeviceAddressCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBufferDeviceAddressCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkBufferDeviceAddressCreateInfoEXT::deviceAddress' o='128' t='VkDeviceAddress'/>

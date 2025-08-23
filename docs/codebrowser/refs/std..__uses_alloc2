@@ -1,0 +1,9 @@
+<inh f='include/c++/11/bits/uses_allocator.h' l='72' c='std::__uses_alloc_base'/>
+<def f='include/c++/11/bits/uses_allocator.h' l='83'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='93'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='179' c='_ZSt31__uses_allocator_construct_implSt13__uses_alloc2IT0_EPT_DpOT1_'/>
+<use f='include/c++/11/tuple' l='104' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt15allocator_arg_tSt13__uses_alloc2ITL0__E'/>
+<use f='include/c++/11/tuple' l='120' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt13__uses_alloc2ITL0__EOTL0_0_'/>
+<use f='include/c++/11/tuple' l='213' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt15allocator_arg_tSt13__uses_alloc2ITL0__E'/>
+<use f='include/c++/11/tuple' l='229' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt13__uses_alloc2ITL0__EOTL0_0_'/>
+<mbr r='std::__uses_alloc2::_M_a' t='const _Alloc *'/>

@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='317' type='166'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='315'>/** UASTC is a transcodable subset of ASTC
+        with additions to support the transcoding. */</doc>

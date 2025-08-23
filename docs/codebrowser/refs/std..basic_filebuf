@@ -1,0 +1,124 @@
+<use f='include/c++/11/iosfwd' l='159'/>
+<use f='include/c++/11/iosfwd' l='199'/>
+<def f='include/c++/11/fstream' l='85' ll='480'/>
+<use f='include/c++/11/fstream' l='110'/>
+<use f='include/c++/11/fstream' l='508'/>
+<use f='include/c++/11/fstream' l='769'/>
+<use f='include/c++/11/fstream' l='1032'/>
+<use f='include/c++/11/fstream' l='1269' c='_ZSt4swapRSt13basic_filebufIT_T0_ES3_'/>
+<use f='include/c++/11/fstream' l='1270' c='_ZSt4swapRSt13basic_filebufIT_T0_ES3_'/>
+<use f='include/c++/11/bits/fstream.tcc' l='49' c='_ZNSt13basic_filebuf27_M_allocate_internal_bufferEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='63' c='_ZNSt13basic_filebuf26_M_destroy_internal_bufferEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='80' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='95' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='124' c='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='123' c='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='153' c='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='179' c='_ZNSt13basic_filebuf4openEPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='178' c='_ZNSt13basic_filebuf4openEPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='249' c='_ZNSt13basic_filebuf5closeEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='248' c='_ZNSt13basic_filebuf5closeEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='297' c='_ZNSt13basic_filebuf9showmanycEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='323' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='322' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='482' c='_ZNSt13basic_filebuf9pbackfailENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='481' c='_ZNSt13basic_filebuf9pbackfailENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='541' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='540' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='606' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='669' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='755' c='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='803' c='_ZNSt13basic_filebuf6setbufEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='802' c='_ZNSt13basic_filebuf6setbufEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='832' c='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='831' c='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='892' c='_ZNSt13basic_filebuf7seekposENT0_8pos_typeESt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='891' c='_ZNSt13basic_filebuf7seekposENT0_8pos_typeESt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='907' c='_ZNSt13basic_filebuf7_M_seekENT0_8off_typeESt12_Ios_SeekdirNS0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='906' c='_ZNSt13basic_filebuf7_M_seekENT0_8off_typeESt12_Ios_SeekdirNS0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='932' c='_ZNSt13basic_filebuf14_M_get_ext_posERNT0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='951' c='_ZNSt13basic_filebuf19_M_terminate_outputEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1012' c='_ZNSt13basic_filebuf4syncEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1029' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<inh f='include/c++/11/bits/streambuf.tcc' l='149' c='std::basic_streambuf'/>
+<def f='include/c++/11/bits/fstream.tcc' l='1086'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1086'/>
+<inh f='include/c++/11/bits/streambuf.tcc' l='160' c='std::basic_streambuf'/>
+<def f='include/c++/11/bits/fstream.tcc' l='1092'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1092'/>
+<size>240</size>
+<mbr r='std::basic_filebuf::_M_lock' t='std::__c_lock'/>
+<mbr r='std::basic_filebuf::_M_file' t='std::basic_filebuf::__file_type'/>
+<mbr r='std::basic_filebuf::_M_mode' t='ios_base::openmode'/>
+<mbr r='std::basic_filebuf::_M_state_beg' t='std::basic_filebuf::__state_type'/>
+<mbr r='std::basic_filebuf::_M_state_cur' t='std::basic_filebuf::__state_type'/>
+<mbr r='std::basic_filebuf::_M_state_last' t='std::basic_filebuf::__state_type'/>
+<mbr r='std::basic_filebuf::_M_buf' t='std::basic_filebuf::char_type *'/>
+<mbr r='std::basic_filebuf::_M_buf_size' t='std::size_t'/>
+<mbr r='std::basic_filebuf::_M_buf_allocated' t='bool'/>
+<mbr r='std::basic_filebuf::_M_reading' t='bool'/>
+<mbr r='std::basic_filebuf::_M_writing' t='bool'/>
+<mbr r='std::basic_filebuf::_M_pback' t='std::basic_filebuf::char_type'/>
+<mbr r='std::basic_filebuf::_M_pback_cur_save' t='std::basic_filebuf::char_type *'/>
+<mbr r='std::basic_filebuf::_M_pback_end_save' t='std::basic_filebuf::char_type *'/>
+<mbr r='std::basic_filebuf::_M_pback_init' t='bool'/>
+<mbr r='std::basic_filebuf::_M_codecvt' t='const std::basic_filebuf::__codecvt_type *'/>
+<mbr r='std::basic_filebuf::_M_ext_buf' t='char *'/>
+<mbr r='std::basic_filebuf::_M_ext_buf_size' t='std::streamsize'/>
+<mbr r='std::basic_filebuf::_M_ext_next' t='const char *'/>
+<mbr r='std::basic_filebuf::_M_ext_end' t='char *'/>
+<fun r='_ZNSt13basic_filebuf15_M_create_pbackEv'/>
+<fun r='_ZNSt13basic_filebuf16_M_destroy_pbackEv'/>
+<fun r='_ZNSt13basic_filebufC1Ev'/>
+<fun r='_ZNSt13basic_filebufC1ERKSt13basic_filebufIT_T0_E'/>
+<fun r='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<fun r='_ZNSt13basic_filebufD1Ev'/>
+<fun r='_ZNSt13basic_filebufaSERKSt13basic_filebufIT_T0_E'/>
+<fun r='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<fun r='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>
+<fun r='_ZNKSt13basic_filebuf7is_openEv'/>
+<fun r='_ZNSt13basic_filebuf4openEPKcSt13_Ios_Openmode'/>
+<fun r='_ZNSt13basic_filebuf4openERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt13_Ios_Openmode'/>
+<fun r='_ZNSt13basic_filebuf4openERKTL0__St13_Ios_Openmode'/>
+<fun r='_ZNSt13basic_filebuf5closeEv'/>
+<fun r='_ZNSt13basic_filebuf27_M_allocate_internal_bufferEv'/>
+<fun r='_ZNSt13basic_filebuf26_M_destroy_internal_bufferEv'/>
+<fun r='_ZNSt13basic_filebuf9showmanycEv'/>
+<fun r='_ZNSt13basic_filebuf9underflowEv'/>
+<fun r='_ZNSt13basic_filebuf9pbackfailENT0_8int_typeE'/>
+<fun r='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<fun r='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<fun r='_ZNSt13basic_filebuf6setbufEPT_l'/>
+<fun r='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<fun r='_ZNSt13basic_filebuf7seekposENT0_8pos_typeESt13_Ios_Openmode'/>
+<fun r='_ZNSt13basic_filebuf7_M_seekENT0_8off_typeESt12_Ios_SeekdirNS0_10state_typeE'/>
+<fun r='_ZNSt13basic_filebuf14_M_get_ext_posERNT0_10state_typeE'/>
+<fun r='_ZNSt13basic_filebuf4syncEv'/>
+<fun r='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<fun r='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<fun r='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
+<fun r='_ZNSt13basic_filebuf19_M_terminate_outputEv'/>
+<fun r='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<fun r='_ZNSt13basic_filebuf27_M_allocate_internal_bufferEv'/>
+<fun r='_ZNSt13basic_filebuf26_M_destroy_internal_bufferEv'/>
+<fun r='_ZNSt13basic_filebufC1Ev'/>
+<fun r='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<fun r='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<fun r='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>
+<fun r='_ZNSt13basic_filebuf4openEPKcSt13_Ios_Openmode'/>
+<fun r='_ZNSt13basic_filebuf5closeEv'/>
+<fun r='_ZNSt13basic_filebuf9showmanycEv'/>
+<fun r='_ZNSt13basic_filebuf9underflowEv'/>
+<fun r='_ZNSt13basic_filebuf9pbackfailENT0_8int_typeE'/>
+<fun r='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<fun r='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<fun r='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<fun r='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
+<fun r='_ZNSt13basic_filebuf6setbufEPT_l'/>
+<fun r='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<fun r='_ZNSt13basic_filebuf7seekposENT0_8pos_typeESt13_Ios_Openmode'/>
+<fun r='_ZNSt13basic_filebuf7_M_seekENT0_8off_typeESt12_Ios_SeekdirNS0_10state_typeE'/>
+<fun r='_ZNSt13basic_filebuf14_M_get_ext_posERNT0_10state_typeE'/>
+<fun r='_ZNSt13basic_filebuf19_M_terminate_outputEv'/>
+<fun r='_ZNSt13basic_filebuf4syncEv'/>
+<fun r='_ZNSt13basic_filebuf5imbueERKSt6locale'/>

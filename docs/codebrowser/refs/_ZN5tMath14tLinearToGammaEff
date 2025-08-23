@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='276' type='float tMath::tLinearToGamma(float linearComponent, float gamma = DefaultGamma)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='992' ll='995' type='float tMath::tLinearToGamma(float linearComponent, float gamma = DefaultGamma)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1277' u='c' c='_ZN9tColour4f13LinearToGammaEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1278' u='c' c='_ZN9tColour4f13LinearToGammaEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1279' u='c' c='_ZN9tColour4f13LinearToGammaEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1280' u='c' c='_ZN9tColour4f13LinearToGammaEfj'/>

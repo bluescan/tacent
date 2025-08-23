@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1654' type='const char * ktxSupercompressionSchemeString(ktxSupercmpScheme scheme)'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1650'>/*
+ * Returns a string corresponding to a supercompression scheme.
+ */</doc>

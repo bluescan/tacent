@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/ranges_base.h' l='888' ll='893'/>
+<use f='include/c++/11/bits/ranges_base.h' l='898'/>
+<size>1</size>
+<doc f='include/c++/11/bits/ranges_base.h' l='887'>/// Type returned by algorithms instead of a dangling iterator or subrange.</doc>
+<fun r='_ZNSt6ranges8danglingC1Ev'/>
+<fun r='_ZNSt6ranges8danglingC1EDpOT_'/>
+<use f='include/c++/11/bits/ranges_util.h' l='397'/>
+<size>1</size>

@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='449' type='const char *[66]'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='448'>// The &apos;User&apos; aspect ratio name is included in this array as the last item.</doc>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='666' ll='722' type='const char *[66]'/>

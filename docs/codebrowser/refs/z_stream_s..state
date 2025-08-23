@@ -1,0 +1,3 @@
+<dec f='include/zlib.h' l='96' type='struct internal_state *'/>
+<offset>448</offset>
+<doc f='include/zlib.h' l='96'>/* not visible by applications */</doc>

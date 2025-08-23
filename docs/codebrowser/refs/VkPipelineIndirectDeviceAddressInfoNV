@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17308' ll='17313'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17308'/>
+<size>32</size>
+<mbr r='VkPipelineIndirectDeviceAddressInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineIndirectDeviceAddressInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineIndirectDeviceAddressInfoNV::pipelineBindPoint' o='128' t='VkPipelineBindPoint'/>
+<mbr r='VkPipelineIndirectDeviceAddressInfoNV::pipeline' o='192' t='VkPipeline'/>

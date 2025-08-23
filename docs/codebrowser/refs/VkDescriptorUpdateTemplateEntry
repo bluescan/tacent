@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5472' ll='5479'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5472'/>
+<size>32</size>
+<mbr r='VkDescriptorUpdateTemplateEntry::dstBinding' o='0' t='uint32_t'/>
+<mbr r='VkDescriptorUpdateTemplateEntry::dstArrayElement' o='32' t='uint32_t'/>
+<mbr r='VkDescriptorUpdateTemplateEntry::descriptorCount' o='64' t='uint32_t'/>
+<mbr r='VkDescriptorUpdateTemplateEntry::descriptorType' o='96' t='VkDescriptorType'/>
+<mbr r='VkDescriptorUpdateTemplateEntry::offset' o='128' t='size_t'/>
+<mbr r='VkDescriptorUpdateTemplateEntry::stride' o='192' t='size_t'/>

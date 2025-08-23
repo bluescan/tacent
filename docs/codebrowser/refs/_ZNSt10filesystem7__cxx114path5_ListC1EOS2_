@@ -1,0 +1,2 @@
+<use f='include/c++/11/bits/fs_path.h' l='279' u='c' c='_ZNSt10filesystem7__cxx114pathC1EOS1_'/>
+<def f='include/c++/11/bits/fs_path.h' l='644' type='void std::filesystem::path::_List::_List(std::filesystem::path::_List &amp;&amp; )'/>

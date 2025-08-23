@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/char_traits.h' l='832' u='c' c='_ZNSt11char_traitsIDsE11to_int_typeERKDs'/>
+<def f='include/c++/11/bits/char_traits.h' l='838' ll='840' type='static std::char_traits&lt;char16_t&gt;::int_type std::char_traits&lt;char16_t&gt;::eof()'/>
+<use f='include/c++/11/bits/char_traits.h' l='844' u='c' c='_ZNSt11char_traitsIDsE7not_eofERKt'/>

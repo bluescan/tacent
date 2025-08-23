@@ -1,0 +1,16 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6089' ll='6103'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6089'/>
+<size>88</size>
+<mbr r='VkSubpassDescription2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSubpassDescription2::pNext' o='64' t='const void *'/>
+<mbr r='VkSubpassDescription2::flags' o='128' t='VkSubpassDescriptionFlags'/>
+<mbr r='VkSubpassDescription2::pipelineBindPoint' o='160' t='VkPipelineBindPoint'/>
+<mbr r='VkSubpassDescription2::viewMask' o='192' t='uint32_t'/>
+<mbr r='VkSubpassDescription2::inputAttachmentCount' o='224' t='uint32_t'/>
+<mbr r='VkSubpassDescription2::pInputAttachments' o='256' t='const VkAttachmentReference2 *'/>
+<mbr r='VkSubpassDescription2::colorAttachmentCount' o='320' t='uint32_t'/>
+<mbr r='VkSubpassDescription2::pColorAttachments' o='384' t='const VkAttachmentReference2 *'/>
+<mbr r='VkSubpassDescription2::pResolveAttachments' o='448' t='const VkAttachmentReference2 *'/>
+<mbr r='VkSubpassDescription2::pDepthStencilAttachment' o='512' t='const VkAttachmentReference2 *'/>
+<mbr r='VkSubpassDescription2::preserveAttachmentCount' o='576' t='uint32_t'/>
+<mbr r='VkSubpassDescription2::pPreserveAttachments' o='640' t='const uint32_t *'/>

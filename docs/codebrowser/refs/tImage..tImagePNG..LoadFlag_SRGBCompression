@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tImagePNG.h' l='35' type='2'/>
+<doc f='Modules/Image/Inc/Image/tImagePNG.h' l='35'>// Same as above but uses the official sRGB transformation. Linear -&gt; sRGB. Approx encoding gamma of 1/2.4 for part of curve.</doc>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='304' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='306' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='382' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='413' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>

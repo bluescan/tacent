@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='534' type='2164441088'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='534'>// Object groups. These groups are in a separate list because the are not visible objects in the world.</doc>
+<use f='Modules/Scene/Src/tWorld.cpp' l='523' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1131' u='r' c='_ZNK6tScene6tWorld10SaveGroupsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1227' u='r' c='_ZN6tScene6tWorld10LoadGroupsERK6tChunkR7tItListINS_9tLodGroupEE'/>

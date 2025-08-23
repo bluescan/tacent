@@ -1,0 +1,1 @@
+<dec f='include/time.h' l='202' type='char * ctime_r(const time_t *__restrict __timer, char *__restrict __buf)'/>

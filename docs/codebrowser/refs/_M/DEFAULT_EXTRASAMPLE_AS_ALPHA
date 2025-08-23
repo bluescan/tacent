@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='103'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='100'>/* Treat extra sample as alpha (default enabled). The RGBA interface will
+   treat a fourth sample with no EXTRASAMPLE_ value as being ASSOCALPHA. Many
+   packages produce RGBA files but don&apos;t mark the alpha properly. */</doc>

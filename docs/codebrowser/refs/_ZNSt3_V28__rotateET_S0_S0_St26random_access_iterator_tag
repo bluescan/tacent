@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algo.h' l='1296' ll='1377' macro='1' type='_RandomAccessIterator std::__rotate(_RandomAccessIterator __first, _RandomAccessIterator __middle, _RandomAccessIterator __last, std::random_access_iterator_tag )'/>

@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='981' type='char * getpass(const char * __prompt)'/>
+<doc f='include/unistd.h' l='979'>/* Prompt with PROMPT and read a string from the terminal without echoing.
+   Uses /dev/tty if possible; otherwise stderr and stdin.  */</doc>

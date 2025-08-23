@@ -1,0 +1,5 @@
+<def f='Modules/Image/Src/tQuantizeFixed.cpp' l='205' ll='208' type='tColour3b[2]'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='208' u='r'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='208' u='r'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='298' u='r' c='_ZN6tImage14tQuantizeFixed13QuantizeImageEiiiPK9tColour3bPS1_Phb'/>
+<doc f='Modules/Image/Src/tQuantizeFixed.cpp' l='204'>// Generated fixed 2 colour palette.</doc>

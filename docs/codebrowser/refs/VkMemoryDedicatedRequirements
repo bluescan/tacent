@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5161' ll='5166'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5161'/>
+<size>24</size>
+<mbr r='VkMemoryDedicatedRequirements::sType' o='0' t='VkStructureType'/>
+<mbr r='VkMemoryDedicatedRequirements::pNext' o='64' t='void *'/>
+<mbr r='VkMemoryDedicatedRequirements::prefersDedicatedAllocation' o='128' t='VkBool32'/>
+<mbr r='VkMemoryDedicatedRequirements::requiresDedicatedAllocation' o='160' t='VkBool32'/>

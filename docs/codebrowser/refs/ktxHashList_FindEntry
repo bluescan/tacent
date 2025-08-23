@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1694' type='ktx_error_code_e ktxHashList_FindEntry(ktxHashList * pHead, const char * key, ktxHashListEntry ** ppEntry)'/>

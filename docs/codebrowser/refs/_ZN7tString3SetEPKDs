@@ -1,0 +1,2 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='75' u='c' c='_ZN7tStringC1EPKDs'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='93' type='void tString::Set(const char16_t * src)'/>

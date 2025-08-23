@@ -1,0 +1,22 @@
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1495' ll='1616'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1495'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1475'>/**
+ * @~English
+ * @brief Enumerators for specifying the transcode target format.
+ *
+ * For BasisU/ETC1S format, @e Opaque and @e alpha here refer to 2 separate
+ * RGB images, a.k.a slices within the BasisU compressed data. For UASTC
+ * format they refer to the RGB and the alpha components of the UASTC data. If
+ * the original image had only 2 components, R will be in the opaque portion
+ * and G in the alpha portion. The R value will be replicated in the RGB
+ * components. In the case of BasisU the G value will be replicated in all 3
+ * components of the alpha slice. If the original image had only 1 component
+ * it&apos;s value is replicated in all 3 components of the opaque portion and
+ * there is no alpha.
+ *
+ * @note You should not transcode sRGB encoded data to @c KTX_TTF_BC4_R,
+ * @c KTX_TTF_BC5_RG, @c KTX_TTF_ETC2_EAC_R{,G}11, @c KTX_TTF_RGB565,
+ * @c KTX_TTF_BGR565 or @c KTX_TTF_RGBA4444 formats as neither OpenGL nor
+ * Vulkan support sRGB variants of these. Doing sRGB decoding in the shader
+ * will not produce correct results if any texture filtering is being used.
+ */</doc>

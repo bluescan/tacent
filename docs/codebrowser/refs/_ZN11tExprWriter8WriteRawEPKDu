@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='278' type='void tExprWriter::WriteRaw(const char8_t * )'/>
+<use f='Modules/System/Inc/System/tScript.h' l='324' u='c' c='_ZN11tExprWriter3RawEPKDu'/>
+<def f='Modules/System/Inc/System/tScript.h' l='450' ll='454' type='void tExprWriter::WriteRaw(const char8_t * atom)'/>

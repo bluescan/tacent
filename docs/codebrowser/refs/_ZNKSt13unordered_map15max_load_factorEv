@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1095' ll='1097' type='float std::unordered_map::max_load_factor() const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1093'>/// Returns a positive number that the %unordered_map tries to keep the
+      /// load factor less than or equal to.</doc>

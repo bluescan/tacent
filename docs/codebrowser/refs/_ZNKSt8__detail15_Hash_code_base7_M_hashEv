@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/hashtable_policy.h' l='1203' u='c' c='_ZNKSt8__detail15_Hash_code_base13hash_functionEv'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1219' u='c' c='_ZNKSt8__detail15_Hash_code_base12_M_hash_codeERKT_'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1228' u='c' c='_ZNKSt8__detail15_Hash_code_base15_M_hash_code_trERKTL0__'/>
+<def f='include/c++/11/bits/hashtable_policy.h' l='1275' ll='1276' type='const _Hash &amp; std::__detail::_Hash_code_base::_M_hash() const'/>

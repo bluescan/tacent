@@ -1,0 +1,7 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='547' type='void tStringUTF32::Clear()'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1092' u='c' c='_ZN12tStringUTF323SetERK7tString'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1100' u='c' c='_ZN12tStringUTF323SetERK12tStringUTF16'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1108' u='c' c='_ZN12tStringUTF323SetERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1137' u='c' c='_ZN12tStringUTF323SetEPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1153' u='c' c='_ZN12tStringUTF323SetEPKDsi'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1169' u='c' c='_ZN12tStringUTF323SetEPKDii'/>

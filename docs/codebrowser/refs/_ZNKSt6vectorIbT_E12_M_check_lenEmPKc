@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='1306' ll='1314' type='std::vector&lt;bool, type-parameter-0-0&gt;::size_type std::vector&lt;bool, type-parameter-0-0&gt;::_M_check_len(std::vector&lt;bool, type-parameter-0-0&gt;::size_type __n, const char * __s) const'/>
+<use f='include/c++/11/bits/vector.tcc' l='839' u='c' c='_ZNSt6vectorIbT_E14_M_fill_insertESt13_Bit_iteratormb'/>
+<use f='include/c++/11/bits/vector.tcc' l='874' u='c' c='_ZNSt6vectorIbT_E15_M_insert_rangeESt13_Bit_iteratorTL0__S3_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/vector.tcc' l='903' u='c' c='_ZNSt6vectorIbT_E13_M_insert_auxESt13_Bit_iteratorb'/>

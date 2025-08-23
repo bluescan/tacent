@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8990'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8989'>// VK_KHR_external_fence_fd is a preprocessor guard. Do not pass it to API calls.</doc>

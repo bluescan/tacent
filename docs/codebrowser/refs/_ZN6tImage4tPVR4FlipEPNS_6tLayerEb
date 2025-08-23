@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Src/tImagePVR.cpp' l='239' type='void tImage::tPVR::Flip(tImage::tLayer * , bool horizontal)'/>
+<def f='Modules/Image/Src/tImagePVR.cpp' l='604' ll='621' type='void tImage::tPVR::Flip(tImage::tLayer * layer, bool horizontal)'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1037' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1039' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>

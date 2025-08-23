@@ -1,0 +1,2 @@
+<dec f='include/inttypes.h' l='293' type='imaxdiv_t imaxdiv(intmax_t __numer, intmax_t __denom)'/>
+<doc f='include/inttypes.h' l='292'>/* Return the `imaxdiv_t&apos; representation of the value of NUMER over DENOM. */</doc>

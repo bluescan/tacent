@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/unordered_map.h' l='200' ll='203' type='void std::unordered_map::unordered_map&lt;_Key, _Tp, _Hash, _Pred, _Alloc&gt;(const unordered_map&lt;_Key, _Tp, _Hash, _Pred, _Alloc&gt; &amp; __umap, const std::unordered_map::allocator_type &amp; __a)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='195'>/*
+       *  @brief Copy constructor with allocator argument.
+       * @param  __uset  Input %unordered_map to copy.
+       * @param  __a  An allocator object.
+       */</doc>

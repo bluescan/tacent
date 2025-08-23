@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_dir.h' l='322' ll='325' type='basic_ostream&lt;_CharT, _Traits&gt; &amp; std::filesystem::operator&lt;&lt;(basic_ostream&lt;_CharT, _Traits&gt; &amp; __os, const std::filesystem::directory_entry &amp; __d)'/>

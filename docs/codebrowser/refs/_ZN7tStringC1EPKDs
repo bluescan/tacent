@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='75' type='void tString::tString(const char16_t * src)'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='184' u='c' c='_ZN8tCmdLine6tParseEiPPDsb'/>

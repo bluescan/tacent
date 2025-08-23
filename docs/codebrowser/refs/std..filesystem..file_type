@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/fs_fwd.h' l='78' ll='81'/>
+<use f='include/c++/11/bits/fs_dir.h' l='61' c='_ZNSt10filesystem11file_statusC1ENS_9file_typeENS_5permsE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='72' c='_ZNKSt10filesystem11file_status4typeEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='76' c='_ZNSt10filesystem11file_status4typeENS_9file_typeE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='85'/>
+<use f='include/c++/11/bits/fs_dir.h' l='327' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathENS_9file_typeE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='332' c='_ZNKSt10filesystem7__cxx1115directory_entry12_M_file_typeEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='341' c='_ZNKSt10filesystem7__cxx1115directory_entry12_M_file_typeERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='353'/>
+<doc f='include/c++/11/bits/fs_fwd.h' l='77'>/// Enumerated type representing the type of a file</doc>

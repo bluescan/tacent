@@ -1,0 +1,7 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='58' type='T tMath::tSaturate(T val)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='784' u='c' c='_ZN5tMath13tLinearInterpEfT_S0_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1006' u='c' c='_ZN5tMath13tSRGBToLinearEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1018' u='c' c='_ZN5tMath13tLinearToSRGBEf'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='943' u='c' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='997' u='c' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='998' u='c' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>

@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/hashtable_policy.h' l='447' u='w' c='_ZNSt8__detail20_Prime_rehash_policyC1Ef'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='474' u='r' c='_ZNKSt8__detail20_Prime_rehash_policy8_M_stateEv'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='478' u='w' c='_ZNSt8__detail20_Prime_rehash_policy8_M_resetEv'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='482' u='w' c='_ZNSt8__detail20_Prime_rehash_policy8_M_resetEm'/>
+<dec f='include/c++/11/bits/hashtable_policy.h' l='487' type='std::size_t'/>
+<offset>64</offset>

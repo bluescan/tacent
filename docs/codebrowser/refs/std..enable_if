@@ -1,0 +1,72 @@
+<def f='include/c++/11/type_traits' l='2193' ll='2194'/>
+<def f='include/c++/11/type_traits' l='2197' ll='2199'/>
+<use f='include/c++/11/type_traits' l='2205'/>
+<use f='include/c++/11/type_traits' l='2579'/>
+<use f='include/c++/11/type_traits' l='3448'/>
+<use f='include/c++/11/bits/move.h' l='190' c='_ZSt4swapRT_S0_'/>
+<use f='include/c++/11/bits/move.h' l='216' c='_ZSt4swapRAT0__T_S1_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='227'/>
+<use f='include/c++/11/bits/stl_pair.h' l='238'/>
+<use f='include/c++/11/bits/stl_pair.h' l='261'/>
+<use f='include/c++/11/bits/stl_pair.h' l='271'/>
+<use f='include/c++/11/bits/stl_pair.h' l='295'/>
+<use f='include/c++/11/bits/stl_pair.h' l='304'/>
+<use f='include/c++/11/bits/stl_pair.h' l='319'/>
+<use f='include/c++/11/bits/stl_pair.h' l='326'/>
+<use f='include/c++/11/bits/stl_pair.h' l='333'/>
+<use f='include/c++/11/bits/stl_pair.h' l='340'/>
+<use f='include/c++/11/bits/stl_pair.h' l='347'/>
+<use f='include/c++/11/bits/stl_pair.h' l='356'/>
+<use f='include/c++/11/bits/stl_pair.h' l='366'/>
+<use f='include/c++/11/bits/stl_pair.h' l='376'/>
+<use f='include/c++/11/bits/stl_pair.h' l='415' c='_ZNSt4pairaSERKSt4pairITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_pair.h' l='427' c='_ZNSt4pairaSEOSt4pairITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_pair.h' l='528' c='_ZSt4swapRSt4pairIT_T0_ES3_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='539' c='_ZSt4swapRSt4pairIT_T0_ES3_'/>
+<use f='include/c++/11/utility' l='96'/>
+<use f='include/c++/11/array' l='342' c='_ZSt4swapRSt5arrayIT_XT0_EES2_'/>
+<use f='include/c++/11/array' l='354' c='_ZSt4swapRSt5arrayIT_XT0_EES2_'/>
+<use f='include/c++/11/tuple' l='1730'/>
+<use f='include/c++/11/tuple' l='1755' c='_ZSt4swapRSt5tupleIJDpT_EES3_'/>
+<use f='include/c++/11/tuple' l='1767' c='_ZSt4swapRSt5tupleIJDpT_EES3_'/>
+<use f='include/c++/11/bits/refwrap.h' l='310'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='808'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='812'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1026'/>
+<use f='include/c++/11/functional' l='275'/>
+<use f='include/c++/11/functional' l='472'/>
+<doc f='include/c++/11/type_traits' l='2196'>// Partial specialization for true.</doc>
+<use f='include/c++/11/chrono' l='256'/>
+<use f='include/c++/11/chrono' l='260'/>
+<use f='include/c++/11/chrono' l='603' c='_ZNSt6chrono8durationrMERKT_'/>
+<use f='include/c++/11/chrono' l='613' c='_ZNSt6chrono8durationrMERKNS_8durationIT_T0_EE'/>
+<use f='include/c++/11/chrono' l='680'/>
+<use f='include/c++/11/chrono' l='955' c='_ZNSt6chrono15time_point_castERKNS_10time_pointIT0_T1_EE'/>
+<use f='include/c++/11/bits/nested_exception.h' l='134'/>
+<use f='include/c++/11/system_error' l='206'/>
+<use f='include/c++/11/system_error' l='223' c='_ZNSt10error_codeaSET_'/>
+<use f='include/c++/11/system_error' l='307'/>
+<use f='include/c++/11/system_error' l='320' c='_ZNSt15error_conditionaSET_'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='115' c='_ZNKSt14default_deleteIA_T_EclEPTL0__'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='144'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='381' c='_ZNSt10unique_ptraSEOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='544'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='634' c='_ZNSt10unique_ptrIA_T_T0_EaSEOS_ITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='734' c='_ZSt4swapRSt10unique_ptrIT_T0_ES3_'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='744' c='_ZSt4swapRSt10unique_ptrIT_T0_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='263'/>
+<use f='include/c++/11/bits/random.h' l='502'/>
+<use f='include/c++/11/bits/random.h' l='702'/>
+<use f='include/c++/11/bits/random.h' l='894'/>
+<use f='include/c++/11/bits/random.h' l='1113'/>
+<use f='include/c++/11/bits/random.h' l='1336'/>
+<use f='include/c++/11/pstl/execution_defs.h' l='151'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1062'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1067'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1377' c='_ZNSt12__shared_ptr31_M_enable_shared_from_this_withEPTL0__'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1385' c='_ZNSt12__shared_ptr31_M_enable_shared_from_this_withEPTL0__'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1595'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='125'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='130'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='689'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='694'/>

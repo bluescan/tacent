@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='126' type='int tSystem::tComparePaths(const tString &amp; pathA, const tString &amp; pathB, bool forceSimplify = false)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='125'>// Similar to above but compares the paths alphabetically and returns -1 if a&lt;b, 0 if a==b, or 1 if a&gt;b.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='261' ll='272' type='int tSystem::tComparePaths(const tString &amp; pathA, const tString &amp; pathB, bool forceSimplify = false)'/>
+<use f='Modules/System/Src/tFile.cpp' l='277' u='c' c='_ZN7tSystem11tPathsEqualERK7tStringS2_b'/>

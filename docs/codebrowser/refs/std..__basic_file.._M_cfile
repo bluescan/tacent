@@ -1,0 +1,8 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='57' type='std::__c_file *'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='67' u='w' c='_ZNSt12__basic_fileIcEC1EOS0_P15pthread_mutex_t'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='67' u='r' c='_ZNSt12__basic_fileIcEC1EOS0_P15pthread_mutex_t'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='69' u='w' c='_ZNSt12__basic_fileIcEC1EOS0_P15pthread_mutex_t'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='79' u='a' c='_ZNSt12__basic_fileIcE4swapERS0_'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='79' u='a' c='_ZNSt12__basic_fileIcE4swapERS0_'/>
+<offset>0</offset>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='56'>// Underlying data source/sink.</doc>

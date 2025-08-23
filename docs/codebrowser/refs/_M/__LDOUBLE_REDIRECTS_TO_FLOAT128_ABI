@@ -1,0 +1,19 @@
+<dec f='include/x86_64-linux-gnu/bits/long-double.h' l='21'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='563' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='614' u='c'/>
+<dec f='include/x86_64-linux-gnu/bits/long-double.h' l='21'/>
+<use f='include/stdlib.h' l='1031' u='c'/>
+<use f='include/math.h' l='360' u='c'/>
+<use f='include/math.h' l='407' u='c'/>
+<use f='include/math.h' l='580' u='c'/>
+<use f='include/math.h' l='592' u='c'/>
+<use f='include/math.h' l='609' u='c'/>
+<use f='include/math.h' l='621' u='c'/>
+<use f='include/stdio.h' l='432' u='c'/>
+<use f='include/stdio.h' l='478' u='c'/>
+<use f='include/stdio.h' l='898' u='c'/>
+<doc f='include/x86_64-linux-gnu/bits/long-double.h' l='19'>/* long double is distinct from double, so there is nothing to
+   define here.  */</doc>
+<use f='include/wchar.h' l='655' u='c'/>
+<use f='include/wchar.h' l='709' u='c'/>
+<use f='include/wchar.h' l='871' u='c'/>

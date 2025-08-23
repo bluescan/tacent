@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15697' ll='15701'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15697'/>
+<size>24</size>
+<mbr r='VkGraphicsPipelineLibraryCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkGraphicsPipelineLibraryCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkGraphicsPipelineLibraryCreateInfoEXT::flags' o='128' t='VkGraphicsPipelineLibraryFlagsEXT'/>

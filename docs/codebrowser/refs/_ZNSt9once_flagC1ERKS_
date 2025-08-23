@@ -1,0 +1,2 @@
+<def f='include/c++/11/mutex' l='679' type='void std::once_flag::once_flag(const std::once_flag &amp; )'/>
+<doc f='include/c++/11/mutex' l='678'>/// Deleted copy constructor</doc>

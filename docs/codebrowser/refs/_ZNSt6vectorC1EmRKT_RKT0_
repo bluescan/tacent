@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/stl_vector.h' l='522' ll='525' type='void std::vector::vector&lt;_Tp, _Alloc&gt;(std::vector::size_type __n, const std::vector::value_type &amp; __value, const std::vector::allocator_type &amp; __a = std::vector::allocator_type())'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='514'>/**
+       *  @brief  Creates a %vector with copies of an exemplar element.
+       *  @param  __n  The number of elements to initially create.
+       *  @param  __value  An element to copy.
+       *  @param  __a  An allocator.
+       *
+       *  This constructor fills the %vector with @a __n copies of @a __value.
+       */</doc>
+<use f='include/c++/11/bits/random.h' l='5318' u='c' c='_ZNKSt21discrete_distribution10param_type13probabilitiesEv'/>
+<use f='include/c++/11/bits/random.h' l='5375' u='c' c='_ZNKSt21discrete_distribution13probabilitiesEv'/>
+<use f='include/c++/11/bits/random.h' l='5564' u='c' c='_ZNKSt31piecewise_constant_distribution10param_type9densitiesEv'/>
+<use f='include/c++/11/bits/random.h' l='5642' u='c' c='_ZNKSt31piecewise_constant_distribution9densitiesEv'/>
+<use f='include/c++/11/bits/random.h' l='5835' u='c' c='_ZNKSt29piecewise_linear_distribution10param_type9densitiesEv'/>
+<use f='include/c++/11/bits/random.h' l='5915' u='c' c='_ZNKSt29piecewise_linear_distribution9densitiesEv'/>

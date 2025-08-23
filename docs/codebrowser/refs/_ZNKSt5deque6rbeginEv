@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1171' ll='1173' type='std::deque::const_reverse_iterator std::deque::rbegin() const'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1166'>/**
+       *  Returns a read-only (constant) reverse iterator that points
+       *  to the last element in the %deque.  Iteration is done in
+       *  reverse element order.
+       */</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18676'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18675'>// VK_KHR_acceleration_structure is a preprocessor guard. Do not pass it to API calls.</doc>

@@ -1,0 +1,1 @@
+<dec f='include/stdlib.h' l='296' type='double strtod_l(const char *__restrict __nptr, char **__restrict __endptr, locale_t __loc)'/>

@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tImagePKM.cpp' l='63' type='0'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='93' c='_ZN6tImage4tPKM27GetFormatInfo_FromPKMFormatERNS_12tPixelFormatER14tColourProfileji'/>
+<doc f='Modules/Image/Src/tImagePKM.cpp' l='63'>// GL_ETC1_RGB8_OES. OES just means the format internal ID was developed by the working group (Kronos I assume).</doc>

@@ -1,0 +1,14 @@
+<def f='Modules/Math/Inc/Math/tFilter.h' l='42' ll='60'/>
+<use f='Modules/Math/Inc/Math/tFilter.h' l='63'/>
+<use f='Modules/Math/Inc/Math/tFilter.h' l='80'/>
+<use f='Modules/Math/Inc/Math/tFilter.h' l='81'/>
+<use f='Modules/Math/Inc/Math/tFilter.h' l='82'/>
+<use f='Modules/Math/Inc/Math/tFilter.h' l='92'/>
+<use f='Modules/Math/Inc/Math/tFilter.h' l='112'/>
+<use f='Modules/Math/Inc/Math/tFilter.h' l='113'/>
+<use f='Modules/Math/Inc/Math/tFilter.h' l='114'/>
+<use f='Modules/Math/Inc/Math/tFilter.h' l='130' c='_ZN5tMath19tLowPassFilterFixedC1ET_S1_bS1_'/>
+<use f='Modules/Math/Inc/Math/tFilter.h' l='160' c='_ZN5tMath21tLowPassFilterDynamicC1ET_bS1_'/>
+<doc f='Modules/Math/Inc/Math/tFilter.h' l='41'>// An abstract base class for 1st order low-pass filters.</doc>
+<fun r='_ZN5tMath14tLowPassFilter13SetCutoffFreqET_'/>
+<fun r='_ZN5tMath14tLowPassFilter6SetTauET_'/>

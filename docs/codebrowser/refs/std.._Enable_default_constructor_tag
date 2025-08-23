@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/enable_special_members.h' l='42' ll='45'/>
+<use f='include/c++/11/bits/enable_special_members.h' l='67' c='_ZNSt27_Enable_default_constructorC1ESt31_Enable_default_constructor_tag'/>
+<use f='include/c++/11/bits/enable_special_members.h' l='125' c='_ZNSt27_Enable_default_constructorILb0ET_EC1ESt31_Enable_default_constructor_tag'/>
+<use f='include/c++/11/bits/hashtable.h' l='488' c='_ZNSt10_HashtableC1ERKT4_RKT3_RKT1_'/>
+<use f='include/c++/11/bits/hashtable.h' l='556' c='_ZNSt10_HashtableC1ERKT1_'/>
+<size>1</size>
+<doc f='include/c++/11/bits/enable_special_members.h' l='40'>/// @cond undocumented</doc>
+<fun r='_ZNSt31_Enable_default_constructor_tagC1Ev'/>

@@ -1,0 +1,14 @@
+<use f='Modules/Image/Src/tImageDDS.cpp' l='885' u='r' c='_ZN6tImage9tImageDDS5ClearEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='899' u='w' c='_ZN6tImage9tImageDDS5ClearEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='916' u='w' c='_ZN6tImage9tImageDDS3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1009' u='r' c='_ZN6tImage9tImageDDS11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1025' u='r' c='_ZNK6tImage9tImageDDS9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1028' u='r' c='_ZNK6tImage9tImageDDS9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1045' u='r' c='_ZN6tImage9tImageDDS18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1071' u='r' c='_ZNK6tImage9tImageDDS16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1176' u='w' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1179' u='w' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1181' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1301' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1320' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1428' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>

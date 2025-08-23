@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tQuantize.h' l='89' type='bool tImage::tQuantizeFixed::QuantizeImage(int numColours, int width, int height, const tPixel4b * pixels, tColour3b * destPalette, uint8 * destIndices, bool checkExact = true)'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='382' u='c' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='536' u='c' c='_ZN6tImage8tPicture13QuantizeFixedEib'/>
+<def f='Modules/Image/Src/tQuantizeFixed.cpp' l='332' ll='348' type='bool tImage::tQuantizeFixed::QuantizeImage(int numColours, int width, int height, const tPixel4b * pixels, tColour3b * destPalette, uint8 * destIndices, bool checkExact = true)'/>

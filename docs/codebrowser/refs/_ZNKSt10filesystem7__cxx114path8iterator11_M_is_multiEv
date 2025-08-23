@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/fs_path.h' l='899' type='bool std::filesystem::path::iterator::_M_is_multi() const'/>
+<use f='include/c++/11/bits/fs_path.h' l='906' u='c' c='_ZNSt10filesystem7__cxx1120__path_iter_distanceERKNS0_4path8iteratorES4_'/>
+<use f='include/c++/11/bits/fs_path.h' l='924' u='c' c='_ZNSt10filesystem7__cxx1119__path_iter_advanceERNS0_4path8iteratorEl'/>

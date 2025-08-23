@@ -1,0 +1,4 @@
+<use f='include/c++/11/mutex' l='619' u='w' c='_ZNSt11scoped_lockC1EDpRT_'/>
+<use f='include/c++/11/mutex' l='623' u='w' c='_ZNSt11scoped_lockC1ESt12adopt_lock_tDpRT_'/>
+<use f='include/c++/11/mutex' l='627' c='_ZNSt11scoped_lockD1Ev'/>
+<dec f='include/c++/11/mutex' l='633' type='tuple&lt;_MutexTypes &amp;...&gt;'/>

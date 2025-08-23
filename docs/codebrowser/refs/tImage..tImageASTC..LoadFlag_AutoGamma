@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tImageASTC.h' l='39' type='16'/>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='41' u='r'/>
+<doc f='Modules/Image/Inc/Image/tImageASTC.h' l='39'>// Determines whether to apply sRGB compression based on colour profile. Call GetColourProfile to see if it applied.</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='144' u='r' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='147' u='r' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>

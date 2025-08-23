@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/atomic_wait.h' l='196' type='std::__detail::__platform_wait_t'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='211' u='a' c='_ZNSt8__detail18__waiter_pool_base13_M_enter_waitEv'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='215' u='a' c='_ZNSt8__detail18__waiter_pool_base13_M_leave_waitEv'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='221' u='a' c='_ZNKSt8__detail18__waiter_pool_base10_M_waitingEv'/>
+<offset>0</offset>

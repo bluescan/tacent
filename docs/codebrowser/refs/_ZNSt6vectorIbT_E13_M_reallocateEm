@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/stl_bvector.h' l='939' u='c' c='_ZNSt6vectorIbT_E7reserveEm'/>
+<dec f='include/c++/11/bits/stl_bvector.h' l='1159' type='void std::vector&lt;bool, type-parameter-0-0&gt;::_M_reallocate(std::vector&lt;bool, type-parameter-0-0&gt;::size_type __n)'/>
+<def f='include/c++/11/bits/vector.tcc' l='808' ll='820' type='void std::vector&lt;bool, type-parameter-0-0&gt;::_M_reallocate(std::vector&lt;bool, type-parameter-0-0&gt;::size_type __n)'/>
+<use f='include/c++/11/bits/vector.tcc' l='948' u='c' c='_ZNSt6vectorIbT_E16_M_shrink_to_fitEv'/>
+<doc f='include/c++/11/bits/vector.tcc' l='807'>// vector&lt;bool&gt;</doc>

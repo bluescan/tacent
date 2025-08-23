@@ -1,0 +1,1 @@
+<def f='Modules/Scene/Src/tPath.cpp' l='21' ll='36' type='void tScene::tPath::tPath(const tMath::tBezierPath &amp; src, const tString &amp; name, uint32 id)'/>

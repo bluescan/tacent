@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='354' type='bool std::filesystem::is_regular_file(std::filesystem::file_status )'/>
+<use f='include/c++/11/bits/fs_ops.h' l='231' u='c' c='_ZNSt10filesystem8is_otherENS_11file_statusE'/>
+<def f='include/c++/11/bits/fs_ops.h' l='246' ll='248' type='bool std::filesystem::is_regular_file(std::filesystem::file_status __s)'/>
+<use f='include/c++/11/bits/fs_ops.h' l='253' u='c' c='_ZNSt10filesystem15is_regular_fileERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='258' u='c' c='_ZNSt10filesystem15is_regular_fileERKNS_7__cxx114pathERSt10error_code'/>

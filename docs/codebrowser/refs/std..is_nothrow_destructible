@@ -1,0 +1,5 @@
+<def f='include/c++/11/type_traits' l='936' ll='941'/>
+<use f='include/c++/11/type_traits' l='3239'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='277' c='_ZNSt16allocator_traits10_S_destroyERTL0__PTL0_0_z'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='532' c='_ZNSt16allocator_traitsISaIT_EE7destroyERS1_PTL0__'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='647' c='_ZNSt16allocator_traitsISaIvEE7destroyERS0_PT_'/>

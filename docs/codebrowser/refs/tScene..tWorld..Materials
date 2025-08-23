@@ -1,0 +1,11 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='39' u='m' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='89' u='a' c='_ZN6tScene6tWorld10MergeSceneERS0_'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='106' u='m' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='219' u='m' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='610' u='m' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1099' u='m' c='_ZNK6tScene6tWorld13SaveMaterialsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1302' u='m' c='_ZNK6tScene6tWorld15GetNumMaterialsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1305' u='m' c='_ZNK6tScene6tWorld15GetNumMaterialsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1315' u='m' c='_ZN6tScene6tWorld14InsertMaterialEPNS_9tMaterialE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1321' u='m' c='_ZNK6tScene6tWorld12FindMaterialERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1331' u='m' c='_ZNK6tScene6tWorld12FindMaterialEj'/>

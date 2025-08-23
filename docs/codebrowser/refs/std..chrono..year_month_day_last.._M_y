@@ -1,0 +1,6 @@
+<dec f='include/c++/11/chrono' l='2544' type='chrono::year'/>
+<use f='include/c++/11/chrono' l='2551' u='w' c='_ZNSt6chrono19year_month_day_lastC1ERKNS_4yearERKNS_14month_day_lastE'/>
+<use f='include/c++/11/chrono' l='2586' u='r' c='_ZNKSt6chrono19year_month_day_last4yearEv'/>
+<use f='include/c++/11/chrono' l='2617' u='m' c='_ZNKSt6chrono19year_month_day_last3dayEv'/>
+<use f='include/c++/11/chrono' l='2630' u='m' c='_ZNKSt6chrono19year_month_day_last2okEv'/>
+<offset>0</offset>

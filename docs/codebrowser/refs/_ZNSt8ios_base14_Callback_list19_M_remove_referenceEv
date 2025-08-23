@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/ios_base.h' l='569' ll='580' type='int std::ios_base::_Callback_list::_M_remove_reference()'/>
+<doc f='include/c++/11/bits/ios_base.h' l='568'>// 0 =&gt; OK to delete.</doc>

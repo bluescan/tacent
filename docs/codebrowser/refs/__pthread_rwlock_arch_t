@@ -1,0 +1,15 @@
+<def f='include/x86_64-linux-gnu/bits/struct_rwlock.h' l='23' ll='55'/>
+<use f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='88'/>
+<size>56</size>
+<mbr r='__pthread_rwlock_arch_t::__readers' o='0' t='unsigned int'/>
+<mbr r='__pthread_rwlock_arch_t::__writers' o='32' t='unsigned int'/>
+<mbr r='__pthread_rwlock_arch_t::__wrphase_futex' o='64' t='unsigned int'/>
+<mbr r='__pthread_rwlock_arch_t::__writers_futex' o='96' t='unsigned int'/>
+<mbr r='__pthread_rwlock_arch_t::__pad3' o='128' t='unsigned int'/>
+<mbr r='__pthread_rwlock_arch_t::__pad4' o='160' t='unsigned int'/>
+<mbr r='__pthread_rwlock_arch_t::__cur_writer' o='192' t='int'/>
+<mbr r='__pthread_rwlock_arch_t::__shared' o='224' t='int'/>
+<mbr r='__pthread_rwlock_arch_t::__rwelision' o='256' t='signed char'/>
+<mbr r='__pthread_rwlock_arch_t::__pad1' o='264' t='unsigned char[7]'/>
+<mbr r='__pthread_rwlock_arch_t::__pad2' o='320' t='unsigned long'/>
+<mbr r='__pthread_rwlock_arch_t::__flags' o='384' t='unsigned int'/>

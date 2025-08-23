@@ -1,0 +1,8 @@
+<def f='Modules/Input/Inc/Input/tUnitDiscreteBool.h' l='26' type='void tInput::tUnitDiscreteBool::tUnitDiscreteBool(const tName &amp; name, std::mutex &amp; mutex)'/>
+<use f='Modules/Input/Inc/Input/tCompButton.h' l='28' macro='1' u='c' c='_ZN6tInput11tCompButtonC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='28' macro='1' u='c' c='_ZN6tInput11tCompDirPadC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='29' macro='1' u='c' c='_ZN6tInput11tCompDirPadC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='30' macro='1' u='c' c='_ZN6tInput11tCompDirPadC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='31' macro='1' u='c' c='_ZN6tInput11tCompDirPadC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='31' macro='1' u='c' c='_ZN6tInput13tCompJoystickC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompSwitch.h' l='28' macro='1' u='c' c='_ZN6tInput11tCompSwitchC1ERK5tNameRSt5mutex'/>

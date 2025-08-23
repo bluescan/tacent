@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='1523' ll='1527' type='_ITp std::atomic_fetch_and_explicit(volatile __atomic_base&lt;_ITp&gt; * __a, __atomic_val_t&lt;_ITp&gt; __i, std::memory_order __m)'/>

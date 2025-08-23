@@ -1,0 +1,7 @@
+<dec f='include/c++/11/chrono' l='2723' type='chrono::month'/>
+<use f='include/c++/11/chrono' l='2741' u='w' c='_ZNSt6chrono18year_month_weekdayC1ERKNS_4yearERKNS_5monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='2790' u='r' c='_ZNKSt6chrono18year_month_weekday5monthEv'/>
+<use f='include/c++/11/chrono' l='2819' u='m' c='_ZNKSt6chrono18year_month_weekday2okEv'/>
+<use f='include/c++/11/chrono' l='2824' u='r' c='_ZNKSt6chrono18year_month_weekday2okEv'/>
+<use f='include/c++/11/chrono' l='2827' u='r' c='_ZNKSt6chrono18year_month_weekday2okEv'/>
+<offset>16</offset>

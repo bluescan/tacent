@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/fs_path.h' l='716' type='void std::filesystem::filesystem_error::~filesystem_error()'/>
+<doc f='include/c++/11/bits/fs_path.h' l='713'>// No move constructor or assignment operator.
+    // Copy rvalues instead, so that _M_impl is not left empty.</doc>

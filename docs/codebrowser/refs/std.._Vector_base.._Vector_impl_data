@@ -1,0 +1,16 @@
+<def f='include/c++/11/bits/stl_vector.h' l='91' ll='126'/>
+<use f='include/c++/11/bits/stl_vector.h' l='102' c='_ZNSt12_Vector_base17_Vector_impl_dataC1EOS0_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='109' c='_ZNSt12_Vector_base17_Vector_impl_data12_M_copy_dataERKS0_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='117' c='_ZNSt12_Vector_base17_Vector_impl_data12_M_swap_dataERS0_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='121' c='_ZNSt12_Vector_base17_Vector_impl_data12_M_swap_dataERS0_'/>
+<ovr f='include/c++/11/bits/stl_vector.h' l='128' c='std::_Vector_base::_Vector_impl'/>
+<use f='include/c++/11/bits/stl_vector.h' l='129'/>
+<use f='include/c++/11/bits/stl_vector.h' l='144' c='_ZNSt12_Vector_base12_Vector_implC1EOS0_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='152' c='_ZNSt12_Vector_base12_Vector_implC1EON9__gnu_cxx14__alloc_traitsIT0_NS3_10value_typeEE6rebindIT_E5otherEOS0_'/>
+<mbr r='std::_Vector_base::_Vector_impl_data::_M_start' t='std::_Vector_base::pointer'/>
+<mbr r='std::_Vector_base::_Vector_impl_data::_M_finish' t='std::_Vector_base::pointer'/>
+<mbr r='std::_Vector_base::_Vector_impl_data::_M_end_of_storage' t='std::_Vector_base::pointer'/>
+<fun r='_ZNSt12_Vector_base17_Vector_impl_dataC1Ev'/>
+<fun r='_ZNSt12_Vector_base17_Vector_impl_dataC1EOS0_'/>
+<fun r='_ZNSt12_Vector_base17_Vector_impl_data12_M_copy_dataERKS0_'/>
+<fun r='_ZNSt12_Vector_base17_Vector_impl_data12_M_swap_dataERS0_'/>

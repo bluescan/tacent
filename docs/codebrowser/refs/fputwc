@@ -1,0 +1,5 @@
+<dec f='include/wchar.h' l='758' type='wint_t fputwc(wchar_t __wc, __FILE * __stream)'/>
+<doc f='include/wchar.h' l='754'>/* Write a character to STREAM.
+
+   These functions are possible cancellation points and therefore not
+   marked with __THROW.  */</doc>

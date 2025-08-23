@@ -1,0 +1,4 @@
+<dec f='include/c++/11/stop_token' l='157' type='std::atomic&lt;value_type&gt;'/>
+<use f='include/c++/11/stop_token' l='181' u='m' c='_ZNSt10stop_token13_Stop_state_t12_M_add_ownerEv'/>
+<use f='include/c++/11/stop_token' l='187' u='m' c='_ZNSt10stop_token13_Stop_state_t20_M_release_ownershipEv'/>
+<offset>0</offset>

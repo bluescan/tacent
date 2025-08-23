@@ -1,0 +1,20 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='266' type='uint8 * tChunk::Data() const'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='265'>// Shortened versions of the commands so you don&apos;t have to type as much.</doc>
+<use f='Modules/Image/Src/tLayer.cpp' l='99' u='c' c='_ZN6tImage6tLayer4LoadERK6tChunkb'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='103' u='c' c='_ZN6tImage6tLayer4LoadERK6tChunkb'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='174' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='185' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='196' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='207' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='218' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='229' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='240' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='251' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='262' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='273' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='284' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='306' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='317' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='328' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='339' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='350' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>

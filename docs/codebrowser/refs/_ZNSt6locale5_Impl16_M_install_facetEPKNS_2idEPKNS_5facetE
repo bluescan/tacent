@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='608' type='void std::locale::_Impl::_M_install_facet(const locale::id * , const std::locale::facet * )'/>
+<use f='include/c++/11/bits/locale_classes.h' l='613' u='c' c='_ZNSt6locale5_Impl13_M_init_facetEPT_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='50' u='c' c='_ZNSt6localeC1ERKS_PT_'/>

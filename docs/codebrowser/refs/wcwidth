@@ -1,0 +1,2 @@
+<dec f='include/wchar.h' l='368' type='int wcwidth(wchar_t __c)'/>
+<doc f='include/wchar.h' l='367'>/* Determine number of column positions required for C.  */</doc>

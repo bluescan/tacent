@@ -1,0 +1,2 @@
+<dec f='include/c++/11/ostream' l='428' type='std::basic_ostream::__ostream_type &amp; std::basic_ostream::_M_insert(_ValueT __v)'/>
+<def f='include/c++/11/bits/ostream.tcc' l='60' ll='87' type='basic_ostream&lt;_CharT, _Traits&gt; &amp; std::basic_ostream::_M_insert(_ValueT __v)'/>

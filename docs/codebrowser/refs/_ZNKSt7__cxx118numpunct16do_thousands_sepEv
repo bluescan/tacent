@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/locale_facets.h' l='1837' ll='1839' type='std::numpunct::char_type std::numpunct::do_thousands_sep() const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1829'>/**
+       *  @brief  Return thousands separator character.
+       *
+       *  Returns a char_type to use as a thousands separator.  This function
+       *  is a hook for derived classes to change the value returned.
+       *
+       *  @return  @a char_type representing a thousands separator.
+      */</doc>

@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='295' type='bool tItList::Iter::IsValid() const'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='454' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='86' u='c' c='_ZN6tScene6tWorld4LoadERK7tItListI7tStringEj'/>

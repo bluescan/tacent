@@ -1,0 +1,8 @@
+<def f='include/c++/11/iomanip' l='194' ll='196' type='std::_Setprecision std::setprecision(int __n)'/>
+<doc f='include/c++/11/iomanip' l='187'>/**
+   *  @brief  Manipulator for @c precision.
+   *  @param  __n  The new precision.
+   *
+   *  Sent to a stream object, this manipulator calls @c precision(__n) for
+   *  that object.
+  */</doc>

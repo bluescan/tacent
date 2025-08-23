@@ -1,0 +1,3 @@
+<dec f='include/linux/stat.h' l='114' type='__u64'/>
+<offset>448</offset>
+<doc f='include/linux/stat.h' l='114'>/* Mask to show what&apos;s supported in stx_attributes */</doc>

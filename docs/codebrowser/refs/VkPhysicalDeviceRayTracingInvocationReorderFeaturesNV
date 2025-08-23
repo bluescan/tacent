@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18167' ll='18171'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18167'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceRayTracingInvocationReorderFeaturesNV::rayTracingInvocationReorder' o='128' t='VkBool32'/>

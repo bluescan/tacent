@@ -1,0 +1,16 @@
+_ZNSt5array5frontEv|std::array::front
+_ZSt5frexpfPi|std::frexp
+_ZNSt21front_insert_iteratordeEv|std::front_insert_iterator::operator*
+_ZNSt21front_insert_iteratorppEv|std::front_insert_iterator::operator++
+_ZNSt21front_insert_iteratoraSERKNT_10value_typeE|std::front_insert_iterator::operator=
+_ZSt14front_inserterRT_|std::front_inserter
+_ZNSt6vector5frontEv|std::vector::front
+_ZNSt7__cxx1112basic_string5frontEv|std::basic_string::front
+_ZNKSt17basic_string_view5frontEv|std::basic_string_view::front
+_ZNSt6chrono3_V212system_clock11from_time_tEl|std::chrono::system_clock::from_time_t
+_ZN4tMem9tFastPool4FreeEPv|tMem::tFastPool::Free
+_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR|tImage::tImageGIF::FrameLoadCallback
+_ZNSt5deque5frontEv|std::deque::front
+_ZNSt6ranges14view_interface5frontEv|std::ranges::view_interface::front
+_ZNKSt7__cxx1110moneypunct11frac_digitsEv|std::moneypunct::frac_digits
+_ZNSt7__cxx1115wstring_convert10from_bytesEc|std::wstring_convert::from_bytes

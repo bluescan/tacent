@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tMachine.h' l='40' type='bool tSystem::tOpenSystemFileExplorer(const tString &amp; fullFilename)'/>
+<def f='Modules/System/Src/tMachine.cpp' l='222' ll='225' type='bool tSystem::tOpenSystemFileExplorer(const tString &amp; fullFilename)'/>

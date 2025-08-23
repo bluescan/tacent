@@ -1,0 +1,17 @@
+<dec f='include/c++/11/bits/stl_bvector.h' l='70' type='64'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='154' u='r' c='_ZNSt18_Bit_iterator_base10_M_bump_upEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='166' u='r' c='_ZNSt18_Bit_iterator_base12_M_bump_downEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='175' u='r' c='_ZNSt18_Bit_iterator_base7_M_incrEl'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='176' u='r' c='_ZNSt18_Bit_iterator_base7_M_incrEl'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='179' u='r' c='_ZNSt18_Bit_iterator_base7_M_incrEl'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='226' u='r' c='_ZStmiRKSt18_Bit_iterator_baseS1_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='573' u='r' c='_ZNSt13_Bvector_base8_S_nwordEm'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='573' u='r' c='_ZNSt13_Bvector_base8_S_nwordEm'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='889' u='r' c='_ZNKSt6vectorIbT_E8max_sizeEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='892' u='r' c='_ZNKSt6vectorIbT_E8max_sizeEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='893' u='r' c='_ZNKSt6vectorIbT_E8max_sizeEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1336' u='r' c='_ZSt14__fill_bvectorPmjjb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1355' u='r' c='_ZSt9__fill_a1St13_Bit_iteratorS_RKb'/>
+<use f='include/c++/11/bits/vector.tcc' l='943' c='_ZNSt6vectorIbT_E16_M_shrink_to_fitEv'/>
+<use f='include/c++/11/bits/vector.tcc' l='980' u='r' c='_ZNKSt4hashISt6vectorIbT_EEclERKS2_'/>
+<use f='include/c++/11/bits/vector.tcc' l='987' u='r' c='_ZNKSt4hashISt6vectorIbT_EEclERKS2_'/>

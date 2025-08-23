@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='295' type='void tMath::tABox::Transform(const tMath::tMatrix4 &amp; xform)'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='295'>// Affine and projection transforms supported.</doc>
+<def f='Modules/Math/Src/tGeometry.cpp' l='41' ll='55' type='void tMath::tABox::Transform(const tMath::tMatrix4 &amp; t)'/>

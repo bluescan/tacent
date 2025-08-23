@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12116' ll='12119'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12116'/>
+<size>16</size>
+<mbr r='VkPresentTimeGOOGLE::presentID' o='0' t='uint32_t'/>
+<mbr r='VkPresentTimeGOOGLE::desiredPresentTime' o='64' t='uint64_t'/>

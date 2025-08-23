@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1269' type='int pthread_barrierattr_init(pthread_barrierattr_t * __attr)'/>
+<doc f='include/pthread.h' l='1268'>/* Initialize barrier attribute ATTR.  */</doc>

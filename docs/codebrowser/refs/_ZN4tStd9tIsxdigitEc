@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='337' type='bool tStd::tIsxdigit(char c)'/>
+<use f='Modules/System/Src/tRegex.cpp' l='516' u='c' c='_ZN7tSystem6tRegex11MatchCClassEic'/>
+<use f='Modules/System/Src/tRegex.cpp' l='519' u='c' c='_ZN7tSystem6tRegex11MatchCClassEic'/>

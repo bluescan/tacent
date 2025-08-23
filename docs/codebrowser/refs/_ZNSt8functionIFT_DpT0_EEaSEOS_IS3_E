@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/std_function.h' l='486' ll='491' type='function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt; &amp; std::function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt;::operator=(function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt; &amp;&amp; __x)'/>
+<doc f='include/c++/11/bits/std_function.h' l='475'>/**
+       *  @brief %Function move-assignment operator.
+       *  @param __x A %function rvalue with identical call signature.
+       *  @returns @c *this
+       *
+       *  The target of @a __x is moved to @c *this. If @a __x has no
+       *  target, then @c *this will be empty.
+       *
+       *  If @a __x targets a function pointer or a reference to a function
+       *  object, then this operation will not throw an %exception.
+       */</doc>

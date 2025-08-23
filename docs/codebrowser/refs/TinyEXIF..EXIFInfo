@@ -1,0 +1,69 @@
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='214' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='215' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='216' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='217' c='_ZN6tImage9tMetaData19SetTags_AuthorNotesERKN8TinyEXIF8EXIFInfoE'/>
+<def f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='100' ll='317'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='210' c='_ZN6tImage9tMetaData3SetEPKhi'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='224' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='267' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='392' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='616' c='_ZN6tImage9tMetaData19SetTags_AuthorNotesERKN8TinyEXIF8EXIFInfoE'/>
+<size>952</size>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='97'>//
+// Class responsible for storing and parsing EXIF &amp; XMP metadata from a JPEG stream
+//</doc>
+<fun r='_ZN8TinyEXIF8EXIFInfoC1Ev'/>
+<fun r='_ZN8TinyEXIF8EXIFInfoC1ERNS_10EXIFStreamE'/>
+<fun r='_ZN8TinyEXIF8EXIFInfoC1ERSi'/>
+<fun r='_ZN8TinyEXIF8EXIFInfoC1EPKhj'/>
+<fun r='_ZN8TinyEXIF8EXIFInfo9parseFromERNS_10EXIFStreamE'/>
+<fun r='_ZN8TinyEXIF8EXIFInfo9parseFromERSi'/>
+<fun r='_ZN8TinyEXIF8EXIFInfo9parseFromEPKhj'/>
+<fun r='_ZN8TinyEXIF8EXIFInfo20parseFromEXIFSegmentEPKhj'/>
+<fun r='_ZN8TinyEXIF8EXIFInfo19parseFromXMPSegmentEPKhj'/>
+<fun r='_ZN8TinyEXIF8EXIFInfo22parseFromXMPSegmentXMLEPKcj'/>
+<fun r='_ZN8TinyEXIF8EXIFInfo5clearEv'/>
+<fun r='_ZN8TinyEXIF8EXIFInfo13parseIFDImageERNS_11EntryParserERjS3_'/>
+<fun r='_ZN8TinyEXIF8EXIFInfo12parseIFDExifERNS_11EntryParserE'/>
+<fun r='_ZN8TinyEXIF8EXIFInfo11parseIFDGPSERNS_11EntryParserE'/>
+<fun r='_ZN8TinyEXIF8EXIFInfo17parseIFDMakerNoteERNS_11EntryParserE'/>
+<mbr r='TinyEXIF::EXIFInfo::Fields' o='0' t='uint32_t'/>
+<mbr r='TinyEXIF::EXIFInfo::ImageWidth' o='32' t='uint32_t'/>
+<mbr r='TinyEXIF::EXIFInfo::ImageHeight' o='64' t='uint32_t'/>
+<mbr r='TinyEXIF::EXIFInfo::RelatedImageWidth' o='96' t='uint32_t'/>
+<mbr r='TinyEXIF::EXIFInfo::RelatedImageHeight' o='128' t='uint32_t'/>
+<mbr r='TinyEXIF::EXIFInfo::ImageDescription' o='192' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::Make' o='448' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::Model' o='704' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::SerialNumber' o='960' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::Orientation' o='1216' t='uint16_t'/>
+<mbr r='TinyEXIF::EXIFInfo::XResolution' o='1280' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::YResolution' o='1344' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::ResolutionUnit' o='1408' t='uint16_t'/>
+<mbr r='TinyEXIF::EXIFInfo::BitsPerSample' o='1424' t='uint16_t'/>
+<mbr r='TinyEXIF::EXIFInfo::Software' o='1472' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::DateTime' o='1728' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::DateTimeOriginal' o='1984' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::DateTimeDigitized' o='2240' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::SubSecTimeOriginal' o='2496' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::Copyright' o='2752' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::ExposureTime' o='3008' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::FNumber' o='3072' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::ExposureProgram' o='3136' t='uint16_t'/>
+<mbr r='TinyEXIF::EXIFInfo::ISOSpeedRatings' o='3152' t='uint16_t'/>
+<mbr r='TinyEXIF::EXIFInfo::ShutterSpeedValue' o='3200' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::ApertureValue' o='3264' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::BrightnessValue' o='3328' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::ExposureBiasValue' o='3392' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::SubjectDistance' o='3456' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::FocalLength' o='3520' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Flash' o='3584' t='uint16_t'/>
+<mbr r='TinyEXIF::EXIFInfo::MeteringMode' o='3600' t='uint16_t'/>
+<mbr r='TinyEXIF::EXIFInfo::LightSource' o='3616' t='uint16_t'/>
+<mbr r='TinyEXIF::EXIFInfo::ProjectionType' o='3632' t='uint16_t'/>
+<mbr r='TinyEXIF::EXIFInfo::SubjectArea' o='3648' t='std::vector&lt;uint16_t&gt;'/>
+<mbr r='TinyEXIF::EXIFInfo::Calibration' o='3840' t='struct Calibration_t'/>
+<mbr r='TinyEXIF::EXIFInfo::LensInfo' o='4032' t='struct LensInfo_t'/>
+<mbr r='TinyEXIF::EXIFInfo::GeoLocation' o='5120' t='struct Geolocation_t'/>
+<mbr r='TinyEXIF::EXIFInfo::GPano' o='7360' t='struct GPano_t'/>
+<mbr r='TinyEXIF::EXIFInfo::MicroVideo' o='7488' t='struct MicroVideo_t'/>

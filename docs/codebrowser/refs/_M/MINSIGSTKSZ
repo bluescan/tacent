@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/sigstack.h' l='27'/>
+<use f='include/x86_64-linux-gnu/bits/sigstksz.h' l='31' u='w'/>
+<dec f='include/x86_64-linux-gnu/bits/sigstksz.h' l='32'/>
+<doc f='include/x86_64-linux-gnu/bits/sigstack.h' l='26'>/* Minimum stack size for a signal handler.  */</doc>

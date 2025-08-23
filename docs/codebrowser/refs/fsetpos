@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='765' type='int fsetpos(FILE * __stream, const fpos_t * __pos)'/>
+<doc f='include/stdio.h' l='761'>/* Set STREAM&apos;s position.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

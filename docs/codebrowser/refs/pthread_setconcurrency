@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='473' type='int pthread_setconcurrency(int __level)'/>
+<doc f='include/pthread.h' l='472'>/* Set new concurrency level to LEVEL.  */</doc>

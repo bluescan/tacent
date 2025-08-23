@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Contrib/GifLoad/gif_load.h' l='58' type='struct (unnamed struct at /mnt/c/GitHub/tacent/Modules/Image/Contrib/GifLoad/gif_load.h:56:5) *'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='260' u='a' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='278' u='a' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='279' u='a' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='35' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='36' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='37' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='35' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='36' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='37' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<offset>960</offset>
+<doc f='Modules/Image/Contrib/GifLoad/gif_load.h' l='56'>/** [==== GIF RGB palette element: ====] **/</doc>

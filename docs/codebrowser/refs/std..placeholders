@@ -1,0 +1,4 @@
+<doc f='include/c++/11/functional' l='215'>/** @namespace std::placeholders
+   *  @brief ISO C++ 2011 namespace for std::bind placeholders.
+   *  @ingroup binders
+   */</doc>

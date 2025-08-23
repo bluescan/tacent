@@ -1,0 +1,6 @@
+<dec f='include/linux/stat.h' l='163'/>
+<doc f='include/linux/stat.h' l='158'>/*
+ * This is deprecated, and shall remain the same value in the future.  To avoid
+ * confusion please use the equivalent (STATX_BASIC_STATS | STATX_BTIME)
+ * instead.
+ */</doc>

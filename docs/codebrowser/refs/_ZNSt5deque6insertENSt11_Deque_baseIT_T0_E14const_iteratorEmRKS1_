@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1651' ll='1657' type='std::deque::iterator std::deque::insert(std::deque::const_iterator __position, std::deque::size_type __n, const std::deque::value_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1641'>/**
+       *  @brief  Inserts a number of copies of given data into the %deque.
+       *  @param  __position  A const_iterator into the %deque.
+       *  @param  __n  Number of elements to be inserted.
+       *  @param  __x  Data to be inserted.
+       *  @return  An iterator that points to the inserted data.
+       *
+       *  This function will insert a specified number of copies of the given
+       *  data before the location specified by @a __position.
+       */</doc>

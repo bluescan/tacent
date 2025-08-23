@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_sigstack.h' l='25' type='void *'/>
+<offset>0</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_sigstack.h' l='25'>/* Signal stack pointer.  */</doc>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1377' ll='1382' type='typename enable_if&lt;__has_esft_base&lt;_Yp2&gt;::value&gt;::type std::__shared_ptr::_M_enable_shared_from_this_with(_Yp * __p)'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1385' ll='1387' type='typename enable_if&lt;!__has_esft_base&lt;_Yp2&gt;::value&gt;::type std::__shared_ptr::_M_enable_shared_from_this_with(_Yp * )'/>

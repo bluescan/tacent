@@ -1,0 +1,4 @@
+<dec f='include/linux/stat.h' l='121' type='__u32'/>
+<offset>1024</offset>
+<doc f='include/linux/stat.h' l='120'>/* 0x80 */</doc>
+<doc f='include/linux/stat.h' l='121'>/* Device ID of special file [if bdev/cdev] */</doc>

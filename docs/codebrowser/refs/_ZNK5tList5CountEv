@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='108' type='int tList::Count() const'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='150' u='c' c='_ZNK8tCmdLine7tOption15GetNumTotalArgsEv'/>

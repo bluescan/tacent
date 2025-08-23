@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='219' type='71'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='608' c='_ZN6tImage12tIsHDRFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='219'>// Radiance HDR.</doc>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='384' u='r' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>

@@ -1,0 +1,1 @@
+<def f='Modules/Image/Src/tImageTGA.cpp' l='364' ll='370' type='tImageTGA::tFormat tImage::tImageTGA::Save(const tString &amp; tgaFile, tImage::tImageTGA::tFormat format, tImage::tImageTGA::tCompression compression = tCompression::RLE) const'/>

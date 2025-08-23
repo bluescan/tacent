@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='278' type='void tMath::tZero(tMath::tQuat &amp; d, comp_t c)'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='47' u='c' c='_ZN5tMath11tQuaternion4ZeroEj'/>

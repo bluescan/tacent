@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='24'/>
+<use f='include/x86_64-linux-gnu/bits/stdio_lim.h' l='21' u='a'/>

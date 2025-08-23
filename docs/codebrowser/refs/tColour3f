@@ -1,0 +1,138 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='348' c='_ZN9tColour4bC1ERK9tColour3fh'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='349' c='_ZN9tColour4bC1ERK9tColour3ff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='361' c='_ZN9tColour4b3SetERK9tColour3fh'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='362' c='_ZN9tColour4b3SetERK9tColour3ff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='541' c='_ZN9tColour4sC1ERK9tColour3ft'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='542' c='_ZN9tColour4sC1ERK9tColour3ff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='554' c='_ZN9tColour4s3SetERK9tColour3ft'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='555' c='_ZN9tColour4s3SetERK9tColour3ff'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='676' ll='780'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='680' c='_ZN9tColour3fC1ERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='690' c='_ZN9tColour3f3SetERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='710' c='_ZNK9tColour3f3GetERS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='754' c='_ZN9tColour3faSERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='754' c='_ZN9tColour3faSERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='757'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='758'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='759'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='760'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='762'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='763'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='764'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='766'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='767'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='768'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='770'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='771'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='772'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='781'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='782'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='793' c='_ZN9tColour4fC1ERK9tColour3ff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='805' c='_ZN9tColour4f3SetERK9tColour3ff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1096' c='_ZN9tColour4b3SetERK9tColour3fh'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1102' c='_ZN9tColour4b3SetERK9tColour3ff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1188' c='_ZN9tColour4s3SetERK9tColour3ft'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1194' c='_ZN9tColour4s3SetERK9tColour3ff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1242' c='_ZN9tColour4f3SetERK9tColour3ff'/>
+<size>12</size>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='674'>// The tColour3f class represents a colour in 3 floats and is made of 3 floats in the order RGB.
+// The values of each float component are E [0.0, 1.0].</doc>
+<fun r='_ZN9tColour3fC1Ev'/>
+<fun r='_ZN9tColour3fC1ERKS_'/>
+<fun r='_ZN9tColour3fC1Efff'/>
+<fun r='_ZN9tColour3fC1ERKN5tMath8tVector3E'/>
+<fun r='_ZN9tColour3fC1ERKN5tMath8tVector4E'/>
+<fun r='_ZN9tColour3fC1ERK9tColour4b'/>
+<fun r='_ZN9tColour3fC1Ehhh'/>
+<fun r='_ZN9tColour3fC1Eiii'/>
+<fun r='_ZN9tColour3f5UnsetEv'/>
+<fun r='_ZNK9tColour3f5IsSetEv'/>
+<fun r='_ZN9tColour3f3SetERKS_'/>
+<fun r='_ZN9tColour3f3SetEfff'/>
+<fun r='_ZN9tColour3f3SetEPKf'/>
+<fun r='_ZN9tColour3f3SetERKN5tMath8tVector3E'/>
+<fun r='_ZN9tColour3f3SetERKN5tMath8tVector4E'/>
+<fun r='_ZN9tColour3f3SetERK9tColour4b'/>
+<fun r='_ZN9tColour3f3SetEiii'/>
+<fun r='_ZN9tColour3f4SetREi'/>
+<fun r='_ZN9tColour3f4SetGEi'/>
+<fun r='_ZN9tColour3f4SetBEi'/>
+<fun r='_ZNK9tColour3f4GetREv'/>
+<fun r='_ZNK9tColour3f4GetGEv'/>
+<fun r='_ZNK9tColour3f4GetBEv'/>
+<fun r='_ZNK9tColour3f3GetEPi'/>
+<fun r='_ZNK9tColour3f3GetERN5tMath8tVector3E'/>
+<fun r='_ZNK9tColour3f3GetERN5tMath8tVector4E'/>
+<fun r='_ZNK9tColour3f3GetERfS0_S0_'/>
+<fun r='_ZNK9tColour3f3GetERS_'/>
+<fun r='_ZN9tColour3f8SaturateEv'/>
+<fun r='_ZNK9tColour3f9IntensityEv'/>
+<fun r='_ZN9tColour3f9MakeBlackEv'/>
+<fun r='_ZN9tColour3f9MakeWhiteEv'/>
+<fun r='_ZN9tColour3f8MakePinkEv'/>
+<fun r='_ZN9tColour3f7MakeRedEv'/>
+<fun r='_ZN9tColour3f9MakeGreenEv'/>
+<fun r='_ZN9tColour3f8MakeBlueEv'/>
+<fun r='_ZN9tColour3f8MakeGreyEv'/>
+<fun r='_ZN9tColour3f13MakeLightGreyEv'/>
+<fun r='_ZN9tColour3f12MakeDarkGreyEv'/>
+<fun r='_ZN9tColour3f8MakeCyanEv'/>
+<fun r='_ZN9tColour3f11MakeMagentaEv'/>
+<fun r='_ZN9tColour3f10MakeYellowEv'/>
+<fun r='_ZNK9tColour3f7IsBlackEv'/>
+<fun r='_ZNK9tColour3f7IsWhiteEv'/>
+<fun r='_ZNK9tColour3f5IsRedEv'/>
+<fun r='_ZNK9tColour3f7IsGreenEv'/>
+<fun r='_ZNK9tColour3f6IsBlueEv'/>
+<fun r='_ZN9tColour3f19ToLinearSpaceApproxEv'/>
+<fun r='_ZN9tColour3f18ToGammaSpaceApproxEv'/>
+<fun r='_ZN9tColour3f8RGBToHSVEv'/>
+<fun r='_ZN9tColour3f8HSVToRGBEv'/>
+<fun r='_ZNK9tColour3feqERK9tColour4f'/>
+<fun r='_ZNK9tColour3fneERK9tColour4f'/>
+<fun r='_ZN9tColour3faSERKS_'/>
+<smbr r='tColour3f::invalid' t='const tColour3f'/>
+<smbr r='tColour3f::black' t='const tColour3f'/>
+<smbr r='tColour3f::white' t='const tColour3f'/>
+<smbr r='tColour3f::hotpink' t='const tColour3f'/>
+<smbr r='tColour3f::red' t='const tColour3f'/>
+<smbr r='tColour3f::green' t='const tColour3f'/>
+<smbr r='tColour3f::blue' t='const tColour3f'/>
+<smbr r='tColour3f::grey' t='const tColour3f'/>
+<smbr r='tColour3f::lightgrey' t='const tColour3f'/>
+<smbr r='tColour3f::darkgrey' t='const tColour3f'/>
+<smbr r='tColour3f::cyan' t='const tColour3f'/>
+<smbr r='tColour3f::magenta' t='const tColour3f'/>
+<smbr r='tColour3f::yellow' t='const tColour3f'/>
+<fun r='_ZNK9tColour3feqERK9tColour4f'/>
+<fun r='_ZNK9tColour3fneERK9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='826' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='826' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<size>12</size>
+<use f='Modules/Math/Src/tColour.cpp' l='176'/>
+<use f='Modules/Math/Src/tColour.cpp' l='177'/>
+<use f='Modules/Math/Src/tColour.cpp' l='178'/>
+<use f='Modules/Math/Src/tColour.cpp' l='179'/>
+<use f='Modules/Math/Src/tColour.cpp' l='180'/>
+<use f='Modules/Math/Src/tColour.cpp' l='181'/>
+<use f='Modules/Math/Src/tColour.cpp' l='182'/>
+<use f='Modules/Math/Src/tColour.cpp' l='183'/>
+<use f='Modules/Math/Src/tColour.cpp' l='184'/>
+<use f='Modules/Math/Src/tColour.cpp' l='185'/>
+<use f='Modules/Math/Src/tColour.cpp' l='186'/>
+<use f='Modules/Math/Src/tColour.cpp' l='187'/>
+<use f='Modules/Math/Src/tColour.cpp' l='188'/>
+<size>12</size>
+<smbr r='tColour3f::invalid' t='const tColour3f'/>
+<smbr r='tColour3f::black' t='const tColour3f'/>
+<smbr r='tColour3f::white' t='const tColour3f'/>
+<smbr r='tColour3f::hotpink' t='const tColour3f'/>
+<smbr r='tColour3f::red' t='const tColour3f'/>
+<smbr r='tColour3f::green' t='const tColour3f'/>
+<smbr r='tColour3f::blue' t='const tColour3f'/>
+<smbr r='tColour3f::grey' t='const tColour3f'/>
+<smbr r='tColour3f::lightgrey' t='const tColour3f'/>
+<smbr r='tColour3f::darkgrey' t='const tColour3f'/>
+<smbr r='tColour3f::cyan' t='const tColour3f'/>
+<smbr r='tColour3f::magenta' t='const tColour3f'/>
+<smbr r='tColour3f::yellow' t='const tColour3f'/>

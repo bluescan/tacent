@@ -1,0 +1,2 @@
+<dec f='include/c++/11/stdexcept' l='120' type='void std::logic_error::logic_error(const std::string &amp; __arg)'/>
+<doc f='include/c++/11/stdexcept' l='118'>/** Takes a character string describing the error.  */</doc>

@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='229' type='void tMath::tSet(tMath::tQuat &amp; d, const tMath::tVec3 &amp; axis, float angle)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='229'>// Assumes axis is normalized.</doc>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='31' u='c' c='_ZN5tMath11tQuaternionC1ERKNS_5tVec3Ef'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='40' u='c' c='_ZN5tMath11tQuaternion3SetERKNS_5tVec3Ef'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='117' ll='122' type='void tMath::tSet(tMath::tQuat &amp; d, const tMath::tVec3 &amp; axis, float angle)'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='1033' u='c' c='_ZN5tMath20tApproachOrientationERNS_5tQuatERKS0_ff'/>

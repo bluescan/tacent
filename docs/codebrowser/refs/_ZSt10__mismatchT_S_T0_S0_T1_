@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='1959' ll='1972' macro='1' type='pair&lt;_InputIterator1, _InputIterator2&gt; std::__mismatch(_InputIterator1 __first1, _InputIterator1 __last1, _InputIterator2 __first2, _InputIterator2 __last2, _BinaryPredicate __binary_pred)'/>

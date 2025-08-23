@@ -1,0 +1,2 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='868' ll='873' type='int __gthread_cond_timedwait(__gthread_cond_t * __cond, __gthread_mutex_t * __mutex, const __gthread_time_t * __abs_timeout)'/>
+<use f='include/c++/11/bits/std_mutex.h' l='162' u='c' c='_ZNSt9__condvar10wait_untilERSt5mutexR8timespec'/>

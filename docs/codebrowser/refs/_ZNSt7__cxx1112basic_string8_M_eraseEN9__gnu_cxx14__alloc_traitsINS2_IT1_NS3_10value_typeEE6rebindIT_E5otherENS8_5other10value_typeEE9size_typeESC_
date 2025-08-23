@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/basic_string.h' l='429' type='void std::basic_string::_M_erase(std::basic_string::size_type __pos, std::basic_string::size_type __n)'/>
+<use f='include/c++/11/bits/basic_string.h' l='1887' u='c' c='_ZNSt7__cxx1112basic_string8pop_backEv'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='322' ll='333' type='void std::basic_string::_M_erase(std::basic_string::size_type __pos, std::basic_string::size_type __n)'/>

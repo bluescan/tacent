@@ -1,0 +1,77 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='43' ll='51'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='46' c='_ZN5tMath8tTriFaceC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='47' c='_ZNK5tMath8tTriFaceeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='48' c='_ZNK5tMath8tTriFaceneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='49' c='_ZN5tMath8tTriFaceaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='49' c='_ZN5tMath8tTriFaceaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='52'/>
+<size>12</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='41'>// A triangular face. It has 3 vertices and 3 edges. It may be degenerate. The tTriFace data structure is just a set of
+// 3 indexes into any sort of vertex array. It is therefore dimension-agnostic and can be used for tris in R2 and R3.</doc>
+<fun r='_ZN5tMath8tTriFaceC1Ev'/>
+<fun r='_ZN5tMath8tTriFaceC1ERKS0_'/>
+<fun r='_ZNK5tMath8tTriFaceeqERKS0_'/>
+<fun r='_ZNK5tMath8tTriFaceneERKS0_'/>
+<fun r='_ZN5tMath8tTriFaceaSERKS0_'/>
+<mbr r='tMath::tTriFace::Index' o='0' t='int[3]'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='71' c='_ZN6tScene5tMesh34CreateFaceTableVertPositionIndicesEv'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='73' c='_ZN6tScene5tMesh35CreateFaceTableVertWeightSetIndicesEv'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='75' c='_ZN6tScene5tMesh32CreateFaceTableVertNormalIndicesEv'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='79' c='_ZN6tScene5tMesh24CreateFaceTableUVIndicesEv'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='81' c='_ZN6tScene5tMesh33CreateFaceTableNormalMapUVIndicesEv'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='83' c='_ZN6tScene5tMesh28CreateFaceTableColourIndicesEv'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='87' c='_ZN6tScene5tMesh29CreateFaceTableTangentIndicesEv'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='91'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='92'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='93'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='95'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='96'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='97'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='99'/>
+<size>12</size>
+<use f='Modules/Scene/Src/tMesh.cpp' l='30' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='32' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='34' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='36' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='38' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='40' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='42' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='44' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='46' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='48' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='50' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='52' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='62' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='64' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='173' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='174' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='174' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='184' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='185' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='185' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='195' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='196' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='196' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='217' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='218' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='218' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='228' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='229' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='229' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='239' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='240' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='240' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='261' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='262' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='262' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<size>12</size>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='116' c='_ZNK6tScene10tPolyModel17ComputeApproxAreaEv'/>
+<size>12</size>
+<use f='Modules/Scene/Src/tWorld.cpp' l='301' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='302' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='303' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='304' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='305' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='306' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='309' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<size>12</size>

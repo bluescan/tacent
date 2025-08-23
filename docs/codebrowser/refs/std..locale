@@ -1,0 +1,181 @@
+<use f='include/c++/11/bits/localefwd.h' l='59' c='_ZSt9has_facetRKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='63' c='_ZSt9use_facetRKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='68' c='_ZSt7isspaceT_RKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='72' c='_ZSt7isprintT_RKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='76' c='_ZSt7iscntrlT_RKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='80' c='_ZSt7isupperT_RKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='84' c='_ZSt7islowerT_RKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='88' c='_ZSt7isalphaT_RKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='92' c='_ZSt7isdigitT_RKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='96' c='_ZSt7ispunctT_RKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='100' c='_ZSt8isxdigitT_RKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='104' c='_ZSt7isalnumT_RKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='108' c='_ZSt7isgraphT_RKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='113' c='_ZSt7isblankT_RKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='118' c='_ZSt7toupperT_RKSt6locale'/>
+<use f='include/c++/11/bits/localefwd.h' l='122' c='_ZSt7tolowerT_RKSt6locale'/>
+<def f='include/c++/11/bits/locale_classes.h' l='62' ll='359'/>
+<use f='include/c++/11/bits/locale_classes.h' l='79' c='_ZSt9has_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_classes.h' l='83' c='_ZSt9use_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_classes.h' l='126' c='_ZNSt6localeC1ERKS_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='151' c='_ZNSt6localeC1ERKS_PKci'/>
+<use f='include/c++/11/bits/locale_classes.h' l='163' c='_ZNSt6localeC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_classes.h' l='177' c='_ZNSt6localeC1ERKS_RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEi'/>
+<use f='include/c++/11/bits/locale_classes.h' l='178' c='_ZNSt6localeC1ERKS_RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEi'/>
+<use f='include/c++/11/bits/locale_classes.h' l='192' c='_ZNSt6localeC1ERKS_S1_i'/>
+<use f='include/c++/11/bits/locale_classes.h' l='192' c='_ZNSt6localeC1ERKS_S1_i'/>
+<use f='include/c++/11/bits/locale_classes.h' l='206' c='_ZNSt6localeC1ERKS_PT_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='219' c='_ZNSt6localeaSERKS_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='220' c='_ZNSt6localeaSERKS_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='235' c='_ZNKSt6locale7combineERKS_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='236' c='_ZNKSt6locale7combineERKS_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='255' c='_ZNKSt6localeeqERKS_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='300' c='_ZNSt6locale6globalERKS_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='301' c='_ZNSt6locale6globalERKS_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='306' c='_ZNSt6locale7classicEv'/>
+<use f='include/c++/11/bits/locale_classes.h' l='354' c='_ZNSt6locale11_M_coalesceERKS_S1_i'/>
+<use f='include/c++/11/bits/locale_classes.h' l='354' c='_ZNSt6locale11_M_coalesceERKS_S1_i'/>
+<use f='include/c++/11/bits/locale_classes.h' l='376'/>
+<use f='include/c++/11/bits/locale_classes.h' l='488'/>
+<use f='include/c++/11/bits/locale_classes.h' l='493' c='_ZSt9use_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_classes.h' l='497' c='_ZSt9has_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_classes.h' l='528'/>
+<use f='include/c++/11/bits/locale_classes.h' l='533' c='_ZSt9has_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_classes.h' l='537' c='_ZSt9use_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='45' c='_ZNSt6localeC1ERKS_PT_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='61' c='_ZNKSt6locale7combineERKS_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='63' c='_ZNKSt6locale7combineERKS_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='75' c='_ZNKSt6locale7combineERKS_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='104' c='_ZSt9has_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='132' c='_ZSt9use_facetRKSt6locale'/>
+<use f='include/c++/11/bits/ios_base.h' l='615'/>
+<use f='include/c++/11/bits/ios_base.h' l='781' c='_ZNSt8ios_base5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/ios_base.h' l='782' c='_ZNSt8ios_base5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/ios_base.h' l='792' c='_ZNKSt8ios_base6getlocEv'/>
+<use f='include/c++/11/bits/ios_base.h' l='803' c='_ZNKSt8ios_base9_M_getlocEv'/>
+<use f='include/c++/11/streambuf' l='197'/>
+<use f='include/c++/11/streambuf' l='213' c='_ZNSt15basic_streambuf8pubimbueERKSt6locale'/>
+<use f='include/c++/11/streambuf' l='214' c='_ZNSt15basic_streambuf8pubimbueERKSt6locale'/>
+<use f='include/c++/11/streambuf' l='216' c='_ZNSt15basic_streambuf8pubimbueERKSt6locale'/>
+<use f='include/c++/11/streambuf' l='230' c='_ZNKSt15basic_streambuf6getlocEv'/>
+<use f='include/c++/11/streambuf' l='471' c='_ZNSt15basic_streambufC1Ev'/>
+<use f='include/c++/11/streambuf' l='581' c='_ZNSt15basic_streambuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1635' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2596' c='_ZSt7isspaceT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2602' c='_ZSt7isprintT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2608' c='_ZSt7iscntrlT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2614' c='_ZSt7isupperT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2620' c='_ZSt7islowerT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2626' c='_ZSt7isalphaT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2632' c='_ZSt7isdigitT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2638' c='_ZSt7ispunctT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2644' c='_ZSt8isxdigitT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2650' c='_ZSt7isalnumT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2656' c='_ZSt7isgraphT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2663' c='_ZSt7isblankT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2670' c='_ZSt7toupperT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.h' l='2676' c='_ZSt7tolowerT_RKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='45' c='_ZNKSt11__use_cacheclERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='53' c='_ZNKSt11__use_cacheISt16__numpunct_cacheIT_EEclERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='78' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='155' c='_ZNKSt7num_get16_M_extract_floatB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='383' c='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='622' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRb'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='876' c='_ZNKSt7num_put13_M_insert_intET0_RSt8ios_baseT_TL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='998' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1136' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_b'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1256' c='_ZNSt5__pad6_S_padERSt8ios_baseT_PS2_PKS2_ll'/>
+<use f='include/c++/11/bits/basic_ios.h' l='409' c='_ZNSt9basic_ios5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/basic_ios.h' l='410' c='_ZNSt9basic_ios5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/basic_ios.h' l='510' c='_ZNSt9basic_ios15_M_cache_localeERKSt6locale'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='113' c='_ZNSt9basic_ios5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='114' c='_ZNSt9basic_ios5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='116' c='_ZNSt9basic_ios5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='157' c='_ZNSt9basic_ios15_M_cache_localeERKSt6locale'/>
+<size>8</size>
+<doc f='include/c++/11/bits/locale_classes.h' l='48'>/**
+   *  @brief  Container class for localization functionality.
+   *  @ingroup locales
+   *
+   *  The locale class is first a class wrapper for C library locales.  It is
+   *  also an extensible container for user-defined localization.  A locale is
+   *  a collection of facets that implement various localization features such
+   *  as money, time, and number printing.
+   *
+   *  Constructing C++ locales does not change the C library locale.
+   *
+   *  This library supports efficient construction and copying of locales
+   *  through a reference counting implementation of the locale class.
+  */</doc>
+<smbr r='std::locale::none' t='const std::locale::category'/>
+<smbr r='std::locale::ctype' t='const std::locale::category'/>
+<smbr r='std::locale::numeric' t='const std::locale::category'/>
+<smbr r='std::locale::collate' t='const std::locale::category'/>
+<smbr r='std::locale::time' t='const std::locale::category'/>
+<smbr r='std::locale::monetary' t='const std::locale::category'/>
+<smbr r='std::locale::messages' t='const std::locale::category'/>
+<smbr r='std::locale::all' t='const std::locale::category'/>
+<fun r='_ZNSt6localeC1Ev'/>
+<fun r='_ZNSt6localeC1ERKS_'/>
+<fun r='_ZNSt6localeC1EPKc'/>
+<fun r='_ZNSt6localeC1ERKS_PKci'/>
+<fun r='_ZNSt6localeC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt6localeC1ERKS_RKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEi'/>
+<fun r='_ZNSt6localeC1ERKS_S1_i'/>
+<fun r='_ZNSt6localeC1ERKS_PT_'/>
+<fun r='_ZNSt6localeD1Ev'/>
+<fun r='_ZNSt6localeaSERKS_'/>
+<fun r='_ZNKSt6locale7combineERKS_'/>
+<fun r='_ZNKSt6locale4nameB5cxx11Ev'/>
+<fun r='_ZNKSt6localeeqERKS_'/>
+<fun r='_ZNKSt6localeclERKNSt7__cxx1112basic_stringIT_T0_T1_EES7_'/>
+<fun r='_ZNSt6locale6globalERKS_'/>
+<fun r='_ZNSt6locale7classicEv'/>
+<mbr r='std::locale::_M_impl' o='0' t='std::locale::_Impl *'/>
+<smbr r='std::locale::_S_classic' t='std::locale::_Impl *'/>
+<smbr r='std::locale::_S_global' t='std::locale::_Impl *'/>
+<smbr r='std::locale::_S_categories' t='const char *const *const'/>
+<smbr r='std::locale::_S_once' t='__gthread_once_t'/>
+<fun r='_ZNSt6localeC1EPNS_5_ImplE'/>
+<fun r='_ZNSt6locale13_S_initializeEv'/>
+<fun r='_ZNSt6locale18_S_initialize_onceEv'/>
+<fun r='_ZNSt6locale21_S_normalize_categoryEi'/>
+<fun r='_ZNSt6locale11_M_coalesceERKS_S1_i'/>
+<smbr r='std::locale::_S_twinned_facets' t='const std::locale::id *const[]'/>
+<fun r='_ZNSt6localeC1ERKS_PT_'/>
+<fun r='_ZNKSt6locale7combineERKS_'/>
+<fun r='_ZNKSt6localeclERKNSt7__cxx1112basic_stringIT_T0_T1_EES7_'/>
+<use f='include/c++/11/fstream' l='439' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1030' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='992' c='_ZNSt18__moneypunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1870' c='_ZNKSt7__cxx118messages4openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1888' c='_ZNKSt7__cxx118messages4openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6localePKc'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1937' c='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='70' c='_ZNKSt7__cxx118messages4openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6localePKc'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='89' c='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='133' c='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='143' c='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='43' c='_ZNKSt11__use_cacheISt18__moneypunct_cacheIT_XT0_EEEclERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='69' c='_ZNSt18__moneypunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='146' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='390' c='_ZNKSt7__cxx119money_get6do_getET0_S1_bRSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIT_St11char_traitsIS7_ESaIS7_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='432' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='597' c='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_e'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='697' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='931' c='_ZNKSt7__cxx118time_get14_M_extract_numET0_S1_RiiimRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='975' c='_ZNKSt7__cxx118time_get15_M_extract_nameET0_S1_RiPPKT_mRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1051' c='_ZNKSt7__cxx118time_get24_M_extract_wday_or_monthET0_S1_RiPPKT_mRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1121' c='_ZNKSt7__cxx118time_get11do_get_timeET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1138' c='_ZNKSt7__cxx118time_get11do_get_dateET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1155' c='_ZNKSt7__cxx118time_get14do_get_weekdayET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1181' c='_ZNKSt7__cxx118time_get16do_get_monthnameET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1231' c='_ZNKSt7__cxx118time_get3getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_SA_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1303' c='_ZNKSt7__cxx118time_get6do_getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmcc'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1335' c='_ZNKSt8time_put3putET0_RSt8ios_baseT_PK2tmPKS3_S8_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1370' c='_ZNKSt8time_put6do_putET0_RSt8ios_baseT_PK2tmcc'/>
+<use f='include/c++/11/bits/fs_path.h' l='301' c='_ZNSt10filesystem7__cxx114pathC1ERKT_RKSt6localeNS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='308' c='_ZNSt10filesystem7__cxx114pathC1ET_S2_RKSt6localeNS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='602' c='_ZNSt10filesystem7__cxx114path14_S_convert_locEPKcS3_RKSt6locale'/>
+<use f='include/c++/11/bits/fs_path.h' l='606' c='_ZNSt10filesystem7__cxx114path14_S_convert_locET_S2_RKSt6locale'/>
+<use f='include/c++/11/bits/fs_path.h' l='614' c='_ZNSt10filesystem7__cxx114path14_S_convert_locERKT_RKSt6locale'/>
+<size>8</size>

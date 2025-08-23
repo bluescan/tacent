@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/struct_stat.h' l='57' type='__off_t'/>
+<use f='Modules/System/Src/tFile.cpp' l='2140' u='r' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<offset>384</offset>
+<doc f='include/x86_64-linux-gnu/bits/struct_stat.h' l='57'>/* Size of file, in bytes.  */</doc>

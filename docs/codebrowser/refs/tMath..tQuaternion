@@ -1,0 +1,116 @@
+<inh f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='145' c='tMath::tQuat'/>
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='23' ll='107'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='78' c='_ZN5tMath11tQuaternionaSERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='80' c='_ZN5tMath11tQuaternionpLERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='81' c='_ZNK5tMath11tQuaternionplERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='81' c='_ZNK5tMath11tQuaternionplERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='83' c='_ZN5tMath11tQuaternionmIERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='84' c='_ZNK5tMath11tQuaternionmiERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='84' c='_ZNK5tMath11tQuaternionmiERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='85' c='_ZNK5tMath11tQuaternionngEv'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='85' c='_ZNK5tMath11tQuaternionngEv'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='87' c='_ZN5tMath11tQuaternionmLEf'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='88' c='_ZN5tMath11tQuaternionmLERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='89' c='_ZN5tMath11tQuaternionmLERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='90' c='_ZNK5tMath11tQuaternionmlERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='90' c='_ZNK5tMath11tQuaternionmlERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='91' c='_ZNK5tMath11tQuaternionmlERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='91' c='_ZNK5tMath11tQuaternionmlERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='92' c='_ZN5tMathmlERKNS_5tQuatEf'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='92' c='_ZN5tMathmlERKNS_5tQuatEf'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='93' c='_ZN5tMathmlEfRKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='93' c='_ZN5tMathmlEfRKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='95' c='_ZN5tMath11tQuaterniondVEf'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='96' c='_ZNK5tMath11tQuaterniondvEf'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='96' c='_ZNK5tMath11tQuaterniondvEf'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='105'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='106'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='148' c='_ZN12tChunkWriter5WriteERKN5tMath11tQuaternionE'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='167' c='_ZN12tChunkWriter5WriteEPKN5tMath11tQuaternionEi'/>
+<size>16</size>
+<fun r='_ZN5tMath11tQuaternionC1Ev'/>
+<fun r='_ZN5tMath11tQuaternionC1ERKNS_5tQuatE'/>
+<fun r='_ZN5tMath11tQuaternionC1Effff'/>
+<fun r='_ZN5tMath11tQuaternionC1EPKf'/>
+<fun r='_ZN5tMath11tQuaternionC1ERKNS_5tMat4E'/>
+<fun r='_ZN5tMath11tQuaternionC1EfNS_5tVec3E'/>
+<fun r='_ZN5tMath11tQuaternionC1ERKNS_5tVec3Ef'/>
+<fun r='_ZN5tMath11tQuaternionC1ERKNS_5tVec3E'/>
+<fun r='_ZNK5tMath11tQuaternion3PodEv'/>
+<fun r='_ZN5tMath11tQuaternion3SetERKNS_5tQuatE'/>
+<fun r='_ZN5tMath11tQuaternion3SetEffff'/>
+<fun r='_ZN5tMath11tQuaternion3SetEPKf'/>
+<fun r='_ZN5tMath11tQuaternion3SetERKNS_5tMat4E'/>
+<fun r='_ZN5tMath11tQuaternion3SetEfNS_5tVec3E'/>
+<fun r='_ZN5tMath11tQuaternion3SetERKNS_5tVec3Ef'/>
+<fun r='_ZN5tMath11tQuaternion3SetERKNS_5tVec3E'/>
+<fun r='_ZNK5tMath11tQuaternion3GetERfS1_S1_S1_'/>
+<fun r='_ZNK5tMath11tQuaternion3GetEPf'/>
+<fun r='_ZNK5tMath11tQuaternion3GetERNS_5tVec3ERf'/>
+<fun r='_ZN5tMath11tQuaternion4ZeroEv'/>
+<fun r='_ZN5tMath11tQuaternion4ZeroEj'/>
+<fun r='_ZNK5tMath11tQuaternion6IsZeroEv'/>
+<fun r='_ZNK5tMath11tQuaternion6IsZeroEj'/>
+<fun r='_ZNK5tMath11tQuaternion11ApproxEqualERKNS_5tQuatEf'/>
+<fun r='_ZNK5tMath11tQuaternion11ApproxEqualERKNS_5tQuatEjf'/>
+<fun r='_ZNK5tMath11tQuaternion8LengthSqEv'/>
+<fun r='_ZNK5tMath11tQuaternion6LengthEv'/>
+<fun r='_ZNK5tMath11tQuaternion10LengthFastEv'/>
+<fun r='_ZNK5tMath11tQuaternion6NormSqEv'/>
+<fun r='_ZNK5tMath11tQuaternion4NormEv'/>
+<fun r='_ZNK5tMath11tQuaternion8NormFastEv'/>
+<fun r='_ZN5tMath11tQuaternion9NormalizeEv'/>
+<fun r='_ZN5tMath11tQuaternion18NormalizeGetLengthEv'/>
+<fun r='_ZN5tMath11tQuaternion13NormalizeSafeEv'/>
+<fun r='_ZN5tMath11tQuaternion22NormalizeSafeGetLengthEv'/>
+<fun r='_ZN5tMath11tQuaternion13NormalizeFastEv'/>
+<fun r='_ZN5tMath11tQuaternion17NormalizeSafeFastEv'/>
+<fun r='_ZNK5tMath11tQuaternion9ConjugateEv'/>
+<fun r='_ZN5tMath11tQuaternion13MakeConjugateEv'/>
+<fun r='_ZN5tMath11tQuaternion5SlerpERKNS_5tQuatES3_f'/>
+<fun r='_ZN5tMath11tQuaternion5NlerpERKNS_5tQuatES3_f'/>
+<fun r='_ZNK5tMath11tQuaternion13RotationAngleEv'/>
+<fun r='_ZNK5tMath11tQuaternion6RotateERNS_5tVec3E'/>
+<fun r='_ZNK5tMath11tQuaternion6RotateERNS_5tVec4E'/>
+<fun r='_ZN5tMath11tQuaternion16GetNumComponentsEv'/>
+<fun r='_ZN5tMath11tQuaternionaSERKNS_5tQuatE'/>
+<fun r='_ZN5tMath11tQuaternionpLERKNS_5tQuatE'/>
+<fun r='_ZNK5tMath11tQuaternionplERKNS_5tQuatE'/>
+<fun r='_ZN5tMath11tQuaternionmIERKNS_5tQuatE'/>
+<fun r='_ZNK5tMath11tQuaternionmiERKNS_5tQuatE'/>
+<fun r='_ZNK5tMath11tQuaternionngEv'/>
+<fun r='_ZN5tMath11tQuaternionmLEf'/>
+<fun r='_ZN5tMath11tQuaternionmLERKNS_5tQuatE'/>
+<fun r='_ZN5tMath11tQuaternionmLERKNS_5tVec3E'/>
+<fun r='_ZNK5tMath11tQuaternionmlERKNS_5tQuatE'/>
+<fun r='_ZNK5tMath11tQuaternionmlERKNS_5tVec3E'/>
+<fun r='_ZN5tMath11tQuaterniondVEf'/>
+<fun r='_ZNK5tMath11tQuaterniondvEf'/>
+<fun r='_ZN5tMath11tQuaternioncvPKfEv'/>
+<fun r='_ZNK5tMath11tQuaternioncvPKfEv'/>
+<fun r='_ZN5tMath11tQuaternionixEi'/>
+<fun r='_ZNK5tMath11tQuaternionixEi'/>
+<smbr r='tMath::tQuaternion::zero' t='const tMath::tQuaternion'/>
+<smbr r='tMath::tQuaternion::unit' t='const tMath::tQuaternion'/>
+<use f='Modules/System/Inc/System/tScript.h' l='113' c='_ZNK11tExpression17GetAtomQuaternionEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='130' c='_ZNK11tExpressioncvN5tMath11tQuaternionEEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='268' c='_ZN11tExprWriter9WriteAtomERKN5tMath11tQuaternionEb'/>
+<use f='Modules/System/Inc/System/tScript.h' l='317' c='_ZN11tExprWriter4AtomERKN5tMath11tQuaternionEb'/>
+<size>16</size>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='57'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='58'/>
+<size>16</size>
+<smbr r='tMath::tQuaternion::zero' t='const tMath::tQuaternion'/>
+<smbr r='tMath::tQuaternion::unit' t='const tMath::tQuaternion'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='37'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='60'/>
+<size>16</size>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='159' c='_ZN6tScene5tPose4LoadERK6tChunk'/>
+<size>16</size>
+<use f='Modules/System/Src/tChunk.cpp' l='372' c='_ZN12tChunkWriter5WriteERKN5tMath11tQuaternionE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='537' c='_ZN12tChunkWriter5WriteEPKN5tMath11tQuaternionEi'/>
+<size>16</size>
+<use f='Modules/System/Src/tScript.cpp' l='340' c='_ZNK11tExpression17GetAtomQuaternionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='344' c='_ZNK11tExpression17GetAtomQuaternionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='843' c='_ZN11tExprWriter9WriteAtomERKN5tMath11tQuaternionEb'/>
+<size>16</size>

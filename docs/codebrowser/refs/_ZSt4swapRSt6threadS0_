@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/std_thread.h' l='282' ll='284' type='void std::swap(std::thread &amp; __x, std::thread &amp; __y)'/>
+<use f='include/c++/11/thread' l='148' u='c' c='_ZNSt7jthread4swapERS_'/>

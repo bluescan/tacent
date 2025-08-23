@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15507' ll='15514'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15507'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceDescriptorBufferFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDescriptorBufferFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDescriptorBufferFeaturesEXT::descriptorBuffer' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorBufferFeaturesEXT::descriptorBufferCaptureReplay' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorBufferFeaturesEXT::descriptorBufferImageLayoutIgnored' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorBufferFeaturesEXT::descriptorBufferPushDescriptors' o='224' t='VkBool32'/>

@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='331' type='tString tString::Lower() const'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='692' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

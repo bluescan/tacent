@@ -1,0 +1,187 @@
+<def f='include/c++/11/bits/stl_deque.h' l='767' ll='2223'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2232' c='std::{deductionguidefordeque}'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2247' c='_ZSteqRKSt5dequeIT_T0_ES4_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2247' c='_ZSteqRKSt5dequeIT_T0_ES4_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2265' c='_ZStssRKSt5dequeIT_T0_ES4_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2265' c='_ZStssRKSt5dequeIT_T0_ES4_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2317' c='_ZSt4swapRSt5dequeIT_T0_ES3_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2317' c='_ZSt4swapRSt5dequeIT_T0_ES3_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2329'/>
+<use f='include/c++/11/bits/deque.tcc' l='69' c='_ZNSt5deque21_M_default_initializeEv'/>
+<use f='include/c++/11/bits/deque.tcc' l='95' c='_ZNSt5dequeaSERKSt5dequeIT_T0_E'/>
+<use f='include/c++/11/bits/deque.tcc' l='94' c='_ZNSt5dequeaSERKSt5dequeIT_T0_E'/>
+<use f='include/c++/11/bits/deque.tcc' l='140' c='_ZNSt5deque13emplace_frontEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='136' c='_ZNSt5deque13emplace_frontEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='164' c='_ZNSt5deque12emplace_backEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='160' c='_ZNSt5deque12emplace_backEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='187' c='_ZNSt5deque7emplaceENSt11_Deque_baseIT_T0_E14const_iteratorEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='186' c='_ZNSt5deque7emplaceENSt11_Deque_baseIT_T0_E14const_iteratorEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='210' c='_ZNSt5deque6insertENSt11_Deque_baseIT_T0_E14const_iteratorERKS1_'/>
+<use f='include/c++/11/bits/deque.tcc' l='209' c='_ZNSt5deque6insertENSt11_Deque_baseIT_T0_E14const_iteratorERKS1_'/>
+<use f='include/c++/11/bits/deque.tcc' l='235' c='_ZNSt5deque8_M_eraseENSt11_Deque_baseIT_T0_E8iteratorE'/>
+<use f='include/c++/11/bits/deque.tcc' l='234' c='_ZNSt5deque8_M_eraseENSt11_Deque_baseIT_T0_E8iteratorE'/>
+<use f='include/c++/11/bits/deque.tcc' l='258' c='_ZNSt5deque8_M_eraseENSt11_Deque_baseIT_T0_E8iteratorES4_'/>
+<use f='include/c++/11/bits/deque.tcc' l='257' c='_ZNSt5deque8_M_eraseENSt11_Deque_baseIT_T0_E8iteratorES4_'/>
+<use f='include/c++/11/bits/deque.tcc' l='291' c='_ZNSt5deque13_M_assign_auxETL0__S0_St18input_iterator_tag'/>
+<use f='include/c++/11/bits/deque.tcc' l='307' c='_ZNSt5deque14_M_fill_insertENSt11_Deque_baseIT_T0_E8iteratorEmRKS1_'/>
+<use f='include/c++/11/bits/deque.tcc' l='350' c='_ZNSt5deque17_M_default_appendEm'/>
+<use f='include/c++/11/bits/deque.tcc' l='374' c='_ZNSt5deque16_M_shrink_to_fitEv'/>
+<use f='include/c++/11/bits/deque.tcc' l='393' c='_ZNSt5deque18_M_fill_initializeERKT_'/>
+<use f='include/c++/11/bits/deque.tcc' l='419' c='_ZNSt5deque19_M_range_initializeETL0__S0_St18input_iterator_tag'/>
+<use f='include/c++/11/bits/deque.tcc' l='443' c='_ZNSt5deque19_M_range_initializeETL0__S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/deque.tcc' l='484' c='_ZNSt5deque16_M_push_back_auxEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='523' c='_ZNSt5deque17_M_push_front_auxEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='560' c='_ZNSt5deque15_M_pop_back_auxEv'/>
+<use f='include/c++/11/bits/deque.tcc' l='576' c='_ZNSt5deque16_M_pop_front_auxEv'/>
+<use f='include/c++/11/bits/deque.tcc' l='589' c='_ZNSt5deque19_M_range_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_St18input_iterator_tag'/>
+<use f='include/c++/11/bits/deque.tcc' l='598' c='_ZNSt5deque19_M_range_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/deque.tcc' l='645' c='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='644' c='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='685' c='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorEmRKS1_'/>
+<use f='include/c++/11/bits/deque.tcc' l='771' c='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_m'/>
+<use f='include/c++/11/bits/deque.tcc' l='859' c='_ZNSt5deque19_M_destroy_data_auxENSt11_Deque_baseIT_T0_E8iteratorES4_'/>
+<use f='include/c++/11/bits/deque.tcc' l='881' c='_ZNSt5deque24_M_new_elements_at_frontEm'/>
+<use f='include/c++/11/bits/deque.tcc' l='906' c='_ZNSt5deque23_M_new_elements_at_backEm'/>
+<use f='include/c++/11/bits/deque.tcc' l='931' c='_ZNSt5deque17_M_reallocate_mapEmb'/>
+<use f='include/c++/11/deque' l='83'/>
+<use f='include/c++/11/deque' l='97' c='_ZSt8erase_ifRSt5dequeIT_T0_ET1_'/>
+<use f='include/c++/11/deque' l='98' c='_ZSt8erase_ifRSt5dequeIT_T0_ET1_'/>
+<use f='include/c++/11/deque' l='107' c='_ZSt5eraseRSt5dequeIT_T0_ERKT1_'/>
+<use f='include/c++/11/deque' l='108' c='_ZSt5eraseRSt5dequeIT_T0_ERKT1_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='165' c='_ZN6tImage16tQuantizeSpatial21random_permutation_2dEiiRSt5dequeISt4pairIiiESaIS3_EERSt26linear_congruential_engineImLm16807ELm0ELm2147483647EE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='235' c='_ZN6tImage16tQuantizeSpatial21random_permutation_2dEiiRSt5dequeISt4pairIiiESaIS3_EERSt26linear_congruential_engineImLm16807ELm0ELm2147483647EE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='649' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<fun r='_ZNSt5deque14_S_buffer_sizeEv'/>
+<fun r='_ZNSt5dequeC1Ev'/>
+<fun r='_ZNSt5dequeC1ERKT0_'/>
+<fun r='_ZNSt5dequeC1EmRKT0_'/>
+<fun r='_ZNSt5dequeC1EmRKT_RKT0_'/>
+<fun r='_ZNSt5dequeC1ERKSt5dequeIT_T0_E'/>
+<fun r='_ZNSt5dequeC1EOSt5dequeIT_T0_E'/>
+<fun r='_ZNSt5dequeC1ERKSt5dequeIT_T0_ERKS2_'/>
+<fun r='_ZNSt5dequeC1EOSt5dequeIT_T0_ERKS2_'/>
+<fun r='_ZNSt5dequeC1EOSt5dequeIT_T0_ERKS2_St17integral_constantIbLb1EE'/>
+<fun r='_ZNSt5dequeC1EOSt5dequeIT_T0_ERKS2_St17integral_constantIbLb0EE'/>
+<fun r='_ZNSt5dequeC1ESt16initializer_listIT_ERKT0_'/>
+<fun r='_ZNSt5dequeC1ETL0__S0_RKT0_'/>
+<fun r='_ZNSt5dequeD1Ev'/>
+<fun r='_ZNSt5dequeaSERKSt5dequeIT_T0_E'/>
+<fun r='_ZNSt5dequeaSEOSt5dequeIT_T0_E'/>
+<fun r='_ZNSt5dequeaSESt16initializer_listIT_E'/>
+<fun r='_ZNSt5deque6assignEmRKT_'/>
+<fun r='_ZNSt5deque6assignETL0__S0_'/>
+<fun r='_ZNSt5deque6assignESt16initializer_listIT_E'/>
+<fun r='_ZNKSt5deque13get_allocatorEv'/>
+<fun r='_ZNSt5deque5beginEv'/>
+<fun r='_ZNKSt5deque5beginEv'/>
+<fun r='_ZNSt5deque3endEv'/>
+<fun r='_ZNKSt5deque3endEv'/>
+<fun r='_ZNSt5deque6rbeginEv'/>
+<fun r='_ZNKSt5deque6rbeginEv'/>
+<fun r='_ZNSt5deque4rendEv'/>
+<fun r='_ZNKSt5deque4rendEv'/>
+<fun r='_ZNKSt5deque6cbeginEv'/>
+<fun r='_ZNKSt5deque4cendEv'/>
+<fun r='_ZNKSt5deque7crbeginEv'/>
+<fun r='_ZNKSt5deque5crendEv'/>
+<fun r='_ZNKSt5deque4sizeEv'/>
+<fun r='_ZNKSt5deque8max_sizeEv'/>
+<fun r='_ZNSt5deque6resizeEm'/>
+<fun r='_ZNSt5deque6resizeEmRKT_'/>
+<fun r='_ZNSt5deque13shrink_to_fitEv'/>
+<fun r='_ZNKSt5deque5emptyEv'/>
+<fun r='_ZNSt5dequeixEm'/>
+<fun r='_ZNKSt5dequeixEm'/>
+<fun r='_ZNKSt5deque14_M_range_checkEm'/>
+<fun r='_ZNSt5deque2atEm'/>
+<fun r='_ZNKSt5deque2atEm'/>
+<fun r='_ZNSt5deque5frontEv'/>
+<fun r='_ZNKSt5deque5frontEv'/>
+<fun r='_ZNSt5deque4backEv'/>
+<fun r='_ZNKSt5deque4backEv'/>
+<fun r='_ZNSt5deque10push_frontERKT_'/>
+<fun r='_ZNSt5deque10push_frontEOT_'/>
+<fun r='_ZNSt5deque13emplace_frontEDpOTL0__'/>
+<fun r='_ZNSt5deque9push_backERKT_'/>
+<fun r='_ZNSt5deque9push_backEOT_'/>
+<fun r='_ZNSt5deque12emplace_backEDpOTL0__'/>
+<fun r='_ZNSt5deque9pop_frontEv'/>
+<fun r='_ZNSt5deque8pop_backEv'/>
+<fun r='_ZNSt5deque7emplaceENSt11_Deque_baseIT_T0_E14const_iteratorEDpOTL0__'/>
+<fun r='_ZNSt5deque6insertENSt11_Deque_baseIT_T0_E14const_iteratorERKS1_'/>
+<fun r='_ZNSt5deque6insertENSt11_Deque_baseIT_T0_E14const_iteratorEOS1_'/>
+<fun r='_ZNSt5deque6insertENSt11_Deque_baseIT_T0_E14const_iteratorESt16initializer_listIS1_E'/>
+<fun r='_ZNSt5deque6insertENSt11_Deque_baseIT_T0_E14const_iteratorEmRKS1_'/>
+<fun r='_ZNSt5deque6insertENSt11_Deque_baseIT_T0_E14const_iteratorETL0__S5_'/>
+<fun r='_ZNSt5deque5eraseENSt11_Deque_baseIT_T0_E14const_iteratorE'/>
+<fun r='_ZNSt5deque5eraseENSt11_Deque_baseIT_T0_E14const_iteratorES4_'/>
+<fun r='_ZNSt5deque4swapERSt5dequeIT_T0_E'/>
+<fun r='_ZNSt5deque5clearEv'/>
+<fun r='_ZNSt5deque17_S_check_init_lenEmRKT0_'/>
+<fun r='_ZNSt5deque11_S_max_sizeERKNSt11_Deque_baseIT_T0_E14_Tp_alloc_typeE'/>
+<fun r='_ZNSt5deque19_M_range_initializeETL0__S0_St18input_iterator_tag'/>
+<fun r='_ZNSt5deque19_M_range_initializeETL0__S0_St20forward_iterator_tag'/>
+<fun r='_ZNSt5deque18_M_fill_initializeERKT_'/>
+<fun r='_ZNSt5deque21_M_default_initializeEv'/>
+<fun r='_ZNSt5deque13_M_assign_auxETL0__S0_St18input_iterator_tag'/>
+<fun r='_ZNSt5deque13_M_assign_auxETL0__S0_St20forward_iterator_tag'/>
+<fun r='_ZNSt5deque14_M_fill_assignEmRKT_'/>
+<fun r='_ZNSt5deque16_M_push_back_auxEDpOTL0__'/>
+<fun r='_ZNSt5deque17_M_push_front_auxEDpOTL0__'/>
+<fun r='_ZNSt5deque15_M_pop_back_auxEv'/>
+<fun r='_ZNSt5deque16_M_pop_front_auxEv'/>
+<fun r='_ZNSt5deque19_M_range_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_St18input_iterator_tag'/>
+<fun r='_ZNSt5deque19_M_range_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_St20forward_iterator_tag'/>
+<fun r='_ZNSt5deque14_M_fill_insertENSt11_Deque_baseIT_T0_E8iteratorEmRKS1_'/>
+<fun r='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorEDpOTL0__'/>
+<fun r='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorEmRKS1_'/>
+<fun r='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_m'/>
+<fun r='_ZNSt5deque19_M_destroy_data_auxENSt11_Deque_baseIT_T0_E8iteratorES4_'/>
+<fun r='_ZNSt5deque15_M_destroy_dataENSt11_Deque_baseIT_T0_E8iteratorES4_RKTL0__'/>
+<fun r='_ZNSt5deque15_M_destroy_dataENSt11_Deque_baseIT_T0_E8iteratorES4_RKSaIS1_E'/>
+<fun r='_ZNSt5deque17_M_erase_at_beginENSt11_Deque_baseIT_T0_E8iteratorE'/>
+<fun r='_ZNSt5deque15_M_erase_at_endENSt11_Deque_baseIT_T0_E8iteratorE'/>
+<fun r='_ZNSt5deque8_M_eraseENSt11_Deque_baseIT_T0_E8iteratorE'/>
+<fun r='_ZNSt5deque8_M_eraseENSt11_Deque_baseIT_T0_E8iteratorES4_'/>
+<fun r='_ZNSt5deque17_M_default_appendEm'/>
+<fun r='_ZNSt5deque16_M_shrink_to_fitEv'/>
+<fun r='_ZNSt5deque28_M_reserve_elements_at_frontEm'/>
+<fun r='_ZNSt5deque27_M_reserve_elements_at_backEm'/>
+<fun r='_ZNSt5deque24_M_new_elements_at_frontEm'/>
+<fun r='_ZNSt5deque23_M_new_elements_at_backEm'/>
+<fun r='_ZNSt5deque22_M_reserve_map_at_backEm'/>
+<fun r='_ZNSt5deque23_M_reserve_map_at_frontEm'/>
+<fun r='_ZNSt5deque17_M_reallocate_mapEmb'/>
+<fun r='_ZNSt5deque15_M_move_assign1EOSt5dequeIT_T0_ESt17integral_constantIbLb1EE'/>
+<fun r='_ZNSt5deque15_M_move_assign1EOSt5dequeIT_T0_ESt17integral_constantIbLb0EE'/>
+<fun r='_ZNSt5deque14_M_replace_mapEDpOTL0__'/>
+<fun r='_ZNSt5deque15_M_move_assign2EOSt5dequeIT_T0_ESt17integral_constantIbLb1EE'/>
+<fun r='_ZNSt5deque15_M_move_assign2EOSt5dequeIT_T0_ESt17integral_constantIbLb0EE'/>
+<fun r='_ZNSt5deque21_M_default_initializeEv'/>
+<fun r='_ZNSt5dequeaSERKSt5dequeIT_T0_E'/>
+<fun r='_ZNSt5deque13emplace_frontEDpOTL0__'/>
+<fun r='_ZNSt5deque12emplace_backEDpOTL0__'/>
+<fun r='_ZNSt5deque7emplaceENSt11_Deque_baseIT_T0_E14const_iteratorEDpOTL0__'/>
+<fun r='_ZNSt5deque6insertENSt11_Deque_baseIT_T0_E14const_iteratorERKS1_'/>
+<fun r='_ZNSt5deque8_M_eraseENSt11_Deque_baseIT_T0_E8iteratorE'/>
+<fun r='_ZNSt5deque8_M_eraseENSt11_Deque_baseIT_T0_E8iteratorES4_'/>
+<fun r='_ZNSt5deque13_M_assign_auxETL0__S0_St18input_iterator_tag'/>
+<fun r='_ZNSt5deque14_M_fill_insertENSt11_Deque_baseIT_T0_E8iteratorEmRKS1_'/>
+<fun r='_ZNSt5deque17_M_default_appendEm'/>
+<fun r='_ZNSt5deque16_M_shrink_to_fitEv'/>
+<fun r='_ZNSt5deque18_M_fill_initializeERKT_'/>
+<fun r='_ZNSt5deque19_M_range_initializeETL0__S0_St18input_iterator_tag'/>
+<fun r='_ZNSt5deque19_M_range_initializeETL0__S0_St20forward_iterator_tag'/>
+<fun r='_ZNSt5deque16_M_push_back_auxEDpOTL0__'/>
+<fun r='_ZNSt5deque17_M_push_front_auxEDpOTL0__'/>
+<fun r='_ZNSt5deque15_M_pop_back_auxEv'/>
+<fun r='_ZNSt5deque16_M_pop_front_auxEv'/>
+<fun r='_ZNSt5deque19_M_range_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_St18input_iterator_tag'/>
+<fun r='_ZNSt5deque19_M_range_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_St20forward_iterator_tag'/>
+<fun r='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorEDpOTL0__'/>
+<fun r='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorEmRKS1_'/>
+<fun r='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_m'/>
+<fun r='_ZNSt5deque19_M_destroy_data_auxENSt11_Deque_baseIT_T0_E8iteratorES4_'/>
+<fun r='_ZNSt5deque24_M_new_elements_at_frontEm'/>
+<fun r='_ZNSt5deque23_M_new_elements_at_backEm'/>
+<fun r='_ZNSt5deque17_M_reallocate_mapEmb'/>

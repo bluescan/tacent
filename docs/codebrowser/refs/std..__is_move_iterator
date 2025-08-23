@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/cpp_type_traits.h' l='549' ll='553'/>
+<def f='include/c++/11/bits/stl_iterator.h' l='623' ll='626'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='625'/>
+<def f='include/c++/11/bits/stl_iterator.h' l='2454' ll='2459'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='619' c='_ZSt4copyT_S_T0_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='858' c='_ZSt13copy_backwardT_S_T0_'/>

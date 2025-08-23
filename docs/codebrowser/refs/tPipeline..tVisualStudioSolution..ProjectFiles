@@ -1,0 +1,5 @@
+<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='31' u='m' c='_ZN9tPipeline21tVisualStudioSolutionD1Ev'/>
+<dec f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='34' type='tList&lt;tStringItem&gt;'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='25' u='w' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='60' u='m' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<offset>320</offset>

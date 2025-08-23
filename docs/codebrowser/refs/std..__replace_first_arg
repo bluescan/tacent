@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/ptr_traits.h' l='50' ll='51'/>
+<def f='include/c++/11/bits/ptr_traits.h' l='53' ll='56'/>
+<use f='include/c++/11/bits/ptr_traits.h' l='59'/>
+<use f='include/c++/11/bits/ptr_traits.h' l='107'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='52'/>

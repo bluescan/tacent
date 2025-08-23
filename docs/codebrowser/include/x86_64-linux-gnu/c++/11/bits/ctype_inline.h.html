@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ctype_inline.h source code [include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>include</a>/<a href='../../..'>x86_64-linux-gnu</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='ctype_inline.h.html'>ctype_inline.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Locale support -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2000-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/ctype_inline.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{locale}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i class="doc">// ISO C++ 14882: 22.1  Locales</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i class="doc">// ctype bits to be inlined go here. Non-inlinable (ie virtual do_*)</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i class="doc">// functions go in ctype.cc</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="38">38</th><td>{&nbsp</td></tr>
+<tr><th id="39">39</th><td><a class="macro" href="c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td>  <em>bool</em>&nbsp</td></tr>
+<tr><th id="42">42</th><td>  <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::ctype" title='std::ctype' data-ref="std::ctype">ctype</a>&lt;<em>char</em>&gt;::&nbsp</td></tr>
+<tr><th id="43">43</th><td>  <dfn class="decl def fn" id="_ZNKSt5ctypeIcE2isEtc" title='std::ctype&lt;char&gt;::is' data-ref="_ZNKSt5ctypeIcE2isEtc">is</dfn>(<a class="typedef" href="ctype_base.h.html#std::ctype_base::mask" title='std::ctype_base::mask' data-type='unsigned short' data-ref="std::ctype_base::mask">mask</a> <dfn class="local col1 decl" id="1581__m" title='__m' data-type='std::ctype_base::mask' data-ref="1581__m">__m</dfn>, <em>char</em> <dfn class="local col2 decl" id="1582__c" title='__c' data-type='char' data-ref="1582__c">__c</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="44">44</th><td>  { <b>return</b> <a class="member field" href="../../../../c++/11/bits/locale_facets.h.html#std::ctype::_M_table" title='std::ctype&lt;char&gt;::_M_table' data-ref="std::ctype::_M_table">_M_table</a>[<b>static_cast</b>&lt;<em>unsigned</em> <em>char</em>&gt;(<a class="local col2 ref" href="#1582__c" title='__c' data-ref="1582__c">__c</a>)] &amp; <a class="local col1 ref" href="#1581__m" title='__m' data-ref="1581__m">__m</a>; }&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td>  <em>const</em> <em>char</em>*&nbsp</td></tr>
+<tr><th id="47">47</th><td>  <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::ctype" title='std::ctype' data-ref="std::ctype">ctype</a>&lt;<em>char</em>&gt;::&nbsp</td></tr>
+<tr><th id="48">48</th><td>  <dfn class="decl def fn" id="_ZNKSt5ctypeIcE2isEPKcS2_Pt" title='std::ctype&lt;char&gt;::is' data-ref="_ZNKSt5ctypeIcE2isEPKcS2_Pt">is</dfn>(<em>const</em> <em>char</em>* <dfn class="local col3 decl" id="1583__low" title='__low' data-type='const char *' data-ref="1583__low">__low</dfn>, <em>const</em> <em>char</em>* <dfn class="local col4 decl" id="1584__high" title='__high' data-type='const char *' data-ref="1584__high">__high</dfn>, <a class="typedef" href="ctype_base.h.html#std::ctype_base::mask" title='std::ctype_base::mask' data-type='unsigned short' data-ref="std::ctype_base::mask">mask</a>* <dfn class="local col5 decl" id="1585__vec" title='__vec' data-type='std::ctype_base::mask *' data-ref="1585__vec">__vec</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="49">49</th><td>  {&nbsp</td></tr>
+<tr><th id="50">50</th><td>    <b>while</b> (<a class="local col3 ref" href="#1583__low" title='__low' data-ref="1583__low">__low</a> &lt; <a class="local col4 ref" href="#1584__high" title='__high' data-ref="1584__high">__high</a>)&nbsp</td></tr>
+<tr><th id="51">51</th><td>      *<a class="local col5 ref" href="#1585__vec" title='__vec' data-ref="1585__vec">__vec</a>++ = <a class="member field" href="../../../../c++/11/bits/locale_facets.h.html#std::ctype::_M_table" title='std::ctype&lt;char&gt;::_M_table' data-ref="std::ctype::_M_table">_M_table</a>[<b>static_cast</b>&lt;<em>unsigned</em> <em>char</em>&gt;(*<a class="local col3 ref" href="#1583__low" title='__low' data-ref="1583__low">__low</a>++)];&nbsp</td></tr>
+<tr><th id="52">52</th><td>    <b>return</b> <a class="local col4 ref" href="#1584__high" title='__high' data-ref="1584__high">__high</a>;&nbsp</td></tr>
+<tr><th id="53">53</th><td>  }&nbsp</td></tr>
+<tr><th id="54">54</th><td>&nbsp</td></tr>
+<tr><th id="55">55</th><td>  <em>const</em> <em>char</em>*&nbsp</td></tr>
+<tr><th id="56">56</th><td>  <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::ctype" title='std::ctype' data-ref="std::ctype">ctype</a>&lt;<em>char</em>&gt;::&nbsp</td></tr>
+<tr><th id="57">57</th><td>  <dfn class="decl def fn" id="_ZNKSt5ctypeIcE7scan_isEtPKcS2_" title='std::ctype&lt;char&gt;::scan_is' data-ref="_ZNKSt5ctypeIcE7scan_isEtPKcS2_">scan_is</dfn>(<a class="typedef" href="ctype_base.h.html#std::ctype_base::mask" title='std::ctype_base::mask' data-type='unsigned short' data-ref="std::ctype_base::mask">mask</a> <dfn class="local col6 decl" id="1586__m" title='__m' data-type='std::ctype_base::mask' data-ref="1586__m">__m</dfn>, <em>const</em> <em>char</em>* <dfn class="local col7 decl" id="1587__low" title='__low' data-type='const char *' data-ref="1587__low">__low</dfn>, <em>const</em> <em>char</em>* <dfn class="local col8 decl" id="1588__high" title='__high' data-type='const char *' data-ref="1588__high">__high</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="58">58</th><td>  {&nbsp</td></tr>
+<tr><th id="59">59</th><td>    <b>while</b> (<a class="local col7 ref" href="#1587__low" title='__low' data-ref="1587__low">__low</a> &lt; <a class="local col8 ref" href="#1588__high" title='__high' data-ref="1588__high">__high</a>&nbsp</td></tr>
+<tr><th id="60">60</th><td>	   &amp;&amp; !(<a class="member field" href="../../../../c++/11/bits/locale_facets.h.html#std::ctype::_M_table" title='std::ctype&lt;char&gt;::_M_table' data-ref="std::ctype::_M_table">_M_table</a>[<b>static_cast</b>&lt;<em>unsigned</em> <em>char</em>&gt;(*<a class="local col7 ref" href="#1587__low" title='__low' data-ref="1587__low">__low</a>)] &amp; <a class="local col6 ref" href="#1586__m" title='__m' data-ref="1586__m">__m</a>))&nbsp</td></tr>
+<tr><th id="61">61</th><td>      ++<a class="local col7 ref" href="#1587__low" title='__low' data-ref="1587__low">__low</a>;&nbsp</td></tr>
+<tr><th id="62">62</th><td>    <b>return</b> <a class="local col7 ref" href="#1587__low" title='__low' data-ref="1587__low">__low</a>;&nbsp</td></tr>
+<tr><th id="63">63</th><td>  }&nbsp</td></tr>
+<tr><th id="64">64</th><td>&nbsp</td></tr>
+<tr><th id="65">65</th><td>  <em>const</em> <em>char</em>*&nbsp</td></tr>
+<tr><th id="66">66</th><td>  <a class="type" href="../../../../c++/11/bits/localefwd.h.html#std::ctype" title='std::ctype' data-ref="std::ctype">ctype</a>&lt;<em>char</em>&gt;::&nbsp</td></tr>
+<tr><th id="67">67</th><td>  <dfn class="decl def fn" id="_ZNKSt5ctypeIcE8scan_notEtPKcS2_" title='std::ctype&lt;char&gt;::scan_not' data-ref="_ZNKSt5ctypeIcE8scan_notEtPKcS2_">scan_not</dfn>(<a class="typedef" href="ctype_base.h.html#std::ctype_base::mask" title='std::ctype_base::mask' data-type='unsigned short' data-ref="std::ctype_base::mask">mask</a> <dfn class="local col9 decl" id="1589__m" title='__m' data-type='std::ctype_base::mask' data-ref="1589__m">__m</dfn>, <em>const</em> <em>char</em>* <dfn class="local col0 decl" id="1590__low" title='__low' data-type='const char *' data-ref="1590__low">__low</dfn>, <em>const</em> <em>char</em>* <dfn class="local col1 decl" id="1591__high" title='__high' data-type='const char *' data-ref="1591__high">__high</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="68">68</th><td>  {&nbsp</td></tr>
+<tr><th id="69">69</th><td>    <b>while</b> (<a class="local col0 ref" href="#1590__low" title='__low' data-ref="1590__low">__low</a> &lt; <a class="local col1 ref" href="#1591__high" title='__high' data-ref="1591__high">__high</a>&nbsp</td></tr>
+<tr><th id="70">70</th><td>	   &amp;&amp; (<a class="member field" href="../../../../c++/11/bits/locale_facets.h.html#std::ctype::_M_table" title='std::ctype&lt;char&gt;::_M_table' data-ref="std::ctype::_M_table">_M_table</a>[<b>static_cast</b>&lt;<em>unsigned</em> <em>char</em>&gt;(*<a class="local col0 ref" href="#1590__low" title='__low' data-ref="1590__low">__low</a>)] &amp; <a class="local col9 ref" href="#1589__m" title='__m' data-ref="1589__m">__m</a>) != <var>0</var>)&nbsp</td></tr>
+<tr><th id="71">71</th><td>      ++<a class="local col0 ref" href="#1590__low" title='__low' data-ref="1590__low">__low</a>;&nbsp</td></tr>
+<tr><th id="72">72</th><td>    <b>return</b> <a class="local col0 ref" href="#1590__low" title='__low' data-ref="1590__low">__low</a>;&nbsp</td></tr>
+<tr><th id="73">73</th><td>  }&nbsp</td></tr>
+<tr><th id="74">74</th><td>&nbsp</td></tr>
+<tr><th id="75">75</th><td><a class="macro" href="c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="76">76</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../../Modules/Foundation/Inc/Foundation/tPool.h.html'>Modules/Foundation/Inc/Foundation/tPool.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

@@ -1,0 +1,34 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='201' ll='244'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='197'>// Same as a tList but thread-safe. tListMode can be Static, External, or Intrernal. The &apos;thread-safeness&apos; of a tsList
+// extends only to keeping the list consistent (adding, removing, sorting, etc) -- it does _not_ extend to managing and
+// synchronizing the lifetime of the items you put on the list. That is your job. For this reason, be careful with
+// Internal list-mode, as the list destructor deletes the items just like a regular tList.</doc>
+<fun r='_ZN6tsListC1Ev'/>
+<fun r='_ZN6tsListC1E9tListMode'/>
+<fun r='_ZN6tsListD1Ev'/>
+<fun r='_ZN6tsList6InsertEPT_'/>
+<fun r='_ZN6tsList6InsertEPT_S1_'/>
+<fun r='_ZN6tsList6AppendEPT_'/>
+<fun r='_ZN6tsList6AppendEPT_S1_'/>
+<fun r='_ZN6tsList6RemoveEPT_'/>
+<fun r='_ZN6tsList6RemoveEv'/>
+<fun r='_ZN6tsList4DropEv'/>
+<fun r='_ZN6tsList5ClearEv'/>
+<fun r='_ZN6tsList5ResetEv'/>
+<fun r='_ZN6tsList5EmptyEv'/>
+<fun r='_ZNK6tsList4HeadEv'/>
+<fun r='_ZNK6tsList4TailEv'/>
+<fun r='_ZNK6tsList5FirstEv'/>
+<fun r='_ZNK6tsList4LastEv'/>
+<fun r='_ZNK6tsList8NextCircEPKT_'/>
+<fun r='_ZNK6tsList8PrevCircEPKT_'/>
+<fun r='_ZNK6tsList11GetNumItemsEv'/>
+<fun r='_ZNK6tsList8NumItemsEv'/>
+<fun r='_ZNK6tsList5CountEv'/>
+<fun r='_ZNK6tsList4OwnsEv'/>
+<fun r='_ZNK6tsList7IsEmptyEv'/>
+<fun r='_ZNK6tsList8ContainsERKT_'/>
+<fun r='_ZN6tsList4SortETL0__18tListSortAlgorithm'/>
+<fun r='_ZN6tsList6InsertEPT_TL0__'/>
+<fun r='_ZN6tsList6BubbleETL0__bi'/>
+<mbr r='tsList::Mutex' t='std::mutex'/>

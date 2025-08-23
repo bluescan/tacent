@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/basic_string.h' l='1159' ll='1161' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::operator+=(const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __str)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1154'>/**
+       *  @brief  Append a string to this string.
+       *  @param __str  The string to append.
+       *  @return  Reference to this string.
+       */</doc>

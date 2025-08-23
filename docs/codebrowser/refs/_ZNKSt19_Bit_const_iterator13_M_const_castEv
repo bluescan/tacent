@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='342' ll='344' type='std::_Bit_iterator std::_Bit_const_iterator::_M_const_cast() const'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1008' u='c' c='_ZNSt6vectorIbT_E6insertESt19_Bit_const_iteratorRKb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1020' u='c' c='_ZNSt6vectorIbT_E6insertESt19_Bit_const_iteratorTL0__S3_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1042' u='c' c='_ZNSt6vectorIbT_E6insertESt19_Bit_const_iteratormRKb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1067' u='c' c='_ZNSt6vectorIbT_E5eraseESt19_Bit_const_iterator'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1075' u='c' c='_ZNSt6vectorIbT_E5eraseESt19_Bit_const_iteratorS2_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1075' u='c' c='_ZNSt6vectorIbT_E5eraseESt19_Bit_const_iteratorS2_'/>

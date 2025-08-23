@@ -1,0 +1,13 @@
+<use f='include/c++/11/bits/stl_deque.h' l='872' u='c' c='_ZNSt5dequeC1EmRKT_RKT0_'/>
+<dec f='include/c++/11/bits/stl_deque.h' l='1876' type='void std::deque::_M_fill_initialize(const std::deque::value_type &amp; __value)'/>
+<def f='include/c++/11/bits/deque.tcc' l='391' ll='414' type='void std::deque::_M_fill_initialize(const std::deque::value_type &amp; __value)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1865'>/**
+       *  @brief Fills the %deque with copies of value.
+       *  @param  __value  Initial value.
+       *  @return   Nothing.
+       *  @pre _M_start and _M_finish have already been initialized,
+       *  but none of the %deque&apos;s elements have yet been constructed.
+       *
+       *  This function is called only when the user provides an explicit size
+       *  (with or without an explicit exemplar value).
+       */</doc>

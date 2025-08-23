@@ -1,0 +1,3 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='407' u='c' c='_ZN5tMath8tFrustumC1EPKNS_8tVector4E'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='411' type='void tMath::tFrustum::Set(const tMath::tVector4 * )'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='598' ll='602' type='void tMath::tFrustum::Set(const tMath::tVector4 * planes)'/>

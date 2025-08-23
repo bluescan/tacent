@@ -1,0 +1,9 @@
+<dec f='include/stdio.h' l='681' type='size_t fwrite(const void *__restrict __ptr, size_t __size, size_t __n, FILE *__restrict __s)'/>
+<doc f='include/stdio.h' l='677'>/* Write chunks of generic data to STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>
+<use f='Modules/System/Inc/System/tFile.h' l='722' u='c' c='_ZN7tSystem10tWriteFileEP8_IO_FILEPKvi'/>
+<use f='Modules/System/Inc/System/tFile.h' l='729' u='c' c='_ZN7tSystem10tWriteFileEP8_IO_FILEPKDui'/>
+<use f='Modules/System/Inc/System/tFile.h' l='736' u='c' c='_ZN7tSystem10tWriteFileEP8_IO_FILEPKDsi'/>
+<use f='Modules/System/Inc/System/tFile.h' l='743' u='c' c='_ZN7tSystem10tWriteFileEP8_IO_FILEPKDii'/>

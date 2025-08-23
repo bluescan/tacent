@@ -1,0 +1,6 @@
+<def f='Modules/Foundation/Inc/Foundation/tUnits.h' l='128' ll='135'/>
+<use f='Modules/Foundation/Inc/Foundation/tUnits.h' l='143' c='_ZN5tUnit11GetUnitNameENS_5tMassE'/>
+<use f='Modules/Foundation/Inc/Foundation/tUnits.h' l='149' c='_ZN5tUnit11GetMassUnitEPKc'/>
+<use f='Modules/Foundation/Src/tUnits.cpp' l='90' c='_ZN5tUnit11GetUnitNameENS_5tMassE'/>
+<use f='Modules/Foundation/Src/tUnits.cpp' l='123' c='_ZN5tUnit11GetMassUnitEPKc'/>
+<use f='Modules/Foundation/Src/tUnits.cpp' l='128' c='_ZN5tUnit11GetMassUnitEPKc'/>

@@ -1,0 +1,3 @@
+<dec f='include/strings.h' l='133' type='int strncasecmp_l(const char * __s1, const char * __s2, size_t __n, locale_t __loc)'/>
+<doc f='include/strings.h' l='131'>/* Compare no more than N chars of S1 and S2, ignoring case, using
+   collation rules from LOC.  */</doc>

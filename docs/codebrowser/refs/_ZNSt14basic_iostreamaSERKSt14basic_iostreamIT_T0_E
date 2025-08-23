@@ -1,0 +1,2 @@
+<def f='include/c++/11/istream' l='937' type='basic_iostream&lt;_CharT, _Traits&gt; &amp; std::basic_iostream::operator=(const basic_iostream&lt;_CharT, _Traits&gt; &amp; )'/>
+<doc f='include/c++/11/istream' l='935'>// 27.7.3.3 Assign/swap</doc>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1181' ll='1194'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1181'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1177'>/**
+ * @~English
+ * @brief Options specifiying ASTC encoding quality levels.
+ */</doc>

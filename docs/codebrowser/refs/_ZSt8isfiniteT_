@@ -1,0 +1,1 @@
+<def f='include/c++/11/cmath' l='576' ll='579' type='typename __gnu_cxx::__enable_if&lt;__is_integer&lt;_Tp&gt;::__value, bool&gt;::__type std::isfinite(_Tp __x)'/>

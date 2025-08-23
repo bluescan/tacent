@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/sched.h' l='82' type='int clone(int (*)(void *) __fn, void * __child_stack, int __flags, void * __arg)'/>
+<doc f='include/x86_64-linux-gnu/bits/sched.h' l='81'>/* Clone current process.  */</doc>

@@ -1,0 +1,3 @@
+<use f='include/c++/11/stop_token' l='79' u='c' c='_ZNKSt10stop_token14stop_requestedEv'/>
+<def f='include/c++/11/stop_token' l='172' ll='176' type='bool std::stop_token::_Stop_state_t::_M_stop_requested()'/>
+<use f='include/c++/11/stop_token' l='528' u='c' c='_ZNKSt11stop_source14stop_requestedEv'/>

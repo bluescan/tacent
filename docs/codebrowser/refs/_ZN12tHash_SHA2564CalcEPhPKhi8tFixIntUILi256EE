@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Src/tHash.cpp' l='564' type='void tHash_SHA256::Calc(uint8 * hash, const uint8 * input, int len, tuint256 iv)'/>
+<def f='Modules/Foundation/Src/tHash.cpp' l='730' ll='736' type='void tHash_SHA256::Calc(uint8 * hash, const uint8 * input, int len, tuint256 iv)'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='744' u='c' c='_ZN5tHash15tHashDataSHA256EPKhi8tFixIntUILi256EE'/>

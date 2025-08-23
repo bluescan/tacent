@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7779' ll='7784'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7779'/>
+<size>152</size>
+<mbr r='VkDeviceGroupPresentCapabilitiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDeviceGroupPresentCapabilitiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkDeviceGroupPresentCapabilitiesKHR::presentMask' o='128' t='uint32_t[32]'/>
+<mbr r='VkDeviceGroupPresentCapabilitiesKHR::modes' o='1152' t='VkDeviceGroupPresentModeFlagsKHR'/>

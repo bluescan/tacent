@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='152' type='void tMath::tARect2::AddPoint(const tMath::tVector2 &amp; )'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='515' ll='521' type='void tMath::tARect2::AddPoint(const tMath::tVector2 &amp; p)'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='528' u='c' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='529' u='c' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='530' u='c' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='531' u='c' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='512'>// Implementation below this line.</doc>

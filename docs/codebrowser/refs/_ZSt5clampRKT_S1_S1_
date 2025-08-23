@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='224' type='const _Tp &amp; std::clamp(const _Tp &amp; , const _Tp &amp; , const _Tp &amp; )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='3655' ll='3660' type='const _Tp &amp; std::clamp(const _Tp &amp; __val, const _Tp &amp; __lo, const _Tp &amp; __hi)'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='220' type='tString tString::ExtractMid(int start, int count)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='218'>// Returns chars from start to count, but also removes that from the tString.  If start + count &gt; length then what&apos;s
+	// available is extracted.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='206' ll='227' type='tString tString::ExtractMid(int start, int count)'/>

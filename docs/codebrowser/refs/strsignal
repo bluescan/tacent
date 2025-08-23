@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='478' type='char * strsignal(int __sig)'/>
+<doc f='include/string.h' l='477'>/* Return a string describing the meaning of the signal number in SIG.  */</doc>

@@ -1,0 +1,13 @@
+<def f='Modules/Image/Inc/Image/tImageTGA.h' l='90' ll='96'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='111'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='118' c='_ZNK6tImage9tImageTGA4SaveERK7tStringNS0_7tFormatENS0_12tCompressionE'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='118' c='_ZNK6tImage9tImageTGA4SaveERK7tStringNS0_7tFormatENS0_12tCompressionE'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='119' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='138' c='_ZNK6tImage9tImageTGA16SaveUncompressedERK7tStringNS0_7tFormatE'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='139' c='_ZNK6tImage9tImageTGA14SaveCompressedERK7tStringNS0_7tFormatE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='364' c='_ZNK6tImage9tImageTGA4SaveERK7tStringNS0_7tFormatENS0_12tCompressionE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='364' c='_ZNK6tImage9tImageTGA4SaveERK7tStringNS0_7tFormatENS0_12tCompressionE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='373' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='375' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='409' c='_ZNK6tImage9tImageTGA16SaveUncompressedERK7tStringNS0_7tFormatE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='464' c='_ZNK6tImage9tImageTGA14SaveCompressedERK7tStringNS0_7tFormatE'/>

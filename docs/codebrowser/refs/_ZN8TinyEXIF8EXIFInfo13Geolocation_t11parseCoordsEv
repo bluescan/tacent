@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='299' type='void TinyEXIF::EXIFInfo::Geolocation_t::parseCoords()'/>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='299'>// Convert Latitude/Longitude from deg/min/sec to decimal</doc>

@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/random.h' l='171' u='w' c='_ZNSt8__detail8_AdaptorC1ERT_'/>
+<use f='include/c++/11/bits/random.h' l='191' c='_ZNSt8__detail8_AdaptorclEv'/>
+<dec f='include/c++/11/bits/random.h' l='195' type='_Engine &amp;'/>

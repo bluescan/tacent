@@ -1,0 +1,16 @@
+<def f='Modules/System/Inc/System/tTime.h' l='61' ll='96'/>
+<size>16</size>
+<fun r='_ZN7tSystem6tTimerC1EbN5tUnit5tTimeE'/>
+<fun r='_ZN7tSystem6tTimer6UpdateEfN5tUnit5tTimeE'/>
+<fun r='_ZN7tSystem6tTimer5StartEv'/>
+<fun r='_ZN7tSystem6tTimer4StopEv'/>
+<fun r='_ZN7tSystem6tTimer5ResetEb'/>
+<fun r='_ZNK7tSystem6tTimer7GetTimeEN5tUnit5tTimeE'/>
+<fun r='_ZNK7tSystem6tTimer9IsRunningEv'/>
+<fun r='_ZNK7tSystem6tTimer15GetInternalUnitEv'/>
+<fun r='_ZN7tSystem6tTimer7ConvertEdN5tUnit5tTimeES2_'/>
+<smbr r='tSystem::tTimer::UnitConversionTable' t='const double[22][22]'/>
+<mbr r='tSystem::tTimer::UnitInternal' o='0' t='tUnit::tTime'/>
+<mbr r='tSystem::tTimer::Running' o='32' t='bool'/>
+<mbr r='tSystem::tTimer::Time' o='64' t='double'/>
+<fun r='_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc'/>

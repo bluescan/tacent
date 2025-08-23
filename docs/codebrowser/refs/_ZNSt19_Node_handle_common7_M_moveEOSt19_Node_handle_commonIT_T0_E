@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/node_handle.h' l='96' u='c' c='_ZNSt19_Node_handle_commonC1EOSt19_Node_handle_commonIT_T0_E'/>
+<use f='include/c++/11/bits/node_handle.h' l='105' u='c' c='_ZNSt19_Node_handle_commonaSEOSt19_Node_handle_commonIT_T0_E'/>
+<use f='include/c++/11/bits/node_handle.h' l='135' u='c' c='_ZNSt19_Node_handle_common7_M_swapERSt19_Node_handle_commonIT_T0_E'/>
+<def f='include/c++/11/bits/node_handle.h' l='151' ll='157' type='void std::_Node_handle_common::_M_move(_Node_handle_common&lt;_Val, _NodeAlloc&gt; &amp;&amp; __nh)'/>
+<doc f='include/c++/11/bits/node_handle.h' l='148'>// Moves the pointer and allocator from __nh to *this.
+      // Precondition: empty() &amp;&amp; !__nh.empty()
+      // Postcondition: !empty() &amp;&amp; __nh.empty()</doc>

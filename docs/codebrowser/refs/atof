@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='102' type='double atof(const char * __nptr)'/>
+<doc f='include/stdlib.h' l='101'>/* Convert a string to a floating-point number.  */</doc>

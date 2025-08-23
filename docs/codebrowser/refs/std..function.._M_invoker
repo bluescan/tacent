@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/std_function.h' l='392' u='w' c='_ZNSt8functionIFT_DpT0_EEC1ERKS_IS3_E'/>
+<use f='include/c++/11/bits/std_function.h' l='405' u='w' c='_ZNSt8functionIFT_DpT0_EEC1EOS_IS3_E'/>
+<use f='include/c++/11/bits/std_function.h' l='451' u='w' c='_ZNSt8functionIFT_DpT0_EEC1EOTL0__'/>
+<use f='include/c++/11/bits/std_function.h' l='507' u='w' c='_ZNSt8functionIFT_DpT0_EEaSEDn'/>
+<use f='include/c++/11/bits/std_function.h' l='559' c='_ZNSt8functionIFT_DpT0_EE4swapERS_IS3_E'/>
+<use f='include/c++/11/bits/std_function.h' l='590' u='c' c='_ZNKSt8functionIFT_DpT0_EEclES2_'/>
+<dec f='include/c++/11/bits/std_function.h' l='667' type='std::function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt;::_Invoker_type'/>

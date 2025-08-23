@@ -1,0 +1,21 @@
+<def f='Modules/System/Src/tRegex.cpp' l='98' ll='123' type='int tSystem::tRegex::NewNode(int type)'/>
+<use f='Modules/System/Src/tRegex.cpp' l='175' u='c' c='_ZN7tSystem6tRegex9CharClassEi'/>
+<use f='Modules/System/Src/tRegex.cpp' l='190' u='c' c='_ZN7tSystem6tRegex8CharNodeEb'/>
+<use f='Modules/System/Src/tRegex.cpp' l='194' u='c' c='_ZN7tSystem6tRegex8CharNodeEb'/>
+<use f='Modules/System/Src/tRegex.cpp' l='198' u='c' c='_ZN7tSystem6tRegex8CharNodeEb'/>
+<use f='Modules/System/Src/tRegex.cpp' l='202' u='c' c='_ZN7tSystem6tRegex8CharNodeEb'/>
+<use f='Modules/System/Src/tRegex.cpp' l='206' u='c' c='_ZN7tSystem6tRegex8CharNodeEb'/>
+<use f='Modules/System/Src/tRegex.cpp' l='222' u='c' c='_ZN7tSystem6tRegex8CharNodeEb'/>
+<use f='Modules/System/Src/tRegex.cpp' l='232' u='c' c='_ZN7tSystem6tRegex8CharNodeEb'/>
+<use f='Modules/System/Src/tRegex.cpp' l='243' u='c' c='_ZN7tSystem6tRegex8CharNodeEb'/>
+<use f='Modules/System/Src/tRegex.cpp' l='252' u='c' c='_ZN7tSystem6tRegex5ClassEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='256' u='c' c='_ZN7tSystem6tRegex5ClassEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='271' u='c' c='_ZN7tSystem6tRegex5ClassEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='345' u='c' c='_ZN7tSystem6tRegex7ElementEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='348' u='c' c='_ZN7tSystem6tRegex7ElementEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='365' u='c' c='_ZN7tSystem6tRegex7ElementEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='370' u='c' c='_ZN7tSystem6tRegex7ElementEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='435' u='c' c='_ZN7tSystem6tRegex7ElementEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='463' u='c' c='_ZN7tSystem6tRegex7ListRecEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='476' u='c' c='_ZN7tSystem6tRegex7ListRecEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='768' u='c' c='_ZN7tSystem6tRegex15CompileInternalEv'/>

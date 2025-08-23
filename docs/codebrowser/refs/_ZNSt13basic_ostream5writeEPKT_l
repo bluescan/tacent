@@ -1,0 +1,18 @@
+<dec f='include/c++/11/ostream' l='348' type='std::basic_ostream::__ostream_type &amp; std::basic_ostream::write(const std::basic_ostream::char_type * __s, std::streamsize __n)'/>
+<def f='include/c++/11/bits/ostream.tcc' l='180' ll='206' type='basic_ostream&lt;_CharT, _Traits&gt; &amp; std::basic_ostream::write(const _CharT * __s, std::streamsize __n)'/>
+<doc f='include/c++/11/ostream' l='331'>/**
+       *  @brief  Character string insertion.
+       *  @param  __s  The array to insert.
+       *  @param  __n  Maximum number of characters to insert.
+       *  @return  *this
+       *
+       *  Characters are copied from @p __s and inserted into the stream until
+       *  one of the following happens:
+       *
+       *  - @p __n characters are inserted
+       *  - inserting into the output sequence fails (in this case, badbit
+       *    will be set in the stream&apos;s error state)
+       *
+       *  @note  This function is not overloaded on signed char and
+       *         unsigned char.
+      */</doc>

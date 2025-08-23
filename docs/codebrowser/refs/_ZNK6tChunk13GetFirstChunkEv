@@ -1,0 +1,3 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='251' type='tChunk tChunk::GetFirstChunk() const'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='271' u='c' c='_ZNK6tChunk5FirstEv'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='250'>// Assumes first byte of data is another chunk.</doc>

@@ -1,0 +1,32 @@
+<use f='include/c++/11/chrono' l='1389' c='_ZNSt6chronodvERKNS_5monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1392' c='_ZNSt6chronodvEiRKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1395' c='_ZNSt6chronodvERKNS_3dayERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='1398' c='_ZNSt6chronodvERKNS_3dayEi'/>
+<use f='include/c++/11/chrono' l='1507' c='_ZNSt6chronodvERKNS_5monthEi'/>
+<use f='include/c++/11/chrono' l='1678' c='_ZNSt6chronodvERKNS_4yearERKNS_9month_dayE'/>
+<use f='include/c++/11/chrono' l='1681' c='_ZNSt6chronodvERKNS_9month_dayERKNS_4yearE'/>
+<def f='include/c++/11/chrono' l='1932' ll='1997'/>
+<use f='include/c++/11/chrono' l='1963' c='_ZNSt6chronoeqERKNS_9month_dayES2_'/>
+<use f='include/c++/11/chrono' l='1963' c='_ZNSt6chronoeqERKNS_9month_dayES2_'/>
+<use f='include/c++/11/chrono' l='1967' c='_ZNSt6chronossERKNS_9month_dayES2_'/>
+<use f='include/c++/11/chrono' l='1967' c='_ZNSt6chronossERKNS_9month_dayES2_'/>
+<use f='include/c++/11/chrono' l='1970' c='_ZNSt6chronodvERKNS_5monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1974' c='_ZNSt6chronodvERKNS_5monthEi'/>
+<use f='include/c++/11/chrono' l='1978' c='_ZNSt6chronodvEiRKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1982' c='_ZNSt6chronodvERKNS_3dayERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='1986' c='_ZNSt6chronodvERKNS_3dayEi'/>
+<use f='include/c++/11/chrono' l='1991' c='_ZNSt6chronodvEiRKNS_9month_dayE'/>
+<use f='include/c++/11/chrono' l='1994' c='_ZNSt6chronodvERKNS_9month_dayEi'/>
+<use f='include/c++/11/chrono' l='2454' c='_ZNSt6chronodvERKNS_4yearERKNS_9month_dayE'/>
+<use f='include/c++/11/chrono' l='2458' c='_ZNSt6chronodvEiRKNS_9month_dayE'/>
+<use f='include/c++/11/chrono' l='2462' c='_ZNSt6chronodvERKNS_9month_dayERKNS_4yearE'/>
+<use f='include/c++/11/chrono' l='2466' c='_ZNSt6chronodvERKNS_9month_dayEi'/>
+<size>2</size>
+<doc f='include/c++/11/chrono' l='1930'>// MONTH_DAY</doc>
+<mbr r='std::chrono::month_day::_M_m' o='0' t='chrono::month'/>
+<mbr r='std::chrono::month_day::_M_d' o='8' t='chrono::day'/>
+<fun r='_ZNSt6chrono9month_dayC1Ev'/>
+<fun r='_ZNSt6chrono9month_dayC1ERKNS_5monthERKNS_3dayE'/>
+<fun r='_ZNKSt6chrono9month_day5monthEv'/>
+<fun r='_ZNKSt6chrono9month_day3dayEv'/>
+<fun r='_ZNKSt6chrono9month_day2okEv'/>

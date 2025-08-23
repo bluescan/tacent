@@ -1,0 +1,22 @@
+<dec f='Modules/Scene/Inc/Scene/tObject.h' l='33' type='void tScene::tObject::Load(const tChunk &amp; )'/>
+<ovr f='Modules/Scene/Src/tCamera.cpp' l='67' c='_ZN6tScene7tCamera4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='77' u='c' c='_ZN6tScene7tCamera4LoadERK6tChunk'/>
+<ovr f='Modules/Scene/Src/tInstance.cpp' l='40' c='_ZN6tScene9tInstance4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tInstance.cpp' l='50' u='c' c='_ZN6tScene9tInstance4LoadERK6tChunk'/>
+<ovr f='Modules/Scene/Src/tLight.cpp' l='56' c='_ZN6tScene6tLight4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLight.cpp' l='66' u='c' c='_ZN6tScene6tLight4LoadERK6tChunk'/>
+<ovr f='Modules/Scene/Src/tLodGroup.cpp' l='59' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='69' u='c' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>
+<ovr f='Modules/Scene/Src/tMaterial.cpp' l='159' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='169' u='c' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<def f='Modules/Scene/Src/tObject.cpp' l='38' ll='60' type='void tScene::tObject::Load(const tChunk &amp; objChunk)'/>
+<ovr f='Modules/Scene/Src/tPath.cpp' l='63' c='_ZN6tScene5tPath4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='73' u='c' c='_ZN6tScene5tPath4LoadERK6tChunk'/>
+<ovr f='Modules/Scene/Src/tPolyModel.cpp' l='40' c='_ZN6tScene10tPolyModel4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='50' u='c' c='_ZN6tScene10tPolyModel4LoadERK6tChunk'/>
+<ovr f='Modules/Scene/Src/tSelection.cpp' l='40' c='_ZN6tScene10tSelection4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSelection.cpp' l='50' u='c' c='_ZN6tScene10tSelection4LoadERK6tChunk'/>
+<ovr f='Modules/Scene/Src/tSkeleton.cpp' l='57' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='67' u='c' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<ovr f='Modules/Scene/Src/tSkeleton.cpp' l='207' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='217' u='c' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>

@@ -1,0 +1,3 @@
+<dec f='include/c++/11/typeinfo' l='214' type='void std::bad_typeid::~bad_typeid()'/>
+<doc f='include/c++/11/typeinfo' l='212'>// This declaration is not useless:
+    // http://gcc.gnu.org/onlinedocs/gcc-3.0.2/gcc_6.html#SEC118</doc>

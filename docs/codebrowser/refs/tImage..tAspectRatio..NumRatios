@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='444' type='65'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='445'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='449' u='r'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='444'>// Including Invalid.</doc>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='666' u='r'/>

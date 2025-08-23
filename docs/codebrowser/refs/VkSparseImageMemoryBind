@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3346' ll='3353'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3346'/>
+<size>64</size>
+<mbr r='VkSparseImageMemoryBind::subresource' o='0' t='VkImageSubresource'/>
+<mbr r='VkSparseImageMemoryBind::offset' o='96' t='VkOffset3D'/>
+<mbr r='VkSparseImageMemoryBind::extent' o='192' t='VkExtent3D'/>
+<mbr r='VkSparseImageMemoryBind::memory' o='320' t='VkDeviceMemory'/>
+<mbr r='VkSparseImageMemoryBind::memoryOffset' o='384' t='VkDeviceSize'/>
+<mbr r='VkSparseImageMemoryBind::flags' o='448' t='VkSparseMemoryBindFlags'/>

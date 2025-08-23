@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='82' type='void tChunkWriter::tChunkWriter()'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='81'>// If you want to open the file at a later time. You must open it before calling any other function.</doc>

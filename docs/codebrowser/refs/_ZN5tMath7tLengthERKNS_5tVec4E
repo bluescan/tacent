@@ -1,0 +1,12 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='345' type='float tMath::tLength(const tMath::tVec4 &amp; v)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='355' u='c' c='_ZN5tMath10tNormalizeERNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='360' u='c' c='_ZN5tMath19tNormalizeGetLengthERNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='365' u='c' c='_ZN5tMath14tNormalizeSafeERNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='370' u='c' c='_ZN5tMath23tNormalizeSafeGetLengthERNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='375' u='c' c='_ZN5tMath15tNormalizeScaleERNS_5tVec4Ef'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='379' u='c' c='_ZN5tMath19tNormalizeScaleSafeERNS_5tVec4Ef'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1231' u='c' c='_ZN5tMath19tExtractAffineScaleERNS_5tVec3ERKNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1232' u='c' c='_ZN5tMath19tExtractAffineScaleERNS_5tVec3ERKNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1233' u='c' c='_ZN5tMath19tExtractAffineScaleERNS_5tVec3ERKNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='52' u='c' c='_ZNK5tMath8tVector46LengthEv'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='897' u='c' c='_ZN5tMath20tMakeOrthoNonUniformERNS_5tMat4E'/>

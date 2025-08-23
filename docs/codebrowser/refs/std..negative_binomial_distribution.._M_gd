@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/random.h' l='4238' u='w' c='_ZNSt30negative_binomial_distributionC1ET_d'/>
+<use f='include/c++/11/bits/random.h' l='4243' u='w' c='_ZNSt30negative_binomial_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4251' u='m' c='_ZNSt30negative_binomial_distribution5resetEv'/>
+<dec f='include/c++/11/bits/random.h' l='4392' type='std::gamma_distribution&lt;double&gt;'/>
+<use f='include/c++/11/bits/random.tcc' l='1148' u='c' c='_ZNSt30negative_binomial_distributionclERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='1166' u='c' c='_ZNSt30negative_binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1183' u='c' c='_ZNSt30negative_binomial_distribution15__generate_implETL0__S0_RTL0_0_'/>
+<use f='include/c++/11/bits/random.tcc' l='1206' u='c' c='_ZNSt30negative_binomial_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>

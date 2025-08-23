@@ -1,0 +1,7 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='72' type='void tSystem::tRegister(const char * machineName, tSystem::tChannel channelsToSee)'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='67'>// To only see specific channels, simply call this with your machine name and the bitwise or of the channels you
+	// wish to see (on your machine). If this is not called you will see the Systems channels. For many programmers
+	// the right choice is something like: Channel_Systems | Channel_ProgrammerName. Do not call a function to retrieve
+	// the machineName dynamically or you will turn on the supplied channels for everyone. Instead, the intention is
+	// there will be multiple tRegister calls. One for each dev that wants specific channels on.</doc>
+<def f='Modules/System/Src/tPrint.cpp' l='204' ll='210' type='void tSystem::tRegister(const char * machineName, tSystem::tChannel channelsToSee)'/>

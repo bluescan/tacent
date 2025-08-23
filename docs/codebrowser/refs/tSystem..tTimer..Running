@@ -1,0 +1,8 @@
+<use f='Modules/System/Inc/System/tTime.h' l='68' u='w' c='_ZN7tSystem6tTimerC1EbN5tUnit5tTimeE'/>
+<use f='Modules/System/Inc/System/tTime.h' l='74' u='w' c='_ZN7tSystem6tTimer5StartEv'/>
+<use f='Modules/System/Inc/System/tTime.h' l='75' u='w' c='_ZN7tSystem6tTimer4StopEv'/>
+<use f='Modules/System/Inc/System/tTime.h' l='76' u='w' c='_ZN7tSystem6tTimer5ResetEb'/>
+<use f='Modules/System/Inc/System/tTime.h' l='80' u='r' c='_ZNK7tSystem6tTimer9IsRunningEv'/>
+<dec f='Modules/System/Inc/System/tTime.h' l='90' type='bool'/>
+<offset>32</offset>
+<use f='Modules/System/Src/tTime.cpp' l='183' u='r' c='_ZN7tSystem6tTimer6UpdateEfN5tUnit5tTimeE'/>

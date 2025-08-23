@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='115'/>
+<doc f='include/unistd.h' l='114'>/* The legacy interfaces are also available.  */</doc>

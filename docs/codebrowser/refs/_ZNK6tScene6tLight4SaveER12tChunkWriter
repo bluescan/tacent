@@ -1,0 +1,4 @@
+<dec f='Modules/Scene/Inc/Scene/tLight.h' l='28' type='void tScene::tLight::Save(tChunkWriter &amp; ) const'/>
+<inh f='Modules/Scene/Inc/Scene/tObject.h' l='32' c='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>
+<def f='Modules/Scene/Src/tLight.cpp' l='31' ll='53' type='void tScene::tLight::Save(tChunkWriter &amp; chunk) const'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1120' u='c' c='_ZNK6tScene6tWorld11SaveObjectsER12tChunkWriter'/>

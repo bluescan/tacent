@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='224' type='bool tSystem::tCreateFile(const tString &amp; file)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='223'>// Creates an empty file.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='985' ll='993' type='bool tSystem::tCreateFile(const tString &amp; file)'/>

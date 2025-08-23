@@ -1,0 +1,26 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='243' type='tString &amp; tsPrintf(tString &amp; dest, const char * format)'/>
+<use f='Modules/System/Inc/System/tScript.h' l='432' u='c' c='_ZN12tScriptErrorC1EiPKcz'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='61' u='c' c='_ZNK6tImage10tImageTIFF25WriteSoftwarePageDurationEP4tiffi'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='284' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='299' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='664' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='672' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='680' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='689' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='699' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='706' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='715' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='719' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='723' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='727' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='746' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='751' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='800' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='836' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='838' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='843' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='850' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='60' u='c' c='_ZN8tCmdLine6tParamC1EiPKcS2_b'/>
+<use f='Modules/System/Src/tMachine.cpp' l='208' u='c' c='_ZN7tSystem23tOpenSystemFileExplorerERK7tStringS2_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='210' u='c' c='_ZN7tSystem23tOpenSystemFileExplorerERK7tStringS2_'/>
+<def f='Modules/System/Src/tPrint.cpp' l='526' ll='533' type='tString &amp; tsPrintf(tString &amp; dest, const char * format)'/>

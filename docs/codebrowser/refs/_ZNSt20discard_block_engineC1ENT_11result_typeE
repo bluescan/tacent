@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/random.h' l='935' ll='937' type='void std::discard_block_engine::discard_block_engine&lt;_RandomNumberEngine, __p, __r&gt;(std::discard_block_engine::result_type __s)'/>
+<doc f='include/c++/11/bits/random.h' l='929'>/**
+       * @brief Seed constructs a %discard_block_engine engine.
+       *
+       * Constructs the underlying generator engine seeded with @p __s.
+       * @param __s A seed value for the base class engine.
+       */</doc>

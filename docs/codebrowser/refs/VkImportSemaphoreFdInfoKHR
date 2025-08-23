@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8730' ll='8737'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8730'/>
+<size>40</size>
+<mbr r='VkImportSemaphoreFdInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImportSemaphoreFdInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkImportSemaphoreFdInfoKHR::semaphore' o='128' t='VkSemaphore'/>
+<mbr r='VkImportSemaphoreFdInfoKHR::flags' o='192' t='VkSemaphoreImportFlags'/>
+<mbr r='VkImportSemaphoreFdInfoKHR::handleType' o='224' t='VkExternalSemaphoreHandleTypeFlagBits'/>
+<mbr r='VkImportSemaphoreFdInfoKHR::fd' o='256' t='int'/>

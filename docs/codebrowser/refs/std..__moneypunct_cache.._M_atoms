@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='974' type='_CharT[11]'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='114' c='_ZNSt18__moneypunct_cache8_M_cacheERKSt6locale'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='971'>// A list of valid numeric literals for input and output: in the standard
+      // &quot;C&quot; locale, this is &quot;-0123456789&quot;. This array contains the chars after
+      // having been passed through the current locale&apos;s ctype&lt;_CharT&gt;.widen().</doc>

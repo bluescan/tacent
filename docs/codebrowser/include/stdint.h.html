@@ -1,0 +1,337 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>stdint.h source code [include/stdint.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/stdint.h'; var root_path = '..'; var data_path = '../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='./'>include</a>/<a href='stdint.h.html'>stdint.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 1997-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i></i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i></i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i> *	ISO C99: 7.18 Integer types &lt;stdint.h&gt;</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#<span data-ppcond="22">ifndef</span> <span class="macro" data-ref="_M/_STDINT_H">_STDINT_H</span></u>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#define <dfn class="macro" id="_M/_STDINT_H" data-ref="_M/_STDINT_H">_STDINT_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#define <dfn class="macro" id="_M/__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION" data-ref="_M/__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION">__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION</dfn></u>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#include &lt;bits/libc-header-start.h&gt;</u>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="28">28</th><td><u>#include &lt;bits/wchar.h&gt;</u>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#include &lt;bits/wordsize.h&gt;</u>&nbsp</td></tr>
+<tr><th id="30">30</th><td>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>/* Exact integral types.  */</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i>/* Signed.  */</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#include &lt;bits/stdint-intn.h&gt;</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i>/* Unsigned.  */</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#include &lt;bits/stdint-uintn.h&gt;</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>/* Small types.  */</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i>/* Signed.  */</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><b>typedef</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__int_least8_t" title='__int_least8_t' data-type='__int8_t' data-ref="__int_least8_t">__int_least8_t</a> <dfn class="typedef" id="int_least8_t" title='int_least8_t' data-type='__int_least8_t' data-ref="int_least8_t">int_least8_t</dfn>;&nbsp</td></tr>
+<tr><th id="44">44</th><td><b>typedef</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__int_least16_t" title='__int_least16_t' data-type='__int16_t' data-ref="__int_least16_t">__int_least16_t</a> <dfn class="typedef" id="int_least16_t" title='int_least16_t' data-type='__int_least16_t' data-ref="int_least16_t">int_least16_t</dfn>;&nbsp</td></tr>
+<tr><th id="45">45</th><td><b>typedef</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__int_least32_t" title='__int_least32_t' data-type='__int32_t' data-ref="__int_least32_t">__int_least32_t</a> <dfn class="typedef" id="int_least32_t" title='int_least32_t' data-type='__int_least32_t' data-ref="int_least32_t">int_least32_t</dfn>;&nbsp</td></tr>
+<tr><th id="46">46</th><td><b>typedef</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__int_least64_t" title='__int_least64_t' data-type='__int64_t' data-ref="__int_least64_t">__int_least64_t</a> <dfn class="typedef" id="int_least64_t" title='int_least64_t' data-type='__int_least64_t' data-ref="int_least64_t">int_least64_t</dfn>;&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>/* Unsigned.  */</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><b>typedef</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__uint_least8_t" title='__uint_least8_t' data-type='__uint8_t' data-ref="__uint_least8_t">__uint_least8_t</a> <dfn class="typedef" id="uint_least8_t" title='uint_least8_t' data-type='__uint_least8_t' data-ref="uint_least8_t">uint_least8_t</dfn>;&nbsp</td></tr>
+<tr><th id="50">50</th><td><b>typedef</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__uint_least16_t" title='__uint_least16_t' data-type='__uint16_t' data-ref="__uint_least16_t">__uint_least16_t</a> <dfn class="typedef" id="uint_least16_t" title='uint_least16_t' data-type='__uint_least16_t' data-ref="uint_least16_t">uint_least16_t</dfn>;&nbsp</td></tr>
+<tr><th id="51">51</th><td><b>typedef</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__uint_least32_t" title='__uint_least32_t' data-type='__uint32_t' data-ref="__uint_least32_t">__uint_least32_t</a> <dfn class="typedef" id="uint_least32_t" title='uint_least32_t' data-type='__uint_least32_t' data-ref="uint_least32_t">uint_least32_t</dfn>;&nbsp</td></tr>
+<tr><th id="52">52</th><td><b>typedef</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__uint_least64_t" title='__uint_least64_t' data-type='__uint64_t' data-ref="__uint_least64_t">__uint_least64_t</a> <dfn class="typedef" id="uint_least64_t" title='uint_least64_t' data-type='__uint_least64_t' data-ref="uint_least64_t">uint_least64_t</dfn>;&nbsp</td></tr>
+<tr><th id="53">53</th><td>&nbsp</td></tr>
+<tr><th id="54">54</th><td>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i>/* Fast types.  */</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td>&nbsp</td></tr>
+<tr><th id="57">57</th><td><i>/* Signed.  */</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td><b>typedef</b> <em>signed</em> <em>char</em>		<dfn class="typedef" id="int_fast8_t" title='int_fast8_t' data-type='signed char' data-ref="int_fast8_t">int_fast8_t</dfn>;&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#<span data-ppcond="59">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="60">60</th><td><b>typedef</b> <em>long</em> <em>int</em>		<dfn class="typedef" id="int_fast16_t" title='int_fast16_t' data-type='long' data-ref="int_fast16_t">int_fast16_t</dfn>;&nbsp</td></tr>
+<tr><th id="61">61</th><td><b>typedef</b> <em>long</em> <em>int</em>		<dfn class="typedef" id="int_fast32_t" title='int_fast32_t' data-type='long' data-ref="int_fast32_t">int_fast32_t</dfn>;&nbsp</td></tr>
+<tr><th id="62">62</th><td><b>typedef</b> <em>long</em> <em>int</em>		<dfn class="typedef" id="int_fast64_t" title='int_fast64_t' data-type='long' data-ref="int_fast64_t">int_fast64_t</dfn>;&nbsp</td></tr>
+<tr><th id="63">63</th><td><u>#<span data-ppcond="59">else</span></u>&nbsp</td></tr>
+<tr><th id="64">64</th><td><b>typedef</b> <em>int</em>			int_fast16_t;&nbsp</td></tr>
+<tr><th id="65">65</th><td><b>typedef</b> <em>int</em>			int_fast32_t;&nbsp</td></tr>
+<tr><th id="66">66</th><td><b>__extension__</b>&nbsp</td></tr>
+<tr><th id="67">67</th><td><b>typedef</b> <em>long</em> <em>long</em> <em>int</em>		int_fast64_t;&nbsp</td></tr>
+<tr><th id="68">68</th><td><u>#<span data-ppcond="59">endif</span></u>&nbsp</td></tr>
+<tr><th id="69">69</th><td>&nbsp</td></tr>
+<tr><th id="70">70</th><td><i>/* Unsigned.  */</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td><b>typedef</b> <em>unsigned</em> <em>char</em>		<dfn class="typedef" id="uint_fast8_t" title='uint_fast8_t' data-type='unsigned char' data-ref="uint_fast8_t">uint_fast8_t</dfn>;&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#<span data-ppcond="72">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="73">73</th><td><b>typedef</b> <em>unsigned</em> <em>long</em> <em>int</em>	<dfn class="typedef" id="uint_fast16_t" title='uint_fast16_t' data-type='unsigned long' data-ref="uint_fast16_t">uint_fast16_t</dfn>;&nbsp</td></tr>
+<tr><th id="74">74</th><td><b>typedef</b> <em>unsigned</em> <em>long</em> <em>int</em>	<dfn class="typedef" id="uint_fast32_t" title='uint_fast32_t' data-type='unsigned long' data-ref="uint_fast32_t">uint_fast32_t</dfn>;&nbsp</td></tr>
+<tr><th id="75">75</th><td><b>typedef</b> <em>unsigned</em> <em>long</em> <em>int</em>	<dfn class="typedef" id="uint_fast64_t" title='uint_fast64_t' data-type='unsigned long' data-ref="uint_fast64_t">uint_fast64_t</dfn>;&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#<span data-ppcond="72">else</span></u>&nbsp</td></tr>
+<tr><th id="77">77</th><td><b>typedef</b> <em>unsigned</em> <em>int</em>		uint_fast16_t;&nbsp</td></tr>
+<tr><th id="78">78</th><td><b>typedef</b> <em>unsigned</em> <em>int</em>		uint_fast32_t;&nbsp</td></tr>
+<tr><th id="79">79</th><td><b>__extension__</b>&nbsp</td></tr>
+<tr><th id="80">80</th><td><b>typedef</b> <em>unsigned</em> <em>long</em> <em>long</em> <em>int</em>	uint_fast64_t;&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#<span data-ppcond="72">endif</span></u>&nbsp</td></tr>
+<tr><th id="82">82</th><td>&nbsp</td></tr>
+<tr><th id="83">83</th><td>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i>/* Types for `void *' pointers.  */</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#<span data-ppcond="85">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><u># <span data-ppcond="86">ifndef</span> <span class="macro" data-ref="_M/__intptr_t_defined">__intptr_t_defined</span></u>&nbsp</td></tr>
+<tr><th id="87">87</th><td><b>typedef</b> <em>long</em> <em>int</em>		<dfn class="typedef" id="intptr_t" title='intptr_t' data-type='long' data-ref="intptr_t">intptr_t</dfn>;&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#  define <dfn class="macro" id="_M/__intptr_t_defined" data-ref="_M/__intptr_t_defined">__intptr_t_defined</dfn></u>&nbsp</td></tr>
+<tr><th id="89">89</th><td><u># <span data-ppcond="86">endif</span></u>&nbsp</td></tr>
+<tr><th id="90">90</th><td><b>typedef</b> <em>unsigned</em> <em>long</em> <em>int</em>	<dfn class="typedef" id="uintptr_t" title='uintptr_t' data-type='unsigned long' data-ref="uintptr_t">uintptr_t</dfn>;&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#<span data-ppcond="85">else</span></u>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u># ifndef __intptr_t_defined</u>&nbsp</td></tr>
+<tr><th id="93">93</th><td><b>typedef</b> <em>int</em>			intptr_t;&nbsp</td></tr>
+<tr><th id="94">94</th><td><u>#  define __intptr_t_defined</u>&nbsp</td></tr>
+<tr><th id="95">95</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="96">96</th><td><b>typedef</b> <em>unsigned</em> <em>int</em>		uintptr_t;&nbsp</td></tr>
+<tr><th id="97">97</th><td><u>#<span data-ppcond="85">endif</span></u>&nbsp</td></tr>
+<tr><th id="98">98</th><td>&nbsp</td></tr>
+<tr><th id="99">99</th><td>&nbsp</td></tr>
+<tr><th id="100">100</th><td><i>/* Largest integral types.  */</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><b>typedef</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__intmax_t" title='__intmax_t' data-type='long' data-ref="__intmax_t">__intmax_t</a>		<dfn class="typedef" id="intmax_t" title='intmax_t' data-type='__intmax_t' data-ref="intmax_t">intmax_t</dfn>;&nbsp</td></tr>
+<tr><th id="102">102</th><td><b>typedef</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__uintmax_t" title='__uintmax_t' data-type='unsigned long' data-ref="__uintmax_t">__uintmax_t</a>		<dfn class="typedef" id="uintmax_t" title='uintmax_t' data-type='__uintmax_t' data-ref="uintmax_t">uintmax_t</dfn>;&nbsp</td></tr>
+<tr><th id="103">103</th><td>&nbsp</td></tr>
+<tr><th id="104">104</th><td>&nbsp</td></tr>
+<tr><th id="105">105</th><td><u># <span data-ppcond="105">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="106">106</th><td><u>#  define <dfn class="macro" id="_M/__INT64_C" data-ref="_M/__INT64_C">__INT64_C</dfn>(c)	c ## L</u>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u>#  define <dfn class="macro" id="_M/__UINT64_C" data-ref="_M/__UINT64_C">__UINT64_C</dfn>(c)	c ## UL</u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u># <span data-ppcond="105">else</span></u>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>#  define __INT64_C(c)	c ## LL</u>&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>#  define __UINT64_C(c)	c ## ULL</u>&nbsp</td></tr>
+<tr><th id="111">111</th><td><u># <span data-ppcond="105">endif</span></u>&nbsp</td></tr>
+<tr><th id="112">112</th><td>&nbsp</td></tr>
+<tr><th id="113">113</th><td><i>/* Limits of integral types.  */</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td>&nbsp</td></tr>
+<tr><th id="115">115</th><td><i>/* Minimum of signed integral types.  */</i>&nbsp</td></tr>
+<tr><th id="116">116</th><td><u># define <dfn class="macro" id="_M/INT8_MIN" data-ref="_M/INT8_MIN">INT8_MIN</dfn>		(-128)</u>&nbsp</td></tr>
+<tr><th id="117">117</th><td><u># define <dfn class="macro" id="_M/INT16_MIN" data-ref="_M/INT16_MIN">INT16_MIN</dfn>		(-32767-1)</u>&nbsp</td></tr>
+<tr><th id="118">118</th><td><u># define <dfn class="macro" id="_M/INT32_MIN" data-ref="_M/INT32_MIN">INT32_MIN</dfn>		(-2147483647-1)</u>&nbsp</td></tr>
+<tr><th id="119">119</th><td><u># define <dfn class="macro" id="_M/INT64_MIN" data-ref="_M/INT64_MIN">INT64_MIN</dfn>		(-__INT64_C(9223372036854775807)-1)</u>&nbsp</td></tr>
+<tr><th id="120">120</th><td><i>/* Maximum of signed integral types.  */</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td><u># define <dfn class="macro" id="_M/INT8_MAX" data-ref="_M/INT8_MAX">INT8_MAX</dfn>		(127)</u>&nbsp</td></tr>
+<tr><th id="122">122</th><td><u># define <dfn class="macro" id="_M/INT16_MAX" data-ref="_M/INT16_MAX">INT16_MAX</dfn>		(32767)</u>&nbsp</td></tr>
+<tr><th id="123">123</th><td><u># define <dfn class="macro" id="_M/INT32_MAX" data-ref="_M/INT32_MAX">INT32_MAX</dfn>		(2147483647)</u>&nbsp</td></tr>
+<tr><th id="124">124</th><td><u># define <dfn class="macro" id="_M/INT64_MAX" data-ref="_M/INT64_MAX">INT64_MAX</dfn>		(__INT64_C(9223372036854775807))</u>&nbsp</td></tr>
+<tr><th id="125">125</th><td>&nbsp</td></tr>
+<tr><th id="126">126</th><td><i>/* Maximum of unsigned integral types.  */</i>&nbsp</td></tr>
+<tr><th id="127">127</th><td><u># define <dfn class="macro" id="_M/UINT8_MAX" data-ref="_M/UINT8_MAX">UINT8_MAX</dfn>		(255)</u>&nbsp</td></tr>
+<tr><th id="128">128</th><td><u># define <dfn class="macro" id="_M/UINT16_MAX" data-ref="_M/UINT16_MAX">UINT16_MAX</dfn>		(65535)</u>&nbsp</td></tr>
+<tr><th id="129">129</th><td><u># define <dfn class="macro" id="_M/UINT32_MAX" data-ref="_M/UINT32_MAX">UINT32_MAX</dfn>		(4294967295U)</u>&nbsp</td></tr>
+<tr><th id="130">130</th><td><u># define <dfn class="macro" id="_M/UINT64_MAX" data-ref="_M/UINT64_MAX">UINT64_MAX</dfn>		(__UINT64_C(18446744073709551615))</u>&nbsp</td></tr>
+<tr><th id="131">131</th><td>&nbsp</td></tr>
+<tr><th id="132">132</th><td>&nbsp</td></tr>
+<tr><th id="133">133</th><td><i>/* Minimum of signed integral types having a minimum size.  */</i>&nbsp</td></tr>
+<tr><th id="134">134</th><td><u># define <dfn class="macro" id="_M/INT_LEAST8_MIN" data-ref="_M/INT_LEAST8_MIN">INT_LEAST8_MIN</dfn>		(-128)</u>&nbsp</td></tr>
+<tr><th id="135">135</th><td><u># define <dfn class="macro" id="_M/INT_LEAST16_MIN" data-ref="_M/INT_LEAST16_MIN">INT_LEAST16_MIN</dfn>	(-32767-1)</u>&nbsp</td></tr>
+<tr><th id="136">136</th><td><u># define <dfn class="macro" id="_M/INT_LEAST32_MIN" data-ref="_M/INT_LEAST32_MIN">INT_LEAST32_MIN</dfn>	(-2147483647-1)</u>&nbsp</td></tr>
+<tr><th id="137">137</th><td><u># define <dfn class="macro" id="_M/INT_LEAST64_MIN" data-ref="_M/INT_LEAST64_MIN">INT_LEAST64_MIN</dfn>	(-__INT64_C(9223372036854775807)-1)</u>&nbsp</td></tr>
+<tr><th id="138">138</th><td><i>/* Maximum of signed integral types having a minimum size.  */</i>&nbsp</td></tr>
+<tr><th id="139">139</th><td><u># define <dfn class="macro" id="_M/INT_LEAST8_MAX" data-ref="_M/INT_LEAST8_MAX">INT_LEAST8_MAX</dfn>		(127)</u>&nbsp</td></tr>
+<tr><th id="140">140</th><td><u># define <dfn class="macro" id="_M/INT_LEAST16_MAX" data-ref="_M/INT_LEAST16_MAX">INT_LEAST16_MAX</dfn>	(32767)</u>&nbsp</td></tr>
+<tr><th id="141">141</th><td><u># define <dfn class="macro" id="_M/INT_LEAST32_MAX" data-ref="_M/INT_LEAST32_MAX">INT_LEAST32_MAX</dfn>	(2147483647)</u>&nbsp</td></tr>
+<tr><th id="142">142</th><td><u># define <dfn class="macro" id="_M/INT_LEAST64_MAX" data-ref="_M/INT_LEAST64_MAX">INT_LEAST64_MAX</dfn>	(__INT64_C(9223372036854775807))</u>&nbsp</td></tr>
+<tr><th id="143">143</th><td>&nbsp</td></tr>
+<tr><th id="144">144</th><td><i>/* Maximum of unsigned integral types having a minimum size.  */</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td><u># define <dfn class="macro" id="_M/UINT_LEAST8_MAX" data-ref="_M/UINT_LEAST8_MAX">UINT_LEAST8_MAX</dfn>	(255)</u>&nbsp</td></tr>
+<tr><th id="146">146</th><td><u># define <dfn class="macro" id="_M/UINT_LEAST16_MAX" data-ref="_M/UINT_LEAST16_MAX">UINT_LEAST16_MAX</dfn>	(65535)</u>&nbsp</td></tr>
+<tr><th id="147">147</th><td><u># define <dfn class="macro" id="_M/UINT_LEAST32_MAX" data-ref="_M/UINT_LEAST32_MAX">UINT_LEAST32_MAX</dfn>	(4294967295U)</u>&nbsp</td></tr>
+<tr><th id="148">148</th><td><u># define <dfn class="macro" id="_M/UINT_LEAST64_MAX" data-ref="_M/UINT_LEAST64_MAX">UINT_LEAST64_MAX</dfn>	(__UINT64_C(18446744073709551615))</u>&nbsp</td></tr>
+<tr><th id="149">149</th><td>&nbsp</td></tr>
+<tr><th id="150">150</th><td>&nbsp</td></tr>
+<tr><th id="151">151</th><td><i>/* Minimum of fast signed integral types having a minimum size.  */</i>&nbsp</td></tr>
+<tr><th id="152">152</th><td><u># define <dfn class="macro" id="_M/INT_FAST8_MIN" data-ref="_M/INT_FAST8_MIN">INT_FAST8_MIN</dfn>		(-128)</u>&nbsp</td></tr>
+<tr><th id="153">153</th><td><u># <span data-ppcond="153">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="154">154</th><td><u>#  define <dfn class="macro" id="_M/INT_FAST16_MIN" data-ref="_M/INT_FAST16_MIN">INT_FAST16_MIN</dfn>	(-9223372036854775807L-1)</u>&nbsp</td></tr>
+<tr><th id="155">155</th><td><u>#  define <dfn class="macro" id="_M/INT_FAST32_MIN" data-ref="_M/INT_FAST32_MIN">INT_FAST32_MIN</dfn>	(-9223372036854775807L-1)</u>&nbsp</td></tr>
+<tr><th id="156">156</th><td><u># <span data-ppcond="153">else</span></u>&nbsp</td></tr>
+<tr><th id="157">157</th><td><u>#  define INT_FAST16_MIN	(-2147483647-1)</u>&nbsp</td></tr>
+<tr><th id="158">158</th><td><u>#  define INT_FAST32_MIN	(-2147483647-1)</u>&nbsp</td></tr>
+<tr><th id="159">159</th><td><u># <span data-ppcond="153">endif</span></u>&nbsp</td></tr>
+<tr><th id="160">160</th><td><u># define <dfn class="macro" id="_M/INT_FAST64_MIN" data-ref="_M/INT_FAST64_MIN">INT_FAST64_MIN</dfn>		(-__INT64_C(9223372036854775807)-1)</u>&nbsp</td></tr>
+<tr><th id="161">161</th><td><i>/* Maximum of fast signed integral types having a minimum size.  */</i>&nbsp</td></tr>
+<tr><th id="162">162</th><td><u># define <dfn class="macro" id="_M/INT_FAST8_MAX" data-ref="_M/INT_FAST8_MAX">INT_FAST8_MAX</dfn>		(127)</u>&nbsp</td></tr>
+<tr><th id="163">163</th><td><u># <span data-ppcond="163">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="164">164</th><td><u>#  define <dfn class="macro" id="_M/INT_FAST16_MAX" data-ref="_M/INT_FAST16_MAX">INT_FAST16_MAX</dfn>	(9223372036854775807L)</u>&nbsp</td></tr>
+<tr><th id="165">165</th><td><u>#  define <dfn class="macro" id="_M/INT_FAST32_MAX" data-ref="_M/INT_FAST32_MAX">INT_FAST32_MAX</dfn>	(9223372036854775807L)</u>&nbsp</td></tr>
+<tr><th id="166">166</th><td><u># <span data-ppcond="163">else</span></u>&nbsp</td></tr>
+<tr><th id="167">167</th><td><u>#  define INT_FAST16_MAX	(2147483647)</u>&nbsp</td></tr>
+<tr><th id="168">168</th><td><u>#  define INT_FAST32_MAX	(2147483647)</u>&nbsp</td></tr>
+<tr><th id="169">169</th><td><u># <span data-ppcond="163">endif</span></u>&nbsp</td></tr>
+<tr><th id="170">170</th><td><u># define <dfn class="macro" id="_M/INT_FAST64_MAX" data-ref="_M/INT_FAST64_MAX">INT_FAST64_MAX</dfn>		(__INT64_C(9223372036854775807))</u>&nbsp</td></tr>
+<tr><th id="171">171</th><td>&nbsp</td></tr>
+<tr><th id="172">172</th><td><i>/* Maximum of fast unsigned integral types having a minimum size.  */</i>&nbsp</td></tr>
+<tr><th id="173">173</th><td><u># define <dfn class="macro" id="_M/UINT_FAST8_MAX" data-ref="_M/UINT_FAST8_MAX">UINT_FAST8_MAX</dfn>		(255)</u>&nbsp</td></tr>
+<tr><th id="174">174</th><td><u># <span data-ppcond="174">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="175">175</th><td><u>#  define <dfn class="macro" id="_M/UINT_FAST16_MAX" data-ref="_M/UINT_FAST16_MAX">UINT_FAST16_MAX</dfn>	(18446744073709551615UL)</u>&nbsp</td></tr>
+<tr><th id="176">176</th><td><u>#  define <dfn class="macro" id="_M/UINT_FAST32_MAX" data-ref="_M/UINT_FAST32_MAX">UINT_FAST32_MAX</dfn>	(18446744073709551615UL)</u>&nbsp</td></tr>
+<tr><th id="177">177</th><td><u># <span data-ppcond="174">else</span></u>&nbsp</td></tr>
+<tr><th id="178">178</th><td><u>#  define UINT_FAST16_MAX	(4294967295U)</u>&nbsp</td></tr>
+<tr><th id="179">179</th><td><u>#  define UINT_FAST32_MAX	(4294967295U)</u>&nbsp</td></tr>
+<tr><th id="180">180</th><td><u># <span data-ppcond="174">endif</span></u>&nbsp</td></tr>
+<tr><th id="181">181</th><td><u># define <dfn class="macro" id="_M/UINT_FAST64_MAX" data-ref="_M/UINT_FAST64_MAX">UINT_FAST64_MAX</dfn>	(__UINT64_C(18446744073709551615))</u>&nbsp</td></tr>
+<tr><th id="182">182</th><td>&nbsp</td></tr>
+<tr><th id="183">183</th><td>&nbsp</td></tr>
+<tr><th id="184">184</th><td><i>/* Values to test for integral types holding `void *' pointer.  */</i>&nbsp</td></tr>
+<tr><th id="185">185</th><td><u># <span data-ppcond="185">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="186">186</th><td><u>#  define <dfn class="macro" id="_M/INTPTR_MIN" data-ref="_M/INTPTR_MIN">INTPTR_MIN</dfn>		(-9223372036854775807L-1)</u>&nbsp</td></tr>
+<tr><th id="187">187</th><td><u>#  define <dfn class="macro" id="_M/INTPTR_MAX" data-ref="_M/INTPTR_MAX">INTPTR_MAX</dfn>		(9223372036854775807L)</u>&nbsp</td></tr>
+<tr><th id="188">188</th><td><u>#  define <dfn class="macro" id="_M/UINTPTR_MAX" data-ref="_M/UINTPTR_MAX">UINTPTR_MAX</dfn>		(18446744073709551615UL)</u>&nbsp</td></tr>
+<tr><th id="189">189</th><td><u># <span data-ppcond="185">else</span></u>&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>#  define INTPTR_MIN		(-2147483647-1)</u>&nbsp</td></tr>
+<tr><th id="191">191</th><td><u>#  define INTPTR_MAX		(2147483647)</u>&nbsp</td></tr>
+<tr><th id="192">192</th><td><u>#  define UINTPTR_MAX		(4294967295U)</u>&nbsp</td></tr>
+<tr><th id="193">193</th><td><u># <span data-ppcond="185">endif</span></u>&nbsp</td></tr>
+<tr><th id="194">194</th><td>&nbsp</td></tr>
+<tr><th id="195">195</th><td>&nbsp</td></tr>
+<tr><th id="196">196</th><td><i>/* Minimum for largest signed integral type.  */</i>&nbsp</td></tr>
+<tr><th id="197">197</th><td><u># define <dfn class="macro" id="_M/INTMAX_MIN" data-ref="_M/INTMAX_MIN">INTMAX_MIN</dfn>		(-__INT64_C(9223372036854775807)-1)</u>&nbsp</td></tr>
+<tr><th id="198">198</th><td><i>/* Maximum for largest signed integral type.  */</i>&nbsp</td></tr>
+<tr><th id="199">199</th><td><u># define <dfn class="macro" id="_M/INTMAX_MAX" data-ref="_M/INTMAX_MAX">INTMAX_MAX</dfn>		(__INT64_C(9223372036854775807))</u>&nbsp</td></tr>
+<tr><th id="200">200</th><td>&nbsp</td></tr>
+<tr><th id="201">201</th><td><i>/* Maximum for largest unsigned integral type.  */</i>&nbsp</td></tr>
+<tr><th id="202">202</th><td><u># define <dfn class="macro" id="_M/UINTMAX_MAX" data-ref="_M/UINTMAX_MAX">UINTMAX_MAX</dfn>		(__UINT64_C(18446744073709551615))</u>&nbsp</td></tr>
+<tr><th id="203">203</th><td>&nbsp</td></tr>
+<tr><th id="204">204</th><td>&nbsp</td></tr>
+<tr><th id="205">205</th><td><i>/* Limits of other integer types.  */</i>&nbsp</td></tr>
+<tr><th id="206">206</th><td>&nbsp</td></tr>
+<tr><th id="207">207</th><td><i>/* Limits of `ptrdiff_t' type.  */</i>&nbsp</td></tr>
+<tr><th id="208">208</th><td><u># <span data-ppcond="208">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="209">209</th><td><u>#  define <dfn class="macro" id="_M/PTRDIFF_MIN" data-ref="_M/PTRDIFF_MIN">PTRDIFF_MIN</dfn>		(-9223372036854775807L-1)</u>&nbsp</td></tr>
+<tr><th id="210">210</th><td><u>#  define <dfn class="macro" id="_M/PTRDIFF_MAX" data-ref="_M/PTRDIFF_MAX">PTRDIFF_MAX</dfn>		(9223372036854775807L)</u>&nbsp</td></tr>
+<tr><th id="211">211</th><td><u># <span data-ppcond="208">else</span></u>&nbsp</td></tr>
+<tr><th id="212">212</th><td><u>#  if __WORDSIZE32_PTRDIFF_LONG</u>&nbsp</td></tr>
+<tr><th id="213">213</th><td><u>#   define PTRDIFF_MIN		(-2147483647L-1)</u>&nbsp</td></tr>
+<tr><th id="214">214</th><td><u>#   define PTRDIFF_MAX		(2147483647L)</u>&nbsp</td></tr>
+<tr><th id="215">215</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="216">216</th><td><u>#   define PTRDIFF_MIN		(-2147483647-1)</u>&nbsp</td></tr>
+<tr><th id="217">217</th><td><u>#   define PTRDIFF_MAX		(2147483647)</u>&nbsp</td></tr>
+<tr><th id="218">218</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="219">219</th><td><u># <span data-ppcond="208">endif</span></u>&nbsp</td></tr>
+<tr><th id="220">220</th><td>&nbsp</td></tr>
+<tr><th id="221">221</th><td><i>/* Limits of `sig_atomic_t'.  */</i>&nbsp</td></tr>
+<tr><th id="222">222</th><td><u># define <dfn class="macro" id="_M/SIG_ATOMIC_MIN" data-ref="_M/SIG_ATOMIC_MIN">SIG_ATOMIC_MIN</dfn>		(-2147483647-1)</u>&nbsp</td></tr>
+<tr><th id="223">223</th><td><u># define <dfn class="macro" id="_M/SIG_ATOMIC_MAX" data-ref="_M/SIG_ATOMIC_MAX">SIG_ATOMIC_MAX</dfn>		(2147483647)</u>&nbsp</td></tr>
+<tr><th id="224">224</th><td>&nbsp</td></tr>
+<tr><th id="225">225</th><td><i>/* Limit of `size_t' type.  */</i>&nbsp</td></tr>
+<tr><th id="226">226</th><td><u># <span data-ppcond="226">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="227">227</th><td><u>#  define <dfn class="macro" id="_M/SIZE_MAX" data-ref="_M/SIZE_MAX">SIZE_MAX</dfn>		(18446744073709551615UL)</u>&nbsp</td></tr>
+<tr><th id="228">228</th><td><u># <span data-ppcond="226">else</span></u>&nbsp</td></tr>
+<tr><th id="229">229</th><td><u>#  if __WORDSIZE32_SIZE_ULONG</u>&nbsp</td></tr>
+<tr><th id="230">230</th><td><u>#   define SIZE_MAX		(4294967295UL)</u>&nbsp</td></tr>
+<tr><th id="231">231</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="232">232</th><td><u>#   define SIZE_MAX		(4294967295U)</u>&nbsp</td></tr>
+<tr><th id="233">233</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="234">234</th><td><u># <span data-ppcond="226">endif</span></u>&nbsp</td></tr>
+<tr><th id="235">235</th><td>&nbsp</td></tr>
+<tr><th id="236">236</th><td><i>/* Limits of `wchar_t'.  */</i>&nbsp</td></tr>
+<tr><th id="237">237</th><td><u># <span data-ppcond="237">ifndef</span> <span class="macro" data-ref="_M/WCHAR_MIN">WCHAR_MIN</span></u>&nbsp</td></tr>
+<tr><th id="238">238</th><td><i>/* These constants might also be defined in &lt;wchar.h&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="239">239</th><td><u>#  define <dfn class="macro" id="_M/WCHAR_MIN" data-ref="_M/WCHAR_MIN">WCHAR_MIN</dfn>		__WCHAR_MIN</u>&nbsp</td></tr>
+<tr><th id="240">240</th><td><u>#  define <dfn class="macro" id="_M/WCHAR_MAX" data-ref="_M/WCHAR_MAX">WCHAR_MAX</dfn>		__WCHAR_MAX</u>&nbsp</td></tr>
+<tr><th id="241">241</th><td><u># <span data-ppcond="237">endif</span></u>&nbsp</td></tr>
+<tr><th id="242">242</th><td>&nbsp</td></tr>
+<tr><th id="243">243</th><td><i>/* Limits of `wint_t'.  */</i>&nbsp</td></tr>
+<tr><th id="244">244</th><td><u># define <dfn class="macro" id="_M/WINT_MIN" data-ref="_M/WINT_MIN">WINT_MIN</dfn>		(0u)</u>&nbsp</td></tr>
+<tr><th id="245">245</th><td><u># define <dfn class="macro" id="_M/WINT_MAX" data-ref="_M/WINT_MAX">WINT_MAX</dfn>		(4294967295u)</u>&nbsp</td></tr>
+<tr><th id="246">246</th><td>&nbsp</td></tr>
+<tr><th id="247">247</th><td><i>/* Signed.  */</i>&nbsp</td></tr>
+<tr><th id="248">248</th><td><u># define <dfn class="macro" id="_M/INT8_C" data-ref="_M/INT8_C">INT8_C</dfn>(c)	c</u>&nbsp</td></tr>
+<tr><th id="249">249</th><td><u># define <dfn class="macro" id="_M/INT16_C" data-ref="_M/INT16_C">INT16_C</dfn>(c)	c</u>&nbsp</td></tr>
+<tr><th id="250">250</th><td><u># define <dfn class="macro" id="_M/INT32_C" data-ref="_M/INT32_C">INT32_C</dfn>(c)	c</u>&nbsp</td></tr>
+<tr><th id="251">251</th><td><u># <span data-ppcond="251">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="252">252</th><td><u>#  define <dfn class="macro" id="_M/INT64_C" data-ref="_M/INT64_C">INT64_C</dfn>(c)	c ## L</u>&nbsp</td></tr>
+<tr><th id="253">253</th><td><u># <span data-ppcond="251">else</span></u>&nbsp</td></tr>
+<tr><th id="254">254</th><td><u>#  define INT64_C(c)	c ## LL</u>&nbsp</td></tr>
+<tr><th id="255">255</th><td><u># <span data-ppcond="251">endif</span></u>&nbsp</td></tr>
+<tr><th id="256">256</th><td>&nbsp</td></tr>
+<tr><th id="257">257</th><td><i>/* Unsigned.  */</i>&nbsp</td></tr>
+<tr><th id="258">258</th><td><u># define <dfn class="macro" id="_M/UINT8_C" data-ref="_M/UINT8_C">UINT8_C</dfn>(c)	c</u>&nbsp</td></tr>
+<tr><th id="259">259</th><td><u># define <dfn class="macro" id="_M/UINT16_C" data-ref="_M/UINT16_C">UINT16_C</dfn>(c)	c</u>&nbsp</td></tr>
+<tr><th id="260">260</th><td><u># define <dfn class="macro" id="_M/UINT32_C" data-ref="_M/UINT32_C">UINT32_C</dfn>(c)	c ## U</u>&nbsp</td></tr>
+<tr><th id="261">261</th><td><u># <span data-ppcond="261">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="262">262</th><td><u>#  define <dfn class="macro" id="_M/UINT64_C" data-ref="_M/UINT64_C">UINT64_C</dfn>(c)	c ## UL</u>&nbsp</td></tr>
+<tr><th id="263">263</th><td><u># <span data-ppcond="261">else</span></u>&nbsp</td></tr>
+<tr><th id="264">264</th><td><u>#  define UINT64_C(c)	c ## ULL</u>&nbsp</td></tr>
+<tr><th id="265">265</th><td><u># <span data-ppcond="261">endif</span></u>&nbsp</td></tr>
+<tr><th id="266">266</th><td>&nbsp</td></tr>
+<tr><th id="267">267</th><td><i>/* Maximal type.  */</i>&nbsp</td></tr>
+<tr><th id="268">268</th><td><u># <span data-ppcond="268">if</span> <a class="macro" href="x86_64-linux-gnu/bits/wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64</u>&nbsp</td></tr>
+<tr><th id="269">269</th><td><u>#  define <dfn class="macro" id="_M/INTMAX_C" data-ref="_M/INTMAX_C">INTMAX_C</dfn>(c)	c ## L</u>&nbsp</td></tr>
+<tr><th id="270">270</th><td><u>#  define <dfn class="macro" id="_M/UINTMAX_C" data-ref="_M/UINTMAX_C">UINTMAX_C</dfn>(c)	c ## UL</u>&nbsp</td></tr>
+<tr><th id="271">271</th><td><u># <span data-ppcond="268">else</span></u>&nbsp</td></tr>
+<tr><th id="272">272</th><td><u>#  define INTMAX_C(c)	c ## LL</u>&nbsp</td></tr>
+<tr><th id="273">273</th><td><u>#  define UINTMAX_C(c)	c ## ULL</u>&nbsp</td></tr>
+<tr><th id="274">274</th><td><u># <span data-ppcond="268">endif</span></u>&nbsp</td></tr>
+<tr><th id="275">275</th><td>&nbsp</td></tr>
+<tr><th id="276">276</th><td><u>#<span data-ppcond="276">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (IEC_60559_BFP_EXT_C2X)</u>&nbsp</td></tr>
+<tr><th id="277">277</th><td>&nbsp</td></tr>
+<tr><th id="278">278</th><td><u># define <dfn class="macro" id="_M/INT8_WIDTH" data-ref="_M/INT8_WIDTH">INT8_WIDTH</dfn> 8</u>&nbsp</td></tr>
+<tr><th id="279">279</th><td><u># define <dfn class="macro" id="_M/UINT8_WIDTH" data-ref="_M/UINT8_WIDTH">UINT8_WIDTH</dfn> 8</u>&nbsp</td></tr>
+<tr><th id="280">280</th><td><u># define <dfn class="macro" id="_M/INT16_WIDTH" data-ref="_M/INT16_WIDTH">INT16_WIDTH</dfn> 16</u>&nbsp</td></tr>
+<tr><th id="281">281</th><td><u># define <dfn class="macro" id="_M/UINT16_WIDTH" data-ref="_M/UINT16_WIDTH">UINT16_WIDTH</dfn> 16</u>&nbsp</td></tr>
+<tr><th id="282">282</th><td><u># define <dfn class="macro" id="_M/INT32_WIDTH" data-ref="_M/INT32_WIDTH">INT32_WIDTH</dfn> 32</u>&nbsp</td></tr>
+<tr><th id="283">283</th><td><u># define <dfn class="macro" id="_M/UINT32_WIDTH" data-ref="_M/UINT32_WIDTH">UINT32_WIDTH</dfn> 32</u>&nbsp</td></tr>
+<tr><th id="284">284</th><td><u># define <dfn class="macro" id="_M/INT64_WIDTH" data-ref="_M/INT64_WIDTH">INT64_WIDTH</dfn> 64</u>&nbsp</td></tr>
+<tr><th id="285">285</th><td><u># define <dfn class="macro" id="_M/UINT64_WIDTH" data-ref="_M/UINT64_WIDTH">UINT64_WIDTH</dfn> 64</u>&nbsp</td></tr>
+<tr><th id="286">286</th><td>&nbsp</td></tr>
+<tr><th id="287">287</th><td><u># define <dfn class="macro" id="_M/INT_LEAST8_WIDTH" data-ref="_M/INT_LEAST8_WIDTH">INT_LEAST8_WIDTH</dfn> 8</u>&nbsp</td></tr>
+<tr><th id="288">288</th><td><u># define <dfn class="macro" id="_M/UINT_LEAST8_WIDTH" data-ref="_M/UINT_LEAST8_WIDTH">UINT_LEAST8_WIDTH</dfn> 8</u>&nbsp</td></tr>
+<tr><th id="289">289</th><td><u># define <dfn class="macro" id="_M/INT_LEAST16_WIDTH" data-ref="_M/INT_LEAST16_WIDTH">INT_LEAST16_WIDTH</dfn> 16</u>&nbsp</td></tr>
+<tr><th id="290">290</th><td><u># define <dfn class="macro" id="_M/UINT_LEAST16_WIDTH" data-ref="_M/UINT_LEAST16_WIDTH">UINT_LEAST16_WIDTH</dfn> 16</u>&nbsp</td></tr>
+<tr><th id="291">291</th><td><u># define <dfn class="macro" id="_M/INT_LEAST32_WIDTH" data-ref="_M/INT_LEAST32_WIDTH">INT_LEAST32_WIDTH</dfn> 32</u>&nbsp</td></tr>
+<tr><th id="292">292</th><td><u># define <dfn class="macro" id="_M/UINT_LEAST32_WIDTH" data-ref="_M/UINT_LEAST32_WIDTH">UINT_LEAST32_WIDTH</dfn> 32</u>&nbsp</td></tr>
+<tr><th id="293">293</th><td><u># define <dfn class="macro" id="_M/INT_LEAST64_WIDTH" data-ref="_M/INT_LEAST64_WIDTH">INT_LEAST64_WIDTH</dfn> 64</u>&nbsp</td></tr>
+<tr><th id="294">294</th><td><u># define <dfn class="macro" id="_M/UINT_LEAST64_WIDTH" data-ref="_M/UINT_LEAST64_WIDTH">UINT_LEAST64_WIDTH</dfn> 64</u>&nbsp</td></tr>
+<tr><th id="295">295</th><td>&nbsp</td></tr>
+<tr><th id="296">296</th><td><u># define <dfn class="macro" id="_M/INT_FAST8_WIDTH" data-ref="_M/INT_FAST8_WIDTH">INT_FAST8_WIDTH</dfn> 8</u>&nbsp</td></tr>
+<tr><th id="297">297</th><td><u># define <dfn class="macro" id="_M/UINT_FAST8_WIDTH" data-ref="_M/UINT_FAST8_WIDTH">UINT_FAST8_WIDTH</dfn> 8</u>&nbsp</td></tr>
+<tr><th id="298">298</th><td><u># define <dfn class="macro" id="_M/INT_FAST16_WIDTH" data-ref="_M/INT_FAST16_WIDTH">INT_FAST16_WIDTH</dfn> __WORDSIZE</u>&nbsp</td></tr>
+<tr><th id="299">299</th><td><u># define <dfn class="macro" id="_M/UINT_FAST16_WIDTH" data-ref="_M/UINT_FAST16_WIDTH">UINT_FAST16_WIDTH</dfn> __WORDSIZE</u>&nbsp</td></tr>
+<tr><th id="300">300</th><td><u># define <dfn class="macro" id="_M/INT_FAST32_WIDTH" data-ref="_M/INT_FAST32_WIDTH">INT_FAST32_WIDTH</dfn> __WORDSIZE</u>&nbsp</td></tr>
+<tr><th id="301">301</th><td><u># define <dfn class="macro" id="_M/UINT_FAST32_WIDTH" data-ref="_M/UINT_FAST32_WIDTH">UINT_FAST32_WIDTH</dfn> __WORDSIZE</u>&nbsp</td></tr>
+<tr><th id="302">302</th><td><u># define <dfn class="macro" id="_M/INT_FAST64_WIDTH" data-ref="_M/INT_FAST64_WIDTH">INT_FAST64_WIDTH</dfn> 64</u>&nbsp</td></tr>
+<tr><th id="303">303</th><td><u># define <dfn class="macro" id="_M/UINT_FAST64_WIDTH" data-ref="_M/UINT_FAST64_WIDTH">UINT_FAST64_WIDTH</dfn> 64</u>&nbsp</td></tr>
+<tr><th id="304">304</th><td>&nbsp</td></tr>
+<tr><th id="305">305</th><td><u># define <dfn class="macro" id="_M/INTPTR_WIDTH" data-ref="_M/INTPTR_WIDTH">INTPTR_WIDTH</dfn> __WORDSIZE</u>&nbsp</td></tr>
+<tr><th id="306">306</th><td><u># define <dfn class="macro" id="_M/UINTPTR_WIDTH" data-ref="_M/UINTPTR_WIDTH">UINTPTR_WIDTH</dfn> __WORDSIZE</u>&nbsp</td></tr>
+<tr><th id="307">307</th><td>&nbsp</td></tr>
+<tr><th id="308">308</th><td><u># define <dfn class="macro" id="_M/INTMAX_WIDTH" data-ref="_M/INTMAX_WIDTH">INTMAX_WIDTH</dfn> 64</u>&nbsp</td></tr>
+<tr><th id="309">309</th><td><u># define <dfn class="macro" id="_M/UINTMAX_WIDTH" data-ref="_M/UINTMAX_WIDTH">UINTMAX_WIDTH</dfn> 64</u>&nbsp</td></tr>
+<tr><th id="310">310</th><td>&nbsp</td></tr>
+<tr><th id="311">311</th><td><u># define <dfn class="macro" id="_M/PTRDIFF_WIDTH" data-ref="_M/PTRDIFF_WIDTH">PTRDIFF_WIDTH</dfn> __WORDSIZE</u>&nbsp</td></tr>
+<tr><th id="312">312</th><td><u># define <dfn class="macro" id="_M/SIG_ATOMIC_WIDTH" data-ref="_M/SIG_ATOMIC_WIDTH">SIG_ATOMIC_WIDTH</dfn> 32</u>&nbsp</td></tr>
+<tr><th id="313">313</th><td><u># define <dfn class="macro" id="_M/SIZE_WIDTH" data-ref="_M/SIZE_WIDTH">SIZE_WIDTH</dfn> __WORDSIZE</u>&nbsp</td></tr>
+<tr><th id="314">314</th><td><u># define <dfn class="macro" id="_M/WCHAR_WIDTH" data-ref="_M/WCHAR_WIDTH">WCHAR_WIDTH</dfn> 32</u>&nbsp</td></tr>
+<tr><th id="315">315</th><td><u># define <dfn class="macro" id="_M/WINT_WIDTH" data-ref="_M/WINT_WIDTH">WINT_WIDTH</dfn> 32</u>&nbsp</td></tr>
+<tr><th id="316">316</th><td>&nbsp</td></tr>
+<tr><th id="317">317</th><td><u>#<span data-ppcond="276">endif</span></u>&nbsp</td></tr>
+<tr><th id="318">318</th><td>&nbsp</td></tr>
+<tr><th id="319">319</th><td><u>#<span data-ppcond="22">endif</span> /* stdint.h */</u>&nbsp</td></tr>
+<tr><th id="320">320</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

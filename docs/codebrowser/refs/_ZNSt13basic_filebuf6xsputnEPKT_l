@@ -1,0 +1,2 @@
+<dec f='include/c++/11/fstream' l='445' type='std::streamsize std::basic_filebuf::xsputn(const std::basic_filebuf::char_type * __s, std::streamsize __n)'/>
+<def f='include/c++/11/bits/fstream.tcc' l='753' ll='799' type='std::streamsize std::basic_filebuf::xsputn(const _CharT * __s, std::streamsize __n)'/>

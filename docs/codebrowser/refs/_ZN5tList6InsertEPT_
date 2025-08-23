@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='86' type='T * tList::Insert(T * item)'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='388' ll='401' type='T * tList::Insert(T * item)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='86'>// Insert item at head.	Returns item.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='385'>// Implementation below this line.</doc>
+<use f='Modules/System/Src/tChunk.cpp' l='224' u='c' c='_ZN12tChunkWriter10BeginChunkEji'/>

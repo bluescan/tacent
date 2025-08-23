@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1439' ll='1446' type='std::deque::const_reference std::deque::back() const'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1435'>/**
+       *  Returns a read-only (constant) reference to the data at the last
+       *  element of the %deque.
+       */</doc>

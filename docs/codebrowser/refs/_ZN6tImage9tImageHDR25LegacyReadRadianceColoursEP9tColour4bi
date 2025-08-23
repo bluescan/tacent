@@ -1,0 +1,4 @@
+<def f='Modules/Image/Src/tImageHDR.cpp' l='96' ll='127' type='bool tImage::tImageHDR::LegacyReadRadianceColours(tPixel4b * scanline, int len)'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='137' u='c' c='_ZN6tImage9tImageHDR19ReadRadianceColoursEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='145' u='c' c='_ZN6tImage9tImageHDR19ReadRadianceColoursEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='157' u='c' c='_ZN6tImage9tImageHDR19ReadRadianceColoursEP9tColour4bi'/>

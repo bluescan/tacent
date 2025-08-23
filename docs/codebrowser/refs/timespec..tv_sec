@@ -1,0 +1,9 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_timespec.h' l='16' type='__time_t'/>
+<offset>0</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_timespec.h' l='16'>/* Seconds.  */</doc>
+<use f='Modules/System/Src/tFile.cpp' l='2143' macro='1' u='r' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2144' macro='1' u='r' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2145' macro='1' u='r' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<use f='Modules/System/Src/tTime.cpp' l='63' u='r' c='_ZN7tSystem22tGetHardwareTimerCountEv'/>
+<use f='Modules/System/Src/tTime.cpp' l='134' u='w' c='_ZN7tSystem6tSleepEi'/>
+<use f='Modules/System/Src/tTime.cpp' l='135' u='r' c='_ZN7tSystem6tSleepEi'/>

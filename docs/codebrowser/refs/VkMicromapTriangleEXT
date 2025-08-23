@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16806' ll='16810'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16806'/>
+<size>8</size>
+<mbr r='VkMicromapTriangleEXT::dataOffset' o='0' t='uint32_t'/>
+<mbr r='VkMicromapTriangleEXT::subdivisionLevel' o='32' t='uint16_t'/>
+<mbr r='VkMicromapTriangleEXT::format' o='48' t='uint16_t'/>

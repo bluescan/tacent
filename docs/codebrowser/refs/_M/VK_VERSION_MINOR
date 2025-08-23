@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='85'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='84'>// DEPRECATED: This define is deprecated. VK_API_VERSION_MINOR should be used instead.</doc>

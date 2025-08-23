@@ -1,0 +1,12 @@
+<def f='include/c++/11/new' l='89'/>
+<use f='include/c++/11/new' l='149' c='_ZnwmSt11align_val_t'/>
+<use f='include/c++/11/new' l='151' c='_ZnwmSt11align_val_tRKSt9nothrow_t'/>
+<use f='include/c++/11/new' l='153' c='_ZdlPvSt11align_val_t'/>
+<use f='include/c++/11/new' l='155' c='_ZdlPvSt11align_val_tRKSt9nothrow_t'/>
+<use f='include/c++/11/new' l='157' c='_ZnamSt11align_val_t'/>
+<use f='include/c++/11/new' l='159' c='_ZnamSt11align_val_tRKSt9nothrow_t'/>
+<use f='include/c++/11/new' l='161' c='_ZdaPvSt11align_val_t'/>
+<use f='include/c++/11/new' l='163' c='_ZdaPvSt11align_val_tRKSt9nothrow_t'/>
+<use f='include/c++/11/ext/new_allocator.h' l='123' c='__gnu_cxx::new_allocator::allocate'/>
+<use f='include/c++/11/ext/new_allocator.h' l='123' c='__gnu_cxx::new_allocator::allocate'/>
+<use f='include/c++/11/ext/new_allocator.h' l='141' c='__gnu_cxx::new_allocator::deallocate'/>

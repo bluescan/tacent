@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1184' ll='1186' type='std::moneypunct::string_type std::moneypunct::negative_sign() const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1171'>/**
+       *  @brief  Return negative sign string.
+       *
+       *  This function returns a string_type to use as a sign for negative
+       *  amounts.  It does so by returning returning
+       *  moneypunct&lt;char_type&gt;::do_negative_sign().
+       *
+       *  If the return value contains more than one character, the first
+       *  character appears in the position indicated by neg_format() and the
+       *  remainder appear at the end of the formatted string.
+       *
+       *  @return  @a string_type representing a negative sign.
+      */</doc>

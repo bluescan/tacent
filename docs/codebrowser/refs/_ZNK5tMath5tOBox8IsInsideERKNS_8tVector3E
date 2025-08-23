@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='329' type='bool tMath::tOBox::IsInside(const tMath::tVector3 &amp; point) const'/>
+<def f='Modules/Math/Src/tGeometry.cpp' l='58' ll='69' type='bool tMath::tOBox::IsInside(const tMath::tVector3 &amp; point) const'/>

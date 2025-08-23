@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='129' type='bool tSystem::tIsRelativePath(const tString &amp; path)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='799' ll='802' type='bool tSystem::tIsRelativePath(const tString &amp; path)'/>
+<use f='Modules/System/Src/tFile.cpp' l='285' u='c' c='_ZN7tSystem16tGetAbsolutePathERK7tStringS2_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='243' u='c' c='_ZN7tSystem19tGetXDGSingleEnvVarER7tStringRKS0_S3_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='272' u='c' c='_ZN7tSystem21tGetXDGMultipleEnvVarER5tListI11tStringItemERK7tStringS6_'/>

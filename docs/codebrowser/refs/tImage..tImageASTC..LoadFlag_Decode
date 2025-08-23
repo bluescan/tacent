@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageASTC.h' l='32' type='1'/>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='41' u='r'/>
+<doc f='Modules/Image/Inc/Image/tImageASTC.h' l='32'>// Decode the astc texture data into RGBA 32 bit. If not set, the pixel data will remain unmodified.</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='136' u='r' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>

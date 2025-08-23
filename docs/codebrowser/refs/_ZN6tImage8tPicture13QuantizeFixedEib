@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='237' type='bool tImage::tPicture::QuantizeFixed(int numColours, bool checkExact = true)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='234'>// Quantize image colours based on a fixed palette. numColours must be 256 or less. checkExact means no change to
+	// the image will be made if it already contains fewer colours than numColours already. This may or may not be
+	// desireable as the computed or fixed palette would not be used.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='528' ll='549' type='bool tImage::tPicture::QuantizeFixed(int numColours, bool checkExact = true)'/>

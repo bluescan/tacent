@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15079'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15078'>// VK_EXT_depth_bias_control is a preprocessor guard. Do not pass it to API calls.</doc>

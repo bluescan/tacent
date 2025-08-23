@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_base.h' l='280' ll='290' macro='1' type='void std::atomic_flag::clear(std::memory_order __m = memory_order_seq_cst)'/>
+<use f='include/c++/11/atomic' l='1241' u='c' c='_ZSt26atomic_flag_clear_explicitPVSt11atomic_flagSt12memory_order'/>

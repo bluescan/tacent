@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='531' type='void tMath::tTranspose(tMath::tMat2 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='48' u='c' c='_ZN5tMath8tMatrix29TransposeEv'/>

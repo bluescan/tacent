@@ -1,0 +1,24 @@
+<def f='include/c++/11/type_traits' l='1597' ll='1598'/>
+<def f='include/c++/11/type_traits' l='1600' ll='1602'/>
+<def f='include/c++/11/type_traits' l='1604' ll='1606'/>
+<use f='include/c++/11/type_traits' l='1639'/>
+<use f='include/c++/11/type_traits' l='2038'/>
+<use f='include/c++/11/type_traits' l='2161'/>
+<use f='include/c++/11/type_traits' l='2214'/>
+<use f='include/c++/11/type_traits' l='2482'/>
+<use f='include/c++/11/type_traits' l='2549'/>
+<use f='include/c++/11/type_traits' l='2552'/>
+<use f='include/c++/11/bits/move.h' l='77' c='_ZSt7forwardRNSt16remove_referenceIT_E4typeE'/>
+<use f='include/c++/11/bits/move.h' l='89' c='_ZSt7forwardONSt16remove_referenceIT_E4typeE'/>
+<use f='include/c++/11/bits/move.h' l='103' c='_ZSt4moveOT_'/>
+<use f='include/c++/11/bits/move.h' l='105' c='_ZSt4moveOT_'/>
+<use f='include/c++/11/bits/invoke.h' l='55' c='_ZSt8__invfwdRNSt16remove_referenceIT_E4typeE'/>
+<use f='include/c++/11/tuple' l='1693'/>
+<use f='include/c++/11/bits/stl_algo.h' l='3747' c='_ZSt7shuffleT_S_OT0_'/>
+<use f='include/c++/11/bits/exception_ptr.h' l='242' c='_ZSt18make_exception_ptrT_'/>
+<use f='include/c++/11/bits/nested_exception.h' l='101' c='_ZSt24__throw_with_nested_implOT_St17integral_constantIbLb1EE'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='138'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='140'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='313'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='583'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='679' c='_ZNSt14__shared_countC1EOSt10unique_ptrITL0__TL0_0_E'/>

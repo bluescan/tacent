@@ -1,0 +1,11 @@
+<def f='include/c++/11/type_traits' l='3433' ll='3434'/>
+<use f='include/c++/11/type_traits' l='3438'/>
+<def f='include/c++/11/type_traits' l='3446' ll='3450'/>
+<def f='include/c++/11/type_traits' l='3457' ll='3461'/>
+<def f='include/c++/11/type_traits' l='3468' ll='3471'/>
+<def f='include/c++/11/type_traits' l='3474' ll='3477'/>
+<use f='include/c++/11/type_traits' l='3476'/>
+<doc f='include/c++/11/type_traits' l='3445'>// If A and B are both lvalue reference types, ...</doc>
+<doc f='include/c++/11/type_traits' l='3456'>// If A and B are both rvalue reference types, ...</doc>
+<doc f='include/c++/11/type_traits' l='3467'>// If A is an rvalue reference and B is an lvalue reference, ...</doc>
+<doc f='include/c++/11/type_traits' l='3473'>// If A is an lvalue reference and B is an rvalue reference, ...</doc>

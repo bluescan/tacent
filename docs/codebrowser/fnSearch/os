@@ -1,0 +1,8 @@
+_ZNSt19ostreambuf_iterator6_M_putEPKT_l|std::ostreambuf_iterator::_M_put
+_ZNKSt19ostreambuf_iterator6failedEv|std::ostreambuf_iterator::failed
+_ZNSt19ostreambuf_iteratordeEv|std::ostreambuf_iterator::operator*
+_ZNSt19ostreambuf_iteratorppEi|std::ostreambuf_iterator::operator++
+_ZNSt19ostreambuf_iteratoraSET_|std::ostreambuf_iterator::operator=
+_ZNSt16ostream_iteratordeEv|std::ostream_iterator::operator*
+_ZNSt16ostream_iteratorppEv|std::ostream_iterator::operator++
+_ZNSt16ostream_iteratoraSERKSt16ostream_iteratorIT_T0_T1_E|std::ostream_iterator::operator=

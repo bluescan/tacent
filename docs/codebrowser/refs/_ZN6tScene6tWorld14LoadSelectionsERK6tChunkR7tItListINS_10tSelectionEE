@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='535' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<def f='Modules/Scene/Src/tWorld.cpp' l='1259' ll='1273' type='void tScene::tWorld::LoadSelections(const tChunk &amp; selListChunk, tItList&lt;tScene::tSelection&gt; &amp; selections)'/>

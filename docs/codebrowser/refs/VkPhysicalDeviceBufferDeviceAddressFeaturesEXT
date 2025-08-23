@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14121' ll='14127'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14121'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceBufferDeviceAddressFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceBufferDeviceAddressFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceBufferDeviceAddressFeaturesEXT::bufferDeviceAddress' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceBufferDeviceAddressFeaturesEXT::bufferDeviceAddressCaptureReplay' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceBufferDeviceAddressFeaturesEXT::bufferDeviceAddressMultiDevice' o='192' t='VkBool32'/>

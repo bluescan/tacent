@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='758' type='ktx_uint32_t'/>
+<offset>192</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='758'>/*!&lt; Depth of the base level of the texture. */</doc>

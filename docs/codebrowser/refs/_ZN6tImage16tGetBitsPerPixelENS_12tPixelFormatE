@@ -1,0 +1,19 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='295' type='int tImage::tGetBitsPerPixel(tImage::tPixelFormat )'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='290'>// Only applies to formats that can guarantee an integer number of bits per pixel. In particular does not apply to ASTC
+// formats (even if the particular ASTC format has an integer number of bits-per-pixel). We report in bits (not bytes)
+// because some formats (i.e. BC1) are only half a byte per pixel. Palette formats do not consider the palette entry,
+// size, but rather the size of the index as there is one index per pixel. Returns 0 for non-integral bpp formats and
+// all ASTC formats.</doc>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='167' u='c' c='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='175' u='c' c='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='313' u='c' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='162' u='c' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='185' u='c' c='_ZN6tImage13tPaletteImage3GetEP9tColour4b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='209' u='c' c='_ZN6tImage13tPaletteImage3GetEP9tColour3b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='230' u='c' c='_ZNK6tImage13tPaletteImage11GetDataSizeEv'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='238' u='c' c='_ZNK6tImage13tPaletteImage14GetPaletteSizeEv'/>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='532' ll='550' type='int tImage::tGetBitsPerPixel(tImage::tPixelFormat format)'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='555' u='c' c='_ZN6tImage21tGetBitsPerPixelFloatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='577' u='c' c='_ZN6tImage17tGetBytesPerBlockENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1322' u='c' c='_ZN6tImage24CanReverseRowData_PackedENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1337' u='c' c='_ZN6tImage28CreateReversedRowData_PackedEPKhNS_12tPixelFormatEii'/>

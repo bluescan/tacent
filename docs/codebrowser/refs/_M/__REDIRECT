@@ -1,0 +1,17 @@
+<dec f='include/x86_64-linux-gnu/sys/cdefs.h' l='247'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='615' u='a'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='622' u='a'/>
+<use f='include/features.h' l='491' u='a'/>
+<use f='include/stdio.h' l='433' u='a'/>
+<use f='include/stdio.h' l='434' u='c'/>
+<use f='include/stdio.h' l='437' u='c'/>
+<use f='include/stdio.h' l='477' u='a'/>
+<use f='include/stdio.h' l='479' u='c'/>
+<use f='include/stdio.h' l='484' u='c'/>
+<use f='include/wchar.h' l='656' u='a'/>
+<use f='include/wchar.h' l='657' u='c'/>
+<use f='include/wchar.h' l='661' u='c'/>
+<use f='include/wchar.h' l='707' u='a'/>
+<use f='include/wchar.h' l='710' u='a'/>
+<use f='include/wchar.h' l='711' u='c'/>
+<use f='include/wchar.h' l='715' u='c'/>

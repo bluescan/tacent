@@ -1,0 +1,1 @@
+<def f='Modules/Image/Src/tImageKTX.cpp' l='691' ll='714' type='int tImage::tImageKTX::StealCubemapLayers(tList&lt;tImage::tLayer&gt; * layerLists, uint32 faceFlags = tFaceFlag_All)'/>

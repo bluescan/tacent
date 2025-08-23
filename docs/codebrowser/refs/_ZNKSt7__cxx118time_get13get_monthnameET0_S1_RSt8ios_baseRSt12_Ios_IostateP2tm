@@ -1,0 +1,25 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='511' ll='514' type='std::time_get::iter_type std::time_get::get_monthname(std::time_get::iter_type __beg, std::time_get::iter_type __end, std::ios_base &amp; __io, ios_base::iostate &amp; __err, tm * __tm) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='487'>/**
+       *  @brief  Parse input month string.
+       *
+       *  This function parses a month name and puts the results into a
+       *  user-supplied struct tm.  The result is returned by calling
+       *  time_get::do_get_monthname().
+       *
+       *  Parsing starts by parsing an abbreviated month name.  If a valid
+       *  abbreviation is followed by a character that would lead to the full
+       *  month name, parsing continues until the full name is found or an
+       *  error occurs.  Otherwise parsing finishes at the end of the
+       *  abbreviated name.
+       *
+       *  If an error occurs before the end, err |= ios_base::failbit.  If
+       *  parsing reads all the characters, err |=
+       *  ios_base::eofbit.
+       *
+       *  @param  __beg  Start of string to parse.
+       *  @param  __end  End of string to parse.
+       *  @param  __io  Source of the locale.
+       *  @param  __err  Error flags to set.
+       *  @param  __tm  Pointer to struct tm to fill in.
+       *  @return  Iterator to first char beyond month name.
+      */</doc>

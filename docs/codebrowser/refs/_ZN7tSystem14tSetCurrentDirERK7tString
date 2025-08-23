@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='278' type='bool tSystem::tSetCurrentDir(const tString &amp; dir)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='276'>// Set the current directory. Returns true if successful. For example, SetCurrentDir(&quot;C:/&quot;); Will set it to the root of
+// the c drive as will &quot;C:&quot; by itself. SetCurrentDir(&quot;..&quot;); will move the current dir up a directory.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='1440' ll='1485' type='bool tSystem::tSetCurrentDir(const tString &amp; directory)'/>

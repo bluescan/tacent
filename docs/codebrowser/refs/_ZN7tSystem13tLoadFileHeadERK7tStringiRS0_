@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='258' type='uint8 * tSystem::tLoadFileHead(const tString &amp; file, int bytesToRead, tString &amp; dest)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='257'>// @todo This variant is not implemented yet.</doc>

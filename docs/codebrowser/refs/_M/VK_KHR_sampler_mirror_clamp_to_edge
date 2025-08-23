@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8013'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8012'>// VK_KHR_sampler_mirror_clamp_to_edge is a preprocessor guard. Do not pass it to API calls.</doc>

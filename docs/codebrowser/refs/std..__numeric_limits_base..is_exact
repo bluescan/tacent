@@ -1,0 +1,4 @@
+<def f='include/c++/11/limits' l='231' type='const bool'/>
+<doc f='include/c++/11/limits' l='228'>/** True if the type uses an exact representation. All integer types are
+	exact, but not all exact types are integer.  For example, rational and
+	fixed-exponent representations are exact but not integer. */</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/ostream' l='662' ll='663' type='basic_ostream&lt;wchar_t, _Traits&gt; &amp; std::operator&lt;&lt;(basic_ostream&lt;wchar_t, _Traits&gt; &amp; , const char16_t * )'/>

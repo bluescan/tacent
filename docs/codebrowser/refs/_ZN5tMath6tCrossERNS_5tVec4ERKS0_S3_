@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='561' type='void tMath::tCross(tMath::tVec4 &amp; d, const tMath::tVec4 &amp; a, const tMath::tVec4 &amp; b)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1173' ll='1179' type='void tMath::tCross(tMath::tVec4 &amp; d, const tMath::tVec4 &amp; a, const tMath::tVec4 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='93' u='c' c='_ZN5tMath8tVector4rMERKNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='94' u='c' c='_ZNK5tMath8tVector4rmERKNS_5tVec4E'/>

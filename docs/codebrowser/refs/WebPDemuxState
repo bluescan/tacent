@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/WebP/include/demux.h' l='79' ll='85'/>
+<use f='Modules/Image/Contrib/WebP/include/demux.h' l='79'/>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='76'>//------------------------------------------------------------------------------
+// Life of a Demux object</doc>

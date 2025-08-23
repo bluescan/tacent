@@ -1,0 +1,7 @@
+<dec f='include/stdio.h' l='645' type='__ssize_t getline(char **__restrict __lineptr, size_t *__restrict __n, FILE *__restrict __stream)'/>
+<doc f='include/stdio.h' l='639'>/* Like `getdelim&apos;, but reads up to a newline.
+
+   This function is not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation it is a cancellation point and
+   therefore not marked with __THROW.  */</doc>

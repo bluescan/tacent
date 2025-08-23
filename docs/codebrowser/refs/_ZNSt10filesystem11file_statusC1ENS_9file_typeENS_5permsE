@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/fs_dir.h' l='58' u='c' c='_ZNSt10filesystem11file_statusC1Ev'/>
+<def f='include/c++/11/bits/fs_dir.h' l='60' ll='62' type='void std::filesystem::file_status::file_status(std::filesystem::file_type __ft, std::filesystem::perms __prms = perms::unknown)'/>
+<use f='include/c++/11/bits/fs_dir.h' l='165' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry6existsEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='169' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry6existsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='205' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry8is_otherEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='209' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry8is_otherERSt10error_code'/>

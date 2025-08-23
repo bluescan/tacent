@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/locale_conv.h' l='367' type='std::size_t std::wstring_convert::converted() const'/>
+<doc f='include/c++/11/bits/locale_conv.h' l='362'>/// @}
+
+      // _GLIBCXX_RESOLVE_LIB_DEFECTS
+      // 2174. wstring_convert::converted() should be noexcept
+      /// The number of elements successfully converted in the last conversion.</doc>

@@ -1,0 +1,23 @@
+<def f='include/c++/11/bits/random.h' l='4872' ll='4902'/>
+<use f='include/c++/11/bits/random.h' l='4876' c='_ZNSt20weibull_distribution10param_typeC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='4892' c='_ZSteqRKNSt20weibull_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='4892' c='_ZSteqRKNSt20weibull_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='4896' c='_ZStneRKNSt20weibull_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='4896' c='_ZStneRKNSt20weibull_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='4912' c='_ZNSt20weibull_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4940' c='_ZNKSt20weibull_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='4949' c='_ZNSt20weibull_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4977' c='_ZNSt20weibull_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4991' c='_ZNSt20weibull_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4998' c='_ZNSt20weibull_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5016' c='_ZNSt20weibull_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5018'/>
+<use f='include/c++/11/bits/random.tcc' l='2509' c='_ZNSt20weibull_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2524' c='_ZNSt20weibull_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<doc f='include/c++/11/bits/random.h' l='4871'>/** Parameter type. */</doc>
+<fun r='_ZNSt20weibull_distribution10param_typeC1Ev'/>
+<fun r='_ZNSt20weibull_distribution10param_typeC1ET_S1_'/>
+<fun r='_ZNKSt20weibull_distribution10param_type1aEv'/>
+<fun r='_ZNKSt20weibull_distribution10param_type1bEv'/>
+<mbr r='std::weibull_distribution::param_type::_M_a' t='_RealType'/>
+<mbr r='std::weibull_distribution::param_type::_M_b' t='_RealType'/>

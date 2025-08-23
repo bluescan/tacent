@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='192'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='191'>/* Typed memory objects are not available.  */</doc>

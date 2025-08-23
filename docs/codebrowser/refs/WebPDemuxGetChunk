@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='205' type='int WebPDemuxGetChunk(const WebPDemuxer * dmux, const char * fourcc, int chunk_number, WebPChunkIterator * iter)'/>

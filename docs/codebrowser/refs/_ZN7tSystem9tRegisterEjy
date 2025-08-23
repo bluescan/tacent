@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='73' type='void tSystem::tRegister(uint32 machineNameHash, tSystem::tChannel channelsToSee)'/>
+<def f='Modules/System/Src/tPrint.cpp' l='194' ll='201' type='void tSystem::tRegister(uint32 machineNameHash, tSystem::tChannel channelsToSee)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='209' u='c' c='_ZN7tSystem9tRegisterEPKcy'/>

@@ -1,0 +1,20 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='585' type='std::time_get::iter_type std::time_get::get(std::time_get::iter_type __s, std::time_get::iter_type __end, std::ios_base &amp; __io, ios_base::iostate &amp; __err, tm * __tm, const std::time_get::char_type * __fmt, const std::time_get::char_type * __fmtend) const'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1223' ll='1293' type='_InIter std::time_get::get(std::time_get::iter_type __s, std::time_get::iter_type __end, std::ios_base &amp; __io, ios_base::iostate &amp; __err, tm * __tm, const std::time_get::char_type * __fmt, const std::time_get::char_type * __fmtend) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='567'>/**
+       *  @brief  Parse input string according to format.
+       *
+       *  This function parses the input string according to a
+       *  provided format string.  It does the inverse of
+       *  time_put::put.  The format string follows the format
+       *  specified for strftime(3)/strptime(3).  The actual parsing
+       *  is done by time_get::do_get.
+       *
+       *  @param __s        Start of string to parse.
+       *  @param __end      End of string to parse.
+       *  @param __io       Source of the locale.
+       *  @param __err      Error flags to set.
+       *  @param __tm       Pointer to struct tm to fill in.
+       *  @param __fmt      Start of the format string.
+       *  @param __fmtend   End of the format string.
+       *  @return  Iterator to first char not parsed.
+       */</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1849' ll='1851' type='typename std::pointer_traits&lt;_Ptr&gt;::element_type * std::vector::_M_data_ptr(_Ptr __ptr) const'/>

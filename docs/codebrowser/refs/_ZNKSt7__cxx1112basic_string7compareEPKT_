@@ -1,0 +1,16 @@
+<dec f='include/c++/11/bits/basic_string.h' l='3010' type='int std::basic_string::compare(const _CharT * __s) const'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='1435' ll='1448' type='int std::basic_string::compare(const _CharT * __s) const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='2995'>/**
+       *  @brief  Compare to a C string.
+       *  @param __s  C string to compare against.
+       *  @return  Integer &lt; 0, 0, or &gt; 0.
+       *
+       *  Returns an integer &lt; 0 if this string is ordered before @a __s, 0 if
+       *  their values are equivalent, or &gt; 0 if this string is ordered after
+       *  @a __s.  Determines the effective length rlen of the strings to
+       *  compare as the smallest of size() and the length of a string
+       *  constructed from @a __s.  The function then compares the two strings
+       *  by calling traits::compare(data(),s,rlen).  If the result of the
+       *  comparison is nonzero returns it, otherwise the shorter one is
+       *  ordered first.
+      */</doc>

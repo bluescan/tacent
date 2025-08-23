@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='2158' type='std::num_get::iter_type std::num_get::_M_extract_int(std::num_get::iter_type , std::num_get::iter_type , std::ios_base &amp; , ios_base::iostate &amp; , _ValueT &amp; ) const'/>
+<def f='include/c++/11/bits/locale_facets.tcc' l='370' ll='588' type='_InIter std::num_get::_M_extract_int(_InIter __beg, _InIter __end, std::ios_base &amp; __io, ios_base::iostate &amp; __err, _ValueT &amp; __v) const'/>

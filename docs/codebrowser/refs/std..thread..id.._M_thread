@@ -1,0 +1,11 @@
+<dec f='include/c++/11/bits/std_thread.h' l='83' type='std::thread::native_handle_type'/>
+<use f='include/c++/11/bits/std_thread.h' l='86' u='w' c='_ZNSt6thread2idC1Ev'/>
+<use f='include/c++/11/bits/std_thread.h' l='89' u='w' c='_ZNSt6thread2idC1Em'/>
+<use f='include/c++/11/bits/std_thread.h' l='192' u='r' c='_ZNSt6thread13native_handleEv'/>
+<use f='include/c++/11/bits/std_thread.h' l='293' u='r' c='_ZSteqNSt6thread2idES0_'/>
+<use f='include/c++/11/bits/std_thread.h' l='293' u='r' c='_ZSteqNSt6thread2idES0_'/>
+<use f='include/c++/11/bits/std_thread.h' l='306' u='r' c='_ZNKSt4hashINSt6thread2idEEclERKS1_'/>
+<use f='include/c++/11/thread' l='63' u='r' c='_ZStssNSt6thread2idES0_'/>
+<use f='include/c++/11/thread' l='63' u='r' c='_ZStssNSt6thread2idES0_'/>
+<use f='include/c++/11/thread' l='97' c='_ZStlsRSt13basic_ostreamIT_T0_ENSt6thread2idE'/>
+<offset>0</offset>

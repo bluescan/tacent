@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='541'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='904' u='c'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='535'>/**
+ * @~English
+ * @brief Helper for calling the GetImageOffset virtual method of a
+ *        ktxTexture.
+ * @copydoc ktxTexture2.ktxTexture2_GetImageOffset
+ */</doc>

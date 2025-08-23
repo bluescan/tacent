@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tLayer.h' l='78' type='bool tImage::tLayer::operator==(const tImage::tLayer &amp; ) const'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='79' u='c' c='_ZNK6tImage6tLayerneERKS0_'/>
+<doc f='Modules/Image/Inc/Image/tLayer.h' l='76'>// An invalid layer is never considered equal to another layer even if the other layer is also invalid. Whether the
+	// layer owns the data is considered irrelevant for equivalency purposes.</doc>
+<def f='Modules/Image/Src/tLayer.cpp' l='29' ll='42' type='bool tImage::tLayer::operator==(const tImage::tLayer &amp; src) const'/>

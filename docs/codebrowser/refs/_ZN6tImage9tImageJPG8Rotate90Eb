@@ -1,0 +1,5 @@
+<use f='Modules/Image/Src/tImageJPG.cpp' l='160' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='164' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='169' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='173' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImageJPG.cpp' l='281' ll='296' type='void tImage::tImageJPG::Rotate90(bool antiClockwise)'/>

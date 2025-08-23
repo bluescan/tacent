@@ -1,0 +1,2 @@
+<def f='Modules/Scene/Src/tAttribute.cpp' l='150' ll='156' type='void tScene::tAttributes::Load(const tChunk &amp; chunk)'/>
+<use f='Modules/Scene/Src/tObject.cpp' l='56' u='c' c='_ZN6tScene7tObject4LoadERK6tChunk'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15709' ll='15713'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15709'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceShaderEarlyAndLateFragmentTestsFeaturesAMD::shaderEarlyAndLateFragmentTests' o='128' t='VkBool32'/>

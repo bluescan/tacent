@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='236' type='std::locale std::locale::combine(const std::locale &amp; __other) const'/>
+<def f='include/c++/11/bits/locale_classes.tcc' l='61' ll='76' type='std::locale std::locale::combine(const std::locale &amp; __other) const'/>

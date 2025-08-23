@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='779' ll='784' type='void std::subtract_with_carry_engine::discard(unsigned long long __z)'/>
+<doc f='include/c++/11/bits/random.h' l='776'>/**
+       * @brief Discard a sequence of random numbers.
+       */</doc>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/alloc_traits.h' l='613' ll='614' type='static void * std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::allocate(std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::allocator_type &amp; , std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::size_type , const void *  = nullptr)'/>
+<doc f='include/c++/11/bits/alloc_traits.h' l='612'>/// allocate is ill-formed for allocator&lt;void&gt;</doc>

@@ -1,0 +1,7 @@
+<def f='include/c++/11/chrono' l='514' type='void std::chrono::duration::duration&lt;_Rep, _Period&gt;(const duration&lt;_Rep, _Period&gt; &amp; )'/>
+<use f='include/c++/11/chrono' l='3133' u='c' c='_ZNKSt6chrono8hh_mm_ss5hoursEv'/>
+<use f='include/c++/11/chrono' l='3137' u='c' c='_ZNKSt6chrono8hh_mm_ss7minutesEv'/>
+<use f='include/c++/11/chrono' l='3141' u='c' c='_ZNKSt6chrono8hh_mm_ss7secondsEv'/>
+<use f='include/c++/11/chrono' l='3331' u='c' c='_ZNSt6chrono6make12ERKNS_8durationIlSt5ratioILl3600ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='3342' u='c' c='_ZNSt6chrono6make24ERKNS_8durationIlSt5ratioILl3600ELl1EEEEb'/>
+<use f='include/c++/11/chrono' l='3347' u='c' c='_ZNSt6chrono6make24ERKNS_8durationIlSt5ratioILl3600ELl1EEEEb'/>

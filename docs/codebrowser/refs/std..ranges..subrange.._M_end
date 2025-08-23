@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/ranges_util.h' l='211' type='_Sent'/>
+<use f='include/c++/11/bits/ranges_util.h' l='232' u='w' c='_ZNSt6ranges8subrangeC1ETL0__T0_'/>
+<use f='include/c++/11/bits/ranges_util.h' l='239' u='w' c='_ZNSt6ranges8subrangeC1ETL0__T0_DTclsr8__detailE18__to_unsigned_likeclsr3stdE7declvalINSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt209605733'/>
+<use f='include/c++/11/bits/ranges_util.h' l='277' u='r' c='_ZNKSt6ranges8subrangecvTL0__Ev'/>
+<use f='include/c++/11/bits/ranges_util.h' l='287' u='r' c='_ZNKSt6ranges8subrange3endEv'/>
+<use f='include/c++/11/bits/ranges_util.h' l='289' c='_ZNKSt6ranges8subrange5emptyEv'/>
+<use f='include/c++/11/bits/ranges_util.h' l='297' c='_ZNKSt6ranges8subrange4sizeEv'/>
+<use f='include/c++/11/bits/ranges_util.h' l='340' c='_ZNSt6ranges8subrange7advanceENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE'/>

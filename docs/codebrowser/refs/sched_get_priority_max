@@ -1,0 +1,2 @@
+<dec f='include/sched.h' l='71' type='int sched_get_priority_max(int __algorithm)'/>
+<doc f='include/sched.h' l='70'>/* Get maximum priority value for a scheduler.  */</doc>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16490' ll='16495'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16490'/>
+<size>32</size>
+<mbr r='VkPipelineColorWriteCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineColorWriteCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineColorWriteCreateInfoEXT::attachmentCount' o='128' t='uint32_t'/>
+<mbr r='VkPipelineColorWriteCreateInfoEXT::pColorWriteEnables' o='192' t='const VkBool32 *'/>

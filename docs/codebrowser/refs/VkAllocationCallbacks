@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2998' ll='3005'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2998'/>
+<size>48</size>
+<mbr r='VkAllocationCallbacks::pUserData' o='0' t='void *'/>
+<mbr r='VkAllocationCallbacks::pfnAllocation' o='64' t='PFN_vkAllocationFunction'/>
+<mbr r='VkAllocationCallbacks::pfnReallocation' o='128' t='PFN_vkReallocationFunction'/>
+<mbr r='VkAllocationCallbacks::pfnFree' o='192' t='PFN_vkFreeFunction'/>
+<mbr r='VkAllocationCallbacks::pfnInternalAllocation' o='256' t='PFN_vkInternalAllocationNotification'/>
+<mbr r='VkAllocationCallbacks::pfnInternalFree' o='320' t='PFN_vkInternalFreeNotification'/>

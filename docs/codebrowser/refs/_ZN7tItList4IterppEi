@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='284' type='const tItList::Iter tItList::Iter::operator++(int )'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='283'>// Use ++iter instead of iter++ when possible.</doc>

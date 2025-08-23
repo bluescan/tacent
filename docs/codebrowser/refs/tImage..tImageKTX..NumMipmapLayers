@@ -1,0 +1,14 @@
+<use f='Modules/Image/Src/tImageKTX.cpp' l='546' u='r' c='_ZN6tImage9tImageKTX5ClearEv'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='559' u='w' c='_ZN6tImage9tImageKTX5ClearEv'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='575' u='w' c='_ZN6tImage9tImageKTX3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='668' u='r' c='_ZN6tImage9tImageKTX11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='684' u='r' c='_ZNK6tImage9tImageKTX9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='687' u='r' c='_ZNK6tImage9tImageKTX9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='704' u='r' c='_ZN6tImage9tImageKTX18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='730' u='r' c='_ZNK6tImage9tImageKTX16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='803' u='w' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='810' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='817' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='882' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='901' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1010' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

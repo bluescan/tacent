@@ -1,0 +1,3 @@
+<dec f='include/zlib.h' l='98' type='alloc_func'/>
+<offset>512</offset>
+<doc f='include/zlib.h' l='98'>/* used to allocate the internal state */</doc>

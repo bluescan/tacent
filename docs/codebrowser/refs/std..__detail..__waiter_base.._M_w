@@ -1,0 +1,13 @@
+<dec f='include/c++/11/bits/atomic_wait.h' l='284' type='std::__detail::__waiter_base::__waiter_type &amp;'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='307' u='w' c='_ZNSt8__detail13__waiter_baseC1EPKTL0__'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='308' u='a' c='_ZNSt8__detail13__waiter_baseC1EPKTL0__'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='313' u='c' c='_ZNSt8__detail13__waiter_base9_M_notifyEbb'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='375' u='m' c='_ZNSt8__detail8__waiterC1EPKTL0__'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='381' u='m' c='_ZNSt8__detail8__waiterD1Ev'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='393' u='m' c='_ZNSt8__detail8__waiter12_M_do_wait_vETL0__TL0_0_'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='407' u='m' c='_ZNSt8__detail8__waiter10_M_do_waitETL0__'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='277' u='m' c='_ZNSt8__detail14__timed_waiterC1EPKTL0__'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='283' u='m' c='_ZNSt8__detail14__timed_waiterD1Ev'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='298' u='c' c='_ZNSt8__detail14__timed_waiter18_M_do_wait_until_vETL0__TL0_0_RKNSt6chrono10time_pointITL0_1_TL0_2_EE'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='312' u='c' c='_ZNSt8__detail14__timed_waiter16_M_do_wait_untilETL0__iRKNSt6chrono10time_pointITL0_0_TL0_1_EE'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='355' u='c' c='_ZNSt8__detail14__timed_waiter16_M_do_wait_for_vETL0__TL0_0_RKNSt6chrono8durationITL0_1_TL0_2_EE'/>

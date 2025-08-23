@@ -1,0 +1,2 @@
+<def f='include/c++/11/string_view' l='176' ll='178' type='std::basic_string_view::const_iterator std::basic_string_view::begin() const'/>
+<doc f='include/c++/11/string_view' l='174'>// [string.view.iterators], iterator support</doc>

@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/locale_conv.h' l='291' type='void std::wstring_convert::wstring_convert&lt;_Codecvt, _Elem, _Wide_alloc, _Byte_alloc&gt;(const wstring_convert&lt;_Codecvt, _Elem, _Wide_alloc, _Byte_alloc&gt; &amp; )'/>
+<doc f='include/c++/11/bits/locale_conv.h' l='289'>// _GLIBCXX_RESOLVE_LIB_DEFECTS
+      // 2176. Special members for wstring_convert and wbuffer_convert</doc>

@@ -1,0 +1,5 @@
+<def f='include/c++/11/condition_variable' l='232' ll='236'/>
+<use f='include/c++/11/condition_variable' l='234'/>
+<size>16</size>
+<mbr r='std::__at_thread_exit_elt::_M_next' o='0' t='std::__at_thread_exit_elt *'/>
+<mbr r='std::__at_thread_exit_elt::_M_cb' o='64' t='void (*)(void *)'/>

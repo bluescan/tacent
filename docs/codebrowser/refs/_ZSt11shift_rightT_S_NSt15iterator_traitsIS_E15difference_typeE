@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='3572' ll='3645' type='_ForwardIterator std::shift_right(_ForwardIterator __first, _ForwardIterator __last, typename iterator_traits&lt;_ForwardIterator&gt;::difference_type __n)'/>

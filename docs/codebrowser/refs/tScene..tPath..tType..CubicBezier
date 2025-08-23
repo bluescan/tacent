@@ -1,0 +1,2 @@
+<dec f='Modules/Scene/Inc/Scene/tPath.h' l='34' type='1'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='27' u='r' c='_ZN6tScene5tPathC1ERKN5tMath11tBezierPathERK7tStringj'/>

@@ -1,0 +1,3 @@
+<dec f='include/semaphore.h' l='103' type='int sem_post(sem_t * __sem)'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='114' u='c' c='_ZNSt20__platform_semaphore10_M_releaseEl'/>
+<doc f='include/semaphore.h' l='102'>/* Post SEM.  */</doc>

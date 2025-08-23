@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tImageASTC.h' l='106' type='tImage::tFrame * tImage::tImageASTC::GetFrame(bool steal = true)'/>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='80' c='_ZN6tImage10tBaseImage8GetFrameEb'/>
+<def f='Modules/Image/Src/tImageASTC.cpp' l='272' ll='296' type='tImage::tFrame * tImage::tImageASTC::GetFrame(bool steal = true)'/>

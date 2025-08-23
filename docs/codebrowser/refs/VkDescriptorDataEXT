@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15537' ll='15548'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15537'/>
+<size>8</size>
+<mbr r='VkDescriptorDataEXT::pSampler' o='0' t='const VkSampler *'/>
+<mbr r='VkDescriptorDataEXT::pCombinedImageSampler' o='0' t='const VkDescriptorImageInfo *'/>
+<mbr r='VkDescriptorDataEXT::pInputAttachmentImage' o='0' t='const VkDescriptorImageInfo *'/>
+<mbr r='VkDescriptorDataEXT::pSampledImage' o='0' t='const VkDescriptorImageInfo *'/>
+<mbr r='VkDescriptorDataEXT::pStorageImage' o='0' t='const VkDescriptorImageInfo *'/>
+<mbr r='VkDescriptorDataEXT::pUniformTexelBuffer' o='0' t='const VkDescriptorAddressInfoEXT *'/>
+<mbr r='VkDescriptorDataEXT::pStorageTexelBuffer' o='0' t='const VkDescriptorAddressInfoEXT *'/>
+<mbr r='VkDescriptorDataEXT::pUniformBuffer' o='0' t='const VkDescriptorAddressInfoEXT *'/>
+<mbr r='VkDescriptorDataEXT::pStorageBuffer' o='0' t='const VkDescriptorAddressInfoEXT *'/>
+<mbr r='VkDescriptorDataEXT::accelerationStructure' o='0' t='VkDeviceAddress'/>

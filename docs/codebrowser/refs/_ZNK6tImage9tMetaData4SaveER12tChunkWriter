@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='190' type='void tImage::tMetaData::Save(tChunkWriter &amp; ) const'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='189'>// Save and Load to tChunk format.</doc>
+<def f='Modules/Image/Src/tMetaData.cpp' l='866' ll='905' type='void tImage::tMetaData::Save(tChunkWriter &amp; chunk) const'/>

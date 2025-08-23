@@ -1,0 +1,2 @@
+<def f='Modules/Image/Src/tImageDDS.cpp' l='1004' ll='1017' type='bool tImage::tImageDDS::StealLayers(tList&lt;tImage::tLayer&gt; &amp; layers)'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='72' u='c' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>

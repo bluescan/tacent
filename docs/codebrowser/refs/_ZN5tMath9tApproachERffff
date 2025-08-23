@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='753' type='bool tMath::tApproach(float &amp; value, float dest, float rate, float dt)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1277' ll='1290' type='bool tMath::tApproach(float &amp; value, float dest, float rate, float t)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='752'>// Linearly interpolate value towards dest at rate. t is delta time. Value is updated. Returns if got to dest.</doc>

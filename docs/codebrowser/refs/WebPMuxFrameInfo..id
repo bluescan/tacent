@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='206' type='WebPChunkId'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='411' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>224</offset>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='206'>// frame type: should be one of WEBP_CHUNK_ANMF</doc>

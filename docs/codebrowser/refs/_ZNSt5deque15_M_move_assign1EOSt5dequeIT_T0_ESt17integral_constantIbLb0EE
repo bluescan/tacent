@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/stl_deque.h' l='2159' ll='2168' type='void std::deque::_M_move_assign1(deque&lt;_Tp, _Alloc&gt; &amp;&amp; __x, std::false_type )'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='2156'>// When the allocators are not equal the operation could throw, because
+      // we might need to allocate a new map for __x after moving from it
+      // or we might need to allocate new elements for *this.</doc>

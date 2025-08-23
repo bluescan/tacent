@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='54'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='52'>/* Native cpu byte order: 1 if big-endian (Motorola) or 0 if little-endian
+   (Intel) */</doc>

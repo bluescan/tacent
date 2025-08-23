@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/stl_vector.h' l='572' type='void std::vector::vector&lt;_Tp, _Alloc&gt;(vector&lt;_Tp, _Alloc&gt; &amp;&amp; )'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='564'>/**
+       *  @brief  %Vector move constructor.
+       *
+       *  The newly-created %vector contains the exact contents of the
+       *  moved instance.
+       *  The contents of the moved instance are a valid, but unspecified
+       *  %vector.
+       */</doc>

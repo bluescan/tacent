@@ -1,0 +1,3 @@
+<def f='include/c++/11/limits' l='1131' ll='1132' type='static unsigned int std::numeric_limits&lt;unsigned int&gt;::min()'/>
+<use f='include/c++/11/limits' l='1139' u='c' c='_ZNSt14numeric_limitsIjE6lowestEv'/>
+<use f='include/c++/11/bits/random.h' l='1630' u='c' c='_ZNSt13random_device3minEv'/>

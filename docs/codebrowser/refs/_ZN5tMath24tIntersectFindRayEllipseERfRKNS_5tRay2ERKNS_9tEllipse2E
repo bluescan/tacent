@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='493' type='bool tMath::tIntersectFindRayEllipse(float &amp; t, const tMath::tRay2 &amp; , const tMath::tEllipse2 &amp; )'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='491'>// This function requires that ray start from the center of the ellipse. The ellipse&apos;s center is ignored and so is the
+// ray&apos;s start. The result &apos;t&apos; is set to how much the ray&apos;s dir needs to by multiplied by to land on the ellipse.</doc>
+<def f='Modules/Math/Src/tGeometry.cpp' l='462' ll='478' type='bool tMath::tIntersectFindRayEllipse(float &amp; t, const tMath::tRay2 &amp; ray, const tMath::tEllipse2 &amp; ellipse)'/>

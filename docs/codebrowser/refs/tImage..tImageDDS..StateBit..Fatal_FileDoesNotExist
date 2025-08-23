@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tImageDDS.h' l='121' type='6'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1093' u='r' c='_ZN6tImage9tImageDDS4LoadERK7tStringRKNS0_10LoadParamsE'/>

@@ -1,0 +1,324 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>cwchar source code [include/c++/11/cwchar] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/cwchar'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>c++</a>/<a href='./'>11</a>/<a href='cwchar.html'>cwchar</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// -*- C++ -*- forwarding header.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 1997-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">include/cwchar</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is a Standard C++ Library file.  You should<span class="command"> @c</span> <span class="arg">\#includ</span>e this file</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  in your programs, rather than any of the<span class="command"> @a</span> <span class="arg">*.h</span> implementation files.</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> *</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc"> *  This is the C++ version of the Standard C Library header<span class="command"> @c</span> <span class="arg">wchar.h,</span></i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc"> *  and its contents are (mostly) the same as that header, but are all</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i class="doc"> *  contained in the namespace<span class="command"> @c</span> <span class="arg">std</span> (except for names which are defined</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i class="doc"> *  as macros in C).</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i class="doc">// ISO C++ 14882: 21.4</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#include &lt;bits/c++config.h&gt;</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#<span data-ppcond="43">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1280" title="1" data-ref="_M/_GLIBCXX_HAVE_WCHAR_H">_GLIBCXX_HAVE_WCHAR_H</a></u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#include &lt;wchar.h&gt;</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#<span data-ppcond="43">endif</span></u>&nbsp</td></tr>
+<tr><th id="46">46</th><td>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#<span data-ppcond="47">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_CWCHAR">_GLIBCXX_CWCHAR</span></u>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_CWCHAR" data-ref="_M/_GLIBCXX_CWCHAR">_GLIBCXX_CWCHAR</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="49">49</th><td>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i>// Need to do a bit of trickery here with mbstate_t as char_traits</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>// assumes it is in wchar.h, regardless of wchar_t specializations.</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u>#<span data-ppcond="52">ifndef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1032" data-ref="_M/_GLIBCXX_HAVE_MBSTATE_T">_GLIBCXX_HAVE_MBSTATE_T</a></u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><b>extern</b> <q>"C"</q>&nbsp</td></tr>
+<tr><th id="54">54</th><td>{&nbsp</td></tr>
+<tr><th id="55">55</th><td>  <b>typedef</b> <b>struct</b>&nbsp</td></tr>
+<tr><th id="56">56</th><td>  {&nbsp</td></tr>
+<tr><th id="57">57</th><td>    <em>int</em> __fill[<var>6</var>];&nbsp</td></tr>
+<tr><th id="58">58</th><td>  } mbstate_t;&nbsp</td></tr>
+<tr><th id="59">59</th><td>}&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#<span data-ppcond="52">endif</span></u>&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td><b>namespace</b> <span class="namespace">std</span>&nbsp</td></tr>
+<tr><th id="63">63</th><td>{&nbsp</td></tr>
+<tr><th id="64">64</th><td>  <b>using</b> ::mbstate_t;&nbsp</td></tr>
+<tr><th id="65">65</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i>// Get rid of those macros defined in &lt;wchar.h&gt; in lieu of real functions.</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td><u>#undef <span class="macro" data-ref="_M/btowc">btowc</span></u>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u>#undef <span class="macro" data-ref="_M/fgetwc">fgetwc</span></u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><u>#undef <span class="macro" data-ref="_M/fgetws">fgetws</span></u>&nbsp</td></tr>
+<tr><th id="71">71</th><td><u>#undef <span class="macro" data-ref="_M/fputwc">fputwc</span></u>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#undef <span class="macro" data-ref="_M/fputws">fputws</span></u>&nbsp</td></tr>
+<tr><th id="73">73</th><td><u>#undef <span class="macro" data-ref="_M/fwide">fwide</span></u>&nbsp</td></tr>
+<tr><th id="74">74</th><td><u>#undef <span class="macro" data-ref="_M/fwprintf">fwprintf</span></u>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#undef <span class="macro" data-ref="_M/fwscanf">fwscanf</span></u>&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#undef <span class="macro" data-ref="_M/getwc">getwc</span></u>&nbsp</td></tr>
+<tr><th id="77">77</th><td><u>#undef <span class="macro" data-ref="_M/getwchar">getwchar</span></u>&nbsp</td></tr>
+<tr><th id="78">78</th><td><u>#undef <span class="macro" data-ref="_M/mbrlen">mbrlen</span></u>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#undef <span class="macro" data-ref="_M/mbrtowc">mbrtowc</span></u>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u>#undef <span class="macro" data-ref="_M/mbsinit">mbsinit</span></u>&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#undef <span class="macro" data-ref="_M/mbsrtowcs">mbsrtowcs</span></u>&nbsp</td></tr>
+<tr><th id="82">82</th><td><u>#undef <span class="macro" data-ref="_M/putwc">putwc</span></u>&nbsp</td></tr>
+<tr><th id="83">83</th><td><u>#undef <span class="macro" data-ref="_M/putwchar">putwchar</span></u>&nbsp</td></tr>
+<tr><th id="84">84</th><td><u>#undef <span class="macro" data-ref="_M/swprintf">swprintf</span></u>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#undef <span class="macro" data-ref="_M/swscanf">swscanf</span></u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><u>#undef <span class="macro" data-ref="_M/ungetwc">ungetwc</span></u>&nbsp</td></tr>
+<tr><th id="87">87</th><td><u>#undef <span class="macro" data-ref="_M/vfwprintf">vfwprintf</span></u>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#<span data-ppcond="88">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1271" title="1" data-ref="_M/_GLIBCXX_HAVE_VFWSCANF">_GLIBCXX_HAVE_VFWSCANF</a></u>&nbsp</td></tr>
+<tr><th id="89">89</th><td><u># undef <span class="macro" data-ref="_M/vfwscanf">vfwscanf</span></u>&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#<span data-ppcond="88">endif</span></u>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#undef <span class="macro" data-ref="_M/vswprintf">vswprintf</span></u>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u>#<span data-ppcond="92">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1274" title="1" data-ref="_M/_GLIBCXX_HAVE_VSWSCANF">_GLIBCXX_HAVE_VSWSCANF</a></u>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u># undef <span class="macro" data-ref="_M/vswscanf">vswscanf</span></u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u>#<span data-ppcond="92">endif</span></u>&nbsp</td></tr>
+<tr><th id="95">95</th><td><u>#undef <span class="macro" data-ref="_M/vwprintf">vwprintf</span></u>&nbsp</td></tr>
+<tr><th id="96">96</th><td><u>#<span data-ppcond="96">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1277" title="1" data-ref="_M/_GLIBCXX_HAVE_VWSCANF">_GLIBCXX_HAVE_VWSCANF</a></u>&nbsp</td></tr>
+<tr><th id="97">97</th><td><u># undef <span class="macro" data-ref="_M/vwscanf">vwscanf</span></u>&nbsp</td></tr>
+<tr><th id="98">98</th><td><u>#<span data-ppcond="96">endif</span></u>&nbsp</td></tr>
+<tr><th id="99">99</th><td><u>#undef <span class="macro" data-ref="_M/wcrtomb">wcrtomb</span></u>&nbsp</td></tr>
+<tr><th id="100">100</th><td><u>#undef <span class="macro" data-ref="_M/wcscat">wcscat</span></u>&nbsp</td></tr>
+<tr><th id="101">101</th><td><u>#undef <span class="macro" data-ref="_M/wcschr">wcschr</span></u>&nbsp</td></tr>
+<tr><th id="102">102</th><td><u>#undef <span class="macro" data-ref="_M/wcscmp">wcscmp</span></u>&nbsp</td></tr>
+<tr><th id="103">103</th><td><u>#undef <span class="macro" data-ref="_M/wcscoll">wcscoll</span></u>&nbsp</td></tr>
+<tr><th id="104">104</th><td><u>#undef <span class="macro" data-ref="_M/wcscpy">wcscpy</span></u>&nbsp</td></tr>
+<tr><th id="105">105</th><td><u>#undef <span class="macro" data-ref="_M/wcscspn">wcscspn</span></u>&nbsp</td></tr>
+<tr><th id="106">106</th><td><u>#undef <span class="macro" data-ref="_M/wcsftime">wcsftime</span></u>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u>#undef <span class="macro" data-ref="_M/wcslen">wcslen</span></u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u>#undef <span class="macro" data-ref="_M/wcsncat">wcsncat</span></u>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>#undef <span class="macro" data-ref="_M/wcsncmp">wcsncmp</span></u>&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>#undef <span class="macro" data-ref="_M/wcsncpy">wcsncpy</span></u>&nbsp</td></tr>
+<tr><th id="111">111</th><td><u>#undef <span class="macro" data-ref="_M/wcspbrk">wcspbrk</span></u>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>#undef <span class="macro" data-ref="_M/wcsrchr">wcsrchr</span></u>&nbsp</td></tr>
+<tr><th id="113">113</th><td><u>#undef <span class="macro" data-ref="_M/wcsrtombs">wcsrtombs</span></u>&nbsp</td></tr>
+<tr><th id="114">114</th><td><u>#undef <span class="macro" data-ref="_M/wcsspn">wcsspn</span></u>&nbsp</td></tr>
+<tr><th id="115">115</th><td><u>#undef <span class="macro" data-ref="_M/wcsstr">wcsstr</span></u>&nbsp</td></tr>
+<tr><th id="116">116</th><td><u>#undef <span class="macro" data-ref="_M/wcstod">wcstod</span></u>&nbsp</td></tr>
+<tr><th id="117">117</th><td><u>#<span data-ppcond="117">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1283" title="1" data-ref="_M/_GLIBCXX_HAVE_WCSTOF">_GLIBCXX_HAVE_WCSTOF</a></u>&nbsp</td></tr>
+<tr><th id="118">118</th><td><u># undef <span class="macro" data-ref="_M/wcstof">wcstof</span></u>&nbsp</td></tr>
+<tr><th id="119">119</th><td><u>#<span data-ppcond="117">endif</span></u>&nbsp</td></tr>
+<tr><th id="120">120</th><td><u>#undef <span class="macro" data-ref="_M/wcstok">wcstok</span></u>&nbsp</td></tr>
+<tr><th id="121">121</th><td><u>#undef <span class="macro" data-ref="_M/wcstol">wcstol</span></u>&nbsp</td></tr>
+<tr><th id="122">122</th><td><u>#undef <span class="macro" data-ref="_M/wcstoul">wcstoul</span></u>&nbsp</td></tr>
+<tr><th id="123">123</th><td><u>#undef <span class="macro" data-ref="_M/wcsxfrm">wcsxfrm</span></u>&nbsp</td></tr>
+<tr><th id="124">124</th><td><u>#undef <span class="macro" data-ref="_M/wctob">wctob</span></u>&nbsp</td></tr>
+<tr><th id="125">125</th><td><u>#undef <span class="macro" data-ref="_M/wmemchr">wmemchr</span></u>&nbsp</td></tr>
+<tr><th id="126">126</th><td><u>#undef <span class="macro" data-ref="_M/wmemcmp">wmemcmp</span></u>&nbsp</td></tr>
+<tr><th id="127">127</th><td><u>#undef <span class="macro" data-ref="_M/wmemcpy">wmemcpy</span></u>&nbsp</td></tr>
+<tr><th id="128">128</th><td><u>#undef <span class="macro" data-ref="_M/wmemmove">wmemmove</span></u>&nbsp</td></tr>
+<tr><th id="129">129</th><td><u>#undef <span class="macro" data-ref="_M/wmemset">wmemset</span></u>&nbsp</td></tr>
+<tr><th id="130">130</th><td><u>#undef <span class="macro" data-ref="_M/wprintf">wprintf</span></u>&nbsp</td></tr>
+<tr><th id="131">131</th><td><u>#undef <span class="macro" data-ref="_M/wscanf">wscanf</span></u>&nbsp</td></tr>
+<tr><th id="132">132</th><td>&nbsp</td></tr>
+<tr><th id="133">133</th><td><u>#<span data-ppcond="133">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1797" title="1" data-ref="_M/_GLIBCXX_USE_WCHAR_T">_GLIBCXX_USE_WCHAR_T</a></u>&nbsp</td></tr>
+<tr><th id="134">134</th><td>&nbsp</td></tr>
+<tr><th id="135">135</th><td><b>extern</b> <q>"C++"</q>&nbsp</td></tr>
+<tr><th id="136">136</th><td>{&nbsp</td></tr>
+<tr><th id="137">137</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="138">138</th><td>{&nbsp</td></tr>
+<tr><th id="139">139</th><td><a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="140">140</th><td>&nbsp</td></tr>
+<tr><th id="141">141</th><td>  <b>using</b> ::wint_t;&nbsp</td></tr>
+<tr><th id="142">142</th><td>&nbsp</td></tr>
+<tr><th id="143">143</th><td>  <b>using</b> ::btowc;&nbsp</td></tr>
+<tr><th id="144">144</th><td>  <b>using</b> ::fgetwc;&nbsp</td></tr>
+<tr><th id="145">145</th><td>  <b>using</b> ::fgetws;&nbsp</td></tr>
+<tr><th id="146">146</th><td>  <b>using</b> ::fputwc;&nbsp</td></tr>
+<tr><th id="147">147</th><td>  <b>using</b> ::fputws;&nbsp</td></tr>
+<tr><th id="148">148</th><td>  <b>using</b> ::fwide;&nbsp</td></tr>
+<tr><th id="149">149</th><td>  <b>using</b> ::fwprintf;&nbsp</td></tr>
+<tr><th id="150">150</th><td>  <b>using</b> ::fwscanf;&nbsp</td></tr>
+<tr><th id="151">151</th><td>  <b>using</b> ::getwc;&nbsp</td></tr>
+<tr><th id="152">152</th><td>  <b>using</b> ::getwchar;&nbsp</td></tr>
+<tr><th id="153">153</th><td>  <b>using</b> ::mbrlen;&nbsp</td></tr>
+<tr><th id="154">154</th><td>  <b>using</b> ::mbrtowc;&nbsp</td></tr>
+<tr><th id="155">155</th><td>  <b>using</b> ::mbsinit;&nbsp</td></tr>
+<tr><th id="156">156</th><td>  <b>using</b> ::mbsrtowcs;&nbsp</td></tr>
+<tr><th id="157">157</th><td>  <b>using</b> ::putwc;&nbsp</td></tr>
+<tr><th id="158">158</th><td>  <b>using</b> ::putwchar;&nbsp</td></tr>
+<tr><th id="159">159</th><td><u>#<span data-ppcond="159">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_HAVE_BROKEN_VSWPRINTF">_GLIBCXX_HAVE_BROKEN_VSWPRINTF</span></u>&nbsp</td></tr>
+<tr><th id="160">160</th><td>  <b>using</b> ::swprintf;&nbsp</td></tr>
+<tr><th id="161">161</th><td><u>#<span data-ppcond="159">endif</span></u>&nbsp</td></tr>
+<tr><th id="162">162</th><td>  <b>using</b> ::swscanf;&nbsp</td></tr>
+<tr><th id="163">163</th><td>  <b>using</b> ::ungetwc;&nbsp</td></tr>
+<tr><th id="164">164</th><td>  <b>using</b> ::vfwprintf;&nbsp</td></tr>
+<tr><th id="165">165</th><td><u>#<span data-ppcond="165">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1271" title="1" data-ref="_M/_GLIBCXX_HAVE_VFWSCANF">_GLIBCXX_HAVE_VFWSCANF</a></u>&nbsp</td></tr>
+<tr><th id="166">166</th><td>  <b>using</b> ::vfwscanf;&nbsp</td></tr>
+<tr><th id="167">167</th><td><u>#<span data-ppcond="165">endif</span></u>&nbsp</td></tr>
+<tr><th id="168">168</th><td><u>#<span data-ppcond="168">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_HAVE_BROKEN_VSWPRINTF">_GLIBCXX_HAVE_BROKEN_VSWPRINTF</span></u>&nbsp</td></tr>
+<tr><th id="169">169</th><td>  <b>using</b> ::vswprintf;&nbsp</td></tr>
+<tr><th id="170">170</th><td><u>#<span data-ppcond="168">endif</span></u>&nbsp</td></tr>
+<tr><th id="171">171</th><td><u>#<span data-ppcond="171">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1274" title="1" data-ref="_M/_GLIBCXX_HAVE_VSWSCANF">_GLIBCXX_HAVE_VSWSCANF</a></u>&nbsp</td></tr>
+<tr><th id="172">172</th><td>  <b>using</b> ::vswscanf;&nbsp</td></tr>
+<tr><th id="173">173</th><td><u>#<span data-ppcond="171">endif</span></u>&nbsp</td></tr>
+<tr><th id="174">174</th><td>  <b>using</b> ::vwprintf;&nbsp</td></tr>
+<tr><th id="175">175</th><td><u>#<span data-ppcond="175">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1277" title="1" data-ref="_M/_GLIBCXX_HAVE_VWSCANF">_GLIBCXX_HAVE_VWSCANF</a></u>&nbsp</td></tr>
+<tr><th id="176">176</th><td>  <b>using</b> ::vwscanf;&nbsp</td></tr>
+<tr><th id="177">177</th><td><u>#<span data-ppcond="175">endif</span></u>&nbsp</td></tr>
+<tr><th id="178">178</th><td>  <b>using</b> ::wcrtomb;&nbsp</td></tr>
+<tr><th id="179">179</th><td>  <b>using</b> ::wcscat;&nbsp</td></tr>
+<tr><th id="180">180</th><td>  <b>using</b> ::wcscmp;&nbsp</td></tr>
+<tr><th id="181">181</th><td>  <b>using</b> ::wcscoll;&nbsp</td></tr>
+<tr><th id="182">182</th><td>  <b>using</b> ::wcscpy;&nbsp</td></tr>
+<tr><th id="183">183</th><td>  <b>using</b> ::wcscspn;&nbsp</td></tr>
+<tr><th id="184">184</th><td>  <b>using</b> ::wcsftime;&nbsp</td></tr>
+<tr><th id="185">185</th><td>  <b>using</b> ::wcslen;&nbsp</td></tr>
+<tr><th id="186">186</th><td>  <b>using</b> ::wcsncat;&nbsp</td></tr>
+<tr><th id="187">187</th><td>  <b>using</b> ::wcsncmp;&nbsp</td></tr>
+<tr><th id="188">188</th><td>  <b>using</b> ::wcsncpy;&nbsp</td></tr>
+<tr><th id="189">189</th><td>  <b>using</b> ::wcsrtombs;&nbsp</td></tr>
+<tr><th id="190">190</th><td>  <b>using</b> ::wcsspn;&nbsp</td></tr>
+<tr><th id="191">191</th><td>  <b>using</b> ::wcstod;&nbsp</td></tr>
+<tr><th id="192">192</th><td><u>#<span data-ppcond="192">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1283" title="1" data-ref="_M/_GLIBCXX_HAVE_WCSTOF">_GLIBCXX_HAVE_WCSTOF</a></u>&nbsp</td></tr>
+<tr><th id="193">193</th><td>  <b>using</b> ::wcstof;&nbsp</td></tr>
+<tr><th id="194">194</th><td><u>#<span data-ppcond="192">endif</span></u>&nbsp</td></tr>
+<tr><th id="195">195</th><td>  <b>using</b> ::wcstok;&nbsp</td></tr>
+<tr><th id="196">196</th><td>  <b>using</b> ::wcstol;&nbsp</td></tr>
+<tr><th id="197">197</th><td>  <b>using</b> ::wcstoul;&nbsp</td></tr>
+<tr><th id="198">198</th><td>  <b>using</b> ::wcsxfrm;&nbsp</td></tr>
+<tr><th id="199">199</th><td>  <b>using</b> ::wctob;&nbsp</td></tr>
+<tr><th id="200">200</th><td>  <b>using</b> ::wmemcmp;&nbsp</td></tr>
+<tr><th id="201">201</th><td>  <b>using</b> ::wmemcpy;&nbsp</td></tr>
+<tr><th id="202">202</th><td>  <b>using</b> ::wmemmove;&nbsp</td></tr>
+<tr><th id="203">203</th><td>  <b>using</b> ::wmemset;&nbsp</td></tr>
+<tr><th id="204">204</th><td>  <b>using</b> ::wprintf;&nbsp</td></tr>
+<tr><th id="205">205</th><td>  <b>using</b> ::wscanf;&nbsp</td></tr>
+<tr><th id="206">206</th><td>  <b>using</b> ::wcschr;&nbsp</td></tr>
+<tr><th id="207">207</th><td>  <b>using</b> ::wcspbrk;&nbsp</td></tr>
+<tr><th id="208">208</th><td>  <b>using</b> ::wcsrchr;&nbsp</td></tr>
+<tr><th id="209">209</th><td>  <b>using</b> ::wcsstr;&nbsp</td></tr>
+<tr><th id="210">210</th><td>  <b>using</b> ::wmemchr;&nbsp</td></tr>
+<tr><th id="211">211</th><td>&nbsp</td></tr>
+<tr><th id="212">212</th><td><u>#<span data-ppcond="212">ifndef</span> <span class="macro" data-ref="_M/__CORRECT_ISO_CPP_WCHAR_H_PROTO">__CORRECT_ISO_CPP_WCHAR_H_PROTO</span></u>&nbsp</td></tr>
+<tr><th id="213">213</th><td>  <b>inline</b> <em>wchar_t</em>*&nbsp</td></tr>
+<tr><th id="214">214</th><td>  <dfn class="decl def fn" id="_ZSt6wcschrPww" title='std::wcschr' data-ref="_ZSt6wcschrPww">wcschr</dfn>(<em>wchar_t</em>* <dfn class="local col5 decl" id="955__p" title='__p' data-type='wchar_t *' data-ref="955__p">__p</dfn>, <em>wchar_t</em> <dfn class="local col6 decl" id="956__c" title='__c' data-type='wchar_t' data-ref="956__c">__c</dfn>)&nbsp</td></tr>
+<tr><th id="215">215</th><td>  { <b>return</b> <a class="ref fn" href="../../wchar.h.html#wcschr" title='wcschr' data-ref="wcschr">wcschr</a>(<span class='inlayHint'>wcs:&nbsp;</span><b>const_cast</b>&lt;<em>const</em> <em>wchar_t</em>*&gt;(<a class="local col5 ref" href="#955__p" title='__p' data-ref="955__p">__p</a>), <span class='inlayHint'>wc:&nbsp;</span><a class="local col6 ref" href="#956__c" title='__c' data-ref="956__c">__c</a>); }&nbsp</td></tr>
+<tr><th id="216">216</th><td>&nbsp</td></tr>
+<tr><th id="217">217</th><td>  <b>inline</b> <em>wchar_t</em>*&nbsp</td></tr>
+<tr><th id="218">218</th><td>  <dfn class="decl def fn" id="_ZSt7wcspbrkPwPKw" title='std::wcspbrk' data-ref="_ZSt7wcspbrkPwPKw">wcspbrk</dfn>(<em>wchar_t</em>* <dfn class="local col7 decl" id="957__s1" title='__s1' data-type='wchar_t *' data-ref="957__s1">__s1</dfn>, <em>const</em> <em>wchar_t</em>* <dfn class="local col8 decl" id="958__s2" title='__s2' data-type='const wchar_t *' data-ref="958__s2">__s2</dfn>)&nbsp</td></tr>
+<tr><th id="219">219</th><td>  { <b>return</b> <a class="ref fn" href="../../wchar.h.html#wcspbrk" title='wcspbrk' data-ref="wcspbrk">wcspbrk</a>(<span class='inlayHint'>wcs:&nbsp;</span><b>const_cast</b>&lt;<em>const</em> <em>wchar_t</em>*&gt;(<a class="local col7 ref" href="#957__s1" title='__s1' data-ref="957__s1">__s1</a>), <span class='inlayHint'>accept:&nbsp;</span><a class="local col8 ref" href="#958__s2" title='__s2' data-ref="958__s2">__s2</a>); }&nbsp</td></tr>
+<tr><th id="220">220</th><td>&nbsp</td></tr>
+<tr><th id="221">221</th><td>  <b>inline</b> <em>wchar_t</em>*&nbsp</td></tr>
+<tr><th id="222">222</th><td>  <dfn class="decl def fn" id="_ZSt7wcsrchrPww" title='std::wcsrchr' data-ref="_ZSt7wcsrchrPww">wcsrchr</dfn>(<em>wchar_t</em>* <dfn class="local col9 decl" id="959__p" title='__p' data-type='wchar_t *' data-ref="959__p">__p</dfn>, <em>wchar_t</em> <dfn class="local col0 decl" id="960__c" title='__c' data-type='wchar_t' data-ref="960__c">__c</dfn>)&nbsp</td></tr>
+<tr><th id="223">223</th><td>  { <b>return</b> <a class="ref fn" href="../../wchar.h.html#wcsrchr" title='wcsrchr' data-ref="wcsrchr">wcsrchr</a>(<span class='inlayHint'>wcs:&nbsp;</span><b>const_cast</b>&lt;<em>const</em> <em>wchar_t</em>*&gt;(<a class="local col9 ref" href="#959__p" title='__p' data-ref="959__p">__p</a>), <span class='inlayHint'>wc:&nbsp;</span><a class="local col0 ref" href="#960__c" title='__c' data-ref="960__c">__c</a>); }&nbsp</td></tr>
+<tr><th id="224">224</th><td>&nbsp</td></tr>
+<tr><th id="225">225</th><td>  <b>inline</b> <em>wchar_t</em>*&nbsp</td></tr>
+<tr><th id="226">226</th><td>  <dfn class="decl def fn" id="_ZSt6wcsstrPwPKw" title='std::wcsstr' data-ref="_ZSt6wcsstrPwPKw">wcsstr</dfn>(<em>wchar_t</em>* <dfn class="local col1 decl" id="961__s1" title='__s1' data-type='wchar_t *' data-ref="961__s1">__s1</dfn>, <em>const</em> <em>wchar_t</em>* <dfn class="local col2 decl" id="962__s2" title='__s2' data-type='const wchar_t *' data-ref="962__s2">__s2</dfn>)&nbsp</td></tr>
+<tr><th id="227">227</th><td>  { <b>return</b> <a class="ref fn" href="../../wchar.h.html#wcsstr" title='wcsstr' data-ref="wcsstr">wcsstr</a>(<span class='inlayHint'>haystack:&nbsp;</span><b>const_cast</b>&lt;<em>const</em> <em>wchar_t</em>*&gt;(<a class="local col1 ref" href="#961__s1" title='__s1' data-ref="961__s1">__s1</a>), <span class='inlayHint'>needle:&nbsp;</span><a class="local col2 ref" href="#962__s2" title='__s2' data-ref="962__s2">__s2</a>); }&nbsp</td></tr>
+<tr><th id="228">228</th><td>&nbsp</td></tr>
+<tr><th id="229">229</th><td>  <b>inline</b> <em>wchar_t</em>*&nbsp</td></tr>
+<tr><th id="230">230</th><td>  <dfn class="decl def fn" id="_ZSt7wmemchrPwwm" title='std::wmemchr' data-ref="_ZSt7wmemchrPwwm">wmemchr</dfn>(<em>wchar_t</em>* <dfn class="local col3 decl" id="963__p" title='__p' data-type='wchar_t *' data-ref="963__p">__p</dfn>, <em>wchar_t</em> <dfn class="local col4 decl" id="964__c" title='__c' data-type='wchar_t' data-ref="964__c">__c</dfn>, <a class="typedef" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col5 decl" id="965__n" title='__n' data-type='std::size_t' data-ref="965__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="231">231</th><td>  { <b>return</b> <a class="ref fn" href="../../wchar.h.html#wmemchr" title='wmemchr' data-ref="wmemchr">wmemchr</a>(<span class='inlayHint'>s:&nbsp;</span><b>const_cast</b>&lt;<em>const</em> <em>wchar_t</em>*&gt;(<a class="local col3 ref" href="#963__p" title='__p' data-ref="963__p">__p</a>), <a class="local col4 ref" href="#964__c" title='__c' data-ref="964__c">__c</a>, <a class="local col5 ref" href="#965__n" title='__n' data-ref="965__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="232">232</th><td><u>#<span data-ppcond="212">endif</span></u>&nbsp</td></tr>
+<tr><th id="233">233</th><td>&nbsp</td></tr>
+<tr><th id="234">234</th><td><a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="235">235</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="236">236</th><td>} <i>// extern "C++"</i>&nbsp</td></tr>
+<tr><th id="237">237</th><td>&nbsp</td></tr>
+<tr><th id="238">238</th><td><u>#<span data-ppcond="238">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#670" title="1" data-ref="_M/_GLIBCXX_USE_C99_WCHAR">_GLIBCXX_USE_C99_WCHAR</a></u>&nbsp</td></tr>
+<tr><th id="239">239</th><td>&nbsp</td></tr>
+<tr><th id="240">240</th><td><u>#undef <span class="macro" data-ref="_M/wcstold">wcstold</span></u>&nbsp</td></tr>
+<tr><th id="241">241</th><td><u>#undef <span class="macro" data-ref="_M/wcstoll">wcstoll</span></u>&nbsp</td></tr>
+<tr><th id="242">242</th><td><u>#undef <span class="macro" data-ref="_M/wcstoull">wcstoull</span></u>&nbsp</td></tr>
+<tr><th id="243">243</th><td>&nbsp</td></tr>
+<tr><th id="244">244</th><td><b>namespace</b> <span class="namespace">__gnu_cxx</span>&nbsp</td></tr>
+<tr><th id="245">245</th><td>{&nbsp</td></tr>
+<tr><th id="246">246</th><td><u>#<span data-ppcond="246">if</span> _GLIBCXX_USE_C99_CHECK || _GLIBCXX_USE_C99_DYNAMIC</u>&nbsp</td></tr>
+<tr><th id="247">247</th><td>  <b>extern</b> <q>"C"</q> <em>long</em> <em>double</em>&nbsp</td></tr>
+<tr><th id="248">248</th><td>    (wcstold)(<em>const</em> <em>wchar_t</em> * <b>__restrict</b>, <em>wchar_t</em> ** <b>__restrict</b>) <b>throw</b> ();&nbsp</td></tr>
+<tr><th id="249">249</th><td><u>#<span data-ppcond="246">endif</span></u>&nbsp</td></tr>
+<tr><th id="250">250</th><td><u>#<span data-ppcond="250">if</span> !_GLIBCXX_USE_C99_DYNAMIC</u>&nbsp</td></tr>
+<tr><th id="251">251</th><td>  <b>using</b> ::wcstold;&nbsp</td></tr>
+<tr><th id="252">252</th><td><u>#<span data-ppcond="250">endif</span></u>&nbsp</td></tr>
+<tr><th id="253">253</th><td><u>#<span data-ppcond="253">if</span> _GLIBCXX_USE_C99_LONG_LONG_CHECK || _GLIBCXX_USE_C99_LONG_LONG_DYNAMIC</u>&nbsp</td></tr>
+<tr><th id="254">254</th><td>  <b>extern</b> <q>"C"</q> <em>long</em> <em>long</em> <em>int</em>&nbsp</td></tr>
+<tr><th id="255">255</th><td>    (wcstoll)(<em>const</em> <em>wchar_t</em> * <b>__restrict</b>, <em>wchar_t</em> ** <b>__restrict</b>, <em>int</em>) <b>throw</b> ();&nbsp</td></tr>
+<tr><th id="256">256</th><td>  <b>extern</b> <q>"C"</q> <em>unsigned</em> <em>long</em> <em>long</em> <em>int</em>&nbsp</td></tr>
+<tr><th id="257">257</th><td>    (wcstoull)(<em>const</em> <em>wchar_t</em> * <b>__restrict</b>, <em>wchar_t</em> ** <b>__restrict</b>, <em>int</em>) <b>throw</b> ();&nbsp</td></tr>
+<tr><th id="258">258</th><td><u>#<span data-ppcond="253">endif</span></u>&nbsp</td></tr>
+<tr><th id="259">259</th><td><u>#<span data-ppcond="259">if</span> !_GLIBCXX_USE_C99_LONG_LONG_DYNAMIC</u>&nbsp</td></tr>
+<tr><th id="260">260</th><td>  <b>using</b> ::wcstoll;&nbsp</td></tr>
+<tr><th id="261">261</th><td>  <b>using</b> ::wcstoull;&nbsp</td></tr>
+<tr><th id="262">262</th><td><u>#<span data-ppcond="259">endif</span></u>&nbsp</td></tr>
+<tr><th id="263">263</th><td>} <i>// namespace __gnu_cxx</i>&nbsp</td></tr>
+<tr><th id="264">264</th><td>&nbsp</td></tr>
+<tr><th id="265">265</th><td><b>namespace</b> <span class="namespace">std</span>&nbsp</td></tr>
+<tr><th id="266">266</th><td>{&nbsp</td></tr>
+<tr><th id="267">267</th><td>  <b>using</b> <span class="namespace">::__gnu_cxx::</span>wcstold;&nbsp</td></tr>
+<tr><th id="268">268</th><td>  <b>using</b> <span class="namespace">::__gnu_cxx::</span>wcstoll;&nbsp</td></tr>
+<tr><th id="269">269</th><td>  <b>using</b> <span class="namespace">::__gnu_cxx::</span>wcstoull;&nbsp</td></tr>
+<tr><th id="270">270</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="271">271</th><td>&nbsp</td></tr>
+<tr><th id="272">272</th><td><u>#<span data-ppcond="238">endif</span></u>&nbsp</td></tr>
+<tr><th id="273">273</th><td>&nbsp</td></tr>
+<tr><th id="274">274</th><td><u>#<span data-ppcond="133">endif</span> //_GLIBCXX_USE_WCHAR_T</u>&nbsp</td></tr>
+<tr><th id="275">275</th><td>&nbsp</td></tr>
+<tr><th id="276">276</th><td><u>#<span data-ppcond="276">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="277">277</th><td>&nbsp</td></tr>
+<tr><th id="278">278</th><td><u>#<span data-ppcond="278">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1797" data-ref="_M/_GLIBCXX_USE_WCHAR_T">_GLIBCXX_USE_WCHAR_T</a></u>&nbsp</td></tr>
+<tr><th id="279">279</th><td>&nbsp</td></tr>
+<tr><th id="280">280</th><td><b>namespace</b> <span class="namespace">std</span>&nbsp</td></tr>
+<tr><th id="281">281</th><td>{&nbsp</td></tr>
+<tr><th id="282">282</th><td><u>#<span data-ppcond="282">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1283" title="1" data-ref="_M/_GLIBCXX_HAVE_WCSTOF">_GLIBCXX_HAVE_WCSTOF</a></u>&nbsp</td></tr>
+<tr><th id="283">283</th><td>  <b>using</b> <span class="namespace">std::</span>wcstof;&nbsp</td></tr>
+<tr><th id="284">284</th><td><u>#<span data-ppcond="282">endif</span></u>&nbsp</td></tr>
+<tr><th id="285">285</th><td><u>#<span data-ppcond="285">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1271" title="1" data-ref="_M/_GLIBCXX_HAVE_VFWSCANF">_GLIBCXX_HAVE_VFWSCANF</a></u>&nbsp</td></tr>
+<tr><th id="286">286</th><td>  <b>using</b> <span class="namespace">std::</span>vfwscanf;&nbsp</td></tr>
+<tr><th id="287">287</th><td><u>#<span data-ppcond="285">endif</span></u>&nbsp</td></tr>
+<tr><th id="288">288</th><td><u>#<span data-ppcond="288">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1274" title="1" data-ref="_M/_GLIBCXX_HAVE_VSWSCANF">_GLIBCXX_HAVE_VSWSCANF</a></u>&nbsp</td></tr>
+<tr><th id="289">289</th><td>  <b>using</b> <span class="namespace">std::</span>vswscanf;&nbsp</td></tr>
+<tr><th id="290">290</th><td><u>#<span data-ppcond="288">endif</span></u>&nbsp</td></tr>
+<tr><th id="291">291</th><td><u>#<span data-ppcond="291">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1277" title="1" data-ref="_M/_GLIBCXX_HAVE_VWSCANF">_GLIBCXX_HAVE_VWSCANF</a></u>&nbsp</td></tr>
+<tr><th id="292">292</th><td>  <b>using</b> <span class="namespace">std::</span>vwscanf;&nbsp</td></tr>
+<tr><th id="293">293</th><td><u>#<span data-ppcond="291">endif</span></u>&nbsp</td></tr>
+<tr><th id="294">294</th><td>&nbsp</td></tr>
+<tr><th id="295">295</th><td><u>#<span data-ppcond="295">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#670" title="1" data-ref="_M/_GLIBCXX_USE_C99_WCHAR">_GLIBCXX_USE_C99_WCHAR</a></u>&nbsp</td></tr>
+<tr><th id="296">296</th><td>  <b>using</b> <span class="namespace">std::</span>wcstold;&nbsp</td></tr>
+<tr><th id="297">297</th><td>  <b>using</b> <span class="namespace">std::</span>wcstoll;&nbsp</td></tr>
+<tr><th id="298">298</th><td>  <b>using</b> <span class="namespace">std::</span>wcstoull;&nbsp</td></tr>
+<tr><th id="299">299</th><td><u>#<span data-ppcond="295">endif</span></u>&nbsp</td></tr>
+<tr><th id="300">300</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="301">301</th><td>&nbsp</td></tr>
+<tr><th id="302">302</th><td><u>#<span data-ppcond="278">endif</span> // _GLIBCXX_USE_WCHAR_T</u>&nbsp</td></tr>
+<tr><th id="303">303</th><td>&nbsp</td></tr>
+<tr><th id="304">304</th><td><u>#<span data-ppcond="276">endif</span> // C++11</u>&nbsp</td></tr>
+<tr><th id="305">305</th><td>&nbsp</td></tr>
+<tr><th id="306">306</th><td><u>#<span data-ppcond="47">endif</span></u>&nbsp</td></tr>
+<tr><th id="307">307</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

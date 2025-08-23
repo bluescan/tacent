@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='635' type='33698560'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='635'>// Name hash, start character, num characters, pixel format (see Texture.h), num mipmap layers (1 for no mipmapping).</doc>

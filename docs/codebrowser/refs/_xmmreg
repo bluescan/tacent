@@ -1,0 +1,4 @@
+<def f='include/x86_64-linux-gnu/bits/sigcontext.h' l='53' ll='56'/>
+<use f='include/x86_64-linux-gnu/bits/sigcontext.h' l='135'/>
+<size>16</size>
+<mbr r='_xmmreg::element' o='0' t='__uint32_t[4]'/>

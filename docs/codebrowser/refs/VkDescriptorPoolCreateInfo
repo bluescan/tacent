@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3759' ll='3766'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3759'/>
+<size>40</size>
+<mbr r='VkDescriptorPoolCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDescriptorPoolCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkDescriptorPoolCreateInfo::flags' o='128' t='VkDescriptorPoolCreateFlags'/>
+<mbr r='VkDescriptorPoolCreateInfo::maxSets' o='160' t='uint32_t'/>
+<mbr r='VkDescriptorPoolCreateInfo::poolSizeCount' o='192' t='uint32_t'/>
+<mbr r='VkDescriptorPoolCreateInfo::pPoolSizes' o='256' t='const VkDescriptorPoolSize *'/>

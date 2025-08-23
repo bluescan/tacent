@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/char_traits.h' l='576' ll='578' type='static std::char_traits&lt;wchar_t&gt;::char_type std::char_traits&lt;wchar_t&gt;::to_char_type(const std::char_traits&lt;wchar_t&gt;::int_type &amp; __c)'/>

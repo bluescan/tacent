@@ -1,0 +1,5 @@
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='27' u='w' c='_ZN9tPipeline5tRuleC1Ev'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='33' u='w' c='_ZN9tPipeline5tRule8SetCleanEb'/>
+<dec f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='90' type='bool'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='155' u='r' c='_ZN9tPipeline5tRule9OutOfDateEb'/>
+<offset>768</offset>

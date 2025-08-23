@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageBMP.cpp' l='127' u='c' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<def f='Modules/Image/Src/tImageBMP.cpp' l='197' ll='215' type='void tImage::tImageBMP::ReadRow_Pixels24(tFileHandle file, uint8 * dest)'/>

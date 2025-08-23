@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/std_thread.h' l='143' c='_ZNSt6threadC1EOT_DpOT0_'/>
+<inh f='include/c++/11/bits/std_thread.h' l='68' c='std::thread::_State'/>
+<def f='include/c++/11/bits/std_thread.h' l='201' ll='212'/>
+<mbr r='std::thread::_State_impl::_M_func' t='_Callable'/>
+<fun r='_ZNSt6thread11_State_implC1EDpOTL0__'/>
+<fun r='_ZNSt6thread11_State_impl6_M_runEv'/>

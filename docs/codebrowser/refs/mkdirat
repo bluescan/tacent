@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='396' type='int mkdirat(int __fd, const char * __path, __mode_t __mode)'/>
+<doc f='include/x86_64-linux-gnu/sys/stat.h' l='393'>/* Like mkdir, create a new directory with permission bits MODE.  But
+   interpret relative PATH names relative to the directory associated
+   with FD.  */</doc>

@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_timespec.h' l='21' type='__syscall_slong_t'/>
+<offset>64</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_timespec.h' l='21'>/* Nanoseconds.  */</doc>
+<use f='Modules/System/Src/tTime.cpp' l='63' u='r' c='_ZN7tSystem22tGetHardwareTimerCountEv'/>
+<use f='Modules/System/Src/tTime.cpp' l='135' u='w' c='_ZN7tSystem6tSleepEi'/>

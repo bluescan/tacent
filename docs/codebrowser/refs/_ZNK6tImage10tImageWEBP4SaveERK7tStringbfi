@@ -1,0 +1,1 @@
+<def f='Modules/Image/Src/tImageWEBP.cpp' l='319' ll='326' type='bool tImage::tImageWEBP::Save(const tString &amp; webpFile, bool lossy, float qualityCompstr = 90.F, int overrideFrameDuration = -1) const'/>

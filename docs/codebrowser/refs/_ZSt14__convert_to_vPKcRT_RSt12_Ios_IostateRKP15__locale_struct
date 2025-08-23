@@ -1,0 +1,9 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='76' type='void std::__convert_to_v(const char * , _Tp &amp; , ios_base::iostate &amp; , const std::__c_locale &amp; )'/>
+<dec f='include/c++/11/bits/locale_facets.h' l='82' type='void std::__convert_to_v(const char * , float &amp; , ios_base::iostate &amp; , const std::__c_locale &amp; )'/>
+<dec f='include/c++/11/bits/locale_facets.h' l='87' type='void std::__convert_to_v(const char * , double &amp; , ios_base::iostate &amp; , const std::__c_locale &amp; )'/>
+<dec f='include/c++/11/bits/locale_facets.h' l='92' type='void std::__convert_to_v(const char * , long double &amp; , ios_base::iostate &amp; , const std::__c_locale &amp; )'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='697' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRf'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='712' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRd'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='744' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRe'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='79'>// Explicit specializations for required types.</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='378' u='c' c='_ZNKSt7__cxx119money_get6do_getET0_S1_bRSt8ios_baseRSt12_Ios_IostateRe'/>

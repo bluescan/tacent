@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='271' type='void tItList::Iter::Iter(const tItList::Iter &amp; src)'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='456' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1033' u='c' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>

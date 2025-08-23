@@ -1,0 +1,7 @@
+_ZSt12riemann_zetaT_|std::riemann_zeta
+_ZSt13riemann_zetaff|std::riemann_zetaf
+_ZSt13riemann_zetale|std::riemann_zetal
+_ZSt4rintf|std::rint
+_ZSt5rightRSt8ios_base|std::right
+_ZN12tHash_SHA2568RightRotEji|tHash_SHA256::RightRot
+_ZNK7tString5RightEc|tString::Right

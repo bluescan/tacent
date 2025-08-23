@@ -1,0 +1,5 @@
+<inh f='include/c++/11/bits/exception.h' l='61' c='std::exception'/>
+<def f='include/c++/11/ext/concurrence.h' l='80' ll='86'/>
+<use f='include/c++/11/ext/concurrence.h' l='108' c='__gnu_cxx::__throw_concurrence_broadcast_error'/>
+<size>8</size>
+<fun r='__gnu_cxx::__concurrence_broadcast_error::what'/>

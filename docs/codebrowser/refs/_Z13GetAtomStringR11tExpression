@@ -1,0 +1,9 @@
+<def f='Modules/System/Inc/System/tScript.h' l='193' type='tString GetAtomString(tExpression &amp; e)'/>
+<use f='Modules/System/Inc/System/tScript.h' l='194' u='c' c='_Z11GetAtomBoolR11tExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='195' u='c' c='_Z11GetAtomUintR11tExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='196' u='c' c='_Z13GetAtomUint64R11tExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='197' u='c' c='_Z10GetAtomIntR11tExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='198' u='c' c='_Z12GetAtomFloatR11tExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='199' u='c' c='_Z13GetAtomDoubleR11tExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='200' u='c' c='_Z11GetAtomHashR11tExpression'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='192'>// Convenience.  Get the value and advance the expression to the next.</doc>

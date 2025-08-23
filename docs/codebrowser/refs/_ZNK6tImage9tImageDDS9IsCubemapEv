@@ -1,0 +1,7 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='115' c='_ZNK6tImage10tBaseImage9IsCubemapEv'/>
+<def f='Modules/Image/Inc/Image/tImageDDS.h' l='174' type='bool tImage::tImageDDS::IsCubemap() const'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1006' u='c' c='_ZN6tImage9tImageDDS11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1022' u='c' c='_ZNK6tImage9tImageDDS9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1034' u='c' c='_ZN6tImage9tImageDDS18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1060' u='c' c='_ZNK6tImage9tImageDDS16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='70' u='c' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>

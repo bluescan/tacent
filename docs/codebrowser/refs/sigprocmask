@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='232' type='int sigprocmask(int __how, const sigset_t *__restrict __set, sigset_t *__restrict __oset)'/>
+<doc f='include/signal.h' l='231'>/* Get and/or change the set of blocked signals.  */</doc>

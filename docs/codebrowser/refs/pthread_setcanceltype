@@ -1,0 +1,5 @@
+<dec f='include/pthread.h' l='525' type='int pthread_setcanceltype(int __type, int * __oldtype)'/>
+<use f='include/pthread.h' l='580' u='c' c='__pthread_cleanup_class::__defer'/>
+<use f='include/pthread.h' l='582' u='c' c='__pthread_cleanup_class::__restore'/>
+<doc f='include/pthread.h' l='523'>/* Set cancellation state of current thread to TYPE, returning the old
+   type in *OLDTYPE if OLDTYPE is not NULL.  */</doc>

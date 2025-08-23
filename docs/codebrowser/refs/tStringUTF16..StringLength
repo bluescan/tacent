@@ -1,0 +1,23 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='483' u='w' c='_ZN12tStringUTF165ClearEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='486' u='r' c='_ZNK12tStringUTF166LengthEv'/>
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='503' type='int'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='957' u='w' c='_ZN12tStringUTF16C1Ei'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='973' u='r' c='_ZN12tStringUTF163SetERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1014' u='w' c='_ZN12tStringUTF163SetEPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1015' u='r' c='_ZN12tStringUTF163SetEPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1016' u='r' c='_ZN12tStringUTF163SetEPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1029' u='w' c='_ZN12tStringUTF163SetEPKDsi'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1030' u='r' c='_ZN12tStringUTF163SetEPKDsi'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1042' u='w' c='_ZN12tStringUTF163SetEPKDii'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1043' u='r' c='_ZN12tStringUTF163SetEPKDii'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1044' u='r' c='_ZN12tStringUTF163SetEPKDii'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1051' u='r' c='_ZN12tStringUTF169SetLengthEib'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1058' u='w' c='_ZN12tStringUTF169SetLengthEib'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1063' u='r' c='_ZN12tStringUTF169SetLengthEib'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1068' u='r' c='_ZN12tStringUTF169SetLengthEib'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1069' u='r' c='_ZN12tStringUTF169SetLengthEib'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1069' u='r' c='_ZN12tStringUTF169SetLengthEib'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1074' u='w' c='_ZN12tStringUTF169SetLengthEib'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1075' u='r' c='_ZN12tStringUTF169SetLengthEib'/>
+<offset>0</offset>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='503'>// In char16_t codeunits, not including internal terminating null.</doc>

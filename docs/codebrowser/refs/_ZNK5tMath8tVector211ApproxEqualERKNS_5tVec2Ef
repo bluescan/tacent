@@ -1,0 +1,1 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='50' type='bool tMath::tVector2::ApproxEqual(const tMath::tVec2 &amp; v, float e = Epsilon) const'/>

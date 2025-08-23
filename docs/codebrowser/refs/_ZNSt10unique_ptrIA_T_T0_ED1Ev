@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='608' ll='614' type='void std::unique_ptr&lt;type-parameter-0-0[], type-parameter-0-1&gt;::~unique_ptr&lt;type-parameter-0-0[], type-parameter-0-1&gt;()'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='607'>/// Destructor, invokes the deleter if the stored pointer is not null.</doc>

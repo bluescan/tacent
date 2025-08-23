@@ -1,0 +1,6 @@
+<use f='include/c++/11/stop_token' l='584' u='w' c='_ZNSt13stop_callbackC1ERKSt10stop_tokenOTL0__'/>
+<use f='include/c++/11/stop_token' l='588' c='_ZNSt13stop_callbackC1ERKSt10stop_tokenOTL0__'/>
+<use f='include/c++/11/stop_token' l='598' u='w' c='_ZNSt13stop_callbackC1EOSt10stop_tokenOTL0__'/>
+<use f='include/c++/11/stop_token' l='602' c='_ZNSt13stop_callbackC1EOSt10stop_tokenOTL0__'/>
+<use f='include/c++/11/stop_token' l='611' c='_ZNSt13stop_callbackD1Ev'/>
+<dec f='include/c++/11/stop_token' l='641' type='std::stop_callback::_Cb_impl'/>

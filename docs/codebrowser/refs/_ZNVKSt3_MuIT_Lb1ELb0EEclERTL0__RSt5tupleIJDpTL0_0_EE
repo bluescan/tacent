@@ -1,0 +1,1 @@
+<def f='include/c++/11/functional' l='325' ll='335' macro='1' type='decltype(__arg(declval&lt;_Args&gt;()...)) std::_Mu&lt;type-parameter-0-0, true, false&gt;::operator()(_CVArg &amp; __arg, tuple&lt;_Args...&gt; &amp; __tuple) const'/>

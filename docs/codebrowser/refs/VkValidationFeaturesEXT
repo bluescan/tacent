@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14201' ll='14208'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14201'/>
+<size>48</size>
+<mbr r='VkValidationFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkValidationFeaturesEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkValidationFeaturesEXT::enabledValidationFeatureCount' o='128' t='uint32_t'/>
+<mbr r='VkValidationFeaturesEXT::pEnabledValidationFeatures' o='192' t='const VkValidationFeatureEnableEXT *'/>
+<mbr r='VkValidationFeaturesEXT::disabledValidationFeatureCount' o='256' t='uint32_t'/>
+<mbr r='VkValidationFeaturesEXT::pDisabledValidationFeatures' o='320' t='const VkValidationFeatureDisableEXT *'/>

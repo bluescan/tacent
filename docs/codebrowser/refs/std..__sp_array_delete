@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='571' ll='575'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='612' c='_ZNSt14__shared_countC1ETL0__St17integral_constantIbLb1EE'/>
+<size>1</size>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='570'>// The default deleter for shared_ptr&lt;T[]&gt; and shared_ptr&lt;T[N]&gt;.</doc>
+<fun r='_ZNKSt17__sp_array_deleteclEPT_'/>

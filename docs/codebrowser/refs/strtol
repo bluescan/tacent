@@ -1,0 +1,4 @@
+<dec f='include/stdlib.h' l='177' type='long strtol(const char *__restrict __nptr, char **__restrict __endptr, int __base)'/>
+<doc f='include/stdlib.h' l='176'>/* Convert a string to a long integer.  */</doc>
+<use f='include/c++/11/bits/basic_string.h' l='6620' u='a' c='_ZNSt7__cxx114stoiERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEPmi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6625' u='a' c='_ZNSt7__cxx114stolERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEPmi'/>

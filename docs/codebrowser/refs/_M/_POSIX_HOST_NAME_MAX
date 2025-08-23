@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='52'/>
+<doc f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='50'>/* Maximum length of a host name (not including the terminating null)
+   as returned from the GETHOSTNAME function.  */</doc>

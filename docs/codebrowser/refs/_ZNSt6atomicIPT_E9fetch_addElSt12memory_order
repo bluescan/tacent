@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='663' ll='671' type='std::atomic&lt;type-parameter-0-0 *&gt;::__pointer_type std::atomic&lt;type-parameter-0-0 *&gt;::fetch_add(std::ptrdiff_t __d, std::memory_order __m = memory_order_seq_cst)'/>

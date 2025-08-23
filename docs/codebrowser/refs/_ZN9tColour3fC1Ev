@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='679' type='void tColour3f::tColour3f()'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='826' u='c' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>

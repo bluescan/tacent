@@ -1,0 +1,879 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>streambuf source code [include/c++/11/streambuf] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::basic_streambuf "/>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/streambuf'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>c++</a>/<a href='./'>11</a>/<a href='streambuf.html'>streambuf</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Stream buffer classes -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 1997-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">include/streambuf</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is a Standard C++ Library header.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc">// ISO C++ 14882: 27.5  Stream buffers</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="33">ifndef</span> <span class="macro" data-ref="_M/_GLIBXX_STREAMBUF">_GLIBXX_STREAMBUF</span></u>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#define <dfn class="macro" id="_M/_GLIBXX_STREAMBUF" data-ref="_M/_GLIBXX_STREAMBUF">_GLIBXX_STREAMBUF</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#include &lt;bits/c++config.h&gt;</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#include &lt;iosfwd&gt;</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;bits/localefwd.h&gt;</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#include &lt;bits/ios_base.h&gt;</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#include &lt;bits/cpp_type_traits.h&gt;</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#include &lt;ext/type_traits.h&gt;</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="46">46</th><td>{&nbsp</td></tr>
+<tr><th id="47">47</th><td><a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#define <dfn class="macro" id="_M/_IsUnused" data-ref="_M/_IsUnused">_IsUnused</dfn> __attribute__ ((__unused__))</u>&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="52">52</th><td>    <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>&nbsp</td></tr>
+<tr><th id="53">53</th><td>    <a class="decl fn" href="bits/streambuf.tcc.html#_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb" title='std::__copy_streambufs_eof' data-ref="_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb" id="_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb">__copy_streambufs_eof</a>(<a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt;*,&nbsp</td></tr>
+<tr><th id="54">54</th><td>			  <a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt;*, <em>bool</em>&amp;);&nbsp</td></tr>
+<tr><th id="55">55</th><td>&nbsp</td></tr>
+<tr><th id="56">56</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td><i class="doc">   *  <span class="command">@brief</span>  The actual work of input and output (interface).</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i class="doc">   *  <span class="command">@ingroup</span> <span class="verb">io</span></i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i class="doc">   *  <span class="command">@tparam</span> <span class="arg">_CharT</span>  Type of character stream.</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i class="doc">   *  <span class="command">@tparam</span> <span class="arg">_Traits</span>  Traits for character type, defaults to</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i class="doc">   *                   char_traits&lt;_CharT&gt;.</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><i class="doc">   *  This is a base class.  Derived stream buffers each control a</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i class="doc">   *  pair of character sequences:  one for input, and one for output.</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i class="doc">   *  Section [27.5.1] of the standard describes the requirements and</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td><i class="doc">   *  behavior of stream buffer classes.  That section (three paragraphs)</i>&nbsp</td></tr>
+<tr><th id="69">69</th><td><i class="doc">   *  is reproduced here, for simplicity and accuracy.</i>&nbsp</td></tr>
+<tr><th id="70">70</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i class="doc">   *  -# Stream buffers can impose various constraints on the sequences</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i class="doc">   *     they control.  Some constraints are:</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td><i class="doc">   *     - The controlled input sequence can be not readable.</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td><i class="doc">   *     - The controlled output sequence can be not writable.</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td><i class="doc">   *     - The controlled sequences can be associated with the contents of</i>&nbsp</td></tr>
+<tr><th id="76">76</th><td><i class="doc">   *       other representations for character sequences, such as external</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td><i class="doc">   *       files.</i>&nbsp</td></tr>
+<tr><th id="78">78</th><td><i class="doc">   *     - The controlled sequences can support operations<span class="command"> @e</span> <span class="arg">directly</span> to or</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><i class="doc">   *       from associated sequences.</i>&nbsp</td></tr>
+<tr><th id="80">80</th><td><i class="doc">   *     - The controlled sequences can impose limitations on how the</i>&nbsp</td></tr>
+<tr><th id="81">81</th><td><i class="doc">   *       program can read characters from a sequence, write characters to</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i class="doc">   *       a sequence, put characters back into an input sequence, or alter</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td><i class="doc">   *       the stream position.</i>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i class="doc">   *     .</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td><i class="doc">   *  -# Each sequence is characterized by three pointers which, if non-null,</i>&nbsp</td></tr>
+<tr><th id="86">86</th><td><i class="doc">   *     all point into the same<span class="command"> @c</span> <span class="arg">charT</span> array object.  The array object</i>&nbsp</td></tr>
+<tr><th id="87">87</th><td><i class="doc">   *     represents, at any moment, a (sub)sequence of characters from the</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td><i class="doc">   *     sequence.  Operations performed on a sequence alter the values</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td><i class="doc">   *     stored in these pointers, perform reads and writes directly to or</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td><i class="doc">   *     from associated sequences, and alter <span class="tag">&lt;em&gt;</span>the stream position<span class="tag">&lt;/em&gt;</span> and</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i class="doc">   *     conversion state as needed to maintain this subsequence relationship.</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><i class="doc">   *     The three pointers are:</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td><i class="doc">   *     - the <span class="tag">&lt;em&gt;</span>beginning pointer<span class="tag">&lt;/em&gt;</span>, or lowest element address in the</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td><i class="doc">   *       array (called<span class="command"> @e</span> <span class="arg">xbeg</span> here);</i>&nbsp</td></tr>
+<tr><th id="95">95</th><td><i class="doc">   *     - the <span class="tag">&lt;em&gt;</span>next pointer<span class="tag">&lt;/em&gt;</span>, or next element address that is a</i>&nbsp</td></tr>
+<tr><th id="96">96</th><td><i class="doc">   *       current candidate for reading or writing (called<span class="command"> @e</span> <span class="arg">xnext</span> here);</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td><i class="doc">   *     - the <span class="tag">&lt;em&gt;</span>end pointer<span class="tag">&lt;/em&gt;</span>, or first element address beyond the</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i class="doc">   *       end of the array (called<span class="command"> @e</span> <span class="arg">xend</span> here).</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><i class="doc">   *     .</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td><i class="doc">   *  -# The following semantic constraints shall always apply for any set</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><i class="doc">   *     of three pointers for a sequence, using the pointer names given</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td><i class="doc">   *     immediately above:</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td><i class="doc">   *     - If<span class="command"> @e</span> <span class="arg">xnext</span> is not a null pointer, then<span class="command"> @e</span> <span class="arg">xbeg</span> and<span class="command"> @e</span> <span class="arg">xend</span> shall</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td><i class="doc">   *       also be non-null pointers into the same<span class="command"> @c</span> <span class="arg">charT</span> array, as</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td><i class="doc">   *       described above; otherwise,<span class="command"> @e</span> <span class="arg">xbeg</span> and<span class="command"> @e</span> <span class="arg">xend</span> shall also be null.</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><i class="doc">   *     - If<span class="command"> @e</span> <span class="arg">xnext</span> is not a null pointer and<span class="command"> @e</span> <span class="arg">xnext</span> &lt;<span class="command"> @e</span> <span class="arg">xend</span> for an</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td><i class="doc">   *       output sequence, then a <span class="tag">&lt;em&gt;</span>write position<span class="tag">&lt;/em&gt;</span> is available.</i>&nbsp</td></tr>
+<tr><th id="108">108</th><td><i class="doc">   *       In this case,<span class="command"> @e</span> <span class="arg">*xnext</span> shall be assignable as the next element</i>&nbsp</td></tr>
+<tr><th id="109">109</th><td><i class="doc">   *       to write (to put, or to store a character value, into the sequence).</i>&nbsp</td></tr>
+<tr><th id="110">110</th><td><i class="doc">   *     - If<span class="command"> @e</span> <span class="arg">xnext</span> is not a null pointer and<span class="command"> @e</span> <span class="arg">xbeg</span> &lt;<span class="command"> @e</span> <span class="arg">xnext</span> for an</i>&nbsp</td></tr>
+<tr><th id="111">111</th><td><i class="doc">   *       input sequence, then a <span class="tag">&lt;em&gt;</span>putback position<span class="tag">&lt;/em&gt;</span> is available.</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td><i class="doc">   *       In this case,<span class="command"> @e</span> <span class="arg">xnext[-1]</span> shall have a defined value and is the</i>&nbsp</td></tr>
+<tr><th id="113">113</th><td><i class="doc">   *       next (preceding) element to store a character that is put back</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td><i class="doc">   *       into the input sequence.</i>&nbsp</td></tr>
+<tr><th id="115">115</th><td><i class="doc">   *     - If<span class="command"> @e</span> <span class="arg">xnext</span> is not a null pointer and<span class="command"> @e</span> <span class="arg">xnext&lt;</span><span class="command"> @e</span> <span class="arg">xend</span> for an</i>&nbsp</td></tr>
+<tr><th id="116">116</th><td><i class="doc">   *       input sequence, then a <span class="tag">&lt;em&gt;</span>read position<span class="tag">&lt;/em&gt;</span> is available.</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td><i class="doc">   *       In this case,<span class="command"> @e</span> <span class="arg">*xnext</span> shall have a defined value and is the</i>&nbsp</td></tr>
+<tr><th id="118">118</th><td><i class="doc">   *       next element to read (to get, or to obtain a character value,</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td><i class="doc">   *       from the sequence).</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="122">122</th><td>    <b>class</b> <dfn class="type def" id="std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</dfn>&nbsp</td></tr>
+<tr><th id="123">123</th><td>    {&nbsp</td></tr>
+<tr><th id="124">124</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="125">125</th><td>      <i class="doc">///@{</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="127">127</th><td><i class="doc">       *  These are standard types.  They permit a standardized way of</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td><i class="doc">       *  referring to names of (or names dependent on) the template</i>&nbsp</td></tr>
+<tr><th id="129">129</th><td><i class="doc">       *  parameters, which are specific to the implementation.</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td>      <b>typedef</b> _CharT 					<dfn class="typedef" id="std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</dfn>;&nbsp</td></tr>
+<tr><th id="132">132</th><td>      <b>typedef</b> _Traits 					<dfn class="typedef" id="std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</dfn>;&nbsp</td></tr>
+<tr><th id="133">133</th><td>      <b>typedef</b> <b>typename</b> <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::int_type 		<dfn class="typedef" id="std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</dfn>;&nbsp</td></tr>
+<tr><th id="134">134</th><td>      <b>typedef</b> <b>typename</b> <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::pos_type 		<dfn class="typedef" id="std::basic_streambuf::pos_type" title='std::basic_streambuf::pos_type' data-type='typename traits_type::pos_type' data-ref="std::basic_streambuf::pos_type">pos_type</dfn>;&nbsp</td></tr>
+<tr><th id="135">135</th><td>      <b>typedef</b> <b>typename</b> <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::off_type 		<dfn class="typedef" id="std::basic_streambuf::off_type" title='std::basic_streambuf::off_type' data-type='typename traits_type::off_type' data-ref="std::basic_streambuf::off_type">off_type</dfn>;&nbsp</td></tr>
+<tr><th id="136">136</th><td>      <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="137">137</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="138">138</th><td><i class="doc">      ///@{</i>&nbsp</td></tr>
+<tr><th id="139">139</th><td><i class="doc">      /// This is a non-standard type.</i>&nbsp</td></tr>
+<tr><th id="140">140</th><td>      <b>typedef</b> <a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>, <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>&gt;  	<dfn class="typedef" id="std::basic_streambuf::__streambuf_type" title='std::basic_streambuf::__streambuf_type' data-type='basic_streambuf&lt;std::basic_streambuf::char_type, std::basic_streambuf::traits_type&gt;' data-ref="std::basic_streambuf::__streambuf_type">__streambuf_type</dfn>;&nbsp</td></tr>
+<tr><th id="141">141</th><td>      <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td>&nbsp</td></tr>
+<tr><th id="143">143</th><td>      <b>friend</b> <b>class</b> <a class="type" href="iosfwd.html#std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios">basic_ios</a>&lt;<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>, <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>&gt;;&nbsp</td></tr>
+<tr><th id="144">144</th><td>      <b>friend</b> <b>class</b> <a class="type" href="iosfwd.html#std::basic_istream" title='std::basic_istream' data-ref="std::basic_istream">basic_istream</a>&lt;<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>, <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>&gt;;&nbsp</td></tr>
+<tr><th id="145">145</th><td>      <b>friend</b> <b>class</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>, <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>&gt;;&nbsp</td></tr>
+<tr><th id="146">146</th><td>      <b>friend</b> <b>class</b> <a class="type" href="iosfwd.html#std::istreambuf_iterator" title='std::istreambuf_iterator' data-ref="std::istreambuf_iterator">istreambuf_iterator</a>&lt;<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>, <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>&gt;;&nbsp</td></tr>
+<tr><th id="147">147</th><td>      <b>friend</b> <b>class</b> <a class="type" href="iosfwd.html#std::ostreambuf_iterator" title='std::ostreambuf_iterator' data-ref="std::ostreambuf_iterator">ostreambuf_iterator</a>&lt;<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>, <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>&gt;;&nbsp</td></tr>
+<tr><th id="148">148</th><td>&nbsp</td></tr>
+<tr><th id="149">149</th><td>      <b>friend</b> <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>&nbsp</td></tr>
+<tr><th id="150">150</th><td>      <dfn class="decl fn" id="_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES4_Rb" title='std::__copy_streambufs_eof' data-ref="_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES4_Rb">__copy_streambufs_eof</dfn>&lt;&gt;(basic_streambuf*, basic_streambuf*, <em>bool</em>&amp;);&nbsp</td></tr>
+<tr><th id="151">151</th><td>&nbsp</td></tr>
+<tr><th id="152">152</th><td>      <b>template</b>&lt;<em>bool</em> _IsMove, <b>typename</b> _CharT2&gt;&nbsp</td></tr>
+<tr><th id="153">153</th><td>        <b>friend</b> <b>typename</b> <span class="namespace">__gnu_cxx::</span><a class="type" href="ext/type_traits.h.html#__gnu_cxx::__enable_if" title='__gnu_cxx::__enable_if' data-ref="__gnu_cxx::__enable_if">__enable_if</a>&lt;<a class="type" href="bits/cpp_type_traits.h.html#std::__is_char" title='std::__is_char' data-ref="std::__is_char">__is_char</a>&lt;_CharT2&gt;::__value,&nbsp</td></tr>
+<tr><th id="154">154</th><td>					       _CharT2*&gt;::__type&nbsp</td></tr>
+<tr><th id="155">155</th><td>        <dfn class="decl fn" id="_ZSt14__copy_move_a2St19istreambuf_iteratorITL0_0_St11char_traitsIS0_EES3_PS0_" title='std::__copy_move_a2' data-ref="_ZSt14__copy_move_a2St19istreambuf_iteratorITL0_0_St11char_traitsIS0_EES3_PS0_">__copy_move_a2</dfn>(<a class="type" href="iosfwd.html#std::istreambuf_iterator" title='std::istreambuf_iterator' data-ref="std::istreambuf_iterator">istreambuf_iterator</a>&lt;_CharT2&gt;,&nbsp</td></tr>
+<tr><th id="156">156</th><td>		       <a class="type" href="iosfwd.html#std::istreambuf_iterator" title='std::istreambuf_iterator' data-ref="std::istreambuf_iterator">istreambuf_iterator</a>&lt;_CharT2&gt;, _CharT2*);&nbsp</td></tr>
+<tr><th id="157">157</th><td>&nbsp</td></tr>
+<tr><th id="158">158</th><td>      <b>template</b>&lt;<b>typename</b> _CharT2&gt;&nbsp</td></tr>
+<tr><th id="159">159</th><td>        <b>friend</b> <b>typename</b> <span class="namespace">__gnu_cxx::</span><a class="type" href="ext/type_traits.h.html#__gnu_cxx::__enable_if" title='__gnu_cxx::__enable_if' data-ref="__gnu_cxx::__enable_if">__enable_if</a>&lt;<a class="type" href="bits/cpp_type_traits.h.html#std::__is_char" title='std::__is_char' data-ref="std::__is_char">__is_char</a>&lt;_CharT2&gt;::__value,&nbsp</td></tr>
+<tr><th id="160">160</th><td>				  <a class="type" href="iosfwd.html#std::istreambuf_iterator" title='std::istreambuf_iterator' data-ref="std::istreambuf_iterator">istreambuf_iterator</a>&lt;_CharT2&gt; &gt;::__type&nbsp</td></tr>
+<tr><th id="161">161</th><td>        <dfn class="decl fn" id="_ZSt4findSt19istreambuf_iteratorITL0__St11char_traitsIS0_EES3_RKS0_" title='std::find' data-ref="_ZSt4findSt19istreambuf_iteratorITL0__St11char_traitsIS0_EES3_RKS0_">find</dfn>(<a class="type" href="iosfwd.html#std::istreambuf_iterator" title='std::istreambuf_iterator' data-ref="std::istreambuf_iterator">istreambuf_iterator</a>&lt;_CharT2&gt;, <a class="type" href="iosfwd.html#std::istreambuf_iterator" title='std::istreambuf_iterator' data-ref="std::istreambuf_iterator">istreambuf_iterator</a>&lt;_CharT2&gt;,&nbsp</td></tr>
+<tr><th id="162">162</th><td>	     <em>const</em> _CharT2&amp;);&nbsp</td></tr>
+<tr><th id="163">163</th><td>&nbsp</td></tr>
+<tr><th id="164">164</th><td>      <b>template</b>&lt;<b>typename</b> _CharT2, <b>typename</b> _Distance&gt;&nbsp</td></tr>
+<tr><th id="165">165</th><td>        <b>friend</b> <b>typename</b> <span class="namespace">__gnu_cxx::</span><a class="type" href="ext/type_traits.h.html#__gnu_cxx::__enable_if" title='__gnu_cxx::__enable_if' data-ref="__gnu_cxx::__enable_if">__enable_if</a>&lt;<a class="type" href="bits/cpp_type_traits.h.html#std::__is_char" title='std::__is_char' data-ref="std::__is_char">__is_char</a>&lt;_CharT2&gt;::__value,&nbsp</td></tr>
+<tr><th id="166">166</th><td>					       <em>void</em>&gt;::__type&nbsp</td></tr>
+<tr><th id="167">167</th><td>        <dfn class="decl fn" id="_ZSt7advanceRSt19istreambuf_iteratorITL0__St11char_traitsIS0_EETL0_0_" title='std::advance' data-ref="_ZSt7advanceRSt19istreambuf_iteratorITL0__St11char_traitsIS0_EETL0_0_">advance</dfn>(<a class="type" href="iosfwd.html#std::istreambuf_iterator" title='std::istreambuf_iterator' data-ref="std::istreambuf_iterator">istreambuf_iterator</a>&lt;_CharT2&gt;&amp;, _Distance);&nbsp</td></tr>
+<tr><th id="168">168</th><td>&nbsp</td></tr>
+<tr><th id="169">169</th><td>      <b>friend</b> <em>void</em> <dfn class="decl fn" id="_ZSt17__istream_extractRSiPcl" title='std::__istream_extract' data-ref="_ZSt17__istream_extractRSiPcl">__istream_extract</dfn>(<a class="typedef" href="iosfwd.html#std::istream" title='std::istream' data-type='basic_istream&lt;char&gt;' data-ref="std::istream">istream</a>&amp;, <em>char</em>*, <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>);&nbsp</td></tr>
+<tr><th id="170">170</th><td>&nbsp</td></tr>
+<tr><th id="171">171</th><td>      <b>template</b>&lt;<b>typename</b> _CharT2, <b>typename</b> _Traits2, <b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="172">172</th><td>        <b>friend</b> <a class="type" href="iosfwd.html#std::basic_istream" title='std::basic_istream' data-ref="std::basic_istream">basic_istream</a>&lt;_CharT2, _Traits2&gt;&amp;&nbsp</td></tr>
+<tr><th id="173">173</th><td>        <dfn class="decl fn" id="_ZStrsRSt13basic_istreamITL0__TL0_0_ERNSt7__cxx1112basic_stringIS0_S1_TL0_1_EE" title='std::operator&gt;&gt;' data-ref="_ZStrsRSt13basic_istreamITL0__TL0_0_ERNSt7__cxx1112basic_stringIS0_S1_TL0_1_EE"><b>operator</b>&gt;&gt;</dfn>(<a class="type" href="iosfwd.html#std::basic_istream" title='std::basic_istream' data-ref="std::basic_istream">basic_istream</a>&lt;_CharT2, _Traits2&gt;&amp;,&nbsp</td></tr>
+<tr><th id="174">174</th><td>		   <a class="type" href="bits/stringfwd.h.html#std::basic_string" title='std::basic_string' data-ref="std::basic_string">basic_string</a>&lt;_CharT2, _Traits2, _Alloc&gt;&amp;);&nbsp</td></tr>
+<tr><th id="175">175</th><td>&nbsp</td></tr>
+<tr><th id="176">176</th><td>      <b>template</b>&lt;<b>typename</b> _CharT2, <b>typename</b> _Traits2, <b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="177">177</th><td>        <b>friend</b> <a class="type" href="iosfwd.html#std::basic_istream" title='std::basic_istream' data-ref="std::basic_istream">basic_istream</a>&lt;_CharT2, _Traits2&gt;&amp;&nbsp</td></tr>
+<tr><th id="178">178</th><td>        <dfn class="decl fn" id="_ZSt7getlineRSt13basic_istreamITL0__TL0_0_ERNSt7__cxx1112basic_stringIS0_S1_TL0_1_EES0_" title='std::getline' data-ref="_ZSt7getlineRSt13basic_istreamITL0__TL0_0_ERNSt7__cxx1112basic_stringIS0_S1_TL0_1_EES0_">getline</dfn>(<a class="type" href="iosfwd.html#std::basic_istream" title='std::basic_istream' data-ref="std::basic_istream">basic_istream</a>&lt;_CharT2, _Traits2&gt;&amp;,&nbsp</td></tr>
+<tr><th id="179">179</th><td>		<a class="type" href="bits/stringfwd.h.html#std::basic_string" title='std::basic_string' data-ref="std::basic_string">basic_string</a>&lt;_CharT2, _Traits2, _Alloc&gt;&amp;, _CharT2);&nbsp</td></tr>
+<tr><th id="180">180</th><td>&nbsp</td></tr>
+<tr><th id="181">181</th><td>    <b>protected</b>:&nbsp</td></tr>
+<tr><th id="182">182</th><td>      <i>/*</i>&nbsp</td></tr>
+<tr><th id="183">183</th><td><i>       *  This is based on _IO_FILE, just reordered to be more consistent,</i>&nbsp</td></tr>
+<tr><th id="184">184</th><td><i>       *  and is intended to be the most minimal abstraction for an</i>&nbsp</td></tr>
+<tr><th id="185">185</th><td><i>       *  internal buffer.</i>&nbsp</td></tr>
+<tr><th id="186">186</th><td><i>       *  -  get == input == read</i>&nbsp</td></tr>
+<tr><th id="187">187</th><td><i>       *  -  put == output == write</i>&nbsp</td></tr>
+<tr><th id="188">188</th><td><i>      */</i>&nbsp</td></tr>
+<tr><th id="189">189</th><td>      <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* 		<dfn class="decl field" id="std::basic_streambuf::_M_in_beg" title='std::basic_streambuf::_M_in_beg' data-ref="std::basic_streambuf::_M_in_beg">_M_in_beg</dfn>;     <i class="doc">///&lt; Start of get area.</i>&nbsp</td></tr>
+<tr><th id="190">190</th><td>      <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* 		<dfn class="decl field" id="std::basic_streambuf::_M_in_cur" title='std::basic_streambuf::_M_in_cur' data-ref="std::basic_streambuf::_M_in_cur">_M_in_cur</dfn>;     <i class="doc">///&lt; Current read area.</i>&nbsp</td></tr>
+<tr><th id="191">191</th><td>      <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* 		<dfn class="decl field" id="std::basic_streambuf::_M_in_end" title='std::basic_streambuf::_M_in_end' data-ref="std::basic_streambuf::_M_in_end">_M_in_end</dfn>;     <i class="doc">///&lt; End of get area.</i>&nbsp</td></tr>
+<tr><th id="192">192</th><td>      <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* 		<dfn class="decl field" id="std::basic_streambuf::_M_out_beg" title='std::basic_streambuf::_M_out_beg' data-ref="std::basic_streambuf::_M_out_beg">_M_out_beg</dfn>;    <i class="doc">///&lt; Start of put area.</i>&nbsp</td></tr>
+<tr><th id="193">193</th><td>      <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* 		<dfn class="decl field" id="std::basic_streambuf::_M_out_cur" title='std::basic_streambuf::_M_out_cur' data-ref="std::basic_streambuf::_M_out_cur">_M_out_cur</dfn>;    <i class="doc">///&lt; Current put area.</i>&nbsp</td></tr>
+<tr><th id="194">194</th><td>      <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* 		<dfn class="decl field" id="std::basic_streambuf::_M_out_end" title='std::basic_streambuf::_M_out_end' data-ref="std::basic_streambuf::_M_out_end">_M_out_end</dfn>;    <i class="doc">///&lt; End of put area.</i>&nbsp</td></tr>
+<tr><th id="195">195</th><td>&nbsp</td></tr>
+<tr><th id="196">196</th><td>      <i class="doc">/// Current locale setting.</i>&nbsp</td></tr>
+<tr><th id="197">197</th><td>      <a class="type" href="bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a> 			<dfn class="decl field" id="std::basic_streambuf::_M_buf_locale" title='std::basic_streambuf::_M_buf_locale' data-ref="std::basic_streambuf::_M_buf_locale">_M_buf_locale</dfn>;&nbsp</td></tr>
+<tr><th id="198">198</th><td>&nbsp</td></tr>
+<tr><th id="199">199</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="200">200</th><td>      <i class="doc">/// Destructor deallocates no buffer space.</i>&nbsp</td></tr>
+<tr><th id="201">201</th><td>      <b>virtual</b>&nbsp</td></tr>
+<tr><th id="202">202</th><td>      <dfn class="virtual decl def fn" id="_ZNSt15basic_streambufD1Ev" title='std::basic_streambuf::~basic_streambuf&lt;_CharT, _Traits&gt;' data-ref="_ZNSt15basic_streambufD1Ev">~basic_streambuf</dfn>()&nbsp</td></tr>
+<tr><th id="203">203</th><td>      { }&nbsp</td></tr>
+<tr><th id="204">204</th><td>&nbsp</td></tr>
+<tr><th id="205">205</th><td>      <i>// [27.5.2.2.1] locales</i>&nbsp</td></tr>
+<tr><th id="206">206</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="207">207</th><td><i class="doc">       *  <span class="command">@brief</span>  Entry point for imbue().</i>&nbsp</td></tr>
+<tr><th id="208">208</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__loc</span>  The new locale.</i>&nbsp</td></tr>
+<tr><th id="209">209</th><td><i class="doc">       *  <span class="command">@return</span>  The previous locale.</i>&nbsp</td></tr>
+<tr><th id="210">210</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="211">211</th><td><i class="doc">       *  Calls the derived imbue(__loc).</i>&nbsp</td></tr>
+<tr><th id="212">212</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="213">213</th><td>      <a class="type" href="bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&nbsp</td></tr>
+<tr><th id="214">214</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf8pubimbueERKSt6locale" title='std::basic_streambuf::pubimbue' data-ref="_ZNSt15basic_streambuf8pubimbueERKSt6locale">pubimbue</dfn>(<em>const</em> <a class="type" href="bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&amp; <dfn class="local col0 decl" id="1190__loc" title='__loc' data-type='const std::locale &amp;' data-ref="1190__loc">__loc</dfn>)&nbsp</td></tr>
+<tr><th id="215">215</th><td>      {&nbsp</td></tr>
+<tr><th id="216">216</th><td>	<a class="type" href="bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a> <dfn class="local col1 decl" id="1191__tmp" title='__tmp' data-type='std::locale' data-ref="1191__tmp">__tmp</dfn>(<b>this</b>-&gt;getloc());&nbsp</td></tr>
+<tr><th id="217">217</th><td>	<b>this</b>-&gt;imbue(<a class="local col0 ref" href="#1190__loc" title='__loc' data-ref="1190__loc">__loc</a>);&nbsp</td></tr>
+<tr><th id="218">218</th><td>	<a class="member field" href="#std::basic_streambuf::_M_buf_locale" title='std::basic_streambuf::_M_buf_locale' data-ref="std::basic_streambuf::_M_buf_locale">_M_buf_locale</a> <a class="ref fn" href="bits/locale_classes.h.html#_ZNSt6localeaSERKS_" title='std::locale::operator=' data-ref="_ZNSt6localeaSERKS_">=</a> <a class="local col0 ref" href="#1190__loc" title='__loc' data-ref="1190__loc">__loc</a>;&nbsp</td></tr>
+<tr><th id="219">219</th><td>	<b>return</b> <a class="ref fn fake" href="bits/locale_classes.h.html#_ZNSt6localeC1ERKS_" title='std::locale::locale' data-ref="_ZNSt6localeC1ERKS_"></a><a class="local col1 ref" href="#1191__tmp" title='__tmp' data-ref="1191__tmp">__tmp</a>;&nbsp</td></tr>
+<tr><th id="220">220</th><td>      }&nbsp</td></tr>
+<tr><th id="221">221</th><td>&nbsp</td></tr>
+<tr><th id="222">222</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="223">223</th><td><i class="doc">       *  <span class="command">@brief</span>  Locale access.</i>&nbsp</td></tr>
+<tr><th id="224">224</th><td><i class="doc">       *  <span class="command">@return</span>  The current locale in effect.</i>&nbsp</td></tr>
+<tr><th id="225">225</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="226">226</th><td><i class="doc">       *  If pubimbue(loc) has been called, then the most recent<span class="command"> @c</span> <span class="arg">loc</span></i>&nbsp</td></tr>
+<tr><th id="227">227</th><td><i class="doc">       *  is returned.  Otherwise the global locale in effect at the time</i>&nbsp</td></tr>
+<tr><th id="228">228</th><td><i class="doc">       *  of construction is returned.</i>&nbsp</td></tr>
+<tr><th id="229">229</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="230">230</th><td>      <a class="type" href="bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&nbsp</td></tr>
+<tr><th id="231">231</th><td>      <dfn class="decl def fn" id="_ZNKSt15basic_streambuf6getlocEv" title='std::basic_streambuf::getloc' data-ref="_ZNKSt15basic_streambuf6getlocEv">getloc</dfn>() <em>const</em>&nbsp</td></tr>
+<tr><th id="232">232</th><td>      { <b>return</b> <a class="ref fn fake" href="bits/locale_classes.h.html#_ZNSt6localeC1ERKS_" title='std::locale::locale' data-ref="_ZNSt6localeC1ERKS_"></a><a class="member field" href="#std::basic_streambuf::_M_buf_locale" title='std::basic_streambuf::_M_buf_locale' data-ref="std::basic_streambuf::_M_buf_locale">_M_buf_locale</a>; }&nbsp</td></tr>
+<tr><th id="233">233</th><td>&nbsp</td></tr>
+<tr><th id="234">234</th><td>      <i>// [27.5.2.2.2] buffer management and positioning</i>&nbsp</td></tr>
+<tr><th id="235">235</th><td><i>      ///@{</i>&nbsp</td></tr>
+<tr><th id="236">236</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="237">237</th><td><i class="doc">       *  <span class="command">@brief</span>  Entry points for derived buffer functions.</i>&nbsp</td></tr>
+<tr><th id="238">238</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="239">239</th><td><i class="doc">       *  The public versions of<span class="command"> @c</span> <span class="arg">pubfoo</span> dispatch to the protected</i>&nbsp</td></tr>
+<tr><th id="240">240</th><td><i class="doc">       *  derived<span class="command"> @c</span> <span class="arg">foo</span> member functions, passing the arguments (if any)</i>&nbsp</td></tr>
+<tr><th id="241">241</th><td><i class="doc">       *  and returning the result unchanged.</i>&nbsp</td></tr>
+<tr><th id="242">242</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="243">243</th><td>      basic_streambuf*&nbsp</td></tr>
+<tr><th id="244">244</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf9pubsetbufEPT_l" title='std::basic_streambuf::pubsetbuf' data-ref="_ZNSt15basic_streambuf9pubsetbufEPT_l">pubsetbuf</dfn>(<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* <dfn class="local col2 decl" id="1192__s" title='__s' data-type='std::basic_streambuf::char_type *' data-ref="1192__s">__s</dfn>, <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col3 decl" id="1193__n" title='__n' data-type='std::streamsize' data-ref="1193__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="245">245</th><td>      { <b>return</b> <b>this</b>-&gt;setbuf(<a class="local col2 ref" href="#1192__s" title='__s' data-ref="1192__s">__s</a>, <a class="local col3 ref" href="#1193__n" title='__n' data-ref="1193__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="246">246</th><td>&nbsp</td></tr>
+<tr><th id="247">247</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="248">248</th><td><i class="doc">       *  <span class="command">@brief</span>  Alters the stream position.</i>&nbsp</td></tr>
+<tr><th id="249">249</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__off</span>  Offset.</i>&nbsp</td></tr>
+<tr><th id="250">250</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__way</span>  Value for ios_base::seekdir.</i>&nbsp</td></tr>
+<tr><th id="251">251</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__mode</span> Value for ios_base::openmode.</i>&nbsp</td></tr>
+<tr><th id="252">252</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="253">253</th><td><i class="doc">       *  Calls virtual seekoff function.</i>&nbsp</td></tr>
+<tr><th id="254">254</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="255">255</th><td>      <a class="typedef" href="#std::basic_streambuf::pos_type" title='std::basic_streambuf::pos_type' data-type='typename traits_type::pos_type' data-ref="std::basic_streambuf::pos_type">pos_type</a>&nbsp</td></tr>
+<tr><th id="256">256</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf10pubseekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode" title='std::basic_streambuf::pubseekoff' data-ref="_ZNSt15basic_streambuf10pubseekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode">pubseekoff</dfn>(<a class="typedef" href="#std::basic_streambuf::off_type" title='std::basic_streambuf::off_type' data-type='typename traits_type::off_type' data-ref="std::basic_streambuf::off_type">off_type</a> <dfn class="local col4 decl" id="1194__off" title='__off' data-type='std::basic_streambuf::off_type' data-ref="1194__off">__off</dfn>, <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="typedef" href="bits/ios_base.h.html#std::ios_base::seekdir" title='std::ios_base::seekdir' data-type='std::_Ios_Seekdir' data-ref="std::ios_base::seekdir">seekdir</a> <dfn class="local col5 decl" id="1195__way" title='__way' data-type='ios_base::seekdir' data-ref="1195__way">__way</dfn>,&nbsp</td></tr>
+<tr><th id="257">257</th><td>		 <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="typedef" href="bits/ios_base.h.html#std::ios_base::openmode" title='std::ios_base::openmode' data-type='std::_Ios_Openmode' data-ref="std::ios_base::openmode">openmode</a> <dfn class="local col6 decl" id="1196__mode" title='__mode' data-type='ios_base::openmode' data-ref="1196__mode">__mode</dfn> = <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="ref" href="bits/ios_base.h.html#std::ios_base::in" title='std::ios_base::in' data-ref="std::ios_base::in">in</a> <a class="ref fn" href="bits/ios_base.h.html#_ZStorSt13_Ios_OpenmodeS_" title='std::operator|' data-ref="_ZStorSt13_Ios_OpenmodeS_">|</a> <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="ref" href="bits/ios_base.h.html#std::ios_base::out" title='std::ios_base::out' data-ref="std::ios_base::out">out</a>)&nbsp</td></tr>
+<tr><th id="258">258</th><td>      { <b>return</b> <b>this</b>-&gt;seekoff(<a class="local col4 ref" href="#1194__off" title='__off' data-ref="1194__off">__off</a>, <a class="local col5 ref" href="#1195__way" title='__way' data-ref="1195__way">__way</a>, <a class="local col6 ref" href="#1196__mode" title='__mode' data-ref="1196__mode">__mode</a>); }&nbsp</td></tr>
+<tr><th id="259">259</th><td>&nbsp</td></tr>
+<tr><th id="260">260</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="261">261</th><td><i class="doc">       *  <span class="command">@brief</span>  Alters the stream position.</i>&nbsp</td></tr>
+<tr><th id="262">262</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__sp</span>  Position</i>&nbsp</td></tr>
+<tr><th id="263">263</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__mode</span> Value for ios_base::openmode.</i>&nbsp</td></tr>
+<tr><th id="264">264</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="265">265</th><td><i class="doc">       *  Calls virtual seekpos function.</i>&nbsp</td></tr>
+<tr><th id="266">266</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="267">267</th><td>      <a class="typedef" href="#std::basic_streambuf::pos_type" title='std::basic_streambuf::pos_type' data-type='typename traits_type::pos_type' data-ref="std::basic_streambuf::pos_type">pos_type</a>&nbsp</td></tr>
+<tr><th id="268">268</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf10pubseekposENT0_8pos_typeESt13_Ios_Openmode" title='std::basic_streambuf::pubseekpos' data-ref="_ZNSt15basic_streambuf10pubseekposENT0_8pos_typeESt13_Ios_Openmode">pubseekpos</dfn>(<a class="typedef" href="#std::basic_streambuf::pos_type" title='std::basic_streambuf::pos_type' data-type='typename traits_type::pos_type' data-ref="std::basic_streambuf::pos_type">pos_type</a> <dfn class="local col7 decl" id="1197__sp" title='__sp' data-type='std::basic_streambuf::pos_type' data-ref="1197__sp">__sp</dfn>,&nbsp</td></tr>
+<tr><th id="269">269</th><td>		 <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="typedef" href="bits/ios_base.h.html#std::ios_base::openmode" title='std::ios_base::openmode' data-type='std::_Ios_Openmode' data-ref="std::ios_base::openmode">openmode</a> <dfn class="local col8 decl" id="1198__mode" title='__mode' data-type='ios_base::openmode' data-ref="1198__mode">__mode</dfn> = <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="ref" href="bits/ios_base.h.html#std::ios_base::in" title='std::ios_base::in' data-ref="std::ios_base::in">in</a> <a class="ref fn" href="bits/ios_base.h.html#_ZStorSt13_Ios_OpenmodeS_" title='std::operator|' data-ref="_ZStorSt13_Ios_OpenmodeS_">|</a> <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="ref" href="bits/ios_base.h.html#std::ios_base::out" title='std::ios_base::out' data-ref="std::ios_base::out">out</a>)&nbsp</td></tr>
+<tr><th id="270">270</th><td>      { <b>return</b> <b>this</b>-&gt;seekpos(<a class="local col7 ref" href="#1197__sp" title='__sp' data-ref="1197__sp">__sp</a>, <a class="local col8 ref" href="#1198__mode" title='__mode' data-ref="1198__mode">__mode</a>); }&nbsp</td></tr>
+<tr><th id="271">271</th><td>&nbsp</td></tr>
+<tr><th id="272">272</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="273">273</th><td><i class="doc">       *  <span class="command">@brief</span>  Calls virtual sync function.</i>&nbsp</td></tr>
+<tr><th id="274">274</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="275">275</th><td>      <em>int</em>&nbsp</td></tr>
+<tr><th id="276">276</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf7pubsyncEv" title='std::basic_streambuf::pubsync' data-ref="_ZNSt15basic_streambuf7pubsyncEv">pubsync</dfn>() { <b>return</b> <b>this</b>-&gt;sync(); }&nbsp</td></tr>
+<tr><th id="277">277</th><td>      <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="278">278</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="279">279</th><td><i class="doc">      // [27.5.2.2.3] get area</i>&nbsp</td></tr>
+<tr><th id="280">280</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="281">281</th><td><i class="doc">       *  <span class="command">@brief</span>  Looking ahead into the stream.</i>&nbsp</td></tr>
+<tr><th id="282">282</th><td><i class="doc">       *  <span class="command">@return</span>  The number of characters available.</i>&nbsp</td></tr>
+<tr><th id="283">283</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="284">284</th><td><i class="doc">       *  If a read position is available, returns the number of characters</i>&nbsp</td></tr>
+<tr><th id="285">285</th><td><i class="doc">       *  available for reading before the buffer must be refilled.</i>&nbsp</td></tr>
+<tr><th id="286">286</th><td><i class="doc">       *  Otherwise returns the derived<span class="command"> @c</span> <span class="arg">showmanyc().</span></i>&nbsp</td></tr>
+<tr><th id="287">287</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="288">288</th><td>      <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>&nbsp</td></tr>
+<tr><th id="289">289</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf8in_availEv" title='std::basic_streambuf::in_avail' data-ref="_ZNSt15basic_streambuf8in_availEv">in_avail</dfn>()&nbsp</td></tr>
+<tr><th id="290">290</th><td>      {&nbsp</td></tr>
+<tr><th id="291">291</th><td>	<em>const</em> <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col9 decl" id="1199__ret" title='__ret' data-type='const std::streamsize' data-ref="1199__ret">__ret</dfn> = <b>this</b>-&gt;egptr() - <b>this</b>-&gt;gptr();&nbsp</td></tr>
+<tr><th id="292">292</th><td>	<b>return</b> <a class="local col9 ref" href="#1199__ret" title='__ret' data-ref="1199__ret">__ret</a> ? <a class="local col9 ref" href="#1199__ret" title='__ret' data-ref="1199__ret">__ret</a> : <b>this</b>-&gt;showmanyc();&nbsp</td></tr>
+<tr><th id="293">293</th><td>      }&nbsp</td></tr>
+<tr><th id="294">294</th><td>&nbsp</td></tr>
+<tr><th id="295">295</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="296">296</th><td><i class="doc">       *  <span class="command">@brief</span>  Getting the next character.</i>&nbsp</td></tr>
+<tr><th id="297">297</th><td><i class="doc">       *  <span class="command">@return</span>  The next character, or eof.</i>&nbsp</td></tr>
+<tr><th id="298">298</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="299">299</th><td><i class="doc">       *  Calls<span class="command"> @c</span> <span class="arg">sbumpc(),</span> and if that function returns</i>&nbsp</td></tr>
+<tr><th id="300">300</th><td><i class="doc">       * <span class="command"> @c</span> <span class="arg">traits::eof(),</span> so does this function.  Otherwise,<span class="command"> @c</span> <span class="arg">sgetc().</span></i>&nbsp</td></tr>
+<tr><th id="301">301</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="302">302</th><td>      <a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a>&nbsp</td></tr>
+<tr><th id="303">303</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf6snextcEv" title='std::basic_streambuf::snextc' data-ref="_ZNSt15basic_streambuf6snextcEv">snextc</dfn>()&nbsp</td></tr>
+<tr><th id="304">304</th><td>      {&nbsp</td></tr>
+<tr><th id="305">305</th><td>	<a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a> <dfn class="local col0 decl" id="1200__ret" title='__ret' data-type='std::basic_streambuf::int_type' data-ref="1200__ret">__ret</dfn> = <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::eof();&nbsp</td></tr>
+<tr><th id="306">306</th><td>	<b>if</b> (<a class="ref fn" href="#306" title='__builtin_expect' data-ref="__builtin_expect">__builtin_expect</a>(!<a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::eq_int_type(<b>this</b>-&gt;sbumpc(),&nbsp</td></tr>
+<tr><th id="307">307</th><td>						       <a class="local col0 ref" href="#1200__ret" title='__ret' data-ref="1200__ret">__ret</a>), <b>true</b>))&nbsp</td></tr>
+<tr><th id="308">308</th><td>	  <a class="local col0 ref" href="#1200__ret" title='__ret' data-ref="1200__ret">__ret</a> = <b>this</b>-&gt;sgetc();&nbsp</td></tr>
+<tr><th id="309">309</th><td>	<b>return</b> <a class="local col0 ref" href="#1200__ret" title='__ret' data-ref="1200__ret">__ret</a>;&nbsp</td></tr>
+<tr><th id="310">310</th><td>      }&nbsp</td></tr>
+<tr><th id="311">311</th><td>&nbsp</td></tr>
+<tr><th id="312">312</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="313">313</th><td><i class="doc">       *  <span class="command">@brief</span>  Getting the next character.</i>&nbsp</td></tr>
+<tr><th id="314">314</th><td><i class="doc">       *  <span class="command">@return</span>  The next character, or eof.</i>&nbsp</td></tr>
+<tr><th id="315">315</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="316">316</th><td><i class="doc">       *  If the input read position is available, returns that character</i>&nbsp</td></tr>
+<tr><th id="317">317</th><td><i class="doc">       *  and increments the read pointer, otherwise calls and returns</i>&nbsp</td></tr>
+<tr><th id="318">318</th><td><i class="doc">       * <span class="command"> @c</span> <span class="arg">uflow().</span></i>&nbsp</td></tr>
+<tr><th id="319">319</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="320">320</th><td>      <a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a>&nbsp</td></tr>
+<tr><th id="321">321</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf6sbumpcEv" title='std::basic_streambuf::sbumpc' data-ref="_ZNSt15basic_streambuf6sbumpcEv">sbumpc</dfn>()&nbsp</td></tr>
+<tr><th id="322">322</th><td>      {&nbsp</td></tr>
+<tr><th id="323">323</th><td>	<a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a> <dfn class="local col1 decl" id="1201__ret" title='__ret' data-type='std::basic_streambuf::int_type' data-ref="1201__ret">__ret</dfn>;&nbsp</td></tr>
+<tr><th id="324">324</th><td>	<b>if</b> (<a class="ref fn" href="#306" title='__builtin_expect' data-ref="__builtin_expect">__builtin_expect</a>(<b>this</b>-&gt;gptr() &lt; <b>this</b>-&gt;egptr(), <b>true</b>))&nbsp</td></tr>
+<tr><th id="325">325</th><td>	  {&nbsp</td></tr>
+<tr><th id="326">326</th><td>	    <a class="local col1 ref" href="#1201__ret" title='__ret' data-ref="1201__ret">__ret</a> = <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::to_int_type(*<b>this</b>-&gt;gptr());&nbsp</td></tr>
+<tr><th id="327">327</th><td>	    <b>this</b>-&gt;gbump(<var>1</var>);&nbsp</td></tr>
+<tr><th id="328">328</th><td>	  }&nbsp</td></tr>
+<tr><th id="329">329</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="330">330</th><td>	  <a class="local col1 ref" href="#1201__ret" title='__ret' data-ref="1201__ret">__ret</a> = <b>this</b>-&gt;uflow();&nbsp</td></tr>
+<tr><th id="331">331</th><td>	<b>return</b> <a class="local col1 ref" href="#1201__ret" title='__ret' data-ref="1201__ret">__ret</a>;&nbsp</td></tr>
+<tr><th id="332">332</th><td>      }&nbsp</td></tr>
+<tr><th id="333">333</th><td>&nbsp</td></tr>
+<tr><th id="334">334</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="335">335</th><td><i class="doc">       *  <span class="command">@brief</span>  Getting the next character.</i>&nbsp</td></tr>
+<tr><th id="336">336</th><td><i class="doc">       *  <span class="command">@return</span>  The next character, or eof.</i>&nbsp</td></tr>
+<tr><th id="337">337</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="338">338</th><td><i class="doc">       *  If the input read position is available, returns that character,</i>&nbsp</td></tr>
+<tr><th id="339">339</th><td><i class="doc">       *  otherwise calls and returns<span class="command"> @c</span> <span class="arg">underflow().</span>  Does not move the</i>&nbsp</td></tr>
+<tr><th id="340">340</th><td><i class="doc">       *  read position after fetching the character.</i>&nbsp</td></tr>
+<tr><th id="341">341</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="342">342</th><td>      <a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a>&nbsp</td></tr>
+<tr><th id="343">343</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf5sgetcEv" title='std::basic_streambuf::sgetc' data-ref="_ZNSt15basic_streambuf5sgetcEv">sgetc</dfn>()&nbsp</td></tr>
+<tr><th id="344">344</th><td>      {&nbsp</td></tr>
+<tr><th id="345">345</th><td>	<a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a> <dfn class="local col2 decl" id="1202__ret" title='__ret' data-type='std::basic_streambuf::int_type' data-ref="1202__ret">__ret</dfn>;&nbsp</td></tr>
+<tr><th id="346">346</th><td>	<b>if</b> (<a class="ref fn" href="#306" title='__builtin_expect' data-ref="__builtin_expect">__builtin_expect</a>(<b>this</b>-&gt;gptr() &lt; <b>this</b>-&gt;egptr(), <b>true</b>))&nbsp</td></tr>
+<tr><th id="347">347</th><td>	  <a class="local col2 ref" href="#1202__ret" title='__ret' data-ref="1202__ret">__ret</a> = <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::to_int_type(*<b>this</b>-&gt;gptr());&nbsp</td></tr>
+<tr><th id="348">348</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="349">349</th><td>	  <a class="local col2 ref" href="#1202__ret" title='__ret' data-ref="1202__ret">__ret</a> = <b>this</b>-&gt;underflow();&nbsp</td></tr>
+<tr><th id="350">350</th><td>	<b>return</b> <a class="local col2 ref" href="#1202__ret" title='__ret' data-ref="1202__ret">__ret</a>;&nbsp</td></tr>
+<tr><th id="351">351</th><td>      }&nbsp</td></tr>
+<tr><th id="352">352</th><td>&nbsp</td></tr>
+<tr><th id="353">353</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="354">354</th><td><i class="doc">       *  <span class="command">@brief</span>  Entry point for xsgetn.</i>&nbsp</td></tr>
+<tr><th id="355">355</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__s</span>  A buffer area.</i>&nbsp</td></tr>
+<tr><th id="356">356</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  A count.</i>&nbsp</td></tr>
+<tr><th id="357">357</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="358">358</th><td><i class="doc">       *  Returns xsgetn(__s,__n).  The effect is to fill<span class="command"> @a</span> <span class="arg">__s[0]</span> through</i>&nbsp</td></tr>
+<tr><th id="359">359</th><td><i class="doc">       * <span class="command"> @a</span> <span class="arg">__s[__n-1]</span> with characters from the input sequence, if possible.</i>&nbsp</td></tr>
+<tr><th id="360">360</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="361">361</th><td>      <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>&nbsp</td></tr>
+<tr><th id="362">362</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf5sgetnEPT_l" title='std::basic_streambuf::sgetn' data-ref="_ZNSt15basic_streambuf5sgetnEPT_l">sgetn</dfn>(<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* <dfn class="local col3 decl" id="1203__s" title='__s' data-type='std::basic_streambuf::char_type *' data-ref="1203__s">__s</dfn>, <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col4 decl" id="1204__n" title='__n' data-type='std::streamsize' data-ref="1204__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="363">363</th><td>      { <b>return</b> <b>this</b>-&gt;xsgetn(<a class="local col3 ref" href="#1203__s" title='__s' data-ref="1203__s">__s</a>, <a class="local col4 ref" href="#1204__n" title='__n' data-ref="1204__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="364">364</th><td>&nbsp</td></tr>
+<tr><th id="365">365</th><td>      <i>// [27.5.2.2.4] putback</i>&nbsp</td></tr>
+<tr><th id="366">366</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="367">367</th><td><i class="doc">       *  <span class="command">@brief</span>  Pushing characters back into the input stream.</i>&nbsp</td></tr>
+<tr><th id="368">368</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__c</span>  The character to push back.</i>&nbsp</td></tr>
+<tr><th id="369">369</th><td><i class="doc">       *  <span class="command">@return</span>  The previous character, if possible.</i>&nbsp</td></tr>
+<tr><th id="370">370</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="371">371</th><td><i class="doc">       *  Similar to sungetc(), but<span class="command"> @a</span> <span class="arg">__c</span> is pushed onto the stream</i>&nbsp</td></tr>
+<tr><th id="372">372</th><td><i class="doc">       *  instead of <span class="tag">&lt;em&gt;</span>the previous character.<span class="tag">&lt;/em&gt;</span> If successful,</i>&nbsp</td></tr>
+<tr><th id="373">373</th><td><i class="doc">       *  the next character fetched from the input stream will be<span class="command"> @a</span></i>&nbsp</td></tr>
+<tr><th id="374">374</th><td><i class="doc">       *  <span class="arg">__c.</span></i>&nbsp</td></tr>
+<tr><th id="375">375</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="376">376</th><td>      <a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a>&nbsp</td></tr>
+<tr><th id="377">377</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf9sputbackcET_" title='std::basic_streambuf::sputbackc' data-ref="_ZNSt15basic_streambuf9sputbackcET_">sputbackc</dfn>(<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a> <dfn class="local col5 decl" id="1205__c" title='__c' data-type='std::basic_streambuf::char_type' data-ref="1205__c">__c</dfn>)&nbsp</td></tr>
+<tr><th id="378">378</th><td>      {&nbsp</td></tr>
+<tr><th id="379">379</th><td>	<a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a> <dfn class="local col6 decl" id="1206__ret" title='__ret' data-type='std::basic_streambuf::int_type' data-ref="1206__ret">__ret</dfn>;&nbsp</td></tr>
+<tr><th id="380">380</th><td>	<em>const</em> <em>bool</em> <dfn class="local col7 decl" id="1207__testpos" title='__testpos' data-type='const bool' data-ref="1207__testpos">__testpos</dfn> = <b>this</b>-&gt;eback() &lt; <b>this</b>-&gt;gptr();&nbsp</td></tr>
+<tr><th id="381">381</th><td>	<b>if</b> (<a class="ref fn" href="#306" title='__builtin_expect' data-ref="__builtin_expect">__builtin_expect</a>(!<a class="local col7 ref" href="#1207__testpos" title='__testpos' data-ref="1207__testpos">__testpos</a> ||&nbsp</td></tr>
+<tr><th id="382">382</th><td>			     !<a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::eq(<a class="local col5 ref" href="#1205__c" title='__c' data-ref="1205__c">__c</a>, <b>this</b>-&gt;gptr()[-<var>1</var>]), <b>false</b>))&nbsp</td></tr>
+<tr><th id="383">383</th><td>	  <a class="local col6 ref" href="#1206__ret" title='__ret' data-ref="1206__ret">__ret</a> = <b>this</b>-&gt;pbackfail(<a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::to_int_type(<a class="local col5 ref" href="#1205__c" title='__c' data-ref="1205__c">__c</a>));&nbsp</td></tr>
+<tr><th id="384">384</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="385">385</th><td>	  {&nbsp</td></tr>
+<tr><th id="386">386</th><td>	    <b>this</b>-&gt;gbump(-<var>1</var>);&nbsp</td></tr>
+<tr><th id="387">387</th><td>	    <a class="local col6 ref" href="#1206__ret" title='__ret' data-ref="1206__ret">__ret</a> = <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::to_int_type(*<b>this</b>-&gt;gptr());&nbsp</td></tr>
+<tr><th id="388">388</th><td>	  }&nbsp</td></tr>
+<tr><th id="389">389</th><td>	<b>return</b> <a class="local col6 ref" href="#1206__ret" title='__ret' data-ref="1206__ret">__ret</a>;&nbsp</td></tr>
+<tr><th id="390">390</th><td>      }&nbsp</td></tr>
+<tr><th id="391">391</th><td>&nbsp</td></tr>
+<tr><th id="392">392</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="393">393</th><td><i class="doc">       *  <span class="command">@brief</span>  Moving backwards in the input stream.</i>&nbsp</td></tr>
+<tr><th id="394">394</th><td><i class="doc">       *  <span class="command">@return</span>  The previous character, if possible.</i>&nbsp</td></tr>
+<tr><th id="395">395</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="396">396</th><td><i class="doc">       *  If a putback position is available, this function decrements</i>&nbsp</td></tr>
+<tr><th id="397">397</th><td><i class="doc">       *  the input pointer and returns that character.  Otherwise,</i>&nbsp</td></tr>
+<tr><th id="398">398</th><td><i class="doc">       *  calls and returns pbackfail().  The effect is to<span class="command"> @a</span> <span class="arg">unget</span></i>&nbsp</td></tr>
+<tr><th id="399">399</th><td><i class="doc">       *  the last character<span class="command"> @a</span> <span class="arg">gotten.</span></i>&nbsp</td></tr>
+<tr><th id="400">400</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="401">401</th><td>      <a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a>&nbsp</td></tr>
+<tr><th id="402">402</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf7sungetcEv" title='std::basic_streambuf::sungetc' data-ref="_ZNSt15basic_streambuf7sungetcEv">sungetc</dfn>()&nbsp</td></tr>
+<tr><th id="403">403</th><td>      {&nbsp</td></tr>
+<tr><th id="404">404</th><td>	<a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a> <dfn class="local col8 decl" id="1208__ret" title='__ret' data-type='std::basic_streambuf::int_type' data-ref="1208__ret">__ret</dfn>;&nbsp</td></tr>
+<tr><th id="405">405</th><td>	<b>if</b> (<a class="ref fn" href="#306" title='__builtin_expect' data-ref="__builtin_expect">__builtin_expect</a>(<b>this</b>-&gt;eback() &lt; <b>this</b>-&gt;gptr(), <b>true</b>))&nbsp</td></tr>
+<tr><th id="406">406</th><td>	  {&nbsp</td></tr>
+<tr><th id="407">407</th><td>	    <b>this</b>-&gt;gbump(-<var>1</var>);&nbsp</td></tr>
+<tr><th id="408">408</th><td>	    <a class="local col8 ref" href="#1208__ret" title='__ret' data-ref="1208__ret">__ret</a> = <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::to_int_type(*<b>this</b>-&gt;gptr());&nbsp</td></tr>
+<tr><th id="409">409</th><td>	  }&nbsp</td></tr>
+<tr><th id="410">410</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="411">411</th><td>	  <a class="local col8 ref" href="#1208__ret" title='__ret' data-ref="1208__ret">__ret</a> = <b>this</b>-&gt;pbackfail();&nbsp</td></tr>
+<tr><th id="412">412</th><td>	<b>return</b> <a class="local col8 ref" href="#1208__ret" title='__ret' data-ref="1208__ret">__ret</a>;&nbsp</td></tr>
+<tr><th id="413">413</th><td>      }&nbsp</td></tr>
+<tr><th id="414">414</th><td>&nbsp</td></tr>
+<tr><th id="415">415</th><td>      <i>// [27.5.2.2.5] put area</i>&nbsp</td></tr>
+<tr><th id="416">416</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="417">417</th><td><i class="doc">       *  <span class="command">@brief</span>  Entry point for all single-character output functions.</i>&nbsp</td></tr>
+<tr><th id="418">418</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__c</span>  A character to output.</i>&nbsp</td></tr>
+<tr><th id="419">419</th><td><i class="doc">       *  <span class="command">@return</span> <span class="command"> @a</span> <span class="arg">__c,</span> if possible.</i>&nbsp</td></tr>
+<tr><th id="420">420</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="421">421</th><td><i class="doc">       *  One of two public output functions.</i>&nbsp</td></tr>
+<tr><th id="422">422</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="423">423</th><td><i class="doc">       *  If a write position is available for the output sequence (i.e.,</i>&nbsp</td></tr>
+<tr><th id="424">424</th><td><i class="doc">       *  the buffer is not full), stores<span class="command"> @a</span> <span class="arg">__c</span> in that position, increments</i>&nbsp</td></tr>
+<tr><th id="425">425</th><td><i class="doc">       *  the position, and returns<span class="command"> @c</span> <span class="arg">traits::to_int_type(__c).</span>  If a write</i>&nbsp</td></tr>
+<tr><th id="426">426</th><td><i class="doc">       *  position is not available, returns<span class="command"> @c</span> <span class="arg">overflow(__c).</span></i>&nbsp</td></tr>
+<tr><th id="427">427</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="428">428</th><td>      <a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a>&nbsp</td></tr>
+<tr><th id="429">429</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf5sputcET_" title='std::basic_streambuf::sputc' data-ref="_ZNSt15basic_streambuf5sputcET_">sputc</dfn>(<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a> <dfn class="local col9 decl" id="1209__c" title='__c' data-type='std::basic_streambuf::char_type' data-ref="1209__c">__c</dfn>)&nbsp</td></tr>
+<tr><th id="430">430</th><td>      {&nbsp</td></tr>
+<tr><th id="431">431</th><td>	<a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a> <dfn class="local col0 decl" id="1210__ret" title='__ret' data-type='std::basic_streambuf::int_type' data-ref="1210__ret">__ret</dfn>;&nbsp</td></tr>
+<tr><th id="432">432</th><td>	<b>if</b> (<a class="ref fn" href="#306" title='__builtin_expect' data-ref="__builtin_expect">__builtin_expect</a>(<b>this</b>-&gt;pptr() &lt; <b>this</b>-&gt;epptr(), <b>true</b>))&nbsp</td></tr>
+<tr><th id="433">433</th><td>	  {&nbsp</td></tr>
+<tr><th id="434">434</th><td>	    *<b>this</b>-&gt;pptr() = <a class="local col9 ref" href="#1209__c" title='__c' data-ref="1209__c">__c</a>;&nbsp</td></tr>
+<tr><th id="435">435</th><td>	    <b>this</b>-&gt;pbump(<var>1</var>);&nbsp</td></tr>
+<tr><th id="436">436</th><td>	    <a class="local col0 ref" href="#1210__ret" title='__ret' data-ref="1210__ret">__ret</a> = <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::to_int_type(<a class="local col9 ref" href="#1209__c" title='__c' data-ref="1209__c">__c</a>);&nbsp</td></tr>
+<tr><th id="437">437</th><td>	  }&nbsp</td></tr>
+<tr><th id="438">438</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="439">439</th><td>	  <a class="local col0 ref" href="#1210__ret" title='__ret' data-ref="1210__ret">__ret</a> = <b>this</b>-&gt;overflow(<a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::to_int_type(<a class="local col9 ref" href="#1209__c" title='__c' data-ref="1209__c">__c</a>));&nbsp</td></tr>
+<tr><th id="440">440</th><td>	<b>return</b> <a class="local col0 ref" href="#1210__ret" title='__ret' data-ref="1210__ret">__ret</a>;&nbsp</td></tr>
+<tr><th id="441">441</th><td>      }&nbsp</td></tr>
+<tr><th id="442">442</th><td>&nbsp</td></tr>
+<tr><th id="443">443</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="444">444</th><td><i class="doc">       *  <span class="command">@brief</span>  Entry point for all single-character output functions.</i>&nbsp</td></tr>
+<tr><th id="445">445</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__s</span>  A buffer read area.</i>&nbsp</td></tr>
+<tr><th id="446">446</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  A count.</i>&nbsp</td></tr>
+<tr><th id="447">447</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="448">448</th><td><i class="doc">       *  One of two public output functions.</i>&nbsp</td></tr>
+<tr><th id="449">449</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="450">450</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="451">451</th><td><i class="doc">       *  Returns xsputn(__s,__n).  The effect is to write<span class="command"> @a</span> <span class="arg">__s[0]</span> through</i>&nbsp</td></tr>
+<tr><th id="452">452</th><td><i class="doc">       * <span class="command"> @a</span> <span class="arg">__s[__n-1]</span> to the output sequence, if possible.</i>&nbsp</td></tr>
+<tr><th id="453">453</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="454">454</th><td>      <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>&nbsp</td></tr>
+<tr><th id="455">455</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf5sputnEPKT_l" title='std::basic_streambuf::sputn' data-ref="_ZNSt15basic_streambuf5sputnEPKT_l">sputn</dfn>(<em>const</em> <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* <dfn class="local col1 decl" id="1211__s" title='__s' data-type='const std::basic_streambuf::char_type *' data-ref="1211__s">__s</dfn>, <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col2 decl" id="1212__n" title='__n' data-type='std::streamsize' data-ref="1212__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="456">456</th><td>      { <b>return</b> <b>this</b>-&gt;xsputn(<a class="local col1 ref" href="#1211__s" title='__s' data-ref="1211__s">__s</a>, <a class="local col2 ref" href="#1212__n" title='__n' data-ref="1212__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="457">457</th><td>&nbsp</td></tr>
+<tr><th id="458">458</th><td>    <b>protected</b>:&nbsp</td></tr>
+<tr><th id="459">459</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="460">460</th><td><i class="doc">       *  <span class="command">@brief</span>  Base constructor.</i>&nbsp</td></tr>
+<tr><th id="461">461</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="462">462</th><td><i class="doc">       *  Only called from derived constructors, and sets up all the</i>&nbsp</td></tr>
+<tr><th id="463">463</th><td><i class="doc">       *  buffer data to zero, including the pointers described in the</i>&nbsp</td></tr>
+<tr><th id="464">464</th><td><i class="doc">       *  basic_streambuf class description.  Note that, as a result,</i>&nbsp</td></tr>
+<tr><th id="465">465</th><td><i class="doc">       *  - the class starts with no read nor write positions available,</i>&nbsp</td></tr>
+<tr><th id="466">466</th><td><i class="doc">       *  - this is not an error</i>&nbsp</td></tr>
+<tr><th id="467">467</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="468">468</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambufC1Ev" title='std::basic_streambuf::basic_streambuf&lt;_CharT, _Traits&gt;' data-ref="_ZNSt15basic_streambufC1Ev">basic_streambuf</dfn>()&nbsp</td></tr>
+<tr><th id="469">469</th><td>      : <a class="member field" href="#std::basic_streambuf::_M_in_beg" title='std::basic_streambuf::_M_in_beg' data-ref="std::basic_streambuf::_M_in_beg">_M_in_beg</a>(<var>0</var>), <a class="member field" href="#std::basic_streambuf::_M_in_cur" title='std::basic_streambuf::_M_in_cur' data-ref="std::basic_streambuf::_M_in_cur">_M_in_cur</a>(<var>0</var>), <a class="member field" href="#std::basic_streambuf::_M_in_end" title='std::basic_streambuf::_M_in_end' data-ref="std::basic_streambuf::_M_in_end">_M_in_end</a>(<var>0</var>),&nbsp</td></tr>
+<tr><th id="470">470</th><td>      <a class="member field" href="#std::basic_streambuf::_M_out_beg" title='std::basic_streambuf::_M_out_beg' data-ref="std::basic_streambuf::_M_out_beg">_M_out_beg</a>(<var>0</var>), <a class="member field" href="#std::basic_streambuf::_M_out_cur" title='std::basic_streambuf::_M_out_cur' data-ref="std::basic_streambuf::_M_out_cur">_M_out_cur</a>(<var>0</var>), <a class="member field" href="#std::basic_streambuf::_M_out_end" title='std::basic_streambuf::_M_out_end' data-ref="std::basic_streambuf::_M_out_end">_M_out_end</a>(<var>0</var>),&nbsp</td></tr>
+<tr><th id="471">471</th><td>      <a class="member field" href="#std::basic_streambuf::_M_buf_locale" title='std::basic_streambuf::_M_buf_locale' data-ref="std::basic_streambuf::_M_buf_locale">_M_buf_locale</a>(<a class="type" href="bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a><a class="ref fn" href="bits/locale_classes.h.html#_ZNSt6localeC1Ev" title='std::locale::locale' data-ref="_ZNSt6localeC1Ev">(</a>))&nbsp</td></tr>
+<tr><th id="472">472</th><td>      { }&nbsp</td></tr>
+<tr><th id="473">473</th><td>&nbsp</td></tr>
+<tr><th id="474">474</th><td>      <i>// [27.5.2.3.1] get area access</i>&nbsp</td></tr>
+<tr><th id="475">475</th><td><i>      ///@{</i>&nbsp</td></tr>
+<tr><th id="476">476</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="477">477</th><td><i class="doc">       *  <span class="command">@brief</span>  Access to the get area.</i>&nbsp</td></tr>
+<tr><th id="478">478</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="479">479</th><td><i class="doc">       *  These functions are only available to other protected functions,</i>&nbsp</td></tr>
+<tr><th id="480">480</th><td><i class="doc">       *  including derived classes.</i>&nbsp</td></tr>
+<tr><th id="481">481</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="482">482</th><td><i class="doc">       *  - eback() returns the beginning pointer for the input sequence</i>&nbsp</td></tr>
+<tr><th id="483">483</th><td><i class="doc">       *  - gptr() returns the next pointer for the input sequence</i>&nbsp</td></tr>
+<tr><th id="484">484</th><td><i class="doc">       *  - egptr() returns the end pointer for the input sequence</i>&nbsp</td></tr>
+<tr><th id="485">485</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="486">486</th><td>      <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>*&nbsp</td></tr>
+<tr><th id="487">487</th><td>      <dfn class="decl def fn" id="_ZNKSt15basic_streambuf5ebackEv" title='std::basic_streambuf::eback' data-ref="_ZNKSt15basic_streambuf5ebackEv">eback</dfn>() <em>const</em> { <b>return</b> <a class="member field" href="#std::basic_streambuf::_M_in_beg" title='std::basic_streambuf::_M_in_beg' data-ref="std::basic_streambuf::_M_in_beg">_M_in_beg</a>; }&nbsp</td></tr>
+<tr><th id="488">488</th><td>&nbsp</td></tr>
+<tr><th id="489">489</th><td>      <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>*&nbsp</td></tr>
+<tr><th id="490">490</th><td>      <dfn class="decl def fn" id="_ZNKSt15basic_streambuf4gptrEv" title='std::basic_streambuf::gptr' data-ref="_ZNKSt15basic_streambuf4gptrEv">gptr</dfn>()  <em>const</em> { <b>return</b> <a class="member field" href="#std::basic_streambuf::_M_in_cur" title='std::basic_streambuf::_M_in_cur' data-ref="std::basic_streambuf::_M_in_cur">_M_in_cur</a>;  }&nbsp</td></tr>
+<tr><th id="491">491</th><td>&nbsp</td></tr>
+<tr><th id="492">492</th><td>      <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>*&nbsp</td></tr>
+<tr><th id="493">493</th><td>      <dfn class="decl def fn" id="_ZNKSt15basic_streambuf5egptrEv" title='std::basic_streambuf::egptr' data-ref="_ZNKSt15basic_streambuf5egptrEv">egptr</dfn>() <em>const</em> { <b>return</b> <a class="member field" href="#std::basic_streambuf::_M_in_end" title='std::basic_streambuf::_M_in_end' data-ref="std::basic_streambuf::_M_in_end">_M_in_end</a>; }&nbsp</td></tr>
+<tr><th id="494">494</th><td>      <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="495">495</th><td>&nbsp</td></tr>
+<tr><th id="496">496</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="497">497</th><td><i class="doc">       *  <span class="command">@brief</span>  Moving the read position.</i>&nbsp</td></tr>
+<tr><th id="498">498</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  The delta by which to move.</i>&nbsp</td></tr>
+<tr><th id="499">499</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="500">500</th><td><i class="doc">       *  This just advances the read position without returning any data.</i>&nbsp</td></tr>
+<tr><th id="501">501</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="502">502</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="503">503</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf5gbumpEi" title='std::basic_streambuf::gbump' data-ref="_ZNSt15basic_streambuf5gbumpEi">gbump</dfn>(<em>int</em> <dfn class="local col3 decl" id="1213__n" title='__n' data-type='int' data-ref="1213__n">__n</dfn>) { <a class="member field" href="#std::basic_streambuf::_M_in_cur" title='std::basic_streambuf::_M_in_cur' data-ref="std::basic_streambuf::_M_in_cur">_M_in_cur</a> += <a class="local col3 ref" href="#1213__n" title='__n' data-ref="1213__n">__n</a>; }&nbsp</td></tr>
+<tr><th id="504">504</th><td>&nbsp</td></tr>
+<tr><th id="505">505</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="506">506</th><td><i class="doc">       *  <span class="command">@brief</span>  Setting the three read area pointers.</i>&nbsp</td></tr>
+<tr><th id="507">507</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__gbeg</span>  A pointer.</i>&nbsp</td></tr>
+<tr><th id="508">508</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__gnext</span>  A pointer.</i>&nbsp</td></tr>
+<tr><th id="509">509</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__gend</span>  A pointer.</i>&nbsp</td></tr>
+<tr><th id="510">510</th><td><i class="doc">       *  <span class="command">@post</span> <span class="command"> @a</span> <span class="arg">__gbeg</span> ==<span class="command"> @c</span> <span class="arg">eback(),</span><span class="command"> @a</span> <span class="arg">__gnext</span> ==<span class="command"> @c</span> <span class="arg">gptr(),</span> and</i>&nbsp</td></tr>
+<tr><th id="511">511</th><td><i class="doc">       *        <span class="command"> @a</span> <span class="arg">__gend</span> ==<span class="command"> @c</span> <span class="arg">egptr()</span></i>&nbsp</td></tr>
+<tr><th id="512">512</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="513">513</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="514">514</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf4setgEPT_S1_S1_" title='std::basic_streambuf::setg' data-ref="_ZNSt15basic_streambuf4setgEPT_S1_S1_">setg</dfn>(<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* <dfn class="local col4 decl" id="1214__gbeg" title='__gbeg' data-type='std::basic_streambuf::char_type *' data-ref="1214__gbeg">__gbeg</dfn>, <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* <dfn class="local col5 decl" id="1215__gnext" title='__gnext' data-type='std::basic_streambuf::char_type *' data-ref="1215__gnext">__gnext</dfn>, <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* <dfn class="local col6 decl" id="1216__gend" title='__gend' data-type='std::basic_streambuf::char_type *' data-ref="1216__gend">__gend</dfn>)&nbsp</td></tr>
+<tr><th id="515">515</th><td>      {&nbsp</td></tr>
+<tr><th id="516">516</th><td>	<a class="member field" href="#std::basic_streambuf::_M_in_beg" title='std::basic_streambuf::_M_in_beg' data-ref="std::basic_streambuf::_M_in_beg">_M_in_beg</a> = <a class="local col4 ref" href="#1214__gbeg" title='__gbeg' data-ref="1214__gbeg">__gbeg</a>;&nbsp</td></tr>
+<tr><th id="517">517</th><td>	<a class="member field" href="#std::basic_streambuf::_M_in_cur" title='std::basic_streambuf::_M_in_cur' data-ref="std::basic_streambuf::_M_in_cur">_M_in_cur</a> = <a class="local col5 ref" href="#1215__gnext" title='__gnext' data-ref="1215__gnext">__gnext</a>;&nbsp</td></tr>
+<tr><th id="518">518</th><td>	<a class="member field" href="#std::basic_streambuf::_M_in_end" title='std::basic_streambuf::_M_in_end' data-ref="std::basic_streambuf::_M_in_end">_M_in_end</a> = <a class="local col6 ref" href="#1216__gend" title='__gend' data-ref="1216__gend">__gend</a>;&nbsp</td></tr>
+<tr><th id="519">519</th><td>      }&nbsp</td></tr>
+<tr><th id="520">520</th><td>&nbsp</td></tr>
+<tr><th id="521">521</th><td>      <i>// [27.5.2.3.2] put area access</i>&nbsp</td></tr>
+<tr><th id="522">522</th><td><i>      ///@{</i>&nbsp</td></tr>
+<tr><th id="523">523</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="524">524</th><td><i class="doc">       *  <span class="command">@brief</span>  Access to the put area.</i>&nbsp</td></tr>
+<tr><th id="525">525</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="526">526</th><td><i class="doc">       *  These functions are only available to other protected functions,</i>&nbsp</td></tr>
+<tr><th id="527">527</th><td><i class="doc">       *  including derived classes.</i>&nbsp</td></tr>
+<tr><th id="528">528</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="529">529</th><td><i class="doc">       *  - pbase() returns the beginning pointer for the output sequence</i>&nbsp</td></tr>
+<tr><th id="530">530</th><td><i class="doc">       *  - pptr() returns the next pointer for the output sequence</i>&nbsp</td></tr>
+<tr><th id="531">531</th><td><i class="doc">       *  - epptr() returns the end pointer for the output sequence</i>&nbsp</td></tr>
+<tr><th id="532">532</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="533">533</th><td>      <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>*&nbsp</td></tr>
+<tr><th id="534">534</th><td>      <dfn class="decl def fn" id="_ZNKSt15basic_streambuf5pbaseEv" title='std::basic_streambuf::pbase' data-ref="_ZNKSt15basic_streambuf5pbaseEv">pbase</dfn>() <em>const</em> { <b>return</b> <a class="member field" href="#std::basic_streambuf::_M_out_beg" title='std::basic_streambuf::_M_out_beg' data-ref="std::basic_streambuf::_M_out_beg">_M_out_beg</a>; }&nbsp</td></tr>
+<tr><th id="535">535</th><td>&nbsp</td></tr>
+<tr><th id="536">536</th><td>      <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>*&nbsp</td></tr>
+<tr><th id="537">537</th><td>      <dfn class="decl def fn" id="_ZNKSt15basic_streambuf4pptrEv" title='std::basic_streambuf::pptr' data-ref="_ZNKSt15basic_streambuf4pptrEv">pptr</dfn>() <em>const</em> { <b>return</b> <a class="member field" href="#std::basic_streambuf::_M_out_cur" title='std::basic_streambuf::_M_out_cur' data-ref="std::basic_streambuf::_M_out_cur">_M_out_cur</a>; }&nbsp</td></tr>
+<tr><th id="538">538</th><td>&nbsp</td></tr>
+<tr><th id="539">539</th><td>      <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>*&nbsp</td></tr>
+<tr><th id="540">540</th><td>      <dfn class="decl def fn" id="_ZNKSt15basic_streambuf5epptrEv" title='std::basic_streambuf::epptr' data-ref="_ZNKSt15basic_streambuf5epptrEv">epptr</dfn>() <em>const</em> { <b>return</b> <a class="member field" href="#std::basic_streambuf::_M_out_end" title='std::basic_streambuf::_M_out_end' data-ref="std::basic_streambuf::_M_out_end">_M_out_end</a>; }&nbsp</td></tr>
+<tr><th id="541">541</th><td>      <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="542">542</th><td>&nbsp</td></tr>
+<tr><th id="543">543</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="544">544</th><td><i class="doc">       *  <span class="command">@brief</span>  Moving the write position.</i>&nbsp</td></tr>
+<tr><th id="545">545</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  The delta by which to move.</i>&nbsp</td></tr>
+<tr><th id="546">546</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="547">547</th><td><i class="doc">       *  This just advances the write position without returning any data.</i>&nbsp</td></tr>
+<tr><th id="548">548</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="549">549</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="550">550</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf5pbumpEi" title='std::basic_streambuf::pbump' data-ref="_ZNSt15basic_streambuf5pbumpEi">pbump</dfn>(<em>int</em> <dfn class="local col7 decl" id="1217__n" title='__n' data-type='int' data-ref="1217__n">__n</dfn>) { <a class="member field" href="#std::basic_streambuf::_M_out_cur" title='std::basic_streambuf::_M_out_cur' data-ref="std::basic_streambuf::_M_out_cur">_M_out_cur</a> += <a class="local col7 ref" href="#1217__n" title='__n' data-ref="1217__n">__n</a>; }&nbsp</td></tr>
+<tr><th id="551">551</th><td>&nbsp</td></tr>
+<tr><th id="552">552</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="553">553</th><td><i class="doc">       *  <span class="command">@brief</span>  Setting the three write area pointers.</i>&nbsp</td></tr>
+<tr><th id="554">554</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__pbeg</span>  A pointer.</i>&nbsp</td></tr>
+<tr><th id="555">555</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__pend</span>  A pointer.</i>&nbsp</td></tr>
+<tr><th id="556">556</th><td><i class="doc">       *  <span class="command">@post</span> <span class="command"> @a</span> <span class="arg">__pbeg</span> ==<span class="command"> @c</span> <span class="arg">pbase(),</span><span class="command"> @a</span> <span class="arg">__pbeg</span> ==<span class="command"> @c</span> <span class="arg">pptr(),</span> and</i>&nbsp</td></tr>
+<tr><th id="557">557</th><td><i class="doc">       *        <span class="command"> @a</span> <span class="arg">__pend</span> ==<span class="command"> @c</span> <span class="arg">epptr()</span></i>&nbsp</td></tr>
+<tr><th id="558">558</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="559">559</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="560">560</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf4setpEPT_S1_" title='std::basic_streambuf::setp' data-ref="_ZNSt15basic_streambuf4setpEPT_S1_">setp</dfn>(<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* <dfn class="local col8 decl" id="1218__pbeg" title='__pbeg' data-type='std::basic_streambuf::char_type *' data-ref="1218__pbeg">__pbeg</dfn>, <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* <dfn class="local col9 decl" id="1219__pend" title='__pend' data-type='std::basic_streambuf::char_type *' data-ref="1219__pend">__pend</dfn>)&nbsp</td></tr>
+<tr><th id="561">561</th><td>      {&nbsp</td></tr>
+<tr><th id="562">562</th><td>	<a class="member field" href="#std::basic_streambuf::_M_out_beg" title='std::basic_streambuf::_M_out_beg' data-ref="std::basic_streambuf::_M_out_beg">_M_out_beg</a> = <a class="member field" href="#std::basic_streambuf::_M_out_cur" title='std::basic_streambuf::_M_out_cur' data-ref="std::basic_streambuf::_M_out_cur">_M_out_cur</a> = <a class="local col8 ref" href="#1218__pbeg" title='__pbeg' data-ref="1218__pbeg">__pbeg</a>;&nbsp</td></tr>
+<tr><th id="563">563</th><td>	<a class="member field" href="#std::basic_streambuf::_M_out_end" title='std::basic_streambuf::_M_out_end' data-ref="std::basic_streambuf::_M_out_end">_M_out_end</a> = <a class="local col9 ref" href="#1219__pend" title='__pend' data-ref="1219__pend">__pend</a>;&nbsp</td></tr>
+<tr><th id="564">564</th><td>      }&nbsp</td></tr>
+<tr><th id="565">565</th><td>&nbsp</td></tr>
+<tr><th id="566">566</th><td>      <i>// [27.5.2.4] virtual functions</i>&nbsp</td></tr>
+<tr><th id="567">567</th><td><i>      // [27.5.2.4.1] locales</i>&nbsp</td></tr>
+<tr><th id="568">568</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="569">569</th><td><i class="doc">       *  <span class="command">@brief</span>  Changes translations.</i>&nbsp</td></tr>
+<tr><th id="570">570</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__loc</span>  A new locale.</i>&nbsp</td></tr>
+<tr><th id="571">571</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="572">572</th><td><i class="doc">       *  Translations done during I/O which depend on the current</i>&nbsp</td></tr>
+<tr><th id="573">573</th><td><i class="doc">       *  locale are changed by this call.  The standard adds,</i>&nbsp</td></tr>
+<tr><th id="574">574</th><td><i class="doc">       *  <span class="tag">&lt;em&gt;</span>Between invocations of this function a class derived</i>&nbsp</td></tr>
+<tr><th id="575">575</th><td><i class="doc">       *  from streambuf can safely cache results of calls to locale</i>&nbsp</td></tr>
+<tr><th id="576">576</th><td><i class="doc">       *  functions and to members of facets so obtained.<span class="tag">&lt;/em&gt;</span></i>&nbsp</td></tr>
+<tr><th id="577">577</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="578">578</th><td><i class="doc">       *  <span class="command">@note</span>  Base class version does nothing.</i>&nbsp</td></tr>
+<tr><th id="579">579</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="580">580</th><td>      <b>virtual</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="581">581</th><td>      <dfn class="virtual decl def fn" id="_ZNSt15basic_streambuf5imbueERKSt6locale" title='std::basic_streambuf::imbue' data-ref="_ZNSt15basic_streambuf5imbueERKSt6locale">imbue</dfn>(<em>const</em> <a class="type" href="bits/locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&amp; <dfn class="local col0 decl" id="1220__loc" title='__loc' data-type='const std::locale &amp;' data-ref="1220__loc">__loc</dfn> <a class="macro" href="#49" title="__attribute__ ((__unused__))" data-ref="_M/_IsUnused">_IsUnused</a>)&nbsp</td></tr>
+<tr><th id="582">582</th><td>      { }&nbsp</td></tr>
+<tr><th id="583">583</th><td>&nbsp</td></tr>
+<tr><th id="584">584</th><td>      <i>// [27.5.2.4.2] buffer management and positioning</i>&nbsp</td></tr>
+<tr><th id="585">585</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="586">586</th><td><i class="doc">       *  <span class="command">@brief</span>  Manipulates the buffer.</i>&nbsp</td></tr>
+<tr><th id="587">587</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="588">588</th><td><i class="doc">       *  Each derived class provides its own appropriate behavior.  See</i>&nbsp</td></tr>
+<tr><th id="589">589</th><td><i class="doc">       *  the next-to-last paragraph of</i>&nbsp</td></tr>
+<tr><th id="590">590</th><td><i class="doc">       *  <a href="https://gcc.gnu.org/onlinedocs/libstdc++/manual/streambufs.html#io.streambuf.buffering">https://gcc.gnu.org/onlinedocs/libstdc++/manual/streambufs.html#io.streambuf.buffering</a></i>&nbsp</td></tr>
+<tr><th id="591">591</th><td><i class="doc">       *  for more on this function.</i>&nbsp</td></tr>
+<tr><th id="592">592</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="593">593</th><td><i class="doc">       *  <span class="command">@note</span>  Base class version does nothing, returns<span class="command"> @c</span> <span class="arg">this.</span></i>&nbsp</td></tr>
+<tr><th id="594">594</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="595">595</th><td>      <b>virtual</b> <a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>,_Traits&gt;*&nbsp</td></tr>
+<tr><th id="596">596</th><td>      <dfn class="virtual decl def fn" id="_ZNSt15basic_streambuf6setbufEPT_l" title='std::basic_streambuf::setbuf' data-ref="_ZNSt15basic_streambuf6setbufEPT_l">setbuf</dfn>(<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>*, <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>)&nbsp</td></tr>
+<tr><th id="597">597</th><td>      {	<b>return</b> <b>this</b>; }&nbsp</td></tr>
+<tr><th id="598">598</th><td>&nbsp</td></tr>
+<tr><th id="599">599</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="600">600</th><td><i class="doc">       *  <span class="command">@brief</span>  Alters the stream positions.</i>&nbsp</td></tr>
+<tr><th id="601">601</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="602">602</th><td><i class="doc">       *  Each derived class provides its own appropriate behavior.</i>&nbsp</td></tr>
+<tr><th id="603">603</th><td><i class="doc">       *  <span class="command">@note</span>  Base class version does nothing, returns a<span class="command"> @c</span> <span class="arg">pos_type</span></i>&nbsp</td></tr>
+<tr><th id="604">604</th><td><i class="doc">       *         that represents an invalid stream position.</i>&nbsp</td></tr>
+<tr><th id="605">605</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="606">606</th><td>      <b>virtual</b> <a class="typedef" href="#std::basic_streambuf::pos_type" title='std::basic_streambuf::pos_type' data-type='typename traits_type::pos_type' data-ref="std::basic_streambuf::pos_type">pos_type</a>&nbsp</td></tr>
+<tr><th id="607">607</th><td>      <dfn class="virtual decl def fn" id="_ZNSt15basic_streambuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode" title='std::basic_streambuf::seekoff' data-ref="_ZNSt15basic_streambuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode">seekoff</dfn>(<a class="typedef" href="#std::basic_streambuf::off_type" title='std::basic_streambuf::off_type' data-type='typename traits_type::off_type' data-ref="std::basic_streambuf::off_type">off_type</a>, <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="typedef" href="bits/ios_base.h.html#std::ios_base::seekdir" title='std::ios_base::seekdir' data-type='std::_Ios_Seekdir' data-ref="std::ios_base::seekdir">seekdir</a>,&nbsp</td></tr>
+<tr><th id="608">608</th><td>	      <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="typedef" href="bits/ios_base.h.html#std::ios_base::openmode" title='std::ios_base::openmode' data-type='std::_Ios_Openmode' data-ref="std::ios_base::openmode">openmode</a> <i>/*__mode*/</i> = <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="ref" href="bits/ios_base.h.html#std::ios_base::in" title='std::ios_base::in' data-ref="std::ios_base::in">in</a> <a class="ref fn" href="bits/ios_base.h.html#_ZStorSt13_Ios_OpenmodeS_" title='std::operator|' data-ref="_ZStorSt13_Ios_OpenmodeS_">|</a> <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="ref" href="bits/ios_base.h.html#std::ios_base::out" title='std::ios_base::out' data-ref="std::ios_base::out">out</a>)&nbsp</td></tr>
+<tr><th id="609">609</th><td>      { <b>return</b> <a class="typedef" href="#std::basic_streambuf::pos_type" title='std::basic_streambuf::pos_type' data-type='typename traits_type::pos_type' data-ref="std::basic_streambuf::pos_type">pos_type</a>(<a class="typedef" href="#std::basic_streambuf::off_type" title='std::basic_streambuf::off_type' data-type='typename traits_type::off_type' data-ref="std::basic_streambuf::off_type">off_type</a>(-<var>1</var>)); }&nbsp</td></tr>
+<tr><th id="610">610</th><td>&nbsp</td></tr>
+<tr><th id="611">611</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="612">612</th><td><i class="doc">       *  <span class="command">@brief</span>  Alters the stream positions.</i>&nbsp</td></tr>
+<tr><th id="613">613</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="614">614</th><td><i class="doc">       *  Each derived class provides its own appropriate behavior.</i>&nbsp</td></tr>
+<tr><th id="615">615</th><td><i class="doc">       *  <span class="command">@note</span>  Base class version does nothing, returns a<span class="command"> @c</span> <span class="arg">pos_type</span></i>&nbsp</td></tr>
+<tr><th id="616">616</th><td><i class="doc">       *         that represents an invalid stream position.</i>&nbsp</td></tr>
+<tr><th id="617">617</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="618">618</th><td>      <b>virtual</b> <a class="typedef" href="#std::basic_streambuf::pos_type" title='std::basic_streambuf::pos_type' data-type='typename traits_type::pos_type' data-ref="std::basic_streambuf::pos_type">pos_type</a>&nbsp</td></tr>
+<tr><th id="619">619</th><td>      <dfn class="virtual decl def fn" id="_ZNSt15basic_streambuf7seekposENT0_8pos_typeESt13_Ios_Openmode" title='std::basic_streambuf::seekpos' data-ref="_ZNSt15basic_streambuf7seekposENT0_8pos_typeESt13_Ios_Openmode">seekpos</dfn>(<a class="typedef" href="#std::basic_streambuf::pos_type" title='std::basic_streambuf::pos_type' data-type='typename traits_type::pos_type' data-ref="std::basic_streambuf::pos_type">pos_type</a>,&nbsp</td></tr>
+<tr><th id="620">620</th><td>	      <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="typedef" href="bits/ios_base.h.html#std::ios_base::openmode" title='std::ios_base::openmode' data-type='std::_Ios_Openmode' data-ref="std::ios_base::openmode">openmode</a> <i>/*__mode*/</i> = <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="ref" href="bits/ios_base.h.html#std::ios_base::in" title='std::ios_base::in' data-ref="std::ios_base::in">in</a> <a class="ref fn" href="bits/ios_base.h.html#_ZStorSt13_Ios_OpenmodeS_" title='std::operator|' data-ref="_ZStorSt13_Ios_OpenmodeS_">|</a> <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="ref" href="bits/ios_base.h.html#std::ios_base::out" title='std::ios_base::out' data-ref="std::ios_base::out">out</a>)&nbsp</td></tr>
+<tr><th id="621">621</th><td>      { <b>return</b> <a class="typedef" href="#std::basic_streambuf::pos_type" title='std::basic_streambuf::pos_type' data-type='typename traits_type::pos_type' data-ref="std::basic_streambuf::pos_type">pos_type</a>(<a class="typedef" href="#std::basic_streambuf::off_type" title='std::basic_streambuf::off_type' data-type='typename traits_type::off_type' data-ref="std::basic_streambuf::off_type">off_type</a>(-<var>1</var>)); }&nbsp</td></tr>
+<tr><th id="622">622</th><td>&nbsp</td></tr>
+<tr><th id="623">623</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="624">624</th><td><i class="doc">       *  <span class="command">@brief</span>  Synchronizes the buffer arrays with the controlled sequences.</i>&nbsp</td></tr>
+<tr><th id="625">625</th><td><i class="doc">       *  <span class="command">@return</span>  -1 on failure.</i>&nbsp</td></tr>
+<tr><th id="626">626</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="627">627</th><td><i class="doc">       *  Each derived class provides its own appropriate behavior,</i>&nbsp</td></tr>
+<tr><th id="628">628</th><td><i class="doc">       *  including the definition of<span class="command"> @a</span> <span class="arg">failure.</span></i>&nbsp</td></tr>
+<tr><th id="629">629</th><td><i class="doc">       *  <span class="command">@note</span>  Base class version does nothing, returns zero.</i>&nbsp</td></tr>
+<tr><th id="630">630</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="631">631</th><td>      <b>virtual</b> <em>int</em>&nbsp</td></tr>
+<tr><th id="632">632</th><td>      <dfn class="virtual decl def fn" id="_ZNSt15basic_streambuf4syncEv" title='std::basic_streambuf::sync' data-ref="_ZNSt15basic_streambuf4syncEv">sync</dfn>() { <b>return</b> <var>0</var>; }&nbsp</td></tr>
+<tr><th id="633">633</th><td>&nbsp</td></tr>
+<tr><th id="634">634</th><td>      <i>// [27.5.2.4.3] get area</i>&nbsp</td></tr>
+<tr><th id="635">635</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="636">636</th><td><i class="doc">       *  <span class="command">@brief</span>  Investigating the data available.</i>&nbsp</td></tr>
+<tr><th id="637">637</th><td><i class="doc">       *  <span class="command">@return</span>  An estimate of the number of characters available in the</i>&nbsp</td></tr>
+<tr><th id="638">638</th><td><i class="doc">       *           input sequence, or -1.</i>&nbsp</td></tr>
+<tr><th id="639">639</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="640">640</th><td><i class="doc">       *  <span class="tag">&lt;em&gt;</span>If it returns a positive value, then successive calls to</i>&nbsp</td></tr>
+<tr><th id="641">641</th><td><i class="doc">       * <span class="command"> @c</span> <span class="arg">underflow()</span> will not return<span class="command"> @c</span> <span class="arg">traits::eof()</span> until at</i>&nbsp</td></tr>
+<tr><th id="642">642</th><td><i class="doc">       *  least that number of characters have been supplied.  If<span class="command"> @c</span></i>&nbsp</td></tr>
+<tr><th id="643">643</th><td><i class="doc">       *  <span class="arg">showmanyc()</span> returns -1, then calls to<span class="command"> @c</span> <span class="arg">underflow()</span> or<span class="command"> @c</span></i>&nbsp</td></tr>
+<tr><th id="644">644</th><td><i class="doc">       *  <span class="arg">uflow()</span> will fail.<span class="tag">&lt;/em&gt;</span> [27.5.2.4.3]/1</i>&nbsp</td></tr>
+<tr><th id="645">645</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="646">646</th><td><i class="doc">       *  <span class="command">@note</span>  Base class version does nothing, returns zero.</i>&nbsp</td></tr>
+<tr><th id="647">647</th><td><i class="doc">       *  <span class="command">@note</span>  The standard adds that <span class="tag">&lt;em&gt;</span>the intention is not only that the</i>&nbsp</td></tr>
+<tr><th id="648">648</th><td><i class="doc">       *         calls [to underflow or uflow] will not return<span class="command"> @c</span> <span class="arg">eof()</span> but</i>&nbsp</td></tr>
+<tr><th id="649">649</th><td><i class="doc">       *         that they will return immediately.<span class="tag">&lt;/em&gt;</span></i>&nbsp</td></tr>
+<tr><th id="650">650</th><td><i class="doc">       *  <span class="command">@note</span>  The standard adds that <span class="tag">&lt;em&gt;</span>the morphemes of<span class="command"> @c</span> <span class="arg">showmanyc</span> are</i>&nbsp</td></tr>
+<tr><th id="651">651</th><td><i class="doc">       *        <span class="command"> @b</span> <span class="arg">es-how-many-see,</span> not<span class="command"> @b</span> <span class="arg">show-manic.</span><span class="tag">&lt;/em&gt;</span></i>&nbsp</td></tr>
+<tr><th id="652">652</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="653">653</th><td>      <b>virtual</b> <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>&nbsp</td></tr>
+<tr><th id="654">654</th><td>      <dfn class="virtual decl def fn" id="_ZNSt15basic_streambuf9showmanycEv" title='std::basic_streambuf::showmanyc' data-ref="_ZNSt15basic_streambuf9showmanycEv">showmanyc</dfn>() { <b>return</b> <var>0</var>; }&nbsp</td></tr>
+<tr><th id="655">655</th><td>&nbsp</td></tr>
+<tr><th id="656">656</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="657">657</th><td><i class="doc">       *  <span class="command">@brief</span>  Multiple character extraction.</i>&nbsp</td></tr>
+<tr><th id="658">658</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__s</span>  A buffer area.</i>&nbsp</td></tr>
+<tr><th id="659">659</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  Maximum number of characters to assign.</i>&nbsp</td></tr>
+<tr><th id="660">660</th><td><i class="doc">       *  <span class="command">@return</span>  The number of characters assigned.</i>&nbsp</td></tr>
+<tr><th id="661">661</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="662">662</th><td><i class="doc">       *  Fills<span class="command"> @a</span> <span class="arg">__s[0]</span> through<span class="command"> @a</span> <span class="arg">__s[__n-1]</span> with characters from the input</i>&nbsp</td></tr>
+<tr><th id="663">663</th><td><i class="doc">       *  sequence, as if by<span class="command"> @c</span> <span class="arg">sbumpc().</span>  Stops when either<span class="command"> @a</span> <span class="arg">__n</span> characters</i>&nbsp</td></tr>
+<tr><th id="664">664</th><td><i class="doc">       *  have been copied, or when<span class="command"> @c</span> <span class="arg">traits::eof()</span> would be copied.</i>&nbsp</td></tr>
+<tr><th id="665">665</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="666">666</th><td><i class="doc">       *  It is expected that derived classes provide a more efficient</i>&nbsp</td></tr>
+<tr><th id="667">667</th><td><i class="doc">       *  implementation by overriding this definition.</i>&nbsp</td></tr>
+<tr><th id="668">668</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="669">669</th><td>      <b>virtual</b> <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>&nbsp</td></tr>
+<tr><th id="670">670</th><td>      <a class="virtual decl fn" href="bits/streambuf.tcc.html#_ZNSt15basic_streambuf6xsgetnEPT_l" title='std::basic_streambuf::xsgetn' data-ref="_ZNSt15basic_streambuf6xsgetnEPT_l" id="_ZNSt15basic_streambuf6xsgetnEPT_l">xsgetn</a>(<a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* <dfn class="local col1 decl" id="1221__s" title='__s' data-type='std::basic_streambuf::char_type *' data-ref="1221__s">__s</dfn>, <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col2 decl" id="1222__n" title='__n' data-type='std::streamsize' data-ref="1222__n">__n</dfn>);&nbsp</td></tr>
+<tr><th id="671">671</th><td>&nbsp</td></tr>
+<tr><th id="672">672</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="673">673</th><td><i class="doc">       *  <span class="command">@brief</span>  Fetches more data from the controlled sequence.</i>&nbsp</td></tr>
+<tr><th id="674">674</th><td><i class="doc">       *  <span class="command">@return</span>  The first character from the <span class="tag">&lt;em&gt;</span>pending sequence<span class="tag">&lt;/em&gt;</span>.</i>&nbsp</td></tr>
+<tr><th id="675">675</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="676">676</th><td><i class="doc">       *  Informally, this function is called when the input buffer is</i>&nbsp</td></tr>
+<tr><th id="677">677</th><td><i class="doc">       *  exhausted (or does not exist, as buffering need not actually be</i>&nbsp</td></tr>
+<tr><th id="678">678</th><td><i class="doc">       *  done).  If a buffer exists, it is<span class="command"> @a</span> <span class="arg">refilled.</span>  In either case, the</i>&nbsp</td></tr>
+<tr><th id="679">679</th><td><i class="doc">       *  next available character is returned, or<span class="command"> @c</span> <span class="arg">traits::eof()</span> to</i>&nbsp</td></tr>
+<tr><th id="680">680</th><td><i class="doc">       *  indicate a null pending sequence.</i>&nbsp</td></tr>
+<tr><th id="681">681</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="682">682</th><td><i class="doc">       *  For a formal definition of the pending sequence, see a good text</i>&nbsp</td></tr>
+<tr><th id="683">683</th><td><i class="doc">       *  such as Langer &amp; Kreft, or [27.5.2.4.3]/7-14.</i>&nbsp</td></tr>
+<tr><th id="684">684</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="685">685</th><td><i class="doc">       *  A functioning input streambuf can be created by overriding only</i>&nbsp</td></tr>
+<tr><th id="686">686</th><td><i class="doc">       *  this function (no buffer area will be used).  For an example, see</i>&nbsp</td></tr>
+<tr><th id="687">687</th><td><i class="doc">       *  <a href="https://gcc.gnu.org/onlinedocs/libstdc++/manual/streambufs.html">https://gcc.gnu.org/onlinedocs/libstdc++/manual/streambufs.html</a></i>&nbsp</td></tr>
+<tr><th id="688">688</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="689">689</th><td><i class="doc">       *  <span class="command">@note</span>  Base class version does nothing, returns eof().</i>&nbsp</td></tr>
+<tr><th id="690">690</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="691">691</th><td>      <b>virtual</b> <a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a>&nbsp</td></tr>
+<tr><th id="692">692</th><td>      <dfn class="virtual decl def fn" id="_ZNSt15basic_streambuf9underflowEv" title='std::basic_streambuf::underflow' data-ref="_ZNSt15basic_streambuf9underflowEv">underflow</dfn>()&nbsp</td></tr>
+<tr><th id="693">693</th><td>      { <b>return</b> <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::eof(); }&nbsp</td></tr>
+<tr><th id="694">694</th><td>&nbsp</td></tr>
+<tr><th id="695">695</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="696">696</th><td><i class="doc">       *  <span class="command">@brief</span>  Fetches more data from the controlled sequence.</i>&nbsp</td></tr>
+<tr><th id="697">697</th><td><i class="doc">       *  <span class="command">@return</span>  The first character from the <span class="tag">&lt;em&gt;</span>pending sequence<span class="tag">&lt;/em&gt;</span>.</i>&nbsp</td></tr>
+<tr><th id="698">698</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="699">699</th><td><i class="doc">       *  Informally, this function does the same thing as<span class="command"> @c</span> <span class="arg">underflow(),</span></i>&nbsp</td></tr>
+<tr><th id="700">700</th><td><i class="doc">       *  and in fact is required to call that function.  It also returns</i>&nbsp</td></tr>
+<tr><th id="701">701</th><td><i class="doc">       *  the new character, like<span class="command"> @c</span> <span class="arg">underflow()</span> does.  However, this</i>&nbsp</td></tr>
+<tr><th id="702">702</th><td><i class="doc">       *  function also moves the read position forward by one.</i>&nbsp</td></tr>
+<tr><th id="703">703</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="704">704</th><td>      <b>virtual</b> <a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a>&nbsp</td></tr>
+<tr><th id="705">705</th><td>      <dfn class="virtual decl def fn" id="_ZNSt15basic_streambuf5uflowEv" title='std::basic_streambuf::uflow' data-ref="_ZNSt15basic_streambuf5uflowEv">uflow</dfn>()&nbsp</td></tr>
+<tr><th id="706">706</th><td>      {&nbsp</td></tr>
+<tr><th id="707">707</th><td>	<a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a> <dfn class="local col3 decl" id="1223__ret" title='__ret' data-type='std::basic_streambuf::int_type' data-ref="1223__ret">__ret</dfn> = <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::eof();&nbsp</td></tr>
+<tr><th id="708">708</th><td>	<em>const</em> <em>bool</em> <dfn class="local col4 decl" id="1224__testeof" title='__testeof' data-type='const bool' data-ref="1224__testeof">__testeof</dfn> = <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::eq_int_type(<b>this</b>-&gt;underflow(),&nbsp</td></tr>
+<tr><th id="709">709</th><td>							<a class="local col3 ref" href="#1223__ret" title='__ret' data-ref="1223__ret">__ret</a>);&nbsp</td></tr>
+<tr><th id="710">710</th><td>	<b>if</b> (!<a class="local col4 ref" href="#1224__testeof" title='__testeof' data-ref="1224__testeof">__testeof</a>)&nbsp</td></tr>
+<tr><th id="711">711</th><td>	  {&nbsp</td></tr>
+<tr><th id="712">712</th><td>	    <a class="local col3 ref" href="#1223__ret" title='__ret' data-ref="1223__ret">__ret</a> = <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::to_int_type(*<b>this</b>-&gt;gptr());&nbsp</td></tr>
+<tr><th id="713">713</th><td>	    <b>this</b>-&gt;gbump(<var>1</var>);&nbsp</td></tr>
+<tr><th id="714">714</th><td>	  }&nbsp</td></tr>
+<tr><th id="715">715</th><td>	<b>return</b> <a class="local col3 ref" href="#1223__ret" title='__ret' data-ref="1223__ret">__ret</a>;&nbsp</td></tr>
+<tr><th id="716">716</th><td>      }&nbsp</td></tr>
+<tr><th id="717">717</th><td>&nbsp</td></tr>
+<tr><th id="718">718</th><td>      <i>// [27.5.2.4.4] putback</i>&nbsp</td></tr>
+<tr><th id="719">719</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="720">720</th><td><i class="doc">       *  <span class="command">@brief</span>  Tries to back up the input sequence.</i>&nbsp</td></tr>
+<tr><th id="721">721</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__c</span>  The character to be inserted back into the sequence.</i>&nbsp</td></tr>
+<tr><th id="722">722</th><td><i class="doc">       *  <span class="command">@return</span>  eof() on failure, <span class="tag">&lt;em&gt;</span>some other value<span class="tag">&lt;/em&gt;</span> on success</i>&nbsp</td></tr>
+<tr><th id="723">723</th><td><i class="doc">       *  <span class="command">@post</span>  The constraints of<span class="command"> @c</span> <span class="arg">gptr(),</span><span class="command"> @c</span> <span class="arg">eback(),</span> and<span class="command"> @c</span> <span class="arg">pptr()</span></i>&nbsp</td></tr>
+<tr><th id="724">724</th><td><i class="doc">       *         are the same as for<span class="command"> @c</span> <span class="arg">underflow().</span></i>&nbsp</td></tr>
+<tr><th id="725">725</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="726">726</th><td><i class="doc">       *  <span class="command">@note</span>  Base class version does nothing, returns eof().</i>&nbsp</td></tr>
+<tr><th id="727">727</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="728">728</th><td>      <b>virtual</b> <a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a>&nbsp</td></tr>
+<tr><th id="729">729</th><td>      <dfn class="virtual decl def fn" id="_ZNSt15basic_streambuf9pbackfailENT0_8int_typeE" title='std::basic_streambuf::pbackfail' data-ref="_ZNSt15basic_streambuf9pbackfailENT0_8int_typeE">pbackfail</dfn>(<a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a> <dfn class="local col5 decl" id="1225__c" title='__c' data-type='std::basic_streambuf::int_type' data-ref="1225__c">__c</dfn> <a class="macro" href="#49" title="__attribute__ ((__unused__))" data-ref="_M/_IsUnused">_IsUnused</a>  = <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::eof())&nbsp</td></tr>
+<tr><th id="730">730</th><td>      { <b>return</b> <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::eof(); }&nbsp</td></tr>
+<tr><th id="731">731</th><td>&nbsp</td></tr>
+<tr><th id="732">732</th><td>      <i>// Put area:</i>&nbsp</td></tr>
+<tr><th id="733">733</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="734">734</th><td><i class="doc">       *  <span class="command">@brief</span>  Multiple character insertion.</i>&nbsp</td></tr>
+<tr><th id="735">735</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__s</span>  A buffer area.</i>&nbsp</td></tr>
+<tr><th id="736">736</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  Maximum number of characters to write.</i>&nbsp</td></tr>
+<tr><th id="737">737</th><td><i class="doc">       *  <span class="command">@return</span>  The number of characters written.</i>&nbsp</td></tr>
+<tr><th id="738">738</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="739">739</th><td><i class="doc">       *  Writes<span class="command"> @a</span> <span class="arg">__s[0]</span> through<span class="command"> @a</span> <span class="arg">__s[__n-1]</span> to the output sequence, as if</i>&nbsp</td></tr>
+<tr><th id="740">740</th><td><i class="doc">       *  by<span class="command"> @c</span> <span class="arg">sputc().</span>  Stops when either<span class="command"> @a</span> <span class="arg">n</span> characters have been</i>&nbsp</td></tr>
+<tr><th id="741">741</th><td><i class="doc">       *  copied, or when<span class="command"> @c</span> <span class="arg">sputc()</span> would return<span class="command"> @c</span> <span class="arg">traits::eof().</span></i>&nbsp</td></tr>
+<tr><th id="742">742</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="743">743</th><td><i class="doc">       *  It is expected that derived classes provide a more efficient</i>&nbsp</td></tr>
+<tr><th id="744">744</th><td><i class="doc">       *  implementation by overriding this definition.</i>&nbsp</td></tr>
+<tr><th id="745">745</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="746">746</th><td>      <b>virtual</b> <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>&nbsp</td></tr>
+<tr><th id="747">747</th><td>      <a class="virtual decl fn" href="bits/streambuf.tcc.html#_ZNSt15basic_streambuf6xsputnEPKT_l" title='std::basic_streambuf::xsputn' data-ref="_ZNSt15basic_streambuf6xsputnEPKT_l" id="_ZNSt15basic_streambuf6xsputnEPKT_l">xsputn</a>(<em>const</em> <a class="typedef" href="#std::basic_streambuf::char_type" title='std::basic_streambuf::char_type' data-type='_CharT' data-ref="std::basic_streambuf::char_type">char_type</a>* <dfn class="local col6 decl" id="1226__s" title='__s' data-type='const std::basic_streambuf::char_type *' data-ref="1226__s">__s</dfn>, <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col7 decl" id="1227__n" title='__n' data-type='std::streamsize' data-ref="1227__n">__n</dfn>);&nbsp</td></tr>
+<tr><th id="748">748</th><td>&nbsp</td></tr>
+<tr><th id="749">749</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="750">750</th><td><i class="doc">       *  <span class="command">@brief</span>  Consumes data from the buffer; writes to the</i>&nbsp</td></tr>
+<tr><th id="751">751</th><td><i class="doc">       *          controlled sequence.</i>&nbsp</td></tr>
+<tr><th id="752">752</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__c</span>  An additional character to consume.</i>&nbsp</td></tr>
+<tr><th id="753">753</th><td><i class="doc">       *  <span class="command">@return</span>  eof() to indicate failure, something else (usually</i>&nbsp</td></tr>
+<tr><th id="754">754</th><td><i class="doc">       *          <span class="command"> @a</span> <span class="arg">__c,</span> or not_eof())</i>&nbsp</td></tr>
+<tr><th id="755">755</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="756">756</th><td><i class="doc">       *  Informally, this function is called when the output buffer</i>&nbsp</td></tr>
+<tr><th id="757">757</th><td><i class="doc">       *  is full (or does not exist, as buffering need not actually</i>&nbsp</td></tr>
+<tr><th id="758">758</th><td><i class="doc">       *  be done).  If a buffer exists, it is<span class="command"> @a</span> <span class="arg">consumed,</span> with</i>&nbsp</td></tr>
+<tr><th id="759">759</th><td><i class="doc">       *  <span class="tag">&lt;em&gt;</span>some effect<span class="tag">&lt;/em&gt;</span> on the controlled sequence.</i>&nbsp</td></tr>
+<tr><th id="760">760</th><td><i class="doc">       *  (Typically, the buffer is written out to the sequence</i>&nbsp</td></tr>
+<tr><th id="761">761</th><td><i class="doc">       *  verbatim.)  In either case, the character<span class="command"> @a</span> <span class="arg">c</span> is also</i>&nbsp</td></tr>
+<tr><th id="762">762</th><td><i class="doc">       *  written out, if<span class="command"> @a</span> <span class="arg">__c</span> is not<span class="command"> @c</span> <span class="arg">eof().</span></i>&nbsp</td></tr>
+<tr><th id="763">763</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="764">764</th><td><i class="doc">       *  For a formal definition of this function, see a good text</i>&nbsp</td></tr>
+<tr><th id="765">765</th><td><i class="doc">       *  such as Langer &amp; Kreft, or [27.5.2.4.5]/3-7.</i>&nbsp</td></tr>
+<tr><th id="766">766</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="767">767</th><td><i class="doc">       *  A functioning output streambuf can be created by overriding only</i>&nbsp</td></tr>
+<tr><th id="768">768</th><td><i class="doc">       *  this function (no buffer area will be used).</i>&nbsp</td></tr>
+<tr><th id="769">769</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="770">770</th><td><i class="doc">       *  <span class="command">@note</span>  Base class version does nothing, returns eof().</i>&nbsp</td></tr>
+<tr><th id="771">771</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="772">772</th><td>      <b>virtual</b> <a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a>&nbsp</td></tr>
+<tr><th id="773">773</th><td>      <dfn class="virtual decl def fn" id="_ZNSt15basic_streambuf8overflowENT0_8int_typeE" title='std::basic_streambuf::overflow' data-ref="_ZNSt15basic_streambuf8overflowENT0_8int_typeE">overflow</dfn>(<a class="typedef" href="#std::basic_streambuf::int_type" title='std::basic_streambuf::int_type' data-type='typename traits_type::int_type' data-ref="std::basic_streambuf::int_type">int_type</a> <dfn class="local col8 decl" id="1228__c" title='__c' data-type='std::basic_streambuf::int_type' data-ref="1228__c">__c</dfn> <a class="macro" href="#49" title="__attribute__ ((__unused__))" data-ref="_M/_IsUnused">_IsUnused</a>  = <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::eof())&nbsp</td></tr>
+<tr><th id="774">774</th><td>      { <b>return</b> <a class="typedef" href="#std::basic_streambuf::traits_type" title='std::basic_streambuf::traits_type' data-type='_Traits' data-ref="std::basic_streambuf::traits_type">traits_type</a>::eof(); }&nbsp</td></tr>
+<tr><th id="775">775</th><td>&nbsp</td></tr>
+<tr><th id="776">776</th><td><u>#<span data-ppcond="776">if</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#88" title="1" data-ref="_M/_GLIBCXX_USE_DEPRECATED">_GLIBCXX_USE_DEPRECATED</a> &amp;&amp; <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201402L</u>&nbsp</td></tr>
+<tr><th id="777">777</th><td>    <i>// Annex D.6 (removed in C++17)</i>&nbsp</td></tr>
+<tr><th id="778">778</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="779">779</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="780">780</th><td><i class="doc">       *  <span class="command">@brief</span>  Tosses a character.</i>&nbsp</td></tr>
+<tr><th id="781">781</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="782">782</th><td><i class="doc">       *  Advances the read pointer, ignoring the character that would have</i>&nbsp</td></tr>
+<tr><th id="783">783</th><td><i class="doc">       *  been read.</i>&nbsp</td></tr>
+<tr><th id="784">784</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="785">785</th><td><i class="doc">       *  See <a href="http://gcc.gnu.org/ml/libstdc++/2002-05/msg00168.html">http://gcc.gnu.org/ml/libstdc++/2002-05/msg00168.html</a></i>&nbsp</td></tr>
+<tr><th id="786">786</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="787">787</th><td>      _GLIBCXX_DEPRECATED_SUGGEST(<q>"std::basic_streambuf::sbumpc"</q>)&nbsp</td></tr>
+<tr><th id="788">788</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="789">789</th><td>      stossc()&nbsp</td></tr>
+<tr><th id="790">790</th><td>      {&nbsp</td></tr>
+<tr><th id="791">791</th><td>	<b>if</b> (<b>this</b>-&gt;gptr() &lt; <b>this</b>-&gt;egptr())&nbsp</td></tr>
+<tr><th id="792">792</th><td>	  <b>this</b>-&gt;gbump(<var>1</var>);&nbsp</td></tr>
+<tr><th id="793">793</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="794">794</th><td>	  <b>this</b>-&gt;uflow();&nbsp</td></tr>
+<tr><th id="795">795</th><td>      }&nbsp</td></tr>
+<tr><th id="796">796</th><td><u>#<span data-ppcond="776">endif</span></u>&nbsp</td></tr>
+<tr><th id="797">797</th><td>&nbsp</td></tr>
+<tr><th id="798">798</th><td>      <i>// Also used by specializations for char and wchar_t in src.</i>&nbsp</td></tr>
+<tr><th id="799">799</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="800">800</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf12__safe_gbumpEl" title='std::basic_streambuf::__safe_gbump' data-ref="_ZNSt15basic_streambuf12__safe_gbumpEl">__safe_gbump</dfn>(<a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col9 decl" id="1229__n" title='__n' data-type='std::streamsize' data-ref="1229__n">__n</dfn>) { <a class="member field" href="#std::basic_streambuf::_M_in_cur" title='std::basic_streambuf::_M_in_cur' data-ref="std::basic_streambuf::_M_in_cur">_M_in_cur</a> += <a class="local col9 ref" href="#1229__n" title='__n' data-ref="1229__n">__n</a>; }&nbsp</td></tr>
+<tr><th id="801">801</th><td>&nbsp</td></tr>
+<tr><th id="802">802</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="803">803</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf12__safe_pbumpEl" title='std::basic_streambuf::__safe_pbump' data-ref="_ZNSt15basic_streambuf12__safe_pbumpEl">__safe_pbump</dfn>(<a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col0 decl" id="1230__n" title='__n' data-type='std::streamsize' data-ref="1230__n">__n</dfn>) { <a class="member field" href="#std::basic_streambuf::_M_out_cur" title='std::basic_streambuf::_M_out_cur' data-ref="std::basic_streambuf::_M_out_cur">_M_out_cur</a> += <a class="local col0 ref" href="#1230__n" title='__n' data-ref="1230__n">__n</a>; }&nbsp</td></tr>
+<tr><th id="804">804</th><td>&nbsp</td></tr>
+<tr><th id="805">805</th><td><u>#<span data-ppcond="805">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt; 201103L</u>&nbsp</td></tr>
+<tr><th id="806">806</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="807">807</th><td><u>#<span data-ppcond="805">else</span></u>&nbsp</td></tr>
+<tr><th id="808">808</th><td>    <b>protected</b>:&nbsp</td></tr>
+<tr><th id="809">809</th><td><u>#<span data-ppcond="805">endif</span></u>&nbsp</td></tr>
+<tr><th id="810">810</th><td>      <dfn class="decl fn" id="_ZNSt15basic_streambufC1ERKSt15basic_streambufIT_T0_E" title='std::basic_streambuf::basic_streambuf&lt;_CharT, _Traits&gt;' data-ref="_ZNSt15basic_streambufC1ERKSt15basic_streambufIT_T0_E">basic_streambuf</dfn>(<em>const</em> basic_streambuf&amp;);&nbsp</td></tr>
+<tr><th id="811">811</th><td>&nbsp</td></tr>
+<tr><th id="812">812</th><td>      basic_streambuf&amp;&nbsp</td></tr>
+<tr><th id="813">813</th><td>      <dfn class="decl fn" id="_ZNSt15basic_streambufaSERKSt15basic_streambufIT_T0_E" title='std::basic_streambuf::operator=' data-ref="_ZNSt15basic_streambufaSERKSt15basic_streambufIT_T0_E"><b>operator</b>=</dfn>(<em>const</em> basic_streambuf&amp;);&nbsp</td></tr>
+<tr><th id="814">814</th><td>&nbsp</td></tr>
+<tr><th id="815">815</th><td><u>#<span data-ppcond="815">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="816">816</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="817">817</th><td>      <dfn class="decl def fn" id="_ZNSt15basic_streambuf4swapERSt15basic_streambufIT_T0_E" title='std::basic_streambuf::swap' data-ref="_ZNSt15basic_streambuf4swapERSt15basic_streambufIT_T0_E">swap</dfn>(basic_streambuf&amp; <dfn class="local col1 decl" id="1231__sb" title='__sb' data-type='basic_streambuf&lt;_CharT, _Traits&gt; &amp;' data-ref="1231__sb">__sb</dfn>)&nbsp</td></tr>
+<tr><th id="818">818</th><td>      {&nbsp</td></tr>
+<tr><th id="819">819</th><td>	<span class="namespace">std::</span>swap(<a class="member field" href="#std::basic_streambuf::_M_in_beg" title='std::basic_streambuf::_M_in_beg' data-ref="std::basic_streambuf::_M_in_beg">_M_in_beg</a>, <a class="local col1 ref" href="#1231__sb" title='__sb' data-ref="1231__sb">__sb</a>._M_in_beg);&nbsp</td></tr>
+<tr><th id="820">820</th><td>	<span class="namespace">std::</span>swap(<a class="member field" href="#std::basic_streambuf::_M_in_cur" title='std::basic_streambuf::_M_in_cur' data-ref="std::basic_streambuf::_M_in_cur">_M_in_cur</a>, <a class="local col1 ref" href="#1231__sb" title='__sb' data-ref="1231__sb">__sb</a>._M_in_cur);&nbsp</td></tr>
+<tr><th id="821">821</th><td>	<span class="namespace">std::</span>swap(<a class="member field" href="#std::basic_streambuf::_M_in_end" title='std::basic_streambuf::_M_in_end' data-ref="std::basic_streambuf::_M_in_end">_M_in_end</a>, <a class="local col1 ref" href="#1231__sb" title='__sb' data-ref="1231__sb">__sb</a>._M_in_end);&nbsp</td></tr>
+<tr><th id="822">822</th><td>	<span class="namespace">std::</span>swap(<a class="member field" href="#std::basic_streambuf::_M_out_beg" title='std::basic_streambuf::_M_out_beg' data-ref="std::basic_streambuf::_M_out_beg">_M_out_beg</a>, <a class="local col1 ref" href="#1231__sb" title='__sb' data-ref="1231__sb">__sb</a>._M_out_beg);&nbsp</td></tr>
+<tr><th id="823">823</th><td>	<span class="namespace">std::</span>swap(<a class="member field" href="#std::basic_streambuf::_M_out_cur" title='std::basic_streambuf::_M_out_cur' data-ref="std::basic_streambuf::_M_out_cur">_M_out_cur</a>, <a class="local col1 ref" href="#1231__sb" title='__sb' data-ref="1231__sb">__sb</a>._M_out_cur);&nbsp</td></tr>
+<tr><th id="824">824</th><td>	<span class="namespace">std::</span>swap(<a class="member field" href="#std::basic_streambuf::_M_out_end" title='std::basic_streambuf::_M_out_end' data-ref="std::basic_streambuf::_M_out_end">_M_out_end</a>, <a class="local col1 ref" href="#1231__sb" title='__sb' data-ref="1231__sb">__sb</a>._M_out_end);&nbsp</td></tr>
+<tr><th id="825">825</th><td>	<span class="namespace">std::</span>swap(<a class="member field" href="#std::basic_streambuf::_M_buf_locale" title='std::basic_streambuf::_M_buf_locale' data-ref="std::basic_streambuf::_M_buf_locale">_M_buf_locale</a>, <a class="local col1 ref" href="#1231__sb" title='__sb' data-ref="1231__sb">__sb</a>._M_buf_locale);&nbsp</td></tr>
+<tr><th id="826">826</th><td>      }&nbsp</td></tr>
+<tr><th id="827">827</th><td><u>#<span data-ppcond="815">endif</span></u>&nbsp</td></tr>
+<tr><th id="828">828</th><td>    };&nbsp</td></tr>
+<tr><th id="829">829</th><td>&nbsp</td></tr>
+<tr><th id="830">830</th><td><u>#<span data-ppcond="830">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="831">831</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="832">832</th><td>    <span class="namespace">std::</span><a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt;::&nbsp</td></tr>
+<tr><th id="833">833</th><td>    <dfn class="decl def fn" id="_ZNSt15basic_streambufC1ERKSt15basic_streambufIT_T0_E" title='std::basic_streambuf::basic_streambuf&lt;_CharT, _Traits&gt;' data-ref="_ZNSt15basic_streambufC1ERKSt15basic_streambufIT_T0_E">basic_streambuf</dfn>(<em>const</em> basic_streambuf&amp;) = <b>default</b>;&nbsp</td></tr>
+<tr><th id="834">834</th><td>&nbsp</td></tr>
+<tr><th id="835">835</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="836">836</th><td>    <span class="namespace">std::</span><a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="837">837</th><td>    <span class="namespace">std::</span><a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt;::&nbsp</td></tr>
+<tr><th id="838">838</th><td>    <dfn class="decl def fn" id="_ZNSt15basic_streambufaSERKSt15basic_streambufIT_T0_E" title='std::basic_streambuf::operator=' data-ref="_ZNSt15basic_streambufaSERKSt15basic_streambufIT_T0_E"><b>operator</b>=</dfn>(<em>const</em> basic_streambuf&amp;) = <b>default</b>;&nbsp</td></tr>
+<tr><th id="839">839</th><td><u>#<span data-ppcond="830">endif</span></u>&nbsp</td></tr>
+<tr><th id="840">840</th><td>&nbsp</td></tr>
+<tr><th id="841">841</th><td>  <i>// Explicit specialization declarations, defined in src/streambuf.cc.</i>&nbsp</td></tr>
+<tr><th id="842">842</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="843">843</th><td>    <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>&nbsp</td></tr>
+<tr><th id="844">844</th><td>    <a class="decl fn" href="#_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb" title='std::__copy_streambufs_eof' data-ref="_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb">__copy_streambufs_eof</a>(<a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;<em>char</em>&gt;* <dfn class="local col2 decl" id="1232__sbin" title='__sbin' data-type='basic_streambuf&lt;char&gt; *' data-ref="1232__sbin">__sbin</dfn>,&nbsp</td></tr>
+<tr><th id="845">845</th><td>			  <a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;<em>char</em>&gt;* <dfn class="local col3 decl" id="1233__sbout" title='__sbout' data-type='basic_streambuf&lt;char&gt; *' data-ref="1233__sbout">__sbout</dfn>, <em>bool</em>&amp; <dfn class="local col4 decl" id="1234__ineof" title='__ineof' data-type='bool &amp;' data-ref="1234__ineof">__ineof</dfn>);&nbsp</td></tr>
+<tr><th id="846">846</th><td><u>#<span data-ppcond="846">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1797" data-ref="_M/_GLIBCXX_USE_WCHAR_T">_GLIBCXX_USE_WCHAR_T</a></u>&nbsp</td></tr>
+<tr><th id="847">847</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="848">848</th><td>    <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>&nbsp</td></tr>
+<tr><th id="849">849</th><td>    <a class="decl fn" href="#_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb" title='std::__copy_streambufs_eof' data-ref="_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb">__copy_streambufs_eof</a>(<a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;<em>wchar_t</em>&gt;* <dfn class="local col5 decl" id="1235__sbin" title='__sbin' data-type='basic_streambuf&lt;wchar_t&gt; *' data-ref="1235__sbin">__sbin</dfn>,&nbsp</td></tr>
+<tr><th id="850">850</th><td>			  <a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;<em>wchar_t</em>&gt;* <dfn class="local col6 decl" id="1236__sbout" title='__sbout' data-type='basic_streambuf&lt;wchar_t&gt; *' data-ref="1236__sbout">__sbout</dfn>, <em>bool</em>&amp; <dfn class="local col7 decl" id="1237__ineof" title='__ineof' data-type='bool &amp;' data-ref="1237__ineof">__ineof</dfn>);&nbsp</td></tr>
+<tr><th id="851">851</th><td><u>#<span data-ppcond="846">endif</span></u>&nbsp</td></tr>
+<tr><th id="852">852</th><td>&nbsp</td></tr>
+<tr><th id="853">853</th><td><u>#undef <a class="macro" href="#49" data-ref="_M/_IsUnused">_IsUnused</a></u>&nbsp</td></tr>
+<tr><th id="854">854</th><td>&nbsp</td></tr>
+<tr><th id="855">855</th><td><a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="856">856</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="857">857</th><td>&nbsp</td></tr>
+<tr><th id="858">858</th><td><u>#include &lt;bits/streambuf.tcc&gt;</u>&nbsp</td></tr>
+<tr><th id="859">859</th><td>&nbsp</td></tr>
+<tr><th id="860">860</th><td><u>#<span data-ppcond="33">endif</span> /* _GLIBCXX_STREAMBUF */</u>&nbsp</td></tr>
+<tr><th id="861">861</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tPool.h.html'>Modules/Foundation/Inc/Foundation/tPool.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

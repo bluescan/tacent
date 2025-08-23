@@ -1,0 +1,17 @@
+<def f='include/c++/11/bits/stl_vector.h' l='553' ll='561' type='void std::vector::vector&lt;_Tp, _Alloc&gt;(const vector&lt;_Tp, _Alloc&gt; &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='542'>/**
+       *  @brief  %Vector copy constructor.
+       *  @param  __x  A %vector of identical element and allocator types.
+       *
+       *  All the elements of @a __x are copied, but any unused capacity in
+       *  @a __x  will not be copied
+       *  (i.e. capacity() == size() in the new %vector).
+       *
+       *  The newly-created %vector uses a copy of the allocator object used
+       *  by @a __x (unless the allocator traits dictate a different object).
+       */</doc>
+<use f='include/c++/11/bits/random.h' l='5318' u='c' c='_ZNKSt21discrete_distribution10param_type13probabilitiesEv'/>
+<use f='include/c++/11/bits/random.h' l='5564' u='c' c='_ZNKSt31piecewise_constant_distribution10param_type9densitiesEv'/>
+<use f='include/c++/11/bits/random.h' l='5835' u='c' c='_ZNKSt29piecewise_linear_distribution10param_type9densitiesEv'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='534' u='c' c='_ZN6tImage16tQuantizeSpatial14refine_paletteERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_RSt6vectorIS3_SaIS3_EE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='535' u='c' c='_ZN6tImage16tQuantizeSpatial14refine_paletteERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_RSt6vectorIS3_SaIS3_EE'/>

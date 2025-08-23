@@ -1,0 +1,11 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='301' type='static std::locale std::locale::global(const std::locale &amp; __loc)'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='290'>/**
+     *  @brief  Set global locale
+     *
+     *  This function sets the global locale to the argument and returns a
+     *  copy of the previous global locale.  If the argument has a name, it
+     *  will also call std::setlocale(LC_ALL, loc.name()).
+     *
+     *  @param  __loc  The new locale to make global.
+     *  @return  Copy of the old global locale.
+    */</doc>

@@ -1,0 +1,6 @@
+<dec f='include/c++/11/mutex' l='699' type='void *'/>
+<use f='include/c++/11/mutex' l='710' u='w' c='_ZNSt9once_flag18_Prepare_executionC1ERT_'/>
+<use f='include/c++/11/mutex' l='712' u='r' c='_ZNSt9once_flag18_Prepare_executionC1ERT_'/>
+<use f='include/c++/11/mutex' l='718' u='w' c='_ZNSt9once_flag18_Prepare_executionD1Ev'/>
+<doc f='include/c++/11/mutex' l='697'>// If TLS is available use thread-local state for the type-erased callable
+  // that is being run by std::call_once in the current thread.</doc>

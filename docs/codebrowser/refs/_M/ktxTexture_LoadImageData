@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='593'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='588'>/**
+ * @~English
+ * @brief Helper for calling the LoadImageData virtual method of a ktxTexture.
+ * @copydoc ktxTexture2.ktxTexture2_LoadImageData
+ */</doc>

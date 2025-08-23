@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tSpline.h' l='106' type='1'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='127' u='r' c='_ZNK5tMath11tBezierPath8IsClosedEv'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='318' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='376' u='r' c='_ZN5tMath11tBezierPath15SetControlVertsEPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='406' u='r' c='_ZNK5tMath11tBezierPath8GetPointERNS_8tVector3Ef'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='436' u='r' c='_ZNK5tMath11tBezierPath10GetTangentERNS_8tVector3Ef'/>

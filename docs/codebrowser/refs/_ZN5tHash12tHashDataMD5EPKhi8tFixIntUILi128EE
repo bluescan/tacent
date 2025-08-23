@@ -1,0 +1,8 @@
+<dec f='Modules/Foundation/Inc/Foundation/tHash.h' l='115' type='tuint128 tHash::tHashDataMD5(const uint8 * data, int length, tuint128 iv = HashIVMD5)'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='160' u='c' c='_ZN5tHash14tHashStringMD5EPKc8tFixIntUILi128EE'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='161' u='c' c='_ZN5tHash14tHashStringMD5EPKDu8tFixIntUILi128EE'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='163' u='c' c='_ZN5tHash12tHashData128EPKhi8tFixIntUILi128EE'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='164' u='c' c='_ZN5tHash14tHashString128EPKc8tFixIntUILi128EE'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='165' u='c' c='_ZN5tHash14tHashString128EPKDu8tFixIntUILi128EE'/>
+<def f='Modules/Foundation/Src/tHash.cpp' l='388' ll='447' type='tuint128 tHash::tHashDataMD5(const uint8 * data, int len, tuint128 iv = HashIVMD5)'/>
+<use f='Modules/System/Src/tFile.cpp' l='3319' u='c' c='_ZN7tSystem12tHashFileMD5ERK7tString8tFixIntUILi128EE'/>

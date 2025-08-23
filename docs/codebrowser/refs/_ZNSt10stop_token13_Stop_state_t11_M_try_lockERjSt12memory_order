@@ -1,0 +1,7 @@
+<use f='include/c++/11/stop_token' l='210' u='c' c='_ZNSt10stop_token13_Stop_state_t7_M_lockEv'/>
+<use f='include/c++/11/stop_token' l='296' u='c' c='_ZNSt10stop_token13_Stop_state_t20_M_register_callbackEPNS_8_Stop_cbE'/>
+<def f='include/c++/11/stop_token' l='356' ll='361' type='bool std::stop_token::_Stop_state_t::_M_try_lock(std::stop_token::_Stop_state_t::value_type &amp; __curval, std::memory_order __failure = memory_order::acquire)'/>
+<doc f='include/c++/11/stop_token' l='352'>// Try to obtain the lock.
+      // Returns true if the lock is acquired (with memory order acquire).
+      // Otherwise, sets __curval = _M_value.load(__failure) and returns false.
+      // Might fail spuriously, so must be called in a loop.</doc>

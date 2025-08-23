@@ -1,0 +1,2 @@
+<dec f='include/inttypes.h' l='305' type='intmax_t wcstoimax(const wchar_t *__restrict __nptr, wchar_t **__restrict __endptr, int __base)'/>
+<doc f='include/inttypes.h' l='304'>/* Like `wcstol&apos; but convert to `intmax_t&apos;.  */</doc>

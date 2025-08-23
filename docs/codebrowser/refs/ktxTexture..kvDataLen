@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='273' type='ktx_uint32_t'/>
+<offset>704</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='391'>/**
+ * @typedef ktxTexture::kvDataLen
+ * @~English
+ * @brief Length of the metadata, if it has been extracted in its raw form,
+ *       otherwise 0.
+ */</doc>

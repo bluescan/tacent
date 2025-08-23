@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='349' type='tItList::Iter tItList::begin() const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='346'>// For range-based iteration supported in C++11. It worth noting that ++Iter must return a value that matches
+	// whatever end() returns here. That is != must return false when comparing the final ++Iter next call with
+	// what is returned by end(). That is why we return an Iter with a null Node but a _valid_ List pointer.</doc>

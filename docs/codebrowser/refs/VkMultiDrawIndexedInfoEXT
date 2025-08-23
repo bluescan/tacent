@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16571' ll='16575'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16571'/>
+<size>12</size>
+<mbr r='VkMultiDrawIndexedInfoEXT::firstIndex' o='0' t='uint32_t'/>
+<mbr r='VkMultiDrawIndexedInfoEXT::indexCount' o='32' t='uint32_t'/>
+<mbr r='VkMultiDrawIndexedInfoEXT::vertexOffset' o='64' t='int32_t'/>

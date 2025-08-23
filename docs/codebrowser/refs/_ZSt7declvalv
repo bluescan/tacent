@@ -1,0 +1,5 @@
+<dec f='include/c++/11/type_traits' l='816' type='decltype(__declval&lt;_Tp&gt;(0)) std::declval()'/>
+<def f='include/c++/11/type_traits' l='2358' ll='2363' type='decltype(__declval&lt;_Tp&gt;(0)) std::declval()'/>
+<use f='include/c++/11/concepts' l='217' u='c' c='_ZNKSt6ranges11__cust_swap5_SwapclERAT1__T_RAT1__T0_'/>
+<use f='include/c++/11/bits/random.h' l='200' u='c'/>
+<use f='include/c++/11/bits/random.h' l='201' u='c'/>

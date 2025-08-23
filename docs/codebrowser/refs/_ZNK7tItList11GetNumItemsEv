@@ -1,0 +1,19 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='340' type='int tItList::GetNumItems() const'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='56' u='c' c='_ZNK6tScene9tLodGroup14GetNumLodInfosEv'/>
+<use f='Modules/Scene/Inc/Scene/tSelection.h' l='29' u='c' c='_ZNK6tScene10tSelection11GetNumItemsEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='631' u='c' c='_ZN6tScene6tWorld16CorrectCameraIDsER7tItListINS_7tCameraEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='680' u='c' c='_ZN6tScene6tWorld15CorrectLightIDsER7tItListINS_6tLightEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='729' u='c' c='_ZN6tScene6tWorld14CorrectPathIDsER7tItListINS_5tPathEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='781' u='c' c='_ZN6tScene6tWorld18CorrectMaterialIDsER7tItListINS_9tMaterialEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='833' u='c' c='_ZN6tScene6tWorld18CorrectSkeletonIDsER7tItListINS_9tSkeletonEERS1_INS_10tPolyModelEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='893' u='c' c='_ZN6tScene6tWorld19CorrectPolyModelIDsER7tItListINS_10tPolyModelEERS1_INS_9tLodGroupEERS1_INS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='979' u='c' c='_ZN6tScene6tWorld18CorrectInstanceIDsER7tItListINS_9tInstanceEERS1_INS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1302' u='c' c='_ZNK6tScene6tWorld15GetNumMaterialsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1342' u='c' c='_ZNK6tScene6tWorld15GetNumSkeletonsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1382' u='c' c='_ZNK6tScene6tWorld12GetNumModelsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1422' u='c' c='_ZNK6tScene6tWorld13GetNumCamerasERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1462' u='c' c='_ZNK6tScene6tWorld12GetNumLightsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1502' u='c' c='_ZNK6tScene6tWorld11GetNumPathsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1542' u='c' c='_ZNK6tScene6tWorld15GetNumLodGroupsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1643' u='c' c='_ZNK6tScene6tWorld15GetNumInstancesERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1692' u='c' c='_ZNK6tScene6tWorld16GetNumSelectionsERK7tString'/>

@@ -1,0 +1,3 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='176' u='c' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='582' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<def f='Modules/Scene/Src/tWorld.cpp' l='629' ll='675' type='void tScene::tWorld::CorrectCameraIDs(tItList&lt;tScene::tCamera&gt; &amp; newCameras, tItList&lt;tScene::tInstance&gt; &amp; newInstances)'/>

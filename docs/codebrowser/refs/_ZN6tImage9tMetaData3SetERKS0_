@@ -1,0 +1,4 @@
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='179' u='c' c='_ZN6tImage9tMetaDataC1ERKS0_'/>
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='184' type='bool tImage::tMetaData::Set(const tImage::tMetaData &amp; src)'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='198' u='c' c='_ZN6tImage9tMetaDataaSERKS0_'/>
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='267' ll='274' type='bool tImage::tMetaData::Set(const tImage::tMetaData &amp; src)'/>

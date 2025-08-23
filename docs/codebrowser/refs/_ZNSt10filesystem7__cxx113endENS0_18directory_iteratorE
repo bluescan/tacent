@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/fs_dir.h' l='455' ll='457' type='std::filesystem::directory_iterator std::filesystem::end(std::filesystem::directory_iterator )'/>
+<doc f='include/c++/11/bits/fs_dir.h' l='454'>/// Return a past-the-end directory_iterator</doc>

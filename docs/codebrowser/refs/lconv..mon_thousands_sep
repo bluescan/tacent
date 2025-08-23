@@ -1,0 +1,3 @@
+<dec f='include/locale.h' l='71' type='char *'/>
+<offset>384</offset>
+<doc f='include/locale.h' l='71'>/* Thousands separator.  */</doc>

@@ -1,0 +1,26 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='116' type='tString tSystem::tGetSimplifiedPath(const tString &amp; path, bool forceTreatAsDir = false)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='105'>// Returns a path (directory or filename) that is as simple as possible. Mainly this involves removing (and
+// resolving) any &quot;.&quot; or &quot;..&quot; strings. This is a string manipulation call only -- it does not query the filesystem.
+// For example, if the input is:
+//
+// &quot;E:/Projects/Calamity/Crypto/../../Reign/./Squiggle/&quot;
+// the returned string will be
+// &quot;E:/Projects/Reign/Squiggle/&quot;.
+//
+// This function also works if a filename is specified at the end. If forceTreatAsDir is false, paths ending with a /
+// are treated as directories and paths without a / are treated as files. If force is true, both are treated as dirs
+// and the returned path will end with a /.</doc>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='58' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='106' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='555' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='558' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='561' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='564' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='567' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='570' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='573' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='576' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<def f='Modules/System/Src/tFile.cpp' l='215' ll='258' type='tString tSystem::tGetSimplifiedPath(const tString &amp; path, bool forceTreatAsDir = false)'/>
+<use f='Modules/System/Src/tFile.cpp' l='267' u='c' c='_ZN7tSystem13tComparePathsERK7tStringS2_b'/>
+<use f='Modules/System/Src/tFile.cpp' l='268' u='c' c='_ZN7tSystem13tComparePathsERK7tStringS2_b'/>
+<use f='Modules/System/Src/tFile.cpp' l='293' u='c' c='_ZN7tSystem16tGetAbsolutePathERK7tStringS2_'/>

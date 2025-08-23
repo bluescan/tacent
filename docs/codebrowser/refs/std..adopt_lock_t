@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/std_mutex.h' l='206'/>
+<use f='include/c++/11/bits/std_mutex.h' l='215'/>
+<use f='include/c++/11/bits/std_mutex.h' l='231' c='_ZNSt10lock_guardC1ERT_St12adopt_lock_t'/>
+<use f='include/c++/11/bits/unique_lock.h' l='81' c='_ZNSt11unique_lockC1ERT_St12adopt_lock_t'/>
+<use f='include/c++/11/mutex' l='622' c='_ZNSt11scoped_lockC1ESt12adopt_lock_tDpRT_'/>
+<use f='include/c++/11/mutex' l='641' c='_ZNSt11scoped_lockIJEEC1ESt12adopt_lock_t'/>
+<use f='include/c++/11/mutex' l='657' c='_ZNSt11scoped_lockIJT_EEC1ESt12adopt_lock_tRS0_'/>
+<size>1</size>
+<fun r='_ZNSt12adopt_lock_tC1Ev'/>

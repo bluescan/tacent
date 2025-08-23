@@ -1,0 +1,10 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='45' type='void tMath::tVector3::Zero(comp_t c)'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='166' u='c' c='_ZNK5tMath12tBezierCurve18GetClosestParamRecERKNS_8tVector3Ejfff'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='170' u='c' c='_ZNK5tMath12tBezierCurve18GetClosestParamRecERKNS_8tVector3Ejfff'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='174' u='c' c='_ZNK5tMath12tBezierCurve18GetClosestParamRecERKNS_8tVector3Ejfff'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='249' u='c' c='_ZNK5tMath11tBezierPath35ComputeApproxParamPerCoordinateUnitEj'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='250' u='c' c='_ZNK5tMath11tBezierPath35ComputeApproxParamPerCoordinateUnitEj'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='467' u='c' c='_ZN5tMath11tBezierPath17tFastSectionState15CompareSectionsERKNS1_12tSectionInfoES4_'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='468' u='c' c='_ZN5tMath11tBezierPath17tFastSectionState15CompareSectionsERKNS1_12tSectionInfoES4_'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='521' u='c' c='_ZNK5tMath11tBezierPath15GetClosestParamERKNS_8tVector3EjfRKNS0_17tFastSectionStateE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='530' u='c' c='_ZNK5tMath11tBezierPath15GetClosestParamERKNS_8tVector3EjfRKNS0_17tFastSectionStateE'/>

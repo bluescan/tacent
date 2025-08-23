@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='448' type='pair&lt;_FIter, _FIter&gt; std::minmax_element(_FIter , _FIter , _Compare )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='3428' ll='3443' macro='1' type='pair&lt;_ForwardIterator, _ForwardIterator&gt; std::minmax_element(_ForwardIterator __first, _ForwardIterator __last, _Compare __comp)'/>

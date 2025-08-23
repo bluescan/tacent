@@ -1,0 +1,148 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ostream_insert.h source code [include/c++/11/bits/ostream_insert.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/ostream_insert.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='ostream_insert.h.html'>ostream_insert.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Helpers for ostream inserters -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2007-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/ostream_insert.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{ostream}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_OSTREAM_INSERT_H">_OSTREAM_INSERT_H</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_OSTREAM_INSERT_H" data-ref="_M/_OSTREAM_INSERT_H">_OSTREAM_INSERT_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;iosfwd&gt;</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;bits/cxxabi_forced.h&gt;</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#include &lt;bits/exception_defines.h&gt;</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="40">40</th><td>{&nbsp</td></tr>
+<tr><th id="41">41</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="44">44</th><td>    <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="45">45</th><td>    <dfn class="decl def fn" id="_ZSt15__ostream_writeRSt13basic_ostreamIT_T0_EPKS0_l" title='std::__ostream_write' data-ref="_ZSt15__ostream_writeRSt13basic_ostreamIT_T0_EPKS0_l">__ostream_write</dfn>(<a class="type" href="../iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col1 decl" id="1191__out" title='__out' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="1191__out">__out</dfn>,&nbsp</td></tr>
+<tr><th id="46">46</th><td>		    <em>const</em> _CharT* <dfn class="local col2 decl" id="1192__s" title='__s' data-type='const _CharT *' data-ref="1192__s">__s</dfn>, <a class="typedef" href="postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col3 decl" id="1193__n" title='__n' data-type='std::streamsize' data-ref="1193__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="47">47</th><td>    {&nbsp</td></tr>
+<tr><th id="48">48</th><td>      <b>typedef</b> <a class="type" href="../iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;       <dfn class="local col4 typedef" id="1194__ostream_type" title='__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="1194__ostream_type">__ostream_type</dfn>;      &nbsp</td></tr>
+<tr><th id="49">49</th><td>      <b>typedef</b> <b>typename</b> <a class="local col4 typedef" href="#1194__ostream_type" title='__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="1194__ostream_type">__ostream_type</a>::ios_base    <dfn class="local col5 typedef" id="1195__ios_base" title='__ios_base' data-type='typename __ostream_type::ios_base' data-ref="1195__ios_base">__ios_base</dfn>;&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td>      <em>const</em> <a class="typedef" href="postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col6 decl" id="1196__put" title='__put' data-type='const std::streamsize' data-ref="1196__put">__put</dfn> = <a class="local col1 ref" href="#1191__out" title='__out' data-ref="1191__out">__out</a>.rdbuf()-&gt;sputn(<a class="local col2 ref" href="#1192__s" title='__s' data-ref="1192__s">__s</a>, <a class="local col3 ref" href="#1193__n" title='__n' data-ref="1193__n">__n</a>);&nbsp</td></tr>
+<tr><th id="52">52</th><td>      <b>if</b> (<a class="local col6 ref" href="#1196__put" title='__put' data-ref="1196__put">__put</a> != <a class="local col3 ref" href="#1193__n" title='__n' data-ref="1193__n">__n</a>)&nbsp</td></tr>
+<tr><th id="53">53</th><td>	<a class="local col1 ref" href="#1191__out" title='__out' data-ref="1191__out">__out</a>.setstate(<a class="local col5 typedef" href="#1195__ios_base" title='__ios_base' data-type='typename __ostream_type::ios_base' data-ref="1195__ios_base">__ios_base</a>::badbit);&nbsp</td></tr>
+<tr><th id="54">54</th><td>    }&nbsp</td></tr>
+<tr><th id="55">55</th><td>&nbsp</td></tr>
+<tr><th id="56">56</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="57">57</th><td>    <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="58">58</th><td>    <dfn class="decl def fn" id="_ZSt14__ostream_fillRSt13basic_ostreamIT_T0_El" title='std::__ostream_fill' data-ref="_ZSt14__ostream_fillRSt13basic_ostreamIT_T0_El">__ostream_fill</dfn>(<a class="type" href="../iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col7 decl" id="1197__out" title='__out' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="1197__out">__out</dfn>, <a class="typedef" href="postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col8 decl" id="1198__n" title='__n' data-type='std::streamsize' data-ref="1198__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="59">59</th><td>    {&nbsp</td></tr>
+<tr><th id="60">60</th><td>      <b>typedef</b> <a class="type" href="../iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;       <dfn class="local col9 typedef" id="1199__ostream_type" title='__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="1199__ostream_type">__ostream_type</dfn>;      &nbsp</td></tr>
+<tr><th id="61">61</th><td>      <b>typedef</b> <b>typename</b> <a class="local col9 typedef" href="#1199__ostream_type" title='__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="1199__ostream_type">__ostream_type</a>::ios_base    <dfn class="local col0 typedef" id="1200__ios_base" title='__ios_base' data-type='typename __ostream_type::ios_base' data-ref="1200__ios_base">__ios_base</dfn>;&nbsp</td></tr>
+<tr><th id="62">62</th><td>&nbsp</td></tr>
+<tr><th id="63">63</th><td>      <em>const</em> _CharT <dfn class="local col1 decl" id="1201__c" title='__c' data-type='const _CharT' data-ref="1201__c">__c</dfn> = <a class="local col7 ref" href="#1197__out" title='__out' data-ref="1197__out">__out</a>.fill();&nbsp</td></tr>
+<tr><th id="64">64</th><td>      <b>for</b> (; <a class="local col8 ref" href="#1198__n" title='__n' data-ref="1198__n">__n</a> &gt; <var>0</var>; --<a class="local col8 ref" href="#1198__n" title='__n' data-ref="1198__n">__n</a>)&nbsp</td></tr>
+<tr><th id="65">65</th><td>	{&nbsp</td></tr>
+<tr><th id="66">66</th><td>	  <em>const</em> <b>typename</b> _Traits::int_type <dfn class="local col2 decl" id="1202__put" title='__put' data-type='const typename _Traits::int_type' data-ref="1202__put">__put</dfn> = <a class="local col7 ref" href="#1197__out" title='__out' data-ref="1197__out">__out</a>.rdbuf()-&gt;sputc(<a class="local col1 ref" href="#1201__c" title='__c' data-ref="1201__c">__c</a>);&nbsp</td></tr>
+<tr><th id="67">67</th><td>	  <b>if</b> (_Traits::eq_int_type(<a class="local col2 ref" href="#1202__put" title='__put' data-ref="1202__put">__put</a>, _Traits::eof()))&nbsp</td></tr>
+<tr><th id="68">68</th><td>	    {&nbsp</td></tr>
+<tr><th id="69">69</th><td>	      <a class="local col7 ref" href="#1197__out" title='__out' data-ref="1197__out">__out</a>.setstate(<a class="local col0 typedef" href="#1200__ios_base" title='__ios_base' data-type='typename __ostream_type::ios_base' data-ref="1200__ios_base">__ios_base</a>::badbit);&nbsp</td></tr>
+<tr><th id="70">70</th><td>	      <b>break</b>;&nbsp</td></tr>
+<tr><th id="71">71</th><td>	    }&nbsp</td></tr>
+<tr><th id="72">72</th><td>	}&nbsp</td></tr>
+<tr><th id="73">73</th><td>    }&nbsp</td></tr>
+<tr><th id="74">74</th><td>&nbsp</td></tr>
+<tr><th id="75">75</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="76">76</th><td>    <a class="type" href="../iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="77">77</th><td>    <dfn class="decl def fn" id="_ZSt16__ostream_insertRSt13basic_ostreamIT_T0_EPKS0_l" title='std::__ostream_insert' data-ref="_ZSt16__ostream_insertRSt13basic_ostreamIT_T0_EPKS0_l">__ostream_insert</dfn>(<a class="type" href="../iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col3 decl" id="1203__out" title='__out' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="1203__out">__out</dfn>,&nbsp</td></tr>
+<tr><th id="78">78</th><td>		     <em>const</em> _CharT* <dfn class="local col4 decl" id="1204__s" title='__s' data-type='const _CharT *' data-ref="1204__s">__s</dfn>, <a class="typedef" href="postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col5 decl" id="1205__n" title='__n' data-type='std::streamsize' data-ref="1205__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="79">79</th><td>    {&nbsp</td></tr>
+<tr><th id="80">80</th><td>      <b>typedef</b> <a class="type" href="../iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;       <dfn class="local col6 typedef" id="1206__ostream_type" title='__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="1206__ostream_type">__ostream_type</dfn>;&nbsp</td></tr>
+<tr><th id="81">81</th><td>      <b>typedef</b> <b>typename</b> <a class="local col6 typedef" href="#1206__ostream_type" title='__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="1206__ostream_type">__ostream_type</a>::ios_base    <dfn class="local col7 typedef" id="1207__ios_base" title='__ios_base' data-type='typename __ostream_type::ios_base' data-ref="1207__ios_base">__ios_base</dfn>;&nbsp</td></tr>
+<tr><th id="82">82</th><td>&nbsp</td></tr>
+<tr><th id="83">83</th><td>      <b>typename</b> <a class="local col6 typedef" href="#1206__ostream_type" title='__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="1206__ostream_type">__ostream_type</a>::sentry <dfn class="local col8 decl" id="1208__cerb" title='__cerb' data-type='typename __ostream_type::sentry' data-ref="1208__cerb">__cerb</dfn>(<a class="local col3 ref" href="#1203__out" title='__out' data-ref="1203__out">__out</a>);&nbsp</td></tr>
+<tr><th id="84">84</th><td>      <b>if</b> (<a class="local col8 ref" href="#1208__cerb" title='__cerb' data-ref="1208__cerb">__cerb</a>)&nbsp</td></tr>
+<tr><th id="85">85</th><td>	{&nbsp</td></tr>
+<tr><th id="86">86</th><td>	  <a class="macro" href="exception_defines.h.html#40" title="try" data-ref="_M/__try">__try</a>&nbsp</td></tr>
+<tr><th id="87">87</th><td>	    {&nbsp</td></tr>
+<tr><th id="88">88</th><td>	      <em>const</em> <a class="typedef" href="postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col9 decl" id="1209__w" title='__w' data-type='const std::streamsize' data-ref="1209__w">__w</dfn> = <a class="local col3 ref" href="#1203__out" title='__out' data-ref="1203__out">__out</a>.width();&nbsp</td></tr>
+<tr><th id="89">89</th><td>	      <b>if</b> (<a class="local col9 ref" href="#1209__w" title='__w' data-ref="1209__w">__w</a> &gt; <a class="local col5 ref" href="#1205__n" title='__n' data-ref="1205__n">__n</a>)&nbsp</td></tr>
+<tr><th id="90">90</th><td>		{&nbsp</td></tr>
+<tr><th id="91">91</th><td>		  <em>const</em> <em>bool</em> <dfn class="local col0 decl" id="1210__left" title='__left' data-type='const bool' data-ref="1210__left">__left</dfn> = ((<a class="local col3 ref" href="#1203__out" title='__out' data-ref="1203__out">__out</a>.flags()&nbsp</td></tr>
+<tr><th id="92">92</th><td>					&amp; <a class="local col7 typedef" href="#1207__ios_base" title='__ios_base' data-type='typename __ostream_type::ios_base' data-ref="1207__ios_base">__ios_base</a>::adjustfield)&nbsp</td></tr>
+<tr><th id="93">93</th><td>				       == <a class="local col7 typedef" href="#1207__ios_base" title='__ios_base' data-type='typename __ostream_type::ios_base' data-ref="1207__ios_base">__ios_base</a>::left);&nbsp</td></tr>
+<tr><th id="94">94</th><td>		  <b>if</b> (!<a class="local col0 ref" href="#1210__left" title='__left' data-ref="1210__left">__left</a>)&nbsp</td></tr>
+<tr><th id="95">95</th><td>		    __ostream_fill(<a class="local col3 ref" href="#1203__out" title='__out' data-ref="1203__out">__out</a>, <a class="local col9 ref" href="#1209__w" title='__w' data-ref="1209__w">__w</a> - <a class="local col5 ref" href="#1205__n" title='__n' data-ref="1205__n">__n</a>);&nbsp</td></tr>
+<tr><th id="96">96</th><td>		  <b>if</b> (<a class="local col3 ref" href="#1203__out" title='__out' data-ref="1203__out">__out</a>.good())&nbsp</td></tr>
+<tr><th id="97">97</th><td>		    __ostream_write(<a class="local col3 ref" href="#1203__out" title='__out' data-ref="1203__out">__out</a>, <a class="local col4 ref" href="#1204__s" title='__s' data-ref="1204__s">__s</a>, <a class="local col5 ref" href="#1205__n" title='__n' data-ref="1205__n">__n</a>);&nbsp</td></tr>
+<tr><th id="98">98</th><td>		  <b>if</b> (<a class="local col0 ref" href="#1210__left" title='__left' data-ref="1210__left">__left</a> &amp;&amp; <a class="local col3 ref" href="#1203__out" title='__out' data-ref="1203__out">__out</a>.good())&nbsp</td></tr>
+<tr><th id="99">99</th><td>		    __ostream_fill(<a class="local col3 ref" href="#1203__out" title='__out' data-ref="1203__out">__out</a>, <a class="local col9 ref" href="#1209__w" title='__w' data-ref="1209__w">__w</a> - <a class="local col5 ref" href="#1205__n" title='__n' data-ref="1205__n">__n</a>);&nbsp</td></tr>
+<tr><th id="100">100</th><td>		}&nbsp</td></tr>
+<tr><th id="101">101</th><td>	      <b>else</b>&nbsp</td></tr>
+<tr><th id="102">102</th><td>		__ostream_write(<a class="local col3 ref" href="#1203__out" title='__out' data-ref="1203__out">__out</a>, <a class="local col4 ref" href="#1204__s" title='__s' data-ref="1204__s">__s</a>, <a class="local col5 ref" href="#1205__n" title='__n' data-ref="1205__n">__n</a>);&nbsp</td></tr>
+<tr><th id="103">103</th><td>	      <a class="local col3 ref" href="#1203__out" title='__out' data-ref="1203__out">__out</a>.width(<var>0</var>);&nbsp</td></tr>
+<tr><th id="104">104</th><td>	    }&nbsp</td></tr>
+<tr><th id="105">105</th><td>	  <a class="macro" href="exception_defines.h.html#41" title="catch(__cxxabiv1::__forced_unwind&amp;)" data-ref="_M/__catch">__catch</a>(__cxxabiv1::<a class="type" href="cxxabi_forced.h.html#__cxxabiv1::__forced_unwind" title='__cxxabiv1::__forced_unwind' data-ref="__cxxabiv1::__forced_unwind">__forced_unwind</a>&amp;)&nbsp</td></tr>
+<tr><th id="106">106</th><td>	    {&nbsp</td></tr>
+<tr><th id="107">107</th><td>	      <a class="local col3 ref" href="#1203__out" title='__out' data-ref="1203__out">__out</a>._M_setstate(<a class="local col7 typedef" href="#1207__ios_base" title='__ios_base' data-type='typename __ostream_type::ios_base' data-ref="1207__ios_base">__ios_base</a>::badbit);&nbsp</td></tr>
+<tr><th id="108">108</th><td>	      <a class="macro" href="exception_defines.h.html#42" title="throw" data-ref="_M/__throw_exception_again">__throw_exception_again</a>;&nbsp</td></tr>
+<tr><th id="109">109</th><td>	    }&nbsp</td></tr>
+<tr><th id="110">110</th><td>	  <a class="macro" href="exception_defines.h.html#41" title="catch(...)" data-ref="_M/__catch">__catch</a>(...)&nbsp</td></tr>
+<tr><th id="111">111</th><td>	    { <a class="local col3 ref" href="#1203__out" title='__out' data-ref="1203__out">__out</a>._M_setstate(<a class="local col7 typedef" href="#1207__ios_base" title='__ios_base' data-type='typename __ostream_type::ios_base' data-ref="1207__ios_base">__ios_base</a>::badbit); }&nbsp</td></tr>
+<tr><th id="112">112</th><td>	}&nbsp</td></tr>
+<tr><th id="113">113</th><td>      <b>return</b> <a class="local col3 ref" href="#1203__out" title='__out' data-ref="1203__out">__out</a>;&nbsp</td></tr>
+<tr><th id="114">114</th><td>    }&nbsp</td></tr>
+<tr><th id="115">115</th><td>&nbsp</td></tr>
+<tr><th id="116">116</th><td>  <i>// Inhibit implicit instantiations for required instantiations,</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td><i>  // which are defined via explicit instantiations elsewhere.</i>&nbsp</td></tr>
+<tr><th id="118">118</th><td><u>#<span data-ppcond="118">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#228" title="1" data-ref="_M/_GLIBCXX_EXTERN_TEMPLATE">_GLIBCXX_EXTERN_TEMPLATE</a></u>&nbsp</td></tr>
+<tr><th id="119">119</th><td>  <b>extern</b> <b>template</b> ostream&amp; __ostream_insert(ostream&amp;, <em>const</em> <em>char</em>*, streamsize);&nbsp</td></tr>
+<tr><th id="120">120</th><td>&nbsp</td></tr>
+<tr><th id="121">121</th><td><u>#<span data-ppcond="121">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1797" data-ref="_M/_GLIBCXX_USE_WCHAR_T">_GLIBCXX_USE_WCHAR_T</a></u>&nbsp</td></tr>
+<tr><th id="122">122</th><td>  <b>extern</b> <b>template</b> wostream&amp; __ostream_insert(wostream&amp;, <em>const</em> <em>wchar_t</em>*,&nbsp</td></tr>
+<tr><th id="123">123</th><td>					     streamsize);&nbsp</td></tr>
+<tr><th id="124">124</th><td><u>#<span data-ppcond="121">endif</span></u>&nbsp</td></tr>
+<tr><th id="125">125</th><td><u>#<span data-ppcond="118">endif</span></u>&nbsp</td></tr>
+<tr><th id="126">126</th><td>&nbsp</td></tr>
+<tr><th id="127">127</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="128">128</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="129">129</th><td>&nbsp</td></tr>
+<tr><th id="130">130</th><td><u>#<span data-ppcond="30">endif</span> /* _OSTREAM_INSERT_H */</u>&nbsp</td></tr>
+<tr><th id="131">131</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

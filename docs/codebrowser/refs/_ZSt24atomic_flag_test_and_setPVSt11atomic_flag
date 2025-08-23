@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='1247' ll='1249' type='bool std::atomic_flag_test_and_set(volatile std::atomic_flag * __a)'/>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_pair.h' l='189' ll='198'/>
+<use f='include/c++/11/bits/stl_pair.h' l='212'/>
+<fun r='_ZNSt11__pair_baseC1Ev'/>
+<fun r='_ZNSt11__pair_baseD1Ev'/>
+<fun r='_ZNSt11__pair_baseC1ERKSt11__pair_baseIT_T0_E'/>
+<fun r='_ZNSt11__pair_baseaSERKSt11__pair_baseIT_T0_E'/>

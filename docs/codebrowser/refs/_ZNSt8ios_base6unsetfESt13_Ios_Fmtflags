@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/ios_base.h' l='707' ll='709' type='void std::ios_base::unsetf(std::ios_base::fmtflags __mask)'/>
+<use f='include/c++/11/bits/ios_base.h' l='918' u='c' c='_ZSt11noboolalphaRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='934' u='c' c='_ZSt10noshowbaseRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='950' u='c' c='_ZSt11noshowpointRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='966' u='c' c='_ZSt9noshowposRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='982' u='c' c='_ZSt8noskipwsRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='998' u='c' c='_ZSt11nouppercaseRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='1014' u='c' c='_ZSt9nounitbufRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='1101' u='c' c='_ZSt12defaultfloatRSt8ios_base'/>
+<doc f='include/c++/11/bits/ios_base.h' l='701'>/**
+     *  @brief  Clearing format flags.
+     *  @param  __mask  The flags to unset.
+     *
+     *  This function clears @a __mask in the format flags.
+    */</doc>

@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tStream.h' l='52' type='int tSystem::tStream::Write(const uint8 * src, int numBytes)'/>
+<doc f='Modules/System/Inc/System/tStream.h' l='49'>// Returns the number of bytes written to the stream and read from the src buffer. If an error occurs, -1 is
+	// returned. This can happen if, but not iff: a) The stream is not in write mode. b) &apos;src&apos; is null. c) &apos;numBytes&apos;
+	// is not &gt;= 0, or d) There was a write error.</doc>

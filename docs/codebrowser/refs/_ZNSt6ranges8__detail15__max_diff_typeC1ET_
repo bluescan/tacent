@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/max_size_type.h' l='445' ll='448' type='void std::ranges::__detail::__max_diff_type::__max_diff_type(_Tp __i)'/>
+<use f='include/c++/11/bits/max_size_type.h' l='478' u='c' c='_ZNSt6ranges8__detail15__max_diff_typeppEv'/>
+<use f='include/c++/11/bits/max_size_type.h' l='490' u='c' c='_ZNSt6ranges8__detail15__max_diff_typemmEv'/>
+<use f='include/c++/11/bits/max_size_type.h' l='524' u='c' c='_ZNSt6ranges8__detail15__max_diff_typedVERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='525' u='c' c='_ZNSt6ranges8__detail15__max_diff_typedVERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='526' u='c' c='_ZNSt6ranges8__detail15__max_diff_typedVERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='541' u='c' c='_ZNSt6ranges8__detail15__max_diff_typerMERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='542' u='c' c='_ZNSt6ranges8__detail15__max_diff_typerMERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='542' u='c' c='_ZNSt6ranges8__detail15__max_diff_typerMERKS1_'/>

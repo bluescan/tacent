@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/std_function.h' l='529' ll='535' type='_Requires&lt;_Callable&lt;_Functor&gt;, function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt; &amp;&gt; std::function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt;::operator=(_Functor &amp;&amp; __f)'/>

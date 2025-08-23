@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageICO.cpp' l='148' u='c' c='_ZN6tImage9tImageICO4LoadEPKhi'/>
+<def f='Modules/Image/Src/tImageICO.cpp' l='269' ll='481' type='tImage::tFrame * tImage::tImageICO::CreateFrame(const uint8 * cursor, int width, int height, int numBytes)'/>

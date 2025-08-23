@@ -1,0 +1,7 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='103'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='104' c='_ZN5tMath7tDivU32Ejj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='310' c='_ZN5tMath7tDivU32Ejj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='312' c='_ZN5tMath7tDivU32Ejj'/>
+<size>8</size>
+<mbr r='tMath::tDivU32t::Quotient' o='0' t='uint32'/>
+<mbr r='tMath::tDivU32t::Remainder' o='32' t='uint32'/>

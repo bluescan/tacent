@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/stream_iterator.h' l='58' type='std::istream_iterator::istream_type *'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='68' u='w' c='_ZNSt16istream_iteratorC1Ev'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='72' u='w' c='_ZNSt16istream_iteratorC1ERSt13basic_istreamIT0_T1_E'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='76' u='w' c='_ZNSt16istream_iteratorC1ERKSt16istream_iteratorIT_T0_T1_T2_E'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='131' c='_ZNKSt16istream_iterator8_M_equalERKSt16istream_iteratorIT_T0_T1_T2_E'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='137' u='r' c='_ZNSt16istream_iterator7_M_readEv'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='137' u='r' c='_ZNSt16istream_iterator7_M_readEv'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='139' u='w' c='_ZNSt16istream_iterator7_M_readEv'/>

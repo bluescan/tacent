@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_base.h' l='660' ll='663' macro='1' type='std::__atomic_base::__int_type std::__atomic_base::fetch_xor(std::__atomic_base::__int_type __i, std::memory_order __m = memory_order_seq_cst)'/>

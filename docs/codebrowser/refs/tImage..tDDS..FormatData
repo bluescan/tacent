@@ -1,0 +1,6 @@
+<def f='Modules/Image/Src/tImageDDS.cpp' l='74' ll='100'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='165'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='516' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='793' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1187' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<size>32</size>

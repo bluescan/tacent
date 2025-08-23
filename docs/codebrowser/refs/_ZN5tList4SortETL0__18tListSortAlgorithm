@@ -1,0 +1,32 @@
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='138' type='int tList::Sort(CompareFunc , tListSortAlgorithm alg = tListSortAlgorithm::Merge)'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='524' ll='539' type='int tList::Sort(CompareFunc compare, tListSortAlgorithm algorithm = tListSortAlgorithm::Merge)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='113'>// Sorts the list using the algorithm specified. The supplied compare function should never return true on equal.
+	// To sort ascending return the truth of a &lt; b. Return a &gt; b to sort in descending order. Returns the number of
+	// compares performed.
+	//
+	// A simple compare function would implement &quot;bool CompareFunc(const T&amp; a, const T&amp; b);&quot;
+	// If you want to send user information into your compare function, there is no need to create a static or global
+	// object that is error-prone (and definitely not thread-safe). There is also no need for the Sort function to be
+	// polluted with an extra user-data argument. Instead use C++ FunctionObjects. A function object is an object that
+	// implements operator(). As an example:
+	//
+	//	struct CompareFunctionObject
+	//	{
+	//		bool ascending = true; // Plus whatever other sort-specification data you want.
+	//		bool operator() (const YourType&amp; a, const YourType&amp; b) const
+	//		{
+	//			return ascending ? a &lt; b : a &gt; b;	// You implement the compare.
+	//		}
+	//	}
+	//
+	// To use this simply do somthing like:
+	//
+	//	CompareFunctionObject comp;
+	//	comp.ascending = false;
+	//	MyList.Sort(comp);
+	//</doc>
+<use f='Modules/Math/Src/tSpline.cpp' l='487' u='c' c='_ZNK5tMath11tBezierPath17tFastSectionState3SetERKNS_8tVector3EjPS3_i'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='496' u='c' c='_ZNK5tMath11tBezierPath17tFastSectionState6UpdateERKNS_8tVector3EPS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='278' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='281' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='282' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>

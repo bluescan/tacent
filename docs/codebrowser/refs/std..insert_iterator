@@ -1,0 +1,13 @@
+<inh f='include/c++/11/bits/stl_iterator_base_types.h' l='127' c='std::iterator'/>
+<def f='include/c++/11/bits/stl_iterator.h' l='858' ll='961'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='977' c='_ZSt8inserterRT_DTclsr6ranges13__cust_accessE7__beginclsr3stdE7declvalIS0_EEEE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='979' c='_ZSt8inserterRT_DTclsr6ranges13__cust_accessE7__beginclsr3stdE7declvalIS0_EEEE'/>
+<mbr r='std::insert_iterator::container' t='_Container *'/>
+<mbr r='std::insert_iterator::iter' t='std::insert_iterator::_Iter'/>
+<fun r='_ZNSt15insert_iteratorC1Ev'/>
+<fun r='_ZNSt15insert_iteratorC1ERT_DTclsr6ranges13__cust_accessE7__beginclsr3stdE7declvalIS1_EEEE'/>
+<fun r='_ZNSt15insert_iteratoraSERKNT_10value_typeE'/>
+<fun r='_ZNSt15insert_iteratoraSEONT_10value_typeE'/>
+<fun r='_ZNSt15insert_iteratordeEv'/>
+<fun r='_ZNSt15insert_iteratorppEv'/>
+<fun r='_ZNSt15insert_iteratorppEi'/>

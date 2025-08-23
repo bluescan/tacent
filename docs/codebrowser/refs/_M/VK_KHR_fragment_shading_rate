@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9659'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9658'>// VK_KHR_fragment_shading_rate is a preprocessor guard. Do not pass it to API calls.</doc>

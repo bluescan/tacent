@@ -1,0 +1,1 @@
+<dec f='include/c++/11/bits/fs_path.h' l='404' type='std::filesystem::path &amp; std::filesystem::path::replace_extension(const std::filesystem::path &amp; __replacement = std::filesystem::path())'/>

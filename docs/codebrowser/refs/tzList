@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='187' ll='194'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='186'>// Same as a tList but the default constructor puts the list in Static mode.</doc>
+<fun r='_ZN6tzListC1Ev'/>
+<fun r='_ZN6tzListC1E9tListMode'/>
+<fun r='_ZN6tzListD1Ev'/>

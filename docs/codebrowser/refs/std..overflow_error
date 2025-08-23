@@ -1,0 +1,17 @@
+<inh f='include/c++/11/stdexcept' l='219' c='std::runtime_error'/>
+<def f='include/c++/11/stdexcept' l='273' ll='285'/>
+<use f='include/c++/11/stdexcept' l='279' c='_ZNSt14overflow_errorC1ERKS_'/>
+<use f='include/c++/11/stdexcept' l='280' c='_ZNSt14overflow_erroraSERKS_'/>
+<use f='include/c++/11/stdexcept' l='280' c='_ZNSt14overflow_erroraSERKS_'/>
+<use f='include/c++/11/stdexcept' l='281' c='_ZNSt14overflow_errorC1EOS_'/>
+<use f='include/c++/11/stdexcept' l='282' c='_ZNSt14overflow_erroraSEOS_'/>
+<use f='include/c++/11/stdexcept' l='282' c='_ZNSt14overflow_erroraSEOS_'/>
+<size>16</size>
+<doc f='include/c++/11/stdexcept' l='272'>/** Thrown to indicate arithmetic overflow.  */</doc>
+<fun r='_ZNSt14overflow_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt14overflow_errorC1EPKc'/>
+<fun r='_ZNSt14overflow_errorC1ERKS_'/>
+<fun r='_ZNSt14overflow_erroraSERKS_'/>
+<fun r='_ZNSt14overflow_errorC1EOS_'/>
+<fun r='_ZNSt14overflow_erroraSEOS_'/>
+<fun r='_ZNSt14overflow_errorD1Ev'/>

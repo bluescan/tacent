@@ -1,0 +1,32 @@
+<dec f='include/math.h' l='302'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='20' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='24' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='29' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='33' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='37' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='41' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='44' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='183' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='20' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='24' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='29' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='33' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='37' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='41' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='44' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='177' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='183' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='213' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='20' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='24' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='29' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='33' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='37' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='41' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='44' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='177' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='183' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='213' u='c'/>
+<use f='include/math.h' l='545' u='w'/>
+<doc f='include/math.h' l='300'>/* Ignore the alias by default.  The alias is only useful with
+   redirections.  */</doc>

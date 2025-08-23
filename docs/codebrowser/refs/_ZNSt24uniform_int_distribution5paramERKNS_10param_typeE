@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/uniform_int_dist.h' l='169' ll='171' type='void std::uniform_int_distribution::param(const std::uniform_int_distribution::param_type &amp; __param)'/>
+<doc f='include/c++/11/bits/uniform_int_dist.h' l='165'>/**
+       * @brief Sets the parameter set of the distribution.
+       * @param __param The new parameter set of the distribution.
+       */</doc>

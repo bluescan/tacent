@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='148' type='30'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='602' c='_ZN6tImage12tIsHDRFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='148'>// 32  bit. Unsigned 11-bit floats for RG, and a 10-bit float for B. All use a 5-bit exponent.</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='535' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>

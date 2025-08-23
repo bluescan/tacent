@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3219' ll='3224'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3219'/>
+<size>520</size>
+<mbr r='VkPhysicalDeviceMemoryProperties::memoryTypeCount' o='0' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMemoryProperties::memoryTypes' o='32' t='VkMemoryType[32]'/>
+<mbr r='VkPhysicalDeviceMemoryProperties::memoryHeapCount' o='2080' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMemoryProperties::memoryHeaps' o='2112' t='VkMemoryHeap[16]'/>

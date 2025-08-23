@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='121' type='6'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='122'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='120'>// Fatal. Load was uncuccessful and object is invalid. The valid flag will not be set.</doc>

@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/fs_path.h' l='406' type='void std::filesystem::path::swap(std::filesystem::path &amp; __rhs)'/>
+<use f='include/c++/11/bits/fs_path.h' l='692' u='c' c='_ZNSt10filesystem7__cxx114swapERNS0_4pathES2_'/>
+<def f='include/c++/11/bits/fs_path.h' l='1012' ll='1016' type='void std::filesystem::path::swap(std::filesystem::path &amp; __rhs)'/>

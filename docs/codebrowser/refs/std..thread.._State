@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/std_thread.h' l='68' ll='72'/>
+<use f='include/c++/11/bits/std_thread.h' l='73'/>
+<ovr f='include/c++/11/bits/std_thread.h' l='201' c='std::thread::_State_impl'/>
+<use f='include/c++/11/bits/std_thread.h' l='201'/>
+<size>8</size>
+<doc f='include/c++/11/bits/std_thread.h' l='66'>// Abstract base class for types that wrap arbitrary functors to be
+    // invoked in the new thread of execution.</doc>
+<fun r='_ZNSt6thread6_StateD1Ev'/>
+<fun r='_ZNSt6thread6_State6_M_runEv'/>

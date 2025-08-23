@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7149' ll='7157'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7149'/>
+<size>88</size>
+<mbr r='VkImageResolve2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageResolve2::pNext' o='64' t='const void *'/>
+<mbr r='VkImageResolve2::srcSubresource' o='128' t='VkImageSubresourceLayers'/>
+<mbr r='VkImageResolve2::srcOffset' o='256' t='VkOffset3D'/>
+<mbr r='VkImageResolve2::dstSubresource' o='352' t='VkImageSubresourceLayers'/>
+<mbr r='VkImageResolve2::dstOffset' o='480' t='VkOffset3D'/>
+<mbr r='VkImageResolve2::extent' o='576' t='VkExtent3D'/>

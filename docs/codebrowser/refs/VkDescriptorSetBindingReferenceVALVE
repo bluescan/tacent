@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17070' ll='17075'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17070'/>
+<size>32</size>
+<mbr r='VkDescriptorSetBindingReferenceVALVE::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDescriptorSetBindingReferenceVALVE::pNext' o='64' t='const void *'/>
+<mbr r='VkDescriptorSetBindingReferenceVALVE::descriptorSetLayout' o='128' t='VkDescriptorSetLayout'/>
+<mbr r='VkDescriptorSetBindingReferenceVALVE::binding' o='192' t='uint32_t'/>

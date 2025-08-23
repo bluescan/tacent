@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='585'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='579'>/**
+ * @~English
+ * @brief Helper for calling the IterateLoadLevelFaces virtual method of a
+ * ktxTexture.
+ * @copydoc ktxTexture2.ktxTexture2_IterateLoadLevelFaces
+ */</doc>

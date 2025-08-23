@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='392' ll='397' type='void std::atomic::wait(_Tp __old, std::memory_order __m = memory_order_seq_cst) const'/>

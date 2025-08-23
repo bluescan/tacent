@@ -1,0 +1,162 @@
+<def f='include/c++/11/string_view' l='98' ll='513'/>
+<use f='include/c++/11/string_view' l='517' c='std::{deductionguideforbasic_string_view}'/>
+<use f='include/c++/11/string_view' l='535' c='_ZSteqSt17basic_string_viewIT_T0_ES2_'/>
+<use f='include/c++/11/string_view' l='536' c='_ZSteqSt17basic_string_viewIT_T0_ES2_'/>
+<use f='include/c++/11/string_view' l='541' c='_ZSteqSt17basic_string_viewIT_T0_ENSt15__type_identityIS2_E4typeE'/>
+<use f='include/c++/11/string_view' l='542' c='_ZSteqSt17basic_string_viewIT_T0_ENSt15__type_identityIS2_E4typeE'/>
+<use f='include/c++/11/string_view' l='549' c='_ZStssSt17basic_string_viewIT_T0_ES2_'/>
+<use f='include/c++/11/string_view' l='550' c='_ZStssSt17basic_string_viewIT_T0_ES2_'/>
+<use f='include/c++/11/string_view' l='556' c='_ZStssSt17basic_string_viewIT_T0_ENSt15__type_identityIS2_E4typeE'/>
+<use f='include/c++/11/string_view' l='557' c='_ZStssSt17basic_string_viewIT_T0_ENSt15__type_identityIS2_E4typeE'/>
+<use f='include/c++/11/string_view' l='668' c='_ZStlsRSt13basic_ostreamIT_T0_ESt17basic_string_viewIS0_S1_E'/>
+<use f='include/c++/11/string_view' l='674'/>
+<use f='include/c++/11/string_view' l='676'/>
+<use f='include/c++/11/string_view' l='679'/>
+<use f='include/c++/11/string_view' l='681'/>
+<use f='include/c++/11/string_view' l='682'/>
+<use f='include/c++/11/string_view' l='767' c='_ZNSt8literals20string_view_literalsli2svEPKcm'/>
+<use f='include/c++/11/string_view' l='769' c='_ZNSt8literals20string_view_literalsli2svEPKcm'/>
+<use f='include/c++/11/string_view' l='772' c='_ZNSt8literals20string_view_literalsli2svEPKwm'/>
+<use f='include/c++/11/string_view' l='774' c='_ZNSt8literals20string_view_literalsli2svEPKwm'/>
+<use f='include/c++/11/string_view' l='778' c='_ZNSt8literals20string_view_literalsli2svEPKDum'/>
+<use f='include/c++/11/string_view' l='780' c='_ZNSt8literals20string_view_literalsli2svEPKDum'/>
+<use f='include/c++/11/string_view' l='783' c='_ZNSt8literals20string_view_literalsli2svEPKDsm'/>
+<use f='include/c++/11/string_view' l='785' c='_ZNSt8literals20string_view_literalsli2svEPKDsm'/>
+<use f='include/c++/11/string_view' l='787' c='_ZNSt8literals20string_view_literalsli2svEPKDim'/>
+<use f='include/c++/11/string_view' l='789' c='_ZNSt8literals20string_view_literalsli2svEPKDim'/>
+<use f='include/c++/11/string_view' l='801'/>
+<use f='include/c++/11/string_view' l='806'/>
+<use f='include/c++/11/bits/string_view.tcc' l='47' c='_ZNKSt17basic_string_view4findEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='46' c='_ZNKSt17basic_string_view4findEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='80' c='_ZNKSt17basic_string_view4findET_m'/>
+<use f='include/c++/11/bits/string_view.tcc' l='79' c='_ZNKSt17basic_string_view4findET_m'/>
+<use f='include/c++/11/bits/string_view.tcc' l='96' c='_ZNKSt17basic_string_view5rfindEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='95' c='_ZNKSt17basic_string_view5rfindEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='116' c='_ZNKSt17basic_string_view5rfindET_m'/>
+<use f='include/c++/11/bits/string_view.tcc' l='115' c='_ZNKSt17basic_string_view5rfindET_m'/>
+<use f='include/c++/11/bits/string_view.tcc' l='133' c='_ZNKSt17basic_string_view13find_first_ofEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='132' c='_ZNKSt17basic_string_view13find_first_ofEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='150' c='_ZNKSt17basic_string_view12find_last_ofEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='149' c='_ZNKSt17basic_string_view12find_last_ofEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='172' c='_ZNKSt17basic_string_view17find_first_not_ofEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='171' c='_ZNKSt17basic_string_view17find_first_not_ofEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='185' c='_ZNKSt17basic_string_view17find_first_not_ofET_m'/>
+<use f='include/c++/11/bits/string_view.tcc' l='184' c='_ZNKSt17basic_string_view17find_first_not_ofET_m'/>
+<use f='include/c++/11/bits/string_view.tcc' l='196' c='_ZNKSt17basic_string_view16find_last_not_ofEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='195' c='_ZNKSt17basic_string_view16find_last_not_ofEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='218' c='_ZNKSt17basic_string_view16find_last_not_ofET_m'/>
+<use f='include/c++/11/bits/string_view.tcc' l='217' c='_ZNKSt17basic_string_view16find_last_not_ofET_m'/>
+<use f='include/c++/11/bits/basic_string.h' l='122'/>
+<use f='include/c++/11/bits/basic_string.h' l='3066' c='_ZNKSt7__cxx1112basic_string11starts_withESt17basic_string_viewIT_T0_E'/>
+<use f='include/c++/11/bits/basic_string.h' l='3078' c='_ZNKSt7__cxx1112basic_string9ends_withESt17basic_string_viewIT_T0_E'/>
+<use f='include/c++/11/bits/basic_string.h' l='6072' c='std::{deductionguideforbasic_string}'/>
+<use f='include/c++/11/bits/basic_string.h' l='6078' c='std::{deductionguideforbasic_string}'/>
+<use f='include/c++/11/string' l='84' c='_ZNKSt18__hash_string_baseclERKT_'/>
+<smbr r='std::basic_string_view::npos' t='const std::basic_string_view::size_type'/>
+<fun r='_ZNSt17basic_string_viewC1Ev'/>
+<fun r='_ZNSt17basic_string_viewC1ERKSt17basic_string_viewIT_T0_E'/>
+<fun r='_ZNSt17basic_string_viewC1EPKT_'/>
+<fun r='_ZNSt17basic_string_viewC1EPKT_m'/>
+<fun r='_ZNSt17basic_string_viewC1ETL0__TL0_0_'/>
+<fun r='_ZNSt17basic_string_viewaSERKSt17basic_string_viewIT_T0_E'/>
+<fun r='_ZNKSt17basic_string_view5beginEv'/>
+<fun r='_ZNKSt17basic_string_view3endEv'/>
+<fun r='_ZNKSt17basic_string_view6cbeginEv'/>
+<fun r='_ZNKSt17basic_string_view4cendEv'/>
+<fun r='_ZNKSt17basic_string_view6rbeginEv'/>
+<fun r='_ZNKSt17basic_string_view4rendEv'/>
+<fun r='_ZNKSt17basic_string_view7crbeginEv'/>
+<fun r='_ZNKSt17basic_string_view5crendEv'/>
+<fun r='_ZNKSt17basic_string_view4sizeEv'/>
+<fun r='_ZNKSt17basic_string_view6lengthEv'/>
+<fun r='_ZNKSt17basic_string_view8max_sizeEv'/>
+<fun r='_ZNKSt17basic_string_view5emptyEv'/>
+<fun r='_ZNKSt17basic_string_viewixEm'/>
+<fun r='_ZNKSt17basic_string_view2atEm'/>
+<fun r='_ZNKSt17basic_string_view5frontEv'/>
+<fun r='_ZNKSt17basic_string_view4backEv'/>
+<fun r='_ZNKSt17basic_string_view4dataEv'/>
+<fun r='_ZNSt17basic_string_view13remove_prefixEm'/>
+<fun r='_ZNSt17basic_string_view13remove_suffixEm'/>
+<fun r='_ZNSt17basic_string_view4swapERSt17basic_string_viewIT_T0_E'/>
+<fun r='_ZNKSt17basic_string_view4copyEPT_mm'/>
+<fun r='_ZNKSt17basic_string_view6substrEmm'/>
+<fun r='_ZNKSt17basic_string_view7compareESt17basic_string_viewIT_T0_E'/>
+<fun r='_ZNKSt17basic_string_view7compareEmmSt17basic_string_viewIT_T0_E'/>
+<fun r='_ZNKSt17basic_string_view7compareEmmSt17basic_string_viewIT_T0_Emm'/>
+<fun r='_ZNKSt17basic_string_view7compareEPKT_'/>
+<fun r='_ZNKSt17basic_string_view7compareEmmPKT_'/>
+<fun r='_ZNKSt17basic_string_view7compareEmmPKT_m'/>
+<fun r='_ZNKSt17basic_string_view11starts_withESt17basic_string_viewIT_T0_E'/>
+<fun r='_ZNKSt17basic_string_view11starts_withET_'/>
+<fun r='_ZNKSt17basic_string_view11starts_withEPKT_'/>
+<fun r='_ZNKSt17basic_string_view9ends_withESt17basic_string_viewIT_T0_E'/>
+<fun r='_ZNKSt17basic_string_view9ends_withET_'/>
+<fun r='_ZNKSt17basic_string_view9ends_withEPKT_'/>
+<fun r='_ZNKSt17basic_string_view4findESt17basic_string_viewIT_T0_Em'/>
+<fun r='_ZNKSt17basic_string_view4findET_m'/>
+<fun r='_ZNKSt17basic_string_view4findEPKT_mm'/>
+<fun r='_ZNKSt17basic_string_view4findEPKT_m'/>
+<fun r='_ZNKSt17basic_string_view5rfindESt17basic_string_viewIT_T0_Em'/>
+<fun r='_ZNKSt17basic_string_view5rfindET_m'/>
+<fun r='_ZNKSt17basic_string_view5rfindEPKT_mm'/>
+<fun r='_ZNKSt17basic_string_view5rfindEPKT_m'/>
+<fun r='_ZNKSt17basic_string_view13find_first_ofESt17basic_string_viewIT_T0_Em'/>
+<fun r='_ZNKSt17basic_string_view13find_first_ofET_m'/>
+<fun r='_ZNKSt17basic_string_view13find_first_ofEPKT_mm'/>
+<fun r='_ZNKSt17basic_string_view13find_first_ofEPKT_m'/>
+<fun r='_ZNKSt17basic_string_view12find_last_ofESt17basic_string_viewIT_T0_Em'/>
+<fun r='_ZNKSt17basic_string_view12find_last_ofET_m'/>
+<fun r='_ZNKSt17basic_string_view12find_last_ofEPKT_mm'/>
+<fun r='_ZNKSt17basic_string_view12find_last_ofEPKT_m'/>
+<fun r='_ZNKSt17basic_string_view17find_first_not_ofESt17basic_string_viewIT_T0_Em'/>
+<fun r='_ZNKSt17basic_string_view17find_first_not_ofET_m'/>
+<fun r='_ZNKSt17basic_string_view17find_first_not_ofEPKT_mm'/>
+<fun r='_ZNKSt17basic_string_view17find_first_not_ofEPKT_m'/>
+<fun r='_ZNKSt17basic_string_view16find_last_not_ofESt17basic_string_viewIT_T0_Em'/>
+<fun r='_ZNKSt17basic_string_view16find_last_not_ofET_m'/>
+<fun r='_ZNKSt17basic_string_view16find_last_not_ofEPKT_mm'/>
+<fun r='_ZNKSt17basic_string_view16find_last_not_ofEPKT_m'/>
+<fun r='_ZNSt17basic_string_view10_S_compareEmm'/>
+<mbr r='std::basic_string_view::_M_len' t='std::size_t'/>
+<mbr r='std::basic_string_view::_M_str' t='const _CharT *'/>
+<fun r='_ZNKSt17basic_string_view4findEPKT_mm'/>
+<fun r='_ZNKSt17basic_string_view4findET_m'/>
+<fun r='_ZNKSt17basic_string_view5rfindEPKT_mm'/>
+<fun r='_ZNKSt17basic_string_view5rfindET_m'/>
+<fun r='_ZNKSt17basic_string_view13find_first_ofEPKT_mm'/>
+<fun r='_ZNKSt17basic_string_view12find_last_ofEPKT_mm'/>
+<fun r='_ZNKSt17basic_string_view17find_first_not_ofEPKT_mm'/>
+<fun r='_ZNKSt17basic_string_view17find_first_not_ofET_m'/>
+<fun r='_ZNKSt17basic_string_view16find_last_not_ofEPKT_mm'/>
+<fun r='_ZNKSt17basic_string_view16find_last_not_ofET_m'/>
+<use f='include/c++/11/sstream' l='277' c='_ZNKSt7__cxx1115basic_stringbuf4viewEv'/>
+<use f='include/c++/11/sstream' l='711' c='_ZNKSt7__cxx1119basic_istringstream4viewEv'/>
+<use f='include/c++/11/sstream' l='932' c='_ZNKSt7__cxx1119basic_ostringstream4viewEv'/>
+<use f='include/c++/11/sstream' l='1151' c='_ZNKSt7__cxx1118basic_stringstream4viewEv'/>
+<use f='include/c++/11/bits/quoted_string.h' l='69'/>
+<use f='include/c++/11/bits/quoted_string.h' l='71' c='_ZNSt8__detail14_Quoted_stringISt17basic_string_viewIT_T0_ES2_EC1ES4_S2_S2_'/>
+<use f='include/c++/11/bits/quoted_string.h' l='79'/>
+<use f='include/c++/11/iomanip' l='493' c='_ZSt6quotedSt17basic_string_viewIT_T0_ES0_S0_'/>
+<use f='include/c++/11/iomanip' l='497' c='_ZSt6quotedSt17basic_string_viewIT_T0_ES0_S0_'/>
+<use f='include/c++/11/bits/fs_path.h' l='145'/>
+<use f='include/c++/11/bits/fs_path.h' l='161' c='_ZNSt10filesystem7__cxx118__detail17__effective_rangeERKNSt7__cxx1112basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/fs_path.h' l='166' c='_ZNSt10filesystem7__cxx118__detail17__effective_rangeERKSt17basic_string_viewIT_T0_E'/>
+<use f='include/c++/11/bits/fs_path.h' l='167' c='_ZNSt10filesystem7__cxx118__detail17__effective_rangeERKSt17basic_string_viewIT_T0_E'/>
+<use f='include/c++/11/bits/fs_path.h' l='232' c='_ZNSt10filesystem7__cxx118__detail19__string_from_rangeET_S2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='371' c='_ZNSt10filesystem7__cxx114pathpLESt17basic_string_viewIcSt11char_traitsIcEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='456' c='_ZNKSt10filesystem7__cxx114path7compareESt17basic_string_viewIcSt11char_traitsIcEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='561' c='_ZNSt10filesystem7__cxx114pathC1ESt17basic_string_viewIcSt11char_traitsIcEENS1_5_TypeE'/>
+<use f='include/c++/11/bits/fs_path.h' l='565' c='_ZNSt10filesystem7__cxx114path9_M_appendESt17basic_string_viewIcSt11char_traitsIcEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='566' c='_ZNSt10filesystem7__cxx114path9_M_concatESt17basic_string_viewIcSt11char_traitsIcEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='588' c='_ZNSt10filesystem7__cxx114path10_S_convertERKT_'/>
+<use f='include/c++/11/bits/fs_path.h' l='591' c='_ZNSt10filesystem7__cxx114path10_S_convertERKT_'/>
+<use f='include/c++/11/bits/fs_path.h' l='621' c='_ZNSt10filesystem7__cxx114path14_S_str_convertESt17basic_string_viewIcSt11char_traitsIcEERKT1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='807' c='_ZNSt10filesystem7__cxx114path5_CmptC1ESt17basic_string_viewIcSt11char_traitsIcEENS1_5_TypeEm'/>
+<use f='include/c++/11/bits/fs_path.h' l='821' c='_ZNSt10filesystem7__cxx114path10_S_convertEPKT_S4_'/>
+<use f='include/c++/11/bits/fs_path.h' l='983' c='_ZNSt10filesystem7__cxx114pathpLEc'/>
+<use f='include/c++/11/bits/fs_path.h' l='988' c='_ZNSt10filesystem7__cxx114pathpLESt17basic_string_viewIcSt11char_traitsIcEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='1021' c='_ZNSt10filesystem7__cxx114path14_S_str_convertESt17basic_string_viewIcSt11char_traitsIcEERKT1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1150' c='_ZNKSt10filesystem7__cxx114path14generic_stringERKT1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1191' c='_ZNKSt10filesystem7__cxx114path7compareERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='1195' c='_ZNKSt10filesystem7__cxx114path7compareEPKc'/>

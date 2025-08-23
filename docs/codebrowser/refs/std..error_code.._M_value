@@ -1,0 +1,7 @@
+<use f='include/c++/11/system_error' l='200' u='w' c='_ZNSt10error_codeC1Ev'/>
+<use f='include/c++/11/system_error' l='203' u='w' c='_ZNSt10error_codeC1EiRKNSt3_V214error_categoryE'/>
+<use f='include/c++/11/system_error' l='213' u='w' c='_ZNSt10error_code6assignEiRKNSt3_V214error_categoryE'/>
+<use f='include/c++/11/system_error' l='229' u='r' c='_ZNKSt10error_code5valueEv'/>
+<use f='include/c++/11/system_error' l='243' u='r' c='_ZNKSt10error_codecvbEv'/>
+<dec f='include/c++/11/system_error' l='247' type='int'/>
+<offset>0</offset>

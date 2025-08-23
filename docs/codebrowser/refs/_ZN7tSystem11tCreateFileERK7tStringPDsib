@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='230' type='bool tSystem::tCreateFile(const tString &amp; file, char16_t * data, int length, bool writeBom = true)'/>
+<def f='Modules/System/Src/tFile.cpp' l='1051' ll='1074' type='bool tSystem::tCreateFile(const tString &amp; file, char16_t * data, int length, bool writeBOM = true)'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='580' type='void tMath::tNlerp(tMath::tQuat &amp; d, const tMath::tQuat &amp; a, const tMath::tQuat &amp; b, float t, tMath::tOrientationPath  = tOrientationPath::Shortest)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='578'>// Normalized linear interpolation. Shortest path through the sphere. Faster than slerp and commutative. Rotation
+// sequences may be applied in any order with same results (order independent).</doc>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='71' u='c' c='_ZN5tMath11tQuaternion5NlerpERKNS_5tQuatES3_f'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='313' ll='350' type='void tMath::tNlerp(tMath::tQuat &amp; d, const tMath::tQuat &amp; a, const tMath::tQuat &amp; bb, float t, tMath::tOrientationPath path = tOrientationPath::Shortest)'/>

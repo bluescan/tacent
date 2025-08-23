@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='141' type='int'/>
+<offset>736</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='141'>// Near lossless encoding [0 = max loss .. 100 = off</doc>

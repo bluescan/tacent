@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/stl_function.h' l='405' ll='411'/>
+<def f='include/c++/11/bits/stl_function.h' l='462' ll='478'/>
+<def f='include/c++/11/bits/stl_function.h' l='653' ll='712'/>
+<use f='include/c++/11/bits/stl_function.h' l='654'/>
+<use f='include/c++/11/bits/stl_function.h' l='669' c='_ZNKSt13greater_equalIvEclEPT_PT0_'/>
+<use f='include/c++/11/bits/stl_function.h' l='683' c='_ZNSt13greater_equalIvE6_S_cmpEOT_OT0_St17integral_constantIbLb1EE'/>
+<size>1</size>
+<doc f='include/c++/11/bits/stl_function.h' l='461'>// Partial specialization of std::greater_equal for pointers.</doc>
+<doc f='include/c++/11/bits/stl_function.h' l='652'>/// One of the @link comparison_functors comparison functors@endlink.</doc>
+<fun r='_ZNKSt13greater_equalclERKT_S2_'/>
+<fun r='_ZNKSt13greater_equalIPT_EclES1_S1_'/>
+<fun r='_ZNKSt13greater_equalIvEclEOT_OT0_'/>
+<fun r='_ZNKSt13greater_equalIvEclEPT_PT0_'/>
+<fun r='_ZNSt13greater_equalIvE6_S_cmpEOT_OT0_St17integral_constantIbLb0EE'/>
+<fun r='_ZNSt13greater_equalIvE6_S_cmpEOT_OT0_St17integral_constantIbLb1EE'/>

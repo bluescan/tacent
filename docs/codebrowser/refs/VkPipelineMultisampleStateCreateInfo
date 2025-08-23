@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3604' ll='3614'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3604'/>
+<size>48</size>
+<mbr r='VkPipelineMultisampleStateCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineMultisampleStateCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineMultisampleStateCreateInfo::flags' o='128' t='VkPipelineMultisampleStateCreateFlags'/>
+<mbr r='VkPipelineMultisampleStateCreateInfo::rasterizationSamples' o='160' t='VkSampleCountFlagBits'/>
+<mbr r='VkPipelineMultisampleStateCreateInfo::sampleShadingEnable' o='192' t='VkBool32'/>
+<mbr r='VkPipelineMultisampleStateCreateInfo::minSampleShading' o='224' t='float'/>
+<mbr r='VkPipelineMultisampleStateCreateInfo::pSampleMask' o='256' t='const VkSampleMask *'/>
+<mbr r='VkPipelineMultisampleStateCreateInfo::alphaToCoverageEnable' o='320' t='VkBool32'/>
+<mbr r='VkPipelineMultisampleStateCreateInfo::alphaToOneEnable' o='352' t='VkBool32'/>

@@ -1,0 +1,11 @@
+<use f='include/c++/11/stop_token' l='72' u='c' c='_ZNKSt10stop_token13stop_possibleEv'/>
+<use f='include/c++/11/stop_token' l='79' u='c' c='_ZNKSt10stop_token14stop_requestedEv'/>
+<def f='include/c++/11/stop_token' l='445' type='bool std::stop_token::_Stop_state_ref::operator bool() const'/>
+<use f='include/c++/11/stop_token' l='489' u='c' c='_ZNSt11stop_sourceC1ERKS_'/>
+<use f='include/c++/11/stop_token' l='502' u='c' c='_ZNSt11stop_sourceaSERKS_'/>
+<use f='include/c++/11/stop_token' l='513' u='c' c='_ZNSt11stop_sourceD1Ev'/>
+<use f='include/c++/11/stop_token' l='521' u='c' c='_ZNKSt11stop_source13stop_possibleEv'/>
+<use f='include/c++/11/stop_token' l='528' u='c' c='_ZNKSt11stop_source14stop_requestedEv'/>
+<use f='include/c++/11/stop_token' l='586' u='c' c='_ZNSt13stop_callbackC1ERKSt10stop_tokenOTL0__'/>
+<use f='include/c++/11/stop_token' l='600' u='c' c='_ZNSt13stop_callbackC1EOSt10stop_tokenOTL0__'/>
+<use f='include/c++/11/stop_token' l='609' u='c' c='_ZNSt13stop_callbackD1Ev'/>

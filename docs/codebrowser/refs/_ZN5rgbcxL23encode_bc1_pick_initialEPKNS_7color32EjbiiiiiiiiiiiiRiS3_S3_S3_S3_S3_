@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3030' ll='3392' type='void rgbcx::encode_bc1_pick_initial(const rgbcx::color32 * pSrc_pixels, uint32_t flags, bool grayscale_flag, int min_r, int min_g, int min_b, int max_r, int max_g, int max_b, int avg_r, int avg_g, int avg_b, int total_r, int total_g, int total_b, int &amp; lr, int &amp; lg, int &amp; lb, int &amp; hr, int &amp; hg, int &amp; hb)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3542' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3604' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

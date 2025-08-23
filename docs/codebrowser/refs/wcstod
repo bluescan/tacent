@@ -1,0 +1,4 @@
+<dec f='include/wchar.h' l='378' type='double wcstod(const wchar_t *__restrict __nptr, wchar_t **__restrict __endptr)'/>
+<use f='include/c++/11/bits/basic_string.h' l='6781' u='a' c='_ZNSt7__cxx114stodERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPm'/>
+<doc f='include/wchar.h' l='376'>/* Convert initial portion of the wide string NPTR to `double&apos;
+   representation.  */</doc>

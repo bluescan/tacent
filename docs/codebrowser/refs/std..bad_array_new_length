@@ -1,0 +1,6 @@
+<inh f='include/c++/11/new' l='55' c='std::bad_alloc'/>
+<def f='include/c++/11/new' l='74' ll='85'/>
+<size>8</size>
+<fun r='_ZNSt20bad_array_new_lengthC1Ev'/>
+<fun r='_ZNSt20bad_array_new_lengthD1Ev'/>
+<fun r='_ZNKSt20bad_array_new_length4whatEv'/>

@@ -1,0 +1,15 @@
+<dec f='include/c++/11/debug/debug.h' l='81'/>
+<use f='include/c++/11/bits/basic_string.h' l='1257' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='1458' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='1727' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='1983' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2067' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2415' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2493' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2574' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2658' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2741' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2823' u='c'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1172' u='c'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1440' u='c'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1455' u='c'/>

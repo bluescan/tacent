@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='260' type='int WebPAnimDecoderOptionsInitInternal(WebPAnimDecoderOptions * , int )'/>
+<use f='Modules/Image/Contrib/WebP/include/demux.h' l='269' u='c' c='_ZL26WebPAnimDecoderOptionsInitP22WebPAnimDecoderOptions'/>

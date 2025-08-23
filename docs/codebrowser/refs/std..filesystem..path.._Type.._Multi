@@ -1,0 +1,9 @@
+<dec f='include/c++/11/bits/fs_path.h' l='558' type='0'/>
+<use f='include/c++/11/bits/fs_path.h' l='899' u='r' c='_ZNKSt10filesystem7__cxx114path8iterator11_M_is_multiEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1204' u='r' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1260' u='r' c='_ZNKSt10filesystem7__cxx114path5beginEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1268' u='r' c='_ZNKSt10filesystem7__cxx114path3endEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1277' u='r' c='_ZNSt10filesystem7__cxx114path8iteratorppEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1294' u='r' c='_ZNSt10filesystem7__cxx114path8iteratormmEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1311' u='r' c='_ZNKSt10filesystem7__cxx114path8iteratordeEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1326' u='r' c='_ZNKSt10filesystem7__cxx114path8iterator9_M_equalsES2_'/>

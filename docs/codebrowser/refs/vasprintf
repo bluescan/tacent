@@ -1,0 +1,3 @@
+<dec f='include/stdio.h' l='390' type='int vasprintf(char **__restrict __ptr, const char *__restrict __f, __va_list_tag * __arg)'/>
+<doc f='include/stdio.h' l='388'>/* Write formatted output to a string dynamically allocated with `malloc&apos;.
+   Store the address of the string in *PTR.  */</doc>

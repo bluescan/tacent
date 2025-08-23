@@ -1,0 +1,8 @@
+<use f='Modules/Image/Src/tImagePVR.cpp' l='967' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1001' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1033' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImagePVR.cpp' l='1059' ll='1064' type='int tImage::tImagePVR::LayerIdx(int surf, int face = 0, int mip = 0, int depth = 0) const'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1287' u='c' c='_ZN6tImage9tImagePVR8GetFrameEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1300' u='c' c='_ZN6tImage9tImagePVR8GetFrameEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1355' u='c' c='_ZN6tImage9tImagePVR18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1383' u='c' c='_ZNK6tImage9tImagePVR16GetCubemapLayersEP5tListINS_6tLayerEEj'/>

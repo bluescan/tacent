@@ -1,0 +1,1 @@
+<dec f='include/unistd.h' l='339' type='__off_t lseek(int __fd, __off_t __offset, int __whence)'/>

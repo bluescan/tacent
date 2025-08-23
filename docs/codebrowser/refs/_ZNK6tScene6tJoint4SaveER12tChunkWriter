@@ -1,0 +1,4 @@
+<dec f='Modules/Scene/Inc/Scene/tSkeleton.h' l='32' type='void tScene::tJoint::Save(tChunkWriter &amp; ) const'/>
+<inh f='Modules/Scene/Inc/Scene/tObject.h' l='32' c='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>
+<def f='Modules/Scene/Src/tSkeleton.cpp' l='23' ll='54' type='void tScene::tJoint::Save(tChunkWriter &amp; chunk) const'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='193' u='c' c='_ZNK6tScene9tSkeleton4SaveER12tChunkWriter'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_base.h' l='592' ll='598' macro='1' type='void std::__atomic_base::wait(std::__atomic_base::__int_type __old, std::memory_order __m = memory_order_seq_cst) const'/>
+<use f='include/c++/11/atomic' l='170' u='c' c='_ZNKSt6atomicIbE4waitEbSt12memory_order'/>

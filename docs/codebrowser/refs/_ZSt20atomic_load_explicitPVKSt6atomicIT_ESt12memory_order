@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='1327' ll='1330' type='_ITp std::atomic_load_explicit(const volatile atomic&lt;_ITp&gt; * __a, std::memory_order __m)'/>

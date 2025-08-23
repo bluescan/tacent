@@ -1,0 +1,3 @@
+<def f='include/c++/11/tr1/bessel_function.tcc' l='605' ll='626' type='_Tp std::__detail::__sph_bessel(unsigned int __n, _Tp __x)'/>
+<use f='include/c++/11/bits/specfun.h' l='1074' u='c' c='_ZSt11sph_besselfjf'/>
+<use f='include/c++/11/bits/specfun.h' l='1084' u='c' c='_ZSt11sph_bessellje'/>

@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tImageKTX.cpp' l='41' type='void tImage::tKTX::GetFormatInfo_FromVKFormat(tImage::tPixelFormat &amp; , tColourProfile &amp; , tAlphaMode &amp; , tChannelType &amp; , uint32 vkFormat)'/>
+<def f='Modules/Image/Src/tImageKTX.cpp' l='279' ll='518' type='void tImage::tKTX::GetFormatInfo_FromVKFormat(tImage::tPixelFormat &amp; format, tColourProfile &amp; profile, tAlphaMode &amp; alphaMode, tChannelType &amp; chanType, uint32 vkFormat)'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='846' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

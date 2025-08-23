@@ -1,0 +1,21 @@
+<def f='Modules/System/Inc/System/tPrint.h' l='257' type='tString tsrPrintf(const char * format)'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='260' u='c' c='_Z8tsrPrinta'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='261' u='c' c='_Z8tsrPrinth'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='262' u='c' c='_Z8tsrPrints'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='263' u='c' c='_Z8tsrPrintt'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='264' u='c' c='_Z8tsrPrinti'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='265' u='c' c='_Z8tsrPrintj'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='266' u='c' c='_Z8tsrPrintx'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='267' u='c' c='_Z8tsrPrinty'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='268' u='c' c='_Z8tsrPrint7tFixIntILi128EE'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='269' u='c' c='_Z8tsrPrint8tFixIntUILi128EE'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='270' u='c' c='_Z8tsrPrint7tFixIntILi256EE'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='271' u='c' c='_Z8tsrPrint8tFixIntUILi256EE'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='272' u='c' c='_Z8tsrPrint7tFixIntILi512EE'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='273' u='c' c='_Z8tsrPrint8tFixIntUILi512EE'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='274' u='c' c='_Z8tsrPrintf'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='275' u='c' c='_Z8tsrPrintd'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='277' u='c' c='_Z8tsrPrintRKN5tMath5tVec2E'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='278' u='c' c='_Z8tsrPrintRKN5tMath5tVec3E'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='279' u='c' c='_Z8tsrPrintRKN5tMath5tVec4E'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='280' u='c' c='_Z8tsrPrintRKN5tMath5tQuatE'/>

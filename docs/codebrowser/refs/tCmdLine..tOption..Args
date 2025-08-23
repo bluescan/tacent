@@ -1,0 +1,6 @@
+<use f='Modules/System/Src/tCmdLine.cpp' l='74' u='w' c='_ZN8tCmdLine7tOptionC1EPKccS2_ib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='87' u='w' c='_ZN8tCmdLine7tOptionC1EPKcS2_cib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='100' u='w' c='_ZN8tCmdLine7tOptionC1EPKccib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='113' u='w' c='_ZN8tCmdLine7tOptionC1EPKcS2_ib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='132' u='m' c='_ZNK8tCmdLine7tOption4ArgNEi'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='353' u='m' c='_ZN8tCmdLine6tParseEPKDubb'/>

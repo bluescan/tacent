@@ -1,0 +1,8 @@
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='134' u='c' c='_ZNK5tMath8tMatrix4plERKNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='136' u='c' c='_ZNK5tMath8tMatrix4miERKNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='137' u='c' c='_ZNK5tMath8tMatrix4ngEv'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='143' u='c' c='_ZNK5tMath8tMatrix4mlERKNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='146' u='c' c='_ZN5tMathmlEfRKNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='147' u='c' c='_ZN5tMathmlERKNS_5tMat4Ef'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='149' u='c' c='_ZNK5tMath8tMatrix4dvEf'/>
+<use f='Modules/System/Src/tScript.cpp' l='397' u='c' c='_ZNK11tExpression14GetAtomMatrix4Ev'/>

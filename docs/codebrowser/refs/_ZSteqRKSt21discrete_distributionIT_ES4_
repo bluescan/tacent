@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='5449' ll='5452' type='bool std::operator==(const discrete_distribution&lt;_IntType&gt; &amp; __d1, const discrete_distribution&lt;_IntType&gt; &amp; __d2)'/>
+<doc f='include/c++/11/bits/random.h' l='5445'>/**
+       * @brief Return true if two discrete distributions have the same
+       *        parameters.
+       */</doc>

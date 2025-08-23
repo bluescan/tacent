@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='1421' type='z_size_t gzfread(voidp buf, z_size_t size, z_size_t nitems, gzFile file)'/>

@@ -1,0 +1,3 @@
+<use f='Modules/Image/Inc/Image/tImageXPM.h' l='45' u='c' c='_ZN6tImage9tImageXPMC1ERNS_8tPictureEb'/>
+<dec f='Modules/Image/Inc/Image/tImageXPM.h' l='61' type='bool tImage::tImageXPM::Set(tImage::tPicture &amp; picture, bool steal = true)'/>
+<doc f='Modules/Image/Inc/Image/tImageXPM.h' l='60'>// Sets from a tPicture.</doc>

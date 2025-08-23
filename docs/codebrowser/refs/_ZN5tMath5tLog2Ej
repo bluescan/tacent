@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='206' type='int tMath::tLog2(uint32 v)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='450' u='c' c='_ZN5tMath18tFindFirstClearBitEj'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='469' ll='483' type='int tMath::tLog2(uint32 x)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='204'>// This overload is for unsigned ints. It uses a slightly different (but also fast) algorithm to compute the base-2 log.
+// If 0 is passed in, returns -1 as the answer.</doc>

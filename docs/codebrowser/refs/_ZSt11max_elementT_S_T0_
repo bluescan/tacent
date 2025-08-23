@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='772' type='_FIter std::max_element(_FIter , _FIter , _Compare )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='5726' ll='5741' macro='1' type='_ForwardIterator std::max_element(_ForwardIterator __first, _ForwardIterator __last, _Compare __comp)'/>

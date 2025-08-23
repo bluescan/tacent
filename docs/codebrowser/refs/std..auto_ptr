@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/unique_ptr.h' l='350' c='_ZNSt10unique_ptrC1EOSt8auto_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='663' c='_ZNSt14__shared_countC1EOSt8auto_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1219' c='_ZNSt12__shared_ptrC1EOSt8auto_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1239' c='_ZNSt12__shared_ptraSEOSt8auto_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='331'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='332' c='_ZNSt10shared_ptrC1EOSt8auto_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='373' c='_ZNSt10shared_ptraSEOSt8auto_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='374' c='_ZNSt10shared_ptraSEOSt8auto_ptrITL0__E'/>

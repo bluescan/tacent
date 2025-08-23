@@ -1,0 +1,24 @@
+<inh f='include/c++/11/bits/stl_iterator_base_types.h' l='127' c='std::iterator'/>
+<def f='include/c++/11/bits/stl_bvector.h' l='142' ll='229'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='186' c='_ZSteqRKSt18_Bit_iterator_baseS1_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='186' c='_ZSteqRKSt18_Bit_iterator_baseS1_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='191' c='_ZStssRKSt18_Bit_iterator_baseS1_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='191' c='_ZStssRKSt18_Bit_iterator_baseS1_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='224' c='_ZStmiRKSt18_Bit_iterator_baseS1_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='224' c='_ZStmiRKSt18_Bit_iterator_baseS1_'/>
+<ovr f='include/c++/11/bits/stl_bvector.h' l='231' c='std::_Bit_iterator'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='231'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='241' c='_ZNSt13_Bit_iteratorC1Ev'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='244' c='_ZNSt13_Bit_iteratorC1EPmj'/>
+<ovr f='include/c++/11/bits/stl_bvector.h' l='323' c='std::_Bit_const_iterator'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='323'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='334' c='_ZNSt19_Bit_const_iteratorC1Ev'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='337' c='_ZNSt19_Bit_const_iteratorC1EPmj'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='340' c='_ZNSt19_Bit_const_iteratorC1ERKSt13_Bit_iterator'/>
+<size>16</size>
+<mbr r='std::_Bit_iterator_base::_M_p' o='0' t='std::_Bit_type *'/>
+<mbr r='std::_Bit_iterator_base::_M_offset' o='64' t='unsigned int'/>
+<fun r='_ZNSt18_Bit_iterator_baseC1EPmj'/>
+<fun r='_ZNSt18_Bit_iterator_base10_M_bump_upEv'/>
+<fun r='_ZNSt18_Bit_iterator_base12_M_bump_downEv'/>
+<fun r='_ZNSt18_Bit_iterator_base7_M_incrEl'/>

@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='924' type='int pthread_mutexattr_setprioceiling(pthread_mutexattr_t * __attr, int __prioceiling)'/>
+<doc f='include/pthread.h' l='923'>/* Set the mutex prioceiling attribute in *ATTR to PRIOCEILING.  */</doc>

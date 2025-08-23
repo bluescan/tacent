@@ -1,0 +1,6 @@
+<use f='include/c++/11/compare' l='623'/>
+<def f='include/c++/11/compare' l='745' ll='775'/>
+<use f='include/c++/11/compare' l='863'/>
+<size>1</size>
+<fun r='_ZNSt10__cmp_cust16_Strong_fallback11_S_noexceptEv'/>
+<fun r='_ZNKSt10__cmp_cust16_Strong_fallbackclEOT_OT0_'/>

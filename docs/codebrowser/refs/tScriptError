@@ -1,0 +1,36 @@
+<inh f='Modules/System/Inc/System/tThrow.h' l='27' c='tError'/>
+<def f='Modules/System/Inc/System/tScript.h' l='411' ll='437'/>
+<size>32</size>
+<doc f='Modules/System/Inc/System/tScript.h' l='410'>// The following error objects may be thrown by script parsing functions.</doc>
+<fun r='_ZN12tScriptErrorC1EPKcz'/>
+<fun r='_ZN12tScriptErrorC1EiPKcz'/>
+<fun r='_ZN12tScriptErrorC1Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='116' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='118' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='134' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='136' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='204' c='_ZNK11tExpression19GetExpressionStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='217' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='228' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='241' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='266' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='269' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='276' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='558' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='594' c='_ZN11tExprWriterC1ERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='603' c='_ZN11tExprWriter15BeginExpressionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='612' c='_ZN11tExprWriter13EndExpressionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='639' c='_ZN11tExprWriter9WriteAtomERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='667' c='_ZN11tExprWriter9WriteAtomEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='682' c='_ZN11tExprWriter8WriteRawERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='697' c='_ZN11tExprWriter8WriteRawEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='965' c='_ZN11tExprWriter12WriteCommentEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='982' c='_ZN11tExprWriter16WriteCommentLineEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='994' c='_ZN11tExprWriter15WriteCommentEndEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1004' c='_ZN11tExprWriter23WriteCommentInlineBeginEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1019' c='_ZN11tExprWriter18WriteCommentInlineEPKc'/>
+<use f='Modules/System/Src/tScript.cpp' l='1029' c='_ZN11tExprWriter21WriteCommentInlineEndEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1043' c='_ZN11tExprWriter7NewLineEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1076' c='_ZN14tFunExpressionC1EPKDu'/>
+<use f='Modules/System/Src/tScript.cpp' l='1179' c='_ZN10tFunScript4SaveERK7tString'/>
+<size>32</size>

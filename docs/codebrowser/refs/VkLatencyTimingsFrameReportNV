@@ -1,0 +1,19 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18344' ll='18361'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18344'/>
+<size>128</size>
+<mbr r='VkLatencyTimingsFrameReportNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkLatencyTimingsFrameReportNV::pNext' o='64' t='const void *'/>
+<mbr r='VkLatencyTimingsFrameReportNV::presentID' o='128' t='uint64_t'/>
+<mbr r='VkLatencyTimingsFrameReportNV::inputSampleTimeUs' o='192' t='uint64_t'/>
+<mbr r='VkLatencyTimingsFrameReportNV::simStartTimeUs' o='256' t='uint64_t'/>
+<mbr r='VkLatencyTimingsFrameReportNV::simEndTimeUs' o='320' t='uint64_t'/>
+<mbr r='VkLatencyTimingsFrameReportNV::renderSubmitStartTimeUs' o='384' t='uint64_t'/>
+<mbr r='VkLatencyTimingsFrameReportNV::renderSubmitEndTimeUs' o='448' t='uint64_t'/>
+<mbr r='VkLatencyTimingsFrameReportNV::presentStartTimeUs' o='512' t='uint64_t'/>
+<mbr r='VkLatencyTimingsFrameReportNV::presentEndTimeUs' o='576' t='uint64_t'/>
+<mbr r='VkLatencyTimingsFrameReportNV::driverStartTimeUs' o='640' t='uint64_t'/>
+<mbr r='VkLatencyTimingsFrameReportNV::driverEndTimeUs' o='704' t='uint64_t'/>
+<mbr r='VkLatencyTimingsFrameReportNV::osRenderQueueStartTimeUs' o='768' t='uint64_t'/>
+<mbr r='VkLatencyTimingsFrameReportNV::osRenderQueueEndTimeUs' o='832' t='uint64_t'/>
+<mbr r='VkLatencyTimingsFrameReportNV::gpuRenderStartTimeUs' o='896' t='uint64_t'/>
+<mbr r='VkLatencyTimingsFrameReportNV::gpuRenderEndTimeUs' o='960' t='uint64_t'/>

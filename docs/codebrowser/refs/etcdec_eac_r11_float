@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/etcdec/etcdec.h' l='77' type='void etcdec_eac_r11_float(const void * compressedBlock, void * decompressedBlock, int destinationPitch, int isSigned)'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='935' u='c' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>

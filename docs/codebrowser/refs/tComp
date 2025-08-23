@@ -1,0 +1,18 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='25' ll='35'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='38' c='_Z18tIsColourComponent5tComp'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='39' c='_Z18tIsVectorComponent5tComp'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='40' c='_Z18tIsMatrixComponent5tComp'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='41' c='_Z17tGetComponentName5tComp'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='23'>// The tComp enum is to be used for specifying both colour channels (RGBA) and vector components (XYZW).
+// The first valid component is required to have value 0 so these enumerants can be used for bit shifts.</doc>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='160' c='_ZN6tImage8tPicture6SpreadE5tComp'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='166' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='166' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='166' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='166' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='527' c='_ZN6tImage8tPicture6SpreadE5tComp'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='544' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='544' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='544' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='544' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='36' c='_Z17tGetComponentName5tComp'/>

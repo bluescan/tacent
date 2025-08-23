@@ -1,0 +1,8 @@
+_ZNSt6chrono8duration4zeroEv|std::chrono::duration::zero
+_ZNSt6chrono15duration_values4zeroEv|std::chrono::duration_values::zero
+_ZN5tMath8tVector34ZeroEv|tMath::tVector3::Zero
+_ZN5tMath8tVector44ZeroEv|tMath::tVector4::Zero
+_ZN5tMath8tMatrix24ZeroEv|tMath::tMatrix2::Zero
+_ZN5tMath8tMatrix44ZeroEv|tMath::tMatrix4::Zero
+_ZN5tMath11tQuaternion4ZeroEv|tMath::tQuaternion::Zero
+_ZN5tMath8tVector24ZeroEv|tMath::tVector2::Zero

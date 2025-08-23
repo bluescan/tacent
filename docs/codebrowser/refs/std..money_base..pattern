@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='932'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='934'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='949' c='_ZNSt10money_base20_S_construct_patternEccc'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='968'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='969'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='985' c='_ZNSt18__moneypunct_cacheC1Em'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='986' c='_ZNSt18__moneypunct_cacheC1Em'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1236' c='_ZNKSt7__cxx1110moneypunct10pos_formatEv'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1240' c='_ZNKSt7__cxx1110moneypunct10neg_formatEv'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1350' c='_ZNKSt7__cxx1110moneypunct13do_pos_formatEv'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1364' c='_ZNKSt7__cxx1110moneypunct13do_neg_formatEv'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='178' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='443' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<size>4</size>
+<mbr r='std::money_base::pattern::field' o='0' t='char[4]'/>

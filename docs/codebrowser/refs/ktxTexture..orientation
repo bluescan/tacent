@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='271' type='struct ktxOrientation'/>
+<offset>512</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='379'>/**
+ * @typedef ktxTexture::orientation
+ * @~English
+ * @brief Describes the logical orientation of the images in each dimension.
+ *
+ * ktxOrientationX for X, ktxOrientationY for Y and ktxOrientationZ for Z.
+ */</doc>

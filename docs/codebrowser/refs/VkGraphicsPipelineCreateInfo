@@ -1,0 +1,22 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3671' ll='3691'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3671'/>
+<size>144</size>
+<mbr r='VkGraphicsPipelineCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkGraphicsPipelineCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkGraphicsPipelineCreateInfo::flags' o='128' t='VkPipelineCreateFlags'/>
+<mbr r='VkGraphicsPipelineCreateInfo::stageCount' o='160' t='uint32_t'/>
+<mbr r='VkGraphicsPipelineCreateInfo::pStages' o='192' t='const VkPipelineShaderStageCreateInfo *'/>
+<mbr r='VkGraphicsPipelineCreateInfo::pVertexInputState' o='256' t='const VkPipelineVertexInputStateCreateInfo *'/>
+<mbr r='VkGraphicsPipelineCreateInfo::pInputAssemblyState' o='320' t='const VkPipelineInputAssemblyStateCreateInfo *'/>
+<mbr r='VkGraphicsPipelineCreateInfo::pTessellationState' o='384' t='const VkPipelineTessellationStateCreateInfo *'/>
+<mbr r='VkGraphicsPipelineCreateInfo::pViewportState' o='448' t='const VkPipelineViewportStateCreateInfo *'/>
+<mbr r='VkGraphicsPipelineCreateInfo::pRasterizationState' o='512' t='const VkPipelineRasterizationStateCreateInfo *'/>
+<mbr r='VkGraphicsPipelineCreateInfo::pMultisampleState' o='576' t='const VkPipelineMultisampleStateCreateInfo *'/>
+<mbr r='VkGraphicsPipelineCreateInfo::pDepthStencilState' o='640' t='const VkPipelineDepthStencilStateCreateInfo *'/>
+<mbr r='VkGraphicsPipelineCreateInfo::pColorBlendState' o='704' t='const VkPipelineColorBlendStateCreateInfo *'/>
+<mbr r='VkGraphicsPipelineCreateInfo::pDynamicState' o='768' t='const VkPipelineDynamicStateCreateInfo *'/>
+<mbr r='VkGraphicsPipelineCreateInfo::layout' o='832' t='VkPipelineLayout'/>
+<mbr r='VkGraphicsPipelineCreateInfo::renderPass' o='896' t='VkRenderPass'/>
+<mbr r='VkGraphicsPipelineCreateInfo::subpass' o='960' t='uint32_t'/>
+<mbr r='VkGraphicsPipelineCreateInfo::basePipelineHandle' o='1024' t='VkPipeline'/>
+<mbr r='VkGraphicsPipelineCreateInfo::basePipelineIndex' o='1088' t='int32_t'/>

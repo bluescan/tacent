@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1804' type='const uint32_t[3]'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1832' u='r' c='_ZN5rgbcxL25compute_selector_factors3ERKNS_5hist3ERfS3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2100' u='r' c='_ZN5rgbcxL36compute_least_squares_endpoints3_rgbEbPKNS_7color32EPKhPNS_5vec3FES6_'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1803'>// multiplier is 4 for 3-color</doc>

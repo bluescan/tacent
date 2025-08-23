@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tImageKTX.h' l='46' type='8'/>
+<doc f='Modules/Image/Inc/Image/tImageKTX.h' l='46'>// Same as above but uses the official sRGB transformation. Linear -&gt; sRGB. Approx encoding gamma of 1/2.4 for part of curve.</doc>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='991' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1002' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1043' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1123' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

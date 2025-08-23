@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='486' type='bool tMath::tIntersectFindRaySphere(float &amp; t, const tMath::tRay &amp; , const tMath::tSphere &amp; )'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='483'>// The tRay.Dir argument must be normalized. This function modifies t such that the intersection point is given by
+// tRay.Start + tRay.Dir*t. t holds the closer of the two possible intersections and is always positive. Returns false
+// if there was no intersection, true otherwise.</doc>
+<def f='Modules/Math/Src/tGeometry.cpp' l='411' ll='445' type='bool tMath::tIntersectFindRaySphere(float &amp; t, const tMath::tRay &amp; ray, const tMath::tSphere &amp; sphere)'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='455' u='c' c='_ZN5tMath27tIntersectTestLineSegSphereERKNS_8tLineSegERKNS_7tSphereE'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='455' u='c' c='_ZN5tMath27tIntersectTestLineSegSphereERKNS_8tLineSegERKNS_7tSphereE'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='223' type='void tExprReader::tExprReader(int argc, char ** argv)'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='220'>// Useful for command line utilities. Makes a script from standard command line argc and argv parameters. Honestly,
+	// I&apos;m not sure how useful this is now that we have tOption for parsing command lines in a nice way that is a bit
+	// more standard.</doc>
+<def f='Modules/System/Src/tScript.cpp' l='481' ll='529' type='void tExprReader::tExprReader(int argc, char ** argv)'/>

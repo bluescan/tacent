@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='412' type='const char *'/>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='29' type='const char *'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='34' u='r'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='39' u='r'/>

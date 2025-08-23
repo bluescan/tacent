@@ -1,0 +1,36 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17437' ll='17471'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17437'/>
+<size>144</size>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3TessellationDomainOrigin' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3DepthClampEnable' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3PolygonMode' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3RasterizationSamples' o='224' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3SampleMask' o='256' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3AlphaToCoverageEnable' o='288' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3AlphaToOneEnable' o='320' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3LogicOpEnable' o='352' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3ColorBlendEnable' o='384' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3ColorBlendEquation' o='416' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3ColorWriteMask' o='448' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3RasterizationStream' o='480' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3ConservativeRasterizationMode' o='512' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3ExtraPrimitiveOverestimationSize' o='544' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3DepthClipEnable' o='576' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3SampleLocationsEnable' o='608' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3ColorBlendAdvanced' o='640' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3ProvokingVertexMode' o='672' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3LineRasterizationMode' o='704' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3LineStippleEnable' o='736' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3DepthClipNegativeOneToOne' o='768' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3ViewportWScalingEnable' o='800' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3ViewportSwizzle' o='832' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3CoverageToColorEnable' o='864' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3CoverageToColorLocation' o='896' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3CoverageModulationMode' o='928' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3CoverageModulationTableEnable' o='960' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3CoverageModulationTable' o='992' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3CoverageReductionMode' o='1024' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3RepresentativeFragmentTestEnable' o='1056' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceExtendedDynamicState3FeaturesEXT::extendedDynamicState3ShadingRateImageEnable' o='1088' t='VkBool32'/>

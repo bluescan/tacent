@@ -1,0 +1,5 @@
+<def f='include/c++/11/typeinfo' l='99' ll='100' type='const char * std::type_info::name() const'/>
+<use f='include/c++/11/typeinfo' l='146' u='c' c='_ZNKSt9type_info9hash_codeEv'/>
+<use f='include/c++/11/typeinfo' l='146' u='c' c='_ZNKSt9type_info9hash_codeEv'/>
+<doc f='include/c++/11/typeinfo' l='97'>/** Returns an @e implementation-defined byte string; this is not
+     *  portable between compilers!  */</doc>

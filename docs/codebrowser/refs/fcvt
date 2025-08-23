@@ -1,0 +1,4 @@
+<dec f='include/stdlib.h' l='886' type='char * fcvt(double __value, int __ndigit, int *__restrict __decpt, int *__restrict __sign)'/>
+<doc f='include/stdlib.h' l='883'>/* Convert VALUE to a string rounded to NDIGIT decimal digits.  Set *DECPT
+   with the position of the decimal character and *SIGN with the sign of
+   the number.  */</doc>

@@ -1,0 +1,6 @@
+<use f='include/c++/11/functional' l='1069' u='w' c='_ZNSt24__boyer_moore_array_baseC1ETL0__mOTL0_0_OT1_'/>
+<use f='include/c++/11/functional' l='1071' c='_ZNSt24__boyer_moore_array_baseC1ETL0__mOTL0_0_OT1_'/>
+<use f='include/c++/11/functional' l='1078' c='_ZNSt24__boyer_moore_array_baseC1ETL0__mOTL0_0_OT1_'/>
+<use f='include/c++/11/functional' l='1091' c='_ZNKSt24__boyer_moore_array_base9_M_lookupETL0__T_'/>
+<use f='include/c++/11/functional' l='1095' c='_ZNKSt24__boyer_moore_array_base7_M_predEv'/>
+<dec f='include/c++/11/functional' l='1097' type='tuple&lt;array&lt;_Tp, _Len&gt;, _Pred&gt;'/>

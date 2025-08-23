@@ -1,0 +1,2 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='144' u='c' c='_ZN5tMath7tARect2C1Effff'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='150' type='void tMath::tARect2::Set(float minx, float miny, float maxx, float maxy)'/>

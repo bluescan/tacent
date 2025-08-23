@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='608' type='void tMath::tMakeRotateYXZ(tMath::tMat4 &amp; d, float eulerX, float eulerY, float eulerZ)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='614' u='c' c='_ZN5tMath14tMakeRotateYXZERNS_5tMat4ERKNS_5tVec3E'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='608'>// RzrxRy</doc>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='718' ll='728' type='void tMath::tMakeRotateYXZ(tMath::tMat4 &amp; d, float a, float b, float c)'/>

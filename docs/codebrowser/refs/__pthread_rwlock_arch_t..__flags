@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/struct_rwlock.h' l='45' type='unsigned int'/>
+<offset>384</offset>
+<doc f='include/x86_64-linux-gnu/bits/struct_rwlock.h' l='43'>/* FLAGS must stay at this position in the structure to maintain
+     binary compatibility.  */</doc>

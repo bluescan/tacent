@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/range_access.h' l='107' type='_Tp * std::begin(valarray&lt;_Tp&gt; &amp; )'/>
+<doc f='include/c++/11/bits/range_access.h' l='106'>// These overloads must be declared for cbegin and cend to use them.</doc>

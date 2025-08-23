@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='2176' ll='2212' type='subrange&lt;_Iter&gt; std::ranges::__equal_range_fn::operator()(_Iter __first, _Sent __last, const _Tp &amp; __value, _Comp __comp = {}, _Proj __proj = {}) const'/>

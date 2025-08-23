@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='515' type='void tImage::tDDS::GetFormatInfo_FromFourCC(tImage::tPixelFormat &amp; , tColourProfile &amp; , tAlphaMode &amp; , tChannelType &amp; , uint32 fourCC)'/>
+<def f='Modules/Image/Src/tImageDDS.cpp' l='714' ll='790' type='void tImage::tDDS::GetFormatInfo_FromFourCC(tImage::tPixelFormat &amp; format, tColourProfile &amp; profile, tAlphaMode &amp; alphaMode, tChannelType &amp; chanType, uint32 fourCC)'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1263' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>

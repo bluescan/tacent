@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/hashtable.h' l='898' type='std::_Hashtable::iterator std::_Hashtable::_M_insert(std::_Hashtable::const_iterator , _Arg &amp;&amp; , const _NodeGenerator &amp; , std::false_type __uks)'/>
+<def f='include/c++/11/bits/hashtable.h' l='2116' ll='2139' type='std::_Hashtable::iterator std::_Hashtable::_M_insert(std::_Hashtable::const_iterator __hint, _Arg &amp;&amp; __v, const _NodeGenerator &amp; __node_gen, std::false_type )'/>
+<doc f='include/c++/11/bits/hashtable.h' l='2115'>// Insert v unconditionally.</doc>

@@ -1,0 +1,2 @@
+<dec f='include/wchar.h' l='302' type='size_t wcrtomb(char *__restrict __s, wchar_t __wc, mbstate_t *__restrict __ps)'/>
+<doc f='include/wchar.h' l='301'>/* Write multibyte representation of wide character WC to S.  */</doc>

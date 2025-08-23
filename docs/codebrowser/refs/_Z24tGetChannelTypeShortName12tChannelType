@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='223' type='const char * tGetChannelTypeShortName(tChannelType )'/>
+<def f='Modules/Math/Src/tColour.cpp' l='121' ll='125' type='const char * tGetChannelTypeShortName(tChannelType type)'/>

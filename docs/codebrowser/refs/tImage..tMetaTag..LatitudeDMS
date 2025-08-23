@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='41' type='5'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='41'>//	string	Degrees, Minutes, Seconds, Direction. Eg. 42°33&apos;56&quot;N</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='285' u='m' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='667' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

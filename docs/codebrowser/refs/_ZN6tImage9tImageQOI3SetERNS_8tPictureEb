@@ -1,0 +1,5 @@
+<use f='Modules/Image/Inc/Image/tImageQOI.h' l='44' u='c' c='_ZN6tImage9tImageQOIC1ERNS_8tPictureEb'/>
+<dec f='Modules/Image/Inc/Image/tImageQOI.h' l='61' type='bool tImage::tImageQOI::Set(tImage::tPicture &amp; picture, bool steal = true)'/>
+<doc f='Modules/Image/Inc/Image/tImageQOI.h' l='60'>// Sets from a tPicture.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='70' c='_ZN6tImage10tBaseImage3SetERNS_8tPictureEb'/>
+<def f='Modules/Image/Src/tImageQOI.cpp' l='126' ll='145' type='bool tImage::tImageQOI::Set(tImage::tPicture &amp; picture, bool steal = true)'/>

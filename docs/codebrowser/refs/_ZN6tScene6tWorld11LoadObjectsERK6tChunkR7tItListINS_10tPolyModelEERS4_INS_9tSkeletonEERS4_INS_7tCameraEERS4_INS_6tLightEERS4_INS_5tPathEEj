@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='520' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<def f='Modules/Scene/Src/tWorld.cpp' l='1179' ll='1222' type='void tScene::tWorld::LoadObjects(const tChunk &amp; objListChunk, tItList&lt;tScene::tPolyModel&gt; &amp; polyModels, tItList&lt;tScene::tSkeleton&gt; &amp; skeletons, tItList&lt;tScene::tCamera&gt; &amp; cameras, tItList&lt;tScene::tLight&gt; &amp; lights, tItList&lt;tScene::tPath&gt; &amp; paths, uint32 loadFlags)'/>

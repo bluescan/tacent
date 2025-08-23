@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='33' type='20'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='563' u='r' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='571' u='r' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='579' u='r' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='587' u='r' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>

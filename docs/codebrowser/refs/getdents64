@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/dirent_ext.h' l='29' type='__ssize_t getdents64(int __fd, void * __buffer, size_t __length)'/>
+<doc f='include/x86_64-linux-gnu/bits/dirent_ext.h' l='26'>/* Read from the directory descriptor FD into LENGTH bytes at BUFFER.
+   Return the number of bytes read on success (0 for end of
+   directory), and -1 for failure.  */</doc>

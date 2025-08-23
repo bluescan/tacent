@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='98' type='char * tStd::tStrncpy(char * dst, const char * src, int n)'/>
+<use f='Modules/System/Src/tScript.cpp' l='1053' u='c' c='_ZN14tFunExpressionC1EPKDu'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.tcc' l='2747' ll='2770' type='std::basic_ostream&lt;_CharT, _Traits&gt; &amp; std::operator&lt;&lt;(std::basic_ostream&lt;_CharT, _Traits&gt; &amp; __os, const discrete_distribution&lt;_IntType&gt; &amp; __x)'/>

@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/ucontext.h' l='40'/>
+<use f='include/x86_64-linux-gnu/sys/ucontext.h' l='46' u='c'/>
+<doc f='include/x86_64-linux-gnu/sys/ucontext.h' l='39'>/* Number of general registers.  */</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/tuple' l='907' ll='916' macro='1' type='tuple&lt;_Elements...&gt; &amp; std::tuple::operator=(typename conditional&lt;__assignable&lt;_Elements...&gt;(), tuple&lt;_Elements...&gt; &amp;&amp;, __nonesuch &amp;&amp;&gt;::type __in)'/>

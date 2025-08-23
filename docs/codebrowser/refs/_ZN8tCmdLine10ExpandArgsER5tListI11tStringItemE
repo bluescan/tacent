@@ -1,0 +1,4 @@
+<dec f='Modules/System/Src/tCmdLine.cpp' l='28' type='void tCmdLine::ExpandArgs(tList&lt;tStringItem&gt; &amp; args)'/>
+<def f='Modules/System/Src/tCmdLine.cpp' l='208' ll='251' type='void tCmdLine::ExpandArgs(tList&lt;tStringItem&gt; &amp; args)'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='337' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<doc f='Modules/System/Src/tCmdLine.cpp' l='27'>// Any single-hyphen combined option arguments are expanded here. Ex. -abc becomes -a -b -c.</doc>

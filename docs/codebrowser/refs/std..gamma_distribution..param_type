@@ -1,0 +1,29 @@
+<def f='include/c++/11/bits/random.h' l='2414' ll='2454'/>
+<use f='include/c++/11/bits/random.h' l='2419' c='_ZNSt18gamma_distribution10param_typeC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='2438' c='_ZSteqRKNSt18gamma_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='2438' c='_ZSteqRKNSt18gamma_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='2443' c='_ZStneRKNSt18gamma_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='2443' c='_ZStneRKNSt18gamma_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='2473' c='_ZNSt18gamma_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2501' c='_ZNKSt18gamma_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='2510' c='_ZNSt18gamma_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2538' c='_ZNSt18gamma_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2552' c='_ZNSt18gamma_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2559' c='_ZNSt18gamma_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2608' c='_ZNSt18gamma_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2610'/>
+<use f='include/c++/11/bits/random.tcc' l='1162' c='_ZNSt30negative_binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2356' c='_ZNSt18gamma_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2401' c='_ZNSt18gamma_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<size>32</size>
+<doc f='include/c++/11/bits/random.h' l='2413'>/** Parameter type. */</doc>
+<fun r='_ZNSt18gamma_distribution10param_typeC1Ev'/>
+<fun r='_ZNSt18gamma_distribution10param_typeC1ET_S1_'/>
+<fun r='_ZNKSt18gamma_distribution10param_type5alphaEv'/>
+<fun r='_ZNKSt18gamma_distribution10param_type4betaEv'/>
+<fun r='_ZNSt18gamma_distribution10param_type13_M_initializeEv'/>
+<mbr r='std::gamma_distribution::param_type::_M_alpha' t='_RealType'/>
+<mbr r='std::gamma_distribution::param_type::_M_beta' t='_RealType'/>
+<mbr r='std::gamma_distribution::param_type::_M_malpha' t='_RealType'/>
+<mbr r='std::gamma_distribution::param_type::_M_a2' t='_RealType'/>
+<fun r='_ZNSt18gamma_distribution10param_type13_M_initializeEv'/>

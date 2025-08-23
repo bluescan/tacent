@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/std_mutex.h' l='206' type='void std::adopt_lock_t::adopt_lock_t()'/>
+<use f='include/c++/11/bits/std_mutex.h' l='215' u='c'/>

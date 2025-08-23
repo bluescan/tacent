@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='299' type='float tImage::tGetBitsPerPixelFloat(tImage::tPixelFormat )'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='297'>// Works for any pixel format, even if a non-integral number of bits per pixel. In particular does work for ASTC
+// formats. Returns 0.0f if pixel format is invalid.</doc>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='165' u='c' c='_ZNK6tImage9tImageICO21GetBestSrcPixelFormatEv'/>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='165' u='c' c='_ZNK6tImage9tImageICO21GetBestSrcPixelFormatEv'/>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='553' ll='562' type='float tImage::tGetBitsPerPixelFloat(tImage::tPixelFormat format)'/>

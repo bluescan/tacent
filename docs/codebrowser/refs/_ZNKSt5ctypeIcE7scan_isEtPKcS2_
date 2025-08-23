@@ -1,0 +1,13 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='776' type='const char * std::ctype&lt;char&gt;::scan_is(std::ctype_base::mask __m, const char * __lo, const char * __hi) const'/>
+<def f='include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h' l='55' ll='63' type='const char * std::ctype&lt;char&gt;::scan_is(std::ctype_base::mask __m, const char * __low, const char * __high) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='764'>/**
+       *  @brief  Find char matching a mask
+       *
+       *  This function searches for and returns the first char in [lo,hi) for
+       *  which is(m,char) is true.
+       *
+       *  @param __m  The mask to compare against.
+       *  @param __lo  Pointer to start of range.
+       *  @param __hi  Pointer to end of range.
+       *  @return  Pointer to a matching char if found, else @a __hi.
+      */</doc>

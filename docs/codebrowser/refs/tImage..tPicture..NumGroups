@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='343' type='const int'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='347'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='348'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='349'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='350'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='351'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='343'>// Sure makes it easy choosing 256 groups.</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='667' u='r' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>

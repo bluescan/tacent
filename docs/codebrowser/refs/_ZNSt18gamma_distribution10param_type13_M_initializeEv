@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/random.h' l='2426' u='c' c='_ZNSt18gamma_distribution10param_typeC1ET_S1_'/>
+<dec f='include/c++/11/bits/random.h' l='2448' type='void std::gamma_distribution::param_type::_M_initialize()'/>
+<def f='include/c++/11/bits/random.tcc' l='2335' ll='2344' type='void std::gamma_distribution::param_type::_M_initialize()'/>

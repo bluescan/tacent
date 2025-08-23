@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/cpu-set.h' l='119' type='cpu_set_t * __sched_cpualloc(size_t __count)'/>

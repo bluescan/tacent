@@ -1,0 +1,9 @@
+<def f='include/c++/11/fstream' l='964' ll='973' type='void std::basic_ofstream::open(const std::string &amp; __s, ios_base::openmode __mode = ios_base::out)'/>
+<doc f='include/c++/11/fstream' l='956'>/**
+       *  @brief  Opens an external file.
+       *  @param  __s  The name of the file.
+       *  @param  __mode  The open mode flags.
+       *
+       *  Calls @c std::basic_filebuf::open(s,mode|out).  If that
+       *  function fails, @c failbit is set in the stream&apos;s error state.
+       */</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8648'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8647'>// VK_KHR_external_memory_fd is a preprocessor guard. Do not pass it to API calls.</doc>

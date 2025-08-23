@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='161' type='int tStd::tStrtoi(const char * s, int base = -1)'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='151' u='c' c='_ZN4tStd7tStrtobEPKc'/>

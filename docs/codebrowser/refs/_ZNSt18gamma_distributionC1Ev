@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='2460' type='void std::gamma_distribution::gamma_distribution&lt;_RealType&gt;()'/>
+<doc f='include/c++/11/bits/random.h' l='2457'>/**
+       * @brief Constructs a gamma distribution with parameters 1 and 1.
+       */</doc>

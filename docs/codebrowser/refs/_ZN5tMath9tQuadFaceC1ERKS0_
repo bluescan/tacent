@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='73' type='void tMath::tQuadFace::tQuadFace(const tMath::tQuadFace &amp; s)'/>
+<use f='Modules/System/Src/tChunk.cpp' l='449' u='c' c='_ZN12tChunkWriter5WriteERKN5tMath9tQuadFaceE'/>

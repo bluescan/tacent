@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3275' ll='3278'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3275'/>
+<size>260</size>
+<mbr r='VkExtensionProperties::extensionName' o='0' t='char[256]'/>
+<mbr r='VkExtensionProperties::specVersion' o='2048' t='uint32_t'/>

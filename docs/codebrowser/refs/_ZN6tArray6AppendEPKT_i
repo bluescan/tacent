@@ -1,0 +1,14 @@
+<use f='Modules/System/Src/tPrint.cpp' l='356' u='c' c='_ZN7tSystem8Receiver7ReceiveEPKc'/>
+<use f='Modules/System/Src/tPrint.cpp' l='386' u='c' c='_ZN7tSystem8Receiver7ReceiveEPKci'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1020' u='c' c='_ZN7tSystem27HandlerHelper_IntegerNativeER6tArrayIcERKNS_10FormatSpecEPvbibib'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1090' u='c' c='_ZN7tSystem27HandlerHelper_IntegerNativeER6tArrayIcERKNS_10FormatSpecEPvbibib'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1152' u='c' c='_ZN7tSystem27HandlerHelper_IntegerTacentER6tArrayIcERKNS_10FormatSpecEPvbibib'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1220' u='c' c='_ZN7tSystem27HandlerHelper_IntegerTacentER6tArrayIcERKNS_10FormatSpecEPvbibib'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1448' u='c' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1449' u='c' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1456' u='c' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1457' u='c' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1458' u='c' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1461' u='c' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1462' u='c' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1721' u='c' c='_ZN7tSystem25HandlerHelper_FloatNormalER6tArrayIcERKNS_10FormatSpecEdb'/>

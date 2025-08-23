@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='64' type='void tMath::tVector3::Lerp(const tMath::tVec3 &amp; a, const tMath::tVec3 &amp; b, float t)'/>
+<doc f='Modules/Math/Inc/Math/tVector3.h' l='64'>/* Also extrapolates. See tLerp comments. */</doc>

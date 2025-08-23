@@ -1,0 +1,13 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/functional' l='204' ll='206'/>
+<use f='include/c++/11/functional' l='212'/>
+<def f='include/c++/11/functional' l='261' ll='264'/>
+<def f='include/c++/11/functional' l='266' ll='269'/>
+<use f='include/c++/11/functional' l='291'/>
+<use f='include/c++/11/functional' l='362' c='_ZNVKSt3_MuIT_Lb0ELb1EEclERVKS0_RTL0__'/>
+<use f='include/c++/11/functional' l='366' c='_ZNVKSt3_MuIT_Lb0ELb1EEclERVKS0_RTL0__'/>
+<doc f='include/c++/11/functional' l='256'>/**
+   *  Partial specialization of is_placeholder that provides the placeholder
+   *  number for the placeholder objects defined by libstdc++.
+   *  @ingroup binders
+   */</doc>

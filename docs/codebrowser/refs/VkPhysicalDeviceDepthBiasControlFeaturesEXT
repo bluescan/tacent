@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15089' ll='15096'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15089'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceDepthBiasControlFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDepthBiasControlFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDepthBiasControlFeaturesEXT::depthBiasControl' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDepthBiasControlFeaturesEXT::leastRepresentableValueForceUnormRepresentation' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDepthBiasControlFeaturesEXT::floatRepresentation' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDepthBiasControlFeaturesEXT::depthBiasExact' o='224' t='VkBool32'/>

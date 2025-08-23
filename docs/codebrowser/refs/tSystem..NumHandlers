@@ -1,0 +1,7 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='131' type='const int'/>
+<def f='Modules/System/Src/tPrint.cpp' l='433' type='const int'/>
+<use f='Modules/System/Src/tPrint.cpp' l='704' u='r' c='_ZN7tSystem11FindHandlerEc'/>
+<use f='Modules/System/Src/tPrint.cpp' l='713' u='r' c='_ZN7tSystem11FindHandlerEc'/>
+<doc f='Modules/System/Src/tPrint.cpp' l='430'>// Filling this in correctly will speed things up. However, not filling it in or filling it in incorrectly will still
+// work. Fill it in by looking at the type character in the handler info table. Find the letter entry in the jump table,
+// and populate it with the fast jump index.</doc>

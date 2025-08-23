@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/random.h' l='5302' u='c' c='_ZNSt21discrete_distribution10param_typeC1ETL0__S1_'/>
+<use f='include/c++/11/bits/random.h' l='5306' u='c' c='_ZNSt21discrete_distribution10param_typeC1ESt16initializer_listIdE'/>
+<dec f='include/c++/11/bits/random.h' l='5330' type='void std::discrete_distribution::param_type::_M_initialize()'/>
+<def f='include/c++/11/bits/random.tcc' l='2654' ll='2677' type='void std::discrete_distribution::param_type::_M_initialize()'/>
+<use f='include/c++/11/bits/random.tcc' l='2692' u='c' c='_ZNSt21discrete_distribution10param_typeC1EmddTL0__'/>

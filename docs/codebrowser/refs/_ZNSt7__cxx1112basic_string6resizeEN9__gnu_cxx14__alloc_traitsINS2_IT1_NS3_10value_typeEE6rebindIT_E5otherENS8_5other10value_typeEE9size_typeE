@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/basic_string.h' l='957' ll='959' type='void std::basic_string::resize(std::basic_string::size_type __n)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='947'>/**
+       *  @brief  Resizes the %string to the specified number of characters.
+       *  @param  __n  Number of characters the %string should contain.
+       *
+       *  This function will resize the %string to the specified length.  If
+       *  the new size is smaller than the %string&apos;s current size the %string
+       *  is truncated, otherwise the %string is extended and new characters
+       *  are default-constructed.  For basic types such as char, this means
+       *  setting them to 0.
+       */</doc>

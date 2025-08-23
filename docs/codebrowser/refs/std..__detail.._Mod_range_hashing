@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/hashtable_policy.h' l='421' ll='431'/>
+<use f='include/c++/11/bits/unordered_map.h' l='51'/>
+<use f='include/c++/11/bits/unordered_map.h' l='68'/>
+<size>1</size>
+<doc f='include/c++/11/bits/hashtable_policy.h' l='416'>// Many of class template _Hashtable&apos;s template parameters are policy
+  // classes.  These are defaults for the policies.
+
+  /// Default range hashing function: use division to fold a large number
+  /// into the range [0, N).</doc>
+<fun r='_ZNKSt8__detail18_Mod_range_hashingclEmm'/>

@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11682' ll='11688'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11682'/>
+<size>32</size>
+<mbr r='VkShaderResourceUsageAMD::numUsedVgprs' o='0' t='uint32_t'/>
+<mbr r='VkShaderResourceUsageAMD::numUsedSgprs' o='32' t='uint32_t'/>
+<mbr r='VkShaderResourceUsageAMD::ldsSizePerLocalWorkGroup' o='64' t='uint32_t'/>
+<mbr r='VkShaderResourceUsageAMD::ldsUsageSizeInBytes' o='128' t='size_t'/>
+<mbr r='VkShaderResourceUsageAMD::scratchMemUsageInBytes' o='192' t='size_t'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='538' type='16965888'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='538'>// ModelID, Screen ratio threshold.</doc>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='24' u='r' c='_ZNK6tScene9tLodParam4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='35' u='r' c='_ZN6tScene9tLodParam4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='77' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>

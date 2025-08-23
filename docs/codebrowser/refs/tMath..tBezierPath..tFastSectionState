@@ -1,0 +1,8 @@
+<use f='Modules/Math/Src/tSpline.cpp' l='500' c='_ZNK5tMath11tBezierPath15GetClosestParamERKNS_8tVector3EjfRKNS0_17tFastSectionStateE'/>
+<size>48</size>
+<smbr r='tMath::tBezierPath::tFastSectionState::CompareComponents' t='comp_t'/>
+<smbr r='tMath::tBezierPath::tFastSectionState::ComparePos' t='tMath::tVector3'/>
+<smbr r='tMath::tBezierPath::tFastSectionState::CompareControlVerts' t='const tMath::tVector3 *'/>
+<fun r='_ZN5tMath11tBezierPath17tFastSectionState15CompareSectionsERKNS1_12tSectionInfoES4_'/>
+<fun r='_ZNK5tMath11tBezierPath17tFastSectionState3SetERKNS_8tVector3EjPS3_i'/>
+<fun r='_ZNK5tMath11tBezierPath17tFastSectionState6UpdateERKNS_8tVector3EPS3_'/>

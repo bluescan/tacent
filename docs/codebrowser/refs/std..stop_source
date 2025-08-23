@@ -1,0 +1,33 @@
+<use f='include/c++/11/stop_token' l='96'/>
+<use f='include/c++/11/stop_token' l='397' c='_ZNSt10stop_token15_Stop_state_refC1ERKSt11stop_source'/>
+<def f='include/c++/11/stop_token' l='477' ll='567'/>
+<use f='include/c++/11/stop_token' l='486' c='_ZNSt11stop_sourceC1ERKS_'/>
+<use f='include/c++/11/stop_token' l='493' c='_ZNSt11stop_sourceC1EOS_'/>
+<use f='include/c++/11/stop_token' l='495' c='_ZNSt11stop_sourceaSERKS_'/>
+<use f='include/c++/11/stop_token' l='496' c='_ZNSt11stop_sourceaSERKS_'/>
+<use f='include/c++/11/stop_token' l='500' c='_ZNSt11stop_sourceaSERKS_'/>
+<use f='include/c++/11/stop_token' l='508' c='_ZNSt11stop_sourceaSEOS_'/>
+<use f='include/c++/11/stop_token' l='509' c='_ZNSt11stop_sourceaSEOS_'/>
+<use f='include/c++/11/stop_token' l='547' c='_ZNSt11stop_source4swapERS_'/>
+<use f='include/c++/11/stop_token' l='554' c='_ZSteqRKSt11stop_sourceS1_'/>
+<use f='include/c++/11/stop_token' l='554' c='_ZSteqRKSt11stop_sourceS1_'/>
+<use f='include/c++/11/stop_token' l='560' c='_ZSt4swapRSt11stop_sourceS0_'/>
+<use f='include/c++/11/stop_token' l='560' c='_ZSt4swapRSt11stop_sourceS0_'/>
+<use f='include/c++/11/thread' l='187' c='_ZNSt7jthread15get_stop_sourceEv'/>
+<use f='include/c++/11/thread' l='212' c='_ZNSt7jthread9_S_createERSt11stop_sourceOT_DpOT0_'/>
+<use f='include/c++/11/thread' l='229'/>
+<size>8</size>
+<doc f='include/c++/11/stop_token' l='476'>/// A type that allows a stop request to be made.</doc>
+<fun r='_ZNSt11stop_sourceC1Ev'/>
+<fun r='_ZNSt11stop_sourceC1ESt13nostopstate_t'/>
+<fun r='_ZNSt11stop_sourceC1ERKS_'/>
+<fun r='_ZNSt11stop_sourceC1EOS_'/>
+<fun r='_ZNSt11stop_sourceaSERKS_'/>
+<fun r='_ZNSt11stop_sourceaSEOS_'/>
+<fun r='_ZNSt11stop_sourceD1Ev'/>
+<fun r='_ZNKSt11stop_source13stop_possibleEv'/>
+<fun r='_ZNKSt11stop_source14stop_requestedEv'/>
+<fun r='_ZNKSt11stop_source12request_stopEv'/>
+<fun r='_ZNKSt11stop_source9get_tokenEv'/>
+<fun r='_ZNSt11stop_source4swapERS_'/>
+<mbr r='std::stop_source::_M_state' o='0' t='stop_token::_Stop_state_ref'/>

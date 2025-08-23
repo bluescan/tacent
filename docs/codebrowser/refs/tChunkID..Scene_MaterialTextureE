@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='551' type='16998912'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='551'>// Alternate texture E.</doc>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='143' u='r' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='209' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>

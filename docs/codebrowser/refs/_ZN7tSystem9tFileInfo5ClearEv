@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='543' type='void tSystem::tFileInfo::Clear()'/>
+<def f='Modules/System/Inc/System/tFile.h' l='1128' ll='1138' type='void tSystem::tFileInfo::Clear()'/>
+<use f='Modules/System/Src/tFile.cpp' l='2103' u='c' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>

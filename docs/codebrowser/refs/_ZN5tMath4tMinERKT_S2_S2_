@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='50' type='T tMath::tMin(const T &amp; a, const T &amp; b, const T &amp; c)'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='646' u='c' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Math/Src/tColour.cpp' l='209' u='c' c='_ZN5tMath9tRGBToHSVERiS0_S0_iiiNS_10tAngleModeE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='334' u='c' c='_ZN5tMath9tRGBToHSVERfS0_S0_fffNS_10tAngleModeE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='625' u='c' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3ES4_'/>

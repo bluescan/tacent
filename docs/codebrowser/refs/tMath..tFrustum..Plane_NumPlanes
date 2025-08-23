@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='422' type='6'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='426'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='111' u='r' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='506' u='r' c='_ZN5tMath27tIntersectTestFrustumSphereERKNS_8tFrustumERKNS_7tSphereE'/>

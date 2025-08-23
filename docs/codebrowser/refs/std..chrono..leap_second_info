@@ -1,0 +1,4 @@
+<def f='include/c++/11/chrono' l='1240' ll='1244'/>
+<size>16</size>
+<mbr r='std::chrono::leap_second_info::is_leap_second' o='0' t='bool'/>
+<mbr r='std::chrono::leap_second_info::elapsed' o='64' t='std::chrono::seconds'/>

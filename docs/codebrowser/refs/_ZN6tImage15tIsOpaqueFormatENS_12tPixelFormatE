@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='275' type='bool tImage::tIsOpaqueFormat(tImage::tPixelFormat )'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='584' ll='587' type='bool tImage::tIsOpaqueFormat(tImage::tPixelFormat format)'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='72' u='c' c='_ZNK6tImage6tLayer14IsOpaqueFormatEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1000' u='c' c='_ZNK6tImage9tImageDDS8IsOpaqueEv'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='659' u='c' c='_ZNK6tImage9tImageKTX8IsOpaqueEv'/>

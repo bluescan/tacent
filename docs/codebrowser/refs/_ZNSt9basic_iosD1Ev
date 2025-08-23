@@ -1,0 +1,8 @@
+<inh f='include/c++/11/bits/ios_base.h' l='876' c='_ZNSt8ios_baseD1Ev'/>
+<def f='include/c++/11/bits/basic_ios.h' l='281' ll='282' type='void std::basic_ios::~basic_ios&lt;_CharT, _Traits&gt;()'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='275'>/**
+       *  @brief  Empty.
+       *
+       *  The destructor does nothing.  More specifically, it does not
+       *  destroy the streambuf held by rdbuf().
+      */</doc>

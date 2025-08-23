@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/dirent.h' l='43' type='char[256]'/>
+<offset>152</offset>
+<doc f='include/x86_64-linux-gnu/bits/dirent.h' l='43'>/* We must not include limits.h! */</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18196'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18195'>// VK_EXT_mutable_descriptor_type is a preprocessor guard. Do not pass it to API calls.</doc>

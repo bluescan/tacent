@@ -1,0 +1,8 @@
+<def f='include/c++/11/string_view' l='61' ll='68' type='std::size_t std::__sv_check(std::size_t __size, std::size_t __pos, const char * __s)'/>
+<use f='include/c++/11/string_view' l='295' u='c' c='_ZNKSt17basic_string_view4copyEPT_mm'/>
+<use f='include/c++/11/string_view' l='306' u='c' c='_ZNKSt17basic_string_view6substrEmm'/>
+<use f='include/c++/11/bits/basic_string.h' l='1331' u='c' c='_ZNSt7__cxx1112basic_string6appendERKTL0__N9__gnu_cxx14__alloc_traitsINS5_IT1_NS6_10value_typeEE6rebindIT_E5otherENSB_5other10value_typeEE9size_typeESF_'/>
+<use f='include/c++/11/bits/basic_string.h' l='1533' u='c' c='_ZNSt7__cxx1112basic_string6assignERKTL0__N9__gnu_cxx14__alloc_traitsINS5_IT1_NS6_10value_typeEE6rebindIT_E5otherENSB_5other10value_typeEE9size_typeESF_'/>
+<use f='include/c++/11/bits/basic_string.h' l='1806' u='c' c='_ZNSt7__cxx1112basic_string6insertEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeERKTL0__SC_SC_'/>
+<use f='include/c++/11/bits/basic_string.h' l='2239' u='c' c='_ZNSt7__cxx1112basic_string7replaceEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_RKTL0__SC_SC_'/>
+<doc f='include/c++/11/string_view' l='60'>// Helper for basic_string and basic_string_view members.</doc>

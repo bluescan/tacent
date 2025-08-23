@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_uninitialized.h' l='452' ll='472' type='_ForwardIterator std::__uninitialized_move_copy(_InputIterator1 __first1, _InputIterator1 __last1, _InputIterator2 __first2, _InputIterator2 __last2, _ForwardIterator __result, _Allocator &amp; __alloc)'/>

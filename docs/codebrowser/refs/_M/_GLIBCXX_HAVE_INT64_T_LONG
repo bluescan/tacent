@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='942'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='941'>/* Define if int64_t is a long. */</doc>
+<use f='include/c++/11/bits/postypes.h' l='45' u='a'/>
+<use f='include/c++/11/bits/postypes.h' l='87' u='a'/>

@@ -1,0 +1,4 @@
+<dec f='include/c++/11/ext/concurrence.h' l='49' type='2'/>
+<use f='include/c++/11/ext/concurrence.h' l='57'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='254' c='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='375' c='_ZNSt15_Sp_counted_ptr10_M_disposeEv'/>

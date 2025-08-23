@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/functional_hash.h' l='83' type='void std::__hash_enum::__hash_enum&lt;_Tp, &gt;(__hash_enum&lt;_Tp, &gt; &amp;&amp; )'/>
+<doc f='include/c++/11/bits/functional_hash.h' l='82'>// Private rather than deleted to be non-trivially-copyable.</doc>

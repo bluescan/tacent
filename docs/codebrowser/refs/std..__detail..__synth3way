@@ -1,0 +1,12 @@
+<def f='include/c++/11/compare' l='876' ll='910' type='const struct _Synth3way'/>
+<use f='include/c++/11/compare' l='915' u='c'/>
+<use f='include/c++/11/bits/stl_pair.h' l='475' u='c' c='_ZStssRKSt4pairIT_T0_ES4_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='477' u='c' c='_ZStssRKSt4pairIT_T0_ES4_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1131' u='c' c='__gnu_cxx::operator{=}'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1132' u='c' c='__gnu_cxx::operator{=}'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1148' u='c' c='__gnu_cxx::operator{=}'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1149' u='c' c='__gnu_cxx::operator{=}'/>
+<use f='include/c++/11/array' l='295' u='c' c='_ZStssRKSt5arrayIT_XT0_EES3_'/>
+<use f='include/c++/11/tuple' l='1548' u='c' c='_ZSt11__tuple_cmpRKT0_RKT1_St16integer_sequenceImJXT2_EXspT3_EEE'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1914' c='_ZStssRKSt6vectorIT_T0_ES4_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2269' c='_ZStssRKSt5dequeIT_T0_ES4_'/>

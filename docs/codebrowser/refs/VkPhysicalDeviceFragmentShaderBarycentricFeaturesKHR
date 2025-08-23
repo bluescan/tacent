@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10380' ll='10384'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10380'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceFragmentShaderBarycentricFeaturesKHR::fragmentShaderBarycentric' o='128' t='VkBool32'/>

@@ -1,0 +1,12 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='603' type='void tMath::tMakeRotateXYZ(tMath::tMat4 &amp; d, float eulerX, float eulerY, float eulerZ)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='609' u='c' c='_ZN5tMath14tMakeRotateXYZERNS_5tMat4ERKNS_5tVec3E'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='596'>// The Euler angle functions make rotation matrices that are essentially concatenations of the RotateX, RotateY, and
+// RotateZ calls above. There are 6 possible ways the successive rotations may be applied, and they are all implemented.
+// The function tMakeRotateXYZ rotates by the x-angle first, then y, then z. That is, it generates RzRyRx. Remember
+// v&apos; = Mv. In all cases the angles are in radians and the rotations are specified about the 3 cardinal axes: x, y, z.
+// An excellent reference can be found here: http://www.songho.ca/opengl/gl_anglestoaxes.html. I suggest using the XYZ
+// more often than not as it is Maya&apos;s default. eulerX is sometimes referred to as Psi, AngleX or pitch, eulerY as
+// Theta, Ay, or yaw, and eulerZ as Phi, Az, or roll.</doc>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='603'>// RzRyRx. Default for Maya.</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='80' u='c' c='_ZN5tMath8tMatrix413MakeRotateXYZEfff'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='649' ll='661' type='void tMath::tMakeRotateXYZ(tMath::tMat4 &amp; d, float a, float b, float c)'/>

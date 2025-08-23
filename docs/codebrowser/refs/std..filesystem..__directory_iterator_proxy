@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/fs_dir.h' l='357' ll='371'/>
+<use f='include/c++/11/bits/fs_dir.h' l='416' c='_ZNSt10filesystem7__cxx1118directory_iteratorppEi'/>
+<use f='include/c++/11/bits/fs_dir.h' l='418' c='_ZNSt10filesystem7__cxx1118directory_iteratorppEi'/>
+<use f='include/c++/11/bits/fs_dir.h' l='510' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorppEi'/>
+<use f='include/c++/11/bits/fs_dir.h' l='512' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorppEi'/>
+<size>48</size>
+<doc f='include/c++/11/bits/fs_dir.h' l='356'>/// Proxy returned by post-increment on directory iterators.</doc>
+<fun r='_ZNKRSt10filesystem7__cxx1126__directory_iterator_proxydeEv'/>
+<fun r='_ZNOSt10filesystem7__cxx1126__directory_iterator_proxydeEv'/>
+<fun r='_ZNSt10filesystem7__cxx1126__directory_iterator_proxyC1ERKNS0_15directory_entryE'/>
+<mbr r='std::filesystem::__directory_iterator_proxy::_M_entry' o='0' t='std::filesystem::directory_entry'/>

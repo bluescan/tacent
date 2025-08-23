@@ -1,0 +1,3 @@
+<dec f='include/stdlib.h' l='92'/>
+<doc f='include/stdlib.h' l='90'>/* We define these the same for all machines.
+   Changes from this to the outside world should be done in `_exit&apos;.  */</doc>

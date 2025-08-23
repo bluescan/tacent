@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10220' ll='10225'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10220'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR::pVideoProfile' o='128' t='const VkVideoProfileInfoKHR *'/>
+<mbr r='VkPhysicalDeviceVideoEncodeQualityLevelInfoKHR::qualityLevel' o='192' t='uint32_t'/>

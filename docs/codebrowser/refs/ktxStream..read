@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='899' type='ktxStream_read'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='899'>/*!&lt; pointer to function for reading bytes. */</doc>

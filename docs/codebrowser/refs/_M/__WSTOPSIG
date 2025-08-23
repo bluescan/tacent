@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/waitstatus.h' l='34'/>
+<doc f='include/x86_64-linux-gnu/bits/waitstatus.h' l='33'>/* If WIFSTOPPED(STATUS), the signal that stopped the child.  */</doc>

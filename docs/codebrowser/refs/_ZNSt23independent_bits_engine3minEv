@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='1206' ll='1208' type='static std::independent_bits_engine::result_type std::independent_bits_engine::min()'/>
+<doc f='include/c++/11/bits/random.h' l='1203'>/**
+       * @brief Gets the minimum value in the generated random number range.
+       */</doc>

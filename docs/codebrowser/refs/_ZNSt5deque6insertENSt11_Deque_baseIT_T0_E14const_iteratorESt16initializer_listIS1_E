@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1632' ll='1639' type='std::deque::iterator std::deque::insert(std::deque::const_iterator __p, initializer_list&lt;std::deque::value_type&gt; __l)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1622'>/**
+       *  @brief  Inserts an initializer list into the %deque.
+       *  @param  __p  An iterator into the %deque.
+       *  @param  __l  An initializer_list.
+       *  @return  An iterator that points to the inserted data.
+       *
+       *  This function will insert copies of the data in the
+       *  initializer_list @a __l into the %deque before the location
+       *  specified by @a __p.  This is known as &lt;em&gt;list insert&lt;/em&gt;.
+       */</doc>

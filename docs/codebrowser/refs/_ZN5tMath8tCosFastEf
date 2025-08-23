@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='182' type='float tMath::tCosFast(float x)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='182'>/* For x E [0, Pi/2]. */</doc>

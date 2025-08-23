@@ -1,0 +1,1 @@
+<dec f='include/stdlib.h' l='345' type='_Float64x strtof64x_l(const char *__restrict __nptr, char **__restrict __endptr, locale_t __loc)'/>

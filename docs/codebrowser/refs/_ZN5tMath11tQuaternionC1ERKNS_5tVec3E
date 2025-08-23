@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='32' type='void tMath::tQuaternion::tQuaternion(const tMath::tVec3 &amp; v)'/>
+<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='32'>/* r (w) gets set to 0.0f. */</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector4.h' l='59' type='void tMath::tVector4::NormalizeScale(float s)'/>
+<doc f='Modules/Math/Inc/Math/tVector4.h' l='59'>/* Normalize then scale. Resizes the vector. */</doc>

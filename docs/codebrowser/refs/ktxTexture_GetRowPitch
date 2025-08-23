@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='978' type='ktx_uint32_t ktxTexture_GetRowPitch(ktxTexture * This, ktx_uint32_t level)'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='973'>/*
+ * Returns the pitch of a row of an image at the specified level.
+ * Similar to the rowPitch in a VkSubResourceLayout.
+ */</doc>

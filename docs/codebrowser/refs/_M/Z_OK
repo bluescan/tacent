@@ -1,0 +1,2 @@
+<dec f='include/zlib.h' l='177'/>
+<doc f='include/zlib.h' l='175'>/* Allowed flush values; see deflate() and inflate() below for details */</doc>

@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tMachine.h' l='50' type='bool tSystem::tGetXDGConfigHome(tString &amp; xdgConfigHome)'/>
+<doc f='Modules/System/Inc/System/tMachine.h' l='50'>// $XDG_CONFIG_HOME</doc>
+<def f='Modules/System/Src/tMachine.cpp' l='300' ll='307' type='bool tSystem::tGetXDGConfigHome(tString &amp; xdgConfigHome)'/>

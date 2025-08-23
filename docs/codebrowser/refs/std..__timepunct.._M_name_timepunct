@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='184' type='const char *'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='44' u='w' c='_ZNSt11__timepunctC1Em'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='50' u='w' c='_ZNSt11__timepunctC1EPSt17__timepunct_cacheIT_Em'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='57' u='w' c='_ZNSt11__timepunctC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='64' u='w' c='_ZNSt11__timepunctC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='67' u='w' c='_ZNSt11__timepunctC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='73' u='r' c='_ZNSt11__timepunctC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='74' u='r' c='_ZNSt11__timepunctC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='82' u='r' c='_ZNSt11__timepunctD1Ev'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/time_members.h' l='83' u='r' c='_ZNSt11__timepunctD1Ev'/>

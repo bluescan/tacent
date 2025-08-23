@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.tcc' l='1238' ll='1256' type='std::basic_istream&lt;_CharT, _Traits&gt; &amp; std::operator&gt;&gt;(std::basic_istream&lt;_CharT, _Traits&gt; &amp; __is, negative_binomial_distribution&lt;_IntType&gt; &amp; __x)'/>

@@ -1,0 +1,17 @@
+<def f='include/c++/11/bits/basic_string.h' l='565' ll='585' type='void std::basic_string::basic_string&lt;_CharT, _Traits, _Alloc&gt;(basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp;&amp; __str)'/>
+<use f='include/c++/11/bits/basic_string.h' l='6667' u='c' c='_ZNSt7__cxx119to_stringEi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6675' u='c' c='_ZNSt7__cxx119to_stringEj'/>
+<use f='include/c++/11/bits/basic_string.h' l='6686' u='c' c='_ZNSt7__cxx119to_stringEl'/>
+<use f='include/c++/11/bits/basic_string.h' l='6694' u='c' c='_ZNSt7__cxx119to_stringEm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6706' u='c' c='_ZNSt7__cxx119to_stringEx'/>
+<use f='include/c++/11/bits/basic_string.h' l='6714' u='c' c='_ZNSt7__cxx119to_stringEy'/>
+<doc f='include/c++/11/bits/basic_string.h' l='558'>/**
+       *  @brief  Move construct string.
+       *  @param  __str  Source string.
+       *
+       *  The newly-created string contains the exact contents of @a __str.
+       *  @a __str is a valid, but unspecified string.
+       */</doc>
+<use f='include/c++/11/bits/fs_path.h' l='278' u='c' c='_ZNSt10filesystem7__cxx114pathC1EOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='283' u='c' c='_ZNSt10filesystem7__cxx114pathC1EONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='580' u='c' c='_ZNSt10filesystem7__cxx114path10_S_convertENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>

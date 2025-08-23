@@ -1,0 +1,2 @@
+<dec f='include/dirent.h' l='110'/>
+<use f='Modules/System/Src/tFile.cpp' l='2749' u='c'/>

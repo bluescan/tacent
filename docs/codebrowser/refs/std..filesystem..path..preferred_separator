@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/fs_path.h' l='261' type='const std::filesystem::path::value_type'/>
+<use f='include/c++/11/bits/fs_path.h' l='1206' u='r' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>

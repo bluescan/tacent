@@ -1,0 +1,11 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='95' type='double exp(double __x)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='191' u='c' c='_ZN5tMath4tExpEd'/>
+<use f='include/c++/11/bits/random.tcc' l='1280' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1281' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1286' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1499' u='c' c='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1504' u='c' c='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1507' u='c' c='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='701' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='899' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='911' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>

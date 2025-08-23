@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='2365' ll='2392'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2394'/>
+<size>1</size>
+<fun r='_ZNKSt6ranges21__stable_partition_fnclET_T0_T2_T1_'/>
+<fun r='_ZNKSt6ranges21__stable_partition_fnclEOT_T1_T0_'/>

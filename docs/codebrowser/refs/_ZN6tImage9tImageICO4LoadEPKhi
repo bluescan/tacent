@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageICO.cpp' l='105' u='c' c='_ZN6tImage9tImageICO4LoadERK7tString'/>
+<def f='Modules/Image/Src/tImageICO.cpp' l='112' ll='165' type='bool tImage::tImageICO::Load(const uint8 * icoFileInMemory, int numBytes)'/>

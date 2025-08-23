@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6963' ll='6970'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6963'/>
+<size>48</size>
+<mbr r='VkMemoryBarrier2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkMemoryBarrier2::pNext' o='64' t='const void *'/>
+<mbr r='VkMemoryBarrier2::srcStageMask' o='128' t='VkPipelineStageFlags2'/>
+<mbr r='VkMemoryBarrier2::srcAccessMask' o='192' t='VkAccessFlags2'/>
+<mbr r='VkMemoryBarrier2::dstStageMask' o='256' t='VkPipelineStageFlags2'/>
+<mbr r='VkMemoryBarrier2::dstAccessMask' o='320' t='VkAccessFlags2'/>

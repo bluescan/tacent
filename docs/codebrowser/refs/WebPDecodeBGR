@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='76' type='uint8_t * WebPDecodeBGR(const uint8_t * data, size_t data_size, int * width, int * height)'/>

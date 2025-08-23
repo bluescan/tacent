@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/std_thread.h' l='182' type='void std::thread::detach()'/>
+<use f='include/c++/11/thread' l='166' u='c' c='_ZNSt7jthread6detachEv'/>

@@ -1,0 +1,2 @@
+<dec f='include/stdint.h' l='134'/>
+<doc f='include/stdint.h' l='133'>/* Minimum of signed integral types having a minimum size.  */</doc>

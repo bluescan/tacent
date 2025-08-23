@@ -1,0 +1,4 @@
+<dec f='include/stdlib.h' l='630' type='void quick_exit(int __status)'/>
+<doc f='include/stdlib.h' l='627'>/* Call all functions registered with `at_quick_exit&apos; in the reverse
+   of the order in which they were registered and terminate program
+   execution with STATUS.  */</doc>

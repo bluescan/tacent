@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='310' type='float tColour3b::GetDenormR() const'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='313' u='c' c='_ZNK9tColour3b9GetDenormEPf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='314' u='c' c='_ZNK9tColour3b9GetDenormERN5tMath8tVector3E'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='315' u='c' c='_ZNK9tColour3b9GetDenormERfS0_S0_'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='309'>// These floating point get methods use a range of [0.0, 255.0] for each component. Denorm means not normalized.</doc>

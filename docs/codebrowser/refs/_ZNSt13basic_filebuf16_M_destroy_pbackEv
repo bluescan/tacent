@@ -1,0 +1,11 @@
+<def f='include/c++/11/fstream' l='220' ll='230' type='void std::basic_filebuf::_M_destroy_pback()'/>
+<use f='include/c++/11/bits/fstream.tcc' l='340' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='552' u='c' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='683' u='c' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='854' u='c' c='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='899' u='c' c='_ZNSt13basic_filebuf7seekposENT0_8pos_typeESt13_Ios_Openmode'/>
+<doc f='include/c++/11/fstream' l='215'>/**
+       *  Deactivates pback buffer contents, and restores normal buffer.
+       *  Assumptions:
+       *  The pback buffer has only moved forward.
+       */</doc>

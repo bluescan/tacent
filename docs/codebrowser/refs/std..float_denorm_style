@@ -1,0 +1,29 @@
+<def f='include/c++/11/limits' l='182' ll='190'/>
+<use f='include/c++/11/limits' l='266'/>
+<use f='include/c++/11/limits' l='422'/>
+<use f='include/c++/11/limits' l='492'/>
+<use f='include/c++/11/limits' l='560'/>
+<use f='include/c++/11/limits' l='631'/>
+<use f='include/c++/11/limits' l='703'/>
+<use f='include/c++/11/limits' l='767'/>
+<use f='include/c++/11/limits' l='832'/>
+<use f='include/c++/11/limits' l='893'/>
+<use f='include/c++/11/limits' l='959'/>
+<use f='include/c++/11/limits' l='1028'/>
+<use f='include/c++/11/limits' l='1099'/>
+<use f='include/c++/11/limits' l='1168'/>
+<use f='include/c++/11/limits' l='1238'/>
+<use f='include/c++/11/limits' l='1307'/>
+<use f='include/c++/11/limits' l='1380'/>
+<use f='include/c++/11/limits' l='1450'/>
+<use f='include/c++/11/limits' l='1518'/>
+<use f='include/c++/11/limits' l='1586'/>
+<use f='include/c++/11/limits' l='1708'/>
+<use f='include/c++/11/limits' l='1783'/>
+<use f='include/c++/11/limits' l='1858'/>
+<doc f='include/c++/11/limits' l='176'>/**
+   *  @brief Describes the denormalization for floating-point types.
+   *
+   *  These values represent the presence or absence of a variable number
+   *  of exponent bits.  This type is used in the std::numeric_limits class.
+  */</doc>

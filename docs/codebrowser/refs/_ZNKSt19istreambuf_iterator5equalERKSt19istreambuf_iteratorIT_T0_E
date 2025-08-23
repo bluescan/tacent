@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/streambuf_iterator.h' l='192' ll='194' type='bool std::istreambuf_iterator::equal(const istreambuf_iterator&lt;_CharT, _Traits&gt; &amp; __b) const'/>
+<doc f='include/c++/11/bits/streambuf_iterator.h' l='188'>// _GLIBCXX_RESOLVE_LIB_DEFECTS
+      // 110 istreambuf_iterator::equal not const
+      // NB: there is also number 111 (NAD) relevant to this function.
+      /// Return true both iterators are end or both are not end.</doc>

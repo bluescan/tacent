@@ -1,0 +1,32 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='570' type='bool operator==(const tString &amp; a, const tString &amp; b)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='568'>// Binary operator overloads should be outside the class so we can do things like if (&quot;a&quot; == b) where b is a tString.
+// Operators below that take char or char8_t pointers assume they are null-terminated.</doc>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='252' u='c' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='61' u='c' c='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='37' u='c' c='_ZNK6tScene7tObjecteqERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='49' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1306' u='c' c='_ZNK6tScene6tWorld15GetNumMaterialsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1322' u='c' c='_ZNK6tScene6tWorld12FindMaterialERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1346' u='c' c='_ZNK6tScene6tWorld15GetNumSkeletonsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1362' u='c' c='_ZNK6tScene6tWorld12FindSkeletonERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1386' u='c' c='_ZNK6tScene6tWorld12GetNumModelsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1402' u='c' c='_ZNK6tScene6tWorld13FindPolyModelERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1426' u='c' c='_ZNK6tScene6tWorld13GetNumCamerasERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1442' u='c' c='_ZNK6tScene6tWorld10FindCameraERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1466' u='c' c='_ZNK6tScene6tWorld12GetNumLightsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1482' u='c' c='_ZNK6tScene6tWorld9FindLightERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1506' u='c' c='_ZNK6tScene6tWorld11GetNumPathsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1522' u='c' c='_ZNK6tScene6tWorld8FindPathERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1546' u='c' c='_ZNK6tScene6tWorld15GetNumLodGroupsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1562' u='c' c='_ZNK6tScene6tWorld12FindLodGroupERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1647' u='c' c='_ZNK6tScene6tWorld15GetNumInstancesERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1663' u='c' c='_ZNK6tScene6tWorld12FindInstanceERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1696' u='c' c='_ZNK6tScene6tWorld16GetNumSelectionsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1712' u='c' c='_ZNK6tScene6tWorld13FindSelectionERK7tString'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='223' u='c' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='345' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='345' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='374' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='374' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tMachine.cpp' l='207' u='c' c='_ZN7tSystem23tOpenSystemFileExplorerERK7tStringS2_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='209' u='c' c='_ZN7tSystem23tOpenSystemFileExplorerERK7tStringS2_'/>

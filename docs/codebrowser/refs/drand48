@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='468' type='double drand48()'/>
+<doc f='include/stdlib.h' l='467'>/* Return non-negative, double-precision floating-point value in [0.0,1.0).  */</doc>

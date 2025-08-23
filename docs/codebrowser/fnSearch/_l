@@ -1,0 +1,5 @@
+_ZNSt10filesystem7__cxx114path5_ListC1EOS2_|std::filesystem::path::_List::_List
+_ZNSt10filesystem7__cxx114path5_ListaSEOS2_|std::filesystem::path::_List::operator=
+_ZNSt10filesystem7__cxx114path5_List4swapERS2_|std::filesystem::path::_List::swap
+_ZNKSt10filesystem7__cxx114path5_List4typeEv|std::filesystem::path::_List::type
+_ZNSt10filesystem7__cxx114path5_ListD1Ev|std::filesystem::path::_List::~_List

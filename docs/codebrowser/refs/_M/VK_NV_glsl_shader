@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11284'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11283'>// VK_NV_glsl_shader is a preprocessor guard. Do not pass it to API calls.</doc>

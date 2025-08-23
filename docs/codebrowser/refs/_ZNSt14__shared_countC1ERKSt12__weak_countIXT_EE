@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/shared_ptr_base.h' l='696' type='void std::__shared_count::__shared_count&lt;_Lp&gt;(const __weak_count&lt;_Lp&gt; &amp; __r)'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='867' ll='874' type='void std::__shared_count::__shared_count&lt;_Lp&gt;(const __weak_count&lt;_Lp&gt; &amp; __r)'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='695'>// Throw bad_weak_ptr when __r._M_get_use_count() == 0.</doc>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='866'>// Now that __weak_count is defined we can define this constructor:</doc>

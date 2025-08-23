@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6196' ll='6201'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6196'/>
+<size>32</size>
+<mbr r='VkDescriptorSetLayoutBindingFlagsCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDescriptorSetLayoutBindingFlagsCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkDescriptorSetLayoutBindingFlagsCreateInfo::bindingCount' o='128' t='uint32_t'/>
+<mbr r='VkDescriptorSetLayoutBindingFlagsCreateInfo::pBindingFlags' o='192' t='const VkDescriptorBindingFlags *'/>

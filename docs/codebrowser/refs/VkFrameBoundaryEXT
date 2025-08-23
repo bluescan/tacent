@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16398' ll='16410'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16398'/>
+<size>88</size>
+<mbr r='VkFrameBoundaryEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkFrameBoundaryEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkFrameBoundaryEXT::flags' o='128' t='VkFrameBoundaryFlagsEXT'/>
+<mbr r='VkFrameBoundaryEXT::frameID' o='192' t='uint64_t'/>
+<mbr r='VkFrameBoundaryEXT::imageCount' o='256' t='uint32_t'/>
+<mbr r='VkFrameBoundaryEXT::pImages' o='320' t='const VkImage *'/>
+<mbr r='VkFrameBoundaryEXT::bufferCount' o='384' t='uint32_t'/>
+<mbr r='VkFrameBoundaryEXT::pBuffers' o='448' t='const VkBuffer *'/>
+<mbr r='VkFrameBoundaryEXT::tagName' o='512' t='uint64_t'/>
+<mbr r='VkFrameBoundaryEXT::tagSize' o='576' t='size_t'/>
+<mbr r='VkFrameBoundaryEXT::pTag' o='640' t='const void *'/>

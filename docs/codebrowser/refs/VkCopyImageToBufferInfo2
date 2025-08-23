@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7118' ll='7126'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7118'/>
+<size>56</size>
+<mbr r='VkCopyImageToBufferInfo2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCopyImageToBufferInfo2::pNext' o='64' t='const void *'/>
+<mbr r='VkCopyImageToBufferInfo2::srcImage' o='128' t='VkImage'/>
+<mbr r='VkCopyImageToBufferInfo2::srcImageLayout' o='192' t='VkImageLayout'/>
+<mbr r='VkCopyImageToBufferInfo2::dstBuffer' o='256' t='VkBuffer'/>
+<mbr r='VkCopyImageToBufferInfo2::regionCount' o='320' t='uint32_t'/>
+<mbr r='VkCopyImageToBufferInfo2::pRegions' o='384' t='const VkBufferImageCopy2 *'/>

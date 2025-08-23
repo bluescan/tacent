@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='148' ll='149' type='void std::_Bit_iterator_base::_Bit_iterator_base(std::_Bit_type * __x, unsigned int __y)'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='241' u='c' c='_ZNSt13_Bit_iteratorC1Ev'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='244' u='c' c='_ZNSt13_Bit_iteratorC1EPmj'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='334' u='c' c='_ZNSt19_Bit_const_iteratorC1Ev'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='337' u='c' c='_ZNSt19_Bit_const_iteratorC1EPmj'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='340' u='c' c='_ZNSt19_Bit_const_iteratorC1ERKSt13_Bit_iterator'/>

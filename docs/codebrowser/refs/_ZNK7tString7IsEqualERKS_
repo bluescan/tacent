@@ -1,0 +1,6 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='155' type='bool tString::IsEqual(const tString &amp; str) const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='570' u='c' c='_ZeqRK7tStringS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='571' u='c' c='_ZneRK7tStringS1_'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='152'>// The IsEqual variants taking (only) pointers assume null-terminated inputs. Two empty strings are considered
+	// equal. If the input is nullptr (for functions taking pointers) it is not considered equal to an empty string.
+	// For variants taking pointers and a length, all characters are checked (multiple null chars supported).</doc>

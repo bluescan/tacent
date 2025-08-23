@@ -1,0 +1,8 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='206' u='w' c='_ZN12tChunkWriter9ChunkInfoC1Ev'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='207' u='w' c='_ZN12tChunkWriter9ChunkInfoC1Ejj'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='208' type='uint'/>
+<offset>128</offset>
+<doc f='Modules/System/Inc/System/tChunk.h' l='208'>// Start of the chunk.</doc>
+<use f='Modules/System/Src/tChunk.cpp' l='248' u='r' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='255' u='r' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='261' u='r' c='_ZN12tChunkWriter8EndChunkEv'/>

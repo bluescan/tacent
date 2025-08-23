@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/xopen_lim.h' l='73'/>
+<doc f='include/x86_64-linux-gnu/bits/xopen_lim.h' l='71'>/* Maximum value of `digit&apos; in calls to the `printf&apos; and `scanf&apos;
+   functions.  We have no limit, so return a reasonable value.  */</doc>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/typeinfo' l='115' ll='118' type='bool std::type_info::before(const std::type_info &amp; __arg) const'/>
+<doc f='include/c++/11/typeinfo' l='110'>/** Returns true if @c *this precedes @c __arg in the implementation&apos;s
+     *  collation order.  */
+    // Even with the new abi, on systems that support dlopen
+    // we can run into cases where type_info names aren&apos;t merged,
+    // so we still need to do string comparison.</doc>

@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>struct_tm.h source code [include/x86_64-linux-gnu/bits/types/struct_tm.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="tm "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/types/struct_tm.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>x86_64-linux-gnu</a>/<a href='..'>bits</a>/<a href='./'>types</a>/<a href='struct_tm.h.html'>struct_tm.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/__struct_tm_defined">__struct_tm_defined</span></u>&nbsp</td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/__struct_tm_defined" data-ref="_M/__struct_tm_defined">__struct_tm_defined</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="3">3</th><td>&nbsp</td></tr>
+<tr><th id="4">4</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="5">5</th><td>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>/* ISO C `broken-down time' structure.  */</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><b>struct</b> <dfn class="type def" id="tm" title='tm' data-ref="tm">tm</dfn>&nbsp</td></tr>
+<tr><th id="8">8</th><td>{&nbsp</td></tr>
+<tr><th id="9">9</th><td>  <em>int</em> <dfn class="decl field" id="tm::tm_sec" title='tm::tm_sec' data-ref="tm::tm_sec">tm_sec</dfn>;			<i>/* Seconds.	[0-60] (1 leap second) */</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td>  <em>int</em> <dfn class="decl field" id="tm::tm_min" title='tm::tm_min' data-ref="tm::tm_min">tm_min</dfn>;			<i>/* Minutes.	[0-59] */</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td>  <em>int</em> <dfn class="decl field" id="tm::tm_hour" title='tm::tm_hour' data-ref="tm::tm_hour">tm_hour</dfn>;			<i>/* Hours.	[0-23] */</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td>  <em>int</em> <dfn class="decl field" id="tm::tm_mday" title='tm::tm_mday' data-ref="tm::tm_mday">tm_mday</dfn>;			<i>/* Day.		[1-31] */</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td>  <em>int</em> <dfn class="decl field" id="tm::tm_mon" title='tm::tm_mon' data-ref="tm::tm_mon">tm_mon</dfn>;			<i>/* Month.	[0-11] */</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td>  <em>int</em> <dfn class="decl field" id="tm::tm_year" title='tm::tm_year' data-ref="tm::tm_year">tm_year</dfn>;			<i>/* Year	- 1900.  */</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td>  <em>int</em> <dfn class="decl field" id="tm::tm_wday" title='tm::tm_wday' data-ref="tm::tm_wday">tm_wday</dfn>;			<i>/* Day of week.	[0-6] */</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td>  <em>int</em> <dfn class="decl field" id="tm::tm_yday" title='tm::tm_yday' data-ref="tm::tm_yday">tm_yday</dfn>;			<i>/* Days in year.[0-365]	*/</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>  <em>int</em> <dfn class="decl field" id="tm::tm_isdst" title='tm::tm_isdst' data-ref="tm::tm_isdst">tm_isdst</dfn>;			<i>/* DST.		[-1/0/1]*/</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u># <span data-ppcond="19">ifdef</span>	<a class="macro" href="../../../features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="20">20</th><td>  <em>long</em> <em>int</em> <dfn class="decl field" id="tm::tm_gmtoff" title='tm::tm_gmtoff' data-ref="tm::tm_gmtoff">tm_gmtoff</dfn>;		<i>/* Seconds east of UTC.  */</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td>  <em>const</em> <em>char</em> *<dfn class="decl field" id="tm::tm_zone" title='tm::tm_zone' data-ref="tm::tm_zone">tm_zone</dfn>;		<i>/* Timezone abbreviation.  */</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u># <span data-ppcond="19">else</span></u>&nbsp</td></tr>
+<tr><th id="23">23</th><td>  <em>long</em> <em>int</em> __tm_gmtoff;		<i>/* Seconds east of UTC.  */</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>  <em>const</em> <em>char</em> *__tm_zone;	<i>/* Timezone abbreviation.  */</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u># <span data-ppcond="19">endif</span></u>&nbsp</td></tr>
+<tr><th id="26">26</th><td>};&nbsp</td></tr>
+<tr><th id="27">27</th><td>&nbsp</td></tr>
+<tr><th id="28">28</th><td><u>#<span data-ppcond="1">endif</span></u>&nbsp</td></tr>
+<tr><th id="29">29</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

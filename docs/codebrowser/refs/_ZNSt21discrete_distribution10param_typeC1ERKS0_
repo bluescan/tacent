@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/random.h' l='5313' type='void std::discrete_distribution::param_type::param_type(const std::discrete_distribution::param_type &amp; )'/>
+<doc f='include/c++/11/bits/random.h' l='5312'>// See: http://cpp-next.com/archive/2010/10/implicit-move-must-go/</doc>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/locale_facets.h' l='1548' ll='1595'/>
+<size>1</size>
+<doc f='include/c++/11/bits/locale_facets.h' l='1547'>// 22.2.2  The numeric category.</doc>
+<smbr r='std::__num_base::_S_atoms_out' t='const char *'/>
+<smbr r='std::__num_base::_S_atoms_in' t='const char *'/>
+<fun r='_ZNSt10__num_base15_S_format_floatERKSt8ios_basePcc'/>

@@ -1,0 +1,3 @@
+<def f='include/c++/11/chrono' l='1859' ll='1861' type='bool std::chrono::weekday_indexed::ok() const'/>
+<use f='include/c++/11/chrono' l='2078' u='c' c='_ZNKSt6chrono13month_weekday2okEv'/>
+<use f='include/c++/11/chrono' l='2819' u='c' c='_ZNKSt6chrono18year_month_weekday2okEv'/>

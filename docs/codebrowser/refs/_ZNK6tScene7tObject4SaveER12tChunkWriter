@@ -1,0 +1,21 @@
+<dec f='Modules/Scene/Inc/Scene/tObject.h' l='32' type='void tScene::tObject::Save(tChunkWriter &amp; ) const'/>
+<ovr f='Modules/Scene/Src/tCamera.cpp' l='47' c='_ZNK6tScene7tCamera4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='52' u='c' c='_ZNK6tScene7tCamera4SaveER12tChunkWriter'/>
+<ovr f='Modules/Scene/Src/tInstance.cpp' l='22' c='_ZNK6tScene9tInstance4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tInstance.cpp' l='26' u='c' c='_ZNK6tScene9tInstance4SaveER12tChunkWriter'/>
+<ovr f='Modules/Scene/Src/tLight.cpp' l='31' c='_ZNK6tScene6tLight4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tLight.cpp' l='35' u='c' c='_ZNK6tScene6tLight4SaveER12tChunkWriter'/>
+<ovr f='Modules/Scene/Src/tLodGroup.cpp' l='41' c='_ZNK6tScene9tLodGroup4SaveER12tChunkWriter'/>
+<ovr f='Modules/Scene/Src/tMaterial.cpp' l='78' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='82' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<def f='Modules/Scene/Src/tObject.cpp' l='20' ll='35' type='void tScene::tObject::Save(tChunkWriter &amp; chunk) const'/>
+<ovr f='Modules/Scene/Src/tPath.cpp' l='39' c='_ZNK6tScene5tPath4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='47' u='c' c='_ZNK6tScene5tPath4SaveER12tChunkWriter'/>
+<ovr f='Modules/Scene/Src/tPolyModel.cpp' l='22' c='_ZNK6tScene10tPolyModel4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='26' u='c' c='_ZNK6tScene10tPolyModel4SaveER12tChunkWriter'/>
+<ovr f='Modules/Scene/Src/tSelection.cpp' l='20' c='_ZNK6tScene10tSelection4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSelection.cpp' l='24' u='c' c='_ZNK6tScene10tSelection4SaveER12tChunkWriter'/>
+<ovr f='Modules/Scene/Src/tSkeleton.cpp' l='23' c='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='27' u='c' c='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<ovr f='Modules/Scene/Src/tSkeleton.cpp' l='176' c='_ZNK6tScene9tSkeleton4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='180' u='c' c='_ZNK6tScene9tSkeleton4SaveER12tChunkWriter'/>

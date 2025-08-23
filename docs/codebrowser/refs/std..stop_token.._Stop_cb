@@ -1,0 +1,20 @@
+<def f='include/c++/11/stop_token' l='132' ll='148'/>
+<use f='include/c++/11/stop_token' l='134'/>
+<use f='include/c++/11/stop_token' l='136'/>
+<use f='include/c++/11/stop_token' l='137'/>
+<use f='include/c++/11/stop_token' l='159'/>
+<use f='include/c++/11/stop_token' l='238' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<use f='include/c++/11/stop_token' l='279' c='_ZNSt10stop_token13_Stop_state_t20_M_register_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='311' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<ovr f='include/c++/11/stop_token' l='621' c='std::stop_callback::_Cb_impl'/>
+<use f='include/c++/11/stop_token' l='621'/>
+<use f='include/c++/11/stop_token' l='626' c='_ZNSt13stop_callback8_Cb_implC1EOTL0__'/>
+<use f='include/c++/11/stop_token' l='634' c='_ZNSt13stop_callback8_Cb_impl10_S_executeEPNSt10stop_token8_Stop_cbE'/>
+<size>40</size>
+<mbr r='std::stop_token::_Stop_cb::_M_callback' o='0' t='std::stop_token::_Stop_cb::__cb_type *'/>
+<mbr r='std::stop_token::_Stop_cb::_M_prev' o='64' t='std::stop_token::_Stop_cb *'/>
+<mbr r='std::stop_token::_Stop_cb::_M_next' o='128' t='std::stop_token::_Stop_cb *'/>
+<mbr r='std::stop_token::_Stop_cb::_M_destroyed' o='192' t='bool *'/>
+<mbr r='std::stop_token::_Stop_cb::_M_done' o='256' t='std::binary_semaphore'/>
+<fun r='_ZNSt10stop_token8_Stop_cbC1EPDoFvPS0_E'/>
+<fun r='_ZNSt10stop_token8_Stop_cb6_M_runEv'/>

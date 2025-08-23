@@ -1,0 +1,26 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='34' type='void tStd::tSwap(T &amp; a, T &amp; b)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='33'>// The 3 XOR trick is slower in most cases so we&apos;ll use a standard swap.</doc>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='531' u='c' c='_ZN5tMath10tTransposeERNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1104' u='c' c='_ZN5tMath10tTransposeERNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1105' u='c' c='_ZN5tMath10tTransposeERNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1106' u='c' c='_ZN5tMath10tTransposeERNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1107' u='c' c='_ZN5tMath10tTransposeERNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1108' u='c' c='_ZN5tMath10tTransposeERNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1109' u='c' c='_ZN5tMath10tTransposeERNS_5tMat4E'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1532' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1114' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1406' u='c' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1407' u='c' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1418' u='c' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1419' u='c' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1420' u='c' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1421' u='c' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1440' u='c' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1441' u='c' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='515' u='c' c='_ZN6tScene5tMesh14ReverseWindingEv'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='518' u='c' c='_ZN6tScene5tMesh14ReverseWindingEv'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='521' u='c' c='_ZN6tScene5tMesh14ReverseWindingEv'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='524' u='c' c='_ZN6tScene5tMesh14ReverseWindingEv'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='527' u='c' c='_ZN6tScene5tMesh14ReverseWindingEv'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='530' u='c' c='_ZN6tScene5tMesh14ReverseWindingEv'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='533' u='c' c='_ZN6tScene5tMesh14ReverseWindingEv'/>

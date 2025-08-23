@@ -1,0 +1,2 @@
+<dec f='include/c++/11/functional' l='1126' type='pair&lt;_RandomAccessIterator2, _RandomAccessIterator2&gt; std::boyer_moore_searcher::operator()(_RandomAccessIterator2 __first, _RandomAccessIterator2 __last) const'/>
+<def f='include/c++/11/functional' l='1244' ll='1274' type='pair&lt;_RandomAccessIterator2, _RandomAccessIterator2&gt; std::boyer_moore_searcher::operator()(_RandomAccessIterator2 __first, _RandomAccessIterator2 __last) const'/>

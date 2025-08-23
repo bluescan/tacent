@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_deque.h' l='2027' type='void std::deque::_M_insert_aux(std::deque::iterator __pos, _ForwardIterator __first, _ForwardIterator __last, std::deque::size_type __n)'/>
+<def f='include/c++/11/bits/deque.tcc' l='768' ll='855' type='void std::deque::_M_insert_aux(std::deque::iterator __pos, _ForwardIterator __first, _ForwardIterator __last, std::deque::size_type __n)'/>

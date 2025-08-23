@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/time.h' l='34'/>
+<doc f='include/x86_64-linux-gnu/bits/time.h' l='31'>/* CAE XSH, Issue 4, Version 2: &lt;time.h&gt;
+   The value of CLOCKS_PER_SEC is required to be 1 million on all
+   XSI-conformant systems. */</doc>

@@ -1,0 +1,8 @@
+<use f='Modules/Image/Src/tImageHDR.cpp' l='59' u='r' c='_ZN6tImage9tImageHDR16SetupGammaTablesEf'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='61' u='r' c='_ZN6tImage9tImageHDR16SetupGammaTablesEf'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='210' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='212' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='218' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='219' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='220' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='221' u='r' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>

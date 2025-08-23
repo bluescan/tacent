@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/ios_base.h' l='1070' ll='1075' type='std::ios_base &amp; std::fixed(std::ios_base &amp; __base)'/>
+<doc f='include/c++/11/bits/ios_base.h' l='1068'>// [27.4.5.4] floatfield manipulators
+  /// Calls base.setf(ios_base::fixed, ios_base::floatfield).</doc>

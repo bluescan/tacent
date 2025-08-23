@@ -1,0 +1,8 @@
+<dec f='include/time.h' l='422' type='struct tm * getdate(const char * __string)'/>
+<doc f='include/time.h' l='415'>/* Parse the given string as a date specification and return a value
+   representing the value.  The templates from the file identified by
+   the environment variable DATEMSK are used.  In case of an error
+   `getdate_err&apos; is set.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

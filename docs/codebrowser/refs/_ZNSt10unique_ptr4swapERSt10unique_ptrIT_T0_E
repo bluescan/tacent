@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='460' ll='465' type='void std::unique_ptr::swap(unique_ptr&lt;_Tp, _Dp&gt; &amp; __u)'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='459'>/// Exchange the pointer and deleter with another object.</doc>
+<use f='include/c++/11/bits/fs_path.h' l='657' u='c' c='_ZNSt10filesystem7__cxx114path5_List4swapERS2_'/>

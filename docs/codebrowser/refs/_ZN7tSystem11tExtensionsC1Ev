@@ -1,0 +1,5 @@
+<def f='Modules/System/Inc/System/tFile.h' l='438' type='void tSystem::tExtensions::tExtensions()'/>
+<use f='Modules/System/Src/tFile.cpp' l='2796' u='c' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2836' u='c' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3042' u='c' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3082' u='c' c='_ZN7tSystem13tFindFilesRecER5tListINS_9tFileInfoEERK7tStringS6_bNS_7BackendE'/>

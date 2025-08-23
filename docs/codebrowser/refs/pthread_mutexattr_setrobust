@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='946' type='int pthread_mutexattr_setrobust(pthread_mutexattr_t * __attr, int __robustness)'/>
+<dec f='include/pthread.h' l='951' type='int pthread_mutexattr_setrobust_np(pthread_mutexattr_t * , int )'/>
+<doc f='include/pthread.h' l='945'>/* Set the robustness flag of the mutex attribute ATTR.  */</doc>

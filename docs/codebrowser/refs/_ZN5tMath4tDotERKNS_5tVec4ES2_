@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='518' type='float tMath::tDot(const tMath::tVec4 &amp; a, const tMath::tVec4 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='87' u='c' c='_ZNK5tMath8tVector4mlERKNS_5tVec4E'/>

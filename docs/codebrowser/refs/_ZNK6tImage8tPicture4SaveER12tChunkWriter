@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='138' type='void tImage::tPicture::Save(tChunkWriter &amp; ) const'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='137'>// Save and Load to tChunk format.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='83' ll='101' type='void tImage::tPicture::Save(tChunkWriter &amp; chunk) const'/>

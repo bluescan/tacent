@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unordered_map.h' l='271' ll='272' type='unordered_map&lt;_Key, _Tp, _Hash, _Pred, _Alloc&gt; &amp; std::unordered_map::operator=(const unordered_map&lt;_Key, _Tp, _Hash, _Pred, _Alloc&gt; &amp; )'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='270'>/// Copy assignment operator.</doc>

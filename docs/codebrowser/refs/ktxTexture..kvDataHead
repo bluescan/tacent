@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='272' type='ktxHashList'/>
+<offset>640</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='386'>/**
+ * @typedef ktxTexture::kvDataHead
+ * @~English
+ * @brief Head of the hash list of metadata.
+ */</doc>

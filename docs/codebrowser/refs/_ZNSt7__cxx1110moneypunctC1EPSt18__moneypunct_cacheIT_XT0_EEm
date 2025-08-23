@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1065' ll='1068' type='void std::moneypunct::moneypunct&lt;_CharT, _Intl&gt;(std::moneypunct::__cache_type * __cache, std::size_t __refs = 0)'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1057'>/**
+       *  @brief  Constructor performs initialization.
+       *
+       *  This is an internal constructor.
+       *
+       *  @param __cache  Cache for optimization.
+       *  @param __refs  Passed to the base facet class.
+      */</doc>

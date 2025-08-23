@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='894' type='int pthread_mutexattr_gettype(const pthread_mutexattr_t *__restrict __attr, int *__restrict __kind)'/>
+<doc f='include/pthread.h' l='893'>/* Return in *KIND the mutex kind attribute in *ATTR.  */</doc>

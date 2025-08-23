@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='150' type='int tChunkWriter::Write(const tMath::tMatrix4 &amp; )'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='60' u='c' c='_ZNK6tScene7tCamera4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tInstance.cpp' l='32' u='c' c='_ZNK6tScene9tInstance4SaveER12tChunkWriter'/>
+<def f='Modules/System/Src/tChunk.cpp' l='402' ll='414' type='int tChunkWriter::Write(const tMath::tMatrix4 &amp; m)'/>

@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16227' ll='16234'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16227'/>
+<size>48</size>
+<mbr r='VkDeviceAddressBindingCallbackDataEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDeviceAddressBindingCallbackDataEXT::pNext' o='64' t='void *'/>
+<mbr r='VkDeviceAddressBindingCallbackDataEXT::flags' o='128' t='VkDeviceAddressBindingFlagsEXT'/>
+<mbr r='VkDeviceAddressBindingCallbackDataEXT::baseAddress' o='192' t='VkDeviceAddress'/>
+<mbr r='VkDeviceAddressBindingCallbackDataEXT::size' o='256' t='VkDeviceSize'/>
+<mbr r='VkDeviceAddressBindingCallbackDataEXT::bindingType' o='320' t='VkDeviceAddressBindingTypeEXT'/>

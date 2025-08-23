@@ -1,0 +1,10 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='92' type='int tStd::tNstrcmp(const char * a, const char * b)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='93' u='c' c='_ZN4tStd8tNstrcmpEPKDuS1_'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='85'>// These do a &apos;natural&apos; string compare by treating groups of base 10 digits as separate objects to be compared by
+// numeric value rather than alpha-numerically based on the encoding. This results in strings like &quot;page10&quot; coming
+// after &quot;page2&quot; because 10 &gt; 2. This function can become arbitrarily complex. Some discussion on the topic is here:
+// https://blog.codinghorror.com/sorting-for-humans-natural-sort-order/
+// See the unit tests for examples that match windows explorer sorting. In particular the hyphen character may be
+// skipped when sorting and we fall back to case-sensitive compare all things being equal.
+// The implementation of tNstrcmp is a modified version of the one written by GitHub user ClangPan.</doc>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='66' ll='138' type='int tStd::tNstrcmp(const char * a, const char * b)'/>

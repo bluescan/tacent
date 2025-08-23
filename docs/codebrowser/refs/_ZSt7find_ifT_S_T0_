@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='737' type='_IIter std::find_if(_IIter , _IIter , _Predicate )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='3899' ll='3912' macro='1' type='_InputIterator std::find_if(_InputIterator __first, _InputIterator __last, _Predicate __pred)'/>

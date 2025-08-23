@@ -1,0 +1,7 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='180' type='1'/>
+<use f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='277' u='r' c='_Z14tGetEndiannessv'/>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='201' u='r' c='_Z14tGetEndianness9tPlatform'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='68' c='_ZN12tChunkWriterC1ERK7tString11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='79' c='_ZN12tChunkWriterC1EPhi11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='88' c='_ZN12tChunkWriter4OpenERK7tString11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='95' c='_ZN12tChunkWriter8OpenSafeERK7tString11tEndianness'/>

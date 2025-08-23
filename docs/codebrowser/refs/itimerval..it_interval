@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/time.h' l='133' type='struct timeval'/>
+<offset>0</offset>
+<doc f='include/x86_64-linux-gnu/sys/time.h' l='132'>/* Value to put into `it_value&apos; when the timer expires.  */</doc>

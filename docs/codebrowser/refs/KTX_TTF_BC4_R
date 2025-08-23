@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1517' type='4'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1604'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1514'>/*!&lt; Opaque+alpha. BC4 block with alpha followed by a BC1 block. The
+                 alpha channel will be opaque for textures without an alpha
+                 channel. */</doc>

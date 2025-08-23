@@ -1,0 +1,11 @@
+<def f='include/c++/11/ratio' l='291' ll='308'/>
+<use f='include/c++/11/ratio' l='311'/>
+<use f='include/c++/11/ratio' l='314'/>
+<use f='include/c++/11/ratio' l='320'/>
+<use f='include/c++/11/ratio' l='329'/>
+<smbr r='std::__ratio_multiply::__gcd1' t='const intmax_t'/>
+<smbr r='std::__ratio_multiply::__gcd2' t='const intmax_t'/>
+<smbr r='std::__ratio_multiply::num' t='const intmax_t'/>
+<smbr r='std::__ratio_multiply::den' t='const intmax_t'/>
+<smbr r='std::__ratio_multiply::num' t='const intmax_t'/>
+<smbr r='std::__ratio_multiply::den' t='const intmax_t'/>

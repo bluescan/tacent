@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/std_thread.h' l='312' ll='322' type='thread::id std::this_thread::get_id()'/>
+<use f='include/c++/11/stop_token' l='233' u='c' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<use f='include/c++/11/stop_token' l='340' u='c' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<doc f='include/c++/11/bits/std_thread.h' l='311'>/// this_thread::get_id</doc>

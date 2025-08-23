@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/std_thread.h' l='239' ll='268'/>
+<use f='include/c++/11/bits/std_thread.h' l='272'/>
+<fun r='_ZNSt6thread8_InvokerC1EDpOTL0__'/>
+<mbr r='std::thread::_Invoker::_M_t' t='_Tuple'/>
+<fun r='_ZNSt6thread8_Invoker9_M_invokeESt12_Index_tupleIJXspTL0__EEE'/>
+<fun r='_ZNSt6thread8_InvokerclEv'/>

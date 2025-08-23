@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Src/tQuantizeWu.cpp' l='92' type='int32 tImage::tQuantizeWu::Bottom(tImage::tQuantizeWu::Box * cube, uint8 dir, int32 (*)[33][33] mmt)'/>
+<def f='Modules/Image/Src/tQuantizeWu.cpp' l='198' ll='231' type='int32 tImage::tQuantizeWu::Bottom(tImage::tQuantizeWu::Box * cube, uint8 dir, int32 (*)[33][33] mmt)'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='296' u='c' c='_ZN6tImage11tQuantizeWu8MaximizeERNS0_5StateEPNS0_3BoxEhiiPiiiii'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='297' u='c' c='_ZN6tImage11tQuantizeWu8MaximizeERNS0_5StateEPNS0_3BoxEhiiPiiiii'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='298' u='c' c='_ZN6tImage11tQuantizeWu8MaximizeERNS0_5StateEPNS0_3BoxEhiiPiiiii'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='299' u='c' c='_ZN6tImage11tQuantizeWu8MaximizeERNS0_5StateEPNS0_3BoxEhiiPiiiii'/>
+<doc f='Modules/Image/Src/tQuantizeWu.cpp' l='87'>// The next two routines allow a slightly more efficient calculation of Vol() for a proposed subbox of a given box.
+	// The sum of Top() and Bottom() is the Vol() of a subbox split in the given direction and with the specified new
+	// upper bound.
+	//
+	// Compute part of Vol(cube, mmt) that doesn&apos;t depend on r1, g1, or b1 (depending on dir).</doc>

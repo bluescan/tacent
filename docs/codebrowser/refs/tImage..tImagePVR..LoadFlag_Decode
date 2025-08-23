@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='38' type='1'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='53' u='r'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='38'>// Decode the pvr texture data into RGBA 32-bit layers. If not set, the layer data will remain unmodified.</doc>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1048' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1109' u='r' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algo.h' l='3109' ll='3121' macro='1' type='_OutputIterator std::__replace_copy_if(_InputIterator __first, _InputIterator __last, _OutputIterator __result, _Predicate __pred, const _Tp &amp; __new_value)'/>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/atomic_base.h' l='332' ll='333' type='const int'/>
+<use f='include/c++/11/bits/atomic_base.h' l='335'/>
+<use f='include/c++/11/bits/atomic_base.h' l='444' u='r' c='_ZNKSt13__atomic_base12is_lock_freeEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='452' u='r' c='_ZNVKSt13__atomic_base12is_lock_freeEv'/>

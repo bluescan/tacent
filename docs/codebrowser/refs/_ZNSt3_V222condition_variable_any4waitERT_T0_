@@ -1,0 +1,1 @@
+<def f='include/c++/11/condition_variable' l='318' ll='323' type='void std::condition_variable_any::wait(_Lock &amp; __lock, _Predicate __p)'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='35' type='1'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='35'>//	string	Camera model. eg &quot;Nikon Coolpix 5000&quot;.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='238' u='m' c='_ZN6tImage9tMetaData19SetTags_CamHardwareERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='657' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

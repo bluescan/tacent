@@ -1,0 +1,10 @@
+<dec f='include/string.h' l='61' type='void * memset(void * __s, int __c, size_t __n)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='37' u='c' c='_ZN4tStd7tMemsetEPvhi'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='38' u='c' c='_ZN4tStd7tMemclrEPvi'/>
+<doc f='include/string.h' l='60'>/* Set N bytes of S to C.  */</doc>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='310' u='c' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='310' u='c' c='qoi_decode'/>
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='67' u='c' c='_ZL12WebPDataInitP8WebPData'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1555' u='c' c='_ZN5rgbcx5hist4C1Ev'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1602' u='c' c='_ZN5rgbcx5hist3C1Ev'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3927' u='c' c='_ZN5rgbcx10encode_bc4EPvPKhj'/>

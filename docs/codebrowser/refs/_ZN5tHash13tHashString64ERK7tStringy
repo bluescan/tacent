@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tHash.h' l='101' type='uint64 tHash::tHashString64(const tString &amp; , uint64 iv = HashIV64)'/>
+<def f='Modules/Foundation/Inc/Foundation/tHash.h' l='159' type='uint64 tHash::tHashString64(const tString &amp; s, uint64 iv = HashIV64)'/>

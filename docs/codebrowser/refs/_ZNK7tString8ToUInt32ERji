@@ -1,0 +1,2 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='372' u='c' c='_ZNK7tString6ToUIntERji'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='373' type='bool tString::ToUInt32(uint32 &amp; v, int base = -1) const'/>

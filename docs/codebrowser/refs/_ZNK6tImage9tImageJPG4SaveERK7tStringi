@@ -1,0 +1,1 @@
+<def f='Modules/Image/Src/tImageJPG.cpp' l='425' ll='430' type='bool tImage::tImageJPG::Save(const tString &amp; jpgFile, int quality) const'/>

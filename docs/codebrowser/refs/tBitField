@@ -1,0 +1,64 @@
+<def f='Modules/Foundation/Inc/Foundation/tBitField.h' l='36' ll='163'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='142' c='_ZNK9tBitFieldlsEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='144' c='_ZNK9tBitFieldrsEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='168' c='_ZanRK9tBitFieldIXT_EES2_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='168' c='_ZanRK9tBitFieldIXT_EES2_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='168' c='_ZanRK9tBitFieldIXT_EES2_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='168' c='_ZanRK9tBitFieldIXT_EES2_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='169' c='_ZorRK9tBitFieldIXT_EES2_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='169' c='_ZorRK9tBitFieldIXT_EES2_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='169' c='_ZorRK9tBitFieldIXT_EES2_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='169' c='_ZorRK9tBitFieldIXT_EES2_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='170' c='_ZeoRK9tBitFieldIXT_EES2_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='170' c='_ZeoRK9tBitFieldIXT_EES2_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='170' c='_ZeoRK9tBitFieldIXT_EES2_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='170' c='_ZeoRK9tBitFieldIXT_EES2_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='178'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='179'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='180'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='186' c='_ZN9tBitField3SetEPKc'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='194' c='_ZN9tBitField3SetEPKc'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='233' c='_ZN9tBitField9SetBinaryEPKc'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='241' c='_ZN9tBitField9SetBinaryEPKc'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='266' c='_ZN9tBitField3SetEh'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='275' c='_ZN9tBitField3SetEt'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='284' c='_ZN9tBitField3SetEj'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='293' c='_ZN9tBitField3SetEy'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='303' c='_ZN9tBitField3SetEyy'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='315' c='_ZN9tBitField3SetEyyyy'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='331' c='_ZN9tBitField3SetEPKhi'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='344' c='_ZN9tBitField3SetEPKti'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='357' c='_ZN9tBitField3SetEPKji'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='370' c='_ZN9tBitField3SetEPKyi'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='384' c='_ZNK9tBitField14GetAsHexStringEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='386' c='_ZNK9tBitField14GetAsHexStringEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='423' c='_ZNK9tBitField17GetAsBinaryStringEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='425' c='_ZNK9tBitField17GetAsBinaryStringEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='446' c='_ZNK9tBitField6GetBitEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='456' c='_ZN9tBitField6SetBitEib'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='469' c='_ZN9tBitField6SetAllEb'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='479' c='_ZN9tBitField9InvertAllEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='488' c='_ZNK9tBitField6AreAllEb'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='511' c='_ZNK9tBitField9CountBitsEb'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='532' c='_ZNK9tBitField7GetByteEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='543' c='_ZN9tBitField7SetByteEih'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='555' c='_ZNK9tBitField9GetNybbleEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='575' c='_ZN9tBitField9SetNybbleEih'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='587' c='_ZN9tBitFieldlSEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='587' c='_ZN9tBitFieldlSEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='626' c='_ZN9tBitFieldrSEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='626' c='_ZN9tBitFieldrSEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='665' c='_ZNK9tBitFieldeqERK9tBitFieldIXT_EE'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='676' c='_ZNK9tBitFieldneERK9tBitFieldIXT_EE'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='686' c='_ZNK9tBitFieldcvbEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='696' c='_ZN9tBitField12ClearPadBitsEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitField.h' l='704' c='_ZNK9tBitField7ExtractERTL0__h'/>
+<doc f='Modules/Foundation/Inc/Foundation/tBitField.h' l='30'>// The tBitField class. NumBits represents the number of bits that can be stored by the instance. There are no
+// conditions on the value of NumBits used and long as it is a whole number. If NumBits is a multiple of 32, the
+// tBitField will be supported by tPrintf so just call something like: tsPrintf(s, &quot;%032|128X&quot;, bitvar128) to convert it
+// to a string. The memory image size taken up will always be a multiple of 4 bytes. ex: sizeof(tBitField&lt;16&gt;) = 4 and
+// sizeof(tBitField&lt;33&gt;) = 8. You can still use tPrintf on a 33-bit bit-field, just be aware of the size. Any padding
+// bits are guaranteed to be clear in the internal representation and when saved to a chunk (disk) format.</doc>
+<use f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='74' c='_ZN8tFixIntUC1ERK9tBitFieldIXT_EE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='89' c='_ZN8tFixIntU3SetERK9tBitFieldIXT_EE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='104' c='_ZN8tFixIntUaSERK9tBitFieldIXT_EE'/>

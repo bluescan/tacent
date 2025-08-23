@@ -1,0 +1,17 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5907' ll='5922'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5907'/>
+<size>64</size>
+<mbr r='VkPhysicalDeviceVulkan11Features::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceVulkan11Features::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceVulkan11Features::storageBuffer16BitAccess' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Features::uniformAndStorageBuffer16BitAccess' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Features::storagePushConstant16' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Features::storageInputOutput16' o='224' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Features::multiview' o='256' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Features::multiviewGeometryShader' o='288' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Features::multiviewTessellationShader' o='320' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Features::variablePointersStorageBuffer' o='352' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Features::variablePointers' o='384' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Features::protectedMemory' o='416' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Features::samplerYcbcrConversion' o='448' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan11Features::shaderDrawParameters' o='480' t='VkBool32'/>

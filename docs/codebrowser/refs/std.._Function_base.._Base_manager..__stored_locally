@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/std_function.h' l='124' type='const bool'/>
+<use f='include/c++/11/bits/std_function.h' l='130' u='r'/>
+<use f='include/c++/11/bits/std_function.h' l='136' u='r' c='_ZNSt14_Function_base13_Base_manager14_M_get_pointerERKSt9_Any_data'/>

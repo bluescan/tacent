@@ -1,0 +1,12 @@
+<dec f='include/c++/11/bits/basic_string.h' l='2508' type='std::basic_string::size_type std::basic_string::rfind(_CharT __c, std::basic_string::size_type __pos = npos) const'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='1281' ll='1296' type='typename basic_string&lt;_CharT, _Traits, _Alloc&gt;::size_type std::basic_string::rfind(_CharT __c, std::basic_string::size_type __pos = npos) const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='2497'>/**
+       *  @brief  Find last position of a character.
+       *  @param __c  Character to locate.
+       *  @param __pos  Index of character to search back from (default end).
+       *  @return  Index of last occurrence.
+       *
+       *  Starting from @a __pos, searches backward for @a __c within
+       *  this string.  If found, returns the index where it was
+       *  found.  If not found, returns npos.
+      */</doc>

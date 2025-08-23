@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='694' type='float tMath::tExtractProjectionFar(const tMath::tMat4 &amp; )'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1251' ll='1256' type='float tMath::tExtractProjectionFar(const tMath::tMat4 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1265' u='c' c='_ZN5tMath19tExtractPerspectiveERfS0_S0_S0_S0_RKNS_5tMat4E'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='694'>// Returns far plane dist (assumes frustum is not oblique).</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='106' u='c' c='_ZNK5tMath8tMatrix420ExtractProjectionFarEv'/>

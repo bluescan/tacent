@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12663' ll='12672'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12663'/>
+<size>40</size>
+<mbr r='VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT::advancedBlendMaxColorAttachments' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT::advancedBlendIndependentBlend' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT::advancedBlendNonPremultipliedSrcColor' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT::advancedBlendNonPremultipliedDstColor' o='224' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT::advancedBlendCorrelatedOverlap' o='256' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceBlendOperationAdvancedPropertiesEXT::advancedBlendAllOperations' o='288' t='VkBool32'/>

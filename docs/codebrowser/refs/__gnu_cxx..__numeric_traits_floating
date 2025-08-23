@@ -1,0 +1,16 @@
+<def f='include/c++/11/ext/numeric_traits.h' l='156' ll='165'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='168'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='171'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='174'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='177'/>
+<ovr f='include/c++/11/ext/numeric_traits.h' l='190' c='__gnu_cxx::__numeric_traits'/>
+<ovr f='include/c++/11/ext/numeric_traits.h' l='195' c='__gnu_cxx::__numeric_traits'/>
+<ovr f='include/c++/11/ext/numeric_traits.h' l='200' c='__gnu_cxx::__numeric_traits'/>
+<smbr r='__gnu_cxx::__numeric_traits_floating::__max_digits10' t='const int'/>
+<smbr r='__gnu_cxx::__numeric_traits_floating::__is_signed' t='const bool'/>
+<smbr r='__gnu_cxx::__numeric_traits_floating::__digits10' t='const int'/>
+<smbr r='__gnu_cxx::__numeric_traits_floating::__max_exponent10' t='const int'/>
+<smbr r='__gnu_cxx::__numeric_traits_floating::__max_digits10' t='const int'/>
+<smbr r='__gnu_cxx::__numeric_traits_floating::__is_signed' t='const bool'/>
+<smbr r='__gnu_cxx::__numeric_traits_floating::__digits10' t='const int'/>
+<smbr r='__gnu_cxx::__numeric_traits_floating::__max_exponent10' t='const int'/>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>time.h source code [include/x86_64-linux-gnu/bits/time.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/time.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>bits</a>/<a href='time.h.html'>time.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* System-dependent timing definitions.  Linux version.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   Copyright (C) 1996-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i></i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i></i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i></i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i> * Never include this file directly; use &lt;time.h&gt; instead.</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#<span data-ppcond="23">ifndef</span> <span class="macro" data-ref="_M/_BITS_TIME_H">_BITS_TIME_H</span></u>&nbsp</td></tr>
+<tr><th id="24">24</th><td><u>#define <dfn class="macro" id="_M/_BITS_TIME_H" data-ref="_M/_BITS_TIME_H">_BITS_TIME_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="25">25</th><td>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="27">27</th><td>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i>/* ISO/IEC 9899:1999 7.23.1: Components of time</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i>   The macro `CLOCKS_PER_SEC' is an expression with type `clock_t' that is</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>   the number per second of the value returned by the `clock' function.  */</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>/* CAE XSH, Issue 4, Version 2: &lt;time.h&gt;</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>   The value of CLOCKS_PER_SEC is required to be 1 million on all</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i>   XSI-conformant systems. */</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#define <dfn class="macro" id="_M/CLOCKS_PER_SEC" data-ref="_M/CLOCKS_PER_SEC">CLOCKS_PER_SEC</dfn>  ((__clock_t) 1000000)</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="36">if</span> (!defined <span class="macro" data-ref="_M/__STRICT_ANSI__">__STRICT_ANSI__</span> || defined <a class="macro" href="../../features.h.html#325" data-ref="_M/__USE_POSIX">__USE_POSIX</a>) \</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>   &amp;&amp; !defined <a class="macro" href="../../features.h.html#366" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</a></u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i>/* Even though CLOCKS_PER_SEC has such a strange value CLK_TCK</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i>   presents the real value for clock ticks per second for the system.  */</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><b>extern</b> <em>long</em> <em>int</em> __sysconf (<em>int</em>);&nbsp</td></tr>
+<tr><th id="41">41</th><td><u># define CLK_TCK ((__clock_t) __sysconf (2))	/* 2 is _SC_CLK_TCK */</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#<span data-ppcond="36">endif</span></u>&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#<span data-ppcond="44">ifdef</span> <a class="macro" href="../../features.h.html#333" data-ref="_M/__USE_POSIX199309">__USE_POSIX199309</a></u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i>/* Identifier for system-wide realtime clock.  */</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u># define <dfn class="macro" id="_M/CLOCK_REALTIME" data-ref="_M/CLOCK_REALTIME">CLOCK_REALTIME</dfn>			0</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>/* Monotonic system-wide clock.  */</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u># define <dfn class="macro" id="_M/CLOCK_MONOTONIC" data-ref="_M/CLOCK_MONOTONIC">CLOCK_MONOTONIC</dfn>		1</u>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i>/* High-resolution timer from the CPU.  */</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u># define <dfn class="macro" id="_M/CLOCK_PROCESS_CPUTIME_ID" data-ref="_M/CLOCK_PROCESS_CPUTIME_ID">CLOCK_PROCESS_CPUTIME_ID</dfn>	2</u>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>/* Thread-specific CPU-time clock.  */</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u># define <dfn class="macro" id="_M/CLOCK_THREAD_CPUTIME_ID" data-ref="_M/CLOCK_THREAD_CPUTIME_ID">CLOCK_THREAD_CPUTIME_ID</dfn>	3</u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i>/* Monotonic system-wide clock, not adjusted for frequency scaling.  */</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><u># define <dfn class="macro" id="_M/CLOCK_MONOTONIC_RAW" data-ref="_M/CLOCK_MONOTONIC_RAW">CLOCK_MONOTONIC_RAW</dfn>		4</u>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i>/* Identifier for system-wide realtime clock, updated only on ticks.  */</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u># define <dfn class="macro" id="_M/CLOCK_REALTIME_COARSE" data-ref="_M/CLOCK_REALTIME_COARSE">CLOCK_REALTIME_COARSE</dfn>		5</u>&nbsp</td></tr>
+<tr><th id="57">57</th><td><i>/* Monotonic system-wide clock, updated only on ticks.  */</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td><u># define <dfn class="macro" id="_M/CLOCK_MONOTONIC_COARSE" data-ref="_M/CLOCK_MONOTONIC_COARSE">CLOCK_MONOTONIC_COARSE</dfn>		6</u>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>/* Monotonic system-wide clock that includes time spent in suspension.  */</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u># define <dfn class="macro" id="_M/CLOCK_BOOTTIME" data-ref="_M/CLOCK_BOOTTIME">CLOCK_BOOTTIME</dfn>			7</u>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i>/* Like CLOCK_REALTIME but also wakes suspended system.  */</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><u># define <dfn class="macro" id="_M/CLOCK_REALTIME_ALARM" data-ref="_M/CLOCK_REALTIME_ALARM">CLOCK_REALTIME_ALARM</dfn>		8</u>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i>/* Like CLOCK_BOOTTIME but also wakes suspended system.  */</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><u># define <dfn class="macro" id="_M/CLOCK_BOOTTIME_ALARM" data-ref="_M/CLOCK_BOOTTIME_ALARM">CLOCK_BOOTTIME_ALARM</dfn>		9</u>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i>/* Like CLOCK_REALTIME but in International Atomic Time.  */</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u># define <dfn class="macro" id="_M/CLOCK_TAI" data-ref="_M/CLOCK_TAI">CLOCK_TAI</dfn>			11</u>&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td><i>/* Flag to indicate time is absolute.  */</i>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u># define <dfn class="macro" id="_M/TIMER_ABSTIME" data-ref="_M/TIMER_ABSTIME">TIMER_ABSTIME</dfn>			1</u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><u>#<span data-ppcond="44">endif</span></u>&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#<span data-ppcond="72">ifdef</span> <a class="macro" href="../../features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="73">73</th><td><u># include &lt;bits/timex.h&gt;</u>&nbsp</td></tr>
+<tr><th id="74">74</th><td>&nbsp</td></tr>
+<tr><th id="75">75</th><td><a class="macro" href="../sys/cdefs.h.html#133" title="extern &quot;C&quot; {" data-ref="_M/__BEGIN_DECLS">__BEGIN_DECLS</a>&nbsp</td></tr>
+<tr><th id="76">76</th><td>&nbsp</td></tr>
+<tr><th id="77">77</th><td><i>/* Tune a POSIX clock.  */</i>&nbsp</td></tr>
+<tr><th id="78">78</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="clock_adjtime" title='clock_adjtime' data-ref="clock_adjtime">clock_adjtime</dfn> (<a class="typedef" href="types.h.html#__clockid_t" title='__clockid_t' data-type='int' data-ref="__clockid_t">__clockid_t</a> <dfn class="local col1 decl" id="1__clock_id" title='__clock_id' data-type='__clockid_t' data-ref="1__clock_id">__clock_id</dfn>, <b>struct</b> <a class="type" href="timex.h.html#timex" title='timex' data-ref="timex">timex</a> *<dfn class="local col2 decl" id="2__utx" title='__utx' data-type='struct timex *' data-ref="2__utx">__utx</dfn>) <a class="macro" href="../sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="79">79</th><td>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u>#<span data-ppcond="80">ifdef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="81">81</th><td><u># if defined(__REDIRECT_NTH)</u>&nbsp</td></tr>
+<tr><th id="82">82</th><td><b>extern</b> <em>int</em> __REDIRECT_NTH (clock_adjtime, (__clockid_t __clock_id,&nbsp</td></tr>
+<tr><th id="83">83</th><td>                                           <b>struct</b> timex *__utx),&nbsp</td></tr>
+<tr><th id="84">84</th><td>                           __clock_adjtime64);&nbsp</td></tr>
+<tr><th id="85">85</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><u># define clock_adjtime __clock_adjtime64</u>&nbsp</td></tr>
+<tr><th id="87">87</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#<span data-ppcond="80">endif</span></u>&nbsp</td></tr>
+<tr><th id="89">89</th><td>&nbsp</td></tr>
+<tr><th id="90">90</th><td><a class="macro" href="../sys/cdefs.h.html#134" title="}" data-ref="_M/__END_DECLS">__END_DECLS</a>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#<span data-ppcond="72">endif</span> /* use GNU */</u>&nbsp</td></tr>
+<tr><th id="92">92</th><td>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>#<span data-ppcond="23">endif</span>	/* bits/time.h */</u>&nbsp</td></tr>
+<tr><th id="94">94</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

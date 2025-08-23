@@ -1,0 +1,35 @@
+<def f='include/c++/11/bits/random.h' l='5524' ll='5581'/>
+<use f='include/c++/11/bits/random.h' l='5546' c='_ZNSt31piecewise_constant_distribution10param_typeC1ERKS0_'/>
+<use f='include/c++/11/bits/random.h' l='5547' c='_ZNSt31piecewise_constant_distribution10param_typeaSERKS0_'/>
+<use f='include/c++/11/bits/random.h' l='5547' c='_ZNSt31piecewise_constant_distribution10param_typeaSERKS0_'/>
+<use f='include/c++/11/bits/random.h' l='5567' c='_ZSteqRKNSt31piecewise_constant_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='5567' c='_ZSteqRKNSt31piecewise_constant_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='5571' c='_ZStneRKNSt31piecewise_constant_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='5571' c='_ZStneRKNSt31piecewise_constant_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='5608' c='_ZNSt31piecewise_constant_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5648' c='_ZNKSt31piecewise_constant_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='5657' c='_ZNSt31piecewise_constant_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5691' c='_ZNSt31piecewise_constant_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5705' c='_ZNSt31piecewise_constant_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5712' c='_ZNSt31piecewise_constant_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5762' c='_ZNSt31piecewise_constant_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5764'/>
+<use f='include/c++/11/bits/random.tcc' l='2915' c='_ZNSt31piecewise_constant_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2940' c='_ZNSt31piecewise_constant_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<doc f='include/c++/11/bits/random.h' l='5523'>/** Parameter type. */</doc>
+<fun r='_ZNSt31piecewise_constant_distribution10param_typeC1Ev'/>
+<fun r='_ZNSt31piecewise_constant_distribution10param_typeC1ETL0__S1_TL0_0_'/>
+<fun r='_ZNSt31piecewise_constant_distribution10param_typeC1ESt16initializer_listIT_ETL0__'/>
+<fun r='_ZNSt31piecewise_constant_distribution10param_typeC1EmT_S1_TL0__'/>
+<fun r='_ZNSt31piecewise_constant_distribution10param_typeC1ERKS0_'/>
+<fun r='_ZNSt31piecewise_constant_distribution10param_typeaSERKS0_'/>
+<fun r='_ZNKSt31piecewise_constant_distribution10param_type9intervalsEv'/>
+<fun r='_ZNKSt31piecewise_constant_distribution10param_type9densitiesEv'/>
+<fun r='_ZNSt31piecewise_constant_distribution10param_type13_M_initializeEv'/>
+<mbr r='std::piecewise_constant_distribution::param_type::_M_int' t='std::vector&lt;_RealType&gt;'/>
+<mbr r='std::piecewise_constant_distribution::param_type::_M_den' t='std::vector&lt;double&gt;'/>
+<mbr r='std::piecewise_constant_distribution::param_type::_M_cp' t='std::vector&lt;double&gt;'/>
+<fun r='_ZNSt31piecewise_constant_distribution10param_type13_M_initializeEv'/>
+<fun r='_ZNSt31piecewise_constant_distribution10param_typeC1ETL0__S1_TL0_0_'/>
+<fun r='_ZNSt31piecewise_constant_distribution10param_typeC1ESt16initializer_listIT_ETL0__'/>
+<fun r='_ZNSt31piecewise_constant_distribution10param_typeC1EmT_S1_TL0__'/>

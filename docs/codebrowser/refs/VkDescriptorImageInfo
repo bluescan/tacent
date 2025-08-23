@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3748' ll='3752'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3748'/>
+<size>24</size>
+<mbr r='VkDescriptorImageInfo::sampler' o='0' t='VkSampler'/>
+<mbr r='VkDescriptorImageInfo::imageView' o='64' t='VkImageView'/>
+<mbr r='VkDescriptorImageInfo::imageLayout' o='128' t='VkImageLayout'/>

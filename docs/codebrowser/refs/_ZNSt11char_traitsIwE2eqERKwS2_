@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/char_traits.h' l='494' ll='496' type='static bool std::char_traits&lt;wchar_t&gt;::eq(const std::char_traits&lt;wchar_t&gt;::char_type &amp; __c1, const std::char_traits&lt;wchar_t&gt;::char_type &amp; __c2)'/>

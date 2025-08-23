@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6298' ll='6302'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6298'/>
+<size>24</size>
+<mbr r='VkSamplerReductionModeCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSamplerReductionModeCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkSamplerReductionModeCreateInfo::reductionMode' o='128' t='VkSamplerReductionMode'/>

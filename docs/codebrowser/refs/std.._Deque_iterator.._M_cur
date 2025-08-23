@@ -1,0 +1,17 @@
+<dec f='include/c++/11/bits/stl_deque.h' l='142' type='std::_Deque_iterator::_Elt_pointer'/>
+<use f='include/c++/11/bits/stl_deque.h' l='148' u='w' c='_ZNSt15_Deque_iteratorC1ENSt14pointer_traitsIT1_E6rebindIT_EENS3_IS5_EE'/>
+<use f='include/c++/11/bits/stl_deque.h' l='152' u='w' c='_ZNSt15_Deque_iteratorC1Ev'/>
+<use f='include/c++/11/bits/stl_deque.h' l='165' u='w' c='_ZNSt15_Deque_iteratorC1ERKTL0__'/>
+<use f='include/c++/11/bits/stl_deque.h' l='169' u='w' c='_ZNSt15_Deque_iteratorC1ERKSt15_Deque_iteratorIT_T0_T1_E'/>
+<use f='include/c++/11/bits/stl_deque.h' l='177' u='r' c='_ZNKSt15_Deque_iterator13_M_const_castEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='181' u='r' c='_ZNKSt15_Deque_iteratordeEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='185' u='r' c='_ZNKSt15_Deque_iteratorptEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='190' u='w' c='_ZNSt15_Deque_iteratorppEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='191' c='_ZNSt15_Deque_iteratorppEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='194' u='w' c='_ZNSt15_Deque_iteratorppEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='210' c='_ZNSt15_Deque_iteratormmEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='213' u='w' c='_ZNSt15_Deque_iteratormmEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='215' u='w' c='_ZNSt15_Deque_iteratormmEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='230' c='_ZNSt15_Deque_iteratorpLEl'/>
+<use f='include/c++/11/bits/stl_deque.h' l='232' u='w' c='_ZNSt15_Deque_iteratorpLEl'/>
+<use f='include/c++/11/bits/stl_deque.h' l='240' u='w' c='_ZNSt15_Deque_iteratorpLEl'/>

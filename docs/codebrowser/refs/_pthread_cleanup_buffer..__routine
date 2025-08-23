@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='161' type='void (*)(void *)'/>
+<offset>0</offset>
+<doc f='include/pthread.h' l='161'>/* Function to call.  */</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/mutex' l='308' ll='310' type='bool std::recursive_timed_mutex::try_lock_for(const chrono::duration&lt;_Rep, _Period&gt; &amp; __rtime)'/>

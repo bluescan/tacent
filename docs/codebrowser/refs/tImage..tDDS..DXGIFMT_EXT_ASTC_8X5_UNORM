@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='427' type='154'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='669' macro='1' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>

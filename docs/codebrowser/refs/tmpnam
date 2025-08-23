@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='205' type='char * tmpnam(char * )'/>
+<doc f='include/stdio.h' l='204'>/* Generate a temporary filename.  */</doc>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13457' ll='13461'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13457'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceExternalMemoryHostPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceExternalMemoryHostPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceExternalMemoryHostPropertiesEXT::minImportedHostPointerAlignment' o='128' t='VkDeviceSize'/>

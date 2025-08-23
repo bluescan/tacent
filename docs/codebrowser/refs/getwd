@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='545' type='char * getwd(char * __buf)'/>
+<doc f='include/unistd.h' l='542'>/* Put the absolute pathname of the current working directory in BUF.
+   If successful, return BUF.  If not, put an error message in
+   BUF and return NULL.  BUF should be at least PATH_MAX bytes long.  */</doc>

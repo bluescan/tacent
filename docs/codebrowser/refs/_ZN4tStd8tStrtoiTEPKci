@@ -1,0 +1,33 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='155' type='IntegralType tStd::tStrtoiT(const char * , int base = -1)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='156' u='c' c='_ZN4tStd9tStrtoi32EPKci'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='157' u='c' c='_ZN4tStd10tStrtoui32EPKci'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='158' u='c' c='_ZN4tStd9tStrtoi64EPKci'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='159' u='c' c='_ZN4tStd10tStrtoui64EPKci'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='479' ll='482' type='IntegralType tStd::tStrtoiT(const char * str, int base = -1)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='128'>// For these conversion calls, unknown digit characters for the supplied base are ignored. If base is not E [2, 36], the
+// base in which to interpret the string is determined by passing a prefix in the string. Base 10 is used if no specific
+// prefix is found. Although these functions take in UTF-8 strings (chat8_t*), a well-formed source string will only
+// include ASCII characters like digits, negative signs, prefix letters etc. Again, unknown characters are ignored, or,
+// in the case of the &apos;strict&apos; variants, cause the return value to be false.
+// Base prefixes in use:
+//
+// Base 16 prefixes: x X 0x 0X #
+// Base 10 prefixes: d D 0d 0D
+// Base 8 prefixes: o O 0o 0O @
+// Base 4  prefixes: n N 0n 0N (N for Nybble)
+// Base 2  prefixes: b B 0b 0B !
+//
+// Negative/positive symbol may only be used with base 10 strings: eg. &quot;d-769&quot; or just &quot;-769&quot;. The behaviour follows
+// this recipe: If the base is invalid (not between 2 and 36) the first and maybe second characters are examined to
+// determine base. Next, invalid characters are removed (implementation may just ignore them). Invalid characters
+// include + and - for non base 10. Finally the conversion is performed. Valid digits for base 36 are 0-9, a-z, and A-Z.
+// In all string-to-int functions, 0 is returned if there is no conversion. This can happen if all characters are
+// invalid, the passed in string is null, or the passed in string is empty.
+//
+// If base is E (1, 36] AND a prefix is supplied, the supplied base is used. Using the prefix instead would be
+// ambiguous. For example, &quot;0x&quot; is a valid base 36 number but &quot;0x&quot; is also a prefix. If you supply a prefix it must
+// match the base or you will get undefined results. eg &quot;0xff&quot; or &quot;xff&quot; with base=36 interprets the &apos;x&apos;, correctly, as
+// 33. &quot;0xff&quot; with base=16 works too because &apos;x&apos; is an invalid hex digit and gets ignored. The &apos;0&apos; is leading so also
+// does not interfere. The same behaviour holds for all prefixes and bases. Finally, do not use base=-1 on strings
+// that are not either base 16, 10, 8, 4, or 2. eg. &quot;0XF&quot; is a valid base-34 number, and we wouldn&apos;t want it
+// interpreted as base 16 is that&apos;s not what you intended.</doc>

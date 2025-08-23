@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/fs_path.h' l='444' type='std::u8string std::filesystem::path::generic_u8string() const'/>
+<def f='include/c++/11/bits/fs_path.h' l='1172' ll='1174' type='std::u8string std::filesystem::path::generic_u8string() const'/>

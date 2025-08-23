@@ -1,0 +1,8 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='413' type='tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString &amp; ext)'/>
+<use f='Modules/System/Inc/System/tFile.h' l='845' u='c' c='_ZN7tSystem20tGetFileTypeFromNameERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='940' u='c' c='_ZN7tSystem10tFileTypes3AddERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='960' u='c' c='_ZN7tSystem10tFileTypes3AddERKNS_11tExtensionsE'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='412'>// The supplied extension should not contain a period. Case insensitive.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='1912' ll='1922' type='tSystem::tFileType tSystem::tGetFileTypeFromExtension(const tString &amp; ext)'/>
+<use f='Modules/System/Src/tFile.cpp' l='1928' u='c' c='_ZN7tSystem25tGetFileTypeFromExtensionEPKc'/>
+<use f='Modules/System/Src/tFile.cpp' l='1938' u='c' c='_ZN7tSystem12tGetFileTypeERK7tString'/>

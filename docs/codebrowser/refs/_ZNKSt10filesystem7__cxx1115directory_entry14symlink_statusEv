@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/fs_dir.h' l='153' u='c' c='_ZNSt10filesystem7__cxx1115directory_entry7refreshEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='232' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry10is_symlinkEv'/>
+<def f='include/c++/11/bits/fs_dir.h' l='276' ll='278' type='std::filesystem::file_status std::filesystem::directory_entry::symlink_status() const'/>

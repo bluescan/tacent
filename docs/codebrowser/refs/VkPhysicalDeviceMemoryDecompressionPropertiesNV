@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17264' ll='17269'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17264'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceMemoryDecompressionPropertiesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMemoryDecompressionPropertiesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMemoryDecompressionPropertiesNV::decompressionMethods' o='128' t='VkMemoryDecompressionMethodFlagsNV'/>
+<mbr r='VkPhysicalDeviceMemoryDecompressionPropertiesNV::maxDecompressionIndirectCount' o='192' t='uint64_t'/>

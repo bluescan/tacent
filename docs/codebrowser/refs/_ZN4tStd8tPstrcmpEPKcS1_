@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='80' type='int tStd::tPstrcmp(const char * a, const char * b)'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='439' ll='446' type='int tStd::tPstrcmp(const char * a, const char * b)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='77'>// These are similar to the above but assume the strings represent filesystem paths and so choose between a case
+// sensitive (Linux) and case insensitive (Windows) compare. They do not deal with any other manipulation of the input
+// strings. Think of the P to mean Path or Platform.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='436'>// Implementation below this line.</doc>

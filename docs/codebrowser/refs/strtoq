@@ -1,0 +1,1 @@
+<dec f='include/stdlib.h' l='188' type='long long strtoq(const char *__restrict __nptr, char **__restrict __endptr, int __base)'/>

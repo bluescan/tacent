@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1491' type='uint8_t[2]'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1495' u='r' c='_ZNK5rgbcx9bc1_block13get_low_colorEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1495' u='r' c='_ZNK5rgbcx9bc1_block13get_low_colorEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1498' u='w' c='_ZN5rgbcx9bc1_block13set_low_colorEt'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1498' u='w' c='_ZN5rgbcx9bc1_block13set_low_colorEt'/>
+<offset>0</offset>

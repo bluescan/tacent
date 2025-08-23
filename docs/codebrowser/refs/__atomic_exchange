@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/atomic_base.h' l='958' u='c' c='_ZNSt13__atomic_impl8exchangeEPT_NSt15remove_volatileIS0_E4typeESt12memory_order'/>
+<use f='include/c++/11/atomic' l='303' u='c' c='_ZNSt6atomic8exchangeET_St12memory_order'/>
+<use f='include/c++/11/atomic' l='314' u='c' c='_ZNVSt6atomic8exchangeET_St12memory_order'/>

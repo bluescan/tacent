@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='856' type='bool tColour4f::IsBlack() const'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='855'>// These querying calls ignore alpha.</doc>

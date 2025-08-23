@@ -1,0 +1,1 @@
+<dec f='include/c++/11/type_traits' l='2429' type='static __result_of_success&lt;decltype(std::declval&lt;_Tp1&gt;() .* std::declval&lt;_Fp&gt;()), std::__invoke_memobj_ref&gt; std::__result_of_memobj_ref_impl::_S_test(int )'/>

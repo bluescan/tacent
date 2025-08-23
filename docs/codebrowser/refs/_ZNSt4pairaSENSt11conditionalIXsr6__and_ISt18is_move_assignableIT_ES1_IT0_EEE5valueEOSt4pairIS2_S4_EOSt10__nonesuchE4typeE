@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_pair.h' l='400' ll='411' macro='1' type='pair&lt;_T1, _T2&gt; &amp; std::pair::operator=(typename conditional&lt;__and_&lt;is_move_assignable&lt;_T1&gt;, is_move_assignable&lt;_T2&gt;&gt;::value, pair&lt;_T1, _T2&gt; &amp;&amp;, __nonesuch &amp;&amp;&gt;::type __p)'/>

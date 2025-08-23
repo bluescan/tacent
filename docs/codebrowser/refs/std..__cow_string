@@ -1,0 +1,20 @@
+<def f='include/c++/11/stdexcept' l='48' ll='65'/>
+<use f='include/c++/11/stdexcept' l='58' c='_ZNSt12__cow_stringC1ERKS_'/>
+<use f='include/c++/11/stdexcept' l='59' c='_ZNSt12__cow_stringaSERKS_'/>
+<use f='include/c++/11/stdexcept' l='59' c='_ZNSt12__cow_stringaSERKS_'/>
+<use f='include/c++/11/stdexcept' l='62' c='_ZNSt12__cow_stringC1EOS_'/>
+<use f='include/c++/11/stdexcept' l='63' c='_ZNSt12__cow_stringaSEOS_'/>
+<use f='include/c++/11/stdexcept' l='63' c='_ZNSt12__cow_stringaSEOS_'/>
+<use f='include/c++/11/stdexcept' l='115'/>
+<use f='include/c++/11/stdexcept' l='221'/>
+<use f='include/c++/11/system_error' l='117' c='_ZNKSt3_V214error_category10_M_messageB5cxx11Ei'/>
+<size>8</size>
+<doc f='include/c++/11/stdexcept' l='47'>// Emulates an old COW string when the new std::string is in use.</doc>
+<fun r='_ZNSt12__cow_stringC1Ev'/>
+<fun r='_ZNSt12__cow_stringC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt12__cow_stringC1EPKcm'/>
+<fun r='_ZNSt12__cow_stringC1ERKS_'/>
+<fun r='_ZNSt12__cow_stringaSERKS_'/>
+<fun r='_ZNSt12__cow_stringD1Ev'/>
+<fun r='_ZNSt12__cow_stringC1EOS_'/>
+<fun r='_ZNSt12__cow_stringaSEOS_'/>

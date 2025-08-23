@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/ios_base.h' l='792' ll='794' type='std::locale std::ios_base::getloc() const'/>
+<doc f='include/c++/11/bits/ios_base.h' l='784'>/**
+     *  @brief  Locale access
+     *  @return  A copy of the current locale.
+     *
+     *  If @c imbue(loc) has previously been called, then this function
+     *  returns @c loc.  Otherwise, it returns a copy of @c std::locale(),
+     *  the global C++ locale.
+    */</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='597' u='c' c='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_e'/>

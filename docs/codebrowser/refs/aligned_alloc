@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='592' type='void * aligned_alloc(size_t __alignment, size_t __size)'/>
+<doc f='include/stdlib.h' l='591'>/* ISO C variant of aligned allocation.  */</doc>

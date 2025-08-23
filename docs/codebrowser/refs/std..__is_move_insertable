@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/alloc_traits.h' l='786' ll='788'/>
+<def f='include/c++/11/bits/alloc_traits.h' l='791' ll='794'/>
+<use f='include/c++/11/bits/stl_vector.h' l='449' c='_ZNSt6vector15_S_use_relocateEv'/>
+<doc f='include/c++/11/bits/alloc_traits.h' l='790'>// std::allocator&lt;_Tp&gt; just requires MoveConstructible</doc>

@@ -1,0 +1,20 @@
+<def f='include/x86_64-linux-gnu/bits/types/struct_timeval.h' l='8' ll='17'/>
+<use f='include/x86_64-linux-gnu/sys/select.h' l='105' c='select'/>
+<size>16</size>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_timeval.h' l='6'>/* A time value that is accurate to the nearest
+   microsecond but also has a range of years.  */</doc>
+<mbr r='timeval::tv_sec' o='0' t='__time_t'/>
+<mbr r='timeval::tv_usec' o='64' t='__suseconds_t'/>
+<use f='include/x86_64-linux-gnu/bits/timex.h' l='67'/>
+<size>16</size>
+<use f='include/x86_64-linux-gnu/sys/time.h' l='67' c='gettimeofday'/>
+<use f='include/x86_64-linux-gnu/sys/time.h' l='86' c='settimeofday'/>
+<use f='include/x86_64-linux-gnu/sys/time.h' l='94' c='adjtime'/>
+<use f='include/x86_64-linux-gnu/sys/time.h' l='95' c='adjtime'/>
+<use f='include/x86_64-linux-gnu/sys/time.h' l='133'/>
+<use f='include/x86_64-linux-gnu/sys/time.h' l='135'/>
+<use f='include/x86_64-linux-gnu/sys/time.h' l='162' c='utimes'/>
+<use f='include/x86_64-linux-gnu/sys/time.h' l='189' c='lutimes'/>
+<use f='include/x86_64-linux-gnu/sys/time.h' l='193' c='futimes'/>
+<use f='include/x86_64-linux-gnu/sys/time.h' l='215' c='futimesat'/>
+<size>16</size>

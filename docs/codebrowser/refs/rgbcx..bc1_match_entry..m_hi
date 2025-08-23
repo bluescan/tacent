@@ -1,0 +1,28 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1641' type='uint8_t'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1748' u='w' c='_ZN5rgbcxL35prepare_bc1_single_color_table_halfEPNS_15bc1_match_entryEPKhiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1785' u='w' c='_ZN5rgbcxL30prepare_bc1_single_color_tableEPNS_15bc1_match_entryEPKhiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1920' u='r' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1920' u='r' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1920' u='r' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1930' u='r' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1930' u='r' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1930' u='r' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2696' u='r' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2697' u='r' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2698' u='r' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2762' u='r' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2763' u='r' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2764' u='r' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2853' u='r' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2854' u='r' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2855' u='r' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3560' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3561' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3562' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3622' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3623' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3624' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3752' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3753' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3754' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<offset>0</offset>

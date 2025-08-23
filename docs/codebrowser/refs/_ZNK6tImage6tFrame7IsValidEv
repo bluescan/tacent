@@ -1,0 +1,21 @@
+<def f='Modules/Image/Inc/Image/tFrame.h' l='53' type='bool tImage::tFrame::IsValid() const'/>
+<use f='Modules/Image/Inc/Image/tFrame.h' l='76' u='c' c='_ZN6tImage6tFrame3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tFrame.h' l='112' u='c' c='_ZN6tImage6tFrame9StealFromERS0_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='444' u='c' c='_ZN6tImage8tPicture3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='177' u='c' c='_ZN6tImage10tImageAPNG3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='233' u='c' c='_ZN6tImage10tImageASTC3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='501' u='c' c='_ZN6tImage9tImageBMP3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='931' u='c' c='_ZN6tImage9tImageDDS3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='337' u='c' c='_ZN6tImage9tImageEXR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='232' u='c' c='_ZN6tImage9tImageGIF3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='422' u='c' c='_ZN6tImage9tImageHDR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='219' u='c' c='_ZN6tImage9tImageICO3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='220' u='c' c='_ZN6tImage9tImageJPG3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='590' u='c' c='_ZN6tImage9tImageKTX3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='321' u='c' c='_ZN6tImage9tImagePKM3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='477' u='c' c='_ZN6tImage9tImagePNG3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='692' u='c' c='_ZN6tImage9tImagePVR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='110' u='c' c='_ZN6tImage9tImageQOI3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='304' u='c' c='_ZN6tImage9tImageTGA3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='184' u='c' c='_ZN6tImage10tImageTIFF3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='271' u='c' c='_ZN6tImage10tImageWEBP3SetEPNS_6tFrameEb'/>

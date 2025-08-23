@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='243' type='uint32 tCeilLog2(const tFixIntU&lt;N&gt; &amp; )'/>
+<def f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='1018' ll='1035' type='uint32 tCeilLog2(const tFixIntU&lt;N&gt; &amp; v)'/>

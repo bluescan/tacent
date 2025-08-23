@@ -1,0 +1,7 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='79' type='void tChunkWriter::tChunkWriter(uint8 * dst, int dstBufSize, tEndianness endianness = tEndianness::Little)'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='73'>// Use this if you want this class to write to memory instead of a file. To compute the size of the buffer you&apos;ll
+	// need, use this to be conservative:
+	// numBytesNeeded = (numChunks * 8) + SumOverAllChunks(chunkDataSize + chunkAlignmentSize).
+	// Also note that if you want the written data aligned you&apos;ll need to supply an aligned dst pointer. Choose a value
+	// that is the maximum of your alignment requirements for all chunks you will be writing. Supplying a buffer that
+	// is 512 byte aligned is guaranteed to work in all cases.</doc>

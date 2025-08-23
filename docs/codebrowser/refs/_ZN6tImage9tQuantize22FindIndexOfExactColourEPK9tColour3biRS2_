@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tQuantize.cpp' l='26' type='int tImage::tQuantize::FindIndexOfExactColour(const tColour3b * searchSpace, int searchSize, const tColour3b &amp; colour)'/>
+<def f='Modules/Image/Src/tQuantize.cpp' l='43' ll='50' type='int tImage::tQuantize::FindIndexOfExactColour(const tColour3b * searchSpace, int searchSize, const tColour3b &amp; colour)'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='95' u='c' c='_ZN6tImage9tQuantize18QuantizeImageExactEiiiPK9tColour3bPS1_Ph'/>

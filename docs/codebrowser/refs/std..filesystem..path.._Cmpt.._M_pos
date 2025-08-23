@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/fs_path.h' l='809' u='w' c='_ZNSt10filesystem7__cxx114path5_CmptC1Ev'/>
+<dec f='include/c++/11/bits/fs_path.h' l='811' type='std::size_t'/>
+<offset>320</offset>

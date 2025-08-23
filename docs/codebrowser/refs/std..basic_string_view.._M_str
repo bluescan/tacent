@@ -1,0 +1,9 @@
+<use f='include/c++/11/string_view' l='125' u='w' c='_ZNSt17basic_string_viewC1Ev'/>
+<use f='include/c++/11/string_view' l='133' u='w' c='_ZNSt17basic_string_viewC1EPKT_'/>
+<use f='include/c++/11/string_view' l='138' u='w' c='_ZNSt17basic_string_viewC1EPKT_m'/>
+<use f='include/c++/11/string_view' l='148' u='w' c='_ZNSt17basic_string_viewC1ETL0__TL0_0_'/>
+<use f='include/c++/11/string_view' l='308' c='_ZNKSt17basic_string_view6substrEmm'/>
+<dec f='include/c++/11/string_view' l='512' type='const _CharT *'/>
+<use f='include/c++/11/bits/string_view.tcc' l='58' c='_ZNKSt17basic_string_view4findEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='59' c='_ZNKSt17basic_string_view4findEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='72' c='_ZNKSt17basic_string_view4findEPKT_mm'/>

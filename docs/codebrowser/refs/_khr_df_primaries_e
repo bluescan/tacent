@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='538' ll='566'/>
+<use f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='538'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='532'>/** @~English
+   @brief Definition of the primary colors in color coordinates.
+   This is implicitly responsible for defining the conversion
+   between RGB an YUV color spaces.
+   LAB and related absolute color models should use
+   KHR_DF_PRIMARIES_CIEXYZ. */</doc>

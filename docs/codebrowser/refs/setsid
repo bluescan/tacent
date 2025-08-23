@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='689' type='__pid_t setsid()'/>
+<doc f='include/unistd.h' l='686'>/* Create a new session with the calling process as its leader.
+   The process group IDs of the session and the calling process
+   are set to the process ID of the calling process, which is returned.  */</doc>

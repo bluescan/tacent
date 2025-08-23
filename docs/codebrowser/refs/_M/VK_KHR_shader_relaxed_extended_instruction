@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11162'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11161'>// VK_KHR_shader_relaxed_extended_instruction is a preprocessor guard. Do not pass it to API calls.</doc>

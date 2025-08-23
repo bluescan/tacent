@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7908' ll='7911'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7908'/>
+<size>16</size>
+<mbr r='VkDisplayPlanePropertiesKHR::currentDisplay' o='0' t='VkDisplayKHR'/>
+<mbr r='VkDisplayPlanePropertiesKHR::currentStackIndex' o='64' t='uint32_t'/>

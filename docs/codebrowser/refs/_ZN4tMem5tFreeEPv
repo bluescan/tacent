@@ -1,0 +1,10 @@
+<dec f='Modules/Foundation/Inc/Foundation/tMemory.h' l='22' type='void tMem::tFree(void * mem)'/>
+<use f='Modules/Foundation/Inc/Foundation/tPool.h' l='112' u='c' c='_ZN4tMem9tFastPool9SlotBlock8ShutdownEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tPool.h' l='210' u='c' c='_ZN4tMem9tFastPool4FreeEPv'/>
+<def f='Modules/Foundation/Src/tMemory.cpp' l='44' ll='50' type='void tMem::tFree(void * mem)'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='89' u='c' c='_ZN4tMem9tFastPoolD1Ev'/>
+<use f='Modules/System/Src/tChunk.cpp' l='861' u='c' c='_ZN12tChunkReader6UnLoadEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='115' u='c' c='_ZN7tSystem6tRegex7NewNodeEi'/>
+<use f='Modules/System/Src/tRegex.cpp' l='798' u='c' c='_ZN7tSystem6tRegex5ClearEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='806' u='c' c='_ZN7tSystem6tRegex5ClearEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='815' u='c' c='_ZN7tSystem6tRegex5ClearEv'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='373' type='-1'/>
+<use f='Modules/System/Inc/System/tFile.h' l='508' u='r' c='_ZN7tSystem10tFileTypes13tFileTypeItemC1Ev'/>
+<use f='Modules/System/Inc/System/tFile.h' l='946' u='r' c='_ZN7tSystem10tFileTypes3AddENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1065' u='r' c='_ZNK7tSystem10tFileTypes20GetFirstSelectedTypeEv'/>
+<use f='Modules/System/Src/tFile.cpp' l='1944' u='r' c='_ZN7tSystem14tGetExtensionsER5tListI11tStringItemENS_9tFileTypeE'/>

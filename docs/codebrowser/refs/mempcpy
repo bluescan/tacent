@@ -1,0 +1,1 @@
+<dec f='include/string.h' l='400' type='void * mempcpy(void *__restrict __dest, const void *__restrict __src, size_t __n)'/>

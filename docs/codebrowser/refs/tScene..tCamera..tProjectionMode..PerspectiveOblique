@@ -1,0 +1,3 @@
+<dec f='Modules/Scene/Inc/Scene/tCamera.h' l='42' type='1'/>
+<doc f='Modules/Scene/Inc/Scene/tCamera.h' l='42'>// An asymmetric perspective projection.</doc>
+<use f='Modules/Scene/Src/tCamera.cpp' l='26' c='_ZN6tScene7tCamera5ScaleEf'/>

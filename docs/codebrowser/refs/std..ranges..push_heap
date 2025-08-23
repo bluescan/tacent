@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='1655' type='const std::ranges::__push_heap_fn'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1885' u='c' c='_ZNKSt6ranges17__partial_sort_fnclET_S1_T0_T1_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1952' u='c' c='_ZNKSt6ranges22__partial_sort_copy_fnclET_T0_T1_T2_T3_T4_T5_'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='516' ll='531' type='_Iter std::ranges::__adjacent_find_fn::operator()(_Iter __first, _Sent __last, _Pred __pred = {}, _Proj __proj = {}) const'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.h' l='3661' ll='3665' type='void std::bernoulli_distribution::__generate(std::bernoulli_distribution::result_type * __f, std::bernoulli_distribution::result_type * __t, _UniformRandomNumberGenerator &amp; __urng, const std::bernoulli_distribution::param_type &amp; __p)'/>

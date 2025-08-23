@@ -1,0 +1,9 @@
+<use f='Modules/Image/Contrib/WebP/include/decode.h' l='29'/>
+<def f='Modules/Image/Contrib/WebP/include/decode.h' l='183' ll='187'/>
+<size>24</size>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='180'>//------------------------------------------------------------------------------
+// WebPDecBuffer: Generic structure for describing the output sample buffer.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='183'>// view as RGBA</doc>
+<mbr r='WebPRGBABuffer::rgba' o='0' t='uint8_t *'/>
+<mbr r='WebPRGBABuffer::stride' o='64' t='int'/>
+<mbr r='WebPRGBABuffer::size' o='128' t='size_t'/>

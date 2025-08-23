@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/alloc_traits.h' l='359' ll='364' type='static decltype(_S_construct(__a, __p, std::forward&lt;_Args&gt;(__args)...)) std::allocator_traits::construct(_Alloc &amp; __a, _Tp * __p, _Args &amp;&amp;... __args)'/>

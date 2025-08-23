@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/unordered_map.h' l='478' ll='483' type='pair&lt;std::unordered_map::iterator, bool&gt; std::unordered_map::try_emplace(std::unordered_map::key_type &amp;&amp; __k, _Args &amp;&amp;... __args)'/>

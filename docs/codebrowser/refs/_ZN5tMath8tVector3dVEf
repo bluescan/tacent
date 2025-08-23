@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='89' type='tMath::tVector3 &amp; tMath::tVector3::operator/=(float a)'/>
+<doc f='Modules/Math/Inc/Math/tVector3.h' l='88'>// Divide is not commutative so no need for friend.</doc>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='381' u='c' c='_ZN5tMath6tPlane9NormalizeEv'/>

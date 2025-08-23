@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='169'/>
+<use f='Modules/System/Src/tFile.cpp' l='591' u='c'/>
+<use f='Modules/System/Src/tFile.cpp' l='648' u='c'/>
+<use f='Modules/System/Src/tFile.cpp' l='2136' u='c'/>

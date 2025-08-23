@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1573' type='14'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1571'>/*!&lt; 32bpp RGBA image stored in raster (not block) order in
+                 memory, R is first byte, A is last byte. */</doc>

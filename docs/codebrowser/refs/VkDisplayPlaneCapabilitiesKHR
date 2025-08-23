@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7896' ll='7906'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7896'/>
+<size>68</size>
+<mbr r='VkDisplayPlaneCapabilitiesKHR::supportedAlpha' o='0' t='VkDisplayPlaneAlphaFlagsKHR'/>
+<mbr r='VkDisplayPlaneCapabilitiesKHR::minSrcPosition' o='32' t='VkOffset2D'/>
+<mbr r='VkDisplayPlaneCapabilitiesKHR::maxSrcPosition' o='96' t='VkOffset2D'/>
+<mbr r='VkDisplayPlaneCapabilitiesKHR::minSrcExtent' o='160' t='VkExtent2D'/>
+<mbr r='VkDisplayPlaneCapabilitiesKHR::maxSrcExtent' o='224' t='VkExtent2D'/>
+<mbr r='VkDisplayPlaneCapabilitiesKHR::minDstPosition' o='288' t='VkOffset2D'/>
+<mbr r='VkDisplayPlaneCapabilitiesKHR::maxDstPosition' o='352' t='VkOffset2D'/>
+<mbr r='VkDisplayPlaneCapabilitiesKHR::minDstExtent' o='416' t='VkExtent2D'/>
+<mbr r='VkDisplayPlaneCapabilitiesKHR::maxDstExtent' o='480' t='VkExtent2D'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/vector' l='117' ll='124' type='typename vector&lt;_Tp, _Alloc&gt;::size_type std::erase(vector&lt;_Tp, _Alloc&gt; &amp; __cont, const _Up &amp; __value)'/>

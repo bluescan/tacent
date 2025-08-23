@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='802' type='void tColour4f::Unset()'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='802'>// An unset colour has value (-1.0f, -1.0f, -1.0f, -1.0f).</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector4.h' l='78' type='const tMath::tVector4 tMath::tVector4::operator+(const tMath::tVec4 &amp; a) const'/>
+<use f='Modules/Image/Src/tResample.cpp' l='328' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>

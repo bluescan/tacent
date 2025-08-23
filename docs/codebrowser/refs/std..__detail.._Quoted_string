@@ -1,0 +1,19 @@
+<def f='include/c++/11/bits/quoted_string.h' l='49' ll='65'/>
+<def f='include/c++/11/bits/quoted_string.h' l='68' ll='82'/>
+<use f='include/c++/11/bits/quoted_string.h' l='94' c='_ZNSt8__detaillsERSt13basic_ostreamIT_T0_ERKNS_14_Quoted_stringIPKS1_S1_EE'/>
+<use f='include/c++/11/bits/quoted_string.h' l='118' c='_ZNSt8__detaillsERSt13basic_ostreamIT_T0_ERKNS_14_Quoted_stringIT1_S1_EE'/>
+<use f='include/c++/11/bits/quoted_string.h' l='140' c='_ZNSt8__detailrsERSt13basic_istreamIT_T0_ERKNS_14_Quoted_stringIRNSt7__cxx1112basic_stringIS1_S2_T1_EES1_EE'/>
+<use f='include/c++/11/iomanip' l='464' c='_ZSt6quotedPKT_S_S_'/>
+<use f='include/c++/11/iomanip' l='473' c='_ZSt6quotedRKNSt7__cxx1112basic_stringIT_T0_T1_EES1_S1_'/>
+<use f='include/c++/11/iomanip' l='483' c='_ZSt6quotedRNSt7__cxx1112basic_stringIT_T0_T1_EES1_S1_'/>
+<use f='include/c++/11/iomanip' l='496' c='_ZSt6quotedSt17basic_string_viewIT_T0_ES0_S0_'/>
+<fun r='_ZNSt8__detail14_Quoted_stringC1ET_T0_S2_'/>
+<fun r='_ZNSt8__detail14_Quoted_stringaSERNS_14_Quoted_stringIT_T0_EE'/>
+<mbr r='std::__detail::_Quoted_string::_M_string' t='_String'/>
+<mbr r='std::__detail::_Quoted_string::_M_delim' t='_CharT'/>
+<mbr r='std::__detail::_Quoted_string::_M_escape' t='_CharT'/>
+<fun r='_ZNSt8__detail14_Quoted_stringISt17basic_string_viewIT_T0_ES2_EC1ES4_S2_S2_'/>
+<fun r='_ZNSt8__detail14_Quoted_stringISt17basic_string_viewIT_T0_ES2_EaSERNS0_IS4_S2_EE'/>
+<mbr r='std::__detail::_Quoted_string::_M_string' t='basic_string_view&lt;_CharT, _Traits&gt;'/>
+<mbr r='std::__detail::_Quoted_string::_M_delim' t='_CharT'/>
+<mbr r='std::__detail::_Quoted_string::_M_escape' t='_CharT'/>

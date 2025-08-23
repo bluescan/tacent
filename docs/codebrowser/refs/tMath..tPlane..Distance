@@ -1,0 +1,18 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='373' u='w' c='_ZN5tMath6tPlane3SetEffff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='374' u='w' c='_ZN5tMath6tPlane3SetERKNS_8tVector3Ef'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='375' u='w' c='_ZN5tMath6tPlane3SetERKNS_8tVector4E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='376' u='w' c='_ZN5tMath6tPlane3SetERKNS_8tVector3ES3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='377' u='w' c='_ZN5tMath6tPlane3SetERKNS_8tVector3ES3_S3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='381' u='w' c='_ZN5tMath6tPlane9NormalizeEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='385' u='r' c='_ZNK5tMath6tPlane11GetDistanceERKNS_8tVector3E'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='397' type='float'/>
+<offset>96</offset>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='394'>// the Distance only represents the distance to the plane if the plane is normalized. If it is not normalized, this
+	// is MOT a multiplier to get the normal to the plane because ax+by+cz+d=0 is the same plane as kax+kby+kcz+kd=0.
+	// Distance (d) more as the offset of the point (a,b,c) from the origin. They grow and shrink together.</doc>
+<use f='Modules/Math/Src/tGeometry.cpp' l='509' u='r' c='_ZN5tMath27tIntersectTestFrustumSphereERKNS_8tFrustumERKNS_7tSphereE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='172' u='r' c='_ZN5tMath7tRandom21tGetPointOnUnitSquareERKNS_6tPlaneERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='188' u='w' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='196' u='w' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='204' u='w' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='217' u='r' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>

@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='514' type='void tImage::tDDS::GetFormatInfo_FromDXGIFormat(tImage::tPixelFormat &amp; , tColourProfile &amp; , tAlphaMode &amp; , tChannelType &amp; , uint32 dxgiFormat)'/>
+<def f='Modules/Image/Src/tImageDDS.cpp' l='520' ll='711' type='void tImage::tDDS::GetFormatInfo_FromDXGIFormat(tImage::tPixelFormat &amp; format, tColourProfile &amp; profile, tAlphaMode &amp; alphaMode, tChannelType &amp; chanType, uint32 dxgiFormat)'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1259' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Src/tImageDDS.cpp' l='510'>// These figure out the pixel-format, colour-profile, alpha-mode, and channel-type. tPixelFormat does not specify
+	// ancilllary properties of the data -- it specified the encoding of the data. The extra information, like the
+	// colour-profile it was authored in, is stored in tColourProfile, tAlphaMode, and tChannelType. In many cases this
+	// satellite information cannot be determined, in which they will be set to their &apos;unspecified&apos; enumerant.</doc>

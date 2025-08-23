@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/stl_function.h' l='180' ll='187'/>
+<def f='include/c++/11/bits/stl_function.h' l='243' ll='255'/>
+<use f='include/c++/11/bits/stl_function.h' l='244'/>
+<size>1</size>
+<fun r='_ZNKSt4plusclERKT_S2_'/>
+<fun r='_ZNKSt4plusIvEclEOT_OT0_'/>
+<use f='include/c++/11/numeric' l='328' c='_ZSt6reduceT_S_T0_'/>
+<use f='include/c++/11/numeric' l='347' c='_ZSt6reduceT_S_'/>
+<use f='include/c++/11/numeric' l='420' c='_ZSt16transform_reduceT_S_T0_T1_'/>
+<use f='include/c++/11/numeric' l='522' c='_ZSt14exclusive_scanT_S_T0_T1_'/>
+<use f='include/c++/11/numeric' l='611' c='_ZSt14inclusive_scanT_S_T0_'/>

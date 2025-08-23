@@ -1,0 +1,15 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1432' type='int32_t rgbcx::clampi(int32_t value, int32_t low, int32_t high)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2289' u='c' c='_ZN5rgbcxL25bc1_find_sels4_check2_errEPKNS_7color32EjjjjjjPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3259' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3260' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3261' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3269' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3270' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3271' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3437' u='c' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3438' u='c' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3439' u='c' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3443' u='c' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3444' u='c' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3445' u='c' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3741' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

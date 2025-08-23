@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='1884' ll='1885' type='common_iterator&lt;_It, _Sent&gt; &amp; std::common_iterator::operator=(const common_iterator&lt;_It, _Sent&gt; &amp; )'/>
+<def f='include/c++/11/bits/stl_iterator.h' l='1887' ll='1898' type='common_iterator&lt;_It, _Sent&gt; &amp; std::common_iterator::operator=(const common_iterator&lt;_It, _Sent&gt; &amp; __x)'/>

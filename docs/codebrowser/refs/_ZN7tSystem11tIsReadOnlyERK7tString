@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='185' type='bool tSystem::tIsReadOnly(const tString &amp; path)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='183'>// Works for both files and directories. Returns false if read-only not set or an error occurred like the path not
+// existing. For Lixux returns true is user w permission flag not set and r permission flag is set.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='560' ll='596' type='bool tSystem::tIsReadOnly(const tString &amp; path)'/>
+<use f='Modules/System/Src/tFile.cpp' l='1158' u='c' c='_ZN7tSystem11tDeleteFileERK7tStringbb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3245' u='c' c='_ZN7tSystem10tDeleteDirERK7tStringb'/>

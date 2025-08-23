@@ -1,0 +1,21 @@
+<dec f='include/c++/11/fstream' l='123' type='std::basic_filebuf::__file_type'/>
+<use f='include/c++/11/fstream' l='271' u='m' c='_ZNKSt13basic_filebuf7is_openEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='81' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='98' u='w' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='129' u='m' c='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='157' u='m' c='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='185' u='m' c='_ZNSt13basic_filebuf4openEPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='281' u='m' c='_ZNSt13basic_filebuf5closeEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='286' u='m' c='_ZNSt13basic_filebuf5closeEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='316' u='m' c='_ZNSt13basic_filebuf9showmanycEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='355' u='m' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='414' u='m' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='614' u='m' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='642' u='m' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='656' u='m' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='718' u='m' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='780' u='m' c='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='875' u='m' c='_ZNSt13basic_filebuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='913' u='m' c='_ZNSt13basic_filebuf7_M_seekENT0_8off_typeESt12_Ios_SeekdirNS0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='988' u='m' c='_ZNSt13basic_filebuf19_M_terminate_outputEv'/>
+<doc f='include/c++/11/fstream' l='122'>// External buffer.</doc>

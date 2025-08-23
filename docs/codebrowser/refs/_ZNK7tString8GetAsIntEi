@@ -1,0 +1,19 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='341' type='int tString::GetAsInt(int base = -1) const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='357' u='c' c='_ZNK7tString5AsIntEi'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='333'>// The GetAs functions consider the contents of the current tString up to the first null encountered. See comment
+	// for tStrtoiT in tStandard.h for format requirements. The summary is that if base is -1, the function looks one of
+	// the following prefixes in the string, defaulting to base 10 if none found.
+	//
+	// Base 16 prefixes: x X 0x 0X #
+	// Base 10 prefixes: d D 0d 0D
+	// Base 8  prefixes: o O 0o 0O @
+	// Base 2  prefixes: b B 0b 0B</doc>
+<use f='Modules/Foundation/Src/tVersion.cpp' l='43' u='c' c='_ZN8tVersion6ParserC1EPKc'/>
+<use f='Modules/Foundation/Src/tVersion.cpp' l='44' u='c' c='_ZN8tVersion6ParserC1EPKc'/>
+<use f='Modules/Foundation/Src/tVersion.cpp' l='45' u='c' c='_ZN8tVersion6ParserC1EPKc'/>
+<use f='Modules/System/Inc/System/tScript.h' l='101' u='c' c='_ZNK11tExpression10GetAtomIntEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='197' u='c' c='_Z10GetAtomIntR11tExpression'/>
+<use f='Modules/System/Src/tScript.cpp' l='408' u='c' c='_ZNK11tExpression13GetAtomColourEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='411' u='c' c='_ZNK11tExpression13GetAtomColourEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='414' u='c' c='_ZNK11tExpression13GetAtomColourEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='416' u='c' c='_ZNK11tExpression13GetAtomColourEv'/>

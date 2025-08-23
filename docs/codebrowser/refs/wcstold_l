@@ -1,0 +1,1 @@
+<dec f='include/wchar.h' l='501' type='long double wcstold_l(const wchar_t *__restrict __nptr, wchar_t **__restrict __endptr, locale_t __loc)'/>

@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='616' type='void tMath::tMakeScale(tMath::tMat4 &amp; d, float scale)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='81' u='c' c='_ZN5tMath8tMatrix49MakeScaleEf'/>

@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/fs_path.h' l='272' type='void std::filesystem::path::path(const std::filesystem::path &amp; __p)'/>
+<use f='include/c++/11/bits/fs_path.h' l='551' u='c' c='_ZNSt10filesystem7__cxx11dvERKNS0_4pathES3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1203' u='c' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1210' u='c' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='106' u='c' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='110' u='c' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='328' u='c' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathENS_9file_typeE'/>

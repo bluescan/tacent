@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='423' type='VP8StatusCode WebPGetFeaturesInternal(const uint8_t * , size_t , WebPBitstreamFeatures * , int )'/>
+<use f='Modules/Image/Contrib/WebP/include/decode.h' l='440' u='c' c='_ZL15WebPGetFeaturesPKhmP21WebPBitstreamFeatures'/>

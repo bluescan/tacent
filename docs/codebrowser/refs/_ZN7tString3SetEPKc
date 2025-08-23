@@ -1,0 +1,6 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='73' u='c' c='_ZN7tStringC1EPKc'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='91' type='void tString::Set(const char * src)'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='292' u='c' c='_ZNK6tChunk7GetItemER7tString'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='298' u='c' c='_ZNK5tMath9tInterval3GetER7tStringNS_12tIntervalRepE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='58' u='c' c='_ZN8tCmdLine6tParamC1EiPKcS2_b'/>
+<use f='Modules/System/Src/tFile.cpp' l='1316' u='c' c='_ZN7tSystem11tGetHomeDirEv'/>

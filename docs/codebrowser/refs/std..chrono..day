@@ -1,0 +1,57 @@
+<def f='include/c++/11/chrono' l='1300' ll='1405'/>
+<use f='include/c++/11/chrono' l='1313' c='_ZNSt6chrono3dayppEv'/>
+<use f='include/c++/11/chrono' l='1320' c='_ZNSt6chrono3dayppEi'/>
+<use f='include/c++/11/chrono' l='1328' c='_ZNSt6chrono3daymmEv'/>
+<use f='include/c++/11/chrono' l='1335' c='_ZNSt6chrono3daymmEi'/>
+<use f='include/c++/11/chrono' l='1343' c='_ZNSt6chrono3daypLERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1350' c='_ZNSt6chrono3daymIERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1366' c='_ZNSt6chronoeqERKNS_3dayES2_'/>
+<use f='include/c++/11/chrono' l='1366' c='_ZNSt6chronoeqERKNS_3dayES2_'/>
+<use f='include/c++/11/chrono' l='1370' c='_ZNSt6chronossERKNS_3dayES2_'/>
+<use f='include/c++/11/chrono' l='1370' c='_ZNSt6chronossERKNS_3dayES2_'/>
+<use f='include/c++/11/chrono' l='1373' c='_ZNSt6chronoplERKNS_3dayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1374' c='_ZNSt6chronoplERKNS_3dayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1375' c='_ZNSt6chronoplERKNS_3dayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1377' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl86400ELl1EEEERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1378' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl86400ELl1EEEERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1381' c='_ZNSt6chronomiERKNS_3dayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1382' c='_ZNSt6chronomiERKNS_3dayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1386' c='_ZNSt6chronomiERKNS_3dayES2_'/>
+<use f='include/c++/11/chrono' l='1386' c='_ZNSt6chronomiERKNS_3dayES2_'/>
+<use f='include/c++/11/chrono' l='1390' c='_ZNSt6chronodvERKNS_5monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1393' c='_ZNSt6chronodvEiRKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1396' c='_ZNSt6chronodvERKNS_3dayERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='1399' c='_ZNSt6chronodvERKNS_3dayEi'/>
+<use f='include/c++/11/chrono' l='1402' c='_ZNSt6chronodvERKNS_10year_monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1936'/>
+<use f='include/c++/11/chrono' l='1942' c='_ZNSt6chrono9month_dayC1ERKNS_5monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1950' c='_ZNKSt6chrono9month_day3dayEv'/>
+<use f='include/c++/11/chrono' l='1971' c='_ZNSt6chronodvERKNS_5monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1976' c='_ZNSt6chronodvERKNS_5monthEi'/>
+<use f='include/c++/11/chrono' l='1979' c='_ZNSt6chronodvEiRKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1983' c='_ZNSt6chronodvERKNS_3dayERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='1987' c='_ZNSt6chronodvERKNS_3dayEi'/>
+<use f='include/c++/11/chrono' l='2326'/>
+<use f='include/c++/11/chrono' l='2337' c='_ZNSt6chrono14year_month_dayC1ERKNS_4yearERKNS_5monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='2392' c='_ZNKSt6chrono14year_month_day3dayEv'/>
+<use f='include/c++/11/chrono' l='2446' c='_ZNSt6chronodvERKNS_10year_monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='2451' c='_ZNSt6chronodvERKNS_10year_monthEi'/>
+<use f='include/c++/11/chrono' l='2509' c='_ZNSt6chrono14year_month_day12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2597' c='_ZNKSt6chrono19year_month_day_last3dayEv'/>
+<use f='include/c++/11/chrono' l='2616' c='_ZNKSt6chrono19year_month_day_last3dayEv'/>
+<use f='include/c++/11/chrono' l='2714' c='_ZNKSt6chrono14year_month_day2okEv'/>
+<use f='include/c++/11/chrono' l='3289' c='_ZNSt8literals15chrono_literalsli1dEy'/>
+<use f='include/c++/11/chrono' l='3291' c='_ZNSt8literals15chrono_literalsli1dEy'/>
+<size>1</size>
+<doc f='include/c++/11/chrono' l='1298'>// DAY</doc>
+<mbr r='std::chrono::day::_M_d' o='0' t='unsigned char'/>
+<fun r='_ZNSt6chrono3dayC1Ev'/>
+<fun r='_ZNSt6chrono3dayC1Ej'/>
+<fun r='_ZNSt6chrono3dayppEv'/>
+<fun r='_ZNSt6chrono3dayppEi'/>
+<fun r='_ZNSt6chrono3daymmEv'/>
+<fun r='_ZNSt6chrono3daymmEi'/>
+<fun r='_ZNSt6chrono3daypLERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<fun r='_ZNSt6chrono3daymIERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<fun r='_ZNKSt6chrono3daycvjEv'/>
+<fun r='_ZNKSt6chrono3day2okEv'/>

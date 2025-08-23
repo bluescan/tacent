@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/random.h' l='71' type='const _UIntType'/>
+<use f='include/c++/11/bits/random.tcc' l='552' u='c' c='_ZNSt26subtract_with_carry_engine4seedET_'/>
+<use f='include/c++/11/bits/random.tcc' l='3240' u='c' c='_ZNSt8seed_seqC1ESt16initializer_listIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='3251' u='c' c='_ZNSt8seed_seqC1ET_S0_'/>

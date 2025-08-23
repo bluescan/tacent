@@ -1,0 +1,15 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='65' type='int tSystem::tGetc(tFileHandle )'/>
+<def f='Modules/System/Inc/System/tFile.h' l='757' ll='760' type='int tSystem::tGetc(tFileHandle file)'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='321' u='c' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE8EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='324' u='c' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE8EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='335' u='c' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE8EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='349' u='c' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE8EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='350' u='c' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE8EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='360' u='c' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE8EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='385' u='c' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE4EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='388' u='c' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE4EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='413' u='c' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE4EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='427' u='c' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE4EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='428' u='c' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE4EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='437' u='c' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE4EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='452' u='c' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE4EP8_IO_FILEPhPNS0_13PaletteColourE'/>

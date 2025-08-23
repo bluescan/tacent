@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/gifenc/gifenc.h' l='28' type='void ge_close_gif(ge_GIF * gif)'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='440' u='c' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='636' type='const tColour4s'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='634'>// Predefined colours. Initialized using the C++11 aggregate initializer syntax. These may be used before main()
+	// in normally (non-aggregate syntax) constructed objects.</doc>
+<def f='Modules/Math/Src/tColour.cpp' l='161' type='const tColour4s'/>

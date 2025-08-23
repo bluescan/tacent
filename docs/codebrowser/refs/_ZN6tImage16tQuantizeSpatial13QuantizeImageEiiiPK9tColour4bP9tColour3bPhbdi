@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tQuantize.h' l='113' type='bool tImage::tQuantizeSpatial::QuantizeImage(int numColours, int width, int height, const tPixel4b * pixels, tColour3b * destPalette, uint8 * destIndices, bool checkExact = true, double ditherLevel = 0., int filterSize = 3)'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='394' u='c' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='560' u='c' c='_ZN6tImage8tPicture15QuantizeSpatialEibdi'/>
+<def f='Modules/Image/Src/tQuantizeSpatial.cpp' l='940' ll='956' type='bool tImage::tQuantizeSpatial::QuantizeImage(int numColours, int width, int height, const tPixel4b * pixels, tColour3b * destPalette, uint8 * destIndices, bool checkExact = true, double ditherLevel = 0., int filterSize = 3)'/>

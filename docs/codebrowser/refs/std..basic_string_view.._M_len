@@ -1,0 +1,13 @@
+<use f='include/c++/11/string_view' l='125' u='w' c='_ZNSt17basic_string_viewC1Ev'/>
+<use f='include/c++/11/string_view' l='132' u='w' c='_ZNSt17basic_string_viewC1EPKT_'/>
+<use f='include/c++/11/string_view' l='138' u='w' c='_ZNSt17basic_string_viewC1EPKT_m'/>
+<use f='include/c++/11/string_view' l='148' u='w' c='_ZNSt17basic_string_viewC1ETL0__TL0_0_'/>
+<use f='include/c++/11/string_view' l='216' u='r' c='_ZNKSt17basic_string_view6lengthEv'/>
+<use f='include/c++/11/string_view' l='241' u='r' c='_ZNKSt17basic_string_view2atEm'/>
+<use f='include/c++/11/string_view' l='296' u='r' c='_ZNKSt17basic_string_view4copyEPT_mm'/>
+<use f='include/c++/11/string_view' l='307' u='r' c='_ZNKSt17basic_string_view6substrEmm'/>
+<dec f='include/c++/11/string_view' l='511' type='std::size_t'/>
+<use f='include/c++/11/bits/string_view.tcc' l='53' u='r' c='_ZNKSt17basic_string_view4findEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='54' u='r' c='_ZNKSt17basic_string_view4findEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='59' c='_ZNKSt17basic_string_view4findEPKT_mm'/>
+<use f='include/c++/11/bits/string_view.tcc' l='60' u='r' c='_ZNKSt17basic_string_view4findEPKT_mm'/>

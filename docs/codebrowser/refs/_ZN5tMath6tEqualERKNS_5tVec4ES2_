@@ -1,0 +1,6 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='316' type='bool tMath::tEqual(const tMath::tVec4 &amp; a, const tMath::tVec4 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='322' u='c' c='_ZN5tMath6tEqualERKNS_5tMat4ES2_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='322' u='c' c='_ZN5tMath6tEqualERKNS_5tMat4ES2_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='322' u='c' c='_ZN5tMath6tEqualERKNS_5tMat4ES2_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='322' u='c' c='_ZN5tMath6tEqualERKNS_5tMat4ES2_'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='96' u='c' c='_ZN5tMatheqERKNS_5tVec4ES2_'/>

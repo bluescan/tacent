@@ -1,0 +1,2 @@
+<def f='include/c++/11/semaphore' l='66' ll='68' type='void std::counting_semaphore::release(std::ptrdiff_t __update = 1)'/>
+<use f='include/c++/11/stop_token' l='263' u='c' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>

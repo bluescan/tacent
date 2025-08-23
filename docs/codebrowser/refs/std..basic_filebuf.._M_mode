@@ -1,0 +1,19 @@
+<dec f='include/c++/11/fstream' l='126' type='ios_base::openmode'/>
+<use f='include/c++/11/fstream' l='466' u='r' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/fstream' l='467' u='r' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/fstream' l='468' u='r' c='_ZNSt13basic_filebuf13_M_set_bufferEl'/>
+<use f='include/c++/11/bits/fstream.tcc' l='82' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='99' u='w' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='130' u='w' c='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='158' c='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='189' u='w' c='_ZNSt13basic_filebuf4openEPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='301' u='r' c='_ZNSt13basic_filebuf9showmanycEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='327' u='r' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='486' u='r' c='_ZNSt13basic_filebuf9pbackfailENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='546' u='r' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='547' u='r' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='696' u='r' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='762' u='r' c='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='763' u='r' c='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1052' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<doc f='include/c++/11/fstream' l='125'>/// Place to stash in || out || in | out settings for current filebuf.</doc>

@@ -1,0 +1,23 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='241' type='uint16_t'/>
+<offset>3632</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='221'>// 0: unknown
+	                                    // 1: daylight
+	                                    // 2: fluorescent
+	                                    // 3: tungsten (incandescent light)
+	                                    // 4: flash
+	                                    // 9: fine weather
+	                                    // 10: cloudy weather
+	                                    // 11: shade
+	                                    // 12: daylight fluorescent (D 5700 - 7100K)
+	                                    // 13: day white fluorescent (N 4600 - 5400K)
+	                                    // 14: cool white fluorescent (W 3900 - 4500K)
+	                                    // 15: white fluorescent (WW 3200 - 3700K)
+	                                    // 17: standard light A
+	                                    // 18: standard light B
+	                                    // 19: standard light C
+										// 20: D55
+										// 21: D65
+										// 22: D75
+										// 23: D50
+	                                    // 24: ISO studio tungsten</doc>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='241'>// Projection type</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14700'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14699'>// VK_EXT_shader_atomic_float2 is a preprocessor guard. Do not pass it to API calls.</doc>

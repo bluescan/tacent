@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8223' ll='8227'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8223'/>
+<size>24</size>
+<mbr r='VkVideoCodingControlInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoCodingControlInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkVideoCodingControlInfoKHR::flags' o='128' t='VkVideoCodingControlFlagsKHR'/>

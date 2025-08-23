@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='158' type='bool tMath::tARect2::IsPointInside(const tMath::tVector2 &amp; point) const'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='157'>// Boundary included.</doc>

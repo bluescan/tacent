@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='1516' ll='1527' type='rotate_copy_result&lt;_Iter, _Out&gt; std::ranges::__rotate_copy_fn::operator()(_Iter __first, _Iter __middle, _Sent __last, _Out __result) const'/>

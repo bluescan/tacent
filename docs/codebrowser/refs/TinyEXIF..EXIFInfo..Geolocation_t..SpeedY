@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='282' type='double'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='348' u='r' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<offset>576</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='282'>// Flight speed on Y in meters/second</doc>

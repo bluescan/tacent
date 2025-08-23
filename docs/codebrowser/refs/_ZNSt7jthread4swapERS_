@@ -1,0 +1,3 @@
+<use f='include/c++/11/thread' l='140' u='c' c='_ZNSt7jthreadaSEOS_'/>
+<def f='include/c++/11/thread' l='144' ll='149' type='void std::jthread::swap(std::jthread &amp; __other)'/>
+<use f='include/c++/11/thread' l='206' u='c' c='_ZSt4swapRSt7jthreadS0_'/>

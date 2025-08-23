@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='561' type='17039392'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='94' u='r' c='_ZNK6tImage8tPicture4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='121' c='_ZN6tImage8tPicture4LoadERK6tChunk'/>

@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/sigaction.h' l='36' type='void (*)(int, siginfo_t *, void *)'/>
+<offset>0</offset>
+<doc f='include/x86_64-linux-gnu/bits/sigaction.h' l='35'>/* Used if SA_SIGINFO is set.  */</doc>

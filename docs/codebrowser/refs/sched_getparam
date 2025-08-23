@@ -1,0 +1,2 @@
+<dec f='include/sched.h' l='58' type='int sched_getparam(__pid_t __pid, struct sched_param * __param)'/>
+<doc f='include/sched.h' l='57'>/* Retrieve scheduling parameters for a particular process.  */</doc>

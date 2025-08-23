@@ -1,0 +1,7 @@
+<use f='Modules/Image/Inc/Image/tImageAPNG.h' l='38' u='c' c='_ZN6tImage10tImageAPNGC1EP9tColour4biib'/>
+<dec f='Modules/Image/Inc/Image/tImageAPNG.h' l='58' type='bool tImage::tImageAPNG::Set(tPixel4b * pixels, int width, int height, bool steal = false)'/>
+<doc f='Modules/Image/Inc/Image/tImageAPNG.h' l='56'>// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='61' c='_ZN6tImage10tBaseImage3SetEP9tColour4biib'/>
+<def f='Modules/Image/Src/tImageAPNG.cpp' l='152' ll='171' type='bool tImage::tImageAPNG::Set(tPixel4b * pixels, int width, int height, bool steal = false)'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='209' u='c' c='_ZN6tImage10tImageAPNG3SetERNS_8tPictureEb'/>

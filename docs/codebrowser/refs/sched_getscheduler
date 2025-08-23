@@ -1,0 +1,2 @@
+<dec f='include/sched.h' l='65' type='int sched_getscheduler(__pid_t __pid)'/>
+<doc f='include/sched.h' l='64'>/* Retrieve scheduling algorithm for a particular purpose.  */</doc>

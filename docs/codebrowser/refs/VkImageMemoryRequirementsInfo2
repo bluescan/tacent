@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5251' ll='5255'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5251'/>
+<size>24</size>
+<mbr r='VkImageMemoryRequirementsInfo2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageMemoryRequirementsInfo2::pNext' o='64' t='const void *'/>
+<mbr r='VkImageMemoryRequirementsInfo2::image' o='128' t='VkImage'/>

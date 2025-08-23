@@ -1,0 +1,1 @@
+<dec f='include/stdlib.h' l='504' type='int erand48_r(unsigned short * __xsubi, struct drand48_data *__restrict __buffer, double *__restrict __result)'/>

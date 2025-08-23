@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='106' type='float tMath::tMatrix4::ExtractProjectionFar() const'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='51' u='c' c='_ZNK6tScene7tCamera11GetFarPlaneEv'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='804'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='803'>/* Define to 1 if the target assembler supports .symver directive. */</doc>

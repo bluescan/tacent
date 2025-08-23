@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1681' ll='1693' type='int rgbcx::interp_6(int v0, int v1, int c0, int c1, rgbcx::bc1_approx_mode mode)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1775' u='c' c='_ZN5rgbcxL30prepare_bc1_single_color_tableEPNS_15bc1_match_entryEPKhiNS_15bc1_approx_modeE'/>

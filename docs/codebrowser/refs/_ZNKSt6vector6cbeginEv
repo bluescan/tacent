@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/stl_vector.h' l='883' ll='885' type='std::vector::const_iterator std::vector::cbegin() const'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1312' u='c' c='_ZNSt6vector6insertEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_typeEE13c8335942'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1337' u='c' c='_ZNSt6vector6insertEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_typeEE13c9011870'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1382' u='c' c='_ZNSt6vector6insertEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_typeEE13c15230752'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1431' u='c' c='_ZNSt6vector5eraseEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_typeEE13co15049067'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1460' u='c' c='_ZNSt6vector5eraseEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_typeEE13co15039064'/>
+<use f='include/c++/11/bits/vector.tcc' l='150' u='c' c='_ZNSt6vector6insertEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_typeEE13c13419350'/>
+<use f='include/c++/11/bits/vector.tcc' l='161' u='c' c='_ZNSt6vector6insertEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_typeEE13c13419350'/>
+<use f='include/c++/11/bits/vector.tcc' l='343' u='c' c='_ZNSt6vector14_M_insert_rvalEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_4818710'/>
+<use f='include/c++/11/bits/vector.tcc' l='368' u='c' c='_ZNSt6vector14_M_emplace_auxEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_6105016'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='878'>/**
+       *  Returns a read-only (constant) iterator that points to the
+       *  first element in the %vector.  Iteration is done in ordinary
+       *  element order.
+       */</doc>

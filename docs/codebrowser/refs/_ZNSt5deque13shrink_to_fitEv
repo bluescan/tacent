@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1301' ll='1303' type='void std::deque::shrink_to_fit()'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1300'>/**  A non-binding request to reduce memory use.  */</doc>

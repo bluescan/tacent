@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/byteswap.h' l='44'/>
+<use f='include/x86_64-linux-gnu/bits/byteswap.h' l='54' u='c'/>
+<doc f='include/x86_64-linux-gnu/bits/byteswap.h' l='43'>/* Swap bytes in 32-bit value.  */</doc>

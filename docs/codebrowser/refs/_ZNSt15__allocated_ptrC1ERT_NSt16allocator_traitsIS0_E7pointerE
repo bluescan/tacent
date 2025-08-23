@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/allocated_ptr.h' l='53' ll='55' type='void std::__allocated_ptr::__allocated_ptr&lt;_Alloc&gt;(_Alloc &amp; __a, std::__allocated_ptr::pointer __ptr)'/>
+<doc f='include/c++/11/bits/allocated_ptr.h' l='52'>/// Take ownership of __ptr</doc>

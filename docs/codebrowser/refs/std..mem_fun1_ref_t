@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_function.h' l='1326' ll='1339'/>
+<use f='include/c++/11/bits/stl_function.h' l='1391' c='_ZSt11mem_fun_refMT0_FT_T1_E'/>
+<use f='include/c++/11/bits/stl_function.h' l='1393' c='_ZSt11mem_fun_refMT0_FT_T1_E'/>
+<fun r='_ZNSt14mem_fun1_ref_tC1EMT0_FT_T1_E'/>
+<fun r='_ZNKSt14mem_fun1_ref_tclERT0_T1_'/>
+<mbr r='std::mem_fun1_ref_t::_M_f' t='_Ret (_Tp::*)(_Arg)'/>

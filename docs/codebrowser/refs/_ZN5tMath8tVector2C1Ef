@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='32' type='void tMath::tVector2::tVector2(float xy)'/>
+<doc f='Modules/Math/Inc/Math/tVector2.h' l='32'>/* Sets both x and y to xy. */</doc>

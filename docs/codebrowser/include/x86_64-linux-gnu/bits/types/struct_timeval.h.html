@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>struct_timeval.h source code [include/x86_64-linux-gnu/bits/types/struct_timeval.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/types/struct_timeval.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>x86_64-linux-gnu</a>/<a href='..'>bits</a>/<a href='./'>types</a>/<a href='struct_timeval.h.html'>struct_timeval.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/__timeval_defined">__timeval_defined</span></u>&nbsp</td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/__timeval_defined" data-ref="_M/__timeval_defined">__timeval_defined</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="3">3</th><td>&nbsp</td></tr>
+<tr><th id="4">4</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="5">5</th><td>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>/* A time value that is accurate to the nearest</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   microsecond but also has a range of years.  */</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><b>struct</b> <dfn class="type def" id="timeval" title='timeval' data-ref="timeval">timeval</dfn>&nbsp</td></tr>
+<tr><th id="9">9</th><td>{&nbsp</td></tr>
+<tr><th id="10">10</th><td><u>#<span data-ppcond="10">ifdef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="11">11</th><td>  __time64_t tv_sec;		<i>/* Seconds.  */</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td>  __suseconds64_t tv_usec;	<i>/* Microseconds.  */</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><u>#<span data-ppcond="10">else</span></u>&nbsp</td></tr>
+<tr><th id="14">14</th><td>  <a class="typedef" href="../types.h.html#__time_t" title='__time_t' data-type='long' data-ref="__time_t">__time_t</a> <dfn class="decl field" id="timeval::tv_sec" title='timeval::tv_sec' data-ref="timeval::tv_sec">tv_sec</dfn>;		<i>/* Seconds.  */</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td>  <a class="typedef" href="../types.h.html#__suseconds_t" title='__suseconds_t' data-type='long' data-ref="__suseconds_t">__suseconds_t</a> <dfn class="decl field" id="timeval::tv_usec" title='timeval::tv_usec' data-ref="timeval::tv_usec">tv_usec</dfn>;	<i>/* Microseconds.  */</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#<span data-ppcond="10">endif</span></u>&nbsp</td></tr>
+<tr><th id="17">17</th><td>};&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#<span data-ppcond="1">endif</span></u>&nbsp</td></tr>
+<tr><th id="19">19</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

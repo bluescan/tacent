@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImagePNG.cpp' l='541' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringNS0_7tFormatE'/>
+<def f='Modules/Image/Src/tImagePNG.cpp' l='751' ll='898' type='tImagePNG::tFormat tImage::tImagePNG::Save(const tString &amp; pngFile, const tImage::tImagePNG::SaveParams &amp; params = tImage::tImagePNG::SaveParams()) const'/>

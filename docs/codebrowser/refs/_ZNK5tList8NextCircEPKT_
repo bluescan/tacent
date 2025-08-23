@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='103' type='T * tList::NextCirc(const T * here) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='103'>/* Circular. Gets item after here. */</doc>

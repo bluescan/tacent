@@ -1,0 +1,6 @@
+<dec f='include/pwd.h' l='110' type='struct passwd * getpwuid(__uid_t __uid)'/>
+<use f='Modules/System/Src/tFile.cpp' l='1313' u='c' c='_ZN7tSystem11tGetHomeDirEv'/>
+<doc f='include/pwd.h' l='106'>/* Retrieve the user database entry for the given user ID.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

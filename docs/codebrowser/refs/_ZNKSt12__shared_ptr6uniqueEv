@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1303' ll='1305' type='bool std::__shared_ptr::unique() const'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='1302'>/// Return true if use_count() == 1.</doc>

@@ -1,0 +1,11 @@
+<def f='include/c++/11/type_traits' l='1107' ll='1112'/>
+<use f='include/c++/11/type_traits' l='3187'/>
+<use f='include/c++/11/bits/stl_pair.h' l='391' c='_ZNSt4pairaSENSt11conditionalIXsr6__and_ISt18is_copy_assignableIT_ES1_IT0_EEE5valueERKSt4pairIS2_S4_ERKSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/stl_pair.h' l='392' c='_ZNSt4pairaSENSt11conditionalIXsr6__and_ISt18is_copy_assignableIT_ES1_IT0_EEE5valueERKSt4pairIS2_S4_ERKSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='425' c='_ZNSt11__copy_moveIXT_ELb1ESt26random_access_iterator_tagE8__copy_mEPKTL0__S4_PS2_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='736' c='_ZNSt20__copy_move_backwardIXT_ELb1ESt26random_access_iterator_tagE13__copy_move_bEPKTL0__S4_PS2_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='216' c='_ZSt18uninitialized_fillT_S_RKT0_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='294' c='_ZSt20uninitialized_fill_nT_T0_RKT1_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='619' c='_ZSt23__uninitialized_defaultT_S_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='636' c='_ZSt25__uninitialized_default_nT_T0_'/>
+<use f='include/c++/11/fstream' l='89'/>

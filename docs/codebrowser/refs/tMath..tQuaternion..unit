@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tQuaternion.h' l='106' type='const tMath::tQuaternion'/>
+<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='106'>// Unit quaternion (0, 0, 0, 1).</doc>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='58' type='const tMath::tQuaternion'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='98' u='r' c='_ZN6tScene6tJoint5ClearEv'/>

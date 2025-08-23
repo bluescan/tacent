@@ -1,0 +1,4 @@
+<def f='include/c++/11/limits' l='356' ll='357' type='static _Tp std::numeric_limits::denorm_min()'/>
+<doc f='include/c++/11/limits' l='353'>/** The minimum positive denormalized value.  For types where
+	  @c has_denorm is false, this is the minimum positive normalized
+	  value.  */</doc>

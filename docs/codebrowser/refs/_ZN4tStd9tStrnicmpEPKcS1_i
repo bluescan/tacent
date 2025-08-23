@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='73' type='int tStd::tStrnicmp(const char * a, const char * b, int n)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='74' u='c' c='_ZN4tStd9tStrnicmpEPKDuS1_i'/>

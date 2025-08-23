@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11974'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11973'>// VK_EXT_direct_mode_display is a preprocessor guard. Do not pass it to API calls.</doc>

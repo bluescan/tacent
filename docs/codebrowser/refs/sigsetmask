@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='176' type='int sigsetmask(int __mask)'/>
+<doc f='include/signal.h' l='175'>/* Set the mask of blocked signals to MASK, returning the old mask.  */</doc>

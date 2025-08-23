@@ -1,0 +1,7 @@
+<use f='Modules/System/Inc/System/tFile.h' l='441' u='c' c='_ZN7tSystem11tExtensionsC1ERK7tString'/>
+<dec f='Modules/System/Inc/System/tFile.h' l='449' type='tSystem::tExtensions &amp; tSystem::tExtensions::Add(const tString &amp; ext)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='872' ll='878' type='tSystem::tExtensions &amp; tSystem::tExtensions::Add(const tString &amp; ext)'/>
+<use f='Modules/System/Src/tFile.cpp' l='2798' u='c' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2838' u='c' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3044' u='c' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3084' u='c' c='_ZN7tSystem13tFindFilesRecER5tListINS_9tFileInfoEERK7tStringS6_bNS_7BackendE'/>

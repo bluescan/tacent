@@ -1,0 +1,9 @@
+<dec f='include/unistd.h' l='531' type='char * getcwd(char * __buf, size_t __size)'/>
+<doc f='include/unistd.h' l='524'>/* Get the pathname of the current working directory,
+   and put it in SIZE bytes of BUF.  Returns NULL if the
+   directory couldn&apos;t be determined or SIZE was too small.
+   If successful, returns BUF.  In GNU, if BUF is NULL,
+   an array is allocated with `malloc&apos;; the array is SIZE
+   bytes long, unless SIZE == 0, in which case it is as
+   big as necessary.  */</doc>
+<use f='Modules/System/Src/tFile.cpp' l='1431' u='c' c='_ZN7tSystem14tGetCurrentDirEv'/>

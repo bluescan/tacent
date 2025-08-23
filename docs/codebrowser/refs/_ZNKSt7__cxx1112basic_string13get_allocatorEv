@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/basic_string.h' l='2350' ll='2352' type='std::basic_string::allocator_type std::basic_string::get_allocator() const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='2347'>/**
+       *  @brief  Return copy of allocator used to construct this string.
+      */</doc>

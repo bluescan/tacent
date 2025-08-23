@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='1035' type='const std::ranges::__remove_if_fn'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1051' u='c' c='_ZNKSt6ranges11__remove_fnclET_T0_RKT1_T2_'/>

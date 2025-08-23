@@ -1,0 +1,1 @@
+<def f='Modules/Image/Src/tImageJPG.cpp' l='43' ll='63' type='bool tImage::tImageJPG::Load(const tString &amp; jpgFile, const tImage::tImageJPG::LoadParams &amp; params = tImage::tImageJPG::LoadParams())'/>

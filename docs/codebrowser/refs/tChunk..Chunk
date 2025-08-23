@@ -1,0 +1,28 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='227' u='w' c='_ZN6tChunkC1Ev'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='237' u='r' c='_ZNK6tChunk11GetDataSizeEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='244' u='r' c='_ZNK6tChunk5GetIDEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='245' u='r' c='_ZNK6tChunk8GetIDRawEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='246' u='r' c='_ZNK6tChunk7IsValidEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='247' u='r' c='_ZNK6tChunk11IsContainerEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='248' u='r' c='_ZNK6tChunk10IsDataOnlyEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='251' u='r' c='_ZNK6tChunk13GetFirstChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='255' u='r' c='_ZNK6tChunk12GetNextChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='262' u='r' c='_ZNK6tChunkneERKS_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='262' u='r' c='_ZNK6tChunkneERKS_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='263' u='r' c='_ZNK6tChunkeqERKS_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='263' u='r' c='_ZNK6tChunkeqERKS_'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='306' type='uint8 *'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='700' u='w' c='_ZN6tChunkC1EPh'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='703' u='r' c='_ZN6tChunkC1EPh'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='716' u='w' c='_ZN6tChunkC1EPhS0_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='719' u='r' c='_ZN6tChunkC1EPhS0_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='730' u='w' c='_ZN6tChunkC1EPhS_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='731' u='r' c='_ZN6tChunkC1EPhS_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='733' u='r' c='_ZN6tChunkC1EPhS_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='748' u='r' c='_ZNK6tChunk7GetDataEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='752' u='r' c='_ZNK6tChunk7GetDataEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='754' u='r' c='_ZNK6tChunk7GetDataEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='763' u='r' c='_ZNK6tChunk14GetDataSizeRawEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='764' u='r' c='_ZNK6tChunk14GetDataSizeRawEv'/>
+<offset>0</offset>
+<doc f='Modules/System/Inc/System/tChunk.h' l='306'>// The memory for this not managed by this class.</doc>

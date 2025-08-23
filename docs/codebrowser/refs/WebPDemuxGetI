@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='137' type='uint32_t WebPDemuxGetI(const WebPDemuxer * dmux, WebPFormatFeature feature)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='60' u='c' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='61' u='c' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='62' u='c' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='63' u='c' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='75' u='c' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5448' ll='5452'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5448'/>
+<size>24</size>
+<mbr r='VkBindImagePlaneMemoryInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBindImagePlaneMemoryInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkBindImagePlaneMemoryInfo::planeAspect' o='128' t='VkImageAspectFlagBits'/>

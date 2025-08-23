@@ -1,0 +1,25 @@
+<use f='include/c++/11/utility' l='97'/>
+<def f='include/c++/11/utility' l='100' ll='102'/>
+<use f='include/c++/11/utility' l='102'/>
+<def f='include/c++/11/utility' l='104' ll='106'/>
+<use f='include/c++/11/utility' l='106'/>
+<def f='include/c++/11/utility' l='108' ll='110'/>
+<use f='include/c++/11/utility' l='110'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/utility' l='156' ll='158'/>
+<def f='include/c++/11/array' l='436' ll='438'/>
+<def f='include/c++/11/tuple' l='1339' ll='1341'/>
+<use f='include/c++/11/tuple' l='1345'/>
+<use f='include/c++/11/tuple' l='1371'/>
+<use f='include/c++/11/tuple' l='1638'/>
+<use f='include/c++/11/tuple' l='1692'/>
+<use f='include/c++/11/functional' l='275'/>
+<use f='include/c++/11/functional' l='472'/>
+<doc f='include/c++/11/tuple' l='1338'>/// class tuple_size</doc>
+<doc f='include/c++/11/utility' l='155'>/// Partial specialization for std::pair</doc>
+<doc f='include/c++/11/array' l='435'>/// Partial specialization for std::array</doc>
+<use f='include/c++/11/bits/std_thread.h' l='265' c='_ZNSt6thread8_InvokerclEv'/>
+<use f='include/c++/11/bits/ranges_util.h' l='179'/>
+<use f='include/c++/11/bits/ranges_util.h' l='180'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/ranges_util.h' l='622' ll='625'/>

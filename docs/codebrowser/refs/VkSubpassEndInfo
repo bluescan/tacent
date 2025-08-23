@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6138' ll='6141'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6138'/>
+<size>16</size>
+<mbr r='VkSubpassEndInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSubpassEndInfo::pNext' o='64' t='const void *'/>

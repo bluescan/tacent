@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='803' ll='805' type='void std::vector&lt;bool, type-parameter-0-0&gt;::assign(std::vector&lt;bool, type-parameter-0-0&gt;::size_type __n, const bool &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_bvector.h' l='799'>// assign(), a generalized assignment member function.  Two
+      // versions: one that takes a count, and one that takes a range.
+      // The range version is a member template, so we dispatch on whether
+      // or not the type is an integer.</doc>

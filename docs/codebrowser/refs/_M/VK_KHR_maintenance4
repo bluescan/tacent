@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10545'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10544'>// VK_KHR_maintenance4 is a preprocessor guard. Do not pass it to API calls.</doc>

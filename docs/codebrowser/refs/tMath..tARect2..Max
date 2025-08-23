@@ -1,0 +1,31 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='146' u='m' c='_ZN5tMath7tARect23SetERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='146' u='r' c='_ZN5tMath7tARect23SetERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='147' u='m' c='_ZN5tMath7tARect23SetERKNS_8tVector2Ef'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='148' u='m' c='_ZN5tMath7tARect23SetERKNS_8tVector2Eff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='149' u='m' c='_ZN5tMath7tARect23SetERKNS_8tVector2ES3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='150' u='m' c='_ZN5tMath7tARect23SetEffff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='153' u='m' c='_ZN5tMath7tARect26ExpandEf'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='153' u='m' c='_ZN5tMath7tARect26ExpandEf'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='154' u='w' c='_ZN5tMath7tARect25ClearEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='158' u='m' c='_ZNK5tMath7tARect213IsPointInsideERKNS_8tVector2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='158' u='m' c='_ZNK5tMath7tARect213IsPointInsideERKNS_8tVector2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='161' u='m' c='_ZNK5tMath7tARect213IsPointInsideERKNS_8tVector2Ef'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='161' u='m' c='_ZNK5tMath7tARect213IsPointInsideERKNS_8tVector2Ef'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='176' u='r' c='_ZNK5tMath7tARect213ComputeCenterEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='177' u='m' c='_ZNK5tMath7tARect214ComputeExtentsEv'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='181' type='tMath::tVector2'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='517' u='m' c='_ZN5tMath7tARect28AddPointERKNS_8tVector2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='517' u='m' c='_ZN5tMath7tARect28AddPointERKNS_8tVector2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='518' u='m' c='_ZN5tMath7tARect28AddPointERKNS_8tVector2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='518' u='m' c='_ZN5tMath7tARect28AddPointERKNS_8tVector2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='529' u='m' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='530' u='m' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='531' u='m' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='531' u='m' c='_ZN5tMath7tARect29TransformERKNS_8tMatrix2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='551' u='m' c='_ZNK5tMath7tARect217IsPointInsideBiasERKNS_8tVector2ENS_5tBiasES4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='555' u='m' c='_ZNK5tMath7tARect217IsPointInsideBiasERKNS_8tVector2ENS_5tBiasES4_'/>
+<offset>64</offset>
+<use f='Modules/Math/Src/tGeometry.cpp' l='356' u='m' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='357' u='m' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='375' u='r' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='386' u='r' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>

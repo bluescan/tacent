@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2223' ll='2269' type='uint32_t rgbcx::bc1_find_sels4_fasterr(const rgbcx::color32 * pSrc_pixels, uint32_t lr, uint32_t lg, uint32_t lb, uint32_t hr, uint32_t hg, uint32_t hb, uint8_t * sels, uint32_t cur_err)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2359' u='c' c='_ZN5rgbcxL14bc1_find_sels4EjPKNS_7color32EjjjjjjPhj'/>

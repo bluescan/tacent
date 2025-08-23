@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/fs_dir.h' l='62' u='w' c='_ZNSt10filesystem11file_statusC1ENS_9file_typeENS_5permsE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='73' u='r' c='_ZNKSt10filesystem11file_status11permissionsEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='77' u='w' c='_ZNSt10filesystem11file_status11permissionsENS_5permsE'/>
+<dec f='include/c++/11/bits/fs_dir.h' l='86' type='std::filesystem::perms'/>
+<offset>32</offset>

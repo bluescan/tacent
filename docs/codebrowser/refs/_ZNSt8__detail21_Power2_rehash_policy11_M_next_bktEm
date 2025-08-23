@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/hashtable_policy.h' l='533' ll='564' type='std::size_t std::__detail::_Power2_rehash_policy::_M_next_bkt(std::size_t __n)'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='589' u='c' c='_ZNSt8__detail21_Power2_rehash_policy14_M_need_rehashEmmm'/>
+<doc f='include/c++/11/bits/hashtable_policy.h' l='531'>// Return a bucket size no smaller than n (as long as n is not above the
+    // highest power of 2).</doc>

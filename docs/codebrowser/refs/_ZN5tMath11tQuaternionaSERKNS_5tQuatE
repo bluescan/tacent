@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='78' type='tMath::tQuaternion &amp; tMath::tQuaternion::operator=(const tMath::tQuat &amp; q)'/>
+<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='77'>// Don&apos;t add extra operators without first checking the math.</doc>

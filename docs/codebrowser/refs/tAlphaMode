@@ -1,0 +1,31 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='148' ll='160'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='163' c='_Z17tGetAlphaModeName10tAlphaMode'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='164' c='_Z22tGetAlphaModeShortName10tAlphaMode'/>
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='110' c='_ZNK6tImage10tBaseImage12GetAlphaModeEv'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='143'>// It&apos;s the same sort of deal with premultiplied alpha. The data encoded/represented using any particular pixel format
+// could be anything. If you have 32-bit RGBA for example, you don&apos;t know if the alpha was premultiplied or not. Some
+// file formats will tell you, and some legacy DXT formats will tell you (dxt2 dxt4 simply mean you know the alpha was
+// premultiplied). In tacent (and much like BC3 doesn&apos;t distinguish between dxt4 and dxt5) this sort of satellite info
+// is stored outside of the pixel format -- with the data itself.</doc>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='220' c='_ZNK6tImage9tImageDDS12GetAlphaModeEv'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='232'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='212' c='_ZNK6tImage9tImageKTX12GetAlphaModeEv'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='222'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='224' c='_ZNK6tImage9tImagePVR12GetAlphaModeEv'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='240'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='514' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='515' c='_ZN6tImage4tDDS24GetFormatInfo_FromFourCCERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='516' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='520' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='714' c='_ZN6tImage4tDDS24GetFormatInfo_FromFourCCERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='793' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='40' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='41' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='45' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='279' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='232' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='237' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='263' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='348' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Math/Src/tColour.cpp' l='76' c='_Z17tGetAlphaModeName10tAlphaMode'/>
+<use f='Modules/Math/Src/tColour.cpp' l='83' c='_Z22tGetAlphaModeShortName10tAlphaMode'/>

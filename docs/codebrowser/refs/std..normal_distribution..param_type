@@ -1,0 +1,23 @@
+<def f='include/c++/11/bits/random.h' l='1982' ll='2015'/>
+<use f='include/c++/11/bits/random.h' l='1986' c='_ZNSt19normal_distribution10param_typeC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='2004' c='_ZSteqRKNSt19normal_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='2004' c='_ZSteqRKNSt19normal_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='2009' c='_ZStneRKNSt19normal_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='2009' c='_ZStneRKNSt19normal_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='2031' c='_ZNSt19normal_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2059' c='_ZNKSt19normal_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='2068' c='_ZNSt19normal_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2096' c='_ZNSt19normal_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2110' c='_ZNSt19normal_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2117' c='_ZNSt19normal_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2166' c='_ZNSt19normal_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2168'/>
+<use f='include/c++/11/bits/random.tcc' l='1805' c='_ZNSt19normal_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1844' c='_ZNSt19normal_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<doc f='include/c++/11/bits/random.h' l='1981'>/** Parameter type. */</doc>
+<fun r='_ZNSt19normal_distribution10param_typeC1Ev'/>
+<fun r='_ZNSt19normal_distribution10param_typeC1ET_S1_'/>
+<fun r='_ZNKSt19normal_distribution10param_type4meanEv'/>
+<fun r='_ZNKSt19normal_distribution10param_type6stddevEv'/>
+<mbr r='std::normal_distribution::param_type::_M_mean' t='_RealType'/>
+<mbr r='std::normal_distribution::param_type::_M_stddev' t='_RealType'/>

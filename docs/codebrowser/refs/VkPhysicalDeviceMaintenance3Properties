@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5594' ll='5599'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5594'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceMaintenance3Properties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMaintenance3Properties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMaintenance3Properties::maxPerSetDescriptors' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMaintenance3Properties::maxMemoryAllocationSize' o='192' t='VkDeviceSize'/>

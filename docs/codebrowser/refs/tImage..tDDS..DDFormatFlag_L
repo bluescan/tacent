@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='59' type='131072'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='67'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='68' u='r'/>
+<doc f='Modules/Image/Src/tImageDDS.cpp' l='56'>// Legacy. Some dds files use this for single channel luminance-only data. tDDS::Format&apos;s RGBBitCount will be
+		// the number of bits used for luminance and MaskRed will contain the mask for the luminance component. If the
+		// tDDPF_ALPHAPIXELS bit is also set, it would be a luminance-alpha (LA) dds.</doc>

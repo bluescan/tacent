@@ -1,0 +1,4 @@
+<def f='include/c++/11/limits' l='211' type='const int'/>
+<doc f='include/c++/11/limits' l='208'>/** The number of @c radix digits that be represented without change:  for
+	integer types, the number of non-sign bits in the mantissa; for
+	floating types, the number of @c radix digits in the mantissa.  */</doc>

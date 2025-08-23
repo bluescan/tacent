@@ -1,0 +1,49 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1118' ll='1326'/>
+<ovr f='include/c++/11/atomic' l='1620' c='std::atomic'/>
+<use f='include/c++/11/atomic' l='1625' c='_ZNSt6atomicIfEC1Ef'/>
+<use f='include/c++/11/atomic' l='1631'/>
+<ovr f='include/c++/11/atomic' l='1635' c='std::atomic'/>
+<use f='include/c++/11/atomic' l='1640' c='_ZNSt6atomicIdEC1Ed'/>
+<use f='include/c++/11/atomic' l='1646'/>
+<ovr f='include/c++/11/atomic' l='1650' c='std::atomic'/>
+<use f='include/c++/11/atomic' l='1655' c='_ZNSt6atomicIeEC1Ee'/>
+<use f='include/c++/11/atomic' l='1661'/>
+<smbr r='std::__atomic_float::_S_alignment' t='const std::size_t'/>
+<smbr r='std::__atomic_float::is_always_lock_free' t='const bool'/>
+<fun r='_ZNSt14__atomic_floatC1Ev'/>
+<fun r='_ZNSt14__atomic_floatC1ET_'/>
+<fun r='_ZNSt14__atomic_floatC1ERKSt14__atomic_floatIT_E'/>
+<fun r='_ZNSt14__atomic_floataSERKSt14__atomic_floatIT_E'/>
+<fun r='_ZNVSt14__atomic_floataSERKSt14__atomic_floatIT_E'/>
+<fun r='_ZNVSt14__atomic_floataSET_'/>
+<fun r='_ZNSt14__atomic_floataSET_'/>
+<fun r='_ZNVKSt14__atomic_float12is_lock_freeEv'/>
+<fun r='_ZNKSt14__atomic_float12is_lock_freeEv'/>
+<fun r='_ZNVSt14__atomic_float5storeET_St12memory_order'/>
+<fun r='_ZNSt14__atomic_float5storeET_St12memory_order'/>
+<fun r='_ZNVKSt14__atomic_float4loadESt12memory_order'/>
+<fun r='_ZNKSt14__atomic_float4loadESt12memory_order'/>
+<fun r='_ZNVKSt14__atomic_floatcvT_Ev'/>
+<fun r='_ZNKSt14__atomic_floatcvT_Ev'/>
+<fun r='_ZNVSt14__atomic_float8exchangeET_St12memory_order'/>
+<fun r='_ZNSt14__atomic_float8exchangeET_St12memory_order'/>
+<fun r='_ZNSt14__atomic_float21compare_exchange_weakERT_S0_St12memory_orderS2_'/>
+<fun r='_ZNVSt14__atomic_float21compare_exchange_weakERT_S0_St12memory_orderS2_'/>
+<fun r='_ZNSt14__atomic_float23compare_exchange_strongERT_S0_St12memory_orderS2_'/>
+<fun r='_ZNVSt14__atomic_float23compare_exchange_strongERT_S0_St12memory_orderS2_'/>
+<fun r='_ZNSt14__atomic_float21compare_exchange_weakERT_S0_St12memory_order'/>
+<fun r='_ZNVSt14__atomic_float21compare_exchange_weakERT_S0_St12memory_order'/>
+<fun r='_ZNSt14__atomic_float23compare_exchange_strongERT_S0_St12memory_order'/>
+<fun r='_ZNVSt14__atomic_float23compare_exchange_strongERT_S0_St12memory_order'/>
+<fun r='_ZNKSt14__atomic_float4waitET_St12memory_order'/>
+<fun r='_ZNKSt14__atomic_float10notify_oneEv'/>
+<fun r='_ZNKSt14__atomic_float10notify_allEv'/>
+<fun r='_ZNSt14__atomic_float9fetch_addET_St12memory_order'/>
+<fun r='_ZNVSt14__atomic_float9fetch_addET_St12memory_order'/>
+<fun r='_ZNSt14__atomic_float9fetch_subET_St12memory_order'/>
+<fun r='_ZNVSt14__atomic_float9fetch_subET_St12memory_order'/>
+<fun r='_ZNSt14__atomic_floatpLET_'/>
+<fun r='_ZNVSt14__atomic_floatpLET_'/>
+<fun r='_ZNSt14__atomic_floatmIET_'/>
+<fun r='_ZNVSt14__atomic_floatmIET_'/>
+<mbr r='std::__atomic_float::_M_fp' t='_Fp'/>

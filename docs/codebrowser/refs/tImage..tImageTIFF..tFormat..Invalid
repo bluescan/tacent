@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tImageTIFF.h' l='69' type='0'/>
+<doc f='Modules/Image/Inc/Image/tImageTIFF.h' l='69'>// Invalid must be 0.</doc>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='254' u='r' c='_ZNK6tImage10tImageTIFF4SaveERK7tStringRKNS0_10SaveParamsE'/>

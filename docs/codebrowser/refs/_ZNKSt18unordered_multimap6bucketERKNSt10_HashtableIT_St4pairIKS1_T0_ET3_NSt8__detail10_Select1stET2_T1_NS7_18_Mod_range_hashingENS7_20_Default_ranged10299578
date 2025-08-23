@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1928' ll='1930' type='std::unordered_multimap::size_type std::unordered_multimap::bucket(const std::unordered_multimap::key_type &amp; __key) const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1923'>/*
+       * @brief  Returns the bucket index of a given element.
+       * @param  __key  A key instance.
+       * @return  The key bucket index.
+       */</doc>

@@ -1,0 +1,15 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='1888' type='std::messages_base::catalog std::messages::open(const basic_string&lt;char&gt; &amp; , const std::locale &amp; , const char * ) const'/>
+<def f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='68' ll='75' type='typename messages&lt;_CharT&gt;::catalog std::messages::open(const basic_string&lt;char&gt; &amp; __s, const std::locale &amp; __loc, const char * __dir) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1874'>/*
+       *  @brief  Open a message catalog.
+       *
+       *  This non-standard function opens and returns a handle to a message
+       *  catalog by returning do_open(s, loc).  The third argument provides a
+       *  message catalog root directory for gnu gettext and is ignored
+       *  otherwise.
+       *
+       *  @param  __s  The catalog to open.
+       *  @param  __loc  Locale to use for character set conversions.
+       *  @param  __dir  Message catalog root directory.
+       *  @return  Handle to the catalog or value &lt; 0 if open fails.
+      */</doc>

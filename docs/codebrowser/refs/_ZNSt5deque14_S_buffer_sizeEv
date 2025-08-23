@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/stl_deque.h' l='807' ll='808' type='static std::size_t std::deque::_S_buffer_size()'/>
+<use f='include/c++/11/bits/deque.tcc' l='78' u='c' c='_ZNSt5deque21_M_default_initializeEv'/>
+<use f='include/c++/11/bits/deque.tcc' l='384' u='c' c='_ZNSt5deque16_M_shrink_to_fitEv'/>
+<use f='include/c++/11/bits/deque.tcc' l='402' u='c' c='_ZNSt5deque18_M_fill_initializeERKT_'/>
+<use f='include/c++/11/bits/deque.tcc' l='457' u='c' c='_ZNSt5deque19_M_range_initializeETL0__S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/deque.tcc' l='461' u='c' c='_ZNSt5deque19_M_range_initializeETL0__S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/deque.tcc' l='864' u='c' c='_ZNSt5deque19_M_destroy_data_auxENSt11_Deque_baseIT_T0_E8iteratorES4_'/>
+<use f='include/c++/11/bits/deque.tcc' l='887' u='c' c='_ZNSt5deque24_M_new_elements_at_frontEm'/>
+<use f='include/c++/11/bits/deque.tcc' l='888' u='c' c='_ZNSt5deque24_M_new_elements_at_frontEm'/>
+<use f='include/c++/11/bits/deque.tcc' l='912' u='c' c='_ZNSt5deque23_M_new_elements_at_backEm'/>
+<use f='include/c++/11/bits/deque.tcc' l='913' u='c' c='_ZNSt5deque23_M_new_elements_at_backEm'/>

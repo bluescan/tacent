@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tCmdLine.h' l='176' type='void tCmdLine::tParse(int argc, char16_t ** argv, bool sortOptions = true)'/>
+<doc f='Modules/System/Inc/System/tCmdLine.h' l='175'>// We also support parsing from UTF-16. Internally we just convert to UTF-8.</doc>
+<def f='Modules/System/Src/tCmdLine.cpp' l='168' ll='197' type='void tCmdLine::tParse(int argc, char16_t ** argv, bool sortOptions = true)'/>

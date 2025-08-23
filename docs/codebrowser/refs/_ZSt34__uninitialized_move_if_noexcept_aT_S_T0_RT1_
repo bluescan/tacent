@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_uninitialized.h' l='348' ll='357' type='_ForwardIterator std::__uninitialized_move_if_noexcept_a(_InputIterator __first, _InputIterator __last, _ForwardIterator __result, _Allocator &amp; __alloc)'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12372'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12371'>// VK_EXT_queue_family_foreign is a preprocessor guard. Do not pass it to API calls.</doc>

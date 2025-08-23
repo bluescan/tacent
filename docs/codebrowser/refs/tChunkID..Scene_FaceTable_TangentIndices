@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='469' type='16851200'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='469'>// Each entry is a vector4 with (x,y,z) equal to the tangent aligned with the U texture direction and w the direction factor (1.0 or -1.0).</doc>
+<use f='Modules/Scene/Src/tMesh.cpp' l='258' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='438' u='r' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>

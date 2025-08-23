@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_ops.h' l='187' ll='189' type='bool std::filesystem::is_character_file(const std::filesystem::path &amp; __p, std::error_code &amp; __ec)'/>

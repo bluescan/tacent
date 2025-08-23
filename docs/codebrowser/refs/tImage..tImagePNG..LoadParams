@@ -1,0 +1,6 @@
+<use f='Modules/Image/Src/tImageICO.cpp' l='276' c='_ZN6tImage9tImageICO11CreateFrameEPKhiii'/>
+<size>8</size>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='43' c='_ZN6tImage9tImagePNG4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='218' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='224' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<size>8</size>

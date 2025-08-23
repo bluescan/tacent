@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/ios_base.h' l='386' type='const std::ios_base::fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='974' u='r' c='_ZSt6skipwsRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='982' u='r' c='_ZSt8noskipwsRSt8ios_base'/>
+<doc f='include/c++/11/bits/ios_base.h' l='385'>/// Skips leading white space before certain input operations.</doc>
+<use f='include/c++/11/bits/istream.tcc' l='55' c='_ZNSt13basic_istream6sentryC1ERSt13basic_istreamIT_T0_Eb'/>
+<use f='include/c++/11/bits/quoted_string.h' l='155' u='r' c='_ZNSt8__detailrsERSt13basic_istreamIT_T0_ERKNS_14_Quoted_stringIRNSt7__cxx1112basic_stringIS1_S2_T1_EES1_EE'/>

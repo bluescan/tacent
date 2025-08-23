@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='158' type='int tChunkWriter::Write(const bool * data, int numItems)'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='157'>// Here are the multiple-object-at-once versions. numItems must be &gt;= 1.</doc>

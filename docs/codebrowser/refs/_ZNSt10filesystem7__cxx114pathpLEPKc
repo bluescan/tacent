@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/fs_path.h' l='369' type='std::filesystem::path &amp; std::filesystem::path::operator+=(const std::filesystem::path::value_type * __x)'/>
+<def f='include/c++/11/bits/fs_path.h' l='973' ll='978' type='std::filesystem::path &amp; std::filesystem::path::operator+=(const std::filesystem::path::value_type * __x)'/>

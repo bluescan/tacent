@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='222' type='int'/>
+<offset>1216</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='221'>// bit2:subtract-green bit3:color indexing</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='222'>// number of precision bits of histogram</doc>

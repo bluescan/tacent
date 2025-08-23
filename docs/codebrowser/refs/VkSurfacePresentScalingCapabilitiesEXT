@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14748' ll='14756'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14748'/>
+<size>48</size>
+<mbr r='VkSurfacePresentScalingCapabilitiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSurfacePresentScalingCapabilitiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkSurfacePresentScalingCapabilitiesEXT::supportedPresentScaling' o='128' t='VkPresentScalingFlagsEXT'/>
+<mbr r='VkSurfacePresentScalingCapabilitiesEXT::supportedPresentGravityX' o='160' t='VkPresentGravityFlagsEXT'/>
+<mbr r='VkSurfacePresentScalingCapabilitiesEXT::supportedPresentGravityY' o='192' t='VkPresentGravityFlagsEXT'/>
+<mbr r='VkSurfacePresentScalingCapabilitiesEXT::minScaledImageExtent' o='224' t='VkExtent2D'/>
+<mbr r='VkSurfacePresentScalingCapabilitiesEXT::maxScaledImageExtent' o='288' t='VkExtent2D'/>

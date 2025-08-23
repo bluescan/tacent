@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='476' type='16879616'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='476'>// Contains RGB triples. This table may not be present on all models.</doc>
+<use f='Modules/Scene/Src/tMesh.cpp' l='335' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='487' u='r' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>

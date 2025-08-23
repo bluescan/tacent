@@ -1,0 +1,9 @@
+<dec f='include/c++/11/bits/basic_string.h' l='234' type='std::basic_string::pointer std::basic_string::_M_create(std::basic_string::size_type &amp; , std::basic_string::size_type )'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='130' ll='154' type='typename basic_string&lt;_CharT, _Traits, _Alloc&gt;::pointer std::basic_string::_M_create(std::basic_string::size_type &amp; __capacity, std::basic_string::size_type __old_capacity)'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='184' u='c' c='_ZNSt7__cxx1112basic_string12_M_constructETL0__S1_St18input_iterator_tag'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='219' u='c' c='_ZNSt7__cxx1112basic_string12_M_constructETL0__S1_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='242' u='c' c='_ZNSt7__cxx1112basic_string12_M_constructEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeES7_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='265' u='c' c='_ZNSt7__cxx1112basic_string9_M_assignERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='291' u='c' c='_ZNSt7__cxx1112basic_string7reserveEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='307' u='c' c='_ZNSt7__cxx1112basic_string9_M_mutateEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_SC_'/>
+<doc f='include/c++/11/bits/basic_string.h' l='232'>// Create &amp; Destroy</doc>

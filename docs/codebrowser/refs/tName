@@ -1,0 +1,80 @@
+<def f='Modules/Foundation/Inc/Foundation/tName.h' l='45' ll='265'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='51' c='_ZN5tNameC1ERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='95' c='_ZN5tName3SetERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='141' c='_ZNK5tName7IsEqualERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='149' c='_ZN5tName6AppendERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='149' c='_ZN5tName6AppendERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='150' c='_ZN5tNameaSERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='150' c='_ZN5tNameaSERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='154' c='_ZplRK5tNameS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='154' c='_ZplRK5tNameS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='154' c='_ZplRK5tNameS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='155' c='_ZN5tNamepLERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='155' c='_ZN5tNamepLERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='270' c='_ZeqRK5tNameS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='270' c='_ZeqRK5tNameS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='271' c='_ZneRK5tNameS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='271' c='_ZneRK5tNameS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='272' c='_ZeqRK5tNamePKDu'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='273' c='_ZneRK5tNamePKDu'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='274' c='_ZeqPKDuRK5tName'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='275' c='_ZnePKDuRK5tName'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='276' c='_ZeqPKcRK5tName'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='277' c='_ZnePKcRK5tName'/>
+<ovr f='Modules/Foundation/Inc/Foundation/tName.h' l='281' c='tNameItem'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='281'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='284' c='_ZN9tNameItemC1Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='287' c='_ZN9tNameItemC1ERK5tName'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='287' c='_ZN9tNameItemC1ERK5tName'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='288' c='_ZN9tNameItemC1ERK12tStringUTF16'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='289' c='_ZN9tNameItemC1ERK12tStringUTF32'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='290' c='_ZN9tNameItemC1EPKDu'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='291' c='_ZN9tNameItemC1Ec'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='335' c='_ZN5tName3SetERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='450' c='_ZN5tName6AppendERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='450' c='_ZN5tName6AppendERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='480' c='_ZplRK5tNameS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='480' c='_ZplRK5tNameS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='480' c='_ZplRK5tNameS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='482' c='_ZplRK5tNameS1_'/>
+<size>32</size>
+<fun r='_ZN5tNameD1Ev'/>
+<use f='Modules/Input/Inc/Input/tComp.h' l='27' c='_ZN6tInput10tComponentC1ERK5tName'/>
+<use f='Modules/Input/Inc/Input/tComp.h' l='30'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tUnit.h' l='34' c='_ZN6tInput5tUnitC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tUnit.h' l='37'/>
+<use f='Modules/Input/Inc/Input/tUnitDiscreteBool.h' l='26' c='_ZN6tInput17tUnitDiscreteBoolC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompButton.h' l='26' c='_ZN6tInput11tCompButtonC1ERK5tNameRSt5mutex'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='28' c='_ZN6tInput19tUnitContinuousDispC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompDial.h' l='26' c='_ZN6tInput9tCompDialC1ERK5tNameRSt5mutex'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='26' c='_ZN6tInput11tCompDirPadC1ERK5tNameRSt5mutex'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tUnitContinuousAxis.h' l='27' c='_ZN6tInput19tUnitContinuousAxisC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='27' c='_ZN6tInput13tCompJoystickC1ERK5tNameRSt5mutex'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tCompPedal.h' l='26' c='_ZN6tInput10tCompPedalC1ERK5tNameRSt5mutex'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tUnitContinuousWind.h' l='26' c='_ZN6tInput19tUnitContinuousWindC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompScrubber.h' l='26' c='_ZN6tInput13tCompScrubberC1ERK5tNameRSt5mutex'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tUnitDiscreteMulti.h' l='26' c='_ZN6tInput18tUnitDiscreteMultiC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompSelector.h' l='26' c='_ZN6tInput13tCompSelectorC1ERK5tNameRSt5mutex'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tCompSlider.h' l='26' c='_ZN6tInput11tCompSliderC1ERK5tNameRSt5mutex'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tCompSwitch.h' l='26' c='_ZN6tInput11tCompSwitchC1ERK5tNameRSt5mutex'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='26' c='_ZN6tInput12tCompTriggerC1ERK5tNameRSt5mutex'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tCompWheel.h' l='26' c='_ZN6tInput10tCompWheelC1ERK5tNameRSt5mutex'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tCont.h' l='28' c='_ZN6tInput11tControllerC1ERK5tName'/>
+<use f='Modules/Input/Inc/Input/tCont.h' l='32'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='57' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<size>32</size>
+<use f='Modules/Input/Inc/Input/tContRacingWheel.h' l='24' c='_ZN6tInput16tContRacingWheelC1ERK5tName'/>
+<size>32</size>

@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/predefined_ops.h' l='306' type='_Predicate'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='311' u='w' c='__gnu_cxx::__ops::_Iter_pred::_Iter_pred{_Predicate}'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='318' u='c' c='__gnu_cxx::__ops::_Iter_pred::operator()'/>

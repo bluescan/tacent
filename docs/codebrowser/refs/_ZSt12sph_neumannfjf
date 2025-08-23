@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='1163' ll='1165' type='float std::sph_neumannf(unsigned int __n, float __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='1157'>/**
+   * Return the spherical Neumann function of integral order @f$ n &gt;= 0 @f$
+   * and @c float argument @f$ x &gt;= 0 @f$.
+   *
+   * @see sph_neumann for details.
+   */</doc>

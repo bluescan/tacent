@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='218' type='float &amp; tMath::tiNormalizeAngle2Pi(float &amp; angle, tMath::tBias  = tBias::Low)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='219' u='c' c='_ZN5tMath19tNormalizedAngle2PiEfNS_5tBiasE'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='551' ll='558' type='float &amp; tMath::tiNormalizeAngle2Pi(float &amp; a, tMath::tBias bias = tBias::Low)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='218'>// Results in angle E [(0,2Pi)].</doc>

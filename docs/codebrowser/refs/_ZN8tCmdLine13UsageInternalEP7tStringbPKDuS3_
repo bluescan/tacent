@@ -1,0 +1,5 @@
+<dec f='Modules/System/Src/tCmdLine.cpp' l='33' type='void tCmdLine::UsageInternal(tString * dest, bool indent, const char8_t * verAuth, const char8_t * desc)'/>
+<def f='Modules/System/Src/tCmdLine.cpp' l='537' ll='694' type='void tCmdLine::UsageInternal(tString * dest, bool doIndent, const char8_t * verAuth, const char8_t * desc)'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='719' u='c' c='_ZN8tCmdLine11tPrintUsageEPKDuS1_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='745' u='c' c='_ZN8tCmdLine12tStringUsageER7tStringPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='771' u='c' c='_ZN8tCmdLine14tStringUsageNIER7tStringPKDuS3_'/>

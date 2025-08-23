@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10893' ll='10898'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10893'/>
+<size>32</size>
+<mbr r='VkPipelineVertexInputDivisorStateCreateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineVertexInputDivisorStateCreateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineVertexInputDivisorStateCreateInfoKHR::vertexBindingDivisorCount' o='128' t='uint32_t'/>
+<mbr r='VkPipelineVertexInputDivisorStateCreateInfoKHR::pVertexBindingDivisors' o='192' t='const VkVertexInputBindingDivisorDescriptionKHR *'/>

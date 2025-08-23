@@ -1,0 +1,2 @@
+<def f='Modules/Image/Inc/Image/tLayer.h' l='79' type='bool tImage::tLayer::operator!=(const tImage::tLayer &amp; src) const'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='450' u='c' c='_ZNK6tImage8tTextureeqERKS0_'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_base.h' l='860' ll='869' macro='1' type='bool std::__atomic_base&lt;type-parameter-0-0 *&gt;::compare_exchange_strong(std::__atomic_base&lt;type-parameter-0-0 *&gt;::__pointer_type &amp; __p1, std::__atomic_base&lt;type-parameter-0-0 *&gt;::__pointer_type __p2, std::memory_order __m1, std::memory_order __m2)'/>

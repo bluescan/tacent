@@ -1,0 +1,4 @@
+<use f='Modules/System/Inc/System/tScript.h' l='129' u='c' c='_ZNK11tExpressioncvN5tMath8tVector4EEv'/>
+<use f='Modules/Image/Src/tResample.cpp' l='259' u='c' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='385' u='c' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='433' u='c' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>

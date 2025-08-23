@@ -1,0 +1,3 @@
+_ZNKSt7__cxx1112basic_string5c_strEv|std::basic_string::c_str
+_ZNKSt6chrono7weekday10c_encodingEv|std::chrono::weekday::c_encoding
+_ZNKSt10filesystem7__cxx114path5c_strEv|std::filesystem::path::c_str

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='120' type='int iswprint(wint_t __wc)'/>
+<doc f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='119'>/* Test for any printing wide character.  */</doc>

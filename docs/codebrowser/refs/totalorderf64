@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='411' macro='1' type='int totalorderf64(const _Float64 * __x, const _Float64 * __y)'/>

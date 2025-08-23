@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1380' type='ktx_uint32_t'/>
+<offset>224</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1376'>/*!&lt; Set endpoint RDO quality threshold. The default is 1.25. Lower is
+             higher quality but less quality per output bit (try [1.0,3.0].
+             This will override the value chosen by @c qualityLevel.
+         */</doc>

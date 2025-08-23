@@ -1,0 +1,11 @@
+<dec f='include/c++/11/bits/stl_vector.h' l='695' type='vector&lt;_Tp, _Alloc&gt; &amp; std::vector::operator=(const vector&lt;_Tp, _Alloc&gt; &amp; __x)'/>
+<def f='include/c++/11/bits/vector.tcc' l='196' ll='253' type='vector&lt;_Tp, _Alloc&gt; &amp; std::vector::operator=(const vector&lt;_Tp, _Alloc&gt; &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='685'>/**
+       *  @brief  %Vector assignment operator.
+       *  @param  __x  A %vector of identical element and allocator types.
+       *
+       *  All the elements of @a __x are copied, but any unused capacity in
+       *  @a __x will not be copied.
+       *
+       *  Whether the allocator is copied depends on the allocator traits.
+       */</doc>

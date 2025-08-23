@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='503' type='uint64 TIFFGetStrileByteCountWithErr(TIFF * tif, uint32 strile, int * pbErr)'/>

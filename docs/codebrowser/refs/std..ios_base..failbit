@@ -1,0 +1,64 @@
+<dec f='include/c++/11/bits/ios_base.h' l='428' type='const std::ios_base::iostate'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='364' u='r' c='_ZNKSt7num_get16_M_extract_floatB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='563' u='r' c='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='572' u='r' c='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='580' u='r' c='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='612' u='r' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRb'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='666' u='r' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRb'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='680' u='r' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRb'/>
+<use f='include/c++/11/bits/basic_ios.h' l='202' u='r' c='_ZNKSt9basic_ios4failEv'/>
+<use f='include/c++/11/bits/ostream.tcc' l='57' c='_ZNSt13basic_ostream6sentryC1ERSt13basic_ostreamIT_T0_E'/>
+<use f='include/c++/11/bits/ostream.tcc' l='129' u='r' c='_ZNSt13basic_ostreamlsEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/ostream.tcc' l='137' c='_ZNSt13basic_ostreamlsEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/ostream.tcc' l='272' u='r' c='_ZNSt13basic_ostream5seekpENT0_8pos_typeE'/>
+<use f='include/c++/11/bits/ostream.tcc' l='304' u='r' c='_ZNSt13basic_ostream5seekpENT0_8off_typeESt12_Ios_Seekdir'/>
+<doc f='include/c++/11/bits/ios_base.h' l='425'>/// Indicates that an input operation failed to read the expected
+    /// characters, or that an output operation failed to generate the
+    /// desired characters.</doc>
+<use f='include/c++/11/bits/istream.tcc' l='86' u='r' c='_ZNSt13basic_istream6sentryC1ERSt13basic_istreamIT_T0_Eb'/>
+<use f='include/c++/11/bits/istream.tcc' l='140' u='r' c='_ZNSt13basic_istreamrsERs'/>
+<use f='include/c++/11/bits/istream.tcc' l='145' u='r' c='_ZNSt13basic_istreamrsERs'/>
+<use f='include/c++/11/bits/istream.tcc' l='185' u='r' c='_ZNSt13basic_istreamrsERi'/>
+<use f='include/c++/11/bits/istream.tcc' l='190' u='r' c='_ZNSt13basic_istreamrsERi'/>
+<use f='include/c++/11/bits/istream.tcc' l='222' u='r' c='_ZNSt13basic_istreamrsEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/istream.tcc' l='228' c='_ZNSt13basic_istreamrsEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/istream.tcc' l='232' c='_ZNSt13basic_istreamrsEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/istream.tcc' l='235' u='r' c='_ZNSt13basic_istreamrsEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/istream.tcc' l='271' u='r' c='_ZNSt13basic_istream3getEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='308' u='r' c='_ZNSt13basic_istream3getERT_'/>
+<use f='include/c++/11/bits/istream.tcc' l='355' u='r' c='_ZNSt13basic_istream3getEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='406' u='r' c='_ZNSt13basic_istream3getERSt15basic_streambufIT_T0_ES1_'/>
+<use f='include/c++/11/bits/istream.tcc' l='447' u='r' c='_ZNSt13basic_istream7getlineEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='463' u='r' c='_ZNSt13basic_istream7getlineEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='696' u='r' c='_ZNSt13basic_istream4readEPT_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='900' u='r' c='_ZNSt13basic_istream5seekgENT0_8pos_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='939' u='r' c='_ZNSt13basic_istream5seekgENT0_8off_typeESt12_Ios_Seekdir'/>
+<use f='include/c++/11/bits/istream.tcc' l='973' u='r' c='_ZStrsRSt13basic_istreamIT_T0_ERS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='1045' u='r' c='_ZSt17__istream_extractRSt13basic_istreamIT_T0_EPS0_l'/>
+<use f='include/c++/11/fstream' l='666' c='_ZNSt14basic_ifstream4openEPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='705' c='_ZNSt14basic_ifstream4openERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='738' c='_ZNSt14basic_ifstream5closeEv'/>
+<use f='include/c++/11/fstream' l='929' c='_ZNSt14basic_ofstream4openEPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='968' c='_ZNSt14basic_ofstream4openERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='1001' c='_ZNSt14basic_ofstream5closeEv'/>
+<use f='include/c++/11/fstream' l='1186' c='_ZNSt13basic_fstream4openEPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='1227' c='_ZNSt13basic_fstream4openERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='1261' c='_ZNSt13basic_fstream5closeEv'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='333' u='r' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='343' u='r' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='819' u='r' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='844' u='r' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='901' u='r' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='905' u='r' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='914' u='r' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='919' u='r' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='960' u='r' c='_ZNKSt7__cxx118time_get14_M_extract_numET0_S1_RiiimRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1038' u='r' c='_ZNKSt7__cxx118time_get15_M_extract_nameET0_S1_RiPPKT_mRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1110' u='r' c='_ZNKSt7__cxx118time_get24_M_extract_wday_or_monthET0_S1_RiPPKT_mRSt8ios_baseRSt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1168' u='r' c='_ZNKSt7__cxx118time_get14do_get_weekdayET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1194' u='r' c='_ZNKSt7__cxx118time_get16do_get_monthnameET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1215' u='r' c='_ZNKSt7__cxx118time_get11do_get_yearET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1239' u='r' c='_ZNKSt7__cxx118time_get3getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_SA_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1248' u='r' c='_ZNKSt7__cxx118time_get3getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_SA_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1261' u='r' c='_ZNKSt7__cxx118time_get3getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_SA_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1288' u='r' c='_ZNKSt7__cxx118time_get3getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_SA_'/>

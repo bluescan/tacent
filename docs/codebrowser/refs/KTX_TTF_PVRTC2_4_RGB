@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1550' type='18'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1542'>/*!&lt; Opaque+alpha, ASTC 4x4. The alpha channel will be opaque for
+                 textures without an alpha channel.  The transcoder uses
+                 RGB/RGBA/L/LA modes, void extent, and up to two ([0,47] and
+                 [0,255]) endpoint precisions. */
+
+        // ATC and FXT1 formats are not supported by KTX2 as there
+        // are no equivalent VkFormats.</doc>

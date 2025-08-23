@@ -1,0 +1,2 @@
+<dec f='include/dirent.h' l='224' type='int dirfd(DIR * __dirp)'/>
+<doc f='include/dirent.h' l='223'>/* Return the file descriptor used by DIRP.  */</doc>

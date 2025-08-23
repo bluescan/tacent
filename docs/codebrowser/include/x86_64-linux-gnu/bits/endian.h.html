@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>endian.h source code [include/x86_64-linux-gnu/bits/endian.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/endian.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>bits</a>/<a href='endian.h.html'>endian.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Endian macros for string.h functions</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   Copyright (C) 1992-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i></i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i></i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i></i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>   &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#<span data-ppcond="19">ifndef</span> <span class="macro" data-ref="_M/_BITS_ENDIAN_H">_BITS_ENDIAN_H</span></u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><u>#define <dfn class="macro" id="_M/_BITS_ENDIAN_H" data-ref="_M/_BITS_ENDIAN_H">_BITS_ENDIAN_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="21">21</th><td>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>/* Definitions for byte order, according to significance of bytes,</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>   from low addresses to high addresses.  The value is what you get by</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i>   putting '4' in the most significant byte, '3' in the second most</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>   significant byte, '2' in the second least significant byte, and '1'</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i>   in the least significant byte, and then writing down one digit for</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i>   each byte, starting with the byte at the lowest address at the left,</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i>   and proceeding to the byte with the highest address at the right.  */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#define	<dfn class="macro" id="_M/__LITTLE_ENDIAN" data-ref="_M/__LITTLE_ENDIAN">__LITTLE_ENDIAN</dfn>	1234</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define	<dfn class="macro" id="_M/__BIG_ENDIAN" data-ref="_M/__BIG_ENDIAN">__BIG_ENDIAN</dfn>	4321</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#define	<dfn class="macro" id="_M/__PDP_ENDIAN" data-ref="_M/__PDP_ENDIAN">__PDP_ENDIAN</dfn>	3412</u>&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>/* This file defines `__BYTE_ORDER' for the particular machine.  */</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;bits/endianness.h&gt;</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>/* Some machines may need to use a different endianness for floating point</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i>   values.  */</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#<span data-ppcond="39">ifndef</span> <span class="macro" data-ref="_M/__FLOAT_WORD_ORDER">__FLOAT_WORD_ORDER</span></u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u># define <dfn class="macro" id="_M/__FLOAT_WORD_ORDER" data-ref="_M/__FLOAT_WORD_ORDER">__FLOAT_WORD_ORDER</dfn> __BYTE_ORDER</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="39">endif</span></u>&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#<span data-ppcond="43">if</span> <a class="macro" href="endianness.h.html#9" title="1234" data-ref="_M/__BYTE_ORDER">__BYTE_ORDER</a> == <a class="macro" href="#30" title="1234" data-ref="_M/__LITTLE_ENDIAN">__LITTLE_ENDIAN</a></u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u># define <dfn class="macro" id="_M/__LONG_LONG_PAIR" data-ref="_M/__LONG_LONG_PAIR">__LONG_LONG_PAIR</dfn>(HI, LO) LO, HI</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#<span data-ppcond="43">elif</span> __BYTE_ORDER == __BIG_ENDIAN</u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u># define __LONG_LONG_PAIR(HI, LO) HI, LO</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#<span data-ppcond="43">endif</span></u>&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="19">endif</span> /* bits/endian.h */</u>&nbsp</td></tr>
+<tr><th id="50">50</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

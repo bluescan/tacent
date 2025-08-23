@@ -1,0 +1,6 @@
+<dec f='include/wchar.h' l='688' type='int vfwscanf(__FILE *__restrict __s, const wchar_t *__restrict __format, __va_list_tag * __arg)'/>
+<dec f='include/wchar.h' l='711' type='int vfwscanf(__FILE *__restrict __s, const wchar_t *__restrict __format, __va_list_tag * __arg)'/>
+<doc f='include/wchar.h' l='684'>/* Read formatted input from S into argument list ARG.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

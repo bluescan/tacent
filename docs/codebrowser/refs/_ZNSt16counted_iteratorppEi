@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='2297' ll='2309' type='decltype(auto) std::counted_iterator::operator++(int )'/>
+<def f='include/c++/11/bits/stl_iterator.h' l='2311' ll='2317' type='counted_iterator&lt;_It&gt; std::counted_iterator::operator++(int )'/>

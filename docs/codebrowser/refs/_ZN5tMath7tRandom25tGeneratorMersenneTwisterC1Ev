@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tRandom.h' l='48' type='void tMath::tRandom::tGeneratorMersenneTwister::tGeneratorMersenneTwister()'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='22' u='c'/>

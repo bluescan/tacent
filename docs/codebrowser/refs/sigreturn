@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='304' type='int sigreturn(struct sigcontext * __scp)'/>
+<doc f='include/signal.h' l='303'>/* Restore the state saved in SCP.  */</doc>

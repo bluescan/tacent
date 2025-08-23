@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='108' type='void tSystem::tSetDefaultPrecision(int precision)'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='106'>// Note also that the default ANSI %f precision is 6. Tacent uses 4 by default, but you can globally change it
+	// with this.</doc>
+<def f='Modules/System/Src/tPrint.cpp' l='302' ll='305' type='void tSystem::tSetDefaultPrecision(int precision)'/>

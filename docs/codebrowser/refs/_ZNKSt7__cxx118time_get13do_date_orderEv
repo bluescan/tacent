@@ -1,0 +1,15 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='606' type='std::time_base::dateorder std::time_get::do_date_order() const'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='683' ll='686' type='time_base::dateorder std::time_get::do_date_order() const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='595'>/**
+       *  @brief  Return preferred order of month, day, and year.
+       *
+       *  This function returns an enum from time_base::dateorder giving the
+       *  preferred ordering if the format @a x given to time_put::put() only
+       *  uses month, day, and year.  This function is a hook for derived
+       *  classes to change the value returned.
+       *
+       *  @return  A member of time_base::dateorder.
+      */</doc>
+<doc f='include/c++/11/bits/locale_facets_nonio.tcc' l='680'>// NB: Not especially useful. Without an ios_base object or some
+  // kind of locale reference, we are left clawing at the air where
+  // the side of the mountain used to be...</doc>

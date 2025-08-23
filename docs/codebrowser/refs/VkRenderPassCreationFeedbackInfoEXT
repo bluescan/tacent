@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17701' ll='17703'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17701'/>
+<size>4</size>
+<mbr r='VkRenderPassCreationFeedbackInfoEXT::postMergeSubpassCount' o='0' t='uint32_t'/>

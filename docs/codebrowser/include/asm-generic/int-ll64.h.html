@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>int-ll64.h source code [include/asm-generic/int-ll64.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/asm-generic/int-ll64.h'; var root_path = '../..'; var data_path = '../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='..'>include</a>/<a href='./'>asm-generic</a>/<a href='int-ll64.h.html'>int-ll64.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i> * asm-generic/int-ll64.h</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i> * Integer declarations for architectures which use "long long"</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i> * for 64-bit types.</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td>&nbsp</td></tr>
+<tr><th id="9">9</th><td><u>#<span data-ppcond="9">ifndef</span> <span class="macro" data-ref="_M/_ASM_GENERIC_INT_LL64_H">_ASM_GENERIC_INT_LL64_H</span></u>&nbsp</td></tr>
+<tr><th id="10">10</th><td><u>#define <dfn class="macro" id="_M/_ASM_GENERIC_INT_LL64_H" data-ref="_M/_ASM_GENERIC_INT_LL64_H">_ASM_GENERIC_INT_LL64_H</dfn></u>&nbsp</td></tr>
+<tr><th id="11">11</th><td>&nbsp</td></tr>
+<tr><th id="12">12</th><td><u>#include &lt;asm/bitsperlong.h&gt;</u>&nbsp</td></tr>
+<tr><th id="13">13</th><td>&nbsp</td></tr>
+<tr><th id="14">14</th><td><u>#<span data-ppcond="14">ifndef</span> <span class="macro" data-ref="_M/__ASSEMBLY__">__ASSEMBLY__</span></u>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i> * __xx is ok: it doesn't pollute the POSIX namespace. Use these in the</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i> * header files exported to user space</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td>&nbsp</td></tr>
+<tr><th id="20">20</th><td><b>typedef</b> <em>__signed__</em> <em>char</em> <dfn class="typedef" id="__s8" title='__s8' data-type='signed char' data-ref="__s8">__s8</dfn>;&nbsp</td></tr>
+<tr><th id="21">21</th><td><b>typedef</b> <em>unsigned</em> <em>char</em> <dfn class="typedef" id="__u8" title='__u8' data-type='unsigned char' data-ref="__u8">__u8</dfn>;&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td><b>typedef</b> <em>__signed__</em> <em>short</em> <dfn class="typedef" id="__s16" title='__s16' data-type='short' data-ref="__s16">__s16</dfn>;&nbsp</td></tr>
+<tr><th id="24">24</th><td><b>typedef</b> <em>unsigned</em> <em>short</em> <dfn class="typedef" id="__u16" title='__u16' data-type='unsigned short' data-ref="__u16">__u16</dfn>;&nbsp</td></tr>
+<tr><th id="25">25</th><td>&nbsp</td></tr>
+<tr><th id="26">26</th><td><b>typedef</b> <em>__signed__</em> <em>int</em> <dfn class="typedef" id="__s32" title='__s32' data-type='int' data-ref="__s32">__s32</dfn>;&nbsp</td></tr>
+<tr><th id="27">27</th><td><b>typedef</b> <em>unsigned</em> <em>int</em> <dfn class="typedef" id="__u32" title='__u32' data-type='unsigned int' data-ref="__u32">__u32</dfn>;&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="29">ifdef</span> <span class="macro" data-ref="_M/__GNUC__">__GNUC__</span></u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><b>__extension__</b> <b>typedef</b> <em>__signed__</em> <em>long</em> <em>long</em> <dfn class="typedef" id="__s64" title='__s64' data-type='long long' data-ref="__s64">__s64</dfn>;&nbsp</td></tr>
+<tr><th id="31">31</th><td><b>__extension__</b> <b>typedef</b> <em>unsigned</em> <em>long</em> <em>long</em> <dfn class="typedef" id="__u64" title='__u64' data-type='unsigned long long' data-ref="__u64">__u64</dfn>;&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#<span data-ppcond="29">else</span></u>&nbsp</td></tr>
+<tr><th id="33">33</th><td><b>typedef</b> <em>__signed__</em> <em>long</em> <em>long</em> __s64;&nbsp</td></tr>
+<tr><th id="34">34</th><td><b>typedef</b> <em>unsigned</em> <em>long</em> <em>long</em> __u64;&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#<span data-ppcond="29">endif</span></u>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="14">endif</span> /* __ASSEMBLY__ */</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#<span data-ppcond="9">endif</span> /* _ASM_GENERIC_INT_LL64_H */</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../Modules/System/Src/tFile.cpp.html'>Modules/System/Src/tFile.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/numeric' l='439' ll='460' macro='1' type='_Tp std::transform_reduce(_InputIterator __first, _InputIterator __last, _Tp __init, _BinaryOperation __binary_op, _UnaryOperation __unary_op)'/>

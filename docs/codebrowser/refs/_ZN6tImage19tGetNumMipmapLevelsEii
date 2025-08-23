@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='316' type='int tImage::tGetNumMipmapLevels(int width, int height)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='309'>// Since there are numerous size functions already in the pixel-format header it makes sense to also add functions to
+// query how many mipmaps would be needs for variously sized images. Note that due to various block sizes, you cannot
+// compite the total pixel-area. Each mimpap will need its own set of blocks in either direction. The highest mip level
+// (which will represent the smallest mipmap image of 1x1) will still use a single block. The lowest level (0) is the
+// image at full (highest) dimensions.
+
+// Width and height should be &gt;= 1. Returns 0 otherwise.</doc>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='583' ll='590' type='int tImage::tGetNumMipmapLevels(int width, int height)'/>

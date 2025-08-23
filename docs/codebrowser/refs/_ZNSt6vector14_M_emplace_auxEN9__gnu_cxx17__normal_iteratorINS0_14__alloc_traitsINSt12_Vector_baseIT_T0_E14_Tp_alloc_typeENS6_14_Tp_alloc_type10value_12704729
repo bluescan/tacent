@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1749' ll='1751' type='std::vector::iterator std::vector::_M_emplace_aux(std::vector::const_iterator __position, std::vector::value_type &amp;&amp; __v)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1748'>// Emplacing an rvalue of the correct type can use _M_insert_rval.</doc>

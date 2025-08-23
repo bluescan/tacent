@@ -1,0 +1,4 @@
+<dec f='include/linux/stat.h' l='129' type='__u64[12]'/>
+<offset>1280</offset>
+<doc f='include/linux/stat.h' l='128'>/* 0xa0 */</doc>
+<doc f='include/linux/stat.h' l='129'>/* Spare space for future expansion */</doc>

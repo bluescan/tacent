@@ -1,0 +1,14 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='221' type='int tvPrintf(tSystem::tChannel channels, const char * format, __va_list_tag * )'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='331' u='c' c='_Z7tPrintfyPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='340' u='c' c='_Z8tdPrintfPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='348' u='c' c='_Z16tdPrintfGameplayPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='356' u='c' c='_Z15tdPrintfPhysicsPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='364' u='c' c='_Z13tdPrintfSoundPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='372' u='c' c='_Z17tdPrintfRenderingPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='380' u='c' c='_Z10tdPrintfAIPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='388' u='c' c='_Z13tdPrintfInputPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='417' u='c' c='_Z9tmsPrintfyPcPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='435' u='c' c='_Z9tmsPrintfyR7tStringPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='453' u='c' c='_Z9tmsPrintfyPciPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='471' u='c' c='_Z9tmfPrintfyP8_IO_FILEPKcz'/>
+<def f='Modules/System/Src/tPrint.cpp' l='479' ll='490' type='int tvPrintf(tSystem::tChannel channels, const char * format, __va_list_tag * argList)'/>

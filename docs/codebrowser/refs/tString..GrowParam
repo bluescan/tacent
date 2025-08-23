@@ -1,0 +1,9 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='421' type='int'/>
+<offset>96</offset>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='417'>// If GrowParam is positive, it represents how many extra code-units to grow by when out of capacity.
+	// If GrowParam is negative, its absolute value represents how many times bigger the capacity should be
+	// compared to the required lenght of the string.
+	// If GrowParam is zero, everthing still works, you just don&apos;t get the extra code-units so it&apos;s less efficient.</doc>
+<use f='Modules/Foundation/Src/tString.cpp' l='700' u='r' c='_ZN7tString14UpdateCapacityEib'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='700' u='r' c='_ZN7tString14UpdateCapacityEib'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='700' u='r' c='_ZN7tString14UpdateCapacityEib'/>

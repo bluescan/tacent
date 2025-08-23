@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='59' type='bool tMath::tVector2::NormalizeSafe()'/>
+<doc f='Modules/Math/Inc/Math/tVector2.h' l='59'>/* Returns success. */</doc>

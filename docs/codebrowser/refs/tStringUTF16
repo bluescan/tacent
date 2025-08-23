@@ -1,0 +1,70 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='83' c='_ZN7tStringC1ERK12tStringUTF16'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='99' c='_ZN7tString3SetERK12tStringUTF16'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='444' ll='505'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='449' c='_ZN12tStringUTF16C1ERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='465' c='_ZN12tStringUTF163SetERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='513' c='_ZN12tStringUTF32C1ERK12tStringUTF16'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='529' c='_ZN12tStringUTF323SetERK12tStringUTF16'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='588' c='_ZN11tStringItemC1ERK12tStringUTF16'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='691' c='_ZN7tString3SetERK12tStringUTF16'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='969' c='_ZN12tStringUTF163SetERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1098' c='_ZN12tStringUTF323SetERK12tStringUTF16'/>
+<size>16</size>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='436'>// tStringUTF16 and tStringUTF32 are not intended to be full-fledged string classes, but they are handy to marshall data
+// to and from OS calls that take or return these encodings. Primarily these abstract away the memory management for the
+// different encodings, since the encoding size depends on the string contents. You may construct a tStringUTFn from a
+// tString, and you may construct a tString from a tStringUTFn string.
+//
+// These helper classes do not support Capacity like tString, so they are not the most efficient. They _do_ support not
+// requiring null-termination -- they are arrays of codeunits and length is stored explicitly. This allows multiple
+// nulls to be placed in the string if desired. Internally we always store a terminating null.</doc>
+<fun r='_ZN12tStringUTF16C1Ev'/>
+<fun r='_ZN12tStringUTF16C1Ei'/>
+<fun r='_ZN12tStringUTF16C1ERK7tString'/>
+<fun r='_ZN12tStringUTF16C1ERKS_'/>
+<fun r='_ZN12tStringUTF16C1ERK12tStringUTF32'/>
+<fun r='_ZN12tStringUTF16C1EPKDu'/>
+<fun r='_ZN12tStringUTF16C1EPKDs'/>
+<fun r='_ZN12tStringUTF16C1EPKDi'/>
+<fun r='_ZN12tStringUTF16C1EPKDui'/>
+<fun r='_ZN12tStringUTF16C1EPKDsi'/>
+<fun r='_ZN12tStringUTF16C1EPKDii'/>
+<fun r='_ZN12tStringUTF16D1Ev'/>
+<fun r='_ZN12tStringUTF163SetERK7tString'/>
+<fun r='_ZN12tStringUTF163SetERKS_'/>
+<fun r='_ZN12tStringUTF163SetERK12tStringUTF32'/>
+<fun r='_ZN12tStringUTF163SetEPKDu'/>
+<fun r='_ZN12tStringUTF163SetEPKDs'/>
+<fun r='_ZN12tStringUTF163SetEPKDi'/>
+<fun r='_ZN12tStringUTF163SetEPKDui'/>
+<fun r='_ZN12tStringUTF163SetEPKDsi'/>
+<fun r='_ZN12tStringUTF163SetEPKDii'/>
+<fun r='_ZN12tStringUTF169SetLengthEib'/>
+<fun r='_ZN12tStringUTF165ClearEv'/>
+<fun r='_ZNK12tStringUTF167IsValidEv'/>
+<fun r='_ZNK12tStringUTF167IsEmptyEv'/>
+<fun r='_ZNK12tStringUTF166LengthEv'/>
+<fun r='_ZN12tStringUTF164TextEv'/>
+<fun r='_ZNK12tStringUTF165CharsEv'/>
+<fun r='_ZNK12tStringUTF165UnitsEv'/>
+<fun r='_ZN12tStringUTF163TxtEv'/>
+<fun r='_ZNK12tStringUTF163ChrEv'/>
+<fun r='_ZNK12tStringUTF163PodEv'/>
+<mbr r='tStringUTF16::StringLength' o='0' t='int'/>
+<mbr r='tStringUTF16::CodeUnits' o='64' t='char16_t *'/>
+<fun r='_ZN12tStringUTF16C1Ei'/>
+<fun r='_ZN12tStringUTF163SetERK7tString'/>
+<fun r='_ZN12tStringUTF163SetERKS_'/>
+<fun r='_ZN12tStringUTF163SetERK12tStringUTF32'/>
+<fun r='_ZN12tStringUTF163SetEPKDu'/>
+<fun r='_ZN12tStringUTF163SetEPKDs'/>
+<fun r='_ZN12tStringUTF163SetEPKDi'/>
+<fun r='_ZN12tStringUTF163SetEPKDui'/>
+<fun r='_ZN12tStringUTF163SetEPKDsi'/>
+<fun r='_ZN12tStringUTF163SetEPKDii'/>
+<fun r='_ZN12tStringUTF169SetLengthEib'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='90' c='_ZN5tNameC1ERK12tStringUTF16'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='112' c='_ZN5tName3SetERK12tStringUTF16'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='288' c='_ZN9tNameItemC1ERK12tStringUTF16'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='426' c='_ZN5tName3SetERK12tStringUTF16'/>
+<size>16</size>

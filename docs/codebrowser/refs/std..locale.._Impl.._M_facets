@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='545' type='const std::locale::facet **'/>
+<use f='include/c++/11/bits/locale_classes.h' l='620' u='w' c='_ZNSt6locale5_Impl23_M_init_facet_uncheckedEPT_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='107' u='r' c='_ZSt9has_facetRKSt6locale'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='135' u='r' c='_ZSt9use_facetRKSt6locale'/>
+<offset>64</offset>

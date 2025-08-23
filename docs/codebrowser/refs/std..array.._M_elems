@@ -1,0 +1,11 @@
+<dec f='include/c++/11/array' l='111' type='typename _AT_Type::_Type'/>
+<use f='include/c++/11/array' l='189' c='_ZNSt5arrayixEm'/>
+<use f='include/c++/11/array' l='198' c='_ZNKSt5arrayixEm'/>
+<use f='include/c++/11/array' l='208' c='_ZNSt5array2atEm'/>
+<use f='include/c++/11/array' l='216' c='_ZNKSt5array2atEm'/>
+<use f='include/c++/11/array' l='220' c='_ZNKSt5array2atEm'/>
+<use f='include/c++/11/array' l='236' c='_ZNKSt5array5frontEv'/>
+<use f='include/c++/11/array' l='252' c='_ZNKSt5array4backEv'/>
+<use f='include/c++/11/array' l='253' c='_ZNKSt5array4backEv'/>
+<use f='include/c++/11/array' l='258' c='_ZNSt5array4dataEv'/>
+<use f='include/c++/11/array' l='262' c='_ZNKSt5array4dataEv'/>

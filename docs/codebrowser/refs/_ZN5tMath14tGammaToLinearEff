@@ -1,0 +1,13 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='275' type='float tMath::tGammaToLinear(float gammaComponent, float gamma = DefaultGamma)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='986' ll='989' type='float tMath::tGammaToLinear(float gammaComponent, float gamma = DefaultGamma)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1268' u='c' c='_ZN9tColour4f13GammaToLinearEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1269' u='c' c='_ZN9tColour4f13GammaToLinearEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1270' u='c' c='_ZN9tColour4f13GammaToLinearEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1271' u='c' c='_ZN9tColour4f13GammaToLinearEfj'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='268'>// These two are more general versions of the above two functions and use the power function instead of squaring or
+	// square-rooting. They support an arbitrary gamma value (default to 2.2). For LinearToGamma you are actually
+	// supplying the inverse of the gamma when you supply the ~2.2 gamma. It takes the invGamma and inverts it to get
+	// the actual gamma to use.
+	//
+	// GammaToLinear will darken  the image. Gamma = 2.2   (default/decoding). Gamma expansion.
+	// LinearToGamma Will lighten the image. Gamma = 1/2,2 (default/encoding). Gamma compression.</doc>

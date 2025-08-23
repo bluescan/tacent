@@ -1,0 +1,4 @@
+<dec f='include/c++/11/backward/binders.h' l='149' type='typename _Operation::second_argument_type'/>
+<use f='include/c++/11/backward/binders.h' l='154' u='w' c='_ZNSt9binder2ndC1ERKT_RKNS0_20second_argument_typeE'/>
+<use f='include/c++/11/backward/binders.h' l='158' c='_ZNKSt9binder2ndclERKNT_19first_argument_typeE'/>
+<use f='include/c++/11/backward/binders.h' l='164' c='_ZNKSt9binder2ndclERNT_19first_argument_typeE'/>

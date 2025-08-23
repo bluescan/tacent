@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='118' ll='120' type='bool std::atomic&lt;bool&gt;::exchange(bool __i, std::memory_order __m = memory_order_seq_cst)'/>

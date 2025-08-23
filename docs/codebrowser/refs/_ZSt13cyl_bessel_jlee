@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='559' ll='561' type='long double std::cyl_bessel_jl(long double __nu, long double __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='553'>/**
+   * Return the Bessel function of the first kind @f$ J_{\nu}(x) @f$
+   * for &lt;tt&gt;long double&lt;/tt&gt; order @f$ \nu @f$ and argument @f$ x &gt;= 0 @f$.
+   *
+   * @see cyl_bessel_j for setails.
+   */</doc>

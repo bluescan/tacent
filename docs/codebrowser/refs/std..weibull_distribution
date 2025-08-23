@@ -1,0 +1,31 @@
+<def f='include/c++/11/bits/random.h' l='4862' ll='5019'/>
+<use f='include/c++/11/bits/random.h' l='4874'/>
+<use f='include/c++/11/bits/random.h' l='5027' c='_ZStneRKSt20weibull_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='5028' c='_ZStneRKSt20weibull_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='5044' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt20weibull_distributionIT_E'/>
+<use f='include/c++/11/bits/random.h' l='5059' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt20weibull_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2507' c='_ZNSt20weibull_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2506' c='_ZNSt20weibull_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2521' c='_ZNSt20weibull_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2539' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt20weibull_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2562' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt20weibull_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2564' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt20weibull_distributionIT_E'/>
+<fun r='_ZNSt20weibull_distributionC1Ev'/>
+<fun r='_ZNSt20weibull_distributionC1ET_S0_'/>
+<fun r='_ZNSt20weibull_distributionC1ERKNS_10param_typeE'/>
+<fun r='_ZNSt20weibull_distribution5resetEv'/>
+<fun r='_ZNKSt20weibull_distribution1aEv'/>
+<fun r='_ZNKSt20weibull_distribution1bEv'/>
+<fun r='_ZNKSt20weibull_distribution5paramEv'/>
+<fun r='_ZNSt20weibull_distribution5paramERKNS_10param_typeE'/>
+<fun r='_ZNKSt20weibull_distribution3minEv'/>
+<fun r='_ZNKSt20weibull_distribution3maxEv'/>
+<fun r='_ZNSt20weibull_distributionclERTL0__'/>
+<fun r='_ZNSt20weibull_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt20weibull_distribution10__generateETL0__S0_RTL0_0_'/>
+<fun r='_ZNSt20weibull_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<fun r='_ZNSt20weibull_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt20weibull_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<mbr r='std::weibull_distribution::_M_param' t='std::weibull_distribution::param_type'/>
+<fun r='_ZNSt20weibull_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt20weibull_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>

@@ -1,0 +1,16 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='195' type='float tMath::tPow(float a, float b)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='222' u='c' c='_ZN5tMath11tNormalDistEff'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='222' u='c' c='_ZN5tMath11tNormalDistEff'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='585' u='c' c='_ZN5tMath8tUnitPowEffj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='988' u='c' c='_ZN5tMath14tGammaToLinearEff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='994' u='c' c='_ZN5tMath14tLinearToGammaEff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1004' u='c' c='_ZN5tMath13tSRGBToLinearEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1016' u='c' c='_ZN5tMath13tLinearToSRGBEf'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='132' u='c' c='_ZN3EXR5GammaC1Efffff'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='134' u='c' c='_ZN3EXR5GammaC1Efffff'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='135' u='c' c='_ZN3EXR5GammaC1Efffff'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='135' u='c' c='_ZN3EXR5GammaC1Efffff'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='136' u='c' c='_ZN3EXR5GammaC1Efffff'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='146' u='c' c='_ZN3EXR5GammaclEi'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='777' u='c' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='811' u='c' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>

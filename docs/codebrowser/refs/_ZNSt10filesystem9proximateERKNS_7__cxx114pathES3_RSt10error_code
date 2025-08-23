@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='341' type='std::filesystem::path std::filesystem::proximate(const std::filesystem::path &amp; __p, const std::filesystem::path &amp; __base, std::error_code &amp; __ec)'/>
+<dec f='include/c++/11/bits/fs_fwd.h' l='342' type='std::filesystem::path std::filesystem::proximate(const std::filesystem::path &amp; __p, const std::filesystem::path &amp; __base, std::error_code &amp; __ec)'/>
+<use f='include/c++/11/bits/fs_ops.h' l='314' u='c' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathERSt10error_code'/>
+<dec f='include/c++/11/bits/fs_ops.h' l='320' type='std::filesystem::path std::filesystem::proximate(const std::filesystem::path &amp; __p, const std::filesystem::path &amp; __base, std::error_code &amp; __ec)'/>

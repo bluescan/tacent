@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1499' type='0'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1596'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1496'>// Compressed formats
+
+        // ETC1-2</doc>

@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='179' type='0'/>
+<use f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='279' u='r' c='_Z14tGetEndiannessv'/>
+<use f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='285' u='r' c='_Z5tNtoHT_'/>

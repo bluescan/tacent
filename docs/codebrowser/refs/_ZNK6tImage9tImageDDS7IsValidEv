@@ -1,0 +1,15 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='86' c='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<def f='Modules/Image/Inc/Image/tImageDDS.h' l='166' type='bool tImage::tImageDDS::IsValid() const'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='185' u='c' c='_ZNK6tImage9tImageDDS8GetWidthEv'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='186' u='c' c='_ZNK6tImage9tImageDDS9GetHeightEv'/>
+<doc f='Modules/Image/Inc/Image/tImageDDS.h' l='164'>// Will return true if a dds file has been successfully loaded or otherwise populated.
+	// This includes conditional valid results.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='974' u='c' c='_ZN6tImage9tImageDDS8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1006' u='c' c='_ZN6tImage9tImageDDS11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1022' u='c' c='_ZNK6tImage9tImageDDS9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1034' u='c' c='_ZN6tImage9tImageDDS18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1060' u='c' c='_ZNK6tImage9tImageDDS16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1396' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1552' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='57' u='c' c='_ZN6tImage8tTexture4LoadERK7tStringNS_10tFaceIndexEb'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='67' u='c' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>

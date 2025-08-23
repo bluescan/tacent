@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='452' ll='454' type='float std::comp_ellint_3f(float __k, float __nu)'/>
+<doc f='include/c++/11/bits/specfun.h' l='446'>/**
+   * @brief Return the complete elliptic integral of the third kind
+   * @f$ \Pi(k,\nu) @f$ for @c float modulus @c k.
+   *
+   * @see comp_ellint_3 for details.
+   */</doc>

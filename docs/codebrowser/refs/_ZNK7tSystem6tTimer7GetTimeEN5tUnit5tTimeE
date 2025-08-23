@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tTime.h' l='79' type='float tSystem::tTimer::GetTime(tUnit::tTime  = tUnit::tTime::Unspecified) const'/>
+<doc f='Modules/System/Inc/System/tTime.h' l='78'>// Returns the time in the units of Unit. If Unit is not specified, uses internal units.</doc>
+<def f='Modules/System/Src/tTime.cpp' l='193' ll='199' type='float tSystem::tTimer::GetTime(tUnit::tTime unit = tUnit::tTime::Unspecified) const'/>

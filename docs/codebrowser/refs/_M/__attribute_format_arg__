@@ -1,0 +1,12 @@
+<dec f='include/x86_64-linux-gnu/sys/cdefs.h' l='362'/>
+<use f='include/libintl.h' l='40' u='c'/>
+<use f='include/libintl.h' l='45' u='c'/>
+<use f='include/libintl.h' l='47' u='c'/>
+<use f='include/libintl.h' l='53' u='c'/>
+<use f='include/libintl.h' l='56' u='c'/>
+<use f='include/libintl.h' l='63' u='c'/>
+<use f='include/libintl.h' l='63' u='c'/>
+<use f='include/libintl.h' l='69' u='c'/>
+<use f='include/libintl.h' l='69' u='c'/>
+<use f='include/libintl.h' l='76' u='c'/>
+<use f='include/libintl.h' l='76' u='c'/>

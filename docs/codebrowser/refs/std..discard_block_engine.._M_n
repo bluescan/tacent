@@ -1,0 +1,13 @@
+<use f='include/c++/11/bits/random.h' l='907' u='w' c='_ZNSt20discard_block_engineC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='917' u='w' c='_ZNSt20discard_block_engineC1ERKT_'/>
+<use f='include/c++/11/bits/random.h' l='927' u='w' c='_ZNSt20discard_block_engineC1EOT_'/>
+<use f='include/c++/11/bits/random.h' l='937' u='w' c='_ZNSt20discard_block_engineC1ENT_11result_typeE'/>
+<use f='include/c++/11/bits/random.h' l='947' u='w' c='_ZNSt20discard_block_engineC1ERTL0__'/>
+<use f='include/c++/11/bits/random.h' l='958' u='w' c='_ZNSt20discard_block_engine4seedEv'/>
+<use f='include/c++/11/bits/random.h' l='969' u='w' c='_ZNSt20discard_block_engine4seedENT_11result_typeE'/>
+<use f='include/c++/11/bits/random.h' l='982' u='w' c='_ZNSt20discard_block_engine4seedERTL0__'/>
+<dec f='include/c++/11/bits/random.h' l='1077' type='std::size_t'/>
+<use f='include/c++/11/bits/random.tcc' l='684' u='r' c='_ZNSt20discard_block_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='686' u='r' c='_ZNSt20discard_block_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='687' u='w' c='_ZNSt20discard_block_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='689' u='w' c='_ZNSt20discard_block_engineclEv'/>

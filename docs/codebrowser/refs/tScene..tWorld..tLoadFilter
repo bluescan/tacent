@@ -1,0 +1,2 @@
+<def f='Modules/Scene/Inc/Scene/tWorld.h' l='51' ll='64'/>
+<doc f='Modules/Scene/Inc/Scene/tWorld.h' l='50'>// When loading a tac file, what object types do we process. Filters can be combined.</doc>

@@ -1,0 +1,15 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='201' type='-1'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='211'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='212'/>
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='111' u='r' c='_ZNK6tImage10tBaseImage14GetChannelTypeEv'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='233'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='223'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='241'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='798' u='r' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='894' u='r' c='_ZN6tImage9tImageDDS5ClearEv'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='555' u='r' c='_ZN6tImage9tImageKTX5ClearEv'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='268' u='r' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='353' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='638' u='r' c='_ZN6tImage9tImagePVR5ClearEv'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='771' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='116' u='r' c='_Z19tGetChannelTypeName12tChannelType'/>

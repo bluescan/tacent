@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15360' ll='15365'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15360'/>
+<size>32</size>
+<mbr r='VkCudaModuleCreateInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCudaModuleCreateInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkCudaModuleCreateInfoNV::dataSize' o='128' t='size_t'/>
+<mbr r='VkCudaModuleCreateInfoNV::pData' o='192' t='const void *'/>

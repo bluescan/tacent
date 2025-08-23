@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/fs_path.h' l='282' ll='284' type='void std::filesystem::path::path(std::filesystem::path::string_type &amp;&amp; __source, std::filesystem::path::format  = auto_format)'/>
+<use f='include/c++/11/bits/fs_path.h' l='960' u='c' c='_ZNSt10filesystem7__cxx114pathaSEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='964' u='c' c='_ZNSt10filesystem7__cxx114path6assignEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='1220' u='c' c='_ZNKSt10filesystem7__cxx114path4stemEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1229' u='c' c='_ZNKSt10filesystem7__cxx114path9extensionEv'/>

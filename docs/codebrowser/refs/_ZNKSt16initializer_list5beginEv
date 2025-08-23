@@ -1,0 +1,8 @@
+<def f='include/c++/11/initializer_list' l='74' ll='75' type='std::initializer_list::const_iterator std::initializer_list::begin() const'/>
+<use f='include/c++/11/initializer_list' l='79' u='c' c='_ZNKSt16initializer_list3endEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='706' u='c' c='_ZNSt6vectorIbT_EC1ESt16initializer_listIbERKS0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='794' u='c' c='_ZNSt6vectorIbT_EaSESt16initializer_listIbE'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='827' u='c' c='_ZNSt6vectorIbT_E6assignESt16initializer_listIbE'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1054' u='c' c='_ZNSt6vectorIbT_E6insertESt19_Bit_const_iteratorSt16initializer_listIbE'/>
+<doc f='include/c++/11/initializer_list' l='73'>// First element.</doc>
+<use f='include/c++/11/bits/random.h' l='5305' u='c' c='_ZNSt21discrete_distribution10param_typeC1ESt16initializer_listIdE'/>

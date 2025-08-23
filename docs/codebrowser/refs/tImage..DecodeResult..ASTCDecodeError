@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tPixelUtil.h' l='38' type='6'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1452' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1034' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1142' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1106' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1115' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1121' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1140' u='r' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

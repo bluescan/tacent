@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='5371' ll='5376' type='std::vector&lt;double&gt; std::discrete_distribution::probabilities() const'/>
+<doc f='include/c++/11/bits/random.h' l='5368'>/**
+       * @brief Returns the probabilities of the distribution.
+       */</doc>

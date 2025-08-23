@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13177' ll='13180'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13177'/>
+<size>136</size>
+<mbr r='VkGeometryDataNV::triangles' o='0' t='VkGeometryTrianglesNV'/>
+<mbr r='VkGeometryDataNV::aabbs' o='768' t='VkGeometryAABBNV'/>

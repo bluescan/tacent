@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tThrow.h' l='38' type='void tWarning::tWarning(const char * format)'/>
+<def f='Modules/System/Src/tThrow.cpp' l='44' ll='50' type='void tWarning::tWarning(const char * format)'/>

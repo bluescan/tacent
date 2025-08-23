@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/ios_base.h' l='482' type='const std::ios_base::seekdir'/>
+<doc f='include/c++/11/bits/ios_base.h' l='481'>/// Request a seek relative to the beginning of the stream.</doc>
+<use f='include/c++/11/bits/fstream.tcc' l='900' u='r' c='_ZNSt13basic_filebuf7seekposENT0_8pos_typeESt13_Ios_Openmode'/>

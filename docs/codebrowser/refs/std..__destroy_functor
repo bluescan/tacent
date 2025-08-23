@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/std_function.h' l='107' type='3'/>
+<use f='include/c++/11/bits/std_function.h' l='202' c='_ZNSt14_Function_base13_Base_manager10_M_managerERSt9_Any_dataRKS1_St18_Manager_operation'/>
+<use f='include/c++/11/bits/std_function.h' l='244' c='_ZNSt14_Function_baseD1Ev'/>
+<use f='include/c++/11/bits/std_function.h' l='505' c='_ZNSt8functionIFT_DpT0_EEaSEDn'/>

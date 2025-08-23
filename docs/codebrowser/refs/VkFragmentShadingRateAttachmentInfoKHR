@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9671' ll='9676'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9671'/>
+<size>32</size>
+<mbr r='VkFragmentShadingRateAttachmentInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkFragmentShadingRateAttachmentInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkFragmentShadingRateAttachmentInfoKHR::pFragmentShadingRateAttachment' o='128' t='const VkAttachmentReference2 *'/>
+<mbr r='VkFragmentShadingRateAttachmentInfoKHR::shadingRateAttachmentTexelSize' o='192' t='VkExtent2D'/>

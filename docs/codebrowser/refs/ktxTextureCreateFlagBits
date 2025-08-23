@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='792' ll='805'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='785'>/**
+ * @memberof ktxTexture
+ * @~English
+ * @brief Flags for requesting services during creation.
+ *
+ * @sa ktxTexture_CreateFrom*
+ */</doc>

@@ -1,0 +1,5 @@
+<def f='Modules/Image/Inc/Image/tImageJPG.h' l='109' ll='115'/>
+<use f='Modules/Image/Inc/Image/tImageJPG.h' l='127' c='_ZNK6tImage9tImageJPG29CanDoPerfectLosslessTransformENS0_9TransformE'/>
+<use f='Modules/Image/Inc/Image/tImageJPG.h' l='132' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='317' c='_ZNK6tImage9tImageJPG29CanDoPerfectLosslessTransformENS0_9TransformE'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='361' c='_ZN6tImage9tImageJPG17LosslessTransformENS0_9TransformEb'/>

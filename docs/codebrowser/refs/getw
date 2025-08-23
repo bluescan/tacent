@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='581' type='int getw(FILE * __stream)'/>
+<doc f='include/stdio.h' l='580'>/* Get a word (int) from STREAM.  */</doc>

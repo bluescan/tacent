@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tBaseImage.h' l='29' type='0'/>
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='30'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='54' c='_ZN6tImage8tTextureC1ERK7tStringNS_10tFaceIndexEb'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='59' c='_ZN6tImage8tTextureC1ERNS_9tImageDDSENS_10tFaceIndexE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='87' c='_ZN6tImage8tTexture4LoadERK7tStringNS_10tFaceIndexEb'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='88' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>

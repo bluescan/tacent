@@ -1,0 +1,2 @@
+<dec f='include/wchar.h' l='154' type='wchar_t * wcsdup(const wchar_t * __s)'/>
+<doc f='include/wchar.h' l='153'>/* Duplicate S, returning an identical malloc&apos;d string.  */</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='325' type='T * tItList::Drop()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='325'>/* Drops and returns tail. */</doc>

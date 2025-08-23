@@ -1,0 +1,2 @@
+<def f='Modules/Image/Src/tImageDDS.cpp' l='1032' ll='1055' type='int tImage::tImageDDS::StealCubemapLayers(tList&lt;tImage::tLayer&gt; * layerLists, uint32 faceFlags = tFaceFlag_All)'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='77' u='c' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>

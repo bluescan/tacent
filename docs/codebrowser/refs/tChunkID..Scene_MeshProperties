@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='460' type='16818176'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='460'>// Contains, in order, NumFaces, NumEdges, NumVerts, NumNormals, NumUVs, and NumColours</doc>
+<use f='Modules/Scene/Src/tMesh.cpp' l='158' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='365' u='r' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>

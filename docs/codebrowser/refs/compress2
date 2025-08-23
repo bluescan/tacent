@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='1243' type='int compress2(Bytef * dest, uLongf * destLen, const Bytef * source, uLong sourceLen, int level)'/>

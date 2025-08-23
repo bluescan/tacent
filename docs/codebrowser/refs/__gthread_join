@@ -1,0 +1,1 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='666' ll='670' type='int __gthread_join(__gthread_t __threadid, void ** __value_ptr)'/>

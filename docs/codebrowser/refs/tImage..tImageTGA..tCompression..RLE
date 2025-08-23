@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageTGA.h' l='101' type='1'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='118' c='_ZNK6tImage9tImageTGA4SaveERK7tStringNS0_7tFormatENS0_12tCompressionE'/>
+<doc f='Modules/Image/Inc/Image/tImageTGA.h' l='101'>// Run Length Encoding.</doc>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='397' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>

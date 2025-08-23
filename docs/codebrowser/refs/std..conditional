@@ -1,0 +1,37 @@
+<use f='include/c++/11/type_traits' l='130'/>
+<use f='include/c++/11/type_traits' l='135'/>
+<use f='include/c++/11/type_traits' l='153'/>
+<use f='include/c++/11/type_traits' l='158'/>
+<def f='include/c++/11/type_traits' l='2220' ll='2221'/>
+<def f='include/c++/11/type_traits' l='2224' ll='2226'/>
+<use f='include/c++/11/type_traits' l='2469'/>
+<use f='include/c++/11/type_traits' l='2484'/>
+<use f='include/c++/11/type_traits' l='2583'/>
+<use f='include/c++/11/bits/move.h' l='124' c='_ZSt16move_if_noexceptRT_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='136' c='_ZNSt4_PCC13_CopyMovePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='150' c='_ZNSt4_PCC13_MoveCopyPairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='390' c='_ZNSt4pairaSENSt11conditionalIXsr6__and_ISt18is_copy_assignableIT_ES1_IT0_EEE5valueERKSt4pairIS2_S4_ERKSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/stl_pair.h' l='401' c='_ZNSt4pairaSENSt11conditionalIXsr6__and_ISt18is_move_assignableIT_ES1_IT0_EEE5valueEOSt4pairIS2_S4_EOSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/ptr_traits.h' l='63'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1710'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1720'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='423' c='_ZNSt11__copy_moveIXT_ELb1ESt26random_access_iterator_tagE8__copy_mEPKTL0__S4_PS2_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='734' c='_ZNSt20__copy_move_backwardIXT_ELb1ESt26random_access_iterator_tagE13__copy_move_bEPKTL0__S4_PS2_'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='90'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='135'/>
+<use f='include/c++/11/tuple' l='69'/>
+<use f='include/c++/11/tuple' l='898' c='_ZNSt5tupleaSENSt11conditionalIXcl12__assignableIDpRKT_EEERKSt5tupleIJDpS1_EERKSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/tuple' l='909' c='_ZNSt5tupleaSENSt11conditionalIXcl12__assignableIDpT_EEEOSt5tupleIJS2_EEOSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/tuple' l='1267' c='_ZNSt5tupleIJT_T0_EEaSENSt11conditionalIXcl12__assignableIRKS0_RKS1_EEERKS_IJS0_S1_EERKSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/tuple' l='1278' c='_ZNSt5tupleIJT_T0_EEaSENSt11conditionalIXcl12__assignableIS0_S1_EEEOS_IJS0_S1_EEOSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='329'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='332'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='835'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1448'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1451'/>
+<use f='include/c++/11/bits/hashtable.h' l='319' c='_ZNSt10_Hashtable15__fwd_value_forERT0_'/>
+<use f='include/c++/11/bits/hashtable.h' l='1517' c='_ZNSt10_HashtableC1EOSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_EONSt23__allocator_traits_base8__rebindIS3_NSt8__detail10_Hash_nodeIS2_Xsr13__hash_ca5077237'/>
+<doc f='include/c++/11/type_traits' l='2223'>// Partial specialization for false.</doc>
+<use f='include/c++/11/bits/unique_ptr.h' l='337'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='600'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='678' c='_ZNSt14__shared_countC1EOSt10unique_ptrITL0__TL0_0_E'/>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='3607' ll='3609' type='void std::bernoulli_distribution::param(const std::bernoulli_distribution::param_type &amp; __param)'/>
+<use f='include/c++/11/bits/random.h' l='3727' u='c' c='_ZStrsRSt13basic_istreamIT_T0_ERSt22bernoulli_distribution'/>
+<doc f='include/c++/11/bits/random.h' l='3603'>/**
+     * @brief Sets the parameter set of the distribution.
+     * @param __param The new parameter set of the distribution.
+     */</doc>

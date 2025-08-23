@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='88' type='bool tMath::tInInterval(const T val, const T min, const T max, tMath::tBias bias)'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='87' u='c' c='_ZNK5tMath9tInterval8ContainsEi'/>

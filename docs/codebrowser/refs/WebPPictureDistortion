@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='412' type='int WebPPictureDistortion(const WebPPicture * src, const WebPPicture * ref, int metric_type, float * result)'/>

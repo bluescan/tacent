@@ -1,0 +1,3 @@
+<use f='include/c++/11/stop_token' l='360' u='c' c='_ZNSt10stop_token13_Stop_state_t11_M_try_lockERjSt12memory_order'/>
+<use f='include/c++/11/stop_token' l='372' u='c' c='_ZNSt10stop_token13_Stop_state_t20_M_try_lock_and_stopERj'/>
+<def f='include/c++/11/stop_token' l='376' ll='389' type='bool std::stop_token::_Stop_state_t::_M_do_try_lock(std::stop_token::_Stop_state_t::value_type &amp; __curval, std::stop_token::_Stop_state_t::value_type __newbits, std::memory_order __success, std::memory_order __failure)'/>

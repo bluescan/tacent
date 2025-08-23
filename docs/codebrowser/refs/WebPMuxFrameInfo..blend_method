@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='209' type='WebPMuxAnimBlend'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='412' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>288</offset>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='209'>// Blend operation for the frame.</doc>

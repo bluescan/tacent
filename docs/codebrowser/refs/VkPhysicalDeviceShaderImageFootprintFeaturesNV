@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13702' ll='13706'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13702'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceShaderImageFootprintFeaturesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceShaderImageFootprintFeaturesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceShaderImageFootprintFeaturesNV::imageFootprint' o='128' t='VkBool32'/>

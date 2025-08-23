@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/streambuf_iterator.h' l='201' u='c' c='_ZNKSt19istreambuf_iterator6_M_getEv'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='201' u='c' c='_ZNKSt19istreambuf_iterator6_M_getEv'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='208' u='c' c='_ZNKSt19istreambuf_iterator9_M_at_eofEv'/>
+<def f='include/c++/11/bits/streambuf_iterator.h' l='210' ll='215' type='static bool std::istreambuf_iterator::_S_is_eof(std::istreambuf_iterator::int_type __c)'/>

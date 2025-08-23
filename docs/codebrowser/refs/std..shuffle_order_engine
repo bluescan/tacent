@@ -1,0 +1,31 @@
+<def f='include/c++/11/bits/random.h' l='1326' ll='1530'/>
+<use f='include/c++/11/bits/random.h' l='1499' c='_ZStlsRSt13basic_ostreamITL0_1_TL0_2_ERKSt20shuffle_order_engineITL0__XTL0_0_EE'/>
+<use f='include/c++/11/bits/random.h' l='1517' c='_ZStrsRSt13basic_istreamITL0_1_TL0_2_ERSt20shuffle_order_engineITL0__XTL0_0_EE'/>
+<use f='include/c++/11/bits/random.h' l='1545' c='_ZStneRKSt20shuffle_order_engineIT_XT0_EES3_'/>
+<use f='include/c++/11/bits/random.h' l='1547' c='_ZStneRKSt20shuffle_order_engineIT_XT0_EES3_'/>
+<use f='include/c++/11/bits/random.h' l='1602'/>
+<use f='include/c++/11/bits/random.tcc' l='805'/>
+<use f='include/c++/11/bits/random.tcc' l='837' c='_ZNSt20shuffle_order_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='836' c='_ZNSt20shuffle_order_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='858' c='_ZStlsRSt13basic_ostreamIT1_T2_ERKSt20shuffle_order_engineIT_XT0_EE'/>
+<use f='include/c++/11/bits/random.tcc' l='882' c='_ZStrsRSt13basic_istreamIT1_T2_ERSt20shuffle_order_engineIT_XT0_EE'/>
+<smbr r='std::shuffle_order_engine::table_size' t='const std::size_t'/>
+<fun r='_ZNSt20shuffle_order_engineC1Ev'/>
+<fun r='_ZNSt20shuffle_order_engineC1ERKT_'/>
+<fun r='_ZNSt20shuffle_order_engineC1EOT_'/>
+<fun r='_ZNSt20shuffle_order_engineC1ENT_11result_typeE'/>
+<fun r='_ZNSt20shuffle_order_engineC1ERTL0__'/>
+<fun r='_ZNSt20shuffle_order_engine4seedEv'/>
+<fun r='_ZNSt20shuffle_order_engine4seedENT_11result_typeE'/>
+<fun r='_ZNSt20shuffle_order_engine4seedERTL0__'/>
+<fun r='_ZNKSt20shuffle_order_engine4baseEv'/>
+<fun r='_ZNSt20shuffle_order_engine3minEv'/>
+<fun r='_ZNSt20shuffle_order_engine3maxEv'/>
+<fun r='_ZNSt20shuffle_order_engine7discardEy'/>
+<fun r='_ZNSt20shuffle_order_engineclEv'/>
+<fun r='_ZNSt20shuffle_order_engine13_M_initializeEv'/>
+<mbr r='std::shuffle_order_engine::_M_b' t='_RandomNumberEngine'/>
+<mbr r='std::shuffle_order_engine::_M_v' t='std::shuffle_order_engine::result_type[__k]'/>
+<mbr r='std::shuffle_order_engine::_M_y' t='std::shuffle_order_engine::result_type'/>
+<smbr r='std::shuffle_order_engine::table_size' t='const std::size_t'/>
+<fun r='_ZNSt20shuffle_order_engineclEv'/>

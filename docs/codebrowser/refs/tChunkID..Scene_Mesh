@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='459' type='2164277248'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='459'>// The mesh is a triangle mesh.</doc>
+<use f='Modules/Scene/Src/tMesh.cpp' l='151' u='r' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='363' u='r' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='57' c='_ZN6tScene10tPolyModel4LoadERK6tChunk'/>

@@ -1,0 +1,3 @@
+<def f='Modules/Image/Src/tImageDDS.cpp' l='30' ll='71'/>
+<doc f='Modules/Image/Src/tImageDDS.cpp' l='28'>// Direct Draw pixel format flags. When the comment says legacy here, we really mean it. Not just legacy in that
+	// there&apos;s no DX10 block, but legacy in that there won&apos;t be a DX10 block AND it&apos;s still a really old-style dds.</doc>

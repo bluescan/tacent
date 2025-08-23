@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='549' type='_If_seed_seq&lt;_Sseq&gt; std::mersenne_twister_engine::seed(_Sseq &amp; __q)'/>
+<def f='include/c++/11/bits/random.tcc' l='342' ll='386' type='_If_seed_seq&lt;_Sseq&gt; std::mersenne_twister_engine::seed(_Sseq &amp; __q)'/>

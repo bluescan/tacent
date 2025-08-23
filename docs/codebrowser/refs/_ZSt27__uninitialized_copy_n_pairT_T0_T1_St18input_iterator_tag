@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_uninitialized.h' l='829' ll='845' type='pair&lt;_InputIterator, _ForwardIterator&gt; std::__uninitialized_copy_n_pair(_InputIterator __first, _Size __n, _ForwardIterator __result, std::input_iterator_tag )'/>

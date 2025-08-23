@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='520' type='void tSystem::tFileTypes::ClearSelected()'/>
+<def f='Modules/System/Inc/System/tFile.h' l='1019' ll='1023' type='void tSystem::tFileTypes::ClearSelected()'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='519'>// Utility functions dealing with selected state.</doc>

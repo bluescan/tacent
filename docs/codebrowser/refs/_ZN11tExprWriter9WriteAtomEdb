@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='264' type='void tExprWriter::WriteAtom(const double , bool incBitRep = true)'/>
+<use f='Modules/System/Inc/System/tScript.h' l='313' u='c' c='_ZN11tExprWriter4AtomEdb'/>
+<def f='Modules/System/Src/tScript.cpp' l='742' ll='747' type='void tExprWriter::WriteAtom(const double atom, bool incBitRep = true)'/>

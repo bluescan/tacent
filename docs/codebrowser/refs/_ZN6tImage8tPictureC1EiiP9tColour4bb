@@ -1,0 +1,4 @@
+<def f='Modules/Image/Inc/Image/tPicture.h' l='93' type='void tImage::tPicture::tPicture(int width, int height, tPixel4b * pixelBuffer, bool copyPixels = true)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='90'>// This constructor allows you to specify an external buffer of pixels to use. If copyPixels is true, it simply
+	// copies the values from the buffer you supply. If copyPixels is false, it means you are giving the buffer to the
+	// tPicture. In this case the tPicture will delete[] the buffer for you when appropriate.</doc>

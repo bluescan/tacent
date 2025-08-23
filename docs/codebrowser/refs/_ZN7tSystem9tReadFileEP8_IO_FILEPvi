@@ -1,0 +1,19 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='59' type='int tSystem::tReadFile(tFileHandle , void * buffer, int sizeBytes)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='712' ll='717' type='int tSystem::tReadFile(tFileHandle handle, void * buffer, int sizeBytes)'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='59' u='c' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='68' u='c' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='111' u='c' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='188' u='c' c='_ZN6tImage9tImageBMP16ReadRow_Pixels32EP8_IO_FILEPh'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='205' u='c' c='_ZN6tImage9tImageBMP16ReadRow_Pixels24EP8_IO_FILEPh'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='226' u='c' c='_ZN6tImage9tImageBMP16ReadRow_Pixels16EP8_IO_FILEPh'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='250' u='c' c='_ZN6tImage9tImageBMP16ReadRow_Indexed8EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='270' u='c' c='_ZN6tImage9tImageBMP16ReadRow_Indexed4EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='294' u='c' c='_ZN6tImage9tImageBMP16ReadRow_Indexed1EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='797' u='c' c='_ZN12tChunkReader4LoadERK7tStringPh'/>
+<use f='Modules/System/Src/tChunk.cpp' l='832' u='c' c='_ZN12tChunkReader8LoadSafeERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='887' u='c' c='_ZN7tSystem15tFilesIdenticalERK7tStringS2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='888' u='c' c='_ZN7tSystem15tFilesIdenticalERK7tStringS2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='1215' u='c' c='_ZN7tSystem9tLoadFileERK7tStringPhPib'/>
+<use f='Modules/System/Src/tFile.cpp' l='1288' u='c' c='_ZN7tSystem13tLoadFileHeadERK7tStringRiPh'/>
+<use f='Modules/System/Src/tScript.cpp' l='556' u='c' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='1139' u='c' c='_ZN10tFunScript4LoadERK7tString'/>

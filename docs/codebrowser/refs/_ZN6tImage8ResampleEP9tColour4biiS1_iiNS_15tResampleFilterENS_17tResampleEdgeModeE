@@ -1,0 +1,13 @@
+<dec f='Modules/Image/Inc/Image/tResample.h' l='79' type='bool tImage::Resample(tPixel4b * src, int srcW, int srcH, tPixel4b * dst, int dstW, int dstH, tImage::tResampleFilter  = tResampleFilter::Bilinear, tImage::tResampleEdgeMode  = tResampleEdgeMode::Clamp)'/>
+<doc f='Modules/Image/Inc/Image/tResample.h' l='71'>// Resample the image using the supplied filter. All channels are treated equally. With some resamplers the alpha
+// channels gets multiplied into the colours, we do not. This simplicity has some repercussions -- specifically the
+// texture author should extend the colours into the areas where the alpha is 0 to make sure rescaling near these
+// borders does not introduce colour artifacts when upscaling.
+//
+// The edge mode is either clamp or wrap. In wrap node if a pixel to the right (or up) is needed for the resample and
+// we are at the edge of the image, it is taken from the other side. Some libraries also support a &apos;reflect&apos; mode but
+// since I&apos;m not sure when this is useful, it is being excluded.</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='962' u='c' c='_ZN6tImage8tPicture8ResampleEiiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='1006' u='c' c='_ZN6tImage8tPicture14GenerateLayersER5tListINS_6tLayerEENS_15tResampleFilterENS_17tResampleEdgeModeEb'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='1008' u='c' c='_ZN6tImage8tPicture14GenerateLayersER5tListINS_6tLayerEENS_15tResampleFilterENS_17tResampleEdgeModeEb'/>
+<def f='Modules/Image/Src/tResample.cpp' l='113' ll='234' type='bool tImage::Resample(tPixel4b * src, int srcW, int srcH, tPixel4b * dst, int dstW, int dstH, tImage::tResampleFilter resampleFilter = tResampleFilter::Bilinear, tImage::tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp)'/>

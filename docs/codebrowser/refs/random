@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='402' type='long random()'/>
+<doc f='include/stdlib.h' l='401'>/* Return a random long integer between 0 and 2^31-1 inclusive.  */</doc>

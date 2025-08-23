@@ -1,0 +1,19 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='138' type='int tChunkWriter::Write(bool b)'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='158' u='c' c='_ZN12tChunkWriter5WriteEPKbi'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='126'>// All write functions return the number of bytes written. Here&apos;s the generic form of Write for various data types.
+	// The functions after are specializations for cases that would not work otherwise. The list of types known to
+	// work are: char, int8, uint8, int16, uint16, int32, uint32, int64, uint64, float, double, tPixel, tString,
+	// tVec2, tVec3, tVec4, tQuat, tMat2, tMat4, tEdge, tTri, tQuad, and tSphere. The reason there are so many
+	// specializations is that endian-swapping happens for many of the types, and sometimes to certain types members
+	// and not others. The generic case only deals with data that does not need any potential swaps. OK. Forget it.
+	// Turns out that the generic form would only save about 3 functions and increase the complexity of the
+	// specialized versions. I&apos;m staying with the explicit versions! OK OK. Forget the forget. It&apos;s super handy to be
+	// able to write enums without first needing to convert them to int first -- so we&apos;re going to make the generic
+	// version one that handles endian swaps and specialize the others. It turns out that regular old overloads always
+	// get chosen before template specializations, so I don&apos;t actually need to add any specializations :) The generic
+	// form is at the end of the overloads below.</doc>
+<use f='Modules/Image/Src/tTexture.cpp' l='394' u='c' c='_ZNK6tImage8tTexture4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='46' u='c' c='_ZNK6tScene10tAttribute4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='95' u='c' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='52' u='c' c='_ZNK6tScene5tPath4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='30' u='c' c='_ZNK6tScene10tPolyModel4SaveER12tChunkWriter'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5520' ll='5524'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5520'/>
+<size>32</size>
+<mbr r='VkExternalBufferProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkExternalBufferProperties::pNext' o='64' t='void *'/>
+<mbr r='VkExternalBufferProperties::externalMemoryProperties' o='128' t='VkExternalMemoryProperties'/>

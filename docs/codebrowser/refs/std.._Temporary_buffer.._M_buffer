@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/stl_tempbuf.h' l='150' type='std::_Temporary_buffer::pointer'/>
+<use f='include/c++/11/bits/stl_tempbuf.h' l='166' u='r' c='_ZNSt17_Temporary_buffer5beginEv'/>
+<use f='include/c++/11/bits/stl_tempbuf.h' l='171' c='_ZNSt17_Temporary_buffer3endEv'/>
+<use f='include/c++/11/bits/stl_tempbuf.h' l='181' c='_ZNSt17_Temporary_bufferD1Ev'/>
+<use f='include/c++/11/bits/stl_tempbuf.h' l='181' c='_ZNSt17_Temporary_bufferD1Ev'/>
+<use f='include/c++/11/bits/stl_tempbuf.h' l='182' c='_ZNSt17_Temporary_bufferD1Ev'/>
+<use f='include/c++/11/bits/stl_tempbuf.h' l='259' u='w' c='_ZNSt17_Temporary_bufferC1ET_l'/>
+<use f='include/c++/11/bits/stl_tempbuf.h' l='270' u='w' c='_ZNSt17_Temporary_bufferC1ET_l'/>

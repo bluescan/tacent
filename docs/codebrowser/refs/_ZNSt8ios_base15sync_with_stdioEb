@@ -1,0 +1,11 @@
+<dec f='include/c++/11/bits/ios_base.h' l='770' type='static bool std::ios_base::sync_with_stdio(bool __sync = true)'/>
+<doc f='include/c++/11/bits/ios_base.h' l='759'>/**
+     *  @brief  Interaction with the standard C I/O objects.
+     *  @param  __sync  Whether to synchronize or not.
+     *  @return  True if the standard streams were previously synchronized.
+     *
+     *  The synchronization referred to is @e only that between the standard
+     *  C facilities (e.g., stdout) and the standard C++ objects (e.g.,
+     *  cout).  User-declared streams are unaffected.  See
+     *  https://gcc.gnu.org/onlinedocs/libstdc++/manual/fstreams.html#std.io.filestreams.binary
+    */</doc>

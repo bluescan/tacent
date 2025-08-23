@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11919' ll='11924'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11919'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceConditionalRenderingFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceConditionalRenderingFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceConditionalRenderingFeaturesEXT::conditionalRendering' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceConditionalRenderingFeaturesEXT::inheritedConditionalRendering' o='160' t='VkBool32'/>

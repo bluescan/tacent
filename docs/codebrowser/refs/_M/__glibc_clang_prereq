@@ -1,0 +1,10 @@
+<dec f='include/features.h' l='179'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='146' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='634' u='c'/>
+<use f='include/string.h' l='37' u='c'/>
+<use f='include/math.h' l='959' u='c'/>
+<use f='include/math.h' l='974' u='c'/>
+<use f='include/math.h' l='993' u='c'/>
+<use f='include/math.h' l='1001' u='c'/>
+<use f='include/math.h' l='1010' u='c'/>
+<use f='include/math.h' l='1028' u='c'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='182'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='181'>/* Neither process nor thread sporadic server interfaces is available.  */</doc>

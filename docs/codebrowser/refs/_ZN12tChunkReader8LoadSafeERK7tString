@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='339' type='bool tChunkReader::LoadSafe(const tString &amp; filename)'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='338'>// Same as load but returns false at first sign of trouble.</doc>
+<def f='Modules/System/Src/tChunk.cpp' l='815' ll='838' type='bool tChunkReader::LoadSafe(const tString &amp; filename)'/>

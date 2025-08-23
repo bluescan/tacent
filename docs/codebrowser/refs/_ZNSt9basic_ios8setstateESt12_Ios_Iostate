@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/basic_ios.h' l='156' ll='158' type='void std::basic_ios::setstate(std::ios_base::iostate __state)'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='150'>/**
+       *  @brief  Sets additional flags in the error state.
+       *  @param  __state  The additional state flag(s) to set.
+       *
+       *  See std::ios_base::iostate for the possible bit values.
+      */</doc>

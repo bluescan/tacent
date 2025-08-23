@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='221' type='bool tSystem::tRenameFile(const tString &amp; dir, const tString &amp; oldPathName, const tString &amp; newPathName)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='218'>// Renames the file or directory specified by oldName to the newName. This function can only be used for renaming, not
+// moving. Returns true on success. The dir variable should contain the path to where the file or dir you want to rename
+// is located.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='949' ll='982' type='bool tSystem::tRenameFile(const tString &amp; dir, const tString &amp; oldPathName, const tString &amp; newPathName)'/>

@@ -1,0 +1,9 @@
+<def f='include/c++/11/sstream' l='138' ll='143' type='void std::basic_stringbuf::basic_stringbuf&lt;_CharT, _Traits, _Alloc&gt;(const std::basic_stringbuf::__string_type &amp; __str, ios_base::openmode __mode = ios_base::in | ios_base::out)'/>
+<doc f='include/c++/11/sstream' l='130'>/**
+       *  @brief  Starts with an existing string buffer.
+       *  @param  __str  A string to copy as a starting buffer.
+       *  @param  __mode  Whether the buffer can read, or write, or both.
+       *
+       *  This constructor initializes the parent class using its
+       *  own default ctor.
+      */</doc>

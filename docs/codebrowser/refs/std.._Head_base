@@ -1,0 +1,34 @@
+<def f='include/c++/11/tuple' l='77' ll='130'/>
+<def f='include/c++/11/tuple' l='186' ll='239'/>
+<use f='include/c++/11/tuple' l='260'/>
+<use f='include/c++/11/tuple' l='265'/>
+<use f='include/c++/11/tuple' l='417'/>
+<use f='include/c++/11/tuple' l='421'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1Ev'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ERKS0_'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ERKS_IXT_ES0_Lb1EE'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1EOS_IXT_ES0_Lb1EE'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1EOTL0__'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt15allocator_arg_tSt13__uses_alloc0'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt15allocator_arg_tSt13__uses_alloc1ITL0__E'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt15allocator_arg_tSt13__uses_alloc2ITL0__E'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt13__uses_alloc0OTL0__'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt13__uses_alloc1ITL0__EOTL0_0_'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt13__uses_alloc2ITL0__EOTL0_0_'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb1EE7_M_headERS_IXT_ES0_Lb1EE'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb1EE7_M_headERKS_IXT_ES0_Lb1EE'/>
+<mbr r='std::_Head_base::_M_head_impl' t='_Head'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1Ev'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ERKS0_'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ERKS_IXT_ES0_Lb0EE'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1EOS_IXT_ES0_Lb0EE'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1EOTL0__'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt15allocator_arg_tSt13__uses_alloc0'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt15allocator_arg_tSt13__uses_alloc1ITL0__E'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt15allocator_arg_tSt13__uses_alloc2ITL0__E'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt13__uses_alloc0OTL0__'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt13__uses_alloc1ITL0__EOTL0_0_'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt13__uses_alloc2ITL0__EOTL0_0_'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb0EE7_M_headERS_IXT_ES0_Lb0EE'/>
+<fun r='_ZNSt10_Head_baseIXT_ET0_Lb0EE7_M_headERKS_IXT_ES0_Lb0EE'/>
+<mbr r='std::_Head_base::_M_head_impl' t='_Head'/>

@@ -1,0 +1,30 @@
+<def f='include/c++/11/bits/codecvt.h' l='157' ll='160' type='std::__codecvt_abstract_base::result std::__codecvt_abstract_base::unshift(std::__codecvt_abstract_base::state_type &amp; __state, std::__codecvt_abstract_base::extern_type * __to, std::__codecvt_abstract_base::extern_type * __to_end, std::__codecvt_abstract_base::extern_type *&amp; __to_next) const'/>
+<doc f='include/c++/11/bits/codecvt.h' l='128'>/**
+       *  @brief  Reset conversion state.
+       *
+       *  Writes characters to output that would restore @a state to initial
+       *  conditions.  The idea is that if a partial conversion occurs, then
+       *  the converting the characters written by this function would leave
+       *  the state in initial conditions, rather than partial conversion
+       *  state.  It does this by calling codecvt::do_unshift().
+       *
+       *  For example, if 4 external characters always converted to 1 internal
+       *  character, and input to in() had 6 external characters with state
+       *  saved, this function would write two characters to the output and
+       *  set the state to initialized conditions.
+       *
+       *  The source and destination character sets are determined by the
+       *  facet&apos;s locale, internal and external types.
+       *
+       *  The result returned is a member of codecvt_base::result.  If the
+       *  state could be reset and data written, returns codecvt_base::ok.  If
+       *  no conversion is necessary, returns codecvt_base::noconv.  If the
+       *  output has insufficient space, returns codecvt_base::partial.
+       *  Otherwise the reset failed and codecvt_base::error is returned.
+       *
+       *  @param  __state  Persistent conversion state data.
+       *  @param  __to  Start of output buffer.
+       *  @param  __to_end  End of output buffer.
+       *  @param  __to_next  Returns start of unused output area.
+       *  @return  codecvt_base::result.
+      */</doc>

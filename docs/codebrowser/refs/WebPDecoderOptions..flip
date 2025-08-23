@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='456' type='int'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='100' u='w' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<offset>384</offset>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='456'>// flip output vertically</doc>

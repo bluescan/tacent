@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='5894' ll='5905' type='std::vector&lt;_RealType&gt; std::piecewise_linear_distribution::intervals() const'/>
+<doc f='include/c++/11/bits/random.h' l='5891'>/**
+       * @brief Return the intervals of the distribution.
+       */</doc>

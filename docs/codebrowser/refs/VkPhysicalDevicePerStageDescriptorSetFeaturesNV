@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18451' ll='18456'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18451'/>
+<size>24</size>
+<mbr r='VkPhysicalDevicePerStageDescriptorSetFeaturesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDevicePerStageDescriptorSetFeaturesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDevicePerStageDescriptorSetFeaturesNV::perStageDescriptorSet' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDevicePerStageDescriptorSetFeaturesNV::dynamicPipelineLayout' o='160' t='VkBool32'/>

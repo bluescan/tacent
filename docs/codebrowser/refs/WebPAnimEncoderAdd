@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='493' type='int WebPAnimEncoderAdd(WebPAnimEncoder * enc, struct WebPPicture * frame, int timestamp_ms, const struct WebPConfig * config)'/>

@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='101' macro='1' type='_Float64x ldexpf64x(_Float64x __x, int __exponent)'/>

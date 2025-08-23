@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tImageTGA.h' l='94' type='2'/>
+<doc f='Modules/Image/Inc/Image/tImageTGA.h' l='94'>// 24 bit colour with 8 bits opacity in the alpha channel.</doc>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='387' u='r' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='411' u='r' c='_ZNK6tImage9tImageTGA16SaveUncompressedERK7tStringNS0_7tFormatE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='455' u='r' c='_ZNK6tImage9tImageTGA16SaveUncompressedERK7tStringNS0_7tFormatE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='466' u='r' c='_ZNK6tImage9tImageTGA14SaveCompressedERK7tStringNS0_7tFormatE'/>

@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/ios_base.h' l='782' type='std::locale std::ios_base::imbue(const std::locale &amp; __loc)'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='117' u='c' c='_ZNSt9basic_ios5imbueERKSt6locale'/>
+<doc f='include/c++/11/bits/ios_base.h' l='773'>/**
+     *  @brief  Setting a new locale.
+     *  @param  __loc  The new locale.
+     *  @return  The previous locale.
+     *
+     *  Sets the new locale for this stream, and then invokes each callback
+     *  with imbue_event.
+    */</doc>

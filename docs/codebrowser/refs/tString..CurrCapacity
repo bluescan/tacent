@@ -1,0 +1,16 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='125' u='r' c='_ZNK7tString8CapacityEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='145' u='r' c='_ZN7tString4GrowEi'/>
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='427' type='int'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='709' u='r' c='_ZN7tString7ReserveEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='710' u='r' c='_ZN7tString7ReserveEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='717' u='w' c='_ZN7tString7ReserveEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='719' u='r' c='_ZN7tString7ReserveEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='725' u='r' c='_ZN7tString6ShrinkEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='725' u='r' c='_ZN7tString6ShrinkEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='726' u='r' c='_ZN7tString6ShrinkEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='728' u='r' c='_ZN7tString6ShrinkEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='939' u='r' c='_ZN7tString9SetLengthEib'/>
+<offset>160</offset>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='426'>// The capacity. The number of allocated CodeUnuts is always one more than this.</doc>
+<use f='Modules/Foundation/Src/tString.cpp' l='706' u='r' c='_ZN7tString14UpdateCapacityEib'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='732' u='w' c='_ZN7tString14UpdateCapacityEib'/>

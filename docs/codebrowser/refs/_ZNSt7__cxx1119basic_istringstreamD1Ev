@@ -1,0 +1,7 @@
+<def f='include/c++/11/sstream' l='616' ll='617' type='void std::basic_istringstream::~basic_istringstream&lt;_CharT, _Traits, _Alloc&gt;()'/>
+<doc f='include/c++/11/sstream' l='610'>/**
+       *  @brief  The destructor does nothing.
+       *
+       *  The buffer is deallocated by the stringbuf object, not the
+       *  formatting stream.
+      */</doc>

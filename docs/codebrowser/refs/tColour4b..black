@@ -1,0 +1,10 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='449' type='const tColour4b'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='447'>// Predefined colours. Initialized using the C++11 aggregate initializer syntax. These may be used before main()
+	// in normally (non-aggregate syntax) constructed objects.</doc>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='116' c='_ZN6tImage8tPicture3SetEiiRK9tColour4b'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='116' c='_ZN6tImage8tPicture3SetEiiRK9tColour4b'/>
+<use f='Modules/System/Inc/System/tScript.h' l='133' u='r' c='_ZNK11tExpressioncv9tColour4bEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='217' u='r' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<def f='Modules/Math/Src/tColour.cpp' l='146' type='const tColour4b'/>
+<doc f='Modules/Math/Src/tColour.cpp' l='145'>// Uses C++11 aggregate initialization syntax.</doc>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='51' u='r' c='_ZNK6tScene10tAttribute11GetAsColourEv'/>

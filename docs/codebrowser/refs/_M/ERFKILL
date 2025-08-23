@@ -1,0 +1,2 @@
+<dec f='include/asm-generic/errno.h' l='119'/>
+<use f='include/x86_64-linux-gnu/bits/errno.h' l='45' u='a'/>

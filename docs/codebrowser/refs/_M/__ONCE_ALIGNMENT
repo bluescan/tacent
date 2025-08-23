@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes-arch.h' l='48'/>
+<use f='include/x86_64-linux-gnu/bits/thread-shared-types.h' l='110' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='53' u='c'/>

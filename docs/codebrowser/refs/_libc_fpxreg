@@ -1,0 +1,6 @@
+<def f='include/x86_64-linux-gnu/sys/ucontext.h' l='101' ll='106'/>
+<use f='include/x86_64-linux-gnu/sys/ucontext.h' l='124'/>
+<size>16</size>
+<mbr r='_libc_fpxreg::significand' o='0' t='unsigned short[4]'/>
+<mbr r='_libc_fpxreg::exponent' o='64' t='unsigned short'/>
+<mbr r='_libc_fpxreg::__glibc_reserved1' o='80' t='unsigned short[3]'/>

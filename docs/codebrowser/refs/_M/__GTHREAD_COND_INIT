@@ -1,0 +1,8 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='69'/>
+<use f='include/c++/11/bits/std_mutex.h' l='134' u='a'/>
+<use f='include/c++/11/bits/std_mutex.h' l='189' u='a'/>
+<use f='include/c++/11/bits/std_mutex.h' l='190' u='c'/>
+<use f='include/c++/11/ext/concurrence.h' l='251' u='a'/>
+<use f='include/c++/11/ext/concurrence.h' l='252' u='c'/>
+<use f='include/c++/11/ext/concurrence.h' l='263' u='a'/>
+<use f='include/c++/11/ext/concurrence.h' l='269' u='a'/>

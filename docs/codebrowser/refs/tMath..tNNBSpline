@@ -1,0 +1,6 @@
+<def f='Modules/Math/Inc/Math/tSpline.h' l='223' ll='254'/>
+<size>40</size>
+<doc f='Modules/Math/Inc/Math/tSpline.h' l='220'>// A Nonuniform, Nonrational, Cubic Basis Spline. Nonuniform allows knots to be spaced unevenly in the parametric
+// parameter t. Nonrational means no ratio of polynomials, so no conics and not invariant under perspective
+// transformations.</doc>
+<fun r='_ZN5tMath10tNNBSplineD1Ev'/>

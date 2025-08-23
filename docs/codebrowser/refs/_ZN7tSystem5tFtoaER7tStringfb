@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tPrint.h' l='119' type='bool tSystem::tFtoa(tString &amp; dest, float value, bool incBitRep = true)'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='118'>// These are synonyms of the above two functions.</doc>

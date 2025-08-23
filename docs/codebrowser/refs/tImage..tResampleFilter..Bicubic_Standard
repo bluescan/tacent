@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tResample.h' l='30' type='3'/>
+<use f='Modules/Image/Inc/Image/tResample.h' l='46'/>
+<doc f='Modules/Image/Inc/Image/tResample.h' l='27'>// The bicubic filter coefficients (b,c) and names are described here:
+	// https://entropymine.com/imageworsener/bicubic/
+	// The order in which the cubic filters are list below matches my opinion of overall quality.</doc>
+<doc f='Modules/Image/Inc/Image/tResample.h' l='30'>// Cardinal.				B=0		C=3/4</doc>
+<use f='Modules/Image/Src/tResample.cpp' l='155' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>

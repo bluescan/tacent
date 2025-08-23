@@ -1,0 +1,5 @@
+<dec f='include/unistd.h' l='786' type='__pid_t vfork()'/>
+<doc f='include/unistd.h' l='782'>/* Clone the calling process, but without copying the whole address space.
+   The calling process is suspended until the new process exits or is
+   replaced by a call to `execve&apos;.  Return -1 for errors, 0 to the new process,
+   and the process ID of the new process to the old process.  */</doc>

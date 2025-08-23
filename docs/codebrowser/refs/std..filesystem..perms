@@ -1,0 +1,38 @@
+<def f='include/c++/11/bits/fs_fwd.h' l='140' ll='160'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='164' c='_ZNSt10filesystemanENS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='165' c='_ZNSt10filesystemanENS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='165' c='_ZNSt10filesystemanENS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='168' c='_ZNSt10filesystemanENS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='172' c='_ZNSt10filesystemorENS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='173' c='_ZNSt10filesystemorENS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='173' c='_ZNSt10filesystemorENS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='176' c='_ZNSt10filesystemorENS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='180' c='_ZNSt10filesystemeoENS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='181' c='_ZNSt10filesystemeoENS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='181' c='_ZNSt10filesystemeoENS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='184' c='_ZNSt10filesystemeoENS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='188' c='_ZNSt10filesystemcoENS_5permsE'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='189' c='_ZNSt10filesystemcoENS_5permsE'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='192' c='_ZNSt10filesystemcoENS_5permsE'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='195' c='_ZNSt10filesystemaNERNS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='196' c='_ZNSt10filesystemaNERNS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='196' c='_ZNSt10filesystemaNERNS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='199' c='_ZNSt10filesystemoRERNS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='200' c='_ZNSt10filesystemoRERNS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='200' c='_ZNSt10filesystemoRERNS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='203' c='_ZNSt10filesystemeOERNS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='204' c='_ZNSt10filesystemeOERNS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='204' c='_ZNSt10filesystemeOERNS_5permsES0_'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='339' c='_ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsENS_12perm_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='61' c='_ZNSt10filesystem11file_statusC1ENS_9file_typeENS_5permsE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='73' c='_ZNKSt10filesystem11file_status11permissionsEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='77' c='_ZNSt10filesystem11file_status11permissionsENS_5permsE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='86'/>
+<use f='include/c++/11/bits/fs_ops.h' l='301' c='_ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsENS_12perm_optionsE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='305' c='_ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='309' c='_ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsENS_12perm_optionsERSt10error_code'/>
+<use f='Modules/System/Src/tFile.cpp' l='2048' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<doc f='include/c++/11/bits/fs_fwd.h' l='136'>/// @}
+
+
+  /// Bitmask type representing file access permissions</doc>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/thread' l='123' type='void std::jthread::jthread(std::jthread &amp;&amp; )'/>
+<use f='include/c++/11/thread' l='140' u='c' c='_ZNSt7jthreadaSEOS_'/>

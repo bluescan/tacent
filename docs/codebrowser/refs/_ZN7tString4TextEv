@@ -1,0 +1,25 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='238' type='char8_t * tString::Text()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='236'>// Accesses the raw UTF-8 codeunits represented by the &apos;official&apos; unsigned UTF-8 character datatype char8_t.
+	// Except for Charz nullptr is not returned although they may return a pointer to an empty string.</doc>
+<use f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='514' u='c' c='_ZNK8tFixIntU11GetAsStringEi'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='38' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='83' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/System/Inc/System/tRegex.h' l='113' u='c' c='_ZNK7tSystem6tRegex5Match9GetStringERK7tString'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='295' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='369' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tFile.cpp' l='1242' u='c' c='_ZN7tSystem9tLoadFileERK7tStringRS0_c'/>
+<use f='Modules/System/Src/tFile.cpp' l='1243' u='c' c='_ZN7tSystem9tLoadFileERK7tStringRS0_c'/>
+<use f='Modules/System/Src/tFile.cpp' l='2460' u='c' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2599' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2973' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tScript.cpp' l='209' u='c' c='_ZNK11tExpression19GetExpressionStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='257' u='c' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='281' u='c' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='468' u='c' c='_ZNK11tExpression10GetContextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='469' u='c' c='_ZNK11tExpression10GetContextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1184' u='c' c='_ZN10tFunScript4SaveERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='1187' u='c' c='_ZN10tFunScript4SaveERK7tString'/>
+<use f='Modules/System/Src/tTime.cpp' l='104' u='c' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>
+<use f='Modules/System/Src/tTime.cpp' l='109' u='c' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>
+<use f='Modules/System/Src/tTime.cpp' l='114' u='c' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>
+<use f='Modules/System/Src/tTime.cpp' l='119' u='c' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>

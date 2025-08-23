@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='656' type='bool tSystem::tCreateDirs(const tString &amp; dirs)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='654'>// Creates multiple directories in one go. Calling with a string like &quot;C:/DirA/DirB/&quot; will ensure that DirA and DirB
+// both exist. Returns true if successful.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='3139' ll='3149' type='bool tSystem::tCreateDirs(const tString &amp; dirs)'/>

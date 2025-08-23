@@ -1,0 +1,25 @@
+<use f='Modules/Image/Contrib/WebP/include/encode.h' l='33'/>
+<def f='Modules/Image/Contrib/WebP/include/encode.h' l='203' ll='231'/>
+<size>188</size>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='199'>//------------------------------------------------------------------------------
+// Input / Output
+// Structure for storing auxiliary statistics.</doc>
+<mbr r='WebPAuxStats::coded_size' o='0' t='int'/>
+<mbr r='WebPAuxStats::PSNR' o='32' t='float[5]'/>
+<mbr r='WebPAuxStats::block_count' o='192' t='int[3]'/>
+<mbr r='WebPAuxStats::header_bytes' o='288' t='int[2]'/>
+<mbr r='WebPAuxStats::residual_bytes' o='352' t='int[3][4]'/>
+<mbr r='WebPAuxStats::segment_size' o='736' t='int[4]'/>
+<mbr r='WebPAuxStats::segment_quant' o='864' t='int[4]'/>
+<mbr r='WebPAuxStats::segment_level' o='992' t='int[4]'/>
+<mbr r='WebPAuxStats::alpha_data_size' o='1120' t='int'/>
+<mbr r='WebPAuxStats::layer_data_size' o='1152' t='int'/>
+<mbr r='WebPAuxStats::lossless_features' o='1184' t='uint32_t'/>
+<mbr r='WebPAuxStats::histogram_bits' o='1216' t='int'/>
+<mbr r='WebPAuxStats::transform_bits' o='1248' t='int'/>
+<mbr r='WebPAuxStats::cache_bits' o='1280' t='int'/>
+<mbr r='WebPAuxStats::palette_size' o='1312' t='int'/>
+<mbr r='WebPAuxStats::lossless_size' o='1344' t='int'/>
+<mbr r='WebPAuxStats::lossless_hdr_size' o='1376' t='int'/>
+<mbr r='WebPAuxStats::lossless_data_size' o='1408' t='int'/>
+<mbr r='WebPAuxStats::pad' o='1440' t='uint32_t[2]'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='227' type='void tMath::tSet(tMath::tQuat &amp; d, const tMath::tMat4 &amp; )'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='227'>// Creates a unit quaternion from a rotation matrix.</doc>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='29' u='c' c='_ZN5tMath11tQuaternionC1ERKNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='38' u='c' c='_ZN5tMath11tQuaternion3SetERKNS_5tMat4E'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='67' ll='114' type='void tMath::tSet(tMath::tQuat &amp; d, const tMath::tMat4 &amp; m)'/>

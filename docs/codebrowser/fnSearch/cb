@@ -1,0 +1,10 @@
+_ZNKSt10_Hashtable6cbeginEv|std::_Hashtable::cbegin
+_ZNKSt5array6cbeginEv|std::array::cbegin
+_ZSt6cbeginRKT_|std::cbegin
+_ZSt4cbrtf|std::cbrt
+_ZNKSt13unordered_map6cbeginEv|std::unordered_map::cbegin
+_ZNKSt18unordered_multimap6cbeginEv|std::unordered_multimap::cbegin
+_ZNKSt6vector6cbeginEv|std::vector::cbegin
+_ZNKSt7__cxx1112basic_string6cbeginEv|std::basic_string::cbegin
+_ZNKSt17basic_string_view6cbeginEv|std::basic_string_view::cbegin
+_ZNKSt5deque6cbeginEv|std::deque::cbegin

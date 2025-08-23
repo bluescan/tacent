@@ -1,0 +1,6 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='517' type='float tMath::tDot(const tMath::tVec3 &amp; a, const tMath::tVec3 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='562' u='c' c='_ZN5tMath8tProjectERNS_5tVec3ERKS0_S3_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='562' u='c' c='_ZN5tMath8tProjectERNS_5tVec3ERKS0_S3_'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='86' u='c' c='_ZNK5tMath8tVector3mlERKNS_5tVec3E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='612' u='c' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3ES4_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='641' u='c' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3ES4_'/>

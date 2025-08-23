@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17488' ll='17494'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17488'/>
+<size>20</size>
+<mbr r='VkColorBlendAdvancedEXT::advancedBlendOp' o='0' t='VkBlendOp'/>
+<mbr r='VkColorBlendAdvancedEXT::srcPremultiplied' o='32' t='VkBool32'/>
+<mbr r='VkColorBlendAdvancedEXT::dstPremultiplied' o='64' t='VkBool32'/>
+<mbr r='VkColorBlendAdvancedEXT::blendOverlap' o='96' t='VkBlendOverlapEXT'/>
+<mbr r='VkColorBlendAdvancedEXT::clampResults' o='128' t='VkBool32'/>

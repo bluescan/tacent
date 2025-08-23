@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11035' ll='11039'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11035'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceShaderExpectAssumeFeaturesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceShaderExpectAssumeFeaturesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceShaderExpectAssumeFeaturesKHR::shaderExpectAssume' o='128' t='VkBool32'/>

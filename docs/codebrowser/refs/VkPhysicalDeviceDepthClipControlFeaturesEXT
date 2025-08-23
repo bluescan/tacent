@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16242' ll='16246'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16242'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceDepthClipControlFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDepthClipControlFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDepthClipControlFeaturesEXT::depthClipControl' o='128' t='VkBool32'/>

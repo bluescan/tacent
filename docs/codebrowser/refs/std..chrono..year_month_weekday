@@ -1,0 +1,54 @@
+<use f='include/c++/11/chrono' l='1689' c='_ZNSt6chronodvERKNS_4yearERKNS_13month_weekdayE'/>
+<use f='include/c++/11/chrono' l='1692' c='_ZNSt6chronodvERKNS_13month_weekdayERKNS_4yearE'/>
+<use f='include/c++/11/chrono' l='1879' c='_ZNSt6chronodvERKNS_10year_monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='2105' c='_ZNSt6chronodvEiRKNS_13month_weekdayE'/>
+<use f='include/c++/11/chrono' l='2108' c='_ZNSt6chronodvERKNS_13month_weekdayEi'/>
+<def f='include/c++/11/chrono' l='2719' ll='2891'/>
+<use f='include/c++/11/chrono' l='2726' c='_ZNSt6chrono18year_month_weekday16_S_from_sys_daysERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2746' c='_ZNSt6chrono18year_month_weekdayC1ERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2751' c='_ZNSt6chrono18year_month_weekdayC1ERKNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2755' c='_ZNSt6chrono18year_month_weekdaypLERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2763' c='_ZNSt6chrono18year_month_weekdaymIERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2770' c='_ZNSt6chrono18year_month_weekdaypLERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2777' c='_ZNSt6chrono18year_month_weekdaymIERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2831' c='_ZNSt6chronoeqERKNS_18year_month_weekdayES2_'/>
+<use f='include/c++/11/chrono' l='2832' c='_ZNSt6chronoeqERKNS_18year_month_weekdayES2_'/>
+<use f='include/c++/11/chrono' l='2840' c='_ZNSt6chronoplERKNS_18year_month_weekdayERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2841' c='_ZNSt6chronoplERKNS_18year_month_weekdayERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2848' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl2629746ELl1EEEERKNS_18year_month_weekdayE'/>
+<use f='include/c++/11/chrono' l='2849' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl2629746ELl1EEEERKNS_18year_month_weekdayE'/>
+<use f='include/c++/11/chrono' l='2852' c='_ZNSt6chronoplERKNS_18year_month_weekdayERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2853' c='_ZNSt6chronoplERKNS_18year_month_weekdayERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2856' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl31556952ELl1EEEERKNS_18year_month_weekdayE'/>
+<use f='include/c++/11/chrono' l='2857' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl31556952ELl1EEEERKNS_18year_month_weekdayE'/>
+<use f='include/c++/11/chrono' l='2861' c='_ZNSt6chronomiERKNS_18year_month_weekdayERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2862' c='_ZNSt6chronomiERKNS_18year_month_weekdayERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2865' c='_ZNSt6chronomiERKNS_18year_month_weekdayERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2866' c='_ZNSt6chronomiERKNS_18year_month_weekdayERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2869' c='_ZNSt6chronodvERKNS_10year_monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='2874' c='_ZNSt6chronodvERKNS_4yearERKNS_13month_weekdayE'/>
+<use f='include/c++/11/chrono' l='2878' c='_ZNSt6chronodvEiRKNS_13month_weekdayE'/>
+<use f='include/c++/11/chrono' l='2882' c='_ZNSt6chronodvERKNS_13month_weekdayERKNS_4yearE'/>
+<use f='include/c++/11/chrono' l='2886' c='_ZNSt6chronodvERKNS_13month_weekdayEi'/>
+<size>6</size>
+<doc f='include/c++/11/chrono' l='2717'>// YEAR_MONTH_WEEKDAY</doc>
+<mbr r='std::chrono::year_month_weekday::_M_y' o='0' t='chrono::year'/>
+<mbr r='std::chrono::year_month_weekday::_M_m' o='16' t='chrono::month'/>
+<mbr r='std::chrono::year_month_weekday::_M_wdi' o='24' t='chrono::weekday_indexed'/>
+<fun r='_ZNSt6chrono18year_month_weekday16_S_from_sys_daysERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<fun r='_ZNSt6chrono18year_month_weekdayC1Ev'/>
+<fun r='_ZNSt6chrono18year_month_weekdayC1ERKNS_4yearERKNS_5monthERKNS_15weekday_indexedE'/>
+<fun r='_ZNSt6chrono18year_month_weekdayC1ERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<fun r='_ZNSt6chrono18year_month_weekdayC1ERKNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<fun r='_ZNSt6chrono18year_month_weekdaypLERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<fun r='_ZNSt6chrono18year_month_weekdaymIERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<fun r='_ZNSt6chrono18year_month_weekdaypLERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<fun r='_ZNSt6chrono18year_month_weekdaymIERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<fun r='_ZNKSt6chrono18year_month_weekday4yearEv'/>
+<fun r='_ZNKSt6chrono18year_month_weekday5monthEv'/>
+<fun r='_ZNKSt6chrono18year_month_weekday7weekdayEv'/>
+<fun r='_ZNKSt6chrono18year_month_weekday5indexEv'/>
+<fun r='_ZNKSt6chrono18year_month_weekday15weekday_indexedEv'/>
+<fun r='_ZNKSt6chrono18year_month_weekdaycvNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<fun r='_ZNKSt6chrono18year_month_weekdaycvNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<fun r='_ZNKSt6chrono18year_month_weekday2okEv'/>

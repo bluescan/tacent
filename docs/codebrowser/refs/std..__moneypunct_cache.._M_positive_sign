@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='963' type='const _CharT *'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='982' u='w' c='_ZNSt18__moneypunct_cacheC1Em'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1009' c='_ZNSt18__moneypunct_cacheD1Ev'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='118' u='w' c='_ZNSt18__moneypunct_cache8_M_cacheERKSt6locale'/>

@@ -1,0 +1,7 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='216' type='tString tString::ExtractLeft(int count)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='214'>// Returns a tString of the first count chars. Removes these from the current string. If count &gt; length then what&apos;s
+	// available is extracted.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='180' ll='203' type='tString tString::ExtractLeft(int count)'/>
+<use f='Modules/System/Src/tFile.cpp' l='323' u='c' c='_ZN7tSystem16tGetRelativePathERK7tStringS2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='324' u='c' c='_ZN7tSystem16tGetRelativePathERK7tStringS2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='348' u='c' c='_ZN7tSystem13tGetLinuxPathERK7tStringS2_'/>

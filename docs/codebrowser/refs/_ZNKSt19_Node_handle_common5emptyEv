@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/node_handle.h' l='80' type='bool std::_Node_handle_common::empty() const'/>
+<use f='include/c++/11/bits/node_handle.h' l='88' u='c' c='_ZNSt19_Node_handle_commonD1Ev'/>
+<use f='include/c++/11/bits/node_handle.h' l='102' u='c' c='_ZNSt19_Node_handle_commonaSEOSt19_Node_handle_commonIT_T0_E'/>
+<use f='include/c++/11/bits/node_handle.h' l='132' u='c' c='_ZNSt19_Node_handle_common7_M_swapERSt19_Node_handle_commonIT_T0_E'/>

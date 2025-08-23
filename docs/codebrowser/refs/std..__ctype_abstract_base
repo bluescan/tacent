@@ -1,0 +1,33 @@
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<inh f='include/x86_64-linux-gnu/c++/11/bits/ctype_base.h' l='41' c='std::ctype_base'/>
+<def f='include/c++/11/bits/locale_facets.h' l='153' ll='594'/>
+<use f='include/c++/11/bits/locale_facets.h' l='615'/>
+<use f='include/c++/11/bits/locale_facets.h' l='620'/>
+<use f='include/c++/11/bits/locale_facets.h' l='626' c='_ZNSt5ctypeC1Em'/>
+<ovr f='include/c++/11/bits/locale_facets.h' l='1189' c='std::ctype'/>
+<fun r='_ZNKSt21__ctype_abstract_base2isEtT_'/>
+<fun r='_ZNKSt21__ctype_abstract_base2isEPKT_S2_Pt'/>
+<fun r='_ZNKSt21__ctype_abstract_base7scan_isEtPKT_S2_'/>
+<fun r='_ZNKSt21__ctype_abstract_base8scan_notEtPKT_S2_'/>
+<fun r='_ZNKSt21__ctype_abstract_base7toupperET_'/>
+<fun r='_ZNKSt21__ctype_abstract_base7toupperEPT_PKS0_'/>
+<fun r='_ZNKSt21__ctype_abstract_base7tolowerET_'/>
+<fun r='_ZNKSt21__ctype_abstract_base7tolowerEPT_PKS0_'/>
+<fun r='_ZNKSt21__ctype_abstract_base5widenEc'/>
+<fun r='_ZNKSt21__ctype_abstract_base5widenEPKcS1_PT_'/>
+<fun r='_ZNKSt21__ctype_abstract_base6narrowET_c'/>
+<fun r='_ZNKSt21__ctype_abstract_base6narrowEPKT_S2_cPc'/>
+<fun r='_ZNSt21__ctype_abstract_baseC1Em'/>
+<fun r='_ZNSt21__ctype_abstract_baseD1Ev'/>
+<fun r='_ZNKSt21__ctype_abstract_base5do_isEtT_'/>
+<fun r='_ZNKSt21__ctype_abstract_base5do_isEPKT_S2_Pt'/>
+<fun r='_ZNKSt21__ctype_abstract_base10do_scan_isEtPKT_S2_'/>
+<fun r='_ZNKSt21__ctype_abstract_base11do_scan_notEtPKT_S2_'/>
+<fun r='_ZNKSt21__ctype_abstract_base10do_toupperET_'/>
+<fun r='_ZNKSt21__ctype_abstract_base10do_toupperEPT_PKS0_'/>
+<fun r='_ZNKSt21__ctype_abstract_base10do_tolowerET_'/>
+<fun r='_ZNKSt21__ctype_abstract_base10do_tolowerEPT_PKS0_'/>
+<fun r='_ZNKSt21__ctype_abstract_base8do_widenEc'/>
+<fun r='_ZNKSt21__ctype_abstract_base8do_widenEPKcS1_PT_'/>
+<fun r='_ZNKSt21__ctype_abstract_base9do_narrowET_c'/>
+<fun r='_ZNKSt21__ctype_abstract_base9do_narrowEPKT_S2_cPc'/>

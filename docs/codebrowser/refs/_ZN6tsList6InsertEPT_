@@ -1,0 +1,6 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='216' type='T * tsList::Insert(T * item)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='211'>// The below functions use an RAII std::lock_guard that locks the mutex for the duration of the scope of the guard,
+	// The pattern below calls a function in the return. The function called in the return _is_ protected and in the
+	// critical section protected by the mutex. This is because the function is called _before_ the guard goes out of
+	// scope. It is only before the actual &apos;return&apos; that the guard goes out of scope, the destructor called, and the
+	// mutex released.</doc>

@@ -1,0 +1,11 @@
+<use f='include/c++/11/chrono' l='882' u='w' c='_ZNSt6chrono10time_pointC1Ev'/>
+<use f='include/c++/11/chrono' l='886' u='w' c='_ZNSt6chrono10time_pointC1ERKT0_'/>
+<use f='include/c++/11/chrono' l='893' u='w' c='_ZNSt6chrono10time_pointC1ERKNS_10time_pointIT_TL0__EE'/>
+<use f='include/c++/11/chrono' l='899' u='r' c='_ZNKSt6chrono10time_point16time_since_epochEv'/>
+<use f='include/c++/11/chrono' l='905' u='w' c='_ZNSt6chrono10time_pointppEv'/>
+<use f='include/c++/11/chrono' l='911' u='w' c='_ZNSt6chrono10time_pointppEi'/>
+<use f='include/c++/11/chrono' l='916' u='w' c='_ZNSt6chrono10time_pointmmEv'/>
+<use f='include/c++/11/chrono' l='922' u='w' c='_ZNSt6chrono10time_pointmmEi'/>
+<use f='include/c++/11/chrono' l='929' u='w' c='_ZNSt6chrono10time_pointpLERKT0_'/>
+<use f='include/c++/11/chrono' l='936' u='w' c='_ZNSt6chrono10time_pointmIERKT0_'/>
+<dec f='include/c++/11/chrono' l='950' type='std::chrono::time_point::duration'/>

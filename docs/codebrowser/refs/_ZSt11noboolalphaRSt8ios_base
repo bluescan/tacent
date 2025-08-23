@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/ios_base.h' l='915' ll='920' type='std::ios_base &amp; std::noboolalpha(std::ios_base &amp; __base)'/>
+<doc f='include/c++/11/bits/ios_base.h' l='914'>/// Calls base.unsetf(ios_base::boolalpha).</doc>

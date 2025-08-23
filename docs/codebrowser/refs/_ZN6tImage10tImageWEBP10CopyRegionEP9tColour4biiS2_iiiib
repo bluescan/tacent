@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='139' u='c' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<def f='Modules/Image/Src/tImageWEBP.cpp' l='173' ll='216' type='bool tImage::tImageWEBP::CopyRegion(tPixel4b * dst, int dstW, int dstH, tPixel4b * src, int srcW, int srcH, int offsetX, int offsetY, bool blend)'/>

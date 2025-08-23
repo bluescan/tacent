@@ -1,0 +1,6 @@
+<use f='include/c++/11/stop_token' l='84' u='c' c='_ZNSt10stop_token4swapERS_'/>
+<use f='include/c++/11/stop_token' l='431' u='c' c='_ZNSt10stop_token15_Stop_state_refaSEOS0_'/>
+<def f='include/c++/11/stop_token' l='441' ll='443' type='void std::stop_token::_Stop_state_ref::swap(std::stop_token::_Stop_state_ref &amp; __other)'/>
+<use f='include/c++/11/stop_token' l='549' u='c' c='_ZNSt11stop_source4swapERS_'/>
+<use f='include/c++/11/stop_token' l='589' u='c' c='_ZNSt13stop_callbackC1ERKSt10stop_tokenOTL0__'/>
+<use f='include/c++/11/stop_token' l='603' u='c' c='_ZNSt13stop_callbackC1EOSt10stop_tokenOTL0__'/>

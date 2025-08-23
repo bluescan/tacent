@@ -1,0 +1,723 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>cdefs.h source code [include/x86_64-linux-gnu/sys/cdefs.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/sys/cdefs.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>sys</a>/<a href='cdefs.h.html'>cdefs.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 1992-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   Copyright The GNU Toolchain Authors.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i></i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i></i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i></i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#<span data-ppcond="19">ifndef</span>	<span class="macro" data-ref="_M/_SYS_CDEFS_H">_SYS_CDEFS_H</span></u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><u>#define	<dfn class="macro" id="_M/_SYS_CDEFS_H" data-ref="_M/_SYS_CDEFS_H">_SYS_CDEFS_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="21">21</th><td>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>/* We are almost always included from features.h. */</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#<span data-ppcond="23">ifndef</span> <a class="macro" href="../../features.h.html#19" data-ref="_M/_FEATURES_H">_FEATURES_H</a></u>&nbsp</td></tr>
+<tr><th id="24">24</th><td><u># include &lt;features.h&gt;</u>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="23">endif</span></u>&nbsp</td></tr>
+<tr><th id="26">26</th><td>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i>/* The GNU libc does not support any K&amp;R compilers or the traditional mode</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i>   of ISO C compilers anymore.  Check for some of the combinations not</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i>   supported anymore.  */</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">if</span> defined <span class="macro" data-ref="_M/__GNUC__">__GNUC__</span> &amp;&amp; !defined <span class="macro" data-ref="_M/__STDC__">__STDC__</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u># error "You need a ISO C conforming compiler to use the glibc headers"</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#<span data-ppcond="30">endif</span></u>&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>/* Some user header file might have defined this before.  */</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#undef	<span class="macro" data-ref="_M/__P">__P</span></u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#undef	<span class="macro" data-ref="_M/__PMT">__PMT</span></u>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i>/* Compilers that lack __has_attribute may object to</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i>       #if defined __has_attribute &amp;&amp; __has_attribute (...)</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>   even though they do not need to evaluate the right-hand side of the &amp;&amp;.</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i>   Similarly for __has_builtin, etc.  */</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#<span data-ppcond="42">if</span> (defined <span class="macro" data-ref="_M/__has_attribute">__has_attribute</span> \</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>     &amp;&amp; (!defined <span class="macro" data-ref="_M/__clang_minor__">__clang_minor__</span> \</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>         || 3 &lt; <span class="macro" title="14" data-ref="_M/__clang_major__">__clang_major__</span> + (5 &lt;= <span class="macro" title="0" data-ref="_M/__clang_minor__">__clang_minor__</span>)))</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u># define <dfn class="macro" id="_M/__glibc_has_attribute" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</dfn>(attr) __has_attribute (attr)</u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u>#<span data-ppcond="42">else</span></u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u># define __glibc_has_attribute(attr) 0</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u>#<span data-ppcond="42">endif</span></u>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="49">ifdef</span> <span class="macro" data-ref="_M/__has_builtin">__has_builtin</span></u>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u># define <dfn class="macro" id="_M/__glibc_has_builtin" data-ref="_M/__glibc_has_builtin">__glibc_has_builtin</dfn>(name) __has_builtin (name)</u>&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>#<span data-ppcond="49">else</span></u>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u># define __glibc_has_builtin(name) 0</u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><u>#<span data-ppcond="49">endif</span></u>&nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#<span data-ppcond="54">ifdef</span> <span class="macro" data-ref="_M/__has_extension">__has_extension</span></u>&nbsp</td></tr>
+<tr><th id="55">55</th><td><u># define <dfn class="macro" id="_M/__glibc_has_extension" data-ref="_M/__glibc_has_extension">__glibc_has_extension</dfn>(ext) __has_extension (ext)</u>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u>#<span data-ppcond="54">else</span></u>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u># define __glibc_has_extension(ext) 0</u>&nbsp</td></tr>
+<tr><th id="58">58</th><td><u>#<span data-ppcond="54">endif</span></u>&nbsp</td></tr>
+<tr><th id="59">59</th><td>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#<span data-ppcond="60">if</span> defined <span class="macro" data-ref="_M/__GNUC__">__GNUC__</span> || defined <span class="macro" data-ref="_M/__clang__">__clang__</span></u>&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i>/* All functions, except those with callbacks or those that</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i>   synchronize memory, are leaf functions.  */</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><u># <span data-ppcond="64">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (6))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4, 6) &amp;&amp; !defined <span class="macro" data-ref="_M/_LIBC">_LIBC</span></u>&nbsp</td></tr>
+<tr><th id="65">65</th><td><u>#  define __LEAF , __leaf__</u>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>#  define __LEAF_ATTR __attribute__ ((__leaf__))</u>&nbsp</td></tr>
+<tr><th id="67">67</th><td><u># <span data-ppcond="64">else</span></u>&nbsp</td></tr>
+<tr><th id="68">68</th><td><u>#  define <dfn class="macro" id="_M/__LEAF" data-ref="_M/__LEAF">__LEAF</dfn></u>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u>#  define <dfn class="macro" id="_M/__LEAF_ATTR" data-ref="_M/__LEAF_ATTR">__LEAF_ATTR</dfn></u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><u># <span data-ppcond="64">endif</span></u>&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i>/* GCC can always grok prototypes.  For C++ programs we add throw()</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td><i>   to help it optimize the function calls.  But this only works with</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td><i>   gcc 2.8.x and egcs.  For gcc 3.4 and up we even mark C functions</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td><i>   as non-throwing using a function attribute since programs can use</i>&nbsp</td></tr>
+<tr><th id="76">76</th><td><i>   the -fexceptions options for C code as well.  */</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td><u># <span data-ppcond="77">if</span> !defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span> \</u>&nbsp</td></tr>
+<tr><th id="78">78</th><td><u>     &amp;&amp; (<a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((3) &lt;&lt; 16) + (4))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (3, 4) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__nothrow__))</u>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#  define __THROW	__attribute__ ((__nothrow__ __LEAF))</u>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u>#  define __THROWNL	__attribute__ ((__nothrow__))</u>&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#  define __NTH(fct)	__attribute__ ((__nothrow__ __LEAF)) fct</u>&nbsp</td></tr>
+<tr><th id="82">82</th><td><u>#  define __NTHNL(fct)  __attribute__ ((__nothrow__)) fct</u>&nbsp</td></tr>
+<tr><th id="83">83</th><td><u># <span data-ppcond="77">else</span></u>&nbsp</td></tr>
+<tr><th id="84">84</th><td><u>#  <span data-ppcond="84">if</span> defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span> &amp;&amp; (<a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((2) &lt;&lt; 16) + (8))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (2,8) || __clang_major &gt;= 4)</u>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#   <span data-ppcond="85">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><u>#    define <dfn class="macro" id="_M/__THROW" data-ref="_M/__THROW">__THROW</dfn>	noexcept (true)</u>&nbsp</td></tr>
+<tr><th id="87">87</th><td><u>#   <span data-ppcond="85">else</span></u>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#    define __THROW	throw ()</u>&nbsp</td></tr>
+<tr><th id="89">89</th><td><u>#   <span data-ppcond="85">endif</span></u>&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#   define <dfn class="macro" id="_M/__THROWNL" data-ref="_M/__THROWNL">__THROWNL</dfn>	__THROW</u>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#   define <dfn class="macro" id="_M/__NTH" data-ref="_M/__NTH">__NTH</dfn>(fct)	__LEAF_ATTR fct __THROW</u>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u>#   define <dfn class="macro" id="_M/__NTHNL" data-ref="_M/__NTHNL">__NTHNL</dfn>(fct) fct __THROW</u>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>#  <span data-ppcond="84">else</span></u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u>#   define __THROW</u>&nbsp</td></tr>
+<tr><th id="95">95</th><td><u>#   define __THROWNL</u>&nbsp</td></tr>
+<tr><th id="96">96</th><td><u>#   define __NTH(fct)	fct</u>&nbsp</td></tr>
+<tr><th id="97">97</th><td><u>#   define __NTHNL(fct) fct</u>&nbsp</td></tr>
+<tr><th id="98">98</th><td><u>#  <span data-ppcond="84">endif</span></u>&nbsp</td></tr>
+<tr><th id="99">99</th><td><u># <span data-ppcond="77">endif</span></u>&nbsp</td></tr>
+<tr><th id="100">100</th><td>&nbsp</td></tr>
+<tr><th id="101">101</th><td><u>#<span data-ppcond="60">else</span>	/* Not GCC or clang.  */</u>&nbsp</td></tr>
+<tr><th id="102">102</th><td>&nbsp</td></tr>
+<tr><th id="103">103</th><td><u># if (defined __cplusplus						\</u>&nbsp</td></tr>
+<tr><th id="104">104</th><td><u>      || (defined __STDC_VERSION__ &amp;&amp; __STDC_VERSION__ &gt;= 199901L))</u>&nbsp</td></tr>
+<tr><th id="105">105</th><td><u>#  define __inline	inline</u>&nbsp</td></tr>
+<tr><th id="106">106</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u>#  define __inline		/* No inline functions.  */</u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="109">109</th><td>&nbsp</td></tr>
+<tr><th id="110">110</th><td><u># define __THROW</u>&nbsp</td></tr>
+<tr><th id="111">111</th><td><u># define __THROWNL</u>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u># define __NTH(fct)	fct</u>&nbsp</td></tr>
+<tr><th id="113">113</th><td>&nbsp</td></tr>
+<tr><th id="114">114</th><td><u>#<span data-ppcond="60">endif</span>	/* GCC || clang.  */</u>&nbsp</td></tr>
+<tr><th id="115">115</th><td>&nbsp</td></tr>
+<tr><th id="116">116</th><td><i>/* These two macros are not used in glibc anymore.  They are kept here</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td><i>   only because some other projects expect the macros to be defined.  */</i>&nbsp</td></tr>
+<tr><th id="118">118</th><td><u>#define <dfn class="macro" id="_M/__P" data-ref="_M/__P">__P</dfn>(args)	args</u>&nbsp</td></tr>
+<tr><th id="119">119</th><td><u>#define <dfn class="macro" id="_M/__PMT" data-ref="_M/__PMT">__PMT</dfn>(args)	args</u>&nbsp</td></tr>
+<tr><th id="120">120</th><td>&nbsp</td></tr>
+<tr><th id="121">121</th><td><i>/* For these things, GCC behaves the ANSI way normally,</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td><i>   and the non-ANSI way under -traditional.  */</i>&nbsp</td></tr>
+<tr><th id="123">123</th><td>&nbsp</td></tr>
+<tr><th id="124">124</th><td><u>#define <dfn class="macro" id="_M/__CONCAT" data-ref="_M/__CONCAT">__CONCAT</dfn>(x,y)	x ## y</u>&nbsp</td></tr>
+<tr><th id="125">125</th><td><u>#define <dfn class="macro" id="_M/__STRING" data-ref="_M/__STRING">__STRING</dfn>(x)	#x</u>&nbsp</td></tr>
+<tr><th id="126">126</th><td>&nbsp</td></tr>
+<tr><th id="127">127</th><td><i>/* This is not a typedef so `const __ptr_t' does the right thing.  */</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td><u>#define <dfn class="macro" id="_M/__ptr_t" data-ref="_M/__ptr_t">__ptr_t</dfn> void *</u>&nbsp</td></tr>
+<tr><th id="129">129</th><td>&nbsp</td></tr>
+<tr><th id="130">130</th><td>&nbsp</td></tr>
+<tr><th id="131">131</th><td><i>/* C++ needs to know that types and declarations are C, not C++.  */</i>&nbsp</td></tr>
+<tr><th id="132">132</th><td><u>#<span data-ppcond="132">ifdef</span>	<span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="133">133</th><td><u># define <dfn class="macro" id="_M/__BEGIN_DECLS" data-ref="_M/__BEGIN_DECLS">__BEGIN_DECLS</dfn>	extern "C" {</u>&nbsp</td></tr>
+<tr><th id="134">134</th><td><u># define <dfn class="macro" id="_M/__END_DECLS" data-ref="_M/__END_DECLS">__END_DECLS</dfn>	}</u>&nbsp</td></tr>
+<tr><th id="135">135</th><td><u>#<span data-ppcond="132">else</span></u>&nbsp</td></tr>
+<tr><th id="136">136</th><td><u># define __BEGIN_DECLS</u>&nbsp</td></tr>
+<tr><th id="137">137</th><td><u># define __END_DECLS</u>&nbsp</td></tr>
+<tr><th id="138">138</th><td><u>#<span data-ppcond="132">endif</span></u>&nbsp</td></tr>
+<tr><th id="139">139</th><td>&nbsp</td></tr>
+<tr><th id="140">140</th><td>&nbsp</td></tr>
+<tr><th id="141">141</th><td><i>/* Fortify support.  */</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td><u>#define <dfn class="macro" id="_M/__bos" data-ref="_M/__bos">__bos</dfn>(ptr) __builtin_object_size (ptr, __USE_FORTIFY_LEVEL &gt; 1)</u>&nbsp</td></tr>
+<tr><th id="143">143</th><td><u>#define <dfn class="macro" id="_M/__bos0" data-ref="_M/__bos0">__bos0</dfn>(ptr) __builtin_object_size (ptr, 0)</u>&nbsp</td></tr>
+<tr><th id="144">144</th><td>&nbsp</td></tr>
+<tr><th id="145">145</th><td><i>/* Use __builtin_dynamic_object_size at _FORTIFY_SOURCE=3 when available.  */</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td><u>#<span data-ppcond="146">if</span> <a class="macro" href="../../features.h.html#428" title="0" data-ref="_M/__USE_FORTIFY_LEVEL">__USE_FORTIFY_LEVEL</a> == 3 &amp;&amp; (<a class="macro" href="../../features.h.html#179" title="((14 &lt;&lt; 16) + 0 &gt;= ((9) &lt;&lt; 16) + (0))" data-ref="_M/__glibc_clang_prereq">__glibc_clang_prereq</a> (9, 0)		      \</u>&nbsp</td></tr>
+<tr><th id="147">147</th><td><u>				 || <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((12) &lt;&lt; 16) + (0))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (12, 0))</u>&nbsp</td></tr>
+<tr><th id="148">148</th><td><u># define __glibc_objsize0(__o) __builtin_dynamic_object_size (__o, 0)</u>&nbsp</td></tr>
+<tr><th id="149">149</th><td><u># define __glibc_objsize(__o) __builtin_dynamic_object_size (__o, 1)</u>&nbsp</td></tr>
+<tr><th id="150">150</th><td><u>#<span data-ppcond="146">else</span></u>&nbsp</td></tr>
+<tr><th id="151">151</th><td><u># define <dfn class="macro" id="_M/__glibc_objsize0" data-ref="_M/__glibc_objsize0">__glibc_objsize0</dfn>(__o) __bos0 (__o)</u>&nbsp</td></tr>
+<tr><th id="152">152</th><td><u># define <dfn class="macro" id="_M/__glibc_objsize" data-ref="_M/__glibc_objsize">__glibc_objsize</dfn>(__o) __bos (__o)</u>&nbsp</td></tr>
+<tr><th id="153">153</th><td><u>#<span data-ppcond="146">endif</span></u>&nbsp</td></tr>
+<tr><th id="154">154</th><td>&nbsp</td></tr>
+<tr><th id="155">155</th><td><i>/* Compile time conditions to choose between the regular, _chk and _chk_warn</i>&nbsp</td></tr>
+<tr><th id="156">156</th><td><i>   variants.  These conditions should get evaluated to constant and optimized</i>&nbsp</td></tr>
+<tr><th id="157">157</th><td><i>   away.  */</i>&nbsp</td></tr>
+<tr><th id="158">158</th><td>&nbsp</td></tr>
+<tr><th id="159">159</th><td><u>#define <dfn class="macro" id="_M/__glibc_safe_len_cond" data-ref="_M/__glibc_safe_len_cond">__glibc_safe_len_cond</dfn>(__l, __s, __osz) ((__l) &lt;= (__osz) / (__s))</u>&nbsp</td></tr>
+<tr><th id="160">160</th><td><u>#define <dfn class="macro" id="_M/__glibc_unsigned_or_positive" data-ref="_M/__glibc_unsigned_or_positive">__glibc_unsigned_or_positive</dfn>(__l) \</u>&nbsp</td></tr>
+<tr><th id="161">161</th><td><u>  ((__typeof (__l)) 0 &lt; (__typeof (__l)) -1				      \</u>&nbsp</td></tr>
+<tr><th id="162">162</th><td><u>   || (__builtin_constant_p (__l) &amp;&amp; (__l) &gt; 0))</u>&nbsp</td></tr>
+<tr><th id="163">163</th><td>&nbsp</td></tr>
+<tr><th id="164">164</th><td><i>/* Length is known to be safe at compile time if the __L * __S &lt;= __OBJSZ</i>&nbsp</td></tr>
+<tr><th id="165">165</th><td><i>   condition can be folded to a constant and if it is true.  The -1 check is</i>&nbsp</td></tr>
+<tr><th id="166">166</th><td><i>   redundant because since it implies that __glibc_safe_len_cond is true.  */</i>&nbsp</td></tr>
+<tr><th id="167">167</th><td><u>#define <dfn class="macro" id="_M/__glibc_safe_or_unknown_len" data-ref="_M/__glibc_safe_or_unknown_len">__glibc_safe_or_unknown_len</dfn>(__l, __s, __osz) \</u>&nbsp</td></tr>
+<tr><th id="168">168</th><td><u>  (__glibc_unsigned_or_positive (__l)					      \</u>&nbsp</td></tr>
+<tr><th id="169">169</th><td><u>   &amp;&amp; __builtin_constant_p (__glibc_safe_len_cond ((__SIZE_TYPE__) (__l),     \</u>&nbsp</td></tr>
+<tr><th id="170">170</th><td><u>						   __s, __osz))		      \</u>&nbsp</td></tr>
+<tr><th id="171">171</th><td><u>   &amp;&amp; __glibc_safe_len_cond ((__SIZE_TYPE__) (__l), __s, __osz))</u>&nbsp</td></tr>
+<tr><th id="172">172</th><td>&nbsp</td></tr>
+<tr><th id="173">173</th><td><i>/* Conversely, we know at compile time that the length is unsafe if the</i>&nbsp</td></tr>
+<tr><th id="174">174</th><td><i>   __L * __S &lt;= __OBJSZ condition can be folded to a constant and if it is</i>&nbsp</td></tr>
+<tr><th id="175">175</th><td><i>   false.  */</i>&nbsp</td></tr>
+<tr><th id="176">176</th><td><u>#define <dfn class="macro" id="_M/__glibc_unsafe_len" data-ref="_M/__glibc_unsafe_len">__glibc_unsafe_len</dfn>(__l, __s, __osz) \</u>&nbsp</td></tr>
+<tr><th id="177">177</th><td><u>  (__glibc_unsigned_or_positive (__l)					      \</u>&nbsp</td></tr>
+<tr><th id="178">178</th><td><u>   &amp;&amp; __builtin_constant_p (__glibc_safe_len_cond ((__SIZE_TYPE__) (__l),     \</u>&nbsp</td></tr>
+<tr><th id="179">179</th><td><u>						   __s, __osz))		      \</u>&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>   &amp;&amp; !__glibc_safe_len_cond ((__SIZE_TYPE__) (__l), __s, __osz))</u>&nbsp</td></tr>
+<tr><th id="181">181</th><td>&nbsp</td></tr>
+<tr><th id="182">182</th><td><i>/* Fortify function f.  __f_alias, __f_chk and __f_chk_warn must be</i>&nbsp</td></tr>
+<tr><th id="183">183</th><td><i>   declared.  */</i>&nbsp</td></tr>
+<tr><th id="184">184</th><td>&nbsp</td></tr>
+<tr><th id="185">185</th><td><u>#define <dfn class="macro" id="_M/__glibc_fortify" data-ref="_M/__glibc_fortify">__glibc_fortify</dfn>(f, __l, __s, __osz, ...) \</u>&nbsp</td></tr>
+<tr><th id="186">186</th><td><u>  (__glibc_safe_or_unknown_len (__l, __s, __osz)			      \</u>&nbsp</td></tr>
+<tr><th id="187">187</th><td><u>   ? __ ## f ## _alias (__VA_ARGS__)					      \</u>&nbsp</td></tr>
+<tr><th id="188">188</th><td><u>   : (__glibc_unsafe_len (__l, __s, __osz)				      \</u>&nbsp</td></tr>
+<tr><th id="189">189</th><td><u>      ? __ ## f ## _chk_warn (__VA_ARGS__, __osz)			      \</u>&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>      : __ ## f ## _chk (__VA_ARGS__, __osz)))</u>			      \&nbsp</td></tr>
+<tr><th id="191">191</th><td>&nbsp</td></tr>
+<tr><th id="192">192</th><td><i>/* Fortify function f, where object size argument passed to f is the number of</i>&nbsp</td></tr>
+<tr><th id="193">193</th><td><i>   elements and not total size.  */</i>&nbsp</td></tr>
+<tr><th id="194">194</th><td>&nbsp</td></tr>
+<tr><th id="195">195</th><td><u>#define <dfn class="macro" id="_M/__glibc_fortify_n" data-ref="_M/__glibc_fortify_n">__glibc_fortify_n</dfn>(f, __l, __s, __osz, ...) \</u>&nbsp</td></tr>
+<tr><th id="196">196</th><td><u>  (__glibc_safe_or_unknown_len (__l, __s, __osz)			      \</u>&nbsp</td></tr>
+<tr><th id="197">197</th><td><u>   ? __ ## f ## _alias (__VA_ARGS__)					      \</u>&nbsp</td></tr>
+<tr><th id="198">198</th><td><u>   : (__glibc_unsafe_len (__l, __s, __osz)				      \</u>&nbsp</td></tr>
+<tr><th id="199">199</th><td><u>      ? __ ## f ## _chk_warn (__VA_ARGS__, (__osz) / (__s))		      \</u>&nbsp</td></tr>
+<tr><th id="200">200</th><td><u>      : __ ## f ## _chk (__VA_ARGS__, (__osz) / (__s))))</u>		      \&nbsp</td></tr>
+<tr><th id="201">201</th><td>&nbsp</td></tr>
+<tr><th id="202">202</th><td><u>#<span data-ppcond="202">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (3))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4,3)</u>&nbsp</td></tr>
+<tr><th id="203">203</th><td><u># define __warnattr(msg) __attribute__((__warning__ (msg)))</u>&nbsp</td></tr>
+<tr><th id="204">204</th><td><u># define __errordecl(name, msg) \</u>&nbsp</td></tr>
+<tr><th id="205">205</th><td><u>  extern void name (void) __attribute__((__error__ (msg)))</u>&nbsp</td></tr>
+<tr><th id="206">206</th><td><u>#<span data-ppcond="202">else</span></u>&nbsp</td></tr>
+<tr><th id="207">207</th><td><u># define <dfn class="macro" id="_M/__warnattr" data-ref="_M/__warnattr">__warnattr</dfn>(msg)</u>&nbsp</td></tr>
+<tr><th id="208">208</th><td><u># define <dfn class="macro" id="_M/__errordecl" data-ref="_M/__errordecl">__errordecl</dfn>(name, msg) extern void name (void)</u>&nbsp</td></tr>
+<tr><th id="209">209</th><td><u>#<span data-ppcond="202">endif</span></u>&nbsp</td></tr>
+<tr><th id="210">210</th><td>&nbsp</td></tr>
+<tr><th id="211">211</th><td><i>/* Support for flexible arrays.</i>&nbsp</td></tr>
+<tr><th id="212">212</th><td><i>   Headers that should use flexible arrays only if they're "real"</i>&nbsp</td></tr>
+<tr><th id="213">213</th><td><i>   (e.g. only if they won't affect sizeof()) should test</i>&nbsp</td></tr>
+<tr><th id="214">214</th><td><i>   #if __glibc_c99_flexarr_available.  */</i>&nbsp</td></tr>
+<tr><th id="215">215</th><td><u>#<span data-ppcond="215">if</span> defined <span class="macro" data-ref="_M/__STDC_VERSION__">__STDC_VERSION__</span> &amp;&amp; __STDC_VERSION__ &gt;= 199901L &amp;&amp; !defined <span class="macro" data-ref="_M/__HP_cc">__HP_cc</span></u>&nbsp</td></tr>
+<tr><th id="216">216</th><td><u># define __flexarr	[]</u>&nbsp</td></tr>
+<tr><th id="217">217</th><td><u># define __glibc_c99_flexarr_available 1</u>&nbsp</td></tr>
+<tr><th id="218">218</th><td><u>#<span data-ppcond="215">elif</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((2) &lt;&lt; 16) + (97))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (2,97) || defined <span class="macro" data-ref="_M/__clang__">__clang__</span></u>&nbsp</td></tr>
+<tr><th id="219">219</th><td><i>/* GCC 2.97 and clang support C99 flexible array members as an extension,</i>&nbsp</td></tr>
+<tr><th id="220">220</th><td><i>   even when in C89 mode or compiling C++ (any version).  */</i>&nbsp</td></tr>
+<tr><th id="221">221</th><td><u># define <dfn class="macro" id="_M/__flexarr" data-ref="_M/__flexarr">__flexarr</dfn>	[]</u>&nbsp</td></tr>
+<tr><th id="222">222</th><td><u># define <dfn class="macro" id="_M/__glibc_c99_flexarr_available" data-ref="_M/__glibc_c99_flexarr_available">__glibc_c99_flexarr_available</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="223">223</th><td><u>#<span data-ppcond="215">elif</span> defined __GNUC__</u>&nbsp</td></tr>
+<tr><th id="224">224</th><td><i>/* Pre-2.97 GCC did not support C99 flexible arrays but did have</i>&nbsp</td></tr>
+<tr><th id="225">225</th><td><i>   an equivalent extension with slightly different notation.  */</i>&nbsp</td></tr>
+<tr><th id="226">226</th><td><u># define __flexarr	[0]</u>&nbsp</td></tr>
+<tr><th id="227">227</th><td><u># define __glibc_c99_flexarr_available 1</u>&nbsp</td></tr>
+<tr><th id="228">228</th><td><u>#else</u>&nbsp</td></tr>
+<tr><th id="229">229</th><td><i>/* Some other non-C99 compiler.  Approximate with [1].  */</i>&nbsp</td></tr>
+<tr><th id="230">230</th><td><u># define __flexarr	[1]</u>&nbsp</td></tr>
+<tr><th id="231">231</th><td><u># define __glibc_c99_flexarr_available 0</u>&nbsp</td></tr>
+<tr><th id="232">232</th><td><u>#<span data-ppcond="215">endif</span></u>&nbsp</td></tr>
+<tr><th id="233">233</th><td>&nbsp</td></tr>
+<tr><th id="234">234</th><td>&nbsp</td></tr>
+<tr><th id="235">235</th><td><i>/* __asm__ ("xyz") is used throughout the headers to rename functions</i>&nbsp</td></tr>
+<tr><th id="236">236</th><td><i>   at the assembly language level.  This is wrapped by the __REDIRECT</i>&nbsp</td></tr>
+<tr><th id="237">237</th><td><i>   macro, in order to support compilers that can do this some other</i>&nbsp</td></tr>
+<tr><th id="238">238</th><td><i>   way.  When compilers don't support asm-names at all, we have to do</i>&nbsp</td></tr>
+<tr><th id="239">239</th><td><i>   preprocessor tricks instead (which don't have exactly the right</i>&nbsp</td></tr>
+<tr><th id="240">240</th><td><i>   semantics, but it's the best we can do).</i>&nbsp</td></tr>
+<tr><th id="241">241</th><td><i></i>&nbsp</td></tr>
+<tr><th id="242">242</th><td><i>   Example:</i>&nbsp</td></tr>
+<tr><th id="243">243</th><td><i>   int __REDIRECT(setpgrp, (__pid_t pid, __pid_t pgrp), setpgid); */</i>&nbsp</td></tr>
+<tr><th id="244">244</th><td>&nbsp</td></tr>
+<tr><th id="245">245</th><td><u>#<span data-ppcond="245">if</span> (defined <span class="macro" data-ref="_M/__GNUC__">__GNUC__</span> &amp;&amp; <span class="macro" title="4" data-ref="_M/__GNUC__">__GNUC__</span> &gt;= 2) || (<span class="macro" title="14" data-ref="_M/__clang_major__">__clang_major__</span> &gt;= 4)</u>&nbsp</td></tr>
+<tr><th id="246">246</th><td>&nbsp</td></tr>
+<tr><th id="247">247</th><td><u># define <dfn class="macro" id="_M/__REDIRECT" data-ref="_M/__REDIRECT">__REDIRECT</dfn>(name, proto, alias) name proto __asm__ (__ASMNAME (#alias))</u>&nbsp</td></tr>
+<tr><th id="248">248</th><td><u># <span data-ppcond="248">ifdef</span> <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="249">249</th><td><u>#  define <dfn class="macro" id="_M/__REDIRECT_NTH" data-ref="_M/__REDIRECT_NTH">__REDIRECT_NTH</dfn>(name, proto, alias) \</u>&nbsp</td></tr>
+<tr><th id="250">250</th><td><u>     name proto __THROW __asm__ (__ASMNAME (#alias))</u>&nbsp</td></tr>
+<tr><th id="251">251</th><td><u>#  define <dfn class="macro" id="_M/__REDIRECT_NTHNL" data-ref="_M/__REDIRECT_NTHNL">__REDIRECT_NTHNL</dfn>(name, proto, alias) \</u>&nbsp</td></tr>
+<tr><th id="252">252</th><td><u>     name proto __THROWNL __asm__ (__ASMNAME (#alias))</u>&nbsp</td></tr>
+<tr><th id="253">253</th><td><u># <span data-ppcond="248">else</span></u>&nbsp</td></tr>
+<tr><th id="254">254</th><td><u>#  define __REDIRECT_NTH(name, proto, alias) \</u>&nbsp</td></tr>
+<tr><th id="255">255</th><td><u>     name proto __asm__ (__ASMNAME (#alias)) __THROW</u>&nbsp</td></tr>
+<tr><th id="256">256</th><td><u>#  define __REDIRECT_NTHNL(name, proto, alias) \</u>&nbsp</td></tr>
+<tr><th id="257">257</th><td><u>     name proto __asm__ (__ASMNAME (#alias)) __THROWNL</u>&nbsp</td></tr>
+<tr><th id="258">258</th><td><u># <span data-ppcond="248">endif</span></u>&nbsp</td></tr>
+<tr><th id="259">259</th><td><u># define <dfn class="macro" id="_M/__ASMNAME" data-ref="_M/__ASMNAME">__ASMNAME</dfn>(cname)  __ASMNAME2 (__USER_LABEL_PREFIX__, cname)</u>&nbsp</td></tr>
+<tr><th id="260">260</th><td><u># define <dfn class="macro" id="_M/__ASMNAME2" data-ref="_M/__ASMNAME2">__ASMNAME2</dfn>(prefix, cname) __STRING (prefix) cname</u>&nbsp</td></tr>
+<tr><th id="261">261</th><td>&nbsp</td></tr>
+<tr><th id="262">262</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="263">263</th><td><i>#elif __SOME_OTHER_COMPILER__</i>&nbsp</td></tr>
+<tr><th id="264">264</th><td><i></i>&nbsp</td></tr>
+<tr><th id="265">265</th><td><i># define __REDIRECT(name, proto, alias) name proto; \</i>&nbsp</td></tr>
+<tr><th id="266">266</th><td><i>	_Pragma("let " #name " = " #alias)</i>&nbsp</td></tr>
+<tr><th id="267">267</th><td><i>*/</i>&nbsp</td></tr>
+<tr><th id="268">268</th><td><u>#<span data-ppcond="245">endif</span></u>&nbsp</td></tr>
+<tr><th id="269">269</th><td>&nbsp</td></tr>
+<tr><th id="270">270</th><td><i>/* GCC and clang have various useful declarations that can be made with</i>&nbsp</td></tr>
+<tr><th id="271">271</th><td><i>   the '__attribute__' syntax.  All of the ways we use this do fine if</i>&nbsp</td></tr>
+<tr><th id="272">272</th><td><i>   they are omitted for compilers that don't understand it.  */</i>&nbsp</td></tr>
+<tr><th id="273">273</th><td><u>#<span data-ppcond="273">if</span> !(defined <span class="macro" data-ref="_M/__GNUC__">__GNUC__</span> || defined <span class="macro" data-ref="_M/__clang__">__clang__</span>)</u>&nbsp</td></tr>
+<tr><th id="274">274</th><td><u># define __attribute__(xyz)	/* Ignore */</u>&nbsp</td></tr>
+<tr><th id="275">275</th><td><u>#<span data-ppcond="273">endif</span></u>&nbsp</td></tr>
+<tr><th id="276">276</th><td>&nbsp</td></tr>
+<tr><th id="277">277</th><td><i>/* At some point during the gcc 2.96 development the `malloc' attribute</i>&nbsp</td></tr>
+<tr><th id="278">278</th><td><i>   for functions was introduced.  We don't want to use it unconditionally</i>&nbsp</td></tr>
+<tr><th id="279">279</th><td><i>   (although this would be possible) since it generates warnings.  */</i>&nbsp</td></tr>
+<tr><th id="280">280</th><td><u>#<span data-ppcond="280">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((2) &lt;&lt; 16) + (96))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (2,96) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__malloc__)</u>&nbsp</td></tr>
+<tr><th id="281">281</th><td><u># define <dfn class="macro" id="_M/__attribute_malloc__" data-ref="_M/__attribute_malloc__">__attribute_malloc__</dfn> __attribute__ ((__malloc__))</u>&nbsp</td></tr>
+<tr><th id="282">282</th><td><u>#<span data-ppcond="280">else</span></u>&nbsp</td></tr>
+<tr><th id="283">283</th><td><u># define __attribute_malloc__ /* Ignore */</u>&nbsp</td></tr>
+<tr><th id="284">284</th><td><u>#<span data-ppcond="280">endif</span></u>&nbsp</td></tr>
+<tr><th id="285">285</th><td>&nbsp</td></tr>
+<tr><th id="286">286</th><td><i>/* Tell the compiler which arguments to an allocation function</i>&nbsp</td></tr>
+<tr><th id="287">287</th><td><i>   indicate the size of the allocation.  */</i>&nbsp</td></tr>
+<tr><th id="288">288</th><td><u>#<span data-ppcond="288">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (3))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4, 3)</u>&nbsp</td></tr>
+<tr><th id="289">289</th><td><u># define __attribute_alloc_size__(params) \</u>&nbsp</td></tr>
+<tr><th id="290">290</th><td><u>  __attribute__ ((__alloc_size__ params))</u>&nbsp</td></tr>
+<tr><th id="291">291</th><td><u>#<span data-ppcond="288">else</span></u>&nbsp</td></tr>
+<tr><th id="292">292</th><td><u># define <dfn class="macro" id="_M/__attribute_alloc_size__" data-ref="_M/__attribute_alloc_size__">__attribute_alloc_size__</dfn>(params) /* Ignore.  */</u>&nbsp</td></tr>
+<tr><th id="293">293</th><td><u>#<span data-ppcond="288">endif</span></u>&nbsp</td></tr>
+<tr><th id="294">294</th><td>&nbsp</td></tr>
+<tr><th id="295">295</th><td><i>/* Tell the compiler which argument to an allocation function</i>&nbsp</td></tr>
+<tr><th id="296">296</th><td><i>   indicates the alignment of the allocation.  */</i>&nbsp</td></tr>
+<tr><th id="297">297</th><td><u>#<span data-ppcond="297">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (9))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4, 9) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__alloc_align__)</u>&nbsp</td></tr>
+<tr><th id="298">298</th><td><u># define <dfn class="macro" id="_M/__attribute_alloc_align__" data-ref="_M/__attribute_alloc_align__">__attribute_alloc_align__</dfn>(param) \</u>&nbsp</td></tr>
+<tr><th id="299">299</th><td><u>  __attribute__ ((__alloc_align__ param))</u>&nbsp</td></tr>
+<tr><th id="300">300</th><td><u>#<span data-ppcond="297">else</span></u>&nbsp</td></tr>
+<tr><th id="301">301</th><td><u># define __attribute_alloc_align__(param) /* Ignore.  */</u>&nbsp</td></tr>
+<tr><th id="302">302</th><td><u>#<span data-ppcond="297">endif</span></u>&nbsp</td></tr>
+<tr><th id="303">303</th><td>&nbsp</td></tr>
+<tr><th id="304">304</th><td><i>/* At some point during the gcc 2.96 development the `pure' attribute</i>&nbsp</td></tr>
+<tr><th id="305">305</th><td><i>   for functions was introduced.  We don't want to use it unconditionally</i>&nbsp</td></tr>
+<tr><th id="306">306</th><td><i>   (although this would be possible) since it generates warnings.  */</i>&nbsp</td></tr>
+<tr><th id="307">307</th><td><u>#<span data-ppcond="307">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((2) &lt;&lt; 16) + (96))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (2,96) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__pure__)</u>&nbsp</td></tr>
+<tr><th id="308">308</th><td><u># define <dfn class="macro" id="_M/__attribute_pure__" data-ref="_M/__attribute_pure__">__attribute_pure__</dfn> __attribute__ ((__pure__))</u>&nbsp</td></tr>
+<tr><th id="309">309</th><td><u>#<span data-ppcond="307">else</span></u>&nbsp</td></tr>
+<tr><th id="310">310</th><td><u># define __attribute_pure__ /* Ignore */</u>&nbsp</td></tr>
+<tr><th id="311">311</th><td><u>#<span data-ppcond="307">endif</span></u>&nbsp</td></tr>
+<tr><th id="312">312</th><td>&nbsp</td></tr>
+<tr><th id="313">313</th><td><i>/* This declaration tells the compiler that the value is constant.  */</i>&nbsp</td></tr>
+<tr><th id="314">314</th><td><u>#<span data-ppcond="314">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((2) &lt;&lt; 16) + (5))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (2,5) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__const__)</u>&nbsp</td></tr>
+<tr><th id="315">315</th><td><u># define <dfn class="macro" id="_M/__attribute_const__" data-ref="_M/__attribute_const__">__attribute_const__</dfn> __attribute__ ((__const__))</u>&nbsp</td></tr>
+<tr><th id="316">316</th><td><u>#<span data-ppcond="314">else</span></u>&nbsp</td></tr>
+<tr><th id="317">317</th><td><u># define __attribute_const__ /* Ignore */</u>&nbsp</td></tr>
+<tr><th id="318">318</th><td><u>#<span data-ppcond="314">endif</span></u>&nbsp</td></tr>
+<tr><th id="319">319</th><td>&nbsp</td></tr>
+<tr><th id="320">320</th><td><u>#<span data-ppcond="320">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((2) &lt;&lt; 16) + (7))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (2,7) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__unused__)</u>&nbsp</td></tr>
+<tr><th id="321">321</th><td><u># define <dfn class="macro" id="_M/__attribute_maybe_unused__" data-ref="_M/__attribute_maybe_unused__">__attribute_maybe_unused__</dfn> __attribute__ ((__unused__))</u>&nbsp</td></tr>
+<tr><th id="322">322</th><td><u>#<span data-ppcond="320">else</span></u>&nbsp</td></tr>
+<tr><th id="323">323</th><td><u># define __attribute_maybe_unused__ /* Ignore */</u>&nbsp</td></tr>
+<tr><th id="324">324</th><td><u>#<span data-ppcond="320">endif</span></u>&nbsp</td></tr>
+<tr><th id="325">325</th><td>&nbsp</td></tr>
+<tr><th id="326">326</th><td><i>/* At some point during the gcc 3.1 development the `used' attribute</i>&nbsp</td></tr>
+<tr><th id="327">327</th><td><i>   for functions was introduced.  We don't want to use it unconditionally</i>&nbsp</td></tr>
+<tr><th id="328">328</th><td><i>   (although this would be possible) since it generates warnings.  */</i>&nbsp</td></tr>
+<tr><th id="329">329</th><td><u>#<span data-ppcond="329">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((3) &lt;&lt; 16) + (1))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (3,1) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__used__)</u>&nbsp</td></tr>
+<tr><th id="330">330</th><td><u># define <dfn class="macro" id="_M/__attribute_used__" data-ref="_M/__attribute_used__">__attribute_used__</dfn> __attribute__ ((__used__))</u>&nbsp</td></tr>
+<tr><th id="331">331</th><td><u># define <dfn class="macro" id="_M/__attribute_noinline__" data-ref="_M/__attribute_noinline__">__attribute_noinline__</dfn> __attribute__ ((__noinline__))</u>&nbsp</td></tr>
+<tr><th id="332">332</th><td><u>#<span data-ppcond="329">else</span></u>&nbsp</td></tr>
+<tr><th id="333">333</th><td><u># define __attribute_used__ __attribute__ ((__unused__))</u>&nbsp</td></tr>
+<tr><th id="334">334</th><td><u># define __attribute_noinline__ /* Ignore */</u>&nbsp</td></tr>
+<tr><th id="335">335</th><td><u>#<span data-ppcond="329">endif</span></u>&nbsp</td></tr>
+<tr><th id="336">336</th><td>&nbsp</td></tr>
+<tr><th id="337">337</th><td><i>/* Since version 3.2, gcc allows marking deprecated functions.  */</i>&nbsp</td></tr>
+<tr><th id="338">338</th><td><u>#<span data-ppcond="338">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((3) &lt;&lt; 16) + (2))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (3,2) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__deprecated__)</u>&nbsp</td></tr>
+<tr><th id="339">339</th><td><u># define <dfn class="macro" id="_M/__attribute_deprecated__" data-ref="_M/__attribute_deprecated__">__attribute_deprecated__</dfn> __attribute__ ((__deprecated__))</u>&nbsp</td></tr>
+<tr><th id="340">340</th><td><u>#<span data-ppcond="338">else</span></u>&nbsp</td></tr>
+<tr><th id="341">341</th><td><u># define __attribute_deprecated__ /* Ignore */</u>&nbsp</td></tr>
+<tr><th id="342">342</th><td><u>#<span data-ppcond="338">endif</span></u>&nbsp</td></tr>
+<tr><th id="343">343</th><td>&nbsp</td></tr>
+<tr><th id="344">344</th><td><i>/* Since version 4.5, gcc also allows one to specify the message printed</i>&nbsp</td></tr>
+<tr><th id="345">345</th><td><i>   when a deprecated function is used.  clang claims to be gcc 4.2, but</i>&nbsp</td></tr>
+<tr><th id="346">346</th><td><i>   may also support this feature.  */</i>&nbsp</td></tr>
+<tr><th id="347">347</th><td><u>#<span data-ppcond="347">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (5))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4,5) \</u>&nbsp</td></tr>
+<tr><th id="348">348</th><td><u>    || <a class="macro" href="#55" title="1" data-ref="_M/__glibc_has_extension">__glibc_has_extension</a> (__attribute_deprecated_with_message__)</u>&nbsp</td></tr>
+<tr><th id="349">349</th><td><u># define <dfn class="macro" id="_M/__attribute_deprecated_msg__" data-ref="_M/__attribute_deprecated_msg__">__attribute_deprecated_msg__</dfn>(msg) \</u>&nbsp</td></tr>
+<tr><th id="350">350</th><td><u>	 __attribute__ ((__deprecated__ (msg)))</u>&nbsp</td></tr>
+<tr><th id="351">351</th><td><u>#<span data-ppcond="347">else</span></u>&nbsp</td></tr>
+<tr><th id="352">352</th><td><u># define __attribute_deprecated_msg__(msg) __attribute_deprecated__</u>&nbsp</td></tr>
+<tr><th id="353">353</th><td><u>#<span data-ppcond="347">endif</span></u>&nbsp</td></tr>
+<tr><th id="354">354</th><td>&nbsp</td></tr>
+<tr><th id="355">355</th><td><i>/* At some point during the gcc 2.8 development the `format_arg' attribute</i>&nbsp</td></tr>
+<tr><th id="356">356</th><td><i>   for functions was introduced.  We don't want to use it unconditionally</i>&nbsp</td></tr>
+<tr><th id="357">357</th><td><i>   (although this would be possible) since it generates warnings.</i>&nbsp</td></tr>
+<tr><th id="358">358</th><td><i>   If several `format_arg' attributes are given for the same function, in</i>&nbsp</td></tr>
+<tr><th id="359">359</th><td><i>   gcc-3.0 and older, all but the last one are ignored.  In newer gccs,</i>&nbsp</td></tr>
+<tr><th id="360">360</th><td><i>   all designated arguments are considered.  */</i>&nbsp</td></tr>
+<tr><th id="361">361</th><td><u>#<span data-ppcond="361">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((2) &lt;&lt; 16) + (8))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (2,8) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__format_arg__)</u>&nbsp</td></tr>
+<tr><th id="362">362</th><td><u># define <dfn class="macro" id="_M/__attribute_format_arg__" data-ref="_M/__attribute_format_arg__">__attribute_format_arg__</dfn>(x) __attribute__ ((__format_arg__ (x)))</u>&nbsp</td></tr>
+<tr><th id="363">363</th><td><u>#<span data-ppcond="361">else</span></u>&nbsp</td></tr>
+<tr><th id="364">364</th><td><u># define __attribute_format_arg__(x) /* Ignore */</u>&nbsp</td></tr>
+<tr><th id="365">365</th><td><u>#<span data-ppcond="361">endif</span></u>&nbsp</td></tr>
+<tr><th id="366">366</th><td>&nbsp</td></tr>
+<tr><th id="367">367</th><td><i>/* At some point during the gcc 2.97 development the `strfmon' format</i>&nbsp</td></tr>
+<tr><th id="368">368</th><td><i>   attribute for functions was introduced.  We don't want to use it</i>&nbsp</td></tr>
+<tr><th id="369">369</th><td><i>   unconditionally (although this would be possible) since it</i>&nbsp</td></tr>
+<tr><th id="370">370</th><td><i>   generates warnings.  */</i>&nbsp</td></tr>
+<tr><th id="371">371</th><td><u>#<span data-ppcond="371">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((2) &lt;&lt; 16) + (97))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (2,97) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__format__)</u>&nbsp</td></tr>
+<tr><th id="372">372</th><td><u># define <dfn class="macro" id="_M/__attribute_format_strfmon__" data-ref="_M/__attribute_format_strfmon__">__attribute_format_strfmon__</dfn>(a,b) \</u>&nbsp</td></tr>
+<tr><th id="373">373</th><td><u>  __attribute__ ((__format__ (__strfmon__, a, b)))</u>&nbsp</td></tr>
+<tr><th id="374">374</th><td><u>#<span data-ppcond="371">else</span></u>&nbsp</td></tr>
+<tr><th id="375">375</th><td><u># define __attribute_format_strfmon__(a,b) /* Ignore */</u>&nbsp</td></tr>
+<tr><th id="376">376</th><td><u>#<span data-ppcond="371">endif</span></u>&nbsp</td></tr>
+<tr><th id="377">377</th><td>&nbsp</td></tr>
+<tr><th id="378">378</th><td><i>/* The nonnull function attribute marks pointer parameters that</i>&nbsp</td></tr>
+<tr><th id="379">379</th><td><i>   must not be NULL.  This has the name __nonnull in glibc,</i>&nbsp</td></tr>
+<tr><th id="380">380</th><td><i>   and __attribute_nonnull__ in files shared with Gnulib to avoid</i>&nbsp</td></tr>
+<tr><th id="381">381</th><td><i>   collision with a different __nonnull in DragonFlyBSD 5.9.  */</i>&nbsp</td></tr>
+<tr><th id="382">382</th><td><u>#<span data-ppcond="382">ifndef</span> <span class="macro" data-ref="_M/__attribute_nonnull__">__attribute_nonnull__</span></u>&nbsp</td></tr>
+<tr><th id="383">383</th><td><u># <span data-ppcond="383">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((3) &lt;&lt; 16) + (3))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (3,3) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__nonnull__)</u>&nbsp</td></tr>
+<tr><th id="384">384</th><td><u>#  define <dfn class="macro" id="_M/__attribute_nonnull__" data-ref="_M/__attribute_nonnull__">__attribute_nonnull__</dfn>(params) __attribute__ ((__nonnull__ params))</u>&nbsp</td></tr>
+<tr><th id="385">385</th><td><u># <span data-ppcond="383">else</span></u>&nbsp</td></tr>
+<tr><th id="386">386</th><td><u>#  define __attribute_nonnull__(params)</u>&nbsp</td></tr>
+<tr><th id="387">387</th><td><u># <span data-ppcond="383">endif</span></u>&nbsp</td></tr>
+<tr><th id="388">388</th><td><u>#<span data-ppcond="382">endif</span></u>&nbsp</td></tr>
+<tr><th id="389">389</th><td><u>#<span data-ppcond="389">ifndef</span> <span class="macro" data-ref="_M/__nonnull">__nonnull</span></u>&nbsp</td></tr>
+<tr><th id="390">390</th><td><u># define <dfn class="macro" id="_M/__nonnull" data-ref="_M/__nonnull">__nonnull</dfn>(params) __attribute_nonnull__ (params)</u>&nbsp</td></tr>
+<tr><th id="391">391</th><td><u>#<span data-ppcond="389">endif</span></u>&nbsp</td></tr>
+<tr><th id="392">392</th><td>&nbsp</td></tr>
+<tr><th id="393">393</th><td><i>/* The returns_nonnull function attribute marks the return type of the function</i>&nbsp</td></tr>
+<tr><th id="394">394</th><td><i>   as always being non-null.  */</i>&nbsp</td></tr>
+<tr><th id="395">395</th><td><u>#<span data-ppcond="395">ifndef</span> <span class="macro" data-ref="_M/__returns_nonnull">__returns_nonnull</span></u>&nbsp</td></tr>
+<tr><th id="396">396</th><td><u># <span data-ppcond="396">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (9))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4, 9) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__returns_nonnull__)</u>&nbsp</td></tr>
+<tr><th id="397">397</th><td><u># define <dfn class="macro" id="_M/__returns_nonnull" data-ref="_M/__returns_nonnull">__returns_nonnull</dfn> __attribute__ ((__returns_nonnull__))</u>&nbsp</td></tr>
+<tr><th id="398">398</th><td><u># <span data-ppcond="396">else</span></u>&nbsp</td></tr>
+<tr><th id="399">399</th><td><u># define __returns_nonnull</u>&nbsp</td></tr>
+<tr><th id="400">400</th><td><u># <span data-ppcond="396">endif</span></u>&nbsp</td></tr>
+<tr><th id="401">401</th><td><u>#<span data-ppcond="395">endif</span></u>&nbsp</td></tr>
+<tr><th id="402">402</th><td>&nbsp</td></tr>
+<tr><th id="403">403</th><td><i>/* If fortification mode, we warn about unused results of certain</i>&nbsp</td></tr>
+<tr><th id="404">404</th><td><i>   function calls which can lead to problems.  */</i>&nbsp</td></tr>
+<tr><th id="405">405</th><td><u>#<span data-ppcond="405">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((3) &lt;&lt; 16) + (4))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (3,4) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__warn_unused_result__)</u>&nbsp</td></tr>
+<tr><th id="406">406</th><td><u># define <dfn class="macro" id="_M/__attribute_warn_unused_result__" data-ref="_M/__attribute_warn_unused_result__">__attribute_warn_unused_result__</dfn> \</u>&nbsp</td></tr>
+<tr><th id="407">407</th><td><u>   __attribute__ ((__warn_unused_result__))</u>&nbsp</td></tr>
+<tr><th id="408">408</th><td><u># <span data-ppcond="408">if</span> defined <a class="macro" href="../../features.h.html#428" data-ref="_M/__USE_FORTIFY_LEVEL">__USE_FORTIFY_LEVEL</a> &amp;&amp; <a class="macro" href="../../features.h.html#428" title="0" data-ref="_M/__USE_FORTIFY_LEVEL">__USE_FORTIFY_LEVEL</a> &gt; 0</u>&nbsp</td></tr>
+<tr><th id="409">409</th><td><u>#  define __wur __attribute_warn_unused_result__</u>&nbsp</td></tr>
+<tr><th id="410">410</th><td><u># <span data-ppcond="408">endif</span></u>&nbsp</td></tr>
+<tr><th id="411">411</th><td><u>#<span data-ppcond="405">else</span></u>&nbsp</td></tr>
+<tr><th id="412">412</th><td><u># define __attribute_warn_unused_result__ /* empty */</u>&nbsp</td></tr>
+<tr><th id="413">413</th><td><u>#<span data-ppcond="405">endif</span></u>&nbsp</td></tr>
+<tr><th id="414">414</th><td><u>#<span data-ppcond="414">ifndef</span> <span class="macro" data-ref="_M/__wur">__wur</span></u>&nbsp</td></tr>
+<tr><th id="415">415</th><td><u># define <dfn class="macro" id="_M/__wur" data-ref="_M/__wur">__wur</dfn> /* Ignore */</u>&nbsp</td></tr>
+<tr><th id="416">416</th><td><u>#<span data-ppcond="414">endif</span></u>&nbsp</td></tr>
+<tr><th id="417">417</th><td>&nbsp</td></tr>
+<tr><th id="418">418</th><td><i>/* Forces a function to be always inlined.  */</i>&nbsp</td></tr>
+<tr><th id="419">419</th><td><u>#<span data-ppcond="419">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((3) &lt;&lt; 16) + (2))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (3,2) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__always_inline__)</u>&nbsp</td></tr>
+<tr><th id="420">420</th><td><i>/* The Linux kernel defines __always_inline in stddef.h (283d7573), and</i>&nbsp</td></tr>
+<tr><th id="421">421</th><td><i>   it conflicts with this definition.  Therefore undefine it first to</i>&nbsp</td></tr>
+<tr><th id="422">422</th><td><i>   allow either header to be included first.  */</i>&nbsp</td></tr>
+<tr><th id="423">423</th><td><u># undef <span class="macro" data-ref="_M/__always_inline">__always_inline</span></u>&nbsp</td></tr>
+<tr><th id="424">424</th><td><u># define <dfn class="macro" id="_M/__always_inline" data-ref="_M/__always_inline">__always_inline</dfn> __inline __attribute__ ((__always_inline__))</u>&nbsp</td></tr>
+<tr><th id="425">425</th><td><u>#<span data-ppcond="419">else</span></u>&nbsp</td></tr>
+<tr><th id="426">426</th><td><u># undef __always_inline</u>&nbsp</td></tr>
+<tr><th id="427">427</th><td><u># define __always_inline __inline</u>&nbsp</td></tr>
+<tr><th id="428">428</th><td><u>#<span data-ppcond="419">endif</span></u>&nbsp</td></tr>
+<tr><th id="429">429</th><td>&nbsp</td></tr>
+<tr><th id="430">430</th><td><i>/* Associate error messages with the source location of the call site rather</i>&nbsp</td></tr>
+<tr><th id="431">431</th><td><i>   than with the source location inside the function.  */</i>&nbsp</td></tr>
+<tr><th id="432">432</th><td><u>#<span data-ppcond="432">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (3))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4,3) || <a class="macro" href="#45" title="1" data-ref="_M/__glibc_has_attribute">__glibc_has_attribute</a> (__artificial__)</u>&nbsp</td></tr>
+<tr><th id="433">433</th><td><u># define <dfn class="macro" id="_M/__attribute_artificial__" data-ref="_M/__attribute_artificial__">__attribute_artificial__</dfn> __attribute__ ((__artificial__))</u>&nbsp</td></tr>
+<tr><th id="434">434</th><td><u>#<span data-ppcond="432">else</span></u>&nbsp</td></tr>
+<tr><th id="435">435</th><td><u># define __attribute_artificial__ /* Ignore */</u>&nbsp</td></tr>
+<tr><th id="436">436</th><td><u>#<span data-ppcond="432">endif</span></u>&nbsp</td></tr>
+<tr><th id="437">437</th><td>&nbsp</td></tr>
+<tr><th id="438">438</th><td><i>/* GCC 4.3 and above with -std=c99 or -std=gnu99 implements ISO C99</i>&nbsp</td></tr>
+<tr><th id="439">439</th><td><i>   inline semantics, unless -fgnu89-inline is used.  Using __GNUC_STDC_INLINE__</i>&nbsp</td></tr>
+<tr><th id="440">440</th><td><i>   or __GNUC_GNU_INLINE is not a good enough check for gcc because gcc versions</i>&nbsp</td></tr>
+<tr><th id="441">441</th><td><i>   older than 4.3 may define these macros and still not guarantee GNU inlining</i>&nbsp</td></tr>
+<tr><th id="442">442</th><td><i>   semantics.</i>&nbsp</td></tr>
+<tr><th id="443">443</th><td><i></i>&nbsp</td></tr>
+<tr><th id="444">444</th><td><i>   clang++ identifies itself as gcc-4.2, but has support for GNU inlining</i>&nbsp</td></tr>
+<tr><th id="445">445</th><td><i>   semantics, that can be checked for by using the __GNUC_STDC_INLINE_ and</i>&nbsp</td></tr>
+<tr><th id="446">446</th><td><i>   __GNUC_GNU_INLINE__ macro definitions.  */</i>&nbsp</td></tr>
+<tr><th id="447">447</th><td><u>#<span data-ppcond="447">if</span> (!defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span> || <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (3))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4,3) \</u>&nbsp</td></tr>
+<tr><th id="448">448</th><td><u>     || (defined <span class="macro" data-ref="_M/__clang__">__clang__</span> &amp;&amp; (defined <span class="macro" data-ref="_M/__GNUC_STDC_INLINE__">__GNUC_STDC_INLINE__</span> \</u>&nbsp</td></tr>
+<tr><th id="449">449</th><td><u>			       || defined <span class="macro" data-ref="_M/__GNUC_GNU_INLINE__">__GNUC_GNU_INLINE__</span>)))</u>&nbsp</td></tr>
+<tr><th id="450">450</th><td><u># <span data-ppcond="450">if</span> defined <span class="macro" data-ref="_M/__GNUC_STDC_INLINE__">__GNUC_STDC_INLINE__</span> || defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="451">451</th><td><u>#  define <dfn class="macro" id="_M/__extern_inline" data-ref="_M/__extern_inline">__extern_inline</dfn> extern __inline __attribute__ ((__gnu_inline__))</u>&nbsp</td></tr>
+<tr><th id="452">452</th><td><u>#  define <dfn class="macro" id="_M/__extern_always_inline" data-ref="_M/__extern_always_inline">__extern_always_inline</dfn> \</u>&nbsp</td></tr>
+<tr><th id="453">453</th><td><u>  extern __always_inline __attribute__ ((__gnu_inline__))</u>&nbsp</td></tr>
+<tr><th id="454">454</th><td><u># <span data-ppcond="450">else</span></u>&nbsp</td></tr>
+<tr><th id="455">455</th><td><u>#  define __extern_inline extern __inline</u>&nbsp</td></tr>
+<tr><th id="456">456</th><td><u>#  define __extern_always_inline extern __always_inline</u>&nbsp</td></tr>
+<tr><th id="457">457</th><td><u># <span data-ppcond="450">endif</span></u>&nbsp</td></tr>
+<tr><th id="458">458</th><td><u>#<span data-ppcond="447">endif</span></u>&nbsp</td></tr>
+<tr><th id="459">459</th><td>&nbsp</td></tr>
+<tr><th id="460">460</th><td><u>#<span data-ppcond="460">ifdef</span> <a class="macro" href="#452" data-ref="_M/__extern_always_inline">__extern_always_inline</a></u>&nbsp</td></tr>
+<tr><th id="461">461</th><td><u># define <dfn class="macro" id="_M/__fortify_function" data-ref="_M/__fortify_function">__fortify_function</dfn> __extern_always_inline __attribute_artificial__</u>&nbsp</td></tr>
+<tr><th id="462">462</th><td><u>#<span data-ppcond="460">endif</span></u>&nbsp</td></tr>
+<tr><th id="463">463</th><td>&nbsp</td></tr>
+<tr><th id="464">464</th><td><i>/* GCC 4.3 and above allow passing all anonymous arguments of an</i>&nbsp</td></tr>
+<tr><th id="465">465</th><td><i>   __extern_always_inline function to some other vararg function.  */</i>&nbsp</td></tr>
+<tr><th id="466">466</th><td><u>#<span data-ppcond="466">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (3))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4,3)</u>&nbsp</td></tr>
+<tr><th id="467">467</th><td><u># define __va_arg_pack() __builtin_va_arg_pack ()</u>&nbsp</td></tr>
+<tr><th id="468">468</th><td><u># define __va_arg_pack_len() __builtin_va_arg_pack_len ()</u>&nbsp</td></tr>
+<tr><th id="469">469</th><td><u>#<span data-ppcond="466">endif</span></u>&nbsp</td></tr>
+<tr><th id="470">470</th><td>&nbsp</td></tr>
+<tr><th id="471">471</th><td><i>/* It is possible to compile containing GCC extensions even if GCC is</i>&nbsp</td></tr>
+<tr><th id="472">472</th><td><i>   run in pedantic mode if the uses are carefully marked using the</i>&nbsp</td></tr>
+<tr><th id="473">473</th><td><i>   `__extension__' keyword.  But this is not generally available before</i>&nbsp</td></tr>
+<tr><th id="474">474</th><td><i>   version 2.8.  */</i>&nbsp</td></tr>
+<tr><th id="475">475</th><td><u>#<span data-ppcond="475">if</span> !(<a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((2) &lt;&lt; 16) + (8))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (2,8) || defined <span class="macro" data-ref="_M/__clang__">__clang__</span>)</u>&nbsp</td></tr>
+<tr><th id="476">476</th><td><u># define __extension__		/* Ignore */</u>&nbsp</td></tr>
+<tr><th id="477">477</th><td><u>#<span data-ppcond="475">endif</span></u>&nbsp</td></tr>
+<tr><th id="478">478</th><td>&nbsp</td></tr>
+<tr><th id="479">479</th><td><i>/* __restrict is known in EGCS 1.2 and above, and in clang.</i>&nbsp</td></tr>
+<tr><th id="480">480</th><td><i>   It works also in C++ mode (outside of arrays), but only when spelled</i>&nbsp</td></tr>
+<tr><th id="481">481</th><td><i>   as '__restrict', not 'restrict'.  */</i>&nbsp</td></tr>
+<tr><th id="482">482</th><td><u>#<span data-ppcond="482">if</span> !(<a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((2) &lt;&lt; 16) + (92))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (2,92) || <span class="macro" title="14" data-ref="_M/__clang_major__">__clang_major__</span> &gt;= 3)</u>&nbsp</td></tr>
+<tr><th id="483">483</th><td><u># if defined __STDC_VERSION__ &amp;&amp; __STDC_VERSION__ &gt;= 199901L</u>&nbsp</td></tr>
+<tr><th id="484">484</th><td><u>#  define __restrict	restrict</u>&nbsp</td></tr>
+<tr><th id="485">485</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="486">486</th><td><u>#  define __restrict	/* Ignore */</u>&nbsp</td></tr>
+<tr><th id="487">487</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="488">488</th><td><u>#<span data-ppcond="482">endif</span></u>&nbsp</td></tr>
+<tr><th id="489">489</th><td>&nbsp</td></tr>
+<tr><th id="490">490</th><td><i>/* ISO C99 also allows to declare arrays as non-overlapping.  The syntax is</i>&nbsp</td></tr>
+<tr><th id="491">491</th><td><i>     array_name[restrict]</i>&nbsp</td></tr>
+<tr><th id="492">492</th><td><i>   GCC 3.1 and clang support this.</i>&nbsp</td></tr>
+<tr><th id="493">493</th><td><i>   This syntax is not usable in C++ mode.  */</i>&nbsp</td></tr>
+<tr><th id="494">494</th><td><u>#<span data-ppcond="494">if</span> (<a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((3) &lt;&lt; 16) + (1))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (3,1) || <span class="macro" title="14" data-ref="_M/__clang_major__">__clang_major__</span> &gt;= 3) &amp;&amp; !defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="495">495</th><td><u># define __restrict_arr	__restrict</u>&nbsp</td></tr>
+<tr><th id="496">496</th><td><u>#<span data-ppcond="494">else</span></u>&nbsp</td></tr>
+<tr><th id="497">497</th><td><u># <span data-ppcond="497">ifdef</span> <span class="macro" data-ref="_M/__GNUC__">__GNUC__</span></u>&nbsp</td></tr>
+<tr><th id="498">498</th><td><u>#  define <dfn class="macro" id="_M/__restrict_arr" data-ref="_M/__restrict_arr">__restrict_arr</dfn>	/* Not supported in old GCC.  */</u>&nbsp</td></tr>
+<tr><th id="499">499</th><td><u># <span data-ppcond="497">else</span></u>&nbsp</td></tr>
+<tr><th id="500">500</th><td><u>#  if defined __STDC_VERSION__ &amp;&amp; __STDC_VERSION__ &gt;= 199901L</u>&nbsp</td></tr>
+<tr><th id="501">501</th><td><u>#   define __restrict_arr	restrict</u>&nbsp</td></tr>
+<tr><th id="502">502</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="503">503</th><td><i>/* Some other non-C99 compiler.  */</i>&nbsp</td></tr>
+<tr><th id="504">504</th><td><u>#   define __restrict_arr	/* Not supported.  */</u>&nbsp</td></tr>
+<tr><th id="505">505</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="506">506</th><td><u># <span data-ppcond="497">endif</span></u>&nbsp</td></tr>
+<tr><th id="507">507</th><td><u>#<span data-ppcond="494">endif</span></u>&nbsp</td></tr>
+<tr><th id="508">508</th><td>&nbsp</td></tr>
+<tr><th id="509">509</th><td><u>#<span data-ppcond="509">if</span> (<span class="macro" title="4" data-ref="_M/__GNUC__">__GNUC__</span> &gt;= 3) || <a class="macro" href="#50" title="1" data-ref="_M/__glibc_has_builtin">__glibc_has_builtin</a> (__builtin_expect)</u>&nbsp</td></tr>
+<tr><th id="510">510</th><td><u># define <dfn class="macro" id="_M/__glibc_unlikely" data-ref="_M/__glibc_unlikely">__glibc_unlikely</dfn>(cond)	__builtin_expect ((cond), 0)</u>&nbsp</td></tr>
+<tr><th id="511">511</th><td><u># define <dfn class="macro" id="_M/__glibc_likely" data-ref="_M/__glibc_likely">__glibc_likely</dfn>(cond)	__builtin_expect ((cond), 1)</u>&nbsp</td></tr>
+<tr><th id="512">512</th><td><u>#<span data-ppcond="509">else</span></u>&nbsp</td></tr>
+<tr><th id="513">513</th><td><u># define __glibc_unlikely(cond)	(cond)</u>&nbsp</td></tr>
+<tr><th id="514">514</th><td><u># define __glibc_likely(cond)	(cond)</u>&nbsp</td></tr>
+<tr><th id="515">515</th><td><u>#<span data-ppcond="509">endif</span></u>&nbsp</td></tr>
+<tr><th id="516">516</th><td>&nbsp</td></tr>
+<tr><th id="517">517</th><td><u>#<span data-ppcond="517">if</span> (!defined <span class="macro" data-ref="_M/_Noreturn">_Noreturn</span> \</u>&nbsp</td></tr>
+<tr><th id="518">518</th><td><u>     &amp;&amp; (defined <span class="macro" data-ref="_M/__STDC_VERSION__">__STDC_VERSION__</span> ? __STDC_VERSION__ : 0) &lt; 201112 \</u>&nbsp</td></tr>
+<tr><th id="519">519</th><td><u>     &amp;&amp;  !(<a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (7))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4,7) \</u>&nbsp</td></tr>
+<tr><th id="520">520</th><td><u>           || (3 &lt; <span class="macro" title="14" data-ref="_M/__clang_major__">__clang_major__</span> + (5 &lt;= <span class="macro" title="0" data-ref="_M/__clang_minor__">__clang_minor__</span>))))</u>&nbsp</td></tr>
+<tr><th id="521">521</th><td><u># if __GNUC_PREREQ (2,8)</u>&nbsp</td></tr>
+<tr><th id="522">522</th><td><u>#  define _Noreturn __attribute__ ((__noreturn__))</u>&nbsp</td></tr>
+<tr><th id="523">523</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="524">524</th><td><u>#  define _Noreturn</u>&nbsp</td></tr>
+<tr><th id="525">525</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="526">526</th><td><u>#<span data-ppcond="517">endif</span></u>&nbsp</td></tr>
+<tr><th id="527">527</th><td>&nbsp</td></tr>
+<tr><th id="528">528</th><td><u>#<span data-ppcond="528">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((8) &lt;&lt; 16) + (0))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (8, 0)</u>&nbsp</td></tr>
+<tr><th id="529">529</th><td><i>/* Describes a char array whose address can safely be passed as the first</i>&nbsp</td></tr>
+<tr><th id="530">530</th><td><i>   argument to strncpy and strncat, as the char array is not necessarily</i>&nbsp</td></tr>
+<tr><th id="531">531</th><td><i>   a NUL-terminated string.  */</i>&nbsp</td></tr>
+<tr><th id="532">532</th><td><u># define __attribute_nonstring__ __attribute__ ((__nonstring__))</u>&nbsp</td></tr>
+<tr><th id="533">533</th><td><u>#<span data-ppcond="528">else</span></u>&nbsp</td></tr>
+<tr><th id="534">534</th><td><u># define <dfn class="macro" id="_M/__attribute_nonstring__" data-ref="_M/__attribute_nonstring__">__attribute_nonstring__</dfn></u>&nbsp</td></tr>
+<tr><th id="535">535</th><td><u>#<span data-ppcond="528">endif</span></u>&nbsp</td></tr>
+<tr><th id="536">536</th><td>&nbsp</td></tr>
+<tr><th id="537">537</th><td><i>/* Undefine (also defined in libc-symbols.h).  */</i>&nbsp</td></tr>
+<tr><th id="538">538</th><td><u>#undef <span class="macro" data-ref="_M/__attribute_copy__">__attribute_copy__</span></u>&nbsp</td></tr>
+<tr><th id="539">539</th><td><u>#<span data-ppcond="539">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((9) &lt;&lt; 16) + (0))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (9, 0)</u>&nbsp</td></tr>
+<tr><th id="540">540</th><td><i>/* Copies attributes from the declaration or type referenced by</i>&nbsp</td></tr>
+<tr><th id="541">541</th><td><i>   the argument.  */</i>&nbsp</td></tr>
+<tr><th id="542">542</th><td><u># define __attribute_copy__(arg) __attribute__ ((__copy__ (arg)))</u>&nbsp</td></tr>
+<tr><th id="543">543</th><td><u>#<span data-ppcond="539">else</span></u>&nbsp</td></tr>
+<tr><th id="544">544</th><td><u># define <dfn class="macro" id="_M/__attribute_copy__" data-ref="_M/__attribute_copy__">__attribute_copy__</dfn>(arg)</u>&nbsp</td></tr>
+<tr><th id="545">545</th><td><u>#<span data-ppcond="539">endif</span></u>&nbsp</td></tr>
+<tr><th id="546">546</th><td>&nbsp</td></tr>
+<tr><th id="547">547</th><td><u>#<span data-ppcond="547">if</span> (!defined <span class="macro" data-ref="_M/_Static_assert">_Static_assert</span> &amp;&amp; !defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span> \</u>&nbsp</td></tr>
+<tr><th id="548">548</th><td><u>     &amp;&amp; (defined <span class="macro" data-ref="_M/__STDC_VERSION__">__STDC_VERSION__</span> ? __STDC_VERSION__ : 0) &lt; 201112 \</u>&nbsp</td></tr>
+<tr><th id="549">549</th><td><u>     &amp;&amp; (!(<a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (6))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4, 6) || <span class="macro" title="14" data-ref="_M/__clang_major__">__clang_major__</span> &gt;= 4) \</u>&nbsp</td></tr>
+<tr><th id="550">550</th><td><u>         || defined <span class="macro" data-ref="_M/__STRICT_ANSI__">__STRICT_ANSI__</span>))</u>&nbsp</td></tr>
+<tr><th id="551">551</th><td><u># define _Static_assert(expr, diagnostic) \</u>&nbsp</td></tr>
+<tr><th id="552">552</th><td><u>    extern int (*__Static_assert_function (void)) \</u>&nbsp</td></tr>
+<tr><th id="553">553</th><td><u>      [!!sizeof (struct { int __error_if_negative: (expr) ? 2 : -1; })]</u>&nbsp</td></tr>
+<tr><th id="554">554</th><td><u>#<span data-ppcond="547">endif</span></u>&nbsp</td></tr>
+<tr><th id="555">555</th><td>&nbsp</td></tr>
+<tr><th id="556">556</th><td><i>/* Gnulib avoids including these, as they don't work on non-glibc or</i>&nbsp</td></tr>
+<tr><th id="557">557</th><td><i>   older glibc platforms.  */</i>&nbsp</td></tr>
+<tr><th id="558">558</th><td><u>#<span data-ppcond="558">ifndef</span> <span class="macro" data-ref="_M/__GNULIB_CDEFS">__GNULIB_CDEFS</span></u>&nbsp</td></tr>
+<tr><th id="559">559</th><td><u># include &lt;bits/wordsize.h&gt;</u>&nbsp</td></tr>
+<tr><th id="560">560</th><td><u># include &lt;bits/long-double.h&gt;</u>&nbsp</td></tr>
+<tr><th id="561">561</th><td><u>#<span data-ppcond="558">endif</span></u>&nbsp</td></tr>
+<tr><th id="562">562</th><td>&nbsp</td></tr>
+<tr><th id="563">563</th><td><u>#<span data-ppcond="563">if</span> <a class="macro" href="../bits/long-double.h.html#21" title="0" data-ref="_M/__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI">__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI</a> == 1</u>&nbsp</td></tr>
+<tr><th id="564">564</th><td><u># ifdef __REDIRECT</u>&nbsp</td></tr>
+<tr><th id="565">565</th><td>&nbsp</td></tr>
+<tr><th id="566">566</th><td><i>/* Alias name defined automatically.  */</i>&nbsp</td></tr>
+<tr><th id="567">567</th><td><u>#  define __LDBL_REDIR(name, proto) ... unused__ldbl_redir</u>&nbsp</td></tr>
+<tr><th id="568">568</th><td><u>#  define __LDBL_REDIR_DECL(name) \</u>&nbsp</td></tr>
+<tr><th id="569">569</th><td><u>  extern __typeof (name) name __asm (__ASMNAME ("__" #name "ieee128"));</u>&nbsp</td></tr>
+<tr><th id="570">570</th><td>&nbsp</td></tr>
+<tr><th id="571">571</th><td><i>/* Alias name defined automatically, with leading underscores.  */</i>&nbsp</td></tr>
+<tr><th id="572">572</th><td><u>#  define __LDBL_REDIR2_DECL(name) \</u>&nbsp</td></tr>
+<tr><th id="573">573</th><td><u>  extern __typeof (__##name) __##name \</u>&nbsp</td></tr>
+<tr><th id="574">574</th><td><u>    __asm (__ASMNAME ("__" #name "ieee128"));</u>&nbsp</td></tr>
+<tr><th id="575">575</th><td>&nbsp</td></tr>
+<tr><th id="576">576</th><td><i>/* Alias name defined manually.  */</i>&nbsp</td></tr>
+<tr><th id="577">577</th><td><u>#  define __LDBL_REDIR1(name, proto, alias) ... unused__ldbl_redir1</u>&nbsp</td></tr>
+<tr><th id="578">578</th><td><u>#  define __LDBL_REDIR1_DECL(name, alias) \</u>&nbsp</td></tr>
+<tr><th id="579">579</th><td><u>  extern __typeof (name) name __asm (__ASMNAME (#alias));</u>&nbsp</td></tr>
+<tr><th id="580">580</th><td>&nbsp</td></tr>
+<tr><th id="581">581</th><td><u>#  define __LDBL_REDIR1_NTH(name, proto, alias) \</u>&nbsp</td></tr>
+<tr><th id="582">582</th><td><u>  __REDIRECT_NTH (name, proto, alias)</u>&nbsp</td></tr>
+<tr><th id="583">583</th><td><u>#  define __REDIRECT_NTH_LDBL(name, proto, alias) \</u>&nbsp</td></tr>
+<tr><th id="584">584</th><td><u>  __LDBL_REDIR1_NTH (name, proto, __##alias##ieee128)</u>&nbsp</td></tr>
+<tr><th id="585">585</th><td>&nbsp</td></tr>
+<tr><th id="586">586</th><td><i>/* Unused.  */</i>&nbsp</td></tr>
+<tr><th id="587">587</th><td><u>#  define __REDIRECT_LDBL(name, proto, alias) ... unused__redirect_ldbl</u>&nbsp</td></tr>
+<tr><th id="588">588</th><td><u>#  define __LDBL_REDIR_NTH(name, proto) ... unused__ldbl_redir_nth</u>&nbsp</td></tr>
+<tr><th id="589">589</th><td>&nbsp</td></tr>
+<tr><th id="590">590</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="591">591</th><td><b>_Static_assert</b> (<var>0</var>, <q>"IEEE 128-bits long double requires redirection on this platform"</q>);&nbsp</td></tr>
+<tr><th id="592">592</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="593">593</th><td><u>#<span data-ppcond="563">elif</span> defined <span class="macro" data-ref="_M/__LONG_DOUBLE_MATH_OPTIONAL">__LONG_DOUBLE_MATH_OPTIONAL</span> &amp;&amp; defined <span class="macro" data-ref="_M/__NO_LONG_DOUBLE_MATH">__NO_LONG_DOUBLE_MATH</span></u>&nbsp</td></tr>
+<tr><th id="594">594</th><td><u># define __LDBL_COMPAT 1</u>&nbsp</td></tr>
+<tr><th id="595">595</th><td><u># ifdef __REDIRECT</u>&nbsp</td></tr>
+<tr><th id="596">596</th><td><u>#  define __LDBL_REDIR1(name, proto, alias) __REDIRECT (name, proto, alias)</u>&nbsp</td></tr>
+<tr><th id="597">597</th><td><u>#  define __LDBL_REDIR(name, proto) \</u>&nbsp</td></tr>
+<tr><th id="598">598</th><td><u>  __LDBL_REDIR1 (name, proto, __nldbl_##name)</u>&nbsp</td></tr>
+<tr><th id="599">599</th><td><u>#  define __LDBL_REDIR1_NTH(name, proto, alias) __REDIRECT_NTH (name, proto, alias)</u>&nbsp</td></tr>
+<tr><th id="600">600</th><td><u>#  define __LDBL_REDIR_NTH(name, proto) \</u>&nbsp</td></tr>
+<tr><th id="601">601</th><td><u>  __LDBL_REDIR1_NTH (name, proto, __nldbl_##name)</u>&nbsp</td></tr>
+<tr><th id="602">602</th><td><u>#  define __LDBL_REDIR2_DECL(name) \</u>&nbsp</td></tr>
+<tr><th id="603">603</th><td><u>  extern __typeof (__##name) __##name __asm (__ASMNAME ("__nldbl___" #name));</u>&nbsp</td></tr>
+<tr><th id="604">604</th><td><u>#  define __LDBL_REDIR1_DECL(name, alias) \</u>&nbsp</td></tr>
+<tr><th id="605">605</th><td><u>  extern __typeof (name) name __asm (__ASMNAME (#alias));</u>&nbsp</td></tr>
+<tr><th id="606">606</th><td><u>#  define __LDBL_REDIR_DECL(name) \</u>&nbsp</td></tr>
+<tr><th id="607">607</th><td><u>  extern __typeof (name) name __asm (__ASMNAME ("__nldbl_" #name));</u>&nbsp</td></tr>
+<tr><th id="608">608</th><td><u>#  define __REDIRECT_LDBL(name, proto, alias) \</u>&nbsp</td></tr>
+<tr><th id="609">609</th><td><u>  __LDBL_REDIR1 (name, proto, __nldbl_##alias)</u>&nbsp</td></tr>
+<tr><th id="610">610</th><td><u>#  define __REDIRECT_NTH_LDBL(name, proto, alias) \</u>&nbsp</td></tr>
+<tr><th id="611">611</th><td><u>  __LDBL_REDIR1_NTH (name, proto, __nldbl_##alias)</u>&nbsp</td></tr>
+<tr><th id="612">612</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="613">613</th><td><u>#<span data-ppcond="563">endif</span></u>&nbsp</td></tr>
+<tr><th id="614">614</th><td><u>#<span data-ppcond="614">if</span> (!defined <span class="macro" data-ref="_M/__LDBL_COMPAT">__LDBL_COMPAT</span> &amp;&amp; <a class="macro" href="../bits/long-double.h.html#21" title="0" data-ref="_M/__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI">__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI</a> == 0) \</u>&nbsp</td></tr>
+<tr><th id="615">615</th><td><u>    || !defined <a class="macro" href="#247" data-ref="_M/__REDIRECT">__REDIRECT</a></u>&nbsp</td></tr>
+<tr><th id="616">616</th><td><u># define <dfn class="macro" id="_M/__LDBL_REDIR1" data-ref="_M/__LDBL_REDIR1">__LDBL_REDIR1</dfn>(name, proto, alias) name proto</u>&nbsp</td></tr>
+<tr><th id="617">617</th><td><u># define <dfn class="macro" id="_M/__LDBL_REDIR" data-ref="_M/__LDBL_REDIR">__LDBL_REDIR</dfn>(name, proto) name proto</u>&nbsp</td></tr>
+<tr><th id="618">618</th><td><u># define <dfn class="macro" id="_M/__LDBL_REDIR1_NTH" data-ref="_M/__LDBL_REDIR1_NTH">__LDBL_REDIR1_NTH</dfn>(name, proto, alias) name proto __THROW</u>&nbsp</td></tr>
+<tr><th id="619">619</th><td><u># define <dfn class="macro" id="_M/__LDBL_REDIR_NTH" data-ref="_M/__LDBL_REDIR_NTH">__LDBL_REDIR_NTH</dfn>(name, proto) name proto __THROW</u>&nbsp</td></tr>
+<tr><th id="620">620</th><td><u># define <dfn class="macro" id="_M/__LDBL_REDIR2_DECL" data-ref="_M/__LDBL_REDIR2_DECL">__LDBL_REDIR2_DECL</dfn>(name)</u>&nbsp</td></tr>
+<tr><th id="621">621</th><td><u># define <dfn class="macro" id="_M/__LDBL_REDIR_DECL" data-ref="_M/__LDBL_REDIR_DECL">__LDBL_REDIR_DECL</dfn>(name)</u>&nbsp</td></tr>
+<tr><th id="622">622</th><td><u># <span data-ppcond="622">ifdef</span> <a class="macro" href="#247" data-ref="_M/__REDIRECT">__REDIRECT</a></u>&nbsp</td></tr>
+<tr><th id="623">623</th><td><u>#  define <dfn class="macro" id="_M/__REDIRECT_LDBL" data-ref="_M/__REDIRECT_LDBL">__REDIRECT_LDBL</dfn>(name, proto, alias) __REDIRECT (name, proto, alias)</u>&nbsp</td></tr>
+<tr><th id="624">624</th><td><u>#  define <dfn class="macro" id="_M/__REDIRECT_NTH_LDBL" data-ref="_M/__REDIRECT_NTH_LDBL">__REDIRECT_NTH_LDBL</dfn>(name, proto, alias) \</u>&nbsp</td></tr>
+<tr><th id="625">625</th><td><u>  __REDIRECT_NTH (name, proto, alias)</u>&nbsp</td></tr>
+<tr><th id="626">626</th><td><u># <span data-ppcond="622">endif</span></u>&nbsp</td></tr>
+<tr><th id="627">627</th><td><u>#<span data-ppcond="614">endif</span></u>&nbsp</td></tr>
+<tr><th id="628">628</th><td>&nbsp</td></tr>
+<tr><th id="629">629</th><td><i>/* __glibc_macro_warning (MESSAGE) issues warning MESSAGE.  This is</i>&nbsp</td></tr>
+<tr><th id="630">630</th><td><i>   intended for use in preprocessor macros.</i>&nbsp</td></tr>
+<tr><th id="631">631</th><td><i></i>&nbsp</td></tr>
+<tr><th id="632">632</th><td><i>   Note: MESSAGE must be a _single_ string; concatenation of string</i>&nbsp</td></tr>
+<tr><th id="633">633</th><td><i>   literals is not supported.  */</i>&nbsp</td></tr>
+<tr><th id="634">634</th><td><u>#<span data-ppcond="634">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (8))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4,8) || <a class="macro" href="../../features.h.html#179" title="((14 &lt;&lt; 16) + 0 &gt;= ((3) &lt;&lt; 16) + (5))" data-ref="_M/__glibc_clang_prereq">__glibc_clang_prereq</a> (3,5)</u>&nbsp</td></tr>
+<tr><th id="635">635</th><td><u># define <dfn class="macro" id="_M/__glibc_macro_warning1" data-ref="_M/__glibc_macro_warning1">__glibc_macro_warning1</dfn>(message) _Pragma (#message)</u>&nbsp</td></tr>
+<tr><th id="636">636</th><td><u># define <dfn class="macro" id="_M/__glibc_macro_warning" data-ref="_M/__glibc_macro_warning">__glibc_macro_warning</dfn>(message) \</u>&nbsp</td></tr>
+<tr><th id="637">637</th><td><u>  __glibc_macro_warning1 (GCC warning message)</u>&nbsp</td></tr>
+<tr><th id="638">638</th><td><u>#<span data-ppcond="634">else</span></u>&nbsp</td></tr>
+<tr><th id="639">639</th><td><u># define __glibc_macro_warning(msg)</u>&nbsp</td></tr>
+<tr><th id="640">640</th><td><u>#<span data-ppcond="634">endif</span></u>&nbsp</td></tr>
+<tr><th id="641">641</th><td>&nbsp</td></tr>
+<tr><th id="642">642</th><td><i>/* Generic selection (ISO C11) is a C-only feature, available in GCC</i>&nbsp</td></tr>
+<tr><th id="643">643</th><td><i>   since version 4.9.  Previous versions do not provide generic</i>&nbsp</td></tr>
+<tr><th id="644">644</th><td><i>   selection, even though they might set __STDC_VERSION__ to 201112L,</i>&nbsp</td></tr>
+<tr><th id="645">645</th><td><i>   when in -std=c11 mode.  Thus, we must check for !defined __GNUC__</i>&nbsp</td></tr>
+<tr><th id="646">646</th><td><i>   when testing __STDC_VERSION__ for generic selection support.</i>&nbsp</td></tr>
+<tr><th id="647">647</th><td><i>   On the other hand, Clang also defines __GNUC__, so a clang-specific</i>&nbsp</td></tr>
+<tr><th id="648">648</th><td><i>   check is required to enable the use of generic selection.  */</i>&nbsp</td></tr>
+<tr><th id="649">649</th><td><u>#<span data-ppcond="649">if</span> !defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span> \</u>&nbsp</td></tr>
+<tr><th id="650">650</th><td><u>    &amp;&amp; (<a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (9))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4, 9) \</u>&nbsp</td></tr>
+<tr><th id="651">651</th><td><u>	|| <a class="macro" href="#55" title="1" data-ref="_M/__glibc_has_extension">__glibc_has_extension</a> (c_generic_selections) \</u>&nbsp</td></tr>
+<tr><th id="652">652</th><td><u>	|| (!defined <span class="macro" data-ref="_M/__GNUC__">__GNUC__</span> &amp;&amp; defined <span class="macro" data-ref="_M/__STDC_VERSION__">__STDC_VERSION__</span> \</u>&nbsp</td></tr>
+<tr><th id="653">653</th><td><u>	    &amp;&amp; __STDC_VERSION__ &gt;= 201112L))</u>&nbsp</td></tr>
+<tr><th id="654">654</th><td><u># define __HAVE_GENERIC_SELECTION 1</u>&nbsp</td></tr>
+<tr><th id="655">655</th><td><u>#<span data-ppcond="649">else</span></u>&nbsp</td></tr>
+<tr><th id="656">656</th><td><u># define <dfn class="macro" id="_M/__HAVE_GENERIC_SELECTION" data-ref="_M/__HAVE_GENERIC_SELECTION">__HAVE_GENERIC_SELECTION</dfn> 0</u>&nbsp</td></tr>
+<tr><th id="657">657</th><td><u>#<span data-ppcond="649">endif</span></u>&nbsp</td></tr>
+<tr><th id="658">658</th><td>&nbsp</td></tr>
+<tr><th id="659">659</th><td><u>#<span data-ppcond="659">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((10) &lt;&lt; 16) + (0))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (10, 0)</u>&nbsp</td></tr>
+<tr><th id="660">660</th><td><i>/* Designates a 1-based positional argument ref-index of pointer type</i>&nbsp</td></tr>
+<tr><th id="661">661</th><td><i>   that can be used to access size-index elements of the pointed-to</i>&nbsp</td></tr>
+<tr><th id="662">662</th><td><i>   array according to access mode, or at least one element when</i>&nbsp</td></tr>
+<tr><th id="663">663</th><td><i>   size-index is not provided:</i>&nbsp</td></tr>
+<tr><th id="664">664</th><td><i>     access (access-mode, &lt;ref-index&gt; [, &lt;size-index&gt;])  */</i>&nbsp</td></tr>
+<tr><th id="665">665</th><td><u>#  define __attr_access(x) __attribute__ ((__access__ x))</u>&nbsp</td></tr>
+<tr><th id="666">666</th><td><i>/* For _FORTIFY_SOURCE == 3 we use __builtin_dynamic_object_size, which may</i>&nbsp</td></tr>
+<tr><th id="667">667</th><td><i>   use the access attribute to get object sizes from function definition</i>&nbsp</td></tr>
+<tr><th id="668">668</th><td><i>   arguments, so we can't use them on functions we fortify.  Drop the object</i>&nbsp</td></tr>
+<tr><th id="669">669</th><td><i>   size hints for such functions.  */</i>&nbsp</td></tr>
+<tr><th id="670">670</th><td><u>#  if __USE_FORTIFY_LEVEL == 3</u>&nbsp</td></tr>
+<tr><th id="671">671</th><td><u>#    define __fortified_attr_access(a, o, s) __attribute__ ((__access__ (a, o)))</u>&nbsp</td></tr>
+<tr><th id="672">672</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="673">673</th><td><u>#    define __fortified_attr_access(a, o, s) __attr_access ((a, o, s))</u>&nbsp</td></tr>
+<tr><th id="674">674</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="675">675</th><td><u>#  if __GNUC_PREREQ (11, 0)</u>&nbsp</td></tr>
+<tr><th id="676">676</th><td><u>#    define __attr_access_none(argno) __attribute__ ((__access__ (__none__, argno)))</u>&nbsp</td></tr>
+<tr><th id="677">677</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="678">678</th><td><u>#    define __attr_access_none(argno)</u>&nbsp</td></tr>
+<tr><th id="679">679</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="680">680</th><td><u>#<span data-ppcond="659">else</span></u>&nbsp</td></tr>
+<tr><th id="681">681</th><td><u>#  define <dfn class="macro" id="_M/__fortified_attr_access" data-ref="_M/__fortified_attr_access">__fortified_attr_access</dfn>(a, o, s)</u>&nbsp</td></tr>
+<tr><th id="682">682</th><td><u>#  define <dfn class="macro" id="_M/__attr_access" data-ref="_M/__attr_access">__attr_access</dfn>(x)</u>&nbsp</td></tr>
+<tr><th id="683">683</th><td><u>#  define <dfn class="macro" id="_M/__attr_access_none" data-ref="_M/__attr_access_none">__attr_access_none</dfn>(argno)</u>&nbsp</td></tr>
+<tr><th id="684">684</th><td><u>#<span data-ppcond="659">endif</span></u>&nbsp</td></tr>
+<tr><th id="685">685</th><td>&nbsp</td></tr>
+<tr><th id="686">686</th><td><u>#<span data-ppcond="686">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((11) &lt;&lt; 16) + (0))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (11, 0)</u>&nbsp</td></tr>
+<tr><th id="687">687</th><td><i>/* Designates dealloc as a function to call to deallocate objects</i>&nbsp</td></tr>
+<tr><th id="688">688</th><td><i>   allocated by the declared function.  */</i>&nbsp</td></tr>
+<tr><th id="689">689</th><td><u># define __attr_dealloc(dealloc, argno) \</u>&nbsp</td></tr>
+<tr><th id="690">690</th><td><u>    __attribute__ ((__malloc__ (dealloc, argno)))</u>&nbsp</td></tr>
+<tr><th id="691">691</th><td><u># define __attr_dealloc_free __attr_dealloc (__builtin_free, 1)</u>&nbsp</td></tr>
+<tr><th id="692">692</th><td><u>#<span data-ppcond="686">else</span></u>&nbsp</td></tr>
+<tr><th id="693">693</th><td><u># define <dfn class="macro" id="_M/__attr_dealloc" data-ref="_M/__attr_dealloc">__attr_dealloc</dfn>(dealloc, argno)</u>&nbsp</td></tr>
+<tr><th id="694">694</th><td><u># define <dfn class="macro" id="_M/__attr_dealloc_free" data-ref="_M/__attr_dealloc_free">__attr_dealloc_free</dfn></u>&nbsp</td></tr>
+<tr><th id="695">695</th><td><u>#<span data-ppcond="686">endif</span></u>&nbsp</td></tr>
+<tr><th id="696">696</th><td>&nbsp</td></tr>
+<tr><th id="697">697</th><td><i>/* Specify that a function such as setjmp or vfork may return</i>&nbsp</td></tr>
+<tr><th id="698">698</th><td><i>   twice.  */</i>&nbsp</td></tr>
+<tr><th id="699">699</th><td><u>#<span data-ppcond="699">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (1))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4, 1)</u>&nbsp</td></tr>
+<tr><th id="700">700</th><td><u># define <dfn class="macro" id="_M/__attribute_returns_twice__" data-ref="_M/__attribute_returns_twice__">__attribute_returns_twice__</dfn> __attribute__ ((__returns_twice__))</u>&nbsp</td></tr>
+<tr><th id="701">701</th><td><u>#<span data-ppcond="699">else</span></u>&nbsp</td></tr>
+<tr><th id="702">702</th><td><u># define __attribute_returns_twice__ /* Ignore.  */</u>&nbsp</td></tr>
+<tr><th id="703">703</th><td><u>#<span data-ppcond="699">endif</span></u>&nbsp</td></tr>
+<tr><th id="704">704</th><td>&nbsp</td></tr>
+<tr><th id="705">705</th><td><u>#<span data-ppcond="19">endif</span>	 /* sys/cdefs.h */</u>&nbsp</td></tr>
+<tr><th id="706">706</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

@@ -1,0 +1,4 @@
+<dec f='include/stdlib.h' l='1002' type='int ptsname_r(int __fd, char * __buf, size_t __buflen)'/>
+<doc f='include/stdlib.h' l='999'>/* Store at most BUFLEN characters of the pathname of the slave pseudo
+   terminal associated with the master FD is open on in BUF.
+   Return 0 on success, otherwise an error number.  */</doc>

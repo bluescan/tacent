@@ -1,0 +1,1 @@
+<dec f='include/signal.h' l='112' type='int kill(__pid_t __pid, int __sig)'/>

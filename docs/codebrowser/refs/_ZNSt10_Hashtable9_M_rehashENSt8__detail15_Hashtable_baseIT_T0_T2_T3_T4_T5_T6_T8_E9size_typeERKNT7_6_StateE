@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/hashtable.h' l='1097' type='void std::_Hashtable::_M_rehash(std::_Hashtable::size_type __bkt_count, const std::_Hashtable::__rehash_state &amp; __state)'/>
+<use f='include/c++/11/bits/hashtable.h' l='2021' u='c' c='_ZNSt10_Hashtable21_M_insert_unique_nodeENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeENSA_11__hash_codeENS0_16_Hashtable_allocINSt660719'/>
+<use f='include/c++/11/bits/hashtable.h' l='2049' u='c' c='_ZNSt10_Hashtable20_M_insert_multi_nodeENSt8__detail16_Hashtable_allocINSt23__allocator_traits_base8__rebindIT1_NS0_10_Hash_nodeIT0_Xsr13__hash_cached13831568'/>
+<use f='include/c++/11/bits/hashtable.h' l='2343' u='c' c='_ZNSt10_Hashtable6rehashENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeE'/>
+<def f='include/c++/11/bits/hashtable.h' l='2350' ll='2370' type='void std::_Hashtable::_M_rehash(std::_Hashtable::size_type __bkt_count, const std::_Hashtable::__rehash_state &amp; __state)'/>
+<doc f='include/c++/11/bits/hashtable.h' l='1095'>// Unconditionally change size of bucket array to n, restore
+      // hash policy state to __state on exception.</doc>

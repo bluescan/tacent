@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/unordered_map.h' l='867' ll='869' type='std::unordered_map::iterator std::unordered_map::find(const std::unordered_map::key_type &amp; __x)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='856'>/**
+       *  @brief Tries to locate an element in an %unordered_map.
+       *  @param  __x  Key to be located.
+       *  @return  Iterator pointing to sought-after element, or end() if not
+       *           found.
+       *
+       *  This function takes a key and tries to locate the element with which
+       *  the key matches.  If successful the function returns an iterator
+       *  pointing to the sought after element.  If unsuccessful it returns the
+       *  past-the-end ( @c end() ) iterator.
+       */</doc>

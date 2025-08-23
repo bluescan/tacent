@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='239' ll='274'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='276'/>
+<size>1</size>
+<doc f='include/c++/11/bits/ranges_algo.h' l='237'>// find, find_if and find_if_not are defined in &lt;bits/ranges_util.h&gt;.</doc>
+<fun r='_ZNKSt6ranges18__find_first_of_fnclET_T0_T1_T2_T3_T4_T5_'/>
+<fun r='_ZNKSt6ranges18__find_first_of_fnclEOT_OT0_T1_T2_T3_'/>

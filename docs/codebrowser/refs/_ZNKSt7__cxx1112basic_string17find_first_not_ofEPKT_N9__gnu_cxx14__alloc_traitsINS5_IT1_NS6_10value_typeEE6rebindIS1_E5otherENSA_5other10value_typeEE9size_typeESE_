@@ -1,0 +1,14 @@
+<dec f='include/c++/11/bits/basic_string.h' l='2724' type='std::basic_string::size_type std::basic_string::find_first_not_of(const _CharT * __s, std::basic_string::size_type __pos, std::basic_string::size_type __n) const'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='1336' ll='1347' type='typename basic_string&lt;_CharT, _Traits, _Alloc&gt;::size_type std::basic_string::find_first_not_of(const _CharT * __s, std::basic_string::size_type __pos, std::basic_string::size_type __n) const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='2711'>/**
+       *  @brief  Find position of a character not in C substring.
+       *  @param __s  C string containing characters to avoid.
+       *  @param __pos  Index of character to search from.
+       *  @param __n  Number of characters from __s to consider.
+       *  @return  Index of first occurrence.
+       *
+       *  Starting from @a __pos, searches forward for a character not
+       *  contained in the first @a __n characters of @a __s within
+       *  this string.  If found, returns the index where it was
+       *  found.  If not found, returns npos.
+      */</doc>

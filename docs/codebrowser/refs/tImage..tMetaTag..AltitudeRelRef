@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='45' type='9'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='45'>//	string	Relative altitude ground reference. Applies to AltitudeRel value.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='320' u='m' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='683' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='690' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

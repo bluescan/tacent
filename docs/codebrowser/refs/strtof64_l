@@ -1,0 +1,1 @@
+<dec f='include/stdlib.h' l='324' type='_Float64 strtof64_l(const char *__restrict __nptr, char **__restrict __endptr, locale_t __loc)'/>

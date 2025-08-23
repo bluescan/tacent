@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/sched.h' l='95' type='int setns(int __fd, int __nstype)'/>
+<doc f='include/x86_64-linux-gnu/bits/sched.h' l='94'>/* Switch process to namespace of type NSTYPE indicated by FD.  */</doc>

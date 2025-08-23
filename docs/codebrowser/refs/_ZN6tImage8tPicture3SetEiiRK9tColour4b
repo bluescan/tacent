@@ -1,0 +1,5 @@
+<use f='Modules/Image/Inc/Image/tPicture.h' l='88' u='c' c='_ZN6tImage8tPictureC1Eii'/>
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='116' type='void tImage::tPicture::Set(int width, int height, const tPixel4b &amp; colour = tPixel4b::black)'/>
+<def f='Modules/Image/Inc/Image/tPicture.h' l='394' ll='410' type='void tImage::tPicture::Set(int width, int height, const tPixel4b &amp; colour = tPixel4b::black)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='114'>// Sets the image to the dimensions provided. Image will be opaque black after this call. Internally, if the
+	// existing buffer is the right size, it is reused. In all cases, the entire image is cleared to black.</doc>

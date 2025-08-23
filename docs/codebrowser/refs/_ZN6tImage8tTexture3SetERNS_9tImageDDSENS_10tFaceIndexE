@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tTexture.cpp' l='60' u='c' c='_ZN6tImage8tTexture4LoadERK7tStringNS_10tFaceIndexEb'/>
+<def f='Modules/Image/Src/tTexture.cpp' l='64' ll='102' type='bool tImage::tTexture::Set(tImage::tImageDDS &amp; dds, tImage::tFaceIndex face = tFaceIndex_Default)'/>

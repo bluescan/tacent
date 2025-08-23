@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tHash.h' l='73' type='uint32 tHash::tHashStringFast32(const tString &amp; , uint32 iv = HashIV32)'/>
+<def f='Modules/Foundation/Inc/Foundation/tHash.h' l='151' type='uint32 tHash::tHashStringFast32(const tString &amp; s, uint32 iv = HashIV32)'/>
+<use f='Modules/Math/Src/tColour.cpp' l='418' u='c' c='_ZN5tMath10tGetColourEPKc'/>
+<use f='Modules/System/Src/tPrint.cpp' l='197' u='c' c='_ZN7tSystem9tRegisterEjy'/>

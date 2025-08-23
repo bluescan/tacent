@@ -1,0 +1,1 @@
+<dec f='include/sched.h' l='78' type='int sched_rr_get_interval(__pid_t __pid, struct timespec * __t)'/>

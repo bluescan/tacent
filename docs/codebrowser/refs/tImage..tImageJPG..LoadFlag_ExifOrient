@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageJPG.h' l='35' type='2'/>
+<use f='Modules/Image/Inc/Image/tImageJPG.h' l='37'/>
+<doc f='Modules/Image/Inc/Image/tImageJPG.h' l='35'>// Undo orientation transformations in jpg image as indicated by Exif meta-data.</doc>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='134' u='r' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>

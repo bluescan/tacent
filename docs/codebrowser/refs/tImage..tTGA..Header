@@ -1,0 +1,6 @@
+<def f='Modules/Image/Src/tImageTGA.cpp' l='29' ll='60'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='62'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='93' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='96' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='96' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<size>18</size>

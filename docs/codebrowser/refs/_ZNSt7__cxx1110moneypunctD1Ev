@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='1248' type='void std::moneypunct::~moneypunct&lt;_CharT, _Intl&gt;()'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1246'>/// Destructor.</doc>

@@ -1,0 +1,14 @@
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='104' u='c' c='_ZN6tImage9tImagePVRD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='148' type='void tImage::tImagePVR::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='147'>// After this call no memory will be consumed by the object and it will be invalid. Does not clear filename.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Src/tImagePVR.cpp' l='624' ll='653' type='void tImage::tImagePVR::Clear()'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='658' u='c' c='_ZN6tImage9tImagePVR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='691' u='c' c='_ZN6tImage9tImagePVR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='711' u='c' c='_ZN6tImage9tImagePVR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='733' u='c' c='_ZN6tImage9tImagePVR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='758' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='972' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1008' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1323' u='c' c='_ZN6tImage9tImagePVR11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1363' u='c' c='_ZN6tImage9tImagePVR18StealCubemapLayersEP5tListINS_6tLayerEEj'/>

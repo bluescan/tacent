@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/atomic_base.h' l='67' type='4'/>
+<use f='include/c++/11/bits/atomic_base.h' l='75'/>
+<use f='include/c++/11/stop_token' l='187' u='r' c='_ZNSt10stop_token13_Stop_state_t20_M_release_ownershipEv'/>
+<use f='include/c++/11/stop_token' l='373' u='r' c='_ZNSt10stop_token13_Stop_state_t20_M_try_lock_and_stopERj'/>

@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14919' ll='14921'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14919'/>
+<size>4</size>
+<mbr r='VkSetStateFlagsIndirectCommandNV::data' o='0' t='uint32_t'/>

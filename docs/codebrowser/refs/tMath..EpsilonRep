@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tConstants.h' l='38' type='const float'/>
+<doc f='Modules/Foundation/Inc/Foundation/tConstants.h' l='37'>// This is the smallest positive value that can be represented by a single precision floating point.</doc>

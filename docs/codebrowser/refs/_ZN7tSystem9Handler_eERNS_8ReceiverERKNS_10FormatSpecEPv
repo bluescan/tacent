@@ -1,0 +1,3 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='181' type='void tSystem::Handler_e(tSystem::Receiver &amp; out, const tSystem::FormatSpec &amp; , void * data)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='419'/>
+<def f='Modules/System/Src/tPrint.cpp' l='1472' ll='1602' type='void tSystem::Handler_e(tSystem::Receiver &amp; receiver, const tSystem::FormatSpec &amp; spec, void * data)'/>

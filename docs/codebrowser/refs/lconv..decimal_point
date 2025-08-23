@@ -1,0 +1,4 @@
+<dec f='include/locale.h' l='55' type='char *'/>
+<offset>0</offset>
+<doc f='include/locale.h' l='53'>/* Numeric (non-monetary) information.  */</doc>
+<doc f='include/locale.h' l='55'>/* Decimal point character.  */</doc>

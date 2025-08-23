@@ -1,0 +1,1 @@
+<def f='include/c++/11/chrono' l='715' ll='723' type='typename common_type&lt;_Rep1, _Rep2&gt;::type std::chrono::operator/(const duration&lt;_Rep1, _Period1&gt; &amp; __lhs, const duration&lt;_Rep2, _Period2&gt; &amp; __rhs)'/>

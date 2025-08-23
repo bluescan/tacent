@@ -1,0 +1,19 @@
+<def f='include/c++/11/bits/ptr_traits.h' l='100' ll='124'/>
+<def f='include/c++/11/bits/ptr_traits.h' l='130' ll='151'/>
+<use f='include/c++/11/bits/ptr_traits.h' l='155'/>
+<use f='include/c++/11/bits/ptr_traits.h' l='175' c='_ZSt12__to_addressRKT_'/>
+<use f='include/c++/11/bits/ptr_traits.h' l='176' c='_ZSt12__to_addressRKT_'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='109'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='121'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1903' c='_ZNSt8__detail16_Hashtable_alloc22_M_deallocate_node_ptrEPNT_10value_typeE'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1940' c='_ZNSt8__detail16_Hashtable_alloc21_M_deallocate_bucketsEPPNS_15_Hash_node_baseEm'/>
+<use f='include/c++/11/bits/node_handle.h' l='311' c='_ZNSt12_Node_handle13_S_pointer_toERTL0__'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1849' c='_ZNKSt6vector11_M_data_ptrETL0__'/>
+<doc f='include/c++/11/bits/ptr_traits.h' l='126'>/**
+   * @brief  Partial specialization for built-in pointers.
+   * @ingroup pointer_abstractions
+  */</doc>
+<fun r='_ZNSt14pointer_traitsIPT_E10pointer_toERNSt11conditionalIXsr7is_voidIS0_EE5valueESt11__undefinedS0_E4typeE'/>
+<use f='include/c++/11/bits/basic_string.h' l='201' c='_ZNSt7__cxx1112basic_string13_M_local_dataEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='211' c='_ZNKSt7__cxx1112basic_string13_M_local_dataEv'/>
+<use f='include/c++/11/bits/allocated_ptr.h' l='62' c='_ZNSt15__allocated_ptrC1ERT_TL0__'/>

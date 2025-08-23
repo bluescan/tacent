@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='4976' type='std::weibull_distribution::result_type std::weibull_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::weibull_distribution::param_type &amp; __p)'/>
+<def f='include/c++/11/bits/random.tcc' l='2504' ll='2515' type='typename weibull_distribution&lt;_RealType&gt;::result_type std::weibull_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::weibull_distribution::param_type &amp; __p)'/>

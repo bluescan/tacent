@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1271'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1270'>/* Defined if vfwscanf exists. */</doc>
+<use f='include/c++/11/cwchar' l='88' u='c'/>
+<use f='include/c++/11/cwchar' l='165' u='c'/>
+<use f='include/c++/11/cwchar' l='285' u='c'/>

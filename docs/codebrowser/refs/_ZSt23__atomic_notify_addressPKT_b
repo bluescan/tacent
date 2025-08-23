@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/atomic_wait.h' l='456' ll='461' type='void std::__atomic_notify_address(const _Tp * __addr, bool __all)'/>
+<use f='include/c++/11/bits/atomic_base.h' l='256' u='c' c='_ZNSt11atomic_flag10notify_oneEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='262' u='c' c='_ZNSt11atomic_flag10notify_allEv'/>

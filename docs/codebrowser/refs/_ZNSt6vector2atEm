@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1091' ll='1096' type='std::vector::reference std::vector::at(std::vector::size_type __n)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1080'>/**
+       *  @brief  Provides access to the data contained in the %vector.
+       *  @param __n The index of the element for which data should be
+       *  accessed.
+       *  @return  Read/write reference to data.
+       *  @throw  std::out_of_range  If @a __n is an invalid index.
+       *
+       *  This function provides for safer data access.  The parameter
+       *  is first checked that it is in the range of the vector.  The
+       *  function throws out_of_range if the check fails.
+       */</doc>

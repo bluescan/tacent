@@ -1,0 +1,23 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='373' u='m' c='_ZN5tMath6tPlane3SetEffff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='374' u='w' c='_ZN5tMath6tPlane3SetERKNS_8tVector3Ef'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='375' u='w' c='_ZN5tMath6tPlane3SetERKNS_8tVector4E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='376' u='w' c='_ZN5tMath6tPlane3SetERKNS_8tVector3ES3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='377' u='w' c='_ZN5tMath6tPlane3SetERKNS_8tVector3ES3_S3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='377' u='m' c='_ZN5tMath6tPlane3SetERKNS_8tVector3ES3_S3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='381' u='m' c='_ZN5tMath6tPlane9NormalizeEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='381' u='w' c='_ZN5tMath6tPlane9NormalizeEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='385' u='m' c='_ZNK5tMath6tPlane11GetDistanceERKNS_8tVector3E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='385' u='m' c='_ZNK5tMath6tPlane11GetDistanceERKNS_8tVector3E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='385' u='m' c='_ZNK5tMath6tPlane11GetDistanceERKNS_8tVector3E'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='392' type='tMath::tVector3'/>
+<offset>0</offset>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='391'>// The Normal is a vector perpendicular to the surface of the plane.</doc>
+<use f='Modules/Math/Src/tGeometry.cpp' l='76' u='r' c='_ZNK5tMath6tPlane29ComputeOrthogonalBasisVectorsERNS_8tVector3ES2_'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='509' u='r' c='_ZN5tMath27tIntersectTestFrustumSphereERKNS_8tFrustumERKNS_7tSphereE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='172' u='r' c='_ZN5tMath7tRandom21tGetPointOnUnitSquareERKNS_6tPlaneERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='189' u='w' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='197' u='w' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='205' u='w' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='212' u='w' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='212' u='m' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='217' u='r' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>

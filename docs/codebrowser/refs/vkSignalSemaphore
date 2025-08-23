@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6533' type='VkResult vkSignalSemaphore(VkDevice device, const VkSemaphoreSignalInfo * pSignalInfo)'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tMatrix4.h' l='158' type='const tMath::tMatrix4'/>
+<doc f='Modules/Math/Inc/Math/tMatrix4.h' l='158'>// Zero matrix.</doc>
+<use f='Modules/System/Inc/System/tScript.h' l='132' u='r' c='_ZNK11tExpressioncvN5tMath8tMatrix4EEv'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='63' type='const tMath::tMatrix4'/>

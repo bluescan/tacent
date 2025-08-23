@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='450' type='const tColour4b'/>
+<use f='Modules/Image/Inc/Image/tImageWEBP.h' l='110' u='r'/>
+<use f='Modules/Image/Inc/Image/tImageWEBP.h' l='154' u='r' c='_ZN6tImage10tImageWEBP5ClearEv'/>
+<def f='Modules/Math/Src/tColour.cpp' l='147' type='const tColour4b'/>
+<use f='Modules/Math/Src/tColour.cpp' l='419' u='r' c='_ZN5tMath10tGetColourEPKc'/>

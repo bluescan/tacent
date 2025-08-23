@@ -1,0 +1,43 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='1004' ll='1107'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1033' c='__gnu_cxx::__normal_iterator::__normal_iterator{_Iterator,_Container}'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1122' c='__gnu_cxx::operator=='/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1123' c='__gnu_cxx::operator=='/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1129' c='__gnu_cxx::operator{=}'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1130' c='__gnu_cxx::operator{=}'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1136' c='__gnu_cxx::operator=='/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1137' c='__gnu_cxx::operator=='/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1146' c='__gnu_cxx::operator{=}'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1147' c='__gnu_cxx::operator{=}'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1255' c='__gnu_cxx::operator-'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1256' c='__gnu_cxx::operator-'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1267' c='__gnu_cxx::operator-'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1268' c='__gnu_cxx::operator-'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1269' c='__gnu_cxx::operator-'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1275' c='__gnu_cxx::operator+'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1276' c='__gnu_cxx::operator+'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1277' c='__gnu_cxx::operator+'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1279' c='__gnu_cxx::operator+'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1291' c='_ZSt12__niter_baseN9__gnu_cxx17__normal_iteratorIT_T0_EE'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='950' c='_ZSt9__fill_a1N9__gnu_cxx17__normal_iteratorIT_T0_EES3_RKT1_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='951' c='_ZSt9__fill_a1N9__gnu_cxx17__normal_iteratorIT_T0_EES3_RKT1_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='419'/>
+<use f='include/c++/11/bits/stl_vector.h' l='420'/>
+<mbr r='__gnu_cxx::__normal_iterator::_M_current' t='_Iterator'/>
+<fun r='__gnu_cxx::__normal_iterator::__normal_iterator{_Iterator,_Container}'/>
+<fun r='__gnu_cxx::__normal_iterator::__normal_iterator{_Iterator,_Container}'/>
+<fun r='__gnu_cxx::__normal_iterator::__normal_iterator{_Iterator,_Container}'/>
+<fun r='__gnu_cxx::__normal_iterator::operator*'/>
+<fun r='__gnu_cxx::__normal_iterator::operator-}'/>
+<fun r='__gnu_cxx::__normal_iterator::operator++'/>
+<fun r='__gnu_cxx::__normal_iterator::operator++'/>
+<fun r='__gnu_cxx::__normal_iterator::operator--'/>
+<fun r='__gnu_cxx::__normal_iterator::operator--'/>
+<fun r='__gnu_cxx::__normal_iterator::operator[]'/>
+<fun r='__gnu_cxx::__normal_iterator::operator+='/>
+<fun r='__gnu_cxx::__normal_iterator::operator+'/>
+<fun r='__gnu_cxx::__normal_iterator::operator-='/>
+<fun r='__gnu_cxx::__normal_iterator::operator-'/>
+<fun r='__gnu_cxx::__normal_iterator::base'/>
+<use f='include/c++/11/bits/basic_string.h' l='102'/>
+<use f='include/c++/11/bits/basic_string.h' l='103'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='54'/>

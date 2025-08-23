@@ -1,0 +1,27 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1137' ll='1139' type='std::string std::moneypunct::grouping() const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1111'>/**
+       *  @brief  Return grouping specification.
+       *
+       *  This function returns a string representing groupings for the
+       *  integer part of an amount.  Groupings indicate where thousands
+       *  separators should be inserted.
+       *
+       *  Each char in the return string is interpret as an integer rather
+       *  than a character.  These numbers represent the number of digits in a
+       *  group.  The first char in the string represents the number of digits
+       *  in the least significant group.  If a char is negative, it indicates
+       *  an unlimited number of digits for the group.  If more chars from the
+       *  string are required to group a number, the last char is used
+       *  repeatedly.
+       *
+       *  For example, if the grouping() returns &lt;code&gt;\003\002&lt;/code&gt;
+       *  and is applied to the number 123456789, this corresponds to
+       *  12,34,56,789.  Note that if the string was &lt;code&gt;32&lt;/code&gt;, this would
+       *  put more than 50 digits into the least significant group if
+       *  the character set is ASCII.
+       *
+       *  The string is returned by calling
+       *  moneypunct&lt;char_type&gt;::do_grouping().
+       *
+       *  @return  string representing grouping specification.
+      */</doc>

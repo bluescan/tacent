@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18524'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18523'>// VK_QCOM_ycbcr_degamma is a preprocessor guard. Do not pass it to API calls.</doc>

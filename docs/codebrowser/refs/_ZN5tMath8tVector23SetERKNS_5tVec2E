@@ -1,0 +1,6 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='37' type='void tMath::tVector2::Set(const tMath::tVec2 &amp; v)'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='146' u='c' c='_ZN5tMath7tARect23SetERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='146' u='c' c='_ZN5tMath7tARect23SetERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='148' u='c' c='_ZN5tMath7tARect23SetERKNS_8tVector2Eff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='149' u='c' c='_ZN5tMath7tARect23SetERKNS_8tVector2ES3_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='149' u='c' c='_ZN5tMath7tARect23SetERKNS_8tVector2ES3_'/>

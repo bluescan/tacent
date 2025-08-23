@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/hashtable.h' l='308' type='void std::_Hashtable::_Scoped_node::~_Scoped_node()'/>
+<doc f='include/c++/11/bits/hashtable.h' l='307'>// Destroy element and deallocate node.</doc>

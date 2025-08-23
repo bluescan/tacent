@@ -1,0 +1,1 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='659' ll='664' type='int __gthread_create(__gthread_t * __threadid, void *(*)(void *) __func, void * __args)'/>

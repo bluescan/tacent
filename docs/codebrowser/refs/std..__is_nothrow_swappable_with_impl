@@ -1,0 +1,6 @@
+<inh f='include/c++/11/type_traits' l='2789' c='std::__swappable_with_details::__do_is_nothrow_swappable_with_impl'/>
+<def f='include/c++/11/type_traits' l='2820' ll='2824'/>
+<inh f='include/c++/11/type_traits' l='2701' c='std::__swappable_details::__do_is_nothrow_swappable_impl'/>
+<def f='include/c++/11/type_traits' l='2827' ll='2832'/>
+<use f='include/c++/11/type_traits' l='2849'/>
+<doc f='include/c++/11/type_traits' l='2826'>// Optimization for the homogenous lvalue case, not required:</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='80' type='tMath::tVector2 &amp; tMath::tVector2::operator-=(const tMath::tVec2 &amp; a)'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='215' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>

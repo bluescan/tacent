@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='409' ll='468'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='625' c='_ZNSt14__shared_countC1ETL0__TL0_0_TL0_1_'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='682' c='_ZNSt14__shared_countC1EOSt10unique_ptrITL0__TL0_0_E'/>
+<fun r='_ZNSt19_Sp_counted_deleterC1ET_T0_'/>
+<fun r='_ZNSt19_Sp_counted_deleterC1ET_T0_RKT1_'/>
+<fun r='_ZNSt19_Sp_counted_deleterD1Ev'/>
+<fun r='_ZNSt19_Sp_counted_deleter10_M_disposeEv'/>
+<fun r='_ZNSt19_Sp_counted_deleter10_M_destroyEv'/>
+<fun r='_ZNSt19_Sp_counted_deleter14_M_get_deleterERKSt9type_info'/>
+<mbr r='std::_Sp_counted_deleter::_M_impl' t='std::_Sp_counted_deleter::_Impl'/>

@@ -1,0 +1,5 @@
+<def f='Modules/Image/Src/tPixelUtil.cpp' l='45' ll='57'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1428' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1428' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<size>16</size>
+<doc f='Modules/Image/Src/tPixelUtil.cpp' l='44'>// The BC3 block is the same for DXT4 and 5, although we don&apos;t support 4 (premultiplied alpha). Size is 128 bits.</doc>

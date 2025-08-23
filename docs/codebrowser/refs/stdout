@@ -1,0 +1,4 @@
+<dec f='include/stdio.h' l='144' type='FILE *'/>
+<doc f='include/stdio.h' l='144'>/* Standard output stream.  */</doc>
+<use f='Modules/System/Src/tPrint.cpp' l='292' macro='1' u='r' c='_ZN7tSystem6tPrintEPKcP8_IO_FILE'/>
+<use f='Modules/System/Src/tPrint.cpp' l='294' macro='1' u='r' c='_ZN7tSystem6tPrintEPKcP8_IO_FILE'/>

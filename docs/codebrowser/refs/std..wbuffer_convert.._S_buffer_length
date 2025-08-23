@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/locale_conv.h' l='417' c='_ZNSt15wbuffer_convertC1EPSt15basic_streambufIcSt11char_traitsIcEEPT_NS5_10state_typeE'/>
+<use f='include/c++/11/bits/locale_conv.h' l='520' c='_ZNSt15wbuffer_convert11_M_conv_getEv'/>
+<use f='include/c++/11/bits/locale_conv.h' l='568' u='r' c='_ZNSt15wbuffer_convert11_M_conv_putEv'/>
+<dec f='include/c++/11/bits/locale_conv.h' l='600' type='const std::streamsize'/>
+<use f='include/c++/11/bits/locale_conv.h' l='602'/>
+<use f='include/c++/11/bits/locale_conv.h' l='603'/>
+<use f='include/c++/11/bits/locale_conv.h' l='605' u='r'/>

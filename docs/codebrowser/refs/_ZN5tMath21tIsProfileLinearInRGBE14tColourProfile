@@ -1,0 +1,9 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='229' type='bool tMath::tIsProfileLinearInRGB(tColourProfile )'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='949' ll='959' type='bool tMath::tIsProfileLinearInRGB(tColourProfile profile)'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='229'>// If RGB not linear it&apos;s either sRGB or gRGB.</doc>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='946'>// Implementation below this line.</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='148' u='c' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1409' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='992' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='213' u='c' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='934' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>

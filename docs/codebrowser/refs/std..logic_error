@@ -1,0 +1,31 @@
+<inh f='include/c++/11/bits/exception.h' l='61' c='std::exception'/>
+<def f='include/c++/11/stdexcept' l='113' ll='149'/>
+<use f='include/c++/11/stdexcept' l='126' c='_ZNSt11logic_errorC1EOS_'/>
+<use f='include/c++/11/stdexcept' l='127' c='_ZNSt11logic_erroraSEOS_'/>
+<use f='include/c++/11/stdexcept' l='127' c='_ZNSt11logic_erroraSEOS_'/>
+<use f='include/c++/11/stdexcept' l='131' c='_ZNSt11logic_errorC1ERKS_'/>
+<use f='include/c++/11/stdexcept' l='132' c='_ZNSt11logic_erroraSERKS_'/>
+<use f='include/c++/11/stdexcept' l='132' c='_ZNSt11logic_erroraSERKS_'/>
+<ovr f='include/c++/11/stdexcept' l='153' c='std::domain_error'/>
+<use f='include/c++/11/stdexcept' l='153'/>
+<ovr f='include/c++/11/stdexcept' l='168' c='std::invalid_argument'/>
+<use f='include/c++/11/stdexcept' l='168'/>
+<ovr f='include/c++/11/stdexcept' l='184' c='std::length_error'/>
+<use f='include/c++/11/stdexcept' l='184'/>
+<ovr f='include/c++/11/stdexcept' l='200' c='std::out_of_range'/>
+<use f='include/c++/11/stdexcept' l='200'/>
+<size>16</size>
+<doc f='include/c++/11/stdexcept' l='108'>/** Logic errors represent problems in the internal logic of a program;
+   *  in theory, these are preventable, and even detectable before the
+   *  program runs (e.g., violations of class invariants).
+   *  @brief One of two subclasses of exception.
+   */</doc>
+<mbr r='std::logic_error::_M_msg' o='64' t='std::__cow_string'/>
+<fun r='_ZNSt11logic_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt11logic_errorC1EPKc'/>
+<fun r='_ZNSt11logic_errorC1EOS_'/>
+<fun r='_ZNSt11logic_erroraSEOS_'/>
+<fun r='_ZNSt11logic_errorC1ERKS_'/>
+<fun r='_ZNSt11logic_erroraSERKS_'/>
+<fun r='_ZNSt11logic_errorD1Ev'/>
+<fun r='_ZNKSt11logic_error4whatEv'/>

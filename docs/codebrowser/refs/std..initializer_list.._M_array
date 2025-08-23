@@ -1,0 +1,4 @@
+<dec f='include/c++/11/initializer_list' l='58' type='std::initializer_list::iterator'/>
+<use f='include/c++/11/initializer_list' l='63' u='w' c='_ZNSt16initializer_listC1EPKT_m'/>
+<use f='include/c++/11/initializer_list' l='67' u='w' c='_ZNSt16initializer_listC1Ev'/>
+<use f='include/c++/11/initializer_list' l='75' u='r' c='_ZNKSt16initializer_list5beginEv'/>

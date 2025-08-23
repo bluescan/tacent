@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3930' ll='3933'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3930'/>
+<size>8</size>
+<mbr r='VkClearDepthStencilValue::depth' o='0' t='float'/>
+<mbr r='VkClearDepthStencilValue::stencil' o='32' t='uint32_t'/>

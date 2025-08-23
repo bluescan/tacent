@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='129'/>
+<doc f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='127'>/* The number of symbolic links that can be traversed in the
+   resolution of a pathname in the absence of a loop.  */</doc>

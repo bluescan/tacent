@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='2718' ll='2720' type='std::chi_squared_distribution::result_type std::chi_squared_distribution::min() const'/>
+<doc f='include/c++/11/bits/random.h' l='2715'>/**
+       * @brief Returns the greatest lower bound value of the distribution.
+       */</doc>

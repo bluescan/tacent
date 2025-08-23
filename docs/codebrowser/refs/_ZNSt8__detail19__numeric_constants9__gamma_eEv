@@ -1,0 +1,2 @@
+<def f='include/c++/11/tr1/special_function_util.h' l='100' ll='101' type='static _Tp std::__detail::__numeric_constants::__gamma_e()'/>
+<doc f='include/c++/11/tr1/special_function_util.h' l='99'>///  Constant Euler&apos;s constant @f$ \gamma_E @f$.</doc>

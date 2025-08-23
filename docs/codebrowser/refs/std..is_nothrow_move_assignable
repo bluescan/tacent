@@ -1,0 +1,10 @@
+<def f='include/c++/11/type_traits' l='1183' ll='1188'/>
+<use f='include/c++/11/type_traits' l='2678' c='_ZSt4swapRT_S0_'/>
+<use f='include/c++/11/type_traits' l='3236'/>
+<use f='include/c++/11/bits/move.h' l='198' c='_ZSt4swapRT_S0_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='405' c='_ZNSt4pairaSENSt11conditionalIXsr6__and_ISt18is_move_assignableIT_ES1_IT0_EEE5valueEOSt4pairIS2_S4_EOSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/stl_pair.h' l='406' c='_ZNSt4pairaSENSt11conditionalIXsr6__and_ISt18is_move_assignableIT_ES1_IT0_EEE5valueEOSt4pairIS2_S4_EOSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/hashtable.h' l='584' c='_ZNSt10_HashtableaSEOSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>
+<use f='include/c++/11/bits/hashtable.h' l='585' c='_ZNSt10_HashtableaSEOSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1977'/>
+<use f='include/c++/11/bits/basic_string.h' l='7002'/>

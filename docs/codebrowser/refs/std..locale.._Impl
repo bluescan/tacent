@@ -1,0 +1,49 @@
+<use f='include/c++/11/bits/locale_classes.h' l='75'/>
+<use f='include/c++/11/bits/locale_classes.h' l='311'/>
+<use f='include/c++/11/bits/locale_classes.h' l='314'/>
+<use f='include/c++/11/bits/locale_classes.h' l='317'/>
+<use f='include/c++/11/bits/locale_classes.h' l='342' c='_ZNSt6localeC1EPNS_5_ImplE'/>
+<use f='include/c++/11/bits/locale_classes.h' l='377'/>
+<use f='include/c++/11/bits/locale_classes.h' l='489'/>
+<def f='include/c++/11/bits/locale_classes.h' l='524' ll='632'/>
+<use f='include/c++/11/bits/locale_classes.h' l='576' c='_ZNSt6locale5_ImplC1ERKS0_m'/>
+<use f='include/c++/11/bits/locale_classes.h' l='582' c='_ZNSt6locale5_ImplC1ERKS0_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='585' c='_ZNSt6locale5_ImplaSERKS0_'/>
+<use f='include/c++/11/bits/locale_classes.h' l='599' c='_ZNSt6locale5_Impl21_M_replace_categoriesEPKS0_i'/>
+<use f='include/c++/11/bits/locale_classes.h' l='602' c='_ZNSt6locale5_Impl19_M_replace_categoryEPKS0_PKPKNS_2idE'/>
+<use f='include/c++/11/bits/locale_classes.h' l='605' c='_ZNSt6locale5_Impl16_M_replace_facetEPKS0_PKNS_2idE'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='47' c='_ZNSt6localeC1ERKS_PT_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='65' c='_ZNKSt6locale7combineERKS_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='65' c='_ZNKSt6locale7combineERKS_'/>
+<size>40</size>
+<doc f='include/c++/11/bits/locale_classes.h' l='523'>// Implementation object for locale.</doc>
+<mbr r='std::locale::_Impl::_M_refcount' o='0' t='_Atomic_word'/>
+<mbr r='std::locale::_Impl::_M_facets' o='64' t='const std::locale::facet **'/>
+<mbr r='std::locale::_Impl::_M_facets_size' o='128' t='std::size_t'/>
+<mbr r='std::locale::_Impl::_M_caches' o='192' t='const std::locale::facet **'/>
+<mbr r='std::locale::_Impl::_M_names' o='256' t='char **'/>
+<smbr r='std::locale::_Impl::_S_id_ctype' t='const locale::id *const[]'/>
+<smbr r='std::locale::_Impl::_S_id_numeric' t='const locale::id *const[]'/>
+<smbr r='std::locale::_Impl::_S_id_collate' t='const locale::id *const[]'/>
+<smbr r='std::locale::_Impl::_S_id_time' t='const locale::id *const[]'/>
+<smbr r='std::locale::_Impl::_S_id_monetary' t='const locale::id *const[]'/>
+<smbr r='std::locale::_Impl::_S_id_messages' t='const locale::id *const[]'/>
+<smbr r='std::locale::_Impl::_S_facet_categories' t='const locale::id *const *const[]'/>
+<fun r='_ZNSt6locale5_Impl16_M_add_referenceEv'/>
+<fun r='_ZNSt6locale5_Impl19_M_remove_referenceEv'/>
+<fun r='_ZNSt6locale5_ImplC1ERKS0_m'/>
+<fun r='_ZNSt6locale5_ImplC1EPKcm'/>
+<fun r='_ZNSt6locale5_ImplC1Em'/>
+<fun r='_ZNSt6locale5_ImplD1Ev'/>
+<fun r='_ZNSt6locale5_ImplC1ERKS0_'/>
+<fun r='_ZNSt6locale5_ImplaSERKS0_'/>
+<fun r='_ZNSt6locale5_Impl18_M_check_same_nameEv'/>
+<fun r='_ZNSt6locale5_Impl21_M_replace_categoriesEPKS0_i'/>
+<fun r='_ZNSt6locale5_Impl19_M_replace_categoryEPKS0_PKPKNS_2idE'/>
+<fun r='_ZNSt6locale5_Impl16_M_replace_facetEPKS0_PKNS_2idE'/>
+<fun r='_ZNSt6locale5_Impl16_M_install_facetEPKNS_2idEPKNS_5facetE'/>
+<fun r='_ZNSt6locale5_Impl13_M_init_facetEPT_'/>
+<fun r='_ZNSt6locale5_Impl23_M_init_facet_uncheckedEPT_'/>
+<fun r='_ZNSt6locale5_Impl16_M_install_cacheEPKNS_5facetEm'/>
+<fun r='_ZNSt6locale5_Impl13_M_init_extraEPPNS_5facetE'/>
+<fun r='_ZNSt6locale5_Impl13_M_init_extraEPvS1_PKcS3_'/>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='4046' ll='4047' type='void std::geometric_distribution::reset()'/>
+<doc f='include/c++/11/bits/random.h' l='4041'>/**
+       * @brief Resets the distribution state.
+       *
+       * Does nothing for the geometric distribution.
+       */</doc>

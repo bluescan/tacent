@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tVector2.h' l='100' type='const tMath::tVector2'/>
+<doc f='Modules/Math/Inc/Math/tVector2.h' l='100'>// Zero vector  (0, 0).</doc>
+<use f='Modules/System/Inc/System/tScript.h' l='127' u='r' c='_ZNK11tExpressioncvN5tMath8tVector2EEv'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='39' type='const tMath::tVector2'/>

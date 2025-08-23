@@ -1,0 +1,2 @@
+<def f='Modules/Scene/Src/tCamera.cpp' l='21' ll='44' type='void tScene::tCamera::Scale(float scale)'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='65' u='c' c='_ZN6tScene6tWorld5ScaleEf'/>

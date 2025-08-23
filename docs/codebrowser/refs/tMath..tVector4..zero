@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tVector4.h' l='103' type='const tMath::tVector4'/>
+<doc f='Modules/Math/Inc/Math/tVector4.h' l='103'>// Zero vector  (0, 0, 0, 0).</doc>
+<use f='Modules/System/Inc/System/tScript.h' l='129' u='r' c='_ZNK11tExpressioncvN5tMath8tVector4EEv'/>
+<use f='Modules/Image/Src/tResample.cpp' l='259' u='r' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='385' u='r' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='433' u='r' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='50' type='const tMath::tVector4'/>

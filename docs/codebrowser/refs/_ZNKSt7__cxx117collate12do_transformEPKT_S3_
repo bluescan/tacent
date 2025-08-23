@@ -1,0 +1,12 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='782' type='std::collate::string_type std::collate::do_transform(const _CharT * __lo, const _CharT * __hi) const'/>
+<def f='include/c++/11/bits/locale_classes.tcc' l='197' ll='251' type='typename collate&lt;_CharT&gt;::string_type std::collate::do_transform(const _CharT * __lo, const _CharT * __hi) const'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='771'>/**
+       *  @brief  Transform string to comparable form.
+       *
+       *  This function is a hook for derived classes to change the value
+       *  returned.
+       *
+       *  @param __lo  Start.
+       *  @param __hi  End.
+       *  @return  transformed string.
+      */</doc>

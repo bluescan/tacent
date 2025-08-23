@@ -1,0 +1,5 @@
+<def f='include/c++/11/iomanip' l='154'/>
+<use f='include/c++/11/iomanip' l='164' c='_ZSt7setfillT_'/>
+<use f='include/c++/11/iomanip' l='170' c='_ZStrsRSt13basic_istreamIT_T0_ESt8_SetfillIS0_E'/>
+<use f='include/c++/11/iomanip' l='178' c='_ZStlsRSt13basic_ostreamIT_T0_ESt8_SetfillIS0_E'/>
+<mbr r='std::_Setfill::_M_c' t='_CharT'/>

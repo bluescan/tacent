@@ -1,0 +1,7 @@
+<use f='include/c++/11/functional' l='1011' u='w' c='_ZNSt16default_searcherC1ET_S0_T0_'/>
+<use f='include/c++/11/functional' l='1020' c='_ZNKSt16default_searcherclETL0__S0_'/>
+<use f='include/c++/11/functional' l='1020' c='_ZNKSt16default_searcherclETL0__S0_'/>
+<use f='include/c++/11/functional' l='1021' c='_ZNKSt16default_searcherclETL0__S0_'/>
+<use f='include/c++/11/functional' l='1024' c='_ZNKSt16default_searcherclETL0__S0_'/>
+<use f='include/c++/11/functional' l='1025' c='_ZNKSt16default_searcherclETL0__S0_'/>
+<dec f='include/c++/11/functional' l='1030' type='tuple&lt;_ForwardIterator1, _ForwardIterator1, _BinaryPredicate&gt;'/>

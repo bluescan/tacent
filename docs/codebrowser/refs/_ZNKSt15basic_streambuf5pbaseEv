@@ -1,0 +1,11 @@
+<def f='include/c++/11/streambuf' l='533' ll='534' type='std::basic_streambuf::char_type * std::basic_streambuf::pbase() const'/>
+<doc f='include/c++/11/streambuf' l='523'>/**
+       *  @brief  Access to the put area.
+       *
+       *  These functions are only available to other protected functions,
+       *  including derived classes.
+       *
+       *  - pbase() returns the beginning pointer for the output sequence
+       *  - pptr() returns the next pointer for the output sequence
+       *  - epptr() returns the end pointer for the output sequence
+      */</doc>

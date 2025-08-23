@@ -1,0 +1,35 @@
+<def f='include/c++/11/functional' l='81'/>
+<use f='include/c++/11/functional' l='225'/>
+<use f='include/c++/11/functional' l='226'/>
+<use f='include/c++/11/functional' l='227'/>
+<use f='include/c++/11/functional' l='228'/>
+<use f='include/c++/11/functional' l='229'/>
+<use f='include/c++/11/functional' l='230'/>
+<use f='include/c++/11/functional' l='231'/>
+<use f='include/c++/11/functional' l='232'/>
+<use f='include/c++/11/functional' l='233'/>
+<use f='include/c++/11/functional' l='234'/>
+<use f='include/c++/11/functional' l='235'/>
+<use f='include/c++/11/functional' l='236'/>
+<use f='include/c++/11/functional' l='237'/>
+<use f='include/c++/11/functional' l='238'/>
+<use f='include/c++/11/functional' l='239'/>
+<use f='include/c++/11/functional' l='240'/>
+<use f='include/c++/11/functional' l='241'/>
+<use f='include/c++/11/functional' l='242'/>
+<use f='include/c++/11/functional' l='243'/>
+<use f='include/c++/11/functional' l='244'/>
+<use f='include/c++/11/functional' l='245'/>
+<use f='include/c++/11/functional' l='246'/>
+<use f='include/c++/11/functional' l='247'/>
+<use f='include/c++/11/functional' l='248'/>
+<use f='include/c++/11/functional' l='249'/>
+<use f='include/c++/11/functional' l='250'/>
+<use f='include/c++/11/functional' l='251'/>
+<use f='include/c++/11/functional' l='252'/>
+<use f='include/c++/11/functional' l='253'/>
+<use f='include/c++/11/functional' l='262'/>
+<use f='include/c++/11/functional' l='267'/>
+<doc f='include/c++/11/functional' l='78'>/** @brief The type of placeholder objects defined by libstdc++.
+   *  @ingroup binders
+   */</doc>

@@ -1,0 +1,3 @@
+<dec f='include/linux/close_range.h' l='6'/>
+<use f='include/x86_64-linux-gnu/bits/unistd_ext.h' l='42' u='a'/>
+<doc f='include/linux/close_range.h' l='5'>/* Unshare the file descriptor table before closing file descriptors. */</doc>

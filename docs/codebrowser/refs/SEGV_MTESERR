@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/siginfo-consts.h' l='137' type='9'/>
+<doc f='include/x86_64-linux-gnu/bits/siginfo-consts.h' l='137'>/* Synchronous ARM MTE exception.  */</doc>

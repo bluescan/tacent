@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1431' ll='1436' type='unordered_multimap&lt;_Key, _Tp, _Hash, _Pred, _Alloc&gt; &amp; std::unordered_multimap::operator=(initializer_list&lt;std::unordered_multimap::value_type&gt; __l)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1420'>/**
+       *  @brief  %Unordered_multimap list assignment operator.
+       *  @param  __l  An initializer_list.
+       *
+       *  This function fills an %unordered_multimap with copies of the
+       *  elements in the initializer list @a __l.
+       *
+       *  Note that the assignment completely changes the %unordered_multimap
+       *  and that the resulting %unordered_multimap&apos;s size is the same as the
+       *  number of elements assigned.
+       */</doc>

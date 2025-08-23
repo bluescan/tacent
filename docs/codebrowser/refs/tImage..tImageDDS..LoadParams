@@ -1,0 +1,8 @@
+<use f='Modules/Image/Src/tImageDDS.cpp' l='865' c='_ZN6tImage9tImageDDSC1ERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='873' c='_ZN6tImage9tImageDDSC1EPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1081' c='_ZN6tImage9tImageDDS4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1106' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1109' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<size>12</size>
+<use f='Modules/Image/Src/tTexture.cpp' l='54' c='_ZN6tImage8tTexture4LoadERK7tStringNS_10tFaceIndexEb'/>
+<size>12</size>

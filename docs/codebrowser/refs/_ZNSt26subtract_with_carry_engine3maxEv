@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='772' ll='774' type='static std::subtract_with_carry_engine::result_type std::subtract_with_carry_engine::max()'/>
+<doc f='include/c++/11/bits/random.h' l='768'>/**
+       * @brief Gets the inclusive maximum value of the range of random
+       * integers returned by this generator.
+       */</doc>

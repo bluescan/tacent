@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17154' ll='17159'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17154'/>
+<size>32</size>
+<mbr r='VkRenderPassStripeSubmitInfoARM::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderPassStripeSubmitInfoARM::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderPassStripeSubmitInfoARM::stripeSemaphoreInfoCount' o='128' t='uint32_t'/>
+<mbr r='VkRenderPassStripeSubmitInfoARM::pStripeSemaphoreInfos' o='192' t='const VkSemaphoreSubmitInfo *'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='158'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='157'>/* POSIX message queues are available.  */</doc>

@@ -1,0 +1,53 @@
+<def f='include/c++/11/type_traits' l='1457' ll='1459'/>
+<use f='include/c++/11/type_traits' l='1464'/>
+<use f='include/c++/11/type_traits' l='3259'/>
+<use f='include/c++/11/type_traits' l='3459'/>
+<use f='include/c++/11/type_traits' l='3460'/>
+<use f='include/c++/11/type_traits' l='3470'/>
+<use f='include/c++/11/bits/stl_pair.h' l='113' c='_ZNSt4_PCC26_ImplicitlyConvertiblePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='114' c='_ZNSt4_PCC26_ImplicitlyConvertiblePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='127' c='_ZNSt4_PCC30_ImplicitlyMoveConvertiblePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='128' c='_ZNSt4_PCC30_ImplicitlyMoveConvertiblePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='134' c='_ZNSt4_PCC13_CopyMovePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='135' c='_ZNSt4_PCC13_CopyMovePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='148' c='_ZNSt4_PCC13_MoveCopyPairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='149' c='_ZNSt4_PCC13_MoveCopyPairEv'/>
+<use f='include/c++/11/bits/stl_iterator_base_types.h' l='250'/>
+<use f='include/c++/11/bits/stl_function.h' l='586'/>
+<use f='include/c++/11/bits/stl_function.h' l='587'/>
+<use f='include/c++/11/bits/stl_function.h' l='648'/>
+<use f='include/c++/11/bits/stl_function.h' l='649'/>
+<use f='include/c++/11/bits/stl_function.h' l='710'/>
+<use f='include/c++/11/bits/stl_function.h' l='711'/>
+<use f='include/c++/11/bits/stl_function.h' l='772'/>
+<use f='include/c++/11/bits/stl_function.h' l='773'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='48'/>
+<use f='include/c++/11/tuple' l='563' c='_ZNSt17_TupleConstraints29__is_implicitly_constructibleEv'/>
+<use f='include/c++/11/tuple' l='574' c='_ZNSt17_TupleConstraints29__is_explicitly_constructibleEv'/>
+<use f='include/c++/11/tuple' l='693'/>
+<use f='include/c++/11/bits/stl_algo.h' l='5855' c='_ZSt6sampleT_S_T0_T1_OT2_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='5856' c='_ZSt6sampleT_S_T0_T1_OT2_'/>
+<use f='include/c++/11/chrono' l='519'/>
+<use f='include/c++/11/chrono' l='525'/>
+<use f='include/c++/11/chrono' l='680'/>
+<use f='include/c++/11/chrono' l='891'/>
+<use f='include/c++/11/bits/nested_exception.h' l='137'/>
+<use f='include/c++/11/bits/basic_string.h' l='126'/>
+<use f='include/c++/11/bits/basic_string.h' l='127'/>
+<use f='include/c++/11/bits/basic_string.h' l='128'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='74'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='110'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='115' c='_ZNKSt14default_deleteIA_T_EclEPTL0__'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='260'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='339'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='349'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='509'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='519'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='602'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='700'/>
+<use f='include/c++/11/bits/random.h' l='210'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='900'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='931'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='942'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='964'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1078'/>

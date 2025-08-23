@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Inc/Scene/tPolyModel.h' l='32' u='c' c='_ZN6tScene10tPolyModel5ScaleEf'/>
+<def f='Modules/Scene/Src/tMesh.cpp' l='503' ll='507' type='void tScene::tMesh::Scale(float scale)'/>

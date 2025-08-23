@@ -1,0 +1,4 @@
+<inh f='include/c++/11/type_traits' l='2691' c='std::__swappable_details::__do_is_swappable_impl'/>
+<def f='include/c++/11/type_traits' l='2715' ll='2719'/>
+<use f='include/c++/11/type_traits' l='2730'/>
+<use f='include/c++/11/type_traits' l='2746'/>

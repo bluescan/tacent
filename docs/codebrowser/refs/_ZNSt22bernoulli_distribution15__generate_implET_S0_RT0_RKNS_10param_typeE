@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='3680' type='void std::bernoulli_distribution::__generate_impl(_ForwardIterator __f, _ForwardIterator __t, _UniformRandomNumberGenerator &amp; __urng, const std::bernoulli_distribution::param_type &amp; __p)'/>
+<def f='include/c++/11/bits/random.tcc' l='1003' ll='1016' type='void std::bernoulli_distribution::__generate_impl(_ForwardIterator __f, _ForwardIterator __t, _UniformRandomNumberGenerator &amp; __urng, const std::bernoulli_distribution::param_type &amp; __p)'/>

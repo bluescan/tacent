@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='247' type='void tMath::tSet(tMath::tMat4 &amp; d, const tMath::tQuat &amp; s)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='30' u='c' c='_ZN5tMath8tMatrix4C1ERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='44' u='c' c='_ZN5tMath8tMatrix43SetERKNS_5tQuatE'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='125' ll='156' type='void tMath::tSet(tMath::tMat4 &amp; d, const tMath::tQuat &amp; s)'/>

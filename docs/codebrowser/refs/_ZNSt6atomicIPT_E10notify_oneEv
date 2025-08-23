@@ -1,0 +1,2 @@
+<def f='include/c++/11/atomic' l='655' ll='657' type='void std::atomic&lt;type-parameter-0-0 *&gt;::notify_one()'/>
+<doc f='include/c++/11/atomic' l='653'>// TODO add const volatile overload</doc>

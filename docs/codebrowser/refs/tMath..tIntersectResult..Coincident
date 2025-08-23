@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='460' type='4'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='460'>// Primitives overlap.</doc>
+<use f='Modules/Math/Src/tGeometry.cpp' l='292' u='r' c='_ZN5tMathL27IntersectFindLineLineHelperERKNS_6tLine2ES2_RfS3_'/>

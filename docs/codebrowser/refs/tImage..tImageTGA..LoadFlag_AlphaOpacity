@@ -1,0 +1,13 @@
+<dec f='Modules/Image/Inc/Image/tImageTGA.h' l='42' type='1'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='43'/>
+<doc f='Modules/Image/Inc/Image/tImageTGA.h' l='34'>// The most common way to interpret the alpha channel is as opacity (0.0 is fully transarent and 1.0 is fully
+		// opaque). However there are some 16-bit TGAs (5551 with 1-bit alpha) in the wild that are saved with a 0 in
+		// the alpha channel and are expected to be visible. The TGA specification is a bit vague on this point:
+		// &quot;If the pixel depth is 16 bits, the topmost bit is reserved for transparency.&quot; This statement was probably
+		// intended to mean the topmpst bit was for the &apos;attribute&apos;/alpha channel and should be interpreted as opacity.
+		// In any case, these files exist, so the LoadFlag_AlphaOpacity flag is available to be disabled if necessary.
+		// LoadFlag_AlphaOpacity Present    : Interpret alpha normally (as opacity).      0 = transparent. 1 = opaque.
+		// LoadFlag_AlphaOpacity Not Present: Interpret alpha reversed (as transparency). 0 = opaque. 1 = transparent.</doc>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='156' u='r' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='183' u='r' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='203' u='r' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>

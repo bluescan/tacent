@@ -1,0 +1,2 @@
+<def f='Modules/Image/Inc/Image/tPicture.h' l='106' type='void tImage::tPicture::tPicture(const tImage::tPicture &amp; src)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='105'>// Copy constructor.</doc>

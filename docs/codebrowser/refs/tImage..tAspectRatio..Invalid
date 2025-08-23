@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='368' type='0'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='369'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='689' c='_ZN6tImage20tGetAspectRatioFloatENS_12tAspectRatioE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='368'>// Must be 0.</doc>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='775' u='r' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='821' c='_ZN6tImage19tGetAspectRatioFracERiS0_NS_12tAspectRatioE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='839' u='r' c='_ZN6tImage15tGetAspectRatioEii'/>

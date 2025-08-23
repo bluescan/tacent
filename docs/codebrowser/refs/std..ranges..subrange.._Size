@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/ranges_util.h' l='217' ll='218'/>
+<def f='include/c++/11/bits/ranges_util.h' l='220' ll='222'/>
+<use f='include/c++/11/bits/ranges_util.h' l='224'/>
+<mbr r='std::ranges::subrange::_Size::_M_size' t='_Tp'/>

@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/random.h' l='4208' u='w' c='_ZNSt30negative_binomial_distribution10param_typeC1ET_d'/>
+<use f='include/c++/11/bits/random.h' l='4210' c='_ZNSt30negative_binomial_distribution10param_typeC1ET_d'/>
+<use f='include/c++/11/bits/random.h' l='4215' u='r' c='_ZNKSt30negative_binomial_distribution10param_type1kEv'/>
+<dec f='include/c++/11/bits/random.h' l='4230' type='_IntType'/>

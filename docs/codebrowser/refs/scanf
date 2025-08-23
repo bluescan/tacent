@@ -1,0 +1,6 @@
+<dec f='include/stdio.h' l='421' type='int scanf(const char *__restrict __format)'/>
+<dec f='include/stdio.h' l='437' type='int scanf(const char *__restrict __format)'/>
+<doc f='include/stdio.h' l='417'>/* Read formatted input from stdin.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

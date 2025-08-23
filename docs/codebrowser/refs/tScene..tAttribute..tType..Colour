@@ -1,0 +1,6 @@
+<dec f='Modules/Scene/Inc/Scene/tAttribute.h' l='34' type='2'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='46' u='r' c='_ZNK6tScene10tAttribute8IsColourEv'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='51' u='r' c='_ZNK6tScene10tAttribute11GetAsColourEv'/>
+<doc f='Modules/Scene/Inc/Scene/tAttribute.h' l='34'>// 4 byte colour.</doc>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='53' c='_ZNK6tScene10tAttribute4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='107' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>

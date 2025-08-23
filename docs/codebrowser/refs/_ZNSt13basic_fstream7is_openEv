@@ -1,0 +1,5 @@
+<def f='include/c++/11/fstream' l='1163' ll='1165' type='bool std::basic_fstream::is_open()'/>
+<doc f='include/c++/11/fstream' l='1159'>/**
+       *  @brief  Wrapper to test for an open file.
+       *  @return  @c rdbuf()-&gt;is_open()
+       */</doc>

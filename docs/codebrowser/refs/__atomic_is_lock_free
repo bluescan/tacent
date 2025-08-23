@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/atomic_base.h' l='443' u='c' c='_ZNKSt13__atomic_base12is_lock_freeEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='451' u='c' c='_ZNVKSt13__atomic_base12is_lock_freeEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='773' u='c' c='_ZNKSt13__atomic_baseIPT_E12is_lock_freeEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='781' u='c' c='_ZNVKSt13__atomic_baseIPT_E12is_lock_freeEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='934' u='c' c='_ZNSt13__atomic_impl12is_lock_freeEv'/>
+<use f='include/c++/11/atomic' l='251' u='c' c='_ZNKSt6atomic12is_lock_freeEv'/>
+<use f='include/c++/11/atomic' l='259' u='c' c='_ZNVKSt6atomic12is_lock_freeEv'/>

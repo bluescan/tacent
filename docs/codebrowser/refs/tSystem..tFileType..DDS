@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='387' type='10'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='387'>// Image. Direct Draw Surface. TextureMap/CubeMap.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1085' u='r' c='_ZN6tImage9tImageDDS4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='52' u='r' c='_ZN6tImage8tTexture4LoadERK7tStringNS_10tFaceIndexEb'/>

@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='379' type='_Atomic_word'/>
+<use f='include/c++/11/bits/locale_classes.h' l='405' u='w' c='_ZNSt6locale5facetC1Em'/>
+<use f='include/c++/11/bits/locale_classes.h' l='449' u='a' c='_ZNKSt6locale5facet16_M_add_referenceEv'/>
+<use f='include/c++/11/bits/locale_classes.h' l='456' u='a' c='_ZNKSt6locale5facet19_M_remove_referenceEv'/>
+<offset>64</offset>

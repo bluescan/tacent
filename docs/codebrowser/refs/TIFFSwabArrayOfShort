@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='491' type='void TIFFSwabArrayOfShort(uint16 * wp, tmsize_t n)'/>

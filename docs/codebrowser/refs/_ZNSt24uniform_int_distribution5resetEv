@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/uniform_int_dist.h' l='147' ll='148' type='void std::uniform_int_distribution::reset()'/>
+<doc f='include/c++/11/bits/uniform_int_dist.h' l='142'>/**
+       * @brief Resets the distribution state.
+       *
+       * Does nothing for the uniform integer distribution.
+       */</doc>

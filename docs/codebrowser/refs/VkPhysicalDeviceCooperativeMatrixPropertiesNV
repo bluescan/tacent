@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14240' ll='14244'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14240'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceCooperativeMatrixPropertiesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceCooperativeMatrixPropertiesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceCooperativeMatrixPropertiesNV::cooperativeMatrixSupportedStages' o='128' t='VkShaderStageFlags'/>

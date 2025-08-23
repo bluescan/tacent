@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/max_size_type.h' l='476' ll='478' type='std::ranges::__detail::__max_diff_type &amp; std::ranges::__detail::__max_diff_type::operator++()'/>
+<use f='include/c++/11/bits/max_size_type.h' l='484' u='c' c='_ZNSt6ranges8__detail15__max_diff_typeppEi'/>

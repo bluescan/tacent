@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/basic_string.h' l='158' ll='172'/>
+<use f='include/c++/11/bits/basic_string.h' l='174'/>
+<doc f='include/c++/11/bits/basic_string.h' l='157'>// Use empty-base optimization: http://www.cantrip.org/emptyopt.html</doc>
+<doc f='include/c++/11/bits/basic_string.h' l='158'>// TODO check __is_final</doc>
+<fun r='_ZNSt7__cxx1112basic_string12_Alloc_hiderC1EN9__gnu_cxx14__alloc_traitsINS3_IT1_NS4_10value_typeEE6rebindIT_E5otherENS9_5other10value_typeEE7pointerERKS4_'/>
+<fun r='_ZNSt7__cxx1112basic_string12_Alloc_hiderC1EN9__gnu_cxx14__alloc_traitsINS3_IT1_NS4_10value_typeEE6rebindIT_E5otherENS9_5other10value_typeEE7pointerEOS4_'/>
+<mbr r='std::basic_string::_Alloc_hider::_M_p' t='std::basic_string::pointer'/>

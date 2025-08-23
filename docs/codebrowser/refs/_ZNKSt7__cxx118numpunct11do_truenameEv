@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/locale_facets.h' l='1863' ll='1865' type='std::numpunct::string_type std::numpunct::do_truename() const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1854'>/**
+       *  @brief  Return string representation of bool true.
+       *
+       *  Returns a string_type containing the text representation for true
+       *  bool variables.  This function is a hook for derived classes to
+       *  change the value returned.
+       *
+       *  @return  string_type representing printed form of true.
+      */</doc>

@@ -1,0 +1,37 @@
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='150' ll='172'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='154' c='_ZN6tImage10tMetaDatumC1ERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='157' c='_ZN6tImage10tMetaDatum3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='165' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='166' c='_ZNK6tImage10tMetaDatumneERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='167' c='_ZN6tImage10tMetaDatumaSERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='167' c='_ZN6tImage10tMetaDatumaSERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='199' c='_ZN6tImage9tMetaDataixENS_8tMetaTagE'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='200' c='_ZNK6tImage9tMetaDataixENS_8tMetaTagE'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='212'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='227' c='_ZN6tImage10tMetaDatum3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='239' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<size>40</size>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='149'>// A single piece of image metadata. Could be more memory efficient, but hardly seems worth it.</doc>
+<fun r='_ZN6tImage10tMetaDatumC1Ev'/>
+<fun r='_ZN6tImage10tMetaDatumC1ERKS0_'/>
+<fun r='_ZN6tImage10tMetaDatum5ClearEv'/>
+<fun r='_ZN6tImage10tMetaDatum3SetERKS0_'/>
+<fun r='_ZN6tImage10tMetaDatum3SetEj'/>
+<fun r='_ZN6tImage10tMetaDatum3SetEf'/>
+<fun r='_ZN6tImage10tMetaDatum3SetERK7tString'/>
+<fun r='_ZNK6tImage10tMetaDatum7IsValidEv'/>
+<fun r='_ZNK6tImage10tMetaDatum5IsSetEv'/>
+<fun r='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<fun r='_ZNK6tImage10tMetaDatumneERKS0_'/>
+<fun r='_ZN6tImage10tMetaDatumaSERKS0_'/>
+<mbr r='tImage::tMetaDatum::Type' o='0' t='tImage::tMetaDatum::DatumType'/>
+<mbr r='tImage::tMetaDatum::String' o='64' t='tString'/>
+<fun r='_ZN6tImage10tMetaDatum3SetERKS0_'/>
+<fun r='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='136' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<size>40</size>
+<use f='Modules/Image/Src/tMetaData.cpp' l='650' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='690' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='881' c='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='929' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>
+<size>40</size>

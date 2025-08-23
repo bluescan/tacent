@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='810'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1849' u='a'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='809'>/* Define to 1 if you have the `atan2l&apos; function. */</doc>

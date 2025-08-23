@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1530' type='8'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1614'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1526'>/*!&lt; RGB or RGBA mode 5 for ETC1S, modes 1, 2, 3, 4, 5, 6, 7 for
+                 UASTC. */
+
+        // PVRTC1 4bpp (mobile, PowerVR devices)</doc>

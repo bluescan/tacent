@@ -1,0 +1,3 @@
+<dec f='include/dirent.h' l='162' type='struct dirent * readdir(DIR * __dirp)'/>
+<use f='Modules/System/Src/tFile.cpp' l='2741' u='c' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2741' u='c' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

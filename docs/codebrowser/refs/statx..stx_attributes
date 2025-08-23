@@ -1,0 +1,3 @@
+<dec f='include/linux/stat.h' l='103' type='__u64'/>
+<offset>64</offset>
+<doc f='include/linux/stat.h' l='103'>/* Flags conveying information about the file [uncond] */</doc>

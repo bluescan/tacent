@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='211' type='int sigismember(const sigset_t * __set, int __signo)'/>
+<doc f='include/signal.h' l='210'>/* Return 1 if SIGNO is in SET, 0 if not.  */</doc>

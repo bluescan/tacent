@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='260' type='bool tImage::tIsETCFormat(tImage::tPixelFormat )'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='503' ll='506' type='bool tImage::tIsETCFormat(tImage::tPixelFormat format)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='258'>// Returns true if the format is an ETC BC format. EAC is not considered part of ETC for this function.
+// ETC formats are a subset of tIsBCFormat.</doc>

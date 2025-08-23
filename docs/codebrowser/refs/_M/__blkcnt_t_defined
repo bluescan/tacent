@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/types.h' l='193'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='84' u='a'/>

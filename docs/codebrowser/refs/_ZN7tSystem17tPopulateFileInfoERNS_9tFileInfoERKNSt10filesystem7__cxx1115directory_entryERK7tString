@@ -1,0 +1,4 @@
+<dec f='Modules/System/Src/tFile.cpp' l='54' type='void tSystem::tPopulateFileInfo(tSystem::tFileInfo &amp; fileInfo, const std::filesystem::directory_entry &amp; , const tString &amp; filename)'/>
+<def f='Modules/System/Src/tFile.cpp' l='2022' ll='2064' type='void tSystem::tPopulateFileInfo(tSystem::tFileInfo &amp; fileInfo, const std::filesystem::directory_entry &amp; entry, const tString &amp; filename)'/>
+<use f='Modules/System/Src/tFile.cpp' l='2488' u='c' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2901' u='c' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>

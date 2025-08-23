@@ -1,0 +1,11 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='172' type='float tMath::tRecipSqrtFast(float x)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='498' ll='507' type='float tMath::tRecipSqrtFast(float x)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='381' u='c' c='_ZN5tMath14tNormalizeFastERNS_5tVec2E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='382' u='c' c='_ZN5tMath14tNormalizeFastERNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='383' u='c' c='_ZN5tMath14tNormalizeFastERNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='384' u='c' c='_ZN5tMath14tNormalizeFastERNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='386' u='c' c='_ZN5tMath18tNormalizeSafeFastERNS_5tVec2E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='387' u='c' c='_ZN5tMath18tNormalizeSafeFastERNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='388' u='c' c='_ZN5tMath18tNormalizeSafeFastERNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='389' u='c' c='_ZN5tMath18tNormalizeSafeFastERNS_5tQuatE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='591' u='c' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3Ef'/>

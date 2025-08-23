@@ -1,0 +1,16 @@
+<dec f='include/x86_64-linux-gnu/sys/cdefs.h' l='45'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='78' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='280' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='297' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='307' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='314' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='320' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='329' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='338' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='361' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='371' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='383' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='396' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='405' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='419' u='c'/>
+<use f='include/x86_64-linux-gnu/sys/cdefs.h' l='432' u='c'/>

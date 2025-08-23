@@ -1,0 +1,1 @@
+<def f='include/c++/11/string_view' l='350' ll='352' type='bool std::basic_string_view::starts_with(basic_string_view&lt;_CharT, _Traits&gt; __x) const'/>

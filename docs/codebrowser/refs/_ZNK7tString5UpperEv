@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='330' type='tString tString::Upper() const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='329'>// These do not modify the string. They return a new one.</doc>

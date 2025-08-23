@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/shared_ptr.h' l='722' c='_ZNSt8weak_ptraSERKSt8weak_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='730' c='_ZNSt8weak_ptraSERKSt10shared_ptrITL0__E'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='741' c='_ZNSt8weak_ptraSEOSt8weak_ptrITL0__E'/>

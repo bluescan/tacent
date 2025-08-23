@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tPixelUtil.h' l='79' type='bool tImage::CanReverseRowData(tImage::tPixelFormat , int height)'/>
+<doc f='Modules/Image/Inc/Image/tPixelUtil.h' l='78'>// Determine if row-reversal will succeed based on the pixel format and height.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1303' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='884' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1081' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<def f='Modules/Image/Src/tPixelUtil.cpp' l='1296' ll='1305' type='bool tImage::CanReverseRowData(tImage::tPixelFormat format, int height)'/>

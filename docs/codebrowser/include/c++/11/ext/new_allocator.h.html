@@ -1,0 +1,229 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>new_allocator.h source code [include/c++/11/ext/new_allocator.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="__gnu_cxx::new_allocator "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/ext/new_allocator.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>ext</a>/<a href='new_allocator.h.html'>new_allocator.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Allocator that wraps operator new -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2001-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">ext/new_allocator.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This file is a GNU extension to the Standard C++ Library.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="29">ifndef</span> <span class="macro" data-ref="_M/_NEW_ALLOCATOR_H">_NEW_ALLOCATOR_H</span></u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#define <dfn class="macro" id="_M/_NEW_ALLOCATOR_H" data-ref="_M/_NEW_ALLOCATOR_H">_NEW_ALLOCATOR_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#include &lt;bits/c++config.h&gt;</u>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#include &lt;new&gt;</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#include &lt;bits/functexcept.h&gt;</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;bits/move.h&gt;</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="36">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#include &lt;type_traits&gt;</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#<span data-ppcond="36">endif</span></u>&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td><b>namespace</b> <span class="namespace">__gnu_cxx</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="41">41</th><td>{&nbsp</td></tr>
+<tr><th id="42">42</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i class="doc">   *  <span class="command">@brief</span>  An allocator that uses global new, as per C++03 [20.4.1].</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i class="doc">   *  <span class="command">@ingroup</span> <span class="verb">allocators</span></i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i class="doc">   *  This is precisely the allocator defined in the C++ Standard.</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i class="doc">   *    - all allocation calls operator new</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i class="doc">   *    - all deallocation calls operator delete</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i class="doc">   *  <span class="command">@tparam</span>  <span class="arg">_Tp</span>  Type of allocated object.</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="55">55</th><td>    <b>class</b> <dfn class="type def" id="__gnu_cxx::new_allocator" title='__gnu_cxx::new_allocator' data-ref="__gnu_cxx::new_allocator">new_allocator</dfn>&nbsp</td></tr>
+<tr><th id="56">56</th><td>    {&nbsp</td></tr>
+<tr><th id="57">57</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="58">58</th><td>      <b>typedef</b> _Tp        <dfn class="typedef" id="__gnu_cxx::new_allocator::value_type" title='__gnu_cxx::new_allocator::value_type' data-type='_Tp' data-ref="__gnu_cxx::new_allocator::value_type">value_type</dfn>;&nbsp</td></tr>
+<tr><th id="59">59</th><td>      <b>typedef</b> <span class="namespace">std::</span><a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>     <dfn class="typedef" id="__gnu_cxx::new_allocator::size_type" title='__gnu_cxx::new_allocator::size_type' data-type='std::size_t' data-ref="__gnu_cxx::new_allocator::size_type">size_type</dfn>;&nbsp</td></tr>
+<tr><th id="60">60</th><td>      <b>typedef</b> <span class="namespace">std::</span><a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::ptrdiff_t" title='std::ptrdiff_t' data-type='long' data-ref="std::ptrdiff_t">ptrdiff_t</a>  <dfn class="typedef" id="__gnu_cxx::new_allocator::difference_type" title='__gnu_cxx::new_allocator::difference_type' data-type='std::ptrdiff_t' data-ref="__gnu_cxx::new_allocator::difference_type">difference_type</dfn>;&nbsp</td></tr>
+<tr><th id="61">61</th><td><u>#<span data-ppcond="61">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="62">62</th><td>      <b>typedef</b> _Tp*       pointer;&nbsp</td></tr>
+<tr><th id="63">63</th><td>      <b>typedef</b> <em>const</em> _Tp* const_pointer;&nbsp</td></tr>
+<tr><th id="64">64</th><td>      <b>typedef</b> _Tp&amp;       reference;&nbsp</td></tr>
+<tr><th id="65">65</th><td>      <b>typedef</b> <em>const</em> _Tp&amp; const_reference;&nbsp</td></tr>
+<tr><th id="66">66</th><td>&nbsp</td></tr>
+<tr><th id="67">67</th><td>      <b>template</b>&lt;<b>typename</b> _Tp1&gt;&nbsp</td></tr>
+<tr><th id="68">68</th><td>	<b>struct</b> rebind&nbsp</td></tr>
+<tr><th id="69">69</th><td>	{ <b>typedef</b> new_allocator&lt;_Tp1&gt; other; };&nbsp</td></tr>
+<tr><th id="70">70</th><td><u>#<span data-ppcond="61">endif</span></u>&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#<span data-ppcond="72">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="73">73</th><td>      <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td><i>      // 2103. propagate_on_container_move_assignment</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td>      <b>typedef</b> <span class="namespace">std::</span><a class="typedef" href="../type_traits.html#std::true_type" title='std::true_type' data-type='integral_constant&lt;bool, true&gt;' data-ref="std::true_type">true_type</a> <dfn class="typedef" id="__gnu_cxx::new_allocator::propagate_on_container_move_assignment" title='__gnu_cxx::new_allocator::propagate_on_container_move_assignment' data-type='std::true_type' data-ref="__gnu_cxx::new_allocator::propagate_on_container_move_assignment">propagate_on_container_move_assignment</dfn>;&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#<span data-ppcond="72">endif</span></u>&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td>      <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="79">79</th><td>      <dfn class="decl def fn" id="__gnu_cxx::new_allocator::new_allocator{_Tp}" title='__gnu_cxx::new_allocator::new_allocator&lt;_Tp&gt;' data-ref="__gnu_cxx::new_allocator::new_allocator{_Tp}">new_allocator</dfn>() <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#188" title="noexcept" data-ref="_M/_GLIBCXX_USE_NOEXCEPT">_GLIBCXX_USE_NOEXCEPT</a> { }&nbsp</td></tr>
+<tr><th id="80">80</th><td>&nbsp</td></tr>
+<tr><th id="81">81</th><td>      <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="82">82</th><td>      <dfn class="decl def fn" id="__gnu_cxx::new_allocator::new_allocator{_Tp}" title='__gnu_cxx::new_allocator::new_allocator&lt;_Tp&gt;' data-ref="__gnu_cxx::new_allocator::new_allocator{_Tp}">new_allocator</dfn>(<em>const</em> new_allocator&amp;) <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#188" title="noexcept" data-ref="_M/_GLIBCXX_USE_NOEXCEPT">_GLIBCXX_USE_NOEXCEPT</a> { }&nbsp</td></tr>
+<tr><th id="83">83</th><td>&nbsp</td></tr>
+<tr><th id="84">84</th><td>      <b>template</b>&lt;<b>typename</b> _Tp1&gt;&nbsp</td></tr>
+<tr><th id="85">85</th><td>	<a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="86">86</th><td>	<dfn class="decl def fn" id="__gnu_cxx::new_allocator::new_allocator{_Tp}" title='__gnu_cxx::new_allocator::new_allocator&lt;_Tp&gt;' data-ref="__gnu_cxx::new_allocator::new_allocator{_Tp}">new_allocator</dfn>(<em>const</em> <a class="type" href="#__gnu_cxx::new_allocator" title='__gnu_cxx::new_allocator' data-ref="__gnu_cxx::new_allocator">new_allocator</a>&lt;_Tp1&gt;&amp;) <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#188" title="noexcept" data-ref="_M/_GLIBCXX_USE_NOEXCEPT">_GLIBCXX_USE_NOEXCEPT</a> { }&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#<span data-ppcond="88">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="89">89</th><td>      ~new_allocator() _GLIBCXX_USE_NOEXCEPT { }&nbsp</td></tr>
+<tr><th id="90">90</th><td>&nbsp</td></tr>
+<tr><th id="91">91</th><td>      pointer&nbsp</td></tr>
+<tr><th id="92">92</th><td>      address(reference __x) <em>const</em> _GLIBCXX_NOEXCEPT&nbsp</td></tr>
+<tr><th id="93">93</th><td>      { <b>return</b> std::__addressof(__x); }&nbsp</td></tr>
+<tr><th id="94">94</th><td>&nbsp</td></tr>
+<tr><th id="95">95</th><td>      const_pointer&nbsp</td></tr>
+<tr><th id="96">96</th><td>      address(const_reference __x) <em>const</em> _GLIBCXX_NOEXCEPT&nbsp</td></tr>
+<tr><th id="97">97</th><td>      { <b>return</b> std::__addressof(__x); }&nbsp</td></tr>
+<tr><th id="98">98</th><td><u>#<span data-ppcond="88">endif</span></u>&nbsp</td></tr>
+<tr><th id="99">99</th><td>&nbsp</td></tr>
+<tr><th id="100">100</th><td>      <i>// NB: __n is permitted to be 0.  The C++ standard says nothing</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><i>      // about what the return value is when __n == 0.</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td>      <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#131" title="[[__nodiscard__]]" data-ref="_M/_GLIBCXX_NODISCARD">_GLIBCXX_NODISCARD</a> _Tp*&nbsp</td></tr>
+<tr><th id="103">103</th><td>      <dfn class="decl def fn" id="__gnu_cxx::new_allocator::allocate" title='__gnu_cxx::new_allocator::allocate' data-ref="__gnu_cxx::new_allocator::allocate">allocate</dfn>(<a class="typedef" href="#__gnu_cxx::new_allocator::size_type" title='__gnu_cxx::new_allocator::size_type' data-type='std::size_t' data-ref="__gnu_cxx::new_allocator::size_type">size_type</a> <dfn class="local col7 decl" id="5877__n" title='__n' data-type='__gnu_cxx::new_allocator::size_type' data-ref="5877__n">__n</dfn>, <em>const</em> <em>void</em>* = <b>static_cast</b>&lt;<em>const</em> <em>void</em>*&gt;(<var>0</var>))&nbsp</td></tr>
+<tr><th id="104">104</th><td>      {&nbsp</td></tr>
+<tr><th id="105">105</th><td><u>#<span data-ppcond="105">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="106">106</th><td>	 <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td><i>	 // 3308. std::allocator&lt;void&gt;().allocate(n)</i>&nbsp</td></tr>
+<tr><th id="108">108</th><td>	 <b>static_assert</b>(<b>sizeof</b>(_Tp) != <var>0</var>, <q>"cannot allocate incomplete types"</q>);&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>#<span data-ppcond="105">endif</span></u>&nbsp</td></tr>
+<tr><th id="110">110</th><td>&nbsp</td></tr>
+<tr><th id="111">111</th><td>	<b>if</b> (<a class="ref fn" href="#111" title='__builtin_expect' data-ref="__builtin_expect">__builtin_expect</a>(<a class="local col7 ref" href="#5877__n" title='__n' data-ref="5877__n">__n</a> &gt; <b>this</b>-&gt;_M_max_size(), <b>false</b>))&nbsp</td></tr>
+<tr><th id="112">112</th><td>	  {&nbsp</td></tr>
+<tr><th id="113">113</th><td>	    <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td><i>	    // 3190. allocator::allocate sometimes returns too little storage</i>&nbsp</td></tr>
+<tr><th id="115">115</th><td>	    <b>if</b> (<a class="local col7 ref" href="#5877__n" title='__n' data-ref="5877__n">__n</a> &gt; (<span class="namespace">std::</span><a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>(-<var>1</var>) / <b>sizeof</b>(_Tp)))&nbsp</td></tr>
+<tr><th id="116">116</th><td>	      <span class="namespace">std::</span><a class="ref fn" href="../bits/functexcept.h.html#_ZSt28__throw_bad_array_new_lengthv" title='std::__throw_bad_array_new_length' data-ref="_ZSt28__throw_bad_array_new_lengthv">__throw_bad_array_new_length</a>();&nbsp</td></tr>
+<tr><th id="117">117</th><td>	    <span class="namespace">std::</span><a class="ref fn" href="../bits/functexcept.h.html#_ZSt17__throw_bad_allocv" title='std::__throw_bad_alloc' data-ref="_ZSt17__throw_bad_allocv">__throw_bad_alloc</a>();&nbsp</td></tr>
+<tr><th id="118">118</th><td>	  }&nbsp</td></tr>
+<tr><th id="119">119</th><td>&nbsp</td></tr>
+<tr><th id="120">120</th><td><u>#<span data-ppcond="120">if</span> <span class="macro" title="201606L" data-ref="_M/__cpp_aligned_new">__cpp_aligned_new</span></u>&nbsp</td></tr>
+<tr><th id="121">121</th><td>	<b>if</b> (<b>alignof</b>(_Tp) &gt; <span class="macro" title="16UL" data-ref="_M/__STDCPP_DEFAULT_NEW_ALIGNMENT__">__STDCPP_DEFAULT_NEW_ALIGNMENT__</span>)&nbsp</td></tr>
+<tr><th id="122">122</th><td>	  {&nbsp</td></tr>
+<tr><th id="123">123</th><td>	    <span class="namespace">std::</span><a class="type" href="../new.html#std::align_val_t" title='std::align_val_t' data-ref="std::align_val_t">align_val_t</a> <dfn class="local col8 decl" id="5878__al" title='__al' data-type='std::align_val_t' data-ref="5878__al">__al</dfn> = <span class="namespace">std::</span><a class="type" href="../new.html#std::align_val_t" title='std::align_val_t' data-ref="std::align_val_t">align_val_t</a>(<b>alignof</b>(_Tp));&nbsp</td></tr>
+<tr><th id="124">124</th><td>	    <b>return</b> <b>static_cast</b>&lt;_Tp*&gt;(::<span class='ref fn' title='operator new' data-ref="_ZnwmSt11align_val_t"><b>operator</b> <b>new</b></span>(<a class="local col7 ref" href="#5877__n" title='__n' data-ref="5877__n">__n</a> * <b>sizeof</b>(_Tp), <a class="local col8 ref" href="#5878__al" title='__al' data-ref="5878__al">__al</a>));&nbsp</td></tr>
+<tr><th id="125">125</th><td>	  }&nbsp</td></tr>
+<tr><th id="126">126</th><td><u>#<span data-ppcond="120">endif</span></u>&nbsp</td></tr>
+<tr><th id="127">127</th><td>	<b>return</b> <b>static_cast</b>&lt;_Tp*&gt;(::<span class='ref fn' title='operator new' data-ref="_Znwm"><b>operator</b> <b>new</b></span>(<a class="local col7 ref" href="#5877__n" title='__n' data-ref="5877__n">__n</a> * <b>sizeof</b>(_Tp)));&nbsp</td></tr>
+<tr><th id="128">128</th><td>      }&nbsp</td></tr>
+<tr><th id="129">129</th><td>&nbsp</td></tr>
+<tr><th id="130">130</th><td>      <i>// __p is not permitted to be a null pointer.</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="132">132</th><td>      <dfn class="decl def fn" id="__gnu_cxx::new_allocator::deallocate" title='__gnu_cxx::new_allocator::deallocate' data-ref="__gnu_cxx::new_allocator::deallocate">deallocate</dfn>(_Tp* <dfn class="local col9 decl" id="5879__p" title='__p' data-type='_Tp *' data-ref="5879__p">__p</dfn>, <a class="typedef" href="#__gnu_cxx::new_allocator::size_type" title='__gnu_cxx::new_allocator::size_type' data-type='std::size_t' data-ref="__gnu_cxx::new_allocator::size_type">size_type</a> <dfn class="local col0 decl" id="5880__t" title='__t' data-type='__gnu_cxx::new_allocator::size_type' data-ref="5880__t">__t</dfn> <b>__attribute__</b> ((__unused__)))&nbsp</td></tr>
+<tr><th id="133">133</th><td>      {&nbsp</td></tr>
+<tr><th id="134">134</th><td><u>#<span data-ppcond="134">if</span> <span class="macro" title="201606L" data-ref="_M/__cpp_aligned_new">__cpp_aligned_new</span></u>&nbsp</td></tr>
+<tr><th id="135">135</th><td>	<b>if</b> (<b>alignof</b>(_Tp) &gt; <span class="macro" title="16UL" data-ref="_M/__STDCPP_DEFAULT_NEW_ALIGNMENT__">__STDCPP_DEFAULT_NEW_ALIGNMENT__</span>)&nbsp</td></tr>
+<tr><th id="136">136</th><td>	  {&nbsp</td></tr>
+<tr><th id="137">137</th><td>	    ::<b>operator</b> <b>delete</b>(<a class="local col9 ref" href="#5879__p" title='__p' data-ref="5879__p">__p</a>,&nbsp</td></tr>
+<tr><th id="138">138</th><td><u># <span data-ppcond="138">if</span> __cpp_sized_deallocation</u>&nbsp</td></tr>
+<tr><th id="139">139</th><td>			      __t * <b>sizeof</b>(_Tp),&nbsp</td></tr>
+<tr><th id="140">140</th><td><u># <span data-ppcond="138">endif</span></u>&nbsp</td></tr>
+<tr><th id="141">141</th><td>			      <span class="namespace">std::</span><a class="type" href="../new.html#std::align_val_t" title='std::align_val_t' data-ref="std::align_val_t">align_val_t</a>(<b>alignof</b>(_Tp)));&nbsp</td></tr>
+<tr><th id="142">142</th><td>	    <b>return</b>;&nbsp</td></tr>
+<tr><th id="143">143</th><td>	  }&nbsp</td></tr>
+<tr><th id="144">144</th><td><u>#<span data-ppcond="134">endif</span></u>&nbsp</td></tr>
+<tr><th id="145">145</th><td>	::<b>operator</b> <b>delete</b>(<a class="local col9 ref" href="#5879__p" title='__p' data-ref="5879__p">__p</a>&nbsp</td></tr>
+<tr><th id="146">146</th><td><u>#<span data-ppcond="146">if</span> __cpp_sized_deallocation</u>&nbsp</td></tr>
+<tr><th id="147">147</th><td>			  , __t * <b>sizeof</b>(_Tp)&nbsp</td></tr>
+<tr><th id="148">148</th><td><u>#<span data-ppcond="146">endif</span></u>&nbsp</td></tr>
+<tr><th id="149">149</th><td>			 );&nbsp</td></tr>
+<tr><th id="150">150</th><td>      }&nbsp</td></tr>
+<tr><th id="151">151</th><td>&nbsp</td></tr>
+<tr><th id="152">152</th><td><u>#<span data-ppcond="152">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="153">153</th><td>      size_type&nbsp</td></tr>
+<tr><th id="154">154</th><td>      max_size() <em>const</em> _GLIBCXX_USE_NOEXCEPT&nbsp</td></tr>
+<tr><th id="155">155</th><td>      { <b>return</b> _M_max_size(); }&nbsp</td></tr>
+<tr><th id="156">156</th><td>&nbsp</td></tr>
+<tr><th id="157">157</th><td><u>#if __cplusplus &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="158">158</th><td>      <b>template</b>&lt;<b>typename</b> _Up, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="159">159</th><td>	<em>void</em>&nbsp</td></tr>
+<tr><th id="160">160</th><td>	construct(_Up* __p, _Args&amp;&amp;... __args)&nbsp</td></tr>
+<tr><th id="161">161</th><td>	<b>noexcept</b>(std::is_nothrow_constructible&lt;_Up, _Args...&gt;::value)&nbsp</td></tr>
+<tr><th id="162">162</th><td>	{ ::<b>new</b>((<em>void</em> *)__p) _Up(std::forward&lt;_Args&gt;(__args)...); }&nbsp</td></tr>
+<tr><th id="163">163</th><td>&nbsp</td></tr>
+<tr><th id="164">164</th><td>      <b>template</b>&lt;<b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="165">165</th><td>	<em>void</em>&nbsp</td></tr>
+<tr><th id="166">166</th><td>	destroy(_Up* __p)&nbsp</td></tr>
+<tr><th id="167">167</th><td>	<b>noexcept</b>(std::is_nothrow_destructible&lt;_Up&gt;::value)&nbsp</td></tr>
+<tr><th id="168">168</th><td>	{ __p-&gt;~_Up(); }&nbsp</td></tr>
+<tr><th id="169">169</th><td><u>#else</u>&nbsp</td></tr>
+<tr><th id="170">170</th><td>      <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="171">171</th><td><i>      // 402. wrong new expression in [some_] allocator::construct</i>&nbsp</td></tr>
+<tr><th id="172">172</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="173">173</th><td>      construct(pointer __p, <em>const</em> _Tp&amp; __val)&nbsp</td></tr>
+<tr><th id="174">174</th><td>      { ::<b>new</b>((<em>void</em> *)__p) _Tp(__val); }&nbsp</td></tr>
+<tr><th id="175">175</th><td>&nbsp</td></tr>
+<tr><th id="176">176</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="177">177</th><td>      destroy(pointer __p) { __p-&gt;~_Tp(); }&nbsp</td></tr>
+<tr><th id="178">178</th><td><u>#endif</u>&nbsp</td></tr>
+<tr><th id="179">179</th><td><u>#<span data-ppcond="152">endif</span> // ! C++20</u>&nbsp</td></tr>
+<tr><th id="180">180</th><td>&nbsp</td></tr>
+<tr><th id="181">181</th><td>      <b>template</b>&lt;<b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="182">182</th><td>	<b>friend</b> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <em>bool</em>&nbsp</td></tr>
+<tr><th id="183">183</th><td>	<dfn class="decl def fn" id="__gnu_cxx::operator==" title='__gnu_cxx::operator==' data-ref="__gnu_cxx::operator=="><b>operator</b>==</dfn>(<em>const</em> new_allocator&amp;, <em>const</em> <a class="type" href="#__gnu_cxx::new_allocator" title='__gnu_cxx::new_allocator' data-ref="__gnu_cxx::new_allocator">new_allocator</a>&lt;_Up&gt;&amp;)&nbsp</td></tr>
+<tr><th id="184">184</th><td>	<a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#199" title="noexcept" data-ref="_M/_GLIBCXX_NOTHROW">_GLIBCXX_NOTHROW</a>&nbsp</td></tr>
+<tr><th id="185">185</th><td>	{ <b>return</b> <b>true</b>; }&nbsp</td></tr>
+<tr><th id="186">186</th><td>&nbsp</td></tr>
+<tr><th id="187">187</th><td><u>#<span data-ppcond="187">if</span> <span class="macro" title="201907L" data-ref="_M/__cpp_impl_three_way_comparison">__cpp_impl_three_way_comparison</span> &lt; 201907L</u>&nbsp</td></tr>
+<tr><th id="188">188</th><td>      <b>template</b>&lt;<b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="189">189</th><td>	<b>friend</b> _GLIBCXX20_CONSTEXPR <em>bool</em>&nbsp</td></tr>
+<tr><th id="190">190</th><td>	<b>operator</b>!=(<em>const</em> new_allocator&amp;, <em>const</em> new_allocator&lt;_Up&gt;&amp;)&nbsp</td></tr>
+<tr><th id="191">191</th><td>	_GLIBCXX_NOTHROW&nbsp</td></tr>
+<tr><th id="192">192</th><td>	{ <b>return</b> <b>false</b>; }&nbsp</td></tr>
+<tr><th id="193">193</th><td><u>#<span data-ppcond="187">endif</span></u>&nbsp</td></tr>
+<tr><th id="194">194</th><td>&nbsp</td></tr>
+<tr><th id="195">195</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="196">196</th><td>      <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#143" title="constexpr" data-ref="_M/_GLIBCXX_CONSTEXPR">_GLIBCXX_CONSTEXPR</a> <a class="typedef" href="#__gnu_cxx::new_allocator::size_type" title='__gnu_cxx::new_allocator::size_type' data-type='std::size_t' data-ref="__gnu_cxx::new_allocator::size_type">size_type</a>&nbsp</td></tr>
+<tr><th id="197">197</th><td>      <dfn class="decl def fn" id="__gnu_cxx::new_allocator::_M_max_size" title='__gnu_cxx::new_allocator::_M_max_size' data-ref="__gnu_cxx::new_allocator::_M_max_size">_M_max_size</dfn>() <em>const</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#188" title="noexcept" data-ref="_M/_GLIBCXX_USE_NOEXCEPT">_GLIBCXX_USE_NOEXCEPT</a>&nbsp</td></tr>
+<tr><th id="198">198</th><td>      {&nbsp</td></tr>
+<tr><th id="199">199</th><td><u>#<span data-ppcond="199">if</span> <span class="macro" title="9223372036854775807L" data-ref="_M/__PTRDIFF_MAX__">__PTRDIFF_MAX__</span> &lt; <span class="macro" title="18446744073709551615UL" data-ref="_M/__SIZE_MAX__">__SIZE_MAX__</span></u>&nbsp</td></tr>
+<tr><th id="200">200</th><td>	<b>return</b> <span class="namespace">std::</span><a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>(<span class="macro" title="9223372036854775807L" data-ref="_M/__PTRDIFF_MAX__">__PTRDIFF_MAX__</span>) / <b>sizeof</b>(_Tp);&nbsp</td></tr>
+<tr><th id="201">201</th><td><u>#<span data-ppcond="199">else</span></u>&nbsp</td></tr>
+<tr><th id="202">202</th><td>	<b>return</b> std::size_t(-<var>1</var>) / <b>sizeof</b>(_Tp);&nbsp</td></tr>
+<tr><th id="203">203</th><td><u>#<span data-ppcond="199">endif</span></u>&nbsp</td></tr>
+<tr><th id="204">204</th><td>      }&nbsp</td></tr>
+<tr><th id="205">205</th><td>    };&nbsp</td></tr>
+<tr><th id="206">206</th><td>&nbsp</td></tr>
+<tr><th id="207">207</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="208">208</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="209">209</th><td>&nbsp</td></tr>
+<tr><th id="210">210</th><td><u>#<span data-ppcond="29">endif</span></u>&nbsp</td></tr>
+<tr><th id="211">211</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

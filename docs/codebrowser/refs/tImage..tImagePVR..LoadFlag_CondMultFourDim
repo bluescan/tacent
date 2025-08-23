@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='49' type='128'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='49'>// Produce conditional success if image dimension not a multiple of 4. Only checks BC formats,</doc>

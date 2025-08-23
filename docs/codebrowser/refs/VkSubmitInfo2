@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7029' ll='7039'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7029'/>
+<size>64</size>
+<mbr r='VkSubmitInfo2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSubmitInfo2::pNext' o='64' t='const void *'/>
+<mbr r='VkSubmitInfo2::flags' o='128' t='VkSubmitFlags'/>
+<mbr r='VkSubmitInfo2::waitSemaphoreInfoCount' o='160' t='uint32_t'/>
+<mbr r='VkSubmitInfo2::pWaitSemaphoreInfos' o='192' t='const VkSemaphoreSubmitInfo *'/>
+<mbr r='VkSubmitInfo2::commandBufferInfoCount' o='256' t='uint32_t'/>
+<mbr r='VkSubmitInfo2::pCommandBufferInfos' o='320' t='const VkCommandBufferSubmitInfo *'/>
+<mbr r='VkSubmitInfo2::signalSemaphoreInfoCount' o='384' t='uint32_t'/>
+<mbr r='VkSubmitInfo2::pSignalSemaphoreInfos' o='448' t='const VkSemaphoreSubmitInfo *'/>

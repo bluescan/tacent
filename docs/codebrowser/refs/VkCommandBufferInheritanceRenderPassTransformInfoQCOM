@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15069' ll='15074'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15069'/>
+<size>40</size>
+<mbr r='VkCommandBufferInheritanceRenderPassTransformInfoQCOM::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCommandBufferInheritanceRenderPassTransformInfoQCOM::pNext' o='64' t='void *'/>
+<mbr r='VkCommandBufferInheritanceRenderPassTransformInfoQCOM::transform' o='128' t='VkSurfaceTransformFlagBitsKHR'/>
+<mbr r='VkCommandBufferInheritanceRenderPassTransformInfoQCOM::renderArea' o='160' t='VkRect2D'/>

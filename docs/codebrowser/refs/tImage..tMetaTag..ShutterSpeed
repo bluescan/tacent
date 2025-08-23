@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='64' type='20'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='60'>//			It&apos;s possible one of the YYYY-MM-DD or hh:mm:ss parts is missing. You will get nothing/invalid
+					//			or &quot;YYYY-MM-DD&quot; or &quot;hh:mm:ss&quot; or both: &quot;YYYY-MM-DD hh:mm:ss&quot; depending on what is available.
+
+	// Camera Settings Tags</doc>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='64'>//	float	Units s^-1. Reciprocal of exposure time. If not set, computed.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='406' u='m' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='714' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

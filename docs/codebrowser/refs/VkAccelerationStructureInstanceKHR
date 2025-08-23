@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13261' ll='13268'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13261'/>
+<size>64</size>
+<mbr r='VkAccelerationStructureInstanceKHR::transform' o='0' t='VkTransformMatrixKHR'/>
+<mbr r='VkAccelerationStructureInstanceKHR::instanceCustomIndex' o='384' t='uint32_t'/>
+<mbr r='VkAccelerationStructureInstanceKHR::mask' o='408' t='uint32_t'/>
+<mbr r='VkAccelerationStructureInstanceKHR::instanceShaderBindingTableRecordOffset' o='416' t='uint32_t'/>
+<mbr r='VkAccelerationStructureInstanceKHR::flags' o='440' t='VkGeometryInstanceFlagsKHR'/>
+<mbr r='VkAccelerationStructureInstanceKHR::accelerationStructureReference' o='448' t='uint64_t'/>

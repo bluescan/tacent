@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/ranges_cmp.h' l='60'/>
+<doc f='include/c++/11/bits/ranges_cmp.h' l='59'>// Define this here, included by all the headers that need to define it.</doc>
+<use f='include/c++/11/bits/ranges_util.h' l='36' u='a'/>

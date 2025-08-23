@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16708' ll='16711'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16708'/>
+<size>8</size>
+<mbr r='VkDeviceOrHostAddressKHR::deviceAddress' o='0' t='VkDeviceAddress'/>
+<mbr r='VkDeviceOrHostAddressKHR::hostAddress' o='0' t='void *'/>

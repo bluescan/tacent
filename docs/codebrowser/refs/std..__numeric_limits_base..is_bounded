@@ -1,0 +1,4 @@
+<def f='include/c++/11/limits' l='279' type='const bool'/>
+<doc f='include/c++/11/limits' l='276'>/** True if the set of values representable by the type is
+	finite.  All built-in types are bounded, this member would be
+	false for arbitrary precision types. */</doc>

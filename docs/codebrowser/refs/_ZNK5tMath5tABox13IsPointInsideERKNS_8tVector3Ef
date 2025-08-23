@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='301' type='bool tMath::tABox::IsPointInside(const tMath::tVector3 &amp; point, float margin) const'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='300'>// The boundary is included. Positive margin values increase the rectangle size.</doc>

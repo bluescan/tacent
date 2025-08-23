@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='506' type='16954112'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='59' u='r' c='_ZNK6tScene7tCamera4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='84' c='_ZN6tScene7tCamera4LoadERK6tChunk'/>

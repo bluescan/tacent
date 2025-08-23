@@ -1,0 +1,3 @@
+<def f='include/c++/11/limits' l='274' type='const bool'/>
+<doc f='include/c++/11/limits' l='272'>/** True if-and-only-if the type adheres to the IEC 559 standard, also
+	known as IEEE 754.  (Only makes sense for floating point types.)  */</doc>

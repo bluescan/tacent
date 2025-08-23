@@ -1,0 +1,5 @@
+<dec f='include/c++/11/istream' l='457' type='std::basic_istream::__istream_type &amp; std::basic_istream::ignore()'/>
+<def f='include/c++/11/bits/istream.tcc' l='472' ll='503' type='basic_istream&lt;_CharT, _Traits&gt; &amp; std::basic_istream::ignore()'/>
+<doc f='include/c++/11/bits/istream.tcc' l='469'>// We provide three overloads, since the first two are much simpler
+  // than the general case. Also, the latter two can thus adopt the
+  // same &quot;batchy&quot; strategy used by getline above.</doc>

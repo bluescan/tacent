@@ -1,0 +1,37 @@
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='40'/>
+<inh f='Modules/Input/Inc/Input/tCont.h' l='25' c='tInput::tController'/>
+<def f='Modules/Input/Inc/Input/tContGamepad.h' l='34' ll='112'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='38' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<size>1688</size>
+<fun r='_ZN6tInput12tContGamepadC1EOS0_'/>
+<fun r='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<fun r='_ZN6tInput12tContGamepadD1Ev'/>
+<mbr r='tInput::tContGamepad::LStick' o='640' t='tInput::tCompJoystick'/>
+<mbr r='tInput::tContGamepad::RStick' o='2240' t='tInput::tCompJoystick'/>
+<mbr r='tInput::tContGamepad::DPad' o='3840' t='tInput::tCompDirPad'/>
+<mbr r='tInput::tContGamepad::LTrigger' o='5696' t='tInput::tCompTrigger'/>
+<mbr r='tInput::tContGamepad::RTrigger' o='6464' t='tInput::tCompTrigger'/>
+<mbr r='tInput::tContGamepad::LViewButton' o='7232' t='tInput::tCompButton'/>
+<mbr r='tInput::tContGamepad::RMenuButton' o='7936' t='tInput::tCompButton'/>
+<mbr r='tInput::tContGamepad::LBumperButton' o='8640' t='tInput::tCompButton'/>
+<mbr r='tInput::tContGamepad::RBumperButton' o='9344' t='tInput::tCompButton'/>
+<mbr r='tInput::tContGamepad::XButton' o='10048' t='tInput::tCompButton'/>
+<mbr r='tInput::tContGamepad::YButton' o='10752' t='tInput::tCompButton'/>
+<mbr r='tInput::tContGamepad::AButton' o='11456' t='tInput::tCompButton'/>
+<mbr r='tInput::tContGamepad::BButton' o='12160' t='tInput::tCompButton'/>
+<fun r='_ZN6tInput12tContGamepad12StartPollingEiNS_10tGamepadIDE'/>
+<fun r='_ZN6tInput12tContGamepad11StopPollingEv'/>
+<fun r='_ZNK6tInput12tContGamepad9IsPollingEv'/>
+<fun r='_ZNK6tInput12tContGamepad11IsConnectedEv'/>
+<fun r='_ZN6tInput12tContGamepad6UpdateEv'/>
+<fun r='_ZN6tInput12tContGamepad4PollEv'/>
+<mbr r='tInput::tContGamepad::GamepadID' o='12864' t='tInput::tGamepadID'/>
+<mbr r='tInput::tContGamepad::PollingExitRequested' o='12896' t='bool'/>
+<mbr r='tInput::tContGamepad::PollingExitCondition' o='12928' t='std::condition_variable'/>
+<mbr r='tInput::tContGamepad::PollingThread' o='13312' t='std::thread'/>
+<mbr r='tInput::tContGamepad::PollingPacketNumber' o='13376' t='ulong'/>
+<mbr r='tInput::tContGamepad::PollingGamepadID' o='13440' t='tInput::tGamepadID'/>
+<mbr r='tInput::tContGamepad::PollingPeriod' o='13472' t='int'/>
+<use f='Modules/Input/Inc/Input/tControllerSystem.h' l='49' c='_ZN6tInput17tControllerSystem9GetGetpadENS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tControllerSystem.h' l='76'/>
+<size>1688</size>

@@ -1,0 +1,6 @@
+<use f='include/c++/11/chrono' l='1746' u='c' c='_ZNSt6chrono7weekdayppEi'/>
+<use f='include/c++/11/chrono' l='1761' u='c' c='_ZNSt6chrono7weekdaymmEi'/>
+<use f='include/c++/11/chrono' l='1848' u='c' c='_ZNSt6chrono15weekday_indexedC1ERKNS_7weekdayEj'/>
+<use f='include/c++/11/chrono' l='1853' u='c' c='_ZNKSt6chrono15weekday_indexed7weekdayEv'/>
+<use f='include/c++/11/chrono' l='1899' u='c' c='_ZNSt6chrono12weekday_lastC1ERKNS_7weekdayE'/>
+<use f='include/c++/11/chrono' l='1904' u='c' c='_ZNKSt6chrono12weekday_last7weekdayEv'/>

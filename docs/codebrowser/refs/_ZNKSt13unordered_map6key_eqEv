@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/unordered_map.h' l='849' ll='851' type='std::unordered_map::key_equal std::unordered_map::key_eq() const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='847'>///  Returns the key comparison object with which the %unordered_map was
+      ///  constructed.</doc>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='626' ll='628' type='static duration&lt;_Rep, _Period&gt; std::chrono::duration::min()'/>
+<use f='include/c++/11/chrono' l='1132' u='c'/>

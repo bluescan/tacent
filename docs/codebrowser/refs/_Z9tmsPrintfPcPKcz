@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='307' type='int tmsPrintf(char * dest, const char * format)'/>
+<def f='Modules/System/Inc/System/tPrint.h' l='404' ll='410' type='int tmsPrintf(char * dest, const char * format)'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='303'>// The tmPrintf variations print to both the destination string or file, as well as printing to whatever channels are
+// specified. The &apos;m&apos; is for multiple. Useful for things like log files and unit tests that also need to print to
+// stdout. The dest file or string is always printed to. The channels only affect what is output to stdout and the
+// return values will match what the plain print-to-string (or file) would have returned.</doc>

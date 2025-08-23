@@ -1,0 +1,18 @@
+<dec f='include/c++/11/compare' l='66' type='__cmp_cat::type'/>
+<use f='include/c++/11/compare' l='70' u='w' c='_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE'/>
+<use f='include/c++/11/compare' l='75' u='w' c='_ZNSt16partial_orderingC1ENSt9__cmp_cat5_NcmpE'/>
+<use f='include/c++/11/compare' l='91' u='r' c='_ZSteqSt16partial_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='98' u='r' c='_ZStltSt16partial_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='102' u='r' c='_ZStgtSt16partial_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='106' u='r' c='_ZStleSt16partial_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='110' u='r' c='_ZStgeSt16partial_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='110' u='r' c='_ZStgeSt16partial_orderingNSt9__cmp_cat8__unspecE'/>
+<use f='include/c++/11/compare' l='114' u='r' c='_ZStltNSt9__cmp_cat8__unspecESt16partial_ordering'/>
+<use f='include/c++/11/compare' l='118' u='r' c='_ZStgtNSt9__cmp_cat8__unspecESt16partial_ordering'/>
+<use f='include/c++/11/compare' l='122' u='r' c='_ZStleNSt9__cmp_cat8__unspecESt16partial_ordering'/>
+<use f='include/c++/11/compare' l='122' u='r' c='_ZStleNSt9__cmp_cat8__unspecESt16partial_ordering'/>
+<use f='include/c++/11/compare' l='126' u='r' c='_ZStgeNSt9__cmp_cat8__unspecESt16partial_ordering'/>
+<use f='include/c++/11/compare' l='135' u='r' c='_ZStssNSt9__cmp_cat8__unspecESt16partial_ordering'/>
+<use f='include/c++/11/compare' l='136' u='r' c='_ZStssNSt9__cmp_cat8__unspecESt16partial_ordering'/>
+<offset>0</offset>
+<doc f='include/c++/11/compare' l='65'>// less=0xff, equiv=0x00, greater=0x01, unordered=0x02</doc>

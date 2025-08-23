@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7222' ll='7226'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7222'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceTextureCompressionASTCHDRFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceTextureCompressionASTCHDRFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceTextureCompressionASTCHDRFeatures::textureCompressionASTC_HDR' o='128' t='VkBool32'/>

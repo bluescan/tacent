@@ -1,0 +1,2 @@
+<def f='include/c++/11/pstl/execution_defs.h' l='110' type='const __pstl::execution::sequenced_policy'/>
+<doc f='include/c++/11/pstl/execution_defs.h' l='109'>// 2.8, Execution policy objects</doc>

@@ -1,0 +1,11 @@
+<use f='include/c++/11/bits/stl_bvector.h' l='532' u='w' c='_ZNSt13_Bvector_baseC1ERKT_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='538' u='w' c='_ZNSt13_Bvector_baseC1EOSt13_Bvector_baseIT_ERKS1_'/>
+<dec f='include/c++/11/bits/stl_bvector.h' l='546' type='std::_Bvector_base::_Bvector_impl'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='550' c='_ZNSt13_Bvector_base11_M_allocateEm'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='555' u='r' c='_ZNSt13_Bvector_base13_M_deallocateEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='557' u='c' c='_ZNSt13_Bvector_base13_M_deallocateEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='557' c='_ZNSt13_Bvector_base13_M_deallocateEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='558' c='_ZNSt13_Bvector_base13_M_deallocateEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='559' c='_ZNSt13_Bvector_base13_M_deallocateEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='561' u='c' c='_ZNSt13_Bvector_base13_M_deallocateEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='568' u='c' c='_ZNSt13_Bvector_base12_M_move_dataEOSt13_Bvector_baseIT_E'/>

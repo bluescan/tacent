@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='602'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='601'>/* Note: quality level is on the IJG 0-100 scale.  Default value is 75 */</doc>

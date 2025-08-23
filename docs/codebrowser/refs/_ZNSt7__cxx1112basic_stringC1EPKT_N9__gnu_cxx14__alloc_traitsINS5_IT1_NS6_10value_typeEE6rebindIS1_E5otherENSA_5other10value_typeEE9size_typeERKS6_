@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/basic_string.h' l='518' ll='521' type='void std::basic_string::basic_string&lt;_CharT, _Traits, _Alloc&gt;(const _CharT * __s, std::basic_string::size_type __n, const _Alloc &amp; __a = _Alloc())'/>
+<use f='include/c++/11/bits/basic_string.h' l='6961' u='c' c='_ZNSt8literals15string_literalsli1sB5cxx11EPKcm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6967' u='c' c='_ZNSt8literals15string_literalsli1sB5cxx11EPKwm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6974' u='c' c='_ZNSt8literals15string_literalsli1sB5cxx11EPKDum'/>
+<use f='include/c++/11/bits/basic_string.h' l='6980' u='c' c='_ZNSt8literals15string_literalsli1sB5cxx11EPKDsm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6985' u='c' c='_ZNSt8literals15string_literalsli1sB5cxx11EPKDim'/>
+<doc f='include/c++/11/bits/basic_string.h' l='509'>/**
+       *  @brief  Construct string initialized by a character %array.
+       *  @param  __s  Source character %array.
+       *  @param  __n  Number of characters to copy.
+       *  @param  __a  Allocator to use (default is default allocator).
+       *
+       *  NB: @a __s must have at least @a __n characters, &amp;apos;\\0&amp;apos;
+       *  has no special meaning.
+       */</doc>

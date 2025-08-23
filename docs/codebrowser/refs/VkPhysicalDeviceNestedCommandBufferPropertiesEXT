@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17413' ll='17417'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17413'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceNestedCommandBufferPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceNestedCommandBufferPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceNestedCommandBufferPropertiesEXT::maxCommandBufferNestingLevel' o='128' t='uint32_t'/>

@@ -1,0 +1,5 @@
+<dec f='include/unistd.h' l='989' type='int fsync(int __fd)'/>
+<doc f='include/unistd.h' l='985'>/* Make all changes done to FD actually appear on disk.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

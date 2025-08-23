@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16769' ll='16775'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16769'/>
+<size>40</size>
+<mbr r='VkCopyMemoryToMicromapInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCopyMemoryToMicromapInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkCopyMemoryToMicromapInfoEXT::src' o='128' t='VkDeviceOrHostAddressConstKHR'/>
+<mbr r='VkCopyMemoryToMicromapInfoEXT::dst' o='192' t='VkMicromapEXT'/>
+<mbr r='VkCopyMemoryToMicromapInfoEXT::mode' o='256' t='VkCopyMicromapModeEXT'/>

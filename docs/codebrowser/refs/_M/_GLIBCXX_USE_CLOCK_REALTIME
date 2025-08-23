@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1702'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1701'>/* Defined if clock_gettime has realtime clock support. */</doc>

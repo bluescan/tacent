@@ -1,0 +1,5 @@
+<use f='include/c++/11/mutex' l='654' u='w' c='_ZNSt11scoped_lockIJT_EEC1ERS0_'/>
+<use f='include/c++/11/mutex' l='655' u='c' c='_ZNSt11scoped_lockIJT_EEC1ERS0_'/>
+<use f='include/c++/11/mutex' l='658' u='w' c='_ZNSt11scoped_lockIJT_EEC1ESt12adopt_lock_tRS0_'/>
+<use f='include/c++/11/mutex' l='662' u='c' c='_ZNSt11scoped_lockIJT_EED1Ev'/>
+<dec f='include/c++/11/mutex' l='668' type='std::scoped_lock&lt;type-parameter-0-0&gt;::mutex_type &amp;'/>

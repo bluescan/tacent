@@ -1,0 +1,3 @@
+<def f='include/c++/11/initializer_list' l='70' ll='71' type='std::initializer_list::size_type std::initializer_list::size() const'/>
+<use f='include/c++/11/initializer_list' l='79' u='c' c='_ZNKSt16initializer_list3endEv'/>
+<doc f='include/c++/11/initializer_list' l='69'>// Number of elements.</doc>

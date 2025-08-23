@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='3348' ll='3353' type='void std::student_t_distribution::reset()'/>
+<doc f='include/c++/11/bits/random.h' l='3345'>/**
+       * @brief Resets the distribution state.
+       */</doc>

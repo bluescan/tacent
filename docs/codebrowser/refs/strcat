@@ -1,0 +1,4 @@
+<dec f='include/string.h' l='149' type='char * strcat(char *__restrict __dest, const char *__restrict __src)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='101' u='c' c='_ZN4tStd7tStrcatEPcPKc'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='112' u='c' c='_ZN4tStd7tStrcatEPDuPKDu'/>
+<doc f='include/string.h' l='148'>/* Append SRC onto DEST.  */</doc>

@@ -1,0 +1,4 @@
+<dec f='include/locale.h' l='68' type='char *'/>
+<offset>192</offset>
+<doc f='include/locale.h' l='66'>/* First three chars are a currency symbol from ISO 4217.
+     Fourth char is the separator.  Fifth char is &apos;\0&apos;.  */</doc>

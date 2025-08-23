@@ -1,0 +1,15 @@
+<use f='Modules/Image/Contrib/WebP/include/mux.h' l='68'/>
+<def f='Modules/Image/Contrib/WebP/include/mux.h' l='199' ll='211'/>
+<size>48</size>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='195'>//------------------------------------------------------------------------------
+// Images.
+
+// Encapsulates data about a single frame.</doc>
+<mbr r='WebPMuxFrameInfo::bitstream' o='0' t='WebPData'/>
+<mbr r='WebPMuxFrameInfo::x_offset' o='128' t='int'/>
+<mbr r='WebPMuxFrameInfo::y_offset' o='160' t='int'/>
+<mbr r='WebPMuxFrameInfo::duration' o='192' t='int'/>
+<mbr r='WebPMuxFrameInfo::id' o='224' t='WebPChunkId'/>
+<mbr r='WebPMuxFrameInfo::dispose_method' o='256' t='WebPMuxAnimDispose'/>
+<mbr r='WebPMuxFrameInfo::blend_method' o='288' t='WebPMuxAnimBlend'/>
+<mbr r='WebPMuxFrameInfo::pad' o='320' t='uint32_t[1]'/>

@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='533'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='812' u='c'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='819' u='c'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='832' u='c'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='856' u='c'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='907' u='c'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1132' u='c'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='528'>/**
+ * @~English
+ * @brief Helper for calling the Destroy virtual method of a ktxTexture.
+ * @copydoc ktxTexture2.ktxTexture2_Destroy
+ */</doc>

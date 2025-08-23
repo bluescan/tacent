@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='186' u='r' c='_ZNK6tScene9tSkeleton4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='223' u='a' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>

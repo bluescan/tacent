@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='129' type='tMath::tVector3 tMath::tRandom::tGetPointOnTriangle(const tMath::tTriangle &amp; , const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<def f='Modules/Math/Src/tRandom.cpp' l='153' ll='161' type='tMath::tVector3 tMath::tRandom::tGetPointOnTriangle(const tMath::tTriangle &amp; tri, const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>
+<doc f='Modules/Math/Src/tRandom.cpp' l='150'>// @todo Make these work.</doc>

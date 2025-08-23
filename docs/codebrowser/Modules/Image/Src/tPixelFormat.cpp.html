@@ -1,0 +1,881 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tPixelFormat.cpp source code [Modules/Image/Src/tPixelFormat.cpp] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="tImage::tAspectFrac "/>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Src/tPixelFormat.cpp'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>Modules</a>/<a href='..'>Image</a>/<a href='./'>Src</a>/<a href='tPixelFormat.cpp.html'>tPixelFormat.cpp</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tPixelFormat.cpp</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Pixel formats in Tacent. Not all formats are fully supported. Certainly BC 4, 5, and 7 may not have extensive HW</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>// support at this time.</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// Copyright (c) 2004-2006, 2017, 2019, 2021-2024 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#include &lt;Foundation/tAssert.h&gt;</u>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#include &lt;Foundation/tStandard.h&gt;</u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#include &lt;Foundation/tFundamentals.h&gt;</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#include "Image/tPixelFormat.h"</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td>&nbsp</td></tr>
+<tr><th id="22">22</th><td><b>namespace</b> <span class="namespace">tImage</span>&nbsp</td></tr>
+<tr><th id="23">23</th><td>{&nbsp</td></tr>
+<tr><th id="24">24</th><td>	<em>const</em> <em>char</em>* <dfn class="decl def" id="tImage::PixelFormatNames" title='tImage::PixelFormatNames' data-ref="tImage::PixelFormatNames">PixelFormatNames</dfn>[] =&nbsp</td></tr>
+<tr><th id="25">25</th><td>	{&nbsp</td></tr>
+<tr><th id="26">26</th><td>		<i>// Packed formats.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td>		<q>"R8"</q>,&nbsp</td></tr>
+<tr><th id="28">28</th><td>		<q>"R8G8"</q>,&nbsp</td></tr>
+<tr><th id="29">29</th><td>		<q>"R8G8B8"</q>,&nbsp</td></tr>
+<tr><th id="30">30</th><td>		<q>"R8G8B8A8"</q>,&nbsp</td></tr>
+<tr><th id="31">31</th><td>		<q>"B8G8R8"</q>,&nbsp</td></tr>
+<tr><th id="32">32</th><td>		<q>"B8G8R8A8"</q>,&nbsp</td></tr>
+<tr><th id="33">33</th><td>		<q>"G3B5R5G3"</q>,&nbsp</td></tr>
+<tr><th id="34">34</th><td>		<q>"G4B4A4R4"</q>,&nbsp</td></tr>
+<tr><th id="35">35</th><td>		<q>"B4A4R4G4"</q>,&nbsp</td></tr>
+<tr><th id="36">36</th><td>		<q>"G3B5A1R5G2"</q>,&nbsp</td></tr>
+<tr><th id="37">37</th><td>		<q>"G2B5A1R5G3"</q>,&nbsp</td></tr>
+<tr><th id="38">38</th><td>		<q>"L8A8"</q>,&nbsp</td></tr>
+<tr><th id="39">39</th><td>		<q>"A8"</q>,&nbsp</td></tr>
+<tr><th id="40">40</th><td>		<q>"L8"</q>,&nbsp</td></tr>
+<tr><th id="41">41</th><td>		<q>"R16"</q>,&nbsp</td></tr>
+<tr><th id="42">42</th><td>		<q>"R16G16"</q>,&nbsp</td></tr>
+<tr><th id="43">43</th><td>		<q>"R16G16B16"</q>,&nbsp</td></tr>
+<tr><th id="44">44</th><td>		<q>"R16G16B16A16"</q>,&nbsp</td></tr>
+<tr><th id="45">45</th><td>		<q>"R32"</q>,&nbsp</td></tr>
+<tr><th id="46">46</th><td>		<q>"R32G32"</q>,&nbsp</td></tr>
+<tr><th id="47">47</th><td>		<q>"R32G32B32"</q>,&nbsp</td></tr>
+<tr><th id="48">48</th><td>		<q>"R32G32B32A32"</q>,&nbsp</td></tr>
+<tr><th id="49">49</th><td>		<q>"R16f"</q>,&nbsp</td></tr>
+<tr><th id="50">50</th><td>		<q>"R16G16f"</q>,&nbsp</td></tr>
+<tr><th id="51">51</th><td>		<q>"R16G16B16f"</q>,&nbsp</td></tr>
+<tr><th id="52">52</th><td>		<q>"R16G16B16A16f"</q>,&nbsp</td></tr>
+<tr><th id="53">53</th><td>		<q>"R32f"</q>,&nbsp</td></tr>
+<tr><th id="54">54</th><td>		<q>"R32G32f"</q>,&nbsp</td></tr>
+<tr><th id="55">55</th><td>		<q>"R32G32B32f"</q>,&nbsp</td></tr>
+<tr><th id="56">56</th><td>		<q>"R32G32B32A32f"</q>,&nbsp</td></tr>
+<tr><th id="57">57</th><td>		<q>"R11G11B10uf"</q>,&nbsp</td></tr>
+<tr><th id="58">58</th><td>		<q>"B10G11R11uf"</q>,&nbsp</td></tr>
+<tr><th id="59">59</th><td>		<q>"R9G9B9E5uf"</q>,&nbsp</td></tr>
+<tr><th id="60">60</th><td>		<q>"E5B9G9R9uf"</q>,&nbsp</td></tr>
+<tr><th id="61">61</th><td>		<q>"R8G8B8M8"</q>,&nbsp</td></tr>
+<tr><th id="62">62</th><td>		<q>"R8G8B8D8"</q>,&nbsp</td></tr>
+<tr><th id="63">63</th><td>&nbsp</td></tr>
+<tr><th id="64">64</th><td>		<i>// Original BC (4x4 Block Compression) formats.</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td>		<q>"BC1DXT1"</q>,&nbsp</td></tr>
+<tr><th id="66">66</th><td>		<q>"BC1DXT1A"</q>,&nbsp</td></tr>
+<tr><th id="67">67</th><td>		<q>"BC2DXT2DXT3"</q>,&nbsp</td></tr>
+<tr><th id="68">68</th><td>		<q>"BC3DXT4DXT5"</q>,&nbsp</td></tr>
+<tr><th id="69">69</th><td>		<q>"BC4ATI1U"</q>,&nbsp</td></tr>
+<tr><th id="70">70</th><td>		<q>"BC4ATI1S"</q>,&nbsp</td></tr>
+<tr><th id="71">71</th><td>		<q>"BC5ATI2U"</q>,&nbsp</td></tr>
+<tr><th id="72">72</th><td>		<q>"BC5ATI2S"</q>,&nbsp</td></tr>
+<tr><th id="73">73</th><td>		<q>"BC6U"</q>,&nbsp</td></tr>
+<tr><th id="74">74</th><td>		<q>"BC6S"</q>,&nbsp</td></tr>
+<tr><th id="75">75</th><td>		<q>"BC7"</q>,&nbsp</td></tr>
+<tr><th id="76">76</th><td>		<q>"ETC1"</q>,&nbsp</td></tr>
+<tr><th id="77">77</th><td>		<q>"ETC2RGB"</q>,&nbsp</td></tr>
+<tr><th id="78">78</th><td>		<q>"ETC2RGBA"</q>,&nbsp</td></tr>
+<tr><th id="79">79</th><td>		<q>"ETC2RGBA1"</q>,&nbsp</td></tr>
+<tr><th id="80">80</th><td>		<q>"EACR11U"</q>,&nbsp</td></tr>
+<tr><th id="81">81</th><td>		<q>"EACR11S"</q>,&nbsp</td></tr>
+<tr><th id="82">82</th><td>		<q>"EACRG11U"</q>,&nbsp</td></tr>
+<tr><th id="83">83</th><td>		<q>"EACRG11S"</q>,&nbsp</td></tr>
+<tr><th id="84">84</th><td>&nbsp</td></tr>
+<tr><th id="85">85</th><td>		<i>// PVR (Power VR by Imagination) formats.</i>&nbsp</td></tr>
+<tr><th id="86">86</th><td>		<q>"PVRBPP4"</q>,&nbsp</td></tr>
+<tr><th id="87">87</th><td>		<q>"PVRBPP2"</q>,&nbsp</td></tr>
+<tr><th id="88">88</th><td>		<u>#<span data-ppcond="88">ifdef</span> <span class="macro" data-ref="_M/PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED">PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED</span></u>&nbsp</td></tr>
+<tr><th id="89">89</th><td>		<q>"PVRHDRBPP8"</q>,&nbsp</td></tr>
+<tr><th id="90">90</th><td>		<q>"PVRHDRBPP6"</q>,&nbsp</td></tr>
+<tr><th id="91">91</th><td>		<q>"PVR2BPP4"</q>,&nbsp</td></tr>
+<tr><th id="92">92</th><td>		<q>"PVR2BPP2"</q>,&nbsp</td></tr>
+<tr><th id="93">93</th><td>		<q>"PVR2HDRBPP8"</q>,&nbsp</td></tr>
+<tr><th id="94">94</th><td>		<q>"PVR2HDRBPP6"</q>,&nbsp</td></tr>
+<tr><th id="95">95</th><td>		<u>#<span data-ppcond="88">endif</span></u>&nbsp</td></tr>
+<tr><th id="96">96</th><td>&nbsp</td></tr>
+<tr><th id="97">97</th><td>		<i>// ASTC (Adaptive Scalable Texture Compression) formats.</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td>		<q>"ASTC4X4"</q>,&nbsp</td></tr>
+<tr><th id="99">99</th><td>		<q>"ASTC5X4"</q>,&nbsp</td></tr>
+<tr><th id="100">100</th><td>		<q>"ASTC5X5"</q>,&nbsp</td></tr>
+<tr><th id="101">101</th><td>		<q>"ASTC6X5"</q>,&nbsp</td></tr>
+<tr><th id="102">102</th><td>		<q>"ASTC6X6"</q>,&nbsp</td></tr>
+<tr><th id="103">103</th><td>		<q>"ASTC8X5"</q>,&nbsp</td></tr>
+<tr><th id="104">104</th><td>		<q>"ASTC8X6"</q>,&nbsp</td></tr>
+<tr><th id="105">105</th><td>		<q>"ASTC8X8"</q>,&nbsp</td></tr>
+<tr><th id="106">106</th><td>		<q>"ASTC10X5"</q>,&nbsp</td></tr>
+<tr><th id="107">107</th><td>		<q>"ASTC10X6"</q>,&nbsp</td></tr>
+<tr><th id="108">108</th><td>		<q>"ASTC10X8"</q>,&nbsp</td></tr>
+<tr><th id="109">109</th><td>		<q>"ASTC10X10"</q>,&nbsp</td></tr>
+<tr><th id="110">110</th><td>		<q>"ASTC12X10"</q>,&nbsp</td></tr>
+<tr><th id="111">111</th><td>		<q>"ASTC12X12"</q>,&nbsp</td></tr>
+<tr><th id="112">112</th><td>		&nbsp</td></tr>
+<tr><th id="113">113</th><td>		<i>// Vendor-specific formats.</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td>		<q>"RADIANCE"</q>,&nbsp</td></tr>
+<tr><th id="115">115</th><td>		<q>"OPENEXR"</q>,&nbsp</td></tr>
+<tr><th id="116">116</th><td>&nbsp</td></tr>
+<tr><th id="117">117</th><td>		<i>// Palette formats.</i>&nbsp</td></tr>
+<tr><th id="118">118</th><td>		<q>"PAL1BIT"</q>,&nbsp</td></tr>
+<tr><th id="119">119</th><td>		<q>"PAL2BIT"</q>,&nbsp</td></tr>
+<tr><th id="120">120</th><td>		<q>"PAL3BIT"</q>,&nbsp</td></tr>
+<tr><th id="121">121</th><td>		<q>"PAL4BIT"</q>,&nbsp</td></tr>
+<tr><th id="122">122</th><td>		<q>"PAL5BIT"</q>,&nbsp</td></tr>
+<tr><th id="123">123</th><td>		<q>"PAL6BIT"</q>,&nbsp</td></tr>
+<tr><th id="124">124</th><td>		<q>"PAL7BIT"</q>,&nbsp</td></tr>
+<tr><th id="125">125</th><td>		<q>"PAL8BIT"</q>&nbsp</td></tr>
+<tr><th id="126">126</th><td>	};&nbsp</td></tr>
+<tr><th id="127">127</th><td>	<a class="macro" href="../../Foundation/Inc/Foundation/tAssert.h.html#30" title="static_assert(int(tPixelFormat::NumPixelFormats) == int(sizeof(PixelFormatNames)/sizeof(*PixelFormatNames)), &quot;int(tPixelFormat::NumPixelFormats) == tNumElements(PixelFormatNames)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>(<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::NumPixelFormats" title='tImage::tPixelFormat::NumPixelFormats' data-ref="tImage::tPixelFormat::NumPixelFormats">NumPixelFormats</a>) == <a class="macro" href="../../Foundation/Inc/Foundation/tStandard.h.html#27" title="int(sizeof(PixelFormatNames)/sizeof(*PixelFormatNames))" data-ref="_M/tNumElements">tNumElements</a>(<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatNames" title='tImage::PixelFormatNames' data-ref="tImage::PixelFormatNames">PixelFormatNames</a>));&nbsp</td></tr>
+<tr><th id="128">128</th><td>	<em>const</em> <em>char</em>** <dfn class="decl def" id="tImage::PixelFormatNames_Packed" title='tImage::PixelFormatNames_Packed' data-ref="tImage::PixelFormatNames_Packed">PixelFormatNames_Packed</dfn>	= &amp;<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatNames" title='tImage::PixelFormatNames' data-ref="tImage::PixelFormatNames">PixelFormatNames</a>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstPacked" title='tImage::tPixelFormat::FirstPacked' data-ref="tImage::tPixelFormat::FirstPacked">FirstPacked</a>)];&nbsp</td></tr>
+<tr><th id="129">129</th><td>	<em>const</em> <em>char</em>** <dfn class="decl def" id="tImage::PixelFormatNames_Block" title='tImage::PixelFormatNames_Block' data-ref="tImage::PixelFormatNames_Block">PixelFormatNames_Block</dfn>		= &amp;<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatNames" title='tImage::PixelFormatNames' data-ref="tImage::PixelFormatNames">PixelFormatNames</a>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstBC" title='tImage::tPixelFormat::FirstBC' data-ref="tImage::tPixelFormat::FirstBC">FirstBC</a>)];&nbsp</td></tr>
+<tr><th id="130">130</th><td>	<em>const</em> <em>char</em>** <dfn class="decl def" id="tImage::PixelFormatNames_PVR" title='tImage::PixelFormatNames_PVR' data-ref="tImage::PixelFormatNames_PVR">PixelFormatNames_PVR</dfn>		= &amp;<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatNames" title='tImage::PixelFormatNames' data-ref="tImage::PixelFormatNames">PixelFormatNames</a>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstPVR" title='tImage::tPixelFormat::FirstPVR' data-ref="tImage::tPixelFormat::FirstPVR">FirstPVR</a>)];&nbsp</td></tr>
+<tr><th id="131">131</th><td>	<em>const</em> <em>char</em>** <dfn class="decl def" id="tImage::PixelFormatNames_ASTC" title='tImage::PixelFormatNames_ASTC' data-ref="tImage::PixelFormatNames_ASTC">PixelFormatNames_ASTC</dfn>		= &amp;<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatNames" title='tImage::PixelFormatNames' data-ref="tImage::PixelFormatNames">PixelFormatNames</a>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstASTC" title='tImage::tPixelFormat::FirstASTC' data-ref="tImage::tPixelFormat::FirstASTC">FirstASTC</a>)];&nbsp</td></tr>
+<tr><th id="132">132</th><td>	<em>const</em> <em>char</em>** <dfn class="decl def" id="tImage::PixelFormatNames_Vendor" title='tImage::PixelFormatNames_Vendor' data-ref="tImage::PixelFormatNames_Vendor">PixelFormatNames_Vendor</dfn>	= &amp;<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatNames" title='tImage::PixelFormatNames' data-ref="tImage::PixelFormatNames">PixelFormatNames</a>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstVendor" title='tImage::tPixelFormat::FirstVendor' data-ref="tImage::tPixelFormat::FirstVendor">FirstVendor</a>)];&nbsp</td></tr>
+<tr><th id="133">133</th><td>	<em>const</em> <em>char</em>** <dfn class="decl def" id="tImage::PixelFormatNames_Palette" title='tImage::PixelFormatNames_Palette' data-ref="tImage::PixelFormatNames_Palette">PixelFormatNames_Palette</dfn>	= &amp;<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatNames" title='tImage::PixelFormatNames' data-ref="tImage::PixelFormatNames">PixelFormatNames</a>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstPalette" title='tImage::tPixelFormat::FirstPalette' data-ref="tImage::tPixelFormat::FirstPalette">FirstPalette</a>)];&nbsp</td></tr>
+<tr><th id="134">134</th><td>&nbsp</td></tr>
+<tr><th id="135">135</th><td>&nbsp</td></tr>
+<tr><th id="136">136</th><td>	<em>const</em> <em>char</em>* <dfn class="decl def" id="tImage::PixelFormatDescs" title='tImage::PixelFormatDescs' data-ref="tImage::PixelFormatDescs">PixelFormatDescs</dfn>[] =&nbsp</td></tr>
+<tr><th id="137">137</th><td>	{&nbsp</td></tr>
+<tr><th id="138">138</th><td>		<i>// Packed formats.</i>&nbsp</td></tr>
+<tr><th id="139">139</th><td>		<q>"R8 : 8 bit. Unsigned representing red. Some file-types that\n"</q>&nbsp</td></tr>
+<tr><th id="140">140</th><td>		<q>"don't support A8 or L8 (eg. ktx2) will use this instead."</q>,&nbsp</td></tr>
+<tr><th id="141">141</th><td>&nbsp</td></tr>
+<tr><th id="142">142</th><td>		<q>"R8G8 : 16 bit. Unsigned representing red and green.\n"</q>&nbsp</td></tr>
+<tr><th id="143">143</th><td>		<q>"Vulkan has an analagous format."</q>,&nbsp</td></tr>
+<tr><th id="144">144</th><td>&nbsp</td></tr>
+<tr><th id="145">145</th><td>		<q>"R8G8B8 : 24 bit. Full colour. No alpha. Matches GL_RGB source\n"</q>&nbsp</td></tr>
+<tr><th id="146">146</th><td>		<q>"ordering. Not efficient. Most drivers will swizzle to BGR."</q>,&nbsp</td></tr>
+<tr><th id="147">147</th><td>&nbsp</td></tr>
+<tr><th id="148">148</th><td>		<q>"R8G8B8A8 : 32  bit. Full alpha. Matches GL_RGBA source ordering.\n"</q>&nbsp</td></tr>
+<tr><th id="149">149</th><td>		<q>"Not efficient. Most drivers will swizzle to ABGR."</q>,&nbsp</td></tr>
+<tr><th id="150">150</th><td>&nbsp</td></tr>
+<tr><th id="151">151</th><td>		<q>"B8G8R8 : 24 bit. Full colour. No alpha. Matches GL_BGR source\n"</q>&nbsp</td></tr>
+<tr><th id="152">152</th><td>		<q>"ordering. Efficient. Most drivers do not need to swizzle."</q>,&nbsp</td></tr>
+<tr><th id="153">153</th><td>&nbsp</td></tr>
+<tr><th id="154">154</th><td>		<q>"B8G8R8A8 : 32 bit. Full alpha. Matches GL_BGRA source ordering.\n"</q>&nbsp</td></tr>
+<tr><th id="155">155</th><td>		<q>"Most drivers do not need to swizzle."</q>,&nbsp</td></tr>
+<tr><th id="156">156</th><td>&nbsp</td></tr>
+<tr><th id="157">157</th><td>		<q>"G3B5R5G3 : 16 bit. No alpha. Also known as B5G6R5.\n"</q>&nbsp</td></tr>
+<tr><th id="158">158</th><td>		<q>"G3B5R5G3  ."</q>,&nbsp</td></tr>
+<tr><th id="159">159</th><td>&nbsp</td></tr>
+<tr><th id="160">160</th><td>		<q>"G4B4A4R4 : 16 bit. 12 colour bits. 4 bit alpha.\n"</q>&nbsp</td></tr>
+<tr><th id="161">161</th><td>		<q>"Also known as B4G4R4A4. G4B4A4R4 is the in-memory layout."</q>,&nbsp</td></tr>
+<tr><th id="162">162</th><td>&nbsp</td></tr>
+<tr><th id="163">163</th><td>		<q>"B4A4R4G4 : 16 bit. 12 colour bits. 4 bit alpha.\n"</q>&nbsp</td></tr>
+<tr><th id="164">164</th><td>		<q>"Also known as R4G4B4A4. B4A4R4G4 is the in-memory layout."</q>,&nbsp</td></tr>
+<tr><th id="165">165</th><td>&nbsp</td></tr>
+<tr><th id="166">166</th><td>		<q>"G3B5A1R5G2 : 16 bit. 15 colour bits. Binary alpha.\n"</q>&nbsp</td></tr>
+<tr><th id="167">167</th><td>		<q>"Also known as B5G5R5A1. G3B5A1R5G2 is the in-memory layout."</q>,&nbsp</td></tr>
+<tr><th id="168">168</th><td>&nbsp</td></tr>
+<tr><th id="169">169</th><td>		<q>"G2B5A1R5G3 : 16 bit. 15 colour bits. Binary alpha.\n"</q>&nbsp</td></tr>
+<tr><th id="170">170</th><td>		<q>"Also known as R5G5B5A1. G2B5A1R5G3 is the in-memory layout."</q>,&nbsp</td></tr>
+<tr><th id="171">171</th><td>&nbsp</td></tr>
+<tr><th id="172">172</th><td>		<q>"L8A8 : 16 bit. Alpha and Luminance."</q>,&nbsp</td></tr>
+<tr><th id="173">173</th><td>		<q>"A8 : 8 bit. Alpha only."</q>,&nbsp</td></tr>
+<tr><th id="174">174</th><td>		<q>"L8 : 8 bit. Luminance only."</q>,&nbsp</td></tr>
+<tr><th id="175">175</th><td>		<q>"R16 : 16 bit. Red channel only."</q>,&nbsp</td></tr>
+<tr><th id="176">176</th><td>		<q>"R16G16 : 32 bit. 16 bit R. 16 bit G."</q>,&nbsp</td></tr>
+<tr><th id="177">177</th><td>		<q>"R16G16B16 : 48 bit. 16 bit each RGB."</q>,&nbsp</td></tr>
+<tr><th id="178">178</th><td>		<q>"R16G16B16A16 : 64 bit. 16 bit each RGBA."</q>,&nbsp</td></tr>
+<tr><th id="179">179</th><td>&nbsp</td></tr>
+<tr><th id="180">180</th><td>		<q>"R32 : 32 bit. Red channel only."</q>,&nbsp</td></tr>
+<tr><th id="181">181</th><td>		<q>"R32G32 : 64 bit. 32 bit R. 32 bit G."</q>,&nbsp</td></tr>
+<tr><th id="182">182</th><td>		<q>"R32G32B32 : 96 bit. 32 bit each RGB."</q>,&nbsp</td></tr>
+<tr><th id="183">183</th><td>		<q>"R32G32B32A32 : 128 bit. 32 bit each RGBA."</q>,&nbsp</td></tr>
+<tr><th id="184">184</th><td>&nbsp</td></tr>
+<tr><th id="185">185</th><td>		<q>"R16f : 16 bit. Half-float red/luminance channel only.\n"</q>&nbsp</td></tr>
+<tr><th id="186">186</th><td>		<q>"HDR linear space."</q>,&nbsp</td></tr>
+<tr><th id="187">187</th><td>&nbsp</td></tr>
+<tr><th id="188">188</th><td>		<q>"R16G16f : 32 bit. Two half-floats per pixel. RG.\n"</q>&nbsp</td></tr>
+<tr><th id="189">189</th><td>		<q>"HDR linear space."</q>,&nbsp</td></tr>
+<tr><th id="190">190</th><td>&nbsp</td></tr>
+<tr><th id="191">191</th><td>		<q>"R16G16B16f : 48 bit. Three half-floats per pixel. RGB.\n"</q>&nbsp</td></tr>
+<tr><th id="192">192</th><td>		<q>"HDR linear space."</q>,&nbsp</td></tr>
+<tr><th id="193">193</th><td>&nbsp</td></tr>
+<tr><th id="194">194</th><td>		<q>"R16G16B16A16f : 64 bit. Four half-floats per pixel. RGBA.\n"</q>&nbsp</td></tr>
+<tr><th id="195">195</th><td>		<q>"HDR linear space."</q>,&nbsp</td></tr>
+<tr><th id="196">196</th><td>&nbsp</td></tr>
+<tr><th id="197">197</th><td>		<q>"R32f : 32 bit. Float red/luminance channel only.\n"</q>&nbsp</td></tr>
+<tr><th id="198">198</th><td>		<q>"HDR linear space."</q>,&nbsp</td></tr>
+<tr><th id="199">199</th><td>&nbsp</td></tr>
+<tr><th id="200">200</th><td>		<q>"R32G32f : 64 bit. Two floats per pixel. RG.\n"</q>&nbsp</td></tr>
+<tr><th id="201">201</th><td>		<q>"HDR linear space."</q>,&nbsp</td></tr>
+<tr><th id="202">202</th><td>&nbsp</td></tr>
+<tr><th id="203">203</th><td>		<q>"R32G32B32f : 96 bit. Three floats per pixel. RGB.\n"</q>&nbsp</td></tr>
+<tr><th id="204">204</th><td>		<q>"HDR linear space."</q>,&nbsp</td></tr>
+<tr><th id="205">205</th><td>&nbsp</td></tr>
+<tr><th id="206">206</th><td>		<q>"R32G32B32A32f : 128 bit. Four floats per pixel. RGBA.\n"</q>&nbsp</td></tr>
+<tr><th id="207">207</th><td>		<q>"HDR linear space."</q>,&nbsp</td></tr>
+<tr><th id="208">208</th><td>&nbsp</td></tr>
+<tr><th id="209">209</th><td>		<q>"R11G11B10uf : 32 bit. Unsigned 11-bit floats for RG, and\n"</q>&nbsp</td></tr>
+<tr><th id="210">210</th><td>		<q>"a 10-bit float for B. All use a 5-bit exponent."</q>,&nbsp</td></tr>
+<tr><th id="211">211</th><td>&nbsp</td></tr>
+<tr><th id="212">212</th><td>		<q>"B10G11R11uf : 32 bit. Unsigned 10-bit floats for B, and 11-bit\n"</q>&nbsp</td></tr>
+<tr><th id="213">213</th><td>		<q>"floats for GR. All use a 5-bit exponent."</q>,&nbsp</td></tr>
+<tr><th id="214">214</th><td>&nbsp</td></tr>
+<tr><th id="215">215</th><td>		<q>"R9G9B9E5uf : 32 bit. Unsigned 14-bit floats for RGB. Always\n"</q>&nbsp</td></tr>
+<tr><th id="216">216</th><td>		<q>"denorm and each share the same 5-bit exponent."</q>,&nbsp</td></tr>
+<tr><th id="217">217</th><td>&nbsp</td></tr>
+<tr><th id="218">218</th><td>		<q>"E5B9G9R9uf : 32 bit. Unsigned 14-bit floats for RGB. Always\n"</q>&nbsp</td></tr>
+<tr><th id="219">219</th><td>		<q>"denorm and each share the same 5-bit exponent."</q>,&nbsp</td></tr>
+<tr><th id="220">220</th><td>&nbsp</td></tr>
+<tr><th id="221">221</th><td>		<q>"R8G8B8M8 : 32 bit. Poor-man's HDR. RGB plus shared 8-bit\n"</q>&nbsp</td></tr>
+<tr><th id="222">222</th><td>		<q>"multiplier. Must supply MaxRange when decoding."</q>,&nbsp</td></tr>
+<tr><th id="223">223</th><td>&nbsp</td></tr>
+<tr><th id="224">224</th><td>		<q>"R8G8B8D8 : 32 bit. Poor-man's HDR. RGB plus shared 8-bit\n"</q>&nbsp</td></tr>
+<tr><th id="225">225</th><td>		<q>"divisor. Must supply MaxRange when decoding."</q>,&nbsp</td></tr>
+<tr><th id="226">226</th><td>&nbsp</td></tr>
+<tr><th id="227">227</th><td>		<i>// Original BC (4x4 Block Compression) formats.</i>&nbsp</td></tr>
+<tr><th id="228">228</th><td>		<q>"BC1DXT1 : BC 1, DXT1. No alpha."</q>,&nbsp</td></tr>
+<tr><th id="229">229</th><td>		<q>"BC1DXT1A :BC 1, DXT1. Binary alpha."</q>,&nbsp</td></tr>
+<tr><th id="230">230</th><td>&nbsp</td></tr>
+<tr><th id="231">231</th><td>		<q>"BC2DXT2DXT3 : BC 2. DXT2 (premult-alpha) and DXT3 share the same\n"</q>&nbsp</td></tr>
+<tr><th id="232">232</th><td>		<q>"format. Large alpha gradients (alpha banding)."</q>,&nbsp</td></tr>
+<tr><th id="233">233</th><td>&nbsp</td></tr>
+<tr><th id="234">234</th><td>		<q>"BC3DXT4DXT5 : BC 3. DXT4 (premult-alpha) and DXT5 share the same\n"</q>&nbsp</td></tr>
+<tr><th id="235">235</th><td>		<q>"format. Variable alpha (smooth)."</q>,&nbsp</td></tr>
+<tr><th id="236">236</th><td>&nbsp</td></tr>
+<tr><th id="237">237</th><td>		<q>"BC4ATI1U : BC 4. Unsigned. One colour channel only.\n"</q>&nbsp</td></tr>
+<tr><th id="238">238</th><td>		<q>"May not be HW supported."</q>,&nbsp</td></tr>
+<tr><th id="239">239</th><td>&nbsp</td></tr>
+<tr><th id="240">240</th><td>		<q>"BC4ATI1S : BC 4. Signed. One colour channel only.\n"</q>&nbsp</td></tr>
+<tr><th id="241">241</th><td>		<q>"May not be HW supported."</q>,&nbsp</td></tr>
+<tr><th id="242">242</th><td>&nbsp</td></tr>
+<tr><th id="243">243</th><td>		<q>"BC5ATI2U : BC 5. Unsigned. Two colour channels only.\n"</q>&nbsp</td></tr>
+<tr><th id="244">244</th><td>		<q>"May not be HW supported."</q>,&nbsp</td></tr>
+<tr><th id="245">245</th><td>&nbsp</td></tr>
+<tr><th id="246">246</th><td>		<q>"BC5ATI2S : BC 5. Signed. Two colour channels only.\n"</q>&nbsp</td></tr>
+<tr><th id="247">247</th><td>		<q>"May not be HW supported."</q>,&nbsp</td></tr>
+<tr><th id="248">248</th><td>&nbsp</td></tr>
+<tr><th id="249">249</th><td>		<q>"BC6U : BC 6 HDR. No alpha. 3 x 16bit unsigned half-floats per pixel."</q>,&nbsp</td></tr>
+<tr><th id="250">250</th><td>		<q>"BC6S : BC 6 HDR. No alpha. 3 x 16bit signed half-floats per pixel."</q>,&nbsp</td></tr>
+<tr><th id="251">251</th><td>		<q>"BC7 : BC 7. Full colour. Variable alpha 0 to 8 bits."</q>,&nbsp</td></tr>
+<tr><th id="252">252</th><td>&nbsp</td></tr>
+<tr><th id="253">253</th><td>		<q>"ETC1 : Ericsson Texture Compression. Similar to BC1. RGB-only. No alpha."</q>,&nbsp</td></tr>
+<tr><th id="254">254</th><td>&nbsp</td></tr>
+<tr><th id="255">255</th><td>		<q>"ETC2RGB : ETC2. Backwards compatible with ETC1.\n"</q>&nbsp</td></tr>
+<tr><th id="256">256</th><td>		<q>"The pixels may be in the sRGB colour space."</q>,&nbsp</td></tr>
+<tr><th id="257">257</th><td>&nbsp</td></tr>
+<tr><th id="258">258</th><td>		<q>"ETC2RGBA : ETC2. RGBA.\n"</q>&nbsp</td></tr>
+<tr><th id="259">259</th><td>		<q>"The pixels may be in the sRGB colour space."</q>,&nbsp</td></tr>
+<tr><th id="260">260</th><td>&nbsp</td></tr>
+<tr><th id="261">261</th><td>		<q>"ETC2RGBA1 : ETC2. RGB with binary alpha.\n"</q>&nbsp</td></tr>
+<tr><th id="262">262</th><td>		<q>"The pixels may be in the sRGB colour space."</q>,&nbsp</td></tr>
+<tr><th id="263">263</th><td>		&nbsp</td></tr>
+<tr><th id="264">264</th><td>		<q>"EACR11U : EAC R11. Ericsson. Single channel unsigned."</q>,&nbsp</td></tr>
+<tr><th id="265">265</th><td>		<q>"EACR11S : EAC R11. Ericsson. Single channel signed."</q>,&nbsp</td></tr>
+<tr><th id="266">266</th><td>		<q>"EACRG11U : EAC R11G11. Ericsson. Two channel unsigned."</q>,&nbsp</td></tr>
+<tr><th id="267">267</th><td>		<q>"EACRG11S : EAC R11G11. Ericsson. Two channel signed."</q>,&nbsp</td></tr>
+<tr><th id="268">268</th><td>&nbsp</td></tr>
+<tr><th id="269">269</th><td>		<i>// PVR (Power VR by Imagination) formats.</i>&nbsp</td></tr>
+<tr><th id="270">270</th><td>		<q>"PVRBPP4 : PVRTC Version 1. 4BPP representing RGB or RGBA channels. One block\n"</q>&nbsp</td></tr>
+<tr><th id="271">271</th><td>		<q>"can encode 4x4 pixels but needs access to adjacent blocks during decompress."</q>,&nbsp</td></tr>
+<tr><th id="272">272</th><td>&nbsp</td></tr>
+<tr><th id="273">273</th><td>		<q>"PVRBPP2 : PVRTC Version 1. 2BPP representing RGB or RGBA channels. One block\n"</q>&nbsp</td></tr>
+<tr><th id="274">274</th><td>		<q>"can encode 8x4 pixels but needs access to adjacent blocks during decompress."</q>,&nbsp</td></tr>
+<tr><th id="275">275</th><td>&nbsp</td></tr>
+<tr><th id="276">276</th><td>		<u>#<span data-ppcond="276">ifdef</span> <span class="macro" data-ref="_M/PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED">PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED</span></u>&nbsp</td></tr>
+<tr><th id="277">277</th><td>		<q>"PVRHDRBPP8 : PVRTC Version 1. 8BPP representing HDR RGB."</q>,&nbsp</td></tr>
+<tr><th id="278">278</th><td>		<q>"PVRHDRBPP6 : PVRTC Version 1. 6BPP representing HDR RGB."</q>,&nbsp</td></tr>
+<tr><th id="279">279</th><td>		<q>"PVR2BPP4 : PVRTC Version 2. 4BPP representing RGB or RGBA channels."</q>,&nbsp</td></tr>
+<tr><th id="280">280</th><td>		<q>"PVR2BPP2 : PVRTC Version 2. 2BPP representing RGB or RGBA channels."</q>,&nbsp</td></tr>
+<tr><th id="281">281</th><td>		<q>"PVR2HDRBPP8 : PVRTC Version 2. 8BPP representing HDR RGB."</q>,&nbsp</td></tr>
+<tr><th id="282">282</th><td>		<q>"PVR2HDRBPP6 : PVRTC Version 2. 6BPP representing HDR RGB."</q>,&nbsp</td></tr>
+<tr><th id="283">283</th><td>		<u>#<span data-ppcond="276">endif</span></u>&nbsp</td></tr>
+<tr><th id="284">284</th><td>&nbsp</td></tr>
+<tr><th id="285">285</th><td>		<i>// ASTC (Adaptive Scalable Texture Compression) formats.</i>&nbsp</td></tr>
+<tr><th id="286">286</th><td>		<q>"ASTC4X4 : Adaptive scalable. 128 bits per 16 pixels. 8.0 bpp."</q>,&nbsp</td></tr>
+<tr><th id="287">287</th><td>		<q>"ASTC5X4 : Adaptive scalable. 128 bits per 20 pixels. 6.4 bpp."</q>,&nbsp</td></tr>
+<tr><th id="288">288</th><td>		<q>"ASTC5X5 : Adaptive scalable. 128 bits per 25 pixels. 5.12 bpp."</q>,&nbsp</td></tr>
+<tr><th id="289">289</th><td>		<q>"ASTC6X5 : Adaptive scalable. 128 bits per 30 pixels. 4.27 bpp."</q>,&nbsp</td></tr>
+<tr><th id="290">290</th><td>		<q>"ASTC6X6 : Adaptive scalable. 128 bits per 36 pixels. 3.56 bpp."</q>,&nbsp</td></tr>
+<tr><th id="291">291</th><td>		<q>"ASTC8X5 : Adaptive scalable. 128 bits per 40 pixels. 3.2 bpp."</q>,&nbsp</td></tr>
+<tr><th id="292">292</th><td>		<q>"ASTC8X6 : Adaptive scalable. 128 bits per 48 pixels. 2.67 bpp."</q>,&nbsp</td></tr>
+<tr><th id="293">293</th><td>		<q>"ASTC8X8 : Adaptive scalable. 128 bits per 64 pixels. 2.56 bpp."</q>,&nbsp</td></tr>
+<tr><th id="294">294</th><td>		<q>"ASTC10X5 : Adaptive scalable. 128 bits per 50 pixels. 2.13 bpp."</q>,&nbsp</td></tr>
+<tr><th id="295">295</th><td>		<q>"ASTC10X6 : Adaptive scalable. 128 bits per 60 pixels. 2.0 bpp."</q>,&nbsp</td></tr>
+<tr><th id="296">296</th><td>		<q>"ASTC10X8 : Adaptive scalable. 128 bits per 80 pixels. 1.6 bpp."</q>,&nbsp</td></tr>
+<tr><th id="297">297</th><td>		<q>"ASTC10X10 : Adaptive scalable. 128 bits per 100 pixels. 1.28 bpp."</q>,&nbsp</td></tr>
+<tr><th id="298">298</th><td>		<q>"ASTC12X10 : Adaptive scalable. 128 bits per 120 pixels. 1.07 bpp."</q>,&nbsp</td></tr>
+<tr><th id="299">299</th><td>		<q>"ASTC12X12 : Adaptive scalable. 128 bits per 144 pixels. 0.89 bpp."</q>,&nbsp</td></tr>
+<tr><th id="300">300</th><td>		&nbsp</td></tr>
+<tr><th id="301">301</th><td>		<i>// Vendor-specific formats.</i>&nbsp</td></tr>
+<tr><th id="302">302</th><td>		<q>"RADIANCE : Radiance HDR"</q>,&nbsp</td></tr>
+<tr><th id="303">303</th><td>		<q>"OPENEXR : OpenEXR HDR"</q>,&nbsp</td></tr>
+<tr><th id="304">304</th><td>&nbsp</td></tr>
+<tr><th id="305">305</th><td>		<i>// Palette formats.</i>&nbsp</td></tr>
+<tr><th id="306">306</th><td>		<q>"PAL1BIT : 1-bit indexes to a palette. 2 colour. 1 bpp. Often dithered B/W."</q>,&nbsp</td></tr>
+<tr><th id="307">307</th><td>		<q>"PAL2BIT : 2-bit indexes to a palette. 4 colour. 2 bpp."</q>,&nbsp</td></tr>
+<tr><th id="308">308</th><td>		<q>"PAL3BIT : 3-bit indexes to a palette. 8 colour. 3 bpp."</q>,&nbsp</td></tr>
+<tr><th id="309">309</th><td>		<q>"PAL4BIT : 4-bit indexes to a palette. 16 colour. 4 bpp."</q>,&nbsp</td></tr>
+<tr><th id="310">310</th><td>		<q>"PAL5BIT : 5-bit indexes to a palette. 32 colour. 5 bpp."</q>,&nbsp</td></tr>
+<tr><th id="311">311</th><td>		<q>"PAL6BIT : 6-bit indexes to a palette. 64 colour. 6 bpp."</q>,&nbsp</td></tr>
+<tr><th id="312">312</th><td>		<q>"PAL7BIT : 7-bit indexes to a palette. 128 colour. 7 bpp."</q>,&nbsp</td></tr>
+<tr><th id="313">313</th><td>		<q>"PAL8BIT : 8-bit indexes to a palette. 256 colour. 8 bpp."</q>&nbsp</td></tr>
+<tr><th id="314">314</th><td>	};&nbsp</td></tr>
+<tr><th id="315">315</th><td>	<a class="macro" href="../../Foundation/Inc/Foundation/tAssert.h.html#30" title="static_assert(int(tPixelFormat::NumPixelFormats) == int(sizeof(PixelFormatDescs)/sizeof(*PixelFormatDescs)), &quot;int(tPixelFormat::NumPixelFormats) == tNumElements(PixelFormatDescs)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>(<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::NumPixelFormats" title='tImage::tPixelFormat::NumPixelFormats' data-ref="tImage::tPixelFormat::NumPixelFormats">NumPixelFormats</a>) == <a class="macro" href="../../Foundation/Inc/Foundation/tStandard.h.html#27" title="int(sizeof(PixelFormatDescs)/sizeof(*PixelFormatDescs))" data-ref="_M/tNumElements">tNumElements</a>(<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatDescs" title='tImage::PixelFormatDescs' data-ref="tImage::PixelFormatDescs">PixelFormatDescs</a>));&nbsp</td></tr>
+<tr><th id="316">316</th><td>	<em>const</em> <em>char</em>** <dfn class="decl def" id="tImage::PixelFormatDescs_Packed" title='tImage::PixelFormatDescs_Packed' data-ref="tImage::PixelFormatDescs_Packed">PixelFormatDescs_Packed</dfn>	= &amp;<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatDescs" title='tImage::PixelFormatDescs' data-ref="tImage::PixelFormatDescs">PixelFormatDescs</a>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstPacked" title='tImage::tPixelFormat::FirstPacked' data-ref="tImage::tPixelFormat::FirstPacked">FirstPacked</a>)];&nbsp</td></tr>
+<tr><th id="317">317</th><td>	<em>const</em> <em>char</em>** <dfn class="decl def" id="tImage::PixelFormatDescs_Block" title='tImage::PixelFormatDescs_Block' data-ref="tImage::PixelFormatDescs_Block">PixelFormatDescs_Block</dfn>		= &amp;<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatDescs" title='tImage::PixelFormatDescs' data-ref="tImage::PixelFormatDescs">PixelFormatDescs</a>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstBC" title='tImage::tPixelFormat::FirstBC' data-ref="tImage::tPixelFormat::FirstBC">FirstBC</a>)];&nbsp</td></tr>
+<tr><th id="318">318</th><td>	<em>const</em> <em>char</em>** <dfn class="decl def" id="tImage::PixelFormatDescs_PVR" title='tImage::PixelFormatDescs_PVR' data-ref="tImage::PixelFormatDescs_PVR">PixelFormatDescs_PVR</dfn>		= &amp;<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatDescs" title='tImage::PixelFormatDescs' data-ref="tImage::PixelFormatDescs">PixelFormatDescs</a>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstPVR" title='tImage::tPixelFormat::FirstPVR' data-ref="tImage::tPixelFormat::FirstPVR">FirstPVR</a>)];&nbsp</td></tr>
+<tr><th id="319">319</th><td>	<em>const</em> <em>char</em>** <dfn class="decl def" id="tImage::PixelFormatDescs_ASTC" title='tImage::PixelFormatDescs_ASTC' data-ref="tImage::PixelFormatDescs_ASTC">PixelFormatDescs_ASTC</dfn>		= &amp;<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatDescs" title='tImage::PixelFormatDescs' data-ref="tImage::PixelFormatDescs">PixelFormatDescs</a>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstASTC" title='tImage::tPixelFormat::FirstASTC' data-ref="tImage::tPixelFormat::FirstASTC">FirstASTC</a>)];&nbsp</td></tr>
+<tr><th id="320">320</th><td>	<em>const</em> <em>char</em>** <dfn class="decl def" id="tImage::PixelFormatDescs_Vendor" title='tImage::PixelFormatDescs_Vendor' data-ref="tImage::PixelFormatDescs_Vendor">PixelFormatDescs_Vendor</dfn>	= &amp;<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatDescs" title='tImage::PixelFormatDescs' data-ref="tImage::PixelFormatDescs">PixelFormatDescs</a>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstVendor" title='tImage::tPixelFormat::FirstVendor' data-ref="tImage::tPixelFormat::FirstVendor">FirstVendor</a>)];&nbsp</td></tr>
+<tr><th id="321">321</th><td>	<em>const</em> <em>char</em>** <dfn class="decl def" id="tImage::PixelFormatDescs_Palette" title='tImage::PixelFormatDescs_Palette' data-ref="tImage::PixelFormatDescs_Palette">PixelFormatDescs_Palette</dfn>	= &amp;<a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatDescs" title='tImage::PixelFormatDescs' data-ref="tImage::PixelFormatDescs">PixelFormatDescs</a>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstPalette" title='tImage::tPixelFormat::FirstPalette' data-ref="tImage::tPixelFormat::FirstPalette">FirstPalette</a>)];&nbsp</td></tr>
+<tr><th id="322">322</th><td>&nbsp</td></tr>
+<tr><th id="323">323</th><td>	<em>int</em> <dfn class="decl def" id="tImage::PackedFormat_BitsPerPixel" title='tImage::PackedFormat_BitsPerPixel' data-ref="tImage::PackedFormat_BitsPerPixel">PackedFormat_BitsPerPixel</dfn>[] =&nbsp</td></tr>
+<tr><th id="324">324</th><td>	{&nbsp</td></tr>
+<tr><th id="325">325</th><td>		<var>8</var>,				<i>// R8</i>&nbsp</td></tr>
+<tr><th id="326">326</th><td>		<var>16</var>,				<i>// R8G8</i>&nbsp</td></tr>
+<tr><th id="327">327</th><td>		<var>24</var>,				<i>// R8G8B8</i>&nbsp</td></tr>
+<tr><th id="328">328</th><td>		<var>32</var>,				<i>// R8G8B8A8</i>&nbsp</td></tr>
+<tr><th id="329">329</th><td>		<var>24</var>,				<i>// B8G8R8</i>&nbsp</td></tr>
+<tr><th id="330">330</th><td>		<var>32</var>,				<i>// B8G8R8A8</i>&nbsp</td></tr>
+<tr><th id="331">331</th><td>&nbsp</td></tr>
+<tr><th id="332">332</th><td>		<var>16</var>,				<i>// G3B5R5G3</i>&nbsp</td></tr>
+<tr><th id="333">333</th><td>		<var>16</var>,				<i>// G4B4A4R4</i>&nbsp</td></tr>
+<tr><th id="334">334</th><td>		<var>16</var>,				<i>// B4A4R4G4</i>&nbsp</td></tr>
+<tr><th id="335">335</th><td>		<var>16</var>,				<i>// G3B5A1R5G2</i>&nbsp</td></tr>
+<tr><th id="336">336</th><td>		<var>16</var>,				<i>// G2B5A1R5G3</i>&nbsp</td></tr>
+<tr><th id="337">337</th><td>		<var>16</var>,				<i>// A8L8</i>&nbsp</td></tr>
+<tr><th id="338">338</th><td>		<var>8</var>,				<i>// A8</i>&nbsp</td></tr>
+<tr><th id="339">339</th><td>		<var>8</var>,				<i>// L8</i>&nbsp</td></tr>
+<tr><th id="340">340</th><td>		<var>16</var>,				<i>// R16</i>&nbsp</td></tr>
+<tr><th id="341">341</th><td>		<var>32</var>,				<i>// R16G16</i>&nbsp</td></tr>
+<tr><th id="342">342</th><td>		<var>48</var>,				<i>// R16G16B16</i>&nbsp</td></tr>
+<tr><th id="343">343</th><td>		<var>64</var>,				<i>// R16G16B16A16</i>&nbsp</td></tr>
+<tr><th id="344">344</th><td>		<var>32</var>,				<i>// R32</i>&nbsp</td></tr>
+<tr><th id="345">345</th><td>		<var>64</var>,				<i>// R32G32</i>&nbsp</td></tr>
+<tr><th id="346">346</th><td>		<var>96</var>,				<i>// R32G32B32</i>&nbsp</td></tr>
+<tr><th id="347">347</th><td>		<var>128</var>,			<i>// R32G32B32A32</i>&nbsp</td></tr>
+<tr><th id="348">348</th><td>		<var>16</var>,				<i>// R16f</i>&nbsp</td></tr>
+<tr><th id="349">349</th><td>		<var>32</var>,				<i>// R16G16f</i>&nbsp</td></tr>
+<tr><th id="350">350</th><td>		<var>48</var>,				<i>// R16G16B16f</i>&nbsp</td></tr>
+<tr><th id="351">351</th><td>		<var>64</var>,				<i>// R16G16B16A16f</i>&nbsp</td></tr>
+<tr><th id="352">352</th><td>		<var>32</var>,				<i>// R32f</i>&nbsp</td></tr>
+<tr><th id="353">353</th><td>		<var>64</var>,				<i>// R32G32f</i>&nbsp</td></tr>
+<tr><th id="354">354</th><td>		<var>96</var>,				<i>// R32G32B32f</i>&nbsp</td></tr>
+<tr><th id="355">355</th><td>		<var>128</var>,			<i>// R32G32B32A32f</i>&nbsp</td></tr>
+<tr><th id="356">356</th><td>		<var>32</var>,				<i>// R11G11B10uf</i>&nbsp</td></tr>
+<tr><th id="357">357</th><td>		<var>32</var>,				<i>// B10G11R11uf</i>&nbsp</td></tr>
+<tr><th id="358">358</th><td>		<var>32</var>,				<i>// R9G9B9E5uf</i>&nbsp</td></tr>
+<tr><th id="359">359</th><td>		<var>32</var>,				<i>// E5B9G9R9uf</i>&nbsp</td></tr>
+<tr><th id="360">360</th><td>		<var>32</var>,				<i>// R8G8B8M8</i>&nbsp</td></tr>
+<tr><th id="361">361</th><td>		<var>32</var>				<i>// R8G8B8D8</i>&nbsp</td></tr>
+<tr><th id="362">362</th><td>	};&nbsp</td></tr>
+<tr><th id="363">363</th><td>	<a class="macro" href="../../Foundation/Inc/Foundation/tAssert.h.html#30" title="static_assert(int(sizeof(PackedFormat_BitsPerPixel)/sizeof(*PackedFormat_BitsPerPixel)) == int(tPixelFormat::NumPackedFormats), &quot;tNumElements(PackedFormat_BitsPerPixel) == int(tPixelFormat::NumPackedFormats)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>(<a class="macro" href="../../Foundation/Inc/Foundation/tStandard.h.html#27" title="int(sizeof(PackedFormat_BitsPerPixel)/sizeof(*PackedFormat_BitsPerPixel))" data-ref="_M/tNumElements">tNumElements</a>(<a class="ref" href="#tImage::PackedFormat_BitsPerPixel" title='tImage::PackedFormat_BitsPerPixel' data-ref="tImage::PackedFormat_BitsPerPixel">PackedFormat_BitsPerPixel</a>) == <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::NumPackedFormats" title='tImage::tPixelFormat::NumPackedFormats' data-ref="tImage::tPixelFormat::NumPackedFormats">NumPackedFormats</a>));&nbsp</td></tr>
+<tr><th id="364">364</th><td>&nbsp</td></tr>
+<tr><th id="365">365</th><td>	<em>int</em> <dfn class="decl def" id="tImage::BCFormat_BytesPerBlock" title='tImage::BCFormat_BytesPerBlock' data-ref="tImage::BCFormat_BytesPerBlock">BCFormat_BytesPerBlock</dfn>[] =&nbsp</td></tr>
+<tr><th id="366">366</th><td>	{&nbsp</td></tr>
+<tr><th id="367">367</th><td>		<var>8</var>,				<i>// BC1DXT1</i>&nbsp</td></tr>
+<tr><th id="368">368</th><td>		<var>8</var>,				<i>// BC1DXT1A</i>&nbsp</td></tr>
+<tr><th id="369">369</th><td>		<var>16</var>,				<i>// BC2DXT2DXT3</i>&nbsp</td></tr>
+<tr><th id="370">370</th><td>		<var>16</var>,				<i>// BC3DXT4DXT5</i>&nbsp</td></tr>
+<tr><th id="371">371</th><td>		<var>8</var>,				<i>// BC4ATI1U</i>&nbsp</td></tr>
+<tr><th id="372">372</th><td>		<var>8</var>,				<i>// BC4ATI1S</i>&nbsp</td></tr>
+<tr><th id="373">373</th><td>		<var>16</var>,				<i>// BC5ATI2U</i>&nbsp</td></tr>
+<tr><th id="374">374</th><td>		<var>16</var>,				<i>// BC5ATI2S</i>&nbsp</td></tr>
+<tr><th id="375">375</th><td>		<var>16</var>,				<i>// BC6U</i>&nbsp</td></tr>
+<tr><th id="376">376</th><td>		<var>16</var>,				<i>// BC6S</i>&nbsp</td></tr>
+<tr><th id="377">377</th><td>		<var>16</var>,				<i>// BC7</i>&nbsp</td></tr>
+<tr><th id="378">378</th><td>		<var>8</var>,				<i>// ETC1</i>&nbsp</td></tr>
+<tr><th id="379">379</th><td>		<var>8</var>,				<i>// ETC2RGB</i>&nbsp</td></tr>
+<tr><th id="380">380</th><td>		<var>16</var>,				<i>// ETC2RGBA</i>&nbsp</td></tr>
+<tr><th id="381">381</th><td>		<var>8</var>,				<i>// ETC2RGBA1</i>&nbsp</td></tr>
+<tr><th id="382">382</th><td>		<var>8</var>,				<i>// EACR11U</i>&nbsp</td></tr>
+<tr><th id="383">383</th><td>		<var>8</var>,				<i>// EACR11S</i>&nbsp</td></tr>
+<tr><th id="384">384</th><td>		<var>16</var>,				<i>// EACRG11U</i>&nbsp</td></tr>
+<tr><th id="385">385</th><td>		<var>16</var>				<i>// EACRG11S</i>&nbsp</td></tr>
+<tr><th id="386">386</th><td>	};&nbsp</td></tr>
+<tr><th id="387">387</th><td>	<a class="macro" href="../../Foundation/Inc/Foundation/tAssert.h.html#30" title="static_assert(int(sizeof(BCFormat_BytesPerBlock)/sizeof(*BCFormat_BytesPerBlock)) == int(tPixelFormat::NumBCFormats), &quot;tNumElements(BCFormat_BytesPerBlock) == int(tPixelFormat::NumBCFormats)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>(<a class="macro" href="../../Foundation/Inc/Foundation/tStandard.h.html#27" title="int(sizeof(BCFormat_BytesPerBlock)/sizeof(*BCFormat_BytesPerBlock))" data-ref="_M/tNumElements">tNumElements</a>(<a class="ref" href="#tImage::BCFormat_BytesPerBlock" title='tImage::BCFormat_BytesPerBlock' data-ref="tImage::BCFormat_BytesPerBlock">BCFormat_BytesPerBlock</a>) == <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::NumBCFormats" title='tImage::tPixelFormat::NumBCFormats' data-ref="tImage::tPixelFormat::NumBCFormats">NumBCFormats</a>));&nbsp</td></tr>
+<tr><th id="388">388</th><td>&nbsp</td></tr>
+<tr><th id="389">389</th><td>	<em>int</em> <dfn class="decl def" id="tImage::PVRFormat_BlockWidth" title='tImage::PVRFormat_BlockWidth' data-ref="tImage::PVRFormat_BlockWidth">PVRFormat_BlockWidth</dfn>[] =&nbsp</td></tr>
+<tr><th id="390">390</th><td>	{&nbsp</td></tr>
+<tr><th id="391">391</th><td>		<var>4</var>,				<i>// PVRBPP4</i>&nbsp</td></tr>
+<tr><th id="392">392</th><td>		<var>8</var>,				<i>// PVRBPP2</i>&nbsp</td></tr>
+<tr><th id="393">393</th><td>		<u>#<span data-ppcond="393">ifdef</span> <span class="macro" data-ref="_M/PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED">PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED</span></u>&nbsp</td></tr>
+<tr><th id="394">394</th><td>		<var>0</var>,				<i>// PVRHDRBPP8. Unknown block size.</i>&nbsp</td></tr>
+<tr><th id="395">395</th><td>		<var>0</var>,				<i>// PVRHDRBPP6. Unknown block size.</i>&nbsp</td></tr>
+<tr><th id="396">396</th><td>		<var>4</var>,				<i>// PVR2BPP4</i>&nbsp</td></tr>
+<tr><th id="397">397</th><td>		<var>8</var>,				<i>// PVR2BPP2</i>&nbsp</td></tr>
+<tr><th id="398">398</th><td>		<var>0</var>,				<i>// PVR2HDRBPP8. Unknown block size.</i>&nbsp</td></tr>
+<tr><th id="399">399</th><td>		<var>0</var>				<i>// PVR2HDRBPP6. Unknown block size.</i>&nbsp</td></tr>
+<tr><th id="400">400</th><td>		<u>#<span data-ppcond="393">endif</span></u>&nbsp</td></tr>
+<tr><th id="401">401</th><td>	};&nbsp</td></tr>
+<tr><th id="402">402</th><td>	<a class="macro" href="../../Foundation/Inc/Foundation/tAssert.h.html#30" title="static_assert(int(sizeof(PVRFormat_BlockWidth)/sizeof(*PVRFormat_BlockWidth)) == int(tPixelFormat::NumPVRFormats), &quot;tNumElements(PVRFormat_BlockWidth) == int(tPixelFormat::NumPVRFormats)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>(<a class="macro" href="../../Foundation/Inc/Foundation/tStandard.h.html#27" title="int(sizeof(PVRFormat_BlockWidth)/sizeof(*PVRFormat_BlockWidth))" data-ref="_M/tNumElements">tNumElements</a>(<a class="ref" href="#tImage::PVRFormat_BlockWidth" title='tImage::PVRFormat_BlockWidth' data-ref="tImage::PVRFormat_BlockWidth">PVRFormat_BlockWidth</a>) == <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::NumPVRFormats" title='tImage::tPixelFormat::NumPVRFormats' data-ref="tImage::tPixelFormat::NumPVRFormats">NumPVRFormats</a>));&nbsp</td></tr>
+<tr><th id="403">403</th><td>&nbsp</td></tr>
+<tr><th id="404">404</th><td>	<em>int</em> <dfn class="decl def" id="tImage::PVRFormat_BlockHeight" title='tImage::PVRFormat_BlockHeight' data-ref="tImage::PVRFormat_BlockHeight">PVRFormat_BlockHeight</dfn>[] =&nbsp</td></tr>
+<tr><th id="405">405</th><td>	{&nbsp</td></tr>
+<tr><th id="406">406</th><td>		<var>4</var>,				<i>// PVRBPP4</i>&nbsp</td></tr>
+<tr><th id="407">407</th><td>		<var>4</var>,				<i>// PVRBPP2</i>&nbsp</td></tr>
+<tr><th id="408">408</th><td>		<u>#<span data-ppcond="408">ifdef</span> <span class="macro" data-ref="_M/PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED">PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED</span></u>&nbsp</td></tr>
+<tr><th id="409">409</th><td>		<var>0</var>,				<i>// PVRHDRBPP8. Unknown block size.</i>&nbsp</td></tr>
+<tr><th id="410">410</th><td>		<var>0</var>,				<i>// PVRHDRBPP6. Unknown block size.</i>&nbsp</td></tr>
+<tr><th id="411">411</th><td>		<var>4</var>,				<i>// PVR2BPP4</i>&nbsp</td></tr>
+<tr><th id="412">412</th><td>		<var>4</var>,				<i>// PVR2BPP2</i>&nbsp</td></tr>
+<tr><th id="413">413</th><td>		<var>0</var>,				<i>// PVR2HDRBPP8. Unknown block size.</i>&nbsp</td></tr>
+<tr><th id="414">414</th><td>		<var>0</var>				<i>// PVR2HDRBPP6. Unknown block size.</i>&nbsp</td></tr>
+<tr><th id="415">415</th><td>		<u>#<span data-ppcond="408">endif</span></u>&nbsp</td></tr>
+<tr><th id="416">416</th><td>	};&nbsp</td></tr>
+<tr><th id="417">417</th><td>	<a class="macro" href="../../Foundation/Inc/Foundation/tAssert.h.html#30" title="static_assert(int(sizeof(PVRFormat_BlockHeight)/sizeof(*PVRFormat_BlockHeight)) == int(tPixelFormat::NumPVRFormats), &quot;tNumElements(PVRFormat_BlockHeight) == int(tPixelFormat::NumPVRFormats)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>(<a class="macro" href="../../Foundation/Inc/Foundation/tStandard.h.html#27" title="int(sizeof(PVRFormat_BlockHeight)/sizeof(*PVRFormat_BlockHeight))" data-ref="_M/tNumElements">tNumElements</a>(<a class="ref" href="#tImage::PVRFormat_BlockHeight" title='tImage::PVRFormat_BlockHeight' data-ref="tImage::PVRFormat_BlockHeight">PVRFormat_BlockHeight</a>) == <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::NumPVRFormats" title='tImage::tPixelFormat::NumPVRFormats' data-ref="tImage::tPixelFormat::NumPVRFormats">NumPVRFormats</a>));&nbsp</td></tr>
+<tr><th id="418">418</th><td>&nbsp</td></tr>
+<tr><th id="419">419</th><td>	<em>int</em> <dfn class="decl def" id="tImage::ASTCFormat_BlockWidth" title='tImage::ASTCFormat_BlockWidth' data-ref="tImage::ASTCFormat_BlockWidth">ASTCFormat_BlockWidth</dfn>[] =&nbsp</td></tr>
+<tr><th id="420">420</th><td>	{&nbsp</td></tr>
+<tr><th id="421">421</th><td>		<var>4</var>,				<i>// ASTC4X4</i>&nbsp</td></tr>
+<tr><th id="422">422</th><td>		<var>5</var>,				<i>// ASTC5X4</i>&nbsp</td></tr>
+<tr><th id="423">423</th><td>		<var>5</var>,				<i>// ASTC5X5</i>&nbsp</td></tr>
+<tr><th id="424">424</th><td>		<var>6</var>,				<i>// ASTC6X5</i>&nbsp</td></tr>
+<tr><th id="425">425</th><td>		<var>6</var>,				<i>// ASTC6X6</i>&nbsp</td></tr>
+<tr><th id="426">426</th><td>		<var>8</var>,				<i>// ASTC8X5</i>&nbsp</td></tr>
+<tr><th id="427">427</th><td>		<var>8</var>,				<i>// ASTC8X6</i>&nbsp</td></tr>
+<tr><th id="428">428</th><td>		<var>8</var>,				<i>// ASTC8X8</i>&nbsp</td></tr>
+<tr><th id="429">429</th><td>		<var>10</var>,				<i>// ASTC10X5</i>&nbsp</td></tr>
+<tr><th id="430">430</th><td>		<var>10</var>,				<i>// ASTC10X6</i>&nbsp</td></tr>
+<tr><th id="431">431</th><td>		<var>10</var>,				<i>// ASTC10X8</i>&nbsp</td></tr>
+<tr><th id="432">432</th><td>		<var>10</var>,				<i>// ASTC10X10</i>&nbsp</td></tr>
+<tr><th id="433">433</th><td>		<var>12</var>,				<i>// ASTC12X10</i>&nbsp</td></tr>
+<tr><th id="434">434</th><td>		<var>12</var>				<i>// ASTC12X12</i>&nbsp</td></tr>
+<tr><th id="435">435</th><td>	};&nbsp</td></tr>
+<tr><th id="436">436</th><td>	<a class="macro" href="../../Foundation/Inc/Foundation/tAssert.h.html#30" title="static_assert(int(sizeof(ASTCFormat_BlockWidth)/sizeof(*ASTCFormat_BlockWidth)) == int(tPixelFormat::NumASTCFormats), &quot;tNumElements(ASTCFormat_BlockWidth) == int(tPixelFormat::NumASTCFormats)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>(<a class="macro" href="../../Foundation/Inc/Foundation/tStandard.h.html#27" title="int(sizeof(ASTCFormat_BlockWidth)/sizeof(*ASTCFormat_BlockWidth))" data-ref="_M/tNumElements">tNumElements</a>(<a class="ref" href="#tImage::ASTCFormat_BlockWidth" title='tImage::ASTCFormat_BlockWidth' data-ref="tImage::ASTCFormat_BlockWidth">ASTCFormat_BlockWidth</a>) == <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::NumASTCFormats" title='tImage::tPixelFormat::NumASTCFormats' data-ref="tImage::tPixelFormat::NumASTCFormats">NumASTCFormats</a>));&nbsp</td></tr>
+<tr><th id="437">437</th><td>&nbsp</td></tr>
+<tr><th id="438">438</th><td>	<em>int</em> <dfn class="decl def" id="tImage::ASTCFormat_BlockHeight" title='tImage::ASTCFormat_BlockHeight' data-ref="tImage::ASTCFormat_BlockHeight">ASTCFormat_BlockHeight</dfn>[] =&nbsp</td></tr>
+<tr><th id="439">439</th><td>	{&nbsp</td></tr>
+<tr><th id="440">440</th><td>		<var>4</var>,				<i>// ASTC4X4</i>&nbsp</td></tr>
+<tr><th id="441">441</th><td>		<var>4</var>,				<i>// ASTC5X4</i>&nbsp</td></tr>
+<tr><th id="442">442</th><td>		<var>5</var>,				<i>// ASTC5X5</i>&nbsp</td></tr>
+<tr><th id="443">443</th><td>		<var>5</var>,				<i>// ASTC6X5</i>&nbsp</td></tr>
+<tr><th id="444">444</th><td>		<var>6</var>,				<i>// ASTC6X6</i>&nbsp</td></tr>
+<tr><th id="445">445</th><td>		<var>5</var>,				<i>// ASTC8X5</i>&nbsp</td></tr>
+<tr><th id="446">446</th><td>		<var>6</var>,				<i>// ASTC8X6</i>&nbsp</td></tr>
+<tr><th id="447">447</th><td>		<var>8</var>,				<i>// ASTC8X8</i>&nbsp</td></tr>
+<tr><th id="448">448</th><td>		<var>5</var>,				<i>// ASTC10X5</i>&nbsp</td></tr>
+<tr><th id="449">449</th><td>		<var>6</var>,				<i>// ASTC10X6</i>&nbsp</td></tr>
+<tr><th id="450">450</th><td>		<var>8</var>,				<i>// ASTC10X8</i>&nbsp</td></tr>
+<tr><th id="451">451</th><td>		<var>10</var>,				<i>// ASTC10X10</i>&nbsp</td></tr>
+<tr><th id="452">452</th><td>		<var>10</var>,				<i>// ASTC12X10</i>&nbsp</td></tr>
+<tr><th id="453">453</th><td>		<var>12</var>				<i>// ASTC12X12</i>&nbsp</td></tr>
+<tr><th id="454">454</th><td>	};&nbsp</td></tr>
+<tr><th id="455">455</th><td>	<a class="macro" href="../../Foundation/Inc/Foundation/tAssert.h.html#30" title="static_assert(int(sizeof(ASTCFormat_BlockHeight)/sizeof(*ASTCFormat_BlockHeight)) == int(tPixelFormat::NumASTCFormats), &quot;tNumElements(ASTCFormat_BlockHeight) == int(tPixelFormat::NumASTCFormats)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>(<a class="macro" href="../../Foundation/Inc/Foundation/tStandard.h.html#27" title="int(sizeof(ASTCFormat_BlockHeight)/sizeof(*ASTCFormat_BlockHeight))" data-ref="_M/tNumElements">tNumElements</a>(<a class="ref" href="#tImage::ASTCFormat_BlockHeight" title='tImage::ASTCFormat_BlockHeight' data-ref="tImage::ASTCFormat_BlockHeight">ASTCFormat_BlockHeight</a>) == <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::NumASTCFormats" title='tImage::tPixelFormat::NumASTCFormats' data-ref="tImage::tPixelFormat::NumASTCFormats">NumASTCFormats</a>));&nbsp</td></tr>
+<tr><th id="456">456</th><td>&nbsp</td></tr>
+<tr><th id="457">457</th><td>	<em>int</em> <dfn class="decl def" id="tImage::PVRFormat_BitsPerPixel" title='tImage::PVRFormat_BitsPerPixel' data-ref="tImage::PVRFormat_BitsPerPixel">PVRFormat_BitsPerPixel</dfn>[] =&nbsp</td></tr>
+<tr><th id="458">458</th><td>	{&nbsp</td></tr>
+<tr><th id="459">459</th><td>		<var>4</var>,				<i>// PVRBPP4</i>&nbsp</td></tr>
+<tr><th id="460">460</th><td>		<var>2</var>,				<i>// PVRBPP2</i>&nbsp</td></tr>
+<tr><th id="461">461</th><td>		<u>#<span data-ppcond="461">ifdef</span> <span class="macro" data-ref="_M/PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED">PIXEL_FORMAT_INCLUDE_NOT_IMPLEMENTED</span></u>&nbsp</td></tr>
+<tr><th id="462">462</th><td>		<var>8</var>,				<i>// PVRHDRBPP8</i>&nbsp</td></tr>
+<tr><th id="463">463</th><td>		<var>6</var>,				<i>// PVRHDRBPP6</i>&nbsp</td></tr>
+<tr><th id="464">464</th><td>		<var>4</var>,				<i>// PVR2BPP4</i>&nbsp</td></tr>
+<tr><th id="465">465</th><td>		<var>2</var>,				<i>// PVR2BPP2</i>&nbsp</td></tr>
+<tr><th id="466">466</th><td>		<var>8</var>,				<i>// PVR2HDRBPP8</i>&nbsp</td></tr>
+<tr><th id="467">467</th><td>		<var>6</var>,				<i>// PVR2HDRBPP6</i>&nbsp</td></tr>
+<tr><th id="468">468</th><td>		<u>#<span data-ppcond="461">endif</span></u>&nbsp</td></tr>
+<tr><th id="469">469</th><td>	};&nbsp</td></tr>
+<tr><th id="470">470</th><td>	<a class="macro" href="../../Foundation/Inc/Foundation/tAssert.h.html#30" title="static_assert(int(sizeof(PVRFormat_BitsPerPixel)/sizeof(*PVRFormat_BitsPerPixel)) == int(tPixelFormat::NumPVRFormats), &quot;tNumElements(PVRFormat_BitsPerPixel) == int(tPixelFormat::NumPVRFormats)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>(<a class="macro" href="../../Foundation/Inc/Foundation/tStandard.h.html#27" title="int(sizeof(PVRFormat_BitsPerPixel)/sizeof(*PVRFormat_BitsPerPixel))" data-ref="_M/tNumElements">tNumElements</a>(<a class="ref" href="#tImage::PVRFormat_BitsPerPixel" title='tImage::PVRFormat_BitsPerPixel' data-ref="tImage::PVRFormat_BitsPerPixel">PVRFormat_BitsPerPixel</a>) == <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::NumPVRFormats" title='tImage::tPixelFormat::NumPVRFormats' data-ref="tImage::tPixelFormat::NumPVRFormats">NumPVRFormats</a>));&nbsp</td></tr>
+<tr><th id="471">471</th><td>&nbsp</td></tr>
+<tr><th id="472">472</th><td>	<em>int</em> <dfn class="decl def" id="tImage::VendorFormat_BitsPerPixel" title='tImage::VendorFormat_BitsPerPixel' data-ref="tImage::VendorFormat_BitsPerPixel">VendorFormat_BitsPerPixel</dfn>[] =&nbsp</td></tr>
+<tr><th id="473">473</th><td>	{&nbsp</td></tr>
+<tr><th id="474">474</th><td>		<var>32</var>,				<i>// Radiance. 3 bytes for each RGB. 1 byte shared exponent.</i>&nbsp</td></tr>
+<tr><th id="475">475</th><td>		<var>128</var>				<i>// OpenEXR. @todo There are multiple exr pixel formats. We don't yet determine which one.</i>&nbsp</td></tr>
+<tr><th id="476">476</th><td>	};&nbsp</td></tr>
+<tr><th id="477">477</th><td>	<a class="macro" href="../../Foundation/Inc/Foundation/tAssert.h.html#30" title="static_assert(int(sizeof(VendorFormat_BitsPerPixel)/sizeof(*VendorFormat_BitsPerPixel)) == int(tPixelFormat::NumVendorFormats), &quot;tNumElements(VendorFormat_BitsPerPixel) == int(tPixelFormat::NumVendorFormats)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>(<a class="macro" href="../../Foundation/Inc/Foundation/tStandard.h.html#27" title="int(sizeof(VendorFormat_BitsPerPixel)/sizeof(*VendorFormat_BitsPerPixel))" data-ref="_M/tNumElements">tNumElements</a>(<a class="ref" href="#tImage::VendorFormat_BitsPerPixel" title='tImage::VendorFormat_BitsPerPixel' data-ref="tImage::VendorFormat_BitsPerPixel">VendorFormat_BitsPerPixel</a>) == <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::NumVendorFormats" title='tImage::tPixelFormat::NumVendorFormats' data-ref="tImage::tPixelFormat::NumVendorFormats">NumVendorFormats</a>));&nbsp</td></tr>
+<tr><th id="478">478</th><td>&nbsp</td></tr>
+<tr><th id="479">479</th><td>	<em>int</em> <dfn class="decl def" id="tImage::PaletteFormat_BitsPerPixel" title='tImage::PaletteFormat_BitsPerPixel' data-ref="tImage::PaletteFormat_BitsPerPixel">PaletteFormat_BitsPerPixel</dfn>[] =&nbsp</td></tr>
+<tr><th id="480">480</th><td>	{&nbsp</td></tr>
+<tr><th id="481">481</th><td>		<var>1</var>,&nbsp</td></tr>
+<tr><th id="482">482</th><td>		<var>2</var>,&nbsp</td></tr>
+<tr><th id="483">483</th><td>		<var>3</var>,&nbsp</td></tr>
+<tr><th id="484">484</th><td>		<var>4</var>,&nbsp</td></tr>
+<tr><th id="485">485</th><td>		<var>5</var>,&nbsp</td></tr>
+<tr><th id="486">486</th><td>		<var>6</var>,&nbsp</td></tr>
+<tr><th id="487">487</th><td>		<var>7</var>,&nbsp</td></tr>
+<tr><th id="488">488</th><td>		<var>8</var>&nbsp</td></tr>
+<tr><th id="489">489</th><td>	};&nbsp</td></tr>
+<tr><th id="490">490</th><td>	<a class="macro" href="../../Foundation/Inc/Foundation/tAssert.h.html#30" title="static_assert(int(sizeof(PaletteFormat_BitsPerPixel)/sizeof(*PaletteFormat_BitsPerPixel)) == int(tPixelFormat::NumPaletteFormats), &quot;tNumElements(PaletteFormat_BitsPerPixel) == int(tPixelFormat::NumPaletteFormats)&quot;)" data-ref="_M/tStaticAssert">tStaticAssert</a>(<a class="macro" href="../../Foundation/Inc/Foundation/tStandard.h.html#27" title="int(sizeof(PaletteFormat_BitsPerPixel)/sizeof(*PaletteFormat_BitsPerPixel))" data-ref="_M/tNumElements">tNumElements</a>(<a class="ref" href="#tImage::PaletteFormat_BitsPerPixel" title='tImage::PaletteFormat_BitsPerPixel' data-ref="tImage::PaletteFormat_BitsPerPixel">PaletteFormat_BitsPerPixel</a>) == <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::NumPaletteFormats" title='tImage::tPixelFormat::NumPaletteFormats' data-ref="tImage::tPixelFormat::NumPaletteFormats">NumPaletteFormats</a>));&nbsp</td></tr>
+<tr><th id="491">491</th><td>}&nbsp</td></tr>
+<tr><th id="492">492</th><td>&nbsp</td></tr>
+<tr><th id="493">493</th><td>&nbsp</td></tr>
+<tr><th id="494">494</th><td><em>int</em> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage14tGetBlockWidthENS_12tPixelFormatE" title='tImage::tGetBlockWidth' data-ref="_ZN6tImage14tGetBlockWidthENS_12tPixelFormatE">tGetBlockWidth</dfn>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a> <dfn class="local col1 decl" id="1format" title='format' data-type='tImage::tPixelFormat' data-ref="1format">format</dfn>)&nbsp</td></tr>
+<tr><th id="495">495</th><td>{&nbsp</td></tr>
+<tr><th id="496">496</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage15tIsPackedFormatENS_12tPixelFormatE" title='tImage::tIsPackedFormat' data-ref="_ZN6tImage15tIsPackedFormatENS_12tPixelFormatE">tIsPackedFormat</a>(<a class="local col1 ref" href="#1format" title='format' data-ref="1format">format</a>) || <a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage15tIsVendorFormatENS_12tPixelFormatE" title='tImage::tIsVendorFormat' data-ref="_ZN6tImage15tIsVendorFormatENS_12tPixelFormatE">tIsVendorFormat</a>(<a class="local col1 ref" href="#1format" title='format' data-ref="1format">format</a>) || <a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage16tIsPaletteFormatENS_12tPixelFormatE" title='tImage::tIsPaletteFormat' data-ref="_ZN6tImage16tIsPaletteFormatENS_12tPixelFormatE">tIsPaletteFormat</a>(<a class="local col1 ref" href="#1format" title='format' data-ref="1format">format</a>))&nbsp</td></tr>
+<tr><th id="497">497</th><td>		<b>return</b> <var>1</var>;&nbsp</td></tr>
+<tr><th id="498">498</th><td>&nbsp</td></tr>
+<tr><th id="499">499</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage11tIsBCFormatENS_12tPixelFormatE" title='tImage::tIsBCFormat' data-ref="_ZN6tImage11tIsBCFormatENS_12tPixelFormatE">tIsBCFormat</a>(<a class="local col1 ref" href="#1format" title='format' data-ref="1format">format</a>))&nbsp</td></tr>
+<tr><th id="500">500</th><td>		<b>return</b> <var>4</var>;&nbsp</td></tr>
+<tr><th id="501">501</th><td>&nbsp</td></tr>
+<tr><th id="502">502</th><td>	<i>// ASTC and PVR formats have different widths depending on format.</i>&nbsp</td></tr>
+<tr><th id="503">503</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage12tIsPVRFormatENS_12tPixelFormatE" title='tImage::tIsPVRFormat' data-ref="_ZN6tImage12tIsPVRFormatENS_12tPixelFormatE">tIsPVRFormat</a>(<a class="local col1 ref" href="#1format" title='format' data-ref="1format">format</a>))&nbsp</td></tr>
+<tr><th id="504">504</th><td>		<b>return</b> <a class="ref" href="#tImage::PVRFormat_BlockWidth" title='tImage::PVRFormat_BlockWidth' data-ref="tImage::PVRFormat_BlockWidth">PVRFormat_BlockWidth</a>[<em>int</em>(<a class="local col1 ref" href="#1format" title='format' data-ref="1format">format</a>) - <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstPVR" title='tImage::tPixelFormat::FirstPVR' data-ref="tImage::tPixelFormat::FirstPVR">FirstPVR</a>)];&nbsp</td></tr>
+<tr><th id="505">505</th><td>&nbsp</td></tr>
+<tr><th id="506">506</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage13tIsASTCFormatENS_12tPixelFormatE" title='tImage::tIsASTCFormat' data-ref="_ZN6tImage13tIsASTCFormatENS_12tPixelFormatE">tIsASTCFormat</a>(<a class="local col1 ref" href="#1format" title='format' data-ref="1format">format</a>))&nbsp</td></tr>
+<tr><th id="507">507</th><td>		<b>return</b> <a class="ref" href="#tImage::ASTCFormat_BlockWidth" title='tImage::ASTCFormat_BlockWidth' data-ref="tImage::ASTCFormat_BlockWidth">ASTCFormat_BlockWidth</a>[<em>int</em>(<a class="local col1 ref" href="#1format" title='format' data-ref="1format">format</a>) - <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstASTC" title='tImage::tPixelFormat::FirstASTC' data-ref="tImage::tPixelFormat::FirstASTC">FirstASTC</a>)];&nbsp</td></tr>
+<tr><th id="508">508</th><td>&nbsp</td></tr>
+<tr><th id="509">509</th><td>	<b>return</b> <var>0</var>;&nbsp</td></tr>
+<tr><th id="510">510</th><td>}&nbsp</td></tr>
+<tr><th id="511">511</th><td>&nbsp</td></tr>
+<tr><th id="512">512</th><td>&nbsp</td></tr>
+<tr><th id="513">513</th><td><em>int</em> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage15tGetBlockHeightENS_12tPixelFormatE" title='tImage::tGetBlockHeight' data-ref="_ZN6tImage15tGetBlockHeightENS_12tPixelFormatE">tGetBlockHeight</dfn>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a> <dfn class="local col2 decl" id="2format" title='format' data-type='tImage::tPixelFormat' data-ref="2format">format</dfn>)&nbsp</td></tr>
+<tr><th id="514">514</th><td>{&nbsp</td></tr>
+<tr><th id="515">515</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage15tIsPackedFormatENS_12tPixelFormatE" title='tImage::tIsPackedFormat' data-ref="_ZN6tImage15tIsPackedFormatENS_12tPixelFormatE">tIsPackedFormat</a>(<a class="local col2 ref" href="#2format" title='format' data-ref="2format">format</a>) || <a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage15tIsVendorFormatENS_12tPixelFormatE" title='tImage::tIsVendorFormat' data-ref="_ZN6tImage15tIsVendorFormatENS_12tPixelFormatE">tIsVendorFormat</a>(<a class="local col2 ref" href="#2format" title='format' data-ref="2format">format</a>) || <a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage16tIsPaletteFormatENS_12tPixelFormatE" title='tImage::tIsPaletteFormat' data-ref="_ZN6tImage16tIsPaletteFormatENS_12tPixelFormatE">tIsPaletteFormat</a>(<a class="local col2 ref" href="#2format" title='format' data-ref="2format">format</a>))&nbsp</td></tr>
+<tr><th id="516">516</th><td>		<b>return</b> <var>1</var>;&nbsp</td></tr>
+<tr><th id="517">517</th><td>&nbsp</td></tr>
+<tr><th id="518">518</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage11tIsBCFormatENS_12tPixelFormatE" title='tImage::tIsBCFormat' data-ref="_ZN6tImage11tIsBCFormatENS_12tPixelFormatE">tIsBCFormat</a>(<a class="local col2 ref" href="#2format" title='format' data-ref="2format">format</a>))&nbsp</td></tr>
+<tr><th id="519">519</th><td>		<b>return</b> <var>4</var>;&nbsp</td></tr>
+<tr><th id="520">520</th><td>&nbsp</td></tr>
+<tr><th id="521">521</th><td>	<i>// ASTC and PVR formats have different heights depending on format.</i>&nbsp</td></tr>
+<tr><th id="522">522</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage12tIsPVRFormatENS_12tPixelFormatE" title='tImage::tIsPVRFormat' data-ref="_ZN6tImage12tIsPVRFormatENS_12tPixelFormatE">tIsPVRFormat</a>(<a class="local col2 ref" href="#2format" title='format' data-ref="2format">format</a>))&nbsp</td></tr>
+<tr><th id="523">523</th><td>		<b>return</b> <a class="ref" href="#tImage::PVRFormat_BlockHeight" title='tImage::PVRFormat_BlockHeight' data-ref="tImage::PVRFormat_BlockHeight">PVRFormat_BlockHeight</a>[<em>int</em>(<a class="local col2 ref" href="#2format" title='format' data-ref="2format">format</a>) - <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstPVR" title='tImage::tPixelFormat::FirstPVR' data-ref="tImage::tPixelFormat::FirstPVR">FirstPVR</a>)];&nbsp</td></tr>
+<tr><th id="524">524</th><td>&nbsp</td></tr>
+<tr><th id="525">525</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage13tIsASTCFormatENS_12tPixelFormatE" title='tImage::tIsASTCFormat' data-ref="_ZN6tImage13tIsASTCFormatENS_12tPixelFormatE">tIsASTCFormat</a>(<a class="local col2 ref" href="#2format" title='format' data-ref="2format">format</a>))&nbsp</td></tr>
+<tr><th id="526">526</th><td>		<b>return</b> <a class="ref" href="#tImage::ASTCFormat_BlockHeight" title='tImage::ASTCFormat_BlockHeight' data-ref="tImage::ASTCFormat_BlockHeight">ASTCFormat_BlockHeight</a>[<em>int</em>(<a class="local col2 ref" href="#2format" title='format' data-ref="2format">format</a>) - <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstASTC" title='tImage::tPixelFormat::FirstASTC' data-ref="tImage::tPixelFormat::FirstASTC">FirstASTC</a>)];&nbsp</td></tr>
+<tr><th id="527">527</th><td>&nbsp</td></tr>
+<tr><th id="528">528</th><td>	<b>return</b> <var>0</var>;&nbsp</td></tr>
+<tr><th id="529">529</th><td>}&nbsp</td></tr>
+<tr><th id="530">530</th><td>&nbsp</td></tr>
+<tr><th id="531">531</th><td>&nbsp</td></tr>
+<tr><th id="532">532</th><td><em>int</em> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE" title='tImage::tGetBitsPerPixel' data-ref="_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE">tGetBitsPerPixel</dfn>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a> <dfn class="local col3 decl" id="3format" title='format' data-type='tImage::tPixelFormat' data-ref="3format">format</dfn>)&nbsp</td></tr>
+<tr><th id="533">533</th><td>{&nbsp</td></tr>
+<tr><th id="534">534</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage15tIsPackedFormatENS_12tPixelFormatE" title='tImage::tIsPackedFormat' data-ref="_ZN6tImage15tIsPackedFormatENS_12tPixelFormatE">tIsPackedFormat</a>(<a class="local col3 ref" href="#3format" title='format' data-ref="3format">format</a>))&nbsp</td></tr>
+<tr><th id="535">535</th><td>		<b>return</b> <a class="ref" href="#tImage::PackedFormat_BitsPerPixel" title='tImage::PackedFormat_BitsPerPixel' data-ref="tImage::PackedFormat_BitsPerPixel">PackedFormat_BitsPerPixel</a>[<em>int</em>(<a class="local col3 ref" href="#3format" title='format' data-ref="3format">format</a>) - <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstPacked" title='tImage::tPixelFormat::FirstPacked' data-ref="tImage::tPixelFormat::FirstPacked">FirstPacked</a>)];&nbsp</td></tr>
+<tr><th id="536">536</th><td>&nbsp</td></tr>
+<tr><th id="537">537</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage11tIsBCFormatENS_12tPixelFormatE" title='tImage::tIsBCFormat' data-ref="_ZN6tImage11tIsBCFormatENS_12tPixelFormatE">tIsBCFormat</a>(<a class="local col3 ref" href="#3format" title='format' data-ref="3format">format</a>))&nbsp</td></tr>
+<tr><th id="538">538</th><td>		<b>return</b> (<var>8</var>*<a class="ref fn" href="#_ZN6tImage17tGetBytesPerBlockENS_12tPixelFormatE" title='tImage::tGetBytesPerBlock' data-ref="_ZN6tImage17tGetBytesPerBlockENS_12tPixelFormatE">tGetBytesPerBlock</a>(<a class="local col3 ref" href="#3format" title='format' data-ref="3format">format</a>)) &gt;&gt; <var>4</var>;&nbsp</td></tr>
+<tr><th id="539">539</th><td>&nbsp</td></tr>
+<tr><th id="540">540</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage12tIsPVRFormatENS_12tPixelFormatE" title='tImage::tIsPVRFormat' data-ref="_ZN6tImage12tIsPVRFormatENS_12tPixelFormatE">tIsPVRFormat</a>(<a class="local col3 ref" href="#3format" title='format' data-ref="3format">format</a>))&nbsp</td></tr>
+<tr><th id="541">541</th><td>		<b>return</b> <a class="ref" href="#tImage::PVRFormat_BitsPerPixel" title='tImage::PVRFormat_BitsPerPixel' data-ref="tImage::PVRFormat_BitsPerPixel">PVRFormat_BitsPerPixel</a>[<em>int</em>(<a class="local col3 ref" href="#3format" title='format' data-ref="3format">format</a>) - <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstPVR" title='tImage::tPixelFormat::FirstPVR' data-ref="tImage::tPixelFormat::FirstPVR">FirstPVR</a>)];&nbsp</td></tr>
+<tr><th id="542">542</th><td>&nbsp</td></tr>
+<tr><th id="543">543</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage15tIsVendorFormatENS_12tPixelFormatE" title='tImage::tIsVendorFormat' data-ref="_ZN6tImage15tIsVendorFormatENS_12tPixelFormatE">tIsVendorFormat</a>(<a class="local col3 ref" href="#3format" title='format' data-ref="3format">format</a>))&nbsp</td></tr>
+<tr><th id="544">544</th><td>		<b>return</b> <a class="ref" href="#tImage::VendorFormat_BitsPerPixel" title='tImage::VendorFormat_BitsPerPixel' data-ref="tImage::VendorFormat_BitsPerPixel">VendorFormat_BitsPerPixel</a>[<em>int</em>(<a class="local col3 ref" href="#3format" title='format' data-ref="3format">format</a>) - <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstVendor" title='tImage::tPixelFormat::FirstVendor' data-ref="tImage::tPixelFormat::FirstVendor">FirstVendor</a>)];&nbsp</td></tr>
+<tr><th id="545">545</th><td>&nbsp</td></tr>
+<tr><th id="546">546</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage16tIsPaletteFormatENS_12tPixelFormatE" title='tImage::tIsPaletteFormat' data-ref="_ZN6tImage16tIsPaletteFormatENS_12tPixelFormatE">tIsPaletteFormat</a>(<a class="local col3 ref" href="#3format" title='format' data-ref="3format">format</a>))&nbsp</td></tr>
+<tr><th id="547">547</th><td>		<b>return</b> <a class="ref" href="#tImage::PaletteFormat_BitsPerPixel" title='tImage::PaletteFormat_BitsPerPixel' data-ref="tImage::PaletteFormat_BitsPerPixel">PaletteFormat_BitsPerPixel</a>[<em>int</em>(<a class="local col3 ref" href="#3format" title='format' data-ref="3format">format</a>) - <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstPalette" title='tImage::tPixelFormat::FirstPalette' data-ref="tImage::tPixelFormat::FirstPalette">FirstPalette</a>)];&nbsp</td></tr>
+<tr><th id="548">548</th><td>		&nbsp</td></tr>
+<tr><th id="549">549</th><td>	<b>return</b> <var>0</var>;&nbsp</td></tr>
+<tr><th id="550">550</th><td>}&nbsp</td></tr>
+<tr><th id="551">551</th><td>&nbsp</td></tr>
+<tr><th id="552">552</th><td>&nbsp</td></tr>
+<tr><th id="553">553</th><td><em>float</em> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage21tGetBitsPerPixelFloatENS_12tPixelFormatE" title='tImage::tGetBitsPerPixelFloat' data-ref="_ZN6tImage21tGetBitsPerPixelFloatENS_12tPixelFormatE">tGetBitsPerPixelFloat</dfn>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a> <dfn class="local col4 decl" id="4format" title='format' data-type='tImage::tPixelFormat' data-ref="4format">format</dfn>)&nbsp</td></tr>
+<tr><th id="554">554</th><td>{&nbsp</td></tr>
+<tr><th id="555">555</th><td>	<em>int</em> <dfn class="local col5 decl" id="5bitsPerPixel" title='bitsPerPixel' data-type='int' data-ref="5bitsPerPixel">bitsPerPixel</dfn> = <a class="ref fn" href="#_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE" title='tImage::tGetBitsPerPixel' data-ref="_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE">tGetBitsPerPixel</a>(<a class="local col4 ref" href="#4format" title='format' data-ref="4format">format</a>);&nbsp</td></tr>
+<tr><th id="556">556</th><td>	<b>if</b> (<a class="local col5 ref" href="#5bitsPerPixel" title='bitsPerPixel' data-ref="5bitsPerPixel">bitsPerPixel</a>)&nbsp</td></tr>
+<tr><th id="557">557</th><td>		<b>return</b> <em>float</em>(<a class="local col5 ref" href="#5bitsPerPixel" title='bitsPerPixel' data-ref="5bitsPerPixel">bitsPerPixel</a>);&nbsp</td></tr>
+<tr><th id="558">558</th><td>&nbsp</td></tr>
+<tr><th id="559">559</th><td>	<em>int</em> <dfn class="local col6 decl" id="6pixelsPerBlock" title='pixelsPerBlock' data-type='int' data-ref="6pixelsPerBlock">pixelsPerBlock</dfn> = <a class="ref fn" href="#_ZN6tImage14tGetBlockWidthENS_12tPixelFormatE" title='tImage::tGetBlockWidth' data-ref="_ZN6tImage14tGetBlockWidthENS_12tPixelFormatE">tGetBlockWidth</a>(<a class="local col4 ref" href="#4format" title='format' data-ref="4format">format</a>) * <a class="ref fn" href="#_ZN6tImage15tGetBlockHeightENS_12tPixelFormatE" title='tImage::tGetBlockHeight' data-ref="_ZN6tImage15tGetBlockHeightENS_12tPixelFormatE">tGetBlockHeight</a>(<a class="local col4 ref" href="#4format" title='format' data-ref="4format">format</a>);&nbsp</td></tr>
+<tr><th id="560">560</th><td>	<em>int</em> <dfn class="local col7 decl" id="7bitsPerBlock" title='bitsPerBlock' data-type='int' data-ref="7bitsPerBlock">bitsPerBlock</dfn> = <a class="ref fn" href="#_ZN6tImage17tGetBytesPerBlockENS_12tPixelFormatE" title='tImage::tGetBytesPerBlock' data-ref="_ZN6tImage17tGetBytesPerBlockENS_12tPixelFormatE">tGetBytesPerBlock</a>(<a class="local col4 ref" href="#4format" title='format' data-ref="4format">format</a>) * <var>8</var>;&nbsp</td></tr>
+<tr><th id="561">561</th><td>	<b>return</b> <em>float</em>(<a class="local col7 ref" href="#7bitsPerBlock" title='bitsPerBlock' data-ref="7bitsPerBlock">bitsPerBlock</a>) / <em>float</em>(<a class="local col6 ref" href="#6pixelsPerBlock" title='pixelsPerBlock' data-ref="6pixelsPerBlock">pixelsPerBlock</a>);&nbsp</td></tr>
+<tr><th id="562">562</th><td>}&nbsp</td></tr>
+<tr><th id="563">563</th><td>&nbsp</td></tr>
+<tr><th id="564">564</th><td>&nbsp</td></tr>
+<tr><th id="565">565</th><td><em>int</em> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage17tGetBytesPerBlockENS_12tPixelFormatE" title='tImage::tGetBytesPerBlock' data-ref="_ZN6tImage17tGetBytesPerBlockENS_12tPixelFormatE">tGetBytesPerBlock</dfn>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a> <dfn class="local col8 decl" id="8format" title='format' data-type='tImage::tPixelFormat' data-ref="8format">format</dfn>)&nbsp</td></tr>
+<tr><th id="566">566</th><td>{&nbsp</td></tr>
+<tr><th id="567">567</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage11tIsBCFormatENS_12tPixelFormatE" title='tImage::tIsBCFormat' data-ref="_ZN6tImage11tIsBCFormatENS_12tPixelFormatE">tIsBCFormat</a>(<a class="local col8 ref" href="#8format" title='format' data-ref="8format">format</a>))&nbsp</td></tr>
+<tr><th id="568">568</th><td>		<b>return</b> <a class="ref" href="#tImage::BCFormat_BytesPerBlock" title='tImage::BCFormat_BytesPerBlock' data-ref="tImage::BCFormat_BytesPerBlock">BCFormat_BytesPerBlock</a>[<em>int</em>(<a class="local col8 ref" href="#8format" title='format' data-ref="8format">format</a>) - <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::FirstBC" title='tImage::tPixelFormat::FirstBC' data-ref="tImage::tPixelFormat::FirstBC">FirstBC</a>)];&nbsp</td></tr>
+<tr><th id="569">569</th><td>&nbsp</td></tr>
+<tr><th id="570">570</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage12tIsPVRFormatENS_12tPixelFormatE" title='tImage::tIsPVRFormat' data-ref="_ZN6tImage12tIsPVRFormatENS_12tPixelFormatE">tIsPVRFormat</a>(<a class="local col8 ref" href="#8format" title='format' data-ref="8format">format</a>) &amp;&amp; <a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage12tIsLDRFormatENS_12tPixelFormatE" title='tImage::tIsLDRFormat' data-ref="_ZN6tImage12tIsLDRFormatENS_12tPixelFormatE">tIsLDRFormat</a>(<a class="local col8 ref" href="#8format" title='format' data-ref="8format">format</a>))&nbsp</td></tr>
+<tr><th id="571">571</th><td>		<b>return</b> <var>8</var>;&nbsp</td></tr>
+<tr><th id="572">572</th><td>&nbsp</td></tr>
+<tr><th id="573">573</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage13tIsASTCFormatENS_12tPixelFormatE" title='tImage::tIsASTCFormat' data-ref="_ZN6tImage13tIsASTCFormatENS_12tPixelFormatE">tIsASTCFormat</a>(<a class="local col8 ref" href="#8format" title='format' data-ref="8format">format</a>))&nbsp</td></tr>
+<tr><th id="574">574</th><td>		<b>return</b> <var>16</var>;&nbsp</td></tr>
+<tr><th id="575">575</th><td>&nbsp</td></tr>
+<tr><th id="576">576</th><td>	<b>if</b> (<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage15tIsPackedFormatENS_12tPixelFormatE" title='tImage::tIsPackedFormat' data-ref="_ZN6tImage15tIsPackedFormatENS_12tPixelFormatE">tIsPackedFormat</a>(<a class="local col8 ref" href="#8format" title='format' data-ref="8format">format</a>))&nbsp</td></tr>
+<tr><th id="577">577</th><td>		<b>return</b> <a class="ref fn" href="#_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE" title='tImage::tGetBitsPerPixel' data-ref="_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE">tGetBitsPerPixel</a>(<a class="local col8 ref" href="#8format" title='format' data-ref="8format">format</a>) / <var>8</var>;&nbsp</td></tr>
+<tr><th id="578">578</th><td>&nbsp</td></tr>
+<tr><th id="579">579</th><td>	<b>return</b> <var>0</var>;&nbsp</td></tr>
+<tr><th id="580">580</th><td>}&nbsp</td></tr>
+<tr><th id="581">581</th><td>&nbsp</td></tr>
+<tr><th id="582">582</th><td>&nbsp</td></tr>
+<tr><th id="583">583</th><td><em>int</em> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage19tGetNumMipmapLevelsEii" title='tImage::tGetNumMipmapLevels' data-ref="_ZN6tImage19tGetNumMipmapLevelsEii">tGetNumMipmapLevels</dfn>(<em>int</em> <dfn class="local col9 decl" id="9width" title='width' data-type='int' data-ref="9width">width</dfn>, <em>int</em> <dfn class="local col0 decl" id="10height" title='height' data-type='int' data-ref="10height">height</dfn>)&nbsp</td></tr>
+<tr><th id="584">584</th><td>{&nbsp</td></tr>
+<tr><th id="585">585</th><td>	<b>if</b> ((<a class="local col9 ref" href="#9width" title='width' data-ref="9width">width</a> &lt; <var>1</var>) || (<a class="local col0 ref" href="#10height" title='height' data-ref="10height">height</a> &lt; <var>1</var>))&nbsp</td></tr>
+<tr><th id="586">586</th><td>		<b>return</b> <var>0</var>;&nbsp</td></tr>
+<tr><th id="587">587</th><td>&nbsp</td></tr>
+<tr><th id="588">588</th><td>	<em>int</em> <dfn class="local col1 decl" id="11maxDim" title='maxDim' data-type='int' data-ref="11maxDim">maxDim</dfn> = <span class="namespace">tMath::</span><a class="ref fn" href="../../Foundation/Inc/Foundation/tFundamentals.h.html#_ZN5tMath4tMaxERKT_S2_" title='tMath::tMax' data-ref="_ZN5tMath4tMaxERKT_S2_">tMax</a>(<span class='inlayHint'>a:&nbsp;</span><a class="local col9 ref" href="#9width" title='width' data-ref="9width">width</a>, <span class='inlayHint'>b:&nbsp;</span><a class="local col0 ref" href="#10height" title='height' data-ref="10height">height</a>);	&nbsp</td></tr>
+<tr><th id="589">589</th><td>	<b>return</b> <span class="namespace">tMath::</span><a class="ref fn" href="../../Foundation/Inc/Foundation/tFundamentals.h.html#_ZN5tMath5tLog2Ei" title='tMath::tLog2' data-ref="_ZN5tMath5tLog2Ei">tLog2</a>(<span class='inlayHint'>x:&nbsp;</span><a class="local col1 ref" href="#11maxDim" title='maxDim' data-ref="11maxDim">maxDim</a>) + <var>1</var>;&nbsp</td></tr>
+<tr><th id="590">590</th><td>}&nbsp</td></tr>
+<tr><th id="591">591</th><td>&nbsp</td></tr>
+<tr><th id="592">592</th><td>&nbsp</td></tr>
+<tr><th id="593">593</th><td><em>int</em> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage22tGetNextMipmapLevelDimEi" title='tImage::tGetNextMipmapLevelDim' data-ref="_ZN6tImage22tGetNextMipmapLevelDimEi">tGetNextMipmapLevelDim</dfn>(<em>int</em> <dfn class="local col2 decl" id="12widthOrHeight" title='widthOrHeight' data-type='int' data-ref="12widthOrHeight">widthOrHeight</dfn>)&nbsp</td></tr>
+<tr><th id="594">594</th><td>{&nbsp</td></tr>
+<tr><th id="595">595</th><td>	<b>if</b> (<a class="local col2 ref" href="#12widthOrHeight" title='widthOrHeight' data-ref="12widthOrHeight">widthOrHeight</a> &lt;= <var>0</var>)&nbsp</td></tr>
+<tr><th id="596">596</th><td>		<b>return</b> <var>0</var>;&nbsp</td></tr>
+<tr><th id="597">597</th><td>	<b>if</b> (<a class="local col2 ref" href="#12widthOrHeight" title='widthOrHeight' data-ref="12widthOrHeight">widthOrHeight</a> == <var>1</var>)&nbsp</td></tr>
+<tr><th id="598">598</th><td>		<b>return</b> <var>1</var>;&nbsp</td></tr>
+<tr><th id="599">599</th><td>	<b>return</b> <a class="local col2 ref" href="#12widthOrHeight" title='widthOrHeight' data-ref="12widthOrHeight">widthOrHeight</a> &gt;&gt; <var>1</var>;&nbsp</td></tr>
+<tr><th id="600">600</th><td>}&nbsp</td></tr>
+<tr><th id="601">601</th><td>&nbsp</td></tr>
+<tr><th id="602">602</th><td>&nbsp</td></tr>
+<tr><th id="603">603</th><td><em>void</em> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage23tGetNextMipmapLevelDimsERiS0_" title='tImage::tGetNextMipmapLevelDims' data-ref="_ZN6tImage23tGetNextMipmapLevelDimsERiS0_">tGetNextMipmapLevelDims</dfn>(<em>int</em>&amp; <dfn class="local col3 decl" id="13width" title='width' data-type='int &amp;' data-ref="13width">width</dfn>, <em>int</em>&amp; <dfn class="local col4 decl" id="14height" title='height' data-type='int &amp;' data-ref="14height">height</dfn>)&nbsp</td></tr>
+<tr><th id="604">604</th><td>{&nbsp</td></tr>
+<tr><th id="605">605</th><td>	<a class="local col3 ref" href="#13width" title='width' data-ref="13width">width</a> = <a class="ref fn" href="#_ZN6tImage22tGetNextMipmapLevelDimEi" title='tImage::tGetNextMipmapLevelDim' data-ref="_ZN6tImage22tGetNextMipmapLevelDimEi">tGetNextMipmapLevelDim</a>(<span class='inlayHint'>widthOrHeight:&nbsp;</span><a class="local col3 ref" href="#13width" title='width' data-ref="13width">width</a>);&nbsp</td></tr>
+<tr><th id="606">606</th><td>	<a class="local col4 ref" href="#14height" title='height' data-ref="14height">height</a> = <a class="ref fn" href="#_ZN6tImage22tGetNextMipmapLevelDimEi" title='tImage::tGetNextMipmapLevelDim' data-ref="_ZN6tImage22tGetNextMipmapLevelDimEi">tGetNextMipmapLevelDim</a>(<span class='inlayHint'>widthOrHeight:&nbsp;</span><a class="local col4 ref" href="#14height" title='height' data-ref="14height">height</a>);&nbsp</td></tr>
+<tr><th id="607">607</th><td>}&nbsp</td></tr>
+<tr><th id="608">608</th><td>&nbsp</td></tr>
+<tr><th id="609">609</th><td>&nbsp</td></tr>
+<tr><th id="610">610</th><td><em>int</em> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage13tGetMipmapDimEii" title='tImage::tGetMipmapDim' data-ref="_ZN6tImage13tGetMipmapDimEii">tGetMipmapDim</dfn>(<em>int</em> <dfn class="local col5 decl" id="15widthOrHeight" title='widthOrHeight' data-type='int' data-ref="15widthOrHeight">widthOrHeight</dfn>, <em>int</em> <dfn class="local col6 decl" id="16level" title='level' data-type='int' data-ref="16level">level</dfn>)&nbsp</td></tr>
+<tr><th id="611">611</th><td>{&nbsp</td></tr>
+<tr><th id="612">612</th><td>	<b>if</b> (<a class="local col5 ref" href="#15widthOrHeight" title='widthOrHeight' data-ref="15widthOrHeight">widthOrHeight</a> &lt;= <var>0</var>)&nbsp</td></tr>
+<tr><th id="613">613</th><td>		<b>return</b> <var>0</var>;&nbsp</td></tr>
+<tr><th id="614">614</th><td>	<b>if</b> (<a class="local col6 ref" href="#16level" title='level' data-ref="16level">level</a> &lt; <var>0</var>)&nbsp</td></tr>
+<tr><th id="615">615</th><td>		<b>return</b> <a class="local col5 ref" href="#15widthOrHeight" title='widthOrHeight' data-ref="15widthOrHeight">widthOrHeight</a>;&nbsp</td></tr>
+<tr><th id="616">616</th><td>	<em>int</em> <dfn class="local col7 decl" id="17dim" title='dim' data-type='int' data-ref="17dim">dim</dfn> = <a class="local col5 ref" href="#15widthOrHeight" title='widthOrHeight' data-ref="15widthOrHeight">widthOrHeight</a> &gt;&gt; <a class="local col6 ref" href="#16level" title='level' data-ref="16level">level</a>;&nbsp</td></tr>
+<tr><th id="617">617</th><td>	<b>if</b> (<a class="local col7 ref" href="#17dim" title='dim' data-ref="17dim">dim</a> &lt;= <var>0</var>)&nbsp</td></tr>
+<tr><th id="618">618</th><td>		<a class="local col7 ref" href="#17dim" title='dim' data-ref="17dim">dim</a> = <var>1</var>;&nbsp</td></tr>
+<tr><th id="619">619</th><td>	<b>return</b> <a class="local col7 ref" href="#17dim" title='dim' data-ref="17dim">dim</a>;&nbsp</td></tr>
+<tr><th id="620">620</th><td>}&nbsp</td></tr>
+<tr><th id="621">621</th><td>&nbsp</td></tr>
+<tr><th id="622">622</th><td>&nbsp</td></tr>
+<tr><th id="623">623</th><td><em>void</em> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage14tGetMipmapDimsERiS0_i" title='tImage::tGetMipmapDims' data-ref="_ZN6tImage14tGetMipmapDimsERiS0_i">tGetMipmapDims</dfn>(<em>int</em>&amp; <dfn class="local col8 decl" id="18width" title='width' data-type='int &amp;' data-ref="18width">width</dfn>, <em>int</em>&amp; <dfn class="local col9 decl" id="19height" title='height' data-type='int &amp;' data-ref="19height">height</dfn>, <em>int</em> <dfn class="local col0 decl" id="20level" title='level' data-type='int' data-ref="20level">level</dfn>)&nbsp</td></tr>
+<tr><th id="624">624</th><td>{&nbsp</td></tr>
+<tr><th id="625">625</th><td>	<a class="local col8 ref" href="#18width" title='width' data-ref="18width">width</a> = <a class="ref fn" href="#_ZN6tImage13tGetMipmapDimEii" title='tImage::tGetMipmapDim' data-ref="_ZN6tImage13tGetMipmapDimEii">tGetMipmapDim</a>(<span class='inlayHint'>widthOrHeight:&nbsp;</span><a class="local col8 ref" href="#18width" title='width' data-ref="18width">width</a>, <a class="local col0 ref" href="#20level" title='level' data-ref="20level">level</a>);&nbsp</td></tr>
+<tr><th id="626">626</th><td>	<a class="local col9 ref" href="#19height" title='height' data-ref="19height">height</a> = <a class="ref fn" href="#_ZN6tImage13tGetMipmapDimEii" title='tImage::tGetMipmapDim' data-ref="_ZN6tImage13tGetMipmapDimEii">tGetMipmapDim</a>(<span class='inlayHint'>widthOrHeight:&nbsp;</span><a class="local col9 ref" href="#19height" title='height' data-ref="19height">height</a>, <a class="local col0 ref" href="#20level" title='level' data-ref="20level">level</a>);&nbsp</td></tr>
+<tr><th id="627">627</th><td>}&nbsp</td></tr>
+<tr><th id="628">628</th><td>&nbsp</td></tr>
+<tr><th id="629">629</th><td>&nbsp</td></tr>
+<tr><th id="630">630</th><td><em>void</em> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage14tGetMipmapDimsERiS0_iii" title='tImage::tGetMipmapDims' data-ref="_ZN6tImage14tGetMipmapDimsERiS0_iii">tGetMipmapDims</dfn>(<em>int</em>&amp; <dfn class="local col1 decl" id="21mipWidth" title='mipWidth' data-type='int &amp;' data-ref="21mipWidth">mipWidth</dfn>, <em>int</em>&amp; <dfn class="local col2 decl" id="22mipHeight" title='mipHeight' data-type='int &amp;' data-ref="22mipHeight">mipHeight</dfn>, <em>int</em> <dfn class="local col3 decl" id="23width" title='width' data-type='int' data-ref="23width">width</dfn>, <em>int</em> <dfn class="local col4 decl" id="24height" title='height' data-type='int' data-ref="24height">height</dfn>, <em>int</em> <dfn class="local col5 decl" id="25level" title='level' data-type='int' data-ref="25level">level</dfn>)&nbsp</td></tr>
+<tr><th id="631">631</th><td>{&nbsp</td></tr>
+<tr><th id="632">632</th><td>	<a class="local col1 ref" href="#21mipWidth" title='mipWidth' data-ref="21mipWidth">mipWidth</a> = <a class="ref fn" href="#_ZN6tImage13tGetMipmapDimEii" title='tImage::tGetMipmapDim' data-ref="_ZN6tImage13tGetMipmapDimEii">tGetMipmapDim</a>(<span class='inlayHint'>widthOrHeight:&nbsp;</span><a class="local col3 ref" href="#23width" title='width' data-ref="23width">width</a>, <a class="local col5 ref" href="#25level" title='level' data-ref="25level">level</a>);&nbsp</td></tr>
+<tr><th id="633">633</th><td>	<a class="local col2 ref" href="#22mipHeight" title='mipHeight' data-ref="22mipHeight">mipHeight</a> = <a class="ref fn" href="#_ZN6tImage13tGetMipmapDimEii" title='tImage::tGetMipmapDim' data-ref="_ZN6tImage13tGetMipmapDimEii">tGetMipmapDim</a>(<span class='inlayHint'>widthOrHeight:&nbsp;</span><a class="local col4 ref" href="#24height" title='height' data-ref="24height">height</a>, <a class="local col5 ref" href="#25level" title='level' data-ref="25level">level</a>);&nbsp</td></tr>
+<tr><th id="634">634</th><td>}&nbsp</td></tr>
+<tr><th id="635">635</th><td>&nbsp</td></tr>
+<tr><th id="636">636</th><td>&nbsp</td></tr>
+<tr><th id="637">637</th><td><em>const</em> <em>char</em>* <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage19tGetPixelFormatNameENS_12tPixelFormatE" title='tImage::tGetPixelFormatName' data-ref="_ZN6tImage19tGetPixelFormatNameENS_12tPixelFormatE">tGetPixelFormatName</dfn>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a> <dfn class="local col6 decl" id="26fmt" title='fmt' data-type='tImage::tPixelFormat' data-ref="26fmt">fmt</dfn>)&nbsp</td></tr>
+<tr><th id="638">638</th><td>{&nbsp</td></tr>
+<tr><th id="639">639</th><td>	<b>if</b> (!<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage14tIsValidFormatENS_12tPixelFormatE" title='tImage::tIsValidFormat' data-ref="_ZN6tImage14tIsValidFormatENS_12tPixelFormatE">tIsValidFormat</a>(<span class='inlayHint'>format:&nbsp;</span><a class="local col6 ref" href="#26fmt" title='fmt' data-ref="26fmt">fmt</a>))&nbsp</td></tr>
+<tr><th id="640">640</th><td>		<b>return</b> <q>"Unknown"</q>;&nbsp</td></tr>
+<tr><th id="641">641</th><td>	<b>return</b> <a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatNames" title='tImage::PixelFormatNames' data-ref="tImage::PixelFormatNames">PixelFormatNames</a>[<em>int</em>(<a class="local col6 ref" href="#26fmt" title='fmt' data-ref="26fmt">fmt</a>)];&nbsp</td></tr>
+<tr><th id="642">642</th><td>}&nbsp</td></tr>
+<tr><th id="643">643</th><td>&nbsp</td></tr>
+<tr><th id="644">644</th><td>&nbsp</td></tr>
+<tr><th id="645">645</th><td><em>const</em> <em>char</em>* <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage19tGetPixelFormatDescENS_12tPixelFormatE" title='tImage::tGetPixelFormatDesc' data-ref="_ZN6tImage19tGetPixelFormatDescENS_12tPixelFormatE">tGetPixelFormatDesc</dfn>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a> <dfn class="local col7 decl" id="27fmt" title='fmt' data-type='tImage::tPixelFormat' data-ref="27fmt">fmt</dfn>)&nbsp</td></tr>
+<tr><th id="646">646</th><td>{&nbsp</td></tr>
+<tr><th id="647">647</th><td>	<b>if</b> (!<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage14tIsValidFormatENS_12tPixelFormatE" title='tImage::tIsValidFormat' data-ref="_ZN6tImage14tIsValidFormatENS_12tPixelFormatE">tIsValidFormat</a>(<span class='inlayHint'>format:&nbsp;</span><a class="local col7 ref" href="#27fmt" title='fmt' data-ref="27fmt">fmt</a>))&nbsp</td></tr>
+<tr><th id="648">648</th><td>		<b>return</b> <q>"Unknown"</q>;&nbsp</td></tr>
+<tr><th id="649">649</th><td>	<b>return</b> <a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatDescs" title='tImage::PixelFormatDescs' data-ref="tImage::PixelFormatDescs">PixelFormatDescs</a>[<em>int</em>(<a class="local col7 ref" href="#27fmt" title='fmt' data-ref="27fmt">fmt</a>)];&nbsp</td></tr>
+<tr><th id="650">650</th><td>}&nbsp</td></tr>
+<tr><th id="651">651</th><td>&nbsp</td></tr>
+<tr><th id="652">652</th><td>&nbsp</td></tr>
+<tr><th id="653">653</th><td><span class="namespace">tImage::</span><a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage15tGetPixelFormatEPKc" title='tImage::tGetPixelFormat' data-ref="_ZN6tImage15tGetPixelFormatEPKc">tGetPixelFormat</dfn>(<em>const</em> <em>char</em>* <dfn class="local col8 decl" id="28name" title='name' data-type='const char *' data-ref="28name">name</dfn>)&nbsp</td></tr>
+<tr><th id="654">654</th><td>{&nbsp</td></tr>
+<tr><th id="655">655</th><td>	<b>if</b> (!<a class="local col8 ref" href="#28name" title='name' data-ref="28name">name</a> || (<a class="local col8 ref" href="#28name" title='name' data-ref="28name">name</a>[<var>0</var>] == <kbd>'\0'</kbd>))&nbsp</td></tr>
+<tr><th id="656">656</th><td>		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::Invalid" title='tImage::tPixelFormat::Invalid' data-ref="tImage::tPixelFormat::Invalid">Invalid</a>;&nbsp</td></tr>
+<tr><th id="657">657</th><td>&nbsp</td></tr>
+<tr><th id="658">658</th><td>	<b>for</b> (<em>int</em> <dfn class="local col9 decl" id="29p" title='p' data-type='int' data-ref="29p">p</dfn> = <var>0</var>; <a class="local col9 ref" href="#29p" title='p' data-ref="29p">p</a> &lt; <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::NumPixelFormats" title='tImage::tPixelFormat::NumPixelFormats' data-ref="tImage::tPixelFormat::NumPixelFormats">NumPixelFormats</a>); <a class="local col9 ref" href="#29p" title='p' data-ref="29p">p</a>++)&nbsp</td></tr>
+<tr><th id="659">659</th><td>		<b>if</b> (<span class="namespace">tStd::</span><a class="ref fn" href="../../Foundation/Inc/Foundation/tStandard.h.html#_ZN4tStd7tStrcmpEPKcS1_" title='tStd::tStrcmp' data-ref="_ZN4tStd7tStrcmpEPKcS1_">tStrcmp</a>(<span class='inlayHint'>a:&nbsp;</span><a class="ref" href="../Inc/Image/tPixelFormat.h.html#tImage::PixelFormatNames" title='tImage::PixelFormatNames' data-ref="tImage::PixelFormatNames">PixelFormatNames</a>[<a class="local col9 ref" href="#29p" title='p' data-ref="29p">p</a>], <span class='inlayHint'>b:&nbsp;</span><a class="local col8 ref" href="#28name" title='name' data-ref="28name">name</a>) == <var>0</var>)&nbsp</td></tr>
+<tr><th id="660">660</th><td>			<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>(<a class="local col9 ref" href="#29p" title='p' data-ref="29p">p</a>);&nbsp</td></tr>
+<tr><th id="661">661</th><td>&nbsp</td></tr>
+<tr><th id="662">662</th><td>	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat" title='tImage::tPixelFormat' data-ref="tImage::tPixelFormat">tPixelFormat</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tPixelFormat::Invalid" title='tImage::tPixelFormat::Invalid' data-ref="tImage::tPixelFormat::Invalid">Invalid</a>;&nbsp</td></tr>
+<tr><th id="663">663</th><td>}&nbsp</td></tr>
+<tr><th id="664">664</th><td>&nbsp</td></tr>
+<tr><th id="665">665</th><td>&nbsp</td></tr>
+<tr><th id="666">666</th><td><em>const</em> <em>char</em>* <span class="namespace">tImage::</span><dfn class="decl def" id="tImage::tAspectRatioNames" title='tImage::tAspectRatioNames' data-ref="tImage::tAspectRatioNames">tAspectRatioNames</dfn>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::NumRatios" title='tImage::tAspectRatio::NumRatios' data-ref="tImage::tAspectRatio::NumRatios">NumRatios</a>)+<var>1</var>] =&nbsp</td></tr>
+<tr><th id="667">667</th><td>{&nbsp</td></tr>
+<tr><th id="668">668</th><td>	<q>"Free"</q>,&nbsp</td></tr>
+<tr><th id="669">669</th><td>&nbsp</td></tr>
+<tr><th id="670">670</th><td>	<q>"3 : 1"</q>,&nbsp</td></tr>
+<tr><th id="671">671</th><td>	<q>"2 : 1"</q>,&nbsp</td></tr>
+<tr><th id="672">672</th><td>	<q>"16 : 9"</q>,&nbsp</td></tr>
+<tr><th id="673">673</th><td>	<q>"5 : 3"</q>,&nbsp</td></tr>
+<tr><th id="674">674</th><td>	<q>"16 : 10"</q>,&nbsp</td></tr>
+<tr><th id="675">675</th><td>	<q>"8 : 5"</q>,&nbsp</td></tr>
+<tr><th id="676">676</th><td>	<q>"3 : 2"</q>,&nbsp</td></tr>
+<tr><th id="677">677</th><td>	<q>"16 : 11"</q>,&nbsp</td></tr>
+<tr><th id="678">678</th><td>	<q>"7 : 5"</q>,&nbsp</td></tr>
+<tr><th id="679">679</th><td>	<q>"4 : 3"</q>,&nbsp</td></tr>
+<tr><th id="680">680</th><td>	<q>"22 : 17"</q>,&nbsp</td></tr>
+<tr><th id="681">681</th><td>	<q>"14 : 11"</q>,&nbsp</td></tr>
+<tr><th id="682">682</th><td>	<q>"5 : 4"</q>,&nbsp</td></tr>
+<tr><th id="683">683</th><td>&nbsp</td></tr>
+<tr><th id="684">684</th><td>	<q>"1 : 1"</q>,&nbsp</td></tr>
+<tr><th id="685">685</th><td>&nbsp</td></tr>
+<tr><th id="686">686</th><td>	<q>"4 : 5"</q>,&nbsp</td></tr>
+<tr><th id="687">687</th><td>	<q>"11 : 14"</q>,&nbsp</td></tr>
+<tr><th id="688">688</th><td>	<q>"17 : 22"</q>,&nbsp</td></tr>
+<tr><th id="689">689</th><td>	<q>"3 : 4"</q>,&nbsp</td></tr>
+<tr><th id="690">690</th><td>	<q>"5 : 7"</q>,&nbsp</td></tr>
+<tr><th id="691">691</th><td>	<q>"11 : 16"</q>,&nbsp</td></tr>
+<tr><th id="692">692</th><td>	<q>"2 : 3"</q>,&nbsp</td></tr>
+<tr><th id="693">693</th><td>	<q>"5 : 8"</q>,&nbsp</td></tr>
+<tr><th id="694">694</th><td>	<q>"10 : 16"</q>,&nbsp</td></tr>
+<tr><th id="695">695</th><td>	<q>"3 : 5"</q>,&nbsp</td></tr>
+<tr><th id="696">696</th><td>	<q>"9 : 16"</q>,&nbsp</td></tr>
+<tr><th id="697">697</th><td>	<q>"1 : 2"</q>,&nbsp</td></tr>
+<tr><th id="698">698</th><td>	<q>"1 : 3"</q>,&nbsp</td></tr>
+<tr><th id="699">699</th><td>&nbsp</td></tr>
+<tr><th id="700">700</th><td>	<q>"Print 2x3"</q>,		<q>"Print 2x3L"</q>,&nbsp</td></tr>
+<tr><th id="701">701</th><td>	<q>"Print 3x5"</q>,		<q>"Print 3x5L"</q>,&nbsp</td></tr>
+<tr><th id="702">702</th><td>	<q>"Print 4x4"</q>,&nbsp</td></tr>
+<tr><th id="703">703</th><td>	<q>"Print 4x6"</q>,		<q>"Print 4x6L"</q>,&nbsp</td></tr>
+<tr><th id="704">704</th><td>	<q>"Print 5x7"</q>,		<q>"Print 5x7L"</q>,&nbsp</td></tr>
+<tr><th id="705">705</th><td>	<q>"Print 5x15"</q>,		<q>"Print 5x15L"</q>,&nbsp</td></tr>
+<tr><th id="706">706</th><td>	<q>"Print 8x8"</q>,&nbsp</td></tr>
+<tr><th id="707">707</th><td>	<q>"Print 8x10"</q>,		<q>"Print 8x10L"</q>,&nbsp</td></tr>
+<tr><th id="708">708</th><td>	<q>"Print 8x24"</q>,		<q>"Print 8x24L"</q>,&nbsp</td></tr>
+<tr><th id="709">709</th><td>	<q>"Print 8.5x11"</q>,		<q>"Print 8.5x11L"</q>,&nbsp</td></tr>
+<tr><th id="710">710</th><td>	<q>"Print 9x16"</q>,		<q>"Print 9x16L"</q>,&nbsp</td></tr>
+<tr><th id="711">711</th><td>	<q>"Print 11x14"</q>,		<q>"Print 11x14L"</q>,&nbsp</td></tr>
+<tr><th id="712">712</th><td>	<q>"Print 11x16"</q>,		<q>"Print 11x16L"</q>,&nbsp</td></tr>
+<tr><th id="713">713</th><td>	<q>"Print 12x12"</q>,&nbsp</td></tr>
+<tr><th id="714">714</th><td>	<q>"Print 12x18"</q>,		<q>"Print 12x18L"</q>,&nbsp</td></tr>
+<tr><th id="715">715</th><td>	<q>"Print 12x36"</q>,		<q>"Print 12x36L"</q>,&nbsp</td></tr>
+<tr><th id="716">716</th><td>	<q>"Print 16x20"</q>,		<q>"Print 16x20L"</q>,&nbsp</td></tr>
+<tr><th id="717">717</th><td>	<q>"Print 18x24"</q>,		<q>"Print 18x24L"</q>,&nbsp</td></tr>
+<tr><th id="718">718</th><td>	<q>"Print 20x30"</q>,		<q>"Print 20x30L"</q>,&nbsp</td></tr>
+<tr><th id="719">719</th><td>	<q>"Print 24x36"</q>,		<q>"Print 24x36L"</q>,&nbsp</td></tr>
+<tr><th id="720">720</th><td>&nbsp</td></tr>
+<tr><th id="721">721</th><td>	<q>"User"</q>&nbsp</td></tr>
+<tr><th id="722">722</th><td>};&nbsp</td></tr>
+<tr><th id="723">723</th><td>&nbsp</td></tr>
+<tr><th id="724">724</th><td>&nbsp</td></tr>
+<tr><th id="725">725</th><td><span class="namespace">tImage::</span><a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE" title='tImage::tGetReducedAspectRatio' data-ref="_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE">tGetReducedAspectRatio</dfn>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a> <dfn class="local col0 decl" id="30aspect" title='aspect' data-type='tImage::tAspectRatio' data-ref="30aspect">aspect</dfn>)&nbsp</td></tr>
+<tr><th id="726">726</th><td>{&nbsp</td></tr>
+<tr><th id="727">727</th><td>	<b>switch</b> (<a class="local col0 ref" href="#30aspect" title='aspect' data-ref="30aspect">aspect</a>)&nbsp</td></tr>
+<tr><th id="728">728</th><td>	{&nbsp</td></tr>
+<tr><th id="729">729</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_16_10" title='tImage::tAspectRatio::Screen_16_10' data-ref="tImage::tAspectRatio::Screen_16_10">Screen_16_10</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_8_5" title='tImage::tAspectRatio::Screen_8_5' data-ref="tImage::tAspectRatio::Screen_8_5">Screen_8_5</a>;&nbsp</td></tr>
+<tr><th id="730">730</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_10_16" title='tImage::tAspectRatio::Screen_10_16' data-ref="tImage::tAspectRatio::Screen_10_16">Screen_10_16</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_5_8" title='tImage::tAspectRatio::Screen_5_8' data-ref="tImage::tAspectRatio::Screen_5_8">Screen_5_8</a>;&nbsp</td></tr>
+<tr><th id="731">731</th><td>&nbsp</td></tr>
+<tr><th id="732">732</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_2x3" title='tImage::tAspectRatio::Print_2x3' data-ref="tImage::tAspectRatio::Print_2x3">Print_2x3</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_2_3" title='tImage::tAspectRatio::Screen_2_3' data-ref="tImage::tAspectRatio::Screen_2_3">Screen_2_3</a>;&nbsp</td></tr>
+<tr><th id="733">733</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_2x3_L" title='tImage::tAspectRatio::Print_2x3_L' data-ref="tImage::tAspectRatio::Print_2x3_L">Print_2x3_L</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_3_2" title='tImage::tAspectRatio::Screen_3_2' data-ref="tImage::tAspectRatio::Screen_3_2">Screen_3_2</a>;&nbsp</td></tr>
+<tr><th id="734">734</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_3x5" title='tImage::tAspectRatio::Print_3x5' data-ref="tImage::tAspectRatio::Print_3x5">Print_3x5</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_3_5" title='tImage::tAspectRatio::Screen_3_5' data-ref="tImage::tAspectRatio::Screen_3_5">Screen_3_5</a>;&nbsp</td></tr>
+<tr><th id="735">735</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_3x5_L" title='tImage::tAspectRatio::Print_3x5_L' data-ref="tImage::tAspectRatio::Print_3x5_L">Print_3x5_L</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_5_3" title='tImage::tAspectRatio::Screen_5_3' data-ref="tImage::tAspectRatio::Screen_5_3">Screen_5_3</a>;&nbsp</td></tr>
+<tr><th id="736">736</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_4x4" title='tImage::tAspectRatio::Print_4x4' data-ref="tImage::tAspectRatio::Print_4x4">Print_4x4</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_1_1" title='tImage::tAspectRatio::Screen_1_1' data-ref="tImage::tAspectRatio::Screen_1_1">Screen_1_1</a>;&nbsp</td></tr>
+<tr><th id="737">737</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_4x6" title='tImage::tAspectRatio::Print_4x6' data-ref="tImage::tAspectRatio::Print_4x6">Print_4x6</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_2_3" title='tImage::tAspectRatio::Screen_2_3' data-ref="tImage::tAspectRatio::Screen_2_3">Screen_2_3</a>;&nbsp</td></tr>
+<tr><th id="738">738</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_4x6_L" title='tImage::tAspectRatio::Print_4x6_L' data-ref="tImage::tAspectRatio::Print_4x6_L">Print_4x6_L</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_3_2" title='tImage::tAspectRatio::Screen_3_2' data-ref="tImage::tAspectRatio::Screen_3_2">Screen_3_2</a>;&nbsp</td></tr>
+<tr><th id="739">739</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_5x7" title='tImage::tAspectRatio::Print_5x7' data-ref="tImage::tAspectRatio::Print_5x7">Print_5x7</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_5_7" title='tImage::tAspectRatio::Screen_5_7' data-ref="tImage::tAspectRatio::Screen_5_7">Screen_5_7</a>;&nbsp</td></tr>
+<tr><th id="740">740</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_5x7_L" title='tImage::tAspectRatio::Print_5x7_L' data-ref="tImage::tAspectRatio::Print_5x7_L">Print_5x7_L</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_7_5" title='tImage::tAspectRatio::Screen_7_5' data-ref="tImage::tAspectRatio::Screen_7_5">Screen_7_5</a>;&nbsp</td></tr>
+<tr><th id="741">741</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_5x15" title='tImage::tAspectRatio::Print_5x15' data-ref="tImage::tAspectRatio::Print_5x15">Print_5x15</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_1_3" title='tImage::tAspectRatio::Screen_1_3' data-ref="tImage::tAspectRatio::Screen_1_3">Screen_1_3</a>;&nbsp</td></tr>
+<tr><th id="742">742</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_5x15_L" title='tImage::tAspectRatio::Print_5x15_L' data-ref="tImage::tAspectRatio::Print_5x15_L">Print_5x15_L</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_3_1" title='tImage::tAspectRatio::Screen_3_1' data-ref="tImage::tAspectRatio::Screen_3_1">Screen_3_1</a>;&nbsp</td></tr>
+<tr><th id="743">743</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_8x8" title='tImage::tAspectRatio::Print_8x8' data-ref="tImage::tAspectRatio::Print_8x8">Print_8x8</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_1_1" title='tImage::tAspectRatio::Screen_1_1' data-ref="tImage::tAspectRatio::Screen_1_1">Screen_1_1</a>;&nbsp</td></tr>
+<tr><th id="744">744</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_8x10" title='tImage::tAspectRatio::Print_8x10' data-ref="tImage::tAspectRatio::Print_8x10">Print_8x10</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_4_5" title='tImage::tAspectRatio::Screen_4_5' data-ref="tImage::tAspectRatio::Screen_4_5">Screen_4_5</a>;&nbsp</td></tr>
+<tr><th id="745">745</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_8x10_L" title='tImage::tAspectRatio::Print_8x10_L' data-ref="tImage::tAspectRatio::Print_8x10_L">Print_8x10_L</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_5_4" title='tImage::tAspectRatio::Screen_5_4' data-ref="tImage::tAspectRatio::Screen_5_4">Screen_5_4</a>;&nbsp</td></tr>
+<tr><th id="746">746</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_8x24" title='tImage::tAspectRatio::Print_8x24' data-ref="tImage::tAspectRatio::Print_8x24">Print_8x24</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_1_3" title='tImage::tAspectRatio::Screen_1_3' data-ref="tImage::tAspectRatio::Screen_1_3">Screen_1_3</a>;&nbsp</td></tr>
+<tr><th id="747">747</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_8x24_L" title='tImage::tAspectRatio::Print_8x24_L' data-ref="tImage::tAspectRatio::Print_8x24_L">Print_8x24_L</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_3_1" title='tImage::tAspectRatio::Screen_3_1' data-ref="tImage::tAspectRatio::Screen_3_1">Screen_3_1</a>;&nbsp</td></tr>
+<tr><th id="748">748</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_8p5x11" title='tImage::tAspectRatio::Print_8p5x11' data-ref="tImage::tAspectRatio::Print_8p5x11">Print_8p5x11</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_17_22" title='tImage::tAspectRatio::Screen_17_22' data-ref="tImage::tAspectRatio::Screen_17_22">Screen_17_22</a>;&nbsp</td></tr>
+<tr><th id="749">749</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_8p5x11_L" title='tImage::tAspectRatio::Print_8p5x11_L' data-ref="tImage::tAspectRatio::Print_8p5x11_L">Print_8p5x11_L</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_22_17" title='tImage::tAspectRatio::Screen_22_17' data-ref="tImage::tAspectRatio::Screen_22_17">Screen_22_17</a>;&nbsp</td></tr>
+<tr><th id="750">750</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_9x16" title='tImage::tAspectRatio::Print_9x16' data-ref="tImage::tAspectRatio::Print_9x16">Print_9x16</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_9_16" title='tImage::tAspectRatio::Screen_9_16' data-ref="tImage::tAspectRatio::Screen_9_16">Screen_9_16</a>;&nbsp</td></tr>
+<tr><th id="751">751</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_9x16_L" title='tImage::tAspectRatio::Print_9x16_L' data-ref="tImage::tAspectRatio::Print_9x16_L">Print_9x16_L</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_16_9" title='tImage::tAspectRatio::Screen_16_9' data-ref="tImage::tAspectRatio::Screen_16_9">Screen_16_9</a>;&nbsp</td></tr>
+<tr><th id="752">752</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_11x14" title='tImage::tAspectRatio::Print_11x14' data-ref="tImage::tAspectRatio::Print_11x14">Print_11x14</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_11_14" title='tImage::tAspectRatio::Screen_11_14' data-ref="tImage::tAspectRatio::Screen_11_14">Screen_11_14</a>;&nbsp</td></tr>
+<tr><th id="753">753</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_11x14_L" title='tImage::tAspectRatio::Print_11x14_L' data-ref="tImage::tAspectRatio::Print_11x14_L">Print_11x14_L</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_14_11" title='tImage::tAspectRatio::Screen_14_11' data-ref="tImage::tAspectRatio::Screen_14_11">Screen_14_11</a>;&nbsp</td></tr>
+<tr><th id="754">754</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_11x16" title='tImage::tAspectRatio::Print_11x16' data-ref="tImage::tAspectRatio::Print_11x16">Print_11x16</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_11_16" title='tImage::tAspectRatio::Screen_11_16' data-ref="tImage::tAspectRatio::Screen_11_16">Screen_11_16</a>;&nbsp</td></tr>
+<tr><th id="755">755</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_11x16_L" title='tImage::tAspectRatio::Print_11x16_L' data-ref="tImage::tAspectRatio::Print_11x16_L">Print_11x16_L</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_16_11" title='tImage::tAspectRatio::Screen_16_11' data-ref="tImage::tAspectRatio::Screen_16_11">Screen_16_11</a>;&nbsp</td></tr>
+<tr><th id="756">756</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_12x12" title='tImage::tAspectRatio::Print_12x12' data-ref="tImage::tAspectRatio::Print_12x12">Print_12x12</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_1_1" title='tImage::tAspectRatio::Screen_1_1' data-ref="tImage::tAspectRatio::Screen_1_1">Screen_1_1</a>;&nbsp</td></tr>
+<tr><th id="757">757</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_12x18" title='tImage::tAspectRatio::Print_12x18' data-ref="tImage::tAspectRatio::Print_12x18">Print_12x18</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_2_3" title='tImage::tAspectRatio::Screen_2_3' data-ref="tImage::tAspectRatio::Screen_2_3">Screen_2_3</a>;&nbsp</td></tr>
+<tr><th id="758">758</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_12x18_L" title='tImage::tAspectRatio::Print_12x18_L' data-ref="tImage::tAspectRatio::Print_12x18_L">Print_12x18_L</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_3_2" title='tImage::tAspectRatio::Screen_3_2' data-ref="tImage::tAspectRatio::Screen_3_2">Screen_3_2</a>;&nbsp</td></tr>
+<tr><th id="759">759</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_12x36" title='tImage::tAspectRatio::Print_12x36' data-ref="tImage::tAspectRatio::Print_12x36">Print_12x36</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_1_3" title='tImage::tAspectRatio::Screen_1_3' data-ref="tImage::tAspectRatio::Screen_1_3">Screen_1_3</a>;&nbsp</td></tr>
+<tr><th id="760">760</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_12x36_L" title='tImage::tAspectRatio::Print_12x36_L' data-ref="tImage::tAspectRatio::Print_12x36_L">Print_12x36_L</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_3_1" title='tImage::tAspectRatio::Screen_3_1' data-ref="tImage::tAspectRatio::Screen_3_1">Screen_3_1</a>;&nbsp</td></tr>
+<tr><th id="761">761</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_16x20" title='tImage::tAspectRatio::Print_16x20' data-ref="tImage::tAspectRatio::Print_16x20">Print_16x20</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_4_5" title='tImage::tAspectRatio::Screen_4_5' data-ref="tImage::tAspectRatio::Screen_4_5">Screen_4_5</a>;&nbsp</td></tr>
+<tr><th id="762">762</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_16x20_L" title='tImage::tAspectRatio::Print_16x20_L' data-ref="tImage::tAspectRatio::Print_16x20_L">Print_16x20_L</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_5_4" title='tImage::tAspectRatio::Screen_5_4' data-ref="tImage::tAspectRatio::Screen_5_4">Screen_5_4</a>;&nbsp</td></tr>
+<tr><th id="763">763</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_18x24" title='tImage::tAspectRatio::Print_18x24' data-ref="tImage::tAspectRatio::Print_18x24">Print_18x24</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_3_4" title='tImage::tAspectRatio::Screen_3_4' data-ref="tImage::tAspectRatio::Screen_3_4">Screen_3_4</a>;&nbsp</td></tr>
+<tr><th id="764">764</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_18x24_L" title='tImage::tAspectRatio::Print_18x24_L' data-ref="tImage::tAspectRatio::Print_18x24_L">Print_18x24_L</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_4_3" title='tImage::tAspectRatio::Screen_4_3' data-ref="tImage::tAspectRatio::Screen_4_3">Screen_4_3</a>;&nbsp</td></tr>
+<tr><th id="765">765</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_20x30" title='tImage::tAspectRatio::Print_20x30' data-ref="tImage::tAspectRatio::Print_20x30">Print_20x30</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_2_3" title='tImage::tAspectRatio::Screen_2_3' data-ref="tImage::tAspectRatio::Screen_2_3">Screen_2_3</a>;&nbsp</td></tr>
+<tr><th id="766">766</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_20x30_L" title='tImage::tAspectRatio::Print_20x30_L' data-ref="tImage::tAspectRatio::Print_20x30_L">Print_20x30_L</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_3_2" title='tImage::tAspectRatio::Screen_3_2' data-ref="tImage::tAspectRatio::Screen_3_2">Screen_3_2</a>;&nbsp</td></tr>
+<tr><th id="767">767</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_24x36" title='tImage::tAspectRatio::Print_24x36' data-ref="tImage::tAspectRatio::Print_24x36">Print_24x36</a>:		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_2_3" title='tImage::tAspectRatio::Screen_2_3' data-ref="tImage::tAspectRatio::Screen_2_3">Screen_2_3</a>;&nbsp</td></tr>
+<tr><th id="768">768</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Print_24x36_L" title='tImage::tAspectRatio::Print_24x36_L' data-ref="tImage::tAspectRatio::Print_24x36_L">Print_24x36_L</a>:	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Screen_3_2" title='tImage::tAspectRatio::Screen_3_2' data-ref="tImage::tAspectRatio::Screen_3_2">Screen_3_2</a>;&nbsp</td></tr>
+<tr><th id="769">769</th><td>&nbsp</td></tr>
+<tr><th id="770">770</th><td>		<i>// Handles no reduction, Invalid, and User.</i>&nbsp</td></tr>
+<tr><th id="771">771</th><td>		<b>default</b>:							<b>return</b> <a class="local col0 ref" href="#30aspect" title='aspect' data-ref="30aspect">aspect</a>;&nbsp</td></tr>
+<tr><th id="772">772</th><td>	}&nbsp</td></tr>
+<tr><th id="773">773</th><td>&nbsp</td></tr>
+<tr><th id="774">774</th><td>	<i>// We'll never get here.</i>&nbsp</td></tr>
+<tr><th id="775">775</th><td>	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Invalid" title='tImage::tAspectRatio::Invalid' data-ref="tImage::tAspectRatio::Invalid">Invalid</a>;&nbsp</td></tr>
+<tr><th id="776">776</th><td>}&nbsp</td></tr>
+<tr><th id="777">777</th><td>&nbsp</td></tr>
+<tr><th id="778">778</th><td>&nbsp</td></tr>
+<tr><th id="779">779</th><td><b>namespace</b> <span class="namespace">tImage</span>&nbsp</td></tr>
+<tr><th id="780">780</th><td>{&nbsp</td></tr>
+<tr><th id="781">781</th><td>	<b>struct</b> <dfn class="type def" id="tImage::tAspectFrac" title='tImage::tAspectFrac' data-ref="tImage::tAspectFrac">tAspectFrac</dfn> { <em>int</em> <dfn class="tu decl field" id="tImage::tAspectFrac::Num" title='tImage::tAspectFrac::Num' data-type='int' data-ref="tImage::tAspectFrac::Num">Num</dfn>; <em>int</em> <dfn class="tu decl field" id="tImage::tAspectFrac::Den" title='tImage::tAspectFrac::Den' data-type='int' data-ref="tImage::tAspectFrac::Den">Den</dfn>; };&nbsp</td></tr>
+<tr><th id="782">782</th><td>	<em>static</em> <a class="type" href="#tImage::tAspectFrac" title='tImage::tAspectFrac' data-ref="tImage::tAspectFrac">tAspectFrac</a> <dfn class="tu decl def" id="tImage::tAspectRatioTable" title='tImage::tAspectRatioTable' data-type='tImage::tAspectFrac[27]' data-ref="tImage::tAspectRatioTable">tAspectRatioTable</dfn>[<em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::NumScreenRatios" title='tImage::tAspectRatio::NumScreenRatios' data-ref="tImage::tAspectRatio::NumScreenRatios">NumScreenRatios</a>)] =&nbsp</td></tr>
+<tr><th id="783">783</th><td>	{&nbsp</td></tr>
+<tr><th id="784">784</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>3</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>1</var>  },&nbsp</td></tr>
+<tr><th id="785">785</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>2</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>1</var>  },&nbsp</td></tr>
+<tr><th id="786">786</th><td>		{ <span class='inlayHint'>.Num:&nbsp;</span><var>16</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>9</var>  },&nbsp</td></tr>
+<tr><th id="787">787</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>5</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>3</var>  },&nbsp</td></tr>
+<tr><th id="788">788</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>8</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>5</var>  },		<i>// Unused.</i>&nbsp</td></tr>
+<tr><th id="789">789</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>8</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>5</var>  },&nbsp</td></tr>
+<tr><th id="790">790</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>3</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>2</var>  },&nbsp</td></tr>
+<tr><th id="791">791</th><td>		{ <span class='inlayHint'>.Num:&nbsp;</span><var>16</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>11</var> },&nbsp</td></tr>
+<tr><th id="792">792</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>7</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>5</var>  },&nbsp</td></tr>
+<tr><th id="793">793</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>4</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>3</var>  },&nbsp</td></tr>
+<tr><th id="794">794</th><td>		{ <span class='inlayHint'>.Num:&nbsp;</span><var>22</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>17</var> },&nbsp</td></tr>
+<tr><th id="795">795</th><td>		{ <span class='inlayHint'>.Num:&nbsp;</span><var>14</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>11</var> },&nbsp</td></tr>
+<tr><th id="796">796</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>5</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>4</var>  },&nbsp</td></tr>
+<tr><th id="797">797</th><td>&nbsp</td></tr>
+<tr><th id="798">798</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>1</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>1</var>  },&nbsp</td></tr>
+<tr><th id="799">799</th><td>&nbsp</td></tr>
+<tr><th id="800">800</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>4</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>5</var>  },&nbsp</td></tr>
+<tr><th id="801">801</th><td>		{ <span class='inlayHint'>.Num:&nbsp;</span><var>11</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>14</var> },&nbsp</td></tr>
+<tr><th id="802">802</th><td>		{ <span class='inlayHint'>.Num:&nbsp;</span><var>17</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>22</var> },&nbsp</td></tr>
+<tr><th id="803">803</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>3</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>4</var>  },&nbsp</td></tr>
+<tr><th id="804">804</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>5</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>7</var>  },&nbsp</td></tr>
+<tr><th id="805">805</th><td>		{ <span class='inlayHint'>.Num:&nbsp;</span><var>11</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>16</var> },&nbsp</td></tr>
+<tr><th id="806">806</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>2</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>3</var>  },&nbsp</td></tr>
+<tr><th id="807">807</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>5</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>8</var>  },&nbsp</td></tr>
+<tr><th id="808">808</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>5</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>8</var>  },		<i>// Unused.</i>&nbsp</td></tr>
+<tr><th id="809">809</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>3</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>5</var>  },&nbsp</td></tr>
+<tr><th id="810">810</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>9</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>16</var> },&nbsp</td></tr>
+<tr><th id="811">811</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>1</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>2</var>  },&nbsp</td></tr>
+<tr><th id="812">812</th><td>		{  <span class='inlayHint'>.Num:&nbsp;</span><var>1</var>, <span class='inlayHint'>.Den:&nbsp;</span><var>3</var>  }&nbsp</td></tr>
+<tr><th id="813">813</th><td>	};&nbsp</td></tr>
+<tr><th id="814">814</th><td>}&nbsp</td></tr>
+<tr><th id="815">815</th><td>&nbsp</td></tr>
+<tr><th id="816">816</th><td>&nbsp</td></tr>
+<tr><th id="817">817</th><td><em>bool</em> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage19tGetAspectRatioFracERiS0_NS_12tAspectRatioE" title='tImage::tGetAspectRatioFrac' data-ref="_ZN6tImage19tGetAspectRatioFracERiS0_NS_12tAspectRatioE">tGetAspectRatioFrac</dfn>(<em>int</em>&amp; <dfn class="local col1 decl" id="31numerator" title='numerator' data-type='int &amp;' data-ref="31numerator">numerator</dfn>, <em>int</em>&amp; <dfn class="local col2 decl" id="32denominator" title='denominator' data-type='int &amp;' data-ref="32denominator">denominator</dfn>, <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a> <dfn class="local col3 decl" id="33aspect" title='aspect' data-type='tImage::tAspectRatio' data-ref="33aspect">aspect</dfn>)&nbsp</td></tr>
+<tr><th id="818">818</th><td>{&nbsp</td></tr>
+<tr><th id="819">819</th><td>	<b>switch</b> (<span class='warning' title="64 enumeration values not handled in switch: &apos;First_Valid&apos;, &apos;Screen_2_1&apos;, &apos;Screen_16_9&apos;..."><a class="local col3 ref" href="#33aspect" title='aspect' data-ref="33aspect">aspect</a></span>)&nbsp</td></tr>
+<tr><th id="820">820</th><td>	{&nbsp</td></tr>
+<tr><th id="821">821</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Invalid" title='tImage::tAspectRatio::Invalid' data-ref="tImage::tAspectRatio::Invalid">Invalid</a>:&nbsp</td></tr>
+<tr><th id="822">822</th><td>		<b>case</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::User" title='tImage::tAspectRatio::User' data-ref="tImage::tAspectRatio::User">User</a>:&nbsp</td></tr>
+<tr><th id="823">823</th><td>			<a class="local col1 ref" href="#31numerator" title='numerator' data-ref="31numerator">numerator</a> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="824">824</th><td>			<a class="local col2 ref" href="#32denominator" title='denominator' data-ref="32denominator">denominator</a> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="825">825</th><td>			<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="826">826</th><td>	}&nbsp</td></tr>
+<tr><th id="827">827</th><td>	<a class="ref fn" href="../Inc/Image/tPixelFormat.h.html#_ZN6tImage18tReduceAspectRatioERNS_12tAspectRatioE" title='tImage::tReduceAspectRatio' data-ref="_ZN6tImage18tReduceAspectRatioERNS_12tAspectRatioE">tReduceAspectRatio</a>(<span class='refarg'><a class="local col3 ref" href="#33aspect" title='aspect' data-ref="33aspect">aspect</a></span>);&nbsp</td></tr>
+<tr><th id="828">828</th><td>&nbsp</td></tr>
+<tr><th id="829">829</th><td>	<a class="type" href="#tImage::tAspectFrac" title='tImage::tAspectFrac' data-ref="tImage::tAspectFrac">tAspectFrac</a>&amp; <dfn class="local col4 decl" id="34frac" title='frac' data-type='tImage::tAspectFrac &amp;' data-ref="34frac">frac</dfn> = <a class="tu ref" href="#tImage::tAspectRatioTable" title='tImage::tAspectRatioTable' data-use='a' data-ref="tImage::tAspectRatioTable">tAspectRatioTable</a>[<em>int</em>(<a class="local col3 ref" href="#33aspect" title='aspect' data-ref="33aspect">aspect</a>)-<var>1</var>];&nbsp</td></tr>
+<tr><th id="830">830</th><td>	<a class="local col1 ref" href="#31numerator" title='numerator' data-ref="31numerator">numerator</a> = <a class="local col4 ref" href="#34frac" title='frac' data-ref="34frac">frac</a>.<a class="tu ref field" href="#tImage::tAspectFrac::Num" title='tImage::tAspectFrac::Num' data-use='r' data-ref="tImage::tAspectFrac::Num">Num</a>;&nbsp</td></tr>
+<tr><th id="831">831</th><td>	<a class="local col2 ref" href="#32denominator" title='denominator' data-ref="32denominator">denominator</a> = <a class="local col4 ref" href="#34frac" title='frac' data-ref="34frac">frac</a>.<a class="tu ref field" href="#tImage::tAspectFrac::Den" title='tImage::tAspectFrac::Den' data-use='r' data-ref="tImage::tAspectFrac::Den">Den</a>;&nbsp</td></tr>
+<tr><th id="832">832</th><td>	<b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="833">833</th><td>}&nbsp</td></tr>
+<tr><th id="834">834</th><td>&nbsp</td></tr>
+<tr><th id="835">835</th><td>&nbsp</td></tr>
+<tr><th id="836">836</th><td><span class="namespace">tImage::</span><a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a> <span class="namespace">tImage::</span><dfn class="decl def fn" id="_ZN6tImage15tGetAspectRatioEii" title='tImage::tGetAspectRatio' data-ref="_ZN6tImage15tGetAspectRatioEii">tGetAspectRatio</dfn>(<em>int</em> <dfn class="local col5 decl" id="35numerator" title='numerator' data-type='int' data-ref="35numerator">numerator</dfn>, <em>int</em> <dfn class="local col6 decl" id="36denominator" title='denominator' data-type='int' data-ref="36denominator">denominator</dfn>)&nbsp</td></tr>
+<tr><th id="837">837</th><td>{&nbsp</td></tr>
+<tr><th id="838">838</th><td>	<b>if</b> ((<a class="local col5 ref" href="#35numerator" title='numerator' data-ref="35numerator">numerator</a> &lt;= <var>0</var>) || (<a class="local col6 ref" href="#36denominator" title='denominator' data-ref="36denominator">denominator</a> &lt;= <var>0</var>))&nbsp</td></tr>
+<tr><th id="839">839</th><td>		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::Invalid" title='tImage::tAspectRatio::Invalid' data-ref="tImage::tAspectRatio::Invalid">Invalid</a>;&nbsp</td></tr>
+<tr><th id="840">840</th><td>&nbsp</td></tr>
+<tr><th id="841">841</th><td>	<i>// Next we need to reduce the fraction.</i>&nbsp</td></tr>
+<tr><th id="842">842</th><td>	<em>int</em> <dfn class="local col7 decl" id="37gcd" title='gcd' data-type='int' data-ref="37gcd">gcd</dfn> = <span class="namespace">tMath::</span><a class="ref fn" href="../../Foundation/Inc/Foundation/tFundamentals.h.html#_ZN5tMath22tGreatestCommonDivisorEii" title='tMath::tGreatestCommonDivisor' data-ref="_ZN5tMath22tGreatestCommonDivisorEii">tGreatestCommonDivisor</a>(<span class='inlayHint'>a:&nbsp;</span><a class="local col5 ref" href="#35numerator" title='numerator' data-ref="35numerator">numerator</a>, <span class='inlayHint'>b:&nbsp;</span><a class="local col6 ref" href="#36denominator" title='denominator' data-ref="36denominator">denominator</a>);&nbsp</td></tr>
+<tr><th id="843">843</th><td>	<a class="local col5 ref" href="#35numerator" title='numerator' data-ref="35numerator">numerator</a> /= <a class="local col7 ref" href="#37gcd" title='gcd' data-ref="37gcd">gcd</a>;&nbsp</td></tr>
+<tr><th id="844">844</th><td>	<a class="local col6 ref" href="#36denominator" title='denominator' data-ref="36denominator">denominator</a> /= <a class="local col7 ref" href="#37gcd" title='gcd' data-ref="37gcd">gcd</a>;&nbsp</td></tr>
+<tr><th id="845">845</th><td>&nbsp</td></tr>
+<tr><th id="846">846</th><td>	<i>// Now we look for it.</i>&nbsp</td></tr>
+<tr><th id="847">847</th><td>	<em>int</em> <dfn class="local col8 decl" id="38foundIndex" title='foundIndex' data-type='int' data-ref="38foundIndex">foundIndex</dfn> = -<var>1</var>;&nbsp</td></tr>
+<tr><th id="848">848</th><td>	<b>for</b> (<em>int</em> <dfn class="local col9 decl" id="39i" title='i' data-type='int' data-ref="39i">i</dfn> = <var>0</var>; <a class="local col9 ref" href="#39i" title='i' data-ref="39i">i</a> &lt; <em>int</em>(<a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::NumScreenRatios" title='tImage::tAspectRatio::NumScreenRatios' data-ref="tImage::tAspectRatio::NumScreenRatios">NumScreenRatios</a>); <a class="local col9 ref" href="#39i" title='i' data-ref="39i">i</a>++)&nbsp</td></tr>
+<tr><th id="849">849</th><td>	{&nbsp</td></tr>
+<tr><th id="850">850</th><td>		<a class="type" href="#tImage::tAspectFrac" title='tImage::tAspectFrac' data-ref="tImage::tAspectFrac">tAspectFrac</a>&amp; <dfn class="local col0 decl" id="40frac" title='frac' data-type='tImage::tAspectFrac &amp;' data-ref="40frac">frac</dfn> = <a class="tu ref" href="#tImage::tAspectRatioTable" title='tImage::tAspectRatioTable' data-use='a' data-ref="tImage::tAspectRatioTable">tAspectRatioTable</a>[<a class="local col9 ref" href="#39i" title='i' data-ref="39i">i</a>];&nbsp</td></tr>
+<tr><th id="851">851</th><td>		<b>if</b> ((<a class="local col0 ref" href="#40frac" title='frac' data-ref="40frac">frac</a>.<a class="tu ref field" href="#tImage::tAspectFrac::Num" title='tImage::tAspectFrac::Num' data-use='r' data-ref="tImage::tAspectFrac::Num">Num</a> == <a class="local col5 ref" href="#35numerator" title='numerator' data-ref="35numerator">numerator</a>) &amp;&amp; (<a class="local col0 ref" href="#40frac" title='frac' data-ref="40frac">frac</a>.<a class="tu ref field" href="#tImage::tAspectFrac::Den" title='tImage::tAspectFrac::Den' data-use='r' data-ref="tImage::tAspectFrac::Den">Den</a> == <a class="local col6 ref" href="#36denominator" title='denominator' data-ref="36denominator">denominator</a>))&nbsp</td></tr>
+<tr><th id="852">852</th><td>		{&nbsp</td></tr>
+<tr><th id="853">853</th><td>			<a class="local col8 ref" href="#38foundIndex" title='foundIndex' data-ref="38foundIndex">foundIndex</a> = <a class="local col9 ref" href="#39i" title='i' data-ref="39i">i</a>;&nbsp</td></tr>
+<tr><th id="854">854</th><td>			<b>break</b>;&nbsp</td></tr>
+<tr><th id="855">855</th><td>		}&nbsp</td></tr>
+<tr><th id="856">856</th><td>	}&nbsp</td></tr>
+<tr><th id="857">857</th><td>&nbsp</td></tr>
+<tr><th id="858">858</th><td>	<b>if</b> (<a class="local col8 ref" href="#38foundIndex" title='foundIndex' data-ref="38foundIndex">foundIndex</a> == -<var>1</var>)	&nbsp</td></tr>
+<tr><th id="859">859</th><td>		<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>::<a class="enum" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio::User" title='tImage::tAspectRatio::User' data-ref="tImage::tAspectRatio::User">User</a>;&nbsp</td></tr>
+<tr><th id="860">860</th><td>&nbsp</td></tr>
+<tr><th id="861">861</th><td>	<b>return</b> <a class="type" href="../Inc/Image/tPixelFormat.h.html#tImage::tAspectRatio" title='tImage::tAspectRatio' data-ref="tImage::tAspectRatio">tAspectRatio</a>(<a class="local col8 ref" href="#38foundIndex" title='foundIndex' data-ref="38foundIndex">foundIndex</a> + <var>1</var>);&nbsp</td></tr>
+<tr><th id="862">862</th><td>}&nbsp</td></tr>
+<tr><th id="863">863</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='11'/>
+<use f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='69' u='c'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='10'>/* Signed 16-bit type */</doc>

@@ -1,0 +1,6 @@
+<use f='Modules/System/Inc/System/tScript.h' l='376' u='w' c='_ZN14tFunExpressionC1Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='381' u='m' c='_ZN14tFunExpressionD1Ev'/>
+<dec f='Modules/System/Inc/System/tScript.h' l='384' type='tList&lt;tStringItem&gt;'/>
+<offset>448</offset>
+<use f='Modules/System/Src/tScript.cpp' l='1122' u='m' c='_ZN14tFunExpressionC1EPKDu'/>
+<use f='Modules/System/Src/tScript.cpp' l='1185' u='m' c='_ZN10tFunScript4SaveERK7tString'/>

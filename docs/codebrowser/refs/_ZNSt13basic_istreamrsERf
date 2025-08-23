@@ -1,0 +1,9 @@
+<def f='include/c++/11/istream' l='213' ll='215' type='std::basic_istream::__istream_type &amp; std::basic_istream::operator&gt;&gt;(float &amp; __f)'/>
+<doc f='include/c++/11/istream' l='205'>/**
+       *  @brief  Floating point arithmetic extractors
+       *  @param  __f A variable of builtin floating point type.
+       *  @return  @c *this if successful
+       *
+       *  These functions use the stream&apos;s current locale (specifically, the
+       *  @c num_get facet) to parse the input data.
+      */</doc>

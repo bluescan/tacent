@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='309' type='int'/>
+<offset>448</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='309'>// stride of the alpha plane</doc>

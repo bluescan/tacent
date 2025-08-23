@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/basic_string.h' l='2654' ll='2660' type='std::basic_string::size_type std::basic_string::find_last_of(const _CharT * __s, std::basic_string::size_type __pos = npos) const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='2644'>/**
+       *  @brief  Find last position of a character of C string.
+       *  @param __s  C string containing characters to locate.
+       *  @param __pos  Index of character to search back from (default end).
+       *  @return  Index of last occurrence.
+       *
+       *  Starting from @a __pos, searches backward for one of the
+       *  characters of @a __s within this string.  If found, returns
+       *  the index where it was found.  If not found, returns npos.
+      */</doc>

@@ -1,0 +1,8 @@
+<dec f='include/c++/11/fstream' l='240' type='void std::basic_filebuf::basic_filebuf&lt;_CharT, _Traits&gt;()'/>
+<def f='include/c++/11/bits/fstream.tcc' l='79' ll='91' type='void std::basic_filebuf::basic_filebuf&lt;_CharT, _Traits&gt;()'/>
+<doc f='include/c++/11/fstream' l='234'>/**
+       *  @brief  Does not open any files.
+       *
+       *  The default constructor initializes the parent class using its
+       *  own default ctor.
+       */</doc>

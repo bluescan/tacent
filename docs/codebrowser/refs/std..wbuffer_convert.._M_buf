@@ -1,0 +1,15 @@
+<use f='include/c++/11/bits/locale_conv.h' l='408' u='w' c='_ZNSt15wbuffer_convertC1EPSt15basic_streambufIcSt11char_traitsIcEEPT_NS5_10state_typeE'/>
+<use f='include/c++/11/bits/locale_conv.h' l='415' u='r' c='_ZNSt15wbuffer_convertC1EPSt15basic_streambufIcSt11char_traitsIcEEPT_NS5_10state_typeE'/>
+<use f='include/c++/11/bits/locale_conv.h' l='431' u='r' c='_ZNKSt15wbuffer_convert5rdbufEv'/>
+<use f='include/c++/11/bits/locale_conv.h' l='436' u='r' c='_ZNSt15wbuffer_convert5rdbufEPSt15basic_streambufIcSt11char_traitsIcEE'/>
+<use f='include/c++/11/bits/locale_conv.h' l='437' u='w' c='_ZNSt15wbuffer_convert5rdbufEPSt15basic_streambufIcSt11char_traitsIcEE'/>
+<use f='include/c++/11/bits/locale_conv.h' l='447' u='r' c='_ZNSt15wbuffer_convert4syncEv'/>
+<use f='include/c++/11/bits/locale_conv.h' l='447' u='r' c='_ZNSt15wbuffer_convert4syncEv'/>
+<use f='include/c++/11/bits/locale_conv.h' l='452' u='r' c='_ZNSt15wbuffer_convert8overflowENSt15basic_streambufIT0_T1_E8int_typeE'/>
+<use f='include/c++/11/bits/locale_conv.h' l='462' u='r' c='_ZNSt15wbuffer_convert9underflowEv'/>
+<use f='include/c++/11/bits/locale_conv.h' l='465' u='r' c='_ZNSt15wbuffer_convert9underflowEv'/>
+<use f='include/c++/11/bits/locale_conv.h' l='474' u='r' c='_ZNSt15wbuffer_convert6xsputnEPKNSt15basic_streambufIT0_T1_E9char_typeEl'/>
+<use f='include/c++/11/bits/locale_conv.h' l='501' u='r' c='_ZNSt15wbuffer_convert11_M_conv_getEv'/>
+<use f='include/c++/11/bits/locale_conv.h' l='504' u='r' c='_ZNSt15wbuffer_convert11_M_conv_getEv'/>
+<use f='include/c++/11/bits/locale_conv.h' l='552' u='r' c='_ZNSt15wbuffer_convert6_M_putEPKcl'/>
+<dec f='include/c++/11/bits/locale_conv.h' l='596' type='std::streambuf *'/>

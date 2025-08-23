@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/time.h' l='135' type='struct timeval'/>
+<offset>128</offset>
+<doc f='include/x86_64-linux-gnu/sys/time.h' l='134'>/* Time to the next timer expiration.  */</doc>

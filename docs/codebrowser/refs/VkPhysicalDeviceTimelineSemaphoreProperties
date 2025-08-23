@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6394' ll='6398'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6394'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceTimelineSemaphoreProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceTimelineSemaphoreProperties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceTimelineSemaphoreProperties::maxTimelineSemaphoreValueDifference' o='128' t='uint64_t'/>

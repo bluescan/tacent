@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='524' type='void tMath::tLerp(tMath::tVec2 &amp; d, const tMath::tVec2 &amp; a, const tMath::tVec2 &amp; b, float t)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='521'>// Linear interpolate/extrapolate. d stores the result.
+// t in [0.0, 1.0] results in interpolation between a and b with a and b being the endpoints.
+// t &lt; 0.0 results in extrapolation to values less than a. t &gt; 1.0 results in extrapolation to values greater than b.</doc>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='66' u='c' c='_ZN5tMath8tVector24LerpERKNS_5tVec2ES3_f'/>

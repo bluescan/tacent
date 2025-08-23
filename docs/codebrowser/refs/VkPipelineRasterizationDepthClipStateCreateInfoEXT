@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12305' ll='12310'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12305'/>
+<size>24</size>
+<mbr r='VkPipelineRasterizationDepthClipStateCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineRasterizationDepthClipStateCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineRasterizationDepthClipStateCreateInfoEXT::flags' o='128' t='VkPipelineRasterizationDepthClipStateCreateFlagsEXT'/>
+<mbr r='VkPipelineRasterizationDepthClipStateCreateInfoEXT::depthClipEnable' o='160' t='VkBool32'/>

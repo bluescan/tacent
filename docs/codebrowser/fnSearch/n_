@@ -1,0 +1,6 @@
+_ZNKSt24chi_squared_distribution1nEv|std::chi_squared_distribution::n
+_ZNKSt24chi_squared_distribution10param_type1nEv|std::chi_squared_distribution::param_type::n
+_ZNKSt21fisher_f_distribution1nEv|std::fisher_f_distribution::n
+_ZNKSt21fisher_f_distribution10param_type1nEv|std::fisher_f_distribution::param_type::n
+_ZNKSt22student_t_distribution1nEv|std::student_t_distribution::n
+_ZNKSt22student_t_distribution10param_type1nEv|std::student_t_distribution::param_type::n

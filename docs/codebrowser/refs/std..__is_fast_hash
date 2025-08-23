@@ -1,0 +1,38 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/functional_hash.h' l='280' ll='281'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/functional_hash.h' l='283' ll='285'/>
+<use f='include/c++/11/bits/functional_hash.h' l='284'/>
+<use f='include/c++/11/bits/hashtable.h' l='49'/>
+<size>1</size>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/string_view' l='698' ll='700'/>
+<use f='include/c++/11/string_view' l='699'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/string_view' l='713' ll='715'/>
+<use f='include/c++/11/string_view' l='714'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/string_view' l='728' ll='730'/>
+<use f='include/c++/11/string_view' l='729'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/string_view' l='743' ll='745'/>
+<use f='include/c++/11/string_view' l='744'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/string_view' l='757' ll='759'/>
+<use f='include/c++/11/string_view' l='758'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/basic_string.h' l='6879' ll='6881'/>
+<use f='include/c++/11/bits/basic_string.h' l='6880'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/basic_string.h' l='6895' ll='6897'/>
+<use f='include/c++/11/bits/basic_string.h' l='6896'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/basic_string.h' l='6913' ll='6915'/>
+<use f='include/c++/11/bits/basic_string.h' l='6914'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/basic_string.h' l='6929' ll='6931'/>
+<use f='include/c++/11/bits/basic_string.h' l='6930'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/basic_string.h' l='6944' ll='6946'/>
+<use f='include/c++/11/bits/basic_string.h' l='6945'/>
+<size>1</size>

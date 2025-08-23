@@ -1,0 +1,4 @@
+_ZSt6wcschrPww|std::wcschr
+_ZSt7wcspbrkPwPKw|std::wcspbrk
+_ZSt7wcsrchrPww|std::wcsrchr
+_ZSt6wcsstrPwPKw|std::wcsstr

@@ -1,0 +1,8 @@
+<dec f='include/c++/11/streambuf' l='190' type='std::basic_streambuf::char_type *'/>
+<use f='include/c++/11/streambuf' l='469' u='w' c='_ZNSt15basic_streambufC1Ev'/>
+<use f='include/c++/11/streambuf' l='490' u='r' c='_ZNKSt15basic_streambuf4gptrEv'/>
+<use f='include/c++/11/streambuf' l='503' u='w' c='_ZNSt15basic_streambuf5gbumpEi'/>
+<use f='include/c++/11/streambuf' l='517' u='w' c='_ZNSt15basic_streambuf4setgEPT_S1_S1_'/>
+<use f='include/c++/11/streambuf' l='800' u='w' c='_ZNSt15basic_streambuf12__safe_gbumpEl'/>
+<use f='include/c++/11/streambuf' l='820' c='_ZNSt15basic_streambuf4swapERSt15basic_streambufIT_T0_E'/>
+<doc f='include/c++/11/streambuf' l='190'>///&lt; Current read area.</doc>

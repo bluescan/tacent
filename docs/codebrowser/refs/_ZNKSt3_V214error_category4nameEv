@@ -1,0 +1,2 @@
+<dec f='include/c++/11/system_error' l='108' type='const char * std::error_category::name() const'/>
+<use f='include/c++/11/system_error' l='280' u='c' c='_ZStlsRSt13basic_ostreamIT_T0_ERKSt10error_code'/>

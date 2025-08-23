@@ -1,0 +1,6 @@
+<def f='include/c++/11/chrono' l='1941' ll='1944' type='void std::chrono::month_day::month_day(const chrono::month &amp; __m, const chrono::day &amp; __d)'/>
+<use f='include/c++/11/chrono' l='1972' u='c' c='_ZNSt6chronodvERKNS_5monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1976' u='c' c='_ZNSt6chronodvERKNS_5monthEi'/>
+<use f='include/c++/11/chrono' l='1980' u='c' c='_ZNSt6chronodvEiRKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1984' u='c' c='_ZNSt6chronodvERKNS_3dayERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='1988' u='c' c='_ZNSt6chronodvERKNS_3dayEi'/>

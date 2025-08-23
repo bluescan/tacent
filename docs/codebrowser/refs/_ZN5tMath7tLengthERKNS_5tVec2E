@@ -1,0 +1,9 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='343' type='float tMath::tLength(const tMath::tVec2 &amp; v)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='353' u='c' c='_ZN5tMath10tNormalizeERNS_5tVec2E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='358' u='c' c='_ZN5tMath19tNormalizeGetLengthERNS_5tVec2E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='363' u='c' c='_ZN5tMath14tNormalizeSafeERNS_5tVec2E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='368' u='c' c='_ZN5tMath23tNormalizeSafeGetLengthERNS_5tVec2E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='373' u='c' c='_ZN5tMath15tNormalizeScaleERNS_5tVec2Ef'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='377' u='c' c='_ZN5tMath19tNormalizeScaleSafeERNS_5tVec2Ef'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='552' u='c' c='_ZN5tMath12tDistBetweenERKNS_5tVec2ES2_'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='54' u='c' c='_ZNK5tMath8tVector26LengthEv'/>

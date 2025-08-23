@@ -1,0 +1,14 @@
+<dec f='include/c++/11/istream' l='571' type='std::basic_istream::pos_type std::basic_istream::tellg()'/>
+<def f='include/c++/11/bits/istream.tcc' l='849' ll='875' type='typename basic_istream&lt;_CharT, _Traits&gt;::pos_type std::basic_istream::tellg()'/>
+<doc f='include/c++/11/istream' l='558'>/**
+       *  @brief  Getting the current read position.
+       *  @return  A file position object.
+       *
+       *  If @c fail() is not false, returns @c pos_type(-1) to indicate
+       *  failure.  Otherwise returns @c rdbuf()-&gt;pubseekoff(0,cur,in).
+       *
+       *  @note  This function does not count the number of characters
+       *         extracted, if any, and therefore does not affect the next
+       *         call to @c gcount().  At variance with putback, unget and
+       *         seekg, eofbit is not cleared first.
+      */</doc>

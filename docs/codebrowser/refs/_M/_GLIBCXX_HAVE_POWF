@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1081'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='2054' u='a'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1080'>/* Define to 1 if you have the `powf&apos; function. */</doc>

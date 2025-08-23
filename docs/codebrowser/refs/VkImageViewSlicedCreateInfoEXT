@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17051' ll='17056'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17051'/>
+<size>24</size>
+<mbr r='VkImageViewSlicedCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageViewSlicedCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkImageViewSlicedCreateInfoEXT::sliceOffset' o='128' t='uint32_t'/>
+<mbr r='VkImageViewSlicedCreateInfoEXT::sliceCount' o='160' t='uint32_t'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/new' l='174' ll='175' type='void * operator new(std::size_t , void * __p)'/>
+<doc f='include/c++/11/new' l='173'>// Default placement versions of operator new.</doc>

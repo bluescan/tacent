@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/sys/time.h' l='67' type='int gettimeofday(struct timeval *__restrict __tv, void *__restrict __tz)'/>

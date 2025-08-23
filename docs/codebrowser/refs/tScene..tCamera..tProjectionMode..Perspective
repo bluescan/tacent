@@ -1,0 +1,3 @@
+<dec f='Modules/Scene/Inc/Scene/tCamera.h' l='41' type='0'/>
+<doc f='Modules/Scene/Inc/Scene/tCamera.h' l='41'>// A symmetric perspective projection. The most common.</doc>
+<use f='Modules/Scene/Src/tCamera.cpp' l='25' c='_ZN6tScene7tCamera5ScaleEf'/>

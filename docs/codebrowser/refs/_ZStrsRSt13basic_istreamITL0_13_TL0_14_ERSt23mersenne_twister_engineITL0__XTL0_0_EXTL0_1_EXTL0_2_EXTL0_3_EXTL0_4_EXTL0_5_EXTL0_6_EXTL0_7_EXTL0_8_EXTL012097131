@@ -1,0 +1,1 @@
+<dec f='include/c++/11/bits/random.h' l='639' type='std::basic_istream&lt;_CharT, _Traits&gt; &amp; std::operator&gt;&gt;(std::basic_istream&lt;_CharT, _Traits&gt; &amp; __is, std::mersenne_twister_engine&lt;_UIntType1, __w1, __n1, __m1, __r1, __a1, __u1, __d1, __s1, __b1, __t1, __c1, __l1, __f1&gt; &amp; __x)'/>

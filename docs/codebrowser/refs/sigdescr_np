@@ -1,0 +1,3 @@
+<dec f='include/string.h' l='485' type='const char * sigdescr_np(int __sig)'/>
+<doc f='include/string.h' l='483'>/* Return a string describing the meaning of the signal number in SIG,
+   the result is not translated.  */</doc>

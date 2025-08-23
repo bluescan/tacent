@@ -1,0 +1,9 @@
+<dec f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='62' type='4'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='75' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='75' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='75' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='75' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='75' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='75' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='75' u='r'/>
+<doc f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='62'>/* Hexadecimal numeric.  */</doc>

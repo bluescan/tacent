@@ -1,0 +1,7 @@
+<def f='include/c++/11/istream' l='914' ll='916' type='void std::basic_iostream::basic_iostream&lt;_CharT, _Traits&gt;(basic_streambuf&lt;_CharT, _Traits&gt; * __sb)'/>
+<doc f='include/c++/11/istream' l='908'>/**
+       *  @brief  Constructor does nothing.
+       *
+       *  Both of the parent classes are initialized with the same
+       *  streambuf pointer passed to this constructor.
+      */</doc>

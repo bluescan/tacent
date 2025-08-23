@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='42' type='int'/>
+<offset>64</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='42'>/* Signal code.  */</doc>

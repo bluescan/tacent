@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='425' type='int TIFFReadRGBAImage(TIFF * , uint32 , uint32 , uint32 * , int  = 0)'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='95' u='c' c='_ZN6tImage10tImageTIFF4LoadERK7tString'/>

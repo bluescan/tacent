@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10955' ll='10964'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10955'/>
+<size>40</size>
+<mbr r='VkPhysicalDeviceLineRasterizationFeaturesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceLineRasterizationFeaturesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceLineRasterizationFeaturesKHR::rectangularLines' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceLineRasterizationFeaturesKHR::bresenhamLines' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceLineRasterizationFeaturesKHR::smoothLines' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceLineRasterizationFeaturesKHR::stippledRectangularLines' o='224' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceLineRasterizationFeaturesKHR::stippledBresenhamLines' o='256' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceLineRasterizationFeaturesKHR::stippledSmoothLines' o='288' t='VkBool32'/>

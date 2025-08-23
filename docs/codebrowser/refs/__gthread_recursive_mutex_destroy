@@ -1,0 +1,1 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='835' ll='839' type='int __gthread_recursive_mutex_destroy(__gthread_recursive_mutex_t * __mutex)'/>

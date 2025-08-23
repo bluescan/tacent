@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/fs_fwd.h' l='269' ll='275' type='std::filesystem::directory_options std::filesystem::operator&amp;(std::filesystem::directory_options __x, std::filesystem::directory_options __y)'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='302' u='c' c='_ZNSt10filesystemaNERNS_17directory_optionsES0_'/>
+<doc f='include/c++/11/bits/fs_fwd.h' l='267'>/// @{
+  /// @relates directory_options</doc>

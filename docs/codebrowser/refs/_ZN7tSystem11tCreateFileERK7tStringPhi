@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='226' type='bool tSystem::tCreateFile(const tString &amp; file, uint8 * data, int length)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='431' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/System/Src/tFile.cpp' l='999' u='c' c='_ZN7tSystem11tCreateFileERK7tStringS2_'/>
+<def f='Modules/System/Src/tFile.cpp' l='1003' ll='1019' type='bool tSystem::tCreateFile(const tString &amp; file, uint8 * data, int length)'/>

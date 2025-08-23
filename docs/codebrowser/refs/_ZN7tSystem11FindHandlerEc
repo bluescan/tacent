@@ -1,0 +1,4 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='134' type='tSystem::HandlerInfo * tSystem::FindHandler(char format)'/>
+<def f='Modules/System/Src/tPrint.cpp' l='697' ll='722' type='tSystem::HandlerInfo * tSystem::FindHandler(char type)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='740' u='c' c='_ZN7tSystem31IsValidFormatSpecifierCharacterEc'/>
+<use f='Modules/System/Src/tPrint.cpp' l='845' u='c' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>

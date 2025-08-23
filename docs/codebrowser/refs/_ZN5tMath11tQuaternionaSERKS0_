@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='98' u='c' c='_ZN6tScene6tJoint5ClearEv'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='275' u='c' c='_ZN6tScene9tSkeleton4PoseEi'/>

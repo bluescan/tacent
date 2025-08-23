@@ -1,0 +1,3 @@
+<dec f='include/wchar.h' l='581' type='__FILE * open_wmemstream(wchar_t ** __bufloc, size_t * __sizeloc)'/>
+<doc f='include/wchar.h' l='579'>/* Like OPEN_MEMSTREAM, but the stream is wide oriented and produces
+   a wide character string.  */</doc>

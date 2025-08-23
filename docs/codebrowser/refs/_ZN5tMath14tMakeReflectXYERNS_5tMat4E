@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='620' type='void tMath::tMakeReflectXY(tMath::tMat4 &amp; d)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='84' u='c' c='_ZN5tMath8tMatrix413MakeReflectXYEv'/>

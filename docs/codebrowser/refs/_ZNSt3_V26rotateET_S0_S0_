@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='609' type='_FIter std::rotate(_FIter , _FIter , _FIter )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='1403' ll='1416' macro='1' type='_ForwardIterator std::rotate(_ForwardIterator __first, _ForwardIterator __middle, _ForwardIterator __last)'/>

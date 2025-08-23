@@ -1,0 +1,3 @@
+<dec f='include/wchar.h' l='338' type='size_t mbsrtowcs(wchar_t *__restrict __dst, const char **__restrict __src, size_t __len, mbstate_t *__restrict __ps)'/>
+<doc f='include/wchar.h' l='336'>/* Write wide character representation of multibyte character string
+   SRC to DST.  */</doc>

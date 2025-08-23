@@ -1,0 +1,23 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='279' type='int tString::Replace(const char search, const char replace)'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='920' ll='933' type='int tString::Replace(const char search, const char replace)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='277'>// Replace all occurrences of character &apos;search&apos; with character &apos;replace&apos;. Returns number of characters replaced.
+	// ASCII-only. @todo Could make a variant that works with char8_t[4] and deals with UTF-8 continuations.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='371' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='375' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='585' u='c' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='596' u='c' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='607' u='c' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='420' u='c' c='_ZN5tMath12tIntervalSet3SetERK7tString'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='421' u='c' c='_ZN5tMath12tIntervalSet3SetERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='52' u='c' c='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='58' u='c' c='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='57' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='105' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='319' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='320' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='321' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='322' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='352' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='386' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tFile.cpp' l='87' u='c' c='_ZN7tSystem8tPathStdER7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='117' u='c' c='_ZN7tSystem8tPathWinER7tString'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/char_traits.h' l='135' ll='137' type='static __gnu_cxx::char_traits::int_type __gnu_cxx::char_traits::to_int_type(const __gnu_cxx::char_traits::char_type &amp; __c)'/>
+<use f='include/c++/11/bits/char_traits.h' l='149' u='c' c='__gnu_cxx::char_traits::not_eof'/>

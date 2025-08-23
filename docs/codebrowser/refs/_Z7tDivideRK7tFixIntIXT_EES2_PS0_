@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='388' type='tFixInt&lt;N&gt; tDivide(const tFixInt&lt;N&gt; &amp; a, const tFixInt&lt;N&gt; &amp; b, tFixInt&lt;N&gt; * remainder = nullptr)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='1333' ll='1356' type='tFixInt&lt;N&gt; tDivide(const tFixInt&lt;N&gt; &amp; a, const tFixInt&lt;N&gt; &amp; b, tFixInt&lt;N&gt; * remainder = nullptr)'/>

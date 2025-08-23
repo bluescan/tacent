@@ -1,0 +1,1 @@
+<dec f='include/stdio.h' l='704' type='size_t fwrite_unlocked(const void *__restrict __ptr, size_t __size, size_t __n, FILE *__restrict __stream)'/>

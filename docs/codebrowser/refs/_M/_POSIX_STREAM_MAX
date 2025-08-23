@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='122'/>
+<doc f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='121'>/* Number of streams a process can have open at once.  */</doc>

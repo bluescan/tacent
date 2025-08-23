@@ -1,0 +1,15 @@
+<def f='include/x86_64-linux-gnu/sys/ucontext.h' l='113' ll='127'/>
+<use f='include/x86_64-linux-gnu/sys/ucontext.h' l='130'/>
+<use f='include/x86_64-linux-gnu/sys/ucontext.h' l='149'/>
+<size>512</size>
+<mbr r='_libc_fpstate::cwd' o='0' t='__uint16_t'/>
+<mbr r='_libc_fpstate::swd' o='16' t='__uint16_t'/>
+<mbr r='_libc_fpstate::ftw' o='32' t='__uint16_t'/>
+<mbr r='_libc_fpstate::fop' o='48' t='__uint16_t'/>
+<mbr r='_libc_fpstate::rip' o='64' t='__uint64_t'/>
+<mbr r='_libc_fpstate::rdp' o='128' t='__uint64_t'/>
+<mbr r='_libc_fpstate::mxcsr' o='192' t='__uint32_t'/>
+<mbr r='_libc_fpstate::mxcr_mask' o='224' t='__uint32_t'/>
+<mbr r='_libc_fpstate::_st' o='256' t='struct _libc_fpxreg[8]'/>
+<mbr r='_libc_fpstate::_xmm' o='1280' t='struct _libc_xmmreg[16]'/>
+<mbr r='_libc_fpstate::__glibc_reserved1' o='3328' t='__uint32_t[24]'/>

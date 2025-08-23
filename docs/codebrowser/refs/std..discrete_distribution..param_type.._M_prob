@@ -1,0 +1,19 @@
+<use f='include/c++/11/bits/random.h' l='5295' u='w' c='_ZNSt21discrete_distribution10param_typeC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='5301' u='w' c='_ZNSt21discrete_distribution10param_typeC1ETL0__S1_'/>
+<use f='include/c++/11/bits/random.h' l='5305' u='w' c='_ZNSt21discrete_distribution10param_typeC1ESt16initializer_listIdE'/>
+<use f='include/c++/11/bits/random.h' l='5318' u='m' c='_ZNKSt21discrete_distribution10param_type13probabilitiesEv'/>
+<use f='include/c++/11/bits/random.h' l='5318' u='r' c='_ZNKSt21discrete_distribution10param_type13probabilitiesEv'/>
+<dec f='include/c++/11/bits/random.h' l='5332' type='std::vector&lt;double&gt;'/>
+<use f='include/c++/11/bits/random.tcc' l='2659' u='m' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2661' u='m' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2665' u='m' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2666' u='m' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2669' u='m' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2669' u='m' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2669' u='m' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2672' u='m' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2673' u='m' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2673' u='m' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2683' u='w' c='_ZNSt21discrete_distribution10param_typeC1EmddTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='2688' u='m' c='_ZNSt21discrete_distribution10param_typeC1EmddTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='2690' u='c' c='_ZNSt21discrete_distribution10param_typeC1EmddTL0__'/>

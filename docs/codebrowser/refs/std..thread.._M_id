@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/std_thread.h' l='112' type='std::thread::id'/>
+<use f='include/c++/11/bits/std_thread.h' l='172' u='a' c='_ZNSt6thread4swapERS_'/>
+<use f='include/c++/11/bits/std_thread.h' l='172' u='a' c='_ZNSt6thread4swapERS_'/>
+<use f='include/c++/11/bits/std_thread.h' l='176' u='r' c='_ZNKSt6thread8joinableEv'/>
+<use f='include/c++/11/bits/std_thread.h' l='186' u='r' c='_ZNKSt6thread6get_idEv'/>
+<use f='include/c++/11/bits/std_thread.h' l='192' u='m' c='_ZNSt6thread13native_handleEv'/>
+<offset>0</offset>

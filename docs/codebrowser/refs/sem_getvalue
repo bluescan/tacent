@@ -1,0 +1,2 @@
+<dec f='include/semaphore.h' l='106' type='int sem_getvalue(sem_t *__restrict __sem, int *__restrict __sval)'/>
+<doc f='include/semaphore.h' l='105'>/* Get current value of SEM and store it in *SVAL.  */</doc>

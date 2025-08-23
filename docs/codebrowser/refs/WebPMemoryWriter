@@ -1,0 +1,9 @@
+<use f='Modules/Image/Contrib/WebP/include/encode.h' l='34'/>
+<def f='Modules/Image/Contrib/WebP/include/encode.h' l='241' ll='246'/>
+<size>32</size>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='239'>// WebPMemoryWrite: a special WebPWriterFunction that writes to memory using
+// the following WebPMemoryWriter object (to be set as a custom_ptr).</doc>
+<mbr r='WebPMemoryWriter::mem' o='0' t='uint8_t *'/>
+<mbr r='WebPMemoryWriter::size' o='64' t='size_t'/>
+<mbr r='WebPMemoryWriter::max_size' o='128' t='size_t'/>
+<mbr r='WebPMemoryWriter::pad' o='192' t='uint32_t[1]'/>

@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1375' type='float'/>
+<offset>192</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1371'>/*!&lt; Manually set the max number of color endpoint clusters.
+             Range is [1,16128]. Default is 0, unset. If this is set, maxSelectors
+             must also be set, otherwise the value will be ignored.
+         */</doc>

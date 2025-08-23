@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelUtil.h' l='53' type='tImage::DecodeResult tImage::DecodePixelData_ASTC(tImage::tPixelFormat , const uint8 * data, int dataSize, int w, int h, tColour4f *&amp; , tColourProfile  = tColourProfile::Auto)'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='156' u='c' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='83' u='c' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<def f='Modules/Image/Src/tPixelUtil.cpp' l='1059' ll='1145' type='tImage::DecodeResult tImage::DecodePixelData_ASTC(tImage::tPixelFormat fmt, const uint8 * src, int srcSize, int w, int h, tColour4f *&amp; decoded4f, tColourProfile profile = tColourProfile::Auto)'/>

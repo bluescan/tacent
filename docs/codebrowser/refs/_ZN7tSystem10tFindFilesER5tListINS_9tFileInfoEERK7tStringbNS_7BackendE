@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='634' type='bool tSystem::tFindFiles(tList&lt;tSystem::tFileInfo&gt; &amp; files, const tString &amp; dir, bool hidden = true, tSystem::Backend  = Backend::Native)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='632'>// If you need the full file info for all the files you are enumerating, call this instead of the tFindFiles above. It
+// is much faster than getting the filenames and calling tGetFileInfo on each one -- a lot faster, esp on windows.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='2822' ll='2831' type='bool tSystem::tFindFiles(tList&lt;tSystem::tFileInfo&gt; &amp; files, const tString &amp; dir, bool hidden = true, tSystem::Backend backend = Backend::Native)'/>

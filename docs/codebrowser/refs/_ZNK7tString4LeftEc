@@ -1,0 +1,8 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='199' type='tString tString::Left(const char marker = &apos; &apos;) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='194'>// These only work well for ASCII strings as vars like &apos;count&apos; are indexes into the text data and are not
+	// &apos;continuation-aware&apos;. This comment applies to all below functions with the words &apos;Left&apos;, &apos;Right&apos;, and &apos;Mid&apos; in
+	// them except for functions that take in a char8_t* or char* prefix or suffix. Those work for ASCII and UTF-8.
+	//
+	// Returns a tString of the characters before the first marker. Returns an empty string if marker was not found.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='67' ll='76' type='tString tString::Left(const char marker = &apos; &apos;) const'/>
+<use f='Modules/System/Src/tFile.cpp' l='210' u='c' c='_ZN7tSystem16tGetFileBaseNameERK7tString'/>

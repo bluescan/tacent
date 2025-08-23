@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_vector.h' l='452' ll='457' type='static std::vector::pointer std::vector::_S_do_relocate(std::vector::pointer __first, std::vector::pointer __last, std::vector::pointer __result, std::vector::_Tp_alloc_type &amp; __alloc, std::true_type )'/>

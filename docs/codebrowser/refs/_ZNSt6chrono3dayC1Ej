@@ -1,0 +1,8 @@
+<def f='include/c++/11/chrono' l='1308' ll='1311' type='void std::chrono::day::day(unsigned int __d)'/>
+<use f='include/c++/11/chrono' l='1375' u='c' c='_ZNSt6chronoplERKNS_3dayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1976' u='c' c='_ZNSt6chronodvERKNS_5monthEi'/>
+<use f='include/c++/11/chrono' l='2451' u='c' c='_ZNSt6chronodvERKNS_10year_monthEi'/>
+<use f='include/c++/11/chrono' l='2509' u='c' c='_ZNSt6chrono14year_month_day12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2616' u='c' c='_ZNKSt6chrono19year_month_day_last3dayEv'/>
+<use f='include/c++/11/chrono' l='2714' u='c' c='_ZNKSt6chrono14year_month_day2okEv'/>
+<use f='include/c++/11/chrono' l='3291' u='c' c='_ZNSt8literals15chrono_literalsli1dEy'/>

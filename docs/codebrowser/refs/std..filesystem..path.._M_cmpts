@@ -1,0 +1,14 @@
+<use f='include/c++/11/bits/fs_path.h' l='279' u='w' c='_ZNSt10filesystem7__cxx114pathC1EOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='279' u='a' c='_ZNSt10filesystem7__cxx114pathC1EOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='630' u='m' c='_ZNKSt10filesystem7__cxx114path7_M_typeEv'/>
+<dec f='include/c++/11/bits/fs_path.h' l='684' type='std::filesystem::path::_List'/>
+<use f='include/c++/11/bits/fs_path.h' l='953' u='w' c='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='953' u='a' c='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1015' u='m' c='_ZNSt10filesystem7__cxx114path4swapERS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1015' u='a' c='_ZNSt10filesystem7__cxx114path4swapERS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1261' u='m' c='_ZNKSt10filesystem7__cxx114path5beginEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1269' u='m' c='_ZNKSt10filesystem7__cxx114path3endEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1279' u='m' c='_ZNSt10filesystem7__cxx114path8iteratorppEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1296' u='m' c='_ZNSt10filesystem7__cxx114path8iteratormmEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1313' u='m' c='_ZNKSt10filesystem7__cxx114path8iteratordeEv'/>
+<offset>256</offset>

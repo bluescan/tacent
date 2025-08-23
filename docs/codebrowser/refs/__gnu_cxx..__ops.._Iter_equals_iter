@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/predefined_ops.h' l='280' ll='295'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='299' c='__gnu_cxx::__ops::__iter_comp_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='301' c='__gnu_cxx::__ops::__iter_comp_iter'/>
+<mbr r='__gnu_cxx::__ops::_Iter_equals_iter::_M_it1' t='_Iterator1'/>
+<fun r='__gnu_cxx::__ops::_Iter_equals_iter::_Iter_equals_iter{_Iterator1}'/>
+<fun r='__gnu_cxx::__ops::_Iter_equals_iter::operator()'/>

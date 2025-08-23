@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='564' type='17039424'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='564'>// Pixel format, width, height.</doc>
+<use f='Modules/Image/Src/tLayer.cpp' l='50' u='r' c='_ZNK6tImage6tLayer4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='81' c='_ZN6tImage6tLayer4LoadERK6tChunkb'/>

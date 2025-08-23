@@ -1,0 +1,21 @@
+<dec f='Modules/System/Inc/System/tThrow.h' l='32' type='tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='682' u='w' c='_ZN10tFileErrorC1EPKcz'/>
+<use f='Modules/System/Inc/System/tFile.h' l='683' u='w' c='_ZN10tFileErrorC1ERK7tString'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='690' u='w' c='_ZN11tChunkErrorC1EPKcz'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='690' u='a' c='_ZN11tChunkErrorC1EPKcz'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='691' u='w' c='_ZN11tChunkErrorC1ERK7tString'/>
+<offset>0</offset>
+<use f='Modules/System/Inc/System/tScript.h' l='419' u='w' c='_ZN12tScriptErrorC1EPKcz'/>
+<use f='Modules/System/Inc/System/tScript.h' l='432' u='w' c='_ZN12tScriptErrorC1EiPKcz'/>
+<use f='Modules/System/Inc/System/tScript.h' l='434' u='w' c='_ZN12tScriptErrorC1EiPKcz'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='104' u='w' c='_ZN10tRuleErrorC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='31' u='w' c='_ZN10tRuleErrorC1EPKcz'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='31' u='a' c='_ZN10tRuleErrorC1EPKcz'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='55' u='w' c='_ZN14tSolutionErrorC1EPKcz'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='55' u='a' c='_ZN14tSolutionErrorC1EPKcz'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='56' u='w' c='_ZN14tSolutionErrorC1ERK7tString'/>
+<use f='Modules/System/Src/tThrow.cpp' l='23' u='w' c='_ZN6tErrorC1EPKcz'/>
+<use f='Modules/System/Src/tThrow.cpp' l='27' u='w' c='_ZN6tErrorC1EPKcz'/>
+<use f='Modules/System/Src/tThrow.cpp' l='32' u='w' c='_ZN6tErrorC1ERK7tString'/>
+<use f='Modules/System/Src/tThrow.cpp' l='34' u='w' c='_ZN6tErrorC1ERK7tString'/>
+<use f='Modules/System/Src/tThrow.cpp' l='39' u='w' c='_ZN6tErrorC1Ev'/>

@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tTime.h' l='87' type='const double[22][22]'/>
+<doc f='Modules/System/Inc/System/tTime.h' l='86'>// @todo Add getters that format the time into a number of different string formats.</doc>
+<def f='Modules/System/Src/tTime.cpp' l='261' ll='286' type='const double[22][22]'/>
+<use f='Modules/System/Src/tTime.cpp' l='295' u='r' c='_ZN7tSystem6tTimer7ConvertEdN5tUnit5tTimeES2_'/>
+<doc f='Modules/System/Src/tTime.cpp' l='259'>// To keep error as low as possible while converting, we explicitly specify the conversions between all possible unit
+// combinations. This is better than converting to a norm, and then to the destination.</doc>

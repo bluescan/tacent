@@ -1,0 +1,20 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1647' type='rgbcx::bc1_match_entry[256]'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1859' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1915' u='m' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1915' u='m' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1930' u='m' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1930' u='m' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1931' u='m' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1931' u='m' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3560' u='m' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3562' u='m' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3564' u='m' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3566' u='m' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3622' u='m' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3624' u='m' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3626' u='m' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3628' u='m' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3752' u='m' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3754' u='m' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3756' u='m' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3758' u='m' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

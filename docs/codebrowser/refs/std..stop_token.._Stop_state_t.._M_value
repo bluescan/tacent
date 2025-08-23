@@ -1,0 +1,12 @@
+<dec f='include/c++/11/stop_token' l='158' type='std::atomic&lt;value_type&gt;'/>
+<use f='include/c++/11/stop_token' l='169' u='m' c='_ZNSt10stop_token13_Stop_state_t16_M_stop_possibleEv'/>
+<use f='include/c++/11/stop_token' l='175' u='m' c='_ZNSt10stop_token13_Stop_state_t17_M_stop_requestedEv'/>
+<use f='include/c++/11/stop_token' l='194' u='m' c='_ZNSt10stop_token13_Stop_state_t11_M_add_ssrcEv'/>
+<use f='include/c++/11/stop_token' l='200' u='m' c='_ZNSt10stop_token13_Stop_state_t11_M_sub_ssrcEv'/>
+<use f='include/c++/11/stop_token' l='209' u='m' c='_ZNSt10stop_token13_Stop_state_t7_M_lockEv'/>
+<use f='include/c++/11/stop_token' l='218' u='m' c='_ZNSt10stop_token13_Stop_state_t9_M_unlockEv'/>
+<use f='include/c++/11/stop_token' l='225' u='m' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<use f='include/c++/11/stop_token' l='281' u='m' c='_ZNSt10stop_token13_Stop_state_t20_M_register_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='383' u='m' c='_ZNSt10stop_token13_Stop_state_t14_M_do_try_lockERjjSt12memory_orderS2_'/>
+<use f='include/c++/11/stop_token' l='387' u='m' c='_ZNSt10stop_token13_Stop_state_t14_M_do_try_lockERjjSt12memory_orderS2_'/>
+<offset>32</offset>

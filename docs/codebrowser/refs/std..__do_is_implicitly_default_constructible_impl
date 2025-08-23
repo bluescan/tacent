@@ -1,0 +1,7 @@
+<def f='include/c++/11/type_traits' l='1208' ll='1218'/>
+<ovr f='include/c++/11/type_traits' l='1221' c='std::__is_implicitly_default_constructible_impl'/>
+<use f='include/c++/11/type_traits' l='1222'/>
+<size>1</size>
+<fun r='_ZNSt45__do_is_implicitly_default_constructible_impl8__helperERKT_'/>
+<fun r='_ZNSt45__do_is_implicitly_default_constructible_impl6__testERKT_PDTcl8__helperIS2_EilEEE'/>
+<fun r='_ZNSt45__do_is_implicitly_default_constructible_impl6__testEz'/>

@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1406' type='ktx_bool_t'/>
+<offset>336</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1402'>/*!&lt; @deprecated This was and is a no-op. 2-component inputs have
+            always been automatically separated using an &quot;rrrg&quot; inputSwizzle.
+            @sa inputSwizzle and normalMode.
+         */</doc>

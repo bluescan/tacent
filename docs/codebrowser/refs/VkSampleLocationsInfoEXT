@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12580' ll='12587'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12580'/>
+<size>40</size>
+<mbr r='VkSampleLocationsInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSampleLocationsInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkSampleLocationsInfoEXT::sampleLocationsPerPixel' o='128' t='VkSampleCountFlagBits'/>
+<mbr r='VkSampleLocationsInfoEXT::sampleLocationGridSize' o='160' t='VkExtent2D'/>
+<mbr r='VkSampleLocationsInfoEXT::sampleLocationsCount' o='224' t='uint32_t'/>
+<mbr r='VkSampleLocationsInfoEXT::pSampleLocations' o='256' t='const VkSampleLocationEXT *'/>

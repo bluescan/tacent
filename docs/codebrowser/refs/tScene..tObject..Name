@@ -1,0 +1,36 @@
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='28' u='w' c='_ZN6tScene7tObjectC1ERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='28' u='r' c='_ZN6tScene7tObjectC1ERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='29' u='w' c='_ZN6tScene7tObjectC1ERK7tStringj'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='34' u='m' c='_ZN6tScene7tObject5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='37' u='r' c='_ZNK6tScene7tObjecteqERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='37' u='r' c='_ZNK6tScene7tObjecteqERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='39' u='w' c='_ZN6tScene7tObjectaSERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='39' u='r' c='_ZN6tScene7tObjectaSERKS0_'/>
+<dec f='Modules/Scene/Inc/Scene/tObject.h' l='44' type='tString'/>
+<offset>128</offset>
+<use f='Modules/Scene/Src/tObject.cpp' l='29' u='r' c='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tObject.cpp' l='52' u='a' c='_ZN6tScene7tObject4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='244' u='w' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='249' u='w' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1037' u='r' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1306' u='r' c='_ZNK6tScene6tWorld15GetNumMaterialsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1322' u='r' c='_ZNK6tScene6tWorld12FindMaterialERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1346' u='r' c='_ZNK6tScene6tWorld15GetNumSkeletonsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1362' u='r' c='_ZNK6tScene6tWorld12FindSkeletonERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1386' u='r' c='_ZNK6tScene6tWorld12GetNumModelsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1402' u='r' c='_ZNK6tScene6tWorld13FindPolyModelERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1426' u='r' c='_ZNK6tScene6tWorld13GetNumCamerasERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1442' u='r' c='_ZNK6tScene6tWorld10FindCameraERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1466' u='r' c='_ZNK6tScene6tWorld12GetNumLightsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1482' u='r' c='_ZNK6tScene6tWorld9FindLightERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1506' u='r' c='_ZNK6tScene6tWorld11GetNumPathsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1522' u='r' c='_ZNK6tScene6tWorld8FindPathERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1546' u='r' c='_ZNK6tScene6tWorld15GetNumLodGroupsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1562' u='r' c='_ZNK6tScene6tWorld12FindLodGroupERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1602' u='r' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1618' u='w' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1647' u='r' c='_ZNK6tScene6tWorld15GetNumInstancesERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1663' u='r' c='_ZNK6tScene6tWorld12FindInstanceERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1696' u='r' c='_ZNK6tScene6tWorld16GetNumSelectionsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1712' u='r' c='_ZNK6tScene6tWorld13FindSelectionERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1723' u='m' c='_ZNK6tScene6tWorld24FindSelectionsContainingER7tItListIPNS_10tSelectionEERK7tString'/>

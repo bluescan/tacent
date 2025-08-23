@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='295' type='void * _TIFFmalloc(tmsize_t s)'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='291'>/*
+ * Auxiliary functions.
+ */</doc>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='94' u='c' c='_ZN6tImage10tImageTIFF4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='311' u='c' c='_ZNK6tImage10tImageTIFF4SaveERK7tStringRKNS0_10SaveParamsE'/>

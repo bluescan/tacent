@@ -1,0 +1,12 @@
+<def f='include/x86_64-linux-gnu/bits/types/__locale_t.h' l='27' ll='39'/>
+<use f='include/x86_64-linux-gnu/bits/types/__locale_t.h' l='41'/>
+<size>232</size>
+<doc f='include/x86_64-linux-gnu/bits/types/__locale_t.h' l='22'>/* POSIX.1-2008: the locale_t type, representing a locale context
+   (implementation-namespace version).  This type should be treated
+   as opaque by applications; some details are exposed for the sake of
+   efficiency in e.g. ctype functions.  */</doc>
+<mbr r='__locale_struct::__locales' o='0' t='struct __locale_data *[13]'/>
+<mbr r='__locale_struct::__ctype_b' o='832' t='const unsigned short *'/>
+<mbr r='__locale_struct::__ctype_tolower' o='896' t='const int *'/>
+<mbr r='__locale_struct::__ctype_toupper' o='960' t='const int *'/>
+<mbr r='__locale_struct::__names' o='1024' t='const char *[13]'/>

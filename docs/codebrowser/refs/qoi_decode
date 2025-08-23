@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/QOI/qoi.h' l='289' type='void * qoi_decode(const void * data, int size, qoi_desc * desc, int channels)'/>
+<def f='Modules/Image/Contrib/QOI/qoi.h' l='488' ll='590' type='void * qoi_decode(const void * data, int size, qoi_desc * desc, int channels)'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='56' u='c' c='_ZN6tImage9tImageQOI4LoadEPKhi'/>
+<doc f='Modules/Image/Contrib/QOI/qoi.h' l='281'>/* Decode a QOI image from memory.
+
+The function either returns NULL on failure (invalid parameters or malloc
+failed) or a pointer to the decoded pixels. On success, the qoi_desc struct
+is filled with the description from the file header.
+
+The returned pixel data should be free()d after use. */</doc>

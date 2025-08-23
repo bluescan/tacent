@@ -1,0 +1,1 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1503' ll='1513' type='static uint16_t rgbcx::bc1_block::pack_color(const rgbcx::color32 &amp; color, bool scaled, uint32_t bias = 127U)'/>

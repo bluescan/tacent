@@ -1,0 +1,15 @@
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='72' u='c' c='_ZN6tImage9tImageTGAD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImageTGA.h' l='122' type='void tImage::tImageTGA::Clear()'/>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Inc/Image/tImageTGA.h' l='151' ll='159' type='void tImage::tImageTGA::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImageTGA.h' l='121'>// After this call no memory will be consumed by the object and it will be invalid.</doc>
+<doc f='Modules/Image/Inc/Image/tImageTGA.h' l='148'>// Implementation below this line.</doc>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='68' u='c' c='_ZN6tImage9tImageTGA4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='87' u='c' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='111' u='c' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='146' u='c' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='176' u='c' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='198' u='c' c='_ZN6tImage9tImageTGA4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='275' u='c' c='_ZN6tImage9tImageTGA3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='303' u='c' c='_ZN6tImage9tImageTGA3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='322' u='c' c='_ZN6tImage9tImageTGA3SetERNS_8tPictureEb'/>

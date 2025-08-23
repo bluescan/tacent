@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/time.h' l='46'/>
+<doc f='include/x86_64-linux-gnu/bits/time.h' l='45'>/* Identifier for system-wide realtime clock.  */</doc>

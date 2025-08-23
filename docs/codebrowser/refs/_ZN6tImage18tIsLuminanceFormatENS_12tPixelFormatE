@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='278' type='bool tImage::tIsLuminanceFormat(tImage::tPixelFormat )'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='632' ll='650' type='bool tImage::tIsLuminanceFormat(tImage::tPixelFormat format)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='278'>// Single-channel luminance formats. Includes red-only formats. Does not include alpha only.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1504' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1086' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='264' u='c' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1196' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>

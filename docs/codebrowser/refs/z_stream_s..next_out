@@ -1,0 +1,3 @@
+<dec f='include/zlib.h' l='91' type='Bytef *'/>
+<offset>192</offset>
+<doc f='include/zlib.h' l='91'>/* next output byte will go here */</doc>

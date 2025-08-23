@@ -1,0 +1,4 @@
+<def f='include/c++/11/limits' l='445' type='const bool'/>
+<doc f='include/c++/11/limits' l='442'>// It is not clear what it means for a boolean type to trap.
+      // This is a DR on the LWG issue list.  Here, I use integer
+      // promotion semantics.</doc>

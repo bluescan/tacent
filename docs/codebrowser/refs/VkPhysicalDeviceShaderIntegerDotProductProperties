@@ -1,0 +1,35 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7288' ll='7321'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7288'/>
+<size>136</size>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct8BitUnsignedAccelerated' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct8BitSignedAccelerated' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct8BitMixedSignednessAccelerated' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct4x8BitPackedUnsignedAccelerated' o='224' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct4x8BitPackedSignedAccelerated' o='256' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct4x8BitPackedMixedSignednessAccelerated' o='288' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct16BitUnsignedAccelerated' o='320' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct16BitSignedAccelerated' o='352' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct16BitMixedSignednessAccelerated' o='384' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct32BitUnsignedAccelerated' o='416' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct32BitSignedAccelerated' o='448' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct32BitMixedSignednessAccelerated' o='480' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct64BitUnsignedAccelerated' o='512' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct64BitSignedAccelerated' o='544' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProduct64BitMixedSignednessAccelerated' o='576' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating8BitUnsignedAccelerated' o='608' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating8BitSignedAccelerated' o='640' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating8BitMixedSignednessAccelerated' o='672' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating4x8BitPackedUnsignedAccelerated' o='704' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating4x8BitPackedSignedAccelerated' o='736' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating4x8BitPackedMixedSignednessAccelerated' o='768' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating16BitUnsignedAccelerated' o='800' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating16BitSignedAccelerated' o='832' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating16BitMixedSignednessAccelerated' o='864' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating32BitUnsignedAccelerated' o='896' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating32BitSignedAccelerated' o='928' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating32BitMixedSignednessAccelerated' o='960' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating64BitUnsignedAccelerated' o='992' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating64BitSignedAccelerated' o='1024' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderIntegerDotProductProperties::integerDotProductAccumulatingSaturating64BitMixedSignednessAccelerated' o='1056' t='VkBool32'/>

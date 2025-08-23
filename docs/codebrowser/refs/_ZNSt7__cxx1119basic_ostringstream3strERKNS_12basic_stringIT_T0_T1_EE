@@ -1,0 +1,7 @@
+<def f='include/c++/11/sstream' l='943' ll='945' type='void std::basic_ostringstream::str(const std::basic_ostringstream::__string_type &amp; __s)'/>
+<doc f='include/c++/11/sstream' l='937'>/**
+       *  @brief  Setting a new buffer.
+       *  @param  __s  The string to use as a new sequence.
+       *
+       *  Calls @c rdbuf()-&gt;str(s).
+      */</doc>

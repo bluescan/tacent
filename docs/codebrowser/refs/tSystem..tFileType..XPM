@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='384' type='7'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='384'>// Image. X-Windows Pix Map.</doc>
+<use f='Modules/Image/Src/tImageXPM.cpp' l='30' u='r' c='_ZN6tImage9tImageXPM4LoadERK7tString'/>

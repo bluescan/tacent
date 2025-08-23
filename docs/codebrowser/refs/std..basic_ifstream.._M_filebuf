@@ -1,0 +1,17 @@
+<dec f='include/c++/11/fstream' l='512' type='std::basic_ifstream::__filebuf_type'/>
+<use f='include/c++/11/fstream' l='523' u='w' c='_ZNSt14basic_ifstreamC1Ev'/>
+<use f='include/c++/11/fstream' l='524' c='_ZNSt14basic_ifstreamC1Ev'/>
+<use f='include/c++/11/fstream' l='535' u='w' c='_ZNSt14basic_ifstreamC1EPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='537' c='_ZNSt14basic_ifstreamC1EPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='569' u='w' c='_ZNSt14basic_ifstreamC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='571' c='_ZNSt14basic_ifstreamC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='594' u='w' c='_ZNSt14basic_ifstreamC1EOSt14basic_ifstreamIT_T0_E'/>
+<use f='include/c++/11/fstream' l='595' c='_ZNSt14basic_ifstreamC1EOSt14basic_ifstreamIT_T0_E'/>
+<use f='include/c++/11/fstream' l='617' u='w' c='_ZNSt14basic_ifstreamaSEOSt14basic_ifstreamIT_T0_E'/>
+<use f='include/c++/11/fstream' l='625' u='c' c='_ZNSt14basic_ifstream4swapERSt14basic_ifstreamIT_T0_E'/>
+<use f='include/c++/11/fstream' l='638' c='_ZNKSt14basic_ifstream5rdbufEv'/>
+<use f='include/c++/11/fstream' l='646' u='c' c='_ZNSt14basic_ifstream7is_openEv'/>
+<use f='include/c++/11/fstream' l='652' u='c' c='_ZNKSt14basic_ifstream7is_openEv'/>
+<use f='include/c++/11/fstream' l='665' u='c' c='_ZNSt14basic_ifstream4openEPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='704' u='c' c='_ZNSt14basic_ifstream4openERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt13_Ios_Openmode'/>
+<use f='include/c++/11/fstream' l='737' u='c' c='_ZNSt14basic_ifstream5closeEv'/>

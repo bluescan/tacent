@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/cdefs.h' l='195'/>
+<doc f='include/x86_64-linux-gnu/sys/cdefs.h' l='192'>/* Fortify function f, where object size argument passed to f is the number of
+   elements and not total size.  */</doc>

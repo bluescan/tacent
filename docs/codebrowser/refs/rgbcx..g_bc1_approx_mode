@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1646' type='rgbcx::bc1_approx_mode'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1854' u='w' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2151' u='r' c='_ZN5rgbcxL21bc1_get_block_colors4EPjS0_S0_jjjjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2156' u='r' c='_ZN5rgbcxL21bc1_get_block_colors4EPjS0_S0_jjjjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2161' u='r' c='_ZN5rgbcxL21bc1_get_block_colors4EPjS0_S0_jjjjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2178' u='r' c='_ZN5rgbcxL21bc1_get_block_colors3EPjS0_S0_jjjjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2178' u='r' c='_ZN5rgbcxL21bc1_get_block_colors3EPjS0_S0_jjjjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2182' u='r' c='_ZN5rgbcxL21bc1_get_block_colors3EPjS0_S0_jjjjjj'/>

@@ -1,0 +1,14 @@
+<use f='Modules/System/Inc/System/tFile.h' l='508' u='w' c='_ZN7tSystem10tFileTypes13tFileTypeItemC1Ev'/>
+<use f='Modules/System/Inc/System/tFile.h' l='509' u='w' c='_ZN7tSystem10tFileTypes13tFileTypeItemC1ENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='510' u='w' c='_ZN7tSystem10tFileTypes13tFileTypeItemC1ERKS1_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='510' u='r' c='_ZN7tSystem10tFileTypes13tFileTypeItemC1ERKS1_'/>
+<dec f='Modules/System/Inc/System/tFile.h' l='515' type='bool'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1002' u='r' c='_ZN7tSystem10tFileTypes11AddSelectedERKS0_b'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1022' u='w' c='_ZN7tSystem10tFileTypes13ClearSelectedEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1029' u='r' c='_ZNK7tSystem10tFileTypes11AnySelectedEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1041' u='w' c='_ZN7tSystem10tFileTypes6SelectENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1053' u='r' c='_ZNK7tSystem10tFileTypes10IsSelectedENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1063' u='r' c='_ZNK7tSystem10tFileTypes20GetFirstSelectedTypeEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1082' u='r' c='_ZNK7tSystem10tFileTypes17GetSelectedStringENS0_9SeparatorEi'/>
+<offset>160</offset>
+<doc f='Modules/System/Inc/System/tFile.h' l='514'>// A user-facing bool that is handy to keep track of selected state.</doc>

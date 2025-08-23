@@ -1,0 +1,42 @@
+<dec f='include/math.h' l='310'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='173' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='210' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='218' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='431' u='c'/>
+<use f='include/math.h' l='316' u='w'/>
+<dec f='include/math.h' l='327'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='173' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='210' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='218' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='431' u='c'/>
+<use f='include/math.h' l='333' u='w'/>
+<dec f='include/math.h' l='395'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='173' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='210' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='218' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='431' u='c'/>
+<use f='include/math.h' l='403' u='w'/>
+<dec f='include/math.h' l='444'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='173' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='210' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='218' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='431' u='c'/>
+<use f='include/math.h' l='454' u='w'/>
+<dec f='include/math.h' l='461'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='173' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='210' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='218' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='431' u='c'/>
+<use f='include/math.h' l='471' u='w'/>
+<dec f='include/math.h' l='495'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='173' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='210' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='218' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='431' u='c'/>
+<use f='include/math.h' l='505' u='w'/>
+<dec f='include/math.h' l='512'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='173' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='210' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='218' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/mathcalls.h' l='431' u='c'/>
+<use f='include/math.h' l='522' u='w'/>

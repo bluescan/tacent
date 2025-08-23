@@ -1,0 +1,22 @@
+<def f='include/x86_64-linux-gnu/bits/dirent.h' l='37' ll='44'/>
+<use f='include/dirent.h' l='173' c='readdir64'/>
+<use f='include/dirent.h' l='202' c='readdir64_r'/>
+<use f='include/dirent.h' l='203' c='readdir64_r'/>
+<use f='include/dirent.h' l='279' c='scandir64'/>
+<use f='include/dirent.h' l='280' c='scandir64'/>
+<use f='include/dirent.h' l='281' c='scandir64'/>
+<use f='include/dirent.h' l='282' c='scandir64'/>
+<use f='include/dirent.h' l='316' c='scandirat64'/>
+<use f='include/dirent.h' l='317' c='scandirat64'/>
+<use f='include/dirent.h' l='318' c='scandirat64'/>
+<use f='include/dirent.h' l='319' c='scandirat64'/>
+<use f='include/dirent.h' l='340' c='alphasort64'/>
+<use f='include/dirent.h' l='341' c='alphasort64'/>
+<use f='include/dirent.h' l='396' c='versionsort64'/>
+<use f='include/dirent.h' l='397' c='versionsort64'/>
+<size>280</size>
+<mbr r='dirent64::d_ino' o='0' t='__ino64_t'/>
+<mbr r='dirent64::d_off' o='64' t='__off64_t'/>
+<mbr r='dirent64::d_reclen' o='128' t='unsigned short'/>
+<mbr r='dirent64::d_type' o='144' t='unsigned char'/>
+<mbr r='dirent64::d_name' o='152' t='char[256]'/>

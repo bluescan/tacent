@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/streambuf_iterator.h' l='218' ll='220' type='bool std::operator==(const istreambuf_iterator&lt;_CharT, _Traits&gt; &amp; __i, std::default_sentinel_t __s)'/>

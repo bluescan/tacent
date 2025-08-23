@@ -1,0 +1,3 @@
+<dec f='include/c++/11/stdexcept' l='249' type='const char * std::runtime_error::what() const'/>
+<doc f='include/c++/11/stdexcept' l='246'>/** Returns a C-style character string describing the general cause of
+     *  the current error (the same string passed to the ctor).  */</doc>

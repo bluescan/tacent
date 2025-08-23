@@ -1,0 +1,12 @@
+<dec f='include/wchar.h' l='626' type='int vswprintf(wchar_t *__restrict __s, size_t __n, const wchar_t *__restrict __format, __va_list_tag * __arg)'/>
+<use f='include/c++/11/bits/basic_string.h' l='6791' u='a' c='_ZNSt7__cxx1110to_wstringEi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6796' u='a' c='_ZNSt7__cxx1110to_wstringEj'/>
+<use f='include/c++/11/bits/basic_string.h' l='6802' u='a' c='_ZNSt7__cxx1110to_wstringEl'/>
+<use f='include/c++/11/bits/basic_string.h' l='6807' u='a' c='_ZNSt7__cxx1110to_wstringEm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6813' u='a' c='_ZNSt7__cxx1110to_wstringEx'/>
+<use f='include/c++/11/bits/basic_string.h' l='6819' u='a' c='_ZNSt7__cxx1110to_wstringEy'/>
+<use f='include/c++/11/bits/basic_string.h' l='6828' u='a' c='_ZNSt7__cxx1110to_wstringEf'/>
+<use f='include/c++/11/bits/basic_string.h' l='6837' u='a' c='_ZNSt7__cxx1110to_wstringEd'/>
+<use f='include/c++/11/bits/basic_string.h' l='6846' u='a' c='_ZNSt7__cxx1110to_wstringEe'/>
+<doc f='include/wchar.h' l='624'>/* Write formatted output of at most N character to S from argument
+   list ARG.  */</doc>

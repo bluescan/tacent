@@ -1,0 +1,27 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1550' ll='1553' type='std::money_get::iter_type std::money_get::get(std::money_get::iter_type __s, std::money_get::iter_type __end, bool __intl, std::ios_base &amp; __io, ios_base::iostate &amp; __err, std::money_get::string_type &amp; __digits) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1524'>/**
+       *  @brief  Read and parse a monetary value.
+       *
+       *  This function reads characters from @a __s, interprets them as
+       *  a monetary value according to moneypunct and ctype facets
+       *  retrieved from io.getloc(), and returns the result in @a
+       *  digits.  For example, the string $10.01 in a US locale would
+       *  store &lt;code&gt;1001&lt;/code&gt; in @a digits.
+       *
+       *  Any characters not part of a valid money amount are not consumed.
+       *
+       *  If a money value cannot be parsed from the input stream, sets
+       *  err=(err|io.failbit).  If the stream is consumed before finishing
+       *  parsing,  sets err=(err|io.failbit|io.eofbit).
+       *
+       *  This function works by returning the result of do_get().
+       *
+       *  @param  __s  Start of characters to parse.
+       *  @param  __end  End of characters to parse.
+       *  @param  __intl  Parameter to use_facet&lt;moneypunct&lt;CharT,intl&gt; &gt;.
+       *  @param  __io  Source of facets and io state.
+       *  @param  __err  Error field to set if parsing fails.
+       *  @param  __digits  Place to store result of parsing.
+       *  @return  Iterator referencing first character beyond valid money
+       *	   amount.
+       */</doc>

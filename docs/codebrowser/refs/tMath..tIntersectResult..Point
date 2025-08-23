@@ -1,0 +1,13 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='458' type='2'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='458'>// Intersects at a single point.</doc>
+<use f='Modules/Math/Src/tGeometry.cpp' l='299' u='r' c='_ZN5tMathL27IntersectFindLineLineHelperERKNS_6tLine2ES2_RfS3_'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='307' u='r' c='_ZN5tMath22tIntersectFindLineLineERKNS_6tLine2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='311' u='r' c='_ZN5tMath22tIntersectFindLineLineERKNS_6tLine2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='319' u='r' c='_ZN5tMath20tIntersectFindSegSegERKNS_9tLineSeg2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='325' u='r' c='_ZN5tMath20tIntersectFindSegSegERKNS_9tLineSeg2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='338' u='r' c='_ZN5tMath20tIntersectFindRaySegERKNS_5tRay2ERKNS_9tLineSeg2ERNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='344' u='r' c='_ZN5tMath20tIntersectFindRaySegERKNS_5tRay2ERKNS_9tLineSeg2ERNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='366' u='r' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='376' u='r' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='388' u='r' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='400' u='r' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5996' ll='6001'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5996'/>
+<size>4</size>
+<mbr r='VkConformanceVersion::major' o='0' t='uint8_t'/>
+<mbr r='VkConformanceVersion::minor' o='8' t='uint8_t'/>
+<mbr r='VkConformanceVersion::subminor' o='16' t='uint8_t'/>
+<mbr r='VkConformanceVersion::patch' o='24' t='uint8_t'/>

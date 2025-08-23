@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/basic_string.h' l='831' ll='833' type='std::basic_string::iterator std::basic_string::end()'/>
+<doc f='include/c++/11/bits/basic_string.h' l='827'>/**
+       *  Returns a read/write iterator that points one past the last
+       *  character in the %string.
+       */</doc>

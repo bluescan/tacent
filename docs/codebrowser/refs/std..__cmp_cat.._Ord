@@ -1,0 +1,10 @@
+<def f='include/c++/11/compare' l='53'/>
+<use f='include/c++/11/compare' l='69' c='_ZNSt16partial_orderingC1ENSt9__cmp_cat4_OrdE'/>
+<use f='include/c++/11/compare' l='136' c='_ZStssNSt9__cmp_cat8__unspecESt16partial_ordering'/>
+<use f='include/c++/11/compare' l='160' c='_ZNSt13weak_orderingC1ENSt9__cmp_cat4_OrdE'/>
+<use f='include/c++/11/compare' l='172' c='_ZNKSt13weak_orderingcvSt16partial_orderingEv'/>
+<use f='include/c++/11/compare' l='220' c='_ZStssNSt9__cmp_cat8__unspecESt13weak_ordering'/>
+<use f='include/c++/11/compare' l='238' c='_ZNSt15strong_orderingC1ENSt9__cmp_cat4_OrdE'/>
+<use f='include/c++/11/compare' l='250' c='_ZNKSt15strong_orderingcvSt16partial_orderingEv'/>
+<use f='include/c++/11/compare' l='253' c='_ZNKSt15strong_orderingcvSt13weak_orderingEv'/>
+<use f='include/c++/11/compare' l='301' c='_ZStssNSt9__cmp_cat8__unspecESt15strong_ordering'/>

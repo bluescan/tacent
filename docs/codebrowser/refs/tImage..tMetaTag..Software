@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='137' type='47'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='136'>// Authoring Note Tags</doc>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='137'>//	string	Software used to edit image.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='622' u='m' c='_ZN6tImage9tMetaData19SetTags_AuthorNotesERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='856' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='950' ll='953'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='956' ll='959'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='963' ll='965'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1062'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='949'>// When T is U[N], Y(*)[N] shall be convertible to T*;</doc>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='955'>// when T is U[], Y(*)[] shall be convertible to T*;</doc>

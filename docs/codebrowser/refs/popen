@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='829' type='FILE * popen(const char * __command, const char * __modes)'/>
+<doc f='include/stdio.h' l='825'>/* Create a new stream connected to a pipe running the given command.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

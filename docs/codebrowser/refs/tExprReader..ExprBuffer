@@ -1,0 +1,32 @@
+<use f='Modules/System/Inc/System/tScript.h' l='215' u='w' c='_ZN11tExprReaderC1Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='218' u='w' c='_ZN11tExprReaderC1ERK7tStringb'/>
+<use f='Modules/System/Inc/System/tScript.h' l='224' u='r' c='_ZN11tExprReaderD1Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='231' u='r' c='_ZN11tExprReader5ClearEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='231' u='w' c='_ZN11tExprReader5ClearEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='232' u='r' c='_ZNK11tExprReader7IsValidEv'/>
+<dec f='Modules/System/Inc/System/tScript.h' l='236' type='char8_t *'/>
+<offset>192</offset>
+<doc f='Modules/System/Inc/System/tScript.h' l='235'>// ExprBuffer is officially a UTF-8 string. i.e. We support unicode codepoints in script files.</doc>
+<use f='Modules/System/Src/tScript.cpp' l='483' u='w' c='_ZN11tExprReaderC1EiPPc'/>
+<use f='Modules/System/Src/tScript.cpp' l='524' u='w' c='_ZN11tExprReaderC1EiPPc'/>
+<use f='Modules/System/Src/tScript.cpp' l='525' u='r' c='_ZN11tExprReaderC1EiPPc'/>
+<use f='Modules/System/Src/tScript.cpp' l='527' u='r' c='_ZN11tExprReaderC1EiPPc'/>
+<use f='Modules/System/Src/tScript.cpp' l='550' u='w' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='551' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='552' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='553' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='556' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='561' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='562' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='563' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='564' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='570' u='w' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='572' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='573' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='574' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='575' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='576' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='577' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='578' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='579' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='583' u='r' c='_ZN11tExprReader4LoadERK7tStringb'/>

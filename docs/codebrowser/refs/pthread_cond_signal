@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='1121' type='int pthread_cond_signal(pthread_cond_t * __cond)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='859' u='c' c='__gthread_cond_signal'/>
+<doc f='include/pthread.h' l='1120'>/* Wake up one thread waiting for condition variable COND.  */</doc>

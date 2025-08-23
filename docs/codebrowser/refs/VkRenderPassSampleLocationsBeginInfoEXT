@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12599' ll='12606'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12599'/>
+<size>48</size>
+<mbr r='VkRenderPassSampleLocationsBeginInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderPassSampleLocationsBeginInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderPassSampleLocationsBeginInfoEXT::attachmentInitialSampleLocationsCount' o='128' t='uint32_t'/>
+<mbr r='VkRenderPassSampleLocationsBeginInfoEXT::pAttachmentInitialSampleLocations' o='192' t='const VkAttachmentSampleLocationsEXT *'/>
+<mbr r='VkRenderPassSampleLocationsBeginInfoEXT::postSubpassSampleLocationsCount' o='256' t='uint32_t'/>
+<mbr r='VkRenderPassSampleLocationsBeginInfoEXT::pPostSubpassSampleLocations' o='320' t='const VkSubpassSampleLocationsEXT *'/>

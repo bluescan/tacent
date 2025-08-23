@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/alloc_traits.h' l='388' ll='390' type='static std::allocator_traits::size_type std::allocator_traits::max_size(const _Alloc &amp; __a)'/>
+<doc f='include/c++/11/bits/alloc_traits.h' l='380'>/**
+       *  @brief  The maximum supported allocation size
+       *  @param  __a  An allocator.
+       *  @return @c __a.max_size() or @c numeric_limits&lt;size_type&gt;::max()
+       *
+       *  Returns @c __a.max_size() if that expression is well-formed,
+       *  otherwise returns @c numeric_limits&lt;size_type&gt;::max()
+      */</doc>

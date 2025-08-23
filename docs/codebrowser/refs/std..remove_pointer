@@ -1,0 +1,4 @@
+<def f='include/c++/11/type_traits' l='2027' ll='2029'/>
+<use f='include/c++/11/type_traits' l='2049'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='520'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='701'/>

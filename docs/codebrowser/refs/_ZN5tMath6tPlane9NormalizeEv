@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='381' type='void tMath::tPlane::Normalize()'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='379'>// Makes Normal length 1. When this is done the Distance member will be how far away the plane is from the origin in
+	// the direction of Normal. The Distance /= length in the implementation is CORRECT.</doc>
+<use f='Modules/Math/Src/tGeometry.cpp' l='112' u='c' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>

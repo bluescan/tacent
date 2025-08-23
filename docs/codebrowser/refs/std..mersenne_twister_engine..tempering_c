@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/random.h' l='520' type='const std::mersenne_twister_engine::result_type'/>
+<dec f='include/c++/11/bits/random.tcc' l='287' type='const _UIntType'/>

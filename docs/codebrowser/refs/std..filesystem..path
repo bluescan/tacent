@@ -1,0 +1,421 @@
+<use f='include/c++/11/bits/fs_fwd.h' l='318' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_NS_12copy_optionsE'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='318' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_NS_12copy_optionsE'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='319' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_NS_12copy_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='319' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_NS_12copy_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='322' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_NS_12copy_optionsE'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='322' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_NS_12copy_optionsE'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='323' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_NS_12copy_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='323' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_NS_12copy_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='326' c='_ZNSt10filesystem12current_pathB5cxx11Ev'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='332' c='_ZNSt10filesystem9file_sizeERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='333' c='_ZNSt10filesystem9file_sizeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='334' c='_ZNSt10filesystem15hard_link_countERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='335' c='_ZNSt10filesystem15hard_link_countERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='336' c='_ZNSt10filesystem15last_write_timeERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='337' c='_ZNSt10filesystem15last_write_timeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='339' c='_ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsENS_12perm_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='341' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='341' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='341' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='342' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='342' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='342' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='344' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='344' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='344' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='346' c='_ZNSt10filesystem6statusERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='347' c='_ZNSt10filesystem6statusERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='351' c='_ZNSt10filesystem14symlink_statusERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='352' c='_ZNSt10filesystem14symlink_statusERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_path.h' l='150'/>
+<use f='include/c++/11/bits/fs_path.h' l='154'/>
+<def f='include/c++/11/bits/fs_path.h' l='248' ll='687'/>
+<use f='include/c++/11/bits/fs_path.h' l='272' c='_ZNSt10filesystem7__cxx114pathC1ERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='274' c='_ZNSt10filesystem7__cxx114pathC1EOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='317' c='_ZNSt10filesystem7__cxx114pathaSERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='317' c='_ZNSt10filesystem7__cxx114pathaSERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='318' c='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='318' c='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='319' c='_ZNSt10filesystem7__cxx114pathaSEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='320' c='_ZNSt10filesystem7__cxx114path6assignEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='325' c='_ZNSt10filesystem7__cxx114pathaSERKT_'/>
+<use f='include/c++/11/bits/fs_path.h' l='330' c='_ZNSt10filesystem7__cxx114path6assignERKT_'/>
+<use f='include/c++/11/bits/fs_path.h' l='335' c='_ZNSt10filesystem7__cxx114path6assignET_S2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='339' c='_ZNSt10filesystem7__cxx114pathdVERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='339' c='_ZNSt10filesystem7__cxx114pathdVERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='367' c='_ZNSt10filesystem7__cxx114pathpLERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='367' c='_ZNSt10filesystem7__cxx114pathpLERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='368' c='_ZNSt10filesystem7__cxx114pathpLERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='369' c='_ZNSt10filesystem7__cxx114pathpLEPKc'/>
+<use f='include/c++/11/bits/fs_path.h' l='370' c='_ZNSt10filesystem7__cxx114pathpLEc'/>
+<use f='include/c++/11/bits/fs_path.h' l='371' c='_ZNSt10filesystem7__cxx114pathpLESt17basic_string_viewIcSt11char_traitsIcEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='401' c='_ZNSt10filesystem7__cxx114path14make_preferredEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='402' c='_ZNSt10filesystem7__cxx114path15remove_filenameEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='403' c='_ZNSt10filesystem7__cxx114path16replace_filenameERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='403' c='_ZNSt10filesystem7__cxx114path16replace_filenameERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='404' c='_ZNSt10filesystem7__cxx114path17replace_extensionERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='404' c='_ZNSt10filesystem7__cxx114path17replace_extensionERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='404' c='_ZNSt10filesystem7__cxx114path17replace_extensionERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='406' c='_ZNSt10filesystem7__cxx114path4swapERS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='453' c='_ZNKSt10filesystem7__cxx114path7compareERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='460' c='_ZNKSt10filesystem7__cxx114path9root_nameEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='461' c='_ZNKSt10filesystem7__cxx114path14root_directoryEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='462' c='_ZNKSt10filesystem7__cxx114path9root_pathEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='463' c='_ZNKSt10filesystem7__cxx114path13relative_pathEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='464' c='_ZNKSt10filesystem7__cxx114path11parent_pathEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='465' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='466' c='_ZNKSt10filesystem7__cxx114path4stemEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='467' c='_ZNKSt10filesystem7__cxx114path9extensionEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='484' c='_ZNKSt10filesystem7__cxx114path16lexically_normalEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='485' c='_ZNKSt10filesystem7__cxx114path18lexically_relativeERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='485' c='_ZNKSt10filesystem7__cxx114path18lexically_relativeERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='486' c='_ZNKSt10filesystem7__cxx114path19lexically_proximateERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='486' c='_ZNKSt10filesystem7__cxx114path19lexically_proximateERKS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='498' c='_ZNSt10filesystem7__cxx11lsERSt13basic_ostreamIT_T0_ERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_path.h' l='507' c='_ZNSt10filesystem7__cxx11rsERSt13basic_istreamIT_T0_ERNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_path.h' l='518' c='_ZNSt10filesystem7__cxx11eqERKNS0_4pathES3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='518' c='_ZNSt10filesystem7__cxx11eqERKNS0_4pathES3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='524' c='_ZNSt10filesystem7__cxx11ssERKNS0_4pathES3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='524' c='_ZNSt10filesystem7__cxx11ssERKNS0_4pathES3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='549' c='_ZNSt10filesystem7__cxx11dvERKNS0_4pathES3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='549' c='_ZNSt10filesystem7__cxx11dvERKNS0_4pathES3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='549' c='_ZNSt10filesystem7__cxx11dvERKNS0_4pathES3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='551' c='_ZNSt10filesystem7__cxx11dvERKNS0_4pathES3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='626' c='_ZNSt10filesystem7__cxx114path10_S_compareERKS1_S3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='626' c='_ZNSt10filesystem7__cxx114path10_S_compareERKS1_S3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='692' c='_ZNSt10filesystem7__cxx114swapERNS0_4pathES2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='692' c='_ZNSt10filesystem7__cxx114swapERNS0_4pathES2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='694' c='_ZNSt10filesystem7__cxx1110hash_valueERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_path.h' l='704' c='_ZNSt10filesystem7__cxx1116filesystem_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS0_4pathESt10error_code'/>
+<use f='include/c++/11/bits/fs_path.h' l='707' c='_ZNSt10filesystem7__cxx1116filesystem_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS0_4pathESC_St10error_code'/>
+<use f='include/c++/11/bits/fs_path.h' l='708' c='_ZNSt10filesystem7__cxx1116filesystem_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS0_4pathESC_St10error_code'/>
+<use f='include/c++/11/bits/fs_path.h' l='718' c='_ZNKSt10filesystem7__cxx1116filesystem_error5path1Ev'/>
+<use f='include/c++/11/bits/fs_path.h' l='719' c='_ZNKSt10filesystem7__cxx1116filesystem_error5path2Ev'/>
+<use f='include/c++/11/bits/fs_path.h' l='766' c='_ZNSt10filesystem7__cxx116u8pathET_S1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='777' c='_ZNSt10filesystem7__cxx116u8pathET_S1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='788' c='_ZNSt10filesystem7__cxx116u8pathERKT_'/>
+<use f='include/c++/11/bits/fs_path.h' l='799' c='_ZNSt10filesystem7__cxx116u8pathERKT_'/>
+<ovr f='include/c++/11/bits/fs_path.h' l='805' c='std::filesystem::path::_Cmpt'/>
+<use f='include/c++/11/bits/fs_path.h' l='805'/>
+<use f='include/c++/11/bits/fs_path.h' l='871'/>
+<use f='include/c++/11/bits/fs_path.h' l='872'/>
+<use f='include/c++/11/bits/fs_path.h' l='873'/>
+<use f='include/c++/11/bits/fs_path.h' l='897'/>
+<use f='include/c++/11/bits/fs_path.h' l='930' c='_ZNSt10filesystem7__cxx114path8iteratorC1EPKS1_PKNS1_5_CmptE'/>
+<use f='include/c++/11/bits/fs_path.h' l='934' c='_ZNSt10filesystem7__cxx114path8iteratorC1EPKS1_b'/>
+<use f='include/c++/11/bits/fs_path.h' l='940'/>
+<use f='include/c++/11/bits/fs_path.h' l='946' c='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='947' c='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='958' c='_ZNSt10filesystem7__cxx114pathaSEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='960' c='_ZNSt10filesystem7__cxx114pathaSEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='962' c='_ZNSt10filesystem7__cxx114path6assignEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='964' c='_ZNSt10filesystem7__cxx114path6assignEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='966' c='_ZNSt10filesystem7__cxx114pathpLERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='973' c='_ZNSt10filesystem7__cxx114pathpLEPKc'/>
+<use f='include/c++/11/bits/fs_path.h' l='980' c='_ZNSt10filesystem7__cxx114pathpLEc'/>
+<use f='include/c++/11/bits/fs_path.h' l='987' c='_ZNSt10filesystem7__cxx114pathpLESt17basic_string_viewIcSt11char_traitsIcEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='1002' c='_ZNSt10filesystem7__cxx114path14make_preferredEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1012' c='_ZNSt10filesystem7__cxx114path4swapERS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1197' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1215' c='_ZNKSt10filesystem7__cxx114path4stemEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1220' c='_ZNKSt10filesystem7__cxx114path4stemEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1224' c='_ZNKSt10filesystem7__cxx114path9extensionEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1229' c='_ZNKSt10filesystem7__cxx114path9extensionEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1336' c='_ZNSt10filesystem7__cxx114path10_S_compareERKS1_S3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1336' c='_ZNSt10filesystem7__cxx114path10_S_compareERKS1_S3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1361'/>
+<use f='include/c++/11/bits/fs_path.h' l='1364' c='_ZNKSt4hashINSt10filesystem7__cxx114pathEEclERKS2_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='105' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='109' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='124' c='_ZNSt10filesystem7__cxx1115directory_entry6assignERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='131' c='_ZNSt10filesystem7__cxx1115directory_entry6assignERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='138' c='_ZNSt10filesystem7__cxx1115directory_entry16replace_filenameERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='145' c='_ZNSt10filesystem7__cxx1115directory_entry16replace_filenameERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='160' c='_ZNKSt10filesystem7__cxx1115directory_entry4pathEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='161' c='_ZNKSt10filesystem7__cxx1115directory_entrycvRKNS0_4pathEEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='327' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathENS_9file_typeE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='352'/>
+<use f='include/c++/11/bits/fs_dir.h' l='386' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='389' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathENS_17directory_optionsE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='392' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='395' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathENS_17directory_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='424' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathENS_17directory_optionsEPSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='473' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='476' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathENS_17directory_optionsE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='479' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathENS_17directory_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='483' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='523' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathENS_17directory_optionsEPSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='48' c='_ZNSt10filesystem8absoluteERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='48' c='_ZNSt10filesystem8absoluteERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='51' c='_ZNSt10filesystem8absoluteERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='51' c='_ZNSt10filesystem8absoluteERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='54' c='_ZNSt10filesystem9canonicalERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='54' c='_ZNSt10filesystem9canonicalERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='57' c='_ZNSt10filesystem9canonicalERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='57' c='_ZNSt10filesystem9canonicalERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='60' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='60' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='64' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='64' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='67' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_NS_12copy_optionsE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='67' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_NS_12copy_optionsE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='68' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_NS_12copy_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='68' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_NS_12copy_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='72' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='72' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='76' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='76' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='79' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_NS_12copy_optionsE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='79' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_NS_12copy_optionsE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='80' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_NS_12copy_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='80' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_NS_12copy_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='83' c='_ZNSt10filesystem12copy_symlinkERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='83' c='_ZNSt10filesystem12copy_symlinkERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='84' c='_ZNSt10filesystem12copy_symlinkERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='84' c='_ZNSt10filesystem12copy_symlinkERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='87' c='_ZNSt10filesystem18create_directoriesERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='88' c='_ZNSt10filesystem18create_directoriesERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='90' c='_ZNSt10filesystem16create_directoryERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='91' c='_ZNSt10filesystem16create_directoryERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='93' c='_ZNSt10filesystem16create_directoryERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='93' c='_ZNSt10filesystem16create_directoryERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='94' c='_ZNSt10filesystem16create_directoryERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='94' c='_ZNSt10filesystem16create_directoryERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='97' c='_ZNSt10filesystem24create_directory_symlinkERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='97' c='_ZNSt10filesystem24create_directory_symlinkERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='98' c='_ZNSt10filesystem24create_directory_symlinkERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='98' c='_ZNSt10filesystem24create_directory_symlinkERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='101' c='_ZNSt10filesystem16create_hard_linkERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='101' c='_ZNSt10filesystem16create_hard_linkERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='102' c='_ZNSt10filesystem16create_hard_linkERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='102' c='_ZNSt10filesystem16create_hard_linkERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='105' c='_ZNSt10filesystem14create_symlinkERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='105' c='_ZNSt10filesystem14create_symlinkERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='106' c='_ZNSt10filesystem14create_symlinkERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='106' c='_ZNSt10filesystem14create_symlinkERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='110' c='_ZNSt10filesystem12current_pathB5cxx11Ev'/>
+<use f='include/c++/11/bits/fs_ops.h' l='113' c='_ZNSt10filesystem12current_pathB5cxx11ERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='115' c='_ZNSt10filesystem12current_pathERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='116' c='_ZNSt10filesystem12current_pathERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='120' c='_ZNSt10filesystem10equivalentERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='120' c='_ZNSt10filesystem10equivalentERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='124' c='_ZNSt10filesystem10equivalentERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='124' c='_ZNSt10filesystem10equivalentERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='133' c='_ZNSt10filesystem6existsERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='138' c='_ZNSt10filesystem6existsERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='150' c='_ZNSt10filesystem9file_sizeERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='153' c='_ZNSt10filesystem9file_sizeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='156' c='_ZNSt10filesystem15hard_link_countERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='159' c='_ZNSt10filesystem15hard_link_countERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='168' c='_ZNSt10filesystem13is_block_fileERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='173' c='_ZNSt10filesystem13is_block_fileERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='183' c='_ZNSt10filesystem17is_character_fileERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='188' c='_ZNSt10filesystem17is_character_fileERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='198' c='_ZNSt10filesystem12is_directoryERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='203' c='_ZNSt10filesystem12is_directoryERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='207' c='_ZNSt10filesystem8is_emptyERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='210' c='_ZNSt10filesystem8is_emptyERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='219' c='_ZNSt10filesystem7is_fifoERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='224' c='_ZNSt10filesystem7is_fifoERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='237' c='_ZNSt10filesystem8is_otherERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='242' c='_ZNSt10filesystem8is_otherERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='252' c='_ZNSt10filesystem15is_regular_fileERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='257' c='_ZNSt10filesystem15is_regular_fileERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='267' c='_ZNSt10filesystem9is_socketERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='272' c='_ZNSt10filesystem9is_socketERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='282' c='_ZNSt10filesystem10is_symlinkERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='287' c='_ZNSt10filesystem10is_symlinkERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='291' c='_ZNSt10filesystem15last_write_timeERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='294' c='_ZNSt10filesystem15last_write_timeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='296' c='_ZNSt10filesystem15last_write_timeERKNS_7__cxx114pathENSt6chrono10time_pointINS_12__file_clockENS4_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='297' c='_ZNSt10filesystem15last_write_timeERKNS_7__cxx114pathENSt6chrono10time_pointINS_12__file_clockENS4_8durationIlSt5ratioILl1ELl1000000000EEEEEERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='301' c='_ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsENS_12perm_optionsE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='305' c='_ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='309' c='_ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsENS_12perm_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='313' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='313' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='317' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='317' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='317' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='320' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='320' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='320' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='323' c='_ZNSt10filesystem12read_symlinkERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='323' c='_ZNSt10filesystem12read_symlinkERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='326' c='_ZNSt10filesystem12read_symlinkERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='326' c='_ZNSt10filesystem12read_symlinkERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='329' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='329' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='333' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='333' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='333' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='336' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='336' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='336' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='338' c='_ZNSt10filesystem6removeERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='339' c='_ZNSt10filesystem6removeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='341' c='_ZNSt10filesystem10remove_allERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='342' c='_ZNSt10filesystem10remove_allERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='344' c='_ZNSt10filesystem6renameERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='344' c='_ZNSt10filesystem6renameERKNS_7__cxx114pathES3_'/>
+<use f='include/c++/11/bits/fs_ops.h' l='345' c='_ZNSt10filesystem6renameERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='345' c='_ZNSt10filesystem6renameERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='347' c='_ZNSt10filesystem11resize_fileERKNS_7__cxx114pathEm'/>
+<use f='include/c++/11/bits/fs_ops.h' l='348' c='_ZNSt10filesystem11resize_fileERKNS_7__cxx114pathEmRSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='351' c='_ZNSt10filesystem5spaceERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='354' c='_ZNSt10filesystem5spaceERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='357' c='_ZNSt10filesystem6statusERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='360' c='_ZNSt10filesystem6statusERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='367' c='_ZNSt10filesystem14symlink_statusERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='370' c='_ZNSt10filesystem14symlink_statusERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='373' c='_ZNSt10filesystem19temp_directory_pathB5cxx11Ev'/>
+<use f='include/c++/11/bits/fs_ops.h' l='376' c='_ZNSt10filesystem19temp_directory_pathB5cxx11ERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='379' c='_ZNSt10filesystem16weakly_canonicalERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='379' c='_ZNSt10filesystem16weakly_canonicalERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='382' c='_ZNSt10filesystem16weakly_canonicalERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='382' c='_ZNSt10filesystem16weakly_canonicalERKNS_7__cxx114pathERSt10error_code'/>
+<use f='Modules/System/Src/tFile.cpp' l='934' c='_ZN7tSystem9tCopyFileERK7tStringS2_b'/>
+<use f='Modules/System/Src/tFile.cpp' l='935' c='_ZN7tSystem9tCopyFileERK7tStringS2_b'/>
+<use f='Modules/System/Src/tFile.cpp' l='971' c='_ZN7tSystem11tRenameFileERK7tStringS2_S2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='975' c='_ZN7tSystem11tRenameFileERK7tStringS2_S2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='1161' c='_ZN7tSystem11tDeleteFileERK7tStringbb'/>
+<use f='Modules/System/Src/tFile.cpp' l='1170' c='_ZN7tSystem11tDeleteFileERK7tStringbb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3248' c='_ZN7tSystem10tDeleteDirERK7tStringb'/>
+<size>40</size>
+<doc f='include/c++/11/bits/fs_path.h' l='241'>/// @endcond
+
+  /// @addtogroup filesystem
+  /// @{
+
+  /// A filesystem path
+  /// @ingroup filesystem</doc>
+<smbr r='std::filesystem::path::preferred_separator' t='const std::filesystem::path::value_type'/>
+<fun r='_ZNSt10filesystem7__cxx114pathC1Ev'/>
+<fun r='_ZNSt10filesystem7__cxx114pathC1ERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx114pathC1EOS1_'/>
+<fun r='_ZNSt10filesystem7__cxx114pathC1EONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS1_6formatE'/>
+<fun r='_ZNSt10filesystem7__cxx114pathC1ERKT_NS1_6formatE'/>
+<fun r='_ZNSt10filesystem7__cxx114pathC1ET_S2_NS1_6formatE'/>
+<fun r='_ZNSt10filesystem7__cxx114pathC1ERKT_RKSt6localeNS1_6formatE'/>
+<fun r='_ZNSt10filesystem7__cxx114pathC1ET_S2_RKSt6localeNS1_6formatE'/>
+<fun r='_ZNSt10filesystem7__cxx114pathD1Ev'/>
+<fun r='_ZNSt10filesystem7__cxx114pathaSERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>
+<fun r='_ZNSt10filesystem7__cxx114pathaSEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt10filesystem7__cxx114path6assignEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt10filesystem7__cxx114pathaSERKT_'/>
+<fun r='_ZNSt10filesystem7__cxx114path6assignERKT_'/>
+<fun r='_ZNSt10filesystem7__cxx114path6assignET_S2_'/>
+<fun r='_ZNSt10filesystem7__cxx114pathdVERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx114pathdVERKT_'/>
+<fun r='_ZNSt10filesystem7__cxx114path6appendERKT_'/>
+<fun r='_ZNSt10filesystem7__cxx114path6appendET_S2_'/>
+<fun r='_ZNSt10filesystem7__cxx114pathpLERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx114pathpLERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt10filesystem7__cxx114pathpLEPKc'/>
+<fun r='_ZNSt10filesystem7__cxx114pathpLEc'/>
+<fun r='_ZNSt10filesystem7__cxx114pathpLESt17basic_string_viewIcSt11char_traitsIcEE'/>
+<fun r='_ZNSt10filesystem7__cxx114pathpLERKT_'/>
+<fun r='_ZNSt10filesystem7__cxx114pathpLET_'/>
+<fun r='_ZNSt10filesystem7__cxx114path6concatERKT_'/>
+<fun r='_ZNSt10filesystem7__cxx114path6concatET_S2_'/>
+<fun r='_ZNSt10filesystem7__cxx114path5clearEv'/>
+<fun r='_ZNSt10filesystem7__cxx114path14make_preferredEv'/>
+<fun r='_ZNSt10filesystem7__cxx114path15remove_filenameEv'/>
+<fun r='_ZNSt10filesystem7__cxx114path16replace_filenameERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx114path17replace_extensionERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx114path4swapERS1_'/>
+<fun r='_ZNKSt10filesystem7__cxx114path6nativeEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path5c_strEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114pathcvNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path6stringERKT1_'/>
+<fun r='_ZNKSt10filesystem7__cxx114path6stringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path7wstringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path8u8stringB4__u8Ev'/>
+<fun r='_ZNKSt10filesystem7__cxx114path9u16stringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path9u32stringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path14generic_stringERKT1_'/>
+<fun r='_ZNKSt10filesystem7__cxx114path14generic_stringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path15generic_wstringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path16generic_u8stringB4__u8Ev'/>
+<fun r='_ZNKSt10filesystem7__cxx114path17generic_u16stringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path17generic_u32stringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path7compareERKS1_'/>
+<fun r='_ZNKSt10filesystem7__cxx114path7compareERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNKSt10filesystem7__cxx114path7compareEPKc'/>
+<fun r='_ZNKSt10filesystem7__cxx114path7compareESt17basic_string_viewIcSt11char_traitsIcEE'/>
+<fun r='_ZNKSt10filesystem7__cxx114path9root_nameEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path14root_directoryEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path9root_pathEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path13relative_pathEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path11parent_pathEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path8filenameEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path4stemEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path9extensionEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path5emptyEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path13has_root_nameEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path18has_root_directoryEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path13has_root_pathEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path17has_relative_pathEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path15has_parent_pathEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path12has_filenameEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path8has_stemEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path13has_extensionEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path11is_absoluteEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path11is_relativeEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path16lexically_normalEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path18lexically_relativeERKS1_'/>
+<fun r='_ZNKSt10filesystem7__cxx114path19lexically_proximateERKS1_'/>
+<fun r='_ZNKSt10filesystem7__cxx114path5beginEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path3endEv'/>
+<fun r='_ZNSt10filesystem7__cxx114pathC1ESt17basic_string_viewIcSt11char_traitsIcEENS1_5_TypeE'/>
+<fun r='_ZNSt10filesystem7__cxx114path9_M_appendESt17basic_string_viewIcSt11char_traitsIcEE'/>
+<fun r='_ZNSt10filesystem7__cxx114path9_M_concatESt17basic_string_viewIcSt11char_traitsIcEE'/>
+<fun r='_ZNKSt10filesystem7__cxx114path17_M_find_extensionEv'/>
+<fun r='_ZNSt10filesystem7__cxx114path10_S_convertENSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt10filesystem7__cxx114path10_S_convertERKT_'/>
+<fun r='_ZNSt10filesystem7__cxx114path10_S_convertEPKT_S4_'/>
+<fun r='_ZNSt10filesystem7__cxx114path14_S_convert_locEPKcS3_RKSt6locale'/>
+<fun r='_ZNSt10filesystem7__cxx114path14_S_convert_locET_S2_RKSt6locale'/>
+<fun r='_ZNSt10filesystem7__cxx114path14_S_convert_locERKT_RKSt6locale'/>
+<fun r='_ZNSt10filesystem7__cxx114path14_S_str_convertESt17basic_string_viewIcSt11char_traitsIcEERKT1_'/>
+<fun r='_ZNSt10filesystem7__cxx114path10_S_compareERKS1_S3_'/>
+<fun r='_ZNSt10filesystem7__cxx114path14_M_split_cmptsEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path7_M_typeEv'/>
+<mbr r='std::filesystem::path::_M_pathname' o='0' t='std::filesystem::path::string_type'/>
+<mbr r='std::filesystem::path::_M_cmpts' o='256' t='std::filesystem::path::_List'/>
+<fun r='_ZNSt10filesystem7__cxx114path10_S_convertEPKT_S4_'/>
+<fun r='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>
+<fun r='_ZNSt10filesystem7__cxx114pathaSEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt10filesystem7__cxx114path6assignEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt10filesystem7__cxx114pathpLERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt10filesystem7__cxx114pathpLEPKc'/>
+<fun r='_ZNSt10filesystem7__cxx114pathpLEc'/>
+<fun r='_ZNSt10filesystem7__cxx114pathpLESt17basic_string_viewIcSt11char_traitsIcEE'/>
+<fun r='_ZNSt10filesystem7__cxx114pathpLET_'/>
+<fun r='_ZNSt10filesystem7__cxx114path14make_preferredEv'/>
+<fun r='_ZNSt10filesystem7__cxx114path4swapERS1_'/>
+<fun r='_ZNSt10filesystem7__cxx114path14_S_str_convertESt17basic_string_viewIcSt11char_traitsIcEERKT1_'/>
+<fun r='_ZNKSt10filesystem7__cxx114path6stringERKT1_'/>
+<fun r='_ZNKSt10filesystem7__cxx114path6stringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path7wstringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path8u8stringB4__u8Ev'/>
+<fun r='_ZNKSt10filesystem7__cxx114path9u16stringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path9u32stringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path14generic_stringERKT1_'/>
+<fun r='_ZNKSt10filesystem7__cxx114path14generic_stringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path15generic_wstringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path16generic_u8stringB4__u8Ev'/>
+<fun r='_ZNKSt10filesystem7__cxx114path17generic_u16stringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path17generic_u32stringEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path7compareERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNKSt10filesystem7__cxx114path7compareEPKc'/>
+<fun r='_ZNKSt10filesystem7__cxx114path8filenameEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path4stemEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path9extensionEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path8has_stemEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path13has_extensionEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path11is_absoluteEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path5beginEv'/>
+<fun r='_ZNKSt10filesystem7__cxx114path3endEv'/>
+<fun r='_ZNSt10filesystem7__cxx114path10_S_compareERKS1_S3_'/>

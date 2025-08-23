@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='2252' ll='2258' type='bool std::ranges::__binary_search_fn::operator()(_Range &amp;&amp; __r, const _Tp &amp; __value, _Comp __comp = {}, _Proj __proj = {}) const'/>

@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='401' type='void tColour4b::MakeZero()'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='261' u='c' c='_ZN6tImage9tImageHDR14AdjustExposureEP9tColour4bii'/>

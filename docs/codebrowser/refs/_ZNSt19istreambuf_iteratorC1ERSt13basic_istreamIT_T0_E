@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/streambuf_iterator.h' l='129' ll='130' type='void std::istreambuf_iterator::istreambuf_iterator&lt;_CharT, _Traits&gt;(std::istreambuf_iterator::istream_type &amp; __s)'/>
+<doc f='include/c++/11/bits/streambuf_iterator.h' l='128'>///  Construct start of input stream iterator.</doc>

@@ -1,0 +1,23 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='244' type='uint32 tChunk::GetID() const'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='268' u='c' c='_ZNK6tChunk2IDEv'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='242'>// Returns the ID of the chunk or 0 if it&apos;s not a valid chunk. The returned ID has the alignment bits zeroed out.
+	// This allows comparison with the same value supplied to Begin.</doc>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='70' u='c' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='75' u='c' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='153' u='c' c='_ZN6tScene11tAttributes4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='35' u='c' c='_ZN6tScene9tLodParam4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='61' u='c' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='66' u='c' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='75' u='c' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='59' u='c' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='64' u='c' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='145' u='c' c='_ZN6tScene5tPose4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='149' u='c' c='_ZN6tScene5tPose4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='209' u='c' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='214' u='c' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='228' u='c' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='231' u='c' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='243' u='c' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='246' u='c' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1227' u='c' c='_ZN6tScene6tWorld10LoadGroupsERK6tChunkR7tItListINS_9tLodGroupEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1232' u='c' c='_ZN6tScene6tWorld10LoadGroupsERK6tChunkR7tItListINS_9tLodGroupEE'/>

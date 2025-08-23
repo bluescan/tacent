@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1531' ll='1544' type='void std::deque::pop_front()'/>
+<use f='include/c++/11/bits/deque.tcc' l='245' u='c' c='_ZNSt5deque8_M_eraseENSt11_Deque_baseIT_T0_E8iteratorE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='663' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1523'>/**
+       *  @brief  Removes first element.
+       *
+       *  This is a typical stack operation.  It shrinks the %deque by one.
+       *
+       *  Note that no data is returned, and if the first element&apos;s data is
+       *  needed, it should be retrieved before pop_front() is called.
+       */</doc>

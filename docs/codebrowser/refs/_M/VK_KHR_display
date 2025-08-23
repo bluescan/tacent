@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7863'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7862'>// VK_KHR_display is a preprocessor guard. Do not pass it to API calls.</doc>

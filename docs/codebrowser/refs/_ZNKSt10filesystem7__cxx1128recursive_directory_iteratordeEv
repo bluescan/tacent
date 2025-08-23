@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/fs_dir.h' l='498' type='const std::filesystem::directory_entry &amp; std::filesystem::recursive_directory_iterator::operator*() const'/>
+<use f='include/c++/11/bits/fs_dir.h' l='499' u='c' c='_ZNKSt10filesystem7__cxx1128recursive_directory_iteratorptEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='512' u='c' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorppEi'/>

@@ -1,0 +1,10 @@
+_ZSt8ellint_1T_T0_|std::ellint_1
+_ZSt9ellint_1fff|std::ellint_1f
+_ZSt9ellint_1lee|std::ellint_1l
+_ZSt8ellint_2T_T0_|std::ellint_2
+_ZSt9ellint_2fff|std::ellint_2f
+_ZSt9ellint_2lee|std::ellint_2l
+_ZSt8ellint_3T_T0_T1_|std::ellint_3
+_ZSt9ellint_3ffff|std::ellint_3f
+_ZSt9ellint_3leee|std::ellint_3l
+_ZN7tSystem6tRegex7ElementEv|tSystem::tRegex::Element

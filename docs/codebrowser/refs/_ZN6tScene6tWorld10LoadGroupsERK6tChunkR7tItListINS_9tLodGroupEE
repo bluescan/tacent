@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='525' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<def f='Modules/Scene/Src/tWorld.cpp' l='1225' ll='1239' type='void tScene::tWorld::LoadGroups(const tChunk &amp; groupListChunk, tItList&lt;tScene::tLodGroup&gt; &amp; lodGroups)'/>

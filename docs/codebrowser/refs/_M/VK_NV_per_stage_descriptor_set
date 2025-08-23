@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18448'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18447'>// VK_NV_per_stage_descriptor_set is a preprocessor guard. Do not pass it to API calls.</doc>

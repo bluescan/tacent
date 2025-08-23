@@ -1,0 +1,4 @@
+<dec f='include/pthread.h' l='901' type='int pthread_mutexattr_settype(pthread_mutexattr_t * __attr, int __kind)'/>
+<doc f='include/pthread.h' l='898'>/* Set the mutex kind attribute in *ATTR to KIND (either PTHREAD_MUTEX_NORMAL,
+   PTHREAD_MUTEX_RECURSIVE, PTHREAD_MUTEX_ERRORCHECK, or
+   PTHREAD_MUTEX_DEFAULT).  */</doc>

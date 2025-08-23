@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/unordered_map.h' l='333' ll='335' type='std::unordered_map::const_iterator std::unordered_map::begin() const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='329'>/**
+       *  Returns a read-only (constant) iterator that points to the first
+       *  element in the %unordered_map.
+       */</doc>

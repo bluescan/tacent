@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='78' type='size_t WebPEncodeLosslessBGRA(const uint8_t * bgra, int width, int height, int stride, uint8_t ** output)'/>

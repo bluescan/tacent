@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='425' type='8192'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='425'>// Data is a unique unsigned 32bit integer.</doc>
+<use f='Modules/Scene/Src/tObject.cpp' l='24' u='r' c='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tObject.cpp' l='47' c='_ZN6tScene7tObject4LoadERK6tChunk'/>

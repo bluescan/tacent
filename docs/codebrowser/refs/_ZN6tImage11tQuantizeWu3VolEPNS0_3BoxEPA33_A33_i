@@ -1,0 +1,15 @@
+<dec f='Modules/Image/Src/tQuantizeWu.cpp' l='85' type='int32 tImage::tQuantizeWu::Vol(tImage::tQuantizeWu::Box * cube, int32 (*)[33][33] mmt)'/>
+<def f='Modules/Image/Src/tQuantizeWu.cpp' l='182' ll='195' type='int32 tImage::tQuantizeWu::Vol(tImage::tQuantizeWu::Box * cube, int32 (*)[33][33] mmt)'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='273' u='c' c='_ZN6tImage11tQuantizeWu3VarERNS0_5StateEPNS0_3BoxE'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='274' u='c' c='_ZN6tImage11tQuantizeWu3VarERNS0_5StateEPNS0_3BoxE'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='275' u='c' c='_ZN6tImage11tQuantizeWu3VarERNS0_5StateEPNS0_3BoxE'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='285' u='c' c='_ZN6tImage11tQuantizeWu3VarERNS0_5StateEPNS0_3BoxE'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='345' u='c' c='_ZN6tImage11tQuantizeWu3CutERNS0_5StateEPNS0_3BoxES4_'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='346' u='c' c='_ZN6tImage11tQuantizeWu3CutERNS0_5StateEPNS0_3BoxES4_'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='347' u='c' c='_ZN6tImage11tQuantizeWu3CutERNS0_5StateEPNS0_3BoxES4_'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='348' u='c' c='_ZN6tImage11tQuantizeWu3CutERNS0_5StateEPNS0_3BoxES4_'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='492' u='c' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='495' u='c' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='496' u='c' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='497' u='c' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>
+<doc f='Modules/Image/Src/tQuantizeWu.cpp' l='84'>// Compute sum over a box of any given statistic.</doc>

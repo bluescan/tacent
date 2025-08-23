@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18765' ll='18770'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18765'/>
+<size>32</size>
+<mbr r='VkWriteDescriptorSetAccelerationStructureKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkWriteDescriptorSetAccelerationStructureKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkWriteDescriptorSetAccelerationStructureKHR::accelerationStructureCount' o='128' t='uint32_t'/>
+<mbr r='VkWriteDescriptorSetAccelerationStructureKHR::pAccelerationStructures' o='192' t='const VkAccelerationStructureKHR *'/>

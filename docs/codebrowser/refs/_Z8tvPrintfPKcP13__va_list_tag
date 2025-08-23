@@ -1,0 +1,10 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='219' type='int tvPrintf(const char * format, __va_list_tag * )'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='323' u='c' c='_Z7tPrintfPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='408' u='c' c='_Z9tmsPrintfPcPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='426' u='c' c='_Z9tmsPrintfR7tStringPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='444' u='c' c='_Z9tmsPrintfPciPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='462' u='c' c='_Z9tmfPrintfP8_IO_FILEPKcz'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='219'>// Prints to generic channel.</doc>
+<def f='Modules/System/Src/tPrint.cpp' l='465' ll='476' type='int tvPrintf(const char * format, __va_list_tag * argList)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='568' u='c' c='_Z10tsavPrintfP7tStringPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='580' u='c' c='_Z9tsaPrintfP7tStringPKcz'/>

@@ -1,0 +1,3 @@
+<def f='Modules/System/Inc/System/tPrint.h' l='41' type='const tSystem::tChannel'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='61' u='r'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='388' u='r' c='_Z13tdPrintfInputPKcz'/>

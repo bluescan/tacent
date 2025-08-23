@@ -1,0 +1,3 @@
+<def f='include/c++/11/tr1/riemann_zeta.tcc' l='294' ll='341' type='_Tp std::__detail::__riemann_zeta(_Tp __s)'/>
+<use f='include/c++/11/bits/specfun.h' l='1023' u='c' c='_ZSt13riemann_zetaff'/>
+<use f='include/c++/11/bits/specfun.h' l='1033' u='c' c='_ZSt13riemann_zetale'/>

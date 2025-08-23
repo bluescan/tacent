@@ -1,0 +1,9 @@
+_ZNKSt9basic_ios5rdbufEv|std::basic_ios::rdbuf
+_ZNKSt9basic_ios7rdstateEv|std::basic_ios::rdstate
+_ZNKSt13basic_fstream5rdbufEv|std::basic_fstream::rdbuf
+_ZNKSt14basic_ifstream5rdbufEv|std::basic_ifstream::rdbuf
+_ZNKSt7__cxx1119basic_istringstream5rdbufEv|std::basic_istringstream::rdbuf
+_ZNKSt14basic_ofstream5rdbufEv|std::basic_ofstream::rdbuf
+_ZNKSt7__cxx1119basic_ostringstream5rdbufEv|std::basic_ostringstream::rdbuf
+_ZNKSt7__cxx1118basic_stringstream5rdbufEv|std::basic_stringstream::rdbuf
+_ZNKSt15wbuffer_convert5rdbufEv|std::wbuffer_convert::rdbuf

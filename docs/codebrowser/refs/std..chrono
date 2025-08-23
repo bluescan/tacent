@@ -1,0 +1,4 @@
+<doc f='include/c++/11/chrono' l='66'>/** @namespace std::chrono
+   *  @brief ISO C++ 2011 namespace for date and time utilities
+   *  @ingroup chrono
+   */</doc>

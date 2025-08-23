@@ -1,0 +1,2 @@
+<dec f='include/inttypes.h' l='151'/>
+<doc f='include/inttypes.h' l='150'>/* Macros for printing `intmax_t&apos; and `uintmax_t&apos;.  */</doc>

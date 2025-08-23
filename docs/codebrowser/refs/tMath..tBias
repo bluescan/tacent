@@ -1,0 +1,41 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='69' ll='75'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='80' c='_ZN5tMath9tBiasLessENS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='81' c='_ZN5tMath9tBiasGrtrENS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='88' c='_ZN5tMath11tInIntervalET_S0_S0_NS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='90' c='_ZN5tMath8tInRangeET_S0_S0_NS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='216' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='217' c='_ZN5tMath16tNormalizedAngleEfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='218' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='219' c='_ZN5tMath19tNormalizedAngle2PiEfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='258' c='_ZN5tMath9tBiasLessENS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='274' c='_ZN5tMath9tBiasGrtrENS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='541' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='551' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='64'>// Interval Notation. When you see [a,b] or (a,b) the square bracket means include the endpoint and the rounded brackets
+// mean exclude. See http://www.coolmath.com/algebra/07-solving-inequalities/03-interval-notation-01. When a function
+// takes a bias argument, a Low bias will cause the return value to include the lower extent of the interval and exclude
+// the high extent. A High bias will exclude the low end and include the high end. As a notational convenience When a
+// function takes a bias argument, we&apos;ll write the interval as [(a,b)] and the enum below shows how to interpret it:</doc>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='742' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='749' c='_ZN5tMath22tExtractAffineEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='123' c='_ZNK5tMath8tMatrix423ExtractRotationEulerXYZERNS_5tVec3ES2_fNS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='129' c='_ZNK5tMath8tMatrix421ExtractAffineEulerXYZERNS_5tVec3ES2_fNS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='169' c='_ZNK5tMath7tARect217IsPointInsideBiasERKNS_8tVector2ENS_5tBiasES4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='170' c='_ZNK5tMath7tARect217IsPointInsideBiasERKNS_8tVector2ENS_5tBiasES4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='309' c='_ZNK5tMath5tABox17IsPointInsideBiasERKNS_8tVector3ENS_5tBiasES4_S4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='310' c='_ZNK5tMath5tABox17IsPointInsideBiasERKNS_8tVector3ENS_5tBiasES4_S4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='311' c='_ZNK5tMath5tABox17IsPointInsideBiasERKNS_8tVector3ENS_5tBiasES4_S4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='547' c='_ZNK5tMath7tARect217IsPointInsideBiasERKNS_8tVector2ENS_5tBiasES4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='547' c='_ZNK5tMath7tARect217IsPointInsideBiasERKNS_8tVector2ENS_5tBiasES4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='573' c='_ZNK5tMath5tABox17IsPointInsideBiasERKNS_8tVector3ENS_5tBiasES4_S4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='573' c='_ZNK5tMath5tABox17IsPointInsideBiasERKNS_8tVector3ENS_5tBiasES4_S4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='573' c='_ZNK5tMath5tABox17IsPointInsideBiasERKNS_8tVector3ENS_5tBiasES4_S4_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='55' c='_ZN5tMath9tIntervalC1EiiNS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='69' c='_ZN5tMath9tInterval3SetEiiNS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='106'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='110' c='_ZN5tMath9tInterval13InclusiveLeftENS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='111' c='_ZN5tMath9tInterval14InclusiveRightENS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='112' c='_ZN5tMath9tInterval13ExclusiveLeftENS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='113' c='_ZN5tMath9tInterval14ExclusiveRightENS_5tBiasE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='944' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='984' c='_ZN5tMath22tExtractAffineEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>

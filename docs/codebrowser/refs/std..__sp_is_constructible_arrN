@@ -1,0 +1,4 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='925' ll='927'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='929' ll='932'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='952'/>

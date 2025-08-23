@@ -1,0 +1,5 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/fs_path.h' l='106' ll='108'/>
+<def f='include/c++/11/bits/fs_path.h' l='110' ll='114'/>
+<use f='include/c++/11/bits/fs_path.h' l='118'/>
+<use f='include/c++/11/bits/fs_path.h' l='154'/>

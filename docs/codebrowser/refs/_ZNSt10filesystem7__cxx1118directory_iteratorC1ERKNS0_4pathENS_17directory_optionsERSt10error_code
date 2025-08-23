@@ -1,0 +1,2 @@
+<use f='include/c++/11/bits/fs_dir.h' l='393' u='c' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathERSt10error_code'/>
+<def f='include/c++/11/bits/fs_dir.h' l='395' ll='397' type='void std::filesystem::directory_iterator::directory_iterator(const std::filesystem::path &amp; __p, std::filesystem::directory_options __options, std::error_code &amp; __ec)'/>

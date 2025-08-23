@@ -1,0 +1,3 @@
+<dec f='include/linux/stat.h' l='102' type='__u32'/>
+<offset>32</offset>
+<doc f='include/linux/stat.h' l='102'>/* Preferred general I/O size [uncond] */</doc>

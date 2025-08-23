@@ -1,0 +1,2 @@
+<def f='Modules/Scene/Src/tLodGroup.cpp' l='22' ll='30' type='void tScene::tLodParam::Save(tChunkWriter &amp; chunk) const'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='50' u='c' c='_ZNK6tScene9tLodGroup4SaveER12tChunkWriter'/>

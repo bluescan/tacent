@@ -1,0 +1,6 @@
+<dec f='include/x86_64-linux-gnu/bits/endianness.h' l='9'/>
+<use f='include/x86_64-linux-gnu/bits/endian.h' l='43' u='c'/>
+<use f='include/ctype.h' l='40' u='c'/>
+<use f='include/endian.h' l='38' u='c'/>
+<doc f='include/x86_64-linux-gnu/bits/endianness.h' l='8'>/* i386/x86_64 are little-endian.  */</doc>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='46' u='c'/>

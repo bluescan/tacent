@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='4169' type='PFN_vkVoidFunction vkGetInstanceProcAddr(VkInstance instance, const char * pName)'/>

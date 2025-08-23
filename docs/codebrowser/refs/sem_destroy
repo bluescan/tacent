@@ -1,0 +1,3 @@
+<dec f='include/semaphore.h' l='39' type='int sem_destroy(sem_t * __sem)'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='74' u='c' c='_ZNSt20__platform_semaphoreD1Ev'/>
+<doc f='include/semaphore.h' l='38'>/* Free resources associated with semaphore object SEM.  */</doc>

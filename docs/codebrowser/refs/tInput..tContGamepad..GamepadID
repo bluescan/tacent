@@ -1,0 +1,5 @@
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='53' u='w' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='53' u='r' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='72' u='w' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<dec f='Modules/Input/Inc/Input/tContGamepad.h' l='100' type='tInput::tGamepadID'/>
+<offset>12864</offset>

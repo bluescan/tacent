@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/bits/signal_ext.h' l='29' type='int tgkill(__pid_t __tgid, __pid_t __tid, int __signal)'/>
+<doc f='include/x86_64-linux-gnu/bits/signal_ext.h' l='25'>/* Send SIGNAL to the thread TID in the thread group (process)
+   identified by TGID.  This function behaves like kill, but also
+   fails with ESRCH if the specified TID does not belong to the
+   specified thread group.  */</doc>

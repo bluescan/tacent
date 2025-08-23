@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/stl_deque.h' l='1239' u='c' c='_ZNKSt5deque8max_sizeEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1827' u='c' c='_ZNSt5deque17_S_check_init_lenEmRKT0_'/>
+<def f='include/c++/11/bits/stl_deque.h' l='1833' ll='1839' type='static std::deque::size_type std::deque::_S_max_size(const std::deque::_Tp_alloc_type &amp; __a)'/>

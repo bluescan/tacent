@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1730' ll='1732' type='void std::unordered_multimap::clear()'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1724'>/**
+       *  Erases all elements in an %unordered_multimap.
+       *  Note that this function only erases the elements, and that if the
+       *  elements themselves are pointers, the pointed-to memory is not touched
+       *  in any way.  Managing the pointer is the user&apos;s responsibility.
+       */</doc>

@@ -1,0 +1,10 @@
+<dec f='include/c++/11/istream' l='468' type='std::basic_istream::int_type std::basic_istream::peek()'/>
+<def f='include/c++/11/bits/istream.tcc' l='652' ll='680' type='typename basic_istream&lt;_CharT, _Traits&gt;::int_type std::basic_istream::peek()'/>
+<doc f='include/c++/11/istream' l='459'>/**
+       *  @brief  Looking ahead in the stream
+       *  @return  The next character, or eof().
+       *
+       *  If, after constructing the sentry object, @c good() is false,
+       *  returns @c traits::eof().  Otherwise reads but does not extract
+       *  the next input character.
+      */</doc>

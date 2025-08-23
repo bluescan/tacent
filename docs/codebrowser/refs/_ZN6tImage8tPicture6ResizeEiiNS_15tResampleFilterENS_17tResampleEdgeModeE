@@ -1,0 +1,5 @@
+<def f='Modules/Image/Inc/Image/tPicture.h' l='312' ll='316' type='bool tImage::tPicture::Resize(int width, int height, tImage::tResampleFilter filter = tResampleFilter::Bilinear, tImage::tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp)'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='143' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='228' u='c' c='_ZN6tImage8tTexture33ProcessImageTo_R8G8B8_Or_R8G8B8A8ERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='279' u='c' c='_ZN6tImage8tTexture23ProcessImageTo_G3B5R5G3ERNS_8tPictureEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='365' u='c' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>

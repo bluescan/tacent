@@ -1,0 +1,60 @@
+<use f='include/c++/11/bits/iterator_concepts.h' l='404'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='500'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='661'/>
+<inh f='include/c++/11/bits/stl_iterator_base_types.h' l='103' c='std::bidirectional_iterator_tag'/>
+<def f='include/c++/11/bits/stl_iterator_base_types.h' l='107'/>
+<ovr f='include/c++/11/bits/stl_iterator_base_types.h' l='111' c='std::contiguous_iterator_tag'/>
+<use f='include/c++/11/bits/stl_iterator_base_types.h' l='111'/>
+<use f='include/c++/11/bits/stl_iterator_base_types.h' l='201'/>
+<use f='include/c++/11/bits/stl_iterator_base_types.h' l='256'/>
+<use f='include/c++/11/bits/stl_iterator_base_types.h' l='258'/>
+<use f='include/c++/11/bits/stl_iterator_base_funcs.h' l='99' c='_ZSt10__distanceT_S_St26random_access_iterator_tag'/>
+<use f='include/c++/11/bits/stl_iterator_base_funcs.h' l='175' c='_ZSt9__advanceRT_T0_St26random_access_iterator_tag'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='160'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='164'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1355'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1398' c='_ZNSt13move_iterator15_S_iter_conceptEv'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='320' c='_ZSt12__niter_baseRKN11__gnu_debug14_Safe_iteratorIT_T0_St26random_access_iterator_tagEE'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='375'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='395'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='415'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='692'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='709'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='726'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1110' c='_ZSt10__fill_n_aT_T0_RKT1_St26random_access_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1259'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1259'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1598' c='_ZSt8__equal4T_S_T0_S0_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1625' c='_ZSt8__equal4T_S_T0_S0_T1_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='2062' c='_ZSt9__find_ifT_S_T0_St26random_access_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='229' c='_ZSt14__search_n_auxT_S_T0_T1_St26random_access_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='724' c='_ZSt8__copy_nT_T0_T1_St26random_access_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1117' c='_ZSt9__reverseT_S_St26random_access_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1301' c='_ZNSt3_V28__rotateET_S0_S0_St26random_access_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='3536' c='_ZSt16__is_permutationT_S_T0_S0_T1_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='3537' c='_ZSt16__is_permutationT_S_T0_S0_T1_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='3844' c='_ZSt10for_each_nT_T0_T1_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='5749' c='_ZSt8__sampleT_S_St18input_iterator_tagT0_St26random_access_iterator_tagT1_OT2_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='824' c='_ZSt22__uninitialized_copy_nT_T0_T1_St26random_access_iterator_tag'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='852' c='_ZSt27__uninitialized_copy_n_pairT_T0_T1_St26random_access_iterator_tag'/>
+<use f='include/c++/11/bits/stl_vector.h' l='630' c='_ZNSt6vectorC1ESt16initializer_listIT_ERKT0_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='733' c='_ZNSt6vectoraSESt16initializer_listIT_E'/>
+<use f='include/c++/11/bits/stl_vector.h' l='797' c='_ZNSt6vector6assignESt16initializer_listIT_E'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1314' c='_ZNSt6vector6insertEN9__gnu_cxx17__normal_iteratorINS0_14__alloc_traitsINSt12_Vector_baseIT_T0_E14_Tp_alloc_typeENS6_14_Tp_alloc_type10value_typeEE13c8335942'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1836' c='_ZNSt6vector14_M_move_assignEOSt6vectorIT_T0_ESt17integral_constantIbLb0EE'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='143'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='707' c='_ZNSt6vectorIbT_EC1ESt16initializer_listIbERKS0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='827' c='_ZNSt6vectorIbT_E6assignESt16initializer_listIbE'/>
+<size>1</size>
+<doc f='include/c++/11/bits/stl_iterator_base_types.h' l='105'>/// Random-access iterators support a superset of bidirectional
+  /// iterator operations.</doc>
+<use f='include/c++/11/bits/basic_string.h' l='539' c='_ZNSt7__cxx1112basic_stringC1EPKT_RKT1_'/>
+<size>1</size>
+<use f='include/c++/11/bits/stl_deque.h' l='134'/>
+<use f='include/c++/11/bits/stl_deque.h' l='960' c='_ZNSt5dequeC1ESt16initializer_listIT_ERKT0_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1053' c='_ZNSt5dequeaSESt16initializer_listIT_E'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1114' c='_ZNSt5deque6assignESt16initializer_listIT_E'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1637' c='_ZNSt5deque6insertENSt11_Deque_baseIT_T0_E14const_iteratorESt16initializer_listIS1_E'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2218' c='_ZNSt5deque15_M_move_assign2EOSt5dequeIT_T0_ESt17integral_constantIbLb0EE'/>
+<use f='include/c++/11/bits/deque.tcc' l='126' c='_ZNSt5dequeaSERKSt5dequeIT_T0_E'/>
+<size>1</size>

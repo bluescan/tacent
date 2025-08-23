@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='214' type='void tImage::tMetaData::SetTags_CamHardware(const TinyEXIF::EXIFInfo &amp; )'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='215' u='c' c='_ZN6tImage9tMetaData3SetEPKhi'/>
+<def f='Modules/Image/Src/tMetaData.cpp' l='224' ll='264' type='void tImage::tMetaData::SetTags_CamHardware(const TinyEXIF::EXIFInfo &amp; exifInfo)'/>

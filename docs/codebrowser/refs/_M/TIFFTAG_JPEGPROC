@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='360'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='356'>/*
+ * Tags 512-521 are obsoleted by Technical Note #2 which specifies a
+ * revised JPEG-in-TIFF scheme.
+ */</doc>

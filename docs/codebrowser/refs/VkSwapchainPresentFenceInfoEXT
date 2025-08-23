@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14777' ll='14782'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14777'/>
+<size>32</size>
+<mbr r='VkSwapchainPresentFenceInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSwapchainPresentFenceInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkSwapchainPresentFenceInfoEXT::swapchainCount' o='128' t='uint32_t'/>
+<mbr r='VkSwapchainPresentFenceInfoEXT::pFences' o='192' t='const VkFence *'/>

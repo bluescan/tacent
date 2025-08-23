@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/GifLoad/gif_load.h' l='87' ll='148' type='long _GIF_LoadFrame(uint8_t ** buff, long * size, uint8_t * bptr, uint8_t * blen)'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='282' u='c' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<doc f='Modules/Image/Contrib/GifLoad/gif_load.h' l='86'>/** [ internal function, do not use ] **/</doc>

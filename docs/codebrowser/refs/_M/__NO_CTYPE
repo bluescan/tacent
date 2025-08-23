@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/os_defines.h' l='37'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/os_defines.h' l='33'>// System-specific #define, typedefs, corrections, etc, go here.  This
+// file will come before all others.
+
+// This keeps isanum, et al from being propagated as macros.</doc>

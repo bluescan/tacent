@@ -1,0 +1,6 @@
+<dec f='include/c++/11/ostream' l='443' type='basic_ostream&lt;_CharT, _Traits&gt; &amp;'/>
+<use f='include/c++/11/ostream' l='472' u='c' c='_ZNSt13basic_ostream6sentryD1Ev'/>
+<use f='include/c++/11/ostream' l='475' u='c' c='_ZNSt13basic_ostream6sentryD1Ev'/>
+<use f='include/c++/11/ostream' l='475' u='c' c='_ZNSt13basic_ostream6sentryD1Ev'/>
+<use f='include/c++/11/ostream' l='476' u='c' c='_ZNSt13basic_ostream6sentryD1Ev'/>
+<use f='include/c++/11/bits/ostream.tcc' l='48' u='w' c='_ZNSt13basic_ostream6sentryC1ERSt13basic_ostreamIT_T0_E'/>

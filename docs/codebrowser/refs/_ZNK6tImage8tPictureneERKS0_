@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='333' type='bool tImage::tPicture::operator!=(const tImage::tPicture &amp; ) const'/>
+<def f='Modules/Image/Inc/Image/tPicture.h' l='661' ll='664' type='bool tImage::tPicture::operator!=(const tImage::tPicture &amp; src) const'/>

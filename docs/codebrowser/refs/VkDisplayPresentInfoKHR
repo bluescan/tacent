@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7992' ll='7998'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7992'/>
+<size>56</size>
+<mbr r='VkDisplayPresentInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDisplayPresentInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkDisplayPresentInfoKHR::srcRect' o='128' t='VkRect2D'/>
+<mbr r='VkDisplayPresentInfoKHR::dstRect' o='256' t='VkRect2D'/>
+<mbr r='VkDisplayPresentInfoKHR::persistent' o='384' t='VkBool32'/>

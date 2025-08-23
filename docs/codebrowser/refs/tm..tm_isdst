@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='17' type='int'/>
+<offset>256</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='17'>/* DST.		[-1/0/1]*/</doc>

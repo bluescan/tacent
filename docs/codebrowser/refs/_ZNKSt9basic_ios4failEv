@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/basic_ios.h' l='200' ll='202' type='bool std::basic_ios::fail() const'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='193'>/**
+       *  @brief  Fast error checking.
+       *  @return  True if either the badbit or the failbit is set.
+       *
+       *  Checking the badbit in fail() is historical practice.
+       *  Note that other iostate flags may also be set.
+      */</doc>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17192' ll='17196'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17192'/>
+<size>24</size>
+<mbr r='VkCopyMemoryIndirectCommandNV::srcAddress' o='0' t='VkDeviceAddress'/>
+<mbr r='VkCopyMemoryIndirectCommandNV::dstAddress' o='64' t='VkDeviceAddress'/>
+<mbr r='VkCopyMemoryIndirectCommandNV::size' o='128' t='VkDeviceSize'/>

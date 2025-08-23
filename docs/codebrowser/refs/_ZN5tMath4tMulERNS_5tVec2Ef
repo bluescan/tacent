@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='438' type='void tMath::tMul(tMath::tVec2 &amp; v, float a)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='437'>// Multiply. Computes d = a * b or vq *= a.</doc>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='84' u='c' c='_ZN5tMath8tVector2mLEf'/>

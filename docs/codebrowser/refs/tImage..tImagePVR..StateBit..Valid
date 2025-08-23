@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='109' type='0'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='152' u='r' c='_ZNK6tImage9tImagePVR7IsValidEv'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='108'>// The tImagePVR is considered valid. May be combined with the conditionals below.</doc>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='684' u='r' c='_ZN6tImage9tImagePVR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1053' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>

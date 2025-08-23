@@ -1,0 +1,6 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='743' type='void tColour3f::ToLinearSpaceApprox()'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='738'>// Colours in textures in files may be in Gamma space and ought to be converted to linear space before
+	// lighting calculations are made. They should then be converted back to Gamma space before being displayed.
+	// Gamma-space here should really be sRGB but we&apos;re just using an approximation by squaring (gamma=2) when the
+	// average sRGB gamma should be 2.2. To do the conversion properly, the gamma varies with intensity from 1 to 2.4,
+	// but, again, we&apos;re only approximating here.</doc>

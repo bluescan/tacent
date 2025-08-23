@@ -1,0 +1,10 @@
+<use f='include/c++/11/bits/fs_dir.h' l='169' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry6existsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='177' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry13is_block_fileERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='185' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry17is_character_fileERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='193' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry12is_directoryERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='201' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry7is_fifoERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='209' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry8is_otherERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='217' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry15is_regular_fileERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='225' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry9is_socketERSt10error_code'/>
+<def f='include/c++/11/bits/fs_dir.h' l='341' ll='350' type='std::filesystem::file_type std::filesystem::directory_entry::_M_file_type(std::error_code &amp; __ec) const'/>
+<doc f='include/c++/11/bits/fs_dir.h' l='340'>// Equivalent to status(__ec).type() but uses cached value, if any.</doc>

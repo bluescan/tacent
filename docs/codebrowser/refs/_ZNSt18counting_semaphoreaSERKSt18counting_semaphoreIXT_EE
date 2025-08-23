@@ -1,0 +1,1 @@
+<def f='include/c++/11/semaphore' l='60' type='counting_semaphore&lt;__least_max_value&gt; &amp; std::counting_semaphore::operator=(const counting_semaphore&lt;__least_max_value&gt; &amp; )'/>

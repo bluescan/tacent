@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1089' ll='1091' type='float std::unordered_map::load_factor() const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1084'>///@}
+
+      // hash policy.
+
+      /// Returns the average number of elements per bucket.</doc>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='520' type='pair&lt;_OIter1, _OIter2&gt; std::partition_copy(_IIter , _IIter , _OIter1 , _OIter2 , _Predicate )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='778' ll='807' macro='1' type='pair&lt;_OutputIterator1, _OutputIterator2&gt; std::partition_copy(_InputIterator __first, _InputIterator __last, _OutputIterator1 __out_true, _OutputIterator2 __out_false, _Predicate __pred)'/>

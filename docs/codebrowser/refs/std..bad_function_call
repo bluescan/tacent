@@ -1,0 +1,10 @@
+<inh f='include/c++/11/bits/exception.h' l='61' c='std::exception'/>
+<def f='include/c++/11/bits/std_function.h' l='54' ll='60'/>
+<size>8</size>
+<doc f='include/c++/11/bits/std_function.h' l='49'>/**
+   *  @brief Exception class thrown when class template function&apos;s
+   *  operator() is called with an empty target.
+   *  @ingroup exceptions
+   */</doc>
+<fun r='_ZNSt17bad_function_callD1Ev'/>
+<fun r='_ZNKSt17bad_function_call4whatEv'/>

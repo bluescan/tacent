@@ -1,0 +1,39 @@
+<use f='include/c++/11/bits/shared_ptr_base.h' l='541'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='578' ll='767'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='777' c='_ZNSt12__weak_countC1ERKSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='802' c='_ZNSt12__weak_countaSERKSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='852' c='_ZNKSt12__weak_count7_M_lessERKSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='861'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='869' c='_ZNSt14__shared_countC1ERKSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='879' c='_ZNSt14__shared_countC1ERKSt12__weak_countIXT_EESt9nothrow_t'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1192' c='_ZNSt12__shared_ptrC1EOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1364'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1403'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1719' c='_ZNSt10__weak_ptr9_M_assignEPT_RKSt14__shared_countIXT0_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1818' c='_ZNKSt25__enable_shared_from_this14_M_weak_assignEPTL0__RKSt14__shared_countIXT0_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1822' c='_ZSt30__enable_shared_from_this_baseRKSt14__shared_countIXT0_EEPKSt25__enable_shared_from_thisIT_XT0_EE'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='828' c='_ZNKSt23enable_shared_from_this14_M_weak_assignEPTL0__RKSt14__shared_countILN9__gnu_cxx12_Lock_policyE2EE'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='833' c='_ZSt30__enable_shared_from_this_baseRKSt14__shared_countILN9__gnu_cxx12_Lock_policyE2EEPKSt23enable_shared_from_thisIT_E'/>
+<fun r='_ZNSt14__shared_countC1Ev'/>
+<fun r='_ZNSt14__shared_countC1ETL0__'/>
+<fun r='_ZNSt14__shared_countC1ETL0__St17integral_constantIbLb0EE'/>
+<fun r='_ZNSt14__shared_countC1ETL0__St17integral_constantIbLb1EE'/>
+<fun r='_ZNSt14__shared_countC1ETL0__TL0_0_'/>
+<fun r='_ZNSt14__shared_countC1ETL0__TL0_0_TL0_1_'/>
+<fun r='_ZNSt14__shared_countC1ERPTL0__St20_Sp_alloc_shared_tagITL0_0_EDpOTL0_1_'/>
+<fun r='_ZNSt14__shared_countC1EOSt8auto_ptrITL0__E'/>
+<fun r='_ZNSt14__shared_countC1EOSt10unique_ptrITL0__TL0_0_E'/>
+<fun r='_ZNSt14__shared_countC1ERKSt12__weak_countIXT_EE'/>
+<fun r='_ZNSt14__shared_countC1ERKSt12__weak_countIXT_EESt9nothrow_t'/>
+<fun r='_ZNSt14__shared_countD1Ev'/>
+<fun r='_ZNSt14__shared_countC1ERKSt14__shared_countIXT_EE'/>
+<fun r='_ZNSt14__shared_countaSERKSt14__shared_countIXT_EE'/>
+<fun r='_ZNSt14__shared_count7_M_swapERSt14__shared_countIXT_EE'/>
+<fun r='_ZNKSt14__shared_count16_M_get_use_countEv'/>
+<fun r='_ZNKSt14__shared_count9_M_uniqueEv'/>
+<fun r='_ZNKSt14__shared_count14_M_get_deleterERKSt9type_info'/>
+<fun r='_ZNKSt14__shared_count7_M_lessERKSt14__shared_countIXT_EE'/>
+<fun r='_ZNKSt14__shared_count7_M_lessERKSt12__weak_countIXT_EE'/>
+<mbr r='std::__shared_count::_M_pi' t='_Sp_counted_base&lt;_Lp&gt; *'/>
+<fun r='_ZNSt14__shared_countC1ERKSt12__weak_countIXT_EE'/>
+<fun r='_ZNSt14__shared_countC1ERKSt12__weak_countIXT_EESt9nothrow_t'/>

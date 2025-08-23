@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8340' ll='8351'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8340'/>
+<size>120</size>
+<mbr r='VkVideoDecodeInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoDecodeInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkVideoDecodeInfoKHR::flags' o='128' t='VkVideoDecodeFlagsKHR'/>
+<mbr r='VkVideoDecodeInfoKHR::srcBuffer' o='192' t='VkBuffer'/>
+<mbr r='VkVideoDecodeInfoKHR::srcBufferOffset' o='256' t='VkDeviceSize'/>
+<mbr r='VkVideoDecodeInfoKHR::srcBufferRange' o='320' t='VkDeviceSize'/>
+<mbr r='VkVideoDecodeInfoKHR::dstPictureResource' o='384' t='VkVideoPictureResourceInfoKHR'/>
+<mbr r='VkVideoDecodeInfoKHR::pSetupReferenceSlot' o='768' t='const VkVideoReferenceSlotInfoKHR *'/>
+<mbr r='VkVideoDecodeInfoKHR::referenceSlotCount' o='832' t='uint32_t'/>
+<mbr r='VkVideoDecodeInfoKHR::pReferenceSlots' o='896' t='const VkVideoReferenceSlotInfoKHR *'/>

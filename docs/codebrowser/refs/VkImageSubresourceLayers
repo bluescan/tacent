@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3908' ll='3913'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3908'/>
+<size>16</size>
+<mbr r='VkImageSubresourceLayers::aspectMask' o='0' t='VkImageAspectFlags'/>
+<mbr r='VkImageSubresourceLayers::mipLevel' o='32' t='uint32_t'/>
+<mbr r='VkImageSubresourceLayers::baseArrayLayer' o='64' t='uint32_t'/>
+<mbr r='VkImageSubresourceLayers::layerCount' o='96' t='uint32_t'/>

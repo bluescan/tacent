@@ -1,0 +1,7 @@
+<def f='include/c++/11/ratio' l='121' ll='126'/>
+<use f='include/c++/11/ratio' l='157'/>
+<use f='include/c++/11/ratio' l='205'/>
+<use f='include/c++/11/ratio' l='239'/>
+<use f='include/c++/11/ratio' l='463'/>
+<smbr r='std::__big_add::__lo' t='const uintmax_t'/>
+<smbr r='std::__big_add::__hi' t='const uintmax_t'/>

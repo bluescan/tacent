@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/locale_facets.h' l='985' ll='987' type='const std::ctype_base::mask * std::ctype&lt;char&gt;::table() const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='981'>// _GLIBCXX_RESOLVE_LIB_DEFECTS
+      // DR 695. ctype&lt;char&gt;::classic_table() not accessible.
+      /// Returns a pointer to the mask table provided to the constructor, or
+      /// the default from classic_table() if none was provided.</doc>

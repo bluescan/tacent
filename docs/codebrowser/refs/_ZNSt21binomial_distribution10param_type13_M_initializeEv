@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/random.h' l='3764' u='c' c='_ZNSt21binomial_distribution10param_typeC1ET_d'/>
+<dec f='include/c++/11/bits/random.h' l='3785' type='void std::binomial_distribution::param_type::_M_initialize()'/>
+<def f='include/c++/11/bits/random.tcc' l='1467' ll='1517' type='void std::binomial_distribution::param_type::_M_initialize()'/>

@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='246' type='bool tImage::tIsValidFormat(tImage::tPixelFormat )'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='479' ll='482' type='bool tImage::tIsValidFormat(tImage::tPixelFormat format)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='245'>// Returns true if the supplied pixel format is a valid format and not an out of range marker.</doc>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='476'>// Implementation below this line.</doc>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='639' u='c' c='_ZN6tImage19tGetPixelFormatNameENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='647' u='c' c='_ZN6tImage19tGetPixelFormatDescENS_12tPixelFormatE'/>

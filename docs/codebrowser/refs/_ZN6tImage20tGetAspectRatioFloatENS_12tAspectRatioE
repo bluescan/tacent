@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='456' type='float tImage::tGetAspectRatioFloat(tImage::tAspectRatio )'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='684' ll='699' type='float tImage::tGetAspectRatioFloat(tImage::tAspectRatio aspect)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='455'>// Returns 0.0f for Invalid/Free. Returns -1.0f for User.</doc>

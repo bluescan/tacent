@@ -1,0 +1,201 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>binders.h source code [include/c++/11/backward/binders.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::binder1st,std::binder2nd "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/backward/binders.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>backward</a>/<a href='binders.h.html'>binders.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Functor implementations -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2001-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i> * Copyright (c) 1994</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i> * Hewlett-Packard Company</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i> * Permission to use, copy, modify, distribute and sell this software</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i> * and its documentation for any purpose is hereby granted without fee,</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i> * provided that the above copyright notice appear in all copies and</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i> * that both that copyright notice and this permission notice appear</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i> * in supporting documentation.  Hewlett-Packard Company makes no</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i> * representations about the suitability of this software for any</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i> * purpose.  It is provided "as is" without express or implied warranty.</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i> * Copyright (c) 1996-1998</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i> * Silicon Graphics Computer Systems, Inc.</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i> * Permission to use, copy, modify, distribute and sell this software</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i> * and its documentation for any purpose is hereby granted without fee,</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i> * provided that the above copyright notice appear in all copies and</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i> * that both that copyright notice and this permission notice appear</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i> * in supporting documentation.  Silicon Graphics makes no</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i> * representations about the suitability of this software for any</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i> * purpose.  It is provided "as is" without express or implied warranty.</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">backward/binders.h</span></i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{functional}</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u>#<span data-ppcond="56">ifndef</span> <span class="macro" data-ref="_M/_BACKWARD_BINDERS_H">_BACKWARD_BINDERS_H</span></u>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#define <dfn class="macro" id="_M/_BACKWARD_BINDERS_H" data-ref="_M/_BACKWARD_BINDERS_H">_BACKWARD_BINDERS_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="58">58</th><td>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>// Suppress deprecated warning for this file.</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#pragma GCC diagnostic push</u>&nbsp</td></tr>
+<tr><th id="61">61</th><td><u>#pragma GCC diagnostic ignored "-Wdeprecated-declarations"</u>&nbsp</td></tr>
+<tr><th id="62">62</th><td>&nbsp</td></tr>
+<tr><th id="63">63</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="64">64</th><td>{&nbsp</td></tr>
+<tr><th id="65">65</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="66">66</th><td>&nbsp</td></tr>
+<tr><th id="67">67</th><td>  <i>// 20.3.6 binders</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td>  <i class="doc">/** <span class="command">@defgroup</span> <span class="verb">binders Binder Classes</span></i>&nbsp</td></tr>
+<tr><th id="69">69</th><td><i class="doc">   * <span class="command">@ingroup</span> <span class="verb">functors</span></i>&nbsp</td></tr>
+<tr><th id="70">70</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i class="doc">   *  Binders turn functions/functors with two arguments into functors</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i class="doc">   *  with a single argument, storing an argument to be applied later.</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td><i class="doc">   *  For example, a variable<span class="command"> @c</span> <span class="arg">B</span> of type<span class="command"> @c</span> <span class="arg">binder1st</span> is constructed</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td><i class="doc">   *  from a functor<span class="command"> @c</span> <span class="arg">f</span> and an argument<span class="command"> @c</span> <span class="arg">x.</span> Later, B's<span class="command"> @c</span></i>&nbsp</td></tr>
+<tr><th id="75">75</th><td><i class="doc">   *  <span class="arg">operator()</span> is called with a single argument<span class="command"> @c</span> <span class="arg">y.</span> The return</i>&nbsp</td></tr>
+<tr><th id="76">76</th><td><i class="doc">   *  value is the value of<span class="command"> @c</span> <span class="arg">f(x,y).</span><span class="command"> @c</span> <span class="arg">B</span> can be<span class="command"> @a</span> <span class="arg">called</span> with</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td><i class="doc">   *  various arguments (y1, y2, ...) and will in turn call<span class="command"> @c</span></i>&nbsp</td></tr>
+<tr><th id="78">78</th><td><i class="doc">   *  <span class="arg">f(x,y1),</span><span class="command"> @c</span> <span class="arg">f(x,y2),</span> ...</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="80">80</th><td><i class="doc">   *  The function<span class="command"> @c</span> <span class="arg">bind1st</span> is provided to save some typing. It takes the</i>&nbsp</td></tr>
+<tr><th id="81">81</th><td><i class="doc">   *  function and an argument as parameters, and returns an instance of</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i class="doc">   * <span class="command"> @c</span> <span class="arg">binder1st.</span></i>&nbsp</td></tr>
+<tr><th id="83">83</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i class="doc">   *  The type<span class="command"> @c</span> <span class="arg">binder2nd</span> and its creator function<span class="command"> @c</span> <span class="arg">bind2nd</span> do the same</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td><i class="doc">   *  thing, but the stored argument is passed as the second parameter instead</i>&nbsp</td></tr>
+<tr><th id="86">86</th><td><i class="doc">   *  of the first, e.g.,<span class="command"> @c</span> <span class="arg">bind2nd(std::minus&lt;float&gt;(),1.3)</span> will create a</i>&nbsp</td></tr>
+<tr><th id="87">87</th><td><i class="doc">   *  functor whose<span class="command"> @c</span> <span class="arg">operator()</span> accepts a floating-point number, subtracts</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td><i class="doc">   *  1.3 from it, and returns the result. (If<span class="command"> @c</span> <span class="arg">bind1st</span> had been used,</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td><i class="doc">   *  the functor would perform <span class="tag">&lt;em&gt;</span>1.3 - x<span class="tag">&lt;/em&gt;</span> instead.</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i class="doc">   *  Creator-wrapper functions like<span class="command"> @c</span> <span class="arg">bind1st</span> are intended to be used in</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><i class="doc">   *  calling algorithms. Their return values will be temporary objects.</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td><i class="doc">   *  (The goal is to not require you to type names like</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td><i class="doc">   * <span class="command"> @c</span> <span class="arg">std::binder1st&lt;std::plus&lt;int&gt;&gt;</span> for declaring a variable to hold the</i>&nbsp</td></tr>
+<tr><th id="95">95</th><td><i class="doc">   *  return value from<span class="command"> @c</span> <span class="arg">bind1st(std::plus&lt;int&gt;(),5).</span></i>&nbsp</td></tr>
+<tr><th id="96">96</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td><i class="doc">   *  These become more useful when combined with the composition functions.</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><i class="doc">   *  These functions are deprecated in C++11 and can be replaced by</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td><i class="doc">   * <span class="command"> @c</span> <span class="arg">std::bind</span> (or<span class="command"> @c</span> <span class="arg">std::tr1::bind)</span> which is more powerful and flexible,</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><i class="doc">   *  supporting functions with any number of arguments.  Uses of<span class="command"> @c</span> <span class="arg">bind1st</span></i>&nbsp</td></tr>
+<tr><th id="102">102</th><td><i class="doc">   *  can be replaced by<span class="command"> @c</span> <span class="arg">std::bind(f,</span> x, std::placeholders::_1) and</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td><i class="doc">   * <span class="command"> @c</span> <span class="arg">bind2nd</span> by<span class="command"> @c</span> <span class="arg">std::bind(f,</span> std::placeholders::_1, x).</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td><i class="doc">   *  @{</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><i class="doc">  /// One of the <span class="command">@link</span><span class="verb"> binders binder functors@endlink.</span></i>&nbsp</td></tr>
+<tr><th id="107">107</th><td><i class="doc"><span class="verb"></span></i>  <b>template</b>&lt;<b>typename</b> _Operation&gt;&nbsp</td></tr>
+<tr><th id="108">108</th><td>    <b>class</b> <dfn class="type def" id="std::binder1st" title='std::binder1st' data-ref="std::binder1st">binder1st</dfn>&nbsp</td></tr>
+<tr><th id="109">109</th><td>    : <b>public</b> <a class="type" href="../bits/stl_function.h.html#std::unary_function" title='std::unary_function' data-ref="std::unary_function">unary_function</a>&lt;<b>typename</b> _Operation::second_argument_type,&nbsp</td></tr>
+<tr><th id="110">110</th><td>			    <b>typename</b> _Operation::result_type&gt;&nbsp</td></tr>
+<tr><th id="111">111</th><td>    {&nbsp</td></tr>
+<tr><th id="112">112</th><td>    <b>protected</b>:&nbsp</td></tr>
+<tr><th id="113">113</th><td>      _Operation <dfn class="decl field" id="std::binder1st::op" title='std::binder1st::op' data-ref="std::binder1st::op">op</dfn>;&nbsp</td></tr>
+<tr><th id="114">114</th><td>      <b>typename</b> _Operation::first_argument_type <dfn class="decl field" id="std::binder1st::value" title='std::binder1st::value' data-ref="std::binder1st::value">value</dfn>;&nbsp</td></tr>
+<tr><th id="115">115</th><td>&nbsp</td></tr>
+<tr><th id="116">116</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="117">117</th><td>      <dfn class="decl def fn" id="_ZNSt9binder1stC1ERKT_RKNS0_19first_argument_typeE" title='std::binder1st::binder1st&lt;_Operation&gt;' data-ref="_ZNSt9binder1stC1ERKT_RKNS0_19first_argument_typeE">binder1st</dfn>(<em>const</em> _Operation&amp; <dfn class="local col8 decl" id="5368__x" title='__x' data-type='const _Operation &amp;' data-ref="5368__x">__x</dfn>,&nbsp</td></tr>
+<tr><th id="118">118</th><td>		<em>const</em> <b>typename</b> _Operation::first_argument_type&amp; <dfn class="local col9 decl" id="5369__y" title='__y' data-type='const typename _Operation::first_argument_type &amp;' data-ref="5369__y">__y</dfn>)&nbsp</td></tr>
+<tr><th id="119">119</th><td>      : <a class="member field" href="#std::binder1st::op" title='std::binder1st::op' data-ref="std::binder1st::op">op</a>(<a class="local col8 ref" href="#5368__x" title='__x' data-ref="5368__x">__x</a>), <a class="member field" href="#std::binder1st::value" title='std::binder1st::value' data-ref="std::binder1st::value">value</a>(<a class="local col9 ref" href="#5369__y" title='__y' data-ref="5369__y">__y</a>) { }&nbsp</td></tr>
+<tr><th id="120">120</th><td>&nbsp</td></tr>
+<tr><th id="121">121</th><td>      <b>typename</b> _Operation::result_type&nbsp</td></tr>
+<tr><th id="122">122</th><td>      <dfn class="decl def fn" id="_ZNKSt9binder1stclERKNT_20second_argument_typeE" title='std::binder1st::operator()' data-ref="_ZNKSt9binder1stclERKNT_20second_argument_typeE"><b>operator</b>()</dfn>(<em>const</em> <b>typename</b> _Operation::second_argument_type&amp; <dfn class="local col0 decl" id="5370__x" title='__x' data-type='const typename _Operation::second_argument_type &amp;' data-ref="5370__x">__x</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="123">123</th><td>      { <b>return</b> <a class="member field" href="#std::binder1st::op" title='std::binder1st::op' data-ref="std::binder1st::op">op</a>(<a class="member field" href="#std::binder1st::value" title='std::binder1st::value' data-ref="std::binder1st::value">value</a>, <a class="local col0 ref" href="#5370__x" title='__x' data-ref="5370__x">__x</a>); }&nbsp</td></tr>
+<tr><th id="124">124</th><td>&nbsp</td></tr>
+<tr><th id="125">125</th><td>      <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td><i>      // 109.  Missing binders for non-const sequence elements</i>&nbsp</td></tr>
+<tr><th id="127">127</th><td>      <b>typename</b> _Operation::result_type&nbsp</td></tr>
+<tr><th id="128">128</th><td>      <dfn class="decl def fn" id="_ZNKSt9binder1stclERNT_20second_argument_typeE" title='std::binder1st::operator()' data-ref="_ZNKSt9binder1stclERNT_20second_argument_typeE"><b>operator</b>()</dfn>(<b>typename</b> _Operation::second_argument_type&amp; <dfn class="local col1 decl" id="5371__x" title='__x' data-type='typename _Operation::second_argument_type &amp;' data-ref="5371__x">__x</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="129">129</th><td>      { <b>return</b> <a class="member field" href="#std::binder1st::op" title='std::binder1st::op' data-ref="std::binder1st::op">op</a>(<a class="member field" href="#std::binder1st::value" title='std::binder1st::value' data-ref="std::binder1st::value">value</a>, <a class="local col1 ref" href="#5371__x" title='__x' data-ref="5371__x">__x</a>); }&nbsp</td></tr>
+<tr><th id="130">130</th><td>    } <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#102" title="__attribute__ ((__deprecated__ (&quot;use &apos;&quot; &quot;std::bind&quot; &quot;&apos; instead&quot;)))" data-ref="_M/_GLIBCXX11_DEPRECATED_SUGGEST">_GLIBCXX11_DEPRECATED_SUGGEST</a>(<q>"std::bind"</q>);&nbsp</td></tr>
+<tr><th id="131">131</th><td>&nbsp</td></tr>
+<tr><th id="132">132</th><td>  <i class="doc">/// One of the <span class="command">@link</span><span class="verb"> binders binder functors@endlink.</span></i>&nbsp</td></tr>
+<tr><th id="133">133</th><td><i class="doc"><span class="verb"></span></i>  <b>template</b>&lt;<b>typename</b> _Operation, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="134">134</th><td>    <b>inline</b> <a class="type" href="#std::binder1st" title='std::binder1st' data-ref="std::binder1st">binder1st</a>&lt;_Operation&gt;&nbsp</td></tr>
+<tr><th id="135">135</th><td>    <dfn class="decl def fn" id="_ZSt7bind1stRKT_RKT0_" title='std::bind1st' data-ref="_ZSt7bind1stRKT_RKT0_">bind1st</dfn>(<em>const</em> _Operation&amp; <dfn class="local col2 decl" id="5372__fn" title='__fn' data-type='const _Operation &amp;' data-ref="5372__fn">__fn</dfn>, <em>const</em> _Tp&amp; <dfn class="local col3 decl" id="5373__x" title='__x' data-type='const _Tp &amp;' data-ref="5373__x">__x</dfn>)&nbsp</td></tr>
+<tr><th id="136">136</th><td>    {&nbsp</td></tr>
+<tr><th id="137">137</th><td>      <b>typedef</b> <b>typename</b> _Operation::first_argument_type <dfn class="local col4 typedef" id="5374_Arg1_type" title='_Arg1_type' data-type='typename _Operation::first_argument_type' data-ref="5374_Arg1_type">_Arg1_type</dfn>;&nbsp</td></tr>
+<tr><th id="138">138</th><td>      <b>return</b> <a class="type" href="#std::binder1st" title='std::binder1st' data-ref="std::binder1st">binder1st</a>&lt;_Operation&gt;(<a class="local col2 ref" href="#5372__fn" title='__fn' data-ref="5372__fn">__fn</a>, <a class="local col4 typedef" href="#5374_Arg1_type" title='_Arg1_type' data-type='typename _Operation::first_argument_type' data-ref="5374_Arg1_type">_Arg1_type</a>(<a class="local col3 ref" href="#5373__x" title='__x' data-ref="5373__x">__x</a>));&nbsp</td></tr>
+<tr><th id="139">139</th><td>    }&nbsp</td></tr>
+<tr><th id="140">140</th><td>&nbsp</td></tr>
+<tr><th id="141">141</th><td>  <i class="doc">/// One of the <span class="command">@link</span><span class="verb"> binders binder functors@endlink.</span></i>&nbsp</td></tr>
+<tr><th id="142">142</th><td><i class="doc"><span class="verb"></span></i>  <b>template</b>&lt;<b>typename</b> _Operation&gt;&nbsp</td></tr>
+<tr><th id="143">143</th><td>    <b>class</b> <dfn class="type def" id="std::binder2nd" title='std::binder2nd' data-ref="std::binder2nd">binder2nd</dfn>&nbsp</td></tr>
+<tr><th id="144">144</th><td>    : <b>public</b> <a class="type" href="../bits/stl_function.h.html#std::unary_function" title='std::unary_function' data-ref="std::unary_function">unary_function</a>&lt;<b>typename</b> _Operation::first_argument_type,&nbsp</td></tr>
+<tr><th id="145">145</th><td>			    <b>typename</b> _Operation::result_type&gt;&nbsp</td></tr>
+<tr><th id="146">146</th><td>    {&nbsp</td></tr>
+<tr><th id="147">147</th><td>    <b>protected</b>:&nbsp</td></tr>
+<tr><th id="148">148</th><td>      _Operation <dfn class="decl field" id="std::binder2nd::op" title='std::binder2nd::op' data-ref="std::binder2nd::op">op</dfn>;&nbsp</td></tr>
+<tr><th id="149">149</th><td>      <b>typename</b> _Operation::second_argument_type <dfn class="decl field" id="std::binder2nd::value" title='std::binder2nd::value' data-ref="std::binder2nd::value">value</dfn>;&nbsp</td></tr>
+<tr><th id="150">150</th><td>&nbsp</td></tr>
+<tr><th id="151">151</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="152">152</th><td>      <dfn class="decl def fn" id="_ZNSt9binder2ndC1ERKT_RKNS0_20second_argument_typeE" title='std::binder2nd::binder2nd&lt;_Operation&gt;' data-ref="_ZNSt9binder2ndC1ERKT_RKNS0_20second_argument_typeE">binder2nd</dfn>(<em>const</em> _Operation&amp; <dfn class="local col5 decl" id="5375__x" title='__x' data-type='const _Operation &amp;' data-ref="5375__x">__x</dfn>,&nbsp</td></tr>
+<tr><th id="153">153</th><td>		<em>const</em> <b>typename</b> _Operation::second_argument_type&amp; <dfn class="local col6 decl" id="5376__y" title='__y' data-type='const typename _Operation::second_argument_type &amp;' data-ref="5376__y">__y</dfn>)&nbsp</td></tr>
+<tr><th id="154">154</th><td>      : <a class="member field" href="#std::binder2nd::op" title='std::binder2nd::op' data-ref="std::binder2nd::op">op</a>(<a class="local col5 ref" href="#5375__x" title='__x' data-ref="5375__x">__x</a>), <a class="member field" href="#std::binder2nd::value" title='std::binder2nd::value' data-ref="std::binder2nd::value">value</a>(<a class="local col6 ref" href="#5376__y" title='__y' data-ref="5376__y">__y</a>) { }&nbsp</td></tr>
+<tr><th id="155">155</th><td>&nbsp</td></tr>
+<tr><th id="156">156</th><td>      <b>typename</b> _Operation::result_type&nbsp</td></tr>
+<tr><th id="157">157</th><td>      <dfn class="decl def fn" id="_ZNKSt9binder2ndclERKNT_19first_argument_typeE" title='std::binder2nd::operator()' data-ref="_ZNKSt9binder2ndclERKNT_19first_argument_typeE"><b>operator</b>()</dfn>(<em>const</em> <b>typename</b> _Operation::first_argument_type&amp; <dfn class="local col7 decl" id="5377__x" title='__x' data-type='const typename _Operation::first_argument_type &amp;' data-ref="5377__x">__x</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="158">158</th><td>      { <b>return</b> <a class="member field" href="#std::binder2nd::op" title='std::binder2nd::op' data-ref="std::binder2nd::op">op</a>(<a class="local col7 ref" href="#5377__x" title='__x' data-ref="5377__x">__x</a>, <a class="member field" href="#std::binder2nd::value" title='std::binder2nd::value' data-ref="std::binder2nd::value">value</a>); }&nbsp</td></tr>
+<tr><th id="159">159</th><td>&nbsp</td></tr>
+<tr><th id="160">160</th><td>      <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="161">161</th><td><i>      // 109.  Missing binders for non-const sequence elements</i>&nbsp</td></tr>
+<tr><th id="162">162</th><td>      <b>typename</b> _Operation::result_type&nbsp</td></tr>
+<tr><th id="163">163</th><td>      <dfn class="decl def fn" id="_ZNKSt9binder2ndclERNT_19first_argument_typeE" title='std::binder2nd::operator()' data-ref="_ZNKSt9binder2ndclERNT_19first_argument_typeE"><b>operator</b>()</dfn>(<b>typename</b> _Operation::first_argument_type&amp; <dfn class="local col8 decl" id="5378__x" title='__x' data-type='typename _Operation::first_argument_type &amp;' data-ref="5378__x">__x</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="164">164</th><td>      { <b>return</b> <a class="member field" href="#std::binder2nd::op" title='std::binder2nd::op' data-ref="std::binder2nd::op">op</a>(<a class="local col8 ref" href="#5378__x" title='__x' data-ref="5378__x">__x</a>, <a class="member field" href="#std::binder2nd::value" title='std::binder2nd::value' data-ref="std::binder2nd::value">value</a>); }&nbsp</td></tr>
+<tr><th id="165">165</th><td>    } <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#102" title="__attribute__ ((__deprecated__ (&quot;use &apos;&quot; &quot;std::bind&quot; &quot;&apos; instead&quot;)))" data-ref="_M/_GLIBCXX11_DEPRECATED_SUGGEST">_GLIBCXX11_DEPRECATED_SUGGEST</a>(<q>"std::bind"</q>);&nbsp</td></tr>
+<tr><th id="166">166</th><td>&nbsp</td></tr>
+<tr><th id="167">167</th><td>  <i class="doc">/// One of the <span class="command">@link</span><span class="verb"> binders binder functors@endlink.</span></i>&nbsp</td></tr>
+<tr><th id="168">168</th><td><i class="doc"><span class="verb"></span></i>  <b>template</b>&lt;<b>typename</b> _Operation, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="169">169</th><td>    <b>inline</b> <a class="type" href="#std::binder2nd" title='std::binder2nd' data-ref="std::binder2nd">binder2nd</a>&lt;_Operation&gt;&nbsp</td></tr>
+<tr><th id="170">170</th><td>    <dfn class="decl def fn" id="_ZSt7bind2ndRKT_RKT0_" title='std::bind2nd' data-ref="_ZSt7bind2ndRKT_RKT0_">bind2nd</dfn>(<em>const</em> _Operation&amp; <dfn class="local col9 decl" id="5379__fn" title='__fn' data-type='const _Operation &amp;' data-ref="5379__fn">__fn</dfn>, <em>const</em> _Tp&amp; <dfn class="local col0 decl" id="5380__x" title='__x' data-type='const _Tp &amp;' data-ref="5380__x">__x</dfn>)&nbsp</td></tr>
+<tr><th id="171">171</th><td>    {&nbsp</td></tr>
+<tr><th id="172">172</th><td>      <b>typedef</b> <b>typename</b> _Operation::second_argument_type <dfn class="local col1 typedef" id="5381_Arg2_type" title='_Arg2_type' data-type='typename _Operation::second_argument_type' data-ref="5381_Arg2_type">_Arg2_type</dfn>;&nbsp</td></tr>
+<tr><th id="173">173</th><td>      <b>return</b> <a class="type" href="#std::binder2nd" title='std::binder2nd' data-ref="std::binder2nd">binder2nd</a>&lt;_Operation&gt;(<a class="local col9 ref" href="#5379__fn" title='__fn' data-ref="5379__fn">__fn</a>, <a class="local col1 typedef" href="#5381_Arg2_type" title='_Arg2_type' data-type='typename _Operation::second_argument_type' data-ref="5381_Arg2_type">_Arg2_type</a>(<a class="local col0 ref" href="#5380__x" title='__x' data-ref="5380__x">__x</a>));&nbsp</td></tr>
+<tr><th id="174">174</th><td>    } &nbsp</td></tr>
+<tr><th id="175">175</th><td>  <i class="doc">/** @}  */</i>&nbsp</td></tr>
+<tr><th id="176">176</th><td>&nbsp</td></tr>
+<tr><th id="177">177</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="178">178</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="179">179</th><td>&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>#pragma GCC diagnostic pop</u>&nbsp</td></tr>
+<tr><th id="181">181</th><td>&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>#<span data-ppcond="56">endif</span> /* _BACKWARD_BINDERS_H */</u>&nbsp</td></tr>
+<tr><th id="183">183</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

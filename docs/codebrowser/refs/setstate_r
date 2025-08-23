@@ -1,0 +1,1 @@
+<dec f='include/stdlib.h' l='446' type='int setstate_r(char *__restrict __statebuf, struct random_data *__restrict __buf)'/>

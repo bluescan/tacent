@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='258' type='void tExprWriter::WriteAtom(const char8_t * )'/>
+<use f='Modules/System/Inc/System/tScript.h' l='308' u='c' c='_ZN11tExprWriter4AtomEPKDu'/>
+<def f='Modules/System/Inc/System/tScript.h' l='443' ll='447' type='void tExprWriter::WriteAtom(const char8_t * atom)'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='440'>// Implementation only below this line.</doc>

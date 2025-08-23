@@ -1,0 +1,30 @@
+<use f='Modules/Image/Inc/Image/tLayer.h' l='69' u='w' c='_ZN6tImage6tLayer5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='83' u='r' c='_ZNK6tImage6tLayer8GetIndexEii'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='83' u='r' c='_ZNK6tImage6tLayer8GetIndexEii'/>
+<dec f='Modules/Image/Inc/Image/tLayer.h' l='87' type='int'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='108' u='w' c='_ZN6tImage6tLayer3SetENS_12tPixelFormatEiiPhb'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='132' u='w' c='_ZN6tImage6tLayer3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='132' u='r' c='_ZN6tImage6tLayer3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='151' u='r' c='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='159' u='r' c='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='95' u='r' c='_ZNK6tImage10tImageASTC8GetWidthEv'/>
+<offset>224</offset>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='185' u='r' c='_ZNK6tImage9tImageDDS8GetWidthEv'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='178' u='r' c='_ZNK6tImage9tImageKTX8GetWidthEv'/>
+<use f='Modules/Image/Inc/Image/tImagePKM.h' l='93' u='r' c='_ZNK6tImage9tImagePKM8GetWidthEv'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='97' u='r' c='_ZNK6tImage8tTexture8GetWidthEv'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='279' u='r' c='_ZN6tImage10tImageASTC8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='307' u='r' c='_ZNK6tImage10tImageASTC8IsOpaqueEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='978' u='r' c='_ZN6tImage9tImageDDS8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1431' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='637' u='r' c='_ZN6tImage9tImageKTX8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1013' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='366' u='r' c='_ZN6tImage9tImagePKM8GetFrameEb'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='396' u='r' c='_ZNK6tImage9tImagePKM8IsOpaqueEv'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='609' u='r' c='_ZN6tImage4tPVR4FlipEPNS_6tLayerEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1292' u='r' c='_ZN6tImage9tImagePVR8GetFrameEb'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='37' u='r' c='_ZNK6tImage6tLayereqERKS0_'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='37' u='r' c='_ZNK6tImage6tLayereqERKS0_'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='53' u='r' c='_ZNK6tImage6tLayer4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='84' u='a' c='_ZN6tImage6tLayer4LoadERK6tChunkb'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='88' u='r' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>

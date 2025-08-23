@@ -1,0 +1,3 @@
+<dec f='include/wchar.h' l='192' type='size_t wcsspn(const wchar_t * __wcs, const wchar_t * __accept)'/>
+<doc f='include/wchar.h' l='190'>/* Return the length of the initial segmet of WCS which
+   consists entirely of wide characters in  ACCEPT.  */</doc>

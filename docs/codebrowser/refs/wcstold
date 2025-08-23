@@ -1,0 +1,2 @@
+<dec f='include/wchar.h' l='385' type='long double wcstold(const wchar_t *__restrict __nptr, wchar_t **__restrict __endptr)'/>
+<use f='include/c++/11/bits/basic_string.h' l='6785' u='a' c='_ZNSt7__cxx115stoldERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPm'/>

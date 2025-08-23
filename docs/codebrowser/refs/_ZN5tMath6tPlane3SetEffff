@@ -1,0 +1,2 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='367' u='c' c='_ZN5tMath6tPlaneC1Effff'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='373' type='void tMath::tPlane::Set(float a, float b, float c, float d)'/>

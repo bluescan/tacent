@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='533' type='void tMath::tTranspose(tMath::tMat4 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='534' u='c' c='_ZN5tMath10tTransposeERNS_5tMat4ERKS0_'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1093' ll='1111' type='void tMath::tTranspose(tMath::tMat4 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='66' u='c' c='_ZN5tMath8tMatrix49TransposeEv'/>

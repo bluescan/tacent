@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='695' type='float tMath::tExtractProjectionAspect(const tMath::tMat4 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1263' u='c' c='_ZN5tMath19tExtractPerspectiveERfS0_S0_S0_S0_RKNS_5tMat4E'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='695'>/* Returns aspect ratio, the width / height. */</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='107' u='c' c='_ZNK5tMath8tMatrix423ExtractProjectionAspectEv'/>

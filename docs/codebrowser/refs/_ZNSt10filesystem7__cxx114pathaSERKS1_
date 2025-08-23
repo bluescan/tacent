@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/fs_path.h' l='317' type='std::filesystem::path &amp; std::filesystem::path::operator=(const std::filesystem::path &amp; )'/>
+<use f='include/c++/11/bits/fs_dir.h' l='126' u='c' c='_ZNSt10filesystem7__cxx1115directory_entry6assignERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='133' u='c' c='_ZNSt10filesystem7__cxx1115directory_entry6assignERKNS0_4pathERSt10error_code'/>
+<doc f='include/c++/11/bits/fs_path.h' l='315'>// assignments</doc>

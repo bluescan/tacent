@@ -1,0 +1,8 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='55' type='void tMath::tVector3::Normalize()'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='77' u='c' c='_ZNK5tMath6tPlane29ComputeOrthogonalBasisVectorsERNS_8tVector3ES2_'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='267' u='c' c='_ZN5tMath15tDistanceToLineERKNS_8tVector3ERKNS_5tLineE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='243' u='c' c='_ZN5tMath7tRandom19tGetPointOnCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='301' u='c' c='_ZN5tMath7tRandom19tGetPointInCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='303' u='c' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='355' u='c' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='412' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='608' type='int tStd::tExplode(tList&lt;tStringItem&gt; &amp; components, const tString &amp; src, const tString &amp; divider)'/>
+<def f='Modules/Foundation/Src/tString.cpp' l='754' ll='764' type='int tStd::tExplode(tList&lt;tStringItem&gt; &amp; components, const tString &amp; src, const tString &amp; divider)'/>

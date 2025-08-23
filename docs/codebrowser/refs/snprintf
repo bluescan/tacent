@@ -1,0 +1,3 @@
+<dec f='include/stdio.h' l='378' type='int snprintf(char *__restrict __s, size_t __maxlen, const char *__restrict __format)'/>
+<doc f='include/stdio.h' l='377'>/* Maximum chars of output to write in MAXLEN.  */</doc>
+<use f='Modules/Foundation/Src/tAssert.cpp' l='39' u='c' c='_Z17tAssertPrintBreakPKcS0_iS0_'/>

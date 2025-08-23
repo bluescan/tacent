@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/locale_conv.h' l='405' ll='422' type='void std::wbuffer_convert::wbuffer_convert&lt;_Codecvt, _Elem, _Tr&gt;(std::streambuf * __bytebuf, _Codecvt * __pcvt = new _Codecvt, std::wbuffer_convert::state_type __state = std::wbuffer_convert::state_type())'/>
+<doc f='include/c++/11/bits/locale_conv.h' l='397'>/** Constructor.
+       *
+       * @param  __bytebuf The underlying byte stream buffer.
+       * @param  __pcvt    The facet to use for conversions.
+       * @param  __state   Initial conversion state.
+       *
+       * Takes ownership of @p __pcvt and will delete it in the destructor.
+       */</doc>

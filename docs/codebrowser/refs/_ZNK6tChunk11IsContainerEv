@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='247' type='bool tChunk::IsContainer() const'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='251' u='c' c='_ZNK6tChunk13GetFirstChunkEv'/>

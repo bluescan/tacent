@@ -1,0 +1,72 @@
+<def f='include/c++/11/type_traits' l='2265' ll='2267'/>
+<use f='include/c++/11/type_traits' l='2266'/>
+<def f='include/c++/11/type_traits' l='2270' ll='2273'/>
+<use f='include/c++/11/type_traits' l='2272'/>
+<use f='include/c++/11/type_traits' l='2282'/>
+<def f='include/c++/11/type_traits' l='2295' ll='2298'/>
+<def f='include/c++/11/type_traits' l='2308' ll='2312'/>
+<use f='include/c++/11/type_traits' l='2310'/>
+<use f='include/c++/11/type_traits' l='2320'/>
+<use f='include/c++/11/type_traits' l='2587'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='282' c='_ZNSt24uniform_int_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='376' c='_ZNSt24uniform_int_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/stl_algo.h' l='3749' c='_ZSt7shuffleT_S_OT0_'/>
+<size>1</size>
+<doc f='include/c++/11/type_traits' l='2264'>// If sizeof...(T) is zero, there shall be no member type.</doc>
+<doc f='include/c++/11/type_traits' l='2269'>// If sizeof...(T) is one, the same type, if any, as common_type_t&lt;T0, T0&gt;.</doc>
+<doc f='include/c++/11/type_traits' l='2294'>// If sizeof...(T) is two, ...</doc>
+<doc f='include/c++/11/type_traits' l='2307'>// If sizeof...(T) is greater than two, ...</doc>
+<def f='include/c++/11/chrono' l='117' ll='123'/>
+<use f='include/c++/11/chrono' l='120'/>
+<def f='include/c++/11/chrono' l='126' ll='132'/>
+<use f='include/c++/11/chrono' l='130'/>
+<def f='include/c++/11/chrono' l='135' ll='140'/>
+<use f='include/c++/11/chrono' l='138'/>
+<def f='include/c++/11/chrono' l='163' ll='167'/>
+<use f='include/c++/11/chrono' l='166'/>
+<def f='include/c++/11/chrono' l='170' ll='173'/>
+<def f='include/c++/11/chrono' l='176' ll='178'/>
+<use f='include/c++/11/chrono' l='272' c='_ZNSt6chrono13duration_castERKNS_8durationIT0_T1_EE'/>
+<use f='include/c++/11/chrono' l='542' c='_ZNKSt6chrono8durationpsEv'/>
+<use f='include/c++/11/chrono' l='544' c='_ZNKSt6chrono8durationpsEv'/>
+<use f='include/c++/11/chrono' l='546' c='_ZNKSt6chrono8durationngEv'/>
+<use f='include/c++/11/chrono' l='548' c='_ZNKSt6chrono8durationngEv'/>
+<use f='include/c++/11/chrono' l='644' c='_ZNSt6chronoplERKNS_8durationIT_T0_EERKNS0_IT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='651' c='_ZNSt6chronoplERKNS_8durationIT_T0_EERKNS0_IT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='658' c='_ZNSt6chronomiERKNS_8durationIT_T0_EERKNS0_IT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='665' c='_ZNSt6chronomiERKNS_8durationIT_T0_EERKNS0_IT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='678'/>
+<use f='include/c++/11/chrono' l='693' c='_ZNSt6chronomlERKNS_8durationIT_T0_EERKT1_'/>
+<use f='include/c++/11/chrono' l='708' c='_ZNSt6chronodvERKNS_8durationIT_T0_EERKT1_'/>
+<use f='include/c++/11/chrono' l='715' c='_ZNSt6chronodvERKNS_8durationIT_T0_EERKNS0_IT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='721' c='_ZNSt6chronodvERKNS_8durationIT_T0_EERKNS0_IT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='731' c='_ZNSt6chronormERKNS_8durationIT_T0_EERKT1_'/>
+<use f='include/c++/11/chrono' l='738' c='_ZNSt6chronormERKNS_8durationIT_T0_EERKNS0_IT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='745' c='_ZNSt6chronormERKNS_8durationIT_T0_EERKNS0_IT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='765' c='_ZNSt6chronoeqERKNS_8durationIT_T0_EERKNS0_IT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='777' c='_ZNSt6chronoltERKNS_8durationIT_T0_EERKNS0_IT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='1001' c='_ZNSt6chronoplERKNS_10time_pointIT_T0_EERKNS_8durationIT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='1006' c='_ZNSt6chronoplERKNS_10time_pointIT_T0_EERKNS_8durationIT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='1015' c='_ZNSt6chronoplERKNS_8durationIT_T0_EERKNS_10time_pointIT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='1020' c='_ZNSt6chronoplERKNS_8durationIT_T0_EERKNS_10time_pointIT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='1029' c='_ZNSt6chronomiERKNS_10time_pointIT_T0_EERKNS_8durationIT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='1034' c='_ZNSt6chronomiERKNS_10time_pointIT_T0_EERKNS_8durationIT1_T2_EE'/>
+<use f='include/c++/11/chrono' l='1041' c='_ZNSt6chronomiERKNS_10time_pointIT_T0_EERKNS0_IS1_T1_EE'/>
+<doc f='include/c++/11/chrono' l='111'>/// @endcond
+
+  /// @{
+  /// @relates chrono::duration
+
+  /// Specialization of common_type for chrono::duration types.</doc>
+<doc f='include/c++/11/chrono' l='125'>/// Specialization of common_type for two identical chrono::duration types.</doc>
+<doc f='include/c++/11/chrono' l='134'>/// Specialization of common_type for one chrono::duration type.</doc>
+<doc f='include/c++/11/chrono' l='157'>/// @endcond
+
+  /// @{
+  /// @relates chrono::time_point
+
+  /// Specialization of common_type for chrono::time_point types.</doc>
+<doc f='include/c++/11/chrono' l='169'>/// Specialization of common_type for two identical chrono::time_point types.</doc>
+<doc f='include/c++/11/chrono' l='175'>/// Specialization of common_type for one chrono::time_point type.</doc>
+<use f='include/c++/11/bits/unique_ptr.h' l='799' c='_ZStltRKSt10unique_ptrIT_T0_ERKS_IT1_T2_E'/>
+<use f='include/c++/11/bits/random.tcc' l='746' c='_ZNSt23independent_bits_engineclEv'/>

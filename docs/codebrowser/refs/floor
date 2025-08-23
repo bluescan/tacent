@@ -1,0 +1,19 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='165' type='double floor(double __x)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='132' u='c' c='_ZN5tMath6tFloorEd'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='134' u='c' c='_ZN5tMath7tiFloorERd'/>
+<use f='include/c++/11/bits/random.tcc' l='1267' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1346' u='c' c='_ZNSt20poisson_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1604' u='c' c='_ZNSt21binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1616' u='c' c='_ZNSt21binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1627' u='c' c='_ZNSt21binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1639' u='c' c='_ZNSt21binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='391' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='391' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='392' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='392' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='395' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='396' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='397' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='397' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='399' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='401' u='c' c='_ZN6tImage16tQuantizeSpatial11zoom_doubleERNS0_7array3dIdEES3_'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16338' ll='16342'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16338'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceExternalMemoryRDMAFeaturesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceExternalMemoryRDMAFeaturesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceExternalMemoryRDMAFeaturesNV::externalMemoryRDMA' o='128' t='VkBool32'/>

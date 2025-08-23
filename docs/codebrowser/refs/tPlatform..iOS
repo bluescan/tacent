@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='127' type='4'/>
+<use f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='140' u='r'/>
+<doc f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='127'>// Apple iOS.</doc>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='200' c='_Z14tGetEndianness9tPlatform'/>

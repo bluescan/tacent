@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/random.h' l='1154' ll='1156' type='void std::independent_bits_engine::independent_bits_engine&lt;_RandomNumberEngine, __w, _UIntType&gt;(std::independent_bits_engine::result_type __s)'/>
+<doc f='include/c++/11/bits/random.h' l='1148'>/**
+       * @brief Seed constructs a %independent_bits_engine engine.
+       *
+       * Constructs the underlying generator engine seeded with @p __s.
+       * @param __s A seed value for the base class engine.
+       */</doc>

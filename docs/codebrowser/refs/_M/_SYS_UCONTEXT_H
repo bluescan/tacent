@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/ucontext.h' l='19'/>
+<use f='include/x86_64-linux-gnu/bits/sigstack.h' l='22' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/ss_flags.h' l='22' u='a'/>

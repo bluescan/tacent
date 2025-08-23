@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tMachine.h' l='52' type='void tSystem::tGetXDGExeHome(tString &amp; xdgExeHome)'/>
+<doc f='Modules/System/Inc/System/tMachine.h' l='52'>// Not defined by an XDG env variable. Always: $HOME/.local/bin/</doc>
+<def f='Modules/System/Src/tMachine.cpp' l='320' ll='325' type='void tSystem::tGetXDGExeHome(tString &amp; xdgExeHome)'/>

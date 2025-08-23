@@ -1,0 +1,14 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='762' type='const char * std::ctype&lt;char&gt;::is(const char * __lo, const char * __hi, std::ctype_base::mask * __vec) const'/>
+<def f='include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h' l='46' ll='53' type='const char * std::ctype&lt;char&gt;::is(const char * __low, const char * __high, std::ctype_base::mask * __vec) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='749'>/**
+       *  @brief  Return a mask array.
+       *
+       *  This function finds the mask for each char in the range [lo, hi) and
+       *  successively writes it to vec.  vec must have as many elements as
+       *  the char array.
+       *
+       *  @param __lo  Pointer to start of range.
+       *  @param __hi  Pointer to end of range.
+       *  @param __vec  Pointer to an array of mask storage.
+       *  @return  @a __hi.
+      */</doc>

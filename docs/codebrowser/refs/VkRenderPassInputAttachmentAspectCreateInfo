@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5349' ll='5354'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5349'/>
+<size>32</size>
+<mbr r='VkRenderPassInputAttachmentAspectCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderPassInputAttachmentAspectCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderPassInputAttachmentAspectCreateInfo::aspectReferenceCount' o='128' t='uint32_t'/>
+<mbr r='VkRenderPassInputAttachmentAspectCreateInfo::pAspectReferences' o='192' t='const VkInputAttachmentAspectReference *'/>

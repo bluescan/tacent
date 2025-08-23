@@ -1,0 +1,191 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='224' ll='309'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='230' c='_ZN6tChunkC1EPhS_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='251' c='_ZNK6tChunk13GetFirstChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='251' c='_ZNK6tChunk13GetFirstChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='255' c='_ZNK6tChunk12GetNextChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='255' c='_ZNK6tChunk12GetNextChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='255' c='_ZNK6tChunk12GetNextChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='259' c='_ZNK6tChunk12GetLastChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='259' c='_ZNK6tChunk12GetLastChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='262' c='_ZNK6tChunkneERKS_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='263' c='_ZNK6tChunkeqERKS_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='271' c='_ZNK6tChunk5FirstEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='272' c='_ZNK6tChunk4NextEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='273' c='_ZNK6tChunk4LastEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='351' c='_ZNK12tChunkReader13GetFirstChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='351' c='_ZNK12tChunkReader13GetFirstChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='352' c='_ZNK12tChunkReader5FirstEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='353' c='_ZNK12tChunkReader5ChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='729' c='_ZN6tChunkC1EPhS_'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='41' c='_ZN6tImage6tLayerC1ERK6tChunkb'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='66' c='_ZN6tImage6tLayer4LoadERK6tChunkb'/>
+<size>24</size>
+<doc f='Modules/System/Inc/System/tChunk.h' l='223'>// The tChunk class is used for reading chunk files. Use a tChunkReader to begin parsing tChunks.</doc>
+<fun r='_ZN6tChunkC1Ev'/>
+<fun r='_ZN6tChunkC1EPh'/>
+<fun r='_ZN6tChunkC1EPhS0_'/>
+<fun r='_ZN6tChunkC1EPhS_'/>
+<fun r='_ZNK6tChunk7GetDataEv'/>
+<fun r='_ZNK6tChunk11GetDataSizeEv'/>
+<fun r='_ZNK6tChunk14GetDataSizeRawEv'/>
+<fun r='_ZNK6tChunk5GetIDEv'/>
+<fun r='_ZNK6tChunk8GetIDRawEv'/>
+<fun r='_ZNK6tChunk7IsValidEv'/>
+<fun r='_ZNK6tChunk11IsContainerEv'/>
+<fun r='_ZNK6tChunk10IsDataOnlyEv'/>
+<fun r='_ZNK6tChunk13GetFirstChunkEv'/>
+<fun r='_ZNK6tChunk12GetNextChunkEv'/>
+<fun r='_ZNK6tChunk12GetLastChunkEv'/>
+<fun r='_ZNK6tChunkneERKS_'/>
+<fun r='_ZNK6tChunkeqERKS_'/>
+<fun r='_ZNK6tChunk4DataEv'/>
+<fun r='_ZNK6tChunk4SizeEv'/>
+<fun r='_ZNK6tChunk2IDEv'/>
+<fun r='_ZNK6tChunk5ValidEv'/>
+<fun r='_ZNK6tChunk5FirstEv'/>
+<fun r='_ZNK6tChunk4NextEv'/>
+<fun r='_ZNK6tChunk4LastEv'/>
+<fun r='_ZNK6tChunk9ItemResetEv'/>
+<fun r='_ZNK6tChunk7GetItemERb'/>
+<fun r='_ZNK6tChunk7GetItemER7tString'/>
+<fun r='_ZNK6tChunk7GetItemERT_'/>
+<fun r='_ZNK6tChunk8GetItemsEPbi'/>
+<fun r='_ZNK6tChunk8GetItemsEP7tStringi'/>
+<fun r='_ZNK6tChunk8GetItemsEPT_i'/>
+<fun r='_ZNK6tChunk14GetItemCurrentEi'/>
+<fun r='_ZNK6tChunk14GetItemCurrentEv'/>
+<fun r='_ZNK6tChunk11ItemAdvanceEi'/>
+<mbr r='tChunk::Chunk' o='0' t='uint8 *'/>
+<mbr r='tChunk::LastChunk' o='64' t='uint8 *'/>
+<mbr r='tChunk::ItemData' o='128' t='uint8 *'/>
+<fun r='_ZN6tChunkC1EPh'/>
+<fun r='_ZN6tChunkC1EPhS0_'/>
+<fun r='_ZN6tChunkC1EPhS_'/>
+<fun r='_ZNK6tChunk7GetDataEv'/>
+<fun r='_ZNK6tChunk14GetDataSizeRawEv'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='191' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='139' c='_ZN6tImage8tPicture4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='113' c='_ZN6tImage8tTexture4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Image/Src/tLayer.cpp' l='69' c='_ZN6tImage6tLayer4LoadERK6tChunkb'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='76' c='_ZN6tImage6tLayer4LoadERK6tChunkb'/>
+<size>24</size>
+<use f='Modules/Image/Src/tMetaData.cpp' l='908' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='914' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Image/Src/tPicture.cpp' l='104' c='_ZN6tImage8tPicture4LoadERK6tChunk'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='110' c='_ZN6tImage8tPicture4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Image/Src/tTexture.cpp' l='409' c='_ZN6tImage8tTexture4LoadERK6tChunk'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='416' c='_ZN6tImage8tTexture4LoadERK6tChunk'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='428' c='_ZN6tImage8tTexture4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='26' c='_ZN6tScene10tAttributeC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='42' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='73' c='_ZN6tScene11tAttributesC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='78' c='_ZN6tScene11tAttributes4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='33' c='_ZN6tScene7tObject4LoadERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='27' c='_ZN6tScene7tCameraC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='31' c='_ZN6tScene7tCamera4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Inc/Scene/tInstance.h' l='27' c='_ZN6tScene9tInstanceC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tInstance.h' l='38' c='_ZN6tScene9tInstance4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Inc/Scene/tLight.h' l='25' c='_ZN6tScene6tLightC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tLight.h' l='29' c='_ZN6tScene6tLight4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='28' c='_ZN6tScene9tLodParamC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='32' c='_ZN6tScene9tLodParam4LoadERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='50' c='_ZN6tScene9tLodGroupC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='53' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='32' c='_ZN6tScene9tMaterialC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='36' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='52' c='_ZN6tScene5tMeshC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='57' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Inc/Scene/tPath.h' l='26' c='_ZN6tScene5tPathC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tPath.h' l='43' c='_ZN6tScene5tPath4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Inc/Scene/tPolyModel.h' l='26' c='_ZN6tScene10tPolyModelC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tPolyModel.h' l='30' c='_ZN6tScene10tPolyModel4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Inc/Scene/tSelection.h' l='25' c='_ZN6tScene10tSelectionC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tSelection.h' l='33' c='_ZN6tScene10tSelection4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='25' c='_ZN6tScene6tJointC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='33' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='50' c='_ZN6tScene5tPoseC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='53' c='_ZN6tScene5tPose4LoadERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='69' c='_ZN6tScene9tSkeletonC1ERK6tChunk'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='80' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='204' c='_ZN6tScene6tWorld13LoadMaterialsERK6tChunkR7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='207' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='211' c='_ZN6tScene6tWorld10LoadGroupsERK6tChunkR7tItListINS_9tLodGroupEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='212' c='_ZN6tScene6tWorld13LoadInstancesERK6tChunkR7tItListINS_9tInstanceEE'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='213' c='_ZN6tScene6tWorld14LoadSelectionsERK6tChunkR7tItListINS_10tSelectionEE'/>
+<size>24</size>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='68' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='73' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='150' c='_ZN6tScene11tAttributes4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='154' c='_ZN6tScene11tAttributes4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Src/tCamera.cpp' l='67' c='_ZN6tScene7tCamera4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='72' c='_ZN6tScene7tCamera4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Src/tInstance.cpp' l='40' c='_ZN6tScene9tInstance4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tInstance.cpp' l='45' c='_ZN6tScene9tInstance4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Src/tLight.cpp' l='56' c='_ZN6tScene6tLight4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLight.cpp' l='61' c='_ZN6tScene6tLight4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='33' c='_ZN6tScene9tLodParam4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='59' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='64' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='73' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='159' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='164' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Src/tMesh.cpp' l='149' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='154' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Src/tObject.cpp' l='38' c='_ZN6tScene7tObject4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tObject.cpp' l='43' c='_ZN6tScene7tObject4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Src/tPath.cpp' l='63' c='_ZN6tScene5tPath4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='68' c='_ZN6tScene5tPath4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='40' c='_ZN6tScene10tPolyModel4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='45' c='_ZN6tScene10tPolyModel4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Src/tSelection.cpp' l='40' c='_ZN6tScene10tSelection4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSelection.cpp' l='45' c='_ZN6tScene10tSelection4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='57' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='62' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='143' c='_ZN6tScene5tPose4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='147' c='_ZN6tScene5tPose4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='207' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='212' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='229' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='244' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<size>24</size>
+<use f='Modules/Scene/Src/tWorld.cpp' l='499' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='510' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1162' c='_ZN6tScene6tWorld13LoadMaterialsERK6tChunkR7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1167' c='_ZN6tScene6tWorld13LoadMaterialsERK6tChunkR7tItListINS_9tMaterialEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1179' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1188' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1225' c='_ZN6tScene6tWorld10LoadGroupsERK6tChunkR7tItListINS_9tLodGroupEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1230' c='_ZN6tScene6tWorld10LoadGroupsERK6tChunkR7tItListINS_9tLodGroupEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1242' c='_ZN6tScene6tWorld13LoadInstancesERK6tChunkR7tItListINS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1247' c='_ZN6tScene6tWorld13LoadInstancesERK6tChunkR7tItListINS_9tInstanceEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1259' c='_ZN6tScene6tWorld14LoadSelectionsERK6tChunkR7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1264' c='_ZN6tScene6tWorld14LoadSelectionsERK6tChunkR7tItListINS_10tSelectionEE'/>
+<size>24</size>

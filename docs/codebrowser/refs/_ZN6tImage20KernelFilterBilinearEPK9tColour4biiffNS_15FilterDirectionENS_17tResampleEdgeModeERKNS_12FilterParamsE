@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tResample.cpp' l='37' type='tPixel4b tImage::KernelFilterBilinear(const tPixel4b * src, int srcW, int srcH, float x, float y, tImage::FilterDirection , tImage::tResampleEdgeMode , const tImage::FilterParams &amp; )'/>
+<use f='Modules/Image/Src/tResample.cpp' l='152' u='r' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<def f='Modules/Image/Src/tResample.cpp' l='304' ll='335' type='tPixel4b tImage::KernelFilterBilinear(const tPixel4b * src, int srcW, int srcH, float x, float y, tImage::FilterDirection dir, tImage::tResampleEdgeMode edgeMode, const tImage::FilterParams &amp; params)'/>

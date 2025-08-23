@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16307'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16306'>// VK_HUAWEI_invocation_mask is a preprocessor guard. Do not pass it to API calls.</doc>

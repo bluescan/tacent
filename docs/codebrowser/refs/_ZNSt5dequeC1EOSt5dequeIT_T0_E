@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/stl_deque.h' l='912' type='void std::deque::deque&lt;_Tp, _Alloc&gt;(deque&lt;_Tp, _Alloc&gt; &amp;&amp; )'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='904'>/**
+       *  @brief  %Deque move constructor.
+       *
+       *  The newly-created %deque contains the exact contents of the
+       *  moved instance.
+       *  The contents of the moved instance are a valid, but unspecified
+       *  %deque.
+       */</doc>

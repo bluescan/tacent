@@ -1,0 +1,4 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='255' type='tChunk tChunk::GetNextChunk() const'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='272' u='c' c='_ZNK6tChunk4NextEv'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='253'>// Assumes there is another chunk after the current one. Returns an invalid one if we reach the end in which case
+	// Data == InvalidData == the last addr. Also returns invalid if the lastchunk was never specified.</doc>

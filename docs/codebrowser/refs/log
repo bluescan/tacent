@@ -1,0 +1,10 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='104' type='double log(double __x)'/>
+<use f='include/c++/11/bits/random.h' l='4020' u='c' c='_ZNSt22geometric_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1268' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1273' u='c' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1486' u='c' c='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1510' u='c' c='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1512' u='c' c='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1516' u='c' c='_ZNSt21binomial_distribution10param_type13_M_initializeEv'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='830' u='c' c='_ZN6tImage16tQuantizeSpatial17ComputeBaseDitherEiii'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='830' u='c' c='_ZN6tImage16tQuantizeSpatial17ComputeBaseDitherEiii'/>

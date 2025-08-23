@@ -1,0 +1,10 @@
+<use f='Modules/Image/Contrib/WebP/include/demux.h' l='67'/>
+<def f='Modules/Image/Contrib/WebP/include/demux.h' l='294' ll='301'/>
+<size>36</size>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='293'>// Global information about the animation..</doc>
+<mbr r='WebPAnimInfo::canvas_width' o='0' t='uint32_t'/>
+<mbr r='WebPAnimInfo::canvas_height' o='32' t='uint32_t'/>
+<mbr r='WebPAnimInfo::loop_count' o='64' t='uint32_t'/>
+<mbr r='WebPAnimInfo::bgcolor' o='96' t='uint32_t'/>
+<mbr r='WebPAnimInfo::frame_count' o='128' t='uint32_t'/>
+<mbr r='WebPAnimInfo::pad' o='160' t='uint32_t[4]'/>

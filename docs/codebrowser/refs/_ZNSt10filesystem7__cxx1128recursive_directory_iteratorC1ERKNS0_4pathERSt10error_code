@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/fs_dir.h' l='483' ll='484' type='void std::filesystem::recursive_directory_iterator::recursive_directory_iterator(const std::filesystem::path &amp; __p, std::error_code &amp; __ec)'/>
+<use f='Modules/System/Src/tFile.cpp' l='2870' u='c' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2973' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

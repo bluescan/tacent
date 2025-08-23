@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/uses_allocator.h' l='41'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='48'/>
+<size>1</size>
+<doc f='include/c++/11/bits/uses_allocator.h' l='38'>/// @cond undocumented
+
+  // This is used for std::experimental::erased_type from Library Fundamentals.</doc>

@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='29' type='void tMath::tVector3::tVector3(const tMath::tVec4 &amp; v)'/>
+<doc f='Modules/Math/Inc/Math/tVector3.h' l='29'>/* Discards 4th component. */</doc>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='375' u='c' c='_ZN5tMath6tPlane3SetERKNS_8tVector4E'/>

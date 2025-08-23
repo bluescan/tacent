@@ -1,0 +1,13 @@
+<def f='include/c++/11/type_traits' l='842' ll='849'/>
+<ovr f='include/c++/11/type_traits' l='852' c='std::__is_destructible_impl'/>
+<use f='include/c++/11/type_traits' l='853'/>
+<size>1</size>
+<doc f='include/c++/11/type_traits' l='835'>// Destructible and constructible type properties.
+
+  // In N3290 is_destructible does not say anything about function
+  // types and abstract types, see LWG 2049. This implementation
+  // describes function types as non-destructible and all complete
+  // object types as destructible, iff the explicit destructor
+  // call expression is wellformed.</doc>
+<fun r='_ZNSt25__do_is_destructible_impl6__testEi'/>
+<fun r='_ZNSt25__do_is_destructible_impl6__testEz'/>

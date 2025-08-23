@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='552'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='544'>/**
+ * @~English
+ * @brief Helper for calling the GetDataSizeUncompressed virtual method of a ktxTexture.
+ *
+ * For a ktxTexture1 this will always return the value of This-&gt;dataSize.
+ *
+ * @copydetails ktxTexture2.ktxTexture2_GetDataSizeUncompressed
+ */</doc>

@@ -1,0 +1,12 @@
+<def f='include/c++/11/ext/concurrence.h' l='248' ll='309'/>
+<use f='include/c++/11/ext/concurrence.h' l='257' c='__gnu_cxx::__cond::__cond'/>
+<use f='include/c++/11/ext/concurrence.h' l='258' c='__gnu_cxx::__cond::operator='/>
+<use f='include/c++/11/ext/concurrence.h' l='258' c='__gnu_cxx::__cond::operator='/>
+<size>48</size>
+<mbr r='__gnu_cxx::__cond::_M_cond' o='0' t='__gthread_cond_t'/>
+<fun r='__gnu_cxx::__cond::__cond'/>
+<fun r='__gnu_cxx::__cond::operator='/>
+<fun r='__gnu_cxx::__cond::__cond'/>
+<fun r='__gnu_cxx::__cond::broadcast'/>
+<fun r='__gnu_cxx::__cond::wait'/>
+<fun r='__gnu_cxx::__cond::wait_recursive'/>

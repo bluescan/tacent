@@ -1,0 +1,5 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='94' type='32'/>
+<use f='Modules/System/Src/tPrint.cpp' l='779' u='r' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1077' u='r' c='_ZN7tSystem27HandlerHelper_IntegerNativeER6tArrayIcERKNS_10FormatSpecEPvbibib'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1207' u='r' c='_ZN7tSystem27HandlerHelper_IntegerTacentER6tArrayIcERKNS_10FormatSpecEPvbibib'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2108' u='r' c='_ZN7tSystem9Handler_BERNS_8ReceiverERKNS_10FormatSpecEPv'/>

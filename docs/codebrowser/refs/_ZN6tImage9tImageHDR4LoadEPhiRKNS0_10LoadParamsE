@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageHDR.cpp' l='281' u='c' c='_ZN6tImage9tImageHDR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImageHDR.cpp' l='288' ll='389' type='bool tImage::tImageHDR::Load(uint8 * hdrFileInMemory, int numBytes, const tImage::tImageHDR::LoadParams &amp; loadParams = tImage::tImageHDR::LoadParams())'/>

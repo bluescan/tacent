@@ -1,0 +1,15 @@
+<dec f='include/c++/11/type_traits' l='2676' type='_Require&lt;__not_&lt;__is_tuple_like&lt;_Tp&gt;&gt;, is_move_constructible&lt;_Tp&gt;, is_move_assignable&lt;_Tp&gt;&gt; std::swap(_Tp &amp; , _Tp &amp; )'/>
+<def f='include/c++/11/bits/move.h' l='187' ll='207' macro='1' type='typename enable_if&lt;__and_&lt;__not_&lt;__is_tuple_like&lt;_Tp&gt;&gt;, is_move_constructible&lt;_Tp&gt;, is_move_assignable&lt;_Tp&gt;&gt;::value&gt;::type std::swap(_Tp &amp; __a, _Tp &amp; __b)'/>
+<use f='include/c++/11/bits/std_thread.h' l='172' u='c' c='_ZNSt6thread4swapERS_'/>
+<use f='include/c++/11/stop_token' l='443' u='c' c='_ZNSt10stop_token15_Stop_state_ref4swapERS0_'/>
+<use f='include/c++/11/thread' l='147' u='c' c='_ZNSt7jthread4swapERS_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1924' u='c' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1957' u='c' c='_ZN5rgbcx22encode_bc1_solid_blockEPvjjjb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2506' u='c' c='_ZN5rgbcxL11bc1_encode4EPNS_9bc1_blockEiiiiiiPKh'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2534' u='c' c='_ZN5rgbcxL11bc1_encode3EPNS_9bc1_blockEiiiiiiPKh'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3240' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3243' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3290' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3293' u='c' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='79' u='c' c='_ZNSt12__basic_fileIcE4swapERS0_'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='80' u='c' c='_ZNSt12__basic_fileIcE4swapERS0_'/>

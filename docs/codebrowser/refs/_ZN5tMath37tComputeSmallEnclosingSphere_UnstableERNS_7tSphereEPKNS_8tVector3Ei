@@ -1,0 +1,8 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='450' type='bool tMath::tComputeSmallEnclosingSphere_Unstable(tMath::tSphere &amp; result, const tMath::tVector3 * points, int numPoints)'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='444'>// This is an older unstable function for computing a minimal bounding sphere. It is based on Graphics Gems vol II.
+// Runs fast but is an approximation only. For a precise answer we should use the algorithm found here:
+// http://www.geometrictools.com/LibFoundation/Containment/Containment.html which is based on the Emo Welzl algorithm
+// that has an expected O(n) running time and is generally much faster than the Megiddo algorithm that guarantees O(n).
+// A possible benefit of this unstable implementation is no minimum radius. Performance and result quality have not been
+// tested.</doc>
+<def f='Modules/Math/Src/tGeometry.cpp' l='170' ll='261' type='bool tMath::tComputeSmallEnclosingSphere_Unstable(tMath::tSphere &amp; sphere, const tMath::tVector3 * points, int numPoints)'/>

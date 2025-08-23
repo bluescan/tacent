@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/random.h' l='273' type='const std::linear_congruential_engine::result_type'/>
+<dec f='include/c++/11/bits/random.tcc' l='100' type='const _UIntType'/>
+<doc f='include/c++/11/bits/random.h' l='272'>/** An increment. */</doc>

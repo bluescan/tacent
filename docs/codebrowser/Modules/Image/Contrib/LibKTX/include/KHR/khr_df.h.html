@@ -1,0 +1,649 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>khr_df.h source code [Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="_khr_df_flags_e,_khr_df_khr_descriptortype_e,_khr_df_mask_e,_khr_df_model_channels_e,_khr_df_model_e,_khr_df_primaries_e,_khr_df_sample_datatype_qualifiers_e,_khr_df_samplemask_e,_khr_df_sampleshift_e,_khr_df_sampleword_e,_khr_df_shift_e,_khr_df_transfer_e,_khr_df_vendorid_e,_khr_df_versionnumber_e,_khr_word_e "/>
+<link rel="stylesheet" href="../../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h'; var root_path = '../../../../../..'; var data_path = '../../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../../..'>Modules</a>/<a href='../../../..'>Image</a>/<a href='../../..'>Contrib</a>/<a href='../..'>LibKTX</a>/<a href='..'>include</a>/<a href='./'>KHR</a>/<a href='khr_df.h.html'>khr_df.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* The Khronos Data Format Specification (version 1.3) */</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>** Copyright 2015-2020 The Khronos Group Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>** SPDX-License-Identifier: Apache-2.0</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>*/</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>/* This header defines a structure that can describe the layout of image</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   formats in memory. This means that the data format is transparent to</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   the application, and the expectation is that this should be used when</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   the layout is defined external to the API. Many Khronos APIs deliberately</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   keep the internal layout of images opaque, to allow proprietary layouts</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   and optimisations. This structure is not appropriate for describing</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>   opaque layouts. */</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>/* We stick to standard C89 constructs for simplicity and portability. */</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#<span data-ppcond="17">ifndef</span> <span class="macro" data-ref="_M/_KHR_DATA_FORMAT_H_">_KHR_DATA_FORMAT_H_</span></u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#define <dfn class="macro" id="_M/_KHR_DATA_FORMAT_H_" data-ref="_M/_KHR_DATA_FORMAT_H_">_KHR_DATA_FORMAT_H_</dfn></u>&nbsp</td></tr>
+<tr><th id="19">19</th><td>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i class="doc">/** <span class="command">@file</span></i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i class="doc"> * @~English</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i class="doc"> * <span class="command">@brief</span> Data Format enums and macros.</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>/* Accessors */</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_word_e" title='_khr_word_e' data-ref="_khr_word_e"><a class="type" href="#_khr_word_e" title='_khr_word_e' data-ref="_khr_word_e">_khr_word_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="27">27</th><td>    <dfn class="enum" id="KHR_DF_WORD_VENDORID" title='KHR_DF_WORD_VENDORID' data-ref="KHR_DF_WORD_VENDORID">KHR_DF_WORD_VENDORID</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="28">28</th><td>    <dfn class="enum" id="KHR_DF_WORD_DESCRIPTORTYPE" title='KHR_DF_WORD_DESCRIPTORTYPE' data-ref="KHR_DF_WORD_DESCRIPTORTYPE">KHR_DF_WORD_DESCRIPTORTYPE</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="29">29</th><td>    <dfn class="enum" id="KHR_DF_WORD_VERSIONNUMBER" title='KHR_DF_WORD_VERSIONNUMBER' data-ref="KHR_DF_WORD_VERSIONNUMBER">KHR_DF_WORD_VERSIONNUMBER</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="30">30</th><td>    <dfn class="enum" id="KHR_DF_WORD_DESCRIPTORBLOCKSIZE" title='KHR_DF_WORD_DESCRIPTORBLOCKSIZE' data-ref="KHR_DF_WORD_DESCRIPTORBLOCKSIZE">KHR_DF_WORD_DESCRIPTORBLOCKSIZE</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="31">31</th><td>    <dfn class="enum" id="KHR_DF_WORD_MODEL" title='KHR_DF_WORD_MODEL' data-ref="KHR_DF_WORD_MODEL">KHR_DF_WORD_MODEL</dfn> = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="32">32</th><td>    <dfn class="enum" id="KHR_DF_WORD_PRIMARIES" title='KHR_DF_WORD_PRIMARIES' data-ref="KHR_DF_WORD_PRIMARIES">KHR_DF_WORD_PRIMARIES</dfn> = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="33">33</th><td>    <dfn class="enum" id="KHR_DF_WORD_TRANSFER" title='KHR_DF_WORD_TRANSFER' data-ref="KHR_DF_WORD_TRANSFER">KHR_DF_WORD_TRANSFER</dfn> = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="34">34</th><td>    <dfn class="enum" id="KHR_DF_WORD_FLAGS" title='KHR_DF_WORD_FLAGS' data-ref="KHR_DF_WORD_FLAGS">KHR_DF_WORD_FLAGS</dfn> = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="35">35</th><td>    <dfn class="enum" id="KHR_DF_WORD_TEXELBLOCKDIMENSION0" title='KHR_DF_WORD_TEXELBLOCKDIMENSION0' data-ref="KHR_DF_WORD_TEXELBLOCKDIMENSION0">KHR_DF_WORD_TEXELBLOCKDIMENSION0</dfn> = <var>3U</var>,&nbsp</td></tr>
+<tr><th id="36">36</th><td>    <dfn class="enum" id="KHR_DF_WORD_TEXELBLOCKDIMENSION1" title='KHR_DF_WORD_TEXELBLOCKDIMENSION1' data-ref="KHR_DF_WORD_TEXELBLOCKDIMENSION1">KHR_DF_WORD_TEXELBLOCKDIMENSION1</dfn> = <var>3U</var>,&nbsp</td></tr>
+<tr><th id="37">37</th><td>    <dfn class="enum" id="KHR_DF_WORD_TEXELBLOCKDIMENSION2" title='KHR_DF_WORD_TEXELBLOCKDIMENSION2' data-ref="KHR_DF_WORD_TEXELBLOCKDIMENSION2">KHR_DF_WORD_TEXELBLOCKDIMENSION2</dfn> = <var>3U</var>,&nbsp</td></tr>
+<tr><th id="38">38</th><td>    <dfn class="enum" id="KHR_DF_WORD_TEXELBLOCKDIMENSION3" title='KHR_DF_WORD_TEXELBLOCKDIMENSION3' data-ref="KHR_DF_WORD_TEXELBLOCKDIMENSION3">KHR_DF_WORD_TEXELBLOCKDIMENSION3</dfn> = <var>3U</var>,&nbsp</td></tr>
+<tr><th id="39">39</th><td>    <dfn class="enum" id="KHR_DF_WORD_BYTESPLANE0" title='KHR_DF_WORD_BYTESPLANE0' data-ref="KHR_DF_WORD_BYTESPLANE0">KHR_DF_WORD_BYTESPLANE0</dfn> = <var>4U</var>,&nbsp</td></tr>
+<tr><th id="40">40</th><td>    <dfn class="enum" id="KHR_DF_WORD_BYTESPLANE1" title='KHR_DF_WORD_BYTESPLANE1' data-ref="KHR_DF_WORD_BYTESPLANE1">KHR_DF_WORD_BYTESPLANE1</dfn> = <var>4U</var>,&nbsp</td></tr>
+<tr><th id="41">41</th><td>    <dfn class="enum" id="KHR_DF_WORD_BYTESPLANE2" title='KHR_DF_WORD_BYTESPLANE2' data-ref="KHR_DF_WORD_BYTESPLANE2">KHR_DF_WORD_BYTESPLANE2</dfn> = <var>4U</var>,&nbsp</td></tr>
+<tr><th id="42">42</th><td>    <dfn class="enum" id="KHR_DF_WORD_BYTESPLANE3" title='KHR_DF_WORD_BYTESPLANE3' data-ref="KHR_DF_WORD_BYTESPLANE3">KHR_DF_WORD_BYTESPLANE3</dfn> = <var>4U</var>,&nbsp</td></tr>
+<tr><th id="43">43</th><td>    <dfn class="enum" id="KHR_DF_WORD_BYTESPLANE4" title='KHR_DF_WORD_BYTESPLANE4' data-ref="KHR_DF_WORD_BYTESPLANE4">KHR_DF_WORD_BYTESPLANE4</dfn> = <var>5U</var>,&nbsp</td></tr>
+<tr><th id="44">44</th><td>    <dfn class="enum" id="KHR_DF_WORD_BYTESPLANE5" title='KHR_DF_WORD_BYTESPLANE5' data-ref="KHR_DF_WORD_BYTESPLANE5">KHR_DF_WORD_BYTESPLANE5</dfn> = <var>5U</var>,&nbsp</td></tr>
+<tr><th id="45">45</th><td>    <dfn class="enum" id="KHR_DF_WORD_BYTESPLANE6" title='KHR_DF_WORD_BYTESPLANE6' data-ref="KHR_DF_WORD_BYTESPLANE6">KHR_DF_WORD_BYTESPLANE6</dfn> = <var>5U</var>,&nbsp</td></tr>
+<tr><th id="46">46</th><td>    <dfn class="enum" id="KHR_DF_WORD_BYTESPLANE7" title='KHR_DF_WORD_BYTESPLANE7' data-ref="KHR_DF_WORD_BYTESPLANE7">KHR_DF_WORD_BYTESPLANE7</dfn> = <var>5U</var>,&nbsp</td></tr>
+<tr><th id="47">47</th><td>    <dfn class="enum" id="KHR_DF_WORD_SAMPLESTART" title='KHR_DF_WORD_SAMPLESTART' data-ref="KHR_DF_WORD_SAMPLESTART">KHR_DF_WORD_SAMPLESTART</dfn> = <var>6U</var>,&nbsp</td></tr>
+<tr><th id="48">48</th><td>    <dfn class="enum" id="KHR_DF_WORD_SAMPLEWORDS" title='KHR_DF_WORD_SAMPLEWORDS' data-ref="KHR_DF_WORD_SAMPLEWORDS">KHR_DF_WORD_SAMPLEWORDS</dfn> = <var>4U</var>&nbsp</td></tr>
+<tr><th id="49">49</th><td>} <dfn class="typedef" id="khr_df_word_e" title='khr_df_word_e' data-type='enum _khr_word_e' data-ref="khr_df_word_e">khr_df_word_e</dfn>;&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_shift_e" title='_khr_df_shift_e' data-ref="_khr_df_shift_e"><a class="type" href="#_khr_df_shift_e" title='_khr_df_shift_e' data-ref="_khr_df_shift_e">_khr_df_shift_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="52">52</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_VENDORID" title='KHR_DF_SHIFT_VENDORID' data-ref="KHR_DF_SHIFT_VENDORID">KHR_DF_SHIFT_VENDORID</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="53">53</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_DESCRIPTORTYPE" title='KHR_DF_SHIFT_DESCRIPTORTYPE' data-ref="KHR_DF_SHIFT_DESCRIPTORTYPE">KHR_DF_SHIFT_DESCRIPTORTYPE</dfn> = <var>17U</var>,&nbsp</td></tr>
+<tr><th id="54">54</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_VERSIONNUMBER" title='KHR_DF_SHIFT_VERSIONNUMBER' data-ref="KHR_DF_SHIFT_VERSIONNUMBER">KHR_DF_SHIFT_VERSIONNUMBER</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="55">55</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_DESCRIPTORBLOCKSIZE" title='KHR_DF_SHIFT_DESCRIPTORBLOCKSIZE' data-ref="KHR_DF_SHIFT_DESCRIPTORBLOCKSIZE">KHR_DF_SHIFT_DESCRIPTORBLOCKSIZE</dfn> = <var>16U</var>,&nbsp</td></tr>
+<tr><th id="56">56</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_MODEL" title='KHR_DF_SHIFT_MODEL' data-ref="KHR_DF_SHIFT_MODEL">KHR_DF_SHIFT_MODEL</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="57">57</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_PRIMARIES" title='KHR_DF_SHIFT_PRIMARIES' data-ref="KHR_DF_SHIFT_PRIMARIES">KHR_DF_SHIFT_PRIMARIES</dfn> = <var>8U</var>,&nbsp</td></tr>
+<tr><th id="58">58</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_TRANSFER" title='KHR_DF_SHIFT_TRANSFER' data-ref="KHR_DF_SHIFT_TRANSFER">KHR_DF_SHIFT_TRANSFER</dfn> = <var>16U</var>,&nbsp</td></tr>
+<tr><th id="59">59</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_FLAGS" title='KHR_DF_SHIFT_FLAGS' data-ref="KHR_DF_SHIFT_FLAGS">KHR_DF_SHIFT_FLAGS</dfn> = <var>24U</var>,&nbsp</td></tr>
+<tr><th id="60">60</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_TEXELBLOCKDIMENSION0" title='KHR_DF_SHIFT_TEXELBLOCKDIMENSION0' data-ref="KHR_DF_SHIFT_TEXELBLOCKDIMENSION0">KHR_DF_SHIFT_TEXELBLOCKDIMENSION0</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="61">61</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_TEXELBLOCKDIMENSION1" title='KHR_DF_SHIFT_TEXELBLOCKDIMENSION1' data-ref="KHR_DF_SHIFT_TEXELBLOCKDIMENSION1">KHR_DF_SHIFT_TEXELBLOCKDIMENSION1</dfn> = <var>8U</var>,&nbsp</td></tr>
+<tr><th id="62">62</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_TEXELBLOCKDIMENSION2" title='KHR_DF_SHIFT_TEXELBLOCKDIMENSION2' data-ref="KHR_DF_SHIFT_TEXELBLOCKDIMENSION2">KHR_DF_SHIFT_TEXELBLOCKDIMENSION2</dfn> = <var>16U</var>,&nbsp</td></tr>
+<tr><th id="63">63</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_TEXELBLOCKDIMENSION3" title='KHR_DF_SHIFT_TEXELBLOCKDIMENSION3' data-ref="KHR_DF_SHIFT_TEXELBLOCKDIMENSION3">KHR_DF_SHIFT_TEXELBLOCKDIMENSION3</dfn> = <var>24U</var>,&nbsp</td></tr>
+<tr><th id="64">64</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_BYTESPLANE0" title='KHR_DF_SHIFT_BYTESPLANE0' data-ref="KHR_DF_SHIFT_BYTESPLANE0">KHR_DF_SHIFT_BYTESPLANE0</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="65">65</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_BYTESPLANE1" title='KHR_DF_SHIFT_BYTESPLANE1' data-ref="KHR_DF_SHIFT_BYTESPLANE1">KHR_DF_SHIFT_BYTESPLANE1</dfn> = <var>8U</var>,&nbsp</td></tr>
+<tr><th id="66">66</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_BYTESPLANE2" title='KHR_DF_SHIFT_BYTESPLANE2' data-ref="KHR_DF_SHIFT_BYTESPLANE2">KHR_DF_SHIFT_BYTESPLANE2</dfn> = <var>16U</var>,&nbsp</td></tr>
+<tr><th id="67">67</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_BYTESPLANE3" title='KHR_DF_SHIFT_BYTESPLANE3' data-ref="KHR_DF_SHIFT_BYTESPLANE3">KHR_DF_SHIFT_BYTESPLANE3</dfn> = <var>24U</var>,&nbsp</td></tr>
+<tr><th id="68">68</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_BYTESPLANE4" title='KHR_DF_SHIFT_BYTESPLANE4' data-ref="KHR_DF_SHIFT_BYTESPLANE4">KHR_DF_SHIFT_BYTESPLANE4</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="69">69</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_BYTESPLANE5" title='KHR_DF_SHIFT_BYTESPLANE5' data-ref="KHR_DF_SHIFT_BYTESPLANE5">KHR_DF_SHIFT_BYTESPLANE5</dfn> = <var>8U</var>,&nbsp</td></tr>
+<tr><th id="70">70</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_BYTESPLANE6" title='KHR_DF_SHIFT_BYTESPLANE6' data-ref="KHR_DF_SHIFT_BYTESPLANE6">KHR_DF_SHIFT_BYTESPLANE6</dfn> = <var>16U</var>,&nbsp</td></tr>
+<tr><th id="71">71</th><td>    <dfn class="enum" id="KHR_DF_SHIFT_BYTESPLANE7" title='KHR_DF_SHIFT_BYTESPLANE7' data-ref="KHR_DF_SHIFT_BYTESPLANE7">KHR_DF_SHIFT_BYTESPLANE7</dfn> = <var>24U</var>&nbsp</td></tr>
+<tr><th id="72">72</th><td>} <dfn class="typedef" id="khr_df_shift_e" title='khr_df_shift_e' data-type='enum _khr_df_shift_e' data-ref="khr_df_shift_e">khr_df_shift_e</dfn>;&nbsp</td></tr>
+<tr><th id="73">73</th><td>&nbsp</td></tr>
+<tr><th id="74">74</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_mask_e" title='_khr_df_mask_e' data-ref="_khr_df_mask_e"><a class="type" href="#_khr_df_mask_e" title='_khr_df_mask_e' data-ref="_khr_df_mask_e">_khr_df_mask_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="75">75</th><td>    <dfn class="enum" id="KHR_DF_MASK_VENDORID" title='KHR_DF_MASK_VENDORID' data-ref="KHR_DF_MASK_VENDORID">KHR_DF_MASK_VENDORID</dfn> = <var>0x1FFFFU</var>,&nbsp</td></tr>
+<tr><th id="76">76</th><td>    <dfn class="enum" id="KHR_DF_MASK_DESCRIPTORTYPE" title='KHR_DF_MASK_DESCRIPTORTYPE' data-ref="KHR_DF_MASK_DESCRIPTORTYPE">KHR_DF_MASK_DESCRIPTORTYPE</dfn> = <var>0x7FFFU</var>,&nbsp</td></tr>
+<tr><th id="77">77</th><td>    <dfn class="enum" id="KHR_DF_MASK_VERSIONNUMBER" title='KHR_DF_MASK_VERSIONNUMBER' data-ref="KHR_DF_MASK_VERSIONNUMBER">KHR_DF_MASK_VERSIONNUMBER</dfn> = <var>0xFFFFU</var>,&nbsp</td></tr>
+<tr><th id="78">78</th><td>    <dfn class="enum" id="KHR_DF_MASK_DESCRIPTORBLOCKSIZE" title='KHR_DF_MASK_DESCRIPTORBLOCKSIZE' data-ref="KHR_DF_MASK_DESCRIPTORBLOCKSIZE">KHR_DF_MASK_DESCRIPTORBLOCKSIZE</dfn> = <var>0xFFFFU</var>,&nbsp</td></tr>
+<tr><th id="79">79</th><td>    <dfn class="enum" id="KHR_DF_MASK_MODEL" title='KHR_DF_MASK_MODEL' data-ref="KHR_DF_MASK_MODEL">KHR_DF_MASK_MODEL</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="80">80</th><td>    <dfn class="enum" id="KHR_DF_MASK_PRIMARIES" title='KHR_DF_MASK_PRIMARIES' data-ref="KHR_DF_MASK_PRIMARIES">KHR_DF_MASK_PRIMARIES</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="81">81</th><td>    <dfn class="enum" id="KHR_DF_MASK_TRANSFER" title='KHR_DF_MASK_TRANSFER' data-ref="KHR_DF_MASK_TRANSFER">KHR_DF_MASK_TRANSFER</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="82">82</th><td>    <dfn class="enum" id="KHR_DF_MASK_FLAGS" title='KHR_DF_MASK_FLAGS' data-ref="KHR_DF_MASK_FLAGS">KHR_DF_MASK_FLAGS</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="83">83</th><td>    <dfn class="enum" id="KHR_DF_MASK_TEXELBLOCKDIMENSION0" title='KHR_DF_MASK_TEXELBLOCKDIMENSION0' data-ref="KHR_DF_MASK_TEXELBLOCKDIMENSION0">KHR_DF_MASK_TEXELBLOCKDIMENSION0</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="84">84</th><td>    <dfn class="enum" id="KHR_DF_MASK_TEXELBLOCKDIMENSION1" title='KHR_DF_MASK_TEXELBLOCKDIMENSION1' data-ref="KHR_DF_MASK_TEXELBLOCKDIMENSION1">KHR_DF_MASK_TEXELBLOCKDIMENSION1</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="85">85</th><td>    <dfn class="enum" id="KHR_DF_MASK_TEXELBLOCKDIMENSION2" title='KHR_DF_MASK_TEXELBLOCKDIMENSION2' data-ref="KHR_DF_MASK_TEXELBLOCKDIMENSION2">KHR_DF_MASK_TEXELBLOCKDIMENSION2</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="86">86</th><td>    <dfn class="enum" id="KHR_DF_MASK_TEXELBLOCKDIMENSION3" title='KHR_DF_MASK_TEXELBLOCKDIMENSION3' data-ref="KHR_DF_MASK_TEXELBLOCKDIMENSION3">KHR_DF_MASK_TEXELBLOCKDIMENSION3</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="87">87</th><td>    <dfn class="enum" id="KHR_DF_MASK_BYTESPLANE0" title='KHR_DF_MASK_BYTESPLANE0' data-ref="KHR_DF_MASK_BYTESPLANE0">KHR_DF_MASK_BYTESPLANE0</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="88">88</th><td>    <dfn class="enum" id="KHR_DF_MASK_BYTESPLANE1" title='KHR_DF_MASK_BYTESPLANE1' data-ref="KHR_DF_MASK_BYTESPLANE1">KHR_DF_MASK_BYTESPLANE1</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="89">89</th><td>    <dfn class="enum" id="KHR_DF_MASK_BYTESPLANE2" title='KHR_DF_MASK_BYTESPLANE2' data-ref="KHR_DF_MASK_BYTESPLANE2">KHR_DF_MASK_BYTESPLANE2</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="90">90</th><td>    <dfn class="enum" id="KHR_DF_MASK_BYTESPLANE3" title='KHR_DF_MASK_BYTESPLANE3' data-ref="KHR_DF_MASK_BYTESPLANE3">KHR_DF_MASK_BYTESPLANE3</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="91">91</th><td>    <dfn class="enum" id="KHR_DF_MASK_BYTESPLANE4" title='KHR_DF_MASK_BYTESPLANE4' data-ref="KHR_DF_MASK_BYTESPLANE4">KHR_DF_MASK_BYTESPLANE4</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="92">92</th><td>    <dfn class="enum" id="KHR_DF_MASK_BYTESPLANE5" title='KHR_DF_MASK_BYTESPLANE5' data-ref="KHR_DF_MASK_BYTESPLANE5">KHR_DF_MASK_BYTESPLANE5</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="93">93</th><td>    <dfn class="enum" id="KHR_DF_MASK_BYTESPLANE6" title='KHR_DF_MASK_BYTESPLANE6' data-ref="KHR_DF_MASK_BYTESPLANE6">KHR_DF_MASK_BYTESPLANE6</dfn> = <var>0xFFU</var>,&nbsp</td></tr>
+<tr><th id="94">94</th><td>    <dfn class="enum" id="KHR_DF_MASK_BYTESPLANE7" title='KHR_DF_MASK_BYTESPLANE7' data-ref="KHR_DF_MASK_BYTESPLANE7">KHR_DF_MASK_BYTESPLANE7</dfn> = <var>0xFFU</var>&nbsp</td></tr>
+<tr><th id="95">95</th><td>} <dfn class="typedef" id="khr_df_mask_e" title='khr_df_mask_e' data-type='enum _khr_df_mask_e' data-ref="khr_df_mask_e">khr_df_mask_e</dfn>;&nbsp</td></tr>
+<tr><th id="96">96</th><td>&nbsp</td></tr>
+<tr><th id="97">97</th><td><i>/* Helper macro:</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i>   Extract field X from basic descriptor block BDB */</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><u>#define <dfn class="macro" id="_M/KHR_DFDVAL" data-ref="_M/KHR_DFDVAL">KHR_DFDVAL</dfn>(BDB, X) \</u>&nbsp</td></tr>
+<tr><th id="100">100</th><td><u>    (((BDB)[KHR_DF_WORD_ ## X] &gt;&gt; (KHR_DF_SHIFT_ ## X)) \</u>&nbsp</td></tr>
+<tr><th id="101">101</th><td><u>     &amp; (KHR_DF_MASK_ ## X))</u>&nbsp</td></tr>
+<tr><th id="102">102</th><td>&nbsp</td></tr>
+<tr><th id="103">103</th><td><i>/* Helper macro:</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td><i>   Set field X of basic descriptor block BDB */</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td><u>#define <dfn class="macro" id="_M/KHR_DFDSETVAL" data-ref="_M/KHR_DFDSETVAL">KHR_DFDSETVAL</dfn>(BDB, X, val) \</u>&nbsp</td></tr>
+<tr><th id="106">106</th><td><u>    ((BDB)[KHR_DF_WORD_ ## X] = \</u>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u>     ((BDB)[KHR_DF_WORD_ ## X] &amp; \</u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u>      ~((KHR_DF_MASK_ ## X) &lt;&lt; (KHR_DF_SHIFT_ ## X))) | \</u>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>     (((val) &amp; (KHR_DF_MASK_ ## X)) &lt;&lt; (KHR_DF_SHIFT_ ## X)))</u>&nbsp</td></tr>
+<tr><th id="110">110</th><td>&nbsp</td></tr>
+<tr><th id="111">111</th><td><i>/* Offsets relative to the start of a sample */</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_sampleword_e" title='_khr_df_sampleword_e' data-ref="_khr_df_sampleword_e"><a class="type" href="#_khr_df_sampleword_e" title='_khr_df_sampleword_e' data-ref="_khr_df_sampleword_e">_khr_df_sampleword_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="113">113</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEWORD_BITOFFSET" title='KHR_DF_SAMPLEWORD_BITOFFSET' data-ref="KHR_DF_SAMPLEWORD_BITOFFSET">KHR_DF_SAMPLEWORD_BITOFFSET</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="114">114</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEWORD_BITLENGTH" title='KHR_DF_SAMPLEWORD_BITLENGTH' data-ref="KHR_DF_SAMPLEWORD_BITLENGTH">KHR_DF_SAMPLEWORD_BITLENGTH</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="115">115</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEWORD_CHANNELID" title='KHR_DF_SAMPLEWORD_CHANNELID' data-ref="KHR_DF_SAMPLEWORD_CHANNELID">KHR_DF_SAMPLEWORD_CHANNELID</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="116">116</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEWORD_QUALIFIERS" title='KHR_DF_SAMPLEWORD_QUALIFIERS' data-ref="KHR_DF_SAMPLEWORD_QUALIFIERS">KHR_DF_SAMPLEWORD_QUALIFIERS</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="117">117</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEWORD_SAMPLEPOSITION0" title='KHR_DF_SAMPLEWORD_SAMPLEPOSITION0' data-ref="KHR_DF_SAMPLEWORD_SAMPLEPOSITION0">KHR_DF_SAMPLEWORD_SAMPLEPOSITION0</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="118">118</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEWORD_SAMPLEPOSITION1" title='KHR_DF_SAMPLEWORD_SAMPLEPOSITION1' data-ref="KHR_DF_SAMPLEWORD_SAMPLEPOSITION1">KHR_DF_SAMPLEWORD_SAMPLEPOSITION1</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="119">119</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEWORD_SAMPLEPOSITION2" title='KHR_DF_SAMPLEWORD_SAMPLEPOSITION2' data-ref="KHR_DF_SAMPLEWORD_SAMPLEPOSITION2">KHR_DF_SAMPLEWORD_SAMPLEPOSITION2</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="120">120</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEWORD_SAMPLEPOSITION3" title='KHR_DF_SAMPLEWORD_SAMPLEPOSITION3' data-ref="KHR_DF_SAMPLEWORD_SAMPLEPOSITION3">KHR_DF_SAMPLEWORD_SAMPLEPOSITION3</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="121">121</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEWORD_SAMPLEPOSITION_ALL" title='KHR_DF_SAMPLEWORD_SAMPLEPOSITION_ALL' data-ref="KHR_DF_SAMPLEWORD_SAMPLEPOSITION_ALL">KHR_DF_SAMPLEWORD_SAMPLEPOSITION_ALL</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="122">122</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEWORD_SAMPLELOWER" title='KHR_DF_SAMPLEWORD_SAMPLELOWER' data-ref="KHR_DF_SAMPLEWORD_SAMPLELOWER">KHR_DF_SAMPLEWORD_SAMPLELOWER</dfn> = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="123">123</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEWORD_SAMPLEUPPER" title='KHR_DF_SAMPLEWORD_SAMPLEUPPER' data-ref="KHR_DF_SAMPLEWORD_SAMPLEUPPER">KHR_DF_SAMPLEWORD_SAMPLEUPPER</dfn> = <var>3U</var>&nbsp</td></tr>
+<tr><th id="124">124</th><td>} <dfn class="typedef" id="khr_df_sampleword_e" title='khr_df_sampleword_e' data-type='enum _khr_df_sampleword_e' data-ref="khr_df_sampleword_e">khr_df_sampleword_e</dfn>;&nbsp</td></tr>
+<tr><th id="125">125</th><td>&nbsp</td></tr>
+<tr><th id="126">126</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_sampleshift_e" title='_khr_df_sampleshift_e' data-ref="_khr_df_sampleshift_e"><a class="type" href="#_khr_df_sampleshift_e" title='_khr_df_sampleshift_e' data-ref="_khr_df_sampleshift_e">_khr_df_sampleshift_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="127">127</th><td>    <dfn class="enum" id="KHR_DF_SAMPLESHIFT_BITOFFSET" title='KHR_DF_SAMPLESHIFT_BITOFFSET' data-ref="KHR_DF_SAMPLESHIFT_BITOFFSET">KHR_DF_SAMPLESHIFT_BITOFFSET</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="128">128</th><td>    <dfn class="enum" id="KHR_DF_SAMPLESHIFT_BITLENGTH" title='KHR_DF_SAMPLESHIFT_BITLENGTH' data-ref="KHR_DF_SAMPLESHIFT_BITLENGTH">KHR_DF_SAMPLESHIFT_BITLENGTH</dfn> = <var>16U</var>,&nbsp</td></tr>
+<tr><th id="129">129</th><td>    <dfn class="enum" id="KHR_DF_SAMPLESHIFT_CHANNELID" title='KHR_DF_SAMPLESHIFT_CHANNELID' data-ref="KHR_DF_SAMPLESHIFT_CHANNELID">KHR_DF_SAMPLESHIFT_CHANNELID</dfn> = <var>24U</var>,&nbsp</td></tr>
+<tr><th id="130">130</th><td>    <i>/* N.B. Qualifiers are defined as an offset into a byte */</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td>    <dfn class="enum" id="KHR_DF_SAMPLESHIFT_QUALIFIERS" title='KHR_DF_SAMPLESHIFT_QUALIFIERS' data-ref="KHR_DF_SAMPLESHIFT_QUALIFIERS">KHR_DF_SAMPLESHIFT_QUALIFIERS</dfn> = <var>24U</var>,&nbsp</td></tr>
+<tr><th id="132">132</th><td>    <dfn class="enum" id="KHR_DF_SAMPLESHIFT_SAMPLEPOSITION0" title='KHR_DF_SAMPLESHIFT_SAMPLEPOSITION0' data-ref="KHR_DF_SAMPLESHIFT_SAMPLEPOSITION0">KHR_DF_SAMPLESHIFT_SAMPLEPOSITION0</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="133">133</th><td>    <dfn class="enum" id="KHR_DF_SAMPLESHIFT_SAMPLEPOSITION1" title='KHR_DF_SAMPLESHIFT_SAMPLEPOSITION1' data-ref="KHR_DF_SAMPLESHIFT_SAMPLEPOSITION1">KHR_DF_SAMPLESHIFT_SAMPLEPOSITION1</dfn> = <var>8U</var>,&nbsp</td></tr>
+<tr><th id="134">134</th><td>    <dfn class="enum" id="KHR_DF_SAMPLESHIFT_SAMPLEPOSITION2" title='KHR_DF_SAMPLESHIFT_SAMPLEPOSITION2' data-ref="KHR_DF_SAMPLESHIFT_SAMPLEPOSITION2">KHR_DF_SAMPLESHIFT_SAMPLEPOSITION2</dfn> = <var>16U</var>,&nbsp</td></tr>
+<tr><th id="135">135</th><td>    <dfn class="enum" id="KHR_DF_SAMPLESHIFT_SAMPLEPOSITION3" title='KHR_DF_SAMPLESHIFT_SAMPLEPOSITION3' data-ref="KHR_DF_SAMPLESHIFT_SAMPLEPOSITION3">KHR_DF_SAMPLESHIFT_SAMPLEPOSITION3</dfn> = <var>24U</var>,&nbsp</td></tr>
+<tr><th id="136">136</th><td>    <dfn class="enum" id="KHR_DF_SAMPLESHIFT_SAMPLEPOSITION_ALL" title='KHR_DF_SAMPLESHIFT_SAMPLEPOSITION_ALL' data-ref="KHR_DF_SAMPLESHIFT_SAMPLEPOSITION_ALL">KHR_DF_SAMPLESHIFT_SAMPLEPOSITION_ALL</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="137">137</th><td>    <dfn class="enum" id="KHR_DF_SAMPLESHIFT_SAMPLELOWER" title='KHR_DF_SAMPLESHIFT_SAMPLELOWER' data-ref="KHR_DF_SAMPLESHIFT_SAMPLELOWER">KHR_DF_SAMPLESHIFT_SAMPLELOWER</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="138">138</th><td>    <dfn class="enum" id="KHR_DF_SAMPLESHIFT_SAMPLEUPPER" title='KHR_DF_SAMPLESHIFT_SAMPLEUPPER' data-ref="KHR_DF_SAMPLESHIFT_SAMPLEUPPER">KHR_DF_SAMPLESHIFT_SAMPLEUPPER</dfn> = <var>0U</var>&nbsp</td></tr>
+<tr><th id="139">139</th><td>} <dfn class="typedef" id="khr_df_sampleshift_e" title='khr_df_sampleshift_e' data-type='enum _khr_df_sampleshift_e' data-ref="khr_df_sampleshift_e">khr_df_sampleshift_e</dfn>;&nbsp</td></tr>
+<tr><th id="140">140</th><td>&nbsp</td></tr>
+<tr><th id="141">141</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_samplemask_e" title='_khr_df_samplemask_e' data-ref="_khr_df_samplemask_e"><a class="type" href="#_khr_df_samplemask_e" title='_khr_df_samplemask_e' data-ref="_khr_df_samplemask_e">_khr_df_samplemask_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="142">142</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEMASK_BITOFFSET" title='KHR_DF_SAMPLEMASK_BITOFFSET' data-ref="KHR_DF_SAMPLEMASK_BITOFFSET">KHR_DF_SAMPLEMASK_BITOFFSET</dfn> = <var>0xFFFFU</var>,&nbsp</td></tr>
+<tr><th id="143">143</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEMASK_BITLENGTH" title='KHR_DF_SAMPLEMASK_BITLENGTH' data-ref="KHR_DF_SAMPLEMASK_BITLENGTH">KHR_DF_SAMPLEMASK_BITLENGTH</dfn> = <var>0xFF</var>,&nbsp</td></tr>
+<tr><th id="144">144</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEMASK_CHANNELID" title='KHR_DF_SAMPLEMASK_CHANNELID' data-ref="KHR_DF_SAMPLEMASK_CHANNELID">KHR_DF_SAMPLEMASK_CHANNELID</dfn> = <var>0xF</var>,&nbsp</td></tr>
+<tr><th id="145">145</th><td>    <i>/* N.B. Qualifiers are defined as an offset into a byte */</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEMASK_QUALIFIERS" title='KHR_DF_SAMPLEMASK_QUALIFIERS' data-ref="KHR_DF_SAMPLEMASK_QUALIFIERS">KHR_DF_SAMPLEMASK_QUALIFIERS</dfn> = <var>0xF0</var>,&nbsp</td></tr>
+<tr><th id="147">147</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEMASK_SAMPLEPOSITION0" title='KHR_DF_SAMPLEMASK_SAMPLEPOSITION0' data-ref="KHR_DF_SAMPLEMASK_SAMPLEPOSITION0">KHR_DF_SAMPLEMASK_SAMPLEPOSITION0</dfn> = <var>0xFF</var>,&nbsp</td></tr>
+<tr><th id="148">148</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEMASK_SAMPLEPOSITION1" title='KHR_DF_SAMPLEMASK_SAMPLEPOSITION1' data-ref="KHR_DF_SAMPLEMASK_SAMPLEPOSITION1">KHR_DF_SAMPLEMASK_SAMPLEPOSITION1</dfn> = <var>0xFF</var>,&nbsp</td></tr>
+<tr><th id="149">149</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEMASK_SAMPLEPOSITION2" title='KHR_DF_SAMPLEMASK_SAMPLEPOSITION2' data-ref="KHR_DF_SAMPLEMASK_SAMPLEPOSITION2">KHR_DF_SAMPLEMASK_SAMPLEPOSITION2</dfn> = <var>0xFF</var>,&nbsp</td></tr>
+<tr><th id="150">150</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEMASK_SAMPLEPOSITION3" title='KHR_DF_SAMPLEMASK_SAMPLEPOSITION3' data-ref="KHR_DF_SAMPLEMASK_SAMPLEPOSITION3">KHR_DF_SAMPLEMASK_SAMPLEPOSITION3</dfn> = <var>0xFF</var>,&nbsp</td></tr>
+<tr><th id="151">151</th><td>    <i>/* ISO C restricts enum values to range of int hence the</i>&nbsp</td></tr>
+<tr><th id="152">152</th><td><i>       cast. We do it verbosely instead of using -1 to ensure</i>&nbsp</td></tr>
+<tr><th id="153">153</th><td><i>       it is a 32-bit value even if int is 64 bits. */</i>&nbsp</td></tr>
+<tr><th id="154">154</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEMASK_SAMPLEPOSITION_ALL" title='KHR_DF_SAMPLEMASK_SAMPLEPOSITION_ALL' data-ref="KHR_DF_SAMPLEMASK_SAMPLEPOSITION_ALL">KHR_DF_SAMPLEMASK_SAMPLEPOSITION_ALL</dfn> = (<em>int</em>) <var>0xFFFFFFFFU</var>,&nbsp</td></tr>
+<tr><th id="155">155</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEMASK_SAMPLELOWER" title='KHR_DF_SAMPLEMASK_SAMPLELOWER' data-ref="KHR_DF_SAMPLEMASK_SAMPLELOWER">KHR_DF_SAMPLEMASK_SAMPLELOWER</dfn> = (<em>int</em>) <var>0xFFFFFFFFU</var>,&nbsp</td></tr>
+<tr><th id="156">156</th><td>    <dfn class="enum" id="KHR_DF_SAMPLEMASK_SAMPLEUPPER" title='KHR_DF_SAMPLEMASK_SAMPLEUPPER' data-ref="KHR_DF_SAMPLEMASK_SAMPLEUPPER">KHR_DF_SAMPLEMASK_SAMPLEUPPER</dfn> = (<em>int</em>) <var>0xFFFFFFFFU</var>&nbsp</td></tr>
+<tr><th id="157">157</th><td>} <dfn class="typedef" id="khr_df_samplemask_e" title='khr_df_samplemask_e' data-type='enum _khr_df_samplemask_e' data-ref="khr_df_samplemask_e">khr_df_samplemask_e</dfn>;&nbsp</td></tr>
+<tr><th id="158">158</th><td>&nbsp</td></tr>
+<tr><th id="159">159</th><td><i>/* Helper macro:</i>&nbsp</td></tr>
+<tr><th id="160">160</th><td><i>   Extract field X of sample S from basic descriptor block BDB */</i>&nbsp</td></tr>
+<tr><th id="161">161</th><td><u>#define <dfn class="macro" id="_M/KHR_DFDSVAL" data-ref="_M/KHR_DFDSVAL">KHR_DFDSVAL</dfn>(BDB, S, X) \</u>&nbsp</td></tr>
+<tr><th id="162">162</th><td><u>    (((BDB)[KHR_DF_WORD_SAMPLESTART + \</u>&nbsp</td></tr>
+<tr><th id="163">163</th><td><u>            ((S) * KHR_DF_WORD_SAMPLEWORDS) + \</u>&nbsp</td></tr>
+<tr><th id="164">164</th><td><u>            KHR_DF_SAMPLEWORD_ ## X] &gt;&gt; (KHR_DF_SAMPLESHIFT_ ## X)) \</u>&nbsp</td></tr>
+<tr><th id="165">165</th><td><u>     &amp; (KHR_DF_SAMPLEMASK_ ## X))</u>&nbsp</td></tr>
+<tr><th id="166">166</th><td>&nbsp</td></tr>
+<tr><th id="167">167</th><td><i>/* Helper macro:</i>&nbsp</td></tr>
+<tr><th id="168">168</th><td><i>   Set field X of sample S of basic descriptor block BDB */</i>&nbsp</td></tr>
+<tr><th id="169">169</th><td><u>#define <dfn class="macro" id="_M/KHR_DFDSETSVAL" data-ref="_M/KHR_DFDSETSVAL">KHR_DFDSETSVAL</dfn>(BDB, S, X, val) \</u>&nbsp</td></tr>
+<tr><th id="170">170</th><td><u>    ((BDB)[KHR_DF_WORD_SAMPLESTART + \</u>&nbsp</td></tr>
+<tr><th id="171">171</th><td><u>           ((S) * KHR_DF_WORD_SAMPLEWORDS) + \</u>&nbsp</td></tr>
+<tr><th id="172">172</th><td><u>           KHR_DF_SAMPLEWORD_ ## X] = \</u>&nbsp</td></tr>
+<tr><th id="173">173</th><td><u>     ((BDB)[KHR_DF_WORD_SAMPLESTART + \</u>&nbsp</td></tr>
+<tr><th id="174">174</th><td><u>            ((S) * KHR_DF_WORD_SAMPLEWORDS) + \</u>&nbsp</td></tr>
+<tr><th id="175">175</th><td><u>            KHR_DF_SAMPLEWORD_ ## X] &amp; \</u>&nbsp</td></tr>
+<tr><th id="176">176</th><td><u>      ~((uint32_t)(KHR_DF_SAMPLEMASK_ ## X) &lt;&lt; (KHR_DF_SAMPLESHIFT_ ## X))) | \</u>&nbsp</td></tr>
+<tr><th id="177">177</th><td><u>     (((val) &amp; (uint32_t)(KHR_DF_SAMPLEMASK_ ## X)) &lt;&lt; (KHR_DF_SAMPLESHIFT_ ## X)))</u>&nbsp</td></tr>
+<tr><th id="178">178</th><td>&nbsp</td></tr>
+<tr><th id="179">179</th><td><i>/* Helper macro:</i>&nbsp</td></tr>
+<tr><th id="180">180</th><td><i>   Number of samples in basic descriptor block BDB */</i>&nbsp</td></tr>
+<tr><th id="181">181</th><td><u>#define <dfn class="macro" id="_M/KHR_DFDSAMPLECOUNT" data-ref="_M/KHR_DFDSAMPLECOUNT">KHR_DFDSAMPLECOUNT</dfn>(BDB) \</u>&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>    (((KHR_DFDVAL(BDB, DESCRIPTORBLOCKSIZE) &gt;&gt; 2) - \</u>&nbsp</td></tr>
+<tr><th id="183">183</th><td><u>      KHR_DF_WORD_SAMPLESTART) \</u>&nbsp</td></tr>
+<tr><th id="184">184</th><td><u>     / KHR_DF_WORD_SAMPLEWORDS)</u>&nbsp</td></tr>
+<tr><th id="185">185</th><td>&nbsp</td></tr>
+<tr><th id="186">186</th><td><i>/* Helper macro:</i>&nbsp</td></tr>
+<tr><th id="187">187</th><td><i>   Size in words of basic descriptor block for S samples */</i>&nbsp</td></tr>
+<tr><th id="188">188</th><td><u>#define <dfn class="macro" id="_M/KHR_DFDSIZEWORDS" data-ref="_M/KHR_DFDSIZEWORDS">KHR_DFDSIZEWORDS</dfn>(S) \</u>&nbsp</td></tr>
+<tr><th id="189">189</th><td><u>    (KHR_DF_WORD_SAMPLESTART + \</u>&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>     (S) * KHR_DF_WORD_SAMPLEWORDS)</u>&nbsp</td></tr>
+<tr><th id="191">191</th><td>&nbsp</td></tr>
+<tr><th id="192">192</th><td><i>/* Vendor ids */</i>&nbsp</td></tr>
+<tr><th id="193">193</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_vendorid_e" title='_khr_df_vendorid_e' data-ref="_khr_df_vendorid_e"><a class="type" href="#_khr_df_vendorid_e" title='_khr_df_vendorid_e' data-ref="_khr_df_vendorid_e">_khr_df_vendorid_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="194">194</th><td>    <i>/* Standard Khronos descriptor */</i>&nbsp</td></tr>
+<tr><th id="195">195</th><td>    <dfn class="enum" id="KHR_DF_VENDORID_KHRONOS" title='KHR_DF_VENDORID_KHRONOS' data-ref="KHR_DF_VENDORID_KHRONOS">KHR_DF_VENDORID_KHRONOS</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="196">196</th><td>    <dfn class="enum" id="KHR_DF_VENDORID_MAX" title='KHR_DF_VENDORID_MAX' data-ref="KHR_DF_VENDORID_MAX">KHR_DF_VENDORID_MAX</dfn>     = <var>0x1FFFFU</var>&nbsp</td></tr>
+<tr><th id="197">197</th><td>} <dfn class="typedef" id="khr_df_vendorid_e" title='khr_df_vendorid_e' data-type='enum _khr_df_vendorid_e' data-ref="khr_df_vendorid_e">khr_df_vendorid_e</dfn>;&nbsp</td></tr>
+<tr><th id="198">198</th><td>&nbsp</td></tr>
+<tr><th id="199">199</th><td><i>/* Descriptor types */</i>&nbsp</td></tr>
+<tr><th id="200">200</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_khr_descriptortype_e" title='_khr_df_khr_descriptortype_e' data-ref="_khr_df_khr_descriptortype_e"><a class="type" href="#_khr_df_khr_descriptortype_e" title='_khr_df_khr_descriptortype_e' data-ref="_khr_df_khr_descriptortype_e">_khr_df_khr_descriptortype_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="201">201</th><td>    <i>/* Default Khronos basic descriptor block */</i>&nbsp</td></tr>
+<tr><th id="202">202</th><td>    <dfn class="enum" id="KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT" title='KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT' data-ref="KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT">KHR_DF_KHR_DESCRIPTORTYPE_BASICFORMAT</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="203">203</th><td>    <i>/* Extension descriptor block for additional planes */</i>&nbsp</td></tr>
+<tr><th id="204">204</th><td>    <dfn class="enum" id="KHR_DF_KHR_DESCRIPTORTYPE_ADDITIONAL_PLANES" title='KHR_DF_KHR_DESCRIPTORTYPE_ADDITIONAL_PLANES' data-ref="KHR_DF_KHR_DESCRIPTORTYPE_ADDITIONAL_PLANES">KHR_DF_KHR_DESCRIPTORTYPE_ADDITIONAL_PLANES</dfn> = <var>0x6001U</var>,&nbsp</td></tr>
+<tr><th id="205">205</th><td>    <i>/* Extension descriptor block for additional dimensions */</i>&nbsp</td></tr>
+<tr><th id="206">206</th><td>    <dfn class="enum" id="KHR_DF_KHR_DESCRIPTORTYPE_ADDITIONAL_DIMENSIONS" title='KHR_DF_KHR_DESCRIPTORTYPE_ADDITIONAL_DIMENSIONS' data-ref="KHR_DF_KHR_DESCRIPTORTYPE_ADDITIONAL_DIMENSIONS">KHR_DF_KHR_DESCRIPTORTYPE_ADDITIONAL_DIMENSIONS</dfn> = <var>0x6002U</var>,&nbsp</td></tr>
+<tr><th id="207">207</th><td>    <i>/* Bit indicates modifying requires understanding this extension */</i>&nbsp</td></tr>
+<tr><th id="208">208</th><td>    <dfn class="enum" id="KHR_DF_KHR_DESCRIPTORTYPE_NEEDED_FOR_WRITE_BIT" title='KHR_DF_KHR_DESCRIPTORTYPE_NEEDED_FOR_WRITE_BIT' data-ref="KHR_DF_KHR_DESCRIPTORTYPE_NEEDED_FOR_WRITE_BIT">KHR_DF_KHR_DESCRIPTORTYPE_NEEDED_FOR_WRITE_BIT</dfn> = <var>0x2000U</var>,&nbsp</td></tr>
+<tr><th id="209">209</th><td>    <i>/* Bit indicates processing requires understanding this extension */</i>&nbsp</td></tr>
+<tr><th id="210">210</th><td>    <dfn class="enum" id="KHR_DF_KHR_DESCRIPTORTYPE_NEEDED_FOR_DECODE_BIT" title='KHR_DF_KHR_DESCRIPTORTYPE_NEEDED_FOR_DECODE_BIT' data-ref="KHR_DF_KHR_DESCRIPTORTYPE_NEEDED_FOR_DECODE_BIT">KHR_DF_KHR_DESCRIPTORTYPE_NEEDED_FOR_DECODE_BIT</dfn> = <var>0x4000U</var>,&nbsp</td></tr>
+<tr><th id="211">211</th><td>    <dfn class="enum" id="KHR_DF_KHR_DESCRIPTORTYPE_MAX" title='KHR_DF_KHR_DESCRIPTORTYPE_MAX' data-ref="KHR_DF_KHR_DESCRIPTORTYPE_MAX">KHR_DF_KHR_DESCRIPTORTYPE_MAX</dfn>         = <var>0x7FFFU</var>&nbsp</td></tr>
+<tr><th id="212">212</th><td>} <dfn class="typedef" id="khr_df_khr_descriptortype_e" title='khr_df_khr_descriptortype_e' data-type='enum _khr_df_khr_descriptortype_e' data-ref="khr_df_khr_descriptortype_e">khr_df_khr_descriptortype_e</dfn>;&nbsp</td></tr>
+<tr><th id="213">213</th><td>&nbsp</td></tr>
+<tr><th id="214">214</th><td><i>/* Descriptor block version */</i>&nbsp</td></tr>
+<tr><th id="215">215</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_versionnumber_e" title='_khr_df_versionnumber_e' data-ref="_khr_df_versionnumber_e"><a class="type" href="#_khr_df_versionnumber_e" title='_khr_df_versionnumber_e' data-ref="_khr_df_versionnumber_e">_khr_df_versionnumber_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="216">216</th><td>    <i>/* Standard Khronos descriptor */</i>&nbsp</td></tr>
+<tr><th id="217">217</th><td>    <dfn class="enum" id="KHR_DF_VERSIONNUMBER_1_0" title='KHR_DF_VERSIONNUMBER_1_0' data-ref="KHR_DF_VERSIONNUMBER_1_0">KHR_DF_VERSIONNUMBER_1_0</dfn> = <var>0U</var>, <i>/* Version 1.0 of the specification */</i>&nbsp</td></tr>
+<tr><th id="218">218</th><td>    <dfn class="enum" id="KHR_DF_VERSIONNUMBER_1_1" title='KHR_DF_VERSIONNUMBER_1_1' data-ref="KHR_DF_VERSIONNUMBER_1_1">KHR_DF_VERSIONNUMBER_1_1</dfn> = <var>0U</var>, <i>/* Version 1.1 did not bump the version number */</i>&nbsp</td></tr>
+<tr><th id="219">219</th><td>    <dfn class="enum" id="KHR_DF_VERSIONNUMBER_1_2" title='KHR_DF_VERSIONNUMBER_1_2' data-ref="KHR_DF_VERSIONNUMBER_1_2">KHR_DF_VERSIONNUMBER_1_2</dfn> = <var>1U</var>, <i>/* Version 1.2 increased the version number */</i>&nbsp</td></tr>
+<tr><th id="220">220</th><td>    <dfn class="enum" id="KHR_DF_VERSIONNUMBER_1_3" title='KHR_DF_VERSIONNUMBER_1_3' data-ref="KHR_DF_VERSIONNUMBER_1_3">KHR_DF_VERSIONNUMBER_1_3</dfn> = <var>2U</var>, <i>/* Version 1.3 increased the version number */</i>&nbsp</td></tr>
+<tr><th id="221">221</th><td>    <dfn class="enum" id="KHR_DF_VERSIONNUMBER_LATEST" title='KHR_DF_VERSIONNUMBER_LATEST' data-ref="KHR_DF_VERSIONNUMBER_LATEST">KHR_DF_VERSIONNUMBER_LATEST</dfn> = <a class="enum" href="#KHR_DF_VERSIONNUMBER_1_3" title='KHR_DF_VERSIONNUMBER_1_3' data-ref="KHR_DF_VERSIONNUMBER_1_3">KHR_DF_VERSIONNUMBER_1_3</a>,&nbsp</td></tr>
+<tr><th id="222">222</th><td>    <dfn class="enum" id="KHR_DF_VERSIONNUMBER_MAX" title='KHR_DF_VERSIONNUMBER_MAX' data-ref="KHR_DF_VERSIONNUMBER_MAX">KHR_DF_VERSIONNUMBER_MAX</dfn> = <var>0xFFFFU</var>&nbsp</td></tr>
+<tr><th id="223">223</th><td>} <dfn class="typedef" id="khr_df_versionnumber_e" title='khr_df_versionnumber_e' data-type='enum _khr_df_versionnumber_e' data-ref="khr_df_versionnumber_e">khr_df_versionnumber_e</dfn>;&nbsp</td></tr>
+<tr><th id="224">224</th><td>&nbsp</td></tr>
+<tr><th id="225">225</th><td><i class="doc">/** @~English</i>&nbsp</td></tr>
+<tr><th id="226">226</th><td><i class="doc">   <span class="command">@brief</span> Model in which the color coordinate space is defined.</i>&nbsp</td></tr>
+<tr><th id="227">227</th><td><i class="doc">   There is no requirement that a color format use all the</i>&nbsp</td></tr>
+<tr><th id="228">228</th><td><i class="doc">   channel types that are defined in the color model. */</i>&nbsp</td></tr>
+<tr><th id="229">229</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_model_e" title='_khr_df_model_e' data-ref="_khr_df_model_e"><a class="type" href="#_khr_df_model_e" title='_khr_df_model_e' data-ref="_khr_df_model_e">_khr_df_model_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="230">230</th><td>    <i class="doc">/** No interpretation of color channels defined */</i>&nbsp</td></tr>
+<tr><th id="231">231</th><td>    <dfn class="enum" id="KHR_DF_MODEL_UNSPECIFIED" title='KHR_DF_MODEL_UNSPECIFIED' data-ref="KHR_DF_MODEL_UNSPECIFIED">KHR_DF_MODEL_UNSPECIFIED</dfn>  = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="232">232</th><td>    <i class="doc">/** Color primaries (red, green, blue) + alpha, depth and stencil */</i>&nbsp</td></tr>
+<tr><th id="233">233</th><td>    <dfn class="enum" id="KHR_DF_MODEL_RGBSDA" title='KHR_DF_MODEL_RGBSDA' data-ref="KHR_DF_MODEL_RGBSDA">KHR_DF_MODEL_RGBSDA</dfn>       = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="234">234</th><td>    <i class="doc">/** Color differences (Y', Cb, Cr) + alpha, depth and stencil */</i>&nbsp</td></tr>
+<tr><th id="235">235</th><td>    <dfn class="enum" id="KHR_DF_MODEL_YUVSDA" title='KHR_DF_MODEL_YUVSDA' data-ref="KHR_DF_MODEL_YUVSDA">KHR_DF_MODEL_YUVSDA</dfn>       = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="236">236</th><td>    <i class="doc">/** Color differences (Y', I, Q) + alpha, depth and stencil */</i>&nbsp</td></tr>
+<tr><th id="237">237</th><td>    <dfn class="enum" id="KHR_DF_MODEL_YIQSDA" title='KHR_DF_MODEL_YIQSDA' data-ref="KHR_DF_MODEL_YIQSDA">KHR_DF_MODEL_YIQSDA</dfn>       = <var>3U</var>,&nbsp</td></tr>
+<tr><th id="238">238</th><td>    <i class="doc">/** Perceptual color (CIE L*a*b*) + alpha, depth and stencil */</i>&nbsp</td></tr>
+<tr><th id="239">239</th><td>    <dfn class="enum" id="KHR_DF_MODEL_LABSDA" title='KHR_DF_MODEL_LABSDA' data-ref="KHR_DF_MODEL_LABSDA">KHR_DF_MODEL_LABSDA</dfn>       = <var>4U</var>,&nbsp</td></tr>
+<tr><th id="240">240</th><td>    <i class="doc">/** Subtractive colors (cyan, magenta, yellow, black) + alpha */</i>&nbsp</td></tr>
+<tr><th id="241">241</th><td>    <dfn class="enum" id="KHR_DF_MODEL_CMYKA" title='KHR_DF_MODEL_CMYKA' data-ref="KHR_DF_MODEL_CMYKA">KHR_DF_MODEL_CMYKA</dfn>        = <var>5U</var>,&nbsp</td></tr>
+<tr><th id="242">242</th><td>    <i class="doc">/** Non-color coordinate data (X, Y, Z, W) */</i>&nbsp</td></tr>
+<tr><th id="243">243</th><td>    <dfn class="enum" id="KHR_DF_MODEL_XYZW" title='KHR_DF_MODEL_XYZW' data-ref="KHR_DF_MODEL_XYZW">KHR_DF_MODEL_XYZW</dfn>         = <var>6U</var>,&nbsp</td></tr>
+<tr><th id="244">244</th><td>    <i class="doc">/** Hue, saturation, value, hue angle on color circle, plus alpha */</i>&nbsp</td></tr>
+<tr><th id="245">245</th><td>    <dfn class="enum" id="KHR_DF_MODEL_HSVA_ANG" title='KHR_DF_MODEL_HSVA_ANG' data-ref="KHR_DF_MODEL_HSVA_ANG">KHR_DF_MODEL_HSVA_ANG</dfn>     = <var>7U</var>,&nbsp</td></tr>
+<tr><th id="246">246</th><td>    <i class="doc">/** Hue, saturation, lightness, hue angle on color circle, plus alpha */</i>&nbsp</td></tr>
+<tr><th id="247">247</th><td>    <dfn class="enum" id="KHR_DF_MODEL_HSLA_ANG" title='KHR_DF_MODEL_HSLA_ANG' data-ref="KHR_DF_MODEL_HSLA_ANG">KHR_DF_MODEL_HSLA_ANG</dfn>     = <var>8U</var>,&nbsp</td></tr>
+<tr><th id="248">248</th><td>    <i class="doc">/** Hue, saturation, value, hue on color hexagon, plus alpha */</i>&nbsp</td></tr>
+<tr><th id="249">249</th><td>    <dfn class="enum" id="KHR_DF_MODEL_HSVA_HEX" title='KHR_DF_MODEL_HSVA_HEX' data-ref="KHR_DF_MODEL_HSVA_HEX">KHR_DF_MODEL_HSVA_HEX</dfn>     = <var>9U</var>,&nbsp</td></tr>
+<tr><th id="250">250</th><td>    <i class="doc">/** Hue, saturation, lightness, hue on color hexagon, plus alpha */</i>&nbsp</td></tr>
+<tr><th id="251">251</th><td>    <dfn class="enum" id="KHR_DF_MODEL_HSLA_HEX" title='KHR_DF_MODEL_HSLA_HEX' data-ref="KHR_DF_MODEL_HSLA_HEX">KHR_DF_MODEL_HSLA_HEX</dfn>     = <var>10U</var>,&nbsp</td></tr>
+<tr><th id="252">252</th><td>    <i class="doc">/** Lightweight approximate color difference (luma, orange, green) */</i>&nbsp</td></tr>
+<tr><th id="253">253</th><td>    <dfn class="enum" id="KHR_DF_MODEL_YCGCOA" title='KHR_DF_MODEL_YCGCOA' data-ref="KHR_DF_MODEL_YCGCOA">KHR_DF_MODEL_YCGCOA</dfn>       = <var>11U</var>,&nbsp</td></tr>
+<tr><th id="254">254</th><td>    <i class="doc">/** ITU BT.2020 constant luminance YcCbcCrc */</i>&nbsp</td></tr>
+<tr><th id="255">255</th><td>    <dfn class="enum" id="KHR_DF_MODEL_YCCBCCRC" title='KHR_DF_MODEL_YCCBCCRC' data-ref="KHR_DF_MODEL_YCCBCCRC">KHR_DF_MODEL_YCCBCCRC</dfn>     = <var>12U</var>,&nbsp</td></tr>
+<tr><th id="256">256</th><td>    <i class="doc">/** ITU BT.2100 constant intensity ICtCp */</i>&nbsp</td></tr>
+<tr><th id="257">257</th><td>    <dfn class="enum" id="KHR_DF_MODEL_ICTCP" title='KHR_DF_MODEL_ICTCP' data-ref="KHR_DF_MODEL_ICTCP">KHR_DF_MODEL_ICTCP</dfn>        = <var>13U</var>,&nbsp</td></tr>
+<tr><th id="258">258</th><td>    <i class="doc">/** CIE 1931 XYZ color coordinates (X, Y, Z) */</i>&nbsp</td></tr>
+<tr><th id="259">259</th><td>    <dfn class="enum" id="KHR_DF_MODEL_CIEXYZ" title='KHR_DF_MODEL_CIEXYZ' data-ref="KHR_DF_MODEL_CIEXYZ">KHR_DF_MODEL_CIEXYZ</dfn>       = <var>14U</var>,&nbsp</td></tr>
+<tr><th id="260">260</th><td>    <i class="doc">/** CIE 1931 xyY color coordinates (X, Y, Y) */</i>&nbsp</td></tr>
+<tr><th id="261">261</th><td>    <dfn class="enum" id="KHR_DF_MODEL_CIEXYY" title='KHR_DF_MODEL_CIEXYY' data-ref="KHR_DF_MODEL_CIEXYY">KHR_DF_MODEL_CIEXYY</dfn>       = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="262">262</th><td>&nbsp</td></tr>
+<tr><th id="263">263</th><td>    <i>/* Compressed formats start at 128. */</i>&nbsp</td></tr>
+<tr><th id="264">264</th><td>    <i>/* These compressed formats should generally have a single sample,</i>&nbsp</td></tr>
+<tr><th id="265">265</th><td><i>       sited at the 0,0 position of the texel block. Where multiple</i>&nbsp</td></tr>
+<tr><th id="266">266</th><td><i>       channels are used to distinguish formats, these should be cosited. */</i>&nbsp</td></tr>
+<tr><th id="267">267</th><td>    <i>/* Direct3D (and S3) compressed formats */</i>&nbsp</td></tr>
+<tr><th id="268">268</th><td>    <i>/* Note that premultiplied status is recorded separately */</i>&nbsp</td></tr>
+<tr><th id="269">269</th><td>    <i class="doc">/** DXT1 "channels" are RGB (0), Alpha (1)</i>&nbsp</td></tr>
+<tr><th id="270">270</th><td><i class="doc">        DXT1/BC1 with one channel is opaque</i>&nbsp</td></tr>
+<tr><th id="271">271</th><td><i class="doc">        DXT1/BC1 with a cosited alpha sample is transparent */</i>&nbsp</td></tr>
+<tr><th id="272">272</th><td>    <dfn class="enum" id="KHR_DF_MODEL_DXT1A" title='KHR_DF_MODEL_DXT1A' data-ref="KHR_DF_MODEL_DXT1A">KHR_DF_MODEL_DXT1A</dfn>         = <var>128U</var>,&nbsp</td></tr>
+<tr><th id="273">273</th><td>    <dfn class="enum" id="KHR_DF_MODEL_BC1A" title='KHR_DF_MODEL_BC1A' data-ref="KHR_DF_MODEL_BC1A">KHR_DF_MODEL_BC1A</dfn>          = <var>128U</var>,&nbsp</td></tr>
+<tr><th id="274">274</th><td>    <i class="doc">/** DXT2/DXT3/BC2, with explicit 4-bit alpha */</i>&nbsp</td></tr>
+<tr><th id="275">275</th><td>    <dfn class="enum" id="KHR_DF_MODEL_DXT2" title='KHR_DF_MODEL_DXT2' data-ref="KHR_DF_MODEL_DXT2">KHR_DF_MODEL_DXT2</dfn>          = <var>129U</var>,&nbsp</td></tr>
+<tr><th id="276">276</th><td>    <dfn class="enum" id="KHR_DF_MODEL_DXT3" title='KHR_DF_MODEL_DXT3' data-ref="KHR_DF_MODEL_DXT3">KHR_DF_MODEL_DXT3</dfn>          = <var>129U</var>,&nbsp</td></tr>
+<tr><th id="277">277</th><td>    <dfn class="enum" id="KHR_DF_MODEL_BC2" title='KHR_DF_MODEL_BC2' data-ref="KHR_DF_MODEL_BC2">KHR_DF_MODEL_BC2</dfn>           = <var>129U</var>,&nbsp</td></tr>
+<tr><th id="278">278</th><td>    <i class="doc">/** DXT4/DXT5/BC3, with interpolated alpha */</i>&nbsp</td></tr>
+<tr><th id="279">279</th><td>    <dfn class="enum" id="KHR_DF_MODEL_DXT4" title='KHR_DF_MODEL_DXT4' data-ref="KHR_DF_MODEL_DXT4">KHR_DF_MODEL_DXT4</dfn>          = <var>130U</var>,&nbsp</td></tr>
+<tr><th id="280">280</th><td>    <dfn class="enum" id="KHR_DF_MODEL_DXT5" title='KHR_DF_MODEL_DXT5' data-ref="KHR_DF_MODEL_DXT5">KHR_DF_MODEL_DXT5</dfn>          = <var>130U</var>,&nbsp</td></tr>
+<tr><th id="281">281</th><td>    <dfn class="enum" id="KHR_DF_MODEL_BC3" title='KHR_DF_MODEL_BC3' data-ref="KHR_DF_MODEL_BC3">KHR_DF_MODEL_BC3</dfn>           = <var>130U</var>,&nbsp</td></tr>
+<tr><th id="282">282</th><td>    <i class="doc">/** BC4 - single channel interpolated 8-bit data</i>&nbsp</td></tr>
+<tr><th id="283">283</th><td><i class="doc">        (The UNORM/SNORM variation is recorded in the channel data) */</i>&nbsp</td></tr>
+<tr><th id="284">284</th><td>    <dfn class="enum" id="KHR_DF_MODEL_BC4" title='KHR_DF_MODEL_BC4' data-ref="KHR_DF_MODEL_BC4">KHR_DF_MODEL_BC4</dfn>           = <var>131U</var>,&nbsp</td></tr>
+<tr><th id="285">285</th><td>    <i class="doc">/** BC5 - two channel interpolated 8-bit data</i>&nbsp</td></tr>
+<tr><th id="286">286</th><td><i class="doc">        (The UNORM/SNORM variation is recorded in the channel data) */</i>&nbsp</td></tr>
+<tr><th id="287">287</th><td>    <dfn class="enum" id="KHR_DF_MODEL_BC5" title='KHR_DF_MODEL_BC5' data-ref="KHR_DF_MODEL_BC5">KHR_DF_MODEL_BC5</dfn>           = <var>132U</var>,&nbsp</td></tr>
+<tr><th id="288">288</th><td>    <i class="doc">/** BC6H - DX11 format for 16-bit float channels */</i>&nbsp</td></tr>
+<tr><th id="289">289</th><td>    <dfn class="enum" id="KHR_DF_MODEL_BC6H" title='KHR_DF_MODEL_BC6H' data-ref="KHR_DF_MODEL_BC6H">KHR_DF_MODEL_BC6H</dfn>          = <var>133U</var>,&nbsp</td></tr>
+<tr><th id="290">290</th><td>    <i class="doc">/** BC7 - DX11 format */</i>&nbsp</td></tr>
+<tr><th id="291">291</th><td>    <dfn class="enum" id="KHR_DF_MODEL_BC7" title='KHR_DF_MODEL_BC7' data-ref="KHR_DF_MODEL_BC7">KHR_DF_MODEL_BC7</dfn>           = <var>134U</var>,&nbsp</td></tr>
+<tr><th id="292">292</th><td>    <i>/* Gap left for future desktop expansion */</i>&nbsp</td></tr>
+<tr><th id="293">293</th><td>&nbsp</td></tr>
+<tr><th id="294">294</th><td>    <i>/* Mobile compressed formats follow */</i>&nbsp</td></tr>
+<tr><th id="295">295</th><td>    <i class="doc">/** A format of ETC1 indicates that the format shall be decodable</i>&nbsp</td></tr>
+<tr><th id="296">296</th><td><i class="doc">        by an ETC1-compliant decoder and not rely on ETC2 features */</i>&nbsp</td></tr>
+<tr><th id="297">297</th><td>    <dfn class="enum" id="KHR_DF_MODEL_ETC1" title='KHR_DF_MODEL_ETC1' data-ref="KHR_DF_MODEL_ETC1">KHR_DF_MODEL_ETC1</dfn>          = <var>160U</var>,&nbsp</td></tr>
+<tr><th id="298">298</th><td>    <i class="doc">/** A format of ETC2 is permitted to use ETC2 encodings on top of</i>&nbsp</td></tr>
+<tr><th id="299">299</th><td><i class="doc">        the baseline ETC1 specification.</i>&nbsp</td></tr>
+<tr><th id="300">300</th><td><i class="doc">        The ETC2 format has channels "red", "green", "RGB" and "alpha",</i>&nbsp</td></tr>
+<tr><th id="301">301</th><td><i class="doc">        which should be cosited samples.</i>&nbsp</td></tr>
+<tr><th id="302">302</th><td><i class="doc">        Punch-through alpha can be distinguished from full alpha by</i>&nbsp</td></tr>
+<tr><th id="303">303</th><td><i class="doc">        the plane size in bytes required for the texel block */</i>&nbsp</td></tr>
+<tr><th id="304">304</th><td>    <dfn class="enum" id="KHR_DF_MODEL_ETC2" title='KHR_DF_MODEL_ETC2' data-ref="KHR_DF_MODEL_ETC2">KHR_DF_MODEL_ETC2</dfn>          = <var>161U</var>,&nbsp</td></tr>
+<tr><th id="305">305</th><td>    <i class="doc">/** Adaptive Scalable Texture Compression */</i>&nbsp</td></tr>
+<tr><th id="306">306</th><td>    <i class="doc">/** ASTC HDR vs LDR is determined by the float flag in the channel */</i>&nbsp</td></tr>
+<tr><th id="307">307</th><td>    <i class="doc">/** ASTC block size can be distinguished by texel block size */</i>&nbsp</td></tr>
+<tr><th id="308">308</th><td>    <dfn class="enum" id="KHR_DF_MODEL_ASTC" title='KHR_DF_MODEL_ASTC' data-ref="KHR_DF_MODEL_ASTC">KHR_DF_MODEL_ASTC</dfn>          = <var>162U</var>,&nbsp</td></tr>
+<tr><th id="309">309</th><td>    <i class="doc">/** ETC1S is a simplified subset of ETC1 */</i>&nbsp</td></tr>
+<tr><th id="310">310</th><td>    <dfn class="enum" id="KHR_DF_MODEL_ETC1S" title='KHR_DF_MODEL_ETC1S' data-ref="KHR_DF_MODEL_ETC1S">KHR_DF_MODEL_ETC1S</dfn>         = <var>163U</var>,&nbsp</td></tr>
+<tr><th id="311">311</th><td>    <i class="doc">/** PowerVR Texture Compression v1 */</i>&nbsp</td></tr>
+<tr><th id="312">312</th><td>    <dfn class="enum" id="KHR_DF_MODEL_PVRTC" title='KHR_DF_MODEL_PVRTC' data-ref="KHR_DF_MODEL_PVRTC">KHR_DF_MODEL_PVRTC</dfn>         = <var>164U</var>,&nbsp</td></tr>
+<tr><th id="313">313</th><td>    <i class="doc">/** PowerVR Texture Compression v2 */</i>&nbsp</td></tr>
+<tr><th id="314">314</th><td>    <dfn class="enum" id="KHR_DF_MODEL_PVRTC2" title='KHR_DF_MODEL_PVRTC2' data-ref="KHR_DF_MODEL_PVRTC2">KHR_DF_MODEL_PVRTC2</dfn>        = <var>165U</var>,&nbsp</td></tr>
+<tr><th id="315">315</th><td>    <i class="doc">/** UASTC is a transcodable subset of ASTC</i>&nbsp</td></tr>
+<tr><th id="316">316</th><td><i class="doc">        with additions to support the transcoding. */</i>&nbsp</td></tr>
+<tr><th id="317">317</th><td>    <dfn class="enum" id="KHR_DF_MODEL_UASTC" title='KHR_DF_MODEL_UASTC' data-ref="KHR_DF_MODEL_UASTC">KHR_DF_MODEL_UASTC</dfn>         = <var>166U</var>,&nbsp</td></tr>
+<tr><th id="318">318</th><td>    <i>/* Proprietary formats (ATITC, etc.) should follow */</i>&nbsp</td></tr>
+<tr><th id="319">319</th><td>    <dfn class="enum" id="KHR_DF_MODEL_MAX" title='KHR_DF_MODEL_MAX' data-ref="KHR_DF_MODEL_MAX">KHR_DF_MODEL_MAX</dfn> = <var>0xFFU</var>&nbsp</td></tr>
+<tr><th id="320">320</th><td>} <dfn class="typedef" id="khr_df_model_e" title='khr_df_model_e' data-type='enum _khr_df_model_e' data-ref="khr_df_model_e">khr_df_model_e</dfn>;&nbsp</td></tr>
+<tr><th id="321">321</th><td>&nbsp</td></tr>
+<tr><th id="322">322</th><td><i>/* Definition of channel names for each color model */</i>&nbsp</td></tr>
+<tr><th id="323">323</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_model_channels_e" title='_khr_df_model_channels_e' data-ref="_khr_df_model_channels_e"><a class="type" href="#_khr_df_model_channels_e" title='_khr_df_model_channels_e' data-ref="_khr_df_model_channels_e">_khr_df_model_channels_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="324">324</th><td>    <i>/* Unspecified format with nominal channel numbering */</i>&nbsp</td></tr>
+<tr><th id="325">325</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_0" title='KHR_DF_CHANNEL_UNSPECIFIED_0' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_0">KHR_DF_CHANNEL_UNSPECIFIED_0</dfn>  = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="326">326</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_1" title='KHR_DF_CHANNEL_UNSPECIFIED_1' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_1">KHR_DF_CHANNEL_UNSPECIFIED_1</dfn>  = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="327">327</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_2" title='KHR_DF_CHANNEL_UNSPECIFIED_2' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_2">KHR_DF_CHANNEL_UNSPECIFIED_2</dfn>  = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="328">328</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_3" title='KHR_DF_CHANNEL_UNSPECIFIED_3' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_3">KHR_DF_CHANNEL_UNSPECIFIED_3</dfn>  = <var>3U</var>,&nbsp</td></tr>
+<tr><th id="329">329</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_4" title='KHR_DF_CHANNEL_UNSPECIFIED_4' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_4">KHR_DF_CHANNEL_UNSPECIFIED_4</dfn>  = <var>4U</var>,&nbsp</td></tr>
+<tr><th id="330">330</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_5" title='KHR_DF_CHANNEL_UNSPECIFIED_5' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_5">KHR_DF_CHANNEL_UNSPECIFIED_5</dfn>  = <var>5U</var>,&nbsp</td></tr>
+<tr><th id="331">331</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_6" title='KHR_DF_CHANNEL_UNSPECIFIED_6' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_6">KHR_DF_CHANNEL_UNSPECIFIED_6</dfn>  = <var>6U</var>,&nbsp</td></tr>
+<tr><th id="332">332</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_7" title='KHR_DF_CHANNEL_UNSPECIFIED_7' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_7">KHR_DF_CHANNEL_UNSPECIFIED_7</dfn>  = <var>7U</var>,&nbsp</td></tr>
+<tr><th id="333">333</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_8" title='KHR_DF_CHANNEL_UNSPECIFIED_8' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_8">KHR_DF_CHANNEL_UNSPECIFIED_8</dfn>  = <var>8U</var>,&nbsp</td></tr>
+<tr><th id="334">334</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_9" title='KHR_DF_CHANNEL_UNSPECIFIED_9' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_9">KHR_DF_CHANNEL_UNSPECIFIED_9</dfn>  = <var>9U</var>,&nbsp</td></tr>
+<tr><th id="335">335</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_10" title='KHR_DF_CHANNEL_UNSPECIFIED_10' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_10">KHR_DF_CHANNEL_UNSPECIFIED_10</dfn> = <var>10U</var>,&nbsp</td></tr>
+<tr><th id="336">336</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_11" title='KHR_DF_CHANNEL_UNSPECIFIED_11' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_11">KHR_DF_CHANNEL_UNSPECIFIED_11</dfn> = <var>11U</var>,&nbsp</td></tr>
+<tr><th id="337">337</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_12" title='KHR_DF_CHANNEL_UNSPECIFIED_12' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_12">KHR_DF_CHANNEL_UNSPECIFIED_12</dfn> = <var>12U</var>,&nbsp</td></tr>
+<tr><th id="338">338</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_13" title='KHR_DF_CHANNEL_UNSPECIFIED_13' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_13">KHR_DF_CHANNEL_UNSPECIFIED_13</dfn> = <var>13U</var>,&nbsp</td></tr>
+<tr><th id="339">339</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_14" title='KHR_DF_CHANNEL_UNSPECIFIED_14' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_14">KHR_DF_CHANNEL_UNSPECIFIED_14</dfn> = <var>14U</var>,&nbsp</td></tr>
+<tr><th id="340">340</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UNSPECIFIED_15" title='KHR_DF_CHANNEL_UNSPECIFIED_15' data-ref="KHR_DF_CHANNEL_UNSPECIFIED_15">KHR_DF_CHANNEL_UNSPECIFIED_15</dfn> = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="341">341</th><td>    <i>/* MODEL_RGBSDA - red, green, blue, stencil, depth, alpha */</i>&nbsp</td></tr>
+<tr><th id="342">342</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_RGBSDA_RED" title='KHR_DF_CHANNEL_RGBSDA_RED' data-ref="KHR_DF_CHANNEL_RGBSDA_RED">KHR_DF_CHANNEL_RGBSDA_RED</dfn>     =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="343">343</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_RGBSDA_R" title='KHR_DF_CHANNEL_RGBSDA_R' data-ref="KHR_DF_CHANNEL_RGBSDA_R">KHR_DF_CHANNEL_RGBSDA_R</dfn>       =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="344">344</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_RGBSDA_GREEN" title='KHR_DF_CHANNEL_RGBSDA_GREEN' data-ref="KHR_DF_CHANNEL_RGBSDA_GREEN">KHR_DF_CHANNEL_RGBSDA_GREEN</dfn>   =  <var>1U</var>,&nbsp</td></tr>
+<tr><th id="345">345</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_RGBSDA_G" title='KHR_DF_CHANNEL_RGBSDA_G' data-ref="KHR_DF_CHANNEL_RGBSDA_G">KHR_DF_CHANNEL_RGBSDA_G</dfn>       =  <var>1U</var>,&nbsp</td></tr>
+<tr><th id="346">346</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_RGBSDA_BLUE" title='KHR_DF_CHANNEL_RGBSDA_BLUE' data-ref="KHR_DF_CHANNEL_RGBSDA_BLUE">KHR_DF_CHANNEL_RGBSDA_BLUE</dfn>    =  <var>2U</var>,&nbsp</td></tr>
+<tr><th id="347">347</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_RGBSDA_B" title='KHR_DF_CHANNEL_RGBSDA_B' data-ref="KHR_DF_CHANNEL_RGBSDA_B">KHR_DF_CHANNEL_RGBSDA_B</dfn>       =  <var>2U</var>,&nbsp</td></tr>
+<tr><th id="348">348</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_RGBSDA_STENCIL" title='KHR_DF_CHANNEL_RGBSDA_STENCIL' data-ref="KHR_DF_CHANNEL_RGBSDA_STENCIL">KHR_DF_CHANNEL_RGBSDA_STENCIL</dfn> = <var>13U</var>,&nbsp</td></tr>
+<tr><th id="349">349</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_RGBSDA_S" title='KHR_DF_CHANNEL_RGBSDA_S' data-ref="KHR_DF_CHANNEL_RGBSDA_S">KHR_DF_CHANNEL_RGBSDA_S</dfn>       = <var>13U</var>,&nbsp</td></tr>
+<tr><th id="350">350</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_RGBSDA_DEPTH" title='KHR_DF_CHANNEL_RGBSDA_DEPTH' data-ref="KHR_DF_CHANNEL_RGBSDA_DEPTH">KHR_DF_CHANNEL_RGBSDA_DEPTH</dfn>   = <var>14U</var>,&nbsp</td></tr>
+<tr><th id="351">351</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_RGBSDA_D" title='KHR_DF_CHANNEL_RGBSDA_D' data-ref="KHR_DF_CHANNEL_RGBSDA_D">KHR_DF_CHANNEL_RGBSDA_D</dfn>       = <var>14U</var>,&nbsp</td></tr>
+<tr><th id="352">352</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_RGBSDA_ALPHA" title='KHR_DF_CHANNEL_RGBSDA_ALPHA' data-ref="KHR_DF_CHANNEL_RGBSDA_ALPHA">KHR_DF_CHANNEL_RGBSDA_ALPHA</dfn>   = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="353">353</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_RGBSDA_A" title='KHR_DF_CHANNEL_RGBSDA_A' data-ref="KHR_DF_CHANNEL_RGBSDA_A">KHR_DF_CHANNEL_RGBSDA_A</dfn>       = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="354">354</th><td>    <i>/* MODEL_YUVSDA - luma, Cb, Cr, stencil, depth, alpha */</i>&nbsp</td></tr>
+<tr><th id="355">355</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YUVSDA_Y" title='KHR_DF_CHANNEL_YUVSDA_Y' data-ref="KHR_DF_CHANNEL_YUVSDA_Y">KHR_DF_CHANNEL_YUVSDA_Y</dfn>       =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="356">356</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YUVSDA_CB" title='KHR_DF_CHANNEL_YUVSDA_CB' data-ref="KHR_DF_CHANNEL_YUVSDA_CB">KHR_DF_CHANNEL_YUVSDA_CB</dfn>      =  <var>1U</var>,&nbsp</td></tr>
+<tr><th id="357">357</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YUVSDA_U" title='KHR_DF_CHANNEL_YUVSDA_U' data-ref="KHR_DF_CHANNEL_YUVSDA_U">KHR_DF_CHANNEL_YUVSDA_U</dfn>       =  <var>1U</var>,&nbsp</td></tr>
+<tr><th id="358">358</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YUVSDA_CR" title='KHR_DF_CHANNEL_YUVSDA_CR' data-ref="KHR_DF_CHANNEL_YUVSDA_CR">KHR_DF_CHANNEL_YUVSDA_CR</dfn>      =  <var>2U</var>,&nbsp</td></tr>
+<tr><th id="359">359</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YUVSDA_V" title='KHR_DF_CHANNEL_YUVSDA_V' data-ref="KHR_DF_CHANNEL_YUVSDA_V">KHR_DF_CHANNEL_YUVSDA_V</dfn>       =  <var>2U</var>,&nbsp</td></tr>
+<tr><th id="360">360</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YUVSDA_STENCIL" title='KHR_DF_CHANNEL_YUVSDA_STENCIL' data-ref="KHR_DF_CHANNEL_YUVSDA_STENCIL">KHR_DF_CHANNEL_YUVSDA_STENCIL</dfn> = <var>13U</var>,&nbsp</td></tr>
+<tr><th id="361">361</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YUVSDA_S" title='KHR_DF_CHANNEL_YUVSDA_S' data-ref="KHR_DF_CHANNEL_YUVSDA_S">KHR_DF_CHANNEL_YUVSDA_S</dfn>       = <var>13U</var>,&nbsp</td></tr>
+<tr><th id="362">362</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YUVSDA_DEPTH" title='KHR_DF_CHANNEL_YUVSDA_DEPTH' data-ref="KHR_DF_CHANNEL_YUVSDA_DEPTH">KHR_DF_CHANNEL_YUVSDA_DEPTH</dfn>   = <var>14U</var>,&nbsp</td></tr>
+<tr><th id="363">363</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YUVSDA_D" title='KHR_DF_CHANNEL_YUVSDA_D' data-ref="KHR_DF_CHANNEL_YUVSDA_D">KHR_DF_CHANNEL_YUVSDA_D</dfn>       = <var>14U</var>,&nbsp</td></tr>
+<tr><th id="364">364</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YUVSDA_ALPHA" title='KHR_DF_CHANNEL_YUVSDA_ALPHA' data-ref="KHR_DF_CHANNEL_YUVSDA_ALPHA">KHR_DF_CHANNEL_YUVSDA_ALPHA</dfn>   = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="365">365</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YUVSDA_A" title='KHR_DF_CHANNEL_YUVSDA_A' data-ref="KHR_DF_CHANNEL_YUVSDA_A">KHR_DF_CHANNEL_YUVSDA_A</dfn>       = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="366">366</th><td>    <i>/* MODEL_YIQSDA - luma, in-phase, quadrature, stencil, depth, alpha */</i>&nbsp</td></tr>
+<tr><th id="367">367</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YIQSDA_Y" title='KHR_DF_CHANNEL_YIQSDA_Y' data-ref="KHR_DF_CHANNEL_YIQSDA_Y">KHR_DF_CHANNEL_YIQSDA_Y</dfn>       =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="368">368</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YIQSDA_I" title='KHR_DF_CHANNEL_YIQSDA_I' data-ref="KHR_DF_CHANNEL_YIQSDA_I">KHR_DF_CHANNEL_YIQSDA_I</dfn>       =  <var>1U</var>,&nbsp</td></tr>
+<tr><th id="369">369</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YIQSDA_Q" title='KHR_DF_CHANNEL_YIQSDA_Q' data-ref="KHR_DF_CHANNEL_YIQSDA_Q">KHR_DF_CHANNEL_YIQSDA_Q</dfn>       =  <var>2U</var>,&nbsp</td></tr>
+<tr><th id="370">370</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YIQSDA_STENCIL" title='KHR_DF_CHANNEL_YIQSDA_STENCIL' data-ref="KHR_DF_CHANNEL_YIQSDA_STENCIL">KHR_DF_CHANNEL_YIQSDA_STENCIL</dfn> = <var>13U</var>,&nbsp</td></tr>
+<tr><th id="371">371</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YIQSDA_S" title='KHR_DF_CHANNEL_YIQSDA_S' data-ref="KHR_DF_CHANNEL_YIQSDA_S">KHR_DF_CHANNEL_YIQSDA_S</dfn>       = <var>13U</var>,&nbsp</td></tr>
+<tr><th id="372">372</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YIQSDA_DEPTH" title='KHR_DF_CHANNEL_YIQSDA_DEPTH' data-ref="KHR_DF_CHANNEL_YIQSDA_DEPTH">KHR_DF_CHANNEL_YIQSDA_DEPTH</dfn>   = <var>14U</var>,&nbsp</td></tr>
+<tr><th id="373">373</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YIQSDA_D" title='KHR_DF_CHANNEL_YIQSDA_D' data-ref="KHR_DF_CHANNEL_YIQSDA_D">KHR_DF_CHANNEL_YIQSDA_D</dfn>       = <var>14U</var>,&nbsp</td></tr>
+<tr><th id="374">374</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YIQSDA_ALPHA" title='KHR_DF_CHANNEL_YIQSDA_ALPHA' data-ref="KHR_DF_CHANNEL_YIQSDA_ALPHA">KHR_DF_CHANNEL_YIQSDA_ALPHA</dfn>   = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="375">375</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YIQSDA_A" title='KHR_DF_CHANNEL_YIQSDA_A' data-ref="KHR_DF_CHANNEL_YIQSDA_A">KHR_DF_CHANNEL_YIQSDA_A</dfn>       = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="376">376</th><td>    <i>/* MODEL_LABSDA - CIELAB/L*a*b* luma, red-green, blue-yellow, stencil, depth, alpha */</i>&nbsp</td></tr>
+<tr><th id="377">377</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_LABSDA_L" title='KHR_DF_CHANNEL_LABSDA_L' data-ref="KHR_DF_CHANNEL_LABSDA_L">KHR_DF_CHANNEL_LABSDA_L</dfn>       =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="378">378</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_LABSDA_A" title='KHR_DF_CHANNEL_LABSDA_A' data-ref="KHR_DF_CHANNEL_LABSDA_A">KHR_DF_CHANNEL_LABSDA_A</dfn>       =  <var>1U</var>,&nbsp</td></tr>
+<tr><th id="379">379</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_LABSDA_B" title='KHR_DF_CHANNEL_LABSDA_B' data-ref="KHR_DF_CHANNEL_LABSDA_B">KHR_DF_CHANNEL_LABSDA_B</dfn>       =  <var>2U</var>,&nbsp</td></tr>
+<tr><th id="380">380</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_LABSDA_STENCIL" title='KHR_DF_CHANNEL_LABSDA_STENCIL' data-ref="KHR_DF_CHANNEL_LABSDA_STENCIL">KHR_DF_CHANNEL_LABSDA_STENCIL</dfn> = <var>13U</var>,&nbsp</td></tr>
+<tr><th id="381">381</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_LABSDA_S" title='KHR_DF_CHANNEL_LABSDA_S' data-ref="KHR_DF_CHANNEL_LABSDA_S">KHR_DF_CHANNEL_LABSDA_S</dfn>       = <var>13U</var>,&nbsp</td></tr>
+<tr><th id="382">382</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_LABSDA_DEPTH" title='KHR_DF_CHANNEL_LABSDA_DEPTH' data-ref="KHR_DF_CHANNEL_LABSDA_DEPTH">KHR_DF_CHANNEL_LABSDA_DEPTH</dfn>   = <var>14U</var>,&nbsp</td></tr>
+<tr><th id="383">383</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_LABSDA_D" title='KHR_DF_CHANNEL_LABSDA_D' data-ref="KHR_DF_CHANNEL_LABSDA_D">KHR_DF_CHANNEL_LABSDA_D</dfn>       = <var>14U</var>,&nbsp</td></tr>
+<tr><th id="384">384</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_LABSDA_ALPHA" title='KHR_DF_CHANNEL_LABSDA_ALPHA' data-ref="KHR_DF_CHANNEL_LABSDA_ALPHA">KHR_DF_CHANNEL_LABSDA_ALPHA</dfn>   = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="385">385</th><td>    <i>/* NOTE: KHR_DF_CHANNEL_LABSDA_A is not a synonym for alpha! */</i>&nbsp</td></tr>
+<tr><th id="386">386</th><td>    <i>/* MODEL_CMYKA - cyan, magenta, yellow, key/blacK, alpha */</i>&nbsp</td></tr>
+<tr><th id="387">387</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CMYKSDA_CYAN" title='KHR_DF_CHANNEL_CMYKSDA_CYAN' data-ref="KHR_DF_CHANNEL_CMYKSDA_CYAN">KHR_DF_CHANNEL_CMYKSDA_CYAN</dfn>    =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="388">388</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CMYKSDA_C" title='KHR_DF_CHANNEL_CMYKSDA_C' data-ref="KHR_DF_CHANNEL_CMYKSDA_C">KHR_DF_CHANNEL_CMYKSDA_C</dfn>       =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="389">389</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CMYKSDA_MAGENTA" title='KHR_DF_CHANNEL_CMYKSDA_MAGENTA' data-ref="KHR_DF_CHANNEL_CMYKSDA_MAGENTA">KHR_DF_CHANNEL_CMYKSDA_MAGENTA</dfn> =  <var>1U</var>,&nbsp</td></tr>
+<tr><th id="390">390</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CMYKSDA_M" title='KHR_DF_CHANNEL_CMYKSDA_M' data-ref="KHR_DF_CHANNEL_CMYKSDA_M">KHR_DF_CHANNEL_CMYKSDA_M</dfn>       =  <var>1U</var>,&nbsp</td></tr>
+<tr><th id="391">391</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CMYKSDA_YELLOW" title='KHR_DF_CHANNEL_CMYKSDA_YELLOW' data-ref="KHR_DF_CHANNEL_CMYKSDA_YELLOW">KHR_DF_CHANNEL_CMYKSDA_YELLOW</dfn>  =  <var>2U</var>,&nbsp</td></tr>
+<tr><th id="392">392</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CMYKSDA_Y" title='KHR_DF_CHANNEL_CMYKSDA_Y' data-ref="KHR_DF_CHANNEL_CMYKSDA_Y">KHR_DF_CHANNEL_CMYKSDA_Y</dfn>       =  <var>2U</var>,&nbsp</td></tr>
+<tr><th id="393">393</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CMYKSDA_KEY" title='KHR_DF_CHANNEL_CMYKSDA_KEY' data-ref="KHR_DF_CHANNEL_CMYKSDA_KEY">KHR_DF_CHANNEL_CMYKSDA_KEY</dfn>     =  <var>3U</var>,&nbsp</td></tr>
+<tr><th id="394">394</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CMYKSDA_BLACK" title='KHR_DF_CHANNEL_CMYKSDA_BLACK' data-ref="KHR_DF_CHANNEL_CMYKSDA_BLACK">KHR_DF_CHANNEL_CMYKSDA_BLACK</dfn>   =  <var>3U</var>,&nbsp</td></tr>
+<tr><th id="395">395</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CMYKSDA_K" title='KHR_DF_CHANNEL_CMYKSDA_K' data-ref="KHR_DF_CHANNEL_CMYKSDA_K">KHR_DF_CHANNEL_CMYKSDA_K</dfn>       =  <var>3U</var>,&nbsp</td></tr>
+<tr><th id="396">396</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CMYKSDA_ALPHA" title='KHR_DF_CHANNEL_CMYKSDA_ALPHA' data-ref="KHR_DF_CHANNEL_CMYKSDA_ALPHA">KHR_DF_CHANNEL_CMYKSDA_ALPHA</dfn>   = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="397">397</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CMYKSDA_A" title='KHR_DF_CHANNEL_CMYKSDA_A' data-ref="KHR_DF_CHANNEL_CMYKSDA_A">KHR_DF_CHANNEL_CMYKSDA_A</dfn>       = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="398">398</th><td>    <i>/* MODEL_XYZW - coordinates x, y, z, w */</i>&nbsp</td></tr>
+<tr><th id="399">399</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_XYZW_X" title='KHR_DF_CHANNEL_XYZW_X' data-ref="KHR_DF_CHANNEL_XYZW_X">KHR_DF_CHANNEL_XYZW_X</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="400">400</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_XYZW_Y" title='KHR_DF_CHANNEL_XYZW_Y' data-ref="KHR_DF_CHANNEL_XYZW_Y">KHR_DF_CHANNEL_XYZW_Y</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="401">401</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_XYZW_Z" title='KHR_DF_CHANNEL_XYZW_Z' data-ref="KHR_DF_CHANNEL_XYZW_Z">KHR_DF_CHANNEL_XYZW_Z</dfn> = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="402">402</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_XYZW_W" title='KHR_DF_CHANNEL_XYZW_W' data-ref="KHR_DF_CHANNEL_XYZW_W">KHR_DF_CHANNEL_XYZW_W</dfn> = <var>3U</var>,&nbsp</td></tr>
+<tr><th id="403">403</th><td>    <i>/* MODEL_HSVA_ANG - value (luma), saturation, hue, alpha, angular projection, conical space */</i>&nbsp</td></tr>
+<tr><th id="404">404</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_ANG_VALUE" title='KHR_DF_CHANNEL_HSVA_ANG_VALUE' data-ref="KHR_DF_CHANNEL_HSVA_ANG_VALUE">KHR_DF_CHANNEL_HSVA_ANG_VALUE</dfn>      = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="405">405</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_ANG_V" title='KHR_DF_CHANNEL_HSVA_ANG_V' data-ref="KHR_DF_CHANNEL_HSVA_ANG_V">KHR_DF_CHANNEL_HSVA_ANG_V</dfn>          = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="406">406</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_ANG_SATURATION" title='KHR_DF_CHANNEL_HSVA_ANG_SATURATION' data-ref="KHR_DF_CHANNEL_HSVA_ANG_SATURATION">KHR_DF_CHANNEL_HSVA_ANG_SATURATION</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="407">407</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_ANG_S" title='KHR_DF_CHANNEL_HSVA_ANG_S' data-ref="KHR_DF_CHANNEL_HSVA_ANG_S">KHR_DF_CHANNEL_HSVA_ANG_S</dfn>          = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="408">408</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_ANG_HUE" title='KHR_DF_CHANNEL_HSVA_ANG_HUE' data-ref="KHR_DF_CHANNEL_HSVA_ANG_HUE">KHR_DF_CHANNEL_HSVA_ANG_HUE</dfn>        = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="409">409</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_ANG_H" title='KHR_DF_CHANNEL_HSVA_ANG_H' data-ref="KHR_DF_CHANNEL_HSVA_ANG_H">KHR_DF_CHANNEL_HSVA_ANG_H</dfn>          = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="410">410</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_ANG_ALPHA" title='KHR_DF_CHANNEL_HSVA_ANG_ALPHA' data-ref="KHR_DF_CHANNEL_HSVA_ANG_ALPHA">KHR_DF_CHANNEL_HSVA_ANG_ALPHA</dfn>      = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="411">411</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_ANG_A" title='KHR_DF_CHANNEL_HSVA_ANG_A' data-ref="KHR_DF_CHANNEL_HSVA_ANG_A">KHR_DF_CHANNEL_HSVA_ANG_A</dfn>          = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="412">412</th><td>    <i>/* MODEL_HSLA_ANG - lightness (luma), saturation, hue, alpha, angular projection, double conical space */</i>&nbsp</td></tr>
+<tr><th id="413">413</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_ANG_LIGHTNESS" title='KHR_DF_CHANNEL_HSLA_ANG_LIGHTNESS' data-ref="KHR_DF_CHANNEL_HSLA_ANG_LIGHTNESS">KHR_DF_CHANNEL_HSLA_ANG_LIGHTNESS</dfn>  = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="414">414</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_ANG_L" title='KHR_DF_CHANNEL_HSLA_ANG_L' data-ref="KHR_DF_CHANNEL_HSLA_ANG_L">KHR_DF_CHANNEL_HSLA_ANG_L</dfn>          = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="415">415</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_ANG_SATURATION" title='KHR_DF_CHANNEL_HSLA_ANG_SATURATION' data-ref="KHR_DF_CHANNEL_HSLA_ANG_SATURATION">KHR_DF_CHANNEL_HSLA_ANG_SATURATION</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="416">416</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_ANG_S" title='KHR_DF_CHANNEL_HSLA_ANG_S' data-ref="KHR_DF_CHANNEL_HSLA_ANG_S">KHR_DF_CHANNEL_HSLA_ANG_S</dfn>          = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="417">417</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_ANG_HUE" title='KHR_DF_CHANNEL_HSLA_ANG_HUE' data-ref="KHR_DF_CHANNEL_HSLA_ANG_HUE">KHR_DF_CHANNEL_HSLA_ANG_HUE</dfn>        = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="418">418</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_ANG_H" title='KHR_DF_CHANNEL_HSLA_ANG_H' data-ref="KHR_DF_CHANNEL_HSLA_ANG_H">KHR_DF_CHANNEL_HSLA_ANG_H</dfn>          = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="419">419</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_ANG_ALPHA" title='KHR_DF_CHANNEL_HSLA_ANG_ALPHA' data-ref="KHR_DF_CHANNEL_HSLA_ANG_ALPHA">KHR_DF_CHANNEL_HSLA_ANG_ALPHA</dfn>      = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="420">420</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_ANG_A" title='KHR_DF_CHANNEL_HSLA_ANG_A' data-ref="KHR_DF_CHANNEL_HSLA_ANG_A">KHR_DF_CHANNEL_HSLA_ANG_A</dfn>          = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="421">421</th><td>    <i>/* MODEL_HSVA_HEX - value (luma), saturation, hue, alpha, hexagonal projection, conical space */</i>&nbsp</td></tr>
+<tr><th id="422">422</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_HEX_VALUE" title='KHR_DF_CHANNEL_HSVA_HEX_VALUE' data-ref="KHR_DF_CHANNEL_HSVA_HEX_VALUE">KHR_DF_CHANNEL_HSVA_HEX_VALUE</dfn>      = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="423">423</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_HEX_V" title='KHR_DF_CHANNEL_HSVA_HEX_V' data-ref="KHR_DF_CHANNEL_HSVA_HEX_V">KHR_DF_CHANNEL_HSVA_HEX_V</dfn>          = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="424">424</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_HEX_SATURATION" title='KHR_DF_CHANNEL_HSVA_HEX_SATURATION' data-ref="KHR_DF_CHANNEL_HSVA_HEX_SATURATION">KHR_DF_CHANNEL_HSVA_HEX_SATURATION</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="425">425</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_HEX_S" title='KHR_DF_CHANNEL_HSVA_HEX_S' data-ref="KHR_DF_CHANNEL_HSVA_HEX_S">KHR_DF_CHANNEL_HSVA_HEX_S</dfn>          = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="426">426</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_HEX_HUE" title='KHR_DF_CHANNEL_HSVA_HEX_HUE' data-ref="KHR_DF_CHANNEL_HSVA_HEX_HUE">KHR_DF_CHANNEL_HSVA_HEX_HUE</dfn>        = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="427">427</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_HEX_H" title='KHR_DF_CHANNEL_HSVA_HEX_H' data-ref="KHR_DF_CHANNEL_HSVA_HEX_H">KHR_DF_CHANNEL_HSVA_HEX_H</dfn>          = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="428">428</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_HEX_ALPHA" title='KHR_DF_CHANNEL_HSVA_HEX_ALPHA' data-ref="KHR_DF_CHANNEL_HSVA_HEX_ALPHA">KHR_DF_CHANNEL_HSVA_HEX_ALPHA</dfn>      = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="429">429</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSVA_HEX_A" title='KHR_DF_CHANNEL_HSVA_HEX_A' data-ref="KHR_DF_CHANNEL_HSVA_HEX_A">KHR_DF_CHANNEL_HSVA_HEX_A</dfn>          = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="430">430</th><td>    <i>/* MODEL_HSLA_HEX - lightness (luma), saturation, hue, alpha, hexagonal projection, double conical space */</i>&nbsp</td></tr>
+<tr><th id="431">431</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_HEX_LIGHTNESS" title='KHR_DF_CHANNEL_HSLA_HEX_LIGHTNESS' data-ref="KHR_DF_CHANNEL_HSLA_HEX_LIGHTNESS">KHR_DF_CHANNEL_HSLA_HEX_LIGHTNESS</dfn>  = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="432">432</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_HEX_L" title='KHR_DF_CHANNEL_HSLA_HEX_L' data-ref="KHR_DF_CHANNEL_HSLA_HEX_L">KHR_DF_CHANNEL_HSLA_HEX_L</dfn>          = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="433">433</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_HEX_SATURATION" title='KHR_DF_CHANNEL_HSLA_HEX_SATURATION' data-ref="KHR_DF_CHANNEL_HSLA_HEX_SATURATION">KHR_DF_CHANNEL_HSLA_HEX_SATURATION</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="434">434</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_HEX_S" title='KHR_DF_CHANNEL_HSLA_HEX_S' data-ref="KHR_DF_CHANNEL_HSLA_HEX_S">KHR_DF_CHANNEL_HSLA_HEX_S</dfn>          = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="435">435</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_HEX_HUE" title='KHR_DF_CHANNEL_HSLA_HEX_HUE' data-ref="KHR_DF_CHANNEL_HSLA_HEX_HUE">KHR_DF_CHANNEL_HSLA_HEX_HUE</dfn>        = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="436">436</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_HEX_H" title='KHR_DF_CHANNEL_HSLA_HEX_H' data-ref="KHR_DF_CHANNEL_HSLA_HEX_H">KHR_DF_CHANNEL_HSLA_HEX_H</dfn>          = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="437">437</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_HEX_ALPHA" title='KHR_DF_CHANNEL_HSLA_HEX_ALPHA' data-ref="KHR_DF_CHANNEL_HSLA_HEX_ALPHA">KHR_DF_CHANNEL_HSLA_HEX_ALPHA</dfn>      = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="438">438</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_HSLA_HEX_A" title='KHR_DF_CHANNEL_HSLA_HEX_A' data-ref="KHR_DF_CHANNEL_HSLA_HEX_A">KHR_DF_CHANNEL_HSLA_HEX_A</dfn>          = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="439">439</th><td>    <i>/* MODEL_YCGCOA - luma, green delta, orange delta, alpha */</i>&nbsp</td></tr>
+<tr><th id="440">440</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YCGCOA_Y" title='KHR_DF_CHANNEL_YCGCOA_Y' data-ref="KHR_DF_CHANNEL_YCGCOA_Y">KHR_DF_CHANNEL_YCGCOA_Y</dfn>       =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="441">441</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YCGCOA_CG" title='KHR_DF_CHANNEL_YCGCOA_CG' data-ref="KHR_DF_CHANNEL_YCGCOA_CG">KHR_DF_CHANNEL_YCGCOA_CG</dfn>      =  <var>1U</var>,&nbsp</td></tr>
+<tr><th id="442">442</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YCGCOA_CO" title='KHR_DF_CHANNEL_YCGCOA_CO' data-ref="KHR_DF_CHANNEL_YCGCOA_CO">KHR_DF_CHANNEL_YCGCOA_CO</dfn>      =  <var>2U</var>,&nbsp</td></tr>
+<tr><th id="443">443</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YCGCOA_ALPHA" title='KHR_DF_CHANNEL_YCGCOA_ALPHA' data-ref="KHR_DF_CHANNEL_YCGCOA_ALPHA">KHR_DF_CHANNEL_YCGCOA_ALPHA</dfn>   = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="444">444</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_YCGCOA_A" title='KHR_DF_CHANNEL_YCGCOA_A' data-ref="KHR_DF_CHANNEL_YCGCOA_A">KHR_DF_CHANNEL_YCGCOA_A</dfn>       = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="445">445</th><td>    <i>/* MODEL_CIEXYZ - CIE 1931 X, Y, Z */</i>&nbsp</td></tr>
+<tr><th id="446">446</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CIEXYZ_X" title='KHR_DF_CHANNEL_CIEXYZ_X' data-ref="KHR_DF_CHANNEL_CIEXYZ_X">KHR_DF_CHANNEL_CIEXYZ_X</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="447">447</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CIEXYZ_Y" title='KHR_DF_CHANNEL_CIEXYZ_Y' data-ref="KHR_DF_CHANNEL_CIEXYZ_Y">KHR_DF_CHANNEL_CIEXYZ_Y</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="448">448</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CIEXYZ_Z" title='KHR_DF_CHANNEL_CIEXYZ_Z' data-ref="KHR_DF_CHANNEL_CIEXYZ_Z">KHR_DF_CHANNEL_CIEXYZ_Z</dfn> = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="449">449</th><td>    <i>/* MODEL_CIEXYY - CIE 1931 x, y, Y */</i>&nbsp</td></tr>
+<tr><th id="450">450</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CIEXYY_X" title='KHR_DF_CHANNEL_CIEXYY_X' data-ref="KHR_DF_CHANNEL_CIEXYY_X">KHR_DF_CHANNEL_CIEXYY_X</dfn>        = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="451">451</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CIEXYY_YCHROMA" title='KHR_DF_CHANNEL_CIEXYY_YCHROMA' data-ref="KHR_DF_CHANNEL_CIEXYY_YCHROMA">KHR_DF_CHANNEL_CIEXYY_YCHROMA</dfn>  = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="452">452</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_CIEXYY_YLUMA" title='KHR_DF_CHANNEL_CIEXYY_YLUMA' data-ref="KHR_DF_CHANNEL_CIEXYY_YLUMA">KHR_DF_CHANNEL_CIEXYY_YLUMA</dfn>    = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="453">453</th><td>&nbsp</td></tr>
+<tr><th id="454">454</th><td>    <i>/* Compressed formats */</i>&nbsp</td></tr>
+<tr><th id="455">455</th><td>    <i>/* MODEL_DXT1A/MODEL_BC1A */</i>&nbsp</td></tr>
+<tr><th id="456">456</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_DXT1A_COLOR" title='KHR_DF_CHANNEL_DXT1A_COLOR' data-ref="KHR_DF_CHANNEL_DXT1A_COLOR">KHR_DF_CHANNEL_DXT1A_COLOR</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="457">457</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC1A_COLOR" title='KHR_DF_CHANNEL_BC1A_COLOR' data-ref="KHR_DF_CHANNEL_BC1A_COLOR">KHR_DF_CHANNEL_BC1A_COLOR</dfn>  = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="458">458</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_DXT1A_ALPHAPRESENT" title='KHR_DF_CHANNEL_DXT1A_ALPHAPRESENT' data-ref="KHR_DF_CHANNEL_DXT1A_ALPHAPRESENT">KHR_DF_CHANNEL_DXT1A_ALPHAPRESENT</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="459">459</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_DXT1A_ALPHA" title='KHR_DF_CHANNEL_DXT1A_ALPHA' data-ref="KHR_DF_CHANNEL_DXT1A_ALPHA">KHR_DF_CHANNEL_DXT1A_ALPHA</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="460">460</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC1A_ALPHAPRESENT" title='KHR_DF_CHANNEL_BC1A_ALPHAPRESENT' data-ref="KHR_DF_CHANNEL_BC1A_ALPHAPRESENT">KHR_DF_CHANNEL_BC1A_ALPHAPRESENT</dfn>  = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="461">461</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC1A_ALPHA" title='KHR_DF_CHANNEL_BC1A_ALPHA' data-ref="KHR_DF_CHANNEL_BC1A_ALPHA">KHR_DF_CHANNEL_BC1A_ALPHA</dfn>  = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="462">462</th><td>    <i>/* MODEL_DXT2/3/MODEL_BC2 */</i>&nbsp</td></tr>
+<tr><th id="463">463</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_DXT2_COLOR" title='KHR_DF_CHANNEL_DXT2_COLOR' data-ref="KHR_DF_CHANNEL_DXT2_COLOR">KHR_DF_CHANNEL_DXT2_COLOR</dfn> =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="464">464</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_DXT3_COLOR" title='KHR_DF_CHANNEL_DXT3_COLOR' data-ref="KHR_DF_CHANNEL_DXT3_COLOR">KHR_DF_CHANNEL_DXT3_COLOR</dfn> =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="465">465</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC2_COLOR" title='KHR_DF_CHANNEL_BC2_COLOR' data-ref="KHR_DF_CHANNEL_BC2_COLOR">KHR_DF_CHANNEL_BC2_COLOR</dfn>  =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="466">466</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_DXT2_ALPHA" title='KHR_DF_CHANNEL_DXT2_ALPHA' data-ref="KHR_DF_CHANNEL_DXT2_ALPHA">KHR_DF_CHANNEL_DXT2_ALPHA</dfn> = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="467">467</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_DXT3_ALPHA" title='KHR_DF_CHANNEL_DXT3_ALPHA' data-ref="KHR_DF_CHANNEL_DXT3_ALPHA">KHR_DF_CHANNEL_DXT3_ALPHA</dfn> = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="468">468</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC2_ALPHA" title='KHR_DF_CHANNEL_BC2_ALPHA' data-ref="KHR_DF_CHANNEL_BC2_ALPHA">KHR_DF_CHANNEL_BC2_ALPHA</dfn>  = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="469">469</th><td>    <i>/* MODEL_DXT4/5/MODEL_BC3 */</i>&nbsp</td></tr>
+<tr><th id="470">470</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_DXT4_COLOR" title='KHR_DF_CHANNEL_DXT4_COLOR' data-ref="KHR_DF_CHANNEL_DXT4_COLOR">KHR_DF_CHANNEL_DXT4_COLOR</dfn> =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="471">471</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_DXT5_COLOR" title='KHR_DF_CHANNEL_DXT5_COLOR' data-ref="KHR_DF_CHANNEL_DXT5_COLOR">KHR_DF_CHANNEL_DXT5_COLOR</dfn> =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="472">472</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC3_COLOR" title='KHR_DF_CHANNEL_BC3_COLOR' data-ref="KHR_DF_CHANNEL_BC3_COLOR">KHR_DF_CHANNEL_BC3_COLOR</dfn>  =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="473">473</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_DXT4_ALPHA" title='KHR_DF_CHANNEL_DXT4_ALPHA' data-ref="KHR_DF_CHANNEL_DXT4_ALPHA">KHR_DF_CHANNEL_DXT4_ALPHA</dfn> = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="474">474</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_DXT5_ALPHA" title='KHR_DF_CHANNEL_DXT5_ALPHA' data-ref="KHR_DF_CHANNEL_DXT5_ALPHA">KHR_DF_CHANNEL_DXT5_ALPHA</dfn> = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="475">475</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC3_ALPHA" title='KHR_DF_CHANNEL_BC3_ALPHA' data-ref="KHR_DF_CHANNEL_BC3_ALPHA">KHR_DF_CHANNEL_BC3_ALPHA</dfn>  = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="476">476</th><td>    <i>/* MODEL_BC4 */</i>&nbsp</td></tr>
+<tr><th id="477">477</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC4_DATA" title='KHR_DF_CHANNEL_BC4_DATA' data-ref="KHR_DF_CHANNEL_BC4_DATA">KHR_DF_CHANNEL_BC4_DATA</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="478">478</th><td>    <i>/* MODEL_BC5 */</i>&nbsp</td></tr>
+<tr><th id="479">479</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC5_RED" title='KHR_DF_CHANNEL_BC5_RED' data-ref="KHR_DF_CHANNEL_BC5_RED">KHR_DF_CHANNEL_BC5_RED</dfn>   = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="480">480</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC5_R" title='KHR_DF_CHANNEL_BC5_R' data-ref="KHR_DF_CHANNEL_BC5_R">KHR_DF_CHANNEL_BC5_R</dfn>     = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="481">481</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC5_GREEN" title='KHR_DF_CHANNEL_BC5_GREEN' data-ref="KHR_DF_CHANNEL_BC5_GREEN">KHR_DF_CHANNEL_BC5_GREEN</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="482">482</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC5_G" title='KHR_DF_CHANNEL_BC5_G' data-ref="KHR_DF_CHANNEL_BC5_G">KHR_DF_CHANNEL_BC5_G</dfn>     = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="483">483</th><td>    <i>/* MODEL_BC6H */</i>&nbsp</td></tr>
+<tr><th id="484">484</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC6H_COLOR" title='KHR_DF_CHANNEL_BC6H_COLOR' data-ref="KHR_DF_CHANNEL_BC6H_COLOR">KHR_DF_CHANNEL_BC6H_COLOR</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="485">485</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC6H_DATA" title='KHR_DF_CHANNEL_BC6H_DATA' data-ref="KHR_DF_CHANNEL_BC6H_DATA">KHR_DF_CHANNEL_BC6H_DATA</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="486">486</th><td>    <i>/* MODEL_BC7 */</i>&nbsp</td></tr>
+<tr><th id="487">487</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC7_DATA" title='KHR_DF_CHANNEL_BC7_DATA' data-ref="KHR_DF_CHANNEL_BC7_DATA">KHR_DF_CHANNEL_BC7_DATA</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="488">488</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_BC7_COLOR" title='KHR_DF_CHANNEL_BC7_COLOR' data-ref="KHR_DF_CHANNEL_BC7_COLOR">KHR_DF_CHANNEL_BC7_COLOR</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="489">489</th><td>    <i>/* MODEL_ETC1 */</i>&nbsp</td></tr>
+<tr><th id="490">490</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ETC1_DATA" title='KHR_DF_CHANNEL_ETC1_DATA' data-ref="KHR_DF_CHANNEL_ETC1_DATA">KHR_DF_CHANNEL_ETC1_DATA</dfn>  = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="491">491</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ETC1_COLOR" title='KHR_DF_CHANNEL_ETC1_COLOR' data-ref="KHR_DF_CHANNEL_ETC1_COLOR">KHR_DF_CHANNEL_ETC1_COLOR</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="492">492</th><td>    <i>/* MODEL_ETC2 */</i>&nbsp</td></tr>
+<tr><th id="493">493</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ETC2_RED" title='KHR_DF_CHANNEL_ETC2_RED' data-ref="KHR_DF_CHANNEL_ETC2_RED">KHR_DF_CHANNEL_ETC2_RED</dfn>   = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="494">494</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ETC2_R" title='KHR_DF_CHANNEL_ETC2_R' data-ref="KHR_DF_CHANNEL_ETC2_R">KHR_DF_CHANNEL_ETC2_R</dfn>     = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="495">495</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ETC2_GREEN" title='KHR_DF_CHANNEL_ETC2_GREEN' data-ref="KHR_DF_CHANNEL_ETC2_GREEN">KHR_DF_CHANNEL_ETC2_GREEN</dfn> = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="496">496</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ETC2_G" title='KHR_DF_CHANNEL_ETC2_G' data-ref="KHR_DF_CHANNEL_ETC2_G">KHR_DF_CHANNEL_ETC2_G</dfn>     = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="497">497</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ETC2_COLOR" title='KHR_DF_CHANNEL_ETC2_COLOR' data-ref="KHR_DF_CHANNEL_ETC2_COLOR">KHR_DF_CHANNEL_ETC2_COLOR</dfn> = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="498">498</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ETC2_ALPHA" title='KHR_DF_CHANNEL_ETC2_ALPHA' data-ref="KHR_DF_CHANNEL_ETC2_ALPHA">KHR_DF_CHANNEL_ETC2_ALPHA</dfn> = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="499">499</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ETC2_A" title='KHR_DF_CHANNEL_ETC2_A' data-ref="KHR_DF_CHANNEL_ETC2_A">KHR_DF_CHANNEL_ETC2_A</dfn>     = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="500">500</th><td>    <i>/* MODEL_ASTC */</i>&nbsp</td></tr>
+<tr><th id="501">501</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ASTC_DATA" title='KHR_DF_CHANNEL_ASTC_DATA' data-ref="KHR_DF_CHANNEL_ASTC_DATA">KHR_DF_CHANNEL_ASTC_DATA</dfn>  = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="502">502</th><td>    <i>/* MODEL_ETC1S */</i>&nbsp</td></tr>
+<tr><th id="503">503</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ETC1S_RGB" title='KHR_DF_CHANNEL_ETC1S_RGB' data-ref="KHR_DF_CHANNEL_ETC1S_RGB">KHR_DF_CHANNEL_ETC1S_RGB</dfn>   = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="504">504</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ETC1S_RRR" title='KHR_DF_CHANNEL_ETC1S_RRR' data-ref="KHR_DF_CHANNEL_ETC1S_RRR">KHR_DF_CHANNEL_ETC1S_RRR</dfn>   = <var>3U</var>,&nbsp</td></tr>
+<tr><th id="505">505</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ETC1S_GGG" title='KHR_DF_CHANNEL_ETC1S_GGG' data-ref="KHR_DF_CHANNEL_ETC1S_GGG">KHR_DF_CHANNEL_ETC1S_GGG</dfn>   = <var>4U</var>,&nbsp</td></tr>
+<tr><th id="506">506</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_ETC1S_AAA" title='KHR_DF_CHANNEL_ETC1S_AAA' data-ref="KHR_DF_CHANNEL_ETC1S_AAA">KHR_DF_CHANNEL_ETC1S_AAA</dfn>   = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="507">507</th><td>    <i>/* MODEL_PVRTC */</i>&nbsp</td></tr>
+<tr><th id="508">508</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_PVRTC_DATA" title='KHR_DF_CHANNEL_PVRTC_DATA' data-ref="KHR_DF_CHANNEL_PVRTC_DATA">KHR_DF_CHANNEL_PVRTC_DATA</dfn>  = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="509">509</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_PVRTC_COLOR" title='KHR_DF_CHANNEL_PVRTC_COLOR' data-ref="KHR_DF_CHANNEL_PVRTC_COLOR">KHR_DF_CHANNEL_PVRTC_COLOR</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="510">510</th><td>    <i>/* MODEL_PVRTC2 */</i>&nbsp</td></tr>
+<tr><th id="511">511</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_PVRTC2_DATA" title='KHR_DF_CHANNEL_PVRTC2_DATA' data-ref="KHR_DF_CHANNEL_PVRTC2_DATA">KHR_DF_CHANNEL_PVRTC2_DATA</dfn>  = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="512">512</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_PVRTC2_COLOR" title='KHR_DF_CHANNEL_PVRTC2_COLOR' data-ref="KHR_DF_CHANNEL_PVRTC2_COLOR">KHR_DF_CHANNEL_PVRTC2_COLOR</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="513">513</th><td>    <i>/* MODEL UASTC */</i>&nbsp</td></tr>
+<tr><th id="514">514</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UASTC_DATA" title='KHR_DF_CHANNEL_UASTC_DATA' data-ref="KHR_DF_CHANNEL_UASTC_DATA">KHR_DF_CHANNEL_UASTC_DATA</dfn>  = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="515">515</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UASTC_RGB" title='KHR_DF_CHANNEL_UASTC_RGB' data-ref="KHR_DF_CHANNEL_UASTC_RGB">KHR_DF_CHANNEL_UASTC_RGB</dfn>   = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="516">516</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UASTC_RGBA" title='KHR_DF_CHANNEL_UASTC_RGBA' data-ref="KHR_DF_CHANNEL_UASTC_RGBA">KHR_DF_CHANNEL_UASTC_RGBA</dfn>  = <var>3U</var>,&nbsp</td></tr>
+<tr><th id="517">517</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UASTC_RRR" title='KHR_DF_CHANNEL_UASTC_RRR' data-ref="KHR_DF_CHANNEL_UASTC_RRR">KHR_DF_CHANNEL_UASTC_RRR</dfn>   = <var>4U</var>,&nbsp</td></tr>
+<tr><th id="518">518</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UASTC_RRRG" title='KHR_DF_CHANNEL_UASTC_RRRG' data-ref="KHR_DF_CHANNEL_UASTC_RRRG">KHR_DF_CHANNEL_UASTC_RRRG</dfn>  = <var>5U</var>,&nbsp</td></tr>
+<tr><th id="519">519</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_UASTC_RG" title='KHR_DF_CHANNEL_UASTC_RG' data-ref="KHR_DF_CHANNEL_UASTC_RG">KHR_DF_CHANNEL_UASTC_RG</dfn>    = <var>6U</var>,&nbsp</td></tr>
+<tr><th id="520">520</th><td>&nbsp</td></tr>
+<tr><th id="521">521</th><td>    <i>/* Common channel names shared by multiple formats */</i>&nbsp</td></tr>
+<tr><th id="522">522</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_COMMON_LUMA" title='KHR_DF_CHANNEL_COMMON_LUMA' data-ref="KHR_DF_CHANNEL_COMMON_LUMA">KHR_DF_CHANNEL_COMMON_LUMA</dfn>    =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="523">523</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_COMMON_L" title='KHR_DF_CHANNEL_COMMON_L' data-ref="KHR_DF_CHANNEL_COMMON_L">KHR_DF_CHANNEL_COMMON_L</dfn>       =  <var>0U</var>,&nbsp</td></tr>
+<tr><th id="524">524</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_COMMON_STENCIL" title='KHR_DF_CHANNEL_COMMON_STENCIL' data-ref="KHR_DF_CHANNEL_COMMON_STENCIL">KHR_DF_CHANNEL_COMMON_STENCIL</dfn> = <var>13U</var>,&nbsp</td></tr>
+<tr><th id="525">525</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_COMMON_S" title='KHR_DF_CHANNEL_COMMON_S' data-ref="KHR_DF_CHANNEL_COMMON_S">KHR_DF_CHANNEL_COMMON_S</dfn>       = <var>13U</var>,&nbsp</td></tr>
+<tr><th id="526">526</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_COMMON_DEPTH" title='KHR_DF_CHANNEL_COMMON_DEPTH' data-ref="KHR_DF_CHANNEL_COMMON_DEPTH">KHR_DF_CHANNEL_COMMON_DEPTH</dfn>   = <var>14U</var>,&nbsp</td></tr>
+<tr><th id="527">527</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_COMMON_D" title='KHR_DF_CHANNEL_COMMON_D' data-ref="KHR_DF_CHANNEL_COMMON_D">KHR_DF_CHANNEL_COMMON_D</dfn>       = <var>14U</var>,&nbsp</td></tr>
+<tr><th id="528">528</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_COMMON_ALPHA" title='KHR_DF_CHANNEL_COMMON_ALPHA' data-ref="KHR_DF_CHANNEL_COMMON_ALPHA">KHR_DF_CHANNEL_COMMON_ALPHA</dfn>   = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="529">529</th><td>    <dfn class="enum" id="KHR_DF_CHANNEL_COMMON_A" title='KHR_DF_CHANNEL_COMMON_A' data-ref="KHR_DF_CHANNEL_COMMON_A">KHR_DF_CHANNEL_COMMON_A</dfn>       = <var>15U</var>&nbsp</td></tr>
+<tr><th id="530">530</th><td>} <dfn class="typedef" id="khr_df_model_channels_e" title='khr_df_model_channels_e' data-type='enum _khr_df_model_channels_e' data-ref="khr_df_model_channels_e">khr_df_model_channels_e</dfn>;&nbsp</td></tr>
+<tr><th id="531">531</th><td>&nbsp</td></tr>
+<tr><th id="532">532</th><td><i class="doc">/** @~English</i>&nbsp</td></tr>
+<tr><th id="533">533</th><td><i class="doc">   <span class="command">@brief</span> Definition of the primary colors in color coordinates.</i>&nbsp</td></tr>
+<tr><th id="534">534</th><td><i class="doc">   This is implicitly responsible for defining the conversion</i>&nbsp</td></tr>
+<tr><th id="535">535</th><td><i class="doc">   between RGB an YUV color spaces.</i>&nbsp</td></tr>
+<tr><th id="536">536</th><td><i class="doc">   LAB and related absolute color models should use</i>&nbsp</td></tr>
+<tr><th id="537">537</th><td><i class="doc">   KHR_DF_PRIMARIES_CIEXYZ. */</i>&nbsp</td></tr>
+<tr><th id="538">538</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_primaries_e" title='_khr_df_primaries_e' data-ref="_khr_df_primaries_e"><a class="type" href="#_khr_df_primaries_e" title='_khr_df_primaries_e' data-ref="_khr_df_primaries_e">_khr_df_primaries_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="539">539</th><td>    <i class="doc">/** No color primaries defined */</i>&nbsp</td></tr>
+<tr><th id="540">540</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_UNSPECIFIED" title='KHR_DF_PRIMARIES_UNSPECIFIED' data-ref="KHR_DF_PRIMARIES_UNSPECIFIED">KHR_DF_PRIMARIES_UNSPECIFIED</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="541">541</th><td>    <i class="doc">/** Color primaries of ITU-R BT.709 and sRGB */</i>&nbsp</td></tr>
+<tr><th id="542">542</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_BT709" title='KHR_DF_PRIMARIES_BT709' data-ref="KHR_DF_PRIMARIES_BT709">KHR_DF_PRIMARIES_BT709</dfn>       = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="543">543</th><td>    <i class="doc">/** Synonym for KHR_DF_PRIMARIES_BT709 */</i>&nbsp</td></tr>
+<tr><th id="544">544</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_SRGB" title='KHR_DF_PRIMARIES_SRGB' data-ref="KHR_DF_PRIMARIES_SRGB">KHR_DF_PRIMARIES_SRGB</dfn>        = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="545">545</th><td>    <i class="doc">/** Color primaries of ITU-R BT.601 (625-line EBU variant) */</i>&nbsp</td></tr>
+<tr><th id="546">546</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_BT601_EBU" title='KHR_DF_PRIMARIES_BT601_EBU' data-ref="KHR_DF_PRIMARIES_BT601_EBU">KHR_DF_PRIMARIES_BT601_EBU</dfn>   = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="547">547</th><td>    <i class="doc">/** Color primaries of ITU-R BT.601 (525-line SMPTE C variant) */</i>&nbsp</td></tr>
+<tr><th id="548">548</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_BT601_SMPTE" title='KHR_DF_PRIMARIES_BT601_SMPTE' data-ref="KHR_DF_PRIMARIES_BT601_SMPTE">KHR_DF_PRIMARIES_BT601_SMPTE</dfn> = <var>3U</var>,&nbsp</td></tr>
+<tr><th id="549">549</th><td>    <i class="doc">/** Color primaries of ITU-R BT.2020 */</i>&nbsp</td></tr>
+<tr><th id="550">550</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_BT2020" title='KHR_DF_PRIMARIES_BT2020' data-ref="KHR_DF_PRIMARIES_BT2020">KHR_DF_PRIMARIES_BT2020</dfn>      = <var>4U</var>,&nbsp</td></tr>
+<tr><th id="551">551</th><td>    <i class="doc">/** CIE theoretical color coordinate space */</i>&nbsp</td></tr>
+<tr><th id="552">552</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_CIEXYZ" title='KHR_DF_PRIMARIES_CIEXYZ' data-ref="KHR_DF_PRIMARIES_CIEXYZ">KHR_DF_PRIMARIES_CIEXYZ</dfn>      = <var>5U</var>,&nbsp</td></tr>
+<tr><th id="553">553</th><td>    <i class="doc">/** Academy Color Encoding System primaries */</i>&nbsp</td></tr>
+<tr><th id="554">554</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_ACES" title='KHR_DF_PRIMARIES_ACES' data-ref="KHR_DF_PRIMARIES_ACES">KHR_DF_PRIMARIES_ACES</dfn>        = <var>6U</var>,&nbsp</td></tr>
+<tr><th id="555">555</th><td>    <i class="doc">/** Color primaries of ACEScc */</i>&nbsp</td></tr>
+<tr><th id="556">556</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_ACESCC" title='KHR_DF_PRIMARIES_ACESCC' data-ref="KHR_DF_PRIMARIES_ACESCC">KHR_DF_PRIMARIES_ACESCC</dfn>      = <var>7U</var>,&nbsp</td></tr>
+<tr><th id="557">557</th><td>    <i class="doc">/** Legacy NTSC 1953 primaries */</i>&nbsp</td></tr>
+<tr><th id="558">558</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_NTSC1953" title='KHR_DF_PRIMARIES_NTSC1953' data-ref="KHR_DF_PRIMARIES_NTSC1953">KHR_DF_PRIMARIES_NTSC1953</dfn>    = <var>8U</var>,&nbsp</td></tr>
+<tr><th id="559">559</th><td>    <i class="doc">/** Legacy PAL 525-line primaries */</i>&nbsp</td></tr>
+<tr><th id="560">560</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_PAL525" title='KHR_DF_PRIMARIES_PAL525' data-ref="KHR_DF_PRIMARIES_PAL525">KHR_DF_PRIMARIES_PAL525</dfn>      = <var>9U</var>,&nbsp</td></tr>
+<tr><th id="561">561</th><td>    <i class="doc">/** Color primaries of Display P3 */</i>&nbsp</td></tr>
+<tr><th id="562">562</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_DISPLAYP3" title='KHR_DF_PRIMARIES_DISPLAYP3' data-ref="KHR_DF_PRIMARIES_DISPLAYP3">KHR_DF_PRIMARIES_DISPLAYP3</dfn>   = <var>10U</var>,&nbsp</td></tr>
+<tr><th id="563">563</th><td>    <i class="doc">/** Color primaries of Adobe RGB (1998) */</i>&nbsp</td></tr>
+<tr><th id="564">564</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_ADOBERGB" title='KHR_DF_PRIMARIES_ADOBERGB' data-ref="KHR_DF_PRIMARIES_ADOBERGB">KHR_DF_PRIMARIES_ADOBERGB</dfn>    = <var>11U</var>,&nbsp</td></tr>
+<tr><th id="565">565</th><td>    <dfn class="enum" id="KHR_DF_PRIMARIES_MAX" title='KHR_DF_PRIMARIES_MAX' data-ref="KHR_DF_PRIMARIES_MAX">KHR_DF_PRIMARIES_MAX</dfn>         = <var>0xFFU</var>&nbsp</td></tr>
+<tr><th id="566">566</th><td>} <dfn class="typedef" id="khr_df_primaries_e" title='khr_df_primaries_e' data-type='enum _khr_df_primaries_e' data-ref="khr_df_primaries_e">khr_df_primaries_e</dfn>;&nbsp</td></tr>
+<tr><th id="567">567</th><td>&nbsp</td></tr>
+<tr><th id="568">568</th><td><i class="doc">/** @~English</i>&nbsp</td></tr>
+<tr><th id="569">569</th><td><i class="doc">   <span class="command">@brief</span> Definition of the optical to digital transfer function</i>&nbsp</td></tr>
+<tr><th id="570">570</th><td><i class="doc">   ("gamma correction"). Most transfer functions are not a pure</i>&nbsp</td></tr>
+<tr><th id="571">571</th><td><i class="doc">   power function and also include a linear element.</i>&nbsp</td></tr>
+<tr><th id="572">572</th><td><i class="doc">   LAB and related absolute color representations should use</i>&nbsp</td></tr>
+<tr><th id="573">573</th><td><i class="doc">   KHR_DF_TRANSFER_UNSPECIFIED. */</i>&nbsp</td></tr>
+<tr><th id="574">574</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_transfer_e" title='_khr_df_transfer_e' data-ref="_khr_df_transfer_e"><a class="type" href="#_khr_df_transfer_e" title='_khr_df_transfer_e' data-ref="_khr_df_transfer_e">_khr_df_transfer_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="575">575</th><td>    <i class="doc">/** No transfer function defined */</i>&nbsp</td></tr>
+<tr><th id="576">576</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_UNSPECIFIED" title='KHR_DF_TRANSFER_UNSPECIFIED' data-ref="KHR_DF_TRANSFER_UNSPECIFIED">KHR_DF_TRANSFER_UNSPECIFIED</dfn> = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="577">577</th><td>    <i class="doc">/** Linear transfer function (value proportional to intensity) */</i>&nbsp</td></tr>
+<tr><th id="578">578</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_LINEAR" title='KHR_DF_TRANSFER_LINEAR' data-ref="KHR_DF_TRANSFER_LINEAR">KHR_DF_TRANSFER_LINEAR</dfn>      = <var>1U</var>,&nbsp</td></tr>
+<tr><th id="579">579</th><td>    <i class="doc">/** Perceptually-linear transfer function of sRGH (~2.4) */</i>&nbsp</td></tr>
+<tr><th id="580">580</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_SRGB" title='KHR_DF_TRANSFER_SRGB' data-ref="KHR_DF_TRANSFER_SRGB">KHR_DF_TRANSFER_SRGB</dfn>        = <var>2U</var>,&nbsp</td></tr>
+<tr><th id="581">581</th><td>    <i class="doc">/** Perceptually-linear transfer function of ITU BT.601, BT.709 and BT.2020 (~1/.45) */</i>&nbsp</td></tr>
+<tr><th id="582">582</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_ITU" title='KHR_DF_TRANSFER_ITU' data-ref="KHR_DF_TRANSFER_ITU">KHR_DF_TRANSFER_ITU</dfn>         = <var>3U</var>,&nbsp</td></tr>
+<tr><th id="583">583</th><td>    <i class="doc">/** SMTPE170M (digital NTSC) defines an alias for the ITU transfer function (~1/.45) */</i>&nbsp</td></tr>
+<tr><th id="584">584</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_SMTPE170M" title='KHR_DF_TRANSFER_SMTPE170M' data-ref="KHR_DF_TRANSFER_SMTPE170M">KHR_DF_TRANSFER_SMTPE170M</dfn>   = <var>3U</var>,&nbsp</td></tr>
+<tr><th id="585">585</th><td>    <i class="doc">/** Perceptually-linear gamma function of original NTSC (simple 2.2 gamma) */</i>&nbsp</td></tr>
+<tr><th id="586">586</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_NTSC" title='KHR_DF_TRANSFER_NTSC' data-ref="KHR_DF_TRANSFER_NTSC">KHR_DF_TRANSFER_NTSC</dfn>        = <var>4U</var>,&nbsp</td></tr>
+<tr><th id="587">587</th><td>    <i class="doc">/** Sony S-log used by Sony video cameras */</i>&nbsp</td></tr>
+<tr><th id="588">588</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_SLOG" title='KHR_DF_TRANSFER_SLOG' data-ref="KHR_DF_TRANSFER_SLOG">KHR_DF_TRANSFER_SLOG</dfn>        = <var>5U</var>,&nbsp</td></tr>
+<tr><th id="589">589</th><td>    <i class="doc">/** Sony S-log 2 used by Sony video cameras */</i>&nbsp</td></tr>
+<tr><th id="590">590</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_SLOG2" title='KHR_DF_TRANSFER_SLOG2' data-ref="KHR_DF_TRANSFER_SLOG2">KHR_DF_TRANSFER_SLOG2</dfn>       = <var>6U</var>,&nbsp</td></tr>
+<tr><th id="591">591</th><td>    <i class="doc">/** ITU BT.1886 EOTF */</i>&nbsp</td></tr>
+<tr><th id="592">592</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_BT1886" title='KHR_DF_TRANSFER_BT1886' data-ref="KHR_DF_TRANSFER_BT1886">KHR_DF_TRANSFER_BT1886</dfn>      = <var>7U</var>,&nbsp</td></tr>
+<tr><th id="593">593</th><td>    <i class="doc">/** ITU BT.2100 HLG OETF */</i>&nbsp</td></tr>
+<tr><th id="594">594</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_HLG_OETF" title='KHR_DF_TRANSFER_HLG_OETF' data-ref="KHR_DF_TRANSFER_HLG_OETF">KHR_DF_TRANSFER_HLG_OETF</dfn>    = <var>8U</var>,&nbsp</td></tr>
+<tr><th id="595">595</th><td>    <i class="doc">/** ITU BT.2100 HLG EOTF */</i>&nbsp</td></tr>
+<tr><th id="596">596</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_HLG_EOTF" title='KHR_DF_TRANSFER_HLG_EOTF' data-ref="KHR_DF_TRANSFER_HLG_EOTF">KHR_DF_TRANSFER_HLG_EOTF</dfn>    = <var>9U</var>,&nbsp</td></tr>
+<tr><th id="597">597</th><td>    <i class="doc">/** ITU BT.2100 PQ EOTF */</i>&nbsp</td></tr>
+<tr><th id="598">598</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_PQ_EOTF" title='KHR_DF_TRANSFER_PQ_EOTF' data-ref="KHR_DF_TRANSFER_PQ_EOTF">KHR_DF_TRANSFER_PQ_EOTF</dfn>     = <var>10U</var>,&nbsp</td></tr>
+<tr><th id="599">599</th><td>    <i class="doc">/** ITU BT.2100 PQ OETF */</i>&nbsp</td></tr>
+<tr><th id="600">600</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_PQ_OETF" title='KHR_DF_TRANSFER_PQ_OETF' data-ref="KHR_DF_TRANSFER_PQ_OETF">KHR_DF_TRANSFER_PQ_OETF</dfn>     = <var>11U</var>,&nbsp</td></tr>
+<tr><th id="601">601</th><td>    <i class="doc">/** DCI P3 transfer function */</i>&nbsp</td></tr>
+<tr><th id="602">602</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_DCIP3" title='KHR_DF_TRANSFER_DCIP3' data-ref="KHR_DF_TRANSFER_DCIP3">KHR_DF_TRANSFER_DCIP3</dfn>       = <var>12U</var>,&nbsp</td></tr>
+<tr><th id="603">603</th><td>    <i class="doc">/** Legacy PAL OETF */</i>&nbsp</td></tr>
+<tr><th id="604">604</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_PAL_OETF" title='KHR_DF_TRANSFER_PAL_OETF' data-ref="KHR_DF_TRANSFER_PAL_OETF">KHR_DF_TRANSFER_PAL_OETF</dfn>    = <var>13U</var>,&nbsp</td></tr>
+<tr><th id="605">605</th><td>    <i class="doc">/** Legacy PAL 625-line EOTF */</i>&nbsp</td></tr>
+<tr><th id="606">606</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_PAL625_EOTF" title='KHR_DF_TRANSFER_PAL625_EOTF' data-ref="KHR_DF_TRANSFER_PAL625_EOTF">KHR_DF_TRANSFER_PAL625_EOTF</dfn> = <var>14U</var>,&nbsp</td></tr>
+<tr><th id="607">607</th><td>    <i class="doc">/** Legacy ST240 transfer function */</i>&nbsp</td></tr>
+<tr><th id="608">608</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_ST240" title='KHR_DF_TRANSFER_ST240' data-ref="KHR_DF_TRANSFER_ST240">KHR_DF_TRANSFER_ST240</dfn>       = <var>15U</var>,&nbsp</td></tr>
+<tr><th id="609">609</th><td>    <i class="doc">/** ACEScc transfer function */</i>&nbsp</td></tr>
+<tr><th id="610">610</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_ACESCC" title='KHR_DF_TRANSFER_ACESCC' data-ref="KHR_DF_TRANSFER_ACESCC">KHR_DF_TRANSFER_ACESCC</dfn>      = <var>16U</var>,&nbsp</td></tr>
+<tr><th id="611">611</th><td>    <i class="doc">/** ACEScct transfer function */</i>&nbsp</td></tr>
+<tr><th id="612">612</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_ACESCCT" title='KHR_DF_TRANSFER_ACESCCT' data-ref="KHR_DF_TRANSFER_ACESCCT">KHR_DF_TRANSFER_ACESCCT</dfn>     = <var>17U</var>,&nbsp</td></tr>
+<tr><th id="613">613</th><td>    <i class="doc">/** Adobe RGB (1998) transfer function */</i>&nbsp</td></tr>
+<tr><th id="614">614</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_ADOBERGB" title='KHR_DF_TRANSFER_ADOBERGB' data-ref="KHR_DF_TRANSFER_ADOBERGB">KHR_DF_TRANSFER_ADOBERGB</dfn>    = <var>18U</var>,&nbsp</td></tr>
+<tr><th id="615">615</th><td>    <dfn class="enum" id="KHR_DF_TRANSFER_MAX" title='KHR_DF_TRANSFER_MAX' data-ref="KHR_DF_TRANSFER_MAX">KHR_DF_TRANSFER_MAX</dfn>         = <var>0xFFU</var>&nbsp</td></tr>
+<tr><th id="616">616</th><td>} <dfn class="typedef" id="khr_df_transfer_e" title='khr_df_transfer_e' data-type='enum _khr_df_transfer_e' data-ref="khr_df_transfer_e">khr_df_transfer_e</dfn>;&nbsp</td></tr>
+<tr><th id="617">617</th><td>&nbsp</td></tr>
+<tr><th id="618">618</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_flags_e" title='_khr_df_flags_e' data-ref="_khr_df_flags_e"><a class="type" href="#_khr_df_flags_e" title='_khr_df_flags_e' data-ref="_khr_df_flags_e">_khr_df_flags_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="619">619</th><td>    <dfn class="enum" id="KHR_DF_FLAG_ALPHA_STRAIGHT" title='KHR_DF_FLAG_ALPHA_STRAIGHT' data-ref="KHR_DF_FLAG_ALPHA_STRAIGHT">KHR_DF_FLAG_ALPHA_STRAIGHT</dfn>      = <var>0U</var>,&nbsp</td></tr>
+<tr><th id="620">620</th><td>    <dfn class="enum" id="KHR_DF_FLAG_ALPHA_PREMULTIPLIED" title='KHR_DF_FLAG_ALPHA_PREMULTIPLIED' data-ref="KHR_DF_FLAG_ALPHA_PREMULTIPLIED">KHR_DF_FLAG_ALPHA_PREMULTIPLIED</dfn> = <var>1U</var>&nbsp</td></tr>
+<tr><th id="621">621</th><td>} <dfn class="typedef" id="khr_df_flags_e" title='khr_df_flags_e' data-type='enum _khr_df_flags_e' data-ref="khr_df_flags_e">khr_df_flags_e</dfn>;&nbsp</td></tr>
+<tr><th id="622">622</th><td>&nbsp</td></tr>
+<tr><th id="623">623</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="_khr_df_sample_datatype_qualifiers_e" title='_khr_df_sample_datatype_qualifiers_e' data-ref="_khr_df_sample_datatype_qualifiers_e"><a class="type" href="#_khr_df_sample_datatype_qualifiers_e" title='_khr_df_sample_datatype_qualifiers_e' data-ref="_khr_df_sample_datatype_qualifiers_e">_khr_df_sample_datatype_qualifiers_e</a></dfn> {&nbsp</td></tr>
+<tr><th id="624">624</th><td>    <dfn class="enum" id="KHR_DF_SAMPLE_DATATYPE_LINEAR" title='KHR_DF_SAMPLE_DATATYPE_LINEAR' data-ref="KHR_DF_SAMPLE_DATATYPE_LINEAR">KHR_DF_SAMPLE_DATATYPE_LINEAR</dfn> = <var>1U</var> &lt;&lt; <var>4U</var>,&nbsp</td></tr>
+<tr><th id="625">625</th><td>    <dfn class="enum" id="KHR_DF_SAMPLE_DATATYPE_EXPONENT" title='KHR_DF_SAMPLE_DATATYPE_EXPONENT' data-ref="KHR_DF_SAMPLE_DATATYPE_EXPONENT">KHR_DF_SAMPLE_DATATYPE_EXPONENT</dfn> = <var>1U</var> &lt;&lt; <var>5U</var>,&nbsp</td></tr>
+<tr><th id="626">626</th><td>    <dfn class="enum" id="KHR_DF_SAMPLE_DATATYPE_SIGNED" title='KHR_DF_SAMPLE_DATATYPE_SIGNED' data-ref="KHR_DF_SAMPLE_DATATYPE_SIGNED">KHR_DF_SAMPLE_DATATYPE_SIGNED</dfn> = <var>1U</var> &lt;&lt; <var>6U</var>,&nbsp</td></tr>
+<tr><th id="627">627</th><td>    <dfn class="enum" id="KHR_DF_SAMPLE_DATATYPE_FLOAT" title='KHR_DF_SAMPLE_DATATYPE_FLOAT' data-ref="KHR_DF_SAMPLE_DATATYPE_FLOAT">KHR_DF_SAMPLE_DATATYPE_FLOAT</dfn> = <var>1U</var> &lt;&lt; <var>7U</var>&nbsp</td></tr>
+<tr><th id="628">628</th><td>} <dfn class="typedef" id="khr_df_sample_datatype_qualifiers_e" title='khr_df_sample_datatype_qualifiers_e' data-type='enum _khr_df_sample_datatype_qualifiers_e' data-ref="khr_df_sample_datatype_qualifiers_e">khr_df_sample_datatype_qualifiers_e</dfn>;&nbsp</td></tr>
+<tr><th id="629">629</th><td>&nbsp</td></tr>
+<tr><th id="630">630</th><td><u>#<span data-ppcond="17">endif</span></u>&nbsp</td></tr>
+<tr><th id="631">631</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Src/tImageKTX.cpp.html'>Modules/Image/Src/tImageKTX.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

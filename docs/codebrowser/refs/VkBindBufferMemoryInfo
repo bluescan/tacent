@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5136' ll='5142'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5136'/>
+<size>40</size>
+<mbr r='VkBindBufferMemoryInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBindBufferMemoryInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkBindBufferMemoryInfo::buffer' o='128' t='VkBuffer'/>
+<mbr r='VkBindBufferMemoryInfo::memory' o='192' t='VkDeviceMemory'/>
+<mbr r='VkBindBufferMemoryInfo::memoryOffset' o='256' t='VkDeviceSize'/>

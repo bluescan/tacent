@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7762' ll='7767'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7762'/>
+<size>32</size>
+<mbr r='VkBindImageMemorySwapchainInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBindImageMemorySwapchainInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkBindImageMemorySwapchainInfoKHR::swapchain' o='128' t='VkSwapchainKHR'/>
+<mbr r='VkBindImageMemorySwapchainInfoKHR::imageIndex' o='192' t='uint32_t'/>

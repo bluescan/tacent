@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='230' type='bool tMath::tIsProfileHDRInRGB(tColourProfile )'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='962' ll='971' type='bool tMath::tIsProfileHDRInRGB(tColourProfile profile)'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='230'>// If RGB not HDR it&apos;s LDR.</doc>

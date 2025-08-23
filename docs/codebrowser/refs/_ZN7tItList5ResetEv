@@ -1,0 +1,3 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='328' u='c' c='_ZN7tItList5ClearEv'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='329' type='void tItList::Reset()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='329'>/* Resets the list. Never deletes the objects. */</doc>

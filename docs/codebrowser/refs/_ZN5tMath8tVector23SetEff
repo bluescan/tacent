@@ -1,0 +1,12 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='41' type='void tMath::tVector2::Set(float x, float y)'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='99' u='c' c='_ZN5tMath9tLineSeg2C1Effff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='99' u='c' c='_ZN5tMath9tLineSeg2C1Effff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='110' u='c' c='_ZN5tMath6tLine2C1Effff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='110' u='c' c='_ZN5tMath6tLine2C1Effff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='147' u='c' c='_ZN5tMath7tARect23SetERKNS_8tVector2Ef'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='147' u='c' c='_ZN5tMath7tARect23SetERKNS_8tVector2Ef'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='148' u='c' c='_ZN5tMath7tARect23SetERKNS_8tVector2Eff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='150' u='c' c='_ZN5tMath7tARect23SetEffff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='150' u='c' c='_ZN5tMath7tARect23SetEffff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='188' u='c' c='_ZN5tMath7tORect2C1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='188' u='c' c='_ZN5tMath7tORect2C1Ev'/>

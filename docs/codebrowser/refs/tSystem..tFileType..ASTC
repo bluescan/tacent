@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='391' type='14'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='391'>// Image. ARM&apos;s Adaptive Scalable Texture Compression format.</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='73' u='r' c='_ZN6tImage10tImageASTC4LoadERK7tStringRKNS0_10LoadParamsE'/>

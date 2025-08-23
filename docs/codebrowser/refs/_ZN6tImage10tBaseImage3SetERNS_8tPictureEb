@@ -1,0 +1,20 @@
+<dec f='Modules/Image/Inc/Image/tBaseImage.h' l='70' type='bool tImage::tBaseImage::Set(tImage::tPicture &amp; picture, bool steal = true)'/>
+<doc f='Modules/Image/Inc/Image/tBaseImage.h' l='68'>// Similar to above but sets from a tPicture. If steal is true, it takes the pixels from the picture and leaves it
+	// in an invalid state.</doc>
+<ovr f='Modules/Image/Src/tImageAPNG.cpp' l='193' c='_ZN6tImage10tImageAPNG3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImageASTC.cpp' l='250' c='_ZN6tImage10tImageASTC3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImageBMP.cpp' l='517' c='_ZN6tImage9tImageBMP3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImageDDS.cpp' l='949' c='_ZN6tImage9tImageDDS3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImageEXR.cpp' l='354' c='_ZN6tImage9tImageEXR3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImageGIF.cpp' l='251' c='_ZN6tImage9tImageGIF3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImageHDR.cpp' l='438' c='_ZN6tImage9tImageHDR3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImageICO.cpp' l='238' c='_ZN6tImage9tImageICO3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImageJPG.cpp' l='237' c='_ZN6tImage9tImageJPG3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImageKTX.cpp' l='608' c='_ZN6tImage9tImageKTX3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImagePKM.cpp' l='337' c='_ZN6tImage9tImagePKM3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImagePNG.cpp' l='493' c='_ZN6tImage9tImagePNG3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImagePVR.cpp' l='709' c='_ZN6tImage9tImagePVR3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImageQOI.cpp' l='126' c='_ZN6tImage9tImageQOI3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImageTGA.cpp' l='320' c='_ZN6tImage9tImageTGA3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImageTIFF.cpp' l='201' c='_ZN6tImage10tImageTIFF3SetERNS_8tPictureEb'/>
+<ovr f='Modules/Image/Src/tImageWEBP.cpp' l='288' c='_ZN6tImage10tImageWEBP3SetERNS_8tPictureEb'/>

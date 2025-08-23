@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/basic_string.h' l='806' ll='807' type='std::basic_string::__sv_type std::basic_string::operator basic_string_view&lt;type-parameter-0-0, type-parameter-0-1&gt;() const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='802'>/**
+       *  @brief  Convert to a string_view.
+       *  @return A string_view.
+       */</doc>
+<use f='include/c++/11/bits/fs_path.h' l='969' u='c' c='_ZNSt10filesystem7__cxx114pathpLERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='1150' u='c' c='_ZNKSt10filesystem7__cxx114path14generic_stringERKT1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1191' u='c' c='_ZNKSt10filesystem7__cxx114path7compareERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>

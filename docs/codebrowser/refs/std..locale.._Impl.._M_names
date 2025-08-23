@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='548' type='char **'/>
+<use f='include/c++/11/bits/locale_classes.h' l='591' u='r' c='_ZNSt6locale5_Impl18_M_check_same_nameEv'/>
+<use f='include/c++/11/bits/locale_classes.h' l='594' u='r' c='_ZNSt6locale5_Impl18_M_check_same_nameEv'/>
+<use f='include/c++/11/bits/locale_classes.h' l='594' u='r' c='_ZNSt6locale5_Impl18_M_check_same_nameEv'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='56' u='r' c='_ZNSt6localeC1ERKS_PT_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='57' u='r' c='_ZNSt6localeC1ERKS_PT_'/>
+<offset>256</offset>

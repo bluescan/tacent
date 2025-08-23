@@ -1,0 +1,4 @@
+<dec f='include/stdio.h' l='358' type='int sprintf(char *__restrict __s, const char *__restrict __format)'/>
+<doc f='include/stdio.h' l='357'>/* Write formatted output to S.  */</doc>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='282' u='c' c='_ZNK5tMath9tInterval3GetER7tStringNS_12tIntervalRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='290' u='c' c='_ZNK5tMath9tInterval3GetER7tStringNS_12tIntervalRepE'/>

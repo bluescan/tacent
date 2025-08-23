@@ -1,0 +1,33 @@
+<def f='include/c++/11/bits/random.h' l='3296' ll='3497'/>
+<use f='include/c++/11/bits/random.h' l='3308'/>
+<use f='include/c++/11/bits/random.h' l='3463' c='_ZStlsRSt13basic_ostreamITL0_0_TL0_1_ERKSt22student_t_distributionITL0__E'/>
+<use f='include/c++/11/bits/random.h' l='3478' c='_ZStrsRSt13basic_istreamITL0_0_TL0_1_ERSt22student_t_distributionITL0__E'/>
+<use f='include/c++/11/bits/random.h' l='3504' c='_ZStneRKSt22student_t_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='3505' c='_ZStneRKSt22student_t_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.tcc' l='2266' c='_ZNSt22student_t_distribution15__generate_implETL0__S0_RTL0_0_'/>
+<use f='include/c++/11/bits/random.tcc' l='2279' c='_ZNSt22student_t_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2294' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt22student_t_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2317' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt22student_t_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2320' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt22student_t_distributionIT_E'/>
+<fun r='_ZNSt22student_t_distributionC1Ev'/>
+<fun r='_ZNSt22student_t_distributionC1ET_'/>
+<fun r='_ZNSt22student_t_distributionC1ERKNS_10param_typeE'/>
+<fun r='_ZNSt22student_t_distribution5resetEv'/>
+<fun r='_ZNKSt22student_t_distribution1nEv'/>
+<fun r='_ZNKSt22student_t_distribution5paramEv'/>
+<fun r='_ZNSt22student_t_distribution5paramERKNS_10param_typeE'/>
+<fun r='_ZNKSt22student_t_distribution3minEv'/>
+<fun r='_ZNKSt22student_t_distribution3maxEv'/>
+<fun r='_ZNSt22student_t_distributionclERTL0__'/>
+<fun r='_ZNSt22student_t_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt22student_t_distribution10__generateETL0__S0_RTL0_0_'/>
+<fun r='_ZNSt22student_t_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<fun r='_ZNSt22student_t_distribution10__generateEPT_S1_RTL0__'/>
+<fun r='_ZNSt22student_t_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt22student_t_distribution15__generate_implETL0__S0_RTL0_0_'/>
+<fun r='_ZNSt22student_t_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<mbr r='std::student_t_distribution::_M_param' t='std::student_t_distribution::param_type'/>
+<mbr r='std::student_t_distribution::_M_nd' t='std::normal_distribution&lt;result_type&gt;'/>
+<mbr r='std::student_t_distribution::_M_gd' t='std::gamma_distribution&lt;result_type&gt;'/>
+<fun r='_ZNSt22student_t_distribution15__generate_implETL0__S0_RTL0_0_'/>
+<fun r='_ZNSt22student_t_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>

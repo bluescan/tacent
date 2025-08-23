@@ -1,0 +1,85 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tTask.h source code [Modules/System/Inc/System/tTask.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="tTask,tTaskSet "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/System/Inc/System/tTask.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>Modules</a>/<a href='../..'>System</a>/<a href='..'>Inc</a>/<a href='./'>System</a>/<a href='tTask.h.html'>tTask.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tTask.h</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Simple and efficient task management using a heap-based priority queue.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#pragma <span class='warning' title="#pragma once in main file">once</span></u>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#include &lt;Foundation/tPriorityQueue.h&gt;</u>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i>// The tTask class is virtual. All tasks that you want in a collection must be derived from a tTask.</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><b>struct</b> <dfn class="type def" id="tTask" title='tTask' data-ref="tTask">tTask</dfn>&nbsp</td></tr>
+<tr><th id="21">21</th><td>{&nbsp</td></tr>
+<tr><th id="22">22</th><td>	<dfn class="tu decl def fn" id="_ZN5tTaskC1Ev" title='tTask::tTask' data-type='void tTask::tTask()' data-ref="_ZN5tTaskC1Ev">tTask</dfn>()																												{ }&nbsp</td></tr>
+<tr><th id="23">23</th><td>	<b>virtual</b> <dfn class="virtual decl def fn" id="_ZN5tTaskD1Ev" title='tTask::~tTask' data-ref="_ZN5tTaskD1Ev">~tTask</dfn>()																									{ }&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td>	<i>// Return the next time you want Execute to be called in seconds. If you return 0.0 or less the task will execute</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i>	// on the next update.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td>	<b>virtual</b> <em>double</em> <dfn class="virtual decl fn" id="_ZN5tTask7ExecuteEd" title='tTask::Execute' data-ref="_ZN5tTask7ExecuteEd">Execute</dfn>(<em>double</em> <dfn class="local col1 decl" id="1deltaTime" title='deltaTime' data-type='double' data-ref="1deltaTime">deltaTime</dfn>) = <var>0</var>;&nbsp</td></tr>
+<tr><th id="28">28</th><td>};&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td>&nbsp</td></tr>
+<tr><th id="31">31</th><td><b>class</b> <dfn class="type def" id="tTaskSet" title='tTaskSet' data-ref="tTaskSet">tTaskSet</dfn>&nbsp</td></tr>
+<tr><th id="32">32</th><td>{&nbsp</td></tr>
+<tr><th id="33">33</th><td><b>public</b>:&nbsp</td></tr>
+<tr><th id="34">34</th><td>	<i  data-doc="_ZN8tTaskSetC1Exd">// CounterFreq must be given in Hz. MaxTimeDelta is the ceiling on the elapsed time that the Execute() fn gets</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i  data-doc="_ZN8tTaskSetC1Exd">	// called with. Useful for things like collision detection where we need some guarantees. If the max is hit because</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i  data-doc="_ZN8tTaskSetC1Exd">	// the fps is slow then the objects will, only at that point, start to slow down.</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td>	<dfn class="tu decl fn" id="_ZN8tTaskSetC1Exd" title='tTaskSet::tTaskSet' data-type='void tTaskSet::tTaskSet(int64 counterFreq, double maxTimeDelta)' data-ref="_ZN8tTaskSetC1Exd">tTaskSet</dfn>(<a class="typedef" href="../../../Foundation/Inc/Foundation/tPlatform.h.html#int64" title='int64' data-type='long long' data-ref="int64">int64</a> <dfn class="local col2 decl" id="2counterFreq" title='counterFreq' data-type='int64' data-ref="2counterFreq">counterFreq</dfn>, <em>double</em> <dfn class="local col3 decl" id="3maxTimeDelta" title='maxTimeDelta' data-type='double' data-ref="3maxTimeDelta">maxTimeDelta</dfn>);&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td>	<i  data-doc="_ZN8tTaskSetC1Ev">// Sometimes it's not convenient to set the counter freq and max delta in the constructor. Call SetCounter if you</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i  data-doc="_ZN8tTaskSetC1Ev">	// use this constructor.</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td>	<dfn class="tu decl fn" id="_ZN8tTaskSetC1Ev" title='tTaskSet::tTaskSet' data-type='void tTaskSet::tTaskSet()' data-ref="_ZN8tTaskSetC1Ev">tTaskSet</dfn>();&nbsp</td></tr>
+<tr><th id="42">42</th><td>	<dfn class="tu decl def fn" id="_ZN8tTaskSetD1Ev" title='tTaskSet::~tTaskSet' data-type='void tTaskSet::~tTaskSet()' data-ref="_ZN8tTaskSetD1Ev">~tTaskSet</dfn>()																											{ }&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td>	<em>void</em> <dfn class="tu decl def fn" id="_ZN8tTaskSet10SetCounterExd" title='tTaskSet::SetCounter' data-type='void tTaskSet::SetCounter(int64 counterFreq, double maxTimeDelta)' data-ref="_ZN8tTaskSet10SetCounterExd">SetCounter</dfn>(<a class="typedef" href="../../../Foundation/Inc/Foundation/tPlatform.h.html#int64" title='int64' data-type='long long' data-ref="int64">int64</a> <dfn class="local col4 decl" id="4counterFreq" title='counterFreq' data-type='int64' data-ref="4counterFreq">counterFreq</dfn>, <em>double</em> <dfn class="local col5 decl" id="5maxTimeDelta" title='maxTimeDelta' data-type='double' data-ref="5maxTimeDelta">maxTimeDelta</dfn>)																{ <a class="tu member field" href="#tTaskSet::CounterFreq" title='tTaskSet::CounterFreq' data-use='w' data-ref="tTaskSet::CounterFreq">CounterFreq</a> = <a class="local col4 ref" href="#4counterFreq" title='counterFreq' data-ref="4counterFreq">counterFreq</a>; <a class="tu member field" href="#tTaskSet::MaxTimeDelta" title='tTaskSet::MaxTimeDelta' data-use='w' data-ref="tTaskSet::MaxTimeDelta">MaxTimeDelta</a> = <a class="local col5 ref" href="#5maxTimeDelta" title='maxTimeDelta' data-ref="5maxTimeDelta">maxTimeDelta</a>; }&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td>	<i  data-doc="_ZN8tTaskSet6InsertEP5tTask">// Inserts a task in O(lg(n)) time. Memory for tTask is managed by the caller. When a task is first inserted, it</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i  data-doc="_ZN8tTaskSet6InsertEP5tTask">	// gets scheduled to be executed on the next call to Update. After that, the task controls the next execution time</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i  data-doc="_ZN8tTaskSet6InsertEP5tTask">	// by returning the desired number of seconds.</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td>	<em>void</em> <dfn class="tu decl def fn" id="_ZN8tTaskSet6InsertEP5tTask" title='tTaskSet::Insert' data-type='void tTaskSet::Insert(tTask * t)' data-ref="_ZN8tTaskSet6InsertEP5tTask">Insert</dfn>(<a class="type" href="#tTask" title='tTask' data-ref="tTask">tTask</a>* <dfn class="local col6 decl" id="6t" title='t' data-type='tTask *' data-ref="6t">t</dfn>)																								{ <a class="tu member field" href="#tTaskSet::PriorityQueue" title='tTaskSet::PriorityQueue' data-use='m' data-ref="tTaskSet::PriorityQueue">PriorityQueue</a>.<a class="ref fn" href="../../../Foundation/Inc/Foundation/tPriorityQueue.h.html#_ZN14tPriorityQueue6InsertERKNS_5tItemE" title='tPriorityQueue::Insert' data-ref="_ZN14tPriorityQueue6InsertERKNS_5tItemE">Insert</a>( <span class='inlayHint'>k:&nbsp;</span><a class="type" href="../../../Foundation/Inc/Foundation/tPriorityQueue.h.html#tPQ" title='tPQ' data-ref="tPQ">tPQ</a>&lt;<a class="type" href="#tTask" title='tTask' data-ref="tTask">tTask</a>*&gt;::<a class="type" href="../../../Foundation/Inc/Foundation/tPriorityQueue.h.html#tPriorityQueue::tItem" title='tPriorityQueue::tItem' data-ref="tPriorityQueue::tItem">tItem</a><a class="ref fn" href="../../../Foundation/Inc/Foundation/tPriorityQueue.h.html#_ZN14tPriorityQueue5tItemC1ET_x" title='tPriorityQueue::tItem::tItem' data-ref="_ZN14tPriorityQueue5tItemC1ET_x">(</a><a class="local col6 ref" href="#6t" title='t' data-ref="6t">t</a>, <a class="tu member field" href="#tTaskSet::ExecuteTime" title='tTaskSet::ExecuteTime' data-use='r' data-ref="tTaskSet::ExecuteTime">ExecuteTime</a>) ); }&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td>	<i  data-doc="_ZN8tTaskSet6RemoveEP5tTask">// Removes a task in O(n) time. You'll probably want to delete it after. Internally the tQueueItem isn't removed</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i  data-doc="_ZN8tTaskSet6RemoveEP5tTask">	// until it's about to be executed again, but you don't need to know that.</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td>	<em>void</em> <dfn class="tu decl def fn" id="_ZN8tTaskSet6RemoveEP5tTask" title='tTaskSet::Remove' data-type='void tTaskSet::Remove(tTask * t)' data-ref="_ZN8tTaskSet6RemoveEP5tTask">Remove</dfn>(<a class="type" href="#tTask" title='tTask' data-ref="tTask">tTask</a>* <dfn class="local col7 decl" id="7t" title='t' data-type='tTask *' data-ref="7t">t</dfn>)																								{ <a class="tu member field" href="#tTaskSet::PriorityQueue" title='tTaskSet::PriorityQueue' data-use='m' data-ref="tTaskSet::PriorityQueue">PriorityQueue</a>.<a class="ref fn" href="../../../Foundation/Inc/Foundation/tPriorityQueue.h.html#_ZN14tPriorityQueue7ReplaceET_S0_" title='tPriorityQueue::Replace' data-ref="_ZN14tPriorityQueue7ReplaceET_S0_">Replace</a>( <span class='inlayHint'>origData:&nbsp;</span><a class="local col7 ref" href="#7t" title='t' data-ref="7t">t</a>, <span class='inlayHint'>newData:&nbsp;</span><b>nullptr</b> ); }&nbsp</td></tr>
+<tr><th id="54">54</th><td>&nbsp</td></tr>
+<tr><th id="55">55</th><td>	<i  data-doc="_ZN8tTaskSet6UpdateEx">// Executes any tasks that are ready. O(lg(n)). Call this as often as you like.</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td>	<em>void</em> <dfn class="tu decl fn" id="_ZN8tTaskSet6UpdateEx" title='tTaskSet::Update' data-type='void tTaskSet::Update(int64 counter)' data-ref="_ZN8tTaskSet6UpdateEx">Update</dfn>(<a class="typedef" href="../../../Foundation/Inc/Foundation/tPlatform.h.html#int64" title='int64' data-type='long long' data-ref="int64">int64</a> <dfn class="local col8 decl" id="8counter" title='counter' data-type='int64' data-ref="8counter">counter</dfn>);&nbsp</td></tr>
+<tr><th id="57">57</th><td>&nbsp</td></tr>
+<tr><th id="58">58</th><td><b>private</b>:&nbsp</td></tr>
+<tr><th id="59">59</th><td>	<a class="typedef" href="../../../Foundation/Inc/Foundation/tPlatform.h.html#int64" title='int64' data-type='long long' data-ref="int64">int64</a> <dfn class="tu decl field" id="tTaskSet::ExecuteTime" title='tTaskSet::ExecuteTime' data-type='int64' data-ref="tTaskSet::ExecuteTime">ExecuteTime</dfn>;					<i  data-doc="tTaskSet::ExecuteTime">// Time execute was run last.</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td>	<a class="typedef" href="../../../Foundation/Inc/Foundation/tPlatform.h.html#int64" title='int64' data-type='long long' data-ref="int64">int64</a> <dfn class="tu decl field" id="tTaskSet::CounterFreq" title='tTaskSet::CounterFreq' data-type='int64' data-ref="tTaskSet::CounterFreq">CounterFreq</dfn>;					<i  data-doc="tTaskSet::CounterFreq">// How quickly the counter value that gets passed to Execute() is going in Hz.</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td>	<em>double</em> <dfn class="tu decl field" id="tTaskSet::MaxTimeDelta" title='tTaskSet::MaxTimeDelta' data-type='double' data-ref="tTaskSet::MaxTimeDelta">MaxTimeDelta</dfn>;&nbsp</td></tr>
+<tr><th id="62">62</th><td>	<a class="type" href="../../../Foundation/Inc/Foundation/tPriorityQueue.h.html#tPriorityQueue" title='tPriorityQueue' data-ref="tPriorityQueue">tPriorityQueue</a>&lt;<a class="type" href="#tTask" title='tTask' data-ref="tTask">tTask</a>*&gt; <dfn class="tu decl field" id="tTaskSet::PriorityQueue" title='tTaskSet::PriorityQueue' data-type='tPriorityQueue&lt;tTask *&gt;' data-ref="tTaskSet::PriorityQueue">PriorityQueue</dfn>;&nbsp</td></tr>
+<tr><th id="63">63</th><td>&nbsp</td></tr>
+<tr><th id="64">64</th><td>	<em>static</em> <em>const</em> <em>int</em> <dfn class="tu decl" id="tTaskSet::NumTasks" title='tTaskSet::NumTasks' data-type='const int' data-ref="tTaskSet::NumTasks">NumTasks</dfn> = <var>64</var>;&nbsp</td></tr>
+<tr><th id="65">65</th><td>	<em>static</em> <em>const</em> <em>int</em> <dfn class="tu decl" id="tTaskSet::GrowSize" title='tTaskSet::GrowSize' data-type='const int' data-ref="tTaskSet::GrowSize">GrowSize</dfn> = <var>32</var>;&nbsp</td></tr>
+<tr><th id="66">66</th><td>};&nbsp</td></tr>
+<tr><th id="67">67</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

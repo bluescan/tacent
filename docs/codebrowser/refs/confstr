@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='644' type='size_t confstr(int __name, char * __buf, size_t __len)'/>
+<doc f='include/unistd.h' l='643'>/* Get the value of the string-valued system variable NAME.  */</doc>

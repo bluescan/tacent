@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/error_constants.h' l='75' type='84'/>
+<use f='include/c++/11/bits/fs_path.h' l='735' u='r' c='_ZNSt10filesystem7__cxx118__detail24__throw_conversion_errorEv'/>

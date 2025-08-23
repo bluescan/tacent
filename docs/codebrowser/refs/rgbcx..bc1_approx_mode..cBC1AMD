@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='83' type='2'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1674' c='_ZN5rgbcxL8interp_5EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1688' c='_ZN5rgbcxL8interp_6EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1701' c='_ZN5rgbcxL13interp_half_5EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1716' c='_ZN5rgbcxL13interp_half_6EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2161' u='r' c='_ZN5rgbcxL21bc1_get_block_colors4EPjS0_S0_jjjjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2182' u='r' c='_ZN5rgbcxL21bc1_get_block_colors3EPjS0_S0_jjjjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4082' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4101' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='82'>// AMD GPU mode.</doc>

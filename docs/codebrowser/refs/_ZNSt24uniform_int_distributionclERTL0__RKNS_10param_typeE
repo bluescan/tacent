@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/uniform_int_dist.h' l='197' type='std::uniform_int_distribution::result_type std::uniform_int_distribution::operator()(_UniformRandomBitGenerator &amp; __urng, const std::uniform_int_distribution::param_type &amp; __p)'/>
+<def f='include/c++/11/bits/uniform_int_dist.h' l='273' ll='361' type='typename uniform_int_distribution&lt;_IntType&gt;::result_type std::uniform_int_distribution::operator()(_UniformRandomBitGenerator &amp; __urng, const std::uniform_int_distribution::param_type &amp; __param)'/>

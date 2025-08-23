@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='958' type='int acct(const char * __name)'/>
+<doc f='include/unistd.h' l='955'>/* Turn accounting on if NAME is an existing file.  The system will then write
+   a record for each process as it terminates, to this file.  If NAME is NULL,
+   turn accounting off.  This call is restricted to the super-user.  */</doc>

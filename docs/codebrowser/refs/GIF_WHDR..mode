@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/GifLoad/gif_load.h' l='52' type='long'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='294' u='w' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='85' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='89' u='w' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='94' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='95' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='96' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='102' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<offset>384</offset>

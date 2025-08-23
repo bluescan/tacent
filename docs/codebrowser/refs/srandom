@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='405' type='void srandom(unsigned int __seed)'/>
+<doc f='include/stdlib.h' l='404'>/* Seed the random number generator with the given number.  */</doc>

@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='121' type='int tString::LengthNullTerminated() const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='140' u='c' c='_ZN7tString20ShrinkNullTerminatedEv'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='119'>// Treats the tString as a null-terminated (C++) string and returns the length. Generally a tString would not treat
+	// &apos;\0&apos; any differently that other characters. This circumvents this if you know you are dealing with a NT string.</doc>

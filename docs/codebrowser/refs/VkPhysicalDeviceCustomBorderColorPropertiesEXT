@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15221' ll='15225'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15221'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceCustomBorderColorPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceCustomBorderColorPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceCustomBorderColorPropertiesEXT::maxCustomBorderColorSamplers' o='128' t='uint32_t'/>

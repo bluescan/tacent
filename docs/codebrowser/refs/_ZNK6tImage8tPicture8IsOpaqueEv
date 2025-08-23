@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='143' type='bool tImage::tPicture::IsOpaque() const'/>
+<def f='Modules/Image/Inc/Image/tPicture.h' l='480' ll='489' type='bool tImage::tPicture::IsOpaque() const'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='141'>// Returns true if all pixels are completely opaque (an alphas of 255). This function checks the entire pixel
+	// buffer every time it is called.</doc>
+<use f='Modules/Image/Src/tTexture.cpp' l='149' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>

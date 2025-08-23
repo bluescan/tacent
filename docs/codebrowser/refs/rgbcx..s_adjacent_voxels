@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3394' ll='3412' type='const int8_t[16][4]'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3431' u='r' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3431' u='r' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3431' u='r' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3466' u='r' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>

@@ -1,0 +1,9 @@
+<def f='include/c++/11/chrono' l='644' ll='653' type='typename common_type&lt;duration&lt;_Rep1, _Period1&gt;, duration&lt;_Rep2, _Period2&gt;&gt;::type std::chrono::operator+(const duration&lt;_Rep1, _Period1&gt; &amp; __lhs, const duration&lt;_Rep2, _Period2&gt; &amp; __rhs)'/>
+<use f='include/c++/11/chrono' l='2286' u='c' c='_ZNSt6chronomiERKNS_10year_monthES2_'/>
+<use f='include/c++/11/chrono' l='2809' u='c' c='_ZNKSt6chrono18year_month_weekdaycvNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2825' u='c' c='_ZNKSt6chrono18year_month_weekday2okEv'/>
+<use f='include/c++/11/chrono' l='3155' u='c' c='_ZNKSt6chrono8hh_mm_ss11to_durationEv'/>
+<use f='include/c++/11/chrono' l='3155' u='c' c='_ZNKSt6chrono8hh_mm_ss11to_durationEv'/>
+<use f='include/c++/11/chrono' l='3157' u='c' c='_ZNKSt6chrono8hh_mm_ss11to_durationEv'/>
+<use f='include/c++/11/chrono' l='3157' u='c' c='_ZNKSt6chrono8hh_mm_ss11to_durationEv'/>
+<use f='include/c++/11/chrono' l='3349' u='c' c='_ZNSt6chrono6make24ERKNS_8durationIlSt5ratioILl3600ELl1EEEEb'/>

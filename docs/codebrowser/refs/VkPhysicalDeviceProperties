@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3234' ll='3244'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3234'/>
+<size>824</size>
+<mbr r='VkPhysicalDeviceProperties::apiVersion' o='0' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceProperties::driverVersion' o='32' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceProperties::vendorID' o='64' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceProperties::deviceID' o='96' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceProperties::deviceType' o='128' t='VkPhysicalDeviceType'/>
+<mbr r='VkPhysicalDeviceProperties::deviceName' o='160' t='char[256]'/>
+<mbr r='VkPhysicalDeviceProperties::pipelineCacheUUID' o='2208' t='uint8_t[16]'/>
+<mbr r='VkPhysicalDeviceProperties::limits' o='2368' t='VkPhysicalDeviceLimits'/>
+<mbr r='VkPhysicalDeviceProperties::sparseProperties' o='6400' t='VkPhysicalDeviceSparseProperties'/>

@@ -1,0 +1,10 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='240' type='int tsvPrintf(char * dest, const char * format, __va_list_tag * )'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='409' u='c' c='_Z9tmsPrintfPcPKcz'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='418' u='c' c='_Z9tmsPrintfyPcPKcz'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='237'>// Formatted print functions that print into a character buffer. The dest buffer must be big enough. Use tcPrintf or
+// tvcPrintf to find out how big. The tString versions will do the size calc first and return a ref to the same string
+// passed in. Use Length to find out number characters printed.</doc>
+<def f='Modules/System/Src/tPrint.cpp' l='493' ll='501' type='int tsvPrintf(char * dest, const char * format, __va_list_tag * argList)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='508' u='c' c='_Z8tsPrintfPcPKcz'/>
+<use f='Modules/System/Src/tPrint.cpp' l='521' u='c' c='_Z9tsvPrintfR7tStringPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='544' u='c' c='_Z10tsavPrintfR7tStringPKcP13__va_list_tag'/>

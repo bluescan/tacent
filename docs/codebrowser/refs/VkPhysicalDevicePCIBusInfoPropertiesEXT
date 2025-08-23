@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13932' ll='13939'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13932'/>
+<size>32</size>
+<mbr r='VkPhysicalDevicePCIBusInfoPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDevicePCIBusInfoPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDevicePCIBusInfoPropertiesEXT::pciDomain' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDevicePCIBusInfoPropertiesEXT::pciBus' o='160' t='uint32_t'/>
+<mbr r='VkPhysicalDevicePCIBusInfoPropertiesEXT::pciDevice' o='192' t='uint32_t'/>
+<mbr r='VkPhysicalDevicePCIBusInfoPropertiesEXT::pciFunction' o='224' t='uint32_t'/>

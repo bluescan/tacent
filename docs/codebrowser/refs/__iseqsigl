@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h' l='41' macro='1' type='int __iseqsigl(long double __x, long double __y)'/>
+<use f='include/math.h' l='1387' u='c' c='__iseqsig_type{longdouble}::__call'/>

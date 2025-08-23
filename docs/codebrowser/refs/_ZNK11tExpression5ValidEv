@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tScript.h' l='160' type='bool tExpression::Valid() const'/>
+<use f='Modules/System/Src/tScript.cpp' l='63' u='c' c='_ZNK11tExpression7CarCdrNEi'/>

@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='939' type='int vhangup()'/>
+<doc f='include/unistd.h' l='936'>/* Revoke access permissions to all processes currently communicating
+   with the control terminal, and then send a SIGHUP signal to the process
+   group of the control terminal.  */</doc>

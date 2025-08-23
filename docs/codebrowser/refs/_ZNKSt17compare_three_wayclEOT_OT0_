@@ -1,0 +1,2 @@
+<def f='include/c++/11/compare' l='505' ll='521' type='auto std::compare_three_way::operator()(_Tp &amp;&amp; __t, _Up &amp;&amp; __u) const'/>
+<use f='include/c++/11/system_error' l='150' u='c' c='_ZNKSt3_V214error_categoryssERKS0_'/>

@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='4733' ll='4735' type='void std::exponential_distribution::param(const std::exponential_distribution::param_type &amp; __param)'/>
+<doc f='include/c++/11/bits/random.h' l='4729'>/**
+       * @brief Sets the parameter set of the distribution.
+       * @param __param The new parameter set of the distribution.
+       */</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11818'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11817'>// VK_EXT_shader_subgroup_ballot is a preprocessor guard. Do not pass it to API calls.</doc>

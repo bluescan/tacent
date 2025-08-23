@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/basic_string.h' l='6232' ll='6238' type='typename __gnu_cxx::__enable_if&lt;__is_char&lt;_CharT&gt;::__value, bool&gt;::__type std::operator==(const basic_string&lt;_CharT&gt; &amp; __lhs, const basic_string&lt;_CharT&gt; &amp; __rhs)'/>

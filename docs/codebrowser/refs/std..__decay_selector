@@ -1,0 +1,5 @@
+<def f='include/c++/11/type_traits' l='2144' ll='2146'/>
+<def f='include/c++/11/type_traits' l='2148' ll='2150'/>
+<def f='include/c++/11/type_traits' l='2152' ll='2154'/>
+<use f='include/c++/11/type_traits' l='2164'/>
+<doc f='include/c++/11/type_traits' l='2143'>// NB: DR 705.</doc>

@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='276' type='ktx_uint8_t *'/>
+<offset>896</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='408'>/**
+ * @typedef ktxTexture::pData
+ * @~English
+ * @brief Pointer to the start of the image data.
+ */</doc>

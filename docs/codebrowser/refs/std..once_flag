@@ -1,0 +1,12 @@
+<def f='include/c++/11/mutex' l='674' ll='693'/>
+<use f='include/c++/11/mutex' l='679' c='_ZNSt9once_flagC1ERKS_'/>
+<use f='include/c++/11/mutex' l='681' c='_ZNSt9once_flagaSERKS_'/>
+<use f='include/c++/11/mutex' l='681' c='_ZNSt9once_flagaSERKS_'/>
+<use f='include/c++/11/mutex' l='692' c='_ZSt9call_onceRSt9once_flagOT_DpOT0_'/>
+<use f='include/c++/11/mutex' l='772' c='_ZSt9call_onceRSt9once_flagOT_DpOT0_'/>
+<size>4</size>
+<doc f='include/c++/11/mutex' l='673'>/// Flag type used by std::call_once</doc>
+<fun r='_ZNSt9once_flagC1Ev'/>
+<fun r='_ZNSt9once_flagC1ERKS_'/>
+<fun r='_ZNSt9once_flagaSERKS_'/>
+<mbr r='std::once_flag::_M_once' o='0' t='__gthread_once_t'/>

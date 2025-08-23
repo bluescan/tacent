@@ -1,0 +1,32 @@
+<dec f='include/c++/11/bits/stl_pair.h' l='218' type='_T2'/>
+<use f='include/c++/11/bits/stl_pair.h' l='233' u='w' c='_ZNSt4pairC1Ev'/>
+<use f='include/c++/11/bits/stl_pair.h' l='246' u='w' c='_ZNSt4pairC1Ev'/>
+<use f='include/c++/11/bits/stl_pair.h' l='267' u='w' c='_ZNSt4pairC1ERKT_RKT0_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='277' u='w' c='_ZNSt4pairC1ERKT_RKT0_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='301' u='w' c='_ZNSt4pairC1ERKSt4pairITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_pair.h' l='310' u='w' c='_ZNSt4pairC1ERKSt4pairITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_pair.h' l='323' u='w' c='_ZNSt4pairC1EOTL0__RKT0_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='330' u='w' c='_ZNSt4pairC1EOTL0__RKT0_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='337' u='w' c='_ZNSt4pairC1ERKT_OTL0__'/>
+<use f='include/c++/11/bits/stl_pair.h' l='344' u='w' c='_ZNSt4pairC1ERKT_OTL0__'/>
+<use f='include/c++/11/bits/stl_pair.h' l='353' u='w' c='_ZNSt4pairC1EOTL0__OTL0_0_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='362' u='w' c='_ZNSt4pairC1EOTL0__OTL0_0_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='373' u='w' c='_ZNSt4pairC1EOSt4pairITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_pair.h' l='383' u='w' c='_ZNSt4pairC1EOSt4pairITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_pair.h' l='396' u='w' c='_ZNSt4pairaSENSt11conditionalIXsr6__and_ISt18is_copy_assignableIT_ES1_IT0_EEE5valueERKSt4pairIS2_S4_ERKSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/stl_pair.h' l='409' u='w' c='_ZNSt4pairaSENSt11conditionalIXsr6__and_ISt18is_move_assignableIT_ES1_IT0_EEE5valueEOSt4pairIS2_S4_EOSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/stl_pair.h' l='421' u='w' c='_ZNSt4pairaSERKSt4pairITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_pair.h' l='433' u='w' c='_ZNSt4pairaSEOSt4pairITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_pair.h' l='445' c='_ZNSt4pair4swapERSt4pairIT_T0_E'/>
+<use f='include/c++/11/tuple' l='1820' u='w' c='_ZNSt4pairC1ERSt5tupleIJDpTL0__EERS0_IJDpTL0_1_EESt12_Index_tupleIJXspTL0_0_EEES9_IJXspTL0_2_EEE'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='936' c='_ZNSt8__detail12_Insert_base15_M_insert_rangeETL0__S1_RKTL0_0_St17integral_constantIbLb0EE'/>
+<use f='include/c++/11/bits/hashtable.h' l='2021' u='r' c='_ZNSt10_Hashtable21_M_insert_unique_nodeENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeENSA_11__hash_codeENS0_16_Hashtable_allocINSt660719'/>
+<use f='include/c++/11/bits/hashtable.h' l='2049' u='r' c='_ZNSt10_Hashtable20_M_insert_multi_nodeENSt8__detail16_Hashtable_allocINSt23__allocator_traits_base8__rebindIT1_NS0_10_Hash_nodeIT0_Xsr13__hash_cached13831568'/>
+<doc f='include/c++/11/bits/stl_pair.h' l='218'>///&lt; The second member</doc>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='662' u='r' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='include/c++/11/bits/fs_path.h' l='1219' u='r' c='_ZNKSt10filesystem7__cxx114path4stemEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1220' u='r' c='_ZNKSt10filesystem7__cxx114path4stemEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1228' u='r' c='_ZNKSt10filesystem7__cxx114path9extensionEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1229' u='r' c='_ZNKSt10filesystem7__cxx114path9extensionEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1237' u='r' c='_ZNKSt10filesystem7__cxx114path8has_stemEv'/>
+<use f='include/c++/11/bits/fs_path.h' l='1244' u='r' c='_ZNKSt10filesystem7__cxx114path13has_extensionEv'/>

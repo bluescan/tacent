@@ -1,0 +1,11 @@
+<use f='Modules/Image/Inc/Image/tImageBMP.h' l='62' u='c' c='_ZN6tImage9tImageBMPD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImageBMP.h' l='105' type='void tImage::tImageBMP::Clear()'/>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Inc/Image/tImageBMP.h' l='175' ll='182' type='void tImage::tImageBMP::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImageBMP.h' l='104'>// After this call no memory will be consumed by the object and it will be invalid.</doc>
+<doc f='Modules/Image/Inc/Image/tImageBMP.h' l='172'>// Implementation below this line.</doc>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='48' u='c' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='105' u='c' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='472' u='c' c='_ZN6tImage9tImageBMP3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='500' u='c' c='_ZN6tImage9tImageBMP3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='519' u='c' c='_ZN6tImage9tImageBMP3SetERNS_8tPictureEb'/>

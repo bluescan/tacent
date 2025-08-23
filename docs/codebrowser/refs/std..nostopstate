@@ -1,0 +1,2 @@
+<def f='include/c++/11/stop_token' l='47' type='const std::nostopstate_t'/>
+<use f='include/c++/11/thread' l='110' u='r' c='_ZNSt7jthreadC1Ev'/>

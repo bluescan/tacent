@@ -1,0 +1,9 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='89' type='1'/>
+<use f='Modules/System/Src/tPrint.cpp' l='775' u='r' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='992' u='r' c='_ZN7tSystem27HandlerHelper_IntegerNativeER6tArrayIcERKNS_10FormatSpecEPvbibib'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1122' u='r' c='_ZN7tSystem27HandlerHelper_IntegerTacentER6tArrayIcERKNS_10FormatSpecEPvbibib'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1582' u='r' c='_ZN7tSystem9Handler_eERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1597' u='r' c='_ZN7tSystem9Handler_eERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1623' u='r' c='_ZN7tSystem25HandlerHelper_FloatNormalER6tArrayIcERKNS_10FormatSpecEdb'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1899' u='r' c='_ZN7tSystem9Handler_gERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1914' u='r' c='_ZN7tSystem9Handler_gERNS_8ReceiverERKNS_10FormatSpecEPv'/>

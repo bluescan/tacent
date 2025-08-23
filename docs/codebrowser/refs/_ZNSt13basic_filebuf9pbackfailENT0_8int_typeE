@@ -1,0 +1,2 @@
+<dec f='include/c++/11/fstream' l='388' type='std::basic_filebuf::int_type std::basic_filebuf::pbackfail(std::basic_filebuf::int_type __c = _Traits::eof())'/>
+<def f='include/c++/11/bits/fstream.tcc' l='480' ll='537' type='typename basic_filebuf&lt;_CharT, _Traits&gt;::int_type std::basic_filebuf::pbackfail(std::basic_filebuf::int_type __i = _Traits::eof())'/>

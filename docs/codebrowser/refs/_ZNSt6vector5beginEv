@@ -1,0 +1,27 @@
+<def f='include/c++/11/bits/stl_vector.h' l='810' ll='812' type='std::vector::iterator std::vector::begin()'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='805'>/**
+       *  Returns a read/write iterator that points to the first
+       *  element in the %vector.  Iteration is done in ordinary
+       *  element order.
+       */</doc>
+<use f='include/c++/11/bits/random.tcc' l='2665' u='c' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2669' u='c' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2669' u='c' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2673' u='c' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2763' u='c' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt21discrete_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2807' u='c' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt21discrete_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2830' u='c' c='_ZNSt31piecewise_constant_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2834' u='c' c='_ZNSt31piecewise_constant_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2834' u='c' c='_ZNSt31piecewise_constant_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2838' u='c' c='_ZNSt31piecewise_constant_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2990' u='c' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt31piecewise_constant_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='3019' u='c' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt31piecewise_constant_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='3058' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3058' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3061' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3061' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3063' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3063' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3196' u='c' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt29piecewise_linear_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='3225' u='c' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt29piecewise_linear_distributionIT_E'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='231' u='c' c='_ZN6tImage16tQuantizeSpatial18random_permutationEiRSt6vectorIiSaIiEERSt26linear_congruential_engineImLm16807ELm0ELm2147483647EE'/>

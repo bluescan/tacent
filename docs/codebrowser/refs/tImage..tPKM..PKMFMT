@@ -1,0 +1,9 @@
+<def f='Modules/Image/Src/tImagePKM.cpp' l='61' ll='75'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='91' c='_ZN6tImage4tPKM27GetFormatInfo_FromPKMFormatERNS_12tPixelFormatER14tColourProfileji'/>
+<doc f='Modules/Image/Src/tImagePKM.cpp' l='54'>// Format codes. These are what will be found in the pkm header. The corresponding OpenGL texture format ID
+	// is listed next to each one.
+	// Note1: ETC1 pkm files should assume ETC1_RGB8 even if the format is not set to that.
+	// Note2: The sRGB formats are decoded the same as the non-sRGB formats. It is only the interpretation
+	//        of the pixel values that changes.
+	// Note3: ETC1_RGB8 and ETC2_RGB8 and ETC2_sRGB8 are all decoded with the same RGB decode. This is
+	//        because ETC2 is backwards compatible with ETC1.</doc>

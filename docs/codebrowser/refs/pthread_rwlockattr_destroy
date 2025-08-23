@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1082' type='int pthread_rwlockattr_destroy(pthread_rwlockattr_t * __attr)'/>
+<doc f='include/pthread.h' l='1081'>/* Destroy attribute object ATTR.  */</doc>

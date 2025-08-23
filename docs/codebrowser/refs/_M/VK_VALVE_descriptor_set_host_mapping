@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17061'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17060'>// VK_VALVE_descriptor_set_host_mapping is a preprocessor guard. Do not pass it to API calls.</doc>

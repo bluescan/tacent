@@ -1,0 +1,4 @@
+<dec f='include/stdlib.h' l='641' type='char * getenv(const char * __name)'/>
+<doc f='include/stdlib.h' l='640'>/* Return the value of envariable NAME, or NULL if it doesn&apos;t exist.  */</doc>
+<use f='Modules/System/Src/tFile.cpp' l='1311' u='c' c='_ZN7tSystem11tGetHomeDirEv'/>
+<use f='Modules/System/Src/tMachine.cpp' l='121' u='c' c='_ZN7tSystem10tGetEnvVarERK7tString'/>

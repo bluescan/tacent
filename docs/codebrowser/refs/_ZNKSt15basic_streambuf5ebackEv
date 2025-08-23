@@ -1,0 +1,11 @@
+<def f='include/c++/11/streambuf' l='486' ll='487' type='std::basic_streambuf::char_type * std::basic_streambuf::eback() const'/>
+<doc f='include/c++/11/streambuf' l='476'>/**
+       *  @brief  Access to the get area.
+       *
+       *  These functions are only available to other protected functions,
+       *  including derived classes.
+       *
+       *  - eback() returns the beginning pointer for the input sequence
+       *  - gptr() returns the next pointer for the input sequence
+       *  - egptr() returns the end pointer for the input sequence
+      */</doc>

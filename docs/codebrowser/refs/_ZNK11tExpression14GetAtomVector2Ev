@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='110' type='tMath::tVector2 tExpression::GetAtomVector2() const'/>
+<use f='Modules/System/Inc/System/tScript.h' l='127' u='c' c='_ZNK11tExpressioncvN5tMath8tVector2EEv'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='107'>// Vectors, quaternions, matrices, and colours should be of the form (x, y, z). Colours are represented as
+	// (r, g, b, a) where all elements are in [0, 255]. Matrices currently need to be specified similarly to vectors
+	// except with 16 values. The values must be specified in column-major format.</doc>
+<def f='Modules/System/Src/tScript.cpp' l='289' ll='300' type='tMath::tVector2 tExpression::GetAtomVector2() const'/>

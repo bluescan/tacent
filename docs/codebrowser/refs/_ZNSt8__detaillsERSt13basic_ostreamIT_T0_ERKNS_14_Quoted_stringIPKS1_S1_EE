@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/quoted_string.h' l='92' ll='107' type='std::basic_ostream&lt;_CharT, _Traits&gt; &amp; std::__detail::operator&lt;&lt;(std::basic_ostream&lt;_CharT, _Traits&gt; &amp; __os, const _Quoted_string&lt;const _CharT *, _CharT&gt; &amp; __str)'/>

@@ -1,0 +1,3 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='405' u='c' c='_ZN5tMath8tFrustumC1ERKNS_8tMatrix4E'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='409' type='void tMath::tFrustum::Set(const tMath::tMatrix4 &amp; )'/>
+<def f='Modules/Math/Src/tGeometry.cpp' l='96' ll='113' type='void tMath::tFrustum::Set(const tMath::tMatrix4 &amp; mat)'/>

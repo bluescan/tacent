@@ -1,0 +1,43 @@
+<def f='include/c++/11/bits/codecvt.h' l='699' ll='723'/>
+<inh f='include/c++/11/bits/codecvt.h' l='470' c='std::codecvt'/>
+<def f='include/c++/11/bits/codecvt.h' l='726' ll='742'/>
+<use f='include/c++/11/bits/codecvt.h' l='727'/>
+<use f='include/c++/11/bits/codecvt.h' l='737' c='_ZNSt14codecvt_bynameIDsc11__mbstate_tEC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<inh f='include/c++/11/bits/codecvt.h' l='527' c='std::codecvt'/>
+<def f='include/c++/11/bits/codecvt.h' l='744' ll='760'/>
+<use f='include/c++/11/bits/codecvt.h' l='745'/>
+<use f='include/c++/11/bits/codecvt.h' l='755' c='_ZNSt14codecvt_bynameIDic11__mbstate_tEC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<inh f='include/c++/11/bits/codecvt.h' l='585' c='std::codecvt'/>
+<def f='include/c++/11/bits/codecvt.h' l='763' ll='779'/>
+<use f='include/c++/11/bits/codecvt.h' l='764'/>
+<use f='include/c++/11/bits/codecvt.h' l='774' c='_ZNSt14codecvt_bynameIDsDu11__mbstate_tEC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<inh f='include/c++/11/bits/codecvt.h' l='642' c='std::codecvt'/>
+<def f='include/c++/11/bits/codecvt.h' l='781' ll='797'/>
+<use f='include/c++/11/bits/codecvt.h' l='782'/>
+<use f='include/c++/11/bits/codecvt.h' l='792' c='_ZNSt14codecvt_bynameIDiDu11__mbstate_tEC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<inh f='include/c++/11/bits/codecvt.h' l='341' c='std::codecvt'/>
+<def f='include/c++/11/bits/codecvt.h' l='805'/>
+<use f='include/c++/11/bits/codecvt.h' l='805'/>
+<inh f='include/c++/11/bits/codecvt.h' l='404' c='std::codecvt'/>
+<def f='include/c++/11/bits/codecvt.h' l='816'/>
+<use f='include/c++/11/bits/codecvt.h' l='816'/>
+<use f='include/c++/11/bits/codecvt.h' l='828'/>
+<use f='include/c++/11/bits/codecvt.h' l='829'/>
+<use f='include/c++/11/bits/codecvt.h' l='832'/>
+<use f='include/c++/11/bits/codecvt.h' l='833'/>
+<size>24</size>
+<fun r='_ZNSt14codecvt_bynameC1EPKcm'/>
+<fun r='_ZNSt14codecvt_bynameC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<fun r='_ZNSt14codecvt_bynameD1Ev'/>
+<fun r='_ZNSt14codecvt_bynameIDsc11__mbstate_tEC1EPKcm'/>
+<fun r='_ZNSt14codecvt_bynameIDsc11__mbstate_tEC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<fun r='_ZNSt14codecvt_bynameIDsc11__mbstate_tED1Ev'/>
+<fun r='_ZNSt14codecvt_bynameIDic11__mbstate_tEC1EPKcm'/>
+<fun r='_ZNSt14codecvt_bynameIDic11__mbstate_tEC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<fun r='_ZNSt14codecvt_bynameIDic11__mbstate_tED1Ev'/>
+<fun r='_ZNSt14codecvt_bynameIDsDu11__mbstate_tEC1EPKcm'/>
+<fun r='_ZNSt14codecvt_bynameIDsDu11__mbstate_tEC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<fun r='_ZNSt14codecvt_bynameIDsDu11__mbstate_tED1Ev'/>
+<fun r='_ZNSt14codecvt_bynameIDiDu11__mbstate_tEC1EPKcm'/>
+<fun r='_ZNSt14codecvt_bynameIDiDu11__mbstate_tEC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<fun r='_ZNSt14codecvt_bynameIDiDu11__mbstate_tED1Ev'/>

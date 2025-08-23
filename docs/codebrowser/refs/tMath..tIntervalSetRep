@@ -1,0 +1,6 @@
+<def f='Modules/Math/Inc/Math/tInterval.h' l='119' ll='124'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='150' c='_ZNK5tMath12tIntervalSet3GetER7tStringNS_12tIntervalRepENS_15tIntervalSetRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='151' c='_ZNK5tMath12tIntervalSet3GetENS_12tIntervalRepENS_15tIntervalSetRepE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='429' c='_ZNK5tMath12tIntervalSet3GetER7tStringNS_12tIntervalRepENS_15tIntervalSetRepE'/>
+<doc f='Modules/Math/Inc/Math/tInterval.h' l='117'>// The tIntervalSetRep only defines the syntax of the union of individual intervals rather than the syntax of the
+// intervals themselves.</doc>

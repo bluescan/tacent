@@ -1,0 +1,7 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='185' type='tEndianness tGetEndianness()'/>
+<def f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='265' ll='280' type='tEndianness tGetEndianness()'/>
+<use f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='285' u='c' c='_Z5tNtoHT_'/>
+<doc f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='185'>// Performs a test on the current architecture.</doc>
+<use f='Modules/System/Inc/System/tChunk.h' l='79' u='c' c='_ZN12tChunkWriterC1EPhi11tEndianness'/>
+<use f='Modules/System/Src/tChunk.cpp' l='65' u='c' c='_ZN12tChunkWriter4OpenERK7tString11tEndianness'/>
+<use f='Modules/System/Src/tChunk.cpp' l='92' u='c' c='_ZN12tChunkWriter8OpenSafeERK7tString11tEndianness'/>

@@ -1,0 +1,17 @@
+<def f='include/c++/11/bits/basic_string.h' l='1980' ll='1985' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::replace(std::basic_string::size_type __pos, std::basic_string::size_type __n1, const _CharT * __s)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1964'>/**
+       *  @brief  Replace characters with value of a C string.
+       *  @param __pos  Index of first character to replace.
+       *  @param __n1  Number of characters to be replaced.
+       *  @param __s  C string to insert.
+       *  @return  Reference to this string.
+       *  @throw  std::out_of_range  If @a pos &gt; size().
+       *  @throw  std::length_error  If new length exceeds @c max_size().
+       *
+       *  Removes the characters in the range [__pos,__pos + __n1)
+       *  from this string.  In place, the characters of @a __s are
+       *  inserted.  If @a __pos is beyond end of string, out_of_range
+       *  is thrown.  If the length of result exceeds max_size(),
+       *  length_error is thrown.  The value of the string doesn&apos;t
+       *  change if an error is thrown.
+      */</doc>

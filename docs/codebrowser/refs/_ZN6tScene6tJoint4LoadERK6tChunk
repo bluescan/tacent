@@ -1,0 +1,4 @@
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='25' u='c' c='_ZN6tScene6tJointC1ERK6tChunk'/>
+<dec f='Modules/Scene/Inc/Scene/tSkeleton.h' l='33' type='void tScene::tJoint::Load(const tChunk &amp; )'/>
+<inh f='Modules/Scene/Inc/Scene/tObject.h' l='33' c='_ZN6tScene7tObject4LoadERK6tChunk'/>
+<def f='Modules/Scene/Src/tSkeleton.cpp' l='57' ll='99' type='void tScene::tJoint::Load(const tChunk &amp; jointChunk)'/>

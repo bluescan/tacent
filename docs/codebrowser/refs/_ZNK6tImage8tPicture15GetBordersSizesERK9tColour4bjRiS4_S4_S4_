@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='365' type='bool tImage::tPicture::GetBordersSizes(const tColour4b &amp; , comp_t channels, int &amp; numBottomRows, int &amp; numTopRows, int &amp; numLeftCols, int &amp; numRightCols) const'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='364'>// Returns false if either no borders or the borders overlap because the image in homogenous in the channels.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='406' ll='497' type='bool tImage::tPicture::GetBordersSizes(const tColour4b &amp; colour, comp_t channels, int &amp; numBottomRows, int &amp; numTopRows, int &amp; numLeftCols, int &amp; numRightCols) const'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='506' u='c' c='_ZN6tImage8tPicture8DeborderERK9tColour4bj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='524' u='c' c='_ZNK6tImage8tPicture10HasBordersERK9tColour4bj'/>

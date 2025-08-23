@@ -1,0 +1,40 @@
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='706' ll='716'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='706'/>
+<size>168</size>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='698'>/**
+ * @class ktxTexture2
+ * @~English
+ * @brief Class representing a KTX version 2 format texture.
+ *
+ * ktxTextures should be created only by one of the ktxTexture_Create*
+ * functions and these fields should be considered read-only.
+ */</doc>
+<mbr r='ktxTexture2::classId' o='0' t='class_id'/>
+<mbr r='ktxTexture2::vtbl' o='64' t='struct ktxTexture_vtbl *'/>
+<mbr r='ktxTexture2::vvtbl' o='128' t='struct ktxTexture_vvtbl *'/>
+<mbr r='ktxTexture2::_protected' o='192' t='struct ktxTexture_protected *'/>
+<mbr r='ktxTexture2::isArray' o='256' t='ktx_bool_t'/>
+<mbr r='ktxTexture2::isCubemap' o='264' t='ktx_bool_t'/>
+<mbr r='ktxTexture2::isCompressed' o='272' t='ktx_bool_t'/>
+<mbr r='ktxTexture2::generateMipmaps' o='280' t='ktx_bool_t'/>
+<mbr r='ktxTexture2::baseWidth' o='288' t='ktx_uint32_t'/>
+<mbr r='ktxTexture2::baseHeight' o='320' t='ktx_uint32_t'/>
+<mbr r='ktxTexture2::baseDepth' o='352' t='ktx_uint32_t'/>
+<mbr r='ktxTexture2::numDimensions' o='384' t='ktx_uint32_t'/>
+<mbr r='ktxTexture2::numLevels' o='416' t='ktx_uint32_t'/>
+<mbr r='ktxTexture2::numLayers' o='448' t='ktx_uint32_t'/>
+<mbr r='ktxTexture2::numFaces' o='480' t='ktx_uint32_t'/>
+<mbr r='ktxTexture2::orientation' o='512' t='struct ktxOrientation'/>
+<mbr r='ktxTexture2::kvDataHead' o='640' t='ktxHashList'/>
+<mbr r='ktxTexture2::kvDataLen' o='704' t='ktx_uint32_t'/>
+<mbr r='ktxTexture2::kvData' o='768' t='ktx_uint8_t *'/>
+<mbr r='ktxTexture2::dataSize' o='832' t='ktx_size_t'/>
+<mbr r='ktxTexture2::pData' o='896' t='ktx_uint8_t *'/>
+<mbr r='ktxTexture2::vkFormat' o='960' t='ktx_uint32_t'/>
+<mbr r='ktxTexture2::pDfd' o='1024' t='ktx_uint32_t *'/>
+<mbr r='ktxTexture2::supercompressionScheme' o='1088' t='ktxSupercmpScheme'/>
+<mbr r='ktxTexture2::isVideo' o='1120' t='ktx_bool_t'/>
+<mbr r='ktxTexture2::duration' o='1152' t='ktx_uint32_t'/>
+<mbr r='ktxTexture2::timescale' o='1184' t='ktx_uint32_t'/>
+<mbr r='ktxTexture2::loopcount' o='1216' t='ktx_uint32_t'/>
+<mbr r='ktxTexture2::_private' o='1280' t='struct ktxTexture2_private *'/>

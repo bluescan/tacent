@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/refwrap.h' l='55'/>
+<def f='include/c++/11/bits/refwrap.h' l='58' ll='60'/>
+<def f='include/c++/11/bits/refwrap.h' l='63' ll='65'/>
+<use f='include/c++/11/bits/refwrap.h' l='75'/>
+<use f='include/c++/11/bits/std_function.h' l='335'/>
+<doc f='include/c++/11/bits/refwrap.h' l='57'>/// Derives from @c unary_function, as appropriate.</doc>
+<doc f='include/c++/11/bits/refwrap.h' l='62'>/// Derives from @c binary_function, as appropriate.</doc>

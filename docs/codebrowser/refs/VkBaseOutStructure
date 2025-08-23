@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2894' ll='2897'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2896'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2894'/>
+<size>16</size>
+<mbr r='VkBaseOutStructure::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBaseOutStructure::pNext' o='64' t='struct VkBaseOutStructure *'/>

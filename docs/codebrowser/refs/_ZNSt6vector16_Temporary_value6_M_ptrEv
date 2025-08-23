@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/stl_vector.h' l='1711' u='c' c='_ZNSt6vector16_Temporary_valueC1EPSt6vectorIT_T0_EDpOTL0__'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1716' u='c' c='_ZNSt6vector16_Temporary_valueD1Ev'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1719' u='c' c='_ZNSt6vector16_Temporary_value6_M_valEv'/>
+<def f='include/c++/11/bits/stl_vector.h' l='1722' ll='1723' type='_Tp * std::vector::_Temporary_value::_M_ptr()'/>

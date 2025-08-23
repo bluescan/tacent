@@ -1,0 +1,38 @@
+<def f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='40' ll='107'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='46' c='_ZN9tBitArrayC1ERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='51' c='_ZN9tBitArray3SetERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='91' c='_ZN9tBitArrayaSERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='91' c='_ZN9tBitArrayaSERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='92' c='_ZN9tBitArrayaNERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='92' c='_ZN9tBitArrayaNERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='93' c='_ZN9tBitArrayoRERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='93' c='_ZN9tBitArrayoRERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='94' c='_ZN9tBitArrayeOERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='94' c='_ZN9tBitArrayeOERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='96' c='_ZNK9tBitArraycoEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='96' c='_ZNK9tBitArraycoEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='98' c='_ZNK9tBitArrayeqERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='99' c='_ZNK9tBitArrayneERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='293' c='_ZN9tBitArrayaNERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='293' c='_ZN9tBitArrayaNERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='304' c='_ZN9tBitArrayoRERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='304' c='_ZN9tBitArrayoRERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='315' c='_ZN9tBitArrayeOERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='315' c='_ZN9tBitArrayeOERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='326' c='_ZNK9tBitArrayeqERKS_'/>
+<size>16</size>
+<doc f='Modules/Foundation/Inc/Foundation/tBitArray.h' l='33'>// This class uses 32-bit elements to store the bit array for efficiency. The bits are ordered from the LSB to the MSB so
+// that the 0th bit (on the right) is the first one, 1st bit is the second, and so on. For example, with 35-bits:
+// 1                                     35
+// 10101111 11110000 10000010 11100011 011									The array we want to represent.
+// 11000111 01000001 00001111 11110101 00000000 00000000 00000000 00000110	As 2 32-bit elements.
+// 11110101 00001111 01000001 11000111 00000110 00000000 00000000 00000000  In memory on a little-endian machine.
+//</doc>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='67' c='_ZN9tBitArray3SetERKS_'/>
+<size>16</size>
+<fun r='_ZN9tBitArray3SetEi'/>
+<fun r='_ZN9tBitArray3SetEPjib'/>
+<fun r='_ZN9tBitArray3SetERKS_'/>
+<fun r='_ZNK9tBitArray6AreAllEb'/>
+<fun r='_ZNK9tBitArray9CountBitsEb'/>
+<fun r='_ZNK9tBitArray17FindFirstClearBitEv'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='280' ll='287' type='_Tp std::atomic::load(std::memory_order __m = memory_order_seq_cst) const'/>

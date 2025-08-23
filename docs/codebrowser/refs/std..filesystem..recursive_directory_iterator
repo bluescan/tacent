@@ -1,0 +1,54 @@
+<use f='include/c++/11/bits/fs_dir.h' l='317'/>
+<use f='include/c++/11/bits/fs_dir.h' l='365'/>
+<use f='include/c++/11/bits/fs_dir.h' l='439'/>
+<def f='include/c++/11/bits/fs_dir.h' l='461' ll='540'/>
+<use f='include/c++/11/bits/fs_dir.h' l='474' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='477' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathENS_17directory_optionsE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='481' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathENS_17directory_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='484' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='487' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='489' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1EOS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='502' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratoraSERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='503' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratoraSERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='504' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratoraSEOS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='505' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratoraSEOS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='507' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorppEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='508' c='_ZNSt10filesystem7__cxx1128recursive_directory_iterator9incrementERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='526' c='_ZNSt10filesystem7__cxx11eqERKNS0_28recursive_directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='527' c='_ZNSt10filesystem7__cxx11eqERKNS0_28recursive_directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='534' c='_ZNSt10filesystem7__cxx11neERKNS0_28recursive_directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='535' c='_ZNSt10filesystem7__cxx11neERKNS0_28recursive_directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='548' c='_ZNSt10filesystem7__cxx115beginENS0_28recursive_directory_iteratorE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='549' c='_ZNSt10filesystem7__cxx115beginENS0_28recursive_directory_iteratorE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='553' c='_ZNSt10filesystem7__cxx113endENS0_28recursive_directory_iteratorE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='554' c='_ZNSt10filesystem7__cxx113endENS0_28recursive_directory_iteratorE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='555' c='_ZNSt10filesystem7__cxx113endENS0_28recursive_directory_iteratorE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2870' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2973' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<size>16</size>
+<doc f='include/c++/11/bits/fs_dir.h' l='458'>/// @}
+
+  /// Iterator type for recursively traversing a directory hierarchy.</doc>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1Ev'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathE'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathENS_17directory_optionsE'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathENS_17directory_optionsERSt10error_code'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathERSt10error_code'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1EOS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorD1Ev'/>
+<fun r='_ZNKSt10filesystem7__cxx1128recursive_directory_iterator7optionsEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1128recursive_directory_iterator5depthEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1128recursive_directory_iterator17recursion_pendingEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1128recursive_directory_iteratordeEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1128recursive_directory_iteratorptEv'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iteratoraSERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iteratoraSEOS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorppEv'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iterator9incrementERSt10error_code'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorppEi'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iterator3popEv'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iterator3popERSt10error_code'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iterator25disable_recursion_pendingEv'/>
+<fun r='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathENS_17directory_optionsEPSt10error_code'/>
+<mbr r='std::filesystem::recursive_directory_iterator::_M_dirs' o='0' t='std::__shared_ptr&lt;_Dir_stack&gt;'/>

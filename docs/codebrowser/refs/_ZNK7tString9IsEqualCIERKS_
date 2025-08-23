@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='160' type='bool tString::IsEqualCI(const tString &amp; str) const'/>
+<use f='Modules/System/Inc/System/tFile.h' l='905' u='c' c='_ZNK7tSystem11tExtensions8ContainsERK7tString'/>

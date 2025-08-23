@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/fs_path.h' l='379' type='__detail::_Path2&lt;_CharT *&gt; &amp; std::filesystem::path::operator+=(_CharT __x)'/>
+<def f='include/c++/11/bits/fs_path.h' l='995' ll='1000' type='__detail::_Path2&lt;_CharT *&gt; &amp; std::filesystem::path::operator+=(const _CharT __x)'/>

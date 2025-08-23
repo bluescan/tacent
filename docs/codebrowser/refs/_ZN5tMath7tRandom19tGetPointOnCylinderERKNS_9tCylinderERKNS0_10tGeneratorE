@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='135' type='tMath::tVector3 tMath::tRandom::tGetPointOnCylinder(const tMath::tCylinder &amp; , const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<def f='Modules/Math/Src/tRandom.cpp' l='239' ll='260' type='tMath::tVector3 tMath::tRandom::tGetPointOnCylinder(const tMath::tCylinder &amp; cylinder, const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>

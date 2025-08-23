@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3042' ll='3045'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3042'/>
+<size>16</size>
+<mbr r='VkMemoryHeap::size' o='0' t='VkDeviceSize'/>
+<mbr r='VkMemoryHeap::flags' o='64' t='VkMemoryHeapFlags'/>

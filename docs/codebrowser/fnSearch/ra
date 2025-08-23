@@ -1,0 +1,14 @@
+_ZSt14random_shuffleT_S_|std::random_shuffle
+_ZNSt11range_erroraSERKS_|std::range_error::operator=
+_ZNSt11range_errorC1ERKS_|std::range_error::range_error
+_ZN11tExprWriter3RawERK7tString|tExprWriter::Raw
+_ZNKSt13random_device7entropyEv|std::random_device::entropy
+_ZNSt13random_device3maxEv|std::random_device::max
+_ZNSt13random_device3minEv|std::random_device::min
+_ZNSt13random_deviceclEv|std::random_device::operator()
+_ZNSt13random_deviceaSERKS_|std::random_device::operator=
+_ZNSt13random_deviceC1Ev|std::random_device::random_device
+_ZNSt13random_deviceD1Ev|std::random_device::~random_device
+_ZNSt6ranges3getERKNS_8subrangeIT0_T1_XT2_EEE|std::ranges::get
+_ZN6tImage16tQuantizeSpatial18random_permutationEiRSt6vectorIiSaIiEERSt26linear_congruential_engineImLm16807ELm0ELm2147483647EE|tImage::tQuantizeSpatial::random_permutation
+_ZN6tImage16tQuantizeSpatial21random_permutation_2dEiiRSt5dequeISt4pairIiiESaIS3_EERSt26linear_congruential_engineImLm16807ELm0ELm2147483647EE|tImage::tQuantizeSpatial::random_permutation_2d

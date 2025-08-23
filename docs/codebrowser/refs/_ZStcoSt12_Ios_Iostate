@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/ios_base.h' l='176' ll='178' type='std::_Ios_Iostate std::operator~(std::_Ios_Iostate __a)'/>
+<use f='include/c++/11/bits/istream.tcc' l='752' u='c' c='_ZNSt13basic_istream7putbackET_'/>
+<use f='include/c++/11/bits/istream.tcc' l='787' u='c' c='_ZNSt13basic_istream5ungetEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='885' u='c' c='_ZNSt13basic_istream5seekgENT0_8pos_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='924' u='c' c='_ZNSt13basic_istream5seekgENT0_8off_typeESt12_Ios_Seekdir'/>

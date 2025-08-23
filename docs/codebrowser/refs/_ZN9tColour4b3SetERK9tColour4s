@@ -1,0 +1,6 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='345' u='c' c='_ZN9tColour4bC1ERK9tColour4s'/>
+<dec f='Modules/Math/Inc/Math/tColour.h' l='358' type='void tColour4b::Set(const tColour4s &amp; c)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1072' ll='1078' type='void tColour4b::Set(const tColour4s &amp; c)'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='371' u='c' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='787' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='802' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

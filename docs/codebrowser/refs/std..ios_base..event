@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/ios_base.h' l='512' ll='517'/>
+<use f='include/c++/11/bits/ios_base.h' l='529'/>
+<use f='include/c++/11/bits/ios_base.h' l='586' c='_ZNSt8ios_base17_M_call_callbacksENS_5eventE'/>
+<doc f='include/c++/11/bits/ios_base.h' l='506'>/**
+     *  @brief  The set of events that may be passed to an event callback.
+     *
+     *  erase_event is used during ~ios() and copyfmt().  imbue_event is used
+     *  during imbue().  copyfmt_event is used during copyfmt().
+    */</doc>

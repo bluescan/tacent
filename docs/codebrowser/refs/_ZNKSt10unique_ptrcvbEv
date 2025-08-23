@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='435' ll='436' type='bool std::unique_ptr::operator bool() const'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='434'>/// Return @c true if the stored pointer is not null.</doc>

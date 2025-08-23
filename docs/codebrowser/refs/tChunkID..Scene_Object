@@ -1,0 +1,14 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='447' type='2164269312'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='51' u='r' c='_ZNK6tScene7tCamera4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='76' c='_ZN6tScene7tCamera4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tInstance.cpp' l='49' c='_ZN6tScene9tInstance4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLight.cpp' l='65' c='_ZN6tScene6tLight4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='68' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='168' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tObject.cpp' l='22' u='r' c='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tObject.cpp' l='41' u='r' c='_ZN6tScene7tObject4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='72' c='_ZN6tScene5tPath4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='49' c='_ZN6tScene10tPolyModel4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSelection.cpp' l='49' c='_ZN6tScene10tSelection4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='66' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='216' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>

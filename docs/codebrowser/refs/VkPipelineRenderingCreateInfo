@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7254' ll='7262'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7254'/>
+<size>40</size>
+<mbr r='VkPipelineRenderingCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineRenderingCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineRenderingCreateInfo::viewMask' o='128' t='uint32_t'/>
+<mbr r='VkPipelineRenderingCreateInfo::colorAttachmentCount' o='160' t='uint32_t'/>
+<mbr r='VkPipelineRenderingCreateInfo::pColorAttachmentFormats' o='192' t='const VkFormat *'/>
+<mbr r='VkPipelineRenderingCreateInfo::depthAttachmentFormat' o='256' t='VkFormat'/>
+<mbr r='VkPipelineRenderingCreateInfo::stencilAttachmentFormat' o='288' t='VkFormat'/>

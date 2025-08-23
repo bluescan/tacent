@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='1561' ll='1563' type='iter_difference_t&lt;_Iterator&gt; std::operator-(const move_sentinel&lt;_Sent&gt; &amp; __x, const move_iterator&lt;_Iterator&gt; &amp; __y)'/>

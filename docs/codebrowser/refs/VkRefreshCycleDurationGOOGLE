@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12104' ll='12106'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12104'/>
+<size>8</size>
+<mbr r='VkRefreshCycleDurationGOOGLE::refreshDuration' o='0' t='uint64_t'/>

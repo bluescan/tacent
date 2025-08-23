@@ -1,0 +1,10 @@
+<def f='include/c++/11/streambuf' l='704' ll='716' type='std::basic_streambuf::int_type std::basic_streambuf::uflow()'/>
+<doc f='include/c++/11/streambuf' l='695'>/**
+       *  @brief  Fetches more data from the controlled sequence.
+       *  @return  The first character from the &lt;em&gt;pending sequence&lt;/em&gt;.
+       *
+       *  Informally, this function does the same thing as @c underflow(),
+       *  and in fact is required to call that function.  It also returns
+       *  the new character, like @c underflow() does.  However, this
+       *  function also moves the read position forward by one.
+      */</doc>

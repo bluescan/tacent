@@ -1,0 +1,6 @@
+<dec f='include/unistd.h' l='1159' type='char * crypt(const char * __key, const char * __salt)'/>
+<doc f='include/unistd.h' l='1154'>/* One-way hash PHRASE, returning a string suitable for storage in the
+   user database.  SALT selects the one-way function to use, and
+   ensures that no two users&apos; hashes are the same, even if they use
+   the same passphrase.  The return value points to static storage
+   which will be overwritten by the next call to crypt.  */</doc>

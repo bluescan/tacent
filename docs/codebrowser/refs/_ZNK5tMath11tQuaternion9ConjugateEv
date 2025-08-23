@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='68' type='tMath::tQuat tMath::tQuaternion::Conjugate() const'/>
+<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='67'>// The lack of invert functions is intentional. For unit quaternion just use the conjugate functions.</doc>

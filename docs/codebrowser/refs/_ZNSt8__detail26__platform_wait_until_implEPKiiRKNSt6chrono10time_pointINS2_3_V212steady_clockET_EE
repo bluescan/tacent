@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_timed_wait.h' l='80' ll='110' type='bool std::__detail::__platform_wait_until_impl(const std::__detail::__platform_wait_t * __addr, std::__detail::__platform_wait_t __old, const chrono::time_point&lt;__wait_clock_t, _Dur&gt; &amp; __atime)'/>

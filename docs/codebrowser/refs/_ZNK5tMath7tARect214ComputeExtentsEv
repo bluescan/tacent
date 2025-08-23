@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='177' type='tMath::tVector2 tMath::tARect2::ComputeExtents() const'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='539' u='c' c='_ZNK5tMath7tARect28OverlapsERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='539' u='c' c='_ZNK5tMath7tARect28OverlapsERKS0_'/>

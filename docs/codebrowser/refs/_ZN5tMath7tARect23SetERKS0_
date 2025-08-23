@@ -1,0 +1,2 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='140' u='c' c='_ZN5tMath7tARect2C1ERKS0_'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='146' type='void tMath::tARect2::Set(const tMath::tARect2 &amp; src)'/>

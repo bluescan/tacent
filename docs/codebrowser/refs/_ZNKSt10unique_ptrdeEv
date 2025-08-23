@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='404' ll='409' type='typename add_lvalue_reference&lt;element_type&gt;::type std::unique_ptr::operator*() const'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='401'>// Observers.
+
+      /// Dereference the stored pointer.</doc>

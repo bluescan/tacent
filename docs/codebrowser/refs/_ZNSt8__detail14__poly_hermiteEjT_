@@ -1,0 +1,3 @@
+<def f='include/c++/11/tr1/poly_hermite.tcc' l='115' ll='122' type='_Tp std::__detail::__poly_hermite(unsigned int __n, _Tp __x)'/>
+<use f='include/c++/11/bits/specfun.h' l='886' u='c' c='_ZSt8hermitefjf'/>
+<use f='include/c++/11/bits/specfun.h' l='896' u='c' c='_ZSt8hermitelje'/>

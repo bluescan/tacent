@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/basic_string.h' l='2342' ll='2344' type='_CharT * std::basic_string::data()'/>
+<doc f='include/c++/11/bits/basic_string.h' l='2336'>/**
+       *  @brief  Return non-const pointer to contents.
+       *
+       *  This is a pointer to the character sequence held by the string.
+       *  Modifying the characters in the sequence is allowed.
+      */</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='400' u='c' c='_ZNKSt7__cxx119money_get6do_getET0_S1_bRSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIT_St11char_traitsIS7_ESaIS7_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='400' u='c' c='_ZNKSt7__cxx119money_get6do_getET0_S1_bRSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIT_St11char_traitsIS7_ESaIS7_EEE'/>

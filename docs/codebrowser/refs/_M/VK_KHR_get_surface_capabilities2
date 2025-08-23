@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9188'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9187'>// VK_KHR_get_surface_capabilities2 is a preprocessor guard. Do not pass it to API calls.</doc>

@@ -1,0 +1,9 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='523' type='2164438528'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='518'>// The instance list contains a list of, well, instances. An instance simply consists of a transformation
+			// matrix and a pointer to the object being instanced. The &quot;pointer&quot; is in the form of an object ID. Since
+			// IDs are only guaranteed to be unique within a particular object type, the object type is specified in
+			// addition to the ID. A set of per-instance attributes may also be present in addition to any per-object
+			// instance lists that may exist.</doc>
+<use f='Modules/Scene/Src/tWorld.cpp' l='528' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1142' u='r' c='_ZNK6tScene6tWorld13SaveInstancesER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1244' u='r' c='_ZN6tScene6tWorld13LoadInstancesERK6tChunkR7tItListINS_9tInstanceEE'/>

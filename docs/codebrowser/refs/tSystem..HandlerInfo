@@ -1,0 +1,9 @@
+<def f='Modules/System/Src/tPrint.cpp' l='124' ll='130'/>
+<use f='Modules/System/Src/tPrint.cpp' l='132'/>
+<use f='Modules/System/Src/tPrint.cpp' l='134' c='_ZN7tSystem11FindHandlerEc'/>
+<use f='Modules/System/Src/tPrint.cpp' l='408'/>
+<use f='Modules/System/Src/tPrint.cpp' l='697' c='_ZN7tSystem11FindHandlerEc'/>
+<use f='Modules/System/Src/tPrint.cpp' l='706' c='_ZN7tSystem11FindHandlerEc'/>
+<use f='Modules/System/Src/tPrint.cpp' l='715' c='_ZN7tSystem11FindHandlerEc'/>
+<use f='Modules/System/Src/tPrint.cpp' l='845' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>
+<size>24</size>

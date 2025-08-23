@@ -1,0 +1,10 @@
+<inh f='include/c++/11/bits/exception.h' l='61' c='std::exception'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='82' ll='88'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='93' c='_ZSt20__throw_bad_weak_ptrv'/>
+<size>8</size>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='78'>/**
+   *  @brief  Exception possibly thrown by @c shared_ptr.
+   *  @ingroup exceptions
+   */</doc>
+<fun r='_ZNKSt12bad_weak_ptr4whatEv'/>
+<fun r='_ZNSt12bad_weak_ptrD1Ev'/>

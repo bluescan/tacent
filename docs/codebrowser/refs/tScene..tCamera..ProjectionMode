@@ -1,0 +1,3 @@
+<use f='Modules/Scene/Src/tCamera.cpp' l='23' u='r' c='_ZN6tScene7tCamera5ScaleEf'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='56' u='r' c='_ZNK6tScene7tCamera4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='81' u='a' c='_ZN6tScene7tCamera4LoadERK6tChunk'/>

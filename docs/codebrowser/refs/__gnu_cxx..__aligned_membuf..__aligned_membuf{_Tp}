@@ -1,0 +1,3 @@
+<def f='include/c++/11/ext/aligned_buffer.h' l='58' type='void __gnu_cxx::__aligned_membuf::__aligned_membuf&lt;_Tp&gt;()'/>
+<def f='include/c++/11/ext/aligned_buffer.h' l='61' type='void __gnu_cxx::__aligned_membuf::__aligned_membuf&lt;_Tp&gt;(std::nullptr_t )'/>
+<doc f='include/c++/11/ext/aligned_buffer.h' l='60'>// Can be used to avoid value-initialization zeroing _M_storage.</doc>

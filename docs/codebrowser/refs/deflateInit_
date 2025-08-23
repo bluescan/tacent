@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='1765' type='int deflateInit_(z_streamp strm, int level, const char * version, int stream_size)'/>

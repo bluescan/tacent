@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7794' ll='7798'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7794'/>
+<size>24</size>
+<mbr r='VkDeviceGroupSwapchainCreateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDeviceGroupSwapchainCreateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkDeviceGroupSwapchainCreateInfoKHR::modes' o='128' t='VkDeviceGroupPresentModeFlagsKHR'/>

@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/atomic_base.h' l='417' u='c' c='_ZNSt13__atomic_baseaNET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='421' u='c' c='_ZNVSt13__atomic_baseaNET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1053' u='c' c='_ZNSt13__atomic_impl11__and_fetchEPT_NSt15remove_volatileIS0_E4typeE'/>

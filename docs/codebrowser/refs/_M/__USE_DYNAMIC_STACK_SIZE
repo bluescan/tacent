@@ -1,0 +1,5 @@
+<dec f='include/features.h' l='403'/>
+<use f='include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h' l='20' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/pthread_stack_min-dynamic.h' l='20' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/sigstksz.h' l='23' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/sigstksz.h' l='23' u='c'/>

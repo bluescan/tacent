@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11946'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11945'>// VK_NV_clip_space_w_scaling is a preprocessor guard. Do not pass it to API calls.</doc>

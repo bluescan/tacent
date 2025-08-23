@@ -1,0 +1,14 @@
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='104' u='c' c='_ZN6tImage9tImageKTXD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImageKTX.h' l='159' type='void tImage::tImageKTX::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImageKTX.h' l='158'>// After this call no memory will be consumed by the object and it will be invalid. Does not clear filename.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Src/tImageKTX.cpp' l='542' ll='562' type='void tImage::tImageKTX::Clear()'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='567' u='c' c='_ZN6tImage9tImageKTX3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='589' u='c' c='_ZN6tImage9tImageKTX3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='610' u='c' c='_ZN6tImage9tImageKTX3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='674' u='c' c='_ZN6tImage9tImageKTX11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='712' u='c' c='_ZN6tImage9tImageKTX18StealCubemapLayersEP5tListINS_6tLayerEEj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='742' u='c' c='_ZN6tImage9tImageKTX4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='780' u='c' c='_ZN6tImage9tImageKTX4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='957' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1029' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

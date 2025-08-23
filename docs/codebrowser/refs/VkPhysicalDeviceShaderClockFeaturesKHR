@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9508' ll='9513'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9508'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceShaderClockFeaturesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceShaderClockFeaturesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceShaderClockFeaturesKHR::shaderSubgroupClock' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceShaderClockFeaturesKHR::shaderDeviceClock' o='160' t='VkBool32'/>

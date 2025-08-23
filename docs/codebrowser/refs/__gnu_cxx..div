@@ -1,0 +1,2 @@
+<def f='include/c++/11/cstdlib' l='212' ll='214' type='lldiv_t __gnu_cxx::div(long long __n, long long __d)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='321' u='c' c='_ZN5tMath6tDiv64Exx'/>

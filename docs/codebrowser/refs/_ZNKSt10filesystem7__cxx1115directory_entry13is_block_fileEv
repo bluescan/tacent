@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_dir.h' l='171' ll='173' type='bool std::filesystem::directory_entry::is_block_file() const'/>

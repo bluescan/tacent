@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageDDS.h' l='45' type='64'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='50' u='r'/>
+<doc f='Modules/Image/Inc/Image/tImageDDS.h' l='45'>// For DDS files with a single Red or Luminance component, spread it to all the RGB channels (otherwise red only). Does not spread single-channel Alpha formats. Applies only if decoding a dds is an R-only or L-only format.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1401' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>

@@ -1,0 +1,11 @@
+<use f='Modules/Image/Inc/Image/tImagePKM.h' l='73' u='c' c='_ZN6tImage9tImagePKMD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImagePKM.h' l='90' type='void tImage::tImagePKM::Clear()'/>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Inc/Image/tImagePKM.h' l='116' ll='121' type='void tImage::tImagePKM::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImagePKM.h' l='89'>// After this call no memory will be consumed by the object and it will be invalid.</doc>
+<doc f='Modules/Image/Inc/Image/tImagePKM.h' l='113'>// Implementation below this line.</doc>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='147' u='c' c='_ZN6tImage9tImagePKM4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='166' u='c' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='303' u='c' c='_ZN6tImage9tImagePKM3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='320' u='c' c='_ZN6tImage9tImagePKM3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='339' u='c' c='_ZN6tImage9tImagePKM3SetERNS_8tPictureEb'/>

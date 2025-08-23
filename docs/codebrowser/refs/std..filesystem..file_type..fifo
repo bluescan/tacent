@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='80' type='6'/>
+<use f='include/c++/11/bits/fs_dir.h' l='197' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry7is_fifoEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='201' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry7is_fifoERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='215' u='r' c='_ZNSt10filesystem7is_fifoENS_11file_statusE'/>

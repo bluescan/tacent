@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1458' ll='1470' type='void std::deque::push_front(const std::deque::value_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1449'>/**
+       *  @brief  Add data to the front of the %deque.
+       *  @param  __x  Data to be added.
+       *
+       *  This is a typical stack operation.  The function creates an
+       *  element at the front of the %deque and assigns the given
+       *  data to it.  Due to the nature of a %deque this operation
+       *  can be done in constant time.
+       */</doc>

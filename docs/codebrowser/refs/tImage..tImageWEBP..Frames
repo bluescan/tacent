@@ -1,0 +1,11 @@
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='150' u='m' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='159' u='m' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='234' u='m' c='_ZN6tImage10tImageWEBP3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='239' u='m' c='_ZN6tImage10tImageWEBP3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='257' u='m' c='_ZN6tImage10tImageWEBP3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='280' u='m' c='_ZN6tImage10tImageWEBP3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='282' u='m' c='_ZN6tImage10tImageWEBP3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='315' u='m' c='_ZN6tImage10tImageWEBP8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='315' u='m' c='_ZN6tImage10tImageWEBP8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='365' u='m' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='366' u='m' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>

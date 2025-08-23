@@ -1,0 +1,6 @@
+<dec f='include/x86_64-linux-gnu/sys/time.h' l='86' type='int settimeofday(const struct timeval * __tv, const struct timezone * __tz)'/>
+<doc f='include/x86_64-linux-gnu/sys/time.h' l='81'>/* Set the current time of day and timezone information.
+   This call is restricted to the super-user.
+   Setting the timezone in this way is obsolete, but we don&apos;t yet
+   warn about it because it still has some uses for which there is
+   no alternative.  */</doc>

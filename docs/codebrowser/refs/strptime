@@ -1,0 +1,3 @@
+<dec f='include/time.h' l='107' type='char * strptime(const char *__restrict __s, const char *__restrict __fmt, struct tm * __tp)'/>
+<doc f='include/time.h' l='105'>/* Parse S according to FORMAT and store binary time information in TP.
+   The return value is a pointer to the first unparsed character in S.  */</doc>

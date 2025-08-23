@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12826'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12825'>// VK_EXT_validation_cache is a preprocessor guard. Do not pass it to API calls.</doc>

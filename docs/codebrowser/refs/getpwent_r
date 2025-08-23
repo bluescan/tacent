@@ -1,0 +1,5 @@
+<dec f='include/pwd.h' l='139' type='int getpwent_r(struct passwd *__restrict __resultbuf, char *__restrict __buffer, size_t __buflen, struct passwd **__restrict __result)'/>
+<doc f='include/pwd.h' l='135'>/* This function is not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation it is a cancellation point and
+   therefore not marked with __THROW.  */</doc>

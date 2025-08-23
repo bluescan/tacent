@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>string_conversions.h source code [include/c++/11/ext/string_conversions.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/ext/string_conversions.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>ext</a>/<a href='string_conversions.h.html'>string_conversions.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// String Conversions -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2008-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">ext/string_conversions.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This file is a GNU extension to the Standard C++ Library.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="29">ifndef</span> <span class="macro" data-ref="_M/_STRING_CONVERSIONS_H">_STRING_CONVERSIONS_H</span></u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#define <dfn class="macro" id="_M/_STRING_CONVERSIONS_H" data-ref="_M/_STRING_CONVERSIONS_H">_STRING_CONVERSIONS_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="34">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt; 201103L</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u># include &lt;bits/c++0x_warning.h&gt;</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="34">else</span></u>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#include &lt;bits/c++config.h&gt;</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#include &lt;ext/numeric_traits.h&gt;</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;bits/functexcept.h&gt;</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#include &lt;cstdlib&gt;</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#include &lt;cwchar&gt;</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#include &lt;cstdio&gt;</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#include &lt;cerrno&gt;</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td><b>namespace</b> <span class="namespace">__gnu_cxx</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="47">47</th><td>{&nbsp</td></tr>
+<tr><th id="48">48</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="49">49</th><td>&nbsp</td></tr>
+<tr><th id="50">50</th><td>  <i>// Helper for all the sto* functions.</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td>  <b>template</b>&lt;<b>typename</b> _TRet, <b>typename</b> _Ret = _TRet, <b>typename</b> _CharT,&nbsp</td></tr>
+<tr><th id="52">52</th><td>	   <b>typename</b>... _Base&gt;&nbsp</td></tr>
+<tr><th id="53">53</th><td>    _Ret&nbsp</td></tr>
+<tr><th id="54">54</th><td>    <dfn class="decl def fn" id="__gnu_cxx::__stoa" title='__gnu_cxx::__stoa' data-ref="__gnu_cxx::__stoa">__stoa</dfn>(_TRet (*<dfn class="local col1 decl" id="2381__convf" title='__convf' data-type='_TRet (*)(const _CharT *, _CharT **, _Base...)' data-ref="2381__convf">__convf</dfn>) (<em>const</em> _CharT*, _CharT**, _Base...),&nbsp</td></tr>
+<tr><th id="55">55</th><td>	   <em>const</em> <em>char</em>* <dfn class="local col2 decl" id="2382__name" title='__name' data-type='const char *' data-ref="2382__name">__name</dfn>, <em>const</em> _CharT* <dfn class="local col3 decl" id="2383__str" title='__str' data-type='const _CharT *' data-ref="2383__str">__str</dfn>, <span class="namespace">std::</span><a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>* <dfn class="local col4 decl" id="2384__idx" title='__idx' data-type='std::size_t *' data-ref="2384__idx">__idx</dfn>,&nbsp</td></tr>
+<tr><th id="56">56</th><td>	   _Base... <dfn class="local col5 decl" id="2385__base" title='__base' data-type='_Base...' data-ref="2385__base">__base</dfn>)&nbsp</td></tr>
+<tr><th id="57">57</th><td>    {&nbsp</td></tr>
+<tr><th id="58">58</th><td>      _Ret <dfn class="local col6 decl" id="2386__ret" title='__ret' data-type='_Ret' data-ref="2386__ret">__ret</dfn>;&nbsp</td></tr>
+<tr><th id="59">59</th><td>&nbsp</td></tr>
+<tr><th id="60">60</th><td>      _CharT* <dfn class="local col7 decl" id="2387__endptr" title='__endptr' data-type='_CharT *' data-ref="2387__endptr">__endptr</dfn>;&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td>      <b>struct</b> <dfn class="local col8 type" id="2388_Save_errno" title='_Save_errno' data-ref="2388_Save_errno"><a class="local col8 type" href="#2388_Save_errno" title='_Save_errno' data-ref="2388_Save_errno">_Save_errno</a></dfn> {&nbsp</td></tr>
+<tr><th id="63">63</th><td>	_Save_errno() : <a class="local col9 member field" href="#2389_M_errno" title='_M_errno' data-ref="2389_M_errno">_M_errno</a>(<a class="macro" href="../../../errno.h.html#38" title="(*__errno_location ())" data-ref="_M/errno">errno</a>) { <a class="macro" href="../../../errno.h.html#38" title="(*__errno_location ())" data-ref="_M/errno">errno</a> = <var>0</var>; }&nbsp</td></tr>
+<tr><th id="64">64</th><td>	~_Save_errno() { <b>if</b> (<a class="macro" href="../../../errno.h.html#38" title="(*__errno_location ())" data-ref="_M/errno">errno</a> == <var>0</var>) <a class="macro" href="../../../errno.h.html#38" title="(*__errno_location ())" data-ref="_M/errno">errno</a> = <a class="local col9 member field" href="#2389_M_errno" title='_M_errno' data-ref="2389_M_errno">_M_errno</a>; }&nbsp</td></tr>
+<tr><th id="65">65</th><td>	<em>int</em> <dfn class="local col9 decl field" id="2389_M_errno" title='_M_errno' data-type='int' data-ref="2389_M_errno">_M_errno</dfn>;&nbsp</td></tr>
+<tr><th id="66">66</th><td>      } <em>const</em> <dfn class="local col0 decl" id="2390__save_errno" title='__save_errno' data-type='const struct _Save_errno' data-ref="2390__save_errno">__save_errno</dfn>;&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td>      <b>struct</b> <dfn class="local col1 type" id="2391_Range_chk" title='_Range_chk' data-ref="2391_Range_chk">_Range_chk</dfn> {&nbsp</td></tr>
+<tr><th id="69">69</th><td>	  <em>static</em> <em>bool</em>&nbsp</td></tr>
+<tr><th id="70">70</th><td>	  <dfn class="local col2 decl fn" id="2392_S_chk" title='_S_chk' data-type='static bool __gnu_cxx::__stoa(_TRet (*)(const _CharT *, _CharT **, _Base...), const char *, const _CharT *, std::size_t *, _Base...)::_Range_chk::_S_chk(_TRet , std::false_type )' data-ref="2392_S_chk">_S_chk</dfn>(_TRet, <span class="namespace">std::</span><a class="typedef" href="../type_traits.html#std::false_type" title='std::false_type' data-type='integral_constant&lt;bool, false&gt;' data-ref="std::false_type">false_type</a>) { <b>return</b> <b>false</b>; }&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td>	  <em>static</em> <em>bool</em>&nbsp</td></tr>
+<tr><th id="73">73</th><td>	  <dfn class="local col3 decl fn" id="2393_S_chk" title='_S_chk' data-type='static bool __gnu_cxx::__stoa(_TRet (*)(const _CharT *, _CharT **, _Base...), const char *, const _CharT *, std::size_t *, _Base...)::_Range_chk::_S_chk(_TRet __val, std::true_type )' data-ref="2393_S_chk">_S_chk</dfn>(_TRet <dfn class="local col4 decl" id="2394__val" title='__val' data-type='_TRet' data-ref="2394__val">__val</dfn>, <span class="namespace">std::</span><a class="typedef" href="../type_traits.html#std::true_type" title='std::true_type' data-type='integral_constant&lt;bool, true&gt;' data-ref="std::true_type">true_type</a>) <i>// only called when _Ret is int</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td>	  {&nbsp</td></tr>
+<tr><th id="75">75</th><td>	    <b>return</b> <a class="local col4 ref" href="#2394__val" title='__val' data-ref="2394__val">__val</a> &lt; _TRet(<a class="type" href="numeric_traits.h.html#__gnu_cxx::__numeric_traits" title='__gnu_cxx::__numeric_traits' data-ref="__gnu_cxx::__numeric_traits">__numeric_traits</a>&lt;<em>int</em>&gt;::<a class="ref" href="numeric_traits.h.html#__gnu_cxx::__numeric_traits_integer::__min" title='__gnu_cxx::__numeric_traits_integer::__min' data-ref="__gnu_cxx::__numeric_traits_integer::__min">__min</a>)&nbsp</td></tr>
+<tr><th id="76">76</th><td>	      || <a class="local col4 ref" href="#2394__val" title='__val' data-ref="2394__val">__val</a> &gt; _TRet(<a class="type" href="numeric_traits.h.html#__gnu_cxx::__numeric_traits" title='__gnu_cxx::__numeric_traits' data-ref="__gnu_cxx::__numeric_traits">__numeric_traits</a>&lt;<em>int</em>&gt;::<a class="ref" href="numeric_traits.h.html#__gnu_cxx::__numeric_traits_integer::__max" title='__gnu_cxx::__numeric_traits_integer::__max' data-ref="__gnu_cxx::__numeric_traits_integer::__max">__max</a>);&nbsp</td></tr>
+<tr><th id="77">77</th><td>	  }&nbsp</td></tr>
+<tr><th id="78">78</th><td>      };&nbsp</td></tr>
+<tr><th id="79">79</th><td>&nbsp</td></tr>
+<tr><th id="80">80</th><td>      <em>const</em> _TRet <dfn class="local col5 decl" id="2395__tmp" title='__tmp' data-type='const _TRet' data-ref="2395__tmp">__tmp</dfn> = <a class="local col1 ref" href="#2381__convf" title='__convf' data-ref="2381__convf">__convf</a>(<a class="local col3 ref" href="#2383__str" title='__str' data-ref="2383__str">__str</a>, &amp;<a class="local col7 ref" href="#2387__endptr" title='__endptr' data-ref="2387__endptr">__endptr</a>, <a class="local col5 ref" href="#2385__base" title='__base' data-ref="2385__base">__base</a>...);&nbsp</td></tr>
+<tr><th id="81">81</th><td>&nbsp</td></tr>
+<tr><th id="82">82</th><td>      <b>if</b> (<a class="local col7 ref" href="#2387__endptr" title='__endptr' data-ref="2387__endptr">__endptr</a> == <a class="local col3 ref" href="#2383__str" title='__str' data-ref="2383__str">__str</a>)&nbsp</td></tr>
+<tr><th id="83">83</th><td>	<span class="namespace">std::</span><a class="ref fn" href="../bits/functexcept.h.html#_ZSt24__throw_invalid_argumentPKc" title='std::__throw_invalid_argument' data-ref="_ZSt24__throw_invalid_argumentPKc">__throw_invalid_argument</a>(<a class="local col2 ref" href="#2382__name" title='__name' data-ref="2382__name">__name</a>);&nbsp</td></tr>
+<tr><th id="84">84</th><td>      <b>else</b> <b>if</b> (<a class="macro" href="../../../errno.h.html#38" title="(*__errno_location ())" data-ref="_M/errno">errno</a> == <a class="macro" href="../../../asm-generic/errno-base.h.html#38" title="34" data-ref="_M/ERANGE">ERANGE</a>&nbsp</td></tr>
+<tr><th id="85">85</th><td>	  || <a class="local col1 type" href="#2391_Range_chk" title='_Range_chk' data-ref="2391_Range_chk">_Range_chk</a>::_S_chk(<a class="local col5 ref" href="#2395__tmp" title='__tmp' data-ref="2395__tmp">__tmp</a>, <span class="namespace">std::</span><a class="type" href="../type_traits.html#std::is_same" title='std::is_same' data-ref="std::is_same">is_same</a>&lt;_Ret, <em>int</em>&gt;{}))&nbsp</td></tr>
+<tr><th id="86">86</th><td>	<span class="namespace">std::</span><a class="ref fn" href="../bits/functexcept.h.html#_ZSt20__throw_out_of_rangePKc" title='std::__throw_out_of_range' data-ref="_ZSt20__throw_out_of_rangePKc">__throw_out_of_range</a>(<a class="local col2 ref" href="#2382__name" title='__name' data-ref="2382__name">__name</a>);&nbsp</td></tr>
+<tr><th id="87">87</th><td>      <b>else</b>&nbsp</td></tr>
+<tr><th id="88">88</th><td>	<a class="local col6 ref" href="#2386__ret" title='__ret' data-ref="2386__ret">__ret</a> = <a class="local col5 ref" href="#2395__tmp" title='__tmp' data-ref="2395__tmp">__tmp</a>;&nbsp</td></tr>
+<tr><th id="89">89</th><td>&nbsp</td></tr>
+<tr><th id="90">90</th><td>      <b>if</b> (<a class="local col4 ref" href="#2384__idx" title='__idx' data-ref="2384__idx">__idx</a>)&nbsp</td></tr>
+<tr><th id="91">91</th><td>	*<a class="local col4 ref" href="#2384__idx" title='__idx' data-ref="2384__idx">__idx</a> = <a class="local col7 ref" href="#2387__endptr" title='__endptr' data-ref="2387__endptr">__endptr</a> - <a class="local col3 ref" href="#2383__str" title='__str' data-ref="2383__str">__str</a>;&nbsp</td></tr>
+<tr><th id="92">92</th><td>&nbsp</td></tr>
+<tr><th id="93">93</th><td>      <b>return</b> <a class="local col6 ref" href="#2386__ret" title='__ret' data-ref="2386__ret">__ret</a>;&nbsp</td></tr>
+<tr><th id="94">94</th><td>    }&nbsp</td></tr>
+<tr><th id="95">95</th><td>&nbsp</td></tr>
+<tr><th id="96">96</th><td>  <i>// Helper for the to_string / to_wstring functions.</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td>  <b>template</b>&lt;<b>typename</b> _String, <b>typename</b> _CharT = <b>typename</b> _String::value_type&gt;&nbsp</td></tr>
+<tr><th id="98">98</th><td>    _String&nbsp</td></tr>
+<tr><th id="99">99</th><td>    <dfn class="decl def fn" id="__gnu_cxx::__to_xstring" title='__gnu_cxx::__to_xstring' data-ref="__gnu_cxx::__to_xstring">__to_xstring</dfn>(<em>int</em> (*<dfn class="local col6 decl" id="2396__convf" title='__convf' data-type='int (*)(_CharT *, std::size_t, const _CharT *, __va_list_tag *)' data-ref="2396__convf">__convf</dfn>) (_CharT*, <span class="namespace">std::</span><a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>, <em>const</em> _CharT*,&nbsp</td></tr>
+<tr><th id="100">100</th><td>				 <span class='typedef' title='__builtin_va_list' data-type='__va_list_tag[1]' data-ref="__builtin_va_list">__builtin_va_list</span>), <span class="namespace">std::</span><a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col7 decl" id="2397__n" title='__n' data-type='std::size_t' data-ref="2397__n">__n</dfn>,&nbsp</td></tr>
+<tr><th id="101">101</th><td>		 <em>const</em> _CharT* <dfn class="local col8 decl" id="2398__fmt" title='__fmt' data-type='const _CharT *' data-ref="2398__fmt">__fmt</dfn>, ...)&nbsp</td></tr>
+<tr><th id="102">102</th><td>    {&nbsp</td></tr>
+<tr><th id="103">103</th><td>      <i>// XXX Eventually the result should be constructed in-place in</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td><i>      // the __cxx11 string, likely with the help of internal hooks.</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td>      _CharT* <dfn class="local col9 decl" id="2399__s" title='__s' data-type='_CharT *' data-ref="2399__s">__s</dfn> = <b>static_cast</b>&lt;_CharT*&gt;(<a class="ref fn" href="#105" title='__builtin_alloca' data-ref="__builtin_alloca">__builtin_alloca</a>(<b>sizeof</b>(_CharT)&nbsp</td></tr>
+<tr><th id="106">106</th><td>							  * <a class="local col7 ref" href="#2397__n" title='__n' data-ref="2397__n">__n</a>));&nbsp</td></tr>
+<tr><th id="107">107</th><td>&nbsp</td></tr>
+<tr><th id="108">108</th><td>      <span class='typedef' title='__builtin_va_list' data-type='__va_list_tag[1]' data-ref="__builtin_va_list">__builtin_va_list</span> <span class='ref fn fake' title='__va_list_tag::__va_list_tag' data-ref="__va_list_tag::__va_list_tag"></span><dfn class="local col0 decl" id="2400__args" title='__args' data-type='__builtin_va_list' data-ref="2400__args">__args</dfn>;&nbsp</td></tr>
+<tr><th id="109">109</th><td>      <a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/c++locale.h.html#89" title='__builtin_va_start' data-ref="__builtin_va_start">__builtin_va_start</a>(<a class="local col0 ref" href="#2400__args" title='__args' data-ref="2400__args">__args</a>, <a class="local col8 ref" href="#2398__fmt" title='__fmt' data-ref="2398__fmt">__fmt</a>);&nbsp</td></tr>
+<tr><th id="110">110</th><td>&nbsp</td></tr>
+<tr><th id="111">111</th><td>      <em>const</em> <em>int</em> <dfn class="local col1 decl" id="2401__len" title='__len' data-type='const int' data-ref="2401__len">__len</dfn> = <a class="local col6 ref" href="#2396__convf" title='__convf' data-ref="2396__convf">__convf</a>(<a class="local col9 ref" href="#2399__s" title='__s' data-ref="2399__s">__s</a>, <a class="local col7 ref" href="#2397__n" title='__n' data-ref="2397__n">__n</a>, <a class="local col8 ref" href="#2398__fmt" title='__fmt' data-ref="2398__fmt">__fmt</a>, <a class="local col0 ref" href="#2400__args" title='__args' data-ref="2400__args">__args</a>);&nbsp</td></tr>
+<tr><th id="112">112</th><td>&nbsp</td></tr>
+<tr><th id="113">113</th><td>      <a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/c++locale.h.html#97" title='__builtin_va_end' data-ref="__builtin_va_end">__builtin_va_end</a>(<a class="local col0 ref" href="#2400__args" title='__args' data-ref="2400__args">__args</a>);&nbsp</td></tr>
+<tr><th id="114">114</th><td>&nbsp</td></tr>
+<tr><th id="115">115</th><td>      <b>return</b> _String(<a class="local col9 ref" href="#2399__s" title='__s' data-ref="2399__s">__s</a>, <a class="local col9 ref" href="#2399__s" title='__s' data-ref="2399__s">__s</a> + <a class="local col1 ref" href="#2401__len" title='__len' data-ref="2401__len">__len</a>);&nbsp</td></tr>
+<tr><th id="116">116</th><td>    }&nbsp</td></tr>
+<tr><th id="117">117</th><td>&nbsp</td></tr>
+<tr><th id="118">118</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="119">119</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td>&nbsp</td></tr>
+<tr><th id="121">121</th><td><u>#<span data-ppcond="34">endif</span> // C++11</u>&nbsp</td></tr>
+<tr><th id="122">122</th><td>&nbsp</td></tr>
+<tr><th id="123">123</th><td><u>#<span data-ppcond="29">endif</span> // _STRING_CONVERSIONS_H</u>&nbsp</td></tr>
+<tr><th id="124">124</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

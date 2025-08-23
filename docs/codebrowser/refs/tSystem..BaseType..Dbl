@@ -1,0 +1,5 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='121' type='3'/>
+<use f='Modules/System/Src/tPrint.cpp' l='419'/>
+<use f='Modules/System/Src/tPrint.cpp' l='420'/>
+<use f='Modules/System/Src/tPrint.cpp' l='421'/>
+<use f='Modules/System/Src/tPrint.cpp' l='900' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>

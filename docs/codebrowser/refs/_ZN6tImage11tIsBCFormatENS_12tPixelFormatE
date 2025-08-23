@@ -1,0 +1,19 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='256' type='bool tImage::tIsBCFormat(tImage::tPixelFormat )'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='497' ll='500' type='bool tImage::tIsBCFormat(tImage::tPixelFormat format)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='254'>// Is the format a 4x4 BC (Block Compression) format. This includes ETC and EAC formats. These 4x4
+// blocks use various numbers of bits per block.</doc>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='164' u='c' c='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1280' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1323' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='861' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='914' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='183' u='c' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='499' u='c' c='_ZN6tImage14tGetBlockWidthENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='518' u='c' c='_ZN6tImage15tGetBlockHeightENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='537' u='c' c='_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='567' u='c' c='_ZN6tImage17tGetBytesPerBlockENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='67' u='c' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='77' u='c' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='659' u='c' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1301' u='c' c='_ZN6tImage17CanReverseRowDataENS_12tPixelFormatEi'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1313' u='c' c='_ZN6tImage21CreateReversedRowDataEPKhNS_12tPixelFormatEii'/>

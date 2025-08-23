@@ -1,0 +1,16 @@
+<use f='Modules/Image/Inc/Image/tPicture.h' l='146' u='c' c='_ZN6tImage8tPicture5PixelEii'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='147' u='c' c='_ZN6tImage8tPictureixEi'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='148' u='c' c='_ZNK6tImage8tPicture8GetPixelEii'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='149' u='c' c='_ZNK6tImage8tPicture15GetPixelPointerEii'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='153' u='c' c='_ZN6tImage8tPicture8SetPixelEiiRK9tColour4b'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='154' u='c' c='_ZN6tImage8tPicture8SetPixelEiihhhh'/>
+<def f='Modules/Image/Inc/Image/tPicture.h' l='354' type='int tImage::tPicture::GetIndex(int x, int y) const'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='494' u='c' c='_ZN6tImage8tPicture8SetPixelEiiRK9tColour4bj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='143' u='c' c='_ZN6tImage8tPicture8Rotate90Eb'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='223' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='280' u='c' c='_ZN6tImage8tPicture4FlipEb'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='280' u='c' c='_ZN6tImage8tPicture4FlipEb'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='419' u='c' c='_ZNK6tImage8tPicture15GetBordersSizesERK9tColour4bjRiS4_S4_S4_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='438' u='c' c='_ZNK6tImage8tPicture15GetBordersSizesERK9tColour4bjRiS4_S4_S4_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='457' u='c' c='_ZNK6tImage8tPicture15GetBordersSizesERK9tColour4bjRiS4_S4_S4_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='476' u='c' c='_ZNK6tImage8tPicture15GetBordersSizesERK9tColour4bjRiS4_S4_S4_'/>

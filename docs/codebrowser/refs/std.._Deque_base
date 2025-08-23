@@ -1,0 +1,31 @@
+<def f='include/c++/11/bits/stl_deque.h' l='409' ll='593'/>
+<use f='include/c++/11/bits/stl_deque.h' l='596' c='_ZNSt11_Deque_baseD1Ev'/>
+<use f='include/c++/11/bits/stl_deque.h' l='617' c='_ZNSt11_Deque_base17_M_initialize_mapEm'/>
+<use f='include/c++/11/bits/stl_deque.h' l='656' c='_ZNSt11_Deque_base15_M_create_nodesENSt15_Deque_iteratorIT_RS1_N9__gnu_cxx14__alloc_traitsINS4_IT0_NS5_10value_typeEE6rebindIS1_E5otherENS9_5other10va9590691'/>
+<use f='include/c++/11/bits/stl_deque.h' l='674' c='_ZNSt11_Deque_base16_M_destroy_nodesENSt15_Deque_iteratorIT_RS1_N9__gnu_cxx14__alloc_traitsINS4_IT0_NS5_10value_typeEE6rebindIS1_E5otherENS9_5other10v1126462'/>
+<use f='include/c++/11/bits/stl_deque.h' l='767'/>
+<use f='include/c++/11/bits/stl_deque.h' l='787'/>
+<fun r='_ZNKSt11_Deque_base13get_allocatorEv'/>
+<fun r='_ZNSt11_Deque_baseC1Ev'/>
+<fun r='_ZNSt11_Deque_baseC1Em'/>
+<fun r='_ZNSt11_Deque_baseC1ERKT0_m'/>
+<fun r='_ZNSt11_Deque_baseC1ERKT0_'/>
+<fun r='_ZNSt11_Deque_baseC1EOSt11_Deque_baseIT_T0_E'/>
+<fun r='_ZNSt11_Deque_baseC1EOSt11_Deque_baseIT_T0_ERKS2_'/>
+<fun r='_ZNSt11_Deque_baseC1EOSt11_Deque_baseIT_T0_ERKS2_m'/>
+<fun r='_ZNSt11_Deque_baseD1Ev'/>
+<fun r='_ZNSt11_Deque_base19_M_get_Tp_allocatorEv'/>
+<fun r='_ZNKSt11_Deque_base19_M_get_Tp_allocatorEv'/>
+<fun r='_ZNKSt11_Deque_base20_M_get_map_allocatorEv'/>
+<fun r='_ZNSt11_Deque_base16_M_allocate_nodeEv'/>
+<fun r='_ZNSt11_Deque_base18_M_deallocate_nodeEN9__gnu_cxx14__alloc_traitsINS1_IT0_NS2_10value_typeEE6rebindIT_E5otherENS7_5other10value_typeEE7pointerE'/>
+<fun r='_ZNSt11_Deque_base15_M_allocate_mapEm'/>
+<fun r='_ZNSt11_Deque_base17_M_deallocate_mapENSt15_Deque_iteratorIT_RS1_N9__gnu_cxx14__alloc_traitsINS4_IT0_NS5_10value_typeEE6rebindIS1_E5otherENS9_5other108112144'/>
+<fun r='_ZNSt11_Deque_base17_M_initialize_mapEm'/>
+<fun r='_ZNSt11_Deque_base15_M_create_nodesENSt15_Deque_iteratorIT_RS1_N9__gnu_cxx14__alloc_traitsINS4_IT0_NS5_10value_typeEE6rebindIS1_E5otherENS9_5other10va9590691'/>
+<fun r='_ZNSt11_Deque_base16_M_destroy_nodesENSt15_Deque_iteratorIT_RS1_N9__gnu_cxx14__alloc_traitsINS4_IT0_NS5_10value_typeEE6rebindIS1_E5otherENS9_5other10v1126462'/>
+<mbr r='std::_Deque_base::_M_impl' t='std::_Deque_base::_Deque_impl'/>
+<fun r='_ZNSt11_Deque_baseD1Ev'/>
+<fun r='_ZNSt11_Deque_base17_M_initialize_mapEm'/>
+<fun r='_ZNSt11_Deque_base15_M_create_nodesENSt15_Deque_iteratorIT_RS1_N9__gnu_cxx14__alloc_traitsINS4_IT0_NS5_10value_typeEE6rebindIS1_E5otherENS9_5other10va9590691'/>
+<fun r='_ZNSt11_Deque_base16_M_destroy_nodesENSt15_Deque_iteratorIT_RS1_N9__gnu_cxx14__alloc_traitsINS4_IT0_NS5_10value_typeEE6rebindIS1_E5otherENS9_5other10v1126462'/>

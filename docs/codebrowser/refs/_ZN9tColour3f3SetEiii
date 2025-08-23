@@ -1,0 +1,5 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='685' u='c' c='_ZN9tColour3fC1Ehhh'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='686' u='c' c='_ZN9tColour3fC1Eiii'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='695' u='c' c='_ZN9tColour3f3SetERK9tColour4b'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='698' type='void tColour3f::Set(int r, int g, int b)'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='697'>// The integer get and set methods use a range of [0, 255] for each component.</doc>

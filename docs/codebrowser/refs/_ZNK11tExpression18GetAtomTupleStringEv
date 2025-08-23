@@ -1,0 +1,12 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='185' type='tString tExpression::GetAtomTupleString() const'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='182'>// Parses atom strings of the form (a, b, c, ...). There may or may not be spaces. Returns the part inside the
+	// brackets and removes all spaces. This function is a helper for getting atoms that are vectors, quaternions,
+	// matrices, or colours.</doc>
+<def f='Modules/System/Src/tScript.cpp' l='263' ll='286' type='tString tExpression::GetAtomTupleString() const'/>
+<use f='Modules/System/Src/tScript.cpp' l='292' u='c' c='_ZNK11tExpression14GetAtomVector2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='306' u='c' c='_ZNK11tExpression14GetAtomVector3Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='323' u='c' c='_ZNK11tExpression14GetAtomVector4Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='343' u='c' c='_ZNK11tExpression17GetAtomQuaternionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='363' u='c' c='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='384' u='c' c='_ZNK11tExpression14GetAtomMatrix4Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='404' u='c' c='_ZNK11tExpression13GetAtomColourEv'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tThrow.h' l='30' type='void tError::tError(const tString &amp; message)'/>
+<def f='Modules/System/Src/tThrow.cpp' l='31' ll='35' type='void tError::tError(const tString &amp; message)'/>

@@ -1,0 +1,65 @@
+<def f='include/linux/stat.h' l='99' ll='131'/>
+<dec f='include/x86_64-linux-gnu/bits/statx-generic.h' l='60' type='int statx(int __dirfd, const char *__restrict __path, int __flags, unsigned int __mask, struct statx *__restrict __buf)'/>
+<use f='include/x86_64-linux-gnu/bits/statx-generic.h' l='61' c='statx'/>
+<size>256</size>
+<doc f='include/linux/stat.h' l='62'>/*
+ * Structures for the extended file attribute retrieval system call
+ * (statx()).
+ *
+ * The caller passes a mask of what they&apos;re specifically interested in as a
+ * parameter to statx().  What statx() actually got will be indicated in
+ * st_mask upon return.
+ *
+ * For each bit in the mask argument:
+ *
+ * - if the datum is not supported:
+ *
+ *   - the bit will be cleared, and
+ *
+ *   - the datum will be set to an appropriate fabricated value if one is
+ *     available (eg. CIFS can take a default uid and gid), otherwise
+ *
+ *   - the field will be cleared;
+ *
+ * - otherwise, if explicitly requested:
+ *
+ *   - the datum will be synchronised to the server if AT_STATX_FORCE_SYNC is
+ *     set or if the datum is considered out of date, and
+ *
+ *   - the field will be filled in and the bit will be set;
+ *
+ * - otherwise, if not requested, but available in approximate form without any
+ *   effort, it will be filled in anyway, and the bit will be set upon return
+ *   (it might not be up to date, however, and no attempt will be made to
+ *   synchronise the internal state first);
+ *
+ * - otherwise the field and the bit will be cleared before returning.
+ *
+ * Items in STATX_BASIC_STATS may be marked unavailable on return, but they
+ * will have values installed for compatibility purposes so that stat() and
+ * co. can be emulated in userspace.
+ */</doc>
+<doc f='include/x86_64-linux-gnu/bits/statx-generic.h' l='59'>/* Fill *BUF with information about PATH in DIRFD.  */</doc>
+<mbr r='statx::stx_mask' o='0' t='__u32'/>
+<mbr r='statx::stx_blksize' o='32' t='__u32'/>
+<mbr r='statx::stx_attributes' o='64' t='__u64'/>
+<mbr r='statx::stx_nlink' o='128' t='__u32'/>
+<mbr r='statx::stx_uid' o='160' t='__u32'/>
+<mbr r='statx::stx_gid' o='192' t='__u32'/>
+<mbr r='statx::stx_mode' o='224' t='__u16'/>
+<mbr r='statx::__spare0' o='240' t='__u16[1]'/>
+<mbr r='statx::stx_ino' o='256' t='__u64'/>
+<mbr r='statx::stx_size' o='320' t='__u64'/>
+<mbr r='statx::stx_blocks' o='384' t='__u64'/>
+<mbr r='statx::stx_attributes_mask' o='448' t='__u64'/>
+<mbr r='statx::stx_atime' o='512' t='struct statx_timestamp'/>
+<mbr r='statx::stx_btime' o='640' t='struct statx_timestamp'/>
+<mbr r='statx::stx_ctime' o='768' t='struct statx_timestamp'/>
+<mbr r='statx::stx_mtime' o='896' t='struct statx_timestamp'/>
+<mbr r='statx::stx_rdev_major' o='1024' t='__u32'/>
+<mbr r='statx::stx_rdev_minor' o='1056' t='__u32'/>
+<mbr r='statx::stx_dev_major' o='1088' t='__u32'/>
+<mbr r='statx::stx_dev_minor' o='1120' t='__u32'/>
+<mbr r='statx::stx_mnt_id' o='1152' t='__u64'/>
+<mbr r='statx::__spare2' o='1216' t='__u64'/>
+<mbr r='statx::__spare3' o='1280' t='__u64[12]'/>

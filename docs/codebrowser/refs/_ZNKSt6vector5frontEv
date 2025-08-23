@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1131' ll='1136' type='std::vector::const_reference std::vector::front() const'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1127'>/**
+       *  Returns a read-only (constant) reference to the data at the first
+       *  element of the %vector.
+       */</doc>

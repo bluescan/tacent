@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='147' type='bool operator==(const tFixIntU&lt;NumBits&gt; &amp; a, const tFixIntU&lt;NumBits&gt; &amp; b)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='145'>// Interestingly, friend functions declared (and even defined) inside class declarations are not considered in the
+	// scope of the enclosing class -- they are in the outer scope. Makes perfect sense, just didn&apos;t know before.</doc>

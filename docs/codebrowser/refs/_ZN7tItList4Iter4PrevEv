@@ -1,0 +1,4 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='285' u='c' c='_ZN7tItList4ItermmEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='287' u='c' c='_ZN7tItList4ItermmEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='291' u='c' c='_ZN7tItList4ItermIEi'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='298' type='void tItList::Iter::Prev()'/>

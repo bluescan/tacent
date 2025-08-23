@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/stl_iterator.h' l='2468'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='341' u='c'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='342' u='c'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='958' u='c'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='959' u='c'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='975' u='c'/>
+<use f='include/c++/11/bits/vector.tcc' l='713' u='c'/>
+<use f='include/c++/11/bits/vector.tcc' l='714' u='c'/>

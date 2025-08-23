@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='157'/>
+<doc f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='156'>/* Maximum clock resolution in nanoseconds.  */</doc>

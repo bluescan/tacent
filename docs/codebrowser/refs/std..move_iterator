@@ -1,0 +1,54 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='1370' ll='1581'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1447' c='_ZNSt13move_iteratorC1ERKSt13move_iteratorITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1456' c='_ZNSt13move_iteratoraSERKSt13move_iteratorITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1577' c='_ZSt9iter_swapRKSt13move_iteratorIT_ERKS_ITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1585' c='_ZSteqRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1586' c='_ZSteqRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1596' c='_ZStssRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1597' c='_ZStssRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1609' c='_ZStltRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1610' c='_ZStltRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1618' c='_ZStleRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1619' c='_ZStleRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1627' c='_ZStgtRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1628' c='_ZStgtRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1636' c='_ZStgeRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1637' c='_ZStgeRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1648' c='_ZSteqRKSt13move_iteratorIT_ES3_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1649' c='_ZSteqRKSt13move_iteratorIT_ES3_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1655' c='_ZStssRKSt13move_iteratorIT_ES3_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1656' c='_ZStssRKSt13move_iteratorIT_ES3_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1693' c='_ZStmiRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1694' c='_ZStmiRKSt13move_iteratorIT_ERKS_IT0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1699' c='_ZStplNSt13move_iteratorIT_E15difference_typeERKS1_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1700' c='_ZStplNSt13move_iteratorIT_E15difference_typeERKS1_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1701' c='_ZStplNSt13move_iteratorIT_E15difference_typeERKS1_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1705' c='_ZSt18make_move_iteratorT_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1707' c='_ZSt18make_move_iteratorT_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1712'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1721'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2450' c='_ZSt12__niter_baseSt13move_iteratorIT_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2455'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2464' c='_ZSt12__miter_baseSt13move_iteratorIT_E'/>
+<mbr r='std::move_iterator::_M_current' t='_Iterator'/>
+<smbr r='std::move_iterator::__convertible' t='const bool'/>
+<fun r='_ZNSt13move_iterator15_S_iter_conceptEv'/>
+<fun r='_ZNSt13move_iteratorC1Ev'/>
+<fun r='_ZNSt13move_iteratorC1ET_'/>
+<fun r='_ZNSt13move_iteratorC1ERKSt13move_iteratorITL0__E'/>
+<fun r='_ZNSt13move_iteratoraSERKSt13move_iteratorITL0__E'/>
+<fun r='_ZNKRSt13move_iterator4baseEv'/>
+<fun r='_ZNOSt13move_iterator4baseEv'/>
+<fun r='_ZNKSt13move_iteratordeEv'/>
+<fun r='_ZNKSt13move_iteratorptEv'/>
+<fun r='_ZNSt13move_iteratorppEv'/>
+<fun r='_ZNSt13move_iteratorppEi'/>
+<fun r='_ZNSt13move_iteratorppEi'/>
+<fun r='_ZNSt13move_iteratormmEv'/>
+<fun r='_ZNSt13move_iteratormmEi'/>
+<fun r='_ZNKSt13move_iteratorplENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<fun r='_ZNSt13move_iteratorpLENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<fun r='_ZNKSt13move_iteratormiENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<fun r='_ZNSt13move_iteratormIENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<fun r='_ZNKSt13move_iteratorixENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS5_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='69'/>

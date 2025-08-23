@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/unordered_map.h' l='978' ll='980' type='std::unordered_map::mapped_type &amp; std::unordered_map::operator[](const std::unordered_map::key_type &amp; __k)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='966'>/**
+       *  @brief  Subscript ( @c [] ) access to %unordered_map data.
+       *  @param  __k  The key for which data should be retrieved.
+       *  @return  A reference to the data of the (key,data) %pair.
+       *
+       *  Allows for easy lookup with the subscript ( @c [] )operator.  Returns
+       *  data associated with the key specified in subscript.  If the key does
+       *  not exist, a pair with that key is created using default values, which
+       *  is then returned.
+       *
+       *  Lookup requires constant time.
+       */</doc>

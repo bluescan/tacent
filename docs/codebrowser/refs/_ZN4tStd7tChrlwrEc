@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='349' type='char tStd::tChrlwr(char c)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='348'>// These functions return an unchanged character if the input is not an alphabetic character.</doc>
+<use f='Modules/System/Src/tFile.cpp' l='347' u='c' c='_ZN7tSystem13tGetLinuxPathERK7tStringS2_'/>

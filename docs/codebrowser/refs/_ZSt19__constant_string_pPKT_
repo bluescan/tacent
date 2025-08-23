@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/char_traits.h' l='284' ll='296' macro='1' type='bool std::__constant_string_p(const _CharT * __s)'/>
+<use f='include/c++/11/bits/char_traits.h' l='396' u='c' c='_ZNSt11char_traitsIcE6lengthEPKc'/>
+<use f='include/c++/11/bits/char_traits.h' l='520' u='c' c='_ZNSt11char_traitsIwE6lengthEPKw'/>
+<use f='include/c++/11/bits/char_traits.h' l='641' u='c' c='_ZNSt11char_traitsIDuE6lengthEPKDu'/>

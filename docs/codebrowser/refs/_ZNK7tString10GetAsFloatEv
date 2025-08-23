@@ -1,0 +1,26 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='353' type='float tString::GetAsFloat() const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='364' u='c' c='_ZNK7tString7AsFloatEv'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='352'>// Base 10 interpretation only.</doc>
+<use f='Modules/System/Inc/System/tScript.h' l='102' u='c' c='_ZNK11tExpression12GetAtomFloatEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='198' u='c' c='_Z12GetAtomFloatR11tExpression'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1628' u='c' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='296' u='c' c='_ZNK11tExpression14GetAtomVector2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='298' u='c' c='_ZNK11tExpression14GetAtomVector2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='310' u='c' c='_ZNK11tExpression14GetAtomVector3Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='313' u='c' c='_ZNK11tExpression14GetAtomVector3Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='315' u='c' c='_ZNK11tExpression14GetAtomVector3Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='327' u='c' c='_ZNK11tExpression14GetAtomVector4Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='330' u='c' c='_ZNK11tExpression14GetAtomVector4Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='333' u='c' c='_ZNK11tExpression14GetAtomVector4Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='335' u='c' c='_ZNK11tExpression14GetAtomVector4Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='347' u='c' c='_ZNK11tExpression17GetAtomQuaternionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='350' u='c' c='_ZNK11tExpression17GetAtomQuaternionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='353' u='c' c='_ZNK11tExpression17GetAtomQuaternionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='355' u='c' c='_ZNK11tExpression17GetAtomQuaternionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='367' u='c' c='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='370' u='c' c='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='373' u='c' c='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='375' u='c' c='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='388' u='c' c='_ZNK11tExpression14GetAtomMatrix4Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='393' u='c' c='_ZNK11tExpression14GetAtomMatrix4Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='396' u='c' c='_ZNK11tExpression14GetAtomMatrix4Ev'/>

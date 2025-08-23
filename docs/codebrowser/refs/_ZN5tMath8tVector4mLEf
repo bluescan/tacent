@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector4.h' l='84' type='tMath::tVector4 &amp; tMath::tVector4::operator*=(float a)'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='30' u='c' c='_ZN6tScene6tJoint5ScaleEf'/>

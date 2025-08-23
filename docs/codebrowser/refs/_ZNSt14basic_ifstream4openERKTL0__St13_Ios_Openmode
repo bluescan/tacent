@@ -1,0 +1,1 @@
+<def f='include/c++/11/fstream' l='722' ll='724' type='_If_fs_path&lt;_Path, void&gt; std::basic_ifstream::open(const _Path &amp; __s, ios_base::openmode __mode = ios_base::in)'/>

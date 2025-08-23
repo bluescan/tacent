@@ -1,0 +1,5 @@
+<def f='Modules/Scene/Inc/Scene/tMesh.h' l='22' ll='30'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='24' c='_ZNK6tScene11tVertWeighteqERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='25' c='_ZNK6tScene11tVertWeightneERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='44'/>
+<size>12</size>

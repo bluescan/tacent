@@ -1,0 +1,2 @@
+<use f='include/stdio.h' l='853' c='obstack_printf'/>
+<use f='include/stdio.h' l='856' c='obstack_vprintf'/>

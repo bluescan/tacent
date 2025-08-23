@@ -1,0 +1,8 @@
+_ZNKSt7greaterclERKT_S2_|std::greater::operator()
+_ZNKSt13greater_equalclERKT_S2_|std::greater_equal::operator()
+_ZNKSt6ranges7greaterclEOT_OT0_|std::ranges::greater::operator()
+_ZNKSt6ranges13greater_equalclEOT_OT0_|std::ranges::greater_equal::operator()
+_ZN7tString4GrowEi|tString::Grow
+_ZNKSt7__cxx118numpunct8groupingEv|std::numpunct::grouping
+_ZN4tMem9tFastPool8GrowPoolEv|tMem::tFastPool::GrowPool
+_ZNKSt7__cxx1110moneypunct8groupingEv|std::moneypunct::grouping

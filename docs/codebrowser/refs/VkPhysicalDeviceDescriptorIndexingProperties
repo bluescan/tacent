@@ -1,0 +1,28 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6228' ll='6254'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6228'/>
+<size>112</size>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxUpdateAfterBindDescriptorsInAllPools' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::shaderUniformBufferArrayNonUniformIndexingNative' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::shaderSampledImageArrayNonUniformIndexingNative' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::shaderStorageBufferArrayNonUniformIndexingNative' o='224' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::shaderStorageImageArrayNonUniformIndexingNative' o='256' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::shaderInputAttachmentArrayNonUniformIndexingNative' o='288' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::robustBufferAccessUpdateAfterBind' o='320' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::quadDivergentImplicitLod' o='352' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxPerStageDescriptorUpdateAfterBindSamplers' o='384' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxPerStageDescriptorUpdateAfterBindUniformBuffers' o='416' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxPerStageDescriptorUpdateAfterBindStorageBuffers' o='448' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxPerStageDescriptorUpdateAfterBindSampledImages' o='480' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxPerStageDescriptorUpdateAfterBindStorageImages' o='512' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxPerStageDescriptorUpdateAfterBindInputAttachments' o='544' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxPerStageUpdateAfterBindResources' o='576' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxDescriptorSetUpdateAfterBindSamplers' o='608' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxDescriptorSetUpdateAfterBindUniformBuffers' o='640' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxDescriptorSetUpdateAfterBindUniformBuffersDynamic' o='672' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxDescriptorSetUpdateAfterBindStorageBuffers' o='704' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxDescriptorSetUpdateAfterBindStorageBuffersDynamic' o='736' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxDescriptorSetUpdateAfterBindSampledImages' o='768' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxDescriptorSetUpdateAfterBindStorageImages' o='800' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingProperties::maxDescriptorSetUpdateAfterBindInputAttachments' o='832' t='uint32_t'/>

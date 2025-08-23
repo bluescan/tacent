@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix2_lim.h' l='30'/>
+<doc f='include/x86_64-linux-gnu/bits/posix2_lim.h' l='29'>/* The maximum number of elements allowed in an array by the `bc&apos; utility.  */</doc>

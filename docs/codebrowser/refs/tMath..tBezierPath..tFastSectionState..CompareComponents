@@ -1,0 +1,5 @@
+<def f='Modules/Math/Src/tSpline.cpp' l='189' type='comp_t'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='467' u='r' c='_ZN5tMath11tBezierPath17tFastSectionState15CompareSectionsERKNS1_12tSectionInfoES4_'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='468' u='r' c='_ZN5tMath11tBezierPath17tFastSectionState15CompareSectionsERKNS1_12tSectionInfoES4_'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='484' u='w' c='_ZNK5tMath11tBezierPath17tFastSectionState3SetERKNS_8tVector3EjPS3_i'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='493' u='w' c='_ZNK5tMath11tBezierPath17tFastSectionState6UpdateERKNS_8tVector3EPS3_'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='68' type='24'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='68'>//	uint32	Exposure Program.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='434' u='m' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='730' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

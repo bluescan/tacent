@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/basic_string.h' l='784' ll='789' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::operator=(initializer_list&lt;_CharT&gt; __l)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='780'>/**
+       *  @brief  Set value to string constructed from initializer %list.
+       *  @param  __l  std::initializer_list.
+       */</doc>

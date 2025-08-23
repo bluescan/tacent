@@ -1,0 +1,8 @@
+<use f='include/c++/11/sstream' l='143' u='c' c='_ZNSt7__cxx1115basic_stringbufC1ERKNS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='168' u='c' c='_ZNSt7__cxx1115basic_stringbufC1EONS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='182' u='c' c='_ZNSt7__cxx1115basic_stringbufC1ERKNS_12basic_stringIT_T0_TL0__EESt13_Ios_OpenmodeRKT1_'/>
+<use f='include/c++/11/sstream' l='300' u='c' c='_ZNSt7__cxx1115basic_stringbuf3strERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='311' u='c' c='_ZNSt7__cxx1115basic_stringbuf3strERKNS_12basic_stringIT_T0_TL0__EE'/>
+<use f='include/c++/11/sstream' l='319' u='c' c='_ZNSt7__cxx1115basic_stringbuf3strEONS_12basic_stringIT_T0_T1_EE'/>
+<def f='include/c++/11/sstream' l='325' ll='333' type='void std::basic_stringbuf::_M_stringbuf_init(ios_base::openmode __mode)'/>
+<doc f='include/c++/11/sstream' l='324'>// Common initialization code goes here.</doc>

@@ -1,0 +1,14 @@
+<inh f='Modules/Foundation/Inc/Foundation/tList.h' l='37' c='tLink'/>
+<def f='Modules/System/Inc/System/tCmdLine.h' l='98' ll='122'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='98'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='212' c='_ZN8tCmdLine6tParamC1EPKcS2_ib'/>
+<size>136</size>
+<use f='Modules/System/Src/tCmdLine.cpp' l='36'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='254' c='_ZL11ParamSortFnRKN8tCmdLine6tParamES2_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='254' c='_ZL11ParamSortFnRKN8tCmdLine6tParamES2_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='394' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='560' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='613' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='667' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<size>136</size>
+<fun r='_ZN8tCmdLine6tParamC1EiPKcS2_b'/>

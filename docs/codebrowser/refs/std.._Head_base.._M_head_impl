@@ -1,0 +1,20 @@
+<use f='include/c++/11/tuple' l='81' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1Ev'/>
+<use f='include/c++/11/tuple' l='84' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ERKS0_'/>
+<use f='include/c++/11/tuple' l='91' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1EOTL0__'/>
+<use f='include/c++/11/tuple' l='95' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt15allocator_arg_tSt13__uses_alloc0'/>
+<use f='include/c++/11/tuple' l='100' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt15allocator_arg_tSt13__uses_alloc1ITL0__E'/>
+<use f='include/c++/11/tuple' l='105' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt15allocator_arg_tSt13__uses_alloc2ITL0__E'/>
+<use f='include/c++/11/tuple' l='110' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt13__uses_alloc0OTL0__'/>
+<use f='include/c++/11/tuple' l='115' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt13__uses_alloc1ITL0__EOTL0_0_'/>
+<use f='include/c++/11/tuple' l='121' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb1EEC1ESt13__uses_alloc2ITL0__EOTL0_0_'/>
+<dec f='include/c++/11/tuple' l='129' type='_Head'/>
+<use f='include/c++/11/tuple' l='190' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1Ev'/>
+<use f='include/c++/11/tuple' l='193' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ERKS0_'/>
+<use f='include/c++/11/tuple' l='200' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1EOTL0__'/>
+<use f='include/c++/11/tuple' l='204' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt15allocator_arg_tSt13__uses_alloc0'/>
+<use f='include/c++/11/tuple' l='209' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt15allocator_arg_tSt13__uses_alloc1ITL0__E'/>
+<use f='include/c++/11/tuple' l='214' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt15allocator_arg_tSt13__uses_alloc2ITL0__E'/>
+<use f='include/c++/11/tuple' l='219' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt13__uses_alloc0OTL0__'/>
+<use f='include/c++/11/tuple' l='224' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt13__uses_alloc1ITL0__EOTL0_0_'/>
+<use f='include/c++/11/tuple' l='230' u='w' c='_ZNSt10_Head_baseIXT_ET0_Lb0EEC1ESt13__uses_alloc2ITL0__EOTL0_0_'/>
+<dec f='include/c++/11/tuple' l='238' type='_Head'/>

@@ -1,0 +1,14 @@
+<dec f='include/c++/11/bits/basic_string.h' l='2806' type='std::basic_string::size_type std::basic_string::find_last_not_of(const _CharT * __s, std::basic_string::size_type __pos, std::basic_string::size_type __n) const'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='1360' ll='1380' type='typename basic_string&lt;_CharT, _Traits, _Alloc&gt;::size_type std::basic_string::find_last_not_of(const _CharT * __s, std::basic_string::size_type __pos, std::basic_string::size_type __n) const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='2793'>/**
+       *  @brief  Find last position of a character not in C substring.
+       *  @param __s  C string containing characters to avoid.
+       *  @param __pos  Index of character to search back from.
+       *  @param __n  Number of characters from s to consider.
+       *  @return  Index of last occurrence.
+       *
+       *  Starting from @a __pos, searches backward for a character not
+       *  contained in the first @a __n characters of @a __s within this string.
+       *  If found, returns the index where it was found.  If not found,
+       *  returns npos.
+      */</doc>

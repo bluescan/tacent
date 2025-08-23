@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/stream_iterator.h' l='63' type='bool'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='68' u='w' c='_ZNSt16istream_iteratorC1Ev'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='72' u='w' c='_ZNSt16istream_iteratorC1ERSt13basic_istreamIT0_T1_E'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='77' u='w' c='_ZNSt16istream_iteratorC1ERKSt16istream_iteratorIT_T0_T1_T2_E'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='131' c='_ZNKSt16istream_iterator8_M_equalERKSt16istream_iteratorIT_T0_T1_T2_E'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='131' u='r' c='_ZNKSt16istream_iterator8_M_equalERKSt16istream_iteratorIT_T0_T1_T2_E'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='140' u='w' c='_ZNSt16istream_iterator7_M_readEv'/>
+<doc f='include/c++/11/bits/stream_iterator.h' l='60'>// This bool becomes false at end-of-stream. It should be sufficient to
+      // check _M_stream != nullptr instead, but historically we did not set
+      // _M_stream to null when reaching the end, so we need to keep this flag.</doc>

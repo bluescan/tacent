@@ -1,0 +1,1 @@
+<def f='include/c++/11/sstream' l='185' ll='190' type='void std::basic_stringbuf::basic_stringbuf&lt;_CharT, _Traits, _Alloc&gt;(const basic_string&lt;_CharT, _Traits, _SAlloc&gt; &amp; __s, ios_base::openmode __mode = ios_base::in | ios_base::out)'/>

@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='477' type='int TIFFReadFromUserBuffer(TIFF * tif, uint32 strile, void * inbuf, tmsize_t insize, void * outbuf, tmsize_t outsize)'/>

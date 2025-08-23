@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9227'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9226'>// VK_KHR_variable_pointers is a preprocessor guard. Do not pass it to API calls.</doc>

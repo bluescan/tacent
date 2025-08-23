@@ -1,0 +1,18 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='2215' type='std::num_get::iter_type std::num_get::do_get(std::num_get::iter_type , std::num_get::iter_type , std::ios_base &amp; , ios_base::iostate &amp; , bool &amp; ) const'/>
+<def f='include/c++/11/bits/locale_facets.tcc' l='592' ll='686' type='_InIter std::num_get::do_get(std::num_get::iter_type __beg, std::num_get::iter_type __end, std::ios_base &amp; __io, ios_base::iostate &amp; __err, bool &amp; __v) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='2200'>/**
+       *  @brief  Numeric parsing.
+       *
+       *  Parses the input stream into the variable @a v.  This function is a
+       *  hook for derived classes to change the value returned.  @see get()
+       *  for more details.
+       *
+       *  @param  __beg  Start of input stream.
+       *  @param  __end  End of input stream.
+       *  @param  __io  Source of locale and flags.
+       *  @param  __err  Error flags to set.
+       *  @param  __v  Value to format and insert.
+       *  @return  Iterator after reading.
+      */</doc>
+<doc f='include/c++/11/bits/locale_facets.tcc' l='590'>// _GLIBCXX_RESOLVE_LIB_DEFECTS
+  // 17.  Bad bool parsing</doc>

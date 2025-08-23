@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='248' type='float tMath::tColourDiffEuclideanSq(const tColour3b &amp; a, const tColour3b &amp; b)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1034' ll='1039' type='float tMath::tColourDiffEuclideanSq(const tColour3b &amp; aa, const tColour3b &amp; bb)'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='247'>// Alpha is ignored for these colour difference functions.</doc>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='248'>// Returns value E [0.0, 195075.0]</doc>

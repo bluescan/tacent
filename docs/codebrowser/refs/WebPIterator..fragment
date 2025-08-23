@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='152' type='WebPData'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='101' u='m' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='101' u='m' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<offset>320</offset>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='151'>// may still be decoded with the WebP incremental decoder.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='152'>// The frame given by &apos;frame_num&apos;. Note for historical</doc>

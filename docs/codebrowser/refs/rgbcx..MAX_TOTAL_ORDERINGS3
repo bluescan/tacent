@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='160' type='const uint32_t'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2842' u='r' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2913' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>

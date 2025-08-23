@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13569' ll='13573'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13569'/>
+<size>24</size>
+<mbr r='VkDeviceMemoryOverallocationCreateInfoAMD::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDeviceMemoryOverallocationCreateInfoAMD::pNext' o='64' t='const void *'/>
+<mbr r='VkDeviceMemoryOverallocationCreateInfoAMD::overallocationBehavior' o='128' t='VkMemoryOverallocationBehaviorAMD'/>

@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='266' type='float tMath::tLinearToSquare(float linearComponent)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='980' ll='983' type='float tMath::tLinearToSquare(float linearComponent)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1259' u='c' c='_ZN9tColour4f14LinearToSquareEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1260' u='c' c='_ZN9tColour4f14LinearToSquareEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1261' u='c' c='_ZN9tColour4f14LinearToSquareEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1262' u='c' c='_ZN9tColour4f14LinearToSquareEj'/>

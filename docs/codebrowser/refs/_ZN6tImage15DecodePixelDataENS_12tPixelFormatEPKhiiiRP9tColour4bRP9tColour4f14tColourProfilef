@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelUtil.h' l='41' type='tImage::DecodeResult tImage::DecodePixelData(tImage::tPixelFormat , const uint8 * data, int dataSize, int width, int height, tColour4b *&amp; dstLDR, tColour4f *&amp; dstHDR, tColourProfile  = tColourProfile::Auto, float RGBM_RGBD_MaxRange = 8.F)'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1439' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1021' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1130' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<def f='Modules/Image/Src/tPixelUtil.cpp' l='62' ll='95' type='tImage::DecodeResult tImage::DecodePixelData(tImage::tPixelFormat fmt, const uint8 * src, int srcSize, int w, int h, tColour4b *&amp; decoded4b, tColour4f *&amp; decoded4f, tColourProfile profile = tColourProfile::Auto, float RGBM_RGBD_MaxRange = 8.F)'/>

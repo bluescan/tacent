@@ -1,0 +1,3 @@
+<def f='include/c++/11/ext/aligned_buffer.h' l='96' type='void __gnu_cxx::__aligned_buffer::__aligned_buffer&lt;_Tp&gt;()'/>
+<def f='include/c++/11/ext/aligned_buffer.h' l='99' type='void __gnu_cxx::__aligned_buffer::__aligned_buffer&lt;_Tp&gt;(std::nullptr_t )'/>
+<doc f='include/c++/11/ext/aligned_buffer.h' l='98'>// Can be used to avoid value-initialization</doc>

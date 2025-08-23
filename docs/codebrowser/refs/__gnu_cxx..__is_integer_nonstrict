@@ -1,0 +1,8 @@
+<def f='include/c++/11/ext/numeric_traits.h' l='51' ll='58'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='64'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='72'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='128' macro='1'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='96'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='128' macro='1'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='102'/>
+<size>1</size>

@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='318' type='WebPIDecoder * WebPINewYUV(uint8_t * luma, size_t luma_size, int luma_stride, uint8_t * u, size_t u_size, int u_stride, uint8_t * v, size_t v_size, int v_stride)'/>

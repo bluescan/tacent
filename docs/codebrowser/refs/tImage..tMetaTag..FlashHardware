@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='89' type='29'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='82'>//			0: Unknown.
+					//			1: Average.
+					//			2: Center Weighted Average.
+					//			3: Spot.
+					//			4: Multi-spot.
+					//			5: Pattern.
+					//			6: Partial.</doc>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='89'>//	uint32	Flash hardware present.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='471' u='m' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='767' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

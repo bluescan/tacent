@@ -1,0 +1,9 @@
+<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='99' ll='117'/>
+<size>4</size>
+<doc f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='94'>// This is a packed format that stores 3 unsigned floats in 32 bits. The first two floats (MSBs) are 11 bits each and
+// the third (LSBs) is 10 bits. They all have no sign bit and the exponent bitdepth is 5 for all three. Denorm numbers
+// are supported. This class is primarily for decoding and encoding the packed format into 3 regular 32-bit floats.
+// tPackedF11F11F10 must remain pod. No virtual function table etc. C++ defaults are used for op=, copy cons, etc. That
+// is, memory copy works fine. Negative input floats get clamped to min 0.0f.</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='542' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<size>4</size>

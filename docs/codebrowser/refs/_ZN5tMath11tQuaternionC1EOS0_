@@ -1,0 +1,9 @@
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='81' u='c' c='_ZNK5tMath11tQuaternionplERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='84' u='c' c='_ZNK5tMath11tQuaternionmiERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='85' u='c' c='_ZNK5tMath11tQuaternionngEv'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='90' u='c' c='_ZNK5tMath11tQuaternionmlERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='91' u='c' c='_ZNK5tMath11tQuaternionmlERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='92' u='c' c='_ZN5tMathmlERKNS_5tQuatEf'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='93' u='c' c='_ZN5tMathmlEfRKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='96' u='c' c='_ZNK5tMath11tQuaterniondvEf'/>
+<use f='Modules/System/Src/tScript.cpp' l='356' u='c' c='_ZNK11tExpression17GetAtomQuaternionEv'/>

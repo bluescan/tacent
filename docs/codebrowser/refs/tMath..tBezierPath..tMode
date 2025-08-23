@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tSpline.h' l='97' ll='101'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='120' c='_ZN5tMath11tBezierPathC1EPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='146' c='_ZN5tMath11tBezierPath15SetControlVertsEPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='212'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='373' c='_ZN5tMath11tBezierPath15SetControlVertsEPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE'/>

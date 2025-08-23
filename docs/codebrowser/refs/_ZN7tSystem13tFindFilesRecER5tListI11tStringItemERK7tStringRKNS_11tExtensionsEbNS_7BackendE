@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='645' type='bool tSystem::tFindFilesRec(tList&lt;tStringItem&gt; &amp; files, const tString &amp; dir, const tSystem::tExtensions &amp; , bool hidden = true, tSystem::Backend  = Backend::Native)'/>
+<def f='Modules/System/Src/tFile.cpp' l='3056' ll='3065' type='bool tSystem::tFindFilesRec(tList&lt;tStringItem&gt; &amp; files, const tString &amp; dir, const tSystem::tExtensions &amp; extensions, bool hidden = true, tSystem::Backend backend = Backend::Native)'/>

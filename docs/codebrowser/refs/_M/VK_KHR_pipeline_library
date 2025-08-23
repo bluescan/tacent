@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10061'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10060'>// VK_KHR_pipeline_library is a preprocessor guard. Do not pass it to API calls.</doc>

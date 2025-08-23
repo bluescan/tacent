@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tHash.h' l='99' type='uint64 tHash::tHashData64(const uint8 * data, int length, uint64 iv = HashIV64)'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='157' u='c' c='_ZN5tHash13tHashString64EPKcy'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='158' u='c' c='_ZN5tHash13tHashString64EPKDuy'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='307' u='c' c='_ZNK5tName11ComputeHashEv'/>
+<def f='Modules/Foundation/Src/tHash.cpp' l='135' ll='193' type='uint64 tHash::tHashData64(const uint8 * data, int length, uint64 iv = HashIV64)'/>
+<use f='Modules/System/Src/tFile.cpp' l='3293' u='c' c='_ZN7tSystem11tHashFile64ERK7tStringy'/>

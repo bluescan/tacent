@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='708' type='const std::size_t'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='707'>/// The size of the mask table.  It is SCHAR_MAX + 1.</doc>

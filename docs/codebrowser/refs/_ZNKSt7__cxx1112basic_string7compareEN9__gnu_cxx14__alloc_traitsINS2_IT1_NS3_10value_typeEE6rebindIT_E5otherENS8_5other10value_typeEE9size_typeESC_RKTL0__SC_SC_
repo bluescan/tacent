@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/basic_string.h' l='2935' ll='2943' type='_If_sv&lt;_Tp, int&gt; std::basic_string::compare(std::basic_string::size_type __pos1, std::basic_string::size_type __n1, const _Tp &amp; __svt, std::basic_string::size_type __pos2, std::basic_string::size_type __n2 = npos) const'/>

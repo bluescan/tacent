@@ -1,0 +1,18 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='119' type='1'/>
+<use f='Modules/System/Src/tPrint.cpp' l='411'/>
+<use f='Modules/System/Src/tPrint.cpp' l='412'/>
+<use f='Modules/System/Src/tPrint.cpp' l='413'/>
+<use f='Modules/System/Src/tPrint.cpp' l='414'/>
+<use f='Modules/System/Src/tPrint.cpp' l='415'/>
+<use f='Modules/System/Src/tPrint.cpp' l='416'/>
+<use f='Modules/System/Src/tPrint.cpp' l='417'/>
+<use f='Modules/System/Src/tPrint.cpp' l='418'/>
+<use f='Modules/System/Src/tPrint.cpp' l='425'/>
+<use f='Modules/System/Src/tPrint.cpp' l='426'/>
+<use f='Modules/System/Src/tPrint.cpp' l='427'/>
+<use f='Modules/System/Src/tPrint.cpp' l='892' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='898' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='905' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='911' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='917' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='923' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>

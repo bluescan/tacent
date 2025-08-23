@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1390' type='char[4]'/>
+<offset>288</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1386'>/*!&lt; Set selector RDO quality threshold. The default is 1.5. Lower is
+             higher quality but less quality per output bit (try [1.0,3.0]).
+             This will override the value chosen by @c qualityLevel.
+         */</doc>

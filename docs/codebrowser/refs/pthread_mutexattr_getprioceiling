@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='918' type='int pthread_mutexattr_getprioceiling(const pthread_mutexattr_t *__restrict __attr, int *__restrict __prioceiling)'/>
+<doc f='include/pthread.h' l='917'>/* Return in *PRIOCEILING the mutex prioceiling attribute in *ATTR.  */</doc>

@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/hashtable_policy.h' l='1324' ll='1333'/>
+<def f='include/c++/11/bits/hashtable_policy.h' l='1336' ll='1348'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1353'/>
+<doc f='include/c++/11/bits/hashtable_policy.h' l='1335'>// Empty partial specialization for empty _Hash_code_base types.</doc>
+<mbr r='std::__detail::_Hash_code_storage::_M_storage' t='__gnu_cxx::__aligned_buffer&lt;_Tp&gt;'/>
+<fun r='_ZNSt8__detail18_Hash_code_storage4_M_hEv'/>
+<fun r='_ZNKSt8__detail18_Hash_code_storage4_M_hEv'/>
+<fun r='_ZNSt8__detail18_Hash_code_storageIT_Lb1EE4_M_hEv'/>
+<fun r='_ZNKSt8__detail18_Hash_code_storageIT_Lb1EE4_M_hEv'/>

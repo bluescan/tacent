@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/hashtable.h' l='729' ll='731' type='const _RehashPolicy &amp; std::_Hashtable::__rehash_policy() const'/>
+<doc f='include/c++/11/bits/hashtable.h' l='724'>// max_load_factor, if present, comes from _Rehash_base.
+
+      // Generalization of max_load_factor.  Extension, not found in
+      // TR1.  Only useful if _RehashPolicy is something other than
+      // the default.</doc>

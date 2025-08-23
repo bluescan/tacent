@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1342' type='ktx_uint32_t'/>
+<offset>64</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1340'>/*!&lt; True to forbid use of the SSE instruction set. Ignored if CPU
+             does not support SSE. */</doc>

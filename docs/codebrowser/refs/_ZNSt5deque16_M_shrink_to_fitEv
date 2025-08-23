@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/stl_deque.h' l='1303' u='c' c='_ZNSt5deque13shrink_to_fitEv'/>
+<dec f='include/c++/11/bits/stl_deque.h' l='2084' type='bool std::deque::_M_shrink_to_fit()'/>
+<def f='include/c++/11/bits/deque.tcc' l='372' ll='388' type='bool std::deque::_M_shrink_to_fit()'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17353'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17352'>// VK_GOOGLE_surfaceless_query is a preprocessor guard. Do not pass it to API calls.</doc>

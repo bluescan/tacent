@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3023' ll='3029'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3023'/>
+<size>32</size>
+<mbr r='VkImageFormatProperties::maxExtent' o='0' t='VkExtent3D'/>
+<mbr r='VkImageFormatProperties::maxMipLevels' o='96' t='uint32_t'/>
+<mbr r='VkImageFormatProperties::maxArrayLayers' o='128' t='uint32_t'/>
+<mbr r='VkImageFormatProperties::sampleCounts' o='160' t='VkSampleCountFlags'/>
+<mbr r='VkImageFormatProperties::maxResourceSize' o='192' t='VkDeviceSize'/>

@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='201' type='long long strtoll(const char *__restrict __nptr, char **__restrict __endptr, int __base)'/>
+<use f='include/c++/11/bits/basic_string.h' l='6635' u='a' c='_ZNSt7__cxx115stollERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEPmi'/>

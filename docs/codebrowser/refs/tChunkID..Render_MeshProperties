@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='594' type='33603584'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='594'>// Distance Threshold. How many materials are in the mesh. Min radius. Max (bounding) radius. Bounding Box (Min xyz followed by max xyz).</doc>

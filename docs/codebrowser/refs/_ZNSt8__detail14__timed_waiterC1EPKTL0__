@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/atomic_timed_wait.h' l='273' ll='278' type='void std::__detail::__timed_waiter::__timed_waiter&lt;_EntersWait&gt;(const _Tp * __addr)'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='416' u='c' c='_ZSt32__atomic_wait_address_until_barePKiT_RKNSt6chrono10time_pointIT0_T1_EE'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='448' u='c' c='_ZSt30__atomic_wait_address_for_barePKiT_RKNSt6chrono8durationIT0_T1_EE'/>

@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/timex.h' l='64' type='__syscall_slong_t'/>
+<offset>384</offset>
+<doc f='include/x86_64-linux-gnu/bits/timex.h' l='64'>/* pll time constant */</doc>

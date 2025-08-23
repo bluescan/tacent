@@ -1,0 +1,13 @@
+<def f='Modules/Image/Src/tQuantizeWu.cpp' l='51' ll='63'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='78' c='_ZN6tImage11tQuantizeWu6Hist3dERNS0_5StateEPiS3_S3_S3_Pf'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='98' c='_ZN6tImage11tQuantizeWu3VarERNS0_5StateEPNS0_3BoxE'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='103' c='_ZN6tImage11tQuantizeWu8MaximizeERNS0_5StateEPNS0_3BoxEhiiPiiiii'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='105' c='_ZN6tImage11tQuantizeWu3CutERNS0_5StateEPNS0_3BoxES4_'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='113' c='_ZN6tImage11tQuantizeWu6Hist3dERNS0_5StateEPiS3_S3_S3_Pf'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='269' c='_ZN6tImage11tQuantizeWu3VarERNS0_5StateEPNS0_3BoxE'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='289' c='_ZN6tImage11tQuantizeWu8MaximizeERNS0_5StateEPNS0_3BoxEhiiPiiiii'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='338' c='_ZN6tImage11tQuantizeWu3CutERNS0_5StateEPNS0_3BoxES4_'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='419' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='420' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>
+<size>718784</size>
+<doc f='Modules/Image/Src/tQuantizeWu.cpp' l='50'>// We&apos;re putting all state on the stack (heap would work too). No globals. This allows the quantizer to be thread-safe.</doc>

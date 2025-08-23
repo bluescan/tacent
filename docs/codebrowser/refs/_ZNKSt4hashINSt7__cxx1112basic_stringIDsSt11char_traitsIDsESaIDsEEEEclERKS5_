@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/basic_string.h' l='6923' ll='6926' type='std::size_t std::hash&lt;std::basic_string&lt;char16_t&gt;&gt;::operator()(const std::u16string &amp; __s) const'/>

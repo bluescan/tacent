@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='510' type='char * strfry(char * __string)'/>
+<doc f='include/string.h' l='509'>/* Sautee STRING briskly.  */</doc>

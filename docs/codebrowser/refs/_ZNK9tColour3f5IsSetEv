@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='689' type='bool tColour3f::IsSet() const'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='689'>// Any set component means the whole colour is considered set.</doc>

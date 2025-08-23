@@ -1,0 +1,13 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='195' type='bool tSystem::tIsHidden(const tString &amp; path)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='191'>// Works on files and directories. For Linux, checks if first character of file is a dot (and not &quot;..&quot;). For Windows it
+// checks the hidden file attribute regardless of whether it starts with a dot or not. If you want a hidden file or
+// directory that is hidden on both types of filesystem (fat/ntfs and extN) make your hidden file/dir start with a dot
+// (Linux) and set the hidden attribute (Windows).</doc>
+<def f='Modules/System/Src/tFile.cpp' l='657' ll='700' type='bool tSystem::tIsHidden(const tString &amp; path)'/>
+<use f='Modules/System/Src/tFile.cpp' l='2059' u='c' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2128' u='c' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2479' u='c' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2621' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2760' u='c' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2892' u='c' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2995' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

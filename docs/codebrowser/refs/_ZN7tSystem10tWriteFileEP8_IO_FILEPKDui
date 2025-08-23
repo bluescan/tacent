@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='61' type='int tSystem::tWriteFile(tFileHandle , const char8_t * buffer, int length)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='727' ll='731' type='int tSystem::tWriteFile(tFileHandle handle, const char8_t * buffer, int length)'/>
+<use f='Modules/System/Src/tFile.cpp' l='1033' u='c' c='_ZN7tSystem11tCreateFileERK7tStringPDuib'/>
+<use f='Modules/System/Src/tFile.cpp' l='1042' u='c' c='_ZN7tSystem11tCreateFileERK7tStringPDuib'/>
+<use f='Modules/System/Src/tScript.cpp' l='631' u='c' c='_ZN11tExprWriter9WriteAtomERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='676' u='c' c='_ZN11tExprWriter8WriteRawERK7tString'/>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1133' ll='1135' type='void std::__atomic_float::__atomic_float&lt;_Fp&gt;(_Fp __t)'/>
+<use f='include/c++/11/atomic' l='1625' u='c' c='_ZNSt6atomicIfEC1Ef'/>
+<use f='include/c++/11/atomic' l='1640' u='c' c='_ZNSt6atomicIdEC1Ed'/>
+<use f='include/c++/11/atomic' l='1655' u='c' c='_ZNSt6atomicIeEC1Ee'/>

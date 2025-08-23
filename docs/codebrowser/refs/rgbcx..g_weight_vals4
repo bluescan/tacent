@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1801' type='const uint32_t[4]'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1810' u='r' c='_ZN5rgbcxL25compute_selector_factors4ERKNS_5hist4ERfS3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2013' u='r' c='_ZN5rgbcxL36compute_least_squares_endpoints4_rgbEPKNS_7color32EPKhPNS_5vec3FES6_iii'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1799'>// This table is: 9 * (w * w), 9 * ((1.0f - w) * w), 9 * ((1.0f - w) * (1.0f - w))
+	// where w is [0,1/3,2/3,1]. 9 is the perfect multiplier.</doc>

@@ -1,0 +1,17 @@
+<def f='include/c++/11/ext/string_conversions.h' l='53' ll='94' type='_Ret __gnu_cxx::__stoa(_TRet (*)(const _CharT *, _CharT **, _Base...) __convf, const char * __name, const _CharT * __str, std::size_t * __idx, _Base... __base)'/>
+<use f='include/c++/11/bits/basic_string.h' l='6620' u='c' c='_ZNSt7__cxx114stoiERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEPmi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6625' u='c' c='_ZNSt7__cxx114stolERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEPmi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6630' u='c' c='_ZNSt7__cxx115stoulERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEPmi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6635' u='c' c='_ZNSt7__cxx115stollERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEPmi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6640' u='c' c='_ZNSt7__cxx116stoullERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEPmi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6646' u='c' c='_ZNSt7__cxx114stofERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEPm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6650' u='c' c='_ZNSt7__cxx114stodERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEPm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6654' u='c' c='_ZNSt7__cxx115stoldERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEPm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6751' u='c' c='_ZNSt7__cxx114stoiERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPmi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6756' u='c' c='_ZNSt7__cxx114stolERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPmi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6761' u='c' c='_ZNSt7__cxx115stoulERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPmi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6766' u='c' c='_ZNSt7__cxx115stollERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPmi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6771' u='c' c='_ZNSt7__cxx116stoullERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPmi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6777' u='c' c='_ZNSt7__cxx114stofERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6781' u='c' c='_ZNSt7__cxx114stodERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6785' u='c' c='_ZNSt7__cxx115stoldERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPm'/>

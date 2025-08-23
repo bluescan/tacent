@@ -1,0 +1,9 @@
+<use f='Modules/Image/Src/tImageBMP.cpp' l='95' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='110' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='111' c='_ZN6tImage9tImageBMP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='242' c='_ZN6tImage9tImageBMP16ReadRow_Indexed8EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='262' c='_ZN6tImage9tImageBMP16ReadRow_Indexed4EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='286' c='_ZN6tImage9tImageBMP16ReadRow_Indexed1EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='312' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE8EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='378' c='_ZN6tImage9tImageBMP19ReadRow_IndexedRLE4EP8_IO_FILEPhPNS0_13PaletteColourE'/>
+<size>4</size>

@@ -1,0 +1,13 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='790' type='const char * std::ctype&lt;char&gt;::scan_not(std::ctype_base::mask __m, const char * __lo, const char * __hi) const'/>
+<def f='include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h' l='65' ll='73' type='const char * std::ctype&lt;char&gt;::scan_not(std::ctype_base::mask __m, const char * __low, const char * __high) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='778'>/**
+       *  @brief  Find char not matching a mask
+       *
+       *  This function searches for and returns a pointer to the first char
+       *  in [__lo,__hi) for which is(m,char) is false.
+       *
+       *  @param __m  The mask to compare against.
+       *  @param __lo  Pointer to start of range.
+       *  @param __hi  Pointer to end of range.
+       *  @return  Pointer to a non-matching char if found, else @a __hi.
+      */</doc>

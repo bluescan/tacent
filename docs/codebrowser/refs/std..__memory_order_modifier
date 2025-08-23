@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/atomic_base.h' l='89' ll='95'/>
+<use f='include/c++/11/bits/atomic_base.h' l='98' c='_ZStorSt12memory_orderSt23__memory_order_modifier'/>
+<use f='include/c++/11/bits/atomic_base.h' l='104' c='_ZStanSt12memory_orderSt23__memory_order_modifier'/>
+<use f='include/c++/11/bits/atomic_base.h' l='121' c='_ZSt23__cmpexch_failure_orderSt12memory_order'/>

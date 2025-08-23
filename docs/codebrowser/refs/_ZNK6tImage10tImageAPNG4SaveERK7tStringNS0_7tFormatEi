@@ -1,0 +1,1 @@
+<def f='Modules/Image/Src/tImageAPNG.cpp' l='224' ll='230' type='tImageAPNG::tFormat tImage::tImageAPNG::Save(const tString &amp; apngFile, tImage::tImageAPNG::tFormat format, int overrideFrameDuration = -1) const'/>

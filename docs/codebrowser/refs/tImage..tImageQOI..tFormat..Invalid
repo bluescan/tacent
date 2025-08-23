@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tImageQOI.h' l='65' type='0'/>
+<doc f='Modules/Image/Inc/Image/tImageQOI.h' l='65'>// Invalid must be 0.</doc>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='183' u='r' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='184' u='r' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='187' u='r' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='201' u='r' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='243' u='r' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='251' u='r' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>

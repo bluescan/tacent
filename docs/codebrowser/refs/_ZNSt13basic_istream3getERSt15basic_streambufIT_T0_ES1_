@@ -1,0 +1,21 @@
+<dec f='include/c++/11/istream' l='377' type='std::basic_istream::__istream_type &amp; std::basic_istream::get(std::basic_istream::__streambuf_type &amp; __sb, std::basic_istream::char_type __delim)'/>
+<def f='include/c++/11/bits/istream.tcc' l='361' ll='410' type='basic_istream&lt;_CharT, _Traits&gt; &amp; std::basic_istream::get(std::basic_istream::__streambuf_type &amp; __sb, std::basic_istream::char_type __delim)'/>
+<doc f='include/c++/11/istream' l='357'>/**
+       *  @brief  Extraction into another streambuf.
+       *  @param  __sb  A streambuf in which to store data.
+       *  @param  __delim  A &quot;stop&quot; character.
+       *  @return  *this
+       *
+       *  Characters are extracted and inserted into @a __sb until one of the
+       *  following happens:
+       *
+       *  - the input sequence reaches EOF
+       *  - insertion into the output buffer fails (in this case, the
+       *    character that would have been inserted is not extracted)
+       *  - the next character equals @a __delim (in this case, the character
+       *    is not extracted)
+       *  - an exception occurs (and in this case is caught)
+       *
+       * If no characters are stored, failbit is set in the stream&apos;s error
+       * state.
+      */</doc>

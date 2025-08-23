@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_fwd.h' l='304' ll='306' type='std::filesystem::directory_options &amp; std::filesystem::operator|=(std::filesystem::directory_options &amp; __x, std::filesystem::directory_options __y)'/>

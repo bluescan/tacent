@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3836' ll='3841' type='uint64_t rgbcx::bc4_block::get_selector_bits() const'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4143' u='c' c='_ZN5rgbcx10unpack_bc4EPKvPhj'/>

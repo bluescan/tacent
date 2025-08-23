@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11890' ll='11897'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11890'/>
+<size>32</size>
+<mbr r='VkPipelineRobustnessCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineRobustnessCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineRobustnessCreateInfoEXT::storageBuffers' o='128' t='VkPipelineRobustnessBufferBehaviorEXT'/>
+<mbr r='VkPipelineRobustnessCreateInfoEXT::uniformBuffers' o='160' t='VkPipelineRobustnessBufferBehaviorEXT'/>
+<mbr r='VkPipelineRobustnessCreateInfoEXT::vertexInputs' o='192' t='VkPipelineRobustnessBufferBehaviorEXT'/>
+<mbr r='VkPipelineRobustnessCreateInfoEXT::images' o='224' t='VkPipelineRobustnessImageBehaviorEXT'/>

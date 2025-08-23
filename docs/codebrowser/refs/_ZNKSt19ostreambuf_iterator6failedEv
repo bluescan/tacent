@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/streambuf_iterator.h' l='306' ll='308' type='bool std::ostreambuf_iterator::failed() const'/>
+<doc f='include/c++/11/bits/streambuf_iterator.h' l='305'>/// Return true if previous operator=() failed.</doc>

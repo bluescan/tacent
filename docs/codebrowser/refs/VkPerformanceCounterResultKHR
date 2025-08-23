@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9116' ll='9123'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9116'/>
+<size>8</size>
+<mbr r='VkPerformanceCounterResultKHR::int32' o='0' t='int32_t'/>
+<mbr r='VkPerformanceCounterResultKHR::int64' o='0' t='int64_t'/>
+<mbr r='VkPerformanceCounterResultKHR::uint32' o='0' t='uint32_t'/>
+<mbr r='VkPerformanceCounterResultKHR::uint64' o='0' t='uint64_t'/>
+<mbr r='VkPerformanceCounterResultKHR::float32' o='0' t='float'/>
+<mbr r='VkPerformanceCounterResultKHR::float64' o='0' t='double'/>

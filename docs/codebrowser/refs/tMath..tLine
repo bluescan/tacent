@@ -1,0 +1,13 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='245' ll='254'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='451' c='_ZN5tMath15tDistanceToLineERKNS_8tVector3ERKNS_5tLineE'/>
+<size>24</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='244'>// Goes through A and B and extends infinitely.</doc>
+<fun r='_ZN5tMath5tLineC1Ev'/>
+<fun r='_ZN5tMath5tLineC1ERKNS_4tRayE'/>
+<fun r='_ZN5tMath5tLineC1ERKNS_8tLineSegE'/>
+<fun r='_ZN5tMath5tLine3SetERKNS_4tRayE'/>
+<fun r='_ZN5tMath5tLine3SetERKNS_8tLineSegE'/>
+<mbr r='tMath::tLine::A' o='0' t='tMath::tVector3'/>
+<mbr r='tMath::tLine::B' o='96' t='tMath::tVector3'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='264' c='_ZN5tMath15tDistanceToLineERKNS_8tVector3ERKNS_5tLineE'/>
+<size>24</size>

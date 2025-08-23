@@ -1,0 +1,5 @@
+<dec f='include/c++/11/functional' l='144' type='_MemObjPtr'/>
+<use f='include/c++/11/functional' l='148' u='w' c='_ZNSt12_Mem_fn_baseIT_Lb0EEC1ES0_'/>
+<use f='include/c++/11/functional' l='155' c='_ZNKSt12_Mem_fn_baseIT_Lb0EEclEOTL0__'/>
+<use f='include/c++/11/functional' l='154' c='_ZNKSt12_Mem_fn_baseIT_Lb0EEclEOTL0__'/>
+<use f='include/c++/11/functional' l='156' c='_ZNKSt12_Mem_fn_baseIT_Lb0EEclEOTL0__'/>

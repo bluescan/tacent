@@ -1,0 +1,18 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13639' ll='13655'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13639'/>
+<size>88</size>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::maxDrawMeshTasksCount' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::maxTaskWorkGroupInvocations' o='160' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::maxTaskWorkGroupSize' o='192' t='uint32_t[3]'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::maxTaskTotalMemorySize' o='288' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::maxTaskOutputCount' o='320' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::maxMeshWorkGroupInvocations' o='352' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::maxMeshWorkGroupSize' o='384' t='uint32_t[3]'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::maxMeshTotalMemorySize' o='480' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::maxMeshOutputVertices' o='512' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::maxMeshOutputPrimitives' o='544' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::maxMeshMultiviewViewCount' o='576' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::meshOutputPerVertexGranularity' o='608' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceMeshShaderPropertiesNV::meshOutputPerPrimitiveGranularity' o='640' t='uint32_t'/>

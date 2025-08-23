@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='193' type='void rgbcx::encode_bc3(void * pDst, const uint8_t * pPixels, uint32_t flags = 0, uint32_t total_orderings_to_try = DEFAULT_TOTAL_ORDERINGS_TO_TRY)'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4006' ll='4015' type='void rgbcx::encode_bc3(void * pDst, const uint8_t * pPixels, uint32_t flags = 0, uint32_t total_orderings_to_try = DEFAULT_TOTAL_ORDERINGS_TO_TRY)'/>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/uniform_int_dist.h' l='183' ll='185' type='std::uniform_int_distribution::result_type std::uniform_int_distribution::max() const'/>
+<doc f='include/c++/11/bits/uniform_int_dist.h' l='180'>/**
+       * @brief Returns the inclusive upper bound of the distribution range.
+       */</doc>

@@ -1,0 +1,3 @@
+<dec f='include/locale.h' l='176' type='locale_t duplocale(locale_t __dataset)'/>
+<doc f='include/locale.h' l='174'>/* Return a duplicate of the set of locale in DATASET.  All usage
+   counters are increased if necessary.  */</doc>

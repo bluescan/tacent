@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='88'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='87'>/* We support priority inheritence.  */</doc>

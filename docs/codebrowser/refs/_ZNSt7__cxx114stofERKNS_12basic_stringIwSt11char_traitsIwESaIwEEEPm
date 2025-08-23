@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/basic_string.h' l='6775' ll='6777' type='float std::stof(const std::wstring &amp; __str, std::size_t * __idx = 0)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='6774'>// NB: wcstof vs wcstod.</doc>

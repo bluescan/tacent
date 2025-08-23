@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='611' type='int deflateSetDictionary(z_streamp strm, const Bytef * dictionary, uInt dictLength)'/>

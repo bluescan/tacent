@@ -1,0 +1,5 @@
+<def f='include/c++/11/type_traits' l='2375'/>
+<use f='include/c++/11/type_traits' l='2410' c='_ZNSt29__result_of_memfun_deref_impl7_S_testEi'/>
+<use f='include/c++/11/type_traits' l='2945' c='_ZSt12__call_is_ntSt21__invoke_memfun_deref'/>
+<use f='include/c++/11/bits/invoke.h' l='71' c='_ZSt13__invoke_implSt21__invoke_memfun_derefOT0_OT1_DpOT2_'/>
+<size>1</size>

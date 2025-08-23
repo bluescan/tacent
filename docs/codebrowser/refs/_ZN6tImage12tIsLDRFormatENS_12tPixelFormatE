@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='277' type='bool tImage::tIsLDRFormat(tImage::tPixelFormat )'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='577' u='c' c='_ZN6tImage14tIsAlphaFormatENS_12tPixelFormatE'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='626' ll='629' type='bool tImage::tIsLDRFormat(tImage::tPixelFormat format)'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='570' u='c' c='_ZN6tImage17tGetBytesPerBlockENS_12tPixelFormatE'/>

@@ -1,0 +1,2 @@
+<dec f='include/dirent.h' l='215' type='void seekdir(DIR * __dirp, long __pos)'/>
+<doc f='include/dirent.h' l='214'>/* Seek to position POS on DIRP.  */</doc>

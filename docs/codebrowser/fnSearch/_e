@@ -1,0 +1,3 @@
+_ZNSt27_Enable_default_constructoraSERKSt27_Enable_default_constructorIXT_ET0_E|std::_Enable_default_constructor::operator=
+_ZNSt31_Enable_default_constructor_tagC1Ev|std::_Enable_default_constructor_tag::_Enable_default_constructor_tag
+_ZN8TinyEXIF10EXIFStreamD1Ev|TinyEXIF::EXIFStream::~EXIFStream

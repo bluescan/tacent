@@ -1,0 +1,12 @@
+<dec f='include/signal.h' l='23'/>
+<use f='include/x86_64-linux-gnu/bits/signum-generic.h' l='22' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/signum-arch.h' l='22' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/siginfo-consts.h' l='22' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/sigevent-consts.h' l='22' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/sigaction.h' l='22' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/sigcontext.h' l='21' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/sigstack.h' l='22' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/sigstksz.h' l='19' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/ss_flags.h' l='22' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/sigthread.h' l='22' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/signal_ext.h' l='19' u='a'/>

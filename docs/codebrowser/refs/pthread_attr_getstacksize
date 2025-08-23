@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='366' type='int pthread_attr_getstacksize(const pthread_attr_t *__restrict __attr, size_t *__restrict __stacksize)'/>
+<doc f='include/pthread.h' l='365'>/* Return the currently used minimal stack size.  */</doc>

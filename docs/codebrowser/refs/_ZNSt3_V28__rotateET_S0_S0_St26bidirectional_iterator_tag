@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algo.h' l='1257' ll='1292' macro='1' type='_BidirectionalIterator std::__rotate(_BidirectionalIterator __first, _BidirectionalIterator __middle, _BidirectionalIterator __last, std::bidirectional_iterator_tag )'/>

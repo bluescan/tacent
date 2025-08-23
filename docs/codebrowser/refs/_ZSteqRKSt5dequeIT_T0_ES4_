@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_deque.h' l='2246' ll='2249' type='bool std::operator==(const deque&lt;_Tp, _Alloc&gt; &amp; __x, const deque&lt;_Tp, _Alloc&gt; &amp; __y)'/>

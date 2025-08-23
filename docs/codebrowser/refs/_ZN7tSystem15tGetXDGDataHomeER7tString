@@ -1,0 +1,9 @@
+<dec f='Modules/System/Inc/System/tMachine.h' l='49' type='bool tSystem::tGetXDGDataHome(tString &amp; xdgDataHome)'/>
+<doc f='Modules/System/Inc/System/tMachine.h' l='43'>// These functions return the XDG environment variables in the first argument. They also respect all default values as
+// specified by https://specifications.freedesktop.org/basedir-spec/latest/. True is returned if the envirenment
+// variable was set. False is returned if the env var was unset and the default had to be used. The paths are returned
+// in Tacent&apos;s path format with trailing / for directories. All paths are absolute as defined by the spec. Clients using
+// these functions should NOT place data directly in the returned directories -- they should make a subdirectory,
+// usually the name of the app in lowercase, and put their files there.</doc>
+<doc f='Modules/System/Inc/System/tMachine.h' l='49'>// $XDG_DATA_HOME</doc>
+<def f='Modules/System/Src/tMachine.cpp' l='290' ll='297' type='bool tSystem::tGetXDGDataHome(tString &amp; xdgDataHome)'/>

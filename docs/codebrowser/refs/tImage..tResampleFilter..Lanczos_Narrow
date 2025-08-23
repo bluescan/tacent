@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tResample.h' l='38' type='8'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='328' c='_ZN6tImage8tPicture14GenerateLayersER5tListINS_6tLayerEENS_15tResampleFilterENS_17tResampleEdgeModeEb'/>
+<doc f='Modules/Image/Inc/Image/tResample.h' l='36'>// Lanczos is useful for cases where increased contrast is needed, esp at edges. Overall is a bit &apos;ringy&apos;.
+	// See https://en.wikipedia.org/wiki/Lanczos_resampling for a description of the Lanczos kernel.</doc>
+<doc f='Modules/Image/Inc/Image/tResample.h' l='38'>// Sinc-based.				A = 2</doc>
+<use f='Modules/Image/Src/tResample.cpp' l='185' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>

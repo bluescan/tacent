@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/basic_ios.h' l='104' type='const std::basic_ios::__num_put_type *'/>
+<use f='include/c++/11/bits/basic_ios.h' l='272' u='w' c='_ZNSt9basic_iosC1EPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.h' l='462' u='w' c='_ZNSt9basic_iosC1Ev'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='165' u='w' c='_ZNSt9basic_ios15_M_cache_localeERKSt6locale'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='167' u='w' c='_ZNSt9basic_ios15_M_cache_localeERKSt6locale'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='103'>// For ostream.</doc>

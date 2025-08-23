@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7177' ll='7184'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7177'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceSubgroupSizeControlProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceSubgroupSizeControlProperties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceSubgroupSizeControlProperties::minSubgroupSize' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceSubgroupSizeControlProperties::maxSubgroupSize' o='160' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceSubgroupSizeControlProperties::maxComputeWorkgroupSubgroups' o='192' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceSubgroupSizeControlProperties::requiredSubgroupSizeStages' o='224' t='VkShaderStageFlags'/>

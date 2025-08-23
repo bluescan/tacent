@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12935' ll='12938'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12935'/>
+<size>16</size>
+<mbr r='VkShadingRatePaletteNV::shadingRatePaletteEntryCount' o='0' t='uint32_t'/>
+<mbr r='VkShadingRatePaletteNV::pShadingRatePaletteEntries' o='64' t='const VkShadingRatePaletteEntryNV *'/>

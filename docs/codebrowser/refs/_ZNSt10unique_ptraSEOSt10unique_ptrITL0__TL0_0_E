@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='381' ll='391' type='typename enable_if&lt;__and_&lt;__safe_conversion_up&lt;_Up, _Ep&gt;, is_assignable&lt;deleter_type &amp;, _Ep &amp;&amp;&gt;&gt;::value, unique_ptr&lt;_Tp, _Dp&gt; &amp;&gt;::type std::unique_ptr::operator=(unique_ptr&lt;_Up, _Ep&gt; &amp;&amp; __u)'/>

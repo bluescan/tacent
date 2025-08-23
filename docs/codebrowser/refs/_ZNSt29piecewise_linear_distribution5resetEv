@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='5887' ll='5889' type='void std::piecewise_linear_distribution::reset()'/>
+<doc f='include/c++/11/bits/random.h' l='5884'>/**
+       * Resets the distribution state.
+       */</doc>

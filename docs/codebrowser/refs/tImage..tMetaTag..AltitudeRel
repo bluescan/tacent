@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='49' type='10'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='46'>//			&quot;Above Ground&quot;		: Reference data unavailable. Assume above ground.
+					//			&quot;Above Sea Level&quot;	: Ground is above sea level.
+					//			&quot;Below Sea Level&quot;	: Ground is below sea level.</doc>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='49'>//	float	Relative altitude in meters. Relative to AltitudeRelRef.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='324' u='m' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='687' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

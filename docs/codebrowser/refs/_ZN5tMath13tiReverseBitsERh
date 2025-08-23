@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='142' type='uint8 &amp; tMath::tiReverseBits(uint8 &amp; v)'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='244' u='c' c='_ZNK10tBitArray817FindFirstClearBitEv'/>

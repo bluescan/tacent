@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/hashtable.h' l='833' type='void std::_Hashtable::_M_remove_bucket_begin(std::_Hashtable::size_type __bkt, std::_Hashtable::__node_ptr __next_n, std::_Hashtable::size_type __next_bkt)'/>
+<use f='include/c++/11/bits/hashtable.h' l='1008' u='c' c='_ZNSt10_Hashtable15_M_extract_nodeEmNSt8__detail16_Hashtable_allocINSt23__allocator_traits_base8__rebindIT1_NS0_10_Hash_nodeIT0_Xsr13__hash_cachedE5va13425077'/>
+<def f='include/c++/11/bits/hashtable.h' l='1914' ll='1936' type='void std::_Hashtable::_M_remove_bucket_begin(std::_Hashtable::size_type __bkt, std::_Hashtable::__node_ptr __next, std::_Hashtable::size_type __next_bkt)'/>
+<use f='include/c++/11/bits/hashtable.h' l='2172' u='c' c='_ZNSt10_Hashtable8_M_eraseENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeENS0_16_Hashtable_allocINSt23__allocator_traits_base8__rebi4432062'/>
+<use f='include/c++/11/bits/hashtable.h' l='2257' u='c' c='_ZNSt10_Hashtable8_M_eraseESt17integral_constantIbLb0EERKT_'/>
+<use f='include/c++/11/bits/hashtable.h' l='2298' u='c' c='_ZNSt10_Hashtable5eraseENSt8__detail7_InsertIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_XsrNSB_20__constant_iteratorsE5valueEE14const_iteratorESD_'/>
+<doc f='include/c++/11/bits/hashtable.h' l='831'>// Remove the bucket first node</doc>

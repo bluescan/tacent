@@ -1,0 +1,3 @@
+<def f='include/c++/11/limits' l='235' type='const int'/>
+<doc f='include/c++/11/limits' l='233'>/** For integer types, specifies the base of the representation.  For
+	floating types, specifies the base of the exponent representation.  */</doc>

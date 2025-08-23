@@ -1,0 +1,2 @@
+<dec f='include/time.h' l='276' type='int clock_getres(clockid_t __clock_id, struct timespec * __res)'/>
+<doc f='include/time.h' l='275'>/* Get resolution of clock CLOCK_ID.  */</doc>

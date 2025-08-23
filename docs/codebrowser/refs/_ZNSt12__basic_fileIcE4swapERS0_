@@ -1,0 +1,3 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='76' ll='81' type='void std::__basic_file&lt;char&gt;::swap(std::__basic_file&lt;char&gt; &amp; __f)'/>
+<use f='include/c++/11/bits/fstream.tcc' l='129' u='c' c='_ZNSt13basic_filebufaSEOSt13basic_filebufIT_T0_E'/>
+<use f='include/c++/11/bits/fstream.tcc' l='157' u='c' c='_ZNSt13basic_filebuf4swapERSt13basic_filebufIT_T0_E'/>

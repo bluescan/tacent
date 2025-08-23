@@ -1,0 +1,14 @@
+<def f='include/c++/11/chrono' l='536' ll='538' type='std::chrono::duration::rep std::chrono::duration::count() const'/>
+<use f='include/c++/11/chrono' l='1146' u='c' c='_ZNSt6chrono3_V212system_clock9to_time_tERKNS_10time_pointIS1_NS_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>
+<use f='include/c++/11/chrono' l='1375' u='c' c='_ZNSt6chronoplERKNS_3dayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1485' u='c' c='_ZNSt6chronoplERKNS_5monthERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1660' u='c' c='_ZNSt6chronoplERKNS_4yearERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1714' u='c' c='_ZNSt6chrono7weekday12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1805' u='c' c='_ZNSt6chronoplERKNS_7weekdayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2265' u='c' c='_ZNSt6chronoplERKNS_10year_monthERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2482' u='c' c='_ZNSt6chrono14year_month_day12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2826' u='c' c='_ZNKSt6chrono18year_month_weekday2okEv'/>
+<use f='include/c++/11/chrono' l='2827' u='c' c='_ZNKSt6chrono18year_month_weekday2okEv'/>
+<doc f='include/c++/11/chrono' l='535'>// 20.11.5.2 observer</doc>
+<use f='include/c++/11/bits/semaphore_base.h' l='130' u='c' c='_ZNSt20__platform_semaphore25_M_try_acquire_until_implERKNSt6chrono10time_pointINS0_3_V212system_clockENS0_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='131' u='c' c='_ZNSt20__platform_semaphore25_M_try_acquire_until_implERKNSt6chrono10time_pointINS0_3_V212system_clockENS0_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>

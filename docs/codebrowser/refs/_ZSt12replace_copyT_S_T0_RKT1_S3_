@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='585' type='_OIter std::replace_copy(_IIter , _IIter , _OIter , const _Tp &amp; , const _Tp &amp; )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='3138' ll='3155' macro='1' type='_OutputIterator std::replace_copy(_InputIterator __first, _InputIterator __last, _OutputIterator __result, const _Tp &amp; __old_value, const _Tp &amp; __new_value)'/>

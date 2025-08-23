@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Src/tQuantizeNeu.cpp' l='120' type='int tImage::tQuantizeNeu::inxsearch(tImage::tQuantizeNeu::State &amp; , int b, int g, int r)'/>
+<def f='Modules/Image/Src/tQuantizeNeu.cpp' l='257' ll='325' type='int tImage::tQuantizeNeu::inxsearch(tImage::tQuantizeNeu::State &amp; state, int b, int g, int r)'/>
+<doc f='Modules/Image/Src/tQuantizeNeu.cpp' l='118'>// Search for BGR values 0..255 (after net is unbiased) and return colour index.
+	// We don&apos;t call this function since we do an exhaustive red-mean distance check.</doc>

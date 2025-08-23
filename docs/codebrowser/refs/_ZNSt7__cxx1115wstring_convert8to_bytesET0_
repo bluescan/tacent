@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/locale_conv.h' l='329' ll='334' type='std::wstring_convert::byte_string std::wstring_convert::to_bytes(_Elem __wchar)'/>
+<doc f='include/c++/11/bits/locale_conv.h' l='326'>/// @}
+
+      /// @{ Convert to bytes.</doc>

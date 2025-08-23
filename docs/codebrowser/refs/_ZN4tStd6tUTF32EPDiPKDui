@@ -1,0 +1,10 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='272' type='int tStd::tUTF32(char32_t * dst, const char8_t * src, int srcLen)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='272'>// UFT-8  to UTF-32.</doc>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1141' u='c' c='_ZN12tStringUTF323SetEPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1143' u='c' c='_ZN12tStringUTF323SetEPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='512' u='c' c='_ZNK5tName8GetUTF32EPDib'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='514' u='c' c='_ZNK5tName8GetUTF32EPDib'/>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='431' ll='455' type='int tStd::tUTF32(char32_t * dst, const char8_t * src, int srcLen)'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='542' u='c' c='_ZN4tStd7tUTF32sEPDiPKDu'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='627' u='c' c='_ZNK7tString8GetUTF32EPDib'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='629' u='c' c='_ZNK7tString8GetUTF32EPDib'/>

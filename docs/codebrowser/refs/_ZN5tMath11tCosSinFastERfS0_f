@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='184' type='void tMath::tCosSinFast(float &amp; cos, float &amp; sin, float x)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='533' ll='538' type='void tMath::tCosSinFast(float &amp; c, float &amp; s, float x)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='184'>// For x E [0, Pi/2].</doc>

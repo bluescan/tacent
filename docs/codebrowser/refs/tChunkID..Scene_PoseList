@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='497' type='2164420608'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='497'>// A list of poses for animation.</doc>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='197' u='r' c='_ZNK6tScene9tSkeleton4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='241' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='243' u='r' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>

@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='200' type='57'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='201'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='240' u='r'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='523' u='r' c='_ZN6tImage13tIsASTCFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='131' u='a'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='319' u='a'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='507' u='r' c='_ZN6tImage14tGetBlockWidthENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='526' u='r' c='_ZN6tImage15tGetBlockHeightENS_12tPixelFormatE'/>

@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='95' type='bool tMath::tApproxEqual(T a, T b, float e = Epsilon)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='380' u='c' c='_ZN5tMath6tRoundEff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='949' u='c' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='950' u='c' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>

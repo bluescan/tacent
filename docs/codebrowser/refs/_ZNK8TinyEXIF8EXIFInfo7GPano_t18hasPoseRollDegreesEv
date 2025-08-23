@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='310' type='bool TinyEXIF::EXIFInfo::GPano_t::hasPoseRollDegrees() const'/>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='310'>// Return true if PoseRollDegrees is available</doc>

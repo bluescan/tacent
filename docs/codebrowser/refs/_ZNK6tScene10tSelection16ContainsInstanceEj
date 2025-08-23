@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='1048' u='c' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1685' u='c' c='_ZNK6tScene6tWorld21IsInstanceInSelectionEPKNS_9tInstanceEPKNS_10tSelectionE'/>

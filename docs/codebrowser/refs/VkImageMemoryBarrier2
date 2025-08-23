@@ -1,0 +1,15 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6986' ll='6999'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6986'/>
+<size>96</size>
+<mbr r='VkImageMemoryBarrier2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageMemoryBarrier2::pNext' o='64' t='const void *'/>
+<mbr r='VkImageMemoryBarrier2::srcStageMask' o='128' t='VkPipelineStageFlags2'/>
+<mbr r='VkImageMemoryBarrier2::srcAccessMask' o='192' t='VkAccessFlags2'/>
+<mbr r='VkImageMemoryBarrier2::dstStageMask' o='256' t='VkPipelineStageFlags2'/>
+<mbr r='VkImageMemoryBarrier2::dstAccessMask' o='320' t='VkAccessFlags2'/>
+<mbr r='VkImageMemoryBarrier2::oldLayout' o='384' t='VkImageLayout'/>
+<mbr r='VkImageMemoryBarrier2::newLayout' o='416' t='VkImageLayout'/>
+<mbr r='VkImageMemoryBarrier2::srcQueueFamilyIndex' o='448' t='uint32_t'/>
+<mbr r='VkImageMemoryBarrier2::dstQueueFamilyIndex' o='480' t='uint32_t'/>
+<mbr r='VkImageMemoryBarrier2::image' o='512' t='VkImage'/>
+<mbr r='VkImageMemoryBarrier2::subresourceRange' o='576' t='VkImageSubresourceRange'/>

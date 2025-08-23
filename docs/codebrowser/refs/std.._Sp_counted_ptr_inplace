@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='495' ll='568'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='646' c='_ZNSt14__shared_countC1ERPTL0__St20_Sp_alloc_shared_tagITL0_0_EDpOTL0_1_'/>
+<fun r='_ZNSt23_Sp_counted_ptr_inplaceC1ET0_DpOTL0__'/>
+<fun r='_ZNSt23_Sp_counted_ptr_inplaceD1Ev'/>
+<fun r='_ZNSt23_Sp_counted_ptr_inplace10_M_disposeEv'/>
+<fun r='_ZNSt23_Sp_counted_ptr_inplace10_M_destroyEv'/>
+<fun r='_ZNSt23_Sp_counted_ptr_inplace14_M_get_deleterERKSt9type_info'/>
+<fun r='_ZNSt23_Sp_counted_ptr_inplace6_M_ptrEv'/>
+<mbr r='std::_Sp_counted_ptr_inplace::_M_impl' t='std::_Sp_counted_ptr_inplace::_Impl'/>

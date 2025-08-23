@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='108' type='float tMath::tMatrix4::ExtractProjectionOffsetX() const'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='55' u='c' c='_ZNK6tScene7tCamera24ExtractProjectionOffsetXEv'/>

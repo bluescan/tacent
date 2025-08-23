@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='313' type='uint32_t *'/>
+<offset>576</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='312'>// ARGB input (mostly used for input to lossless compression)</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='313'>// Pointer to argb (32 bit) plane.</doc>

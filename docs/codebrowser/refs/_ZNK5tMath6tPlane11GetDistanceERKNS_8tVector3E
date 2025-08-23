@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='385' type='float tMath::tPlane::GetDistance(const tMath::tVector3 &amp; point) const'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='383'>// If the plane is normalized this returns the shortest distance from &apos;point&apos; to the plane. Normalized or not, if
+	// the result is &lt; 0 then the point is in the negative half-space, &gt; 0 for positive half-space, and 0 on the plane.</doc>

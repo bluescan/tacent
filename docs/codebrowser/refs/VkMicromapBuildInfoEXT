@@ -1,0 +1,16 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16713' ll='16727'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16713'/>
+<size>96</size>
+<mbr r='VkMicromapBuildInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkMicromapBuildInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkMicromapBuildInfoEXT::type' o='128' t='VkMicromapTypeEXT'/>
+<mbr r='VkMicromapBuildInfoEXT::flags' o='160' t='VkBuildMicromapFlagsEXT'/>
+<mbr r='VkMicromapBuildInfoEXT::mode' o='192' t='VkBuildMicromapModeEXT'/>
+<mbr r='VkMicromapBuildInfoEXT::dstMicromap' o='256' t='VkMicromapEXT'/>
+<mbr r='VkMicromapBuildInfoEXT::usageCountsCount' o='320' t='uint32_t'/>
+<mbr r='VkMicromapBuildInfoEXT::pUsageCounts' o='384' t='const VkMicromapUsageEXT *'/>
+<mbr r='VkMicromapBuildInfoEXT::ppUsageCounts' o='448' t='const VkMicromapUsageEXT *const *'/>
+<mbr r='VkMicromapBuildInfoEXT::data' o='512' t='VkDeviceOrHostAddressConstKHR'/>
+<mbr r='VkMicromapBuildInfoEXT::scratchData' o='576' t='VkDeviceOrHostAddressKHR'/>
+<mbr r='VkMicromapBuildInfoEXT::triangleArray' o='640' t='VkDeviceOrHostAddressConstKHR'/>
+<mbr r='VkMicromapBuildInfoEXT::triangleArrayStride' o='704' t='VkDeviceSize'/>

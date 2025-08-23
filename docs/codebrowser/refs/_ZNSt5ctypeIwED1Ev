@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1241' type='void std::ctype&lt;wchar_t&gt;::~ctype()'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1239'>/// Destructor</doc>

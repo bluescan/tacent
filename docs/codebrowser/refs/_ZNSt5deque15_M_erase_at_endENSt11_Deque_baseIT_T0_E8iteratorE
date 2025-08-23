@@ -1,0 +1,11 @@
+<use f='include/c++/11/bits/stl_deque.h' l='1258' u='c' c='_ZNSt5deque6resizeEm'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1295' u='c' c='_ZNSt5deque6resizeEmRKT_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1794' u='c' c='_ZNSt5deque5clearEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1927' u='c' c='_ZNSt5deque13_M_assign_auxETL0__S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1942' u='c' c='_ZNSt5deque14_M_fill_assignEmRKT_'/>
+<def f='include/c++/11/bits/stl_deque.h' l='2063' ll='2070' type='void std::deque::_M_erase_at_end(std::deque::iterator __pos)'/>
+<use f='include/c++/11/bits/deque.tcc' l='119' u='c' c='_ZNSt5dequeaSERKSt5dequeIT_T0_E'/>
+<use f='include/c++/11/bits/deque.tcc' l='282' u='c' c='_ZNSt5deque8_M_eraseENSt11_Deque_baseIT_T0_E8iteratorES4_'/>
+<use f='include/c++/11/bits/deque.tcc' l='299' u='c' c='_ZNSt5deque13_M_assign_auxETL0__S0_St18input_iterator_tag'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='2061'>// Called by erase(q1, q2), resize(), clear(), _M_assign_aux,
+      // _M_fill_assign, operator=.</doc>

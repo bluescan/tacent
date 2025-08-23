@@ -1,0 +1,6 @@
+<def f='Modules/Image/Inc/Image/tLayer.h' l='74' type='uint8 * tImage::tLayer::StealData()'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='285' u='c' c='_ZN6tImage10tImageASTC8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='984' u='c' c='_ZN6tImage9tImageDDS8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='643' u='c' c='_ZN6tImage9tImageKTX8GetFrameEb'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='372' u='c' c='_ZN6tImage9tImagePKM8GetFrameEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1298' u='c' c='_ZN6tImage9tImagePVR8GetFrameEb'/>

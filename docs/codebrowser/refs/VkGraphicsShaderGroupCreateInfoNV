@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14885' ll='14892'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14885'/>
+<size>48</size>
+<mbr r='VkGraphicsShaderGroupCreateInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkGraphicsShaderGroupCreateInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkGraphicsShaderGroupCreateInfoNV::stageCount' o='128' t='uint32_t'/>
+<mbr r='VkGraphicsShaderGroupCreateInfoNV::pStages' o='192' t='const VkPipelineShaderStageCreateInfo *'/>
+<mbr r='VkGraphicsShaderGroupCreateInfoNV::pVertexInputState' o='256' t='const VkPipelineVertexInputStateCreateInfo *'/>
+<mbr r='VkGraphicsShaderGroupCreateInfoNV::pTessellationState' o='320' t='const VkPipelineTessellationStateCreateInfo *'/>

@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/std_function.h' l='121' ll='237'/>
+<use f='include/c++/11/bits/std_function.h' l='261'/>
+<use f='include/c++/11/bits/std_function.h' l='263'/>
+<smbr r='std::_Function_base::_Base_manager::__stored_locally' t='const bool'/>
+<fun r='_ZNSt14_Function_base13_Base_manager14_M_get_pointerERKSt9_Any_data'/>
+<fun r='_ZNSt14_Function_base13_Base_manager9_M_createERSt9_Any_dataOTL0__St17integral_constantIbLb1EE'/>
+<fun r='_ZNSt14_Function_base13_Base_manager9_M_createERSt9_Any_dataOTL0__St17integral_constantIbLb0EE'/>
+<fun r='_ZNSt14_Function_base13_Base_manager10_M_destroyERSt9_Any_dataSt17integral_constantIbLb1EE'/>
+<fun r='_ZNSt14_Function_base13_Base_manager10_M_destroyERSt9_Any_dataSt17integral_constantIbLb0EE'/>
+<fun r='_ZNSt14_Function_base13_Base_manager10_M_managerERSt9_Any_dataRKS1_St18_Manager_operation'/>
+<fun r='_ZNSt14_Function_base13_Base_manager15_M_init_functorERSt9_Any_dataOTL0__'/>
+<fun r='_ZNSt14_Function_base13_Base_manager21_M_not_empty_functionERKSt8functionITL0__E'/>
+<fun r='_ZNSt14_Function_base13_Base_manager21_M_not_empty_functionEPTL0__'/>
+<fun r='_ZNSt14_Function_base13_Base_manager21_M_not_empty_functionEMTL0__TL0_0_'/>
+<fun r='_ZNSt14_Function_base13_Base_manager21_M_not_empty_functionERKTL0__'/>

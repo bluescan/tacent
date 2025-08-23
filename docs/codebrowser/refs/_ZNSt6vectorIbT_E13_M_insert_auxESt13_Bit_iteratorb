@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/stl_bvector.h' l='972' u='c' c='_ZNSt6vectorIbT_E9push_backEb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1008' u='c' c='_ZNSt6vectorIbT_E6insertESt19_Bit_const_iteratorRKb'/>
+<dec f='include/c++/11/bits/stl_bvector.h' l='1304' type='void std::vector&lt;bool, type-parameter-0-0&gt;::_M_insert_aux(std::vector&lt;bool, type-parameter-0-0&gt;::iterator __position, bool __x)'/>
+<def f='include/c++/11/bits/vector.tcc' l='888' ll='914' type='void std::vector&lt;bool, type-parameter-0-0&gt;::_M_insert_aux(std::vector&lt;bool, type-parameter-0-0&gt;::iterator __position, bool __x)'/>

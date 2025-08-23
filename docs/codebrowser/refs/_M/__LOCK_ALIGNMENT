@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes-arch.h' l='47'/>
+<use f='include/x86_64-linux-gnu/bits/thread-shared-types.h' l='98' u='c'/>

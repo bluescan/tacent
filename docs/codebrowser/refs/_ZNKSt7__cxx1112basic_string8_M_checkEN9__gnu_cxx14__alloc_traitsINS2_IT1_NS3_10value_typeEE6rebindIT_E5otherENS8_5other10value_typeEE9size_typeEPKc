@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/basic_string.h' l='317' ll='325' type='std::basic_string::size_type std::basic_string::_M_check(std::basic_string::size_type __pos, const char * __s) const'/>
+<use f='include/c++/11/bits/basic_string.h' l='1750' u='c' c='_ZNSt7__cxx1112basic_string6insertEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_S7_'/>
+<use f='include/c++/11/bits/basic_string.h' l='1829' u='c' c='_ZNSt7__cxx1112basic_string5eraseEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_'/>
+<use f='include/c++/11/bits/basic_string.h' l='1960' u='c' c='_ZNSt7__cxx1112basic_string7replaceEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_SC_'/>
+<use f='include/c++/11/bits/basic_string.h' l='2006' u='c' c='_ZNSt7__cxx1112basic_string7replaceEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_SC_S7_'/>
+<use f='include/c++/11/bits/basic_string.h' l='2856' u='c' c='_ZNKSt7__cxx1112basic_string6substrEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='509' u='c' c='_ZNKSt7__cxx1112basic_string4copyEPT_N9__gnu_cxx14__alloc_traitsINS4_IT1_NS5_10value_typeEE6rebindIS1_E5otherENS9_5other10value_typeEE9size_typeESD_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1407' u='c' c='_ZNKSt7__cxx1112basic_string7compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_RKN8310127'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1423' u='c' c='_ZNKSt7__cxx1112basic_string7compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_RKN5425840'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1456' u='c' c='_ZNKSt7__cxx1112basic_string7compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1473' u='c' c='_ZNKSt7__cxx1112basic_string7compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_SC_'/>

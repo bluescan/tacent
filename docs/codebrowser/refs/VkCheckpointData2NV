@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10313' ll='10318'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10313'/>
+<size>32</size>
+<mbr r='VkCheckpointData2NV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCheckpointData2NV::pNext' o='64' t='void *'/>
+<mbr r='VkCheckpointData2NV::stage' o='128' t='VkPipelineStageFlags2'/>
+<mbr r='VkCheckpointData2NV::pCheckpointMarker' o='192' t='void *'/>

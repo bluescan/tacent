@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1814' ll='1821' type='void std::vector::_M_move_assign(vector&lt;_Tp, _Alloc&gt; &amp;&amp; __x, std::true_type )'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1811'>// Constant-time move assignment when source object&apos;s memory can be
+      // moved, either because the source&apos;s allocator will move too
+      // or because the allocators are equal.</doc>

@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='499' type='16945152'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='499'>// FrameNum (-1 means base/bind) pose, ElapsedTime(sec).</doc>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='120' u='r' c='_ZNK6tScene5tPose4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='151' c='_ZN6tScene5tPose4LoadERK6tChunk'/>

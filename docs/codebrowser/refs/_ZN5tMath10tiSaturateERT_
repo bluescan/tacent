@@ -1,0 +1,14 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='62' type='T &amp; tMath::tiSaturate(T &amp; val)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='712' u='c' c='_ZN9tColour3f8SaturateEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='712' u='c' c='_ZN9tColour3f8SaturateEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='712' u='c' c='_ZN9tColour3f8SaturateEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='836' u='c' c='_ZN9tColour4f8SaturateEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='836' u='c' c='_ZN9tColour4f8SaturateEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='836' u='c' c='_ZN9tColour4f8SaturateEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='836' u='c' c='_ZN9tColour4f8SaturateEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='759' u='c' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='759' u='c' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='759' u='c' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='759' u='c' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='759' u='c' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='93' u='c' c='_ZNK5tMath20tPiecewiseLinearPath15GetPercentPointEf'/>

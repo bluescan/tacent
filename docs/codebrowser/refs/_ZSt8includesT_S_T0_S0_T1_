@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='311' type='bool std::includes(_IIter1 , _IIter1 , _IIter2 , _IIter2 , _Compare )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='2865' ll='2887' macro='1' type='bool std::includes(_InputIterator1 __first1, _InputIterator1 __last1, _InputIterator2 __first2, _InputIterator2 __last2, _Compare __comp)'/>

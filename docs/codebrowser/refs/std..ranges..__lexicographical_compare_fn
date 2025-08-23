@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='3298' ll='3406'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3408'/>
+<size>1</size>
+<fun r='_ZNKSt6ranges28__lexicographical_compare_fnclET_T0_T1_T2_T5_T3_T4_'/>
+<fun r='_ZNKSt6ranges28__lexicographical_compare_fnclEOT_OT0_T3_T1_T2_'/>
+<smbr r='std::ranges::__lexicographical_compare_fn::__ptr_to_nonvolatile' t='const bool'/>

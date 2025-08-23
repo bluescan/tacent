@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tTime.h' l='50' type='3'/>
+<doc f='Modules/System/Inc/System/tTime.h' l='50'>// Eg. 2023-02-14-23-55-09</doc>
+<use f='Modules/System/Src/tTime.cpp' l='117' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='3139' ll='3145' type='minmax_result&lt;_Tp&gt; std::ranges::__minmax_fn::operator()(initializer_list&lt;_Tp&gt; __r, _Comp __comp = {}, _Proj __proj = {}) const'/>

@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/cdefs.h' l='167'/>
+<doc f='include/x86_64-linux-gnu/sys/cdefs.h' l='164'>/* Length is known to be safe at compile time if the __L * __S &lt;= __OBJSZ
+   condition can be folded to a constant and if it is true.  The -1 check is
+   redundant because since it implies that __glibc_safe_len_cond is true.  */</doc>

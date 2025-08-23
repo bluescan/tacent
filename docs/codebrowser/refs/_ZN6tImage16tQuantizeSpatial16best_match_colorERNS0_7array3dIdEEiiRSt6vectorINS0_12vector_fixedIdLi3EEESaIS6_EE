@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Src/tQuantizeSpatial.cpp' l='172' type='int tImage::tQuantizeSpatial::best_match_color(array3d&lt;double&gt; &amp; vars, int i_x, int i_y, std::vector&lt;vector_fixed&lt;double, 3&gt;&gt; &amp; palette)'/>
+<def f='Modules/Image/Src/tQuantizeSpatial.cpp' l='365' ll='378' type='int tImage::tQuantizeSpatial::best_match_color(array3d&lt;double&gt; &amp; vars, int i_x, int i_y, std::vector&lt;vector_fixed&lt;double, 3&gt;&gt; &amp; palette)'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='708' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='724' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='806' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>

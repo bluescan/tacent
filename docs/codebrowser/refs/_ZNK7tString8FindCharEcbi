@@ -1,0 +1,33 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='265' type='int tString::FindChar(const char , bool backwards = false, int startIndex = -1) const'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='847' ll='883' type='int tString::FindChar(const char c, bool reverse = false, int start = -1) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='254'>// Returns index of first/last occurrence of char in the string. -1 if not found. Finds last if backwards flag is
+	// set. The starting point may be specified. If backwards is false, the search proceeds forwards from the starting
+	// point. If backwards is true, it proceeds backwards. If startIndex is -1, 0 is the starting point for a forward
+	// search and length-1 is the starting point for a backwards search. Here is where UTF-8 is really cool, since
+	// ASCII bytes do not occur when encoding non-ASCII code-points into UTF-8, this function can still just do a linear
+	// search of all the characters. Pretty neat. What you can&apos;t do with this function is search for a codepoint that
+	// requires continuation bytes in UTF-8. i.e. Since the input is a const char, char must be ASCII.
+	//
+	// @todo I like the idea of supporting UTF searches for particular codepoints etc by inputting the UTF-32
+	// representation (using a char32_t) where necessary -- we&apos;d just need to decode each codepoint (plus possible
+	// continuations) in UTF-8 to the proper char32_t and use that. It would all just work (but it&apos;s a big-ish task).</doc>
+<use f='Modules/Foundation/Src/tString.cpp' l='69' u='c' c='_ZNK7tString4LeftEc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='81' u='c' c='_ZNK7tString5RightEc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='142' u='c' c='_ZN7tString11ExtractLeftEc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='163' u='c' c='_ZN7tString12ExtractRightEc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='740' u='c' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringc'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='45' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='93' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='98' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='156' u='c' c='_ZN8tCmdLine6tParseEiPPcb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='188' u='c' c='_ZN8tCmdLine6tParseEiPPDsb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='462' u='c' c='_ZN8tCmdLine14SyntaxInternalEP7tStringi'/>
+<use f='Modules/System/Src/tFile.cpp' l='92' u='c' c='_ZN7tSystem8tPathStdER7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='200' u='c' c='_ZN7tSystem12tGetFileNameERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='209' u='c' c='_ZN7tSystem16tGetFileBaseNameERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='364' u='c' c='_ZN7tSystem7tGetDirERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='415' u='c' c='_ZN7tSystem9tGetUpDirERK7tStringi'/>
+<use f='Modules/System/Src/tFile.cpp' l='1366' u='c' c='_ZN7tSystem14tGetProgramDirEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='471' u='c' c='_ZNK11tExpression10GetContextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='509' u='c' c='_ZN11tExprReaderC1EiPPc'/>
+<use f='Modules/System/Src/tScript.cpp' l='621' u='c' c='_ZN11tExprWriter9WriteAtomERK7tString'/>

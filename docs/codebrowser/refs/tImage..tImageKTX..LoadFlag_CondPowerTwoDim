@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tImageKTX.h' l='51' type='256'/>
+<doc f='Modules/Image/Inc/Image/tImageKTX.h' l='51'>// Produce conditional success if image dimension not a power of 2. Only checks BC formats.</doc>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='865' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

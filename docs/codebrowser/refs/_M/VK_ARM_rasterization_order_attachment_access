@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16091'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16090'>// VK_ARM_rasterization_order_attachment_access is a preprocessor guard. Do not pass it to API calls.</doc>

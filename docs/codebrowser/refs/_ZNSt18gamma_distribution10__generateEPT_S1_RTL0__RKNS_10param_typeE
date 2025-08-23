@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.h' l='2556' ll='2560' type='void std::gamma_distribution::__generate(std::gamma_distribution::result_type * __f, std::gamma_distribution::result_type * __t, _UniformRandomNumberGenerator &amp; __urng, const std::gamma_distribution::param_type &amp; __p)'/>

@@ -1,0 +1,12 @@
+<dec f='include/c++/11/chrono' l='1709' type='unsigned char'/>
+<use f='include/c++/11/chrono' l='1723' u='w' c='_ZNSt6chrono7weekdayC1Ej'/>
+<use f='include/c++/11/chrono' l='1782' u='r' c='_ZNKSt6chrono7weekday10c_encodingEv'/>
+<use f='include/c++/11/chrono' l='1786' u='r' c='_ZNKSt6chrono7weekday12iso_encodingEv'/>
+<use f='include/c++/11/chrono' l='1786' u='r' c='_ZNKSt6chrono7weekday12iso_encodingEv'/>
+<use f='include/c++/11/chrono' l='1790' u='r' c='_ZNKSt6chrono7weekday2okEv'/>
+<use f='include/c++/11/chrono' l='1800' u='r' c='_ZNSt6chronoeqERKNS_7weekdayES2_'/>
+<use f='include/c++/11/chrono' l='1800' u='r' c='_ZNSt6chronoeqERKNS_7weekdayES2_'/>
+<use f='include/c++/11/chrono' l='1805' u='r' c='_ZNSt6chronoplERKNS_7weekdayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1820' u='r' c='_ZNSt6chronomiERKNS_7weekdayES2_'/>
+<use f='include/c++/11/chrono' l='1820' u='r' c='_ZNSt6chronomiERKNS_7weekdayES2_'/>
+<offset>0</offset>

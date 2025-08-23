@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/sys/types.h' l='80'/>
+<dec f='include/unistd.h' l='238'/>
+<use f='include/signal.h' l='45' u='a'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='77' u='a'/>
+<use f='include/pwd.h' l='42' u='a'/>

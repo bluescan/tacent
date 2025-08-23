@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/LibKTX/include/formatsize.h' l='38' ll='47'/>
+<use f='Modules/Image/Contrib/LibKTX/include/formatsize.h' l='38'/>
+<size>32</size>
+<doc f='Modules/Image/Contrib/LibKTX/include/formatsize.h' l='35'>/**
+ * @brief Structure for holding size information for a texture format.
+ */</doc>
+<mbr r='ktxFormatSize::flags' o='0' t='ktxFormatSizeFlags'/>
+<mbr r='ktxFormatSize::paletteSizeInBits' o='32' t='unsigned int'/>
+<mbr r='ktxFormatSize::blockSizeInBits' o='64' t='unsigned int'/>
+<mbr r='ktxFormatSize::blockWidth' o='96' t='unsigned int'/>
+<mbr r='ktxFormatSize::blockHeight' o='128' t='unsigned int'/>
+<mbr r='ktxFormatSize::blockDepth' o='160' t='unsigned int'/>
+<mbr r='ktxFormatSize::minBlocksX' o='192' t='unsigned int'/>
+<mbr r='ktxFormatSize::minBlocksY' o='224' t='unsigned int'/>

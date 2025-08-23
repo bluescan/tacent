@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/atomic_wait.h' l='202' type='std::__detail::__platform_wait_t'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='230' u='a' c='_ZNSt8__detail18__waiter_pool_base9_M_notifyEPibb'/>
+<offset>512</offset>

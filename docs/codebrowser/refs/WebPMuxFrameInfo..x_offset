@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='202' type='int'/>
+<offset>128</offset>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='201'>// or a single-image WebP file.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='202'>// x-offset of the frame.</doc>

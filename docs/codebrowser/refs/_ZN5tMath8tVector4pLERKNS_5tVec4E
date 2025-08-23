@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector4.h' l='77' type='tMath::tVector4 &amp; tMath::tVector4::operator+=(const tMath::tVec4 &amp; a)'/>
+<doc f='Modules/Math/Inc/Math/tVector4.h' l='76'>// Addition is not defined for types other than the same type as the object itself, so no friend needed.</doc>

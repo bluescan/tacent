@@ -1,0 +1,8 @@
+<dec f='include/locale.h' l='91' type='char'/>
+<offset>688</offset>
+<doc f='include/locale.h' l='85'>/* Positive and negative sign positions:
+     0 Parentheses surround the quantity and currency_symbol.
+     1 The sign string precedes the quantity and currency_symbol.
+     2 The sign string follows the quantity and currency_symbol.
+     3 The sign string immediately precedes the currency_symbol.
+     4 The sign string immediately follows the currency_symbol.  */</doc>

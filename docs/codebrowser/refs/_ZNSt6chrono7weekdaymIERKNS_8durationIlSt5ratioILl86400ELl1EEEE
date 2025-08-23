@@ -1,0 +1,2 @@
+<use f='include/c++/11/chrono' l='1754' u='c' c='_ZNSt6chrono7weekdaymmEv'/>
+<def f='include/c++/11/chrono' l='1773' ll='1778' type='std::chrono::weekday &amp; std::chrono::weekday::operator-=(const std::chrono::days &amp; __d)'/>

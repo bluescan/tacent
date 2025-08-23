@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/stream_iterator.h' l='214' ll='215' type='void std::ostream_iterator::ostream_iterator&lt;_Tp, _CharT, _Traits&gt;(std::ostream_iterator::ostream_type &amp; __s, const _CharT * __c)'/>
+<doc f='include/c++/11/bits/stream_iterator.h' l='204'>/**
+       *  Construct from an ostream.
+       *
+       *  The delimiter string @a c is written to the stream after every Tp
+       *  written to the stream.  The delimiter is not copied, and thus must
+       *  not be destroyed while this iterator is in use.
+       *
+       *  @param  __s  Underlying ostream to write to.
+       *  @param  __c  CharT delimiter string to insert.
+      */</doc>

@@ -1,0 +1,8 @@
+<dec f='Modules/Foundation/Src/tStandard.cpp' l='294' type='int tUTF::EncodeUtf8(char8_t * dst, char32_t codepoint)'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='319' u='c' c='_ZN4tStd5tUTF8EPDuPKDsi'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='349' u='c' c='_ZN4tStd5tUTF8EPDuPKDii'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='647' u='c' c='_ZN4tStd6tUTF8cEPDuDi'/>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='832' ll='854' type='int tUTF::EncodeUtf8(char8_t * dst, char32_t codepoint)'/>
+<doc f='Modules/Foundation/Src/tStandard.cpp' l='291'>// Encodes a 32-bit codepoint into a UTF-8 string. The codepoint is not checked for validity by this function. You
+	// must ensure the dst buffer is big enough -- 4 is always big enough, but you can call CalculateUtf8Length to get
+	// an exact size. Returns the number of char8s written to dst [0,4]. Returns 0 is dst is nullptr.</doc>

@@ -1,0 +1,30 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='31' type='void tMath::tVector3::tVector3(float x, float y, float z)'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='286' u='c' c='_ZN5tMath5tABoxC1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='286' u='c' c='_ZN5tMath5tABoxC1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='288' u='c' c='_ZN5tMath5tABoxC1ERKNS_8tVector3Efff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='290' u='c' c='_ZN5tMath5tABoxC1Effffff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='290' u='c' c='_ZN5tMath5tABoxC1Effffff'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='294' u='c' c='_ZN5tMath5tABox5EmptyEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='294' u='c' c='_ZN5tMath5tABox5EmptyEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='328' u='c' c='_ZN5tMath5tOBoxC1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='328' u='c' c='_ZN5tMath5tOBoxC1Ev'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='346' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='184' u='c' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='185' u='c' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='186' u='c' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='187' u='c' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='188' u='c' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='189' u='c' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='239' u='c' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='44' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='45' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='46' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='47' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='48' u='c'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='146' u='c' c='_ZN5tMath7tRandom7tGetDirERKNS_8tVector3EfRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='232' u='c' c='_ZN5tMath7tRandom17tGetPointOnSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='269' u='c' c='_ZN5tMath7tRandom14tGetPointInBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='290' u='c' c='_ZN5tMath7tRandom17tGetPointInSphereERKNS_7tSphereERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='60' u='c' c='_ZNK5tMath20tPiecewiseLinearPath8GetPointEf'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='84' u='c' c='_ZNK5tMath20tPiecewiseLinearPath8GetPointEf'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='117' u='c' c='_ZNK5tMath20tPiecewiseLinearPath15GetPercentPointEf'/>

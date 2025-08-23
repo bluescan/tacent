@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='1313' ll='1318' type='std::chrono::day &amp; std::chrono::day::operator++()'/>
+<use f='include/c++/11/chrono' l='1324' u='c' c='_ZNSt6chrono3dayppEi'/>

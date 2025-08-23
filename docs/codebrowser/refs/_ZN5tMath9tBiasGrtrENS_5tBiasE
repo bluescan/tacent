@@ -1,0 +1,9 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='81' type='std::function&lt;bool (float, float)&gt; tMath::tBiasGrtr(tMath::tBias )'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='274' ll='287' type='std::function&lt;bool (float, float)&gt; tMath::tBiasGrtr(tMath::tBias bias)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='544' u='c' c='_ZN5tMath16tiNormalizeAngleERfNS_5tBiasE'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='554' u='c' c='_ZN5tMath19tiNormalizeAngle2PiERfNS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='550' u='c' c='_ZNK5tMath7tARect217IsPointInsideBiasERKNS_8tVector2ENS_5tBiasES4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='554' u='c' c='_ZNK5tMath7tARect217IsPointInsideBiasERKNS_8tVector2ENS_5tBiasES4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='576' u='c' c='_ZNK5tMath5tABox17IsPointInsideBiasERKNS_8tVector3ENS_5tBiasES4_S4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='580' u='c' c='_ZNK5tMath5tABox17IsPointInsideBiasERKNS_8tVector3ENS_5tBiasES4_S4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='584' u='c' c='_ZNK5tMath5tABox17IsPointInsideBiasERKNS_8tVector3ENS_5tBiasES4_S4_'/>

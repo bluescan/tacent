@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tAssert.h' l='38' type='void tAbort()'/>
+<def f='Modules/Foundation/Src/tAssert.cpp' l='26' ll='31' type='void tAbort()'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/basic_string.h' l='2535' ll='2541' type='_If_sv&lt;_Tp, std::basic_string::size_type&gt; std::basic_string::find_first_of(const _Tp &amp; __svt, std::basic_string::size_type __pos = 0) const'/>

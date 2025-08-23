@@ -1,0 +1,7 @@
+<def f='include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h' l='26' ll='35'/>
+<use f='include/pthread.h' l='773' c='__sigsetjmp'/>
+<size>200</size>
+<doc f='include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h' l='25'>/* Calling environment, plus possibly a saved signal mask.  */</doc>
+<mbr r='__jmp_buf_tag::__jmpbuf' o='0' t='__jmp_buf'/>
+<mbr r='__jmp_buf_tag::__mask_was_saved' o='512' t='int'/>
+<mbr r='__jmp_buf_tag::__saved_mask' o='576' t='__sigset_t'/>

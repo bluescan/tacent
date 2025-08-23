@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='284' type='131'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='282'>/** BC4 - single channel interpolated 8-bit data
+        (The UNORM/SNORM variation is recorded in the channel data) */</doc>

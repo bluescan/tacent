@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5494' ll='5498'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5494'/>
+<size>12</size>
+<mbr r='VkExternalMemoryProperties::externalMemoryFeatures' o='0' t='VkExternalMemoryFeatureFlags'/>
+<mbr r='VkExternalMemoryProperties::exportFromImportedHandleTypes' o='32' t='VkExternalMemoryHandleTypeFlags'/>
+<mbr r='VkExternalMemoryProperties::compatibleHandleTypes' o='64' t='VkExternalMemoryHandleTypeFlags'/>

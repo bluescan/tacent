@@ -1,0 +1,23 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='428' ll='475'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='448' c='_ZNSt13_Bvector_base18_Bvector_impl_dataC1ERKS0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='449' c='_ZNSt13_Bvector_base18_Bvector_impl_dataaSERKS0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='450' c='_ZNSt13_Bvector_base18_Bvector_impl_dataaSERKS0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='452' c='_ZNSt13_Bvector_base18_Bvector_impl_dataC1EOS0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='453' c='_ZNSt13_Bvector_base18_Bvector_impl_dataC1EOS0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='457' c='_ZNSt13_Bvector_base18_Bvector_impl_data12_M_move_dataEOS0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='466' c='_ZNSt13_Bvector_base18_Bvector_impl_data8_M_resetEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='469' c='_ZNSt13_Bvector_base18_Bvector_impl_data12_M_swap_dataERS0_'/>
+<ovr f='include/c++/11/bits/stl_bvector.h' l='477' c='std::_Bvector_base::_Bvector_impl'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='478'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='493' c='_ZNSt13_Bvector_base13_Bvector_implC1EOS0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='497' c='_ZNSt13_Bvector_base13_Bvector_implC1EON9__gnu_cxx14__alloc_traitsIT_NS3_10value_typeEE6rebindImE5otherEOS0_'/>
+<mbr r='std::_Bvector_base::_Bvector_impl_data::_M_start' t='std::_Bit_iterator'/>
+<mbr r='std::_Bvector_base::_Bvector_impl_data::_M_finish' t='std::_Bit_iterator'/>
+<mbr r='std::_Bvector_base::_Bvector_impl_data::_M_end_of_storage' t='std::_Bvector_base::_Bit_pointer'/>
+<fun r='_ZNSt13_Bvector_base18_Bvector_impl_dataC1Ev'/>
+<fun r='_ZNSt13_Bvector_base18_Bvector_impl_dataC1ERKS0_'/>
+<fun r='_ZNSt13_Bvector_base18_Bvector_impl_dataaSERKS0_'/>
+<fun r='_ZNSt13_Bvector_base18_Bvector_impl_dataC1EOS0_'/>
+<fun r='_ZNSt13_Bvector_base18_Bvector_impl_data12_M_move_dataEOS0_'/>
+<fun r='_ZNSt13_Bvector_base18_Bvector_impl_data8_M_resetEv'/>
+<fun r='_ZNSt13_Bvector_base18_Bvector_impl_data12_M_swap_dataERS0_'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='304' type='WebPEncCSP'/>
+<offset>32</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='303'>// YUV input (mostly used for input to lossy compression)</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='304'>// colorspace: should be YUV420 for now (=Y&apos;CbCr).</doc>

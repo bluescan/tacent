@@ -1,0 +1,16 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13152' ll='13166'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13152'/>
+<size>96</size>
+<mbr r='VkGeometryTrianglesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkGeometryTrianglesNV::pNext' o='64' t='const void *'/>
+<mbr r='VkGeometryTrianglesNV::vertexData' o='128' t='VkBuffer'/>
+<mbr r='VkGeometryTrianglesNV::vertexOffset' o='192' t='VkDeviceSize'/>
+<mbr r='VkGeometryTrianglesNV::vertexCount' o='256' t='uint32_t'/>
+<mbr r='VkGeometryTrianglesNV::vertexStride' o='320' t='VkDeviceSize'/>
+<mbr r='VkGeometryTrianglesNV::vertexFormat' o='384' t='VkFormat'/>
+<mbr r='VkGeometryTrianglesNV::indexData' o='448' t='VkBuffer'/>
+<mbr r='VkGeometryTrianglesNV::indexOffset' o='512' t='VkDeviceSize'/>
+<mbr r='VkGeometryTrianglesNV::indexCount' o='576' t='uint32_t'/>
+<mbr r='VkGeometryTrianglesNV::indexType' o='608' t='VkIndexType'/>
+<mbr r='VkGeometryTrianglesNV::transformData' o='640' t='VkBuffer'/>
+<mbr r='VkGeometryTrianglesNV::transformOffset' o='704' t='VkDeviceSize'/>

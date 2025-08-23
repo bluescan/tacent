@@ -1,0 +1,6 @@
+<dec f='include/pthread.h' l='269' type='int pthread_detach(pthread_t __th)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='675' u='c' c='__gthread_detach'/>
+<doc f='include/pthread.h' l='265'>/* Indicate that the thread TH is never to be joined with PTHREAD_JOIN.
+   The resources of TH will therefore be freed immediately when it
+   terminates, instead of waiting for another thread to perform PTHREAD_JOIN
+   on it.  */</doc>

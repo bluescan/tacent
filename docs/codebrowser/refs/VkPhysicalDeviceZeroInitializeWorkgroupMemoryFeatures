@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7047' ll='7051'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7047'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceZeroInitializeWorkgroupMemoryFeatures::shaderZeroInitializeWorkgroupMemory' o='128' t='VkBool32'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImagePNG.h' l='104' type='4'/>
+<doc f='Modules/Image/Inc/Image/tImagePNG.h' l='104'>// 64-bit RGBA. 4 16-bit components.</doc>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='765' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='894' u='r' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

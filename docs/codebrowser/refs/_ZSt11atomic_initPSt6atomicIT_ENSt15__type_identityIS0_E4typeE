@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='1300' ll='1302' type='void std::atomic_init(atomic&lt;_ITp&gt; * __a, __atomic_val_t&lt;_ITp&gt; __i)'/>

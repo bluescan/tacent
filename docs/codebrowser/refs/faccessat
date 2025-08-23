@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='309' type='int faccessat(int __fd, const char * __file, int __type, int __flag)'/>
+<doc f='include/unistd.h' l='306'>/* Test for access to FILE relative to the directory FD is open on.
+   If AT_EACCESS is set in FLAG, then use effective IDs like `eaccess&apos;,
+   otherwise use real IDs like `access&apos;.  */</doc>

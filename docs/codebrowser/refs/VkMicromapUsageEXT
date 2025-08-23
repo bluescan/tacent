@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16702' ll='16706'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16702'/>
+<size>12</size>
+<mbr r='VkMicromapUsageEXT::count' o='0' t='uint32_t'/>
+<mbr r='VkMicromapUsageEXT::subdivisionLevel' o='32' t='uint32_t'/>
+<mbr r='VkMicromapUsageEXT::format' o='64' t='uint32_t'/>

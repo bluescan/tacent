@@ -1,0 +1,17 @@
+<dec f='include/c++/11/istream' l='556' type='int std::basic_istream::sync()'/>
+<def f='include/c++/11/bits/istream.tcc' l='813' ll='847' type='int std::basic_istream::sync()'/>
+<doc f='include/c++/11/istream' l='540'>/**
+       *  @brief  Synchronizing the stream buffer.
+       *  @return  0 on success, -1 on failure
+       *
+       *  If @c rdbuf() is a null pointer, returns -1.
+       *
+       *  Otherwise, calls @c rdbuf()-&gt;pubsync(), and if that returns -1,
+       *  sets badbit and returns -1.
+       *
+       *  Otherwise, returns 0.
+       *
+       *  @note  This function does not count the number of characters
+       *         extracted, if any, and therefore does not affect the next
+       *         call to @c gcount().
+      */</doc>

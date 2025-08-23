@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='464' type='bool tSystem::tExtensions::Contains(const tString &amp; ext) const'/>
+<def f='Modules/System/Inc/System/tFile.h' l='901' ll='910' type='bool tSystem::tExtensions::Contains(const tString &amp; searchExt) const'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='463'>// Supplied extension must not include period.</doc>
+<use f='Modules/System/Src/tFile.cpp' l='2618' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2757' u='c' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2992' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

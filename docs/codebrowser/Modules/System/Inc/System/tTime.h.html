@@ -1,0 +1,118 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tTime.h source code [Modules/System/Inc/System/tTime.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="tSystem::tTimeFormat,tSystem::tTimer "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/System/Inc/System/tTime.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>Modules</a>/<a href='../..'>System</a>/<a href='..'>Inc</a>/<a href='./'>System</a>/<a href='tTime.h.html'>tTime.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tTimer.h</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Simple timer class. Like a stopwatch. Supports keeping track of time in a number of different units. Accuracy is all</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>// up to you - you call the update function. This code does not access low-level timer hardware.</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// Copyright (c) 2005, 2017, 2019, 2020, 2023 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#pragma once</u>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#include &lt;ctime&gt;</u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#include &lt;Foundation/tPlatform.h&gt;</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#include &lt;Foundation/tAssert.h&gt;</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><u>#include &lt;Foundation/tUnits.h&gt;</u>&nbsp</td></tr>
+<tr><th id="21">21</th><td><b>namespace</b> <span class="namespace">tSystem</span>&nbsp</td></tr>
+<tr><th id="22">22</th><td>{&nbsp</td></tr>
+<tr><th id="23">23</th><td>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>// High accuracy cross platform timing functions. For windows the frequency is whatever the HW reports. For other</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i>// platforms it's 1/1ns = 1000000000Hz but counts increment by whatever the internal timer resulution is in ns.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><a class="typedef" href="../../../Foundation/Inc/Foundation/tPlatform.h.html#int64" title='int64' data-type='long long' data-ref="int64">int64</a> <dfn class="decl fn" id="_ZN7tSystem26tGetHardwareTimerFrequencyEv" title='tSystem::tGetHardwareTimerFrequency' data-ref="_ZN7tSystem26tGetHardwareTimerFrequencyEv">tGetHardwareTimerFrequency</dfn>();&nbsp</td></tr>
+<tr><th id="28">28</th><td><a class="typedef" href="../../../Foundation/Inc/Foundation/tPlatform.h.html#int64" title='int64' data-type='long long' data-ref="int64">int64</a> <dfn class="decl fn" id="_ZN7tSystem22tGetHardwareTimerCountEv" title='tSystem::tGetHardwareTimerCount' data-ref="_ZN7tSystem22tGetHardwareTimerCountEv">tGetHardwareTimerCount</dfn>();&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>// Gets the number of seconds since the absolute time reference of 00:00:00 Coordinated Universal Time (UTC),</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>// Thursday, 1 January 1970. The std::time_t is essentially a big integer.</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><span class="namespace">std::</span>time_t <dfn class="decl fn" id="_ZN7tSystem11tGetTimeUTCEv" title='tSystem::tGetTimeUTC' data-ref="_ZN7tSystem11tGetTimeUTCEv">tGetTimeUTC</dfn>();&nbsp</td></tr>
+<tr><th id="34">34</th><td><span class="namespace">std::</span>time_t <dfn class="decl fn" id="_ZN7tSystem11tGetTimeGMTEv" title='tSystem::tGetTimeGMT' data-ref="_ZN7tSystem11tGetTimeGMTEv">tGetTimeGMT</dfn>();&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>// Gets the current local time. Takes into account your timezone, DST, etc.</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i>// std::tm is a field-based time format, HH, MM, SS etc.</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><span class="namespace">std::</span>tm <dfn class="decl fn" id="_ZN7tSystem13tGetTimeLocalEv" title='tSystem::tGetTimeLocal' data-ref="_ZN7tSystem13tGetTimeLocalEv">tGetTimeLocal</dfn>();&nbsp</td></tr>
+<tr><th id="40">40</th><td><span class="namespace">std::</span>tm <dfn class="decl fn" id="_ZN7tSystem19tConvertTimeToLocalEl" title='tSystem::tConvertTimeToLocal' data-ref="_ZN7tSystem19tConvertTimeToLocalEl">tConvertTimeToLocal</dfn>(<span class="namespace">std::</span>time_t);&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i>// Return a timepoint as a string. The Filename format uses no special characters and if friendly for filenames</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i>// on all filesystems: YYYY-MM-DD-HH-MM-SS.</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><b>enum</b> <b>class</b> <dfn class="type def" id="tSystem::tTimeFormat" title='tSystem::tTimeFormat' data-ref="tSystem::tTimeFormat">tTimeFormat</dfn>&nbsp</td></tr>
+<tr><th id="46">46</th><td>{&nbsp</td></tr>
+<tr><th id="47">47</th><td>	<dfn class="enum" id="tSystem::tTimeFormat::Standard" title='tSystem::tTimeFormat::Standard' data-ref="tSystem::tTimeFormat::Standard">Standard</dfn>,		<i>// Eg. 2020-01-14 01:47:12</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td>	<dfn class="enum" id="tSystem::tTimeFormat::Extended" title='tSystem::tTimeFormat::Extended' data-ref="tSystem::tTimeFormat::Extended">Extended</dfn>,		<i>// Eg. Tuesday January 14 2020 - 01:36:34</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td>	<dfn class="enum" id="tSystem::tTimeFormat::Short" title='tSystem::tTimeFormat::Short' data-ref="tSystem::tTimeFormat::Short">Short</dfn>,			<i>// Eg. Tue Jan 14 14:38:58 2020</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td>	<dfn class="enum" id="tSystem::tTimeFormat::Filename" title='tSystem::tTimeFormat::Filename' data-ref="tSystem::tTimeFormat::Filename">Filename</dfn>,		<i>// Eg. 2023-02-14-23-55-09</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td>};&nbsp</td></tr>
+<tr><th id="52">52</th><td><a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a> <dfn class="decl fn" id="_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE" title='tSystem::tConvertTimeToString' data-ref="_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE">tConvertTimeToString</dfn>(<span class="namespace">std::</span>tm, <a class="type" href="#tSystem::tTimeFormat" title='tSystem::tTimeFormat' data-ref="tSystem::tTimeFormat">tTimeFormat</a> = <a class="type" href="#tSystem::tTimeFormat" title='tSystem::tTimeFormat' data-ref="tSystem::tTimeFormat">tTimeFormat</a>::<a class="enum" href="#tSystem::tTimeFormat::Standard" title='tSystem::tTimeFormat::Standard' data-ref="tSystem::tTimeFormat::Standard">Standard</a>);&nbsp</td></tr>
+<tr><th id="53">53</th><td>&nbsp</td></tr>
+<tr><th id="54">54</th><td>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i>// Gets the number of seconds since application start. Uses the high-performance counter,</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><em>float</em> <dfn class="decl fn" id="_ZN7tSystem8tGetTimeEv" title='tSystem::tGetTime' data-ref="_ZN7tSystem8tGetTimeEv">tGetTime</dfn>();&nbsp</td></tr>
+<tr><th id="57">57</th><td><em>double</em> <dfn class="decl fn" id="_ZN7tSystem14tGetTimeDoubleEv" title='tSystem::tGetTimeDouble' data-ref="_ZN7tSystem14tGetTimeDoubleEv">tGetTimeDouble</dfn>();&nbsp</td></tr>
+<tr><th id="58">58</th><td><em>void</em> <dfn class="decl fn" id="_ZN7tSystem6tSleepEi" title='tSystem::tSleep' data-ref="_ZN7tSystem6tSleepEi">tSleep</dfn>(<em>int</em> <dfn class="local col1 decl" id="1milliSeconds" title='milliSeconds' data-type='int' data-ref="1milliSeconds">milliSeconds</dfn>);&nbsp</td></tr>
+<tr><th id="59">59</th><td>&nbsp</td></tr>
+<tr><th id="60">60</th><td>&nbsp</td></tr>
+<tr><th id="61">61</th><td><b>class</b> <dfn class="type def" id="tSystem::tTimer" title='tSystem::tTimer' data-ref="tSystem::tTimer">tTimer</dfn>&nbsp</td></tr>
+<tr><th id="62">62</th><td>{&nbsp</td></tr>
+<tr><th id="63">63</th><td><b>public</b>:&nbsp</td></tr>
+<tr><th id="64">64</th><td>	<i>// Creates a timer. You can specify whether the timer is constructed started or not. Internally a floating-point</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i>	// (double) member is used to keep track of the elapsed time. You can choose the units it represents, which has</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i>	// implications for overall timer precision. In general, use an internal unit that matches your domain - timing</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i>	// oscillations of visible light? Use nanoseconds. If unit is Unspecified seconds are used.</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td>	<dfn class="decl def fn" id="_ZN7tSystem6tTimerC1EbN5tUnit5tTimeE" title='tSystem::tTimer::tTimer' data-ref="_ZN7tSystem6tTimerC1EbN5tUnit5tTimeE">tTimer</dfn>(<em>bool</em> <dfn class="local col2 decl" id="2start" title='start' data-type='bool' data-ref="2start">start</dfn> = <b>true</b>, <span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a> <dfn class="local col3 decl" id="3unit" title='unit' data-type='tUnit::tTime' data-ref="3unit">unit</dfn> = <span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a>::<a class="enum" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime::Second" title='tUnit::tTime::Second' data-ref="tUnit::tTime::Second">Second</a>)													: <a class="member field" href="#tSystem::tTimer::UnitInternal" title='tSystem::tTimer::UnitInternal' data-ref="tSystem::tTimer::UnitInternal">UnitInternal</a>(<a class="local col3 ref" href="#3unit" title='unit' data-ref="3unit">unit</a>), <a class="member field" href="#tSystem::tTimer::Running" title='tSystem::tTimer::Running' data-ref="tSystem::tTimer::Running">Running</a>(<a class="local col2 ref" href="#2start" title='start' data-ref="2start">start</a>), <a class="member field" href="#tSystem::tTimer::Time" title='tSystem::tTimer::Time' data-ref="tSystem::tTimer::Time">Time</a>(<var>0.0f</var>) { <b>if</b> (<a class="member field" href="#tSystem::tTimer::UnitInternal" title='tSystem::tTimer::UnitInternal' data-ref="tSystem::tTimer::UnitInternal">UnitInternal</a> == <span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a>::<a class="enum" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime::Unspecified" title='tUnit::tTime::Unspecified' data-ref="tUnit::tTime::Unspecified">Unspecified</a>) <a class="member field" href="#tSystem::tTimer::UnitInternal" title='tSystem::tTimer::UnitInternal' data-ref="tSystem::tTimer::UnitInternal">UnitInternal</a> = <span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a>::<a class="enum" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime::Second" title='tUnit::tTime::Second' data-ref="tUnit::tTime::Second">Second</a>; }&nbsp</td></tr>
+<tr><th id="69">69</th><td>&nbsp</td></tr>
+<tr><th id="70">70</th><td>	<i>// Call this frequently. If Unit is not specified, internal units are used.</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td>	<em>void</em> <dfn class="decl fn" id="_ZN7tSystem6tTimer6UpdateEfN5tUnit5tTimeE" title='tSystem::tTimer::Update' data-ref="_ZN7tSystem6tTimer6UpdateEfN5tUnit5tTimeE">Update</dfn>(<em>float</em> <dfn class="local col4 decl" id="4timeElapsed" title='timeElapsed' data-type='float' data-ref="4timeElapsed">timeElapsed</dfn>, <span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a> = <span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a>::<a class="enum" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime::Unspecified" title='tUnit::tTime::Unspecified' data-ref="tUnit::tTime::Unspecified">Unspecified</a>);&nbsp</td></tr>
+<tr><th id="72">72</th><td>&nbsp</td></tr>
+<tr><th id="73">73</th><td>	<i>// Does nothing (idempotent) if timer already started (or stopped).</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td>	<em>void</em> <dfn class="decl def fn" id="_ZN7tSystem6tTimer5StartEv" title='tSystem::tTimer::Start' data-ref="_ZN7tSystem6tTimer5StartEv">Start</dfn>()																										{ <a class="member field" href="#tSystem::tTimer::Running" title='tSystem::tTimer::Running' data-ref="tSystem::tTimer::Running">Running</a> = <b>true</b>; }&nbsp</td></tr>
+<tr><th id="75">75</th><td>	<em>void</em> <dfn class="decl def fn" id="_ZN7tSystem6tTimer4StopEv" title='tSystem::tTimer::Stop' data-ref="_ZN7tSystem6tTimer4StopEv">Stop</dfn>()																											{ <a class="member field" href="#tSystem::tTimer::Running" title='tSystem::tTimer::Running' data-ref="tSystem::tTimer::Running">Running</a> = <b>false</b>; }&nbsp</td></tr>
+<tr><th id="76">76</th><td>	<em>void</em> <dfn class="decl def fn" id="_ZN7tSystem6tTimer5ResetEb" title='tSystem::tTimer::Reset' data-ref="_ZN7tSystem6tTimer5ResetEb">Reset</dfn>(<em>bool</em> <dfn class="local col5 decl" id="5start" title='start' data-type='bool' data-ref="5start">start</dfn> = <b>true</b>)																						{ <a class="member field" href="#tSystem::tTimer::Time" title='tSystem::tTimer::Time' data-ref="tSystem::tTimer::Time">Time</a> = <var>0.0</var>; <a class="member field" href="#tSystem::tTimer::Running" title='tSystem::tTimer::Running' data-ref="tSystem::tTimer::Running">Running</a> = <a class="local col5 ref" href="#5start" title='start' data-ref="5start">start</a>; }&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td>	<i>// Returns the time in the units of Unit. If Unit is not specified, uses internal units.</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td>	<em>float</em> <dfn class="decl fn" id="_ZNK7tSystem6tTimer7GetTimeEN5tUnit5tTimeE" title='tSystem::tTimer::GetTime' data-ref="_ZNK7tSystem6tTimer7GetTimeEN5tUnit5tTimeE">GetTime</dfn>(<span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a> = <span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a>::<a class="enum" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime::Unspecified" title='tUnit::tTime::Unspecified' data-ref="tUnit::tTime::Unspecified">Unspecified</a>) <em>const</em>;&nbsp</td></tr>
+<tr><th id="80">80</th><td>	<em>bool</em> <dfn class="decl def fn" id="_ZNK7tSystem6tTimer9IsRunningEv" title='tSystem::tTimer::IsRunning' data-ref="_ZNK7tSystem6tTimer9IsRunningEv">IsRunning</dfn>() <em>const</em>																								{ <b>return</b> <a class="member field" href="#tSystem::tTimer::Running" title='tSystem::tTimer::Running' data-ref="tSystem::tTimer::Running">Running</a>; }&nbsp</td></tr>
+<tr><th id="81">81</th><td>	<span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a> <dfn class="decl def fn" id="_ZNK7tSystem6tTimer15GetInternalUnitEv" title='tSystem::tTimer::GetInternalUnit' data-ref="_ZNK7tSystem6tTimer15GetInternalUnitEv">GetInternalUnit</dfn>() <em>const</em>																				{ <b>return</b> <a class="member field" href="#tSystem::tTimer::UnitInternal" title='tSystem::tTimer::UnitInternal' data-ref="tSystem::tTimer::UnitInternal">UnitInternal</a>; }&nbsp</td></tr>
+<tr><th id="82">82</th><td>&nbsp</td></tr>
+<tr><th id="83">83</th><td>	<em>static</em> <em>double</em> <dfn class="decl fn" id="_ZN7tSystem6tTimer7ConvertEdN5tUnit5tTimeES2_" title='tSystem::tTimer::Convert' data-ref="_ZN7tSystem6tTimer7ConvertEdN5tUnit5tTimeES2_">Convert</dfn>(<em>double</em> <dfn class="local col6 decl" id="6time" title='time' data-type='double' data-ref="6time">time</dfn>, <span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a> <dfn class="local col7 decl" id="7from" title='from' data-type='tUnit::tTime' data-ref="7from">from</dfn>, <span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a> <dfn class="local col8 decl" id="8to" title='to' data-type='tUnit::tTime' data-ref="8to">to</dfn>);&nbsp</td></tr>
+<tr><th id="84">84</th><td>&nbsp</td></tr>
+<tr><th id="85">85</th><td><b>private</b>:&nbsp</td></tr>
+<tr><th id="86">86</th><td>	<i>// @todo Add getters that format the time into a number of different string formats.</i>&nbsp</td></tr>
+<tr><th id="87">87</th><td>	<em>const</em> <em>static</em> <em>double</em> <dfn class="decl" id="tSystem::tTimer::UnitConversionTable" title='tSystem::tTimer::UnitConversionTable' data-ref="tSystem::tTimer::UnitConversionTable">UnitConversionTable</dfn>[<em>int</em>(<span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a>::<a class="enum" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime::NumTimeUnits" title='tUnit::tTime::NumTimeUnits' data-ref="tUnit::tTime::NumTimeUnits">NumTimeUnits</a>)][<em>int</em>(<span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a>::<a class="enum" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime::NumTimeUnits" title='tUnit::tTime::NumTimeUnits' data-ref="tUnit::tTime::NumTimeUnits">NumTimeUnits</a>)];&nbsp</td></tr>
+<tr><th id="88">88</th><td>&nbsp</td></tr>
+<tr><th id="89">89</th><td>	<span class="namespace">tUnit::</span><a class="type" href="../../../Foundation/Inc/Foundation/tUnits.h.html#tUnit::tTime" title='tUnit::tTime' data-ref="tUnit::tTime">tTime</a> <dfn class="decl field" id="tSystem::tTimer::UnitInternal" title='tSystem::tTimer::UnitInternal' data-ref="tSystem::tTimer::UnitInternal">UnitInternal</dfn>;&nbsp</td></tr>
+<tr><th id="90">90</th><td>	<em>bool</em> <dfn class="decl field" id="tSystem::tTimer::Running" title='tSystem::tTimer::Running' data-ref="tSystem::tTimer::Running">Running</dfn>;&nbsp</td></tr>
+<tr><th id="91">91</th><td>	<em>double</em> <dfn class="decl field" id="tSystem::tTimer::Time" title='tSystem::tTimer::Time' data-ref="tSystem::tTimer::Time">Time</dfn>;&nbsp</td></tr>
+<tr><th id="92">92</th><td>&nbsp</td></tr>
+<tr><th id="93">93</th><td><b>public</b>:&nbsp</td></tr>
+<tr><th id="94">94</th><td>	<i>// For developers only. Easily add a new unit and recreate the unit conversion table.</i>&nbsp</td></tr>
+<tr><th id="95">95</th><td>	<em>static</em> <em>void</em> <dfn class="decl fn" id="_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc" title='tSystem::tTimer::PrintHighPrecisionConversionTable' data-ref="_ZN7tSystem6tTimer33PrintHighPrecisionConversionTableEPKc">PrintHighPrecisionConversionTable</dfn>(<em>const</em> <em>char</em>* <dfn class="local col9 decl" id="9outputFile" title='outputFile' data-type='const char *' data-ref="9outputFile">outputFile</dfn>);&nbsp</td></tr>
+<tr><th id="96">96</th><td>};&nbsp</td></tr>
+<tr><th id="97">97</th><td>&nbsp</td></tr>
+<tr><th id="98">98</th><td>&nbsp</td></tr>
+<tr><th id="99">99</th><td>}&nbsp</td></tr>
+<tr><th id="100">100</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Pipeline/Src/tProcess.cpp.html'>Modules/Pipeline/Src/tProcess.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

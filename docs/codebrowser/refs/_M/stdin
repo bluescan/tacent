@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='147'/>
+<doc f='include/stdio.h' l='146'>/* C89/C99 say they&apos;re macros.  Make them happy.  */</doc>

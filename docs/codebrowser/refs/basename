@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='522' type='char * basename(char * __filename)'/>
+<dec f='include/string.h' l='524' type='const char * basename(const char * __filename)'/>

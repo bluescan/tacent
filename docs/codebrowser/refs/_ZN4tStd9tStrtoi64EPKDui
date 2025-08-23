@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='167' type='int64 tStd::tStrtoi64(const char8_t * s, int base = -1)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='343' u='c' c='_ZNK7tString10GetAsInt64Ei'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='204' u='c' c='_ZNK5tName10GetAsInt64Ei'/>

@@ -1,0 +1,2 @@
+<dec f='include/time.h' l='79' type='double difftime(time_t __time1, time_t __time0)'/>
+<doc f='include/time.h' l='78'>/* Return the difference between TIME1 and TIME0.  */</doc>

@@ -1,0 +1,24 @@
+<dec f='include/c++/11/istream' l='722' type='void std::basic_istream::sentry::sentry(basic_istream&lt;_CharT, _Traits&gt; &amp; __is, bool __noskipws = false)'/>
+<def f='include/c++/11/bits/istream.tcc' l='45' ll='89' type='void std::basic_istream::sentry::sentry(basic_istream&lt;_CharT, _Traits&gt; &amp; __in, bool __noskip = false)'/>
+<doc f='include/c++/11/istream' l='699'>/**
+       *  @brief  The constructor performs all the work.
+       *  @param  __is  The input stream to guard.
+       *  @param  __noskipws  Whether to consume whitespace or not.
+       *
+       *  If the stream state is good (@a __is.good() is true), then the
+       *  following actions are performed, otherwise the sentry state
+       *  is false (&lt;em&gt;not okay&lt;/em&gt;) and failbit is set in the
+       *  stream state.
+       *
+       *  The sentry&apos;s preparatory actions are:
+       *
+       *  -# if the stream is tied to an output stream, @c is.tie()-&gt;flush()
+       *     is called to synchronize the output sequence
+       *  -# if @a __noskipws is false, and @c ios_base::skipws is set in
+       *     @c is.flags(), the sentry extracts and discards whitespace
+       *     characters from the stream.  The currently imbued locale is
+       *     used to determine whether each character is whitespace.
+       *
+       *  If the stream state is still good, then the sentry state becomes
+       *  true (@a okay).
+      */</doc>

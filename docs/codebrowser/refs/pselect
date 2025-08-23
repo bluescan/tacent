@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/sys/select.h' l='127' type='int pselect(int __nfds, fd_set *__restrict __readfds, fd_set *__restrict __writefds, fd_set *__restrict __exceptfds, const struct timespec *__restrict __timeout, const __sigset_t *__restrict __sigmask)'/>

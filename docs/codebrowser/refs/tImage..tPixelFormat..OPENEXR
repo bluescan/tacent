@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='220' type='72'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='221'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='558' c='_ZN6tImage14tIsAlphaFormatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='609' c='_ZN6tImage12tIsHDRFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='220'>// OpenEXR HDR.</doc>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='219' u='r' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='279' u='r' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>

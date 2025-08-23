@@ -1,0 +1,4 @@
+<use f='include/c++/11/chrono' l='2558' u='c' c='_ZNSt6chrono19year_month_day_lastpLERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2566' u='c' c='_ZNSt6chrono19year_month_day_lastmIERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2573' u='c' c='_ZNSt6chrono19year_month_day_lastpLERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2580' u='c' c='_ZNSt6chrono19year_month_day_lastmIERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>

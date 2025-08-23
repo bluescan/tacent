@@ -1,0 +1,36 @@
+<def f='include/c++/11/bits/stl_function.h' l='365' ll='371'/>
+<def f='include/c++/11/bits/stl_function.h' l='501' ll='512'/>
+<use f='include/c++/11/bits/stl_function.h' l='502'/>
+<use f='include/c++/11/bits/unordered_map.h' l='45'/>
+<use f='include/c++/11/bits/unordered_map.h' l='62'/>
+<use f='include/c++/11/bits/unordered_map.h' l='100'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1140'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1154'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1172' c='std::{deductionguideforunordered_map}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1182' c='std::{deductionguideforunordered_map}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1194' c='std::{deductionguideforunordered_map}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1201' c='std::{deductionguideforunordered_map}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1206' c='std::{deductionguideforunordered_map}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1214' c='std::{deductionguideforunordered_map}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1243'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2040'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2055'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2074' c='std::{deductionguideforunordered_multimap}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2083' c='std::{deductionguideforunordered_multimap}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2094' c='std::{deductionguideforunordered_multimap}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2101' c='std::{deductionguideforunordered_multimap}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2106' c='std::{deductionguideforunordered_multimap}'/>
+<use f='include/c++/11/bits/unordered_map.h' l='2114' c='std::{deductionguideforunordered_multimap}'/>
+<use f='include/c++/11/unordered_map' l='63'/>
+<use f='include/c++/11/unordered_map' l='68'/>
+<use f='include/c++/11/functional' l='970'/>
+<use f='include/c++/11/functional' l='974'/>
+<use f='include/c++/11/functional' l='982'/>
+<use f='include/c++/11/functional' l='986'/>
+<use f='include/c++/11/functional' l='1003'/>
+<use f='include/c++/11/functional' l='1112'/>
+<use f='include/c++/11/functional' l='1168'/>
+<size>1</size>
+<doc f='include/c++/11/bits/stl_function.h' l='500'>/// One of the @link comparison_functors comparison functors@endlink.</doc>
+<fun r='_ZNKSt8equal_toclERKT_S2_'/>
+<fun r='_ZNKSt8equal_toIvEclEOT_OT0_'/>

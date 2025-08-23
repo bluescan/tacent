@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/WebP/include/decode.h' l='475' ll='477' type='int WebPInitDecoderConfig(WebPDecoderConfig * config)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='96' u='c' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='472'>// Initialize the configuration as empty. This function must always be
+// called first, unless WebPGetFeatures() is to be called.
+// Returns false in case of mismatched version.</doc>

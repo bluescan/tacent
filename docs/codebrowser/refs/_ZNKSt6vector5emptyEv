@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1006' ll='1008' type='bool std::vector::empty() const'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1851' u='c' c='_ZNKSt6vector11_M_data_ptrETL0__'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1002'>/**
+       *  Returns true if the %vector is empty.  (Thus begin() would
+       *  equal end().)
+       */</doc>
+<use f='include/c++/11/bits/random.h' l='5318' u='c' c='_ZNKSt21discrete_distribution10param_type13probabilitiesEv'/>
+<use f='include/c++/11/bits/random.h' l='5564' u='c' c='_ZNKSt31piecewise_constant_distribution10param_type9densitiesEv'/>
+<use f='include/c++/11/bits/random.h' l='5835' u='c' c='_ZNKSt29piecewise_linear_distribution10param_type9densitiesEv'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='239' u='c' c='_ZN6tImage16tQuantizeSpatial21random_permutation_2dEiiRSt5dequeISt4pairIiiESaIS3_EERSt26linear_congruential_engineImLm16807ELm0ELm2147483647EE'/>

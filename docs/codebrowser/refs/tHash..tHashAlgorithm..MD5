@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tHash.h' l='52' type='3'/>
+<doc f='Modules/Foundation/Inc/Foundation/tHash.h' l='52'>// MD5 is 128 bit. For cryptographic purposes, no MD5.</doc>

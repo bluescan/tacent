@@ -1,0 +1,2 @@
+<dec f='include/sched.h' l='61' type='int sched_setscheduler(__pid_t __pid, int __policy, const struct sched_param * __param)'/>
+<doc f='include/sched.h' l='60'>/* Set scheduling algorithm and/or parameters for a process.  */</doc>

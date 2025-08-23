@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='526' type='16955152'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='526'>// 4Bytes: The type of instance this is. 0=Invalid, 1=PolyModel, 2=PatchModel, 3=Skeleton, 4=Camera, 5=Light. 4Bytes: The ID of the object this instance represents. 4Bytes: Billboarding mode. 0 -&gt; no-billboarding. non-zero for the other types like view-plane alighned, view-point, y-axis only, etc. See BillboardTracking and BillboardMode.</doc>
+<use f='Modules/Scene/Src/tInstance.cpp' l='28' u='r' c='_ZNK6tScene9tInstance4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tInstance.cpp' l='53' c='_ZN6tScene9tInstance4LoadERK6tChunk'/>

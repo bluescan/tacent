@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='236' type='void tMath::tHSVToRGB(int &amp; r, int &amp; g, int &amp; b, int h, int s, int v, tMath::tAngleMode  = tMath::tAngleMode::Degrees)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1139' u='c' c='_ZN9tColour4b8HSVToRGBEv'/>
+<def f='Modules/Math/Src/tColour.cpp' l='247' ll='329' type='void tMath::tHSVToRGB(int &amp; r, int &amp; g, int &amp; b, int h, int s, int v, tMath::tAngleMode angleMode = tMath::tAngleMode::Degrees)'/>

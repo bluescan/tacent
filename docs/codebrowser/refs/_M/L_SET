@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='327'/>
+<doc f='include/unistd.h' l='326'>/* Old BSD names for the same constants; just for compatibility.  */</doc>

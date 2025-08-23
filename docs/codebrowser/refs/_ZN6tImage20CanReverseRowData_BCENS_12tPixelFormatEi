@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Src/tPixelUtil.cpp' l='31' type='bool tImage::CanReverseRowData_BC(tImage::tPixelFormat , int height)'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1302' u='c' c='_ZN6tImage17CanReverseRowDataENS_12tPixelFormatEi'/>
+<def f='Modules/Image/Src/tPixelUtil.cpp' l='1356' ll='1370' type='bool tImage::CanReverseRowData_BC(tImage::tPixelFormat format, int height)'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1376' u='c' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>

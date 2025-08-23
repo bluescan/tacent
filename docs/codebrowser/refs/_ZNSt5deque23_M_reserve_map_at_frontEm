@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stl_deque.h' l='2133' ll='2139' type='void std::deque::_M_reserve_map_at_front(std::deque::size_type __nodes_to_add = 1)'/>
+<use f='include/c++/11/bits/deque.tcc' l='535' u='c' c='_ZNSt5deque17_M_push_front_auxEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='889' u='c' c='_ZNSt5deque24_M_new_elements_at_frontEm'/>

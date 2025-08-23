@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='323' type='const char *const *const'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='319'>// Names of underlying locale categories.
+    // NB: locale::global() has to know how to modify all the
+    // underlying categories, not just the ones required by the C++
+    // standard.</doc>

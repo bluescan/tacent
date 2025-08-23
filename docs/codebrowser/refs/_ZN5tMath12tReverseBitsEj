@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='145' type='uint32 tMath::tReverseBits(uint32 v)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='146' u='c' c='_ZN5tMath13tiReverseBitsERj'/>
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='399' ll='405' type='uint32 tMath::tReverseBits(uint32 v)'/>

@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='528' type='void tMath::tIdentity(tMath::tMat2 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='47' u='c' c='_ZN5tMath8tMatrix28IdentityEv'/>

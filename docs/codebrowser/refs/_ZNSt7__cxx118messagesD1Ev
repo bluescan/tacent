@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='1923' type='void std::messages::~messages&lt;_CharT&gt;()'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='410' c='_ZNSt6locale5facetD1Ev'/>
+<def f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='78' ll='84' type='void std::messages::~messages&lt;_CharT&gt;()'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1921'>/// Destructor.</doc>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='77'>// Virtual member functions.</doc>

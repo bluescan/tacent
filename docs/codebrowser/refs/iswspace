@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='130' type='int iswspace(wint_t __wc)'/>
+<doc f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='127'>/* Test for any wide character that corresponds to a locale-specific
+   set of wide characters for which none of `iswalnum&apos;, `iswgraph&apos;, or
+   `iswpunct&apos; is true.  */</doc>

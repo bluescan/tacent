@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_iterator_base_funcs.h' l='78' ll='93' type='typename iterator_traits&lt;_InputIterator&gt;::difference_type std::__distance(_InputIterator __first, _InputIterator __last, std::input_iterator_tag )'/>

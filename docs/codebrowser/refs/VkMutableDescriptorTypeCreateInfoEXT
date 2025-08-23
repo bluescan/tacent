@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16137' ll='16142'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16137'/>
+<size>32</size>
+<mbr r='VkMutableDescriptorTypeCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkMutableDescriptorTypeCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkMutableDescriptorTypeCreateInfoEXT::mutableDescriptorTypeListCount' o='128' t='uint32_t'/>
+<mbr r='VkMutableDescriptorTypeCreateInfoEXT::pMutableDescriptorTypeLists' o='192' t='const VkMutableDescriptorTypeListEXT *'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/xopen_lim.h' l='76'/>
+<doc f='include/x86_64-linux-gnu/bits/xopen_lim.h' l='75'>/* Maximum number of bytes in a `LANG&apos; name.  We have no limit.  */</doc>

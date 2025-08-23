@@ -1,0 +1,9 @@
+<use f='include/c++/11/bits/node_handle.h' l='186' u='w' c='_ZNSt19_Node_handle_common15_Optional_allocC1ERKT0_'/>
+<use f='include/c++/11/bits/node_handle.h' l='195' u='w' c='_ZNSt19_Node_handle_common15_Optional_allocaSEOT0_'/>
+<use f='include/c++/11/bits/node_handle.h' l='197' c='_ZNSt19_Node_handle_common15_Optional_allocaSEOT0_'/>
+<use f='include/c++/11/bits/node_handle.h' l='206' c='_ZNSt19_Node_handle_common15_Optional_alloc4swapERS0_'/>
+<use f='include/c++/11/bits/node_handle.h' l='208' c='_ZNSt19_Node_handle_common15_Optional_alloc4swapERS0_'/>
+<use f='include/c++/11/bits/node_handle.h' l='212' u='a' c='_ZNSt19_Node_handle_common15_Optional_allocdeEv'/>
+<use f='include/c++/11/bits/node_handle.h' l='217' c='_ZNSt19_Node_handle_common15_Optional_alloc7releaseEv'/>
+<use f='include/c++/11/bits/node_handle.h' l='218' u='c' c='_ZNSt19_Node_handle_common15_Optional_alloc7releaseEv'/>
+<dec f='include/c++/11/bits/node_handle.h' l='225' type='_NodeAlloc'/>

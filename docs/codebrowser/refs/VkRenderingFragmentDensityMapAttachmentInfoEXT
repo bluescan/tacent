@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8388' ll='8393'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8388'/>
+<size>32</size>
+<mbr r='VkRenderingFragmentDensityMapAttachmentInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderingFragmentDensityMapAttachmentInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderingFragmentDensityMapAttachmentInfoEXT::imageView' o='128' t='VkImageView'/>
+<mbr r='VkRenderingFragmentDensityMapAttachmentInfoEXT::imageLayout' o='192' t='VkImageLayout'/>

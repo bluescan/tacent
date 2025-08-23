@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='630' type='void tMath::tMakeProjPersp(tMath::tMat4 &amp; d, const tMath::tVec3 &amp; boxMin, const tMath::tVec3 &amp; boxMax)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='89' u='c' c='_ZN5tMath8tMatrix413MakeProjPerspERKNS_5tVec3ES3_'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='751' ll='760' type='void tMath::tMakeProjPersp(tMath::tMat4 &amp; d, const tMath::tVec3 &amp; boxMin, const tMath::tVec3 &amp; boxMax)'/>

@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/codecvt.h' l='422' type='void std::codecvt&lt;wchar_t, char, __mbstate_t&gt;::codecvt(std::size_t __refs = 0)'/>
+<use f='include/c++/11/codecvt' l='99' u='c' c='_ZNSt19__codecvt_utf8_baseIwEC1EmSt12codecvt_modem'/>
+<use f='include/c++/11/codecvt' l='99' u='c' c='_ZNSt20__codecvt_utf16_baseIwEC1EmSt12codecvt_modem'/>
+<use f='include/c++/11/codecvt' l='99' u='c' c='_ZNSt25__codecvt_utf8_utf16_baseIwEC1EmSt12codecvt_modem'/>

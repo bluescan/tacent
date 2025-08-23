@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='301' type='void tColour3b::tColour3b(const tColour3b &amp; c)'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='119' u='c' c='_ZN6tImage9tQuantize15ConvertToPixelsEP9tColour3biiPKS1_PKh'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='143' u='c' c='_ZN6tImage9tQuantize15ConvertToPixelsEP9tColour4biiPK9tColour3bPKhb'/>

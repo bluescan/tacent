@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16604' ll='16609'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16604'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceImage2DViewOf3DFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceImage2DViewOf3DFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceImage2DViewOf3DFeaturesEXT::image2DViewOf3D' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceImage2DViewOf3DFeaturesEXT::sampler2DViewOf3D' o='160' t='VkBool32'/>

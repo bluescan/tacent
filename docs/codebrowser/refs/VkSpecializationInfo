@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3504' ll='3509'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3504'/>
+<size>32</size>
+<mbr r='VkSpecializationInfo::mapEntryCount' o='0' t='uint32_t'/>
+<mbr r='VkSpecializationInfo::pMapEntries' o='64' t='const VkSpecializationMapEntry *'/>
+<mbr r='VkSpecializationInfo::dataSize' o='128' t='size_t'/>
+<mbr r='VkSpecializationInfo::pData' o='192' t='const void *'/>

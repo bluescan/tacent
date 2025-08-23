@@ -1,0 +1,2 @@
+<use f='Modules/System/Src/tTime.cpp' l='59' u='c' c='_ZN7tSystem22tGetHardwareTimerCountEv'/>
+<use f='Modules/System/Src/tTime.cpp' l='133' u='c' c='_ZN7tSystem6tSleepEi'/>

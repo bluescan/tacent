@@ -1,0 +1,4 @@
+<use f='Modules/System/Src/tRegex.cpp' l='350' u='c' c='_ZN7tSystem6tRegex7ElementEv'/>
+<def f='Modules/System/Src/tRegex.cpp' l='457' ll='484' type='int tSystem::tRegex::ListRec()'/>
+<use f='Modules/System/Src/tRegex.cpp' l='478' u='c' c='_ZN7tSystem6tRegex7ListRecEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='769' u='c' c='_ZN7tSystem6tRegex15CompileInternalEv'/>

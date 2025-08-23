@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='984' type='ktx_uint32_t ktxTexture_GetElementSize(ktxTexture * This)'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='980'>/*
+  * Return the element size of the texture&apos;s images.
+  */</doc>

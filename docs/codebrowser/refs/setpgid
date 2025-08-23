@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='668' type='int setpgid(__pid_t __pid, __pid_t __pgid)'/>
+<doc f='include/unistd.h' l='665'>/* Set the process group ID of the process matching PID to PGID.
+   If PID is zero, the current process&apos;s process group ID is set.
+   If PGID is zero, the process ID of the process is used.  */</doc>

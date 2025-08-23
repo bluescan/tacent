@@ -1,0 +1,25 @@
+<use f='include/c++/11/bits/iterator_concepts.h' l='410'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='651'/>
+<inh f='include/c++/11/bits/stl_iterator_base_types.h' l='99' c='std::forward_iterator_tag'/>
+<def f='include/c++/11/bits/stl_iterator_base_types.h' l='103'/>
+<ovr f='include/c++/11/bits/stl_iterator_base_types.h' l='107' c='std::random_access_iterator_tag'/>
+<use f='include/c++/11/bits/stl_iterator_base_types.h' l='107'/>
+<use f='include/c++/11/bits/stl_iterator_base_funcs.h' l='159' c='_ZSt9__advanceRT_T0_St26bidirectional_iterator_tag'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='161'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1400' c='_ZNSt13move_iterator15_S_iter_conceptEv'/>
+<use f='include/c++/11/bits/stl_algo.h' l='310' c='_ZSt10__find_endT_S_T0_S0_St26bidirectional_iterator_tagS1_T1_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='310' c='_ZSt10__find_endT_S_T0_S0_St26bidirectional_iterator_tagS1_T1_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1096' c='_ZSt9__reverseT_S_St26bidirectional_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1262' c='_ZNSt3_V28__rotateET_S0_S0_St26bidirectional_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1273' c='_ZNSt3_V28__rotateET_S0_S0_St26bidirectional_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1274' c='_ZNSt3_V28__rotateET_S0_S0_St26bidirectional_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1284' c='_ZNSt3_V28__rotateET_S0_S0_St26bidirectional_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1289' c='_ZNSt3_V28__rotateET_S0_S0_St26bidirectional_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1488' c='_ZSt11__partitionT_S_T0_St26bidirectional_iterator_tag'/>
+<size>1</size>
+<doc f='include/c++/11/bits/stl_iterator_base_types.h' l='101'>/// Bidirectional iterators support a superset of forward iterator
+  /// operations.</doc>
+<use f='include/c++/11/bits/ranges_algo.h' l='3582' c='_ZSt11shift_rightT_S_NSt15iterator_traitsIS_E15difference_typeE'/>
+<size>1</size>
+<use f='include/c++/11/bits/fs_path.h' l='874'/>
+<size>1</size>

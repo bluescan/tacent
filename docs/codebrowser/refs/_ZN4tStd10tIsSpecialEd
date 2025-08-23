@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='373' type='bool tStd::tIsSpecial(double v)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2173' u='c' c='_ZN7tSystem7tDtostrER7tStringdb'/>

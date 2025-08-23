@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1074'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1073'>/* Define to 1 if you have the `posix_memalign&apos; function. */</doc>

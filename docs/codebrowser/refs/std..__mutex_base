@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/std_mutex.h' l='57' ll='80'/>
+<use f='include/c++/11/bits/std_mutex.h' l='78' c='_ZNSt12__mutex_baseC1ERKS_'/>
+<use f='include/c++/11/bits/std_mutex.h' l='79' c='_ZNSt12__mutex_baseaSERKS_'/>
+<use f='include/c++/11/bits/std_mutex.h' l='79' c='_ZNSt12__mutex_baseaSERKS_'/>
+<ovr f='include/c++/11/bits/std_mutex.h' l='83' c='std::mutex'/>
+<use f='include/c++/11/bits/std_mutex.h' l='83'/>
+<ovr f='include/c++/11/mutex' l='212' c='std::timed_mutex'/>
+<use f='include/c++/11/mutex' l='213'/>
+<size>40</size>
+<doc f='include/c++/11/bits/std_mutex.h' l='56'>// Common base class for std::mutex and std::timed_mutex</doc>
+<mbr r='std::__mutex_base::_M_mutex' o='0' t='std::__mutex_base::__native_type'/>
+<fun r='_ZNSt12__mutex_baseC1Ev'/>
+<fun r='_ZNSt12__mutex_baseC1ERKS_'/>
+<fun r='_ZNSt12__mutex_baseaSERKS_'/>

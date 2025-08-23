@@ -1,0 +1,7 @@
+<dec f='include/pwd.h' l='102' type='int putpwent(const struct passwd *__restrict __p, FILE *__restrict __f)'/>
+<doc f='include/pwd.h' l='96'>/* Write a given user database entry onto the given stream.
+
+   This function is not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation it is a cancellation point and
+   therefore not marked with __THROW.  */</doc>

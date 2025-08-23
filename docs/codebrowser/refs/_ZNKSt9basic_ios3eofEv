@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/basic_ios.h' l='189' ll='191' type='bool std::basic_ios::eof() const'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='183'>/**
+       *  @brief  Fast error checking.
+       *  @return  True if the eofbit is set.
+       *
+       *  Note that other iostate flags may also be set.
+      */</doc>

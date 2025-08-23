@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='360' macro='1' type='__intmax_t fromfpxf32x(_Float32x __x, int __round, unsigned int __width)'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15049' ll='15053'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15049'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceTexelBufferAlignmentFeaturesEXT::texelBufferAlignment' o='128' t='VkBool32'/>

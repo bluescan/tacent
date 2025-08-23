@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='56' type='T tMath::tClampMin(T val, T min)'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='167' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='433' u='c' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='800' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='374' u='c' c='_ZN6tImage18ComputeCubicWeightEfff'/>

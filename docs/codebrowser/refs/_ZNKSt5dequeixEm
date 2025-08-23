@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1344' ll='1349' type='std::deque::const_reference std::deque::operator[](std::deque::size_type __n) const'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1333'>/**
+       *  @brief Subscript access to the data contained in the %deque.
+       *  @param __n The index of the element for which data should be
+       *  accessed.
+       *  @return  Read-only (constant) reference to data.
+       *
+       *  This operator allows for easy, array-style, data access.
+       *  Note that data access with this operator is unchecked and
+       *  out_of_range lookups are not defined. (For checked lookups
+       *  see at().)
+       */</doc>

@@ -1,0 +1,19 @@
+<def f='include/c++/11/bits/basic_string.h' l='925' ll='927' type='std::basic_string::size_type std::basic_string::length() const'/>
+<use f='include/c++/11/bits/basic_string.h' l='6876' u='c' c='_ZNKSt4hashINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEclERKS5_'/>
+<use f='include/c++/11/bits/basic_string.h' l='6892' u='c' c='_ZNKSt4hashINSt7__cxx1112basic_stringIwSt11char_traitsIwESaIwEEEEclERKS5_'/>
+<use f='include/c++/11/bits/basic_string.h' l='6910' u='c' c='_ZNKSt4hashINSt7__cxx1112basic_stringIDuSt11char_traitsIDuESaIDuEEEEclERKS5_'/>
+<use f='include/c++/11/bits/basic_string.h' l='6926' u='c' c='_ZNKSt4hashINSt7__cxx1112basic_stringIDsSt11char_traitsIDsESaIDsEEEEclERKS5_'/>
+<use f='include/c++/11/bits/basic_string.h' l='6941' u='c' c='_ZNKSt4hashINSt7__cxx1112basic_stringIDiSt11char_traitsIDiESaIDiEEEEclERKS5_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='69' u='c' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='87' u='c' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='91' u='c' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='125' u='c' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='292' u='c' c='_ZNSt7__cxx1112basic_string7reserveEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='304' u='c' c='_ZNSt7__cxx1112basic_string9_M_mutateEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_SC_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='306' u='c' c='_ZNSt7__cxx1112basic_string9_M_mutateEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_SC_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='327' u='c' c='_ZNSt7__cxx1112basic_string8_M_eraseEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='332' u='c' c='_ZNSt7__cxx1112basic_string8_M_eraseEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='343' u='c' c='_ZNSt7__cxx1112basic_string7reserveEv'/>
+<doc f='include/c++/11/bits/basic_string.h' l='923'>///  Returns the number of characters in the string, not including any
+      ///  null-termination.</doc>
+<use f='include/c++/11/bits/fs_path.h' l='1079' u='c' c='_ZNKSt10filesystem7__cxx114path6stringERKT1_'/>

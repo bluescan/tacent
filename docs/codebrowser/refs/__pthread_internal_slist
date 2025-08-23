@@ -1,0 +1,5 @@
+<def f='include/x86_64-linux-gnu/bits/thread-shared-types.h' l='57' ll='60'/>
+<use f='include/x86_64-linux-gnu/bits/thread-shared-types.h' l='59'/>
+<use f='include/x86_64-linux-gnu/bits/thread-shared-types.h' l='57'/>
+<size>8</size>
+<mbr r='__pthread_internal_slist::__next' o='0' t='struct __pthread_internal_slist *'/>

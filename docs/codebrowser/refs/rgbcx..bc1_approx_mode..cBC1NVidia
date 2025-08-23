@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='80' type='1'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1673' c='_ZN5rgbcxL8interp_5EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1687' c='_ZN5rgbcxL8interp_6EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1700' c='_ZN5rgbcxL13interp_half_5EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1715' c='_ZN5rgbcxL13interp_half_6EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4078' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4098' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='79'>// NVidia GPU mode.</doc>

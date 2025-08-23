@@ -1,0 +1,8 @@
+<def f='Modules/Scene/Inc/Scene/tSkeleton.h' l='46' ll='62'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='87'/>
+<size>32</size>
+<fun r='_ZN6tScene5tPoseD1Ev'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='249' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<size>32</size>
+<fun r='_ZNK6tScene5tPose4SaveER12tChunkWriter'/>
+<fun r='_ZN6tScene5tPose4LoadERK6tChunk'/>

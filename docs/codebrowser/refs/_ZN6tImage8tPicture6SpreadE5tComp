@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='160' type='void tImage::tPicture::Spread(tComp channel = tComp::R)'/>
+<def f='Modules/Image/Inc/Image/tPicture.h' l='527' ll='541' type='void tImage::tPicture::Spread(tComp channel = tComp::R)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='158'>// Spreads the specified single channel to all RGB channels. If channel is R, G, or B, it spreads to the remainder
+	// of RGB (e.g. R will spread to GB). If channel is alpha, spreads to RGB.</doc>

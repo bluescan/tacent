@@ -1,0 +1,8 @@
+_ZNKSt22bernoulli_distribution1pEv|std::bernoulli_distribution::p
+_ZNKSt22bernoulli_distribution10param_type1pEv|std::bernoulli_distribution::param_type::p
+_ZNKSt21binomial_distribution1pEv|std::binomial_distribution::p
+_ZNKSt21binomial_distribution10param_type1pEv|std::binomial_distribution::param_type::p
+_ZNKSt22geometric_distribution1pEv|std::geometric_distribution::p
+_ZNKSt22geometric_distribution10param_type1pEv|std::geometric_distribution::param_type::p
+_ZNKSt30negative_binomial_distribution1pEv|std::negative_binomial_distribution::p
+_ZNKSt30negative_binomial_distribution10param_type1pEv|std::negative_binomial_distribution::param_type::p

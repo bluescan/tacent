@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/stl_deque.h' l='2035' type='void std::deque::_M_destroy_data_aux(std::deque::iterator __first, std::deque::iterator __last)'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2042' u='c' c='_ZNSt5deque15_M_destroy_dataENSt11_Deque_baseIT_T0_E8iteratorES4_RKTL0__'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2049' u='c' c='_ZNSt5deque15_M_destroy_dataENSt11_Deque_baseIT_T0_E8iteratorES4_RKSaIS1_E'/>
+<def f='include/c++/11/bits/deque.tcc' l='857' ll='877' type='void std::deque::_M_destroy_data_aux(std::deque::iterator __first, std::deque::iterator __last)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='2032'>// Internal erase functions follow.</doc>

@@ -1,0 +1,36 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='68' u='w' c='_ZN12tChunkWriterC1ERK7tString11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='71' u='w' c='_ZN12tChunkWriterC1ERK7tString9tPlatform'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='79' u='w' c='_ZN12tChunkWriterC1EPhi11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='79' u='w' c='_ZN12tChunkWriterC1EPhi11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='82' u='w' c='_ZN12tChunkWriterC1Ev'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='155' u='r' c='_ZN12tChunkWriter5WriteET_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='174' u='r' c='_ZN12tChunkWriter5WriteEPKT_i'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='196' u='r' c='_ZNK12tChunkWriter18GetNeedsEndianSwapEv'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='212' type='bool'/>
+<offset>0</offset>
+<doc f='Modules/System/Inc/System/tChunk.h' l='212'>// True if the data needs an endianness swap before being written.</doc>
+<use f='Modules/System/Src/tChunk.cpp' l='66' u='w' c='_ZN12tChunkWriter4OpenERK7tString11tEndianness'/>
+<use f='Modules/System/Src/tChunk.cpp' l='93' u='w' c='_ZN12tChunkWriter8OpenSafeERK7tString11tEndianness'/>
+<use f='Modules/System/Src/tChunk.cpp' l='180' u='r' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='250' u='r' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='329' u='r' c='_ZN12tChunkWriter5WriteERKN5tMath8tVector2E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='344' u='r' c='_ZN12tChunkWriter5WriteERKN5tMath8tVector3E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='359' u='r' c='_ZN12tChunkWriter5WriteERKN5tMath8tVector4E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='374' u='r' c='_ZN12tChunkWriter5WriteERKN5tMath11tQuaternionE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='389' u='r' c='_ZN12tChunkWriter5WriteERKN5tMath8tMatrix2E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='404' u='r' c='_ZN12tChunkWriter5WriteERKN5tMath8tMatrix4E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='419' u='r' c='_ZN12tChunkWriter5WriteERKN5tMath5tEdgeE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='433' u='r' c='_ZN12tChunkWriter5WriteERKN5tMath8tTriFaceE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='447' u='r' c='_ZN12tChunkWriter5WriteERKN5tMath9tQuadFaceE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='461' u='r' c='_ZN12tChunkWriter5WriteERKN5tMath7tSphereE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='479' u='r' c='_ZN12tChunkWriter5WriteEPKN5tMath8tVector2Ei'/>
+<use f='Modules/System/Src/tChunk.cpp' l='500' u='r' c='_ZN12tChunkWriter5WriteEPKN5tMath8tVector3Ei'/>
+<use f='Modules/System/Src/tChunk.cpp' l='521' u='r' c='_ZN12tChunkWriter5WriteEPKN5tMath8tVector4Ei'/>
+<use f='Modules/System/Src/tChunk.cpp' l='542' u='r' c='_ZN12tChunkWriter5WriteEPKN5tMath11tQuaternionEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='563' u='r' c='_ZN12tChunkWriter5WriteEPKN5tMath8tMatrix2Ei'/>
+<use f='Modules/System/Src/tChunk.cpp' l='584' u='r' c='_ZN12tChunkWriter5WriteEPKN5tMath8tMatrix4Ei'/>
+<use f='Modules/System/Src/tChunk.cpp' l='605' u='r' c='_ZN12tChunkWriter5WriteEPKN5tMath5tEdgeEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='626' u='r' c='_ZN12tChunkWriter5WriteEPKN5tMath8tTriFaceEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='647' u='r' c='_ZN12tChunkWriter5WriteEPKN5tMath9tQuadFaceEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='668' u='r' c='_ZN12tChunkWriter5WriteEPKN5tMath7tSphereEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='719' u='r' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>

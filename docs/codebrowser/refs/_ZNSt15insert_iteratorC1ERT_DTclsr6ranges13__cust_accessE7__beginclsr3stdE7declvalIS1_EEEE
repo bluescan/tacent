@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='889' ll='891' macro='1' type='void std::insert_iterator::insert_iterator&lt;_Container&gt;(_Container &amp; __x, std::insert_iterator::_Iter __i)'/>

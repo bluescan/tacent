@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tConstants.h source code [Modules/Foundation/Inc/Foundation/tConstants.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Foundation/Inc/Foundation/tConstants.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>Modules</a>/<a href='../..'>Foundation</a>/<a href='..'>Inc</a>/<a href='./'>Foundation</a>/<a href='tConstants.h.html'>tConstants.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tConstants.h</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Physical and mathematical constants.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// Copyright (c) 2004-2006, 2015, 2017, 2019, 2020, 2023 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#pragma once</u>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#include "Foundation/tPlatform.h"</u>&nbsp</td></tr>
+<tr><th id="17">17</th><td><b>namespace</b> <span class="namespace">tMath</span>&nbsp</td></tr>
+<tr><th id="18">18</th><td>{&nbsp</td></tr>
+<tr><th id="19">19</th><td>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::Pi" title='tMath::Pi' data-ref="tMath::Pi">Pi</dfn>									= <var>3.14159265358979323f</var>;		<i>// 180 degrees.</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::TwoPi" title='tMath::TwoPi' data-ref="tMath::TwoPi">TwoPi</dfn>								= <a class="ref" href="#tMath::Pi" title='tMath::Pi' data-ref="tMath::Pi">Pi</a> * <var>2.0f</var>;				<i>// 360 degrees.</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::PiOver2" title='tMath::PiOver2' data-ref="tMath::PiOver2">PiOver2</dfn>								= <a class="ref" href="#tMath::Pi" title='tMath::Pi' data-ref="tMath::Pi">Pi</a> / <var>2.0f</var>;				<i>// 90  degrees.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::PiOver3" title='tMath::PiOver3' data-ref="tMath::PiOver3">PiOver3</dfn>								= <a class="ref" href="#tMath::Pi" title='tMath::Pi' data-ref="tMath::Pi">Pi</a> / <var>3.0f</var>;				<i>// 60  degrees.</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::PiOver4" title='tMath::PiOver4' data-ref="tMath::PiOver4">PiOver4</dfn>								= <a class="ref" href="#tMath::Pi" title='tMath::Pi' data-ref="tMath::Pi">Pi</a> / <var>4.0f</var>;				<i>// 45  degrees;</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::PiOver6" title='tMath::PiOver6' data-ref="tMath::PiOver6">PiOver6</dfn>								= <a class="ref" href="#tMath::Pi" title='tMath::Pi' data-ref="tMath::Pi">Pi</a> / <var>6.0f</var>;				<i>// 30  degrees;</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::DefaultGamma" title='tMath::DefaultGamma' data-ref="tMath::DefaultGamma">DefaultGamma</dfn>						= <var>2.2f</var>;&nbsp</td></tr>
+<tr><th id="28">28</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::MaxFloat" title='tMath::MaxFloat' data-ref="tMath::MaxFloat">MaxFloat</dfn>							= <var>3.402823466e+38f</var>;&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>// This is a practical epsilon that can be used in many circumstances. One one millionth.</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::Epsilon" title='tMath::Epsilon' data-ref="tMath::Epsilon">Epsilon</dfn>								= <var>0.000001f</var>;&nbsp</td></tr>
+<tr><th id="32">32</th><td><em>const</em> <em>double</em> <dfn class="decl def" id="tMath::EpsilonDbl" title='tMath::EpsilonDbl' data-ref="tMath::EpsilonDbl">EpsilonDbl</dfn>							= <var>0.000001</var>;&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>// This is the smallest effective positive float such that 1.0f+EpsilonEff != 1.0f.</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::EpsilonEff" title='tMath::EpsilonEff' data-ref="tMath::EpsilonEff">EpsilonEff</dfn>							= <var>1.192092896e-07f</var>;&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>// This is the smallest positive value that can be represented by a single precision floating point.</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::EpsilonRep" title='tMath::EpsilonRep' data-ref="tMath::EpsilonRep">EpsilonRep</dfn>							= <var>1.175494351e-38f</var>;&nbsp</td></tr>
+<tr><th id="39">39</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::Infinity" title='tMath::Infinity' data-ref="tMath::Infinity">Infinity</dfn>							= <a class="ref" href="#tMath::MaxFloat" title='tMath::MaxFloat' data-ref="tMath::MaxFloat">MaxFloat</a>;&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i>// The infinities below are not the special IEEE bit patterns that represent infinity. They are the very largest and</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i>// smallest values that may be represented without use of the special bit patterns.</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::PosInfinity" title='tMath::PosInfinity' data-ref="tMath::PosInfinity">PosInfinity</dfn>							= <a class="ref" href="#tMath::MaxFloat" title='tMath::MaxFloat' data-ref="tMath::MaxFloat">MaxFloat</a>;&nbsp</td></tr>
+<tr><th id="44">44</th><td><em>const</em> <em>float</em> <dfn class="decl def" id="tMath::NegInfinity" title='tMath::NegInfinity' data-ref="tMath::NegInfinity">NegInfinity</dfn>							= -<a class="ref" href="#tMath::MaxFloat" title='tMath::MaxFloat' data-ref="tMath::MaxFloat">MaxFloat</a>;&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>// C++11 should promote 2147483648 to long long int, but VS currently turns it into and unsigned int. That's why we're</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>// using the hex string literal representation for now.</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><em>const</em> <a class="typedef" href="tPlatform.h.html#int32" title='int32' data-type='int' data-ref="int32">int32</a> <dfn class="decl def" id="tMath::MinInt32" title='tMath::MinInt32' data-ref="tMath::MinInt32">MinInt32</dfn>							= <var>0x80000000</var>;	<i>// Decimal value -2147483648.</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><em>const</em> <a class="typedef" href="tPlatform.h.html#int32" title='int32' data-type='int' data-ref="int32">int32</a> <dfn class="decl def" id="tMath::MaxInt32" title='tMath::MaxInt32' data-ref="tMath::MaxInt32">MaxInt32</dfn>							= <var>2147483647</var>;	<i>// Hex value 0x7FFFFFFF.</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><em>const</em> <a class="typedef" href="tPlatform.h.html#uint32" title='uint32' data-type='unsigned int' data-ref="uint32">uint32</a> <dfn class="decl def" id="tMath::MinUint32" title='tMath::MinUint32' data-ref="tMath::MinUint32">MinUint32</dfn>							= <var>0</var>;&nbsp</td></tr>
+<tr><th id="51">51</th><td><em>const</em> <a class="typedef" href="tPlatform.h.html#uint32" title='uint32' data-type='unsigned int' data-ref="uint32">uint32</a> <dfn class="decl def" id="tMath::MaxUint32" title='tMath::MaxUint32' data-ref="tMath::MaxUint32">MaxUint32</dfn>							= <var>0xFFFFFFFF</var>;&nbsp</td></tr>
+<tr><th id="52">52</th><td><em>const</em> <a class="typedef" href="tPlatform.h.html#uint32" title='uint32' data-type='unsigned int' data-ref="uint32">uint32</a> <dfn class="decl def" id="tMath::MinUint16" title='tMath::MinUint16' data-ref="tMath::MinUint16">MinUint16</dfn>							= <var>0</var>;&nbsp</td></tr>
+<tr><th id="53">53</th><td><em>const</em> <a class="typedef" href="tPlatform.h.html#uint32" title='uint32' data-type='unsigned int' data-ref="uint32">uint32</a> <dfn class="decl def" id="tMath::MaxUint16" title='tMath::MaxUint16' data-ref="tMath::MaxUint16">MaxUint16</dfn>							= <var>0xFFFF</var>;&nbsp</td></tr>
+<tr><th id="54">54</th><td><em>const</em> <em>int</em> <dfn class="decl def" id="tMath::MinInt" title='tMath::MinInt' data-ref="tMath::MinInt">MinInt</dfn>								= <var>1</var> &lt;&lt; (<b>sizeof</b>(<em>int</em>)*<var>8</var> - <var>1</var>);&nbsp</td></tr>
+<tr><th id="55">55</th><td><em>const</em> <em>int</em> <dfn class="decl def" id="tMath::MaxInt" title='tMath::MaxInt' data-ref="tMath::MaxInt">MaxInt</dfn>								= <a class="typedef" href="../../../../include/x86_64-linux-gnu/sys/types.h.html#uint" title='uint' data-type='unsigned int' data-ref="uint">uint</a>(<a class="ref" href="#tMath::MinInt" title='tMath::MinInt' data-ref="tMath::MinInt">MinInt</a>) - <var>1</var>;&nbsp</td></tr>
+<tr><th id="56">56</th><td>&nbsp</td></tr>
+<tr><th id="57">57</th><td>}&nbsp</td></tr>
+<tr><th id="58">58</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

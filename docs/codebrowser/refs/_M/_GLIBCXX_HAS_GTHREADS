@@ -1,0 +1,17 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1605'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1604'>/* Define if gthreads library is available. */</doc>
+<use f='include/c++/11/bits/std_mutex.h' l='55' u='a'/>
+<use f='include/c++/11/mutex' l='51' u='a'/>
+<use f='include/c++/11/mutex' l='64' u='a'/>
+<use f='include/c++/11/mutex' l='672' u='a'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='36' u='a'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='130' u='a'/>
+<use f='include/c++/11/bits/std_thread.h' l='46' u='a'/>
+<use f='include/c++/11/bits/std_thread.h' l='65' u='a'/>
+<use f='include/c++/11/bits/std_thread.h' l='123' u='a'/>
+<use f='include/c++/11/bits/std_thread.h' l='198' u='a'/>
+<use f='include/c++/11/bits/std_thread.h' l='276' u='a'/>
+<use f='include/c++/11/bits/std_thread.h' l='315' u='a'/>
+<use f='include/c++/11/bits/std_thread.h' l='328' u='a'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='142' u='a'/>
+<use f='include/c++/11/condition_variable' l='50' u='a'/>

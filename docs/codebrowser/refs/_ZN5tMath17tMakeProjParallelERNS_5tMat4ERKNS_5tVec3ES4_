@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='664' type='void tMath::tMakeProjParallel(tMath::tMat4 &amp; d, const tMath::tVec3 &amp; boxMin, const tMath::tVec3 &amp; boxMax)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='661'>// There is no &apos;orthogonal&apos; projection matrix creation function since an ortho projection is a type of parallel
+// projection. It is the view matrix that determines the direction in the world. i.e. What is colloquially known as an
+// ortho projection is actually a parallel projection with an appropriate view matrix to align to a basis axis.</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='96' u='c' c='_ZN5tMath8tMatrix416MakeProjParallelERKNS_5tVec3ES3_'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='829' ll='839' type='void tMath::tMakeProjParallel(tMath::tMat4 &amp; d, const tMath::tVec3 &amp; boxMin, const tMath::tVec3 &amp; boxMax)'/>

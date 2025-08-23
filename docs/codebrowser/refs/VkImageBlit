@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3952' ll='3957'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3952'/>
+<size>80</size>
+<mbr r='VkImageBlit::srcSubresource' o='0' t='VkImageSubresourceLayers'/>
+<mbr r='VkImageBlit::srcOffsets' o='128' t='VkOffset3D[2]'/>
+<mbr r='VkImageBlit::dstSubresource' o='320' t='VkImageSubresourceLayers'/>
+<mbr r='VkImageBlit::dstOffsets' o='448' t='VkOffset3D[2]'/>

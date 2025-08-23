@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='945' type='const char *'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='113' c='_ZNSt18__moneypunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='114' u='r' c='_ZNSt18__moneypunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='245' u='r' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='943'>// String literal of acceptable (narrow) input/output, for
+    // money_get/money_put. &quot;-0123456789&quot;</doc>

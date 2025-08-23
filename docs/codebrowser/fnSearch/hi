@@ -1,0 +1,9 @@
+_ZN6tImage11tQuantizeWu6Hist3dERNS0_5StateEPiS3_S3_S3_Pf|tImage::tQuantizeWu::Hist3d
+_ZNK5rgbcx5hist36any_16Ev|rgbcx::hist3::any_16
+_ZN5rgbcx5hist3C1Ev|rgbcx::hist3::hist3
+_ZNK5rgbcx5hist327lookup_total_ordering_indexEv|rgbcx::hist3::lookup_total_ordering_index
+_ZNK5rgbcx5hist3eqERKS0_|rgbcx::hist3::operator==
+_ZNK5rgbcx5hist46any_16Ev|rgbcx::hist4::any_16
+_ZN5rgbcx5hist4C1Ev|rgbcx::hist4::hist4
+_ZNK5rgbcx5hist427lookup_total_ordering_indexEv|rgbcx::hist4::lookup_total_ordering_index
+_ZNK5rgbcx5hist4eqERKS0_|rgbcx::hist4::operator==

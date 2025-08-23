@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='1865' ll='1874' type='auto std::lexicographical_compare_three_way(_InputIter1 __first1, _InputIter1 __last1, _InputIter2 __first2, _InputIter2 __last2)'/>

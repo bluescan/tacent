@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='446' type='int pthread_getschedparam(pthread_t __target_thread, int *__restrict __policy, struct sched_param *__restrict __param)'/>
+<doc f='include/pthread.h' l='445'>/* Return in *POLICY and *PARAM the scheduling parameters for TARGET_THREAD. */</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='351' type='void tMath::tSphere::tSphere()'/>
+<use f='Modules/System/Src/tChunk.cpp' l='670' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath7tSphereEi'/>

@@ -1,0 +1,10 @@
+<def f='include/c++/11/type_traits' l='1741' ll='1750'/>
+<inh f='include/c++/11/type_traits' l='1752' c='std::__make_unsigned_selector_base'/>
+<def f='include/c++/11/type_traits' l='1775' ll='1788'/>
+<use f='include/c++/11/type_traits' l='1799'/>
+<use f='include/c++/11/type_traits' l='1808'/>
+<use f='include/c++/11/type_traits' l='1816'/>
+<use f='include/c++/11/type_traits' l='1823'/>
+<use f='include/c++/11/type_traits' l='1833'/>
+<use f='include/c++/11/type_traits' l='1912'/>
+<doc f='include/c++/11/type_traits' l='1774'>// Choose unsigned integer type with the smallest rank and same size as _Tp</doc>

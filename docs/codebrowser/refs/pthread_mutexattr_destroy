@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='878' type='int pthread_mutexattr_destroy(pthread_mutexattr_t * __attr)'/>
+<doc f='include/pthread.h' l='877'>/* Destroy mutex attribute object ATTR.  */</doc>

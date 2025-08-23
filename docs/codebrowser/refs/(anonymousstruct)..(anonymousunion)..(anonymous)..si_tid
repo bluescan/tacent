@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='65' type='int'/>
+<offset>0</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='65'>/* Timer ID.  */</doc>

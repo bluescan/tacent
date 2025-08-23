@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='352' type='tChunk tChunkReader::First() const'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='499' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>

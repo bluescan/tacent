@@ -1,0 +1,9 @@
+<inh f='Modules/Input/Inc/Input/tUnit.h' l='29' c='tInput::tUnit'/>
+<def f='Modules/Input/Inc/Input/tUnitContinuousAxis.h' l='24' ll='32'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='38'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='39'/>
+<size>56</size>
+<doc f='Modules/Input/Inc/Input/tUnitContinuousAxis.h' l='23'>// An axis unit is a container for a float in [-1.0, 1.0].</doc>
+<fun r='_ZN6tInput19tUnitContinuousAxisC1ERK5tNameRSt5mutex'/>
+<fun r='_ZN6tInput19tUnitContinuousAxisD1Ev'/>
+<mbr r='tInput::tUnitContinuousAxis::Value' o='384' t='float'/>

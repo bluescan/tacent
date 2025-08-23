@@ -1,0 +1,33 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='363' ll='398'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='406' c='_ZN5tMath8tFrustumC1EPKNS_6tPlaneE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='410' c='_ZN5tMath8tFrustum3SetEPKNS_6tPlaneE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='426'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='591' c='_ZN5tMath8tFrustum3SetEPKNS_6tPlaneE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='601' c='_ZN5tMath8tFrustum3SetEPKNS_8tVector4E'/>
+<size>16</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='360'>// A tPlane essentially represents the plane equation ax + by + cz + d = 0 using two member variables: Normal and
+// Distance. These two values act as the coefficients of the plane equation with a = Normal.x, b = Normal.y,
+// c = Normal.z, and d = Distance.</doc>
+<fun r='_ZN5tMath6tPlaneC1Ev'/>
+<fun r='_ZN5tMath6tPlaneC1Effff'/>
+<fun r='_ZN5tMath6tPlaneC1ERKNS_8tVector3Ef'/>
+<fun r='_ZN5tMath6tPlaneC1ERKNS_8tVector4E'/>
+<fun r='_ZN5tMath6tPlaneC1ERKNS_8tVector3ES3_'/>
+<fun r='_ZN5tMath6tPlaneC1ERKNS_8tVector3ES3_S3_'/>
+<fun r='_ZN5tMath6tPlane3SetEffff'/>
+<fun r='_ZN5tMath6tPlane3SetERKNS_8tVector3Ef'/>
+<fun r='_ZN5tMath6tPlane3SetERKNS_8tVector4E'/>
+<fun r='_ZN5tMath6tPlane3SetERKNS_8tVector3ES3_'/>
+<fun r='_ZN5tMath6tPlane3SetERKNS_8tVector3ES3_S3_'/>
+<fun r='_ZN5tMath6tPlane9NormalizeEv'/>
+<fun r='_ZNK5tMath6tPlane11GetDistanceERKNS_8tVector3E'/>
+<fun r='_ZNK5tMath6tPlane29ComputeOrthogonalBasisVectorsERNS_8tVector3ES2_'/>
+<mbr r='tMath::tPlane::Normal' o='0' t='tMath::tVector3'/>
+<mbr r='tMath::tPlane::Distance' o='96' t='float'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='132' c='_ZN5tMath7tRandom21tGetPointOnUnitSquareERKNS_6tPlaneERKNS0_10tGeneratorE'/>
+<size>16</size>
+<use f='Modules/Math/Src/tRandom.cpp' l='164' c='_ZN5tMath7tRandom21tGetPointOnUnitSquareERKNS_6tPlaneERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='180' c='_ZN5tMath7tRandom14tGetPointOnBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='248' c='_ZN5tMath7tRandom19tGetPointOnCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='306' c='_ZN5tMath7tRandom19tGetPointInCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<size>16</size>

@@ -1,0 +1,15 @@
+<def f='include/c++/11/chrono' l='546' ll='548' type='duration&lt;typename common_type&lt;rep&gt;::type, std::chrono::duration::period&gt; std::chrono::duration::operator-() const'/>
+<use f='include/c++/11/chrono' l='1383' u='c' c='_ZNSt6chronomiERKNS_3dayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1495' u='c' c='_ZNSt6chronomiERKNS_5monthERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1668' u='c' c='_ZNSt6chronomiERKNS_4yearERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1815' u='c' c='_ZNSt6chronomiERKNS_7weekdayERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2280' u='c' c='_ZNSt6chronomiERKNS_10year_monthERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2300' u='c' c='_ZNSt6chronomiERKNS_10year_monthERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2439' u='c' c='_ZNSt6chronomiERKNS_14year_month_dayERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2443' u='c' c='_ZNSt6chronomiERKNS_14year_month_dayERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2661' u='c' c='_ZNSt6chronomiERKNS_19year_month_day_lastERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2676' u='c' c='_ZNSt6chronomiERKNS_19year_month_day_lastERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2863' u='c' c='_ZNSt6chronomiERKNS_18year_month_weekdayERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2867' u='c' c='_ZNSt6chronomiERKNS_18year_month_weekdayERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='3009' u='c' c='_ZNSt6chronomiERKNS_23year_month_weekday_lastERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='3014' u='c' c='_ZNSt6chronomiERKNS_23year_month_weekday_lastERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algo.h' l='4258' ll='4262' macro='1' type='_ForwardIterator std::search(_ForwardIterator __first, _ForwardIterator __last, const _Searcher &amp; __searcher)'/>

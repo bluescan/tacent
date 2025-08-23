@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tUnits.h' l='147' type='tUnit::tTime tUnit::GetTimeUnit(const char * name)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tUnits.h' l='145'>// Given a unit name, these return the associated unit. Case insensitive compares, but no other fuzziness. They
+	// return Unspecified if the name can&apos;t be found.</doc>
+<def f='Modules/Foundation/Src/tUnits.cpp' l='99' ll='108' type='tUnit::tTime tUnit::GetTimeUnit(const char * unitName)'/>

@@ -1,0 +1,7 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='26' type='0'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='30'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='26'>// Circle divided into 2Pi angle units.</doc>
+<use f='Modules/Math/Inc/Math/tColour.h' l='241' c='_ZN5tMath9tRGBToHSVERfS0_S0_fffNS_10tAngleModeE'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='242' c='_ZN5tMath9tHSVToRGBERfS0_S0_fffNS_10tAngleModeE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='361' c='_ZN5tMath9tRGBToHSVERfS0_S0_fffNS_10tAngleModeE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='385' c='_ZN5tMath9tHSVToRGBERfS0_S0_fffNS_10tAngleModeE'/>

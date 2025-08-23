@@ -1,0 +1,18 @@
+<def f='Modules/Image/Inc/Image/tPicture.h' l='150' type='tPixel4b * tImage::tPicture::GetPixels() const'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='208' u='c' c='_ZN6tImage10tImageAPNG3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='265' u='c' c='_ZN6tImage10tImageASTC3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='532' u='c' c='_ZN6tImage9tImageBMP3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='964' u='c' c='_ZN6tImage9tImageDDS3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='369' u='c' c='_ZN6tImage9tImageEXR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='266' u='c' c='_ZN6tImage9tImageGIF3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='453' u='c' c='_ZN6tImage9tImageHDR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='253' u='c' c='_ZN6tImage9tImageICO3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='252' u='c' c='_ZN6tImage9tImageJPG3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='623' u='c' c='_ZN6tImage9tImageKTX3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='352' u='c' c='_ZN6tImage9tImagePKM3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='508' u='c' c='_ZN6tImage9tImagePNG3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='724' u='c' c='_ZN6tImage9tImagePVR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='141' u='c' c='_ZN6tImage9tImageQOI3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='335' u='c' c='_ZN6tImage9tImageTGA3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='216' u='c' c='_ZN6tImage10tImageTIFF3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='303' u='c' c='_ZN6tImage10tImageWEBP3SetERNS_8tPictureEb'/>

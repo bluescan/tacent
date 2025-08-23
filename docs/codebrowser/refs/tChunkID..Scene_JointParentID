@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='493' type='16924672'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='493'>// Parent ID</doc>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='41' u='r' c='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='82' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>

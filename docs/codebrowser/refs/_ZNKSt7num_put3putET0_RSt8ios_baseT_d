@@ -1,0 +1,42 @@
+<def f='include/c++/11/bits/locale_facets.h' l='2456' ll='2458' type='std::num_put::iter_type std::num_put::put(std::num_put::iter_type __s, std::ios_base &amp; __io, std::num_put::char_type __fill, double __v) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='2415'>/**
+       *  @brief  Numeric formatting.
+       *
+       *  Formats the floating point value @a v and inserts it into a stream.
+       *  It does so by calling num_put::do_put().
+       *
+       *  Formatting is affected by the flag settings in @a io.
+       *
+       *  The basic format is affected by the value of io.flags() &amp;
+       *  ios_base::floatfield.  If equal to ios_base::fixed, formats like the
+       *  printf %f specifier.  Else if equal to ios_base::scientific, formats
+       *  like %e or %E with ios_base::uppercase unset or set respectively.
+       *  Otherwise, formats like %g or %G depending on uppercase.  Note that
+       *  if both fixed and scientific are set, the effect will also be like
+       *  %g or %G.
+       *
+       *  The output precision is given by io.precision().  This precision is
+       *  capped at numeric_limits::digits10 + 2 (different for double and
+       *  long double).  The default precision is 6.
+       *
+       *  If ios_base::showpos is set, &apos;+&apos; is output before positive values.
+       *  If ios_base::showpoint is set, a decimal point will always be
+       *  output.
+       *
+       *  The decimal point character used is numpunct::decimal_point().
+       *  Thousands separators are inserted according to
+       *  numpunct::grouping() and numpunct::thousands_sep().
+       *
+       *  If io.width() is non-zero, enough @a fill characters are inserted to
+       *  make the result at least that wide.  If
+       *  (io.flags() &amp; ios_base::adjustfield) == ios_base::left, result is
+       *  padded at the end.  If ios_base::internal, then padding occurs
+       *  immediately after either a &apos;+&apos; or &apos;-&apos; or after &apos;0x&apos; or &apos;0X&apos;.
+       *  Otherwise, padding occurs at the beginning.
+       *
+       *  @param  __s  Stream to write to.
+       *  @param  __io  Source of locale and flags.
+       *  @param  __fill  Char_type to use for filling.
+       *  @param  __v  Value to format and insert.
+       *  @return  Iterator after writing.
+      */</doc>

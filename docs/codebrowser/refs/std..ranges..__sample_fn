@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='1541' ll='1596'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1598'/>
+<size>1</size>
+<fun r='_ZNKSt6ranges11__sample_fnclET_T0_T1_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS8_EE4type15difference_typeEOT2_'/>
+<fun r='_ZNKSt6ranges11__sample_fnclEOT_T0_NSt8__detail18__iter_traits_implINSt12remove_cvrefIDTclsr6ranges13__cust_accessE7__beginclsr3stdE7declvalIRS1_EEEEE12658090'/>

@@ -1,0 +1,5 @@
+<dec f='include/pwd.h' l='84' type='struct passwd * getpwent()'/>
+<doc f='include/pwd.h' l='80'>/* Read an entry from the user database stream, opening it if necessary.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

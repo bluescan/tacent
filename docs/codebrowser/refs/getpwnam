@@ -1,0 +1,5 @@
+<dec f='include/pwd.h' l='116' type='struct passwd * getpwnam(const char * __name)'/>
+<doc f='include/pwd.h' l='112'>/* Retrieve the user database entry for the given username.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

@@ -1,0 +1,3 @@
+<def f='include/c++/11/tr1/legendre_function.tcc' l='137' ll='183' type='_Tp std::__detail::__assoc_legendre_p(unsigned int __l, unsigned int __m, _Tp __x, _Tp __phase = _Tp(+1))'/>
+<use f='include/c++/11/bits/specfun.h' l='268' u='c' c='_ZSt15assoc_legendrefjjf'/>
+<use f='include/c++/11/bits/specfun.h' l='277' u='c' c='_ZSt15assoc_legendreljje'/>

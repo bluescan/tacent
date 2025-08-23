@@ -1,0 +1,36 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='110' type='-1'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='111'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='112'/>
+<use f='Modules/Image/Inc/Image/tFrame.h' l='60'/>
+<use f='Modules/Image/Inc/Image/tFrame.h' l='146' u='r' c='_ZN6tImage6tFrame5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='69' u='r' c='_ZN6tImage6tLayer5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='86'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='151' u='r' c='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='154' u='r' c='_ZNK6tImage9tImageICO21GetBestSrcPixelFormatEv'/>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='157' u='r' c='_ZNK6tImage9tImageICO21GetBestSrcPixelFormatEv'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='62' u='r' c='_ZN6tImage13tPaletteImage5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='87'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='336'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='390' u='r' c='_ZN6tImage8tPicture5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='99' u='r' c='_ZNK6tImage8tTexture14GetPixelFormatEv'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='65' u='r' c='_ZN6tImage5tASTC28GetFormatFromBlockDimensionsEii'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='532' u='r' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='716' u='r' c='_ZN6tImage4tDDS24GetFormatInfo_FromFourCCERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='795' u='r' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='852' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1274' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='305' u='r' c='_ZN6tImage9tImageICO11CreateFrameEPKhiii'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='51' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='177' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='267' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='285' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='510' u='r' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='854' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='89' u='r' c='_ZN6tImage4tPKM27GetFormatInfo_FromPKMFormatERNS_12tPixelFormatER14tColourProfileji'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='109' u='r' c='_ZN6tImage4tPKM27GetFormatInfo_FromPKMFormatERNS_12tPixelFormatER14tColourProfileji'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='265' u='r' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='350' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='784' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='885' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='656' u='r' c='_ZN6tImage15tGetPixelFormatEPKc'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='662' u='r' c='_ZN6tImage15tGetPixelFormatEPKc'/>

@@ -1,0 +1,5 @@
+<dec f='include/wchar.h' l='602' type='int wprintf(const wchar_t *__restrict __format)'/>
+<doc f='include/wchar.h' l='598'>/* Write formatted output to stdout.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

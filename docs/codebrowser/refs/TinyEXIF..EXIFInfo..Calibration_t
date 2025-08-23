@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='250' ll='254'/>
+<use f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='250'/>
+<size>24</size>
+<mbr r='TinyEXIF::EXIFInfo::Calibration_t::FocalLength' o='0' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Calibration_t::OpticalCenterX' o='64' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Calibration_t::OpticalCenterY' o='128' t='double'/>

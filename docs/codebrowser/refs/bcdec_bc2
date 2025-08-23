@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/bcdec/bcdec.h' l='99' type='void bcdec_bc2(const void * compressedBlock, void * decompressedBlock, int destinationPitch)'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='699' u='c' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>

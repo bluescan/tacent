@@ -1,0 +1,1 @@
+<def f='include/c++/11/string_view' l='778' ll='780' type='basic_string_view&lt;char8_t&gt; std::operator&quot;&quot;sv(const char8_t * __str, std::size_t __len)'/>

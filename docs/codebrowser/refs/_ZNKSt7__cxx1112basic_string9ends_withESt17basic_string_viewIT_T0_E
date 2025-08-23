@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/basic_string.h' l='3077' ll='3079' type='bool std::basic_string::ends_with(basic_string_view&lt;_CharT, _Traits&gt; __x) const'/>

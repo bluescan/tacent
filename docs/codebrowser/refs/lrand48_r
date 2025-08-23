@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='509' type='int lrand48_r(struct drand48_data *__restrict __buffer, long *__restrict __result)'/>
+<doc f='include/stdlib.h' l='508'>/* Return non-negative, long integer in [0,2^31).  */</doc>

@@ -1,0 +1,7 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='314' type='void tColour3b::GetDenorm(tMath::tVector3 &amp; dest) const'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1036' u='c' c='_ZN5tMath22tColourDiffEuclideanSqERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1037' u='c' c='_ZN5tMath22tColourDiffEuclideanSqERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1052' u='c' c='_ZN5tMath20tColourDiffEuclideanERK9tColour3bS2_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1053' u='c' c='_ZN5tMath20tColourDiffEuclideanERK9tColour3bS2_'/>
+<use f='Modules/Math/Src/tColour.cpp' l='435' u='c' c='_ZN5tMath18tColourDiffRedmeanERK9tColour3bS2_'/>
+<use f='Modules/Math/Src/tColour.cpp' l='436' u='c' c='_ZN5tMath18tColourDiffRedmeanERK9tColour3bS2_'/>

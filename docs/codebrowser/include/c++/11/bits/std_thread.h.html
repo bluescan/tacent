@@ -1,0 +1,360 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>std_thread.h source code [include/c++/11/bits/std_thread.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::hash,std::thread "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/std_thread.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='std_thread.h.html'>std_thread.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// std::thread declarations -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2008-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/std_thread.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{thread}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_THREAD_H">_GLIBCXX_THREAD_H</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_THREAD_H" data-ref="_M/_GLIBCXX_THREAD_H">_GLIBCXX_THREAD_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#<span data-ppcond="35">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;bits/c++config.h&gt;</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#include &lt;exception&gt;		// std::terminate</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#include &lt;iosfwd&gt;		// std::basic_ostream</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;tuple&gt;		// std::tuple</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#include &lt;bits/functional_hash.h&gt; // std::hash</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#include &lt;bits/invoke.h&gt;	// std::__invoke</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#include &lt;bits/refwrap.h&gt;       // not required, but helpful to users</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#include &lt;bits/unique_ptr.h&gt;	// std::unique_ptr</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u>#<span data-ppcond="46">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1605" data-ref="_M/_GLIBCXX_HAS_GTHREADS">_GLIBCXX_HAS_GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u># include &lt;bits/gthr.h&gt;</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u>#<span data-ppcond="46">else</span></u>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u># include &lt;errno.h&gt;</u>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u># include &lt;bits/functexcept.h&gt;</u>&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>#<span data-ppcond="46">endif</span></u>&nbsp</td></tr>
+<tr><th id="52">52</th><td>&nbsp</td></tr>
+<tr><th id="53">53</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="54">54</th><td>{&nbsp</td></tr>
+<tr><th id="55">55</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="56">56</th><td>&nbsp</td></tr>
+<tr><th id="57">57</th><td>  <i class="doc">/** <span class="command">@addtogroup</span> <span class="verb">threads</span></i>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i class="doc">   *  @{</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i class="doc">  /// thread</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td>  <b>class</b> <dfn class="type def" id="std::thread" title='std::thread' data-ref="std::thread">thread</dfn>&nbsp</td></tr>
+<tr><th id="63">63</th><td>  {&nbsp</td></tr>
+<tr><th id="64">64</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="65">65</th><td><u>#<span data-ppcond="65">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1605" data-ref="_M/_GLIBCXX_HAS_GTHREADS">_GLIBCXX_HAS_GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="66">66</th><td>    <i>// Abstract base class for types that wrap arbitrary functors to be</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i>    // invoked in the new thread of execution.</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td>    <b>struct</b> <dfn class="type def" id="std::thread::_State" title='std::thread::_State' data-ref="std::thread::_State">_State</dfn>&nbsp</td></tr>
+<tr><th id="69">69</th><td>    {&nbsp</td></tr>
+<tr><th id="70">70</th><td>      <b>virtual</b> <dfn class="virtual decl fn" id="_ZNSt6thread6_StateD1Ev" title='std::thread::_State::~_State' data-ref="_ZNSt6thread6_StateD1Ev">~_State</dfn>();&nbsp</td></tr>
+<tr><th id="71">71</th><td>      <b>virtual</b> <em>void</em> <dfn class="virtual decl fn" id="_ZNSt6thread6_State6_M_runEv" title='std::thread::_State::_M_run' data-ref="_ZNSt6thread6_State6_M_runEv">_M_run</dfn>() = <var>0</var>;&nbsp</td></tr>
+<tr><th id="72">72</th><td>    };&nbsp</td></tr>
+<tr><th id="73">73</th><td>    <b>using</b> <dfn class="typedef" id="std::thread::_State_ptr" title='std::thread::_State_ptr' data-type='unique_ptr&lt;std::thread::_State&gt;' data-ref="std::thread::_State_ptr">_State_ptr</dfn> = <a class="type" href="unique_ptr.h.html#std::unique_ptr" title='std::unique_ptr' data-ref="std::unique_ptr">unique_ptr</a>&lt;<a class="type" href="#std::thread::_State" title='std::thread::_State' data-ref="std::thread::_State">_State</a>&gt;;&nbsp</td></tr>
+<tr><th id="74">74</th><td>&nbsp</td></tr>
+<tr><th id="75">75</th><td>    <b>using</b> <dfn class="typedef" id="std::thread::native_handle_type" title='std::thread::native_handle_type' data-type='__gthread_t' data-ref="std::thread::native_handle_type">native_handle_type</dfn> = <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_t" title='__gthread_t' data-type='pthread_t' data-ref="__gthread_t">__gthread_t</a>;&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#<span data-ppcond="65">else</span></u>&nbsp</td></tr>
+<tr><th id="77">77</th><td>    <b>using</b> native_handle_type = <em>int</em>;&nbsp</td></tr>
+<tr><th id="78">78</th><td><u>#<span data-ppcond="65">endif</span></u>&nbsp</td></tr>
+<tr><th id="79">79</th><td>&nbsp</td></tr>
+<tr><th id="80">80</th><td>    <i class="doc">/// thread::id</i>&nbsp</td></tr>
+<tr><th id="81">81</th><td>    <b>class</b> <dfn class="type def" id="std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</dfn>&nbsp</td></tr>
+<tr><th id="82">82</th><td>    {&nbsp</td></tr>
+<tr><th id="83">83</th><td>      <a class="typedef" href="#std::thread::native_handle_type" title='std::thread::native_handle_type' data-type='__gthread_t' data-ref="std::thread::native_handle_type">native_handle_type</a>	<dfn class="decl field" id="std::thread::id::_M_thread" title='std::thread::id::_M_thread' data-ref="std::thread::id::_M_thread">_M_thread</dfn>;&nbsp</td></tr>
+<tr><th id="84">84</th><td>&nbsp</td></tr>
+<tr><th id="85">85</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="86">86</th><td>      <dfn class="decl def fn" id="_ZNSt6thread2idC1Ev" title='std::thread::id::id' data-ref="_ZNSt6thread2idC1Ev">id</dfn>() <b>noexcept</b> : <a class="member field" href="#std::thread::id::_M_thread" title='std::thread::id::_M_thread' data-ref="std::thread::id::_M_thread">_M_thread</a>() { }&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td>      <b>explicit</b>&nbsp</td></tr>
+<tr><th id="89">89</th><td>      <dfn class="decl def fn" id="_ZNSt6thread2idC1Em" title='std::thread::id::id' data-ref="_ZNSt6thread2idC1Em">id</dfn>(<a class="typedef" href="#std::thread::native_handle_type" title='std::thread::native_handle_type' data-type='__gthread_t' data-ref="std::thread::native_handle_type">native_handle_type</a> <dfn class="local col2 decl" id="2262__id" title='__id' data-type='std::thread::native_handle_type' data-ref="2262__id">__id</dfn>) : <a class="member field" href="#std::thread::id::_M_thread" title='std::thread::id::_M_thread' data-ref="std::thread::id::_M_thread">_M_thread</a>(<a class="local col2 ref" href="#2262__id" title='__id' data-ref="2262__id">__id</a>) { }&nbsp</td></tr>
+<tr><th id="90">90</th><td>&nbsp</td></tr>
+<tr><th id="91">91</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="92">92</th><td>      <b>friend</b> <b>class</b> <a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>;&nbsp</td></tr>
+<tr><th id="93">93</th><td>      <b>friend</b> <b>struct</b> <a class="type" href="functional_hash.h.html#std::hash" title='std::hash' data-ref="std::hash">hash</a>&lt;<a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a>&gt;;&nbsp</td></tr>
+<tr><th id="94">94</th><td>&nbsp</td></tr>
+<tr><th id="95">95</th><td>      <b>friend</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="96">96</th><td>      <a class="decl fn" href="#_ZSteqNSt6thread2idES0_" title='std::operator==' data-ref="_ZSteqNSt6thread2idES0_"><b>operator</b>==</a>(<a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a> <dfn class="local col3 decl" id="2263__x" title='__x' data-type='std::thread::id' data-ref="2263__x">__x</dfn>, <a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a> <dfn class="local col4 decl" id="2264__y" title='__y' data-type='std::thread::id' data-ref="2264__y">__y</dfn>) <b>noexcept</b>;&nbsp</td></tr>
+<tr><th id="97">97</th><td>&nbsp</td></tr>
+<tr><th id="98">98</th><td><u>#<span data-ppcond="98">if</span> <a class="macro" href="../compare.html#42" title="201907L" data-ref="_M/__cpp_lib_three_way_comparison">__cpp_lib_three_way_comparison</a></u>&nbsp</td></tr>
+<tr><th id="99">99</th><td>      <b>friend</b> <a class="type" href="../compare.html#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>&nbsp</td></tr>
+<tr><th id="100">100</th><td>      <a class="decl fn" href="../thread.html#_ZStssNSt6thread2idES0_" title='std::operator&lt;=&gt;' data-ref="_ZStssNSt6thread2idES0_" id="_ZStssNSt6thread2idES0_"><b>operator</b>&lt;=&gt;</a>(<a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a> <dfn class="local col5 decl" id="2265__x" title='__x' data-type='std::thread::id' data-ref="2265__x">__x</dfn>, <a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a> <dfn class="local col6 decl" id="2266__y" title='__y' data-type='std::thread::id' data-ref="2266__y">__y</dfn>) <b>noexcept</b>;&nbsp</td></tr>
+<tr><th id="101">101</th><td><u>#<span data-ppcond="98">else</span></u>&nbsp</td></tr>
+<tr><th id="102">102</th><td>      <b>friend</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="103">103</th><td>      <b>operator</b>&lt;(id __x, id __y) <b>noexcept</b>;&nbsp</td></tr>
+<tr><th id="104">104</th><td><u>#<span data-ppcond="98">endif</span></u>&nbsp</td></tr>
+<tr><th id="105">105</th><td>&nbsp</td></tr>
+<tr><th id="106">106</th><td>      <b>template</b>&lt;<b>class</b> _CharT, <b>class</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="107">107</th><td>	<b>friend</b> <a class="type" href="../iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="108">108</th><td>	<a class="decl fn" href="../thread.html#_ZStlsRSt13basic_ostreamIT_T0_ENSt6thread2idE" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIT_T0_ENSt6thread2idE" id="_ZStlsRSt13basic_ostreamIT_T0_ENSt6thread2idE"><b>operator</b>&lt;&lt;</a>(<a class="type" href="../iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col7 decl" id="2267__out" title='__out' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="2267__out">__out</dfn>, <a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a> <dfn class="local col8 decl" id="2268__id" title='__id' data-type='std::thread::id' data-ref="2268__id">__id</dfn>);&nbsp</td></tr>
+<tr><th id="109">109</th><td>    };&nbsp</td></tr>
+<tr><th id="110">110</th><td>&nbsp</td></tr>
+<tr><th id="111">111</th><td>  <b>private</b>:&nbsp</td></tr>
+<tr><th id="112">112</th><td>    <a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a>				<dfn class="decl field" id="std::thread::_M_id" title='std::thread::_M_id' data-ref="std::thread::_M_id">_M_id</dfn>;&nbsp</td></tr>
+<tr><th id="113">113</th><td>&nbsp</td></tr>
+<tr><th id="114">114</th><td>    <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="115">115</th><td><i>    // 2097.  packaged_task constructors should be constrained</i>&nbsp</td></tr>
+<tr><th id="116">116</th><td><i>    // 3039. Unnecessary decay in thread and packaged_task</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="118">118</th><td>      <b>using</b> <dfn class="typedef" id="std::thread::__not_same" title='std::thread::__not_same' data-type='__not_&lt;is_same&lt;__remove_cvref_t&lt;_Tp&gt;, std::thread&gt;&gt;' data-ref="std::thread::__not_same">__not_same</dfn> = <a class="type" href="../type_traits.html#std::__not_" title='std::__not_' data-ref="std::__not_">__not_</a>&lt;<a class="type" href="../type_traits.html#std::is_same" title='std::is_same' data-ref="std::is_same">is_same</a>&lt;<a class="type" href="../type_traits.html#std::__remove_cvref_t" title='std::__remove_cvref_t' data-ref="std::__remove_cvref_t">__remove_cvref_t</a>&lt;_Tp&gt;, <a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>&gt;&gt;;&nbsp</td></tr>
+<tr><th id="119">119</th><td>&nbsp</td></tr>
+<tr><th id="120">120</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="121">121</th><td>    <dfn class="decl def fn" id="_ZNSt6threadC1Ev" title='std::thread::thread' data-ref="_ZNSt6threadC1Ev">thread</dfn>() <b>noexcept</b> = <b>default</b>;&nbsp</td></tr>
+<tr><th id="122">122</th><td>&nbsp</td></tr>
+<tr><th id="123">123</th><td><u>#<span data-ppcond="123">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1605" data-ref="_M/_GLIBCXX_HAS_GTHREADS">_GLIBCXX_HAS_GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="124">124</th><td>    <b>template</b>&lt;<b>typename</b> _Callable, <b>typename</b>... _Args,&nbsp</td></tr>
+<tr><th id="125">125</th><td>	     <b>typename</b> = <a class="type" href="../type_traits.html#std::_Require" title='std::_Require' data-ref="std::_Require">_Require</a>&lt;<a class="type" href="#std::thread::__not_same" title='std::thread::__not_same' data-ref="std::thread::__not_same">__not_same</a>&lt;_Callable&gt;&gt;&gt;&nbsp</td></tr>
+<tr><th id="126">126</th><td>      <b>explicit</b>&nbsp</td></tr>
+<tr><th id="127">127</th><td>      <dfn class="decl def fn" id="_ZNSt6threadC1EOT_DpOT0_" title='std::thread::thread' data-ref="_ZNSt6threadC1EOT_DpOT0_">thread</dfn>(_Callable&amp;&amp; <dfn class="local col9 decl" id="2269__f" title='__f' data-type='_Callable &amp;&amp;' data-ref="2269__f">__f</dfn>, _Args&amp;&amp;... <dfn class="local col0 decl" id="2270__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="2270__args">__args</dfn>)&nbsp</td></tr>
+<tr><th id="128">128</th><td>      {&nbsp</td></tr>
+<tr><th id="129">129</th><td>	<b>static_assert</b>( <a class="type" href="../type_traits.html#std::__is_invocable" title='std::__is_invocable' data-ref="std::__is_invocable">__is_invocable</a>&lt;<b>typename</b> <a class="type" href="../type_traits.html#std::decay" title='std::decay' data-ref="std::decay">decay</a>&lt;_Callable&gt;::type,&nbsp</td></tr>
+<tr><th id="130">130</th><td>				      <b>typename</b> <a class="type" href="../type_traits.html#std::decay" title='std::decay' data-ref="std::decay">decay</a>&lt;_Args&gt;::type...&gt;::value,&nbsp</td></tr>
+<tr><th id="131">131</th><td>	  <q>"std::thread arguments must be invocable after conversion to rvalues"</q>&nbsp</td></tr>
+<tr><th id="132">132</th><td>	  );&nbsp</td></tr>
+<tr><th id="133">133</th><td>&nbsp</td></tr>
+<tr><th id="134">134</th><td><u>#<span data-ppcond="134">ifdef</span> <span class="macro" data-ref="_M/GTHR_ACTIVE_PROXY">GTHR_ACTIVE_PROXY</span></u>&nbsp</td></tr>
+<tr><th id="135">135</th><td>	<i>// Create a reference to pthread_create, not just the gthr weak symbol.</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td>	<em>auto</em> __depend = <b>reinterpret_cast</b>&lt;<em>void</em>(*)()&gt;(&amp;pthread_create);&nbsp</td></tr>
+<tr><th id="137">137</th><td><u>#<span data-ppcond="134">else</span></u>&nbsp</td></tr>
+<tr><th id="138">138</th><td>	<em>auto</em> <dfn class="local col1 decl" id="2271__depend" title='__depend' data-type='std::nullptr_t' data-ref="2271__depend">__depend</dfn> = <b>nullptr</b>;&nbsp</td></tr>
+<tr><th id="139">139</th><td><u>#<span data-ppcond="134">endif</span></u>&nbsp</td></tr>
+<tr><th id="140">140</th><td>	<b>using</b> <dfn class="local col2 typedef" id="2272_Wrapper" title='_Wrapper' data-type='_Call_wrapper&lt;_Callable, _Args...&gt;' data-ref="2272_Wrapper">_Wrapper</dfn> = <a class="type" href="#std::thread::_Call_wrapper" title='std::thread::_Call_wrapper' data-ref="std::thread::_Call_wrapper">_Call_wrapper</a>&lt;_Callable, _Args...&gt;;&nbsp</td></tr>
+<tr><th id="141">141</th><td>	<i>// Create a call wrapper with DECAY_COPY(__f) as its target object</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td><i>	// and DECAY_COPY(__args)... as its bound argument entities.</i>&nbsp</td></tr>
+<tr><th id="143">143</th><td>	<a class="member fn" href="#_ZNSt6thread15_M_start_threadESt10unique_ptrINS_6_StateESt14default_deleteIS1_EEPFvvE" title='std::thread::_M_start_thread' data-ref="_ZNSt6thread15_M_start_threadESt10unique_ptrINS_6_StateESt14default_deleteIS1_EEPFvvE">_M_start_thread</a>(<a class="typedef" href="#std::thread::_State_ptr" title='std::thread::_State_ptr' data-type='unique_ptr&lt;std::thread::_State&gt;' data-ref="std::thread::_State_ptr">_State_ptr</a>(<b>new</b> <a class="type" href="#std::thread::_State_impl" title='std::thread::_State_impl' data-ref="std::thread::_State_impl">_State_impl</a>&lt;<a class="local col2 typedef" href="#2272_Wrapper" title='_Wrapper' data-type='_Call_wrapper&lt;_Callable, _Args...&gt;' data-ref="2272_Wrapper">_Wrapper</a>&gt;(&nbsp</td></tr>
+<tr><th id="144">144</th><td>	      <span class="namespace">std::</span>forward&lt;_Callable&gt;(<a class="local col9 ref" href="#2269__f" title='__f' data-ref="2269__f">__f</a>), <span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col0 ref" href="#2270__args" title='__args' data-ref="2270__args">__args</a>)...)),&nbsp</td></tr>
+<tr><th id="145">145</th><td>	    <a class="local col1 ref" href="#2271__depend" title='__depend' data-ref="2271__depend">__depend</a>);&nbsp</td></tr>
+<tr><th id="146">146</th><td>      }&nbsp</td></tr>
+<tr><th id="147">147</th><td><u>#<span data-ppcond="123">endif</span> // _GLIBCXX_HAS_GTHREADS</u>&nbsp</td></tr>
+<tr><th id="148">148</th><td>&nbsp</td></tr>
+<tr><th id="149">149</th><td>    <dfn class="decl def fn" id="_ZNSt6threadD1Ev" title='std::thread::~thread' data-ref="_ZNSt6threadD1Ev">~thread</dfn>()&nbsp</td></tr>
+<tr><th id="150">150</th><td>    {&nbsp</td></tr>
+<tr><th id="151">151</th><td>      <b>if</b> (<a class="member fn" href="#_ZNKSt6thread8joinableEv" title='std::thread::joinable' data-ref="_ZNKSt6thread8joinableEv">joinable</a>())&nbsp</td></tr>
+<tr><th id="152">152</th><td>	<span class="namespace">std::</span><a class="ref fn" href="../exception.html#_ZSt9terminatev" title='std::terminate' data-ref="_ZSt9terminatev">terminate</a>();&nbsp</td></tr>
+<tr><th id="153">153</th><td>    }&nbsp</td></tr>
+<tr><th id="154">154</th><td>&nbsp</td></tr>
+<tr><th id="155">155</th><td>    <dfn class="decl def fn" id="_ZNSt6threadC1ERKS_" title='std::thread::thread' data-ref="_ZNSt6threadC1ERKS_">thread</dfn>(<em>const</em> <a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="156">156</th><td>&nbsp</td></tr>
+<tr><th id="157">157</th><td>    <dfn class="decl def fn" id="_ZNSt6threadC1EOS_" title='std::thread::thread' data-ref="_ZNSt6threadC1EOS_">thread</dfn>(<a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>&amp;&amp; <dfn class="local col3 decl" id="2273__t" title='__t' data-type='std::thread &amp;&amp;' data-ref="2273__t">__t</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="158">158</th><td>    { <a class="member fn" href="#_ZNSt6thread4swapERS_" title='std::thread::swap' data-ref="_ZNSt6thread4swapERS_">swap</a>(<span class='refarg'><a class="local col3 ref" href="#2273__t" title='__t' data-ref="2273__t">__t</a></span>); }&nbsp</td></tr>
+<tr><th id="159">159</th><td>&nbsp</td></tr>
+<tr><th id="160">160</th><td>    <a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>&amp; <dfn class="decl def fn" id="_ZNSt6threadaSERKS_" title='std::thread::operator=' data-ref="_ZNSt6threadaSERKS_"><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="161">161</th><td>&nbsp</td></tr>
+<tr><th id="162">162</th><td>    <a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>&amp; <dfn class="decl def fn" id="_ZNSt6threadaSEOS_" title='std::thread::operator=' data-ref="_ZNSt6threadaSEOS_"><b>operator</b>=</dfn>(<a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>&amp;&amp; <dfn class="local col4 decl" id="2274__t" title='__t' data-type='std::thread &amp;&amp;' data-ref="2274__t">__t</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="163">163</th><td>    {&nbsp</td></tr>
+<tr><th id="164">164</th><td>      <b>if</b> (<a class="member fn" href="#_ZNKSt6thread8joinableEv" title='std::thread::joinable' data-ref="_ZNKSt6thread8joinableEv">joinable</a>())&nbsp</td></tr>
+<tr><th id="165">165</th><td>	<span class="namespace">std::</span><a class="ref fn" href="../exception.html#_ZSt9terminatev" title='std::terminate' data-ref="_ZSt9terminatev">terminate</a>();&nbsp</td></tr>
+<tr><th id="166">166</th><td>      <a class="member fn" href="#_ZNSt6thread4swapERS_" title='std::thread::swap' data-ref="_ZNSt6thread4swapERS_">swap</a>(<span class='refarg'><a class="local col4 ref" href="#2274__t" title='__t' data-ref="2274__t">__t</a></span>);&nbsp</td></tr>
+<tr><th id="167">167</th><td>      <b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="168">168</th><td>    }&nbsp</td></tr>
+<tr><th id="169">169</th><td>&nbsp</td></tr>
+<tr><th id="170">170</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="171">171</th><td>    <dfn class="decl def fn" id="_ZNSt6thread4swapERS_" title='std::thread::swap' data-ref="_ZNSt6thread4swapERS_">swap</dfn>(<a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>&amp; <dfn class="local col5 decl" id="2275__t" title='__t' data-type='std::thread &amp;' data-ref="2275__t">__t</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="172">172</th><td>    { <span class="namespace">std::</span><a class="ref fn" href="move.h.html#_ZSt4swapRT_S0_" title='std::swap' data-ref="_ZSt4swapRT_S0_">swap</a>(<span class='inlayHint'>a&amp;:&nbsp;</span><span class='refarg'><a class="member field" href="#std::thread::_M_id" title='std::thread::_M_id' data-ref="std::thread::_M_id">_M_id</a></span>, <span class='inlayHint'>b&amp;:&nbsp;</span><span class='refarg'><a class="local col5 ref" href="#2275__t" title='__t' data-ref="2275__t">__t</a>.<a class="member field" href="#std::thread::_M_id" title='std::thread::_M_id' data-ref="std::thread::_M_id">_M_id</a></span>); }&nbsp</td></tr>
+<tr><th id="173">173</th><td>&nbsp</td></tr>
+<tr><th id="174">174</th><td>    <em>bool</em>&nbsp</td></tr>
+<tr><th id="175">175</th><td>    <dfn class="decl def fn" id="_ZNKSt6thread8joinableEv" title='std::thread::joinable' data-ref="_ZNKSt6thread8joinableEv">joinable</dfn>() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="176">176</th><td>    { <b>return</b> !(<a class="ref fn fake" href="#81" title='std::thread::id::id' data-ref="_ZNSt6thread2idC1ERKS0_"></a><a class="member field" href="#std::thread::_M_id" title='std::thread::_M_id' data-ref="std::thread::_M_id">_M_id</a> <a class="ref fn" href="#_ZSteqNSt6thread2idES0_" title='std::operator==' data-ref="_ZSteqNSt6thread2idES0_">==</a> <a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a><a class="ref fn" href="#_ZNSt6thread2idC1Ev" title='std::thread::id::id' data-ref="_ZNSt6thread2idC1Ev">(</a>)); }&nbsp</td></tr>
+<tr><th id="177">177</th><td>&nbsp</td></tr>
+<tr><th id="178">178</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="179">179</th><td>    <dfn class="decl fn" id="_ZNSt6thread4joinEv" title='std::thread::join' data-ref="_ZNSt6thread4joinEv">join</dfn>();&nbsp</td></tr>
+<tr><th id="180">180</th><td>&nbsp</td></tr>
+<tr><th id="181">181</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="182">182</th><td>    <dfn class="decl fn" id="_ZNSt6thread6detachEv" title='std::thread::detach' data-ref="_ZNSt6thread6detachEv">detach</dfn>();&nbsp</td></tr>
+<tr><th id="183">183</th><td>&nbsp</td></tr>
+<tr><th id="184">184</th><td>    <a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a>&nbsp</td></tr>
+<tr><th id="185">185</th><td>    <dfn class="decl def fn" id="_ZNKSt6thread6get_idEv" title='std::thread::get_id' data-ref="_ZNKSt6thread6get_idEv">get_id</dfn>() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="186">186</th><td>    { <b>return</b> <a class="ref fn fake" href="#81" title='std::thread::id::id' data-ref="_ZNSt6thread2idC1ERKS0_"></a><a class="member field" href="#std::thread::_M_id" title='std::thread::_M_id' data-ref="std::thread::_M_id">_M_id</a>; }&nbsp</td></tr>
+<tr><th id="187">187</th><td>&nbsp</td></tr>
+<tr><th id="188">188</th><td>    <i class="doc">/** <span class="command">@pre</span> thread is joinable</i>&nbsp</td></tr>
+<tr><th id="189">189</th><td><i class="doc">     */</i>&nbsp</td></tr>
+<tr><th id="190">190</th><td>    <a class="typedef" href="#std::thread::native_handle_type" title='std::thread::native_handle_type' data-type='__gthread_t' data-ref="std::thread::native_handle_type">native_handle_type</a>&nbsp</td></tr>
+<tr><th id="191">191</th><td>    <dfn class="decl def fn" id="_ZNSt6thread13native_handleEv" title='std::thread::native_handle' data-ref="_ZNSt6thread13native_handleEv">native_handle</dfn>()&nbsp</td></tr>
+<tr><th id="192">192</th><td>    { <b>return</b> <a class="member field" href="#std::thread::_M_id" title='std::thread::_M_id' data-ref="std::thread::_M_id">_M_id</a>.<a class="ref field" href="#std::thread::id::_M_thread" title='std::thread::id::_M_thread' data-ref="std::thread::id::_M_thread">_M_thread</a>; }&nbsp</td></tr>
+<tr><th id="193">193</th><td>&nbsp</td></tr>
+<tr><th id="194">194</th><td>    <i>// Returns a value that hints at the number of hardware thread contexts.</i>&nbsp</td></tr>
+<tr><th id="195">195</th><td>    <em>static</em> <em>unsigned</em> <em>int</em>&nbsp</td></tr>
+<tr><th id="196">196</th><td>    <dfn class="decl fn" id="_ZNSt6thread20hardware_concurrencyEv" title='std::thread::hardware_concurrency' data-ref="_ZNSt6thread20hardware_concurrencyEv">hardware_concurrency</dfn>() <b>noexcept</b>;&nbsp</td></tr>
+<tr><th id="197">197</th><td>&nbsp</td></tr>
+<tr><th id="198">198</th><td><u>#<span data-ppcond="198">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1605" data-ref="_M/_GLIBCXX_HAS_GTHREADS">_GLIBCXX_HAS_GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="199">199</th><td>  <b>private</b>:&nbsp</td></tr>
+<tr><th id="200">200</th><td>    <b>template</b>&lt;<b>typename</b> _Callable&gt;&nbsp</td></tr>
+<tr><th id="201">201</th><td>      <b>struct</b> <dfn class="type def" id="std::thread::_State_impl" title='std::thread::_State_impl' data-ref="std::thread::_State_impl">_State_impl</dfn> : <b>public</b> <a class="type" href="#std::thread::_State" title='std::thread::_State' data-ref="std::thread::_State">_State</a>&nbsp</td></tr>
+<tr><th id="202">202</th><td>      {&nbsp</td></tr>
+<tr><th id="203">203</th><td>	_Callable		<dfn class="decl field" id="std::thread::_State_impl::_M_func" title='std::thread::_State_impl::_M_func' data-ref="std::thread::_State_impl::_M_func">_M_func</dfn>;&nbsp</td></tr>
+<tr><th id="204">204</th><td>&nbsp</td></tr>
+<tr><th id="205">205</th><td>	<b>template</b>&lt;<b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="206">206</th><td>	  <dfn class="decl def fn" id="_ZNSt6thread11_State_implC1EDpOTL0__" title='std::thread::_State_impl::_State_impl&lt;_Callable&gt;' data-ref="_ZNSt6thread11_State_implC1EDpOTL0__">_State_impl</dfn>(_Args&amp;&amp;... <dfn class="local col6 decl" id="2276__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="2276__args">__args</dfn>)&nbsp</td></tr>
+<tr><th id="207">207</th><td>	  : <a class="member field" href="#std::thread::_State_impl::_M_func" title='std::thread::_State_impl::_M_func' data-ref="std::thread::_State_impl::_M_func">_M_func</a>(<span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col6 ref" href="#2276__args" title='__args' data-ref="2276__args">__args</a>)...)&nbsp</td></tr>
+<tr><th id="208">208</th><td>	  { }&nbsp</td></tr>
+<tr><th id="209">209</th><td>&nbsp</td></tr>
+<tr><th id="210">210</th><td>	<em>void</em>&nbsp</td></tr>
+<tr><th id="211">211</th><td>	<dfn class="virtual decl def fn" id="_ZNSt6thread11_State_impl6_M_runEv" title='std::thread::_State_impl::_M_run' data-ref="_ZNSt6thread11_State_impl6_M_runEv">_M_run</dfn>() { <a class="member field" href="#std::thread::_State_impl::_M_func" title='std::thread::_State_impl::_M_func' data-ref="std::thread::_State_impl::_M_func">_M_func</a>(); }&nbsp</td></tr>
+<tr><th id="212">212</th><td>      };&nbsp</td></tr>
+<tr><th id="213">213</th><td>&nbsp</td></tr>
+<tr><th id="214">214</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="215">215</th><td>    <dfn class="decl fn" id="_ZNSt6thread15_M_start_threadESt10unique_ptrINS_6_StateESt14default_deleteIS1_EEPFvvE" title='std::thread::_M_start_thread' data-ref="_ZNSt6thread15_M_start_threadESt10unique_ptrINS_6_StateESt14default_deleteIS1_EEPFvvE">_M_start_thread</dfn>(<a class="typedef" href="#std::thread::_State_ptr" title='std::thread::_State_ptr' data-type='unique_ptr&lt;std::thread::_State&gt;' data-ref="std::thread::_State_ptr">_State_ptr</a>, <em>void</em> (*)());&nbsp</td></tr>
+<tr><th id="216">216</th><td>&nbsp</td></tr>
+<tr><th id="217">217</th><td><u>#<span data-ppcond="217">if</span> _GLIBCXX_THREAD_ABI_COMPAT</u>&nbsp</td></tr>
+<tr><th id="218">218</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="219">219</th><td>    <b>struct</b> _Impl_base;&nbsp</td></tr>
+<tr><th id="220">220</th><td>    <b>typedef</b> shared_ptr&lt;_Impl_base&gt;	__shared_base_type;&nbsp</td></tr>
+<tr><th id="221">221</th><td>    <b>struct</b> _Impl_base&nbsp</td></tr>
+<tr><th id="222">222</th><td>    {&nbsp</td></tr>
+<tr><th id="223">223</th><td>      __shared_base_type	_M_this_ptr;&nbsp</td></tr>
+<tr><th id="224">224</th><td>      <b>virtual</b> ~_Impl_base() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="225">225</th><td>      <b>virtual</b> <em>void</em> _M_run() = <var>0</var>;&nbsp</td></tr>
+<tr><th id="226">226</th><td>    };&nbsp</td></tr>
+<tr><th id="227">227</th><td>&nbsp</td></tr>
+<tr><th id="228">228</th><td>  <b>private</b>:&nbsp</td></tr>
+<tr><th id="229">229</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="230">230</th><td>    _M_start_thread(__shared_base_type, <em>void</em> (*)());&nbsp</td></tr>
+<tr><th id="231">231</th><td>&nbsp</td></tr>
+<tr><th id="232">232</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="233">233</th><td>    _M_start_thread(__shared_base_type);&nbsp</td></tr>
+<tr><th id="234">234</th><td><u>#<span data-ppcond="217">endif</span></u>&nbsp</td></tr>
+<tr><th id="235">235</th><td>&nbsp</td></tr>
+<tr><th id="236">236</th><td>  <b>private</b>:&nbsp</td></tr>
+<tr><th id="237">237</th><td>    <i>// A call wrapper that does INVOKE(forwarded tuple elements...)</i>&nbsp</td></tr>
+<tr><th id="238">238</th><td>    <b>template</b>&lt;<b>typename</b> _Tuple&gt;&nbsp</td></tr>
+<tr><th id="239">239</th><td>      <b>struct</b> <dfn class="type def" id="std::thread::_Invoker" title='std::thread::_Invoker' data-ref="std::thread::_Invoker">_Invoker</dfn>&nbsp</td></tr>
+<tr><th id="240">240</th><td>      {&nbsp</td></tr>
+<tr><th id="241">241</th><td>	<b>template</b>&lt;<b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="242">242</th><td>	  <b>explicit</b>&nbsp</td></tr>
+<tr><th id="243">243</th><td>	  <dfn class="decl def fn" id="_ZNSt6thread8_InvokerC1EDpOTL0__" title='std::thread::_Invoker::_Invoker&lt;_Tuple&gt;' data-ref="_ZNSt6thread8_InvokerC1EDpOTL0__">_Invoker</dfn>(_Args&amp;&amp;... <dfn class="local col7 decl" id="2277__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="2277__args">__args</dfn>)&nbsp</td></tr>
+<tr><th id="244">244</th><td>	  : <a class="member field" href="#std::thread::_Invoker::_M_t" title='std::thread::_Invoker::_M_t' data-ref="std::thread::_Invoker::_M_t">_M_t</a>(<span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col7 ref" href="#2277__args" title='__args' data-ref="2277__args">__args</a>)...)&nbsp</td></tr>
+<tr><th id="245">245</th><td>	  { }&nbsp</td></tr>
+<tr><th id="246">246</th><td>&nbsp</td></tr>
+<tr><th id="247">247</th><td>	_Tuple <dfn class="decl field" id="std::thread::_Invoker::_M_t" title='std::thread::_Invoker::_M_t' data-ref="std::thread::_Invoker::_M_t">_M_t</dfn>;&nbsp</td></tr>
+<tr><th id="248">248</th><td>&nbsp</td></tr>
+<tr><th id="249">249</th><td>	<b>template</b>&lt;<b>typename</b>&gt;&nbsp</td></tr>
+<tr><th id="250">250</th><td>	  <b>struct</b> <dfn class="type" id="std::thread::_Invoker::__result" title='std::thread::_Invoker::__result' data-ref="std::thread::_Invoker::__result">__result</dfn>;&nbsp</td></tr>
+<tr><th id="251">251</th><td>	<b>template</b>&lt;<b>typename</b> _Fn, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="252">252</th><td>	  <b>struct</b> <dfn class="type def" id="std::thread::_Invoker::__result" title='std::thread::_Invoker::__result' data-ref="std::thread::_Invoker::__result">__result</dfn>&lt;<a class="type" href="../type_traits.html#std::tuple" title='std::tuple' data-ref="std::tuple">tuple</a>&lt;_Fn, _Args...&gt;&gt;&nbsp</td></tr>
+<tr><th id="253">253</th><td>	  : <a class="type" href="../type_traits.html#std::__invoke_result" title='std::__invoke_result' data-ref="std::__invoke_result">__invoke_result</a>&lt;_Fn, _Args...&gt;&nbsp</td></tr>
+<tr><th id="254">254</th><td>	  { };&nbsp</td></tr>
+<tr><th id="255">255</th><td>&nbsp</td></tr>
+<tr><th id="256">256</th><td>	<b>template</b>&lt;<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>... _Ind&gt;&nbsp</td></tr>
+<tr><th id="257">257</th><td>	  <b>typename</b> <a class="type" href="#std::thread::_Invoker::__result" title='std::thread::_Invoker::__result' data-ref="std::thread::_Invoker::__result">__result</a>&lt;_Tuple&gt;::type&nbsp</td></tr>
+<tr><th id="258">258</th><td>	  <dfn class="decl def fn" id="_ZNSt6thread8_Invoker9_M_invokeESt12_Index_tupleIJXspTL0__EEE" title='std::thread::_Invoker::_M_invoke' data-ref="_ZNSt6thread8_Invoker9_M_invokeESt12_Index_tupleIJXspTL0__EEE">_M_invoke</dfn>(<a class="type" href="stl_pair.h.html#std::_Index_tuple" title='std::_Index_tuple' data-ref="std::_Index_tuple">_Index_tuple</a>&lt;<a class="tu ref" href="#_Ind" title='_Ind' data-ref="_Ind">_Ind</a>...&gt;)&nbsp</td></tr>
+<tr><th id="259">259</th><td>	  { <b>return</b> <span class="namespace">std::</span>__invoke(<span class="namespace">std::</span>get&lt;<a class="tu ref" href="#_Ind" title='_Ind' data-use='c' data-ref="_Ind">_Ind</a>&gt;(<span class="namespace">std::</span>move(<a class="member field" href="#std::thread::_Invoker::_M_t" title='std::thread::_Invoker::_M_t' data-ref="std::thread::_Invoker::_M_t">_M_t</a>))...); }&nbsp</td></tr>
+<tr><th id="260">260</th><td>&nbsp</td></tr>
+<tr><th id="261">261</th><td>	<b>typename</b> <a class="type" href="#std::thread::_Invoker::__result" title='std::thread::_Invoker::__result' data-ref="std::thread::_Invoker::__result">__result</a>&lt;_Tuple&gt;::type&nbsp</td></tr>
+<tr><th id="262">262</th><td>	<dfn class="decl def fn" id="_ZNSt6thread8_InvokerclEv" title='std::thread::_Invoker::operator()' data-ref="_ZNSt6thread8_InvokerclEv"><b>operator</b>()</dfn>()&nbsp</td></tr>
+<tr><th id="263">263</th><td>	{&nbsp</td></tr>
+<tr><th id="264">264</th><td>	  <b>using</b> <dfn class="local col8 typedef" id="2278_Indices" title='_Indices' data-type='typename _Build_index_tuple&lt;tuple_size&lt;_Tuple&gt;::value&gt;::__type' data-ref="2278_Indices">_Indices</dfn>&nbsp</td></tr>
+<tr><th id="265">265</th><td>	    = <b>typename</b> <a class="type" href="../utility.html#std::_Build_index_tuple" title='std::_Build_index_tuple' data-ref="std::_Build_index_tuple">_Build_index_tuple</a>&lt;<a class="type" href="../utility.html#std::tuple_size" title='std::tuple_size' data-ref="std::tuple_size">tuple_size</a>&lt;_Tuple&gt;::value&gt;::__type;&nbsp</td></tr>
+<tr><th id="266">266</th><td>	  <b>return</b> _M_invoke(<a class="local col8 typedef" href="#2278_Indices" title='_Indices' data-type='typename _Build_index_tuple&lt;tuple_size&lt;_Tuple&gt;::value&gt;::__type' data-ref="2278_Indices">_Indices</a>());&nbsp</td></tr>
+<tr><th id="267">267</th><td>	}&nbsp</td></tr>
+<tr><th id="268">268</th><td>      };&nbsp</td></tr>
+<tr><th id="269">269</th><td>&nbsp</td></tr>
+<tr><th id="270">270</th><td>  <b>public</b>:&nbsp</td></tr>
+<tr><th id="271">271</th><td>    <b>template</b>&lt;<b>typename</b>... _Tp&gt;&nbsp</td></tr>
+<tr><th id="272">272</th><td>      <b>using</b> <dfn class="typedef" id="std::thread::_Call_wrapper" title='std::thread::_Call_wrapper' data-type='_Invoker&lt;tuple&lt;typename decay&lt;_Tp&gt;::type...&gt;&gt;' data-ref="std::thread::_Call_wrapper">_Call_wrapper</dfn> = <a class="type" href="#std::thread::_Invoker" title='std::thread::_Invoker' data-ref="std::thread::_Invoker">_Invoker</a>&lt;<a class="type" href="../type_traits.html#std::tuple" title='std::tuple' data-ref="std::tuple">tuple</a>&lt;<b>typename</b> <a class="type" href="../type_traits.html#std::decay" title='std::decay' data-ref="std::decay">decay</a>&lt;_Tp&gt;::type...&gt;&gt;;&nbsp</td></tr>
+<tr><th id="273">273</th><td><u>#<span data-ppcond="198">endif</span> // _GLIBCXX_HAS_GTHREADS</u>&nbsp</td></tr>
+<tr><th id="274">274</th><td>  };&nbsp</td></tr>
+<tr><th id="275">275</th><td>&nbsp</td></tr>
+<tr><th id="276">276</th><td><u>#<span data-ppcond="276">ifndef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1605" data-ref="_M/_GLIBCXX_HAS_GTHREADS">_GLIBCXX_HAS_GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="277">277</th><td>  <b>inline</b> <em>void</em> thread::join() { std::__throw_system_error(EINVAL); }&nbsp</td></tr>
+<tr><th id="278">278</th><td>  <b>inline</b> <em>void</em> thread::detach() { std::__throw_system_error(EINVAL); }&nbsp</td></tr>
+<tr><th id="279">279</th><td>  <b>inline</b> <em>unsigned</em> <em>int</em> thread::hardware_concurrency() <b>noexcept</b> { <b>return</b> <var>0</var>; }&nbsp</td></tr>
+<tr><th id="280">280</th><td><u>#<span data-ppcond="276">endif</span></u>&nbsp</td></tr>
+<tr><th id="281">281</th><td>&nbsp</td></tr>
+<tr><th id="282">282</th><td>  <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="283">283</th><td>  <dfn class="decl def fn" id="_ZSt4swapRSt6threadS0_" title='std::swap' data-ref="_ZSt4swapRSt6threadS0_">swap</dfn>(<a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>&amp; <dfn class="local col9 decl" id="2279__x" title='__x' data-type='std::thread &amp;' data-ref="2279__x">__x</dfn>, <a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>&amp; <dfn class="local col0 decl" id="2280__y" title='__y' data-type='std::thread &amp;' data-ref="2280__y">__y</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="284">284</th><td>  { <a class="local col9 ref" href="#2279__x" title='__x' data-ref="2279__x">__x</a>.<a class="ref fn" href="#_ZNSt6thread4swapERS_" title='std::thread::swap' data-ref="_ZNSt6thread4swapERS_">swap</a>(<span class='inlayHint'>t&amp;:&nbsp;</span><span class='refarg'><a class="local col0 ref" href="#2280__y" title='__y' data-ref="2280__y">__y</a></span>); }&nbsp</td></tr>
+<tr><th id="285">285</th><td>&nbsp</td></tr>
+<tr><th id="286">286</th><td>  <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="287">287</th><td>  <dfn class="decl def fn" id="_ZSteqNSt6thread2idES0_" title='std::operator==' data-ref="_ZSteqNSt6thread2idES0_"><b>operator</b>==</dfn>(<a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>::<a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a> <dfn class="local col1 decl" id="2281__x" title='__x' data-type='thread::id' data-ref="2281__x">__x</dfn>, <a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>::<a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a> <dfn class="local col2 decl" id="2282__y" title='__y' data-type='thread::id' data-ref="2282__y">__y</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="288">288</th><td>  {&nbsp</td></tr>
+<tr><th id="289">289</th><td>    <i>// pthread_equal is undefined if either thread ID is not valid, so we</i>&nbsp</td></tr>
+<tr><th id="290">290</th><td><i>    // can't safely use __gthread_equal on default-constructed values (nor</i>&nbsp</td></tr>
+<tr><th id="291">291</th><td><i>    // the non-zero value returned by this_thread::get_id() for</i>&nbsp</td></tr>
+<tr><th id="292">292</th><td><i>    // single-threaded programs using GNU libc). Assume EqualityComparable.</i>&nbsp</td></tr>
+<tr><th id="293">293</th><td>    <b>return</b> <a class="local col1 ref" href="#2281__x" title='__x' data-ref="2281__x">__x</a>.<a class="ref field" href="#std::thread::id::_M_thread" title='std::thread::id::_M_thread' data-ref="std::thread::id::_M_thread">_M_thread</a> == <a class="local col2 ref" href="#2282__y" title='__y' data-ref="2282__y">__y</a>.<a class="ref field" href="#std::thread::id::_M_thread" title='std::thread::id::_M_thread' data-ref="std::thread::id::_M_thread">_M_thread</a>;&nbsp</td></tr>
+<tr><th id="294">294</th><td>  }&nbsp</td></tr>
+<tr><th id="295">295</th><td>&nbsp</td></tr>
+<tr><th id="296">296</th><td>  <i>// N.B. other comparison operators are defined in &lt;thread&gt;</i>&nbsp</td></tr>
+<tr><th id="297">297</th><td><i></i>&nbsp</td></tr>
+<tr><th id="298">298</th><td><i>  // DR 889.</i>&nbsp</td></tr>
+<tr><th id="299">299</th><td><i>  /// std::hash specialization for thread::id.</i>&nbsp</td></tr>
+<tr><th id="300">300</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="301">301</th><td>    <b>struct</b> <dfn class="type def" id="std::hash" title='std::hash' data-ref="std::hash"><a class="type" href="functional_hash.h.html#std::hash" title='std::hash' data-ref="std::hash">hash</a></dfn>&lt;<a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>::<a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a>&gt;&nbsp</td></tr>
+<tr><th id="302">302</th><td>    : <b>public</b> __hash_base&lt;size_t, thread::id&gt;&nbsp</td></tr>
+<tr><th id="303">303</th><td>    {&nbsp</td></tr>
+<tr><th id="304">304</th><td>      <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="305">305</th><td>      <dfn class="decl def fn" id="_ZNKSt4hashINSt6thread2idEEclERKS1_" title='std::hash&lt;std::thread::id&gt;::operator()' data-ref="_ZNKSt4hashINSt6thread2idEEclERKS1_"><b>operator</b>()</dfn>(<em>const</em> <a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>::<a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a>&amp; <dfn class="local col3 decl" id="2283__id" title='__id' data-type='const thread::id &amp;' data-ref="2283__id">__id</dfn>) <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="306">306</th><td>      { <b>return</b> <span class="namespace">std::</span><a class="type" href="functional_hash.h.html#std::_Hash_impl" title='std::_Hash_impl' data-ref="std::_Hash_impl">_Hash_impl</a>::<a class="ref fn" href="functional_hash.h.html#_ZNSt10_Hash_impl4hashERKT_" title='std::_Hash_impl::hash' data-ref="_ZNSt10_Hash_impl4hashERKT_">hash</a>(<span class='inlayHint'>val:&nbsp;</span><a class="local col3 ref" href="#2283__id" title='__id' data-ref="2283__id">__id</a>.<a class="ref field" href="#std::thread::id::_M_thread" title='std::thread::id::_M_thread' data-ref="std::thread::id::_M_thread">_M_thread</a>); }&nbsp</td></tr>
+<tr><th id="307">307</th><td>    };&nbsp</td></tr>
+<tr><th id="308">308</th><td>&nbsp</td></tr>
+<tr><th id="309">309</th><td>  <b>namespace</b> <span class="namespace">this_thread</span>&nbsp</td></tr>
+<tr><th id="310">310</th><td>  {&nbsp</td></tr>
+<tr><th id="311">311</th><td>    <i class="doc">/// this_thread::get_id</i>&nbsp</td></tr>
+<tr><th id="312">312</th><td>    <b>inline</b> <a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>::<a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a>&nbsp</td></tr>
+<tr><th id="313">313</th><td>    <dfn class="decl def fn" id="_ZNSt11this_thread6get_idEv" title='std::this_thread::get_id' data-ref="_ZNSt11this_thread6get_idEv">get_id</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="314">314</th><td>    {&nbsp</td></tr>
+<tr><th id="315">315</th><td><u>#<span data-ppcond="315">ifndef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1605" data-ref="_M/_GLIBCXX_HAS_GTHREADS">_GLIBCXX_HAS_GTHREADS</a></u>&nbsp</td></tr>
+<tr><th id="316">316</th><td>      <b>return</b> thread::id(<var>1</var>);&nbsp</td></tr>
+<tr><th id="317">317</th><td><u>#<span data-ppcond="315">elif</span> defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/os_defines.h.html#55" data-ref="_M/_GLIBCXX_NATIVE_THREAD_ID">_GLIBCXX_NATIVE_THREAD_ID</a></u>&nbsp</td></tr>
+<tr><th id="318">318</th><td>      <b>return</b> <a class="type" href="#std::thread" title='std::thread' data-ref="std::thread">thread</a>::<a class="type" href="#std::thread::id" title='std::thread::id' data-ref="std::thread::id">id</a><a class="ref fn" href="#_ZNSt6thread2idC1Em" title='std::thread::id::id' data-ref="_ZNSt6thread2idC1Em">(</a><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/os_defines.h.html#55" title="pthread_self()" data-ref="_M/_GLIBCXX_NATIVE_THREAD_ID">_GLIBCXX_NATIVE_THREAD_ID</a>);&nbsp</td></tr>
+<tr><th id="319">319</th><td><u>#<span data-ppcond="315">else</span></u>&nbsp</td></tr>
+<tr><th id="320">320</th><td>      <b>return</b> thread::id(__gthread_self());&nbsp</td></tr>
+<tr><th id="321">321</th><td><u>#<span data-ppcond="315">endif</span></u>&nbsp</td></tr>
+<tr><th id="322">322</th><td>    }&nbsp</td></tr>
+<tr><th id="323">323</th><td>&nbsp</td></tr>
+<tr><th id="324">324</th><td>    <i class="doc">/// this_thread::yield</i>&nbsp</td></tr>
+<tr><th id="325">325</th><td>    <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="326">326</th><td>    <dfn class="decl def fn" id="_ZNSt11this_thread5yieldEv" title='std::this_thread::yield' data-ref="_ZNSt11this_thread5yieldEv">yield</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="327">327</th><td>    {&nbsp</td></tr>
+<tr><th id="328">328</th><td><u>#<span data-ppcond="328">if</span> defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1605" data-ref="_M/_GLIBCXX_HAS_GTHREADS">_GLIBCXX_HAS_GTHREADS</a> &amp;&amp; defined <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1766" data-ref="_M/_GLIBCXX_USE_SCHED_YIELD">_GLIBCXX_USE_SCHED_YIELD</a></u>&nbsp</td></tr>
+<tr><th id="329">329</th><td>      <a class="ref fn" href="../../../x86_64-linux-gnu/c++/11/bits/gthr-default.h.html#__gthread_yield" title='__gthread_yield' data-ref="__gthread_yield">__gthread_yield</a>();&nbsp</td></tr>
+<tr><th id="330">330</th><td><u>#<span data-ppcond="328">endif</span></u>&nbsp</td></tr>
+<tr><th id="331">331</th><td>    }&nbsp</td></tr>
+<tr><th id="332">332</th><td>&nbsp</td></tr>
+<tr><th id="333">333</th><td>  } <i>// namespace this_thread</i>&nbsp</td></tr>
+<tr><th id="334">334</th><td>&nbsp</td></tr>
+<tr><th id="335">335</th><td>  <i class="doc">/// @}</i>&nbsp</td></tr>
+<tr><th id="336">336</th><td>&nbsp</td></tr>
+<tr><th id="337">337</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="338">338</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="339">339</th><td><u>#<span data-ppcond="35">endif</span> // C++11</u>&nbsp</td></tr>
+<tr><th id="340">340</th><td>&nbsp</td></tr>
+<tr><th id="341">341</th><td><u>#<span data-ppcond="30">endif</span> // _GLIBCXX_THREAD_H</u>&nbsp</td></tr>
+<tr><th id="342">342</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tPool.h.html'>Modules/Foundation/Inc/Foundation/tPool.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

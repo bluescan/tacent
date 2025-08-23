@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/stl_iterator.h' l='866' type='std::insert_iterator::_Iter'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='891' u='w' c='_ZNSt15insert_iteratorC1ERT_DTclsr6ranges13__cust_accessE7__beginclsr3stdE7declvalIS1_EEEE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='929' u='w' c='_ZNSt15insert_iteratoraSERKNT_10value_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='929' c='_ZNSt15insert_iteratoraSERKNT_10value_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='930' u='w' c='_ZNSt15insert_iteratoraSERKNT_10value_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='938' u='w' c='_ZNSt15insert_iteratoraSEONT_10value_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='938' c='_ZNSt15insert_iteratoraSEONT_10value_typeE'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='939' u='w' c='_ZNSt15insert_iteratoraSEONT_10value_typeE'/>

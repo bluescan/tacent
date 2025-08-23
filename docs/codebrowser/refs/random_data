@@ -1,0 +1,16 @@
+<def f='include/stdlib.h' l='424' ll='433'/>
+<use f='include/stdlib.h' l='435' c='random_r'/>
+<use f='include/stdlib.h' l='438' c='srandom_r'/>
+<use f='include/stdlib.h' l='443' c='initstate_r'/>
+<use f='include/stdlib.h' l='447' c='setstate_r'/>
+<size>48</size>
+<doc f='include/stdlib.h' l='420'>/* Reentrant versions of the `random&apos; family of functions.
+   These functions all use the following data structure to contain
+   state, rather than global state variables.  */</doc>
+<mbr r='random_data::fptr' o='0' t='int32_t *'/>
+<mbr r='random_data::rptr' o='64' t='int32_t *'/>
+<mbr r='random_data::state' o='128' t='int32_t *'/>
+<mbr r='random_data::rand_type' o='192' t='int'/>
+<mbr r='random_data::rand_deg' o='224' t='int'/>
+<mbr r='random_data::rand_sep' o='256' t='int'/>
+<mbr r='random_data::end_ptr' o='320' t='int32_t *'/>

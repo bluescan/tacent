@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_function.h' l='427' ll='439' macro='1' type='bool std::greater&lt;type-parameter-0-0 *&gt;::operator()(_Tp * __x, _Tp * __y) const'/>
+<use f='include/c++/11/bits/stl_function.h' l='559' ll='561' u='c' c='_ZNSt7greaterIvE6_S_cmpEOT_OT0_St17integral_constantIbLb1EE'/>

@@ -1,0 +1,6 @@
+<dec f='include/stdlib.h' l='563' type='void * reallocarray(void * __ptr, size_t __nmemb, size_t __size)'/>
+<dec f='include/stdlib.h' l='569' type='void * reallocarray(void * __ptr, size_t __nmemb, size_t __size)'/>
+<doc f='include/stdlib.h' l='560'>/* __attribute_malloc__ is not used, because if reallocarray returns
+   the same pointer that was passed to it, aliasing needs to be allowed
+   between objects pointed by the old and new pointers.  */</doc>
+<doc f='include/stdlib.h' l='568'>/* Add reallocarray as its own deallocator.  */</doc>

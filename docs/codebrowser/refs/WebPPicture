@@ -1,0 +1,35 @@
+<use f='Modules/Image/Contrib/WebP/include/mux.h' l='494' c='WebPAnimEncoderAdd'/>
+<use f='Modules/Image/Contrib/WebP/include/encode.h' l='32'/>
+<def f='Modules/Image/Contrib/WebP/include/encode.h' l='294' ll='358'/>
+<size>256</size>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='293'>// Main exchange structure (input samples, output bytes, statistics)</doc>
+<mbr r='WebPPicture::use_argb' o='0' t='int'/>
+<mbr r='WebPPicture::colorspace' o='32' t='WebPEncCSP'/>
+<mbr r='WebPPicture::width' o='64' t='int'/>
+<mbr r='WebPPicture::height' o='96' t='int'/>
+<mbr r='WebPPicture::y' o='128' t='uint8_t *'/>
+<mbr r='WebPPicture::u' o='192' t='uint8_t *'/>
+<mbr r='WebPPicture::v' o='256' t='uint8_t *'/>
+<mbr r='WebPPicture::y_stride' o='320' t='int'/>
+<mbr r='WebPPicture::uv_stride' o='352' t='int'/>
+<mbr r='WebPPicture::a' o='384' t='uint8_t *'/>
+<mbr r='WebPPicture::a_stride' o='448' t='int'/>
+<mbr r='WebPPicture::pad1' o='480' t='uint32_t[2]'/>
+<mbr r='WebPPicture::argb' o='576' t='uint32_t *'/>
+<mbr r='WebPPicture::argb_stride' o='640' t='int'/>
+<mbr r='WebPPicture::pad2' o='672' t='uint32_t[3]'/>
+<mbr r='WebPPicture::writer' o='768' t='WebPWriterFunction'/>
+<mbr r='WebPPicture::custom_ptr' o='832' t='void *'/>
+<mbr r='WebPPicture::extra_info_type' o='896' t='int'/>
+<mbr r='WebPPicture::extra_info' o='960' t='uint8_t *'/>
+<mbr r='WebPPicture::stats' o='1024' t='WebPAuxStats *'/>
+<mbr r='WebPPicture::error_code' o='1088' t='WebPEncodingError'/>
+<mbr r='WebPPicture::progress_hook' o='1152' t='WebPProgressHook'/>
+<mbr r='WebPPicture::user_data' o='1216' t='void *'/>
+<mbr r='WebPPicture::pad3' o='1280' t='uint32_t[3]'/>
+<mbr r='WebPPicture::pad4' o='1408' t='uint8_t *'/>
+<mbr r='WebPPicture::pad5' o='1472' t='uint8_t *'/>
+<mbr r='WebPPicture::pad6' o='1536' t='uint32_t[8]'/>
+<mbr r='WebPPicture::memory_' o='1792' t='void *'/>
+<mbr r='WebPPicture::memory_argb_' o='1856' t='void *'/>
+<mbr r='WebPPicture::pad7' o='1920' t='void *[2]'/>

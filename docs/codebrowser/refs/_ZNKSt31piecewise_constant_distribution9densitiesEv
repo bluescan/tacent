@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='5638' ll='5643' type='std::vector&lt;double&gt; std::piecewise_constant_distribution::densities() const'/>
+<doc f='include/c++/11/bits/random.h' l='5635'>/**
+       * @brief Returns a vector of the probability densities.
+       */</doc>

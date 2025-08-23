@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='108' type='34'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='106'>//			0: No Red-Eye Reduction or Unknown.
+					//			1: Red-Eye Reduction.</doc>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='108'>//	float	Lens focal length in mm. Always &gt; 0 if set.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='512' u='m' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='799' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

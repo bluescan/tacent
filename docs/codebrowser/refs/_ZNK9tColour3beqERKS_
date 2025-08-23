@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='321' type='bool tColour3b::operator==(const tColour3b &amp; c) const'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='46' u='c' c='_ZN6tImage9tQuantize22FindIndexOfExactColourEPK9tColour3biRS2_'/>

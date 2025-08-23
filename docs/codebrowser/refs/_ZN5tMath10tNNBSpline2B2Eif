@@ -1,0 +1,3 @@
+<def f='Modules/Math/Src/tSpline.cpp' l='576' ll='594' type='float tMath::tNNBSpline::B2(int i, float t)'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='609' u='c' c='_ZN5tMath10tNNBSpline2B3Eif'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='613' u='c' c='_ZN5tMath10tNNBSpline2B3Eif'/>

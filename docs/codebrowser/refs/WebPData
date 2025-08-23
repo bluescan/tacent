@@ -1,0 +1,8 @@
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='29'/>
+<def f='Modules/Image/Contrib/WebP/include/mux_types.h' l='59' ll='62'/>
+<size>16</size>
+<doc f='Modules/Image/Contrib/WebP/include/mux_types.h' l='56'>// Data type used to describe &apos;raw&apos; data, e.g., chunk data
+// (ICC profile, metadata) and WebP compressed image data.
+// &apos;bytes&apos; memory must be allocated using WebPMalloc() and such.</doc>
+<mbr r='WebPData::bytes' o='0' t='const uint8_t *'/>
+<mbr r='WebPData::size' o='64' t='size_t'/>

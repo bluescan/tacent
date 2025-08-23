@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/time.h' l='55' type='int'/>
+<offset>32</offset>
+<doc f='include/x86_64-linux-gnu/sys/time.h' l='55'>/* Nonzero if DST is ever in effect.  */</doc>

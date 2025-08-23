@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11614'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11613'>// VK_AMD_draw_indirect_count is a preprocessor guard. Do not pass it to API calls.</doc>

@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6151' ll='6158'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6151'/>
+<size>536</size>
+<mbr r='VkPhysicalDeviceDriverProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDriverProperties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDriverProperties::driverID' o='128' t='VkDriverId'/>
+<mbr r='VkPhysicalDeviceDriverProperties::driverName' o='160' t='char[256]'/>
+<mbr r='VkPhysicalDeviceDriverProperties::driverInfo' o='2208' t='char[256]'/>
+<mbr r='VkPhysicalDeviceDriverProperties::conformanceVersion' o='4256' t='VkConformanceVersion'/>

@@ -1,0 +1,3 @@
+<use f='Modules/Image/Src/tImageICO.cpp' l='287' u='c' c='_ZN6tImage9tImageICO11CreateFrameEPKhiii'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='767' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<def f='Modules/Image/Src/tImagePNG.cpp' l='902' ll='922' type='bool tImage::tImagePNG::IsOpaque() const'/>

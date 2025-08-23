@@ -1,0 +1,15 @@
+<def f='include/c++/11/ratio' l='443' ll='451'/>
+<use f='include/c++/11/ratio' l='446'/>
+<def f='include/c++/11/ratio' l='454' ll='476'/>
+<def f='include/c++/11/ratio' l='478' ll='481'/>
+<use f='include/c++/11/ratio' l='480'/>
+<def f='include/c++/11/ratio' l='484' ll='505'/>
+<use f='include/c++/11/ratio' l='510'/>
+<doc f='include/c++/11/ratio' l='453'>// True addition of nonnegative numbers.</doc>
+<doc f='include/c++/11/ratio' l='483'>// True subtraction of nonnegative numbers yielding a nonnegative result.</doc>
+<smbr r='std::__ratio_add_impl{type-parameter-0-0,type-parameter-0-1,true,true,__b}::__g' t='const uintmax_t'/>
+<smbr r='std::__ratio_add_impl{type-parameter-0-0,type-parameter-0-1,true,true,__b}::__d2' t='const uintmax_t'/>
+<smbr r='std::__ratio_add_impl{type-parameter-0-0,type-parameter-0-1,true,true,__b}::__g2' t='const uintmax_t'/>
+<smbr r='std::__ratio_add_impl{type-parameter-0-0,type-parameter-0-1,true,false,false}::__g' t='const uintmax_t'/>
+<smbr r='std::__ratio_add_impl{type-parameter-0-0,type-parameter-0-1,true,false,false}::__d2' t='const uintmax_t'/>
+<smbr r='std::__ratio_add_impl{type-parameter-0-0,type-parameter-0-1,true,false,false}::__g2' t='const uintmax_t'/>

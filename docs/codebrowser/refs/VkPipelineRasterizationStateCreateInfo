@@ -1,0 +1,16 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3588' ll='3602'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3588'/>
+<size>64</size>
+<mbr r='VkPipelineRasterizationStateCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineRasterizationStateCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineRasterizationStateCreateInfo::flags' o='128' t='VkPipelineRasterizationStateCreateFlags'/>
+<mbr r='VkPipelineRasterizationStateCreateInfo::depthClampEnable' o='160' t='VkBool32'/>
+<mbr r='VkPipelineRasterizationStateCreateInfo::rasterizerDiscardEnable' o='192' t='VkBool32'/>
+<mbr r='VkPipelineRasterizationStateCreateInfo::polygonMode' o='224' t='VkPolygonMode'/>
+<mbr r='VkPipelineRasterizationStateCreateInfo::cullMode' o='256' t='VkCullModeFlags'/>
+<mbr r='VkPipelineRasterizationStateCreateInfo::frontFace' o='288' t='VkFrontFace'/>
+<mbr r='VkPipelineRasterizationStateCreateInfo::depthBiasEnable' o='320' t='VkBool32'/>
+<mbr r='VkPipelineRasterizationStateCreateInfo::depthBiasConstantFactor' o='352' t='float'/>
+<mbr r='VkPipelineRasterizationStateCreateInfo::depthBiasClamp' o='384' t='float'/>
+<mbr r='VkPipelineRasterizationStateCreateInfo::depthBiasSlopeFactor' o='416' t='float'/>
+<mbr r='VkPipelineRasterizationStateCreateInfo::lineWidth' o='448' t='float'/>

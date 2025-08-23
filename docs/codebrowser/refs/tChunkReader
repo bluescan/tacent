@@ -1,0 +1,25 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='314' ll='361'/>
+<size>16</size>
+<doc f='Modules/System/Inc/System/tChunk.h' l='312'>// Use this to read and parse an already existing chunk file. A tChunk file is simply one or more chunks after each
+// other. Essentially the file itself is a container chunk.</doc>
+<fun r='_ZN12tChunkReaderC1Ev'/>
+<fun r='_ZN12tChunkReaderC1ERK7tStringPh'/>
+<fun r='_ZN12tChunkReaderC1EPhi'/>
+<fun r='_ZN12tChunkReaderD1Ev'/>
+<fun r='_ZN12tChunkReader4LoadERK7tStringPh'/>
+<fun r='_ZN12tChunkReader4LoadEPhi'/>
+<fun r='_ZN12tChunkReader8LoadSafeERK7tString'/>
+<fun r='_ZN12tChunkReader4SaveERK7tString'/>
+<fun r='_ZN12tChunkReader6UnLoadEv'/>
+<fun r='_ZNK12tChunkReader7IsValidEv'/>
+<fun r='_ZNK12tChunkReader5ValidEv'/>
+<fun r='_ZNK12tChunkReader13GetFirstChunkEv'/>
+<fun r='_ZNK12tChunkReader5FirstEv'/>
+<fun r='_ZNK12tChunkReader5ChunkEv'/>
+<fun r='_ZN12tChunkReader19GetBufferSizeNeededERK7tString'/>
+<fun r='_ZN12tChunkReader24GetBufferAlignmentNeededEv'/>
+<mbr r='tChunkReader::IsBufferOwned' o='0' t='bool'/>
+<mbr r='tChunkReader::ReadBufferSize' o='32' t='int'/>
+<mbr r='tChunkReader::ReadBuffer' o='64' t='uint8 *'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='487' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<size>16</size>

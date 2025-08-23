@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1571'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1569'>/* Define if C99 functions or macros in &lt;wchar.h&gt; should be imported in
+   &lt;cwchar&gt; in namespace std for C++11. */</doc>

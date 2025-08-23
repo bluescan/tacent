@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12796' ll='12800'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12796'/>
+<size>24</size>
+<mbr r='VkImageDrmFormatModifierPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageDrmFormatModifierPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkImageDrmFormatModifierPropertiesEXT::drmFormatModifier' o='128' t='uint64_t'/>

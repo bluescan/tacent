@@ -1,0 +1,66 @@
+<inh f='include/c++/11/bits/alloc_traits.h' l='49' c='std::__allocator_traits_base'/>
+<def f='include/c++/11/bits/alloc_traits.h' l='90' ll='403'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='215'/>
+<def f='include/c++/11/bits/alloc_traits.h' l='410' ll='564'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='453'/>
+<def f='include/c++/11/bits/alloc_traits.h' l='567' ll='662'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='568'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='610'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='680' c='_ZSt15__alloc_on_copyRT_RKS_'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='694' c='_ZSt15__alloc_on_copyRKT_'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='712' c='_ZSt15__alloc_on_moveRT_S0_'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='739' c='_ZSt15__alloc_on_swapRT_S0_'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='761'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='838' c='_ZSt8_DestroyT_S_RT0_'/>
+<use f='include/c++/11/ext/alloc_traits.h' l='50'/>
+<use f='include/c++/11/ext/alloc_traits.h' l='55'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1820'/>
+<use f='include/c++/11/bits/node_handle.h' l='66'/>
+<use f='include/c++/11/bits/node_handle.h' l='281'/>
+<use f='include/c++/11/bits/node_handle.h' l='359'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='988' c='_ZSt19__relocate_object_aPT_PT0_RT1_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='990' c='_ZSt19__relocate_object_aPT_PT0_RT1_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='993' c='_ZSt19__relocate_object_aPT_PT0_RT1_'/>
+<size>1</size>
+<doc f='include/c++/11/bits/alloc_traits.h' l='409'>/// Partial specialization for std::allocator.</doc>
+<doc f='include/c++/11/bits/alloc_traits.h' l='566'>/// Explicit specialization for std::allocator&lt;void&gt;.</doc>
+<fun r='_ZNSt16allocator_traits11_S_allocateERTL0__NS_5_SizeIT_NS_5_DiffIS3_NSt10__detectorIPNS3_10value_typeEvNSt23__allocator_traits_base9__pointerEJS3_EE4t545519'/>
+<fun r='_ZNSt16allocator_traits11_S_allocateERTL0__NS_5_SizeIT_NS_5_DiffIS3_NSt10__detectorIPNS3_10value_typeEvNSt23__allocator_traits_base9__pointerEJS3_EE4t12840429'/>
+<fun r='_ZNSt16allocator_traits12_S_constructERT_PTL0__DpOTL0_0_'/>
+<fun r='_ZNSt16allocator_traits12_S_constructERT_PTL0__DpOTL0_0_'/>
+<fun r='_ZNSt16allocator_traits10_S_destroyERTL0__PTL0_0_i'/>
+<fun r='_ZNSt16allocator_traits10_S_destroyERTL0__PTL0_0_z'/>
+<fun r='_ZNSt16allocator_traits11_S_max_sizeERTL0__i'/>
+<fun r='_ZNSt16allocator_traits11_S_max_sizeERTL0__z'/>
+<fun r='_ZNSt16allocator_traits9_S_selectERTL0__i'/>
+<fun r='_ZNSt16allocator_traits9_S_selectERTL0__z'/>
+<fun r='_ZNSt16allocator_traits8allocateERT_NS_5_SizeIS0_NS_5_DiffIS0_NSt10__detectorIPNS0_10value_typeEvNSt23__allocator_traits_base9__pointerEJS0_EE4typeEvE4typeEvE4typeE'/>
+<fun r='_ZNSt16allocator_traits8allocateERT_NS_5_SizeIS0_NS_5_DiffIS0_NSt10__detectorIPNS0_10value_typeEvNSt23__allocator_traits_base9__pointerEJS0_EE4typeEvE10146678'/>
+<fun r='_ZNSt16allocator_traits10deallocateERT_NSt10__detectorIPNS0_10value_typeEvNSt23__allocator_traits_base9__pointerEJS0_EE4typeENS_5_SizeIS0_NS_5_DiffIS0_S8_vE4typeEvE4typeE'/>
+<fun r='_ZNSt16allocator_traits9constructERT_PTL0__DpOTL0_0_'/>
+<fun r='_ZNSt16allocator_traits7destroyERT_PTL0__'/>
+<fun r='_ZNSt16allocator_traits8max_sizeERKT_'/>
+<fun r='_ZNSt16allocator_traits37select_on_container_copy_constructionERKT_'/>
+<fun r='_ZNSt16allocator_traitsISaIT_EE8allocateERS1_m'/>
+<fun r='_ZNSt16allocator_traitsISaIT_EE8allocateERS1_mPKv'/>
+<fun r='_ZNSt16allocator_traitsISaIT_EE10deallocateERS1_PS0_m'/>
+<fun r='_ZNSt16allocator_traitsISaIT_EE9constructERS1_PTL0__DpOTL0_0_'/>
+<fun r='_ZNSt16allocator_traitsISaIT_EE7destroyERS1_PTL0__'/>
+<fun r='_ZNSt16allocator_traitsISaIT_EE8max_sizeERKS1_'/>
+<fun r='_ZNSt16allocator_traitsISaIT_EE37select_on_container_copy_constructionERKS1_'/>
+<fun r='_ZNSt16allocator_traitsISaIvEE8allocateERS0_mPKv'/>
+<fun r='_ZNSt16allocator_traitsISaIvEE10deallocateERS0_Pvm'/>
+<fun r='_ZNSt16allocator_traitsISaIvEE9constructERS0_PT_DpOT0_'/>
+<fun r='_ZNSt16allocator_traitsISaIvEE7destroyERS0_PT_'/>
+<fun r='_ZNSt16allocator_traitsISaIvEE8max_sizeERKS0_'/>
+<fun r='_ZNSt16allocator_traitsISaIvEE37select_on_container_copy_constructionERKS0_'/>
+<use f='include/c++/11/bits/basic_string.h' l='6176' c='_ZStplONSt7__cxx1112basic_stringIT_T0_T1_EES5_'/>
+<use f='include/c++/11/bits/allocated_ptr.h' l='49'/>
+<use f='include/c++/11/bits/allocated_ptr.h' l='50'/>
+<use f='include/c++/11/bits/allocated_ptr.h' l='74' c='_ZNSt15__allocated_ptrD1Ev'/>
+<use f='include/c++/11/bits/allocated_ptr.h' l='98' c='_ZSt18__allocate_guardedRT_'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='519' c='_ZNSt23_Sp_counted_ptr_inplaceC1ET0_DpOTL0__'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='528' c='_ZNSt23_Sp_counted_ptr_inplace10_M_disposeEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='684' c='_ZNSt14__shared_countC1EOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/sstream' l='77'/>
+<use f='include/c++/11/bits/fs_path.h' l='1129' c='_ZNKSt10filesystem7__cxx114path14generic_stringERKT1_'/>

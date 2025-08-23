@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tResample.h' l='47' type='9'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='171' u='r' c='_ZN6tImage8tTexture15DetermineFilterENS0_8tQualityE'/>

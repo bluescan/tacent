@@ -1,0 +1,17 @@
+<def f='Modules/Math/Inc/Math/tVector4.h' l='26' type='void tMath::tVector4::tVector4()'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='78' u='c' c='_ZNK5tMath8tVector4plERKNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='81' u='c' c='_ZNK5tMath8tVector4miERKNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='82' u='c' c='_ZNK5tMath8tVector4ngEv'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='85' u='c' c='_ZN5tMathmlERKNS_5tVec4Ef'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='86' u='c' c='_ZN5tMathmlEfRKNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='91' u='c' c='_ZNK5tMath8tVector4dvEf'/>
+<use f='Modules/Image/Src/tResample.cpp' l='325' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='325' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='325' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='102' u='c' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='162' u='c' c='_ZN6tScene5tMesh23CreateVertTableTangentsEv'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='102' u='c' c='_ZN6tScene5tMeshaSERKS0_'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='349' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='167' u='c' c='_ZN6tScene5tPose4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='317' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='324' u='c' c='_ZNK11tExpression14GetAtomVector4Ev'/>

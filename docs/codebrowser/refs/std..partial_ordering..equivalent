@@ -1,0 +1,5 @@
+<dec f='include/c++/11/compare' l='84' type='const std::partial_ordering'/>
+<def f='include/c++/11/compare' l='146' ll='147' type='const std::partial_ordering'/>
+<use f='include/c++/11/compare' l='364' u='r' c='_ZNSt8__detail16__common_cmp_catEv'/>
+<use f='include/c++/11/compare' l='550' u='r' c='_ZNSt10__cmp_cust18__fp_weak_orderingET_S0_'/>
+<use f='include/c++/11/compare' l='844' u='r' c='_ZNKSt10__cmp_cust17_Partial_fallbackclEOT_OT0_'/>

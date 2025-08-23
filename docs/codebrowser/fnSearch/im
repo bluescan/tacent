@@ -1,0 +1,3 @@
+_ZNSt9basic_ios5imbueERKSt6locale|std::basic_ios::imbue
+_ZNSt15basic_streambuf5imbueERKSt6locale|std::basic_streambuf::imbue
+_ZNSt13basic_filebuf5imbueERKSt6locale|std::basic_filebuf::imbue

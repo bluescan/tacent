@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6337' ll='6342'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6337'/>
+<size>32</size>
+<mbr r='VkFramebufferAttachmentsCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkFramebufferAttachmentsCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkFramebufferAttachmentsCreateInfo::attachmentImageInfoCount' o='128' t='uint32_t'/>
+<mbr r='VkFramebufferAttachmentsCreateInfo::pAttachmentImageInfos' o='192' t='const VkFramebufferAttachmentImageInfo *'/>

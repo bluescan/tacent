@@ -1,0 +1,1 @@
+<def f='include/c++/11/string_view' l='340' ll='346' type='int std::basic_string_view::compare(std::basic_string_view::size_type __pos1, std::basic_string_view::size_type __n1, const _CharT * __str, std::basic_string_view::size_type __n2) const'/>

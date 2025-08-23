@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Src/tQuantizeWu.cpp' l='82' type='void tImage::tQuantizeWu::M3d(int32 * vwt, int32 * vmr, int32 * vmg, int32 * vmb, float * m2)'/>
+<def f='Modules/Image/Src/tQuantizeWu.cpp' l='139' ll='179' type='void tImage::tQuantizeWu::M3d(int32 * vwt, int32 * vmr, int32 * vmg, int32 * vmb, float * m2)'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='451' u='c' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>
+<doc f='Modules/Image/Src/tQuantizeWu.cpp' l='80'>// Compute cumulative moments. We now convert histogram into moments so that we can rapidly calculate the sums of
+	// the above quantities over any desired box.</doc>

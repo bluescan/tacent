@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/stl_deque.h' l='858' u='c' c='_ZNSt5dequeC1EmRKT0_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='871' u='c' c='_ZNSt5dequeC1EmRKT_RKT0_'/>
+<def f='include/c++/11/bits/stl_deque.h' l='1824' ll='1831' type='static std::size_t std::deque::_S_check_init_len(std::size_t __n, const std::deque::allocator_type &amp; __a)'/>
+<use f='include/c++/11/bits/deque.tcc' l='448' u='c' c='_ZNSt5deque19_M_range_initializeETL0__S0_St20forward_iterator_tag'/>

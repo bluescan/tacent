@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='452' type='int futimens(int __fd, const struct timespec * __times)'/>
+<doc f='include/x86_64-linux-gnu/sys/stat.h' l='451'>/* Set file access and modification times of the file associated with FD.  */</doc>

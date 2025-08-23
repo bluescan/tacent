@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='50'/>
+<use f='include/c++/11/system_error' l='165' u='c'/>
+<use f='include/c++/11/system_error' l='168' u='c'/>
+<use f='include/c++/11/bits/locale_classes.h' l='430' u='c'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='949' u='c'/>

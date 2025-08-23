@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11508'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11507'>// VK_NVX_binary_import is a preprocessor guard. Do not pass it to API calls.</doc>

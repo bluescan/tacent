@@ -1,0 +1,2 @@
+<def f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='46' type='void tPipeline::tRule::SetConfig(tPipeline::tRule::tConfig config = tConfig::Default)'/>
+<doc f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='45'>// The build function can optionally get access to the configuration variable set by this function.</doc>

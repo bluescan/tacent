@@ -1,0 +1,2 @@
+<def f='Modules/Image/Src/tImageHDR.cpp' l='50' ll='82' type='void tImage::tImageHDR::SetupGammaTables(float gammaCorr)'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='296' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>

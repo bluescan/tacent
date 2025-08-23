@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='537' type='float tMath::tDeterminant(const tMath::tMat4 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='67' u='c' c='_ZNK5tMath8tMatrix411DeterminantEv'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='353' ll='380' type='float tMath::tDeterminant(const tMath::tMat4 &amp; m)'/>

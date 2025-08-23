@@ -1,0 +1,7 @@
+<dec f='Modules/System/Inc/System/tThrow.h' l='41' type='tString'/>
+<offset>0</offset>
+<use f='Modules/System/Src/tThrow.cpp' l='45' u='w' c='_ZN8tWarningC1EPKcz'/>
+<use f='Modules/System/Src/tThrow.cpp' l='49' u='w' c='_ZN8tWarningC1EPKcz'/>
+<use f='Modules/System/Src/tThrow.cpp' l='54' u='w' c='_ZN8tWarningC1ERK7tString'/>
+<use f='Modules/System/Src/tThrow.cpp' l='56' u='w' c='_ZN8tWarningC1ERK7tString'/>
+<use f='Modules/System/Src/tThrow.cpp' l='61' u='w' c='_ZN8tWarningC1Ev'/>

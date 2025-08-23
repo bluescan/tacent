@@ -1,0 +1,15 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='189' type='int tChunkWriter::Write(const void * data, const tString &amp; layout)'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='176'>// The layout string lets the Write call know the format of the data so it can perform the appropriate endian swaps
+	// if necessary. The characters &apos;1&apos;, &apos;2&apos;, &apos;4&apos;, and &apos;8&apos; are used to represent the number of bytes for each item. In
+	// addition there are shorthands for vectors and matrices. Spaces, underscores, and hyphens are ignored, allowing
+	// you to group numbers for readability.
+	//
+	// &quot;v2&quot; becomes &quot;44&quot;.
+	// &quot;v3&quot; becomes &quot;444&quot;.
+	// &quot;v4&quot; becomes &quot;4444&quot;.
+	// &quot;m2&quot; becomes &quot;v2v2&quot; or &quot;4444&quot;.
+	// &quot;m4&quot; becomes &quot;v4v4v4v4&quot; or &quot;4444444444444444&quot;.
+	// &quot;q&quot;  becomes &quot;4444&quot;.
+	// &quot;f&quot;  becomes &quot;4&quot;.
+	// &quot;d&quot;  becomes &quot;8&quot;.</doc>
+<def f='Modules/System/Src/tChunk.cpp' l='687' ll='765' type='int tChunkWriter::Write(const void * data, const tString &amp; layoutStr)'/>

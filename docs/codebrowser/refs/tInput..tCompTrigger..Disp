@@ -1,0 +1,8 @@
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='28' u='w' c='_ZN6tInput12tCompTriggerC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='31' u='m' c='_ZNK6tInput12tCompTrigger15GetDisplacementEv'/>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='32' u='m' c='_ZN6tInput12tCompTrigger5ResetEv'/>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='41' u='m' c='_ZN6tInput12tCompTrigger18SetDisplacementRawEf'/>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='42' u='m' c='_ZN6tInput12tCompTrigger15SetDisplacementEf'/>
+<dec f='Modules/Input/Inc/Input/tCompTrigger.h' l='45' type='tInput::tUnitContinuousDisp'/>
+<offset>320</offset>
+<doc f='Modules/Input/Inc/Input/tCompTrigger.h' l='44'>// The tUnit has been cnstructed with the mutex ref. Calls made to it are mutex protected.</doc>

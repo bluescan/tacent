@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18482' ll='18487'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18482'/>
+<size>32</size>
+<mbr r='VkSamplerBlockMatchWindowCreateInfoQCOM::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSamplerBlockMatchWindowCreateInfoQCOM::pNext' o='64' t='const void *'/>
+<mbr r='VkSamplerBlockMatchWindowCreateInfoQCOM::windowExtent' o='128' t='VkExtent2D'/>
+<mbr r='VkSamplerBlockMatchWindowCreateInfoQCOM::windowCompareMode' o='192' t='VkBlockMatchWindowCompareModeQCOM'/>

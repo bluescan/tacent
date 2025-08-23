@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/functexcept.h' l='48' type='void std::__throw_bad_exception()'/>
+<doc f='include/c++/11/bits/functexcept.h' l='46'>// Helper for exception objects in &lt;except&gt;</doc>

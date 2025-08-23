@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='111' type='bool tList::Contains(const T &amp; item) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='111'>/* To use this there must be an operator== for type T. */</doc>

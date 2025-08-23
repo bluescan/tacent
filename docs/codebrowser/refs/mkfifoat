@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='425' type='int mkfifoat(int __fd, const char * __path, __mode_t __mode)'/>
+<doc f='include/x86_64-linux-gnu/sys/stat.h' l='422'>/* Like mkfifo, create a new FIFO with permission bits MODE.  But
+   interpret relative PATH names relative to the directory associated
+   with FD.  */</doc>

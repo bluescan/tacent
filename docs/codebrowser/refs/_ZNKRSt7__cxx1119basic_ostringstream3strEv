@@ -1,0 +1,5 @@
+<def f='include/c++/11/sstream' l='916' ll='918' type='std::basic_ostringstream::__string_type std::basic_ostringstream::str() const'/>
+<doc f='include/c++/11/sstream' l='912'>/**
+       *  @brief  Copying out the string buffer.
+       *  @return  @c rdbuf()-&gt;str()
+      */</doc>

@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1071' type='int pthread_rwlock_unlock(pthread_rwlock_t * __rwlock)'/>
+<doc f='include/pthread.h' l='1070'>/* Unlock RWLOCK.  */</doc>

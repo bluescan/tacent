@@ -1,0 +1,2 @@
+<dec f='include/c++/11/exception' l='64' type='const char * std::bad_exception::what() const'/>
+<doc f='include/c++/11/exception' l='62'>// See comment in eh_exception.cc.</doc>

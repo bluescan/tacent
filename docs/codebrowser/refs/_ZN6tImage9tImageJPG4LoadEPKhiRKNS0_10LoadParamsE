@@ -1,0 +1,3 @@
+<use f='Modules/Image/Src/tImageJPG.cpp' l='59' u='c' c='_ZN6tImage9tImageJPG4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImageJPG.cpp' l='66' ll='187' type='bool tImage::tImageJPG::Load(const uint8 * jpgFileInMemory, int numBytes, const tImage::tImageJPG::LoadParams &amp; params = tImage::tImageJPG::LoadParams())'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='248' u='c' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>

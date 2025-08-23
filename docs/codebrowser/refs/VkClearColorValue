@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3924' ll='3928'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3924'/>
+<size>16</size>
+<mbr r='VkClearColorValue::float32' o='0' t='float[4]'/>
+<mbr r='VkClearColorValue::int32' o='0' t='int32_t[4]'/>
+<mbr r='VkClearColorValue::uint32' o='0' t='uint32_t[4]'/>

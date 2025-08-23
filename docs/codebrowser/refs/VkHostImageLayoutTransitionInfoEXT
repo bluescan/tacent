@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14615' ll='14622'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14615'/>
+<size>56</size>
+<mbr r='VkHostImageLayoutTransitionInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkHostImageLayoutTransitionInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkHostImageLayoutTransitionInfoEXT::image' o='128' t='VkImage'/>
+<mbr r='VkHostImageLayoutTransitionInfoEXT::oldLayout' o='192' t='VkImageLayout'/>
+<mbr r='VkHostImageLayoutTransitionInfoEXT::newLayout' o='224' t='VkImageLayout'/>
+<mbr r='VkHostImageLayoutTransitionInfoEXT::subresourceRange' o='256' t='VkImageSubresourceRange'/>

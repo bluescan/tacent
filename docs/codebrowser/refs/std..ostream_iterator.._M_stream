@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/stream_iterator.h' l='191' type='std::ostream_iterator::ostream_type *'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='197' u='w' c='_ZNSt16ostream_iteratorC1Ev'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='202' u='w' c='_ZNSt16ostream_iteratorC1ERSt13basic_ostreamIT0_T1_E'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='215' u='w' c='_ZNSt16ostream_iteratorC1ERSt13basic_ostreamIT0_T1_EPKS1_'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='219' u='w' c='_ZNSt16ostream_iteratorC1ERKSt16ostream_iteratorIT_T0_T1_E'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='233' u='r' c='_ZNSt16ostream_iteratoraSERKT_'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='235' u='r' c='_ZNSt16ostream_iteratoraSERKT_'/>

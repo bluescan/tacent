@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18185' ll='18191'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18185'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV::extendedSparseAddressSpaceSize' o='128' t='VkDeviceSize'/>
+<mbr r='VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV::extendedSparseImageUsageFlags' o='192' t='VkImageUsageFlags'/>
+<mbr r='VkPhysicalDeviceExtendedSparseAddressSpacePropertiesNV::extendedSparseBufferUsageFlags' o='224' t='VkBufferUsageFlags'/>

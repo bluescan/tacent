@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageDDS.cpp' l='869' u='c' c='_ZN6tImage9tImageDDSC1ERK7tStringRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImageDDS.cpp' l='1081' ll='1103' type='bool tImage::tImageDDS::Load(const tString &amp; ddsFile, const tImage::tImageDDS::LoadParams &amp; loadParams = tImage::tImageDDS::LoadParams())'/>

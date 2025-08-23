@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='153'/>
+<doc f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='152'>/* Maximum number of elements in an `iovec&apos; array.  */</doc>

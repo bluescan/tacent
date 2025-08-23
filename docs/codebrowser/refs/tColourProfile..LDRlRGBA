@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='122' type='2'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='133'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='953' c='_ZN5tMath21tIsProfileLinearInRGBE14tColourProfile'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='122'>// Equiv ASTC profile: ASTCENC_PRF_LDR.           The LDR linear colour profile.</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1081' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>

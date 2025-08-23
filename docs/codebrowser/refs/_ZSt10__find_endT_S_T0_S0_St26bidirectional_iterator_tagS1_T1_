@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algo.h' l='304' ll='336' macro='1' type='_BidirectionalIterator1 std::__find_end(_BidirectionalIterator1 __first1, _BidirectionalIterator1 __last1, _BidirectionalIterator2 __first2, _BidirectionalIterator2 __last2, std::bidirectional_iterator_tag , std::bidirectional_iterator_tag , _BinaryPredicate __comp)'/>

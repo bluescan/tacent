@@ -1,0 +1,4 @@
+<dec f='Modules/System/Src/tCmdLine.cpp' l='31' type='void tCmdLine::SyntaxInternal(tString * dest, int width)'/>
+<def f='Modules/System/Src/tCmdLine.cpp' l='408' ll='503' type='void tCmdLine::SyntaxInternal(tString * dest, int width)'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='508' u='c' c='_ZN8tCmdLine12tPrintSyntaxEi'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='514' u='c' c='_ZN8tCmdLine13tStringSyntaxER7tStringi'/>

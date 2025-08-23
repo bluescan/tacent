@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='359' type='2'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='700' u='r' c='_ZN4tStd13tGetFloatTypeEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='729' u='r' c='_ZN4tStd13tGetFloatTypeEd'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='359'>// Negative Signaling Not-A-Number.</doc>
+<use f='Modules/System/Src/tPrint.cpp' l='1457' c='_ZN7tSystem37HandlerHelper_HandleSpecialFloatTypesER6tArrayIcEd'/>

@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/QOI/qoi.h' l='341' ll='346' type='void qoi_write_32(unsigned char * bytes, int * p, unsigned int v)'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='384' u='c' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='385' u='c' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='386' u='c' c='qoi_encode'/>

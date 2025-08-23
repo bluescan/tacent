@@ -1,0 +1,14 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='750' type='std::time_get::iter_type std::time_get::_M_extract_via_format(std::time_get::iter_type __beg, std::time_get::iter_type __end, std::ios_base &amp; __io, ios_base::iostate &amp; __err, tm * __tm, const _CharT * __format) const'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='690' ll='922' type='_InIter std::time_get::_M_extract_via_format(std::time_get::iter_type __beg, std::time_get::iter_type __end, std::ios_base &amp; __io, ios_base::iostate &amp; __err, tm * __tm, const _CharT * __format) const'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='758' u='c' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='784' u='c' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='825' u='c' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='850' u='c' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='857' u='c' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='864' u='c' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1125' u='c' c='_ZNKSt7__cxx118time_get11do_get_timeET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1142' u='c' c='_ZNKSt7__cxx118time_get11do_get_dateET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1321' u='c' c='_ZNKSt7__cxx118time_get6do_getET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmcc'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='748'>// Extract on a component-by-component basis, via __format argument.</doc>
+<doc f='include/c++/11/bits/locale_facets_nonio.tcc' l='688'>// Expand a strftime format string and parse it.  E.g., do_get_date() may
+  // pass %m/%d/%Y =&gt; extracted characters.</doc>

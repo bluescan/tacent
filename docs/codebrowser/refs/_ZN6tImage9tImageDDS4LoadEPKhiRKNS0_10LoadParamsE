@@ -1,0 +1,3 @@
+<use f='Modules/Image/Src/tImageDDS.cpp' l='876' u='c' c='_ZN6tImage9tImageDDSC1EPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1099' u='c' c='_ZN6tImage9tImageDDS4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImageDDS.cpp' l='1106' ll='1554' type='bool tImage::tImageDDS::Load(const uint8 * ddsData, int ddsDataSize, const tImage::tImageDDS::LoadParams &amp; paramsIn = tImage::tImageDDS::LoadParams())'/>

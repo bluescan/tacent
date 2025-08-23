@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11320'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11319'>// VK_AMD_shader_trinary_minmax is a preprocessor guard. Do not pass it to API calls.</doc>

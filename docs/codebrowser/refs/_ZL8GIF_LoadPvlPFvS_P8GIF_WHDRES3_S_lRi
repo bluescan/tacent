@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/GifLoad/gif_load.h' l='164' ll='313' macro='1' type='long GIF_Load(void * data, long size, void (*)(void *, struct GIF_WHDR *) gwfr, void (*)(void *, struct GIF_WHDR *) eamf, void * anim, long skip, int &amp; largestPaletteSize)'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='149' u='c' c='_ZN6tImage9tImageGIF4LoadEPKhi'/>

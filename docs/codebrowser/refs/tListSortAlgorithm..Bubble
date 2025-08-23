@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='32' type='1'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='528' c='_ZN5tList4SortETL0__18tListSortAlgorithm'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='32'>// As bad as O(n^2) on unsorted data. Only O(n) on sorted.</doc>
+<use f='Modules/Math/Src/tSpline.cpp' l='496' u='r' c='_ZNK5tMath11tBezierPath17tFastSectionState6UpdateERKNS_8tVector3EPS3_'/>

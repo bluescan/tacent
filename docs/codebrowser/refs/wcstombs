@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='945' type='size_t wcstombs(char *__restrict __s, const wchar_t *__restrict __pwcs, size_t __n)'/>
+<doc f='include/stdlib.h' l='944'>/* Convert a wide char string to multibyte string.  */</doc>

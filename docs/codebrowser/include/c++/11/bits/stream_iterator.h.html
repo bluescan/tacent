@@ -1,0 +1,276 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>stream_iterator.h source code [include/c++/11/bits/stream_iterator.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::istream_iterator,std::ostream_iterator "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/stream_iterator.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='stream_iterator.h.html'>stream_iterator.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Stream iterators</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2001-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/stream_iterator.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{iterator}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_STREAM_ITERATOR_H">_STREAM_ITERATOR_H</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_STREAM_ITERATOR_H" data-ref="_M/_STREAM_ITERATOR_H">_STREAM_ITERATOR_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;debug/debug.h&gt;</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="38">38</th><td>{&nbsp</td></tr>
+<tr><th id="39">39</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i class="doc">   * <span class="command">@addtogroup</span> <span class="verb">iterators</span></i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i class="doc">   * @{</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i class="doc">  /// Provides input iterator semantics for streams.</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _CharT = <em>char</em>,&nbsp</td></tr>
+<tr><th id="48">48</th><td>           <b>typename</b> _Traits = <a class="type" href="stl_algobase.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits">char_traits</a>&lt;_CharT&gt;, <b>typename</b> _Dist = <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::ptrdiff_t" title='std::ptrdiff_t' data-type='long' data-ref="std::ptrdiff_t">ptrdiff_t</a>&gt;&nbsp</td></tr>
+<tr><th id="49">49</th><td>    <b>class</b> <dfn class="type def" id="std::istream_iterator" title='std::istream_iterator' data-ref="std::istream_iterator">istream_iterator</dfn>&nbsp</td></tr>
+<tr><th id="50">50</th><td>    : <b>public</b> <a class="type" href="stl_iterator_base_types.h.html#std::iterator" title='std::iterator' data-ref="std::iterator">iterator</a>&lt;<a class="type" href="stl_iterator_base_types.h.html#std::input_iterator_tag" title='std::input_iterator_tag' data-ref="std::input_iterator_tag">input_iterator_tag</a>, _Tp, _Dist, <em>const</em> _Tp*, <em>const</em> _Tp&amp;&gt;&nbsp</td></tr>
+<tr><th id="51">51</th><td>    {&nbsp</td></tr>
+<tr><th id="52">52</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="53">53</th><td>      <b>typedef</b> _CharT                         <dfn class="typedef" id="std::istream_iterator::char_type" title='std::istream_iterator::char_type' data-type='_CharT' data-ref="std::istream_iterator::char_type">char_type</dfn>;&nbsp</td></tr>
+<tr><th id="54">54</th><td>      <b>typedef</b> _Traits                        <dfn class="typedef" id="std::istream_iterator::traits_type" title='std::istream_iterator::traits_type' data-type='_Traits' data-ref="std::istream_iterator::traits_type">traits_type</dfn>;&nbsp</td></tr>
+<tr><th id="55">55</th><td>      <b>typedef</b> <a class="type" href="../iosfwd.html#std::basic_istream" title='std::basic_istream' data-ref="std::basic_istream">basic_istream</a>&lt;_CharT, _Traits&gt; <dfn class="typedef" id="std::istream_iterator::istream_type" title='std::istream_iterator::istream_type' data-type='basic_istream&lt;_CharT, _Traits&gt;' data-ref="std::istream_iterator::istream_type">istream_type</dfn>;&nbsp</td></tr>
+<tr><th id="56">56</th><td>&nbsp</td></tr>
+<tr><th id="57">57</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="58">58</th><td>      <a class="typedef" href="#std::istream_iterator::istream_type" title='std::istream_iterator::istream_type' data-type='basic_istream&lt;_CharT, _Traits&gt;' data-ref="std::istream_iterator::istream_type">istream_type</a>*	<dfn class="decl field" id="std::istream_iterator::_M_stream" title='std::istream_iterator::_M_stream' data-ref="std::istream_iterator::_M_stream">_M_stream</dfn>;&nbsp</td></tr>
+<tr><th id="59">59</th><td>      _Tp		<dfn class="decl field" id="std::istream_iterator::_M_value" title='std::istream_iterator::_M_value' data-ref="std::istream_iterator::_M_value">_M_value</dfn>;&nbsp</td></tr>
+<tr><th id="60">60</th><td>      <i>// This bool becomes false at end-of-stream. It should be sufficient to</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i>      // check _M_stream != nullptr instead, but historically we did not set</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i>      // _M_stream to null when reaching the end, so we need to keep this flag.</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td>      <em>bool</em>		<dfn class="decl field" id="std::istream_iterator::_M_ok" title='std::istream_iterator::_M_ok' data-ref="std::istream_iterator::_M_ok">_M_ok</dfn>;&nbsp</td></tr>
+<tr><th id="64">64</th><td>&nbsp</td></tr>
+<tr><th id="65">65</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="66">66</th><td>      <i class="doc">///  Construct end of input stream iterator.</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td>      <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#143" title="constexpr" data-ref="_M/_GLIBCXX_CONSTEXPR">_GLIBCXX_CONSTEXPR</a> <dfn class="decl def fn" id="_ZNSt16istream_iteratorC1Ev" title='std::istream_iterator::istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt;' data-ref="_ZNSt16istream_iteratorC1Ev">istream_iterator</dfn>()&nbsp</td></tr>
+<tr><th id="68">68</th><td>      : <a class="member field" href="#std::istream_iterator::_M_stream" title='std::istream_iterator::_M_stream' data-ref="std::istream_iterator::_M_stream">_M_stream</a>(<var>0</var>), <a class="member field" href="#std::istream_iterator::_M_value" title='std::istream_iterator::_M_value' data-ref="std::istream_iterator::_M_value">_M_value</a>(), <a class="member field" href="#std::istream_iterator::_M_ok" title='std::istream_iterator::_M_ok' data-ref="std::istream_iterator::_M_ok">_M_ok</a>(<b>false</b>) {}&nbsp</td></tr>
+<tr><th id="69">69</th><td>&nbsp</td></tr>
+<tr><th id="70">70</th><td>      <i class="doc">///  Construct start of input stream iterator.</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td>      <dfn class="decl def fn" id="_ZNSt16istream_iteratorC1ERSt13basic_istreamIT0_T1_E" title='std::istream_iterator::istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt;' data-ref="_ZNSt16istream_iteratorC1ERSt13basic_istreamIT0_T1_E">istream_iterator</dfn>(<a class="typedef" href="#std::istream_iterator::istream_type" title='std::istream_iterator::istream_type' data-type='basic_istream&lt;_CharT, _Traits&gt;' data-ref="std::istream_iterator::istream_type">istream_type</a>&amp; <dfn class="local col4 decl" id="2364__s" title='__s' data-type='std::istream_iterator::istream_type &amp;' data-ref="2364__s">__s</dfn>)&nbsp</td></tr>
+<tr><th id="72">72</th><td>      : <a class="member field" href="#std::istream_iterator::_M_stream" title='std::istream_iterator::_M_stream' data-ref="std::istream_iterator::_M_stream">_M_stream</a>(<span class="namespace">std::</span>__addressof(<a class="local col4 ref" href="#2364__s" title='__s' data-ref="2364__s">__s</a>)), <a class="member field" href="#std::istream_iterator::_M_ok" title='std::istream_iterator::_M_ok' data-ref="std::istream_iterator::_M_ok">_M_ok</a>(<b>true</b>)&nbsp</td></tr>
+<tr><th id="73">73</th><td>      { <a class="member fn" href="#_ZNSt16istream_iterator7_M_readEv" title='std::istream_iterator::_M_read' data-ref="_ZNSt16istream_iterator7_M_readEv">_M_read</a>(); }&nbsp</td></tr>
+<tr><th id="74">74</th><td>&nbsp</td></tr>
+<tr><th id="75">75</th><td>      <dfn class="decl def fn" id="_ZNSt16istream_iteratorC1ERKSt16istream_iteratorIT_T0_T1_T2_E" title='std::istream_iterator::istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt;' data-ref="_ZNSt16istream_iteratorC1ERKSt16istream_iteratorIT_T0_T1_T2_E">istream_iterator</dfn>(<em>const</em> istream_iterator&amp; <dfn class="local col5 decl" id="2365__obj" title='__obj' data-type='const istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt; &amp;' data-ref="2365__obj">__obj</dfn>)&nbsp</td></tr>
+<tr><th id="76">76</th><td>      : <a class="member field" href="#std::istream_iterator::_M_stream" title='std::istream_iterator::_M_stream' data-ref="std::istream_iterator::_M_stream">_M_stream</a>(<a class="local col5 ref" href="#2365__obj" title='__obj' data-ref="2365__obj">__obj</a>._M_stream), <a class="member field" href="#std::istream_iterator::_M_value" title='std::istream_iterator::_M_value' data-ref="std::istream_iterator::_M_value">_M_value</a>(<a class="local col5 ref" href="#2365__obj" title='__obj' data-ref="2365__obj">__obj</a>._M_value),&nbsp</td></tr>
+<tr><th id="77">77</th><td>        <a class="member field" href="#std::istream_iterator::_M_ok" title='std::istream_iterator::_M_ok' data-ref="std::istream_iterator::_M_ok">_M_ok</a>(<a class="local col5 ref" href="#2365__obj" title='__obj' data-ref="2365__obj">__obj</a>._M_ok)&nbsp</td></tr>
+<tr><th id="78">78</th><td>      { }&nbsp</td></tr>
+<tr><th id="79">79</th><td>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u>#<span data-ppcond="80">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L &amp;&amp; <a class="macro" href="../concepts.html#50" title="202002L" data-ref="_M/__cpp_lib_concepts">__cpp_lib_concepts</a></u>&nbsp</td></tr>
+<tr><th id="81">81</th><td>      <b>constexpr</b>&nbsp</td></tr>
+<tr><th id="82">82</th><td>      <dfn class="decl def fn" id="_ZNSt16istream_iteratorC1ESt18default_sentinel_t" title='std::istream_iterator::istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt;' data-ref="_ZNSt16istream_iteratorC1ESt18default_sentinel_t">istream_iterator</dfn>(<a class="type" href="iterator_concepts.h.html#std::default_sentinel_t" title='std::default_sentinel_t' data-ref="std::default_sentinel_t">default_sentinel_t</a>)&nbsp</td></tr>
+<tr><th id="83">83</th><td>      <b>noexcept</b>(is_nothrow_default_constructible_v&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="84">84</th><td>      : istream_iterator() { }&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#<span data-ppcond="80">endif</span></u>&nbsp</td></tr>
+<tr><th id="86">86</th><td>&nbsp</td></tr>
+<tr><th id="87">87</th><td><u>#<span data-ppcond="87">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="88">88</th><td>      istream_iterator&amp; <dfn class="decl def fn" id="_ZNSt16istream_iteratoraSERKSt16istream_iteratorIT_T0_T1_T2_E" title='std::istream_iterator::operator=' data-ref="_ZNSt16istream_iteratoraSERKSt16istream_iteratorIT_T0_T1_T2_E"><b>operator</b>=</dfn>(<em>const</em> istream_iterator&amp;) = <b>default</b>;&nbsp</td></tr>
+<tr><th id="89">89</th><td>      <dfn class="decl def fn" id="_ZNSt16istream_iteratorD1Ev" title='std::istream_iterator::~istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt;' data-ref="_ZNSt16istream_iteratorD1Ev">~istream_iterator</dfn>() = <b>default</b>;&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#<span data-ppcond="87">endif</span></u>&nbsp</td></tr>
+<tr><th id="91">91</th><td>&nbsp</td></tr>
+<tr><th id="92">92</th><td>      <em>const</em> _Tp&amp;&nbsp</td></tr>
+<tr><th id="93">93</th><td>      <dfn class="decl def fn" id="_ZNKSt16istream_iteratordeEv" title='std::istream_iterator::operator*' data-ref="_ZNKSt16istream_iteratordeEv"><b>operator</b>*</dfn>() <em>const</em>&nbsp</td></tr>
+<tr><th id="94">94</th><td>      {&nbsp</td></tr>
+<tr><th id="95">95</th><td>	<a class="macro" href="../debug/debug.h.html#66" title="" data-ref="_M/__glibcxx_requires_cond">__glibcxx_requires_cond</a>(_M_ok,&nbsp</td></tr>
+<tr><th id="96">96</th><td>				_M_message(__gnu_debug::__msg_deref_istream)&nbsp</td></tr>
+<tr><th id="97">97</th><td>				._M_iterator(*<b>this</b>));&nbsp</td></tr>
+<tr><th id="98">98</th><td>	<b>return</b> <a class="member field" href="#std::istream_iterator::_M_value" title='std::istream_iterator::_M_value' data-ref="std::istream_iterator::_M_value">_M_value</a>;&nbsp</td></tr>
+<tr><th id="99">99</th><td>      }&nbsp</td></tr>
+<tr><th id="100">100</th><td>&nbsp</td></tr>
+<tr><th id="101">101</th><td>      <em>const</em> _Tp*&nbsp</td></tr>
+<tr><th id="102">102</th><td>      <dfn class="decl def fn" id="_ZNKSt16istream_iteratorptEv" title='std::istream_iterator::operator-&gt;' data-ref="_ZNKSt16istream_iteratorptEv"><b>operator</b>-&gt;</dfn>() <em>const</em> { <b>return</b> <span class="namespace">std::</span>__addressof((<a class="member fn" href="#_ZNKSt16istream_iteratordeEv" title='std::istream_iterator::operator*' data-ref="_ZNKSt16istream_iteratordeEv"><b>operator</b>*</a>())); }&nbsp</td></tr>
+<tr><th id="103">103</th><td>&nbsp</td></tr>
+<tr><th id="104">104</th><td>      istream_iterator&amp;&nbsp</td></tr>
+<tr><th id="105">105</th><td>      <dfn class="decl def fn" id="_ZNSt16istream_iteratorppEv" title='std::istream_iterator::operator++' data-ref="_ZNSt16istream_iteratorppEv"><b>operator</b>++</dfn>()&nbsp</td></tr>
+<tr><th id="106">106</th><td>      {&nbsp</td></tr>
+<tr><th id="107">107</th><td>	<a class="macro" href="../debug/debug.h.html#66" title="" data-ref="_M/__glibcxx_requires_cond">__glibcxx_requires_cond</a>(_M_ok,&nbsp</td></tr>
+<tr><th id="108">108</th><td>				_M_message(__gnu_debug::__msg_inc_istream)&nbsp</td></tr>
+<tr><th id="109">109</th><td>				._M_iterator(*<b>this</b>));&nbsp</td></tr>
+<tr><th id="110">110</th><td>	<a class="member fn" href="#_ZNSt16istream_iterator7_M_readEv" title='std::istream_iterator::_M_read' data-ref="_ZNSt16istream_iterator7_M_readEv">_M_read</a>();&nbsp</td></tr>
+<tr><th id="111">111</th><td>	<b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="112">112</th><td>      }&nbsp</td></tr>
+<tr><th id="113">113</th><td>&nbsp</td></tr>
+<tr><th id="114">114</th><td>      istream_iterator&nbsp</td></tr>
+<tr><th id="115">115</th><td>      <dfn class="decl def fn" id="_ZNSt16istream_iteratorppEi" title='std::istream_iterator::operator++' data-ref="_ZNSt16istream_iteratorppEi"><b>operator</b>++</dfn>(<em>int</em>)&nbsp</td></tr>
+<tr><th id="116">116</th><td>      {&nbsp</td></tr>
+<tr><th id="117">117</th><td>	<a class="macro" href="../debug/debug.h.html#66" title="" data-ref="_M/__glibcxx_requires_cond">__glibcxx_requires_cond</a>(_M_ok,&nbsp</td></tr>
+<tr><th id="118">118</th><td>				_M_message(__gnu_debug::__msg_inc_istream)&nbsp</td></tr>
+<tr><th id="119">119</th><td>				._M_iterator(*<b>this</b>));&nbsp</td></tr>
+<tr><th id="120">120</th><td>	istream_iterator <dfn class="local col6 decl" id="2366__tmp" title='__tmp' data-type='istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt;' data-ref="2366__tmp">__tmp</dfn> = *<b>this</b>;&nbsp</td></tr>
+<tr><th id="121">121</th><td>	<a class="member fn" href="#_ZNSt16istream_iterator7_M_readEv" title='std::istream_iterator::_M_read' data-ref="_ZNSt16istream_iterator7_M_readEv">_M_read</a>();&nbsp</td></tr>
+<tr><th id="122">122</th><td>	<b>return</b> <a class="local col6 ref" href="#2366__tmp" title='__tmp' data-ref="2366__tmp">__tmp</a>;&nbsp</td></tr>
+<tr><th id="123">123</th><td>      }&nbsp</td></tr>
+<tr><th id="124">124</th><td>&nbsp</td></tr>
+<tr><th id="125">125</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="126">126</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="127">127</th><td>      <dfn class="decl def fn" id="_ZNKSt16istream_iterator8_M_equalERKSt16istream_iteratorIT_T0_T1_T2_E" title='std::istream_iterator::_M_equal' data-ref="_ZNKSt16istream_iterator8_M_equalERKSt16istream_iteratorIT_T0_T1_T2_E">_M_equal</dfn>(<em>const</em> istream_iterator&amp; <dfn class="local col7 decl" id="2367__x" title='__x' data-type='const istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt; &amp;' data-ref="2367__x">__x</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="128">128</th><td>      {&nbsp</td></tr>
+<tr><th id="129">129</th><td>	<i>// Ideally this would just return _M_stream == __x._M_stream,</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td><i>	// but code compiled with old versions never sets _M_stream to null.</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td>	<b>return</b> (<a class="member field" href="#std::istream_iterator::_M_ok" title='std::istream_iterator::_M_ok' data-ref="std::istream_iterator::_M_ok">_M_ok</a> == <a class="local col7 ref" href="#2367__x" title='__x' data-ref="2367__x">__x</a>._M_ok) &amp;&amp; (!<a class="member field" href="#std::istream_iterator::_M_ok" title='std::istream_iterator::_M_ok' data-ref="std::istream_iterator::_M_ok">_M_ok</a> || <a class="member field" href="#std::istream_iterator::_M_stream" title='std::istream_iterator::_M_stream' data-ref="std::istream_iterator::_M_stream">_M_stream</a> == <a class="local col7 ref" href="#2367__x" title='__x' data-ref="2367__x">__x</a>._M_stream);&nbsp</td></tr>
+<tr><th id="132">132</th><td>      }&nbsp</td></tr>
+<tr><th id="133">133</th><td>&nbsp</td></tr>
+<tr><th id="134">134</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="135">135</th><td>      <dfn class="decl def fn" id="_ZNSt16istream_iterator7_M_readEv" title='std::istream_iterator::_M_read' data-ref="_ZNSt16istream_iterator7_M_readEv">_M_read</dfn>()&nbsp</td></tr>
+<tr><th id="136">136</th><td>      {&nbsp</td></tr>
+<tr><th id="137">137</th><td>        <b>if</b> (<a class="member field" href="#std::istream_iterator::_M_stream" title='std::istream_iterator::_M_stream' data-ref="std::istream_iterator::_M_stream">_M_stream</a> &amp;&amp; !(*<a class="member field" href="#std::istream_iterator::_M_stream" title='std::istream_iterator::_M_stream' data-ref="std::istream_iterator::_M_stream">_M_stream</a> &gt;&gt; <a class="member field" href="#std::istream_iterator::_M_value" title='std::istream_iterator::_M_value' data-ref="std::istream_iterator::_M_value">_M_value</a>))&nbsp</td></tr>
+<tr><th id="138">138</th><td>          {&nbsp</td></tr>
+<tr><th id="139">139</th><td>            <a class="member field" href="#std::istream_iterator::_M_stream" title='std::istream_iterator::_M_stream' data-ref="std::istream_iterator::_M_stream">_M_stream</a> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="140">140</th><td>            <a class="member field" href="#std::istream_iterator::_M_ok" title='std::istream_iterator::_M_ok' data-ref="std::istream_iterator::_M_ok">_M_ok</a> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="141">141</th><td>          }&nbsp</td></tr>
+<tr><th id="142">142</th><td>      }&nbsp</td></tr>
+<tr><th id="143">143</th><td>&nbsp</td></tr>
+<tr><th id="144">144</th><td>      <i class="doc">/// Return true if the iterators refer to the same stream,</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td><i class="doc">      /// or are both at end-of-stream.</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td>      <b>friend</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="147">147</th><td>      <dfn class="decl def fn" id="_ZSteqRKSt16istream_iteratorIT_T0_T1_T2_ES7_" title='std::operator==' data-ref="_ZSteqRKSt16istream_iteratorIT_T0_T1_T2_ES7_"><b>operator</b>==</dfn>(<em>const</em> istream_iterator&amp; <dfn class="local col8 decl" id="2368__x" title='__x' data-type='const istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt; &amp;' data-ref="2368__x">__x</dfn>, <em>const</em> istream_iterator&amp; <dfn class="local col9 decl" id="2369__y" title='__y' data-type='const istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt; &amp;' data-ref="2369__y">__y</dfn>)&nbsp</td></tr>
+<tr><th id="148">148</th><td>      { <b>return</b> <a class="local col8 ref" href="#2368__x" title='__x' data-ref="2368__x">__x</a>._M_equal(<a class="local col9 ref" href="#2369__y" title='__y' data-ref="2369__y">__y</a>); }&nbsp</td></tr>
+<tr><th id="149">149</th><td>&nbsp</td></tr>
+<tr><th id="150">150</th><td>      <i class="doc">/// Return true if the iterators refer to different streams,</i>&nbsp</td></tr>
+<tr><th id="151">151</th><td><i class="doc">      /// or if one is at end-of-stream and the other is not.</i>&nbsp</td></tr>
+<tr><th id="152">152</th><td>      <b>friend</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="153">153</th><td>      <dfn class="decl def fn" id="_ZStneRKSt16istream_iteratorIT_T0_T1_T2_ES7_" title='std::operator!=' data-ref="_ZStneRKSt16istream_iteratorIT_T0_T1_T2_ES7_"><b>operator</b>!=</dfn>(<em>const</em> istream_iterator&amp; <dfn class="local col0 decl" id="2370__x" title='__x' data-type='const istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt; &amp;' data-ref="2370__x">__x</dfn>, <em>const</em> istream_iterator&amp; <dfn class="local col1 decl" id="2371__y" title='__y' data-type='const istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt; &amp;' data-ref="2371__y">__y</dfn>)&nbsp</td></tr>
+<tr><th id="154">154</th><td>      { <b>return</b> !<a class="local col0 ref" href="#2370__x" title='__x' data-ref="2370__x">__x</a>._M_equal(<a class="local col1 ref" href="#2371__y" title='__y' data-ref="2371__y">__y</a>); }&nbsp</td></tr>
+<tr><th id="155">155</th><td>&nbsp</td></tr>
+<tr><th id="156">156</th><td><u>#<span data-ppcond="156">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L &amp;&amp; <a class="macro" href="../concepts.html#50" title="202002L" data-ref="_M/__cpp_lib_concepts">__cpp_lib_concepts</a></u>&nbsp</td></tr>
+<tr><th id="157">157</th><td>      <b>friend</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="158">158</th><td>      <dfn class="decl def fn" id="_ZSteqRKSt16istream_iteratorIT_T0_T1_T2_ESt18default_sentinel_t" title='std::operator==' data-ref="_ZSteqRKSt16istream_iteratorIT_T0_T1_T2_ESt18default_sentinel_t"><b>operator</b>==</dfn>(<em>const</em> istream_iterator&amp; <dfn class="local col2 decl" id="2372__i" title='__i' data-type='const istream_iterator&lt;_Tp, _CharT, _Traits, _Dist&gt; &amp;' data-ref="2372__i">__i</dfn>, <a class="type" href="iterator_concepts.h.html#std::default_sentinel_t" title='std::default_sentinel_t' data-ref="std::default_sentinel_t">default_sentinel_t</a>)&nbsp</td></tr>
+<tr><th id="159">159</th><td>      { <b>return</b> !<a class="local col2 ref" href="#2372__i" title='__i' data-ref="2372__i">__i</a>._M_stream; }&nbsp</td></tr>
+<tr><th id="160">160</th><td><u>#<span data-ppcond="156">endif</span></u>&nbsp</td></tr>
+<tr><th id="161">161</th><td>    };&nbsp</td></tr>
+<tr><th id="162">162</th><td>&nbsp</td></tr>
+<tr><th id="163">163</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="164">164</th><td><i class="doc">   *  <span class="command">@brief</span>  Provides output iterator semantics for streams.</i>&nbsp</td></tr>
+<tr><th id="165">165</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="166">166</th><td><i class="doc">   *  This class provides an iterator to write to an ostream.  The type Tp is</i>&nbsp</td></tr>
+<tr><th id="167">167</th><td><i class="doc">   *  the only type written by this iterator and there must be an</i>&nbsp</td></tr>
+<tr><th id="168">168</th><td><i class="doc">   *  operator&lt;&lt;(Tp) defined.</i>&nbsp</td></tr>
+<tr><th id="169">169</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="170">170</th><td><i class="doc">   *  <span class="command">@tparam</span>  <span class="arg">_Tp</span>  The type to write to the ostream.</i>&nbsp</td></tr>
+<tr><th id="171">171</th><td><i class="doc">   *  <span class="command">@tparam</span>  <span class="arg">_CharT</span>  The ostream char_type.</i>&nbsp</td></tr>
+<tr><th id="172">172</th><td><i class="doc">   *  <span class="command">@tparam</span>  <span class="arg">_Traits</span>  The ostream char_traits.</i>&nbsp</td></tr>
+<tr><th id="173">173</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="174">174</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _CharT = <em>char</em>,&nbsp</td></tr>
+<tr><th id="175">175</th><td>           <b>typename</b> _Traits = <a class="type" href="stl_algobase.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits">char_traits</a>&lt;_CharT&gt; &gt;&nbsp</td></tr>
+<tr><th id="176">176</th><td>    <b>class</b> <dfn class="type def" id="std::ostream_iterator" title='std::ostream_iterator' data-ref="std::ostream_iterator">ostream_iterator</dfn>&nbsp</td></tr>
+<tr><th id="177">177</th><td>    : <b>public</b> <a class="type" href="stl_iterator_base_types.h.html#std::iterator" title='std::iterator' data-ref="std::iterator">iterator</a>&lt;<a class="type" href="stl_iterator_base_types.h.html#std::output_iterator_tag" title='std::output_iterator_tag' data-ref="std::output_iterator_tag">output_iterator_tag</a>, <em>void</em>, <em>void</em>, <em>void</em>, <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="178">178</th><td>    {&nbsp</td></tr>
+<tr><th id="179">179</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="180">180</th><td>      <i class="doc">///@{</i>&nbsp</td></tr>
+<tr><th id="181">181</th><td><i class="doc">      /// Public typedef</i>&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>#<span data-ppcond="182">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="183">183</th><td>      <b>using</b> <dfn class="typedef" id="std::ostream_iterator::difference_type" title='std::ostream_iterator::difference_type' data-type='std::ptrdiff_t' data-ref="std::ostream_iterator::difference_type">difference_type</dfn> = <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::ptrdiff_t" title='std::ptrdiff_t' data-type='long' data-ref="std::ptrdiff_t">ptrdiff_t</a>;&nbsp</td></tr>
+<tr><th id="184">184</th><td><u>#<span data-ppcond="182">endif</span></u>&nbsp</td></tr>
+<tr><th id="185">185</th><td>      <b>typedef</b> _CharT                         <dfn class="typedef" id="std::ostream_iterator::char_type" title='std::ostream_iterator::char_type' data-type='_CharT' data-ref="std::ostream_iterator::char_type">char_type</dfn>;&nbsp</td></tr>
+<tr><th id="186">186</th><td>      <b>typedef</b> _Traits                        <dfn class="typedef" id="std::ostream_iterator::traits_type" title='std::ostream_iterator::traits_type' data-type='_Traits' data-ref="std::ostream_iterator::traits_type">traits_type</dfn>;&nbsp</td></tr>
+<tr><th id="187">187</th><td>      <b>typedef</b> <a class="type" href="../iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt; <dfn class="typedef" id="std::ostream_iterator::ostream_type" title='std::ostream_iterator::ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::ostream_iterator::ostream_type">ostream_type</dfn>;&nbsp</td></tr>
+<tr><th id="188">188</th><td>      <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="189">189</th><td>&nbsp</td></tr>
+<tr><th id="190">190</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="191">191</th><td>      <a class="typedef" href="#std::ostream_iterator::ostream_type" title='std::ostream_iterator::ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::ostream_iterator::ostream_type">ostream_type</a>*	<dfn class="decl field" id="std::ostream_iterator::_M_stream" title='std::ostream_iterator::_M_stream' data-ref="std::ostream_iterator::_M_stream">_M_stream</dfn>;&nbsp</td></tr>
+<tr><th id="192">192</th><td>      <em>const</em> _CharT*	<dfn class="decl field" id="std::ostream_iterator::_M_string" title='std::ostream_iterator::_M_string' data-ref="std::ostream_iterator::_M_string">_M_string</dfn>;&nbsp</td></tr>
+<tr><th id="193">193</th><td>&nbsp</td></tr>
+<tr><th id="194">194</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="195">195</th><td><u>#<span data-ppcond="195">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="196">196</th><td>      <b>constexpr</b> <dfn class="decl def fn" id="_ZNSt16ostream_iteratorC1Ev" title='std::ostream_iterator::ostream_iterator&lt;_Tp, _CharT, _Traits&gt;' data-ref="_ZNSt16ostream_iteratorC1Ev">ostream_iterator</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="197">197</th><td>      : <a class="member field" href="#std::ostream_iterator::_M_stream" title='std::ostream_iterator::_M_stream' data-ref="std::ostream_iterator::_M_stream">_M_stream</a>(<b>nullptr</b>), <a class="member field" href="#std::ostream_iterator::_M_string" title='std::ostream_iterator::_M_string' data-ref="std::ostream_iterator::_M_string">_M_string</a>(<b>nullptr</b>) { }&nbsp</td></tr>
+<tr><th id="198">198</th><td><u>#<span data-ppcond="195">endif</span></u>&nbsp</td></tr>
+<tr><th id="199">199</th><td>&nbsp</td></tr>
+<tr><th id="200">200</th><td>      <i class="doc">/// Construct from an ostream.</i>&nbsp</td></tr>
+<tr><th id="201">201</th><td>      <dfn class="decl def fn" id="_ZNSt16ostream_iteratorC1ERSt13basic_ostreamIT0_T1_E" title='std::ostream_iterator::ostream_iterator&lt;_Tp, _CharT, _Traits&gt;' data-ref="_ZNSt16ostream_iteratorC1ERSt13basic_ostreamIT0_T1_E">ostream_iterator</dfn>(<a class="typedef" href="#std::ostream_iterator::ostream_type" title='std::ostream_iterator::ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::ostream_iterator::ostream_type">ostream_type</a>&amp; <dfn class="local col3 decl" id="2373__s" title='__s' data-type='std::ostream_iterator::ostream_type &amp;' data-ref="2373__s">__s</dfn>)&nbsp</td></tr>
+<tr><th id="202">202</th><td>      : <a class="member field" href="#std::ostream_iterator::_M_stream" title='std::ostream_iterator::_M_stream' data-ref="std::ostream_iterator::_M_stream">_M_stream</a>(<span class="namespace">std::</span>__addressof(<a class="local col3 ref" href="#2373__s" title='__s' data-ref="2373__s">__s</a>)), <a class="member field" href="#std::ostream_iterator::_M_string" title='std::ostream_iterator::_M_string' data-ref="std::ostream_iterator::_M_string">_M_string</a>(<var>0</var>) {}&nbsp</td></tr>
+<tr><th id="203">203</th><td>&nbsp</td></tr>
+<tr><th id="204">204</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="205">205</th><td><i class="doc">       *  Construct from an ostream.</i>&nbsp</td></tr>
+<tr><th id="206">206</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="207">207</th><td><i class="doc">       *  The delimiter string<span class="command"> @a</span> <span class="arg">c</span> is written to the stream after every Tp</i>&nbsp</td></tr>
+<tr><th id="208">208</th><td><i class="doc">       *  written to the stream.  The delimiter is not copied, and thus must</i>&nbsp</td></tr>
+<tr><th id="209">209</th><td><i class="doc">       *  not be destroyed while this iterator is in use.</i>&nbsp</td></tr>
+<tr><th id="210">210</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="211">211</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__s</span>  Underlying ostream to write to.</i>&nbsp</td></tr>
+<tr><th id="212">212</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__c</span>  CharT delimiter string to insert.</i>&nbsp</td></tr>
+<tr><th id="213">213</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="214">214</th><td>      <dfn class="decl def fn" id="_ZNSt16ostream_iteratorC1ERSt13basic_ostreamIT0_T1_EPKS1_" title='std::ostream_iterator::ostream_iterator&lt;_Tp, _CharT, _Traits&gt;' data-ref="_ZNSt16ostream_iteratorC1ERSt13basic_ostreamIT0_T1_EPKS1_">ostream_iterator</dfn>(<a class="typedef" href="#std::ostream_iterator::ostream_type" title='std::ostream_iterator::ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::ostream_iterator::ostream_type">ostream_type</a>&amp; <dfn class="local col4 decl" id="2374__s" title='__s' data-type='std::ostream_iterator::ostream_type &amp;' data-ref="2374__s">__s</dfn>, <em>const</em> _CharT* <dfn class="local col5 decl" id="2375__c" title='__c' data-type='const _CharT *' data-ref="2375__c">__c</dfn>)&nbsp</td></tr>
+<tr><th id="215">215</th><td>      : <a class="member field" href="#std::ostream_iterator::_M_stream" title='std::ostream_iterator::_M_stream' data-ref="std::ostream_iterator::_M_stream">_M_stream</a>(<span class="namespace">std::</span>__addressof(<a class="local col4 ref" href="#2374__s" title='__s' data-ref="2374__s">__s</a>)), <a class="member field" href="#std::ostream_iterator::_M_string" title='std::ostream_iterator::_M_string' data-ref="std::ostream_iterator::_M_string">_M_string</a>(<a class="local col5 ref" href="#2375__c" title='__c' data-ref="2375__c">__c</a>)  { }&nbsp</td></tr>
+<tr><th id="216">216</th><td>&nbsp</td></tr>
+<tr><th id="217">217</th><td>      <i class="doc">/// Copy constructor.</i>&nbsp</td></tr>
+<tr><th id="218">218</th><td>      <dfn class="decl def fn" id="_ZNSt16ostream_iteratorC1ERKSt16ostream_iteratorIT_T0_T1_E" title='std::ostream_iterator::ostream_iterator&lt;_Tp, _CharT, _Traits&gt;' data-ref="_ZNSt16ostream_iteratorC1ERKSt16ostream_iteratorIT_T0_T1_E">ostream_iterator</dfn>(<em>const</em> ostream_iterator&amp; <dfn class="local col6 decl" id="2376__obj" title='__obj' data-type='const ostream_iterator&lt;_Tp, _CharT, _Traits&gt; &amp;' data-ref="2376__obj">__obj</dfn>)&nbsp</td></tr>
+<tr><th id="219">219</th><td>      : <a class="member field" href="#std::ostream_iterator::_M_stream" title='std::ostream_iterator::_M_stream' data-ref="std::ostream_iterator::_M_stream">_M_stream</a>(<a class="local col6 ref" href="#2376__obj" title='__obj' data-ref="2376__obj">__obj</a>._M_stream), <a class="member field" href="#std::ostream_iterator::_M_string" title='std::ostream_iterator::_M_string' data-ref="std::ostream_iterator::_M_string">_M_string</a>(<a class="local col6 ref" href="#2376__obj" title='__obj' data-ref="2376__obj">__obj</a>._M_string)  { }&nbsp</td></tr>
+<tr><th id="220">220</th><td>&nbsp</td></tr>
+<tr><th id="221">221</th><td><u>#<span data-ppcond="221">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="222">222</th><td>      ostream_iterator&amp; <dfn class="decl def fn" id="_ZNSt16ostream_iteratoraSERKSt16ostream_iteratorIT_T0_T1_E" title='std::ostream_iterator::operator=' data-ref="_ZNSt16ostream_iteratoraSERKSt16ostream_iteratorIT_T0_T1_E"><b>operator</b>=</dfn>(<em>const</em> ostream_iterator&amp;) = <b>default</b>;&nbsp</td></tr>
+<tr><th id="223">223</th><td><u>#<span data-ppcond="221">endif</span></u>&nbsp</td></tr>
+<tr><th id="224">224</th><td>&nbsp</td></tr>
+<tr><th id="225">225</th><td>      <i class="doc">/// Writes<span class="command"> @a</span> <span class="arg">value</span> to underlying ostream using operator&lt;&lt;.  If</i>&nbsp</td></tr>
+<tr><th id="226">226</th><td><i class="doc">      /// constructed with delimiter string, writes delimiter to ostream.</i>&nbsp</td></tr>
+<tr><th id="227">227</th><td>      ostream_iterator&amp;&nbsp</td></tr>
+<tr><th id="228">228</th><td>      <dfn class="decl def fn" id="_ZNSt16ostream_iteratoraSERKT_" title='std::ostream_iterator::operator=' data-ref="_ZNSt16ostream_iteratoraSERKT_"><b>operator</b>=</dfn>(<em>const</em> _Tp&amp; <dfn class="local col7 decl" id="2377__value" title='__value' data-type='const _Tp &amp;' data-ref="2377__value">__value</dfn>)&nbsp</td></tr>
+<tr><th id="229">229</th><td>      {&nbsp</td></tr>
+<tr><th id="230">230</th><td>	<a class="macro" href="../debug/debug.h.html#66" title="" data-ref="_M/__glibcxx_requires_cond">__glibcxx_requires_cond</a>(_M_stream != <var>0</var>,&nbsp</td></tr>
+<tr><th id="231">231</th><td>				_M_message(__gnu_debug::__msg_output_ostream)&nbsp</td></tr>
+<tr><th id="232">232</th><td>				._M_iterator(*<b>this</b>));&nbsp</td></tr>
+<tr><th id="233">233</th><td>	*<a class="member field" href="#std::ostream_iterator::_M_stream" title='std::ostream_iterator::_M_stream' data-ref="std::ostream_iterator::_M_stream">_M_stream</a> &lt;&lt; <a class="local col7 ref" href="#2377__value" title='__value' data-ref="2377__value">__value</a>;&nbsp</td></tr>
+<tr><th id="234">234</th><td>	<b>if</b> (<a class="member field" href="#std::ostream_iterator::_M_string" title='std::ostream_iterator::_M_string' data-ref="std::ostream_iterator::_M_string">_M_string</a>)&nbsp</td></tr>
+<tr><th id="235">235</th><td>          *<a class="member field" href="#std::ostream_iterator::_M_stream" title='std::ostream_iterator::_M_stream' data-ref="std::ostream_iterator::_M_stream">_M_stream</a> &lt;&lt; <a class="member field" href="#std::ostream_iterator::_M_string" title='std::ostream_iterator::_M_string' data-ref="std::ostream_iterator::_M_string">_M_string</a>;&nbsp</td></tr>
+<tr><th id="236">236</th><td>	<b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="237">237</th><td>      }&nbsp</td></tr>
+<tr><th id="238">238</th><td>&nbsp</td></tr>
+<tr><th id="239">239</th><td>      ostream_iterator&amp;&nbsp</td></tr>
+<tr><th id="240">240</th><td>      <dfn class="decl def fn" id="_ZNSt16ostream_iteratordeEv" title='std::ostream_iterator::operator*' data-ref="_ZNSt16ostream_iteratordeEv"><b>operator</b>*</dfn>()&nbsp</td></tr>
+<tr><th id="241">241</th><td>      { <b>return</b> *<b>this</b>; }&nbsp</td></tr>
+<tr><th id="242">242</th><td>&nbsp</td></tr>
+<tr><th id="243">243</th><td>      ostream_iterator&amp;&nbsp</td></tr>
+<tr><th id="244">244</th><td>      <dfn class="decl def fn" id="_ZNSt16ostream_iteratorppEv" title='std::ostream_iterator::operator++' data-ref="_ZNSt16ostream_iteratorppEv"><b>operator</b>++</dfn>()&nbsp</td></tr>
+<tr><th id="245">245</th><td>      { <b>return</b> *<b>this</b>; }&nbsp</td></tr>
+<tr><th id="246">246</th><td>&nbsp</td></tr>
+<tr><th id="247">247</th><td>      ostream_iterator&amp;&nbsp</td></tr>
+<tr><th id="248">248</th><td>      <dfn class="decl def fn" id="_ZNSt16ostream_iteratorppEi" title='std::ostream_iterator::operator++' data-ref="_ZNSt16ostream_iteratorppEi"><b>operator</b>++</dfn>(<em>int</em>)&nbsp</td></tr>
+<tr><th id="249">249</th><td>      { <b>return</b> *<b>this</b>; }&nbsp</td></tr>
+<tr><th id="250">250</th><td>    };&nbsp</td></tr>
+<tr><th id="251">251</th><td>&nbsp</td></tr>
+<tr><th id="252">252</th><td>  <i class="doc">/// @} group iterators</i>&nbsp</td></tr>
+<tr><th id="253">253</th><td>&nbsp</td></tr>
+<tr><th id="254">254</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="255">255</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="256">256</th><td>&nbsp</td></tr>
+<tr><th id="257">257</th><td><u>#<span data-ppcond="30">endif</span></u>&nbsp</td></tr>
+<tr><th id="258">258</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Image/Src/tQuantizeSpatial.cpp.html'>Modules/Image/Src/tQuantizeSpatial.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/sys/single_threaded.h' l='29' type='char'/>
+<use f='include/c++/11/ext/atomicity.h' l='52' u='r' c='__gnu_cxx::__is_single_threaded'/>
+<doc f='include/x86_64-linux-gnu/sys/single_threaded.h' l='26'>/* If this variable is non-zero, then the current thread is the only
+   thread in the process image.  If it is zero, the process might be
+   multi-threaded.  */</doc>

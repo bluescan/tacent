@@ -1,0 +1,9 @@
+<dec f='include/x86_64-linux-gnu/bits/struct_stat.h' l='45' type='__mode_t'/>
+<use f='Modules/System/Src/tFile.cpp' l='591' u='r' c='_ZN7tSystem11tIsReadOnlyERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='592' u='r' c='_ZN7tSystem11tIsReadOnlyERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='644' u='r' c='_ZN7tSystem12tSetReadOnlyERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2136' u='r' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2137' u='r' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2141' u='r' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<offset>192</offset>
+<doc f='include/x86_64-linux-gnu/bits/struct_stat.h' l='45'>/* File mode.  */</doc>

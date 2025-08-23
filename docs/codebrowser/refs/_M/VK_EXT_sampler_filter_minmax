@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12522'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12521'>// VK_EXT_sampler_filter_minmax is a preprocessor guard. Do not pass it to API calls.</doc>

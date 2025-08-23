@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/sigevent-consts.h' l='36' type='4'/>
+<doc f='include/x86_64-linux-gnu/bits/sigevent-consts.h' l='36'>/* Send signal to specific thread.
+				   This is a Linux extension.  */</doc>

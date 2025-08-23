@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='579' type='2164523776'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='868' u='r' c='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='911' u='r' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>

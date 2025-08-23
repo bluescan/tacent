@@ -1,0 +1,18 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='274' ll='280'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='497' c='_ZN5tMath25tIntersectTestRayTriangleERKNS_4tRayERKNS_9tTriangleE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='503' c='_ZN5tMath30tIntersectTestTriangleTriangleERKNS_9tTriangleES2_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='503' c='_ZN5tMath30tIntersectTestTriangleTriangleERKNS_9tTriangleES2_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='506' c='_ZN5tMath29IntersectFindTriangleTriangleERNS_8tLineSegERKNS_9tTriangleES4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='506' c='_ZN5tMath29IntersectFindTriangleTriangleERNS_8tLineSegERKNS_9tTriangleES4_'/>
+<size>36</size>
+<fun r='_ZN5tMath9tTriangleC1Ev'/>
+<fun r='_ZN5tMath9tTriangleC1ERKNS_8tVector3ES3_S3_'/>
+<mbr r='tMath::tTriangle::A' o='0' t='tMath::tVector3'/>
+<mbr r='tMath::tTriangle::B' o='96' t='tMath::tVector3'/>
+<mbr r='tMath::tTriangle::C' o='192' t='tMath::tVector3'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='129' c='_ZN5tMath7tRandom19tGetPointOnTriangleERKNS_9tTriangleERKNS0_10tGeneratorE'/>
+<size>36</size>
+<use f='Modules/Math/Src/tGeometry.cpp' l='481' c='_ZN5tMath25tIntersectTestRayTriangleERKNS_4tRayERKNS_9tTriangleE'/>
+<size>36</size>
+<use f='Modules/Math/Src/tRandom.cpp' l='153' c='_ZN5tMath7tRandom19tGetPointOnTriangleERKNS_9tTriangleERKNS0_10tGeneratorE'/>
+<size>36</size>

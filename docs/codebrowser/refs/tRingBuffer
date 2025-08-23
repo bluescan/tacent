@@ -1,0 +1,12 @@
+<def f='Modules/Foundation/Inc/Foundation/tRingBuffer.h' l='24' ll='84'/>
+<use f='Modules/Foundation/Inc/Foundation/tRingBuffer.h' l='85'/>
+<use f='Modules/Foundation/Inc/Foundation/tRingBuffer.h' l='91' c='_ZN11tRingBuffer3SetEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tRingBuffer.h' l='104' c='_ZN11tRingBuffer3SetEPT_i'/>
+<use f='Modules/Foundation/Inc/Foundation/tRingBuffer.h' l='115' c='_ZN11tRingBuffer5ClearEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tRingBuffer.h' l='127' c='_ZNK11tRingBuffer11GetNumItemsEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tRingBuffer.h' l='142' c='_ZN11tRingBuffer6AppendERKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tRingBuffer.h' l='163' c='_ZN11tRingBuffer6AppendEPKT_ib'/>
+<use f='Modules/Foundation/Inc/Foundation/tRingBuffer.h' l='232' c='_ZN11tRingBuffer6RemoveERT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tRingBuffer.h' l='253' c='_ZN11tRingBuffer6RemoveEPT_ib'/>
+<doc f='Modules/Foundation/Inc/Foundation/tRingBuffer.h' l='22'>// tRingBuffer allows you to append one or more items (of user-specified type) to the tail of the ring, remove one or
+// more items from the head of the ring, and randomly access any stored item for read/write.</doc>

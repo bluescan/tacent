@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/localefwd.h' l='63' type='const _Facet &amp; std::use_facet(const std::locale &amp; )'/>
+<dec f='include/c++/11/bits/locale_classes.h' l='83' type='const _Facet &amp; std::use_facet(const std::locale &amp; )'/>
+<dec f='include/c++/11/bits/locale_classes.h' l='493' type='const _Facet &amp; std::use_facet(const std::locale &amp; )'/>
+<dec f='include/c++/11/bits/locale_classes.h' l='537' type='const _Facet &amp; std::use_facet(const std::locale &amp; )'/>
+<def f='include/c++/11/bits/locale_classes.tcc' l='131' ll='143' type='const _Facet &amp; std::use_facet(const std::locale &amp; __loc)'/>

@@ -1,0 +1,6 @@
+_ZNSt19_Node_handle_common15_Optional_allocC1Ev|std::_Node_handle_common::_Optional_alloc::_Optional_alloc
+_ZNSt19_Node_handle_common15_Optional_allocdeEv|std::_Node_handle_common::_Optional_alloc::operator*
+_ZNSt19_Node_handle_common15_Optional_allocaSEOS0_|std::_Node_handle_common::_Optional_alloc::operator=
+_ZNSt19_Node_handle_common15_Optional_alloc7releaseEv|std::_Node_handle_common::_Optional_alloc::release
+_ZNSt19_Node_handle_common15_Optional_alloc4swapERS0_|std::_Node_handle_common::_Optional_alloc::swap
+_ZNSt19_Node_handle_common15_Optional_allocD1Ev|std::_Node_handle_common::_Optional_alloc::~_Optional_alloc

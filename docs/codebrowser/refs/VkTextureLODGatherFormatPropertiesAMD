@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11663' ll='11667'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11663'/>
+<size>24</size>
+<mbr r='VkTextureLODGatherFormatPropertiesAMD::sType' o='0' t='VkStructureType'/>
+<mbr r='VkTextureLODGatherFormatPropertiesAMD::pNext' o='64' t='void *'/>
+<mbr r='VkTextureLODGatherFormatPropertiesAMD::supportsTextureGatherLODBiasAMD' o='128' t='VkBool32'/>

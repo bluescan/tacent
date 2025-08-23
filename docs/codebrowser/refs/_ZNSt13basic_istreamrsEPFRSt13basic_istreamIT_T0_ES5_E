@@ -1,0 +1,9 @@
+<def f='include/c++/11/istream' l='119' ll='121' type='std::basic_istream::__istream_type &amp; std::basic_istream::operator&gt;&gt;(std::basic_istream::__istream_type &amp;(*)(std::basic_istream::__istream_type &amp;) __pf)'/>
+<doc f='include/c++/11/istream' l='111'>/**
+       *  @brief  Interface for manipulators.
+       *
+       *  Manipulators such as @c std::ws and @c std::dec use these
+       *  functions in constructs like
+       *  &lt;code&gt;std::cin &gt;&gt; std::ws&lt;/code&gt;.
+       *  For more information, see the iomanip header.
+      */</doc>

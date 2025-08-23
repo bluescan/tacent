@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='288' type='void tExprWriter::WriteCommentEnd()'/>
+<use f='Modules/System/Inc/System/tScript.h' l='329' u='c' c='_ZN11tExprWriter6RemEndEv'/>
+<def f='Modules/System/Src/tScript.cpp' l='988' ll='995' type='void tExprWriter::WriteCommentEnd()'/>

@@ -1,0 +1,27 @@
+<def f='include/c++/11/stop_token' l='392' ll='466'/>
+<use f='include/c++/11/stop_token' l='401' c='_ZNSt10stop_token15_Stop_state_refC1ERKS0_'/>
+<use f='include/c++/11/stop_token' l='408' c='_ZNSt10stop_token15_Stop_state_refC1EOS0_'/>
+<use f='include/c++/11/stop_token' l='414' c='_ZNSt10stop_token15_Stop_state_refaSERKS0_'/>
+<use f='include/c++/11/stop_token' l='415' c='_ZNSt10stop_token15_Stop_state_refaSERKS0_'/>
+<use f='include/c++/11/stop_token' l='428' c='_ZNSt10stop_token15_Stop_state_refaSEOS0_'/>
+<use f='include/c++/11/stop_token' l='429' c='_ZNSt10stop_token15_Stop_state_refaSEOS0_'/>
+<use f='include/c++/11/stop_token' l='431' c='_ZNSt10stop_token15_Stop_state_refaSEOS0_'/>
+<use f='include/c++/11/stop_token' l='442' c='_ZNSt10stop_token15_Stop_state_ref4swapERS0_'/>
+<use f='include/c++/11/stop_token' l='451' c='_ZSteqRKNSt10stop_token15_Stop_state_refES2_'/>
+<use f='include/c++/11/stop_token' l='451' c='_ZSteqRKNSt10stop_token15_Stop_state_refES2_'/>
+<use f='include/c++/11/stop_token' l='468'/>
+<use f='include/c++/11/stop_token' l='471' c='_ZNSt10stop_tokenC1ERKNS_15_Stop_state_refE'/>
+<use f='include/c++/11/stop_token' l='566'/>
+<use f='include/c++/11/stop_token' l='642'/>
+<size>8</size>
+<fun r='_ZNSt10stop_token15_Stop_state_refC1Ev'/>
+<fun r='_ZNSt10stop_token15_Stop_state_refC1ERKSt11stop_source'/>
+<fun r='_ZNSt10stop_token15_Stop_state_refC1ERKS0_'/>
+<fun r='_ZNSt10stop_token15_Stop_state_refC1EOS0_'/>
+<fun r='_ZNSt10stop_token15_Stop_state_refaSERKS0_'/>
+<fun r='_ZNSt10stop_token15_Stop_state_refaSEOS0_'/>
+<fun r='_ZNSt10stop_token15_Stop_state_refD1Ev'/>
+<fun r='_ZNSt10stop_token15_Stop_state_ref4swapERS0_'/>
+<fun r='_ZNKSt10stop_token15_Stop_state_refcvbEv'/>
+<fun r='_ZNKSt10stop_token15_Stop_state_refptEv'/>
+<mbr r='std::stop_token::_Stop_state_ref::_M_ptr' o='0' t='std::stop_token::_Stop_state_t *'/>

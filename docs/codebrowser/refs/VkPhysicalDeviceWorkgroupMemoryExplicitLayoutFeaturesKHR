@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10418' ll='10425'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10418'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR::workgroupMemoryExplicitLayout' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR::workgroupMemoryExplicitLayoutScalarBlockLayout' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR::workgroupMemoryExplicitLayout8BitAccess' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceWorkgroupMemoryExplicitLayoutFeaturesKHR::workgroupMemoryExplicitLayout16BitAccess' o='224' t='VkBool32'/>

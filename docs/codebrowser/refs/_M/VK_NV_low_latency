@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15447'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15446'>// VK_NV_low_latency is a preprocessor guard. Do not pass it to API calls.</doc>

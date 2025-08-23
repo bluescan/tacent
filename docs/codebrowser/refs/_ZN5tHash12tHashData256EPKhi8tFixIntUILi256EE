@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tHash.h' l='107' type='tuint256 tHash::tHashData256(const uint8 * data, int length, tuint256 iv = HashIV256)'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='167' u='c' c='_ZN5tHash14tHashString256EPKc8tFixIntUILi256EE'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='168' u='c' c='_ZN5tHash14tHashString256EPKDu8tFixIntUILi256EE'/>
+<def f='Modules/Foundation/Src/tHash.cpp' l='467' ll='540' type='tuint256 tHash::tHashData256(const uint8 * data, int len, tuint256 iv = HashIV256)'/>
+<use f='Modules/System/Src/tFile.cpp' l='3306' u='c' c='_ZN7tSystem12tHashFile256ERK7tString8tFixIntUILi256EE'/>

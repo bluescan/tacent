@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='131'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='130'>/* Clock support in threads must be also checked at runtime.  */</doc>

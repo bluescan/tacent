@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tImagePVR.cpp' l='226' type='int tImage::tPVR::DetermineVersionFromFirstFourBytes(const uint8 * bytes)'/>
+<def f='Modules/Image/Src/tImagePVR.cpp' l='244' ll='260' type='int tImage::tPVR::DetermineVersionFromFirstFourBytes(const uint8 * bytes)'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='761' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>

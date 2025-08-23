@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='138' type='int'/>
+<offset>672</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='135'>// to better match the expected output size from
+                          // JPEG compression. Generally, the output size will
+                          // be similar but the degradation will be lower.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='138'>// If non-zero, try and use multi-threaded encoding.</doc>

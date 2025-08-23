@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11296'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11295'>// VK_IMG_filter_cubic is a preprocessor guard. Do not pass it to API calls.</doc>

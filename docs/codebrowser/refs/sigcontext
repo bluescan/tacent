@@ -1,0 +1,30 @@
+<def f='include/x86_64-linux-gnu/bits/sigcontext.h' l='139' ll='173'/>
+<use f='include/signal.h' l='304' c='sigreturn'/>
+<size>256</size>
+<mbr r='sigcontext::r8' o='0' t='__uint64_t'/>
+<mbr r='sigcontext::r9' o='64' t='__uint64_t'/>
+<mbr r='sigcontext::r10' o='128' t='__uint64_t'/>
+<mbr r='sigcontext::r11' o='192' t='__uint64_t'/>
+<mbr r='sigcontext::r12' o='256' t='__uint64_t'/>
+<mbr r='sigcontext::r13' o='320' t='__uint64_t'/>
+<mbr r='sigcontext::r14' o='384' t='__uint64_t'/>
+<mbr r='sigcontext::r15' o='448' t='__uint64_t'/>
+<mbr r='sigcontext::rdi' o='512' t='__uint64_t'/>
+<mbr r='sigcontext::rsi' o='576' t='__uint64_t'/>
+<mbr r='sigcontext::rbp' o='640' t='__uint64_t'/>
+<mbr r='sigcontext::rbx' o='704' t='__uint64_t'/>
+<mbr r='sigcontext::rdx' o='768' t='__uint64_t'/>
+<mbr r='sigcontext::rax' o='832' t='__uint64_t'/>
+<mbr r='sigcontext::rcx' o='896' t='__uint64_t'/>
+<mbr r='sigcontext::rsp' o='960' t='__uint64_t'/>
+<mbr r='sigcontext::rip' o='1024' t='__uint64_t'/>
+<mbr r='sigcontext::eflags' o='1088' t='__uint64_t'/>
+<mbr r='sigcontext::cs' o='1152' t='unsigned short'/>
+<mbr r='sigcontext::gs' o='1168' t='unsigned short'/>
+<mbr r='sigcontext::fs' o='1184' t='unsigned short'/>
+<mbr r='sigcontext::__pad0' o='1200' t='unsigned short'/>
+<mbr r='sigcontext::err' o='1216' t='__uint64_t'/>
+<mbr r='sigcontext::trapno' o='1280' t='__uint64_t'/>
+<mbr r='sigcontext::oldmask' o='1344' t='__uint64_t'/>
+<mbr r='sigcontext::cr2' o='1408' t='__uint64_t'/>
+<mbr r='sigcontext::__reserved1' o='1536' t='__uint64_t[8]'/>

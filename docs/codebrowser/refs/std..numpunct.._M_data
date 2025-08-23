@@ -1,0 +1,9 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1685' type='std::numpunct::__cache_type *'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1698' u='w' c='_ZNSt7__cxx118numpunctC1Em'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1712' u='w' c='_ZNSt7__cxx118numpunctC1EPSt16__numpunct_cacheIT_Em'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1726' u='w' c='_ZNSt7__cxx118numpunctC1EP15__locale_structm'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1827' u='r' c='_ZNKSt7__cxx118numpunct16do_decimal_pointEv'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1839' u='r' c='_ZNKSt7__cxx118numpunct16do_thousands_sepEv'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1852' u='r' c='_ZNKSt7__cxx118numpunct11do_groupingEv'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1865' u='r' c='_ZNKSt7__cxx118numpunct11do_truenameEv'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1878' u='r' c='_ZNKSt7__cxx118numpunct12do_falsenameEv'/>

@@ -1,0 +1,9 @@
+<def f='include/c++/11/type_traits' l='1128' ll='1133'/>
+<use f='include/c++/11/type_traits' l='2675' c='_ZSt4swapRT_S0_'/>
+<use f='include/c++/11/type_traits' l='3189'/>
+<use f='include/c++/11/bits/move.h' l='192' c='_ZSt4swapRT_S0_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='402' c='_ZNSt4pairaSENSt11conditionalIXsr6__and_ISt18is_move_assignableIT_ES1_IT0_EEE5valueEOSt4pairIS2_S4_EOSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/stl_pair.h' l='403' c='_ZNSt4pairaSENSt11conditionalIXsr6__and_ISt18is_move_assignableIT_ES1_IT0_EEE5valueEOSt4pairIS2_S4_EOSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='424' c='_ZNSt11__copy_moveIXT_ELb1ESt26random_access_iterator_tagE8__copy_mEPKTL0__S4_PS2_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='735' c='_ZNSt20__copy_move_backwardIXT_ELb1ESt26random_access_iterator_tagE13__copy_move_bEPKTL0__S4_PS2_'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='207'/>

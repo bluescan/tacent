@@ -1,0 +1,2 @@
+<dec f='include/asm-generic/errno-base.h' l='17'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/error_constants.h' l='138' u='c'/>

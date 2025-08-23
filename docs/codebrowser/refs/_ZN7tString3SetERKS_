@@ -1,0 +1,6 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='59' u='c' c='_ZN7tStringC1ERKS_'/>
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='88' type='void tString::Set(const tString &amp; src)'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='615' ll='623' type='void tString::Set(const tString &amp; src)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='87'>// The set functions always clear the current string and set it to the supplied src.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='612'>// Implementation below this line.</doc>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='108' u='c' c='_ZN8tCmdLine6tParam3SetERK7tString'/>

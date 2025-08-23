@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/dirent.h' l='56'/>
+<doc f='include/x86_64-linux-gnu/bits/dirent.h' l='55'>/* Inform libc code that these two types are effectively identical.  */</doc>

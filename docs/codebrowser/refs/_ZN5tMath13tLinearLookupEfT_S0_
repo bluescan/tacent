@@ -1,0 +1,17 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='775' type='T tMath::tLinearLookup(float p, T A, T B)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='759'>// Extrapolation, Interpolation, and Lookup.
+// Interpolation	-	Interpolation is finding a value _between_ other values. If you have A and B, interpolation can
+//						find a value between A and B somewhere in (A,B).
+// Extrapolation	-	Extrapolation is finding a value _before_ or _after_. If you have A and B, extrapolation can
+//						find a value before A or after B.
+// Lookup			-	We&apos;re using the word &apos;Lookup&apos; to mean both interpolation and extrapolation.
+//
+// It is not useful to have only extrapolation functions as a lookup function can be used instead. It is however useful
+// to have functions that only interpolate and are restricted to the [A,B] output range -- further APIs that use the
+// result may expect the range to be respected, or otherwise behave undesireably. Here are the interpolation and lookup
+// functions you have access to. Essentially they do the same thing except interpolate clamps and lookup doesn&apos;t. These
+// functions work for buult-in types and non-pod vector and matrix types, but not the pod-types as they don&apos;t have the
+// necessary operator overloading. i.e. Works for tVectorN, tMatrixN, float, etc. The four-letter versions are just synonyms.
+
+// Linear lookup. This variant takes in a single domain input parameter &apos;p&apos; where p = 0 returns A and p = 1 returns B.
+// Parameter &apos;p&apos; is not clamped to the [0,1] range and the output is not restricted to [A,B]. </doc>

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>wordsize.h source code [include/x86_64-linux-gnu/bits/wordsize.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/wordsize.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>bits</a>/<a href='wordsize.h.html'>wordsize.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Determine the wordsize from the preprocessor defines.  */</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td>&nbsp</td></tr>
+<tr><th id="3">3</th><td><u>#<span data-ppcond="3">if</span> defined <span class="macro" data-ref="_M/__x86_64__">__x86_64__</span> &amp;&amp; !defined <span class="macro" data-ref="_M/__ILP32__">__ILP32__</span></u>&nbsp</td></tr>
+<tr><th id="4">4</th><td><u># define <dfn class="macro" id="_M/__WORDSIZE" data-ref="_M/__WORDSIZE">__WORDSIZE</dfn>	64</u>&nbsp</td></tr>
+<tr><th id="5">5</th><td><u>#<span data-ppcond="3">else</span></u>&nbsp</td></tr>
+<tr><th id="6">6</th><td><u># define __WORDSIZE	32</u>&nbsp</td></tr>
+<tr><th id="7">7</th><td><u>#define __WORDSIZE32_SIZE_ULONG		0</u>&nbsp</td></tr>
+<tr><th id="8">8</th><td><u>#define __WORDSIZE32_PTRDIFF_LONG	0</u>&nbsp</td></tr>
+<tr><th id="9">9</th><td><u>#<span data-ppcond="3">endif</span></u>&nbsp</td></tr>
+<tr><th id="10">10</th><td>&nbsp</td></tr>
+<tr><th id="11">11</th><td><u>#<span data-ppcond="11">ifdef</span> <span class="macro" data-ref="_M/__x86_64__">__x86_64__</span></u>&nbsp</td></tr>
+<tr><th id="12">12</th><td><u># define <dfn class="macro" id="_M/__WORDSIZE_TIME64_COMPAT32" data-ref="_M/__WORDSIZE_TIME64_COMPAT32">__WORDSIZE_TIME64_COMPAT32</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>/* Both x86-64 and x32 use the 64-bit system call interface.  */</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><u># define <dfn class="macro" id="_M/__SYSCALL_WORDSIZE" data-ref="_M/__SYSCALL_WORDSIZE">__SYSCALL_WORDSIZE</dfn>		64</u>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#<span data-ppcond="11">else</span></u>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u># define __WORDSIZE_TIME64_COMPAT32	0</u>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#<span data-ppcond="11">endif</span></u>&nbsp</td></tr>
+<tr><th id="18">18</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

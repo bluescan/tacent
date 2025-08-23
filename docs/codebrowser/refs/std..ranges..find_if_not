@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/ranges_util.h' l='488' type='const std::ranges::__find_if_not_fn'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2272' u='c' c='_ZNKSt6ranges19__is_partitioned_fnclET_T0_T2_T1_'/>

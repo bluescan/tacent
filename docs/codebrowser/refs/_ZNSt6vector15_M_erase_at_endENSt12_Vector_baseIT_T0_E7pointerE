@@ -1,0 +1,12 @@
+<use f='include/c++/11/bits/stl_vector.h' l='942' u='c' c='_ZNSt6vector6resizeEm'/>
+<use f='include/c++/11/bits/stl_vector.h' l='962' u='c' c='_ZNSt6vector6resizeEmRKT_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1499' u='c' c='_ZNSt6vector5clearEv'/>
+<def f='include/c++/11/bits/stl_vector.h' l='1791' ll='1801' type='void std::vector::_M_erase_at_end(std::vector::pointer __pos)'/>
+<use f='include/c++/11/bits/vector.tcc' l='191' u='c' c='_ZNSt6vector8_M_eraseEN9__gnu_cxx17__normal_iteratorINSt12_Vector_baseIT_T0_E7pointerESt6vectorIS3_S4_EEESA_'/>
+<use f='include/c++/11/bits/vector.tcc' l='276' u='c' c='_ZNSt6vector14_M_fill_assignEmRKT_'/>
+<use f='include/c++/11/bits/vector.tcc' l='291' u='c' c='_ZNSt6vector13_M_assign_auxETL0__S0_St18input_iterator_tag'/>
+<use f='include/c++/11/bits/vector.tcc' l='321' u='c' c='_ZNSt6vector13_M_assign_auxETL0__S0_St20forward_iterator_tag'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1787'>// Internal erase functions follow.
+
+      // Called by erase(q1,q2), clear(), resize(), _M_fill_assign,
+      // _M_assign_aux.</doc>

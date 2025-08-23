@@ -1,0 +1,27 @@
+<def f='include/c++/11/stop_token' l='150' ll='390'/>
+<use f='include/c++/11/stop_token' l='398' c='_ZNSt10stop_token15_Stop_state_refC1ERKSt11stop_source'/>
+<use f='include/c++/11/stop_token' l='447' c='_ZNKSt10stop_token15_Stop_state_refptEv'/>
+<use f='include/c++/11/stop_token' l='465'/>
+<size>24</size>
+<smbr r='std::stop_token::_Stop_state_t::_S_stop_requested_bit' t='const std::stop_token::_Stop_state_t::value_type'/>
+<smbr r='std::stop_token::_Stop_state_t::_S_locked_bit' t='const std::stop_token::_Stop_state_t::value_type'/>
+<smbr r='std::stop_token::_Stop_state_t::_S_ssrc_counter_inc' t='const std::stop_token::_Stop_state_t::value_type'/>
+<mbr r='std::stop_token::_Stop_state_t::_M_owners' o='0' t='std::atomic&lt;value_type&gt;'/>
+<mbr r='std::stop_token::_Stop_state_t::_M_value' o='32' t='std::atomic&lt;value_type&gt;'/>
+<mbr r='std::stop_token::_Stop_state_t::_M_head' o='64' t='std::stop_token::_Stop_cb *'/>
+<mbr r='std::stop_token::_Stop_state_t::_M_requester' o='128' t='std::thread::id'/>
+<fun r='_ZNSt10stop_token13_Stop_state_tC1Ev'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t16_M_stop_possibleEv'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t17_M_stop_requestedEv'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t12_M_add_ownerEv'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t20_M_release_ownershipEv'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t11_M_add_ssrcEv'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t11_M_sub_ssrcEv'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t7_M_lockEv'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t9_M_unlockEv'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t20_M_register_callbackEPNS_8_Stop_cbE'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t11_M_try_lockERjSt12memory_order'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t20_M_try_lock_and_stopERj'/>
+<fun r='_ZNSt10stop_token13_Stop_state_t14_M_do_try_lockERjjSt12memory_orderS2_'/>

@@ -1,0 +1,14 @@
+<dec f='include/c++/11/fstream' l='418' type='std::basic_filebuf::__streambuf_type * std::basic_filebuf::setbuf(std::basic_filebuf::char_type * __s, std::streamsize __n)'/>
+<def f='include/c++/11/bits/fstream.tcc' l='801' ll='825' type='typename basic_filebuf&lt;_CharT, _Traits&gt;::__streambuf_type * std::basic_filebuf::setbuf(std::basic_filebuf::char_type * __s, std::streamsize __n)'/>
+<doc f='include/c++/11/fstream' l='405'>/**
+       *  @brief  Manipulates the buffer.
+       *  @param  __s  Pointer to a buffer area.
+       *  @param  __n  Size of @a __s.
+       *  @return  @c this
+       *
+       *  If no file has been opened, and both @a __s and @a __n are zero, then
+       *  the stream becomes unbuffered.  Otherwise, @c __s is used as a
+       *  buffer; see
+       *  https://gcc.gnu.org/onlinedocs/libstdc++/manual/streambufs.html#io.streambuf.buffering
+       *  for more.
+       */</doc>

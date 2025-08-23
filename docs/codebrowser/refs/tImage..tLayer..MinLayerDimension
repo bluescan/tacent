@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tLayer.h' l='94' type='const int'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='93' u='r' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='94' u='r' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='133' u='r' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='137' u='r' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>

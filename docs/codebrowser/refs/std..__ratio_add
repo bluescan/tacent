@@ -1,0 +1,9 @@
+<def f='include/c++/11/ratio' l='508' ll='513'/>
+<use f='include/c++/11/ratio' l='516'/>
+<use f='include/c++/11/ratio' l='519'/>
+<use f='include/c++/11/ratio' l='525'/>
+<use f='include/c++/11/ratio' l='532'/>
+<smbr r='std::__ratio_add::num' t='const intmax_t'/>
+<smbr r='std::__ratio_add::den' t='const intmax_t'/>
+<smbr r='std::__ratio_add::num' t='const intmax_t'/>
+<smbr r='std::__ratio_add::den' t='const intmax_t'/>

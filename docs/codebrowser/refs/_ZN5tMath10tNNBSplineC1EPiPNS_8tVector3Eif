@@ -1,0 +1,1 @@
+<def f='Modules/Math/Src/tSpline.cpp' l='544' ll='548' type='void tMath::tNNBSpline::tNNBSpline(int * knotValueSequence, tMath::tVector3 * controlPoints, int numControlPoints, float paramRange = 100.F)'/>

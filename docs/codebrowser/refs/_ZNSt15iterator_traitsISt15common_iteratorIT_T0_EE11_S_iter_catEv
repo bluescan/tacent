@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='2164' ll='2173' type='static auto std::iterator_traits&lt;common_iterator&lt;type-parameter-0-0, type-parameter-0-1&gt;&gt;::_S_iter_cat()'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2178' u='c'/>

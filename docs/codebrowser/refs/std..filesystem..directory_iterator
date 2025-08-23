@@ -1,0 +1,45 @@
+<use f='include/c++/11/bits/fs_dir.h' l='316'/>
+<use f='include/c++/11/bits/fs_dir.h' l='364'/>
+<def f='include/c++/11/bits/fs_dir.h' l='374' ll='442'/>
+<use f='include/c++/11/bits/fs_dir.h' l='387' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='390' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathENS_17directory_optionsE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='393' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='397' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathENS_17directory_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='399' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='401' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1EOS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='405' c='_ZNSt10filesystem7__cxx1118directory_iteratoraSERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='406' c='_ZNSt10filesystem7__cxx1118directory_iteratoraSERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='408' c='_ZNSt10filesystem7__cxx1118directory_iteratoraSEOS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='409' c='_ZNSt10filesystem7__cxx1118directory_iteratoraSEOS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='413' c='_ZNSt10filesystem7__cxx1118directory_iteratorppEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='414' c='_ZNSt10filesystem7__cxx1118directory_iterator9incrementERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='427' c='_ZNSt10filesystem7__cxx11eqERKNS0_18directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='428' c='_ZNSt10filesystem7__cxx11eqERKNS0_18directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='435' c='_ZNSt10filesystem7__cxx11neERKNS0_18directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='436' c='_ZNSt10filesystem7__cxx11neERKNS0_18directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='450' c='_ZNSt10filesystem7__cxx115beginENS0_18directory_iteratorE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='451' c='_ZNSt10filesystem7__cxx115beginENS0_18directory_iteratorE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='455' c='_ZNSt10filesystem7__cxx113endENS0_18directory_iteratorE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='456' c='_ZNSt10filesystem7__cxx113endENS0_18directory_iteratorE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='457' c='_ZNSt10filesystem7__cxx113endENS0_18directory_iteratorE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2460' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2599' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<size>16</size>
+<doc f='include/c++/11/bits/fs_dir.h' l='373'>/// Iterator type for traversing the entries in a single directory.</doc>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iteratorC1Ev'/>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathE'/>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathENS_17directory_optionsE'/>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathERSt10error_code'/>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathENS_17directory_optionsERSt10error_code'/>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iteratorC1EOS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iteratorD1Ev'/>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iteratoraSERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iteratoraSEOS1_'/>
+<fun r='_ZNKSt10filesystem7__cxx1118directory_iteratordeEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1118directory_iteratorptEv'/>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iteratorppEv'/>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iterator9incrementERSt10error_code'/>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iteratorppEi'/>
+<fun r='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathENS_17directory_optionsEPSt10error_code'/>
+<mbr r='std::filesystem::directory_iterator::_M_dir' o='0' t='std::__shared_ptr&lt;_Dir&gt;'/>

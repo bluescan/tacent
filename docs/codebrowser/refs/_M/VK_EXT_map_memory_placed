@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14674'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14673'>// VK_EXT_map_memory_placed is a preprocessor guard. Do not pass it to API calls.</doc>

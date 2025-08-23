@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='90' type='const uint8_t * TinyEXIF::EXIFStream::GetBuffer(unsigned int desiredLength)'/>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='88'>// Return the pointer to the beginning of the desired size buffer
+	// following current buffer position.</doc>

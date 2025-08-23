@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/ranges_algo.h' l='2400' type='_Out1'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2409' u='r' c='_ZNKRSt6ranges17in_out_out_resultcvNS_17in_out_out_resultITL0__TL0_0_TL0_1_EEEv'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2417' c='_ZNOSt6ranges17in_out_out_resultcvNS_17in_out_out_resultITL0__TL0_0_TL0_1_EEEv'/>

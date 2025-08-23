@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='325' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringbfi'/>
+<def f='Modules/Image/Src/tImageWEBP.cpp' l='329' ll='434' type='bool tImage::tImageWEBP::Save(const tString &amp; webpFile, const tImage::tImageWEBP::SaveParams &amp; params = tImage::tImageWEBP::SaveParams()) const'/>

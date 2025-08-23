@@ -1,0 +1,10 @@
+<use f='include/c++/11/type_traits' l='234' c='_ZSt26__is_complete_or_unboundedT_'/>
+<def f='include/c++/11/type_traits' l='557' ll='560'/>
+<use f='include/c++/11/type_traits' l='578'/>
+<use f='include/c++/11/type_traits' l='862'/>
+<use f='include/c++/11/type_traits' l='916'/>
+<use f='include/c++/11/type_traits' l='3127'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='337'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='600'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='678' c='_ZNSt14__shared_countC1EOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/quoted_string.h' l='51'/>

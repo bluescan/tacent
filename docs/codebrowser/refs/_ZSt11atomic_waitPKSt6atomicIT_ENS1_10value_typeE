@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='1460' ll='1463' type='void std::atomic_wait(const atomic&lt;_Tp&gt; * __a, typename std::atomic&lt;_Tp&gt;::value_type __old)'/>

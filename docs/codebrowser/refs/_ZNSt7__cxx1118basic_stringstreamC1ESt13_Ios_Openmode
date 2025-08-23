@@ -1,0 +1,11 @@
+<def f='include/c++/11/sstream' l='1026' ll='1029' type='void std::basic_stringstream::basic_stringstream&lt;_CharT, _Traits, _Alloc&gt;(ios_base::openmode __m)'/>
+<doc f='include/c++/11/sstream' l='1016'>/**
+       *  @brief  Starts with an empty string buffer.
+       *  @param  __m  Whether the buffer can read, or write, or both.
+       *
+       *  Initializes @c sb using the mode from @c __m, and passes @c &amp;sb
+       *  to the base class initializer.  Does not allocate any buffer.
+       *
+       *  That&apos;s a lie.  We initialize the base class with NULL, because the
+       *  string class does its own memory management.
+      */</doc>

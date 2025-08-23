@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7209' ll='7214'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7209'/>
+<size>32</size>
+<mbr r='VkWriteDescriptorSetInlineUniformBlock::sType' o='0' t='VkStructureType'/>
+<mbr r='VkWriteDescriptorSetInlineUniformBlock::pNext' o='64' t='const void *'/>
+<mbr r='VkWriteDescriptorSetInlineUniformBlock::dataSize' o='128' t='uint32_t'/>
+<mbr r='VkWriteDescriptorSetInlineUniformBlock::pData' o='192' t='const void *'/>

@@ -1,0 +1,2 @@
+<def f='Modules/Input/Inc/Input/tContGamepad.h' l='38' ll='53' type='void tInput::tContGamepad::tContGamepad(tInput::tContGamepad &amp;&amp; src)'/>
+<doc f='Modules/Input/Inc/Input/tContGamepad.h' l='37'>// Move constructor. Must be present for std::vector reserve.</doc>

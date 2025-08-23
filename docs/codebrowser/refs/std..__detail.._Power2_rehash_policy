@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/hashtable_policy.h' l='520' ll='618'/>
+<size>16</size>
+<doc f='include/c++/11/bits/hashtable_policy.h' l='518'>/// Rehash policy providing power of 2 bucket numbers. Avoids modulo
+  /// operations.</doc>
+<fun r='_ZNSt8__detail21_Power2_rehash_policyC1Ef'/>
+<fun r='_ZNKSt8__detail21_Power2_rehash_policy15max_load_factorEv'/>
+<fun r='_ZNSt8__detail21_Power2_rehash_policy11_M_next_bktEm'/>
+<fun r='_ZNKSt8__detail21_Power2_rehash_policy19_M_bkt_for_elementsEm'/>
+<fun r='_ZNSt8__detail21_Power2_rehash_policy14_M_need_rehashEmmm'/>
+<fun r='_ZNKSt8__detail21_Power2_rehash_policy8_M_stateEv'/>
+<fun r='_ZNSt8__detail21_Power2_rehash_policy8_M_resetEv'/>
+<fun r='_ZNSt8__detail21_Power2_rehash_policy8_M_resetEm'/>
+<smbr r='std::__detail::_Power2_rehash_policy::_S_growth_factor' t='const std::size_t'/>
+<mbr r='std::__detail::_Power2_rehash_policy::_M_max_load_factor' o='0' t='float'/>
+<mbr r='std::__detail::_Power2_rehash_policy::_M_next_resize' o='64' t='std::size_t'/>

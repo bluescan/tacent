@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/streambuf_iterator.h' l='296' ll='298' type='ostreambuf_iterator&lt;_CharT, _Traits&gt; &amp; std::ostreambuf_iterator::operator++(int )'/>
+<doc f='include/c++/11/bits/streambuf_iterator.h' l='295'>/// Return *this.</doc>

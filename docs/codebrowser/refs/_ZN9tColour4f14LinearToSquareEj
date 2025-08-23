@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='873' type='void tColour4f::LinearToSquare(comp_t  = tCompBit_RGB)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1257' ll='1263' type='void tColour4f::LinearToSquare(comp_t chans = tCompBit_RGB)'/>

@@ -1,0 +1,6 @@
+<dec f='include/c++/11/mutex' l='767' type='void std::__once_proxy()'/>
+<use f='include/c++/11/mutex' l='783' u='a' c='_ZSt9call_onceRSt9once_flagOT_DpOT0_'/>
+<doc f='include/c++/11/mutex' l='763'>/// @endcond
+
+  // This function is passed to pthread_once by std::call_once.
+  // It runs __once_call() or __once_functor().</doc>

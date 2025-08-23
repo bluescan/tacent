@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tFrame.h' l='55' type='bool tImage::tFrame::IsOpaque() const'/>
+<def f='Modules/Image/Inc/Image/tFrame.h' l='164' ll='170' type='bool tImage::tFrame::IsOpaque() const'/>
+<use f='Modules/Image/Inc/Image/tImageAPNG.h' l='135' u='c' c='_ZNK6tImage10tImageAPNG8IsOpaqueEv'/>
+<use f='Modules/Image/Inc/Image/tImageEXR.h' l='119' u='c' c='_ZNK6tImage9tImageEXR8IsOpaqueEv'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='235' u='c' c='_ZNK6tImage10tImageTIFF8IsOpaqueEv'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='272' u='c' c='_ZNK6tImage10tImageTIFF4SaveERK7tStringRKNS0_10SaveParamsE'/>

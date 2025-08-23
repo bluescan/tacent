@@ -1,0 +1,22 @@
+<def f='include/c++/11/bits/std_mutex.h' l='127' ll='194'/>
+<use f='include/c++/11/bits/std_mutex.h' l='145' c='_ZNSt9__condvarC1ERKS_'/>
+<use f='include/c++/11/bits/std_mutex.h' l='146' c='_ZNSt9__condvaraSERKS_'/>
+<use f='include/c++/11/bits/std_mutex.h' l='146' c='_ZNSt9__condvaraSERKS_'/>
+<size>48</size>
+<doc f='include/c++/11/bits/std_mutex.h' l='126'>// Implementation details for std::condition_variable</doc>
+<fun r='_ZNSt9__condvarC1Ev'/>
+<fun r='_ZNSt9__condvarD1Ev'/>
+<fun r='_ZNSt9__condvarC1ERKS_'/>
+<fun r='_ZNSt9__condvaraSERKS_'/>
+<fun r='_ZNSt9__condvar13native_handleEv'/>
+<fun r='_ZNSt9__condvar4waitERSt5mutex'/>
+<fun r='_ZNSt9__condvar10wait_untilERSt5mutexR8timespec'/>
+<fun r='_ZNSt9__condvar10wait_untilERSt5mutexiR8timespec'/>
+<fun r='_ZNSt9__condvar10notify_oneEv'/>
+<fun r='_ZNSt9__condvar10notify_allEv'/>
+<mbr r='std::__condvar::_M_cond' o='0' t='__gthread_cond_t'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='147' c='_ZNSt8__detail22__cond_wait_until_implERSt9__condvarRSt5mutexRKNSt6chrono10time_pointIT_T0_EE'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='174' c='_ZNSt8__detail17__cond_wait_untilERSt9__condvarRSt5mutexRKNSt6chrono10time_pointIT_T0_EE'/>
+<size>48</size>
+<use f='include/c++/11/condition_variable' l='78'/>
+<size>48</size>

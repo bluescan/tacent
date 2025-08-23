@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/ios_base.h' l='995' ll='1000' type='std::ios_base &amp; std::nouppercase(std::ios_base &amp; __base)'/>
+<doc f='include/c++/11/bits/ios_base.h' l='994'>/// Calls base.unsetf(ios_base::uppercase).</doc>

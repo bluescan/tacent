@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='489' type='bool tMath::tIntersectTestCapsulePoint(const tMath::tCapsule &amp; , const tMath::tVector3 &amp; )'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='605' ll='612' type='bool tMath::tIntersectTestCapsulePoint(const tMath::tCapsule &amp; c, const tMath::tVector3 &amp; p)'/>

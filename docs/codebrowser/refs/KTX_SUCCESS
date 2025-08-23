@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='170' type='0'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='765' u='r' c='_ZN6tImage9tImageKTX4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='768' u='r' c='_ZN6tImage9tImageKTX4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='782' u='r' c='_ZN6tImage9tImageKTX4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='785' u='r' c='_ZN6tImage9tImageKTX4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='799' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='905' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='170'>/*!&lt; Operation was successful. */</doc>

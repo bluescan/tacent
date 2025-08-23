@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='406' macro='1' type='_Float32 fminimum_mag_numf32(_Float32 __x, _Float32 __y)'/>

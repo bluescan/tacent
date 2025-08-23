@@ -1,0 +1,8 @@
+<def f='include/c++/11/string_view' l='262' ll='264' type='std::basic_string_view::const_pointer std::basic_string_view::data() const'/>
+<use f='include/c++/11/string_view' l='299' u='c' c='_ZNKSt17basic_string_view4copyEPT_mm'/>
+<use f='include/c++/11/string_view' l='695' u='c' c='_ZNKSt4hashISt17basic_string_viewIcSt11char_traitsIcEEEclERKS3_'/>
+<use f='include/c++/11/string_view' l='709' u='c' c='_ZNKSt4hashISt17basic_string_viewIwSt11char_traitsIwEEEclERKS3_'/>
+<use f='include/c++/11/string_view' l='725' u='c' c='_ZNKSt4hashISt17basic_string_viewIDuSt11char_traitsIDuEEEclERKS3_'/>
+<use f='include/c++/11/string_view' l='739' u='c' c='_ZNKSt4hashISt17basic_string_viewIDsSt11char_traitsIDsEEEclERKS3_'/>
+<use f='include/c++/11/string_view' l='753' u='c' c='_ZNKSt4hashISt17basic_string_viewIDiSt11char_traitsIDiEEEclERKS3_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1049' u='c' c='_ZNSt10filesystem7__cxx114path14_S_str_convertESt17basic_string_viewIcSt11char_traitsIcEERKT1_'/>

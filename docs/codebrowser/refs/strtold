@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='127' type='long double strtold(const char *__restrict __nptr, char **__restrict __endptr)'/>
+<use f='include/c++/11/bits/basic_string.h' l='6654' u='a' c='_ZNSt7__cxx115stoldERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEPm'/>

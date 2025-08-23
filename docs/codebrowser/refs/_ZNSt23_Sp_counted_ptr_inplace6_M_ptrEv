@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/shared_ptr_base.h' l='519' u='c' c='_ZNSt23_Sp_counted_ptr_inplaceC1ET0_DpOTL0__'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='528' u='c' c='_ZNSt23_Sp_counted_ptr_inplace10_M_disposeEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='548' u='c' c='_ZNSt23_Sp_counted_ptr_inplace14_M_get_deleterERKSt9type_info'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='565' type='_Tp * std::_Sp_counted_ptr_inplace::_M_ptr()'/>

@@ -1,0 +1,42 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='37' ll='49'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='258'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='260' c='_ZN7tItList8IterNodeC1EPKT_'/>
+<ovr f='Modules/Foundation/Inc/Foundation/tString.h' l='581' c='tStringItem'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='581'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='36'>// You need to derive your object from this if you want to put them on a tList.</doc>
+<fun r='_ZN5tLinkC1Ev'/>
+<fun r='_ZN5tLinkC1ERK5tLinkIT_E'/>
+<fun r='_ZNK5tLink4NextEv'/>
+<fun r='_ZNK5tLink4PrevEv'/>
+<mbr r='tLink::NextItem' t='T *'/>
+<mbr r='tLink::PrevItem' t='T *'/>
+<ovr f='Modules/Foundation/Inc/Foundation/tName.h' l='281' c='tNameItem'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='281'/>
+<ovr f='Modules/Foundation/Inc/Foundation/tPool.h' l='109' c='tMem::tFastPool::SlotBlock'/>
+<use f='Modules/Foundation/Inc/Foundation/tPool.h' l='109'/>
+<ovr f='Modules/Image/Inc/Image/tFrame.h' l='26' c='tImage::tFrame'/>
+<use f='Modules/Image/Inc/Image/tFrame.h' l='26'/>
+<ovr f='Modules/System/Inc/System/tFile.h' l='506' c='tSystem::tFileTypes::tFileTypeItem'/>
+<use f='Modules/System/Inc/System/tFile.h' l='506'/>
+<ovr f='Modules/System/Inc/System/tFile.h' l='539' c='tSystem::tFileInfo'/>
+<use f='Modules/System/Inc/System/tFile.h' l='539'/>
+<ovr f='Modules/System/Inc/System/tChunk.h' l='204' c='tChunkWriter::ChunkInfo'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='204'/>
+<ovr f='Modules/Image/Inc/Image/tLayer.h' l='33' c='tImage::tLayer'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='33'/>
+<ovr f='Modules/Image/Inc/Image/tPicture.h' l='80' c='tImage::tPicture'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='80'/>
+<ovr f='Modules/Image/Inc/Image/tTexture.h' l='38' c='tImage::tTexture'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='38'/>
+<ovr f='Modules/System/Inc/System/tScript.h' l='373' c='tFunExpression'/>
+<use f='Modules/System/Inc/System/tScript.h' l='373'/>
+<ovr f='Modules/Math/Inc/Math/tSpline.h' l='180' c='tMath::tBezierPath::tFastSectionState::tSectionInfo'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='180'/>
+<ovr f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='24' c='tPipeline::tRule'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='24'/>
+<ovr f='Modules/System/Inc/System/tCmdLine.h' l='98' c='tCmdLine::tParam'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='98'/>
+<ovr f='Modules/System/Inc/System/tCmdLine.h' l='124' c='tCmdLine::tOption'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='124'/>
+<ovr f='Modules/System/Inc/System/tRegex.h' l='107' c='tSystem::tRegex::Match'/>
+<use f='Modules/System/Inc/System/tRegex.h' l='107'/>

@@ -1,0 +1,46 @@
+<dec f='Modules/Foundation/Inc/Foundation/tName.h' l='154' type='tName operator+(const tName &amp; prefix, const tName &amp; suffix)'/>
+<def f='Modules/Foundation/Inc/Foundation/tName.h' l='480' ll='484' type='tName operator+(const tName &amp; prefix, const tName &amp; suffix)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tName.h' l='152'>// These are not particulary fast, but they are useful if you just want to construct a concatenated tName and not
+	// modify it afterwards.</doc>
+<use f='Modules/Input/Inc/Input/tCompButton.h' l='28' macro='1' u='c' c='_ZN6tInput11tCompButtonC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompDial.h' l='28' macro='1' u='c' c='_ZN6tInput9tCompDialC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='28' macro='1' u='c' c='_ZN6tInput11tCompDirPadC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='29' macro='1' u='c' c='_ZN6tInput11tCompDirPadC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='30' macro='1' u='c' c='_ZN6tInput11tCompDirPadC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='31' macro='1' u='c' c='_ZN6tInput11tCompDirPadC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='29' macro='1' u='c' c='_ZN6tInput13tCompJoystickC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='30' macro='1' u='c' c='_ZN6tInput13tCompJoystickC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='31' macro='1' u='c' c='_ZN6tInput13tCompJoystickC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompPedal.h' l='28' macro='1' u='c' c='_ZN6tInput10tCompPedalC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompScrubber.h' l='28' macro='1' u='c' c='_ZN6tInput13tCompScrubberC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompSelector.h' l='28' macro='1' u='c' c='_ZN6tInput13tCompSelectorC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompSlider.h' l='28' macro='1' u='c' c='_ZN6tInput11tCompSliderC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompSwitch.h' l='28' macro='1' u='c' c='_ZN6tInput11tCompSwitchC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='28' macro='1' u='c' c='_ZN6tInput12tCompTriggerC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompWheel.h' l='28' macro='1' u='c' c='_ZN6tInput10tCompWheelC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='40' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='41' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='42' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='43' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='44' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='45' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='46' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='47' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='48' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='49' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='50' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='51' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='52' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='59' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='60' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='61' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='62' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='63' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='64' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='65' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='66' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='67' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='68' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='69' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='70' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='71' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>

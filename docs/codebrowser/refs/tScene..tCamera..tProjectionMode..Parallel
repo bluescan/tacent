@@ -1,0 +1,10 @@
+<dec f='Modules/Scene/Inc/Scene/tCamera.h' l='43' type='2'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='50' u='r' c='_ZNK6tScene7tCamera12GetNearPlaneEv'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='51' u='r' c='_ZNK6tScene7tCamera11GetFarPlaneEv'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='52' u='r' c='_ZNK6tScene7tCamera9GetAspectEv'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='53' u='r' c='_ZNK6tScene7tCamera7GetFovVEv'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='54' u='r' c='_ZNK6tScene7tCamera7GetFovHEv'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='55' u='r' c='_ZNK6tScene7tCamera24ExtractProjectionOffsetXEv'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='56' u='r' c='_ZNK6tScene7tCamera24ExtractProjectionOffsetYEv'/>
+<doc f='Modules/Scene/Inc/Scene/tCamera.h' l='43'>// A parallel projection.</doc>
+<use f='Modules/Scene/Src/tCamera.cpp' l='36' c='_ZN6tScene7tCamera5ScaleEf'/>

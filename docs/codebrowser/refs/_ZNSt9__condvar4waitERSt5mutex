@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/std_mutex.h' l='151' ll='157' type='void std::__condvar::wait(std::mutex &amp; __m)'/>
+<doc f='include/c++/11/bits/std_mutex.h' l='150'>// Expects: Calling thread has locked __m.</doc>

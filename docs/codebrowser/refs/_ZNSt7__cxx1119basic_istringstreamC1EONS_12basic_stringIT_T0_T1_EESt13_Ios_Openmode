@@ -1,0 +1,1 @@
+<def f='include/c++/11/sstream' l='632' ll='636' type='void std::basic_istringstream::basic_istringstream&lt;_CharT, _Traits, _Alloc&gt;(std::basic_istringstream::__string_type &amp;&amp; __str, ios_base::openmode __mode = ios_base::in)'/>

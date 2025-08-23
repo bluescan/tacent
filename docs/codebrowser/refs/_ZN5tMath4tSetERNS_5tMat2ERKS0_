@@ -1,0 +1,7 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='231' type='void tMath::tSet(tMath::tMat2 &amp; d, const tMath::tMat2 &amp; s)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1044' u='c' c='_ZN5tMath4tMulERNS_5tMat2ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1134' u='c' c='_ZN5tMath7tInvertERNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='26' u='c' c='_ZN5tMath8tMatrix2C1ERKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='32' u='c' c='_ZN5tMath8tMatrix23SetERKNS_5tMat2E'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='54' u='c' c='_ZN5tMath8tMatrix2aSERKNS_5tMat2E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='392' u='c' c='_ZN12tChunkWriter5WriteERKN5tMath8tMatrix2E'/>

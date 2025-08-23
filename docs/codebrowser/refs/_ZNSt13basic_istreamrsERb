@@ -1,0 +1,9 @@
+<def f='include/c++/11/istream' l='167' ll='169' type='std::basic_istream::__istream_type &amp; std::basic_istream::operator&gt;&gt;(bool &amp; __n)'/>
+<doc f='include/c++/11/istream' l='159'>/**
+       *  @brief  Integer arithmetic extractors
+       *  @param  __n A variable of builtin integral type.
+       *  @return  @c *this if successful
+       *
+       *  These functions use the stream&apos;s current locale (specifically, the
+       *  @c num_get facet) to parse the input data.
+      */</doc>

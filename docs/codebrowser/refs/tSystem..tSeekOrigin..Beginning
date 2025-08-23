@@ -1,0 +1,12 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='69' type='0'/>
+<use f='Modules/System/Inc/System/tFile.h' l='72'/>
+<use f='Modules/System/Inc/System/tFile.h' l='74' c='_ZN7tSystem9tFileSeekEP8_IO_FILEiNS_11tSeekOriginE'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='69'>// AKA seek_set.</doc>
+<use f='Modules/System/Src/tChunk.cpp' l='255' u='r' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='257' u='r' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tFile.cpp' l='145' u='r' c='_ZN7tSystem12tGetFileSizeEP8_IO_FILE'/>
+<use f='Modules/System/Src/tFile.cpp' l='155' c='_ZN7tSystem9tFileSeekEP8_IO_FILEiNS_11tSeekOriginE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1010' u='r' c='_ZN7tSystem11tCreateFileERK7tStringPhi'/>
+<use f='Modules/System/Src/tFile.cpp' l='1027' u='r' c='_ZN7tSystem11tCreateFileERK7tStringPDuib'/>
+<use f='Modules/System/Src/tFile.cpp' l='1056' u='r' c='_ZN7tSystem11tCreateFileERK7tStringPDsib'/>
+<use f='Modules/System/Src/tFile.cpp' l='1082' u='r' c='_ZN7tSystem11tCreateFileERK7tStringPDiib'/>

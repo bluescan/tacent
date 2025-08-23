@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1283' type='int pthread_barrierattr_setpshared(pthread_barrierattr_t * __attr, int __pshared)'/>
+<doc f='include/pthread.h' l='1282'>/* Set the process-shared flag of the barrier attribute ATTR.  */</doc>

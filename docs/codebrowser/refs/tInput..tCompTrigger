@@ -1,0 +1,15 @@
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='46'/>
+<inh f='Modules/Input/Inc/Input/tComp.h' l='24' c='tInput::tComponent'/>
+<def f='Modules/Input/Inc/Input/tCompTrigger.h' l='23' ll='46'/>
+<size>96</size>
+<fun r='_ZN6tInput12tCompTriggerC1ERK5tNameRSt5mutex'/>
+<fun r='_ZN6tInput12tCompTriggerD1Ev'/>
+<fun r='_ZNK6tInput12tCompTrigger15GetDisplacementEv'/>
+<fun r='_ZN6tInput12tCompTrigger5ResetEv'/>
+<fun r='_ZN6tInput12tCompTrigger6UpdateEv'/>
+<fun r='_ZN6tInput12tCompTrigger18SetDisplacementRawEf'/>
+<fun r='_ZN6tInput12tCompTrigger15SetDisplacementEf'/>
+<mbr r='tInput::tCompTrigger::Disp' o='320' t='tInput::tUnitContinuousDisp'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='78'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='79'/>
+<size>96</size>

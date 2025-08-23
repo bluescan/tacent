@@ -1,0 +1,3 @@
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='165' u='c' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='188' u='c' c='_ZN6tImage13tPaletteImage3GetEP9tColour4b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='212' u='c' c='_ZN6tImage13tPaletteImage3GetEP9tColour3b'/>

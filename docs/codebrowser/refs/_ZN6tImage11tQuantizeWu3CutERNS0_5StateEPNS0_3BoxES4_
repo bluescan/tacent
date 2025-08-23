@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tQuantizeWu.cpp' l='105' type='int tImage::tQuantizeWu::Cut(tImage::tQuantizeWu::State &amp; , tImage::tQuantizeWu::Box * set1, tImage::tQuantizeWu::Box * set2)'/>
+<def f='Modules/Image/Src/tQuantizeWu.cpp' l='338' ll='395' type='int tImage::tQuantizeWu::Cut(tImage::tQuantizeWu::State &amp; state, tImage::tQuantizeWu::Box * set1, tImage::tQuantizeWu::Box * set2)'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='458' u='c' c='_ZN6tImage11tQuantizeWu8QuantizeEiiiPK9tColour3bPS1_Ph'/>

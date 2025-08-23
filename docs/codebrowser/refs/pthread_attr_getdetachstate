@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='292' type='int pthread_attr_getdetachstate(const pthread_attr_t * __attr, int * __detachstate)'/>
+<doc f='include/pthread.h' l='291'>/* Get detach state attribute.  */</doc>

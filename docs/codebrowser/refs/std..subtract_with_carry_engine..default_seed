@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='713' type='const std::subtract_with_carry_engine::result_type'/>
+<use f='include/c++/11/bits/random.h' l='715' u='r' c='_ZNSt26subtract_with_carry_engineC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='750' c='_ZNSt26subtract_with_carry_engine4seedET_'/>
+<dec f='include/c++/11/bits/random.tcc' l='533' type='const _UIntType'/>
+<use f='include/c++/11/bits/random.h' l='750' c='_ZNSt26subtract_with_carry_engine4seedET_'/>
+<use f='include/c++/11/bits/random.tcc' l='541' u='r' c='_ZNSt26subtract_with_carry_engine4seedET_'/>

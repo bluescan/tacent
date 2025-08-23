@@ -1,0 +1,7 @@
+<def f='include/c++/11/fstream' l='899' ll='901' type='std::basic_ofstream::__filebuf_type * std::basic_ofstream::rdbuf() const'/>
+<doc f='include/c++/11/fstream' l='893'>/**
+       *  @brief  Accessing the underlying buffer.
+       *  @return  The current basic_filebuf buffer.
+       *
+       *  This hides both signatures of std::basic_ios::rdbuf().
+       */</doc>

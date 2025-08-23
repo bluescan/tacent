@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='3005' type='void std::cauchy_distribution::__generate_impl(_ForwardIterator __f, _ForwardIterator __t, _UniformRandomNumberGenerator &amp; __urng, const std::cauchy_distribution::param_type &amp; __p)'/>
+<def f='include/c++/11/bits/random.tcc' l='2118' ll='2140' type='void std::cauchy_distribution::__generate_impl(_ForwardIterator __f, _ForwardIterator __t, _UniformRandomNumberGenerator &amp; __urng, const std::cauchy_distribution::param_type &amp; __p)'/>

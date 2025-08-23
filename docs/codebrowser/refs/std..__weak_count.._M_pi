@@ -1,0 +1,24 @@
+<use f='include/c++/11/bits/shared_ptr_base.h' l='774' u='w' c='_ZNSt12__weak_countC1Ev'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='778' u='w' c='_ZNSt12__weak_countC1ERKSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='780' c='_ZNSt12__weak_countC1ERKSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='781' u='c' c='_ZNSt12__weak_countC1ERKSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='785' u='w' c='_ZNSt12__weak_countC1ERKSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='787' c='_ZNSt12__weak_countC1ERKSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='788' u='c' c='_ZNSt12__weak_countC1ERKSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='792' u='w' c='_ZNSt12__weak_countC1EOSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='797' c='_ZNSt12__weak_countD1Ev'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='798' u='c' c='_ZNSt12__weak_countD1Ev'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='807' c='_ZNSt12__weak_countaSERKSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='808' u='c' c='_ZNSt12__weak_countaSERKSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='809' u='w' c='_ZNSt12__weak_countaSERKSt14__shared_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='819' c='_ZNSt12__weak_countaSERKSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='820' u='c' c='_ZNSt12__weak_countaSERKSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='821' u='w' c='_ZNSt12__weak_countaSERKSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='828' c='_ZNSt12__weak_countaSEOSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='829' u='c' c='_ZNSt12__weak_countaSEOSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='830' u='w' c='_ZNSt12__weak_countaSEOSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='839' u='r' c='_ZNSt12__weak_count7_M_swapERSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='840' u='w' c='_ZNSt12__weak_count7_M_swapERSt12__weak_countIXT_EE'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='845' c='_ZNKSt12__weak_count16_M_get_use_countEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='845' u='c' c='_ZNKSt12__weak_count16_M_get_use_countEv'/>
+<dec f='include/c++/11/bits/shared_ptr_base.h' l='863' type='_Sp_counted_base&lt;_Lp&gt; *'/>

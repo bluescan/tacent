@@ -1,0 +1,9 @@
+<use f='include/c++/11/sstream' l='273' u='c' c='_ZNOSt7__cxx1115basic_stringbuf3strEv'/>
+<use f='include/c++/11/sstream' l='332' u='c' c='_ZNSt7__cxx1115basic_stringbuf17_M_stringbuf_initESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='381' u='c' c='_ZNSt7__cxx1115basic_stringbuf6setbufEPT_l'/>
+<dec f='include/c++/11/sstream' l='398' type='void std::basic_stringbuf::_M_sync(std::basic_stringbuf::char_type * __base, std::basic_stringbuf::__size_type __i, std::basic_stringbuf::__size_type __o)'/>
+<use f='include/c++/11/bits/sstream.tcc' l='138' u='c' c='_ZNSt7__cxx1115basic_stringbuf8overflowENT0_8int_typeE'/>
+<def f='include/c++/11/bits/sstream.tcc' l='243' ll='272' type='void std::basic_stringbuf::_M_sync(std::basic_stringbuf::char_type * __base, std::basic_stringbuf::__size_type __i, std::basic_stringbuf::__size_type __o)'/>
+<doc f='include/c++/11/sstream' l='394'>// Internal function for correctly updating the internal buffer
+      // for a particular _M_string, due to initialization or re-sizing
+      // of an existing _M_string.</doc>

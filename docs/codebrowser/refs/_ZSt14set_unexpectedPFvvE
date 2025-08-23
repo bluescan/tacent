@@ -1,0 +1,2 @@
+<dec f='include/c++/11/exception' l='86' type='std::unexpected_handler std::set_unexpected(std::unexpected_handler )'/>
+<doc f='include/c++/11/exception' l='85'>/// Takes a new handler function as an argument, returns the old function.</doc>

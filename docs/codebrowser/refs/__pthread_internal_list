@@ -1,0 +1,8 @@
+<def f='include/x86_64-linux-gnu/bits/thread-shared-types.h' l='51' ll='55'/>
+<use f='include/x86_64-linux-gnu/bits/thread-shared-types.h' l='53'/>
+<use f='include/x86_64-linux-gnu/bits/thread-shared-types.h' l='54'/>
+<use f='include/x86_64-linux-gnu/bits/thread-shared-types.h' l='51'/>
+<size>16</size>
+<doc f='include/x86_64-linux-gnu/bits/thread-shared-types.h' l='49'>/* Common definition of pthread_mutex_t. */</doc>
+<mbr r='__pthread_internal_list::__prev' o='0' t='struct __pthread_internal_list *'/>
+<mbr r='__pthread_internal_list::__next' o='64' t='struct __pthread_internal_list *'/>

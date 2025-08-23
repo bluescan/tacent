@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13128' ll='13136'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13128'/>
+<size>40</size>
+<mbr r='VkRayTracingShaderGroupCreateInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRayTracingShaderGroupCreateInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkRayTracingShaderGroupCreateInfoNV::type' o='128' t='VkRayTracingShaderGroupTypeKHR'/>
+<mbr r='VkRayTracingShaderGroupCreateInfoNV::generalShader' o='160' t='uint32_t'/>
+<mbr r='VkRayTracingShaderGroupCreateInfoNV::closestHitShader' o='192' t='uint32_t'/>
+<mbr r='VkRayTracingShaderGroupCreateInfoNV::anyHitShader' o='224' t='uint32_t'/>
+<mbr r='VkRayTracingShaderGroupCreateInfoNV::intersectionShader' o='256' t='uint32_t'/>

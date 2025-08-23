@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/atomic_wait.h' l='98' type='1'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='122' c='_ZNSt8__detail17__platform_notifyEPKT_b'/>

@@ -1,0 +1,2 @@
+<dec f='include/time.h' l='387' type='int timespec_getres(struct timespec * __ts, int __base)'/>
+<doc f='include/time.h' l='386'>/* Set TS to resolution of time base BASE.  */</doc>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='935' type='void std::stable_sort(_RAIter , _RAIter , _Compare )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='5079' ll='5094' type='void std::stable_sort(_RandomAccessIterator __first, _RandomAccessIterator __last, _Compare __comp)'/>

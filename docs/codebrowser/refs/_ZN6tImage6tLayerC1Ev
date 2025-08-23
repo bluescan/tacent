@@ -1,0 +1,2 @@
+<def f='Modules/Image/Inc/Image/tLayer.h' l='36' type='void tImage::tLayer::tLayer()'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1069' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>

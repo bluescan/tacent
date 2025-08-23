@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='246' type='bool tImage::tPicture::QuantizeNeu(int numColours, bool checkExact = true, int sampleFactor = 1)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='243'>// Similar to above but uses neuquant algorighm to generate the palette. With a sampling factor of 1 the entire
+	// image is used in the learning phase. With a factor of 10, a pseudo-random subset of 1/10 of the pixels are used
+	// in the learning phase. sampleFactor must be in [1, 30]. Bigger values are faster but lower quality.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='576' ll='597' type='bool tImage::tPicture::QuantizeNeu(int numColours, bool checkExact = true, int sampleFactor = 1)'/>

@@ -1,0 +1,23 @@
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='159' u='w' c='_ZN6tImage10tMetaDatum3SetEf'/>
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='170' type='float'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='233' u='w' c='_ZN6tImage10tMetaDatum3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='233' u='r' c='_ZN6tImage10tMetaDatum3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='251' u='r' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='251' u='r' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<offset>0</offset>
+<use f='Modules/Image/Src/tMetaData.cpp' l='664' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='672' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='680' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='689' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='699' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='706' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='715' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='719' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='723' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='727' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='751' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='800' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='836' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='838' u='r' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='893' u='r' c='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='939' u='a' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17101'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17100'>// VK_EXT_depth_clamp_zero_one is a preprocessor guard. Do not pass it to API calls.</doc>

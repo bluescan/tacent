@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='303' type='char * strpbrk(char * __s, const char * __accept)'/>
+<dec f='include/string.h' l='305' type='const char * strpbrk(const char * __s, const char * __accept)'/>

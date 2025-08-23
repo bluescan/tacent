@@ -1,0 +1,7 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='410' type='tString tSystem::tGetFileExtension(const tString &amp; file)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='409'>// c:/Stuff/Mess.max to max</doc>
+<def f='Modules/System/Src/tFile.cpp' l='1906' ll='1909' type='tString tSystem::tGetFileExtension(const tString &amp; file)'/>
+<use f='Modules/System/Src/tFile.cpp' l='1937' u='c' c='_ZN7tSystem12tGetFileTypeERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2615' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2754' u='c' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2989' u='c' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

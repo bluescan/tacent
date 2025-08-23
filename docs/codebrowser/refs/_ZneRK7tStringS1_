@@ -1,0 +1,9 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='571' type='bool operator!=(const tString &amp; a, const tString &amp; b)'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='58' u='c' c='_ZNK6tScene10tAttributeeqERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='65' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='66' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='68' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='69' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='70' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='71' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='72' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>

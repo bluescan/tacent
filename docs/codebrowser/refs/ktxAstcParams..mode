@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1276' type='ktx_uint32_t'/>
+<offset>128</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1272'>/*!&lt; Combinations of block dimensions that astcenc supports
+          i.e. 6x6, 8x8, 6x5 etc
+         */</doc>

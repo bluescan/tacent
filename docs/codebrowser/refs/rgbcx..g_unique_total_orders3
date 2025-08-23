@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='263' ll='275' type='uint8_t[153][3]'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1889' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1890' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1891' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2061' u='r' c='_ZN5rgbcxL36compute_least_squares_endpoints3_rgbEPNS_5vec3FES1_iiifffjPKjS3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2062' u='r' c='_ZN5rgbcxL36compute_least_squares_endpoints3_rgbEPNS_5vec3FES1_iiifffjPKjS3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2062' u='r' c='_ZN5rgbcxL36compute_least_squares_endpoints3_rgbEPNS_5vec3FES1_iiifffjPKjS3_S3_'/>

@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='736' type='int fseeko(FILE * __stream, __off_t __off, int __whence)'/>
+<doc f='include/stdio.h' l='732'>/* Seek to a certain position on STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

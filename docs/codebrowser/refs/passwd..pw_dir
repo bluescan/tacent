@@ -1,0 +1,4 @@
+<dec f='include/pwd.h' l='57' type='char *'/>
+<use f='Modules/System/Src/tFile.cpp' l='1313' u='r' c='_ZN7tSystem11tGetHomeDirEv'/>
+<offset>256</offset>
+<doc f='include/pwd.h' l='57'>/* Home directory.  */</doc>

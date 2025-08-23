@@ -1,0 +1,4 @@
+<dec f='include/wchar.h' l='268' type='wchar_t * wmemmove(wchar_t * __s1, const wchar_t * __s2, size_t __n)'/>
+<use f='include/c++/11/bits/char_traits.h' l='549' u='c' c='_ZNSt11char_traitsIwE4moveEPwPKwm'/>
+<doc f='include/wchar.h' l='266'>/* Copy N wide characters of SRC to DEST, guaranteeing
+   correct behavior for overlapping strings.  */</doc>

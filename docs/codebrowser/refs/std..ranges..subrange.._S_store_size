@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/ranges_util.h' l='207' type='const bool'/>
+<use f='include/c++/11/bits/ranges_util.h' l='216' u='r'/>
+<use f='include/c++/11/bits/ranges_util.h' l='231' u='r' c='_ZNSt6ranges8subrangeC1ETL0__T0_'/>
+<use f='include/c++/11/bits/ranges_util.h' l='241' u='r' c='_ZNSt6ranges8subrangeC1ETL0__T0_DTclsr8__detailE18__to_unsigned_likeclsr3stdE7declvalINSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt209605733'/>
+<use f='include/c++/11/bits/ranges_util.h' l='250' u='r' c='_ZNSt6ranges8subrangeC1EOTL0__'/>
+<use f='include/c++/11/bits/ranges_util.h' l='259' u='r' c='_ZNSt6ranges8subrangeC1EOTL0__'/>
+<use f='include/c++/11/bits/ranges_util.h' l='294' u='r' c='_ZNKSt6ranges8subrange4sizeEv'/>
+<use f='include/c++/11/bits/ranges_util.h' l='334' u='r' c='_ZNSt6ranges8subrange7advanceENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE'/>
+<use f='include/c++/11/bits/ranges_util.h' l='341' u='r' c='_ZNSt6ranges8subrange7advanceENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE'/>
+<doc f='include/c++/11/bits/ranges_util.h' l='206'>// XXX: gcc complains when using constexpr here</doc>

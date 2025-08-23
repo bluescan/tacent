@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='910' type='ktxMem *'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='910'>/**&lt; a pointer to a ktxMem struct for a ktxMemStream. */</doc>

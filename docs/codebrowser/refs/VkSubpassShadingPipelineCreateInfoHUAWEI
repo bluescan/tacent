@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16273' ll='16278'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16273'/>
+<size>32</size>
+<mbr r='VkSubpassShadingPipelineCreateInfoHUAWEI::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSubpassShadingPipelineCreateInfoHUAWEI::pNext' o='64' t='void *'/>
+<mbr r='VkSubpassShadingPipelineCreateInfoHUAWEI::renderPass' o='128' t='VkRenderPass'/>
+<mbr r='VkSubpassShadingPipelineCreateInfoHUAWEI::subpass' o='192' t='uint32_t'/>

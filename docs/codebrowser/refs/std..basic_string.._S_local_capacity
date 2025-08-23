@@ -1,0 +1,18 @@
+<dec f='include/c++/11/bits/basic_string.h' l='177' type='0'/>
+<use f='include/c++/11/bits/basic_string.h' l='181'/>
+<use f='include/c++/11/bits/basic_string.h' l='571' c='_ZNSt7__cxx1112basic_stringC1EONS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.h' l='607' c='_ZNSt7__cxx1112basic_stringC1EONS_12basic_stringIT_T0_T1_EERKS4_'/>
+<use f='include/c++/11/bits/basic_string.h' l='978' u='r' c='_ZNKSt7__cxx1112basic_string8capacityEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='1366' c='_ZNSt7__cxx1112basic_string6assignERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='71' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='73' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='75' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='77' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='82' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='90' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='100' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='111' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='168' u='r' c='_ZNSt7__cxx1112basic_string12_M_constructETL0__S1_St18input_iterator_tag'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='217' c='_ZNSt7__cxx1112basic_string12_M_constructETL0__S1_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='240' c='_ZNSt7__cxx1112basic_string12_M_constructEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeES7_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='346' c='_ZNSt7__cxx1112basic_string7reserveEv'/>

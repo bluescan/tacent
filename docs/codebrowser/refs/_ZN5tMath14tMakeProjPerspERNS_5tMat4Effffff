@@ -1,0 +1,10 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='629' type='void tMath::tMakeProjPersp(tMath::tMat4 &amp; d, float left, float right, float bottom, float top, float nearPlane, float farPlane)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='626'>// Functions to make various types of projection matrix. Persp for perspective. Sym for symmetric. FovV for vertical
+// field-of-view, FovH for field-of-view horizontal. The functions below all generate projection matrices that
+// transform points to a clip space with z E [-1, 1] rather than the DX convention starting at 0.</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='88' u='c' c='_ZN5tMath8tMatrix413MakeProjPerspEffffff'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='731' ll='748' type='void tMath::tMakeProjPersp(tMath::tMat4 &amp; d, float left, float right, float bottom, float top, float near, float far)'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='759' u='c' c='_ZN5tMath14tMakeProjPerspERNS_5tMat4ERKNS_5tVec3ES4_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='801' u='c' c='_ZN5tMath20tMakeProjPerspOffsetERNS_5tMat4Effffff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='813' u='c' c='_ZN5tMath24tMakeProjPerspFovVOffsetERNS_5tMat4Effffff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='825' u='c' c='_ZN5tMath24tMakeProjPerspFovHOffsetERNS_5tMat4Effffff'/>

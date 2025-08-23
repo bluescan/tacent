@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='132' type='double tMath::tFloor(double v)'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='414' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='423' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='424' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='425' u='c' c='_ZN6M999E517FloatToComponentsERiS0_S0_S0_fff'/>

@@ -1,0 +1,4 @@
+<dec f='include/pthread.h' l='50' type='1'/>
+<use f='include/pthread.h' l='56'/>
+<use f='include/c++/11/mutex' l='76' macro='1'/>
+<use f='include/c++/11/ext/concurrence.h' l='174' macro='1'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/typesizes.h' l='87'/>
+<doc f='include/x86_64-linux-gnu/bits/typesizes.h' l='86'>/* And for __rlim_t and __rlim64_t.  */</doc>

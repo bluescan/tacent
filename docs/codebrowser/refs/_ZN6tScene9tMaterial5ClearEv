@@ -1,0 +1,2 @@
+<def f='Modules/Scene/Src/tMaterial.cpp' l='21' ll='42' type='void tScene::tMaterial::Clear()'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='161' u='c' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>

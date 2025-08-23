@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1336' ll='1338' type='int std::moneypunct::do_frac_digits() const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1326'>/**
+       *  @brief  Return number of digits in fraction.
+       *
+       *  This function returns the exact number of digits that make up the
+       *  fractional part of a money amount.  This function is a hook for
+       *  derived classes to change the value returned.  @see frac_digits()
+       *  for details.
+       *
+       *  @return  Number of digits in amount fraction.
+      */</doc>

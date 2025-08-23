@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/stl_deque.h' l='859' u='c' c='_ZNSt5dequeC1EmRKT0_'/>
+<dec f='include/c++/11/bits/stl_deque.h' l='1881' type='void std::deque::_M_default_initialize()'/>
+<def f='include/c++/11/bits/deque.tcc' l='67' ll='90' type='void std::deque::_M_default_initialize()'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1879'>// called by deque(n).</doc>

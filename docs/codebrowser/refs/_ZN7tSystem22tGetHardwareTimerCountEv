@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tTime.h' l='28' type='int64 tSystem::tGetHardwareTimerCount()'/>
+<use f='Modules/System/Src/tTime.cpp' l='29' u='c'/>
+<def f='Modules/System/Src/tTime.cpp' l='51' ll='67' type='int64 tSystem::tGetHardwareTimerCount()'/>
+<use f='Modules/System/Src/tTime.cpp' l='154' u='c' c='_ZN7tSystem8tGetTimeEv'/>
+<use f='Modules/System/Src/tTime.cpp' l='174' u='c' c='_ZN7tSystem14tGetTimeDoubleEv'/>

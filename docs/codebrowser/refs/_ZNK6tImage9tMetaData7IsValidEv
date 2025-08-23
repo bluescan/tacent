@@ -1,0 +1,7 @@
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='186' type='bool tImage::tMetaData::IsValid() const'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='273' u='c' c='_ZN6tImage9tMetaData3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='279' u='c' c='_ZNK6tImage9tMetaDataeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='279' u='c' c='_ZNK6tImage9tMetaDataeqERKS0_'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='421' u='c' c='_ZN6tImage9tImageJPG16PopulateMetaDataEPKhi'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='220' u='c' c='_ZN6tImage9tMetaData3SetEPKhi'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='647' u='c' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

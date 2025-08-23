@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='472' type='tString'/>
+<offset>320</offset>
+<doc f='Modules/System/Inc/System/tFile.h' l='471'>// A user specified name for this collection of extensions. Use is optional.</doc>

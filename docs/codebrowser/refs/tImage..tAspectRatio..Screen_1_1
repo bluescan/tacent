@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='385' type='14'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='385'>// 1.0</doc>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='736' u='r' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='743' u='r' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='756' u='r' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>

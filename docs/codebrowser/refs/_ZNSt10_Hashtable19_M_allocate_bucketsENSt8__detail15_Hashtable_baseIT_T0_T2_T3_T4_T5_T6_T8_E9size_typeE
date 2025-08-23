@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/hashtable.h' l='431' ll='441' type='std::_Hashtable::__buckets_ptr std::_Hashtable::_M_allocate_buckets(std::_Hashtable::size_type __bkt_count)'/>
+<use f='include/c++/11/bits/hashtable.h' l='1129' u='c' c='_ZNSt10_HashtableC1ENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeERKS6_RKS5_RKT1_'/>
+<use f='include/c++/11/bits/hashtable.h' l='1172' u='c' c='_ZNSt10_HashtableC1ETL0__S0_NSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeERKS7_RKS6_RKT1_St17integral_constantIbLb0EE'/>
+<use f='include/c++/11/bits/hashtable.h' l='1249' u='c' c='_ZNSt10_Hashtable18_M_assign_elementsEOTL0__'/>
+<use f='include/c++/11/bits/hashtable.h' l='1295' u='c' c='_ZNSt10_Hashtable9_M_assignEOTL0__RKTL0_0_'/>
+<use f='include/c++/11/bits/hashtable.h' l='2382' u='c' c='_ZNSt10_Hashtable13_M_rehash_auxENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeESt17integral_constantIbLb1EE'/>
+<use f='include/c++/11/bits/hashtable.h' l='2425' u='c' c='_ZNSt10_Hashtable13_M_rehash_auxENSt8__detail15_Hashtable_baseIT_T0_T2_T3_T4_T5_T6_T8_E9size_typeESt17integral_constantIbLb0EE'/>

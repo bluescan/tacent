@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15397' ll='15402'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15397'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceCudaKernelLaunchPropertiesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceCudaKernelLaunchPropertiesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceCudaKernelLaunchPropertiesNV::computeCapabilityMinor' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceCudaKernelLaunchPropertiesNV::computeCapabilityMajor' o='160' t='uint32_t'/>

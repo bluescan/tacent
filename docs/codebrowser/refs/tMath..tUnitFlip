@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='227' ll='233'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='224'>// These functions compute f(x) with x E [0, 1]. When not flipped f(0) = 0 and f(1) = 1. Furthermore, 0 &lt;= f(x) &lt;= 1.
+// Curve shape may be controlled by one or more constant (c) arguments. These functions always exist in the unit square,
+// even when flipped. Essentially flipping in x flips around the x=1/2 line, and y about the y=1/2 line.</doc>

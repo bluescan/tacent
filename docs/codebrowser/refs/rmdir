@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='867' type='int rmdir(const char * __path)'/>
+<doc f='include/unistd.h' l='866'>/* Remove the directory PATH.  */</doc>

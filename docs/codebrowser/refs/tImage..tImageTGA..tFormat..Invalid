@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tImageTGA.h' l='92' type='0'/>
+<doc f='Modules/Image/Inc/Image/tImageTGA.h' l='92'>// Invalid must be 0.</doc>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='376' u='r' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='377' u='r' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='380' u='r' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='403' u='r' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>

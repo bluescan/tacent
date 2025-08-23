@@ -1,0 +1,2 @@
+<dec f='include/ctype.h' l='108' type='int isalnum(int )'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='340' u='c' c='_ZN4tStd8tIsalnumEc'/>

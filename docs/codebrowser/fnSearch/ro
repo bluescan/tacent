@@ -1,0 +1,15 @@
+_ZNSt14numeric_limits11round_errorEv|std::numeric_limits::round_error
+_ZNSt3_V26rotateET_S0_S0_|std::rotate
+_ZSt11rotate_copyT_S_S_T0_|std::rotate_copy
+_ZSt5roundf|std::round
+_ZNSt6chrono5roundERKNS_8durationIT0_T1_EE|std::chrono::round
+_ZN9tHash_MD510RotateLeftEji|tHash_MD5::RotateLeft
+_ZNK5tMath11tQuaternion6RotateERNS_5tVec3E|tMath::tQuaternion::Rotate
+_ZNK5tMath11tQuaternion13RotationAngleEv|tMath::tQuaternion::RotationAngle
+_ZN6tImage9tImageJPG8Rotate90Eb|tImage::tImageJPG::Rotate90
+_ZN6tImage8tPicture8Rotate90Eb|tImage::tPicture::Rotate90
+_ZN6tImage8tPicture12RotateCenterEfRK9tColour4bNS_15tResampleFilterES4_|tImage::tPicture::RotateCenter
+_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b|tImage::tPicture::RotateCenterNearest
+_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_|tImage::tPicture::RotateCenterResampled
+_ZSt4rotlT_i|std::rotl
+_ZSt4rotrT_i|std::rotr

@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='211' ll='217' type='long std::_Sp_counted_base::_M_get_use_count() const'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='258' u='c' c='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='302' ll='305' type='long std::_Sp_counted_base&lt;__gnu_cxx::_S_single&gt;::_M_get_use_count() const'/>

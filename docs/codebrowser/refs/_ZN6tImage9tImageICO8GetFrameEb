@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tImageICO.h' l='90' type='tImage::tFrame * tImage::tImageICO::GetFrame(bool steal = true)'/>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='80' c='_ZN6tImage10tBaseImage8GetFrameEb'/>
+<def f='Modules/Image/Src/tImageICO.cpp' l='260' ll='266' type='tImage::tFrame * tImage::tImageICO::GetFrame(bool steal = true)'/>

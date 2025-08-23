@@ -1,0 +1,2 @@
+<dec f='include/c++/11/typeinfo' l='180' type='std::type_info &amp; std::type_info::operator=(const std::type_info &amp; )'/>
+<doc f='include/c++/11/typeinfo' l='179'>/// Assigning type_info is not supported.</doc>

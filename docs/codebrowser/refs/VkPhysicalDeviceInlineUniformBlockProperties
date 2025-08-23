@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7199' ll='7207'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7199'/>
+<size>40</size>
+<mbr r='VkPhysicalDeviceInlineUniformBlockProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceInlineUniformBlockProperties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceInlineUniformBlockProperties::maxInlineUniformBlockSize' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceInlineUniformBlockProperties::maxPerStageDescriptorInlineUniformBlocks' o='160' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceInlineUniformBlockProperties::maxPerStageDescriptorUpdateAfterBindInlineUniformBlocks' o='192' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceInlineUniformBlockProperties::maxDescriptorSetInlineUniformBlocks' o='224' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceInlineUniformBlockProperties::maxDescriptorSetUpdateAfterBindInlineUniformBlocks' o='256' t='uint32_t'/>

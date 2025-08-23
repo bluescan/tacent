@@ -1,0 +1,1 @@
+<def f='include/c++/11/chrono' l='602' ll='609' macro='1' type='typename enable_if&lt;!treat_as_floating_point&lt;_Rep2&gt;::value, duration&lt;_Rep, _Period&gt; &amp;&gt;::type std::chrono::duration::operator%=(const std::chrono::duration::rep &amp; __rhs)'/>

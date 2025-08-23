@@ -1,0 +1,3 @@
+<dec f='include/string.h' l='361' type='char * __strtok_r(char *__restrict __s, const char *__restrict __delim, char **__restrict __save_ptr)'/>
+<doc f='include/string.h' l='359'>/* Divide S into tokens separated by characters in DELIM.  Information
+   passed between calls are stored in SAVE_PTR.  */</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/basic_string.h' l='1300' ll='1302' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::append(_InputIterator __first, _InputIterator __last)'/>

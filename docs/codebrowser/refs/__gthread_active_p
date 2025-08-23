@@ -1,0 +1,13 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='299' ll='303' type='int __gthread_active_p()'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='699' u='c' c='__gthread_once'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='732' u='c' c='__gthread_mutex_init_function'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='739' u='c' c='__gthread_mutex_destroy'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='748' u='c' c='__gthread_mutex_lock'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='757' u='c' c='__gthread_mutex_trylock'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='768' u='c' c='__gthread_mutex_timedlock'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='778' u='c' c='__gthread_mutex_unlock'/>
+<use f='include/c++/11/ext/concurrence.h' l='147' u='c' c='__gnu_cxx::__mutex::lock'/>
+<use f='include/c++/11/ext/concurrence.h' l='158' u='c' c='__gnu_cxx::__mutex::unlock'/>
+<use f='include/c++/11/ext/concurrence.h' l='202' u='c' c='__gnu_cxx::__recursive_mutex::lock'/>
+<use f='include/c++/11/ext/concurrence.h' l='213' u='c' c='__gnu_cxx::__recursive_mutex::unlock'/>
+<use f='include/c++/11/ext/concurrence.h' l='280' u='c' c='__gnu_cxx::__cond::broadcast'/>

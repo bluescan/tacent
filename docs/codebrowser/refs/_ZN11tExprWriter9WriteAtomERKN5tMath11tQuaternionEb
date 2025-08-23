@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='268' type='void tExprWriter::WriteAtom(const tMath::tQuaternion &amp; , bool incBitRep = true)'/>
+<use f='Modules/System/Inc/System/tScript.h' l='317' u='c' c='_ZN11tExprWriter4AtomERKN5tMath11tQuaternionEb'/>
+<def f='Modules/System/Src/tScript.cpp' l='843' ll='871' type='void tExprWriter::WriteAtom(const tMath::tQuaternion &amp; q, bool incBitRep = true)'/>

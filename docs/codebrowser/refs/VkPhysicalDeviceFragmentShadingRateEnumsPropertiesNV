@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15751' ll='15755'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15751'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRateEnumsPropertiesNV::maxFragmentShadingRateInvocationCount' o='128' t='VkSampleCountFlagBits'/>

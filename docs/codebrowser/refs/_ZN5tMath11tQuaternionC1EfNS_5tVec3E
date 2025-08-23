@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='30' type='void tMath::tQuaternion::tQuaternion(float r, tMath::tVec3 v)'/>
+<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='30'>/* r,v is used in textbooks. This is not axis-angle. */</doc>

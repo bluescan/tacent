@@ -1,0 +1,5 @@
+<def f='Modules/System/Src/tPrint.cpp' l='79' type='uint32'/>
+<use f='Modules/System/Src/tPrint.cpp' l='196' u='r' c='_ZN7tSystem9tRegisterEjy'/>
+<use f='Modules/System/Src/tPrint.cpp' l='197' u='w' c='_ZN7tSystem9tRegisterEjy'/>
+<use f='Modules/System/Src/tPrint.cpp' l='199' u='r' c='_ZN7tSystem9tRegisterEjy'/>
+<doc f='Modules/System/Src/tPrint.cpp' l='78'>// Channel system. This is lazy initialized (using the name hash as the state) without any need for shutdown.</doc>

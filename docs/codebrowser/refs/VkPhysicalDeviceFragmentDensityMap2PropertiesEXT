@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15888' ll='15895'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15888'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceFragmentDensityMap2PropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceFragmentDensityMap2PropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceFragmentDensityMap2PropertiesEXT::subsampledLoads' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFragmentDensityMap2PropertiesEXT::subsampledCoarseReconstructionEarlyAccess' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFragmentDensityMap2PropertiesEXT::maxSubsampledArrayLayers' o='192' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceFragmentDensityMap2PropertiesEXT::maxDescriptorSetSubsampledSamplers' o='224' t='uint32_t'/>

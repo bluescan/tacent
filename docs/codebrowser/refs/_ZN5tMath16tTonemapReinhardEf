@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='291' type='float tMath::tTonemapReinhard(float linearComponent)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1028' ll='1031' type='float tMath::tTonemapReinhard(float linearComponent)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1313' u='c' c='_ZN9tColour4f15TonemapReinhardEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1314' u='c' c='_ZN9tColour4f15TonemapReinhardEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1315' u='c' c='_ZN9tColour4f15TonemapReinhardEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1316' u='c' c='_ZN9tColour4f15TonemapReinhardEj'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='290'>// Reinhard tone mapping. Evenly distributes brightness.</doc>

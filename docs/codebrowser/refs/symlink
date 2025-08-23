@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='832' type='int symlink(const char * __from, const char * __to)'/>
+<doc f='include/unistd.h' l='831'>/* Make a symbolic link to FROM named TO.  */</doc>

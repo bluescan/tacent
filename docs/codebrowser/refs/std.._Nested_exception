@@ -1,0 +1,5 @@
+<inh f='include/c++/11/bits/nested_exception.h' l='52' c='std::nested_exception'/>
+<def f='include/c++/11/bits/nested_exception.h' l='82' ll='91'/>
+<use f='include/c++/11/bits/nested_exception.h' l='102' c='_ZSt24__throw_with_nested_implOT_St17integral_constantIbLb1EE'/>
+<fun r='_ZNSt17_Nested_exceptionC1ERKT_'/>
+<fun r='_ZNSt17_Nested_exceptionC1EOT_'/>

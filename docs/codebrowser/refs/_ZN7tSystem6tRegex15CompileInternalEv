@@ -1,0 +1,3 @@
+<def f='Modules/System/Src/tRegex.cpp' l='761' ll='791' type='void tSystem::tRegex::CompileInternal()'/>
+<use f='Modules/System/Src/tRegex.cpp' l='828' u='c' c='_ZN7tSystem6tRegex7CompileERK7tString'/>
+<use f='Modules/System/Src/tRegex.cpp' l='844' u='c' c='_ZN7tSystem6tRegex7CompileEPKc'/>

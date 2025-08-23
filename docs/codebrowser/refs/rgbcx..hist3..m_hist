@@ -1,0 +1,28 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1598' type='uint8_t[3]'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1602' u='r' c='_ZN5rgbcx5hist3C1Ev'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1602' u='r' c='_ZN5rgbcx5hist3C1Ev'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1607' u='w' c='_ZN5rgbcx5hist3C1Ejjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1608' u='w' c='_ZN5rgbcx5hist3C1Ejjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1609' u='w' c='_ZN5rgbcx5hist3C1Ejjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1614' u='r' c='_ZNK5rgbcx5hist3eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1614' u='r' c='_ZNK5rgbcx5hist3eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1615' u='r' c='_ZNK5rgbcx5hist3eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1615' u='r' c='_ZNK5rgbcx5hist3eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1616' u='r' c='_ZNK5rgbcx5hist3eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1616' u='r' c='_ZNK5rgbcx5hist3eqERKS0_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1622' u='r' c='_ZNK5rgbcx5hist36any_16Ev'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1622' u='r' c='_ZNK5rgbcx5hist36any_16Ev'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1622' u='r' c='_ZNK5rgbcx5hist36any_16Ev'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1627' u='r' c='_ZNK5rgbcx5hist327lookup_total_ordering_indexEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1629' u='r' c='_ZNK5rgbcx5hist327lookup_total_ordering_indexEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1631' u='r' c='_ZNK5rgbcx5hist327lookup_total_ordering_indexEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1635' u='r' c='_ZNK5rgbcx5hist327lookup_total_ordering_indexEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1635' u='r' c='_ZNK5rgbcx5hist327lookup_total_ordering_indexEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1832' u='r' c='_ZN5rgbcxL25compute_selector_factors3ERKNS_5hist3ERfS3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1889' u='w' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1890' u='w' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1891' u='w' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1895' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1895' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2799' u='w' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<offset>0</offset>

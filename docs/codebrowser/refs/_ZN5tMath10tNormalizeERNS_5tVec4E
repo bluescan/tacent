@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='355' type='void tMath::tNormalize(tMath::tVec4 &amp; v)'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='55' u='c' c='_ZN5tMath8tVector49NormalizeEv'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='987' u='c' c='_ZN5tMath22tExtractAffineEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='988' u='c' c='_ZN5tMath22tExtractAffineEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='989' u='c' c='_ZN5tMath22tExtractAffineEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>

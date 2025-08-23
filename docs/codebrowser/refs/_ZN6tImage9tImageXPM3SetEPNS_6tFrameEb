@@ -1,0 +1,3 @@
+<use f='Modules/Image/Inc/Image/tImageXPM.h' l='42' u='c' c='_ZN6tImage9tImageXPMC1EPNS_6tFrameEb'/>
+<dec f='Modules/Image/Inc/Image/tImageXPM.h' l='58' type='bool tImage::tImageXPM::Set(tImage::tFrame * , bool steal = true)'/>
+<doc f='Modules/Image/Inc/Image/tImageXPM.h' l='57'>// Sets from a single frame.</doc>

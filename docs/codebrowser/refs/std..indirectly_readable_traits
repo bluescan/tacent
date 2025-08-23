@@ -1,0 +1,19 @@
+<def f='include/c++/11/bits/iterator_concepts.h' l='231'/>
+<def f='include/c++/11/bits/iterator_concepts.h' l='233' ll='236'/>
+<def f='include/c++/11/bits/iterator_concepts.h' l='238' ll='240'/>
+<def f='include/c++/11/bits/iterator_concepts.h' l='242' ll='245'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='244'/>
+<def f='include/c++/11/bits/iterator_concepts.h' l='247' ll='250'/>
+<def f='include/c++/11/bits/iterator_concepts.h' l='252' ll='255'/>
+<def f='include/c++/11/bits/iterator_concepts.h' l='259' ll='265'/>
+<def f='include/c++/11/bits/iterator_concepts.h' l='269' ll='272'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='278'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='302'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='304'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='306'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='316'/>
+<use f='include/c++/11/bits/iterator_concepts.h' l='443'/>
+<doc f='include/c++/11/bits/iterator_concepts.h' l='257'>// _GLIBCXX_RESOLVE_LIB_DEFECTS
+  // 3446. indirectly_readable_traits ambiguity for types with both [...]</doc>
+<doc f='include/c++/11/bits/iterator_concepts.h' l='267'>// _GLIBCXX_RESOLVE_LIB_DEFECTS
+  // 3541. indirectly_readable_traits should be SFINAE-friendly for all types</doc>

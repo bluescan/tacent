@@ -1,0 +1,7 @@
+<use f='include/c++/11/sstream' l='341' u='c' c='_ZNSt7__cxx1115basic_stringbuf9showmanycEv'/>
+<def f='include/c++/11/sstream' l='402' ll='416' type='void std::basic_stringbuf::_M_update_egptr()'/>
+<use f='include/c++/11/bits/sstream.tcc' l='157' u='c' c='_ZNSt7__cxx1115basic_stringbuf9underflowEv'/>
+<use f='include/c++/11/bits/sstream.tcc' l='182' u='c' c='_ZNSt7__cxx1115basic_stringbuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/sstream.tcc' l='225' u='c' c='_ZNSt7__cxx1115basic_stringbuf7seekposENT0_8pos_typeESt13_Ios_Openmode'/>
+<doc f='include/c++/11/sstream' l='400'>// Internal function for correctly updating egptr() to the actual
+      // string end.</doc>

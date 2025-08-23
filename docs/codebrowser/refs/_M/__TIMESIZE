@@ -1,0 +1,8 @@
+<dec f='include/x86_64-linux-gnu/bits/timesize.h' l='26'/>
+<dec f='include/x86_64-linux-gnu/bits/timesize.h' l='26'/>
+<use f='include/x86_64-linux-gnu/bits/time64.h' l='28' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/types.h' l='220' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/types.h' l='222' u='c'/>
+<use f='include/x86_64-linux-gnu/bits/types/struct_timespec.h' l='20' u='c'/>
+<doc f='include/x86_64-linux-gnu/bits/timesize.h' l='25'>/* For others, time size is word size.  */</doc>
+<use f='include/x86_64-linux-gnu/bits/timex.h' l='28' u='c'/>

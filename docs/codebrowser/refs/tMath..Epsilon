@@ -1,0 +1,35 @@
+<def f='Modules/Foundation/Inc/Foundation/tConstants.h' l='31' type='const float'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='95' u='r' c='_ZN5tMath12tApproxEqualET_S0_f'/>
+<doc f='Modules/Foundation/Inc/Foundation/tConstants.h' l='30'>// This is a practical epsilon that can be used in many circumstances. One one millionth.</doc>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='299' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tVec2ES2_f'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='300' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tVec2ES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='301' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tVec3ES2_f'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='302' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tVec3ES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='303' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tVec4ES2_f'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='304' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tVec4ES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='305' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tQuatES2_f'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='306' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tQuatES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='307' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tMat2ES2_f'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='308' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tMat2ES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='309' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tMat4ES2_f'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='310' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tMat4ES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='308' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tMat2ES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='310' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tMat4ES2_jf'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='48' u='r' c='_ZNK5tMath8tVector311ApproxEqualERKNS_5tVec3Ef'/>
+<use f='Modules/Math/Inc/Math/tVector3.h' l='49' u='r' c='_ZNK5tMath8tVector311ApproxEqualERKNS_5tVec3Ejf'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='48' u='r' c='_ZNK5tMath8tVector411ApproxEqualERKNS_5tVec4Ef'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='49' u='r' c='_ZNK5tMath8tVector411ApproxEqualERKNS_5tVec4Ejf'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='50' u='r' c='_ZNK5tMath8tVector211ApproxEqualERKNS_5tVec2Ef'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='51' u='r' c='_ZNK5tMath8tVector211ApproxEqualERKNS_5tVec2Ejf'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='44' u='r' c='_ZNK5tMath8tMatrix211ApproxEqualERKNS_5tMat2Ef'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='45' u='r' c='_ZNK5tMath8tMatrix211ApproxEqualERKNS_5tMat2E8tCompBitf'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='62' u='r' c='_ZNK5tMath8tMatrix411ApproxEqualERKNS_5tMat4Ef'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='63' u='r' c='_ZNK5tMath8tMatrix411ApproxEqualERKNS_5tMat4Ejf'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='50' u='r' c='_ZNK5tMath11tQuaternion11ApproxEqualERKNS_5tQuatEf'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='51' u='r' c='_ZNK5tMath11tQuaternion11ApproxEqualERKNS_5tQuatEjf'/>
+<use f='Modules/Math/Inc/Math/tFilter.h' l='134' c='_ZN5tMath19tLowPassFilterFixedC1ET_S1_bS1_'/>
+<use f='Modules/Math/Inc/Math/tFilter.h' l='162' c='_ZN5tMath21tLowPassFilterDynamicC1ET_bS1_'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='82' u='r' c='_ZNK5tMath12tBezierCurve15GetClosestParamERKNS_8tVector3Ejf'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='121' u='r' c='_ZN5tMath28tComputeSmallEnclosingSphereERNS_7tSphereEPKNS_8tVector3Eif'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='122' u='r' c='_ZN5tMath28tComputeSmallEnclosingSphereERNS_7tSphereEPKNS_8tVector3Eif'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='615' u='r' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3ES4_'/>

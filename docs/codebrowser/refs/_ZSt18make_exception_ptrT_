@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/exception_ptr.h' l='77' type='std::__exception_ptr::exception_ptr std::make_exception_ptr(_Ex )'/>
+<dec f='include/c++/11/bits/exception_ptr.h' l='104' type='std::__exception_ptr::exception_ptr std::make_exception_ptr(_Ex )'/>
+<def f='include/c++/11/bits/exception_ptr.h' l='237' ll='269' type='std::__exception_ptr::exception_ptr std::make_exception_ptr(_Ex __ex)'/>

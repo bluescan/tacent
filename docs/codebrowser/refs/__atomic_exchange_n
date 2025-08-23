@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/atomic_base.h' l='506' u='c' c='_ZNSt13__atomic_base8exchangeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='514' u='c' c='_ZNVSt13__atomic_base8exchangeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='838' u='c' c='_ZNSt13__atomic_baseIPT_E8exchangeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='846' u='c' c='_ZNVSt13__atomic_baseIPT_E8exchangeES1_St12memory_order'/>

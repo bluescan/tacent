@@ -1,0 +1,1005 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>iterator_concepts.h source code [include/c++/11/bits/iterator_concepts.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::__detail::__cond_value_type,std::__detail::__iter_concept_impl,std::__detail::__iter_traits_impl,std::__iterator_traits,std::default_sentinel_t,std::incrementable_traits,std::indirectly_readable_traits,std::projected,std::ranges::__cust_access::_Decay_copy,std::ranges::__cust_imove::_IMove,std::ranges::__cust_iswap::_IterSwap,std::unreachable_sentinel_t "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/iterator_concepts.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='iterator_concepts.h.html'>iterator_concepts.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Concepts and traits for use with iterators -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2019-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/iterator_concepts.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{iterator}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_ITERATOR_CONCEPTS_H">_ITERATOR_CONCEPTS_H</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_ITERATOR_CONCEPTS_H" data-ref="_M/_ITERATOR_CONCEPTS_H">_ITERATOR_CONCEPTS_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#include &lt;concepts&gt;</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;bits/ptr_traits.h&gt;	// to_address</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#include &lt;bits/ranges_cmp.h&gt;	// identity, ranges::less</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#<span data-ppcond="39">if</span> <a class="macro" href="../concepts.html#50" title="202002L" data-ref="_M/__cpp_lib_concepts">__cpp_lib_concepts</a></u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="41">41</th><td>{&nbsp</td></tr>
+<tr><th id="42">42</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td>  <b>struct</b> <a class="type" href="stl_iterator_base_types.h.html#std::input_iterator_tag" title='std::input_iterator_tag' data-ref="std::input_iterator_tag" id="std::input_iterator_tag">input_iterator_tag</a>;&nbsp</td></tr>
+<tr><th id="45">45</th><td>  <b>struct</b> <a class="type" href="stl_iterator_base_types.h.html#std::output_iterator_tag" title='std::output_iterator_tag' data-ref="std::output_iterator_tag" id="std::output_iterator_tag">output_iterator_tag</a>;&nbsp</td></tr>
+<tr><th id="46">46</th><td>  <b>struct</b> <a class="type" href="stl_iterator_base_types.h.html#std::forward_iterator_tag" title='std::forward_iterator_tag' data-ref="std::forward_iterator_tag" id="std::forward_iterator_tag">forward_iterator_tag</a>;&nbsp</td></tr>
+<tr><th id="47">47</th><td>  <b>struct</b> <a class="type" href="stl_iterator_base_types.h.html#std::bidirectional_iterator_tag" title='std::bidirectional_iterator_tag' data-ref="std::bidirectional_iterator_tag" id="std::bidirectional_iterator_tag">bidirectional_iterator_tag</a>;&nbsp</td></tr>
+<tr><th id="48">48</th><td>  <b>struct</b> <a class="type" href="stl_iterator_base_types.h.html#std::random_access_iterator_tag" title='std::random_access_iterator_tag' data-ref="std::random_access_iterator_tag" id="std::random_access_iterator_tag">random_access_iterator_tag</a>;&nbsp</td></tr>
+<tr><th id="49">49</th><td>  <b>struct</b> <a class="type" href="stl_iterator_base_types.h.html#std::contiguous_iterator_tag" title='std::contiguous_iterator_tag' data-ref="std::contiguous_iterator_tag" id="std::contiguous_iterator_tag">contiguous_iterator_tag</a>;&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td>  <b>template</b>&lt;<b>typename</b> _Iterator&gt;&nbsp</td></tr>
+<tr><th id="52">52</th><td>    <b>struct</b> <a class="type" href="stl_iterator_base_types.h.html#std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits" id="std::iterator_traits">iterator_traits</a>;&nbsp</td></tr>
+<tr><th id="53">53</th><td>&nbsp</td></tr>
+<tr><th id="54">54</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt; <b>requires</b> is_object_v&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="55">55</th><td>    <b>struct</b> <a class="type" href="stl_iterator_base_types.h.html#std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits" id="std::iterator_traits">iterator_traits</a>&lt;_Tp*&gt;;&nbsp</td></tr>
+<tr><th id="56">56</th><td>&nbsp</td></tr>
+<tr><th id="57">57</th><td>  <b>template</b>&lt;<b>typename</b> _Iterator, <b>typename</b>&gt;&nbsp</td></tr>
+<tr><th id="58">58</th><td>    <b>struct</b> <a class="type" href="stl_iterator_base_types.h.html#std::__iterator_traits" title='std::__iterator_traits' data-ref="std::__iterator_traits" id="std::__iterator_traits">__iterator_traits</a>;&nbsp</td></tr>
+<tr><th id="59">59</th><td>&nbsp</td></tr>
+<tr><th id="60">60</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="61">61</th><td>  {&nbsp</td></tr>
+<tr><th id="62">62</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="63">63</th><td>      <b>using</b> <dfn class="typedef" id="std::__detail::__with_ref" title='std::__detail::__with_ref' data-type='_Tp &amp;' data-ref="std::__detail::__with_ref">__with_ref</dfn> = _Tp&amp;;&nbsp</td></tr>
+<tr><th id="64">64</th><td>&nbsp</td></tr>
+<tr><th id="65">65</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="66">66</th><td>      <b>concept</b> __can_reference = <b>requires</b> { <b>typename</b> <a class="type" href="#std::__detail::__with_ref" title='std::__detail::__with_ref' data-ref="std::__detail::__with_ref">__with_ref</a>&lt;_Tp&gt;; };&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="69">69</th><td>      <b>concept</b> __dereferenceable = <b>requires</b>(_Tp&amp; <dfn class="local col8 decl" id="2818__t" title='__t' data-type='_Tp &amp;' data-ref="2818__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="70">70</th><td>	{&nbsp</td></tr>
+<tr><th id="71">71</th><td>	  { *<a class="local col8 ref" href="#2818__t" title='__t' data-ref="2818__t">__t</a> } -&gt; __can_reference;&nbsp</td></tr>
+<tr><th id="72">72</th><td>	};&nbsp</td></tr>
+<tr><th id="73">73</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td>&nbsp</td></tr>
+<tr><th id="75">75</th><td>  <b>template</b>&lt;<span class="namespace">__detail::</span>__dereferenceable _Tp&gt;&nbsp</td></tr>
+<tr><th id="76">76</th><td>    <b>using</b> <dfn class="typedef" id="std::iter_reference_t" title='std::iter_reference_t' data-type='decltype(*std::declval&lt;_Tp &amp;&gt;())' data-ref="std::iter_reference_t">iter_reference_t</dfn> = <b>decltype</b>(*<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;());&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td>  <b>namespace</b> <span class="namespace">ranges</span>&nbsp</td></tr>
+<tr><th id="79">79</th><td>  {&nbsp</td></tr>
+<tr><th id="80">80</th><td>    <b>namespace</b> <span class="namespace">__cust_imove</span>&nbsp</td></tr>
+<tr><th id="81">81</th><td>    {&nbsp</td></tr>
+<tr><th id="82">82</th><td>      <em>void</em> <dfn class="decl fn" id="_ZNSt6ranges12__cust_imove9iter_moveEv" title='std::ranges::__cust_imove::iter_move' data-ref="_ZNSt6ranges12__cust_imove9iter_moveEv">iter_move</dfn>();&nbsp</td></tr>
+<tr><th id="83">83</th><td>&nbsp</td></tr>
+<tr><th id="84">84</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="85">85</th><td>	<b>concept</b> __adl_imove&nbsp</td></tr>
+<tr><th id="86">86</th><td>	  = (<span class="namespace">std::__detail::</span>__class_or_enum&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;)&nbsp</td></tr>
+<tr><th id="87">87</th><td>	  &amp;&amp; <b>requires</b>(_Tp&amp;&amp; <dfn class="local col9 decl" id="2819__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2819__t">__t</dfn>) { iter_move(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col9 ref" href="#2819__t" title='__t' data-ref="2819__t">__t</a>)); };&nbsp</td></tr>
+<tr><th id="88">88</th><td>&nbsp</td></tr>
+<tr><th id="89">89</th><td>      <b>struct</b> <dfn class="type def" id="std::ranges::__cust_imove::_IMove" title='std::ranges::__cust_imove::_IMove' data-ref="std::ranges::__cust_imove::_IMove">_IMove</dfn>&nbsp</td></tr>
+<tr><th id="90">90</th><td>      {&nbsp</td></tr>
+<tr><th id="91">91</th><td>      <b>private</b>:&nbsp</td></tr>
+<tr><th id="92">92</th><td>	<b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="93">93</th><td>	  <b>struct</b> <dfn class="type def" id="std::ranges::__cust_imove::_IMove::__result" title='std::ranges::__cust_imove::_IMove::__result' data-ref="std::ranges::__cust_imove::_IMove::__result">__result</dfn>&nbsp</td></tr>
+<tr><th id="94">94</th><td>	  { <b>using</b> <dfn class="typedef" id="std::ranges::__cust_imove::_IMove::__result::type" title='std::ranges::__cust_imove::_IMove::__result::type' data-type='iter_reference_t&lt;_Tp&gt;' data-ref="std::ranges::__cust_imove::_IMove::__result::type">type</dfn> = <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Tp&gt;; };&nbsp</td></tr>
+<tr><th id="95">95</th><td>&nbsp</td></tr>
+<tr><th id="96">96</th><td>	<b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="97">97</th><td>	  <b>requires</b> __adl_imove&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="98">98</th><td>	  <b>struct</b> <dfn class="type def" id="std::ranges::__cust_imove::_IMove::__result" title='std::ranges::__cust_imove::_IMove::__result' data-ref="std::ranges::__cust_imove::_IMove::__result">__result</dfn>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="99">99</th><td>	  { <b>using</b> <dfn class="typedef" id="std::ranges::__cust_imove::_IMove::__result{type-parameter-0-0}::type" title='std::ranges::__cust_imove::_IMove::__result&lt;type-parameter-0-0&gt;::type' data-type='decltype(iter_move(std::declval&lt;_Tp&gt;()))' data-ref="std::ranges::__cust_imove::_IMove::__result{type-parameter-0-0}::type">type</dfn> = <b>decltype</b>(iter_move(<span class="namespace">std::</span>declval&lt;_Tp&gt;())); };&nbsp</td></tr>
+<tr><th id="100">100</th><td>&nbsp</td></tr>
+<tr><th id="101">101</th><td>	<b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="102">102</th><td>	  <b>requires</b> (!__adl_imove&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="103">103</th><td>	  &amp;&amp; is_lvalue_reference_v&lt;iter_reference_t&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="104">104</th><td>	  <b>struct</b> <dfn class="type def" id="std::ranges::__cust_imove::_IMove::__result" title='std::ranges::__cust_imove::_IMove::__result' data-ref="std::ranges::__cust_imove::_IMove::__result">__result</dfn>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="105">105</th><td>	  { <b>using</b> <dfn class="typedef" id="std::ranges::__cust_imove::_IMove::__result{type-parameter-0-0}::type" title='std::ranges::__cust_imove::_IMove::__result&lt;type-parameter-0-0&gt;::type' data-type='remove_reference_t&lt;iter_reference_t&lt;_Tp&gt;&gt; &amp;&amp;' data-ref="std::ranges::__cust_imove::_IMove::__result{type-parameter-0-0}::type">type</dfn> = <a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Tp&gt;&gt;&amp;&amp;; };&nbsp</td></tr>
+<tr><th id="106">106</th><td>&nbsp</td></tr>
+<tr><th id="107">107</th><td>	<b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="108">108</th><td>	  <em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="109">109</th><td>	  <dfn class="decl def fn" id="_ZNSt6ranges12__cust_imove6_IMove11_S_noexceptEv" title='std::ranges::__cust_imove::_IMove::_S_noexcept' data-ref="_ZNSt6ranges12__cust_imove6_IMove11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="110">110</th><td>	  {&nbsp</td></tr>
+<tr><th id="111">111</th><td>	    <b>if</b> <b>constexpr</b> (__adl_imove&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="112">112</th><td>	      <b>return</b> <b>noexcept</b>(iter_move(<span class="namespace">std::</span>declval&lt;_Tp&gt;()));&nbsp</td></tr>
+<tr><th id="113">113</th><td>	    <b>else</b>&nbsp</td></tr>
+<tr><th id="114">114</th><td>	      <b>return</b> <b>noexcept</b>(*<span class="namespace">std::</span>declval&lt;_Tp&gt;());&nbsp</td></tr>
+<tr><th id="115">115</th><td>	  }&nbsp</td></tr>
+<tr><th id="116">116</th><td>&nbsp</td></tr>
+<tr><th id="117">117</th><td>      <b>public</b>:&nbsp</td></tr>
+<tr><th id="118">118</th><td>	<i>// The result type of iter_move(std::declval&lt;_Tp&gt;())</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td>	<b>template</b>&lt;<span class="namespace">std::__detail::</span>__dereferenceable _Tp&gt;&nbsp</td></tr>
+<tr><th id="120">120</th><td>	  <b>using</b> <dfn class="typedef" id="std::ranges::__cust_imove::_IMove::__type" title='std::ranges::__cust_imove::_IMove::__type' data-type='typename __result&lt;_Tp&gt;::type' data-ref="std::ranges::__cust_imove::_IMove::__type">__type</dfn> = <b>typename</b> <a class="type" href="#std::ranges::__cust_imove::_IMove::__result" title='std::ranges::__cust_imove::_IMove::__result' data-ref="std::ranges::__cust_imove::_IMove::__result">__result</a>&lt;_Tp&gt;::type;&nbsp</td></tr>
+<tr><th id="121">121</th><td>&nbsp</td></tr>
+<tr><th id="122">122</th><td>	<b>template</b>&lt;<span class="namespace">std::__detail::</span>__dereferenceable _Tp&gt;&nbsp</td></tr>
+<tr><th id="123">123</th><td>	  <b>constexpr</b> <a class="type" href="#std::ranges::__cust_imove::_IMove::__type" title='std::ranges::__cust_imove::_IMove::__type' data-ref="std::ranges::__cust_imove::_IMove::__type">__type</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="124">124</th><td>	  <dfn class="decl def fn" id="_ZNKSt6ranges12__cust_imove6_IMoveclEOT_" title='std::ranges::__cust_imove::_IMove::operator()' data-ref="_ZNKSt6ranges12__cust_imove6_IMoveclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col0 decl" id="2820__e" title='__e' data-type='_Tp &amp;&amp;' data-ref="2820__e">__e</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="125">125</th><td>	  <b>noexcept</b>(_S_noexcept&lt;_Tp&gt;())&nbsp</td></tr>
+<tr><th id="126">126</th><td>	  {&nbsp</td></tr>
+<tr><th id="127">127</th><td>	    <b>if</b> <b>constexpr</b> (__adl_imove&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="128">128</th><td>	      <b>return</b> iter_move(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col0 ref" href="#2820__e" title='__e' data-ref="2820__e">__e</a>));&nbsp</td></tr>
+<tr><th id="129">129</th><td>	    <b>else</b> <b>if</b> <b>constexpr</b> (is_lvalue_reference_v&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Tp&gt;&gt;)&nbsp</td></tr>
+<tr><th id="130">130</th><td>	      <b>return</b> <b>static_cast</b>&lt;<a class="type" href="#std::ranges::__cust_imove::_IMove::__type" title='std::ranges::__cust_imove::_IMove::__type' data-ref="std::ranges::__cust_imove::_IMove::__type">__type</a>&lt;_Tp&gt;&gt;(*<a class="local col0 ref" href="#2820__e" title='__e' data-ref="2820__e">__e</a>);&nbsp</td></tr>
+<tr><th id="131">131</th><td>	    <b>else</b>&nbsp</td></tr>
+<tr><th id="132">132</th><td>	      <b>return</b> *<a class="local col0 ref" href="#2820__e" title='__e' data-ref="2820__e">__e</a>;&nbsp</td></tr>
+<tr><th id="133">133</th><td>	  }&nbsp</td></tr>
+<tr><th id="134">134</th><td>      };&nbsp</td></tr>
+<tr><th id="135">135</th><td>    } <i>// namespace __cust_imove</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td>&nbsp</td></tr>
+<tr><th id="137">137</th><td>    <b>inline</b> <b>namespace</b> <span class="namespace">__cust</span>&nbsp</td></tr>
+<tr><th id="138">138</th><td>    {&nbsp</td></tr>
+<tr><th id="139">139</th><td>      <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_imove::</span><a class="type" href="#std::ranges::__cust_imove::_IMove" title='std::ranges::__cust_imove::_IMove' data-ref="std::ranges::__cust_imove::_IMove">_IMove</a> <dfn class="decl def" id="std::ranges::iter_move" title='std::ranges::iter_move' data-ref="std::ranges::iter_move">iter_move</dfn>{};&nbsp</td></tr>
+<tr><th id="140">140</th><td>    } <i>// inline namespace __cust</i>&nbsp</td></tr>
+<tr><th id="141">141</th><td>  } <i>// namespace ranges</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td>&nbsp</td></tr>
+<tr><th id="143">143</th><td>  <b>template</b>&lt;<span class="namespace">__detail::</span>__dereferenceable _Tp&gt;&nbsp</td></tr>
+<tr><th id="144">144</th><td>    <b>requires</b> <span class="namespace">__detail::</span>&nbsp</td></tr>
+<tr><th id="145">145</th><td>      __can_reference&lt;<span class="namespace">ranges::__cust_imove::</span><a class="type" href="#std::ranges::__cust_imove::_IMove" title='std::ranges::__cust_imove::_IMove' data-ref="std::ranges::__cust_imove::_IMove">_IMove</a>::<a class="type" href="#std::ranges::__cust_imove::_IMove::__type" title='std::ranges::__cust_imove::_IMove::__type' data-ref="std::ranges::__cust_imove::_IMove::__type">__type</a>&lt;_Tp&amp;&gt;&gt;&nbsp</td></tr>
+<tr><th id="146">146</th><td>    <b>using</b> <dfn class="typedef" id="std::iter_rvalue_reference_t" title='std::iter_rvalue_reference_t' data-type='ranges::__cust_imove::_IMove::__type&lt;_Tp &amp;&gt;' data-ref="std::iter_rvalue_reference_t">iter_rvalue_reference_t</dfn>&nbsp</td></tr>
+<tr><th id="147">147</th><td>      = <span class="namespace">ranges::__cust_imove::</span><a class="type" href="#std::ranges::__cust_imove::_IMove" title='std::ranges::__cust_imove::_IMove' data-ref="std::ranges::__cust_imove::_IMove">_IMove</a>::<a class="type" href="#std::ranges::__cust_imove::_IMove::__type" title='std::ranges::__cust_imove::_IMove::__type' data-ref="std::ranges::__cust_imove::_IMove::__type">__type</a>&lt;_Tp&amp;&gt;;&nbsp</td></tr>
+<tr><th id="148">148</th><td>&nbsp</td></tr>
+<tr><th id="149">149</th><td>  <b>template</b>&lt;<b>typename</b>&gt; <b>struct</b> <dfn class="type def" id="std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</dfn> { };&nbsp</td></tr>
+<tr><th id="150">150</th><td>&nbsp</td></tr>
+<tr><th id="151">151</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt; <b>requires</b> is_object_v&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="152">152</th><td>    <b>struct</b> <dfn class="type def" id="std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</dfn>&lt;_Tp*&gt;&nbsp</td></tr>
+<tr><th id="153">153</th><td>    { <b>using</b> <dfn class="typedef" id="std::incrementable_traits{type-parameter-0-0*}::difference_type" title='std::incrementable_traits&lt;type-parameter-0-0 *&gt;::difference_type' data-type='std::ptrdiff_t' data-ref="std::incrementable_traits{type-parameter-0-0*}::difference_type">difference_type</dfn> = <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::ptrdiff_t" title='std::ptrdiff_t' data-type='long' data-ref="std::ptrdiff_t">ptrdiff_t</a>; };&nbsp</td></tr>
+<tr><th id="154">154</th><td>&nbsp</td></tr>
+<tr><th id="155">155</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="156">156</th><td>    <b>struct</b> <dfn class="type def" id="std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</dfn>&lt;<em>const</em> _Iter&gt;&nbsp</td></tr>
+<tr><th id="157">157</th><td>    : <a class="type" href="#std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</a>&lt;_Iter&gt; { };&nbsp</td></tr>
+<tr><th id="158">158</th><td>&nbsp</td></tr>
+<tr><th id="159">159</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt; <b>requires</b> <b>requires</b> { <b>typename</b> _Tp::difference_type; }&nbsp</td></tr>
+<tr><th id="160">160</th><td>    <b>struct</b> <dfn class="type def" id="std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</dfn>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="161">161</th><td>    { <b>using</b> <dfn class="typedef" id="std::incrementable_traits{type-parameter-0-0}::difference_type" title='std::incrementable_traits&lt;type-parameter-0-0&gt;::difference_type' data-type='typename _Tp::difference_type' data-ref="std::incrementable_traits{type-parameter-0-0}::difference_type">difference_type</dfn> = <b>typename</b> _Tp::difference_type; };&nbsp</td></tr>
+<tr><th id="162">162</th><td>&nbsp</td></tr>
+<tr><th id="163">163</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="164">164</th><td>    <b>requires</b> (!<b>requires</b> { <b>typename</b> _Tp::difference_type; }&nbsp</td></tr>
+<tr><th id="165">165</th><td>	      &amp;&amp; <b>requires</b>(<em>const</em> _Tp&amp; __a, <em>const</em> _Tp&amp; __b)&nbsp</td></tr>
+<tr><th id="166">166</th><td>	      { { __a - __b } -&gt; integral; })&nbsp</td></tr>
+<tr><th id="167">167</th><td>    <b>struct</b> <dfn class="type def" id="std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</dfn>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="168">168</th><td>    {&nbsp</td></tr>
+<tr><th id="169">169</th><td>      <b>using</b> <dfn class="typedef" id="std::incrementable_traits{type-parameter-0-0}::difference_type" title='std::incrementable_traits&lt;type-parameter-0-0&gt;::difference_type' data-type='make_signed_t&lt;decltype(std::declval&lt;_Tp&gt;() - std::declval&lt;_Tp&gt;())&gt;' data-ref="std::incrementable_traits{type-parameter-0-0}::difference_type">difference_type</dfn>&nbsp</td></tr>
+<tr><th id="170">170</th><td>	= <a class="type" href="../type_traits.html#std::make_signed_t" title='std::make_signed_t' data-ref="std::make_signed_t">make_signed_t</a>&lt;<b>decltype</b>(<span class="namespace">std::</span>declval&lt;_Tp&gt;() - <span class="namespace">std::</span>declval&lt;_Tp&gt;())&gt;;&nbsp</td></tr>
+<tr><th id="171">171</th><td>    };&nbsp</td></tr>
+<tr><th id="172">172</th><td>&nbsp</td></tr>
+<tr><th id="173">173</th><td><u>#<span data-ppcond="173">if</span> defined <span class="macro" data-ref="_M/__STRICT_ANSI__">__STRICT_ANSI__</span> &amp;&amp; defined <span class="macro" data-ref="_M/__SIZEOF_INT128__">__SIZEOF_INT128__</span></u>&nbsp</td></tr>
+<tr><th id="174">174</th><td>  <i>// __int128 is incrementable even if !integral&lt;__int128&gt;</i>&nbsp</td></tr>
+<tr><th id="175">175</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="176">176</th><td>    <b>struct</b> <dfn class="type def" id="std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits"><a class="type" href="#std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</a></dfn>&lt;<b>__int128</b>&gt;&nbsp</td></tr>
+<tr><th id="177">177</th><td>    { <b>using</b> <dfn class="typedef" id="std::incrementable_traits{__int128}::difference_type" title='std::incrementable_traits&lt;__int128&gt;::difference_type' data-type='__int128' data-ref="std::incrementable_traits{__int128}::difference_type">difference_type</dfn> = <b>__int128</b>; };&nbsp</td></tr>
+<tr><th id="178">178</th><td>&nbsp</td></tr>
+<tr><th id="179">179</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="180">180</th><td>    <b>struct</b> <dfn class="type def" id="std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits"><a class="type" href="#std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</a></dfn>&lt;<em>unsigned</em> <b>__int128</b>&gt;&nbsp</td></tr>
+<tr><th id="181">181</th><td>    { <b>using</b> <dfn class="typedef" id="std::incrementable_traits{unsigned__int128}::difference_type" title='std::incrementable_traits&lt;unsigned __int128&gt;::difference_type' data-type='__int128' data-ref="std::incrementable_traits{unsigned__int128}::difference_type">difference_type</dfn> = <b>__int128</b>; };&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>#<span data-ppcond="173">endif</span></u>&nbsp</td></tr>
+<tr><th id="183">183</th><td>&nbsp</td></tr>
+<tr><th id="184">184</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="185">185</th><td>  {&nbsp</td></tr>
+<tr><th id="186">186</th><td>    <i>// An iterator such that iterator_traits&lt;_Iter&gt; names a specialization</i>&nbsp</td></tr>
+<tr><th id="187">187</th><td><i>    // generated from the primary template.</i>&nbsp</td></tr>
+<tr><th id="188">188</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="189">189</th><td>      <b>concept</b> __primary_traits_iter&nbsp</td></tr>
+<tr><th id="190">190</th><td>	= <b>__is_base_of</b>(<a class="type" href="#std::__iterator_traits" title='std::__iterator_traits' data-ref="std::__iterator_traits">__iterator_traits</a>&lt;_Iter, <em>void</em>&gt;, <a class="type" href="cpp_type_traits.h.html#std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits">iterator_traits</a>&lt;_Iter&gt;);&nbsp</td></tr>
+<tr><th id="191">191</th><td>&nbsp</td></tr>
+<tr><th id="192">192</th><td>    <b>template</b>&lt;<b>typename</b> _Iter, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="193">193</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__iter_traits_impl" title='std::__detail::__iter_traits_impl' data-ref="std::__detail::__iter_traits_impl">__iter_traits_impl</dfn>&nbsp</td></tr>
+<tr><th id="194">194</th><td>      { <b>using</b> <dfn class="typedef" id="std::__detail::__iter_traits_impl::type" title='std::__detail::__iter_traits_impl::type' data-type='iterator_traits&lt;_Iter&gt;' data-ref="std::__detail::__iter_traits_impl::type">type</dfn> = <a class="type" href="cpp_type_traits.h.html#std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits">iterator_traits</a>&lt;_Iter&gt;; };&nbsp</td></tr>
+<tr><th id="195">195</th><td>&nbsp</td></tr>
+<tr><th id="196">196</th><td>    <b>template</b>&lt;<b>typename</b> _Iter, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="197">197</th><td>      <b>requires</b> __primary_traits_iter&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="198">198</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__iter_traits_impl" title='std::__detail::__iter_traits_impl' data-ref="std::__detail::__iter_traits_impl">__iter_traits_impl</dfn>&lt;_Iter, _Tp&gt;&nbsp</td></tr>
+<tr><th id="199">199</th><td>      { <b>using</b> <dfn class="typedef" id="std::__detail::__iter_traits_impl{type-parameter-0-0,type-parameter-0-1}::type" title='std::__detail::__iter_traits_impl&lt;type-parameter-0-0, type-parameter-0-1&gt;::type' data-type='_Tp' data-ref="std::__detail::__iter_traits_impl{type-parameter-0-0,type-parameter-0-1}::type">type</dfn> = _Tp; };&nbsp</td></tr>
+<tr><th id="200">200</th><td>&nbsp</td></tr>
+<tr><th id="201">201</th><td>    <i>// ITER_TRAITS</i>&nbsp</td></tr>
+<tr><th id="202">202</th><td>    <b>template</b>&lt;<b>typename</b> _Iter, <b>typename</b> _Tp = _Iter&gt;&nbsp</td></tr>
+<tr><th id="203">203</th><td>      <b>using</b> <dfn class="typedef" id="std::__detail::__iter_traits" title='std::__detail::__iter_traits' data-type='typename __iter_traits_impl&lt;_Iter, _Tp&gt;::type' data-ref="std::__detail::__iter_traits">__iter_traits</dfn> = <b>typename</b> <a class="type" href="#std::__detail::__iter_traits_impl" title='std::__detail::__iter_traits_impl' data-ref="std::__detail::__iter_traits_impl">__iter_traits_impl</a>&lt;_Iter, _Tp&gt;::type;&nbsp</td></tr>
+<tr><th id="204">204</th><td>&nbsp</td></tr>
+<tr><th id="205">205</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="206">206</th><td>      <b>using</b> <dfn class="typedef" id="std::__detail::__iter_diff_t" title='std::__detail::__iter_diff_t' data-type='typename __iter_traits&lt;_Tp, incrementable_traits&lt;_Tp&gt;&gt;::difference_type' data-ref="std::__detail::__iter_diff_t">__iter_diff_t</dfn> = <b>typename</b>&nbsp</td></tr>
+<tr><th id="207">207</th><td>	<a class="type" href="#std::__detail::__iter_traits" title='std::__detail::__iter_traits' data-ref="std::__detail::__iter_traits">__iter_traits</a>&lt;_Tp, <a class="type" href="#std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</a>&lt;_Tp&gt;&gt;::difference_type;&nbsp</td></tr>
+<tr><th id="208">208</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="209">209</th><td>&nbsp</td></tr>
+<tr><th id="210">210</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="211">211</th><td>    <b>using</b> <dfn class="typedef" id="std::iter_difference_t" title='std::iter_difference_t' data-type='__detail::__iter_diff_t&lt;remove_cvref_t&lt;_Tp&gt;&gt;' data-ref="std::iter_difference_t">iter_difference_t</dfn> = <span class="namespace">__detail::</span><a class="type" href="#std::__detail::__iter_diff_t" title='std::__detail::__iter_diff_t' data-ref="std::__detail::__iter_diff_t">__iter_diff_t</a>&lt;<a class="type" href="../type_traits.html#std::remove_cvref_t" title='std::remove_cvref_t' data-ref="std::remove_cvref_t">remove_cvref_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="212">212</th><td>&nbsp</td></tr>
+<tr><th id="213">213</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="214">214</th><td>  {&nbsp</td></tr>
+<tr><th id="215">215</th><td>    <b>template</b>&lt;<b>typename</b>&gt; <b>struct</b> <dfn class="type def" id="std::__detail::__cond_value_type" title='std::__detail::__cond_value_type' data-ref="std::__detail::__cond_value_type">__cond_value_type</dfn> { };&nbsp</td></tr>
+<tr><th id="216">216</th><td>&nbsp</td></tr>
+<tr><th id="217">217</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt; <b>requires</b> is_object_v&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="218">218</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__cond_value_type" title='std::__detail::__cond_value_type' data-ref="std::__detail::__cond_value_type">__cond_value_type</dfn>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="219">219</th><td>      { <b>using</b> <dfn class="typedef" id="std::__detail::__cond_value_type{type-parameter-0-0}::value_type" title='std::__detail::__cond_value_type&lt;type-parameter-0-0&gt;::value_type' data-type='remove_cv_t&lt;_Tp&gt;' data-ref="std::__detail::__cond_value_type{type-parameter-0-0}::value_type">value_type</dfn> = <a class="type" href="../type_traits.html#std::remove_cv_t" title='std::remove_cv_t' data-ref="std::remove_cv_t">remove_cv_t</a>&lt;_Tp&gt;; };&nbsp</td></tr>
+<tr><th id="220">220</th><td>&nbsp</td></tr>
+<tr><th id="221">221</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="222">222</th><td>      <b>concept</b> __has_member_value_type&nbsp</td></tr>
+<tr><th id="223">223</th><td>	= <b>requires</b> { <b>typename</b> _Tp::value_type; };&nbsp</td></tr>
+<tr><th id="224">224</th><td>&nbsp</td></tr>
+<tr><th id="225">225</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="226">226</th><td>      <b>concept</b> __has_member_element_type&nbsp</td></tr>
+<tr><th id="227">227</th><td>	= <b>requires</b> { <b>typename</b> _Tp::element_type; };&nbsp</td></tr>
+<tr><th id="228">228</th><td>&nbsp</td></tr>
+<tr><th id="229">229</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="230">230</th><td>&nbsp</td></tr>
+<tr><th id="231">231</th><td>  <b>template</b>&lt;<b>typename</b>&gt; <b>struct</b> <dfn class="type def" id="std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</dfn> { };&nbsp</td></tr>
+<tr><th id="232">232</th><td>&nbsp</td></tr>
+<tr><th id="233">233</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="234">234</th><td>    <b>struct</b> <dfn class="type def" id="std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</dfn>&lt;_Tp*&gt;&nbsp</td></tr>
+<tr><th id="235">235</th><td>    : <span class="namespace">__detail::</span><a class="type" href="#std::__detail::__cond_value_type" title='std::__detail::__cond_value_type' data-ref="std::__detail::__cond_value_type">__cond_value_type</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="236">236</th><td>    { };&nbsp</td></tr>
+<tr><th id="237">237</th><td>&nbsp</td></tr>
+<tr><th id="238">238</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt; <b>requires</b> is_array_v&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="239">239</th><td>    <b>struct</b> <dfn class="type def" id="std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</dfn>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="240">240</th><td>    { <b>using</b> <dfn class="typedef" id="std::indirectly_readable_traits{type-parameter-0-0}::value_type" title='std::indirectly_readable_traits&lt;type-parameter-0-0&gt;::value_type' data-type='remove_cv_t&lt;remove_extent_t&lt;_Iter&gt;&gt;' data-ref="std::indirectly_readable_traits{type-parameter-0-0}::value_type">value_type</dfn> = <a class="type" href="../type_traits.html#std::remove_cv_t" title='std::remove_cv_t' data-ref="std::remove_cv_t">remove_cv_t</a>&lt;<a class="type" href="../type_traits.html#std::remove_extent_t" title='std::remove_extent_t' data-ref="std::remove_extent_t">remove_extent_t</a>&lt;_Iter&gt;&gt;; };&nbsp</td></tr>
+<tr><th id="241">241</th><td>&nbsp</td></tr>
+<tr><th id="242">242</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="243">243</th><td>    <b>struct</b> <dfn class="type def" id="std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</dfn>&lt;<em>const</em> _Iter&gt;&nbsp</td></tr>
+<tr><th id="244">244</th><td>    : <a class="type" href="#std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</a>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="245">245</th><td>    { };&nbsp</td></tr>
+<tr><th id="246">246</th><td>&nbsp</td></tr>
+<tr><th id="247">247</th><td>  <b>template</b>&lt;<span class="namespace">__detail::</span>__has_member_value_type _Tp&gt;&nbsp</td></tr>
+<tr><th id="248">248</th><td>    <b>struct</b> <dfn class="type def" id="std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</dfn>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="249">249</th><td>    : <span class="namespace">__detail::</span><a class="type" href="#std::__detail::__cond_value_type" title='std::__detail::__cond_value_type' data-ref="std::__detail::__cond_value_type">__cond_value_type</a>&lt;<b>typename</b> _Tp::value_type&gt;&nbsp</td></tr>
+<tr><th id="250">250</th><td>    { };&nbsp</td></tr>
+<tr><th id="251">251</th><td>&nbsp</td></tr>
+<tr><th id="252">252</th><td>  <b>template</b>&lt;<span class="namespace">__detail::</span>__has_member_element_type _Tp&gt;&nbsp</td></tr>
+<tr><th id="253">253</th><td>    <b>struct</b> <dfn class="type def" id="std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</dfn>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="254">254</th><td>    : <span class="namespace">__detail::</span><a class="type" href="#std::__detail::__cond_value_type" title='std::__detail::__cond_value_type' data-ref="std::__detail::__cond_value_type">__cond_value_type</a>&lt;<b>typename</b> _Tp::element_type&gt;&nbsp</td></tr>
+<tr><th id="255">255</th><td>    { };&nbsp</td></tr>
+<tr><th id="256">256</th><td>&nbsp</td></tr>
+<tr><th id="257">257</th><td>  <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="258">258</th><td><i>  // 3446. indirectly_readable_traits ambiguity for types with both [...]</i>&nbsp</td></tr>
+<tr><th id="259">259</th><td>  <b>template</b>&lt;<span class="namespace">__detail::</span>__has_member_value_type _Tp&gt;&nbsp</td></tr>
+<tr><th id="260">260</th><td>    <b>requires</b> __detail::__has_member_element_type&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="261">261</th><td>    &amp;&amp; same_as&lt;remove_cv_t&lt;<b>typename</b> _Tp::element_type&gt;,&nbsp</td></tr>
+<tr><th id="262">262</th><td>	       remove_cv_t&lt;<b>typename</b> _Tp::value_type&gt;&gt;&nbsp</td></tr>
+<tr><th id="263">263</th><td>    <b>struct</b> <dfn class="type def" id="std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</dfn>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="264">264</th><td>    : <span class="namespace">__detail::</span><a class="type" href="#std::__detail::__cond_value_type" title='std::__detail::__cond_value_type' data-ref="std::__detail::__cond_value_type">__cond_value_type</a>&lt;<b>typename</b> _Tp::value_type&gt;&nbsp</td></tr>
+<tr><th id="265">265</th><td>    { };&nbsp</td></tr>
+<tr><th id="266">266</th><td>&nbsp</td></tr>
+<tr><th id="267">267</th><td>  <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="268">268</th><td><i>  // 3541. indirectly_readable_traits should be SFINAE-friendly for all types</i>&nbsp</td></tr>
+<tr><th id="269">269</th><td>  <b>template</b>&lt;<span class="namespace">__detail::</span>__has_member_value_type _Tp&gt;&nbsp</td></tr>
+<tr><th id="270">270</th><td>    <b>requires</b> __detail::__has_member_element_type&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="271">271</th><td>    <b>struct</b> <dfn class="type def" id="std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</dfn>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="272">272</th><td>    { };&nbsp</td></tr>
+<tr><th id="273">273</th><td>&nbsp</td></tr>
+<tr><th id="274">274</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="275">275</th><td>  {&nbsp</td></tr>
+<tr><th id="276">276</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="277">277</th><td>      <b>using</b> <dfn class="typedef" id="std::__detail::__iter_value_t" title='std::__detail::__iter_value_t' data-type='typename __iter_traits&lt;_Tp, indirectly_readable_traits&lt;_Tp&gt;&gt;::value_type' data-ref="std::__detail::__iter_value_t">__iter_value_t</dfn> = <b>typename</b>&nbsp</td></tr>
+<tr><th id="278">278</th><td>	<a class="type" href="#std::__detail::__iter_traits" title='std::__detail::__iter_traits' data-ref="std::__detail::__iter_traits">__iter_traits</a>&lt;_Tp, <a class="type" href="#std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</a>&lt;_Tp&gt;&gt;::value_type;&nbsp</td></tr>
+<tr><th id="279">279</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="280">280</th><td>&nbsp</td></tr>
+<tr><th id="281">281</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="282">282</th><td>    <b>using</b> <dfn class="typedef" id="std::iter_value_t" title='std::iter_value_t' data-type='__detail::__iter_value_t&lt;remove_cvref_t&lt;_Tp&gt;&gt;' data-ref="std::iter_value_t">iter_value_t</dfn> = <span class="namespace">__detail::</span><a class="type" href="#std::__detail::__iter_value_t" title='std::__detail::__iter_value_t' data-ref="std::__detail::__iter_value_t">__iter_value_t</a>&lt;<a class="type" href="../type_traits.html#std::remove_cvref_t" title='std::remove_cvref_t' data-ref="std::remove_cvref_t">remove_cvref_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="283">283</th><td>&nbsp</td></tr>
+<tr><th id="284">284</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="285">285</th><td>  {&nbsp</td></tr>
+<tr><th id="286">286</th><td>    <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="287">287</th><td><i>    // 3420. cpp17-iterator should check [type] looks like an iterator first</i>&nbsp</td></tr>
+<tr><th id="288">288</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="289">289</th><td>      <b>concept</b> __cpp17_iterator = <b>requires</b>(_Iter <dfn class="local col1 decl" id="2821__it" title='__it' data-type='_Iter' data-ref="2821__it">__it</dfn>)&nbsp</td></tr>
+<tr><th id="290">290</th><td>	{&nbsp</td></tr>
+<tr><th id="291">291</th><td>	  { *<a class="local col1 ref" href="#2821__it" title='__it' data-ref="2821__it">__it</a> } -&gt; __can_reference;&nbsp</td></tr>
+<tr><th id="292">292</th><td>	  { ++<a class="local col1 ref" href="#2821__it" title='__it' data-ref="2821__it">__it</a> } -&gt; same_as&lt;_Iter&amp;&gt;;&nbsp</td></tr>
+<tr><th id="293">293</th><td>	  { *<a class="local col1 ref" href="#2821__it" title='__it' data-ref="2821__it">__it</a>++ } -&gt; __can_reference;&nbsp</td></tr>
+<tr><th id="294">294</th><td>	} &amp;&amp; copyable&lt;_Iter&gt;;&nbsp</td></tr>
+<tr><th id="295">295</th><td>&nbsp</td></tr>
+<tr><th id="296">296</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="297">297</th><td>      <b>concept</b> __cpp17_input_iterator = __cpp17_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="298">298</th><td>	&amp;&amp; equality_comparable&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="299">299</th><td>	&amp;&amp; <b>requires</b>(_Iter <dfn class="local col2 decl" id="2822__it" title='__it' data-type='_Iter' data-ref="2822__it">__it</dfn>)&nbsp</td></tr>
+<tr><th id="300">300</th><td>	{&nbsp</td></tr>
+<tr><th id="301">301</th><td>	  <b>typename</b> <a class="type" href="#std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</a>&lt;_Iter&gt;::difference_type;&nbsp</td></tr>
+<tr><th id="302">302</th><td>	  <b>typename</b> <a class="type" href="#std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</a>&lt;_Iter&gt;::value_type;&nbsp</td></tr>
+<tr><th id="303">303</th><td>	  <b>typename</b> <a class="type" href="../type_traits.html#std::common_reference_t" title='std::common_reference_t' data-ref="std::common_reference_t">common_reference_t</a>&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&amp;&amp;,&nbsp</td></tr>
+<tr><th id="304">304</th><td>		   <b>typename</b> <a class="type" href="#std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</a>&lt;_Iter&gt;::value_type&amp;&gt;;&nbsp</td></tr>
+<tr><th id="305">305</th><td>	  <b>typename</b> <a class="type" href="../type_traits.html#std::common_reference_t" title='std::common_reference_t' data-ref="std::common_reference_t">common_reference_t</a>&lt;<b>decltype</b>(*<a class="local col2 ref" href="#2822__it" title='__it' data-ref="2822__it">__it</a>++)&amp;&amp;,&nbsp</td></tr>
+<tr><th id="306">306</th><td>		   <b>typename</b> <a class="type" href="#std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</a>&lt;_Iter&gt;::value_type&amp;&gt;;&nbsp</td></tr>
+<tr><th id="307">307</th><td>	  <b>requires</b> signed_integral&lt;&nbsp</td></tr>
+<tr><th id="308">308</th><td>	    <b>typename</b> <a class="type" href="#std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</a>&lt;_Iter&gt;::difference_type&gt;;&nbsp</td></tr>
+<tr><th id="309">309</th><td>	};&nbsp</td></tr>
+<tr><th id="310">310</th><td>&nbsp</td></tr>
+<tr><th id="311">311</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="312">312</th><td>      <b>concept</b> __cpp17_fwd_iterator = __cpp17_input_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="313">313</th><td>	&amp;&amp; constructible_from&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="314">314</th><td>	&amp;&amp; is_lvalue_reference_v&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;&nbsp</td></tr>
+<tr><th id="315">315</th><td>	&amp;&amp; same_as&lt;<a class="type" href="../type_traits.html#std::remove_cvref_t" title='std::remove_cvref_t' data-ref="std::remove_cvref_t">remove_cvref_t</a>&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;,&nbsp</td></tr>
+<tr><th id="316">316</th><td>		   <b>typename</b> <a class="type" href="#std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</a>&lt;_Iter&gt;::value_type&gt;&nbsp</td></tr>
+<tr><th id="317">317</th><td>	&amp;&amp; <b>requires</b>(_Iter <dfn class="local col3 decl" id="2823__it" title='__it' data-type='_Iter' data-ref="2823__it">__it</dfn>)&nbsp</td></tr>
+<tr><th id="318">318</th><td>	{&nbsp</td></tr>
+<tr><th id="319">319</th><td>	  {  <a class="local col3 ref" href="#2823__it" title='__it' data-ref="2823__it">__it</a>++ } -&gt; convertible_to&lt;<em>const</em> _Iter&amp;&gt;;&nbsp</td></tr>
+<tr><th id="320">320</th><td>	  { *<a class="local col3 ref" href="#2823__it" title='__it' data-ref="2823__it">__it</a>++ } -&gt; same_as&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;;&nbsp</td></tr>
+<tr><th id="321">321</th><td>	};&nbsp</td></tr>
+<tr><th id="322">322</th><td>&nbsp</td></tr>
+<tr><th id="323">323</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="324">324</th><td>      <b>concept</b> __cpp17_bidi_iterator = __cpp17_fwd_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="325">325</th><td>	&amp;&amp; <b>requires</b>(_Iter <dfn class="local col4 decl" id="2824__it" title='__it' data-type='_Iter' data-ref="2824__it">__it</dfn>)&nbsp</td></tr>
+<tr><th id="326">326</th><td>	{&nbsp</td></tr>
+<tr><th id="327">327</th><td>	  {  --<a class="local col4 ref" href="#2824__it" title='__it' data-ref="2824__it">__it</a> } -&gt; same_as&lt;_Iter&amp;&gt;;&nbsp</td></tr>
+<tr><th id="328">328</th><td>	  {  <a class="local col4 ref" href="#2824__it" title='__it' data-ref="2824__it">__it</a>-- } -&gt; convertible_to&lt;<em>const</em> _Iter&amp;&gt;;&nbsp</td></tr>
+<tr><th id="329">329</th><td>	  { *<a class="local col4 ref" href="#2824__it" title='__it' data-ref="2824__it">__it</a>-- } -&gt; same_as&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;;&nbsp</td></tr>
+<tr><th id="330">330</th><td>	};&nbsp</td></tr>
+<tr><th id="331">331</th><td>&nbsp</td></tr>
+<tr><th id="332">332</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="333">333</th><td>      <b>concept</b> __cpp17_randacc_iterator = __cpp17_bidi_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="334">334</th><td>	&amp;&amp; totally_ordered&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="335">335</th><td>	&amp;&amp; <b>requires</b>(_Iter <dfn class="local col5 decl" id="2825__it" title='__it' data-type='_Iter' data-ref="2825__it">__it</dfn>,&nbsp</td></tr>
+<tr><th id="336">336</th><td>		    <b>typename</b> <a class="type" href="#std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</a>&lt;_Iter&gt;::difference_type <dfn class="local col6 decl" id="2826__n" title='__n' data-type='typename incrementable_traits&lt;_Iter&gt;::difference_type' data-ref="2826__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="337">337</th><td>	{&nbsp</td></tr>
+<tr><th id="338">338</th><td>	  { <a class="local col5 ref" href="#2825__it" title='__it' data-ref="2825__it">__it</a> += <a class="local col6 ref" href="#2826__n" title='__n' data-ref="2826__n">__n</a> } -&gt; same_as&lt;_Iter&amp;&gt;;&nbsp</td></tr>
+<tr><th id="339">339</th><td>	  { <a class="local col5 ref" href="#2825__it" title='__it' data-ref="2825__it">__it</a> -= <a class="local col6 ref" href="#2826__n" title='__n' data-ref="2826__n">__n</a> } -&gt; same_as&lt;_Iter&amp;&gt;;&nbsp</td></tr>
+<tr><th id="340">340</th><td>	  { <a class="local col5 ref" href="#2825__it" title='__it' data-ref="2825__it">__it</a> +  <a class="local col6 ref" href="#2826__n" title='__n' data-ref="2826__n">__n</a> } -&gt; same_as&lt;_Iter&gt;;&nbsp</td></tr>
+<tr><th id="341">341</th><td>	  { <a class="local col6 ref" href="#2826__n" title='__n' data-ref="2826__n">__n</a> +  <a class="local col5 ref" href="#2825__it" title='__it' data-ref="2825__it">__it</a> } -&gt; same_as&lt;_Iter&gt;;&nbsp</td></tr>
+<tr><th id="342">342</th><td>	  { <a class="local col5 ref" href="#2825__it" title='__it' data-ref="2825__it">__it</a> -  <a class="local col6 ref" href="#2826__n" title='__n' data-ref="2826__n">__n</a> } -&gt; same_as&lt;_Iter&gt;;&nbsp</td></tr>
+<tr><th id="343">343</th><td>	  { <a class="local col5 ref" href="#2825__it" title='__it' data-ref="2825__it">__it</a> -  <a class="local col5 ref" href="#2825__it" title='__it' data-ref="2825__it">__it</a> } -&gt; same_as&lt;<b>decltype</b>(<a class="local col6 ref" href="#2826__n" title='__n' data-ref="2826__n">__n</a>)&gt;;&nbsp</td></tr>
+<tr><th id="344">344</th><td>	  {  <a class="local col5 ref" href="#2825__it" title='__it' data-ref="2825__it">__it</a>[<a class="local col6 ref" href="#2826__n" title='__n' data-ref="2826__n">__n</a>]  } -&gt; convertible_to&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;;&nbsp</td></tr>
+<tr><th id="345">345</th><td>	};&nbsp</td></tr>
+<tr><th id="346">346</th><td>&nbsp</td></tr>
+<tr><th id="347">347</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="348">348</th><td>      <b>concept</b> __iter_with_nested_types = <b>requires</b> {&nbsp</td></tr>
+<tr><th id="349">349</th><td>	<b>typename</b> _Iter::iterator_category;&nbsp</td></tr>
+<tr><th id="350">350</th><td>	<b>typename</b> _Iter::value_type;&nbsp</td></tr>
+<tr><th id="351">351</th><td>	<b>typename</b> _Iter::difference_type;&nbsp</td></tr>
+<tr><th id="352">352</th><td>	<b>typename</b> _Iter::reference;&nbsp</td></tr>
+<tr><th id="353">353</th><td>      };&nbsp</td></tr>
+<tr><th id="354">354</th><td>&nbsp</td></tr>
+<tr><th id="355">355</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="356">356</th><td>      <b>concept</b> __iter_without_nested_types = !__iter_with_nested_types&lt;_Iter&gt;;&nbsp</td></tr>
+<tr><th id="357">357</th><td>&nbsp</td></tr>
+<tr><th id="358">358</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="359">359</th><td>      <b>concept</b> __iter_without_category&nbsp</td></tr>
+<tr><th id="360">360</th><td>	= !<b>requires</b> { <b>typename</b> _Iter::iterator_category; };&nbsp</td></tr>
+<tr><th id="361">361</th><td>&nbsp</td></tr>
+<tr><th id="362">362</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="363">363</th><td>&nbsp</td></tr>
+<tr><th id="364">364</th><td>  <b>template</b>&lt;<b>typename</b> _Iterator&gt;&nbsp</td></tr>
+<tr><th id="365">365</th><td>    <b>requires</b> __detail::__iter_with_nested_types&lt;_Iterator&gt;&nbsp</td></tr>
+<tr><th id="366">366</th><td>    <b>struct</b> <dfn class="type def" id="std::__iterator_traits" title='std::__iterator_traits' data-ref="std::__iterator_traits">__iterator_traits</dfn>&lt;_Iterator, <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="367">367</th><td>    {&nbsp</td></tr>
+<tr><th id="368">368</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="369">369</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="370">370</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__ptr" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ptr' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ptr">__ptr</dfn>&nbsp</td></tr>
+<tr><th id="371">371</th><td>	{ <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__ptr::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ptr::type' data-type='void' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ptr::type">type</dfn> = <em>void</em>; };&nbsp</td></tr>
+<tr><th id="372">372</th><td>&nbsp</td></tr>
+<tr><th id="373">373</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt; <b>requires</b> <b>requires</b> { <b>typename</b> _Iter::pointer; }&nbsp</td></tr>
+<tr><th id="374">374</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__ptr" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ptr' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ptr">__ptr</dfn>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="375">375</th><td>	{ <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__ptr{type-parameter-1-0}::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ptr&lt;type-parameter-1-0&gt;::type' data-type='typename _Iter::pointer' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ptr{type-parameter-1-0}::type">type</dfn> = <b>typename</b> _Iter::pointer; };&nbsp</td></tr>
+<tr><th id="376">376</th><td>&nbsp</td></tr>
+<tr><th id="377">377</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="378">378</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::iterator_category" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::iterator_category' data-type='typename _Iterator::iterator_category' data-ref="std::__iterator_traits{type-parameter-0-0,void}::iterator_category">iterator_category</dfn> = <b>typename</b> _Iterator::iterator_category;&nbsp</td></tr>
+<tr><th id="379">379</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::value_type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::value_type' data-type='typename _Iterator::value_type' data-ref="std::__iterator_traits{type-parameter-0-0,void}::value_type">value_type</dfn>	      = <b>typename</b> _Iterator::value_type;&nbsp</td></tr>
+<tr><th id="380">380</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::difference_type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::difference_type' data-type='typename _Iterator::difference_type' data-ref="std::__iterator_traits{type-parameter-0-0,void}::difference_type">difference_type</dfn>   = <b>typename</b> _Iterator::difference_type;&nbsp</td></tr>
+<tr><th id="381">381</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::pointer" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::pointer' data-type='typename __ptr&lt;_Iterator&gt;::type' data-ref="std::__iterator_traits{type-parameter-0-0,void}::pointer">pointer</dfn>	      = <b>typename</b> <a class="type" href="#std::__iterator_traits{type-parameter-0-0,void}::__ptr" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ptr' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ptr">__ptr</a>&lt;_Iterator&gt;::type;&nbsp</td></tr>
+<tr><th id="382">382</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::reference" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::reference' data-type='typename _Iterator::reference' data-ref="std::__iterator_traits{type-parameter-0-0,void}::reference">reference</dfn>	      = <b>typename</b> _Iterator::reference;&nbsp</td></tr>
+<tr><th id="383">383</th><td>    };&nbsp</td></tr>
+<tr><th id="384">384</th><td>&nbsp</td></tr>
+<tr><th id="385">385</th><td>  <b>template</b>&lt;<b>typename</b> _Iterator&gt;&nbsp</td></tr>
+<tr><th id="386">386</th><td>    <b>requires</b> __detail::__iter_without_nested_types&lt;_Iterator&gt;&nbsp</td></tr>
+<tr><th id="387">387</th><td>	      &amp;&amp; __detail::__cpp17_input_iterator&lt;_Iterator&gt;&nbsp</td></tr>
+<tr><th id="388">388</th><td>    <b>struct</b> <dfn class="type def" id="std::__iterator_traits" title='std::__iterator_traits' data-ref="std::__iterator_traits">__iterator_traits</dfn>&lt;_Iterator, <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="389">389</th><td>    {&nbsp</td></tr>
+<tr><th id="390">390</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="391">391</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="392">392</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__cat" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__cat' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__cat">__cat</dfn>&nbsp</td></tr>
+<tr><th id="393">393</th><td>	{ <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__cat::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__cat::type' data-type='std::input_iterator_tag' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__cat::type">type</dfn> = <a class="type" href="stl_iterator_base_types.h.html#std::input_iterator_tag" title='std::input_iterator_tag' data-ref="std::input_iterator_tag">input_iterator_tag</a>; };&nbsp</td></tr>
+<tr><th id="394">394</th><td>&nbsp</td></tr>
+<tr><th id="395">395</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="396">396</th><td>	<b>requires</b> <b>requires</b> { <b>typename</b> _Iter::iterator_category; }&nbsp</td></tr>
+<tr><th id="397">397</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__cat" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__cat' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__cat">__cat</dfn>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="398">398</th><td>	{ <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__cat{type-parameter-1-0}::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__cat&lt;type-parameter-1-0&gt;::type' data-type='typename _Iter::iterator_category' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__cat{type-parameter-1-0}::type">type</dfn> = <b>typename</b> _Iter::iterator_category; };&nbsp</td></tr>
+<tr><th id="399">399</th><td>&nbsp</td></tr>
+<tr><th id="400">400</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="401">401</th><td>	<b>requires</b> __detail::__iter_without_category&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="402">402</th><td>		  &amp;&amp; __detail::__cpp17_randacc_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="403">403</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__cat" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__cat' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__cat">__cat</dfn>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="404">404</th><td>	{ <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__cat{type-parameter-1-0}::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__cat&lt;type-parameter-1-0&gt;::type' data-type='std::random_access_iterator_tag' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__cat{type-parameter-1-0}::type">type</dfn> = <a class="type" href="stl_iterator_base_types.h.html#std::random_access_iterator_tag" title='std::random_access_iterator_tag' data-ref="std::random_access_iterator_tag">random_access_iterator_tag</a>; };&nbsp</td></tr>
+<tr><th id="405">405</th><td>&nbsp</td></tr>
+<tr><th id="406">406</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="407">407</th><td>	<b>requires</b> __detail::__iter_without_category&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="408">408</th><td>		  &amp;&amp; __detail::__cpp17_bidi_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="409">409</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__cat" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__cat' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__cat">__cat</dfn>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="410">410</th><td>	{ <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__cat{type-parameter-1-0}::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__cat&lt;type-parameter-1-0&gt;::type' data-type='std::bidirectional_iterator_tag' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__cat{type-parameter-1-0}::type">type</dfn> = <a class="type" href="stl_iterator_base_types.h.html#std::bidirectional_iterator_tag" title='std::bidirectional_iterator_tag' data-ref="std::bidirectional_iterator_tag">bidirectional_iterator_tag</a>; };&nbsp</td></tr>
+<tr><th id="411">411</th><td>&nbsp</td></tr>
+<tr><th id="412">412</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="413">413</th><td>	<b>requires</b> __detail::__iter_without_category&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="414">414</th><td>		  &amp;&amp; __detail::__cpp17_fwd_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="415">415</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__cat" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__cat' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__cat">__cat</dfn>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="416">416</th><td>	{ <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__cat{type-parameter-1-0}::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__cat&lt;type-parameter-1-0&gt;::type' data-type='std::forward_iterator_tag' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__cat{type-parameter-1-0}::type">type</dfn> = <a class="type" href="stl_iterator_base_types.h.html#std::forward_iterator_tag" title='std::forward_iterator_tag' data-ref="std::forward_iterator_tag">forward_iterator_tag</a>; };&nbsp</td></tr>
+<tr><th id="417">417</th><td>&nbsp</td></tr>
+<tr><th id="418">418</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="419">419</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__ptr" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ptr' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ptr">__ptr</dfn>&nbsp</td></tr>
+<tr><th id="420">420</th><td>	{ <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__ptr::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ptr::type' data-type='void' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ptr::type">type</dfn> = <em>void</em>; };&nbsp</td></tr>
+<tr><th id="421">421</th><td>&nbsp</td></tr>
+<tr><th id="422">422</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt; <b>requires</b> <b>requires</b> { <b>typename</b> _Iter::pointer; }&nbsp</td></tr>
+<tr><th id="423">423</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__ptr" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ptr' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ptr">__ptr</dfn>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="424">424</th><td>	{ <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__ptr{type-parameter-1-0}::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ptr&lt;type-parameter-1-0&gt;::type' data-type='typename _Iter::pointer' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ptr{type-parameter-1-0}::type">type</dfn> = <b>typename</b> _Iter::pointer; };&nbsp</td></tr>
+<tr><th id="425">425</th><td>&nbsp</td></tr>
+<tr><th id="426">426</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="427">427</th><td>	<b>requires</b> (!<b>requires</b> { <b>typename</b> _Iter::pointer; }&nbsp</td></tr>
+<tr><th id="428">428</th><td>	    &amp;&amp; <b>requires</b>(_Iter&amp; __it) { __it.<b>operator</b>-&gt;(); })&nbsp</td></tr>
+<tr><th id="429">429</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__ptr" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ptr' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ptr">__ptr</dfn>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="430">430</th><td>	{ <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__ptr{type-parameter-1-0}::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ptr&lt;type-parameter-1-0&gt;::type' data-type='decltype(std::declval&lt;_Iter &amp;&gt;().operator-&gt;())' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ptr{type-parameter-1-0}::type">type</dfn> = <b>decltype</b>(<span class="namespace">std::</span>declval&lt;_Iter&amp;&gt;().<b>operator</b>-&gt;()); };&nbsp</td></tr>
+<tr><th id="431">431</th><td>&nbsp</td></tr>
+<tr><th id="432">432</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="433">433</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__ref" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ref' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ref">__ref</dfn>&nbsp</td></tr>
+<tr><th id="434">434</th><td>	{ <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__ref::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ref::type' data-type='iter_reference_t&lt;_Iter&gt;' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ref::type">type</dfn> = <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;; };&nbsp</td></tr>
+<tr><th id="435">435</th><td>&nbsp</td></tr>
+<tr><th id="436">436</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt; <b>requires</b> <b>requires</b> { <b>typename</b> _Iter::reference; }&nbsp</td></tr>
+<tr><th id="437">437</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__ref" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ref' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ref">__ref</dfn>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="438">438</th><td>	{ <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__ref{type-parameter-1-0}::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ref&lt;type-parameter-1-0&gt;::type' data-type='typename _Iter::reference' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ref{type-parameter-1-0}::type">type</dfn> = <b>typename</b> _Iter::reference; };&nbsp</td></tr>
+<tr><th id="439">439</th><td>&nbsp</td></tr>
+<tr><th id="440">440</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="441">441</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::iterator_category" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::iterator_category' data-type='typename __cat&lt;_Iterator&gt;::type' data-ref="std::__iterator_traits{type-parameter-0-0,void}::iterator_category">iterator_category</dfn> = <b>typename</b> <a class="type" href="#std::__iterator_traits{type-parameter-0-0,void}::__cat" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__cat' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__cat">__cat</a>&lt;_Iterator&gt;::type;&nbsp</td></tr>
+<tr><th id="442">442</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::value_type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::value_type' data-type='typename indirectly_readable_traits&lt;_Iterator&gt;::value_type' data-ref="std::__iterator_traits{type-parameter-0-0,void}::value_type">value_type</dfn>&nbsp</td></tr>
+<tr><th id="443">443</th><td>	= <b>typename</b> <a class="type" href="#std::indirectly_readable_traits" title='std::indirectly_readable_traits' data-ref="std::indirectly_readable_traits">indirectly_readable_traits</a>&lt;_Iterator&gt;::value_type;&nbsp</td></tr>
+<tr><th id="444">444</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::difference_type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::difference_type' data-type='typename incrementable_traits&lt;_Iterator&gt;::difference_type' data-ref="std::__iterator_traits{type-parameter-0-0,void}::difference_type">difference_type</dfn>&nbsp</td></tr>
+<tr><th id="445">445</th><td>	= <b>typename</b> <a class="type" href="#std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</a>&lt;_Iterator&gt;::difference_type;&nbsp</td></tr>
+<tr><th id="446">446</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::pointer" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::pointer' data-type='typename __ptr&lt;_Iterator&gt;::type' data-ref="std::__iterator_traits{type-parameter-0-0,void}::pointer">pointer</dfn>	      = <b>typename</b> <a class="type" href="#std::__iterator_traits{type-parameter-0-0,void}::__ptr" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ptr' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ptr">__ptr</a>&lt;_Iterator&gt;::type;&nbsp</td></tr>
+<tr><th id="447">447</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::reference" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::reference' data-type='typename __ref&lt;_Iterator&gt;::type' data-ref="std::__iterator_traits{type-parameter-0-0,void}::reference">reference</dfn>	      = <b>typename</b> <a class="type" href="#std::__iterator_traits{type-parameter-0-0,void}::__ref" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__ref' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__ref">__ref</a>&lt;_Iterator&gt;::type;&nbsp</td></tr>
+<tr><th id="448">448</th><td>    };&nbsp</td></tr>
+<tr><th id="449">449</th><td>&nbsp</td></tr>
+<tr><th id="450">450</th><td>  <b>template</b>&lt;<b>typename</b> _Iterator&gt;&nbsp</td></tr>
+<tr><th id="451">451</th><td>    <b>requires</b> __detail::__iter_without_nested_types&lt;_Iterator&gt;&nbsp</td></tr>
+<tr><th id="452">452</th><td>	      &amp;&amp; __detail::__cpp17_iterator&lt;_Iterator&gt;&nbsp</td></tr>
+<tr><th id="453">453</th><td>    <b>struct</b> <dfn class="type def" id="std::__iterator_traits" title='std::__iterator_traits' data-ref="std::__iterator_traits">__iterator_traits</dfn>&lt;_Iterator, <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="454">454</th><td>    {&nbsp</td></tr>
+<tr><th id="455">455</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="456">456</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="457">457</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__diff" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__diff' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__diff">__diff</dfn>&nbsp</td></tr>
+<tr><th id="458">458</th><td>	{ <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__diff::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__diff::type' data-type='void' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__diff::type">type</dfn> = <em>void</em>; };&nbsp</td></tr>
+<tr><th id="459">459</th><td>&nbsp</td></tr>
+<tr><th id="460">460</th><td>      <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="461">461</th><td>	<b>requires</b> <b>requires</b>&nbsp</td></tr>
+<tr><th id="462">462</th><td>	{ <b>typename</b> incrementable_traits&lt;_Iter&gt;::difference_type; }&nbsp</td></tr>
+<tr><th id="463">463</th><td>	<b>struct</b> <dfn class="type def" id="std::__iterator_traits{type-parameter-0-0,void}::__diff" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__diff' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__diff">__diff</dfn>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="464">464</th><td>	{&nbsp</td></tr>
+<tr><th id="465">465</th><td>	  <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::__diff{type-parameter-1-0}::type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__diff&lt;type-parameter-1-0&gt;::type' data-type='typename incrementable_traits&lt;_Iter&gt;::difference_type' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__diff{type-parameter-1-0}::type">type</dfn> = <b>typename</b> <a class="type" href="#std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</a>&lt;_Iter&gt;::difference_type;&nbsp</td></tr>
+<tr><th id="466">466</th><td>	};&nbsp</td></tr>
+<tr><th id="467">467</th><td>&nbsp</td></tr>
+<tr><th id="468">468</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="469">469</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::iterator_category" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::iterator_category' data-type='std::output_iterator_tag' data-ref="std::__iterator_traits{type-parameter-0-0,void}::iterator_category">iterator_category</dfn> = <a class="type" href="stl_iterator_base_types.h.html#std::output_iterator_tag" title='std::output_iterator_tag' data-ref="std::output_iterator_tag">output_iterator_tag</a>;&nbsp</td></tr>
+<tr><th id="470">470</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::value_type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::value_type' data-type='void' data-ref="std::__iterator_traits{type-parameter-0-0,void}::value_type">value_type</dfn>	      = <em>void</em>;&nbsp</td></tr>
+<tr><th id="471">471</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::difference_type" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::difference_type' data-type='typename __diff&lt;_Iterator&gt;::type' data-ref="std::__iterator_traits{type-parameter-0-0,void}::difference_type">difference_type</dfn>   = <b>typename</b> <a class="type" href="#std::__iterator_traits{type-parameter-0-0,void}::__diff" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::__diff' data-ref="std::__iterator_traits{type-parameter-0-0,void}::__diff">__diff</a>&lt;_Iterator&gt;::type;&nbsp</td></tr>
+<tr><th id="472">472</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::pointer" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::pointer' data-type='void' data-ref="std::__iterator_traits{type-parameter-0-0,void}::pointer">pointer</dfn>	      = <em>void</em>;&nbsp</td></tr>
+<tr><th id="473">473</th><td>      <b>using</b> <dfn class="typedef" id="std::__iterator_traits{type-parameter-0-0,void}::reference" title='std::__iterator_traits&lt;type-parameter-0-0, void&gt;::reference' data-type='void' data-ref="std::__iterator_traits{type-parameter-0-0,void}::reference">reference</dfn>	      = <em>void</em>;&nbsp</td></tr>
+<tr><th id="474">474</th><td>    };&nbsp</td></tr>
+<tr><th id="475">475</th><td>&nbsp</td></tr>
+<tr><th id="476">476</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="477">477</th><td>  {&nbsp</td></tr>
+<tr><th id="478">478</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="479">479</th><td>      <b>struct</b> <a class="type" href="#std::__detail::__iter_concept_impl" title='std::__detail::__iter_concept_impl' data-ref="std::__detail::__iter_concept_impl">__iter_concept_impl</a>;&nbsp</td></tr>
+<tr><th id="480">480</th><td>&nbsp</td></tr>
+<tr><th id="481">481</th><td>    <i>// ITER_CONCEPT(I) is ITER_TRAITS(I)::iterator_concept if that is valid.</i>&nbsp</td></tr>
+<tr><th id="482">482</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="483">483</th><td>      <b>requires</b> <b>requires</b> { <b>typename</b> __iter_traits&lt;_Iter&gt;::iterator_concept; }&nbsp</td></tr>
+<tr><th id="484">484</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__iter_concept_impl" title='std::__detail::__iter_concept_impl' data-ref="std::__detail::__iter_concept_impl">__iter_concept_impl</dfn>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="485">485</th><td>      { <b>using</b> <dfn class="typedef" id="std::__detail::__iter_concept_impl{type-parameter-0-0}::type" title='std::__detail::__iter_concept_impl&lt;type-parameter-0-0&gt;::type' data-type='typename __iter_traits&lt;_Iter&gt;::iterator_concept' data-ref="std::__detail::__iter_concept_impl{type-parameter-0-0}::type">type</dfn> = <b>typename</b> <a class="type" href="#std::__detail::__iter_traits" title='std::__detail::__iter_traits' data-ref="std::__detail::__iter_traits">__iter_traits</a>&lt;_Iter&gt;::iterator_concept; };&nbsp</td></tr>
+<tr><th id="486">486</th><td>&nbsp</td></tr>
+<tr><th id="487">487</th><td>    <i>// Otherwise, ITER_TRAITS(I)::iterator_category if that is valid.</i>&nbsp</td></tr>
+<tr><th id="488">488</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="489">489</th><td>      <b>requires</b> (!<b>requires</b> { <b>typename</b> __iter_traits&lt;_Iter&gt;::iterator_concept; }&nbsp</td></tr>
+<tr><th id="490">490</th><td>	  &amp;&amp; <b>requires</b> { <b>typename</b> __iter_traits&lt;_Iter&gt;::iterator_category; })&nbsp</td></tr>
+<tr><th id="491">491</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__iter_concept_impl" title='std::__detail::__iter_concept_impl' data-ref="std::__detail::__iter_concept_impl">__iter_concept_impl</dfn>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="492">492</th><td>      { <b>using</b> <dfn class="typedef" id="std::__detail::__iter_concept_impl{type-parameter-0-0}::type" title='std::__detail::__iter_concept_impl&lt;type-parameter-0-0&gt;::type' data-type='typename __iter_traits&lt;_Iter&gt;::iterator_category' data-ref="std::__detail::__iter_concept_impl{type-parameter-0-0}::type">type</dfn> = <b>typename</b> <a class="type" href="#std::__detail::__iter_traits" title='std::__detail::__iter_traits' data-ref="std::__detail::__iter_traits">__iter_traits</a>&lt;_Iter&gt;::iterator_category; };&nbsp</td></tr>
+<tr><th id="493">493</th><td>&nbsp</td></tr>
+<tr><th id="494">494</th><td>    <i>// Otherwise, random_access_tag if iterator_traits&lt;I&gt; is not specialized.</i>&nbsp</td></tr>
+<tr><th id="495">495</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="496">496</th><td>      <b>requires</b> (!<b>requires</b> { <b>typename</b> __iter_traits&lt;_Iter&gt;::iterator_concept; }&nbsp</td></tr>
+<tr><th id="497">497</th><td>	  &amp;&amp; !<b>requires</b> { <b>typename</b> __iter_traits&lt;_Iter&gt;::iterator_category; }&nbsp</td></tr>
+<tr><th id="498">498</th><td>	  &amp;&amp; __primary_traits_iter&lt;_Iter&gt;)&nbsp</td></tr>
+<tr><th id="499">499</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__iter_concept_impl" title='std::__detail::__iter_concept_impl' data-ref="std::__detail::__iter_concept_impl">__iter_concept_impl</dfn>&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="500">500</th><td>      { <b>using</b> <dfn class="typedef" id="std::__detail::__iter_concept_impl{type-parameter-0-0}::type" title='std::__detail::__iter_concept_impl&lt;type-parameter-0-0&gt;::type' data-type='std::random_access_iterator_tag' data-ref="std::__detail::__iter_concept_impl{type-parameter-0-0}::type">type</dfn> = <a class="type" href="stl_iterator_base_types.h.html#std::random_access_iterator_tag" title='std::random_access_iterator_tag' data-ref="std::random_access_iterator_tag">random_access_iterator_tag</a>; };&nbsp</td></tr>
+<tr><th id="501">501</th><td>&nbsp</td></tr>
+<tr><th id="502">502</th><td>    <i>// Otherwise, there is no ITER_CONCEPT(I) type.</i>&nbsp</td></tr>
+<tr><th id="503">503</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="504">504</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__iter_concept_impl" title='std::__detail::__iter_concept_impl' data-ref="std::__detail::__iter_concept_impl">__iter_concept_impl</dfn>&nbsp</td></tr>
+<tr><th id="505">505</th><td>      { };&nbsp</td></tr>
+<tr><th id="506">506</th><td>&nbsp</td></tr>
+<tr><th id="507">507</th><td>    <i>// ITER_CONCEPT</i>&nbsp</td></tr>
+<tr><th id="508">508</th><td>    <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="509">509</th><td>      <b>using</b> <dfn class="typedef" id="std::__detail::__iter_concept" title='std::__detail::__iter_concept' data-type='typename __iter_concept_impl&lt;_Iter&gt;::type' data-ref="std::__detail::__iter_concept">__iter_concept</dfn> = <b>typename</b> <a class="type" href="#std::__detail::__iter_concept_impl" title='std::__detail::__iter_concept_impl' data-ref="std::__detail::__iter_concept_impl">__iter_concept_impl</a>&lt;_Iter&gt;::type;&nbsp</td></tr>
+<tr><th id="510">510</th><td>&nbsp</td></tr>
+<tr><th id="511">511</th><td>  <b>template</b>&lt;<b>typename</b> _In&gt;&nbsp</td></tr>
+<tr><th id="512">512</th><td>    <b>concept</b> __indirectly_readable_impl = <b>requires</b>&nbsp</td></tr>
+<tr><th id="513">513</th><td>      {&nbsp</td></tr>
+<tr><th id="514">514</th><td>	<b>typename</b> <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;;&nbsp</td></tr>
+<tr><th id="515">515</th><td>	<b>typename</b> <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_In&gt;;&nbsp</td></tr>
+<tr><th id="516">516</th><td>	<b>typename</b> <a class="type" href="#std::iter_rvalue_reference_t" title='std::iter_rvalue_reference_t' data-ref="std::iter_rvalue_reference_t">iter_rvalue_reference_t</a>&lt;_In&gt;;&nbsp</td></tr>
+<tr><th id="517">517</th><td>	<b>requires</b> same_as&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;<em>const</em> _In&gt;,&nbsp</td></tr>
+<tr><th id="518">518</th><td>			 <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_In&gt;&gt;;&nbsp</td></tr>
+<tr><th id="519">519</th><td>	<b>requires</b> same_as&lt;<a class="type" href="#std::iter_rvalue_reference_t" title='std::iter_rvalue_reference_t' data-ref="std::iter_rvalue_reference_t">iter_rvalue_reference_t</a>&lt;<em>const</em> _In&gt;,&nbsp</td></tr>
+<tr><th id="520">520</th><td>			 <a class="type" href="#std::iter_rvalue_reference_t" title='std::iter_rvalue_reference_t' data-ref="std::iter_rvalue_reference_t">iter_rvalue_reference_t</a>&lt;_In&gt;&gt;;&nbsp</td></tr>
+<tr><th id="521">521</th><td>      }&nbsp</td></tr>
+<tr><th id="522">522</th><td>      &amp;&amp; common_reference_with&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_In&gt;&amp;&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="523">523</th><td>      &amp;&amp; common_reference_with&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_In&gt;&amp;&amp;,&nbsp</td></tr>
+<tr><th id="524">524</th><td>			      <a class="type" href="#std::iter_rvalue_reference_t" title='std::iter_rvalue_reference_t' data-ref="std::iter_rvalue_reference_t">iter_rvalue_reference_t</a>&lt;_In&gt;&amp;&amp;&gt;&nbsp</td></tr>
+<tr><th id="525">525</th><td>      &amp;&amp; common_reference_with&lt;<a class="type" href="#std::iter_rvalue_reference_t" title='std::iter_rvalue_reference_t' data-ref="std::iter_rvalue_reference_t">iter_rvalue_reference_t</a>&lt;_In&gt;&amp;&amp;,&nbsp</td></tr>
+<tr><th id="526">526</th><td>			       <em>const</em> <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;&amp;&gt;;&nbsp</td></tr>
+<tr><th id="527">527</th><td>&nbsp</td></tr>
+<tr><th id="528">528</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="529">529</th><td>&nbsp</td></tr>
+<tr><th id="530">530</th><td>  <i class="doc">/// Requirements for types that are readable by applying operator*.</i>&nbsp</td></tr>
+<tr><th id="531">531</th><td>  <b>template</b>&lt;<b>typename</b> _In&gt;&nbsp</td></tr>
+<tr><th id="532">532</th><td>    <b>concept</b> indirectly_readable&nbsp</td></tr>
+<tr><th id="533">533</th><td>      = <span class="namespace">__detail::</span>__indirectly_readable_impl&lt;<a class="type" href="../type_traits.html#std::remove_cvref_t" title='std::remove_cvref_t' data-ref="std::remove_cvref_t">remove_cvref_t</a>&lt;_In&gt;&gt;;&nbsp</td></tr>
+<tr><th id="534">534</th><td>&nbsp</td></tr>
+<tr><th id="535">535</th><td>  <b>template</b>&lt;indirectly_readable _Tp&gt;&nbsp</td></tr>
+<tr><th id="536">536</th><td>    <b>using</b> <dfn class="typedef" id="std::iter_common_reference_t" title='std::iter_common_reference_t' data-type='common_reference_t&lt;iter_reference_t&lt;_Tp&gt;, iter_value_t&lt;_Tp&gt; &amp;&gt;' data-ref="std::iter_common_reference_t">iter_common_reference_t</dfn>&nbsp</td></tr>
+<tr><th id="537">537</th><td>      = <a class="type" href="../type_traits.html#std::common_reference_t" title='std::common_reference_t' data-ref="std::common_reference_t">common_reference_t</a>&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Tp&gt;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_Tp&gt;&amp;&gt;;&nbsp</td></tr>
+<tr><th id="538">538</th><td>&nbsp</td></tr>
+<tr><th id="539">539</th><td>  <i class="doc">/// Requirements for writing a value into an iterator's referenced object.</i>&nbsp</td></tr>
+<tr><th id="540">540</th><td>  <b>template</b>&lt;<b>typename</b> _Out, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="541">541</th><td>    <b>concept</b> indirectly_writable = <b>requires</b>(_Out&amp;&amp; <dfn class="local col7 decl" id="2827__o" title='__o' data-type='_Out &amp;&amp;' data-ref="2827__o">__o</dfn>, _Tp&amp;&amp; <dfn class="local col8 decl" id="2828__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2828__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="542">542</th><td>      {&nbsp</td></tr>
+<tr><th id="543">543</th><td>	*<a class="local col7 ref" href="#2827__o" title='__o' data-ref="2827__o">__o</a> = <span class="namespace">std::</span>forward&lt;_Tp&gt;(<a class="local col8 ref" href="#2828__t" title='__t' data-ref="2828__t">__t</a>);&nbsp</td></tr>
+<tr><th id="544">544</th><td>	*<span class="namespace">std::</span>forward&lt;_Out&gt;(<a class="local col7 ref" href="#2827__o" title='__o' data-ref="2827__o">__o</a>) = <span class="namespace">std::</span>forward&lt;_Tp&gt;(<a class="local col8 ref" href="#2828__t" title='__t' data-ref="2828__t">__t</a>);&nbsp</td></tr>
+<tr><th id="545">545</th><td>	<b>const_cast</b>&lt;<em>const</em> <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Out&gt;&amp;&amp;&gt;(*<a class="local col7 ref" href="#2827__o" title='__o' data-ref="2827__o">__o</a>)&nbsp</td></tr>
+<tr><th id="546">546</th><td>	  = <span class="namespace">std::</span>forward&lt;_Tp&gt;(<a class="local col8 ref" href="#2828__t" title='__t' data-ref="2828__t">__t</a>);&nbsp</td></tr>
+<tr><th id="547">547</th><td>	<b>const_cast</b>&lt;<em>const</em> <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Out&gt;&amp;&amp;&gt;(*<span class="namespace">std::</span>forward&lt;_Out&gt;(<a class="local col7 ref" href="#2827__o" title='__o' data-ref="2827__o">__o</a>))&nbsp</td></tr>
+<tr><th id="548">548</th><td>	  = <span class="namespace">std::</span>forward&lt;_Tp&gt;(<a class="local col8 ref" href="#2828__t" title='__t' data-ref="2828__t">__t</a>);&nbsp</td></tr>
+<tr><th id="549">549</th><td>      };&nbsp</td></tr>
+<tr><th id="550">550</th><td>&nbsp</td></tr>
+<tr><th id="551">551</th><td>  <b>namespace</b> <span class="namespace">ranges</span>::<span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="552">552</th><td>  {&nbsp</td></tr>
+<tr><th id="553">553</th><td>    <b>class</b> <dfn class="type" id="std::ranges::__detail::__max_diff_type" title='std::ranges::__detail::__max_diff_type' data-ref="std::ranges::__detail::__max_diff_type">__max_diff_type</dfn>;&nbsp</td></tr>
+<tr><th id="554">554</th><td>    <b>class</b> <dfn class="type" id="std::ranges::__detail::__max_size_type" title='std::ranges::__detail::__max_size_type' data-ref="std::ranges::__detail::__max_size_type">__max_size_type</dfn>;&nbsp</td></tr>
+<tr><th id="555">555</th><td>&nbsp</td></tr>
+<tr><th id="556">556</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="557">557</th><td>      <b>concept</b> __is_signed_int128&nbsp</td></tr>
+<tr><th id="558">558</th><td><u>#<span data-ppcond="558">if</span> <span class="macro" title="16" data-ref="_M/__SIZEOF_INT128__">__SIZEOF_INT128__</span></u>&nbsp</td></tr>
+<tr><th id="559">559</th><td>	= same_as&lt;_Tp, <b>__int128</b>&gt;;&nbsp</td></tr>
+<tr><th id="560">560</th><td><u>#<span data-ppcond="558">else</span></u>&nbsp</td></tr>
+<tr><th id="561">561</th><td>	= <b>false</b>;&nbsp</td></tr>
+<tr><th id="562">562</th><td><u>#<span data-ppcond="558">endif</span></u>&nbsp</td></tr>
+<tr><th id="563">563</th><td>&nbsp</td></tr>
+<tr><th id="564">564</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="565">565</th><td>      <b>concept</b> __is_unsigned_int128&nbsp</td></tr>
+<tr><th id="566">566</th><td><u>#<span data-ppcond="566">if</span> <span class="macro" title="16" data-ref="_M/__SIZEOF_INT128__">__SIZEOF_INT128__</span></u>&nbsp</td></tr>
+<tr><th id="567">567</th><td>	= same_as&lt;_Tp, <em>unsigned</em> <b>__int128</b>&gt;;&nbsp</td></tr>
+<tr><th id="568">568</th><td><u>#<span data-ppcond="566">else</span></u>&nbsp</td></tr>
+<tr><th id="569">569</th><td>	= <b>false</b>;&nbsp</td></tr>
+<tr><th id="570">570</th><td><u>#<span data-ppcond="566">endif</span></u>&nbsp</td></tr>
+<tr><th id="571">571</th><td>&nbsp</td></tr>
+<tr><th id="572">572</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="573">573</th><td>      <b>concept</b> __cv_bool = same_as&lt;<em>const</em> <em>volatile</em> _Tp, <em>const</em> <em>volatile</em> <em>bool</em>&gt;;&nbsp</td></tr>
+<tr><th id="574">574</th><td>&nbsp</td></tr>
+<tr><th id="575">575</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="576">576</th><td>      <b>concept</b> __integral_nonbool = integral&lt;_Tp&gt; &amp;&amp; !__cv_bool&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="577">577</th><td>&nbsp</td></tr>
+<tr><th id="578">578</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="579">579</th><td>      <b>concept</b> __is_int128 = __is_signed_int128&lt;_Tp&gt; || __is_unsigned_int128&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="580">580</th><td>&nbsp</td></tr>
+<tr><th id="581">581</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="582">582</th><td>      <b>concept</b> __is_integer_like = __integral_nonbool&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="583">583</th><td>	|| __is_int128&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="584">584</th><td>	|| same_as&lt;_Tp, <a class="type" href="#std::ranges::__detail::__max_diff_type" title='std::ranges::__detail::__max_diff_type' data-ref="std::ranges::__detail::__max_diff_type">__max_diff_type</a>&gt; || same_as&lt;_Tp, <a class="type" href="#std::ranges::__detail::__max_size_type" title='std::ranges::__detail::__max_size_type' data-ref="std::ranges::__detail::__max_size_type">__max_size_type</a>&gt;;&nbsp</td></tr>
+<tr><th id="585">585</th><td>&nbsp</td></tr>
+<tr><th id="586">586</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="587">587</th><td>      <b>concept</b> __is_signed_integer_like = signed_integral&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="588">588</th><td>	|| __is_signed_int128&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="589">589</th><td>	|| same_as&lt;_Tp, <a class="type" href="#std::ranges::__detail::__max_diff_type" title='std::ranges::__detail::__max_diff_type' data-ref="std::ranges::__detail::__max_diff_type">__max_diff_type</a>&gt;;&nbsp</td></tr>
+<tr><th id="590">590</th><td>&nbsp</td></tr>
+<tr><th id="591">591</th><td>  } <i>// namespace ranges::__detail</i>&nbsp</td></tr>
+<tr><th id="592">592</th><td>&nbsp</td></tr>
+<tr><th id="593">593</th><td>  <b>namespace</b> <span class="namespace">__detail</span> { <b>using</b> <span class="namespace">ranges::__detail::</span>__is_signed_integer_like; }&nbsp</td></tr>
+<tr><th id="594">594</th><td>&nbsp</td></tr>
+<tr><th id="595">595</th><td>  <i class="doc">/// Requirements on types that can be incremented with ++.</i>&nbsp</td></tr>
+<tr><th id="596">596</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="597">597</th><td>    <b>concept</b> weakly_incrementable = movable&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="598">598</th><td>      &amp;&amp; <b>requires</b>(_Iter <dfn class="local col9 decl" id="2829__i" title='__i' data-type='_Iter' data-ref="2829__i">__i</dfn>)&nbsp</td></tr>
+<tr><th id="599">599</th><td>      {&nbsp</td></tr>
+<tr><th id="600">600</th><td>	<b>typename</b> <a class="type" href="#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_Iter&gt;;&nbsp</td></tr>
+<tr><th id="601">601</th><td>	<b>requires</b> <span class="namespace">__detail::</span>__is_signed_integer_like&lt;<a class="type" href="#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_Iter&gt;&gt;;&nbsp</td></tr>
+<tr><th id="602">602</th><td>	{ ++<a class="local col9 ref" href="#2829__i" title='__i' data-ref="2829__i">__i</a> } -&gt; same_as&lt;_Iter&amp;&gt;;&nbsp</td></tr>
+<tr><th id="603">603</th><td>	<a class="local col9 ref" href="#2829__i" title='__i' data-ref="2829__i">__i</a>++;&nbsp</td></tr>
+<tr><th id="604">604</th><td>      };&nbsp</td></tr>
+<tr><th id="605">605</th><td>&nbsp</td></tr>
+<tr><th id="606">606</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="607">607</th><td>    <b>concept</b> incrementable = regular&lt;_Iter&gt; &amp;&amp; weakly_incrementable&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="608">608</th><td>      &amp;&amp; <b>requires</b>(_Iter <dfn class="local col0 decl" id="2830__i" title='__i' data-type='_Iter' data-ref="2830__i">__i</dfn>) { { <a class="local col0 ref" href="#2830__i" title='__i' data-ref="2830__i">__i</a>++ } -&gt; same_as&lt;_Iter&gt;; };&nbsp</td></tr>
+<tr><th id="609">609</th><td>&nbsp</td></tr>
+<tr><th id="610">610</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="611">611</th><td>    <b>concept</b> input_or_output_iterator&nbsp</td></tr>
+<tr><th id="612">612</th><td>      = <b>requires</b>(_Iter <dfn class="local col1 decl" id="2831__i" title='__i' data-type='_Iter' data-ref="2831__i">__i</dfn>) { { *<a class="local col1 ref" href="#2831__i" title='__i' data-ref="2831__i">__i</a> } -&gt; <span class="namespace">__detail::</span>__can_reference; }&nbsp</td></tr>
+<tr><th id="613">613</th><td>	&amp;&amp; weakly_incrementable&lt;_Iter&gt;;&nbsp</td></tr>
+<tr><th id="614">614</th><td>&nbsp</td></tr>
+<tr><th id="615">615</th><td>  <b>template</b>&lt;<b>typename</b> _Sent, <b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="616">616</th><td>    <b>concept</b> sentinel_for = semiregular&lt;_Sent&gt;&nbsp</td></tr>
+<tr><th id="617">617</th><td>      &amp;&amp; input_or_output_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="618">618</th><td>      &amp;&amp; <span class="namespace">__detail::</span>__weakly_eq_cmp_with&lt;_Sent, _Iter&gt;;&nbsp</td></tr>
+<tr><th id="619">619</th><td>&nbsp</td></tr>
+<tr><th id="620">620</th><td>  <b>template</b>&lt;<b>typename</b> _Sent, <b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="621">621</th><td>    <b>inline</b> <b>constexpr</b> <em>bool</em> <dfn class="decl def" id="std::disable_sized_sentinel_for" title='std::disable_sized_sentinel_for' data-ref="std::disable_sized_sentinel_for">disable_sized_sentinel_for</dfn> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="622">622</th><td>&nbsp</td></tr>
+<tr><th id="623">623</th><td>  <b>template</b>&lt;<b>typename</b> _Sent, <b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="624">624</th><td>    <b>concept</b> sized_sentinel_for = sentinel_for&lt;_Sent, _Iter&gt;&nbsp</td></tr>
+<tr><th id="625">625</th><td>    &amp;&amp; !disable_sized_sentinel_for&lt;<a class="type" href="../type_traits.html#std::remove_cv_t" title='std::remove_cv_t' data-ref="std::remove_cv_t">remove_cv_t</a>&lt;_Sent&gt;, <a class="type" href="../type_traits.html#std::remove_cv_t" title='std::remove_cv_t' data-ref="std::remove_cv_t">remove_cv_t</a>&lt;_Iter&gt;&gt;&nbsp</td></tr>
+<tr><th id="626">626</th><td>    &amp;&amp; <b>requires</b>(<em>const</em> _Iter&amp; <dfn class="local col2 decl" id="2832__i" title='__i' data-type='const _Iter &amp;' data-ref="2832__i">__i</dfn>, <em>const</em> _Sent&amp; <dfn class="local col3 decl" id="2833__s" title='__s' data-type='const _Sent &amp;' data-ref="2833__s">__s</dfn>)&nbsp</td></tr>
+<tr><th id="627">627</th><td>    {&nbsp</td></tr>
+<tr><th id="628">628</th><td>      { <a class="local col3 ref" href="#2833__s" title='__s' data-ref="2833__s">__s</a> - <a class="local col2 ref" href="#2832__i" title='__i' data-ref="2832__i">__i</a> } -&gt; same_as&lt;<a class="type" href="#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_Iter&gt;&gt;;&nbsp</td></tr>
+<tr><th id="629">629</th><td>      { <a class="local col2 ref" href="#2832__i" title='__i' data-ref="2832__i">__i</a> - <a class="local col3 ref" href="#2833__s" title='__s' data-ref="2833__s">__s</a> } -&gt; same_as&lt;<a class="type" href="#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_Iter&gt;&gt;;&nbsp</td></tr>
+<tr><th id="630">630</th><td>    };&nbsp</td></tr>
+<tr><th id="631">631</th><td>&nbsp</td></tr>
+<tr><th id="632">632</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="633">633</th><td>    <b>concept</b> input_iterator = input_or_output_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="634">634</th><td>      &amp;&amp; indirectly_readable&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="635">635</th><td>      &amp;&amp; <b>requires</b> { <b>typename</b> <span class="namespace">__detail::</span><a class="type" href="#std::__detail::__iter_concept" title='std::__detail::__iter_concept' data-ref="std::__detail::__iter_concept">__iter_concept</a>&lt;_Iter&gt;; }&nbsp</td></tr>
+<tr><th id="636">636</th><td>      &amp;&amp; derived_from&lt;<span class="namespace">__detail::</span><a class="type" href="#std::__detail::__iter_concept" title='std::__detail::__iter_concept' data-ref="std::__detail::__iter_concept">__iter_concept</a>&lt;_Iter&gt;, <a class="type" href="stl_iterator_base_types.h.html#std::input_iterator_tag" title='std::input_iterator_tag' data-ref="std::input_iterator_tag">input_iterator_tag</a>&gt;;&nbsp</td></tr>
+<tr><th id="637">637</th><td>&nbsp</td></tr>
+<tr><th id="638">638</th><td>  <b>template</b>&lt;<b>typename</b> _Iter, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="639">639</th><td>    <b>concept</b> output_iterator = input_or_output_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="640">640</th><td>      &amp;&amp; indirectly_writable&lt;_Iter, _Tp&gt;&nbsp</td></tr>
+<tr><th id="641">641</th><td>      &amp;&amp; <b>requires</b>(_Iter <dfn class="local col4 decl" id="2834__i" title='__i' data-type='_Iter' data-ref="2834__i">__i</dfn>, _Tp&amp;&amp; <dfn class="local col5 decl" id="2835__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2835__t">__t</dfn>) { *<a class="local col4 ref" href="#2834__i" title='__i' data-ref="2834__i">__i</a>++ = <span class="namespace">std::</span>forward&lt;_Tp&gt;(<a class="local col5 ref" href="#2835__t" title='__t' data-ref="2835__t">__t</a>); };&nbsp</td></tr>
+<tr><th id="642">642</th><td>&nbsp</td></tr>
+<tr><th id="643">643</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="644">644</th><td>    <b>concept</b> forward_iterator = input_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="645">645</th><td>      &amp;&amp; derived_from&lt;<span class="namespace">__detail::</span><a class="type" href="#std::__detail::__iter_concept" title='std::__detail::__iter_concept' data-ref="std::__detail::__iter_concept">__iter_concept</a>&lt;_Iter&gt;, <a class="type" href="stl_iterator_base_types.h.html#std::forward_iterator_tag" title='std::forward_iterator_tag' data-ref="std::forward_iterator_tag">forward_iterator_tag</a>&gt;&nbsp</td></tr>
+<tr><th id="646">646</th><td>      &amp;&amp; incrementable&lt;_Iter&gt; &amp;&amp; sentinel_for&lt;_Iter, _Iter&gt;;&nbsp</td></tr>
+<tr><th id="647">647</th><td>&nbsp</td></tr>
+<tr><th id="648">648</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="649">649</th><td>    <b>concept</b> bidirectional_iterator = forward_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="650">650</th><td>      &amp;&amp; derived_from&lt;<span class="namespace">__detail::</span><a class="type" href="#std::__detail::__iter_concept" title='std::__detail::__iter_concept' data-ref="std::__detail::__iter_concept">__iter_concept</a>&lt;_Iter&gt;,&nbsp</td></tr>
+<tr><th id="651">651</th><td>		      <a class="type" href="stl_iterator_base_types.h.html#std::bidirectional_iterator_tag" title='std::bidirectional_iterator_tag' data-ref="std::bidirectional_iterator_tag">bidirectional_iterator_tag</a>&gt;&nbsp</td></tr>
+<tr><th id="652">652</th><td>      &amp;&amp; <b>requires</b>(_Iter <dfn class="local col6 decl" id="2836__i" title='__i' data-type='_Iter' data-ref="2836__i">__i</dfn>)&nbsp</td></tr>
+<tr><th id="653">653</th><td>      {&nbsp</td></tr>
+<tr><th id="654">654</th><td>	{ --<a class="local col6 ref" href="#2836__i" title='__i' data-ref="2836__i">__i</a> } -&gt; same_as&lt;_Iter&amp;&gt;;&nbsp</td></tr>
+<tr><th id="655">655</th><td>	{ <a class="local col6 ref" href="#2836__i" title='__i' data-ref="2836__i">__i</a>-- } -&gt; same_as&lt;_Iter&gt;;&nbsp</td></tr>
+<tr><th id="656">656</th><td>      };&nbsp</td></tr>
+<tr><th id="657">657</th><td>&nbsp</td></tr>
+<tr><th id="658">658</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="659">659</th><td>    <b>concept</b> random_access_iterator = bidirectional_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="660">660</th><td>      &amp;&amp; derived_from&lt;<span class="namespace">__detail::</span><a class="type" href="#std::__detail::__iter_concept" title='std::__detail::__iter_concept' data-ref="std::__detail::__iter_concept">__iter_concept</a>&lt;_Iter&gt;,&nbsp</td></tr>
+<tr><th id="661">661</th><td>		      <a class="type" href="stl_iterator_base_types.h.html#std::random_access_iterator_tag" title='std::random_access_iterator_tag' data-ref="std::random_access_iterator_tag">random_access_iterator_tag</a>&gt;&nbsp</td></tr>
+<tr><th id="662">662</th><td>      &amp;&amp; totally_ordered&lt;_Iter&gt; &amp;&amp; sized_sentinel_for&lt;_Iter, _Iter&gt;&nbsp</td></tr>
+<tr><th id="663">663</th><td>      &amp;&amp; <b>requires</b>(_Iter <dfn class="local col7 decl" id="2837__i" title='__i' data-type='_Iter' data-ref="2837__i">__i</dfn>, <em>const</em> _Iter <dfn class="local col8 decl" id="2838__j" title='__j' data-type='const _Iter' data-ref="2838__j">__j</dfn>,&nbsp</td></tr>
+<tr><th id="664">664</th><td>		  <em>const</em> <a class="type" href="#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_Iter&gt; <dfn class="local col9 decl" id="2839__n" title='__n' data-type='const iter_difference_t&lt;_Iter&gt;' data-ref="2839__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="665">665</th><td>      {&nbsp</td></tr>
+<tr><th id="666">666</th><td>	{ <a class="local col7 ref" href="#2837__i" title='__i' data-ref="2837__i">__i</a> += <a class="local col9 ref" href="#2839__n" title='__n' data-ref="2839__n">__n</a> } -&gt; same_as&lt;_Iter&amp;&gt;;&nbsp</td></tr>
+<tr><th id="667">667</th><td>	{ <a class="local col8 ref" href="#2838__j" title='__j' data-ref="2838__j">__j</a> +  <a class="local col9 ref" href="#2839__n" title='__n' data-ref="2839__n">__n</a> } -&gt; same_as&lt;_Iter&gt;;&nbsp</td></tr>
+<tr><th id="668">668</th><td>	{ <a class="local col9 ref" href="#2839__n" title='__n' data-ref="2839__n">__n</a> +  <a class="local col8 ref" href="#2838__j" title='__j' data-ref="2838__j">__j</a> } -&gt; same_as&lt;_Iter&gt;;&nbsp</td></tr>
+<tr><th id="669">669</th><td>	{ <a class="local col7 ref" href="#2837__i" title='__i' data-ref="2837__i">__i</a> -= <a class="local col9 ref" href="#2839__n" title='__n' data-ref="2839__n">__n</a> } -&gt; same_as&lt;_Iter&amp;&gt;;&nbsp</td></tr>
+<tr><th id="670">670</th><td>	{ <a class="local col8 ref" href="#2838__j" title='__j' data-ref="2838__j">__j</a> -  <a class="local col9 ref" href="#2839__n" title='__n' data-ref="2839__n">__n</a> } -&gt; same_as&lt;_Iter&gt;;&nbsp</td></tr>
+<tr><th id="671">671</th><td>	{  <a class="local col8 ref" href="#2838__j" title='__j' data-ref="2838__j">__j</a>[<a class="local col9 ref" href="#2839__n" title='__n' data-ref="2839__n">__n</a>]  } -&gt; same_as&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;;&nbsp</td></tr>
+<tr><th id="672">672</th><td>      };&nbsp</td></tr>
+<tr><th id="673">673</th><td>&nbsp</td></tr>
+<tr><th id="674">674</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="675">675</th><td>    <b>concept</b> contiguous_iterator = random_access_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="676">676</th><td>      &amp;&amp; derived_from&lt;<span class="namespace">__detail::</span><a class="type" href="#std::__detail::__iter_concept" title='std::__detail::__iter_concept' data-ref="std::__detail::__iter_concept">__iter_concept</a>&lt;_Iter&gt;, <a class="type" href="stl_iterator_base_types.h.html#std::contiguous_iterator_tag" title='std::contiguous_iterator_tag' data-ref="std::contiguous_iterator_tag">contiguous_iterator_tag</a>&gt;&nbsp</td></tr>
+<tr><th id="677">677</th><td>      &amp;&amp; is_lvalue_reference_v&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;&nbsp</td></tr>
+<tr><th id="678">678</th><td>      &amp;&amp; same_as&lt;<a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_Iter&gt;, <a class="type" href="../type_traits.html#std::remove_cvref_t" title='std::remove_cvref_t' data-ref="std::remove_cvref_t">remove_cvref_t</a>&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;&gt;&nbsp</td></tr>
+<tr><th id="679">679</th><td>      &amp;&amp; <b>requires</b>(<em>const</em> _Iter&amp; <dfn class="local col0 decl" id="2840__i" title='__i' data-type='const _Iter &amp;' data-ref="2840__i">__i</dfn>)&nbsp</td></tr>
+<tr><th id="680">680</th><td>      {&nbsp</td></tr>
+<tr><th id="681">681</th><td>	{ <span class="namespace">std::</span>to_address(<a class="local col0 ref" href="#2840__i" title='__i' data-ref="2840__i">__i</a>) }&nbsp</td></tr>
+<tr><th id="682">682</th><td>	  -&gt; same_as&lt;<a class="type" href="../type_traits.html#std::add_pointer_t" title='std::add_pointer_t' data-ref="std::add_pointer_t">add_pointer_t</a>&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;&gt;;&nbsp</td></tr>
+<tr><th id="683">683</th><td>      };&nbsp</td></tr>
+<tr><th id="684">684</th><td>&nbsp</td></tr>
+<tr><th id="685">685</th><td>  <i>// [indirectcallable], indirect callable requirements</i>&nbsp</td></tr>
+<tr><th id="686">686</th><td><i></i>&nbsp</td></tr>
+<tr><th id="687">687</th><td><i>  // [indirectcallable.indirectinvocable], indirect callables</i>&nbsp</td></tr>
+<tr><th id="688">688</th><td>&nbsp</td></tr>
+<tr><th id="689">689</th><td>  <b>template</b>&lt;<b>typename</b> _Fn, <b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="690">690</th><td>    <b>concept</b> indirectly_unary_invocable = indirectly_readable&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="691">691</th><td>      &amp;&amp; copy_constructible&lt;_Fn&gt; &amp;&amp; invocable&lt;_Fn&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_Iter&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="692">692</th><td>      &amp;&amp; invocable&lt;_Fn&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;&nbsp</td></tr>
+<tr><th id="693">693</th><td>      &amp;&amp; invocable&lt;_Fn&amp;, <a class="type" href="#std::iter_common_reference_t" title='std::iter_common_reference_t' data-ref="std::iter_common_reference_t">iter_common_reference_t</a>&lt;_Iter&gt;&gt;&nbsp</td></tr>
+<tr><th id="694">694</th><td>      &amp;&amp; common_reference_with&lt;<a class="type" href="../type_traits.html#std::invoke_result_t" title='std::invoke_result_t' data-ref="std::invoke_result_t">invoke_result_t</a>&lt;_Fn&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_Iter&gt;&amp;&gt;,&nbsp</td></tr>
+<tr><th id="695">695</th><td>			       <a class="type" href="../type_traits.html#std::invoke_result_t" title='std::invoke_result_t' data-ref="std::invoke_result_t">invoke_result_t</a>&lt;_Fn&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;&gt;;&nbsp</td></tr>
+<tr><th id="696">696</th><td>&nbsp</td></tr>
+<tr><th id="697">697</th><td>  <b>template</b>&lt;<b>typename</b> _Fn, <b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="698">698</th><td>    <b>concept</b> indirectly_regular_unary_invocable = indirectly_readable&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="699">699</th><td>      &amp;&amp; copy_constructible&lt;_Fn&gt;&nbsp</td></tr>
+<tr><th id="700">700</th><td>      &amp;&amp; regular_invocable&lt;_Fn&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_Iter&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="701">701</th><td>      &amp;&amp; regular_invocable&lt;_Fn&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;&nbsp</td></tr>
+<tr><th id="702">702</th><td>      &amp;&amp; regular_invocable&lt;_Fn&amp;, <a class="type" href="#std::iter_common_reference_t" title='std::iter_common_reference_t' data-ref="std::iter_common_reference_t">iter_common_reference_t</a>&lt;_Iter&gt;&gt;&nbsp</td></tr>
+<tr><th id="703">703</th><td>      &amp;&amp; common_reference_with&lt;<a class="type" href="../type_traits.html#std::invoke_result_t" title='std::invoke_result_t' data-ref="std::invoke_result_t">invoke_result_t</a>&lt;_Fn&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_Iter&gt;&amp;&gt;,&nbsp</td></tr>
+<tr><th id="704">704</th><td>			       <a class="type" href="../type_traits.html#std::invoke_result_t" title='std::invoke_result_t' data-ref="std::invoke_result_t">invoke_result_t</a>&lt;_Fn&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;&gt;;&nbsp</td></tr>
+<tr><th id="705">705</th><td>&nbsp</td></tr>
+<tr><th id="706">706</th><td>  <b>template</b>&lt;<b>typename</b> _Fn, <b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="707">707</th><td>    <b>concept</b> indirect_unary_predicate = indirectly_readable&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="708">708</th><td>      &amp;&amp; copy_constructible&lt;_Fn&gt; &amp;&amp; predicate&lt;_Fn&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_Iter&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="709">709</th><td>      &amp;&amp; predicate&lt;_Fn&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Iter&gt;&gt;&nbsp</td></tr>
+<tr><th id="710">710</th><td>      &amp;&amp; predicate&lt;_Fn&amp;, <a class="type" href="#std::iter_common_reference_t" title='std::iter_common_reference_t' data-ref="std::iter_common_reference_t">iter_common_reference_t</a>&lt;_Iter&gt;&gt;;&nbsp</td></tr>
+<tr><th id="711">711</th><td>&nbsp</td></tr>
+<tr><th id="712">712</th><td>  <b>template</b>&lt;<b>typename</b> _Fn, <b>typename</b> _I1, <b>typename</b> _I2&gt;&nbsp</td></tr>
+<tr><th id="713">713</th><td>    <b>concept</b> indirect_binary_predicate&nbsp</td></tr>
+<tr><th id="714">714</th><td>      = indirectly_readable&lt;_I1&gt; &amp;&amp; indirectly_readable&lt;_I2&gt;&nbsp</td></tr>
+<tr><th id="715">715</th><td>      &amp;&amp; copy_constructible&lt;_Fn&gt;&nbsp</td></tr>
+<tr><th id="716">716</th><td>      &amp;&amp; predicate&lt;_Fn&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_I1&gt;&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_I2&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="717">717</th><td>      &amp;&amp; predicate&lt;_Fn&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_I1&gt;&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_I2&gt;&gt;&nbsp</td></tr>
+<tr><th id="718">718</th><td>      &amp;&amp; predicate&lt;_Fn&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_I1&gt;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_I2&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="719">719</th><td>      &amp;&amp; predicate&lt;_Fn&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_I1&gt;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_I2&gt;&gt;&nbsp</td></tr>
+<tr><th id="720">720</th><td>      &amp;&amp; predicate&lt;_Fn&amp;, <a class="type" href="#std::iter_common_reference_t" title='std::iter_common_reference_t' data-ref="std::iter_common_reference_t">iter_common_reference_t</a>&lt;_I1&gt;,&nbsp</td></tr>
+<tr><th id="721">721</th><td>		   <a class="type" href="#std::iter_common_reference_t" title='std::iter_common_reference_t' data-ref="std::iter_common_reference_t">iter_common_reference_t</a>&lt;_I2&gt;&gt;;&nbsp</td></tr>
+<tr><th id="722">722</th><td>&nbsp</td></tr>
+<tr><th id="723">723</th><td>  <b>template</b>&lt;<b>typename</b> _Fn, <b>typename</b> _I1, <b>typename</b> _I2 = _I1&gt;&nbsp</td></tr>
+<tr><th id="724">724</th><td>    <b>concept</b> indirect_equivalence_relation&nbsp</td></tr>
+<tr><th id="725">725</th><td>      = indirectly_readable&lt;_I1&gt; &amp;&amp; indirectly_readable&lt;_I2&gt;&nbsp</td></tr>
+<tr><th id="726">726</th><td>      &amp;&amp; copy_constructible&lt;_Fn&gt;&nbsp</td></tr>
+<tr><th id="727">727</th><td>      &amp;&amp; equivalence_relation&lt;_Fn&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_I1&gt;&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_I2&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="728">728</th><td>      &amp;&amp; equivalence_relation&lt;_Fn&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_I1&gt;&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_I2&gt;&gt;&nbsp</td></tr>
+<tr><th id="729">729</th><td>      &amp;&amp; equivalence_relation&lt;_Fn&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_I1&gt;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_I2&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="730">730</th><td>      &amp;&amp; equivalence_relation&lt;_Fn&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_I1&gt;,&nbsp</td></tr>
+<tr><th id="731">731</th><td>			      <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_I2&gt;&gt;&nbsp</td></tr>
+<tr><th id="732">732</th><td>      &amp;&amp; equivalence_relation&lt;_Fn&amp;, <a class="type" href="#std::iter_common_reference_t" title='std::iter_common_reference_t' data-ref="std::iter_common_reference_t">iter_common_reference_t</a>&lt;_I1&gt;,&nbsp</td></tr>
+<tr><th id="733">733</th><td>			      <a class="type" href="#std::iter_common_reference_t" title='std::iter_common_reference_t' data-ref="std::iter_common_reference_t">iter_common_reference_t</a>&lt;_I2&gt;&gt;;&nbsp</td></tr>
+<tr><th id="734">734</th><td>&nbsp</td></tr>
+<tr><th id="735">735</th><td>  <b>template</b>&lt;<b>typename</b> _Fn, <b>typename</b> _I1, <b>typename</b> _I2 = _I1&gt;&nbsp</td></tr>
+<tr><th id="736">736</th><td>    <b>concept</b> indirect_strict_weak_order&nbsp</td></tr>
+<tr><th id="737">737</th><td>      = indirectly_readable&lt;_I1&gt; &amp;&amp; indirectly_readable&lt;_I2&gt;&nbsp</td></tr>
+<tr><th id="738">738</th><td>      &amp;&amp; copy_constructible&lt;_Fn&gt;&nbsp</td></tr>
+<tr><th id="739">739</th><td>      &amp;&amp; strict_weak_order&lt;_Fn&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_I1&gt;&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_I2&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="740">740</th><td>      &amp;&amp; strict_weak_order&lt;_Fn&amp;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_I1&gt;&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_I2&gt;&gt;&nbsp</td></tr>
+<tr><th id="741">741</th><td>      &amp;&amp; strict_weak_order&lt;_Fn&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_I1&gt;, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_I2&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="742">742</th><td>      &amp;&amp; strict_weak_order&lt;_Fn&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_I1&gt;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_I2&gt;&gt;&nbsp</td></tr>
+<tr><th id="743">743</th><td>      &amp;&amp; strict_weak_order&lt;_Fn&amp;, <a class="type" href="#std::iter_common_reference_t" title='std::iter_common_reference_t' data-ref="std::iter_common_reference_t">iter_common_reference_t</a>&lt;_I1&gt;,&nbsp</td></tr>
+<tr><th id="744">744</th><td>			   <a class="type" href="#std::iter_common_reference_t" title='std::iter_common_reference_t' data-ref="std::iter_common_reference_t">iter_common_reference_t</a>&lt;_I2&gt;&gt;;&nbsp</td></tr>
+<tr><th id="745">745</th><td>&nbsp</td></tr>
+<tr><th id="746">746</th><td>  <b>template</b>&lt;<b>typename</b> _Fn, <b>typename</b>... _Is&gt;&nbsp</td></tr>
+<tr><th id="747">747</th><td>    <b>requires</b> (indirectly_readable&lt;_Is&gt; &amp;&amp; ...)&nbsp</td></tr>
+<tr><th id="748">748</th><td>      &amp;&amp; invocable&lt;_Fn, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Is&gt;...&gt;&nbsp</td></tr>
+<tr><th id="749">749</th><td>    <b>using</b> <dfn class="typedef" id="std::indirect_result_t" title='std::indirect_result_t' data-type='invoke_result_t&lt;_Fn, iter_reference_t&lt;_Is&gt;...&gt;' data-ref="std::indirect_result_t">indirect_result_t</dfn> = <a class="type" href="../type_traits.html#std::invoke_result_t" title='std::invoke_result_t' data-ref="std::invoke_result_t">invoke_result_t</a>&lt;_Fn, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Is&gt;...&gt;;&nbsp</td></tr>
+<tr><th id="750">750</th><td>&nbsp</td></tr>
+<tr><th id="751">751</th><td>  <i class="doc">/// [projected], projected</i>&nbsp</td></tr>
+<tr><th id="752">752</th><td>  <b>template</b>&lt;indirectly_readable _Iter,&nbsp</td></tr>
+<tr><th id="753">753</th><td>	   indirectly_regular_unary_invocable&lt;_Iter&gt; _Proj&gt;&nbsp</td></tr>
+<tr><th id="754">754</th><td>    <b>struct</b> <dfn class="type def" id="std::projected" title='std::projected' data-ref="std::projected">projected</dfn>&nbsp</td></tr>
+<tr><th id="755">755</th><td>    {&nbsp</td></tr>
+<tr><th id="756">756</th><td>      <b>using</b> <dfn class="typedef" id="std::projected::value_type" title='std::projected::value_type' data-type='remove_cvref_t&lt;indirect_result_t&lt;_Proj &amp;, _Iter&gt;&gt;' data-ref="std::projected::value_type">value_type</dfn> = <a class="type" href="../type_traits.html#std::remove_cvref_t" title='std::remove_cvref_t' data-ref="std::remove_cvref_t">remove_cvref_t</a>&lt;<a class="type" href="#std::indirect_result_t" title='std::indirect_result_t' data-ref="std::indirect_result_t">indirect_result_t</a>&lt;_Proj&amp;, _Iter&gt;&gt;;&nbsp</td></tr>
+<tr><th id="757">757</th><td>&nbsp</td></tr>
+<tr><th id="758">758</th><td>      <a class="type" href="#std::indirect_result_t" title='std::indirect_result_t' data-ref="std::indirect_result_t">indirect_result_t</a>&lt;_Proj&amp;, _Iter&gt; <dfn class="decl fn" id="_ZNKSt9projecteddeEv" title='std::projected::operator*' data-ref="_ZNKSt9projecteddeEv"><b>operator</b>*</dfn>() <em>const</em>; <i>// not defined</i>&nbsp</td></tr>
+<tr><th id="759">759</th><td>    };&nbsp</td></tr>
+<tr><th id="760">760</th><td>&nbsp</td></tr>
+<tr><th id="761">761</th><td>  <b>template</b>&lt;weakly_incrementable _Iter, <b>typename</b> _Proj&gt;&nbsp</td></tr>
+<tr><th id="762">762</th><td>    <b>struct</b> <dfn class="type def" id="std::incrementable_traits" title='std::incrementable_traits' data-ref="std::incrementable_traits">incrementable_traits</dfn>&lt;<a class="type" href="#std::projected" title='std::projected' data-ref="std::projected">projected</a>&lt;_Iter, _Proj&gt;&gt;&nbsp</td></tr>
+<tr><th id="763">763</th><td>    { <b>using</b> <dfn class="typedef" id="std::incrementable_traits{projected{type-parameter-0-0,type-parameter-0-1}}::difference_type" title='std::incrementable_traits&lt;projected&lt;type-parameter-0-0, type-parameter-0-1&gt;&gt;::difference_type' data-type='iter_difference_t&lt;_Iter&gt;' data-ref="std::incrementable_traits{projected{type-parameter-0-0,type-parameter-0-1}}::difference_type">difference_type</dfn> = <a class="type" href="#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_Iter&gt;; };&nbsp</td></tr>
+<tr><th id="764">764</th><td>&nbsp</td></tr>
+<tr><th id="765">765</th><td>  <i>// [alg.req], common algorithm requirements</i>&nbsp</td></tr>
+<tr><th id="766">766</th><td><i></i>&nbsp</td></tr>
+<tr><th id="767">767</th><td><i>  /// [alg.req.ind.move], concept `indirectly_movable`</i>&nbsp</td></tr>
+<tr><th id="768">768</th><td>&nbsp</td></tr>
+<tr><th id="769">769</th><td>  <b>template</b>&lt;<b>typename</b> _In, <b>typename</b> _Out&gt;&nbsp</td></tr>
+<tr><th id="770">770</th><td>    <b>concept</b> indirectly_movable = indirectly_readable&lt;_In&gt;&nbsp</td></tr>
+<tr><th id="771">771</th><td>      &amp;&amp; indirectly_writable&lt;_Out, <a class="type" href="#std::iter_rvalue_reference_t" title='std::iter_rvalue_reference_t' data-ref="std::iter_rvalue_reference_t">iter_rvalue_reference_t</a>&lt;_In&gt;&gt;;&nbsp</td></tr>
+<tr><th id="772">772</th><td>&nbsp</td></tr>
+<tr><th id="773">773</th><td>  <b>template</b>&lt;<b>typename</b> _In, <b>typename</b> _Out&gt;&nbsp</td></tr>
+<tr><th id="774">774</th><td>    <b>concept</b> indirectly_movable_storable = indirectly_movable&lt;_In, _Out&gt;&nbsp</td></tr>
+<tr><th id="775">775</th><td>      &amp;&amp; indirectly_writable&lt;_Out, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;&gt;&nbsp</td></tr>
+<tr><th id="776">776</th><td>      &amp;&amp; movable&lt;<a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;&gt;&nbsp</td></tr>
+<tr><th id="777">777</th><td>      &amp;&amp; constructible_from&lt;<a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;, <a class="type" href="#std::iter_rvalue_reference_t" title='std::iter_rvalue_reference_t' data-ref="std::iter_rvalue_reference_t">iter_rvalue_reference_t</a>&lt;_In&gt;&gt;&nbsp</td></tr>
+<tr><th id="778">778</th><td>      &amp;&amp; assignable_from&lt;<a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;&amp;, <a class="type" href="#std::iter_rvalue_reference_t" title='std::iter_rvalue_reference_t' data-ref="std::iter_rvalue_reference_t">iter_rvalue_reference_t</a>&lt;_In&gt;&gt;;&nbsp</td></tr>
+<tr><th id="779">779</th><td>&nbsp</td></tr>
+<tr><th id="780">780</th><td>  <i class="doc">/// [alg.req.ind.copy], concept `indirectly_copyable`</i>&nbsp</td></tr>
+<tr><th id="781">781</th><td>  <b>template</b>&lt;<b>typename</b> _In, <b>typename</b> _Out&gt;&nbsp</td></tr>
+<tr><th id="782">782</th><td>    <b>concept</b> indirectly_copyable = indirectly_readable&lt;_In&gt;&nbsp</td></tr>
+<tr><th id="783">783</th><td>      &amp;&amp; indirectly_writable&lt;_Out, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_In&gt;&gt;;&nbsp</td></tr>
+<tr><th id="784">784</th><td>&nbsp</td></tr>
+<tr><th id="785">785</th><td>  <b>template</b>&lt;<b>typename</b> _In, <b>typename</b> _Out&gt;&nbsp</td></tr>
+<tr><th id="786">786</th><td>    <b>concept</b> indirectly_copyable_storable = indirectly_copyable&lt;_In, _Out&gt;&nbsp</td></tr>
+<tr><th id="787">787</th><td>      &amp;&amp; indirectly_writable&lt;_Out, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="788">788</th><td>      &amp;&amp; indirectly_writable&lt;_Out, <em>const</em> <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="789">789</th><td>      &amp;&amp; indirectly_writable&lt;_Out, <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;&amp;&amp;&gt;&nbsp</td></tr>
+<tr><th id="790">790</th><td>      &amp;&amp; indirectly_writable&lt;_Out, <em>const</em> <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;&amp;&amp;&gt;&nbsp</td></tr>
+<tr><th id="791">791</th><td>      &amp;&amp; copyable&lt;<a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;&gt;&nbsp</td></tr>
+<tr><th id="792">792</th><td>      &amp;&amp; constructible_from&lt;<a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_In&gt;&gt;&nbsp</td></tr>
+<tr><th id="793">793</th><td>      &amp;&amp; assignable_from&lt;<a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_In&gt;&amp;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_In&gt;&gt;;&nbsp</td></tr>
+<tr><th id="794">794</th><td>&nbsp</td></tr>
+<tr><th id="795">795</th><td><b>namespace</b> <span class="namespace">ranges</span>&nbsp</td></tr>
+<tr><th id="796">796</th><td>{&nbsp</td></tr>
+<tr><th id="797">797</th><td>  <b>namespace</b> <span class="namespace">__cust_iswap</span>&nbsp</td></tr>
+<tr><th id="798">798</th><td>  {&nbsp</td></tr>
+<tr><th id="799">799</th><td>    <b>template</b>&lt;<b>typename</b> _It1, <b>typename</b> _It2&gt;&nbsp</td></tr>
+<tr><th id="800">800</th><td>      <em>void</em> <dfn class="decl def fn" id="_ZNSt6ranges12__cust_iswap9iter_swapET_T0_" title='std::ranges::__cust_iswap::iter_swap' data-ref="_ZNSt6ranges12__cust_iswap9iter_swapET_T0_">iter_swap</dfn>(_It1, _It2) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="801">801</th><td>&nbsp</td></tr>
+<tr><th id="802">802</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="803">803</th><td>      <b>concept</b> __adl_iswap&nbsp</td></tr>
+<tr><th id="804">804</th><td>	= (<span class="namespace">std::__detail::</span>__class_or_enum&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="805">805</th><td>	  || <span class="namespace">std::__detail::</span>__class_or_enum&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Up&gt;&gt;)&nbsp</td></tr>
+<tr><th id="806">806</th><td>	&amp;&amp; <b>requires</b>(_Tp&amp;&amp; <dfn class="local col1 decl" id="2841__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2841__t">__t</dfn>, _Up&amp;&amp; <dfn class="local col2 decl" id="2842__u" title='__u' data-type='_Up &amp;&amp;' data-ref="2842__u">__u</dfn>) {&nbsp</td></tr>
+<tr><th id="807">807</th><td>	  iter_swap(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col1 ref" href="#2841__t" title='__t' data-ref="2841__t">__t</a>), <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col2 ref" href="#2842__u" title='__u' data-ref="2842__u">__u</a>));&nbsp</td></tr>
+<tr><th id="808">808</th><td>	};&nbsp</td></tr>
+<tr><th id="809">809</th><td>&nbsp</td></tr>
+<tr><th id="810">810</th><td>    <b>template</b>&lt;<b>typename</b> _Xp, <b>typename</b> _Yp&gt;&nbsp</td></tr>
+<tr><th id="811">811</th><td>      <b>constexpr</b> <a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_Xp&gt;&nbsp</td></tr>
+<tr><th id="812">812</th><td>      <dfn class="decl def fn" id="_ZNSt6ranges12__cust_iswap20__iter_exchange_moveEOT_OT0_" title='std::ranges::__cust_iswap::__iter_exchange_move' data-ref="_ZNSt6ranges12__cust_iswap20__iter_exchange_moveEOT_OT0_">__iter_exchange_move</dfn>(_Xp&amp;&amp; <dfn class="local col3 decl" id="2843__x" title='__x' data-type='_Xp &amp;&amp;' data-ref="2843__x">__x</dfn>, _Yp&amp;&amp; <dfn class="local col4 decl" id="2844__y" title='__y' data-type='_Yp &amp;&amp;' data-ref="2844__y">__y</dfn>)&nbsp</td></tr>
+<tr><th id="813">813</th><td>      <b>noexcept</b>(<b>noexcept</b>(<a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_Xp&gt;(<a class="ref" href="#std::ranges::iter_move" title='std::ranges::iter_move' data-ref="std::ranges::iter_move">iter_move</a>(<a class="local col3 ref" href="#2843__x" title='__x' data-ref="2843__x">__x</a>)))&nbsp</td></tr>
+<tr><th id="814">814</th><td>	       &amp;&amp; <b>noexcept</b>(*<a class="local col3 ref" href="#2843__x" title='__x' data-ref="2843__x">__x</a> = <a class="ref" href="#std::ranges::iter_move" title='std::ranges::iter_move' data-ref="std::ranges::iter_move">iter_move</a>(<a class="local col4 ref" href="#2844__y" title='__y' data-ref="2844__y">__y</a>)))&nbsp</td></tr>
+<tr><th id="815">815</th><td>      {&nbsp</td></tr>
+<tr><th id="816">816</th><td>	<a class="type" href="#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;_Xp&gt; <dfn class="local col5 decl" id="2845__old_value" title='__old_value' data-type='iter_value_t&lt;_Xp&gt;' data-ref="2845__old_value">__old_value</dfn>(<a class="ref" href="#std::ranges::iter_move" title='std::ranges::iter_move' data-ref="std::ranges::iter_move">iter_move</a>(<a class="local col3 ref" href="#2843__x" title='__x' data-ref="2843__x">__x</a>));&nbsp</td></tr>
+<tr><th id="817">817</th><td>	*<a class="local col3 ref" href="#2843__x" title='__x' data-ref="2843__x">__x</a> = <a class="ref" href="#std::ranges::iter_move" title='std::ranges::iter_move' data-ref="std::ranges::iter_move">iter_move</a>(<a class="local col4 ref" href="#2844__y" title='__y' data-ref="2844__y">__y</a>);&nbsp</td></tr>
+<tr><th id="818">818</th><td>	<b>return</b> <a class="local col5 ref" href="#2845__old_value" title='__old_value' data-ref="2845__old_value">__old_value</a>;&nbsp</td></tr>
+<tr><th id="819">819</th><td>      }&nbsp</td></tr>
+<tr><th id="820">820</th><td>&nbsp</td></tr>
+<tr><th id="821">821</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_iswap::_IterSwap" title='std::ranges::__cust_iswap::_IterSwap' data-ref="std::ranges::__cust_iswap::_IterSwap">_IterSwap</dfn>&nbsp</td></tr>
+<tr><th id="822">822</th><td>    {&nbsp</td></tr>
+<tr><th id="823">823</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="824">824</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="825">825</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="826">826</th><td>	<dfn class="decl def fn" id="_ZNSt6ranges12__cust_iswap9_IterSwap11_S_noexceptEv" title='std::ranges::__cust_iswap::_IterSwap::_S_noexcept' data-ref="_ZNSt6ranges12__cust_iswap9_IterSwap11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="827">827</th><td>	{&nbsp</td></tr>
+<tr><th id="828">828</th><td>	  <b>if</b> <b>constexpr</b> (__adl_iswap&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="829">829</th><td>	    <b>return</b> <b>noexcept</b>(iter_swap(<span class="namespace">std::</span>declval&lt;_Tp&gt;(),&nbsp</td></tr>
+<tr><th id="830">830</th><td>				      <span class="namespace">std::</span>declval&lt;_Up&gt;()));&nbsp</td></tr>
+<tr><th id="831">831</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (indirectly_readable&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="832">832</th><td>	      &amp;&amp; indirectly_readable&lt;_Up&gt;&nbsp</td></tr>
+<tr><th id="833">833</th><td>	      &amp;&amp; swappable_with&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Tp&gt;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Up&gt;&gt;)&nbsp</td></tr>
+<tr><th id="834">834</th><td>	    <b>return</b> <b>noexcept</b>(<span class="namespace">ranges::</span><a class="ref" href="../concepts.html#std::ranges::swap" title='std::ranges::swap' data-ref="std::ranges::swap">swap</a>(*<span class="namespace">std::</span>declval&lt;_Tp&gt;(),&nbsp</td></tr>
+<tr><th id="835">835</th><td>					 *<span class="namespace">std::</span>declval&lt;_Up&gt;()));&nbsp</td></tr>
+<tr><th id="836">836</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="837">837</th><td>	    <b>return</b> <b>noexcept</b>(*<span class="namespace">std::</span>declval&lt;_Tp&gt;()&nbsp</td></tr>
+<tr><th id="838">838</th><td>		= __iter_exchange_move(<span class="namespace">std::</span>declval&lt;_Up&gt;(),&nbsp</td></tr>
+<tr><th id="839">839</th><td>				       <span class="namespace">std::</span>declval&lt;_Tp&gt;()));&nbsp</td></tr>
+<tr><th id="840">840</th><td>	}&nbsp</td></tr>
+<tr><th id="841">841</th><td>&nbsp</td></tr>
+<tr><th id="842">842</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="843">843</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="844">844</th><td>	<b>requires</b> __adl_iswap&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="845">845</th><td>	|| (indirectly_readable&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="846">846</th><td>	    &amp;&amp; indirectly_readable&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Up&gt;&gt;&nbsp</td></tr>
+<tr><th id="847">847</th><td>	    &amp;&amp; swappable_with&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Tp&gt;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Up&gt;&gt;)&nbsp</td></tr>
+<tr><th id="848">848</th><td>	|| (indirectly_movable_storable&lt;_Tp, _Up&gt;&nbsp</td></tr>
+<tr><th id="849">849</th><td>	    &amp;&amp; indirectly_movable_storable&lt;_Up, _Tp&gt;)&nbsp</td></tr>
+<tr><th id="850">850</th><td>	<b>constexpr</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="851">851</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges12__cust_iswap9_IterSwapclEOT_OT0_" title='std::ranges::__cust_iswap::_IterSwap::operator()' data-ref="_ZNKSt6ranges12__cust_iswap9_IterSwapclEOT_OT0_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col6 decl" id="2846__e1" title='__e1' data-type='_Tp &amp;&amp;' data-ref="2846__e1">__e1</dfn>, _Up&amp;&amp; <dfn class="local col7 decl" id="2847__e2" title='__e2' data-type='_Up &amp;&amp;' data-ref="2847__e2">__e2</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="852">852</th><td>	<b>noexcept</b>(_S_noexcept&lt;_Tp, _Up&gt;())&nbsp</td></tr>
+<tr><th id="853">853</th><td>	{&nbsp</td></tr>
+<tr><th id="854">854</th><td>	  <b>if</b> <b>constexpr</b> (__adl_iswap&lt;_Tp, _Up&gt;)&nbsp</td></tr>
+<tr><th id="855">855</th><td>	    iter_swap(<b>static_cast</b>&lt;_Tp&amp;&amp;&gt;(<a class="local col6 ref" href="#2846__e1" title='__e1' data-ref="2846__e1">__e1</a>), <b>static_cast</b>&lt;_Up&amp;&amp;&gt;(<a class="local col7 ref" href="#2847__e2" title='__e2' data-ref="2847__e2">__e2</a>));&nbsp</td></tr>
+<tr><th id="856">856</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (indirectly_readable&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="857">857</th><td>	      &amp;&amp; indirectly_readable&lt;_Up&gt;&nbsp</td></tr>
+<tr><th id="858">858</th><td>	      &amp;&amp; swappable_with&lt;<a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Tp&gt;, <a class="type" href="#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;_Up&gt;&gt;)&nbsp</td></tr>
+<tr><th id="859">859</th><td>	    <span class="namespace">ranges::</span><a class="ref" href="../concepts.html#std::ranges::swap" title='std::ranges::swap' data-ref="std::ranges::swap">swap</a>(*<a class="local col6 ref" href="#2846__e1" title='__e1' data-ref="2846__e1">__e1</a>, *<a class="local col7 ref" href="#2847__e2" title='__e2' data-ref="2847__e2">__e2</a>);&nbsp</td></tr>
+<tr><th id="860">860</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="861">861</th><td>	    *<a class="local col6 ref" href="#2846__e1" title='__e1' data-ref="2846__e1">__e1</a> = __iter_exchange_move(<a class="local col7 ref" href="#2847__e2" title='__e2' data-ref="2847__e2">__e2</a>, <a class="local col6 ref" href="#2846__e1" title='__e1' data-ref="2846__e1">__e1</a>);&nbsp</td></tr>
+<tr><th id="862">862</th><td>	}&nbsp</td></tr>
+<tr><th id="863">863</th><td>    };&nbsp</td></tr>
+<tr><th id="864">864</th><td>  } <i>// namespace __cust_iswap</i>&nbsp</td></tr>
+<tr><th id="865">865</th><td>&nbsp</td></tr>
+<tr><th id="866">866</th><td>  <b>inline</b> <b>namespace</b> <span class="namespace">__cust</span>&nbsp</td></tr>
+<tr><th id="867">867</th><td>  {&nbsp</td></tr>
+<tr><th id="868">868</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_iswap::</span><a class="type" href="#std::ranges::__cust_iswap::_IterSwap" title='std::ranges::__cust_iswap::_IterSwap' data-ref="std::ranges::__cust_iswap::_IterSwap">_IterSwap</a> <dfn class="decl def" id="std::ranges::iter_swap" title='std::ranges::iter_swap' data-ref="std::ranges::iter_swap">iter_swap</dfn>{};&nbsp</td></tr>
+<tr><th id="869">869</th><td>  } <i>// inline namespace __cust</i>&nbsp</td></tr>
+<tr><th id="870">870</th><td>&nbsp</td></tr>
+<tr><th id="871">871</th><td>} <i>// namespace ranges</i>&nbsp</td></tr>
+<tr><th id="872">872</th><td>&nbsp</td></tr>
+<tr><th id="873">873</th><td>  <i class="doc">/// [alg.req.ind.swap], concept `indirectly_swappable`</i>&nbsp</td></tr>
+<tr><th id="874">874</th><td>  <b>template</b>&lt;<b>typename</b> _I1, <b>typename</b> _I2 = _I1&gt;&nbsp</td></tr>
+<tr><th id="875">875</th><td>    <b>concept</b> indirectly_swappable&nbsp</td></tr>
+<tr><th id="876">876</th><td>      = indirectly_readable&lt;_I1&gt; &amp;&amp; indirectly_readable&lt;_I2&gt;&nbsp</td></tr>
+<tr><th id="877">877</th><td>      &amp;&amp; <b>requires</b>(<em>const</em> _I1 <dfn class="local col8 decl" id="2848__i1" title='__i1' data-type='const _I1' data-ref="2848__i1">__i1</dfn>, <em>const</em> _I2 <dfn class="local col9 decl" id="2849__i2" title='__i2' data-type='const _I2' data-ref="2849__i2">__i2</dfn>)&nbsp</td></tr>
+<tr><th id="878">878</th><td>      {&nbsp</td></tr>
+<tr><th id="879">879</th><td>	<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::iter_swap" title='std::ranges::iter_swap' data-ref="std::ranges::iter_swap">iter_swap</a>(<a class="local col8 ref" href="#2848__i1" title='__i1' data-ref="2848__i1">__i1</a>, <a class="local col8 ref" href="#2848__i1" title='__i1' data-ref="2848__i1">__i1</a>);&nbsp</td></tr>
+<tr><th id="880">880</th><td>	<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::iter_swap" title='std::ranges::iter_swap' data-ref="std::ranges::iter_swap">iter_swap</a>(<a class="local col9 ref" href="#2849__i2" title='__i2' data-ref="2849__i2">__i2</a>, <a class="local col9 ref" href="#2849__i2" title='__i2' data-ref="2849__i2">__i2</a>);&nbsp</td></tr>
+<tr><th id="881">881</th><td>	<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::iter_swap" title='std::ranges::iter_swap' data-ref="std::ranges::iter_swap">iter_swap</a>(<a class="local col8 ref" href="#2848__i1" title='__i1' data-ref="2848__i1">__i1</a>, <a class="local col9 ref" href="#2849__i2" title='__i2' data-ref="2849__i2">__i2</a>);&nbsp</td></tr>
+<tr><th id="882">882</th><td>	<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::iter_swap" title='std::ranges::iter_swap' data-ref="std::ranges::iter_swap">iter_swap</a>(<a class="local col9 ref" href="#2849__i2" title='__i2' data-ref="2849__i2">__i2</a>, <a class="local col8 ref" href="#2848__i1" title='__i1' data-ref="2848__i1">__i1</a>);&nbsp</td></tr>
+<tr><th id="883">883</th><td>      };&nbsp</td></tr>
+<tr><th id="884">884</th><td>&nbsp</td></tr>
+<tr><th id="885">885</th><td>  <i class="doc">/// [alg.req.ind.cmp], concept `indirectly_comparable`</i>&nbsp</td></tr>
+<tr><th id="886">886</th><td>  <b>template</b>&lt;<b>typename</b> _I1, <b>typename</b> _I2, <b>typename</b> _Rel, <b>typename</b> _P1 = <a class="type" href="ranges_cmp.h.html#std::identity" title='std::identity' data-ref="std::identity">identity</a>,&nbsp</td></tr>
+<tr><th id="887">887</th><td>	   <b>typename</b> _P2 = <a class="type" href="ranges_cmp.h.html#std::identity" title='std::identity' data-ref="std::identity">identity</a>&gt;&nbsp</td></tr>
+<tr><th id="888">888</th><td>    <b>concept</b> indirectly_comparable&nbsp</td></tr>
+<tr><th id="889">889</th><td>      = indirect_binary_predicate&lt;_Rel, <a class="type" href="#std::projected" title='std::projected' data-ref="std::projected">projected</a>&lt;_I1, _P1&gt;,&nbsp</td></tr>
+<tr><th id="890">890</th><td>				  <a class="type" href="#std::projected" title='std::projected' data-ref="std::projected">projected</a>&lt;_I2, _P2&gt;&gt;;&nbsp</td></tr>
+<tr><th id="891">891</th><td>&nbsp</td></tr>
+<tr><th id="892">892</th><td>  <i class="doc">/// [alg.req.permutable], concept `permutable`</i>&nbsp</td></tr>
+<tr><th id="893">893</th><td>  <b>template</b>&lt;<b>typename</b> _Iter&gt;&nbsp</td></tr>
+<tr><th id="894">894</th><td>    <b>concept</b> permutable = forward_iterator&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="895">895</th><td>      &amp;&amp; indirectly_movable_storable&lt;_Iter, _Iter&gt;&nbsp</td></tr>
+<tr><th id="896">896</th><td>      &amp;&amp; indirectly_swappable&lt;_Iter, _Iter&gt;;&nbsp</td></tr>
+<tr><th id="897">897</th><td>&nbsp</td></tr>
+<tr><th id="898">898</th><td>  <i class="doc">/// [alg.req.mergeable], concept `mergeable`</i>&nbsp</td></tr>
+<tr><th id="899">899</th><td>  <b>template</b>&lt;<b>typename</b> _I1, <b>typename</b> _I2, <b>typename</b> _Out,&nbsp</td></tr>
+<tr><th id="900">900</th><td>	   <b>typename</b> _Rel = <span class="namespace">ranges::</span><a class="type" href="ranges_cmp.h.html#std::ranges::less" title='std::ranges::less' data-ref="std::ranges::less">less</a>, <b>typename</b> _P1 = <a class="type" href="ranges_cmp.h.html#std::identity" title='std::identity' data-ref="std::identity">identity</a>,&nbsp</td></tr>
+<tr><th id="901">901</th><td>	   <b>typename</b> _P2 = <a class="type" href="ranges_cmp.h.html#std::identity" title='std::identity' data-ref="std::identity">identity</a>&gt;&nbsp</td></tr>
+<tr><th id="902">902</th><td>    <b>concept</b> mergeable = input_iterator&lt;_I1&gt; &amp;&amp; input_iterator&lt;_I2&gt;&nbsp</td></tr>
+<tr><th id="903">903</th><td>      &amp;&amp; weakly_incrementable&lt;_Out&gt; &amp;&amp; indirectly_copyable&lt;_I1, _Out&gt;&nbsp</td></tr>
+<tr><th id="904">904</th><td>      &amp;&amp; indirectly_copyable&lt;_I2, _Out&gt;&nbsp</td></tr>
+<tr><th id="905">905</th><td>      &amp;&amp; indirect_strict_weak_order&lt;_Rel, <a class="type" href="#std::projected" title='std::projected' data-ref="std::projected">projected</a>&lt;_I1, _P1&gt;,&nbsp</td></tr>
+<tr><th id="906">906</th><td>				    <a class="type" href="#std::projected" title='std::projected' data-ref="std::projected">projected</a>&lt;_I2, _P2&gt;&gt;;&nbsp</td></tr>
+<tr><th id="907">907</th><td>&nbsp</td></tr>
+<tr><th id="908">908</th><td>  <i class="doc">/// [alg.req.sortable], concept `sortable`</i>&nbsp</td></tr>
+<tr><th id="909">909</th><td>  <b>template</b>&lt;<b>typename</b> _Iter, <b>typename</b> _Rel = <span class="namespace">ranges::</span><a class="type" href="ranges_cmp.h.html#std::ranges::less" title='std::ranges::less' data-ref="std::ranges::less">less</a>,&nbsp</td></tr>
+<tr><th id="910">910</th><td>	   <b>typename</b> _Proj = <a class="type" href="ranges_cmp.h.html#std::identity" title='std::identity' data-ref="std::identity">identity</a>&gt;&nbsp</td></tr>
+<tr><th id="911">911</th><td>    <b>concept</b> sortable = permutable&lt;_Iter&gt;&nbsp</td></tr>
+<tr><th id="912">912</th><td>      &amp;&amp; indirect_strict_weak_order&lt;_Rel, <a class="type" href="#std::projected" title='std::projected' data-ref="std::projected">projected</a>&lt;_Iter, _Proj&gt;&gt;;&nbsp</td></tr>
+<tr><th id="913">913</th><td>&nbsp</td></tr>
+<tr><th id="914">914</th><td>  <b>struct</b> <dfn class="type def" id="std::unreachable_sentinel_t" title='std::unreachable_sentinel_t' data-ref="std::unreachable_sentinel_t">unreachable_sentinel_t</dfn>&nbsp</td></tr>
+<tr><th id="915">915</th><td>  {&nbsp</td></tr>
+<tr><th id="916">916</th><td>    <b>template</b>&lt;weakly_incrementable _It&gt;&nbsp</td></tr>
+<tr><th id="917">917</th><td>      <b>friend</b> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="918">918</th><td>      <dfn class="decl def fn" id="_ZSteqSt22unreachable_sentinel_tRKT_" title='std::operator==' data-ref="_ZSteqSt22unreachable_sentinel_tRKT_"><b>operator</b>==</dfn>(<a class="type" href="#std::unreachable_sentinel_t" title='std::unreachable_sentinel_t' data-ref="std::unreachable_sentinel_t">unreachable_sentinel_t</a>, <em>const</em> _It&amp;) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="919">919</th><td>      { <b>return</b> <b>false</b>; }&nbsp</td></tr>
+<tr><th id="920">920</th><td>  };&nbsp</td></tr>
+<tr><th id="921">921</th><td>&nbsp</td></tr>
+<tr><th id="922">922</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::unreachable_sentinel_t" title='std::unreachable_sentinel_t' data-ref="std::unreachable_sentinel_t">unreachable_sentinel_t</a> <dfn class="decl def" id="std::unreachable_sentinel" title='std::unreachable_sentinel' data-ref="std::unreachable_sentinel">unreachable_sentinel</dfn>{};&nbsp</td></tr>
+<tr><th id="923">923</th><td>&nbsp</td></tr>
+<tr><th id="924">924</th><td>  <b>struct</b> <dfn class="type def" id="std::default_sentinel_t" title='std::default_sentinel_t' data-ref="std::default_sentinel_t">default_sentinel_t</dfn> { };&nbsp</td></tr>
+<tr><th id="925">925</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::default_sentinel_t" title='std::default_sentinel_t' data-ref="std::default_sentinel_t">default_sentinel_t</a> <dfn class="decl def" id="std::default_sentinel" title='std::default_sentinel' data-ref="std::default_sentinel">default_sentinel</dfn>{};&nbsp</td></tr>
+<tr><th id="926">926</th><td>&nbsp</td></tr>
+<tr><th id="927">927</th><td>  <i>// This is the namespace for [range.access] CPOs.</i>&nbsp</td></tr>
+<tr><th id="928">928</th><td>  <b>namespace</b> <span class="namespace">ranges</span>::<span class="namespace">__cust_access</span>&nbsp</td></tr>
+<tr><th id="929">929</th><td>  {&nbsp</td></tr>
+<tr><th id="930">930</th><td>    <b>using</b> <span class="namespace">std::__detail::</span>__class_or_enum;&nbsp</td></tr>
+<tr><th id="931">931</th><td>&nbsp</td></tr>
+<tr><th id="932">932</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_Decay_copy" title='std::ranges::__cust_access::_Decay_copy' data-ref="std::ranges::__cust_access::_Decay_copy"><a class="type" href="#std::ranges::__cust_access::_Decay_copy" title='std::ranges::__cust_access::_Decay_copy' data-ref="std::ranges::__cust_access::_Decay_copy">_Decay_copy</a></dfn> final&nbsp</td></tr>
+<tr><th id="933">933</th><td>    {&nbsp</td></tr>
+<tr><th id="934">934</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="935">935</th><td>	<b>constexpr</b> <a class="type" href="../type_traits.html#std::decay_t" title='std::decay_t' data-ref="std::decay_t">decay_t</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="936">936</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access11_Decay_copyclEOT_" title='std::ranges::__cust_access::_Decay_copy::operator()' data-ref="_ZNKSt6ranges13__cust_access11_Decay_copyclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col0 decl" id="2850__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="2850__t">__t</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="937">937</th><td>	<b>noexcept</b>(is_nothrow_convertible_v&lt;_Tp, <a class="type" href="../type_traits.html#std::decay_t" title='std::decay_t' data-ref="std::decay_t">decay_t</a>&lt;_Tp&gt;&gt;)&nbsp</td></tr>
+<tr><th id="938">938</th><td>	{ <b>return</b> <span class="namespace">std::</span>forward&lt;_Tp&gt;(<a class="local col0 ref" href="#2850__t" title='__t' data-ref="2850__t">__t</a>); }&nbsp</td></tr>
+<tr><th id="939">939</th><td>    } <b>inline</b> <b>constexpr</b> <dfn class="decl def" id="std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</dfn>{};&nbsp</td></tr>
+<tr><th id="940">940</th><td>&nbsp</td></tr>
+<tr><th id="941">941</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="942">942</th><td>      <b>concept</b> __member_begin = <b>requires</b>(_Tp&amp; <dfn class="local col1 decl" id="2851__t" title='__t' data-type='_Tp &amp;' data-ref="2851__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="943">943</th><td>	{&nbsp</td></tr>
+<tr><th id="944">944</th><td>	  { <a class="ref" href="#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(<a class="local col1 ref" href="#2851__t" title='__t' data-ref="2851__t">__t</a>.begin()) } -&gt; input_or_output_iterator;&nbsp</td></tr>
+<tr><th id="945">945</th><td>	};&nbsp</td></tr>
+<tr><th id="946">946</th><td>&nbsp</td></tr>
+<tr><th id="947">947</th><td>    <i>// Poison pills so that unqualified lookup doesn't find std::begin.</i>&nbsp</td></tr>
+<tr><th id="948">948</th><td>    <em>void</em> <dfn class="decl def fn" id="_ZNSt6ranges13__cust_access5beginERT_" title='std::ranges::__cust_access::begin' data-ref="_ZNSt6ranges13__cust_access5beginERT_">begin</dfn>(<em>auto</em>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="949">949</th><td>    <em>void</em> <dfn class="decl def fn" id="_ZNSt6ranges13__cust_access5beginERKT_" title='std::ranges::__cust_access::begin' data-ref="_ZNSt6ranges13__cust_access5beginERKT_">begin</dfn>(<em>const</em> <em>auto</em>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="950">950</th><td>&nbsp</td></tr>
+<tr><th id="951">951</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="952">952</th><td>      <b>concept</b> __adl_begin = __class_or_enum&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="953">953</th><td>	&amp;&amp; <b>requires</b>(_Tp&amp; <dfn class="local col2 decl" id="2852__t" title='__t' data-type='_Tp &amp;' data-ref="2852__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="954">954</th><td>	{&nbsp</td></tr>
+<tr><th id="955">955</th><td>	  { <a class="ref" href="#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(begin(<a class="local col2 ref" href="#2852__t" title='__t' data-ref="2852__t">__t</a>)) } -&gt; input_or_output_iterator;&nbsp</td></tr>
+<tr><th id="956">956</th><td>	};&nbsp</td></tr>
+<tr><th id="957">957</th><td>&nbsp</td></tr>
+<tr><th id="958">958</th><td>    <i>// Simplified version of std::ranges::begin that only supports lvalues,</i>&nbsp</td></tr>
+<tr><th id="959">959</th><td><i>    // for use by __range_iter_t below.</i>&nbsp</td></tr>
+<tr><th id="960">960</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="961">961</th><td>      <b>requires</b> is_array_v&lt;_Tp&gt; || __member_begin&lt;_Tp&amp;&gt; || __adl_begin&lt;_Tp&amp;&gt;&nbsp</td></tr>
+<tr><th id="962">962</th><td>      <em>auto</em>&nbsp</td></tr>
+<tr><th id="963">963</th><td>      <dfn class="decl def fn" id="_ZNSt6ranges13__cust_access7__beginERT_" title='std::ranges::__cust_access::__begin' data-ref="_ZNSt6ranges13__cust_access7__beginERT_">__begin</dfn>(_Tp&amp; <dfn class="local col3 decl" id="2853__t" title='__t' data-type='_Tp &amp;' data-ref="2853__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="964">964</th><td>      {&nbsp</td></tr>
+<tr><th id="965">965</th><td>	<b>if</b> <b>constexpr</b> (is_array_v&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="966">966</th><td>	  <b>return</b> <a class="local col3 ref" href="#2853__t" title='__t' data-ref="2853__t">__t</a> + <var>0</var>;&nbsp</td></tr>
+<tr><th id="967">967</th><td>	<b>else</b> <b>if</b> <b>constexpr</b> (__member_begin&lt;_Tp&amp;&gt;)&nbsp</td></tr>
+<tr><th id="968">968</th><td>	  <b>return</b> <a class="local col3 ref" href="#2853__t" title='__t' data-ref="2853__t">__t</a>.begin();&nbsp</td></tr>
+<tr><th id="969">969</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="970">970</th><td>	  <b>return</b> begin(<a class="local col3 ref" href="#2853__t" title='__t' data-ref="2853__t">__t</a>);&nbsp</td></tr>
+<tr><th id="971">971</th><td>      }&nbsp</td></tr>
+<tr><th id="972">972</th><td>  } <i>// namespace ranges::__cust_access</i>&nbsp</td></tr>
+<tr><th id="973">973</th><td>&nbsp</td></tr>
+<tr><th id="974">974</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="975">975</th><td>  {&nbsp</td></tr>
+<tr><th id="976">976</th><td>    <i>// Implementation of std::ranges::iterator_t, without using ranges::begin.</i>&nbsp</td></tr>
+<tr><th id="977">977</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="978">978</th><td>      <b>using</b> <dfn class="typedef" id="std::__detail::__range_iter_t" title='std::__detail::__range_iter_t' data-type='decltype(ranges::__cust_access::__begin(std::declval&lt;_Tp &amp;&gt;()))' data-ref="std::__detail::__range_iter_t">__range_iter_t</dfn>&nbsp</td></tr>
+<tr><th id="979">979</th><td>	= <b>decltype</b>(<span class="namespace">ranges::__cust_access::</span>__begin(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;()));&nbsp</td></tr>
+<tr><th id="980">980</th><td>&nbsp</td></tr>
+<tr><th id="981">981</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="982">982</th><td>&nbsp</td></tr>
+<tr><th id="983">983</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="984">984</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="985">985</th><td><u>#<span data-ppcond="39">endif</span> // C++20 library concepts</u>&nbsp</td></tr>
+<tr><th id="986">986</th><td><u>#<span data-ppcond="30">endif</span> // _ITERATOR_CONCEPTS_H</u>&nbsp</td></tr>
+<tr><th id="987">987</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

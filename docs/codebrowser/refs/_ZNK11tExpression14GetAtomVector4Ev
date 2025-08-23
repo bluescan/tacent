@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='112' type='tMath::tVector4 tExpression::GetAtomVector4() const'/>
+<use f='Modules/System/Inc/System/tScript.h' l='129' u='c' c='_ZNK11tExpressioncvN5tMath8tVector4EEv'/>
+<def f='Modules/System/Src/tScript.cpp' l='320' ll='337' type='tMath::tVector4 tExpression::GetAtomVector4() const'/>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='3614' ll='3616' type='std::bernoulli_distribution::result_type std::bernoulli_distribution::min() const'/>
+<doc f='include/c++/11/bits/random.h' l='3611'>/**
+     * @brief Returns the greatest lower bound value of the distribution.
+     */</doc>

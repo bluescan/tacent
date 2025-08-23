@@ -1,0 +1,46 @@
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1328' ll='1470'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1328'/>
+<size>76</size>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1310'>/**
+ * @memberof ktxTexture2
+ * @~English
+ * @brief Structure for passing extended parameters to
+ *        ktxTexture2_CompressBasisEx().
+ *
+ * If you only want default values, use ktxTexture2_CompressBasis(). Here, at a minimum you
+ * must initialize the structure as follows:
+ * @code
+ *  ktxBasisParams params = {0};
+ *  params.structSize = sizeof(params);
+ *  params.compressionLevel = KTX_ETC1S_DEFAULT_COMPRESSION_LEVEL;
+ * @endcode
+ *
+ * @e compressionLevel has to be explicitly set because 0 is a valid @e compressionLevel
+ * but is not the default used by the BasisU encoder when no value is set. Only the other
+ * settings that are to be non-default must be non-zero.
+ */</doc>
+<mbr r='ktxBasisParams::structSize' o='0' t='ktx_uint32_t'/>
+<mbr r='ktxBasisParams::uastc' o='32' t='ktx_bool_t'/>
+<mbr r='ktxBasisParams::verbose' o='40' t='ktx_bool_t'/>
+<mbr r='ktxBasisParams::noSSE' o='48' t='ktx_bool_t'/>
+<mbr r='ktxBasisParams::threadCount' o='64' t='ktx_uint32_t'/>
+<mbr r='ktxBasisParams::compressionLevel' o='96' t='ktx_uint32_t'/>
+<mbr r='ktxBasisParams::qualityLevel' o='128' t='ktx_uint32_t'/>
+<mbr r='ktxBasisParams::maxEndpoints' o='160' t='ktx_uint32_t'/>
+<mbr r='ktxBasisParams::endpointRDOThreshold' o='192' t='float'/>
+<mbr r='ktxBasisParams::maxSelectors' o='224' t='ktx_uint32_t'/>
+<mbr r='ktxBasisParams::selectorRDOThreshold' o='256' t='float'/>
+<mbr r='ktxBasisParams::inputSwizzle' o='288' t='char[4]'/>
+<mbr r='ktxBasisParams::normalMap' o='320' t='ktx_bool_t'/>
+<mbr r='ktxBasisParams::separateRGToRGB_A' o='328' t='ktx_bool_t'/>
+<mbr r='ktxBasisParams::preSwizzle' o='336' t='ktx_bool_t'/>
+<mbr r='ktxBasisParams::noEndpointRDO' o='344' t='ktx_bool_t'/>
+<mbr r='ktxBasisParams::noSelectorRDO' o='352' t='ktx_bool_t'/>
+<mbr r='ktxBasisParams::uastcFlags' o='384' t='ktx_pack_uastc_flags'/>
+<mbr r='ktxBasisParams::uastcRDO' o='416' t='ktx_bool_t'/>
+<mbr r='ktxBasisParams::uastcRDOQualityScalar' o='448' t='float'/>
+<mbr r='ktxBasisParams::uastcRDODictSize' o='480' t='ktx_uint32_t'/>
+<mbr r='ktxBasisParams::uastcRDOMaxSmoothBlockErrorScale' o='512' t='float'/>
+<mbr r='ktxBasisParams::uastcRDOMaxSmoothBlockStdDev' o='544' t='float'/>
+<mbr r='ktxBasisParams::uastcRDODontFavorSimplerModes' o='576' t='ktx_bool_t'/>
+<mbr r='ktxBasisParams::uastcRDONoMultithreading' o='584' t='ktx_bool_t'/>

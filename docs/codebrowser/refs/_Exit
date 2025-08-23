@@ -1,0 +1,5 @@
+<dec f='include/stdlib.h' l='636' type='void _Exit(int __status)'/>
+<doc f='include/stdlib.h' l='634'>/* Terminate the program with STATUS without calling any of the
+   functions registered with `atexit&apos; or `on_exit&apos;.  */</doc>
+<dec f='include/unistd.h' l='624' type='void _exit(int __status)'/>
+<doc f='include/unistd.h' l='623'>/* Terminate program execution with the low-order 8 bits of STATUS.  */</doc>

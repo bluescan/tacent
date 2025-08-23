@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/locale_facets.tcc' l='42' ll='46'/>
+<def f='include/c++/11/bits/locale_facets.tcc' l='49' ll='74'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='154' c='_ZNKSt7num_get16_M_extract_floatB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='382' c='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='621' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRb'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='875' c='_ZNKSt7num_put13_M_insert_intET0_RSt8ios_baseT_TL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='997' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1135' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_b'/>
+<doc f='include/c++/11/bits/locale_facets.tcc' l='48'>// Specializations.</doc>
+<fun r='_ZNKSt11__use_cacheclERKSt6locale'/>
+<fun r='_ZNKSt11__use_cacheISt16__numpunct_cacheIT_EEclERKSt6locale'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='39' ll='65'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='149' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='435' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<fun r='_ZNKSt11__use_cacheISt18__moneypunct_cacheIT_XT0_EEEclERKSt6locale'/>

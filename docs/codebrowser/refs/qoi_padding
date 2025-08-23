@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/QOI/qoi.h' l='339' type='const unsigned char[8]'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='376' u='r' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='480' u='r' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='481' u='r' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='500' u='r' c='qoi_decode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='539' u='r' c='qoi_decode'/>

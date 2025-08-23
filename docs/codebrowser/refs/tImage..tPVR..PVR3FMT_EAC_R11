@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Src/tImagePVR.cpp' l='184' type='25'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='428' macro='1' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>

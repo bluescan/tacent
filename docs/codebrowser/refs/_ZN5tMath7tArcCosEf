@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='187' type='float tMath::tArcCos(float x)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='973' u='c' c='_ZN5tMath14tRotationAngleERKNS_5tQuatE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='161' u='c' c='_ZN5tMath4tGetERNS_5tVec3ERfRKNS_5tQuatE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='247' u='c' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_f'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='299' u='c' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>

@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='455' type='const tColour4b'/>
+<use f='Modules/Image/Src/tImageXPM.cpp' l='60' u='r' c='_ZN6tImage9tImageXPM4LoadEPKhi'/>
+<def f='Modules/Math/Src/tColour.cpp' l='151' type='const tColour4b'/>

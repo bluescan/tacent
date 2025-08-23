@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tTime.h' l='47' type='0'/>
+<use f='Modules/System/Inc/System/tTime.h' l='52' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>
+<doc f='Modules/System/Inc/System/tTime.h' l='47'>// Eg. 2020-01-14 01:47:12</doc>
+<use f='Modules/System/Src/tTime.cpp' l='102' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>

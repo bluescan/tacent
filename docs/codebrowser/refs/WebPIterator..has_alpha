@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='154' type='int'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='122' u='r' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='125' u='r' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<offset>448</offset>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='153'>// reasons this is called a fragment.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='154'>// True if the frame contains transparency.</doc>

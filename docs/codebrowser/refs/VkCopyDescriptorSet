@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3730' ll='3740'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3730'/>
+<size>56</size>
+<mbr r='VkCopyDescriptorSet::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCopyDescriptorSet::pNext' o='64' t='const void *'/>
+<mbr r='VkCopyDescriptorSet::srcSet' o='128' t='VkDescriptorSet'/>
+<mbr r='VkCopyDescriptorSet::srcBinding' o='192' t='uint32_t'/>
+<mbr r='VkCopyDescriptorSet::srcArrayElement' o='224' t='uint32_t'/>
+<mbr r='VkCopyDescriptorSet::dstSet' o='256' t='VkDescriptorSet'/>
+<mbr r='VkCopyDescriptorSet::dstBinding' o='320' t='uint32_t'/>
+<mbr r='VkCopyDescriptorSet::dstArrayElement' o='352' t='uint32_t'/>
+<mbr r='VkCopyDescriptorSet::descriptorCount' o='384' t='uint32_t'/>

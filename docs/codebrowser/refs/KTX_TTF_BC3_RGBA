@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1513' type='3'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1602'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1510'>/*!&lt; Opaque only, no punchthrough alpha support yet.  Returns RGB
+                 or alpha data, if KTX_TF_TRANSCODE_ALPHA_DATA_TO_OPAQUE_FORMATS
+                 flag is specified. */</doc>

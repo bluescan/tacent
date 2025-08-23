@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='646' ll='651' type='unique_ptr&lt;type-parameter-0-0[], type-parameter-0-1&gt; &amp; std::unique_ptr&lt;type-parameter-0-0[], type-parameter-0-1&gt;::operator=(std::nullptr_t )'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='645'>/// Reset the %unique_ptr to empty, invoking the deleter if necessary.</doc>

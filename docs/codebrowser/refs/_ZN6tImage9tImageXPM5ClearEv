@@ -1,0 +1,9 @@
+<use f='Modules/Image/Inc/Image/tImageXPM.h' l='47' u='c' c='_ZN6tImage9tImageXPMD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImageXPM.h' l='64' type='void tImage::tImageXPM::Clear()'/>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Inc/Image/tImageXPM.h' l='88' ll='96' type='void tImage::tImageXPM::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImageXPM.h' l='63'>// After this call no memory will be consumed by the object and it will be invalid.</doc>
+<doc f='Modules/Image/Inc/Image/tImageXPM.h' l='85'>// Implementation below this line.</doc>
+<use f='Modules/Image/Src/tImageXPM.cpp' l='28' u='c' c='_ZN6tImage9tImageXPM4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageXPM.cpp' l='47' u='c' c='_ZN6tImage9tImageXPM4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageXPM.cpp' l='75' u='c' c='_ZN6tImage9tImageXPM3SetEP9tColour4biib'/>

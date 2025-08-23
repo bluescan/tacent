@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8504'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8503'>// VK_KHR_device_group is a preprocessor guard. Do not pass it to API calls.</doc>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/basic_string.h' l='6789' ll='6792' type='std::wstring std::to_wstring(int __val)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='6788'>// DR 1261.</doc>

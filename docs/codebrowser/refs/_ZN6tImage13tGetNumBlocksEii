@@ -1,0 +1,20 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='288' type='int tImage::tGetNumBlocks(int blockWH, int imageWH)'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='653' ll='657' type='int tImage::tGetNumBlocks(int blockWH, int imageWH)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='286'>// Given a block-width or block-height and how may pixels you need to store (image-width or image-height), returns the
+// number of blocks you will need in that dimension.</doc>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='159' u='c' c='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='159' u='c' c='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1332' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1333' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='923' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='924' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='133' u='c' c='_ZN6tImage4tPKM13IsHeaderValidERKNS0_6HeaderE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='137' u='c' c='_ZN6tImage4tPKM13IsHeaderValidERKNS0_6HeaderE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='961' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='962' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='991' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='992' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1090' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1091' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='668' u='c' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='669' u='c' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>

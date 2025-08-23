@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tImageBMP.h' l='83' type='0'/>
+<doc f='Modules/Image/Inc/Image/tImageBMP.h' l='83'>// Invalid must be 0.</doc>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='571' u='r' c='_ZNK6tImage9tImageBMP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='572' u='r' c='_ZNK6tImage9tImageBMP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='575' u='r' c='_ZNK6tImage9tImageBMP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='582' u='r' c='_ZNK6tImage9tImageBMP4SaveERK7tStringRKNS0_10SaveParamsE'/>

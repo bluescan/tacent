@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/predefined_ops.h' l='304' ll='319'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='323' c='__gnu_cxx::__ops::__pred_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='325' c='__gnu_cxx::__ops::__pred_iter'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='401' c='__gnu_cxx::__ops::__negate'/>
+<mbr r='__gnu_cxx::__ops::_Iter_pred::_M_pred' t='_Predicate'/>
+<fun r='__gnu_cxx::__ops::_Iter_pred::_Iter_pred{_Predicate}'/>
+<fun r='__gnu_cxx::__ops::_Iter_pred::operator()'/>

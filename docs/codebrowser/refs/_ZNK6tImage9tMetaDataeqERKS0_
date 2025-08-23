@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='195' type='bool tImage::tMetaData::operator==(const tImage::tMetaData &amp; src) const'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='196' u='c' c='_ZNK6tImage9tMetaDataneERKS0_'/>
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='277' ll='290' type='bool tImage::tMetaData::operator==(const tImage::tMetaData &amp; src) const'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='193'>// Two invalid meta-data objects are always considered equal. Otherwise the number of datums must match and they
+	// must all be equal for true to be returned.</doc>

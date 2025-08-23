@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5526' ll='5534'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5526'/>
+<size>64</size>
+<mbr r='VkPhysicalDeviceIDProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceIDProperties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceIDProperties::deviceUUID' o='128' t='uint8_t[16]'/>
+<mbr r='VkPhysicalDeviceIDProperties::driverUUID' o='256' t='uint8_t[16]'/>
+<mbr r='VkPhysicalDeviceIDProperties::deviceLUID' o='384' t='uint8_t[8]'/>
+<mbr r='VkPhysicalDeviceIDProperties::deviceNodeMask' o='448' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceIDProperties::deviceLUIDValid' o='480' t='VkBool32'/>

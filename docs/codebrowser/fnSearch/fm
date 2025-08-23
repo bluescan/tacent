@@ -1,0 +1,4 @@
+_ZSt3fmafff|std::fma
+_ZSt4fmaxff|std::fmax
+_ZSt4fminff|std::fmin
+_ZSt4fmodff|std::fmod

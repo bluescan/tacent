@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='308' type='int pthread_attr_setguardsize(pthread_attr_t * __attr, size_t __guardsize)'/>
+<doc f='include/pthread.h' l='307'>/* Set the size of the guard area created for stack overflow protection.  */</doc>

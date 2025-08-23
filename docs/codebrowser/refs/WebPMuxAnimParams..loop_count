@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='287' type='int'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='362' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>32</offset>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='283'>// Bits 00 to 07: Alpha.
+                     // Bits 08 to 15: Red.
+                     // Bits 16 to 23: Green.
+                     // Bits 24 to 31: Blue.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='287'>// Number of times to repeat the animation [0 = infinite].</doc>

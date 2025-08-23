@@ -1,0 +1,3 @@
+<dec f='include/wchar.h' l='263' type='wchar_t * wmemcpy(wchar_t *__restrict __s1, const wchar_t *__restrict __s2, size_t __n)'/>
+<use f='include/c++/11/bits/char_traits.h' l='561' u='c' c='_ZNSt11char_traitsIwE4copyEPwPKwm'/>
+<doc f='include/wchar.h' l='262'>/* Copy N wide characters of SRC to DEST.  */</doc>

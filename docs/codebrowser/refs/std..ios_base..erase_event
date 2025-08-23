@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/ios_base.h' l='514' type='0'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='80' u='r' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>

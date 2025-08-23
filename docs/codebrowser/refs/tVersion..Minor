@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tVersion.cmake.h' l='2' type='int'/>
+<def f='Modules/Foundation/Src/tVersion.cpp' l='27' type='int'/>
+<use f='Modules/Foundation/Src/tVersion.cpp' l='44' u='w' c='_ZN8tVersion6ParserC1EPKc'/>
+<doc f='Modules/Foundation/Src/tVersion.cpp' l='25'>// Minor version increments on non-breaking fixes and improvements to the current major version. When the major
+	// version increments, the minor version resets to 0.</doc>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='61' u='r' c='_ZNK6tImage10tImageTIFF25WriteSoftwarePageDurationEP4tiffi'/>

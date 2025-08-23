@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='942' type='int revoke(const char * __file)'/>
+<doc f='include/unistd.h' l='941'>/* Revoke the access of all descriptors currently open on FILE.  */</doc>

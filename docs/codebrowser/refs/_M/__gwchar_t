@@ -1,0 +1,5 @@
+<dec f='include/inttypes.h' l='32'/>
+<use f='include/inttypes.h' l='305' u='c'/>
+<use f='include/inttypes.h' l='306' u='c'/>
+<use f='include/inttypes.h' l='310' u='c'/>
+<use f='include/inttypes.h' l='311' u='c'/>

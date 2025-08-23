@@ -1,0 +1,6 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/error_constants.h' l='40' ll='175'/>
+<use f='include/c++/11/system_error' l='67'/>
+<use f='include/c++/11/system_error' l='177' c='_ZSt15make_error_codeSt4errc'/>
+<use f='include/c++/11/system_error' l='256' c='_ZSt15make_error_codeSt4errc'/>
+<use f='include/c++/11/system_error' l='284' c='_ZSt20make_error_conditionSt4errc'/>
+<use f='include/c++/11/system_error' l='355' c='_ZSt20make_error_conditionSt4errc'/>

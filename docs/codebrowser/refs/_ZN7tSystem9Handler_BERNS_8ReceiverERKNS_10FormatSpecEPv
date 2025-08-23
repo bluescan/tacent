@@ -1,0 +1,8 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='172' type='void tSystem::Handler_B(tSystem::Receiver &amp; out, const tSystem::FormatSpec &amp; , void * data)'/>
+<dec f='Modules/System/Src/tPrint.cpp' l='190' type='void tSystem::Handler_B(tSystem::Receiver &amp; out, const tSystem::FormatSpec &amp; , void * data)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='427'/>
+<def f='Modules/System/Src/tPrint.cpp' l='2096' ll='2122' type='void tSystem::Handler_B(tSystem::Receiver &amp; receiver, const tSystem::FormatSpec &amp; spec, void * data)'/>
+<dec f='Modules/System/Src/tPrint.cpp' l='171' type='void tSystem::Handler_b(tSystem::Receiver &amp; out, const tSystem::FormatSpec &amp; , void * data)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='411'/>
+<def f='Modules/System/Src/tPrint.cpp' l='1225' ll='1249' type='void tSystem::Handler_b(tSystem::Receiver &amp; receiver, const tSystem::FormatSpec &amp; spec, void * data)'/>
+<doc f='Modules/System/Src/tPrint.cpp' l='170'>// Here are all the handler functions. One per type.</doc>

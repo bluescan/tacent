@@ -1,0 +1,8 @@
+<use f='include/c++/11/stop_token' l='231' u='c' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<def f='include/c++/11/stop_token' l='369' ll='374' type='bool std::stop_token::_Stop_state_t::_M_try_lock_and_stop(std::stop_token::_Stop_state_t::value_type &amp; __curval)'/>
+<doc f='include/c++/11/stop_token' l='363'>// Try to obtain the lock to make a stop request.
+      // Returns true if the lock is acquired and the _S_stop_requested_bit is
+      // set (with memory order acq_rel so that other threads see the request).
+      // Otherwise, sets __curval = _M_value.load(memory_order::acquire) and
+      // returns false.
+      // Might fail spuriously, so must be called in a loop.</doc>

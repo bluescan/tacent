@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/struct_stat.h' l='36' type='__ino_t'/>
+<offset>64</offset>
+<doc f='include/x86_64-linux-gnu/bits/struct_stat.h' l='36'>/* File serial number.	*/</doc>

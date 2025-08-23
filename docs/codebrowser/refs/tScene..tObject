@@ -1,0 +1,55 @@
+<def f='Modules/Scene/Inc/Scene/tObject.h' l='24' ll='46'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='28' c='_ZN6tScene7tObjectC1ERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='36' c='_ZNK6tScene7tObject18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='37' c='_ZNK6tScene7tObjecteqERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='38' c='_ZNK6tScene7tObjectneERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='39' c='_ZN6tScene7tObjectaSERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='39' c='_ZN6tScene7tObjectaSERKS0_'/>
+<ovr f='Modules/Scene/Inc/Scene/tCamera.h' l='23' c='tScene::tCamera'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='23'/>
+<size>112</size>
+<fun r='_ZN6tScene7tObjectC1Ev'/>
+<fun r='_ZN6tScene7tObjectC1ERKS0_'/>
+<fun r='_ZN6tScene7tObjectC1ERK7tStringj'/>
+<fun r='_ZN6tScene7tObjectD1Ev'/>
+<fun r='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>
+<fun r='_ZN6tScene7tObject4LoadERK6tChunk'/>
+<fun r='_ZN6tScene7tObject5ClearEv'/>
+<fun r='_ZNK6tScene7tObject18IsFunctionallySameERKS0_'/>
+<fun r='_ZNK6tScene7tObjecteqERKS0_'/>
+<fun r='_ZNK6tScene7tObjectneERKS0_'/>
+<fun r='_ZN6tScene7tObjectaSERKS0_'/>
+<smbr r='tScene::tObject::InvalidID' t='const uint32'/>
+<mbr r='tScene::tObject::ID' o='64' t='uint32'/>
+<mbr r='tScene::tObject::Name' o='128' t='tString'/>
+<mbr r='tScene::tObject::Attributes' o='384' t='tScene::tAttributes'/>
+<ovr f='Modules/Scene/Inc/Scene/tInstance.h' l='23' c='tScene::tInstance'/>
+<use f='Modules/Scene/Inc/Scene/tInstance.h' l='23'/>
+<size>112</size>
+<ovr f='Modules/Scene/Inc/Scene/tLight.h' l='21' c='tScene::tLight'/>
+<use f='Modules/Scene/Inc/Scene/tLight.h' l='21'/>
+<size>112</size>
+<ovr f='Modules/Scene/Inc/Scene/tLodGroup.h' l='46' c='tScene::tLodGroup'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='46'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='49' c='_ZN6tScene9tLodGroupC1Ev'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='50' c='_ZN6tScene9tLodGroupC1ERK6tChunk'/>
+<size>112</size>
+<ovr f='Modules/Scene/Inc/Scene/tMaterial.h' l='23' c='tScene::tMaterial'/>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='23'/>
+<size>112</size>
+<ovr f='Modules/Scene/Inc/Scene/tPath.h' l='22' c='tScene::tPath'/>
+<use f='Modules/Scene/Inc/Scene/tPath.h' l='22'/>
+<size>112</size>
+<ovr f='Modules/Scene/Inc/Scene/tPolyModel.h' l='22' c='tScene::tPolyModel'/>
+<use f='Modules/Scene/Inc/Scene/tPolyModel.h' l='22'/>
+<size>112</size>
+<ovr f='Modules/Scene/Inc/Scene/tSelection.h' l='21' c='tScene::tSelection'/>
+<use f='Modules/Scene/Inc/Scene/tSelection.h' l='21'/>
+<size>112</size>
+<ovr f='Modules/Scene/Inc/Scene/tSkeleton.h' l='21' c='tScene::tJoint'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='21'/>
+<ovr f='Modules/Scene/Inc/Scene/tSkeleton.h' l='65' c='tScene::tSkeleton'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='65'/>
+<size>112</size>
+<use f='Modules/Scene/Src/tPath.cpp' l='22' c='_ZN6tScene5tPathC1ERKN5tMath11tBezierPathERK7tStringj'/>
+<size>112</size>

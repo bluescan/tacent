@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/GifLoad/gif_load.h' l='50' type='long'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='279' u='w' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='281' u='r' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<offset>128</offset>

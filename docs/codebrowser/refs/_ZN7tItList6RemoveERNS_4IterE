@@ -1,0 +1,8 @@
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='324' type='T * tItList::Remove(tItList::Iter &amp; )'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='772' ll='785' type='T * tItList::Remove(tItList::Iter &amp; iter)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='324'>// Removed object referred to by Iter. Invalidates Iter.</doc>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='462' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='524' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='430' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='469' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1055' u='c' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>

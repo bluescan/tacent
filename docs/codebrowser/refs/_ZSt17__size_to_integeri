@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='1003' ll='1004' type='int std::__size_to_integer(int __n)'/>
+<doc f='include/c++/11/bits/stl_algobase.h' l='1002'>// Used by fill_n, generate_n, etc. to convert _Size to an integral type:</doc>

@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='208' ll='213'/>
+<def f='include/c++/11/bits/unique_ptr.h' l='215' ll='221'/>
+<def f='include/c++/11/bits/unique_ptr.h' l='223' ll='229'/>
+<def f='include/c++/11/bits/unique_ptr.h' l='231' ll='237'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='248'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='483'/>
+<fun r='_ZNSt15__uniq_ptr_dataC1EOSt15__uniq_ptr_dataIT_T0_XT1_EXT2_EE'/>
+<fun r='_ZNSt15__uniq_ptr_dataaSEOSt15__uniq_ptr_dataIT_T0_XT1_EXT2_EE'/>
+<fun r='_ZNSt15__uniq_ptr_dataIT_T0_Lb1ELb0EEC1EOS_IS0_S1_Lb1ELb0EE'/>
+<fun r='_ZNSt15__uniq_ptr_dataIT_T0_Lb1ELb0EEaSEOS_IS0_S1_Lb1ELb0EE'/>
+<fun r='_ZNSt15__uniq_ptr_dataIT_T0_Lb0ELb1EEC1EOS_IS0_S1_Lb0ELb1EE'/>
+<fun r='_ZNSt15__uniq_ptr_dataIT_T0_Lb0ELb1EEaSEOS_IS0_S1_Lb0ELb1EE'/>
+<fun r='_ZNSt15__uniq_ptr_dataIT_T0_Lb0ELb0EEC1EOS_IS0_S1_Lb0ELb0EE'/>
+<fun r='_ZNSt15__uniq_ptr_dataIT_T0_Lb0ELb0EEaSEOS_IS0_S1_Lb0ELb0EE'/>

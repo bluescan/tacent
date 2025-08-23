@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='212' type='bool tSystem::tFilesIdentical(const tString &amp; fileA, const tString &amp; fileB)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='210'>// If either (or both) file doesn&apos;t exist you get false. Entire files will temporarily be read into memory so it&apos;s not
+// too efficient (only for tool use).</doc>
+<def f='Modules/System/Src/tFile.cpp' l='860' ll='906' type='bool tSystem::tFilesIdentical(const tString &amp; fileA, const tString &amp; fileB)'/>

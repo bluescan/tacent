@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='397' type='void tMath::tAdd(tMath::tVec4 &amp; d, const tMath::tVec4 &amp; a, const tMath::tVec4 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='78' u='c' c='_ZNK5tMath8tVector4plERKNS_5tVec4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='105' u='c' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='107' u='c' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='109' u='c' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>

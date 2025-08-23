@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='19021' ll='19025'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='19021'/>
+<size>24</size>
+<mbr r='VkStridedDeviceAddressRegionKHR::deviceAddress' o='0' t='VkDeviceAddress'/>
+<mbr r='VkStridedDeviceAddressRegionKHR::stride' o='64' t='VkDeviceSize'/>
+<mbr r='VkStridedDeviceAddressRegionKHR::size' o='128' t='VkDeviceSize'/>

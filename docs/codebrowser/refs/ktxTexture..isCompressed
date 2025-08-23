@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='262' type='ktx_bool_t'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='808' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<offset>272</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='328'>/**
+ * @typedef ktxTexture::isCompressed
+ * @~English
+ *
+ * KTX_TRUE if the texture&apos;s format is a block compressed format.
+ */</doc>

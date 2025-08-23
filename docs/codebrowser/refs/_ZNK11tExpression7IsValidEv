@@ -1,0 +1,7 @@
+<def f='Modules/System/Inc/System/tScript.h' l='85' type='bool tExpression::IsValid() const'/>
+<use f='Modules/System/Inc/System/tScript.h' l='144' u='c' c='_ZNK11tExpression9CountArgsEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='144' u='c' c='_ZNK11tExpression9CountArgsEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='160' u='c' c='_ZNK11tExpression5ValidEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='39' u='c' c='_ZNK11tExpression3CarEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='75' u='c' c='_ZNK11tExpression4NextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='182' u='c' c='_ZNK11tExpression19GetExpressionStringEv'/>

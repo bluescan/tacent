@@ -1,0 +1,4 @@
+<dec f='Modules/Scene/Inc/Scene/tCamera.h' l='30' type='void tScene::tCamera::Save(tChunkWriter &amp; ) const'/>
+<inh f='Modules/Scene/Inc/Scene/tObject.h' l='32' c='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>
+<def f='Modules/Scene/Src/tCamera.cpp' l='47' ll='64' type='void tScene::tCamera::Save(tChunkWriter &amp; chunk) const'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1117' u='c' c='_ZNK6tScene6tWorld11SaveObjectsER12tChunkWriter'/>

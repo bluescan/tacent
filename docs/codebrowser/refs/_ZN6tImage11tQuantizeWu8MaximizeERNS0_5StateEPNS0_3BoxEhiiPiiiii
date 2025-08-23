@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Src/tQuantizeWu.cpp' l='103' type='float tImage::tQuantizeWu::Maximize(tImage::tQuantizeWu::State &amp; , tImage::tQuantizeWu::Box * cube, uint8 dir, int first, int last, int * cut, int32 whole_r, int32 whole_g, int32 whole_b, int32 whole_w)'/>
+<def f='Modules/Image/Src/tQuantizeWu.cpp' l='289' ll='335' type='float tImage::tQuantizeWu::Maximize(tImage::tQuantizeWu::State &amp; state, tImage::tQuantizeWu::Box * cube, uint8 dir, int first, int last, int * cut, int32 whole_r, int32 whole_g, int32 whole_b, int32 whole_w)'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='350' u='c' c='_ZN6tImage11tQuantizeWu3CutERNS0_5StateEPNS0_3BoxES4_'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='351' u='c' c='_ZN6tImage11tQuantizeWu3CutERNS0_5StateEPNS0_3BoxES4_'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='352' u='c' c='_ZN6tImage11tQuantizeWu3CutERNS0_5StateEPNS0_3BoxES4_'/>
+<doc f='Modules/Image/Src/tQuantizeWu.cpp' l='100'>// We want to minimize the sum of the variances of two subboxes. The sum(c^2) terms can be ignored since their sum
+	// over both subboxes is the same (the sum for the whole box) no matter where we split. The remaining terms have a
+	// minus sign in the variance formula, so we drop the minus sign and MAXIMIZE the sum of the two terms.</doc>

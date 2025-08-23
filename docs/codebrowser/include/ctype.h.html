@@ -1,0 +1,347 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ctype.h source code [include/ctype.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/ctype.h'; var root_path = '..'; var data_path = '../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='./'>include</a>/<a href='ctype.h.html'>ctype.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 1991-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i></i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i></i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i> *	ISO C99 Standard 7.4: Character handling	&lt;ctype.h&gt;</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#<span data-ppcond="22">ifndef</span>	<span class="macro" data-ref="_M/_CTYPE_H">_CTYPE_H</span></u>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#define	<dfn class="macro" id="_M/_CTYPE_H" data-ref="_M/_CTYPE_H">_CTYPE_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#include &lt;features.h&gt;</u>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="27">27</th><td>&nbsp</td></tr>
+<tr><th id="28">28</th><td><a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#133" title="extern &quot;C&quot; {" data-ref="_M/__BEGIN_DECLS">__BEGIN_DECLS</a>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_ISbit">_ISbit</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>/* These are all the characteristics of characters.</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>   If there get to be more than 16 distinct characteristics,</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i>   many things must be changed that use `unsigned short int's.</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i></i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i>   The characteristics are stored always in network byte order (big</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i>   endian).  We define the bit value interpretations here dependent on the</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>   machine's byte order.  */</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u># include &lt;bits/endian.h&gt;</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u># <span data-ppcond="40">if</span> <a class="macro" href="x86_64-linux-gnu/bits/endianness.h.html#9" title="1234" data-ref="_M/__BYTE_ORDER">__BYTE_ORDER</a> == <a class="macro" href="x86_64-linux-gnu/bits/endian.h.html#31" title="4321" data-ref="_M/__BIG_ENDIAN">__BIG_ENDIAN</a></u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#  define _ISbit(bit)	(1 &lt;&lt; (bit))</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u># <span data-ppcond="40">else</span> /* __BYTE_ORDER == __LITTLE_ENDIAN */</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#  define <dfn class="macro" id="_M/_ISbit" data-ref="_M/_ISbit">_ISbit</dfn>(bit)	((bit) &lt; 8 ? ((1 &lt;&lt; (bit)) &lt;&lt; 8) : ((1 &lt;&lt; (bit)) &gt;&gt; 8))</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u># <span data-ppcond="40">endif</span></u>&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td><b>enum</b>&nbsp</td></tr>
+<tr><th id="47">47</th><td>{&nbsp</td></tr>
+<tr><th id="48">48</th><td>  <dfn class="enum" id="_ISupper" title='_ISupper' data-ref="_ISupper">_ISupper</dfn> = <a class="macro" href="#43" title="((0) &lt; 8 ? ((1 &lt;&lt; (0)) &lt;&lt; 8) : ((1 &lt;&lt; (0)) &gt;&gt; 8))" data-ref="_M/_ISbit">_ISbit</a> (<var>0</var>),	<i>/* UPPERCASE.  */</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td>  <dfn class="enum" id="_ISlower" title='_ISlower' data-ref="_ISlower">_ISlower</dfn> = <a class="macro" href="#43" title="((1) &lt; 8 ? ((1 &lt;&lt; (1)) &lt;&lt; 8) : ((1 &lt;&lt; (1)) &gt;&gt; 8))" data-ref="_M/_ISbit">_ISbit</a> (<var>1</var>),	<i>/* lowercase.  */</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td>  <dfn class="enum" id="_ISalpha" title='_ISalpha' data-ref="_ISalpha">_ISalpha</dfn> = <a class="macro" href="#43" title="((2) &lt; 8 ? ((1 &lt;&lt; (2)) &lt;&lt; 8) : ((1 &lt;&lt; (2)) &gt;&gt; 8))" data-ref="_M/_ISbit">_ISbit</a> (<var>2</var>),	<i>/* Alphabetic.  */</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td>  <dfn class="enum" id="_ISdigit" title='_ISdigit' data-ref="_ISdigit">_ISdigit</dfn> = <a class="macro" href="#43" title="((3) &lt; 8 ? ((1 &lt;&lt; (3)) &lt;&lt; 8) : ((1 &lt;&lt; (3)) &gt;&gt; 8))" data-ref="_M/_ISbit">_ISbit</a> (<var>3</var>),	<i>/* Numeric.  */</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td>  <dfn class="enum" id="_ISxdigit" title='_ISxdigit' data-ref="_ISxdigit">_ISxdigit</dfn> = <a class="macro" href="#43" title="((4) &lt; 8 ? ((1 &lt;&lt; (4)) &lt;&lt; 8) : ((1 &lt;&lt; (4)) &gt;&gt; 8))" data-ref="_M/_ISbit">_ISbit</a> (<var>4</var>),	<i>/* Hexadecimal numeric.  */</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td>  <dfn class="enum" id="_ISspace" title='_ISspace' data-ref="_ISspace">_ISspace</dfn> = <a class="macro" href="#43" title="((5) &lt; 8 ? ((1 &lt;&lt; (5)) &lt;&lt; 8) : ((1 &lt;&lt; (5)) &gt;&gt; 8))" data-ref="_M/_ISbit">_ISbit</a> (<var>5</var>),	<i>/* Whitespace.  */</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td>  <dfn class="enum" id="_ISprint" title='_ISprint' data-ref="_ISprint">_ISprint</dfn> = <a class="macro" href="#43" title="((6) &lt; 8 ? ((1 &lt;&lt; (6)) &lt;&lt; 8) : ((1 &lt;&lt; (6)) &gt;&gt; 8))" data-ref="_M/_ISbit">_ISbit</a> (<var>6</var>),	<i>/* Printing.  */</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td>  <dfn class="enum" id="_ISgraph" title='_ISgraph' data-ref="_ISgraph">_ISgraph</dfn> = <a class="macro" href="#43" title="((7) &lt; 8 ? ((1 &lt;&lt; (7)) &lt;&lt; 8) : ((1 &lt;&lt; (7)) &gt;&gt; 8))" data-ref="_M/_ISbit">_ISbit</a> (<var>7</var>),	<i>/* Graphical.  */</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td>  <dfn class="enum" id="_ISblank" title='_ISblank' data-ref="_ISblank">_ISblank</dfn> = <a class="macro" href="#43" title="((8) &lt; 8 ? ((1 &lt;&lt; (8)) &lt;&lt; 8) : ((1 &lt;&lt; (8)) &gt;&gt; 8))" data-ref="_M/_ISbit">_ISbit</a> (<var>8</var>),	<i>/* Blank (usually SPC and TAB).  */</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td>  <dfn class="enum" id="_IScntrl" title='_IScntrl' data-ref="_IScntrl">_IScntrl</dfn> = <a class="macro" href="#43" title="((9) &lt; 8 ? ((1 &lt;&lt; (9)) &lt;&lt; 8) : ((1 &lt;&lt; (9)) &gt;&gt; 8))" data-ref="_M/_ISbit">_ISbit</a> (<var>9</var>),	<i>/* Control character.  */</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td>  <dfn class="enum" id="_ISpunct" title='_ISpunct' data-ref="_ISpunct">_ISpunct</dfn> = <a class="macro" href="#43" title="((10) &lt; 8 ? ((1 &lt;&lt; (10)) &lt;&lt; 8) : ((1 &lt;&lt; (10)) &gt;&gt; 8))" data-ref="_M/_ISbit">_ISbit</a> (<var>10</var>),	<i>/* Punctuation.  */</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td>  <dfn class="enum" id="_ISalnum" title='_ISalnum' data-ref="_ISalnum">_ISalnum</dfn> = <a class="macro" href="#43" title="((11) &lt; 8 ? ((1 &lt;&lt; (11)) &lt;&lt; 8) : ((1 &lt;&lt; (11)) &gt;&gt; 8))" data-ref="_M/_ISbit">_ISbit</a> (<var>11</var>)	<i>/* Alphanumeric.  */</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td>};&nbsp</td></tr>
+<tr><th id="61">61</th><td><u>#<span data-ppcond="30">endif</span> /* ! _ISbit  */</u>&nbsp</td></tr>
+<tr><th id="62">62</th><td>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i>/* These are defined in ctype-info.c.</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><i>   The declarations here must match those in localeinfo.h.</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i></i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i>   In the thread-specific locale model (see `uselocale' in &lt;locale.h&gt;)</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i>   we cannot use global variables for these as was done in the past.</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td><i>   Instead, the following accessor functions return the address of</i>&nbsp</td></tr>
+<tr><th id="69">69</th><td><i>   each variable, which is local to the current thread if multithreaded.</i>&nbsp</td></tr>
+<tr><th id="70">70</th><td><i></i>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i>   These point into arrays of 384, so they can be indexed by any `unsigned</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i>   char' value [0,255]; by EOF (-1); or by any `signed char' value</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td><i>   [-128,-1).  ISO C requires that the ctype functions work for `unsigned</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td><i>   char' values and for EOF; we also support negative `signed char' values</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td><i>   for broken old programs.  The case conversion arrays are of `int's</i>&nbsp</td></tr>
+<tr><th id="76">76</th><td><i>   rather than `unsigned char's because tolower (EOF) must be EOF, which</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td><i>   doesn't fit into an `unsigned char'.  But today more important is that</i>&nbsp</td></tr>
+<tr><th id="78">78</th><td><i>   the arrays are also used for multi-byte character sets.  */</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><b>extern</b> <em>const</em> <em>unsigned</em> <em>short</em> <em>int</em> **<dfn class="decl fn" id="__ctype_b_loc" title='__ctype_b_loc' data-ref="__ctype_b_loc">__ctype_b_loc</dfn> (<em>void</em>)&nbsp</td></tr>
+<tr><th id="80">80</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <b>__attribute__</b> ((<em>__const__</em>));&nbsp</td></tr>
+<tr><th id="81">81</th><td><b>extern</b> <em>const</em> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__int32_t" title='__int32_t' data-type='int' data-ref="__int32_t">__int32_t</a> **<dfn class="decl fn" id="__ctype_tolower_loc" title='__ctype_tolower_loc' data-ref="__ctype_tolower_loc">__ctype_tolower_loc</dfn> (<em>void</em>)&nbsp</td></tr>
+<tr><th id="82">82</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <b>__attribute__</b> ((<em>__const__</em>));&nbsp</td></tr>
+<tr><th id="83">83</th><td><b>extern</b> <em>const</em> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__int32_t" title='__int32_t' data-type='int' data-ref="__int32_t">__int32_t</a> **<dfn class="decl fn" id="__ctype_toupper_loc" title='__ctype_toupper_loc' data-ref="__ctype_toupper_loc">__ctype_toupper_loc</dfn> (<em>void</em>)&nbsp</td></tr>
+<tr><th id="84">84</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <b>__attribute__</b> ((<em>__const__</em>));&nbsp</td></tr>
+<tr><th id="85">85</th><td>&nbsp</td></tr>
+<tr><th id="86">86</th><td>&nbsp</td></tr>
+<tr><th id="87">87</th><td><u>#<span data-ppcond="87">ifndef</span> <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u># define __isctype(c, type) \</u>&nbsp</td></tr>
+<tr><th id="89">89</th><td><u>  ((*__ctype_b_loc ())[(int) (c)] &amp; (unsigned short int) type)</u>&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#<span data-ppcond="87">elif</span> defined <span class="macro" data-ref="_M/__USE_EXTERN_INLINES">__USE_EXTERN_INLINES</span></u>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u># define __isctype_f(type) \</u>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u>  __extern_inline int							      \</u>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>  is##type (int __c) __THROW						      \</u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u>  {									      \</u>&nbsp</td></tr>
+<tr><th id="95">95</th><td><u>    return (*__ctype_b_loc ())[(int) (__c)] &amp; (unsigned short int) _IS##type; \</u>&nbsp</td></tr>
+<tr><th id="96">96</th><td><u>  }</u>&nbsp</td></tr>
+<tr><th id="97">97</th><td><u>#<span data-ppcond="87">endif</span></u>&nbsp</td></tr>
+<tr><th id="98">98</th><td>&nbsp</td></tr>
+<tr><th id="99">99</th><td><u>#define	<dfn class="macro" id="_M/__isascii" data-ref="_M/__isascii">__isascii</dfn>(c)	(((c) &amp; ~0x7f) == 0)	/* If C is a 7 bit value.  */</u>&nbsp</td></tr>
+<tr><th id="100">100</th><td><u>#define	<dfn class="macro" id="_M/__toascii" data-ref="_M/__toascii">__toascii</dfn>(c)	((c) &amp; 0x7f)		/* Mask off high bits.  */</u>&nbsp</td></tr>
+<tr><th id="101">101</th><td>&nbsp</td></tr>
+<tr><th id="102">102</th><td><u>#define	<dfn class="macro" id="_M/__exctype" data-ref="_M/__exctype">__exctype</dfn>(name)	extern int name (int) __THROW</u>&nbsp</td></tr>
+<tr><th id="103">103</th><td>&nbsp</td></tr>
+<tr><th id="104">104</th><td><i>/* The following names are all functions:</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td><i>     int isCHARACTERISTIC(int c);</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><i>   which return nonzero iff C has CHARACTERISTIC.</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td><i>   For the meaning of the characteristic names, see the `enum' above.  */</i>&nbsp</td></tr>
+<tr><th id="108">108</th><td><a class="macro" href="#102" title="extern int isalnum (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="isalnum" title='isalnum' data-ref="isalnum">isalnum</dfn>);&nbsp</td></tr>
+<tr><th id="109">109</th><td><a class="macro" href="#102" title="extern int isalpha (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="isalpha" title='isalpha' data-ref="isalpha">isalpha</dfn>);&nbsp</td></tr>
+<tr><th id="110">110</th><td><a class="macro" href="#102" title="extern int iscntrl (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="iscntrl" title='iscntrl' data-ref="iscntrl">iscntrl</dfn>);&nbsp</td></tr>
+<tr><th id="111">111</th><td><a class="macro" href="#102" title="extern int isdigit (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="isdigit" title='isdigit' data-ref="isdigit">isdigit</dfn>);&nbsp</td></tr>
+<tr><th id="112">112</th><td><a class="macro" href="#102" title="extern int islower (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="islower" title='islower' data-ref="islower">islower</dfn>);&nbsp</td></tr>
+<tr><th id="113">113</th><td><a class="macro" href="#102" title="extern int isgraph (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="isgraph" title='isgraph' data-ref="isgraph">isgraph</dfn>);&nbsp</td></tr>
+<tr><th id="114">114</th><td><a class="macro" href="#102" title="extern int isprint (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="isprint" title='isprint' data-ref="isprint">isprint</dfn>);&nbsp</td></tr>
+<tr><th id="115">115</th><td><a class="macro" href="#102" title="extern int ispunct (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="ispunct" title='ispunct' data-ref="ispunct">ispunct</dfn>);&nbsp</td></tr>
+<tr><th id="116">116</th><td><a class="macro" href="#102" title="extern int isspace (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="isspace" title='isspace' data-ref="isspace">isspace</dfn>);&nbsp</td></tr>
+<tr><th id="117">117</th><td><a class="macro" href="#102" title="extern int isupper (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="isupper" title='isupper' data-ref="isupper">isupper</dfn>);&nbsp</td></tr>
+<tr><th id="118">118</th><td><a class="macro" href="#102" title="extern int isxdigit (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="isxdigit" title='isxdigit' data-ref="isxdigit">isxdigit</dfn>);&nbsp</td></tr>
+<tr><th id="119">119</th><td>&nbsp</td></tr>
+<tr><th id="120">120</th><td>&nbsp</td></tr>
+<tr><th id="121">121</th><td><i>/* Return the lowercase version of C.  */</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="tolower" title='tolower' data-ref="tolower">tolower</dfn> (<em>int</em> <dfn class="local col4 decl" id="174__c" title='__c' data-type='int' data-ref="174__c">__c</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="123">123</th><td>&nbsp</td></tr>
+<tr><th id="124">124</th><td><i>/* Return the uppercase version of C.  */</i>&nbsp</td></tr>
+<tr><th id="125">125</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="toupper" title='toupper' data-ref="toupper">toupper</dfn> (<em>int</em> <dfn class="local col5 decl" id="175__c" title='__c' data-type='int' data-ref="175__c">__c</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="126">126</th><td>&nbsp</td></tr>
+<tr><th id="127">127</th><td>&nbsp</td></tr>
+<tr><th id="128">128</th><td><i>/* ISO C99 introduced one new function.  */</i>&nbsp</td></tr>
+<tr><th id="129">129</th><td><u>#<span data-ppcond="129">ifdef</span>	<a class="macro" href="features.h.html#371" data-ref="_M/__USE_ISOC99">__USE_ISOC99</a></u>&nbsp</td></tr>
+<tr><th id="130">130</th><td><a class="macro" href="#102" title="extern int isblank (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="isblank" title='isblank' data-ref="isblank">isblank</dfn>);&nbsp</td></tr>
+<tr><th id="131">131</th><td><u>#<span data-ppcond="129">endif</span></u>&nbsp</td></tr>
+<tr><th id="132">132</th><td>&nbsp</td></tr>
+<tr><th id="133">133</th><td><u>#<span data-ppcond="133">ifdef</span> <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="134">134</th><td><i>/* Test C for a set of character classes according to MASK.  */</i>&nbsp</td></tr>
+<tr><th id="135">135</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="isctype" title='isctype' data-ref="isctype">isctype</dfn> (<em>int</em> <dfn class="local col6 decl" id="176__c" title='__c' data-type='int' data-ref="176__c">__c</dfn>, <em>int</em> <dfn class="local col7 decl" id="177__mask" title='__mask' data-type='int' data-ref="177__mask">__mask</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="136">136</th><td><u>#<span data-ppcond="133">endif</span></u>&nbsp</td></tr>
+<tr><th id="137">137</th><td>&nbsp</td></tr>
+<tr><th id="138">138</th><td><u>#<span data-ppcond="138">if</span> defined <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> || defined <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a></u>&nbsp</td></tr>
+<tr><th id="139">139</th><td>&nbsp</td></tr>
+<tr><th id="140">140</th><td><i>/* Return nonzero iff C is in the ASCII set</i>&nbsp</td></tr>
+<tr><th id="141">141</th><td><i>   (i.e., is no more than 7 bits wide).  */</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="isascii" title='isascii' data-ref="isascii">isascii</dfn> (<em>int</em> <dfn class="local col8 decl" id="178__c" title='__c' data-type='int' data-ref="178__c">__c</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="143">143</th><td>&nbsp</td></tr>
+<tr><th id="144">144</th><td><i>/* Return the part of C that is in the ASCII set</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td><i>   (i.e., the low-order 7 bits of C).  */</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="toascii" title='toascii' data-ref="toascii">toascii</dfn> (<em>int</em> <dfn class="local col9 decl" id="179__c" title='__c' data-type='int' data-ref="179__c">__c</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="147">147</th><td>&nbsp</td></tr>
+<tr><th id="148">148</th><td><i>/* These are the same as `toupper' and `tolower' except that they do not</i>&nbsp</td></tr>
+<tr><th id="149">149</th><td><i>   check the argument for being in the range of a `char'.  */</i>&nbsp</td></tr>
+<tr><th id="150">150</th><td><a class="macro" href="#102" title="extern int _toupper (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="_toupper" title='_toupper' data-ref="_toupper">_toupper</dfn>);&nbsp</td></tr>
+<tr><th id="151">151</th><td><a class="macro" href="#102" title="extern int _tolower (int) noexcept (true)" data-ref="_M/__exctype">__exctype</a> (<dfn class="decl fn" id="_tolower" title='_tolower' data-ref="_tolower">_tolower</dfn>);&nbsp</td></tr>
+<tr><th id="152">152</th><td><u>#<span data-ppcond="138">endif</span> /* Use X/Open or use misc.  */</u>&nbsp</td></tr>
+<tr><th id="153">153</th><td>&nbsp</td></tr>
+<tr><th id="154">154</th><td><i>/* This code is needed for the optimized mapping functions.  */</i>&nbsp</td></tr>
+<tr><th id="155">155</th><td><u>#define <dfn class="macro" id="_M/__tobody" data-ref="_M/__tobody">__tobody</dfn>(c, f, a, args) \</u>&nbsp</td></tr>
+<tr><th id="156">156</th><td><u>  (__extension__							      \</u>&nbsp</td></tr>
+<tr><th id="157">157</th><td><u>   ({ int __res;							      \</u>&nbsp</td></tr>
+<tr><th id="158">158</th><td><u>      if (sizeof (c) &gt; 1)						      \</u>&nbsp</td></tr>
+<tr><th id="159">159</th><td><u>	{								      \</u>&nbsp</td></tr>
+<tr><th id="160">160</th><td><u>	  if (__builtin_constant_p (c))					      \</u>&nbsp</td></tr>
+<tr><th id="161">161</th><td><u>	    {								      \</u>&nbsp</td></tr>
+<tr><th id="162">162</th><td><u>	      int __c = (c);						      \</u>&nbsp</td></tr>
+<tr><th id="163">163</th><td><u>	      __res = __c &lt; -128 || __c &gt; 255 ? __c : (a)[__c];		      \</u>&nbsp</td></tr>
+<tr><th id="164">164</th><td><u>	    }								      \</u>&nbsp</td></tr>
+<tr><th id="165">165</th><td><u>	  else								      \</u>&nbsp</td></tr>
+<tr><th id="166">166</th><td><u>	    __res = f args;						      \</u>&nbsp</td></tr>
+<tr><th id="167">167</th><td><u>	}								      \</u>&nbsp</td></tr>
+<tr><th id="168">168</th><td><u>      else								      \</u>&nbsp</td></tr>
+<tr><th id="169">169</th><td><u>	__res = (a)[(int) (c)];						      \</u>&nbsp</td></tr>
+<tr><th id="170">170</th><td><u>      __res; }))</u>&nbsp</td></tr>
+<tr><th id="171">171</th><td>&nbsp</td></tr>
+<tr><th id="172">172</th><td><u>#<span data-ppcond="172">if</span> !defined <span class="macro" data-ref="_M/__NO_CTYPE">__NO_CTYPE</span></u>&nbsp</td></tr>
+<tr><th id="173">173</th><td><u># <span data-ppcond="173">ifdef</span> <span class="macro" data-ref="_M/__isctype_f">__isctype_f</span></u>&nbsp</td></tr>
+<tr><th id="174">174</th><td>__isctype_f (alnum)&nbsp</td></tr>
+<tr><th id="175">175</th><td>__isctype_f (alpha)&nbsp</td></tr>
+<tr><th id="176">176</th><td>__isctype_f (cntrl)&nbsp</td></tr>
+<tr><th id="177">177</th><td>__isctype_f (digit)&nbsp</td></tr>
+<tr><th id="178">178</th><td>__isctype_f (lower)&nbsp</td></tr>
+<tr><th id="179">179</th><td>__isctype_f (graph)&nbsp</td></tr>
+<tr><th id="180">180</th><td>__isctype_f (print)&nbsp</td></tr>
+<tr><th id="181">181</th><td>__isctype_f (punct)&nbsp</td></tr>
+<tr><th id="182">182</th><td>__isctype_f (space)&nbsp</td></tr>
+<tr><th id="183">183</th><td>__isctype_f (upper)&nbsp</td></tr>
+<tr><th id="184">184</th><td>__isctype_f (xdigit)&nbsp</td></tr>
+<tr><th id="185">185</th><td><u>#  ifdef __USE_ISOC99</u>&nbsp</td></tr>
+<tr><th id="186">186</th><td>__isctype_f (blank)&nbsp</td></tr>
+<tr><th id="187">187</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="188">188</th><td><u># <span data-ppcond="173">elif</span> defined <span class="macro" data-ref="_M/__isctype">__isctype</span></u>&nbsp</td></tr>
+<tr><th id="189">189</th><td><u># define isalnum(c)	__isctype((c), _ISalnum)</u>&nbsp</td></tr>
+<tr><th id="190">190</th><td><u># define isalpha(c)	__isctype((c), _ISalpha)</u>&nbsp</td></tr>
+<tr><th id="191">191</th><td><u># define iscntrl(c)	__isctype((c), _IScntrl)</u>&nbsp</td></tr>
+<tr><th id="192">192</th><td><u># define isdigit(c)	__isctype((c), _ISdigit)</u>&nbsp</td></tr>
+<tr><th id="193">193</th><td><u># define islower(c)	__isctype((c), _ISlower)</u>&nbsp</td></tr>
+<tr><th id="194">194</th><td><u># define isgraph(c)	__isctype((c), _ISgraph)</u>&nbsp</td></tr>
+<tr><th id="195">195</th><td><u># define isprint(c)	__isctype((c), _ISprint)</u>&nbsp</td></tr>
+<tr><th id="196">196</th><td><u># define ispunct(c)	__isctype((c), _ISpunct)</u>&nbsp</td></tr>
+<tr><th id="197">197</th><td><u># define isspace(c)	__isctype((c), _ISspace)</u>&nbsp</td></tr>
+<tr><th id="198">198</th><td><u># define isupper(c)	__isctype((c), _ISupper)</u>&nbsp</td></tr>
+<tr><th id="199">199</th><td><u># define isxdigit(c)	__isctype((c), _ISxdigit)</u>&nbsp</td></tr>
+<tr><th id="200">200</th><td><u>#  ifdef __USE_ISOC99</u>&nbsp</td></tr>
+<tr><th id="201">201</th><td><u>#   define isblank(c)	__isctype((c), _ISblank)</u>&nbsp</td></tr>
+<tr><th id="202">202</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="203">203</th><td><u># <span data-ppcond="173">endif</span></u>&nbsp</td></tr>
+<tr><th id="204">204</th><td>&nbsp</td></tr>
+<tr><th id="205">205</th><td><u># <span data-ppcond="205">ifdef</span> <span class="macro" data-ref="_M/__USE_EXTERN_INLINES">__USE_EXTERN_INLINES</span></u>&nbsp</td></tr>
+<tr><th id="206">206</th><td>__extern_inline <em>int</em>&nbsp</td></tr>
+<tr><th id="207">207</th><td>__NTH (tolower (<em>int</em> __c))&nbsp</td></tr>
+<tr><th id="208">208</th><td>{&nbsp</td></tr>
+<tr><th id="209">209</th><td>  <b>return</b> __c &gt;= -<var>128</var> &amp;&amp; __c &lt; <var>256</var> ? (*__ctype_tolower_loc ())[__c] : __c;&nbsp</td></tr>
+<tr><th id="210">210</th><td>}&nbsp</td></tr>
+<tr><th id="211">211</th><td>&nbsp</td></tr>
+<tr><th id="212">212</th><td>__extern_inline <em>int</em>&nbsp</td></tr>
+<tr><th id="213">213</th><td>__NTH (toupper (<em>int</em> __c))&nbsp</td></tr>
+<tr><th id="214">214</th><td>{&nbsp</td></tr>
+<tr><th id="215">215</th><td>  <b>return</b> __c &gt;= -<var>128</var> &amp;&amp; __c &lt; <var>256</var> ? (*__ctype_toupper_loc ())[__c] : __c;&nbsp</td></tr>
+<tr><th id="216">216</th><td>}&nbsp</td></tr>
+<tr><th id="217">217</th><td><u># <span data-ppcond="205">endif</span></u>&nbsp</td></tr>
+<tr><th id="218">218</th><td>&nbsp</td></tr>
+<tr><th id="219">219</th><td><u># <span data-ppcond="219">if</span> <span class="macro" title="4" data-ref="_M/__GNUC__">__GNUC__</span> &gt;= 2 &amp;&amp; defined <span class="macro" data-ref="_M/__OPTIMIZE__">__OPTIMIZE__</span> &amp;&amp; !defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="220">220</th><td><u>#  define tolower(c)	__tobody (c, tolower, *__ctype_tolower_loc (), (c))</u>&nbsp</td></tr>
+<tr><th id="221">221</th><td><u>#  define toupper(c)	__tobody (c, toupper, *__ctype_toupper_loc (), (c))</u>&nbsp</td></tr>
+<tr><th id="222">222</th><td><u># <span data-ppcond="219">endif</span> /* Optimizing gcc */</u>&nbsp</td></tr>
+<tr><th id="223">223</th><td>&nbsp</td></tr>
+<tr><th id="224">224</th><td><u># <span data-ppcond="224">if</span> defined <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> || defined <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a></u>&nbsp</td></tr>
+<tr><th id="225">225</th><td><u>#  define <dfn class="macro" id="_M/isascii" data-ref="_M/isascii">isascii</dfn>(c)	__isascii (c)</u>&nbsp</td></tr>
+<tr><th id="226">226</th><td><u>#  define <dfn class="macro" id="_M/toascii" data-ref="_M/toascii">toascii</dfn>(c)	__toascii (c)</u>&nbsp</td></tr>
+<tr><th id="227">227</th><td>&nbsp</td></tr>
+<tr><th id="228">228</th><td><u>#  define <dfn class="macro" id="_M/_tolower" data-ref="_M/_tolower">_tolower</dfn>(c)	((int) (*__ctype_tolower_loc ())[(int) (c)])</u>&nbsp</td></tr>
+<tr><th id="229">229</th><td><u>#  define <dfn class="macro" id="_M/_toupper" data-ref="_M/_toupper">_toupper</dfn>(c)	((int) (*__ctype_toupper_loc ())[(int) (c)])</u>&nbsp</td></tr>
+<tr><th id="230">230</th><td><u># <span data-ppcond="224">endif</span></u>&nbsp</td></tr>
+<tr><th id="231">231</th><td>&nbsp</td></tr>
+<tr><th id="232">232</th><td><u>#<span data-ppcond="172">endif</span> /* Not __NO_CTYPE.  */</u>&nbsp</td></tr>
+<tr><th id="233">233</th><td>&nbsp</td></tr>
+<tr><th id="234">234</th><td>&nbsp</td></tr>
+<tr><th id="235">235</th><td><u>#<span data-ppcond="235">ifdef</span> <a class="macro" href="features.h.html#363" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</a></u>&nbsp</td></tr>
+<tr><th id="236">236</th><td><i>/* POSIX.1-2008 extended locale interface (see locale.h).  */</i>&nbsp</td></tr>
+<tr><th id="237">237</th><td><u># include &lt;bits/types/locale_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="238">238</th><td>&nbsp</td></tr>
+<tr><th id="239">239</th><td><i>/* These definitions are similar to the ones above but all functions</i>&nbsp</td></tr>
+<tr><th id="240">240</th><td><i>   take as an argument a handle for the locale which shall be used.  */</i>&nbsp</td></tr>
+<tr><th id="241">241</th><td><u>#  define <dfn class="macro" id="_M/__isctype_l" data-ref="_M/__isctype_l">__isctype_l</dfn>(c, type, locale) \</u>&nbsp</td></tr>
+<tr><th id="242">242</th><td><u>  ((locale)-&gt;__ctype_b[(int) (c)] &amp; (unsigned short int) type)</u>&nbsp</td></tr>
+<tr><th id="243">243</th><td>&nbsp</td></tr>
+<tr><th id="244">244</th><td><u># define <dfn class="macro" id="_M/__exctype_l" data-ref="_M/__exctype_l">__exctype_l</dfn>(name) 						      \</u>&nbsp</td></tr>
+<tr><th id="245">245</th><td><u>  extern int name (int, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a>) __THROW</u>&nbsp</td></tr>
+<tr><th id="246">246</th><td>&nbsp</td></tr>
+<tr><th id="247">247</th><td><i>/* The following names are all functions:</i>&nbsp</td></tr>
+<tr><th id="248">248</th><td><i>     int isCHARACTERISTIC(int c, locale_t *locale);</i>&nbsp</td></tr>
+<tr><th id="249">249</th><td><i>   which return nonzero iff C has CHARACTERISTIC.</i>&nbsp</td></tr>
+<tr><th id="250">250</th><td><i>   For the meaning of the characteristic names, see the `enum' above.  */</i>&nbsp</td></tr>
+<tr><th id="251">251</th><td><a class="macro" href="#244" title="extern int isalnum_l (int, locale_t) noexcept (true)" data-ref="_M/__exctype_l">__exctype_l</a> (<dfn class="decl fn" id="isalnum_l" title='isalnum_l' data-ref="isalnum_l">isalnum_l</dfn>);&nbsp</td></tr>
+<tr><th id="252">252</th><td><a class="macro" href="#244" title="extern int isalpha_l (int, locale_t) noexcept (true)" data-ref="_M/__exctype_l">__exctype_l</a> (<dfn class="decl fn" id="isalpha_l" title='isalpha_l' data-ref="isalpha_l">isalpha_l</dfn>);&nbsp</td></tr>
+<tr><th id="253">253</th><td><a class="macro" href="#244" title="extern int iscntrl_l (int, locale_t) noexcept (true)" data-ref="_M/__exctype_l">__exctype_l</a> (<dfn class="decl fn" id="iscntrl_l" title='iscntrl_l' data-ref="iscntrl_l">iscntrl_l</dfn>);&nbsp</td></tr>
+<tr><th id="254">254</th><td><a class="macro" href="#244" title="extern int isdigit_l (int, locale_t) noexcept (true)" data-ref="_M/__exctype_l">__exctype_l</a> (<dfn class="decl fn" id="isdigit_l" title='isdigit_l' data-ref="isdigit_l">isdigit_l</dfn>);&nbsp</td></tr>
+<tr><th id="255">255</th><td><a class="macro" href="#244" title="extern int islower_l (int, locale_t) noexcept (true)" data-ref="_M/__exctype_l">__exctype_l</a> (<dfn class="decl fn" id="islower_l" title='islower_l' data-ref="islower_l">islower_l</dfn>);&nbsp</td></tr>
+<tr><th id="256">256</th><td><a class="macro" href="#244" title="extern int isgraph_l (int, locale_t) noexcept (true)" data-ref="_M/__exctype_l">__exctype_l</a> (<dfn class="decl fn" id="isgraph_l" title='isgraph_l' data-ref="isgraph_l">isgraph_l</dfn>);&nbsp</td></tr>
+<tr><th id="257">257</th><td><a class="macro" href="#244" title="extern int isprint_l (int, locale_t) noexcept (true)" data-ref="_M/__exctype_l">__exctype_l</a> (<dfn class="decl fn" id="isprint_l" title='isprint_l' data-ref="isprint_l">isprint_l</dfn>);&nbsp</td></tr>
+<tr><th id="258">258</th><td><a class="macro" href="#244" title="extern int ispunct_l (int, locale_t) noexcept (true)" data-ref="_M/__exctype_l">__exctype_l</a> (<dfn class="decl fn" id="ispunct_l" title='ispunct_l' data-ref="ispunct_l">ispunct_l</dfn>);&nbsp</td></tr>
+<tr><th id="259">259</th><td><a class="macro" href="#244" title="extern int isspace_l (int, locale_t) noexcept (true)" data-ref="_M/__exctype_l">__exctype_l</a> (<dfn class="decl fn" id="isspace_l" title='isspace_l' data-ref="isspace_l">isspace_l</dfn>);&nbsp</td></tr>
+<tr><th id="260">260</th><td><a class="macro" href="#244" title="extern int isupper_l (int, locale_t) noexcept (true)" data-ref="_M/__exctype_l">__exctype_l</a> (<dfn class="decl fn" id="isupper_l" title='isupper_l' data-ref="isupper_l">isupper_l</dfn>);&nbsp</td></tr>
+<tr><th id="261">261</th><td><a class="macro" href="#244" title="extern int isxdigit_l (int, locale_t) noexcept (true)" data-ref="_M/__exctype_l">__exctype_l</a> (<dfn class="decl fn" id="isxdigit_l" title='isxdigit_l' data-ref="isxdigit_l">isxdigit_l</dfn>);&nbsp</td></tr>
+<tr><th id="262">262</th><td>&nbsp</td></tr>
+<tr><th id="263">263</th><td><a class="macro" href="#244" title="extern int isblank_l (int, locale_t) noexcept (true)" data-ref="_M/__exctype_l">__exctype_l</a> (<dfn class="decl fn" id="isblank_l" title='isblank_l' data-ref="isblank_l">isblank_l</dfn>);&nbsp</td></tr>
+<tr><th id="264">264</th><td>&nbsp</td></tr>
+<tr><th id="265">265</th><td>&nbsp</td></tr>
+<tr><th id="266">266</th><td><i>/* Return the lowercase version of C in locale L.  */</i>&nbsp</td></tr>
+<tr><th id="267">267</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="__tolower_l" title='__tolower_l' data-ref="__tolower_l">__tolower_l</dfn> (<em>int</em> <dfn class="local col0 decl" id="180__c" title='__c' data-type='int' data-ref="180__c">__c</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col1 decl" id="181__l" title='__l' data-type='locale_t' data-ref="181__l">__l</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="268">268</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="tolower_l" title='tolower_l' data-ref="tolower_l">tolower_l</dfn> (<em>int</em> <dfn class="local col2 decl" id="182__c" title='__c' data-type='int' data-ref="182__c">__c</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col3 decl" id="183__l" title='__l' data-type='locale_t' data-ref="183__l">__l</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="269">269</th><td>&nbsp</td></tr>
+<tr><th id="270">270</th><td><i>/* Return the uppercase version of C.  */</i>&nbsp</td></tr>
+<tr><th id="271">271</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="__toupper_l" title='__toupper_l' data-ref="__toupper_l">__toupper_l</dfn> (<em>int</em> <dfn class="local col4 decl" id="184__c" title='__c' data-type='int' data-ref="184__c">__c</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col5 decl" id="185__l" title='__l' data-type='locale_t' data-ref="185__l">__l</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="272">272</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="toupper_l" title='toupper_l' data-ref="toupper_l">toupper_l</dfn> (<em>int</em> <dfn class="local col6 decl" id="186__c" title='__c' data-type='int' data-ref="186__c">__c</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/locale_t.h.html#locale_t" title='locale_t' data-type='__locale_t' data-ref="locale_t">locale_t</a> <dfn class="local col7 decl" id="187__l" title='__l' data-type='locale_t' data-ref="187__l">__l</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="273">273</th><td>&nbsp</td></tr>
+<tr><th id="274">274</th><td><u># <span data-ppcond="274">if</span> <span class="macro" title="4" data-ref="_M/__GNUC__">__GNUC__</span> &gt;= 2 &amp;&amp; defined <span class="macro" data-ref="_M/__OPTIMIZE__">__OPTIMIZE__</span> &amp;&amp; !defined <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="275">275</th><td><u>#  define __tolower_l(c, locale) \</u>&nbsp</td></tr>
+<tr><th id="276">276</th><td><u>  __tobody (c, __tolower_l, (locale)-&gt;__ctype_tolower, (c, locale))</u>&nbsp</td></tr>
+<tr><th id="277">277</th><td><u>#  define __toupper_l(c, locale) \</u>&nbsp</td></tr>
+<tr><th id="278">278</th><td><u>  __tobody (c, __toupper_l, (locale)-&gt;__ctype_toupper, (c, locale))</u>&nbsp</td></tr>
+<tr><th id="279">279</th><td><u>#  define tolower_l(c, locale)	__tolower_l ((c), (locale))</u>&nbsp</td></tr>
+<tr><th id="280">280</th><td><u>#  define toupper_l(c, locale)	__toupper_l ((c), (locale))</u>&nbsp</td></tr>
+<tr><th id="281">281</th><td><u># <span data-ppcond="274">endif</span>	/* Optimizing gcc */</u>&nbsp</td></tr>
+<tr><th id="282">282</th><td>&nbsp</td></tr>
+<tr><th id="283">283</th><td>&nbsp</td></tr>
+<tr><th id="284">284</th><td><u># <span data-ppcond="284">ifndef</span> <span class="macro" data-ref="_M/__NO_CTYPE">__NO_CTYPE</span></u>&nbsp</td></tr>
+<tr><th id="285">285</th><td><u>#  define <dfn class="macro" id="_M/__isalnum_l" data-ref="_M/__isalnum_l">__isalnum_l</dfn>(c,l)	__isctype_l((c), _ISalnum, (l))</u>&nbsp</td></tr>
+<tr><th id="286">286</th><td><u>#  define <dfn class="macro" id="_M/__isalpha_l" data-ref="_M/__isalpha_l">__isalpha_l</dfn>(c,l)	__isctype_l((c), _ISalpha, (l))</u>&nbsp</td></tr>
+<tr><th id="287">287</th><td><u>#  define <dfn class="macro" id="_M/__iscntrl_l" data-ref="_M/__iscntrl_l">__iscntrl_l</dfn>(c,l)	__isctype_l((c), _IScntrl, (l))</u>&nbsp</td></tr>
+<tr><th id="288">288</th><td><u>#  define <dfn class="macro" id="_M/__isdigit_l" data-ref="_M/__isdigit_l">__isdigit_l</dfn>(c,l)	__isctype_l((c), _ISdigit, (l))</u>&nbsp</td></tr>
+<tr><th id="289">289</th><td><u>#  define <dfn class="macro" id="_M/__islower_l" data-ref="_M/__islower_l">__islower_l</dfn>(c,l)	__isctype_l((c), _ISlower, (l))</u>&nbsp</td></tr>
+<tr><th id="290">290</th><td><u>#  define <dfn class="macro" id="_M/__isgraph_l" data-ref="_M/__isgraph_l">__isgraph_l</dfn>(c,l)	__isctype_l((c), _ISgraph, (l))</u>&nbsp</td></tr>
+<tr><th id="291">291</th><td><u>#  define <dfn class="macro" id="_M/__isprint_l" data-ref="_M/__isprint_l">__isprint_l</dfn>(c,l)	__isctype_l((c), _ISprint, (l))</u>&nbsp</td></tr>
+<tr><th id="292">292</th><td><u>#  define <dfn class="macro" id="_M/__ispunct_l" data-ref="_M/__ispunct_l">__ispunct_l</dfn>(c,l)	__isctype_l((c), _ISpunct, (l))</u>&nbsp</td></tr>
+<tr><th id="293">293</th><td><u>#  define <dfn class="macro" id="_M/__isspace_l" data-ref="_M/__isspace_l">__isspace_l</dfn>(c,l)	__isctype_l((c), _ISspace, (l))</u>&nbsp</td></tr>
+<tr><th id="294">294</th><td><u>#  define <dfn class="macro" id="_M/__isupper_l" data-ref="_M/__isupper_l">__isupper_l</dfn>(c,l)	__isctype_l((c), _ISupper, (l))</u>&nbsp</td></tr>
+<tr><th id="295">295</th><td><u>#  define <dfn class="macro" id="_M/__isxdigit_l" data-ref="_M/__isxdigit_l">__isxdigit_l</dfn>(c,l)	__isctype_l((c), _ISxdigit, (l))</u>&nbsp</td></tr>
+<tr><th id="296">296</th><td>&nbsp</td></tr>
+<tr><th id="297">297</th><td><u>#  define <dfn class="macro" id="_M/__isblank_l" data-ref="_M/__isblank_l">__isblank_l</dfn>(c,l)	__isctype_l((c), _ISblank, (l))</u>&nbsp</td></tr>
+<tr><th id="298">298</th><td>&nbsp</td></tr>
+<tr><th id="299">299</th><td><u>#  <span data-ppcond="299">ifdef</span> <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="300">300</th><td><u>#   define <dfn class="macro" id="_M/__isascii_l" data-ref="_M/__isascii_l">__isascii_l</dfn>(c,l)	((l), __isascii (c))</u>&nbsp</td></tr>
+<tr><th id="301">301</th><td><u>#   define <dfn class="macro" id="_M/__toascii_l" data-ref="_M/__toascii_l">__toascii_l</dfn>(c,l)	((l), __toascii (c))</u>&nbsp</td></tr>
+<tr><th id="302">302</th><td><u>#  <span data-ppcond="299">endif</span></u>&nbsp</td></tr>
+<tr><th id="303">303</th><td>&nbsp</td></tr>
+<tr><th id="304">304</th><td><u>#  define <dfn class="macro" id="_M/isalnum_l" data-ref="_M/isalnum_l">isalnum_l</dfn>(c,l)	__isalnum_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="305">305</th><td><u>#  define <dfn class="macro" id="_M/isalpha_l" data-ref="_M/isalpha_l">isalpha_l</dfn>(c,l)	__isalpha_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="306">306</th><td><u>#  define <dfn class="macro" id="_M/iscntrl_l" data-ref="_M/iscntrl_l">iscntrl_l</dfn>(c,l)	__iscntrl_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="307">307</th><td><u>#  define <dfn class="macro" id="_M/isdigit_l" data-ref="_M/isdigit_l">isdigit_l</dfn>(c,l)	__isdigit_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="308">308</th><td><u>#  define <dfn class="macro" id="_M/islower_l" data-ref="_M/islower_l">islower_l</dfn>(c,l)	__islower_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="309">309</th><td><u>#  define <dfn class="macro" id="_M/isgraph_l" data-ref="_M/isgraph_l">isgraph_l</dfn>(c,l)	__isgraph_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="310">310</th><td><u>#  define <dfn class="macro" id="_M/isprint_l" data-ref="_M/isprint_l">isprint_l</dfn>(c,l)	__isprint_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="311">311</th><td><u>#  define <dfn class="macro" id="_M/ispunct_l" data-ref="_M/ispunct_l">ispunct_l</dfn>(c,l)	__ispunct_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="312">312</th><td><u>#  define <dfn class="macro" id="_M/isspace_l" data-ref="_M/isspace_l">isspace_l</dfn>(c,l)	__isspace_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="313">313</th><td><u>#  define <dfn class="macro" id="_M/isupper_l" data-ref="_M/isupper_l">isupper_l</dfn>(c,l)	__isupper_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="314">314</th><td><u>#  define <dfn class="macro" id="_M/isxdigit_l" data-ref="_M/isxdigit_l">isxdigit_l</dfn>(c,l)	__isxdigit_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="315">315</th><td>&nbsp</td></tr>
+<tr><th id="316">316</th><td><u>#  define <dfn class="macro" id="_M/isblank_l" data-ref="_M/isblank_l">isblank_l</dfn>(c,l)	__isblank_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="317">317</th><td>&nbsp</td></tr>
+<tr><th id="318">318</th><td><u>#  <span data-ppcond="318">ifdef</span> <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="319">319</th><td><u>#   define <dfn class="macro" id="_M/isascii_l" data-ref="_M/isascii_l">isascii_l</dfn>(c,l)	__isascii_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="320">320</th><td><u>#   define <dfn class="macro" id="_M/toascii_l" data-ref="_M/toascii_l">toascii_l</dfn>(c,l)	__toascii_l ((c), (l))</u>&nbsp</td></tr>
+<tr><th id="321">321</th><td><u>#  <span data-ppcond="318">endif</span></u>&nbsp</td></tr>
+<tr><th id="322">322</th><td>&nbsp</td></tr>
+<tr><th id="323">323</th><td><u># <span data-ppcond="284">endif</span> /* Not __NO_CTYPE.  */</u>&nbsp</td></tr>
+<tr><th id="324">324</th><td>&nbsp</td></tr>
+<tr><th id="325">325</th><td><u>#<span data-ppcond="235">endif</span> /* Use POSIX 2008.  */</u>&nbsp</td></tr>
+<tr><th id="326">326</th><td>&nbsp</td></tr>
+<tr><th id="327">327</th><td><a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#134" title="}" data-ref="_M/__END_DECLS">__END_DECLS</a>&nbsp</td></tr>
+<tr><th id="328">328</th><td>&nbsp</td></tr>
+<tr><th id="329">329</th><td><u>#<span data-ppcond="22">endif</span> /* ctype.h  */</u>&nbsp</td></tr>
+<tr><th id="330">330</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

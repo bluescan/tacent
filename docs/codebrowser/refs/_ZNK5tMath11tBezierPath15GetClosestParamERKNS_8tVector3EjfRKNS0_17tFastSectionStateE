@@ -1,0 +1,1 @@
+<def f='Modules/Math/Src/tSpline.cpp' l='500' ll='541' type='float tMath::tBezierPath::GetClosestParam(const tMath::tVector3 &amp; p, comp_t components, float paramThreshold, const tBezierPath::tFastSectionState &amp; optObj = tMath::tBezierPath::tFastSectionState()) const'/>

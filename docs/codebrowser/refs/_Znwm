@@ -1,0 +1,13 @@
+<dec f='include/c++/11/new' l='126' type='void * operator new(std::size_t )'/>
+<use f='include/c++/11/ext/new_allocator.h' l='127' u='c' c='__gnu_cxx::new_allocator::allocate'/>
+<use f='include/c++/11/bits/allocator.h' l='183' u='c' c='_ZNSt9allocator8allocateEm'/>
+<doc f='include/c++/11/new' l='116'>/** These are replaceable signatures:
+ *  - normal single new and delete (no arguments, throw @c bad_alloc on error)
+ *  - normal array new and delete (same)
+ *  - @c nothrow single new and delete (take a @c nothrow argument, return
+ *    @c NULL on error)
+ *  - @c nothrow array new and delete (same)
+ *
+ *  Placement new and delete signatures (take a memory address argument,
+ *  does nothing) may not be replaced by a user&apos;s program.
+*/</doc>

@@ -1,0 +1,7 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h' l='32' type='__jmp_buf'/>
+<offset>0</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h' l='28'>/* NOTE: The machine-dependent definitions of `__sigsetjmp&apos;
+       assume that a `jmp_buf&apos; begins with a `__jmp_buf&apos; and that
+       `__mask_was_saved&apos; follows it.  Do not move these members
+       or add others before it.  */</doc>
+<doc f='include/x86_64-linux-gnu/bits/types/struct___jmp_buf_tag.h' l='32'>/* Calling environment.  */</doc>

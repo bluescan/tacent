@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10051'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10050'>// VK_KHR_shader_integer_dot_product is a preprocessor guard. Do not pass it to API calls.</doc>

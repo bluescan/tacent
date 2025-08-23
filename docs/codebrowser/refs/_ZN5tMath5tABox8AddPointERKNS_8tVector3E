@@ -1,0 +1,11 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='292' type='void tMath::tABox::AddPoint(const tMath::tVector3 &amp; )'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='561' ll='570' type='void tMath::tABox::AddPoint(const tMath::tVector3 &amp; p)'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='45' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='46' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='47' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='48' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='49' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='50' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='51' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='52' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='103' u='c' c='_ZNK6tScene10tPolyModel18ComputeBoundingBoxEv'/>

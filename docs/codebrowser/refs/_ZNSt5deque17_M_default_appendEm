@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/stl_deque.h' l='1256' u='c' c='_ZNSt5deque6resizeEm'/>
+<dec f='include/c++/11/bits/stl_deque.h' l='2081' type='void std::deque::_M_default_append(std::deque::size_type __n)'/>
+<def f='include/c++/11/bits/deque.tcc' l='348' ll='370' type='void std::deque::_M_default_append(std::deque::size_type __n)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='2079'>// Called by resize(sz).</doc>

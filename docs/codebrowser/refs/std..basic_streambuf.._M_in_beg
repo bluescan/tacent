@@ -1,0 +1,13 @@
+<dec f='include/c++/11/streambuf' l='189' type='std::basic_streambuf::char_type *'/>
+<use f='include/c++/11/streambuf' l='469' u='w' c='_ZNSt15basic_streambufC1Ev'/>
+<use f='include/c++/11/streambuf' l='487' u='r' c='_ZNKSt15basic_streambuf5ebackEv'/>
+<use f='include/c++/11/streambuf' l='516' u='w' c='_ZNSt15basic_streambuf4setgEPT_S1_S1_'/>
+<use f='include/c++/11/streambuf' l='819' c='_ZNSt15basic_streambuf4swapERSt15basic_streambufIT_T0_E'/>
+<doc f='include/c++/11/streambuf' l='182'>/*
+       *  This is based on _IO_FILE, just reordered to be more consistent,
+       *  and is intended to be the most minimal abstraction for an
+       *  internal buffer.
+       *  -  get == input == read
+       *  -  put == output == write
+      */</doc>
+<doc f='include/c++/11/streambuf' l='189'>///&lt; Start of get area.</doc>

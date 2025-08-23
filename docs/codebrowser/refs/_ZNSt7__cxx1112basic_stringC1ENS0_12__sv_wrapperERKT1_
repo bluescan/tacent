@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/basic_string.h' l='152' ll='154' type='void std::basic_string::basic_string&lt;_CharT, _Traits, _Alloc&gt;(std::basic_string::__sv_wrapper __svw, const _Alloc &amp; __a)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='146'>/**
+       *  @brief  Only internally used: Construct string from a string view
+       *          wrapper.
+       *  @param  __svw  string view wrapper.
+       *  @param  __a  Allocator to use.
+       */</doc>

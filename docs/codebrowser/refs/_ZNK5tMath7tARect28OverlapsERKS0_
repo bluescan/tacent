@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='178' type='bool tMath::tARect2::Overlaps(const tMath::tARect2 &amp; ) const'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='536' ll='544' type='bool tMath::tARect2::Overlaps(const tMath::tARect2 &amp; rect) const'/>

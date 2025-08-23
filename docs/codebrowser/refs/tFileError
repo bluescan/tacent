@@ -1,0 +1,7 @@
+<inh f='Modules/System/Inc/System/tThrow.h' l='27' c='tError'/>
+<def f='Modules/System/Inc/System/tFile.h' l='680' ll='685'/>
+<size>32</size>
+<doc f='Modules/System/Inc/System/tFile.h' l='679'>// The following file system error objects may be thrown by functions in tFile.</doc>
+<fun r='_ZN10tFileErrorC1EPKcz'/>
+<fun r='_ZN10tFileErrorC1ERK7tString'/>
+<fun r='_ZN10tFileErrorC1Ev'/>

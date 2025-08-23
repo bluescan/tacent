@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='1037' u='c' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>
+<def f='Modules/Scene/Src/tWorld.cpp' l='1709' ll='1716' type='tScene::tSelection * tScene::tWorld::FindSelection(const tString &amp; name) const'/>

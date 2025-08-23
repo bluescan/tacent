@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_timed_wait.h' l='388' ll='395' type='bool std::__atomic_wait_address_until_v(const _Tp * __addr, _Tp &amp;&amp; __old, _ValFn &amp;&amp; __vfn, const chrono::time_point&lt;_Clock, _Dur&gt; &amp; __atime)'/>

@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='73' type='void tMath::tMatrix4::MakeTranslate(float x, float y, float z)'/>
+<doc f='Modules/Math/Inc/Math/tMatrix4.h' l='72'>// Look in LinearAlgebra for function descriptions of all the composition functions below.</doc>

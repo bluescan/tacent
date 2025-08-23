@@ -1,0 +1,4 @@
+<def f='include/c++/11/chrono' l='2012' ll='2014' type='chrono::month std::chrono::month_day_last::month() const'/>
+<use f='include/c++/11/chrono' l='2022' u='c' c='_ZNSt6chronoeqERKNS_14month_day_lastES2_'/>
+<use f='include/c++/11/chrono' l='2022' u='c' c='_ZNSt6chronoeqERKNS_14month_day_lastES2_'/>
+<use f='include/c++/11/chrono' l='2590' u='c' c='_ZNKSt6chrono19year_month_day_last5monthEv'/>

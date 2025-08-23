@@ -1,0 +1,24 @@
+<use f='include/c++/11/bits/locale_facets.h' l='978' u='c' c='_ZNKSt5ctypeIcE6narrowEPKcS2_cPc'/>
+<def f='include/c++/11/bits/locale_facets.h' l='1162' ll='1169' type='const std::ctype&lt;char&gt;::char_type * std::ctype&lt;char&gt;::do_narrow(const std::ctype&lt;char&gt;::char_type * __lo, const std::ctype&lt;char&gt;::char_type * __hi, char __dfault, char * __to) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1140'>/**
+       *  @brief  Narrow char array to char array
+       *
+       *  This virtual function converts each char in the range [lo,hi) to
+       *  char using the simplest reasonable transformation and writes the
+       *  results to the destination array.  For any char in the input that
+       *  cannot be converted, @a dfault is used instead.  For an underived
+       *  ctype&lt;char&gt; facet, the argument will be copied unchanged.
+       *
+       *  do_narrow() is a hook for a derived facet to change the behavior of
+       *  narrowing.  do_narrow() must always return the same result for the
+       *  same input.
+       *
+       *  Note: this is not what you want for codepage conversions.  See
+       *  codecvt for that.
+       *
+       *  @param __lo  Pointer to start of range.
+       *  @param __hi  Pointer to end of range.
+       *  @param __dfault  Char to use if conversion fails.
+       *  @param __to  Pointer to the destination array.
+       *  @return  @a __hi.
+      */</doc>

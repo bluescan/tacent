@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/random.h' l='1378' ll='1381' type='void std::shuffle_order_engine::shuffle_order_engine&lt;_RandomNumberEngine, __k&gt;(std::shuffle_order_engine::result_type __s)'/>
+<doc f='include/c++/11/bits/random.h' l='1372'>/**
+       * @brief Seed constructs a %shuffle_order_engine engine.
+       *
+       * Constructs the underlying generator engine seeded with @p __s.
+       * @param __s A seed value for the base class engine.
+       */</doc>

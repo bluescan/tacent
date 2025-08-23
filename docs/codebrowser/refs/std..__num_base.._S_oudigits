@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1561' type='20'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1562' u='r'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1564' u='r'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='840' u='r' c='_ZSt13__int_to_charPT_T0_PKS_St13_Ios_Fmtflagsb'/>

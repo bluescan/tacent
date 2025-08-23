@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='5648' ll='5650' type='std::piecewise_constant_distribution::param_type std::piecewise_constant_distribution::param() const'/>
+<doc f='include/c++/11/bits/random.h' l='5645'>/**
+       * @brief Returns the parameter set of the distribution.
+       */</doc>

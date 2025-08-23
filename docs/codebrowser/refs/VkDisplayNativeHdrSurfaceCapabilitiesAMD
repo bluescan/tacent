@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13947' ll='13951'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13947'/>
+<size>24</size>
+<mbr r='VkDisplayNativeHdrSurfaceCapabilitiesAMD::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDisplayNativeHdrSurfaceCapabilitiesAMD::pNext' o='64' t='void *'/>
+<mbr r='VkDisplayNativeHdrSurfaceCapabilitiesAMD::localDimmingSupport' o='128' t='VkBool32'/>

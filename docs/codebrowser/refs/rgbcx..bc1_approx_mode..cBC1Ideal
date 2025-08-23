@@ -1,0 +1,20 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='77' type='0'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='95' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='206' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='211' c='_ZN5rgbcx10unpack_bc3EPKvPvNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1676' c='_ZN5rgbcxL8interp_5EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1690' c='_ZN5rgbcxL8interp_6EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1702' c='_ZN5rgbcxL13interp_half_5EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1717' c='_ZN5rgbcxL13interp_half_6EiiiiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1742' u='r' c='_ZN5rgbcxL35prepare_bc1_single_color_table_halfEPNS_15bc1_match_entryEPKhiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1779' u='r' c='_ZN5rgbcxL30prepare_bc1_single_color_tableEPNS_15bc1_match_entryEPKhiNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='95' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2151' u='r' c='_ZN5rgbcxL21bc1_get_block_colors4EPjS0_S0_jjjjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2178' u='r' c='_ZN5rgbcxL21bc1_get_block_colors3EPjS0_S0_jjjjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='206' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4070' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4094' c='_ZN5rgbcx10unpack_bc1EPKvPvbNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='211' c='_ZN5rgbcx10unpack_bc3EPKvPvNS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='294' u='r' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='75'>// The default mode. No rounding for 4-color colors 2,3. My older tools/compressors use this mode. 
+		// This matches the D3D10 docs on BC1.</doc>

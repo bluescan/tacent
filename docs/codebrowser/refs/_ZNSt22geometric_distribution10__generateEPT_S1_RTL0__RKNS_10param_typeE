@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.h' l='4114' ll='4118' type='void std::geometric_distribution::__generate(std::geometric_distribution::result_type * __f, std::geometric_distribution::result_type * __t, _UniformRandomNumberGenerator &amp; __urng, const std::geometric_distribution::param_type &amp; __p)'/>

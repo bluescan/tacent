@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15962' ll='15966'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15962'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceImageCompressionControlFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceImageCompressionControlFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceImageCompressionControlFeaturesEXT::imageCompressionControl' o='128' t='VkBool32'/>

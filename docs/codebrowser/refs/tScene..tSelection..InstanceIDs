@@ -1,0 +1,6 @@
+<use f='Modules/Scene/Src/tSelection.cpp' l='28' u='m' c='_ZNK6tScene10tSelection4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSelection.cpp' l='60' u='m' c='_ZN6tScene10tSelection4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='135' u='m' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='993' u='m' c='_ZN6tScene6tWorld18CorrectInstanceIDsER7tItListINS_9tInstanceEERS1_INS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1045' u='m' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1051' u='m' c='_ZN6tScene6tWorld25MergeToExistingSelectionsER7tItListINS_10tSelectionEE'/>

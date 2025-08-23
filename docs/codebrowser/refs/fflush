@@ -1,0 +1,7 @@
+<dec f='include/stdio.h' l='230' type='int fflush(FILE * __stream)'/>
+<doc f='include/stdio.h' l='226'>/* Flush STREAM, or all streams if STREAM is NULL.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>
+<use f='Modules/System/Src/tPrint.cpp' l='294' u='c' c='_ZN7tSystem6tPrintEPKcP8_IO_FILE'/>
+<use f='Modules/System/Src/tPrint.cpp' l='693' u='c' c='_Z6tFlushP8_IO_FILE'/>

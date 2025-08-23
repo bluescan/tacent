@@ -1,0 +1,14 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='42' u='m' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='90' u='a' c='_ZN6tScene6tWorld10MergeSceneERS0_'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='123' u='m' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='228' u='m' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='619' u='m' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1133' u='m' c='_ZNK6tScene6tWorld10SaveGroupsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1542' u='m' c='_ZNK6tScene6tWorld15GetNumLodGroupsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1545' u='m' c='_ZNK6tScene6tWorld15GetNumLodGroupsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1555' u='m' c='_ZN6tScene6tWorld14InsertLodGroupEPNS_9tLodGroupE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1561' u='m' c='_ZNK6tScene6tWorld12FindLodGroupERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1571' u='m' c='_ZNK6tScene6tWorld12FindLodGroupEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1585' u='m' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1619' u='m' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1633' u='m' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>

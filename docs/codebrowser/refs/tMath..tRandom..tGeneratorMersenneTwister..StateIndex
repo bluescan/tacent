@@ -1,0 +1,12 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='73' type='int'/>
+<offset>20032</offset>
+<use f='Modules/Math/Src/tRandom.cpp' l='28' u='w' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='28' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='28' u='w' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='29' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='29' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='29' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='29' u='r' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEj'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='71' u='r' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='91' u='w' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='94' u='w' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>

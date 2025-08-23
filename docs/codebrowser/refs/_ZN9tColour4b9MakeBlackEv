@@ -1,0 +1,9 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='402' type='void tColour4b::MakeBlack()'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='214' u='c' c='_ZN6tImage9tImageHDR31ConvertRadianceToGammaCorrectedEP9tColour4bi'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='267' u='c' c='_ZN6tImage9tImageTGA15ReadColourBytesER9tColour4bPKhib'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='35' u='c' c='_ZN6tScene9tMaterial5ClearEv'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='36' u='c' c='_ZN6tScene9tMaterial5ClearEv'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='37' u='c' c='_ZN6tScene9tMaterial5ClearEv'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='38' u='c' c='_ZN6tScene9tMaterial5ClearEv'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='39' u='c' c='_ZN6tScene9tMaterial5ClearEv'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='40' u='c' c='_ZN6tScene9tMaterial5ClearEv'/>

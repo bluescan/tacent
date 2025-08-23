@@ -1,0 +1,8 @@
+<dec f='include/c++/11/system_error' l='449' type='std::error_code'/>
+<use f='include/c++/11/system_error' l='453' u='w' c='_ZNSt12system_errorC1ESt10error_code'/>
+<use f='include/c++/11/system_error' l='456' u='w' c='_ZNSt12system_errorC1ESt10error_codeRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/system_error' l='459' u='w' c='_ZNSt12system_errorC1ESt10error_codePKc'/>
+<use f='include/c++/11/system_error' l='466' u='w' c='_ZNSt12system_errorC1EiRKNSt3_V214error_categoryE'/>
+<use f='include/c++/11/system_error' l='470' u='w' c='_ZNSt12system_errorC1EiRKNSt3_V214error_categoryERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/system_error' l='480' u='a' c='_ZNKSt12system_error4codeEv'/>
+<offset>128</offset>

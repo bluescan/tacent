@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='657' type='2214723584'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='655'>// @todo The collision chunks should probably follow the same methodology as other instances. For now there is
+		// simply a single chunk for both the instance part (the transformation) and the mesh itself.</doc>
+<doc f='Modules/System/Inc/System/tChunk.h' l='657'>// @todo Hey, what&apos;s inside this chunk.</doc>

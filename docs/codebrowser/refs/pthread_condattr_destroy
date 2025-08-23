@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1198' type='int pthread_condattr_destroy(pthread_condattr_t * __attr)'/>
+<doc f='include/pthread.h' l='1197'>/* Destroy condition variable attribute ATTR.  */</doc>

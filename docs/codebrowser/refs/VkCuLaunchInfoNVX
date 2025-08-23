@@ -1,0 +1,17 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11527' ll='11542'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11527'/>
+<size>88</size>
+<mbr r='VkCuLaunchInfoNVX::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCuLaunchInfoNVX::pNext' o='64' t='const void *'/>
+<mbr r='VkCuLaunchInfoNVX::function' o='128' t='VkCuFunctionNVX'/>
+<mbr r='VkCuLaunchInfoNVX::gridDimX' o='192' t='uint32_t'/>
+<mbr r='VkCuLaunchInfoNVX::gridDimY' o='224' t='uint32_t'/>
+<mbr r='VkCuLaunchInfoNVX::gridDimZ' o='256' t='uint32_t'/>
+<mbr r='VkCuLaunchInfoNVX::blockDimX' o='288' t='uint32_t'/>
+<mbr r='VkCuLaunchInfoNVX::blockDimY' o='320' t='uint32_t'/>
+<mbr r='VkCuLaunchInfoNVX::blockDimZ' o='352' t='uint32_t'/>
+<mbr r='VkCuLaunchInfoNVX::sharedMemBytes' o='384' t='uint32_t'/>
+<mbr r='VkCuLaunchInfoNVX::paramCount' o='448' t='size_t'/>
+<mbr r='VkCuLaunchInfoNVX::pParams' o='512' t='const void *const *'/>
+<mbr r='VkCuLaunchInfoNVX::extraCount' o='576' t='size_t'/>
+<mbr r='VkCuLaunchInfoNVX::pExtras' o='640' t='const void *const *'/>

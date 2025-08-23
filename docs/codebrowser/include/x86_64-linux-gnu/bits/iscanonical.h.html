@@ -1,0 +1,72 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>iscanonical.h source code [include/x86_64-linux-gnu/bits/iscanonical.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/iscanonical.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>bits</a>/<a href='iscanonical.h.html'>iscanonical.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Define iscanonical macro.  ldbl-96 version.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   Copyright (C) 2016-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i></i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i></i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i></i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#<span data-ppcond="19">ifndef</span> <a class="macro" href="../../math.h.html#24" data-ref="_M/_MATH_H">_MATH_H</a></u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><u># error "Never use &lt;bits/iscanonical.h&gt; directly; include &lt;math.h&gt; instead."</u>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#<span data-ppcond="19">endif</span></u>&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="__iscanonicall" title='__iscanonicall' data-ref="__iscanonicall">__iscanonicall</dfn> (<em>long</em> <em>double</em> <dfn class="local col1 decl" id="2241__x" title='__x' data-type='long double' data-ref="2241__x">__x</dfn>)&nbsp</td></tr>
+<tr><th id="24">24</th><td>     <a class="macro" href="../sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <b>__attribute__</b> ((<em>__const__</em>));&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#define <dfn class="macro" id="_M/__iscanonicalf" data-ref="_M/__iscanonicalf">__iscanonicalf</dfn>(x) ((void) (__typeof (x)) (x), 1)</u>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#define <dfn class="macro" id="_M/__iscanonical" data-ref="_M/__iscanonical">__iscanonical</dfn>(x) ((void) (__typeof (x)) (x), 1)</u>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#<span data-ppcond="27">if</span> <a class="macro" href="floatn.h.html#42" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT128">__HAVE_DISTINCT_FLOAT128</a></u>&nbsp</td></tr>
+<tr><th id="28">28</th><td><u># define __iscanonicalf128(x) ((void) (__typeof (x)) (x), 1)</u>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="27">endif</span></u>&nbsp</td></tr>
+<tr><th id="30">30</th><td>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>/* Return nonzero value if X is canonical.  In IEEE interchange binary</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>   formats, all values are canonical, but the argument must still be</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i>   converted to its semantic type for any exceptions arising from the</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>   conversion, before being discarded; in extended precision, there</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i>   are encodings that are not consistently handled as corresponding to</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i>   any particular value of the type, and we return 0 for those.  */</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="37">ifndef</span> <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u># define iscanonical(x) __MATH_TG ((x), __iscanonical, (x))</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#<span data-ppcond="37">else</span></u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>/* In C++ mode, __MATH_TG cannot be used, because it relies on</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i>   __builtin_types_compatible_p, which is a C-only builtin.  On the</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i>   other hand, overloading provides the means to distinguish between</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i>   the floating-point types.  The overloading resolution will match</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i>   the correct parameter (regardless of type qualifiers (i.e.: const</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i>   and volatile)).  */</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><b>extern</b> <q>"C++"</q> {&nbsp</td></tr>
+<tr><th id="47">47</th><td><b>inline</b> <em>int</em> <dfn class="decl def fn" id="_Z11iscanonicalf" title='iscanonical' data-ref="_Z11iscanonicalf">iscanonical</dfn> (<em>float</em> <dfn class="local col2 decl" id="2242__val" title='__val' data-type='float' data-ref="2242__val">__val</dfn>) { <b>return</b> <a class="macro" href="#25" title="((void) (__typeof (__val)) (__val), 1)" data-ref="_M/__iscanonicalf">__iscanonicalf</a> (<a class="local col2 ref" href="#2242__val" title='__val' data-ref="2242__val">__val</a>); }&nbsp</td></tr>
+<tr><th id="48">48</th><td><b>inline</b> <em>int</em> <dfn class="decl def fn" id="_Z11iscanonicald" title='iscanonical' data-ref="_Z11iscanonicald">iscanonical</dfn> (<em>double</em> <dfn class="local col3 decl" id="2243__val" title='__val' data-type='double' data-ref="2243__val">__val</dfn>) { <b>return</b> <a class="macro" href="#26" title="((void) (__typeof (__val)) (__val), 1)" data-ref="_M/__iscanonical">__iscanonical</a> (<a class="local col3 ref" href="#2243__val" title='__val' data-ref="2243__val">__val</a>); }&nbsp</td></tr>
+<tr><th id="49">49</th><td><b>inline</b> <em>int</em> <dfn class="decl def fn" id="_Z11iscanonicale" title='iscanonical' data-ref="_Z11iscanonicale">iscanonical</dfn> (<em>long</em> <em>double</em> <dfn class="local col4 decl" id="2244__val" title='__val' data-type='long double' data-ref="2244__val">__val</dfn>) { <b>return</b> <a class="ref fn" href="#__iscanonicall" title='__iscanonicall' data-ref="__iscanonicall">__iscanonicall</a> (<span class='inlayHint'>x:&nbsp;</span><a class="local col4 ref" href="#2244__val" title='__val' data-ref="2244__val">__val</a>); }&nbsp</td></tr>
+<tr><th id="50">50</th><td><u># <span data-ppcond="50">if</span> <a class="macro" href="floatn.h.html#42" title="0" data-ref="_M/__HAVE_DISTINCT_FLOAT128">__HAVE_DISTINCT_FLOAT128</a></u>&nbsp</td></tr>
+<tr><th id="51">51</th><td><b>inline</b> <em>int</em> iscanonical (_Float128 __val) { <b>return</b> __iscanonicalf128 (__val); }&nbsp</td></tr>
+<tr><th id="52">52</th><td><u># <span data-ppcond="50">endif</span></u>&nbsp</td></tr>
+<tr><th id="53">53</th><td>}&nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#<span data-ppcond="37">endif</span> /* __cplusplus */</u>&nbsp</td></tr>
+<tr><th id="55">55</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

@@ -1,0 +1,381 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>demux.h source code [Modules/Image/Contrib/WebP/include/demux.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Contrib/WebP/include/demux.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>Modules</a>/<a href='../../..'>Image</a>/<a href='../..'>Contrib</a>/<a href='..'>WebP</a>/<a href='./'>include</a>/<a href='demux.h.html'>demux.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Copyright 2012 Google Inc. All Rights Reserved.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Use of this source code is governed by a BSD-style license</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>// that can be found in the COPYING file in the root of the source</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// tree. An additional intellectual property rights grant can be found</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// in the file PATENTS. All contributing project authors may</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// be found in the AUTHORS file in the root of the source tree.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// -----------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// Demux API.</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// Enables extraction of image and extended format data from WebP files.</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i></i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// Code Example: Demuxing WebP data to extract all the frames, ICC profile</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// and EXIF/XMP metadata.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>  WebPDemuxer* demux = WebPDemux(&amp;webp_data);</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i></i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>  uint32_t width = WebPDemuxGetI(demux, WEBP_FF_CANVAS_WIDTH);</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i>  uint32_t height = WebPDemuxGetI(demux, WEBP_FF_CANVAS_HEIGHT);</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>  // ... (Get information about the features present in the WebP file).</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>  uint32_t flags = WebPDemuxGetI(demux, WEBP_FF_FORMAT_FLAGS);</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i></i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>  // ... (Iterate over all frames).</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i>  WebPIterator iter;</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>  if (WebPDemuxGetFrame(demux, 1, &amp;iter)) {</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i>    do {</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i>      // ... (Consume 'iter'; e.g. Decode 'iter.fragment' with WebPDecode(),</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i>      // ... and get other frame properties like width, height, offsets etc.</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i>      // ... see 'struct WebPIterator' below for more info).</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>    } while (WebPDemuxNextFrame(&amp;iter));</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>    WebPDemuxReleaseIterator(&amp;iter);</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>  }</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i></i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>  // ... (Extract metadata).</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i>  WebPChunkIterator chunk_iter;</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i>  if (flags &amp; ICCP_FLAG) WebPDemuxGetChunk(demux, "ICCP", 1, &amp;chunk_iter);</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>  // ... (Consume the ICC profile in 'chunk_iter.chunk').</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i>  WebPDemuxReleaseChunkIterator(&amp;chunk_iter);</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i>  if (flags &amp; EXIF_FLAG) WebPDemuxGetChunk(demux, "EXIF", 1, &amp;chunk_iter);</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>  // ... (Consume the EXIF metadata in 'chunk_iter.chunk').</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i>  WebPDemuxReleaseChunkIterator(&amp;chunk_iter);</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i>  if (flags &amp; XMP_FLAG) WebPDemuxGetChunk(demux, "XMP ", 1, &amp;chunk_iter);</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i>  // ... (Consume the XMP metadata in 'chunk_iter.chunk').</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i>  WebPDemuxReleaseChunkIterator(&amp;chunk_iter);</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i>  WebPDemuxDelete(demux);</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>*/</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u>#<span data-ppcond="48">ifndef</span> <span class="macro" data-ref="_M/WEBP_WEBP_DEMUX_H_">WEBP_WEBP_DEMUX_H_</span></u>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#define <dfn class="macro" id="_M/WEBP_WEBP_DEMUX_H_" data-ref="_M/WEBP_WEBP_DEMUX_H_">WEBP_WEBP_DEMUX_H_</dfn></u>&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>#include "./decode.h"     // for WEBP_CSP_MODE</u>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u>#include "./mux_types.h"</u>&nbsp</td></tr>
+<tr><th id="53">53</th><td>&nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#<span data-ppcond="54">ifdef</span> <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="55">55</th><td><b>extern</b> <q>"C"</q> {&nbsp</td></tr>
+<tr><th id="56">56</th><td><u>#<span data-ppcond="54">endif</span></u>&nbsp</td></tr>
+<tr><th id="57">57</th><td>&nbsp</td></tr>
+<tr><th id="58">58</th><td><u>#define <dfn class="macro" id="_M/WEBP_DEMUX_ABI_VERSION" data-ref="_M/WEBP_DEMUX_ABI_VERSION">WEBP_DEMUX_ABI_VERSION</dfn> 0x0107    // MAJOR(8b) + MINOR(8b)</u>&nbsp</td></tr>
+<tr><th id="59">59</th><td>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i>// Note: forward declaring enumerations is not allowed in (strict) C and C++,</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i>// the types are left here for reference.</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i>// typedef enum WebPDemuxState WebPDemuxState;</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i>// typedef enum WebPFormatFeature WebPFormatFeature;</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><b>typedef</b> <b>struct</b> <dfn class="type" id="WebPDemuxer" title='WebPDemuxer' data-ref="WebPDemuxer"><a class="type" href="#WebPDemuxer" title='WebPDemuxer' data-ref="WebPDemuxer">WebPDemuxer</a></dfn> <dfn class="typedef" id="WebPDemuxer" title='WebPDemuxer' data-type='struct WebPDemuxer' data-ref="WebPDemuxer">WebPDemuxer</dfn>;&nbsp</td></tr>
+<tr><th id="65">65</th><td><b>typedef</b> <b>struct</b> <a class="type" href="#WebPIterator" title='WebPIterator' data-ref="WebPIterator">WebPIterator</a> <dfn class="typedef" id="WebPIterator" title='WebPIterator' data-type='struct WebPIterator' data-ref="WebPIterator">WebPIterator</dfn>;&nbsp</td></tr>
+<tr><th id="66">66</th><td><b>typedef</b> <b>struct</b> <a class="type" href="#WebPChunkIterator" title='WebPChunkIterator' data-ref="WebPChunkIterator">WebPChunkIterator</a> <dfn class="typedef" id="WebPChunkIterator" title='WebPChunkIterator' data-type='struct WebPChunkIterator' data-ref="WebPChunkIterator">WebPChunkIterator</dfn>;&nbsp</td></tr>
+<tr><th id="67">67</th><td><b>typedef</b> <b>struct</b> <a class="type" href="#WebPAnimInfo" title='WebPAnimInfo' data-ref="WebPAnimInfo">WebPAnimInfo</a> <dfn class="typedef" id="WebPAnimInfo" title='WebPAnimInfo' data-type='struct WebPAnimInfo' data-ref="WebPAnimInfo">WebPAnimInfo</dfn>;&nbsp</td></tr>
+<tr><th id="68">68</th><td><b>typedef</b> <b>struct</b> <a class="type" href="#WebPAnimDecoderOptions" title='WebPAnimDecoderOptions' data-ref="WebPAnimDecoderOptions">WebPAnimDecoderOptions</a> <dfn class="typedef" id="WebPAnimDecoderOptions" title='WebPAnimDecoderOptions' data-type='struct WebPAnimDecoderOptions' data-ref="WebPAnimDecoderOptions">WebPAnimDecoderOptions</dfn>;&nbsp</td></tr>
+<tr><th id="69">69</th><td>&nbsp</td></tr>
+<tr><th id="70">70</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i></i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i>// Returns the version number of the demux library, packed in hexadecimal using</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td><i>// 8bits for each of major/minor/revision. E.g: v2.5.7 is 0x020507.</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPGetDemuxVersion" title='WebPGetDemuxVersion' data-ref="WebPGetDemuxVersion">WebPGetDemuxVersion</dfn>(<em>void</em>);&nbsp</td></tr>
+<tr><th id="75">75</th><td>&nbsp</td></tr>
+<tr><th id="76">76</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td><i>// Life of a Demux object</i>&nbsp</td></tr>
+<tr><th id="78">78</th><td>&nbsp</td></tr>
+<tr><th id="79">79</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="WebPDemuxState" title='WebPDemuxState' data-ref="WebPDemuxState"><a class="type" href="#WebPDemuxState" title='WebPDemuxState' data-ref="WebPDemuxState">WebPDemuxState</a></dfn> {&nbsp</td></tr>
+<tr><th id="80">80</th><td>  <dfn class="enum" id="WEBP_DEMUX_PARSE_ERROR" title='WEBP_DEMUX_PARSE_ERROR' data-ref="WEBP_DEMUX_PARSE_ERROR">WEBP_DEMUX_PARSE_ERROR</dfn>    = -<var>1</var>,  <i>// An error occurred while parsing.</i>&nbsp</td></tr>
+<tr><th id="81">81</th><td>  <dfn class="enum" id="WEBP_DEMUX_PARSING_HEADER" title='WEBP_DEMUX_PARSING_HEADER' data-ref="WEBP_DEMUX_PARSING_HEADER">WEBP_DEMUX_PARSING_HEADER</dfn> =  <var>0</var>,  <i>// Not enough data to parse full header.</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td>  <dfn class="enum" id="WEBP_DEMUX_PARSED_HEADER" title='WEBP_DEMUX_PARSED_HEADER' data-ref="WEBP_DEMUX_PARSED_HEADER">WEBP_DEMUX_PARSED_HEADER</dfn>  =  <var>1</var>,  <i>// Header parsing complete,</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td>                                   <i>// data may be available.</i>&nbsp</td></tr>
+<tr><th id="84">84</th><td>  <dfn class="enum" id="WEBP_DEMUX_DONE" title='WEBP_DEMUX_DONE' data-ref="WEBP_DEMUX_DONE">WEBP_DEMUX_DONE</dfn>           =  <var>2</var>   <i>// Entire file has been parsed.</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td>} <dfn class="typedef" id="WebPDemuxState" title='WebPDemuxState' data-type='enum WebPDemuxState' data-ref="WebPDemuxState">WebPDemuxState</dfn>;&nbsp</td></tr>
+<tr><th id="86">86</th><td>&nbsp</td></tr>
+<tr><th id="87">87</th><td><i>// Internal, version-checked, entry point</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPDemuxer" title='WebPDemuxer' data-type='struct WebPDemuxer' data-ref="WebPDemuxer">WebPDemuxer</a>* <dfn class="decl fn" id="WebPDemuxInternal" title='WebPDemuxInternal' data-ref="WebPDemuxInternal">WebPDemuxInternal</dfn>(&nbsp</td></tr>
+<tr><th id="89">89</th><td>    <em>const</em> <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a>*, <em>int</em>, <a class="typedef" href="#WebPDemuxState" title='WebPDemuxState' data-type='enum WebPDemuxState' data-ref="WebPDemuxState">WebPDemuxState</a>*, <em>int</em>);&nbsp</td></tr>
+<tr><th id="90">90</th><td>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i>// Parses the full WebP file given by 'data'. For single images the WebP file</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><i>// header alone or the file header and the chunk header may be absent.</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td><i>// Returns a WebPDemuxer object on successful parse, NULL otherwise.</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td><em>static</em> <a class="macro" href="types.h.html#23" title="inline" data-ref="_M/WEBP_INLINE">WEBP_INLINE</a> <a class="typedef" href="#WebPDemuxer" title='WebPDemuxer' data-type='struct WebPDemuxer' data-ref="WebPDemuxer">WebPDemuxer</a>* <dfn class="decl def fn" id="_ZL9WebPDemuxPK8WebPData" title='WebPDemux' data-ref="_ZL9WebPDemuxPK8WebPData">WebPDemux</dfn>(<em>const</em> <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a>* <dfn class="local col8 decl" id="218data" title='data' data-type='const WebPData *' data-ref="218data">data</dfn>) {&nbsp</td></tr>
+<tr><th id="95">95</th><td>  <b>return</b> <a class="ref fn" href="#WebPDemuxInternal" title='WebPDemuxInternal' data-ref="WebPDemuxInternal">WebPDemuxInternal</a>(<a class="local col8 ref" href="#218data" title='data' data-ref="218data">data</a>, <var>0</var>, <span class="macro" title="__null" data-ref="_M/NULL">NULL</span>, <a class="macro" href="#58" title="0x0107" data-ref="_M/WEBP_DEMUX_ABI_VERSION">WEBP_DEMUX_ABI_VERSION</a>);&nbsp</td></tr>
+<tr><th id="96">96</th><td>}&nbsp</td></tr>
+<tr><th id="97">97</th><td>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i>// Parses the possibly incomplete WebP file given by 'data'.</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><i>// If 'state' is non-NULL it will be set to indicate the status of the demuxer.</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td><i>// Returns NULL in case of error or if there isn't enough data to start parsing;</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><i>// and a WebPDemuxer object on successful parse.</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td><i>// Note that WebPDemuxer keeps internal pointers to 'data' memory segment.</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td><i>// If this data is volatile, the demuxer object should be deleted (by calling</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td><i>// WebPDemuxDelete()) and WebPDemuxPartial() called again on the new data.</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td><i>// This is usually an inexpensive operation.</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><em>static</em> <a class="macro" href="types.h.html#23" title="inline" data-ref="_M/WEBP_INLINE">WEBP_INLINE</a> <a class="typedef" href="#WebPDemuxer" title='WebPDemuxer' data-type='struct WebPDemuxer' data-ref="WebPDemuxer">WebPDemuxer</a>* <dfn class="decl def fn" id="_ZL16WebPDemuxPartialPK8WebPDataP14WebPDemuxState" title='WebPDemuxPartial' data-ref="_ZL16WebPDemuxPartialPK8WebPDataP14WebPDemuxState">WebPDemuxPartial</dfn>(&nbsp</td></tr>
+<tr><th id="107">107</th><td>    <em>const</em> <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a>* <dfn class="local col9 decl" id="219data" title='data' data-type='const WebPData *' data-ref="219data">data</dfn>, <a class="typedef" href="#WebPDemuxState" title='WebPDemuxState' data-type='enum WebPDemuxState' data-ref="WebPDemuxState">WebPDemuxState</a>* <dfn class="local col0 decl" id="220state" title='state' data-type='WebPDemuxState *' data-ref="220state">state</dfn>) {&nbsp</td></tr>
+<tr><th id="108">108</th><td>  <b>return</b> <a class="ref fn" href="#WebPDemuxInternal" title='WebPDemuxInternal' data-ref="WebPDemuxInternal">WebPDemuxInternal</a>(<a class="local col9 ref" href="#219data" title='data' data-ref="219data">data</a>, <var>1</var>, <a class="local col0 ref" href="#220state" title='state' data-ref="220state">state</a>, <a class="macro" href="#58" title="0x0107" data-ref="_M/WEBP_DEMUX_ABI_VERSION">WEBP_DEMUX_ABI_VERSION</a>);&nbsp</td></tr>
+<tr><th id="109">109</th><td>}&nbsp</td></tr>
+<tr><th id="110">110</th><td>&nbsp</td></tr>
+<tr><th id="111">111</th><td><i>// Frees memory associated with 'dmux'.</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>void</em> <dfn class="decl fn" id="WebPDemuxDelete" title='WebPDemuxDelete' data-ref="WebPDemuxDelete">WebPDemuxDelete</dfn>(<a class="typedef" href="#WebPDemuxer" title='WebPDemuxer' data-type='struct WebPDemuxer' data-ref="WebPDemuxer">WebPDemuxer</a>* <dfn class="local col1 decl" id="221dmux" title='dmux' data-type='WebPDemuxer *' data-ref="221dmux">dmux</dfn>);&nbsp</td></tr>
+<tr><th id="113">113</th><td>&nbsp</td></tr>
+<tr><th id="114">114</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="115">115</th><td><i>// Data/information extraction.</i>&nbsp</td></tr>
+<tr><th id="116">116</th><td>&nbsp</td></tr>
+<tr><th id="117">117</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="WebPFormatFeature" title='WebPFormatFeature' data-ref="WebPFormatFeature"><a class="type" href="#WebPFormatFeature" title='WebPFormatFeature' data-ref="WebPFormatFeature">WebPFormatFeature</a></dfn> {&nbsp</td></tr>
+<tr><th id="118">118</th><td>  <dfn class="enum" id="WEBP_FF_FORMAT_FLAGS" title='WEBP_FF_FORMAT_FLAGS' data-ref="WEBP_FF_FORMAT_FLAGS">WEBP_FF_FORMAT_FLAGS</dfn>,      <i>// bit-wise combination of WebPFeatureFlags</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td>                             <i>// corresponding to the 'VP8X' chunk (if present).</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td>  <dfn class="enum" id="WEBP_FF_CANVAS_WIDTH" title='WEBP_FF_CANVAS_WIDTH' data-ref="WEBP_FF_CANVAS_WIDTH">WEBP_FF_CANVAS_WIDTH</dfn>,&nbsp</td></tr>
+<tr><th id="121">121</th><td>  <dfn class="enum" id="WEBP_FF_CANVAS_HEIGHT" title='WEBP_FF_CANVAS_HEIGHT' data-ref="WEBP_FF_CANVAS_HEIGHT">WEBP_FF_CANVAS_HEIGHT</dfn>,&nbsp</td></tr>
+<tr><th id="122">122</th><td>  <dfn class="enum" id="WEBP_FF_LOOP_COUNT" title='WEBP_FF_LOOP_COUNT' data-ref="WEBP_FF_LOOP_COUNT">WEBP_FF_LOOP_COUNT</dfn>,        <i>// only relevant for animated file</i>&nbsp</td></tr>
+<tr><th id="123">123</th><td>  <dfn class="enum" id="WEBP_FF_BACKGROUND_COLOR" title='WEBP_FF_BACKGROUND_COLOR' data-ref="WEBP_FF_BACKGROUND_COLOR">WEBP_FF_BACKGROUND_COLOR</dfn>,  <i>// idem.</i>&nbsp</td></tr>
+<tr><th id="124">124</th><td>  <dfn class="enum" id="WEBP_FF_FRAME_COUNT" title='WEBP_FF_FRAME_COUNT' data-ref="WEBP_FF_FRAME_COUNT">WEBP_FF_FRAME_COUNT</dfn>        <i>// Number of frames present in the demux object.</i>&nbsp</td></tr>
+<tr><th id="125">125</th><td>                             <i>// In case of a partial demux, this is the number</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td><i>                             // of frames seen so far, with the last frame</i>&nbsp</td></tr>
+<tr><th id="127">127</th><td><i>                             // possibly being partial.</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td>} <dfn class="typedef" id="WebPFormatFeature" title='WebPFormatFeature' data-type='enum WebPFormatFeature' data-ref="WebPFormatFeature">WebPFormatFeature</dfn>;&nbsp</td></tr>
+<tr><th id="129">129</th><td>&nbsp</td></tr>
+<tr><th id="130">130</th><td><i>// Get the 'feature' value from the 'dmux'.</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td><i>// NOTE: values are only valid if WebPDemux() was used or WebPDemuxPartial()</i>&nbsp</td></tr>
+<tr><th id="132">132</th><td><i>// returned a state &gt; WEBP_DEMUX_PARSING_HEADER.</i>&nbsp</td></tr>
+<tr><th id="133">133</th><td><i>// If 'feature' is WEBP_FF_FORMAT_FLAGS, the returned value is a bit-wise</i>&nbsp</td></tr>
+<tr><th id="134">134</th><td><i>// combination of WebPFeatureFlags values.</i>&nbsp</td></tr>
+<tr><th id="135">135</th><td><i>// If 'feature' is WEBP_FF_LOOP_COUNT, WEBP_FF_BACKGROUND_COLOR, the returned</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td><i>// value is only meaningful if the bitstream is animated.</i>&nbsp</td></tr>
+<tr><th id="137">137</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl fn" id="WebPDemuxGetI" title='WebPDemuxGetI' data-ref="WebPDemuxGetI">WebPDemuxGetI</dfn>(&nbsp</td></tr>
+<tr><th id="138">138</th><td>    <em>const</em> <a class="typedef" href="#WebPDemuxer" title='WebPDemuxer' data-type='struct WebPDemuxer' data-ref="WebPDemuxer">WebPDemuxer</a>* <dfn class="local col2 decl" id="222dmux" title='dmux' data-type='const WebPDemuxer *' data-ref="222dmux">dmux</dfn>, <a class="typedef" href="#WebPFormatFeature" title='WebPFormatFeature' data-type='enum WebPFormatFeature' data-ref="WebPFormatFeature">WebPFormatFeature</a> <dfn class="local col3 decl" id="223feature" title='feature' data-type='WebPFormatFeature' data-ref="223feature">feature</dfn>);&nbsp</td></tr>
+<tr><th id="139">139</th><td>&nbsp</td></tr>
+<tr><th id="140">140</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="141">141</th><td><i>// Frame iteration.</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td>&nbsp</td></tr>
+<tr><th id="143">143</th><td><b>struct</b> <dfn class="type def" id="WebPIterator" title='WebPIterator' data-ref="WebPIterator">WebPIterator</dfn> {&nbsp</td></tr>
+<tr><th id="144">144</th><td>  <em>int</em> <dfn class="decl field" id="WebPIterator::frame_num" title='WebPIterator::frame_num' data-ref="WebPIterator::frame_num">frame_num</dfn>;&nbsp</td></tr>
+<tr><th id="145">145</th><td>  <em>int</em> <dfn class="decl field" id="WebPIterator::num_frames" title='WebPIterator::num_frames' data-ref="WebPIterator::num_frames">num_frames</dfn>;          <i>// equivalent to WEBP_FF_FRAME_COUNT.</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td>  <em>int</em> <dfn class="decl field" id="WebPIterator::x_offset" title='WebPIterator::x_offset' data-ref="WebPIterator::x_offset">x_offset</dfn>, <dfn class="decl field" id="WebPIterator::y_offset" title='WebPIterator::y_offset' data-ref="WebPIterator::y_offset">y_offset</dfn>;  <i>// offset relative to the canvas.</i>&nbsp</td></tr>
+<tr><th id="147">147</th><td>  <em>int</em> <dfn class="decl field" id="WebPIterator::width" title='WebPIterator::width' data-ref="WebPIterator::width">width</dfn>, <dfn class="decl field" id="WebPIterator::height" title='WebPIterator::height' data-ref="WebPIterator::height">height</dfn>;       <i>// dimensions of this frame.</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td>  <em>int</em> <dfn class="decl field" id="WebPIterator::duration" title='WebPIterator::duration' data-ref="WebPIterator::duration">duration</dfn>;            <i>// display duration in milliseconds.</i>&nbsp</td></tr>
+<tr><th id="149">149</th><td>  <a class="typedef" href="mux_types.h.html#WebPMuxAnimDispose" title='WebPMuxAnimDispose' data-type='enum WebPMuxAnimDispose' data-ref="WebPMuxAnimDispose">WebPMuxAnimDispose</a> <dfn class="decl field" id="WebPIterator::dispose_method" title='WebPIterator::dispose_method' data-ref="WebPIterator::dispose_method">dispose_method</dfn>;  <i>// dispose method for the frame.</i>&nbsp</td></tr>
+<tr><th id="150">150</th><td>  <em>int</em> <dfn class="decl field" id="WebPIterator::complete" title='WebPIterator::complete' data-ref="WebPIterator::complete">complete</dfn>;   <i>// true if 'fragment' contains a full frame. partial images</i>&nbsp</td></tr>
+<tr><th id="151">151</th><td>                  <i>// may still be decoded with the WebP incremental decoder.</i>&nbsp</td></tr>
+<tr><th id="152">152</th><td>  <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a> <dfn class="decl field" id="WebPIterator::fragment" title='WebPIterator::fragment' data-ref="WebPIterator::fragment">fragment</dfn>;  <i>// The frame given by 'frame_num'. Note for historical</i>&nbsp</td></tr>
+<tr><th id="153">153</th><td>                      <i>// reasons this is called a fragment.</i>&nbsp</td></tr>
+<tr><th id="154">154</th><td>  <em>int</em> <dfn class="decl field" id="WebPIterator::has_alpha" title='WebPIterator::has_alpha' data-ref="WebPIterator::has_alpha">has_alpha</dfn>;      <i>// True if the frame contains transparency.</i>&nbsp</td></tr>
+<tr><th id="155">155</th><td>  <a class="typedef" href="mux_types.h.html#WebPMuxAnimBlend" title='WebPMuxAnimBlend' data-type='enum WebPMuxAnimBlend' data-ref="WebPMuxAnimBlend">WebPMuxAnimBlend</a> <dfn class="decl field" id="WebPIterator::blend_method" title='WebPIterator::blend_method' data-ref="WebPIterator::blend_method">blend_method</dfn>;  <i>// Blend operation for the frame.</i>&nbsp</td></tr>
+<tr><th id="156">156</th><td>&nbsp</td></tr>
+<tr><th id="157">157</th><td>  <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl field" id="WebPIterator::pad" title='WebPIterator::pad' data-ref="WebPIterator::pad">pad</dfn>[<var>2</var>];         <i>// padding for later use.</i>&nbsp</td></tr>
+<tr><th id="158">158</th><td>  <em>void</em>* <dfn class="decl field" id="WebPIterator::private_" title='WebPIterator::private_' data-ref="WebPIterator::private_">private_</dfn>;          <i>// for internal use only.</i>&nbsp</td></tr>
+<tr><th id="159">159</th><td>};&nbsp</td></tr>
+<tr><th id="160">160</th><td>&nbsp</td></tr>
+<tr><th id="161">161</th><td><i>// Retrieves frame 'frame_number' from 'dmux'.</i>&nbsp</td></tr>
+<tr><th id="162">162</th><td><i>// 'iter-&gt;fragment' points to the frame on return from this function.</i>&nbsp</td></tr>
+<tr><th id="163">163</th><td><i>// Setting 'frame_number' equal to 0 will return the last frame of the image.</i>&nbsp</td></tr>
+<tr><th id="164">164</th><td><i>// Returns false if 'dmux' is NULL or frame 'frame_number' is not present.</i>&nbsp</td></tr>
+<tr><th id="165">165</th><td><i>// Call WebPDemuxReleaseIterator() when use of the iterator is complete.</i>&nbsp</td></tr>
+<tr><th id="166">166</th><td><i>// NOTE: 'dmux' must persist for the lifetime of 'iter'.</i>&nbsp</td></tr>
+<tr><th id="167">167</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPDemuxGetFrame" title='WebPDemuxGetFrame' data-ref="WebPDemuxGetFrame">WebPDemuxGetFrame</dfn>(&nbsp</td></tr>
+<tr><th id="168">168</th><td>    <em>const</em> <a class="typedef" href="#WebPDemuxer" title='WebPDemuxer' data-type='struct WebPDemuxer' data-ref="WebPDemuxer">WebPDemuxer</a>* <dfn class="local col4 decl" id="224dmux" title='dmux' data-type='const WebPDemuxer *' data-ref="224dmux">dmux</dfn>, <em>int</em> <dfn class="local col5 decl" id="225frame_number" title='frame_number' data-type='int' data-ref="225frame_number">frame_number</dfn>, <a class="typedef" href="#WebPIterator" title='WebPIterator' data-type='struct WebPIterator' data-ref="WebPIterator">WebPIterator</a>* <dfn class="local col6 decl" id="226iter" title='iter' data-type='WebPIterator *' data-ref="226iter">iter</dfn>);&nbsp</td></tr>
+<tr><th id="169">169</th><td>&nbsp</td></tr>
+<tr><th id="170">170</th><td><i>// Sets 'iter-&gt;fragment' to point to the next ('iter-&gt;frame_num' + 1) or</i>&nbsp</td></tr>
+<tr><th id="171">171</th><td><i>// previous ('iter-&gt;frame_num' - 1) frame. These functions do not loop.</i>&nbsp</td></tr>
+<tr><th id="172">172</th><td><i>// Returns true on success, false otherwise.</i>&nbsp</td></tr>
+<tr><th id="173">173</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPDemuxNextFrame" title='WebPDemuxNextFrame' data-ref="WebPDemuxNextFrame">WebPDemuxNextFrame</dfn>(<a class="typedef" href="#WebPIterator" title='WebPIterator' data-type='struct WebPIterator' data-ref="WebPIterator">WebPIterator</a>* <dfn class="local col7 decl" id="227iter" title='iter' data-type='WebPIterator *' data-ref="227iter">iter</dfn>);&nbsp</td></tr>
+<tr><th id="174">174</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPDemuxPrevFrame" title='WebPDemuxPrevFrame' data-ref="WebPDemuxPrevFrame">WebPDemuxPrevFrame</dfn>(<a class="typedef" href="#WebPIterator" title='WebPIterator' data-type='struct WebPIterator' data-ref="WebPIterator">WebPIterator</a>* <dfn class="local col8 decl" id="228iter" title='iter' data-type='WebPIterator *' data-ref="228iter">iter</dfn>);&nbsp</td></tr>
+<tr><th id="175">175</th><td>&nbsp</td></tr>
+<tr><th id="176">176</th><td><i>// Releases any memory associated with 'iter'.</i>&nbsp</td></tr>
+<tr><th id="177">177</th><td><i>// Must be called before any subsequent calls to WebPDemuxGetChunk() on the same</i>&nbsp</td></tr>
+<tr><th id="178">178</th><td><i>// iter. Also, must be called before destroying the associated WebPDemuxer with</i>&nbsp</td></tr>
+<tr><th id="179">179</th><td><i>// WebPDemuxDelete().</i>&nbsp</td></tr>
+<tr><th id="180">180</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>void</em> <dfn class="decl fn" id="WebPDemuxReleaseIterator" title='WebPDemuxReleaseIterator' data-ref="WebPDemuxReleaseIterator">WebPDemuxReleaseIterator</dfn>(<a class="typedef" href="#WebPIterator" title='WebPIterator' data-type='struct WebPIterator' data-ref="WebPIterator">WebPIterator</a>* <dfn class="local col9 decl" id="229iter" title='iter' data-type='WebPIterator *' data-ref="229iter">iter</dfn>);&nbsp</td></tr>
+<tr><th id="181">181</th><td>&nbsp</td></tr>
+<tr><th id="182">182</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="183">183</th><td><i>// Chunk iteration.</i>&nbsp</td></tr>
+<tr><th id="184">184</th><td>&nbsp</td></tr>
+<tr><th id="185">185</th><td><b>struct</b> <dfn class="type def" id="WebPChunkIterator" title='WebPChunkIterator' data-ref="WebPChunkIterator">WebPChunkIterator</dfn> {&nbsp</td></tr>
+<tr><th id="186">186</th><td>  <i>// The current and total number of chunks with the fourcc given to</i>&nbsp</td></tr>
+<tr><th id="187">187</th><td><i>  // WebPDemuxGetChunk().</i>&nbsp</td></tr>
+<tr><th id="188">188</th><td>  <em>int</em> <dfn class="decl field" id="WebPChunkIterator::chunk_num" title='WebPChunkIterator::chunk_num' data-ref="WebPChunkIterator::chunk_num">chunk_num</dfn>;&nbsp</td></tr>
+<tr><th id="189">189</th><td>  <em>int</em> <dfn class="decl field" id="WebPChunkIterator::num_chunks" title='WebPChunkIterator::num_chunks' data-ref="WebPChunkIterator::num_chunks">num_chunks</dfn>;&nbsp</td></tr>
+<tr><th id="190">190</th><td>  <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a> <dfn class="decl field" id="WebPChunkIterator::chunk" title='WebPChunkIterator::chunk' data-ref="WebPChunkIterator::chunk">chunk</dfn>;    <i>// The payload of the chunk.</i>&nbsp</td></tr>
+<tr><th id="191">191</th><td>&nbsp</td></tr>
+<tr><th id="192">192</th><td>  <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl field" id="WebPChunkIterator::pad" title='WebPChunkIterator::pad' data-ref="WebPChunkIterator::pad">pad</dfn>[<var>6</var>];   <i>// padding for later use</i>&nbsp</td></tr>
+<tr><th id="193">193</th><td>  <em>void</em>* <dfn class="decl field" id="WebPChunkIterator::private_" title='WebPChunkIterator::private_' data-ref="WebPChunkIterator::private_">private_</dfn>;&nbsp</td></tr>
+<tr><th id="194">194</th><td>};&nbsp</td></tr>
+<tr><th id="195">195</th><td>&nbsp</td></tr>
+<tr><th id="196">196</th><td><i>// Retrieves the 'chunk_number' instance of the chunk with id 'fourcc' from</i>&nbsp</td></tr>
+<tr><th id="197">197</th><td><i>// 'dmux'.</i>&nbsp</td></tr>
+<tr><th id="198">198</th><td><i>// 'fourcc' is a character array containing the fourcc of the chunk to return,</i>&nbsp</td></tr>
+<tr><th id="199">199</th><td><i>// e.g., "ICCP", "XMP ", "EXIF", etc.</i>&nbsp</td></tr>
+<tr><th id="200">200</th><td><i>// Setting 'chunk_number' equal to 0 will return the last chunk in a set.</i>&nbsp</td></tr>
+<tr><th id="201">201</th><td><i>// Returns true if the chunk is found, false otherwise. Image related chunk</i>&nbsp</td></tr>
+<tr><th id="202">202</th><td><i>// payloads are accessed through WebPDemuxGetFrame() and related functions.</i>&nbsp</td></tr>
+<tr><th id="203">203</th><td><i>// Call WebPDemuxReleaseChunkIterator() when use of the iterator is complete.</i>&nbsp</td></tr>
+<tr><th id="204">204</th><td><i>// NOTE: 'dmux' must persist for the lifetime of the iterator.</i>&nbsp</td></tr>
+<tr><th id="205">205</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPDemuxGetChunk" title='WebPDemuxGetChunk' data-ref="WebPDemuxGetChunk">WebPDemuxGetChunk</dfn>(<em>const</em> <a class="typedef" href="#WebPDemuxer" title='WebPDemuxer' data-type='struct WebPDemuxer' data-ref="WebPDemuxer">WebPDemuxer</a>* <dfn class="local col0 decl" id="230dmux" title='dmux' data-type='const WebPDemuxer *' data-ref="230dmux">dmux</dfn>,&nbsp</td></tr>
+<tr><th id="206">206</th><td>                                  <em>const</em> <em>char</em> <dfn class="local col1 decl" id="231fourcc" title='fourcc' data-type='const char *' data-ref="231fourcc">fourcc</dfn>[<var>4</var>], <em>int</em> <dfn class="local col2 decl" id="232chunk_number" title='chunk_number' data-type='int' data-ref="232chunk_number">chunk_number</dfn>,&nbsp</td></tr>
+<tr><th id="207">207</th><td>                                  <a class="typedef" href="#WebPChunkIterator" title='WebPChunkIterator' data-type='struct WebPChunkIterator' data-ref="WebPChunkIterator">WebPChunkIterator</a>* <dfn class="local col3 decl" id="233iter" title='iter' data-type='WebPChunkIterator *' data-ref="233iter">iter</dfn>);&nbsp</td></tr>
+<tr><th id="208">208</th><td>&nbsp</td></tr>
+<tr><th id="209">209</th><td><i>// Sets 'iter-&gt;chunk' to point to the next ('iter-&gt;chunk_num' + 1) or previous</i>&nbsp</td></tr>
+<tr><th id="210">210</th><td><i>// ('iter-&gt;chunk_num' - 1) chunk. These functions do not loop.</i>&nbsp</td></tr>
+<tr><th id="211">211</th><td><i>// Returns true on success, false otherwise.</i>&nbsp</td></tr>
+<tr><th id="212">212</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPDemuxNextChunk" title='WebPDemuxNextChunk' data-ref="WebPDemuxNextChunk">WebPDemuxNextChunk</dfn>(<a class="typedef" href="#WebPChunkIterator" title='WebPChunkIterator' data-type='struct WebPChunkIterator' data-ref="WebPChunkIterator">WebPChunkIterator</a>* <dfn class="local col4 decl" id="234iter" title='iter' data-type='WebPChunkIterator *' data-ref="234iter">iter</dfn>);&nbsp</td></tr>
+<tr><th id="213">213</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPDemuxPrevChunk" title='WebPDemuxPrevChunk' data-ref="WebPDemuxPrevChunk">WebPDemuxPrevChunk</dfn>(<a class="typedef" href="#WebPChunkIterator" title='WebPChunkIterator' data-type='struct WebPChunkIterator' data-ref="WebPChunkIterator">WebPChunkIterator</a>* <dfn class="local col5 decl" id="235iter" title='iter' data-type='WebPChunkIterator *' data-ref="235iter">iter</dfn>);&nbsp</td></tr>
+<tr><th id="214">214</th><td>&nbsp</td></tr>
+<tr><th id="215">215</th><td><i>// Releases any memory associated with 'iter'.</i>&nbsp</td></tr>
+<tr><th id="216">216</th><td><i>// Must be called before destroying the associated WebPDemuxer with</i>&nbsp</td></tr>
+<tr><th id="217">217</th><td><i>// WebPDemuxDelete().</i>&nbsp</td></tr>
+<tr><th id="218">218</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>void</em> <dfn class="decl fn" id="WebPDemuxReleaseChunkIterator" title='WebPDemuxReleaseChunkIterator' data-ref="WebPDemuxReleaseChunkIterator">WebPDemuxReleaseChunkIterator</dfn>(<a class="typedef" href="#WebPChunkIterator" title='WebPChunkIterator' data-type='struct WebPChunkIterator' data-ref="WebPChunkIterator">WebPChunkIterator</a>* <dfn class="local col6 decl" id="236iter" title='iter' data-type='WebPChunkIterator *' data-ref="236iter">iter</dfn>);&nbsp</td></tr>
+<tr><th id="219">219</th><td>&nbsp</td></tr>
+<tr><th id="220">220</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="221">221</th><td><i>// WebPAnimDecoder API</i>&nbsp</td></tr>
+<tr><th id="222">222</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="223">223</th><td><i>// This API allows decoding (possibly) animated WebP images.</i>&nbsp</td></tr>
+<tr><th id="224">224</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="225">225</th><td><i>// Code Example:</i>&nbsp</td></tr>
+<tr><th id="226">226</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="227">227</th><td><i>  WebPAnimDecoderOptions dec_options;</i>&nbsp</td></tr>
+<tr><th id="228">228</th><td><i>  WebPAnimDecoderOptionsInit(&amp;dec_options);</i>&nbsp</td></tr>
+<tr><th id="229">229</th><td><i>  // Tune 'dec_options' as needed.</i>&nbsp</td></tr>
+<tr><th id="230">230</th><td><i>  WebPAnimDecoder* dec = WebPAnimDecoderNew(webp_data, &amp;dec_options);</i>&nbsp</td></tr>
+<tr><th id="231">231</th><td><i>  WebPAnimInfo anim_info;</i>&nbsp</td></tr>
+<tr><th id="232">232</th><td><i>  WebPAnimDecoderGetInfo(dec, &amp;anim_info);</i>&nbsp</td></tr>
+<tr><th id="233">233</th><td><i>  for (uint32_t i = 0; i &lt; anim_info.loop_count; ++i) {</i>&nbsp</td></tr>
+<tr><th id="234">234</th><td><i>    while (WebPAnimDecoderHasMoreFrames(dec)) {</i>&nbsp</td></tr>
+<tr><th id="235">235</th><td><i>      uint8_t* buf;</i>&nbsp</td></tr>
+<tr><th id="236">236</th><td><i>      int timestamp;</i>&nbsp</td></tr>
+<tr><th id="237">237</th><td><i>      WebPAnimDecoderGetNext(dec, &amp;buf, &amp;timestamp);</i>&nbsp</td></tr>
+<tr><th id="238">238</th><td><i>      // ... (Render 'buf' based on 'timestamp').</i>&nbsp</td></tr>
+<tr><th id="239">239</th><td><i>      // ... (Do NOT free 'buf', as it is owned by 'dec').</i>&nbsp</td></tr>
+<tr><th id="240">240</th><td><i>    }</i>&nbsp</td></tr>
+<tr><th id="241">241</th><td><i>    WebPAnimDecoderReset(dec);</i>&nbsp</td></tr>
+<tr><th id="242">242</th><td><i>  }</i>&nbsp</td></tr>
+<tr><th id="243">243</th><td><i>  const WebPDemuxer* demuxer = WebPAnimDecoderGetDemuxer(dec);</i>&nbsp</td></tr>
+<tr><th id="244">244</th><td><i>  // ... (Do something using 'demuxer'; e.g. get EXIF/XMP/ICC data).</i>&nbsp</td></tr>
+<tr><th id="245">245</th><td><i>  WebPAnimDecoderDelete(dec);</i>&nbsp</td></tr>
+<tr><th id="246">246</th><td><i>*/</i>&nbsp</td></tr>
+<tr><th id="247">247</th><td>&nbsp</td></tr>
+<tr><th id="248">248</th><td><b>typedef</b> <b>struct</b> <dfn class="type" id="WebPAnimDecoder" title='WebPAnimDecoder' data-ref="WebPAnimDecoder"><a class="type" href="#WebPAnimDecoder" title='WebPAnimDecoder' data-ref="WebPAnimDecoder">WebPAnimDecoder</a></dfn> <dfn class="typedef" id="WebPAnimDecoder" title='WebPAnimDecoder' data-type='struct WebPAnimDecoder' data-ref="WebPAnimDecoder">WebPAnimDecoder</dfn>;  <i>// Main opaque object.</i>&nbsp</td></tr>
+<tr><th id="249">249</th><td>&nbsp</td></tr>
+<tr><th id="250">250</th><td><i>// Global options.</i>&nbsp</td></tr>
+<tr><th id="251">251</th><td><b>struct</b> <dfn class="type def" id="WebPAnimDecoderOptions" title='WebPAnimDecoderOptions' data-ref="WebPAnimDecoderOptions">WebPAnimDecoderOptions</dfn> {&nbsp</td></tr>
+<tr><th id="252">252</th><td>  <i>// Output colorspace. Only the following modes are supported:</i>&nbsp</td></tr>
+<tr><th id="253">253</th><td><i>  // MODE_RGBA, MODE_BGRA, MODE_rgbA and MODE_bgrA.</i>&nbsp</td></tr>
+<tr><th id="254">254</th><td>  <a class="typedef" href="decode.h.html#WEBP_CSP_MODE" title='WEBP_CSP_MODE' data-type='enum WEBP_CSP_MODE' data-ref="WEBP_CSP_MODE">WEBP_CSP_MODE</a> <dfn class="decl field" id="WebPAnimDecoderOptions::color_mode" title='WebPAnimDecoderOptions::color_mode' data-ref="WebPAnimDecoderOptions::color_mode">color_mode</dfn>;&nbsp</td></tr>
+<tr><th id="255">255</th><td>  <em>int</em> <dfn class="decl field" id="WebPAnimDecoderOptions::use_threads" title='WebPAnimDecoderOptions::use_threads' data-ref="WebPAnimDecoderOptions::use_threads">use_threads</dfn>;           <i>// If true, use multi-threaded decoding.</i>&nbsp</td></tr>
+<tr><th id="256">256</th><td>  <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl field" id="WebPAnimDecoderOptions::padding" title='WebPAnimDecoderOptions::padding' data-ref="WebPAnimDecoderOptions::padding">padding</dfn>[<var>7</var>];       <i>// Padding for later use.</i>&nbsp</td></tr>
+<tr><th id="257">257</th><td>};&nbsp</td></tr>
+<tr><th id="258">258</th><td>&nbsp</td></tr>
+<tr><th id="259">259</th><td><i>// Internal, version-checked, entry point.</i>&nbsp</td></tr>
+<tr><th id="260">260</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPAnimDecoderOptionsInitInternal" title='WebPAnimDecoderOptionsInitInternal' data-ref="WebPAnimDecoderOptionsInitInternal">WebPAnimDecoderOptionsInitInternal</dfn>(&nbsp</td></tr>
+<tr><th id="261">261</th><td>    <a class="typedef" href="#WebPAnimDecoderOptions" title='WebPAnimDecoderOptions' data-type='struct WebPAnimDecoderOptions' data-ref="WebPAnimDecoderOptions">WebPAnimDecoderOptions</a>*, <em>int</em>);&nbsp</td></tr>
+<tr><th id="262">262</th><td>&nbsp</td></tr>
+<tr><th id="263">263</th><td><i>// Should always be called, to initialize a fresh WebPAnimDecoderOptions</i>&nbsp</td></tr>
+<tr><th id="264">264</th><td><i>// structure before modification. Returns false in case of version mismatch.</i>&nbsp</td></tr>
+<tr><th id="265">265</th><td><i>// WebPAnimDecoderOptionsInit() must have succeeded before using the</i>&nbsp</td></tr>
+<tr><th id="266">266</th><td><i>// 'dec_options' object.</i>&nbsp</td></tr>
+<tr><th id="267">267</th><td><em>static</em> <a class="macro" href="types.h.html#23" title="inline" data-ref="_M/WEBP_INLINE">WEBP_INLINE</a> <em>int</em> <dfn class="decl def fn" id="_ZL26WebPAnimDecoderOptionsInitP22WebPAnimDecoderOptions" title='WebPAnimDecoderOptionsInit' data-ref="_ZL26WebPAnimDecoderOptionsInitP22WebPAnimDecoderOptions">WebPAnimDecoderOptionsInit</dfn>(&nbsp</td></tr>
+<tr><th id="268">268</th><td>    <a class="typedef" href="#WebPAnimDecoderOptions" title='WebPAnimDecoderOptions' data-type='struct WebPAnimDecoderOptions' data-ref="WebPAnimDecoderOptions">WebPAnimDecoderOptions</a>* <dfn class="local col7 decl" id="237dec_options" title='dec_options' data-type='WebPAnimDecoderOptions *' data-ref="237dec_options">dec_options</dfn>) {&nbsp</td></tr>
+<tr><th id="269">269</th><td>  <b>return</b> <a class="ref fn" href="#WebPAnimDecoderOptionsInitInternal" title='WebPAnimDecoderOptionsInitInternal' data-ref="WebPAnimDecoderOptionsInitInternal">WebPAnimDecoderOptionsInitInternal</a>(<a class="local col7 ref" href="#237dec_options" title='dec_options' data-ref="237dec_options">dec_options</a>,&nbsp</td></tr>
+<tr><th id="270">270</th><td>                                            <a class="macro" href="#58" title="0x0107" data-ref="_M/WEBP_DEMUX_ABI_VERSION">WEBP_DEMUX_ABI_VERSION</a>);&nbsp</td></tr>
+<tr><th id="271">271</th><td>}&nbsp</td></tr>
+<tr><th id="272">272</th><td>&nbsp</td></tr>
+<tr><th id="273">273</th><td><i>// Internal, version-checked, entry point.</i>&nbsp</td></tr>
+<tr><th id="274">274</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPAnimDecoder" title='WebPAnimDecoder' data-type='struct WebPAnimDecoder' data-ref="WebPAnimDecoder">WebPAnimDecoder</a>* <dfn class="decl fn" id="WebPAnimDecoderNewInternal" title='WebPAnimDecoderNewInternal' data-ref="WebPAnimDecoderNewInternal">WebPAnimDecoderNewInternal</dfn>(&nbsp</td></tr>
+<tr><th id="275">275</th><td>    <em>const</em> <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a>*, <em>const</em> <a class="typedef" href="#WebPAnimDecoderOptions" title='WebPAnimDecoderOptions' data-type='struct WebPAnimDecoderOptions' data-ref="WebPAnimDecoderOptions">WebPAnimDecoderOptions</a>*, <em>int</em>);&nbsp</td></tr>
+<tr><th id="276">276</th><td>&nbsp</td></tr>
+<tr><th id="277">277</th><td><i>// Creates and initializes a WebPAnimDecoder object.</i>&nbsp</td></tr>
+<tr><th id="278">278</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="279">279</th><td><i>//   webp_data - (in) WebP bitstream. This should remain unchanged during the</i>&nbsp</td></tr>
+<tr><th id="280">280</th><td><i>//                    lifetime of the output WebPAnimDecoder object.</i>&nbsp</td></tr>
+<tr><th id="281">281</th><td><i>//   dec_options - (in) decoding options. Can be passed NULL to choose</i>&nbsp</td></tr>
+<tr><th id="282">282</th><td><i>//                      reasonable defaults (in particular, color mode MODE_RGBA</i>&nbsp</td></tr>
+<tr><th id="283">283</th><td><i>//                      will be picked).</i>&nbsp</td></tr>
+<tr><th id="284">284</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="285">285</th><td><i>//   A pointer to the newly created WebPAnimDecoder object, or NULL in case of</i>&nbsp</td></tr>
+<tr><th id="286">286</th><td><i>//   parsing error, invalid option or memory error.</i>&nbsp</td></tr>
+<tr><th id="287">287</th><td><em>static</em> <a class="macro" href="types.h.html#23" title="inline" data-ref="_M/WEBP_INLINE">WEBP_INLINE</a> <a class="typedef" href="#WebPAnimDecoder" title='WebPAnimDecoder' data-type='struct WebPAnimDecoder' data-ref="WebPAnimDecoder">WebPAnimDecoder</a>* <dfn class="decl def fn" id="_ZL18WebPAnimDecoderNewPK8WebPDataPK22WebPAnimDecoderOptions" title='WebPAnimDecoderNew' data-ref="_ZL18WebPAnimDecoderNewPK8WebPDataPK22WebPAnimDecoderOptions">WebPAnimDecoderNew</dfn>(&nbsp</td></tr>
+<tr><th id="288">288</th><td>    <em>const</em> <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a>* <dfn class="local col8 decl" id="238webp_data" title='webp_data' data-type='const WebPData *' data-ref="238webp_data">webp_data</dfn>, <em>const</em> <a class="typedef" href="#WebPAnimDecoderOptions" title='WebPAnimDecoderOptions' data-type='struct WebPAnimDecoderOptions' data-ref="WebPAnimDecoderOptions">WebPAnimDecoderOptions</a>* <dfn class="local col9 decl" id="239dec_options" title='dec_options' data-type='const WebPAnimDecoderOptions *' data-ref="239dec_options">dec_options</dfn>) {&nbsp</td></tr>
+<tr><th id="289">289</th><td>  <b>return</b> <a class="ref fn" href="#WebPAnimDecoderNewInternal" title='WebPAnimDecoderNewInternal' data-ref="WebPAnimDecoderNewInternal">WebPAnimDecoderNewInternal</a>(<a class="local col8 ref" href="#238webp_data" title='webp_data' data-ref="238webp_data">webp_data</a>, <a class="local col9 ref" href="#239dec_options" title='dec_options' data-ref="239dec_options">dec_options</a>,&nbsp</td></tr>
+<tr><th id="290">290</th><td>                                    <a class="macro" href="#58" title="0x0107" data-ref="_M/WEBP_DEMUX_ABI_VERSION">WEBP_DEMUX_ABI_VERSION</a>);&nbsp</td></tr>
+<tr><th id="291">291</th><td>}&nbsp</td></tr>
+<tr><th id="292">292</th><td>&nbsp</td></tr>
+<tr><th id="293">293</th><td><i>// Global information about the animation..</i>&nbsp</td></tr>
+<tr><th id="294">294</th><td><b>struct</b> <dfn class="type def" id="WebPAnimInfo" title='WebPAnimInfo' data-ref="WebPAnimInfo">WebPAnimInfo</dfn> {&nbsp</td></tr>
+<tr><th id="295">295</th><td>  <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl field" id="WebPAnimInfo::canvas_width" title='WebPAnimInfo::canvas_width' data-ref="WebPAnimInfo::canvas_width">canvas_width</dfn>;&nbsp</td></tr>
+<tr><th id="296">296</th><td>  <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl field" id="WebPAnimInfo::canvas_height" title='WebPAnimInfo::canvas_height' data-ref="WebPAnimInfo::canvas_height">canvas_height</dfn>;&nbsp</td></tr>
+<tr><th id="297">297</th><td>  <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl field" id="WebPAnimInfo::loop_count" title='WebPAnimInfo::loop_count' data-ref="WebPAnimInfo::loop_count">loop_count</dfn>;&nbsp</td></tr>
+<tr><th id="298">298</th><td>  <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl field" id="WebPAnimInfo::bgcolor" title='WebPAnimInfo::bgcolor' data-ref="WebPAnimInfo::bgcolor">bgcolor</dfn>;&nbsp</td></tr>
+<tr><th id="299">299</th><td>  <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl field" id="WebPAnimInfo::frame_count" title='WebPAnimInfo::frame_count' data-ref="WebPAnimInfo::frame_count">frame_count</dfn>;&nbsp</td></tr>
+<tr><th id="300">300</th><td>  <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl field" id="WebPAnimInfo::pad" title='WebPAnimInfo::pad' data-ref="WebPAnimInfo::pad">pad</dfn>[<var>4</var>];   <i>// padding for later use</i>&nbsp</td></tr>
+<tr><th id="301">301</th><td>};&nbsp</td></tr>
+<tr><th id="302">302</th><td>&nbsp</td></tr>
+<tr><th id="303">303</th><td><i>// Get global information about the animation.</i>&nbsp</td></tr>
+<tr><th id="304">304</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="305">305</th><td><i>//   dec - (in) decoder instance to get information from.</i>&nbsp</td></tr>
+<tr><th id="306">306</th><td><i>//   info - (out) global information fetched from the animation.</i>&nbsp</td></tr>
+<tr><th id="307">307</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="308">308</th><td><i>//   True on success.</i>&nbsp</td></tr>
+<tr><th id="309">309</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPAnimDecoderGetInfo" title='WebPAnimDecoderGetInfo' data-ref="WebPAnimDecoderGetInfo">WebPAnimDecoderGetInfo</dfn>(<em>const</em> <a class="typedef" href="#WebPAnimDecoder" title='WebPAnimDecoder' data-type='struct WebPAnimDecoder' data-ref="WebPAnimDecoder">WebPAnimDecoder</a>* <dfn class="local col0 decl" id="240dec" title='dec' data-type='const WebPAnimDecoder *' data-ref="240dec">dec</dfn>,&nbsp</td></tr>
+<tr><th id="310">310</th><td>                                       <a class="typedef" href="#WebPAnimInfo" title='WebPAnimInfo' data-type='struct WebPAnimInfo' data-ref="WebPAnimInfo">WebPAnimInfo</a>* <dfn class="local col1 decl" id="241info" title='info' data-type='WebPAnimInfo *' data-ref="241info">info</dfn>);&nbsp</td></tr>
+<tr><th id="311">311</th><td>&nbsp</td></tr>
+<tr><th id="312">312</th><td><i>// Fetch the next frame from 'dec' based on options supplied to</i>&nbsp</td></tr>
+<tr><th id="313">313</th><td><i>// WebPAnimDecoderNew(). This will be a fully reconstructed canvas of size</i>&nbsp</td></tr>
+<tr><th id="314">314</th><td><i>// 'canvas_width * 4 * canvas_height', and not just the frame sub-rectangle. The</i>&nbsp</td></tr>
+<tr><th id="315">315</th><td><i>// returned buffer 'buf' is valid only until the next call to</i>&nbsp</td></tr>
+<tr><th id="316">316</th><td><i>// WebPAnimDecoderGetNext(), WebPAnimDecoderReset() or WebPAnimDecoderDelete().</i>&nbsp</td></tr>
+<tr><th id="317">317</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="318">318</th><td><i>//   dec - (in/out) decoder instance from which the next frame is to be fetched.</i>&nbsp</td></tr>
+<tr><th id="319">319</th><td><i>//   buf - (out) decoded frame.</i>&nbsp</td></tr>
+<tr><th id="320">320</th><td><i>//   timestamp - (out) timestamp of the frame in milliseconds.</i>&nbsp</td></tr>
+<tr><th id="321">321</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="322">322</th><td><i>//   False if any of the arguments are NULL, or if there is a parsing or</i>&nbsp</td></tr>
+<tr><th id="323">323</th><td><i>//   decoding error, or if there are no more frames. Otherwise, returns true.</i>&nbsp</td></tr>
+<tr><th id="324">324</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPAnimDecoderGetNext" title='WebPAnimDecoderGetNext' data-ref="WebPAnimDecoderGetNext">WebPAnimDecoderGetNext</dfn>(<a class="typedef" href="#WebPAnimDecoder" title='WebPAnimDecoder' data-type='struct WebPAnimDecoder' data-ref="WebPAnimDecoder">WebPAnimDecoder</a>* <dfn class="local col2 decl" id="242dec" title='dec' data-type='WebPAnimDecoder *' data-ref="242dec">dec</dfn>,&nbsp</td></tr>
+<tr><th id="325">325</th><td>                                       <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint8_t" title='uint8_t' data-type='__uint8_t' data-ref="uint8_t">uint8_t</a>** <dfn class="local col3 decl" id="243buf" title='buf' data-type='uint8_t **' data-ref="243buf">buf</dfn>, <em>int</em>* <dfn class="local col4 decl" id="244timestamp" title='timestamp' data-type='int *' data-ref="244timestamp">timestamp</dfn>);&nbsp</td></tr>
+<tr><th id="326">326</th><td>&nbsp</td></tr>
+<tr><th id="327">327</th><td><i>// Check if there are more frames left to decode.</i>&nbsp</td></tr>
+<tr><th id="328">328</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="329">329</th><td><i>//   dec - (in) decoder instance to be checked.</i>&nbsp</td></tr>
+<tr><th id="330">330</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="331">331</th><td><i>//   True if 'dec' is not NULL and some frames are yet to be decoded.</i>&nbsp</td></tr>
+<tr><th id="332">332</th><td><i>//   Otherwise, returns false.</i>&nbsp</td></tr>
+<tr><th id="333">333</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPAnimDecoderHasMoreFrames" title='WebPAnimDecoderHasMoreFrames' data-ref="WebPAnimDecoderHasMoreFrames">WebPAnimDecoderHasMoreFrames</dfn>(<em>const</em> <a class="typedef" href="#WebPAnimDecoder" title='WebPAnimDecoder' data-type='struct WebPAnimDecoder' data-ref="WebPAnimDecoder">WebPAnimDecoder</a>* <dfn class="local col5 decl" id="245dec" title='dec' data-type='const WebPAnimDecoder *' data-ref="245dec">dec</dfn>);&nbsp</td></tr>
+<tr><th id="334">334</th><td>&nbsp</td></tr>
+<tr><th id="335">335</th><td><i>// Resets the WebPAnimDecoder object, so that next call to</i>&nbsp</td></tr>
+<tr><th id="336">336</th><td><i>// WebPAnimDecoderGetNext() will restart decoding from 1st frame. This would be</i>&nbsp</td></tr>
+<tr><th id="337">337</th><td><i>// helpful when all frames need to be decoded multiple times (e.g.</i>&nbsp</td></tr>
+<tr><th id="338">338</th><td><i>// info.loop_count times) without destroying and recreating the 'dec' object.</i>&nbsp</td></tr>
+<tr><th id="339">339</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="340">340</th><td><i>//   dec - (in/out) decoder instance to be reset</i>&nbsp</td></tr>
+<tr><th id="341">341</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>void</em> <dfn class="decl fn" id="WebPAnimDecoderReset" title='WebPAnimDecoderReset' data-ref="WebPAnimDecoderReset">WebPAnimDecoderReset</dfn>(<a class="typedef" href="#WebPAnimDecoder" title='WebPAnimDecoder' data-type='struct WebPAnimDecoder' data-ref="WebPAnimDecoder">WebPAnimDecoder</a>* <dfn class="local col6 decl" id="246dec" title='dec' data-type='WebPAnimDecoder *' data-ref="246dec">dec</dfn>);&nbsp</td></tr>
+<tr><th id="342">342</th><td>&nbsp</td></tr>
+<tr><th id="343">343</th><td><i>// Grab the internal demuxer object.</i>&nbsp</td></tr>
+<tr><th id="344">344</th><td><i>// Getting the demuxer object can be useful if one wants to use operations only</i>&nbsp</td></tr>
+<tr><th id="345">345</th><td><i>// available through demuxer; e.g. to get XMP/EXIF/ICC metadata. The returned</i>&nbsp</td></tr>
+<tr><th id="346">346</th><td><i>// demuxer object is owned by 'dec' and is valid only until the next call to</i>&nbsp</td></tr>
+<tr><th id="347">347</th><td><i>// WebPAnimDecoderDelete().</i>&nbsp</td></tr>
+<tr><th id="348">348</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="349">349</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="350">350</th><td><i>//   dec - (in) decoder instance from which the demuxer object is to be fetched.</i>&nbsp</td></tr>
+<tr><th id="351">351</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>const</em> <a class="typedef" href="#WebPDemuxer" title='WebPDemuxer' data-type='struct WebPDemuxer' data-ref="WebPDemuxer">WebPDemuxer</a>* <dfn class="decl fn" id="WebPAnimDecoderGetDemuxer" title='WebPAnimDecoderGetDemuxer' data-ref="WebPAnimDecoderGetDemuxer">WebPAnimDecoderGetDemuxer</dfn>(&nbsp</td></tr>
+<tr><th id="352">352</th><td>    <em>const</em> <a class="typedef" href="#WebPAnimDecoder" title='WebPAnimDecoder' data-type='struct WebPAnimDecoder' data-ref="WebPAnimDecoder">WebPAnimDecoder</a>* <dfn class="local col7 decl" id="247dec" title='dec' data-type='const WebPAnimDecoder *' data-ref="247dec">dec</dfn>);&nbsp</td></tr>
+<tr><th id="353">353</th><td>&nbsp</td></tr>
+<tr><th id="354">354</th><td><i>// Deletes the WebPAnimDecoder object.</i>&nbsp</td></tr>
+<tr><th id="355">355</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="356">356</th><td><i>//   dec - (in/out) decoder instance to be deleted</i>&nbsp</td></tr>
+<tr><th id="357">357</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>void</em> <dfn class="decl fn" id="WebPAnimDecoderDelete" title='WebPAnimDecoderDelete' data-ref="WebPAnimDecoderDelete">WebPAnimDecoderDelete</dfn>(<a class="typedef" href="#WebPAnimDecoder" title='WebPAnimDecoder' data-type='struct WebPAnimDecoder' data-ref="WebPAnimDecoder">WebPAnimDecoder</a>* <dfn class="local col8 decl" id="248dec" title='dec' data-type='WebPAnimDecoder *' data-ref="248dec">dec</dfn>);&nbsp</td></tr>
+<tr><th id="358">358</th><td>&nbsp</td></tr>
+<tr><th id="359">359</th><td><u>#<span data-ppcond="359">ifdef</span> <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="360">360</th><td>}    <i>// extern "C"</i>&nbsp</td></tr>
+<tr><th id="361">361</th><td><u>#<span data-ppcond="359">endif</span></u>&nbsp</td></tr>
+<tr><th id="362">362</th><td>&nbsp</td></tr>
+<tr><th id="363">363</th><td><u>#<span data-ppcond="48">endif</span>  // WEBP_WEBP_DEMUX_H_</u>&nbsp</td></tr>
+<tr><th id="364">364</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Src/tImageWEBP.cpp.html'>Modules/Image/Src/tImageWEBP.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

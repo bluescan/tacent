@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/cpp_type_traits.h' l='288' ll='292'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='295' ll='300'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='296'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='302' ll='307'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='303'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='309' ll='314'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='310'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='338'/>
+<size>1</size>
+<doc f='include/c++/11/bits/cpp_type_traits.h' l='294'>// three specializations (float, double and &apos;long double&apos;)</doc>

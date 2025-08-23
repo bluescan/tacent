@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_dir.h' l='219' ll='221' type='bool std::filesystem::directory_entry::is_socket() const'/>

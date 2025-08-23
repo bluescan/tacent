@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6933' ll='6937'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6933'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceShaderDemoteToHelperInvocationFeatures::shaderDemoteToHelperInvocation' o='128' t='VkBool32'/>

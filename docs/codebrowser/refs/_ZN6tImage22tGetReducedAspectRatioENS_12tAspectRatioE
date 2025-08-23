@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='470' type='tImage::tAspectRatio tImage::tGetReducedAspectRatio(tImage::tAspectRatio )'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='680' u='c' c='_ZN6tImage18tReduceAspectRatioERNS_12tAspectRatioE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='468'>// Gets the most reduced screen enumerant given a valid aspect ratio. Returns Invalid if Invalid passed in.
+// Returns User if User passed in. The function tReduceAspectRatio does the same thing, just different syntax/calling.</doc>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='725' ll='776' type='tImage::tAspectRatio tImage::tGetReducedAspectRatio(tImage::tAspectRatio aspect)'/>

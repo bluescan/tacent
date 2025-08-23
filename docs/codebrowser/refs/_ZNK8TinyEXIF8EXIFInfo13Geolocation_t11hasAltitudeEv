@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='301' type='bool TinyEXIF::EXIFInfo::Geolocation_t::hasAltitude() const'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='304' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='301'>// Return true if (alt) is available</doc>

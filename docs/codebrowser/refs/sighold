@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='355' type='int sighold(int __sig)'/>
+<doc f='include/signal.h' l='354'>/* Add SIG to the calling process&apos; signal mask.  */</doc>

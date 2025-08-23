@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1792' ll='1794' type='void std::deque::clear()'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2179' u='c' c='_ZNSt5deque14_M_replace_mapEDpOTL0__'/>
+<use f='include/c++/11/bits/deque.tcc' l='265' u='c' c='_ZNSt5deque8_M_eraseENSt11_Deque_baseIT_T0_E8iteratorES4_'/>
+<use f='include/c++/11/bits/deque.tcc' l='435' u='c' c='_ZNSt5deque19_M_range_initializeETL0__S0_St18input_iterator_tag'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='658' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1786'>/**
+       *  Erases all the elements.  Note that this function only erases the
+       *  elements, and that if the elements themselves are pointers, the
+       *  pointed-to memory is not touched in any way.  Managing the pointer is
+       *  the user&apos;s responsibility.
+       */</doc>

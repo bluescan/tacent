@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/max_size_type.h' l='86' ll='88' type='std::ranges::__detail::__max_size_type std::ranges::__detail::__max_size_type::operator~() const'/>
+<use f='include/c++/11/bits/max_size_type.h' l='92' u='c' c='_ZNKSt6ranges8__detail15__max_size_typengEv'/>
+<use f='include/c++/11/bits/max_size_type.h' l='474' u='c' c='_ZNKSt6ranges8__detail15__max_diff_typecoEv'/>
+<use f='include/c++/11/bits/max_size_type.h' l='563' u='c' c='_ZNSt6ranges8__detail15__max_diff_typerSERKS1_'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/hashtable.h' l='908' type='std::_Hashtable::iterator std::_Hashtable::_M_erase(std::_Hashtable::size_type __bkt, std::_Hashtable::__node_base_ptr __prev_n, std::_Hashtable::__node_ptr __n)'/>
+<def f='include/c++/11/bits/hashtable.h' l='2161' ll='2187' type='std::_Hashtable::iterator std::_Hashtable::_M_erase(std::_Hashtable::size_type __bkt, std::_Hashtable::__node_base_ptr __prev_n, std::_Hashtable::__node_ptr __n)'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14040' ll='14045'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14040'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceShaderCoreProperties2AMD::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceShaderCoreProperties2AMD::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceShaderCoreProperties2AMD::shaderCoreFeatures' o='128' t='VkShaderCorePropertiesFlagsAMD'/>
+<mbr r='VkPhysicalDeviceShaderCoreProperties2AMD::activeComputeUnitCount' o='160' t='uint32_t'/>

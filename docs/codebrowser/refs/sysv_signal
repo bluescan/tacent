@@ -1,0 +1,1 @@
+<dec f='include/signal.h' l='80' type='__sighandler_t sysv_signal(int __sig, __sighandler_t __handler)'/>

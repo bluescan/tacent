@@ -1,0 +1,4 @@
+<dec f='include/linux/stat.h' l='111' type='__u64'/>
+<offset>256</offset>
+<doc f='include/linux/stat.h' l='110'>/* 0x20 */</doc>
+<doc f='include/linux/stat.h' l='111'>/* Inode number */</doc>

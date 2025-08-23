@@ -1,0 +1,2 @@
+<dec f='include/c++/11/ext/concurrence.h' l='179' type='void __gnu_cxx::__recursive_mutex::__recursive_mutex(const __gnu_cxx::__recursive_mutex &amp; )'/>
+<def f='include/c++/11/ext/concurrence.h' l='183' ll='189' type='void __gnu_cxx::__recursive_mutex::__recursive_mutex()'/>

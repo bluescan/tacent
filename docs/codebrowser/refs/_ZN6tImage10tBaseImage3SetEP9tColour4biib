@@ -1,0 +1,21 @@
+<dec f='Modules/Image/Inc/Image/tBaseImage.h' l='61' type='bool tImage::tBaseImage::Set(tPixel4b * pixels, int width, int height, bool steal = false)'/>
+<doc f='Modules/Image/Inc/Image/tBaseImage.h' l='59'>// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.</doc>
+<ovr f='Modules/Image/Src/tImageAPNG.cpp' l='152' c='_ZN6tImage10tImageAPNG3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageASTC.cpp' l='213' c='_ZN6tImage10tImageASTC3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageBMP.cpp' l='470' c='_ZN6tImage9tImageBMP3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageDDS.cpp' l='903' c='_ZN6tImage9tImageDDS3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageEXR.cpp' l='312' c='_ZN6tImage9tImageEXR3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageGIF.cpp' l='205' c='_ZN6tImage9tImageGIF3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageHDR.cpp' l='392' c='_ZN6tImage9tImageHDR3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageICO.cpp' l='194' c='_ZN6tImage9tImageICO3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageJPG.cpp' l='190' c='_ZN6tImage9tImageJPG3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageKTX.cpp' l='565' c='_ZN6tImage9tImageKTX3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImagePKM.cpp' l='301' c='_ZN6tImage9tImagePKM3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImagePNG.cpp' l='420' c='_ZN6tImage9tImagePNG3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImagePVR.cpp' l='656' c='_ZN6tImage9tImagePVR3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageQOI.cpp' l='79' c='_ZN6tImage9tImageQOI3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageTGA.cpp' l='273' c='_ZN6tImage9tImageTGA3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageTIFF.cpp' l='159' c='_ZN6tImage10tImageTIFF3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageWEBP.cpp' l='246' c='_ZN6tImage10tImageWEBP3SetEP9tColour4biib'/>
+<ovr f='Modules/Image/Src/tImageXPM.cpp' l='73' c='_ZN6tImage9tImageXPM3SetEP9tColour4biib'/>

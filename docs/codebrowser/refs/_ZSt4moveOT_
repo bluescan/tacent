@@ -1,0 +1,17 @@
+<def f='include/c++/11/bits/move.h' l='103' ll='105' type='typename std::remove_reference&lt;_Tp&gt;::type &amp;&amp; std::move(_Tp &amp;&amp; __t)'/>
+<use f='include/c++/11/stop_token' l='431' u='c' c='_ZNSt10stop_token15_Stop_state_refaSEOS0_'/>
+<use f='include/c++/11/stop_token' l='500' u='c' c='_ZNSt11stop_sourceaSERKS_'/>
+<use f='include/c++/11/thread' l='140' u='c' c='_ZNSt7jthreadaSEOS_'/>
+<use f='include/c++/11/condition_variable' l='312' u='c' c='_ZNSt3_V222condition_variable_any4waitERT_'/>
+<use f='include/c++/11/condition_variable' l='335' u='c' c='_ZNSt3_V222condition_variable_any10wait_untilERT_RKNSt6chrono10time_pointIT0_T1_EE'/>
+<use f='include/c++/11/condition_variable' l='387' u='c' c='_ZNSt3_V222condition_variable_any4waitERT_St10stop_tokenT0_'/>
+<use f='include/c++/11/condition_variable' l='416' u='c' c='_ZNSt3_V222condition_variable_any10wait_untilERT_St10stop_tokenRKNSt6chrono10time_pointIT0_T1_EET2_'/>
+<use f='include/c++/11/condition_variable' l='436' u='c' c='_ZNSt3_V222condition_variable_any8wait_forERT_St10stop_tokenRKNSt6chrono8durationIT0_T1_EET2_'/>
+<use f='include/c++/11/bits/fs_path.h' l='278' u='c' c='_ZNSt10filesystem7__cxx114pathC1EOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='279' u='c' c='_ZNSt10filesystem7__cxx114pathC1EOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='283' u='c' c='_ZNSt10filesystem7__cxx114pathC1EONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='952' u='c' c='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='953' u='c' c='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='960' u='c' c='_ZNSt10filesystem7__cxx114pathaSEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='964' u='c' c='_ZNSt10filesystem7__cxx114path6assignEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='361' u='c' c='_ZNOSt10filesystem7__cxx1126__directory_iterator_proxydeEv'/>

@@ -1,0 +1,11 @@
+<def f='include/c++/11/type_traits' l='2932' ll='2934'/>
+<use f='include/c++/11/type_traits' l='2984'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1217' c='_ZNKSt8__detail15_Hash_code_base12_M_hash_codeERKT_'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1226' c='_ZNKSt8__detail15_Hash_code_base15_M_hash_code_trERKTL0__'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1614' c='_ZNKSt8__detail15_Hashtable_base9_M_equalsERKT_NS_15_Hash_code_baseIS1_T0_T1_T3_T4_T5_XsrNT6_13__hash_cachedE5valueEE11__hash_codeERKNS_16_Hash_node_v1778750'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1627' c='_ZNKSt8__detail15_Hashtable_base12_M_equals_trERKTL0__NS_15_Hash_code_baseIT_T0_T1_T3_T4_T5_XsrNT6_13__hash_cachedE5valueEE11__hash_codeERKNS_16_Hash_2782477'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='357' c='_ZNSt10unique_ptrD1Ev'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='454' c='_ZNSt10unique_ptr5resetENSt15__uniq_ptr_implIT_T0_E7pointerE'/>
+<use f='include/c++/11/bits/std_thread.h' l='129' c='_ZNSt6threadC1EOT_DpOT0_'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1110' c='_ZNSt12__shared_ptrC1EPTL0__TL0_0_'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1120' c='_ZNSt12__shared_ptrC1EPTL0__TL0_0_TL0_1_'/>

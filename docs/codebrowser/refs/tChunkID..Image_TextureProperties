@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='568' type='17039632'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='568'>// Opaque.</doc>
+<use f='Modules/Image/Src/tTexture.cpp' l='392' u='r' c='_ZNK6tImage8tTexture4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='420' c='_ZN6tImage8tTexture4LoadERK6tChunk'/>

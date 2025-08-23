@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_uninitialized.h' l='157' ll='176'/>
+<def f='include/c++/11/bits/stl_uninitialized.h' l='178' ll='186'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='179'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='219' c='_ZSt18uninitialized_fillT_S_RKT0_'/>
+<size>1</size>
+<fun r='_ZNSt20__uninitialized_fill13__uninit_fillETL0__S0_RKTL0_0_'/>
+<fun r='_ZNSt20__uninitialized_fillILb1EE13__uninit_fillET_S1_RKT0_'/>

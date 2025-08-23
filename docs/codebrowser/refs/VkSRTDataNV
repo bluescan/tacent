@@ -1,0 +1,19 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15816' ll='15833'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15816'/>
+<size>64</size>
+<mbr r='VkSRTDataNV::sx' o='0' t='float'/>
+<mbr r='VkSRTDataNV::a' o='32' t='float'/>
+<mbr r='VkSRTDataNV::b' o='64' t='float'/>
+<mbr r='VkSRTDataNV::pvx' o='96' t='float'/>
+<mbr r='VkSRTDataNV::sy' o='128' t='float'/>
+<mbr r='VkSRTDataNV::c' o='160' t='float'/>
+<mbr r='VkSRTDataNV::pvy' o='192' t='float'/>
+<mbr r='VkSRTDataNV::sz' o='224' t='float'/>
+<mbr r='VkSRTDataNV::pvz' o='256' t='float'/>
+<mbr r='VkSRTDataNV::qx' o='288' t='float'/>
+<mbr r='VkSRTDataNV::qy' o='320' t='float'/>
+<mbr r='VkSRTDataNV::qz' o='352' t='float'/>
+<mbr r='VkSRTDataNV::qw' o='384' t='float'/>
+<mbr r='VkSRTDataNV::tx' o='416' t='float'/>
+<mbr r='VkSRTDataNV::ty' o='448' t='float'/>
+<mbr r='VkSRTDataNV::tz' o='480' t='float'/>

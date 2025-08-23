@@ -1,0 +1,6 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='284' u='c' c='_ZN7tItList4IterppEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='286' u='c' c='_ZN7tItList4IterppEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='290' u='c' c='_ZN7tItList4IterpLEi'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='297' type='void tItList::Iter::Next()'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='120' u='c' c='_ZN6tScene9tSkeleton8GetJointEj'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='192' u='c' c='_ZNK6tScene9tSkeleton4SaveER12tChunkWriter'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_ops.h' l='75' ll='77' type='bool std::filesystem::copy_file(const std::filesystem::path &amp; __from, const std::filesystem::path &amp; __to, std::error_code &amp; __ec)'/>

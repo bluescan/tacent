@@ -1,0 +1,21 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='227' u='w' c='_ZN6tChunkC1Ev'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='282' u='w' c='_ZNK6tChunk9ItemResetEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='291' u='r' c='_ZNK6tChunk7GetItemERb'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='291' u='w' c='_ZNK6tChunk7GetItemERb'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='292' u='r' c='_ZNK6tChunk7GetItemER7tString'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='292' u='w' c='_ZNK6tChunk7GetItemER7tString'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='293' u='r' c='_ZNK6tChunk7GetItemERT_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='293' u='w' c='_ZNK6tChunk7GetItemERT_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='296' u='r' c='_ZNK6tChunk8GetItemsEPbi'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='296' u='w' c='_ZNK6tChunk8GetItemsEPbi'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='298' u='r' c='_ZNK6tChunk8GetItemsEPT_i'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='298' u='w' c='_ZNK6tChunk8GetItemsEPT_i'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='301' u='r' c='_ZNK6tChunk14GetItemCurrentEi'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='301' u='w' c='_ZNK6tChunk14GetItemCurrentEi'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='302' u='r' c='_ZNK6tChunk14GetItemCurrentEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='303' u='w' c='_ZNK6tChunk11ItemAdvanceEi'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='308' type='uint8 *'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='711' u='w' c='_ZN6tChunkC1EPh'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='725' u='w' c='_ZN6tChunkC1EPhS0_'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='739' u='w' c='_ZN6tChunkC1EPhS_'/>
+<offset>128</offset>

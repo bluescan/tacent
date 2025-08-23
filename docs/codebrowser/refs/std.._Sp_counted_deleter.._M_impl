@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/shared_ptr_base.h' l='432' u='w' c='_ZNSt19_Sp_counted_deleterC1ET_T0_'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='436' u='w' c='_ZNSt19_Sp_counted_deleterC1ET_T0_RKT1_'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='442' u='c' c='_ZNSt19_Sp_counted_deleter10_M_disposeEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='442' c='_ZNSt19_Sp_counted_deleter10_M_disposeEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='447' u='c' c='_ZNSt19_Sp_counted_deleter10_M_destroyEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='459' u='c' c='_ZNSt19_Sp_counted_deleter14_M_get_deleterERKSt9type_info'/>
+<dec f='include/c++/11/bits/shared_ptr_base.h' l='467' type='std::_Sp_counted_deleter::_Impl'/>

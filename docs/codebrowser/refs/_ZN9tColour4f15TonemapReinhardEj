@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='898' type='void tColour4f::TonemapReinhard(comp_t  = tCompBit_RGB)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1311' ll='1317' type='void tColour4f::TonemapReinhard(comp_t chans = tCompBit_RGB)'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='897'>// Evently distributes brightness.</doc>

@@ -1,0 +1,15 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='604' type='bool tSystem::tFindDirs(tList&lt;tStringItem&gt; &amp; dirs, const tString &amp; dir = tString(), bool hidden = true, tSystem::Backend  = Backend::Native)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='591'>//
+// File and directory enumeration Functions.
+//
+// For all following functions when the backend is Stndrd it uses the C++17 std::filesystem calls. While it is clean
+// cross-plat API, it can be quite slow... up to 10x slower on Linux. When the backend is Native (the default) then
+// platform-specific native file access functions are used (FindFirstFile etc for windows, readdir etc for Linux). They
+// are much faster. The order of items returned in files is not defined. In particular, Native and Stndrd may not
+// populated the results in the same order. If a platform is not supported and Native is specified, it falls back to
+// the Stndrd backend.
+//
+// Finds sub-directories inside the supplied dir. If the dir to search is empty, the current directory is used. If
+// hidden is true, includes hidden directories. The destination list (dirs) is appended to and not cleared so you can
+// collect results if necessary. Returns success.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='2563' ll='2571' type='bool tSystem::tFindDirs(tList&lt;tStringItem&gt; &amp; dirs, const tString &amp; dir = tString(), bool hidden = true, tSystem::Backend backend = Backend::Native)'/>

@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='1303' ll='1339'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1318' c='_ZNSt13move_sentinelC1ERKSt13move_sentinelITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1325' c='_ZNSt13move_sentinelaSERKSt13move_sentinelITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1557' c='_ZSteqRKSt13move_iteratorIT_ERKSt13move_sentinelITL0__E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1562' c='_ZStmiRKSt13move_sentinelITL0__ERKSt13move_iteratorIT_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1567' c='_ZStmiRKSt13move_iteratorIT_ERKSt13move_sentinelITL0__E'/>
+<fun r='_ZNSt13move_sentinelC1Ev'/>
+<fun r='_ZNSt13move_sentinelC1ET_'/>
+<fun r='_ZNSt13move_sentinelC1ERKSt13move_sentinelITL0__E'/>
+<fun r='_ZNSt13move_sentinelaSERKSt13move_sentinelITL0__E'/>
+<fun r='_ZNKSt13move_sentinel4baseEv'/>
+<mbr r='std::move_sentinel::_M_last' t='_Sent'/>

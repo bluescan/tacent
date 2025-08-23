@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18235' ll='18241'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18235'/>
+<size>32</size>
+<mbr r='VkLayerSettingEXT::pLayerName' o='0' t='const char *'/>
+<mbr r='VkLayerSettingEXT::pSettingName' o='64' t='const char *'/>
+<mbr r='VkLayerSettingEXT::type' o='128' t='VkLayerSettingTypeEXT'/>
+<mbr r='VkLayerSettingEXT::valueCount' o='160' t='uint32_t'/>
+<mbr r='VkLayerSettingEXT::pValues' o='192' t='const void *'/>

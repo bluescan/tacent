@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='152' type='0'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='158' u='r' c='_ZN6tImage10tMetaDatum3SetEj'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='232' c='_ZN6tImage10tMetaDatum3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='250' c='_ZNK6tImage10tMetaDatumeqERKS0_'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='888' c='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='934' c='_ZN6tImage9tMetaData4LoadERK6tChunk'/>

@@ -1,0 +1,3 @@
+<use f='Modules/System/Inc/System/tFile.h' l='482' u='c' c='_ZN7tSystem10tFileTypesC1ERK7tString'/>
+<dec f='Modules/System/Inc/System/tFile.h' l='494' type='tSystem::tFileTypes &amp; tSystem::tFileTypes::Add(const tString &amp; ext)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='938' ll='941' type='tSystem::tFileTypes &amp; tSystem::tFileTypes::Add(const tString &amp; ext)'/>

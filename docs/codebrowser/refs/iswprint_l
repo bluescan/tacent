@@ -1,0 +1,2 @@
+<dec f='include/wctype.h' l='88' type='int iswprint_l(wint_t __wc, locale_t __locale)'/>
+<doc f='include/wctype.h' l='87'>/* Test for any printing wide character.  */</doc>

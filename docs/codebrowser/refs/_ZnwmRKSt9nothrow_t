@@ -1,0 +1,2 @@
+<dec f='include/c++/11/new' l='140' type='void * operator new(std::size_t , const std::nothrow_t &amp; )'/>
+<use f='include/c++/11/bits/stl_tempbuf.h' l='109' u='c' c='_ZSt20get_temporary_bufferl'/>

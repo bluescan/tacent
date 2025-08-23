@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='104'/>
+<doc f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='102'>/* The number of repeated occurrences of a BRE permitted by the
+   REGEXEC and REGCOMP functions when using the interval notation.  */</doc>

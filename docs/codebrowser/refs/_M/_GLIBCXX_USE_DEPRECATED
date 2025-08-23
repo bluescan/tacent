@@ -1,0 +1,13 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='88'/>
+<use f='include/c++/11/bits/stl_function.h' l='1420' u='c'/>
+<use f='include/c++/11/streambuf' l='776' u='c'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='54' u='c'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='344' u='c'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='71' u='c'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='657' u='c'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1196' u='c'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1214' u='c'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1234' u='c'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='328' u='c'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='343' u='c'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='369' u='c'/>

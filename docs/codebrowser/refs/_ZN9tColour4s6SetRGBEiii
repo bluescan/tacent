@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='559' type='void tColour4s::SetRGB(int r, int g, int b)'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='558'>// These leave alpha at whatever value it was at before.</doc>

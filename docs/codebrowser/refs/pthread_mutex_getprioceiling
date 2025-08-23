@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='840' type='int pthread_mutex_getprioceiling(const pthread_mutex_t *__restrict __mutex, int *__restrict __prioceiling)'/>
+<doc f='include/pthread.h' l='839'>/* Get the priority ceiling of MUTEX.  */</doc>

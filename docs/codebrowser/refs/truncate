@@ -1,0 +1,1 @@
+<dec f='include/unistd.h' l='1026' type='int truncate(const char * __file, __off_t __length)'/>

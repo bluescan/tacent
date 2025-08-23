@@ -1,0 +1,5 @@
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='61' u='c' c='_ZN6tImage9tImageICOC1ERNS_8tPictureEb'/>
+<dec f='Modules/Image/Inc/Image/tImageICO.h' l='80' type='bool tImage::tImageICO::Set(tImage::tPicture &amp; picture, bool steal = true)'/>
+<doc f='Modules/Image/Inc/Image/tImageICO.h' l='79'>// Sets from a tPicture.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='70' c='_ZN6tImage10tBaseImage3SetERNS_8tPictureEb'/>
+<def f='Modules/Image/Src/tImageICO.cpp' l='238' ll='257' type='bool tImage::tImageICO::Set(tImage::tPicture &amp; picture, bool steal = true)'/>

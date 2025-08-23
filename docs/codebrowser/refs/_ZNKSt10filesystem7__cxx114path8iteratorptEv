@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/fs_path.h' l='882' type='std::filesystem::path::iterator::pointer std::filesystem::path::iterator::operator-&gt;() const'/>
+<use f='include/c++/11/bits/fs_path.h' l='1209' u='c' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>

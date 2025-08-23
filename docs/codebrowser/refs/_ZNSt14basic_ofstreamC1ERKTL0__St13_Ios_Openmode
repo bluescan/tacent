@@ -1,0 +1,1 @@
+<def f='include/c++/11/fstream' l='847' ll='850' type='void std::basic_ofstream::basic_ofstream&lt;_CharT, _Traits&gt;(const _Path &amp; __s, ios_base::openmode __mode = ios_base::out)'/>

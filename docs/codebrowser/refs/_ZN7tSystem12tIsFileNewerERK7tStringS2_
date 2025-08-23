@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='208' type='bool tSystem::tIsFileNewer(const tString &amp; fileA, const tString &amp; fileB)'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='161' u='c' c='_ZN9tPipeline5tRule9OutOfDateEb'/>
+<def f='Modules/System/Src/tFile.cpp' l='815' ll='857' type='bool tSystem::tIsFileNewer(const tString &amp; filea, const tString &amp; fileb)'/>

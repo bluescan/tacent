@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16001' ll='16006'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16001'/>
+<size>24</size>
+<mbr r='VkPhysicalDevice4444FormatsFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDevice4444FormatsFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDevice4444FormatsFeaturesEXT::formatA4R4G4B4' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDevice4444FormatsFeaturesEXT::formatA4B4G4R4' o='160' t='VkBool32'/>

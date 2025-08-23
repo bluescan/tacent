@@ -1,0 +1,23 @@
+<def f='include/c++/11/bits/random.h' l='5082' ll='5112'/>
+<use f='include/c++/11/bits/random.h' l='5086' c='_ZNSt26extreme_value_distribution10param_typeC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='5102' c='_ZSteqRKNSt26extreme_value_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='5102' c='_ZSteqRKNSt26extreme_value_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='5106' c='_ZStneRKNSt26extreme_value_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='5106' c='_ZStneRKNSt26extreme_value_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='5122' c='_ZNSt26extreme_value_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5150' c='_ZNKSt26extreme_value_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='5159' c='_ZNSt26extreme_value_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5187' c='_ZNSt26extreme_value_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5201' c='_ZNSt26extreme_value_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5208' c='_ZNSt26extreme_value_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5226' c='_ZNSt26extreme_value_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5228'/>
+<use f='include/c++/11/bits/random.tcc' l='2584' c='_ZNSt26extreme_value_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2599' c='_ZNSt26extreme_value_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<doc f='include/c++/11/bits/random.h' l='5081'>/** Parameter type. */</doc>
+<fun r='_ZNSt26extreme_value_distribution10param_typeC1Ev'/>
+<fun r='_ZNSt26extreme_value_distribution10param_typeC1ET_S1_'/>
+<fun r='_ZNKSt26extreme_value_distribution10param_type1aEv'/>
+<fun r='_ZNKSt26extreme_value_distribution10param_type1bEv'/>
+<mbr r='std::extreme_value_distribution::param_type::_M_a' t='_RealType'/>
+<mbr r='std::extreme_value_distribution::param_type::_M_b' t='_RealType'/>

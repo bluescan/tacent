@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='2062' ll='2066' type='void std::chrono::month_weekday::month_weekday(const chrono::month &amp; __m, const chrono::weekday_indexed &amp; __wdi)'/>
+<use f='include/c++/11/chrono' l='2090' u='c' c='_ZNSt6chronodvERKNS_5monthERKNS_15weekday_indexedE'/>

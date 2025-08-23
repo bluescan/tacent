@@ -1,0 +1,207 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>basic_ios.tcc source code [include/c++/11/bits/basic_ios.tcc] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::basic_ios "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/basic_ios.tcc'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='basic_ios.tcc.html'>basic_ios.tcc</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// basic_ios member functions -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 1999-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/basic_ios.tcc</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{ios}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_BASIC_IOS_TCC">_BASIC_IOS_TCC</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_BASIC_IOS_TCC" data-ref="_M/_BASIC_IOS_TCC">_BASIC_IOS_TCC</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="36">36</th><td>{&nbsp</td></tr>
+<tr><th id="37">37</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="40">40</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="41">41</th><td>    <a class="type" href="../iosfwd.html#std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios">basic_ios</a>&lt;_CharT, _Traits&gt;::<dfn class="decl def fn" id="_ZNSt9basic_ios5clearESt12_Ios_Iostate" title='std::basic_ios::clear' data-ref="_ZNSt9basic_ios5clearESt12_Ios_Iostate">clear</dfn>(<a class="typedef" href="ios_base.h.html#std::ios_base::iostate" title='std::ios_base::iostate' data-type='std::_Ios_Iostate' data-ref="std::ios_base::iostate">iostate</a> <dfn class="local col7 decl" id="2077__state" title='__state' data-type='std::ios_base::iostate' data-ref="2077__state">__state</dfn>)&nbsp</td></tr>
+<tr><th id="42">42</th><td>    {&nbsp</td></tr>
+<tr><th id="43">43</th><td>      <b>if</b> (<b>this</b>-&gt;rdbuf())&nbsp</td></tr>
+<tr><th id="44">44</th><td>	<a class="member field" href="ios_base.h.html#std::ios_base::_M_streambuf_state" title='std::ios_base::_M_streambuf_state' data-ref="std::ios_base::_M_streambuf_state">_M_streambuf_state</a> = <a class="local col7 ref" href="#2077__state" title='__state' data-ref="2077__state">__state</a>;&nbsp</td></tr>
+<tr><th id="45">45</th><td>      <b>else</b>&nbsp</td></tr>
+<tr><th id="46">46</th><td>	  <a class="member field" href="ios_base.h.html#std::ios_base::_M_streambuf_state" title='std::ios_base::_M_streambuf_state' data-ref="std::ios_base::_M_streambuf_state">_M_streambuf_state</a> = <a class="local col7 ref" href="#2077__state" title='__state' data-ref="2077__state">__state</a> <a class="ref fn" href="ios_base.h.html#_ZStorSt12_Ios_IostateS_" title='std::operator|' data-ref="_ZStorSt12_Ios_IostateS_">|</a> <a class="member" href="ios_base.h.html#std::ios_base::badbit" title='std::ios_base::badbit' data-ref="std::ios_base::badbit">badbit</a>;&nbsp</td></tr>
+<tr><th id="47">47</th><td>      <b>if</b> (<b>this</b>-&gt;exceptions() &amp; <b>this</b>-&gt;rdstate())&nbsp</td></tr>
+<tr><th id="48">48</th><td>	<a class="ref fn" href="functexcept.h.html#_ZSt19__throw_ios_failurePKc" title='std::__throw_ios_failure' data-ref="_ZSt19__throw_ios_failurePKc">__throw_ios_failure</a>(<a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#648" title="(&quot;basic_ios::clear&quot;)" data-ref="_M/__N">__N</a>(<q>"basic_ios::clear"</q>));&nbsp</td></tr>
+<tr><th id="49">49</th><td>    }&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="52">52</th><td>    <a class="type" href="../iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt;*&nbsp</td></tr>
+<tr><th id="53">53</th><td>    <a class="type" href="../iosfwd.html#std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios">basic_ios</a>&lt;_CharT, _Traits&gt;::<dfn class="decl def fn" id="_ZNSt9basic_ios5rdbufEPSt15basic_streambufIT_T0_E" title='std::basic_ios::rdbuf' data-ref="_ZNSt9basic_ios5rdbufEPSt15basic_streambufIT_T0_E">rdbuf</dfn>(<a class="type" href="../iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt;* <dfn class="local col8 decl" id="2078__sb" title='__sb' data-type='basic_streambuf&lt;_CharT, _Traits&gt; *' data-ref="2078__sb">__sb</dfn>)&nbsp</td></tr>
+<tr><th id="54">54</th><td>    {&nbsp</td></tr>
+<tr><th id="55">55</th><td>      <a class="type" href="../iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt;* <dfn class="local col9 decl" id="2079__old" title='__old' data-type='basic_streambuf&lt;_CharT, _Traits&gt; *' data-ref="2079__old">__old</dfn> = <a class="member field" href="basic_ios.h.html#std::basic_ios::_M_streambuf" title='std::basic_ios::_M_streambuf' data-ref="std::basic_ios::_M_streambuf">_M_streambuf</a>;&nbsp</td></tr>
+<tr><th id="56">56</th><td>      <a class="member field" href="basic_ios.h.html#std::basic_ios::_M_streambuf" title='std::basic_ios::_M_streambuf' data-ref="std::basic_ios::_M_streambuf">_M_streambuf</a> = <a class="local col8 ref" href="#2078__sb" title='__sb' data-ref="2078__sb">__sb</a>;&nbsp</td></tr>
+<tr><th id="57">57</th><td>      <b>this</b>-&gt;clear();&nbsp</td></tr>
+<tr><th id="58">58</th><td>      <b>return</b> <a class="local col9 ref" href="#2079__old" title='__old' data-ref="2079__old">__old</a>;&nbsp</td></tr>
+<tr><th id="59">59</th><td>    }&nbsp</td></tr>
+<tr><th id="60">60</th><td>&nbsp</td></tr>
+<tr><th id="61">61</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="62">62</th><td>    <a class="type" href="../iosfwd.html#std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios">basic_ios</a>&lt;_CharT, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="63">63</th><td>    <a class="type" href="../iosfwd.html#std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios">basic_ios</a>&lt;_CharT, _Traits&gt;::<dfn class="decl def fn" id="_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E" title='std::basic_ios::copyfmt' data-ref="_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E">copyfmt</dfn>(<em>const</em> basic_ios&amp; <dfn class="local col0 decl" id="2080__rhs" title='__rhs' data-type='const basic_ios&lt;_CharT, _Traits&gt; &amp;' data-ref="2080__rhs">__rhs</dfn>)&nbsp</td></tr>
+<tr><th id="64">64</th><td>    {&nbsp</td></tr>
+<tr><th id="65">65</th><td>      <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i>      // 292. effects of a.copyfmt (a)</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td>      <b>if</b> (<b>this</b> != &amp;<a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>)&nbsp</td></tr>
+<tr><th id="68">68</th><td>	{&nbsp</td></tr>
+<tr><th id="69">69</th><td>	  <i>// Per 27.1.1, do not call imbue, yet must trash all caches</i>&nbsp</td></tr>
+<tr><th id="70">70</th><td><i>	  // associated with imbue()</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i></i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i>	  // Alloc any new word array first, so if it fails we have "rollback".</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td>	  <a class="type" href="ios_base.h.html#std::ios_base::_Words" title='std::ios_base::_Words' data-ref="std::ios_base::_Words">_Words</a>* <dfn class="local col1 decl" id="2081__words" title='__words' data-type='std::ios_base::_Words *' data-ref="2081__words">__words</dfn> = (<a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>._M_word_size &lt;= <a class="enum" href="ios_base.h.html#std::ios_base::_S_local_word_size" title='std::ios_base::_S_local_word_size' data-ref="std::ios_base::_S_local_word_size">_S_local_word_size</a>) ?&nbsp</td></tr>
+<tr><th id="74">74</th><td>	                     <a class="member field" href="ios_base.h.html#std::ios_base::_M_local_word" title='std::ios_base::_M_local_word' data-ref="std::ios_base::_M_local_word">_M_local_word</a> : <b>new</b> <a class="ref fn fake" href="ios_base.h.html#_ZNSt8ios_base6_WordsC1Ev" title='std::ios_base::_Words::_Words' data-ref="_ZNSt8ios_base6_WordsC1Ev"></a><a class="type" href="ios_base.h.html#std::ios_base::_Words" title='std::ios_base::_Words' data-ref="std::ios_base::_Words">_Words</a>[<a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>._M_word_size];&nbsp</td></tr>
+<tr><th id="75">75</th><td>&nbsp</td></tr>
+<tr><th id="76">76</th><td>	  <i>// Bump refs before doing callbacks, for safety.</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td>	  <a class="type" href="ios_base.h.html#std::ios_base::_Callback_list" title='std::ios_base::_Callback_list' data-ref="std::ios_base::_Callback_list">_Callback_list</a>* <dfn class="local col2 decl" id="2082__cb" title='__cb' data-type='std::ios_base::_Callback_list *' data-ref="2082__cb">__cb</dfn> = <a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>._M_callbacks;&nbsp</td></tr>
+<tr><th id="78">78</th><td>	  <b>if</b> (<a class="local col2 ref" href="#2082__cb" title='__cb' data-ref="2082__cb">__cb</a>)&nbsp</td></tr>
+<tr><th id="79">79</th><td>	    <a class="local col2 ref" href="#2082__cb" title='__cb' data-ref="2082__cb">__cb</a>-&gt;<a class="ref fn" href="ios_base.h.html#_ZNSt8ios_base14_Callback_list16_M_add_referenceEv" title='std::ios_base::_Callback_list::_M_add_reference' data-ref="_ZNSt8ios_base14_Callback_list16_M_add_referenceEv">_M_add_reference</a>();&nbsp</td></tr>
+<tr><th id="80">80</th><td>	  <a class="member fn" href="ios_base.h.html#_ZNSt8ios_base17_M_call_callbacksENS_5eventE" title='std::ios_base::_M_call_callbacks' data-ref="_ZNSt8ios_base17_M_call_callbacksENS_5eventE">_M_call_callbacks</a>(<span class='inlayHint'>ev:&nbsp;</span><a class="enum" href="ios_base.h.html#std::ios_base::erase_event" title='std::ios_base::erase_event' data-ref="std::ios_base::erase_event">erase_event</a>);&nbsp</td></tr>
+<tr><th id="81">81</th><td>	  <b>if</b> (<a class="member field" href="ios_base.h.html#std::ios_base::_M_word" title='std::ios_base::_M_word' data-ref="std::ios_base::_M_word">_M_word</a> != <a class="member field" href="ios_base.h.html#std::ios_base::_M_local_word" title='std::ios_base::_M_local_word' data-ref="std::ios_base::_M_local_word">_M_local_word</a>)&nbsp</td></tr>
+<tr><th id="82">82</th><td>	    {&nbsp</td></tr>
+<tr><th id="83">83</th><td>	      <b>delete</b> [] <a class="member field" href="ios_base.h.html#std::ios_base::_M_word" title='std::ios_base::_M_word' data-ref="std::ios_base::_M_word">_M_word</a>;&nbsp</td></tr>
+<tr><th id="84">84</th><td>	      <a class="member field" href="ios_base.h.html#std::ios_base::_M_word" title='std::ios_base::_M_word' data-ref="std::ios_base::_M_word">_M_word</a> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="85">85</th><td>	    }&nbsp</td></tr>
+<tr><th id="86">86</th><td>	  <a class="member fn" href="ios_base.h.html#_ZNSt8ios_base20_M_dispose_callbacksEv" title='std::ios_base::_M_dispose_callbacks' data-ref="_ZNSt8ios_base20_M_dispose_callbacksEv">_M_dispose_callbacks</a>();&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td>	  <i>// NB: Don't want any added during above.</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td>	  <a class="member field" href="ios_base.h.html#std::ios_base::_M_callbacks" title='std::ios_base::_M_callbacks' data-ref="std::ios_base::_M_callbacks">_M_callbacks</a> = <a class="local col2 ref" href="#2082__cb" title='__cb' data-ref="2082__cb">__cb</a>;&nbsp</td></tr>
+<tr><th id="90">90</th><td>	  <b>for</b> (<em>int</em> <dfn class="local col3 decl" id="2083__i" title='__i' data-type='int' data-ref="2083__i">__i</dfn> = <var>0</var>; <a class="local col3 ref" href="#2083__i" title='__i' data-ref="2083__i">__i</a> &lt; <a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>._M_word_size; ++<a class="local col3 ref" href="#2083__i" title='__i' data-ref="2083__i">__i</a>)&nbsp</td></tr>
+<tr><th id="91">91</th><td>	    <a class="local col1 ref" href="#2081__words" title='__words' data-ref="2081__words">__words</a>[<a class="local col3 ref" href="#2083__i" title='__i' data-ref="2083__i">__i</a>] = <a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>._M_word[<a class="local col3 ref" href="#2083__i" title='__i' data-ref="2083__i">__i</a>];&nbsp</td></tr>
+<tr><th id="92">92</th><td>	  <a class="member field" href="ios_base.h.html#std::ios_base::_M_word" title='std::ios_base::_M_word' data-ref="std::ios_base::_M_word">_M_word</a> = <a class="local col1 ref" href="#2081__words" title='__words' data-ref="2081__words">__words</a>;&nbsp</td></tr>
+<tr><th id="93">93</th><td>	  <a class="member field" href="ios_base.h.html#std::ios_base::_M_word_size" title='std::ios_base::_M_word_size' data-ref="std::ios_base::_M_word_size">_M_word_size</a> = <a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>._M_word_size;&nbsp</td></tr>
+<tr><th id="94">94</th><td>&nbsp</td></tr>
+<tr><th id="95">95</th><td>	  <b>this</b>-&gt;flags(<a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>.flags());&nbsp</td></tr>
+<tr><th id="96">96</th><td>	  <b>this</b>-&gt;width(<a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>.width());&nbsp</td></tr>
+<tr><th id="97">97</th><td>	  <b>this</b>-&gt;precision(<a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>.precision());&nbsp</td></tr>
+<tr><th id="98">98</th><td>	  <b>this</b>-&gt;tie(<a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>.tie());&nbsp</td></tr>
+<tr><th id="99">99</th><td>	  <b>this</b>-&gt;fill(<a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>.fill());&nbsp</td></tr>
+<tr><th id="100">100</th><td>	  <a class="member field" href="ios_base.h.html#std::ios_base::_M_ios_locale" title='std::ios_base::_M_ios_locale' data-ref="std::ios_base::_M_ios_locale">_M_ios_locale</a> = <a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>.getloc();&nbsp</td></tr>
+<tr><th id="101">101</th><td>	  <a class="member fn" href="#_ZNSt9basic_ios15_M_cache_localeERKSt6locale" title='std::basic_ios::_M_cache_locale' data-ref="_ZNSt9basic_ios15_M_cache_localeERKSt6locale">_M_cache_locale</a>(<span class='inlayHint'>loc:&nbsp;</span><a class="member field" href="ios_base.h.html#std::ios_base::_M_ios_locale" title='std::ios_base::_M_ios_locale' data-ref="std::ios_base::_M_ios_locale">_M_ios_locale</a>);&nbsp</td></tr>
+<tr><th id="102">102</th><td>&nbsp</td></tr>
+<tr><th id="103">103</th><td>	  <a class="member fn" href="ios_base.h.html#_ZNSt8ios_base17_M_call_callbacksENS_5eventE" title='std::ios_base::_M_call_callbacks' data-ref="_ZNSt8ios_base17_M_call_callbacksENS_5eventE">_M_call_callbacks</a>(<span class='inlayHint'>ev:&nbsp;</span><a class="enum" href="ios_base.h.html#std::ios_base::copyfmt_event" title='std::ios_base::copyfmt_event' data-ref="std::ios_base::copyfmt_event">copyfmt_event</a>);&nbsp</td></tr>
+<tr><th id="104">104</th><td>&nbsp</td></tr>
+<tr><th id="105">105</th><td>	  <i>// The next is required to be the last assignment.</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td>	  <b>this</b>-&gt;exceptions(<a class="local col0 ref" href="#2080__rhs" title='__rhs' data-ref="2080__rhs">__rhs</a>.exceptions());&nbsp</td></tr>
+<tr><th id="107">107</th><td>	}&nbsp</td></tr>
+<tr><th id="108">108</th><td>      <b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="109">109</th><td>    }&nbsp</td></tr>
+<tr><th id="110">110</th><td>&nbsp</td></tr>
+<tr><th id="111">111</th><td>  <i>// Locales:</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="113">113</th><td>    <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&nbsp</td></tr>
+<tr><th id="114">114</th><td>    <a class="type" href="../iosfwd.html#std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios">basic_ios</a>&lt;_CharT, _Traits&gt;::<dfn class="decl def fn" id="_ZNSt9basic_ios5imbueERKSt6locale" title='std::basic_ios::imbue' data-ref="_ZNSt9basic_ios5imbueERKSt6locale">imbue</dfn>(<em>const</em> <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&amp; <dfn class="local col4 decl" id="2084__loc" title='__loc' data-type='const std::locale &amp;' data-ref="2084__loc">__loc</dfn>)&nbsp</td></tr>
+<tr><th id="115">115</th><td>    {&nbsp</td></tr>
+<tr><th id="116">116</th><td>      <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a> <dfn class="local col5 decl" id="2085__old" title='__old' data-type='std::locale' data-ref="2085__old">__old</dfn>(<b>this</b>-&gt;getloc());&nbsp</td></tr>
+<tr><th id="117">117</th><td>      <a class="type" href="ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="member fn" href="ios_base.h.html#_ZNSt8ios_base5imbueERKSt6locale" title='std::ios_base::imbue' data-ref="_ZNSt8ios_base5imbueERKSt6locale">imbue</a>(<a class="local col4 ref" href="#2084__loc" title='__loc' data-ref="2084__loc">__loc</a>);&nbsp</td></tr>
+<tr><th id="118">118</th><td>      <a class="member fn" href="#_ZNSt9basic_ios15_M_cache_localeERKSt6locale" title='std::basic_ios::_M_cache_locale' data-ref="_ZNSt9basic_ios15_M_cache_localeERKSt6locale">_M_cache_locale</a>(<a class="local col4 ref" href="#2084__loc" title='__loc' data-ref="2084__loc">__loc</a>);&nbsp</td></tr>
+<tr><th id="119">119</th><td>      <b>if</b> (<b>this</b>-&gt;rdbuf() != <var>0</var>)&nbsp</td></tr>
+<tr><th id="120">120</th><td>	<b>this</b>-&gt;rdbuf()-&gt;pubimbue(<a class="local col4 ref" href="#2084__loc" title='__loc' data-ref="2084__loc">__loc</a>);&nbsp</td></tr>
+<tr><th id="121">121</th><td>      <b>return</b> <a class="ref fn fake" href="locale_classes.h.html#_ZNSt6localeC1ERKS_" title='std::locale::locale' data-ref="_ZNSt6localeC1ERKS_"></a><a class="local col5 ref" href="#2085__old" title='__old' data-ref="2085__old">__old</a>;&nbsp</td></tr>
+<tr><th id="122">122</th><td>    }&nbsp</td></tr>
+<tr><th id="123">123</th><td>&nbsp</td></tr>
+<tr><th id="124">124</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="125">125</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="126">126</th><td>    <a class="type" href="../iosfwd.html#std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios">basic_ios</a>&lt;_CharT, _Traits&gt;::<dfn class="decl def fn" id="_ZNSt9basic_ios4initEPSt15basic_streambufIT_T0_E" title='std::basic_ios::init' data-ref="_ZNSt9basic_ios4initEPSt15basic_streambufIT_T0_E">init</dfn>(<a class="type" href="../iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt;* <dfn class="local col6 decl" id="2086__sb" title='__sb' data-type='basic_streambuf&lt;_CharT, _Traits&gt; *' data-ref="2086__sb">__sb</dfn>)&nbsp</td></tr>
+<tr><th id="127">127</th><td>    {&nbsp</td></tr>
+<tr><th id="128">128</th><td>      <i>// NB: This may be called more than once on the same object.</i>&nbsp</td></tr>
+<tr><th id="129">129</th><td>      <a class="type" href="ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="member fn" href="ios_base.h.html#_ZNSt8ios_base7_M_initEv" title='std::ios_base::_M_init' data-ref="_ZNSt8ios_base7_M_initEv">_M_init</a>();&nbsp</td></tr>
+<tr><th id="130">130</th><td>&nbsp</td></tr>
+<tr><th id="131">131</th><td>      <i>// Cache locale data and specific facets used by iostreams.</i>&nbsp</td></tr>
+<tr><th id="132">132</th><td>      <a class="member fn" href="#_ZNSt9basic_ios15_M_cache_localeERKSt6locale" title='std::basic_ios::_M_cache_locale' data-ref="_ZNSt9basic_ios15_M_cache_localeERKSt6locale">_M_cache_locale</a>(<span class='inlayHint'>loc:&nbsp;</span><a class="member field" href="ios_base.h.html#std::ios_base::_M_ios_locale" title='std::ios_base::_M_ios_locale' data-ref="std::ios_base::_M_ios_locale">_M_ios_locale</a>);&nbsp</td></tr>
+<tr><th id="133">133</th><td>&nbsp</td></tr>
+<tr><th id="134">134</th><td>      <i>// NB: The 27.4.4.1 Postconditions Table specifies requirements</i>&nbsp</td></tr>
+<tr><th id="135">135</th><td><i>      // after basic_ios::init() has been called. As part of this,</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td><i>      // fill() must return widen(' ') any time after init() has been</i>&nbsp</td></tr>
+<tr><th id="137">137</th><td><i>      // called, which needs an imbued ctype facet of char_type to</i>&nbsp</td></tr>
+<tr><th id="138">138</th><td><i>      // return without throwing an exception. Unfortunately,</i>&nbsp</td></tr>
+<tr><th id="139">139</th><td><i>      // ctype&lt;char_type&gt; is not necessarily a required facet, so</i>&nbsp</td></tr>
+<tr><th id="140">140</th><td><i>      // streams with char_type != [char, wchar_t] will not have it by</i>&nbsp</td></tr>
+<tr><th id="141">141</th><td><i>      // default. Because of this, the correct value for _M_fill is</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td><i>      // constructed on the first call of fill(). That way,</i>&nbsp</td></tr>
+<tr><th id="143">143</th><td><i>      // unformatted input and output with non-required basic_ios</i>&nbsp</td></tr>
+<tr><th id="144">144</th><td><i>      // instantiations is possible even without imbuing the expected</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td><i>      // ctype&lt;char_type&gt; facet.</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td>      <a class="member field" href="basic_ios.h.html#std::basic_ios::_M_fill" title='std::basic_ios::_M_fill' data-ref="std::basic_ios::_M_fill">_M_fill</a> = _CharT();&nbsp</td></tr>
+<tr><th id="147">147</th><td>      <a class="member field" href="basic_ios.h.html#std::basic_ios::_M_fill_init" title='std::basic_ios::_M_fill_init' data-ref="std::basic_ios::_M_fill_init">_M_fill_init</a> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="148">148</th><td>&nbsp</td></tr>
+<tr><th id="149">149</th><td>      <a class="member field" href="basic_ios.h.html#std::basic_ios::_M_tie" title='std::basic_ios::_M_tie' data-ref="std::basic_ios::_M_tie">_M_tie</a> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="150">150</th><td>      <a class="member field" href="ios_base.h.html#std::ios_base::_M_exception" title='std::ios_base::_M_exception' data-ref="std::ios_base::_M_exception">_M_exception</a> = <a class="member" href="ios_base.h.html#std::ios_base::goodbit" title='std::ios_base::goodbit' data-ref="std::ios_base::goodbit">goodbit</a>;&nbsp</td></tr>
+<tr><th id="151">151</th><td>      <a class="member field" href="basic_ios.h.html#std::basic_ios::_M_streambuf" title='std::basic_ios::_M_streambuf' data-ref="std::basic_ios::_M_streambuf">_M_streambuf</a> = <a class="local col6 ref" href="#2086__sb" title='__sb' data-ref="2086__sb">__sb</a>;&nbsp</td></tr>
+<tr><th id="152">152</th><td>      <a class="member field" href="ios_base.h.html#std::ios_base::_M_streambuf_state" title='std::ios_base::_M_streambuf_state' data-ref="std::ios_base::_M_streambuf_state">_M_streambuf_state</a> = <a class="local col6 ref" href="#2086__sb" title='__sb' data-ref="2086__sb">__sb</a> ? <a class="member" href="ios_base.h.html#std::ios_base::goodbit" title='std::ios_base::goodbit' data-ref="std::ios_base::goodbit">goodbit</a> : <a class="member" href="ios_base.h.html#std::ios_base::badbit" title='std::ios_base::badbit' data-ref="std::ios_base::badbit">badbit</a>;&nbsp</td></tr>
+<tr><th id="153">153</th><td>    }&nbsp</td></tr>
+<tr><th id="154">154</th><td>&nbsp</td></tr>
+<tr><th id="155">155</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="156">156</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="157">157</th><td>    <a class="type" href="../iosfwd.html#std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios">basic_ios</a>&lt;_CharT, _Traits&gt;::<dfn class="decl def fn" id="_ZNSt9basic_ios15_M_cache_localeERKSt6locale" title='std::basic_ios::_M_cache_locale' data-ref="_ZNSt9basic_ios15_M_cache_localeERKSt6locale">_M_cache_locale</dfn>(<em>const</em> <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&amp; <dfn class="local col7 decl" id="2087__loc" title='__loc' data-type='const std::locale &amp;' data-ref="2087__loc">__loc</dfn>)&nbsp</td></tr>
+<tr><th id="158">158</th><td>    {&nbsp</td></tr>
+<tr><th id="159">159</th><td>      <b>if</b> (<a class="ref fn" href="../streambuf.html#306" title='__builtin_expect' data-ref="__builtin_expect">__builtin_expect</a>(has_facet&lt;<a class="typedef" href="basic_ios.h.html#std::basic_ios::__ctype_type" title='std::basic_ios::__ctype_type' data-type='ctype&lt;_CharT&gt;' data-ref="std::basic_ios::__ctype_type">__ctype_type</a>&gt;(<a class="local col7 ref" href="#2087__loc" title='__loc' data-ref="2087__loc">__loc</a>), <b>true</b>))&nbsp</td></tr>
+<tr><th id="160">160</th><td>	<a class="member field" href="basic_ios.h.html#std::basic_ios::_M_ctype" title='std::basic_ios::_M_ctype' data-ref="std::basic_ios::_M_ctype">_M_ctype</a> = <span class="namespace">std::</span>__addressof(use_facet&lt;<a class="typedef" href="basic_ios.h.html#std::basic_ios::__ctype_type" title='std::basic_ios::__ctype_type' data-type='ctype&lt;_CharT&gt;' data-ref="std::basic_ios::__ctype_type">__ctype_type</a>&gt;(<a class="local col7 ref" href="#2087__loc" title='__loc' data-ref="2087__loc">__loc</a>));&nbsp</td></tr>
+<tr><th id="161">161</th><td>      <b>else</b>&nbsp</td></tr>
+<tr><th id="162">162</th><td>	<a class="member field" href="basic_ios.h.html#std::basic_ios::_M_ctype" title='std::basic_ios::_M_ctype' data-ref="std::basic_ios::_M_ctype">_M_ctype</a> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="163">163</th><td>&nbsp</td></tr>
+<tr><th id="164">164</th><td>      <b>if</b> (<a class="ref fn" href="../streambuf.html#306" title='__builtin_expect' data-ref="__builtin_expect">__builtin_expect</a>(has_facet&lt;<a class="typedef" href="basic_ios.h.html#std::basic_ios::__num_put_type" title='std::basic_ios::__num_put_type' data-type='num_put&lt;_CharT, ostreambuf_iterator&lt;_CharT, _Traits&gt;&gt;' data-ref="std::basic_ios::__num_put_type">__num_put_type</a>&gt;(<a class="local col7 ref" href="#2087__loc" title='__loc' data-ref="2087__loc">__loc</a>), <b>true</b>))&nbsp</td></tr>
+<tr><th id="165">165</th><td>	<a class="member field" href="basic_ios.h.html#std::basic_ios::_M_num_put" title='std::basic_ios::_M_num_put' data-ref="std::basic_ios::_M_num_put">_M_num_put</a> = <span class="namespace">std::</span>__addressof(use_facet&lt;<a class="typedef" href="basic_ios.h.html#std::basic_ios::__num_put_type" title='std::basic_ios::__num_put_type' data-type='num_put&lt;_CharT, ostreambuf_iterator&lt;_CharT, _Traits&gt;&gt;' data-ref="std::basic_ios::__num_put_type">__num_put_type</a>&gt;(<a class="local col7 ref" href="#2087__loc" title='__loc' data-ref="2087__loc">__loc</a>));&nbsp</td></tr>
+<tr><th id="166">166</th><td>      <b>else</b>&nbsp</td></tr>
+<tr><th id="167">167</th><td>	<a class="member field" href="basic_ios.h.html#std::basic_ios::_M_num_put" title='std::basic_ios::_M_num_put' data-ref="std::basic_ios::_M_num_put">_M_num_put</a> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="168">168</th><td>&nbsp</td></tr>
+<tr><th id="169">169</th><td>      <b>if</b> (<a class="ref fn" href="../streambuf.html#306" title='__builtin_expect' data-ref="__builtin_expect">__builtin_expect</a>(has_facet&lt;<a class="typedef" href="basic_ios.h.html#std::basic_ios::__num_get_type" title='std::basic_ios::__num_get_type' data-type='num_get&lt;_CharT, istreambuf_iterator&lt;_CharT, _Traits&gt;&gt;' data-ref="std::basic_ios::__num_get_type">__num_get_type</a>&gt;(<a class="local col7 ref" href="#2087__loc" title='__loc' data-ref="2087__loc">__loc</a>), <b>true</b>))&nbsp</td></tr>
+<tr><th id="170">170</th><td>	<a class="member field" href="basic_ios.h.html#std::basic_ios::_M_num_get" title='std::basic_ios::_M_num_get' data-ref="std::basic_ios::_M_num_get">_M_num_get</a> = <span class="namespace">std::</span>__addressof(use_facet&lt;<a class="typedef" href="basic_ios.h.html#std::basic_ios::__num_get_type" title='std::basic_ios::__num_get_type' data-type='num_get&lt;_CharT, istreambuf_iterator&lt;_CharT, _Traits&gt;&gt;' data-ref="std::basic_ios::__num_get_type">__num_get_type</a>&gt;(<a class="local col7 ref" href="#2087__loc" title='__loc' data-ref="2087__loc">__loc</a>));&nbsp</td></tr>
+<tr><th id="171">171</th><td>      <b>else</b>&nbsp</td></tr>
+<tr><th id="172">172</th><td>	<a class="member field" href="basic_ios.h.html#std::basic_ios::_M_num_get" title='std::basic_ios::_M_num_get' data-ref="std::basic_ios::_M_num_get">_M_num_get</a> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="173">173</th><td>    }&nbsp</td></tr>
+<tr><th id="174">174</th><td>&nbsp</td></tr>
+<tr><th id="175">175</th><td>  <i>// Inhibit implicit instantiations for required instantiations,</i>&nbsp</td></tr>
+<tr><th id="176">176</th><td><i>  // which are defined via explicit instantiations elsewhere.</i>&nbsp</td></tr>
+<tr><th id="177">177</th><td><u>#<span data-ppcond="177">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#228" title="1" data-ref="_M/_GLIBCXX_EXTERN_TEMPLATE">_GLIBCXX_EXTERN_TEMPLATE</a></u>&nbsp</td></tr>
+<tr><th id="178">178</th><td>  <b>extern</b> <b>template</b> <b>class</b> <dfn class="type def" id="std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios"><a class="type" href="../iosfwd.html#std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios">basic_ios</a></dfn>&lt;<em>char</em>&gt;;&nbsp</td></tr>
+<tr><th id="179">179</th><td>&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>#<span data-ppcond="180">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1797" data-ref="_M/_GLIBCXX_USE_WCHAR_T">_GLIBCXX_USE_WCHAR_T</a></u>&nbsp</td></tr>
+<tr><th id="181">181</th><td>  <b>extern</b> <b>template</b> <b>class</b> <dfn class="type def" id="std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios"><a class="type" href="../iosfwd.html#std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios">basic_ios</a></dfn>&lt;<em>wchar_t</em>&gt;;&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>#<span data-ppcond="180">endif</span></u>&nbsp</td></tr>
+<tr><th id="183">183</th><td><u>#<span data-ppcond="177">endif</span></u>&nbsp</td></tr>
+<tr><th id="184">184</th><td>&nbsp</td></tr>
+<tr><th id="185">185</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="186">186</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="187">187</th><td>&nbsp</td></tr>
+<tr><th id="188">188</th><td><u>#<span data-ppcond="30">endif</span></u>&nbsp</td></tr>
+<tr><th id="189">189</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tPool.h.html'>Modules/Foundation/Inc/Foundation/tPool.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

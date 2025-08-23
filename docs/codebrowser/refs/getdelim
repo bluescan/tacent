@@ -1,0 +1,1 @@
+<dec f='include/stdio.h' l='635' type='__ssize_t getdelim(char **__restrict __lineptr, size_t *__restrict __n, int __delimiter, FILE *__restrict __stream)'/>

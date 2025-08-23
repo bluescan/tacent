@@ -1,0 +1,11 @@
+<def f='Modules/Foundation/Inc/Foundation/tPriorityQueue.h' l='20' ll='58'/>
+<use f='Modules/Foundation/Inc/Foundation/tPriorityQueue.h' l='59'/>
+<use f='Modules/Foundation/Inc/Foundation/tPriorityQueue.h' l='65' c='_ZN14tPriorityQueueC1Eiib'/>
+<use f='Modules/Foundation/Inc/Foundation/tPriorityQueue.h' l='76' c='_ZN14tPriorityQueue7HeapifyEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tPriorityQueue.h' l='120' c='_ZN14tPriorityQueue12GetRemoveMinEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tPriorityQueue.h' l='120' c='_ZN14tPriorityQueue12GetRemoveMinEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tPriorityQueue.h' l='132' c='_ZN14tPriorityQueue6InsertERKNS_5tItemE'/>
+<use f='Modules/Foundation/Inc/Foundation/tPriorityQueue.h' l='132' c='_ZN14tPriorityQueue6InsertERKNS_5tItemE'/>
+<use f='Modules/Foundation/Inc/Foundation/tPriorityQueue.h' l='162' c='_ZN14tPriorityQueue7ReplaceET_S0_'/>
+<fun r='_ZN14tPriorityQueueD1Ev'/>
+<use f='Modules/System/Inc/System/tTask.h' l='62'/>

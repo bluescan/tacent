@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tResample.h source code [Modules/Image/Inc/Image/tResample.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="tImage::tResampleEdgeMode,tImage::tResampleFilter "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Inc/Image/tResample.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>Modules</a>/<a href='../..'>Image</a>/<a href='..'>Inc</a>/<a href='./'>Image</a>/<a href='tResample.h.html'>tResample.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tResample.h</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Resample an image using various filers like nearest-neighbour, box, bilinear, and various bicubics.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// Copyright (c) 2020, 2024 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#pragma once</u>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#include &lt;Math/tColour.h&gt;</u>&nbsp</td></tr>
+<tr><th id="17">17</th><td><b>namespace</b> <span class="namespace">tImage</span>&nbsp</td></tr>
+<tr><th id="18">18</th><td>{&nbsp</td></tr>
+<tr><th id="19">19</th><td>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><b>enum</b> <b>class</b> <dfn class="type def" id="tImage::tResampleFilter" title='tImage::tResampleFilter' data-ref="tImage::tResampleFilter">tResampleFilter</dfn>&nbsp</td></tr>
+<tr><th id="22">22</th><td>{&nbsp</td></tr>
+<tr><th id="23">23</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Nearest" title='tImage::tResampleFilter::Nearest' data-ref="tImage::tResampleFilter::Nearest">Nearest</dfn>,&nbsp</td></tr>
+<tr><th id="24">24</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Box" title='tImage::tResampleFilter::Box' data-ref="tImage::tResampleFilter::Box">Box</dfn>,&nbsp</td></tr>
+<tr><th id="25">25</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Bilinear" title='tImage::tResampleFilter::Bilinear' data-ref="tImage::tResampleFilter::Bilinear">Bilinear</dfn>,&nbsp</td></tr>
+<tr><th id="26">26</th><td>&nbsp</td></tr>
+<tr><th id="27">27</th><td>	<i>// The bicubic filter coefficients (b,c) and names are described here:</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i>	// <a href="https://entropymine.com/imageworsener/bicubic/">https://entropymine.com/imageworsener/bicubic/</a></i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i>	// The order in which the cubic filters are list below matches my opinion of overall quality.</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Bicubic_Standard" title='tImage::tResampleFilter::Bicubic_Standard' data-ref="tImage::tResampleFilter::Bicubic_Standard">Bicubic_Standard</dfn>,		<i>// Cardinal.				B=0		C=3/4</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Bicubic_CatmullRom" title='tImage::tResampleFilter::Bicubic_CatmullRom' data-ref="tImage::tResampleFilter::Bicubic_CatmullRom">Bicubic_CatmullRom</dfn>,		<i>// Cardinal.				B=0		C=1/2</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Bicubic_Mitchell" title='tImage::tResampleFilter::Bicubic_Mitchell' data-ref="tImage::tResampleFilter::Bicubic_Mitchell">Bicubic_Mitchell</dfn>,		<i>// Balanced.				B=1/3	C=1/3</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Bicubic_Cardinal" title='tImage::tResampleFilter::Bicubic_Cardinal' data-ref="tImage::tResampleFilter::Bicubic_Cardinal">Bicubic_Cardinal</dfn>,		<i>// Pure Cardinal.			B=0		C=1</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Bicubic_BSpline" title='tImage::tResampleFilter::Bicubic_BSpline' data-ref="tImage::tResampleFilter::Bicubic_BSpline">Bicubic_BSpline</dfn>,		<i>// Pure BSpline. Blurry.	B=1		C=0</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td>	<i>// Lanczos is useful for cases where increased contrast is needed, esp at edges. Overall is a bit 'ringy'.</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>	// See <a href="https://en.wikipedia.org/wiki/Lanczos_resampling">https://en.wikipedia.org/wiki/Lanczos_resampling</a> for a description of the Lanczos kernel.</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Lanczos_Narrow" title='tImage::tResampleFilter::Lanczos_Narrow' data-ref="tImage::tResampleFilter::Lanczos_Narrow">Lanczos_Narrow</dfn>,			<i>// Sinc-based.				A = 2</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Lanczos_Normal" title='tImage::tResampleFilter::Lanczos_Normal' data-ref="tImage::tResampleFilter::Lanczos_Normal">Lanczos_Normal</dfn>,			<i>// Sinc-based.				A = 3</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Lanczos_Wide" title='tImage::tResampleFilter::Lanczos_Wide' data-ref="tImage::tResampleFilter::Lanczos_Wide">Lanczos_Wide</dfn>,			<i>// Sinc-based.				A = 4</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td>	<dfn class="enum" id="tImage::tResampleFilter::NumFilters" title='tImage::tResampleFilter::NumFilters' data-ref="tImage::tResampleFilter::NumFilters">NumFilters</dfn>,				<i>// Number of valid filters.</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td>	<i>// Aliases.</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Invalid" title='tImage::tResampleFilter::Invalid' data-ref="tImage::tResampleFilter::Invalid">Invalid</dfn>					= <a class="enum" href="#tImage::tResampleFilter::NumFilters" title='tImage::tResampleFilter::NumFilters' data-ref="tImage::tResampleFilter::NumFilters">NumFilters</a>,&nbsp</td></tr>
+<tr><th id="45">45</th><td>	<dfn class="enum" id="tImage::tResampleFilter::None" title='tImage::tResampleFilter::None' data-ref="tImage::tResampleFilter::None">None</dfn>					= <a class="enum" href="#tImage::tResampleFilter::NumFilters" title='tImage::tResampleFilter::NumFilters' data-ref="tImage::tResampleFilter::NumFilters">NumFilters</a>,&nbsp</td></tr>
+<tr><th id="46">46</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Bicubic" title='tImage::tResampleFilter::Bicubic' data-ref="tImage::tResampleFilter::Bicubic">Bicubic</dfn>					= <a class="enum" href="#tImage::tResampleFilter::Bicubic_Standard" title='tImage::tResampleFilter::Bicubic_Standard' data-ref="tImage::tResampleFilter::Bicubic_Standard">Bicubic_Standard</a>,&nbsp</td></tr>
+<tr><th id="47">47</th><td>	<dfn class="enum" id="tImage::tResampleFilter::Lanczos" title='tImage::tResampleFilter::Lanczos' data-ref="tImage::tResampleFilter::Lanczos">Lanczos</dfn>					= <a class="enum" href="#tImage::tResampleFilter::Lanczos_Normal" title='tImage::tResampleFilter::Lanczos_Normal' data-ref="tImage::tResampleFilter::Lanczos_Normal">Lanczos_Normal</a>&nbsp</td></tr>
+<tr><th id="48">48</th><td>};&nbsp</td></tr>
+<tr><th id="49">49</th><td>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i>// The 'None' filter name is included in these arrays as the last item.</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><b>extern</b> <em>const</em> <em>char</em>* <dfn class="decl" id="tImage::tResampleFilterNames" title='tImage::tResampleFilterNames' data-ref="tImage::tResampleFilterNames">tResampleFilterNames</dfn>[<em>int</em>(<a class="type" href="#tImage::tResampleFilter" title='tImage::tResampleFilter' data-ref="tImage::tResampleFilter">tResampleFilter</a>::<a class="enum" href="#tImage::tResampleFilter::NumFilters" title='tImage::tResampleFilter::NumFilters' data-ref="tImage::tResampleFilter::NumFilters">NumFilters</a>)+<var>1</var>];&nbsp</td></tr>
+<tr><th id="52">52</th><td><b>extern</b> <em>const</em> <em>char</em>* <dfn class="decl" id="tImage::tResampleFilterNamesSimple" title='tImage::tResampleFilterNamesSimple' data-ref="tImage::tResampleFilterNamesSimple">tResampleFilterNamesSimple</dfn>[<em>int</em>(<a class="type" href="#tImage::tResampleFilter" title='tImage::tResampleFilter' data-ref="tImage::tResampleFilter">tResampleFilter</a>::<a class="enum" href="#tImage::tResampleFilter::NumFilters" title='tImage::tResampleFilter::NumFilters' data-ref="tImage::tResampleFilter::NumFilters">NumFilters</a>)+<var>1</var>];&nbsp</td></tr>
+<tr><th id="53">53</th><td>&nbsp</td></tr>
+<tr><th id="54">54</th><td>&nbsp</td></tr>
+<tr><th id="55">55</th><td><b>enum</b> <b>class</b> <dfn class="type def" id="tImage::tResampleEdgeMode" title='tImage::tResampleEdgeMode' data-ref="tImage::tResampleEdgeMode">tResampleEdgeMode</dfn>&nbsp</td></tr>
+<tr><th id="56">56</th><td>{&nbsp</td></tr>
+<tr><th id="57">57</th><td>	<dfn class="enum" id="tImage::tResampleEdgeMode::Clamp" title='tImage::tResampleEdgeMode::Clamp' data-ref="tImage::tResampleEdgeMode::Clamp">Clamp</dfn>,&nbsp</td></tr>
+<tr><th id="58">58</th><td>	<dfn class="enum" id="tImage::tResampleEdgeMode::Wrap" title='tImage::tResampleEdgeMode::Wrap' data-ref="tImage::tResampleEdgeMode::Wrap">Wrap</dfn>,&nbsp</td></tr>
+<tr><th id="59">59</th><td>	<dfn class="enum" id="tImage::tResampleEdgeMode::NumEdgeModes" title='tImage::tResampleEdgeMode::NumEdgeModes' data-ref="tImage::tResampleEdgeMode::NumEdgeModes">NumEdgeModes</dfn>,			<i>// Number of valid edge modes.</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td>&nbsp</td></tr>
+<tr><th id="61">61</th><td>	<i>// Aliases.</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td>	<dfn class="enum" id="tImage::tResampleEdgeMode::Invalid" title='tImage::tResampleEdgeMode::Invalid' data-ref="tImage::tResampleEdgeMode::Invalid">Invalid</dfn>					= <a class="enum" href="#tImage::tResampleEdgeMode::NumEdgeModes" title='tImage::tResampleEdgeMode::NumEdgeModes' data-ref="tImage::tResampleEdgeMode::NumEdgeModes">NumEdgeModes</a>,&nbsp</td></tr>
+<tr><th id="63">63</th><td>	<dfn class="enum" id="tImage::tResampleEdgeMode::None" title='tImage::tResampleEdgeMode::None' data-ref="tImage::tResampleEdgeMode::None">None</dfn>					= <a class="enum" href="#tImage::tResampleEdgeMode::NumEdgeModes" title='tImage::tResampleEdgeMode::NumEdgeModes' data-ref="tImage::tResampleEdgeMode::NumEdgeModes">NumEdgeModes</a>&nbsp</td></tr>
+<tr><th id="64">64</th><td>};&nbsp</td></tr>
+<tr><th id="65">65</th><td>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i>// The 'None' filter is included in these arrays as the last item.</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><b>extern</b> <em>const</em> <em>char</em>* <dfn class="decl" id="tImage::tResampleEdgeModeNames" title='tImage::tResampleEdgeModeNames' data-ref="tImage::tResampleEdgeModeNames">tResampleEdgeModeNames</dfn>[<em>int</em>(<a class="type" href="#tImage::tResampleEdgeMode" title='tImage::tResampleEdgeMode' data-ref="tImage::tResampleEdgeMode">tResampleEdgeMode</a>::<a class="enum" href="#tImage::tResampleEdgeMode::NumEdgeModes" title='tImage::tResampleEdgeMode::NumEdgeModes' data-ref="tImage::tResampleEdgeMode::NumEdgeModes">NumEdgeModes</a>)+<var>1</var>];&nbsp</td></tr>
+<tr><th id="68">68</th><td><b>extern</b> <em>const</em> <em>char</em>* <dfn class="decl" id="tImage::tResampleEdgeModeNamesSimple" title='tImage::tResampleEdgeModeNamesSimple' data-ref="tImage::tResampleEdgeModeNamesSimple">tResampleEdgeModeNamesSimple</dfn>[<em>int</em>(<a class="type" href="#tImage::tResampleEdgeMode" title='tImage::tResampleEdgeMode' data-ref="tImage::tResampleEdgeMode">tResampleEdgeMode</a>::<a class="enum" href="#tImage::tResampleEdgeMode::NumEdgeModes" title='tImage::tResampleEdgeMode::NumEdgeModes' data-ref="tImage::tResampleEdgeMode::NumEdgeModes">NumEdgeModes</a>)+<var>1</var>];&nbsp</td></tr>
+<tr><th id="69">69</th><td>&nbsp</td></tr>
+<tr><th id="70">70</th><td>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i>// Resample the image using the supplied filter. All channels are treated equally. With some resamplers the alpha</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i>// channels gets multiplied into the colours, we do not. This simplicity has some repercussions -- specifically the</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td><i>// texture author should extend the colours into the areas where the alpha is 0 to make sure rescaling near these</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td><i>// borders does not introduce colour artifacts when upscaling.</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="76">76</th><td><i>// The edge mode is either clamp or wrap. In wrap node if a pixel to the right (or up) is needed for the resample and</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td><i>// we are at the edge of the image, it is taken from the other side. Some libraries also support a 'reflect' mode but</i>&nbsp</td></tr>
+<tr><th id="78">78</th><td><i>// since I'm not sure when this is useful, it is being excluded.</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><em>bool</em> <dfn class="decl fn" id="_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE" title='tImage::Resample' data-ref="_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE">Resample</dfn>&nbsp</td></tr>
+<tr><th id="80">80</th><td>(&nbsp</td></tr>
+<tr><th id="81">81</th><td>	<a class="typedef" href="../../../Math/Inc/Math/tColour.h.html#tPixel4b" title='tPixel4b' data-type='tColour4b' data-ref="tPixel4b">tPixel4b</a>* <dfn class="local col1 decl" id="1src" title='src' data-type='tPixel4b *' data-ref="1src">src</dfn>, <em>int</em> <dfn class="local col2 decl" id="2srcW" title='srcW' data-type='int' data-ref="2srcW">srcW</dfn>, <em>int</em> <dfn class="local col3 decl" id="3srcH" title='srcH' data-type='int' data-ref="3srcH">srcH</dfn>,&nbsp</td></tr>
+<tr><th id="82">82</th><td>	<a class="typedef" href="../../../Math/Inc/Math/tColour.h.html#tPixel4b" title='tPixel4b' data-type='tColour4b' data-ref="tPixel4b">tPixel4b</a>* <dfn class="local col4 decl" id="4dst" title='dst' data-type='tPixel4b *' data-ref="4dst">dst</dfn>, <em>int</em> <dfn class="local col5 decl" id="5dstW" title='dstW' data-type='int' data-ref="5dstW">dstW</dfn>, <em>int</em> <dfn class="local col6 decl" id="6dstH" title='dstH' data-type='int' data-ref="6dstH">dstH</dfn>,&nbsp</td></tr>
+<tr><th id="83">83</th><td>	<a class="type" href="#tImage::tResampleFilter" title='tImage::tResampleFilter' data-ref="tImage::tResampleFilter">tResampleFilter</a> = <a class="type" href="#tImage::tResampleFilter" title='tImage::tResampleFilter' data-ref="tImage::tResampleFilter">tResampleFilter</a>::<a class="enum" href="#tImage::tResampleFilter::Bilinear" title='tImage::tResampleFilter::Bilinear' data-ref="tImage::tResampleFilter::Bilinear">Bilinear</a>,&nbsp</td></tr>
+<tr><th id="84">84</th><td>	<a class="type" href="#tImage::tResampleEdgeMode" title='tImage::tResampleEdgeMode' data-ref="tImage::tResampleEdgeMode">tResampleEdgeMode</a> = <a class="type" href="#tImage::tResampleEdgeMode" title='tImage::tResampleEdgeMode' data-ref="tImage::tResampleEdgeMode">tResampleEdgeMode</a>::<a class="enum" href="#tImage::tResampleEdgeMode::Clamp" title='tImage::tResampleEdgeMode::Clamp' data-ref="tImage::tResampleEdgeMode::Clamp">Clamp</a>&nbsp</td></tr>
+<tr><th id="85">85</th><td>);&nbsp</td></tr>
+<tr><th id="86">86</th><td>&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td>}&nbsp</td></tr>
+<tr><th id="89">89</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='tPicture.h.html'>Modules/Image/Inc/Image/tPicture.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='3380' ll='3382' type='std::student_t_distribution::result_type std::student_t_distribution::min() const'/>
+<doc f='include/c++/11/bits/random.h' l='3377'>/**
+       * @brief Returns the greatest lower bound value of the distribution.
+       */</doc>

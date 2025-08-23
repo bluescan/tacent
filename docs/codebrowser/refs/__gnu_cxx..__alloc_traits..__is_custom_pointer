@@ -1,0 +1,2 @@
+<use f='include/c++/11/ext/alloc_traits.h' l='80' c='__gnu_cxx::__alloc_traits::construct'/>
+<use f='include/c++/11/ext/alloc_traits.h' l='92' c='__gnu_cxx::__alloc_traits::destroy'/>

@@ -1,0 +1,8 @@
+<def f='Modules/System/Inc/System/tScript.h' l='422' ll='435' type='void tScriptError::tScriptError(int lineNumber, const char * format)'/>
+<use f='Modules/System/Src/tScript.cpp' l='204' u='c' c='_ZNK11tExpression19GetExpressionStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='217' u='c' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='228' u='c' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='241' u='c' c='_ZNK11tExpression13GetAtomStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='266' u='c' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='269' u='c' c='_ZNK11tExpression18GetAtomTupleStringEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='276' u='c' c='_ZNK11tExpression18GetAtomTupleStringEv'/>

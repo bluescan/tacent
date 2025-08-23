@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_timeval.h' l='15' type='__suseconds_t'/>
+<offset>64</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_timeval.h' l='15'>/* Microseconds.  */</doc>

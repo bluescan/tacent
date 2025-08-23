@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='489' type='void tSystem::tFileTypes::tFileTypes(tSystem::tFileType )'/>
+<def f='Modules/System/Inc/System/tFile.h' l='913' ll='920' type='void tSystem::tFileTypes::tFileTypes(tSystem::tFileType fileType)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='486'>// This constructor may be used to create a static/global object by simply entering the tFileTypes you want as
+	// arguments. The last tFileType _must_ be tFileType::EndOfList or tFileType::EOL. Example:
+	// tFileTypes gTypes(tFileType::JPG, tFileType::PNG, tFileType::EOL);</doc>

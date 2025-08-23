@@ -1,0 +1,4 @@
+<def f='Modules/Image/Src/tPixelUtil.cpp' l='38' ll='42'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1414' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1414' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>
+<size>16</size>

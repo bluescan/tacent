@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='220' type='uint16_t'/>
+<offset>3616</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='213'>// 0: unknown
+	                                    // 1: average
+	                                    // 2: center weighted average
+	                                    // 3: spot
+	                                    // 4: multi-spot
+	                                    // 5: pattern
+	                                    // 6: partial</doc>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='220'>// Kind of light source</doc>

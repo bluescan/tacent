@@ -1,0 +1,10 @@
+<dec f='include/c++/11/exception' l='83' type='void std::terminate()'/>
+<use f='include/c++/11/bits/nested_exception.h' l='71' u='c' c='_ZNKSt16nested_exception14rethrow_nestedEv'/>
+<doc f='include/c++/11/exception' l='81'>/** The runtime will call this function if %exception handling must be
+   *  abandoned for any reason.  It can also be called by the user.  */</doc>
+<use f='include/c++/11/bits/std_thread.h' l='152' u='c' c='_ZNSt6threadD1Ev'/>
+<use f='include/c++/11/bits/std_thread.h' l='165' u='c' c='_ZNSt6threadaSEOS_'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='85' u='c' c='_ZNSt20__platform_semaphore10_M_acquireEv'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='102' u='c' c='_ZNSt20__platform_semaphore14_M_try_acquireEv'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='116' u='c' c='_ZNSt20__platform_semaphore10_M_releaseEl'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='143' u='c' c='_ZNSt20__platform_semaphore25_M_try_acquire_until_implERKNSt6chrono10time_pointINS0_3_V212system_clockENS0_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>

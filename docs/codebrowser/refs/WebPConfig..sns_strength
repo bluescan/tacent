@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='111' type='int'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='348' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>224</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='111'>// Spatial Noise Shaping. 0=off, 100=maximum.</doc>

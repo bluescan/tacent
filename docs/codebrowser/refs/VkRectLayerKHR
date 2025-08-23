@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8814' ll='8818'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8814'/>
+<size>20</size>
+<mbr r='VkRectLayerKHR::offset' o='0' t='VkOffset2D'/>
+<mbr r='VkRectLayerKHR::extent' o='64' t='VkExtent2D'/>
+<mbr r='VkRectLayerKHR::layer' o='128' t='uint32_t'/>

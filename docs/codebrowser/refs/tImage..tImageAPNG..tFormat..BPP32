@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageAPNG.h' l='70' type='2'/>
+<doc f='Modules/Image/Inc/Image/tImageAPNG.h' l='70'>// RGBA. 24 bit colour and 8 bits opacity in the alpha channel.</doc>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='262' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='325' u='r' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

@@ -1,0 +1,22 @@
+<dec f='include/c++/11/istream' l='259' type='std::basic_istream::__istream_type &amp; std::basic_istream::operator&gt;&gt;(std::basic_istream::__streambuf_type * __sb)'/>
+<def f='include/c++/11/bits/istream.tcc' l='209' ll='239' type='basic_istream&lt;_CharT, _Traits&gt; &amp; std::basic_istream::operator&gt;&gt;(std::basic_istream::__streambuf_type * __sbout)'/>
+<doc f='include/c++/11/istream' l='238'>/**
+       *  @brief  Extracting into another streambuf.
+       *  @param  __sb  A pointer to a streambuf
+       *
+       *  This function behaves like one of the basic arithmetic extractors,
+       *  in that it also constructs a sentry object and has the same error
+       *  handling behavior.
+       *
+       *  If @p __sb is NULL, the stream will set failbit in its error state.
+       *
+       *  Characters are extracted from this stream and inserted into the
+       *  @p __sb streambuf until one of the following occurs:
+       *
+       *  - the input stream reaches end-of-file,
+       *  - insertion into the output buffer fails (in this case, the
+       *    character that would have been inserted is not extracted), or
+       *  - an exception occurs (and in this case is caught)
+       *
+       *  If the function inserts no characters, failbit is set.
+      */</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/sstream' l='628' ll='630' type='void std::basic_istringstream::basic_istringstream&lt;_CharT, _Traits, _Alloc&gt;(ios_base::openmode __mode, const std::basic_istringstream::allocator_type &amp; __a)'/>

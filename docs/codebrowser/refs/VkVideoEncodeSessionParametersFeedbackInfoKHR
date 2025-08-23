@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10246' ll='10250'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10246'/>
+<size>24</size>
+<mbr r='VkVideoEncodeSessionParametersFeedbackInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoEncodeSessionParametersFeedbackInfoKHR::pNext' o='64' t='void *'/>
+<mbr r='VkVideoEncodeSessionParametersFeedbackInfoKHR::hasOverrides' o='128' t='VkBool32'/>

@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tLodGroup.h source code [Modules/Scene/Inc/Scene/tLodGroup.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="tScene::tLodGroup,tScene::tLodParam "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Scene/Inc/Scene/tLodGroup.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>Modules</a>/<a href='../..'>Scene</a>/<a href='..'>Inc</a>/<a href='./'>Scene</a>/<a href='tLodGroup.h.html'>tLodGroup.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tLodGroup.h</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// This unit implements scene LOD groups. LOD groups basically specify what model to use based on a size threshold.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>// The threshold is based on screen-size, not distance. This is much more correct as it allows narrow camera FOVs</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// without things looking pixelated.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#pragma <span class='warning' title="#pragma once in main file">once</span></u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#include &lt;Foundation/tList.h&gt;</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#include "Scene/tObject.h"</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><b>namespace</b> <span class="namespace">tScene</span>&nbsp</td></tr>
+<tr><th id="21">21</th><td>{&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td>&nbsp</td></tr>
+<tr><th id="24">24</th><td><b>class</b> <dfn class="type def" id="tScene::tLodParam" title='tScene::tLodParam' data-ref="tScene::tLodParam">tLodParam</dfn>&nbsp</td></tr>
+<tr><th id="25">25</th><td>{&nbsp</td></tr>
+<tr><th id="26">26</th><td><b>public</b>:&nbsp</td></tr>
+<tr><th id="27">27</th><td>	<dfn class="tu decl def fn" id="_ZN6tScene9tLodParamC1Ev" title='tScene::tLodParam::tLodParam' data-type='void tScene::tLodParam::tLodParam()' data-ref="_ZN6tScene9tLodParamC1Ev">tLodParam</dfn>()																											{ }&nbsp</td></tr>
+<tr><th id="28">28</th><td>	<dfn class="tu decl def fn" id="_ZN6tScene9tLodParamC1ERK6tChunk" title='tScene::tLodParam::tLodParam' data-type='void tScene::tLodParam::tLodParam(const tChunk &amp; chunk)' data-ref="_ZN6tScene9tLodParamC1ERK6tChunk">tLodParam</dfn>(<em>const</em> <a class="type" href="../../../System/Inc/System/tChunk.h.html#tChunk" title='tChunk' data-ref="tChunk">tChunk</a>&amp; <dfn class="local col1 decl" id="1chunk" title='chunk' data-type='const tChunk &amp;' data-ref="1chunk">chunk</dfn>)																						{ <a class="tu member fn" href="#_ZN6tScene9tLodParam4LoadERK6tChunk" title='tScene::tLodParam::Load' data-use='c' data-ref="_ZN6tScene9tLodParam4LoadERK6tChunk">Load</a>(<a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a>); }&nbsp</td></tr>
+<tr><th id="29">29</th><td>	<b>virtual</b> <dfn class="virtual decl def fn" id="_ZN6tScene9tLodParamD1Ev" title='tScene::tLodParam::~tLodParam' data-ref="_ZN6tScene9tLodParamD1Ev">~tLodParam</dfn>()																								{ }&nbsp</td></tr>
+<tr><th id="30">30</th><td>&nbsp</td></tr>
+<tr><th id="31">31</th><td>	<em>void</em> <dfn class="tu decl fn" id="_ZNK6tScene9tLodParam4SaveER12tChunkWriter" title='tScene::tLodParam::Save' data-type='void tScene::tLodParam::Save(tChunkWriter &amp; ) const' data-ref="_ZNK6tScene9tLodParam4SaveER12tChunkWriter">Save</dfn>(<a class="type" href="../../../System/Inc/System/tChunk.h.html#tChunkWriter" title='tChunkWriter' data-ref="tChunkWriter">tChunkWriter</a>&amp;) <em>const</em>;&nbsp</td></tr>
+<tr><th id="32">32</th><td>	<em>void</em> <dfn class="tu decl fn" id="_ZN6tScene9tLodParam4LoadERK6tChunk" title='tScene::tLodParam::Load' data-type='void tScene::tLodParam::Load(const tChunk &amp; )' data-ref="_ZN6tScene9tLodParam4LoadERK6tChunk">Load</dfn>(<em>const</em> <a class="type" href="../../../System/Inc/System/tChunk.h.html#tChunk" title='tChunk' data-ref="tChunk">tChunk</a>&amp;);&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td>	<a class="typedef" href="../../../Foundation/Inc/Foundation/tPlatform.h.html#uint32" title='uint32' data-type='unsigned int' data-ref="uint32">uint32</a> <dfn class="tu decl field" id="tScene::tLodParam::ModelID" title='tScene::tLodParam::ModelID' data-type='uint32' data-ref="tScene::tLodParam::ModelID">ModelID</dfn> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td>	<i  data-doc="tScene::tLodParam::Threshold">// The threshold is the proportion of screen width at which the LOD swap should occur. Doing it this way makes it</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i  data-doc="tScene::tLodParam::Threshold">	// respect the camera FOV and does not tie it to screen resolution. The runtime can decide to consider the current</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i  data-doc="tScene::tLodParam::Threshold">	// screen resolution if it likes. A value of 1.0 means that the object takes up the entire screen, 0.5 means half</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i  data-doc="tScene::tLodParam::Threshold">	// the screen. The values are NOT restricted to [0.0, 1.0]. It is valid to have values &gt; 1.0. If a runtime object</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i  data-doc="tScene::tLodParam::Threshold">	// takes up less room than the threshold then the ModelID should not be used. The biggest lod info threshold value</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i  data-doc="tScene::tLodParam::Threshold">	// that is less than the current percent is the right one.</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td>	<em>float</em> <dfn class="tu decl field" id="tScene::tLodParam::Threshold" title='tScene::tLodParam::Threshold' data-type='float' data-ref="tScene::tLodParam::Threshold">Threshold</dfn> = <var>0.0f</var>;&nbsp</td></tr>
+<tr><th id="43">43</th><td>};&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td><b>class</b> <dfn class="type def" id="tScene::tLodGroup" title='tScene::tLodGroup' data-ref="tScene::tLodGroup">tLodGroup</dfn> : <b>public</b> <a class="type" href="tObject.h.html#tScene::tObject" title='tScene::tObject' data-ref="tScene::tObject">tObject</a>&nbsp</td></tr>
+<tr><th id="47">47</th><td>{&nbsp</td></tr>
+<tr><th id="48">48</th><td><b>public</b>:&nbsp</td></tr>
+<tr><th id="49">49</th><td>	<dfn class="tu decl def fn" id="_ZN6tScene9tLodGroupC1Ev" title='tScene::tLodGroup::tLodGroup' data-type='void tScene::tLodGroup::tLodGroup()' data-ref="_ZN6tScene9tLodGroupC1Ev">tLodGroup</dfn>()																											: <a class="type" href="tObject.h.html#tScene::tObject" title='tScene::tObject' data-ref="tScene::tObject">tObject</a><a class="ref fn" href="tObject.h.html#_ZN6tScene7tObjectC1Ev" title='tScene::tObject::tObject' data-ref="_ZN6tScene7tObjectC1Ev">(</a>), <a class="tu member field" href="#tScene::tLodGroup::LodParams" title='tScene::tLodGroup::LodParams' data-use='w' data-ref="tScene::tLodGroup::LodParams">LodParams</a><a class="ref fn" href="../../../Foundation/Inc/Foundation/tList.h.html#_ZN7tItListC1Ev" title='tItList::tItList&lt;T&gt;' data-ref="_ZN7tItListC1Ev">(</a>) { }&nbsp</td></tr>
+<tr><th id="50">50</th><td>	<dfn class="tu decl def fn" id="_ZN6tScene9tLodGroupC1ERK6tChunk" title='tScene::tLodGroup::tLodGroup' data-type='void tScene::tLodGroup::tLodGroup(const tChunk &amp; chunk)' data-ref="_ZN6tScene9tLodGroupC1ERK6tChunk">tLodGroup</dfn>(<em>const</em> <a class="type" href="../../../System/Inc/System/tChunk.h.html#tChunk" title='tChunk' data-ref="tChunk">tChunk</a>&amp; <dfn class="local col2 decl" id="2chunk" title='chunk' data-type='const tChunk &amp;' data-ref="2chunk">chunk</dfn>)																						: <a class="type" href="tObject.h.html#tScene::tObject" title='tScene::tObject' data-ref="tScene::tObject">tObject</a><a class="ref fn" href="tObject.h.html#_ZN6tScene7tObjectC1Ev" title='tScene::tObject::tObject' data-ref="_ZN6tScene7tObjectC1Ev">(</a>), <a class="tu member field" href="#tScene::tLodGroup::LodParams" title='tScene::tLodGroup::LodParams' data-use='w' data-ref="tScene::tLodGroup::LodParams">LodParams</a><a class="ref fn" href="../../../Foundation/Inc/Foundation/tList.h.html#_ZN7tItListC1Ev" title='tItList::tItList&lt;T&gt;' data-ref="_ZN7tItListC1Ev">(</a>) { <a class="virtual member fn" href="#_ZN6tScene9tLodGroup4LoadERK6tChunk" title='tScene::tLodGroup::Load' data-ref="_ZN6tScene9tLodGroup4LoadERK6tChunk">Load</a>(<a class="local col2 ref" href="#2chunk" title='chunk' data-ref="2chunk">chunk</a>); }&nbsp</td></tr>
+<tr><th id="51">51</th><td>	<b>virtual</b> <dfn class="virtual decl def fn" id="_ZN6tScene9tLodGroupD1Ev" title='tScene::tLodGroup::~tLodGroup' data-ref="_ZN6tScene9tLodGroupD1Ev">~tLodGroup</dfn>()																								{ }&nbsp</td></tr>
+<tr><th id="52">52</th><td>&nbsp</td></tr>
+<tr><th id="53">53</th><td>	<em>void</em> <dfn class="virtual decl fn" id="_ZN6tScene9tLodGroup4LoadERK6tChunk" title='tScene::tLodGroup::Load' data-ref="_ZN6tScene9tLodGroup4LoadERK6tChunk">Load</dfn>(<em>const</em> <a class="type" href="../../../System/Inc/System/tChunk.h.html#tChunk" title='tChunk' data-ref="tChunk">tChunk</a>&amp;);&nbsp</td></tr>
+<tr><th id="54">54</th><td>	<em>void</em> <dfn class="virtual decl fn" id="_ZNK6tScene9tLodGroup4SaveER12tChunkWriter" title='tScene::tLodGroup::Save' data-ref="_ZNK6tScene9tLodGroup4SaveER12tChunkWriter">Save</dfn>(<a class="type" href="../../../System/Inc/System/tChunk.h.html#tChunkWriter" title='tChunkWriter' data-ref="tChunkWriter">tChunkWriter</a>&amp;) <em>const</em>;&nbsp</td></tr>
+<tr><th id="55">55</th><td>	<em>void</em> <dfn class="tu decl def fn" id="_ZN6tScene9tLodGroup5ClearEv" title='tScene::tLodGroup::Clear' data-type='void tScene::tLodGroup::Clear()' data-ref="_ZN6tScene9tLodGroup5ClearEv">Clear</dfn>()																										{ <a class="type" href="tObject.h.html#tScene::tObject" title='tScene::tObject' data-ref="tScene::tObject">tObject</a>::<a class="member fn" href="tObject.h.html#_ZN6tScene7tObject5ClearEv" title='tScene::tObject::Clear' data-ref="_ZN6tScene7tObject5ClearEv">Clear</a>(); <a class="tu member field" href="#tScene::tLodGroup::LodParams" title='tScene::tLodGroup::LodParams' data-use='m' data-ref="tScene::tLodGroup::LodParams">LodParams</a>.<a class="ref fn" href="../../../Foundation/Inc/Foundation/tList.h.html#_ZN7tItList5EmptyEv" title='tItList::Empty' data-ref="_ZN7tItList5EmptyEv">Empty</a>(); }&nbsp</td></tr>
+<tr><th id="56">56</th><td>	<em>int</em> <dfn class="tu decl def fn" id="_ZNK6tScene9tLodGroup14GetNumLodInfosEv" title='tScene::tLodGroup::GetNumLodInfos' data-type='int tScene::tLodGroup::GetNumLodInfos() const' data-ref="_ZNK6tScene9tLodGroup14GetNumLodInfosEv">GetNumLodInfos</dfn>() <em>const</em>																							{ <b>return</b> <a class="tu member field" href="#tScene::tLodGroup::LodParams" title='tScene::tLodGroup::LodParams' data-use='m' data-ref="tScene::tLodGroup::LodParams">LodParams</a>.<a class="ref fn" href="../../../Foundation/Inc/Foundation/tList.h.html#_ZNK7tItList11GetNumItemsEv" title='tItList::GetNumItems' data-ref="_ZNK7tItList11GetNumItemsEv">GetNumItems</a>(); }&nbsp</td></tr>
+<tr><th id="57">57</th><td>&nbsp</td></tr>
+<tr><th id="58">58</th><td>	<i  data-doc="_ZN6tScene9tLodGroup4SortEv">// This call will sort all the lod params from highest threshold to lowest.</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td>	<em>void</em> <dfn class="tu decl def fn" id="_ZN6tScene9tLodGroup4SortEv" title='tScene::tLodGroup::Sort' data-type='void tScene::tLodGroup::Sort()' data-ref="_ZN6tScene9tLodGroup4SortEv">Sort</dfn>()																											{ <a class="tu member field" href="#tScene::tLodGroup::LodParams" title='tScene::tLodGroup::LodParams' data-use='m' data-ref="tScene::tLodGroup::LodParams">LodParams</a>.<a class="ref fn" href="../../../Foundation/Inc/Foundation/tList.h.html#_ZN7tItList4SortETL0__18tListSortAlgorithm" title='tItList::Sort' data-ref="_ZN7tItList4SortETL0__18tListSortAlgorithm">Sort</a>(<span class='inlayHint'>compare:&nbsp;</span><a class="tu member fn" href="#_ZN6tScene9tLodGroup16ThresholdCompareERKNS_9tLodParamES3_" title='tScene::tLodGroup::ThresholdCompare' data-use='r' data-ref="_ZN6tScene9tLodGroup16ThresholdCompareERKNS_9tLodParamES3_">ThresholdCompare</a>); }&nbsp</td></tr>
+<tr><th id="60">60</th><td>	<a class="type" href="../../../Foundation/Inc/Foundation/tList.h.html#tItList" title='tItList' data-ref="tItList">tItList</a>&lt;<a class="type" href="#tScene::tLodParam" title='tScene::tLodParam' data-ref="tScene::tLodParam">tLodParam</a>&gt; <dfn class="tu decl field" id="tScene::tLodGroup::LodParams" title='tScene::tLodGroup::LodParams' data-type='tItList&lt;tScene::tLodParam&gt;' data-ref="tScene::tLodGroup::LodParams">LodParams</dfn>;&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td><b>private</b>:&nbsp</td></tr>
+<tr><th id="63">63</th><td>	<i  data-doc="_ZN6tScene9tLodGroup16ThresholdCompareERKNS_9tLodParamES3_">// Implements a &gt; b so the list is sorted in descending order.</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td>	<b>inline</b> <em>static</em> <em>bool</em> <dfn class="tu decl def fn" id="_ZN6tScene9tLodGroup16ThresholdCompareERKNS_9tLodParamES3_" title='tScene::tLodGroup::ThresholdCompare' data-type='static bool tScene::tLodGroup::ThresholdCompare(const tScene::tLodParam &amp; a, const tScene::tLodParam &amp; b)' data-ref="_ZN6tScene9tLodGroup16ThresholdCompareERKNS_9tLodParamES3_">ThresholdCompare</dfn>(<em>const</em> <a class="type" href="#tScene::tLodParam" title='tScene::tLodParam' data-ref="tScene::tLodParam">tLodParam</a>&amp; <dfn class="local col3 decl" id="3a" title='a' data-type='const tScene::tLodParam &amp;' data-ref="3a">a</dfn>, <em>const</em> <a class="type" href="#tScene::tLodParam" title='tScene::tLodParam' data-ref="tScene::tLodParam">tLodParam</a>&amp; <dfn class="local col4 decl" id="4b" title='b' data-type='const tScene::tLodParam &amp;' data-ref="4b">b</dfn>)											{ <b>return</b> (<a class="local col3 ref" href="#3a" title='a' data-ref="3a">a</a>.<a class="tu ref field" href="#tScene::tLodParam::Threshold" title='tScene::tLodParam::Threshold' data-use='r' data-ref="tScene::tLodParam::Threshold">Threshold</a> &gt; <a class="local col4 ref" href="#4b" title='b' data-ref="4b">b</a>.<a class="tu ref field" href="#tScene::tLodParam::Threshold" title='tScene::tLodParam::Threshold' data-use='r' data-ref="tScene::tLodParam::Threshold">Threshold</a>) ? <b>true</b> : <b>false</b>; }&nbsp</td></tr>
+<tr><th id="65">65</th><td>};&nbsp</td></tr>
+<tr><th id="66">66</th><td>&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td>}&nbsp</td></tr>
+<tr><th id="69">69</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

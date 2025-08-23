@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/locale_conv.h' l='471' ll='486' type='std::streamsize std::wbuffer_convert::xsputn(const typename _Wide_streambuf::char_type * __s, std::streamsize __n)'/>

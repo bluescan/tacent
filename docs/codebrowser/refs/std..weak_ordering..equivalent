@@ -1,0 +1,7 @@
+<dec f='include/c++/11/compare' l='168' type='const std::weak_ordering'/>
+<def f='include/c++/11/compare' l='227' ll='228' type='const std::weak_ordering'/>
+<use f='include/c++/11/compare' l='368' u='r' c='_ZNSt8__detail16__common_cmp_catEv'/>
+<use f='include/c++/11/compare' l='551' u='r' c='_ZNSt10__cmp_cust18__fp_weak_orderingET_S0_'/>
+<use f='include/c++/11/compare' l='562' u='r' c='_ZNSt10__cmp_cust18__fp_weak_orderingET_S0_'/>
+<use f='include/c++/11/compare' l='802' u='r' c='_ZNKSt10__cmp_cust14_Weak_fallbackclEOT_OT0_'/>
+<use f='include/c++/11/compare' l='907' u='r' c='_ZNKSt8__detail10_Synth3wayclERKT_RKT0_'/>

@@ -1,0 +1,6 @@
+<dec f='include/semaphore.h' l='55' type='int sem_wait(sem_t * __sem)'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='81' u='c' c='_ZNSt20__platform_semaphore10_M_acquireEv'/>
+<doc f='include/semaphore.h' l='51'>/* Wait for SEM being posted.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

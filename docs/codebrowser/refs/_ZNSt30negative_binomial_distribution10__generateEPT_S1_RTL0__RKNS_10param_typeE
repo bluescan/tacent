@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.h' l='4330' ll='4334' type='void std::negative_binomial_distribution::__generate(std::negative_binomial_distribution::result_type * __f, std::negative_binomial_distribution::result_type * __t, _UniformRandomNumberGenerator &amp; __urng, const std::negative_binomial_distribution::param_type &amp; __p)'/>

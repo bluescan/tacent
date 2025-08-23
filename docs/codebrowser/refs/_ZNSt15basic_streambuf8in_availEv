@@ -1,0 +1,10 @@
+<def f='include/c++/11/streambuf' l='288' ll='293' type='std::streamsize std::basic_streambuf::in_avail()'/>
+<doc f='include/c++/11/streambuf' l='280'>/**
+       *  @brief  Looking ahead into the stream.
+       *  @return  The number of characters available.
+       *
+       *  If a read position is available, returns the number of characters
+       *  available for reading before the buffer must be refilled.
+       *  Otherwise returns the derived @c showmanyc().
+      */</doc>
+<use f='include/c++/11/bits/locale_conv.h' l='501' u='c' c='_ZNSt15wbuffer_convert11_M_conv_getEv'/>

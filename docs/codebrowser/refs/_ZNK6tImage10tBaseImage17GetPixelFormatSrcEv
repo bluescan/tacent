@@ -1,0 +1,4 @@
+<def f='Modules/Image/Inc/Image/tBaseImage.h' l='91' type='tImage::tPixelFormat tImage::tBaseImage::GetPixelFormatSrc() const'/>
+<doc f='Modules/Image/Inc/Image/tBaseImage.h' l='88'>// Returns the original (source) pixel format of the image. The source may be a file, or a buffer in memory, or some
+	// other object like a picture. This format is only modified if you reload or set an image from new data. Saving to
+	// a file does not modify this.</doc>

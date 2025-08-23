@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/random.h' l='333' ll='335' type='static std::linear_congruential_engine::result_type std::linear_congruential_engine::min()'/>
+<doc f='include/c++/11/bits/random.h' l='327'>/**
+       * @brief Gets the smallest possible value in the output range.
+       *
+       * The minimum depends on the @p __c parameter: if it is zero, the
+       * minimum generated must be &gt; 0, otherwise 0 is allowed.
+       */</doc>

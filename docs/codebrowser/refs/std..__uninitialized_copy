@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_uninitialized.h' l='81' ll='101'/>
+<def f='include/c++/11/bits/stl_uninitialized.h' l='103' ll='111'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='104'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='148' c='_ZSt18uninitialized_copyT_S_T0_'/>
+<size>1</size>
+<fun r='_ZNSt20__uninitialized_copy13__uninit_copyETL0__S0_TL0_0_'/>
+<fun r='_ZNSt20__uninitialized_copyILb1EE13__uninit_copyET_S1_T0_'/>

@@ -1,0 +1,2 @@
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='156' type='void tImage::tMetaDatum::Clear()'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='263' u='c' c='_ZN6tImage9tMetaData5ClearEv'/>

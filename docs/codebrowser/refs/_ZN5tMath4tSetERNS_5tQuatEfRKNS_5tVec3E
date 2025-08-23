@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='228' type='void tMath::tSet(tMath::tQuat &amp; d, float r, const tMath::tVec3 &amp; v)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='228'>/* Not axis-angle. */</doc>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='30' u='c' c='_ZN5tMath11tQuaternionC1EfNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='39' u='c' c='_ZN5tMath11tQuaternion3SetEfNS_5tVec3E'/>

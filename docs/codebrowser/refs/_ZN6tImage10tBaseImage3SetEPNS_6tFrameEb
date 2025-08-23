@@ -1,0 +1,21 @@
+<dec f='Modules/Image/Inc/Image/tBaseImage.h' l='66' type='bool tImage::tBaseImage::Set(tImage::tFrame * , bool steal = true)'/>
+<doc f='Modules/Image/Inc/Image/tBaseImage.h' l='63'>// For multi-frame image types (say an animated webp), the first frame is chosen. The &apos;steal&apos; bool tells the object
+	// whether it is allowed to take ownership of the supplied frame, or whether it must copy the data out of it.
+	// Returns true on success. Image will be invalid if false returned. If steal true, entire frame object is stolen.</doc>
+<ovr f='Modules/Image/Src/tImageAPNG.cpp' l='174' c='_ZN6tImage10tImageAPNG3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImageASTC.cpp' l='230' c='_ZN6tImage10tImageASTC3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImageBMP.cpp' l='498' c='_ZN6tImage9tImageBMP3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImageDDS.cpp' l='928' c='_ZN6tImage9tImageDDS3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImageEXR.cpp' l='334' c='_ZN6tImage9tImageEXR3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImageGIF.cpp' l='229' c='_ZN6tImage9tImageGIF3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImageHDR.cpp' l='419' c='_ZN6tImage9tImageHDR3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImageICO.cpp' l='216' c='_ZN6tImage9tImageICO3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImageJPG.cpp' l='217' c='_ZN6tImage9tImageJPG3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImageKTX.cpp' l='587' c='_ZN6tImage9tImageKTX3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImagePKM.cpp' l='318' c='_ZN6tImage9tImagePKM3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImagePNG.cpp' l='474' c='_ZN6tImage9tImagePNG3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImagePVR.cpp' l='689' c='_ZN6tImage9tImagePVR3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImageQOI.cpp' l='107' c='_ZN6tImage9tImageQOI3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImageTGA.cpp' l='301' c='_ZN6tImage9tImageTGA3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImageTIFF.cpp' l='181' c='_ZN6tImage10tImageTIFF3SetEPNS_6tFrameEb'/>
+<ovr f='Modules/Image/Src/tImageWEBP.cpp' l='268' c='_ZN6tImage10tImageWEBP3SetEPNS_6tFrameEb'/>

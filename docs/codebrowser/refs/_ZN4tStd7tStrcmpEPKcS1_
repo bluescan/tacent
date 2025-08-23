@@ -1,0 +1,7 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='61' type='int tStd::tStrcmp(const char * a, const char * b)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='62' u='c' c='_ZN4tStd7tStrcmpEPKDuS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='442' u='c' c='_ZN4tStd8tPstrcmpEPKcS1_'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='131' u='c' c='_ZN4tStd8tNstrcmpEPKcS1_'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='659' u='c' c='_ZN6tImage15tGetPixelFormatEPKc'/>
+<use f='Modules/Math/Src/tColour.cpp' l='134' u='c' c='_Z15tGetChannelTypePKc'/>
+<use f='Modules/Math/Src/tColour.cpp' l='138' u='c' c='_Z15tGetChannelTypePKc'/>

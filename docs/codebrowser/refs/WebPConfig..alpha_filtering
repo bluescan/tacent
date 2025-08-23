@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='119' type='int'/>
+<offset>416</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='118'>// 1 = compressed with WebP lossless). Default is 1.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='119'>// Predictive filtering method for alpha plane.</doc>

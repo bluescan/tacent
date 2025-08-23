@@ -1,0 +1,1 @@
+<dec f='include/c++/11/bits/fs_ops.h' l='382' type='std::filesystem::path std::filesystem::weakly_canonical(const std::filesystem::path &amp; __p, std::error_code &amp; __ec)'/>

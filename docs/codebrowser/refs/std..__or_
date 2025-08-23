@@ -1,0 +1,41 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='118' ll='121'/>
+<use f='include/c++/11/type_traits' l='119'/>
+<def f='include/c++/11/type_traits' l='123' ll='126'/>
+<def f='include/c++/11/type_traits' l='128' ll='131'/>
+<def f='include/c++/11/type_traits' l='133' ll='136'/>
+<use f='include/c++/11/type_traits' l='135'/>
+<use f='include/c++/11/type_traits' l='171'/>
+<use f='include/c++/11/type_traits' l='185'/>
+<use f='include/c++/11/type_traits' l='233' c='_ZSt26__is_complete_or_unboundedT_'/>
+<use f='include/c++/11/type_traits' l='558'/>
+<use f='include/c++/11/type_traits' l='565'/>
+<use f='include/c++/11/type_traits' l='571'/>
+<use f='include/c++/11/type_traits' l='578'/>
+<use f='include/c++/11/type_traits' l='588'/>
+<use f='include/c++/11/type_traits' l='618'/>
+<use f='include/c++/11/type_traits' l='661'/>
+<use f='include/c++/11/type_traits' l='859'/>
+<use f='include/c++/11/type_traits' l='862'/>
+<use f='include/c++/11/type_traits' l='913'/>
+<use f='include/c++/11/type_traits' l='916'/>
+<use f='include/c++/11/type_traits' l='1426'/>
+<use f='include/c++/11/type_traits' l='1467'/>
+<use f='include/c++/11/type_traits' l='2031'/>
+<use f='include/c++/11/type_traits' l='2469'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='48'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='97'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='136'/>
+<use f='include/c++/11/tuple' l='693'/>
+<use f='include/c++/11/bits/allocator.h' l='304'/>
+<use f='include/c++/11/bits/hashtable.h' l='2513'/>
+<use f='include/c++/11/bits/stl_algo.h' l='5855' c='_ZSt6sampleT_S_T0_T1_OT2_'/>
+<use f='include/c++/11/functional' l='765'/>
+<size>1</size>
+<use f='include/c++/11/chrono' l='520'/>
+<use f='include/c++/11/chrono' l='526'/>
+<use f='include/c++/11/bits/nested_exception.h' l='136'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='515'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='515'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='697'/>
+<use f='include/c++/11/sstream' l='79'/>

@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1162'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='2119' u='a'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1161'>/* Define to 1 if you have the `strtold&apos; function. */</doc>

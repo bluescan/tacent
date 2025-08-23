@@ -1,0 +1,4 @@
+<dec f='include/c++/11/condition_variable' l='96' type='void std::condition_variable::wait(unique_lock&lt;std::mutex&gt; &amp; __lock)'/>
+<use f='include/c++/11/condition_variable' l='103' u='c' c='_ZNSt18condition_variable4waitERSt11unique_lockISt5mutexET_'/>
+<use f='include/c++/11/condition_variable' l='313' u='c' c='_ZNSt3_V222condition_variable_any4waitERT_'/>
+<use f='include/c++/11/condition_variable' l='388' u='c' c='_ZNSt3_V222condition_variable_any4waitERT_St10stop_tokenT0_'/>

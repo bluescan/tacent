@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/struct_stat.h' l='63' type='__blkcnt_t'/>
+<offset>512</offset>
+<doc f='include/x86_64-linux-gnu/bits/struct_stat.h' l='63'>/* Number 512-byte blocks allocated. */</doc>

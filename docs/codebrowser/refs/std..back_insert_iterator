@@ -1,0 +1,12 @@
+<inh f='include/c++/11/bits/stl_iterator_base_types.h' l='127' c='std::iterator'/>
+<def f='include/c++/11/bits/stl_iterator.h' l='648' ll='721'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='736' c='_ZSt13back_inserterRT_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='738' c='_ZSt13back_inserterRT_'/>
+<mbr r='std::back_insert_iterator::container' t='_Container *'/>
+<fun r='_ZNSt20back_insert_iteratorC1Ev'/>
+<fun r='_ZNSt20back_insert_iteratorC1ERT_'/>
+<fun r='_ZNSt20back_insert_iteratoraSERKNT_10value_typeE'/>
+<fun r='_ZNSt20back_insert_iteratoraSEONT_10value_typeE'/>
+<fun r='_ZNSt20back_insert_iteratordeEv'/>
+<fun r='_ZNSt20back_insert_iteratorppEv'/>
+<fun r='_ZNSt20back_insert_iteratorppEi'/>

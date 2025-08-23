@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tHash.h' l='108' type='tuint256 tHash::tHashString256(const char * , tuint256 iv = HashIV256)'/>
+<def f='Modules/Foundation/Inc/Foundation/tHash.h' l='167' type='tuint256 tHash::tHashString256(const char * string, tuint256 iv = HashIV256)'/>

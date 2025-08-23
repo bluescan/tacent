@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/random.h' l='1815' ll='1816' type='void std::uniform_real_distribution::reset()'/>
+<doc f='include/c++/11/bits/random.h' l='1810'>/**
+       * @brief Resets the distribution state.
+       *
+       * Does nothing for the uniform real distribution.
+       */</doc>

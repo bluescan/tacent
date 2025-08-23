@@ -1,0 +1,6 @@
+<dec f='include/c++/11/chrono' l='2898' type='chrono::year'/>
+<use f='include/c++/11/chrono' l='2906' u='w' c='_ZNSt6chrono23year_month_weekday_lastC1ERKNS_4yearERKNS_5monthERKNS_12weekday_lastE'/>
+<use f='include/c++/11/chrono' l='2941' u='r' c='_ZNKSt6chrono23year_month_weekday_last4yearEv'/>
+<use f='include/c++/11/chrono' l='2958' u='r' c='_ZNKSt6chrono23year_month_weekday_lastcvNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2969' u='m' c='_ZNKSt6chrono23year_month_weekday_last2okEv'/>
+<offset>0</offset>

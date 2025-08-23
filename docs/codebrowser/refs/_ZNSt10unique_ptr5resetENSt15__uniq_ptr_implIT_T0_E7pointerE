@@ -1,0 +1,9 @@
+<use f='include/c++/11/bits/unique_ptr.h' l='388' u='c' c='_ZNSt10unique_ptraSEOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='397' u='c' c='_ZNSt10unique_ptraSEDn'/>
+<def f='include/c++/11/bits/unique_ptr.h' l='451' ll='457' type='void std::unique_ptr::reset(std::unique_ptr::pointer __p = std::unique_ptr::pointer())'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='445'>/** @brief Replace the stored pointer.
+       *
+       * @param __p  The new pointer to store.
+       *
+       * The deleter will be invoked if a pointer is already owned.
+       */</doc>

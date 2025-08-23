@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='287' type='void tMath::tABox::tABox(const tMath::tABox &amp; src)'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='105' u='c' c='_ZNK6tScene10tPolyModel18ComputeBoundingBoxEv'/>

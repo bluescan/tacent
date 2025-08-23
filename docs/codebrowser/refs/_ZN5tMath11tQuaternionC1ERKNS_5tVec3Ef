@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='31' type='void tMath::tQuaternion::tQuaternion(const tMath::tVec3 &amp; axis, float angle)'/>
+<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='31'>/* Assumes axis vector is normalized. */</doc>

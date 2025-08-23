@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tQuantize.h' l='26' type='2'/>
+<doc f='Modules/Image/Inc/Image/tQuantize.h' l='26'>// AKA NeuQuant. Supports from 2 to 256 colours. Best for 64 to 256.</doc>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='385' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='147' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='36' c='_ZN6tImage9tQuantize13GetMethodNameENS0_6MethodE'/>

@@ -1,0 +1,6 @@
+<dec f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='68' type='void tPipeline::tRule::AddDependencyDir(const tString &amp; dir, const tString &amp; extension = tString())'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='84' u='c' c='_ZN9tPipeline5tRule9AddDepDirERK7tStringS3_'/>
+<def f='Modules/Pipeline/Src/tRule.cpp' l='114' ll='122' type='void tPipeline::tRule::AddDependencyDir(const tString &amp; dir, const tString &amp; ext = tString())'/>
+<doc f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='65'>// Adds multiple dependencies. Does not act recursively on the directory. Extension can be something like &quot;txt&quot;.
+	// Throws a tRuleError if there are any problems. All dependencies that can be added will be. Checks for duplicate
+	// deps. Ignores hidden files and folders and will not add them or recurse into them.</doc>

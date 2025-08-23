@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='63'/>
+<use f='include/x86_64-linux-gnu/bits/types/sigevent_t.h' l='16' u='a'/>

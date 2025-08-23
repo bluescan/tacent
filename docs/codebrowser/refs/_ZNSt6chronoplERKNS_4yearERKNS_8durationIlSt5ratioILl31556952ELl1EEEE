@@ -1,0 +1,11 @@
+<use f='include/c++/11/chrono' l='1600' u='c' c='_ZNSt6chrono4yearpLERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<def f='include/c++/11/chrono' l='1658' ll='1660' type='std::chrono::year std::chrono::operator+(const std::chrono::year &amp; __x, const std::chrono::years &amp; __y)'/>
+<use f='include/c++/11/chrono' l='1664' u='c' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl31556952ELl1EEEERKNS_4yearE'/>
+<use f='include/c++/11/chrono' l='1668' u='c' c='_ZNSt6chronomiERKNS_4yearERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2267' u='c' c='_ZNSt6chronoplERKNS_10year_monthERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2268' u='c' c='_ZNSt6chronoplERKNS_10year_monthERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2292' u='c' c='_ZNSt6chronoplERKNS_10year_monthERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2430' u='c' c='_ZNSt6chronoplERKNS_14year_month_dayERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2666' u='c' c='_ZNSt6chronoplERKNS_19year_month_day_lastERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2854' u='c' c='_ZNSt6chronoplERKNS_18year_month_weekdayERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2998' u='c' c='_ZNSt6chronoplERKNS_23year_month_weekday_lastERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>

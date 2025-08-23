@@ -1,0 +1,25 @@
+<dec f='include/c++/11/sstream' l='998' type='std::basic_stringstream::__stringbuf_type'/>
+<use f='include/c++/11/sstream' l='1013' u='w' c='_ZNSt7__cxx1118basic_stringstreamC1Ev'/>
+<use f='include/c++/11/sstream' l='1014' c='_ZNSt7__cxx1118basic_stringstreamC1Ev'/>
+<use f='include/c++/11/sstream' l='1028' u='w' c='_ZNSt7__cxx1118basic_stringstreamC1ESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='1029' c='_ZNSt7__cxx1118basic_stringstreamC1ESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='1045' u='w' c='_ZNSt7__cxx1118basic_stringstreamC1ERKNS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='1046' c='_ZNSt7__cxx1118basic_stringstreamC1ERKNS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='1062' u='w' c='_ZNSt7__cxx1118basic_stringstreamC1EONS_18basic_stringstreamIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='1063' c='_ZNSt7__cxx1118basic_stringstreamC1EONS_18basic_stringstreamIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='1067' u='w' c='_ZNSt7__cxx1118basic_stringstreamC1ESt13_Ios_OpenmodeRKT1_'/>
+<use f='include/c++/11/sstream' l='1068' c='_ZNSt7__cxx1118basic_stringstreamC1ESt13_Ios_OpenmodeRKT1_'/>
+<use f='include/c++/11/sstream' l='1074' u='w' c='_ZNSt7__cxx1118basic_stringstreamC1EONS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='1075' c='_ZNSt7__cxx1118basic_stringstreamC1EONS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='1087' u='w' c='_ZNSt7__cxx1118basic_stringstreamC1ERKNS_12basic_stringIT_T0_TL0__EESt13_Ios_OpenmodeRKT1_'/>
+<use f='include/c++/11/sstream' l='1088' c='_ZNSt7__cxx1118basic_stringstreamC1ERKNS_12basic_stringIT_T0_TL0__EESt13_Ios_OpenmodeRKT1_'/>
+<use f='include/c++/11/sstream' l='1108' u='w' c='_ZNSt7__cxx1118basic_stringstreamaSEONS_18basic_stringstreamIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='1116' u='c' c='_ZNSt7__cxx1118basic_stringstream4swapERNS_18basic_stringstreamIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='1129' c='_ZNKSt7__cxx1118basic_stringstream5rdbufEv'/>
+<use f='include/c++/11/sstream' l='1137' u='c' c='_ZNKRSt7__cxx1118basic_stringstream3strEv'/>
+<use f='include/c++/11/sstream' l='1144' u='c' c='_ZNKSt7__cxx1118basic_stringstream3strERKTL0__'/>
+<use f='include/c++/11/sstream' l='1149' c='_ZNOSt7__cxx1118basic_stringstream3strEv'/>
+<use f='include/c++/11/sstream' l='1153' u='c' c='_ZNKSt7__cxx1118basic_stringstream4viewEv'/>
+<use f='include/c++/11/sstream' l='1164' u='c' c='_ZNSt7__cxx1118basic_stringstream3strERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='1172' u='c' c='_ZNSt7__cxx1118basic_stringstream3strERKNS_12basic_stringIT_T0_TL0__EE'/>
+<use f='include/c++/11/sstream' l='1177' u='c' c='_ZNSt7__cxx1118basic_stringstream3strEONS_12basic_stringIT_T0_T1_EE'/>

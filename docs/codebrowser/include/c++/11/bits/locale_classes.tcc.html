@@ -1,0 +1,317 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>locale_classes.tcc source code [include/c++/11/bits/locale_classes.tcc] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::collate,std::collate_byname "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/locale_classes.tcc'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='locale_classes.tcc.html'>locale_classes.tcc</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Locale support -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2007-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/locale_classes.tcc</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{locale}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i class="doc">// ISO C++ 14882: 22.1  Locales</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="34">ifndef</span> <span class="macro" data-ref="_M/_LOCALE_CLASSES_TCC">_LOCALE_CLASSES_TCC</span></u>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#define <dfn class="macro" id="_M/_LOCALE_CLASSES_TCC" data-ref="_M/_LOCALE_CLASSES_TCC">_LOCALE_CLASSES_TCC</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="40">40</th><td>{&nbsp</td></tr>
+<tr><th id="41">41</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td>  <b>template</b>&lt;<b>typename</b> _Facet&gt;&nbsp</td></tr>
+<tr><th id="44">44</th><td>    <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>::&nbsp</td></tr>
+<tr><th id="45">45</th><td>    <dfn class="decl def fn" id="_ZNSt6localeC1ERKS_PT_" title='std::locale::locale' data-ref="_ZNSt6localeC1ERKS_PT_">locale</dfn>(<em>const</em> <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&amp; <dfn class="local col6 decl" id="1056__other" title='__other' data-type='const std::locale &amp;' data-ref="1056__other">__other</dfn>, _Facet* <dfn class="local col7 decl" id="1057__f" title='__f' data-type='_Facet *' data-ref="1057__f">__f</dfn>)&nbsp</td></tr>
+<tr><th id="46">46</th><td>    {&nbsp</td></tr>
+<tr><th id="47">47</th><td>      <a class="member field" href="locale_classes.h.html#std::locale::_M_impl" title='std::locale::_M_impl' data-ref="std::locale::_M_impl">_M_impl</a> = <b>new</b> <a class="type" href="locale_classes.h.html#std::locale::_Impl" title='std::locale::_Impl' data-ref="std::locale::_Impl">_Impl</a><a class="ref fn" href="locale_classes.h.html#_ZNSt6locale5_ImplC1ERKS0_m" title='std::locale::_Impl::_Impl' data-ref="_ZNSt6locale5_ImplC1ERKS0_m">(</a>*<a class="local col6 ref" href="#1056__other" title='__other' data-ref="1056__other">__other</a>.<a class="member field" href="locale_classes.h.html#std::locale::_M_impl" title='std::locale::_M_impl' data-ref="std::locale::_M_impl">_M_impl</a>, <var>1</var>);&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td>      <a class="macro" href="exception_defines.h.html#40" title="try" data-ref="_M/__try">__try</a>&nbsp</td></tr>
+<tr><th id="50">50</th><td>	{ <a class="member field" href="locale_classes.h.html#std::locale::_M_impl" title='std::locale::_M_impl' data-ref="std::locale::_M_impl">_M_impl</a>-&gt;<a class="ref fn" href="locale_classes.h.html#_ZNSt6locale5_Impl16_M_install_facetEPKNS_2idEPKNS_5facetE" title='std::locale::_Impl::_M_install_facet' data-ref="_ZNSt6locale5_Impl16_M_install_facetEPKNS_2idEPKNS_5facetE">_M_install_facet</a>(&amp;_Facet::id, <a class="local col7 ref" href="#1057__f" title='__f' data-ref="1057__f">__f</a>); }&nbsp</td></tr>
+<tr><th id="51">51</th><td>      <a class="macro" href="exception_defines.h.html#41" title="catch(...)" data-ref="_M/__catch">__catch</a>(...)&nbsp</td></tr>
+<tr><th id="52">52</th><td>	{&nbsp</td></tr>
+<tr><th id="53">53</th><td>	  <a class="member field" href="locale_classes.h.html#std::locale::_M_impl" title='std::locale::_M_impl' data-ref="std::locale::_M_impl">_M_impl</a>-&gt;<a class="ref fn" href="locale_classes.h.html#_ZNSt6locale5_Impl19_M_remove_referenceEv" title='std::locale::_Impl::_M_remove_reference' data-ref="_ZNSt6locale5_Impl19_M_remove_referenceEv">_M_remove_reference</a>();&nbsp</td></tr>
+<tr><th id="54">54</th><td>	  <a class="macro" href="exception_defines.h.html#42" title="throw" data-ref="_M/__throw_exception_again">__throw_exception_again</a>;&nbsp</td></tr>
+<tr><th id="55">55</th><td>	}&nbsp</td></tr>
+<tr><th id="56">56</th><td>      <b>delete</b> [] <a class="member field" href="locale_classes.h.html#std::locale::_M_impl" title='std::locale::_M_impl' data-ref="std::locale::_M_impl">_M_impl</a>-&gt;<a class="ref field" href="locale_classes.h.html#std::locale::_Impl::_M_names" title='std::locale::_Impl::_M_names' data-ref="std::locale::_Impl::_M_names">_M_names</a>[<var>0</var>];&nbsp</td></tr>
+<tr><th id="57">57</th><td>      <a class="member field" href="locale_classes.h.html#std::locale::_M_impl" title='std::locale::_M_impl' data-ref="std::locale::_M_impl">_M_impl</a>-&gt;<a class="ref field" href="locale_classes.h.html#std::locale::_Impl::_M_names" title='std::locale::_Impl::_M_names' data-ref="std::locale::_Impl::_M_names">_M_names</a>[<var>0</var>] = <var>0</var>;   <i>// Unnamed.</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td>    }&nbsp</td></tr>
+<tr><th id="59">59</th><td>&nbsp</td></tr>
+<tr><th id="60">60</th><td>  <b>template</b>&lt;<b>typename</b> _Facet&gt;&nbsp</td></tr>
+<tr><th id="61">61</th><td>    <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&nbsp</td></tr>
+<tr><th id="62">62</th><td>    <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>::&nbsp</td></tr>
+<tr><th id="63">63</th><td>    <dfn class="decl def fn" id="_ZNKSt6locale7combineERKS_" title='std::locale::combine' data-ref="_ZNKSt6locale7combineERKS_">combine</dfn>(<em>const</em> <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&amp; <dfn class="local col8 decl" id="1058__other" title='__other' data-type='const std::locale &amp;' data-ref="1058__other">__other</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="64">64</th><td>    {&nbsp</td></tr>
+<tr><th id="65">65</th><td>      <a class="type" href="locale_classes.h.html#std::locale::_Impl" title='std::locale::_Impl' data-ref="std::locale::_Impl">_Impl</a>* <dfn class="local col9 decl" id="1059__tmp" title='__tmp' data-type='std::locale::_Impl *' data-ref="1059__tmp">__tmp</dfn> = <b>new</b> <a class="type" href="locale_classes.h.html#std::locale::_Impl" title='std::locale::_Impl' data-ref="std::locale::_Impl">_Impl</a><a class="ref fn" href="locale_classes.h.html#_ZNSt6locale5_ImplC1ERKS0_m" title='std::locale::_Impl::_Impl' data-ref="_ZNSt6locale5_ImplC1ERKS0_m">(</a>*<a class="member field" href="locale_classes.h.html#std::locale::_M_impl" title='std::locale::_M_impl' data-ref="std::locale::_M_impl">_M_impl</a>, <var>1</var>);&nbsp</td></tr>
+<tr><th id="66">66</th><td>      <a class="macro" href="exception_defines.h.html#40" title="try" data-ref="_M/__try">__try</a>&nbsp</td></tr>
+<tr><th id="67">67</th><td>	{&nbsp</td></tr>
+<tr><th id="68">68</th><td>	  <a class="local col9 ref" href="#1059__tmp" title='__tmp' data-ref="1059__tmp">__tmp</a>-&gt;<a class="ref fn" href="locale_classes.h.html#_ZNSt6locale5_Impl16_M_replace_facetEPKS0_PKNS_2idE" title='std::locale::_Impl::_M_replace_facet' data-ref="_ZNSt6locale5_Impl16_M_replace_facetEPKS0_PKNS_2idE">_M_replace_facet</a>(<a class="local col8 ref" href="#1058__other" title='__other' data-ref="1058__other">__other</a>.<a class="member field" href="locale_classes.h.html#std::locale::_M_impl" title='std::locale::_M_impl' data-ref="std::locale::_M_impl">_M_impl</a>, &amp;_Facet::id);&nbsp</td></tr>
+<tr><th id="69">69</th><td>	}&nbsp</td></tr>
+<tr><th id="70">70</th><td>      <a class="macro" href="exception_defines.h.html#41" title="catch(...)" data-ref="_M/__catch">__catch</a>(...)&nbsp</td></tr>
+<tr><th id="71">71</th><td>	{&nbsp</td></tr>
+<tr><th id="72">72</th><td>	  <a class="local col9 ref" href="#1059__tmp" title='__tmp' data-ref="1059__tmp">__tmp</a>-&gt;<a class="ref fn" href="locale_classes.h.html#_ZNSt6locale5_Impl19_M_remove_referenceEv" title='std::locale::_Impl::_M_remove_reference' data-ref="_ZNSt6locale5_Impl19_M_remove_referenceEv">_M_remove_reference</a>();&nbsp</td></tr>
+<tr><th id="73">73</th><td>	  <a class="macro" href="exception_defines.h.html#42" title="throw" data-ref="_M/__throw_exception_again">__throw_exception_again</a>;&nbsp</td></tr>
+<tr><th id="74">74</th><td>	}&nbsp</td></tr>
+<tr><th id="75">75</th><td>      <b>return</b> <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a><a class="ref fn" href="locale_classes.h.html#_ZNSt6localeC1EPNS_5_ImplE" title='std::locale::locale' data-ref="_ZNSt6localeC1EPNS_5_ImplE">(</a><a class="local col9 ref" href="#1059__tmp" title='__tmp' data-ref="1059__tmp">__tmp</a>);&nbsp</td></tr>
+<tr><th id="76">76</th><td>    }&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits, <b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="79">79</th><td>    <em>bool</em>&nbsp</td></tr>
+<tr><th id="80">80</th><td>    <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>::&nbsp</td></tr>
+<tr><th id="81">81</th><td>    <dfn class="decl def fn" id="_ZNKSt6localeclERKNSt7__cxx1112basic_stringIT_T0_T1_EES7_" title='std::locale::operator()' data-ref="_ZNKSt6localeclERKNSt7__cxx1112basic_stringIT_T0_T1_EES7_"><b>operator</b>()</dfn>(<em>const</em> <a class="type" href="stringfwd.h.html#std::basic_string" title='std::basic_string' data-ref="std::basic_string">basic_string</a>&lt;_CharT, _Traits, _Alloc&gt;&amp; <dfn class="local col0 decl" id="1060__s1" title='__s1' data-type='const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp;' data-ref="1060__s1">__s1</dfn>,&nbsp</td></tr>
+<tr><th id="82">82</th><td>	       <em>const</em> <a class="type" href="stringfwd.h.html#std::basic_string" title='std::basic_string' data-ref="std::basic_string">basic_string</a>&lt;_CharT, _Traits, _Alloc&gt;&amp; <dfn class="local col1 decl" id="1061__s2" title='__s2' data-type='const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp;' data-ref="1061__s2">__s2</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="83">83</th><td>    {&nbsp</td></tr>
+<tr><th id="84">84</th><td>      <b>typedef</b> <span class="namespace">std::</span><a class="type" href="localefwd.h.html#std::collate" title='std::collate' data-ref="std::collate">collate</a>&lt;_CharT&gt; <dfn class="local col2 typedef" id="1062__collate_type" title='__collate_type' data-type='std::collate&lt;_CharT&gt;' data-ref="1062__collate_type">__collate_type</dfn>;&nbsp</td></tr>
+<tr><th id="85">85</th><td>      <em>const</em> <a class="local col2 typedef" href="#1062__collate_type" title='__collate_type' data-type='std::collate&lt;_CharT&gt;' data-ref="1062__collate_type">__collate_type</a>&amp; <dfn class="local col3 decl" id="1063__collate" title='__collate' data-type='const __collate_type &amp;' data-ref="1063__collate">__collate</dfn> = use_facet&lt;<a class="local col2 typedef" href="#1062__collate_type" title='__collate_type' data-type='std::collate&lt;_CharT&gt;' data-ref="1062__collate_type">__collate_type</a>&gt;(*<b>this</b>);&nbsp</td></tr>
+<tr><th id="86">86</th><td>      <b>return</b> (<a class="local col3 ref" href="#1063__collate" title='__collate' data-ref="1063__collate">__collate</a>.compare(<a class="local col0 ref" href="#1060__s1" title='__s1' data-ref="1060__s1">__s1</a>.data(), <a class="local col0 ref" href="#1060__s1" title='__s1' data-ref="1060__s1">__s1</a>.data() + <a class="local col0 ref" href="#1060__s1" title='__s1' data-ref="1060__s1">__s1</a>.length(),&nbsp</td></tr>
+<tr><th id="87">87</th><td>				<a class="local col1 ref" href="#1061__s2" title='__s2' data-ref="1061__s2">__s2</a>.data(), <a class="local col1 ref" href="#1061__s2" title='__s2' data-ref="1061__s2">__s2</a>.data() + <a class="local col1 ref" href="#1061__s2" title='__s2' data-ref="1061__s2">__s2</a>.length()) &lt; <var>0</var>);&nbsp</td></tr>
+<tr><th id="88">88</th><td>    }&nbsp</td></tr>
+<tr><th id="89">89</th><td>&nbsp</td></tr>
+<tr><th id="90">90</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i class="doc">   *  <span class="command">@brief</span>  Test for the presence of a facet.</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><i class="doc">   *  <span class="command">@ingroup</span> <span class="verb">locales</span></i>&nbsp</td></tr>
+<tr><th id="93">93</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td><i class="doc">   *  has_facet tests the locale argument for the presence of the facet type</i>&nbsp</td></tr>
+<tr><th id="95">95</th><td><i class="doc">   *  provided as the template parameter.  Facets derived from the facet</i>&nbsp</td></tr>
+<tr><th id="96">96</th><td><i class="doc">   *  parameter will also return true.</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i class="doc">   *  <span class="command">@tparam</span>  <span class="arg">_Facet</span>  The facet type to test the presence of.</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__loc</span>  The locale to test.</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td><i class="doc">   *  <span class="command">@return</span>  true if<span class="command"> @p</span> <span class="arg">__loc</span> contains a facet of type _Facet, else false.</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td>  <b>template</b>&lt;<b>typename</b> _Facet&gt;&nbsp</td></tr>
+<tr><th id="103">103</th><td>    <em>bool</em>&nbsp</td></tr>
+<tr><th id="104">104</th><td>    <dfn class="decl def fn" id="_ZSt9has_facetRKSt6locale" title='std::has_facet' data-ref="_ZSt9has_facetRKSt6locale">has_facet</dfn>(<em>const</em> <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&amp; <dfn class="local col4 decl" id="1064__loc" title='__loc' data-type='const std::locale &amp;' data-ref="1064__loc">__loc</dfn>) <b>throw</b>()&nbsp</td></tr>
+<tr><th id="105">105</th><td>    {&nbsp</td></tr>
+<tr><th id="106">106</th><td>      <em>const</em> <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col5 decl" id="1065__i" title='__i' data-type='const std::size_t' data-ref="1065__i">__i</dfn> = _Facet::id._M_id();&nbsp</td></tr>
+<tr><th id="107">107</th><td>      <em>const</em> <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>::<a class="type" href="locale_classes.h.html#std::locale::facet" title='std::locale::facet' data-ref="std::locale::facet">facet</a>** <dfn class="local col6 decl" id="1066__facets" title='__facets' data-type='const locale::facet **' data-ref="1066__facets">__facets</dfn> = <a class="local col4 ref" href="#1064__loc" title='__loc' data-ref="1064__loc">__loc</a>.<a class="ref field" href="locale_classes.h.html#std::locale::_M_impl" title='std::locale::_M_impl' data-ref="std::locale::_M_impl">_M_impl</a>-&gt;<a class="ref field" href="locale_classes.h.html#std::locale::_Impl::_M_facets" title='std::locale::_Impl::_M_facets' data-ref="std::locale::_Impl::_M_facets">_M_facets</a>;&nbsp</td></tr>
+<tr><th id="108">108</th><td>      <b>return</b> (<a class="local col5 ref" href="#1065__i" title='__i' data-ref="1065__i">__i</a> &lt; <a class="local col4 ref" href="#1064__loc" title='__loc' data-ref="1064__loc">__loc</a>.<a class="ref field" href="locale_classes.h.html#std::locale::_M_impl" title='std::locale::_M_impl' data-ref="std::locale::_M_impl">_M_impl</a>-&gt;<a class="ref field" href="locale_classes.h.html#std::locale::_Impl::_M_facets_size" title='std::locale::_Impl::_M_facets_size' data-ref="std::locale::_Impl::_M_facets_size">_M_facets_size</a>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>#<span data-ppcond="109">if</span> <span class="macro" title="199711L" data-ref="_M/__cpp_rtti">__cpp_rtti</span></u>&nbsp</td></tr>
+<tr><th id="110">110</th><td>	      &amp;&amp; <b>dynamic_cast</b>&lt;<em>const</em> _Facet*&gt;(<a class="local col6 ref" href="#1066__facets" title='__facets' data-ref="1066__facets">__facets</a>[<a class="local col5 ref" href="#1065__i" title='__i' data-ref="1065__i">__i</a>]));&nbsp</td></tr>
+<tr><th id="111">111</th><td><u>#<span data-ppcond="109">else</span></u>&nbsp</td></tr>
+<tr><th id="112">112</th><td>              &amp;&amp; <b>static_cast</b>&lt;<em>const</em> _Facet*&gt;(__facets[__i]));&nbsp</td></tr>
+<tr><th id="113">113</th><td><u>#<span data-ppcond="109">endif</span></u>&nbsp</td></tr>
+<tr><th id="114">114</th><td>    }&nbsp</td></tr>
+<tr><th id="115">115</th><td>&nbsp</td></tr>
+<tr><th id="116">116</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td><i class="doc">   *  <span class="command">@brief</span>  Return a facet.</i>&nbsp</td></tr>
+<tr><th id="118">118</th><td><i class="doc">   *  <span class="command">@ingroup</span> <span class="verb">locales</span></i>&nbsp</td></tr>
+<tr><th id="119">119</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td><i class="doc">   *  use_facet looks for and returns a reference to a facet of type Facet</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td><i class="doc">   *  where Facet is the template parameter.  If has_facet(locale) is true,</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td><i class="doc">   *  there is a suitable facet to return.  It throws std::bad_cast if the</i>&nbsp</td></tr>
+<tr><th id="123">123</th><td><i class="doc">   *  locale doesn't contain a facet of type Facet.</i>&nbsp</td></tr>
+<tr><th id="124">124</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="125">125</th><td><i class="doc">   *  <span class="command">@tparam</span>  <span class="arg">_Facet</span>  The facet type to access.</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__loc</span>  The locale to use.</i>&nbsp</td></tr>
+<tr><th id="127">127</th><td><i class="doc">   *  <span class="command">@return</span>  Reference to facet of type Facet.</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td><i class="doc">   *  <span class="command">@throw</span>  std::bad_cast if<span class="command"> @p</span> <span class="arg">__loc</span> doesn't contain a facet of type _Facet.</i>&nbsp</td></tr>
+<tr><th id="129">129</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td>  <b>template</b>&lt;<b>typename</b> _Facet&gt;&nbsp</td></tr>
+<tr><th id="131">131</th><td>    <em>const</em> _Facet&amp;&nbsp</td></tr>
+<tr><th id="132">132</th><td>    <dfn class="decl def fn" id="_ZSt9use_facetRKSt6locale" title='std::use_facet' data-ref="_ZSt9use_facetRKSt6locale">use_facet</dfn>(<em>const</em> <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>&amp; <dfn class="local col7 decl" id="1067__loc" title='__loc' data-type='const std::locale &amp;' data-ref="1067__loc">__loc</dfn>)&nbsp</td></tr>
+<tr><th id="133">133</th><td>    {&nbsp</td></tr>
+<tr><th id="134">134</th><td>      <em>const</em> <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col8 decl" id="1068__i" title='__i' data-type='const std::size_t' data-ref="1068__i">__i</dfn> = _Facet::id._M_id();&nbsp</td></tr>
+<tr><th id="135">135</th><td>      <em>const</em> <a class="type" href="locale_classes.h.html#std::locale" title='std::locale' data-ref="std::locale">locale</a>::<a class="type" href="locale_classes.h.html#std::locale::facet" title='std::locale::facet' data-ref="std::locale::facet">facet</a>** <dfn class="local col9 decl" id="1069__facets" title='__facets' data-type='const locale::facet **' data-ref="1069__facets">__facets</dfn> = <a class="local col7 ref" href="#1067__loc" title='__loc' data-ref="1067__loc">__loc</a>.<a class="ref field" href="locale_classes.h.html#std::locale::_M_impl" title='std::locale::_M_impl' data-ref="std::locale::_M_impl">_M_impl</a>-&gt;<a class="ref field" href="locale_classes.h.html#std::locale::_Impl::_M_facets" title='std::locale::_Impl::_M_facets' data-ref="std::locale::_Impl::_M_facets">_M_facets</a>;&nbsp</td></tr>
+<tr><th id="136">136</th><td>      <b>if</b> (<a class="local col8 ref" href="#1068__i" title='__i' data-ref="1068__i">__i</a> &gt;= <a class="local col7 ref" href="#1067__loc" title='__loc' data-ref="1067__loc">__loc</a>.<a class="ref field" href="locale_classes.h.html#std::locale::_M_impl" title='std::locale::_M_impl' data-ref="std::locale::_M_impl">_M_impl</a>-&gt;<a class="ref field" href="locale_classes.h.html#std::locale::_Impl::_M_facets_size" title='std::locale::_Impl::_M_facets_size' data-ref="std::locale::_Impl::_M_facets_size">_M_facets_size</a> || !<a class="local col9 ref" href="#1069__facets" title='__facets' data-ref="1069__facets">__facets</a>[<a class="local col8 ref" href="#1068__i" title='__i' data-ref="1068__i">__i</a>])&nbsp</td></tr>
+<tr><th id="137">137</th><td>        <a class="ref fn" href="functexcept.h.html#_ZSt16__throw_bad_castv" title='std::__throw_bad_cast' data-ref="_ZSt16__throw_bad_castv">__throw_bad_cast</a>();&nbsp</td></tr>
+<tr><th id="138">138</th><td><u>#<span data-ppcond="138">if</span> <span class="macro" title="199711L" data-ref="_M/__cpp_rtti">__cpp_rtti</span></u>&nbsp</td></tr>
+<tr><th id="139">139</th><td>      <b>return</b> <b>dynamic_cast</b>&lt;<em>const</em> _Facet&amp;&gt;(*<a class="local col9 ref" href="#1069__facets" title='__facets' data-ref="1069__facets">__facets</a>[<a class="local col8 ref" href="#1068__i" title='__i' data-ref="1068__i">__i</a>]);&nbsp</td></tr>
+<tr><th id="140">140</th><td><u>#<span data-ppcond="138">else</span></u>&nbsp</td></tr>
+<tr><th id="141">141</th><td>      <b>return</b> <b>static_cast</b>&lt;<em>const</em> _Facet&amp;&gt;(*__facets[__i]);&nbsp</td></tr>
+<tr><th id="142">142</th><td><u>#<span data-ppcond="138">endif</span></u>&nbsp</td></tr>
+<tr><th id="143">143</th><td>    }&nbsp</td></tr>
+<tr><th id="144">144</th><td>&nbsp</td></tr>
+<tr><th id="145">145</th><td>&nbsp</td></tr>
+<tr><th id="146">146</th><td>  <i>// Generic version does nothing.</i>&nbsp</td></tr>
+<tr><th id="147">147</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="148">148</th><td>    <em>int</em>&nbsp</td></tr>
+<tr><th id="149">149</th><td>    <a class="type" href="localefwd.h.html#std::collate" title='std::collate' data-ref="std::collate">collate</a>&lt;_CharT&gt;::<dfn class="decl def fn" id="_ZNKSt7__cxx117collate10_M_compareEPKT_S3_" title='std::collate::_M_compare' data-ref="_ZNKSt7__cxx117collate10_M_compareEPKT_S3_">_M_compare</dfn>(<em>const</em> _CharT*, <em>const</em> _CharT*) <em>const</em> <b>throw</b> ()&nbsp</td></tr>
+<tr><th id="150">150</th><td>    { <b>return</b> <var>0</var>; }&nbsp</td></tr>
+<tr><th id="151">151</th><td>&nbsp</td></tr>
+<tr><th id="152">152</th><td>  <i>// Generic version does nothing.</i>&nbsp</td></tr>
+<tr><th id="153">153</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="154">154</th><td>    <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="155">155</th><td>    <a class="type" href="localefwd.h.html#std::collate" title='std::collate' data-ref="std::collate">collate</a>&lt;_CharT&gt;::<dfn class="decl def fn" id="_ZNKSt7__cxx117collate12_M_transformEPT_PKS1_m" title='std::collate::_M_transform' data-ref="_ZNKSt7__cxx117collate12_M_transformEPT_PKS1_m">_M_transform</dfn>(_CharT*, <em>const</em> _CharT*, <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>) <em>const</em> <b>throw</b> ()&nbsp</td></tr>
+<tr><th id="156">156</th><td>    { <b>return</b> <var>0</var>; }&nbsp</td></tr>
+<tr><th id="157">157</th><td>&nbsp</td></tr>
+<tr><th id="158">158</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="159">159</th><td>    <em>int</em>&nbsp</td></tr>
+<tr><th id="160">160</th><td>    <a class="type" href="localefwd.h.html#std::collate" title='std::collate' data-ref="std::collate">collate</a>&lt;_CharT&gt;::&nbsp</td></tr>
+<tr><th id="161">161</th><td>    <dfn class="virtual decl def fn" id="_ZNKSt7__cxx117collate10do_compareEPKT_S3_S3_S3_" title='std::collate::do_compare' data-ref="_ZNKSt7__cxx117collate10do_compareEPKT_S3_S3_S3_">do_compare</dfn>(<em>const</em> _CharT* <dfn class="local col0 decl" id="1070__lo1" title='__lo1' data-type='const _CharT *' data-ref="1070__lo1">__lo1</dfn>, <em>const</em> _CharT* <dfn class="local col1 decl" id="1071__hi1" title='__hi1' data-type='const _CharT *' data-ref="1071__hi1">__hi1</dfn>,&nbsp</td></tr>
+<tr><th id="162">162</th><td>	       <em>const</em> _CharT* <dfn class="local col2 decl" id="1072__lo2" title='__lo2' data-type='const _CharT *' data-ref="1072__lo2">__lo2</dfn>, <em>const</em> _CharT* <dfn class="local col3 decl" id="1073__hi2" title='__hi2' data-type='const _CharT *' data-ref="1073__hi2">__hi2</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="163">163</th><td>    {&nbsp</td></tr>
+<tr><th id="164">164</th><td>      <i>// strcoll assumes zero-terminated strings so we make a copy</i>&nbsp</td></tr>
+<tr><th id="165">165</th><td><i>      // and then put a zero at the end.</i>&nbsp</td></tr>
+<tr><th id="166">166</th><td>      <em>const</em> <a class="typedef" href="locale_classes.h.html#std::collate::string_type" title='std::collate::string_type' data-type='basic_string&lt;_CharT&gt;' data-ref="std::collate::string_type">string_type</a> <dfn class="local col4 decl" id="1074__one" title='__one' data-type='const std::collate::string_type' data-ref="1074__one">__one</dfn>(<a class="local col0 ref" href="#1070__lo1" title='__lo1' data-ref="1070__lo1">__lo1</a>, <a class="local col1 ref" href="#1071__hi1" title='__hi1' data-ref="1071__hi1">__hi1</a>);&nbsp</td></tr>
+<tr><th id="167">167</th><td>      <em>const</em> <a class="typedef" href="locale_classes.h.html#std::collate::string_type" title='std::collate::string_type' data-type='basic_string&lt;_CharT&gt;' data-ref="std::collate::string_type">string_type</a> <dfn class="local col5 decl" id="1075__two" title='__two' data-type='const std::collate::string_type' data-ref="1075__two">__two</dfn>(<a class="local col2 ref" href="#1072__lo2" title='__lo2' data-ref="1072__lo2">__lo2</a>, <a class="local col3 ref" href="#1073__hi2" title='__hi2' data-ref="1073__hi2">__hi2</a>);&nbsp</td></tr>
+<tr><th id="168">168</th><td>&nbsp</td></tr>
+<tr><th id="169">169</th><td>      <em>const</em> _CharT* <dfn class="local col6 decl" id="1076__p" title='__p' data-type='const _CharT *' data-ref="1076__p">__p</dfn> = <a class="local col4 ref" href="#1074__one" title='__one' data-ref="1074__one">__one</a>.c_str();&nbsp</td></tr>
+<tr><th id="170">170</th><td>      <em>const</em> _CharT* <dfn class="local col7 decl" id="1077__pend" title='__pend' data-type='const _CharT *' data-ref="1077__pend">__pend</dfn> = <a class="local col4 ref" href="#1074__one" title='__one' data-ref="1074__one">__one</a>.data() + <a class="local col4 ref" href="#1074__one" title='__one' data-ref="1074__one">__one</a>.length();&nbsp</td></tr>
+<tr><th id="171">171</th><td>      <em>const</em> _CharT* <dfn class="local col8 decl" id="1078__q" title='__q' data-type='const _CharT *' data-ref="1078__q">__q</dfn> = <a class="local col5 ref" href="#1075__two" title='__two' data-ref="1075__two">__two</a>.c_str();&nbsp</td></tr>
+<tr><th id="172">172</th><td>      <em>const</em> _CharT* <dfn class="local col9 decl" id="1079__qend" title='__qend' data-type='const _CharT *' data-ref="1079__qend">__qend</dfn> = <a class="local col5 ref" href="#1075__two" title='__two' data-ref="1075__two">__two</a>.data() + <a class="local col5 ref" href="#1075__two" title='__two' data-ref="1075__two">__two</a>.length();&nbsp</td></tr>
+<tr><th id="173">173</th><td>&nbsp</td></tr>
+<tr><th id="174">174</th><td>      <i>// strcoll stops when it sees a nul character so we break</i>&nbsp</td></tr>
+<tr><th id="175">175</th><td><i>      // the strings into zero-terminated substrings and pass those</i>&nbsp</td></tr>
+<tr><th id="176">176</th><td><i>      // to strcoll.</i>&nbsp</td></tr>
+<tr><th id="177">177</th><td>      <b>for</b> (;;)&nbsp</td></tr>
+<tr><th id="178">178</th><td>	{&nbsp</td></tr>
+<tr><th id="179">179</th><td>	  <em>const</em> <em>int</em> <dfn class="local col0 decl" id="1080__res" title='__res' data-type='const int' data-ref="1080__res">__res</dfn> = <a class="member fn" href="#_ZNKSt7__cxx117collate10_M_compareEPKT_S3_" title='std::collate::_M_compare' data-ref="_ZNKSt7__cxx117collate10_M_compareEPKT_S3_">_M_compare</a>(<a class="local col6 ref" href="#1076__p" title='__p' data-ref="1076__p">__p</a>, <a class="local col8 ref" href="#1078__q" title='__q' data-ref="1078__q">__q</a>);&nbsp</td></tr>
+<tr><th id="180">180</th><td>	  <b>if</b> (<a class="local col0 ref" href="#1080__res" title='__res' data-ref="1080__res">__res</a>)&nbsp</td></tr>
+<tr><th id="181">181</th><td>	    <b>return</b> <a class="local col0 ref" href="#1080__res" title='__res' data-ref="1080__res">__res</a>;&nbsp</td></tr>
+<tr><th id="182">182</th><td>&nbsp</td></tr>
+<tr><th id="183">183</th><td>	  <a class="local col6 ref" href="#1076__p" title='__p' data-ref="1076__p">__p</a> += <a class="type" href="stringfwd.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits">char_traits</a>&lt;_CharT&gt;::length(<a class="local col6 ref" href="#1076__p" title='__p' data-ref="1076__p">__p</a>);&nbsp</td></tr>
+<tr><th id="184">184</th><td>	  <a class="local col8 ref" href="#1078__q" title='__q' data-ref="1078__q">__q</a> += <a class="type" href="stringfwd.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits">char_traits</a>&lt;_CharT&gt;::length(<a class="local col8 ref" href="#1078__q" title='__q' data-ref="1078__q">__q</a>);&nbsp</td></tr>
+<tr><th id="185">185</th><td>	  <b>if</b> (<a class="local col6 ref" href="#1076__p" title='__p' data-ref="1076__p">__p</a> == <a class="local col7 ref" href="#1077__pend" title='__pend' data-ref="1077__pend">__pend</a> &amp;&amp; <a class="local col8 ref" href="#1078__q" title='__q' data-ref="1078__q">__q</a> == <a class="local col9 ref" href="#1079__qend" title='__qend' data-ref="1079__qend">__qend</a>)&nbsp</td></tr>
+<tr><th id="186">186</th><td>	    <b>return</b> <var>0</var>;&nbsp</td></tr>
+<tr><th id="187">187</th><td>	  <b>else</b> <b>if</b> (<a class="local col6 ref" href="#1076__p" title='__p' data-ref="1076__p">__p</a> == <a class="local col7 ref" href="#1077__pend" title='__pend' data-ref="1077__pend">__pend</a>)&nbsp</td></tr>
+<tr><th id="188">188</th><td>	    <b>return</b> -<var>1</var>;&nbsp</td></tr>
+<tr><th id="189">189</th><td>	  <b>else</b> <b>if</b> (<a class="local col8 ref" href="#1078__q" title='__q' data-ref="1078__q">__q</a> == <a class="local col9 ref" href="#1079__qend" title='__qend' data-ref="1079__qend">__qend</a>)&nbsp</td></tr>
+<tr><th id="190">190</th><td>	    <b>return</b> <var>1</var>;&nbsp</td></tr>
+<tr><th id="191">191</th><td>&nbsp</td></tr>
+<tr><th id="192">192</th><td>	  <a class="local col6 ref" href="#1076__p" title='__p' data-ref="1076__p">__p</a>++;&nbsp</td></tr>
+<tr><th id="193">193</th><td>	  <a class="local col8 ref" href="#1078__q" title='__q' data-ref="1078__q">__q</a>++;&nbsp</td></tr>
+<tr><th id="194">194</th><td>	}&nbsp</td></tr>
+<tr><th id="195">195</th><td>    }&nbsp</td></tr>
+<tr><th id="196">196</th><td>&nbsp</td></tr>
+<tr><th id="197">197</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="198">198</th><td>    <b>typename</b> <a class="type" href="localefwd.h.html#std::collate" title='std::collate' data-ref="std::collate">collate</a>&lt;_CharT&gt;::<a class="typedef" href="locale_classes.h.html#std::collate::string_type" title='std::collate::string_type' data-type='basic_string&lt;_CharT&gt;' data-ref="std::collate::string_type">string_type</a>&nbsp</td></tr>
+<tr><th id="199">199</th><td>    <a class="type" href="localefwd.h.html#std::collate" title='std::collate' data-ref="std::collate">collate</a>&lt;_CharT&gt;::&nbsp</td></tr>
+<tr><th id="200">200</th><td>    <dfn class="virtual decl def fn" id="_ZNKSt7__cxx117collate12do_transformEPKT_S3_" title='std::collate::do_transform' data-ref="_ZNKSt7__cxx117collate12do_transformEPKT_S3_">do_transform</dfn>(<em>const</em> _CharT* <dfn class="local col1 decl" id="1081__lo" title='__lo' data-type='const _CharT *' data-ref="1081__lo">__lo</dfn>, <em>const</em> _CharT* <dfn class="local col2 decl" id="1082__hi" title='__hi' data-type='const _CharT *' data-ref="1082__hi">__hi</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="201">201</th><td>    {&nbsp</td></tr>
+<tr><th id="202">202</th><td>      <a class="typedef" href="locale_classes.h.html#std::collate::string_type" title='std::collate::string_type' data-type='basic_string&lt;_CharT&gt;' data-ref="std::collate::string_type">string_type</a> <dfn class="local col3 decl" id="1083__ret" title='__ret' data-type='std::collate::string_type' data-ref="1083__ret">__ret</dfn>;&nbsp</td></tr>
+<tr><th id="203">203</th><td>&nbsp</td></tr>
+<tr><th id="204">204</th><td>      <i>// strxfrm assumes zero-terminated strings so we make a copy</i>&nbsp</td></tr>
+<tr><th id="205">205</th><td>      <em>const</em> <a class="typedef" href="locale_classes.h.html#std::collate::string_type" title='std::collate::string_type' data-type='basic_string&lt;_CharT&gt;' data-ref="std::collate::string_type">string_type</a> <dfn class="local col4 decl" id="1084__str" title='__str' data-type='const std::collate::string_type' data-ref="1084__str">__str</dfn>(<a class="local col1 ref" href="#1081__lo" title='__lo' data-ref="1081__lo">__lo</a>, <a class="local col2 ref" href="#1082__hi" title='__hi' data-ref="1082__hi">__hi</a>);&nbsp</td></tr>
+<tr><th id="206">206</th><td>&nbsp</td></tr>
+<tr><th id="207">207</th><td>      <em>const</em> _CharT* <dfn class="local col5 decl" id="1085__p" title='__p' data-type='const _CharT *' data-ref="1085__p">__p</dfn> = <a class="local col4 ref" href="#1084__str" title='__str' data-ref="1084__str">__str</a>.c_str();&nbsp</td></tr>
+<tr><th id="208">208</th><td>      <em>const</em> _CharT* <dfn class="local col6 decl" id="1086__pend" title='__pend' data-type='const _CharT *' data-ref="1086__pend">__pend</dfn> = <a class="local col4 ref" href="#1084__str" title='__str' data-ref="1084__str">__str</a>.data() + <a class="local col4 ref" href="#1084__str" title='__str' data-ref="1084__str">__str</a>.length();&nbsp</td></tr>
+<tr><th id="209">209</th><td>&nbsp</td></tr>
+<tr><th id="210">210</th><td>      <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col7 decl" id="1087__len" title='__len' data-type='std::size_t' data-ref="1087__len">__len</dfn> = (<a class="local col2 ref" href="#1082__hi" title='__hi' data-ref="1082__hi">__hi</a> - <a class="local col1 ref" href="#1081__lo" title='__lo' data-ref="1081__lo">__lo</a>) * <var>2</var>;&nbsp</td></tr>
+<tr><th id="211">211</th><td>&nbsp</td></tr>
+<tr><th id="212">212</th><td>      _CharT* <dfn class="local col8 decl" id="1088__c" title='__c' data-type='_CharT *' data-ref="1088__c">__c</dfn> = <b>new</b> _CharT[<a class="local col7 ref" href="#1087__len" title='__len' data-ref="1087__len">__len</a>];&nbsp</td></tr>
+<tr><th id="213">213</th><td>&nbsp</td></tr>
+<tr><th id="214">214</th><td>      <a class="macro" href="exception_defines.h.html#40" title="try" data-ref="_M/__try">__try</a>&nbsp</td></tr>
+<tr><th id="215">215</th><td>	{&nbsp</td></tr>
+<tr><th id="216">216</th><td>	  <i>// strxfrm stops when it sees a nul character so we break</i>&nbsp</td></tr>
+<tr><th id="217">217</th><td><i>	  // the string into zero-terminated substrings and pass those</i>&nbsp</td></tr>
+<tr><th id="218">218</th><td><i>	  // to strxfrm.</i>&nbsp</td></tr>
+<tr><th id="219">219</th><td>	  <b>for</b> (;;)&nbsp</td></tr>
+<tr><th id="220">220</th><td>	    {&nbsp</td></tr>
+<tr><th id="221">221</th><td>	      <i>// First try a buffer perhaps big enough.</i>&nbsp</td></tr>
+<tr><th id="222">222</th><td>	      <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col9 decl" id="1089__res" title='__res' data-type='std::size_t' data-ref="1089__res">__res</dfn> = <a class="member fn" href="#_ZNKSt7__cxx117collate12_M_transformEPT_PKS1_m" title='std::collate::_M_transform' data-ref="_ZNKSt7__cxx117collate12_M_transformEPT_PKS1_m">_M_transform</a>(<a class="local col8 ref" href="#1088__c" title='__c' data-ref="1088__c">__c</a>, <a class="local col5 ref" href="#1085__p" title='__p' data-ref="1085__p">__p</a>, <a class="local col7 ref" href="#1087__len" title='__len' data-ref="1087__len">__len</a>);&nbsp</td></tr>
+<tr><th id="223">223</th><td>	      <i>// If the buffer was not large enough, try again with the</i>&nbsp</td></tr>
+<tr><th id="224">224</th><td><i>	      // correct size.</i>&nbsp</td></tr>
+<tr><th id="225">225</th><td>	      <b>if</b> (<a class="local col9 ref" href="#1089__res" title='__res' data-ref="1089__res">__res</a> &gt;= <a class="local col7 ref" href="#1087__len" title='__len' data-ref="1087__len">__len</a>)&nbsp</td></tr>
+<tr><th id="226">226</th><td>		{&nbsp</td></tr>
+<tr><th id="227">227</th><td>		  <a class="local col7 ref" href="#1087__len" title='__len' data-ref="1087__len">__len</a> = <a class="local col9 ref" href="#1089__res" title='__res' data-ref="1089__res">__res</a> + <var>1</var>;&nbsp</td></tr>
+<tr><th id="228">228</th><td>		  <b>delete</b> [] <a class="local col8 ref" href="#1088__c" title='__c' data-ref="1088__c">__c</a>, <a class="local col8 ref" href="#1088__c" title='__c' data-ref="1088__c">__c</a> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="229">229</th><td>		  <a class="local col8 ref" href="#1088__c" title='__c' data-ref="1088__c">__c</a> = <b>new</b> _CharT[<a class="local col7 ref" href="#1087__len" title='__len' data-ref="1087__len">__len</a>];&nbsp</td></tr>
+<tr><th id="230">230</th><td>		  <a class="local col9 ref" href="#1089__res" title='__res' data-ref="1089__res">__res</a> = <a class="member fn" href="#_ZNKSt7__cxx117collate12_M_transformEPT_PKS1_m" title='std::collate::_M_transform' data-ref="_ZNKSt7__cxx117collate12_M_transformEPT_PKS1_m">_M_transform</a>(<a class="local col8 ref" href="#1088__c" title='__c' data-ref="1088__c">__c</a>, <a class="local col5 ref" href="#1085__p" title='__p' data-ref="1085__p">__p</a>, <a class="local col7 ref" href="#1087__len" title='__len' data-ref="1087__len">__len</a>);&nbsp</td></tr>
+<tr><th id="231">231</th><td>		}&nbsp</td></tr>
+<tr><th id="232">232</th><td>&nbsp</td></tr>
+<tr><th id="233">233</th><td>	      <a class="local col3 ref" href="#1083__ret" title='__ret' data-ref="1083__ret">__ret</a>.append(<a class="local col8 ref" href="#1088__c" title='__c' data-ref="1088__c">__c</a>, <a class="local col9 ref" href="#1089__res" title='__res' data-ref="1089__res">__res</a>);&nbsp</td></tr>
+<tr><th id="234">234</th><td>	      <a class="local col5 ref" href="#1085__p" title='__p' data-ref="1085__p">__p</a> += <a class="type" href="stringfwd.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits">char_traits</a>&lt;_CharT&gt;::length(<a class="local col5 ref" href="#1085__p" title='__p' data-ref="1085__p">__p</a>);&nbsp</td></tr>
+<tr><th id="235">235</th><td>	      <b>if</b> (<a class="local col5 ref" href="#1085__p" title='__p' data-ref="1085__p">__p</a> == <a class="local col6 ref" href="#1086__pend" title='__pend' data-ref="1086__pend">__pend</a>)&nbsp</td></tr>
+<tr><th id="236">236</th><td>		<b>break</b>;&nbsp</td></tr>
+<tr><th id="237">237</th><td>&nbsp</td></tr>
+<tr><th id="238">238</th><td>	      <a class="local col5 ref" href="#1085__p" title='__p' data-ref="1085__p">__p</a>++;&nbsp</td></tr>
+<tr><th id="239">239</th><td>	      <a class="local col3 ref" href="#1083__ret" title='__ret' data-ref="1083__ret">__ret</a>.push_back(_CharT());&nbsp</td></tr>
+<tr><th id="240">240</th><td>	    }&nbsp</td></tr>
+<tr><th id="241">241</th><td>	}&nbsp</td></tr>
+<tr><th id="242">242</th><td>      <a class="macro" href="exception_defines.h.html#41" title="catch(...)" data-ref="_M/__catch">__catch</a>(...)&nbsp</td></tr>
+<tr><th id="243">243</th><td>	{&nbsp</td></tr>
+<tr><th id="244">244</th><td>	  <b>delete</b> [] <a class="local col8 ref" href="#1088__c" title='__c' data-ref="1088__c">__c</a>;&nbsp</td></tr>
+<tr><th id="245">245</th><td>	  <a class="macro" href="exception_defines.h.html#42" title="throw" data-ref="_M/__throw_exception_again">__throw_exception_again</a>;&nbsp</td></tr>
+<tr><th id="246">246</th><td>	}&nbsp</td></tr>
+<tr><th id="247">247</th><td>&nbsp</td></tr>
+<tr><th id="248">248</th><td>      <b>delete</b> [] <a class="local col8 ref" href="#1088__c" title='__c' data-ref="1088__c">__c</a>;&nbsp</td></tr>
+<tr><th id="249">249</th><td>&nbsp</td></tr>
+<tr><th id="250">250</th><td>      <b>return</b> <a class="local col3 ref" href="#1083__ret" title='__ret' data-ref="1083__ret">__ret</a>;&nbsp</td></tr>
+<tr><th id="251">251</th><td>    }&nbsp</td></tr>
+<tr><th id="252">252</th><td>&nbsp</td></tr>
+<tr><th id="253">253</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="254">254</th><td>    <em>long</em>&nbsp</td></tr>
+<tr><th id="255">255</th><td>    <a class="type" href="localefwd.h.html#std::collate" title='std::collate' data-ref="std::collate">collate</a>&lt;_CharT&gt;::&nbsp</td></tr>
+<tr><th id="256">256</th><td>    <dfn class="virtual decl def fn" id="_ZNKSt7__cxx117collate7do_hashEPKT_S3_" title='std::collate::do_hash' data-ref="_ZNKSt7__cxx117collate7do_hashEPKT_S3_">do_hash</dfn>(<em>const</em> _CharT* <dfn class="local col0 decl" id="1090__lo" title='__lo' data-type='const _CharT *' data-ref="1090__lo">__lo</dfn>, <em>const</em> _CharT* <dfn class="local col1 decl" id="1091__hi" title='__hi' data-type='const _CharT *' data-ref="1091__hi">__hi</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="257">257</th><td>    {&nbsp</td></tr>
+<tr><th id="258">258</th><td>      <em>unsigned</em> <em>long</em> <dfn class="local col2 decl" id="1092__val" title='__val' data-type='unsigned long' data-ref="1092__val">__val</dfn> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="259">259</th><td>      <b>for</b> (; <a class="local col0 ref" href="#1090__lo" title='__lo' data-ref="1090__lo">__lo</a> &lt; <a class="local col1 ref" href="#1091__hi" title='__hi' data-ref="1091__hi">__hi</a>; ++<a class="local col0 ref" href="#1090__lo" title='__lo' data-ref="1090__lo">__lo</a>)&nbsp</td></tr>
+<tr><th id="260">260</th><td>	<a class="local col2 ref" href="#1092__val" title='__val' data-ref="1092__val">__val</a> =&nbsp</td></tr>
+<tr><th id="261">261</th><td>	  *<a class="local col0 ref" href="#1090__lo" title='__lo' data-ref="1090__lo">__lo</a> + ((<a class="local col2 ref" href="#1092__val" title='__val' data-ref="1092__val">__val</a> &lt;&lt; <var>7</var>)&nbsp</td></tr>
+<tr><th id="262">262</th><td>		   | (<a class="local col2 ref" href="#1092__val" title='__val' data-ref="1092__val">__val</a> &gt;&gt; (<span class="namespace">__gnu_cxx::</span><a class="type" href="../ext/numeric_traits.h.html#__gnu_cxx::__numeric_traits" title='__gnu_cxx::__numeric_traits' data-ref="__gnu_cxx::__numeric_traits">__numeric_traits</a>&lt;<em>unsigned</em> <em>long</em>&gt;::&nbsp</td></tr>
+<tr><th id="263">263</th><td>				<a class="ref" href="../ext/numeric_traits.h.html#__gnu_cxx::__numeric_traits_integer::__digits" title='__gnu_cxx::__numeric_traits_integer::__digits' data-ref="__gnu_cxx::__numeric_traits_integer::__digits">__digits</a> - <var>7</var>)));&nbsp</td></tr>
+<tr><th id="264">264</th><td>      <b>return</b> <b>static_cast</b>&lt;<em>long</em>&gt;(<a class="local col2 ref" href="#1092__val" title='__val' data-ref="1092__val">__val</a>);&nbsp</td></tr>
+<tr><th id="265">265</th><td>    }&nbsp</td></tr>
+<tr><th id="266">266</th><td>&nbsp</td></tr>
+<tr><th id="267">267</th><td>  <i>// Inhibit implicit instantiations for required instantiations,</i>&nbsp</td></tr>
+<tr><th id="268">268</th><td><i>  // which are defined via explicit instantiations elsewhere.</i>&nbsp</td></tr>
+<tr><th id="269">269</th><td><u>#<span data-ppcond="269">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#228" title="1" data-ref="_M/_GLIBCXX_EXTERN_TEMPLATE">_GLIBCXX_EXTERN_TEMPLATE</a></u>&nbsp</td></tr>
+<tr><th id="270">270</th><td>  <b>extern</b> <b>template</b> <b>class</b> <dfn class="type def" id="std::collate" title='std::collate' data-ref="std::collate"><a class="type" href="localefwd.h.html#std::collate" title='std::collate' data-ref="std::collate">collate</a></dfn>&lt;<em>char</em>&gt;;&nbsp</td></tr>
+<tr><th id="271">271</th><td>  <b>extern</b> <b>template</b> <b>class</b> <dfn class="type def" id="std::collate_byname" title='std::collate_byname' data-ref="std::collate_byname"><a class="type" href="localefwd.h.html#std::collate_byname" title='std::collate_byname' data-ref="std::collate_byname">collate_byname</a></dfn>&lt;<em>char</em>&gt;;&nbsp</td></tr>
+<tr><th id="272">272</th><td>&nbsp</td></tr>
+<tr><th id="273">273</th><td>  <b>extern</b> <b>template</b>&nbsp</td></tr>
+<tr><th id="274">274</th><td>    <em>const</em> collate&lt;<em>char</em>&gt;&amp;&nbsp</td></tr>
+<tr><th id="275">275</th><td>    use_facet&lt;collate&lt;<em>char</em>&gt; &gt;(<em>const</em> locale&amp;);&nbsp</td></tr>
+<tr><th id="276">276</th><td>&nbsp</td></tr>
+<tr><th id="277">277</th><td>  <b>extern</b> <b>template</b>&nbsp</td></tr>
+<tr><th id="278">278</th><td>    <em>bool</em>&nbsp</td></tr>
+<tr><th id="279">279</th><td>    has_facet&lt;collate&lt;<em>char</em>&gt; &gt;(<em>const</em> locale&amp;);&nbsp</td></tr>
+<tr><th id="280">280</th><td>&nbsp</td></tr>
+<tr><th id="281">281</th><td><u>#<span data-ppcond="281">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1797" data-ref="_M/_GLIBCXX_USE_WCHAR_T">_GLIBCXX_USE_WCHAR_T</a></u>&nbsp</td></tr>
+<tr><th id="282">282</th><td>  <b>extern</b> <b>template</b> <b>class</b> <dfn class="type def" id="std::collate" title='std::collate' data-ref="std::collate"><a class="type" href="localefwd.h.html#std::collate" title='std::collate' data-ref="std::collate">collate</a></dfn>&lt;<em>wchar_t</em>&gt;;&nbsp</td></tr>
+<tr><th id="283">283</th><td>  <b>extern</b> <b>template</b> <b>class</b> <dfn class="type def" id="std::collate_byname" title='std::collate_byname' data-ref="std::collate_byname"><a class="type" href="localefwd.h.html#std::collate_byname" title='std::collate_byname' data-ref="std::collate_byname">collate_byname</a></dfn>&lt;<em>wchar_t</em>&gt;;&nbsp</td></tr>
+<tr><th id="284">284</th><td>&nbsp</td></tr>
+<tr><th id="285">285</th><td>  <b>extern</b> <b>template</b>&nbsp</td></tr>
+<tr><th id="286">286</th><td>    <em>const</em> collate&lt;<em>wchar_t</em>&gt;&amp;&nbsp</td></tr>
+<tr><th id="287">287</th><td>    use_facet&lt;collate&lt;<em>wchar_t</em>&gt; &gt;(<em>const</em> locale&amp;);&nbsp</td></tr>
+<tr><th id="288">288</th><td>&nbsp</td></tr>
+<tr><th id="289">289</th><td>  <b>extern</b> <b>template</b>&nbsp</td></tr>
+<tr><th id="290">290</th><td>    <em>bool</em>&nbsp</td></tr>
+<tr><th id="291">291</th><td>    has_facet&lt;collate&lt;<em>wchar_t</em>&gt; &gt;(<em>const</em> locale&amp;);&nbsp</td></tr>
+<tr><th id="292">292</th><td><u>#<span data-ppcond="281">endif</span></u>&nbsp</td></tr>
+<tr><th id="293">293</th><td><u>#<span data-ppcond="269">endif</span></u>&nbsp</td></tr>
+<tr><th id="294">294</th><td>&nbsp</td></tr>
+<tr><th id="295">295</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="296">296</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="297">297</th><td>&nbsp</td></tr>
+<tr><th id="298">298</th><td><u>#<span data-ppcond="34">endif</span></u>&nbsp</td></tr>
+<tr><th id="299">299</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tPool.h.html'>Modules/Foundation/Inc/Foundation/tPool.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

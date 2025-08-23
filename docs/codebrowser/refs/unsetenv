@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='664' type='int unsetenv(const char * __name)'/>
+<doc f='include/stdlib.h' l='663'>/* Remove the variable NAME from the environment.  */</doc>

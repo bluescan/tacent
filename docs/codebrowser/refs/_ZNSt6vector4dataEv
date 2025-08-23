@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1167' ll='1169' type='_Tp * std::vector::data()'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1163'>/**
+       *   Returns a pointer such that [data(), data() + size()) is a valid
+       *   range.  For a non-empty %vector, data() == &amp;front().
+       */</doc>

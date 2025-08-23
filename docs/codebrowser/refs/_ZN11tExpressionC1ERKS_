@@ -1,0 +1,7 @@
+<def f='Modules/System/Inc/System/tScript.h' l='58' type='void tExpression::tExpression(const tExpression &amp; src)'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='54'>// The copy constructor is fast. There&apos;s not much point passing tExpressions around by reference as they&apos;re only
+	// 8 to 12 bytes long (a pointer and an int). In fact, the default C++ behaviour of doing a memcopy works just fine,
+	// so there&apos;s not much point to this copy-cons other than to make it clearly understood that passing these things
+	// around by value is perfectly acceptable.</doc>
+<use f='Modules/System/Src/tScript.cpp' l='64' u='c' c='_ZNK11tExpression7CarCdrNEi'/>
+<use f='Modules/System/Src/tScript.cpp' l='69' u='c' c='_ZNK11tExpression7CarCdrNEi'/>

@@ -1,0 +1,24 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='68' u='w' c='_ZN12tChunkWriterC1ERK7tString11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='71' u='w' c='_ZN12tChunkWriterC1ERK7tString9tPlatform'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='79' u='w' c='_ZN12tChunkWriterC1EPhi11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='82' u='w' c='_ZN12tChunkWriterC1Ev'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='197' u='r' c='_ZNK12tChunkWriter18GetNumBytesWrittenEv'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='219' type='int'/>
+<offset>544</offset>
+<use f='Modules/System/Src/tChunk.cpp' l='177' u='r' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='190' u='r' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='191' u='r' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='191' u='w' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='192' u='r' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='192' u='w' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='196' u='r' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='216' u='r' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='218' u='r' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='220' u='w' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='247' u='r' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='276' u='r' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='278' u='r' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='280' u='w' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='317' u='r' c='_ZN12tChunkWriter5WriteEPKvi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='318' u='r' c='_ZN12tChunkWriter5WriteEPKvi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='319' u='w' c='_ZN12tChunkWriter5WriteEPKvi'/>

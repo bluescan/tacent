@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='79' type='-1'/>
+<use f='include/c++/11/bits/fs_ops.h' l='129' u='r' c='_ZNSt10filesystem6existsENS_11file_statusE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='144' u='r' c='_ZNSt10filesystem6existsERKNS_7__cxx114pathERSt10error_code'/>

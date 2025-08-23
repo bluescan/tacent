@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='213' macro='1' type='int isnanl(long double __value)'/>

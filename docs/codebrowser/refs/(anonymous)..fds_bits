@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/select.h' l='64' type='__fd_mask[16]'/>
+<offset>0</offset>
+<dec f='include/linux/posix_types.h' l='26' type='unsigned long[16]'/>
+<offset>0</offset>

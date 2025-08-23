@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='145' type='int'/>
+<offset>32</offset>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='145'>// equivalent to WEBP_FF_FRAME_COUNT.</doc>

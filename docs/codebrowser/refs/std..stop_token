@@ -1,0 +1,37 @@
+<def f='include/c++/11/stop_token' l='52' ll='474'/>
+<use f='include/c++/11/stop_token' l='57' c='_ZNSt10stop_tokenC1ERKS_'/>
+<use f='include/c++/11/stop_token' l='58' c='_ZNSt10stop_tokenC1EOS_'/>
+<use f='include/c++/11/stop_token' l='62' c='_ZNSt10stop_tokenaSERKS_'/>
+<use f='include/c++/11/stop_token' l='63' c='_ZNSt10stop_tokenaSERKS_'/>
+<use f='include/c++/11/stop_token' l='65' c='_ZNSt10stop_tokenaSEOS_'/>
+<use f='include/c++/11/stop_token' l='66' c='_ZNSt10stop_tokenaSEOS_'/>
+<use f='include/c++/11/stop_token' l='83' c='_ZNSt10stop_token4swapERS_'/>
+<use f='include/c++/11/stop_token' l='88' c='_ZSteqRKSt10stop_tokenS1_'/>
+<use f='include/c++/11/stop_token' l='88' c='_ZSteqRKSt10stop_tokenS1_'/>
+<use f='include/c++/11/stop_token' l='92' c='_ZSt4swapRSt10stop_tokenS0_'/>
+<use f='include/c++/11/stop_token' l='92' c='_ZSt4swapRSt10stop_tokenS0_'/>
+<use f='include/c++/11/stop_token' l='540' c='_ZNKSt11stop_source9get_tokenEv'/>
+<use f='include/c++/11/stop_token' l='543' c='_ZNKSt11stop_source9get_tokenEv'/>
+<use f='include/c++/11/stop_token' l='582' c='_ZNSt13stop_callbackC1ERKSt10stop_tokenOTL0__'/>
+<use f='include/c++/11/stop_token' l='596' c='_ZNSt13stop_callbackC1EOSt10stop_tokenOTL0__'/>
+<use f='include/c++/11/stop_token' l='646' c='std::{deductionguideforstop_callback}'/>
+<use f='include/c++/11/thread' l='193' c='_ZNKSt7jthread14get_stop_tokenEv'/>
+<use f='include/c++/11/thread' l='214' c='_ZNSt7jthread9_S_createERSt11stop_sourceOT_DpOT0_'/>
+<size>8</size>
+<doc f='include/c++/11/stop_token' l='51'>/// Allow testing whether a stop request has been made on a `stop_source`.</doc>
+<fun r='_ZNSt10stop_tokenC1Ev'/>
+<fun r='_ZNSt10stop_tokenC1ERKS_'/>
+<fun r='_ZNSt10stop_tokenC1EOS_'/>
+<fun r='_ZNSt10stop_tokenD1Ev'/>
+<fun r='_ZNSt10stop_tokenaSERKS_'/>
+<fun r='_ZNSt10stop_tokenaSEOS_'/>
+<fun r='_ZNKSt10stop_token13stop_possibleEv'/>
+<fun r='_ZNKSt10stop_token14stop_requestedEv'/>
+<fun r='_ZNSt10stop_token4swapERS_'/>
+<fun r='_ZNSt10stop_token8_S_yieldEv'/>
+<mbr r='std::stop_token::_M_state' o='0' t='std::stop_token::_Stop_state_ref'/>
+<fun r='_ZNSt10stop_tokenC1ERKNS_15_Stop_state_refE'/>
+<use f='include/c++/11/condition_variable' l='367' c='_ZNSt3_V222condition_variable_any4waitERT_St10stop_tokenT0_'/>
+<use f='include/c++/11/condition_variable' l='395' c='_ZNSt3_V222condition_variable_any10wait_untilERT_St10stop_tokenRKNSt6chrono10time_pointIT0_T1_EET2_'/>
+<use f='include/c++/11/condition_variable' l='430' c='_ZNSt3_V222condition_variable_any8wait_forERT_St10stop_tokenRKNSt6chrono8durationIT0_T1_EET2_'/>
+<size>8</size>

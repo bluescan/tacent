@@ -1,0 +1,21 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='107' ll='115'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='113' c='_ZN5tMath6tLine2C1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='469' c='_ZN5tMath22tIntersectFindLineLineERKNS_6tLine2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='469' c='_ZN5tMath22tIntersectFindLineLineERKNS_6tLine2ES2_RNS_8tVector2E'/>
+<size>16</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='106'>// A line goes through point A and point B.</doc>
+<fun r='_ZN5tMath6tLine2C1Ev'/>
+<fun r='_ZN5tMath6tLine2C1Effff'/>
+<fun r='_ZN5tMath6tLine2C1ERKNS_8tVector2ES3_'/>
+<fun r='_ZN5tMath6tLine2C1ERKNS_9tLineSeg2E'/>
+<fun r='_ZN5tMath6tLine2C1ERKS0_'/>
+<mbr r='tMath::tLine2::A' o='0' t='tMath::tVector2'/>
+<mbr r='tMath::tLine2::B' o='64' t='tMath::tVector2'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='23' c='_ZN5tMathL27IntersectFindLineLineHelperERKNS_6tLine2ES2_RfS3_'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='23' c='_ZN5tMathL27IntersectFindLineLineHelperERKNS_6tLine2ES2_RfS3_'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='275' c='_ZN5tMathL27IntersectFindLineLineHelperERKNS_6tLine2ES2_RfS3_'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='275' c='_ZN5tMathL27IntersectFindLineLineHelperERKNS_6tLine2ES2_RfS3_'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='303' c='_ZN5tMath22tIntersectFindLineLineERKNS_6tLine2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='303' c='_ZN5tMath22tIntersectFindLineLineERKNS_6tLine2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='334' c='_ZN5tMath20tIntersectFindRaySegERKNS_5tRay2ERKNS_9tLineSeg2ERNS_8tVector2E'/>
+<size>16</size>

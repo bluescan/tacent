@@ -1,0 +1,9 @@
+<def f='include/c++/11/iomanip' l='126' ll='128' type='std::_Setbase std::setbase(int __base)'/>
+<doc f='include/c++/11/iomanip' l='118'>/**
+   *  @brief  Manipulator for @c setf.
+   *  @param  __base  A numeric base.
+   *
+   *  Sent to a stream object, this manipulator changes the
+   *  @c ios_base::basefield flags to @c oct, @c dec, or @c hex when @a base
+   *  is 8, 10, or 16, accordingly, and to 0 if @a __base is any other value.
+  */</doc>

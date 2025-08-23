@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1422' type='S rgbcx::minimum(S a, S b)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1512' u='c' c='_ZN5rgbcx9bc1_block10pack_colorERKNS_7color32Ebj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1512' u='c' c='_ZN5rgbcx9bc1_block10pack_colorERKNS_7color32Ebj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1512' u='c' c='_ZN5rgbcx9bc1_block10pack_colorERKNS_7color32Ebj'/>

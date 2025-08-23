@@ -1,0 +1,2 @@
+<def f='Modules/System/Src/tPrint.cpp' l='81' type='bool'/>
+<use f='Modules/System/Src/tPrint.cpp' l='227' u='w' c='_ZN7tSystem31tSetSupplementaryDebuggerOutputEb'/>

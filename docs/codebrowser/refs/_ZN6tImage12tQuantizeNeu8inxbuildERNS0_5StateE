@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Src/tQuantizeNeu.cpp' l='116' type='void tImage::tQuantizeNeu::inxbuild(tImage::tQuantizeNeu::State &amp; )'/>
+<def f='Modules/Image/Src/tQuantizeNeu.cpp' l='198' ll='254' type='void tImage::tQuantizeNeu::inxbuild(tImage::tQuantizeNeu::State &amp; state)'/>
+<doc f='Modules/Image/Src/tQuantizeNeu.cpp' l='114'>// Insertion sort of network and building of netindex[0..255] (to do after unbias).
+	// We don&apos;t call this function since we do an exhaustive red-mean distance check.</doc>

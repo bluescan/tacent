@@ -1,0 +1,27 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='98' type='T * tList::Head() const'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='423' u='c' c='_ZN5tList6InsertEPT_TL0__'/>
+<use f='Modules/Image/Inc/Image/tImageAPNG.h' l='134' u='c' c='_ZNK6tImage10tImageAPNG8IsOpaqueEv'/>
+<use f='Modules/Image/Inc/Image/tImageEXR.h' l='118' u='c' c='_ZNK6tImage9tImageEXR8IsOpaqueEv'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='119' u='c' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='132' u='c' c='_ZN6tImage10tImageAPNG3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='144' u='c' c='_ZN6tImage10tImageAPNG3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='245' u='c' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='246' u='c' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='249' u='c' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='271' u='c' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='292' u='c' c='_ZN6tImage9tImageEXR3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='304' u='c' c='_ZN6tImage9tImageEXR3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='182' u='c' c='_ZN6tImage9tImageGIF3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='183' u='c' c='_ZN6tImage9tImageGIF3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='185' u='c' c='_ZN6tImage9tImageGIF3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='197' u='c' c='_ZN6tImage9tImageGIF3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='181' u='c' c='_ZN6tImage9tImageICO3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='139' u='c' c='_ZN6tImage10tImageTIFF3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='151' u='c' c='_ZN6tImage10tImageTIFF3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='234' u='c' c='_ZNK6tImage10tImageTIFF8IsOpaqueEv'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='226' u='c' c='_ZN6tImage10tImageWEBP3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='238' u='c' c='_ZN6tImage10tImageWEBP3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/System/Src/tChunk.cpp' l='120' u='c' c='_ZN12tChunkWriter5CloseEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='123' u='c' c='_ZN12tChunkWriter5CloseEv'/>
+<use f='Modules/System/Src/tMachine.cpp' l='266' u='c' c='_ZN7tSystem21tGetXDGMultipleEnvVarER5tListI11tStringItemERK7tStringS6_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='282' u='c' c='_ZN7tSystem21tGetXDGMultipleEnvVarER5tListI11tStringItemERK7tStringS6_'/>

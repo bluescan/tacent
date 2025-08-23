@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Src/tHash.cpp' l='232' type='uint32 tHash_MD5::RotateLeft(uint32 x, int n)'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='233' u='c' c='_ZN9tHash_MD52FFERjjjjjjj'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='234' u='c' c='_ZN9tHash_MD52GGERjjjjjjj'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='235' u='c' c='_ZN9tHash_MD52HHERjjjjjjj'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='236' u='c' c='_ZN9tHash_MD52IIERjjjjjjj'/>

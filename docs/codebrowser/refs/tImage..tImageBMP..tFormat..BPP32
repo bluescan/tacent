@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tImageBMP.h' l='85' type='2'/>
+<doc f='Modules/Image/Inc/Image/tImageBMP.h' l='85'>// RGBA. 24 bit colour and 8 bits opacity in the alpha channel.</doc>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='578' u='r' c='_ZNK6tImage9tImageBMP4SaveERK7tStringRKNS0_10SaveParamsE'/>

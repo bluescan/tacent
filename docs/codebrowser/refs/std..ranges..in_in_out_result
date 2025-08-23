@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='708' ll='729'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='719' c='_ZNKRSt6ranges16in_in_out_resultcvNS_16in_in_out_resultITL0__TL0_0_TL0_1_EEEv'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='727' c='_ZNOSt6ranges16in_in_out_resultcvNS_16in_in_out_resultITL0__TL0_0_TL0_1_EEEv'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='732'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2513'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2655'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2723'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2839'/>
+<mbr r='std::ranges::in_in_out_result::in1' t='_Iter1'/>
+<mbr r='std::ranges::in_in_out_result::in2' t='_Iter2'/>
+<mbr r='std::ranges::in_in_out_result::out' t='_Out'/>
+<fun r='_ZNKRSt6ranges16in_in_out_resultcvNS_16in_in_out_resultITL0__TL0_0_TL0_1_EEEv'/>
+<fun r='_ZNOSt6ranges16in_in_out_resultcvNS_16in_in_out_resultITL0__TL0_0_TL0_1_EEEv'/>

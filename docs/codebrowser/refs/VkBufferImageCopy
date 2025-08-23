@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3915' ll='3922'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3915'/>
+<size>56</size>
+<mbr r='VkBufferImageCopy::bufferOffset' o='0' t='VkDeviceSize'/>
+<mbr r='VkBufferImageCopy::bufferRowLength' o='64' t='uint32_t'/>
+<mbr r='VkBufferImageCopy::bufferImageHeight' o='96' t='uint32_t'/>
+<mbr r='VkBufferImageCopy::imageSubresource' o='128' t='VkImageSubresourceLayers'/>
+<mbr r='VkBufferImageCopy::imageOffset' o='256' t='VkOffset3D'/>
+<mbr r='VkBufferImageCopy::imageExtent' o='352' t='VkExtent3D'/>

@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='547' type='const std::locale::facet **'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='56' u='r' c='_ZNKSt11__use_cacheISt16__numpunct_cacheIT_EEclERKSt6locale'/>
+<offset>192</offset>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='46' u='r' c='_ZNKSt11__use_cacheISt18__moneypunct_cacheIT_XT0_EEEclERKSt6locale'/>

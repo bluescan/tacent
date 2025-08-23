@@ -1,0 +1,7 @@
+<def f='include/c++/11/streambuf' l='502' ll='503' type='void std::basic_streambuf::gbump(int __n)'/>
+<doc f='include/c++/11/streambuf' l='496'>/**
+       *  @brief  Moving the read position.
+       *  @param  __n  The delta by which to move.
+       *
+       *  This just advances the read position without returning any data.
+      */</doc>

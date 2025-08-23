@@ -1,0 +1,4 @@
+<dec f='include/features.h' l='480'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/os_defines.h' l='44' u='c'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/os_defines.h' l='53' u='c'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/os_defines.h' l='65' u='c'/>

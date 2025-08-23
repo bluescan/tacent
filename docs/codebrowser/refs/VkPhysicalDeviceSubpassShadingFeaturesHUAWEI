@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16280' ll='16284'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16280'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceSubpassShadingFeaturesHUAWEI::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceSubpassShadingFeaturesHUAWEI::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceSubpassShadingFeaturesHUAWEI::subpassShading' o='128' t='VkBool32'/>

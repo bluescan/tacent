@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11326'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11325'>// VK_AMD_shader_explicit_vertex_parameter is a preprocessor guard. Do not pass it to API calls.</doc>

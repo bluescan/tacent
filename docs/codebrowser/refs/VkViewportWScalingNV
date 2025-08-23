@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11949' ll='11952'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11949'/>
+<size>8</size>
+<mbr r='VkViewportWScalingNV::xcoeff' o='0' t='float'/>
+<mbr r='VkViewportWScalingNV::ycoeff' o='32' t='float'/>

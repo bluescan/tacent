@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='137' type='tMath::tVector3 tMath::tRandom::tGetPointInSphere(const tMath::tSphere &amp; , const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<def f='Modules/Math/Src/tRandom.cpp' l='278' ll='294' type='tMath::tVector3 tMath::tRandom::tGetPointInSphere(const tMath::tSphere &amp; sphere, const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>

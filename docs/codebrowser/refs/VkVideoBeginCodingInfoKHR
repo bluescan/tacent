@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8207' ll='8215'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8207'/>
+<size>56</size>
+<mbr r='VkVideoBeginCodingInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoBeginCodingInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkVideoBeginCodingInfoKHR::flags' o='128' t='VkVideoBeginCodingFlagsKHR'/>
+<mbr r='VkVideoBeginCodingInfoKHR::videoSession' o='192' t='VkVideoSessionKHR'/>
+<mbr r='VkVideoBeginCodingInfoKHR::videoSessionParameters' o='256' t='VkVideoSessionParametersKHR'/>
+<mbr r='VkVideoBeginCodingInfoKHR::referenceSlotCount' o='320' t='uint32_t'/>
+<mbr r='VkVideoBeginCodingInfoKHR::pReferenceSlots' o='384' t='const VkVideoReferenceSlotInfoKHR *'/>

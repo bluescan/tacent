@@ -1,0 +1,27 @@
+<def f='include/c++/11/bits/locale_conv.h' l='387' ll='607'/>
+<fun r='_ZNSt15wbuffer_convertC1Ev'/>
+<fun r='_ZNSt15wbuffer_convertC1EPSt15basic_streambufIcSt11char_traitsIcEEPT_NS5_10state_typeE'/>
+<fun r='_ZNSt15wbuffer_convertD1Ev'/>
+<fun r='_ZNSt15wbuffer_convertC1ERKSt15wbuffer_convertIT_T0_T1_E'/>
+<fun r='_ZNSt15wbuffer_convertaSERKSt15wbuffer_convertIT_T0_T1_E'/>
+<fun r='_ZNKSt15wbuffer_convert5rdbufEv'/>
+<fun r='_ZNSt15wbuffer_convert5rdbufEPSt15basic_streambufIcSt11char_traitsIcEE'/>
+<fun r='_ZNKSt15wbuffer_convert5stateEv'/>
+<fun r='_ZNSt15wbuffer_convert4syncEv'/>
+<fun r='_ZNSt15wbuffer_convert8overflowENSt15basic_streambufIT0_T1_E8int_typeE'/>
+<fun r='_ZNSt15wbuffer_convert9underflowEv'/>
+<fun r='_ZNSt15wbuffer_convert6xsputnEPKNSt15basic_streambufIT0_T1_E9char_typeEl'/>
+<fun r='_ZNSt15wbuffer_convert11_M_conv_getEv'/>
+<fun r='_ZNSt15wbuffer_convert6_M_putEz'/>
+<fun r='_ZNSt15wbuffer_convert6_M_putEPKcl'/>
+<fun r='_ZNSt15wbuffer_convert11_M_conv_putEv'/>
+<mbr r='std::wbuffer_convert::_M_buf' t='std::streambuf *'/>
+<mbr r='std::wbuffer_convert::_M_cvt' t='unique_ptr&lt;_Codecvt&gt;'/>
+<mbr r='std::wbuffer_convert::_M_state' t='std::wbuffer_convert::state_type'/>
+<smbr r='std::wbuffer_convert::_S_buffer_length' t='const std::streamsize'/>
+<smbr r='std::wbuffer_convert::_S_putback_length' t='const std::streamsize'/>
+<mbr r='std::wbuffer_convert::_M_put_area' t='_Elem[32]'/>
+<mbr r='std::wbuffer_convert::_M_get_area' t='_Elem[32]'/>
+<mbr r='std::wbuffer_convert::_M_unconv' t='std::streamsize'/>
+<mbr r='std::wbuffer_convert::_M_get_buf' t='char[29]'/>
+<mbr r='std::wbuffer_convert::_M_always_noconv' t='bool'/>

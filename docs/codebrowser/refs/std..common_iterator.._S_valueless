@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/stl_iterator.h' l='2098' u='r' c='_ZNKSt15common_iterator12_M_has_valueEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2117' u='r' c='_ZNSt15common_iterator9_M_assignEOTL0__'/>
+<def f='include/c++/11/bits/stl_iterator.h' l='2137' type='const unsigned char'/>

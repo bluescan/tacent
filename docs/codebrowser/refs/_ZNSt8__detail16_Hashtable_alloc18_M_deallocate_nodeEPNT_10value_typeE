@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/hashtable_policy.h' l='1847' type='void std::__detail::_Hashtable_alloc::_M_deallocate_node(std::__detail::_Hashtable_alloc::__node_ptr __n)'/>
+<def f='include/c++/11/bits/hashtable_policy.h' l='1890' ll='1896' type='void std::__detail::_Hashtable_alloc::_M_deallocate_node(std::__detail::_Hashtable_alloc::__node_ptr __n)'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1916' u='c' c='_ZNSt8__detail16_Hashtable_alloc19_M_deallocate_nodesEPNT_10value_typeE'/>
+<doc f='include/c++/11/bits/hashtable_policy.h' l='1845'>// Destroy the element within a node and deallocate the node.</doc>

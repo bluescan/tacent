@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1350' ll='1352' type='std::money_base::pattern std::moneypunct::do_pos_format() const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1340'>/**
+       *  @brief  Return pattern for money values.
+       *
+       *  This function returns a pattern describing the formatting of a
+       *  positive valued money amount.  This function is a hook for derived
+       *  classes to change the value returned.  @see pos_format() for
+       *  details.
+       *
+       *  @return  Pattern for money values.
+      */</doc>

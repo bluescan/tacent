@@ -1,0 +1,10 @@
+<def f='include/c++/11/streambuf' l='468' ll='472' type='void std::basic_streambuf::basic_streambuf&lt;_CharT, _Traits&gt;()'/>
+<doc f='include/c++/11/streambuf' l='459'>/**
+       *  @brief  Base constructor.
+       *
+       *  Only called from derived constructors, and sets up all the
+       *  buffer data to zero, including the pointers described in the
+       *  basic_streambuf class description.  Note that, as a result,
+       *  - the class starts with no read nor write positions available,
+       *  - this is not an error
+      */</doc>

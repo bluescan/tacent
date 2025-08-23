@@ -1,0 +1,2 @@
+<def f='Modules/System/Src/tRegex.cpp' l='544' ll='568' type='bool tSystem::tRegex::MatchClass(const tRegex::Node * node, char c) const'/>
+<use f='Modules/System/Src/tRegex.cpp' l='732' u='c' c='_ZNK7tSystem6tRegex9MatchNodeEPKNS0_4NodeEPKcS3_'/>

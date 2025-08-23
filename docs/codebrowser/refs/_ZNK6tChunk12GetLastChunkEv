@@ -1,0 +1,4 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='259' type='tChunk tChunk::GetLastChunk() const'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='273' u='c' c='_ZNK6tChunk4LastEv'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='257'>// Chunk should equal LastChunk for this one. Getting data will return an invalid tChunk. Use of this fn is
+	// optional as IsValid can be called after each GetNext.</doc>

@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tImageKTX.h' l='45' type='4'/>
+<doc f='Modules/Image/Inc/Image/tImageKTX.h' l='41'>// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2. Flag only applies when decode flag set and
+		// the file has been determined to be in linear-space. Linear-space is often determined by the pixel format
+		// HDR / floating-point formats (BC6, rgb16f/32f, etc) images. Assumes (colour) data is linear and puts it in
+		// gamma-space (brighter) for diaplay on a monitor.</doc>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='991' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1044' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1124' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/cxxabi_forced.h' l='53' type='void __cxxabiv1::__forced_unwind::__pure_dummy()'/>
+<doc f='include/c++/11/bits/cxxabi_forced.h' l='52'>// Prevent catch by value.</doc>

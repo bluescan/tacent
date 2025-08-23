@@ -1,0 +1,2 @@
+<def f='include/c++/11/array' l='338' ll='350' macro='1' type='typename enable_if&lt;__array_traits&lt;_Tp, _Nm&gt;::_Is_swappable::value&gt;::type std::swap(array&lt;_Tp, _Nm&gt; &amp; __one, array&lt;_Tp, _Nm&gt; &amp; __two)'/>
+<def f='include/c++/11/array' l='354' ll='356' type='typename enable_if&lt;!__array_traits&lt;_Tp, _Nm&gt;::_Is_swappable::value&gt;::type std::swap(array&lt;_Tp, _Nm&gt; &amp; , array&lt;_Tp, _Nm&gt; &amp; )'/>

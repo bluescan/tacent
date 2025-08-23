@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1194' type='int pthread_condattr_init(pthread_condattr_t * __attr)'/>
+<doc f='include/pthread.h' l='1193'>/* Initialize condition variable attribute ATTR.  */</doc>

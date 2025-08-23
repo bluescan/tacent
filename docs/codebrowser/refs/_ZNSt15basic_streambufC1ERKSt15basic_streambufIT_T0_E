@@ -1,0 +1,2 @@
+<dec f='include/c++/11/streambuf' l='810' type='void std::basic_streambuf::basic_streambuf&lt;_CharT, _Traits&gt;(const basic_streambuf&lt;_CharT, _Traits&gt; &amp; )'/>
+<def f='include/c++/11/streambuf' l='831' ll='833' type='void std::basic_streambuf::basic_streambuf&lt;_CharT, _Traits&gt;(const basic_streambuf&lt;_CharT, _Traits&gt; &amp; )'/>

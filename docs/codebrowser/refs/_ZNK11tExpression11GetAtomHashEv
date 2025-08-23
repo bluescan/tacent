@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tScript.h' l='104' type='uint32 tExpression::GetAtomHash() const'/>
+<use f='Modules/System/Inc/System/tScript.h' l='105' u='c' c='_ZNK11tExpression4HashEv'/>

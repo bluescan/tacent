@@ -1,0 +1,37 @@
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='667' ll='676'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='667'/>
+<size>144</size>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='659'>/**
+ * @class ktxTexture1
+ * @~English
+ * @brief Class representing a KTX version 1 format texture.
+ *
+ * ktxTextures should be created only by one of the ktxTexture_Create*
+ * functions and these fields should be considered read-only.
+ */</doc>
+<mbr r='ktxTexture1::classId' o='0' t='class_id'/>
+<mbr r='ktxTexture1::vtbl' o='64' t='struct ktxTexture_vtbl *'/>
+<mbr r='ktxTexture1::vvtbl' o='128' t='struct ktxTexture_vvtbl *'/>
+<mbr r='ktxTexture1::_protected' o='192' t='struct ktxTexture_protected *'/>
+<mbr r='ktxTexture1::isArray' o='256' t='ktx_bool_t'/>
+<mbr r='ktxTexture1::isCubemap' o='264' t='ktx_bool_t'/>
+<mbr r='ktxTexture1::isCompressed' o='272' t='ktx_bool_t'/>
+<mbr r='ktxTexture1::generateMipmaps' o='280' t='ktx_bool_t'/>
+<mbr r='ktxTexture1::baseWidth' o='288' t='ktx_uint32_t'/>
+<mbr r='ktxTexture1::baseHeight' o='320' t='ktx_uint32_t'/>
+<mbr r='ktxTexture1::baseDepth' o='352' t='ktx_uint32_t'/>
+<mbr r='ktxTexture1::numDimensions' o='384' t='ktx_uint32_t'/>
+<mbr r='ktxTexture1::numLevels' o='416' t='ktx_uint32_t'/>
+<mbr r='ktxTexture1::numLayers' o='448' t='ktx_uint32_t'/>
+<mbr r='ktxTexture1::numFaces' o='480' t='ktx_uint32_t'/>
+<mbr r='ktxTexture1::orientation' o='512' t='struct ktxOrientation'/>
+<mbr r='ktxTexture1::kvDataHead' o='640' t='ktxHashList'/>
+<mbr r='ktxTexture1::kvDataLen' o='704' t='ktx_uint32_t'/>
+<mbr r='ktxTexture1::kvData' o='768' t='ktx_uint8_t *'/>
+<mbr r='ktxTexture1::dataSize' o='832' t='ktx_size_t'/>
+<mbr r='ktxTexture1::pData' o='896' t='ktx_uint8_t *'/>
+<mbr r='ktxTexture1::glFormat' o='960' t='ktx_uint32_t'/>
+<mbr r='ktxTexture1::glInternalformat' o='992' t='ktx_uint32_t'/>
+<mbr r='ktxTexture1::glBaseInternalformat' o='1024' t='ktx_uint32_t'/>
+<mbr r='ktxTexture1::glType' o='1056' t='ktx_uint32_t'/>
+<mbr r='ktxTexture1::_private' o='1088' t='struct ktxTexture1_private *'/>

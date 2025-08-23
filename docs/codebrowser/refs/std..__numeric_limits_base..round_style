@@ -1,0 +1,4 @@
+<def f='include/c++/11/limits' l='299' ll='300' type='const std::float_round_style'/>
+<doc f='include/c++/11/limits' l='296'>/** See std::float_round_style for more information.  This is only
+	meaningful for floating types; integer types will all be
+	round_toward_zero.  */</doc>

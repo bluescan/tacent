@@ -1,0 +1,12 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='284' type='float tMath::tSRGBToLinear(float srgbComponent)'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='998' ll='1007' type='float tMath::tSRGBToLinear(float srgbComponent)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1286' u='c' c='_ZN9tColour4f12SRGBToLinearEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1287' u='c' c='_ZN9tColour4f12SRGBToLinearEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1288' u='c' c='_ZN9tColour4f12SRGBToLinearEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1289' u='c' c='_ZN9tColour4f12SRGBToLinearEj'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='278'>// The slowest conversion but for high fidelity, the sRGB space is likely what the image was authored in. sRGB
+	// conversions do not use the pow function for the whole domain, and the amplitude is not quite 1, but generally
+	// speaking they us a gamma of 2.4 and 1/2.4 respectively.
+	//
+	// SRGBToLinear will darken  the image. Gamma = ~2.4   (decoding). Gamma expansion.
+	// LinearToSRGB Will lighten the image. Gamma = ~1/2.4 (encoding). Gamma compression.</doc>

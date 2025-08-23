@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPool.h' l='42' type='void * tMem::tAllocator::Malloc(int numBytes)'/>
+<ovr f='Modules/Foundation/Inc/Foundation/tPool.h' l='139' c='_ZN4tMem9tFastPool6MallocEi'/>

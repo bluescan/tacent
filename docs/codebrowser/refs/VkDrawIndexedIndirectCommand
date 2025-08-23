@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2917' ll='2923'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2917'/>
+<size>20</size>
+<mbr r='VkDrawIndexedIndirectCommand::indexCount' o='0' t='uint32_t'/>
+<mbr r='VkDrawIndexedIndirectCommand::instanceCount' o='32' t='uint32_t'/>
+<mbr r='VkDrawIndexedIndirectCommand::firstIndex' o='64' t='uint32_t'/>
+<mbr r='VkDrawIndexedIndirectCommand::vertexOffset' o='96' t='int32_t'/>
+<mbr r='VkDrawIndexedIndirectCommand::firstInstance' o='128' t='uint32_t'/>

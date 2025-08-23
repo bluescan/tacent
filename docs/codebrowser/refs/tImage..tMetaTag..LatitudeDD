@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='40' type='4'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='39'>// Geo Location Tags</doc>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='40'>//	float	Decimal degrees.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='274' u='m' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='663' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

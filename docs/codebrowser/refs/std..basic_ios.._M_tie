@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/basic_ios.h' l='96' type='basic_ostream&lt;_CharT, _Traits&gt; *'/>
+<use f='include/c++/11/bits/basic_ios.h' l='271' u='w' c='_ZNSt9basic_iosC1EPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.h' l='296' u='r' c='_ZNKSt9basic_ios3tieEv'/>
+<use f='include/c++/11/bits/basic_ios.h' l='309' u='r' c='_ZNSt9basic_ios3tieEPSt13basic_ostreamIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.h' l='310' u='w' c='_ZNSt9basic_ios3tieEPSt13basic_ostreamIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.h' l='461' u='w' c='_ZNSt9basic_iosC1Ev'/>
+<use f='include/c++/11/bits/basic_ios.h' l='499' c='_ZNSt9basic_ios4swapERSt9basic_iosIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='149' u='w' c='_ZNSt9basic_ios4initEPSt15basic_streambufIT_T0_E'/>

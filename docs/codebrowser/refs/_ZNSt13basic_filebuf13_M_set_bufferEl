@@ -1,0 +1,26 @@
+<def f='include/c++/11/fstream' l='463' ll='479' type='void std::basic_filebuf::_M_set_buffer(std::streamsize __off)'/>
+<use f='include/c++/11/bits/fstream.tcc' l='194' u='c' c='_ZNSt13basic_filebuf4openEPKcSt13_Ios_Openmode'/>
+<use f='include/c++/11/bits/fstream.tcc' l='334' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='453' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='462' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='493' u='c' c='_ZNSt13basic_filebuf9pbackfailENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='572' u='c' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='581' u='c' c='_ZNSt13basic_filebuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='689' u='c' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='743' u='c' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='785' u='c' c='_ZNSt13basic_filebuf6xsputnEPKT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='919' u='c' c='_ZNSt13basic_filebuf7_M_seekENT0_8off_typeESt12_Ios_SeekdirNS0_10state_typeE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1068' u='c' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1073' u='c' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<doc f='include/c++/11/fstream' l='451'>/**
+       *  This function sets the pointers of the internal buffer, both get
+       *  and put areas. Typically:
+       *
+       *   __off == egptr() - eback() upon underflow/uflow (@b read mode);
+       *   __off == 0 upon overflow (@b write mode);
+       *   __off == -1 upon open, setbuf, seekoff/pos (@b uncommitted mode).
+       *
+       *  NB: epptr() - pbase() == _M_buf_size - 1, since _M_buf_size
+       *  reflects the actual allocated memory and the last cell is reserved
+       *  for the overflow char of a full put area.
+       */</doc>

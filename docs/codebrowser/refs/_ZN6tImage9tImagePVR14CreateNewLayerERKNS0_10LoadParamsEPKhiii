@@ -1,0 +1,3 @@
+<use f='Modules/Image/Src/tImagePVR.cpp' l='969' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1005' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImagePVR.cpp' l='1067' ll='1226' type='tImage::tLayer * tImage::tImagePVR::CreateNewLayer(const tImage::tImagePVR::LoadParams &amp; params, const uint8 * srcPixelData, int numBytes, int width, int height)'/>

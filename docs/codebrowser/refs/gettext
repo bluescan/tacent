@@ -1,0 +1,4 @@
+<dec f='include/libintl.h' l='39' type='char * gettext(const char * __msgid)'/>
+<doc f='include/libintl.h' l='36'>/* Look up MSGID in the current default message catalog for the current
+   LC_MESSAGES locale.  If not found, returns MSGID itself (the default
+   text).  */</doc>

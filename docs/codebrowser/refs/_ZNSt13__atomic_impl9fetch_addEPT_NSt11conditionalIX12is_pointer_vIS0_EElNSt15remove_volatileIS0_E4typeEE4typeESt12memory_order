@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1016' ll='1018' macro='1' type='_Tp std::__atomic_impl::fetch_add(_Tp * __ptr, _Diff&lt;_Tp&gt; __i, std::memory_order __m)'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='254' u='c' c='_ZNSt18__atomic_semaphore10_M_releaseEl'/>

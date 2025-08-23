@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tImageDDS.h' l='130' type='15'/>
+<doc f='Modules/Image/Inc/Image/tImageDDS.h' l='130'>// Possible if strict loading set.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1204' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>

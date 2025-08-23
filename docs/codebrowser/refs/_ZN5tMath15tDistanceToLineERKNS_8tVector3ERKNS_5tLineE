@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='451' type='float tMath::tDistanceToLine(const tMath::tVector3 &amp; point, const tMath::tLine &amp; )'/>
+<def f='Modules/Math/Src/tGeometry.cpp' l='264' ll='272' type='float tMath::tDistanceToLine(const tMath::tVector3 &amp; p, const tMath::tLine &amp; l)'/>

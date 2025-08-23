@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11551' type='VkResult vkCreateCuModuleNVX(VkDevice device, const VkCuModuleCreateInfoNVX * pCreateInfo, const VkAllocationCallbacks * pAllocator, VkCuModuleNVX * pModule)'/>

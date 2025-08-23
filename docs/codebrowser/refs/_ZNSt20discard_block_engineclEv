@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/random.h' l='1021' type='std::discard_block_engine::result_type std::discard_block_engine::operator()()'/>
+<def f='include/c++/11/bits/random.tcc' l='678' ll='691' type='typename discard_block_engine&lt;_RandomNumberEngine, __p, __r&gt;::result_type std::discard_block_engine::operator()()'/>
+<doc f='include/c++/11/bits/random.h' l='1017'>/**
+       * @brief Gets the next value in the generated random number sequence.
+       */</doc>

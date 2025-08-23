@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17987'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17986'>// VK_EXT_pipeline_protected_access is a preprocessor guard. Do not pass it to API calls.</doc>

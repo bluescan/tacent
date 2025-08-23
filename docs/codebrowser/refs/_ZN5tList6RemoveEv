@@ -1,0 +1,46 @@
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='91' type='T * tList::Remove()'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='471' ll='486' type='T * tList::Remove()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='91'>// Removes and returns head item.</doc>
+<use f='Modules/Foundation/Inc/Foundation/tPool.h' l='207' u='c' c='_ZN4tMem9tFastPool4FreeEPv'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='86' u='c' c='_ZN4tMem9tFastPoolD1Ev'/>
+<use f='Modules/Image/Inc/Image/tImageAPNG.h' l='154' u='c' c='_ZN6tImage10tImageAPNG11StealFramesER5tListINS_6tFrameEE'/>
+<use f='Modules/Image/Inc/Image/tImageAPNG.h' l='176' u='c' c='_ZN6tImage10tImageAPNG5ClearEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='83' u='c' c='_ZN12tChunkWriterD1Ev'/>
+<use f='Modules/Image/Inc/Image/tImageEXR.h' l='138' u='c' c='_ZN6tImage9tImageEXR11StealFramesER5tListINS_6tFrameEE'/>
+<use f='Modules/Image/Inc/Image/tImageEXR.h' l='158' u='c' c='_ZN6tImage9tImageEXR5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageGIF.h' l='168' u='c' c='_ZN6tImage9tImageGIF11StealFramesER5tListINS_6tFrameEE'/>
+<use f='Modules/Image/Inc/Image/tImageGIF.h' l='190' u='c' c='_ZN6tImage9tImageGIF5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='125' u='c' c='_ZN6tImage9tImageICO11StealFramesER5tListINS_6tFrameEE'/>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='145' u='c' c='_ZN6tImage9tImageICO5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageTIFF.h' l='138' u='c' c='_ZN6tImage10tImageTIFF11StealFramesER5tListINS_6tFrameEE'/>
+<use f='Modules/Image/Inc/Image/tImageTIFF.h' l='158' u='c' c='_ZN6tImage10tImageTIFF5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageWEBP.h' l='132' u='c' c='_ZN6tImage10tImageWEBP11StealFramesER5tListINS_6tFrameEE'/>
+<use f='Modules/Image/Inc/Image/tImageWEBP.h' l='152' u='c' c='_ZN6tImage10tImageWEBP5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='194' u='c' c='_ZN6tImage8tTexture13RemoveMipmapsEv'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='203' u='c' c='_ZN6tImage8tTexture11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='139' u='c' c='_ZN6tImage10tImageAPNG3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='220' u='c' c='_ZN6tImage10tImageAPNG8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='299' u='c' c='_ZN6tImage9tImageEXR3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='381' u='c' c='_ZN6tImage9tImageEXR8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='192' u='c' c='_ZN6tImage9tImageGIF3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='278' u='c' c='_ZN6tImage9tImageGIF8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='176' u='c' c='_ZN6tImage9tImageICO3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='265' u='c' c='_ZN6tImage9tImageICO8GetFrameEb'/>
+<use f='Modules/System/Inc/System/tScript.h' l='381' u='c' c='_ZN14tFunExpressionD1Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='395' u='c' c='_ZN10tFunScript5ClearEv'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='146' u='c' c='_ZN6tImage10tImageTIFF3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='228' u='c' c='_ZN6tImage10tImageTIFF8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='233' u='c' c='_ZN6tImage10tImageWEBP3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='315' u='c' c='_ZN6tImage10tImageWEBP8GetFrameEb'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='42' u='c' c='_ZN6tImage8tTexture3SetER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='79' u='c' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='37' u='c' c='_ZN9tPipeline5tRule9SetTargetERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='95' u='c' c='_ZN9tPipeline5tRule15AddDependenciesER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='126' u='c' c='_ZN12tChunkWriter5CloseEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='230' u='c' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='211' u='c' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='249' u='c' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='328' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2925' u='c' c='_ZN7tSystem19tFindDirsRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tMachine.cpp' l='268' u='c' c='_ZN7tSystem21tGetXDGMultipleEnvVarER5tListI11tStringItemERK7tStringS6_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='283' u='c' c='_ZN7tSystem21tGetXDGMultipleEnvVarER5tListI11tStringItemERK7tStringS6_'/>

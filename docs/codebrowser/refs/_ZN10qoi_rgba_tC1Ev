@@ -1,0 +1,5 @@
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='361' u='c' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='362' u='c' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='362' u='c' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='492' u='c' c='qoi_decode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='493' u='c' c='qoi_decode'/>

@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/ios_base.h' l='344' type='const std::ios_base::fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='910' u='r' c='_ZSt9boolalphaRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='918' u='r' c='_ZSt11noboolalphaRSt8ios_base'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='598' u='r' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRb'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1127' u='r' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_b'/>
+<doc f='include/c++/11/bits/ios_base.h' l='343'>/// Insert/extract @c bool in alphabetic rather than numeric format.</doc>

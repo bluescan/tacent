@@ -1,0 +1,2 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='111' c='_ZNK6tImage10tBaseImage14GetChannelTypeEv'/>
+<def f='Modules/Image/Inc/Image/tImagePVR.h' l='225' type='tChannelType tImage::tImagePVR::GetChannelType() const'/>

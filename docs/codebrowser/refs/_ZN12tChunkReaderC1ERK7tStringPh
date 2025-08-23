@@ -1,0 +1,5 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='323' type='void tChunkReader::tChunkReader(const tString &amp; filename, uint8 * buffer = nullptr)'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='320'>// If buffer is nullptr, loads the entire file into memory. Acquires filesize bytes. If you want to manage the
+	// memory yourself give it a valid buffer that is big enough. Call SizeNeeded first to find out. Note that a
+	// supplied buffer must be aligned to Alignment::Largest.</doc>
+<use f='Modules/Scene/Src/tWorld.cpp' l='487' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>

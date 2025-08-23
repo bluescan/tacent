@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/os_defines.h' l='50'/>
+<use f='include/c++/11/cmath' l='588' u='c'/>
+<use f='include/c++/11/cmath' l='615' u='c'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/os_defines.h' l='48'>// Glibc 2.23 removed the obsolete isinf and isnan declarations. Check the
+// version dynamically in case it has changed since libstdc++ was configured.</doc>

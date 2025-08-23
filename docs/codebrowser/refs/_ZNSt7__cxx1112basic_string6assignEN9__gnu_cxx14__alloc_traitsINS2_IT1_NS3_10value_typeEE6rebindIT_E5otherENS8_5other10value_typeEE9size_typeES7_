@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/basic_string.h' l='1472' ll='1474' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::assign(std::basic_string::size_type __n, _CharT __c)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1463'>/**
+       *  @brief  Set value to multiple characters.
+       *  @param __n  Length of the resulting string.
+       *  @param __c  The character to use.
+       *  @return  Reference to this string.
+       *
+       *  This function sets the value of this string to @a __n copies of
+       *  character @a __c.
+       */</doc>

@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='2466' ll='2470' type='void std::gamma_distribution::gamma_distribution&lt;_RealType&gt;(_RealType __alpha_val, _RealType __beta_val = _RealType(1))'/>
+<doc f='include/c++/11/bits/random.h' l='2462'>/**
+       * @brief Constructs a gamma distribution with parameters
+       * @f$\alpha@f$ and @f$\beta@f$.
+       */</doc>

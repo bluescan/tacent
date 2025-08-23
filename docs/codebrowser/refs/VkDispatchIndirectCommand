@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2911' ll='2915'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2911'/>
+<size>12</size>
+<mbr r='VkDispatchIndirectCommand::x' o='0' t='uint32_t'/>
+<mbr r='VkDispatchIndirectCommand::y' o='32' t='uint32_t'/>
+<mbr r='VkDispatchIndirectCommand::z' o='64' t='uint32_t'/>

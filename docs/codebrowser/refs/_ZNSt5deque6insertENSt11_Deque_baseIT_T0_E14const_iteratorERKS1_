@@ -1,0 +1,11 @@
+<dec f='include/c++/11/bits/stl_deque.h' l='1593' type='std::deque::iterator std::deque::insert(std::deque::const_iterator __position, const std::deque::value_type &amp; __x)'/>
+<def f='include/c++/11/bits/deque.tcc' l='208' ll='231' type='typename deque&lt;_Tp, _Alloc&gt;::iterator std::deque::insert(std::deque::const_iterator __position, const std::deque::value_type &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1583'>/**
+       *  @brief  Inserts given value into %deque before specified iterator.
+       *  @param  __position  A const_iterator into the %deque.
+       *  @param  __x  Data to be inserted.
+       *  @return  An iterator that points to the inserted data.
+       *
+       *  This function will insert a copy of the given value before the
+       *  specified location.
+       */</doc>

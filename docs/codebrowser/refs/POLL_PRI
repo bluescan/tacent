@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/siginfo-consts.h' l='203' type='5'/>
+<doc f='include/x86_64-linux-gnu/bits/siginfo-consts.h' l='203'>/* High priority input available.  */</doc>

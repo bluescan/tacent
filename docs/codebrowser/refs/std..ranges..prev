@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/ranges_base.h' l='885' type='const std::ranges::__prev_fn'/>
+<use f='include/c++/11/bits/ranges_util.h' l='139' u='c' c='_ZNSt6ranges14view_interface4backEv'/>
+<use f='include/c++/11/bits/ranges_util.h' l='148' u='c' c='_ZNKSt6ranges14view_interface4backEv'/>

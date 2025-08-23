@@ -1,0 +1,23 @@
+<def f='include/x86_64-linux-gnu/bits/dirent.h' l='22' ll='34'/>
+<use f='include/dirent.h' l='162' c='readdir'/>
+<use f='include/dirent.h' l='184' c='readdir_r'/>
+<use f='include/dirent.h' l='185' c='readdir_r'/>
+<use f='include/dirent.h' l='256' c='scandir'/>
+<use f='include/dirent.h' l='257' c='scandir'/>
+<use f='include/dirent.h' l='258' c='scandir'/>
+<use f='include/dirent.h' l='259' c='scandir'/>
+<use f='include/dirent.h' l='294' c='scandirat'/>
+<use f='include/dirent.h' l='295' c='scandirat'/>
+<use f='include/dirent.h' l='296' c='scandirat'/>
+<use f='include/dirent.h' l='297' c='scandirat'/>
+<use f='include/dirent.h' l='325' c='alphasort'/>
+<use f='include/dirent.h' l='326' c='alphasort'/>
+<use f='include/dirent.h' l='380' c='versionsort'/>
+<use f='include/dirent.h' l='381' c='versionsort'/>
+<use f='Modules/System/Src/tFile.cpp' l='2741' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<size>280</size>
+<mbr r='dirent::d_ino' o='0' t='__ino_t'/>
+<mbr r='dirent::d_off' o='64' t='__off_t'/>
+<mbr r='dirent::d_reclen' o='128' t='unsigned short'/>
+<mbr r='dirent::d_type' o='144' t='unsigned char'/>
+<mbr r='dirent::d_name' o='152' t='char[256]'/>

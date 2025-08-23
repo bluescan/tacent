@@ -1,0 +1,29 @@
+<dec f='include/c++/11/bits/atomic_base.h' l='674' type='std::__atomic_base&lt;type-parameter-0-0 *&gt;::__pointer_type'/>
+<use f='include/c++/11/bits/atomic_base.h' l='691' u='w' c='_ZNSt13__atomic_baseIPT_EC1ES1_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='731' c='_ZNSt13__atomic_baseIPT_EppEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='736' c='_ZNVSt13__atomic_baseIPT_EppEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='741' c='_ZNSt13__atomic_baseIPT_EmmEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='746' c='_ZNVSt13__atomic_baseIPT_EmmEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='751' c='_ZNSt13__atomic_baseIPT_EpLEl'/>
+<use f='include/c++/11/bits/atomic_base.h' l='756' c='_ZNVSt13__atomic_baseIPT_EpLEl'/>
+<use f='include/c++/11/bits/atomic_base.h' l='761' c='_ZNSt13__atomic_baseIPT_EmIEl'/>
+<use f='include/c++/11/bits/atomic_base.h' l='766' c='_ZNVSt13__atomic_baseIPT_EmIEl'/>
+<use f='include/c++/11/bits/atomic_base.h' l='773' u='r' c='_ZNKSt13__atomic_baseIPT_E12is_lock_freeEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='774' u='r' c='_ZNKSt13__atomic_baseIPT_E12is_lock_freeEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='781' u='r' c='_ZNVKSt13__atomic_baseIPT_E12is_lock_freeEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='782' u='r' c='_ZNVKSt13__atomic_baseIPT_E12is_lock_freeEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='796' c='_ZNSt13__atomic_baseIPT_E5storeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='809' c='_ZNVSt13__atomic_baseIPT_E5storeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='820' c='_ZNKSt13__atomic_baseIPT_E4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='831' c='_ZNVKSt13__atomic_baseIPT_E4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='838' c='_ZNSt13__atomic_baseIPT_E8exchangeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='846' c='_ZNVSt13__atomic_baseIPT_E8exchangeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='856' c='_ZNSt13__atomic_baseIPT_E23compare_exchange_strongERS1_S1_St12memory_orderS4_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='867' c='_ZNVSt13__atomic_baseIPT_E23compare_exchange_strongERS1_S1_St12memory_orderS4_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='876' c='_ZNKSt13__atomic_baseIPT_E4waitES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='885' c='_ZNKSt13__atomic_baseIPT_E10notify_oneEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='891' c='_ZNKSt13__atomic_baseIPT_E10notify_allEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='899' c='_ZNSt13__atomic_baseIPT_E9fetch_addElSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='904' c='_ZNVSt13__atomic_baseIPT_E9fetch_addElSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='909' c='_ZNSt13__atomic_baseIPT_E9fetch_subElSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='914' c='_ZNVSt13__atomic_baseIPT_E9fetch_subElSt12memory_order'/>

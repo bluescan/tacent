@@ -1,0 +1,1 @@
+<dec f='include/c++/11/codecvt' l='129' type='int std::__codecvt_utf8_base&lt;char16_t&gt;::do_length(std::__codecvt_utf8_base&lt;char16_t&gt;::state_type &amp; , const std::__codecvt_utf8_base&lt;char16_t&gt;::extern_type * __from, const std::__codecvt_utf8_base&lt;char16_t&gt;::extern_type * __end, std::size_t __max) const'/>

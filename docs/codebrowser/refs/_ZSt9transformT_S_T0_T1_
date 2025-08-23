@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='940' type='_OIter std::transform(_IIter , _IIter , _OIter , _UnaryOperation )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='4283' ll='4298' macro='1' type='_OutputIterator std::transform(_InputIterator __first, _InputIterator __last, _OutputIterator __result, _UnaryOperation __unary_op)'/>

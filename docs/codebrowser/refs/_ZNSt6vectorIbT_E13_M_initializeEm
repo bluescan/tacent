@@ -1,0 +1,9 @@
+<use f='include/c++/11/bits/stl_bvector.h' l='656' u='c' c='_ZNSt6vectorIbT_EC1EmRKbRKS0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='663' u='c' c='_ZNSt6vectorIbT_EC1ERKS_IbS0_E'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='682' u='c' c='_ZNSt6vectorIbT_EC1EOS_IbS0_ERKS0_St17integral_constantIbLb0EE'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='698' u='c' c='_ZNSt6vectorIbT_EC1ERKS_IbS0_ERKS0_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='748' u='c' c='_ZNSt6vectorIbT_EaSERKS_IbS0_E'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='758' u='c' c='_ZNSt6vectorIbT_EaSERKS_IbS0_E'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='782' u='c' c='_ZNSt6vectorIbT_EaSEOS_IbS0_E'/>
+<def f='include/c++/11/bits/stl_bvector.h' l='1136' ll='1147' type='void std::vector&lt;bool, type-parameter-0-0&gt;::_M_initialize(std::vector&lt;bool, type-parameter-0-0&gt;::size_type __n)'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1200' u='c' c='_ZNSt6vectorIbT_E19_M_initialize_rangeETL0__S2_St20forward_iterator_tag'/>

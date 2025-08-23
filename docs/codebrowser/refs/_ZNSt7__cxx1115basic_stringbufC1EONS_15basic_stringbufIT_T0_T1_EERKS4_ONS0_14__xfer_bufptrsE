@@ -1,0 +1,3 @@
+<def f='include/c++/11/sstream' l='511' ll='515' type='void std::basic_stringbuf::basic_stringbuf&lt;_CharT, _Traits, _Alloc&gt;(basic_stringbuf&lt;_CharT, _Traits, _Alloc&gt; &amp;&amp; __rhs, const std::basic_stringbuf::allocator_type &amp; __a, std::basic_stringbuf::__xfer_bufptrs &amp;&amp; )'/>
+<doc f='include/c++/11/sstream' l='509'>// The move constructor initializes an __xfer_bufptrs temporary then
+      // delegates to this constructor to performs moves during its lifetime.</doc>

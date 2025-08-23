@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='541' type='2164453376'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='514' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1097' u='r' c='_ZNK6tScene6tWorld13SaveMaterialsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1164' u='r' c='_ZN6tScene6tWorld13LoadMaterialsERK6tChunkR7tItListINS_9tMaterialEE'/>

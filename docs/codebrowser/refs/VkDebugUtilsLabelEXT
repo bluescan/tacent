@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12403' ll='12408'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12403'/>
+<size>40</size>
+<mbr r='VkDebugUtilsLabelEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDebugUtilsLabelEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkDebugUtilsLabelEXT::pLabelName' o='128' t='const char *'/>
+<mbr r='VkDebugUtilsLabelEXT::color' o='192' t='float[4]'/>

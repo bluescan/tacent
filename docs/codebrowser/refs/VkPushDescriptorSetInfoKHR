@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11089' ll='11097'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11089'/>
+<size>48</size>
+<mbr r='VkPushDescriptorSetInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPushDescriptorSetInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkPushDescriptorSetInfoKHR::stageFlags' o='128' t='VkShaderStageFlags'/>
+<mbr r='VkPushDescriptorSetInfoKHR::layout' o='192' t='VkPipelineLayout'/>
+<mbr r='VkPushDescriptorSetInfoKHR::set' o='256' t='uint32_t'/>
+<mbr r='VkPushDescriptorSetInfoKHR::descriptorWriteCount' o='288' t='uint32_t'/>
+<mbr r='VkPushDescriptorSetInfoKHR::pDescriptorWrites' o='320' t='const VkWriteDescriptorSet *'/>

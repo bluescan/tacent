@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='381' type='int tString::GetUTF32(char32_t * dst, bool incNullTerminator = true) const'/>
+<def f='Modules/Foundation/Src/tString.cpp' l='621' ll='637' type='int tString::GetUTF32(char32_t * dst, bool incNullTerminator = true) const'/>

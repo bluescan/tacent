@@ -1,0 +1,6 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='524' u='c' c='_ZN12tStringUTF32C1EPKDii'/>
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='536' type='void tStringUTF32::Set(const char32_t * src, int length)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1110' u='c' c='_ZN12tStringUTF323SetERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1131' u='c' c='_ZN12tStringUTF323SetEPKDi'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='1167' ll='1178' type='void tStringUTF32::Set(const char32_t * src, int lenSrc)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='536'>// As many nulls as you like.</doc>

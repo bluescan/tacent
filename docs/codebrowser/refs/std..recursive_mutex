@@ -1,0 +1,15 @@
+<inh f='include/c++/11/mutex' l='67' c='std::__recursive_mutex_base'/>
+<def f='include/c++/11/mutex' l='94' ll='132'/>
+<use f='include/c++/11/mutex' l='102' c='_ZNSt15recursive_mutexC1ERKS_'/>
+<use f='include/c++/11/mutex' l='103' c='_ZNSt15recursive_mutexaSERKS_'/>
+<use f='include/c++/11/mutex' l='103' c='_ZNSt15recursive_mutexaSERKS_'/>
+<size>40</size>
+<doc f='include/c++/11/mutex' l='93'>/// The standard recursive mutex type.</doc>
+<fun r='_ZNSt15recursive_mutexC1Ev'/>
+<fun r='_ZNSt15recursive_mutexD1Ev'/>
+<fun r='_ZNSt15recursive_mutexC1ERKS_'/>
+<fun r='_ZNSt15recursive_mutexaSERKS_'/>
+<fun r='_ZNSt15recursive_mutex4lockEv'/>
+<fun r='_ZNSt15recursive_mutex8try_lockEv'/>
+<fun r='_ZNSt15recursive_mutex6unlockEv'/>
+<fun r='_ZNSt15recursive_mutex13native_handleEv'/>

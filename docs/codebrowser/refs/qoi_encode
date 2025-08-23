@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Contrib/QOI/qoi.h' l='278' type='void * qoi_encode(const void * data, const qoi_desc * desc, int * out_len)'/>
+<def f='Modules/Image/Contrib/QOI/qoi.h' l='356' ll='486' type='void * qoi_encode(const void * data, const qoi_desc * desc, int * out_len)'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='237' u='c' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/QOI/qoi.h' l='270'>/* Encode raw RGB or RGBA pixels into a QOI image in memory.
+
+The function either returns NULL on failure (invalid parameters or malloc
+failed) or a pointer to the encoded data on success. On success the out_len
+is set to the size in bytes of the encoded data.
+
+The returned qoi data should be free()d after use. */</doc>

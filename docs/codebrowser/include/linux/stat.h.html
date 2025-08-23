@@ -1,0 +1,208 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>stat.h source code [include/linux/stat.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/linux/stat.h'; var root_path = '../..'; var data_path = '../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='..'>include</a>/<a href='./'>linux</a>/<a href='stat.h.html'>stat.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><u>#<span data-ppcond="2">ifndef</span> <span class="macro" data-ref="_M/_LINUX_STAT_H">_LINUX_STAT_H</span></u>&nbsp</td></tr>
+<tr><th id="3">3</th><td><u>#define <dfn class="macro" id="_M/_LINUX_STAT_H" data-ref="_M/_LINUX_STAT_H">_LINUX_STAT_H</dfn></u>&nbsp</td></tr>
+<tr><th id="4">4</th><td>&nbsp</td></tr>
+<tr><th id="5">5</th><td><u>#include &lt;linux/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="6">6</th><td>&nbsp</td></tr>
+<tr><th id="7">7</th><td><u>#<span data-ppcond="7">if</span> defined(<span class="macro" data-ref="_M/__KERNEL__">__KERNEL__</span>) || !defined(<a class="macro" href="../features.h.html#477" data-ref="_M/__GLIBC__">__GLIBC__</a>) || (<a class="macro" href="../features.h.html#477" title="2" data-ref="_M/__GLIBC__">__GLIBC__</a> &lt; 2)</u>&nbsp</td></tr>
+<tr><th id="8">8</th><td>&nbsp</td></tr>
+<tr><th id="9">9</th><td><u>#define S_IFMT  00170000</u>&nbsp</td></tr>
+<tr><th id="10">10</th><td><u>#define S_IFSOCK 0140000</u>&nbsp</td></tr>
+<tr><th id="11">11</th><td><u>#define S_IFLNK	 0120000</u>&nbsp</td></tr>
+<tr><th id="12">12</th><td><u>#define S_IFREG  0100000</u>&nbsp</td></tr>
+<tr><th id="13">13</th><td><u>#define S_IFBLK  0060000</u>&nbsp</td></tr>
+<tr><th id="14">14</th><td><u>#define S_IFDIR  0040000</u>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#define S_IFCHR  0020000</u>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#define S_IFIFO  0010000</u>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#define S_ISUID  0004000</u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#define S_ISGID  0002000</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#define S_ISVTX  0001000</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#define S_ISLNK(m)	(((m) &amp; S_IFMT) == S_IFLNK)</u>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#define S_ISREG(m)	(((m) &amp; S_IFMT) == S_IFREG)</u>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#define S_ISDIR(m)	(((m) &amp; S_IFMT) == S_IFDIR)</u>&nbsp</td></tr>
+<tr><th id="24">24</th><td><u>#define S_ISCHR(m)	(((m) &amp; S_IFMT) == S_IFCHR)</u>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#define S_ISBLK(m)	(((m) &amp; S_IFMT) == S_IFBLK)</u>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#define S_ISFIFO(m)	(((m) &amp; S_IFMT) == S_IFIFO)</u>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#define S_ISSOCK(m)	(((m) &amp; S_IFMT) == S_IFSOCK)</u>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#define S_IRWXU 00700</u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#define S_IRUSR 00400</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define S_IWUSR 00200</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#define S_IXUSR 00100</u>&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#define S_IRWXG 00070</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#define S_IRGRP 00040</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#define S_IWGRP 00020</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#define S_IXGRP 00010</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#define S_IRWXO 00007</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#define S_IROTH 00004</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#define S_IWOTH 00002</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#define S_IXOTH 00001</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#<span data-ppcond="7">endif</span></u>&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i> * Timestamp structure for the timestamps in struct statx.</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i> * tv_sec holds the number of seconds before (negative) or after (positive)</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i> * 00:00:00 1st January 1970 UTC.</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i> * tv_nsec holds a number of nanoseconds (0..999,999,999) after the tv_sec time.</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i> * __reserved is held in case we need a yet finer resolution.</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><b>struct</b> <dfn class="type def" id="statx_timestamp" title='statx_timestamp' data-ref="statx_timestamp">statx_timestamp</dfn> {&nbsp</td></tr>
+<tr><th id="57">57</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__s64" title='__s64' data-type='long long' data-ref="__s64">__s64</a>	<dfn class="decl field" id="statx_timestamp::tv_sec" title='statx_timestamp::tv_sec' data-ref="statx_timestamp::tv_sec">tv_sec</dfn>;&nbsp</td></tr>
+<tr><th id="58">58</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u32" title='__u32' data-type='unsigned int' data-ref="__u32">__u32</a>	<dfn class="decl field" id="statx_timestamp::tv_nsec" title='statx_timestamp::tv_nsec' data-ref="statx_timestamp::tv_nsec">tv_nsec</dfn>;&nbsp</td></tr>
+<tr><th id="59">59</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__s32" title='__s32' data-type='int' data-ref="__s32">__s32</a>	<dfn class="decl field" id="statx_timestamp::__reserved" title='statx_timestamp::__reserved' data-ref="statx_timestamp::__reserved">__reserved</dfn>;&nbsp</td></tr>
+<tr><th id="60">60</th><td>};&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i> * Structures for the extended file attribute retrieval system call</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><i> * (statx()).</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i> * The caller passes a mask of what they're specifically interested in as a</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i> * parameter to statx().  What statx() actually got will be indicated in</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td><i> * st_mask upon return.</i>&nbsp</td></tr>
+<tr><th id="69">69</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="70">70</th><td><i> * For each bit in the mask argument:</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i> * - if the datum is not supported:</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td><i> *   - the bit will be cleared, and</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="76">76</th><td><i> *   - the datum will be set to an appropriate fabricated value if one is</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td><i> *     available (eg. CIFS can take a default uid and gid), otherwise</i>&nbsp</td></tr>
+<tr><th id="78">78</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><i> *   - the field will be cleared;</i>&nbsp</td></tr>
+<tr><th id="80">80</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="81">81</th><td><i> * - otherwise, if explicitly requested:</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td><i> *   - the datum will be synchronised to the server if AT_STATX_FORCE_SYNC is</i>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i> *     set or if the datum is considered out of date, and</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="86">86</th><td><i> *   - the field will be filled in and the bit will be set;</i>&nbsp</td></tr>
+<tr><th id="87">87</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td><i> * - otherwise, if not requested, but available in approximate form without any</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td><i> *   effort, it will be filled in anyway, and the bit will be set upon return</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td><i> *   (it might not be up to date, however, and no attempt will be made to</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i> *   synchronise the internal state first);</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td><i> * - otherwise the field and the bit will be cleared before returning.</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="95">95</th><td><i> * Items in STATX_BASIC_STATS may be marked unavailable on return, but they</i>&nbsp</td></tr>
+<tr><th id="96">96</th><td><i> * will have values installed for compatibility purposes so that stat() and</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td><i> * co. can be emulated in userspace.</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><b>struct</b> <dfn class="type def" id="statx" title='statx' data-ref="statx">statx</dfn> {&nbsp</td></tr>
+<tr><th id="100">100</th><td>	<i>/* 0x00 */</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u32" title='__u32' data-type='unsigned int' data-ref="__u32">__u32</a>	<dfn class="decl field" id="statx::stx_mask" title='statx::stx_mask' data-ref="statx::stx_mask">stx_mask</dfn>;	<i>/* What results were written [uncond] */</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u32" title='__u32' data-type='unsigned int' data-ref="__u32">__u32</a>	<dfn class="decl field" id="statx::stx_blksize" title='statx::stx_blksize' data-ref="statx::stx_blksize">stx_blksize</dfn>;	<i>/* Preferred general I/O size [uncond] */</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u64" title='__u64' data-type='unsigned long long' data-ref="__u64">__u64</a>	<dfn class="decl field" id="statx::stx_attributes" title='statx::stx_attributes' data-ref="statx::stx_attributes">stx_attributes</dfn>;	<i>/* Flags conveying information about the file [uncond] */</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td>	<i>/* 0x10 */</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u32" title='__u32' data-type='unsigned int' data-ref="__u32">__u32</a>	<dfn class="decl field" id="statx::stx_nlink" title='statx::stx_nlink' data-ref="statx::stx_nlink">stx_nlink</dfn>;	<i>/* Number of hard links */</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u32" title='__u32' data-type='unsigned int' data-ref="__u32">__u32</a>	<dfn class="decl field" id="statx::stx_uid" title='statx::stx_uid' data-ref="statx::stx_uid">stx_uid</dfn>;	<i>/* User ID of owner */</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u32" title='__u32' data-type='unsigned int' data-ref="__u32">__u32</a>	<dfn class="decl field" id="statx::stx_gid" title='statx::stx_gid' data-ref="statx::stx_gid">stx_gid</dfn>;	<i>/* Group ID of owner */</i>&nbsp</td></tr>
+<tr><th id="108">108</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u16" title='__u16' data-type='unsigned short' data-ref="__u16">__u16</a>	<dfn class="decl field" id="statx::stx_mode" title='statx::stx_mode' data-ref="statx::stx_mode">stx_mode</dfn>;	<i>/* File mode */</i>&nbsp</td></tr>
+<tr><th id="109">109</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u16" title='__u16' data-type='unsigned short' data-ref="__u16">__u16</a>	<dfn class="decl field" id="statx::__spare0" title='statx::__spare0' data-ref="statx::__spare0">__spare0</dfn>[<var>1</var>];&nbsp</td></tr>
+<tr><th id="110">110</th><td>	<i>/* 0x20 */</i>&nbsp</td></tr>
+<tr><th id="111">111</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u64" title='__u64' data-type='unsigned long long' data-ref="__u64">__u64</a>	<dfn class="decl field" id="statx::stx_ino" title='statx::stx_ino' data-ref="statx::stx_ino">stx_ino</dfn>;	<i>/* Inode number */</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u64" title='__u64' data-type='unsigned long long' data-ref="__u64">__u64</a>	<dfn class="decl field" id="statx::stx_size" title='statx::stx_size' data-ref="statx::stx_size">stx_size</dfn>;	<i>/* File size */</i>&nbsp</td></tr>
+<tr><th id="113">113</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u64" title='__u64' data-type='unsigned long long' data-ref="__u64">__u64</a>	<dfn class="decl field" id="statx::stx_blocks" title='statx::stx_blocks' data-ref="statx::stx_blocks">stx_blocks</dfn>;	<i>/* Number of 512-byte blocks allocated */</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u64" title='__u64' data-type='unsigned long long' data-ref="__u64">__u64</a>	<dfn class="decl field" id="statx::stx_attributes_mask" title='statx::stx_attributes_mask' data-ref="statx::stx_attributes_mask">stx_attributes_mask</dfn>; <i>/* Mask to show what's supported in stx_attributes */</i>&nbsp</td></tr>
+<tr><th id="115">115</th><td>	<i>/* 0x40 */</i>&nbsp</td></tr>
+<tr><th id="116">116</th><td>	<b>struct</b> <a class="type" href="#statx_timestamp" title='statx_timestamp' data-ref="statx_timestamp">statx_timestamp</a>	<dfn class="decl field" id="statx::stx_atime" title='statx::stx_atime' data-ref="statx::stx_atime">stx_atime</dfn>;	<i>/* Last access time */</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td>	<b>struct</b> <a class="type" href="#statx_timestamp" title='statx_timestamp' data-ref="statx_timestamp">statx_timestamp</a>	<dfn class="decl field" id="statx::stx_btime" title='statx::stx_btime' data-ref="statx::stx_btime">stx_btime</dfn>;	<i>/* File creation time */</i>&nbsp</td></tr>
+<tr><th id="118">118</th><td>	<b>struct</b> <a class="type" href="#statx_timestamp" title='statx_timestamp' data-ref="statx_timestamp">statx_timestamp</a>	<dfn class="decl field" id="statx::stx_ctime" title='statx::stx_ctime' data-ref="statx::stx_ctime">stx_ctime</dfn>;	<i>/* Last attribute change time */</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td>	<b>struct</b> <a class="type" href="#statx_timestamp" title='statx_timestamp' data-ref="statx_timestamp">statx_timestamp</a>	<dfn class="decl field" id="statx::stx_mtime" title='statx::stx_mtime' data-ref="statx::stx_mtime">stx_mtime</dfn>;	<i>/* Last data modification time */</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td>	<i>/* 0x80 */</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u32" title='__u32' data-type='unsigned int' data-ref="__u32">__u32</a>	<dfn class="decl field" id="statx::stx_rdev_major" title='statx::stx_rdev_major' data-ref="statx::stx_rdev_major">stx_rdev_major</dfn>;	<i>/* Device ID of special file [if bdev/cdev] */</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u32" title='__u32' data-type='unsigned int' data-ref="__u32">__u32</a>	<dfn class="decl field" id="statx::stx_rdev_minor" title='statx::stx_rdev_minor' data-ref="statx::stx_rdev_minor">stx_rdev_minor</dfn>;&nbsp</td></tr>
+<tr><th id="123">123</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u32" title='__u32' data-type='unsigned int' data-ref="__u32">__u32</a>	<dfn class="decl field" id="statx::stx_dev_major" title='statx::stx_dev_major' data-ref="statx::stx_dev_major">stx_dev_major</dfn>;	<i>/* ID of device containing file [uncond] */</i>&nbsp</td></tr>
+<tr><th id="124">124</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u32" title='__u32' data-type='unsigned int' data-ref="__u32">__u32</a>	<dfn class="decl field" id="statx::stx_dev_minor" title='statx::stx_dev_minor' data-ref="statx::stx_dev_minor">stx_dev_minor</dfn>;&nbsp</td></tr>
+<tr><th id="125">125</th><td>	<i>/* 0x90 */</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u64" title='__u64' data-type='unsigned long long' data-ref="__u64">__u64</a>	<dfn class="decl field" id="statx::stx_mnt_id" title='statx::stx_mnt_id' data-ref="statx::stx_mnt_id">stx_mnt_id</dfn>;&nbsp</td></tr>
+<tr><th id="127">127</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u64" title='__u64' data-type='unsigned long long' data-ref="__u64">__u64</a>	<dfn class="decl field" id="statx::__spare2" title='statx::__spare2' data-ref="statx::__spare2">__spare2</dfn>;&nbsp</td></tr>
+<tr><th id="128">128</th><td>	<i>/* 0xa0 */</i>&nbsp</td></tr>
+<tr><th id="129">129</th><td>	<a class="typedef" href="../asm-generic/int-ll64.h.html#__u64" title='__u64' data-type='unsigned long long' data-ref="__u64">__u64</a>	<dfn class="decl field" id="statx::__spare3" title='statx::__spare3' data-ref="statx::__spare3">__spare3</dfn>[<var>12</var>];	<i>/* Spare space for future expansion */</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td>	<i>/* 0x100 */</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td>};&nbsp</td></tr>
+<tr><th id="132">132</th><td>&nbsp</td></tr>
+<tr><th id="133">133</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="134">134</th><td><i> * Flags to be stx_mask</i>&nbsp</td></tr>
+<tr><th id="135">135</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td><i> * Query request/result mask for statx() and struct statx::stx_mask.</i>&nbsp</td></tr>
+<tr><th id="137">137</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="138">138</th><td><i> * These bits should be set in the mask argument of statx() to request</i>&nbsp</td></tr>
+<tr><th id="139">139</th><td><i> * particular items when calling statx().</i>&nbsp</td></tr>
+<tr><th id="140">140</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="141">141</th><td><u>#define <dfn class="macro" id="_M/STATX_TYPE" data-ref="_M/STATX_TYPE">STATX_TYPE</dfn>		0x00000001U	/* Want/got stx_mode &amp; S_IFMT */</u>&nbsp</td></tr>
+<tr><th id="142">142</th><td><u>#define <dfn class="macro" id="_M/STATX_MODE" data-ref="_M/STATX_MODE">STATX_MODE</dfn>		0x00000002U	/* Want/got stx_mode &amp; ~S_IFMT */</u>&nbsp</td></tr>
+<tr><th id="143">143</th><td><u>#define <dfn class="macro" id="_M/STATX_NLINK" data-ref="_M/STATX_NLINK">STATX_NLINK</dfn>		0x00000004U	/* Want/got stx_nlink */</u>&nbsp</td></tr>
+<tr><th id="144">144</th><td><u>#define <dfn class="macro" id="_M/STATX_UID" data-ref="_M/STATX_UID">STATX_UID</dfn>		0x00000008U	/* Want/got stx_uid */</u>&nbsp</td></tr>
+<tr><th id="145">145</th><td><u>#define <dfn class="macro" id="_M/STATX_GID" data-ref="_M/STATX_GID">STATX_GID</dfn>		0x00000010U	/* Want/got stx_gid */</u>&nbsp</td></tr>
+<tr><th id="146">146</th><td><u>#define <dfn class="macro" id="_M/STATX_ATIME" data-ref="_M/STATX_ATIME">STATX_ATIME</dfn>		0x00000020U	/* Want/got stx_atime */</u>&nbsp</td></tr>
+<tr><th id="147">147</th><td><u>#define <dfn class="macro" id="_M/STATX_MTIME" data-ref="_M/STATX_MTIME">STATX_MTIME</dfn>		0x00000040U	/* Want/got stx_mtime */</u>&nbsp</td></tr>
+<tr><th id="148">148</th><td><u>#define <dfn class="macro" id="_M/STATX_CTIME" data-ref="_M/STATX_CTIME">STATX_CTIME</dfn>		0x00000080U	/* Want/got stx_ctime */</u>&nbsp</td></tr>
+<tr><th id="149">149</th><td><u>#define <dfn class="macro" id="_M/STATX_INO" data-ref="_M/STATX_INO">STATX_INO</dfn>		0x00000100U	/* Want/got stx_ino */</u>&nbsp</td></tr>
+<tr><th id="150">150</th><td><u>#define <dfn class="macro" id="_M/STATX_SIZE" data-ref="_M/STATX_SIZE">STATX_SIZE</dfn>		0x00000200U	/* Want/got stx_size */</u>&nbsp</td></tr>
+<tr><th id="151">151</th><td><u>#define <dfn class="macro" id="_M/STATX_BLOCKS" data-ref="_M/STATX_BLOCKS">STATX_BLOCKS</dfn>		0x00000400U	/* Want/got stx_blocks */</u>&nbsp</td></tr>
+<tr><th id="152">152</th><td><u>#define <dfn class="macro" id="_M/STATX_BASIC_STATS" data-ref="_M/STATX_BASIC_STATS">STATX_BASIC_STATS</dfn>	0x000007ffU	/* The stuff in the normal stat struct */</u>&nbsp</td></tr>
+<tr><th id="153">153</th><td><u>#define <dfn class="macro" id="_M/STATX_BTIME" data-ref="_M/STATX_BTIME">STATX_BTIME</dfn>		0x00000800U	/* Want/got stx_btime */</u>&nbsp</td></tr>
+<tr><th id="154">154</th><td><u>#define <dfn class="macro" id="_M/STATX_MNT_ID" data-ref="_M/STATX_MNT_ID">STATX_MNT_ID</dfn>		0x00001000U	/* Got stx_mnt_id */</u>&nbsp</td></tr>
+<tr><th id="155">155</th><td>&nbsp</td></tr>
+<tr><th id="156">156</th><td><u>#define <dfn class="macro" id="_M/STATX__RESERVED" data-ref="_M/STATX__RESERVED">STATX__RESERVED</dfn>		0x80000000U	/* Reserved for future struct statx expansion */</u>&nbsp</td></tr>
+<tr><th id="157">157</th><td>&nbsp</td></tr>
+<tr><th id="158">158</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="159">159</th><td><i> * This is deprecated, and shall remain the same value in the future.  To avoid</i>&nbsp</td></tr>
+<tr><th id="160">160</th><td><i> * confusion please use the equivalent (STATX_BASIC_STATS | STATX_BTIME)</i>&nbsp</td></tr>
+<tr><th id="161">161</th><td><i> * instead.</i>&nbsp</td></tr>
+<tr><th id="162">162</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="163">163</th><td><u>#define <dfn class="macro" id="_M/STATX_ALL" data-ref="_M/STATX_ALL">STATX_ALL</dfn>		0x00000fffU</u>&nbsp</td></tr>
+<tr><th id="164">164</th><td>&nbsp</td></tr>
+<tr><th id="165">165</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="166">166</th><td><i> * Attributes to be found in stx_attributes and masked in stx_attributes_mask.</i>&nbsp</td></tr>
+<tr><th id="167">167</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="168">168</th><td><i> * These give information about the features or the state of a file that might</i>&nbsp</td></tr>
+<tr><th id="169">169</th><td><i> * be of use to ordinary userspace programs such as GUIs or ls rather than</i>&nbsp</td></tr>
+<tr><th id="170">170</th><td><i> * specialised tools.</i>&nbsp</td></tr>
+<tr><th id="171">171</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="172">172</th><td><i> * Note that the flags marked [I] correspond to the FS_IOC_SETFLAGS flags</i>&nbsp</td></tr>
+<tr><th id="173">173</th><td><i> * semantically.  Where possible, the numerical value is picked to correspond</i>&nbsp</td></tr>
+<tr><th id="174">174</th><td><i> * also.  Note that the DAX attribute indicates that the file is in the CPU</i>&nbsp</td></tr>
+<tr><th id="175">175</th><td><i> * direct access state.  It does not correspond to the per-inode flag that</i>&nbsp</td></tr>
+<tr><th id="176">176</th><td><i> * some filesystems support.</i>&nbsp</td></tr>
+<tr><th id="177">177</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="178">178</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="179">179</th><td><u>#define <dfn class="macro" id="_M/STATX_ATTR_COMPRESSED" data-ref="_M/STATX_ATTR_COMPRESSED">STATX_ATTR_COMPRESSED</dfn>		0x00000004 /* [I] File is compressed by the fs */</u>&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>#define <dfn class="macro" id="_M/STATX_ATTR_IMMUTABLE" data-ref="_M/STATX_ATTR_IMMUTABLE">STATX_ATTR_IMMUTABLE</dfn>		0x00000010 /* [I] File is marked immutable */</u>&nbsp</td></tr>
+<tr><th id="181">181</th><td><u>#define <dfn class="macro" id="_M/STATX_ATTR_APPEND" data-ref="_M/STATX_ATTR_APPEND">STATX_ATTR_APPEND</dfn>		0x00000020 /* [I] File is append-only */</u>&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>#define <dfn class="macro" id="_M/STATX_ATTR_NODUMP" data-ref="_M/STATX_ATTR_NODUMP">STATX_ATTR_NODUMP</dfn>		0x00000040 /* [I] File is not to be dumped */</u>&nbsp</td></tr>
+<tr><th id="183">183</th><td><u>#define <dfn class="macro" id="_M/STATX_ATTR_ENCRYPTED" data-ref="_M/STATX_ATTR_ENCRYPTED">STATX_ATTR_ENCRYPTED</dfn>		0x00000800 /* [I] File requires key to decrypt in fs */</u>&nbsp</td></tr>
+<tr><th id="184">184</th><td><u>#define <dfn class="macro" id="_M/STATX_ATTR_AUTOMOUNT" data-ref="_M/STATX_ATTR_AUTOMOUNT">STATX_ATTR_AUTOMOUNT</dfn>		0x00001000 /* Dir: Automount trigger */</u>&nbsp</td></tr>
+<tr><th id="185">185</th><td><u>#define <dfn class="macro" id="_M/STATX_ATTR_MOUNT_ROOT" data-ref="_M/STATX_ATTR_MOUNT_ROOT">STATX_ATTR_MOUNT_ROOT</dfn>		0x00002000 /* Root of a mount */</u>&nbsp</td></tr>
+<tr><th id="186">186</th><td><u>#define <dfn class="macro" id="_M/STATX_ATTR_VERITY" data-ref="_M/STATX_ATTR_VERITY">STATX_ATTR_VERITY</dfn>		0x00100000 /* [I] Verity protected file */</u>&nbsp</td></tr>
+<tr><th id="187">187</th><td><u>#define <dfn class="macro" id="_M/STATX_ATTR_DAX" data-ref="_M/STATX_ATTR_DAX">STATX_ATTR_DAX</dfn>			0x00200000 /* File is currently in DAX state */</u>&nbsp</td></tr>
+<tr><th id="188">188</th><td>&nbsp</td></tr>
+<tr><th id="189">189</th><td>&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>#<span data-ppcond="2">endif</span> /* _LINUX_STAT_H */</u>&nbsp</td></tr>
+<tr><th id="191">191</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../Modules/System/Src/tFile.cpp.html'>Modules/System/Src/tFile.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

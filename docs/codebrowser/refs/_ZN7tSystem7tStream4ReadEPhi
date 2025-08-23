@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tStream.h' l='47' type='int tSystem::tStream::Read(uint8 * dest, int numBytes)'/>
+<doc f='Modules/System/Inc/System/tStream.h' l='44'>// Returns the number of bytes read from the stream and written to the dest buffer. If an error occurs, -1 is
+	// returned. This can happen if, but not iff: a) The stream is not in read mode. b) &apos;dest&apos; is null. c) &apos;numBytes&apos;
+	// is not &gt;= 0, or d) There was a read error.</doc>

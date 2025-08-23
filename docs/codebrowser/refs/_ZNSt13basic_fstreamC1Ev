@@ -1,0 +1,8 @@
+<def f='include/c++/11/fstream' l='1048' ll='1050' type='void std::basic_fstream::basic_fstream&lt;_CharT, _Traits&gt;()'/>
+<doc f='include/c++/11/fstream' l='1041'>/**
+       *  @brief  Default constructor.
+       *
+       *  Initializes @c sb using its default constructor, and passes
+       *  @c &amp;sb to the base class initializer.  Does not open any files
+       *  (you haven&apos;t given it a filename to open).
+       */</doc>

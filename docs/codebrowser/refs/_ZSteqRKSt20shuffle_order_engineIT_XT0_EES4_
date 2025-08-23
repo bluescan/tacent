@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/random.h' l='1477' ll='1482' type='bool std::operator==(const shuffle_order_engine&lt;_RandomNumberEngine, __k&gt; &amp; __lhs, const shuffle_order_engine&lt;_RandomNumberEngine, __k&gt; &amp; __rhs)'/>
+<doc f='include/c++/11/bits/random.h' l='1466'>/**
+       * Compares two %shuffle_order_engine random number generator objects
+       * of the same type for equality.
+       *
+       * @param __lhs A %shuffle_order_engine random number generator object.
+       * @param __rhs Another %shuffle_order_engine random number generator
+       *              object.
+       *
+       * @returns true if the infinite sequences of generated values
+       *          would be equal, false otherwise.
+      */</doc>

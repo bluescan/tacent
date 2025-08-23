@@ -1,0 +1,850 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ostream source code [include/c++/11/ostream] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::__syncbuf_base,std::basic_ostream "/>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/ostream'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>c++</a>/<a href='./'>11</a>/<a href='ostream.html'>ostream</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Output streams -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 1997-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">include/ostream</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is a Standard C++ Library header.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc">// ISO C++ 14882: 27.6.2  Output streams</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="33">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_OSTREAM">_GLIBCXX_OSTREAM</span></u>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_OSTREAM" data-ref="_M/_GLIBCXX_OSTREAM">_GLIBCXX_OSTREAM</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#include &lt;ios&gt;</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#include &lt;bits/ostream_insert.h&gt;</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="42">42</th><td>{&nbsp</td></tr>
+<tr><th id="43">43</th><td><a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i class="doc">   *  <span class="command">@brief</span>  Template class basic_ostream.</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i class="doc">   *  <span class="command">@ingroup</span> <span class="verb">io</span></i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i class="doc">   *  <span class="command">@tparam</span> <span class="arg">_CharT</span>  Type of character stream.</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i class="doc">   *  <span class="command">@tparam</span> <span class="arg">_Traits</span>  Traits for character type, defaults to</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i class="doc">   *                   char_traits&lt;_CharT&gt;.</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i class="doc">   *  This is the base class for all output streams.  It provides text</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i class="doc">   *  formatting of all builtin types, and communicates with any class</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i class="doc">   *  derived from basic_streambuf to do the actual output.</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="58">58</th><td>    <b>class</b> <dfn class="type def" id="std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</dfn> : <b>virtual</b> <b>public</b> <a class="type" href="iosfwd.html#std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios">basic_ios</a>&lt;_CharT, _Traits&gt;&nbsp</td></tr>
+<tr><th id="59">59</th><td>    {&nbsp</td></tr>
+<tr><th id="60">60</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="61">61</th><td>      <i>// Types (inherited from basic_ios):</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td>      <b>typedef</b> _CharT			 		<dfn class="typedef" id="std::basic_ostream::char_type" title='std::basic_ostream::char_type' data-type='_CharT' data-ref="std::basic_ostream::char_type">char_type</dfn>;&nbsp</td></tr>
+<tr><th id="63">63</th><td>      <b>typedef</b> <b>typename</b> _Traits::int_type 		<dfn class="typedef" id="std::basic_ostream::int_type" title='std::basic_ostream::int_type' data-type='typename _Traits::int_type' data-ref="std::basic_ostream::int_type">int_type</dfn>;&nbsp</td></tr>
+<tr><th id="64">64</th><td>      <b>typedef</b> <b>typename</b> _Traits::pos_type 		<dfn class="typedef" id="std::basic_ostream::pos_type" title='std::basic_ostream::pos_type' data-type='typename _Traits::pos_type' data-ref="std::basic_ostream::pos_type">pos_type</dfn>;&nbsp</td></tr>
+<tr><th id="65">65</th><td>      <b>typedef</b> <b>typename</b> _Traits::off_type 		<dfn class="typedef" id="std::basic_ostream::off_type" title='std::basic_ostream::off_type' data-type='typename _Traits::off_type' data-ref="std::basic_ostream::off_type">off_type</dfn>;&nbsp</td></tr>
+<tr><th id="66">66</th><td>      <b>typedef</b> _Traits			 		<dfn class="typedef" id="std::basic_ostream::traits_type" title='std::basic_ostream::traits_type' data-type='_Traits' data-ref="std::basic_ostream::traits_type">traits_type</dfn>;&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td>      <i>// Non-standard Types:</i>&nbsp</td></tr>
+<tr><th id="69">69</th><td>      <b>typedef</b> <a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt; 		<dfn class="typedef" id="std::basic_ostream::__streambuf_type" title='std::basic_ostream::__streambuf_type' data-type='basic_streambuf&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__streambuf_type">__streambuf_type</dfn>;&nbsp</td></tr>
+<tr><th id="70">70</th><td>      <b>typedef</b> <a class="type" href="iosfwd.html#std::basic_ios" title='std::basic_ios' data-ref="std::basic_ios">basic_ios</a>&lt;_CharT, _Traits&gt;		<dfn class="typedef" id="std::basic_ostream::__ios_type" title='std::basic_ostream::__ios_type' data-type='basic_ios&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ios_type">__ios_type</dfn>;&nbsp</td></tr>
+<tr><th id="71">71</th><td>      <b>typedef</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;		<dfn class="typedef" id="std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</dfn>;&nbsp</td></tr>
+<tr><th id="72">72</th><td>      <b>typedef</b> <a class="type" href="bits/localefwd.h.html#std::num_put" title='std::num_put' data-ref="std::num_put">num_put</a>&lt;_CharT, <a class="type" href="iosfwd.html#std::ostreambuf_iterator" title='std::ostreambuf_iterator' data-ref="std::ostreambuf_iterator">ostreambuf_iterator</a>&lt;_CharT, _Traits&gt; &gt;&nbsp</td></tr>
+<tr><th id="73">73</th><td>      							<dfn class="typedef" id="std::basic_ostream::__num_put_type" title='std::basic_ostream::__num_put_type' data-type='num_put&lt;_CharT, ostreambuf_iterator&lt;_CharT, _Traits&gt;&gt;' data-ref="std::basic_ostream::__num_put_type">__num_put_type</dfn>;&nbsp</td></tr>
+<tr><th id="74">74</th><td>      <b>typedef</b> <a class="type" href="bits/localefwd.h.html#std::ctype" title='std::ctype' data-ref="std::ctype">ctype</a>&lt;_CharT&gt;	      			<dfn class="typedef" id="std::basic_ostream::__ctype_type" title='std::basic_ostream::__ctype_type' data-type='ctype&lt;_CharT&gt;' data-ref="std::basic_ostream::__ctype_type">__ctype_type</dfn>;&nbsp</td></tr>
+<tr><th id="75">75</th><td>&nbsp</td></tr>
+<tr><th id="76">76</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td><i class="doc">       *  <span class="command">@brief</span>  Base constructor.</i>&nbsp</td></tr>
+<tr><th id="78">78</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><i class="doc">       *  This ctor is almost never called by the user directly, rather from</i>&nbsp</td></tr>
+<tr><th id="80">80</th><td><i class="doc">       *  derived classes' initialization lists, which pass a pointer to</i>&nbsp</td></tr>
+<tr><th id="81">81</th><td><i class="doc">       *  their own stream buffer.</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td>      <b>explicit</b>&nbsp</td></tr>
+<tr><th id="84">84</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamC1EPSt15basic_streambufIT_T0_E" title='std::basic_ostream::basic_ostream&lt;_CharT, _Traits&gt;' data-ref="_ZNSt13basic_ostreamC1EPSt15basic_streambufIT_T0_E">basic_ostream</dfn>(<a class="typedef" href="#std::basic_ostream::__streambuf_type" title='std::basic_ostream::__streambuf_type' data-type='basic_streambuf&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__streambuf_type">__streambuf_type</a>* <dfn class="local col8 decl" id="2088__sb" title='__sb' data-type='std::basic_ostream::__streambuf_type *' data-ref="2088__sb">__sb</dfn>)&nbsp</td></tr>
+<tr><th id="85">85</th><td>      { <b>this</b>-&gt;init(<a class="local col8 ref" href="#2088__sb" title='__sb' data-ref="2088__sb">__sb</a>); }&nbsp</td></tr>
+<tr><th id="86">86</th><td>&nbsp</td></tr>
+<tr><th id="87">87</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td><i class="doc">       *  <span class="command">@brief</span>  Base destructor.</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td><i class="doc">       *  This does very little apart from providing a virtual base dtor.</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td>      <b>virtual</b>&nbsp</td></tr>
+<tr><th id="93">93</th><td>      <dfn class="virtual decl def fn" id="_ZNSt13basic_ostreamD1Ev" title='std::basic_ostream::~basic_ostream&lt;_CharT, _Traits&gt;' data-ref="_ZNSt13basic_ostreamD1Ev">~basic_ostream</dfn>() { }&nbsp</td></tr>
+<tr><th id="94">94</th><td>&nbsp</td></tr>
+<tr><th id="95">95</th><td>      <i class="doc">/// Safe prefix/suffix operations.</i>&nbsp</td></tr>
+<tr><th id="96">96</th><td>      <b>class</b> <a class="type" href="#std::basic_ostream::sentry" title='std::basic_ostream::sentry' data-ref="std::basic_ostream::sentry">sentry</a>;&nbsp</td></tr>
+<tr><th id="97">97</th><td>      <b>friend</b> <b>class</b> <a class="type" href="#std::basic_ostream::sentry" title='std::basic_ostream::sentry' data-ref="std::basic_ostream::sentry">sentry</a>;&nbsp</td></tr>
+<tr><th id="98">98</th><td>&nbsp</td></tr>
+<tr><th id="99">99</th><td>      <i class="doc">///@{</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><i class="doc">       *  <span class="command">@brief</span>  Interface for manipulators.</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td><i class="doc">       *  Manipulators such as<span class="command"> @c</span> <span class="arg">std::endl</span> and<span class="command"> @c</span> <span class="arg">std::hex</span> use these</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td><i class="doc">       *  functions in constructs like "std::cout &lt;&lt; std::endl".  For more</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td><i class="doc">       *  information, see the iomanip header.</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="108">108</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEPFRSt13basic_ostreamIT_T0_ES5_E" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEPFRSt13basic_ostreamIT_T0_ES5_E"><b>operator</b>&lt;&lt;</dfn>(<a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp; (*<dfn class="local col9 decl" id="2089__pf" title='__pf' data-type='std::basic_ostream::__ostream_type &amp;(*)(std::basic_ostream::__ostream_type &amp;)' data-ref="2089__pf">__pf</dfn>)(<a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;))&nbsp</td></tr>
+<tr><th id="109">109</th><td>      {&nbsp</td></tr>
+<tr><th id="110">110</th><td>	<i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="111">111</th><td><i>	// DR 60. What is a formatted input function?</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td><i>	// The inserters for manipulators are *not* formatted output functions.</i>&nbsp</td></tr>
+<tr><th id="113">113</th><td>	<b>return</b> <a class="local col9 ref" href="#2089__pf" title='__pf' data-ref="2089__pf">__pf</a>(*<b>this</b>);&nbsp</td></tr>
+<tr><th id="114">114</th><td>      }&nbsp</td></tr>
+<tr><th id="115">115</th><td>&nbsp</td></tr>
+<tr><th id="116">116</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="117">117</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEPFRSt9basic_iosIT_T0_ES4_E" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEPFRSt9basic_iosIT_T0_ES4_E"><b>operator</b>&lt;&lt;</dfn>(<a class="typedef" href="#std::basic_ostream::__ios_type" title='std::basic_ostream::__ios_type' data-type='basic_ios&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ios_type">__ios_type</a>&amp; (*<dfn class="local col0 decl" id="2090__pf" title='__pf' data-type='std::basic_ostream::__ios_type &amp;(*)(std::basic_ostream::__ios_type &amp;)' data-ref="2090__pf">__pf</dfn>)(<a class="typedef" href="#std::basic_ostream::__ios_type" title='std::basic_ostream::__ios_type' data-type='basic_ios&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ios_type">__ios_type</a>&amp;))&nbsp</td></tr>
+<tr><th id="118">118</th><td>      {&nbsp</td></tr>
+<tr><th id="119">119</th><td>	<i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td><i>	// DR 60. What is a formatted input function?</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td><i>	// The inserters for manipulators are *not* formatted output functions.</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td>	<a class="local col0 ref" href="#2090__pf" title='__pf' data-ref="2090__pf">__pf</a>(*<b>this</b>);&nbsp</td></tr>
+<tr><th id="123">123</th><td>	<b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="124">124</th><td>      }&nbsp</td></tr>
+<tr><th id="125">125</th><td>&nbsp</td></tr>
+<tr><th id="126">126</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="127">127</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEPFRSt8ios_baseS1_E" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEPFRSt8ios_baseS1_E"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>&amp; (*<dfn class="local col1 decl" id="2091__pf" title='__pf' data-type='std::ios_base &amp;(*)(std::ios_base &amp;)' data-ref="2091__pf">__pf</dfn>) (<a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>&amp;))&nbsp</td></tr>
+<tr><th id="128">128</th><td>      {&nbsp</td></tr>
+<tr><th id="129">129</th><td>	<i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td><i>	// DR 60. What is a formatted input function?</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td><i>	// The inserters for manipulators are *not* formatted output functions.</i>&nbsp</td></tr>
+<tr><th id="132">132</th><td>	<a class="local col1 ref" href="#2091__pf" title='__pf' data-ref="2091__pf">__pf</a>(*<b>this</b>);&nbsp</td></tr>
+<tr><th id="133">133</th><td>	<b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="134">134</th><td>      }&nbsp</td></tr>
+<tr><th id="135">135</th><td>      <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="137">137</th><td><i class="doc">      ///@{</i>&nbsp</td></tr>
+<tr><th id="138">138</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="139">139</th><td><i class="doc">       *  <span class="command">@name</span> <span class="verb">Inserters</span></i>&nbsp</td></tr>
+<tr><th id="140">140</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="141">141</th><td><i class="doc">       *  All the<span class="command"> @c</span> <span class="arg">operator&lt;&lt;</span> functions (aka <span class="tag">&lt;em&gt;</span>formatted output</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td><i class="doc">       *  functions<span class="tag">&lt;/em&gt;</span>) have some common behavior.  Each starts by</i>&nbsp</td></tr>
+<tr><th id="143">143</th><td><i class="doc">       *  constructing a temporary object of type std::basic_ostream::sentry.</i>&nbsp</td></tr>
+<tr><th id="144">144</th><td><i class="doc">       *  This can have several effects, concluding with the setting of a</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td><i class="doc">       *  status flag; see the sentry documentation for more.</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="147">147</th><td><i class="doc">       *  If the sentry status is good, the function tries to generate</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td><i class="doc">       *  whatever data is appropriate for the type of the argument.</i>&nbsp</td></tr>
+<tr><th id="149">149</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="150">150</th><td><i class="doc">       *  If an exception is thrown during insertion, ios_base::badbit</i>&nbsp</td></tr>
+<tr><th id="151">151</th><td><i class="doc">       *  will be turned on in the stream's error state without causing an</i>&nbsp</td></tr>
+<tr><th id="152">152</th><td><i class="doc">       *  ios_base::failure to be thrown.  The original exception will then</i>&nbsp</td></tr>
+<tr><th id="153">153</th><td><i class="doc">       *  be rethrown.</i>&nbsp</td></tr>
+<tr><th id="154">154</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="155">155</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="156">156</th><td><i class="doc">      ///@{</i>&nbsp</td></tr>
+<tr><th id="157">157</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="158">158</th><td><i class="doc">       *  <span class="command">@brief</span> Integer arithmetic inserters</i>&nbsp</td></tr>
+<tr><th id="159">159</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span> A variable of builtin integral type.</i>&nbsp</td></tr>
+<tr><th id="160">160</th><td><i class="doc">       *  <span class="command">@return</span> <span class="command"> @c</span> <span class="arg">*this</span> if successful</i>&nbsp</td></tr>
+<tr><th id="161">161</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="162">162</th><td><i class="doc">       *  These functions use the stream's current locale (specifically, the</i>&nbsp</td></tr>
+<tr><th id="163">163</th><td><i class="doc">       * <span class="command"> @c</span> <span class="arg">num_get</span> facet) to perform numeric formatting.</i>&nbsp</td></tr>
+<tr><th id="164">164</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="165">165</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="166">166</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEl" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEl"><b>operator</b>&lt;&lt;</dfn>(<em>long</em> <dfn class="local col2 decl" id="2092__n" title='__n' data-type='long' data-ref="2092__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="167">167</th><td>      { <b>return</b> _M_insert(<a class="local col2 ref" href="#2092__n" title='__n' data-ref="2092__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="168">168</th><td>&nbsp</td></tr>
+<tr><th id="169">169</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="170">170</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEm" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEm"><b>operator</b>&lt;&lt;</dfn>(<em>unsigned</em> <em>long</em> <dfn class="local col3 decl" id="2093__n" title='__n' data-type='unsigned long' data-ref="2093__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="171">171</th><td>      { <b>return</b> _M_insert(<a class="local col3 ref" href="#2093__n" title='__n' data-ref="2093__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="172">172</th><td>&nbsp</td></tr>
+<tr><th id="173">173</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="174">174</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEb" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEb"><b>operator</b>&lt;&lt;</dfn>(<em>bool</em> <dfn class="local col4 decl" id="2094__n" title='__n' data-type='bool' data-ref="2094__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="175">175</th><td>      { <b>return</b> _M_insert(<a class="local col4 ref" href="#2094__n" title='__n' data-ref="2094__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="176">176</th><td>&nbsp</td></tr>
+<tr><th id="177">177</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="178">178</th><td>      <a class="decl fn" href="bits/ostream.tcc.html#_ZNSt13basic_ostreamlsEs" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEs" id="_ZNSt13basic_ostreamlsEs"><b>operator</b>&lt;&lt;</a>(<em>short</em> <dfn class="local col5 decl" id="2095__n" title='__n' data-type='short' data-ref="2095__n">__n</dfn>);&nbsp</td></tr>
+<tr><th id="179">179</th><td>&nbsp</td></tr>
+<tr><th id="180">180</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="181">181</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEt" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEt"><b>operator</b>&lt;&lt;</dfn>(<em>unsigned</em> <em>short</em> <dfn class="local col6 decl" id="2096__n" title='__n' data-type='unsigned short' data-ref="2096__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="182">182</th><td>      {&nbsp</td></tr>
+<tr><th id="183">183</th><td>	<i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="184">184</th><td><i>	// 117. basic_ostream uses nonexistent num_put member functions.</i>&nbsp</td></tr>
+<tr><th id="185">185</th><td>	<b>return</b> _M_insert(<b>static_cast</b>&lt;<em>unsigned</em> <em>long</em>&gt;(<a class="local col6 ref" href="#2096__n" title='__n' data-ref="2096__n">__n</a>));&nbsp</td></tr>
+<tr><th id="186">186</th><td>      }&nbsp</td></tr>
+<tr><th id="187">187</th><td>&nbsp</td></tr>
+<tr><th id="188">188</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="189">189</th><td>      <a class="decl fn" href="bits/ostream.tcc.html#_ZNSt13basic_ostreamlsEi" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEi" id="_ZNSt13basic_ostreamlsEi"><b>operator</b>&lt;&lt;</a>(<em>int</em> <dfn class="local col7 decl" id="2097__n" title='__n' data-type='int' data-ref="2097__n">__n</dfn>);&nbsp</td></tr>
+<tr><th id="190">190</th><td>&nbsp</td></tr>
+<tr><th id="191">191</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="192">192</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEj" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEj"><b>operator</b>&lt;&lt;</dfn>(<em>unsigned</em> <em>int</em> <dfn class="local col8 decl" id="2098__n" title='__n' data-type='unsigned int' data-ref="2098__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="193">193</th><td>      {&nbsp</td></tr>
+<tr><th id="194">194</th><td>	<i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="195">195</th><td><i>	// 117. basic_ostream uses nonexistent num_put member functions.</i>&nbsp</td></tr>
+<tr><th id="196">196</th><td>	<b>return</b> _M_insert(<b>static_cast</b>&lt;<em>unsigned</em> <em>long</em>&gt;(<a class="local col8 ref" href="#2098__n" title='__n' data-ref="2098__n">__n</a>));&nbsp</td></tr>
+<tr><th id="197">197</th><td>      }&nbsp</td></tr>
+<tr><th id="198">198</th><td>&nbsp</td></tr>
+<tr><th id="199">199</th><td><u>#<span data-ppcond="199">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1731" data-ref="_M/_GLIBCXX_USE_LONG_LONG">_GLIBCXX_USE_LONG_LONG</a></u>&nbsp</td></tr>
+<tr><th id="200">200</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="201">201</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEx" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEx"><b>operator</b>&lt;&lt;</dfn>(<em>long</em> <em>long</em> <dfn class="local col9 decl" id="2099__n" title='__n' data-type='long long' data-ref="2099__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="202">202</th><td>      { <b>return</b> _M_insert(<a class="local col9 ref" href="#2099__n" title='__n' data-ref="2099__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="203">203</th><td>&nbsp</td></tr>
+<tr><th id="204">204</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="205">205</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEy" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEy"><b>operator</b>&lt;&lt;</dfn>(<em>unsigned</em> <em>long</em> <em>long</em> <dfn class="local col0 decl" id="2100__n" title='__n' data-type='unsigned long long' data-ref="2100__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="206">206</th><td>      { <b>return</b> _M_insert(<a class="local col0 ref" href="#2100__n" title='__n' data-ref="2100__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="207">207</th><td><u>#<span data-ppcond="199">endif</span></u>&nbsp</td></tr>
+<tr><th id="208">208</th><td>      <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="209">209</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="210">210</th><td><i class="doc">      ///@{</i>&nbsp</td></tr>
+<tr><th id="211">211</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="212">212</th><td><i class="doc">       *  <span class="command">@brief</span>  Floating point arithmetic inserters</i>&nbsp</td></tr>
+<tr><th id="213">213</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__f</span> A variable of builtin floating point type.</i>&nbsp</td></tr>
+<tr><th id="214">214</th><td><i class="doc">       *  <span class="command">@return</span> <span class="command"> @c</span> <span class="arg">*this</span> if successful</i>&nbsp</td></tr>
+<tr><th id="215">215</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="216">216</th><td><i class="doc">       *  These functions use the stream's current locale (specifically, the</i>&nbsp</td></tr>
+<tr><th id="217">217</th><td><i class="doc">       * <span class="command"> @c</span> <span class="arg">num_get</span> facet) to perform numeric formatting.</i>&nbsp</td></tr>
+<tr><th id="218">218</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="219">219</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="220">220</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEd" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEd"><b>operator</b>&lt;&lt;</dfn>(<em>double</em> <dfn class="local col1 decl" id="2101__f" title='__f' data-type='double' data-ref="2101__f">__f</dfn>)&nbsp</td></tr>
+<tr><th id="221">221</th><td>      { <b>return</b> _M_insert(<a class="local col1 ref" href="#2101__f" title='__f' data-ref="2101__f">__f</a>); }&nbsp</td></tr>
+<tr><th id="222">222</th><td>&nbsp</td></tr>
+<tr><th id="223">223</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="224">224</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEf" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEf"><b>operator</b>&lt;&lt;</dfn>(<em>float</em> <dfn class="local col2 decl" id="2102__f" title='__f' data-type='float' data-ref="2102__f">__f</dfn>)&nbsp</td></tr>
+<tr><th id="225">225</th><td>      {&nbsp</td></tr>
+<tr><th id="226">226</th><td>	<i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="227">227</th><td><i>	// 117. basic_ostream uses nonexistent num_put member functions.</i>&nbsp</td></tr>
+<tr><th id="228">228</th><td>	<b>return</b> _M_insert(<b>static_cast</b>&lt;<em>double</em>&gt;(<a class="local col2 ref" href="#2102__f" title='__f' data-ref="2102__f">__f</a>));&nbsp</td></tr>
+<tr><th id="229">229</th><td>      }&nbsp</td></tr>
+<tr><th id="230">230</th><td>&nbsp</td></tr>
+<tr><th id="231">231</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="232">232</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEe" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEe"><b>operator</b>&lt;&lt;</dfn>(<em>long</em> <em>double</em> <dfn class="local col3 decl" id="2103__f" title='__f' data-type='long double' data-ref="2103__f">__f</dfn>)&nbsp</td></tr>
+<tr><th id="233">233</th><td>      { <b>return</b> _M_insert(<a class="local col3 ref" href="#2103__f" title='__f' data-ref="2103__f">__f</a>); }&nbsp</td></tr>
+<tr><th id="234">234</th><td>      <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="235">235</th><td>&nbsp</td></tr>
+<tr><th id="236">236</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="237">237</th><td><i class="doc">       *  <span class="command">@brief</span>  Pointer arithmetic inserters</i>&nbsp</td></tr>
+<tr><th id="238">238</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span> A variable of pointer type.</i>&nbsp</td></tr>
+<tr><th id="239">239</th><td><i class="doc">       *  <span class="command">@return</span> <span class="command"> @c</span> <span class="arg">*this</span> if successful</i>&nbsp</td></tr>
+<tr><th id="240">240</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="241">241</th><td><i class="doc">       *  These functions use the stream's current locale (specifically, the</i>&nbsp</td></tr>
+<tr><th id="242">242</th><td><i class="doc">       * <span class="command"> @c</span> <span class="arg">num_get</span> facet) to perform numeric formatting.</i>&nbsp</td></tr>
+<tr><th id="243">243</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="244">244</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="245">245</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEPKv" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEPKv"><b>operator</b>&lt;&lt;</dfn>(<em>const</em> <em>void</em>* <dfn class="local col4 decl" id="2104__p" title='__p' data-type='const void *' data-ref="2104__p">__p</dfn>)&nbsp</td></tr>
+<tr><th id="246">246</th><td>      { <b>return</b> _M_insert(<a class="local col4 ref" href="#2104__p" title='__p' data-ref="2104__p">__p</a>); }&nbsp</td></tr>
+<tr><th id="247">247</th><td>&nbsp</td></tr>
+<tr><th id="248">248</th><td><u>#<span data-ppcond="248">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="249">249</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="250">250</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamlsEDn" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEDn"><b>operator</b>&lt;&lt;</dfn>(<a class="typedef" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::nullptr_t" title='std::nullptr_t' data-type='decltype(nullptr)' data-ref="std::nullptr_t">nullptr_t</a>)&nbsp</td></tr>
+<tr><th id="251">251</th><td>      { <b>return</b> *<b>this</b> &lt;&lt; <q>"nullptr"</q>; }&nbsp</td></tr>
+<tr><th id="252">252</th><td><u>#<span data-ppcond="248">endif</span></u>&nbsp</td></tr>
+<tr><th id="253">253</th><td>&nbsp</td></tr>
+<tr><th id="254">254</th><td><u>#<span data-ppcond="254">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 202002L</u>&nbsp</td></tr>
+<tr><th id="255">255</th><td>      <b>__attribute__</b>((__always_inline__))&nbsp</td></tr>
+<tr><th id="256">256</th><td>      __ostream_type&amp;&nbsp</td></tr>
+<tr><th id="257">257</th><td>      <b>operator</b>&lt;&lt;(<em>const</em> <em>volatile</em> <em>void</em>* __p)&nbsp</td></tr>
+<tr><th id="258">258</th><td>      { <b>return</b> _M_insert(<b>const_cast</b>&lt;<em>const</em> <em>void</em>*&gt;(__p)); }&nbsp</td></tr>
+<tr><th id="259">259</th><td><u>#<span data-ppcond="254">endif</span></u>&nbsp</td></tr>
+<tr><th id="260">260</th><td>&nbsp</td></tr>
+<tr><th id="261">261</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="262">262</th><td><i class="doc">       *  <span class="command">@brief</span>  Extracting from another streambuf.</i>&nbsp</td></tr>
+<tr><th id="263">263</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__sb</span>  A pointer to a streambuf</i>&nbsp</td></tr>
+<tr><th id="264">264</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="265">265</th><td><i class="doc">       *  This function behaves like one of the basic arithmetic extractors,</i>&nbsp</td></tr>
+<tr><th id="266">266</th><td><i class="doc">       *  in that it also constructs a sentry object and has the same error</i>&nbsp</td></tr>
+<tr><th id="267">267</th><td><i class="doc">       *  handling behavior.</i>&nbsp</td></tr>
+<tr><th id="268">268</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="269">269</th><td><i class="doc">       *  If<span class="command"> @p</span> <span class="arg">__sb</span> is NULL, the stream will set failbit in its error state.</i>&nbsp</td></tr>
+<tr><th id="270">270</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="271">271</th><td><i class="doc">       *  Characters are extracted from<span class="command"> @p</span> <span class="arg">__sb</span> and inserted into<span class="command"> @c</span> <span class="arg">*this</span></i>&nbsp</td></tr>
+<tr><th id="272">272</th><td><i class="doc">       *  until one of the following occurs:</i>&nbsp</td></tr>
+<tr><th id="273">273</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="274">274</th><td><i class="doc">       *  - the input stream reaches end-of-file,</i>&nbsp</td></tr>
+<tr><th id="275">275</th><td><i class="doc">       *  - insertion into the output sequence fails (in this case, the</i>&nbsp</td></tr>
+<tr><th id="276">276</th><td><i class="doc">       *    character that would have been inserted is not extracted), or</i>&nbsp</td></tr>
+<tr><th id="277">277</th><td><i class="doc">       *  - an exception occurs while getting a character from<span class="command"> @p</span> <span class="arg">__sb,</span> which</i>&nbsp</td></tr>
+<tr><th id="278">278</th><td><i class="doc">       *    sets failbit in the error state</i>&nbsp</td></tr>
+<tr><th id="279">279</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="280">280</th><td><i class="doc">       *  If the function inserts no characters, failbit is set.</i>&nbsp</td></tr>
+<tr><th id="281">281</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="282">282</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="283">283</th><td>      <a class="decl fn" href="bits/ostream.tcc.html#_ZNSt13basic_ostreamlsEPSt15basic_streambufIT_T0_E" title='std::basic_ostream::operator&lt;&lt;' data-ref="_ZNSt13basic_ostreamlsEPSt15basic_streambufIT_T0_E" id="_ZNSt13basic_ostreamlsEPSt15basic_streambufIT_T0_E"><b>operator</b>&lt;&lt;</a>(<a class="typedef" href="#std::basic_ostream::__streambuf_type" title='std::basic_ostream::__streambuf_type' data-type='basic_streambuf&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__streambuf_type">__streambuf_type</a>* <dfn class="local col5 decl" id="2105__sb" title='__sb' data-type='std::basic_ostream::__streambuf_type *' data-ref="2105__sb">__sb</dfn>);&nbsp</td></tr>
+<tr><th id="284">284</th><td>      <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="285">285</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="286">286</th><td><i class="doc">      ///@{</i>&nbsp</td></tr>
+<tr><th id="287">287</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="288">288</th><td><i class="doc">       *  <span class="command">@name</span> <span class="verb">Unformatted Output Functions</span></i>&nbsp</td></tr>
+<tr><th id="289">289</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="290">290</th><td><i class="doc">       *  All the unformatted output functions have some common behavior.</i>&nbsp</td></tr>
+<tr><th id="291">291</th><td><i class="doc">       *  Each starts by constructing a temporary object of type</i>&nbsp</td></tr>
+<tr><th id="292">292</th><td><i class="doc">       *  std::basic_ostream::sentry.  This has several effects, concluding</i>&nbsp</td></tr>
+<tr><th id="293">293</th><td><i class="doc">       *  with the setting of a status flag; see the sentry documentation</i>&nbsp</td></tr>
+<tr><th id="294">294</th><td><i class="doc">       *  for more.</i>&nbsp</td></tr>
+<tr><th id="295">295</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="296">296</th><td><i class="doc">       *  If the sentry status is good, the function tries to generate</i>&nbsp</td></tr>
+<tr><th id="297">297</th><td><i class="doc">       *  whatever data is appropriate for the type of the argument.</i>&nbsp</td></tr>
+<tr><th id="298">298</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="299">299</th><td><i class="doc">       *  If an exception is thrown during insertion, ios_base::badbit</i>&nbsp</td></tr>
+<tr><th id="300">300</th><td><i class="doc">       *  will be turned on in the stream's error state.  If badbit is on in</i>&nbsp</td></tr>
+<tr><th id="301">301</th><td><i class="doc">       *  the stream's exceptions mask, the exception will be rethrown</i>&nbsp</td></tr>
+<tr><th id="302">302</th><td><i class="doc">       *  without completing its actions.</i>&nbsp</td></tr>
+<tr><th id="303">303</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="304">304</th><td>&nbsp</td></tr>
+<tr><th id="305">305</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="306">306</th><td><i class="doc">       *  <span class="command">@brief</span>  Simple insertion.</i>&nbsp</td></tr>
+<tr><th id="307">307</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__c</span>  The character to insert.</i>&nbsp</td></tr>
+<tr><th id="308">308</th><td><i class="doc">       *  <span class="command">@return</span>  *this</i>&nbsp</td></tr>
+<tr><th id="309">309</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="310">310</th><td><i class="doc">       *  Tries to insert<span class="command"> @p</span> <span class="arg">__c.</span></i>&nbsp</td></tr>
+<tr><th id="311">311</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="312">312</th><td><i class="doc">       *  <span class="command">@note</span>  This function is not overloaded on signed char and</i>&nbsp</td></tr>
+<tr><th id="313">313</th><td><i class="doc">       *         unsigned char.</i>&nbsp</td></tr>
+<tr><th id="314">314</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="315">315</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="316">316</th><td>      <a class="decl fn" href="bits/ostream.tcc.html#_ZNSt13basic_ostream3putET_" title='std::basic_ostream::put' data-ref="_ZNSt13basic_ostream3putET_" id="_ZNSt13basic_ostream3putET_">put</a>(<a class="typedef" href="#std::basic_ostream::char_type" title='std::basic_ostream::char_type' data-type='_CharT' data-ref="std::basic_ostream::char_type">char_type</a> <dfn class="local col6 decl" id="2106__c" title='__c' data-type='std::basic_ostream::char_type' data-ref="2106__c">__c</dfn>);&nbsp</td></tr>
+<tr><th id="317">317</th><td>&nbsp</td></tr>
+<tr><th id="318">318</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="319">319</th><td><i class="doc">       *  <span class="command">@brief</span>  Core write functionality, without sentry.</i>&nbsp</td></tr>
+<tr><th id="320">320</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__s</span>  The array to insert.</i>&nbsp</td></tr>
+<tr><th id="321">321</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  Maximum number of characters to insert.</i>&nbsp</td></tr>
+<tr><th id="322">322</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="323">323</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="324">324</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostream8_M_writeEPKT_l" title='std::basic_ostream::_M_write' data-ref="_ZNSt13basic_ostream8_M_writeEPKT_l">_M_write</dfn>(<em>const</em> <a class="typedef" href="#std::basic_ostream::char_type" title='std::basic_ostream::char_type' data-type='_CharT' data-ref="std::basic_ostream::char_type">char_type</a>* <dfn class="local col7 decl" id="2107__s" title='__s' data-type='const std::basic_ostream::char_type *' data-ref="2107__s">__s</dfn>, <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col8 decl" id="2108__n" title='__n' data-type='std::streamsize' data-ref="2108__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="325">325</th><td>      {&nbsp</td></tr>
+<tr><th id="326">326</th><td>	<em>const</em> <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col9 decl" id="2109__put" title='__put' data-type='const std::streamsize' data-ref="2109__put">__put</dfn> = <b>this</b>-&gt;rdbuf()-&gt;sputn(<a class="local col7 ref" href="#2107__s" title='__s' data-ref="2107__s">__s</a>, <a class="local col8 ref" href="#2108__n" title='__n' data-ref="2108__n">__n</a>);&nbsp</td></tr>
+<tr><th id="327">327</th><td>	<b>if</b> (<a class="local col9 ref" href="#2109__put" title='__put' data-ref="2109__put">__put</a> != <a class="local col8 ref" href="#2108__n" title='__n' data-ref="2108__n">__n</a>)&nbsp</td></tr>
+<tr><th id="328">328</th><td>	  <b>this</b>-&gt;setstate(<a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="ref" href="bits/ios_base.h.html#std::ios_base::badbit" title='std::ios_base::badbit' data-ref="std::ios_base::badbit">badbit</a>);&nbsp</td></tr>
+<tr><th id="329">329</th><td>      }&nbsp</td></tr>
+<tr><th id="330">330</th><td>&nbsp</td></tr>
+<tr><th id="331">331</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="332">332</th><td><i class="doc">       *  <span class="command">@brief</span>  Character string insertion.</i>&nbsp</td></tr>
+<tr><th id="333">333</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__s</span>  The array to insert.</i>&nbsp</td></tr>
+<tr><th id="334">334</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  Maximum number of characters to insert.</i>&nbsp</td></tr>
+<tr><th id="335">335</th><td><i class="doc">       *  <span class="command">@return</span>  *this</i>&nbsp</td></tr>
+<tr><th id="336">336</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="337">337</th><td><i class="doc">       *  Characters are copied from<span class="command"> @p</span> <span class="arg">__s</span> and inserted into the stream until</i>&nbsp</td></tr>
+<tr><th id="338">338</th><td><i class="doc">       *  one of the following happens:</i>&nbsp</td></tr>
+<tr><th id="339">339</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="340">340</th><td><i class="doc">       *  -<span class="command"> @p</span> <span class="arg">__n</span> characters are inserted</i>&nbsp</td></tr>
+<tr><th id="341">341</th><td><i class="doc">       *  - inserting into the output sequence fails (in this case, badbit</i>&nbsp</td></tr>
+<tr><th id="342">342</th><td><i class="doc">       *    will be set in the stream's error state)</i>&nbsp</td></tr>
+<tr><th id="343">343</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="344">344</th><td><i class="doc">       *  <span class="command">@note</span>  This function is not overloaded on signed char and</i>&nbsp</td></tr>
+<tr><th id="345">345</th><td><i class="doc">       *         unsigned char.</i>&nbsp</td></tr>
+<tr><th id="346">346</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="347">347</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="348">348</th><td>      <a class="decl fn" href="bits/ostream.tcc.html#_ZNSt13basic_ostream5writeEPKT_l" title='std::basic_ostream::write' data-ref="_ZNSt13basic_ostream5writeEPKT_l" id="_ZNSt13basic_ostream5writeEPKT_l">write</a>(<em>const</em> <a class="typedef" href="#std::basic_ostream::char_type" title='std::basic_ostream::char_type' data-type='_CharT' data-ref="std::basic_ostream::char_type">char_type</a>* <dfn class="local col0 decl" id="2110__s" title='__s' data-type='const std::basic_ostream::char_type *' data-ref="2110__s">__s</dfn>, <a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a> <dfn class="local col1 decl" id="2111__n" title='__n' data-type='std::streamsize' data-ref="2111__n">__n</dfn>);&nbsp</td></tr>
+<tr><th id="349">349</th><td>      <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="350">350</th><td>&nbsp</td></tr>
+<tr><th id="351">351</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="352">352</th><td><i class="doc">       *  <span class="command">@brief</span>  Synchronizing the stream buffer.</i>&nbsp</td></tr>
+<tr><th id="353">353</th><td><i class="doc">       *  <span class="command">@return</span>  *this</i>&nbsp</td></tr>
+<tr><th id="354">354</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="355">355</th><td><i class="doc">       *  If<span class="command"> @c</span> <span class="arg">rdbuf()</span> is a null pointer, changes nothing.</i>&nbsp</td></tr>
+<tr><th id="356">356</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="357">357</th><td><i class="doc">       *  Otherwise, calls<span class="command"> @c</span> <span class="arg">rdbuf()-&gt;pubsync(),</span> and if that returns -1,</i>&nbsp</td></tr>
+<tr><th id="358">358</th><td><i class="doc">       *  sets badbit.</i>&nbsp</td></tr>
+<tr><th id="359">359</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="360">360</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="361">361</th><td>      <a class="decl fn" href="bits/ostream.tcc.html#_ZNSt13basic_ostream5flushEv" title='std::basic_ostream::flush' data-ref="_ZNSt13basic_ostream5flushEv" id="_ZNSt13basic_ostream5flushEv">flush</a>();&nbsp</td></tr>
+<tr><th id="362">362</th><td>&nbsp</td></tr>
+<tr><th id="363">363</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="364">364</th><td><i class="doc">       *  <span class="command">@brief</span>  Getting the current write position.</i>&nbsp</td></tr>
+<tr><th id="365">365</th><td><i class="doc">       *  <span class="command">@return</span>  A file position object.</i>&nbsp</td></tr>
+<tr><th id="366">366</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="367">367</th><td><i class="doc">       *  If<span class="command"> @c</span> <span class="arg">fail()</span> is not false, returns<span class="command"> @c</span> <span class="arg">pos_type(-1)</span> to indicate</i>&nbsp</td></tr>
+<tr><th id="368">368</th><td><i class="doc">       *  failure.  Otherwise returns<span class="command"> @c</span> <span class="arg">rdbuf()-&gt;pubseekoff(0,cur,out).</span></i>&nbsp</td></tr>
+<tr><th id="369">369</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="370">370</th><td>      <a class="typedef" href="#std::basic_ostream::pos_type" title='std::basic_ostream::pos_type' data-type='typename _Traits::pos_type' data-ref="std::basic_ostream::pos_type">pos_type</a>&nbsp</td></tr>
+<tr><th id="371">371</th><td>      <a class="decl fn" href="bits/ostream.tcc.html#_ZNSt13basic_ostream5tellpEv" title='std::basic_ostream::tellp' data-ref="_ZNSt13basic_ostream5tellpEv" id="_ZNSt13basic_ostream5tellpEv">tellp</a>();&nbsp</td></tr>
+<tr><th id="372">372</th><td>&nbsp</td></tr>
+<tr><th id="373">373</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="374">374</th><td><i class="doc">       *  <span class="command">@brief</span>  Changing the current write position.</i>&nbsp</td></tr>
+<tr><th id="375">375</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__pos</span>  A file position object.</i>&nbsp</td></tr>
+<tr><th id="376">376</th><td><i class="doc">       *  <span class="command">@return</span>  *this</i>&nbsp</td></tr>
+<tr><th id="377">377</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="378">378</th><td><i class="doc">       *  If<span class="command"> @c</span> <span class="arg">fail()</span> is not true, calls<span class="command"> @c</span> <span class="arg">rdbuf()-&gt;pubseekpos(pos).</span>  If</i>&nbsp</td></tr>
+<tr><th id="379">379</th><td><i class="doc">       *  that function fails, sets failbit.</i>&nbsp</td></tr>
+<tr><th id="380">380</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="381">381</th><td>      <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="382">382</th><td>      <a class="decl fn" href="bits/ostream.tcc.html#_ZNSt13basic_ostream5seekpENT0_8pos_typeE" title='std::basic_ostream::seekp' data-ref="_ZNSt13basic_ostream5seekpENT0_8pos_typeE" id="_ZNSt13basic_ostream5seekpENT0_8pos_typeE">seekp</a>(<a class="typedef" href="#std::basic_ostream::pos_type" title='std::basic_ostream::pos_type' data-type='typename _Traits::pos_type' data-ref="std::basic_ostream::pos_type">pos_type</a>);&nbsp</td></tr>
+<tr><th id="383">383</th><td>&nbsp</td></tr>
+<tr><th id="384">384</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="385">385</th><td><i class="doc">       *  <span class="command">@brief</span>  Changing the current write position.</i>&nbsp</td></tr>
+<tr><th id="386">386</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__off</span>  A file offset object.</i>&nbsp</td></tr>
+<tr><th id="387">387</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__dir</span>  The direction in which to seek.</i>&nbsp</td></tr>
+<tr><th id="388">388</th><td><i class="doc">       *  <span class="command">@return</span>  *this</i>&nbsp</td></tr>
+<tr><th id="389">389</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="390">390</th><td><i class="doc">       *  If<span class="command"> @c</span> <span class="arg">fail()</span> is not true, calls<span class="command"> @c</span> <span class="arg">rdbuf()-&gt;pubseekoff(off,dir).</span></i>&nbsp</td></tr>
+<tr><th id="391">391</th><td><i class="doc">       *  If that function fails, sets failbit.</i>&nbsp</td></tr>
+<tr><th id="392">392</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="393">393</th><td>       <a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="394">394</th><td>      <a class="decl fn" href="bits/ostream.tcc.html#_ZNSt13basic_ostream5seekpENT0_8off_typeESt12_Ios_Seekdir" title='std::basic_ostream::seekp' data-ref="_ZNSt13basic_ostream5seekpENT0_8off_typeESt12_Ios_Seekdir" id="_ZNSt13basic_ostream5seekpENT0_8off_typeESt12_Ios_Seekdir">seekp</a>(<a class="typedef" href="#std::basic_ostream::off_type" title='std::basic_ostream::off_type' data-type='typename _Traits::off_type' data-ref="std::basic_ostream::off_type">off_type</a>, <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="typedef" href="bits/ios_base.h.html#std::ios_base::seekdir" title='std::ios_base::seekdir' data-type='std::_Ios_Seekdir' data-ref="std::ios_base::seekdir">seekdir</a>);&nbsp</td></tr>
+<tr><th id="395">395</th><td>&nbsp</td></tr>
+<tr><th id="396">396</th><td>    <b>protected</b>:&nbsp</td></tr>
+<tr><th id="397">397</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamC1Ev" title='std::basic_ostream::basic_ostream&lt;_CharT, _Traits&gt;' data-ref="_ZNSt13basic_ostreamC1Ev">basic_ostream</dfn>()&nbsp</td></tr>
+<tr><th id="398">398</th><td>      { <b>this</b>-&gt;init(<var>0</var>); }&nbsp</td></tr>
+<tr><th id="399">399</th><td>&nbsp</td></tr>
+<tr><th id="400">400</th><td><u>#<span data-ppcond="400">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="401">401</th><td>      <i>// Non-standard constructor that does not call init()</i>&nbsp</td></tr>
+<tr><th id="402">402</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamC1ERSt14basic_iostreamIT_T0_E" title='std::basic_ostream::basic_ostream&lt;_CharT, _Traits&gt;' data-ref="_ZNSt13basic_ostreamC1ERSt14basic_iostreamIT_T0_E">basic_ostream</dfn>(<a class="type" href="iosfwd.html#std::basic_iostream" title='std::basic_iostream' data-ref="std::basic_iostream">basic_iostream</a>&lt;_CharT, _Traits&gt;&amp;) { }&nbsp</td></tr>
+<tr><th id="403">403</th><td>&nbsp</td></tr>
+<tr><th id="404">404</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamC1ERKSt13basic_ostreamIT_T0_E" title='std::basic_ostream::basic_ostream&lt;_CharT, _Traits&gt;' data-ref="_ZNSt13basic_ostreamC1ERKSt13basic_ostreamIT_T0_E">basic_ostream</dfn>(<em>const</em> basic_ostream&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="405">405</th><td>&nbsp</td></tr>
+<tr><th id="406">406</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamC1EOSt13basic_ostreamIT_T0_E" title='std::basic_ostream::basic_ostream&lt;_CharT, _Traits&gt;' data-ref="_ZNSt13basic_ostreamC1EOSt13basic_ostreamIT_T0_E">basic_ostream</dfn>(basic_ostream&amp;&amp; <dfn class="local col2 decl" id="2112__rhs" title='__rhs' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;&amp;' data-ref="2112__rhs">__rhs</dfn>)&nbsp</td></tr>
+<tr><th id="407">407</th><td>      : <a class="typedef" href="#std::basic_ostream::__ios_type" title='std::basic_ostream::__ios_type' data-type='basic_ios&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ios_type">__ios_type</a>()&nbsp</td></tr>
+<tr><th id="408">408</th><td>      { <a class="typedef" href="#std::basic_ostream::__ios_type" title='std::basic_ostream::__ios_type' data-type='basic_ios&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ios_type">__ios_type</a>::move(<a class="local col2 ref" href="#2112__rhs" title='__rhs' data-ref="2112__rhs">__rhs</a>); }&nbsp</td></tr>
+<tr><th id="409">409</th><td>&nbsp</td></tr>
+<tr><th id="410">410</th><td>      <i>// 27.7.3.3 Assign/swap</i>&nbsp</td></tr>
+<tr><th id="411">411</th><td>&nbsp</td></tr>
+<tr><th id="412">412</th><td>      basic_ostream&amp; <dfn class="decl def fn" id="_ZNSt13basic_ostreamaSERKSt13basic_ostreamIT_T0_E" title='std::basic_ostream::operator=' data-ref="_ZNSt13basic_ostreamaSERKSt13basic_ostreamIT_T0_E"><b>operator</b>=</dfn>(<em>const</em> basic_ostream&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="413">413</th><td>&nbsp</td></tr>
+<tr><th id="414">414</th><td>      basic_ostream&amp;&nbsp</td></tr>
+<tr><th id="415">415</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostreamaSEOSt13basic_ostreamIT_T0_E" title='std::basic_ostream::operator=' data-ref="_ZNSt13basic_ostreamaSEOSt13basic_ostreamIT_T0_E"><b>operator</b>=</dfn>(basic_ostream&amp;&amp; <dfn class="local col3 decl" id="2113__rhs" title='__rhs' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;&amp;' data-ref="2113__rhs">__rhs</dfn>)&nbsp</td></tr>
+<tr><th id="416">416</th><td>      {&nbsp</td></tr>
+<tr><th id="417">417</th><td>	<a class="member fn" href="#_ZNSt13basic_ostream4swapERSt13basic_ostreamIT_T0_E" title='std::basic_ostream::swap' data-ref="_ZNSt13basic_ostream4swapERSt13basic_ostreamIT_T0_E">swap</a>(<span class='refarg'><a class="local col3 ref" href="#2113__rhs" title='__rhs' data-ref="2113__rhs">__rhs</a></span>);&nbsp</td></tr>
+<tr><th id="418">418</th><td>	<b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="419">419</th><td>      }&nbsp</td></tr>
+<tr><th id="420">420</th><td>&nbsp</td></tr>
+<tr><th id="421">421</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="422">422</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostream4swapERSt13basic_ostreamIT_T0_E" title='std::basic_ostream::swap' data-ref="_ZNSt13basic_ostream4swapERSt13basic_ostreamIT_T0_E">swap</dfn>(basic_ostream&amp; <dfn class="local col4 decl" id="2114__rhs" title='__rhs' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="2114__rhs">__rhs</dfn>)&nbsp</td></tr>
+<tr><th id="423">423</th><td>      { <a class="typedef" href="#std::basic_ostream::__ios_type" title='std::basic_ostream::__ios_type' data-type='basic_ios&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ios_type">__ios_type</a>::swap(<a class="local col4 ref" href="#2114__rhs" title='__rhs' data-ref="2114__rhs">__rhs</a>); }&nbsp</td></tr>
+<tr><th id="424">424</th><td><u>#<span data-ppcond="400">endif</span></u>&nbsp</td></tr>
+<tr><th id="425">425</th><td>&nbsp</td></tr>
+<tr><th id="426">426</th><td>      <b>template</b>&lt;<b>typename</b> _ValueT&gt;&nbsp</td></tr>
+<tr><th id="427">427</th><td>	<a class="typedef" href="#std::basic_ostream::__ostream_type" title='std::basic_ostream::__ostream_type' data-type='basic_ostream&lt;_CharT, _Traits&gt;' data-ref="std::basic_ostream::__ostream_type">__ostream_type</a>&amp;&nbsp</td></tr>
+<tr><th id="428">428</th><td>	<a class="decl fn" href="bits/ostream.tcc.html#_ZNSt13basic_ostream9_M_insertETL0__" title='std::basic_ostream::_M_insert' data-ref="_ZNSt13basic_ostream9_M_insertETL0__" id="_ZNSt13basic_ostream9_M_insertETL0__">_M_insert</a>(_ValueT <dfn class="local col5 decl" id="2115__v" title='__v' data-type='_ValueT' data-ref="2115__v">__v</dfn>);&nbsp</td></tr>
+<tr><th id="429">429</th><td>    };&nbsp</td></tr>
+<tr><th id="430">430</th><td>&nbsp</td></tr>
+<tr><th id="431">431</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="432">432</th><td><i class="doc">   *  <span class="command">@brief</span>  Performs setup work for output streams.</i>&nbsp</td></tr>
+<tr><th id="433">433</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="434">434</th><td><i class="doc">   *  Objects of this class are created before all of the standard</i>&nbsp</td></tr>
+<tr><th id="435">435</th><td><i class="doc">   *  inserters are run.  It is responsible for <span class="tag">&lt;em&gt;</span>exception-safe prefix and</i>&nbsp</td></tr>
+<tr><th id="436">436</th><td><i class="doc">   *  suffix operations<span class="tag">&lt;/em&gt;</span>.</i>&nbsp</td></tr>
+<tr><th id="437">437</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="438">438</th><td>  <b>template</b> &lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="439">439</th><td>    <b>class</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;::<dfn class="type def" id="std::basic_ostream::sentry" title='std::basic_ostream::sentry' data-ref="std::basic_ostream::sentry">sentry</dfn>&nbsp</td></tr>
+<tr><th id="440">440</th><td>    {&nbsp</td></tr>
+<tr><th id="441">441</th><td>      <i>// Data Members.</i>&nbsp</td></tr>
+<tr><th id="442">442</th><td>      <em>bool</em> 				<dfn class="decl field" id="std::basic_ostream::sentry::_M_ok" title='std::basic_ostream::sentry::_M_ok' data-ref="std::basic_ostream::sentry::_M_ok">_M_ok</dfn>;&nbsp</td></tr>
+<tr><th id="443">443</th><td>      <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; 	<dfn class="decl field" id="std::basic_ostream::sentry::_M_os" title='std::basic_ostream::sentry::_M_os' data-ref="std::basic_ostream::sentry::_M_os">_M_os</dfn>;&nbsp</td></tr>
+<tr><th id="444">444</th><td>&nbsp</td></tr>
+<tr><th id="445">445</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="446">446</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="447">447</th><td><i class="doc">       *  <span class="command">@brief</span>  The constructor performs preparatory work.</i>&nbsp</td></tr>
+<tr><th id="448">448</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__os</span>  The output stream to guard.</i>&nbsp</td></tr>
+<tr><th id="449">449</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="450">450</th><td><i class="doc">       *  If the stream state is good <span class="command">(@a</span> <span class="arg">__os.good()</span> is true), then if the</i>&nbsp</td></tr>
+<tr><th id="451">451</th><td><i class="doc">       *  stream is tied to another output stream,<span class="command"> @c</span> <span class="arg">is.tie()-&gt;flush()</span></i>&nbsp</td></tr>
+<tr><th id="452">452</th><td><i class="doc">       *  is called to synchronize the output sequences.</i>&nbsp</td></tr>
+<tr><th id="453">453</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="454">454</th><td><i class="doc">       *  If the stream state is still good, then the sentry state becomes</i>&nbsp</td></tr>
+<tr><th id="455">455</th><td><i class="doc">       *  true <span class="command">(@a</span> <span class="arg">okay).</span></i>&nbsp</td></tr>
+<tr><th id="456">456</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="457">457</th><td>      <b>explicit</b>&nbsp</td></tr>
+<tr><th id="458">458</th><td>      <a class="decl fn" href="bits/ostream.tcc.html#_ZNSt13basic_ostream6sentryC1ERSt13basic_ostreamIT_T0_E" title='std::basic_ostream::sentry::sentry' data-ref="_ZNSt13basic_ostream6sentryC1ERSt13basic_ostreamIT_T0_E" id="_ZNSt13basic_ostream6sentryC1ERSt13basic_ostreamIT_T0_E">sentry</a>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col6 decl" id="2116__os" title='__os' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="2116__os">__os</dfn>);&nbsp</td></tr>
+<tr><th id="459">459</th><td>&nbsp</td></tr>
+<tr><th id="460">460</th><td><u>#pragma GCC diagnostic push</u>&nbsp</td></tr>
+<tr><th id="461">461</th><td><u>#pragma GCC diagnostic ignored "-Wdeprecated-declarations"</u>&nbsp</td></tr>
+<tr><th id="462">462</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="463">463</th><td><i class="doc">       *  <span class="command">@brief</span>  Possibly flushes the stream.</i>&nbsp</td></tr>
+<tr><th id="464">464</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="465">465</th><td><i class="doc">       *  If<span class="command"> @c</span> <span class="arg">ios_base::unitbuf</span> is set in<span class="command"> @c</span> <span class="arg">os.flags(),</span> and</i>&nbsp</td></tr>
+<tr><th id="466">466</th><td><i class="doc">       * <span class="command"> @c</span> <span class="arg">std::uncaught_exception()</span> is true, the sentry destructor calls</i>&nbsp</td></tr>
+<tr><th id="467">467</th><td><i class="doc">       * <span class="command"> @c</span> <span class="arg">flush()</span> on the output stream.</i>&nbsp</td></tr>
+<tr><th id="468">468</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="469">469</th><td>      <dfn class="decl def fn" id="_ZNSt13basic_ostream6sentryD1Ev" title='std::basic_ostream::sentry::~sentry' data-ref="_ZNSt13basic_ostream6sentryD1Ev">~sentry</dfn>()&nbsp</td></tr>
+<tr><th id="470">470</th><td>      {&nbsp</td></tr>
+<tr><th id="471">471</th><td>	<i>// XXX MT</i>&nbsp</td></tr>
+<tr><th id="472">472</th><td>	<b>if</b> (<em>bool</em>(<a class="member field" href="#std::basic_ostream::sentry::_M_os" title='std::basic_ostream::sentry::_M_os' data-ref="std::basic_ostream::sentry::_M_os">_M_os</a>.flags() &amp; <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="ref" href="bits/ios_base.h.html#std::ios_base::unitbuf" title='std::ios_base::unitbuf' data-ref="std::ios_base::unitbuf">unitbuf</a>) &amp;&amp; !<a class="ref fn" href="exception.html#_ZSt18uncaught_exceptionv" title='std::uncaught_exception' data-ref="_ZSt18uncaught_exceptionv">uncaught_exception</a>())&nbsp</td></tr>
+<tr><th id="473">473</th><td>	  {&nbsp</td></tr>
+<tr><th id="474">474</th><td>	    <i>// Can't call flush directly or else will get into recursive lock.</i>&nbsp</td></tr>
+<tr><th id="475">475</th><td>	    <b>if</b> (<a class="member field" href="#std::basic_ostream::sentry::_M_os" title='std::basic_ostream::sentry::_M_os' data-ref="std::basic_ostream::sentry::_M_os">_M_os</a>.rdbuf() &amp;&amp; <a class="member field" href="#std::basic_ostream::sentry::_M_os" title='std::basic_ostream::sentry::_M_os' data-ref="std::basic_ostream::sentry::_M_os">_M_os</a>.rdbuf()-&gt;pubsync() == -<var>1</var>)&nbsp</td></tr>
+<tr><th id="476">476</th><td>	      <a class="member field" href="#std::basic_ostream::sentry::_M_os" title='std::basic_ostream::sentry::_M_os' data-ref="std::basic_ostream::sentry::_M_os">_M_os</a>.setstate(<a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="ref" href="bits/ios_base.h.html#std::ios_base::badbit" title='std::ios_base::badbit' data-ref="std::ios_base::badbit">badbit</a>);&nbsp</td></tr>
+<tr><th id="477">477</th><td>	  }&nbsp</td></tr>
+<tr><th id="478">478</th><td>      }&nbsp</td></tr>
+<tr><th id="479">479</th><td><u>#pragma GCC diagnostic pop</u>&nbsp</td></tr>
+<tr><th id="480">480</th><td>&nbsp</td></tr>
+<tr><th id="481">481</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="482">482</th><td><i class="doc">       *  <span class="command">@brief</span>  Quick status checking.</i>&nbsp</td></tr>
+<tr><th id="483">483</th><td><i class="doc">       *  <span class="command">@return</span>  The sentry state.</i>&nbsp</td></tr>
+<tr><th id="484">484</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="485">485</th><td><i class="doc">       *  For ease of use, sentries may be converted to booleans.  The</i>&nbsp</td></tr>
+<tr><th id="486">486</th><td><i class="doc">       *  return value is that of the sentry state (true == okay).</i>&nbsp</td></tr>
+<tr><th id="487">487</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="488">488</th><td><u>#<span data-ppcond="488">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="489">489</th><td>      <b>explicit</b>&nbsp</td></tr>
+<tr><th id="490">490</th><td><u>#<span data-ppcond="488">endif</span></u>&nbsp</td></tr>
+<tr><th id="491">491</th><td>      <dfn class="decl def fn" id="_ZNKSt13basic_ostream6sentrycvbEv" title='std::basic_ostream::sentry::operator bool' data-ref="_ZNKSt13basic_ostream6sentrycvbEv"><b>operator</b> <em>bool</em></dfn>() <em>const</em>&nbsp</td></tr>
+<tr><th id="492">492</th><td>      { <b>return</b> <a class="member field" href="#std::basic_ostream::sentry::_M_ok" title='std::basic_ostream::sentry::_M_ok' data-ref="std::basic_ostream::sentry::_M_ok">_M_ok</a>; }&nbsp</td></tr>
+<tr><th id="493">493</th><td>    };&nbsp</td></tr>
+<tr><th id="494">494</th><td>&nbsp</td></tr>
+<tr><th id="495">495</th><td>  <i class="doc">///@{</i>&nbsp</td></tr>
+<tr><th id="496">496</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="497">497</th><td><i class="doc">   *  <span class="command">@brief</span>  Character inserters</i>&nbsp</td></tr>
+<tr><th id="498">498</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__out</span>  An output stream.</i>&nbsp</td></tr>
+<tr><th id="499">499</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__c</span>  A character.</i>&nbsp</td></tr>
+<tr><th id="500">500</th><td><i class="doc">   *  <span class="command">@return</span>  out</i>&nbsp</td></tr>
+<tr><th id="501">501</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="502">502</th><td><i class="doc">   *  Behaves like one of the formatted arithmetic inserters described in</i>&nbsp</td></tr>
+<tr><th id="503">503</th><td><i class="doc">   *  std::basic_ostream.  After constructing a sentry object with good</i>&nbsp</td></tr>
+<tr><th id="504">504</th><td><i class="doc">   *  status, this function inserts a single character and any required</i>&nbsp</td></tr>
+<tr><th id="505">505</th><td><i class="doc">   *  padding (as determined by [22.2.2.2.2]). <span class="command"> @c</span> <span class="arg">__out.width(0)</span> is then</i>&nbsp</td></tr>
+<tr><th id="506">506</th><td><i class="doc">   *  called.</i>&nbsp</td></tr>
+<tr><th id="507">507</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="508">508</th><td><i class="doc">   *  If<span class="command"> @p</span> <span class="arg">__c</span> is of type<span class="command"> @c</span> <span class="arg">char</span> and the character type of the stream is not</i>&nbsp</td></tr>
+<tr><th id="509">509</th><td><i class="doc">   * <span class="command"> @c</span> <span class="arg">char,</span> the character is widened before insertion.</i>&nbsp</td></tr>
+<tr><th id="510">510</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="511">511</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="512">512</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="513">513</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIT_T0_ES0_" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIT_T0_ES0_"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col7 decl" id="2117__out" title='__out' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="2117__out">__out</dfn>, _CharT <dfn class="local col8 decl" id="2118__c" title='__c' data-type='_CharT' data-ref="2118__c">__c</dfn>)&nbsp</td></tr>
+<tr><th id="514">514</th><td>    { <b>return</b> __ostream_insert(<a class="local col7 ref" href="#2117__out" title='__out' data-ref="2117__out">__out</a>, &amp;<a class="local col8 ref" href="#2118__c" title='__c' data-ref="2118__c">__c</a>, <var>1</var>); }&nbsp</td></tr>
+<tr><th id="515">515</th><td>&nbsp</td></tr>
+<tr><th id="516">516</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="517">517</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="518">518</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIT_T0_Ec" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIT_T0_Ec"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col9 decl" id="2119__out" title='__out' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="2119__out">__out</dfn>, <em>char</em> <dfn class="local col0 decl" id="2120__c" title='__c' data-type='char' data-ref="2120__c">__c</dfn>)&nbsp</td></tr>
+<tr><th id="519">519</th><td>    { <b>return</b> (<a class="local col9 ref" href="#2119__out" title='__out' data-ref="2119__out">__out</a> &lt;&lt; <a class="local col9 ref" href="#2119__out" title='__out' data-ref="2119__out">__out</a>.widen(<a class="local col0 ref" href="#2120__c" title='__c' data-ref="2120__c">__c</a>)); }&nbsp</td></tr>
+<tr><th id="520">520</th><td>&nbsp</td></tr>
+<tr><th id="521">521</th><td>  <i>// Specialization</i>&nbsp</td></tr>
+<tr><th id="522">522</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="523">523</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="524">524</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_Ec" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_Ec"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp; <dfn class="local col1 decl" id="2121__out" title='__out' data-type='basic_ostream&lt;char, _Traits&gt; &amp;' data-ref="2121__out">__out</dfn>, <em>char</em> <dfn class="local col2 decl" id="2122__c" title='__c' data-type='char' data-ref="2122__c">__c</dfn>)&nbsp</td></tr>
+<tr><th id="525">525</th><td>    { <b>return</b> __ostream_insert(<a class="local col1 ref" href="#2121__out" title='__out' data-ref="2121__out">__out</a>, &amp;<a class="local col2 ref" href="#2122__c" title='__c' data-ref="2122__c">__c</a>, <var>1</var>); }&nbsp</td></tr>
+<tr><th id="526">526</th><td>&nbsp</td></tr>
+<tr><th id="527">527</th><td>  <i>// Signed and unsigned</i>&nbsp</td></tr>
+<tr><th id="528">528</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="529">529</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="530">530</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_Ea" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_Ea"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp; <dfn class="local col3 decl" id="2123__out" title='__out' data-type='basic_ostream&lt;char, _Traits&gt; &amp;' data-ref="2123__out">__out</dfn>, <em>signed</em> <em>char</em> <dfn class="local col4 decl" id="2124__c" title='__c' data-type='signed char' data-ref="2124__c">__c</dfn>)&nbsp</td></tr>
+<tr><th id="531">531</th><td>    { <b>return</b> (<a class="local col3 ref" href="#2123__out" title='__out' data-ref="2123__out">__out</a> &lt;&lt; <b>static_cast</b>&lt;<em>char</em>&gt;(<a class="local col4 ref" href="#2124__c" title='__c' data-ref="2124__c">__c</a>)); }&nbsp</td></tr>
+<tr><th id="532">532</th><td>&nbsp</td></tr>
+<tr><th id="533">533</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="534">534</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="535">535</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_Eh" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_Eh"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp; <dfn class="local col5 decl" id="2125__out" title='__out' data-type='basic_ostream&lt;char, _Traits&gt; &amp;' data-ref="2125__out">__out</dfn>, <em>unsigned</em> <em>char</em> <dfn class="local col6 decl" id="2126__c" title='__c' data-type='unsigned char' data-ref="2126__c">__c</dfn>)&nbsp</td></tr>
+<tr><th id="536">536</th><td>    { <b>return</b> (<a class="local col5 ref" href="#2125__out" title='__out' data-ref="2125__out">__out</a> &lt;&lt; <b>static_cast</b>&lt;<em>char</em>&gt;(<a class="local col6 ref" href="#2126__c" title='__c' data-ref="2126__c">__c</a>)); }&nbsp</td></tr>
+<tr><th id="537">537</th><td>&nbsp</td></tr>
+<tr><th id="538">538</th><td><u>#<span data-ppcond="538">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="539">539</th><td>  <i>// The following deleted overloads prevent formatting character values as</i>&nbsp</td></tr>
+<tr><th id="540">540</th><td><i>  // numeric values.</i>&nbsp</td></tr>
+<tr><th id="541">541</th><td>&nbsp</td></tr>
+<tr><th id="542">542</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="543">543</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="544">544</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_Ew" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_Ew"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;, <em>wchar_t</em>) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="545">545</th><td>&nbsp</td></tr>
+<tr><th id="546">546</th><td><u>#<span data-ppcond="546">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#694" data-ref="_M/_GLIBCXX_USE_CHAR8_T">_GLIBCXX_USE_CHAR8_T</a></u>&nbsp</td></tr>
+<tr><th id="547">547</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="548">548</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="549">549</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_EDu" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_EDu"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;, <b>char8_t</b>) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="550">550</th><td><u>#<span data-ppcond="546">endif</span></u>&nbsp</td></tr>
+<tr><th id="551">551</th><td>&nbsp</td></tr>
+<tr><th id="552">552</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="553">553</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="554">554</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_EDs" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_EDs"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;, <em>char16_t</em>) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="555">555</th><td>&nbsp</td></tr>
+<tr><th id="556">556</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="557">557</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="558">558</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_EDi" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_EDi"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;, <em>char32_t</em>) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="559">559</th><td>&nbsp</td></tr>
+<tr><th id="560">560</th><td><u>#<span data-ppcond="560">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1797" data-ref="_M/_GLIBCXX_USE_WCHAR_T">_GLIBCXX_USE_WCHAR_T</a></u>&nbsp</td></tr>
+<tr><th id="561">561</th><td><u>#<span data-ppcond="561">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#694" data-ref="_M/_GLIBCXX_USE_CHAR8_T">_GLIBCXX_USE_CHAR8_T</a></u>&nbsp</td></tr>
+<tr><th id="562">562</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="563">563</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>wchar_t</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="564">564</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIwT_EDu" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIwT_EDu"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>wchar_t</em>, _Traits&gt;&amp;, <b>char8_t</b>) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="565">565</th><td><u>#<span data-ppcond="561">endif</span> // _GLIBCXX_USE_CHAR8_T</u>&nbsp</td></tr>
+<tr><th id="566">566</th><td>&nbsp</td></tr>
+<tr><th id="567">567</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="568">568</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>wchar_t</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="569">569</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIwT_EDs" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIwT_EDs"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>wchar_t</em>, _Traits&gt;&amp;, <em>char16_t</em>) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="570">570</th><td>&nbsp</td></tr>
+<tr><th id="571">571</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="572">572</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>wchar_t</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="573">573</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIwT_EDi" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIwT_EDi"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>wchar_t</em>, _Traits&gt;&amp;, <em>char32_t</em>) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="574">574</th><td><u>#<span data-ppcond="560">endif</span> // _GLIBCXX_USE_WCHAR_T</u>&nbsp</td></tr>
+<tr><th id="575">575</th><td><u>#<span data-ppcond="538">endif</span> // C++20</u>&nbsp</td></tr>
+<tr><th id="576">576</th><td>  <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="577">577</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="578">578</th><td><i class="doc">  ///@{</i>&nbsp</td></tr>
+<tr><th id="579">579</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="580">580</th><td><i class="doc">   *  <span class="command">@brief</span>  String inserters</i>&nbsp</td></tr>
+<tr><th id="581">581</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__out</span>  An output stream.</i>&nbsp</td></tr>
+<tr><th id="582">582</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__s</span>  A character string.</i>&nbsp</td></tr>
+<tr><th id="583">583</th><td><i class="doc">   *  <span class="command">@return</span>  out</i>&nbsp</td></tr>
+<tr><th id="584">584</th><td><i class="doc">   *  <span class="command">@pre</span> <span class="command"> @p</span> <span class="arg">__s</span> must be a non-NULL pointer</i>&nbsp</td></tr>
+<tr><th id="585">585</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="586">586</th><td><i class="doc">   *  Behaves like one of the formatted arithmetic inserters described in</i>&nbsp</td></tr>
+<tr><th id="587">587</th><td><i class="doc">   *  std::basic_ostream.  After constructing a sentry object with good</i>&nbsp</td></tr>
+<tr><th id="588">588</th><td><i class="doc">   *  status, this function inserts<span class="command"> @c</span> <span class="arg">traits::length(__s)</span> characters starting</i>&nbsp</td></tr>
+<tr><th id="589">589</th><td><i class="doc">   *  at<span class="command"> @p</span> <span class="arg">__s,</span> widened if necessary, followed by any required padding (as</i>&nbsp</td></tr>
+<tr><th id="590">590</th><td><i class="doc">   *  determined by [22.2.2.2.2]). <span class="command"> @c</span> <span class="arg">__out.width(0)</span> is then called.</i>&nbsp</td></tr>
+<tr><th id="591">591</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="592">592</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="593">593</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="594">594</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIT_T0_EPKS0_" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIT_T0_EPKS0_"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col7 decl" id="2127__out" title='__out' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="2127__out">__out</dfn>, <em>const</em> _CharT* <dfn class="local col8 decl" id="2128__s" title='__s' data-type='const _CharT *' data-ref="2128__s">__s</dfn>)&nbsp</td></tr>
+<tr><th id="595">595</th><td>    {&nbsp</td></tr>
+<tr><th id="596">596</th><td>      <b>if</b> (!<a class="local col8 ref" href="#2128__s" title='__s' data-ref="2128__s">__s</a>)&nbsp</td></tr>
+<tr><th id="597">597</th><td>	<a class="local col7 ref" href="#2127__out" title='__out' data-ref="2127__out">__out</a>.setstate(<a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="ref" href="bits/ios_base.h.html#std::ios_base::badbit" title='std::ios_base::badbit' data-ref="std::ios_base::badbit">badbit</a>);&nbsp</td></tr>
+<tr><th id="598">598</th><td>      <b>else</b>&nbsp</td></tr>
+<tr><th id="599">599</th><td>	__ostream_insert(<a class="local col7 ref" href="#2127__out" title='__out' data-ref="2127__out">__out</a>, <a class="local col8 ref" href="#2128__s" title='__s' data-ref="2128__s">__s</a>,&nbsp</td></tr>
+<tr><th id="600">600</th><td>			 <b>static_cast</b>&lt;<a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>&gt;(_Traits::length(<a class="local col8 ref" href="#2128__s" title='__s' data-ref="2128__s">__s</a>)));&nbsp</td></tr>
+<tr><th id="601">601</th><td>      <b>return</b> <a class="local col7 ref" href="#2127__out" title='__out' data-ref="2127__out">__out</a>;&nbsp</td></tr>
+<tr><th id="602">602</th><td>    }&nbsp</td></tr>
+<tr><th id="603">603</th><td>&nbsp</td></tr>
+<tr><th id="604">604</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="605">605</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt; &amp;&nbsp</td></tr>
+<tr><th id="606">606</th><td>    <a class="decl fn" href="bits/ostream.tcc.html#_ZStlsRSt13basic_ostreamIT_T0_EPKc" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIT_T0_EPKc" id="_ZStlsRSt13basic_ostreamIT_T0_EPKc"><b>operator</b>&lt;&lt;</a>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col9 decl" id="2129__out" title='__out' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="2129__out">__out</dfn>, <em>const</em> <em>char</em>* <dfn class="local col0 decl" id="2130__s" title='__s' data-type='const char *' data-ref="2130__s">__s</dfn>);&nbsp</td></tr>
+<tr><th id="607">607</th><td>&nbsp</td></tr>
+<tr><th id="608">608</th><td>  <i>// Partial specializations</i>&nbsp</td></tr>
+<tr><th id="609">609</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="610">610</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="611">611</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_EPKc" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_EPKc"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp; <dfn class="local col1 decl" id="2131__out" title='__out' data-type='basic_ostream&lt;char, _Traits&gt; &amp;' data-ref="2131__out">__out</dfn>, <em>const</em> <em>char</em>* <dfn class="local col2 decl" id="2132__s" title='__s' data-type='const char *' data-ref="2132__s">__s</dfn>)&nbsp</td></tr>
+<tr><th id="612">612</th><td>    {&nbsp</td></tr>
+<tr><th id="613">613</th><td>      <b>if</b> (!<a class="local col2 ref" href="#2132__s" title='__s' data-ref="2132__s">__s</a>)&nbsp</td></tr>
+<tr><th id="614">614</th><td>	<a class="local col1 ref" href="#2131__out" title='__out' data-ref="2131__out">__out</a>.setstate(<a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>::<a class="ref" href="bits/ios_base.h.html#std::ios_base::badbit" title='std::ios_base::badbit' data-ref="std::ios_base::badbit">badbit</a>);&nbsp</td></tr>
+<tr><th id="615">615</th><td>      <b>else</b>&nbsp</td></tr>
+<tr><th id="616">616</th><td>	__ostream_insert(<a class="local col1 ref" href="#2131__out" title='__out' data-ref="2131__out">__out</a>, <a class="local col2 ref" href="#2132__s" title='__s' data-ref="2132__s">__s</a>,&nbsp</td></tr>
+<tr><th id="617">617</th><td>			 <b>static_cast</b>&lt;<a class="typedef" href="bits/postypes.h.html#std::streamsize" title='std::streamsize' data-type='std::ptrdiff_t' data-ref="std::streamsize">streamsize</a>&gt;(_Traits::length(<a class="local col2 ref" href="#2132__s" title='__s' data-ref="2132__s">__s</a>)));&nbsp</td></tr>
+<tr><th id="618">618</th><td>      <b>return</b> <a class="local col1 ref" href="#2131__out" title='__out' data-ref="2131__out">__out</a>;&nbsp</td></tr>
+<tr><th id="619">619</th><td>    }&nbsp</td></tr>
+<tr><th id="620">620</th><td>&nbsp</td></tr>
+<tr><th id="621">621</th><td>  <i>// Signed and unsigned</i>&nbsp</td></tr>
+<tr><th id="622">622</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="623">623</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="624">624</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_EPKa" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_EPKa"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp; <dfn class="local col3 decl" id="2133__out" title='__out' data-type='basic_ostream&lt;char, _Traits&gt; &amp;' data-ref="2133__out">__out</dfn>, <em>const</em> <em>signed</em> <em>char</em>* <dfn class="local col4 decl" id="2134__s" title='__s' data-type='const signed char *' data-ref="2134__s">__s</dfn>)&nbsp</td></tr>
+<tr><th id="625">625</th><td>    { <b>return</b> (<a class="local col3 ref" href="#2133__out" title='__out' data-ref="2133__out">__out</a> &lt;&lt; <b>reinterpret_cast</b>&lt;<em>const</em> <em>char</em>*&gt;(<a class="local col4 ref" href="#2134__s" title='__s' data-ref="2134__s">__s</a>)); }&nbsp</td></tr>
+<tr><th id="626">626</th><td>&nbsp</td></tr>
+<tr><th id="627">627</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="628">628</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt; &amp;&nbsp</td></tr>
+<tr><th id="629">629</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_EPKh" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_EPKh"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp; <dfn class="local col5 decl" id="2135__out" title='__out' data-type='basic_ostream&lt;char, _Traits&gt; &amp;' data-ref="2135__out">__out</dfn>, <em>const</em> <em>unsigned</em> <em>char</em>* <dfn class="local col6 decl" id="2136__s" title='__s' data-type='const unsigned char *' data-ref="2136__s">__s</dfn>)&nbsp</td></tr>
+<tr><th id="630">630</th><td>    { <b>return</b> (<a class="local col5 ref" href="#2135__out" title='__out' data-ref="2135__out">__out</a> &lt;&lt; <b>reinterpret_cast</b>&lt;<em>const</em> <em>char</em>*&gt;(<a class="local col6 ref" href="#2136__s" title='__s' data-ref="2136__s">__s</a>)); }&nbsp</td></tr>
+<tr><th id="631">631</th><td>&nbsp</td></tr>
+<tr><th id="632">632</th><td><u>#<span data-ppcond="632">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="633">633</th><td>   <i>// The following deleted overloads prevent formatting strings as</i>&nbsp</td></tr>
+<tr><th id="634">634</th><td><i>   // pointer values.</i>&nbsp</td></tr>
+<tr><th id="635">635</th><td>&nbsp</td></tr>
+<tr><th id="636">636</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="637">637</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="638">638</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_EPKw" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_EPKw"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;, <em>const</em> <em>wchar_t</em>*) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="639">639</th><td>&nbsp</td></tr>
+<tr><th id="640">640</th><td><u>#<span data-ppcond="640">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#694" data-ref="_M/_GLIBCXX_USE_CHAR8_T">_GLIBCXX_USE_CHAR8_T</a></u>&nbsp</td></tr>
+<tr><th id="641">641</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="642">642</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="643">643</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_EPKDu" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_EPKDu"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;, <em>const</em> <b>char8_t</b>*) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="644">644</th><td><u>#<span data-ppcond="640">endif</span> // _GLIBCXX_USE_CHAR8_T</u>&nbsp</td></tr>
+<tr><th id="645">645</th><td>&nbsp</td></tr>
+<tr><th id="646">646</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="647">647</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="648">648</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_EPKDs" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_EPKDs"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;, <em>const</em> <em>char16_t</em>*) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="649">649</th><td>&nbsp</td></tr>
+<tr><th id="650">650</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="651">651</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="652">652</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIcT_EPKDi" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIcT_EPKDi"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>char</em>, _Traits&gt;&amp;, <em>const</em> <em>char32_t</em>*) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="653">653</th><td>&nbsp</td></tr>
+<tr><th id="654">654</th><td><u>#<span data-ppcond="654">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1797" data-ref="_M/_GLIBCXX_USE_WCHAR_T">_GLIBCXX_USE_WCHAR_T</a></u>&nbsp</td></tr>
+<tr><th id="655">655</th><td><u>#<span data-ppcond="655">ifdef</span> <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#694" data-ref="_M/_GLIBCXX_USE_CHAR8_T">_GLIBCXX_USE_CHAR8_T</a></u>&nbsp</td></tr>
+<tr><th id="656">656</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="657">657</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>wchar_t</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="658">658</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIwT_EPKDu" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIwT_EPKDu"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>wchar_t</em>, _Traits&gt;&amp;, <em>const</em> <b>char8_t</b>*) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="659">659</th><td><u>#<span data-ppcond="655">endif</span></u>&nbsp</td></tr>
+<tr><th id="660">660</th><td>&nbsp</td></tr>
+<tr><th id="661">661</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="662">662</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>wchar_t</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="663">663</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIwT_EPKDs" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIwT_EPKDs"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>wchar_t</em>, _Traits&gt;&amp;, <em>const</em> <em>char16_t</em>*) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="664">664</th><td>&nbsp</td></tr>
+<tr><th id="665">665</th><td>  <b>template</b>&lt;<b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="666">666</th><td>    <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>wchar_t</em>, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="667">667</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIwT_EPKDi" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIwT_EPKDi"><b>operator</b>&lt;&lt;</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;<em>wchar_t</em>, _Traits&gt;&amp;, <em>const</em> <em>char32_t</em>*) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="668">668</th><td><u>#<span data-ppcond="654">endif</span> // _GLIBCXX_USE_WCHAR_T</u>&nbsp</td></tr>
+<tr><th id="669">669</th><td><u>#<span data-ppcond="632">endif</span> // C++20</u>&nbsp</td></tr>
+<tr><th id="670">670</th><td>  <i class="doc">///@}</i>&nbsp</td></tr>
+<tr><th id="671">671</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="672">672</th><td><i class="doc">  // Standard basic_ostream manipulators</i>&nbsp</td></tr>
+<tr><th id="673">673</th><td>&nbsp</td></tr>
+<tr><th id="674">674</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="675">675</th><td><i class="doc">   *  <span class="command">@brief</span>  Write a newline and flush the stream.</i>&nbsp</td></tr>
+<tr><th id="676">676</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="677">677</th><td><i class="doc">   *  This manipulator is often mistakenly used when a simple newline is</i>&nbsp</td></tr>
+<tr><th id="678">678</th><td><i class="doc">   *  desired, leading to poor buffering performance.  See</i>&nbsp</td></tr>
+<tr><th id="679">679</th><td><i class="doc">   *  <a href="https://gcc.gnu.org/onlinedocs/libstdc++/manual/streambufs.html#io.streambuf.buffering">https://gcc.gnu.org/onlinedocs/libstdc++/manual/streambufs.html#io.streambuf.buffering</a></i>&nbsp</td></tr>
+<tr><th id="680">680</th><td><i class="doc">   *  for more on this subject.</i>&nbsp</td></tr>
+<tr><th id="681">681</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="682">682</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="683">683</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="684">684</th><td>    <dfn class="decl def fn" id="_ZSt4endlRSt13basic_ostreamIT_T0_E" title='std::endl' data-ref="_ZSt4endlRSt13basic_ostreamIT_T0_E">endl</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col7 decl" id="2137__os" title='__os' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="2137__os">__os</dfn>)&nbsp</td></tr>
+<tr><th id="685">685</th><td>    { <b>return</b> flush(<a class="local col7 ref" href="#2137__os" title='__os' data-ref="2137__os">__os</a>.put(<a class="local col7 ref" href="#2137__os" title='__os' data-ref="2137__os">__os</a>.widen(<kbd>'\n'</kbd>))); }&nbsp</td></tr>
+<tr><th id="686">686</th><td>&nbsp</td></tr>
+<tr><th id="687">687</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="688">688</th><td><i class="doc">   *  <span class="command">@brief</span>  Write a null character into the output sequence.</i>&nbsp</td></tr>
+<tr><th id="689">689</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="690">690</th><td><i class="doc">   *  <span class="tag">&lt;em&gt;</span>Null character<span class="tag">&lt;/em&gt;</span> is<span class="command"> @c</span> <span class="arg">CharT()</span> by definition.  For CharT</i>&nbsp</td></tr>
+<tr><th id="691">691</th><td><i class="doc">   *  of<span class="command"> @c</span> <span class="arg">char,</span> this correctly writes the ASCII<span class="command"> @c</span> <span class="arg">NUL</span> character</i>&nbsp</td></tr>
+<tr><th id="692">692</th><td><i class="doc">   *  string terminator.</i>&nbsp</td></tr>
+<tr><th id="693">693</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="694">694</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="695">695</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="696">696</th><td>    <dfn class="decl def fn" id="_ZSt4endsRSt13basic_ostreamIT_T0_E" title='std::ends' data-ref="_ZSt4endsRSt13basic_ostreamIT_T0_E">ends</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col8 decl" id="2138__os" title='__os' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="2138__os">__os</dfn>)&nbsp</td></tr>
+<tr><th id="697">697</th><td>    { <b>return</b> <a class="local col8 ref" href="#2138__os" title='__os' data-ref="2138__os">__os</a>.put(_CharT()); }&nbsp</td></tr>
+<tr><th id="698">698</th><td>&nbsp</td></tr>
+<tr><th id="699">699</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="700">700</th><td><i class="doc">   *  <span class="command">@brief</span>  Flushes the output stream.</i>&nbsp</td></tr>
+<tr><th id="701">701</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="702">702</th><td><i class="doc">   *  This manipulator simply calls the stream's<span class="command"> @c</span> <span class="arg">flush()</span> member function.</i>&nbsp</td></tr>
+<tr><th id="703">703</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="704">704</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="705">705</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="706">706</th><td>    <dfn class="decl def fn" id="_ZSt5flushRSt13basic_ostreamIT_T0_E" title='std::flush' data-ref="_ZSt5flushRSt13basic_ostreamIT_T0_E">flush</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col9 decl" id="2139__os" title='__os' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="2139__os">__os</dfn>)&nbsp</td></tr>
+<tr><th id="707">707</th><td>    { <b>return</b> <a class="local col9 ref" href="#2139__os" title='__os' data-ref="2139__os">__os</a>.flush(); }&nbsp</td></tr>
+<tr><th id="708">708</th><td>&nbsp</td></tr>
+<tr><th id="709">709</th><td><u>#<span data-ppcond="709">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="710">710</th><td>  <i>// C++11 27.7.3.9 Rvalue stream insertion [ostream.rvalue]</i>&nbsp</td></tr>
+<tr><th id="711">711</th><td><i>  // _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="712">712</th><td><i>  // 1203. More useful rvalue stream insertion</i>&nbsp</td></tr>
+<tr><th id="713">713</th><td>&nbsp</td></tr>
+<tr><th id="714">714</th><td><u>#<span data-ppcond="714">if</span> <a class="macro" href="concepts.html#50" title="202002L" data-ref="_M/__cpp_lib_concepts">__cpp_lib_concepts</a></u>&nbsp</td></tr>
+<tr><th id="715">715</th><td>  <i>// Use concepts if possible because they're cheaper to evaluate.</i>&nbsp</td></tr>
+<tr><th id="716">716</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="717">717</th><td>    <b>concept</b> __derived_from_ios_base = is_class_v&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="718">718</th><td>      &amp;&amp; (!is_same_v&lt;_Tp, <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>&gt;)&nbsp</td></tr>
+<tr><th id="719">719</th><td>      &amp;&amp; <b>requires</b> (_Tp* <dfn class="local col0 decl" id="2140__t" title='__t' data-type='_Tp *' data-ref="2140__t">__t</dfn>, <a class="type" href="bits/ios_base.h.html#std::ios_base" title='std::ios_base' data-ref="std::ios_base">ios_base</a>* <dfn class="local col1 decl" id="2141__b" title='__b' data-type='std::ios_base *' data-ref="2141__b">__b</dfn>) { <a class="local col1 ref" href="#2141__b" title='__b' data-ref="2141__b">__b</a> = <a class="local col0 ref" href="#2140__t" title='__t' data-ref="2140__t">__t</a>; };&nbsp</td></tr>
+<tr><th id="720">720</th><td>&nbsp</td></tr>
+<tr><th id="721">721</th><td>  <b>template</b>&lt;<b>typename</b> _Os, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="722">722</th><td>    <b>requires</b> __derived_from_ios_base&lt;_Os&gt;&nbsp</td></tr>
+<tr><th id="723">723</th><td>      &amp;&amp; <b>requires</b> (_Os&amp; <dfn class="local col2 decl" id="2142__os" title='__os' data-type='_Os &amp;' data-ref="2142__os">__os</dfn>, <em>const</em> _Tp&amp; <dfn class="local col3 decl" id="2143__t" title='__t' data-type='const _Tp &amp;' data-ref="2143__t">__t</dfn>) { <a class="local col2 ref" href="#2142__os" title='__os' data-ref="2142__os">__os</a> &lt;&lt; <a class="local col3 ref" href="#2143__t" title='__t' data-ref="2143__t">__t</a>; }&nbsp</td></tr>
+<tr><th id="724">724</th><td>    <b>using</b> <dfn class="typedef" id="std::__rvalue_stream_insertion_t" title='std::__rvalue_stream_insertion_t' data-type='_Os &amp;&amp;' data-ref="std::__rvalue_stream_insertion_t">__rvalue_stream_insertion_t</dfn> = _Os&amp;&amp;;&nbsp</td></tr>
+<tr><th id="725">725</th><td><u>#<span data-ppcond="714">else</span></u>&nbsp</td></tr>
+<tr><th id="726">726</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="727">727</th><td>    <b>using</b> _Require_derived_from_ios_base&nbsp</td></tr>
+<tr><th id="728">728</th><td>      = _Require&lt;is_class&lt;_Tp&gt;, __not_&lt;is_same&lt;_Tp, ios_base&gt;&gt;,&nbsp</td></tr>
+<tr><th id="729">729</th><td>		 is_convertible&lt;<b>typename</b> add_pointer&lt;_Tp&gt;::type, ios_base*&gt;&gt;;&nbsp</td></tr>
+<tr><th id="730">730</th><td>&nbsp</td></tr>
+<tr><th id="731">731</th><td>  <b>template</b>&lt;<b>typename</b> _Os, <b>typename</b> _Tp,&nbsp</td></tr>
+<tr><th id="732">732</th><td>	   <b>typename</b> = _Require_derived_from_ios_base&lt;_Os&gt;,&nbsp</td></tr>
+<tr><th id="733">733</th><td>	   <b>typename</b>&nbsp</td></tr>
+<tr><th id="734">734</th><td>	     = <b>decltype</b>(std::declval&lt;_Os&amp;&gt;() &lt;&lt; std::declval&lt;<em>const</em> _Tp&amp;&gt;())&gt;&nbsp</td></tr>
+<tr><th id="735">735</th><td>    <b>using</b> __rvalue_stream_insertion_t = _Os&amp;&amp;;&nbsp</td></tr>
+<tr><th id="736">736</th><td><u>#<span data-ppcond="714">endif</span></u>&nbsp</td></tr>
+<tr><th id="737">737</th><td>&nbsp</td></tr>
+<tr><th id="738">738</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="739">739</th><td><i class="doc">   *  <span class="command">@brief</span>  Generic inserter for rvalue stream</i>&nbsp</td></tr>
+<tr><th id="740">740</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__os</span>  An input stream.</i>&nbsp</td></tr>
+<tr><th id="741">741</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__x</span>  A reference to the object being inserted.</i>&nbsp</td></tr>
+<tr><th id="742">742</th><td><i class="doc">   *  <span class="command">@return</span>  __os</i>&nbsp</td></tr>
+<tr><th id="743">743</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="744">744</th><td><i class="doc">   *  This is just a forwarding function to allow insertion to</i>&nbsp</td></tr>
+<tr><th id="745">745</th><td><i class="doc">   *  rvalue streams since they won't bind to the inserter functions</i>&nbsp</td></tr>
+<tr><th id="746">746</th><td><i class="doc">   *  that take an lvalue reference.</i>&nbsp</td></tr>
+<tr><th id="747">747</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="748">748</th><td>  <b>template</b>&lt;<b>typename</b> _Ostream, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="749">749</th><td>    <b>inline</b> <a class="type" href="#std::__rvalue_stream_insertion_t" title='std::__rvalue_stream_insertion_t' data-ref="std::__rvalue_stream_insertion_t">__rvalue_stream_insertion_t</a>&lt;_Ostream, _Tp&gt;&nbsp</td></tr>
+<tr><th id="750">750</th><td>    <dfn class="decl def fn" id="_ZStlsOT_RKT0_" title='std::operator&lt;&lt;' data-ref="_ZStlsOT_RKT0_"><b>operator</b>&lt;&lt;</dfn>(_Ostream&amp;&amp; <dfn class="local col4 decl" id="2144__os" title='__os' data-type='_Ostream &amp;&amp;' data-ref="2144__os">__os</dfn>, <em>const</em> _Tp&amp; <dfn class="local col5 decl" id="2145__x" title='__x' data-type='const _Tp &amp;' data-ref="2145__x">__x</dfn>)&nbsp</td></tr>
+<tr><th id="751">751</th><td>    {&nbsp</td></tr>
+<tr><th id="752">752</th><td>      <a class="local col4 ref" href="#2144__os" title='__os' data-ref="2144__os">__os</a> &lt;&lt; <a class="local col5 ref" href="#2145__x" title='__x' data-ref="2145__x">__x</a>;&nbsp</td></tr>
+<tr><th id="753">753</th><td>      <b>return</b> <span class="namespace">std::</span>move(<a class="local col4 ref" href="#2144__os" title='__os' data-ref="2144__os">__os</a>);&nbsp</td></tr>
+<tr><th id="754">754</th><td>    }&nbsp</td></tr>
+<tr><th id="755">755</th><td>&nbsp</td></tr>
+<tr><th id="756">756</th><td><u>#<span data-ppcond="756">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L &amp;&amp; <a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#296" title="1" data-ref="_M/_GLIBCXX_USE_CXX11_ABI">_GLIBCXX_USE_CXX11_ABI</a></u>&nbsp</td></tr>
+<tr><th id="757">757</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="758">758</th><td>    <b>class</b> <dfn class="type def" id="std::__syncbuf_base" title='std::__syncbuf_base' data-ref="std::__syncbuf_base">__syncbuf_base</dfn> : <b>public</b> <a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt;&nbsp</td></tr>
+<tr><th id="759">759</th><td>    {&nbsp</td></tr>
+<tr><th id="760">760</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="761">761</th><td>      <em>static</em> <em>bool</em>*&nbsp</td></tr>
+<tr><th id="762">762</th><td>      <dfn class="decl def fn" id="_ZNSt14__syncbuf_base6_S_getEPSt15basic_streambufIT_T0_E" title='std::__syncbuf_base::_S_get' data-ref="_ZNSt14__syncbuf_base6_S_getEPSt15basic_streambufIT_T0_E">_S_get</dfn>(<a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt;* <dfn class="local col6 decl" id="2146__buf" title='__buf' data-type='basic_streambuf&lt;_CharT, _Traits&gt; *' data-ref="2146__buf">__buf</dfn> [[maybe_unused]]) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="763">763</th><td>      {&nbsp</td></tr>
+<tr><th id="764">764</th><td><u>#<span data-ppcond="764">if</span> <span class="macro" title="199711L" data-ref="_M/__cpp_rtti">__cpp_rtti</span></u>&nbsp</td></tr>
+<tr><th id="765">765</th><td>	<b>if</b> (<em>auto</em> <dfn class="local col7 decl" id="2147__p" title='__p' data-type='auto' data-ref="2147__p"><a class="local col7 ref" href="#2147__p" title='__p' data-ref="2147__p">__p</a></dfn> = <b>dynamic_cast</b>&lt;__syncbuf_base*&gt;(<a class="local col6 ref" href="#2146__buf" title='__buf' data-ref="2146__buf">__buf</a>))&nbsp</td></tr>
+<tr><th id="766">766</th><td>	  <b>return</b> &amp;<a class="local col7 ref" href="#2147__p" title='__p' data-ref="2147__p">__p</a>-&gt;_M_emit_on_sync;&nbsp</td></tr>
+<tr><th id="767">767</th><td><u>#<span data-ppcond="764">endif</span></u>&nbsp</td></tr>
+<tr><th id="768">768</th><td>	<b>return</b> <b>nullptr</b>;&nbsp</td></tr>
+<tr><th id="769">769</th><td>      }&nbsp</td></tr>
+<tr><th id="770">770</th><td>&nbsp</td></tr>
+<tr><th id="771">771</th><td>    <b>protected</b>:&nbsp</td></tr>
+<tr><th id="772">772</th><td>      <dfn class="decl def fn" id="_ZNSt14__syncbuf_baseC1EPSt15basic_streambufIT_T0_E" title='std::__syncbuf_base::__syncbuf_base&lt;_CharT, _Traits&gt;' data-ref="_ZNSt14__syncbuf_baseC1EPSt15basic_streambufIT_T0_E">__syncbuf_base</dfn>(<a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt;* <dfn class="local col8 decl" id="2148__w" title='__w' data-type='basic_streambuf&lt;_CharT, _Traits&gt; *' data-ref="2148__w">__w</dfn> = <b>nullptr</b>)&nbsp</td></tr>
+<tr><th id="773">773</th><td>      : <a class="member field" href="#std::__syncbuf_base::_M_wrapped" title='std::__syncbuf_base::_M_wrapped' data-ref="std::__syncbuf_base::_M_wrapped">_M_wrapped</a>(<a class="local col8 ref" href="#2148__w" title='__w' data-ref="2148__w">__w</a>)&nbsp</td></tr>
+<tr><th id="774">774</th><td>      { }&nbsp</td></tr>
+<tr><th id="775">775</th><td>&nbsp</td></tr>
+<tr><th id="776">776</th><td>      <a class="type" href="iosfwd.html#std::basic_streambuf" title='std::basic_streambuf' data-ref="std::basic_streambuf">basic_streambuf</a>&lt;_CharT, _Traits&gt;* <dfn class="decl field" id="std::__syncbuf_base::_M_wrapped" title='std::__syncbuf_base::_M_wrapped' data-ref="std::__syncbuf_base::_M_wrapped">_M_wrapped</dfn> = <b>nullptr</b>;&nbsp</td></tr>
+<tr><th id="777">777</th><td>      <em>bool</em> <dfn class="decl field" id="std::__syncbuf_base::_M_emit_on_sync" title='std::__syncbuf_base::_M_emit_on_sync' data-ref="std::__syncbuf_base::_M_emit_on_sync">_M_emit_on_sync</dfn> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="778">778</th><td>      <em>bool</em> <dfn class="decl field" id="std::__syncbuf_base::_M_needs_sync" title='std::__syncbuf_base::_M_needs_sync' data-ref="std::__syncbuf_base::_M_needs_sync">_M_needs_sync</dfn> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="779">779</th><td>    };&nbsp</td></tr>
+<tr><th id="780">780</th><td>&nbsp</td></tr>
+<tr><th id="781">781</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="782">782</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="783">783</th><td>    <dfn class="decl def fn" id="_ZSt13emit_on_flushRSt13basic_ostreamIT_T0_E" title='std::emit_on_flush' data-ref="_ZSt13emit_on_flushRSt13basic_ostreamIT_T0_E">emit_on_flush</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col9 decl" id="2149__os" title='__os' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="2149__os">__os</dfn>)&nbsp</td></tr>
+<tr><th id="784">784</th><td>    {&nbsp</td></tr>
+<tr><th id="785">785</th><td>      <b>if</b> (<em>bool</em>* <dfn class="local col0 decl" id="2150__flag" title='__flag' data-type='bool *' data-ref="2150__flag"><a class="local col0 ref" href="#2150__flag" title='__flag' data-ref="2150__flag">__flag</a></dfn> = <a class="type" href="#std::__syncbuf_base" title='std::__syncbuf_base' data-ref="std::__syncbuf_base">__syncbuf_base</a>&lt;_CharT, _Traits&gt;::_S_get(<a class="local col9 ref" href="#2149__os" title='__os' data-ref="2149__os">__os</a>.rdbuf()))&nbsp</td></tr>
+<tr><th id="786">786</th><td>	*<a class="local col0 ref" href="#2150__flag" title='__flag' data-ref="2150__flag">__flag</a> = <b>true</b>;&nbsp</td></tr>
+<tr><th id="787">787</th><td>      <b>return</b> <a class="local col9 ref" href="#2149__os" title='__os' data-ref="2149__os">__os</a>;&nbsp</td></tr>
+<tr><th id="788">788</th><td>    }&nbsp</td></tr>
+<tr><th id="789">789</th><td>&nbsp</td></tr>
+<tr><th id="790">790</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="791">791</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="792">792</th><td>    <dfn class="decl def fn" id="_ZSt15noemit_on_flushRSt13basic_ostreamIT_T0_E" title='std::noemit_on_flush' data-ref="_ZSt15noemit_on_flushRSt13basic_ostreamIT_T0_E">noemit_on_flush</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col1 decl" id="2151__os" title='__os' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="2151__os">__os</dfn>)&nbsp</td></tr>
+<tr><th id="793">793</th><td>    {&nbsp</td></tr>
+<tr><th id="794">794</th><td>      <b>if</b> (<em>bool</em>* <dfn class="local col2 decl" id="2152__flag" title='__flag' data-type='bool *' data-ref="2152__flag"><a class="local col2 ref" href="#2152__flag" title='__flag' data-ref="2152__flag">__flag</a></dfn> = <a class="type" href="#std::__syncbuf_base" title='std::__syncbuf_base' data-ref="std::__syncbuf_base">__syncbuf_base</a>&lt;_CharT, _Traits&gt;::_S_get(<a class="local col1 ref" href="#2151__os" title='__os' data-ref="2151__os">__os</a>.rdbuf()))&nbsp</td></tr>
+<tr><th id="795">795</th><td>	*<a class="local col2 ref" href="#2152__flag" title='__flag' data-ref="2152__flag">__flag</a> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="796">796</th><td>      <b>return</b> <a class="local col1 ref" href="#2151__os" title='__os' data-ref="2151__os">__os</a>;&nbsp</td></tr>
+<tr><th id="797">797</th><td>    }&nbsp</td></tr>
+<tr><th id="798">798</th><td>&nbsp</td></tr>
+<tr><th id="799">799</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits&gt;&nbsp</td></tr>
+<tr><th id="800">800</th><td>    <b>inline</b> <a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp;&nbsp</td></tr>
+<tr><th id="801">801</th><td>    <dfn class="decl def fn" id="_ZSt10flush_emitRSt13basic_ostreamIT_T0_E" title='std::flush_emit' data-ref="_ZSt10flush_emitRSt13basic_ostreamIT_T0_E">flush_emit</dfn>(<a class="type" href="iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_CharT, _Traits&gt;&amp; <dfn class="local col3 decl" id="2153__os" title='__os' data-type='basic_ostream&lt;_CharT, _Traits&gt; &amp;' data-ref="2153__os">__os</dfn>)&nbsp</td></tr>
+<tr><th id="802">802</th><td>    {&nbsp</td></tr>
+<tr><th id="803">803</th><td>      <b>struct</b> <dfn class="local col4 type" id="2154_Restore" title='_Restore' data-ref="2154_Restore"><a class="local col4 type" href="#2154_Restore" title='_Restore' data-ref="2154_Restore">_Restore</a></dfn>&nbsp</td></tr>
+<tr><th id="804">804</th><td>      {&nbsp</td></tr>
+<tr><th id="805">805</th><td>	~_Restore() { *<a class="local col5 member field" href="#2155_M_flag" title='_M_flag' data-ref="2155_M_flag">_M_flag</a> = <a class="local col6 member field" href="#2156_M_prev" title='_M_prev' data-ref="2156_M_prev">_M_prev</a>; }&nbsp</td></tr>
+<tr><th id="806">806</th><td>&nbsp</td></tr>
+<tr><th id="807">807</th><td>	<em>bool</em> <dfn class="local col6 decl field" id="2156_M_prev" title='_M_prev' data-type='bool' data-ref="2156_M_prev">_M_prev</dfn> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="808">808</th><td>	<em>bool</em>* <dfn class="local col5 decl field" id="2155_M_flag" title='_M_flag' data-type='bool *' data-ref="2155_M_flag">_M_flag</dfn> = &amp;<a class="local col6 ref field" href="#2156_M_prev" title='_M_prev' data-ref="2156_M_prev">_M_prev</a>;&nbsp</td></tr>
+<tr><th id="809">809</th><td>      } <dfn class="local col7 decl" id="2157__restore" title='__restore' data-type='struct _Restore' data-ref="2157__restore">__restore</dfn>;&nbsp</td></tr>
+<tr><th id="810">810</th><td>&nbsp</td></tr>
+<tr><th id="811">811</th><td>      <b>if</b> (<em>bool</em>* <dfn class="local col8 decl" id="2158__flag" title='__flag' data-type='bool *' data-ref="2158__flag"><a class="local col8 ref" href="#2158__flag" title='__flag' data-ref="2158__flag">__flag</a></dfn> = <a class="type" href="#std::__syncbuf_base" title='std::__syncbuf_base' data-ref="std::__syncbuf_base">__syncbuf_base</a>&lt;_CharT, _Traits&gt;::_S_get(<a class="local col3 ref" href="#2153__os" title='__os' data-ref="2153__os">__os</a>.rdbuf()))&nbsp</td></tr>
+<tr><th id="812">812</th><td>	{&nbsp</td></tr>
+<tr><th id="813">813</th><td>	  <a class="local col7 ref" href="#2157__restore" title='__restore' data-ref="2157__restore">__restore</a>._M_prev = *<a class="local col8 ref" href="#2158__flag" title='__flag' data-ref="2158__flag">__flag</a>;&nbsp</td></tr>
+<tr><th id="814">814</th><td>	  <a class="local col7 ref" href="#2157__restore" title='__restore' data-ref="2157__restore">__restore</a>._M_flag = <a class="local col8 ref" href="#2158__flag" title='__flag' data-ref="2158__flag">__flag</a>;&nbsp</td></tr>
+<tr><th id="815">815</th><td>	  *<a class="local col8 ref" href="#2158__flag" title='__flag' data-ref="2158__flag">__flag</a> = <b>true</b>;&nbsp</td></tr>
+<tr><th id="816">816</th><td>	}&nbsp</td></tr>
+<tr><th id="817">817</th><td>&nbsp</td></tr>
+<tr><th id="818">818</th><td>      <a class="local col3 ref" href="#2153__os" title='__os' data-ref="2153__os">__os</a>.flush();&nbsp</td></tr>
+<tr><th id="819">819</th><td>      <b>return</b> <a class="local col3 ref" href="#2153__os" title='__os' data-ref="2153__os">__os</a>;&nbsp</td></tr>
+<tr><th id="820">820</th><td>    }&nbsp</td></tr>
+<tr><th id="821">821</th><td>&nbsp</td></tr>
+<tr><th id="822">822</th><td><u>#<span data-ppcond="756">endif</span> // C++20</u>&nbsp</td></tr>
+<tr><th id="823">823</th><td>&nbsp</td></tr>
+<tr><th id="824">824</th><td><u>#<span data-ppcond="709">endif</span> // C++11</u>&nbsp</td></tr>
+<tr><th id="825">825</th><td>&nbsp</td></tr>
+<tr><th id="826">826</th><td><a class="macro" href="../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="827">827</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="828">828</th><td>&nbsp</td></tr>
+<tr><th id="829">829</th><td><u>#include &lt;bits/ostream.tcc&gt;</u>&nbsp</td></tr>
+<tr><th id="830">830</th><td>&nbsp</td></tr>
+<tr><th id="831">831</th><td><u>#<span data-ppcond="33">endif</span>	/* _GLIBCXX_OSTREAM */</u>&nbsp</td></tr>
+<tr><th id="832">832</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tPool.h.html'>Modules/Foundation/Inc/Foundation/tPool.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

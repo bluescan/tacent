@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='410' type='const char *'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='408'>// The null-terminated string versions of the separators come as ASCII strings and UTF-8. Since all ASCII strings are
+// valid UTF-8 strings, the values are the same, it&apos;s just the type (char8_t*) that&apos;s different.</doc>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='27' type='const char *'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='36' u='r'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='37' u='r'/>

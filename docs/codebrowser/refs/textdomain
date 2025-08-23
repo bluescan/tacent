@@ -1,0 +1,5 @@
+<dec f='include/libintl.h' l='82' type='char * textdomain(const char * __domainname)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='93' u='c' c='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<doc f='include/libintl.h' l='79'>/* Set the current default message catalog to DOMAINNAME.
+   If DOMAINNAME is null, return the current default.
+   If DOMAINNAME is &quot;&quot;, reset to the default of &quot;messages&quot;.  */</doc>

@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/random.h' l='2673' u='w' c='_ZNSt24chi_squared_distributionC1ET_'/>
+<use f='include/c++/11/bits/random.h' l='2678' u='w' c='_ZNSt24chi_squared_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2693' u='c' c='_ZNKSt24chi_squared_distribution1nEv'/>
+<use f='include/c++/11/bits/random.h' l='2700' u='r' c='_ZNKSt24chi_squared_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='2709' u='w' c='_ZNSt24chi_squared_distribution5paramERKNS_10param_typeE'/>
+<dec f='include/c++/11/bits/random.h' l='2834' type='std::chi_squared_distribution::param_type'/>

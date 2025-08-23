@@ -1,0 +1,17 @@
+<def f='include/c++/11/new' l='92' ll='97'/>
+<use f='include/c++/11/new' l='99'/>
+<use f='include/c++/11/new' l='140' c='_ZnwmRKSt9nothrow_t'/>
+<use f='include/c++/11/new' l='142' c='_ZnamRKSt9nothrow_t'/>
+<use f='include/c++/11/new' l='144' c='_ZdlPvRKSt9nothrow_t'/>
+<use f='include/c++/11/new' l='146' c='_ZdaPvRKSt9nothrow_t'/>
+<use f='include/c++/11/new' l='151' c='_ZnwmSt11align_val_tRKSt9nothrow_t'/>
+<use f='include/c++/11/new' l='155' c='_ZdlPvSt11align_val_tRKSt9nothrow_t'/>
+<use f='include/c++/11/new' l='159' c='_ZnamSt11align_val_tRKSt9nothrow_t'/>
+<use f='include/c++/11/new' l='163' c='_ZdaPvSt11align_val_tRKSt9nothrow_t'/>
+<size>1</size>
+<fun r='_ZNSt9nothrow_tC1Ev'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='700' c='_ZNSt14__shared_countC1ERKSt12__weak_countIXT_EESt9nothrow_t'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='880' c='_ZNSt14__shared_countC1ERKSt12__weak_countIXT_EESt9nothrow_t'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1352' c='_ZNSt12__shared_ptrC1ERKSt10__weak_ptrIT_XT0_EESt9nothrow_t'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='417' c='_ZNSt10shared_ptrC1ERKSt8weak_ptrIT_ESt9nothrow_t'/>
+<size>1</size>

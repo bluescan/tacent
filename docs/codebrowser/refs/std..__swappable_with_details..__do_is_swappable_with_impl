@@ -1,0 +1,6 @@
+<def f='include/c++/11/type_traits' l='2777' ll='2787'/>
+<ovr f='include/c++/11/type_traits' l='2805' c='std::__is_swappable_with_impl'/>
+<use f='include/c++/11/type_traits' l='2806'/>
+<size>1</size>
+<fun r='_ZNSt24__swappable_with_details27__do_is_swappable_with_impl6__testEi'/>
+<fun r='_ZNSt24__swappable_with_details27__do_is_swappable_with_impl6__testEz'/>

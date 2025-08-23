@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3334' ll='3338'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3334'/>
+<size>24</size>
+<mbr r='VkSparseImageOpaqueMemoryBindInfo::image' o='0' t='VkImage'/>
+<mbr r='VkSparseImageOpaqueMemoryBindInfo::bindCount' o='64' t='uint32_t'/>
+<mbr r='VkSparseImageOpaqueMemoryBindInfo::pBinds' o='128' t='const VkSparseMemoryBind *'/>

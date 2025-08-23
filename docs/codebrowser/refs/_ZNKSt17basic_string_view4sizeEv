@@ -1,0 +1,6 @@
+<def f='include/c++/11/string_view' l='210' ll='212' type='std::basic_string_view::size_type std::basic_string_view::size() const'/>
+<use f='include/c++/11/string_view' l='295' u='c' c='_ZNKSt17basic_string_view4copyEPT_mm'/>
+<use f='include/c++/11/string_view' l='306' u='c' c='_ZNKSt17basic_string_view6substrEmm'/>
+<doc f='include/c++/11/string_view' l='208'>// [string.view.capacity], capacity</doc>
+<use f='include/c++/11/bits/fs_path.h' l='1028' u='c' c='_ZNSt10filesystem7__cxx114path14_S_str_convertESt17basic_string_viewIcSt11char_traitsIcEERKT1_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1050' u='c' c='_ZNSt10filesystem7__cxx114path14_S_str_convertESt17basic_string_viewIcSt11char_traitsIcEERKT1_'/>

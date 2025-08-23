@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Src/tHash.cpp' l='563' type='uint8 * tHash_SHA256::Close(tHash_SHA256::State * )'/>
+<def f='Modules/Foundation/Src/tHash.cpp' l='687' ll='727' type='uint8 * tHash_SHA256::Close(tHash_SHA256::State * state)'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='735' u='c' c='_ZN12tHash_SHA2564CalcEPhPKhi8tFixIntUILi256EE'/>

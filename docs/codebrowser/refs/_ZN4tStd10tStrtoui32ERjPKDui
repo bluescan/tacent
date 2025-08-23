@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='187' type='bool tStd::tStrtoui32(uint32 &amp; v, const char8_t * s, int base = -1)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='190' u='c' c='_ZN4tStd8tStrtouiERjPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='373' u='c' c='_ZNK7tString8ToUInt32ERji'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='234' u='c' c='_ZNK5tName8ToUInt32ERji'/>

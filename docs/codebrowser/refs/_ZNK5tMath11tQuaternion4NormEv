@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='57' type='float tMath::tQuaternion::Norm() const'/>
+<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='57'>/* Returns the norm (length). */</doc>

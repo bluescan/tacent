@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10723' ll='10727'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10723'/>
+<size>24</size>
+<mbr r='VkPipelineCreateFlags2CreateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineCreateFlags2CreateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineCreateFlags2CreateInfoKHR::flags' o='128' t='VkPipelineCreateFlags2KHR'/>

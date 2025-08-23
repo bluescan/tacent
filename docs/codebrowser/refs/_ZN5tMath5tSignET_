@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='92' type='T tMath::tSign(T val)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='92'>/* +1,-1, or 0 for equal, */</doc>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='105' u='c' c='_ZN4tStd8tNstrcmpEPKcS1_'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='120' u='c' c='_ZN4tStd8tNstrcmpEPKcS1_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='1010' u='c' c='_ZN5tMath14tApproachAngleERffff'/>

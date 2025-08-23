@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='1563' ll='1565' type='static std::chrono::year std::chrono::year::max()'/>
+<use f='include/c++/11/chrono' l='1648' u='c' c='_ZNKSt6chrono4year2okEv'/>

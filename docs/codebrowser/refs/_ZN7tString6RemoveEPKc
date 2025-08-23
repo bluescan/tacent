@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='295' type='int tString::Remove(const char * rem)'/>
+<use f='Modules/System/Src/tFile.cpp' l='239' u='c' c='_ZN7tSystem18tGetSimplifiedPathERK7tStringb'/>

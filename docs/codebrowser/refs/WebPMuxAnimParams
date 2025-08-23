@@ -1,0 +1,9 @@
+<use f='Modules/Image/Contrib/WebP/include/mux.h' l='69'/>
+<def f='Modules/Image/Contrib/WebP/include/mux.h' l='281' ll='288'/>
+<size>8</size>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='277'>//------------------------------------------------------------------------------
+// Animation.
+
+// Animation parameters.</doc>
+<mbr r='WebPMuxAnimParams::bgcolor' o='0' t='uint32_t'/>
+<mbr r='WebPMuxAnimParams::loop_count' o='32' t='int'/>

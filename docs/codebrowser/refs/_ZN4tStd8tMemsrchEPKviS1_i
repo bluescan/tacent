@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='46' type='const void * tStd::tMemsrch(const void * haystack, int haystackNumBytes, const void * needle, int needleNumBytes)'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='322' u='c' c='_ZN7tString7ReplaceEPKDuS1_'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='342' u='c' c='_ZN7tString7ReplaceEPKDuS1_'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='367' u='c' c='_ZN7tString7ReplaceEPKDuS1_'/>

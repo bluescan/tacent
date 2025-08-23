@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/ranges_util.h' l='460' type='const std::ranges::__find_if_fn'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='359' u='c' c='_ZNKSt6ranges13__search_n_fnclET_T0_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS7_EE4type15difference_typeERKT1_T2_T3_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='394' u='c' c='_ZNKSt6ranges13__search_n_fnclET_T0_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS7_EE4type15difference_typeERKT1_T2_T3_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='410' u='c' c='_ZNKSt6ranges13__search_n_fnclET_T0_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS7_EE4type15difference_typeERKT1_T2_T3_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='602' u='c' c='_ZNKSt6ranges19__is_permutation_fnclET_T0_T1_T2_T5_T3_T4_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1007' u='c' c='_ZNKSt6ranges14__remove_if_fnclET_T0_T2_T1_'/>

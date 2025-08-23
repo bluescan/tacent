@@ -1,0 +1,1 @@
+<def f='include/c++/11/chrono' l='983' ll='991' type='enable_if_t&lt;__and_&lt;__is_duration&lt;_ToDur&gt;, __not_&lt;treat_as_floating_point&lt;typename _ToDur::rep&gt;&gt;&gt;::value, time_point&lt;_Clock, _ToDur&gt;&gt; std::chrono::round(const time_point&lt;_Clock, _Dur&gt; &amp; __tp)'/>

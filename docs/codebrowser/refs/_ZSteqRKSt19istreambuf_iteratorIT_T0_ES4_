@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/streambuf_iterator.h' l='225' ll='228' type='bool std::operator==(const istreambuf_iterator&lt;_CharT, _Traits&gt; &amp; __a, const istreambuf_iterator&lt;_CharT, _Traits&gt; &amp; __b)'/>

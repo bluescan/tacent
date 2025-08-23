@@ -1,0 +1,5 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='323' u='c' c='_ZN12tChunkReaderC1ERK7tStringPh'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='332' type='void tChunkReader::Load(const tString &amp; filename, uint8 * buffer = nullptr)'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='330'>// Reads in a file. Note that tChunkRead will need to unload any buffers it may currently be maintaining. Same
+	// alignment requirements as above.</doc>
+<def f='Modules/System/Src/tChunk.cpp' l='768' ll='800' type='void tChunkReader::Load(const tString &amp; filename, uint8 * buffer = nullptr)'/>

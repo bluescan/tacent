@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18382' ll='18386'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18382'/>
+<size>24</size>
+<mbr r='VkOutOfBandQueueTypeInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkOutOfBandQueueTypeInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkOutOfBandQueueTypeInfoNV::queueType' o='128' t='VkOutOfBandQueueTypeNV'/>

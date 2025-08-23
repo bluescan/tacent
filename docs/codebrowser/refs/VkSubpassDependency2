@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6105' ll='6116'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6105'/>
+<size>48</size>
+<mbr r='VkSubpassDependency2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSubpassDependency2::pNext' o='64' t='const void *'/>
+<mbr r='VkSubpassDependency2::srcSubpass' o='128' t='uint32_t'/>
+<mbr r='VkSubpassDependency2::dstSubpass' o='160' t='uint32_t'/>
+<mbr r='VkSubpassDependency2::srcStageMask' o='192' t='VkPipelineStageFlags'/>
+<mbr r='VkSubpassDependency2::dstStageMask' o='224' t='VkPipelineStageFlags'/>
+<mbr r='VkSubpassDependency2::srcAccessMask' o='256' t='VkAccessFlags'/>
+<mbr r='VkSubpassDependency2::dstAccessMask' o='288' t='VkAccessFlags'/>
+<mbr r='VkSubpassDependency2::dependencyFlags' o='320' t='VkDependencyFlags'/>
+<mbr r='VkSubpassDependency2::viewOffset' o='352' t='int32_t'/>

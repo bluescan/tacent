@@ -1,0 +1,7 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='206' type='void tMath::tSet(tMath::tVec2 &amp; d, const tMath::tVec2 &amp; s)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='204'>// For the functions below we generally use d for destination and s for source. When a non-const v, m, or q is used, the
+// parameter is both input and output. s should be different to d for overloads that use them.</doc>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='29' u='c' c='_ZN5tMath8tVector2C1ERKNS_5tVec2E'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='37' u='c' c='_ZN5tMath8tVector23SetERKNS_5tVec2E'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='72' u='c' c='_ZN5tMath8tVector2aSERKNS_5tVec2E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='332' u='c' c='_ZN12tChunkWriter5WriteERKN5tMath8tVector2E'/>

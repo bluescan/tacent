@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='1213' ll='1215' type='static std::independent_bits_engine::result_type std::independent_bits_engine::max()'/>
+<doc f='include/c++/11/bits/random.h' l='1210'>/**
+       * @brief Gets the maximum value in the generated random number range.
+       */</doc>

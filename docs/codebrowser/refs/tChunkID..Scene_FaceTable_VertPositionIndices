@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='461' type='16822272'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='461'>// Each entry contains 3 indices into the vertex table.</doc>
+<use f='Modules/Scene/Src/tMesh.cpp' l='170' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='382' u='r' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>

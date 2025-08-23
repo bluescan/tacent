@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1633' type='32'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1629'>/*!&lt; When decoding to an opaque texture format, if the Basis data has
+             alpha, decode the alpha slice instead of the color slice to the
+             output texture format. Has no effect if there is no alpha data.
+         */</doc>

@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tTexture.h' l='67' type='2'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='75' c='_ZN6tImage8tTextureC1ERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='92' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='171' c='_ZN6tImage8tTexture15DetermineFilterENS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='183' c='_ZN6tImage8tTexture32DetermineBlockEncodeQualityLevelENS0_8tQualityE'/>
+<doc f='Modules/Image/Inc/Image/tTexture.h' l='67'>// Lanczos sinc-based resample filter. High quality BCn compression.</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='157' type='int tMath::tFindFirstSetBit(uint8 v)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='156'>// Similar to above but for finding first set (1) bit.</doc>

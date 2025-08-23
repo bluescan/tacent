@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1588' type='23'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1586'>/*!&lt; Automatically selects @c KTX_TTF_ETC1_RGB or
+                 @c KTX_TTF_ETC2_RGBA according to presence of alpha. */</doc>

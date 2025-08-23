@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14894' ll='14901'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14894'/>
+<size>48</size>
+<mbr r='VkGraphicsPipelineShaderGroupsCreateInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkGraphicsPipelineShaderGroupsCreateInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkGraphicsPipelineShaderGroupsCreateInfoNV::groupCount' o='128' t='uint32_t'/>
+<mbr r='VkGraphicsPipelineShaderGroupsCreateInfoNV::pGroups' o='192' t='const VkGraphicsShaderGroupCreateInfoNV *'/>
+<mbr r='VkGraphicsPipelineShaderGroupsCreateInfoNV::pipelineCount' o='256' t='uint32_t'/>
+<mbr r='VkGraphicsPipelineShaderGroupsCreateInfoNV::pPipelines' o='320' t='const VkPipeline *'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='103'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='102'>/* We support POSIX.1b semaphores.  */</doc>

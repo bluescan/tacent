@@ -1,0 +1,5 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='327' u='c' c='_ZN12tChunkReaderC1EPhi'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='336' type='void tChunkReader::Load(uint8 * buffer, int bufferSizeBytes)'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='334'>// This call assumes the buffer is already allocated and has the data in it. See the corresponding constructor for
+	// info. Same alignment requirements as above.</doc>
+<def f='Modules/System/Src/tChunk.cpp' l='803' ll='812' type='void tChunkReader::Load(uint8 * buffer, int bufferSizeBytes)'/>

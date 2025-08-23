@@ -1,0 +1,100 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='141' ll='144'/>
+<use f='include/c++/11/type_traits' l='142'/>
+<def f='include/c++/11/type_traits' l='146' ll='149'/>
+<def f='include/c++/11/type_traits' l='151' ll='154'/>
+<def f='include/c++/11/type_traits' l='156' ll='159'/>
+<use f='include/c++/11/type_traits' l='158'/>
+<use f='include/c++/11/type_traits' l='173'/>
+<use f='include/c++/11/type_traits' l='180'/>
+<use f='include/c++/11/type_traits' l='802'/>
+<use f='include/c++/11/type_traits' l='832'/>
+<use f='include/c++/11/type_traits' l='1234'/>
+<use f='include/c++/11/type_traits' l='1247'/>
+<use f='include/c++/11/type_traits' l='1270'/>
+<use f='include/c++/11/type_traits' l='1338'/>
+<use f='include/c++/11/type_traits' l='2209'/>
+<use f='include/c++/11/type_traits' l='2677' c='_ZSt4swapRT_S0_'/>
+<use f='include/c++/11/type_traits' l='2984'/>
+<use f='include/c++/11/type_traits' l='3047'/>
+<use f='include/c++/11/type_traits' l='3066'/>
+<use f='include/c++/11/bits/move.h' l='110'/>
+<use f='include/c++/11/bits/move.h' l='190' c='_ZSt4swapRT_S0_'/>
+<use f='include/c++/11/bits/move.h' l='197' c='_ZSt4swapRT_S0_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='106' c='_ZNSt4_PCC18_ConstructiblePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='113' c='_ZNSt4_PCC26_ImplicitlyConvertiblePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='120' c='_ZNSt4_PCC22_MoveConstructiblePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='127' c='_ZNSt4_PCC30_ImplicitlyMoveConvertiblePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='134' c='_ZNSt4_PCC13_CopyMovePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='139' c='_ZNSt4_PCC13_CopyMovePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='148' c='_ZNSt4_PCC13_MoveCopyPairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='153' c='_ZNSt4_PCC13_MoveCopyPairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='227'/>
+<use f='include/c++/11/bits/stl_pair.h' l='238'/>
+<use f='include/c++/11/bits/stl_pair.h' l='242'/>
+<use f='include/c++/11/bits/stl_pair.h' l='391' c='_ZNSt4pairaSENSt11conditionalIXsr6__and_ISt18is_copy_assignableIT_ES1_IT0_EEE5valueERKSt4pairIS2_S4_ERKSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/stl_pair.h' l='402' c='_ZNSt4pairaSENSt11conditionalIXsr6__and_ISt18is_move_assignableIT_ES1_IT0_EEE5valueEOSt4pairIS2_S4_EOSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/stl_pair.h' l='405' c='_ZNSt4pairaSENSt11conditionalIXsr6__and_ISt18is_move_assignableIT_ES1_IT0_EEE5valueEOSt4pairIS2_S4_EOSt10__nonesuchE4typeE'/>
+<use f='include/c++/11/bits/stl_pair.h' l='415' c='_ZNSt4pairaSERKSt4pairITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_pair.h' l='427' c='_ZNSt4pairaSEOSt4pairITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_pair.h' l='440' c='_ZNSt4pair4swapERSt4pairIT_T0_E'/>
+<use f='include/c++/11/bits/stl_pair.h' l='528' c='_ZSt4swapRSt4pairIT_T0_ES3_'/>
+<use f='include/c++/11/bits/stl_pair.h' l='539' c='_ZSt4swapRSt4pairIT_T0_ES3_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1601' c='_ZSt8__equal4T_S_T0_S0_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1628' c='_ZSt8__equal4T_S_T0_S0_T1_'/>
+<use f='include/c++/11/bits/stl_function.h' l='585'/>
+<use f='include/c++/11/bits/stl_function.h' l='647'/>
+<use f='include/c++/11/bits/stl_function.h' l='709'/>
+<use f='include/c++/11/bits/stl_function.h' l='771'/>
+<use f='include/c++/11/tuple' l='562' c='_ZNSt17_TupleConstraints29__is_implicitly_constructibleEv'/>
+<use f='include/c++/11/tuple' l='573' c='_ZNSt17_TupleConstraints29__is_explicitly_constructibleEv'/>
+<use f='include/c++/11/tuple' l='574' c='_ZNSt17_TupleConstraints29__is_explicitly_constructibleEv'/>
+<use f='include/c++/11/tuple' l='580' c='_ZNSt17_TupleConstraints37__is_implicitly_default_constructibleEv'/>
+<use f='include/c++/11/tuple' l='586' c='_ZNSt17_TupleConstraints37__is_explicitly_default_constructibleEv'/>
+<use f='include/c++/11/tuple' l='587' c='_ZNSt17_TupleConstraints37__is_explicitly_default_constructibleEv'/>
+<use f='include/c++/11/tuple' l='644' c='_ZNSt5tuple12__assignableEv'/>
+<use f='include/c++/11/tuple' l='651' c='_ZNSt5tuple20__nothrow_assignableEv'/>
+<use f='include/c++/11/tuple' l='659' c='_ZNSt5tuple23__nothrow_constructibleEv'/>
+<use f='include/c++/11/tuple' l='714' c='_ZNSt5tupleC1Ev'/>
+<use f='include/c++/11/tuple' l='721' c='_ZNSt5tupleC1Ev'/>
+<use f='include/c++/11/tuple' l='942' c='_ZNSt5tuple4swapERSt5tupleIJDpT_EE'/>
+<use f='include/c++/11/tuple' l='1017' c='_ZNSt5tupleIJT_T0_EE12__assignableEv'/>
+<use f='include/c++/11/tuple' l='1024' c='_ZNSt5tupleIJT_T0_EE20__nothrow_assignableEv'/>
+<use f='include/c++/11/tuple' l='1031' c='_ZNSt5tupleIJT_T0_EE23__nothrow_constructibleEv'/>
+<use f='include/c++/11/tuple' l='1037' c='_ZNSt5tupleIJT_T0_EE31__nothrow_default_constructibleEv'/>
+<use f='include/c++/11/tuple' l='1332' c='_ZNSt5tupleIJT_T0_EE4swapERS_IJS0_S1_EE'/>
+<use f='include/c++/11/tuple' l='1730'/>
+<use f='include/c++/11/tuple' l='1755' c='_ZSt4swapRSt5tupleIJDpT_EES3_'/>
+<use f='include/c++/11/tuple' l='1767' c='_ZSt4swapRSt5tupleIJDpT_EES3_'/>
+<use f='include/c++/11/bits/std_function.h' l='212' c='_ZNSt14_Function_base13_Base_manager15_M_init_functorERSt9_Any_dataOTL0__'/>
+<use f='include/c++/11/bits/std_function.h' l='298' c='_ZNSt17_Function_handlerIFT_DpT1_ET0_E15_S_nothrow_initEv'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='255' c='_ZNSt16allocator_traits12_S_constructERT_PTL0__DpOTL0_0_'/>
+<use f='include/c++/11/ext/alloc_traits.h' l='73'/>
+<use f='include/c++/11/bits/hashtable.h' l='48'/>
+<use f='include/c++/11/bits/hashtable.h' l='58'/>
+<use f='include/c++/11/bits/hashtable.h' l='616' c='_ZNSt10_Hashtable4swapERSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>
+<use f='include/c++/11/bits/hashtable.h' l='1544' c='_ZNSt10_Hashtable4swapERSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='294' c='_ZSt20uninitialized_fill_nT_T0_RKT1_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='636' c='_ZSt25__uninitialized_default_nT_T0_'/>
+<use f='include/c++/11/functional' l='834' c='_ZNSt11_Bind_frontC1EiOTL0__DpOTL0_0_'/>
+<size>1</size>
+<use f='include/c++/11/chrono' l='370' c='_ZNSt6chrono5roundERKNS_8durationIT0_T1_EE'/>
+<use f='include/c++/11/chrono' l='527'/>
+<use f='include/c++/11/chrono' l='984' c='_ZNSt6chrono5roundERKNS_10time_pointIT0_T1_EE'/>
+<use f='include/c++/11/bits/nested_exception.h' l='122' c='_ZSt17throw_with_nestedOT_'/>
+<use f='include/c++/11/bits/nested_exception.h' l='125' c='_ZSt17throw_with_nestedOT_'/>
+<use f='include/c++/11/bits/nested_exception.h' l='135'/>
+<use f='include/c++/11/bits/basic_string.h' l='126'/>
+<use f='include/c++/11/bits/basic_string.h' l='7000'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='145'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='259'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='381' c='_ZNSt10unique_ptraSEOSt10unique_ptrITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='491'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='505'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='514'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='517'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='634' c='_ZNSt10unique_ptrIA_T_T0_EaSEOS_ITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='698'/>
+<use f='include/c++/11/bits/random.h' l='207'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1076'/>
+<use f='include/c++/11/fstream' l='89'/>

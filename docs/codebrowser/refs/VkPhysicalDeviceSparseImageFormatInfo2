@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5327' ll='5335'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5327'/>
+<size>40</size>
+<mbr r='VkPhysicalDeviceSparseImageFormatInfo2::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceSparseImageFormatInfo2::pNext' o='64' t='const void *'/>
+<mbr r='VkPhysicalDeviceSparseImageFormatInfo2::format' o='128' t='VkFormat'/>
+<mbr r='VkPhysicalDeviceSparseImageFormatInfo2::type' o='160' t='VkImageType'/>
+<mbr r='VkPhysicalDeviceSparseImageFormatInfo2::samples' o='192' t='VkSampleCountFlagBits'/>
+<mbr r='VkPhysicalDeviceSparseImageFormatInfo2::usage' o='224' t='VkImageUsageFlags'/>
+<mbr r='VkPhysicalDeviceSparseImageFormatInfo2::tiling' o='256' t='VkImageTiling'/>

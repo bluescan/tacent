@@ -1,0 +1,2 @@
+<dec f='include/sched.h' l='130' type='int sched_setaffinity(__pid_t __pid, size_t __cpusetsize, const cpu_set_t * __cpuset)'/>
+<doc f='include/sched.h' l='129'>/* Set the CPU affinity for a task */</doc>

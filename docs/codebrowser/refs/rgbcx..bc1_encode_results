@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2564' ll='2570'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2572' c='_ZN5rgbcxL25try_3color_block_useblackEPKNS_7color32EjRjRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2748' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3416' c='_ZN5rgbcxL26encode_bc1_endpoint_searchEPKNS_7color32EbjRNS_18bc1_encode_resultsEj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3524' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<size>44</size>
+<mbr r='rgbcx::bc1_encode_results::lr' o='0' t='int'/>
+<mbr r='rgbcx::bc1_encode_results::lg' o='32' t='int'/>
+<mbr r='rgbcx::bc1_encode_results::lb' o='64' t='int'/>
+<mbr r='rgbcx::bc1_encode_results::hr' o='96' t='int'/>
+<mbr r='rgbcx::bc1_encode_results::hg' o='128' t='int'/>
+<mbr r='rgbcx::bc1_encode_results::hb' o='160' t='int'/>
+<mbr r='rgbcx::bc1_encode_results::sels' o='192' t='uint8_t[16]'/>
+<mbr r='rgbcx::bc1_encode_results::m_3color' o='320' t='bool'/>

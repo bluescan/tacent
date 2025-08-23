@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='250' type='int deflate(z_streamp strm, int flush)'/>

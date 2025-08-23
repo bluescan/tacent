@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls-narrow.h' l='27' macro='1' type='_Float32 f32divf64x(_Float64x __x, _Float64x __y)'/>

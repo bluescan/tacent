@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6923' ll='6931'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6923'/>
+<size>1048</size>
+<mbr r='VkPhysicalDeviceToolProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceToolProperties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceToolProperties::name' o='128' t='char[256]'/>
+<mbr r='VkPhysicalDeviceToolProperties::version' o='2176' t='char[256]'/>
+<mbr r='VkPhysicalDeviceToolProperties::purposes' o='4224' t='VkToolPurposeFlags'/>
+<mbr r='VkPhysicalDeviceToolProperties::description' o='4256' t='char[256]'/>
+<mbr r='VkPhysicalDeviceToolProperties::layer' o='6304' t='char[256]'/>

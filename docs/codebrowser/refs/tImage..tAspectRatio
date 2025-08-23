@@ -1,0 +1,23 @@
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='366' ll='446'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='451' c='_ZN6tImage14tIsScreenRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='452' c='_ZN6tImage13tIsPrintRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='453' c='_ZN6tImage13tisValidRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='456' c='_ZN6tImage20tGetAspectRatioFloatENS_12tAspectRatioE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='460' c='_ZN6tImage19tGetAspectRatioFracERiS0_NS_12tAspectRatioE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='466' c='_ZN6tImage15tGetAspectRatioEii'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='470' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='470' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='471' c='_ZN6tImage18tReduceAspectRatioERNS_12tAspectRatioE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='660' c='_ZN6tImage14tIsScreenRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='666' c='_ZN6tImage13tIsPrintRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='672' c='_ZN6tImage13tisValidRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='678' c='_ZN6tImage18tReduceAspectRatioERNS_12tAspectRatioE'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='684' c='_ZN6tImage20tGetAspectRatioFloatENS_12tAspectRatioE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='363'>// I&apos;ve decided to put generic aspect ratio stuff in here as well. It doesn&apos;t really warrant its own header. This enum
+// is for commonly encountered aspect ratios on-screen and in print. The name array may be indexed by the enum values.
+// They are ordered from largest to smallest.</doc>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='725' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='725' c='_ZN6tImage22tGetReducedAspectRatioENS_12tAspectRatioE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='817' c='_ZN6tImage19tGetAspectRatioFracERiS0_NS_12tAspectRatioE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='836' c='_ZN6tImage15tGetAspectRatioEii'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='861' c='_ZN6tImage15tGetAspectRatioEii'/>

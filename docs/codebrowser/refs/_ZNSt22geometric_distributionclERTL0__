@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.h' l='4089' ll='4091' type='std::geometric_distribution::result_type std::geometric_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng)'/>

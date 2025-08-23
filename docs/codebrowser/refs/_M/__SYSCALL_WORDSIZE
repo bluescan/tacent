@@ -1,0 +1,9 @@
+<dec f='include/x86_64-linux-gnu/bits/wordsize.h' l='14'/>
+<dec f='include/x86_64-linux-gnu/bits/wordsize.h' l='14'/>
+<dec f='include/x86_64-linux-gnu/bits/wordsize.h' l='14'/>
+<dec f='include/x86_64-linux-gnu/bits/wordsize.h' l='14'/>
+<dec f='include/x86_64-linux-gnu/bits/wordsize.h' l='14'/>
+<use f='include/x86_64-linux-gnu/bits/types/struct_timespec.h' l='19' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/types/struct_timespec.h' l='19' u='c'/>
+<dec f='include/x86_64-linux-gnu/bits/wordsize.h' l='14'/>
+<doc f='include/x86_64-linux-gnu/bits/wordsize.h' l='13'>/* Both x86-64 and x32 use the 64-bit system call interface.  */</doc>

@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_pair.h' l='80'/>
+<use f='include/c++/11/bits/stl_pair.h' l='83'/>
+<use f='include/c++/11/bits/stl_pair.h' l='84'/>
+<use f='include/c++/11/bits/stl_pair.h' l='387' c='_ZNSt4pairC1ESt21piecewise_construct_tSt5tupleIJDpTL0__EES1_IJDpTL0_0_EE'/>
+<use f='include/c++/11/tuple' l='1805' c='_ZNSt4pairC1ESt21piecewise_construct_tSt5tupleIJDpTL0__EES1_IJDpTL0_0_EE'/>
+<size>1</size>
+<fun r='_ZNSt21piecewise_construct_tC1Ev'/>

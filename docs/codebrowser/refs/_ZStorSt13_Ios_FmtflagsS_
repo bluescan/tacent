@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/ios_base.h' l='86' ll='88' type='std::_Ios_Fmtflags std::operator|(std::_Ios_Fmtflags __a, std::_Ios_Fmtflags __b)'/>
+<use f='include/c++/11/bits/ios_base.h' l='100' u='c' c='_ZStoRRSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='1093' u='c' c='_ZSt8hexfloatRSt8ios_base'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='759' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRPv'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1202' u='c' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_PKv'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1203' u='c' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_PKv'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1203' u='c' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_PKv'/>

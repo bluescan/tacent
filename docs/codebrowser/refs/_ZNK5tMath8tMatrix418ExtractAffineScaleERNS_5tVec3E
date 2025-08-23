@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='103' type='void tMath::tMatrix4::ExtractAffineScale(tMath::tVec3 &amp; scale) const'/>
+<doc f='Modules/Math/Inc/Math/tMatrix4.h' l='102'>// Look in LinearAlgebra for function descriptions of all the decomposition functions below.</doc>

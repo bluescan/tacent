@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5207' ll='5212'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5207'/>
+<size>24</size>
+<mbr r='VkDeviceGroupBindSparseInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDeviceGroupBindSparseInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkDeviceGroupBindSparseInfo::resourceDeviceIndex' o='128' t='uint32_t'/>
+<mbr r='VkDeviceGroupBindSparseInfo::memoryDeviceIndex' o='160' t='uint32_t'/>

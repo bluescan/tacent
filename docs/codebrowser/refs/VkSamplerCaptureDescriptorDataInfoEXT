@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15575' ll='15579'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15575'/>
+<size>24</size>
+<mbr r='VkSamplerCaptureDescriptorDataInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSamplerCaptureDescriptorDataInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkSamplerCaptureDescriptorDataInfoEXT::sampler' o='128' t='VkSampler'/>

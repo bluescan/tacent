@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5362' ll='5366'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5362'/>
+<size>24</size>
+<mbr r='VkPipelineTessellationDomainOriginStateCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineTessellationDomainOriginStateCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineTessellationDomainOriginStateCreateInfo::domainOrigin' o='128' t='VkTessellationDomainOrigin'/>

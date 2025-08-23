@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='608' type='bool tSystem::tFindDirs(tList&lt;tSystem::tFileInfo&gt; &amp; dirs, const tString &amp; dir = tString(), bool hidden = true, tSystem::Backend  = Backend::Native)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='606'>// This version of tFindDirs can be used if you need additional information along with each directory.
+// It is faster to use this than the tStringItem version above in conjunction with tGetFileInfo calls.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='2574' ll='2582' type='bool tSystem::tFindDirs(tList&lt;tSystem::tFileInfo&gt; &amp; dirs, const tString &amp; dir = tString(), bool hidden = true, tSystem::Backend backend = Backend::Native)'/>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='2283' ll='2285' type='std::lognormal_distribution::result_type std::lognormal_distribution::min() const'/>
+<doc f='include/c++/11/bits/random.h' l='2280'>/**
+       * @brief Returns the greatest lower bound value of the distribution.
+       */</doc>

@@ -1,0 +1,17 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='70' ll='78'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='73' c='_ZN5tMath9tQuadFaceC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='74' c='_ZNK5tMath9tQuadFaceeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='75' c='_ZNK5tMath9tQuadFaceneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='76' c='_ZN5tMath9tQuadFaceaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='76' c='_ZN5tMath9tQuadFaceaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='79'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='92'/>
+<size>16</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='68'>// A quad face. It has 4 vertices and 4 edges. It may be degenerate. The tQuadFace data structure is just a set of
+// 4 indexes into any sort of vertex array. It is therefore dimension-agnostic and can be used for quads in R2 and R3.</doc>
+<fun r='_ZN5tMath9tQuadFaceC1Ev'/>
+<fun r='_ZN5tMath9tQuadFaceC1ERKS0_'/>
+<fun r='_ZNK5tMath9tQuadFaceeqERKS0_'/>
+<fun r='_ZNK5tMath9tQuadFaceneERKS0_'/>
+<fun r='_ZN5tMath9tQuadFaceaSERKS0_'/>
+<mbr r='tMath::tQuadFace::Index' o='0' t='int[4]'/>

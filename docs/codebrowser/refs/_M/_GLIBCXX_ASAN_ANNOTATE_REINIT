@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/stl_vector.h' l='264'/>
+<use f='include/c++/11/bits/vector.tcc' l='91' u='c'/>
+<use f='include/c++/11/bits/vector.tcc' l='203' u='c'/>
+<use f='include/c++/11/bits/vector.tcc' l='312' u='c'/>
+<use f='include/c++/11/bits/vector.tcc' l='499' u='c'/>
+<use f='include/c++/11/bits/vector.tcc' l='597' u='c'/>
+<use f='include/c++/11/bits/vector.tcc' l='674' u='c'/>
+<use f='include/c++/11/bits/vector.tcc' l='692' u='c'/>
+<use f='include/c++/11/bits/vector.tcc' l='795' u='c'/>
+<use f='include/c++/11/bits/vector.tcc' l='1009' u='w'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/mutex' l='692' type='void std::call_once(std::once_flag &amp; __once, _Callable &amp;&amp; __f, _Args &amp;&amp;... __args)'/>
+<def f='include/c++/11/mutex' l='771' ll='785' type='void std::call_once(std::once_flag &amp; __once, _Callable &amp;&amp; __f, _Args &amp;&amp;... __args)'/>

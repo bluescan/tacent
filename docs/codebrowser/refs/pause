@@ -1,0 +1,6 @@
+<dec f='include/unistd.h' l='489' type='int pause()'/>
+<doc f='include/unistd.h' l='484'>/* Suspend the process until a signal arrives.
+   This always returns -1 and sets `errno&apos; to EINTR.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

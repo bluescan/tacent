@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='2996' ll='2999' type='bool std::operator==(const cauchy_distribution&lt;_RealType&gt; &amp; __d1, const cauchy_distribution&lt;_RealType&gt; &amp; __d2)'/>
+<doc f='include/c++/11/bits/random.h' l='2992'>/**
+       * @brief Return true if two Cauchy distributions have
+       *        the same parameters.
+       */</doc>

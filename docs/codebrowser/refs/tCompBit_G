@@ -1,0 +1,19 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='64' type='2'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1112' u='r' c='_ZNK9tColour4b9IntensityEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1151' u='r' c='_ZNK9tColour4b5EqualERKS_j'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1204' u='r' c='_ZNK9tColour4s9IntensityEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1217' u='r' c='_ZNK9tColour4s5EqualERKS_j'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1251' u='r' c='_ZN9tColour4f14SquareToLinearEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1260' u='r' c='_ZN9tColour4f14LinearToSquareEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1269' u='r' c='_ZN9tColour4f13GammaToLinearEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1278' u='r' c='_ZN9tColour4f13LinearToGammaEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1287' u='r' c='_ZN9tColour4f12SRGBToLinearEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1296' u='r' c='_ZN9tColour4f12LinearToSRGBEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1305' u='r' c='_ZN9tColour4f15TonemapExposureEfj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1314' u='r' c='_ZN9tColour4f15TonemapReinhardEj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='497' u='r' c='_ZN6tImage8tPicture8SetPixelEiiRK9tColour4bj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='519' u='r' c='_ZN6tImage8tPicture6SetAllERK9tColour4bj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='612' u='r' c='_ZN6tImage8tPicture9IntensityEj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='635' u='r' c='_ZN6tImage8tPicture16AlphaBlendColourERK9tColour4bji'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='698' u='r' c='_ZN6tImage8tPicture16AdjustBrightnessEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='733' u='r' c='_ZN6tImage8tPicture14AdjustContrastEfj'/>

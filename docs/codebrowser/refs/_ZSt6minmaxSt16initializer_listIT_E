@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='473' type='pair&lt;_Tp, _Tp&gt; std::minmax(initializer_list&lt;_Tp&gt; )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='3471' ll='3478' macro='1' type='pair&lt;_Tp, _Tp&gt; std::minmax(initializer_list&lt;_Tp&gt; __l)'/>

@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/basic_string.h' l='678' ll='682' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::operator=(const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __str)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='674'>/**
+       *  @brief  Assign the value of @a str to this string.
+       *  @param  __str  Source string.
+       */</doc>

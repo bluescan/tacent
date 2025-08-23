@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='188' type='int'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='186'>// The current and total number of chunks with the fourcc given to
+  // WebPDemuxGetChunk().</doc>

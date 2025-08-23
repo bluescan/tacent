@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='790' ll='796' macro='1' type='front_insert_iterator&lt;_Container&gt; &amp; std::front_insert_iterator::operator=(const typename _Container::value_type &amp; __value)'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='618' type='bool tColour4s::Equal(const tColour4s &amp; , comp_t channels = tCompBit_All) const'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1212' ll='1227' type='bool tColour4s::Equal(const tColour4s &amp; colour, comp_t channels = tCompBit_All) const'/>

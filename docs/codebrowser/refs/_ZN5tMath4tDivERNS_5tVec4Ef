@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='495' type='void tMath::tDiv(tMath::tVec4 &amp; v, float a)'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='90' u='c' c='_ZN5tMath8tVector4dVEf'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='935' u='c' c='_ZN5tMath24tExtractProjectionPlanesEPNS_5tVec4ERKNS_5tMat4Ebb'/>

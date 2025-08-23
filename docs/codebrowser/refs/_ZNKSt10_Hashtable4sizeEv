@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/hashtable.h' l='644' ll='646' type='std::_Hashtable::size_type std::_Hashtable::size() const'/>
+<use f='include/c++/11/bits/hashtable.h' l='650' u='c' c='_ZNKSt10_Hashtable5emptyEv'/>
+<use f='include/c++/11/bits/hashtable.h' l='721' u='c' c='_ZNKSt10_Hashtable11load_factorEv'/>
+<use f='include/c++/11/bits/hashtable.h' l='1082' u='c' c='_ZNSt10_Hashtable14_M_merge_multiERTL0__'/>

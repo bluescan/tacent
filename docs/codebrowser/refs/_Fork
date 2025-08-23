@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='793' type='__pid_t _Fork()'/>
+<doc f='include/unistd.h' l='790'>/* This is similar to fork, however it does not run the atfork handlers
+   neither reinitialize any internal locks in multithread case.
+   Different than fork, _Fork is async-signal-safe.  */</doc>

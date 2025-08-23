@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='965' ll='970' type='void std::discard_block_engine::seed(std::discard_block_engine::result_type __s)'/>
+<doc f='include/c++/11/bits/random.h' l='961'>/**
+       * @brief Reseeds the %discard_block_engine object with the default
+       *        seed for the underlying base class generator engine.
+       */</doc>

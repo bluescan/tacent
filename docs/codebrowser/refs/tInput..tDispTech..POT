@@ -1,0 +1,4 @@
+<dec f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='43' type='0'/>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='43'>// Potentiometer. Physical contact. May drift.</doc>
+<use f='Modules/Input/Src/tControllerDefinitions.cpp' l='65' u='a' c='_ZN6tInput17tPopulateContDictEv'/>
+<use f='Modules/Input/Src/tControllerDefinitions.cpp' l='65' u='a' c='_ZN6tInput17tPopulateContDictEv'/>

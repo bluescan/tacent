@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='41' type='const char * tGetComponentName(tComp )'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='36' type='const char * tGetComponentName(tComp comp)'/>

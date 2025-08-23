@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1971' type='const float[64]'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2446' u='r' c='_ZN5rgbcxL17precise_round_565ERKNS_5vec3FES2_RiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2450' u='r' c='_ZN5rgbcxL17precise_round_565ERKNS_5vec3FES2_RiS3_S3_S3_S3_S3_'/>

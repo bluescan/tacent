@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10677' ll='10681'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10677'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceMaintenance5FeaturesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMaintenance5FeaturesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMaintenance5FeaturesKHR::maintenance5' o='128' t='VkBool32'/>

@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tMachine.h' l='53' type='bool tSystem::tGetXDGDataDirs(tList&lt;tStringItem&gt; &amp; xdgDataDirs)'/>
+<doc f='Modules/System/Inc/System/tMachine.h' l='53'>// $XDG_DATA_DIRS. Priority list of directories to search.</doc>
+<def f='Modules/System/Src/tMachine.cpp' l='328' ll='335' type='bool tSystem::tGetXDGDataDirs(tList&lt;tStringItem&gt; &amp; xdgDataDirs)'/>

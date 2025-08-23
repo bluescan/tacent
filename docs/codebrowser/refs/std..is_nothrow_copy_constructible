@@ -1,0 +1,6 @@
+<def f='include/c++/11/type_traits' l='1054' ll='1059'/>
+<use f='include/c++/11/type_traits' l='3224'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1292' c='_ZSt12__niter_baseN9__gnu_cxx17__normal_iteratorIT_T0_EE'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='314' c='_ZSt12__niter_baseT_'/>
+<use f='include/c++/11/bits/hashtable.h' l='501' c='_ZNSt10_Hashtable15_S_nothrow_moveEv'/>
+<use f='include/c++/11/bits/hashtable.h' l='502' c='_ZNSt10_Hashtable15_S_nothrow_moveEv'/>

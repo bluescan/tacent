@@ -1,0 +1,22 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9693' ll='9713'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9693'/>
+<size>96</size>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::minFragmentShadingRateAttachmentTexelSize' o='128' t='VkExtent2D'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::maxFragmentShadingRateAttachmentTexelSize' o='192' t='VkExtent2D'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::maxFragmentShadingRateAttachmentTexelSizeAspectRatio' o='256' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::primitiveFragmentShadingRateWithMultipleViewports' o='288' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::layeredShadingRateAttachments' o='320' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::fragmentShadingRateNonTrivialCombinerOps' o='352' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::maxFragmentSize' o='384' t='VkExtent2D'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::maxFragmentSizeAspectRatio' o='448' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::maxFragmentShadingRateCoverageSamples' o='480' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::maxFragmentShadingRateRasterizationSamples' o='512' t='VkSampleCountFlagBits'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::fragmentShadingRateWithShaderDepthStencilWrites' o='544' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::fragmentShadingRateWithSampleMask' o='576' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::fragmentShadingRateWithShaderSampleMask' o='608' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::fragmentShadingRateWithConservativeRasterization' o='640' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::fragmentShadingRateWithFragmentShaderInterlock' o='672' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::fragmentShadingRateWithCustomSampleLocations' o='704' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRatePropertiesKHR::fragmentShadingRateStrictMultiplyCombiner' o='736' t='VkBool32'/>

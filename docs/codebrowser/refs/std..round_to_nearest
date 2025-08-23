@@ -1,0 +1,5 @@
+<dec f='include/c++/11/limits' l='171' type='1'/>
+<use f='include/c++/11/limits' l='1734'/>
+<use f='include/c++/11/limits' l='1809'/>
+<use f='include/c++/11/limits' l='1884'/>
+<doc f='include/c++/11/limits' l='171'>/// To the nearest representable value.</doc>

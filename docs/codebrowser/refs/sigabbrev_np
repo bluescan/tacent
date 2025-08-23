@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='482' type='const char * sigabbrev_np(int __sig)'/>
+<doc f='include/string.h' l='481'>/* Return an abbreviation string for the signal number SIG.  */</doc>

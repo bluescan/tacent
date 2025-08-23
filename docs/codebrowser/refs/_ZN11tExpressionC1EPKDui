@@ -1,0 +1,5 @@
+<def f='Modules/System/Inc/System/tScript.h' l='67' type='void tExpression::tExpression(const char8_t * v, int lineNumber)'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='65'>// If you want the expression to keep track of what line number it&apos;s on then you should supply the current line
+	// number. Thrown error messages will include the line number if it&apos;s set.</doc>
+<use f='Modules/System/Src/tScript.cpp' l='53' u='c' c='_ZNK11tExpression3CarEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='167' u='c' c='_ZNK11tExpression4NextEv'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='4095' type='std::geometric_distribution::result_type std::geometric_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::geometric_distribution::param_type &amp; __p)'/>
+<def f='include/c++/11/bits/random.tcc' l='1041' ll='1064' type='typename geometric_distribution&lt;_IntType&gt;::result_type std::geometric_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::geometric_distribution::param_type &amp; __param)'/>

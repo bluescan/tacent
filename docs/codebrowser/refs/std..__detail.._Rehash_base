@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/hashtable_policy.h' l='1067' ll='1075'/>
+<def f='include/c++/11/bits/hashtable_policy.h' l='1078' ll='1110'/>
+<use f='include/c++/11/bits/hashtable.h' l='189'/>
+<use f='include/c++/11/bits/hashtable.h' l='279'/>
+<doc f='include/c++/11/bits/hashtable_policy.h' l='1066'>/// Specialization when rehash policy doesn&apos;t provide load factor management.</doc>
+<doc f='include/c++/11/bits/hashtable_policy.h' l='1077'>/// Specialization when rehash policy provide load factor management.</doc>
+<fun r='_ZNKSt8__detail12_Rehash_baseIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_St17integral_constantIbLb1EEE15max_load_factorEv'/>
+<fun r='_ZNSt8__detail12_Rehash_baseIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_St17integral_constantIbLb1EEE15max_load_factorEf'/>
+<fun r='_ZNSt8__detail12_Rehash_baseIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_St17integral_constantIbLb1EEE7reserveEm'/>

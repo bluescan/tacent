@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='190' type='void tSwapEndian(T * , int numItems)'/>
+<def f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='240' ll='244' type='void tSwapEndian(T * a, int numItems)'/>

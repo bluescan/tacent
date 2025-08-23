@@ -1,0 +1,72 @@
+<use f='Modules/System/Inc/System/tFile.h' l='443' c='_ZN7tSystem11tExtensionsC1ERKNS_10tFileTypesEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='457' c='_ZN7tSystem11tExtensions3AddERKNS_10tFileTypesEb'/>
+<def f='Modules/System/Inc/System/tFile.h' l='477' ll='536'/>
+<use f='Modules/System/Inc/System/tFile.h' l='480' c='_ZN7tSystem10tFileTypesC1ERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='492' c='_ZN7tSystem10tFileTypes3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='492' c='_ZN7tSystem10tFileTypes3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='493' c='_ZN7tSystem10tFileTypes3AddEPKc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='494' c='_ZN7tSystem10tFileTypes3AddERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='495' c='_ZN7tSystem10tFileTypes3AddENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='496' c='_ZN7tSystem10tFileTypes3AddERKNS_11tExtensionsE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='497' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEz'/>
+<use f='Modules/System/Inc/System/tFile.h' l='498' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEP13__va_list_tag'/>
+<use f='Modules/System/Inc/System/tFile.h' l='499' c='_ZN7tSystem10tFileTypes11AddSelectedERKS0_b'/>
+<use f='Modules/System/Inc/System/tFile.h' l='499' c='_ZN7tSystem10tFileTypes11AddSelectedERKS0_b'/>
+<use f='Modules/System/Inc/System/tFile.h' l='892' c='_ZN7tSystem11tExtensions3AddERKNS_10tFileTypesEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='923' c='_ZN7tSystem10tFileTypes3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='923' c='_ZN7tSystem10tFileTypes3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='932' c='_ZN7tSystem10tFileTypes3AddEPKc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='938' c='_ZN7tSystem10tFileTypes3AddERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='944' c='_ZN7tSystem10tFileTypes3AddENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='957' c='_ZN7tSystem10tFileTypes3AddERKNS_11tExtensionsE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='966' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEz'/>
+<use f='Modules/System/Inc/System/tFile.h' l='977' c='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEP13__va_list_tag'/>
+<use f='Modules/System/Inc/System/tFile.h' l='993' c='_ZN7tSystem10tFileTypes11AddSelectedERKS0_b'/>
+<use f='Modules/System/Inc/System/tFile.h' l='993' c='_ZN7tSystem10tFileTypes11AddSelectedERKS0_b'/>
+<size>72</size>
+<doc f='Modules/System/Inc/System/tFile.h' l='475'>// Another helper that stores a collection of file-types. Useful if you need, say, a list of file-types you want to
+// support in your app. This is preferred over set of supported extensions as it is not always a 1:1 mapping.</doc>
+<fun r='_ZN7tSystem10tFileTypesC1Ev'/>
+<fun r='_ZN7tSystem10tFileTypesC1ERKS0_'/>
+<fun r='_ZN7tSystem10tFileTypesC1EPKc'/>
+<fun r='_ZN7tSystem10tFileTypesC1ERK7tString'/>
+<fun r='_ZN7tSystem10tFileTypesC1ENS_9tFileTypeE'/>
+<fun r='_ZN7tSystem10tFileTypesC1ERKNS_11tExtensionsE'/>
+<fun r='_ZN7tSystem10tFileTypesC1ENS_9tFileTypeEz'/>
+<fun r='_ZN7tSystem10tFileTypes3AddERKS0_'/>
+<fun r='_ZN7tSystem10tFileTypes3AddEPKc'/>
+<fun r='_ZN7tSystem10tFileTypes3AddERK7tString'/>
+<fun r='_ZN7tSystem10tFileTypes3AddENS_9tFileTypeE'/>
+<fun r='_ZN7tSystem10tFileTypes3AddERKNS_11tExtensionsE'/>
+<fun r='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEz'/>
+<fun r='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEP13__va_list_tag'/>
+<fun r='_ZN7tSystem10tFileTypes11AddSelectedERKS0_b'/>
+<fun r='_ZN7tSystem10tFileTypes5ClearEv'/>
+<fun r='_ZNK7tSystem10tFileTypes5CountEv'/>
+<fun r='_ZNK7tSystem10tFileTypes7IsEmptyEv'/>
+<fun r='_ZNK7tSystem10tFileTypes8ContainsENS_9tFileTypeE'/>
+<fun r='_ZNK7tSystem10tFileTypes5FirstEv'/>
+<fun r='_ZN7tSystem10tFileTypes13ClearSelectedEv'/>
+<fun r='_ZNK7tSystem10tFileTypes11AnySelectedEv'/>
+<fun r='_ZN7tSystem10tFileTypes6SelectENS_9tFileTypeE'/>
+<fun r='_ZNK7tSystem10tFileTypes10IsSelectedENS_9tFileTypeE'/>
+<fun r='_ZNK7tSystem10tFileTypes20GetFirstSelectedTypeEv'/>
+<fun r='_ZNK7tSystem10tFileTypes17GetSelectedStringENS0_9SeparatorEi'/>
+<mbr r='tSystem::tFileTypes::FileTypes' o='0' t='tList&lt;tSystem::tFileTypes::tFileTypeItem&gt;'/>
+<mbr r='tSystem::tFileTypes::UserName' o='320' t='tString'/>
+<fun r='_ZN7tSystem10tFileTypesC1ENS_9tFileTypeEz'/>
+<fun r='_ZN7tSystem10tFileTypes3AddERKS0_'/>
+<fun r='_ZN7tSystem10tFileTypes3AddEPKc'/>
+<fun r='_ZN7tSystem10tFileTypes3AddERK7tString'/>
+<fun r='_ZN7tSystem10tFileTypes3AddENS_9tFileTypeE'/>
+<fun r='_ZN7tSystem10tFileTypes3AddERKNS_11tExtensionsE'/>
+<fun r='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEz'/>
+<fun r='_ZN7tSystem10tFileTypes5AddVAENS_9tFileTypeEP13__va_list_tag'/>
+<fun r='_ZN7tSystem10tFileTypes11AddSelectedERKS0_b'/>
+<fun r='_ZNK7tSystem10tFileTypes8ContainsENS_9tFileTypeE'/>
+<fun r='_ZN7tSystem10tFileTypes13ClearSelectedEv'/>
+<fun r='_ZNK7tSystem10tFileTypes11AnySelectedEv'/>
+<fun r='_ZN7tSystem10tFileTypes6SelectENS_9tFileTypeE'/>
+<fun r='_ZNK7tSystem10tFileTypes10IsSelectedENS_9tFileTypeE'/>
+<fun r='_ZNK7tSystem10tFileTypes20GetFirstSelectedTypeEv'/>
+<fun r='_ZNK7tSystem10tFileTypes17GetSelectedStringENS0_9SeparatorEi'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15718'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15717'>// VK_NV_fragment_shading_rate_enums is a preprocessor guard. Do not pass it to API calls.</doc>

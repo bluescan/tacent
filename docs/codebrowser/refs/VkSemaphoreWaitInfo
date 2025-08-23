@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6416' ll='6423'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6416'/>
+<size>40</size>
+<mbr r='VkSemaphoreWaitInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSemaphoreWaitInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkSemaphoreWaitInfo::flags' o='128' t='VkSemaphoreWaitFlags'/>
+<mbr r='VkSemaphoreWaitInfo::semaphoreCount' o='160' t='uint32_t'/>
+<mbr r='VkSemaphoreWaitInfo::pSemaphores' o='192' t='const VkSemaphore *'/>
+<mbr r='VkSemaphoreWaitInfo::pValues' o='256' t='const uint64_t *'/>

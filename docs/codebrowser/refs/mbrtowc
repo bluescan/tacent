@@ -1,0 +1,3 @@
+<dec f='include/wchar.h' l='297' type='size_t mbrtowc(wchar_t *__restrict __pwc, const char *__restrict __s, size_t __n, mbstate_t *__restrict __p)'/>
+<doc f='include/wchar.h' l='295'>/* Write wide character representation of multibyte character pointed
+   to by S to PWC.  */</doc>

@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/stl_vector.h' l='748' ll='750' type='void std::vector::assign(std::vector::size_type __n, const std::vector::value_type &amp; __val)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='738'>/**
+       *  @brief  Assigns a given value to a %vector.
+       *  @param  __n  Number of elements to be assigned.
+       *  @param  __val  Value to be assigned.
+       *
+       *  This function fills a %vector with @a __n copies of the given
+       *  value.  Note that the assignment completely changes the
+       *  %vector and that the resulting %vector&apos;s size is the same as
+       *  the number of elements assigned.
+       */</doc>

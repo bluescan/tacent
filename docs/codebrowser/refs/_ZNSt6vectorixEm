@@ -1,0 +1,49 @@
+<def f='include/c++/11/bits/stl_vector.h' l='1042' ll='1047' type='std::vector::reference std::vector::operator[](std::vector::size_type __n)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1031'>/**
+       *  @brief  Subscript access to the data contained in the %vector.
+       *  @param __n The index of the element for which data should be
+       *  accessed.
+       *  @return  Read/write reference to data.
+       *
+       *  This operator allows for easy, array-style, data access.
+       *  Note that data access with this operator is unchecked and
+       *  out_of_range lookups are not defined. (For checked lookups
+       *  see at().)
+       */</doc>
+<use f='include/c++/11/bits/random.tcc' l='2676' u='c' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2842' u='c' c='_ZNSt31piecewise_constant_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2845' u='c' c='_ZNSt31piecewise_constant_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3038' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3038' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3051' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3051' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3053' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3053' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3066' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3308' u='c' c='_ZNSt8seed_seq8generateET_S0_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='526' u='c' c='_ZN6tImage16tQuantizeSpatial14refine_paletteERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_RSt6vectorIS3_SaIS3_EE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='538' u='c' c='_ZN6tImage16tQuantizeSpatial14refine_paletteERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_RSt6vectorIS3_SaIS3_EE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='541' u='c' c='_ZN6tImage16tQuantizeSpatial14refine_paletteERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_RSt6vectorIS3_SaIS3_EE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='556' u='c' c='_ZN6tImage16tQuantizeSpatial29compute_initial_j_palette_sumERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEERSt6vectorIS3_SaIS3_EE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='633' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='641' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='642' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='691' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='692' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='701' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='712' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='718' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='719' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='720' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='726' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='726' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='759' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='813' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='813' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='814' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='814' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='931' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='932' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='933' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<use f='Modules/Input/Inc/Input/tControllerSystem.h' l='51' u='c' c='_ZN6tInput17tControllerSystem9GetGetpadENS_10tGamepadIDE'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='190' u='c' c='_ZN6tInput17tControllerSystem6UpdateEv'/>

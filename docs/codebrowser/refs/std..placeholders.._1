@@ -1,0 +1,5 @@
+<dec f='include/c++/11/functional' l='225' type='const _Placeholder&lt;1&gt;'/>
+<doc f='include/c++/11/functional' l='221'>/* Define a large number of placeholders. There is no way to
+   * simplify this with variadic templates, because we&apos;re introducing
+   * unique names for each.
+   */</doc>

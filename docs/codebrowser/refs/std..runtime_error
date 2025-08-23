@@ -1,0 +1,36 @@
+<inh f='include/c++/11/bits/exception.h' l='61' c='std::exception'/>
+<def f='include/c++/11/stdexcept' l='219' ll='255'/>
+<use f='include/c++/11/stdexcept' l='232' c='_ZNSt13runtime_errorC1EOS_'/>
+<use f='include/c++/11/stdexcept' l='233' c='_ZNSt13runtime_erroraSEOS_'/>
+<use f='include/c++/11/stdexcept' l='233' c='_ZNSt13runtime_erroraSEOS_'/>
+<use f='include/c++/11/stdexcept' l='237' c='_ZNSt13runtime_errorC1ERKS_'/>
+<use f='include/c++/11/stdexcept' l='238' c='_ZNSt13runtime_erroraSERKS_'/>
+<use f='include/c++/11/stdexcept' l='238' c='_ZNSt13runtime_erroraSERKS_'/>
+<ovr f='include/c++/11/stdexcept' l='258' c='std::range_error'/>
+<use f='include/c++/11/stdexcept' l='258'/>
+<ovr f='include/c++/11/stdexcept' l='273' c='std::overflow_error'/>
+<use f='include/c++/11/stdexcept' l='273'/>
+<ovr f='include/c++/11/stdexcept' l='288' c='std::underflow_error'/>
+<use f='include/c++/11/stdexcept' l='288'/>
+<ovr f='include/c++/11/system_error' l='446' c='std::system_error'/>
+<use f='include/c++/11/system_error' l='446'/>
+<use f='include/c++/11/system_error' l='453' c='_ZNSt12system_errorC1ESt10error_code'/>
+<use f='include/c++/11/system_error' l='456' c='_ZNSt12system_errorC1ESt10error_codeRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/system_error' l='459' c='_ZNSt12system_errorC1ESt10error_codePKc'/>
+<use f='include/c++/11/system_error' l='465' c='_ZNSt12system_errorC1EiRKNSt3_V214error_categoryE'/>
+<use f='include/c++/11/system_error' l='469' c='_ZNSt12system_errorC1EiRKNSt3_V214error_categoryERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<size>16</size>
+<doc f='include/c++/11/stdexcept' l='214'>/** Runtime errors represent problems outside the scope of a program;
+   *  they cannot be easily predicted and can generally only be caught as
+   *  the program executes.
+   *  @brief One of two subclasses of exception.
+   */</doc>
+<mbr r='std::runtime_error::_M_msg' o='64' t='std::__cow_string'/>
+<fun r='_ZNSt13runtime_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt13runtime_errorC1EPKc'/>
+<fun r='_ZNSt13runtime_errorC1EOS_'/>
+<fun r='_ZNSt13runtime_erroraSEOS_'/>
+<fun r='_ZNSt13runtime_errorC1ERKS_'/>
+<fun r='_ZNSt13runtime_erroraSERKS_'/>
+<fun r='_ZNSt13runtime_errorD1Ev'/>
+<fun r='_ZNKSt13runtime_error4whatEv'/>

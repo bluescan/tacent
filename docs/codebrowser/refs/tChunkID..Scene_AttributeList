@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='450' type='2164367360'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='450'>// Models may have other, as yet unknown, attributes.</doc>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='143' u='r' c='_ZNK6tScene11tAttributes4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='153' u='r' c='_ZN6tScene11tAttributes4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tObject.cpp' l='55' c='_ZN6tScene7tObject4LoadERK6tChunk'/>

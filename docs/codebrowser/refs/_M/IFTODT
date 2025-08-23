@@ -1,0 +1,2 @@
+<dec f='include/dirent.h' l='120'/>
+<doc f='include/dirent.h' l='119'>/* Convert between stat structure types and directory types.  */</doc>

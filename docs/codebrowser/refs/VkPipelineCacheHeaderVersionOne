@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2960' ll='2966'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2960'/>
+<size>32</size>
+<mbr r='VkPipelineCacheHeaderVersionOne::headerSize' o='0' t='uint32_t'/>
+<mbr r='VkPipelineCacheHeaderVersionOne::headerVersion' o='32' t='VkPipelineCacheHeaderVersion'/>
+<mbr r='VkPipelineCacheHeaderVersionOne::vendorID' o='64' t='uint32_t'/>
+<mbr r='VkPipelineCacheHeaderVersionOne::deviceID' o='96' t='uint32_t'/>
+<mbr r='VkPipelineCacheHeaderVersionOne::pipelineCacheUUID' o='128' t='uint8_t[16]'/>

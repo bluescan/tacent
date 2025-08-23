@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/waitstatus.h' l='28'/>
+<doc f='include/x86_64-linux-gnu/bits/waitstatus.h' l='27'>/* If WIFEXITED(STATUS), the low-order 8 bits of the status.  */</doc>

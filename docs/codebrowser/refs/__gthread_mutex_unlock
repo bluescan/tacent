@@ -1,0 +1,5 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='775' ll='782' type='int __gthread_mutex_unlock(__gthread_mutex_t * __mutex)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='832' u='c' c='__gthread_recursive_mutex_unlock'/>
+<use f='include/c++/11/bits/std_mutex.h' l='118' u='c' c='_ZNSt5mutex6unlockEv'/>
+<use f='include/c++/11/mutex' l='255' u='c' c='_ZNSt11timed_mutex6unlockEv'/>
+<use f='include/c++/11/ext/concurrence.h' l='160' u='c' c='__gnu_cxx::__mutex::unlock'/>

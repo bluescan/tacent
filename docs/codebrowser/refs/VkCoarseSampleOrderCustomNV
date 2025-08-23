@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12969' ll='12974'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12969'/>
+<size>24</size>
+<mbr r='VkCoarseSampleOrderCustomNV::shadingRate' o='0' t='VkShadingRatePaletteEntryNV'/>
+<mbr r='VkCoarseSampleOrderCustomNV::sampleCount' o='32' t='uint32_t'/>
+<mbr r='VkCoarseSampleOrderCustomNV::sampleLocationCount' o='64' t='uint32_t'/>
+<mbr r='VkCoarseSampleOrderCustomNV::pSampleLocations' o='128' t='const VkCoarseSampleLocationNV *'/>

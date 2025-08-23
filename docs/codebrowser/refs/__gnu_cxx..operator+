@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='1274' ll='1279' macro='1' type='__normal_iterator&lt;_Iterator, _Container&gt; __gnu_cxx::operator+(typename __normal_iterator&lt;_Iterator, _Container&gt;::difference_type __n, const __normal_iterator&lt;_Iterator, _Container&gt; &amp; __i)'/>

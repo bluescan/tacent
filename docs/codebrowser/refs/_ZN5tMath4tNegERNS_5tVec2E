@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='420' type='void tMath::tNeg(tMath::tVec2 &amp; v)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='419'>// Negation. Computes d = -a or -vqm.</doc>

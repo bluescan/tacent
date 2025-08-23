@@ -1,0 +1,5 @@
+<use f='Modules/Image/Inc/Image/tLayer.h' l='49' u='c' c='_ZN6tImage6tLayerD1Ev'/>
+<def f='Modules/Image/Inc/Image/tLayer.h' l='69' type='void tImage::tLayer::Clear()'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='103' u='c' c='_ZN6tImage6tLayer3SetENS_12tPixelFormatEiiPhb'/>
+<doc f='Modules/Image/Inc/Image/tLayer.h' l='68'>// Frees internal layer data and makes the layer invalid.</doc>
+<use f='Modules/Image/Src/tLayer.cpp' l='71' u='c' c='_ZN6tImage6tLayer4LoadERK6tChunkb'/>

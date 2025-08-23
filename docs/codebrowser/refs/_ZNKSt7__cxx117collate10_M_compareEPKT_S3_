@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='744' type='int std::collate::_M_compare(const _CharT * , const _CharT * ) const'/>
+<dec f='include/c++/11/bits/locale_classes.h' l='804' type='int std::collate&lt;char&gt;::_M_compare(const char * , const char * ) const'/>
+<dec f='include/c++/11/bits/locale_classes.h' l='813' type='int std::collate&lt;wchar_t&gt;::_M_compare(const wchar_t * , const wchar_t * ) const'/>
+<def f='include/c++/11/bits/locale_classes.tcc' l='147' ll='150' type='int std::collate::_M_compare(const _CharT * , const _CharT * ) const'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='179' u='c' c='_ZNKSt7__cxx117collate10do_compareEPKT_S3_S3_S3_'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='742'>// Used to abstract out _CharT bits in virtual member functions, below.</doc>
+<doc f='include/c++/11/bits/locale_classes.h' l='801'>// Specializations.</doc>
+<doc f='include/c++/11/bits/locale_classes.tcc' l='146'>// Generic version does nothing.</doc>

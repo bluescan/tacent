@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/WebP/include/mux_types.h' l='44' ll='47'/>
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='44'/>
+<doc f='Modules/Image/Contrib/WebP/include/mux_types.h' l='42'>// Dispose method (animation only). Indicates how the area used by the current
+// frame is to be treated before rendering the next frame on the canvas.</doc>

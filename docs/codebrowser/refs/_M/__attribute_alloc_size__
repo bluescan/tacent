@@ -1,0 +1,7 @@
+<dec f='include/x86_64-linux-gnu/sys/cdefs.h' l='292'/>
+<use f='include/stdlib.h' l='541' u='c'/>
+<use f='include/stdlib.h' l='544' u='c'/>
+<use f='include/stdlib.h' l='552' u='c'/>
+<use f='include/stdlib.h' l='565' u='c'/>
+<use f='include/stdlib.h' l='581' u='c'/>
+<use f='include/stdlib.h' l='594' u='c'/>

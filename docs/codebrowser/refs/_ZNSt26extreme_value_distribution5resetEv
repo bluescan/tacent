@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='5129' ll='5131' type='void std::extreme_value_distribution::reset()'/>
+<doc f='include/c++/11/bits/random.h' l='5126'>/**
+       * @brief Resets the distribution state.
+       */</doc>

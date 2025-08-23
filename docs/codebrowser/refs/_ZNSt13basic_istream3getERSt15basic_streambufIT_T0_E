@@ -1,0 +1,8 @@
+<def f='include/c++/11/istream' l='386' ll='388' type='std::basic_istream::__istream_type &amp; std::basic_istream::get(std::basic_istream::__streambuf_type &amp; __sb)'/>
+<doc f='include/c++/11/istream' l='379'>/**
+       *  @brief  Extraction into another streambuf.
+       *  @param  __sb  A streambuf in which to store data.
+       *  @return  *this
+       *
+       *  Returns @c get(__sb,widen(&amp;apos;\\n&amp;apos;)).
+      */</doc>

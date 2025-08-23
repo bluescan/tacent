@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1660' type='const char * ktxTranscodeFormatString(ktx_transcode_fmt_e format)'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1656'>/*
+ * Returns a string corresponding to a transcode target format.
+ */</doc>

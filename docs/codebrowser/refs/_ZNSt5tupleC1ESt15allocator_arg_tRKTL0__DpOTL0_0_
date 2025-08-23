@@ -1,0 +1,2 @@
+<def f='include/c++/11/tuple' l='822' ll='826' macro='1' type='void std::tuple::tuple&lt;_Elements...&gt;(std::allocator_arg_t __tag, const _Alloc &amp; __a, _UElements &amp;&amp;... __elements)'/>
+<def f='include/c++/11/tuple' l='831' ll='836' macro='1' type='void std::tuple::tuple&lt;_Elements...&gt;(std::allocator_arg_t __tag, const _Alloc &amp; __a, _UElements &amp;&amp;... __elements)'/>

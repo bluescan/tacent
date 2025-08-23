@@ -1,0 +1,6 @@
+<use f='include/c++/11/functional' l='936' u='w' c='_ZNSt7_Not_fnC1EOTL0__i'/>
+<use f='include/c++/11/functional' l='953' c='_ZNRSt7_Not_fnclEDpOTL0__'/>
+<use f='include/c++/11/functional' l='953' c='_ZNKRSt7_Not_fnclEDpOTL0__'/>
+<use f='include/c++/11/functional' l='953' c='_ZNOSt7_Not_fnclEDpOTL0__'/>
+<use f='include/c++/11/functional' l='953' c='_ZNKOSt7_Not_fnclEDpOTL0__'/>
+<dec f='include/c++/11/functional' l='963' type='_Fn'/>

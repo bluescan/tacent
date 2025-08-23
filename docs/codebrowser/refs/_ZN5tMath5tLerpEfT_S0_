@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='795' type='T tMath::tLerp(float p, T A, T B)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='791'>// Other libraries have a, perhaps badly-named, Lerp (linear interpolation) function that does a linear lookup. It&apos;s a
+// bit of a misnomer because in general it also extrapolates. In any case, this synonym is included here. Does same as
+// the tLinearLoopup that takes the p parameter. Perhaps a better name is LIER: Linear Interpolation and ExtRapolation,
+// or perhaps just interpret LERP as Linear Extrapolation and inteRPolation.</doc>

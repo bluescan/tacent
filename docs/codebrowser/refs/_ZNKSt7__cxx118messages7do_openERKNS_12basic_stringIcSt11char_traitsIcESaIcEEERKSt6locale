@@ -1,0 +1,16 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='1937' type='std::messages_base::catalog std::messages::do_open(const basic_string&lt;char&gt; &amp; , const std::locale &amp; ) const'/>
+<def f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='86' ll='95' type='typename messages&lt;_CharT&gt;::catalog std::messages::do_open(const basic_string&lt;char&gt; &amp; __s, const std::locale &amp; ) const'/>
+<dec f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='132' type='typename messages&lt;char&gt;::catalog std::messages&lt;char&gt;::do_open(const basic_string&lt;char&gt; &amp; , const std::locale &amp; ) const'/>
+<dec f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='142' type='typename messages&lt;wchar_t&gt;::catalog std::messages&lt;wchar_t&gt;::do_open(const basic_string&lt;char&gt; &amp; , const std::locale &amp; ) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1925'>/*
+       *  @brief  Open a message catalog.
+       *
+       *  This function opens and returns a handle to a message catalog in an
+       *  implementation-defined manner.  This function is a hook for derived
+       *  classes to change the value returned.
+       *
+       *  @param  __s  The catalog to open.
+       *  @param  __loc  Locale to use for character set conversions.
+       *  @return  Handle to the opened catalog, value &lt; 0 if open failed.
+      */</doc>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='129'>//Specializations.</doc>

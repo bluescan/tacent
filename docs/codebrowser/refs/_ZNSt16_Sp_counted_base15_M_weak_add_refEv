@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='189' ll='191' type='void std::_Sp_counted_base::_M_weak_add_ref()'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='289' ll='292' type='void std::_Sp_counted_base&lt;__gnu_cxx::_S_single&gt;::_M_weak_add_ref()'/>

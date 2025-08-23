@@ -1,0 +1,35 @@
+<use f='include/c++/11/istream' l='108'/>
+<def f='include/c++/11/istream' l='685' ll='736'/>
+<use f='include/c++/11/bits/istream.tcc' l='97' c='_ZNSt13basic_istream10_M_extractERTL0__'/>
+<use f='include/c++/11/bits/istream.tcc' l='126' c='_ZNSt13basic_istreamrsERs'/>
+<use f='include/c++/11/bits/istream.tcc' l='171' c='_ZNSt13basic_istreamrsERi'/>
+<use f='include/c++/11/bits/istream.tcc' l='215' c='_ZNSt13basic_istreamrsEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/istream.tcc' l='250' c='_ZNSt13basic_istream3getEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='284' c='_ZNSt13basic_istream3getERT_'/>
+<use f='include/c++/11/bits/istream.tcc' l='321' c='_ZNSt13basic_istream3getEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='368' c='_ZNSt13basic_istream3getERSt15basic_streambufIT_T0_ES1_'/>
+<use f='include/c++/11/bits/istream.tcc' l='419' c='_ZNSt13basic_istream7getlineEPT_lS0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='478' c='_ZNSt13basic_istream6ignoreEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='511' c='_ZNSt13basic_istream6ignoreEl'/>
+<use f='include/c++/11/bits/istream.tcc' l='581' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='659' c='_ZNSt13basic_istream4peekEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='688' c='_ZNSt13basic_istream4readEPT_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='717' c='_ZNSt13basic_istream8readsomeEPT_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='753' c='_ZNSt13basic_istream7putbackET_'/>
+<use f='include/c++/11/bits/istream.tcc' l='788' c='_ZNSt13basic_istream5ungetEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='821' c='_ZNSt13basic_istream4syncEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='857' c='_ZNSt13basic_istream5tellgEv'/>
+<use f='include/c++/11/bits/istream.tcc' l='886' c='_ZNSt13basic_istream5seekgENT0_8pos_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='925' c='_ZNSt13basic_istream5seekgENT0_8off_typeESt12_Ios_Seekdir'/>
+<doc f='include/c++/11/istream' l='677'>/**
+   *  @brief  Performs setup work for input streams.
+   *
+   *  Objects of this class are created before all of the standard
+   *  extractors are run.  It is responsible for &lt;em&gt;exception-safe
+   *  prefix and suffix operations,&lt;/em&gt; although only prefix actions
+   *  are currently required by the standard.
+  */</doc>
+<mbr r='std::basic_istream::sentry::_M_ok' t='bool'/>
+<fun r='_ZNSt13basic_istream6sentryC1ERSt13basic_istreamIT_T0_Eb'/>
+<fun r='_ZNKSt13basic_istream6sentrycvbEv'/>
+<fun r='_ZNSt13basic_istream6sentryC1ERSt13basic_istreamIT_T0_Eb'/>

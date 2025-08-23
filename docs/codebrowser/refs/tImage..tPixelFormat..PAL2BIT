@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='225' type='74'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='562' c='_ZN6tImage14tIsAlphaFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='225'>// 2-bit indexes to a palette. 4 colour.   2 bpp.</doc>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='160' u='r' c='_ZN6tImage9tImageGIF4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='275' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>

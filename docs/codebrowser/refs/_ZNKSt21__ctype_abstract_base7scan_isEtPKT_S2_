@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/locale_facets.h' l='204' ll='206' type='const std::__ctype_abstract_base::char_type * std::__ctype_abstract_base::scan_is(std::ctype_base::mask __m, const std::__ctype_abstract_base::char_type * __lo, const std::__ctype_abstract_base::char_type * __hi) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='192'>/**
+       *  @brief  Find char_type matching a mask
+       *
+       *  This function searches for and returns the first char_type c in
+       *  [lo,hi) for which is(m,c) is true.  It does so by returning
+       *  ctype&lt;char_type&gt;::do_scan_is().
+       *
+       *  @param __m  The mask to compare against.
+       *  @param __lo  Pointer to start of range.
+       *  @param __hi  Pointer to end of range.
+       *  @return  Pointer to matching char_type if found, else @a __hi.
+      */</doc>

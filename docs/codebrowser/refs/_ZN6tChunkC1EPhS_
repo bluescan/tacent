@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='230' type='void tChunk::tChunk(uint8 * chunk, tChunk lastChunk)'/>
+<def f='Modules/System/Inc/System/tChunk.h' l='729' ll='740' type='void tChunk::tChunk(uint8 * chunk, tChunk lastChunk)'/>

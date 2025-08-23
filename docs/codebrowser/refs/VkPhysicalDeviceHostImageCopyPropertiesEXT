@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14550' ll='14559'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14550'/>
+<size>72</size>
+<mbr r='VkPhysicalDeviceHostImageCopyPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceHostImageCopyPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceHostImageCopyPropertiesEXT::copySrcLayoutCount' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceHostImageCopyPropertiesEXT::pCopySrcLayouts' o='192' t='VkImageLayout *'/>
+<mbr r='VkPhysicalDeviceHostImageCopyPropertiesEXT::copyDstLayoutCount' o='256' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceHostImageCopyPropertiesEXT::pCopyDstLayouts' o='320' t='VkImageLayout *'/>
+<mbr r='VkPhysicalDeviceHostImageCopyPropertiesEXT::optimalTilingLayoutUUID' o='384' t='uint8_t[16]'/>
+<mbr r='VkPhysicalDeviceHostImageCopyPropertiesEXT::identicalMemoryTypeRequirements' o='512' t='VkBool32'/>

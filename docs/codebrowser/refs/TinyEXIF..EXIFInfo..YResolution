@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='164' type='double'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='539' u='r' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<offset>1344</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='164'>// Number of pixels per ResolutionUnit in the ImageLength direction</doc>

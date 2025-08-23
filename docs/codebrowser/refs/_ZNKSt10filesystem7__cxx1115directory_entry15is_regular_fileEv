@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_dir.h' l='211' ll='213' type='bool std::filesystem::directory_entry::is_regular_file() const'/>

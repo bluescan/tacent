@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14109' ll='14113'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14109'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDedicatedAllocationImageAliasingFeaturesNV::dedicatedAllocationImageAliasing' o='128' t='VkBool32'/>

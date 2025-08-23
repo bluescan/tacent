@@ -1,0 +1,2 @@
+<def f='include/c++/11/stop_token' l='100' ll='107' type='static void std::stop_token::_S_yield()'/>
+<use f='include/c++/11/stop_token' l='382' u='c' c='_ZNSt10stop_token13_Stop_state_t14_M_do_try_lockERjjSt12memory_orderS2_'/>

@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='744' type='std::time_get::iter_type std::time_get::_M_extract_wday_or_month(std::time_get::iter_type __beg, std::time_get::iter_type __end, int &amp; __member, const _CharT ** __names, std::size_t __indexlen, std::ios_base &amp; __io, ios_base::iostate &amp; __err) const'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1043' ll='1113' type='_InIter std::time_get::_M_extract_wday_or_month(std::time_get::iter_type __beg, std::time_get::iter_type __end, int &amp; __member, const _CharT ** __names, std::size_t __indexlen, std::ios_base &amp; __io, ios_base::iostate &amp; __err) const'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1163' u='c' c='_ZNKSt7__cxx118time_get14do_get_weekdayET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1189' u='c' c='_ZNKSt7__cxx118time_get16do_get_monthnameET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='742'>// Extract day or month name in a const _CharT* array.</doc>

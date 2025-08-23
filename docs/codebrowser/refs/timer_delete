@@ -1,0 +1,2 @@
+<dec f='include/time.h' l='336' type='int timer_delete(timer_t __timerid)'/>
+<doc f='include/time.h' l='335'>/* Delete timer TIMERID.  */</doc>

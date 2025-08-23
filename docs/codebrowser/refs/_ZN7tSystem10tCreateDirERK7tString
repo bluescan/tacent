@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='652' type='bool tSystem::tCreateDir(const tString &amp; dir)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='650'>// Creates a directory. The parent directory must already exist. For example, if you pass &quot;C:/DirA/DirB/&quot;, DirB will
+// only be created if C:/DirA/ already existed.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='3108' ll='3136' type='bool tSystem::tCreateDir(const tString &amp; dir)'/>

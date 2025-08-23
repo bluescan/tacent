@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1448' type='ktx_uint32_t'/>
+<offset>480</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1443'>/*!&lt; UASTC RDO quality scalar (lambda). Lower values yield higher
+             quality/larger LZ compressed files, higher values yield lower
+             quality/smaller LZ compressed files. A good range to try is [.2,4].
+             Full range is [.001,50.0]. Default is 1.0.
+         */</doc>

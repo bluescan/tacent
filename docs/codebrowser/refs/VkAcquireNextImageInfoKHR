@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7769' ll='7777'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7769'/>
+<size>56</size>
+<mbr r='VkAcquireNextImageInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkAcquireNextImageInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkAcquireNextImageInfoKHR::swapchain' o='128' t='VkSwapchainKHR'/>
+<mbr r='VkAcquireNextImageInfoKHR::timeout' o='192' t='uint64_t'/>
+<mbr r='VkAcquireNextImageInfoKHR::semaphore' o='256' t='VkSemaphore'/>
+<mbr r='VkAcquireNextImageInfoKHR::fence' o='320' t='VkFence'/>
+<mbr r='VkAcquireNextImageInfoKHR::deviceMask' o='384' t='uint32_t'/>

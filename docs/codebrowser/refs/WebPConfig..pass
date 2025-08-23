@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='123' type='int'/>
+<offset>480</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='122'>// Default is 100.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='123'>// number of entropy-analysis passes (in [1..10]).</doc>

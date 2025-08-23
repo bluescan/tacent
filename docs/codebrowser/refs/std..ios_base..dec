@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/ios_base.h' l='347' type='const std::ios_base::fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='1048' u='r' c='_ZSt3decRSt8ios_base'/>
+<doc f='include/c++/11/bits/ios_base.h' l='346'>/// Converts integer input or generates integer output in decimal base.</doc>
+<use f='include/c++/11/iomanip' l='135' u='r' c='_ZStrsRSt13basic_istreamIT_T0_ESt8_Setbase'/>
+<use f='include/c++/11/iomanip' l='146' u='r' c='_ZStlsRSt13basic_ostreamIT_T0_ESt8_Setbase'/>

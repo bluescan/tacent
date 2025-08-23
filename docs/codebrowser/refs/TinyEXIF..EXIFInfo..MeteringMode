@@ -1,0 +1,20 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='212' type='uint16_t'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='460' u='r' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<offset>3600</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='196'>// Flash used (Flash&amp;1)
+	                                    // 0: no flash, &gt;0: flash used
+	                                    // Flash returned light status ((Flash &amp; 6) &gt;&gt; 1)
+	                                    // 0: no strobe return detection function
+	                                    // 1: reserved
+	                                    // 2: strobe return light not detected
+	                                    // 3: strobe return light detected
+	                                    // Flash mode ((Flash &amp; 24) &gt;&gt; 3)
+	                                    // 0: unknown
+	                                    // 1: compulsory flash firing
+	                                    // 2: compulsory flash suppression
+	                                    // 3: auto mode
+	                                    // Flash function ((Flash &amp; 32) &gt;&gt; 5)
+	                                    // 0: flash function present, &gt;0: no flash function
+	                                    // Flash red-eye ((Flash &amp; 64) &gt;&gt; 6)
+	                                    // 0: no red-eye reduction mode or unknown, &gt;0: red-eye reduction supported</doc>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='212'>// Metering mode</doc>

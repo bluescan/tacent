@@ -1,0 +1,586 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>cpp_type_traits.h source code [include/c++/11/bits/cpp_type_traits.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::__are_same,std::__false_type,std::__is_arithmetic,std::__is_byte,std::__is_char,std::__is_floating,std::__is_integer,std::__is_memcmp_ordered,std::__is_memcmp_ordered_with,std::__is_move_iterator,std::__is_nonvolatile_trivially_copyable,std::__is_pointer,std::__is_scalar,std::__is_void,std::__memcmpable,std::__memcpyable,std::__traitor,std::__true_type,std::__truth_type "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/cpp_type_traits.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='cpp_type_traits.h.html'>cpp_type_traits.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// The  -*- C++ -*- type traits classes for internal use in libstdc++</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2000-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/cpp_type_traits.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{ext/type_traits}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc">// Written by Gabriel Dos Reis &lt;dosrei<span class="command">s@cmla</span>.ens-cachan.fr&gt;</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#<span data-ppcond="32">ifndef</span> <span class="macro" data-ref="_M/_CPP_TYPE_TRAITS_H">_CPP_TYPE_TRAITS_H</span></u>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#define <dfn class="macro" id="_M/_CPP_TYPE_TRAITS_H" data-ref="_M/_CPP_TYPE_TRAITS_H">_CPP_TYPE_TRAITS_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#include &lt;bits/c++config.h&gt;</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>// This file provides some compile-time information about various types.</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i>// These representations were designed, on purpose, to be constant-expressions</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i>// and not types as found in &lt;bits/type_traits.h&gt;.  In particular, they</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i>// can be used in control structures and the optimizer hopefully will do</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i>// the obvious thing.</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>// Why integral expressions, and not functions nor types?</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>// Firstly, these compile-time entities are used as template-arguments</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>// so function return values won't work:  We need compile-time entities.</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i>// We're left with types and constant  integral expressions.</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i>// Secondly, from the point of view of ease of use, type-based compile-time</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>// information is -not- *that* convenient.  One has to write lots of</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i>// overloaded functions and to hope that the compiler will select the right</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i>// one. As a net effect, the overall structure isn't very clear at first</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i>// glance.</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i>// Thirdly, partial ordering and overload resolution (of function templates)</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><i>// is highly costly in terms of compiler-resource.  It is a Good Thing to</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td><i>// keep these resource consumption as least as possible.</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>// See valarray_array.h for a case use.</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i>// -- Gaby (dosreis@cmla.ens-cachan.fr) 2000-03-06.</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i>// Update 2005: types are also provided and &lt;bits/type_traits.h&gt; has been</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><i>// removed.</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td>&nbsp</td></tr>
+<tr><th id="67">67</th><td><b>extern</b> <q>"C++"</q> {&nbsp</td></tr>
+<tr><th id="68">68</th><td>&nbsp</td></tr>
+<tr><th id="69">69</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="70">70</th><td>{&nbsp</td></tr>
+<tr><th id="71">71</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="72">72</th><td>&nbsp</td></tr>
+<tr><th id="73">73</th><td>  <b>struct</b> <dfn class="type def" id="std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</dfn> { };&nbsp</td></tr>
+<tr><th id="74">74</th><td>  <b>struct</b> <dfn class="type def" id="std::__false_type" title='std::__false_type' data-ref="std::__false_type">__false_type</dfn> { };&nbsp</td></tr>
+<tr><th id="75">75</th><td>&nbsp</td></tr>
+<tr><th id="76">76</th><td>  <b>template</b>&lt;<em>bool</em>&gt;&nbsp</td></tr>
+<tr><th id="77">77</th><td>    <b>struct</b> <dfn class="type def" id="std::__truth_type" title='std::__truth_type' data-ref="std::__truth_type">__truth_type</dfn>&nbsp</td></tr>
+<tr><th id="78">78</th><td>    { <b>typedef</b> <a class="type" href="#std::__false_type" title='std::__false_type' data-ref="std::__false_type">__false_type</a> <dfn class="typedef" id="std::__truth_type::__type" title='std::__truth_type::__type' data-type='std::__false_type' data-ref="std::__truth_type::__type">__type</dfn>; };&nbsp</td></tr>
+<tr><th id="79">79</th><td>&nbsp</td></tr>
+<tr><th id="80">80</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="81">81</th><td>    <b>struct</b> <dfn class="type def" id="std::__truth_type" title='std::__truth_type' data-ref="std::__truth_type"><a class="type" href="#std::__truth_type" title='std::__truth_type' data-ref="std::__truth_type">__truth_type</a></dfn>&lt;<b>true</b>&gt;&nbsp</td></tr>
+<tr><th id="82">82</th><td>    { <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__truth_type{true}::__type" title='std::__truth_type&lt;true&gt;::__type' data-type='std::__true_type' data-ref="std::__truth_type{true}::__type">__type</dfn>; };&nbsp</td></tr>
+<tr><th id="83">83</th><td>&nbsp</td></tr>
+<tr><th id="84">84</th><td>  <i>// N.B. The conversions to bool are needed due to the issue</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td><i>  // explained in c++/19404.</i>&nbsp</td></tr>
+<tr><th id="86">86</th><td>  <b>template</b>&lt;<b>class</b> _Sp, <b>class</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="87">87</th><td>    <b>struct</b> <dfn class="type def" id="std::__traitor" title='std::__traitor' data-ref="std::__traitor">__traitor</dfn>&nbsp</td></tr>
+<tr><th id="88">88</th><td>    {&nbsp</td></tr>
+<tr><th id="89">89</th><td>      <b>enum</b> { <dfn class="enum" id="std::__traitor::__value" title='std::__traitor::__value' data-ref="std::__traitor::__value">__value</dfn> = <em>bool</em>(_Sp::__value) || <em>bool</em>(_Tp::__value) };&nbsp</td></tr>
+<tr><th id="90">90</th><td>      <b>typedef</b> <b>typename</b> <a class="type" href="#std::__truth_type" title='std::__truth_type' data-ref="std::__truth_type">__truth_type</a>&lt;<a class="enum" href="#std::__traitor::__value" title='std::__traitor::__value' data-ref="std::__traitor::__value">__value</a>&gt;::__type <dfn class="typedef" id="std::__traitor::__type" title='std::__traitor::__type' data-type='typename __truth_type&lt;__value&gt;::__type' data-ref="std::__traitor::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="91">91</th><td>    };&nbsp</td></tr>
+<tr><th id="92">92</th><td>&nbsp</td></tr>
+<tr><th id="93">93</th><td>  <i>// Compare for equality of types.</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td>  <b>template</b>&lt;<b>typename</b>, <b>typename</b>&gt;&nbsp</td></tr>
+<tr><th id="95">95</th><td>    <b>struct</b> <dfn class="type def" id="std::__are_same" title='std::__are_same' data-ref="std::__are_same">__are_same</dfn>&nbsp</td></tr>
+<tr><th id="96">96</th><td>    {&nbsp</td></tr>
+<tr><th id="97">97</th><td>      <b>enum</b> { <dfn class="enum" id="std::__are_same::__value" title='std::__are_same::__value' data-ref="std::__are_same::__value">__value</dfn> = <var>0</var> };&nbsp</td></tr>
+<tr><th id="98">98</th><td>      <b>typedef</b> <a class="type" href="#std::__false_type" title='std::__false_type' data-ref="std::__false_type">__false_type</a> <dfn class="typedef" id="std::__are_same::__type" title='std::__are_same::__type' data-type='std::__false_type' data-ref="std::__are_same::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="99">99</th><td>    };&nbsp</td></tr>
+<tr><th id="100">100</th><td>&nbsp</td></tr>
+<tr><th id="101">101</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="102">102</th><td>    <b>struct</b> <dfn class="type def" id="std::__are_same" title='std::__are_same' data-ref="std::__are_same">__are_same</dfn>&lt;_Tp, _Tp&gt;&nbsp</td></tr>
+<tr><th id="103">103</th><td>    {&nbsp</td></tr>
+<tr><th id="104">104</th><td>      <b>enum</b> { <dfn class="enum" id="std::__are_same{type-parameter-0-0,type-parameter-0-0}::__value" title='std::__are_same&lt;type-parameter-0-0, type-parameter-0-0&gt;::__value' data-ref="std::__are_same{type-parameter-0-0,type-parameter-0-0}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="105">105</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__are_same{type-parameter-0-0,type-parameter-0-0}::__type" title='std::__are_same&lt;type-parameter-0-0, type-parameter-0-0&gt;::__type' data-type='std::__true_type' data-ref="std::__are_same{type-parameter-0-0,type-parameter-0-0}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="106">106</th><td>    };&nbsp</td></tr>
+<tr><th id="107">107</th><td>&nbsp</td></tr>
+<tr><th id="108">108</th><td>  <i>// Holds if the template-argument is a void type.</i>&nbsp</td></tr>
+<tr><th id="109">109</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="110">110</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_void" title='std::__is_void' data-ref="std::__is_void">__is_void</dfn>&nbsp</td></tr>
+<tr><th id="111">111</th><td>    {&nbsp</td></tr>
+<tr><th id="112">112</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_void::__value" title='std::__is_void::__value' data-ref="std::__is_void::__value">__value</dfn> = <var>0</var> };&nbsp</td></tr>
+<tr><th id="113">113</th><td>      <b>typedef</b> <a class="type" href="#std::__false_type" title='std::__false_type' data-ref="std::__false_type">__false_type</a> <dfn class="typedef" id="std::__is_void::__type" title='std::__is_void::__type' data-type='std::__false_type' data-ref="std::__is_void::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="114">114</th><td>    };&nbsp</td></tr>
+<tr><th id="115">115</th><td>&nbsp</td></tr>
+<tr><th id="116">116</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="117">117</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_void" title='std::__is_void' data-ref="std::__is_void"><a class="type" href="#std::__is_void" title='std::__is_void' data-ref="std::__is_void">__is_void</a></dfn>&lt;<em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="118">118</th><td>    {&nbsp</td></tr>
+<tr><th id="119">119</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_void{void}::__value" title='std::__is_void&lt;void&gt;::__value' data-ref="std::__is_void{void}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="120">120</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_void{void}::__type" title='std::__is_void&lt;void&gt;::__type' data-type='std::__true_type' data-ref="std::__is_void{void}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="121">121</th><td>    };&nbsp</td></tr>
+<tr><th id="122">122</th><td>&nbsp</td></tr>
+<tr><th id="123">123</th><td>  <i>//</i>&nbsp</td></tr>
+<tr><th id="124">124</th><td><i>  // Integer types</i>&nbsp</td></tr>
+<tr><th id="125">125</th><td><i>  //</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="127">127</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</dfn>&nbsp</td></tr>
+<tr><th id="128">128</th><td>    {&nbsp</td></tr>
+<tr><th id="129">129</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer::__value" title='std::__is_integer::__value' data-ref="std::__is_integer::__value">__value</dfn> = <var>0</var> };&nbsp</td></tr>
+<tr><th id="130">130</th><td>      <b>typedef</b> <a class="type" href="#std::__false_type" title='std::__false_type' data-ref="std::__false_type">__false_type</a> <dfn class="typedef" id="std::__is_integer::__type" title='std::__is_integer::__type' data-type='std::__false_type' data-ref="std::__is_integer::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="131">131</th><td>    };&nbsp</td></tr>
+<tr><th id="132">132</th><td>&nbsp</td></tr>
+<tr><th id="133">133</th><td>  <i>// Thirteen specializations (yes there are eleven standard integer</i>&nbsp</td></tr>
+<tr><th id="134">134</th><td><i>  // types; &lt;em&gt;long long&lt;/em&gt; and &lt;em&gt;unsigned long long&lt;/em&gt; are</i>&nbsp</td></tr>
+<tr><th id="135">135</th><td><i>  // supported as extensions).  Up to four target-specific __int&lt;N&gt;</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td><i>  // types are supported as well.</i>&nbsp</td></tr>
+<tr><th id="137">137</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="138">138</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>bool</em>&gt;&nbsp</td></tr>
+<tr><th id="139">139</th><td>    {&nbsp</td></tr>
+<tr><th id="140">140</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{bool}::__value" title='std::__is_integer&lt;bool&gt;::__value' data-ref="std::__is_integer{bool}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="141">141</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{bool}::__type" title='std::__is_integer&lt;bool&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{bool}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="142">142</th><td>    };&nbsp</td></tr>
+<tr><th id="143">143</th><td>&nbsp</td></tr>
+<tr><th id="144">144</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="145">145</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>char</em>&gt;&nbsp</td></tr>
+<tr><th id="146">146</th><td>    {&nbsp</td></tr>
+<tr><th id="147">147</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{char}::__value" title='std::__is_integer&lt;char&gt;::__value' data-ref="std::__is_integer{char}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="148">148</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{char}::__type" title='std::__is_integer&lt;char&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{char}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="149">149</th><td>    };&nbsp</td></tr>
+<tr><th id="150">150</th><td>&nbsp</td></tr>
+<tr><th id="151">151</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="152">152</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>signed</em> <em>char</em>&gt;&nbsp</td></tr>
+<tr><th id="153">153</th><td>    {&nbsp</td></tr>
+<tr><th id="154">154</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{signedchar}::__value" title='std::__is_integer&lt;signed char&gt;::__value' data-ref="std::__is_integer{signedchar}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="155">155</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{signedchar}::__type" title='std::__is_integer&lt;signed char&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{signedchar}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="156">156</th><td>    };&nbsp</td></tr>
+<tr><th id="157">157</th><td>&nbsp</td></tr>
+<tr><th id="158">158</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="159">159</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>unsigned</em> <em>char</em>&gt;&nbsp</td></tr>
+<tr><th id="160">160</th><td>    {&nbsp</td></tr>
+<tr><th id="161">161</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{unsignedchar}::__value" title='std::__is_integer&lt;unsigned char&gt;::__value' data-ref="std::__is_integer{unsignedchar}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="162">162</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{unsignedchar}::__type" title='std::__is_integer&lt;unsigned char&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{unsignedchar}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="163">163</th><td>    };&nbsp</td></tr>
+<tr><th id="164">164</th><td>&nbsp</td></tr>
+<tr><th id="165">165</th><td><u># <span data-ppcond="165">ifdef</span> <span class="macro" data-ref="_M/__WCHAR_TYPE__">__WCHAR_TYPE__</span></u>&nbsp</td></tr>
+<tr><th id="166">166</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="167">167</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>wchar_t</em>&gt;&nbsp</td></tr>
+<tr><th id="168">168</th><td>    {&nbsp</td></tr>
+<tr><th id="169">169</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{wchar_t}::__value" title='std::__is_integer&lt;wchar_t&gt;::__value' data-ref="std::__is_integer{wchar_t}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="170">170</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{wchar_t}::__type" title='std::__is_integer&lt;wchar_t&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{wchar_t}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="171">171</th><td>    };&nbsp</td></tr>
+<tr><th id="172">172</th><td><u># <span data-ppcond="165">endif</span></u>&nbsp</td></tr>
+<tr><th id="173">173</th><td>&nbsp</td></tr>
+<tr><th id="174">174</th><td><u>#<span data-ppcond="174">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#694" data-ref="_M/_GLIBCXX_USE_CHAR8_T">_GLIBCXX_USE_CHAR8_T</a></u>&nbsp</td></tr>
+<tr><th id="175">175</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="176">176</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<b>char8_t</b>&gt;&nbsp</td></tr>
+<tr><th id="177">177</th><td>    {&nbsp</td></tr>
+<tr><th id="178">178</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{char8_t}::__value" title='std::__is_integer&lt;char8_t&gt;::__value' data-ref="std::__is_integer{char8_t}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="179">179</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{char8_t}::__type" title='std::__is_integer&lt;char8_t&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{char8_t}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="180">180</th><td>    };&nbsp</td></tr>
+<tr><th id="181">181</th><td><u>#<span data-ppcond="174">endif</span></u>&nbsp</td></tr>
+<tr><th id="182">182</th><td>&nbsp</td></tr>
+<tr><th id="183">183</th><td><u>#<span data-ppcond="183">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="184">184</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="185">185</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>char16_t</em>&gt;&nbsp</td></tr>
+<tr><th id="186">186</th><td>    {&nbsp</td></tr>
+<tr><th id="187">187</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{char16_t}::__value" title='std::__is_integer&lt;char16_t&gt;::__value' data-ref="std::__is_integer{char16_t}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="188">188</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{char16_t}::__type" title='std::__is_integer&lt;char16_t&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{char16_t}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="189">189</th><td>    };&nbsp</td></tr>
+<tr><th id="190">190</th><td>&nbsp</td></tr>
+<tr><th id="191">191</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="192">192</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>char32_t</em>&gt;&nbsp</td></tr>
+<tr><th id="193">193</th><td>    {&nbsp</td></tr>
+<tr><th id="194">194</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{char32_t}::__value" title='std::__is_integer&lt;char32_t&gt;::__value' data-ref="std::__is_integer{char32_t}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="195">195</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{char32_t}::__type" title='std::__is_integer&lt;char32_t&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{char32_t}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="196">196</th><td>    };&nbsp</td></tr>
+<tr><th id="197">197</th><td><u>#<span data-ppcond="183">endif</span></u>&nbsp</td></tr>
+<tr><th id="198">198</th><td>&nbsp</td></tr>
+<tr><th id="199">199</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="200">200</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>short</em>&gt;&nbsp</td></tr>
+<tr><th id="201">201</th><td>    {&nbsp</td></tr>
+<tr><th id="202">202</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{short}::__value" title='std::__is_integer&lt;short&gt;::__value' data-ref="std::__is_integer{short}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="203">203</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{short}::__type" title='std::__is_integer&lt;short&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{short}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="204">204</th><td>    };&nbsp</td></tr>
+<tr><th id="205">205</th><td>&nbsp</td></tr>
+<tr><th id="206">206</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="207">207</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>unsigned</em> <em>short</em>&gt;&nbsp</td></tr>
+<tr><th id="208">208</th><td>    {&nbsp</td></tr>
+<tr><th id="209">209</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{unsignedshort}::__value" title='std::__is_integer&lt;unsigned short&gt;::__value' data-ref="std::__is_integer{unsignedshort}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="210">210</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{unsignedshort}::__type" title='std::__is_integer&lt;unsigned short&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{unsignedshort}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="211">211</th><td>    };&nbsp</td></tr>
+<tr><th id="212">212</th><td>&nbsp</td></tr>
+<tr><th id="213">213</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="214">214</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>int</em>&gt;&nbsp</td></tr>
+<tr><th id="215">215</th><td>    {&nbsp</td></tr>
+<tr><th id="216">216</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{int}::__value" title='std::__is_integer&lt;int&gt;::__value' data-ref="std::__is_integer{int}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="217">217</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{int}::__type" title='std::__is_integer&lt;int&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{int}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="218">218</th><td>    };&nbsp</td></tr>
+<tr><th id="219">219</th><td>&nbsp</td></tr>
+<tr><th id="220">220</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="221">221</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>unsigned</em> <em>int</em>&gt;&nbsp</td></tr>
+<tr><th id="222">222</th><td>    {&nbsp</td></tr>
+<tr><th id="223">223</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{unsignedint}::__value" title='std::__is_integer&lt;unsigned int&gt;::__value' data-ref="std::__is_integer{unsignedint}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="224">224</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{unsignedint}::__type" title='std::__is_integer&lt;unsigned int&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{unsignedint}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="225">225</th><td>    };&nbsp</td></tr>
+<tr><th id="226">226</th><td>&nbsp</td></tr>
+<tr><th id="227">227</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="228">228</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>long</em>&gt;&nbsp</td></tr>
+<tr><th id="229">229</th><td>    {&nbsp</td></tr>
+<tr><th id="230">230</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{long}::__value" title='std::__is_integer&lt;long&gt;::__value' data-ref="std::__is_integer{long}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="231">231</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{long}::__type" title='std::__is_integer&lt;long&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{long}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="232">232</th><td>    };&nbsp</td></tr>
+<tr><th id="233">233</th><td>&nbsp</td></tr>
+<tr><th id="234">234</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="235">235</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>unsigned</em> <em>long</em>&gt;&nbsp</td></tr>
+<tr><th id="236">236</th><td>    {&nbsp</td></tr>
+<tr><th id="237">237</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{unsignedlong}::__value" title='std::__is_integer&lt;unsigned long&gt;::__value' data-ref="std::__is_integer{unsignedlong}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="238">238</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{unsignedlong}::__type" title='std::__is_integer&lt;unsigned long&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{unsignedlong}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="239">239</th><td>    };&nbsp</td></tr>
+<tr><th id="240">240</th><td>&nbsp</td></tr>
+<tr><th id="241">241</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="242">242</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>long</em> <em>long</em>&gt;&nbsp</td></tr>
+<tr><th id="243">243</th><td>    {&nbsp</td></tr>
+<tr><th id="244">244</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{longlong}::__value" title='std::__is_integer&lt;long long&gt;::__value' data-ref="std::__is_integer{longlong}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="245">245</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{longlong}::__type" title='std::__is_integer&lt;long long&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{longlong}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="246">246</th><td>    };&nbsp</td></tr>
+<tr><th id="247">247</th><td>&nbsp</td></tr>
+<tr><th id="248">248</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="249">249</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer"><a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a></dfn>&lt;<em>unsigned</em> <em>long</em> <em>long</em>&gt;&nbsp</td></tr>
+<tr><th id="250">250</th><td>    {&nbsp</td></tr>
+<tr><th id="251">251</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_integer{unsignedlonglong}::__value" title='std::__is_integer&lt;unsigned long long&gt;::__value' data-ref="std::__is_integer{unsignedlonglong}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="252">252</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_integer{unsignedlonglong}::__type" title='std::__is_integer&lt;unsigned long long&gt;::__type' data-type='std::__true_type' data-ref="std::__is_integer{unsignedlonglong}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="253">253</th><td>    };&nbsp</td></tr>
+<tr><th id="254">254</th><td>&nbsp</td></tr>
+<tr><th id="255">255</th><td><u>#define <dfn class="macro" id="_M/__INT_N" data-ref="_M/__INT_N">__INT_N</dfn>(TYPE) 			\</u>&nbsp</td></tr>
+<tr><th id="256">256</th><td><u>  template&lt;&gt;				\</u>&nbsp</td></tr>
+<tr><th id="257">257</th><td><u>    struct __is_integer&lt;TYPE&gt;		\</u>&nbsp</td></tr>
+<tr><th id="258">258</th><td><u>    {					\</u>&nbsp</td></tr>
+<tr><th id="259">259</th><td><u>      enum { __value = 1 };		\</u>&nbsp</td></tr>
+<tr><th id="260">260</th><td><u>      typedef __true_type __type;	\</u>&nbsp</td></tr>
+<tr><th id="261">261</th><td><u>    };					\</u>&nbsp</td></tr>
+<tr><th id="262">262</th><td><u>  template&lt;&gt;				\</u>&nbsp</td></tr>
+<tr><th id="263">263</th><td><u>    struct __is_integer&lt;unsigned TYPE&gt;	\</u>&nbsp</td></tr>
+<tr><th id="264">264</th><td><u>    {					\</u>&nbsp</td></tr>
+<tr><th id="265">265</th><td><u>      enum { __value = 1 };		\</u>&nbsp</td></tr>
+<tr><th id="266">266</th><td><u>      typedef __true_type __type;	\</u>&nbsp</td></tr>
+<tr><th id="267">267</th><td><u>    };</u>&nbsp</td></tr>
+<tr><th id="268">268</th><td>&nbsp</td></tr>
+<tr><th id="269">269</th><td><u>#<span data-ppcond="269">ifdef</span> <span class="macro" data-ref="_M/__GLIBCXX_TYPE_INT_N_0">__GLIBCXX_TYPE_INT_N_0</span></u>&nbsp</td></tr>
+<tr><th id="270">270</th><td>__INT_N(__GLIBCXX_TYPE_INT_N_0)&nbsp</td></tr>
+<tr><th id="271">271</th><td><u>#<span data-ppcond="269">endif</span></u>&nbsp</td></tr>
+<tr><th id="272">272</th><td><u>#<span data-ppcond="272">ifdef</span> <span class="macro" data-ref="_M/__GLIBCXX_TYPE_INT_N_1">__GLIBCXX_TYPE_INT_N_1</span></u>&nbsp</td></tr>
+<tr><th id="273">273</th><td>__INT_N(__GLIBCXX_TYPE_INT_N_1)&nbsp</td></tr>
+<tr><th id="274">274</th><td><u>#<span data-ppcond="272">endif</span></u>&nbsp</td></tr>
+<tr><th id="275">275</th><td><u>#<span data-ppcond="275">ifdef</span> <span class="macro" data-ref="_M/__GLIBCXX_TYPE_INT_N_2">__GLIBCXX_TYPE_INT_N_2</span></u>&nbsp</td></tr>
+<tr><th id="276">276</th><td>__INT_N(__GLIBCXX_TYPE_INT_N_2)&nbsp</td></tr>
+<tr><th id="277">277</th><td><u>#<span data-ppcond="275">endif</span></u>&nbsp</td></tr>
+<tr><th id="278">278</th><td><u>#<span data-ppcond="278">ifdef</span> <span class="macro" data-ref="_M/__GLIBCXX_TYPE_INT_N_3">__GLIBCXX_TYPE_INT_N_3</span></u>&nbsp</td></tr>
+<tr><th id="279">279</th><td>__INT_N(__GLIBCXX_TYPE_INT_N_3)&nbsp</td></tr>
+<tr><th id="280">280</th><td><u>#<span data-ppcond="278">endif</span></u>&nbsp</td></tr>
+<tr><th id="281">281</th><td>&nbsp</td></tr>
+<tr><th id="282">282</th><td><u>#undef <a class="macro" href="#255" data-ref="_M/__INT_N">__INT_N</a></u>&nbsp</td></tr>
+<tr><th id="283">283</th><td>&nbsp</td></tr>
+<tr><th id="284">284</th><td>  <i>//</i>&nbsp</td></tr>
+<tr><th id="285">285</th><td><i>  // Floating point types</i>&nbsp</td></tr>
+<tr><th id="286">286</th><td><i>  //</i>&nbsp</td></tr>
+<tr><th id="287">287</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="288">288</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_floating" title='std::__is_floating' data-ref="std::__is_floating">__is_floating</dfn>&nbsp</td></tr>
+<tr><th id="289">289</th><td>    {&nbsp</td></tr>
+<tr><th id="290">290</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_floating::__value" title='std::__is_floating::__value' data-ref="std::__is_floating::__value">__value</dfn> = <var>0</var> };&nbsp</td></tr>
+<tr><th id="291">291</th><td>      <b>typedef</b> <a class="type" href="#std::__false_type" title='std::__false_type' data-ref="std::__false_type">__false_type</a> <dfn class="typedef" id="std::__is_floating::__type" title='std::__is_floating::__type' data-type='std::__false_type' data-ref="std::__is_floating::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="292">292</th><td>    };&nbsp</td></tr>
+<tr><th id="293">293</th><td>&nbsp</td></tr>
+<tr><th id="294">294</th><td>  <i>// three specializations (float, double and 'long double')</i>&nbsp</td></tr>
+<tr><th id="295">295</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="296">296</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_floating" title='std::__is_floating' data-ref="std::__is_floating"><a class="type" href="#std::__is_floating" title='std::__is_floating' data-ref="std::__is_floating">__is_floating</a></dfn>&lt;<em>float</em>&gt;&nbsp</td></tr>
+<tr><th id="297">297</th><td>    {&nbsp</td></tr>
+<tr><th id="298">298</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_floating{float}::__value" title='std::__is_floating&lt;float&gt;::__value' data-ref="std::__is_floating{float}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="299">299</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_floating{float}::__type" title='std::__is_floating&lt;float&gt;::__type' data-type='std::__true_type' data-ref="std::__is_floating{float}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="300">300</th><td>    };&nbsp</td></tr>
+<tr><th id="301">301</th><td>&nbsp</td></tr>
+<tr><th id="302">302</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="303">303</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_floating" title='std::__is_floating' data-ref="std::__is_floating"><a class="type" href="#std::__is_floating" title='std::__is_floating' data-ref="std::__is_floating">__is_floating</a></dfn>&lt;<em>double</em>&gt;&nbsp</td></tr>
+<tr><th id="304">304</th><td>    {&nbsp</td></tr>
+<tr><th id="305">305</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_floating{double}::__value" title='std::__is_floating&lt;double&gt;::__value' data-ref="std::__is_floating{double}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="306">306</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_floating{double}::__type" title='std::__is_floating&lt;double&gt;::__type' data-type='std::__true_type' data-ref="std::__is_floating{double}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="307">307</th><td>    };&nbsp</td></tr>
+<tr><th id="308">308</th><td>&nbsp</td></tr>
+<tr><th id="309">309</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="310">310</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_floating" title='std::__is_floating' data-ref="std::__is_floating"><a class="type" href="#std::__is_floating" title='std::__is_floating' data-ref="std::__is_floating">__is_floating</a></dfn>&lt;<em>long</em> <em>double</em>&gt;&nbsp</td></tr>
+<tr><th id="311">311</th><td>    {&nbsp</td></tr>
+<tr><th id="312">312</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_floating{longdouble}::__value" title='std::__is_floating&lt;long double&gt;::__value' data-ref="std::__is_floating{longdouble}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="313">313</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_floating{longdouble}::__type" title='std::__is_floating&lt;long double&gt;::__type' data-type='std::__true_type' data-ref="std::__is_floating{longdouble}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="314">314</th><td>    };&nbsp</td></tr>
+<tr><th id="315">315</th><td>&nbsp</td></tr>
+<tr><th id="316">316</th><td>  <i>//</i>&nbsp</td></tr>
+<tr><th id="317">317</th><td><i>  // Pointer types</i>&nbsp</td></tr>
+<tr><th id="318">318</th><td><i>  //</i>&nbsp</td></tr>
+<tr><th id="319">319</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="320">320</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_pointer" title='std::__is_pointer' data-ref="std::__is_pointer">__is_pointer</dfn>&nbsp</td></tr>
+<tr><th id="321">321</th><td>    {&nbsp</td></tr>
+<tr><th id="322">322</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_pointer::__value" title='std::__is_pointer::__value' data-ref="std::__is_pointer::__value">__value</dfn> = <var>0</var> };&nbsp</td></tr>
+<tr><th id="323">323</th><td>      <b>typedef</b> <a class="type" href="#std::__false_type" title='std::__false_type' data-ref="std::__false_type">__false_type</a> <dfn class="typedef" id="std::__is_pointer::__type" title='std::__is_pointer::__type' data-type='std::__false_type' data-ref="std::__is_pointer::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="324">324</th><td>    };&nbsp</td></tr>
+<tr><th id="325">325</th><td>&nbsp</td></tr>
+<tr><th id="326">326</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="327">327</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_pointer" title='std::__is_pointer' data-ref="std::__is_pointer">__is_pointer</dfn>&lt;_Tp*&gt;&nbsp</td></tr>
+<tr><th id="328">328</th><td>    {&nbsp</td></tr>
+<tr><th id="329">329</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_pointer{type-parameter-0-0*}::__value" title='std::__is_pointer&lt;type-parameter-0-0 *&gt;::__value' data-ref="std::__is_pointer{type-parameter-0-0*}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="330">330</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_pointer{type-parameter-0-0*}::__type" title='std::__is_pointer&lt;type-parameter-0-0 *&gt;::__type' data-type='std::__true_type' data-ref="std::__is_pointer{type-parameter-0-0*}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="331">331</th><td>    };&nbsp</td></tr>
+<tr><th id="332">332</th><td>&nbsp</td></tr>
+<tr><th id="333">333</th><td>  <i>//</i>&nbsp</td></tr>
+<tr><th id="334">334</th><td><i>  // An arithmetic type is an integer type or a floating point type</i>&nbsp</td></tr>
+<tr><th id="335">335</th><td><i>  //</i>&nbsp</td></tr>
+<tr><th id="336">336</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="337">337</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_arithmetic" title='std::__is_arithmetic' data-ref="std::__is_arithmetic">__is_arithmetic</dfn>&nbsp</td></tr>
+<tr><th id="338">338</th><td>    : <b>public</b> <a class="type" href="#std::__traitor" title='std::__traitor' data-ref="std::__traitor">__traitor</a>&lt;<a class="type" href="#std::__is_integer" title='std::__is_integer' data-ref="std::__is_integer">__is_integer</a>&lt;_Tp&gt;, <a class="type" href="#std::__is_floating" title='std::__is_floating' data-ref="std::__is_floating">__is_floating</a>&lt;_Tp&gt; &gt;&nbsp</td></tr>
+<tr><th id="339">339</th><td>    { };&nbsp</td></tr>
+<tr><th id="340">340</th><td>&nbsp</td></tr>
+<tr><th id="341">341</th><td>  <i>//</i>&nbsp</td></tr>
+<tr><th id="342">342</th><td><i>  // A scalar type is an arithmetic type or a pointer type</i>&nbsp</td></tr>
+<tr><th id="343">343</th><td><i>  // </i>&nbsp</td></tr>
+<tr><th id="344">344</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="345">345</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_scalar" title='std::__is_scalar' data-ref="std::__is_scalar">__is_scalar</dfn>&nbsp</td></tr>
+<tr><th id="346">346</th><td>    : <b>public</b> <a class="type" href="#std::__traitor" title='std::__traitor' data-ref="std::__traitor">__traitor</a>&lt;<a class="type" href="#std::__is_arithmetic" title='std::__is_arithmetic' data-ref="std::__is_arithmetic">__is_arithmetic</a>&lt;_Tp&gt;, <a class="type" href="#std::__is_pointer" title='std::__is_pointer' data-ref="std::__is_pointer">__is_pointer</a>&lt;_Tp&gt; &gt;&nbsp</td></tr>
+<tr><th id="347">347</th><td>    { };&nbsp</td></tr>
+<tr><th id="348">348</th><td>&nbsp</td></tr>
+<tr><th id="349">349</th><td>  <i>//</i>&nbsp</td></tr>
+<tr><th id="350">350</th><td><i>  // For use in std::copy and std::find overloads for streambuf iterators.</i>&nbsp</td></tr>
+<tr><th id="351">351</th><td><i>  //</i>&nbsp</td></tr>
+<tr><th id="352">352</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="353">353</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_char" title='std::__is_char' data-ref="std::__is_char">__is_char</dfn>&nbsp</td></tr>
+<tr><th id="354">354</th><td>    {&nbsp</td></tr>
+<tr><th id="355">355</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_char::__value" title='std::__is_char::__value' data-ref="std::__is_char::__value">__value</dfn> = <var>0</var> };&nbsp</td></tr>
+<tr><th id="356">356</th><td>      <b>typedef</b> <a class="type" href="#std::__false_type" title='std::__false_type' data-ref="std::__false_type">__false_type</a> <dfn class="typedef" id="std::__is_char::__type" title='std::__is_char::__type' data-type='std::__false_type' data-ref="std::__is_char::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="357">357</th><td>    };&nbsp</td></tr>
+<tr><th id="358">358</th><td>&nbsp</td></tr>
+<tr><th id="359">359</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="360">360</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_char" title='std::__is_char' data-ref="std::__is_char"><a class="type" href="#std::__is_char" title='std::__is_char' data-ref="std::__is_char">__is_char</a></dfn>&lt;<em>char</em>&gt;&nbsp</td></tr>
+<tr><th id="361">361</th><td>    {&nbsp</td></tr>
+<tr><th id="362">362</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_char{char}::__value" title='std::__is_char&lt;char&gt;::__value' data-ref="std::__is_char{char}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="363">363</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_char{char}::__type" title='std::__is_char&lt;char&gt;::__type' data-type='std::__true_type' data-ref="std::__is_char{char}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="364">364</th><td>    };&nbsp</td></tr>
+<tr><th id="365">365</th><td>&nbsp</td></tr>
+<tr><th id="366">366</th><td><u>#<span data-ppcond="366">ifdef</span> <span class="macro" data-ref="_M/__WCHAR_TYPE__">__WCHAR_TYPE__</span></u>&nbsp</td></tr>
+<tr><th id="367">367</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="368">368</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_char" title='std::__is_char' data-ref="std::__is_char"><a class="type" href="#std::__is_char" title='std::__is_char' data-ref="std::__is_char">__is_char</a></dfn>&lt;<em>wchar_t</em>&gt;&nbsp</td></tr>
+<tr><th id="369">369</th><td>    {&nbsp</td></tr>
+<tr><th id="370">370</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_char{wchar_t}::__value" title='std::__is_char&lt;wchar_t&gt;::__value' data-ref="std::__is_char{wchar_t}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="371">371</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_char{wchar_t}::__type" title='std::__is_char&lt;wchar_t&gt;::__type' data-type='std::__true_type' data-ref="std::__is_char{wchar_t}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="372">372</th><td>    };&nbsp</td></tr>
+<tr><th id="373">373</th><td><u>#<span data-ppcond="366">endif</span></u>&nbsp</td></tr>
+<tr><th id="374">374</th><td>&nbsp</td></tr>
+<tr><th id="375">375</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="376">376</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_byte" title='std::__is_byte' data-ref="std::__is_byte">__is_byte</dfn>&nbsp</td></tr>
+<tr><th id="377">377</th><td>    {&nbsp</td></tr>
+<tr><th id="378">378</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_byte::__value" title='std::__is_byte::__value' data-ref="std::__is_byte::__value">__value</dfn> = <var>0</var> };&nbsp</td></tr>
+<tr><th id="379">379</th><td>      <b>typedef</b> <a class="type" href="#std::__false_type" title='std::__false_type' data-ref="std::__false_type">__false_type</a> <dfn class="typedef" id="std::__is_byte::__type" title='std::__is_byte::__type' data-type='std::__false_type' data-ref="std::__is_byte::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="380">380</th><td>    };&nbsp</td></tr>
+<tr><th id="381">381</th><td>&nbsp</td></tr>
+<tr><th id="382">382</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="383">383</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_byte" title='std::__is_byte' data-ref="std::__is_byte"><a class="type" href="#std::__is_byte" title='std::__is_byte' data-ref="std::__is_byte">__is_byte</a></dfn>&lt;<em>char</em>&gt;&nbsp</td></tr>
+<tr><th id="384">384</th><td>    {&nbsp</td></tr>
+<tr><th id="385">385</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_byte{char}::__value" title='std::__is_byte&lt;char&gt;::__value' data-ref="std::__is_byte{char}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="386">386</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_byte{char}::__type" title='std::__is_byte&lt;char&gt;::__type' data-type='std::__true_type' data-ref="std::__is_byte{char}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="387">387</th><td>    };&nbsp</td></tr>
+<tr><th id="388">388</th><td>&nbsp</td></tr>
+<tr><th id="389">389</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="390">390</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_byte" title='std::__is_byte' data-ref="std::__is_byte"><a class="type" href="#std::__is_byte" title='std::__is_byte' data-ref="std::__is_byte">__is_byte</a></dfn>&lt;<em>signed</em> <em>char</em>&gt;&nbsp</td></tr>
+<tr><th id="391">391</th><td>    {&nbsp</td></tr>
+<tr><th id="392">392</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_byte{signedchar}::__value" title='std::__is_byte&lt;signed char&gt;::__value' data-ref="std::__is_byte{signedchar}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="393">393</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_byte{signedchar}::__type" title='std::__is_byte&lt;signed char&gt;::__type' data-type='std::__true_type' data-ref="std::__is_byte{signedchar}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="394">394</th><td>    };&nbsp</td></tr>
+<tr><th id="395">395</th><td>&nbsp</td></tr>
+<tr><th id="396">396</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="397">397</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_byte" title='std::__is_byte' data-ref="std::__is_byte"><a class="type" href="#std::__is_byte" title='std::__is_byte' data-ref="std::__is_byte">__is_byte</a></dfn>&lt;<em>unsigned</em> <em>char</em>&gt;&nbsp</td></tr>
+<tr><th id="398">398</th><td>    {&nbsp</td></tr>
+<tr><th id="399">399</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_byte{unsignedchar}::__value" title='std::__is_byte&lt;unsigned char&gt;::__value' data-ref="std::__is_byte{unsignedchar}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="400">400</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_byte{unsignedchar}::__type" title='std::__is_byte&lt;unsigned char&gt;::__type' data-type='std::__true_type' data-ref="std::__is_byte{unsignedchar}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="401">401</th><td>    };&nbsp</td></tr>
+<tr><th id="402">402</th><td>&nbsp</td></tr>
+<tr><th id="403">403</th><td><u>#<span data-ppcond="403">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="404">404</th><td>  <b>enum</b> <b>class</b> <dfn class="type" id="std::byte" title='std::byte' data-ref="std::byte">byte</dfn> : <em>unsigned</em> <em>char</em>;&nbsp</td></tr>
+<tr><th id="405">405</th><td>&nbsp</td></tr>
+<tr><th id="406">406</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="407">407</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_byte" title='std::__is_byte' data-ref="std::__is_byte"><a class="type" href="#std::__is_byte" title='std::__is_byte' data-ref="std::__is_byte">__is_byte</a></dfn>&lt;<a class="type" href="#std::byte" title='std::byte' data-ref="std::byte">byte</a>&gt;&nbsp</td></tr>
+<tr><th id="408">408</th><td>    {&nbsp</td></tr>
+<tr><th id="409">409</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_byte{std::byte}::__value" title='std::__is_byte&lt;std::byte&gt;::__value' data-ref="std::__is_byte{std::byte}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="410">410</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_byte{std::byte}::__type" title='std::__is_byte&lt;std::byte&gt;::__type' data-type='std::__true_type' data-ref="std::__is_byte{std::byte}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="411">411</th><td>    };&nbsp</td></tr>
+<tr><th id="412">412</th><td><u>#<span data-ppcond="403">endif</span> // C++17</u>&nbsp</td></tr>
+<tr><th id="413">413</th><td>&nbsp</td></tr>
+<tr><th id="414">414</th><td><u>#<span data-ppcond="414">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#694" data-ref="_M/_GLIBCXX_USE_CHAR8_T">_GLIBCXX_USE_CHAR8_T</a></u>&nbsp</td></tr>
+<tr><th id="415">415</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="416">416</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_byte" title='std::__is_byte' data-ref="std::__is_byte"><a class="type" href="#std::__is_byte" title='std::__is_byte' data-ref="std::__is_byte">__is_byte</a></dfn>&lt;<b>char8_t</b>&gt;&nbsp</td></tr>
+<tr><th id="417">417</th><td>    {&nbsp</td></tr>
+<tr><th id="418">418</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_byte{char8_t}::__value" title='std::__is_byte&lt;char8_t&gt;::__value' data-ref="std::__is_byte{char8_t}::__value">__value</dfn> = <var>1</var> };&nbsp</td></tr>
+<tr><th id="419">419</th><td>      <b>typedef</b> <a class="type" href="#std::__true_type" title='std::__true_type' data-ref="std::__true_type">__true_type</a> <dfn class="typedef" id="std::__is_byte{char8_t}::__type" title='std::__is_byte&lt;char8_t&gt;::__type' data-type='std::__true_type' data-ref="std::__is_byte{char8_t}::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="420">420</th><td>    };&nbsp</td></tr>
+<tr><th id="421">421</th><td><u>#<span data-ppcond="414">endif</span></u>&nbsp</td></tr>
+<tr><th id="422">422</th><td>&nbsp</td></tr>
+<tr><th id="423">423</th><td>  <b>template</b>&lt;<b>typename</b>&gt; <b>struct</b> <a class="type" href="stl_iterator_base_types.h.html#std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits" id="std::iterator_traits">iterator_traits</a>;&nbsp</td></tr>
+<tr><th id="424">424</th><td>&nbsp</td></tr>
+<tr><th id="425">425</th><td>  <i>// A type that is safe for use with memcpy, memmove, memcmp etc.</i>&nbsp</td></tr>
+<tr><th id="426">426</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="427">427</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_nonvolatile_trivially_copyable" title='std::__is_nonvolatile_trivially_copyable' data-ref="std::__is_nonvolatile_trivially_copyable">__is_nonvolatile_trivially_copyable</dfn>&nbsp</td></tr>
+<tr><th id="428">428</th><td>    {&nbsp</td></tr>
+<tr><th id="429">429</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_nonvolatile_trivially_copyable::__value" title='std::__is_nonvolatile_trivially_copyable::__value' data-ref="std::__is_nonvolatile_trivially_copyable::__value">__value</dfn> = <b>__is_trivially_copyable</b>(_Tp) };&nbsp</td></tr>
+<tr><th id="430">430</th><td>    };&nbsp</td></tr>
+<tr><th id="431">431</th><td>&nbsp</td></tr>
+<tr><th id="432">432</th><td>  <i>// Cannot use memcpy/memmove/memcmp on volatile types even if they are</i>&nbsp</td></tr>
+<tr><th id="433">433</th><td><i>  // trivially copyable, so ensure __memcpyable&lt;volatile int*, volatile int*&gt;</i>&nbsp</td></tr>
+<tr><th id="434">434</th><td><i>  // and similar will be false.</i>&nbsp</td></tr>
+<tr><th id="435">435</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="436">436</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_nonvolatile_trivially_copyable" title='std::__is_nonvolatile_trivially_copyable' data-ref="std::__is_nonvolatile_trivially_copyable">__is_nonvolatile_trivially_copyable</dfn>&lt;<em>volatile</em> _Tp&gt;&nbsp</td></tr>
+<tr><th id="437">437</th><td>    {&nbsp</td></tr>
+<tr><th id="438">438</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_nonvolatile_trivially_copyable{volatiletype-parameter-0-0}::__value" title='std::__is_nonvolatile_trivially_copyable&lt;volatile type-parameter-0-0&gt;::__value' data-ref="std::__is_nonvolatile_trivially_copyable{volatiletype-parameter-0-0}::__value">__value</dfn> = <var>0</var> };&nbsp</td></tr>
+<tr><th id="439">439</th><td>    };&nbsp</td></tr>
+<tr><th id="440">440</th><td>&nbsp</td></tr>
+<tr><th id="441">441</th><td>  <i>// Whether two iterator types can be used with memcpy/memmove.</i>&nbsp</td></tr>
+<tr><th id="442">442</th><td>  <b>template</b>&lt;<b>typename</b> _OutputIter, <b>typename</b> _InputIter&gt;&nbsp</td></tr>
+<tr><th id="443">443</th><td>    <b>struct</b> <dfn class="type def" id="std::__memcpyable" title='std::__memcpyable' data-ref="std::__memcpyable">__memcpyable</dfn>&nbsp</td></tr>
+<tr><th id="444">444</th><td>    {&nbsp</td></tr>
+<tr><th id="445">445</th><td>      <b>enum</b> { <dfn class="enum" id="std::__memcpyable::__value" title='std::__memcpyable::__value' data-ref="std::__memcpyable::__value">__value</dfn> = <var>0</var> };&nbsp</td></tr>
+<tr><th id="446">446</th><td>    };&nbsp</td></tr>
+<tr><th id="447">447</th><td>&nbsp</td></tr>
+<tr><th id="448">448</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="449">449</th><td>    <b>struct</b> <dfn class="type def" id="std::__memcpyable" title='std::__memcpyable' data-ref="std::__memcpyable">__memcpyable</dfn>&lt;_Tp*, _Tp*&gt;&nbsp</td></tr>
+<tr><th id="450">450</th><td>    : <a class="type" href="#std::__is_nonvolatile_trivially_copyable" title='std::__is_nonvolatile_trivially_copyable' data-ref="std::__is_nonvolatile_trivially_copyable">__is_nonvolatile_trivially_copyable</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="451">451</th><td>    { };&nbsp</td></tr>
+<tr><th id="452">452</th><td>&nbsp</td></tr>
+<tr><th id="453">453</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="454">454</th><td>    <b>struct</b> <dfn class="type def" id="std::__memcpyable" title='std::__memcpyable' data-ref="std::__memcpyable">__memcpyable</dfn>&lt;_Tp*, <em>const</em> _Tp*&gt;&nbsp</td></tr>
+<tr><th id="455">455</th><td>    : <a class="type" href="#std::__is_nonvolatile_trivially_copyable" title='std::__is_nonvolatile_trivially_copyable' data-ref="std::__is_nonvolatile_trivially_copyable">__is_nonvolatile_trivially_copyable</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="456">456</th><td>    { };&nbsp</td></tr>
+<tr><th id="457">457</th><td>&nbsp</td></tr>
+<tr><th id="458">458</th><td>  <i>// Whether two iterator types can be used with memcmp.</i>&nbsp</td></tr>
+<tr><th id="459">459</th><td><i>  // This trait only says it's well-formed to use memcmp, not that it</i>&nbsp</td></tr>
+<tr><th id="460">460</th><td><i>  // gives the right answer for a given algorithm. So for example, std::equal</i>&nbsp</td></tr>
+<tr><th id="461">461</th><td><i>  // needs to add additional checks that the types are integers or pointers,</i>&nbsp</td></tr>
+<tr><th id="462">462</th><td><i>  // because other trivially copyable types can overload operator==.</i>&nbsp</td></tr>
+<tr><th id="463">463</th><td>  <b>template</b>&lt;<b>typename</b> _Iter1, <b>typename</b> _Iter2&gt;&nbsp</td></tr>
+<tr><th id="464">464</th><td>    <b>struct</b> <dfn class="type def" id="std::__memcmpable" title='std::__memcmpable' data-ref="std::__memcmpable">__memcmpable</dfn>&nbsp</td></tr>
+<tr><th id="465">465</th><td>    {&nbsp</td></tr>
+<tr><th id="466">466</th><td>      <b>enum</b> { <dfn class="enum" id="std::__memcmpable::__value" title='std::__memcmpable::__value' data-ref="std::__memcmpable::__value">__value</dfn> = <var>0</var> };&nbsp</td></tr>
+<tr><th id="467">467</th><td>    };&nbsp</td></tr>
+<tr><th id="468">468</th><td>&nbsp</td></tr>
+<tr><th id="469">469</th><td>  <i>// OK to use memcmp with pointers to trivially copyable types.</i>&nbsp</td></tr>
+<tr><th id="470">470</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="471">471</th><td>    <b>struct</b> <dfn class="type def" id="std::__memcmpable" title='std::__memcmpable' data-ref="std::__memcmpable">__memcmpable</dfn>&lt;_Tp*, _Tp*&gt;&nbsp</td></tr>
+<tr><th id="472">472</th><td>    : <a class="type" href="#std::__is_nonvolatile_trivially_copyable" title='std::__is_nonvolatile_trivially_copyable' data-ref="std::__is_nonvolatile_trivially_copyable">__is_nonvolatile_trivially_copyable</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="473">473</th><td>    { };&nbsp</td></tr>
+<tr><th id="474">474</th><td>&nbsp</td></tr>
+<tr><th id="475">475</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="476">476</th><td>    <b>struct</b> <dfn class="type def" id="std::__memcmpable" title='std::__memcmpable' data-ref="std::__memcmpable">__memcmpable</dfn>&lt;<em>const</em> _Tp*, _Tp*&gt;&nbsp</td></tr>
+<tr><th id="477">477</th><td>    : <a class="type" href="#std::__is_nonvolatile_trivially_copyable" title='std::__is_nonvolatile_trivially_copyable' data-ref="std::__is_nonvolatile_trivially_copyable">__is_nonvolatile_trivially_copyable</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="478">478</th><td>    { };&nbsp</td></tr>
+<tr><th id="479">479</th><td>&nbsp</td></tr>
+<tr><th id="480">480</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="481">481</th><td>    <b>struct</b> <dfn class="type def" id="std::__memcmpable" title='std::__memcmpable' data-ref="std::__memcmpable">__memcmpable</dfn>&lt;_Tp*, <em>const</em> _Tp*&gt;&nbsp</td></tr>
+<tr><th id="482">482</th><td>    : <a class="type" href="#std::__is_nonvolatile_trivially_copyable" title='std::__is_nonvolatile_trivially_copyable' data-ref="std::__is_nonvolatile_trivially_copyable">__is_nonvolatile_trivially_copyable</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="483">483</th><td>    { };&nbsp</td></tr>
+<tr><th id="484">484</th><td>&nbsp</td></tr>
+<tr><th id="485">485</th><td>  <i>// Whether memcmp can be used to determine ordering for a type</i>&nbsp</td></tr>
+<tr><th id="486">486</th><td><i>  // e.g. in std::lexicographical_compare or three-way comparisons.</i>&nbsp</td></tr>
+<tr><th id="487">487</th><td><i>  // True for unsigned integer-like types where comparing each byte in turn</i>&nbsp</td></tr>
+<tr><th id="488">488</th><td><i>  // as an unsigned char yields the right result. This is true for all</i>&nbsp</td></tr>
+<tr><th id="489">489</th><td><i>  // unsigned integers on big endian targets, but only unsigned narrow</i>&nbsp</td></tr>
+<tr><th id="490">490</th><td><i>  // character types (and std::byte) on little endian targets.</i>&nbsp</td></tr>
+<tr><th id="491">491</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <em>bool</em> _TreatAsBytes =&nbsp</td></tr>
+<tr><th id="492">492</th><td><u>#<span data-ppcond="492">if</span> <span class="macro" title="1234" data-ref="_M/__BYTE_ORDER__">__BYTE_ORDER__</span> == <span class="macro" title="4321" data-ref="_M/__ORDER_BIG_ENDIAN__">__ORDER_BIG_ENDIAN__</span></u>&nbsp</td></tr>
+<tr><th id="493">493</th><td>	__is_integer&lt;_Tp&gt;::__value&nbsp</td></tr>
+<tr><th id="494">494</th><td><u>#<span data-ppcond="492">else</span></u>&nbsp</td></tr>
+<tr><th id="495">495</th><td>	<a class="type" href="#std::__is_byte" title='std::__is_byte' data-ref="std::__is_byte">__is_byte</a>&lt;_Tp&gt;::__value&nbsp</td></tr>
+<tr><th id="496">496</th><td><u>#<span data-ppcond="492">endif</span></u>&nbsp</td></tr>
+<tr><th id="497">497</th><td>    &gt;&nbsp</td></tr>
+<tr><th id="498">498</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_memcmp_ordered" title='std::__is_memcmp_ordered' data-ref="std::__is_memcmp_ordered">__is_memcmp_ordered</dfn>&nbsp</td></tr>
+<tr><th id="499">499</th><td>    {&nbsp</td></tr>
+<tr><th id="500">500</th><td>      <em>static</em> <em>const</em> <em>bool</em> <dfn class="decl" id="std::__is_memcmp_ordered::__value" title='std::__is_memcmp_ordered::__value' data-ref="std::__is_memcmp_ordered::__value">__value</dfn> = _Tp(-<var>1</var>) &gt; _Tp(<var>1</var>); <i>// is unsigned</i>&nbsp</td></tr>
+<tr><th id="501">501</th><td>    };&nbsp</td></tr>
+<tr><th id="502">502</th><td>&nbsp</td></tr>
+<tr><th id="503">503</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="504">504</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_memcmp_ordered" title='std::__is_memcmp_ordered' data-ref="std::__is_memcmp_ordered">__is_memcmp_ordered</dfn>&lt;_Tp, <b>false</b>&gt;&nbsp</td></tr>
+<tr><th id="505">505</th><td>    {&nbsp</td></tr>
+<tr><th id="506">506</th><td>      <em>static</em> <em>const</em> <em>bool</em> <dfn class="decl" id="std::__is_memcmp_ordered{type-parameter-0-0,false}::__value" title='std::__is_memcmp_ordered&lt;type-parameter-0-0, false&gt;::__value' data-ref="std::__is_memcmp_ordered{type-parameter-0-0,false}::__value">__value</dfn> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="507">507</th><td>    };&nbsp</td></tr>
+<tr><th id="508">508</th><td>&nbsp</td></tr>
+<tr><th id="509">509</th><td>  <i>// Whether two types can be compared using memcmp.</i>&nbsp</td></tr>
+<tr><th id="510">510</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up, <em>bool</em> = <b>sizeof</b>(_Tp) == <b>sizeof</b>(_Up)&gt;&nbsp</td></tr>
+<tr><th id="511">511</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_memcmp_ordered_with" title='std::__is_memcmp_ordered_with' data-ref="std::__is_memcmp_ordered_with">__is_memcmp_ordered_with</dfn>&nbsp</td></tr>
+<tr><th id="512">512</th><td>    {&nbsp</td></tr>
+<tr><th id="513">513</th><td>      <em>static</em> <em>const</em> <em>bool</em> <dfn class="decl" id="std::__is_memcmp_ordered_with::__value" title='std::__is_memcmp_ordered_with::__value' data-ref="std::__is_memcmp_ordered_with::__value">__value</dfn> = <a class="type" href="#std::__is_memcmp_ordered" title='std::__is_memcmp_ordered' data-ref="std::__is_memcmp_ordered">__is_memcmp_ordered</a>&lt;_Tp&gt;::__value&nbsp</td></tr>
+<tr><th id="514">514</th><td>	&amp;&amp; <a class="type" href="#std::__is_memcmp_ordered" title='std::__is_memcmp_ordered' data-ref="std::__is_memcmp_ordered">__is_memcmp_ordered</a>&lt;_Up&gt;::__value;&nbsp</td></tr>
+<tr><th id="515">515</th><td>    };&nbsp</td></tr>
+<tr><th id="516">516</th><td>&nbsp</td></tr>
+<tr><th id="517">517</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="518">518</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_memcmp_ordered_with" title='std::__is_memcmp_ordered_with' data-ref="std::__is_memcmp_ordered_with">__is_memcmp_ordered_with</dfn>&lt;_Tp, _Up, <b>false</b>&gt;&nbsp</td></tr>
+<tr><th id="519">519</th><td>    {&nbsp</td></tr>
+<tr><th id="520">520</th><td>      <em>static</em> <em>const</em> <em>bool</em> <dfn class="decl" id="std::__is_memcmp_ordered_with{type-parameter-0-0,type-parameter-0-1,false}::__value" title='std::__is_memcmp_ordered_with&lt;type-parameter-0-0, type-parameter-0-1, false&gt;::__value' data-ref="std::__is_memcmp_ordered_with{type-parameter-0-0,type-parameter-0-1,false}::__value">__value</dfn> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="521">521</th><td>    };&nbsp</td></tr>
+<tr><th id="522">522</th><td>&nbsp</td></tr>
+<tr><th id="523">523</th><td><u>#<span data-ppcond="523">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="524">524</th><td><u>#<span data-ppcond="524">if</span> <span class="macro" title="1234" data-ref="_M/__BYTE_ORDER__">__BYTE_ORDER__</span> == <span class="macro" title="4321" data-ref="_M/__ORDER_BIG_ENDIAN__">__ORDER_BIG_ENDIAN__</span></u>&nbsp</td></tr>
+<tr><th id="525">525</th><td>  <i>// std::byte is not an integer, but it can be compared using memcmp.</i>&nbsp</td></tr>
+<tr><th id="526">526</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="527">527</th><td>    <b>struct</b> __is_memcmp_ordered&lt;std::byte, <b>false</b>&gt;&nbsp</td></tr>
+<tr><th id="528">528</th><td>    { <em>static</em> <b>constexpr</b> <em>bool</em> __value = <b>true</b>; };&nbsp</td></tr>
+<tr><th id="529">529</th><td><u>#<span data-ppcond="524">endif</span></u>&nbsp</td></tr>
+<tr><th id="530">530</th><td>&nbsp</td></tr>
+<tr><th id="531">531</th><td>  <i>// std::byte can only be compared to itself, not to other types.</i>&nbsp</td></tr>
+<tr><th id="532">532</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="533">533</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_memcmp_ordered_with" title='std::__is_memcmp_ordered_with' data-ref="std::__is_memcmp_ordered_with"><a class="type" href="#std::__is_memcmp_ordered_with" title='std::__is_memcmp_ordered_with' data-ref="std::__is_memcmp_ordered_with">__is_memcmp_ordered_with</a></dfn>&lt;<span class="namespace">std::</span><a class="type" href="#std::byte" title='std::byte' data-ref="std::byte">byte</a>, <span class="namespace">std::</span><a class="type" href="#std::byte" title='std::byte' data-ref="std::byte">byte</a>, <b>true</b>&gt;&nbsp</td></tr>
+<tr><th id="534">534</th><td>    { <em>static</em> <b>constexpr</b> <em>bool</em> <dfn class="decl def" id="std::__is_memcmp_ordered_with{std::byte,std::byte,true}::__value" title='std::__is_memcmp_ordered_with&lt;std::byte, std::byte, true&gt;::__value' data-ref="std::__is_memcmp_ordered_with{std::byte,std::byte,true}::__value">__value</dfn> = <b>true</b>; };&nbsp</td></tr>
+<tr><th id="535">535</th><td>&nbsp</td></tr>
+<tr><th id="536">536</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <em>bool</em> _SameSize&gt;&nbsp</td></tr>
+<tr><th id="537">537</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_memcmp_ordered_with" title='std::__is_memcmp_ordered_with' data-ref="std::__is_memcmp_ordered_with">__is_memcmp_ordered_with</dfn>&lt;_Tp, <span class="namespace">std::</span><a class="type" href="#std::byte" title='std::byte' data-ref="std::byte">byte</a>, <a class="tu ref" href="#std::__is_memcmp_ordered_with{type-parameter-0-0,std::byte,_SameSize}::_SameSize" title='std::__is_memcmp_ordered_with&lt;type-parameter-0-0, std::byte, _SameSize&gt;::_SameSize' data-ref="std::__is_memcmp_ordered_with{type-parameter-0-0,std::byte,_SameSize}::_SameSize">_SameSize</a>&gt;&nbsp</td></tr>
+<tr><th id="538">538</th><td>    { <em>static</em> <b>constexpr</b> <em>bool</em> <dfn class="decl def" id="std::__is_memcmp_ordered_with{type-parameter-0-0,std::byte,_SameSize}::__value" title='std::__is_memcmp_ordered_with&lt;type-parameter-0-0, std::byte, _SameSize&gt;::__value' data-ref="std::__is_memcmp_ordered_with{type-parameter-0-0,std::byte,_SameSize}::__value">__value</dfn> = <b>false</b>; };&nbsp</td></tr>
+<tr><th id="539">539</th><td>&nbsp</td></tr>
+<tr><th id="540">540</th><td>  <b>template</b>&lt;<b>typename</b> _Up, <em>bool</em> _SameSize&gt;&nbsp</td></tr>
+<tr><th id="541">541</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_memcmp_ordered_with" title='std::__is_memcmp_ordered_with' data-ref="std::__is_memcmp_ordered_with">__is_memcmp_ordered_with</dfn>&lt;<span class="namespace">std::</span><a class="type" href="#std::byte" title='std::byte' data-ref="std::byte">byte</a>, _Up, <a class="tu ref" href="#std::__is_memcmp_ordered_with{std::byte,type-parameter-0-0,_SameSize}::_SameSize" title='std::__is_memcmp_ordered_with&lt;std::byte, type-parameter-0-0, _SameSize&gt;::_SameSize' data-ref="std::__is_memcmp_ordered_with{std::byte,type-parameter-0-0,_SameSize}::_SameSize">_SameSize</a>&gt;&nbsp</td></tr>
+<tr><th id="542">542</th><td>    { <em>static</em> <b>constexpr</b> <em>bool</em> <dfn class="decl def" id="std::__is_memcmp_ordered_with{std::byte,type-parameter-0-0,_SameSize}::__value" title='std::__is_memcmp_ordered_with&lt;std::byte, type-parameter-0-0, _SameSize&gt;::__value' data-ref="std::__is_memcmp_ordered_with{std::byte,type-parameter-0-0,_SameSize}::__value">__value</dfn> = <b>false</b>; };&nbsp</td></tr>
+<tr><th id="543">543</th><td><u>#<span data-ppcond="523">endif</span></u>&nbsp</td></tr>
+<tr><th id="544">544</th><td>&nbsp</td></tr>
+<tr><th id="545">545</th><td>  <i>//</i>&nbsp</td></tr>
+<tr><th id="546">546</th><td><i>  // Move iterator type</i>&nbsp</td></tr>
+<tr><th id="547">547</th><td><i>  //</i>&nbsp</td></tr>
+<tr><th id="548">548</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="549">549</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_move_iterator" title='std::__is_move_iterator' data-ref="std::__is_move_iterator">__is_move_iterator</dfn>&nbsp</td></tr>
+<tr><th id="550">550</th><td>    {&nbsp</td></tr>
+<tr><th id="551">551</th><td>      <b>enum</b> { <dfn class="enum" id="std::__is_move_iterator::__value" title='std::__is_move_iterator::__value' data-ref="std::__is_move_iterator::__value">__value</dfn> = <var>0</var> };&nbsp</td></tr>
+<tr><th id="552">552</th><td>      <b>typedef</b> <a class="type" href="#std::__false_type" title='std::__false_type' data-ref="std::__false_type">__false_type</a> <dfn class="typedef" id="std::__is_move_iterator::__type" title='std::__is_move_iterator::__type' data-type='std::__false_type' data-ref="std::__is_move_iterator::__type">__type</dfn>;&nbsp</td></tr>
+<tr><th id="553">553</th><td>    };&nbsp</td></tr>
+<tr><th id="554">554</th><td>&nbsp</td></tr>
+<tr><th id="555">555</th><td>  <i>// Fallback implementation of the function in bits/stl_iterator.h used to</i>&nbsp</td></tr>
+<tr><th id="556">556</th><td><i>  // remove the move_iterator wrapper.</i>&nbsp</td></tr>
+<tr><th id="557">557</th><td>  <b>template</b>&lt;<b>typename</b> _Iterator&gt;&nbsp</td></tr>
+<tr><th id="558">558</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="559">559</th><td>    <b>inline</b> _Iterator&nbsp</td></tr>
+<tr><th id="560">560</th><td>    <dfn class="decl def fn" id="_ZSt12__miter_baseT_" title='std::__miter_base' data-ref="_ZSt12__miter_baseT_">__miter_base</dfn>(_Iterator <dfn class="local col4 decl" id="514__it" title='__it' data-type='_Iterator' data-ref="514__it">__it</dfn>)&nbsp</td></tr>
+<tr><th id="561">561</th><td>    { <b>return</b> <a class="local col4 ref" href="#514__it" title='__it' data-ref="514__it">__it</a>; }&nbsp</td></tr>
+<tr><th id="562">562</th><td>&nbsp</td></tr>
+<tr><th id="563">563</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="564">564</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="565">565</th><td>} <i>// extern "C++"</i>&nbsp</td></tr>
+<tr><th id="566">566</th><td>&nbsp</td></tr>
+<tr><th id="567">567</th><td><u>#<span data-ppcond="32">endif</span> //_CPP_TYPE_TRAITS_H</u>&nbsp</td></tr>
+<tr><th id="568">568</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

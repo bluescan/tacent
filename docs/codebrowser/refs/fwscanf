@@ -1,0 +1,6 @@
+<dec f='include/wchar.h' l='636' type='int fwscanf(__FILE *__restrict __stream, const wchar_t *__restrict __format)'/>
+<dec f='include/wchar.h' l='657' type='int fwscanf(__FILE *__restrict __stream, const wchar_t *__restrict __format)'/>
+<doc f='include/wchar.h' l='632'>/* Read formatted input from STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='247' type='tString &amp; tsaPrintf(tString &amp; dest, const char * format)'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='524' u='c' c='_ZN8tCmdLine21VersionAuthorInternalER7tStringPKDuiii'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='527' u='c' c='_ZN8tCmdLine21VersionAuthorInternalER7tStringPKDuiii'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='529' u='c' c='_ZN8tCmdLine21VersionAuthorInternalER7tStringPKDuiii'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='533' u='c' c='_ZN8tCmdLine21VersionAuthorInternalER7tStringPKDuiii'/>
+<def f='Modules/System/Src/tPrint.cpp' l='549' ll='556' type='tString &amp; tsaPrintf(tString &amp; dest, const char * format)'/>

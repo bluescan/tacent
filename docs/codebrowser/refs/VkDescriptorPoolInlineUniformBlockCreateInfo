@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7216' ll='7220'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7216'/>
+<size>24</size>
+<mbr r='VkDescriptorPoolInlineUniformBlockCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDescriptorPoolInlineUniformBlockCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkDescriptorPoolInlineUniformBlockCreateInfo::maxInlineUniformBlockBindings' o='128' t='uint32_t'/>

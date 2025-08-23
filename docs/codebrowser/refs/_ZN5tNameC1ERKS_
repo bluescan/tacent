@@ -1,0 +1,3 @@
+<use f='Modules/Input/Inc/Input/tComp.h' l='27' u='c' c='_ZN6tInput10tComponentC1ERK5tName'/>
+<use f='Modules/Input/Inc/Input/tUnit.h' l='34' u='c' c='_ZN6tInput5tUnitC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCont.h' l='28' u='c' c='_ZN6tInput11tControllerC1ERK5tName'/>

@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/atomic_base.h' l='480' ll='489' macro='1' type='std::__atomic_base::__int_type std::__atomic_base::load(std::memory_order __m = memory_order_seq_cst) const'/>
+<use f='include/c++/11/atomic' l='87' u='c' c='_ZNKSt6atomicIbEcvbEv'/>
+<use f='include/c++/11/atomic' l='112' u='c' c='_ZNKSt6atomicIbE4loadESt12memory_order'/>
+<use f='include/c++/11/stop_token' l='169' u='c' c='_ZNSt10stop_token13_Stop_state_t16_M_stop_possibleEv'/>
+<use f='include/c++/11/stop_token' l='175' u='c' c='_ZNSt10stop_token13_Stop_state_t17_M_stop_requestedEv'/>
+<use f='include/c++/11/stop_token' l='209' u='c' c='_ZNSt10stop_token13_Stop_state_t7_M_lockEv'/>
+<use f='include/c++/11/stop_token' l='225' u='c' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<use f='include/c++/11/stop_token' l='281' u='c' c='_ZNSt10stop_token13_Stop_state_t20_M_register_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='383' u='c' c='_ZNSt10stop_token13_Stop_state_t14_M_do_try_lockERjjSt12memory_orderS2_'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='136' type='int tString::Shrink()'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='140' u='c' c='_ZN7tString20ShrinkNullTerminatedEv'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='723' ll='730' type='int tString::Shrink()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='134'>// Shrink releases as much memory as possible. It returns the new capacity after shrinking. Note that the new
+	// capacity will be at least MinCapacity big. This basically calls Reserve(Length());</doc>

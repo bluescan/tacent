@@ -1,0 +1,4 @@
+_ZNKSt10filesystem7__cxx114path9u16stringEv|std::filesystem::path::u16string
+_ZNKSt10filesystem7__cxx114path9u32stringEv|std::filesystem::path::u32string
+_ZNKSt10filesystem7__cxx114path8u8stringB4__u8Ev|std::filesystem::path::u8string
+_ZNSt10filesystem7__cxx116u8pathET_S1_|std::filesystem::u8path

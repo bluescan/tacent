@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='130' type='64'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3204' u='r' c='_ZN5rgbcxL23encode_bc1_pick_initialEPKNS_7color32EjbiiiiiiiiiiiiRiS3_S3_S3_S3_S3_'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3597' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3598' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='128'>// cEncodeBC1BoundingBox enables a fast all-integer PCA approximation on 4-color blocks. 
+		// At level 0 options (no other flags), this is ~15% faster, and higher *average* quality.</doc>

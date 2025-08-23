@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/basic_string.h' l='456' ll='459' type='void std::basic_string::basic_string&lt;_CharT, _Traits, _Alloc&gt;(const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __str)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='452'>/**
+       *  @brief  Construct string with copy of value of @a __str.
+       *  @param  __str  Source string.
+       */</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='360' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='include/c++/11/bits/fs_path.h' l='412' u='c' c='_ZNKSt10filesystem7__cxx114pathcvNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEv'/>

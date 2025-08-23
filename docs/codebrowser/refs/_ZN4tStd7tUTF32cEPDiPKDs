@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='319' type='int tStd::tUTF32c(char32_t * dst, const char16_t * srcPoint)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='319'>// Returns number of read codeunits. Will be E [1,2] for UTF-16.</doc>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='616' ll='629' type='int tStd::tUTF32c(char32_t * dst, const char16_t * srcPoint)'/>

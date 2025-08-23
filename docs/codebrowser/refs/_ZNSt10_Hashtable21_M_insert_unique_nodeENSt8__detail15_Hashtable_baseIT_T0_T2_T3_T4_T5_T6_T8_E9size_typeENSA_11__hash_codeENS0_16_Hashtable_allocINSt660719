@@ -1,0 +1,9 @@
+<dec f='include/c++/11/bits/hashtable.h' l='844' type='std::_Hashtable::iterator std::_Hashtable::_M_insert_unique_node(std::_Hashtable::size_type __bkt, std::_Hashtable::__hash_code , std::_Hashtable::__node_ptr __n, std::_Hashtable::size_type __n_elt = 1)'/>
+<use f='include/c++/11/bits/hashtable.h' l='977' u='c' c='_ZNSt10_Hashtable16_M_reinsert_nodeEOSt12_Node_handleIT_T0_NSt23__allocator_traits_base8__rebindIT1_NSt8__detail10_Hash_nodeIS2_Xsr13__hash_cachedE5valueEEEvE4typeEE'/>
+<use f='include/c++/11/bits/hashtable.h' l='1064' u='c' c='_ZNSt10_Hashtable15_M_merge_uniqueERTL0__'/>
+<use f='include/c++/11/bits/hashtable.h' l='1975' u='c' c='_ZNSt10_Hashtable10_M_emplaceESt17integral_constantIbLb1EEDpOTL0__'/>
+<def f='include/c++/11/bits/hashtable.h' l='2003' ll='2031' type='std::_Hashtable::iterator std::_Hashtable::_M_insert_unique_node(std::_Hashtable::size_type __bkt, std::_Hashtable::__hash_code __code, std::_Hashtable::__node_ptr __node, std::_Hashtable::size_type __n_elt = 1)'/>
+<use f='include/c++/11/bits/hashtable.h' l='2110' u='c' c='_ZNSt10_Hashtable9_M_insertEOTL0__RKTL0_0_St17integral_constantIbLb1EE'/>
+<doc f='include/c++/11/bits/hashtable.h' l='840'>// Insert node __n with hash code __code, in bucket __bkt if no
+      // rehash (assumes no element with same key already present).
+      // Takes ownership of __n if insertion succeeds, throws otherwise.</doc>

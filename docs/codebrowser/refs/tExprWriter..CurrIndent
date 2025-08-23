@@ -1,0 +1,12 @@
+<use f='Modules/System/Inc/System/tScript.h' l='298' u='w' c='_ZN11tExprWriter6IndentEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='299' u='w' c='_ZN11tExprWriter6DedentEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='299' u='r' c='_ZN11tExprWriter6DedentEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='299' u='w' c='_ZN11tExprWriter6DedentEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='358' u='r' c='_ZN11tExprWriter12WriteIndentsEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='358' u='r' c='_ZN11tExprWriter12WriteIndentsEv'/>
+<dec f='Modules/System/Inc/System/tScript.h' l='364' type='int'/>
+<offset>0</offset>
+<doc f='Modules/System/Inc/System/tScript.h' l='364'>// Number of tabs. If using spaces it&apos;s the number of groups of TabWidth spaces.</doc>
+<use f='Modules/System/Src/tScript.cpp' l='588' u='w' c='_ZN11tExprWriterC1ERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='1040' u='r' c='_ZN11tExprWriter7NewLineEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1040' u='r' c='_ZN11tExprWriter7NewLineEv'/>

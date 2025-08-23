@@ -1,0 +1,31 @@
+<def f='include/c++/11/bits/random.h' l='2856' ll='3010'/>
+<use f='include/c++/11/bits/random.h' l='2868'/>
+<use f='include/c++/11/bits/random.h' l='3018' c='_ZStneRKSt19cauchy_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='3019' c='_ZStneRKSt19cauchy_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='3035' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt19cauchy_distributionIT_E'/>
+<use f='include/c++/11/bits/random.h' l='3050' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt19cauchy_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2103' c='_ZNSt19cauchy_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2102' c='_ZNSt19cauchy_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2122' c='_ZNSt19cauchy_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2145' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt19cauchy_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2168' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt19cauchy_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2170' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt19cauchy_distributionIT_E'/>
+<fun r='_ZNSt19cauchy_distributionC1Ev'/>
+<fun r='_ZNSt19cauchy_distributionC1ET_S0_'/>
+<fun r='_ZNSt19cauchy_distributionC1ERKNS_10param_typeE'/>
+<fun r='_ZNSt19cauchy_distribution5resetEv'/>
+<fun r='_ZNKSt19cauchy_distribution1aEv'/>
+<fun r='_ZNKSt19cauchy_distribution1bEv'/>
+<fun r='_ZNKSt19cauchy_distribution5paramEv'/>
+<fun r='_ZNSt19cauchy_distribution5paramERKNS_10param_typeE'/>
+<fun r='_ZNKSt19cauchy_distribution3minEv'/>
+<fun r='_ZNKSt19cauchy_distribution3maxEv'/>
+<fun r='_ZNSt19cauchy_distributionclERTL0__'/>
+<fun r='_ZNSt19cauchy_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt19cauchy_distribution10__generateETL0__S0_RTL0_0_'/>
+<fun r='_ZNSt19cauchy_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<fun r='_ZNSt19cauchy_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt19cauchy_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<mbr r='std::cauchy_distribution::_M_param' t='std::cauchy_distribution::param_type'/>
+<fun r='_ZNSt19cauchy_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt19cauchy_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>

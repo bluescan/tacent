@@ -1,0 +1,3 @@
+<dec f='include/string.h' l='496' type='char * __stpncpy(char *__restrict __dest, const char *__restrict __src, size_t __n)'/>
+<doc f='include/string.h' l='494'>/* Copy no more than N characters of SRC to DEST, returning the address of
+   the last character written into DEST.  */</doc>

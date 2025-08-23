@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13207' ll='13215'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13207'/>
+<size>56</size>
+<mbr r='VkBindAccelerationStructureMemoryInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBindAccelerationStructureMemoryInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkBindAccelerationStructureMemoryInfoNV::accelerationStructure' o='128' t='VkAccelerationStructureNV'/>
+<mbr r='VkBindAccelerationStructureMemoryInfoNV::memory' o='192' t='VkDeviceMemory'/>
+<mbr r='VkBindAccelerationStructureMemoryInfoNV::memoryOffset' o='256' t='VkDeviceSize'/>
+<mbr r='VkBindAccelerationStructureMemoryInfoNV::deviceIndexCount' o='320' t='uint32_t'/>
+<mbr r='VkBindAccelerationStructureMemoryInfoNV::pDeviceIndices' o='384' t='const uint32_t *'/>

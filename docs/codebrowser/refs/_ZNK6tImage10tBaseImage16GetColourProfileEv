@@ -1,0 +1,4 @@
+<def f='Modules/Image/Inc/Image/tBaseImage.h' l='108' type='tColourProfile tImage::tBaseImage::GetColourProfile() const'/>
+<doc f='Modules/Image/Inc/Image/tBaseImage.h' l='105'>// Returns the current colour profile of the pixels in this image object. Load paramters often modify it from the
+	// source profile. For example loading a linear-colour-space HDR file will likely decode it into sRGB for display
+	// purposes (if you asked it to do so with load parameters).</doc>

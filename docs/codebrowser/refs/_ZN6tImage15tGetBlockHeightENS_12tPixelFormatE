@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='284' type='int tImage::tGetBlockHeight(tImage::tPixelFormat )'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='156' u='c' c='_ZNK6tImage6tLayer11GetDataSizeEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1329' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='920' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='924' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1089' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='513' ll='529' type='int tImage::tGetBlockHeight(tImage::tPixelFormat format)'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='559' u='c' c='_ZN6tImage21tGetBitsPerPixelFloatENS_12tPixelFormatE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1364' u='c' c='_ZN6tImage20CanReverseRowData_BCENS_12tPixelFormatEi'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1376' u='c' c='_ZN6tImage24CreateReversedRowData_BCEPKhNS_12tPixelFormatEii'/>

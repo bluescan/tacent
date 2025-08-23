@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/atomic_base.h' l='71' type='const std::memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='114' u='r' c='_ZSt24__cmpexch_failure_order2St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1069' c='_ZNSt13__atomic_impl15__fetch_add_fltEPT_NSt15remove_volatileIS0_E4typeESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1072' c='_ZNSt13__atomic_impl15__fetch_add_fltEPT_NSt15remove_volatileIS0_E4typeESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1081' c='_ZNSt13__atomic_impl15__fetch_sub_fltEPT_NSt15remove_volatileIS0_E4typeESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1084' c='_ZNSt13__atomic_impl15__fetch_sub_fltEPT_NSt15remove_volatileIS0_E4typeESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1093' c='_ZNSt13__atomic_impl15__add_fetch_fltEPT_NSt15remove_volatileIS0_E4typeE'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1097' c='_ZNSt13__atomic_impl15__add_fetch_fltEPT_NSt15remove_volatileIS0_E4typeE'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1106' c='_ZNSt13__atomic_impl15__sub_fetch_fltEPT_NSt15remove_volatileIS0_E4typeE'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1110' c='_ZNSt13__atomic_impl15__sub_fetch_fltEPT_NSt15remove_volatileIS0_E4typeE'/>
+<use f='include/c++/11/atomic' l='1302' c='_ZSt11atomic_initPSt6atomicIT_ENSt15__type_identityIS0_E4typeE'/>
+<use f='include/c++/11/atomic' l='1307' c='_ZSt11atomic_initPVSt6atomicIT_ENSt15__type_identityIS0_E4typeE'/>

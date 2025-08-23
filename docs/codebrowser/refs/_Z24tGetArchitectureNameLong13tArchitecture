@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='161' type='const char * tGetArchitectureNameLong(tArchitecture )'/>
+<def f='Modules/Foundation/Src/tPlatform.cpp' l='130' ll='146' type='const char * tGetArchitectureNameLong(tArchitecture arch)'/>

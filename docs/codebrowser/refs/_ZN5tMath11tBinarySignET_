@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='93' type='T tMath::tBinarySign(T val)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='93'>// Same as Sign but does not return 0 ever. Two return values only.</doc>

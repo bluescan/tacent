@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tResample.h' l='59' type='2'/>
+<use f='Modules/Image/Inc/Image/tResample.h' l='62'/>
+<use f='Modules/Image/Inc/Image/tResample.h' l='63'/>
+<use f='Modules/Image/Inc/Image/tResample.h' l='67' u='r'/>
+<use f='Modules/Image/Inc/Image/tResample.h' l='68' u='r'/>
+<doc f='Modules/Image/Inc/Image/tResample.h' l='59'>// Number of valid edge modes.</doc>
+<use f='Modules/Image/Src/tResample.cpp' l='81' u='r'/>
+<use f='Modules/Image/Src/tResample.cpp' l='89' u='r'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='287' type='void tExprWriter::WriteCommentLine(const char8_t * )'/>
+<def f='Modules/System/Inc/System/tScript.h' l='463' ll='466' type='void tExprWriter::WriteCommentLine(const char8_t * comment)'/>

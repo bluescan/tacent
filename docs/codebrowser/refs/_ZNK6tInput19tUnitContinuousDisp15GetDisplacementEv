@@ -1,0 +1,4 @@
+<def f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='33' ll='37' type='float tInput::tUnitContinuousDisp::GetDisplacement() const'/>
+<doc f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='31'>// Read by the main system update to sent change notification events.
+	// May also be used directly by client code in main thread.</doc>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='31' u='c' c='_ZNK6tInput12tCompTrigger15GetDisplacementEv'/>

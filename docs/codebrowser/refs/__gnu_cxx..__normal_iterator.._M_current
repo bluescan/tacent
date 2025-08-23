@@ -1,0 +1,16 @@
+<dec f='include/c++/11/bits/stl_iterator.h' l='1007' type='_Iterator'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1024' u='w' c='__gnu_cxx::__normal_iterator::__normal_iterator{_Iterator,_Container}'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1028' u='w' c='__gnu_cxx::__normal_iterator::__normal_iterator{_Iterator,_Container}'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1037' u='w' c='__gnu_cxx::__normal_iterator::__normal_iterator{_Iterator,_Container}'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1043' u='r' c='__gnu_cxx::__normal_iterator::operator*'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1048' u='r' c='__gnu_cxx::__normal_iterator::operator-}'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1054' u='w' c='__gnu_cxx::__normal_iterator::operator++'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1061' u='w' c='__gnu_cxx::__normal_iterator::operator++'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1068' u='w' c='__gnu_cxx::__normal_iterator::operator--'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1075' u='w' c='__gnu_cxx::__normal_iterator::operator--'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1081' u='r' c='__gnu_cxx::__normal_iterator::operator[]'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1086' u='w' c='__gnu_cxx::__normal_iterator::operator+='/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1091' u='r' c='__gnu_cxx::__normal_iterator::operator+'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1096' u='w' c='__gnu_cxx::__normal_iterator::operator-='/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1101' u='r' c='__gnu_cxx::__normal_iterator::operator-'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1106' u='a' c='__gnu_cxx::__normal_iterator::base'/>

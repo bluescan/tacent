@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='174' type='void tMath::tARect2::Transform(const tMath::tMatrix2 &amp; xform)'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='524' ll='533' type='void tMath::tARect2::Transform(const tMath::tMatrix2 &amp; t)'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='173'>// Transforms Min and Max vectors and builds the new box from them.</doc>

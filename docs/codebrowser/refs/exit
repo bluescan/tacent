@@ -1,0 +1,4 @@
+<dec f='include/stdlib.h' l='624' type='void exit(int __status)'/>
+<doc f='include/stdlib.h' l='621'>/* Call all functions registered with `atexit&apos; and `on_exit&apos;,
+   in the reverse of the order in which they were registered,
+   perform stdio cleanup, and terminate program execution with STATUS.  */</doc>

@@ -1,0 +1,31 @@
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<inh f='include/c++/11/bits/codecvt.h' l='49' c='std::codecvt_base'/>
+<def f='include/c++/11/bits/codecvt.h' l='71' ll='267'/>
+<use f='include/c++/11/bits/codecvt.h' l='278'/>
+<use f='include/c++/11/bits/codecvt.h' l='295' c='_ZNSt7codecvtC1Em'/>
+<ovr f='include/c++/11/bits/codecvt.h' l='341' c='std::codecvt'/>
+<ovr f='include/c++/11/bits/codecvt.h' l='404' c='std::codecvt'/>
+<ovr f='include/c++/11/bits/codecvt.h' l='470' c='std::codecvt'/>
+<use f='include/c++/11/bits/codecvt.h' l='484' c='_ZNSt7codecvtIDsc11__mbstate_tEC1Em'/>
+<ovr f='include/c++/11/bits/codecvt.h' l='527' c='std::codecvt'/>
+<use f='include/c++/11/bits/codecvt.h' l='541' c='_ZNSt7codecvtIDic11__mbstate_tEC1Em'/>
+<ovr f='include/c++/11/bits/codecvt.h' l='585' c='std::codecvt'/>
+<use f='include/c++/11/bits/codecvt.h' l='599' c='_ZNSt7codecvtIDsDu11__mbstate_tEC1Em'/>
+<ovr f='include/c++/11/bits/codecvt.h' l='642' c='std::codecvt'/>
+<use f='include/c++/11/bits/codecvt.h' l='656' c='_ZNSt7codecvtIDiDu11__mbstate_tEC1Em'/>
+<fun r='_ZNKSt23__codecvt_abstract_base3outERT1_PKT_S4_RS4_PT0_S7_RS7_'/>
+<fun r='_ZNKSt23__codecvt_abstract_base7unshiftERT1_PT0_S3_RS3_'/>
+<fun r='_ZNKSt23__codecvt_abstract_base2inERT1_PKT0_S4_RS4_PT_S7_RS7_'/>
+<fun r='_ZNKSt23__codecvt_abstract_base8encodingEv'/>
+<fun r='_ZNKSt23__codecvt_abstract_base13always_noconvEv'/>
+<fun r='_ZNKSt23__codecvt_abstract_base6lengthERT1_PKT0_S4_m'/>
+<fun r='_ZNKSt23__codecvt_abstract_base10max_lengthEv'/>
+<fun r='_ZNSt23__codecvt_abstract_baseC1Em'/>
+<fun r='_ZNSt23__codecvt_abstract_baseD1Ev'/>
+<fun r='_ZNKSt23__codecvt_abstract_base6do_outERT1_PKT_S4_RS4_PT0_S7_RS7_'/>
+<fun r='_ZNKSt23__codecvt_abstract_base10do_unshiftERT1_PT0_S3_RS3_'/>
+<fun r='_ZNKSt23__codecvt_abstract_base5do_inERT1_PKT0_S4_RS4_PT_S7_RS7_'/>
+<fun r='_ZNKSt23__codecvt_abstract_base11do_encodingEv'/>
+<fun r='_ZNKSt23__codecvt_abstract_base16do_always_noconvEv'/>
+<fun r='_ZNKSt23__codecvt_abstract_base9do_lengthERT1_PKT0_S4_m'/>
+<fun r='_ZNKSt23__codecvt_abstract_base13do_max_lengthEv'/>

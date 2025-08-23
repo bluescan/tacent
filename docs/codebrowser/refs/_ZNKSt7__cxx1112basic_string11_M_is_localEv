@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/basic_string.h' l='228' ll='230' type='bool std::basic_string::_M_is_local() const'/>
+<use f='include/c++/11/bits/basic_string.h' l='239' u='c' c='_ZNSt7__cxx1112basic_string10_M_disposeEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='720' u='c' c='_ZNSt7__cxx1112basic_stringaSEONS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.h' l='751' u='c' c='_ZNSt7__cxx1112basic_stringaSEONS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.h' l='978' u='c' c='_ZNKSt7__cxx1112basic_string8capacityEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='1361' u='c' c='_ZNSt7__cxx1112basic_string6assignERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='66' u='c' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='340' u='c' c='_ZNSt7__cxx1112basic_string7reserveEv'/>

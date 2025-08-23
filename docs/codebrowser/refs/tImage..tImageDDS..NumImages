@@ -1,0 +1,11 @@
+<use f='Modules/Image/Src/tImageDDS.cpp' l='883' u='r' c='_ZN6tImage9tImageDDS5ClearEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='898' u='w' c='_ZN6tImage9tImageDDS5ClearEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='915' u='w' c='_ZN6tImage9tImageDDS3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1006' u='r' c='_ZN6tImage9tImageDDS11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1022' u='r' c='_ZNK6tImage9tImageDDS9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1222' u='w' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1226' u='w' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1255' u='w' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1298' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1316' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1426' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>

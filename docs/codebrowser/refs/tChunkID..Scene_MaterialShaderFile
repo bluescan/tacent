@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='552' type='17006592'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='552'>// AFX effects file.</doc>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='150' u='r' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='213' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>

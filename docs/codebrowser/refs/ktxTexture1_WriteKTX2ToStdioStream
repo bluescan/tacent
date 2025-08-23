@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1043' type='ktx_error_code_e ktxTexture1_WriteKTX2ToStdioStream(ktxTexture1 * This, FILE * dstsstr)'/>

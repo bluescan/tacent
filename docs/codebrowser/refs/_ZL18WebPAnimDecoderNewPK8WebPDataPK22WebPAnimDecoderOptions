@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/WebP/include/demux.h' l='287' ll='291' type='WebPAnimDecoder * WebPAnimDecoderNew(const WebPData * webp_data, const WebPAnimDecoderOptions * dec_options)'/>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='277'>// Creates and initializes a WebPAnimDecoder object.
+// Parameters:
+//   webp_data - (in) WebP bitstream. This should remain unchanged during the
+//                    lifetime of the output WebPAnimDecoder object.
+//   dec_options - (in) decoding options. Can be passed NULL to choose
+//                      reasonable defaults (in particular, color mode MODE_RGBA
+//                      will be picked).
+// Returns:
+//   A pointer to the newly created WebPAnimDecoder object, or NULL in case of
+//   parsing error, invalid option or memory error.</doc>

@@ -1,0 +1,1 @@
+<dec f='include/wchar.h' l='308' type='size_t mbrlen(const char *__restrict __s, size_t __n, mbstate_t *__restrict __ps)'/>

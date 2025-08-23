@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/sys/time.h' l='94' type='int adjtime(const struct timeval * __delta, struct timeval * __olddelta)'/>
+<doc f='include/x86_64-linux-gnu/sys/time.h' l='90'>/* Adjust the current time of day by the amount in DELTA.
+   If OLDDELTA is not NULL, it is filled in with the amount
+   of time adjustment remaining to be done from the last `adjtime&apos; call.
+   This call is restricted to the super-user.  */</doc>

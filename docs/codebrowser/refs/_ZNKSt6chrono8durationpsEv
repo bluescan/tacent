@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='542' ll='544' type='duration&lt;typename common_type&lt;rep&gt;::type, std::chrono::duration::period&gt; std::chrono::duration::operator+() const'/>
+<doc f='include/c++/11/chrono' l='540'>// 20.11.5.3 arithmetic</doc>

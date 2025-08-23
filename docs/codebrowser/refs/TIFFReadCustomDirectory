@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='353' type='int TIFFReadCustomDirectory(TIFF * tif, toff_t diroff, const TIFFFieldArray * infoarray)'/>

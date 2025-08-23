@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/WebP/include/mux_types.h' l='73' ll='78' type='void WebPDataClear(WebPData * webp_data)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='432' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/WebP/include/mux_types.h' l='71'>// Clears the contents of the &apos;webp_data&apos; object by calling WebPFree().
+// Does not deallocate the object itself.</doc>

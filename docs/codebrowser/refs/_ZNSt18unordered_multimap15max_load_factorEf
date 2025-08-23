@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/unordered_map.h' l='2001' ll='2003' type='void std::unordered_multimap::max_load_factor(float __z)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1997'>/**
+       *  @brief  Change the %unordered_multimap maximum load factor.
+       *  @param  __z The new maximum load factor.
+       */</doc>

@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='368' type='tStd::tFloatType tStd::tGetFloatType(float )'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='370' u='c' c='_ZN4tStd6tIsNANEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='372' u='c' c='_ZN4tStd10tIsSpecialEf'/>
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='692' ll='718' type='tStd::tFloatType tStd::tGetFloatType(float v)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='368'>// Single precision get float type.</doc>

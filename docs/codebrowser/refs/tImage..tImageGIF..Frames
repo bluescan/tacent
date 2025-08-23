@@ -1,0 +1,11 @@
+<use f='Modules/Image/Src/tImageGIF.cpp' l='83' u='m' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='193' u='m' c='_ZN6tImage9tImageGIF3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='198' u='m' c='_ZN6tImage9tImageGIF3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='218' u='m' c='_ZN6tImage9tImageGIF3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='243' u='m' c='_ZN6tImage9tImageGIF3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='245' u='m' c='_ZN6tImage9tImageGIF3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='278' u='m' c='_ZN6tImage9tImageGIF8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='278' u='m' c='_ZN6tImage9tImageGIF8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='324' u='m' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='334' u='m' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='413' u='m' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18558' ll='18562'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18558'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceAttachmentFeedbackLoopDynamicStateFeaturesEXT::attachmentFeedbackLoopDynamicState' o='128' t='VkBool32'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1149' ll='1174'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1149'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1145'>/**
+ * @~English
+ * @brief Flags specifiying UASTC encoding options.
+ */</doc>

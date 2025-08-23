@@ -1,0 +1,6 @@
+<dec f='include/wchar.h' l='643' type='int wscanf(const wchar_t *__restrict __format)'/>
+<dec f='include/wchar.h' l='661' type='int wscanf(const wchar_t *__restrict __format)'/>
+<doc f='include/wchar.h' l='639'>/* Read formatted input from stdin.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

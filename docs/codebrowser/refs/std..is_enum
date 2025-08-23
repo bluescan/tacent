@@ -1,0 +1,8 @@
+<def f='include/c++/11/type_traits' l='501' ll='503'/>
+<use f='include/c++/11/type_traits' l='588'/>
+<use f='include/c++/11/type_traits' l='1738'/>
+<use f='include/c++/11/type_traits' l='1894'/>
+<use f='include/c++/11/type_traits' l='2328'/>
+<use f='include/c++/11/type_traits' l='3119'/>
+<use f='include/c++/11/bits/functional_hash.h' l='78'/>
+<use f='include/c++/11/functional' l='765'/>

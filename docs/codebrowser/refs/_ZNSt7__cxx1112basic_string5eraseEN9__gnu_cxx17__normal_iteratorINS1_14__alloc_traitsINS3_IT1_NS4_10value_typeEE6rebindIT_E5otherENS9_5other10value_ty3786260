@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/basic_string.h' l='1864' ll='1875' type='std::basic_string::iterator std::basic_string::erase(std::basic_string::__const_iterator __first, std::basic_string::__const_iterator __last)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1855'>/**
+       *  @brief  Remove a range of characters.
+       *  @param __first  Iterator referencing the first character to remove.
+       *  @param __last  Iterator referencing the end of the range.
+       *  @return  Iterator referencing location of first after removal.
+       *
+       *  Removes the characters in the range [first,last) from this string.
+       *  The value of the string doesn&apos;t change if an error is thrown.
+      */</doc>

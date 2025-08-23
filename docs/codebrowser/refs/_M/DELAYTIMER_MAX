@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/local_lim.h' l='84'/>
+<doc f='include/x86_64-linux-gnu/bits/local_lim.h' l='83'>/* Maximum number of timer expiration overruns.  */</doc>

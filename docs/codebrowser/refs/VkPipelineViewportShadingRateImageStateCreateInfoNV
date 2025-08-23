@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12940' ll='12946'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12940'/>
+<size>32</size>
+<mbr r='VkPipelineViewportShadingRateImageStateCreateInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineViewportShadingRateImageStateCreateInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineViewportShadingRateImageStateCreateInfoNV::shadingRateImageEnable' o='128' t='VkBool32'/>
+<mbr r='VkPipelineViewportShadingRateImageStateCreateInfoNV::viewportCount' o='160' t='uint32_t'/>
+<mbr r='VkPipelineViewportShadingRateImageStateCreateInfoNV::pShadingRatePalettes' o='192' t='const VkShadingRatePaletteNV *'/>

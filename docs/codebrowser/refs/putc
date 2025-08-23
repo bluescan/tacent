@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='550' type='int putc(int __c, FILE * __stream)'/>
+<use f='Modules/System/Inc/System/tFile.h' l='750' u='c' c='_ZN7tSystem5tPutcEcP8_IO_FILE'/>

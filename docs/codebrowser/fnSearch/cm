@@ -1,0 +1,7 @@
+_ZSt9cmp_equalT_T0_|std::cmp_equal
+_ZSt11cmp_greaterT_T0_|std::cmp_greater
+_ZSt17cmp_greater_equalT_T0_|std::cmp_greater_equal
+_ZSt8cmp_lessT_T0_|std::cmp_less
+_ZSt14cmp_less_equalT_T0_|std::cmp_less_equal
+_ZSt13cmp_not_equalT_T0_|std::cmp_not_equal
+_ZNK11tExpression3CmdEv|tExpression::Cmd

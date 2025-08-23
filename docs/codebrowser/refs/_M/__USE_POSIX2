@@ -1,0 +1,6 @@
+<dec f='include/features.h' l='329'/>
+<use f='include/stdio.h' l='818' u='a'/>
+<use f='include/limits.h' l='198' u='a'/>
+<use f='include/unistd.h' l='642' u='a'/>
+<use f='include/unistd.h' l='899' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/getopt_posix.h' l='31' u='a'/>

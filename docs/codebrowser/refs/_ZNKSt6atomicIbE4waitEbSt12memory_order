@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='168' ll='170' type='void std::atomic&lt;bool&gt;::wait(bool __old, std::memory_order __m = memory_order_seq_cst) const'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/tuple' l='1308' ll='1316' macro='1' type='__enable_if_t&lt;__assignable&lt;const _U1 &amp;, const _U2 &amp;&gt;(), tuple&lt;type-parameter-0-0, type-parameter-0-1&gt; &amp;&gt; std::tuple&lt;type-parameter-0-0, type-parameter-0-1&gt;::operator=(const pair&lt;_U1, _U2&gt; &amp; __in)'/>

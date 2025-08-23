@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tImageDDS.h' l='108' type='0'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='166' u='r' c='_ZNK6tImage9tImageDDS7IsValidEv'/>
+<doc f='Modules/Image/Inc/Image/tImageDDS.h' l='107'>// The tImageDDS is considered valid. May be combined with the conditionals below.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='923' u='r' c='_ZN6tImage9tImageDDS3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='944' u='r' c='_ZN6tImage9tImageDDS3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1395' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1551' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>

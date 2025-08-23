@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_base.h' l='502' ll='507' macro='1' type='std::__atomic_base::__int_type std::__atomic_base::exchange(std::__atomic_base::__int_type __i, std::memory_order __m = memory_order_seq_cst)'/>
+<use f='include/c++/11/atomic' l='120' u='c' c='_ZNSt6atomicIbE8exchangeEbSt12memory_order'/>

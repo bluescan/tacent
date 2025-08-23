@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/formatsize.h' l='45' type='unsigned int'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1629' u='w' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='2022' u='w' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<use f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='2035' u='w' c='_ZL15glGetFormatSizejP13ktxFormatSize'/>
+<offset>192</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/formatsize.h' l='45'>// Minimum required number of blocks</doc>

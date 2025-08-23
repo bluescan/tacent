@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='102'/>
+<use f='include/c++/11/backward/binders.h' l='130' u='c'/>
+<use f='include/c++/11/backward/binders.h' l='165' u='c'/>

@@ -1,0 +1,31 @@
+<dec f='include/c++/11/bits/stl_vector.h' l='1028' type='void std::vector::reserve(std::vector::size_type __n)'/>
+<def f='include/c++/11/bits/vector.tcc' l='64' ll='99' type='void std::vector::reserve(std::vector::size_type __n)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1010'>/**
+       *  @brief  Attempt to preallocate enough memory for specified number of
+       *          elements.
+       *  @param  __n  Number of elements required.
+       *  @throw  std::length_error  If @a n exceeds @c max_size().
+       *
+       *  This function attempts to reserve enough memory for the
+       *  %vector to hold the specified number of elements.  If the
+       *  number requested is more than max_size(), length_error is
+       *  thrown.
+       *
+       *  The advantage of this function is that if optimal code is a
+       *  necessity and the user can determine the number of elements
+       *  that will be required, the user can reserve the memory in
+       *  %advance, and thus prevent a possible reallocation of memory
+       *  and copying of %vector data.
+       */</doc>
+<use f='include/c++/11/bits/random.tcc' l='2672' u='c' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2688' u='c' c='_ZNSt21discrete_distribution10param_typeC1EmddTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='2837' u='c' c='_ZNSt31piecewise_constant_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2883' u='c' c='_ZNSt31piecewise_constant_distribution10param_typeC1ESt16initializer_listIT_ETL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='2903' u='c' c='_ZNSt31piecewise_constant_distribution10param_typeC1EmT_S1_TL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='3046' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3047' u='c' c='_ZNSt29piecewise_linear_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='3093' u='c' c='_ZNSt29piecewise_linear_distribution10param_typeC1ESt16initializer_listIT_ETL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='3113' u='c' c='_ZNSt29piecewise_linear_distribution10param_typeC1EmT_S1_TL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='3237' u='c' c='_ZNSt8seed_seqC1ESt16initializer_listIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='3247' u='c' c='_ZNSt8seed_seqC1ET_S0_'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='48' u='c' c='_ZN6tInput17tControllerSystemC1Eii'/>

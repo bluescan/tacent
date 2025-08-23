@@ -1,0 +1,16 @@
+<def f='include/c++/11/type_traits' l='3524' ll='3526'/>
+<use f='include/c++/11/type_traits' l='3525'/>
+<use f='include/c++/11/type_traits' l='3531'/>
+<def f='include/c++/11/type_traits' l='3535' ll='3538'/>
+<def f='include/c++/11/type_traits' l='3540' ll='3543'/>
+<def f='include/c++/11/type_traits' l='3545' ll='3548'/>
+<def f='include/c++/11/type_traits' l='3550' ll='3553'/>
+<def f='include/c++/11/type_traits' l='3556' ll='3559'/>
+<def f='include/c++/11/type_traits' l='3562' ll='3565'/>
+<def f='include/c++/11/type_traits' l='3568' ll='3571'/>
+<def f='include/c++/11/type_traits' l='3574' ll='3576'/>
+<doc f='include/c++/11/type_traits' l='3534'>// If T1 and T2 are reference types and COMMON-REF(T1, T2) is well-formed, ...</doc>
+<doc f='include/c++/11/type_traits' l='3555'>// Otherwise, if basic_common_reference&lt;...&gt;::type is well-formed, ...</doc>
+<doc f='include/c++/11/type_traits' l='3561'>// Otherwise, if COND-RES(T1, T2) is well-formed, ...</doc>
+<doc f='include/c++/11/type_traits' l='3567'>// Otherwise, if common_type_t&lt;T1, T2&gt; is well-formed, ...</doc>
+<doc f='include/c++/11/type_traits' l='3573'>// Otherwise, there shall be no member type.</doc>

@@ -1,0 +1,10 @@
+<use f='Modules/Image/Inc/Image/tImageTIFF.h' l='47' u='c' c='_ZN6tImage10tImageTIFFD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImageTIFF.h' l='96' type='void tImage::tImageTIFF::Clear()'/>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Inc/Image/tImageTIFF.h' l='156' ll='162' type='void tImage::tImageTIFF::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImageTIFF.h' l='95'>// After this call no memory will be consumed by the object and it will be invalid.</doc>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='69' u='c' c='_ZN6tImage10tImageTIFF4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='135' u='c' c='_ZN6tImage10tImageTIFF3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='161' u='c' c='_ZN6tImage10tImageTIFF3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='183' u='c' c='_ZN6tImage10tImageTIFF3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='203' u='c' c='_ZN6tImage10tImageTIFF3SetERNS_8tPictureEb'/>

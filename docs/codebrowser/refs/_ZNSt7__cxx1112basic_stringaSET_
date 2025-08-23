@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/basic_string.h' l='699' ll='704' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::operator=(_CharT __c)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='692'>/**
+       *  @brief  Set value to string of length 1.
+       *  @param  __c  Source character.
+       *
+       *  Assigning to a character makes this string length 1 and
+       *  (*this)[0] == @a c.
+       */</doc>

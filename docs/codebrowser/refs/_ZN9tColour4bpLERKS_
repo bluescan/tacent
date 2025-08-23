@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='440' type='tColour4b &amp; tColour4b::operator+=(const tColour4b &amp; c)'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='441' u='c' c='_ZNK9tColour4bplERKS_'/>

@@ -1,0 +1,33 @@
+<def f='include/c++/11/bits/random.h' l='884' ll='1078'/>
+<use f='include/c++/11/bits/random.h' l='1054' c='_ZStlsRSt13basic_ostreamITL0_2_TL0_3_ERKSt20discard_block_engineITL0__XTL0_0_EXTL0_1_EE'/>
+<use f='include/c++/11/bits/random.h' l='1072' c='_ZStrsRSt13basic_istreamITL0_2_TL0_3_ERSt20discard_block_engineITL0__XTL0_0_EXTL0_1_EE'/>
+<use f='include/c++/11/bits/random.h' l='1093' c='_ZStneRKSt20discard_block_engineIT_XT0_EXT1_EES3_'/>
+<use f='include/c++/11/bits/random.h' l='1095' c='_ZStneRKSt20discard_block_engineIT_XT0_EXT1_EES3_'/>
+<use f='include/c++/11/bits/random.h' l='1598'/>
+<use f='include/c++/11/bits/random.h' l='1600'/>
+<use f='include/c++/11/bits/random.tcc' l='672'/>
+<use f='include/c++/11/bits/random.tcc' l='676'/>
+<use f='include/c++/11/bits/random.tcc' l='681' c='_ZNSt20discard_block_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='679' c='_ZNSt20discard_block_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='697' c='_ZStlsRSt13basic_ostreamIT2_T3_ERKSt20discard_block_engineIT_XT0_EXT1_EE'/>
+<use f='include/c++/11/bits/random.tcc' l='719' c='_ZStrsRSt13basic_istreamIT2_T3_ERSt20discard_block_engineIT_XT0_EXT1_EE'/>
+<smbr r='std::discard_block_engine::block_size' t='const std::size_t'/>
+<smbr r='std::discard_block_engine::used_block' t='const std::size_t'/>
+<fun r='_ZNSt20discard_block_engineC1Ev'/>
+<fun r='_ZNSt20discard_block_engineC1ERKT_'/>
+<fun r='_ZNSt20discard_block_engineC1EOT_'/>
+<fun r='_ZNSt20discard_block_engineC1ENT_11result_typeE'/>
+<fun r='_ZNSt20discard_block_engineC1ERTL0__'/>
+<fun r='_ZNSt20discard_block_engine4seedEv'/>
+<fun r='_ZNSt20discard_block_engine4seedENT_11result_typeE'/>
+<fun r='_ZNSt20discard_block_engine4seedERTL0__'/>
+<fun r='_ZNKSt20discard_block_engine4baseEv'/>
+<fun r='_ZNSt20discard_block_engine3minEv'/>
+<fun r='_ZNSt20discard_block_engine3maxEv'/>
+<fun r='_ZNSt20discard_block_engine7discardEy'/>
+<fun r='_ZNSt20discard_block_engineclEv'/>
+<mbr r='std::discard_block_engine::_M_b' t='_RandomNumberEngine'/>
+<mbr r='std::discard_block_engine::_M_n' t='std::size_t'/>
+<smbr r='std::discard_block_engine::block_size' t='const std::size_t'/>
+<smbr r='std::discard_block_engine::used_block' t='const std::size_t'/>
+<fun r='_ZNSt20discard_block_engineclEv'/>

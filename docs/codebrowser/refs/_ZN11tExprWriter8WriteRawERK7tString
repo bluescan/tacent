@@ -1,0 +1,13 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='276' type='void tExprWriter::WriteRaw(const tString &amp; )'/>
+<use f='Modules/System/Inc/System/tScript.h' l='322' u='c' c='_ZN11tExprWriter3RawERK7tString'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='273'>// These functions write a raw string. They do not check for spaces being used and will not add quotes if there is.
+	// This can be useful for qriting tuples like (a, b) that are still atoms even though they may contain a space after
+	// the commas. These functions do still write the trailing space.</doc>
+<def f='Modules/System/Src/tScript.cpp' l='671' ll='683' type='void tExprWriter::WriteRaw(const tString &amp; atom)'/>
+<use f='Modules/System/Src/tScript.cpp' l='777' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tVector2Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='808' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tVector3Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='839' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tVector4Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='870' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath11tQuaternionEb'/>
+<use f='Modules/System/Src/tScript.cpp' l='901' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tMatrix2Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='932' u='c' c='_ZN11tExprWriter9WriteAtomERKN5tMath8tMatrix4Eb'/>
+<use f='Modules/System/Src/tScript.cpp' l='949' u='c' c='_ZN11tExprWriter9WriteAtomERK9tColour4b'/>

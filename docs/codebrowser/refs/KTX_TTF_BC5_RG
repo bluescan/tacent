@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1521' type='5'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1606'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1518'>/*!&lt; One BC4 block. R = opaque.g or alpha.g, if
+                 KTX_TF_TRANSCODE_ALPHA_DATA_TO_OPAQUE_FORMATS flag is
+                 specified. */</doc>

@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='214' type='7'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='305' c='_ZN6tImage8tPicture4CropEiiNS0_6AnchorERK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='398' c='_ZN6tImage8tPicture10CopyRegionEiiPK9tColour4bNS0_6AnchorEj'/>

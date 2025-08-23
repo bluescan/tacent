@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16094' ll='16100'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16094'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT::rasterizationOrderColorAttachmentAccess' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT::rasterizationOrderDepthAttachmentAccess' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceRasterizationOrderAttachmentAccessFeaturesEXT::rasterizationOrderStencilAttachmentAccess' o='192' t='VkBool32'/>

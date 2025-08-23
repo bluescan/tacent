@@ -1,0 +1,6 @@
+<dec f='Modules/Scene/Inc/Scene/tObject.h' l='42' type='const uint32'/>
+<doc f='Modules/Scene/Inc/Scene/tObject.h' l='41'>// The ID must be unique for all objects of the same type. Zero is a valid ID. 0xFFFFFFFF is the only invalid ID.</doc>
+<use f='Modules/Scene/Inc/Scene/tInstance.h' l='30' u='r' c='_ZN6tScene9tInstance5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tInstance.h' l='54' u='r'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='40' u='r'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='100' u='r' c='_ZN6tScene6tJoint5ClearEv'/>

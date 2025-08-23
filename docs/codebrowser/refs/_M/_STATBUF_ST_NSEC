@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/struct_stat.h' l='163'/>
+<doc f='include/x86_64-linux-gnu/bits/struct_stat.h' l='162'>/* Nanosecond resolution time values are supported.  */</doc>

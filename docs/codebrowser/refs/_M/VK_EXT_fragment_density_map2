@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15879'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15878'>// VK_EXT_fragment_density_map2 is a preprocessor guard. Do not pass it to API calls.</doc>

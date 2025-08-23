@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14903' ll='14905'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14903'/>
+<size>4</size>
+<mbr r='VkBindShaderGroupIndirectCommandNV::groupIndex' o='0' t='uint32_t'/>

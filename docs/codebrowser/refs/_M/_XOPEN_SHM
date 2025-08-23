@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='69'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='68'>/* XPG4.2 shared memory is supported.  */</doc>

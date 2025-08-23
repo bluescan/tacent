@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='102' type='void TinyEXIF::EXIFInfo::EXIFInfo()'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='210' u='c' c='_ZN6tImage9tMetaData3SetEPKhi'/>

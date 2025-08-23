@@ -1,0 +1,10 @@
+<def f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='53' ll='86'/>
+<use f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='90' c='_ZN6tInput15tLookupContDefnERKNS_7tVidPidE'/>
+<size>56</size>
+<doc f='Modules/Input/Inc/Input/tControllerDefinitions.h' l='49'>// The controller definition stored in the dictionary. Unfortunately some controllers have multiple ways to connect with
+// different latency characteristics. Usually the 2.4GHz dongles are pretty close to wired. Also quite often bluetooth
+// connected controllers aren&apos;t recognized by XInput (plus BT has a lot more latency). For this reason the wired
+// definitions are used in the table below.</doc>
+<use f='Modules/Input/Src/tControllerDefinitions.cpp' l='25'/>
+<use f='Modules/Input/Src/tControllerDefinitions.cpp' l='32' c='_ZN6tInput15tLookupContDefnERKNS_7tVidPidE'/>
+<size>56</size>

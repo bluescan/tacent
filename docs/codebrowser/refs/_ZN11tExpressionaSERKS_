@@ -1,0 +1,2 @@
+<use f='Modules/System/Inc/System/tScript.h' l='193' u='c' c='_Z13GetAtomStringR11tExpression'/>
+<use f='Modules/System/Src/tScript.cpp' l='66' u='c' c='_ZNK11tExpression7CarCdrNEi'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/condition_variable' l='341' ll='350' type='bool std::condition_variable_any::wait_until(_Lock &amp; __lock, const chrono::time_point&lt;_Clock, _Duration&gt; &amp; __atime, _Predicate __p)'/>

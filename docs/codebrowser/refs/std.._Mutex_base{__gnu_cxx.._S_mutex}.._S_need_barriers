@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/shared_ptr_base.h' l='118' type='1'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='115'>// This policy is used when atomic builtins are not available.
+      // The replacement atomic operations might not have the necessary
+      // memory barriers.</doc>

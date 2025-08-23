@@ -1,0 +1,3 @@
+<dec f='include/time.h' l='179' type='char * asctime(const struct tm * __tp)'/>
+<doc f='include/time.h' l='177'>/* Return a string of the form &quot;Day Mon dd hh:mm:ss yyyy\n&quot;
+   that is the representation of TP in this format.  */</doc>

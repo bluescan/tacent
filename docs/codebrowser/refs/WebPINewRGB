@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='295' type='WebPIDecoder * WebPINewRGB(WEBP_CSP_MODE csp, uint8_t * output_buffer, size_t output_buffer_size, int output_stride)'/>

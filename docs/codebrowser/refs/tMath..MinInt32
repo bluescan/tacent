@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tConstants.h' l='48' type='const int32'/>
+<doc f='Modules/Foundation/Inc/Foundation/tConstants.h' l='46'>// C++11 should promote 2147483648 to long long int, but VS currently turns it into and unsigned int. That&apos;s why we&apos;re
+// using the hex string literal representation for now.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tConstants.h' l='48'>// Decimal value -2147483648.</doc>

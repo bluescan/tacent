@@ -1,0 +1,8 @@
+<inh f='include/c++/11/system_error' l='446' c='std::system_error'/>
+<def f='include/c++/11/bits/ios_base.h' l='255' ll='274'/>
+<size>32</size>
+<fun r='_ZNSt8ios_base7failureB5cxx11C1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt8ios_base7failureB5cxx11C1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKSt10error_code'/>
+<fun r='_ZNSt8ios_base7failureB5cxx11C1EPKcRKSt10error_code'/>
+<fun r='_ZNSt8ios_base7failureB5cxx11D1Ev'/>
+<fun r='_ZNKSt8ios_base7failureB5cxx114whatEv'/>

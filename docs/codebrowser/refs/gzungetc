@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='1520' type='int gzungetc(int c, gzFile file)'/>

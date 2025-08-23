@@ -1,0 +1,2 @@
+<def f='include/c++/11/functional' l='1142' ll='1154' type='std::boyer_moore_searcher::__diff_type std::boyer_moore_searcher::_M_suffix_length(_RAIter __word, std::boyer_moore_searcher::__diff_type __len, std::boyer_moore_searcher::__diff_type __pos)'/>
+<use f='include/c++/11/functional' l='1237' u='c' c='_ZNSt20boyer_moore_searcherC1ET_S0_T0_T1_'/>

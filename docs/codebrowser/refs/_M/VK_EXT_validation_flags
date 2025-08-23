@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11799'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11798'>// VK_EXT_validation_flags is a preprocessor guard. Do not pass it to API calls.</doc>

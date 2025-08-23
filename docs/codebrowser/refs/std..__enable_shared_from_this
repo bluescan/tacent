@@ -1,0 +1,12 @@
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1730'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1783' ll='1830'/>
+<fun r='_ZNSt25__enable_shared_from_thisC1Ev'/>
+<fun r='_ZNSt25__enable_shared_from_thisC1ERKSt25__enable_shared_from_thisIT_XT0_EE'/>
+<fun r='_ZNSt25__enable_shared_from_thisaSERKSt25__enable_shared_from_thisIT_XT0_EE'/>
+<fun r='_ZNSt25__enable_shared_from_thisD1Ev'/>
+<fun r='_ZNSt25__enable_shared_from_this16shared_from_thisEv'/>
+<fun r='_ZNKSt25__enable_shared_from_this16shared_from_thisEv'/>
+<fun r='_ZNSt25__enable_shared_from_this14weak_from_thisEv'/>
+<fun r='_ZNKSt25__enable_shared_from_this14weak_from_thisEv'/>
+<fun r='_ZNKSt25__enable_shared_from_this14_M_weak_assignEPTL0__RKSt14__shared_countIXT0_EE'/>
+<mbr r='std::__enable_shared_from_this::_M_weak_this' t='__weak_ptr&lt;_Tp, _Lp&gt;'/>

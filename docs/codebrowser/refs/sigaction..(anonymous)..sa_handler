@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/sigaction.h' l='34' type='__sighandler_t'/>
+<offset>0</offset>
+<doc f='include/x86_64-linux-gnu/bits/sigaction.h' l='33'>/* Used if SA_SIGINFO is not set.  */</doc>

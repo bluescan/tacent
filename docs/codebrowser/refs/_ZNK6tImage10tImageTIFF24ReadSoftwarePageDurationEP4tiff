@@ -1,0 +1,2 @@
+<def f='Modules/Image/Src/tImageTIFF.cpp' l='31' ll='55' type='int tImage::tImageTIFF::ReadSoftwarePageDuration(TIFF * tiff) const'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='92' u='c' c='_ZN6tImage10tImageTIFF4LoadERK7tString'/>

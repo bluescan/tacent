@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='530' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<def f='Modules/Scene/Src/tWorld.cpp' l='1242' ll='1256' type='void tScene::tWorld::LoadInstances(const tChunk &amp; instListChunk, tItList&lt;tScene::tInstance&gt; &amp; instances)'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='426' type='12288'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='426'>// Data is a byte with value 0 or 1 that represents false or true.</doc>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='28' u='r' c='_ZNK6tScene10tPolyModel4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='53' c='_ZN6tScene10tPolyModel4LoadERK6tChunk'/>

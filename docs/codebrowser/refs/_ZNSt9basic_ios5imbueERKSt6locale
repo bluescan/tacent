@@ -1,0 +1,14 @@
+<dec f='include/c++/11/bits/basic_ios.h' l='410' type='std::locale std::basic_ios::imbue(const std::locale &amp; __loc)'/>
+<def f='include/c++/11/bits/basic_ios.tcc' l='112' ll='122' type='std::locale std::basic_ios::imbue(const std::locale &amp; __loc)'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='398'>/**
+       *  @brief  Moves to a new locale.
+       *  @param  __loc  The new locale.
+       *  @return  The previous locale.
+       *
+       *  Calls @c ios_base::imbue(loc), and if a stream buffer is associated
+       *  with this stream, calls that buffer&apos;s @c pubimbue(loc).
+       *
+       *  Additional l10n notes are at
+       *  http://gcc.gnu.org/onlinedocs/libstdc++/manual/localization.html
+      */</doc>
+<doc f='include/c++/11/bits/basic_ios.tcc' l='111'>// Locales:</doc>

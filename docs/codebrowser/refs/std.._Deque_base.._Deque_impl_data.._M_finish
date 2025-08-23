@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_deque.h' l='493' type='std::_Deque_base::iterator'/>
+<use f='include/c++/11/bits/stl_deque.h' l='496' u='w' c='_ZNSt11_Deque_base16_Deque_impl_dataC1Ev'/>

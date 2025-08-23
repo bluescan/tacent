@@ -1,0 +1,20 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6834' ll='6852'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6834'/>
+<size>80</size>
+<mbr r='VkPhysicalDeviceVulkan13Features::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::robustImageAccess' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::inlineUniformBlock' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::descriptorBindingInlineUniformBlockUpdateAfterBind' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::pipelineCreationCacheControl' o='224' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::privateData' o='256' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::shaderDemoteToHelperInvocation' o='288' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::shaderTerminateInvocation' o='320' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::subgroupSizeControl' o='352' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::computeFullSubgroups' o='384' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::synchronization2' o='416' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::textureCompressionASTC_HDR' o='448' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::shaderZeroInitializeWorkgroupMemory' o='480' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::dynamicRendering' o='512' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::shaderIntegerDotProduct' o='544' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceVulkan13Features::maintenance4' o='576' t='VkBool32'/>

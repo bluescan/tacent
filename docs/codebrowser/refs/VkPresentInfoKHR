@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7745' ll='7754'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7745'/>
+<size>64</size>
+<mbr r='VkPresentInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPresentInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkPresentInfoKHR::waitSemaphoreCount' o='128' t='uint32_t'/>
+<mbr r='VkPresentInfoKHR::pWaitSemaphores' o='192' t='const VkSemaphore *'/>
+<mbr r='VkPresentInfoKHR::swapchainCount' o='256' t='uint32_t'/>
+<mbr r='VkPresentInfoKHR::pSwapchains' o='320' t='const VkSwapchainKHR *'/>
+<mbr r='VkPresentInfoKHR::pImageIndices' o='384' t='const uint32_t *'/>
+<mbr r='VkPresentInfoKHR::pResults' o='448' t='VkResult *'/>

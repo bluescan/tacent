@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14053' ll='14057'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14053'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceCoherentMemoryFeaturesAMD::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceCoherentMemoryFeaturesAMD::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceCoherentMemoryFeaturesAMD::deviceCoherentMemory' o='128' t='VkBool32'/>

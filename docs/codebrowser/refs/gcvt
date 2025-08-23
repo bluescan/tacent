@@ -1,0 +1,4 @@
+<dec f='include/stdlib.h' l='892' type='char * gcvt(double __value, int __ndigit, char * __buf)'/>
+<doc f='include/stdlib.h' l='889'>/* If possible convert VALUE to a string with NDIGIT significant digits.
+   Otherwise use exponential representation.  The resulting string will
+   be written to BUF.  */</doc>

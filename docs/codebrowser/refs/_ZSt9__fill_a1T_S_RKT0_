@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='905' ll='913' macro='1' type='typename __gnu_cxx::__enable_if&lt;!__is_scalar&lt;_Tp&gt;::__value, void&gt;::__type std::__fill_a1(_ForwardIterator __first, _ForwardIterator __last, const _Tp &amp; __value)'/>
+<def f='include/c++/11/bits/stl_algobase.h' l='916' ll='925' macro='1' type='typename __gnu_cxx::__enable_if&lt;__is_scalar&lt;_Tp&gt;::__value, void&gt;::__type std::__fill_a1(_ForwardIterator __first, _ForwardIterator __last, const _Tp &amp; __value)'/>

@@ -1,0 +1,13 @@
+<def f='include/c++/11/compare' l='377' ll='380'/>
+<def f='include/c++/11/compare' l='384' ll='386'/>
+<def f='include/c++/11/compare' l='388' ll='390'/>
+<use f='include/c++/11/compare' l='389'/>
+<def f='include/c++/11/compare' l='392' ll='394'/>
+<use f='include/c++/11/compare' l='393'/>
+<def f='include/c++/11/compare' l='396' ll='398'/>
+<use f='include/c++/11/compare' l='397'/>
+<def f='include/c++/11/compare' l='400' ll='402'/>
+<use f='include/c++/11/compare' l='401'/>
+<use f='include/c++/11/compare' l='406'/>
+<size>1</size>
+<doc f='include/c++/11/compare' l='382'>// Partial specializations for one and zero argument cases.</doc>

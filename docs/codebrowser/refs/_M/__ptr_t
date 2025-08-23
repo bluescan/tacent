@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/cdefs.h' l='128'/>
+<doc f='include/x86_64-linux-gnu/sys/cdefs.h' l='127'>/* This is not a typedef so `const __ptr_t&apos; does the right thing.  */</doc>

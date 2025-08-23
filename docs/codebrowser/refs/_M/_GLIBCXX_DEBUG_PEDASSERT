@@ -1,0 +1,17 @@
+<dec f='include/c++/11/debug/assertions.h' l='37'/>
+<use f='include/c++/11/bits/basic_string.h' l='1061' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='1557' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='1601' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='1769' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='1848' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='1867' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2046' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2089' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2116' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2146' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2157' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2168' u='c'/>
+<use f='include/c++/11/bits/basic_string.h' l='2179' u='c'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='415' u='c'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='986' u='c'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1007' u='c'/>

@@ -1,0 +1,3 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='135' type='bool tSystem::IsValidFormatSpecifierCharacter(char )'/>
+<def f='Modules/System/Src/tPrint.cpp' l='725' ll='744' type='bool tSystem::IsValidFormatSpecifierCharacter(char c)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='757' u='c' c='_ZN7tSystem7ProcessERNS_8ReceiverEPKcP13__va_list_tag'/>

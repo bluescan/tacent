@@ -1,0 +1,7 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='224' type='void tMath::tSet(tMath::tQuat &amp; d, const tMath::tQuat &amp; s)'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='26' u='c' c='_ZN5tMath11tQuaternionC1ERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='35' u='c' c='_ZN5tMath11tQuaternion3SetERKNS_5tQuatE'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='78' u='c' c='_ZN5tMath11tQuaternionaSERKNS_5tQuatE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='277' u='c' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='328' u='c' c='_ZN5tMath6tNlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='377' u='c' c='_ZN12tChunkWriter5WriteERKN5tMath11tQuaternionE'/>

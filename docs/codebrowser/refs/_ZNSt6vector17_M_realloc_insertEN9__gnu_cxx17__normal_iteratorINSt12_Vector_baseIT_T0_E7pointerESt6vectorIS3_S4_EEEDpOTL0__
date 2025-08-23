@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_vector.h' l='1737' type='void std::vector::_M_realloc_insert(std::vector::iterator __position, _Args &amp;&amp;... __args)'/>
+<def f='include/c++/11/bits/vector.tcc' l='423' ll='505' type='void std::vector::_M_realloc_insert(std::vector::iterator __position, _Args &amp;&amp;... __args)'/>

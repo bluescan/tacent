@@ -1,0 +1,18 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='209' type='bool tMath::tIsPower2(int v)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='214' u='c' c='_ZN5tMath15tiClosestPower2ERj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='215' u='c' c='_ZN5tMath14tClosestPower2Ej'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='208'>// For the &apos;ti&apos; versions of the functions, the &apos;i&apos; means &apos;in-place&apos; (ref var).</doc>
+<use f='Modules/Foundation/Inc/Foundation/tMap.h' l='216' u='c' c='_ZN4tMap5RekeyEi'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1284' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1284' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='865' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='865' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='800' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='800' u='c' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='261' u='c' c='_ZN6tImage14tQuantizeFixed13QuantizeImageEiiiPK9tColour3bPS1_Phb'/>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='263' u='c' c='_ZN6tImage14tQuantizeFixed13QuantizeImageEiiiPK9tColour3bPS1_Phb'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='123' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='126' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='289' u='c' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='289' u='c' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='163' u='c' c='_ZN12tChunkWriter10BeginChunkEji'/>

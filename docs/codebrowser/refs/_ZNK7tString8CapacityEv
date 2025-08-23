@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='125' type='int tString::Capacity() const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='123'>// This is the internal capacity of the string. Appending more characters than this will cause more memory to be
+	// needed.</doc>

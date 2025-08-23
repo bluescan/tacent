@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='96'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='95'>/* We support priority inheritence for robust mutexes.  */</doc>

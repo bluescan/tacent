@@ -1,0 +1,12 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='44' u='m' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='90' u='a' c='_ZN6tScene6tWorld10MergeSceneERS0_'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='132' u='m' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='234' u='m' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='625' u='m' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1155' u='m' c='_ZNK6tScene6tWorld14SaveSelectionsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1692' u='m' c='_ZNK6tScene6tWorld16GetNumSelectionsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1695' u='m' c='_ZNK6tScene6tWorld16GetNumSelectionsERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1705' u='m' c='_ZN6tScene6tWorld15InsertSelectionEPNS_10tSelectionE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1711' u='m' c='_ZNK6tScene6tWorld13FindSelectionERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1721' u='m' c='_ZNK6tScene6tWorld24FindSelectionsContainingER7tItListIPNS_10tSelectionEERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1735' u='m' c='_ZNK6tScene6tWorld13FindSelectionEj'/>

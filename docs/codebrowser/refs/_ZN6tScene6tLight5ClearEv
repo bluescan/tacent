@@ -1,0 +1,2 @@
+<def f='Modules/Scene/Src/tLight.cpp' l='20' ll='28' type='void tScene::tLight::Clear()'/>
+<use f='Modules/Scene/Src/tLight.cpp' l='59' u='c' c='_ZN6tScene6tLight4LoadERK6tChunk'/>

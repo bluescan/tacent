@@ -1,0 +1,2 @@
+<def f='Modules/Scene/Inc/Scene/tObject.h' l='29' type='void tScene::tObject::tObject(const tString &amp; name, uint32 id)'/>
+<use f='Modules/Scene/Src/tPath.cpp' l='22' u='c' c='_ZN6tScene5tPathC1ERKN5tMath11tBezierPathERK7tStringj'/>

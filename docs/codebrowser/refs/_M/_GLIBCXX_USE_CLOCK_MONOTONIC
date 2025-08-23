@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1699'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1698'>/* Defined if clock_gettime has monotonic clock support. */</doc>

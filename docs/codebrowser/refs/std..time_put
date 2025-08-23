@@ -1,0 +1,26 @@
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='797' ll='886'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='889'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='893'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='902' c='_ZNSt15time_put_bynameC1EPKcm'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1331' c='_ZNKSt8time_put3putET0_RSt8ios_baseT_PK2tmPKS3_S8_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1366' c='_ZNKSt8time_put6do_putET0_RSt8ios_baseT_PK2tmcc'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1415'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1415'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1416' c='std::time_put_byname'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1490'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1490'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1491' c='std::time_put_byname'/>
+<use f='include/c++/11/iomanip' l='372' c='_ZStlsRSt13basic_ostreamIT_T0_ESt9_Put_timeIS0_E'/>
+<size>16</size>
+<smbr r='std::time_put::id' t='locale::id'/>
+<fun r='_ZNSt8time_putC1Em'/>
+<fun r='_ZNKSt8time_put3putET0_RSt8ios_baseT_PK2tmPKS3_S8_'/>
+<fun r='_ZNKSt8time_put3putET0_RSt8ios_baseT_PK2tmcc'/>
+<fun r='_ZNSt8time_putD1Ev'/>
+<fun r='_ZNKSt8time_put6do_putET0_RSt8ios_baseT_PK2tmcc'/>
+<smbr r='std::time_put::id' t='locale::id'/>
+<fun r='_ZNKSt8time_put3putET0_RSt8ios_baseT_PK2tmPKS3_S8_'/>
+<fun r='_ZNKSt8time_put6do_putET0_RSt8ios_baseT_PK2tmcc'/>

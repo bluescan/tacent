@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='29' type='3'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='29'>// Circle divided into one angle unit.</doc>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1325' u='r' c='_ZN9tColour4f8RGBToHSVEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1334' u='r' c='_ZN9tColour4f8HSVToRGBEv'/>
+<use f='Modules/Math/Src/tColour.cpp' l='364' c='_ZN5tMath9tRGBToHSVERfS0_S0_fffNS_10tAngleModeE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='388' c='_ZN5tMath9tHSVToRGBERfS0_S0_fffNS_10tAngleModeE'/>

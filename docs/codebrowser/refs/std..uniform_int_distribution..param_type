@@ -1,0 +1,25 @@
+<def f='include/c++/11/bits/uniform_int_dist.h' l='86' ll='119'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='90' c='_ZNSt24uniform_int_distribution10param_typeC1Ev'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='109' c='_ZSteqRKNSt24uniform_int_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='109' c='_ZSteqRKNSt24uniform_int_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='113' c='_ZStneRKNSt24uniform_int_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='113' c='_ZStneRKNSt24uniform_int_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='138' c='_ZNSt24uniform_int_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='161' c='_ZNKSt24uniform_int_distribution5paramEv'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='170' c='_ZNSt24uniform_int_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='198' c='_ZNSt24uniform_int_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='212' c='_ZNSt24uniform_int_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='219' c='_ZNSt24uniform_int_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='237' c='_ZNSt24uniform_int_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='239'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='278' c='_ZNSt24uniform_int_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='352' c='_ZNSt24uniform_int_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='371' c='_ZNSt24uniform_int_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='439' c='_ZNSt24uniform_int_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<doc f='include/c++/11/bits/uniform_int_dist.h' l='85'>/** Parameter type. */</doc>
+<fun r='_ZNSt24uniform_int_distribution10param_typeC1Ev'/>
+<fun r='_ZNSt24uniform_int_distribution10param_typeC1ET_S1_'/>
+<fun r='_ZNKSt24uniform_int_distribution10param_type1aEv'/>
+<fun r='_ZNKSt24uniform_int_distribution10param_type1bEv'/>
+<mbr r='std::uniform_int_distribution::param_type::_M_a' t='_IntType'/>
+<mbr r='std::uniform_int_distribution::param_type::_M_b' t='_IntType'/>

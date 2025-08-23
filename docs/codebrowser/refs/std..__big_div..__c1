@@ -1,0 +1,5 @@
+<def f='include/c++/11/ratio' l='222' type='const uintmax_t'/>
+<use f='include/c++/11/ratio' l='224' u='r'/>
+<use f='include/c++/11/ratio' l='225' u='r'/>
+<use f='include/c++/11/ratio' l='226' u='r'/>
+<use f='include/c++/11/ratio' l='234' u='r'/>

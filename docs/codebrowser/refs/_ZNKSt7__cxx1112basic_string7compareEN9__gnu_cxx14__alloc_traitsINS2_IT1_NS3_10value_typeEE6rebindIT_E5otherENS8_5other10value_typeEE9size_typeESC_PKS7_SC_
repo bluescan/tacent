@@ -1,0 +1,26 @@
+<dec f='include/c++/11/bits/basic_string.h' l='3061' type='int std::basic_string::compare(std::basic_string::size_type __pos, std::basic_string::size_type __n1, const _CharT * __s, std::basic_string::size_type __n2) const'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='1466' ll='1480' type='int std::basic_string::compare(std::basic_string::size_type __pos, std::basic_string::size_type __n1, const _CharT * __s, std::basic_string::size_type __n2) const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='3036'>/**
+       *  @brief  Compare substring against a character %array.
+       *  @param __pos  Index of first character of substring.
+       *  @param __n1  Number of characters in substring.
+       *  @param __s  character %array to compare against.
+       *  @param __n2  Number of characters of s.
+       *  @return  Integer &lt; 0, 0, or &gt; 0.
+       *
+       *  Form the substring of this string from the @a __n1
+       *  characters starting at @a __pos.  Form a string from the
+       *  first @a __n2 characters of @a __s.  Returns an integer &lt; 0
+       *  if this substring is ordered before the string from @a __s,
+       *  0 if their values are equivalent, or &gt; 0 if this substring
+       *  is ordered after the string from @a __s.  Determines the
+       *  effective length rlen of the strings to compare as the
+       *  smallest of the length of the substring and @a __n2.  The
+       *  function then compares the two strings by calling
+       *  traits::compare(substring.data(),s,rlen).  If the result of
+       *  the comparison is nonzero returns it, otherwise the shorter
+       *  one is ordered first.
+       *
+       *  NB: s must have at least n2 characters, &amp;apos;\\0&amp;apos; has
+       *  no special meaning.
+      */</doc>

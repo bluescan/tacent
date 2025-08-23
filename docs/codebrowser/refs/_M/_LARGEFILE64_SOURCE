@@ -1,0 +1,6 @@
+<dec f='include/features.h' l='218'/>
+<use f='include/features.h' l='384' u='a'/>
+<use f='include/zconf.h' l='466' u='a'/>
+<use f='include/zconf.h' l='466' u='c'/>
+<use f='include/zconf.h' l='474' u='a'/>
+<use f='include/zconf.h' l='489' u='a'/>

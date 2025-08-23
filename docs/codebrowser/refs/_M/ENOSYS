@@ -1,0 +1,9 @@
+<dec f='include/asm-generic/errno.h' l='18'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/error_constants.h' l='68' u='c'/>
+<doc f='include/asm-generic/errno.h' l='11'>/*
+ * This error code is special: arch syscall entry code will return
+ * -ENOSYS if users try to call a syscall that doesn&apos;t exist.  To keep
+ * failures of syscalls that really do exist distinguishable from
+ * failures due to attempts to use a nonexistent syscall, syscall
+ * implementations should refrain from returning -ENOSYS.
+ */</doc>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9077' ll='9082'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9077'/>
+<size>24</size>
+<mbr r='VkPhysicalDevicePerformanceQueryFeaturesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDevicePerformanceQueryFeaturesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDevicePerformanceQueryFeaturesKHR::performanceCounterQueryPools' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDevicePerformanceQueryFeaturesKHR::performanceCounterMultipleQueryPools' o='160' t='VkBool32'/>

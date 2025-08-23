@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/basic_string.h' l='221' ll='226' type='void std::basic_string::_M_set_length(std::basic_string::size_type __n)'/>
+<use f='include/c++/11/bits/basic_string.h' l='442' u='c' c='_ZNSt7__cxx1112basic_stringC1Ev'/>
+<use f='include/c++/11/bits/basic_string.h' l='450' u='c' c='_ZNSt7__cxx1112basic_stringC1ERKT1_'/>
+<use f='include/c++/11/bits/basic_string.h' l='727' u='c' c='_ZNSt7__cxx1112basic_stringaSEONS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.h' l='741' u='c' c='_ZNSt7__cxx1112basic_stringaSEONS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.h' l='1016' u='c' c='_ZNSt7__cxx1112basic_string5clearEv'/>
+<use f='include/c++/11/bits/basic_string.h' l='1370' u='c' c='_ZNSt7__cxx1112basic_string6assignERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.h' l='1381' u='c' c='_ZNSt7__cxx1112basic_string6assignERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='92' u='c' c='_ZNSt7__cxx1112basic_string4swapERNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='200' u='c' c='_ZNSt7__cxx1112basic_string12_M_constructETL0__S1_St18input_iterator_tag'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='232' u='c' c='_ZNSt7__cxx1112basic_string12_M_constructETL0__S1_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='249' u='c' c='_ZNSt7__cxx1112basic_string12_M_constructEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeES7_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='274' u='c' c='_ZNSt7__cxx1112basic_string9_M_assignERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='332' u='c' c='_ZNSt7__cxx1112basic_string8_M_eraseEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_'/>

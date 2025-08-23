@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='490' type='int WebPPictureARGBToYUVADithered(WebPPicture * picture, WebPEncCSP colorspace, float dithering)'/>

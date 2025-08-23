@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1353' ll='1361' type='void std::deque::_M_range_check(std::deque::size_type __n) const'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1378' u='c' c='_ZNSt5deque2atEm'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1396' u='c' c='_ZNKSt5deque2atEm'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1352'>/// Safety check used only from at().</doc>

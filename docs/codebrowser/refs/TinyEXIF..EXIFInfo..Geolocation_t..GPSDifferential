@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='287' type='uint16_t'/>
+<offset>896</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='287'>// Differential correction applied to the GPS receiver (may not exist)</doc>

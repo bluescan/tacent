@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='3592' ll='3594' type='double std::bernoulli_distribution::p() const'/>
+<use f='include/c++/11/bits/random.tcc' l='1032' u='c' c='_ZStlsRSt13basic_ostreamIT_T0_ERKSt22bernoulli_distribution'/>
+<doc f='include/c++/11/bits/random.h' l='3589'>/**
+     * @brief Returns the @p p parameter of the distribution.
+     */</doc>

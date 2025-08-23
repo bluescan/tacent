@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_base.h' l='1303' ll='1306' type='std::__atomic_float::value_type std::__atomic_float::fetch_sub(std::__atomic_float::value_type __i, std::memory_order __m = memory_order_seq_cst)'/>

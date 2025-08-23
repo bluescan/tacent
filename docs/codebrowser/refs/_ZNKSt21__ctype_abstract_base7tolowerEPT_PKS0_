@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/locale_facets.h' l='278' ll='280' type='const std::__ctype_abstract_base::char_type * std::__ctype_abstract_base::tolower(std::__ctype_abstract_base::char_type * __lo, const std::__ctype_abstract_base::char_type * __hi) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='267'>/**
+       *  @brief  Convert array to lowercase.
+       *
+       *  This function converts each char_type in the range [__lo,__hi) to
+       *  lowercase if possible.  Other elements remain untouched.  It does so
+       *  by returning ctype&lt;char_type&gt;:: do_tolower(__lo, __hi).
+       *
+       *  @param __lo  Pointer to start of range.
+       *  @param __hi  Pointer to end of range.
+       *  @return  @a __hi.
+      */</doc>

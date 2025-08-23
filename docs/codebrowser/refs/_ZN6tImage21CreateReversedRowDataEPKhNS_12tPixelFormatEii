@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Inc/Image/tPixelUtil.h' l='83' type='uint8 * tImage::CreateReversedRowData(const uint8 * pixelData, tImage::tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH)'/>
+<doc f='Modules/Image/Inc/Image/tPixelUtil.h' l='82'>// This also works for packed formats which are considered to have a block width and height of 1.</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='199' u='c' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1357' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1520' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='940' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1102' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='285' u='c' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1093' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1212' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<def f='Modules/Image/Src/tPixelUtil.cpp' l='1308' ll='1317' type='uint8 * tImage::CreateReversedRowData(const uint8 * pixelData, tImage::tPixelFormat pixelDataFormat, int numBlocksW, int numBlocksH)'/>

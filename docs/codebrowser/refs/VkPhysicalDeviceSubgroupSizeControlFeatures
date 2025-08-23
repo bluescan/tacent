@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7170' ll='7175'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7170'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceSubgroupSizeControlFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceSubgroupSizeControlFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceSubgroupSizeControlFeatures::subgroupSizeControl' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceSubgroupSizeControlFeatures::computeFullSubgroups' o='160' t='VkBool32'/>

@@ -1,0 +1,12 @@
+<use f='include/c++/11/bits/random.h' l='6073' u='w' c='_ZNSt8seed_seqC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='6089' u='m' c='_ZNKSt8seed_seq4sizeEv'/>
+<use f='include/c++/11/bits/random.h' l='6094' u='m' c='_ZNKSt8seed_seq5paramET_'/>
+<use f='include/c++/11/bits/random.h' l='6094' u='m' c='_ZNKSt8seed_seq5paramET_'/>
+<dec f='include/c++/11/bits/random.h' l='6101' type='std::vector&lt;result_type&gt;'/>
+<use f='include/c++/11/bits/random.tcc' l='3237' u='m' c='_ZNSt8seed_seqC1ESt16initializer_listIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='3239' u='c' c='_ZNSt8seed_seqC1ESt16initializer_listIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='3247' u='m' c='_ZNSt8seed_seqC1ET_S0_'/>
+<use f='include/c++/11/bits/random.tcc' l='3250' u='c' c='_ZNSt8seed_seqC1ET_S0_'/>
+<use f='include/c++/11/bits/random.tcc' l='3268' u='m' c='_ZNSt8seed_seq8generateET_S0_'/>
+<use f='include/c++/11/bits/random.tcc' l='3308' u='m' c='_ZNSt8seed_seq8generateET_S0_'/>
+<offset>0</offset>

@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/unordered_map.h' l='779' ll='781' type='std::unordered_map::iterator std::unordered_map::erase(std::unordered_map::const_iterator __first, std::unordered_map::const_iterator __last)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='765'>/**
+       *  @brief Erases a [__first,__last) range of elements from an
+       *  %unordered_map.
+       *  @param  __first  Iterator pointing to the start of the range to be
+       *                  erased.
+       *  @param __last  Iterator pointing to the end of the range to
+       *                be erased.
+       *  @return The iterator @a __last.
+       *
+       *  This function erases a sequence of elements from an %unordered_map.
+       *  Note that this function only erases the elements, and that if
+       *  the element is itself a pointer, the pointed-to memory is not touched
+       *  in any way.  Managing the pointer is the user&apos;s responsibility.
+       */</doc>

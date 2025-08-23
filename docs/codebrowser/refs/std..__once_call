@@ -1,0 +1,3 @@
+<dec f='include/c++/11/mutex' l='700' type='void (*)()'/>
+<use f='include/c++/11/mutex' l='712' u='w' c='_ZNSt9once_flag18_Prepare_executionC1ERT_'/>
+<use f='include/c++/11/mutex' l='719' u='w' c='_ZNSt9once_flag18_Prepare_executionD1Ev'/>

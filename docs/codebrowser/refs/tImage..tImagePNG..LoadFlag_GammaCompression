@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tImagePNG.h' l='34' type='1'/>
+<doc f='Modules/Image/Inc/Image/tImagePNG.h' l='31'>// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2. Assumes (colour) data is linear and puts
+		// it in gamma-space (brighter) for diaplay on a monitor. Png files at 16 bpc are in linear space. Png files at
+		// 8 bpc abd sRGB.</doc>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='304' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='383' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='414' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>

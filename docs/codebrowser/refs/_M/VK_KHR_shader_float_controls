@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9570'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9569'>// VK_KHR_shader_float_controls is a preprocessor guard. Do not pass it to API calls.</doc>

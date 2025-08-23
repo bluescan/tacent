@@ -1,0 +1,11 @@
+<def f='include/math.h' l='1366' ll='1372'/>
+<use f='include/math.h' l='1366'/>
+<def f='include/math.h' l='1374' ll='1380'/>
+<use f='include/math.h' l='1374'/>
+<def f='include/math.h' l='1382' ll='1392'/>
+<use f='include/math.h' l='1382'/>
+<use f='include/math.h' l='1415' c='_Z7iseqsigT_T0_'/>
+<size>1</size>
+<fun r='__iseqsig_type{float}::__call'/>
+<fun r='__iseqsig_type{double}::__call'/>
+<fun r='__iseqsig_type{longdouble}::__call'/>

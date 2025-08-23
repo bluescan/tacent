@@ -1,0 +1,21 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='33' u='w' c='_ZN5tMath5tEdgeC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='33' u='r' c='_ZN5tMath5tEdgeC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='34' u='r' c='_ZNK5tMath5tEdgeeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='34' u='r' c='_ZNK5tMath5tEdgeeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='34' u='r' c='_ZNK5tMath5tEdgeeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='34' u='r' c='_ZNK5tMath5tEdgeeqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='35' u='r' c='_ZNK5tMath5tEdgeneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='35' u='r' c='_ZNK5tMath5tEdgeneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='35' u='r' c='_ZNK5tMath5tEdgeneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='35' u='r' c='_ZNK5tMath5tEdgeneERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='36' u='w' c='_ZN5tMath5tEdgeaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='36' u='r' c='_ZN5tMath5tEdgeaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='36' u='w' c='_ZN5tMath5tEdgeaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='36' u='r' c='_ZN5tMath5tEdgeaSERKS0_'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='37' type='int[2]'/>
+<offset>0</offset>
+<use f='Modules/Scene/Src/tWorld.cpp' l='396' u='w' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='397' u='w' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='423' u='a' c='_ZN12tChunkWriter5WriteERKN5tMath5tEdgeE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='610' u='w' c='_ZN12tChunkWriter5WriteEPKN5tMath5tEdgeEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='610' u='r' c='_ZN12tChunkWriter5WriteEPKN5tMath5tEdgeEi'/>

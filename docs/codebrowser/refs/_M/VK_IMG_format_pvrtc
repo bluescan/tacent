@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11732'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11731'>// VK_IMG_format_pvrtc is a preprocessor guard. Do not pass it to API calls.</doc>

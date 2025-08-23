@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/functexcept.h' l='101' type='void std::__throw_ios_failure(const char * , int )'/>
+<use f='include/c++/11/bits/fstream.tcc' l='474' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='720' u='c' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>

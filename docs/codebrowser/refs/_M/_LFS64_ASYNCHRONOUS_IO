@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='117'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='116'>/* The LFS support in asynchronous I/O is also available.  */</doc>

@@ -1,0 +1,1 @@
+<dec f='include/c++/11/bits/random.h' l='845' type='std::basic_istream&lt;_CharT, _Traits&gt; &amp; std::operator&gt;&gt;(std::basic_istream&lt;_CharT, _Traits&gt; &amp; __is, std::subtract_with_carry_engine&lt;_UIntType1, __w1, __s1, __r1&gt; &amp; __x)'/>

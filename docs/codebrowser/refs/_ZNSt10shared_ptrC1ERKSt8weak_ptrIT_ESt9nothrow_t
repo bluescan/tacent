@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/shared_ptr.h' l='417' ll='418' type='void std::shared_ptr::shared_ptr&lt;_Tp&gt;(const weak_ptr&lt;_Tp&gt; &amp; __r, std::nothrow_t )'/>
+<doc f='include/c++/11/bits/shared_ptr.h' l='416'>// This constructor is non-standard, it is used by weak_ptr::lock().</doc>

@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tBitField.h' l='168' type='tBitField&lt;NumBits&gt; operator&amp;(const tBitField&lt;NumBits&gt; &amp; a, const tBitField&lt;NumBits&gt; &amp; b)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tBitField.h' l='166'>// These commutative binary operators belong _outside_ of the tBitField class for good OO reasons. i.e. They are global
+// operators that act on bit-fields. They belong outside in the same way that operator+ does for regular integral types.</doc>

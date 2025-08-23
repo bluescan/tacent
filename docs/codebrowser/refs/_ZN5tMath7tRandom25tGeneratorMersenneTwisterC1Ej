@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tRandom.h' l='49' type='void tMath::tRandom::tGeneratorMersenneTwister::tGeneratorMersenneTwister(uint32 seed)'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='861' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>

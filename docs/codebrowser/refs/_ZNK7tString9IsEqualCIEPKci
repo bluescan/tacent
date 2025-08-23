@@ -1,0 +1,2 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='161' u='c' c='_ZNK7tString9IsEqualCIEPKc'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='163' type='bool tString::IsEqualCI(const char * str, int strLen) const'/>

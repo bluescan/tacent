@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='544' type='16977920'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='544'>// Stuff like semitransparency, texture data format, shinnyness, etc.</doc>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='84' u='r' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='172' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>

@@ -1,0 +1,6 @@
+<dec f='include/stdio.h' l='467' type='int vscanf(const char *__restrict __format, __va_list_tag * __arg)'/>
+<dec f='include/stdio.h' l='484' type='int vscanf(const char *__restrict __format, __va_list_tag * __arg)'/>
+<doc f='include/stdio.h' l='463'>/* Read formatted input from stdin into argument list ARG.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

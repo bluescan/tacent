@@ -1,0 +1,7 @@
+_ZNSt14_Function_baseD1Ev|std::_Function_base::~_Function_base
+_ZNSt10_Hashtable12_Scoped_nodeD1Ev|std::_Hashtable::_Scoped_node::~_Scoped_node
+_ZNSt19_Node_handle_common15_Optional_allocD1Ev|std::_Node_handle_common::_Optional_alloc::~_Optional_alloc
+_ZNSt6vector16_Temporary_valueD1Ev|std::vector::_Temporary_value::~_Temporary_value
+_ZNSt9once_flag18_Prepare_executionD1Ev|std::once_flag::_Prepare_execution::~_Prepare_execution
+_ZNSt10stop_token15_Stop_state_refD1Ev|std::stop_token::_Stop_state_ref::~_Stop_state_ref
+_ZNSt10filesystem7__cxx114path5_ListD1Ev|std::filesystem::path::_List::~_List

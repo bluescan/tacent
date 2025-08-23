@@ -1,0 +1,3 @@
+<dec f='include/c++/11/chrono' l='1520' type='std::chrono::month_weekday std::chrono::operator/(const std::chrono::weekday_indexed &amp; __wdi, const std::chrono::month &amp; __m)'/>
+<dec f='include/c++/11/chrono' l='1874' type='std::chrono::month_weekday std::chrono::operator/(const std::chrono::weekday_indexed &amp; __wdi, const std::chrono::month &amp; __m)'/>
+<def f='include/c++/11/chrono' l='2096' ll='2099' type='std::chrono::month_weekday std::chrono::operator/(const chrono::weekday_indexed &amp; __wdi, const chrono::month &amp; __m)'/>

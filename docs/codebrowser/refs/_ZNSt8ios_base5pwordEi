@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/ios_base.h' l='859' ll='865' type='void *&amp; std::ios_base::pword(int __ix)'/>
+<doc f='include/c++/11/bits/ios_base.h' l='846'>/**
+     *  @brief  Access to void pointer array.
+     *  @param  __ix  Index into the array.
+     *  @return  A reference to a void* associated with the index.
+     *
+     *  The pword function provides access to an array of pointers that can be
+     *  used for any purpose.  The array grows as required to hold the
+     *  supplied index.  All pointers in the array are initialized to 0.
+     *
+     *  The implementation reserves several indices.  You should use xalloc to
+     *  obtain an index that is safe to use.  Also note that since the array
+     *  can grow dynamically, it is not safe to hold onto the reference.
+    */</doc>

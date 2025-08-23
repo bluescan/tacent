@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/basic_string.h' l='132' ll='134' type='static std::basic_string::__sv_type std::basic_string::_S_to_string_view(std::basic_string::__sv_type __svt)'/>
+<use f='include/c++/11/bits/basic_string.h' l='655' u='c' c='_ZNSt7__cxx1112basic_stringC1ERKTL0__N9__gnu_cxx14__alloc_traitsINS5_IT1_NS6_10value_typeEE6rebindIT_E5otherENSB_5other10value_typeEE9size_typeESF_RKS6_'/>
+<use f='include/c++/11/bits/basic_string.h' l='665' u='c' c='_ZNSt7__cxx1112basic_stringC1ERKTL0__RKT1_'/>
+<doc f='include/c++/11/bits/basic_string.h' l='131'>// Allows an implicit conversion to __sv_type.</doc>

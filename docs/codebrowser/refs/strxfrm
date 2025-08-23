@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='166' type='size_t strxfrm(char *__restrict __dest, const char *__restrict __src, size_t __n)'/>
+<doc f='include/string.h' l='165'>/* Put a transformation of SRC into no more than N bytes of DEST.  */</doc>

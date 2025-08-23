@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelUtil.h' l='75' type='bool tImage::DoBC1BlocksHaveBinaryAlpha(tImage::BC1Block * blocks, int numBlocks)'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1347' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='930' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tPixelUtil.cpp' l='1263' ll='1293' type='bool tImage::DoBC1BlocksHaveBinaryAlpha(tImage::BC1Block * block, int numBlocks)'/>

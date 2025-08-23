@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='504' type='bool tSystem::tFileTypes::Contains(tSystem::tFileType ) const'/>
+<use f='Modules/System/Inc/System/tFile.h' l='949' u='c' c='_ZN7tSystem10tFileTypes3AddENS_9tFileTypeE'/>
+<def f='Modules/System/Inc/System/tFile.h' l='1009' ll='1016' type='bool tSystem::tFileTypes::Contains(tSystem::tFileType fileType) const'/>

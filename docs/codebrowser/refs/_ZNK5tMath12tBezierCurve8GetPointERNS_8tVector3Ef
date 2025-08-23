@@ -1,0 +1,5 @@
+<def f='Modules/Math/Src/tSpline.cpp' l='121' ll='133' type='void tMath::tBezierCurve::GetPoint(tMath::tVector3 &amp; point, float t) const'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='169' u='c' c='_ZNK5tMath12tBezierCurve18GetClosestParamRecERKNS_8tVector3Ejfff'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='173' u='c' c='_ZNK5tMath12tBezierCurve18GetClosestParamRecERKNS_8tVector3Ejfff'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='426' u='c' c='_ZNK5tMath11tBezierPath8GetPointERNS_8tVector3Ef'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='529' u='c' c='_ZNK5tMath11tBezierPath15GetClosestParamERKNS_8tVector3EjfRKNS0_17tFastSectionStateE'/>

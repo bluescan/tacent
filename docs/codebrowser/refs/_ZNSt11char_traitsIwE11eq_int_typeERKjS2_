@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/char_traits.h' l='584' ll='586' type='static bool std::char_traits&lt;wchar_t&gt;::eq_int_type(const std::char_traits&lt;wchar_t&gt;::int_type &amp; __c1, const std::char_traits&lt;wchar_t&gt;::int_type &amp; __c2)'/>
+<use f='include/c++/11/bits/char_traits.h' l='594' u='c' c='_ZNSt11char_traitsIwE7not_eofERKj'/>

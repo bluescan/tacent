@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='152' type='34'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='616' c='_ZN6tImage12tIsHDRFormatENS_12tPixelFormatE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='152'>// 32  bit. Poor-man&apos;s HDR. RGB plus shared 8-bit multiplier. Must supply MaxRange when decoding.</doc>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='454' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='599' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>

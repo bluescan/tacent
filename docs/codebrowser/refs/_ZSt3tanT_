@@ -1,0 +1,1 @@
+<def f='include/c++/11/cmath' l='491' ll='495' type='typename __gnu_cxx::__enable_if&lt;__is_integer&lt;_Tp&gt;::__value, double&gt;::__type std::tan(_Tp __x)'/>

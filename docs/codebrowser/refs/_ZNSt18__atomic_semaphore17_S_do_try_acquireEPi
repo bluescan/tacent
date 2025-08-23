@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/semaphore_base.h' l='200' ll='211' type='static bool std::__atomic_semaphore::_S_do_try_acquire(__detail::__platform_wait_t * __counter)'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='217' u='c' c='_ZNSt18__atomic_semaphore10_M_acquireEv'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='225' u='c' c='_ZNSt18__atomic_semaphore14_M_try_acquireEv'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='235' u='c' c='_ZNSt18__atomic_semaphore20_M_try_acquire_untilERKNSt6chrono10time_pointIT_T0_EE'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='246' u='c' c='_ZNSt18__atomic_semaphore18_M_try_acquire_forERKNSt6chrono8durationIT_T0_EE'/>

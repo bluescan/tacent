@@ -1,0 +1,5 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='86' c='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<def f='Modules/Image/Inc/Image/tImageASTC.h' l='93' type='bool tImage::tImageASTC::IsValid() const'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='208' u='c' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='275' u='c' c='_ZN6tImage10tImageASTC8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='301' u='c' c='_ZNK6tImage10tImageASTC8IsOpaqueEv'/>

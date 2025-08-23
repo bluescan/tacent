@@ -1,0 +1,9 @@
+<dec f='include/c++/11/stop_token' l='136' type='std::stop_token::_Stop_cb *'/>
+<use f='include/c++/11/stop_token' l='242' u='w' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<use f='include/c++/11/stop_token' l='301' u='w' c='_ZNSt10stop_token13_Stop_state_t20_M_register_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='319' u='w' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='323' u='r' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='325' u='r' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='327' u='w' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<use f='include/c++/11/stop_token' l='327' u='r' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<offset>64</offset>

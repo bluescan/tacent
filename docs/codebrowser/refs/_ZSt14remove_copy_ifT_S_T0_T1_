@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='578' type='_OIter std::remove_copy_if(_IIter , _IIter , _OIter , _Predicate )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='651' ll='666' macro='1' type='_OutputIterator std::remove_copy_if(_InputIterator __first, _InputIterator __last, _OutputIterator __result, _Predicate __pred)'/>

@@ -1,0 +1,9 @@
+<dec f='include/c++/11/functional' l='945'/>
+<use f='include/c++/11/functional' l='956' u='c'/>
+<use f='include/c++/11/functional' l='957' u='c'/>
+<use f='include/c++/11/functional' l='958' u='c'/>
+<use f='include/c++/11/functional' l='959' u='c'/>
+<use f='include/c++/11/functional' l='960' u='w'/>
+<doc f='include/c++/11/functional' l='942'>// Macro to define operator() with given cv-qualifiers ref-qualifiers,
+      // forwarding _M_fn and the function arguments with the same qualifiers,
+      // and deducing the return type and exception-specification.</doc>

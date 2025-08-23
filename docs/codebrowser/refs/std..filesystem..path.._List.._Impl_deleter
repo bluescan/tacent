@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/fs_path.h' l='678' ll='681'/>
+<use f='include/c++/11/bits/fs_path.h' l='682'/>
+<size>1</size>
+<fun r='_ZNKSt10filesystem7__cxx114path5_List13_Impl_deleterclEPNS2_5_ImplE'/>

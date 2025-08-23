@@ -1,0 +1,9 @@
+<use f='include/c++/11/bits/random.h' l='2469' u='w' c='_ZNSt18gamma_distributionC1ET_S0_'/>
+<use f='include/c++/11/bits/random.h' l='2474' u='w' c='_ZNSt18gamma_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2489' u='c' c='_ZNKSt18gamma_distribution5alphaEv'/>
+<use f='include/c++/11/bits/random.h' l='2496' u='c' c='_ZNKSt18gamma_distribution4betaEv'/>
+<use f='include/c++/11/bits/random.h' l='2503' u='r' c='_ZNKSt18gamma_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='2511' u='w' c='_ZNSt18gamma_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2533' c='_ZNSt18gamma_distributionclERTL0__'/>
+<use f='include/c++/11/bits/random.h' l='2545' c='_ZNSt18gamma_distribution10__generateETL0__S0_RTL0_0_'/>
+<dec f='include/c++/11/bits/random.h' l='2610' type='std::gamma_distribution::param_type'/>

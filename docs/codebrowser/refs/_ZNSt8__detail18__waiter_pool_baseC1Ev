@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_wait.h' l='207' type='void std::__detail::__waiter_pool_base::__waiter_pool_base()'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='252' u='c' c='_ZNSt8__detail18__waiter_pool_base6_S_forEPKv'/>

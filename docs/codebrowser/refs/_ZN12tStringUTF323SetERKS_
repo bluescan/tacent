@@ -1,0 +1,3 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='514' u='c' c='_ZN12tStringUTF32C1ERKS_'/>
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='530' type='void tStringUTF32::Set(const tStringUTF32 &amp; src)'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='1106' ll='1111' type='void tStringUTF32::Set(const tStringUTF32 &amp; src)'/>

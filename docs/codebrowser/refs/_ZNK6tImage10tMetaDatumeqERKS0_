@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='165' type='bool tImage::tMetaDatum::operator==(const tImage::tMetaDatum &amp; src) const'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='166' u='c' c='_ZNK6tImage10tMetaDatumneERKS0_'/>
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='239' ll='255' type='bool tImage::tMetaDatum::operator==(const tImage::tMetaDatum &amp; src) const'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='164'>// Two invalid datums are always considered equal. If both are valid, only then are values compared.</doc>

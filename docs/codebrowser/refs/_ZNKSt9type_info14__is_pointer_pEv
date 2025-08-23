@@ -1,0 +1,2 @@
+<dec f='include/c++/11/typeinfo' l='155' type='bool std::type_info::__is_pointer_p() const'/>
+<doc f='include/c++/11/typeinfo' l='154'>// Return true if this is a pointer type of some kind</doc>

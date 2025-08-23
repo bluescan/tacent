@@ -1,0 +1,5 @@
+<dec f='include/ctype.h' l='50' type='1024'/>
+<doc f='include/ctype.h' l='50'>/* Alphabetic.  */</doc>
+<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_base.h' l='51'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_base.h' l='56' u='r'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_base.h' l='59' u='r'/>

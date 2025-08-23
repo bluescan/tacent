@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12788' ll='12794'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12788'/>
+<size>40</size>
+<mbr r='VkImageDrmFormatModifierExplicitCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageDrmFormatModifierExplicitCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkImageDrmFormatModifierExplicitCreateInfoEXT::drmFormatModifier' o='128' t='uint64_t'/>
+<mbr r='VkImageDrmFormatModifierExplicitCreateInfoEXT::drmFormatModifierPlaneCount' o='192' t='uint32_t'/>
+<mbr r='VkImageDrmFormatModifierExplicitCreateInfoEXT::pPlaneLayouts' o='256' t='const VkSubresourceLayout *'/>

@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7228' ll='7239'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7228'/>
+<size>72</size>
+<mbr r='VkRenderingAttachmentInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderingAttachmentInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderingAttachmentInfo::imageView' o='128' t='VkImageView'/>
+<mbr r='VkRenderingAttachmentInfo::imageLayout' o='192' t='VkImageLayout'/>
+<mbr r='VkRenderingAttachmentInfo::resolveMode' o='224' t='VkResolveModeFlagBits'/>
+<mbr r='VkRenderingAttachmentInfo::resolveImageView' o='256' t='VkImageView'/>
+<mbr r='VkRenderingAttachmentInfo::resolveImageLayout' o='320' t='VkImageLayout'/>
+<mbr r='VkRenderingAttachmentInfo::loadOp' o='352' t='VkAttachmentLoadOp'/>
+<mbr r='VkRenderingAttachmentInfo::storeOp' o='384' t='VkAttachmentStoreOp'/>
+<mbr r='VkRenderingAttachmentInfo::clearValue' o='416' t='VkClearValue'/>

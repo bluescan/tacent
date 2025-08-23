@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5379' ll='5385'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5379'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceMultiviewFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMultiviewFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMultiviewFeatures::multiview' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMultiviewFeatures::multiviewGeometryShader' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceMultiviewFeatures::multiviewTessellationShader' o='192' t='VkBool32'/>

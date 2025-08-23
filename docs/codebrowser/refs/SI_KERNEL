@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/siginfo-consts.h' l='53' type='128'/>
+<doc f='include/x86_64-linux-gnu/bits/siginfo-consts.h' l='53'>/* Send by kernel.  */</doc>

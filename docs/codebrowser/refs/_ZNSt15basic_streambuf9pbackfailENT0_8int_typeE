@@ -1,0 +1,10 @@
+<def f='include/c++/11/streambuf' l='728' ll='730' type='std::basic_streambuf::int_type std::basic_streambuf::pbackfail(std::basic_streambuf::int_type __c = traits_type::eof())'/>
+<doc f='include/c++/11/streambuf' l='719'>/**
+       *  @brief  Tries to back up the input sequence.
+       *  @param  __c  The character to be inserted back into the sequence.
+       *  @return  eof() on failure, &lt;em&gt;some other value&lt;/em&gt; on success
+       *  @post  The constraints of @c gptr(), @c eback(), and @c pptr()
+       *         are the same as for @c underflow().
+       *
+       *  @note  Base class version does nothing, returns eof().
+      */</doc>

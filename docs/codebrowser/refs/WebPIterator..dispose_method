@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='149' type='WebPMuxAnimDispose'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='108' u='r' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<offset>224</offset>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='149'>// dispose method for the frame.</doc>

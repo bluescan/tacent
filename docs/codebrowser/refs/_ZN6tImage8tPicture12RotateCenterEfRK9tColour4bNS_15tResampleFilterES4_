@@ -1,0 +1,11 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='200' type='void tImage::tPicture::RotateCenter(float angle, const tPixel4b &amp; fill = tPixel4b::transparent, tImage::tResampleFilter upFilter = tResampleFilter::None, tImage::tResampleFilter downFilter = tResampleFilter::None)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='191'>// Rotates image about center point. The resultant image size is always big enough to hold every source pixel. Call
+	// one or more of the crop functions after if you need to change the canvas size or remove transparent sides. The
+	// rotate algorithm first upscales the image x4, rotates, then downscales. That is what upFilter and downFilter are
+	// for. If you want to rotate pixel-art (nearest neighbour, no up/dowuse upFilter = none.
+	//
+	// UpFilter		DownFilter		Description
+	// None			NA				No up/down scaling. Preserves colours. Nearest Neighbour. Fast. Good for pixel art.
+	// Valid		Valid			Up/down scaling. Smooth. Good results with up=bilinear, down=box.
+	// Valid		None			Up/down scaling. Use alternate (sharper) downscaling scheme (pad + 2 X ScaleHalf).</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='152' ll='172' type='void tImage::tPicture::RotateCenter(float angle, const tPixel4b &amp; fill = tPixel4b::transparent, tImage::tResampleFilter upFilter = tResampleFilter::None, tImage::tResampleFilter downFilter = tResampleFilter::None)'/>

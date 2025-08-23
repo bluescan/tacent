@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5230' ll='5236'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5230'/>
+<size>288</size>
+<mbr r='VkPhysicalDeviceGroupProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceGroupProperties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceGroupProperties::physicalDeviceCount' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceGroupProperties::physicalDevices' o='192' t='VkPhysicalDevice[32]'/>
+<mbr r='VkPhysicalDeviceGroupProperties::subsetAllocation' o='2240' t='VkBool32'/>

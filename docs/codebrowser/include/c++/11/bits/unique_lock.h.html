@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>unique_lock.h source code [include/c++/11/bits/unique_lock.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::unique_lock "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/unique_lock.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='unique_lock.h.html'>unique_lock.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// std::unique_lock implementation -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2008-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/unique_lock.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{mutex}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_UNIQUE_LOCK_H">_GLIBCXX_UNIQUE_LOCK_H</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_UNIQUE_LOCK_H" data-ref="_M/_GLIBCXX_UNIQUE_LOCK_H">_GLIBCXX_UNIQUE_LOCK_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#<span data-ppcond="35">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt; 201103L</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u># include &lt;bits/c++0x_warning.h&gt;</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#<span data-ppcond="35">else</span></u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#include &lt;chrono&gt;</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;bits/move.h&gt; // for std::swap</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#include &lt;bits/std_mutex.h&gt; // for std::defer_lock_t</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="44">44</th><td>{&nbsp</td></tr>
+<tr><th id="45">45</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="46">46</th><td>&nbsp</td></tr>
+<tr><th id="47">47</th><td>  <i class="doc">/** <span class="command">@brief</span> A movable scoped lock type.</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i class="doc">   * A unique_lock controls mutex ownership within a scope. Ownership of the</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i class="doc">   * mutex can be delayed until after construction and can be transferred</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i class="doc">   * to another unique_lock by move construction or move assignment. If a</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i class="doc">   * mutex lock is owned when the destructor runs ownership will be released.</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i class="doc">   * <span class="command">@ingroup</span> <span class="verb">mutexes</span></i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td>  <b>template</b>&lt;<b>typename</b> _Mutex&gt;&nbsp</td></tr>
+<tr><th id="57">57</th><td>    <b>class</b> <dfn class="type def" id="std::unique_lock" title='std::unique_lock' data-ref="std::unique_lock">unique_lock</dfn>&nbsp</td></tr>
+<tr><th id="58">58</th><td>    {&nbsp</td></tr>
+<tr><th id="59">59</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="60">60</th><td>      <b>typedef</b> _Mutex <dfn class="typedef" id="std::unique_lock::mutex_type" title='std::unique_lock::mutex_type' data-type='_Mutex' data-ref="std::unique_lock::mutex_type">mutex_type</dfn>;&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td>      <dfn class="decl def fn" id="_ZNSt11unique_lockC1Ev" title='std::unique_lock::unique_lock&lt;_Mutex&gt;' data-ref="_ZNSt11unique_lockC1Ev">unique_lock</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="63">63</th><td>      : <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>(<var>0</var>), <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>(<b>false</b>)&nbsp</td></tr>
+<tr><th id="64">64</th><td>      { }&nbsp</td></tr>
+<tr><th id="65">65</th><td>&nbsp</td></tr>
+<tr><th id="66">66</th><td>      <b>explicit</b> <dfn class="decl def fn" id="_ZNSt11unique_lockC1ERT_" title='std::unique_lock::unique_lock&lt;_Mutex&gt;' data-ref="_ZNSt11unique_lockC1ERT_">unique_lock</dfn>(<a class="typedef" href="#std::unique_lock::mutex_type" title='std::unique_lock::mutex_type' data-type='_Mutex' data-ref="std::unique_lock::mutex_type">mutex_type</a>&amp; <dfn class="local col8 decl" id="2788__m" title='__m' data-type='std::unique_lock::mutex_type &amp;' data-ref="2788__m">__m</dfn>)&nbsp</td></tr>
+<tr><th id="67">67</th><td>      : <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>(<span class="namespace">std::</span>__addressof(<a class="local col8 ref" href="#2788__m" title='__m' data-ref="2788__m">__m</a>)), <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>(<b>false</b>)&nbsp</td></tr>
+<tr><th id="68">68</th><td>      {&nbsp</td></tr>
+<tr><th id="69">69</th><td>	<a class="member fn" href="#_ZNSt11unique_lock4lockEv" title='std::unique_lock::lock' data-ref="_ZNSt11unique_lock4lockEv">lock</a>();&nbsp</td></tr>
+<tr><th id="70">70</th><td>	<a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a> = <b>true</b>;&nbsp</td></tr>
+<tr><th id="71">71</th><td>      }&nbsp</td></tr>
+<tr><th id="72">72</th><td>&nbsp</td></tr>
+<tr><th id="73">73</th><td>      <dfn class="decl def fn" id="_ZNSt11unique_lockC1ERT_St12defer_lock_t" title='std::unique_lock::unique_lock&lt;_Mutex&gt;' data-ref="_ZNSt11unique_lockC1ERT_St12defer_lock_t">unique_lock</dfn>(<a class="typedef" href="#std::unique_lock::mutex_type" title='std::unique_lock::mutex_type' data-type='_Mutex' data-ref="std::unique_lock::mutex_type">mutex_type</a>&amp; <dfn class="local col9 decl" id="2789__m" title='__m' data-type='std::unique_lock::mutex_type &amp;' data-ref="2789__m">__m</dfn>, <a class="type" href="std_mutex.h.html#std::defer_lock_t" title='std::defer_lock_t' data-ref="std::defer_lock_t">defer_lock_t</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="74">74</th><td>      : <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>(<span class="namespace">std::</span>__addressof(<a class="local col9 ref" href="#2789__m" title='__m' data-ref="2789__m">__m</a>)), <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>(<b>false</b>)&nbsp</td></tr>
+<tr><th id="75">75</th><td>      { }&nbsp</td></tr>
+<tr><th id="76">76</th><td>&nbsp</td></tr>
+<tr><th id="77">77</th><td>      <dfn class="decl def fn" id="_ZNSt11unique_lockC1ERT_St13try_to_lock_t" title='std::unique_lock::unique_lock&lt;_Mutex&gt;' data-ref="_ZNSt11unique_lockC1ERT_St13try_to_lock_t">unique_lock</dfn>(<a class="typedef" href="#std::unique_lock::mutex_type" title='std::unique_lock::mutex_type' data-type='_Mutex' data-ref="std::unique_lock::mutex_type">mutex_type</a>&amp; <dfn class="local col0 decl" id="2790__m" title='__m' data-type='std::unique_lock::mutex_type &amp;' data-ref="2790__m">__m</dfn>, <a class="type" href="std_mutex.h.html#std::try_to_lock_t" title='std::try_to_lock_t' data-ref="std::try_to_lock_t">try_to_lock_t</a>)&nbsp</td></tr>
+<tr><th id="78">78</th><td>      : <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>(<span class="namespace">std::</span>__addressof(<a class="local col0 ref" href="#2790__m" title='__m' data-ref="2790__m">__m</a>)), <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>(<a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>-&gt;try_lock())&nbsp</td></tr>
+<tr><th id="79">79</th><td>      { }&nbsp</td></tr>
+<tr><th id="80">80</th><td>&nbsp</td></tr>
+<tr><th id="81">81</th><td>      <dfn class="decl def fn" id="_ZNSt11unique_lockC1ERT_St12adopt_lock_t" title='std::unique_lock::unique_lock&lt;_Mutex&gt;' data-ref="_ZNSt11unique_lockC1ERT_St12adopt_lock_t">unique_lock</dfn>(<a class="typedef" href="#std::unique_lock::mutex_type" title='std::unique_lock::mutex_type' data-type='_Mutex' data-ref="std::unique_lock::mutex_type">mutex_type</a>&amp; <dfn class="local col1 decl" id="2791__m" title='__m' data-type='std::unique_lock::mutex_type &amp;' data-ref="2791__m">__m</dfn>, <a class="type" href="std_mutex.h.html#std::adopt_lock_t" title='std::adopt_lock_t' data-ref="std::adopt_lock_t">adopt_lock_t</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="82">82</th><td>      : <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>(<span class="namespace">std::</span>__addressof(<a class="local col1 ref" href="#2791__m" title='__m' data-ref="2791__m">__m</a>)), <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>(<b>true</b>)&nbsp</td></tr>
+<tr><th id="83">83</th><td>      {&nbsp</td></tr>
+<tr><th id="84">84</th><td>	<i>// XXX calling thread owns mutex</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td>      }&nbsp</td></tr>
+<tr><th id="86">86</th><td>&nbsp</td></tr>
+<tr><th id="87">87</th><td>      <b>template</b>&lt;<b>typename</b> _Clock, <b>typename</b> _Duration&gt;&nbsp</td></tr>
+<tr><th id="88">88</th><td>	<dfn class="decl def fn" id="_ZNSt11unique_lockC1ERT_RKNSt6chrono10time_pointITL0__TL0_0_EE" title='std::unique_lock::unique_lock&lt;_Mutex&gt;' data-ref="_ZNSt11unique_lockC1ERT_RKNSt6chrono10time_pointITL0__TL0_0_EE">unique_lock</dfn>(<a class="typedef" href="#std::unique_lock::mutex_type" title='std::unique_lock::mutex_type' data-type='_Mutex' data-ref="std::unique_lock::mutex_type">mutex_type</a>&amp; <dfn class="local col2 decl" id="2792__m" title='__m' data-type='std::unique_lock::mutex_type &amp;' data-ref="2792__m">__m</dfn>,&nbsp</td></tr>
+<tr><th id="89">89</th><td>		    <em>const</em> <span class="namespace">chrono::</span><a class="type" href="../chrono.html#std::chrono::time_point" title='std::chrono::time_point' data-ref="std::chrono::time_point">time_point</a>&lt;_Clock, _Duration&gt;&amp; <dfn class="local col3 decl" id="2793__atime" title='__atime' data-type='const chrono::time_point&lt;_Clock, _Duration&gt; &amp;' data-ref="2793__atime">__atime</dfn>)&nbsp</td></tr>
+<tr><th id="90">90</th><td>	: <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>(<span class="namespace">std::</span>__addressof(<a class="local col2 ref" href="#2792__m" title='__m' data-ref="2792__m">__m</a>)),&nbsp</td></tr>
+<tr><th id="91">91</th><td>	  <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>(<a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>-&gt;try_lock_until(<a class="local col3 ref" href="#2793__atime" title='__atime' data-ref="2793__atime">__atime</a>))&nbsp</td></tr>
+<tr><th id="92">92</th><td>	{ }&nbsp</td></tr>
+<tr><th id="93">93</th><td>&nbsp</td></tr>
+<tr><th id="94">94</th><td>      <b>template</b>&lt;<b>typename</b> _Rep, <b>typename</b> _Period&gt;&nbsp</td></tr>
+<tr><th id="95">95</th><td>	<dfn class="decl def fn" id="_ZNSt11unique_lockC1ERT_RKNSt6chrono8durationITL0__TL0_0_EE" title='std::unique_lock::unique_lock&lt;_Mutex&gt;' data-ref="_ZNSt11unique_lockC1ERT_RKNSt6chrono8durationITL0__TL0_0_EE">unique_lock</dfn>(<a class="typedef" href="#std::unique_lock::mutex_type" title='std::unique_lock::mutex_type' data-type='_Mutex' data-ref="std::unique_lock::mutex_type">mutex_type</a>&amp; <dfn class="local col4 decl" id="2794__m" title='__m' data-type='std::unique_lock::mutex_type &amp;' data-ref="2794__m">__m</dfn>,&nbsp</td></tr>
+<tr><th id="96">96</th><td>		    <em>const</em> <span class="namespace">chrono::</span><a class="type" href="../chrono.html#std::chrono::duration" title='std::chrono::duration' data-ref="std::chrono::duration">duration</a>&lt;_Rep, _Period&gt;&amp; <dfn class="local col5 decl" id="2795__rtime" title='__rtime' data-type='const chrono::duration&lt;_Rep, _Period&gt; &amp;' data-ref="2795__rtime">__rtime</dfn>)&nbsp</td></tr>
+<tr><th id="97">97</th><td>	: <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>(<span class="namespace">std::</span>__addressof(<a class="local col4 ref" href="#2794__m" title='__m' data-ref="2794__m">__m</a>)),&nbsp</td></tr>
+<tr><th id="98">98</th><td>	  <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>(<a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>-&gt;try_lock_for(<a class="local col5 ref" href="#2795__rtime" title='__rtime' data-ref="2795__rtime">__rtime</a>))&nbsp</td></tr>
+<tr><th id="99">99</th><td>	{ }&nbsp</td></tr>
+<tr><th id="100">100</th><td>&nbsp</td></tr>
+<tr><th id="101">101</th><td>      <dfn class="decl def fn" id="_ZNSt11unique_lockD1Ev" title='std::unique_lock::~unique_lock&lt;_Mutex&gt;' data-ref="_ZNSt11unique_lockD1Ev">~unique_lock</dfn>()&nbsp</td></tr>
+<tr><th id="102">102</th><td>      {&nbsp</td></tr>
+<tr><th id="103">103</th><td>	<b>if</b> (<a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>)&nbsp</td></tr>
+<tr><th id="104">104</th><td>	  <a class="member fn" href="#_ZNSt11unique_lock6unlockEv" title='std::unique_lock::unlock' data-ref="_ZNSt11unique_lock6unlockEv">unlock</a>();&nbsp</td></tr>
+<tr><th id="105">105</th><td>      }&nbsp</td></tr>
+<tr><th id="106">106</th><td>&nbsp</td></tr>
+<tr><th id="107">107</th><td>      <dfn class="decl def fn" id="_ZNSt11unique_lockC1ERKSt11unique_lockIT_E" title='std::unique_lock::unique_lock&lt;_Mutex&gt;' data-ref="_ZNSt11unique_lockC1ERKSt11unique_lockIT_E">unique_lock</dfn>(<em>const</em> unique_lock&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="108">108</th><td>      unique_lock&amp; <dfn class="decl def fn" id="_ZNSt11unique_lockaSERKSt11unique_lockIT_E" title='std::unique_lock::operator=' data-ref="_ZNSt11unique_lockaSERKSt11unique_lockIT_E"><b>operator</b>=</dfn>(<em>const</em> unique_lock&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="109">109</th><td>&nbsp</td></tr>
+<tr><th id="110">110</th><td>      <dfn class="decl def fn" id="_ZNSt11unique_lockC1EOSt11unique_lockIT_E" title='std::unique_lock::unique_lock&lt;_Mutex&gt;' data-ref="_ZNSt11unique_lockC1EOSt11unique_lockIT_E">unique_lock</dfn>(unique_lock&amp;&amp; <dfn class="local col6 decl" id="2796__u" title='__u' data-type='unique_lock&lt;_Mutex&gt; &amp;&amp;' data-ref="2796__u">__u</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="111">111</th><td>      : <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>(<a class="local col6 ref" href="#2796__u" title='__u' data-ref="2796__u">__u</a>._M_device), <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>(<a class="local col6 ref" href="#2796__u" title='__u' data-ref="2796__u">__u</a>._M_owns)&nbsp</td></tr>
+<tr><th id="112">112</th><td>      {&nbsp</td></tr>
+<tr><th id="113">113</th><td>	<a class="local col6 ref" href="#2796__u" title='__u' data-ref="2796__u">__u</a>._M_device = <var>0</var>;&nbsp</td></tr>
+<tr><th id="114">114</th><td>	<a class="local col6 ref" href="#2796__u" title='__u' data-ref="2796__u">__u</a>._M_owns = <b>false</b>;&nbsp</td></tr>
+<tr><th id="115">115</th><td>      }&nbsp</td></tr>
+<tr><th id="116">116</th><td>&nbsp</td></tr>
+<tr><th id="117">117</th><td>      unique_lock&amp; <dfn class="decl def fn" id="_ZNSt11unique_lockaSEOSt11unique_lockIT_E" title='std::unique_lock::operator=' data-ref="_ZNSt11unique_lockaSEOSt11unique_lockIT_E"><b>operator</b>=</dfn>(unique_lock&amp;&amp; <dfn class="local col7 decl" id="2797__u" title='__u' data-type='unique_lock&lt;_Mutex&gt; &amp;&amp;' data-ref="2797__u">__u</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="118">118</th><td>      {&nbsp</td></tr>
+<tr><th id="119">119</th><td>	<b>if</b>(<a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>)&nbsp</td></tr>
+<tr><th id="120">120</th><td>	  <a class="member fn" href="#_ZNSt11unique_lock6unlockEv" title='std::unique_lock::unlock' data-ref="_ZNSt11unique_lock6unlockEv">unlock</a>();&nbsp</td></tr>
+<tr><th id="121">121</th><td>&nbsp</td></tr>
+<tr><th id="122">122</th><td>	unique_lock(<span class="namespace">std::</span>move(<a class="local col7 ref" href="#2797__u" title='__u' data-ref="2797__u">__u</a>)).swap(*<b>this</b>);&nbsp</td></tr>
+<tr><th id="123">123</th><td>&nbsp</td></tr>
+<tr><th id="124">124</th><td>	<a class="local col7 ref" href="#2797__u" title='__u' data-ref="2797__u">__u</a>._M_device = <var>0</var>;&nbsp</td></tr>
+<tr><th id="125">125</th><td>	<a class="local col7 ref" href="#2797__u" title='__u' data-ref="2797__u">__u</a>._M_owns = <b>false</b>;&nbsp</td></tr>
+<tr><th id="126">126</th><td>&nbsp</td></tr>
+<tr><th id="127">127</th><td>	<b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="128">128</th><td>      }&nbsp</td></tr>
+<tr><th id="129">129</th><td>&nbsp</td></tr>
+<tr><th id="130">130</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="131">131</th><td>      <dfn class="decl def fn" id="_ZNSt11unique_lock4lockEv" title='std::unique_lock::lock' data-ref="_ZNSt11unique_lock4lockEv">lock</dfn>()&nbsp</td></tr>
+<tr><th id="132">132</th><td>      {&nbsp</td></tr>
+<tr><th id="133">133</th><td>	<b>if</b> (!<a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>)&nbsp</td></tr>
+<tr><th id="134">134</th><td>	  <a class="ref fn" href="functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<em>int</em>(<a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc" title='std::errc' data-ref="std::errc">errc</a>::<a class="enum" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc::operation_not_permitted" title='std::errc::operation_not_permitted' data-ref="std::errc::operation_not_permitted">operation_not_permitted</a>));&nbsp</td></tr>
+<tr><th id="135">135</th><td>	<b>else</b> <b>if</b> (<a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>)&nbsp</td></tr>
+<tr><th id="136">136</th><td>	  <a class="ref fn" href="functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<em>int</em>(<a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc" title='std::errc' data-ref="std::errc">errc</a>::<a class="enum" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc::resource_deadlock_would_occur" title='std::errc::resource_deadlock_would_occur' data-ref="std::errc::resource_deadlock_would_occur">resource_deadlock_would_occur</a>));&nbsp</td></tr>
+<tr><th id="137">137</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="138">138</th><td>	  {&nbsp</td></tr>
+<tr><th id="139">139</th><td>	    <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>-&gt;lock();&nbsp</td></tr>
+<tr><th id="140">140</th><td>	    <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a> = <b>true</b>;&nbsp</td></tr>
+<tr><th id="141">141</th><td>	  }&nbsp</td></tr>
+<tr><th id="142">142</th><td>      }&nbsp</td></tr>
+<tr><th id="143">143</th><td>&nbsp</td></tr>
+<tr><th id="144">144</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="145">145</th><td>      <dfn class="decl def fn" id="_ZNSt11unique_lock8try_lockEv" title='std::unique_lock::try_lock' data-ref="_ZNSt11unique_lock8try_lockEv">try_lock</dfn>()&nbsp</td></tr>
+<tr><th id="146">146</th><td>      {&nbsp</td></tr>
+<tr><th id="147">147</th><td>	<b>if</b> (!<a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>)&nbsp</td></tr>
+<tr><th id="148">148</th><td>	  <a class="ref fn" href="functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<em>int</em>(<a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc" title='std::errc' data-ref="std::errc">errc</a>::<a class="enum" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc::operation_not_permitted" title='std::errc::operation_not_permitted' data-ref="std::errc::operation_not_permitted">operation_not_permitted</a>));&nbsp</td></tr>
+<tr><th id="149">149</th><td>	<b>else</b> <b>if</b> (<a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>)&nbsp</td></tr>
+<tr><th id="150">150</th><td>	  <a class="ref fn" href="functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<em>int</em>(<a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc" title='std::errc' data-ref="std::errc">errc</a>::<a class="enum" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc::resource_deadlock_would_occur" title='std::errc::resource_deadlock_would_occur' data-ref="std::errc::resource_deadlock_would_occur">resource_deadlock_would_occur</a>));&nbsp</td></tr>
+<tr><th id="151">151</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="152">152</th><td>	  {&nbsp</td></tr>
+<tr><th id="153">153</th><td>	    <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a> = <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>-&gt;try_lock();&nbsp</td></tr>
+<tr><th id="154">154</th><td>	    <b>return</b> <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>;&nbsp</td></tr>
+<tr><th id="155">155</th><td>	  }&nbsp</td></tr>
+<tr><th id="156">156</th><td>      }&nbsp</td></tr>
+<tr><th id="157">157</th><td>&nbsp</td></tr>
+<tr><th id="158">158</th><td>      <b>template</b>&lt;<b>typename</b> _Clock, <b>typename</b> _Duration&gt;&nbsp</td></tr>
+<tr><th id="159">159</th><td>	<em>bool</em>&nbsp</td></tr>
+<tr><th id="160">160</th><td>	<dfn class="decl def fn" id="_ZNSt11unique_lock14try_lock_untilERKNSt6chrono10time_pointITL0__TL0_0_EE" title='std::unique_lock::try_lock_until' data-ref="_ZNSt11unique_lock14try_lock_untilERKNSt6chrono10time_pointITL0__TL0_0_EE">try_lock_until</dfn>(<em>const</em> <span class="namespace">chrono::</span><a class="type" href="../chrono.html#std::chrono::time_point" title='std::chrono::time_point' data-ref="std::chrono::time_point">time_point</a>&lt;_Clock, _Duration&gt;&amp; <dfn class="local col8 decl" id="2798__atime" title='__atime' data-type='const chrono::time_point&lt;_Clock, _Duration&gt; &amp;' data-ref="2798__atime">__atime</dfn>)&nbsp</td></tr>
+<tr><th id="161">161</th><td>	{&nbsp</td></tr>
+<tr><th id="162">162</th><td>	  <b>if</b> (!<a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>)&nbsp</td></tr>
+<tr><th id="163">163</th><td>	    <a class="ref fn" href="functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<em>int</em>(<a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc" title='std::errc' data-ref="std::errc">errc</a>::<a class="enum" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc::operation_not_permitted" title='std::errc::operation_not_permitted' data-ref="std::errc::operation_not_permitted">operation_not_permitted</a>));&nbsp</td></tr>
+<tr><th id="164">164</th><td>	  <b>else</b> <b>if</b> (<a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>)&nbsp</td></tr>
+<tr><th id="165">165</th><td>	    <a class="ref fn" href="functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<em>int</em>(<a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc" title='std::errc' data-ref="std::errc">errc</a>::<a class="enum" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc::resource_deadlock_would_occur" title='std::errc::resource_deadlock_would_occur' data-ref="std::errc::resource_deadlock_would_occur">resource_deadlock_would_occur</a>));&nbsp</td></tr>
+<tr><th id="166">166</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="167">167</th><td>	    {&nbsp</td></tr>
+<tr><th id="168">168</th><td>	      <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a> = <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>-&gt;try_lock_until(<a class="local col8 ref" href="#2798__atime" title='__atime' data-ref="2798__atime">__atime</a>);&nbsp</td></tr>
+<tr><th id="169">169</th><td>	      <b>return</b> <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>;&nbsp</td></tr>
+<tr><th id="170">170</th><td>	    }&nbsp</td></tr>
+<tr><th id="171">171</th><td>	}&nbsp</td></tr>
+<tr><th id="172">172</th><td>&nbsp</td></tr>
+<tr><th id="173">173</th><td>      <b>template</b>&lt;<b>typename</b> _Rep, <b>typename</b> _Period&gt;&nbsp</td></tr>
+<tr><th id="174">174</th><td>	<em>bool</em>&nbsp</td></tr>
+<tr><th id="175">175</th><td>	<dfn class="decl def fn" id="_ZNSt11unique_lock12try_lock_forERKNSt6chrono8durationITL0__TL0_0_EE" title='std::unique_lock::try_lock_for' data-ref="_ZNSt11unique_lock12try_lock_forERKNSt6chrono8durationITL0__TL0_0_EE">try_lock_for</dfn>(<em>const</em> <span class="namespace">chrono::</span><a class="type" href="../chrono.html#std::chrono::duration" title='std::chrono::duration' data-ref="std::chrono::duration">duration</a>&lt;_Rep, _Period&gt;&amp; <dfn class="local col9 decl" id="2799__rtime" title='__rtime' data-type='const chrono::duration&lt;_Rep, _Period&gt; &amp;' data-ref="2799__rtime">__rtime</dfn>)&nbsp</td></tr>
+<tr><th id="176">176</th><td>	{&nbsp</td></tr>
+<tr><th id="177">177</th><td>	  <b>if</b> (!<a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>)&nbsp</td></tr>
+<tr><th id="178">178</th><td>	    <a class="ref fn" href="functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<em>int</em>(<a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc" title='std::errc' data-ref="std::errc">errc</a>::<a class="enum" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc::operation_not_permitted" title='std::errc::operation_not_permitted' data-ref="std::errc::operation_not_permitted">operation_not_permitted</a>));&nbsp</td></tr>
+<tr><th id="179">179</th><td>	  <b>else</b> <b>if</b> (<a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>)&nbsp</td></tr>
+<tr><th id="180">180</th><td>	    <a class="ref fn" href="functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<em>int</em>(<a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc" title='std::errc' data-ref="std::errc">errc</a>::<a class="enum" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc::resource_deadlock_would_occur" title='std::errc::resource_deadlock_would_occur' data-ref="std::errc::resource_deadlock_would_occur">resource_deadlock_would_occur</a>));&nbsp</td></tr>
+<tr><th id="181">181</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="182">182</th><td>	    {&nbsp</td></tr>
+<tr><th id="183">183</th><td>	      <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a> = <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>-&gt;try_lock_for(<a class="local col9 ref" href="#2799__rtime" title='__rtime' data-ref="2799__rtime">__rtime</a>);&nbsp</td></tr>
+<tr><th id="184">184</th><td>	      <b>return</b> <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>;&nbsp</td></tr>
+<tr><th id="185">185</th><td>	    }&nbsp</td></tr>
+<tr><th id="186">186</th><td>	 }&nbsp</td></tr>
+<tr><th id="187">187</th><td>&nbsp</td></tr>
+<tr><th id="188">188</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="189">189</th><td>      <dfn class="decl def fn" id="_ZNSt11unique_lock6unlockEv" title='std::unique_lock::unlock' data-ref="_ZNSt11unique_lock6unlockEv">unlock</dfn>()&nbsp</td></tr>
+<tr><th id="190">190</th><td>      {&nbsp</td></tr>
+<tr><th id="191">191</th><td>	<b>if</b> (!<a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>)&nbsp</td></tr>
+<tr><th id="192">192</th><td>	  <a class="ref fn" href="functexcept.h.html#_ZSt20__throw_system_errori" title='std::__throw_system_error' data-ref="_ZSt20__throw_system_errori">__throw_system_error</a>(<em>int</em>(<a class="type" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc" title='std::errc' data-ref="std::errc">errc</a>::<a class="enum" href="../../../x86_64-linux-gnu/c++/11/bits/error_constants.h.html#std::errc::operation_not_permitted" title='std::errc::operation_not_permitted' data-ref="std::errc::operation_not_permitted">operation_not_permitted</a>));&nbsp</td></tr>
+<tr><th id="193">193</th><td>	<b>else</b> <b>if</b> (<a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>)&nbsp</td></tr>
+<tr><th id="194">194</th><td>	  {&nbsp</td></tr>
+<tr><th id="195">195</th><td>	    <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>-&gt;unlock();&nbsp</td></tr>
+<tr><th id="196">196</th><td>	    <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="197">197</th><td>	  }&nbsp</td></tr>
+<tr><th id="198">198</th><td>      }&nbsp</td></tr>
+<tr><th id="199">199</th><td>&nbsp</td></tr>
+<tr><th id="200">200</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="201">201</th><td>      <dfn class="decl def fn" id="_ZNSt11unique_lock4swapERSt11unique_lockIT_E" title='std::unique_lock::swap' data-ref="_ZNSt11unique_lock4swapERSt11unique_lockIT_E">swap</dfn>(unique_lock&amp; <dfn class="local col0 decl" id="2800__u" title='__u' data-type='unique_lock&lt;_Mutex&gt; &amp;' data-ref="2800__u">__u</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="202">202</th><td>      {&nbsp</td></tr>
+<tr><th id="203">203</th><td>	<span class="namespace">std::</span>swap(<a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>, <a class="local col0 ref" href="#2800__u" title='__u' data-ref="2800__u">__u</a>._M_device);&nbsp</td></tr>
+<tr><th id="204">204</th><td>	<span class="namespace">std::</span>swap(<a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>, <a class="local col0 ref" href="#2800__u" title='__u' data-ref="2800__u">__u</a>._M_owns);&nbsp</td></tr>
+<tr><th id="205">205</th><td>      }&nbsp</td></tr>
+<tr><th id="206">206</th><td>&nbsp</td></tr>
+<tr><th id="207">207</th><td>      <a class="typedef" href="#std::unique_lock::mutex_type" title='std::unique_lock::mutex_type' data-type='_Mutex' data-ref="std::unique_lock::mutex_type">mutex_type</a>*&nbsp</td></tr>
+<tr><th id="208">208</th><td>      <dfn class="decl def fn" id="_ZNSt11unique_lock7releaseEv" title='std::unique_lock::release' data-ref="_ZNSt11unique_lock7releaseEv">release</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="209">209</th><td>      {&nbsp</td></tr>
+<tr><th id="210">210</th><td>	<a class="typedef" href="#std::unique_lock::mutex_type" title='std::unique_lock::mutex_type' data-type='_Mutex' data-ref="std::unique_lock::mutex_type">mutex_type</a>* <dfn class="local col1 decl" id="2801__ret" title='__ret' data-type='std::unique_lock::mutex_type *' data-ref="2801__ret">__ret</dfn> = <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>;&nbsp</td></tr>
+<tr><th id="211">211</th><td>	<a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="212">212</th><td>	<a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="213">213</th><td>	<b>return</b> <a class="local col1 ref" href="#2801__ret" title='__ret' data-ref="2801__ret">__ret</a>;&nbsp</td></tr>
+<tr><th id="214">214</th><td>      }&nbsp</td></tr>
+<tr><th id="215">215</th><td>&nbsp</td></tr>
+<tr><th id="216">216</th><td>      <em>bool</em>&nbsp</td></tr>
+<tr><th id="217">217</th><td>      <dfn class="decl def fn" id="_ZNKSt11unique_lock9owns_lockEv" title='std::unique_lock::owns_lock' data-ref="_ZNKSt11unique_lock9owns_lockEv">owns_lock</dfn>() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="218">218</th><td>      { <b>return</b> <a class="member field" href="#std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</a>; }&nbsp</td></tr>
+<tr><th id="219">219</th><td>&nbsp</td></tr>
+<tr><th id="220">220</th><td>      <b>explicit</b> <dfn class="decl def fn" id="_ZNKSt11unique_lockcvbEv" title='std::unique_lock::operator bool' data-ref="_ZNKSt11unique_lockcvbEv"><b>operator</b> <em>bool</em></dfn>() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="221">221</th><td>      { <b>return</b> <a class="member fn" href="#_ZNKSt11unique_lock9owns_lockEv" title='std::unique_lock::owns_lock' data-ref="_ZNKSt11unique_lock9owns_lockEv">owns_lock</a>(); }&nbsp</td></tr>
+<tr><th id="222">222</th><td>&nbsp</td></tr>
+<tr><th id="223">223</th><td>      <a class="typedef" href="#std::unique_lock::mutex_type" title='std::unique_lock::mutex_type' data-type='_Mutex' data-ref="std::unique_lock::mutex_type">mutex_type</a>*&nbsp</td></tr>
+<tr><th id="224">224</th><td>      <dfn class="decl def fn" id="_ZNKSt11unique_lock5mutexEv" title='std::unique_lock::mutex' data-ref="_ZNKSt11unique_lock5mutexEv">mutex</dfn>() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="225">225</th><td>      { <b>return</b> <a class="member field" href="#std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</a>; }&nbsp</td></tr>
+<tr><th id="226">226</th><td>&nbsp</td></tr>
+<tr><th id="227">227</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="228">228</th><td>      <a class="typedef" href="#std::unique_lock::mutex_type" title='std::unique_lock::mutex_type' data-type='_Mutex' data-ref="std::unique_lock::mutex_type">mutex_type</a>*	<dfn class="decl field" id="std::unique_lock::_M_device" title='std::unique_lock::_M_device' data-ref="std::unique_lock::_M_device">_M_device</dfn>;&nbsp</td></tr>
+<tr><th id="229">229</th><td>      <em>bool</em>		<dfn class="decl field" id="std::unique_lock::_M_owns" title='std::unique_lock::_M_owns' data-ref="std::unique_lock::_M_owns">_M_owns</dfn>;&nbsp</td></tr>
+<tr><th id="230">230</th><td>    };&nbsp</td></tr>
+<tr><th id="231">231</th><td>&nbsp</td></tr>
+<tr><th id="232">232</th><td>  <i class="doc">/// Swap overload for unique_lock objects.</i>&nbsp</td></tr>
+<tr><th id="233">233</th><td><i class="doc">  /// <span class="command">@relates</span> <span class="verb">unique_lock</span></i>&nbsp</td></tr>
+<tr><th id="234">234</th><td>  <b>template</b>&lt;<b>typename</b> _Mutex&gt;&nbsp</td></tr>
+<tr><th id="235">235</th><td>    <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="236">236</th><td>    <dfn class="decl def fn" id="_ZSt4swapRSt11unique_lockIT_ES2_" title='std::swap' data-ref="_ZSt4swapRSt11unique_lockIT_ES2_">swap</dfn>(<a class="type" href="#std::unique_lock" title='std::unique_lock' data-ref="std::unique_lock">unique_lock</a>&lt;_Mutex&gt;&amp; <dfn class="local col2 decl" id="2802__x" title='__x' data-type='unique_lock&lt;_Mutex&gt; &amp;' data-ref="2802__x">__x</dfn>, <a class="type" href="#std::unique_lock" title='std::unique_lock' data-ref="std::unique_lock">unique_lock</a>&lt;_Mutex&gt;&amp; <dfn class="local col3 decl" id="2803__y" title='__y' data-type='unique_lock&lt;_Mutex&gt; &amp;' data-ref="2803__y">__y</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="237">237</th><td>    { <a class="local col2 ref" href="#2802__x" title='__x' data-ref="2802__x">__x</a>.swap(<a class="local col3 ref" href="#2803__y" title='__y' data-ref="2803__y">__y</a>); }&nbsp</td></tr>
+<tr><th id="238">238</th><td>&nbsp</td></tr>
+<tr><th id="239">239</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="240">240</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="241">241</th><td>&nbsp</td></tr>
+<tr><th id="242">242</th><td><u>#<span data-ppcond="35">endif</span> // C++11</u>&nbsp</td></tr>
+<tr><th id="243">243</th><td><u>#<span data-ppcond="30">endif</span> // _GLIBCXX_UNIQUE_LOCK_H</u>&nbsp</td></tr>
+<tr><th id="244">244</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

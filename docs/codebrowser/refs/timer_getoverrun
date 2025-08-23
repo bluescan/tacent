@@ -1,0 +1,2 @@
+<dec f='include/time.h' l='364' type='int timer_getoverrun(timer_t __timerid)'/>
+<doc f='include/time.h' l='363'>/* Get expiration overrun for timer TIMERID.  */</doc>

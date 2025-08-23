@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageASTC.h' l='37' type='4'/>
+<doc f='Modules/Image/Inc/Image/tImageASTC.h' l='37'>// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2. You may override the 2.2 default.</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='147' u='r' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='164' u='r' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>

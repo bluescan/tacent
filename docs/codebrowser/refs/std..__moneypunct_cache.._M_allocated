@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='976' type='bool'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='986' u='w' c='_ZNSt18__moneypunct_cacheC1Em'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1005' u='r' c='_ZNSt18__moneypunct_cacheD1Ev'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='120' u='w' c='_ZNSt18__moneypunct_cache8_M_cacheERKSt6locale'/>

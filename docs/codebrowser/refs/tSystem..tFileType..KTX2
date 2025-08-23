@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='389' type='12'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='389'>// Image. Khronos Texture V2. Similar to a dds file.</doc>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='745' u='r' c='_ZN6tImage9tImageKTX4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='841' u='r' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>

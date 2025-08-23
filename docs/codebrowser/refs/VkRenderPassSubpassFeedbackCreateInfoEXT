@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17717' ll='17721'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17717'/>
+<size>24</size>
+<mbr r='VkRenderPassSubpassFeedbackCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderPassSubpassFeedbackCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderPassSubpassFeedbackCreateInfoEXT::pSubpassFeedback' o='128' t='VkRenderPassSubpassFeedbackInfoEXT *'/>

@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffvers.h' l='10'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffvers.h' l='3'>/*
+ * This define can be used in code that requires
+ * compilation-related definitions specific to a
+ * version or versions of the library.  Runtime
+ * version checking should be done based on the
+ * string returned by TIFFGetVersion.
+ */</doc>

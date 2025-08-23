@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='101' macro='1' type='double __ldexp(double __x, int __exponent)'/>

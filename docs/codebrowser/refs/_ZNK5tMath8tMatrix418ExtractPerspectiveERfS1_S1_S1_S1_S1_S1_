@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='113' ll='118' type='void tMath::tMatrix4::ExtractPerspective(float &amp; fovV, float &amp; fovH, float &amp; aspect, float &amp; nearPlane, float &amp; farPlane, float &amp; offsetX, float &amp; offsetY) const'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='29' u='c' c='_ZN6tScene7tCamera5ScaleEf'/>

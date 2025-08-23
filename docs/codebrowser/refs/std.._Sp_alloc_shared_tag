@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='489' ll='492'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='584'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='643' c='_ZNSt14__shared_countC1ERPTL0__St20_Sp_alloc_shared_tagITL0_0_EDpOTL0_1_'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1341' c='_ZNSt12__shared_ptrC1ESt20_Sp_alloc_shared_tagITL0__EDpOTL0_0_'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1839' c='_ZSt17__allocate_sharedRKT1_DpOT2_'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='408' c='_ZNSt10shared_ptrC1ESt20_Sp_alloc_shared_tagITL0__EDpOTL0_0_'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='862' c='_ZSt15allocate_sharedRKT0_DpOT1_'/>
+<mbr r='std::_Sp_alloc_shared_tag::_M_a' t='const _Alloc &amp;'/>

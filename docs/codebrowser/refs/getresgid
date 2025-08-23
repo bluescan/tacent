@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='760' type='int getresgid(__gid_t * __rgid, __gid_t * __egid, __gid_t * __sgid)'/>
+<doc f='include/unistd.h' l='758'>/* Fetch the real group ID, effective group ID, and saved-set group ID,
+   of the calling process.  */</doc>

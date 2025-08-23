@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1234' type='int pthread_spin_destroy(pthread_spinlock_t * __lock)'/>
+<doc f='include/pthread.h' l='1233'>/* Destroy the spinlock LOCK.  */</doc>

@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='450' type='const char * strerrordesc_np(int __err)'/>
+<doc f='include/string.h' l='449'>/* Return a string describing the meaning of tthe error in ERR.  */</doc>

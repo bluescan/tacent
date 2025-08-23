@@ -1,0 +1,924 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ranges_base.h source code [include/c++/11/bits/ranges_base.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::ranges::__advance_fn,std::ranges::__cust_access::_Begin,std::ranges::__cust_access::_CBegin,std::ranges::__cust_access::_CData,std::ranges::__cust_access::_CEnd,std::ranges::__cust_access::_CRBegin,std::ranges::__cust_access::_CREnd,std::ranges::__cust_access::_Data,std::ranges::__cust_access::_Empty,std::ranges::__cust_access::_End,std::ranges::__cust_access::_RBegin,std::ranges::__cust_access::_REnd,std::ranges::__cust_access::_SSize,std::ranges::__cust_access::_Size,std::ranges::__distance_fn,std::ranges::__next_fn,std::ranges::__prev_fn,std::ranges::dangling,std::ranges::view_base "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/ranges_base.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='ranges_base.h.html'>ranges_base.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Core concepts and definitions for &lt;ranges&gt; -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2019-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/ranges_base.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{ranges}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_RANGES_BASE_H">_GLIBCXX_RANGES_BASE_H</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_RANGES_BASE_H" data-ref="_M/_GLIBCXX_RANGES_BASE_H">_GLIBCXX_RANGES_BASE_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#<span data-ppcond="35">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;bits/iterator_concepts.h&gt;</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#include &lt;ext/numeric_traits.h&gt;</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#include &lt;bits/max_size_type.h&gt;</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#<span data-ppcond="40">ifdef</span> <a class="macro" href="../concepts.html#50" data-ref="_M/__cpp_lib_concepts">__cpp_lib_concepts</a></u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="42">42</th><td>{&nbsp</td></tr>
+<tr><th id="43">43</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="44">44</th><td><b>namespace</b> <span class="namespace">ranges</span>&nbsp</td></tr>
+<tr><th id="45">45</th><td>{&nbsp</td></tr>
+<tr><th id="46">46</th><td>  <b>template</b>&lt;<b>typename</b>&gt;&nbsp</td></tr>
+<tr><th id="47">47</th><td>    <b>inline</b> <b>constexpr</b> <em>bool</em> <dfn class="decl def" id="std::ranges::disable_sized_range" title='std::ranges::disable_sized_range' data-ref="std::ranges::disable_sized_range">disable_sized_range</dfn> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="50">50</th><td>    <b>inline</b> <b>constexpr</b> <em>bool</em> <dfn class="decl def" id="std::ranges::enable_borrowed_range" title='std::ranges::enable_borrowed_range' data-ref="std::ranges::enable_borrowed_range">enable_borrowed_range</dfn> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="51">51</th><td>&nbsp</td></tr>
+<tr><th id="52">52</th><td>  <b>namespace</b> <span class="namespace">__detail</span>&nbsp</td></tr>
+<tr><th id="53">53</th><td>  {&nbsp</td></tr>
+<tr><th id="54">54</th><td>    <b>constexpr</b> <a class="type" href="max_size_type.h.html#std::ranges::__detail::__max_size_type" title='std::ranges::__detail::__max_size_type' data-ref="std::ranges::__detail::__max_size_type">__max_size_type</a>&nbsp</td></tr>
+<tr><th id="55">55</th><td>    <dfn class="decl def fn" id="_ZNSt6ranges8__detail18__to_unsigned_likeENS0_15__max_size_typeE" title='std::ranges::__detail::__to_unsigned_like' data-ref="_ZNSt6ranges8__detail18__to_unsigned_likeENS0_15__max_size_typeE">__to_unsigned_like</dfn>(<a class="type" href="max_size_type.h.html#std::ranges::__detail::__max_size_type" title='std::ranges::__detail::__max_size_type' data-ref="std::ranges::__detail::__max_size_type">__max_size_type</a> <dfn class="local col7 decl" id="1647__t" title='__t' data-type='std::ranges::__detail::__max_size_type' data-ref="1647__t">__t</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="56">56</th><td>    { <b>return</b> <a class="ref fn fake" href="max_size_type.h.html#59" title='std::ranges::__detail::__max_size_type::__max_size_type' data-ref="_ZNSt6ranges8__detail15__max_size_typeC1EOS1_"></a><a class="local col7 ref" href="#1647__t" title='__t' data-ref="1647__t">__t</a>; }&nbsp</td></tr>
+<tr><th id="57">57</th><td>&nbsp</td></tr>
+<tr><th id="58">58</th><td>    <b>constexpr</b> <a class="type" href="max_size_type.h.html#std::ranges::__detail::__max_size_type" title='std::ranges::__detail::__max_size_type' data-ref="std::ranges::__detail::__max_size_type">__max_size_type</a>&nbsp</td></tr>
+<tr><th id="59">59</th><td>    <dfn class="decl def fn" id="_ZNSt6ranges8__detail18__to_unsigned_likeENS0_15__max_diff_typeE" title='std::ranges::__detail::__to_unsigned_like' data-ref="_ZNSt6ranges8__detail18__to_unsigned_likeENS0_15__max_diff_typeE">__to_unsigned_like</dfn>(<a class="type" href="max_size_type.h.html#std::ranges::__detail::__max_diff_type" title='std::ranges::__detail::__max_diff_type' data-ref="std::ranges::__detail::__max_diff_type">__max_diff_type</a> <dfn class="local col8 decl" id="1648__t" title='__t' data-type='std::ranges::__detail::__max_diff_type' data-ref="1648__t">__t</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="60">60</th><td>    { <b>return</b> <a class="type" href="max_size_type.h.html#std::ranges::__detail::__max_size_type" title='std::ranges::__detail::__max_size_type' data-ref="std::ranges::__detail::__max_size_type">__max_size_type</a><a class="ref fn" href="max_size_type.h.html#_ZNSt6ranges8__detail15__max_size_typeC1ERKNS0_15__max_diff_typeE" title='std::ranges::__detail::__max_size_type::__max_size_type' data-ref="_ZNSt6ranges8__detail15__max_size_typeC1ERKNS0_15__max_diff_typeE">(</a><a class="local col8 ref" href="#1648__t" title='__t' data-ref="1648__t">__t</a>); }&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td>    <b>template</b>&lt;integral _Tp&gt;&nbsp</td></tr>
+<tr><th id="63">63</th><td>      <b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="64">64</th><td>      <dfn class="decl def fn" id="_ZNSt6ranges8__detail18__to_unsigned_likeET_" title='std::ranges::__detail::__to_unsigned_like' data-ref="_ZNSt6ranges8__detail18__to_unsigned_likeET_">__to_unsigned_like</dfn>(_Tp <dfn class="local col9 decl" id="1649__t" title='__t' data-type='_Tp' data-ref="1649__t">__t</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="65">65</th><td>      { <b>return</b> <b>static_cast</b>&lt;<a class="type" href="../type_traits.html#std::make_unsigned_t" title='std::make_unsigned_t' data-ref="std::make_unsigned_t">make_unsigned_t</a>&lt;_Tp&gt;&gt;(<a class="local col9 ref" href="#1649__t" title='__t' data-ref="1649__t">__t</a>); }&nbsp</td></tr>
+<tr><th id="66">66</th><td>&nbsp</td></tr>
+<tr><th id="67">67</th><td><u>#<span data-ppcond="67">if</span> defined <span class="macro" data-ref="_M/__STRICT_ANSI__">__STRICT_ANSI__</span> &amp;&amp; defined <span class="macro" data-ref="_M/__SIZEOF_INT128__">__SIZEOF_INT128__</span></u>&nbsp</td></tr>
+<tr><th id="68">68</th><td>    <b>constexpr</b> <em>unsigned</em> <b>__int128</b>&nbsp</td></tr>
+<tr><th id="69">69</th><td>    <dfn class="decl def fn" id="_ZNSt6ranges8__detail18__to_unsigned_likeEn" title='std::ranges::__detail::__to_unsigned_like' data-ref="_ZNSt6ranges8__detail18__to_unsigned_likeEn">__to_unsigned_like</dfn>(<b>__int128</b> <dfn class="local col0 decl" id="1650__t" title='__t' data-type='__int128' data-ref="1650__t">__t</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="70">70</th><td>    { <b>return</b> <a class="local col0 ref" href="#1650__t" title='__t' data-ref="1650__t">__t</a>; }&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td>    <b>constexpr</b> <em>unsigned</em> <b>__int128</b>&nbsp</td></tr>
+<tr><th id="73">73</th><td>    <dfn class="decl def fn" id="_ZNSt6ranges8__detail18__to_unsigned_likeEo" title='std::ranges::__detail::__to_unsigned_like' data-ref="_ZNSt6ranges8__detail18__to_unsigned_likeEo">__to_unsigned_like</dfn>(<em>unsigned</em> <b>__int128</b> <dfn class="local col1 decl" id="1651__t" title='__t' data-type='unsigned __int128' data-ref="1651__t">__t</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="74">74</th><td>    { <b>return</b> <a class="local col1 ref" href="#1651__t" title='__t' data-ref="1651__t">__t</a>; }&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#<span data-ppcond="67">endif</span></u>&nbsp</td></tr>
+<tr><th id="76">76</th><td>&nbsp</td></tr>
+<tr><th id="77">77</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="78">78</th><td>      <b>using</b> <dfn class="typedef" id="std::ranges::__detail::__make_unsigned_like_t" title='std::ranges::__detail::__make_unsigned_like_t' data-type='decltype(__detail::__to_unsigned_like(std::declval&lt;_Tp&gt;()))' data-ref="std::ranges::__detail::__make_unsigned_like_t">__make_unsigned_like_t</dfn>&nbsp</td></tr>
+<tr><th id="79">79</th><td>	= <b>decltype</b>(<span class="namespace">__detail::</span>__to_unsigned_like(<span class="namespace">std::</span>declval&lt;_Tp&gt;()));&nbsp</td></tr>
+<tr><th id="80">80</th><td>&nbsp</td></tr>
+<tr><th id="81">81</th><td>    <i>// Part of the constraints of ranges::borrowed_range</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="83">83</th><td>      <b>concept</b> __maybe_borrowed_range&nbsp</td></tr>
+<tr><th id="84">84</th><td>	= is_lvalue_reference_v&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="85">85</th><td>	  || enable_borrowed_range&lt;<a class="type" href="../type_traits.html#std::remove_cvref_t" title='std::remove_cvref_t' data-ref="std::remove_cvref_t">remove_cvref_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="86">86</th><td>&nbsp</td></tr>
+<tr><th id="87">87</th><td>  } <i>// namespace __detail</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td>&nbsp</td></tr>
+<tr><th id="89">89</th><td>  <b>namespace</b> <span class="namespace">__cust_access</span>&nbsp</td></tr>
+<tr><th id="90">90</th><td>  {&nbsp</td></tr>
+<tr><th id="91">91</th><td>    <b>using</b> <span class="namespace">std::ranges::__detail::</span>__maybe_borrowed_range;&nbsp</td></tr>
+<tr><th id="92">92</th><td>    <b>using</b> <span class="namespace">std::__detail::</span>__range_iter_t;&nbsp</td></tr>
+<tr><th id="93">93</th><td>&nbsp</td></tr>
+<tr><th id="94">94</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</dfn>&nbsp</td></tr>
+<tr><th id="95">95</th><td>    {&nbsp</td></tr>
+<tr><th id="96">96</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="97">97</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="98">98</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="99">99</th><td>	<dfn class="decl def fn" id="_ZNSt6ranges13__cust_access6_Begin11_S_noexceptEv" title='std::ranges::__cust_access::_Begin::_S_noexcept' data-ref="_ZNSt6ranges13__cust_access6_Begin11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="100">100</th><td>	{&nbsp</td></tr>
+<tr><th id="101">101</th><td>	  <b>if</b> <b>constexpr</b> (is_array_v&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;)&nbsp</td></tr>
+<tr><th id="102">102</th><td>	    <b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="103">103</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__member_begin&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="104">104</th><td>	    <b>return</b> <b>noexcept</b>(<a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;().begin()));&nbsp</td></tr>
+<tr><th id="105">105</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="106">106</th><td>	    <b>return</b> <b>noexcept</b>(<a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(begin(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;())));&nbsp</td></tr>
+<tr><th id="107">107</th><td>	}&nbsp</td></tr>
+<tr><th id="108">108</th><td>&nbsp</td></tr>
+<tr><th id="109">109</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="110">110</th><td>      <b>template</b>&lt;__maybe_borrowed_range _Tp&gt;&nbsp</td></tr>
+<tr><th id="111">111</th><td>	<b>requires</b> is_array_v&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt; || __member_begin&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="112">112</th><td>	  || __adl_begin&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="113">113</th><td>	<b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="114">114</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access6_BeginclEOT_" title='std::ranges::__cust_access::_Begin::operator()' data-ref="_ZNKSt6ranges13__cust_access6_BeginclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col2 decl" id="1652__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="1652__t">__t</dfn>) <em>const</em> <b>noexcept</b>(_S_noexcept&lt;_Tp&amp;&gt;())&nbsp</td></tr>
+<tr><th id="115">115</th><td>	{&nbsp</td></tr>
+<tr><th id="116">116</th><td>	  <b>if</b> <b>constexpr</b> (is_array_v&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;)&nbsp</td></tr>
+<tr><th id="117">117</th><td>	    {&nbsp</td></tr>
+<tr><th id="118">118</th><td>	      <b>static_assert</b>(is_lvalue_reference_v&lt;_Tp&gt;);&nbsp</td></tr>
+<tr><th id="119">119</th><td>	      <b>return</b> <a class="local col2 ref" href="#1652__t" title='__t' data-ref="1652__t">__t</a> + <var>0</var>;&nbsp</td></tr>
+<tr><th id="120">120</th><td>	    }&nbsp</td></tr>
+<tr><th id="121">121</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__member_begin&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="122">122</th><td>	    <b>return</b> <a class="local col2 ref" href="#1652__t" title='__t' data-ref="1652__t">__t</a>.begin();&nbsp</td></tr>
+<tr><th id="123">123</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="124">124</th><td>	    <b>return</b> begin(<a class="local col2 ref" href="#1652__t" title='__t' data-ref="1652__t">__t</a>);&nbsp</td></tr>
+<tr><th id="125">125</th><td>	}&nbsp</td></tr>
+<tr><th id="126">126</th><td>    };&nbsp</td></tr>
+<tr><th id="127">127</th><td>&nbsp</td></tr>
+<tr><th id="128">128</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="129">129</th><td>      <b>concept</b> __member_end = <b>requires</b>(_Tp&amp; <dfn class="local col3 decl" id="1653__t" title='__t' data-type='_Tp &amp;' data-ref="1653__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="130">130</th><td>	{&nbsp</td></tr>
+<tr><th id="131">131</th><td>	  { <a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(<a class="local col3 ref" href="#1653__t" title='__t' data-ref="1653__t">__t</a>.end()) } -&gt; sentinel_for&lt;<a class="type" href="iterator_concepts.h.html#std::__detail::__range_iter_t" title='std::__detail::__range_iter_t' data-ref="std::__detail::__range_iter_t">__range_iter_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="132">132</th><td>	};&nbsp</td></tr>
+<tr><th id="133">133</th><td>&nbsp</td></tr>
+<tr><th id="134">134</th><td>    <i>// Poison pills so that unqualified lookup doesn't find std::end.</i>&nbsp</td></tr>
+<tr><th id="135">135</th><td>    <em>void</em> <dfn class="decl def fn" id="_ZNSt6ranges13__cust_access3endERT_" title='std::ranges::__cust_access::end' data-ref="_ZNSt6ranges13__cust_access3endERT_">end</dfn>(<em>auto</em>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="136">136</th><td>    <em>void</em> <dfn class="decl def fn" id="_ZNSt6ranges13__cust_access3endERKT_" title='std::ranges::__cust_access::end' data-ref="_ZNSt6ranges13__cust_access3endERKT_">end</dfn>(<em>const</em> <em>auto</em>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="137">137</th><td>&nbsp</td></tr>
+<tr><th id="138">138</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="139">139</th><td>      <b>concept</b> __adl_end = __class_or_enum&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="140">140</th><td>	&amp;&amp; <b>requires</b>(_Tp&amp; <dfn class="local col4 decl" id="1654__t" title='__t' data-type='_Tp &amp;' data-ref="1654__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="141">141</th><td>	{&nbsp</td></tr>
+<tr><th id="142">142</th><td>	  { <a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(end(<a class="local col4 ref" href="#1654__t" title='__t' data-ref="1654__t">__t</a>)) } -&gt; sentinel_for&lt;<a class="type" href="iterator_concepts.h.html#std::__detail::__range_iter_t" title='std::__detail::__range_iter_t' data-ref="std::__detail::__range_iter_t">__range_iter_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="143">143</th><td>	};&nbsp</td></tr>
+<tr><th id="144">144</th><td>&nbsp</td></tr>
+<tr><th id="145">145</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</dfn>&nbsp</td></tr>
+<tr><th id="146">146</th><td>    {&nbsp</td></tr>
+<tr><th id="147">147</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="148">148</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="149">149</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="150">150</th><td>	<dfn class="decl def fn" id="_ZNSt6ranges13__cust_access4_End11_S_noexceptEv" title='std::ranges::__cust_access::_End::_S_noexcept' data-ref="_ZNSt6ranges13__cust_access4_End11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="151">151</th><td>	{&nbsp</td></tr>
+<tr><th id="152">152</th><td>	  <b>if</b> <b>constexpr</b> (is_bounded_array_v&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;)&nbsp</td></tr>
+<tr><th id="153">153</th><td>	    <b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="154">154</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__member_end&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="155">155</th><td>	    <b>return</b> <b>noexcept</b>(<a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;().end()));&nbsp</td></tr>
+<tr><th id="156">156</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="157">157</th><td>	    <b>return</b> <b>noexcept</b>(<a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(end(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;())));&nbsp</td></tr>
+<tr><th id="158">158</th><td>	}&nbsp</td></tr>
+<tr><th id="159">159</th><td>&nbsp</td></tr>
+<tr><th id="160">160</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="161">161</th><td>      <b>template</b>&lt;__maybe_borrowed_range _Tp&gt;&nbsp</td></tr>
+<tr><th id="162">162</th><td>	<b>requires</b> is_bounded_array_v&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="163">163</th><td>	  || __member_end&lt;_Tp&gt; || __adl_end&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="164">164</th><td>	<b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="165">165</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access4_EndclEOT_" title='std::ranges::__cust_access::_End::operator()' data-ref="_ZNKSt6ranges13__cust_access4_EndclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col5 decl" id="1655__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="1655__t">__t</dfn>) <em>const</em> <b>noexcept</b>(_S_noexcept&lt;_Tp&amp;&gt;())&nbsp</td></tr>
+<tr><th id="166">166</th><td>	{&nbsp</td></tr>
+<tr><th id="167">167</th><td>	  <b>if</b> <b>constexpr</b> (is_bounded_array_v&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;)&nbsp</td></tr>
+<tr><th id="168">168</th><td>	    {&nbsp</td></tr>
+<tr><th id="169">169</th><td>	      <b>static_assert</b>(is_lvalue_reference_v&lt;_Tp&gt;);&nbsp</td></tr>
+<tr><th id="170">170</th><td>	      <b>return</b> <a class="local col5 ref" href="#1655__t" title='__t' data-ref="1655__t">__t</a> + extent_v&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="171">171</th><td>	    }&nbsp</td></tr>
+<tr><th id="172">172</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__member_end&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="173">173</th><td>	    <b>return</b> <a class="local col5 ref" href="#1655__t" title='__t' data-ref="1655__t">__t</a>.end();&nbsp</td></tr>
+<tr><th id="174">174</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="175">175</th><td>	    <b>return</b> end(<a class="local col5 ref" href="#1655__t" title='__t' data-ref="1655__t">__t</a>);&nbsp</td></tr>
+<tr><th id="176">176</th><td>	}&nbsp</td></tr>
+<tr><th id="177">177</th><td>    };&nbsp</td></tr>
+<tr><th id="178">178</th><td>&nbsp</td></tr>
+<tr><th id="179">179</th><td>    <i>// If _To is an lvalue-reference, return const _Tp&amp;, otherwise const _Tp&amp;&amp;.</i>&nbsp</td></tr>
+<tr><th id="180">180</th><td>    <b>template</b>&lt;<b>typename</b> _To, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="181">181</th><td>      <b>constexpr</b> <b>decltype</b>(<em>auto</em>)&nbsp</td></tr>
+<tr><th id="182">182</th><td>      <dfn class="decl def fn" id="_ZNSt6ranges13__cust_access10__as_constERT0_" title='std::ranges::__cust_access::__as_const' data-ref="_ZNSt6ranges13__cust_access10__as_constERT0_">__as_const</dfn>(_Tp&amp; <dfn class="local col6 decl" id="1656__t" title='__t' data-type='_Tp &amp;' data-ref="1656__t">__t</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="183">183</th><td>      {&nbsp</td></tr>
+<tr><th id="184">184</th><td>	<b>static_assert</b>(<span class="namespace">std::</span>is_same_v&lt;_To&amp;, _Tp&amp;&gt;);&nbsp</td></tr>
+<tr><th id="185">185</th><td>&nbsp</td></tr>
+<tr><th id="186">186</th><td>	<b>if</b> <b>constexpr</b> (is_lvalue_reference_v&lt;_To&gt;)&nbsp</td></tr>
+<tr><th id="187">187</th><td>	  <b>return</b> <b>const_cast</b>&lt;<em>const</em> _Tp&amp;&gt;(<a class="local col6 ref" href="#1656__t" title='__t' data-ref="1656__t">__t</a>);&nbsp</td></tr>
+<tr><th id="188">188</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="189">189</th><td>	  <b>return</b> <b>static_cast</b>&lt;<em>const</em> _Tp&amp;&amp;&gt;(<a class="local col6 ref" href="#1656__t" title='__t' data-ref="1656__t">__t</a>);&nbsp</td></tr>
+<tr><th id="190">190</th><td>      }&nbsp</td></tr>
+<tr><th id="191">191</th><td>&nbsp</td></tr>
+<tr><th id="192">192</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_CBegin" title='std::ranges::__cust_access::_CBegin' data-ref="std::ranges::__cust_access::_CBegin">_CBegin</dfn>&nbsp</td></tr>
+<tr><th id="193">193</th><td>    {&nbsp</td></tr>
+<tr><th id="194">194</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="195">195</th><td>	<b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="196">196</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access7_CBeginclEOT_" title='std::ranges::__cust_access::_CBegin::operator()' data-ref="_ZNKSt6ranges13__cust_access7_CBeginclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col7 decl" id="1657__e" title='__e' data-type='_Tp &amp;&amp;' data-ref="1657__e">__e</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="197">197</th><td>	<b>noexcept</b>(<b>noexcept</b>(<a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col7 ref" href="#1657__e" title='__e' data-ref="1657__e">__e</a>))))&nbsp</td></tr>
+<tr><th id="198">198</th><td>	<b>requires</b> <b>requires</b> { <a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col7 ref" href="#1657__e" title='__e' data-ref="1657__e">__e</a>)); }&nbsp</td></tr>
+<tr><th id="199">199</th><td>	{&nbsp</td></tr>
+<tr><th id="200">200</th><td>	  <b>return</b> <a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col7 ref" href="#1657__e" title='__e' data-ref="1657__e">__e</a>));&nbsp</td></tr>
+<tr><th id="201">201</th><td>	}&nbsp</td></tr>
+<tr><th id="202">202</th><td>    };&nbsp</td></tr>
+<tr><th id="203">203</th><td>&nbsp</td></tr>
+<tr><th id="204">204</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_CEnd" title='std::ranges::__cust_access::_CEnd' data-ref="std::ranges::__cust_access::_CEnd">_CEnd</dfn>&nbsp</td></tr>
+<tr><th id="205">205</th><td>    {&nbsp</td></tr>
+<tr><th id="206">206</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="207">207</th><td>	<b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="208">208</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access5_CEndclEOT_" title='std::ranges::__cust_access::_CEnd::operator()' data-ref="_ZNKSt6ranges13__cust_access5_CEndclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col8 decl" id="1658__e" title='__e' data-type='_Tp &amp;&amp;' data-ref="1658__e">__e</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="209">209</th><td>	<b>noexcept</b>(<b>noexcept</b>(<a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col8 ref" href="#1658__e" title='__e' data-ref="1658__e">__e</a>))))&nbsp</td></tr>
+<tr><th id="210">210</th><td>	<b>requires</b> <b>requires</b> { <a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col8 ref" href="#1658__e" title='__e' data-ref="1658__e">__e</a>)); }&nbsp</td></tr>
+<tr><th id="211">211</th><td>	{&nbsp</td></tr>
+<tr><th id="212">212</th><td>	  <b>return</b> <a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col8 ref" href="#1658__e" title='__e' data-ref="1658__e">__e</a>));&nbsp</td></tr>
+<tr><th id="213">213</th><td>	}&nbsp</td></tr>
+<tr><th id="214">214</th><td>    };&nbsp</td></tr>
+<tr><th id="215">215</th><td>&nbsp</td></tr>
+<tr><th id="216">216</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="217">217</th><td>      <b>concept</b> __member_rbegin = <b>requires</b>(_Tp&amp; <dfn class="local col9 decl" id="1659__t" title='__t' data-type='_Tp &amp;' data-ref="1659__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="218">218</th><td>	{&nbsp</td></tr>
+<tr><th id="219">219</th><td>	  { <a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(<a class="local col9 ref" href="#1659__t" title='__t' data-ref="1659__t">__t</a>.rbegin()) } -&gt; input_or_output_iterator;&nbsp</td></tr>
+<tr><th id="220">220</th><td>	};&nbsp</td></tr>
+<tr><th id="221">221</th><td>&nbsp</td></tr>
+<tr><th id="222">222</th><td>    <em>void</em> <dfn class="decl def fn" id="_ZNSt6ranges13__cust_access6rbeginERT_" title='std::ranges::__cust_access::rbegin' data-ref="_ZNSt6ranges13__cust_access6rbeginERT_">rbegin</dfn>(<em>auto</em>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="223">223</th><td>    <em>void</em> <dfn class="decl def fn" id="_ZNSt6ranges13__cust_access6rbeginERKT_" title='std::ranges::__cust_access::rbegin' data-ref="_ZNSt6ranges13__cust_access6rbeginERKT_">rbegin</dfn>(<em>const</em> <em>auto</em>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="224">224</th><td>&nbsp</td></tr>
+<tr><th id="225">225</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="226">226</th><td>      <b>concept</b> __adl_rbegin = __class_or_enum&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="227">227</th><td>	&amp;&amp; <b>requires</b>(_Tp&amp; <dfn class="local col0 decl" id="1660__t" title='__t' data-type='_Tp &amp;' data-ref="1660__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="228">228</th><td>	{&nbsp</td></tr>
+<tr><th id="229">229</th><td>	  { <a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(rbegin(<a class="local col0 ref" href="#1660__t" title='__t' data-ref="1660__t">__t</a>)) } -&gt; input_or_output_iterator;&nbsp</td></tr>
+<tr><th id="230">230</th><td>	};&nbsp</td></tr>
+<tr><th id="231">231</th><td>&nbsp</td></tr>
+<tr><th id="232">232</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="233">233</th><td>      <b>concept</b> __reversable = <b>requires</b>(_Tp&amp; <dfn class="local col1 decl" id="1661__t" title='__t' data-type='_Tp &amp;' data-ref="1661__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="234">234</th><td>	{&nbsp</td></tr>
+<tr><th id="235">235</th><td>	  { <a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<a class="local col1 ref" href="#1661__t" title='__t' data-ref="1661__t">__t</a>) } -&gt; bidirectional_iterator;&nbsp</td></tr>
+<tr><th id="236">236</th><td>	  { <a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<a class="local col1 ref" href="#1661__t" title='__t' data-ref="1661__t">__t</a>) } -&gt; same_as&lt;<b>decltype</b>(<a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<a class="local col1 ref" href="#1661__t" title='__t' data-ref="1661__t">__t</a>))&gt;;&nbsp</td></tr>
+<tr><th id="237">237</th><td>	};&nbsp</td></tr>
+<tr><th id="238">238</th><td>&nbsp</td></tr>
+<tr><th id="239">239</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_RBegin" title='std::ranges::__cust_access::_RBegin' data-ref="std::ranges::__cust_access::_RBegin">_RBegin</dfn>&nbsp</td></tr>
+<tr><th id="240">240</th><td>    {&nbsp</td></tr>
+<tr><th id="241">241</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="242">242</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="243">243</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="244">244</th><td>	<dfn class="decl def fn" id="_ZNSt6ranges13__cust_access7_RBegin11_S_noexceptEv" title='std::ranges::__cust_access::_RBegin::_S_noexcept' data-ref="_ZNSt6ranges13__cust_access7_RBegin11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="245">245</th><td>	{&nbsp</td></tr>
+<tr><th id="246">246</th><td>	  <b>if</b> <b>constexpr</b> (__member_rbegin&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="247">247</th><td>	    <b>return</b> <b>noexcept</b>(<a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;().rbegin()));&nbsp</td></tr>
+<tr><th id="248">248</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__adl_rbegin&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="249">249</th><td>	    <b>return</b> <b>noexcept</b>(<a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(rbegin(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;())));&nbsp</td></tr>
+<tr><th id="250">250</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="251">251</th><td>	    {&nbsp</td></tr>
+<tr><th id="252">252</th><td>	      <b>if</b> <b>constexpr</b> (<b>noexcept</b>(<a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;())))&nbsp</td></tr>
+<tr><th id="253">253</th><td>		{&nbsp</td></tr>
+<tr><th id="254">254</th><td>		  <b>using</b> <dfn class="local col2 typedef" id="1662_It" title='_It' data-type='decltype(std::ranges::__cust_access::_End{}(std::declval&lt;_Tp &amp;&gt;()))' data-ref="1662_It">_It</dfn> = <b>decltype</b>(<a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;()));&nbsp</td></tr>
+<tr><th id="255">255</th><td>		  <i>// std::reverse_iterator copy-initializes its member.</i>&nbsp</td></tr>
+<tr><th id="256">256</th><td>		  <b>return</b> is_nothrow_copy_constructible_v&lt;<a class="local col2 typedef" href="#1662_It" title='_It' data-type='decltype(std::ranges::__cust_access::_End{}(std::declval&lt;_Tp &amp;&gt;()))' data-ref="1662_It">_It</a>&gt;;&nbsp</td></tr>
+<tr><th id="257">257</th><td>		}&nbsp</td></tr>
+<tr><th id="258">258</th><td>	      <b>else</b>&nbsp</td></tr>
+<tr><th id="259">259</th><td>		<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="260">260</th><td>	    }&nbsp</td></tr>
+<tr><th id="261">261</th><td>	}&nbsp</td></tr>
+<tr><th id="262">262</th><td>&nbsp</td></tr>
+<tr><th id="263">263</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="264">264</th><td>      <b>template</b>&lt;__maybe_borrowed_range _Tp&gt;&nbsp</td></tr>
+<tr><th id="265">265</th><td>	<b>requires</b> __member_rbegin&lt;_Tp&gt; || __adl_rbegin&lt;_Tp&gt; || __reversable&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="266">266</th><td>	<b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="267">267</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access7_RBeginclEOT_" title='std::ranges::__cust_access::_RBegin::operator()' data-ref="_ZNKSt6ranges13__cust_access7_RBeginclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col3 decl" id="1663__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="1663__t">__t</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="268">268</th><td>	<b>noexcept</b>(_S_noexcept&lt;_Tp&amp;&gt;())&nbsp</td></tr>
+<tr><th id="269">269</th><td>	{&nbsp</td></tr>
+<tr><th id="270">270</th><td>	  <b>if</b> <b>constexpr</b> (__member_rbegin&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="271">271</th><td>	    <b>return</b> <a class="local col3 ref" href="#1663__t" title='__t' data-ref="1663__t">__t</a>.rbegin();&nbsp</td></tr>
+<tr><th id="272">272</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__adl_rbegin&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="273">273</th><td>	    <b>return</b> rbegin(<a class="local col3 ref" href="#1663__t" title='__t' data-ref="1663__t">__t</a>);&nbsp</td></tr>
+<tr><th id="274">274</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="275">275</th><td>	    <b>return</b> <span class="namespace">std::</span>make_reverse_iterator(<a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<a class="local col3 ref" href="#1663__t" title='__t' data-ref="1663__t">__t</a>));&nbsp</td></tr>
+<tr><th id="276">276</th><td>	}&nbsp</td></tr>
+<tr><th id="277">277</th><td>    };&nbsp</td></tr>
+<tr><th id="278">278</th><td>&nbsp</td></tr>
+<tr><th id="279">279</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="280">280</th><td>      <b>concept</b> __member_rend = <b>requires</b>(_Tp&amp; <dfn class="local col4 decl" id="1664__t" title='__t' data-type='_Tp &amp;' data-ref="1664__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="281">281</th><td>	{&nbsp</td></tr>
+<tr><th id="282">282</th><td>	  { <a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(<a class="local col4 ref" href="#1664__t" title='__t' data-ref="1664__t">__t</a>.rend()) }&nbsp</td></tr>
+<tr><th id="283">283</th><td>	    -&gt; sentinel_for&lt;<b>decltype</b>(<a class="type" href="#std::ranges::__cust_access::_RBegin" title='std::ranges::__cust_access::_RBegin' data-ref="std::ranges::__cust_access::_RBegin">_RBegin</a>{}(<span class="namespace">std::</span>forward&lt;_Tp&gt;(<a class="local col4 ref" href="#1664__t" title='__t' data-ref="1664__t">__t</a>)))&gt;;&nbsp</td></tr>
+<tr><th id="284">284</th><td>	};&nbsp</td></tr>
+<tr><th id="285">285</th><td>&nbsp</td></tr>
+<tr><th id="286">286</th><td>    <em>void</em> <dfn class="decl def fn" id="_ZNSt6ranges13__cust_access4rendERT_" title='std::ranges::__cust_access::rend' data-ref="_ZNSt6ranges13__cust_access4rendERT_">rend</dfn>(<em>auto</em>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="287">287</th><td>    <em>void</em> <dfn class="decl def fn" id="_ZNSt6ranges13__cust_access4rendERKT_" title='std::ranges::__cust_access::rend' data-ref="_ZNSt6ranges13__cust_access4rendERKT_">rend</dfn>(<em>const</em> <em>auto</em>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="288">288</th><td>&nbsp</td></tr>
+<tr><th id="289">289</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="290">290</th><td>      <b>concept</b> __adl_rend = __class_or_enum&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="291">291</th><td>	&amp;&amp; <b>requires</b>(_Tp&amp; <dfn class="local col5 decl" id="1665__t" title='__t' data-type='_Tp &amp;' data-ref="1665__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="292">292</th><td>	{&nbsp</td></tr>
+<tr><th id="293">293</th><td>	  { <a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(rend(<a class="local col5 ref" href="#1665__t" title='__t' data-ref="1665__t">__t</a>)) }&nbsp</td></tr>
+<tr><th id="294">294</th><td>	    -&gt; sentinel_for&lt;<b>decltype</b>(<a class="type" href="#std::ranges::__cust_access::_RBegin" title='std::ranges::__cust_access::_RBegin' data-ref="std::ranges::__cust_access::_RBegin">_RBegin</a>{}(<span class="namespace">std::</span>forward&lt;_Tp&gt;(<a class="local col5 ref" href="#1665__t" title='__t' data-ref="1665__t">__t</a>)))&gt;;&nbsp</td></tr>
+<tr><th id="295">295</th><td>	};&nbsp</td></tr>
+<tr><th id="296">296</th><td>&nbsp</td></tr>
+<tr><th id="297">297</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_REnd" title='std::ranges::__cust_access::_REnd' data-ref="std::ranges::__cust_access::_REnd">_REnd</dfn>&nbsp</td></tr>
+<tr><th id="298">298</th><td>    {&nbsp</td></tr>
+<tr><th id="299">299</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="300">300</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="301">301</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="302">302</th><td>	<dfn class="decl def fn" id="_ZNSt6ranges13__cust_access5_REnd11_S_noexceptEv" title='std::ranges::__cust_access::_REnd::_S_noexcept' data-ref="_ZNSt6ranges13__cust_access5_REnd11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="303">303</th><td>	{&nbsp</td></tr>
+<tr><th id="304">304</th><td>	  <b>if</b> <b>constexpr</b> (__member_rend&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="305">305</th><td>	    <b>return</b> <b>noexcept</b>(<a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;().rend()));&nbsp</td></tr>
+<tr><th id="306">306</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__adl_rend&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="307">307</th><td>	    <b>return</b> <b>noexcept</b>(<a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(rend(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;())));&nbsp</td></tr>
+<tr><th id="308">308</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="309">309</th><td>	    {&nbsp</td></tr>
+<tr><th id="310">310</th><td>	      <b>if</b> <b>constexpr</b> (<b>noexcept</b>(<a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;())))&nbsp</td></tr>
+<tr><th id="311">311</th><td>		{&nbsp</td></tr>
+<tr><th id="312">312</th><td>		  <b>using</b> <dfn class="local col6 typedef" id="1666_It" title='_It' data-type='decltype(std::ranges::__cust_access::_Begin{}(std::declval&lt;_Tp &amp;&gt;()))' data-ref="1666_It">_It</dfn> = <b>decltype</b>(<a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;()));&nbsp</td></tr>
+<tr><th id="313">313</th><td>		  <i>// std::reverse_iterator copy-initializes its member.</i>&nbsp</td></tr>
+<tr><th id="314">314</th><td>		  <b>return</b> is_nothrow_copy_constructible_v&lt;<a class="local col6 typedef" href="#1666_It" title='_It' data-type='decltype(std::ranges::__cust_access::_Begin{}(std::declval&lt;_Tp &amp;&gt;()))' data-ref="1666_It">_It</a>&gt;;&nbsp</td></tr>
+<tr><th id="315">315</th><td>		}&nbsp</td></tr>
+<tr><th id="316">316</th><td>	      <b>else</b>&nbsp</td></tr>
+<tr><th id="317">317</th><td>		<b>return</b> <b>false</b>;&nbsp</td></tr>
+<tr><th id="318">318</th><td>	    }&nbsp</td></tr>
+<tr><th id="319">319</th><td>	}&nbsp</td></tr>
+<tr><th id="320">320</th><td>&nbsp</td></tr>
+<tr><th id="321">321</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="322">322</th><td>      <b>template</b>&lt;__maybe_borrowed_range _Tp&gt;&nbsp</td></tr>
+<tr><th id="323">323</th><td>	<b>requires</b> __member_rend&lt;_Tp&gt; || __adl_rend&lt;_Tp&gt; || __reversable&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="324">324</th><td>	<b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="325">325</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access5_REndclEOT_" title='std::ranges::__cust_access::_REnd::operator()' data-ref="_ZNKSt6ranges13__cust_access5_REndclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col7 decl" id="1667__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="1667__t">__t</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="326">326</th><td>	<b>noexcept</b>(_S_noexcept&lt;_Tp&amp;&gt;())&nbsp</td></tr>
+<tr><th id="327">327</th><td>	{&nbsp</td></tr>
+<tr><th id="328">328</th><td>	  <b>if</b> <b>constexpr</b> (__member_rend&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="329">329</th><td>	    <b>return</b> <a class="local col7 ref" href="#1667__t" title='__t' data-ref="1667__t">__t</a>.rend();&nbsp</td></tr>
+<tr><th id="330">330</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__adl_rend&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="331">331</th><td>	    <b>return</b> rend(<a class="local col7 ref" href="#1667__t" title='__t' data-ref="1667__t">__t</a>);&nbsp</td></tr>
+<tr><th id="332">332</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="333">333</th><td>	    <b>return</b> <span class="namespace">std::</span>make_reverse_iterator(<a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<a class="local col7 ref" href="#1667__t" title='__t' data-ref="1667__t">__t</a>));&nbsp</td></tr>
+<tr><th id="334">334</th><td>	}&nbsp</td></tr>
+<tr><th id="335">335</th><td>    };&nbsp</td></tr>
+<tr><th id="336">336</th><td>&nbsp</td></tr>
+<tr><th id="337">337</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_CRBegin" title='std::ranges::__cust_access::_CRBegin' data-ref="std::ranges::__cust_access::_CRBegin">_CRBegin</dfn>&nbsp</td></tr>
+<tr><th id="338">338</th><td>    {&nbsp</td></tr>
+<tr><th id="339">339</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="340">340</th><td>	<b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="341">341</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access8_CRBeginclEOT_" title='std::ranges::__cust_access::_CRBegin::operator()' data-ref="_ZNKSt6ranges13__cust_access8_CRBeginclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col8 decl" id="1668__e" title='__e' data-type='_Tp &amp;&amp;' data-ref="1668__e">__e</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="342">342</th><td>	<b>noexcept</b>(<b>noexcept</b>(<a class="type" href="#std::ranges::__cust_access::_RBegin" title='std::ranges::__cust_access::_RBegin' data-ref="std::ranges::__cust_access::_RBegin">_RBegin</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col8 ref" href="#1668__e" title='__e' data-ref="1668__e">__e</a>))))&nbsp</td></tr>
+<tr><th id="343">343</th><td>	<b>requires</b> <b>requires</b> { <a class="type" href="#std::ranges::__cust_access::_RBegin" title='std::ranges::__cust_access::_RBegin' data-ref="std::ranges::__cust_access::_RBegin">_RBegin</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col8 ref" href="#1668__e" title='__e' data-ref="1668__e">__e</a>)); }&nbsp</td></tr>
+<tr><th id="344">344</th><td>	{&nbsp</td></tr>
+<tr><th id="345">345</th><td>	  <b>return</b> <a class="type" href="#std::ranges::__cust_access::_RBegin" title='std::ranges::__cust_access::_RBegin' data-ref="std::ranges::__cust_access::_RBegin">_RBegin</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col8 ref" href="#1668__e" title='__e' data-ref="1668__e">__e</a>));&nbsp</td></tr>
+<tr><th id="346">346</th><td>	}&nbsp</td></tr>
+<tr><th id="347">347</th><td>    };&nbsp</td></tr>
+<tr><th id="348">348</th><td>&nbsp</td></tr>
+<tr><th id="349">349</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_CREnd" title='std::ranges::__cust_access::_CREnd' data-ref="std::ranges::__cust_access::_CREnd">_CREnd</dfn>&nbsp</td></tr>
+<tr><th id="350">350</th><td>    {&nbsp</td></tr>
+<tr><th id="351">351</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="352">352</th><td>	<b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="353">353</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access6_CREndclEOT_" title='std::ranges::__cust_access::_CREnd::operator()' data-ref="_ZNKSt6ranges13__cust_access6_CREndclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col9 decl" id="1669__e" title='__e' data-type='_Tp &amp;&amp;' data-ref="1669__e">__e</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="354">354</th><td>	<b>noexcept</b>(<b>noexcept</b>(<a class="type" href="#std::ranges::__cust_access::_REnd" title='std::ranges::__cust_access::_REnd' data-ref="std::ranges::__cust_access::_REnd">_REnd</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col9 ref" href="#1669__e" title='__e' data-ref="1669__e">__e</a>))))&nbsp</td></tr>
+<tr><th id="355">355</th><td>	<b>requires</b> <b>requires</b> { <a class="type" href="#std::ranges::__cust_access::_REnd" title='std::ranges::__cust_access::_REnd' data-ref="std::ranges::__cust_access::_REnd">_REnd</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col9 ref" href="#1669__e" title='__e' data-ref="1669__e">__e</a>)); }&nbsp</td></tr>
+<tr><th id="356">356</th><td>	{&nbsp</td></tr>
+<tr><th id="357">357</th><td>	  <b>return</b> <a class="type" href="#std::ranges::__cust_access::_REnd" title='std::ranges::__cust_access::_REnd' data-ref="std::ranges::__cust_access::_REnd">_REnd</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col9 ref" href="#1669__e" title='__e' data-ref="1669__e">__e</a>));&nbsp</td></tr>
+<tr><th id="358">358</th><td>	}&nbsp</td></tr>
+<tr><th id="359">359</th><td>    };&nbsp</td></tr>
+<tr><th id="360">360</th><td>&nbsp</td></tr>
+<tr><th id="361">361</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="362">362</th><td>      <b>concept</b> __member_size = !disable_sized_range&lt;<a class="type" href="../type_traits.html#std::remove_cvref_t" title='std::remove_cvref_t' data-ref="std::remove_cvref_t">remove_cvref_t</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="363">363</th><td>	&amp;&amp; <b>requires</b>(_Tp&amp; <dfn class="local col0 decl" id="1670__t" title='__t' data-type='_Tp &amp;' data-ref="1670__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="364">364</th><td>	{&nbsp</td></tr>
+<tr><th id="365">365</th><td>	  { <a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(<a class="local col0 ref" href="#1670__t" title='__t' data-ref="1670__t">__t</a>.size()) } -&gt; <span class="namespace">__detail::</span>__is_integer_like;&nbsp</td></tr>
+<tr><th id="366">366</th><td>	};&nbsp</td></tr>
+<tr><th id="367">367</th><td>&nbsp</td></tr>
+<tr><th id="368">368</th><td>    <em>void</em> <dfn class="decl def fn" id="_ZNSt6ranges13__cust_access4sizeERT_" title='std::ranges::__cust_access::size' data-ref="_ZNSt6ranges13__cust_access4sizeERT_">size</dfn>(<em>auto</em>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="369">369</th><td>    <em>void</em> <dfn class="decl def fn" id="_ZNSt6ranges13__cust_access4sizeERKT_" title='std::ranges::__cust_access::size' data-ref="_ZNSt6ranges13__cust_access4sizeERKT_">size</dfn>(<em>const</em> <em>auto</em>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="370">370</th><td>&nbsp</td></tr>
+<tr><th id="371">371</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="372">372</th><td>      <b>concept</b> __adl_size = __class_or_enum&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="373">373</th><td>	&amp;&amp; !disable_sized_range&lt;<a class="type" href="../type_traits.html#std::remove_cvref_t" title='std::remove_cvref_t' data-ref="std::remove_cvref_t">remove_cvref_t</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="374">374</th><td>	&amp;&amp; <b>requires</b>(_Tp&amp; <dfn class="local col1 decl" id="1671__t" title='__t' data-type='_Tp &amp;' data-ref="1671__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="375">375</th><td>	{&nbsp</td></tr>
+<tr><th id="376">376</th><td>	  { <a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(size(<a class="local col1 ref" href="#1671__t" title='__t' data-ref="1671__t">__t</a>)) } -&gt; <span class="namespace">__detail::</span>__is_integer_like;&nbsp</td></tr>
+<tr><th id="377">377</th><td>	};&nbsp</td></tr>
+<tr><th id="378">378</th><td>&nbsp</td></tr>
+<tr><th id="379">379</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="380">380</th><td>      <b>concept</b> __sentinel_size = <b>requires</b>(_Tp&amp; <dfn class="local col2 decl" id="1672__t" title='__t' data-type='_Tp &amp;' data-ref="1672__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="381">381</th><td>	{&nbsp</td></tr>
+<tr><th id="382">382</th><td>	  <b>requires</b> (!is_unbounded_array_v&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;);&nbsp</td></tr>
+<tr><th id="383">383</th><td>&nbsp</td></tr>
+<tr><th id="384">384</th><td>	  { <a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<a class="local col2 ref" href="#1672__t" title='__t' data-ref="1672__t">__t</a>) } -&gt; forward_iterator;&nbsp</td></tr>
+<tr><th id="385">385</th><td>&nbsp</td></tr>
+<tr><th id="386">386</th><td>	  { <a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<a class="local col2 ref" href="#1672__t" title='__t' data-ref="1672__t">__t</a>) } -&gt; sized_sentinel_for&lt;<b>decltype</b>(<a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<a class="local col2 ref" href="#1672__t" title='__t' data-ref="1672__t">__t</a>))&gt;;&nbsp</td></tr>
+<tr><th id="387">387</th><td>&nbsp</td></tr>
+<tr><th id="388">388</th><td>	  <span class="namespace">__detail::</span>__to_unsigned_like(<a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<a class="local col2 ref" href="#1672__t" title='__t' data-ref="1672__t">__t</a>) - <a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<a class="local col2 ref" href="#1672__t" title='__t' data-ref="1672__t">__t</a>));&nbsp</td></tr>
+<tr><th id="389">389</th><td>	};&nbsp</td></tr>
+<tr><th id="390">390</th><td>&nbsp</td></tr>
+<tr><th id="391">391</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_Size" title='std::ranges::__cust_access::_Size' data-ref="std::ranges::__cust_access::_Size">_Size</dfn>&nbsp</td></tr>
+<tr><th id="392">392</th><td>    {&nbsp</td></tr>
+<tr><th id="393">393</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="394">394</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="395">395</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="396">396</th><td>	<dfn class="decl def fn" id="_ZNSt6ranges13__cust_access5_Size11_S_noexceptEv" title='std::ranges::__cust_access::_Size::_S_noexcept' data-ref="_ZNSt6ranges13__cust_access5_Size11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="397">397</th><td>	{&nbsp</td></tr>
+<tr><th id="398">398</th><td>	  <b>if</b> <b>constexpr</b> (is_bounded_array_v&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;)&nbsp</td></tr>
+<tr><th id="399">399</th><td>	    <b>return</b> <b>true</b>;&nbsp</td></tr>
+<tr><th id="400">400</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__member_size&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="401">401</th><td>	    <b>return</b> <b>noexcept</b>(<a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;().size()));&nbsp</td></tr>
+<tr><th id="402">402</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__adl_size&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="403">403</th><td>	    <b>return</b> <b>noexcept</b>(<a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(size(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;())));&nbsp</td></tr>
+<tr><th id="404">404</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__sentinel_size&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="405">405</th><td>	    <b>return</b> <b>noexcept</b>(<a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;())&nbsp</td></tr>
+<tr><th id="406">406</th><td>			    - <a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;()));&nbsp</td></tr>
+<tr><th id="407">407</th><td>	}&nbsp</td></tr>
+<tr><th id="408">408</th><td>&nbsp</td></tr>
+<tr><th id="409">409</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="410">410</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="411">411</th><td>	<b>requires</b> is_bounded_array_v&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="412">412</th><td>	  || __member_size&lt;_Tp&gt; || __adl_size&lt;_Tp&gt; || __sentinel_size&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="413">413</th><td>	<b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="414">414</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access5_SizeclEOT_" title='std::ranges::__cust_access::_Size::operator()' data-ref="_ZNKSt6ranges13__cust_access5_SizeclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col3 decl" id="1673__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="1673__t">__t</dfn>) <em>const</em> <b>noexcept</b>(_S_noexcept&lt;_Tp&amp;&gt;())&nbsp</td></tr>
+<tr><th id="415">415</th><td>	{&nbsp</td></tr>
+<tr><th id="416">416</th><td>	  <b>if</b> <b>constexpr</b> (is_bounded_array_v&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;)&nbsp</td></tr>
+<tr><th id="417">417</th><td>	    <b>return</b> extent_v&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="418">418</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__member_size&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="419">419</th><td>	    <b>return</b> <a class="local col3 ref" href="#1673__t" title='__t' data-ref="1673__t">__t</a>.size();&nbsp</td></tr>
+<tr><th id="420">420</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__adl_size&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="421">421</th><td>	    <b>return</b> size(<a class="local col3 ref" href="#1673__t" title='__t' data-ref="1673__t">__t</a>);&nbsp</td></tr>
+<tr><th id="422">422</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__sentinel_size&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="423">423</th><td>	    <b>return</b> <span class="namespace">__detail::</span>__to_unsigned_like(<a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<a class="local col3 ref" href="#1673__t" title='__t' data-ref="1673__t">__t</a>) - <a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<a class="local col3 ref" href="#1673__t" title='__t' data-ref="1673__t">__t</a>));&nbsp</td></tr>
+<tr><th id="424">424</th><td>	}&nbsp</td></tr>
+<tr><th id="425">425</th><td>    };&nbsp</td></tr>
+<tr><th id="426">426</th><td>&nbsp</td></tr>
+<tr><th id="427">427</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_SSize" title='std::ranges::__cust_access::_SSize' data-ref="std::ranges::__cust_access::_SSize">_SSize</dfn>&nbsp</td></tr>
+<tr><th id="428">428</th><td>    {&nbsp</td></tr>
+<tr><th id="429">429</th><td>      <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="430">430</th><td><i>      // 3403. Domain of ranges::ssize(E) doesn't match ranges::size(E)</i>&nbsp</td></tr>
+<tr><th id="431">431</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="432">432</th><td>	<b>requires</b> <b>requires</b> (_Tp&amp; <dfn class="local col4 decl" id="1674__t" title='__t' data-type='_Tp &amp;' data-ref="1674__t">__t</dfn>) { <a class="type" href="#std::ranges::__cust_access::_Size" title='std::ranges::__cust_access::_Size' data-ref="std::ranges::__cust_access::_Size">_Size</a>{}(<a class="local col4 ref" href="#1674__t" title='__t' data-ref="1674__t">__t</a>); }&nbsp</td></tr>
+<tr><th id="433">433</th><td>	<b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="434">434</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access6_SSizeclEOT_" title='std::ranges::__cust_access::_SSize::operator()' data-ref="_ZNKSt6ranges13__cust_access6_SSizeclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col5 decl" id="1675__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="1675__t">__t</dfn>) <em>const</em> <b>noexcept</b>(<b>noexcept</b>(<a class="type" href="#std::ranges::__cust_access::_Size" title='std::ranges::__cust_access::_Size' data-ref="std::ranges::__cust_access::_Size">_Size</a>{}(<a class="local col5 ref" href="#1675__t" title='__t' data-ref="1675__t">__t</a>)))&nbsp</td></tr>
+<tr><th id="435">435</th><td>	{&nbsp</td></tr>
+<tr><th id="436">436</th><td>	  <em>auto</em> <dfn class="local col6 decl" id="1676__size" title='__size' data-type='auto' data-ref="1676__size">__size</dfn> = <a class="type" href="#std::ranges::__cust_access::_Size" title='std::ranges::__cust_access::_Size' data-ref="std::ranges::__cust_access::_Size">_Size</a>{}(<a class="local col5 ref" href="#1675__t" title='__t' data-ref="1675__t">__t</a>);&nbsp</td></tr>
+<tr><th id="437">437</th><td>	  <b>using</b> <dfn class="local col7 typedef" id="1677__size_type" title='__size_type' data-type='decltype(__size)' data-ref="1677__size_type">__size_type</dfn> = <b>decltype</b>(<a class="local col6 ref" href="#1676__size" title='__size' data-ref="1676__size">__size</a>);&nbsp</td></tr>
+<tr><th id="438">438</th><td>	  <i>// Return the wider of ptrdiff_t and make-signed-like-t&lt;__size_type&gt;.</i>&nbsp</td></tr>
+<tr><th id="439">439</th><td>	  <b>if</b> <b>constexpr</b> (integral&lt;<a class="local col7 typedef" href="#1677__size_type" title='__size_type' data-type='decltype(__size)' data-ref="1677__size_type">__size_type</a>&gt;)&nbsp</td></tr>
+<tr><th id="440">440</th><td>	    {&nbsp</td></tr>
+<tr><th id="441">441</th><td>	      <b>using</b> <span class="namespace">__gnu_cxx::</span>__int_traits;&nbsp</td></tr>
+<tr><th id="442">442</th><td>	      <b>if</b> <b>constexpr</b> (<a class="type" href="../ext/numeric_traits.h.html#__gnu_cxx::__int_traits" title='__gnu_cxx::__int_traits' data-ref="__gnu_cxx::__int_traits">__int_traits</a>&lt;<a class="local col7 typedef" href="#1677__size_type" title='__size_type' data-type='decltype(__size)' data-ref="1677__size_type">__size_type</a>&gt;::__digits&nbsp</td></tr>
+<tr><th id="443">443</th><td>			    &lt; <a class="type" href="../ext/numeric_traits.h.html#__gnu_cxx::__int_traits" title='__gnu_cxx::__int_traits' data-ref="__gnu_cxx::__int_traits">__int_traits</a>&lt;<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::ptrdiff_t" title='std::ptrdiff_t' data-type='long' data-ref="std::ptrdiff_t">ptrdiff_t</a>&gt;::<a class="ref" href="../ext/numeric_traits.h.html#__gnu_cxx::__numeric_traits_integer::__digits" title='__gnu_cxx::__numeric_traits_integer::__digits' data-ref="__gnu_cxx::__numeric_traits_integer::__digits">__digits</a>)&nbsp</td></tr>
+<tr><th id="444">444</th><td>		<b>return</b> <b>static_cast</b>&lt;<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::ptrdiff_t" title='std::ptrdiff_t' data-type='long' data-ref="std::ptrdiff_t">ptrdiff_t</a>&gt;(<a class="local col6 ref" href="#1676__size" title='__size' data-ref="1676__size">__size</a>);&nbsp</td></tr>
+<tr><th id="445">445</th><td>	      <b>else</b>&nbsp</td></tr>
+<tr><th id="446">446</th><td>		<b>return</b> <b>static_cast</b>&lt;<a class="type" href="../type_traits.html#std::make_signed_t" title='std::make_signed_t' data-ref="std::make_signed_t">make_signed_t</a>&lt;<a class="local col7 typedef" href="#1677__size_type" title='__size_type' data-type='decltype(__size)' data-ref="1677__size_type">__size_type</a>&gt;&gt;(<a class="local col6 ref" href="#1676__size" title='__size' data-ref="1676__size">__size</a>);&nbsp</td></tr>
+<tr><th id="447">447</th><td>	    }&nbsp</td></tr>
+<tr><th id="448">448</th><td><u>#<span data-ppcond="448">if</span> defined <span class="macro" data-ref="_M/__STRICT_ANSI__">__STRICT_ANSI__</span> &amp;&amp; defined <span class="macro" data-ref="_M/__SIZEOF_INT128__">__SIZEOF_INT128__</span></u>&nbsp</td></tr>
+<tr><th id="449">449</th><td>	  <i>// For strict-ansi modes integral&lt;__int128&gt; is false</i>&nbsp</td></tr>
+<tr><th id="450">450</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (<span class="namespace">__detail::</span>__is_int128&lt;<a class="local col7 typedef" href="#1677__size_type" title='__size_type' data-type='decltype(__size)' data-ref="1677__size_type">__size_type</a>&gt;)&nbsp</td></tr>
+<tr><th id="451">451</th><td>	    <b>return</b> <b>static_cast</b>&lt;<b>__int128</b>&gt;(<a class="local col6 ref" href="#1676__size" title='__size' data-ref="1676__size">__size</a>);&nbsp</td></tr>
+<tr><th id="452">452</th><td><u>#<span data-ppcond="448">endif</span></u>&nbsp</td></tr>
+<tr><th id="453">453</th><td>	  <b>else</b> <i>// Must be one of __max_diff_type or __max_size_type.</i>&nbsp</td></tr>
+<tr><th id="454">454</th><td>	    <b>return</b> <span class="namespace">__detail::</span><a class="type" href="max_size_type.h.html#std::ranges::__detail::__max_diff_type" title='std::ranges::__detail::__max_diff_type' data-ref="std::ranges::__detail::__max_diff_type">__max_diff_type</a>(<a class="local col6 ref" href="#1676__size" title='__size' data-ref="1676__size">__size</a>);&nbsp</td></tr>
+<tr><th id="455">455</th><td>	}&nbsp</td></tr>
+<tr><th id="456">456</th><td>    };&nbsp</td></tr>
+<tr><th id="457">457</th><td>&nbsp</td></tr>
+<tr><th id="458">458</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="459">459</th><td>      <b>concept</b> __member_empty = <b>requires</b>(_Tp&amp; <dfn class="local col8 decl" id="1678__t" title='__t' data-type='_Tp &amp;' data-ref="1678__t">__t</dfn>) { <em>bool</em>(<a class="local col8 ref" href="#1678__t" title='__t' data-ref="1678__t">__t</a>.empty()); };&nbsp</td></tr>
+<tr><th id="460">460</th><td>&nbsp</td></tr>
+<tr><th id="461">461</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="462">462</th><td>      <b>concept</b> __size0_empty = <b>requires</b>(_Tp&amp; <dfn class="local col9 decl" id="1679__t" title='__t' data-type='_Tp &amp;' data-ref="1679__t">__t</dfn>) { <a class="type" href="#std::ranges::__cust_access::_Size" title='std::ranges::__cust_access::_Size' data-ref="std::ranges::__cust_access::_Size">_Size</a>{}(<a class="local col9 ref" href="#1679__t" title='__t' data-ref="1679__t">__t</a>) == <var>0</var>; };&nbsp</td></tr>
+<tr><th id="463">463</th><td>&nbsp</td></tr>
+<tr><th id="464">464</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="465">465</th><td>      <b>concept</b> __eq_iter_empty = <b>requires</b>(_Tp&amp; <dfn class="local col0 decl" id="1680__t" title='__t' data-type='_Tp &amp;' data-ref="1680__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="466">466</th><td>	{&nbsp</td></tr>
+<tr><th id="467">467</th><td>	  <b>requires</b> (!is_unbounded_array_v&lt;<a class="type" href="../type_traits.html#std::remove_reference_t" title='std::remove_reference_t' data-ref="std::remove_reference_t">remove_reference_t</a>&lt;_Tp&gt;&gt;);&nbsp</td></tr>
+<tr><th id="468">468</th><td>&nbsp</td></tr>
+<tr><th id="469">469</th><td>	  { <a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<a class="local col0 ref" href="#1680__t" title='__t' data-ref="1680__t">__t</a>) } -&gt; forward_iterator;&nbsp</td></tr>
+<tr><th id="470">470</th><td>&nbsp</td></tr>
+<tr><th id="471">471</th><td>	  <em>bool</em>(<a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<a class="local col0 ref" href="#1680__t" title='__t' data-ref="1680__t">__t</a>) == <a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<a class="local col0 ref" href="#1680__t" title='__t' data-ref="1680__t">__t</a>));&nbsp</td></tr>
+<tr><th id="472">472</th><td>	};&nbsp</td></tr>
+<tr><th id="473">473</th><td>&nbsp</td></tr>
+<tr><th id="474">474</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_Empty" title='std::ranges::__cust_access::_Empty' data-ref="std::ranges::__cust_access::_Empty">_Empty</dfn>&nbsp</td></tr>
+<tr><th id="475">475</th><td>    {&nbsp</td></tr>
+<tr><th id="476">476</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="477">477</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="478">478</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="479">479</th><td>	<dfn class="decl def fn" id="_ZNSt6ranges13__cust_access6_Empty11_S_noexceptEv" title='std::ranges::__cust_access::_Empty::_S_noexcept' data-ref="_ZNSt6ranges13__cust_access6_Empty11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="480">480</th><td>	{&nbsp</td></tr>
+<tr><th id="481">481</th><td>	  <b>if</b> <b>constexpr</b> (__member_empty&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="482">482</th><td>	    <b>return</b> <b>noexcept</b>(<em>bool</em>(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;().empty()));&nbsp</td></tr>
+<tr><th id="483">483</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__size0_empty&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="484">484</th><td>	    <b>return</b> <b>noexcept</b>(<a class="type" href="#std::ranges::__cust_access::_Size" title='std::ranges::__cust_access::_Size' data-ref="std::ranges::__cust_access::_Size">_Size</a>{}(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;()) == <var>0</var>);&nbsp</td></tr>
+<tr><th id="485">485</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="486">486</th><td>	    <b>return</b> <b>noexcept</b>(<em>bool</em>(<a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;())&nbsp</td></tr>
+<tr><th id="487">487</th><td>		== <a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;())));&nbsp</td></tr>
+<tr><th id="488">488</th><td>	}&nbsp</td></tr>
+<tr><th id="489">489</th><td>&nbsp</td></tr>
+<tr><th id="490">490</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="491">491</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="492">492</th><td>	<b>requires</b> __member_empty&lt;_Tp&gt; || __size0_empty&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="493">493</th><td>	  || __eq_iter_empty&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="494">494</th><td>	<b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="495">495</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access6_EmptyclEOT_" title='std::ranges::__cust_access::_Empty::operator()' data-ref="_ZNKSt6ranges13__cust_access6_EmptyclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col1 decl" id="1681__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="1681__t">__t</dfn>) <em>const</em> <b>noexcept</b>(_S_noexcept&lt;_Tp&amp;&gt;())&nbsp</td></tr>
+<tr><th id="496">496</th><td>	{&nbsp</td></tr>
+<tr><th id="497">497</th><td>	  <b>if</b> <b>constexpr</b> (__member_empty&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="498">498</th><td>	    <b>return</b> <em>bool</em>(<a class="local col1 ref" href="#1681__t" title='__t' data-ref="1681__t">__t</a>.empty());&nbsp</td></tr>
+<tr><th id="499">499</th><td>	  <b>else</b> <b>if</b> <b>constexpr</b> (__size0_empty&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="500">500</th><td>	    <b>return</b> <a class="type" href="#std::ranges::__cust_access::_Size" title='std::ranges::__cust_access::_Size' data-ref="std::ranges::__cust_access::_Size">_Size</a>{}(<a class="local col1 ref" href="#1681__t" title='__t' data-ref="1681__t">__t</a>) == <var>0</var>;&nbsp</td></tr>
+<tr><th id="501">501</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="502">502</th><td>	    <b>return</b> <em>bool</em>(<a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<a class="local col1 ref" href="#1681__t" title='__t' data-ref="1681__t">__t</a>) == <a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a>{}(<a class="local col1 ref" href="#1681__t" title='__t' data-ref="1681__t">__t</a>));&nbsp</td></tr>
+<tr><th id="503">503</th><td>	}&nbsp</td></tr>
+<tr><th id="504">504</th><td>    };&nbsp</td></tr>
+<tr><th id="505">505</th><td>&nbsp</td></tr>
+<tr><th id="506">506</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="507">507</th><td>      <b>concept</b> __pointer_to_object = is_pointer_v&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="508">508</th><td>				    &amp;&amp; is_object_v&lt;<a class="type" href="../type_traits.html#std::remove_pointer_t" title='std::remove_pointer_t' data-ref="std::remove_pointer_t">remove_pointer_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="509">509</th><td>&nbsp</td></tr>
+<tr><th id="510">510</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="511">511</th><td>      <b>concept</b> __member_data = <b>requires</b>(_Tp&amp; <dfn class="local col2 decl" id="1682__t" title='__t' data-type='_Tp &amp;' data-ref="1682__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="512">512</th><td>	{&nbsp</td></tr>
+<tr><th id="513">513</th><td>	  { <a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(<a class="local col2 ref" href="#1682__t" title='__t' data-ref="1682__t">__t</a>.data()) } -&gt; __pointer_to_object;&nbsp</td></tr>
+<tr><th id="514">514</th><td>	};&nbsp</td></tr>
+<tr><th id="515">515</th><td>&nbsp</td></tr>
+<tr><th id="516">516</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="517">517</th><td>      <b>concept</b> __begin_data = contiguous_iterator&lt;<a class="type" href="iterator_concepts.h.html#std::__detail::__range_iter_t" title='std::__detail::__range_iter_t' data-ref="std::__detail::__range_iter_t">__range_iter_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="518">518</th><td>&nbsp</td></tr>
+<tr><th id="519">519</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_Data" title='std::ranges::__cust_access::_Data' data-ref="std::ranges::__cust_access::_Data">_Data</dfn>&nbsp</td></tr>
+<tr><th id="520">520</th><td>    {&nbsp</td></tr>
+<tr><th id="521">521</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="522">522</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="523">523</th><td>	<em>static</em> <b>constexpr</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="524">524</th><td>	<dfn class="decl def fn" id="_ZNSt6ranges13__cust_access5_Data11_S_noexceptEv" title='std::ranges::__cust_access::_Data::_S_noexcept' data-ref="_ZNSt6ranges13__cust_access5_Data11_S_noexceptEv">_S_noexcept</dfn>()&nbsp</td></tr>
+<tr><th id="525">525</th><td>	{&nbsp</td></tr>
+<tr><th id="526">526</th><td>	  <b>if</b> <b>constexpr</b> (__member_data&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="527">527</th><td>	    <b>return</b> <b>noexcept</b>(<a class="ref" href="iterator_concepts.h.html#std::ranges::__cust_access::__decay_copy" title='std::ranges::__cust_access::__decay_copy' data-ref="std::ranges::__cust_access::__decay_copy">__decay_copy</a>(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;().data()));&nbsp</td></tr>
+<tr><th id="528">528</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="529">529</th><td>	    <b>return</b> <b>noexcept</b>(<a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<span class="namespace">std::</span>declval&lt;_Tp&amp;&gt;()));&nbsp</td></tr>
+<tr><th id="530">530</th><td>	}&nbsp</td></tr>
+<tr><th id="531">531</th><td>&nbsp</td></tr>
+<tr><th id="532">532</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="533">533</th><td>      <b>template</b>&lt;__maybe_borrowed_range _Tp&gt;&nbsp</td></tr>
+<tr><th id="534">534</th><td>	<b>requires</b> __member_data&lt;_Tp&gt; || __begin_data&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="535">535</th><td>	<b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="536">536</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access5_DataclEOT_" title='std::ranges::__cust_access::_Data::operator()' data-ref="_ZNKSt6ranges13__cust_access5_DataclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col3 decl" id="1683__t" title='__t' data-type='_Tp &amp;&amp;' data-ref="1683__t">__t</dfn>) <em>const</em> <b>noexcept</b>(_S_noexcept&lt;_Tp&gt;())&nbsp</td></tr>
+<tr><th id="537">537</th><td>	{&nbsp</td></tr>
+<tr><th id="538">538</th><td>	  <b>if</b> <b>constexpr</b> (__member_data&lt;_Tp&gt;)&nbsp</td></tr>
+<tr><th id="539">539</th><td>	    <b>return</b> <a class="local col3 ref" href="#1683__t" title='__t' data-ref="1683__t">__t</a>.data();&nbsp</td></tr>
+<tr><th id="540">540</th><td>	  <b>else</b>&nbsp</td></tr>
+<tr><th id="541">541</th><td>	    <b>return</b> <span class="namespace">std::</span>to_address(<a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a>{}(<a class="local col3 ref" href="#1683__t" title='__t' data-ref="1683__t">__t</a>));&nbsp</td></tr>
+<tr><th id="542">542</th><td>	}&nbsp</td></tr>
+<tr><th id="543">543</th><td>    };&nbsp</td></tr>
+<tr><th id="544">544</th><td>&nbsp</td></tr>
+<tr><th id="545">545</th><td>    <b>struct</b> <dfn class="type def" id="std::ranges::__cust_access::_CData" title='std::ranges::__cust_access::_CData' data-ref="std::ranges::__cust_access::_CData">_CData</dfn>&nbsp</td></tr>
+<tr><th id="546">546</th><td>    {&nbsp</td></tr>
+<tr><th id="547">547</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="548">548</th><td>	<b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="549">549</th><td>	<dfn class="decl def fn" id="_ZNKSt6ranges13__cust_access6_CDataclEOT_" title='std::ranges::__cust_access::_CData::operator()' data-ref="_ZNKSt6ranges13__cust_access6_CDataclEOT_"><b>operator</b>()</dfn>(_Tp&amp;&amp; <dfn class="local col4 decl" id="1684__e" title='__e' data-type='_Tp &amp;&amp;' data-ref="1684__e">__e</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="550">550</th><td>	<b>noexcept</b>(<b>noexcept</b>(<a class="type" href="#std::ranges::__cust_access::_Data" title='std::ranges::__cust_access::_Data' data-ref="std::ranges::__cust_access::_Data">_Data</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col4 ref" href="#1684__e" title='__e' data-ref="1684__e">__e</a>))))&nbsp</td></tr>
+<tr><th id="551">551</th><td>	<b>requires</b> <b>requires</b> { <a class="type" href="#std::ranges::__cust_access::_Data" title='std::ranges::__cust_access::_Data' data-ref="std::ranges::__cust_access::_Data">_Data</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col4 ref" href="#1684__e" title='__e' data-ref="1684__e">__e</a>)); }&nbsp</td></tr>
+<tr><th id="552">552</th><td>	{&nbsp</td></tr>
+<tr><th id="553">553</th><td>	  <b>return</b> <a class="type" href="#std::ranges::__cust_access::_Data" title='std::ranges::__cust_access::_Data' data-ref="std::ranges::__cust_access::_Data">_Data</a>{}(<span class="namespace">__cust_access::</span>__as_const&lt;_Tp&gt;(<a class="local col4 ref" href="#1684__e" title='__e' data-ref="1684__e">__e</a>));&nbsp</td></tr>
+<tr><th id="554">554</th><td>	}&nbsp</td></tr>
+<tr><th id="555">555</th><td>    };&nbsp</td></tr>
+<tr><th id="556">556</th><td>&nbsp</td></tr>
+<tr><th id="557">557</th><td>  } <i>// namespace __cust_access</i>&nbsp</td></tr>
+<tr><th id="558">558</th><td>&nbsp</td></tr>
+<tr><th id="559">559</th><td>  <b>inline</b> <b>namespace</b> <span class="namespace">__cust</span>&nbsp</td></tr>
+<tr><th id="560">560</th><td>  {&nbsp</td></tr>
+<tr><th id="561">561</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_access::</span><a class="type" href="#std::ranges::__cust_access::_Begin" title='std::ranges::__cust_access::_Begin' data-ref="std::ranges::__cust_access::_Begin">_Begin</a> <dfn class="decl def" id="std::ranges::begin" title='std::ranges::begin' data-ref="std::ranges::begin">begin</dfn>{};&nbsp</td></tr>
+<tr><th id="562">562</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_access::</span><a class="type" href="#std::ranges::__cust_access::_End" title='std::ranges::__cust_access::_End' data-ref="std::ranges::__cust_access::_End">_End</a> <dfn class="decl def" id="std::ranges::end" title='std::ranges::end' data-ref="std::ranges::end">end</dfn>{};&nbsp</td></tr>
+<tr><th id="563">563</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_access::</span><a class="type" href="#std::ranges::__cust_access::_CBegin" title='std::ranges::__cust_access::_CBegin' data-ref="std::ranges::__cust_access::_CBegin">_CBegin</a> <dfn class="decl def" id="std::ranges::cbegin" title='std::ranges::cbegin' data-ref="std::ranges::cbegin">cbegin</dfn>{};&nbsp</td></tr>
+<tr><th id="564">564</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_access::</span><a class="type" href="#std::ranges::__cust_access::_CEnd" title='std::ranges::__cust_access::_CEnd' data-ref="std::ranges::__cust_access::_CEnd">_CEnd</a> <dfn class="decl def" id="std::ranges::cend" title='std::ranges::cend' data-ref="std::ranges::cend">cend</dfn>{};&nbsp</td></tr>
+<tr><th id="565">565</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_access::</span><a class="type" href="#std::ranges::__cust_access::_RBegin" title='std::ranges::__cust_access::_RBegin' data-ref="std::ranges::__cust_access::_RBegin">_RBegin</a> <dfn class="decl def" id="std::ranges::rbegin" title='std::ranges::rbegin' data-ref="std::ranges::rbegin">rbegin</dfn>{};&nbsp</td></tr>
+<tr><th id="566">566</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_access::</span><a class="type" href="#std::ranges::__cust_access::_REnd" title='std::ranges::__cust_access::_REnd' data-ref="std::ranges::__cust_access::_REnd">_REnd</a> <dfn class="decl def" id="std::ranges::rend" title='std::ranges::rend' data-ref="std::ranges::rend">rend</dfn>{};&nbsp</td></tr>
+<tr><th id="567">567</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_access::</span><a class="type" href="#std::ranges::__cust_access::_CRBegin" title='std::ranges::__cust_access::_CRBegin' data-ref="std::ranges::__cust_access::_CRBegin">_CRBegin</a> <dfn class="decl def" id="std::ranges::crbegin" title='std::ranges::crbegin' data-ref="std::ranges::crbegin">crbegin</dfn>{};&nbsp</td></tr>
+<tr><th id="568">568</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_access::</span><a class="type" href="#std::ranges::__cust_access::_CREnd" title='std::ranges::__cust_access::_CREnd' data-ref="std::ranges::__cust_access::_CREnd">_CREnd</a> <dfn class="decl def" id="std::ranges::crend" title='std::ranges::crend' data-ref="std::ranges::crend">crend</dfn>{};&nbsp</td></tr>
+<tr><th id="569">569</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_access::</span><a class="type" href="#std::ranges::__cust_access::_Size" title='std::ranges::__cust_access::_Size' data-ref="std::ranges::__cust_access::_Size">_Size</a> <dfn class="decl def" id="std::ranges::size" title='std::ranges::size' data-ref="std::ranges::size">size</dfn>{};&nbsp</td></tr>
+<tr><th id="570">570</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_access::</span><a class="type" href="#std::ranges::__cust_access::_SSize" title='std::ranges::__cust_access::_SSize' data-ref="std::ranges::__cust_access::_SSize">_SSize</a> <dfn class="decl def" id="std::ranges::ssize" title='std::ranges::ssize' data-ref="std::ranges::ssize">ssize</dfn>{};&nbsp</td></tr>
+<tr><th id="571">571</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_access::</span><a class="type" href="#std::ranges::__cust_access::_Empty" title='std::ranges::__cust_access::_Empty' data-ref="std::ranges::__cust_access::_Empty">_Empty</a> <dfn class="decl def" id="std::ranges::empty" title='std::ranges::empty' data-ref="std::ranges::empty">empty</dfn>{};&nbsp</td></tr>
+<tr><th id="572">572</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_access::</span><a class="type" href="#std::ranges::__cust_access::_Data" title='std::ranges::__cust_access::_Data' data-ref="std::ranges::__cust_access::_Data">_Data</a> <dfn class="decl def" id="std::ranges::data" title='std::ranges::data' data-ref="std::ranges::data">data</dfn>{};&nbsp</td></tr>
+<tr><th id="573">573</th><td>    <b>inline</b> <b>constexpr</b> <span class="namespace">__cust_access::</span><a class="type" href="#std::ranges::__cust_access::_CData" title='std::ranges::__cust_access::_CData' data-ref="std::ranges::__cust_access::_CData">_CData</a> <dfn class="decl def" id="std::ranges::cdata" title='std::ranges::cdata' data-ref="std::ranges::cdata">cdata</dfn>{};&nbsp</td></tr>
+<tr><th id="574">574</th><td>  }&nbsp</td></tr>
+<tr><th id="575">575</th><td>&nbsp</td></tr>
+<tr><th id="576">576</th><td>  <i class="doc">/// [range.range] The range concept.</i>&nbsp</td></tr>
+<tr><th id="577">577</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="578">578</th><td>    <b>concept</b> range = <b>requires</b>(_Tp&amp; <dfn class="local col5 decl" id="1685__t" title='__t' data-type='_Tp &amp;' data-ref="1685__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="579">579</th><td>      {&nbsp</td></tr>
+<tr><th id="580">580</th><td>	<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::begin" title='std::ranges::begin' data-ref="std::ranges::begin">begin</a>(<a class="local col5 ref" href="#1685__t" title='__t' data-ref="1685__t">__t</a>);&nbsp</td></tr>
+<tr><th id="581">581</th><td>	<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::end" title='std::ranges::end' data-ref="std::ranges::end">end</a>(<a class="local col5 ref" href="#1685__t" title='__t' data-ref="1685__t">__t</a>);&nbsp</td></tr>
+<tr><th id="582">582</th><td>      };&nbsp</td></tr>
+<tr><th id="583">583</th><td>&nbsp</td></tr>
+<tr><th id="584">584</th><td>  <i class="doc">/// [range.range] The borrowed_range concept.</i>&nbsp</td></tr>
+<tr><th id="585">585</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="586">586</th><td>    <b>concept</b> borrowed_range&nbsp</td></tr>
+<tr><th id="587">587</th><td>      = range&lt;_Tp&gt; &amp;&amp; <span class="namespace">__detail::</span>__maybe_borrowed_range&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="588">588</th><td>&nbsp</td></tr>
+<tr><th id="589">589</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="590">590</th><td>    <b>using</b> <dfn class="typedef" id="std::ranges::iterator_t" title='std::ranges::iterator_t' data-type='std::__detail::__range_iter_t&lt;_Tp&gt;' data-ref="std::ranges::iterator_t">iterator_t</dfn> = <span class="namespace">std::__detail::</span><a class="type" href="iterator_concepts.h.html#std::__detail::__range_iter_t" title='std::__detail::__range_iter_t' data-ref="std::__detail::__range_iter_t">__range_iter_t</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="591">591</th><td>&nbsp</td></tr>
+<tr><th id="592">592</th><td>  <b>template</b>&lt;range _Range&gt;&nbsp</td></tr>
+<tr><th id="593">593</th><td>    <b>using</b> <dfn class="typedef" id="std::ranges::sentinel_t" title='std::ranges::sentinel_t' data-type='decltype(ranges::end(std::declval&lt;_Range &amp;&gt;()))' data-ref="std::ranges::sentinel_t">sentinel_t</dfn> = <b>decltype</b>(<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::end" title='std::ranges::end' data-ref="std::ranges::end">end</a>(<span class="namespace">std::</span>declval&lt;_Range&amp;&gt;()));&nbsp</td></tr>
+<tr><th id="594">594</th><td>&nbsp</td></tr>
+<tr><th id="595">595</th><td>  <b>template</b>&lt;range _Range&gt;&nbsp</td></tr>
+<tr><th id="596">596</th><td>    <b>using</b> <dfn class="typedef" id="std::ranges::range_difference_t" title='std::ranges::range_difference_t' data-type='iter_difference_t&lt;iterator_t&lt;_Range&gt;&gt;' data-ref="std::ranges::range_difference_t">range_difference_t</dfn> = <a class="type" href="iterator_concepts.h.html#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;<a class="type" href="#std::ranges::iterator_t" title='std::ranges::iterator_t' data-ref="std::ranges::iterator_t">iterator_t</a>&lt;_Range&gt;&gt;;&nbsp</td></tr>
+<tr><th id="597">597</th><td>&nbsp</td></tr>
+<tr><th id="598">598</th><td>  <b>template</b>&lt;range _Range&gt;&nbsp</td></tr>
+<tr><th id="599">599</th><td>    <b>using</b> <dfn class="typedef" id="std::ranges::range_value_t" title='std::ranges::range_value_t' data-type='iter_value_t&lt;iterator_t&lt;_Range&gt;&gt;' data-ref="std::ranges::range_value_t">range_value_t</dfn> = <a class="type" href="iterator_concepts.h.html#std::iter_value_t" title='std::iter_value_t' data-ref="std::iter_value_t">iter_value_t</a>&lt;<a class="type" href="#std::ranges::iterator_t" title='std::ranges::iterator_t' data-ref="std::ranges::iterator_t">iterator_t</a>&lt;_Range&gt;&gt;;&nbsp</td></tr>
+<tr><th id="600">600</th><td>&nbsp</td></tr>
+<tr><th id="601">601</th><td>  <b>template</b>&lt;range _Range&gt;&nbsp</td></tr>
+<tr><th id="602">602</th><td>    <b>using</b> <dfn class="typedef" id="std::ranges::range_reference_t" title='std::ranges::range_reference_t' data-type='iter_reference_t&lt;iterator_t&lt;_Range&gt;&gt;' data-ref="std::ranges::range_reference_t">range_reference_t</dfn> = <a class="type" href="iterator_concepts.h.html#std::iter_reference_t" title='std::iter_reference_t' data-ref="std::iter_reference_t">iter_reference_t</a>&lt;<a class="type" href="#std::ranges::iterator_t" title='std::ranges::iterator_t' data-ref="std::ranges::iterator_t">iterator_t</a>&lt;_Range&gt;&gt;;&nbsp</td></tr>
+<tr><th id="603">603</th><td>&nbsp</td></tr>
+<tr><th id="604">604</th><td>  <b>template</b>&lt;range _Range&gt;&nbsp</td></tr>
+<tr><th id="605">605</th><td>    <b>using</b> <dfn class="typedef" id="std::ranges::range_rvalue_reference_t" title='std::ranges::range_rvalue_reference_t' data-type='iter_rvalue_reference_t&lt;iterator_t&lt;_Range&gt;&gt;' data-ref="std::ranges::range_rvalue_reference_t">range_rvalue_reference_t</dfn>&nbsp</td></tr>
+<tr><th id="606">606</th><td>      = <a class="type" href="iterator_concepts.h.html#std::iter_rvalue_reference_t" title='std::iter_rvalue_reference_t' data-ref="std::iter_rvalue_reference_t">iter_rvalue_reference_t</a>&lt;<a class="type" href="#std::ranges::iterator_t" title='std::ranges::iterator_t' data-ref="std::ranges::iterator_t">iterator_t</a>&lt;_Range&gt;&gt;;&nbsp</td></tr>
+<tr><th id="607">607</th><td>&nbsp</td></tr>
+<tr><th id="608">608</th><td>  <i class="doc">/// [range.sized] The sized_range concept.</i>&nbsp</td></tr>
+<tr><th id="609">609</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="610">610</th><td>    <b>concept</b> sized_range = range&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="611">611</th><td>      &amp;&amp; <b>requires</b>(_Tp&amp; <dfn class="local col6 decl" id="1686__t" title='__t' data-type='_Tp &amp;' data-ref="1686__t">__t</dfn>) { <span class="namespace">ranges::</span><a class="ref" href="#std::ranges::size" title='std::ranges::size' data-ref="std::ranges::size">size</a>(<a class="local col6 ref" href="#1686__t" title='__t' data-ref="1686__t">__t</a>); };&nbsp</td></tr>
+<tr><th id="612">612</th><td>&nbsp</td></tr>
+<tr><th id="613">613</th><td>  <b>template</b>&lt;sized_range _Range&gt;&nbsp</td></tr>
+<tr><th id="614">614</th><td>    <b>using</b> <dfn class="typedef" id="std::ranges::range_size_t" title='std::ranges::range_size_t' data-type='decltype(ranges::size(std::declval&lt;_Range &amp;&gt;()))' data-ref="std::ranges::range_size_t">range_size_t</dfn> = <b>decltype</b>(<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::size" title='std::ranges::size' data-ref="std::ranges::size">size</a>(<span class="namespace">std::</span>declval&lt;_Range&amp;&gt;()));&nbsp</td></tr>
+<tr><th id="615">615</th><td>&nbsp</td></tr>
+<tr><th id="616">616</th><td>  <i class="doc">/// [range.view] The ranges::view_base type.</i>&nbsp</td></tr>
+<tr><th id="617">617</th><td>  <b>struct</b> <dfn class="type def" id="std::ranges::view_base" title='std::ranges::view_base' data-ref="std::ranges::view_base">view_base</dfn> { };&nbsp</td></tr>
+<tr><th id="618">618</th><td>&nbsp</td></tr>
+<tr><th id="619">619</th><td>  <i class="doc">/// [range.view] The ranges::enable_view boolean.</i>&nbsp</td></tr>
+<tr><th id="620">620</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="621">621</th><td>    <b>inline</b> <b>constexpr</b> <em>bool</em> <dfn class="decl def" id="std::ranges::enable_view" title='std::ranges::enable_view' data-ref="std::ranges::enable_view">enable_view</dfn> = derived_from&lt;_Tp, <a class="type" href="#std::ranges::view_base" title='std::ranges::view_base' data-ref="std::ranges::view_base">view_base</a>&gt;;&nbsp</td></tr>
+<tr><th id="622">622</th><td>&nbsp</td></tr>
+<tr><th id="623">623</th><td>  <i class="doc">/// [range.view] The ranges::view concept.</i>&nbsp</td></tr>
+<tr><th id="624">624</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="625">625</th><td>    <b>concept</b> view&nbsp</td></tr>
+<tr><th id="626">626</th><td>      = range&lt;_Tp&gt; &amp;&amp; movable&lt;_Tp&gt; &amp;&amp; enable_view&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="627">627</th><td>&nbsp</td></tr>
+<tr><th id="628">628</th><td>  <i>// [range.refinements]</i>&nbsp</td></tr>
+<tr><th id="629">629</th><td><i></i>&nbsp</td></tr>
+<tr><th id="630">630</th><td><i>  /// A range for which ranges::begin returns an output iterator.</i>&nbsp</td></tr>
+<tr><th id="631">631</th><td>  <b>template</b>&lt;<b>typename</b> _Range, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="632">632</th><td>    <b>concept</b> output_range&nbsp</td></tr>
+<tr><th id="633">633</th><td>      = range&lt;_Range&gt; &amp;&amp; output_iterator&lt;<a class="type" href="#std::ranges::iterator_t" title='std::ranges::iterator_t' data-ref="std::ranges::iterator_t">iterator_t</a>&lt;_Range&gt;, _Tp&gt;;&nbsp</td></tr>
+<tr><th id="634">634</th><td>&nbsp</td></tr>
+<tr><th id="635">635</th><td>  <i class="doc">/// A range for which ranges::begin returns an input iterator.</i>&nbsp</td></tr>
+<tr><th id="636">636</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="637">637</th><td>    <b>concept</b> input_range = range&lt;_Tp&gt; &amp;&amp; input_iterator&lt;<a class="type" href="#std::ranges::iterator_t" title='std::ranges::iterator_t' data-ref="std::ranges::iterator_t">iterator_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="638">638</th><td>&nbsp</td></tr>
+<tr><th id="639">639</th><td>  <i class="doc">/// A range for which ranges::begin returns a forward iterator.</i>&nbsp</td></tr>
+<tr><th id="640">640</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="641">641</th><td>    <b>concept</b> forward_range&nbsp</td></tr>
+<tr><th id="642">642</th><td>      = input_range&lt;_Tp&gt; &amp;&amp; forward_iterator&lt;<a class="type" href="#std::ranges::iterator_t" title='std::ranges::iterator_t' data-ref="std::ranges::iterator_t">iterator_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="643">643</th><td>&nbsp</td></tr>
+<tr><th id="644">644</th><td>  <i class="doc">/// A range for which ranges::begin returns a bidirectional iterator.</i>&nbsp</td></tr>
+<tr><th id="645">645</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="646">646</th><td>    <b>concept</b> bidirectional_range&nbsp</td></tr>
+<tr><th id="647">647</th><td>      = forward_range&lt;_Tp&gt; &amp;&amp; bidirectional_iterator&lt;<a class="type" href="#std::ranges::iterator_t" title='std::ranges::iterator_t' data-ref="std::ranges::iterator_t">iterator_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="648">648</th><td>&nbsp</td></tr>
+<tr><th id="649">649</th><td>  <i class="doc">/// A range for which ranges::begin returns a random access iterator.</i>&nbsp</td></tr>
+<tr><th id="650">650</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="651">651</th><td>    <b>concept</b> random_access_range&nbsp</td></tr>
+<tr><th id="652">652</th><td>      = bidirectional_range&lt;_Tp&gt; &amp;&amp; random_access_iterator&lt;<a class="type" href="#std::ranges::iterator_t" title='std::ranges::iterator_t' data-ref="std::ranges::iterator_t">iterator_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="653">653</th><td>&nbsp</td></tr>
+<tr><th id="654">654</th><td>  <i class="doc">/// A range for which ranges::begin returns a contiguous iterator.</i>&nbsp</td></tr>
+<tr><th id="655">655</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="656">656</th><td>    <b>concept</b> contiguous_range&nbsp</td></tr>
+<tr><th id="657">657</th><td>      = random_access_range&lt;_Tp&gt; &amp;&amp; contiguous_iterator&lt;<a class="type" href="#std::ranges::iterator_t" title='std::ranges::iterator_t' data-ref="std::ranges::iterator_t">iterator_t</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="658">658</th><td>      &amp;&amp; <b>requires</b>(_Tp&amp; <dfn class="local col7 decl" id="1687__t" title='__t' data-type='_Tp &amp;' data-ref="1687__t">__t</dfn>)&nbsp</td></tr>
+<tr><th id="659">659</th><td>      {&nbsp</td></tr>
+<tr><th id="660">660</th><td>	{ <span class="namespace">ranges::</span><a class="ref" href="#std::ranges::data" title='std::ranges::data' data-ref="std::ranges::data">data</a>(<a class="local col7 ref" href="#1687__t" title='__t' data-ref="1687__t">__t</a>) } -&gt; same_as&lt;<a class="type" href="../type_traits.html#std::add_pointer_t" title='std::add_pointer_t' data-ref="std::add_pointer_t">add_pointer_t</a>&lt;<a class="type" href="#std::ranges::range_reference_t" title='std::ranges::range_reference_t' data-ref="std::ranges::range_reference_t">range_reference_t</a>&lt;_Tp&gt;&gt;&gt;;&nbsp</td></tr>
+<tr><th id="661">661</th><td>      };&nbsp</td></tr>
+<tr><th id="662">662</th><td>&nbsp</td></tr>
+<tr><th id="663">663</th><td>  <i class="doc">/// A range for which ranges::begin and ranges::end return the same type.</i>&nbsp</td></tr>
+<tr><th id="664">664</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="665">665</th><td>    <b>concept</b> common_range&nbsp</td></tr>
+<tr><th id="666">666</th><td>      = range&lt;_Tp&gt; &amp;&amp; same_as&lt;<a class="type" href="#std::ranges::iterator_t" title='std::ranges::iterator_t' data-ref="std::ranges::iterator_t">iterator_t</a>&lt;_Tp&gt;, <a class="type" href="#std::ranges::sentinel_t" title='std::ranges::sentinel_t' data-ref="std::ranges::sentinel_t">sentinel_t</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="667">667</th><td>&nbsp</td></tr>
+<tr><th id="668">668</th><td>  <i class="doc">/// A range which can be safely converted to a view.</i>&nbsp</td></tr>
+<tr><th id="669">669</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="670">670</th><td>    <b>concept</b> viewable_range = range&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="671">671</th><td>      &amp;&amp; ((view&lt;<a class="type" href="../type_traits.html#std::remove_cvref_t" title='std::remove_cvref_t' data-ref="std::remove_cvref_t">remove_cvref_t</a>&lt;_Tp&gt;&gt; &amp;&amp; constructible_from&lt;<a class="type" href="../type_traits.html#std::remove_cvref_t" title='std::remove_cvref_t' data-ref="std::remove_cvref_t">remove_cvref_t</a>&lt;_Tp&gt;, _Tp&gt;)&nbsp</td></tr>
+<tr><th id="672">672</th><td>	  || (!view&lt;<a class="type" href="../type_traits.html#std::remove_cvref_t" title='std::remove_cvref_t' data-ref="std::remove_cvref_t">remove_cvref_t</a>&lt;_Tp&gt;&gt; &amp;&amp; borrowed_range&lt;_Tp&gt;));&nbsp</td></tr>
+<tr><th id="673">673</th><td>&nbsp</td></tr>
+<tr><th id="674">674</th><td>  <i>// [range.iter.ops] range iterator operations</i>&nbsp</td></tr>
+<tr><th id="675">675</th><td>&nbsp</td></tr>
+<tr><th id="676">676</th><td>  <b>struct</b> <dfn class="type def" id="std::ranges::__advance_fn" title='std::ranges::__advance_fn' data-ref="std::ranges::__advance_fn">__advance_fn</dfn>&nbsp</td></tr>
+<tr><th id="677">677</th><td>  {&nbsp</td></tr>
+<tr><th id="678">678</th><td>    <b>template</b>&lt;input_or_output_iterator _It&gt;&nbsp</td></tr>
+<tr><th id="679">679</th><td>      <b>constexpr</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="680">680</th><td>      <dfn class="decl def fn" id="_ZNKSt6ranges12__advance_fnclERT_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS7_EE4type15difference_typeE" title='std::ranges::__advance_fn::operator()' data-ref="_ZNKSt6ranges12__advance_fnclERT_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS7_EE4type15difference_typeE"><b>operator</b>()</dfn>(_It&amp; <dfn class="local col8 decl" id="1688__it" title='__it' data-type='_It &amp;' data-ref="1688__it">__it</dfn>, <a class="type" href="iterator_concepts.h.html#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_It&gt; <dfn class="local col9 decl" id="1689__n" title='__n' data-type='iter_difference_t&lt;_It&gt;' data-ref="1689__n">__n</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="681">681</th><td>      {&nbsp</td></tr>
+<tr><th id="682">682</th><td>	<b>if</b> <b>constexpr</b> (random_access_iterator&lt;_It&gt;)&nbsp</td></tr>
+<tr><th id="683">683</th><td>	  <a class="local col8 ref" href="#1688__it" title='__it' data-ref="1688__it">__it</a> += <a class="local col9 ref" href="#1689__n" title='__n' data-ref="1689__n">__n</a>;&nbsp</td></tr>
+<tr><th id="684">684</th><td>	<b>else</b> <b>if</b> <b>constexpr</b> (bidirectional_iterator&lt;_It&gt;)&nbsp</td></tr>
+<tr><th id="685">685</th><td>	  {&nbsp</td></tr>
+<tr><th id="686">686</th><td>	    <b>if</b> (<a class="local col9 ref" href="#1689__n" title='__n' data-ref="1689__n">__n</a> &gt; <var>0</var>)&nbsp</td></tr>
+<tr><th id="687">687</th><td>	      {&nbsp</td></tr>
+<tr><th id="688">688</th><td>		<b>do</b>&nbsp</td></tr>
+<tr><th id="689">689</th><td>		  {&nbsp</td></tr>
+<tr><th id="690">690</th><td>		    ++<a class="local col8 ref" href="#1688__it" title='__it' data-ref="1688__it">__it</a>;&nbsp</td></tr>
+<tr><th id="691">691</th><td>		  }&nbsp</td></tr>
+<tr><th id="692">692</th><td>		<b>while</b> (--<a class="local col9 ref" href="#1689__n" title='__n' data-ref="1689__n">__n</a>);&nbsp</td></tr>
+<tr><th id="693">693</th><td>	      }&nbsp</td></tr>
+<tr><th id="694">694</th><td>	    <b>else</b> <b>if</b> (<a class="local col9 ref" href="#1689__n" title='__n' data-ref="1689__n">__n</a> &lt; <var>0</var>)&nbsp</td></tr>
+<tr><th id="695">695</th><td>	      {&nbsp</td></tr>
+<tr><th id="696">696</th><td>		<b>do</b>&nbsp</td></tr>
+<tr><th id="697">697</th><td>		  {&nbsp</td></tr>
+<tr><th id="698">698</th><td>		    --<a class="local col8 ref" href="#1688__it" title='__it' data-ref="1688__it">__it</a>;&nbsp</td></tr>
+<tr><th id="699">699</th><td>		  }&nbsp</td></tr>
+<tr><th id="700">700</th><td>		<b>while</b> (++<a class="local col9 ref" href="#1689__n" title='__n' data-ref="1689__n">__n</a>);&nbsp</td></tr>
+<tr><th id="701">701</th><td>	      }&nbsp</td></tr>
+<tr><th id="702">702</th><td>	  }&nbsp</td></tr>
+<tr><th id="703">703</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="704">704</th><td>	  {&nbsp</td></tr>
+<tr><th id="705">705</th><td>	    <i>// cannot decrement a non-bidirectional iterator</i>&nbsp</td></tr>
+<tr><th id="706">706</th><td>	    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#530" title="do { if (__builtin_is_constant_evaluated() &amp;&amp; !bool(__n &gt;= 0)) __builtin_unreachable(); } while (false)" data-ref="_M/__glibcxx_assert">__glibcxx_assert</a>(<a class="local col9 ref" href="#1689__n" title='__n' data-ref="1689__n">__n</a> &gt;= <var>0</var>);&nbsp</td></tr>
+<tr><th id="707">707</th><td>	    <b>while</b> (<a class="local col9 ref" href="#1689__n" title='__n' data-ref="1689__n">__n</a>-- &gt; <var>0</var>)&nbsp</td></tr>
+<tr><th id="708">708</th><td>	      ++<a class="local col8 ref" href="#1688__it" title='__it' data-ref="1688__it">__it</a>;&nbsp</td></tr>
+<tr><th id="709">709</th><td>	  }&nbsp</td></tr>
+<tr><th id="710">710</th><td>      }&nbsp</td></tr>
+<tr><th id="711">711</th><td>&nbsp</td></tr>
+<tr><th id="712">712</th><td>    <b>template</b>&lt;input_or_output_iterator _It, sentinel_for&lt;_It&gt; _Sent&gt;&nbsp</td></tr>
+<tr><th id="713">713</th><td>      <b>constexpr</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="714">714</th><td>      <dfn class="decl def fn" id="_ZNKSt6ranges12__advance_fnclERT_T0_" title='std::ranges::__advance_fn::operator()' data-ref="_ZNKSt6ranges12__advance_fnclERT_T0_"><b>operator</b>()</dfn>(_It&amp; <dfn class="local col0 decl" id="1690__it" title='__it' data-type='_It &amp;' data-ref="1690__it">__it</dfn>, _Sent <dfn class="local col1 decl" id="1691__bound" title='__bound' data-type='_Sent' data-ref="1691__bound">__bound</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="715">715</th><td>      {&nbsp</td></tr>
+<tr><th id="716">716</th><td>	<b>if</b> <b>constexpr</b> (assignable_from&lt;_It&amp;, _Sent&gt;)&nbsp</td></tr>
+<tr><th id="717">717</th><td>	  <a class="local col0 ref" href="#1690__it" title='__it' data-ref="1690__it">__it</a> = <span class="namespace">std::</span>move(<a class="local col1 ref" href="#1691__bound" title='__bound' data-ref="1691__bound">__bound</a>);&nbsp</td></tr>
+<tr><th id="718">718</th><td>	<b>else</b> <b>if</b> <b>constexpr</b> (sized_sentinel_for&lt;_Sent, _It&gt;)&nbsp</td></tr>
+<tr><th id="719">719</th><td>	  (*<b>this</b>)(<a class="local col0 ref" href="#1690__it" title='__it' data-ref="1690__it">__it</a>, <a class="local col1 ref" href="#1691__bound" title='__bound' data-ref="1691__bound">__bound</a> - <a class="local col0 ref" href="#1690__it" title='__it' data-ref="1690__it">__it</a>);&nbsp</td></tr>
+<tr><th id="720">720</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="721">721</th><td>	  {&nbsp</td></tr>
+<tr><th id="722">722</th><td>	    <b>while</b> (<a class="local col0 ref" href="#1690__it" title='__it' data-ref="1690__it">__it</a> != <a class="local col1 ref" href="#1691__bound" title='__bound' data-ref="1691__bound">__bound</a>)&nbsp</td></tr>
+<tr><th id="723">723</th><td>	      ++<a class="local col0 ref" href="#1690__it" title='__it' data-ref="1690__it">__it</a>;&nbsp</td></tr>
+<tr><th id="724">724</th><td>	  }&nbsp</td></tr>
+<tr><th id="725">725</th><td>      }&nbsp</td></tr>
+<tr><th id="726">726</th><td>&nbsp</td></tr>
+<tr><th id="727">727</th><td>    <b>template</b>&lt;input_or_output_iterator _It, sentinel_for&lt;_It&gt; _Sent&gt;&nbsp</td></tr>
+<tr><th id="728">728</th><td>      <b>constexpr</b> <a class="type" href="iterator_concepts.h.html#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_It&gt;&nbsp</td></tr>
+<tr><th id="729">729</th><td>      <dfn class="decl def fn" id="_ZNKSt6ranges12__advance_fnclERT_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS7_EE4type15difference_typeET0_" title='std::ranges::__advance_fn::operator()' data-ref="_ZNKSt6ranges12__advance_fnclERT_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS7_EE4type15difference_typeET0_"><b>operator</b>()</dfn>(_It&amp; <dfn class="local col2 decl" id="1692__it" title='__it' data-type='_It &amp;' data-ref="1692__it">__it</dfn>, <a class="type" href="iterator_concepts.h.html#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_It&gt; <dfn class="local col3 decl" id="1693__n" title='__n' data-type='iter_difference_t&lt;_It&gt;' data-ref="1693__n">__n</dfn>, _Sent <dfn class="local col4 decl" id="1694__bound" title='__bound' data-type='_Sent' data-ref="1694__bound">__bound</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="730">730</th><td>      {&nbsp</td></tr>
+<tr><th id="731">731</th><td>	<b>if</b> <b>constexpr</b> (sized_sentinel_for&lt;_Sent, _It&gt;)&nbsp</td></tr>
+<tr><th id="732">732</th><td>	  {&nbsp</td></tr>
+<tr><th id="733">733</th><td>	    <em>const</em> <em>auto</em> <dfn class="local col5 decl" id="1695__diff" title='__diff' data-type='const auto' data-ref="1695__diff">__diff</dfn> = <a class="local col4 ref" href="#1694__bound" title='__bound' data-ref="1694__bound">__bound</a> - <a class="local col2 ref" href="#1692__it" title='__it' data-ref="1692__it">__it</a>;&nbsp</td></tr>
+<tr><th id="734">734</th><td>&nbsp</td></tr>
+<tr><th id="735">735</th><td>	    <b>if</b> (<a class="local col5 ref" href="#1695__diff" title='__diff' data-ref="1695__diff">__diff</a> == <var>0</var>)&nbsp</td></tr>
+<tr><th id="736">736</th><td>	      <b>return</b> <a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a>;&nbsp</td></tr>
+<tr><th id="737">737</th><td>	    <b>else</b> <b>if</b> (<a class="local col5 ref" href="#1695__diff" title='__diff' data-ref="1695__diff">__diff</a> &gt; <var>0</var> ? <a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a> &gt;= <a class="local col5 ref" href="#1695__diff" title='__diff' data-ref="1695__diff">__diff</a> : <a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a> &lt;= <a class="local col5 ref" href="#1695__diff" title='__diff' data-ref="1695__diff">__diff</a>)&nbsp</td></tr>
+<tr><th id="738">738</th><td>	      {&nbsp</td></tr>
+<tr><th id="739">739</th><td>		(*<b>this</b>)(<a class="local col2 ref" href="#1692__it" title='__it' data-ref="1692__it">__it</a>, <a class="local col4 ref" href="#1694__bound" title='__bound' data-ref="1694__bound">__bound</a>);&nbsp</td></tr>
+<tr><th id="740">740</th><td>		<b>return</b> <a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a> - <a class="local col5 ref" href="#1695__diff" title='__diff' data-ref="1695__diff">__diff</a>;&nbsp</td></tr>
+<tr><th id="741">741</th><td>	      }&nbsp</td></tr>
+<tr><th id="742">742</th><td>	    <b>else</b> <b>if</b> (<a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a> != <var>0</var>) [[likely]]&nbsp</td></tr>
+<tr><th id="743">743</th><td>	      {&nbsp</td></tr>
+<tr><th id="744">744</th><td>		<i>// n and bound must not lead in opposite directions:</i>&nbsp</td></tr>
+<tr><th id="745">745</th><td>		<a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#530" title="do { if (__builtin_is_constant_evaluated() &amp;&amp; !bool(__n &lt; 0 == __diff &lt; 0)) __builtin_unreachable(); } while (false)" data-ref="_M/__glibcxx_assert">__glibcxx_assert</a>(<a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a> &lt; <var>0</var> == <a class="local col5 ref" href="#1695__diff" title='__diff' data-ref="1695__diff">__diff</a> &lt; <var>0</var>);&nbsp</td></tr>
+<tr><th id="746">746</th><td>&nbsp</td></tr>
+<tr><th id="747">747</th><td>		(*<b>this</b>)(<a class="local col2 ref" href="#1692__it" title='__it' data-ref="1692__it">__it</a>, <a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a>);&nbsp</td></tr>
+<tr><th id="748">748</th><td>		<b>return</b> <var>0</var>;&nbsp</td></tr>
+<tr><th id="749">749</th><td>	      }&nbsp</td></tr>
+<tr><th id="750">750</th><td>	    <b>else</b>&nbsp</td></tr>
+<tr><th id="751">751</th><td>	      <b>return</b> <var>0</var>;&nbsp</td></tr>
+<tr><th id="752">752</th><td>	  }&nbsp</td></tr>
+<tr><th id="753">753</th><td>	<b>else</b> <b>if</b> (<a class="local col2 ref" href="#1692__it" title='__it' data-ref="1692__it">__it</a> == <a class="local col4 ref" href="#1694__bound" title='__bound' data-ref="1694__bound">__bound</a> || <a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a> == <var>0</var>)&nbsp</td></tr>
+<tr><th id="754">754</th><td>	  <b>return</b> <a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a>;&nbsp</td></tr>
+<tr><th id="755">755</th><td>	<b>else</b> <b>if</b> (<a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a> &gt; <var>0</var>)&nbsp</td></tr>
+<tr><th id="756">756</th><td>	  {&nbsp</td></tr>
+<tr><th id="757">757</th><td>	    <a class="type" href="iterator_concepts.h.html#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_It&gt; <dfn class="local col6 decl" id="1696__m" title='__m' data-type='iter_difference_t&lt;_It&gt;' data-ref="1696__m">__m</dfn> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="758">758</th><td>	    <b>do</b>&nbsp</td></tr>
+<tr><th id="759">759</th><td>	      {&nbsp</td></tr>
+<tr><th id="760">760</th><td>		++<a class="local col2 ref" href="#1692__it" title='__it' data-ref="1692__it">__it</a>;&nbsp</td></tr>
+<tr><th id="761">761</th><td>		++<a class="local col6 ref" href="#1696__m" title='__m' data-ref="1696__m">__m</a>;&nbsp</td></tr>
+<tr><th id="762">762</th><td>	      }&nbsp</td></tr>
+<tr><th id="763">763</th><td>	    <b>while</b> (<a class="local col6 ref" href="#1696__m" title='__m' data-ref="1696__m">__m</a> != <a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a> &amp;&amp; <a class="local col2 ref" href="#1692__it" title='__it' data-ref="1692__it">__it</a> != <a class="local col4 ref" href="#1694__bound" title='__bound' data-ref="1694__bound">__bound</a>);&nbsp</td></tr>
+<tr><th id="764">764</th><td>	    <b>return</b> <a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a> - <a class="local col6 ref" href="#1696__m" title='__m' data-ref="1696__m">__m</a>;&nbsp</td></tr>
+<tr><th id="765">765</th><td>	  }&nbsp</td></tr>
+<tr><th id="766">766</th><td>	<b>else</b> <b>if</b> <b>constexpr</b> (bidirectional_iterator&lt;_It&gt; &amp;&amp; same_as&lt;_It, _Sent&gt;)&nbsp</td></tr>
+<tr><th id="767">767</th><td>	  {&nbsp</td></tr>
+<tr><th id="768">768</th><td>	    <a class="type" href="iterator_concepts.h.html#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_It&gt; <dfn class="local col7 decl" id="1697__m" title='__m' data-type='iter_difference_t&lt;_It&gt;' data-ref="1697__m">__m</dfn> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="769">769</th><td>	    <b>do</b>&nbsp</td></tr>
+<tr><th id="770">770</th><td>	      {&nbsp</td></tr>
+<tr><th id="771">771</th><td>		--<a class="local col2 ref" href="#1692__it" title='__it' data-ref="1692__it">__it</a>;&nbsp</td></tr>
+<tr><th id="772">772</th><td>		--<a class="local col7 ref" href="#1697__m" title='__m' data-ref="1697__m">__m</a>;&nbsp</td></tr>
+<tr><th id="773">773</th><td>	      }&nbsp</td></tr>
+<tr><th id="774">774</th><td>	    <b>while</b> (<a class="local col7 ref" href="#1697__m" title='__m' data-ref="1697__m">__m</a> != <a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a> &amp;&amp; <a class="local col2 ref" href="#1692__it" title='__it' data-ref="1692__it">__it</a> != <a class="local col4 ref" href="#1694__bound" title='__bound' data-ref="1694__bound">__bound</a>);&nbsp</td></tr>
+<tr><th id="775">775</th><td>	    <b>return</b> <a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a> - <a class="local col7 ref" href="#1697__m" title='__m' data-ref="1697__m">__m</a>;&nbsp</td></tr>
+<tr><th id="776">776</th><td>	  }&nbsp</td></tr>
+<tr><th id="777">777</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="778">778</th><td>	  {&nbsp</td></tr>
+<tr><th id="779">779</th><td>	    <i>// cannot decrement a non-bidirectional iterator</i>&nbsp</td></tr>
+<tr><th id="780">780</th><td>	    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#530" title="do { if (__builtin_is_constant_evaluated() &amp;&amp; !bool(__n &gt;= 0)) __builtin_unreachable(); } while (false)" data-ref="_M/__glibcxx_assert">__glibcxx_assert</a>(<a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a> &gt;= <var>0</var>);&nbsp</td></tr>
+<tr><th id="781">781</th><td>	    <b>return</b> <a class="local col3 ref" href="#1693__n" title='__n' data-ref="1693__n">__n</a>;&nbsp</td></tr>
+<tr><th id="782">782</th><td>	  }&nbsp</td></tr>
+<tr><th id="783">783</th><td>      }&nbsp</td></tr>
+<tr><th id="784">784</th><td>  };&nbsp</td></tr>
+<tr><th id="785">785</th><td>&nbsp</td></tr>
+<tr><th id="786">786</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::ranges::__advance_fn" title='std::ranges::__advance_fn' data-ref="std::ranges::__advance_fn">__advance_fn</a> <dfn class="decl def" id="std::ranges::advance" title='std::ranges::advance' data-ref="std::ranges::advance">advance</dfn>{};&nbsp</td></tr>
+<tr><th id="787">787</th><td>&nbsp</td></tr>
+<tr><th id="788">788</th><td>  <b>struct</b> <dfn class="type def" id="std::ranges::__distance_fn" title='std::ranges::__distance_fn' data-ref="std::ranges::__distance_fn">__distance_fn</dfn>&nbsp</td></tr>
+<tr><th id="789">789</th><td>  {&nbsp</td></tr>
+<tr><th id="790">790</th><td>    <b>template</b>&lt;input_or_output_iterator _It, sentinel_for&lt;_It&gt; _Sent&gt;&nbsp</td></tr>
+<tr><th id="791">791</th><td>      <b>constexpr</b> <a class="type" href="iterator_concepts.h.html#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_It&gt;&nbsp</td></tr>
+<tr><th id="792">792</th><td>      <dfn class="decl def fn" id="_ZNKSt6ranges13__distance_fnclET_T0_" title='std::ranges::__distance_fn::operator()' data-ref="_ZNKSt6ranges13__distance_fnclET_T0_"><b>operator</b>()</dfn>(_It <dfn class="local col8 decl" id="1698__first" title='__first' data-type='_It' data-ref="1698__first">__first</dfn>, _Sent <dfn class="local col9 decl" id="1699__last" title='__last' data-type='_Sent' data-ref="1699__last">__last</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="793">793</th><td>      {&nbsp</td></tr>
+<tr><th id="794">794</th><td>	<b>if</b> <b>constexpr</b> (sized_sentinel_for&lt;_Sent, _It&gt;)&nbsp</td></tr>
+<tr><th id="795">795</th><td>	  <b>return</b> <a class="local col9 ref" href="#1699__last" title='__last' data-ref="1699__last">__last</a> - <a class="local col8 ref" href="#1698__first" title='__first' data-ref="1698__first">__first</a>;&nbsp</td></tr>
+<tr><th id="796">796</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="797">797</th><td>	  {&nbsp</td></tr>
+<tr><th id="798">798</th><td>	    <a class="type" href="iterator_concepts.h.html#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_It&gt; <dfn class="local col0 decl" id="1700__n" title='__n' data-type='iter_difference_t&lt;_It&gt;' data-ref="1700__n">__n</dfn> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="799">799</th><td>	    <b>while</b> (<a class="local col8 ref" href="#1698__first" title='__first' data-ref="1698__first">__first</a> != <a class="local col9 ref" href="#1699__last" title='__last' data-ref="1699__last">__last</a>)&nbsp</td></tr>
+<tr><th id="800">800</th><td>	      {&nbsp</td></tr>
+<tr><th id="801">801</th><td>		++<a class="local col8 ref" href="#1698__first" title='__first' data-ref="1698__first">__first</a>;&nbsp</td></tr>
+<tr><th id="802">802</th><td>		++<a class="local col0 ref" href="#1700__n" title='__n' data-ref="1700__n">__n</a>;&nbsp</td></tr>
+<tr><th id="803">803</th><td>	      }&nbsp</td></tr>
+<tr><th id="804">804</th><td>	    <b>return</b> <a class="local col0 ref" href="#1700__n" title='__n' data-ref="1700__n">__n</a>;&nbsp</td></tr>
+<tr><th id="805">805</th><td>	  }&nbsp</td></tr>
+<tr><th id="806">806</th><td>      }&nbsp</td></tr>
+<tr><th id="807">807</th><td>&nbsp</td></tr>
+<tr><th id="808">808</th><td>    <b>template</b>&lt;range _Range&gt;&nbsp</td></tr>
+<tr><th id="809">809</th><td>      <b>constexpr</b> <a class="type" href="#std::ranges::range_difference_t" title='std::ranges::range_difference_t' data-ref="std::ranges::range_difference_t">range_difference_t</a>&lt;_Range&gt;&nbsp</td></tr>
+<tr><th id="810">810</th><td>      <dfn class="decl def fn" id="_ZNKSt6ranges13__distance_fnclEOT_" title='std::ranges::__distance_fn::operator()' data-ref="_ZNKSt6ranges13__distance_fnclEOT_"><b>operator</b>()</dfn>(_Range&amp;&amp; <dfn class="local col1 decl" id="1701__r" title='__r' data-type='_Range &amp;&amp;' data-ref="1701__r">__r</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="811">811</th><td>      {&nbsp</td></tr>
+<tr><th id="812">812</th><td>	<b>if</b> <b>constexpr</b> (sized_range&lt;_Range&gt;)&nbsp</td></tr>
+<tr><th id="813">813</th><td>	  <b>return</b> <b>static_cast</b>&lt;<a class="type" href="#std::ranges::range_difference_t" title='std::ranges::range_difference_t' data-ref="std::ranges::range_difference_t">range_difference_t</a>&lt;_Range&gt;&gt;(<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::size" title='std::ranges::size' data-ref="std::ranges::size">size</a>(<a class="local col1 ref" href="#1701__r" title='__r' data-ref="1701__r">__r</a>));&nbsp</td></tr>
+<tr><th id="814">814</th><td>	<b>else</b>&nbsp</td></tr>
+<tr><th id="815">815</th><td>	  <b>return</b> (*<b>this</b>)(<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::begin" title='std::ranges::begin' data-ref="std::ranges::begin">begin</a>(<a class="local col1 ref" href="#1701__r" title='__r' data-ref="1701__r">__r</a>), <span class="namespace">ranges::</span><a class="ref" href="#std::ranges::end" title='std::ranges::end' data-ref="std::ranges::end">end</a>(<a class="local col1 ref" href="#1701__r" title='__r' data-ref="1701__r">__r</a>));&nbsp</td></tr>
+<tr><th id="816">816</th><td>      }&nbsp</td></tr>
+<tr><th id="817">817</th><td>  };&nbsp</td></tr>
+<tr><th id="818">818</th><td>&nbsp</td></tr>
+<tr><th id="819">819</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::ranges::__distance_fn" title='std::ranges::__distance_fn' data-ref="std::ranges::__distance_fn">__distance_fn</a> <dfn class="decl def" id="std::ranges::distance" title='std::ranges::distance' data-ref="std::ranges::distance">distance</dfn>{};&nbsp</td></tr>
+<tr><th id="820">820</th><td>&nbsp</td></tr>
+<tr><th id="821">821</th><td>  <b>struct</b> <dfn class="type def" id="std::ranges::__next_fn" title='std::ranges::__next_fn' data-ref="std::ranges::__next_fn">__next_fn</dfn>&nbsp</td></tr>
+<tr><th id="822">822</th><td>  {&nbsp</td></tr>
+<tr><th id="823">823</th><td>    <b>template</b>&lt;input_or_output_iterator _It&gt;&nbsp</td></tr>
+<tr><th id="824">824</th><td>      <b>constexpr</b> _It&nbsp</td></tr>
+<tr><th id="825">825</th><td>      <dfn class="decl def fn" id="_ZNKSt6ranges9__next_fnclET_" title='std::ranges::__next_fn::operator()' data-ref="_ZNKSt6ranges9__next_fnclET_"><b>operator</b>()</dfn>(_It <dfn class="local col2 decl" id="1702__x" title='__x' data-type='_It' data-ref="1702__x">__x</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="826">826</th><td>      {&nbsp</td></tr>
+<tr><th id="827">827</th><td>	++<a class="local col2 ref" href="#1702__x" title='__x' data-ref="1702__x">__x</a>;&nbsp</td></tr>
+<tr><th id="828">828</th><td>	<b>return</b> <a class="local col2 ref" href="#1702__x" title='__x' data-ref="1702__x">__x</a>;&nbsp</td></tr>
+<tr><th id="829">829</th><td>      }&nbsp</td></tr>
+<tr><th id="830">830</th><td>&nbsp</td></tr>
+<tr><th id="831">831</th><td>    <b>template</b>&lt;input_or_output_iterator _It&gt;&nbsp</td></tr>
+<tr><th id="832">832</th><td>      <b>constexpr</b> _It&nbsp</td></tr>
+<tr><th id="833">833</th><td>      <dfn class="decl def fn" id="_ZNKSt6ranges9__next_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE" title='std::ranges::__next_fn::operator()' data-ref="_ZNKSt6ranges9__next_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE"><b>operator</b>()</dfn>(_It <dfn class="local col3 decl" id="1703__x" title='__x' data-type='_It' data-ref="1703__x">__x</dfn>, <a class="type" href="iterator_concepts.h.html#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_It&gt; <dfn class="local col4 decl" id="1704__n" title='__n' data-type='iter_difference_t&lt;_It&gt;' data-ref="1704__n">__n</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="834">834</th><td>      {&nbsp</td></tr>
+<tr><th id="835">835</th><td>	<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::advance" title='std::ranges::advance' data-ref="std::ranges::advance">advance</a>(<a class="local col3 ref" href="#1703__x" title='__x' data-ref="1703__x">__x</a>, <a class="local col4 ref" href="#1704__n" title='__n' data-ref="1704__n">__n</a>);&nbsp</td></tr>
+<tr><th id="836">836</th><td>	<b>return</b> <a class="local col3 ref" href="#1703__x" title='__x' data-ref="1703__x">__x</a>;&nbsp</td></tr>
+<tr><th id="837">837</th><td>      }&nbsp</td></tr>
+<tr><th id="838">838</th><td>&nbsp</td></tr>
+<tr><th id="839">839</th><td>    <b>template</b>&lt;input_or_output_iterator _It, sentinel_for&lt;_It&gt; _Sent&gt;&nbsp</td></tr>
+<tr><th id="840">840</th><td>      <b>constexpr</b> _It&nbsp</td></tr>
+<tr><th id="841">841</th><td>      <dfn class="decl def fn" id="_ZNKSt6ranges9__next_fnclET_T0_" title='std::ranges::__next_fn::operator()' data-ref="_ZNKSt6ranges9__next_fnclET_T0_"><b>operator</b>()</dfn>(_It <dfn class="local col5 decl" id="1705__x" title='__x' data-type='_It' data-ref="1705__x">__x</dfn>, _Sent <dfn class="local col6 decl" id="1706__bound" title='__bound' data-type='_Sent' data-ref="1706__bound">__bound</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="842">842</th><td>      {&nbsp</td></tr>
+<tr><th id="843">843</th><td>	<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::advance" title='std::ranges::advance' data-ref="std::ranges::advance">advance</a>(<a class="local col5 ref" href="#1705__x" title='__x' data-ref="1705__x">__x</a>, <a class="local col6 ref" href="#1706__bound" title='__bound' data-ref="1706__bound">__bound</a>);&nbsp</td></tr>
+<tr><th id="844">844</th><td>	<b>return</b> <a class="local col5 ref" href="#1705__x" title='__x' data-ref="1705__x">__x</a>;&nbsp</td></tr>
+<tr><th id="845">845</th><td>      }&nbsp</td></tr>
+<tr><th id="846">846</th><td>&nbsp</td></tr>
+<tr><th id="847">847</th><td>    <b>template</b>&lt;input_or_output_iterator _It, sentinel_for&lt;_It&gt; _Sent&gt;&nbsp</td></tr>
+<tr><th id="848">848</th><td>      <b>constexpr</b> _It&nbsp</td></tr>
+<tr><th id="849">849</th><td>      <dfn class="decl def fn" id="_ZNKSt6ranges9__next_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeET0_" title='std::ranges::__next_fn::operator()' data-ref="_ZNKSt6ranges9__next_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeET0_"><b>operator</b>()</dfn>(_It <dfn class="local col7 decl" id="1707__x" title='__x' data-type='_It' data-ref="1707__x">__x</dfn>, <a class="type" href="iterator_concepts.h.html#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_It&gt; <dfn class="local col8 decl" id="1708__n" title='__n' data-type='iter_difference_t&lt;_It&gt;' data-ref="1708__n">__n</dfn>, _Sent <dfn class="local col9 decl" id="1709__bound" title='__bound' data-type='_Sent' data-ref="1709__bound">__bound</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="850">850</th><td>      {&nbsp</td></tr>
+<tr><th id="851">851</th><td>	<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::advance" title='std::ranges::advance' data-ref="std::ranges::advance">advance</a>(<a class="local col7 ref" href="#1707__x" title='__x' data-ref="1707__x">__x</a>, <a class="local col8 ref" href="#1708__n" title='__n' data-ref="1708__n">__n</a>, <a class="local col9 ref" href="#1709__bound" title='__bound' data-ref="1709__bound">__bound</a>);&nbsp</td></tr>
+<tr><th id="852">852</th><td>	<b>return</b> <a class="local col7 ref" href="#1707__x" title='__x' data-ref="1707__x">__x</a>;&nbsp</td></tr>
+<tr><th id="853">853</th><td>      }&nbsp</td></tr>
+<tr><th id="854">854</th><td>  };&nbsp</td></tr>
+<tr><th id="855">855</th><td>&nbsp</td></tr>
+<tr><th id="856">856</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::ranges::__next_fn" title='std::ranges::__next_fn' data-ref="std::ranges::__next_fn">__next_fn</a> <dfn class="decl def" id="std::ranges::next" title='std::ranges::next' data-ref="std::ranges::next">next</dfn>{};&nbsp</td></tr>
+<tr><th id="857">857</th><td>&nbsp</td></tr>
+<tr><th id="858">858</th><td>  <b>struct</b> <dfn class="type def" id="std::ranges::__prev_fn" title='std::ranges::__prev_fn' data-ref="std::ranges::__prev_fn">__prev_fn</dfn>&nbsp</td></tr>
+<tr><th id="859">859</th><td>  {&nbsp</td></tr>
+<tr><th id="860">860</th><td>    <b>template</b>&lt;bidirectional_iterator _It&gt;&nbsp</td></tr>
+<tr><th id="861">861</th><td>      <b>constexpr</b> _It&nbsp</td></tr>
+<tr><th id="862">862</th><td>      <dfn class="decl def fn" id="_ZNKSt6ranges9__prev_fnclET_" title='std::ranges::__prev_fn::operator()' data-ref="_ZNKSt6ranges9__prev_fnclET_"><b>operator</b>()</dfn>(_It <dfn class="local col0 decl" id="1710__x" title='__x' data-type='_It' data-ref="1710__x">__x</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="863">863</th><td>      {&nbsp</td></tr>
+<tr><th id="864">864</th><td>	--<a class="local col0 ref" href="#1710__x" title='__x' data-ref="1710__x">__x</a>;&nbsp</td></tr>
+<tr><th id="865">865</th><td>	<b>return</b> <a class="local col0 ref" href="#1710__x" title='__x' data-ref="1710__x">__x</a>;&nbsp</td></tr>
+<tr><th id="866">866</th><td>      }&nbsp</td></tr>
+<tr><th id="867">867</th><td>&nbsp</td></tr>
+<tr><th id="868">868</th><td>    <b>template</b>&lt;bidirectional_iterator _It&gt;&nbsp</td></tr>
+<tr><th id="869">869</th><td>      <b>constexpr</b> _It&nbsp</td></tr>
+<tr><th id="870">870</th><td>      <dfn class="decl def fn" id="_ZNKSt6ranges9__prev_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE" title='std::ranges::__prev_fn::operator()' data-ref="_ZNKSt6ranges9__prev_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE"><b>operator</b>()</dfn>(_It <dfn class="local col1 decl" id="1711__x" title='__x' data-type='_It' data-ref="1711__x">__x</dfn>, <a class="type" href="iterator_concepts.h.html#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_It&gt; <dfn class="local col2 decl" id="1712__n" title='__n' data-type='iter_difference_t&lt;_It&gt;' data-ref="1712__n">__n</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="871">871</th><td>      {&nbsp</td></tr>
+<tr><th id="872">872</th><td>	<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::advance" title='std::ranges::advance' data-ref="std::ranges::advance">advance</a>(<a class="local col1 ref" href="#1711__x" title='__x' data-ref="1711__x">__x</a>, -<a class="local col2 ref" href="#1712__n" title='__n' data-ref="1712__n">__n</a>);&nbsp</td></tr>
+<tr><th id="873">873</th><td>	<b>return</b> <a class="local col1 ref" href="#1711__x" title='__x' data-ref="1711__x">__x</a>;&nbsp</td></tr>
+<tr><th id="874">874</th><td>      }&nbsp</td></tr>
+<tr><th id="875">875</th><td>&nbsp</td></tr>
+<tr><th id="876">876</th><td>    <b>template</b>&lt;bidirectional_iterator _It&gt;&nbsp</td></tr>
+<tr><th id="877">877</th><td>      <b>constexpr</b> _It&nbsp</td></tr>
+<tr><th id="878">878</th><td>      <dfn class="decl def fn" id="_ZNKSt6ranges9__prev_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeES1_" title='std::ranges::__prev_fn::operator()' data-ref="_ZNKSt6ranges9__prev_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeES1_"><b>operator</b>()</dfn>(_It <dfn class="local col3 decl" id="1713__x" title='__x' data-type='_It' data-ref="1713__x">__x</dfn>, <a class="type" href="iterator_concepts.h.html#std::iter_difference_t" title='std::iter_difference_t' data-ref="std::iter_difference_t">iter_difference_t</a>&lt;_It&gt; <dfn class="local col4 decl" id="1714__n" title='__n' data-type='iter_difference_t&lt;_It&gt;' data-ref="1714__n">__n</dfn>, _It <dfn class="local col5 decl" id="1715__bound" title='__bound' data-type='_It' data-ref="1715__bound">__bound</dfn>) <em>const</em>&nbsp</td></tr>
+<tr><th id="879">879</th><td>      {&nbsp</td></tr>
+<tr><th id="880">880</th><td>	<span class="namespace">ranges::</span><a class="ref" href="#std::ranges::advance" title='std::ranges::advance' data-ref="std::ranges::advance">advance</a>(<a class="local col3 ref" href="#1713__x" title='__x' data-ref="1713__x">__x</a>, -<a class="local col4 ref" href="#1714__n" title='__n' data-ref="1714__n">__n</a>, <a class="local col5 ref" href="#1715__bound" title='__bound' data-ref="1715__bound">__bound</a>);&nbsp</td></tr>
+<tr><th id="881">881</th><td>	<b>return</b> <a class="local col3 ref" href="#1713__x" title='__x' data-ref="1713__x">__x</a>;&nbsp</td></tr>
+<tr><th id="882">882</th><td>      }&nbsp</td></tr>
+<tr><th id="883">883</th><td>  };&nbsp</td></tr>
+<tr><th id="884">884</th><td>&nbsp</td></tr>
+<tr><th id="885">885</th><td>  <b>inline</b> <b>constexpr</b> <a class="type" href="#std::ranges::__prev_fn" title='std::ranges::__prev_fn' data-ref="std::ranges::__prev_fn">__prev_fn</a> <dfn class="decl def" id="std::ranges::prev" title='std::ranges::prev' data-ref="std::ranges::prev">prev</dfn>{};&nbsp</td></tr>
+<tr><th id="886">886</th><td>&nbsp</td></tr>
+<tr><th id="887">887</th><td>  <i class="doc">/// Type returned by algorithms instead of a dangling iterator or subrange.</i>&nbsp</td></tr>
+<tr><th id="888">888</th><td>  <b>struct</b> <dfn class="type def" id="std::ranges::dangling" title='std::ranges::dangling' data-ref="std::ranges::dangling">dangling</dfn>&nbsp</td></tr>
+<tr><th id="889">889</th><td>  {&nbsp</td></tr>
+<tr><th id="890">890</th><td>    <b>constexpr</b> <dfn class="decl def fn" id="_ZNSt6ranges8danglingC1Ev" title='std::ranges::dangling::dangling' data-ref="_ZNSt6ranges8danglingC1Ev">dangling</dfn>() <b>noexcept</b> = <b>default</b>;&nbsp</td></tr>
+<tr><th id="891">891</th><td>    <b>template</b>&lt;<b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="892">892</th><td>      <b>constexpr</b> <dfn class="decl def fn" id="_ZNSt6ranges8danglingC1EDpOT_" title='std::ranges::dangling::dangling' data-ref="_ZNSt6ranges8danglingC1EDpOT_">dangling</dfn>(_Args&amp;&amp;...) <b>noexcept</b> { }&nbsp</td></tr>
+<tr><th id="893">893</th><td>  };&nbsp</td></tr>
+<tr><th id="894">894</th><td>&nbsp</td></tr>
+<tr><th id="895">895</th><td>  <b>template</b>&lt;range _Range&gt;&nbsp</td></tr>
+<tr><th id="896">896</th><td>    <b>using</b> <dfn class="typedef" id="std::ranges::borrowed_iterator_t" title='std::ranges::borrowed_iterator_t' data-type='conditional_t&lt;borrowed_range&lt;_Range&gt;, iterator_t&lt;_Range&gt;, std::ranges::dangling&gt;' data-ref="std::ranges::borrowed_iterator_t">borrowed_iterator_t</dfn> = <a class="type" href="../type_traits.html#std::conditional_t" title='std::conditional_t' data-ref="std::conditional_t">conditional_t</a>&lt;borrowed_range&lt;_Range&gt;,&nbsp</td></tr>
+<tr><th id="897">897</th><td>					     <a class="type" href="#std::ranges::iterator_t" title='std::ranges::iterator_t' data-ref="std::ranges::iterator_t">iterator_t</a>&lt;_Range&gt;,&nbsp</td></tr>
+<tr><th id="898">898</th><td>					     <a class="type" href="#std::ranges::dangling" title='std::ranges::dangling' data-ref="std::ranges::dangling">dangling</a>&gt;;&nbsp</td></tr>
+<tr><th id="899">899</th><td>&nbsp</td></tr>
+<tr><th id="900">900</th><td>} <i>// namespace ranges</i>&nbsp</td></tr>
+<tr><th id="901">901</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="902">902</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="903">903</th><td><u>#<span data-ppcond="40">endif</span> // library concepts</u>&nbsp</td></tr>
+<tr><th id="904">904</th><td><u>#<span data-ppcond="35">endif</span> // C++20</u>&nbsp</td></tr>
+<tr><th id="905">905</th><td><u>#<span data-ppcond="30">endif</span> // _GLIBCXX_RANGES_BASE_H</u>&nbsp</td></tr>
+<tr><th id="906">906</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

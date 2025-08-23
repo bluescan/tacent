@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/WebP/include/demux.h' l='267' ll='271' type='int WebPAnimDecoderOptionsInit(WebPAnimDecoderOptions * dec_options)'/>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='263'>// Should always be called, to initialize a fresh WebPAnimDecoderOptions
+// structure before modification. Returns false in case of version mismatch.
+// WebPAnimDecoderOptionsInit() must have succeeded before using the
+// &apos;dec_options&apos; object.</doc>

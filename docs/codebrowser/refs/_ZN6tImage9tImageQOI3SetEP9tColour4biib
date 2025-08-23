@@ -1,0 +1,9 @@
+<use f='Modules/Image/Inc/Image/tImageQOI.h' l='38' u='c' c='_ZN6tImage9tImageQOIC1EP9tColour4biib'/>
+<dec f='Modules/Image/Inc/Image/tImageQOI.h' l='55' type='bool tImage::tImageQOI::Set(tPixel4b * pixels, int width, int height, bool steal = false)'/>
+<doc f='Modules/Image/Inc/Image/tImageQOI.h' l='52'>// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out. After this call the objects ColourSpace is set to sRGB. If the data was all linear
+	// you can call SetColourSpace() manually afterwards.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='61' c='_ZN6tImage10tBaseImage3SetEP9tColour4biib'/>
+<def f='Modules/Image/Src/tImageQOI.cpp' l='79' ll='104' type='bool tImage::tImageQOI::Set(tPixel4b * pixels, int width, int height, bool steal = false)'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='118' u='c' c='_ZN6tImage9tImageQOI3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='142' u='c' c='_ZN6tImage9tImageQOI3SetERNS_8tPictureEb'/>

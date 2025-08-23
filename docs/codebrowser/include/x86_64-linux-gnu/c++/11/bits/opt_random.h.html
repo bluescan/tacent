@@ -1,0 +1,239 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>opt_random.h source code [include/x86_64-linux-gnu/c++/11/bits/opt_random.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/c++/11/bits/opt_random.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>include</a>/<a href='../../..'>x86_64-linux-gnu</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='opt_random.h.html'>opt_random.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Optimizations for random number functions, x86 version -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2012-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/opt_random.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{random}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_BITS_OPT_RANDOM_H">_BITS_OPT_RANDOM_H</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_BITS_OPT_RANDOM_H" data-ref="_M/_BITS_OPT_RANDOM_H">_BITS_OPT_RANDOM_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="33">ifdef</span> <span class="macro" data-ref="_M/__SSE3__">__SSE3__</span></u>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#include &lt;pmmintrin.h&gt;</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#<span data-ppcond="33">endif</span></u>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="42">42</th><td>{&nbsp</td></tr>
+<tr><th id="43">43</th><td><a class="macro" href="c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#<span data-ppcond="45">ifdef</span> <span class="macro" data-ref="_M/__SSE3__">__SSE3__</span></u>&nbsp</td></tr>
+<tr><th id="46">46</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="47">47</th><td>    <b>template</b>&lt;<b>typename</b> _UniformRandomNumberGenerator&gt;&nbsp</td></tr>
+<tr><th id="48">48</th><td>      <em>void</em>&nbsp</td></tr>
+<tr><th id="49">49</th><td>      normal_distribution&lt;<em>double</em>&gt;::&nbsp</td></tr>
+<tr><th id="50">50</th><td>      __generate(<b>typename</b> normal_distribution&lt;<em>double</em>&gt;::result_type* __f,&nbsp</td></tr>
+<tr><th id="51">51</th><td>		 <b>typename</b> normal_distribution&lt;<em>double</em>&gt;::result_type* __t,&nbsp</td></tr>
+<tr><th id="52">52</th><td>		 _UniformRandomNumberGenerator&amp; __urng,&nbsp</td></tr>
+<tr><th id="53">53</th><td>		 <em>const</em> param_type&amp; __param)&nbsp</td></tr>
+<tr><th id="54">54</th><td>      {&nbsp</td></tr>
+<tr><th id="55">55</th><td>	<b>typedef</b> uint64_t __uctype;&nbsp</td></tr>
+<tr><th id="56">56</th><td>&nbsp</td></tr>
+<tr><th id="57">57</th><td>	<b>if</b> (__f == __t)&nbsp</td></tr>
+<tr><th id="58">58</th><td>	  <b>return</b>;&nbsp</td></tr>
+<tr><th id="59">59</th><td>&nbsp</td></tr>
+<tr><th id="60">60</th><td>	<b>if</b> (_M_saved_available)&nbsp</td></tr>
+<tr><th id="61">61</th><td>	  {&nbsp</td></tr>
+<tr><th id="62">62</th><td>	    _M_saved_available = <b>false</b>;&nbsp</td></tr>
+<tr><th id="63">63</th><td>	    *__f++ = _M_saved * __param.stddev() + __param.mean();&nbsp</td></tr>
+<tr><th id="64">64</th><td>&nbsp</td></tr>
+<tr><th id="65">65</th><td>	    <b>if</b> (__f == __t)&nbsp</td></tr>
+<tr><th id="66">66</th><td>	      <b>return</b>;&nbsp</td></tr>
+<tr><th id="67">67</th><td>	  }&nbsp</td></tr>
+<tr><th id="68">68</th><td>&nbsp</td></tr>
+<tr><th id="69">69</th><td>	<b>constexpr</b> uint64_t __maskval = <var>0xfffffffffffffull</var>;&nbsp</td></tr>
+<tr><th id="70">70</th><td>	<em>static</em> <em>const</em> __m128i __mask = _mm_set1_epi64x(__maskval);&nbsp</td></tr>
+<tr><th id="71">71</th><td>	<em>static</em> <em>const</em> __m128i __two = _mm_set1_epi64x(<var>0x4000000000000000ull</var>);&nbsp</td></tr>
+<tr><th id="72">72</th><td>	<em>static</em> <em>const</em> __m128d __three = _mm_set1_pd(<var>3.0</var>);&nbsp</td></tr>
+<tr><th id="73">73</th><td>	<em>const</em> __m128d __av = _mm_set1_pd(__param.mean());&nbsp</td></tr>
+<tr><th id="74">74</th><td>&nbsp</td></tr>
+<tr><th id="75">75</th><td>	<em>const</em> __uctype __urngmin = __urng.min();&nbsp</td></tr>
+<tr><th id="76">76</th><td>	<em>const</em> __uctype __urngmax = __urng.max();&nbsp</td></tr>
+<tr><th id="77">77</th><td>	<em>const</em> __uctype __urngrange = __urngmax - __urngmin;&nbsp</td></tr>
+<tr><th id="78">78</th><td>	<em>const</em> __uctype __uerngrange = __urngrange + <var>1</var>;&nbsp</td></tr>
+<tr><th id="79">79</th><td>&nbsp</td></tr>
+<tr><th id="80">80</th><td>	<b>while</b> (__f + <var>1</var> &lt; __t)&nbsp</td></tr>
+<tr><th id="81">81</th><td>	  {&nbsp</td></tr>
+<tr><th id="82">82</th><td>	    <em>double</em> __le;&nbsp</td></tr>
+<tr><th id="83">83</th><td>	    __m128d __x;&nbsp</td></tr>
+<tr><th id="84">84</th><td>	    <b>do</b>&nbsp</td></tr>
+<tr><th id="85">85</th><td>	      {&nbsp</td></tr>
+<tr><th id="86">86</th><td>                <b>union</b>&nbsp</td></tr>
+<tr><th id="87">87</th><td>                {&nbsp</td></tr>
+<tr><th id="88">88</th><td>                  __m128i __i;&nbsp</td></tr>
+<tr><th id="89">89</th><td>                  __m128d __d;&nbsp</td></tr>
+<tr><th id="90">90</th><td>		} __v;&nbsp</td></tr>
+<tr><th id="91">91</th><td>&nbsp</td></tr>
+<tr><th id="92">92</th><td>		<b>if</b> (__urngrange &gt; __maskval)&nbsp</td></tr>
+<tr><th id="93">93</th><td>		  {&nbsp</td></tr>
+<tr><th id="94">94</th><td>		    <b>if</b> (__detail::_Power_of_2(__uerngrange))&nbsp</td></tr>
+<tr><th id="95">95</th><td>		      __v.__i = _mm_and_si128(_mm_set_epi64x(__urng(),&nbsp</td></tr>
+<tr><th id="96">96</th><td>							     __urng()),&nbsp</td></tr>
+<tr><th id="97">97</th><td>					      __mask);&nbsp</td></tr>
+<tr><th id="98">98</th><td>		    <b>else</b>&nbsp</td></tr>
+<tr><th id="99">99</th><td>		      {&nbsp</td></tr>
+<tr><th id="100">100</th><td>			<em>const</em> __uctype __uerange = __maskval + <var>1</var>;&nbsp</td></tr>
+<tr><th id="101">101</th><td>			<em>const</em> __uctype __scaling = __urngrange / __uerange;&nbsp</td></tr>
+<tr><th id="102">102</th><td>			<em>const</em> __uctype __past = __uerange * __scaling;&nbsp</td></tr>
+<tr><th id="103">103</th><td>			uint64_t __v1;&nbsp</td></tr>
+<tr><th id="104">104</th><td>			<b>do</b>&nbsp</td></tr>
+<tr><th id="105">105</th><td>			  __v1 = __uctype(__urng()) - __urngmin;&nbsp</td></tr>
+<tr><th id="106">106</th><td>			<b>while</b> (__v1 &gt;= __past);&nbsp</td></tr>
+<tr><th id="107">107</th><td>			__v1 /= __scaling;&nbsp</td></tr>
+<tr><th id="108">108</th><td>			uint64_t __v2;&nbsp</td></tr>
+<tr><th id="109">109</th><td>			<b>do</b>&nbsp</td></tr>
+<tr><th id="110">110</th><td>			  __v2 = __uctype(__urng()) - __urngmin;&nbsp</td></tr>
+<tr><th id="111">111</th><td>			<b>while</b> (__v2 &gt;= __past);&nbsp</td></tr>
+<tr><th id="112">112</th><td>			__v2 /= __scaling;&nbsp</td></tr>
+<tr><th id="113">113</th><td>&nbsp</td></tr>
+<tr><th id="114">114</th><td>			__v.__i = _mm_set_epi64x(__v1, __v2);&nbsp</td></tr>
+<tr><th id="115">115</th><td>		      }&nbsp</td></tr>
+<tr><th id="116">116</th><td>		  }&nbsp</td></tr>
+<tr><th id="117">117</th><td>		<b>else</b> <b>if</b> (__urngrange == __maskval)&nbsp</td></tr>
+<tr><th id="118">118</th><td>		  __v.__i = _mm_set_epi64x(__urng(), __urng());&nbsp</td></tr>
+<tr><th id="119">119</th><td>		<b>else</b> <b>if</b> ((__urngrange + <var>2</var>) * __urngrange &gt;= __maskval&nbsp</td></tr>
+<tr><th id="120">120</th><td>			 &amp;&amp; __detail::_Power_of_2(__uerngrange))&nbsp</td></tr>
+<tr><th id="121">121</th><td>		  {&nbsp</td></tr>
+<tr><th id="122">122</th><td>		    uint64_t __v1 = __urng() * __uerngrange + __urng();&nbsp</td></tr>
+<tr><th id="123">123</th><td>		    uint64_t __v2 = __urng() * __uerngrange + __urng();&nbsp</td></tr>
+<tr><th id="124">124</th><td>&nbsp</td></tr>
+<tr><th id="125">125</th><td>		    __v.__i = _mm_and_si128(_mm_set_epi64x(__v1, __v2),&nbsp</td></tr>
+<tr><th id="126">126</th><td>					    __mask);&nbsp</td></tr>
+<tr><th id="127">127</th><td>		  }&nbsp</td></tr>
+<tr><th id="128">128</th><td>		<b>else</b>&nbsp</td></tr>
+<tr><th id="129">129</th><td>		  {&nbsp</td></tr>
+<tr><th id="130">130</th><td>		    size_t __nrng = <var>2</var>;&nbsp</td></tr>
+<tr><th id="131">131</th><td>		    __uctype __high = __maskval / __uerngrange / __uerngrange;&nbsp</td></tr>
+<tr><th id="132">132</th><td>		    <b>while</b> (__high &gt; __uerngrange)&nbsp</td></tr>
+<tr><th id="133">133</th><td>		      {&nbsp</td></tr>
+<tr><th id="134">134</th><td>			++__nrng;&nbsp</td></tr>
+<tr><th id="135">135</th><td>			__high /= __uerngrange;&nbsp</td></tr>
+<tr><th id="136">136</th><td>		      }&nbsp</td></tr>
+<tr><th id="137">137</th><td>		    <em>const</em> __uctype __highrange = __high + <var>1</var>;&nbsp</td></tr>
+<tr><th id="138">138</th><td>		    <em>const</em> __uctype __scaling = __urngrange / __highrange;&nbsp</td></tr>
+<tr><th id="139">139</th><td>		    <em>const</em> __uctype __past = __highrange * __scaling;&nbsp</td></tr>
+<tr><th id="140">140</th><td>		    __uctype __tmp;&nbsp</td></tr>
+<tr><th id="141">141</th><td>&nbsp</td></tr>
+<tr><th id="142">142</th><td>		    uint64_t __v1;&nbsp</td></tr>
+<tr><th id="143">143</th><td>		    <b>do</b>&nbsp</td></tr>
+<tr><th id="144">144</th><td>		      {&nbsp</td></tr>
+<tr><th id="145">145</th><td>			<b>do</b>&nbsp</td></tr>
+<tr><th id="146">146</th><td>			  __tmp = __uctype(__urng()) - __urngmin;&nbsp</td></tr>
+<tr><th id="147">147</th><td>			<b>while</b> (__tmp &gt;= __past);&nbsp</td></tr>
+<tr><th id="148">148</th><td>			__v1 = __tmp / __scaling;&nbsp</td></tr>
+<tr><th id="149">149</th><td>			<b>for</b> (size_t __cnt = <var>0</var>; __cnt &lt; __nrng; ++__cnt)&nbsp</td></tr>
+<tr><th id="150">150</th><td>			  {&nbsp</td></tr>
+<tr><th id="151">151</th><td>			    __tmp = __v1;&nbsp</td></tr>
+<tr><th id="152">152</th><td>			    __v1 *= __uerngrange;&nbsp</td></tr>
+<tr><th id="153">153</th><td>			    __v1 += __uctype(__urng()) - __urngmin;&nbsp</td></tr>
+<tr><th id="154">154</th><td>			  }&nbsp</td></tr>
+<tr><th id="155">155</th><td>		      }&nbsp</td></tr>
+<tr><th id="156">156</th><td>		    <b>while</b> (__v1 &gt; __maskval || __v1 &lt; __tmp);&nbsp</td></tr>
+<tr><th id="157">157</th><td>&nbsp</td></tr>
+<tr><th id="158">158</th><td>		    uint64_t __v2;&nbsp</td></tr>
+<tr><th id="159">159</th><td>		    <b>do</b>&nbsp</td></tr>
+<tr><th id="160">160</th><td>		      {&nbsp</td></tr>
+<tr><th id="161">161</th><td>			<b>do</b>&nbsp</td></tr>
+<tr><th id="162">162</th><td>			  __tmp = __uctype(__urng()) - __urngmin;&nbsp</td></tr>
+<tr><th id="163">163</th><td>			<b>while</b> (__tmp &gt;= __past);&nbsp</td></tr>
+<tr><th id="164">164</th><td>			__v2 = __tmp / __scaling;&nbsp</td></tr>
+<tr><th id="165">165</th><td>			<b>for</b> (size_t __cnt = <var>0</var>; __cnt &lt; __nrng; ++__cnt)&nbsp</td></tr>
+<tr><th id="166">166</th><td>			  {&nbsp</td></tr>
+<tr><th id="167">167</th><td>			    __tmp = __v2;&nbsp</td></tr>
+<tr><th id="168">168</th><td>			    __v2 *= __uerngrange;&nbsp</td></tr>
+<tr><th id="169">169</th><td>			    __v2 += __uctype(__urng()) - __urngmin;&nbsp</td></tr>
+<tr><th id="170">170</th><td>			  }&nbsp</td></tr>
+<tr><th id="171">171</th><td>		      }&nbsp</td></tr>
+<tr><th id="172">172</th><td>		    <b>while</b> (__v2 &gt; __maskval || __v2 &lt; __tmp);&nbsp</td></tr>
+<tr><th id="173">173</th><td>&nbsp</td></tr>
+<tr><th id="174">174</th><td>		    __v.__i = _mm_set_epi64x(__v1, __v2);&nbsp</td></tr>
+<tr><th id="175">175</th><td>		  }&nbsp</td></tr>
+<tr><th id="176">176</th><td>&nbsp</td></tr>
+<tr><th id="177">177</th><td>		__v.__i = _mm_or_si128(__v.__i, __two);&nbsp</td></tr>
+<tr><th id="178">178</th><td>		__x = _mm_sub_pd(__v.__d, __three);&nbsp</td></tr>
+<tr><th id="179">179</th><td>		__m128d __m = _mm_mul_pd(__x, __x);&nbsp</td></tr>
+<tr><th id="180">180</th><td>		__le = _mm_cvtsd_f64(_mm_hadd_pd (__m, __m));&nbsp</td></tr>
+<tr><th id="181">181</th><td>              }&nbsp</td></tr>
+<tr><th id="182">182</th><td>            <b>while</b> (__le == <var>0.0</var> || __le &gt;= <var>1.0</var>);&nbsp</td></tr>
+<tr><th id="183">183</th><td>&nbsp</td></tr>
+<tr><th id="184">184</th><td>            <em>double</em> __mult = (std::sqrt(-<var>2.0</var> * std::log(__le) / __le)&nbsp</td></tr>
+<tr><th id="185">185</th><td>                             * __param.stddev());&nbsp</td></tr>
+<tr><th id="186">186</th><td>&nbsp</td></tr>
+<tr><th id="187">187</th><td>            __x = _mm_add_pd(_mm_mul_pd(__x, _mm_set1_pd(__mult)), __av);&nbsp</td></tr>
+<tr><th id="188">188</th><td>&nbsp</td></tr>
+<tr><th id="189">189</th><td>            _mm_storeu_pd(__f, __x);&nbsp</td></tr>
+<tr><th id="190">190</th><td>            __f += <var>2</var>;&nbsp</td></tr>
+<tr><th id="191">191</th><td>          }&nbsp</td></tr>
+<tr><th id="192">192</th><td>&nbsp</td></tr>
+<tr><th id="193">193</th><td>        <b>if</b> (__f != __t)&nbsp</td></tr>
+<tr><th id="194">194</th><td>          {&nbsp</td></tr>
+<tr><th id="195">195</th><td>            result_type __x, __y, __r2;&nbsp</td></tr>
+<tr><th id="196">196</th><td>&nbsp</td></tr>
+<tr><th id="197">197</th><td>            __detail::_Adaptor&lt;_UniformRandomNumberGenerator, result_type&gt;&nbsp</td></tr>
+<tr><th id="198">198</th><td>              __aurng(__urng);&nbsp</td></tr>
+<tr><th id="199">199</th><td>&nbsp</td></tr>
+<tr><th id="200">200</th><td>            <b>do</b>&nbsp</td></tr>
+<tr><th id="201">201</th><td>              {&nbsp</td></tr>
+<tr><th id="202">202</th><td>                __x = result_type(<var>2.0</var>) * __aurng() - <var>1.0</var>;&nbsp</td></tr>
+<tr><th id="203">203</th><td>                __y = result_type(<var>2.0</var>) * __aurng() - <var>1.0</var>;&nbsp</td></tr>
+<tr><th id="204">204</th><td>                __r2 = __x * __x + __y * __y;&nbsp</td></tr>
+<tr><th id="205">205</th><td>              }&nbsp</td></tr>
+<tr><th id="206">206</th><td>            <b>while</b> (__r2 &gt; <var>1.0</var> || __r2 == <var>0.0</var>);&nbsp</td></tr>
+<tr><th id="207">207</th><td>&nbsp</td></tr>
+<tr><th id="208">208</th><td>            <em>const</em> result_type __mult = std::sqrt(-<var>2</var> * std::log(__r2) / __r2);&nbsp</td></tr>
+<tr><th id="209">209</th><td>            _M_saved = __x * __mult;&nbsp</td></tr>
+<tr><th id="210">210</th><td>            _M_saved_available = <b>true</b>;&nbsp</td></tr>
+<tr><th id="211">211</th><td>            *__f = __y * __mult * __param.stddev() + __param.mean();&nbsp</td></tr>
+<tr><th id="212">212</th><td>          }&nbsp</td></tr>
+<tr><th id="213">213</th><td>      }&nbsp</td></tr>
+<tr><th id="214">214</th><td><u>#<span data-ppcond="45">endif</span></u>&nbsp</td></tr>
+<tr><th id="215">215</th><td>&nbsp</td></tr>
+<tr><th id="216">216</th><td>&nbsp</td></tr>
+<tr><th id="217">217</th><td><a class="macro" href="c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="218">218</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="219">219</th><td>&nbsp</td></tr>
+<tr><th id="220">220</th><td>&nbsp</td></tr>
+<tr><th id="221">221</th><td><u>#<span data-ppcond="30">endif</span> // _BITS_OPT_RANDOM_H</u>&nbsp</td></tr>
+<tr><th id="222">222</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../../Modules/Image/Src/tQuantizeSpatial.cpp.html'>Modules/Image/Src/tQuantizeSpatial.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/stat.h' l='42'/>
+<doc f='include/x86_64-linux-gnu/bits/stat.h' l='40'>/* POSIX.1b objects.  Note that these macros always evaluate to zero.  But
+   they do it by enforcing the correct use of the macros.  */</doc>

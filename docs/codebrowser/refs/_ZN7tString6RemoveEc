@@ -1,0 +1,10 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='291' type='int tString::Remove(char rem)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='290'>// Remove all occurrences of the character rem. Returns the number of characters removed.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='406' ll='423' type='int tString::Remove(char rem)'/>
+<use f='Modules/System/Inc/System/tFile.h' l='865' u='c' c='_ZN7tSystem11tExtensions3AddEPKc'/>
+<use f='Modules/System/Src/tChunk.cpp' l='693' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='694' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='695' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='310' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='311' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tFile.cpp' l='86' u='c' c='_ZN7tSystem8tPathStdER7tString'/>

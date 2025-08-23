@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='287' type='int access(const char * __name, int __type)'/>
+<doc f='include/unistd.h' l='286'>/* Test for access to NAME using the real UID and real GID.  */</doc>

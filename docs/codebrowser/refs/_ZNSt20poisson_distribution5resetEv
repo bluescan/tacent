@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='4488' ll='4490' type='void std::poisson_distribution::reset()'/>
+<doc f='include/c++/11/bits/random.h' l='4485'>/**
+       * @brief Resets the distribution state.
+       */</doc>

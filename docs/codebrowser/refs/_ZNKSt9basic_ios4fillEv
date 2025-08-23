@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/basic_ios.h' l='369' ll='378' type='std::basic_ios::char_type std::basic_ios::fill() const'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='363'>/**
+       *  @brief  Retrieves the @a empty character.
+       *  @return  The current fill character.
+       *
+       *  It defaults to a space (&apos; &apos;) in the current locale.
+      */</doc>

@@ -1,0 +1,7 @@
+<def f='include/x86_64-linux-gnu/bits/sigcontext.h' l='31' ll='38'/>
+<size>48</size>
+<mbr r='_fpx_sw_bytes::magic1' o='0' t='__uint32_t'/>
+<mbr r='_fpx_sw_bytes::extended_size' o='32' t='__uint32_t'/>
+<mbr r='_fpx_sw_bytes::xstate_bv' o='64' t='__uint64_t'/>
+<mbr r='_fpx_sw_bytes::xstate_size' o='128' t='__uint32_t'/>
+<mbr r='_fpx_sw_bytes::__glibc_reserved1' o='160' t='__uint32_t[7]'/>

@@ -1,0 +1,3 @@
+<def f='include/c++/11/stop_token' l='184' ll='189' type='void std::stop_token::_Stop_state_t::_M_release_ownership()'/>
+<use f='include/c++/11/stop_token' l='422' u='c' c='_ZNSt10stop_token15_Stop_state_refaSERKS0_'/>
+<use f='include/c++/11/stop_token' l='438' u='c' c='_ZNSt10stop_token15_Stop_state_refD1Ev'/>

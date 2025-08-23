@@ -1,0 +1,4 @@
+<dec f='include/c++/11/utility' l='142'/>
+<doc f='include/c++/11/utility' l='139'>// The standard says this macro and alias template should be in &lt;tuple&gt;
+// but we define them here, to be available when the partial specializations
+// of tuple_element&lt;pair&lt;T,U&gt;&gt; and tuple_element&lt;array&lt;T,N&gt;&gt; are defined.</doc>

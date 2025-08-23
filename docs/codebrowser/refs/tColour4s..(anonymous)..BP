@@ -1,0 +1,18 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='546' u='w' c='_ZN9tColour4s3SetERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='546' u='r' c='_ZN9tColour4s3SetERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='550' u='w' c='_ZN9tColour4s3SetEy'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='589' u='w' c='_ZNK9tColour4s3GetERS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='589' u='r' c='_ZNK9tColour4s3GetERS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='619' u='r' c='_ZNK9tColour4seqERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='619' u='r' c='_ZNK9tColour4seqERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='620' u='r' c='_ZNK9tColour4sneERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='620' u='r' c='_ZNK9tColour4sneERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='621' u='w' c='_ZN9tColour4saSERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='621' u='r' c='_ZN9tColour4saSERKS_'/>
+<dec f='Modules/Math/Inc/Math/tColour.h' l='664' type='uint64'/>
+<offset>0</offset>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='659'>// Bit Pattern member.
+		// Accessing the colour as a 64 bit value using the BP member means you must take the machine&apos;s endianness into
+		// account. This explains why the member isn&apos;t named something like RGBA. For example, in memory it&apos;s always in the
+		// RGBA no matter what endianness, but on a little endian machine you&apos;d access the blue component with something
+		// like (colour.BP &gt;&gt; 16) % 0xFF</doc>

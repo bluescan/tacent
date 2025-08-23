@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3843' ll='3847' type='uint32_t rgbcx::bc4_block::get_selector(uint32_t x, uint32_t y, uint64_t selector_bits) const'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4147' u='c' c='_ZN5rgbcx10unpack_bc4EPKvPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4148' u='c' c='_ZN5rgbcx10unpack_bc4EPKvPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4149' u='c' c='_ZN5rgbcx10unpack_bc4EPKvPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4150' u='c' c='_ZN5rgbcx10unpack_bc4EPKvPhj'/>

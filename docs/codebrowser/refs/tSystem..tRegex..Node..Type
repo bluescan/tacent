@@ -1,0 +1,10 @@
+<use f='Modules/System/Src/tRegex.cpp' l='101' u='w' c='_ZN7tSystem6tRegex7NewNodeEi'/>
+<use f='Modules/System/Src/tRegex.cpp' l='275' u='r' c='_ZN7tSystem6tRegex5ClassEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='278' u='r' c='_ZN7tSystem6tRegex5ClassEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='548' u='r' c='_ZNK7tSystem6tRegex10MatchClassEPKNS0_4NodeEc'/>
+<use f='Modules/System/Src/tRegex.cpp' l='561' u='r' c='_ZNK7tSystem6tRegex10MatchClassEPKNS0_4NodeEc'/>
+<use f='Modules/System/Src/tRegex.cpp' l='573' u='r' c='_ZNK7tSystem6tRegex9MatchNodeEPKNS0_4NodeEPKcS3_'/>
+<use f='Modules/System/Src/tRegex.cpp' l='600' u='r' c='_ZNK7tSystem6tRegex9MatchNodeEPKNS0_4NodeEPKcS3_'/>
+<use f='Modules/System/Src/tRegex.cpp' l='601' u='r' c='_ZNK7tSystem6tRegex9MatchNodeEPKNS0_4NodeEPKcS3_'/>
+<use f='Modules/System/Src/tRegex.cpp' l='670' u='r' c='_ZNK7tSystem6tRegex9MatchNodeEPKNS0_4NodeEPKcS3_'/>
+<use f='Modules/System/Src/tRegex.cpp' l='751' u='r' c='_ZNK7tSystem6tRegex9MatchNodeEPKNS0_4NodeEPKcS3_'/>

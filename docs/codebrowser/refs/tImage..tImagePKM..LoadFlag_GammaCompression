@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tImagePKM.h' l='37' type='4'/>
+<doc f='Modules/Image/Inc/Image/tImagePKM.h' l='37'>// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2.</doc>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='212' u='r' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='226' u='r' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='293' u='r' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>

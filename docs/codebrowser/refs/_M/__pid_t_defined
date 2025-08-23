@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/sys/types.h' l='98'/>
+<use f='include/time.h' l='53' u='a'/>
+<use f='include/sched.h' l='37' u='a'/>
+<use f='include/unistd.h' l='259' u='a'/>
+<use f='include/signal.h' l='39' u='a'/>

@@ -1,0 +1,11 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='734' type='void std::ctype&lt;char&gt;::ctype(std::__c_locale __cloc, const std::ctype_base::mask * __table = 0, bool __del = false, std::size_t __refs = 0)'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='723'>/**
+       *  @brief  Constructor performs static initialization.
+       *
+       *  This constructor is used to construct the initial C locale facet.
+       *
+       *  @param __cloc  Handle to C locale data.
+       *  @param __table If non-zero, table is used as the per-char mask.
+       *  @param __del   If true, passes ownership of table to this facet.
+       *  @param __refs  Passed to the base facet class.
+      */</doc>

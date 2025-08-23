@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_deque.h' l='2189' ll='2199' type='void std::deque::_M_move_assign2(deque&lt;_Tp, _Alloc&gt; &amp;&amp; __x, std::true_type )'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='2188'>// Do move assignment when the allocator propagates.</doc>

@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='255' type='bool std::locale::operator==(const std::locale &amp; __other) const'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='247'>/**
+     *  @brief  Locale equality.
+     *
+     *  @param  __other  The locale to compare against.
+     *  @return  True if other and this refer to the same locale instance, are
+     *		 copies, or have the same name.  False otherwise.
+    */</doc>

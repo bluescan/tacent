@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/postypes.h' l='197' ll='203' type='fpos&lt;_StateT&gt; std::fpos::operator-(std::streamoff __off) const'/>
+<doc f='include/c++/11/bits/postypes.h' l='191'>// The standard requires that this operator must be defined, but
+      // defines its semantics only in terms of operator+. In this
+      // implementation it constructs a copy of *this, subtracts the
+      // argument from that copy using operator-= and then returns the
+      // copy.
+      /// Subtract offset from position.</doc>

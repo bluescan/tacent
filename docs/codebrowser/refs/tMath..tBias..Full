@@ -1,0 +1,6 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='71' type='0'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='71'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='55' c='_ZN5tMath9tIntervalC1EiiNS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='69' c='_ZN5tMath9tInterval3SetEiiNS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='110' u='r' c='_ZN5tMath9tInterval13InclusiveLeftENS_5tBiasE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='111' u='r' c='_ZN5tMath9tInterval14InclusiveRightENS_5tBiasE'/>

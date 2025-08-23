@@ -1,0 +1,22 @@
+<dec f='include/c++/11/sstream' l='100' type='ios_base::openmode'/>
+<use f='include/c++/11/sstream' l='115' u='w' c='_ZNSt7__cxx1115basic_stringbufC1Ev'/>
+<use f='include/c++/11/sstream' l='127' u='w' c='_ZNSt7__cxx1115basic_stringbufC1ESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='141' u='w' c='_ZNSt7__cxx1115basic_stringbufC1ERKNS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='160' u='w' c='_ZNSt7__cxx1115basic_stringbufC1ESt13_Ios_OpenmodeRKT1_'/>
+<use f='include/c++/11/sstream' l='167' u='w' c='_ZNSt7__cxx1115basic_stringbufC1EONS_12basic_stringIT_T0_T1_EESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='180' u='w' c='_ZNSt7__cxx1115basic_stringbufC1ERKNS_12basic_stringIT_T0_TL0__EESt13_Ios_OpenmodeRKT1_'/>
+<use f='include/c++/11/sstream' l='212' u='w' c='_ZNSt7__cxx1115basic_stringbufaSEONS_15basic_stringbufIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='226' c='_ZNSt7__cxx1115basic_stringbuf4swapERNS_15basic_stringbufIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='300' u='r' c='_ZNSt7__cxx1115basic_stringbuf3strERKNS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='311' u='r' c='_ZNSt7__cxx1115basic_stringbuf3strERKNS_12basic_stringIT_T0_TL0__EE'/>
+<use f='include/c++/11/sstream' l='319' u='r' c='_ZNSt7__cxx1115basic_stringbuf3strEONS_12basic_stringIT_T0_T1_EE'/>
+<use f='include/c++/11/sstream' l='328' u='w' c='_ZNSt7__cxx1115basic_stringbuf17_M_stringbuf_initESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='330' u='r' c='_ZNSt7__cxx1115basic_stringbuf17_M_stringbuf_initESt13_Ios_Openmode'/>
+<use f='include/c++/11/sstream' l='339' u='r' c='_ZNSt7__cxx1115basic_stringbuf9showmanycEv'/>
+<use f='include/c++/11/sstream' l='410' u='r' c='_ZNSt7__cxx1115basic_stringbuf15_M_update_egptrEv'/>
+<use f='include/c++/11/sstream' l='505' u='w' c='_ZNSt7__cxx1115basic_stringbufC1EONS_15basic_stringbufIT_T0_T1_EEONS0_14__xfer_bufptrsE'/>
+<use f='include/c++/11/sstream' l='514' u='w' c='_ZNSt7__cxx1115basic_stringbufC1EONS_15basic_stringbufIT_T0_T1_EERKS4_ONS0_14__xfer_bufptrsE'/>
+<use f='include/c++/11/bits/sstream.tcc' l='98' u='r' c='_ZNSt7__cxx1115basic_stringbuf8overflowENT0_8int_typeE'/>
+<use f='include/c++/11/bits/sstream.tcc' l='248' u='r' c='_ZNSt7__cxx1115basic_stringbuf7_M_syncEPT_NS_12basic_stringIS1_T0_T1_E9size_typeES7_'/>
+<use f='include/c++/11/bits/sstream.tcc' l='249' u='r' c='_ZNSt7__cxx1115basic_stringbuf7_M_syncEPT_NS_12basic_stringIS1_T0_T1_E9size_typeES7_'/>
+<doc f='include/c++/11/sstream' l='99'>/// Place to stash in || out || in | out settings for current stringbuf.</doc>

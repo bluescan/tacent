@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='573' type='int putc_unlocked(int __c, FILE * __stream)'/>
+<doc f='include/stdio.h' l='569'>/* These are defined in POSIX.1:1996.
+
+   These functions are possible cancellation points and therefore not
+   marked with __THROW.  */</doc>

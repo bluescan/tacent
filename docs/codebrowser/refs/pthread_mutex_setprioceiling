@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='847' type='int pthread_mutex_setprioceiling(pthread_mutex_t *__restrict __mutex, int __prioceiling, int *__restrict __old_ceiling)'/>
+<doc f='include/pthread.h' l='845'>/* Set the priority ceiling of MUTEX to PRIOCEILING, return old
+   priority ceiling value in *OLD_CEILING.  */</doc>

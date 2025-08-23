@@ -1,0 +1,6 @@
+<dec f='include/unistd.h' l='480' type='int usleep(__useconds_t __useconds)'/>
+<doc f='include/unistd.h' l='475'>/* Sleep USECONDS microseconds, or until a signal arrives that is not blocked
+   or ignored.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

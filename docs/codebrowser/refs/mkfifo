@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='418' type='int mkfifo(const char * __path, __mode_t __mode)'/>
+<doc f='include/x86_64-linux-gnu/sys/stat.h' l='417'>/* Create a new FIFO named PATH, with permission bits MODE.  */</doc>

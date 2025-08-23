@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='117' type='int iswlower(wint_t __wc)'/>
+<doc f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='114'>/* Test for any wide character that corresponds to a lowercase letter
+   or is one of a locale-specific set of wide characters for which
+   none of `iswcntrl&apos;, `iswdigit&apos;, `iswpunct&apos;, or `iswspace&apos; is true.  */</doc>

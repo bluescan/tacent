@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14685' ll='14689'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14685'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceMapMemoryPlacedPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMapMemoryPlacedPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMapMemoryPlacedPropertiesEXT::minPlacedMemoryMapAlignment' o='128' t='VkDeviceSize'/>

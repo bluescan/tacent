@@ -1,0 +1,4 @@
+<dec f='include/stdlib.h' l='497' type='unsigned long long'/>
+<offset>128</offset>
+<doc f='include/stdlib.h' l='497'>/* Factor in congruential
+						   formula.  */</doc>

@@ -1,0 +1,4 @@
+<dec f='include/string.h' l='47' type='void * memmove(void * __dest, const void * __src, size_t __n)'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='36' u='c' c='_ZN4tStd7tMemmovEPvPKvi'/>
+<doc f='include/string.h' l='45'>/* Copy N bytes of SRC to DEST, guaranteeing
+   correct behavior for overlapping strings.  */</doc>

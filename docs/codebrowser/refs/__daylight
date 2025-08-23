@@ -1,0 +1,2 @@
+<dec f='include/time.h' l='218' type='int'/>
+<doc f='include/time.h' l='218'>/* If daylight-saving time is ever in use.  */</doc>

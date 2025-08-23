@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='117'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='112'>/*
+ * Feature support definitions.
+ * XXX: These macros are obsoleted. Don&apos;t use them in your apps!
+ * Macros stays here for backward compatibility and should be always defined.
+ */</doc>

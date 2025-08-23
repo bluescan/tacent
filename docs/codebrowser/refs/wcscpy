@@ -1,0 +1,2 @@
+<dec f='include/wchar.h' l='87' type='wchar_t * wcscpy(wchar_t *__restrict __dest, const wchar_t *__restrict __src)'/>
+<doc f='include/wchar.h' l='86'>/* Copy SRC to DEST.  */</doc>

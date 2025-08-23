@@ -1,0 +1,12 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='550' type='std::time_t'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1105' u='w' c='_ZN7tSystem9tFileInfoC1Ev'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1118' u='w' c='_ZN7tSystem9tFileInfoC1ERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1118' u='r' c='_ZN7tSystem9tFileInfoC1ERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1132' u='w' c='_ZN7tSystem9tFileInfo5ClearEv'/>
+<offset>448</offset>
+<doc f='Modules/System/Inc/System/tFile.h' l='548'>// These are in POSIX Epoch time -- number of seconds that have elapsed since January 1, 1970 (midnight UTC/GMT),
+	// For all std::time_t values we interpret -1 as invalid.</doc>
+<use f='Modules/System/Src/tFile.cpp' l='2034' u='w' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2143' u='w' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2146' u='r' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2147' u='r' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>

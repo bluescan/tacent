@@ -1,0 +1,2 @@
+<def f='Modules/Scene/Src/tWorld.cpp' l='1559' ll='1566' type='tScene::tLodGroup * tScene::tWorld::FindLodGroup(const tString &amp; name) const'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1613' u='c' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>

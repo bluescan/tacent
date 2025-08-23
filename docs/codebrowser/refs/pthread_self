@@ -1,0 +1,4 @@
+<dec f='include/pthread.h' l='273' type='pthread_t pthread_self()'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='687' u='c' c='__gthread_self'/>
+<doc f='include/pthread.h' l='272'>/* Obtain the identifier of the current thread.  */</doc>
+<use f='include/c++/11/bits/std_thread.h' l='318' macro='1' u='c' c='_ZNSt11this_thread6get_idEv'/>

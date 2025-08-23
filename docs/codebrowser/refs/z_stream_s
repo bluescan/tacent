@@ -1,0 +1,17 @@
+<def f='include/zlib.h' l='86' ll='106'/>
+<use f='include/zlib.h' l='86'/>
+<size>112</size>
+<mbr r='z_stream_s::next_in' o='0' t='Bytef *'/>
+<mbr r='z_stream_s::avail_in' o='64' t='uInt'/>
+<mbr r='z_stream_s::total_in' o='128' t='uLong'/>
+<mbr r='z_stream_s::next_out' o='192' t='Bytef *'/>
+<mbr r='z_stream_s::avail_out' o='256' t='uInt'/>
+<mbr r='z_stream_s::total_out' o='320' t='uLong'/>
+<mbr r='z_stream_s::msg' o='384' t='char *'/>
+<mbr r='z_stream_s::state' o='448' t='struct internal_state *'/>
+<mbr r='z_stream_s::zalloc' o='512' t='alloc_func'/>
+<mbr r='z_stream_s::zfree' o='576' t='free_func'/>
+<mbr r='z_stream_s::opaque' o='640' t='voidpf'/>
+<mbr r='z_stream_s::data_type' o='704' t='int'/>
+<mbr r='z_stream_s::adler' o='768' t='uLong'/>
+<mbr r='z_stream_s::reserved' o='832' t='uLong'/>

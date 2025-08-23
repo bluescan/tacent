@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='211' type='void tMath::tSet(tMath::tVec2 &amp; d, const float * a)'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='34' u='c' c='_ZN5tMath8tVector2C1EPKf'/>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='42' u='c' c='_ZN5tMath8tVector23SetEPKf'/>

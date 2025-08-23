@@ -1,0 +1,7 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='255' type='uint8 * tSystem::tLoadFileHead(const tString &amp; file, int &amp; bytesToRead, uint8 * buffer = nullptr)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='251'>// Same as LoadFile except only the first bytesToRead bytes are read. Also the actual number read is returned in
+// bytesToRead. This will be smaller than the number requested if the file is too small. If there are any problems,
+// bytesToRead will contain 0 and if a buffer was supplied it will be returned (perhaps modified). If one wasn&apos;t
+// supplied and there is a read problem, nullptr will be returned.</doc>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='33' u='c' c='_ZN6tImage10tImageAPNG13IsAnimatedPNGERK7tString'/>
+<def f='Modules/System/Src/tFile.cpp' l='1260' ll='1304' type='uint8 * tSystem::tLoadFileHead(const tString &amp; file, int &amp; bytesToRead, uint8 * buffer = nullptr)'/>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tPath.h source code [Modules/Scene/Inc/Scene/tPath.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="tScene::tPath "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Scene/Inc/Scene/tPath.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>Modules</a>/<a href='../..'>Scene</a>/<a href='..'>Inc</a>/<a href='./'>Scene</a>/<a href='tPath.h.html'>tPath.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tPath.h</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// This file implements scene splines and paths.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// Copyright (c) 2006, 2017, 2023 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#pragma <span class='warning' title="#pragma once in main file">once</span></u>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#include &lt;Math/tSpline.h&gt;</u>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#include "Scene/tObject.h"</u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><b>namespace</b> <span class="namespace">tScene</span>&nbsp</td></tr>
+<tr><th id="19">19</th><td>{&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td>&nbsp</td></tr>
+<tr><th id="22">22</th><td><b>class</b> <dfn class="type def" id="tScene::tPath" title='tScene::tPath' data-ref="tScene::tPath">tPath</dfn> : <b>public</b> <a class="type" href="tObject.h.html#tScene::tObject" title='tScene::tObject' data-ref="tScene::tObject">tObject</a>&nbsp</td></tr>
+<tr><th id="23">23</th><td>{&nbsp</td></tr>
+<tr><th id="24">24</th><td><b>public</b>:&nbsp</td></tr>
+<tr><th id="25">25</th><td>	<dfn class="tu decl def fn" id="_ZN6tScene5tPathC1Ev" title='tScene::tPath::tPath' data-type='void tScene::tPath::tPath()' data-ref="_ZN6tScene5tPathC1Ev">tPath</dfn>()																												{ }&nbsp</td></tr>
+<tr><th id="26">26</th><td>	<dfn class="tu decl def fn" id="_ZN6tScene5tPathC1ERK6tChunk" title='tScene::tPath::tPath' data-type='void tScene::tPath::tPath(const tChunk &amp; chunk)' data-ref="_ZN6tScene5tPathC1ERK6tChunk">tPath</dfn>(<em>const</em> <a class="type" href="../../../System/Inc/System/tChunk.h.html#tChunk" title='tChunk' data-ref="tChunk">tChunk</a>&amp; <dfn class="local col1 decl" id="1chunk" title='chunk' data-type='const tChunk &amp;' data-ref="1chunk">chunk</dfn>)																							{ <a class="virtual member fn" href="#_ZN6tScene5tPath4LoadERK6tChunk" title='tScene::tPath::Load' data-ref="_ZN6tScene5tPath4LoadERK6tChunk">Load</a>(<a class="local col1 ref" href="#1chunk" title='chunk' data-ref="1chunk">chunk</a>); }&nbsp</td></tr>
+<tr><th id="27">27</th><td>	<dfn class="tu decl fn" id="_ZN6tScene5tPathC1ERKN5tMath11tBezierPathERK7tStringj" title='tScene::tPath::tPath' data-type='void tScene::tPath::tPath(const tMath::tBezierPath &amp; , const tString &amp; name, uint32 id)' data-ref="_ZN6tScene5tPathC1ERKN5tMath11tBezierPathERK7tStringj">tPath</dfn>(<em>const</em> <span class="namespace">tMath::</span><a class="type" href="../../../Math/Inc/Math/tSpline.h.html#tMath::tBezierPath" title='tMath::tBezierPath' data-ref="tMath::tBezierPath">tBezierPath</a>&amp;, <em>const</em> <a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a>&amp; <dfn class="local col2 decl" id="2name" title='name' data-type='const tString &amp;' data-ref="2name">name</dfn>, <a class="typedef" href="../../../Foundation/Inc/Foundation/tPlatform.h.html#uint32" title='uint32' data-type='unsigned int' data-ref="uint32">uint32</a> <dfn class="local col3 decl" id="3id" title='id' data-type='uint32' data-ref="3id">id</dfn>);&nbsp</td></tr>
+<tr><th id="28">28</th><td>	<b>virtual</b> <dfn class="virtual decl def fn" id="_ZN6tScene5tPathD1Ev" title='tScene::tPath::~tPath' data-ref="_ZN6tScene5tPathD1Ev">~tPath</dfn>()																									{ <a class="tu member fn" href="#_ZN6tScene5tPath5ClearEv" title='tScene::tPath::Clear' data-use='c' data-ref="_ZN6tScene5tPath5ClearEv">Clear</a>(); }&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td>	<b>enum</b> <b>class</b> <dfn class="type def" id="tScene::tPath::tType" title='tScene::tPath::tType' data-ref="tScene::tPath::tType">tType</dfn>&nbsp</td></tr>
+<tr><th id="31">31</th><td>	{&nbsp</td></tr>
+<tr><th id="32">32</th><td>		<dfn class="enum" id="tScene::tPath::tType::Invalid" title='tScene::tPath::tType::Invalid' data-ref="tScene::tPath::tType::Invalid">Invalid</dfn>																											= -<var>1</var>,&nbsp</td></tr>
+<tr><th id="33">33</th><td>		<dfn class="enum" id="tScene::tPath::tType::PiecewiseLinear" title='tScene::tPath::tType::PiecewiseLinear' data-ref="tScene::tPath::tType::PiecewiseLinear">PiecewiseLinear</dfn>,&nbsp</td></tr>
+<tr><th id="34">34</th><td>		<dfn class="enum" id="tScene::tPath::tType::CubicBezier" title='tScene::tPath::tType::CubicBezier' data-ref="tScene::tPath::tType::CubicBezier">CubicBezier</dfn>,&nbsp</td></tr>
+<tr><th id="35">35</th><td>		<dfn class="enum" id="tScene::tPath::tType::NonuniformNonrationalCubicBasis" title='tScene::tPath::tType::NonuniformNonrationalCubicBasis' data-ref="tScene::tPath::tType::NonuniformNonrationalCubicBasis">NonuniformNonrationalCubicBasis</dfn>&nbsp</td></tr>
+<tr><th id="36">36</th><td>	};&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td>	<em>bool</em> <dfn class="tu decl def fn" id="_ZNK6tScene5tPath7IsValidEv" title='tScene::tPath::IsValid' data-type='bool tScene::tPath::IsValid() const' data-ref="_ZNK6tScene5tPath7IsValidEv">IsValid</dfn>() <em>const</em>																								{ <b>return</b> <a class="tu member field" href="#tScene::tPath::Type" title='tScene::tPath::Type' data-use='r' data-ref="tScene::tPath::Type">Type</a> != <a class="type" href="#tScene::tPath::tType" title='tScene::tPath::tType' data-ref="tScene::tPath::tType">tType</a>::<a class="enum" href="#tScene::tPath::tType::Invalid" title='tScene::tPath::tType::Invalid' data-ref="tScene::tPath::tType::Invalid">Invalid</a>; }&nbsp</td></tr>
+<tr><th id="39">39</th><td>	<em>void</em> <dfn class="tu decl def fn" id="_ZN6tScene5tPath5ScaleEf" title='tScene::tPath::Scale' data-type='void tScene::tPath::Scale(float scale)' data-ref="_ZN6tScene5tPath5ScaleEf">Scale</dfn>(<em>float</em> <dfn class="local col4 decl" id="4scale" title='scale' data-type='float' data-ref="4scale">scale</dfn>)																								{ <b>for</b> (<em>int</em> <dfn class="local col5 decl" id="5cv" title='cv' data-type='int' data-ref="5cv">cv</dfn> = <var>0</var>; <a class="local col5 ref" href="#5cv" title='cv' data-ref="5cv">cv</a> &lt; <a class="tu member field" href="#tScene::tPath::NumControlVerts" title='tScene::tPath::NumControlVerts' data-use='r' data-ref="tScene::tPath::NumControlVerts">NumControlVerts</a>; <a class="local col5 ref" href="#5cv" title='cv' data-ref="5cv">cv</a>++) <a class="tu member field" href="#tScene::tPath::ControlVerts" title='tScene::tPath::ControlVerts' data-use='r' data-ref="tScene::tPath::ControlVerts">ControlVerts</a>[<a class="local col5 ref" href="#5cv" title='cv' data-ref="5cv">cv</a>] <a class="ref fn" href="../../../Math/Inc/Math/tVector3.h.html#_ZN5tMath8tVector3mLEf" title='tMath::tVector3::operator*=' data-ref="_ZN5tMath8tVector3mLEf">*=</a> <a class="local col4 ref" href="#4scale" title='scale' data-ref="4scale">scale</a>; }&nbsp</td></tr>
+<tr><th id="40">40</th><td>	<em>void</em> <dfn class="tu decl def fn" id="_ZN6tScene5tPath5ClearEv" title='tScene::tPath::Clear' data-type='void tScene::tPath::Clear()' data-ref="_ZN6tScene5tPath5ClearEv">Clear</dfn>()																										{ <a class="type" href="tObject.h.html#tScene::tObject" title='tScene::tObject' data-ref="tScene::tObject">tObject</a>::<a class="member fn" href="tObject.h.html#_ZN6tScene7tObject5ClearEv" title='tScene::tObject::Clear' data-ref="_ZN6tScene7tObject5ClearEv">Clear</a>(); <a class="tu member field" href="#tScene::tPath::Type" title='tScene::tPath::Type' data-use='w' data-ref="tScene::tPath::Type">Type</a> = <a class="type" href="#tScene::tPath::tType" title='tScene::tPath::tType' data-ref="tScene::tPath::tType">tType</a>::<a class="enum" href="#tScene::tPath::tType::Invalid" title='tScene::tPath::tType::Invalid' data-ref="tScene::tPath::tType::Invalid">Invalid</a>; <a class="tu member field" href="#tScene::tPath::IsClosed" title='tScene::tPath::IsClosed' data-use='w' data-ref="tScene::tPath::IsClosed">IsClosed</a> = <b>false</b>; <a class="tu member field" href="#tScene::tPath::NumControlVerts" title='tScene::tPath::NumControlVerts' data-use='w' data-ref="tScene::tPath::NumControlVerts">NumControlVerts</a> = <var>0</var>; <b>delete</b>[] <a class="tu member field" href="#tScene::tPath::ControlVerts" title='tScene::tPath::ControlVerts' data-use='r' data-ref="tScene::tPath::ControlVerts">ControlVerts</a>; <a class="tu member field" href="#tScene::tPath::ControlVerts" title='tScene::tPath::ControlVerts' data-use='w' data-ref="tScene::tPath::ControlVerts">ControlVerts</a> = <b>nullptr</b>; }&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td>	<em>void</em> <dfn class="virtual decl fn" id="_ZNK6tScene5tPath4SaveER12tChunkWriter" title='tScene::tPath::Save' data-ref="_ZNK6tScene5tPath4SaveER12tChunkWriter">Save</dfn>(<a class="type" href="../../../System/Inc/System/tChunk.h.html#tChunkWriter" title='tChunkWriter' data-ref="tChunkWriter">tChunkWriter</a>&amp;) <em>const</em>;&nbsp</td></tr>
+<tr><th id="43">43</th><td>	<em>void</em> <dfn class="virtual decl fn" id="_ZN6tScene5tPath4LoadERK6tChunk" title='tScene::tPath::Load' data-ref="_ZN6tScene5tPath4LoadERK6tChunk">Load</dfn>(<em>const</em> <a class="type" href="../../../System/Inc/System/tChunk.h.html#tChunk" title='tChunk' data-ref="tChunk">tChunk</a>&amp;);&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td>	<a class="type" href="#tScene::tPath::tType" title='tScene::tPath::tType' data-ref="tScene::tPath::tType">tType</a> <dfn class="tu decl field" id="tScene::tPath::Type" title='tScene::tPath::Type' data-type='tScene::tPath::tType' data-ref="tScene::tPath::Type">Type</dfn> = <a class="type" href="#tScene::tPath::tType" title='tScene::tPath::tType' data-ref="tScene::tPath::tType">tType</a>::<a class="enum" href="#tScene::tPath::tType::Invalid" title='tScene::tPath::tType::Invalid' data-ref="tScene::tPath::tType::Invalid">Invalid</a>;&nbsp</td></tr>
+<tr><th id="46">46</th><td>	<em>bool</em> <dfn class="tu decl field" id="tScene::tPath::IsClosed" title='tScene::tPath::IsClosed' data-type='bool' data-ref="tScene::tPath::IsClosed">IsClosed</dfn> = <b>false</b>;&nbsp</td></tr>
+<tr><th id="47">47</th><td>	<em>int</em> <dfn class="tu decl field" id="tScene::tPath::NumControlVerts" title='tScene::tPath::NumControlVerts' data-type='int' data-ref="tScene::tPath::NumControlVerts">NumControlVerts</dfn> = <var>0</var>;&nbsp</td></tr>
+<tr><th id="48">48</th><td>	<span class="namespace">tMath::</span><a class="type" href="../../../Math/Inc/Math/tVector3.h.html#tMath::tVector3" title='tMath::tVector3' data-ref="tMath::tVector3">tVector3</a>* <dfn class="tu decl field" id="tScene::tPath::ControlVerts" title='tScene::tPath::ControlVerts' data-type='tMath::tVector3 *' data-ref="tScene::tPath::ControlVerts">ControlVerts</dfn> = <b>nullptr</b>;&nbsp</td></tr>
+<tr><th id="49">49</th><td>};&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td>&nbsp</td></tr>
+<tr><th id="52">52</th><td>}&nbsp</td></tr>
+<tr><th id="53">53</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

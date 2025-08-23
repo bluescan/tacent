@@ -1,0 +1,4 @@
+<dec f='include/c++/11/iomanip' l='185' type='int'/>
+<use f='include/c++/11/iomanip' l='202' c='_ZStrsRSt13basic_istreamIT_T0_ESt13_Setprecision'/>
+<use f='include/c++/11/iomanip' l='210' c='_ZStlsRSt13basic_ostreamIT_T0_ESt13_Setprecision'/>
+<offset>0</offset>

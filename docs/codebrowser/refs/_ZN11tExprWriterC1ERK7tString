@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='245' type='void tExprWriter::tExprWriter(const tString &amp; filename)'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='244'>// Creates the file if it doesn&apos;t exist, overwrites it if it does.</doc>
+<def f='Modules/System/Src/tScript.cpp' l='587' ll='595' type='void tExprWriter::tExprWriter(const tString &amp; filename)'/>

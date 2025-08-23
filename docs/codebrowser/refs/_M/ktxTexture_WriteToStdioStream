@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='630'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='624'>/**
+ * @~English
+ * @brief Helper for calling the WriteToStdioStream virtual method of a
+ *        ktxTexture.
+ * @copydoc ktxTexture2.ktxTexture2_WriteToStdioStream
+ */</doc>

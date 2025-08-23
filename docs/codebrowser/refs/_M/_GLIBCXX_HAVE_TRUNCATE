@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1253'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1252'>/* Define if truncate is available in &lt;unistd.h&gt;. */</doc>

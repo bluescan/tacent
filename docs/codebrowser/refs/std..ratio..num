@@ -1,0 +1,4 @@
+<def f='include/c++/11/ratio' l='273' ll='274' type='const intmax_t'/>
+<use f='include/c++/11/ratio' l='279' u='r'/>
+<dec f='include/c++/11/ratio' l='283' type='const intmax_t'/>
+<doc f='include/c++/11/ratio' l='272'>// Note: sign(N) * abs(N) == N</doc>

@@ -1,0 +1,22 @@
+<def f='include/c++/11/bits/ios_base.h' l='82' ll='84' type='std::_Ios_Fmtflags std::operator&amp;(std::_Ios_Fmtflags __a, std::_Ios_Fmtflags __b)'/>
+<use f='include/c++/11/bits/ios_base.h' l='104' u='c' c='_ZStaNRSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='697' u='c' c='_ZNSt8ios_base4setfESt13_Ios_FmtflagsS0_'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='390' u='c' c='_ZNKSt7num_get14_M_extract_intB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='598' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRb'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='759' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRPv'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='826' u='c' c='_ZSt13__int_to_charPT_T0_PKS_St13_Ios_Fmtflagsb'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='839' u='c' c='_ZSt13__int_to_charPT_T0_PKS_St13_Ios_Fmtflagsb'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='888' u='c' c='_ZNKSt7num_put13_M_insert_intET0_RSt8ios_baseT_TL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='916' u='c' c='_ZNKSt7num_put13_M_insert_intET0_RSt8ios_baseT_TL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='923' u='c' c='_ZNKSt7num_put13_M_insert_intET0_RSt8ios_baseT_TL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='930' u='c' c='_ZNKSt7num_put13_M_insert_intET0_RSt8ios_baseT_TL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1016' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1127' u='c' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_b'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1155' u='c' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_b'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1203' u='c' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_PKv'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1240' u='c' c='_ZNSt5__pad6_S_padERSt8ios_baseT_PS2_PKS2_ll'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='189' u='c' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='208' u='c' c='_ZNKSt7__cxx119money_get10_M_extractET0_S1_RSt8ios_baseRSt12_Ios_IostateRNS_12basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='509' u='c' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='511' u='c' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='527' u='c' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>

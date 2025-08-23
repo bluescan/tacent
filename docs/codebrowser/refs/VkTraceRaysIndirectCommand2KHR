@@ -1,0 +1,17 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10512' ll='10527'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10512'/>
+<size>104</size>
+<mbr r='VkTraceRaysIndirectCommand2KHR::raygenShaderRecordAddress' o='0' t='VkDeviceAddress'/>
+<mbr r='VkTraceRaysIndirectCommand2KHR::raygenShaderRecordSize' o='64' t='VkDeviceSize'/>
+<mbr r='VkTraceRaysIndirectCommand2KHR::missShaderBindingTableAddress' o='128' t='VkDeviceAddress'/>
+<mbr r='VkTraceRaysIndirectCommand2KHR::missShaderBindingTableSize' o='192' t='VkDeviceSize'/>
+<mbr r='VkTraceRaysIndirectCommand2KHR::missShaderBindingTableStride' o='256' t='VkDeviceSize'/>
+<mbr r='VkTraceRaysIndirectCommand2KHR::hitShaderBindingTableAddress' o='320' t='VkDeviceAddress'/>
+<mbr r='VkTraceRaysIndirectCommand2KHR::hitShaderBindingTableSize' o='384' t='VkDeviceSize'/>
+<mbr r='VkTraceRaysIndirectCommand2KHR::hitShaderBindingTableStride' o='448' t='VkDeviceSize'/>
+<mbr r='VkTraceRaysIndirectCommand2KHR::callableShaderBindingTableAddress' o='512' t='VkDeviceAddress'/>
+<mbr r='VkTraceRaysIndirectCommand2KHR::callableShaderBindingTableSize' o='576' t='VkDeviceSize'/>
+<mbr r='VkTraceRaysIndirectCommand2KHR::callableShaderBindingTableStride' o='640' t='VkDeviceSize'/>
+<mbr r='VkTraceRaysIndirectCommand2KHR::width' o='704' t='uint32_t'/>
+<mbr r='VkTraceRaysIndirectCommand2KHR::height' o='736' t='uint32_t'/>
+<mbr r='VkTraceRaysIndirectCommand2KHR::depth' o='768' t='uint32_t'/>

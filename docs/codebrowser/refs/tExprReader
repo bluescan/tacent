@@ -1,0 +1,20 @@
+<inh f='Modules/System/Inc/System/tScript.h' l='47' c='tExpression'/>
+<def f='Modules/System/Inc/System/tScript.h' l='211' ll='237'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='40' c='_ZNK6tImage10tImageTIFF24ReadSoftwarePageDurationEP4tiff'/>
+<size>32</size>
+<doc f='Modules/System/Inc/System/tScript.h' l='203'>// Use this to read and parse an existing script. A script file is a list of expressions without []&apos;s around the
+// entire file. e.g. This is a valid script:
+//
+// [a b c]				; Arg0
+// d					; Arg1
+// [e f]				; Arg2
+//
+// You can pass one of these to any function that expects a tExpression as it is a sub-class.</doc>
+<fun r='_ZN11tExprReaderC1Ev'/>
+<fun r='_ZN11tExprReaderC1ERK7tStringb'/>
+<fun r='_ZN11tExprReaderC1EiPPc'/>
+<fun r='_ZN11tExprReaderD1Ev'/>
+<fun r='_ZN11tExprReader4LoadERK7tStringb'/>
+<fun r='_ZN11tExprReader5ClearEv'/>
+<fun r='_ZNK11tExprReader7IsValidEv'/>
+<mbr r='tExprReader::ExprBuffer' o='192' t='char8_t *'/>

@@ -1,0 +1,5 @@
+<dec f='include/c++/11/exception' l='117' type='int std::uncaught_exceptions()'/>
+<doc f='include/c++/11/exception' l='113'>/** The number of uncaught exceptions.
+   *  @since C++17, or any non-strict mode, e.g. `-std=gnu++98`
+   *  @see uncaught_exception()
+   */</doc>

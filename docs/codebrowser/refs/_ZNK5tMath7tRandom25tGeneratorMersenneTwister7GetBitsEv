@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='57' type='uint32 tMath::tRandom::tGeneratorMersenneTwister::GetBits() const'/>
+<inh f='Modules/Math/Inc/Math/tRandom.h' l='39' c='_ZNK5tMath7tRandom10tGenerator7GetBitsEv'/>
+<def f='Modules/Math/Src/tRandom.cpp' l='69' ll='103' type='uint32 tMath::tRandom::tGeneratorMersenneTwister::GetBits() const'/>

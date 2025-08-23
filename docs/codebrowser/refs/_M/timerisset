@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/time.h' l='231'/>
+<doc f='include/x86_64-linux-gnu/sys/time.h' l='229'>/* Convenience macros for operations on timevals.
+   NOTE: `timercmp&apos; does not work for &gt;= or &lt;=.  */</doc>

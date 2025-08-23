@@ -1,0 +1,18 @@
+<def f='include/c++/11/bits/basic_ios.h' l='429' ll='431' type='char std::basic_ios::narrow(std::basic_ios::char_type __c, char __dfault) const'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='412'>/**
+       *  @brief  Squeezes characters.
+       *  @param  __c  The character to narrow.
+       *  @param  __dfault  The character to narrow.
+       *  @return  The narrowed character.
+       *
+       *  Maps a character of @c char_type to a character of @c char,
+       *  if possible.
+       *
+       *  Returns the result of
+       *  @code
+       *    std::use_facet&lt;ctype&lt;char_type&gt; &gt;(getloc()).narrow(c,dfault)
+       *  @endcode
+       *
+       *  Additional l10n notes are at
+       *  http://gcc.gnu.org/onlinedocs/libstdc++/manual/localization.html
+      */</doc>

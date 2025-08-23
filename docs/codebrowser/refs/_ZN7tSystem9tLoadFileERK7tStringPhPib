@@ -1,0 +1,29 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='243' type='uint8 * tSystem::tLoadFile(const tString &amp; file, uint8 * buffer = nullptr, int * fileSize = nullptr, bool appendEOF = false)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='238'>// Loads entire file into memory. If buffer is nullptr you must free the memory returned at some point by using
+// delete[]. If buffer is non-nullptr it must be at least GetFileSize big (+1 if appending EOF). Any problems (file not exist or is
+// unreadable etc) and nullptr is returned. Fills in the file size pointer if you supply one (not including optional appened EOF). It is perfectly valid to
+// load a file with no data (0 bytes big). In this case LoadFile always returns nullptr even if a non-zero buffer was
+// passed in and the fileSize member will be set to 0 (if supplied).</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='80' u='c' c='_ZN6tImage10tImageASTC4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1098' u='c' c='_ZN6tImage9tImageDDS4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='130' u='c' c='_ZN6tImage9tImageGIF4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='280' u='c' c='_ZN6tImage9tImageHDR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='104' u='c' c='_ZN6tImage9tImageICO4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='58' u='c' c='_ZN6tImage9tImageJPG4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='156' u='c' c='_ZN6tImage9tImagePKM4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='54' u='c' c='_ZN6tImage9tImagePNG4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='748' u='c' c='_ZN6tImage9tImagePVR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='38' u='c' c='_ZN6tImage9tImageQOI4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='77' u='c' c='_ZN6tImage9tImageTGA4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='40' u='c' c='_ZN6tImage10tImageWEBP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageXPM.cpp' l='37' u='c' c='_ZN6tImage9tImageXPM4LoadERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='38' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='83' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<def f='Modules/System/Src/tFile.cpp' l='1184' ll='1223' type='uint8 * tSystem::tLoadFile(const tString &amp; file, uint8 * buffer = nullptr, int * fileSize = nullptr, bool appendEOF = false)'/>
+<use f='Modules/System/Src/tFile.cpp' l='1242' u='c' c='_ZN7tSystem9tLoadFileERK7tStringRS0_c'/>
+<use f='Modules/System/Src/tFile.cpp' l='3263' u='c' c='_ZN7tSystem15tHashFileFast32ERK7tStringj'/>
+<use f='Modules/System/Src/tFile.cpp' l='3276' u='c' c='_ZN7tSystem11tHashFile32ERK7tStringj'/>
+<use f='Modules/System/Src/tFile.cpp' l='3289' u='c' c='_ZN7tSystem11tHashFile64ERK7tStringy'/>
+<use f='Modules/System/Src/tFile.cpp' l='3302' u='c' c='_ZN7tSystem12tHashFile256ERK7tString8tFixIntUILi256EE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3315' u='c' c='_ZN7tSystem12tHashFileMD5ERK7tString8tFixIntUILi128EE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3328' u='c' c='_ZN7tSystem15tHashFileSHA256ERK7tString8tFixIntUILi256EE'/>

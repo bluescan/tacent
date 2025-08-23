@@ -1,0 +1,14 @@
+<def f='include/c++/11/chrono' l='897' ll='899' type='std::chrono::time_point::duration std::chrono::time_point::time_since_epoch() const'/>
+<use f='include/c++/11/chrono' l='1146' u='c' c='_ZNSt6chrono3_V212system_clock9to_time_tERKNS_10time_pointIS1_NS_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>
+<use f='include/c++/11/chrono' l='1728' u='c' c='_ZNSt6chrono7weekdayC1ERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='1733' u='c' c='_ZNSt6chrono7weekdayC1ERKNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2346' u='c' c='_ZNSt6chrono14year_month_dayC1ERKNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2351' u='c' c='_ZNSt6chrono14year_month_dayC1ERKNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2402' u='c' c='_ZNKSt6chrono14year_month_daycvNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2626' u='c' c='_ZNKSt6chrono19year_month_day_lastcvNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2751' u='c' c='_ZNSt6chrono18year_month_weekdayC1ERKNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEE'/>
+<use f='include/c++/11/chrono' l='2814' u='c' c='_ZNKSt6chrono18year_month_weekdaycvNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2960' u='c' c='_ZNKSt6chrono23year_month_weekday_lastcvNS_10time_pointINS_3_V212system_clockENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<use f='include/c++/11/chrono' l='2965' u='c' c='_ZNKSt6chrono23year_month_weekday_lastcvNS_10time_pointINS_7local_tENS_8durationIlSt5ratioILl86400ELl1EEEEEEEv'/>
+<doc f='include/c++/11/chrono' l='896'>// observer</doc>
+<use f='include/c++/11/bits/semaphore_base.h' l='130' u='c' c='_ZNSt20__platform_semaphore25_M_try_acquire_until_implERKNSt6chrono10time_pointINS0_3_V212system_clockENS0_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>

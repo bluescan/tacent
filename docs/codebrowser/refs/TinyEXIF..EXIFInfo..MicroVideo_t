@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='312' ll='316'/>
+<use f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='312'/>
+<size>12</size>
+<mbr r='TinyEXIF::EXIFInfo::MicroVideo_t::HasMicroVideo' o='0' t='uint32_t'/>
+<mbr r='TinyEXIF::EXIFInfo::MicroVideo_t::MicroVideoVersion' o='32' t='uint32_t'/>
+<mbr r='TinyEXIF::EXIFInfo::MicroVideo_t::MicroVideoOffset' o='64' t='uint32_t'/>

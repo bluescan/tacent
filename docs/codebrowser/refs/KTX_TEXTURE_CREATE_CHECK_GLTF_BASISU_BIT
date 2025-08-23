@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='802' type='8'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='800'>/*!&lt; Skip any key-value data. This overrides
+                                        the RAW_KVDATA_BIT. */</doc>

@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/semaphore_base.h' l='251' ll='262' macro='1' type='void std::__atomic_semaphore::_M_release(std::ptrdiff_t __update)'/>
+<use f='include/c++/11/semaphore' l='67' u='c' c='_ZNSt18counting_semaphore7releaseEl'/>
+<use f='include/c++/11/semaphore' l='68' u='c' c='_ZNSt18counting_semaphore7releaseEl'/>

@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='249' ll='253'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='271'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='271'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='271'/>
+<size>12</size>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='245'>/**
+ * @~English
+ * @brief Struct describing the logical orientation of an image.
+ */</doc>
+<mbr r='ktxOrientation::x' o='0' t='ktxOrientationX'/>
+<mbr r='ktxOrientation::y' o='32' t='ktxOrientationY'/>
+<mbr r='ktxOrientation::z' o='64' t='ktxOrientationZ'/>

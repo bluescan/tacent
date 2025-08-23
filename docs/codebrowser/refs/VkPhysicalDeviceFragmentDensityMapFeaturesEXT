@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13973' ll='13979'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13973'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceFragmentDensityMapFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceFragmentDensityMapFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceFragmentDensityMapFeaturesEXT::fragmentDensityMap' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFragmentDensityMapFeaturesEXT::fragmentDensityMapDynamic' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceFragmentDensityMapFeaturesEXT::fragmentDensityMapNonSubsampledImages' o='192' t='VkBool32'/>

@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='458' type='void tStringUTF16::tStringUTF16(const char8_t * src, int length)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='457'>// These constructors do not require null-termination of the input arrays.</doc>

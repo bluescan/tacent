@@ -1,0 +1,4 @@
+<dec f='include/libintl.h' l='86' type='char * bindtextdomain(const char * __domainname, const char * __dirname)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='73' u='c' c='_ZNKSt7__cxx118messages4openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6localePKc'/>
+<doc f='include/libintl.h' l='84'>/* Specify that the DOMAINNAME message catalog will be found
+   in DIRNAME rather than in the system locale data base.  */</doc>

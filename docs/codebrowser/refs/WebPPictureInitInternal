@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='361' type='int WebPPictureInitInternal(WebPPicture * , int )'/>
+<use f='Modules/Image/Contrib/WebP/include/encode.h' l='368' u='c' c='_ZL15WebPPictureInitP11WebPPicture'/>

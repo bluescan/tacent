@@ -1,0 +1,12 @@
+<dec f='include/c++/11/bits/std_mutex.h' l='63' type='std::__mutex_base::__native_type'/>
+<use f='include/c++/11/bits/std_mutex.h' l='100' u='a' c='_ZNSt5mutex4lockEv'/>
+<use f='include/c++/11/bits/std_mutex.h' l='111' u='a' c='_ZNSt5mutex8try_lockEv'/>
+<use f='include/c++/11/bits/std_mutex.h' l='118' u='a' c='_ZNSt5mutex6unlockEv'/>
+<use f='include/c++/11/bits/std_mutex.h' l='123' u='a' c='_ZNSt5mutex13native_handleEv'/>
+<use f='include/c++/11/mutex' l='227' u='a' c='_ZNSt11timed_mutex4lockEv'/>
+<use f='include/c++/11/mutex' l='238' u='a' c='_ZNSt11timed_mutex8try_lockEv'/>
+<use f='include/c++/11/mutex' l='255' u='a' c='_ZNSt11timed_mutex6unlockEv'/>
+<use f='include/c++/11/mutex' l='260' u='a' c='_ZNSt11timed_mutex13native_handleEv'/>
+<use f='include/c++/11/mutex' l='267' u='a' c='_ZNSt11timed_mutex12_M_timedlockERK8timespec'/>
+<use f='include/c++/11/mutex' l='272' u='a' c='_ZNSt11timed_mutex12_M_clocklockEiRK8timespec'/>
+<offset>0</offset>

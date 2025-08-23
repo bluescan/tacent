@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='51' type='int'/>
+<offset>0</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='51'>/* High-order word is _IO_MAGIC; rest is flags. */</doc>

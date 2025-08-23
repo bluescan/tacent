@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='296' type='int ttfvPrintf(tFileHandle dest, const char * format, __va_list_tag * )'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='295'>// These variants print a timestamp (ttf = tacent timestamp file) before any content is printed.</doc>
+<use f='Modules/System/Src/tPrint.cpp' l='668' u='c' c='_Z9ttfPrintfP8_IO_FILEPKcz'/>
+<def f='Modules/System/Src/tPrint.cpp' l='674' ll='688' type='int ttfvPrintf(tFileHandle dest, const char * format, __va_list_tag * argList)'/>

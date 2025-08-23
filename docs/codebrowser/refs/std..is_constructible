@@ -1,0 +1,28 @@
+<def f='include/c++/11/type_traits' l='952' ll='957'/>
+<use f='include/c++/11/type_traits' l='3174'/>
+<use f='include/c++/11/bits/stl_pair.h' l='106' c='_ZNSt4_PCC18_ConstructiblePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='107' c='_ZNSt4_PCC18_ConstructiblePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='120' c='_ZNSt4_PCC22_MoveConstructiblePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='121' c='_ZNSt4_PCC22_MoveConstructiblePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='139' c='_ZNSt4_PCC13_CopyMovePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='140' c='_ZNSt4_PCC13_CopyMovePairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='153' c='_ZNSt4_PCC13_MoveCopyPairEv'/>
+<use f='include/c++/11/bits/stl_pair.h' l='154' c='_ZNSt4_PCC13_MoveCopyPairEv'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='91'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='98'/>
+<use f='include/c++/11/bits/uses_allocator.h' l='99'/>
+<use f='include/c++/11/tuple' l='562' c='_ZNSt17_TupleConstraints29__is_implicitly_constructibleEv'/>
+<use f='include/c++/11/tuple' l='573' c='_ZNSt17_TupleConstraints29__is_explicitly_constructibleEv'/>
+<use f='include/c++/11/tuple' l='693'/>
+<use f='include/c++/11/bits/std_function.h' l='441' c='_ZNSt8functionIFT_DpT0_EEC1EOTL0__'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='256' c='_ZNSt16allocator_traits12_S_constructERT_PTL0__DpOTL0_0_'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1023'/>
+<use f='include/c++/11/bits/unordered_map.h' l='561' c='_ZNSt13unordered_map6insertEOTL0__'/>
+<use f='include/c++/11/bits/unordered_map.h' l='600' c='_ZNSt13unordered_map6insertENSt10_HashtableIT_St4pairIKS1_T0_ET3_NSt8__detail10_Select1stET2_T1_NS7_18_Mod_range_hashingENS7_20_Default_ranged_hashENS9080422'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1574' c='_ZNSt18unordered_multimap6insertEOTL0__'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1610' c='_ZNSt18unordered_multimap6insertENSt10_HashtableIT_St4pairIKS1_T0_ET3_NSt8__detail10_Select1stET2_T1_NS7_18_Mod_range_hashingENS7_20_Default_ranged_ha8607932'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='138' c='_ZSt18uninitialized_copyT_S_T0_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='211' c='_ZSt18uninitialized_fillT_S_RKT0_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='288' c='_ZSt20uninitialized_fill_nT_T0_RKT1_'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='126'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='690'/>

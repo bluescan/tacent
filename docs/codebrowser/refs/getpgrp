@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='656' type='__pid_t getpgrp()'/>
+<doc f='include/unistd.h' l='655'>/* Get the process group ID of the calling process.  */</doc>

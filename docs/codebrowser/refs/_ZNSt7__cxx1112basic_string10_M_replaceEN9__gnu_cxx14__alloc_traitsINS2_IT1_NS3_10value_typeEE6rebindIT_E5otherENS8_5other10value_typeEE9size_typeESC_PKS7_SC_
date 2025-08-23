@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/basic_string.h' l='1425' u='c' c='_ZNSt7__cxx1112basic_string6assignERKNS_12basic_stringIT_T0_T1_EEN9__gnu_cxx14__alloc_traitsINSA_IS4_NS4_10value_typeEE6rebindIS2_E5otherENSE_5other109292255'/>
+<use f='include/c++/11/bits/basic_string.h' l='1443' u='c' c='_ZNSt7__cxx1112basic_string6assignEPKT_N9__gnu_cxx14__alloc_traitsINS5_IT1_NS6_10value_typeEE6rebindIS1_E5otherENSA_5other10value_typeEE9size_typeE'/>
+<use f='include/c++/11/bits/basic_string.h' l='1459' u='c' c='_ZNSt7__cxx1112basic_string6assignEPKT_'/>
+<use f='include/c++/11/bits/basic_string.h' l='1531' u='c' c='_ZNSt7__cxx1112basic_string6assignERKTL0__N9__gnu_cxx14__alloc_traitsINS5_IT1_NS6_10value_typeEE6rebindIT_E5otherENSB_5other10value_typeEE9size_typeESF_'/>
+<use f='include/c++/11/bits/basic_string.h' l='1960' u='c' c='_ZNSt7__cxx1112basic_string7replaceEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_SC_'/>
+<dec f='include/c++/11/bits/basic_string.h' l='2279' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::_M_replace(std::basic_string::size_type __pos, std::basic_string::size_type __len1, const _CharT * __s, const std::basic_string::size_type __len2)'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='413' u='c' c='_ZNSt7__cxx1112basic_string19_M_replace_dispatchEN9__gnu_cxx17__normal_iteratorINS1_14__alloc_traitsINS3_IT1_NS4_10value_typeEE6rebindIT_E5otherENS9_51932599'/>
+<def f='include/c++/11/bits/basic_string.tcc' l='446' ll='502' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::_M_replace(std::basic_string::size_type __pos, std::basic_string::size_type __len1, const _CharT * __s, const std::basic_string::size_type __len2)'/>

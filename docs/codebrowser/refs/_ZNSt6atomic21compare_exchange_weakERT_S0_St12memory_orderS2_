@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='319' ll='329' type='bool std::atomic::compare_exchange_weak(_Tp &amp; __e, _Tp __i, std::memory_order __s, std::memory_order __f)'/>

@@ -1,0 +1,3 @@
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='244' c='_ZNK6tImage10tImageTIFF4SaveERK7tStringNS0_7tFormatEbi'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='252' c='_ZNK6tImage10tImageTIFF4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<size>12</size>

@@ -1,0 +1,45 @@
+<def f='include/c++/11/bits/ranges_util.h' l='203' ll='345'/>
+<use f='include/c++/11/bits/ranges_util.h' l='203'/>
+<use f='include/c++/11/bits/ranges_util.h' l='348' c='std::ranges::{deductionguideforsubrange}'/>
+<use f='include/c++/11/bits/ranges_util.h' l='353' c='std::ranges::{deductionguideforsubrange}'/>
+<use f='include/c++/11/bits/ranges_util.h' l='357' c='std::ranges::{deductionguideforsubrange}'/>
+<use f='include/c++/11/bits/ranges_util.h' l='365' c='std::ranges::{deductionguideforsubrange}'/>
+<use f='include/c++/11/bits/ranges_util.h' l='370' c='_ZNSt6ranges3getERKNS_8subrangeIT0_T1_XT2_EEE'/>
+<use f='include/c++/11/bits/ranges_util.h' l='381' c='_ZNSt6ranges3getEONS_8subrangeIT0_T1_XT2_EEE'/>
+<use f='include/c++/11/bits/ranges_util.h' l='392'/>
+<use f='include/c++/11/bits/ranges_util.h' l='396'/>
+<use f='include/c++/11/bits/ranges_util.h' l='562' c='_ZNKSt6ranges11__search_fnclET_T0_T1_T2_T3_T4_T5_'/>
+<use f='include/c++/11/bits/ranges_util.h' l='623'/>
+<use f='include/c++/11/bits/ranges_util.h' l='628'/>
+<use f='include/c++/11/bits/ranges_util.h' l='632'/>
+<use f='include/c++/11/bits/ranges_util.h' l='636'/>
+<use f='include/c++/11/bits/ranges_util.h' l='640'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='347' c='_ZNKSt6ranges13__search_n_fnclET_T0_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS7_EE4type15difference_typeERKT1_T2_T3_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='439' c='_ZNKSt6ranges13__find_end_fnclET_T0_T1_T2_T3_T4_T5_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1003' c='_ZNKSt6ranges14__remove_if_fnclET_T0_T2_T1_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1044' c='_ZNKSt6ranges11__remove_fnclET_T0_RKT1_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1156' c='_ZNKSt6ranges11__unique_fnclET_T0_T2_T1_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1364' c='_ZNKSt6ranges11__rotate_fnclET_S1_T0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2176' c='_ZNKSt6ranges16__equal_range_fnclET_T0_RKT1_T3_T2_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2299' c='_ZNKSt6ranges14__partition_fnclET_T0_T2_T1_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2371' c='_ZNKSt6ranges21__stable_partition_fnclET_T0_T2_T1_'/>
+<smbr r='std::ranges::subrange::_S_store_size' t='const bool'/>
+<mbr r='std::ranges::subrange::_M_begin' t='_It'/>
+<mbr r='std::ranges::subrange::_M_end' t='_Sent'/>
+<mbr r='std::ranges::subrange::_M_size' t='_Size&lt;std::ranges::subrange::__size_type&gt;'/>
+<fun r='_ZNSt6ranges8subrangeC1Ev'/>
+<fun r='_ZNSt6ranges8subrangeC1ETL0__T0_'/>
+<fun r='_ZNSt6ranges8subrangeC1ETL0__T0_DTclsr8__detailE18__to_unsigned_likeclsr3stdE7declvalINSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt209605733'/>
+<fun r='_ZNSt6ranges8subrangeC1EOTL0__'/>
+<fun r='_ZNSt6ranges8subrangeC1EOTL0__'/>
+<fun r='_ZNSt6ranges8subrangeC1EOTL0__DTclsr8__detailE18__to_unsigned_likeclsr3stdE7declvalINSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20in7280275'/>
+<fun r='_ZNKSt6ranges8subrangecvTL0__Ev'/>
+<fun r='_ZNKSt6ranges8subrange5beginEv'/>
+<fun r='_ZNSt6ranges8subrange5beginEv'/>
+<fun r='_ZNKSt6ranges8subrange3endEv'/>
+<fun r='_ZNKSt6ranges8subrange5emptyEv'/>
+<fun r='_ZNKSt6ranges8subrange4sizeEv'/>
+<fun r='_ZNKRSt6ranges8subrange4nextENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE'/>
+<fun r='_ZNOSt6ranges8subrange4nextENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE'/>
+<fun r='_ZNKSt6ranges8subrange4prevENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE'/>
+<fun r='_ZNSt6ranges8subrange7advanceENSt8__detail18__iter_traits_implINSt12remove_cvrefIT_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeE'/>

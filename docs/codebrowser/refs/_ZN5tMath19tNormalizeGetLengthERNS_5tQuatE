@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='361' type='float tMath::tNormalizeGetLength(tMath::tQuat &amp; q)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='361'>/* Returns pre-normalized length. */</doc>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='61' u='c' c='_ZN5tMath11tQuaternion18NormalizeGetLengthEv'/>

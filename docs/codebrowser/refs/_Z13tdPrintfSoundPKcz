@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='227' type='int tdPrintfSound(const char * format)'/>
+<def f='Modules/System/Inc/System/tPrint.h' l='361' ll='366' type='int tdPrintfSound(const char * f)'/>

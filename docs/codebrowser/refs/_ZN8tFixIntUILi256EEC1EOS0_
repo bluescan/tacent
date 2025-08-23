@@ -1,0 +1,6 @@
+<use f='Modules/Foundation/Src/tHash.cpp' l='539' u='c' c='_ZN5tHash12tHashData256EPKhi8tFixIntUILi256EE'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='748' u='c' c='_ZN5tHash15tHashDataSHA256EPKhi8tFixIntUILi256EE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3304' u='c' c='_ZN7tSystem12tHashFile256ERK7tString8tFixIntUILi256EE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3308' u='c' c='_ZN7tSystem12tHashFile256ERK7tString8tFixIntUILi256EE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3330' u='c' c='_ZN7tSystem15tHashFileSHA256ERK7tString8tFixIntUILi256EE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3334' u='c' c='_ZN7tSystem15tHashFileSHA256ERK7tString8tFixIntUILi256EE'/>

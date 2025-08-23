@@ -1,0 +1,2 @@
+<def f='include/c++/11/limits' l='336' ll='337' type='static _Tp std::numeric_limits::round_error()'/>
+<doc f='include/c++/11/limits' l='335'>/** The maximum rounding error measurement (see LIA-1).  */</doc>

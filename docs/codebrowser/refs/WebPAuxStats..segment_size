@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='212' type='int[4]'/>
+<offset>736</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='211'>// DC/AC/uv coefficients for each (0..3) segments.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='212'>// number of macroblocks in each segments</doc>

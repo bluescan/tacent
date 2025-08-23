@@ -1,0 +1,7 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='231' type='2'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='232' u='r'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='566' u='r' c='_ZN5tMath8tUnitSinEfj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='576' u='r' c='_ZN5tMath12tUnitSinHalfEfj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='586' u='r' c='_ZN5tMath8tUnitPowEffj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='602' u='r' c='_ZN5tMath15tUnitPowPlateauEffj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='612' u='r' c='_ZN5tMath8tUnitArcEfj'/>

@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='489' type='char * __stpcpy(char *__restrict __dest, const char *__restrict __src)'/>
+<doc f='include/string.h' l='488'>/* Copy SRC to DEST, returning the address of the terminating &apos;\0&apos; in DEST.  */</doc>

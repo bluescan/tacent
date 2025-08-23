@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='189' type='void tImage::tPicture::Rotate90(bool antiClockWise)'/>
+<def f='Modules/Image/Src/tPicture.cpp' l='134' ll='149' type='void tImage::tPicture::Rotate90(bool antiClockwise)'/>

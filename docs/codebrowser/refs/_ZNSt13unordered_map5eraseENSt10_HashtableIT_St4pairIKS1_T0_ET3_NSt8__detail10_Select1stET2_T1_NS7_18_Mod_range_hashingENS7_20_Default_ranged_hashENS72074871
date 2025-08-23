@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/unordered_map.h' l='739' ll='741' type='std::unordered_map::iterator std::unordered_map::erase(std::unordered_map::const_iterator __position)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='726'>/**
+       *  @brief Erases an element from an %unordered_map.
+       *  @param  __position  An iterator pointing to the element to be erased.
+       *  @return An iterator pointing to the element immediately following
+       *          @a __position prior to the element being erased. If no such
+       *          element exists, end() is returned.
+       *
+       *  This function erases an element, pointed to by the given iterator,
+       *  from an %unordered_map.
+       *  Note that this function only erases the element, and that if the
+       *  element is itself a pointer, the pointed-to memory is not touched in
+       *  any way.  Managing the pointer is the user&apos;s responsibility.
+       */</doc>

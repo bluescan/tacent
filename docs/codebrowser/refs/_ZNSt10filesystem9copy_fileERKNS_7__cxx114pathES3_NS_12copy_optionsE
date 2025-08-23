@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='322' type='bool std::filesystem::copy_file(const std::filesystem::path &amp; __from, const std::filesystem::path &amp; __to, std::filesystem::copy_options __option)'/>
+<use f='include/c++/11/bits/fs_ops.h' l='73' u='c' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_'/>
+<dec f='include/c++/11/bits/fs_ops.h' l='79' type='bool std::filesystem::copy_file(const std::filesystem::path &amp; __from, const std::filesystem::path &amp; __to, std::filesystem::copy_options __option)'/>

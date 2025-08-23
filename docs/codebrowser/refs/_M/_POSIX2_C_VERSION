@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='70'/>
+<doc f='include/unistd.h' l='69'>/* This symbol was required until the 2001 edition of POSIX.  */</doc>

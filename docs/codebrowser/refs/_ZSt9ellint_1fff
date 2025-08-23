@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='695' ll='697' type='float std::ellint_1f(float __k, float __phi)'/>
+<doc f='include/c++/11/bits/specfun.h' l='689'>/**
+   * Return the incomplete elliptic integral of the first kind @f$ E(k,\phi) @f$
+   * for @c float modulus @f$ k @f$ and angle @f$ \phi @f$.
+   *
+   * @see ellint_1 for details.
+   */</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12295'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12294'>// VK_EXT_depth_clip_enable is a preprocessor guard. Do not pass it to API calls.</doc>

@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/fs_ops.h' l='345' type='void std::filesystem::rename(const std::filesystem::path &amp; __from, const std::filesystem::path &amp; __to, std::error_code &amp; __ec)'/>
+<use f='Modules/System/Src/tFile.cpp' l='978' u='c' c='_ZN7tSystem11tRenameFileERK7tStringS2_S2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='1172' u='c' c='_ZN7tSystem11tDeleteFileERK7tStringbb'/>

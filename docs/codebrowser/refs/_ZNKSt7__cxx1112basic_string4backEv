@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/basic_string.h' l='1145' ll='1150' type='std::basic_string::const_reference std::basic_string::back() const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1141'>/**
+       *  Returns a read-only (constant) reference to the data at the
+       *  last element of the %string.
+       */</doc>
+<use f='include/c++/11/bits/fs_path.h' l='1206' u='c' c='_ZNKSt10filesystem7__cxx114path8filenameEv'/>

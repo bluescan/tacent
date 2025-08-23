@@ -1,0 +1,1 @@
+<def f='Modules/Math/Src/tSpline.cpp' l='27' ll='54' type='void tMath::tPiecewiseLinearPath::SetPoints(const tMath::tVector3 * points, int numPoints)'/>

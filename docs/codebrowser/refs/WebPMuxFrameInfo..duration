@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='204' type='int'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='409' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>192</offset>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='204'>// duration of the frame (in milliseconds).</doc>

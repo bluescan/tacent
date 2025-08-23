@@ -1,0 +1,11 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='54' c='tImage::tBaseImage'/>
+<def f='Modules/Image/Inc/Image/tImageEXR.h' l='27' ll='100'/>
+<size>64</size>
+<fun r='_ZN6tImage9tImageEXRD1Ev'/>
+<fun r='_ZN6tImage9tImageEXR3SetEP9tColour4biib'/>
+<fun r='_ZN6tImage9tImageEXR3SetEPNS_6tFrameEb'/>
+<fun r='_ZN6tImage9tImageEXR3SetERNS_8tPictureEb'/>
+<fun r='_ZN6tImage9tImageEXR5ClearEv'/>
+<fun r='_ZNK6tImage9tImageEXR7IsValidEv'/>
+<fun r='_ZN6tImage9tImageEXR8GetFrameEb'/>
+<fun r='_ZN6tImage9tImageEXR5ClearEv'/>

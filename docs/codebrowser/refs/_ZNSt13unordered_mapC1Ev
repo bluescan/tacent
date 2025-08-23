@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/unordered_map.h' l='141' type='void std::unordered_map::unordered_map&lt;_Key, _Tp, _Hash, _Pred, _Alloc&gt;()'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='138'>//construct/destroy/copy
+
+      /// Default constructor.</doc>

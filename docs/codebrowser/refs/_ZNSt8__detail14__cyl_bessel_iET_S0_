@@ -1,0 +1,3 @@
+<def f='include/c++/11/tr1/modified_bessel_func.tcc' l='268' ll='284' type='_Tp std::__detail::__cyl_bessel_i(_Tp __nu, _Tp __x)'/>
+<use f='include/c++/11/bits/specfun.h' l='505' u='c' c='_ZSt13cyl_bessel_ifff'/>
+<use f='include/c++/11/bits/specfun.h' l='515' u='c' c='_ZSt13cyl_bessel_ilee'/>

@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='249' type='bool tImage::tIsContiguousFormat(tImage::tPixelFormat )'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='485' ll='488' type='bool tImage::tIsContiguousFormat(tImage::tPixelFormat format)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='248'>// Is the supplied format one in which the pixels are stored as a contiguous chunk of data.</doc>

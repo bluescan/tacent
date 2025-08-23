@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='173' type='std::string'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='603' u='m' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<offset>2240</offset>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='173'>// Digitization date and time (may not exist)</doc>

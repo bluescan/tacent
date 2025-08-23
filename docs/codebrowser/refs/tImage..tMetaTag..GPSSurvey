@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='58' type='18'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='58'>//	string	Geodetic survey data.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='363' u='m' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='709' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

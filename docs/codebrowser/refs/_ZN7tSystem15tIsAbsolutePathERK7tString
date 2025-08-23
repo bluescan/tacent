@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='128' type='bool tSystem::tIsAbsolutePath(const tString &amp; path)'/>
+<def f='Modules/System/Inc/System/tFile.h' l='787' ll='796' type='bool tSystem::tIsAbsolutePath(const tString &amp; path)'/>
+<use f='Modules/System/Inc/System/tFile.h' l='801' u='c' c='_ZN7tSystem15tIsRelativePathERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='342' u='c' c='_ZN7tSystem13tGetLinuxPathERK7tStringS2_'/>

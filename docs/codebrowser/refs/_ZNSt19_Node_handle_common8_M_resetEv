@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/node_handle.h' l='89' u='c' c='_ZNSt19_Node_handle_commonD1Ev'/>
+<use f='include/c++/11/bits/node_handle.h' l='108' u='c' c='_ZNSt19_Node_handle_commonaSEOSt19_Node_handle_commonIT_T0_E'/>
+<def f='include/c++/11/bits/node_handle.h' l='162' ll='169' type='void std::_Node_handle_common::_M_reset()'/>
+<doc f='include/c++/11/bits/node_handle.h' l='159'>// Deallocates the node, destroys the allocator.
+      // Precondition: !empty()
+      // Postcondition: empty()</doc>

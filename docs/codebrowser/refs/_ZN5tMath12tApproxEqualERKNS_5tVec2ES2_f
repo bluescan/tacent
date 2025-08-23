@@ -1,0 +1,6 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='299' type='bool tMath::tApproxEqual(const tMath::tVec2 &amp; a, const tMath::tVec2 &amp; b, float e = Epsilon)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='307' u='c' c='_ZN5tMath12tApproxEqualERKNS_5tMat2ES2_f'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='307' u='c' c='_ZN5tMath12tApproxEqualERKNS_5tMat2ES2_f'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='297'>// Test for equality within epsilon. Each basis component is tested independently. A relative error metric would behave
+// better: http://www.cygnus-software.com/papers/comparingfloats/comparingfloats.htm</doc>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='50' u='c' c='_ZNK5tMath8tVector211ApproxEqualERKNS_5tVec2Ef'/>

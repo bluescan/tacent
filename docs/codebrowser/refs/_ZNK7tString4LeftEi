@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='202' type='tString tString::Left(int count) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='202'>// Returns a tString of the first count chars. Return what&apos;s available if count &gt; length.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='91' ll='103' type='tString tString::Left(int count) const'/>
+<use f='Modules/System/Src/tFile.cpp' l='88' u='c' c='_ZN7tSystem8tPathStdER7tString'/>

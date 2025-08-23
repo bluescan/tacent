@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6304' ll='6309'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6304'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceSamplerFilterMinmaxProperties::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceSamplerFilterMinmaxProperties::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceSamplerFilterMinmaxProperties::filterMinmaxSingleComponentFormats' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceSamplerFilterMinmaxProperties::filterMinmaxImageComponentMapping' o='160' t='VkBool32'/>

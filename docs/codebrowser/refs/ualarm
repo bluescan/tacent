@@ -1,0 +1,5 @@
+<dec f='include/unistd.h' l='472' type='__useconds_t ualarm(__useconds_t __value, __useconds_t __interval)'/>
+<doc f='include/unistd.h' l='468'>/* Set an alarm to go off (generating a SIGALRM signal) in VALUE
+   microseconds.  If INTERVAL is nonzero, when the alarm goes off, the
+   timer is reset to go off every INTERVAL microseconds thereafter.
+   Returns the number of microseconds remaining before the alarm.  */</doc>

@@ -1,0 +1,5 @@
+<dec f='include/signal.h' l='255' type='int sigwait(const sigset_t *__restrict __set, int *__restrict __sig)'/>
+<doc f='include/signal.h' l='251'>/* Select any of pending signals from SET or wait for any to arrive.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

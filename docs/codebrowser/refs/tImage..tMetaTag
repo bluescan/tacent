@@ -1,0 +1,10 @@
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='28' ll='142'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='145' c='_ZN6tImage15tGetMetaTagNameENS_8tMetaTagE'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='146' c='_ZN6tImage15tGetMetaTagDescENS_8tMetaTagE'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='199' c='_ZN6tImage9tMetaDataixENS_8tMetaTagE'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='200' c='_ZNK6tImage9tMetaDataixENS_8tMetaTagE'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='207' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='27'>// These are the common metadata tags, often extracted from either EXIF and/or XMP data.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='195' c='_ZN6tImage15tGetMetaTagNameENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='201' c='_ZN6tImage15tGetMetaTagDescENS_8tMetaTagE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='644' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

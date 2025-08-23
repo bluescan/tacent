@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='139'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='135'>/**
+ * @~English
+ * @brief Key string for standard writer supercompression parameter metadata.
+ */</doc>

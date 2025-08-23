@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17207' ll='17211'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17207'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceCopyMemoryIndirectFeaturesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceCopyMemoryIndirectFeaturesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceCopyMemoryIndirectFeaturesNV::indirectCopy' o='128' t='VkBool32'/>

@@ -1,0 +1,6 @@
+<dec f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='58' type='void tPipeline::tRule::AddDependency(tStringItem * fullDepName)'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='82' u='c' c='_ZN9tPipeline5tRule6AddDepEP11tStringItem'/>
+<def f='Modules/Pipeline/Src/tRule.cpp' l='81' ll='87' type='void tPipeline::tRule::AddDependency(tStringItem * dep)'/>
+<doc f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='55'>// Adds a dependency. The string pointer is dereferenced and copied. If the dependency doesn&apos;t exist a tRuleError
+	// object is thrown and the dependency is not added. If the dependency was already added, this function does
+	// nothing.</doc>

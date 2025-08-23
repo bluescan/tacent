@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/locale_conv.h' l='447' u='c' c='_ZNSt15wbuffer_convert4syncEv'/>
+<use f='include/c++/11/bits/locale_conv.h' l='452' u='c' c='_ZNSt15wbuffer_convert8overflowENSt15basic_streambufIT0_T1_E8int_typeE'/>
+<use f='include/c++/11/bits/locale_conv.h' l='484' u='c' c='_ZNSt15wbuffer_convert6xsputnEPKNSt15basic_streambufIT0_T1_E9char_typeEl'/>
+<def f='include/c++/11/bits/locale_conv.h' l='558' ll='594' type='bool std::wbuffer_convert::_M_conv_put()'/>
+<doc f='include/c++/11/bits/locale_conv.h' l='557'>// convert the put area and write to the byte stream buffer</doc>

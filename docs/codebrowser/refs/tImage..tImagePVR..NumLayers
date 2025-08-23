@@ -1,0 +1,11 @@
+<use f='Modules/Image/Src/tImagePVR.cpp' l='627' u='r' c='_ZN6tImage9tImagePVR5ClearEv'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='633' u='w' c='_ZN6tImage9tImagePVR5ClearEv'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='678' u='w' c='_ZN6tImage9tImagePVR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='911' u='w' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='912' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='918' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='919' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1062' u='r' c='_ZNK6tImage9tImagePVR8LayerIdxEiiii'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1317' u='r' c='_ZN6tImage9tImagePVR11StealLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1333' u='r' c='_ZNK6tImage9tImagePVR9GetLayersER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1336' u='r' c='_ZNK6tImage9tImagePVR9GetLayersER5tListINS_6tLayerEE'/>

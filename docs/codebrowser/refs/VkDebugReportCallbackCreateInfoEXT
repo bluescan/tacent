@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11247' ll='11253'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11247'/>
+<size>40</size>
+<mbr r='VkDebugReportCallbackCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDebugReportCallbackCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkDebugReportCallbackCreateInfoEXT::flags' o='128' t='VkDebugReportFlagsEXT'/>
+<mbr r='VkDebugReportCallbackCreateInfoEXT::pfnCallback' o='192' t='PFN_vkDebugReportCallbackEXT'/>
+<mbr r='VkDebugReportCallbackCreateInfoEXT::pUserData' o='256' t='void *'/>

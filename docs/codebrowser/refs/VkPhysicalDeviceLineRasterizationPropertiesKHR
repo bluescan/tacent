@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10966' ll='10970'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10966'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceLineRasterizationPropertiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceLineRasterizationPropertiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceLineRasterizationPropertiesKHR::lineSubPixelPrecisionBits' o='128' t='uint32_t'/>

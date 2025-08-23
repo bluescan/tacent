@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17020' ll='17024'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17020'/>
+<size>24</size>
+<mbr r='VkDeviceQueueShaderCoreControlCreateInfoARM::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDeviceQueueShaderCoreControlCreateInfoARM::pNext' o='64' t='void *'/>
+<mbr r='VkDeviceQueueShaderCoreControlCreateInfoARM::shaderCoreCount' o='128' t='uint32_t'/>

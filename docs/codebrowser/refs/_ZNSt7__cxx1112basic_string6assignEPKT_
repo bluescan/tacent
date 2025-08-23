@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/basic_string.h' l='1455' ll='1461' type='basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_string::assign(const _CharT * __s)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1446'>/**
+       *  @brief  Set value to contents of a C string.
+       *  @param __s  The C string to use.
+       *  @return  Reference to this string.
+       *
+       *  This function sets the value of this string to the value of @a __s.
+       *  The data is copied, so there is no dependence on @a __s once the
+       *  function returns.
+       */</doc>

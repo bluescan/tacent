@@ -1,0 +1,21 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='374' type='tPixel4b *'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='386' u='r' c='_ZN6tImage8tPicture5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='387' u='w' c='_ZN6tImage8tPicture5ClearEv'/>
+<offset>41856</offset>
+<use f='Modules/Image/Src/tPicture.cpp' l='626' u='r' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='629' u='w' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='661' u='r' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='682' u='r' c='_ZN6tImage8tPicture16AdjustBrightnessEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='695' u='r' c='_ZN6tImage8tPicture16AdjustBrightnessEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='709' u='r' c='_ZN6tImage8tPicture26AdjustGetDefaultBrightnessERf'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='721' u='r' c='_ZN6tImage8tPicture14AdjustContrastEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='730' u='r' c='_ZN6tImage8tPicture14AdjustContrastEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='744' u='r' c='_ZN6tImage8tPicture24AdjustGetDefaultContrastERf'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='754' u='r' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='798' u='r' c='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='825' u='r' c='_ZN6tImage8tPicture22AdjustGetDefaultLevelsERfS1_S1_S1_S1_'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='839' u='r' c='_ZN6tImage8tPicture21AdjustRestoreOriginalEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='842' u='r' c='_ZN6tImage8tPicture21AdjustRestoreOriginalEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='849' u='r' c='_ZN6tImage8tPicture13AdjustmentEndEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='852' u='r' c='_ZN6tImage8tPicture13AdjustmentEndEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='853' u='w' c='_ZN6tImage8tPicture13AdjustmentEndEv'/>

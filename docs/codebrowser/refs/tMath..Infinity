@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tConstants.h' l='39' type='const float'/>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='81' u='r' c='_ZNK6tScene10tPolyModel19ComputeMinMaxRadiusERfS1_'/>

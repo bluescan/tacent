@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='560' type='void tMath::tCross(tMath::tVec4 &amp; v, const tMath::tVec4 &amp; a)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1164' ll='1170' type='void tMath::tCross(tMath::tVec4 &amp; v, const tMath::tVec4 &amp; a)'/>

@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='642' type='void tMath::tMakeProjPerspOffset(tMath::tMat4 &amp; d, float right, float top, float nearPlane, float farPlane, float offsetX, float offsetY)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='638'>// The offsets in these functions allow creation of oblique (asymmetric) projection matrices. A (1, 1) offset will
+// puts the camera at the upper right corner of the near/far planes. The visual effect of changing offsets is to pan
+// the image around as if it were a big poster _without_ affecting the apparent perspective. This is useful if you want
+// to offset an object on the screen without having it distort.</doc>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='93' u='c' c='_ZN5tMath8tMatrix419MakeProjPerspOffsetEffffff'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='797' ll='802' type='void tMath::tMakeProjPerspOffset(tMath::tMat4 &amp; d, float right, float top, float nearPlane, float farPlane, float offsetX, float offsetY)'/>

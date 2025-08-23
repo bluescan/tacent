@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='245' type='tFixIntU&lt;N&gt; tModPow(tFixIntU&lt;N&gt; base, tFixIntU&lt;N&gt; exp, const tFixIntU&lt;N&gt; &amp; mod)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='1059' ll='1071' type='tFixIntU&lt;N&gt; tModPow(tFixIntU&lt;N&gt; base, tFixIntU&lt;N&gt; exp, const tFixIntU&lt;N&gt; &amp; mod)'/>

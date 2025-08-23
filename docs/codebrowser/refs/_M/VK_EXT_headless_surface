@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14358'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14357'>// VK_EXT_headless_surface is a preprocessor guard. Do not pass it to API calls.</doc>

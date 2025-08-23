@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/hashtable.h' l='652' ll='654' type='std::_Hashtable::allocator_type std::_Hashtable::get_allocator() const'/>
+<use f='include/c++/11/bits/hashtable.h' l='963' u='c' c='_ZNSt10_Hashtable16_M_reinsert_nodeEOSt12_Node_handleIT_T0_NSt23__allocator_traits_base8__rebindIT1_NSt8__detail10_Hash_nodeIS2_Xsr13__hash_cachedE5valueEEEvE4typeEE'/>
+<use f='include/c++/11/bits/hashtable.h' l='992' u='c' c='_ZNSt10_Hashtable22_M_reinsert_node_multiENSt8__detail7_InsertIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_XsrNSB_20__constant_iteratorsE5valueEE14const_iteratorEOSt13481314'/>
+<use f='include/c++/11/bits/hashtable.h' l='1052' u='c' c='_ZNSt10_Hashtable15_M_merge_uniqueERTL0__'/>
+<use f='include/c++/11/bits/hashtable.h' l='1080' u='c' c='_ZNSt10_Hashtable14_M_merge_multiERTL0__'/>

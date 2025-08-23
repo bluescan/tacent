@@ -1,0 +1,11 @@
+<def f='include/x86_64-linux-gnu/bits/types/struct_sigstack.h' l='23' ll='27'/>
+<dec f='include/signal.h' l='347' type='int sigstack(struct sigstack * __ss, struct sigstack * __oss)'/>
+<use f='include/signal.h' l='347' c='sigstack'/>
+<use f='include/signal.h' l='347' c='sigstack'/>
+<size>16</size>
+<doc f='include/signal.h' l='344'>/* Run signals handlers on the stack specified by SS (if not NULL).
+   If OSS is not NULL, it is filled in with the old signal stack status.
+   This interface is obsolete and on many platform not implemented.  */</doc>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_sigstack.h' l='22'>/* Structure describing a signal stack (obsolete).  */</doc>
+<mbr r='sigstack::ss_sp' o='0' t='void *'/>
+<mbr r='sigstack::ss_onstack' o='64' t='int'/>

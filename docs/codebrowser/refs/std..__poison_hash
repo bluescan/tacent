@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/functional_hash.h' l='62' ll='69'/>
+<def f='include/c++/11/bits/functional_hash.h' l='71' ll='75'/>
+<smbr r='std::__poison_hash::__enable_hash_call' t='const bool'/>
+<fun r='_ZNSt13__poison_hashC1EOSt13__poison_hashIT_T0_E'/>
+<fun r='_ZNSt13__poison_hashD1Ev'/>
+<smbr r='std::__poison_hash{type-parameter-0-0}::__enable_hash_call' t='const bool'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='913'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='916'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='927'/>

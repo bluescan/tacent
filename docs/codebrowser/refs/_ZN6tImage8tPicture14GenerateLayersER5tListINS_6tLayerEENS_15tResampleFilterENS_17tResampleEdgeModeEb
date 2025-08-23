@@ -1,0 +1,10 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='326' type='int tImage::tPicture::GenerateLayers(tList&lt;tImage::tLayer&gt; &amp; , tImage::tResampleFilter filter = tResampleFilter::Lanczos_Narrow, tImage::tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp, bool chainGeneration = true)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='318'>// A convenience. This is sort of light tTexture functionality -- generate layers that may be passed off to HW.
+	// Unlike tTexture that compresses to a BC format, this function always uses R8G8B8A8 pixel format and does not
+	// require power-of-2 dimensions. If generating mipmap layers, each layer is half (truncated) in width and height
+	// until a 1x1 is reached. There is no restriction on starting dimensions (they may be odd for example). Populates
+	// (appends) to the supplied tLayer list. If resampleFilter is None no mipmap layers are generated, only a single
+	// layer will be appened. In this case edgeMode is ignored. If chainGeneration is true, the previous mip texture
+	// is gused to generate the next -- this is faster but may not be as good quality. Returns number of appended
+	// layers.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='978' ll='1022' type='int tImage::tPicture::GenerateLayers(tList&lt;tImage::tLayer&gt; &amp; layers, tImage::tResampleFilter filter = tResampleFilter::Lanczos_Narrow, tImage::tResampleEdgeMode edgeMode = tResampleEdgeMode::Clamp, bool chain = true)'/>

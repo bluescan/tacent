@@ -1,0 +1,1 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1528' ll='1533' type='static void rgbcx::bc1_block::unpack_color_unscaled(uint32_t c, uint32_t &amp; r, uint32_t &amp; g, uint32_t &amp; b)'/>

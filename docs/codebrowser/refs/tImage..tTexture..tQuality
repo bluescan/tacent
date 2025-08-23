@@ -1,0 +1,16 @@
+<def f='Modules/Image/Inc/Image/tTexture.h' l='63' ll='68'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='75' c='_ZN6tImage8tTextureC1ERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='92' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='126' c='_ZN6tImage8tTexture15DetermineFilterENS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='127' c='_ZN6tImage8tTexture32DetermineBlockEncodeQualityLevelENS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='129' c='_ZN6tImage8tTexture33ProcessImageTo_R8G8B8_Or_R8G8B8A8ERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='130' c='_ZN6tImage8tTexture23ProcessImageTo_G3B5R5G3ERNS_8tPictureEbNS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='131' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='165' c='_ZN6tImage8tTexture15DetermineFilterENS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='177' c='_ZN6tImage8tTexture32DetermineBlockEncodeQualityLevelENS0_8tQualityE'/>
+<doc f='Modules/Image/Inc/Image/tTexture.h' l='61'>// The other constructors require you to know a quality setting for resampling (mipmap generation) and compression.
+	// For simplicity there is only Fast and Production quality settings, and it affects resampling _and_ compression.</doc>
+<use f='Modules/Image/Src/tTexture.cpp' l='118' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='183' c='_ZN6tImage8tTexture33ProcessImageTo_R8G8B8_Or_R8G8B8A8ERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='233' c='_ZN6tImage8tTexture23ProcessImageTo_G3B5R5G3ERNS_8tPictureEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='284' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='178' type='-1'/>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='204' u='r' c='_Z14tGetEndianness9tPlatform'/>

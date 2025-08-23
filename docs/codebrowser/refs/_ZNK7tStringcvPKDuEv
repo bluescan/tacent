@@ -1,0 +1,23 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='173' type='const char8_t * tString::operator const char8_t *() const'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='762' u='c' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringS6_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='774' u='c' c='_ZN7tSystem6tIsDirERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='783' u='c' c='_ZN7tSystem7tIsFileERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='792' u='c' c='_ZN7tSystem15tIsAbsolutePathERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='792' u='c' c='_ZN7tSystem15tIsAbsolutePathERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='807' u='c' c='_ZN7tSystem12tIsDrivePathERK7tString'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='144' u='c' c='_ZN12tChunkWriter5WriteERK7tString'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='444' u='c' c='_ZNK6tImage9tImageJPG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1723' u='c' c='_ZNK6tScene6tWorld24FindSelectionsContainingER7tItListIPNS_10tSelectionEERK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='69' u='c' c='_ZN12tChunkWriter4OpenERK7tString11tEndianness'/>
+<use f='Modules/System/Src/tChunk.cpp' l='96' u='c' c='_ZN12tChunkWriter8OpenSafeERK7tString11tEndianness'/>
+<use f='Modules/System/Src/tChunk.cpp' l='846' u='c' c='_ZN12tChunkReader4SaveERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='551' u='c' c='_ZN7tSystem12tGetFileSizeERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='868' u='c' c='_ZN7tSystem15tFilesIdenticalERK7tStringS2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='869' u='c' c='_ZN7tSystem15tFilesIdenticalERK7tStringS2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='1262' u='c' c='_ZN7tSystem13tLoadFileHeadERK7tStringRiPh'/>
+<use f='Modules/System/Src/tScript.cpp' l='540' u='c' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='575' u='c' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='591' u='c' c='_ZN11tExprWriterC1ERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='631' u='c' c='_ZN11tExprWriter9WriteAtomERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='676' u='c' c='_ZN11tExprWriter8WriteRawERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='1176' u='c' c='_ZN10tFunScript4SaveERK7tString'/>

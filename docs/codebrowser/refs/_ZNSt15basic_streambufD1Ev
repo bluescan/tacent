@@ -1,0 +1,2 @@
+<def f='include/c++/11/streambuf' l='201' ll='203' type='void std::basic_streambuf::~basic_streambuf&lt;_CharT, _Traits&gt;()'/>
+<doc f='include/c++/11/streambuf' l='200'>/// Destructor deallocates no buffer space.</doc>

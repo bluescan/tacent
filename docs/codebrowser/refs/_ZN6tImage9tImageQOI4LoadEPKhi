@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageQOI.cpp' l='39' u='c' c='_ZN6tImage9tImageQOI4LoadERK7tString'/>
+<def f='Modules/Image/Src/tImageQOI.cpp' l='46' ll='76' type='bool tImage::tImageQOI::Load(const uint8 * qoiFileInMemory, int numBytes)'/>

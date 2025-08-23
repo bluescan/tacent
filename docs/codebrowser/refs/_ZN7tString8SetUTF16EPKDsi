@@ -1,0 +1,8 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='93' u='c' c='_ZN7tString3SetEPKDs'/>
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='386' type='int tString::SetUTF16(const char16_t * src, int srcLen = -1)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='676' u='c' c='_ZN7tString3SetEPKDsi'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='693' u='c' c='_ZN7tString3SetERK12tStringUTF16'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='383'>// Sets the tString from a UTF codeunit array. If srcLen is -1 assumes supplied array is null-terminated, otherwise
+	// specify how long it is. Returns new length (not including null terminator) of the tString. If either src is
+	// nullptr or srcLen is 0, the result is an invalid tString and 0 is returned.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='640' ll='665' type='int tString::SetUTF16(const char16_t * src, int srcLen = -1)'/>

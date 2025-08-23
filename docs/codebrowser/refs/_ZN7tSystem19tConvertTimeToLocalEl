@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tTime.h' l='40' type='std::tm tSystem::tConvertTimeToLocal(std::time_t )'/>
+<def f='Modules/System/Src/tTime.cpp' l='90' ll='93' type='std::tm tSystem::tConvertTimeToLocal(std::time_t tm)'/>

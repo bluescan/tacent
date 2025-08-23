@@ -1,0 +1,11 @@
+<use f='Modules/Image/Inc/Image/tImageWEBP.h' l='46' u='c' c='_ZN6tImage10tImageWEBPD1Ev'/>
+<dec f='Modules/Image/Inc/Image/tImageWEBP.h' l='89' type='void tImage::tImageWEBP::Clear()'/>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='84' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<def f='Modules/Image/Inc/Image/tImageWEBP.h' l='150' ll='157' type='void tImage::tImageWEBP::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tImageWEBP.h' l='88'>// After this call no memory will be consumed by the object and it will be invalid.</doc>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='31' u='c' c='_ZN6tImage10tImageWEBP4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='50' u='c' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='221' u='c' c='_ZN6tImage10tImageWEBP3SetER5tListINS_6tFrameEEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='248' u='c' c='_ZN6tImage10tImageWEBP3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='270' u='c' c='_ZN6tImage10tImageWEBP3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='290' u='c' c='_ZN6tImage10tImageWEBP3SetERNS_8tPictureEb'/>

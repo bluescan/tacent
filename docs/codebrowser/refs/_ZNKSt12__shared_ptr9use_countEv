@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1308' ll='1310' type='long std::__shared_ptr::use_count() const'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='1307'>/// If *this owns a pointer, return the number of owners, otherwise zero.</doc>

@@ -1,0 +1,3 @@
+<dec f='include/string.h' l='179' type='size_t strxfrm_l(char * __dest, const char * __src, size_t __n, locale_t __l)'/>
+<doc f='include/string.h' l='177'>/* Put a transformation of SRC into no more than N bytes of DEST,
+   using sorting rules from L.  */</doc>

@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14865' ll='14877'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14865'/>
+<size>56</size>
+<mbr r='VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV::maxGraphicsShaderGroupCount' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV::maxIndirectSequenceCount' o='160' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV::maxIndirectCommandsTokenCount' o='192' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV::maxIndirectCommandsStreamCount' o='224' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV::maxIndirectCommandsTokenOffset' o='256' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV::maxIndirectCommandsStreamStride' o='288' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV::minSequencesCountBufferOffsetAlignment' o='320' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV::minSequencesIndexBufferOffsetAlignment' o='352' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceDeviceGeneratedCommandsPropertiesNV::minIndirectCommandsBufferOffsetAlignment' o='384' t='uint32_t'/>

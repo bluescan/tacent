@@ -1,0 +1,5 @@
+<use f='Modules/System/Inc/System/tScript.h' l='218' u='c' c='_ZN11tExprReaderC1ERK7tStringb'/>
+<dec f='Modules/System/Inc/System/tScript.h' l='228' type='void tExprReader::Load(const tString &amp; name, bool isFile = true)'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='226'>// If isFile is true then the file &apos;name&apos; is loaded, otherwise treats &apos;name&apos; as the actual script string. The
+	// object is cleared before the new information is loaded. Any previous information is lost.</doc>
+<def f='Modules/System/Src/tScript.cpp' l='532' ll='584' type='void tExprReader::Load(const tString &amp; name, bool isFile = true)'/>

@@ -1,0 +1,7 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='282' type='int tStd::tUTF8s(char8_t * dst, const char32_t * src)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='282'>// UFT-32 to UTF-8.</doc>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='561' u='c' c='_ZN5tName8SetUTF32EPKDii'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='563' u='c' c='_ZN5tName8SetUTF32EPKDii'/>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='498' ll='508' type='int tStd::tUTF8s(char8_t * dst, const char32_t * src)'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='679' u='c' c='_ZN7tString8SetUTF32EPKDii'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='681' u='c' c='_ZN7tString8SetUTF32EPKDii'/>

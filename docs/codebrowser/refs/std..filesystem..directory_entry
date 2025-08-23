@@ -1,0 +1,87 @@
+<def f='include/c++/11/bits/fs_dir.h' l='96' ll='354'/>
+<use f='include/c++/11/bits/fs_dir.h' l='101' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='102' c='_ZNSt10filesystem7__cxx1115directory_entryC1EOS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='120' c='_ZNSt10filesystem7__cxx1115directory_entryaSERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='120' c='_ZNSt10filesystem7__cxx1115directory_entryaSERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='121' c='_ZNSt10filesystem7__cxx1115directory_entryaSEOS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='121' c='_ZNSt10filesystem7__cxx1115directory_entryaSEOS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='285' c='_ZNKSt10filesystem7__cxx1115directory_entryeqERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='290' c='_ZNKSt10filesystem7__cxx1115directory_entryssERKS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='324' c='_ZNSt10filesystem7__cxx11lsERSt13basic_ostreamIT_T0_ERKNS0_15directory_entryE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='359' c='_ZNKRSt10filesystem7__cxx1126__directory_iterator_proxydeEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='361' c='_ZNOSt10filesystem7__cxx1126__directory_iterator_proxydeEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='368' c='_ZNSt10filesystem7__cxx1126__directory_iterator_proxyC1ERKNS0_15directory_entryE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='370'/>
+<use f='include/c++/11/bits/fs_dir.h' l='377'/>
+<use f='include/c++/11/bits/fs_dir.h' l='379'/>
+<use f='include/c++/11/bits/fs_dir.h' l='380'/>
+<use f='include/c++/11/bits/fs_dir.h' l='411' c='_ZNKSt10filesystem7__cxx1118directory_iteratordeEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='412' c='_ZNKSt10filesystem7__cxx1118directory_iteratorptEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='464'/>
+<use f='include/c++/11/bits/fs_dir.h' l='466'/>
+<use f='include/c++/11/bits/fs_dir.h' l='467'/>
+<use f='include/c++/11/bits/fs_dir.h' l='498' c='_ZNKSt10filesystem7__cxx1128recursive_directory_iteratordeEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='499' c='_ZNKSt10filesystem7__cxx1128recursive_directory_iteratorptEv'/>
+<use f='Modules/System/Src/tFile.cpp' l='54' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2022' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2460' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2462' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2599' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2601' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2870' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2873' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2973' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2975' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<size>48</size>
+<doc f='include/c++/11/bits/fs_dir.h' l='95'>/// The value type used by directory iterators</doc>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entryC1Ev'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entryC1ERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entryC1EOS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathE'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathERSt10error_code'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entryD1Ev'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entryaSERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entryaSEOS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entry6assignERKNS0_4pathE'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entry6assignERKNS0_4pathERSt10error_code'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entry16replace_filenameERKNS0_4pathE'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entry16replace_filenameERKNS0_4pathERSt10error_code'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entry7refreshEv'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entry7refreshERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry4pathEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entrycvRKNS0_4pathEEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry6existsEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry6existsERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry13is_block_fileEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry13is_block_fileERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry17is_character_fileEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry17is_character_fileERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry12is_directoryEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry12is_directoryERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry7is_fifoEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry7is_fifoERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry8is_otherEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry8is_otherERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry15is_regular_fileEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry15is_regular_fileERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry9is_socketEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry9is_socketERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry10is_symlinkEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry10is_symlinkERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry9file_sizeEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry9file_sizeERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry15hard_link_countEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry15hard_link_countERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry15last_write_timeEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry15last_write_timeERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry6statusEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry6statusERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry14symlink_statusEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry14symlink_statusERSt10error_code'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entryeqERKS1_'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entryssERKS1_'/>
+<fun r='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathENS_9file_typeE'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry12_M_file_typeEv'/>
+<fun r='_ZNKSt10filesystem7__cxx1115directory_entry12_M_file_typeERSt10error_code'/>
+<mbr r='std::filesystem::directory_entry::_M_path' o='0' t='filesystem::path'/>
+<mbr r='std::filesystem::directory_entry::_M_type' o='320' t='std::filesystem::file_type'/>

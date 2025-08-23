@@ -1,0 +1,15 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='188' type='T tGetSwapEndian(const T &amp; )'/>
+<def f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='204' ll='217' type='T tGetSwapEndian(const T &amp; val)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='187'>// These calls allow endianness swapping of variously sized types.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='201'>// Implementation below this line.</doc>
+<use f='Modules/System/Src/tChunk.cpp' l='484' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath8tVector2Ei'/>
+<use f='Modules/System/Src/tChunk.cpp' l='505' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath8tVector3Ei'/>
+<use f='Modules/System/Src/tChunk.cpp' l='526' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath8tVector4Ei'/>
+<use f='Modules/System/Src/tChunk.cpp' l='547' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath11tQuaternionEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='568' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath8tMatrix2Ei'/>
+<use f='Modules/System/Src/tChunk.cpp' l='589' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath8tMatrix4Ei'/>
+<use f='Modules/System/Src/tChunk.cpp' l='610' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath5tEdgeEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='631' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath8tTriFaceEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='652' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath9tQuadFaceEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='674' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath7tSphereEi'/>
+<use f='Modules/System/Src/tChunk.cpp' l='675' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath7tSphereEi'/>

@@ -1,0 +1,9 @@
+<use f='include/c++/11/bits/random.h' l='2902' u='w' c='_ZNSt19cauchy_distributionC1ET_S0_'/>
+<use f='include/c++/11/bits/random.h' l='2907' u='w' c='_ZNSt19cauchy_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2922' u='c' c='_ZNKSt19cauchy_distribution1aEv'/>
+<use f='include/c++/11/bits/random.h' l='2926' u='c' c='_ZNKSt19cauchy_distribution1bEv'/>
+<use f='include/c++/11/bits/random.h' l='2933' u='r' c='_ZNKSt19cauchy_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='2941' u='w' c='_ZNSt19cauchy_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='2963' c='_ZNSt19cauchy_distributionclERTL0__'/>
+<use f='include/c++/11/bits/random.h' l='2975' c='_ZNSt19cauchy_distribution10__generateETL0__S0_RTL0_0_'/>
+<dec f='include/c++/11/bits/random.h' l='3009' type='std::cauchy_distribution::param_type'/>

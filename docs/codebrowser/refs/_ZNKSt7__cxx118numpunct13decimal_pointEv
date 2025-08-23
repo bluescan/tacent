@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/locale_facets.h' l='1738' ll='1740' type='std::numpunct::char_type std::numpunct::decimal_point() const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1729'>/**
+       *  @brief  Return decimal point character.
+       *
+       *  This function returns a char_type to use as a decimal point.  It
+       *  does so by returning returning
+       *  numpunct&lt;char_type&gt;::do_decimal_point().
+       *
+       *  @return  @a char_type representing a decimal point.
+      */</doc>

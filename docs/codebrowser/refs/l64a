@@ -1,0 +1,4 @@
+<dec f='include/stdlib.h' l='386' type='char * l64a(long __n)'/>
+<doc f='include/stdlib.h' l='383'>/* Convert N to base 64 using the digits &quot;./0-9A-Za-z&quot;, least-significant
+   digit first.  Returns a pointer to static storage overwritten by the
+   next call.  */</doc>

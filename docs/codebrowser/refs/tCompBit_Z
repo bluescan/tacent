@@ -1,0 +1,20 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='54' type='4'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='57' u='r'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='58' u='r'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='59' u='r'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='60' u='r'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='274' u='r' c='_ZN5tMath5tZeroERNS_5tVec3Ej'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='276' u='r' c='_ZN5tMath5tZeroERNS_5tVec4Ej'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='278' u='r' c='_ZN5tMath5tZeroERNS_5tQuatEj'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='287' u='r' c='_ZN5tMath7tIsZeroERKNS_5tVec3Ej'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='289' u='r' c='_ZN5tMath7tIsZeroERKNS_5tVec4Ej'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='291' u='r' c='_ZN5tMath7tIsZeroERKNS_5tQuatEj'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='302' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tVec3ES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='304' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tVec4ES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='306' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tQuatES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='315' u='r' c='_ZN5tMath6tEqualERKNS_5tVec3ES2_j'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='317' u='r' c='_ZN5tMath6tEqualERKNS_5tVec4ES2_j'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='319' u='r' c='_ZN5tMath6tEqualERKNS_5tQuatES2_j'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='328' u='r' c='_ZN5tMath9tNotEqualERKNS_5tVec3ES2_j'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='330' u='r' c='_ZN5tMath9tNotEqualERKNS_5tVec4ES2_j'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='332' u='r' c='_ZN5tMath9tNotEqualERKNS_5tQuatES2_j'/>

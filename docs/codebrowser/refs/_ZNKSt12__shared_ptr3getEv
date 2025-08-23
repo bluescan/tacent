@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1294' ll='1296' type='std::__shared_ptr::element_type * std::__shared_ptr::get() const'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='1293'>/// Return the stored pointer.</doc>

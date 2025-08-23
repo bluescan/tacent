@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17032' ll='17036'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17032'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceSchedulingControlsPropertiesARM::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceSchedulingControlsPropertiesARM::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceSchedulingControlsPropertiesARM::schedulingControlsFlags' o='128' t='VkPhysicalDeviceSchedulingControlsFlagsARM'/>

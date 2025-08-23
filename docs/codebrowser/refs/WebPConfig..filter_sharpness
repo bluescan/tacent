@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='113' type='int'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='349' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>288</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='113'>// range: [0 = off .. 7 = least sharp]</doc>

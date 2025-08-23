@@ -1,0 +1,3 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='254' u='c' c='_ZN7tItListD1Ev'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='328' type='void tItList::Clear()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='328'>/* Clears the list. Deletes items if ownership flag set. */</doc>

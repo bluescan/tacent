@@ -1,0 +1,19 @@
+<def f='include/c++/11/bits/hashtable_policy.h' l='215' ll='222'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='217'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='221' c='_ZNSt8__detail15_Hash_node_baseC1EPS0_'/>
+<ovr f='include/c++/11/bits/hashtable_policy.h' l='277' c='std::__detail::_Hash_node'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='278'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1816'/>
+<use f='include/c++/11/bits/hashtable.h' l='61'/>
+<size>8</size>
+<doc f='include/c++/11/bits/hashtable_policy.h' l='207'>/**
+   *  struct _Hash_node_base
+   *
+   *  Nodes, used to wrap elements stored in the hash table.  A policy
+   *  template parameter of class template _Hashtable controls whether
+   *  nodes also store a hash code. In some cases (e.g. strings) this
+   *  may be a performance win.
+   */</doc>
+<mbr r='std::__detail::_Hash_node_base::_M_nxt' o='0' t='std::__detail::_Hash_node_base *'/>
+<fun r='_ZNSt8__detail15_Hash_node_baseC1Ev'/>
+<fun r='_ZNSt8__detail15_Hash_node_baseC1EPS0_'/>

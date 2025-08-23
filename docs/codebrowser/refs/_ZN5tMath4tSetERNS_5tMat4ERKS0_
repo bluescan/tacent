@@ -1,0 +1,10 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='235' type='void tMath::tSet(tMath::tMat4 &amp; d, const tMath::tMat4 &amp; s)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='534' u='c' c='_ZN5tMath10tTransposeERNS_5tMat4ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1061' u='c' c='_ZN5tMath4tMulERNS_5tMat4ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1142' u='c' c='_ZN5tMath13tInvertAffineERNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='26' u='c' c='_ZN5tMath8tMatrix4C1ERKNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='40' u='c' c='_ZN5tMath8tMatrix43SetERKNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='132' u='c' c='_ZN5tMath8tMatrix4aSERKNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='386' u='c' c='_ZN5tMath7tInvertERNS_5tMat4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='986' u='c' c='_ZN5tMath22tExtractAffineEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>
+<use f='Modules/System/Src/tChunk.cpp' l='407' u='c' c='_ZN12tChunkWriter5WriteERKN5tMath8tMatrix4E'/>

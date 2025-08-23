@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1175'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1173'>/* Define to 1 if the target runtime linker supports binding the same symbol
+   to different versions. */</doc>

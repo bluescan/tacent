@@ -1,0 +1,10 @@
+<dec f='include/c++/11/ostream' l='382' type='std::basic_ostream::__ostream_type &amp; std::basic_ostream::seekp(std::basic_ostream::pos_type )'/>
+<def f='include/c++/11/bits/ostream.tcc' l='255' ll='285' type='basic_ostream&lt;_CharT, _Traits&gt; &amp; std::basic_ostream::seekp(std::basic_ostream::pos_type __pos)'/>
+<doc f='include/c++/11/ostream' l='373'>/**
+       *  @brief  Changing the current write position.
+       *  @param  __pos  A file position object.
+       *  @return  *this
+       *
+       *  If @c fail() is not true, calls @c rdbuf()-&gt;pubseekpos(pos).  If
+       *  that function fails, sets failbit.
+      */</doc>

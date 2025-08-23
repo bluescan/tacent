@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='236' type='bool tSystem::tDeleteFile(const tString &amp; file, bool deleteReadOnly = true, bool tryUseRecycleBin = false)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='233'>// Returns true if file existed and was deleted. If tryUseRecycleBin is true and the function can&apos;t find the recycle
+// bin, it will return false. It is up to you to call it again with tryUseRecycleBin false if you really want the
+// file gone.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='1103' ll='1181' type='bool tSystem::tDeleteFile(const tString &amp; file, bool deleteReadOnly = true, bool useRecycleBin = false)'/>

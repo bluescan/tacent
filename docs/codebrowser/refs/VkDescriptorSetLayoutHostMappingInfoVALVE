@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17077' ll='17082'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17077'/>
+<size>32</size>
+<mbr r='VkDescriptorSetLayoutHostMappingInfoVALVE::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDescriptorSetLayoutHostMappingInfoVALVE::pNext' o='64' t='void *'/>
+<mbr r='VkDescriptorSetLayoutHostMappingInfoVALVE::descriptorOffset' o='128' t='size_t'/>
+<mbr r='VkDescriptorSetLayoutHostMappingInfoVALVE::descriptorSize' o='192' t='uint32_t'/>

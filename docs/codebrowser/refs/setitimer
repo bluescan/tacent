@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/sys/time.h' l='155' type='int setitimer(__itimer_which_t __which, const struct itimerval *__restrict __new, struct itimerval *__restrict __old)'/>
+<doc f='include/x86_64-linux-gnu/sys/time.h' l='152'>/* Set the timer WHICH to *NEW.  If OLD is not NULL,
+   set *OLD to the old value of timer WHICH.
+   Returns 0 on success, -1 on errors.  */</doc>

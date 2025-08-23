@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17434'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17433'>// VK_EXT_extended_dynamic_state3 is a preprocessor guard. Do not pass it to API calls.</doc>

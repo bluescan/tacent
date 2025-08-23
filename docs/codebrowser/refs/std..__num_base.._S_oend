@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1565' type='36'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1614'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='112' u='r' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>

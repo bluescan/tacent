@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_base.h' l='990' ll='996' macro='1' type='void std::__atomic_impl::wait(const _Tp * __ptr, _Val&lt;_Tp&gt; __old, std::memory_order __m = memory_order_seq_cst)'/>

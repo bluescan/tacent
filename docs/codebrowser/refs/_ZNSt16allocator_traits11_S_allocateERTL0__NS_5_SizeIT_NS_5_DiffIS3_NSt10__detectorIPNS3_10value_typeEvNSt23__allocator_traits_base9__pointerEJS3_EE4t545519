@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/alloc_traits.h' l='219' ll='222' type='static decltype(__a.allocate(__n, __hint)) std::allocator_traits::_S_allocate(_Alloc2 &amp; __a, std::allocator_traits::size_type __n, std::allocator_traits::const_void_pointer __hint, int )'/>

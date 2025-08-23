@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5196' ll='5205'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5196'/>
+<size>64</size>
+<mbr r='VkDeviceGroupSubmitInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDeviceGroupSubmitInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkDeviceGroupSubmitInfo::waitSemaphoreCount' o='128' t='uint32_t'/>
+<mbr r='VkDeviceGroupSubmitInfo::pWaitSemaphoreDeviceIndices' o='192' t='const uint32_t *'/>
+<mbr r='VkDeviceGroupSubmitInfo::commandBufferCount' o='256' t='uint32_t'/>
+<mbr r='VkDeviceGroupSubmitInfo::pCommandBufferDeviceMasks' o='320' t='const uint32_t *'/>
+<mbr r='VkDeviceGroupSubmitInfo::signalSemaphoreCount' o='384' t='uint32_t'/>
+<mbr r='VkDeviceGroupSubmitInfo::pSignalSemaphoreDeviceIndices' o='448' t='const uint32_t *'/>

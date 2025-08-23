@@ -1,0 +1,64 @@
+<def f='Modules/System/Inc/System/tFile.h' l='436' ll='473'/>
+<use f='Modules/System/Inc/System/tFile.h' l='439' c='_ZN7tSystem11tExtensionsC1ERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='445' c='_ZN7tSystem11tExtensions3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='445' c='_ZN7tSystem11tExtensions3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='448' c='_ZN7tSystem11tExtensions3AddEPKc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='449' c='_ZN7tSystem11tExtensions3AddERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='456' c='_ZN7tSystem11tExtensions3AddENS_9tFileTypeEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='457' c='_ZN7tSystem11tExtensions3AddERKNS_10tFileTypesEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='484' c='_ZN7tSystem10tFileTypesC1ERKNS_11tExtensionsE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='496' c='_ZN7tSystem10tFileTypes3AddERKNS_11tExtensionsE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='630' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='636' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='645' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='648' c='_ZN7tSystem13tFindFilesRecER5tListINS_9tFileInfoEERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='849' c='_ZN7tSystem11tExtensions3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='849' c='_ZN7tSystem11tExtensions3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='858' c='_ZN7tSystem11tExtensions3AddEPKc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='872' c='_ZN7tSystem11tExtensions3AddERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='881' c='_ZN7tSystem11tExtensions3AddENS_9tFileTypeEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='892' c='_ZN7tSystem11tExtensions3AddERKNS_10tFileTypesEb'/>
+<use f='Modules/System/Inc/System/tFile.h' l='957' c='_ZN7tSystem10tFileTypes3AddERKNS_11tExtensionsE'/>
+<size>72</size>
+<doc f='Modules/System/Inc/System/tFile.h' l='435'>// A little helper type that holds file extension strings. Extensions are lower-case and do not include the dot.</doc>
+<fun r='_ZN7tSystem11tExtensionsC1Ev'/>
+<fun r='_ZN7tSystem11tExtensionsC1ERKS0_'/>
+<fun r='_ZN7tSystem11tExtensionsC1EPKc'/>
+<fun r='_ZN7tSystem11tExtensionsC1ERK7tString'/>
+<fun r='_ZN7tSystem11tExtensionsC1ENS_9tFileTypeEb'/>
+<fun r='_ZN7tSystem11tExtensionsC1ERKNS_10tFileTypesEb'/>
+<fun r='_ZN7tSystem11tExtensions3AddERKS0_'/>
+<fun r='_ZN7tSystem11tExtensions3AddEPKc'/>
+<fun r='_ZN7tSystem11tExtensions3AddERK7tString'/>
+<fun r='_ZN7tSystem11tExtensions3AddENS_9tFileTypeEb'/>
+<fun r='_ZN7tSystem11tExtensions3AddERKNS_10tFileTypesEb'/>
+<fun r='_ZN7tSystem11tExtensions5ClearEv'/>
+<fun r='_ZNK7tSystem11tExtensions5CountEv'/>
+<fun r='_ZNK7tSystem11tExtensions7IsEmptyEv'/>
+<fun r='_ZNK7tSystem11tExtensions8ContainsERK7tString'/>
+<fun r='_ZNK7tSystem11tExtensions5FirstEv'/>
+<mbr r='tSystem::tExtensions::Extensions' o='0' t='tList&lt;tStringItem&gt;'/>
+<mbr r='tSystem::tExtensions::UserName' o='320' t='tString'/>
+<fun r='_ZN7tSystem11tExtensions3AddERKS0_'/>
+<fun r='_ZN7tSystem11tExtensions3AddEPKc'/>
+<fun r='_ZN7tSystem11tExtensions3AddERK7tString'/>
+<fun r='_ZN7tSystem11tExtensions3AddENS_9tFileTypeEb'/>
+<fun r='_ZN7tSystem11tExtensions3AddERKNS_10tFileTypesEb'/>
+<fun r='_ZNK7tSystem11tExtensions8ContainsERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='73' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='74' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='79' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='80' c='_ZN7tSystem20tFindFilesRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2585' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2639' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2796' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2810' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2836' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2850' c='_ZN7tSystem10tFindFilesER5tListINS_9tFileInfoEERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2959' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3013' c='_ZN7tSystem20tFindFilesRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3042' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3056' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3082' c='_ZN7tSystem13tFindFilesRecER5tListINS_9tFileInfoEERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3096' c='_ZN7tSystem13tFindFilesRecER5tListINS_9tFileInfoEERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<size>72</size>

@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7923' ll='7934'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7923'/>
+<size>64</size>
+<mbr r='VkDisplaySurfaceCreateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDisplaySurfaceCreateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkDisplaySurfaceCreateInfoKHR::flags' o='128' t='VkDisplaySurfaceCreateFlagsKHR'/>
+<mbr r='VkDisplaySurfaceCreateInfoKHR::displayMode' o='192' t='VkDisplayModeKHR'/>
+<mbr r='VkDisplaySurfaceCreateInfoKHR::planeIndex' o='256' t='uint32_t'/>
+<mbr r='VkDisplaySurfaceCreateInfoKHR::planeStackIndex' o='288' t='uint32_t'/>
+<mbr r='VkDisplaySurfaceCreateInfoKHR::transform' o='320' t='VkSurfaceTransformFlagBitsKHR'/>
+<mbr r='VkDisplaySurfaceCreateInfoKHR::globalAlpha' o='352' t='float'/>
+<mbr r='VkDisplaySurfaceCreateInfoKHR::alphaMode' o='384' t='VkDisplayPlaneAlphaFlagBitsKHR'/>
+<mbr r='VkDisplaySurfaceCreateInfoKHR::imageExtent' o='416' t='VkExtent2D'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tImageASTC.h' l='38' type='8'/>
+<doc f='Modules/Image/Inc/Image/tImageASTC.h' l='38'>// Same as above but uses the official sRGB transformation. Linear -&gt; sRGB. Approx encoding gamma of 1/2.4 for part of curve.</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='147' u='r' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='149' u='r' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='163' u='r' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>

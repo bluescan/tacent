@@ -1,0 +1,6 @@
+<def f='include/c++/11/compare' l='346' type='const unsigned int'/>
+<def f='include/c++/11/compare' l='347' ll='348' type='const unsigned int'/>
+<def f='include/c++/11/compare' l='349' ll='350' type='const unsigned int'/>
+<def f='include/c++/11/compare' l='351' ll='352' type='const unsigned int'/>
+<use f='include/c++/11/compare' l='363' u='r' c='_ZNSt8__detail16__common_cmp_catEv'/>
+<use f='include/c++/11/compare' l='367' u='r' c='_ZNSt8__detail16__common_cmp_catEv'/>

@@ -1,0 +1,18 @@
+<def f='include/c++/11/bits/fs_dir.h' l='72' type='std::filesystem::file_type std::filesystem::file_status::type() const'/>
+<use f='include/c++/11/bits/fs_dir.h' l='153' u='c' c='_ZNSt10filesystem7__cxx1115directory_entry7refreshEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='157' u='c' c='_ZNSt10filesystem7__cxx1115directory_entry7refreshERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='232' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry10is_symlinkEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='240' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry10is_symlinkERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='337' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry12_M_file_typeEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='349' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry12_M_file_typeERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='129' u='c' c='_ZNSt10filesystem6existsENS_11file_statusE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='144' u='c' c='_ZNSt10filesystem6existsERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='164' u='c' c='_ZNSt10filesystem13is_block_fileENS_11file_statusE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='179' u='c' c='_ZNSt10filesystem17is_character_fileENS_11file_statusE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='194' u='c' c='_ZNSt10filesystem12is_directoryENS_11file_statusE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='215' u='c' c='_ZNSt10filesystem7is_fifoENS_11file_statusE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='248' u='c' c='_ZNSt10filesystem15is_regular_fileENS_11file_statusE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='263' u='c' c='_ZNSt10filesystem9is_socketENS_11file_statusE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='278' u='c' c='_ZNSt10filesystem10is_symlinkENS_11file_statusE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='364' u='c' c='_ZNSt10filesystem12status_knownENS_11file_statusE'/>
+<doc f='include/c++/11/bits/fs_dir.h' l='71'>// observers</doc>

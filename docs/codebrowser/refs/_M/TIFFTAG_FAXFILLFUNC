@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='609'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='608'>/* Note: default is JPEGTABLESMODE_QUANT | JPEGTABLESMODE_HUFF */</doc>

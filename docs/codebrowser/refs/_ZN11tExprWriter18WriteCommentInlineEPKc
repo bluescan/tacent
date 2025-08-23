@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='292' type='void tExprWriter::WriteCommentInline(const char *  = nullptr)'/>
+<use f='Modules/System/Inc/System/tScript.h' l='332' u='c' c='_ZN11tExprWriter5RemInEPKc'/>
+<use f='Modules/System/Inc/System/tScript.h' l='471' u='c' c='_ZN11tExprWriter18WriteCommentInlineEPKDu'/>
+<def f='Modules/System/Src/tScript.cpp' l='1008' ll='1020' type='void tExprWriter::WriteCommentInline(const char * comment = nullptr)'/>

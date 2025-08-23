@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='4833' type='std::basic_ostream&lt;_CharT, _Traits&gt; &amp; std::operator&lt;&lt;(std::basic_ostream&lt;_CharT, _Traits&gt; &amp; __os, const std::exponential_distribution&lt;_RealType&gt; &amp; __x)'/>
+<def f='include/c++/11/bits/random.tcc' l='1752' ll='1771' type='std::basic_ostream&lt;_CharT, _Traits&gt; &amp; std::operator&lt;&lt;(std::basic_ostream&lt;_CharT, _Traits&gt; &amp; __os, const exponential_distribution&lt;_RealType&gt; &amp; __x)'/>

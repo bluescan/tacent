@@ -1,0 +1,4 @@
+<dec f='include/wchar.h' l='135' type='size_t wcsxfrm(wchar_t *__restrict __s1, const wchar_t *__restrict __s2, size_t __n)'/>
+<doc f='include/wchar.h' l='132'>/* Transform S2 into array pointed to by S1 such that if wcscmp is
+   applied to two transformed strings the result is the as applying
+   `wcscoll&apos; to the original strings.  */</doc>

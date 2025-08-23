@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='45' type='8'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='45'>// Same as above but uses the official sRGB transformation. Linear -&gt; sRGB. Approx encoding gamma of 1/2.4 for part of curve.</doc>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='933' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='944' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1050' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1153' u='r' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>

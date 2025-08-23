@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/functexcept.h' l='66' type='void std::__throw_logic_error(const char * )'/>
+<doc f='include/c++/11/bits/functexcept.h' l='64'>// Helpers for exception objects in &lt;stdexcept&gt;</doc>
+<use f='include/c++/11/bits/basic_string.tcc' l='212' u='c' c='_ZNSt7__cxx1112basic_string12_M_constructETL0__S1_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/locale_conv.h' l='253' u='c' c='_ZNSt7__cxx1115wstring_convertC1EPT_'/>
+<use f='include/c++/11/bits/locale_conv.h' l='268' u='c' c='_ZNSt7__cxx1115wstring_convertC1EPT_NS1_10state_typeE'/>
+<use f='include/c++/11/bits/locale_conv.h' l='284' u='c' c='_ZNSt7__cxx1115wstring_convertC1ERKNS_12basic_stringIcSt11char_traitsIcET2_EERKNS1_IT0_S2_IS8_ET1_EE'/>
+<use f='include/c++/11/bits/locale_conv.h' l='411' u='c' c='_ZNSt15wbuffer_convertC1EPSt15basic_streambufIcSt11char_traitsIcEEPT_NS5_10state_typeE'/>

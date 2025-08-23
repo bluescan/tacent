@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='348' type='uint8_t * WebPIDecGetRGB(const WebPIDecoder * idec, int * last_y, int * width, int * height, int * stride)'/>

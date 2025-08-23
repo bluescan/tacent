@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2746' ll='2907' type='bool rgbcx::try_3color_block(const rgbcx::color32 * pSrc_pixels, uint32_t flags, uint32_t &amp; cur_err, int avg_r, int avg_g, int avg_b, int lr, int lg, int lb, int hr, int hg, int hb, int total_r, int total_g, int total_b, uint32_t total_orderings_to_try, rgbcx::bc1_encode_results &amp; results)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3800' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/locale_facets.h' l='821' ll='823' type='const std::ctype&lt;char&gt;::char_type * std::ctype&lt;char&gt;::toupper(std::ctype&lt;char&gt;::char_type * __lo, const std::ctype&lt;char&gt;::char_type * __hi) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='808'>/**
+       *  @brief  Convert array to uppercase.
+       *
+       *  This function converts each char in the range [__lo,__hi) to uppercase
+       *  if possible.  Other chars remain untouched.
+       *
+       *  toupper() acts as if it returns ctype&lt;char&gt;:: do_toupper(__lo, __hi).
+       *  do_toupper() must always return the same result for the same input.
+       *
+       *  @param __lo  Pointer to first char in range.
+       *  @param __hi  Pointer to end of range.
+       *  @return  @a __hi.
+      */</doc>

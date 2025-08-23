@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1207' ll='1209' type='std::deque::const_iterator std::deque::cend() const'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1202'>/**
+       *  Returns a read-only (constant) iterator that points one past
+       *  the last element in the %deque.  Iteration is done in
+       *  ordinary element order.
+       */</doc>

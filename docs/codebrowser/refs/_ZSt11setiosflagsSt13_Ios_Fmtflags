@@ -1,0 +1,8 @@
+<def f='include/c++/11/iomanip' l='95' ll='97' type='std::_Setiosflags std::setiosflags(ios_base::fmtflags __mask)'/>
+<doc f='include/c++/11/iomanip' l='88'>/**
+   *  @brief  Manipulator for @c setf.
+   *  @param  __mask  A format flags mask.
+   *
+   *  Sent to a stream object, this manipulator sets the format flags
+   *  to @a __mask.
+  */</doc>

@@ -1,0 +1,4 @@
+<def f='include/c++/11/atomic' l='1668' ll='1679'/>
+<fun r='_ZNSt10atomic_refC1ERT_'/>
+<fun r='_ZNSt10atomic_refaSERKSt10atomic_refIT_E'/>
+<fun r='_ZNSt10atomic_refC1ERKSt10atomic_refIT_E'/>

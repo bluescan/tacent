@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='1199' ll='1201' type='const _RandomNumberEngine &amp; std::independent_bits_engine::base() const'/>
+<doc f='include/c++/11/bits/random.h' l='1195'>/**
+       * @brief Gets a const reference to the underlying generator engine
+       *        object.
+       */</doc>

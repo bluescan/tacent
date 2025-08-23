@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='483' type='2164379648'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='178' u='r' c='_ZNK6tScene9tSkeleton4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='209' u='r' c='_ZN6tScene9tSkeleton4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1197' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>

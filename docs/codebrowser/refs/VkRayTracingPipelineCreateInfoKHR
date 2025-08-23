@@ -1,0 +1,17 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18981' ll='18996'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18981'/>
+<size>104</size>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::flags' o='128' t='VkPipelineCreateFlags'/>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::stageCount' o='160' t='uint32_t'/>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::pStages' o='192' t='const VkPipelineShaderStageCreateInfo *'/>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::groupCount' o='256' t='uint32_t'/>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::pGroups' o='320' t='const VkRayTracingShaderGroupCreateInfoKHR *'/>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::maxPipelineRayRecursionDepth' o='384' t='uint32_t'/>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::pLibraryInfo' o='448' t='const VkPipelineLibraryCreateInfoKHR *'/>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::pLibraryInterface' o='512' t='const VkRayTracingPipelineInterfaceCreateInfoKHR *'/>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::pDynamicState' o='576' t='const VkPipelineDynamicStateCreateInfo *'/>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::layout' o='640' t='VkPipelineLayout'/>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::basePipelineHandle' o='704' t='VkPipeline'/>
+<mbr r='VkRayTracingPipelineCreateInfoKHR::basePipelineIndex' o='768' t='int32_t'/>

@@ -1,0 +1,3 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='344' u='c' c='_ZNK7tString9GetAsUIntEi'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='345' type='uint32 tString::GetAsUInt32(int base = -1) const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='361' u='c' c='_ZNK7tString8AsUInt32Ei'/>

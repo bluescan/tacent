@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='292' type='bool tImage::tPicture::AdjustRestoreOriginal()'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='291'>// Keeps the adjustment session open and restores the pixels to their original values.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='837' ll='844' type='bool tImage::tPicture::AdjustRestoreOriginal()'/>

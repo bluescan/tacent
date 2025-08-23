@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='311' type='int tmsPrintf(char * dest, int destSize, const char * format)'/>
+<def f='Modules/System/Inc/System/tPrint.h' l='440' ll='446' type='int tmsPrintf(char * dest, int destSize, const char * format)'/>

@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='503' ll='505' type='float std::cyl_bessel_if(float __nu, float __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='497'>/**
+   * Return the regular modified Bessel function @f$ I_{\nu}(x) @f$
+   * for @c float order @f$ \nu @f$ and argument @f$ x &gt;= 0 @f$.
+   *
+   * @see cyl_bessel_i for setails.
+   */</doc>

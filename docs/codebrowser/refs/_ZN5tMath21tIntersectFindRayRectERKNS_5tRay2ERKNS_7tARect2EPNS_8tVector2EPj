@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='481' type='int tMath::tIntersectFindRayRect(const tMath::tRay2 &amp; , const tMath::tARect2 &amp; , tMath::tVector2 * intersection, uint32 * sides = nullptr)'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='477'>// Returns the number of intersection points found. Only 0, 1, or 2 will ever be returned. You may only read that many
+// results from the &apos;intersection&apos; array. If the ray is lined up with one of the rectangle edges there will not be any
+// results for that edge but you will still receive results for the adjacent edges and the function will still return
+// 0, 1, or 2. If sides is supplied, it is filled with the tARect2 Side bitfields.</doc>
+<def f='Modules/Math/Src/tGeometry.cpp' l='351' ll='408' type='int tMath::tIntersectFindRayRect(const tMath::tRay2 &amp; r, const tMath::tARect2 &amp; b, tMath::tVector2 * ia, uint32 * sides = nullptr)'/>

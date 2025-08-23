@@ -1,0 +1,13 @@
+<dec f='include/c++/11/bits/random.h' l='851' type='_UIntType[long_lag]'/>
+<use f='include/c++/11/bits/random.tcc' l='556' u='w' c='_ZNSt26subtract_with_carry_engine4seedET_'/>
+<use f='include/c++/11/bits/random.tcc' l='559' c='_ZNSt26subtract_with_carry_engine4seedET_'/>
+<use f='include/c++/11/bits/random.tcc' l='583' u='w' c='_ZNSt26subtract_with_carry_engine4seedERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='586' c='_ZNSt26subtract_with_carry_engine4seedERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='605' c='_ZNSt26subtract_with_carry_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='605' c='_ZNSt26subtract_with_carry_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='607' c='_ZNSt26subtract_with_carry_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='607' c='_ZNSt26subtract_with_carry_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='613' c='_ZNSt26subtract_with_carry_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='613' c='_ZNSt26subtract_with_carry_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='616' u='w' c='_ZNSt26subtract_with_carry_engineclEv'/>
+<doc f='include/c++/11/bits/random.h' l='850'>/// The state of the generator.  This is a ring buffer.</doc>

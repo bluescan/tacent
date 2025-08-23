@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5429' ll='5440'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5429'/>
+<size>64</size>
+<mbr r='VkSamplerYcbcrConversionCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSamplerYcbcrConversionCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkSamplerYcbcrConversionCreateInfo::format' o='128' t='VkFormat'/>
+<mbr r='VkSamplerYcbcrConversionCreateInfo::ycbcrModel' o='160' t='VkSamplerYcbcrModelConversion'/>
+<mbr r='VkSamplerYcbcrConversionCreateInfo::ycbcrRange' o='192' t='VkSamplerYcbcrRange'/>
+<mbr r='VkSamplerYcbcrConversionCreateInfo::components' o='224' t='VkComponentMapping'/>
+<mbr r='VkSamplerYcbcrConversionCreateInfo::xChromaOffset' o='352' t='VkChromaLocation'/>
+<mbr r='VkSamplerYcbcrConversionCreateInfo::yChromaOffset' o='384' t='VkChromaLocation'/>
+<mbr r='VkSamplerYcbcrConversionCreateInfo::chromaFilter' o='416' t='VkFilter'/>
+<mbr r='VkSamplerYcbcrConversionCreateInfo::forceExplicitReconstruction' o='448' t='VkBool32'/>

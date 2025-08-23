@@ -1,0 +1,8 @@
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='221' u='c' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_f'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='227' u='c' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_f'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='239' u='c' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_f'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='266' u='c' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='272' u='c' c='_ZN5tMath6tSlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='317' u='c' c='_ZN5tMath6tNlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='323' u='c' c='_ZN5tMath6tNlerpERNS_5tQuatERKS0_S3_fNS_16tOrientationPathE'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='1028' u='c' c='_ZN5tMath20tApproachOrientationERNS_5tQuatERKS0_ff'/>

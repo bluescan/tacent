@@ -1,0 +1,6 @@
+<def f='include/x86_64-linux-gnu/bits/sigcontext.h' l='177' ll='182'/>
+<use f='include/x86_64-linux-gnu/bits/sigcontext.h' l='192'/>
+<size>64</size>
+<mbr r='_xsave_hdr::xstate_bv' o='0' t='__uint64_t'/>
+<mbr r='_xsave_hdr::__glibc_reserved1' o='64' t='__uint64_t[2]'/>
+<mbr r='_xsave_hdr::__glibc_reserved2' o='192' t='__uint64_t[5]'/>

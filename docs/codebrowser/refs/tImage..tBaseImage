@@ -1,0 +1,79 @@
+<def f='Modules/Image/Inc/Image/tBaseImage.h' l='54' ll='128'/>
+<size>24</size>
+<doc f='Modules/Image/Inc/Image/tBaseImage.h' l='52'>// Abstract base class for all tImage types. At a minumum all tImageEXTs need to be able to be set from a single tFrame
+// and return a single tFrame.</doc>
+<fun r='_ZN6tImage10tBaseImageD1Ev'/>
+<fun r='_ZN6tImage10tBaseImage3SetEP9tColour4biib'/>
+<fun r='_ZN6tImage10tBaseImage3SetEPNS_6tFrameEb'/>
+<fun r='_ZN6tImage10tBaseImage3SetERNS_8tPictureEb'/>
+<fun r='_ZN6tImage10tBaseImage8GetFrameEb'/>
+<fun r='_ZN6tImage10tBaseImage5ClearEv'/>
+<fun r='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<fun r='_ZNK6tImage10tBaseImage17GetPixelFormatSrcEv'/>
+<fun r='_ZNK6tImage10tBaseImage14GetPixelFormatEv'/>
+<fun r='_ZNK6tImage10tBaseImage19GetColourProfileSrcEv'/>
+<fun r='_ZNK6tImage10tBaseImage16GetColourProfileEv'/>
+<fun r='_ZNK6tImage10tBaseImage12GetAlphaModeEv'/>
+<fun r='_ZNK6tImage10tBaseImage14GetChannelTypeEv'/>
+<fun r='_ZNK6tImage10tBaseImage11IsMipmappedEv'/>
+<fun r='_ZNK6tImage10tBaseImage9IsCubemapEv'/>
+<fun r='_ZNK6tImage10tBaseImage9GetLayersER5tListINS_6tLayerEE'/>
+<fun r='_ZNK6tImage10tBaseImage16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<ovr f='Modules/Image/Inc/Image/tImageAPNG.h' l='26' c='tImage::tImageAPNG'/>
+<use f='Modules/Image/Inc/Image/tImageAPNG.h' l='26'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageASTC.h' l='27' c='tImage::tImageASTC'/>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='27'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageBMP.h' l='46' c='tImage::tImageBMP'/>
+<use f='Modules/Image/Inc/Image/tImageBMP.h' l='46'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageDDS.h' l='30' c='tImage::tImageDDS'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='30'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageEXR.h' l='27' c='tImage::tImageEXR'/>
+<use f='Modules/Image/Inc/Image/tImageEXR.h' l='27'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageGIF.h' l='27' c='tImage::tImageGIF'/>
+<use f='Modules/Image/Inc/Image/tImageGIF.h' l='27'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageHDR.h' l='49' c='tImage::tImageHDR'/>
+<use f='Modules/Image/Inc/Image/tImageHDR.h' l='49'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageICO.h' l='43' c='tImage::tImageICO'/>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='43'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageJPG.h' l='28' c='tImage::tImageJPG'/>
+<use f='Modules/Image/Inc/Image/tImageJPG.h' l='28'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageKTX.h' l='33' c='tImage::tImageKTX'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='33'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImagePKM.h' l='27' c='tImage::tImagePKM'/>
+<use f='Modules/Image/Inc/Image/tImagePKM.h' l='27'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImagePNG.h' l='26' c='tImage::tImagePNG'/>
+<use f='Modules/Image/Inc/Image/tImagePNG.h' l='26'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImagePVR.h' l='33' c='tImage::tImagePVR'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='33'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageQOI.h' l='26' c='tImage::tImageQOI'/>
+<use f='Modules/Image/Inc/Image/tImageQOI.h' l='26'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageTGA.h' l='27' c='tImage::tImageTGA'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='27'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageTIFF.h' l='27' c='tImage::tImageTIFF'/>
+<use f='Modules/Image/Inc/Image/tImageTIFF.h' l='27'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageWEBP.h' l='26' c='tImage::tImageWEBP'/>
+<use f='Modules/Image/Inc/Image/tImageWEBP.h' l='26'/>
+<size>24</size>
+<ovr f='Modules/Image/Inc/Image/tImageXPM.h' l='26' c='tImage::tImageXPM'/>
+<use f='Modules/Image/Inc/Image/tImageXPM.h' l='26'/>
+<size>24</size>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='103' c='_ZN6tImage8tPictureC1ERNS_10tBaseImageEb'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='133' c='_ZN6tImage8tPicture3SetERNS_10tBaseImageEb'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='454' c='_ZN6tImage8tPicture3SetERNS_10tBaseImageEb'/>
+<size>24</size>

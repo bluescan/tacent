@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='118' type='0'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='62' u='r' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<doc f='Modules/Image/Contrib/WebP/include/demux.h' l='118'>// bit-wise combination of WebPFeatureFlags</doc>

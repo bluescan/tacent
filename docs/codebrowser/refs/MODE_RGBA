@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='150' type='1'/>
+<use f='Modules/Image/Contrib/WebP/include/decode.h' l='171' u='r' c='_ZL15WebPIsAlphaMode13WEBP_CSP_MODE'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='98' u='r' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='155' type='7'/>
+<use f='Modules/Image/Contrib/WebP/include/decode.h' l='166' u='r' c='_ZL23WebPIsPremultipliedMode13WEBP_CSP_MODE'/>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='154'>// RGB-premultiplied transparent modes (alpha value is preserved)</doc>

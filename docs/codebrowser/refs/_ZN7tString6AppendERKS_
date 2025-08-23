@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='167' type='tString &amp; tString::Append(const tString &amp; suffix)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='187' u='c' c='_ZN7tStringpLERKS_'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='771' ll='784' type='tString &amp; tString::Append(const tString &amp; suffix)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='166'>// Appends supplied suffix string to this string.</doc>

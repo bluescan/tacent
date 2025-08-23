@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/shared_ptr.h' l='69' ll='75' type='std::basic_ostream&lt;_Ch, _Tr&gt; &amp; std::operator&lt;&lt;(std::basic_ostream&lt;_Ch, _Tr&gt; &amp; __os, const __shared_ptr&lt;_Tp, _Lp&gt; &amp; __p)'/>

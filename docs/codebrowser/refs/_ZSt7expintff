@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/specfun.h' l='843' ll='845' type='float std::expintf(float __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='838'>/**
+   * Return the exponential integral @f$ Ei(x) @f$ for @c float argument @c x.
+   *
+   * @see expint for details.
+   */</doc>

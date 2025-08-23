@@ -1,0 +1,4 @@
+_ZSt4sqrtf|std::sqrt
+_ZN9tColour4f14SquareToLinearEj|tColour4f::SquareToLinear
+_ZN5rgbcx6squareET_|rgbcx::square
+_ZN5rgbcxL7squareiEi|rgbcx::squarei

@@ -1,0 +1,5 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='298' type='int tChunk::GetItems(T * dest, int numItems) const'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='125' u='c' c='_ZN6tImage8tPicture4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='94' u='c' c='_ZN6tScene6tJoint4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='160' u='c' c='_ZN6tScene5tPose4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='168' u='c' c='_ZN6tScene5tPose4LoadERK6tChunk'/>

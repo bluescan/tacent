@@ -1,0 +1,1 @@
+<dec f='include/c++/11/bits/random.h' l='4374' type='std::basic_istream&lt;_CharT, _Traits&gt; &amp; std::operator&gt;&gt;(std::basic_istream&lt;_CharT, _Traits&gt; &amp; __is, std::negative_binomial_distribution&lt;_IntType1&gt; &amp; __x)'/>

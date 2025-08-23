@@ -1,0 +1,24 @@
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='218'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='839'/>
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='897' ll='920'/>
+<size>104</size>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='888'>/**
+ * @~English
+ *
+ * @brief Interface of ktxStream.
+ *
+ * @author Maksim Kolesin
+ * @author Georg Kolling, Imagination Technology
+ * @author Mark Callow, HI Corporation
+ */</doc>
+<mbr r='ktxStream::read' o='0' t='ktxStream_read'/>
+<mbr r='ktxStream::skip' o='64' t='ktxStream_skip'/>
+<mbr r='ktxStream::write' o='128' t='ktxStream_write'/>
+<mbr r='ktxStream::getpos' o='192' t='ktxStream_getpos'/>
+<mbr r='ktxStream::setpos' o='256' t='ktxStream_setpos'/>
+<mbr r='ktxStream::getsize' o='320' t='ktxStream_getsize'/>
+<mbr r='ktxStream::destruct' o='384' t='ktxStream_destruct'/>
+<mbr r='ktxStream::type' o='448' t='enum streamType'/>
+<mbr r='ktxStream::data' o='512' t='union (unnamed union at /mnt/c/GitHub/tacent/Modules/Image/Contrib/LibKTX/include/ktx.h:908:5)'/>
+<mbr r='ktxStream::readpos' o='704' t='ktx_off_t'/>
+<mbr r='ktxStream::closeOnDestruct' o='768' t='ktx_bool_t'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8088' ll='8092'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8088'/>
+<size>24</size>
+<mbr r='VkQueueFamilyQueryResultStatusPropertiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkQueueFamilyQueryResultStatusPropertiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkQueueFamilyQueryResultStatusPropertiesKHR::queryResultStatusSupport' o='128' t='VkBool32'/>

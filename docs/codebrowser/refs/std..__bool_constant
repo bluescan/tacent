@@ -1,0 +1,32 @@
+<use f='include/c++/11/type_traits' l='163'/>
+<use f='include/c++/11/type_traits' l='520'/>
+<use f='include/c++/11/type_traits' l='898' c='_ZNSt28__do_is_nt_destructible_impl6__testEi'/>
+<use f='include/c++/11/type_traits' l='946'/>
+<use f='include/c++/11/type_traits' l='1017'/>
+<use f='include/c++/11/type_traits' l='1032'/>
+<use f='include/c++/11/type_traits' l='1087'/>
+<use f='include/c++/11/type_traits' l='1102'/>
+<use f='include/c++/11/type_traits' l='1123'/>
+<use f='include/c++/11/type_traits' l='1137'/>
+<use f='include/c++/11/type_traits' l='1193'/>
+<use f='include/c++/11/type_traits' l='1202'/>
+<use f='include/c++/11/type_traits' l='1287'/>
+<use f='include/c++/11/type_traits' l='1302'/>
+<use f='include/c++/11/type_traits' l='1323'/>
+<use f='include/c++/11/type_traits' l='1339'/>
+<use f='include/c++/11/type_traits' l='1483' c='_ZNSt26__is_nt_convertible_helperIT_T0_Lb0EE6__testEi'/>
+<use f='include/c++/11/type_traits' l='2704' c='_ZNSt19__swappable_details30__do_is_nothrow_swappable_impl6__testEi'/>
+<use f='include/c++/11/type_traits' l='2792' c='_ZNSt24__swappable_with_details35__do_is_nothrow_swappable_with_impl6__testEi'/>
+<use f='include/c++/11/type_traits' l='2915' c='_ZNSt19__is_invocable_implIT_T0_Lb0EvE7_S_testEi'/>
+<use f='include/c++/11/type_traits' l='2972'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='202'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='203'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='204'/>
+<use f='include/c++/11/bits/hashtable.h' l='590' c='_ZNSt10_HashtableaSEOSt10_HashtableIT_T0_T1_T2_T3_T4_T5_T6_T7_T8_E'/>
+<use f='include/c++/11/bits/stl_vector.h' l='468' c='_ZNSt6vector11_S_relocateENSt12_Vector_baseIT_T0_E7pointerES4_S4_RNS3_14_Tp_alloc_typeE'/>
+<use f='include/c++/11/bits/stl_vector.h' l='714' c='_ZNSt6vectoraSEOSt6vectorIT_T0_E'/>
+<use f='include/c++/11/functional' l='971'/>
+<use f='include/c++/11/functional' l='975'/>
+<use f='include/c++/11/chrono' l='499'/>
+<use f='include/c++/11/bits/nested_exception.h' l='125' c='_ZSt17throw_with_nestedOT_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2167' c='_ZNSt5deque15_M_move_assign1EOSt5dequeIT_T0_ESt17integral_constantIbLb0EE'/>

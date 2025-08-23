@@ -1,0 +1,5 @@
+<dec f='include/wchar.h' l='780' type='int fputws(const wchar_t *__restrict __ws, __FILE *__restrict __stream)'/>
+<doc f='include/wchar.h' l='776'>/* Write a string to STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

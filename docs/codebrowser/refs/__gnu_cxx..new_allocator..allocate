@@ -1,0 +1,3 @@
+<def f='include/c++/11/ext/new_allocator.h' l='102' ll='128' type='_Tp * __gnu_cxx::new_allocator::allocate(__gnu_cxx::new_allocator::size_type __n, const void *  = static_cast&lt;const void *&gt;(0))'/>
+<doc f='include/c++/11/ext/new_allocator.h' l='100'>// NB: __n is permitted to be 0.  The C++ standard says nothing
+      // about what the return value is when __n == 0.</doc>

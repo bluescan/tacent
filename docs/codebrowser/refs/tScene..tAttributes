@@ -1,0 +1,19 @@
+<def f='Modules/Scene/Inc/Scene/tAttribute.h' l='68' ll='88'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='72' c='_ZN6tScene11tAttributesC1ERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='83' c='_ZNK6tScene11tAttributeseqERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='84' c='_ZNK6tScene11tAttributesneERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='85' c='_ZN6tScene11tAttributesaSERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='85' c='_ZN6tScene11tAttributesaSERKS0_'/>
+<size>64</size>
+<fun r='_ZN6tScene11tAttributesD1Ev'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='45'/>
+<size>64</size>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='159' c='_ZNK6tScene11tAttributeseqERKS0_'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='174' c='_ZN6tScene11tAttributesaSERKS0_'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='174' c='_ZN6tScene11tAttributesaSERKS0_'/>
+<size>64</size>
+<fun r='_ZNK6tScene11tAttributes8ContainsERKNS_10tAttributeE'/>
+<fun r='_ZNK6tScene11tAttributes4SaveER12tChunkWriter'/>
+<fun r='_ZN6tScene11tAttributes4LoadERK6tChunk'/>
+<fun r='_ZNK6tScene11tAttributeseqERKS0_'/>
+<fun r='_ZN6tScene11tAttributesaSERKS0_'/>

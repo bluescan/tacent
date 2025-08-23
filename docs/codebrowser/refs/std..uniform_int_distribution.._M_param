@@ -1,0 +1,9 @@
+<use f='include/c++/11/bits/uniform_int_dist.h' l='134' u='w' c='_ZNSt24uniform_int_distributionC1ET_S0_'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='139' u='w' c='_ZNSt24uniform_int_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='152' u='c' c='_ZNKSt24uniform_int_distribution1aEv'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='156' u='c' c='_ZNKSt24uniform_int_distribution1bEv'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='163' u='r' c='_ZNKSt24uniform_int_distribution5paramEv'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='171' u='w' c='_ZNSt24uniform_int_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='193' c='_ZNSt24uniform_int_distributionclERTL0__'/>
+<use f='include/c++/11/bits/uniform_int_dist.h' l='205' c='_ZNSt24uniform_int_distribution10__generateETL0__S0_RTL0_0_'/>
+<dec f='include/c++/11/bits/uniform_int_dist.h' l='239' type='std::uniform_int_distribution::param_type'/>

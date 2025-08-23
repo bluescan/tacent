@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='140' type='const char * tGetColourProfileShortName(tColourProfile )'/>
+<def f='Modules/Math/Src/tColour.cpp' l='53' ll='57' type='const char * tGetColourProfileShortName(tColourProfile profile)'/>

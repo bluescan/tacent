@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1687' ll='1695' type='std::deque::iterator std::deque::insert(std::deque::const_iterator __position, _InputIterator __first, _InputIterator __last)'/>

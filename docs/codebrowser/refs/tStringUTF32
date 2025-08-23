@@ -1,0 +1,62 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='84' c='_ZN7tStringC1ERK12tStringUTF32'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='100' c='_ZN7tString3SetERK12tStringUTF32'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='450' c='_ZN12tStringUTF16C1ERK12tStringUTF32'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='466' c='_ZN12tStringUTF163SetERK12tStringUTF32'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='508' ll='565'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='514' c='_ZN12tStringUTF32C1ERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='530' c='_ZN12tStringUTF323SetERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='589' c='_ZN11tStringItemC1ERK12tStringUTF32'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='697' c='_ZN7tString3SetERK12tStringUTF32'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='977' c='_ZN12tStringUTF163SetERK12tStringUTF32'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1106' c='_ZN12tStringUTF323SetERKS_'/>
+<size>16</size>
+<fun r='_ZN12tStringUTF32C1Ev'/>
+<fun r='_ZN12tStringUTF32C1Ei'/>
+<fun r='_ZN12tStringUTF32C1ERK7tString'/>
+<fun r='_ZN12tStringUTF32C1ERK12tStringUTF16'/>
+<fun r='_ZN12tStringUTF32C1ERKS_'/>
+<fun r='_ZN12tStringUTF32C1EPKDu'/>
+<fun r='_ZN12tStringUTF32C1EPKDs'/>
+<fun r='_ZN12tStringUTF32C1EPKDi'/>
+<fun r='_ZN12tStringUTF32C1EPKDui'/>
+<fun r='_ZN12tStringUTF32C1EPKDsi'/>
+<fun r='_ZN12tStringUTF32C1EPKDii'/>
+<fun r='_ZN12tStringUTF32D1Ev'/>
+<fun r='_ZN12tStringUTF323SetERK7tString'/>
+<fun r='_ZN12tStringUTF323SetERK12tStringUTF16'/>
+<fun r='_ZN12tStringUTF323SetERKS_'/>
+<fun r='_ZN12tStringUTF323SetEPKDu'/>
+<fun r='_ZN12tStringUTF323SetEPKDs'/>
+<fun r='_ZN12tStringUTF323SetEPKDi'/>
+<fun r='_ZN12tStringUTF323SetEPKDui'/>
+<fun r='_ZN12tStringUTF323SetEPKDsi'/>
+<fun r='_ZN12tStringUTF323SetEPKDii'/>
+<fun r='_ZN12tStringUTF329SetLengthEib'/>
+<fun r='_ZN12tStringUTF325ClearEv'/>
+<fun r='_ZNK12tStringUTF327IsValidEv'/>
+<fun r='_ZNK12tStringUTF327IsEmptyEv'/>
+<fun r='_ZNK12tStringUTF326LengthEv'/>
+<fun r='_ZN12tStringUTF324TextEv'/>
+<fun r='_ZNK12tStringUTF325CharsEv'/>
+<fun r='_ZNK12tStringUTF325UnitsEv'/>
+<fun r='_ZN12tStringUTF323TxtEv'/>
+<fun r='_ZNK12tStringUTF323ChrEv'/>
+<fun r='_ZNK12tStringUTF323PodEv'/>
+<mbr r='tStringUTF32::StringLength' o='0' t='int'/>
+<mbr r='tStringUTF32::CodeUnits' o='64' t='char32_t *'/>
+<fun r='_ZN12tStringUTF32C1Ei'/>
+<fun r='_ZN12tStringUTF323SetERK7tString'/>
+<fun r='_ZN12tStringUTF323SetERK12tStringUTF16'/>
+<fun r='_ZN12tStringUTF323SetERKS_'/>
+<fun r='_ZN12tStringUTF323SetEPKDu'/>
+<fun r='_ZN12tStringUTF323SetEPKDs'/>
+<fun r='_ZN12tStringUTF323SetEPKDi'/>
+<fun r='_ZN12tStringUTF323SetEPKDui'/>
+<fun r='_ZN12tStringUTF323SetEPKDsi'/>
+<fun r='_ZN12tStringUTF323SetEPKDii'/>
+<fun r='_ZN12tStringUTF329SetLengthEib'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='91' c='_ZN5tNameC1ERK12tStringUTF32'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='113' c='_ZN5tName3SetERK12tStringUTF32'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='289' c='_ZN9tNameItemC1ERK12tStringUTF32'/>
+<use f='Modules/Foundation/Inc/Foundation/tName.h' l='432' c='_ZN5tName3SetERK12tStringUTF32'/>
+<size>16</size>

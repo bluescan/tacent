@@ -1,0 +1,941 @@
+<inh f='include/c++/11/limits' l='202' c='std::__numeric_limits_base'/>
+<def f='include/c++/11/limits' l='312' ll='358'/>
+<def f='include/c++/11/limits' l='363' ll='365'/>
+<use f='include/c++/11/limits' l='365'/>
+<def f='include/c++/11/limits' l='367' ll='369'/>
+<use f='include/c++/11/limits' l='369'/>
+<def f='include/c++/11/limits' l='371' ll='373'/>
+<use f='include/c++/11/limits' l='373'/>
+<def f='include/c++/11/limits' l='383' ll='449'/>
+<use f='include/c++/11/limits' l='384'/>
+<def f='include/c++/11/limits' l='452' ll='516'/>
+<use f='include/c++/11/limits' l='453'/>
+<def f='include/c++/11/limits' l='519' ll='586'/>
+<use f='include/c++/11/limits' l='520'/>
+<def f='include/c++/11/limits' l='589' ll='659'/>
+<use f='include/c++/11/limits' l='590'/>
+<def f='include/c++/11/limits' l='662' ll='727'/>
+<use f='include/c++/11/limits' l='663'/>
+<def f='include/c++/11/limits' l='731' ll='791'/>
+<use f='include/c++/11/limits' l='732'/>
+<def f='include/c++/11/limits' l='796' ll='854'/>
+<use f='include/c++/11/limits' l='797'/>
+<def f='include/c++/11/limits' l='857' ll='915'/>
+<use f='include/c++/11/limits' l='858'/>
+<def f='include/c++/11/limits' l='919' ll='983'/>
+<use f='include/c++/11/limits' l='920'/>
+<def f='include/c++/11/limits' l='986' ll='1056'/>
+<use f='include/c++/11/limits' l='987'/>
+<def f='include/c++/11/limits' l='1059' ll='1123'/>
+<use f='include/c++/11/limits' l='1060'/>
+<def f='include/c++/11/limits' l='1126' ll='1195'/>
+<use f='include/c++/11/limits' l='1127'/>
+<def f='include/c++/11/limits' l='1198' ll='1262'/>
+<use f='include/c++/11/limits' l='1199'/>
+<def f='include/c++/11/limits' l='1265' ll='1335'/>
+<use f='include/c++/11/limits' l='1266'/>
+<def f='include/c++/11/limits' l='1338' ll='1405'/>
+<use f='include/c++/11/limits' l='1339'/>
+<def f='include/c++/11/limits' l='1408' ll='1478'/>
+<use f='include/c++/11/limits' l='1409'/>
+<def f='include/c++/11/limits' l='1656' macro='1'/>
+<use f='include/c++/11/limits' l='1482'/>
+<def f='include/c++/11/limits' l='1656' macro='1'/>
+<use f='include/c++/11/limits' l='1550'/>
+<def f='include/c++/11/limits' l='1667' ll='1735'/>
+<use f='include/c++/11/limits' l='1668'/>
+<def f='include/c++/11/limits' l='1742' ll='1810'/>
+<use f='include/c++/11/limits' l='1743'/>
+<def f='include/c++/11/limits' l='1817' ll='1885'/>
+<use f='include/c++/11/limits' l='1818'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='124' c='_ZNSt8__detail18__bernoulli_seriesEj'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='289' c='_ZNSt8__detail13__log_bincoefEjj'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='320' c='_ZNSt8__detail9__bincoefEjj'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='325' c='_ZNSt8__detail9__bincoefEjj'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='366' c='_ZNSt8__detail12__psi_seriesET_'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='398' c='_ZNSt8__detail11__psi_asympET_'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='422' c='_ZNSt8__detail5__psiET_'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='424' c='_ZNSt8__detail5__psiET_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='111' c='_ZNSt8__detail13__gamma_temmeET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='158' c='_ZNSt8__detail11__bessel_jnET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='159' c='_ZNSt8__detail11__bessel_jnET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='163' c='_ZNSt8__detail11__bessel_jnET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='168' c='_ZNSt8__detail11__bessel_jnET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='377' c='_ZNSt8__detail21__cyl_bessel_jn_asympET_S0_RS0_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='468' c='_ZNSt8__detail22__cyl_bessel_ij_seriesET_S0_S0_j'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='498' c='_ZNSt8__detail14__cyl_bessel_jET_S0_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='540' c='_ZNSt8__detail15__cyl_neumann_nET_S0_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='612' c='_ZNSt8__detail12__sph_besselEjT_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='650' c='_ZNSt8__detail13__sph_neumannEjT_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='652' c='_ZNSt8__detail13__sph_neumannEjT_'/>
+<use f='include/c++/11/tr1/beta_function.tcc' l='194' c='_ZNSt8__detail6__betaET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='80' c='_ZNSt8__detail11__ellint_rfET_S0_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='101' c='_ZNSt8__detail11__ellint_rfET_S0_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='167' c='_ZNSt8__detail22__comp_ellint_1_seriesET_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='197' c='_ZNSt8__detail15__comp_ellint_1ET_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='199' c='_ZNSt8__detail15__comp_ellint_1ET_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='225' c='_ZNSt8__detail10__ellint_1ET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='282' c='_ZNSt8__detail22__comp_ellint_2_seriesET_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='318' c='_ZNSt8__detail11__ellint_rdET_S0_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='320' c='_ZNSt8__detail11__ellint_rdET_S0_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='405' c='_ZNSt8__detail15__comp_ellint_2ET_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='439' c='_ZNSt8__detail10__ellint_2ET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='496' c='_ZNSt8__detail11__ellint_rcET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='513' c='_ZNSt8__detail11__ellint_rcET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='565' c='_ZNSt8__detail11__ellint_rjET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='590' c='_ZNSt8__detail11__ellint_rjET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='667' c='_ZNSt8__detail15__comp_ellint_3ET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='669' c='_ZNSt8__detail15__comp_ellint_3ET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='707' c='_ZNSt8__detail10__ellint_3ET_S0_S0_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='85' c='_ZNSt8__detail18__expint_E1_seriesET_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='160' c='_ZNSt8__detail18__expint_En_seriesEjT_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='206' c='_ZNSt8__detail21__expint_En_cont_fracEjT_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='207' c='_ZNSt8__detail21__expint_En_cont_fracEjT_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='301' c='_ZNSt8__detail18__expint_Ei_seriesET_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='332' c='_ZNSt8__detail17__expint_Ei_asympET_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='360' c='_ZNSt8__detail11__expint_EiET_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='454' c='_ZNSt8__detail16__expint_large_nEjT_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='482' c='_ZNSt8__detail8__expintEjT_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='484' c='_ZNSt8__detail8__expintEjT_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='521' c='_ZNSt8__detail8__expintET_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='87' c='_ZNSt8__detail20__conf_hyperg_seriesET_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='124' c='_ZNSt8__detail18__conf_hyperg_lukeET_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='126' c='_ZNSt8__detail18__conf_hyperg_lukeET_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='237' c='_ZNSt8__detail13__conf_hypergET_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='239' c='_ZNSt8__detail13__conf_hypergET_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='275' c='_ZNSt8__detail15__hyperg_seriesET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='308' c='_ZNSt8__detail13__hyperg_lukeET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='310' c='_ZNSt8__detail13__hyperg_lukeET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='444' c='_ZNSt8__detail16__hyperg_reflectET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='446' c='_ZNSt8__detail16__hyperg_reflectET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='741' c='_ZNSt8__detail8__hypergET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='747' c='_ZNSt8__detail8__hypergET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='749' c='_ZNSt8__detail8__hypergET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/legendre_function.tcc' l='86' c='_ZNSt8__detail17__poly_legendre_pEjT_'/>
+<use f='include/c++/11/tr1/legendre_function.tcc' l='145' c='_ZNSt8__detail18__assoc_legendre_pEjjT_S0_'/>
+<use f='include/c++/11/tr1/legendre_function.tcc' l='219' c='_ZNSt8__detail14__sph_legendreEjjT_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='105' c='_ZNSt8__detail11__bessel_ikET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='106' c='_ZNSt8__detail11__bessel_ikET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='110' c='_ZNSt8__detail11__bessel_ikET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='111' c='_ZNSt8__detail11__bessel_ikET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='275' c='_ZNSt8__detail14__cyl_bessel_iET_S0_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='311' c='_ZNSt8__detail14__cyl_bessel_kET_S0_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='380' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='383' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/poly_hermite.tcc' l='119' c='_ZNSt8__detail14__poly_hermiteEjT_'/>
+<use f='include/c++/11/tr1/poly_laguerre.tcc' l='253' c='_ZNSt8__detail15__poly_laguerreEjT_T0_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='91' c='_ZNSt8__detail18__riemann_zeta_sumET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='124' c='_ZNSt8__detail18__riemann_zeta_altET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='163' c='_ZNSt8__detail19__riemann_zeta_globET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='165' c='_ZNSt8__detail19__riemann_zeta_globET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='269' c='_ZNSt8__detail22__riemann_zeta_productET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='298' c='_ZNSt8__detail14__riemann_zetaET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='300' c='_ZNSt8__detail14__riemann_zetaET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='371' c='_ZNSt8__detail19__hurwitz_zeta_globET_S0_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='373' c='_ZNSt8__detail19__hurwitz_zeta_globET_S0_'/>
+<size>1</size>
+<doc f='include/c++/11/limits' l='360'>// _GLIBCXX_RESOLVE_LIB_DEFECTS
+  // 559. numeric_limits&lt;const T&gt;</doc>
+<doc f='include/c++/11/limits' l='375'>// Now there follow 16 explicit specializations.  Yes, 16.  Make sure
+  // you get the count right. (18 in C++11 mode, with char16_t and char32_t.)
+  // (+1 if char8_t is enabled.)
+
+  // _GLIBCXX_RESOLVE_LIB_DEFECTS
+  // 184. numeric_limits&lt;bool&gt; wording problems
+
+  /// numeric_limits&lt;bool&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='451'>/// numeric_limits&lt;char&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='518'>/// numeric_limits&lt;signed char&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='588'>/// numeric_limits&lt;unsigned char&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='661'>/// numeric_limits&lt;wchar_t&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='730'>/// numeric_limits&lt;char8_t&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='795'>/// numeric_limits&lt;char16_t&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='856'>/// numeric_limits&lt;char32_t&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='918'>/// numeric_limits&lt;short&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='985'>/// numeric_limits&lt;unsigned short&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='1058'>/// numeric_limits&lt;int&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='1125'>/// numeric_limits&lt;unsigned int&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='1197'>/// numeric_limits&lt;long&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='1264'>/// numeric_limits&lt;unsigned long&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='1337'>/// numeric_limits&lt;long long&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='1407'>/// numeric_limits&lt;unsigned long long&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='1666'>/// numeric_limits&lt;float&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='1741'>/// numeric_limits&lt;double&gt; specialization.</doc>
+<doc f='include/c++/11/limits' l='1816'>/// numeric_limits&lt;long double&gt; specialization.</doc>
+<fun r='_ZNSt14numeric_limits3minEv'/>
+<fun r='_ZNSt14numeric_limits3maxEv'/>
+<fun r='_ZNSt14numeric_limits6lowestEv'/>
+<fun r='_ZNSt14numeric_limits7epsilonEv'/>
+<fun r='_ZNSt14numeric_limits11round_errorEv'/>
+<fun r='_ZNSt14numeric_limits8infinityEv'/>
+<fun r='_ZNSt14numeric_limits9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limits13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limits10denorm_minEv'/>
+<smbr r='std::numeric_limits{bool}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIbE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIbE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIbE6lowestEv'/>
+<smbr r='std::numeric_limits{bool}::digits' t='const int'/>
+<smbr r='std::numeric_limits{bool}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{bool}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{bool}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{bool}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{bool}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{bool}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIbE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIbE11round_errorEv'/>
+<smbr r='std::numeric_limits{bool}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{bool}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{bool}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{bool}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{bool}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{bool}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{bool}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{bool}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{bool}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIbE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIbE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIbE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIbE10denorm_minEv'/>
+<smbr r='std::numeric_limits{bool}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{bool}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{bool}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{bool}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{bool}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{bool}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{char}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIcE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIcE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIcE6lowestEv'/>
+<smbr r='std::numeric_limits{char}::digits' t='const int'/>
+<smbr r='std::numeric_limits{char}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{char}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{char}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{char}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{char}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{char}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIcE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIcE11round_errorEv'/>
+<smbr r='std::numeric_limits{char}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{char}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{char}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{char}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{char}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{char}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{char}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{char}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{char}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIcE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIcE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIcE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIcE10denorm_minEv'/>
+<smbr r='std::numeric_limits{char}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{char}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{char}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{char}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{char}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{char}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{signedchar}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIaE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIaE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIaE6lowestEv'/>
+<smbr r='std::numeric_limits{signedchar}::digits' t='const int'/>
+<smbr r='std::numeric_limits{signedchar}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{signedchar}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{signedchar}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{signedchar}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{signedchar}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{signedchar}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIaE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIaE11round_errorEv'/>
+<smbr r='std::numeric_limits{signedchar}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{signedchar}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{signedchar}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{signedchar}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{signedchar}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{signedchar}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{signedchar}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{signedchar}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{signedchar}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIaE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIaE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIaE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIaE10denorm_minEv'/>
+<smbr r='std::numeric_limits{signedchar}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{signedchar}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{signedchar}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{signedchar}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{signedchar}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{signedchar}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{unsignedchar}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIhE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIhE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIhE6lowestEv'/>
+<smbr r='std::numeric_limits{unsignedchar}::digits' t='const int'/>
+<smbr r='std::numeric_limits{unsignedchar}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedchar}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedchar}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedchar}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedchar}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedchar}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIhE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIhE11round_errorEv'/>
+<smbr r='std::numeric_limits{unsignedchar}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{unsignedchar}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedchar}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{unsignedchar}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedchar}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedchar}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedchar}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedchar}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{unsignedchar}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIhE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIhE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIhE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIhE10denorm_minEv'/>
+<smbr r='std::numeric_limits{unsignedchar}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedchar}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedchar}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedchar}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedchar}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedchar}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{wchar_t}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIwE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIwE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIwE6lowestEv'/>
+<smbr r='std::numeric_limits{wchar_t}::digits' t='const int'/>
+<smbr r='std::numeric_limits{wchar_t}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{wchar_t}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{wchar_t}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{wchar_t}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{wchar_t}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{wchar_t}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIwE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIwE11round_errorEv'/>
+<smbr r='std::numeric_limits{wchar_t}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{wchar_t}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{wchar_t}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{wchar_t}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{wchar_t}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{wchar_t}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{wchar_t}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{wchar_t}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{wchar_t}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIwE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIwE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIwE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIwE10denorm_minEv'/>
+<smbr r='std::numeric_limits{wchar_t}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{wchar_t}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{wchar_t}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{wchar_t}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{wchar_t}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{wchar_t}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{char8_t}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIDuE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIDuE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIDuE6lowestEv'/>
+<smbr r='std::numeric_limits{char8_t}::digits' t='const int'/>
+<smbr r='std::numeric_limits{char8_t}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{char8_t}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{char8_t}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{char8_t}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{char8_t}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{char8_t}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIDuE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIDuE11round_errorEv'/>
+<smbr r='std::numeric_limits{char8_t}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{char8_t}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{char8_t}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{char8_t}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{char8_t}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{char8_t}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{char8_t}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{char8_t}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{char8_t}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIDuE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIDuE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIDuE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIDuE10denorm_minEv'/>
+<smbr r='std::numeric_limits{char8_t}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{char8_t}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{char8_t}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{char8_t}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{char8_t}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{char8_t}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{char16_t}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIDsE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIDsE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIDsE6lowestEv'/>
+<smbr r='std::numeric_limits{char16_t}::digits' t='const int'/>
+<smbr r='std::numeric_limits{char16_t}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{char16_t}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{char16_t}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{char16_t}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{char16_t}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{char16_t}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIDsE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIDsE11round_errorEv'/>
+<smbr r='std::numeric_limits{char16_t}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{char16_t}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{char16_t}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{char16_t}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{char16_t}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{char16_t}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{char16_t}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{char16_t}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{char16_t}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIDsE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIDsE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIDsE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIDsE10denorm_minEv'/>
+<smbr r='std::numeric_limits{char16_t}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{char16_t}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{char16_t}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{char16_t}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{char16_t}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{char16_t}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{char32_t}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIDiE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIDiE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIDiE6lowestEv'/>
+<smbr r='std::numeric_limits{char32_t}::digits' t='const int'/>
+<smbr r='std::numeric_limits{char32_t}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{char32_t}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{char32_t}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{char32_t}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{char32_t}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{char32_t}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIDiE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIDiE11round_errorEv'/>
+<smbr r='std::numeric_limits{char32_t}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{char32_t}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{char32_t}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{char32_t}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{char32_t}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{char32_t}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{char32_t}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{char32_t}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{char32_t}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIDiE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIDiE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIDiE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIDiE10denorm_minEv'/>
+<smbr r='std::numeric_limits{char32_t}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{char32_t}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{char32_t}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{char32_t}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{char32_t}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{char32_t}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{short}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIsE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIsE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIsE6lowestEv'/>
+<smbr r='std::numeric_limits{short}::digits' t='const int'/>
+<smbr r='std::numeric_limits{short}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{short}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{short}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{short}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{short}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{short}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIsE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIsE11round_errorEv'/>
+<smbr r='std::numeric_limits{short}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{short}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{short}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{short}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{short}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{short}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{short}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{short}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{short}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIsE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIsE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIsE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIsE10denorm_minEv'/>
+<smbr r='std::numeric_limits{short}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{short}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{short}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{short}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{short}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{short}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{unsignedshort}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsItE3minEv'/>
+<fun r='_ZNSt14numeric_limitsItE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsItE6lowestEv'/>
+<smbr r='std::numeric_limits{unsignedshort}::digits' t='const int'/>
+<smbr r='std::numeric_limits{unsignedshort}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedshort}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedshort}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedshort}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedshort}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedshort}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsItE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsItE11round_errorEv'/>
+<smbr r='std::numeric_limits{unsignedshort}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{unsignedshort}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedshort}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{unsignedshort}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedshort}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedshort}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedshort}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedshort}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{unsignedshort}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsItE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsItE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsItE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsItE10denorm_minEv'/>
+<smbr r='std::numeric_limits{unsignedshort}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedshort}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedshort}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedshort}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedshort}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedshort}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{int}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIiE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIiE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIiE6lowestEv'/>
+<smbr r='std::numeric_limits{int}::digits' t='const int'/>
+<smbr r='std::numeric_limits{int}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{int}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{int}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{int}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{int}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{int}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIiE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIiE11round_errorEv'/>
+<smbr r='std::numeric_limits{int}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{int}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{int}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{int}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{int}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{int}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{int}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{int}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{int}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIiE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIiE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIiE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIiE10denorm_minEv'/>
+<smbr r='std::numeric_limits{int}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{int}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{int}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{int}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{int}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{int}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{unsignedint}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIjE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIjE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIjE6lowestEv'/>
+<smbr r='std::numeric_limits{unsignedint}::digits' t='const int'/>
+<smbr r='std::numeric_limits{unsignedint}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedint}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedint}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedint}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedint}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedint}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIjE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIjE11round_errorEv'/>
+<smbr r='std::numeric_limits{unsignedint}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{unsignedint}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedint}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{unsignedint}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedint}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedint}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedint}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedint}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{unsignedint}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIjE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIjE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIjE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIjE10denorm_minEv'/>
+<smbr r='std::numeric_limits{unsignedint}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedint}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedint}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedint}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedint}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedint}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{long}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIlE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIlE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIlE6lowestEv'/>
+<smbr r='std::numeric_limits{long}::digits' t='const int'/>
+<smbr r='std::numeric_limits{long}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{long}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{long}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{long}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{long}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{long}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIlE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIlE11round_errorEv'/>
+<smbr r='std::numeric_limits{long}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{long}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{long}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{long}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{long}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{long}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{long}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{long}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{long}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIlE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIlE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIlE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIlE10denorm_minEv'/>
+<smbr r='std::numeric_limits{long}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{long}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{long}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{long}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{long}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{long}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{unsignedlong}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsImE3minEv'/>
+<fun r='_ZNSt14numeric_limitsImE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsImE6lowestEv'/>
+<smbr r='std::numeric_limits{unsignedlong}::digits' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlong}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlong}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlong}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlong}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlong}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlong}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsImE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsImE11round_errorEv'/>
+<smbr r='std::numeric_limits{unsignedlong}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlong}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlong}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlong}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlong}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlong}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlong}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlong}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{unsignedlong}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsImE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsImE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsImE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsImE10denorm_minEv'/>
+<smbr r='std::numeric_limits{unsignedlong}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlong}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlong}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlong}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlong}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlong}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{longlong}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIxE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIxE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIxE6lowestEv'/>
+<smbr r='std::numeric_limits{longlong}::digits' t='const int'/>
+<smbr r='std::numeric_limits{longlong}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{longlong}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{longlong}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{longlong}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{longlong}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{longlong}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIxE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIxE11round_errorEv'/>
+<smbr r='std::numeric_limits{longlong}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{longlong}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{longlong}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{longlong}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{longlong}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{longlong}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{longlong}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{longlong}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{longlong}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIxE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIxE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIxE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIxE10denorm_minEv'/>
+<smbr r='std::numeric_limits{longlong}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{longlong}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{longlong}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{longlong}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{longlong}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{longlong}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIyE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIyE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIyE6lowestEv'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::digits' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIyE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIyE11round_errorEv'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIyE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIyE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIyE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIyE10denorm_minEv'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{unsignedlonglong}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{__int128}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsInE3minEv'/>
+<fun r='_ZNSt14numeric_limitsInE3maxEv'/>
+<smbr r='std::numeric_limits{__int128}::digits' t='const int'/>
+<smbr r='std::numeric_limits{__int128}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{__int128}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{__int128}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{__int128}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{__int128}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsInE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsInE11round_errorEv'/>
+<fun r='_ZNSt14numeric_limitsInE6lowestEv'/>
+<smbr r='std::numeric_limits{__int128}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{__int128}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{__int128}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{__int128}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{__int128}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{__int128}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{__int128}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{__int128}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{__int128}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{__int128}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsInE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsInE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsInE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsInE10denorm_minEv'/>
+<smbr r='std::numeric_limits{__int128}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{__int128}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{__int128}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{__int128}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{__int128}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{__int128}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{unsigned__int128}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIoE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIoE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIoE6lowestEv'/>
+<smbr r='std::numeric_limits{unsigned__int128}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{unsigned__int128}::digits' t='const int'/>
+<smbr r='std::numeric_limits{unsigned__int128}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{unsigned__int128}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{unsigned__int128}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{unsigned__int128}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{unsigned__int128}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIoE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIoE11round_errorEv'/>
+<smbr r='std::numeric_limits{unsigned__int128}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{unsigned__int128}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{unsigned__int128}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{unsigned__int128}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{unsigned__int128}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{unsigned__int128}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{unsigned__int128}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{unsigned__int128}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{unsigned__int128}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIoE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIoE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIoE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIoE10denorm_minEv'/>
+<smbr r='std::numeric_limits{unsigned__int128}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{unsigned__int128}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{unsigned__int128}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{unsigned__int128}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{unsigned__int128}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{unsigned__int128}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{float}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIfE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIfE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIfE6lowestEv'/>
+<smbr r='std::numeric_limits{float}::digits' t='const int'/>
+<smbr r='std::numeric_limits{float}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{float}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{float}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{float}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{float}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{float}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIfE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIfE11round_errorEv'/>
+<smbr r='std::numeric_limits{float}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{float}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{float}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{float}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{float}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{float}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{float}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{float}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{float}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIfE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIfE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIfE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIfE10denorm_minEv'/>
+<smbr r='std::numeric_limits{float}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{float}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{float}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{float}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{float}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{float}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{double}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIdE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIdE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIdE6lowestEv'/>
+<smbr r='std::numeric_limits{double}::digits' t='const int'/>
+<smbr r='std::numeric_limits{double}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{double}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{double}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{double}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{double}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{double}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIdE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIdE11round_errorEv'/>
+<smbr r='std::numeric_limits{double}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{double}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{double}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{double}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{double}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{double}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{double}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{double}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{double}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIdE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIdE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIdE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIdE10denorm_minEv'/>
+<smbr r='std::numeric_limits{double}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{double}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{double}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{double}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{double}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{double}::round_style' t='const std::float_round_style'/>
+<smbr r='std::numeric_limits{longdouble}::is_specialized' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIeE3minEv'/>
+<fun r='_ZNSt14numeric_limitsIeE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsIeE6lowestEv'/>
+<smbr r='std::numeric_limits{longdouble}::digits' t='const int'/>
+<smbr r='std::numeric_limits{longdouble}::digits10' t='const int'/>
+<smbr r='std::numeric_limits{longdouble}::max_digits10' t='const int'/>
+<smbr r='std::numeric_limits{longdouble}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{longdouble}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{longdouble}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{longdouble}::radix' t='const int'/>
+<fun r='_ZNSt14numeric_limitsIeE7epsilonEv'/>
+<fun r='_ZNSt14numeric_limitsIeE11round_errorEv'/>
+<smbr r='std::numeric_limits{longdouble}::min_exponent' t='const int'/>
+<smbr r='std::numeric_limits{longdouble}::min_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{longdouble}::max_exponent' t='const int'/>
+<smbr r='std::numeric_limits{longdouble}::max_exponent10' t='const int'/>
+<smbr r='std::numeric_limits{longdouble}::has_infinity' t='const bool'/>
+<smbr r='std::numeric_limits{longdouble}::has_quiet_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{longdouble}::has_signaling_NaN' t='const bool'/>
+<smbr r='std::numeric_limits{longdouble}::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::numeric_limits{longdouble}::has_denorm_loss' t='const bool'/>
+<fun r='_ZNSt14numeric_limitsIeE8infinityEv'/>
+<fun r='_ZNSt14numeric_limitsIeE9quiet_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIeE13signaling_NaNEv'/>
+<fun r='_ZNSt14numeric_limitsIeE10denorm_minEv'/>
+<smbr r='std::numeric_limits{longdouble}::is_iec559' t='const bool'/>
+<smbr r='std::numeric_limits{longdouble}::is_bounded' t='const bool'/>
+<smbr r='std::numeric_limits{longdouble}::is_modulo' t='const bool'/>
+<smbr r='std::numeric_limits{longdouble}::traps' t='const bool'/>
+<smbr r='std::numeric_limits{longdouble}::tinyness_before' t='const bool'/>
+<smbr r='std::numeric_limits{longdouble}::round_style' t='const std::float_round_style'/>
+<use f='include/c++/11/chrono' l='392' c='_ZNSt6chrono3absENS_8durationIT_T0_EE'/>
+<use f='include/c++/11/chrono' l='437' c='_ZNSt6chrono15duration_values3maxEv'/>
+<use f='include/c++/11/chrono' l='441' c='_ZNSt6chrono15duration_values3minEv'/>
+<use f='include/c++/11/chrono' l='3103' c='_ZNSt6chrono8hh_mm_ss6_S_absET_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='435'/>
+<use f='include/c++/11/bits/max_size_type.h' l='436'/>
+<def f='include/c++/11/bits/max_size_type.h' l='766' ll='796'/>
+<use f='include/c++/11/bits/max_size_type.h' l='767'/>
+<def f='include/c++/11/bits/max_size_type.h' l='798' ll='822'/>
+<use f='include/c++/11/bits/max_size_type.h' l='799'/>
+<use f='include/c++/11/bits/max_size_type.h' l='807'/>
+<size>1</size>
+<smbr r='std::numeric_limits{std::ranges::__detail::__max_size_type}::is_specialized' t='const bool'/>
+<smbr r='std::numeric_limits{std::ranges::__detail::__max_size_type}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{std::ranges::__detail::__max_size_type}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{std::ranges::__detail::__max_size_type}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{std::ranges::__detail::__max_size_type}::digits' t='const int'/>
+<smbr r='std::numeric_limits{std::ranges::__detail::__max_size_type}::digits10' t='const int'/>
+<fun r='_ZNSt14numeric_limitsINSt6ranges8__detail15__max_size_typeEE3minEv'/>
+<fun r='_ZNSt14numeric_limitsINSt6ranges8__detail15__max_size_typeEE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsINSt6ranges8__detail15__max_size_typeEE6lowestEv'/>
+<smbr r='std::numeric_limits{std::ranges::__detail::__max_diff_type}::is_specialized' t='const bool'/>
+<smbr r='std::numeric_limits{std::ranges::__detail::__max_diff_type}::is_signed' t='const bool'/>
+<smbr r='std::numeric_limits{std::ranges::__detail::__max_diff_type}::is_integer' t='const bool'/>
+<smbr r='std::numeric_limits{std::ranges::__detail::__max_diff_type}::is_exact' t='const bool'/>
+<smbr r='std::numeric_limits{std::ranges::__detail::__max_diff_type}::digits' t='const int'/>
+<smbr r='std::numeric_limits{std::ranges::__detail::__max_diff_type}::digits10' t='const int'/>
+<fun r='_ZNSt14numeric_limitsINSt6ranges8__detail15__max_diff_typeEE3minEv'/>
+<fun r='_ZNSt14numeric_limitsINSt6ranges8__detail15__max_diff_typeEE3maxEv'/>
+<fun r='_ZNSt14numeric_limitsINSt6ranges8__detail15__max_diff_typeEE6lowestEv'/>
+<use f='include/c++/11/bits/random.h' l='69'/>
+<use f='include/c++/11/bits/random.h' l='190' c='_ZNSt8__detail8_AdaptorclEv'/>
+<use f='include/c++/11/bits/random.h' l='488'/>
+<use f='include/c++/11/bits/random.h' l='698'/>
+<use f='include/c++/11/bits/random.h' l='1109'/>
+<use f='include/c++/11/bits/random.h' l='1630' c='_ZNSt13random_device3minEv'/>
+<use f='include/c++/11/bits/random.h' l='1634' c='_ZNSt13random_device3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='2076' c='_ZNKSt19normal_distribution3minEv'/>
+<use f='include/c++/11/bits/random.h' l='2083' c='_ZNKSt19normal_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='2292' c='_ZNKSt22lognormal_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='2525' c='_ZNKSt18gamma_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='2727' c='_ZNKSt24chi_squared_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='2948' c='_ZNKSt19cauchy_distribution3minEv'/>
+<use f='include/c++/11/bits/random.h' l='2955' c='_ZNKSt19cauchy_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='3167' c='_ZNKSt21fisher_f_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='3382' c='_ZNKSt22student_t_distribution3minEv'/>
+<use f='include/c++/11/bits/random.h' l='3389' c='_ZNKSt22student_t_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='3616' c='_ZNKSt22bernoulli_distribution3minEv'/>
+<use f='include/c++/11/bits/random.h' l='3623' c='_ZNKSt22bernoulli_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='4083' c='_ZNKSt22geometric_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='4294' c='_ZNKSt30negative_binomial_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='4526' c='_ZNKSt20poisson_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='4749' c='_ZNKSt24exponential_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='4964' c='_ZNKSt20weibull_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='5167' c='_ZNKSt26extreme_value_distribution3minEv'/>
+<use f='include/c++/11/bits/random.h' l='5174' c='_ZNKSt26extreme_value_distribution3maxEv'/>
+<use f='include/c++/11/numeric' l='235' c='_ZSt8midpointT_S_'/>
+<use f='include/c++/11/numeric' l='236' c='_ZSt8midpointT_S_'/>
+<use f='include/c++/11/bits/random.tcc' l='136' c='_ZNSt26linear_congruential_engine4seedERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='741' c='_ZNSt23independent_bits_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='743' c='_ZNSt23independent_bits_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='748' c='_ZNSt23independent_bits_engineclEv'/>
+<use f='include/c++/11/bits/random.tcc' l='814' c='_ZNSt8__detail25__representable_as_doubleET_'/>
+<use f='include/c++/11/bits/random.tcc' l='815' c='_ZNSt8__detail25__representable_as_doubleET_'/>
+<use f='include/c++/11/bits/random.tcc' l='827' c='_ZNSt8__detail28__p1_representable_as_doubleET_'/>
+<use f='include/c++/11/bits/random.tcc' l='828' c='_ZNSt8__detail28__p1_representable_as_doubleET_'/>
+<use f='include/c++/11/bits/random.tcc' l='829' c='_ZNSt8__detail28__p1_representable_as_doubleET_'/>
+<use f='include/c++/11/bits/random.tcc' l='970' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt25uniform_real_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1030' c='_ZStlsRSt13basic_ostreamIT_T0_ERKSt22bernoulli_distribution'/>
+<use f='include/c++/11/bits/random.tcc' l='1051' c='_ZNSt22geometric_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1054' c='_ZNSt22geometric_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1079' c='_ZNSt22geometric_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1082' c='_ZNSt22geometric_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1111' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt22geometric_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1226' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt30negative_binomial_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1315' c='_ZNSt20poisson_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1317' c='_ZNSt20poisson_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1436' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt20poisson_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1575' c='_ZNSt21binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1577' c='_ZNSt21binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1702' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt21binomial_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1763' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt24exponential_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1930' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt19normal_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1997' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt22lognormal_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2069' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt24chi_squared_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2155' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt19cauchy_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2230' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt21fisher_f_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2304' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt22student_t_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2473' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt18gamma_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2549' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt20weibull_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2623' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt26extreme_value_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2759' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt21discrete_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2981' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt31piecewise_constant_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='3187' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt29piecewise_linear_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='3354' c='_ZSt18generate_canonicalRT1_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='685' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>

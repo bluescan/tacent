@@ -1,0 +1,2 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='86' c='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<def f='Modules/Image/Inc/Image/tImageXPM.h' l='65' type='bool tImage::tImageXPM::IsValid() const'/>

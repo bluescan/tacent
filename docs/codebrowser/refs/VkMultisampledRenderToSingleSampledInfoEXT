@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16430' ll='16435'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16430'/>
+<size>24</size>
+<mbr r='VkMultisampledRenderToSingleSampledInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkMultisampledRenderToSingleSampledInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkMultisampledRenderToSingleSampledInfoEXT::multisampledRenderToSingleSampledEnable' o='128' t='VkBool32'/>
+<mbr r='VkMultisampledRenderToSingleSampledInfoEXT::rasterizationSamples' o='160' t='VkSampleCountFlagBits'/>

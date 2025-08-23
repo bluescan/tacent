@@ -1,0 +1,2 @@
+<dec f='include/c++/11/new' l='70' type='const char * std::bad_alloc::what() const'/>
+<doc f='include/c++/11/new' l='69'>// See comment in eh_exception.cc.</doc>

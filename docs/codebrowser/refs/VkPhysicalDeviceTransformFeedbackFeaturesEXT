@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11424' ll='11429'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11424'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceTransformFeedbackFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackFeaturesEXT::transformFeedback' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceTransformFeedbackFeaturesEXT::geometryStreams' o='160' t='VkBool32'/>

@@ -1,0 +1,22 @@
+<use f='include/c++/11/type_traits' l='255'/>
+<def f='include/c++/11/type_traits' l='1531' ll='1532'/>
+<def f='include/c++/11/type_traits' l='1534' ll='1536'/>
+<def f='include/c++/11/type_traits' l='1538' ll='1540'/>
+<def f='include/c++/11/type_traits' l='1542' ll='1544'/>
+<use f='include/c++/11/type_traits' l='1578'/>
+<use f='include/c++/11/type_traits' l='2214'/>
+<use f='include/c++/11/type_traits' l='3312'/>
+<use f='include/c++/11/type_traits' l='3317'/>
+<use f='include/c++/11/type_traits' l='3322'/>
+<use f='include/c++/11/utility' l='95'/>
+<use f='include/c++/11/bits/refwrap.h' l='177'/>
+<use f='include/c++/11/bits/std_function.h' l='320'/>
+<use f='include/c++/11/bits/hashtable.h' l='201'/>
+<use f='include/c++/11/bits/stl_vector.h' l='401'/>
+<use f='include/c++/11/functional' l='460'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='486'/>
+<use f='include/c++/11/bits/stl_deque.h' l='779'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='548' c='_ZNSt23_Sp_counted_ptr_inplace14_M_get_deleterERKSt9type_info'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1376'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1384'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='877' c='_ZSt11make_sharedDpOT0_'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='1488' ll='1501' macro='1' type='_ForwardIterator std::lower_bound(_ForwardIterator __first, _ForwardIterator __last, const _Tp &amp; __val)'/>
+<dec f='include/c++/11/bits/algorithmfwd.h' l='387' type='_FIter std::lower_bound(_FIter , _FIter , const _Tp &amp; )'/>

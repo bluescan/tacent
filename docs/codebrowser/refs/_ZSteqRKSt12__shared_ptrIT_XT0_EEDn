@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1415' ll='1417' type='bool std::operator==(const __shared_ptr&lt;_Tp, _Lp&gt; &amp; __a, std::nullptr_t )'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12121' ll='12126'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12121'/>
+<size>32</size>
+<mbr r='VkPresentTimesInfoGOOGLE::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPresentTimesInfoGOOGLE::pNext' o='64' t='const void *'/>
+<mbr r='VkPresentTimesInfoGOOGLE::swapchainCount' o='128' t='uint32_t'/>
+<mbr r='VkPresentTimesInfoGOOGLE::pTimes' o='192' t='const VkPresentTimeGOOGLE *'/>

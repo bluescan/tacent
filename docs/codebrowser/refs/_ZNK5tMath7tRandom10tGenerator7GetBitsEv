@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='39' type='uint32 tMath::tRandom::tGenerator::GetBits() const'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='150' u='c' c='_ZN5tMath7tRandom8tGetSignERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='156' u='c' c='_ZN5tMath7tRandom8tGetBoolERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='162' u='c' c='_ZN5tMath7tRandom8tGetBitsERKNS0_10tGeneratorE'/>
+<doc f='Modules/Math/Inc/Math/tRandom.h' l='38'>// This is it. The main interface function. Returns 32 random bits every time it&apos;s called.</doc>
+<ovr f='Modules/Math/Src/tRandom.cpp' l='69' c='_ZNK5tMath7tRandom25tGeneratorMersenneTwister7GetBitsEv'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='114' u='c' c='_ZN5tMath7tRandom10tGetDoubleERKNS0_10tGeneratorE'/>

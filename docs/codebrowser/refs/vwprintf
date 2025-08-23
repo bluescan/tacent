@@ -1,0 +1,5 @@
+<dec f='include/wchar.h' l='621' type='int vwprintf(const wchar_t *__restrict __format, __va_list_tag * __arg)'/>
+<doc f='include/wchar.h' l='617'>/* Write formatted output to stdout from argument list ARG.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

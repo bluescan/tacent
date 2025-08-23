@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='895' type='int setlogin(const char * __name)'/>
+<doc f='include/unistd.h' l='894'>/* Set the login name returned by `getlogin&apos;.  */</doc>

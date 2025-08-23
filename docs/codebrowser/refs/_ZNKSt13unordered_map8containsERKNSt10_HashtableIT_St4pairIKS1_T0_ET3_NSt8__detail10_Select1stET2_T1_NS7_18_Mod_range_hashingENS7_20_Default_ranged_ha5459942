@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/unordered_map.h' l='919' ll='921' type='bool std::unordered_map::contains(const std::unordered_map::key_type &amp; __x) const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='914'>/**
+       *  @brief  Finds whether an element with the given key exists.
+       *  @param  __x  Key of elements to be located.
+       *  @return  True if there is any element with the specified key.
+       */</doc>

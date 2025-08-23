@@ -1,0 +1,3 @@
+<dec f='include/endian.h' l='19'/>
+<use f='include/x86_64-linux-gnu/bits/byteswap.h' l='19' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/uintn-identity.h' l='19' u='a'/>

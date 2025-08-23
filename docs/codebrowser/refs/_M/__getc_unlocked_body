@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='102'/>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_FILE.h' l='101'>/* These macros are used by bits/stdio.h and internal headers.  */</doc>

@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='114' type='int TinyEXIF::EXIFInfo::parseFrom(TinyEXIF::EXIFStream &amp; stream)'/>
+<doc f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='107'>// Parsing function for an entire JPEG image stream.
+	//
+	// PARAM &apos;stream&apos;: Interface to fetch JPEG image stream.
+	// PARAM &apos;data&apos;: A pointer to a JPEG image.
+	// PARAM &apos;length&apos;: The length of the JPEG image.
+	// RETURN:  PARSE_SUCCESS (0) on success with &apos;result&apos; filled out
+	//          error code otherwise, as defined by the PARSE_* macros</doc>

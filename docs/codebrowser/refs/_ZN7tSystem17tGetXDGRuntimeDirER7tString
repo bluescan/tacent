@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tMachine.h' l='56' type='bool tSystem::tGetXDGRuntimeDir(tString &amp; xdgRuntimeDir)'/>
+<doc f='Modules/System/Inc/System/tMachine.h' l='56'>// $XDG_RUNTIME_DIR</doc>
+<def f='Modules/System/Src/tMachine.cpp' l='358' ll='367' type='bool tSystem::tGetXDGRuntimeDir(tString &amp; xdgRuntimeDir)'/>

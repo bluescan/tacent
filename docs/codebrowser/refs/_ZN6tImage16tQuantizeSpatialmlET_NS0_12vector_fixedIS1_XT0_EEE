@@ -1,0 +1,6 @@
+<def f='Modules/Image/Src/tQuantizeSpatial.cpp' l='76' type='vector_fixed&lt;T, length&gt; tImage::tQuantizeSpatial::operator*(T scalar, vector_fixed&lt;T, length&gt; vec)'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='467' u='c' c='_ZN6tImage16tQuantizeSpatial17compute_initial_sERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='486' u='c' c='_ZN6tImage16tQuantizeSpatial8update_sERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_iiid'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='504' u='c' c='_ZN6tImage16tQuantizeSpatial8update_sERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_iiid'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='526' u='c' c='_ZN6tImage16tQuantizeSpatial14refine_paletteERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_RSt6vectorIS3_SaIS3_EE'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='556' u='c' c='_ZN6tImage16tQuantizeSpatial29compute_initial_j_palette_sumERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEERSt6vectorIS3_SaIS3_EE'/>

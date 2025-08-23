@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/fs_path.h' l='578' ll='580' type='static std::filesystem::path::string_type std::filesystem::path::_S_convert(std::filesystem::path::string_type __str)'/>
+<doc f='include/c++/11/bits/fs_path.h' l='570'>// path::_S_convert creates a basic_string&lt;value_type&gt; or
+    // basic_string_view&lt;value_type&gt; from a range (either the effective
+    // range of a Source parameter, or a pair of InputIterator parameters),
+    // performing the conversions required by [fs.path.type.cvt].
+    // If the value_type of the range value type is path::value_type,
+    // no encoding conversion is performed. If the range is contiguous
+    // a string_view</doc>

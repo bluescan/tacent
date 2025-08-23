@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='44' type='4'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='41'>// Gamma-correct. Gamma compression using an encoding gamma of 1/2.2. Flag only applies when decode flag set for
+		// HDR / floating-point formats (BC6, rgb16f/32f, etc) images. Assumes (colour) data is linear and puts it in
+		// gamma-space (brighter) for diaplay on a monitor.</doc>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='933' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1051' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1154' u='r' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>

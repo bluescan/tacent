@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='971' ll='994'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='997' ll='1010'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1013' ll='1049'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1053'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='996'>// Define operator-&gt; for shared_ptr&lt;cv void&gt;.</doc>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='1012'>// Define operator[] for shared_ptr&lt;T[]&gt; and shared_ptr&lt;T[N]&gt;.</doc>
+<fun r='_ZNKSt19__shared_ptr_accessdeEv'/>
+<fun r='_ZNKSt19__shared_ptr_accessptEv'/>
+<fun r='_ZNKSt19__shared_ptr_access6_M_getEv'/>
+<fun r='_ZNKSt19__shared_ptr_accessIT_XT0_ELb0ELb1EEptEv'/>
+<fun r='_ZNKSt19__shared_ptr_accessIT_XT0_ELb1ELb0EEixEl'/>
+<fun r='_ZNKSt19__shared_ptr_accessIT_XT0_ELb1ELb0EE6_M_getEv'/>
+<ovr f='include/c++/11/bits/fs_path.h' l='1354' c='std::__shared_ptr'/>
+<ovr f='include/c++/11/bits/fs_dir.h' l='567' c='std::__shared_ptr'/>
+<ovr f='include/c++/11/bits/fs_dir.h' l='569' c='std::__shared_ptr'/>

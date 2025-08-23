@@ -1,0 +1,2 @@
+<def f='include/c++/11/limits' l='226' type='const bool'/>
+<doc f='include/c++/11/limits' l='225'>/** True if the type is integer.  */</doc>

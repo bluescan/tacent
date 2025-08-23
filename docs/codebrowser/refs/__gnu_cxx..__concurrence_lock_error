@@ -1,0 +1,7 @@
+<inh f='include/c++/11/bits/exception.h' l='61' c='std::exception'/>
+<def f='include/c++/11/ext/concurrence.h' l='64' ll='70'/>
+<use f='include/c++/11/ext/concurrence.h' l='99' c='__gnu_cxx::__throw_concurrence_lock_error'/>
+<size>8</size>
+<doc f='include/c++/11/ext/concurrence.h' l='62'>// NB: As this is used in libsupc++, need to only depend on
+  // exception. No stdexception classes, no use of std::string.</doc>
+<fun r='__gnu_cxx::__concurrence_lock_error::what'/>

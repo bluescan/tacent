@@ -1,0 +1,7 @@
+<def f='include/c++/11/sstream' l='687' ll='689' type='std::basic_istringstream::__stringbuf_type * std::basic_istringstream::rdbuf() const'/>
+<doc f='include/c++/11/sstream' l='681'>/**
+       *  @brief  Accessing the underlying buffer.
+       *  @return  The current basic_stringbuf buffer.
+       *
+       *  This hides both signatures of std::basic_ios::rdbuf().
+      */</doc>

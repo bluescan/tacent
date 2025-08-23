@@ -1,0 +1,8 @@
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='67' u='c' c='_ZN6tImage10tImageASTCC1EP9tColour4biib'/>
+<dec f='Modules/Image/Inc/Image/tImageASTC.h' l='83' type='bool tImage::tImageASTC::Set(tPixel4b * pixels, int width, int height, bool steal = false)'/>
+<doc f='Modules/Image/Inc/Image/tImageASTC.h' l='81'>// This one sets from a supplied pixel array. If steal is true it takes ownership of the pixels pointer. Otherwise
+	// it just copies the data out.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='61' c='_ZN6tImage10tBaseImage3SetEP9tColour4biib'/>
+<def f='Modules/Image/Src/tImageASTC.cpp' l='213' ll='227' type='bool tImage::tImageASTC::Set(tPixel4b * pixels, int width, int height, bool steal = false)'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='242' u='c' c='_ZN6tImage10tImageASTC3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='266' u='c' c='_ZN6tImage10tImageASTC3SetERNS_8tPictureEb'/>

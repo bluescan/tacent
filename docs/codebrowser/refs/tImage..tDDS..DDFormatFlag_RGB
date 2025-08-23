@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='49' type='64'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='65'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='66' u='r'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='801' u='r' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<doc f='Modules/Image/Src/tImageDDS.cpp' l='47'>// Pixels contain RGB data. tDDS::Format&apos;s RGBBitCount is the number of bits used for RGB. Also go ahead and
+		// read MaskRed, MaskGreen, and MaskBlue to determine where the data is and how many bits for each component.</doc>

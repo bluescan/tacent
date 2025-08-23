@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/locale_facets.h' l='2333' ll='2334' type='void std::num_put::num_put&lt;_CharT, _OutIter&gt;(std::size_t __refs = 0)'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='2326'>/**
+       *  @brief  Constructor performs initialization.
+       *
+       *  This is the constructor provided by the standard.
+       *
+       *  @param __refs  Passed to the base facet class.
+      */</doc>

@@ -1,0 +1,199 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>error_constants.h source code [include/x86_64-linux-gnu/c++/11/bits/error_constants.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::errc "/>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/c++/11/bits/error_constants.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>include</a>/<a href='../../..'>x86_64-linux-gnu</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='error_constants.h.html'>error_constants.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Specific definitions for generic platforms  -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2007-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/error_constants.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{system_error}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_ERROR_CONSTANTS">_GLIBCXX_ERROR_CONSTANTS</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_ERROR_CONSTANTS" data-ref="_M/_GLIBCXX_ERROR_CONSTANTS">_GLIBCXX_ERROR_CONSTANTS</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#include &lt;bits/c++config.h&gt;</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#include &lt;cerrno&gt;</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="37">37</th><td>{&nbsp</td></tr>
+<tr><th id="38">38</th><td><a class="macro" href="c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td>  <b>enum</b> <b>class</b> <dfn class="type def" id="std::errc" title='std::errc' data-ref="std::errc">errc</dfn>&nbsp</td></tr>
+<tr><th id="41">41</th><td>    {&nbsp</td></tr>
+<tr><th id="42">42</th><td>      <dfn class="enum" id="std::errc::address_family_not_supported" title='std::errc::address_family_not_supported' data-ref="std::errc::address_family_not_supported">address_family_not_supported</dfn> = 		<a class="macro" href="../../../../asm-generic/errno.h.html#80" title="97" data-ref="_M/EAFNOSUPPORT">EAFNOSUPPORT</a>,&nbsp</td></tr>
+<tr><th id="43">43</th><td>      <dfn class="enum" id="std::errc::address_in_use" title='std::errc::address_in_use' data-ref="std::errc::address_in_use">address_in_use</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#81" title="98" data-ref="_M/EADDRINUSE">EADDRINUSE</a>,&nbsp</td></tr>
+<tr><th id="44">44</th><td>      <dfn class="enum" id="std::errc::address_not_available" title='std::errc::address_not_available' data-ref="std::errc::address_not_available">address_not_available</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#82" title="99" data-ref="_M/EADDRNOTAVAIL">EADDRNOTAVAIL</a>,&nbsp</td></tr>
+<tr><th id="45">45</th><td>      <dfn class="enum" id="std::errc::already_connected" title='std::errc::already_connected' data-ref="std::errc::already_connected">already_connected</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#89" title="106" data-ref="_M/EISCONN">EISCONN</a>,&nbsp</td></tr>
+<tr><th id="46">46</th><td>      <dfn class="enum" id="std::errc::argument_list_too_long" title='std::errc::argument_list_too_long' data-ref="std::errc::argument_list_too_long">argument_list_too_long</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#11" title="7" data-ref="_M/E2BIG">E2BIG</a>,&nbsp</td></tr>
+<tr><th id="47">47</th><td>      <dfn class="enum" id="std::errc::argument_out_of_domain" title='std::errc::argument_out_of_domain' data-ref="std::errc::argument_out_of_domain">argument_out_of_domain</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#37" title="33" data-ref="_M/EDOM">EDOM</a>,&nbsp</td></tr>
+<tr><th id="48">48</th><td>      <dfn class="enum" id="std::errc::bad_address" title='std::errc::bad_address' data-ref="std::errc::bad_address">bad_address</dfn> = 				<a class="macro" href="../../../../asm-generic/errno-base.h.html#18" title="14" data-ref="_M/EFAULT">EFAULT</a>,&nbsp</td></tr>
+<tr><th id="49">49</th><td>      <dfn class="enum" id="std::errc::bad_file_descriptor" title='std::errc::bad_file_descriptor' data-ref="std::errc::bad_file_descriptor">bad_file_descriptor</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#13" title="9" data-ref="_M/EBADF">EBADF</a>,&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>#<span data-ppcond="51">ifdef</span> <a class="macro" href="../../../../asm-generic/errno.h.html#57" data-ref="_M/EBADMSG">EBADMSG</a></u>&nbsp</td></tr>
+<tr><th id="52">52</th><td>      <dfn class="enum" id="std::errc::bad_message" title='std::errc::bad_message' data-ref="std::errc::bad_message">bad_message</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#57" title="74" data-ref="_M/EBADMSG">EBADMSG</a>,&nbsp</td></tr>
+<tr><th id="53">53</th><td><u>#<span data-ppcond="51">endif</span></u>&nbsp</td></tr>
+<tr><th id="54">54</th><td>&nbsp</td></tr>
+<tr><th id="55">55</th><td>      <dfn class="enum" id="std::errc::broken_pipe" title='std::errc::broken_pipe' data-ref="std::errc::broken_pipe">broken_pipe</dfn> = 				<a class="macro" href="../../../../asm-generic/errno-base.h.html#36" title="32" data-ref="_M/EPIPE">EPIPE</a>,&nbsp</td></tr>
+<tr><th id="56">56</th><td>      <dfn class="enum" id="std::errc::connection_aborted" title='std::errc::connection_aborted' data-ref="std::errc::connection_aborted">connection_aborted</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#86" title="103" data-ref="_M/ECONNABORTED">ECONNABORTED</a>,&nbsp</td></tr>
+<tr><th id="57">57</th><td>      <dfn class="enum" id="std::errc::connection_already_in_progress" title='std::errc::connection_already_in_progress' data-ref="std::errc::connection_already_in_progress">connection_already_in_progress</dfn> = 		<a class="macro" href="../../../../asm-generic/errno.h.html#97" title="114" data-ref="_M/EALREADY">EALREADY</a>,&nbsp</td></tr>
+<tr><th id="58">58</th><td>      <dfn class="enum" id="std::errc::connection_refused" title='std::errc::connection_refused' data-ref="std::errc::connection_refused">connection_refused</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#94" title="111" data-ref="_M/ECONNREFUSED">ECONNREFUSED</a>,&nbsp</td></tr>
+<tr><th id="59">59</th><td>      <dfn class="enum" id="std::errc::connection_reset" title='std::errc::connection_reset' data-ref="std::errc::connection_reset">connection_reset</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#87" title="104" data-ref="_M/ECONNRESET">ECONNRESET</a>,&nbsp</td></tr>
+<tr><th id="60">60</th><td>      <dfn class="enum" id="std::errc::cross_device_link" title='std::errc::cross_device_link' data-ref="std::errc::cross_device_link">cross_device_link</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#22" title="18" data-ref="_M/EXDEV">EXDEV</a>,&nbsp</td></tr>
+<tr><th id="61">61</th><td>      <dfn class="enum" id="std::errc::destination_address_required" title='std::errc::destination_address_required' data-ref="std::errc::destination_address_required">destination_address_required</dfn> = 		<a class="macro" href="../../../../asm-generic/errno.h.html#72" title="89" data-ref="_M/EDESTADDRREQ">EDESTADDRREQ</a>,&nbsp</td></tr>
+<tr><th id="62">62</th><td>      <dfn class="enum" id="std::errc::device_or_resource_busy" title='std::errc::device_or_resource_busy' data-ref="std::errc::device_or_resource_busy">device_or_resource_busy</dfn> = 		<a class="macro" href="../../../../asm-generic/errno-base.h.html#20" title="16" data-ref="_M/EBUSY">EBUSY</a>,&nbsp</td></tr>
+<tr><th id="63">63</th><td>      <dfn class="enum" id="std::errc::directory_not_empty" title='std::errc::directory_not_empty' data-ref="std::errc::directory_not_empty">directory_not_empty</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#20" title="39" data-ref="_M/ENOTEMPTY">ENOTEMPTY</a>,&nbsp</td></tr>
+<tr><th id="64">64</th><td>      <dfn class="enum" id="std::errc::executable_format_error" title='std::errc::executable_format_error' data-ref="std::errc::executable_format_error">executable_format_error</dfn> = 		<a class="macro" href="../../../../asm-generic/errno-base.h.html#12" title="8" data-ref="_M/ENOEXEC">ENOEXEC</a>,&nbsp</td></tr>
+<tr><th id="65">65</th><td>      <dfn class="enum" id="std::errc::file_exists" title='std::errc::file_exists' data-ref="std::errc::file_exists">file_exists</dfn> = 	       			<a class="macro" href="../../../../asm-generic/errno-base.h.html#21" title="17" data-ref="_M/EEXIST">EEXIST</a>,&nbsp</td></tr>
+<tr><th id="66">66</th><td>      <dfn class="enum" id="std::errc::file_too_large" title='std::errc::file_too_large' data-ref="std::errc::file_too_large">file_too_large</dfn> = 				<a class="macro" href="../../../../asm-generic/errno-base.h.html#31" title="27" data-ref="_M/EFBIG">EFBIG</a>,&nbsp</td></tr>
+<tr><th id="67">67</th><td>      <dfn class="enum" id="std::errc::filename_too_long" title='std::errc::filename_too_long' data-ref="std::errc::filename_too_long">filename_too_long</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#8" title="36" data-ref="_M/ENAMETOOLONG">ENAMETOOLONG</a>,&nbsp</td></tr>
+<tr><th id="68">68</th><td>      <dfn class="enum" id="std::errc::function_not_supported" title='std::errc::function_not_supported' data-ref="std::errc::function_not_supported">function_not_supported</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#18" title="38" data-ref="_M/ENOSYS">ENOSYS</a>,&nbsp</td></tr>
+<tr><th id="69">69</th><td>      <dfn class="enum" id="std::errc::host_unreachable" title='std::errc::host_unreachable' data-ref="std::errc::host_unreachable">host_unreachable</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#96" title="113" data-ref="_M/EHOSTUNREACH">EHOSTUNREACH</a>,&nbsp</td></tr>
+<tr><th id="70">70</th><td>&nbsp</td></tr>
+<tr><th id="71">71</th><td><u>#<span data-ppcond="71">ifdef</span> <a class="macro" href="../../../../asm-generic/errno.h.html#24" data-ref="_M/EIDRM">EIDRM</a></u>&nbsp</td></tr>
+<tr><th id="72">72</th><td>      <dfn class="enum" id="std::errc::identifier_removed" title='std::errc::identifier_removed' data-ref="std::errc::identifier_removed">identifier_removed</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#24" title="43" data-ref="_M/EIDRM">EIDRM</a>,&nbsp</td></tr>
+<tr><th id="73">73</th><td><u>#<span data-ppcond="71">endif</span></u>&nbsp</td></tr>
+<tr><th id="74">74</th><td>&nbsp</td></tr>
+<tr><th id="75">75</th><td>      <dfn class="enum" id="std::errc::illegal_byte_sequence" title='std::errc::illegal_byte_sequence' data-ref="std::errc::illegal_byte_sequence">illegal_byte_sequence</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#67" title="84" data-ref="_M/EILSEQ">EILSEQ</a>,&nbsp</td></tr>
+<tr><th id="76">76</th><td>      <dfn class="enum" id="std::errc::inappropriate_io_control_operation" title='std::errc::inappropriate_io_control_operation' data-ref="std::errc::inappropriate_io_control_operation">inappropriate_io_control_operation</dfn> = 	<a class="macro" href="../../../../asm-generic/errno-base.h.html#29" title="25" data-ref="_M/ENOTTY">ENOTTY</a>,&nbsp</td></tr>
+<tr><th id="77">77</th><td>      <dfn class="enum" id="std::errc::interrupted" title='std::errc::interrupted' data-ref="std::errc::interrupted">interrupted</dfn> = 				<a class="macro" href="../../../../asm-generic/errno-base.h.html#8" title="4" data-ref="_M/EINTR">EINTR</a>,&nbsp</td></tr>
+<tr><th id="78">78</th><td>      <dfn class="enum" id="std::errc::invalid_argument" title='std::errc::invalid_argument' data-ref="std::errc::invalid_argument">invalid_argument</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#26" title="22" data-ref="_M/EINVAL">EINVAL</a>,&nbsp</td></tr>
+<tr><th id="79">79</th><td>      <dfn class="enum" id="std::errc::invalid_seek" title='std::errc::invalid_seek' data-ref="std::errc::invalid_seek">invalid_seek</dfn> = 				<a class="macro" href="../../../../asm-generic/errno-base.h.html#33" title="29" data-ref="_M/ESPIPE">ESPIPE</a>,&nbsp</td></tr>
+<tr><th id="80">80</th><td>      <dfn class="enum" id="std::errc::io_error" title='std::errc::io_error' data-ref="std::errc::io_error">io_error</dfn> = 				<a class="macro" href="../../../../asm-generic/errno-base.h.html#9" title="5" data-ref="_M/EIO">EIO</a>,&nbsp</td></tr>
+<tr><th id="81">81</th><td>      <dfn class="enum" id="std::errc::is_a_directory" title='std::errc::is_a_directory' data-ref="std::errc::is_a_directory">is_a_directory</dfn> = 				<a class="macro" href="../../../../asm-generic/errno-base.h.html#25" title="21" data-ref="_M/EISDIR">EISDIR</a>,&nbsp</td></tr>
+<tr><th id="82">82</th><td>      <dfn class="enum" id="std::errc::message_size" title='std::errc::message_size' data-ref="std::errc::message_size">message_size</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#73" title="90" data-ref="_M/EMSGSIZE">EMSGSIZE</a>,&nbsp</td></tr>
+<tr><th id="83">83</th><td>      <dfn class="enum" id="std::errc::network_down" title='std::errc::network_down' data-ref="std::errc::network_down">network_down</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#83" title="100" data-ref="_M/ENETDOWN">ENETDOWN</a>,&nbsp</td></tr>
+<tr><th id="84">84</th><td>      <dfn class="enum" id="std::errc::network_reset" title='std::errc::network_reset' data-ref="std::errc::network_reset">network_reset</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#85" title="102" data-ref="_M/ENETRESET">ENETRESET</a>,&nbsp</td></tr>
+<tr><th id="85">85</th><td>      <dfn class="enum" id="std::errc::network_unreachable" title='std::errc::network_unreachable' data-ref="std::errc::network_unreachable">network_unreachable</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#84" title="101" data-ref="_M/ENETUNREACH">ENETUNREACH</a>,&nbsp</td></tr>
+<tr><th id="86">86</th><td>      <dfn class="enum" id="std::errc::no_buffer_space" title='std::errc::no_buffer_space' data-ref="std::errc::no_buffer_space">no_buffer_space</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#88" title="105" data-ref="_M/ENOBUFS">ENOBUFS</a>,&nbsp</td></tr>
+<tr><th id="87">87</th><td>      <dfn class="enum" id="std::errc::no_child_process" title='std::errc::no_child_process' data-ref="std::errc::no_child_process">no_child_process</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#14" title="10" data-ref="_M/ECHILD">ECHILD</a>,&nbsp</td></tr>
+<tr><th id="88">88</th><td>&nbsp</td></tr>
+<tr><th id="89">89</th><td><u>#<span data-ppcond="89">ifdef</span> <a class="macro" href="../../../../asm-generic/errno.h.html#50" data-ref="_M/ENOLINK">ENOLINK</a></u>&nbsp</td></tr>
+<tr><th id="90">90</th><td>      <dfn class="enum" id="std::errc::no_link" title='std::errc::no_link' data-ref="std::errc::no_link">no_link</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#50" title="67" data-ref="_M/ENOLINK">ENOLINK</a>,&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#<span data-ppcond="89">endif</span></u>&nbsp</td></tr>
+<tr><th id="92">92</th><td>&nbsp</td></tr>
+<tr><th id="93">93</th><td>      <dfn class="enum" id="std::errc::no_lock_available" title='std::errc::no_lock_available' data-ref="std::errc::no_lock_available">no_lock_available</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#9" title="37" data-ref="_M/ENOLCK">ENOLCK</a>,&nbsp</td></tr>
+<tr><th id="94">94</th><td>&nbsp</td></tr>
+<tr><th id="95">95</th><td><u>#<span data-ppcond="95">ifdef</span> <a class="macro" href="../../../../asm-generic/errno.h.html#44" data-ref="_M/ENODATA">ENODATA</a></u>&nbsp</td></tr>
+<tr><th id="96">96</th><td>      <dfn class="enum" id="std::errc::no_message_available" title='std::errc::no_message_available' data-ref="std::errc::no_message_available">no_message_available</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#44" title="61" data-ref="_M/ENODATA">ENODATA</a>,&nbsp</td></tr>
+<tr><th id="97">97</th><td><u>#<span data-ppcond="95">endif</span></u>&nbsp</td></tr>
+<tr><th id="98">98</th><td>&nbsp</td></tr>
+<tr><th id="99">99</th><td>      <dfn class="enum" id="std::errc::no_message" title='std::errc::no_message' data-ref="std::errc::no_message">no_message</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#23" title="42" data-ref="_M/ENOMSG">ENOMSG</a>,&nbsp</td></tr>
+<tr><th id="100">100</th><td>      <dfn class="enum" id="std::errc::no_protocol_option" title='std::errc::no_protocol_option' data-ref="std::errc::no_protocol_option">no_protocol_option</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#75" title="92" data-ref="_M/ENOPROTOOPT">ENOPROTOOPT</a>,&nbsp</td></tr>
+<tr><th id="101">101</th><td>      <dfn class="enum" id="std::errc::no_space_on_device" title='std::errc::no_space_on_device' data-ref="std::errc::no_space_on_device">no_space_on_device</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#32" title="28" data-ref="_M/ENOSPC">ENOSPC</a>,&nbsp</td></tr>
+<tr><th id="102">102</th><td>&nbsp</td></tr>
+<tr><th id="103">103</th><td><u>#<span data-ppcond="103">ifdef</span> <a class="macro" href="../../../../asm-generic/errno.h.html#46" data-ref="_M/ENOSR">ENOSR</a></u>&nbsp</td></tr>
+<tr><th id="104">104</th><td>      <dfn class="enum" id="std::errc::no_stream_resources" title='std::errc::no_stream_resources' data-ref="std::errc::no_stream_resources">no_stream_resources</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#46" title="63" data-ref="_M/ENOSR">ENOSR</a>,&nbsp</td></tr>
+<tr><th id="105">105</th><td><u>#<span data-ppcond="103">endif</span></u>&nbsp</td></tr>
+<tr><th id="106">106</th><td>&nbsp</td></tr>
+<tr><th id="107">107</th><td>      <dfn class="enum" id="std::errc::no_such_device_or_address" title='std::errc::no_such_device_or_address' data-ref="std::errc::no_such_device_or_address">no_such_device_or_address</dfn> = 		<a class="macro" href="../../../../asm-generic/errno-base.h.html#10" title="6" data-ref="_M/ENXIO">ENXIO</a>,&nbsp</td></tr>
+<tr><th id="108">108</th><td>      <dfn class="enum" id="std::errc::no_such_device" title='std::errc::no_such_device' data-ref="std::errc::no_such_device">no_such_device</dfn> = 				<a class="macro" href="../../../../asm-generic/errno-base.h.html#23" title="19" data-ref="_M/ENODEV">ENODEV</a>,&nbsp</td></tr>
+<tr><th id="109">109</th><td>      <dfn class="enum" id="std::errc::no_such_file_or_directory" title='std::errc::no_such_file_or_directory' data-ref="std::errc::no_such_file_or_directory">no_such_file_or_directory</dfn> = 		<a class="macro" href="../../../../asm-generic/errno-base.h.html#6" title="2" data-ref="_M/ENOENT">ENOENT</a>,&nbsp</td></tr>
+<tr><th id="110">110</th><td>      <dfn class="enum" id="std::errc::no_such_process" title='std::errc::no_such_process' data-ref="std::errc::no_such_process">no_such_process</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#7" title="3" data-ref="_M/ESRCH">ESRCH</a>,&nbsp</td></tr>
+<tr><th id="111">111</th><td>      <dfn class="enum" id="std::errc::not_a_directory" title='std::errc::not_a_directory' data-ref="std::errc::not_a_directory">not_a_directory</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#24" title="20" data-ref="_M/ENOTDIR">ENOTDIR</a>,&nbsp</td></tr>
+<tr><th id="112">112</th><td>      <dfn class="enum" id="std::errc::not_a_socket" title='std::errc::not_a_socket' data-ref="std::errc::not_a_socket">not_a_socket</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#71" title="88" data-ref="_M/ENOTSOCK">ENOTSOCK</a>,&nbsp</td></tr>
+<tr><th id="113">113</th><td>&nbsp</td></tr>
+<tr><th id="114">114</th><td><u>#<span data-ppcond="114">ifdef</span> <a class="macro" href="../../../../asm-generic/errno.h.html#43" data-ref="_M/ENOSTR">ENOSTR</a></u>&nbsp</td></tr>
+<tr><th id="115">115</th><td>      <dfn class="enum" id="std::errc::not_a_stream" title='std::errc::not_a_stream' data-ref="std::errc::not_a_stream">not_a_stream</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#43" title="60" data-ref="_M/ENOSTR">ENOSTR</a>,&nbsp</td></tr>
+<tr><th id="116">116</th><td><u>#<span data-ppcond="114">endif</span></u>&nbsp</td></tr>
+<tr><th id="117">117</th><td>&nbsp</td></tr>
+<tr><th id="118">118</th><td>      <dfn class="enum" id="std::errc::not_connected" title='std::errc::not_connected' data-ref="std::errc::not_connected">not_connected</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#90" title="107" data-ref="_M/ENOTCONN">ENOTCONN</a>,&nbsp</td></tr>
+<tr><th id="119">119</th><td>      <dfn class="enum" id="std::errc::not_enough_memory" title='std::errc::not_enough_memory' data-ref="std::errc::not_enough_memory">not_enough_memory</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#16" title="12" data-ref="_M/ENOMEM">ENOMEM</a>,&nbsp</td></tr>
+<tr><th id="120">120</th><td>&nbsp</td></tr>
+<tr><th id="121">121</th><td><u>#<span data-ppcond="121">ifdef</span> <a class="macro" href="../../../bits/errno.h.html#30" data-ref="_M/ENOTSUP">ENOTSUP</a></u>&nbsp</td></tr>
+<tr><th id="122">122</th><td>      <dfn class="enum" id="std::errc::not_supported" title='std::errc::not_supported' data-ref="std::errc::not_supported">not_supported</dfn> = 				<a class="macro" href="../../../bits/errno.h.html#30" title="95" data-ref="_M/ENOTSUP">ENOTSUP</a>,&nbsp</td></tr>
+<tr><th id="123">123</th><td><u>#<span data-ppcond="121">endif</span></u>&nbsp</td></tr>
+<tr><th id="124">124</th><td>&nbsp</td></tr>
+<tr><th id="125">125</th><td><u>#<span data-ppcond="125">ifdef</span> <a class="macro" href="../../../../asm-generic/errno.h.html#109" data-ref="_M/ECANCELED">ECANCELED</a></u>&nbsp</td></tr>
+<tr><th id="126">126</th><td>      <dfn class="enum" id="std::errc::operation_canceled" title='std::errc::operation_canceled' data-ref="std::errc::operation_canceled">operation_canceled</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#109" title="125" data-ref="_M/ECANCELED">ECANCELED</a>,&nbsp</td></tr>
+<tr><th id="127">127</th><td><u>#<span data-ppcond="125">endif</span></u>&nbsp</td></tr>
+<tr><th id="128">128</th><td>&nbsp</td></tr>
+<tr><th id="129">129</th><td>      <dfn class="enum" id="std::errc::operation_in_progress" title='std::errc::operation_in_progress' data-ref="std::errc::operation_in_progress">operation_in_progress</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#98" title="115" data-ref="_M/EINPROGRESS">EINPROGRESS</a>,&nbsp</td></tr>
+<tr><th id="130">130</th><td>      <dfn class="enum" id="std::errc::operation_not_permitted" title='std::errc::operation_not_permitted' data-ref="std::errc::operation_not_permitted">operation_not_permitted</dfn> = 		<a class="macro" href="../../../../asm-generic/errno-base.h.html#5" title="1" data-ref="_M/EPERM">EPERM</a>,&nbsp</td></tr>
+<tr><th id="131">131</th><td>      <dfn class="enum" id="std::errc::operation_not_supported" title='std::errc::operation_not_supported' data-ref="std::errc::operation_not_supported">operation_not_supported</dfn> = 		<a class="macro" href="../../../../asm-generic/errno.h.html#78" title="95" data-ref="_M/EOPNOTSUPP">EOPNOTSUPP</a>,&nbsp</td></tr>
+<tr><th id="132">132</th><td>      <dfn class="enum" id="std::errc::operation_would_block" title='std::errc::operation_would_block' data-ref="std::errc::operation_would_block">operation_would_block</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#22" title="11" data-ref="_M/EWOULDBLOCK">EWOULDBLOCK</a>,&nbsp</td></tr>
+<tr><th id="133">133</th><td>&nbsp</td></tr>
+<tr><th id="134">134</th><td><u>#<span data-ppcond="134">ifdef</span> <a class="macro" href="../../../../asm-generic/errno.h.html#116" data-ref="_M/EOWNERDEAD">EOWNERDEAD</a></u>&nbsp</td></tr>
+<tr><th id="135">135</th><td>      <dfn class="enum" id="std::errc::owner_dead" title='std::errc::owner_dead' data-ref="std::errc::owner_dead">owner_dead</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#116" title="130" data-ref="_M/EOWNERDEAD">EOWNERDEAD</a>,&nbsp</td></tr>
+<tr><th id="136">136</th><td><u>#<span data-ppcond="134">endif</span></u>&nbsp</td></tr>
+<tr><th id="137">137</th><td>&nbsp</td></tr>
+<tr><th id="138">138</th><td>      <dfn class="enum" id="std::errc::permission_denied" title='std::errc::permission_denied' data-ref="std::errc::permission_denied">permission_denied</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#17" title="13" data-ref="_M/EACCES">EACCES</a>,&nbsp</td></tr>
+<tr><th id="139">139</th><td>&nbsp</td></tr>
+<tr><th id="140">140</th><td><u>#<span data-ppcond="140">ifdef</span> <a class="macro" href="../../../../asm-generic/errno.h.html#54" data-ref="_M/EPROTO">EPROTO</a></u>&nbsp</td></tr>
+<tr><th id="141">141</th><td>      <dfn class="enum" id="std::errc::protocol_error" title='std::errc::protocol_error' data-ref="std::errc::protocol_error">protocol_error</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#54" title="71" data-ref="_M/EPROTO">EPROTO</a>,&nbsp</td></tr>
+<tr><th id="142">142</th><td><u>#<span data-ppcond="140">endif</span></u>&nbsp</td></tr>
+<tr><th id="143">143</th><td>&nbsp</td></tr>
+<tr><th id="144">144</th><td>      <dfn class="enum" id="std::errc::protocol_not_supported" title='std::errc::protocol_not_supported' data-ref="std::errc::protocol_not_supported">protocol_not_supported</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#76" title="93" data-ref="_M/EPROTONOSUPPORT">EPROTONOSUPPORT</a>,&nbsp</td></tr>
+<tr><th id="145">145</th><td>      <dfn class="enum" id="std::errc::read_only_file_system" title='std::errc::read_only_file_system' data-ref="std::errc::read_only_file_system">read_only_file_system</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#34" title="30" data-ref="_M/EROFS">EROFS</a>,&nbsp</td></tr>
+<tr><th id="146">146</th><td>      <dfn class="enum" id="std::errc::resource_deadlock_would_occur" title='std::errc::resource_deadlock_would_occur' data-ref="std::errc::resource_deadlock_would_occur">resource_deadlock_would_occur</dfn> = 		<a class="macro" href="../../../../asm-generic/errno.h.html#7" title="35" data-ref="_M/EDEADLK">EDEADLK</a>,&nbsp</td></tr>
+<tr><th id="147">147</th><td>      <dfn class="enum" id="std::errc::resource_unavailable_try_again" title='std::errc::resource_unavailable_try_again' data-ref="std::errc::resource_unavailable_try_again">resource_unavailable_try_again</dfn> = 		<a class="macro" href="../../../../asm-generic/errno-base.h.html#15" title="11" data-ref="_M/EAGAIN">EAGAIN</a>,&nbsp</td></tr>
+<tr><th id="148">148</th><td>      <dfn class="enum" id="std::errc::result_out_of_range" title='std::errc::result_out_of_range' data-ref="std::errc::result_out_of_range">result_out_of_range</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#38" title="34" data-ref="_M/ERANGE">ERANGE</a>,&nbsp</td></tr>
+<tr><th id="149">149</th><td>&nbsp</td></tr>
+<tr><th id="150">150</th><td><u>#<span data-ppcond="150">ifdef</span> <a class="macro" href="../../../../asm-generic/errno.h.html#117" data-ref="_M/ENOTRECOVERABLE">ENOTRECOVERABLE</a></u>&nbsp</td></tr>
+<tr><th id="151">151</th><td>      <dfn class="enum" id="std::errc::state_not_recoverable" title='std::errc::state_not_recoverable' data-ref="std::errc::state_not_recoverable">state_not_recoverable</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#117" title="131" data-ref="_M/ENOTRECOVERABLE">ENOTRECOVERABLE</a>,&nbsp</td></tr>
+<tr><th id="152">152</th><td><u>#<span data-ppcond="150">endif</span></u>&nbsp</td></tr>
+<tr><th id="153">153</th><td>&nbsp</td></tr>
+<tr><th id="154">154</th><td><u>#<span data-ppcond="154">ifdef</span> <a class="macro" href="../../../../asm-generic/errno.h.html#45" data-ref="_M/ETIME">ETIME</a></u>&nbsp</td></tr>
+<tr><th id="155">155</th><td>      <dfn class="enum" id="std::errc::stream_timeout" title='std::errc::stream_timeout' data-ref="std::errc::stream_timeout">stream_timeout</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#45" title="62" data-ref="_M/ETIME">ETIME</a>,&nbsp</td></tr>
+<tr><th id="156">156</th><td><u>#<span data-ppcond="154">endif</span></u>&nbsp</td></tr>
+<tr><th id="157">157</th><td>&nbsp</td></tr>
+<tr><th id="158">158</th><td><u>#<span data-ppcond="158">ifdef</span> <a class="macro" href="../../../../asm-generic/errno-base.h.html#30" data-ref="_M/ETXTBSY">ETXTBSY</a></u>&nbsp</td></tr>
+<tr><th id="159">159</th><td>      <dfn class="enum" id="std::errc::text_file_busy" title='std::errc::text_file_busy' data-ref="std::errc::text_file_busy">text_file_busy</dfn> = 				<a class="macro" href="../../../../asm-generic/errno-base.h.html#30" title="26" data-ref="_M/ETXTBSY">ETXTBSY</a>,&nbsp</td></tr>
+<tr><th id="160">160</th><td><u>#<span data-ppcond="158">endif</span></u>&nbsp</td></tr>
+<tr><th id="161">161</th><td>&nbsp</td></tr>
+<tr><th id="162">162</th><td>      <dfn class="enum" id="std::errc::timed_out" title='std::errc::timed_out' data-ref="std::errc::timed_out">timed_out</dfn> = 				<a class="macro" href="../../../../asm-generic/errno.h.html#93" title="110" data-ref="_M/ETIMEDOUT">ETIMEDOUT</a>,&nbsp</td></tr>
+<tr><th id="163">163</th><td>      <dfn class="enum" id="std::errc::too_many_files_open_in_system" title='std::errc::too_many_files_open_in_system' data-ref="std::errc::too_many_files_open_in_system">too_many_files_open_in_system</dfn> = 		<a class="macro" href="../../../../asm-generic/errno-base.h.html#27" title="23" data-ref="_M/ENFILE">ENFILE</a>,&nbsp</td></tr>
+<tr><th id="164">164</th><td>      <dfn class="enum" id="std::errc::too_many_files_open" title='std::errc::too_many_files_open' data-ref="std::errc::too_many_files_open">too_many_files_open</dfn> = 			<a class="macro" href="../../../../asm-generic/errno-base.h.html#28" title="24" data-ref="_M/EMFILE">EMFILE</a>,&nbsp</td></tr>
+<tr><th id="165">165</th><td>      <dfn class="enum" id="std::errc::too_many_links" title='std::errc::too_many_links' data-ref="std::errc::too_many_links">too_many_links</dfn> = 				<a class="macro" href="../../../../asm-generic/errno-base.h.html#35" title="31" data-ref="_M/EMLINK">EMLINK</a>,&nbsp</td></tr>
+<tr><th id="166">166</th><td>      <dfn class="enum" id="std::errc::too_many_symbolic_link_levels" title='std::errc::too_many_symbolic_link_levels' data-ref="std::errc::too_many_symbolic_link_levels">too_many_symbolic_link_levels</dfn> = 		<a class="macro" href="../../../../asm-generic/errno.h.html#21" title="40" data-ref="_M/ELOOP">ELOOP</a>,&nbsp</td></tr>
+<tr><th id="167">167</th><td>&nbsp</td></tr>
+<tr><th id="168">168</th><td><u>#<span data-ppcond="168">ifdef</span> <a class="macro" href="../../../../asm-generic/errno.h.html#58" data-ref="_M/EOVERFLOW">EOVERFLOW</a></u>&nbsp</td></tr>
+<tr><th id="169">169</th><td>      <dfn class="enum" id="std::errc::value_too_large" title='std::errc::value_too_large' data-ref="std::errc::value_too_large">value_too_large</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#58" title="75" data-ref="_M/EOVERFLOW">EOVERFLOW</a>,&nbsp</td></tr>
+<tr><th id="170">170</th><td><u>#<span data-ppcond="168">elif</span> defined __AVR__</u>&nbsp</td></tr>
+<tr><th id="171">171</th><td>      value_too_large = 			<var>999</var>,&nbsp</td></tr>
+<tr><th id="172">172</th><td><u>#<span data-ppcond="168">endif</span></u>&nbsp</td></tr>
+<tr><th id="173">173</th><td>&nbsp</td></tr>
+<tr><th id="174">174</th><td>      <dfn class="enum" id="std::errc::wrong_protocol_type" title='std::errc::wrong_protocol_type' data-ref="std::errc::wrong_protocol_type">wrong_protocol_type</dfn> = 			<a class="macro" href="../../../../asm-generic/errno.h.html#74" title="91" data-ref="_M/EPROTOTYPE">EPROTOTYPE</a>&nbsp</td></tr>
+<tr><th id="175">175</th><td>    };&nbsp</td></tr>
+<tr><th id="176">176</th><td>&nbsp</td></tr>
+<tr><th id="177">177</th><td><a class="macro" href="c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="178">178</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="179">179</th><td>&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>#<span data-ppcond="30">endif</span></u>&nbsp</td></tr>
+<tr><th id="181">181</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

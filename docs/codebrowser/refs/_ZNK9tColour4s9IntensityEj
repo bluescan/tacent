@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='592' type='int tColour4s::Intensity(comp_t comps = tCompBit_RGB) const'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1200' ll='1209' type='int tColour4s::Intensity(comp_t comps = tCompBit_RGB) const'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='591'>// Returns intensity (average of chosen components) in range [0, 65535].</doc>

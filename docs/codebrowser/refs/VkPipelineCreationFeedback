@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6904' ll='6907'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6904'/>
+<size>16</size>
+<mbr r='VkPipelineCreationFeedback::flags' o='0' t='VkPipelineCreationFeedbackFlags'/>
+<mbr r='VkPipelineCreationFeedback::duration' o='64' t='uint64_t'/>

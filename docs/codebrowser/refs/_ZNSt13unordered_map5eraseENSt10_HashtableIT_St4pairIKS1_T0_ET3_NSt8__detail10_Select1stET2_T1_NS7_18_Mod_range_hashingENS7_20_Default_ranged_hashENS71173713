@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/unordered_map.h' l='744' ll='746' type='std::unordered_map::iterator std::unordered_map::erase(std::unordered_map::iterator __position)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='743'>// LWG 2059.</doc>

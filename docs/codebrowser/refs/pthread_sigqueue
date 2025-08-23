@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/sigthread.h' l='40' type='int pthread_sigqueue(pthread_t __threadid, int __signo, const union sigval __value)'/>
+<doc f='include/x86_64-linux-gnu/bits/sigthread.h' l='39'>/* Queue signal and data to a thread.  */</doc>

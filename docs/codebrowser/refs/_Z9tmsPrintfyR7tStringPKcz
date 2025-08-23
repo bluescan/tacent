@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='310' type='tString &amp; tmsPrintf(tSystem::tChannel channels, tString &amp; dest, const char * format)'/>
+<def f='Modules/System/Inc/System/tPrint.h' l='431' ll='437' type='tString &amp; tmsPrintf(tSystem::tChannel channels, tString &amp; dest, const char * format)'/>

@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/hashtable_policy.h' l='447' u='w' c='_ZNSt8__detail20_Prime_rehash_policyC1Ef'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='451' u='r' c='_ZNKSt8__detail20_Prime_rehash_policy15max_load_factorEv'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='460' u='r' c='_ZNKSt8__detail20_Prime_rehash_policy19_M_bkt_for_elementsEm'/>
+<dec f='include/c++/11/bits/hashtable_policy.h' l='486' type='float'/>
+<offset>0</offset>

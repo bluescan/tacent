@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='1780' ll='1794'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1996' c='_ZNSt15common_iteratorppEi'/>
+<mbr r='std::common_iterator::__postfix_proxy::_M_keep' t='iter_value_t&lt;_It&gt;'/>
+<fun r='_ZNSt15common_iterator15__postfix_proxyC1EODTdeclsr3stdE7declvalIRT_EEE'/>
+<fun r='_ZNKSt15common_iterator15__postfix_proxydeEv'/>

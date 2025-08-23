@@ -1,0 +1,5 @@
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='38' u='c' c='_ZN6tImage13tPaletteImage3SetERKS0_'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='62' u='c' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEii'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='86' u='c' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPKhPK9tColour3b'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='131' u='c' c='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<def f='Modules/Image/Src/tPaletteImage.cpp' l='228' ll='233' type='int tImage::tPaletteImage::GetDataSize() const'/>

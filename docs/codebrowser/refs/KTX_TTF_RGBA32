@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1570' type='13'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1565'>/*!&lt; RG only (ETC2 EAC RG11 unsigned), R=opaque.g, G=alpha.g. The
+                 texture should have an alpha channel (if not G will be all
+                 255&apos;s. For tangent space normal maps. */
+
+        // Uncompressed (raw pixel) formats</doc>

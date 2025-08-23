@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='206' type='bool rgbcx::unpack_bc1(const void * pBlock_bits, void * pPixels, bool set_alpha = true, rgbcx::bc1_approx_mode mode = bc1_approx_mode::cBC1Ideal)'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4034' ll='4132' type='bool rgbcx::unpack_bc1(const void * pBlock_bits, void * pPixels, bool set_alpha = true, rgbcx::bc1_approx_mode mode = bc1_approx_mode::cBC1Ideal)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4161' u='c' c='_ZN5rgbcx10unpack_bc3EPKvPvNS_15bc1_approx_modeE'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='203'>// Decompression functions. 
+	
+	// Returns true if the block uses 3 color punchthrough alpha mode.</doc>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4033'>// Returns true if the block uses 3 color punchthrough alpha mode.</doc>

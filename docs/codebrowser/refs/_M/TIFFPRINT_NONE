@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='113'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='107'>/*
+ * Flags to pass to TIFFPrintDirectory to control
+ * printing of data structures that are potentially
+ * very large.   Bit-or these flags to enable printing
+ * multiple items.
+ */</doc>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15201' ll='15206'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15201'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceRobustness2PropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceRobustness2PropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceRobustness2PropertiesEXT::robustStorageBufferAccessSizeAlignment' o='128' t='VkDeviceSize'/>
+<mbr r='VkPhysicalDeviceRobustness2PropertiesEXT::robustUniformBufferAccessSizeAlignment' o='192' t='VkDeviceSize'/>

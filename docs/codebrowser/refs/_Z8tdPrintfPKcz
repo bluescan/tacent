@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='224' type='int tdPrintf(const char * format)'/>
+<def f='Modules/System/Inc/System/tPrint.h' l='337' ll='342' type='int tdPrintf(const char * f)'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='223'>// These are some shortcut debug print functions. In Ship and Profile configurations these become empty inlines.</doc>

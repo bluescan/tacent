@@ -1,0 +1,431 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>stl_numeric.h source code [include/c++/11/bits/stl_numeric.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/stl_numeric.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='stl_numeric.h.html'>stl_numeric.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Numeric functions implementation -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2001-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i> * Copyright (c) 1994</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i> * Hewlett-Packard Company</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i> * Permission to use, copy, modify, distribute and sell this software</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i> * and its documentation for any purpose is hereby granted without fee,</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i> * provided that the above copyright notice appear in all copies and</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i> * that both that copyright notice and this permission notice appear</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i> * in supporting documentation.  Hewlett-Packard Company makes no</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i> * representations about the suitability of this software for any</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i> * purpose.  It is provided "as is" without express or implied warranty.</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i> * Copyright (c) 1996,1997</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i> * Silicon Graphics Computer Systems, Inc.</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i> * Permission to use, copy, modify, distribute and sell this software</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i> * and its documentation for any purpose is hereby granted without fee,</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i> * provided that the above copyright notice appear in all copies and</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i> * that both that copyright notice and this permission notice appear</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i> * in supporting documentation.  Silicon Graphics makes no</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i> * representations about the suitability of this software for any</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i> * purpose.  It is provided "as is" without express or implied warranty.</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/stl_numeric.h</span></i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{numeric}</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u>#<span data-ppcond="56">ifndef</span> <span class="macro" data-ref="_M/_STL_NUMERIC_H">_STL_NUMERIC_H</span></u>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#define <dfn class="macro" id="_M/_STL_NUMERIC_H" data-ref="_M/_STL_NUMERIC_H">_STL_NUMERIC_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="58">58</th><td>&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#include &lt;bits/concept_check.h&gt;</u>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#include &lt;debug/debug.h&gt;</u>&nbsp</td></tr>
+<tr><th id="61">61</th><td><u>#include &lt;bits/move.h&gt; // For _GLIBCXX_MOVE</u>&nbsp</td></tr>
+<tr><th id="62">62</th><td>&nbsp</td></tr>
+<tr><th id="63">63</th><td>&nbsp</td></tr>
+<tr><th id="64">64</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="65">65</th><td>{&nbsp</td></tr>
+<tr><th id="66">66</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="67">67</th><td>&nbsp</td></tr>
+<tr><th id="68">68</th><td>  <i class="doc">/** <span class="command">@defgroup</span> <span class="verb">numeric_ops Generalized Numeric operations</span></i>&nbsp</td></tr>
+<tr><th id="69">69</th><td><i class="doc">   *  <span class="command">@ingroup</span> <span class="verb">algorithms</span></i>&nbsp</td></tr>
+<tr><th id="70">70</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#<span data-ppcond="72">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="73">73</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td><i class="doc">   *  <span class="command">@brief</span>  Create a range of sequentially increasing values.</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="76">76</th><td><i class="doc">   *  For each element in the range<span class="command"> @p</span> <span class="arg">[first,last)</span> assigns<span class="command"> @p</span> <span class="arg">value</span> and</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td><i class="doc">   *  increments<span class="command"> @p</span> <span class="arg">value</span> as if by<span class="command"> @p</span> <span class="arg">++value.</span></i>&nbsp</td></tr>
+<tr><th id="78">78</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__first</span>  Start of range.</i>&nbsp</td></tr>
+<tr><th id="80">80</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__last</span>  End of range.</i>&nbsp</td></tr>
+<tr><th id="81">81</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__value</span>  Starting value.</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i class="doc">   *  <span class="command">@return</span>  Nothing.</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td><i class="doc">   *  <span class="command">@ingroup</span> <span class="verb">numeric_ops</span></i>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td>  <b>template</b>&lt;<b>typename</b> _ForwardIterator, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="86">86</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="87">87</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="88">88</th><td>    <dfn class="decl def fn" id="_ZSt4iotaT_S_T0_" title='std::iota' data-ref="_ZSt4iotaT_S_T0_">iota</dfn>(_ForwardIterator <dfn class="local col6 decl" id="1276__first" title='__first' data-type='_ForwardIterator' data-ref="1276__first">__first</dfn>, _ForwardIterator <dfn class="local col7 decl" id="1277__last" title='__last' data-type='_ForwardIterator' data-ref="1277__last">__last</dfn>, _Tp <dfn class="local col8 decl" id="1278__value" title='__value' data-type='_Tp' data-ref="1278__value">__value</dfn>)&nbsp</td></tr>
+<tr><th id="89">89</th><td>    {&nbsp</td></tr>
+<tr><th id="90">90</th><td>      <i>// concept requirements</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_Mutable_ForwardIteratorConcept&lt;&nbsp</td></tr>
+<tr><th id="92">92</th><td>				  _ForwardIterator&gt;)&nbsp</td></tr>
+<tr><th id="93">93</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_ConvertibleConcept&lt;_Tp,&nbsp</td></tr>
+<tr><th id="94">94</th><td>	    <b>typename</b> iterator_traits&lt;_ForwardIterator&gt;::value_type&gt;)&nbsp</td></tr>
+<tr><th id="95">95</th><td>      <a class="macro" href="../debug/debug.h.html#67" title="" data-ref="_M/__glibcxx_requires_valid_range">__glibcxx_requires_valid_range</a>(__first, __last);&nbsp</td></tr>
+<tr><th id="96">96</th><td>&nbsp</td></tr>
+<tr><th id="97">97</th><td>      <b>for</b> (; <a class="local col6 ref" href="#1276__first" title='__first' data-ref="1276__first">__first</a> != <a class="local col7 ref" href="#1277__last" title='__last' data-ref="1277__last">__last</a>; ++<a class="local col6 ref" href="#1276__first" title='__first' data-ref="1276__first">__first</a>)&nbsp</td></tr>
+<tr><th id="98">98</th><td>	{&nbsp</td></tr>
+<tr><th id="99">99</th><td>	  *<a class="local col6 ref" href="#1276__first" title='__first' data-ref="1276__first">__first</a> = <a class="local col8 ref" href="#1278__value" title='__value' data-ref="1278__value">__value</a>;&nbsp</td></tr>
+<tr><th id="100">100</th><td>	  ++<a class="local col8 ref" href="#1278__value" title='__value' data-ref="1278__value">__value</a>;&nbsp</td></tr>
+<tr><th id="101">101</th><td>	}&nbsp</td></tr>
+<tr><th id="102">102</th><td>    }&nbsp</td></tr>
+<tr><th id="103">103</th><td><u>#<span data-ppcond="72">endif</span></u>&nbsp</td></tr>
+<tr><th id="104">104</th><td>&nbsp</td></tr>
+<tr><th id="105">105</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="106">106</th><td>&nbsp</td></tr>
+<tr><th id="107">107</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#421" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_ALGO">_GLIBCXX_BEGIN_NAMESPACE_ALGO</a>&nbsp</td></tr>
+<tr><th id="108">108</th><td>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>#<span data-ppcond="109">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="110">110</th><td><i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="111">111</th><td><i>// DR 2055. std::move in std::accumulate and other algorithms</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u># define <dfn class="macro" id="_M/_GLIBCXX_MOVE_IF_20" data-ref="_M/_GLIBCXX_MOVE_IF_20">_GLIBCXX_MOVE_IF_20</dfn>(_E) std::move(_E)</u>&nbsp</td></tr>
+<tr><th id="113">113</th><td><u>#<span data-ppcond="109">else</span></u>&nbsp</td></tr>
+<tr><th id="114">114</th><td><u># define _GLIBCXX_MOVE_IF_20(_E) _E</u>&nbsp</td></tr>
+<tr><th id="115">115</th><td><u>#<span data-ppcond="109">endif</span></u>&nbsp</td></tr>
+<tr><th id="116">116</th><td>&nbsp</td></tr>
+<tr><th id="117">117</th><td>  <i class="doc">/// <span class="command">@addtogroup</span> <span class="verb">numeric_ops</span></i>&nbsp</td></tr>
+<tr><th id="118">118</th><td><i class="doc">  /// @{</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td>&nbsp</td></tr>
+<tr><th id="120">120</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td><i class="doc">   *  <span class="command">@brief</span>  Accumulate values in a range.</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="123">123</th><td><i class="doc">   *  Accumulates the values in the range [first,last) using operator+().  The</i>&nbsp</td></tr>
+<tr><th id="124">124</th><td><i class="doc">   *  initial value is<span class="command"> @a</span> <span class="arg">init.</span>  The values are processed in order.</i>&nbsp</td></tr>
+<tr><th id="125">125</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__first</span>  Start of range.</i>&nbsp</td></tr>
+<tr><th id="127">127</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__last</span>  End of range.</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__init</span>  Starting value to add other values to.</i>&nbsp</td></tr>
+<tr><th id="129">129</th><td><i class="doc">   *  <span class="command">@return</span>  The final sum.</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td>  <b>template</b>&lt;<b>typename</b> _InputIterator, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="132">132</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="133">133</th><td>    <b>inline</b> _Tp&nbsp</td></tr>
+<tr><th id="134">134</th><td>    <dfn class="decl def fn" id="_ZSt10accumulateT_S_T0_" title='std::accumulate' data-ref="_ZSt10accumulateT_S_T0_">accumulate</dfn>(_InputIterator <dfn class="local col9 decl" id="1279__first" title='__first' data-type='_InputIterator' data-ref="1279__first">__first</dfn>, _InputIterator <dfn class="local col0 decl" id="1280__last" title='__last' data-type='_InputIterator' data-ref="1280__last">__last</dfn>, _Tp <dfn class="local col1 decl" id="1281__init" title='__init' data-type='_Tp' data-ref="1281__init">__init</dfn>)&nbsp</td></tr>
+<tr><th id="135">135</th><td>    {&nbsp</td></tr>
+<tr><th id="136">136</th><td>      <i>// concept requirements</i>&nbsp</td></tr>
+<tr><th id="137">137</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_InputIteratorConcept&lt;_InputIterator&gt;)&nbsp</td></tr>
+<tr><th id="138">138</th><td>      <a class="macro" href="../debug/debug.h.html#67" title="" data-ref="_M/__glibcxx_requires_valid_range">__glibcxx_requires_valid_range</a>(__first, __last);&nbsp</td></tr>
+<tr><th id="139">139</th><td>&nbsp</td></tr>
+<tr><th id="140">140</th><td>      <b>for</b> (; <a class="local col9 ref" href="#1279__first" title='__first' data-ref="1279__first">__first</a> != <a class="local col0 ref" href="#1280__last" title='__last' data-ref="1280__last">__last</a>; ++<a class="local col9 ref" href="#1279__first" title='__first' data-ref="1279__first">__first</a>)&nbsp</td></tr>
+<tr><th id="141">141</th><td>	<a class="local col1 ref" href="#1281__init" title='__init' data-ref="1281__init">__init</a> = <a class="macro" href="#112" title="std::move(__init)" data-ref="_M/_GLIBCXX_MOVE_IF_20">_GLIBCXX_MOVE_IF_20</a>(<a class="local col1 ref" href="#1281__init" title='__init' data-ref="1281__init">__init</a>) + *<a class="local col9 ref" href="#1279__first" title='__first' data-ref="1279__first">__first</a>;&nbsp</td></tr>
+<tr><th id="142">142</th><td>      <b>return</b> <a class="local col1 ref" href="#1281__init" title='__init' data-ref="1281__init">__init</a>;&nbsp</td></tr>
+<tr><th id="143">143</th><td>    }&nbsp</td></tr>
+<tr><th id="144">144</th><td>&nbsp</td></tr>
+<tr><th id="145">145</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td><i class="doc">   *  <span class="command">@brief</span>  Accumulate values in a range with operation.</i>&nbsp</td></tr>
+<tr><th id="147">147</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td><i class="doc">   *  Accumulates the values in the range `[first,last)` using the function</i>&nbsp</td></tr>
+<tr><th id="149">149</th><td><i class="doc">   *  object `__binary_op`.  The initial value is `__init`.  The values are</i>&nbsp</td></tr>
+<tr><th id="150">150</th><td><i class="doc">   *  processed in order.</i>&nbsp</td></tr>
+<tr><th id="151">151</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="152">152</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__first</span>  Start of range.</i>&nbsp</td></tr>
+<tr><th id="153">153</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__last</span>  End of range.</i>&nbsp</td></tr>
+<tr><th id="154">154</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__init</span>  Starting value to add other values to.</i>&nbsp</td></tr>
+<tr><th id="155">155</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__binary_op</span>  Function object to accumulate with.</i>&nbsp</td></tr>
+<tr><th id="156">156</th><td><i class="doc">   *  <span class="command">@return</span>  The final sum.</i>&nbsp</td></tr>
+<tr><th id="157">157</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="158">158</th><td>  <b>template</b>&lt;<b>typename</b> _InputIterator, <b>typename</b> _Tp, <b>typename</b> _BinaryOperation&gt;&nbsp</td></tr>
+<tr><th id="159">159</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="160">160</th><td>    <b>inline</b> _Tp&nbsp</td></tr>
+<tr><th id="161">161</th><td>    <dfn class="decl def fn" id="_ZSt10accumulateT_S_T0_T1_" title='std::accumulate' data-ref="_ZSt10accumulateT_S_T0_T1_">accumulate</dfn>(_InputIterator <dfn class="local col2 decl" id="1282__first" title='__first' data-type='_InputIterator' data-ref="1282__first">__first</dfn>, _InputIterator <dfn class="local col3 decl" id="1283__last" title='__last' data-type='_InputIterator' data-ref="1283__last">__last</dfn>, _Tp <dfn class="local col4 decl" id="1284__init" title='__init' data-type='_Tp' data-ref="1284__init">__init</dfn>,&nbsp</td></tr>
+<tr><th id="162">162</th><td>	       _BinaryOperation <dfn class="local col5 decl" id="1285__binary_op" title='__binary_op' data-type='_BinaryOperation' data-ref="1285__binary_op">__binary_op</dfn>)&nbsp</td></tr>
+<tr><th id="163">163</th><td>    {&nbsp</td></tr>
+<tr><th id="164">164</th><td>      <i>// concept requirements</i>&nbsp</td></tr>
+<tr><th id="165">165</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_InputIteratorConcept&lt;_InputIterator&gt;)&nbsp</td></tr>
+<tr><th id="166">166</th><td>      <a class="macro" href="../debug/debug.h.html#67" title="" data-ref="_M/__glibcxx_requires_valid_range">__glibcxx_requires_valid_range</a>(__first, __last);&nbsp</td></tr>
+<tr><th id="167">167</th><td>&nbsp</td></tr>
+<tr><th id="168">168</th><td>      <b>for</b> (; <a class="local col2 ref" href="#1282__first" title='__first' data-ref="1282__first">__first</a> != <a class="local col3 ref" href="#1283__last" title='__last' data-ref="1283__last">__last</a>; ++<a class="local col2 ref" href="#1282__first" title='__first' data-ref="1282__first">__first</a>)&nbsp</td></tr>
+<tr><th id="169">169</th><td>	<a class="local col4 ref" href="#1284__init" title='__init' data-ref="1284__init">__init</a> = <a class="local col5 ref" href="#1285__binary_op" title='__binary_op' data-ref="1285__binary_op">__binary_op</a>(<a class="macro" href="#112" title="std::move(__init)" data-ref="_M/_GLIBCXX_MOVE_IF_20">_GLIBCXX_MOVE_IF_20</a>(<a class="local col4 ref" href="#1284__init" title='__init' data-ref="1284__init">__init</a>), *<a class="local col2 ref" href="#1282__first" title='__first' data-ref="1282__first">__first</a>);&nbsp</td></tr>
+<tr><th id="170">170</th><td>      <b>return</b> <a class="local col4 ref" href="#1284__init" title='__init' data-ref="1284__init">__init</a>;&nbsp</td></tr>
+<tr><th id="171">171</th><td>    }&nbsp</td></tr>
+<tr><th id="172">172</th><td>&nbsp</td></tr>
+<tr><th id="173">173</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="174">174</th><td><i class="doc">   *  <span class="command">@brief</span>  Compute inner product of two ranges.</i>&nbsp</td></tr>
+<tr><th id="175">175</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="176">176</th><td><i class="doc">   *  Starting with an initial value of<span class="command"> @p</span> <span class="arg">__init,</span> multiplies successive</i>&nbsp</td></tr>
+<tr><th id="177">177</th><td><i class="doc">   *  elements from the two ranges and adds each product into the accumulated</i>&nbsp</td></tr>
+<tr><th id="178">178</th><td><i class="doc">   *  value using operator+().  The values in the ranges are processed in</i>&nbsp</td></tr>
+<tr><th id="179">179</th><td><i class="doc">   *  order.</i>&nbsp</td></tr>
+<tr><th id="180">180</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="181">181</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__first1</span>  Start of range 1.</i>&nbsp</td></tr>
+<tr><th id="182">182</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__last1</span>  End of range 1.</i>&nbsp</td></tr>
+<tr><th id="183">183</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__first2</span>  Start of range 2.</i>&nbsp</td></tr>
+<tr><th id="184">184</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__init</span>  Starting value to add other values to.</i>&nbsp</td></tr>
+<tr><th id="185">185</th><td><i class="doc">   *  <span class="command">@return</span>  The final inner product.</i>&nbsp</td></tr>
+<tr><th id="186">186</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="187">187</th><td>  <b>template</b>&lt;<b>typename</b> _InputIterator1, <b>typename</b> _InputIterator2, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="188">188</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="189">189</th><td>    <b>inline</b> _Tp&nbsp</td></tr>
+<tr><th id="190">190</th><td>    <dfn class="decl def fn" id="_ZSt13inner_productT_S_T0_T1_" title='std::inner_product' data-ref="_ZSt13inner_productT_S_T0_T1_">inner_product</dfn>(_InputIterator1 <dfn class="local col6 decl" id="1286__first1" title='__first1' data-type='_InputIterator1' data-ref="1286__first1">__first1</dfn>, _InputIterator1 <dfn class="local col7 decl" id="1287__last1" title='__last1' data-type='_InputIterator1' data-ref="1287__last1">__last1</dfn>,&nbsp</td></tr>
+<tr><th id="191">191</th><td>		  _InputIterator2 <dfn class="local col8 decl" id="1288__first2" title='__first2' data-type='_InputIterator2' data-ref="1288__first2">__first2</dfn>, _Tp <dfn class="local col9 decl" id="1289__init" title='__init' data-type='_Tp' data-ref="1289__init">__init</dfn>)&nbsp</td></tr>
+<tr><th id="192">192</th><td>    {&nbsp</td></tr>
+<tr><th id="193">193</th><td>      <i>// concept requirements</i>&nbsp</td></tr>
+<tr><th id="194">194</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_InputIteratorConcept&lt;_InputIterator1&gt;)&nbsp</td></tr>
+<tr><th id="195">195</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_InputIteratorConcept&lt;_InputIterator2&gt;)&nbsp</td></tr>
+<tr><th id="196">196</th><td>      <a class="macro" href="../debug/debug.h.html#67" title="" data-ref="_M/__glibcxx_requires_valid_range">__glibcxx_requires_valid_range</a>(__first1, __last1);&nbsp</td></tr>
+<tr><th id="197">197</th><td>&nbsp</td></tr>
+<tr><th id="198">198</th><td>      <b>for</b> (; <a class="local col6 ref" href="#1286__first1" title='__first1' data-ref="1286__first1">__first1</a> != <a class="local col7 ref" href="#1287__last1" title='__last1' data-ref="1287__last1">__last1</a>; ++<a class="local col6 ref" href="#1286__first1" title='__first1' data-ref="1286__first1">__first1</a>, (<em>void</em>)++<a class="local col8 ref" href="#1288__first2" title='__first2' data-ref="1288__first2">__first2</a>)&nbsp</td></tr>
+<tr><th id="199">199</th><td>	<a class="local col9 ref" href="#1289__init" title='__init' data-ref="1289__init">__init</a> = <a class="macro" href="#112" title="std::move(__init)" data-ref="_M/_GLIBCXX_MOVE_IF_20">_GLIBCXX_MOVE_IF_20</a>(<a class="local col9 ref" href="#1289__init" title='__init' data-ref="1289__init">__init</a>) + (*<a class="local col6 ref" href="#1286__first1" title='__first1' data-ref="1286__first1">__first1</a> * *<a class="local col8 ref" href="#1288__first2" title='__first2' data-ref="1288__first2">__first2</a>);&nbsp</td></tr>
+<tr><th id="200">200</th><td>      <b>return</b> <a class="local col9 ref" href="#1289__init" title='__init' data-ref="1289__init">__init</a>;&nbsp</td></tr>
+<tr><th id="201">201</th><td>    }&nbsp</td></tr>
+<tr><th id="202">202</th><td>&nbsp</td></tr>
+<tr><th id="203">203</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="204">204</th><td><i class="doc">   *  <span class="command">@brief</span>  Compute inner product of two ranges.</i>&nbsp</td></tr>
+<tr><th id="205">205</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="206">206</th><td><i class="doc">   *  Starting with an initial value of<span class="command"> @p</span> <span class="arg">__init,</span> applies<span class="command"> @p</span> <span class="arg">__binary_op2</span> to</i>&nbsp</td></tr>
+<tr><th id="207">207</th><td><i class="doc">   *  successive elements from the two ranges and accumulates each result into</i>&nbsp</td></tr>
+<tr><th id="208">208</th><td><i class="doc">   *  the accumulated value using<span class="command"> @p</span> <span class="arg">__binary_op1.</span>  The values in the ranges are</i>&nbsp</td></tr>
+<tr><th id="209">209</th><td><i class="doc">   *  processed in order.</i>&nbsp</td></tr>
+<tr><th id="210">210</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="211">211</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__first1</span>  Start of range 1.</i>&nbsp</td></tr>
+<tr><th id="212">212</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__last1</span>  End of range 1.</i>&nbsp</td></tr>
+<tr><th id="213">213</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__first2</span>  Start of range 2.</i>&nbsp</td></tr>
+<tr><th id="214">214</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__init</span>  Starting value to add other values to.</i>&nbsp</td></tr>
+<tr><th id="215">215</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__binary_op1</span>  Function object to accumulate with.</i>&nbsp</td></tr>
+<tr><th id="216">216</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__binary_op2</span>  Function object to apply to pairs of input values.</i>&nbsp</td></tr>
+<tr><th id="217">217</th><td><i class="doc">   *  <span class="command">@return</span>  The final inner product.</i>&nbsp</td></tr>
+<tr><th id="218">218</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="219">219</th><td>  <b>template</b>&lt;<b>typename</b> _InputIterator1, <b>typename</b> _InputIterator2, <b>typename</b> _Tp,&nbsp</td></tr>
+<tr><th id="220">220</th><td>	   <b>typename</b> _BinaryOperation1, <b>typename</b> _BinaryOperation2&gt;&nbsp</td></tr>
+<tr><th id="221">221</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="222">222</th><td>    <b>inline</b> _Tp&nbsp</td></tr>
+<tr><th id="223">223</th><td>    <dfn class="decl def fn" id="_ZSt13inner_productT_S_T0_T1_T2_T3_" title='std::inner_product' data-ref="_ZSt13inner_productT_S_T0_T1_T2_T3_">inner_product</dfn>(_InputIterator1 <dfn class="local col0 decl" id="1290__first1" title='__first1' data-type='_InputIterator1' data-ref="1290__first1">__first1</dfn>, _InputIterator1 <dfn class="local col1 decl" id="1291__last1" title='__last1' data-type='_InputIterator1' data-ref="1291__last1">__last1</dfn>,&nbsp</td></tr>
+<tr><th id="224">224</th><td>		  _InputIterator2 <dfn class="local col2 decl" id="1292__first2" title='__first2' data-type='_InputIterator2' data-ref="1292__first2">__first2</dfn>, _Tp <dfn class="local col3 decl" id="1293__init" title='__init' data-type='_Tp' data-ref="1293__init">__init</dfn>,&nbsp</td></tr>
+<tr><th id="225">225</th><td>		  _BinaryOperation1 <dfn class="local col4 decl" id="1294__binary_op1" title='__binary_op1' data-type='_BinaryOperation1' data-ref="1294__binary_op1">__binary_op1</dfn>,&nbsp</td></tr>
+<tr><th id="226">226</th><td>		  _BinaryOperation2 <dfn class="local col5 decl" id="1295__binary_op2" title='__binary_op2' data-type='_BinaryOperation2' data-ref="1295__binary_op2">__binary_op2</dfn>)&nbsp</td></tr>
+<tr><th id="227">227</th><td>    {&nbsp</td></tr>
+<tr><th id="228">228</th><td>      <i>// concept requirements</i>&nbsp</td></tr>
+<tr><th id="229">229</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_InputIteratorConcept&lt;_InputIterator1&gt;)&nbsp</td></tr>
+<tr><th id="230">230</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_InputIteratorConcept&lt;_InputIterator2&gt;)&nbsp</td></tr>
+<tr><th id="231">231</th><td>      <a class="macro" href="../debug/debug.h.html#67" title="" data-ref="_M/__glibcxx_requires_valid_range">__glibcxx_requires_valid_range</a>(__first1, __last1);&nbsp</td></tr>
+<tr><th id="232">232</th><td>&nbsp</td></tr>
+<tr><th id="233">233</th><td>      <b>for</b> (; <a class="local col0 ref" href="#1290__first1" title='__first1' data-ref="1290__first1">__first1</a> != <a class="local col1 ref" href="#1291__last1" title='__last1' data-ref="1291__last1">__last1</a>; ++<a class="local col0 ref" href="#1290__first1" title='__first1' data-ref="1290__first1">__first1</a>, (<em>void</em>)++<a class="local col2 ref" href="#1292__first2" title='__first2' data-ref="1292__first2">__first2</a>)&nbsp</td></tr>
+<tr><th id="234">234</th><td>	<a class="local col3 ref" href="#1293__init" title='__init' data-ref="1293__init">__init</a> = <a class="local col4 ref" href="#1294__binary_op1" title='__binary_op1' data-ref="1294__binary_op1">__binary_op1</a>(<a class="macro" href="#112" title="std::move(__init)" data-ref="_M/_GLIBCXX_MOVE_IF_20">_GLIBCXX_MOVE_IF_20</a>(<a class="local col3 ref" href="#1293__init" title='__init' data-ref="1293__init">__init</a>),&nbsp</td></tr>
+<tr><th id="235">235</th><td>			      <a class="local col5 ref" href="#1295__binary_op2" title='__binary_op2' data-ref="1295__binary_op2">__binary_op2</a>(*<a class="local col0 ref" href="#1290__first1" title='__first1' data-ref="1290__first1">__first1</a>, *<a class="local col2 ref" href="#1292__first2" title='__first2' data-ref="1292__first2">__first2</a>));&nbsp</td></tr>
+<tr><th id="236">236</th><td>      <b>return</b> <a class="local col3 ref" href="#1293__init" title='__init' data-ref="1293__init">__init</a>;&nbsp</td></tr>
+<tr><th id="237">237</th><td>    }&nbsp</td></tr>
+<tr><th id="238">238</th><td>&nbsp</td></tr>
+<tr><th id="239">239</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="240">240</th><td><i class="doc">   *  <span class="command">@brief</span>  Return list of partial sums</i>&nbsp</td></tr>
+<tr><th id="241">241</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="242">242</th><td><i class="doc">   *  Accumulates the values in the range [first,last) using the<span class="command"> @c</span> <span class="arg">+</span> operator.</i>&nbsp</td></tr>
+<tr><th id="243">243</th><td><i class="doc">   *  As each successive input value is added into the total, that partial sum</i>&nbsp</td></tr>
+<tr><th id="244">244</th><td><i class="doc">   *  is written to<span class="command"> @p</span> <span class="arg">__result.</span>  Therefore, the first value in<span class="command"> @p</span> <span class="arg">__result</span> is</i>&nbsp</td></tr>
+<tr><th id="245">245</th><td><i class="doc">   *  the first value of the input, the second value in<span class="command"> @p</span> <span class="arg">__result</span> is the sum</i>&nbsp</td></tr>
+<tr><th id="246">246</th><td><i class="doc">   *  of the first and second input values, and so on.</i>&nbsp</td></tr>
+<tr><th id="247">247</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="248">248</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__first</span>  Start of input range.</i>&nbsp</td></tr>
+<tr><th id="249">249</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__last</span>  End of input range.</i>&nbsp</td></tr>
+<tr><th id="250">250</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__result</span>  Output sum.</i>&nbsp</td></tr>
+<tr><th id="251">251</th><td><i class="doc">   *  <span class="command">@return</span>  Iterator pointing just beyond the values written to __result.</i>&nbsp</td></tr>
+<tr><th id="252">252</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="253">253</th><td>  <b>template</b>&lt;<b>typename</b> _InputIterator, <b>typename</b> _OutputIterator&gt;&nbsp</td></tr>
+<tr><th id="254">254</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="255">255</th><td>    _OutputIterator&nbsp</td></tr>
+<tr><th id="256">256</th><td>    <dfn class="decl def fn" id="_ZSt11partial_sumT_S_T0_" title='std::partial_sum' data-ref="_ZSt11partial_sumT_S_T0_">partial_sum</dfn>(_InputIterator <dfn class="local col6 decl" id="1296__first" title='__first' data-type='_InputIterator' data-ref="1296__first">__first</dfn>, _InputIterator <dfn class="local col7 decl" id="1297__last" title='__last' data-type='_InputIterator' data-ref="1297__last">__last</dfn>,&nbsp</td></tr>
+<tr><th id="257">257</th><td>		_OutputIterator <dfn class="local col8 decl" id="1298__result" title='__result' data-type='_OutputIterator' data-ref="1298__result">__result</dfn>)&nbsp</td></tr>
+<tr><th id="258">258</th><td>    {&nbsp</td></tr>
+<tr><th id="259">259</th><td>      <b>typedef</b> <b>typename</b> <a class="type" href="cpp_type_traits.h.html#std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits">iterator_traits</a>&lt;_InputIterator&gt;::value_type <dfn class="local col9 typedef" id="1299_ValueType" title='_ValueType' data-type='typename iterator_traits&lt;_InputIterator&gt;::value_type' data-ref="1299_ValueType">_ValueType</dfn>;&nbsp</td></tr>
+<tr><th id="260">260</th><td>&nbsp</td></tr>
+<tr><th id="261">261</th><td>      <i>// concept requirements</i>&nbsp</td></tr>
+<tr><th id="262">262</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_InputIteratorConcept&lt;_InputIterator&gt;)&nbsp</td></tr>
+<tr><th id="263">263</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_OutputIteratorConcept&lt;_OutputIterator,&nbsp</td></tr>
+<tr><th id="264">264</th><td>				                         _ValueType&gt;)&nbsp</td></tr>
+<tr><th id="265">265</th><td>      <a class="macro" href="../debug/debug.h.html#67" title="" data-ref="_M/__glibcxx_requires_valid_range">__glibcxx_requires_valid_range</a>(__first, __last);&nbsp</td></tr>
+<tr><th id="266">266</th><td>&nbsp</td></tr>
+<tr><th id="267">267</th><td>      <b>if</b> (<a class="local col6 ref" href="#1296__first" title='__first' data-ref="1296__first">__first</a> == <a class="local col7 ref" href="#1297__last" title='__last' data-ref="1297__last">__last</a>)&nbsp</td></tr>
+<tr><th id="268">268</th><td>	<b>return</b> <a class="local col8 ref" href="#1298__result" title='__result' data-ref="1298__result">__result</a>;&nbsp</td></tr>
+<tr><th id="269">269</th><td>      <a class="local col9 typedef" href="#1299_ValueType" title='_ValueType' data-type='typename iterator_traits&lt;_InputIterator&gt;::value_type' data-ref="1299_ValueType">_ValueType</a> <dfn class="local col0 decl" id="1300__value" title='__value' data-type='_ValueType' data-ref="1300__value">__value</dfn> = *<a class="local col6 ref" href="#1296__first" title='__first' data-ref="1296__first">__first</a>;&nbsp</td></tr>
+<tr><th id="270">270</th><td>      *<a class="local col8 ref" href="#1298__result" title='__result' data-ref="1298__result">__result</a> = <a class="local col0 ref" href="#1300__value" title='__value' data-ref="1300__value">__value</a>;&nbsp</td></tr>
+<tr><th id="271">271</th><td>      <b>while</b> (++<a class="local col6 ref" href="#1296__first" title='__first' data-ref="1296__first">__first</a> != <a class="local col7 ref" href="#1297__last" title='__last' data-ref="1297__last">__last</a>)&nbsp</td></tr>
+<tr><th id="272">272</th><td>	{&nbsp</td></tr>
+<tr><th id="273">273</th><td>	  <a class="local col0 ref" href="#1300__value" title='__value' data-ref="1300__value">__value</a> = <a class="macro" href="#112" title="std::move(__value)" data-ref="_M/_GLIBCXX_MOVE_IF_20">_GLIBCXX_MOVE_IF_20</a>(<a class="local col0 ref" href="#1300__value" title='__value' data-ref="1300__value">__value</a>) + *<a class="local col6 ref" href="#1296__first" title='__first' data-ref="1296__first">__first</a>;&nbsp</td></tr>
+<tr><th id="274">274</th><td>	  *++<a class="local col8 ref" href="#1298__result" title='__result' data-ref="1298__result">__result</a> = <a class="local col0 ref" href="#1300__value" title='__value' data-ref="1300__value">__value</a>;&nbsp</td></tr>
+<tr><th id="275">275</th><td>	}&nbsp</td></tr>
+<tr><th id="276">276</th><td>      <b>return</b> ++<a class="local col8 ref" href="#1298__result" title='__result' data-ref="1298__result">__result</a>;&nbsp</td></tr>
+<tr><th id="277">277</th><td>    }&nbsp</td></tr>
+<tr><th id="278">278</th><td>&nbsp</td></tr>
+<tr><th id="279">279</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="280">280</th><td><i class="doc">   *  <span class="command">@brief</span>  Return list of partial sums</i>&nbsp</td></tr>
+<tr><th id="281">281</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="282">282</th><td><i class="doc">   *  Accumulates the values in the range [first,last) using<span class="command"> @p</span> <span class="arg">__binary_op.</span></i>&nbsp</td></tr>
+<tr><th id="283">283</th><td><i class="doc">   *  As each successive input value is added into the total, that partial sum</i>&nbsp</td></tr>
+<tr><th id="284">284</th><td><i class="doc">   *  is written to<span class="command"> @p</span> <span class="arg">__result.</span>  Therefore, the first value in<span class="command"> @p</span> <span class="arg">__result</span> is</i>&nbsp</td></tr>
+<tr><th id="285">285</th><td><i class="doc">   *  the first value of the input, the second value in<span class="command"> @p</span> <span class="arg">__result</span> is the sum</i>&nbsp</td></tr>
+<tr><th id="286">286</th><td><i class="doc">   *  of the first and second input values, and so on.</i>&nbsp</td></tr>
+<tr><th id="287">287</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="288">288</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__first</span>  Start of input range.</i>&nbsp</td></tr>
+<tr><th id="289">289</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__last</span>  End of input range.</i>&nbsp</td></tr>
+<tr><th id="290">290</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__result</span>  Output sum.</i>&nbsp</td></tr>
+<tr><th id="291">291</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__binary_op</span>  Function object.</i>&nbsp</td></tr>
+<tr><th id="292">292</th><td><i class="doc">   *  <span class="command">@return</span>  Iterator pointing just beyond the values written to __result.</i>&nbsp</td></tr>
+<tr><th id="293">293</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="294">294</th><td>  <b>template</b>&lt;<b>typename</b> _InputIterator, <b>typename</b> _OutputIterator,&nbsp</td></tr>
+<tr><th id="295">295</th><td>	   <b>typename</b> _BinaryOperation&gt;&nbsp</td></tr>
+<tr><th id="296">296</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="297">297</th><td>    _OutputIterator&nbsp</td></tr>
+<tr><th id="298">298</th><td>    <dfn class="decl def fn" id="_ZSt11partial_sumT_S_T0_T1_" title='std::partial_sum' data-ref="_ZSt11partial_sumT_S_T0_T1_">partial_sum</dfn>(_InputIterator <dfn class="local col1 decl" id="1301__first" title='__first' data-type='_InputIterator' data-ref="1301__first">__first</dfn>, _InputIterator <dfn class="local col2 decl" id="1302__last" title='__last' data-type='_InputIterator' data-ref="1302__last">__last</dfn>,&nbsp</td></tr>
+<tr><th id="299">299</th><td>		_OutputIterator <dfn class="local col3 decl" id="1303__result" title='__result' data-type='_OutputIterator' data-ref="1303__result">__result</dfn>, _BinaryOperation <dfn class="local col4 decl" id="1304__binary_op" title='__binary_op' data-type='_BinaryOperation' data-ref="1304__binary_op">__binary_op</dfn>)&nbsp</td></tr>
+<tr><th id="300">300</th><td>    {&nbsp</td></tr>
+<tr><th id="301">301</th><td>      <b>typedef</b> <b>typename</b> <a class="type" href="cpp_type_traits.h.html#std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits">iterator_traits</a>&lt;_InputIterator&gt;::value_type <dfn class="local col5 typedef" id="1305_ValueType" title='_ValueType' data-type='typename iterator_traits&lt;_InputIterator&gt;::value_type' data-ref="1305_ValueType">_ValueType</dfn>;&nbsp</td></tr>
+<tr><th id="302">302</th><td>&nbsp</td></tr>
+<tr><th id="303">303</th><td>      <i>// concept requirements</i>&nbsp</td></tr>
+<tr><th id="304">304</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_InputIteratorConcept&lt;_InputIterator&gt;)&nbsp</td></tr>
+<tr><th id="305">305</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_OutputIteratorConcept&lt;_OutputIterator,&nbsp</td></tr>
+<tr><th id="306">306</th><td>				                         _ValueType&gt;)&nbsp</td></tr>
+<tr><th id="307">307</th><td>      <a class="macro" href="../debug/debug.h.html#67" title="" data-ref="_M/__glibcxx_requires_valid_range">__glibcxx_requires_valid_range</a>(__first, __last);&nbsp</td></tr>
+<tr><th id="308">308</th><td>&nbsp</td></tr>
+<tr><th id="309">309</th><td>      <b>if</b> (<a class="local col1 ref" href="#1301__first" title='__first' data-ref="1301__first">__first</a> == <a class="local col2 ref" href="#1302__last" title='__last' data-ref="1302__last">__last</a>)&nbsp</td></tr>
+<tr><th id="310">310</th><td>	<b>return</b> <a class="local col3 ref" href="#1303__result" title='__result' data-ref="1303__result">__result</a>;&nbsp</td></tr>
+<tr><th id="311">311</th><td>      <a class="local col5 typedef" href="#1305_ValueType" title='_ValueType' data-type='typename iterator_traits&lt;_InputIterator&gt;::value_type' data-ref="1305_ValueType">_ValueType</a> <dfn class="local col6 decl" id="1306__value" title='__value' data-type='_ValueType' data-ref="1306__value">__value</dfn> = *<a class="local col1 ref" href="#1301__first" title='__first' data-ref="1301__first">__first</a>;&nbsp</td></tr>
+<tr><th id="312">312</th><td>      *<a class="local col3 ref" href="#1303__result" title='__result' data-ref="1303__result">__result</a> = <a class="local col6 ref" href="#1306__value" title='__value' data-ref="1306__value">__value</a>;&nbsp</td></tr>
+<tr><th id="313">313</th><td>      <b>while</b> (++<a class="local col1 ref" href="#1301__first" title='__first' data-ref="1301__first">__first</a> != <a class="local col2 ref" href="#1302__last" title='__last' data-ref="1302__last">__last</a>)&nbsp</td></tr>
+<tr><th id="314">314</th><td>	{&nbsp</td></tr>
+<tr><th id="315">315</th><td>	  <a class="local col6 ref" href="#1306__value" title='__value' data-ref="1306__value">__value</a> = <a class="local col4 ref" href="#1304__binary_op" title='__binary_op' data-ref="1304__binary_op">__binary_op</a>(<a class="macro" href="#112" title="std::move(__value)" data-ref="_M/_GLIBCXX_MOVE_IF_20">_GLIBCXX_MOVE_IF_20</a>(<a class="local col6 ref" href="#1306__value" title='__value' data-ref="1306__value">__value</a>), *<a class="local col1 ref" href="#1301__first" title='__first' data-ref="1301__first">__first</a>);&nbsp</td></tr>
+<tr><th id="316">316</th><td>	  *++<a class="local col3 ref" href="#1303__result" title='__result' data-ref="1303__result">__result</a> = <a class="local col6 ref" href="#1306__value" title='__value' data-ref="1306__value">__value</a>;&nbsp</td></tr>
+<tr><th id="317">317</th><td>	}&nbsp</td></tr>
+<tr><th id="318">318</th><td>      <b>return</b> ++<a class="local col3 ref" href="#1303__result" title='__result' data-ref="1303__result">__result</a>;&nbsp</td></tr>
+<tr><th id="319">319</th><td>    }&nbsp</td></tr>
+<tr><th id="320">320</th><td>&nbsp</td></tr>
+<tr><th id="321">321</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="322">322</th><td><i class="doc">   *  <span class="command">@brief</span>  Return differences between adjacent values.</i>&nbsp</td></tr>
+<tr><th id="323">323</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="324">324</th><td><i class="doc">   *  Computes the difference between adjacent values in the range</i>&nbsp</td></tr>
+<tr><th id="325">325</th><td><i class="doc">   *  [first,last) using operator-() and writes the result to<span class="command"> @p</span> <span class="arg">__result.</span></i>&nbsp</td></tr>
+<tr><th id="326">326</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="327">327</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__first</span>  Start of input range.</i>&nbsp</td></tr>
+<tr><th id="328">328</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__last</span>  End of input range.</i>&nbsp</td></tr>
+<tr><th id="329">329</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__result</span>  Output sums.</i>&nbsp</td></tr>
+<tr><th id="330">330</th><td><i class="doc">   *  <span class="command">@return</span>  Iterator pointing just beyond the values written to result.</i>&nbsp</td></tr>
+<tr><th id="331">331</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="332">332</th><td><i class="doc">   *  _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="333">333</th><td><i class="doc">   *  DR 539. partial_sum and adjacent_difference should mention requirements</i>&nbsp</td></tr>
+<tr><th id="334">334</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="335">335</th><td>  <b>template</b>&lt;<b>typename</b> _InputIterator, <b>typename</b> _OutputIterator&gt;&nbsp</td></tr>
+<tr><th id="336">336</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="337">337</th><td>    _OutputIterator&nbsp</td></tr>
+<tr><th id="338">338</th><td>    <dfn class="decl def fn" id="_ZSt19adjacent_differenceT_S_T0_" title='std::adjacent_difference' data-ref="_ZSt19adjacent_differenceT_S_T0_">adjacent_difference</dfn>(_InputIterator <dfn class="local col7 decl" id="1307__first" title='__first' data-type='_InputIterator' data-ref="1307__first">__first</dfn>,&nbsp</td></tr>
+<tr><th id="339">339</th><td>			_InputIterator <dfn class="local col8 decl" id="1308__last" title='__last' data-type='_InputIterator' data-ref="1308__last">__last</dfn>, _OutputIterator <dfn class="local col9 decl" id="1309__result" title='__result' data-type='_OutputIterator' data-ref="1309__result">__result</dfn>)&nbsp</td></tr>
+<tr><th id="340">340</th><td>    {&nbsp</td></tr>
+<tr><th id="341">341</th><td>      <b>typedef</b> <b>typename</b> <a class="type" href="cpp_type_traits.h.html#std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits">iterator_traits</a>&lt;_InputIterator&gt;::value_type <dfn class="local col0 typedef" id="1310_ValueType" title='_ValueType' data-type='typename iterator_traits&lt;_InputIterator&gt;::value_type' data-ref="1310_ValueType">_ValueType</dfn>;&nbsp</td></tr>
+<tr><th id="342">342</th><td>&nbsp</td></tr>
+<tr><th id="343">343</th><td>      <i>// concept requirements</i>&nbsp</td></tr>
+<tr><th id="344">344</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_InputIteratorConcept&lt;_InputIterator&gt;)&nbsp</td></tr>
+<tr><th id="345">345</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_OutputIteratorConcept&lt;_OutputIterator,&nbsp</td></tr>
+<tr><th id="346">346</th><td>				                         _ValueType&gt;)&nbsp</td></tr>
+<tr><th id="347">347</th><td>      <a class="macro" href="../debug/debug.h.html#67" title="" data-ref="_M/__glibcxx_requires_valid_range">__glibcxx_requires_valid_range</a>(__first, __last);&nbsp</td></tr>
+<tr><th id="348">348</th><td>&nbsp</td></tr>
+<tr><th id="349">349</th><td>      <b>if</b> (<a class="local col7 ref" href="#1307__first" title='__first' data-ref="1307__first">__first</a> == <a class="local col8 ref" href="#1308__last" title='__last' data-ref="1308__last">__last</a>)&nbsp</td></tr>
+<tr><th id="350">350</th><td>	<b>return</b> <a class="local col9 ref" href="#1309__result" title='__result' data-ref="1309__result">__result</a>;&nbsp</td></tr>
+<tr><th id="351">351</th><td>      <a class="local col0 typedef" href="#1310_ValueType" title='_ValueType' data-type='typename iterator_traits&lt;_InputIterator&gt;::value_type' data-ref="1310_ValueType">_ValueType</a> <dfn class="local col1 decl" id="1311__value" title='__value' data-type='_ValueType' data-ref="1311__value">__value</dfn> = *<a class="local col7 ref" href="#1307__first" title='__first' data-ref="1307__first">__first</a>;&nbsp</td></tr>
+<tr><th id="352">352</th><td>      *<a class="local col9 ref" href="#1309__result" title='__result' data-ref="1309__result">__result</a> = <a class="local col1 ref" href="#1311__value" title='__value' data-ref="1311__value">__value</a>;&nbsp</td></tr>
+<tr><th id="353">353</th><td>      <b>while</b> (++<a class="local col7 ref" href="#1307__first" title='__first' data-ref="1307__first">__first</a> != <a class="local col8 ref" href="#1308__last" title='__last' data-ref="1308__last">__last</a>)&nbsp</td></tr>
+<tr><th id="354">354</th><td>	{&nbsp</td></tr>
+<tr><th id="355">355</th><td>	  <a class="local col0 typedef" href="#1310_ValueType" title='_ValueType' data-type='typename iterator_traits&lt;_InputIterator&gt;::value_type' data-ref="1310_ValueType">_ValueType</a> <dfn class="local col2 decl" id="1312__tmp" title='__tmp' data-type='_ValueType' data-ref="1312__tmp">__tmp</dfn> = *<a class="local col7 ref" href="#1307__first" title='__first' data-ref="1307__first">__first</a>;&nbsp</td></tr>
+<tr><th id="356">356</th><td>	  *++<a class="local col9 ref" href="#1309__result" title='__result' data-ref="1309__result">__result</a> = <a class="local col2 ref" href="#1312__tmp" title='__tmp' data-ref="1312__tmp">__tmp</a> - <a class="macro" href="#112" title="std::move(__value)" data-ref="_M/_GLIBCXX_MOVE_IF_20">_GLIBCXX_MOVE_IF_20</a>(<a class="local col1 ref" href="#1311__value" title='__value' data-ref="1311__value">__value</a>);&nbsp</td></tr>
+<tr><th id="357">357</th><td>	  <a class="local col1 ref" href="#1311__value" title='__value' data-ref="1311__value">__value</a> = <a class="macro" href="move.h.html#167" title="std::move(__tmp)" data-ref="_M/_GLIBCXX_MOVE">_GLIBCXX_MOVE</a>(<a class="local col2 ref" href="#1312__tmp" title='__tmp' data-ref="1312__tmp">__tmp</a>);&nbsp</td></tr>
+<tr><th id="358">358</th><td>	}&nbsp</td></tr>
+<tr><th id="359">359</th><td>      <b>return</b> ++<a class="local col9 ref" href="#1309__result" title='__result' data-ref="1309__result">__result</a>;&nbsp</td></tr>
+<tr><th id="360">360</th><td>    }&nbsp</td></tr>
+<tr><th id="361">361</th><td>&nbsp</td></tr>
+<tr><th id="362">362</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="363">363</th><td><i class="doc">   *  <span class="command">@brief</span>  Return differences between adjacent values.</i>&nbsp</td></tr>
+<tr><th id="364">364</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="365">365</th><td><i class="doc">   *  Computes the difference between adjacent values in the range</i>&nbsp</td></tr>
+<tr><th id="366">366</th><td><i class="doc">   *  [__first,__last) using the function object<span class="command"> @p</span> <span class="arg">__binary_op</span> and writes the</i>&nbsp</td></tr>
+<tr><th id="367">367</th><td><i class="doc">   *  result to<span class="command"> @p</span> <span class="arg">__result.</span></i>&nbsp</td></tr>
+<tr><th id="368">368</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="369">369</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__first</span>  Start of input range.</i>&nbsp</td></tr>
+<tr><th id="370">370</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__last</span>  End of input range.</i>&nbsp</td></tr>
+<tr><th id="371">371</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__result</span>  Output sum.</i>&nbsp</td></tr>
+<tr><th id="372">372</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__binary_op</span> Function object.</i>&nbsp</td></tr>
+<tr><th id="373">373</th><td><i class="doc">   *  <span class="command">@return</span>  Iterator pointing just beyond the values written to result.</i>&nbsp</td></tr>
+<tr><th id="374">374</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="375">375</th><td><i class="doc">   *  _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="376">376</th><td><i class="doc">   *  DR 539. partial_sum and adjacent_difference should mention requirements</i>&nbsp</td></tr>
+<tr><th id="377">377</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="378">378</th><td>  <b>template</b>&lt;<b>typename</b> _InputIterator, <b>typename</b> _OutputIterator,&nbsp</td></tr>
+<tr><th id="379">379</th><td>	   <b>typename</b> _BinaryOperation&gt;&nbsp</td></tr>
+<tr><th id="380">380</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="381">381</th><td>    _OutputIterator&nbsp</td></tr>
+<tr><th id="382">382</th><td>    <dfn class="decl def fn" id="_ZSt19adjacent_differenceT_S_T0_T1_" title='std::adjacent_difference' data-ref="_ZSt19adjacent_differenceT_S_T0_T1_">adjacent_difference</dfn>(_InputIterator <dfn class="local col3 decl" id="1313__first" title='__first' data-type='_InputIterator' data-ref="1313__first">__first</dfn>, _InputIterator <dfn class="local col4 decl" id="1314__last" title='__last' data-type='_InputIterator' data-ref="1314__last">__last</dfn>,&nbsp</td></tr>
+<tr><th id="383">383</th><td>			_OutputIterator <dfn class="local col5 decl" id="1315__result" title='__result' data-type='_OutputIterator' data-ref="1315__result">__result</dfn>, _BinaryOperation <dfn class="local col6 decl" id="1316__binary_op" title='__binary_op' data-type='_BinaryOperation' data-ref="1316__binary_op">__binary_op</dfn>)&nbsp</td></tr>
+<tr><th id="384">384</th><td>    {&nbsp</td></tr>
+<tr><th id="385">385</th><td>      <b>typedef</b> <b>typename</b> <a class="type" href="cpp_type_traits.h.html#std::iterator_traits" title='std::iterator_traits' data-ref="std::iterator_traits">iterator_traits</a>&lt;_InputIterator&gt;::value_type <dfn class="local col7 typedef" id="1317_ValueType" title='_ValueType' data-type='typename iterator_traits&lt;_InputIterator&gt;::value_type' data-ref="1317_ValueType">_ValueType</dfn>;&nbsp</td></tr>
+<tr><th id="386">386</th><td>&nbsp</td></tr>
+<tr><th id="387">387</th><td>      <i>// concept requirements</i>&nbsp</td></tr>
+<tr><th id="388">388</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_InputIteratorConcept&lt;_InputIterator&gt;)&nbsp</td></tr>
+<tr><th id="389">389</th><td>      <a class="macro" href="concept_check.h.html#48" title="" data-ref="_M/__glibcxx_function_requires">__glibcxx_function_requires</a>(_OutputIteratorConcept&lt;_OutputIterator,&nbsp</td></tr>
+<tr><th id="390">390</th><td>				                         _ValueType&gt;)&nbsp</td></tr>
+<tr><th id="391">391</th><td>      <a class="macro" href="../debug/debug.h.html#67" title="" data-ref="_M/__glibcxx_requires_valid_range">__glibcxx_requires_valid_range</a>(__first, __last);&nbsp</td></tr>
+<tr><th id="392">392</th><td>&nbsp</td></tr>
+<tr><th id="393">393</th><td>      <b>if</b> (<a class="local col3 ref" href="#1313__first" title='__first' data-ref="1313__first">__first</a> == <a class="local col4 ref" href="#1314__last" title='__last' data-ref="1314__last">__last</a>)&nbsp</td></tr>
+<tr><th id="394">394</th><td>	<b>return</b> <a class="local col5 ref" href="#1315__result" title='__result' data-ref="1315__result">__result</a>;&nbsp</td></tr>
+<tr><th id="395">395</th><td>      <a class="local col7 typedef" href="#1317_ValueType" title='_ValueType' data-type='typename iterator_traits&lt;_InputIterator&gt;::value_type' data-ref="1317_ValueType">_ValueType</a> <dfn class="local col8 decl" id="1318__value" title='__value' data-type='_ValueType' data-ref="1318__value">__value</dfn> = *<a class="local col3 ref" href="#1313__first" title='__first' data-ref="1313__first">__first</a>;&nbsp</td></tr>
+<tr><th id="396">396</th><td>      *<a class="local col5 ref" href="#1315__result" title='__result' data-ref="1315__result">__result</a> = <a class="local col8 ref" href="#1318__value" title='__value' data-ref="1318__value">__value</a>;&nbsp</td></tr>
+<tr><th id="397">397</th><td>      <b>while</b> (++<a class="local col3 ref" href="#1313__first" title='__first' data-ref="1313__first">__first</a> != <a class="local col4 ref" href="#1314__last" title='__last' data-ref="1314__last">__last</a>)&nbsp</td></tr>
+<tr><th id="398">398</th><td>	{&nbsp</td></tr>
+<tr><th id="399">399</th><td>	  <a class="local col7 typedef" href="#1317_ValueType" title='_ValueType' data-type='typename iterator_traits&lt;_InputIterator&gt;::value_type' data-ref="1317_ValueType">_ValueType</a> <dfn class="local col9 decl" id="1319__tmp" title='__tmp' data-type='_ValueType' data-ref="1319__tmp">__tmp</dfn> = *<a class="local col3 ref" href="#1313__first" title='__first' data-ref="1313__first">__first</a>;&nbsp</td></tr>
+<tr><th id="400">400</th><td>	  *++<a class="local col5 ref" href="#1315__result" title='__result' data-ref="1315__result">__result</a> = <a class="local col6 ref" href="#1316__binary_op" title='__binary_op' data-ref="1316__binary_op">__binary_op</a>(<a class="local col9 ref" href="#1319__tmp" title='__tmp' data-ref="1319__tmp">__tmp</a>, <a class="macro" href="#112" title="std::move(__value)" data-ref="_M/_GLIBCXX_MOVE_IF_20">_GLIBCXX_MOVE_IF_20</a>(<a class="local col8 ref" href="#1318__value" title='__value' data-ref="1318__value">__value</a>));&nbsp</td></tr>
+<tr><th id="401">401</th><td>	  <a class="local col8 ref" href="#1318__value" title='__value' data-ref="1318__value">__value</a> = <a class="macro" href="move.h.html#167" title="std::move(__tmp)" data-ref="_M/_GLIBCXX_MOVE">_GLIBCXX_MOVE</a>(<a class="local col9 ref" href="#1319__tmp" title='__tmp' data-ref="1319__tmp">__tmp</a>);&nbsp</td></tr>
+<tr><th id="402">402</th><td>	}&nbsp</td></tr>
+<tr><th id="403">403</th><td>      <b>return</b> ++<a class="local col5 ref" href="#1315__result" title='__result' data-ref="1315__result">__result</a>;&nbsp</td></tr>
+<tr><th id="404">404</th><td>    }&nbsp</td></tr>
+<tr><th id="405">405</th><td>&nbsp</td></tr>
+<tr><th id="406">406</th><td>  <i class="doc">/// @} group numeric_ops</i>&nbsp</td></tr>
+<tr><th id="407">407</th><td>&nbsp</td></tr>
+<tr><th id="408">408</th><td><u>#undef <a class="macro" href="#112" data-ref="_M/_GLIBCXX_MOVE_IF_20">_GLIBCXX_MOVE_IF_20</a></u>&nbsp</td></tr>
+<tr><th id="409">409</th><td>&nbsp</td></tr>
+<tr><th id="410">410</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#422" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_ALGO">_GLIBCXX_END_NAMESPACE_ALGO</a>&nbsp</td></tr>
+<tr><th id="411">411</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="412">412</th><td>&nbsp</td></tr>
+<tr><th id="413">413</th><td><u>#<span data-ppcond="56">endif</span> /* _STL_NUMERIC_H */</u>&nbsp</td></tr>
+<tr><th id="414">414</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Image/Src/tQuantizeSpatial.cpp.html'>Modules/Image/Src/tQuantizeSpatial.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

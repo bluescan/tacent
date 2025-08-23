@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='62' type='bool tMath::tQuaternion::NormalizeSafe()'/>
+<doc f='Modules/Math/Inc/Math/tQuaternion.h' l='62'>/* Returns success. */</doc>

@@ -1,0 +1,9 @@
+<dec f='include/c++/11/ext/numeric_traits.h' l='70' type='const bool'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='72' u='r'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='75' u='r'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='78' u='r'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='87' ll='88' type='const bool'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='88' type='const bool'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='88' type='const bool'/>
+<doc f='include/c++/11/ext/numeric_traits.h' l='68'>// NB: these two are also available in std::numeric_limits as compile
+      // time constants, but &lt;limits&gt; is big and we can avoid including it.</doc>

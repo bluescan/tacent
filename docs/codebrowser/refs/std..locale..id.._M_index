@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='502' type='std::size_t'/>
+<offset>0</offset>
+<doc f='include/c++/11/bits/locale_classes.h' l='499'>// NB: There is no accessor for _M_index because it may be used
+    // before the constructor is run; the effect of calling a member
+    // function (even an inline) would be undefined.</doc>

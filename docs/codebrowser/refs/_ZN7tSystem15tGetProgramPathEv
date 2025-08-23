@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='271' type='tString tSystem::tGetProgramPath()'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='270'>// Gets the full directory and executable name that the current process is being run from.</doc>
+<use f='Modules/System/Src/tCmdLine.cpp' l='546' u='c' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<def f='Modules/System/Src/tFile.cpp' l='1378' ll='1410' type='tString tSystem::tGetProgramPath()'/>

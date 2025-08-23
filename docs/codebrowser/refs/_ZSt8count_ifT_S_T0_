@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='707' type='typename iterator_traits&lt;_IIter&gt;::difference_type std::count_if(_IIter , _IIter , _Predicate )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='4081' ll='4093' macro='1' type='typename iterator_traits&lt;_InputIterator&gt;::difference_type std::count_if(_InputIterator __first, _InputIterator __last, _Predicate __pred)'/>

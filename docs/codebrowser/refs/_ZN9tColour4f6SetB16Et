@@ -1,0 +1,2 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='816' u='c' c='_ZN9tColour4f5Set16Etttt'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='823' type='void tColour4f::SetB16(uint16 b)'/>

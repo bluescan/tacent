@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17739' ll='17744'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17739'/>
+<size>32</size>
+<mbr r='VkDirectDriverLoadingInfoLUNARG::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDirectDriverLoadingInfoLUNARG::pNext' o='64' t='void *'/>
+<mbr r='VkDirectDriverLoadingInfoLUNARG::flags' o='128' t='VkDirectDriverLoadingFlagsLUNARG'/>
+<mbr r='VkDirectDriverLoadingInfoLUNARG::pfnGetInstanceProcAddr' o='192' t='PFN_vkGetInstanceProcAddrLUNARG'/>

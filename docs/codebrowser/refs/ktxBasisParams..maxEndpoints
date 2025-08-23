@@ -1,0 +1,17 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1370' type='ktx_uint32_t'/>
+<offset>160</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1355'>/*!&lt; Compression quality. Range is [1,255].  Lower gives better
+             compression/lower quality/faster. Higher gives less compression
+             /higher quality/slower.  This automatically determines values for
+             @c maxEndpoints, @c maxSelectors,
+             @c endpointRDOThreshold and @c selectorRDOThreshold
+             for the target quality level. Setting these parameters overrides
+             the values determined by @c qualityLevel which defaults to
+             128 if neither it nor both of @c maxEndpoints and
+             @c maxSelectors have been set.
+             @note @e Both of @c maxEndpoints and @c maxSelectors
+             must be set for them to have any effect.
+             @note qualityLevel will only determine values for
+             @c endpointRDOThreshold and @c selectorRDOThreshold
+             when its value exceeds 128, otherwise their defaults will be used.
+        */</doc>

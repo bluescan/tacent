@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='112' type='void tMath::tLine2::tLine2(const tMath::tLineSeg2 &amp; s)'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='318' u='c' c='_ZN5tMath20tIntersectFindSegSegERKNS_9tLineSeg2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='318' u='c' c='_ZN5tMath20tIntersectFindSegSegERKNS_9tLineSeg2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='337' u='c' c='_ZN5tMath20tIntersectFindRaySegERKNS_5tRay2ERKNS_9tLineSeg2ERNS_8tVector2E'/>

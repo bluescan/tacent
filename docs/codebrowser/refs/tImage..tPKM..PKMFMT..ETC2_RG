@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tImagePKM.cpp' l='69' type='6'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='102' c='_ZN6tImage4tPKM27GetFormatInfo_FromPKMFormatERNS_12tPixelFormatER14tColourProfileji'/>
+<doc f='Modules/Image/Src/tImagePKM.cpp' l='69'>// GL_COMPRESSED_RG11_EAC.</doc>

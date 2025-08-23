@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='655' type='int deflateGetDictionary(z_streamp strm, Bytef * dictionary, uInt * dictLength)'/>

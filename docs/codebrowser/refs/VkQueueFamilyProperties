@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3246' ll='3251'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3246'/>
+<size>24</size>
+<mbr r='VkQueueFamilyProperties::queueFlags' o='0' t='VkQueueFlags'/>
+<mbr r='VkQueueFamilyProperties::queueCount' o='32' t='uint32_t'/>
+<mbr r='VkQueueFamilyProperties::timestampValidBits' o='64' t='uint32_t'/>
+<mbr r='VkQueueFamilyProperties::minImageTransferGranularity' o='96' t='VkExtent3D'/>

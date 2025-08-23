@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='913' type='int pthread_mutexattr_setprotocol(pthread_mutexattr_t * __attr, int __protocol)'/>
+<doc f='include/pthread.h' l='911'>/* Set the mutex protocol attribute in *ATTR to PROTOCOL (either
+   PTHREAD_PRIO_NONE, PTHREAD_PRIO_INHERIT, or PTHREAD_PRIO_PROTECT).  */</doc>

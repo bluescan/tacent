@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14946' ll='14955'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14946'/>
+<size>56</size>
+<mbr r='VkIndirectCommandsLayoutCreateInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkIndirectCommandsLayoutCreateInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkIndirectCommandsLayoutCreateInfoNV::flags' o='128' t='VkIndirectCommandsLayoutUsageFlagsNV'/>
+<mbr r='VkIndirectCommandsLayoutCreateInfoNV::pipelineBindPoint' o='160' t='VkPipelineBindPoint'/>
+<mbr r='VkIndirectCommandsLayoutCreateInfoNV::tokenCount' o='192' t='uint32_t'/>
+<mbr r='VkIndirectCommandsLayoutCreateInfoNV::pTokens' o='256' t='const VkIndirectCommandsLayoutTokenNV *'/>
+<mbr r='VkIndirectCommandsLayoutCreateInfoNV::streamCount' o='320' t='uint32_t'/>
+<mbr r='VkIndirectCommandsLayoutCreateInfoNV::pStreamStrides' o='384' t='const uint32_t *'/>

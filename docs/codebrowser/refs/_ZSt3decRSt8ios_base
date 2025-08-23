@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/ios_base.h' l='1045' ll='1050' type='std::ios_base &amp; std::dec(std::ios_base &amp; __base)'/>
+<doc f='include/c++/11/bits/ios_base.h' l='1043'>// [27.4.5.3] basefield manipulators
+  /// Calls base.setf(ios_base::dec, ios_base::basefield).</doc>

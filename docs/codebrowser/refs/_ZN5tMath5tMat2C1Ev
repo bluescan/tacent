@@ -1,0 +1,4 @@
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1043' u='c' c='_ZN5tMath4tMulERNS_5tMat2ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1133' u='c' c='_ZN5tMath7tInvertERNS_5tMat2E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='391' u='c' c='_ZN12tChunkWriter5WriteERKN5tMath8tMatrix2E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='565' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath8tMatrix2Ei'/>

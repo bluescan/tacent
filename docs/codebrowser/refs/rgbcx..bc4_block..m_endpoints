@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3828' type='uint8_t[2]'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3832' u='r' c='_ZNK5rgbcx9bc4_block13get_low_alphaEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3833' u='r' c='_ZNK5rgbcx9bc4_block14get_high_alphaEv'/>
+<offset>0</offset>

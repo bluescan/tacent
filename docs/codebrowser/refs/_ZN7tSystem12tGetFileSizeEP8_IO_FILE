@@ -1,0 +1,11 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='58' type='int tSystem::tGetFileSize(tFileHandle )'/>
+<use f='Modules/System/Src/tChunk.cpp' l='775' u='c' c='_ZN12tChunkReader4LoadERK7tStringPh'/>
+<use f='Modules/System/Src/tChunk.cpp' l='819' u='c' c='_ZN12tChunkReader8LoadSafeERK7tString'/>
+<def f='Modules/System/Src/tFile.cpp' l='137' ll='147' type='int tSystem::tGetFileSize(tFileHandle handle)'/>
+<use f='Modules/System/Src/tFile.cpp' l='552' u='c' c='_ZN7tSystem12tGetFileSizeERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='876' u='c' c='_ZN7tSystem15tFilesIdenticalERK7tStringS2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='877' u='c' c='_ZN7tSystem15tFilesIdenticalERK7tStringS2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='1194' u='c' c='_ZN7tSystem9tLoadFileERK7tStringPhPib'/>
+<use f='Modules/System/Src/tFile.cpp' l='1269' u='c' c='_ZN7tSystem13tLoadFileHeadERK7tStringRiPh'/>
+<use f='Modules/System/Src/tScript.cpp' l='545' u='c' c='_ZN11tExprReader4LoadERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='1135' u='c' c='_ZN10tFunScript4LoadERK7tString'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18211' ll='18215'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18211'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceLegacyVertexAttributesPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceLegacyVertexAttributesPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceLegacyVertexAttributesPropertiesEXT::nativeUnalignedPerformance' o='128' t='VkBool32'/>

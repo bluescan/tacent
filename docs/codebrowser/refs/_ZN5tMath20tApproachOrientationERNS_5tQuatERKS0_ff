@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='757' type='bool tMath::tApproachOrientation(tMath::tQuat &amp; orientation, const tMath::tQuat &amp; dest, float rate, float dt)'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='1015' ll='1037' type='bool tMath::tApproachOrientation(tMath::tQuat &amp; curr, const tMath::tQuat &amp; dest, float rate, float dt)'/>

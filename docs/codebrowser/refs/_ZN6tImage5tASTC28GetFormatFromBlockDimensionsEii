@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tImageASTC.cpp' l='41' type='tImage::tPixelFormat tImage::tASTC::GetFormatFromBlockDimensions(int blockW, int blockH)'/>
+<def f='Modules/Image/Src/tImageASTC.cpp' l='45' ll='66' type='tImage::tPixelFormat tImage::tASTC::GetFormatFromBlockDimensions(int blockW, int blockH)'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='121' u='c' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>

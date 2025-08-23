@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14257'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14256'>// VK_NV_coverage_reduction_mode is a preprocessor guard. Do not pass it to API calls.</doc>

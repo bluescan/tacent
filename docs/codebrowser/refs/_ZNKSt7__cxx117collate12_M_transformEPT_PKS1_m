@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='747' type='std::size_t std::collate::_M_transform(_CharT * , const _CharT * , std::size_t ) const'/>
+<dec f='include/c++/11/bits/locale_classes.h' l='808' type='std::size_t std::collate&lt;char&gt;::_M_transform(char * , const char * , std::size_t ) const'/>
+<dec f='include/c++/11/bits/locale_classes.h' l='817' type='std::size_t std::collate&lt;wchar_t&gt;::_M_transform(wchar_t * , const wchar_t * , std::size_t ) const'/>
+<def f='include/c++/11/bits/locale_classes.tcc' l='153' ll='156' type='std::size_t std::collate::_M_transform(_CharT * , const _CharT * , std::size_t ) const'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='222' u='c' c='_ZNKSt7__cxx117collate12do_transformEPKT_S3_'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='230' u='c' c='_ZNKSt7__cxx117collate12do_transformEPKT_S3_'/>
+<doc f='include/c++/11/bits/locale_classes.tcc' l='152'>// Generic version does nothing.</doc>

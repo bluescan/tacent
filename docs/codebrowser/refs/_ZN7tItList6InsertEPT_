@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='313' type='T * tItList::Insert(T * obj)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='312'>// Insert before head and append after tail. If &apos;here&apos; is supplied, inserts before here or appends after here.</doc>

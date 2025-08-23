@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='116' type='bool tSystem::tDtostr(tString &amp; dest, double value, bool incBitRep = true)'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='120' u='c' c='_ZN7tSystem5tDtoaER7tStringdb'/>
+<def f='Modules/System/Src/tPrint.cpp' l='2170' ll='2212' type='bool tSystem::tDtostr(tString &amp; dest, double d, bool incBitRep = true)'/>
+<use f='Modules/System/Src/tScript.cpp' l='745' u='c' c='_ZN11tExprWriter9WriteAtomEdb'/>

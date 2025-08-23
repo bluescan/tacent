@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='276' type='bool tImage::tPicture::AdjustContrast(float contrast, comp_t  = tCompBit_RGB)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='273'>// Adjust contrast based on the tPicture pixels and write them into the adjustment pixel buffer. Contrast is in
+	// [0.0, 1.0]. When contrast is at 0.0, adjustment buffer will be lowest contrast. When contrast at 1.0, highest,
+	// Returns success.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='719' ll='739' type='bool tImage::tPicture::AdjustContrast(float contrastNorm, comp_t comps = tCompBit_RGB)'/>

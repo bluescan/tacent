@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='3059' ll='3146'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3148'/>
+<size>1</size>
+<fun r='_ZNKSt6ranges11__minmax_fnclERKT_S3_T1_T0_'/>
+<fun r='_ZNKSt6ranges11__minmax_fnclEOT_T1_T0_'/>
+<fun r='_ZNKSt6ranges11__minmax_fnclESt16initializer_listIT_ET1_T0_'/>

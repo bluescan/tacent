@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='98' type='uint32'/>
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='105' type='uint64'/>
+<offset>64</offset>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='98'>/* byte offset to first directory */</doc>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='105'>/* byte offset to first directory */</doc>

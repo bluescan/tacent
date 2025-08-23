@@ -1,0 +1,3 @@
+<dec f='include/string.h' l='466' type='void explicit_bzero(void * __s, size_t __n)'/>
+<doc f='include/string.h' l='464'>/* Set N bytes of S to 0.  The compiler will not delete a call to this
+   function, even if S is dead after the call.  */</doc>

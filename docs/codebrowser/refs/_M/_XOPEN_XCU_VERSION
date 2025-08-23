@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='100'/>
+<doc f='include/unistd.h' l='99'>/* Commands and utilities from XPG4 are available.  */</doc>

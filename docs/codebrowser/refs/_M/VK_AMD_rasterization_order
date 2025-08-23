@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11302'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11301'>// VK_AMD_rasterization_order is a preprocessor guard. Do not pass it to API calls.</doc>

@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='139' ll='141' type='void std::_Sp_counted_base::_M_destroy()'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='184' u='c' c='_ZNSt16_Sp_counted_base10_M_releaseEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='207' u='c' c='_ZNSt16_Sp_counted_base15_M_weak_releaseEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='285' u='c' c='_ZNSt16_Sp_counted_base10_M_releaseEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='299' u='c' c='_ZNSt16_Sp_counted_base15_M_weak_releaseEv'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='138'>// Called when _M_weak_count drops to zero.</doc>

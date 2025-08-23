@@ -1,0 +1,26 @@
+<dec f='include/c++/11/istream' l='343' type='std::basic_istream::__istream_type &amp; std::basic_istream::get(std::basic_istream::char_type * __s, std::streamsize __n, std::basic_istream::char_type __delim)'/>
+<def f='include/c++/11/bits/istream.tcc' l='314' ll='359' type='basic_istream&lt;_CharT, _Traits&gt; &amp; std::basic_istream::get(std::basic_istream::char_type * __s, std::streamsize __n, std::basic_istream::char_type __delim)'/>
+<doc f='include/c++/11/istream' l='318'>/**
+       *  @brief  Simple multiple-character extraction.
+       *  @param  __s  Pointer to an array.
+       *  @param  __n  Maximum number of characters to store in @a __s.
+       *  @param  __delim  A &quot;stop&quot; character.
+       *  @return  *this
+       *
+       *  Characters are extracted and stored into @a __s until one of the
+       *  following happens:
+       *
+       *  - @c __n-1 characters are stored
+       *  - the input sequence reaches EOF
+       *  - the next character equals @a __delim, in which case the character
+       *    is not extracted
+       *
+       * If no characters are stored, failbit is set in the stream&apos;s error
+       * state.
+       *
+       * In any case, a null character is stored into the next location in
+       * the array.
+       *
+       *  @note  This function is not overloaded on signed char and
+       *         unsigned char.
+      */</doc>

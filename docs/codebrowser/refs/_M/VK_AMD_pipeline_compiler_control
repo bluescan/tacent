@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13491'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13490'>// VK_AMD_pipeline_compiler_control is a preprocessor guard. Do not pass it to API calls.</doc>

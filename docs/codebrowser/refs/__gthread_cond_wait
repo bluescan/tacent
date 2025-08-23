@@ -1,0 +1,4 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='862' ll='866' type='int __gthread_cond_wait(__gthread_cond_t * __cond, __gthread_mutex_t * __mutex)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='879' u='c' c='__gthread_cond_wait_recursive'/>
+<use f='include/c++/11/bits/std_mutex.h' l='155' u='c' c='_ZNSt9__condvar4waitERSt5mutex'/>
+<use f='include/c++/11/ext/concurrence.h' l='292' u='c' c='__gnu_cxx::__cond::wait'/>

@@ -1,0 +1,18 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14957' ll='14973'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14957'/>
+<size>120</size>
+<mbr r='VkGeneratedCommandsInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkGeneratedCommandsInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkGeneratedCommandsInfoNV::pipelineBindPoint' o='128' t='VkPipelineBindPoint'/>
+<mbr r='VkGeneratedCommandsInfoNV::pipeline' o='192' t='VkPipeline'/>
+<mbr r='VkGeneratedCommandsInfoNV::indirectCommandsLayout' o='256' t='VkIndirectCommandsLayoutNV'/>
+<mbr r='VkGeneratedCommandsInfoNV::streamCount' o='320' t='uint32_t'/>
+<mbr r='VkGeneratedCommandsInfoNV::pStreams' o='384' t='const VkIndirectCommandsStreamNV *'/>
+<mbr r='VkGeneratedCommandsInfoNV::sequencesCount' o='448' t='uint32_t'/>
+<mbr r='VkGeneratedCommandsInfoNV::preprocessBuffer' o='512' t='VkBuffer'/>
+<mbr r='VkGeneratedCommandsInfoNV::preprocessOffset' o='576' t='VkDeviceSize'/>
+<mbr r='VkGeneratedCommandsInfoNV::preprocessSize' o='640' t='VkDeviceSize'/>
+<mbr r='VkGeneratedCommandsInfoNV::sequencesCountBuffer' o='704' t='VkBuffer'/>
+<mbr r='VkGeneratedCommandsInfoNV::sequencesCountOffset' o='768' t='VkDeviceSize'/>
+<mbr r='VkGeneratedCommandsInfoNV::sequencesIndexBuffer' o='832' t='VkBuffer'/>
+<mbr r='VkGeneratedCommandsInfoNV::sequencesIndexOffset' o='896' t='VkDeviceSize'/>

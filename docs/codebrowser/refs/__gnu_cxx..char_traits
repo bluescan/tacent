@@ -1,0 +1,53 @@
+<def f='include/c++/11/bits/char_traits.h' l='90' ll='150'/>
+<use f='include/c++/11/bits/char_traits.h' l='154' c='__gnu_cxx::char_traits::compare'/>
+<use f='include/c++/11/bits/char_traits.h' l='167' c='__gnu_cxx::char_traits::length'/>
+<use f='include/c++/11/bits/char_traits.h' l='178' c='__gnu_cxx::char_traits::find'/>
+<use f='include/c++/11/bits/char_traits.h' l='177' c='__gnu_cxx::char_traits::find'/>
+<use f='include/c++/11/bits/char_traits.h' l='190' c='__gnu_cxx::char_traits::move'/>
+<use f='include/c++/11/bits/char_traits.h' l='189' c='__gnu_cxx::char_traits::move'/>
+<use f='include/c++/11/bits/char_traits.h' l='240' c='__gnu_cxx::char_traits::copy'/>
+<use f='include/c++/11/bits/char_traits.h' l='239' c='__gnu_cxx::char_traits::copy'/>
+<use f='include/c++/11/bits/char_traits.h' l='251' c='__gnu_cxx::char_traits::assign'/>
+<use f='include/c++/11/bits/char_traits.h' l='250' c='__gnu_cxx::char_traits::assign'/>
+<use f='include/c++/11/bits/char_traits.h' l='338'/>
+<use f='include/c++/11/bits/char_traits.h' l='397' c='_ZNSt11char_traitsIcE6lengthEPKc'/>
+<use f='include/c++/11/bits/char_traits.h' l='411' c='_ZNSt11char_traitsIcE4findEPKcmRS1_'/>
+<use f='include/c++/11/bits/char_traits.h' l='423' c='_ZNSt11char_traitsIcE4moveEPcPKcm'/>
+<use f='include/c++/11/bits/char_traits.h' l='435' c='_ZNSt11char_traitsIcE4copyEPcPKcm'/>
+<use f='include/c++/11/bits/char_traits.h' l='447' c='_ZNSt11char_traitsIcE6assignEPcmc'/>
+<use f='include/c++/11/bits/char_traits.h' l='511' c='_ZNSt11char_traitsIwE7compareEPKwS2_m'/>
+<use f='include/c++/11/bits/char_traits.h' l='521' c='_ZNSt11char_traitsIwE6lengthEPKw'/>
+<use f='include/c++/11/bits/char_traits.h' l='535' c='_ZNSt11char_traitsIwE4findEPKwmRS1_'/>
+<use f='include/c++/11/bits/char_traits.h' l='547' c='_ZNSt11char_traitsIwE4moveEPwPKwm'/>
+<use f='include/c++/11/bits/char_traits.h' l='559' c='_ZNSt11char_traitsIwE4copyEPwPKwm'/>
+<use f='include/c++/11/bits/char_traits.h' l='571' c='_ZNSt11char_traitsIwE6assignEPwmw'/>
+<use f='include/c++/11/bits/char_traits.h' l='632' c='_ZNSt11char_traitsIDuE7compareEPKDuS2_m'/>
+<use f='include/c++/11/bits/char_traits.h' l='642' c='_ZNSt11char_traitsIDuE6lengthEPKDu'/>
+<use f='include/c++/11/bits/char_traits.h' l='659' c='_ZNSt11char_traitsIDuE4findEPKDumRS1_'/>
+<use f='include/c++/11/bits/char_traits.h' l='671' c='_ZNSt11char_traitsIDuE4moveEPDuPKDum'/>
+<use f='include/c++/11/bits/char_traits.h' l='683' c='_ZNSt11char_traitsIDuE4copyEPDuPKDum'/>
+<use f='include/c++/11/bits/char_traits.h' l='695' c='_ZNSt11char_traitsIDuE6assignEPDumDu'/>
+<use f='include/c++/11/bits/char_traits.h' l='799' c='_ZNSt11char_traitsIDsE4moveEPDsPKDsm'/>
+<use f='include/c++/11/bits/char_traits.h' l='812' c='_ZNSt11char_traitsIDsE4copyEPDsPKDsm'/>
+<use f='include/c++/11/bits/char_traits.h' l='913' c='_ZNSt11char_traitsIDiE4moveEPDiPKDim'/>
+<use f='include/c++/11/bits/char_traits.h' l='926' c='_ZNSt11char_traitsIDiE4copyEPDiPKDim'/>
+<fun r='__gnu_cxx::char_traits::assign'/>
+<fun r='__gnu_cxx::char_traits::eq'/>
+<fun r='__gnu_cxx::char_traits::lt'/>
+<fun r='__gnu_cxx::char_traits::compare'/>
+<fun r='__gnu_cxx::char_traits::length'/>
+<fun r='__gnu_cxx::char_traits::find'/>
+<fun r='__gnu_cxx::char_traits::move'/>
+<fun r='__gnu_cxx::char_traits::copy'/>
+<fun r='__gnu_cxx::char_traits::assign'/>
+<fun r='__gnu_cxx::char_traits::to_char_type'/>
+<fun r='__gnu_cxx::char_traits::to_int_type'/>
+<fun r='__gnu_cxx::char_traits::eq_int_type'/>
+<fun r='__gnu_cxx::char_traits::eof'/>
+<fun r='__gnu_cxx::char_traits::not_eof'/>
+<fun r='__gnu_cxx::char_traits::compare'/>
+<fun r='__gnu_cxx::char_traits::length'/>
+<fun r='__gnu_cxx::char_traits::find'/>
+<fun r='__gnu_cxx::char_traits::move'/>
+<fun r='__gnu_cxx::char_traits::copy'/>
+<fun r='__gnu_cxx::char_traits::assign'/>

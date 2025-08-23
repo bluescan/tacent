@@ -1,0 +1,12 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='154' type='int tList::Bubble(CompareFunc compare, bool backwards = false, int maxCompares = -1)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='143'>// This does an O(n) single pass of a bubble sort iteration. Allows the cost of sorting to be distributed over time
+	// for objects that do not change their order very often. Do the expensive merge sort when the list is initially
+	// populated, then use this to keep it approximately correct.
+	//
+	// The direction is important when doing this type of partial sort. A forward bubble will result in the last object
+	// in the list being correct after one pass, last two for two passes etc. If getting the front of the list correct
+	// sooner is more important you&apos;ll want to bubble backwards. This is true regardless of whether the compare
+	// function implements an ascending or descending sort.
+	//
+	// maxCompares sets how far into the list to perform possible swaps. If maxCompares == -1 it means go all the way.
+	// That is, GetNumItems() - 1. Returns number of swaps performed.</doc>

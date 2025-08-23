@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='186' type='void rgbcx::encode_bc1(void * pDst, const uint8_t * pPixels, uint32_t flags = 0, uint32_t total_orderings_to_try = DEFAULT_TOTAL_ORDERINGS_TO_TRY, uint32_t total_orderings_to_try3 = DEFAULT_TOTAL_ORDERINGS_TO_TRY3)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3027' u='c' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3480' ll='3821' type='void rgbcx::encode_bc1(void * pDst, const uint8_t * pPixels, uint32_t flags = 0, uint32_t total_orderings_to_try = DEFAULT_TOTAL_ORDERINGS_TO_TRY, uint32_t total_orderings_to_try3 = DEFAULT_TOTAL_ORDERINGS_TO_TRY3)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4014' u='c' c='_ZN5rgbcx10encode_bc3EPvPKhjj'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='182'>// Low-level interface for BC1 encoding.
+	// Always returns a 4 color block, unless cEncodeBC1Use3ColorBlocksForBlackPixels or cEncodeBC1Use3ColorBlock flags are specified. 
+	// total_orderings_to_try controls the perf. vs. quality tradeoff on 4-color blocks when the cEncodeBC1UseLikelyTotalOrderings flag is used. It must range between [MIN_TOTAL_ORDERINGS, MAX_TOTAL_ORDERINGS4].
+	// total_orderings_to_try3 controls the perf. vs. quality tradeoff on 3-color bocks when the cEncodeBC1UseLikelyTotalOrderings and the cEncodeBC1Use3ColorBlocks flags are used. Valid range is [0,MAX_TOTAL_ORDERINGS3] (0=disabled).</doc>

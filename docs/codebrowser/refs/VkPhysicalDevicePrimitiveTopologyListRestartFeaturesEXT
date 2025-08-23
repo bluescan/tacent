@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16260' ll='16265'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16260'/>
+<size>24</size>
+<mbr r='VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT::primitiveTopologyListRestart' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDevicePrimitiveTopologyListRestartFeaturesEXT::primitiveTopologyPatchListRestart' o='160' t='VkBool32'/>

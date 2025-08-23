@@ -1,0 +1,4 @@
+<def f='include/c++/11/ext/type_traits.h' l='55' ll='56'/>
+<def f='include/c++/11/ext/type_traits.h' l='58' ll='60'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='761' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRPv'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1205' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_PKv'/>

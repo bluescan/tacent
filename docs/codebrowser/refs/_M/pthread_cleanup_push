@@ -1,0 +1,8 @@
+<dec f='include/pthread.h' l='592'/>
+<doc f='include/pthread.h' l='585'>/* Install a cleanup handler: ROUTINE will be called with arguments ARG
+   when the thread is canceled or calls pthread_exit.  ROUTINE will also
+   be called with arguments ARG when the matching pthread_cleanup_pop
+   is executed with non-zero EXECUTE argument.
+
+   pthread_cleanup_push and pthread_cleanup_pop are macros and must always
+   be used in matching pairs at the same nesting level of braces.  */</doc>

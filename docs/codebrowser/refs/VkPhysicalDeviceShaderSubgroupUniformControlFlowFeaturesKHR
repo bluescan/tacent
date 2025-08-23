@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10398' ll='10402'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10398'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceShaderSubgroupUniformControlFlowFeaturesKHR::shaderSubgroupUniformControlFlow' o='128' t='VkBool32'/>

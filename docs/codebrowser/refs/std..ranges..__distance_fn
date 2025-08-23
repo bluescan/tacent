@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/ranges_base.h' l='788' ll='817'/>
+<use f='include/c++/11/bits/ranges_base.h' l='819'/>
+<size>1</size>
+<fun r='_ZNKSt6ranges13__distance_fnclET_T0_'/>
+<fun r='_ZNKSt6ranges13__distance_fnclEOT_'/>

@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Src/tAttribute.cpp' l='30' u='r' c='_ZNK6tScene10tAttribute4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='78' u='a' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>

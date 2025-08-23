@@ -1,0 +1,1 @@
+<def f='include/c++/11/chrono' l='2812' ll='2814' type='std::chrono::local_days std::chrono::year_month_weekday::operator time_point() const'/>

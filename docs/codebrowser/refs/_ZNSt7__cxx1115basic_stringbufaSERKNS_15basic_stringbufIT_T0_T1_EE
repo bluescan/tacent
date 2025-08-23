@@ -1,0 +1,2 @@
+<def f='include/c++/11/sstream' l='202' ll='203' type='basic_stringbuf&lt;_CharT, _Traits, _Alloc&gt; &amp; std::basic_stringbuf::operator=(const basic_stringbuf&lt;_CharT, _Traits, _Alloc&gt; &amp; )'/>
+<doc f='include/c++/11/sstream' l='200'>// 27.8.2.2 Assign and swap:</doc>

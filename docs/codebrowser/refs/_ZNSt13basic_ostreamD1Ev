@@ -1,0 +1,6 @@
+<def f='include/c++/11/ostream' l='92' ll='93' type='void std::basic_ostream::~basic_ostream&lt;_CharT, _Traits&gt;()'/>
+<doc f='include/c++/11/ostream' l='87'>/**
+       *  @brief  Base destructor.
+       *
+       *  This does very little apart from providing a virtual base dtor.
+      */</doc>

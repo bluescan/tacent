@@ -1,0 +1,14 @@
+<inh f='Modules/Math/Inc/Math/tRandom.h' l='27' c='tMath::tRandom::tGenerator'/>
+<def f='Modules/Math/Inc/Math/tRandom.h' l='78' ll='95'/>
+<size>16</size>
+<doc f='Modules/Math/Inc/Math/tRandom.h' l='77'>// If we need a cryptographically secure random number generator we should finish implementing Fortuna.</doc>
+<fun r='_ZN5tMath7tRandom17tGeneratorFortunaC1Ev'/>
+<fun r='_ZN5tMath7tRandom17tGeneratorFortunaC1Ej'/>
+<fun r='_ZN5tMath7tRandom17tGeneratorFortunaC1Ey'/>
+<fun r='_ZN5tMath7tRandom17tGeneratorFortunaC1EPKji'/>
+<fun r='_ZN5tMath7tRandom17tGeneratorFortuna7SetSeedEj'/>
+<fun r='_ZN5tMath7tRandom17tGeneratorFortuna7SetSeedEy'/>
+<fun r='_ZN5tMath7tRandom17tGeneratorFortuna7SetSeedEPKji'/>
+<fun r='_ZNK5tMath7tRandom17tGeneratorFortuna7GetBitsEv'/>
+<mbr r='tMath::tRandom::tGeneratorFortuna::StateVector' o='64' t='uint32[1]'/>
+<mbr r='tMath::tRandom::tGeneratorFortuna::StateIndex' o='96' t='int'/>

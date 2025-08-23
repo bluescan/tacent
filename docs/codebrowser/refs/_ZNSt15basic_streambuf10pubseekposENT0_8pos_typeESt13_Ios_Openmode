@@ -1,0 +1,8 @@
+<def f='include/c++/11/streambuf' l='267' ll='270' type='std::basic_streambuf::pos_type std::basic_streambuf::pubseekpos(std::basic_streambuf::pos_type __sp, ios_base::openmode __mode = ios_base::in | ios_base::out)'/>
+<doc f='include/c++/11/streambuf' l='260'>/**
+       *  @brief  Alters the stream position.
+       *  @param  __sp  Position
+       *  @param  __mode Value for ios_base::openmode.
+       *
+       *  Calls virtual seekpos function.
+      */</doc>

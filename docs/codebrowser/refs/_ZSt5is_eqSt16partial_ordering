@@ -1,0 +1,2 @@
+<def f='include/c++/11/compare' l='319' ll='321' type='bool std::is_eq(std::partial_ordering __cmp)'/>
+<doc f='include/c++/11/compare' l='318'>// named comparison functions</doc>

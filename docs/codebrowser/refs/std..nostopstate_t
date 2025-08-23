@@ -1,0 +1,5 @@
+<def f='include/c++/11/stop_token' l='46'/>
+<use f='include/c++/11/stop_token' l='47'/>
+<use f='include/c++/11/stop_token' l='483' c='_ZNSt11stop_sourceC1ESt13nostopstate_t'/>
+<size>1</size>
+<fun r='_ZNSt13nostopstate_tC1Ev'/>

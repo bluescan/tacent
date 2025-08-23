@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='98' type='void rgbcx::encode_bc1_solid_block(void * pDst, uint32_t fr, uint32_t fg, uint32_t fb, bool allow_3color)'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1906' ll='1968' type='void rgbcx::encode_bc1_solid_block(void * pDst, uint32_t fr, uint32_t fg, uint32_t fb, bool allow_3color)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3498' u='c' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='97'>// Optimally encodes a solid color block to BC1 format.</doc>

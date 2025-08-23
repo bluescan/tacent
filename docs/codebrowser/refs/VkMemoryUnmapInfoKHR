@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10028' ll='10033'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10028'/>
+<size>32</size>
+<mbr r='VkMemoryUnmapInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkMemoryUnmapInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkMemoryUnmapInfoKHR::flags' o='128' t='VkMemoryUnmapFlagsKHR'/>
+<mbr r='VkMemoryUnmapInfoKHR::memory' o='192' t='VkDeviceMemory'/>

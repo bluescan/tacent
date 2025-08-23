@@ -1,0 +1,5 @@
+<dec f='Modules/System/Src/tRegex.cpp' l='53' type='258'/>
+<use f='Modules/System/Src/tRegex.cpp' l='104' u='r' c='_ZN7tSystem6tRegex7NewNodeEi'/>
+<use f='Modules/System/Src/tRegex.cpp' l='348' u='r' c='_ZN7tSystem6tRegex7ElementEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='664' c='_ZNK7tSystem6tRegex9MatchNodeEPKNS0_4NodeEPKcS3_'/>
+<use f='Modules/System/Src/tRegex.cpp' l='768' u='r' c='_ZN7tSystem6tRegex15CompileInternalEv'/>

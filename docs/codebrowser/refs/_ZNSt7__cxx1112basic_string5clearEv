@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/basic_string.h' l='1014' ll='1016' type='void std::basic_string::clear()'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1011'>/**
+       *  Erases the string, making it empty.
+       */</doc>
+<use f='include/c++/11/bits/locale_facets.tcc' l='282' u='c' c='_ZNKSt7num_get16_M_extract_floatB5cxx11ET0_S0_RSt8ios_baseRSt12_Ios_IostateRNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='399' u='c' c='_ZNSt10filesystem7__cxx114path5clearEv'/>

@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tSpline.h' l='31' ll='66'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='38' c='_ZN5tMath20tPiecewiseLinearPathC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='282' c='_ZN5tMath20tPiecewiseLinearPathC1ERKS0_'/>
+<size>40</size>
+<fun r='_ZN5tMath20tPiecewiseLinearPathD1Ev'/>

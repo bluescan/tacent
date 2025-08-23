@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10186' ll='10190'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10186'/>
+<size>24</size>
+<mbr r='VkQueryPoolVideoEncodeFeedbackCreateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkQueryPoolVideoEncodeFeedbackCreateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkQueryPoolVideoEncodeFeedbackCreateInfoKHR::encodeFeedbackFlags' o='128' t='VkVideoEncodeFeedbackFlagsKHR'/>

@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/WebP/include/mux.h' l='136' ll='139' type='WebPMux * WebPMuxCreate(const WebPData * bitstream, int copy_data)'/>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='128'>// Creates a mux object from raw data given in WebP RIFF format.
+// Parameters:
+//   bitstream - (in) the bitstream data in WebP RIFF format
+//   copy_data - (in) value 1 indicates given data WILL be copied to the mux
+//               object and value 0 indicates data will NOT be copied.
+// Returns:
+//   A pointer to the mux object created from given data - on success.
+//   NULL - In case of invalid data or memory error.</doc>

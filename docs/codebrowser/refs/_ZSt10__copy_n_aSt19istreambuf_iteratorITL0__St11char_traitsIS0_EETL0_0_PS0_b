@@ -1,0 +1,1 @@
+<dec f='include/c++/11/bits/streambuf_iterator.h' l='88' type='typename __gnu_cxx::__enable_if&lt;__is_char&lt;_CharT2&gt;::__value, _CharT2 *&gt;::__type std::__copy_n_a(istreambuf_iterator&lt;_CharT2&gt; , _Size , _CharT2 * , bool )'/>

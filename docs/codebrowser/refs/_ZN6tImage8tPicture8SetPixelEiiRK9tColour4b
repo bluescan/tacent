@@ -1,0 +1,2 @@
+<def f='Modules/Image/Inc/Image/tPicture.h' l='153' type='void tImage::tPicture::SetPixel(int x, int y, const tColour4b &amp; c)'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='374' u='c' c='_ZN6tImage8tPicture10CopyRegionEiiPK9tColour4biij'/>

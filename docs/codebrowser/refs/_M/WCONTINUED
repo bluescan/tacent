@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/waitflags.h' l='32'/>
+<use f='include/x86_64-linux-gnu/bits/waitstatus.h' l='48' u='a'/>

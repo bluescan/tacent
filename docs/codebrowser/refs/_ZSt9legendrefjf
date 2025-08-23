@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='976' ll='978' type='float std::legendref(unsigned int __l, float __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='970'>/**
+   * Return the Legendre polynomial @f$ P_l(x) @f$ of nonnegative
+   * degree @f$ l @f$ and @c float argument @f$ |x| &lt;= 0 @f$.
+   *
+   * @see legendre for more details.
+   */</doc>

@@ -1,0 +1,2 @@
+<dec f='include/time.h' l='262' type='int dysize(int __year)'/>
+<doc f='include/time.h' l='261'>/* Return the number of days in YEAR.  */</doc>

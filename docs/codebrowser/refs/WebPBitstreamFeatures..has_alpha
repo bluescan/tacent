@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='415' type='int'/>
+<offset>64</offset>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='415'>// True if the bitstream contains an alpha channel.</doc>

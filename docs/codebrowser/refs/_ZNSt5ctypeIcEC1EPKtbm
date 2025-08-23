@@ -1,0 +1,11 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='721' type='void std::ctype&lt;char&gt;::ctype(const std::ctype_base::mask * __table = 0, bool __del = false, std::size_t __refs = 0)'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='710'>/**
+       *  @brief  Constructor performs initialization.
+       *
+       *  This is the constructor provided by the standard.
+       *
+       *  @param __table If non-zero, table is used as the per-char mask.
+       *               Else classic_table() is used.
+       *  @param __del   If true, passes ownership of table to this facet.
+       *  @param __refs  Passed to the base facet class.
+      */</doc>

@@ -1,0 +1,12 @@
+<def f='include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h' l='55' ll='61'/>
+<use f='include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h' l='55'/>
+<size>32</size>
+<doc f='include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h' l='50'>/* The structure with the cookie function pointers.
+   The tag name of this struct is _IO_cookie_io_functions_t to
+   preserve historic C++ mangled names for functions taking
+   cookie_io_functions_t arguments.  That name should not be used in
+   new code.  */</doc>
+<mbr r='_IO_cookie_io_functions_t::read' o='0' t='cookie_read_function_t *'/>
+<mbr r='_IO_cookie_io_functions_t::write' o='64' t='cookie_write_function_t *'/>
+<mbr r='_IO_cookie_io_functions_t::seek' o='128' t='cookie_seek_function_t *'/>
+<mbr r='_IO_cookie_io_functions_t::close' o='192' t='cookie_close_function_t *'/>

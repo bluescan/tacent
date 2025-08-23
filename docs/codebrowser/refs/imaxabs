@@ -1,0 +1,2 @@
+<dec f='include/inttypes.h' l='290' type='intmax_t imaxabs(intmax_t __n)'/>
+<doc f='include/inttypes.h' l='289'>/* Compute absolute value of N.  */</doc>

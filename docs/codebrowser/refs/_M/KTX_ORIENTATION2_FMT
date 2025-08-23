@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='149'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='145'>/**
+ * @~English
+ * @brief Standard KTX 1 format for 2D orientation value.
+ */</doc>

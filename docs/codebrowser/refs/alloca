@@ -1,0 +1,2 @@
+<dec f='include/alloca.h' l='32' type='void * alloca(size_t __size)'/>
+<doc f='include/alloca.h' l='31'>/* Allocate a block that will be freed when the calling function exits.  */</doc>

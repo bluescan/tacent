@@ -1,0 +1,3 @@
+<dec f='include/zlib.h' l='124' type='Bytef *'/>
+<offset>448</offset>
+<doc f='include/zlib.h' l='124'>/* pointer to zero-terminated comment or Z_NULL */</doc>

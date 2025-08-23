@@ -1,0 +1,20 @@
+<dec f='Modules/Image/Inc/Image/tLayer.h' l='60' type='int tImage::tLayer::GetDataSize() const'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='119' u='c' c='_ZN6tImage6tLayer3SetENS_12tPixelFormatEiiPhb'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='138' u='c' c='_ZN6tImage6tLayer3SetERKS0_'/>
+<def f='Modules/Image/Inc/Image/tLayer.h' l='149' ll='181' type='int tImage::tLayer::GetDataSize() const'/>
+<doc f='Modules/Image/Inc/Image/tLayer.h' l='56'>// Returns the size of the data in bytes by reading the Width, Height, and PixelFormat. For block-compressed format
+	// the data size will be a multiple of the block size in bytes. BC 4x4 blocks may be different sizes, whereas ASTC
+	// block size is always 16 bytes. eg. a 1x1 BC1 format layer still needs 8 bytes. A 5x5 BC1 format layer would need
+	// a whole 4 blocks (same as an 8x8) and would yield 32 bytes.</doc>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='150' u='c' c='_ZNK6tImage8tTexture21GetTotalPixelDataSizeEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1370' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1441' u='c' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='952' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1023' u='c' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1129' u='c' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='40' u='c' c='_ZNK6tImage6tLayereqERKS0_'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='60' u='c' c='_ZNK6tImage6tLayer4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='91' u='c' c='_ZN6tImage6tLayer4LoadERK6tChunkb'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='213' u='c' c='_ZN6tImage8tTexture33ProcessImageTo_R8G8B8_Or_R8G8B8A8ERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='264' u='c' c='_ZN6tImage8tTexture23ProcessImageTo_G3B5R5G3ERNS_8tPictureEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='339' u='c' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>

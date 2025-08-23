@@ -1,0 +1,8 @@
+<def f='Modules/Input/Inc/Input/tUnit.h' l='34' type='void tInput::tUnit::tUnit(const tName &amp; name, std::mutex &amp; mutex)'/>
+<use f='Modules/Input/Inc/Input/tUnitDiscreteBool.h' l='26' u='c' c='_ZN6tInput17tUnitDiscreteBoolC1ERK5tNameRSt5mutex'/>
+<doc f='Modules/Input/Inc/Input/tUnit.h' l='32'>// All units have a name and a mutex. The mutex is a ref because it is shared with other components of a particular
+	// controller.</doc>
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='28' u='c' c='_ZN6tInput19tUnitContinuousDispC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tUnitContinuousAxis.h' l='27' u='c' c='_ZN6tInput19tUnitContinuousAxisC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tUnitContinuousWind.h' l='26' u='c' c='_ZN6tInput19tUnitContinuousWindC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tUnitDiscreteMulti.h' l='26' u='c' c='_ZN6tInput18tUnitDiscreteMultiC1ERK5tNameRSt5mutex'/>

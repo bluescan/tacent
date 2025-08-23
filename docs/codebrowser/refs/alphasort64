@@ -1,0 +1,1 @@
+<dec f='include/dirent.h' l='340' type='int alphasort64(const struct dirent64 ** __e1, const struct dirent64 ** __e2)'/>

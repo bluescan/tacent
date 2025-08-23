@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='449' type='TIFF * TIFFClientOpen(const char * , const char * , thandle_t , TIFFReadWriteProc , TIFFReadWriteProc , TIFFSeekProc , TIFFCloseProc , TIFFSizeProc , TIFFMapFileProc , TIFFUnmapFileProc )'/>

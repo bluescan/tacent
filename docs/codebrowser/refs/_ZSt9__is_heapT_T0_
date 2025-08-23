@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_heap.h' l='92' ll='98' macro='1' type='bool std::__is_heap(_RandomAccessIterator __first, _Distance __n)'/>

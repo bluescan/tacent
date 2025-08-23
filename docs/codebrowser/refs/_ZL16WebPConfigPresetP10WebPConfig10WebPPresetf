@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/WebP/include/encode.h' l='181' ll='185' type='int WebPConfigPreset(WebPConfig * config, WebPPreset preset, float quality)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='338' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='177'>// This function will initialize the configuration according to a predefined
+// set of parameters (referred to by &apos;preset&apos;) and a given quality factor.
+// This function can be called as a replacement to WebPConfigInit(). Will
+// return false in case of error.</doc>

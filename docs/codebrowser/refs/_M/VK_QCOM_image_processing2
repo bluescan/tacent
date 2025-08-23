@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18461'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18460'>// VK_QCOM_image_processing2 is a preprocessor guard. Do not pass it to API calls.</doc>

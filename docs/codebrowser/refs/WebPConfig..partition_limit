@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='131' type='int'/>
+<offset>608</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='130'>// is set to 0 for easier progressive decoding.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='131'>// quality degradation allowed to fit the 512k limit</doc>

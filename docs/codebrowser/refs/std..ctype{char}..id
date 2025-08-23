@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='706' type='locale::id'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='705'>/// The facet id for ctype&lt;char&gt;</doc>

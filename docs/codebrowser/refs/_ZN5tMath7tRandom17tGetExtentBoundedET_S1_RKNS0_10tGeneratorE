@@ -1,0 +1,4 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='122' type='T tMath::tRandom::tGetExtentBounded(T center, T extent, const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<def f='Modules/Math/Inc/Math/tRandom.h' l='203' ll='206' type='T tMath::tRandom::tGetExtentBounded(T center, T extent, const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>
+<doc f='Modules/Math/Inc/Math/tRandom.h' l='120'>// This returns a random number centered around &apos;center&apos; plus or minus &apos;extent&apos;. eg. calling GetExtentBounded(10, 2)
+// will result in a random number in the interval [8, 12].</doc>

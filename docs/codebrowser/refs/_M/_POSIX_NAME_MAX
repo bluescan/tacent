@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='74'/>
+<doc f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='73'>/* Number of bytes in a filename.  */</doc>

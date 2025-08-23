@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='324' type='int'/>
+<offset>896</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='323'>// map for extra information (only for lossy compression mode)</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='324'>// 1: intra type, 2: segment, 3: quant</doc>

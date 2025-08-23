@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/fs_fwd.h' l='94' ll='100' type='std::filesystem::copy_options std::filesystem::operator&amp;(std::filesystem::copy_options __x, std::filesystem::copy_options __y)'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='127' u='c' c='_ZNSt10filesystemaNERNS_12copy_optionsES0_'/>
+<doc f='include/c++/11/bits/fs_fwd.h' l='92'>/// @{
+  /// @relates copy_options</doc>

@@ -1,0 +1,6 @@
+<use f='include/c++/11/compare' l='413'/>
+<use f='include/c++/11/bits/stl_pair.h' l='471' c='_ZStssRKSt4pairIT_T0_ES4_'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1832' c='_ZSt33lexicographical_compare_three_wayT_S_T0_S0_T1_'/>
+<use f='include/c++/11/tuple' l='1556' c='_ZStssRKSt5tupleIJDpT_EERKS_IJDpT0_EE'/>
+<use f='include/c++/11/tuple' l='1560' c='_ZStssRKSt5tupleIJDpT_EERKS_IJDpT0_EE'/>
+<use f='include/c++/11/bits/char_traits.h' l='971' c='_ZNSt8__detail21__char_traits_cmp_catEi'/>

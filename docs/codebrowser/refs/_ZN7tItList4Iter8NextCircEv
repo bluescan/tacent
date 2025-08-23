@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='301' type='void tItList::Iter::NextCirc()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='300'>// Accessors that allow the list to be treated as circular.</doc>

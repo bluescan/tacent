@@ -1,0 +1,5 @@
+<dec f='include/c++/11/ext/concurrence.h' l='174' type='__gthread_recursive_mutex_t'/>
+<use f='include/c++/11/ext/concurrence.h' l='204' u='a' c='__gnu_cxx::__recursive_mutex::lock'/>
+<use f='include/c++/11/ext/concurrence.h' l='215' u='a' c='__gnu_cxx::__recursive_mutex::unlock'/>
+<use f='include/c++/11/ext/concurrence.h' l='222' u='a' c='__gnu_cxx::__recursive_mutex::gthread_recursive_mutex'/>
+<offset>0</offset>

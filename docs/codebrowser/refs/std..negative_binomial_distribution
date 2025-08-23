@@ -1,0 +1,39 @@
+<def f='include/c++/11/bits/random.h' l='4190' ll='4393'/>
+<use f='include/c++/11/bits/random.h' l='4202'/>
+<use f='include/c++/11/bits/random.h' l='4360' c='_ZStlsRSt13basic_ostreamITL0_0_TL0_1_ERKSt30negative_binomial_distributionITL0__E'/>
+<use f='include/c++/11/bits/random.h' l='4375' c='_ZStrsRSt13basic_istreamITL0_0_TL0_1_ERSt30negative_binomial_distributionITL0__E'/>
+<use f='include/c++/11/bits/random.h' l='4400' c='_ZStneRKSt30negative_binomial_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='4401' c='_ZStneRKSt30negative_binomial_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.tcc' l='1145' c='_ZNSt30negative_binomial_distributionclERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='1144' c='_ZNSt30negative_binomial_distributionclERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='1158' c='_ZNSt30negative_binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1157' c='_ZNSt30negative_binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1176' c='_ZNSt30negative_binomial_distribution15__generate_implETL0__S0_RTL0_0_'/>
+<use f='include/c++/11/bits/random.tcc' l='1195' c='_ZNSt30negative_binomial_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1216' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt30negative_binomial_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1240' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt30negative_binomial_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1243' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt30negative_binomial_distributionIT_E'/>
+<fun r='_ZNSt30negative_binomial_distributionC1Ev'/>
+<fun r='_ZNSt30negative_binomial_distributionC1ET_d'/>
+<fun r='_ZNSt30negative_binomial_distributionC1ERKNS_10param_typeE'/>
+<fun r='_ZNSt30negative_binomial_distribution5resetEv'/>
+<fun r='_ZNKSt30negative_binomial_distribution1kEv'/>
+<fun r='_ZNKSt30negative_binomial_distribution1pEv'/>
+<fun r='_ZNKSt30negative_binomial_distribution5paramEv'/>
+<fun r='_ZNSt30negative_binomial_distribution5paramERKNS_10param_typeE'/>
+<fun r='_ZNKSt30negative_binomial_distribution3minEv'/>
+<fun r='_ZNKSt30negative_binomial_distribution3maxEv'/>
+<fun r='_ZNSt30negative_binomial_distributionclERTL0__'/>
+<fun r='_ZNSt30negative_binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt30negative_binomial_distribution10__generateETL0__S0_RTL0_0_'/>
+<fun r='_ZNSt30negative_binomial_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<fun r='_ZNSt30negative_binomial_distribution10__generateEPT_S1_RTL0__'/>
+<fun r='_ZNSt30negative_binomial_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt30negative_binomial_distribution15__generate_implETL0__S0_RTL0_0_'/>
+<fun r='_ZNSt30negative_binomial_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<mbr r='std::negative_binomial_distribution::_M_param' t='std::negative_binomial_distribution::param_type'/>
+<mbr r='std::negative_binomial_distribution::_M_gd' t='std::gamma_distribution&lt;double&gt;'/>
+<fun r='_ZNSt30negative_binomial_distributionclERTL0__'/>
+<fun r='_ZNSt30negative_binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt30negative_binomial_distribution15__generate_implETL0__S0_RTL0_0_'/>
+<fun r='_ZNSt30negative_binomial_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>

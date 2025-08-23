@@ -1,0 +1,27 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='228'/>
+<use f='include/c++/11/bits/allocator.h' l='260' u='c'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='218'>// Macro for extern template, ie controlling template linkage via use
+// of extern keyword on template declaration. As documented in the g++
+// manual, it inhibits all implicit instantiations and is used
+// throughout the library to avoid multiple weak definitions for
+// required types that are already explicitly instantiated in the
+// library binary. This substantially reduces the binary size of
+// resulting executables.
+// Special case: _GLIBCXX_EXTERN_TEMPLATE == -1 disallows extern
+// templates only in basic_string, thus activating its debug-mode
+// checks even at -O0.</doc>
+<use f='include/c++/11/bits/ostream_insert.h' l='118' u='c'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1620' u='c'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1626' u='c'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1649' u='c'/>
+<use f='include/c++/11/bits/locale_classes.tcc' l='269' u='c'/>
+<use f='include/c++/11/bits/streambuf.tcc' l='148' u='c'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1321' u='c'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='177' u='c'/>
+<use f='include/c++/11/bits/ostream.tcc' l='358' u='c'/>
+<use f='include/c++/11/bits/istream.tcc' l='1076' u='c'/>
+<use f='include/c++/11/bits/codecvt.h' l='804' u='c'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1085' u='c'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1407' u='c'/>
+<use f='include/c++/11/bits/sstream.tcc' l='290' u='c'/>
+<use f='include/c++/11/iomanip' l='507' u='c'/>

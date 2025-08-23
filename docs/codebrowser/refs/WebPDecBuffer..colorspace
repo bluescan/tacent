@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='201' type='WEBP_CSP_MODE'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='98' u='w' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<offset>0</offset>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='201'>// Colorspace.</doc>

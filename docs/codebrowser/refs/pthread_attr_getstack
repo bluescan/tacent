@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='379' type='int pthread_attr_getstack(const pthread_attr_t *__restrict __attr, void **__restrict __stackaddr, size_t *__restrict __stacksize)'/>
+<doc f='include/pthread.h' l='378'>/* Return the previously set address for the stack.  */</doc>

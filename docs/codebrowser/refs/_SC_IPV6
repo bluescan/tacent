@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/confname.h' l='497' type='235'/>
+<doc f='include/x86_64-linux-gnu/bits/confname.h' l='495'>/* Leave room here, maybe we need a few more cache levels some day.  */</doc>

@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='168' type='float tMath::tCube(float v)'/>
+<use f='Modules/Image/Src/tResample.cpp' l='351' u='c' c='_ZN6tImage18ComputeCubicWeightEfff'/>

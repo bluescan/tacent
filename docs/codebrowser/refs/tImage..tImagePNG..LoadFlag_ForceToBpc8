@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tImagePNG.h' l='39' type='8'/>
+<use f='Modules/Image/Inc/Image/tImagePNG.h' l='46' u='r'/>
+<doc f='Modules/Image/Inc/Image/tImagePNG.h' l='38'>// If a png is 16 bpc you can force it to load into an 8 bpc buffer with this flag.</doc>
+<use f='Modules/Image/Src/tImageICO.cpp' l='277' u='r' c='_ZN6tImage9tImageICO11CreateFrameEPKhiii'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='364' u='r' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>

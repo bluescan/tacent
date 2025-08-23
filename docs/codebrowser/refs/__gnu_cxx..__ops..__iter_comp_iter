@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/predefined_ops.h' l='162' ll='165' macro='1' type='_Iter_comp_iter&lt;_Compare&gt; __gnu_cxx::__ops::__iter_comp_iter(_Compare __comp)'/>
+<def f='include/c++/11/bits/predefined_ops.h' l='298' ll='301' macro='1' type='_Iter_equals_iter&lt;_Iterator&gt; __gnu_cxx::__ops::__iter_comp_iter(__gnu_cxx::__ops::_Iter_equal_to_iter , _Iterator __it)'/>
+<def f='include/c++/11/bits/predefined_ops.h' l='372' ll='378' macro='1' type='_Iter_comp_to_iter&lt;_Compare, _Iterator&gt; __gnu_cxx::__ops::__iter_comp_iter(_Iter_comp_iter&lt;_Compare&gt; __comp, _Iterator __it)'/>

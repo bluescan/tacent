@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='231' type='bool tStd::tItoa(char * str, int strSize, int32 value, int base = 10)'/>
+<use f='Modules/System/Src/tScript.cpp' l='729' u='c' c='_ZN11tExprWriter9WriteAtomEi'/>
+<use f='Modules/System/Src/tScript.cpp' l='942' u='c' c='_ZN11tExprWriter9WriteAtomERK9tColour4b'/>

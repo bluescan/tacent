@@ -1,0 +1,4 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='210' u='r' c='_ZNK5tMath9tEllipse24AreaEv'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='212' type='float'/>
+<offset>0</offset>
+<use f='Modules/Math/Src/tGeometry.cpp' l='464' u='r' c='_ZN5tMath24tIntersectFindRayEllipseERfRKNS_5tRay2ERKNS_9tEllipse2E'/>

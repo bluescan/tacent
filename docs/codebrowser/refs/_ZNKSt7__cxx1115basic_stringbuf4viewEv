@@ -1,0 +1,2 @@
+<use f='include/c++/11/sstream' l='258' u='c' c='_ZNKSt7__cxx1115basic_stringbuf3strERKTL0__'/>
+<def f='include/c++/11/sstream' l='277' ll='284' type='basic_string_view&lt;std::basic_stringbuf::char_type, std::basic_stringbuf::traits_type&gt; std::basic_stringbuf::view() const'/>

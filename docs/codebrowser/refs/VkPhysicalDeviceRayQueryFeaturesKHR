@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='19092' ll='19096'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='19092'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceRayQueryFeaturesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceRayQueryFeaturesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceRayQueryFeaturesKHR::rayQuery' o='128' t='VkBool32'/>

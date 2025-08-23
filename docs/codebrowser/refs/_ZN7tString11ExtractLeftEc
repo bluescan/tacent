@@ -1,0 +1,29 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='208' type='tString tString::ExtractLeft(const char divider = &apos; &apos;)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='206'>// Extracts first word up to and not including first divider encountered. The tString is left with the remainder,
+	// not including the divider. If divider isn&apos;t found an empty string is returned and the tString is left unmodified.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='140' ll='158' type='tString tString::ExtractLeft(const char divider = &apos; &apos;)'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='742' u='c' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringc'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='584' u='c' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='595' u='c' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='606' u='c' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='260' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='447' u='c' c='_ZN8tCmdLine14SyntaxInternalEP7tStringi'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='460' u='c' c='_ZN8tCmdLine14SyntaxInternalEP7tStringi'/>
+<use f='Modules/System/Src/tFile.cpp' l='252' u='c' c='_ZN7tSystem18tGetSimplifiedPathERK7tStringb'/>
+<use f='Modules/System/Src/tScript.cpp' l='295' u='c' c='_ZNK11tExpression14GetAtomVector2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='309' u='c' c='_ZNK11tExpression14GetAtomVector3Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='312' u='c' c='_ZNK11tExpression14GetAtomVector3Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='326' u='c' c='_ZNK11tExpression14GetAtomVector4Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='329' u='c' c='_ZNK11tExpression14GetAtomVector4Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='332' u='c' c='_ZNK11tExpression14GetAtomVector4Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='346' u='c' c='_ZNK11tExpression17GetAtomQuaternionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='349' u='c' c='_ZNK11tExpression17GetAtomQuaternionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='352' u='c' c='_ZNK11tExpression17GetAtomQuaternionEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='366' u='c' c='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='369' u='c' c='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='372' u='c' c='_ZNK11tExpression14GetAtomMatrix2Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='387' u='c' c='_ZNK11tExpression14GetAtomMatrix4Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='392' u='c' c='_ZNK11tExpression14GetAtomMatrix4Ev'/>
+<use f='Modules/System/Src/tScript.cpp' l='407' u='c' c='_ZNK11tExpression13GetAtomColourEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='410' u='c' c='_ZNK11tExpression13GetAtomColourEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='413' u='c' c='_ZNK11tExpression13GetAtomColourEv'/>

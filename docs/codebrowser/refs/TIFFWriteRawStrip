@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='481' type='tmsize_t TIFFWriteRawStrip(TIFF * tif, uint32 strip, void * data, tmsize_t cc)'/>

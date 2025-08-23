@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='305' type='bool tMath::tApproxEqual(const tMath::tQuat &amp; a, const tMath::tQuat &amp; b, float e = Epsilon)'/>
+<use f='Modules/Math/Inc/Math/tQuaternion.h' l='50' u='c' c='_ZNK5tMath11tQuaternion11ApproxEqualERKNS_5tQuatEf'/>

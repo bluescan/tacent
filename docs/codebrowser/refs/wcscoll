@@ -1,0 +1,3 @@
+<dec f='include/wchar.h' l='131' type='int wcscoll(const wchar_t * __s1, const wchar_t * __s2)'/>
+<doc f='include/wchar.h' l='129'>/* Compare S1 and S2, both interpreted as appropriate to the
+   LC_COLLATE category of the current locale.  */</doc>

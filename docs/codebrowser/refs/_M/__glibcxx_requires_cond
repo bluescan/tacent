@@ -1,0 +1,11 @@
+<dec f='include/c++/11/debug/debug.h' l='66'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='163' u='c'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='177' u='c'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='407' u='c'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='412' u='c'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='467' u='c'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='491' u='c'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='95' u='c'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='107' u='c'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='117' u='c'/>
+<use f='include/c++/11/bits/stream_iterator.h' l='230' u='c'/>

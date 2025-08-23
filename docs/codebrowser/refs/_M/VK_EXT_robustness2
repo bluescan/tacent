@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15190'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15189'>// VK_EXT_robustness2 is a preprocessor guard. Do not pass it to API calls.</doc>

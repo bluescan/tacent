@@ -1,0 +1,3 @@
+<dec f='include/time.h' l='132' type='struct tm * gmtime(const time_t * __timer)'/>
+<doc f='include/time.h' l='130'>/* Return the `struct tm&apos; representation of *TIMER
+   in Universal Coordinated Time (aka Greenwich Mean Time).  */</doc>

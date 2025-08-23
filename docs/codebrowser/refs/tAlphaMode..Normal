@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='151' type='0'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='158'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='151'>// Not premultiplied. Independent alpha channel.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='910' u='r' c='_ZN6tImage9tImageDDS3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='572' u='r' c='_ZN6tImage9tImageKTX3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='352' u='r' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='667' u='r' c='_ZN6tImage9tImagePVR3SetEP9tColour4biib'/>

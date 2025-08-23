@@ -1,0 +1,4 @@
+<dec f='include/signal.h' l='119' type='int killpg(__pid_t __pgrp, int __sig)'/>
+<doc f='include/signal.h' l='116'>/* Send SIG to all processes in process group PGRP.
+   If PGRP is zero, send SIG to all processes in
+   the current process&apos;s process group.  */</doc>

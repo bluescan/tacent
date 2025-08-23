@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='121' type='int'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='350' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>448</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='120'>//  0: none, 1: fast, 2: best. Default if 1.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='121'>// Between 0 (smallest size) and 100 (lossless).</doc>

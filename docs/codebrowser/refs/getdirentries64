@@ -1,0 +1,1 @@
+<dec f='include/dirent.h' l='370' type='__ssize_t getdirentries64(int __fd, char *__restrict __buf, size_t __nbytes, __off64_t *__restrict __basep)'/>

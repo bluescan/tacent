@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/fs_dir.h' l='73' type='std::filesystem::perms std::filesystem::file_status::permissions() const'/>
+<use f='Modules/System/Src/tFile.cpp' l='2048' u='c' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>

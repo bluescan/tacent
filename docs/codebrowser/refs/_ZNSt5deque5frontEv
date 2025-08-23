@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1404' ll='1409' type='std::deque::reference std::deque::front()'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='662' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='662' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1400'>/**
+       *  Returns a read/write reference to the data at the first
+       *  element of the %deque.
+       */</doc>

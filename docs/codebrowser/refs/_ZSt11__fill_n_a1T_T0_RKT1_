@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='1053' ll='1061' macro='1' type='typename __gnu_cxx::__enable_if&lt;!__is_scalar&lt;_Tp&gt;::__value, _OutputIterator&gt;::__type std::__fill_n_a1(_OutputIterator __first, _Size __n, const _Tp &amp; __value)'/>
+<def f='include/c++/11/bits/stl_algobase.h' l='1064' ll='1073' macro='1' type='typename __gnu_cxx::__enable_if&lt;__is_scalar&lt;_Tp&gt;::__value, _OutputIterator&gt;::__type std::__fill_n_a1(_OutputIterator __first, _Size __n, const _Tp &amp; __value)'/>

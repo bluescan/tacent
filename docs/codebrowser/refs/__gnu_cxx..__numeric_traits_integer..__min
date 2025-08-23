@@ -1,0 +1,13 @@
+<dec f='include/c++/11/ext/numeric_traits.h' l='78' type='const _Value'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='81' ll='82' type='const _Value'/>
+<use f='include/c++/11/string_view' l='506' u='r' c='_ZNSt17basic_string_view10_S_compareEmm'/>
+<use f='include/c++/11/string_view' l='507' u='r' c='_ZNSt17basic_string_view10_S_compareEmm'/>
+<use f='include/c++/11/bits/basic_string.h' l='415' c='_ZNSt7__cxx1112basic_string10_S_compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_'/>
+<use f='include/c++/11/bits/basic_string.h' l='416' u='r' c='_ZNSt7__cxx1112basic_string10_S_compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_'/>
+<use f='include/c++/11/ext/string_conversions.h' l='75' c='__gnu_cxx::__stoa(_TRet(*)(const_CharT*,_CharT**,_Base...),constchar*,const_CharT*,std::size_t*,_Base...)::_Range_chk::_S_chk'/>
+<use f='include/c++/11/bits/istream.tcc' l='138' u='r' c='_ZNSt13basic_istreamrsERs'/>
+<use f='include/c++/11/bits/istream.tcc' l='141' u='r' c='_ZNSt13basic_istreamrsERs'/>
+<use f='include/c++/11/bits/istream.tcc' l='183' u='r' c='_ZNSt13basic_istreamrsERi'/>
+<use f='include/c++/11/bits/istream.tcc' l='186' u='r' c='_ZNSt13basic_istreamrsERi'/>
+<use f='include/c++/11/bits/istream.tcc' l='541' u='r' c='_ZNSt13basic_istream6ignoreEl'/>
+<use f='include/c++/11/bits/istream.tcc' l='607' u='r' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>

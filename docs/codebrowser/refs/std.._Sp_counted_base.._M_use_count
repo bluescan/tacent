@@ -1,0 +1,14 @@
+<use f='include/c++/11/bits/shared_ptr_base.h' l='127' u='w' c='_ZNSt16_Sp_counted_baseC1Ev'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='148' u='a' c='_ZNSt16_Sp_counted_base15_M_add_ref_copyEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='165' u='a' c='_ZNSt16_Sp_counted_base10_M_releaseEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='216' u='a' c='_ZNKSt16_Sp_counted_base16_M_get_use_countEv'/>
+<dec f='include/c++/11/bits/shared_ptr_base.h' l='223' type='_Atomic_word'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='232' u='r' c='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='234' u='w' c='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='244' u='a' c='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='246' u='w' c='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='266' u='a' c='_ZNSt16_Sp_counted_base23_M_add_ref_lock_nothrowEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='275' u='w' c='_ZNSt16_Sp_counted_base15_M_add_ref_copyEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='281' u='w' c='_ZNSt16_Sp_counted_base10_M_releaseEv'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='305' u='r' c='_ZNKSt16_Sp_counted_base16_M_get_use_countEv'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='223'>// #shared</doc>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/shared_ptr_base.h' l='107' type='0'/>
+<doc f='include/c++/11/bits/shared_ptr_base.h' l='106'>// The atomic policy uses fully-fenced builtins, single doesn&apos;t care.</doc>

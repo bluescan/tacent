@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16967' ll='16972'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16967'/>
+<size>40</size>
+<mbr r='VkSamplerBorderColorComponentMappingCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSamplerBorderColorComponentMappingCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkSamplerBorderColorComponentMappingCreateInfoEXT::components' o='128' t='VkComponentMapping'/>
+<mbr r='VkSamplerBorderColorComponentMappingCreateInfoEXT::srgb' o='256' t='VkBool32'/>

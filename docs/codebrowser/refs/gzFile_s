@@ -1,0 +1,13 @@
+<use f='include/zlib.h' l='1301'/>
+<def f='include/zlib.h' l='1818' ll='1822'/>
+<size>24</size>
+<doc f='include/zlib.h' l='1811'>/* gzgetc() macro and its supporting function and exposed data structure.  Note
+ * that the real internal state is much larger than the exposed structure.
+ * This abbreviated structure exposes just enough for the gzgetc() macro.  The
+ * user should not mess with these exposed elements, since their names or
+ * behavior could change in the future, perhaps even capriciously.  They can
+ * only be used by the gzgetc() macro.  You have been warned.
+ */</doc>
+<mbr r='gzFile_s::have' o='0' t='unsigned int'/>
+<mbr r='gzFile_s::next' o='64' t='unsigned char *'/>
+<mbr r='gzFile_s::pos' o='128' t='off64_t'/>

@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='197' type='void rgbcx::encode_bc4(void * pDst, const uint8_t * pPixels, uint32_t stride = 4)'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3884' ll='4004' type='void rgbcx::encode_bc4(void * pDst, const uint8_t * pPixels, uint32_t stride = 4)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4013' u='c' c='_ZN5rgbcx10encode_bc3EPvPKhjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4021' u='c' c='_ZN5rgbcx10encode_bc3EjPvPKh'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4029' u='c' c='_ZN5rgbcx10encode_bc5EPvPKhjjj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4030' u='c' c='_ZN5rgbcx10encode_bc5EPvPKhjjj'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='195'>// Encodes a single channel to BC4.
+	// stride is the source pixel stride in bytes.</doc>

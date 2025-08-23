@@ -1,0 +1,12 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='804' u='w' c='_ZN9tColour4f3SetERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='804' u='r' c='_ZN9tColour4f3SetERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='834' u='w' c='_ZNK9tColour4f3GetERS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='834' u='r' c='_ZNK9tColour4f3GetERS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='906' u='r' c='_ZNK9tColour4feqERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='906' u='r' c='_ZNK9tColour4feqERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='907' u='r' c='_ZNK9tColour4fneERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='907' u='r' c='_ZNK9tColour4fneERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='908' u='w' c='_ZN9tColour4faSERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='908' u='r' c='_ZN9tColour4faSERKS_'/>
+<dec f='Modules/Math/Inc/Math/tColour.h' l='938' type='uint64'/>
+<offset>0</offset>

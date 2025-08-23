@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/char_traits.h' l='101' ll='103' type='static void __gnu_cxx::char_traits::assign(__gnu_cxx::char_traits::char_type &amp; __c1, const __gnu_cxx::char_traits::char_type &amp; __c2)'/>
+<dec f='include/c++/11/bits/char_traits.h' l='129' type='static __gnu_cxx::char_traits::char_type * __gnu_cxx::char_traits::assign(__gnu_cxx::char_traits::char_type * __s, std::size_t __n, __gnu_cxx::char_traits::char_type __a)'/>
+<def f='include/c++/11/bits/char_traits.h' l='248' ll='257' type='static typename char_traits&lt;_CharT&gt;::char_type * __gnu_cxx::char_traits::assign(__gnu_cxx::char_traits::char_type * __s, std::size_t __n, __gnu_cxx::char_traits::char_type __a)'/>
+<use f='include/c++/11/bits/char_traits.h' l='447' u='c' c='_ZNSt11char_traitsIcE6assignEPcmc'/>
+<use f='include/c++/11/bits/char_traits.h' l='571' u='c' c='_ZNSt11char_traitsIwE6assignEPwmw'/>
+<use f='include/c++/11/bits/char_traits.h' l='695' u='c' c='_ZNSt11char_traitsIDuE6assignEPDumDu'/>

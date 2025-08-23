@@ -1,0 +1,3 @@
+<def f='include/c++/11/limits' l='316' ll='317' type='static _Tp std::numeric_limits::min()'/>
+<doc f='include/c++/11/limits' l='314'>/** The minimum finite value, or for floating types with
+	  denormalization, the minimum positive normalized value.  */</doc>

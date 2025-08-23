@@ -1,0 +1,217 @@
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='70' c='_ZN6tImage10tBaseImage3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageAPNG.h' l='44' c='_ZN6tImage10tImageAPNGC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageAPNG.h' l='64' c='_ZN6tImage10tImageAPNG3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='73' c='_ZN6tImage10tImageASTCC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='89' c='_ZN6tImage10tImageASTC3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageBMP.h' l='60' c='_ZN6tImage9tImageBMPC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageBMP.h' l='79' c='_ZN6tImage9tImageBMP3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='99' c='_ZN6tImage9tImageDDSC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='159' c='_ZN6tImage9tImageDDS3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageEXR.h' l='56' c='_ZN6tImage9tImageEXRC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageEXR.h' l='76' c='_ZN6tImage9tImageEXR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageGIF.h' l='48' c='_ZN6tImage9tImageGIFC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageGIF.h' l='66' c='_ZN6tImage9tImageGIF3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageHDR.h' l='74' c='_ZN6tImage9tImageHDRC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageHDR.h' l='89' c='_ZN6tImage9tImageHDR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='61' c='_ZN6tImage9tImageICOC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='80' c='_ZN6tImage9tImageICO3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageJPG.h' l='64' c='_ZN6tImage9tImageJPGC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageJPG.h' l='80' c='_ZN6tImage9tImageJPG3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='102' c='_ZN6tImage9tImageKTXC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='156' c='_ZN6tImage9tImageKTX3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImagePKM.h' l='71' c='_ZN6tImage9tImagePKMC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImagePKM.h' l='87' c='_ZN6tImage9tImagePKM3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImagePNG.h' l='77' c='_ZN6tImage9tImagePNGC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImagePNG.h' l='96' c='_ZN6tImage9tImagePNG3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='102' c='_ZN6tImage9tImagePVRC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='162' c='_ZN6tImage9tImagePVR3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageQOI.h' l='44' c='_ZN6tImage9tImageQOIC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageQOI.h' l='61' c='_ZN6tImage9tImageQOI3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='70' c='_ZN6tImage9tImageTGAC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='88' c='_ZN6tImage9tImageTGA3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageTIFF.h' l='45' c='_ZN6tImage10tImageTIFFC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageTIFF.h' l='65' c='_ZN6tImage10tImageTIFF3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageWEBP.h' l='44' c='_ZN6tImage10tImageWEBPC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageWEBP.h' l='62' c='_ZN6tImage10tImageWEBP3SetERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageXPM.h' l='45' c='_ZN6tImage9tImageXPMC1ERNS_8tPictureEb'/>
+<use f='Modules/Image/Inc/Image/tImageXPM.h' l='61' c='_ZN6tImage9tImageXPM3SetERNS_8tPictureEb'/>
+<inh f='Modules/Foundation/Inc/Foundation/tList.h' l='37' c='tLink'/>
+<def f='Modules/Image/Inc/Image/tPicture.h' l='80' ll='375'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='80'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='106' c='_ZN6tImage8tPictureC1ERKS0_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='106' c='_ZN6tImage8tPictureC1ERKS0_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='135' c='_ZN6tImage8tPicture3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='332' c='_ZNK6tImage8tPictureeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='333' c='_ZNK6tImage8tPictureneERKS0_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='467' c='_ZN6tImage8tPicture3SetERKS0_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='645' c='_ZNK6tImage8tPictureeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='661' c='_ZNK6tImage8tPictureneERKS0_'/>
+<size>5240</size>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='63'>// A tPicture is a single 2D image. A rectangular collection of R8G8B8A8 pixels (32bits per pixel). The origin is the
+// lower left, and the rows are ordered from bottom to top in memory. @todo At some point we need to support HDR images and
+// should represent the pixels as R32G32B32A32f.
+//
+// The main purpose of a tPicture is to allow manipulation of a single image. Things like setting pixel colours,
+// rotation, flips, resampling and resizing are found here.
+//
+// There is no saving and loading directly from image files because some types may have multiple frames. For example
+// a gif or webp may be animated. We could just choose a particular frame, but that would mean loading all frames only
+// to keep a single one. There is the same complexity with saving. Different image formats have drastically different
+// parameters that need to be specified for saving -- jpgs need a quality setting, astc files have a multitude of
+// compression parameters in addition to the block size, targas can be RLE encoded, ktx files can be supercompressed...
+// or not, etc. The purpose of the tImageNNN files is to deal with that complexity for each specific image type. From
+// these loaders you can construct one or more tPictures by passing in the pixels, width, and height.
+//
+// There is some save/load functionality directly for a tPicture. It has it&apos;s own file format based of tChunks. It can
+// save/load itself to/from a .tac file.</doc>
+<fun r='_ZN6tImage8tPictureC1Ev'/>
+<fun r='_ZN6tImage8tPictureC1Eii'/>
+<fun r='_ZN6tImage8tPictureC1EiiP9tColour4bb'/>
+<fun r='_ZN6tImage8tPictureC1EPNS_6tFrameEb'/>
+<fun r='_ZN6tImage8tPictureC1ERNS_10tBaseImageEb'/>
+<fun r='_ZN6tImage8tPictureC1ERKS0_'/>
+<fun r='_ZN6tImage8tPictureD1Ev'/>
+<fun r='_ZNK6tImage8tPicture7IsValidEv'/>
+<fun r='_ZN6tImage8tPicture5ClearEv'/>
+<fun r='_ZN6tImage8tPicture3SetEiiRK9tColour4b'/>
+<fun r='_ZN6tImage8tPicture3SetEiiP9tColour4bb'/>
+<fun r='_ZN6tImage8tPicture3SetEPNS_6tFrameEb'/>
+<fun r='_ZN6tImage8tPicture3SetERNS_10tBaseImageEb'/>
+<fun r='_ZN6tImage8tPicture3SetERKS0_'/>
+<fun r='_ZNK6tImage8tPicture4SaveER12tChunkWriter'/>
+<fun r='_ZN6tImage8tPicture4LoadERK6tChunk'/>
+<fun r='_ZNK6tImage8tPicture8IsOpaqueEv'/>
+<fun r='_ZN6tImage8tPicture5PixelEii'/>
+<fun r='_ZN6tImage8tPictureixEi'/>
+<fun r='_ZNK6tImage8tPicture8GetPixelEii'/>
+<fun r='_ZNK6tImage8tPicture15GetPixelPointerEii'/>
+<fun r='_ZNK6tImage8tPicture9GetPixelsEv'/>
+<fun r='_ZN6tImage8tPicture11StealPixelsEv'/>
+<fun r='_ZN6tImage8tPicture8SetPixelEiiRK9tColour4b'/>
+<fun r='_ZN6tImage8tPicture8SetPixelEiihhhh'/>
+<fun r='_ZN6tImage8tPicture8SetPixelEiiRK9tColour4bj'/>
+<fun r='_ZN6tImage8tPicture6SetAllERK9tColour4bj'/>
+<fun r='_ZN6tImage8tPicture6SpreadE5tComp'/>
+<fun r='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<fun r='_ZN6tImage8tPicture9IntensityEj'/>
+<fun r='_ZN6tImage8tPicture16AlphaBlendColourERK9tColour4bji'/>
+<fun r='_ZNK6tImage8tPicture8GetWidthEv'/>
+<fun r='_ZNK6tImage8tPicture9GetHeightEv'/>
+<fun r='_ZNK6tImage8tPicture7GetAreaEv'/>
+<fun r='_ZNK6tImage8tPicture12GetNumPixelsEv'/>
+<fun r='_ZN6tImage8tPicture8Rotate90Eb'/>
+<fun r='_ZN6tImage8tPicture12RotateCenterEfRK9tColour4bNS_15tResampleFilterES4_'/>
+<fun r='_ZN6tImage8tPicture4FlipEb'/>
+<fun r='_ZN6tImage8tPicture4CropEiiNS0_6AnchorERK9tColour4b'/>
+<fun r='_ZN6tImage8tPicture4CropEiiiiRK9tColour4b'/>
+<fun r='_ZN6tImage8tPicture10CopyRegionEiiPK9tColour4biij'/>
+<fun r='_ZN6tImage8tPicture10CopyRegionEiiPK9tColour4bNS0_6AnchorEj'/>
+<fun r='_ZN6tImage8tPicture8DeborderERK9tColour4bj'/>
+<fun r='_ZNK6tImage8tPicture10HasBordersERK9tColour4bj'/>
+<fun r='_ZN6tImage8tPicture13QuantizeFixedEib'/>
+<fun r='_ZN6tImage8tPicture15QuantizeSpatialEibdi'/>
+<fun r='_ZN6tImage8tPicture11QuantizeNeuEibi'/>
+<fun r='_ZN6tImage8tPicture10QuantizeWuEib'/>
+<fun r='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<fun r='_ZN6tImage8tPicture16AdjustBrightnessEfj'/>
+<fun r='_ZN6tImage8tPicture26AdjustGetDefaultBrightnessERf'/>
+<fun r='_ZN6tImage8tPicture14AdjustContrastEfj'/>
+<fun r='_ZN6tImage8tPicture24AdjustGetDefaultContrastERf'/>
+<fun r='_ZN6tImage8tPicture12AdjustLevelsEfffffbj'/>
+<fun r='_ZN6tImage8tPicture22AdjustGetDefaultLevelsERfS1_S1_S1_S1_'/>
+<fun r='_ZN6tImage8tPicture21AdjustRestoreOriginalEv'/>
+<fun r='_ZN6tImage8tPicture13AdjustmentEndEv'/>
+<fun r='_ZN6tImage8tPicture9ScaleHalfEv'/>
+<fun r='_ZN6tImage8tPicture8ResampleEiiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<fun r='_ZN6tImage8tPicture6ResizeEiiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<fun r='_ZN6tImage8tPicture14GenerateLayersER5tListINS_6tLayerEENS_15tResampleFilterENS_17tResampleEdgeModeEb'/>
+<fun r='_ZNK6tImage8tPictureeqERKS0_'/>
+<fun r='_ZNK6tImage8tPictureneERKS0_'/>
+<mbr r='tImage::tPicture::Filename' o='192' t='tString'/>
+<mbr r='tImage::tPicture::PixelFormatSrc' o='448' t='tImage::tPixelFormat'/>
+<mbr r='tImage::tPicture::TextureID' o='480' t='uint'/>
+<mbr r='tImage::tPicture::Duration' o='512' t='float'/>
+<mbr r='tImage::tPicture::BrightnessRGBMin' o='544' t='int'/>
+<mbr r='tImage::tPicture::BrightnessRGBMax' o='576' t='int'/>
+<smbr r='tImage::tPicture::NumGroups' t='const int'/>
+<mbr r='tImage::tPicture::HistogramR' o='608' t='float[256]'/>
+<mbr r='tImage::tPicture::MaxRCount' o='8800' t='float'/>
+<mbr r='tImage::tPicture::HistogramG' o='8832' t='float[256]'/>
+<mbr r='tImage::tPicture::MaxGCount' o='17024' t='float'/>
+<mbr r='tImage::tPicture::HistogramB' o='17056' t='float[256]'/>
+<mbr r='tImage::tPicture::MaxBCount' o='25248' t='float'/>
+<mbr r='tImage::tPicture::HistogramA' o='25280' t='float[256]'/>
+<mbr r='tImage::tPicture::MaxACount' o='33472' t='float'/>
+<mbr r='tImage::tPicture::HistogramI' o='33504' t='float[256]'/>
+<mbr r='tImage::tPicture::MaxICount' o='41696' t='float'/>
+<fun r='_ZNK6tImage8tPicture8GetIndexEii'/>
+<fun r='_ZN6tImage8tPicture8GetIndexEiiii'/>
+<fun r='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<fun r='_ZN6tImage8tPicture21RotateCenterResampledERKN5tMath8tMatrix2ES4_RK9tColour4bNS_15tResampleFilterES8_'/>
+<fun r='_ZNK6tImage8tPicture15GetBordersSizesERK9tColour4bjRiS4_S4_S4_'/>
+<mbr r='tImage::tPicture::Width' o='41728' t='int'/>
+<mbr r='tImage::tPicture::Height' o='41760' t='int'/>
+<mbr r='tImage::tPicture::Pixels' o='41792' t='tPixel4b *'/>
+<mbr r='tImage::tPicture::OriginalPixels' o='41856' t='tPixel4b *'/>
+<fun r='_ZN6tImage8tPicture5ClearEv'/>
+<fun r='_ZN6tImage8tPicture3SetEiiRK9tColour4b'/>
+<fun r='_ZN6tImage8tPicture3SetEiiP9tColour4bb'/>
+<fun r='_ZN6tImage8tPicture3SetEPNS_6tFrameEb'/>
+<fun r='_ZN6tImage8tPicture3SetERNS_10tBaseImageEb'/>
+<fun r='_ZN6tImage8tPicture3SetERKS0_'/>
+<fun r='_ZNK6tImage8tPicture8IsOpaqueEv'/>
+<fun r='_ZN6tImage8tPicture8SetPixelEiiRK9tColour4bj'/>
+<fun r='_ZN6tImage8tPicture6SetAllERK9tColour4bj'/>
+<fun r='_ZN6tImage8tPicture6SpreadE5tComp'/>
+<fun r='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<fun r='_ZN6tImage8tPicture9IntensityEj'/>
+<fun r='_ZN6tImage8tPicture16AlphaBlendColourERK9tColour4bji'/>
+<fun r='_ZNK6tImage8tPictureeqERKS0_'/>
+<fun r='_ZNK6tImage8tPictureneERKS0_'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='74' c='_ZN6tImage8tTextureC1ERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='91' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='125' c='_ZN6tImage8tTexture20DeterminePixelFormatERKNS_8tPictureE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='129' c='_ZN6tImage8tTexture33ProcessImageTo_R8G8B8_Or_R8G8B8A8ERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='130' c='_ZN6tImage8tTexture23ProcessImageTo_G3B5R5G3ERNS_8tPictureEbNS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='131' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='156' c='_ZN6tImage8tTexture20DeterminePixelFormatERKNS_8tPictureE'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='193' c='_ZN6tImage10tImageAPNG3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='250' c='_ZN6tImage10tImageASTC3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='517' c='_ZN6tImage9tImageBMP3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='949' c='_ZN6tImage9tImageDDS3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='354' c='_ZN6tImage9tImageEXR3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='251' c='_ZN6tImage9tImageGIF3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='438' c='_ZN6tImage9tImageHDR3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageICO.cpp' l='238' c='_ZN6tImage9tImageICO3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='237' c='_ZN6tImage9tImageJPG3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='608' c='_ZN6tImage9tImageKTX3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='337' c='_ZN6tImage9tImagePKM3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='493' c='_ZN6tImage9tImagePNG3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='709' c='_ZN6tImage9tImagePVR3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='126' c='_ZN6tImage9tImageQOI3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='320' c='_ZN6tImage9tImageTGA3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='201' c='_ZN6tImage10tImageTIFF3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='288' c='_ZN6tImage10tImageWEBP3SetERNS_8tPictureEb'/>
+<size>5240</size>
+<use f='Modules/Image/Src/tTexture.cpp' l='118' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='183' c='_ZN6tImage8tTexture33ProcessImageTo_R8G8B8_Or_R8G8B8A8ERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='233' c='_ZN6tImage8tTexture23ProcessImageTo_G3B5R5G3ERNS_8tPictureEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='284' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<size>5240</size>

@@ -1,0 +1,18 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='249' type='const char32_t'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='246'>// Unicode encoding/decoding.
+//
+// Some handy exposed UTF codepoints. Remember, const defaults to internal linkage in C++.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='249'>// U+FFFD Used for unknown or invalid encodings.</doc>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='565' u='r' c='_ZN4tStd7tUTF32cEPKDu'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='576' u='r' c='_ZN4tStd7tUTF32cEPKDs'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='587' u='r' c='_ZN4tStd7tUTF32cEPKDi'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='592' u='r' c='_ZN4tStd7tUTF32cEPKDi'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='602' u='r' c='_ZN4tStd7tUTF32cEPDiPKDu'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='618' u='r' c='_ZN4tStd7tUTF32cEPDiPKDs'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='636' u='r' c='_ZN4tStd7tUTF32cEPDiPKDi'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='663' u='r' c='_ZN4tStd7tUTF32cEPDiDi'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='694' u='r' c='_ZN4tUTF11DecodeUtf16ERDiPKDs'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='703' u='r' c='_ZN4tUTF11DecodeUtf16ERDiPKDs'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='783' u='r' c='_ZN4tUTF10DecodeUtf8ERDiPKDu'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='798' u='r' c='_ZN4tUTF10DecodeUtf8ERDiPKDu'/>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='825' u='r' c='_ZN4tUTF10DecodeUtf8ERDiPKDu'/>

@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='967' type='int pthread_rwlock_init(pthread_rwlock_t *__restrict __rwlock, const pthread_rwlockattr_t *__restrict __attr)'/>
+<doc f='include/pthread.h' l='965'>/* Initialize read-write lock RWLOCK using attributes ATTR, or use
+   the default values if later is NULL.  */</doc>

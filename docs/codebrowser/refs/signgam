@@ -1,0 +1,2 @@
+<dec f='include/math.h' l='854' type='int'/>
+<doc f='include/math.h' l='853'>/* This variable is used by `gamma&apos; and `lgamma&apos;.  */</doc>

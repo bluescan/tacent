@@ -1,0 +1,5 @@
+<def f='Modules/System/Inc/System/tTime.h' l='45' ll='51'/>
+<use f='Modules/System/Inc/System/tTime.h' l='52' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>
+<doc f='Modules/System/Inc/System/tTime.h' l='43'>// Return a timepoint as a string. The Filename format uses no special characters and if friendly for filenames
+// on all filesystems: YYYY-MM-DD-HH-MM-SS.</doc>
+<use f='Modules/System/Src/tTime.cpp' l='96' c='_ZN7tSystem20tConvertTimeToStringE2tmNS_11tTimeFormatE'/>

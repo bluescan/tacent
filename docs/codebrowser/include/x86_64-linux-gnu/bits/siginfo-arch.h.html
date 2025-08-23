@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>siginfo-arch.h source code [include/x86_64-linux-gnu/bits/siginfo-arch.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/siginfo-arch.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>bits</a>/<a href='siginfo-arch.h.html'>siginfo-arch.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Architecture-specific adjustments to siginfo_t.  x86 version.  */</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><u>#<span data-ppcond="2">ifndef</span> <span class="macro" data-ref="_M/_BITS_SIGINFO_ARCH_H">_BITS_SIGINFO_ARCH_H</span></u>&nbsp</td></tr>
+<tr><th id="3">3</th><td><u>#define <dfn class="macro" id="_M/_BITS_SIGINFO_ARCH_H" data-ref="_M/_BITS_SIGINFO_ARCH_H">_BITS_SIGINFO_ARCH_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="4">4</th><td>&nbsp</td></tr>
+<tr><th id="5">5</th><td><u>#<span data-ppcond="5">if</span> defined <span class="macro" data-ref="_M/__x86_64__">__x86_64__</span> &amp;&amp; <a class="macro" href="wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 32</u>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>/* si_utime and si_stime must be 4 byte aligned for x32 to match the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   kernel.  We align siginfo_t to 8 bytes so that si_utime and</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   si_stime are actually aligned to 8 bytes since their offsets are</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   multiple of 8 bytes.  Note: with some compilers, the alignment</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   attribute would be ignored if it were put in __SI_CLOCK_T instead</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   of encapsulated in a typedef.  */</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><b>typedef</b> __clock_t <b>__attribute__</b> ((__aligned__ (<var>4</var>))) __sigchld_clock_t;&nbsp</td></tr>
+<tr><th id="13">13</th><td><u># define __SI_ALIGNMENT __attribute__ ((__aligned__ (8)))</u>&nbsp</td></tr>
+<tr><th id="14">14</th><td><u># define __SI_CLOCK_T __sigchld_clock_t</u>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#<span data-ppcond="5">endif</span></u>&nbsp</td></tr>
+<tr><th id="16">16</th><td>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#<span data-ppcond="2">endif</span></u>&nbsp</td></tr>
+<tr><th id="18">18</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Src/tAssert.cpp.html'>Modules/Foundation/Src/tAssert.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

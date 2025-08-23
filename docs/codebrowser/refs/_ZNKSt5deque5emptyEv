@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1310' ll='1312' type='bool std::deque::empty() const'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='653' u='c' c='_ZN6tImage16tQuantizeSpatial19spatial_color_quantERNS0_7array2dINS0_12vector_fixedIdLi3EEEEES5_RNS1_IiEERSt6vectorIS3_SaIS3_EERPNS0_7array3dIdEEddiiRN889788'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1306'>/**
+       *  Returns true if the %deque is empty.  (Thus begin() would
+       *  equal end().)
+       */</doc>

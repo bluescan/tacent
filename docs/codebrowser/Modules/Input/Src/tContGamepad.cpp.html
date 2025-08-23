@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tContGamepad.cpp source code [Modules/Input/Src/tContGamepad.cpp] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Input/Src/tContGamepad.cpp'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>Modules</a>/<a href='..'>Input</a>/<a href='./'>Src</a>/<a href='tContGamepad.cpp.html'>tContGamepad.cpp</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tContGamepad.cpp</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// This file implements a gamepad controller. Controllers represent physical input devices.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// Copyright (c) 2025 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#include &lt;chrono&gt;</u>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#<span data-ppcond="16">ifdef</span> <span class="macro" data-ref="_M/PLATFORM_WINDOWS">PLATFORM_WINDOWS</span></u>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#include &lt;windows.h&gt;</u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#include &lt;xinput.h&gt;</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#<span data-ppcond="16">endif</span></u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><u>#include "Foundation/tPlatform.h"</u>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#include "Input/tContGamepad.h"</u>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#include "System/tPrint.h"</u>&nbsp</td></tr>
+<tr><th id="23">23</th><td><b>namespace</b> <span class="namespace">tInput</span>&nbsp</td></tr>
+<tr><th id="24">24</th><td>{&nbsp</td></tr>
+<tr><th id="25">25</th><td>&nbsp</td></tr>
+<tr><th id="26">26</th><td>&nbsp</td></tr>
+<tr><th id="27">27</th><td><em>void</em> <a class="type" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad" title='tInput::tContGamepad' data-ref="tInput::tContGamepad">tContGamepad</a>::<dfn class="decl def fn" id="_ZN6tInput12tContGamepad12StartPollingEiNS_10tGamepadIDE" title='tInput::tContGamepad::StartPolling' data-ref="_ZN6tInput12tContGamepad12StartPollingEiNS_10tGamepadIDE">StartPolling</dfn>(<em>int</em> <dfn class="local col1 decl" id="1pollingPeriod" title='pollingPeriod' data-type='int' data-ref="1pollingPeriod">pollingPeriod</dfn>, <a class="type" href="../Inc/Input/tContGamepad.h.html#tInput::tGamepadID" title='tInput::tGamepadID' data-ref="tInput::tGamepadID">tGamepadID</a> <dfn class="local col2 decl" id="2gamepadID" title='gamepadID' data-type='tInput::tGamepadID' data-ref="2gamepadID">gamepadID</dfn>)&nbsp</td></tr>
+<tr><th id="28">28</th><td>{&nbsp</td></tr>
+<tr><th id="29">29</th><td>	<a class="macro" href="../../Foundation/Inc/Foundation/tAssert.h.html#26" title="if (!((pollingPeriod &gt;= 1) &amp;&amp; (gamepadID != tGamepadID::Invalid) &amp;&amp; (gamepadID != tGamepadID::NumGamepads))) tAssertPrintBreak(&quot;(pollingPeriod &gt;= 1) &amp;&amp; (gamepadID != tGamepadID::Invalid) &amp;&amp; (gamepadID != tGamepadID::NumGamepads)&quot;, &quot;/mnt/c/GitHub/tacent/Modules/Input/Src/tContGamepad.cpp&quot;, 29, nullptr)" data-ref="_M/tAssert">tAssert</a>((<a class="local col1 ref" href="#1pollingPeriod" title='pollingPeriod' data-ref="1pollingPeriod">pollingPeriod</a> &gt;= <var>1</var>) &amp;&amp; (<a class="local col2 ref" href="#2gamepadID" title='gamepadID' data-ref="2gamepadID">gamepadID</a> != <a class="type" href="../Inc/Input/tContGamepad.h.html#tInput::tGamepadID" title='tInput::tGamepadID' data-ref="tInput::tGamepadID">tGamepadID</a>::<a class="enum" href="../Inc/Input/tContGamepad.h.html#tInput::tGamepadID::Invalid" title='tInput::tGamepadID::Invalid' data-ref="tInput::tGamepadID::Invalid">Invalid</a>) &amp;&amp; (<a class="local col2 ref" href="#2gamepadID" title='gamepadID' data-ref="2gamepadID">gamepadID</a> != <a class="type" href="../Inc/Input/tContGamepad.h.html#tInput::tGamepadID" title='tInput::tGamepadID' data-ref="tInput::tGamepadID">tGamepadID</a>::<a class="enum" href="../Inc/Input/tContGamepad.h.html#tInput::tGamepadID::NumGamepads" title='tInput::tGamepadID::NumGamepads' data-ref="tInput::tGamepadID::NumGamepads">NumGamepads</a>));&nbsp</td></tr>
+<tr><th id="30">30</th><td>&nbsp</td></tr>
+<tr><th id="31">31</th><td>	<i>// If it's already running do nothing. We also don't update the period if we're already running.</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td>	<b>if</b> (<a class="member fn" href="../Inc/Input/tContGamepad.h.html#_ZNK6tInput12tContGamepad9IsPollingEv" title='tInput::tContGamepad::IsPolling' data-ref="_ZNK6tInput12tContGamepad9IsPollingEv">IsPolling</a>())&nbsp</td></tr>
+<tr><th id="33">33</th><td>		<b>return</b>;&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td>	<i>// PollingPeriod and PollingGamepadID is only ever set before the thread starts and doesn't change. We don't need to Mutex protect it.</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::PollingGamepadID" title='tInput::tContGamepad::PollingGamepadID' data-ref="tInput::tContGamepad::PollingGamepadID">PollingGamepadID</a> = <a class="local col2 ref" href="#2gamepadID" title='gamepadID' data-ref="2gamepadID">gamepadID</a>;&nbsp</td></tr>
+<tr><th id="37">37</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::PollingPeriod" title='tInput::tContGamepad::PollingPeriod' data-ref="tInput::tContGamepad::PollingPeriod">PollingPeriod</a> = <a class="local col1 ref" href="#1pollingPeriod" title='pollingPeriod' data-ref="1pollingPeriod">pollingPeriod</a>;&nbsp</td></tr>
+<tr><th id="38">38</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::PollingThread" title='tInput::tContGamepad::PollingThread' data-ref="tInput::tContGamepad::PollingThread">PollingThread</a> <a class="ref fn" href="../../../include/c++/11/bits/std_thread.h.html#_ZNSt6threadaSEOS_" title='std::thread::operator=' data-ref="_ZNSt6threadaSEOS_">=</a> <span class="namespace">std::</span><a class="type" href="../../../include/c++/11/bits/std_thread.h.html#std::thread" title='std::thread' data-ref="std::thread">thread</a><a class="ref fn" href="../../../include/c++/11/bits/std_thread.h.html#_ZNSt6threadC1EOT_DpOT0_" title='std::thread::thread' data-ref="_ZNSt6threadC1EOT_DpOT0_">(</a>&amp;<a class="type" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad" title='tInput::tContGamepad' data-ref="tInput::tContGamepad">tContGamepad</a>::<a class="member fn" href="#_ZN6tInput12tContGamepad4PollEv" title='tInput::tContGamepad::Poll' data-ref="_ZN6tInput12tContGamepad4PollEv">Poll</a>, <b>this</b>);&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td>}&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td><em>void</em> <a class="type" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad" title='tInput::tContGamepad' data-ref="tInput::tContGamepad">tContGamepad</a>::<dfn class="decl def fn" id="_ZN6tInput12tContGamepad11StopPollingEv" title='tInput::tContGamepad::StopPolling' data-ref="_ZN6tInput12tContGamepad11StopPollingEv">StopPolling</dfn>()&nbsp</td></tr>
+<tr><th id="44">44</th><td>{&nbsp</td></tr>
+<tr><th id="45">45</th><td>	<i>// If it's already stopped so do nothing.</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td>	<b>if</b> (!<a class="member fn" href="../Inc/Input/tContGamepad.h.html#_ZNK6tInput12tContGamepad9IsPollingEv" title='tInput::tContGamepad::IsPolling' data-ref="_ZNK6tInput12tContGamepad9IsPollingEv">IsPolling</a>())&nbsp</td></tr>
+<tr><th id="47">47</th><td>		<b>return</b>;&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td>	<i>// We don't want to wait around to exit the polling thread to finish its sleep cycle so we use a condition_variable</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i>	// that uses PollingExitRequested as the predecate.</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td>	{&nbsp</td></tr>
+<tr><th id="52">52</th><td>		<em>const</em> <span class="namespace">std::</span><a class="type" href="../../../include/c++/11/bits/std_mutex.h.html#std::lock_guard" title='std::lock_guard' data-ref="std::lock_guard">lock_guard</a>&lt;<span class="namespace">std::</span><a class="type" href="../../../include/c++/11/bits/std_mutex.h.html#std::mutex" title='std::mutex' data-ref="std::mutex">mutex</a>&gt; <dfn class="local col3 decl" id="3lock" title='lock' data-type='const std::lock_guard&lt;std::mutex&gt;' data-ref="3lock">lock</dfn><a class="ref fn" href="../../../include/c++/11/bits/std_mutex.h.html#_ZNSt10lock_guardC1ERT_" title='std::lock_guard::lock_guard&lt;_Mutex&gt;' data-ref="_ZNSt10lock_guardC1ERT_">(</a><a class="member field" href="../Inc/Input/tCont.h.html#tInput::tController::Mutex" title='tInput::tController::Mutex' data-ref="tInput::tController::Mutex">Mutex</a>);&nbsp</td></tr>
+<tr><th id="53">53</th><td>		<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::PollingExitRequested" title='tInput::tContGamepad::PollingExitRequested' data-ref="tInput::tContGamepad::PollingExitRequested">PollingExitRequested</a> = <b>true</b>;&nbsp</td></tr>
+<tr><th id="54">54</th><td>	}&nbsp</td></tr>
+<tr><th id="55">55</th><td>&nbsp</td></tr>
+<tr><th id="56">56</th><td>	<i>// Joins back up to the detection thread.</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::PollingThread" title='tInput::tContGamepad::PollingThread' data-ref="tInput::tContGamepad::PollingThread">PollingThread</a>.<a class="ref fn" href="../../../include/c++/11/bits/std_thread.h.html#_ZNSt6thread4joinEv" title='std::thread::join' data-ref="_ZNSt6thread4joinEv">join</a>();&nbsp</td></tr>
+<tr><th id="58">58</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::PollingGamepadID" title='tInput::tContGamepad::PollingGamepadID' data-ref="tInput::tContGamepad::PollingGamepadID">PollingGamepadID</a> = <a class="type" href="../Inc/Input/tContGamepad.h.html#tInput::tGamepadID" title='tInput::tGamepadID' data-ref="tInput::tGamepadID">tGamepadID</a>::<a class="enum" href="../Inc/Input/tContGamepad.h.html#tInput::tGamepadID::Invalid" title='tInput::tGamepadID::Invalid' data-ref="tInput::tGamepadID::Invalid">Invalid</a>;&nbsp</td></tr>
+<tr><th id="59">59</th><td>}&nbsp</td></tr>
+<tr><th id="60">60</th><td>&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td><em>void</em> <a class="type" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad" title='tInput::tContGamepad' data-ref="tInput::tContGamepad">tContGamepad</a>::<dfn class="decl def fn" id="_ZN6tInput12tContGamepad4PollEv" title='tInput::tContGamepad::Poll' data-ref="_ZN6tInput12tContGamepad4PollEv">Poll</dfn>()&nbsp</td></tr>
+<tr><th id="63">63</th><td>{&nbsp</td></tr>
+<tr><th id="64">64</th><td>	<b>while</b> (<b>true</b>)&nbsp</td></tr>
+<tr><th id="65">65</th><td>	{&nbsp</td></tr>
+<tr><th id="66">66</th><td>		<u>#<span data-ppcond="66">ifdef</span> <span class="macro" data-ref="_M/PLATFORM_WINDOWS">PLATFORM_WINDOWS</span></u>&nbsp</td></tr>
+<tr><th id="67">67</th><td>		WinXInputState state;&nbsp</td></tr>
+<tr><th id="68">68</th><td>		tStd::tMemclr(&amp;state, <b>sizeof</b>(WinXInputState));&nbsp</td></tr>
+<tr><th id="69">69</th><td>&nbsp</td></tr>
+<tr><th id="70">70</th><td>		<i>// Get the state of the controller from XInput. From what I can tell reading different gamepads on different</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td><i>		// threads does not require a mutex to protect this call. Only this thread instance will read this particular</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i>		// controller and so two calls to XInputGetState for the same controller will never happed at the same time.</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td>		WinDWord result = XInputGetState(<em>int</em>(PollingGamepadID), &amp;state);&nbsp</td></tr>
+<tr><th id="74">74</th><td>&nbsp</td></tr>
+<tr><th id="75">75</th><td>		<b>if</b> (result == WinErrorSuccess)&nbsp</td></tr>
+<tr><th id="76">76</th><td>		{&nbsp</td></tr>
+<tr><th id="77">77</th><td>			<i>// Controller connected. We can read its state and update components.</i>&nbsp</td></tr>
+<tr><th id="78">78</th><td>			<b>if</b> (state.dwPacketNumber != PollingPacketNumber)&nbsp</td></tr>
+<tr><th id="79">79</th><td>			{&nbsp</td></tr>
+<tr><th id="80">80</th><td>				<i>// The set calls to the components below are all mutex protected internally. Main thread may read input</i>&nbsp</td></tr>
+<tr><th id="81">81</th><td><i>				// unit values so we require the protection.</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i></i>&nbsp</td></tr>
+<tr><th id="83">83</th><td><i>				// Note there is a bit more precision for the neg integral values. -32768 to 32767 maps to [-1.0, 1.0]</i>&nbsp</td></tr>
+<tr><th id="84">84</th><td>				int16 rawLX = state.Gamepad.sThumbLX;&nbsp</td></tr>
+<tr><th id="85">85</th><td>				<em>float</em> axisLXNorm = (rawLX &lt; <var>0</var>) ? <em>float</em>(rawLX)/<var>32768.0f</var> : <em>float</em>(rawLX)/<var>32767.0f</var>;&nbsp</td></tr>
+<tr><th id="86">86</th><td>				tPrintf(<q>"LX: %05.3f "</q>, axisLXNorm);&nbsp</td></tr>
+<tr><th id="87">87</th><td>				<i>// @todo Set LStick X.</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td>&nbsp</td></tr>
+<tr><th id="89">89</th><td>				int16 rawLY = state.Gamepad.sThumbLY;&nbsp</td></tr>
+<tr><th id="90">90</th><td>				<em>float</em> axisLYNorm = (rawLY &lt; <var>0</var>) ? <em>float</em>(rawLY)/<var>32768.0f</var> : <em>float</em>(rawLY)/<var>32767.0f</var>;&nbsp</td></tr>
+<tr><th id="91">91</th><td>				tPrintf(<q>"LY: %05.3f "</q>, axisLXNorm);&nbsp</td></tr>
+<tr><th id="92">92</th><td>				<i>// @todo Set LStick Y.</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td>&nbsp</td></tr>
+<tr><th id="94">94</th><td>				<em>bool</em> rawLB = (state.Gamepad.wButtons &amp; XINPUT_GAMEPAD_LEFT_THUMB) ? <b>true</b> : <b>false</b>;&nbsp</td></tr>
+<tr><th id="95">95</th><td>				tPrintf(<q>"LB: %s\n"</q>, rawLB ? <q>"down"</q> : <q>"up"</q>);&nbsp</td></tr>
+<tr><th id="96">96</th><td>				<i>// @todo Set LStick B.</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td>&nbsp</td></tr>
+<tr><th id="98">98</th><td>				int16 rawRX = state.Gamepad.sThumbRX;&nbsp</td></tr>
+<tr><th id="99">99</th><td>				<em>float</em> axisRXNorm = (rawRX &lt; <var>0</var>) ? <em>float</em>(rawRX)/<var>32768.0f</var> : <em>float</em>(rawRX)/<var>32767.0f</var>;&nbsp</td></tr>
+<tr><th id="100">100</th><td>				<i>// @todo Set RStick X.</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td>&nbsp</td></tr>
+<tr><th id="102">102</th><td>				int16 rawRY = state.Gamepad.sThumbRY;&nbsp</td></tr>
+<tr><th id="103">103</th><td>				<em>float</em> axisRYNorm = (rawRY &lt; <var>0</var>) ? <em>float</em>(rawRY)/<var>32768.0f</var> : <em>float</em>(rawRY)/<var>32767.0f</var>;&nbsp</td></tr>
+<tr><th id="104">104</th><td>				<i>// @todo Set RStick Y.</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td>&nbsp</td></tr>
+<tr><th id="106">106</th><td>				<em>bool</em> rawRB = (state.Gamepad.wButtons &amp; XINPUT_GAMEPAD_RIGHT_THUMB) ? <b>true</b> : <b>false</b>;&nbsp</td></tr>
+<tr><th id="107">107</th><td>&nbsp</td></tr>
+<tr><th id="108">108</th><td>				<em>float</em> leftTriggerNorm = <em>float</em>(state.Gamepad.bLeftTrigger) / <var>255.0f</var>;&nbsp</td></tr>
+<tr><th id="109">109</th><td>				LTrigger.SetDisplacementRaw(leftTriggerNorm);&nbsp</td></tr>
+<tr><th id="110">110</th><td>&nbsp</td></tr>
+<tr><th id="111">111</th><td>				<em>float</em> rightTriggerNorm = <em>float</em>(state.Gamepad.bRightTrigger) / <var>255.0f</var>;&nbsp</td></tr>
+<tr><th id="112">112</th><td>				RTrigger.SetDisplacementRaw(rightTriggerNorm);&nbsp</td></tr>
+<tr><th id="113">113</th><td>&nbsp</td></tr>
+<tr><th id="114">114</th><td>				PollingPacketNumber = state.dwPacketNumber;&nbsp</td></tr>
+<tr><th id="115">115</th><td>			}&nbsp</td></tr>
+<tr><th id="116">116</th><td>		}&nbsp</td></tr>
+<tr><th id="117">117</th><td>		<b>else</b>&nbsp</td></tr>
+<tr><th id="118">118</th><td>		{&nbsp</td></tr>
+<tr><th id="119">119</th><td>			<i>// Controller is not connected. This can happen if the detection thread of the controller system has not</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td><i>			// realized yet that the controller was disconnected (and stopped the polling thread). In this case we can</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td><i>			// just stop polling. Note that exiting the loop does not stop the thread from being joinable. It is still</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td><i>			// considered connected until the detection thread calls StopPolling. In the mean time, it only makes sense</i>&nbsp</td></tr>
+<tr><th id="123">123</th><td><i>			// to reset the components.</i>&nbsp</td></tr>
+<tr><th id="124">124</th><td>			LTrigger.Reset();&nbsp</td></tr>
+<tr><th id="125">125</th><td>			RTrigger.Reset();&nbsp</td></tr>
+<tr><th id="126">126</th><td>			<b>break</b>;&nbsp</td></tr>
+<tr><th id="127">127</th><td>		}&nbsp</td></tr>
+<tr><th id="128">128</th><td>		<u>#<span data-ppcond="66">endif</span></u>&nbsp</td></tr>
+<tr><th id="129">129</th><td>&nbsp</td></tr>
+<tr><th id="130">130</th><td>		<i>// This unique_lock is just a more powerful version of lock_guard. Supports subsequent unlocking/locking which</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td><i>		// is presumably needed by wait_for. In any case, wait_for needs this type of lock.</i>&nbsp</td></tr>
+<tr><th id="132">132</th><td>		<span class="namespace">std::</span><a class="type" href="../../../include/c++/11/bits/unique_lock.h.html#std::unique_lock" title='std::unique_lock' data-ref="std::unique_lock">unique_lock</a>&lt;<span class="namespace">std::</span><a class="type" href="../../../include/c++/11/bits/std_mutex.h.html#std::mutex" title='std::mutex' data-ref="std::mutex">mutex</a>&gt; <dfn class="local col4 decl" id="4lock" title='lock' data-type='std::unique_lock&lt;std::mutex&gt;' data-ref="4lock">lock</dfn><a class="ref fn" href="../../../include/c++/11/bits/unique_lock.h.html#_ZNSt11unique_lockC1ERT_" title='std::unique_lock::unique_lock&lt;_Mutex&gt;' data-ref="_ZNSt11unique_lockC1ERT_">(</a><a class="member field" href="../Inc/Input/tCont.h.html#tInput::tController::Mutex" title='tInput::tController::Mutex' data-ref="tInput::tController::Mutex">Mutex</a>);&nbsp</td></tr>
+<tr><th id="133">133</th><td>		<em>bool</em> <dfn class="local col5 decl" id="5exitRequested" title='exitRequested' data-type='bool' data-ref="5exitRequested">exitRequested</dfn> = <a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::PollingExitCondition" title='tInput::tContGamepad::PollingExitCondition' data-ref="tInput::tContGamepad::PollingExitCondition">PollingExitCondition</a>.<a class="tu ref fn" href="../../../include/c++/11/condition_variable.html#_ZNSt18condition_variable8wait_forERSt11unique_lockISt5mutexERKNSt6chrono8durationIT_T0_EET1_" title='std::condition_variable::wait_for' data-use='c' data-ref="_ZNSt18condition_variable8wait_forERSt11unique_lockISt5mutexERKNSt6chrono8durationIT_T0_EET1_">wait_for</a>(<span class='inlayHint'>lock&amp;:&nbsp;</span><span class='refarg'><a class="local col4 ref" href="#4lock" title='lock' data-ref="4lock">lock</a></span>, <span class='inlayHint'>rtime:&nbsp;</span><span class="namespace">std::chrono::</span><a class="typedef" href="../../../include/c++/11/chrono.html#std::chrono::nanoseconds" title='std::chrono::nanoseconds' data-type='duration&lt;int64_t, std::nano&gt;' data-ref="std::chrono::nanoseconds">nanoseconds</a><a class="ref fn" href="../../../include/c++/11/chrono.html#_ZNSt6chrono8durationC1ERKTL0__" title='std::chrono::duration::duration&lt;_Rep, _Period&gt;' data-ref="_ZNSt6chrono8durationC1ERKTL0__">(</a><a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::PollingPeriod" title='tInput::tContGamepad::PollingPeriod' data-ref="tInput::tContGamepad::PollingPeriod">PollingPeriod</a>), <span class='inlayHint'>p:&nbsp;</span>[<b>this</b>]{ <b>return</b> <a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::PollingExitRequested" title='tInput::tContGamepad::PollingExitRequested' data-ref="tInput::tContGamepad::PollingExitRequested">PollingExitRequested</a>; });&nbsp</td></tr>
+<tr><th id="134">134</th><td>		<b>if</b> (<a class="local col5 ref" href="#5exitRequested" title='exitRequested' data-ref="5exitRequested">exitRequested</a>)&nbsp</td></tr>
+<tr><th id="135">135</th><td>			<b>break</b>;&nbsp</td></tr>
+<tr><th id="136">136</th><td>	}&nbsp</td></tr>
+<tr><th id="137">137</th><td>}&nbsp</td></tr>
+<tr><th id="138">138</th><td>&nbsp</td></tr>
+<tr><th id="139">139</th><td>&nbsp</td></tr>
+<tr><th id="140">140</th><td><em>void</em> <a class="type" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad" title='tInput::tContGamepad' data-ref="tInput::tContGamepad">tContGamepad</a>::<dfn class="decl def fn" id="_ZN6tInput12tContGamepad6UpdateEv" title='tInput::tContGamepad::Update' data-ref="_ZN6tInput12tContGamepad6UpdateEv">Update</dfn>()&nbsp</td></tr>
+<tr><th id="141">141</th><td>{&nbsp</td></tr>
+<tr><th id="142">142</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::LStick" title='tInput::tContGamepad::LStick' data-ref="tInput::tContGamepad::LStick">LStick</a>.<a class="ref fn" href="../Inc/Input/tCompJoystick.h.html#_ZN6tInput13tCompJoystick6UpdateEv" title='tInput::tCompJoystick::Update' data-ref="_ZN6tInput13tCompJoystick6UpdateEv">Update</a>();&nbsp</td></tr>
+<tr><th id="143">143</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::RStick" title='tInput::tContGamepad::RStick' data-ref="tInput::tContGamepad::RStick">RStick</a>.<a class="ref fn" href="../Inc/Input/tCompJoystick.h.html#_ZN6tInput13tCompJoystick6UpdateEv" title='tInput::tCompJoystick::Update' data-ref="_ZN6tInput13tCompJoystick6UpdateEv">Update</a>();&nbsp</td></tr>
+<tr><th id="144">144</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::DPad" title='tInput::tContGamepad::DPad' data-ref="tInput::tContGamepad::DPad">DPad</a>.<a class="ref fn" href="../Inc/Input/tCompDirPad.h.html#_ZN6tInput11tCompDirPad6UpdateEv" title='tInput::tCompDirPad::Update' data-ref="_ZN6tInput11tCompDirPad6UpdateEv">Update</a>();&nbsp</td></tr>
+<tr><th id="145">145</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::LTrigger" title='tInput::tContGamepad::LTrigger' data-ref="tInput::tContGamepad::LTrigger">LTrigger</a>.<a class="ref fn" href="../Inc/Input/tCompTrigger.h.html#_ZN6tInput12tCompTrigger6UpdateEv" title='tInput::tCompTrigger::Update' data-ref="_ZN6tInput12tCompTrigger6UpdateEv">Update</a>();&nbsp</td></tr>
+<tr><th id="146">146</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::RTrigger" title='tInput::tContGamepad::RTrigger' data-ref="tInput::tContGamepad::RTrigger">RTrigger</a>.<a class="ref fn" href="../Inc/Input/tCompTrigger.h.html#_ZN6tInput12tCompTrigger6UpdateEv" title='tInput::tCompTrigger::Update' data-ref="_ZN6tInput12tCompTrigger6UpdateEv">Update</a>();&nbsp</td></tr>
+<tr><th id="147">147</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::LViewButton" title='tInput::tContGamepad::LViewButton' data-ref="tInput::tContGamepad::LViewButton">LViewButton</a>.<a class="ref fn" href="../Inc/Input/tCompButton.h.html#_ZN6tInput11tCompButton6UpdateEv" title='tInput::tCompButton::Update' data-ref="_ZN6tInput11tCompButton6UpdateEv">Update</a>();&nbsp</td></tr>
+<tr><th id="148">148</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::RMenuButton" title='tInput::tContGamepad::RMenuButton' data-ref="tInput::tContGamepad::RMenuButton">RMenuButton</a>.<a class="ref fn" href="../Inc/Input/tCompButton.h.html#_ZN6tInput11tCompButton6UpdateEv" title='tInput::tCompButton::Update' data-ref="_ZN6tInput11tCompButton6UpdateEv">Update</a>();&nbsp</td></tr>
+<tr><th id="149">149</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::LBumperButton" title='tInput::tContGamepad::LBumperButton' data-ref="tInput::tContGamepad::LBumperButton">LBumperButton</a>.<a class="ref fn" href="../Inc/Input/tCompButton.h.html#_ZN6tInput11tCompButton6UpdateEv" title='tInput::tCompButton::Update' data-ref="_ZN6tInput11tCompButton6UpdateEv">Update</a>();&nbsp</td></tr>
+<tr><th id="150">150</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::RBumperButton" title='tInput::tContGamepad::RBumperButton' data-ref="tInput::tContGamepad::RBumperButton">RBumperButton</a>.<a class="ref fn" href="../Inc/Input/tCompButton.h.html#_ZN6tInput11tCompButton6UpdateEv" title='tInput::tCompButton::Update' data-ref="_ZN6tInput11tCompButton6UpdateEv">Update</a>();&nbsp</td></tr>
+<tr><th id="151">151</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::XButton" title='tInput::tContGamepad::XButton' data-ref="tInput::tContGamepad::XButton">XButton</a>.<a class="ref fn" href="../Inc/Input/tCompButton.h.html#_ZN6tInput11tCompButton6UpdateEv" title='tInput::tCompButton::Update' data-ref="_ZN6tInput11tCompButton6UpdateEv">Update</a>();&nbsp</td></tr>
+<tr><th id="152">152</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::YButton" title='tInput::tContGamepad::YButton' data-ref="tInput::tContGamepad::YButton">YButton</a>.<a class="ref fn" href="../Inc/Input/tCompButton.h.html#_ZN6tInput11tCompButton6UpdateEv" title='tInput::tCompButton::Update' data-ref="_ZN6tInput11tCompButton6UpdateEv">Update</a>();&nbsp</td></tr>
+<tr><th id="153">153</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::AButton" title='tInput::tContGamepad::AButton' data-ref="tInput::tContGamepad::AButton">AButton</a>.<a class="ref fn" href="../Inc/Input/tCompButton.h.html#_ZN6tInput11tCompButton6UpdateEv" title='tInput::tCompButton::Update' data-ref="_ZN6tInput11tCompButton6UpdateEv">Update</a>();&nbsp</td></tr>
+<tr><th id="154">154</th><td>	<a class="member field" href="../Inc/Input/tContGamepad.h.html#tInput::tContGamepad::BButton" title='tInput::tContGamepad::BButton' data-ref="tInput::tContGamepad::BButton">BButton</a>.<a class="ref fn" href="../Inc/Input/tCompButton.h.html#_ZN6tInput11tCompButton6UpdateEv" title='tInput::tCompButton::Update' data-ref="_ZN6tInput11tCompButton6UpdateEv">Update</a>();&nbsp</td></tr>
+<tr><th id="155">155</th><td>}&nbsp</td></tr>
+<tr><th id="156">156</th><td>&nbsp</td></tr>
+<tr><th id="157">157</th><td>&nbsp</td></tr>
+<tr><th id="158">158</th><td>}&nbsp</td></tr>
+<tr><th id="159">159</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

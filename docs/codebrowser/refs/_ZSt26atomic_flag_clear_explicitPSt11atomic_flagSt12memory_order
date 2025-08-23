@@ -1,0 +1,2 @@
+<def f='include/c++/11/atomic' l='1234' ll='1236' type='void std::atomic_flag_clear_explicit(std::atomic_flag * __a, std::memory_order __m)'/>
+<use f='include/c++/11/atomic' l='1253' u='c' c='_ZSt17atomic_flag_clearPSt11atomic_flag'/>

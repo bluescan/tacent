@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='108' type='0'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='120' c='_ZN12tChunkWriter10BeginChunkEjNS_9AlignmentE'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='192' c='_ZN12tChunkWriter5BeginEjNS_9AlignmentE'/>

@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='168'/>
+<doc f='include/signal.h' l='167'>/* Compute mask for signal SIG.  */</doc>

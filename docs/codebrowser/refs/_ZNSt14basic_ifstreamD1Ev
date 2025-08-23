@@ -1,0 +1,7 @@
+<def f='include/c++/11/fstream' l='604' ll='605' type='void std::basic_ifstream::~basic_ifstream&lt;_CharT, _Traits&gt;()'/>
+<doc f='include/c++/11/fstream' l='598'>/**
+       *  @brief  The destructor does nothing.
+       *
+       *  The file is closed by the filebuf object, not the formatting
+       *  stream.
+       */</doc>

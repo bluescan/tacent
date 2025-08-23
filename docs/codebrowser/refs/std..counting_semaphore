@@ -1,0 +1,13 @@
+<def f='include/c++/11/semaphore' l='45' ll='87'/>
+<use f='include/c++/11/semaphore' l='89'/>
+<mbr r='std::counting_semaphore::_M_sem' t='std::__semaphore_impl'/>
+<fun r='_ZNSt18counting_semaphoreC1El'/>
+<fun r='_ZNSt18counting_semaphoreD1Ev'/>
+<fun r='_ZNSt18counting_semaphoreC1ERKSt18counting_semaphoreIXT_EE'/>
+<fun r='_ZNSt18counting_semaphoreaSERKSt18counting_semaphoreIXT_EE'/>
+<fun r='_ZNSt18counting_semaphore3maxEv'/>
+<fun r='_ZNSt18counting_semaphore7releaseEl'/>
+<fun r='_ZNSt18counting_semaphore7acquireEv'/>
+<fun r='_ZNSt18counting_semaphore11try_acquireEv'/>
+<fun r='_ZNSt18counting_semaphore15try_acquire_forERKNSt6chrono8durationITL0__TL0_0_EE'/>
+<fun r='_ZNSt18counting_semaphore17try_acquire_untilERKNSt6chrono10time_pointITL0__TL0_0_EE'/>

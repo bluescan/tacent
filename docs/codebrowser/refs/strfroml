@@ -1,0 +1,1 @@
+<dec f='include/stdlib.h' l='221' type='int strfroml(char * __dest, size_t __size, const char * __format, long double __f)'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='99'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='98'>/* We do not support priority protection for robust mutexes.  */</doc>

@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/basic_string.h' l='327' ll='332' type='void std::basic_string::_M_check_length(std::basic_string::size_type __n1, std::basic_string::size_type __n2, const char * __s) const'/>
+<use f='include/c++/11/bits/basic_string.h' l='1245' u='c' c='_ZNSt7__cxx1112basic_string6appendEPKT_N9__gnu_cxx14__alloc_traitsINS5_IT1_NS6_10value_typeEE6rebindIS1_E5otherENSA_5other10value_typeEE9size_typeE'/>
+<use f='include/c++/11/bits/basic_string.h' l='1259' u='c' c='_ZNSt7__cxx1112basic_string6appendEPKT_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='423' u='c' c='_ZNSt7__cxx1112basic_string14_M_replace_auxEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_SC_S7_'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='452' u='c' c='_ZNSt7__cxx1112basic_string10_M_replaceEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_PKS7_SC_'/>

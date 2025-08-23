@@ -1,0 +1,12 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='67' type='void tString::tString(char c)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='592' u='c' c='_ZN11tStringItemC1Ec'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='64'>// Creates a tString with a single character, Note the char type here. A char8_t can&apos;t be guaranteed to store a
+	// unicode codepoint if the codepoint requires continuations in the UTF-8 encoding. So, here we support char only
+	// which we use for ASCII characters since ASCII chars are guaranteed to _not_ need continuation units in UFT-8.</doc>
+<use f='Modules/System/Src/tCmdLine.cpp' l='70' u='c' c='_ZN8tCmdLine7tOptionC1EPKccS2_ib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='83' u='c' c='_ZN8tCmdLine7tOptionC1EPKcS2_cib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='96' u='c' c='_ZN8tCmdLine7tOptionC1EPKccib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='223' u='c' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='241' u='c' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tFile.cpp' l='349' u='c' c='_ZN7tSystem13tGetLinuxPathERK7tStringS2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='1318' u='c' c='_ZN7tSystem11tGetHomeDirEv'/>

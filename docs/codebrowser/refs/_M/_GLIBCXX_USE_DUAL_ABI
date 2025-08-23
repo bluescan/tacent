@@ -1,0 +1,4 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='288'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='290' u='c'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='616' u='c'/>
+<use f='include/c++/11/stdexcept' l='45' u='c'/>

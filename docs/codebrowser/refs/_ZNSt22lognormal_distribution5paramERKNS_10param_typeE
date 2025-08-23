@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='2276' ll='2278' type='void std::lognormal_distribution::param(const std::lognormal_distribution::param_type &amp; __param)'/>
+<doc f='include/c++/11/bits/random.h' l='2272'>/**
+       * @brief Sets the parameter set of the distribution.
+       * @param __param The new parameter set of the distribution.
+       */</doc>

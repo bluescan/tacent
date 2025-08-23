@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/sys/cdefs.h' l='185'/>
+<doc f='include/x86_64-linux-gnu/sys/cdefs.h' l='182'>/* Fortify function f.  __f_alias, __f_chk and __f_chk_warn must be
+   declared.  */</doc>

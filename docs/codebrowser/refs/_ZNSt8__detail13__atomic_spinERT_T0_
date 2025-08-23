@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/atomic_wait.h' l='157' ll='178' type='bool std::__detail::__atomic_spin(_Pred &amp; __pred, _Spin __spin = _Spin({}))'/>

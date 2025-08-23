@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='3256' ll='3258' type='chrono::duration&lt;long double, milli&gt; std::operator&quot;&quot;ms(long double __msecs)'/>
+<doc f='include/c++/11/chrono' l='3255'>/// Literal suffix for durations representing non-integer milliseconds</doc>

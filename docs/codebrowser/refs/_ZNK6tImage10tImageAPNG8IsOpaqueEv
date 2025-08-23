@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='115' u='c' c='_ZN6tImage10tImageAPNG4LoadERK7tString'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='260' u='c' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

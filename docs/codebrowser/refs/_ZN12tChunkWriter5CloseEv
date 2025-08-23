@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='99' type='void tChunkWriter::Close()'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='97'>// In case you want to open something else. You should have finished writing all the chunks by this time. You can
+	// optionally let the destructor call this fn for you.</doc>
+<def f='Modules/System/Src/tChunk.cpp' l='109' ll='133' type='void tChunkWriter::Close()'/>

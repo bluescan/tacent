@@ -1,0 +1,8 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='551' type='std::time_t'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1106' u='w' c='_ZN7tSystem9tFileInfoC1Ev'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1119' u='w' c='_ZN7tSystem9tFileInfoC1ERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1119' u='r' c='_ZN7tSystem9tFileInfoC1ERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1133' u='w' c='_ZN7tSystem9tFileInfo5ClearEv'/>
+<offset>512</offset>
+<use f='Modules/System/Src/tFile.cpp' l='2039' u='w' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2144' u='w' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>

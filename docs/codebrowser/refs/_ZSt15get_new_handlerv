@@ -1,0 +1,2 @@
+<dec f='include/c++/11/new' l='111' type='std::new_handler std::get_new_handler()'/>
+<doc f='include/c++/11/new' l='110'>/// Return the current new handler.</doc>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17213' ll='17217'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17213'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceCopyMemoryIndirectPropertiesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceCopyMemoryIndirectPropertiesNV::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceCopyMemoryIndirectPropertiesNV::supportedQueues' o='128' t='VkQueueFlags'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Src/tImageEXR.cpp' l='49' type='uint8 EXR::Dither(float v, int x, int y)'/>
+<def f='Modules/Image/Src/tImageEXR.cpp' l='116' ll='127' type='uint8 EXR::Dither(float v, int x, int y)'/>

@@ -1,0 +1,12 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='265' type='tString tSystem::tGetHomeDir()'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='261'>//
+// System path, drive, and network share information.
+//
+// Gets the home directory. On Linux usually something like &quot;/home/username/&quot;. On windows usually something like &quot;C:/Users/UserName/&quot;.</doc>
+<use f='Modules/System/Src/tFile.cpp' l='1165' u='c' c='_ZN7tSystem11tDeleteFileERK7tStringbb'/>
+<def f='Modules/System/Src/tFile.cpp' l='1307' ll='1331' type='tString tSystem::tGetHomeDir()'/>
+<use f='Modules/System/Src/tMachine.cpp' l='295' u='c' c='_ZN7tSystem15tGetXDGDataHomeER7tString'/>
+<use f='Modules/System/Src/tMachine.cpp' l='305' u='c' c='_ZN7tSystem17tGetXDGConfigHomeER7tString'/>
+<use f='Modules/System/Src/tMachine.cpp' l='315' u='c' c='_ZN7tSystem16tGetXDGStateHomeER7tString'/>
+<use f='Modules/System/Src/tMachine.cpp' l='324' u='c' c='_ZN7tSystem14tGetXDGExeHomeER7tString'/>
+<use f='Modules/System/Src/tMachine.cpp' l='353' u='c' c='_ZN7tSystem16tGetXDGCacheHomeER7tString'/>

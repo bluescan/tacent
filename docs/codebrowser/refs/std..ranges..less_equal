@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/ranges_cmp.h' l='166' ll='176'/>
+<size>1</size>
+<doc f='include/c++/11/bits/ranges_cmp.h' l='165'>/// ranges::less_equal function object type.</doc>
+<fun r='_ZNKSt6ranges10less_equalclEOT_OT0_'/>

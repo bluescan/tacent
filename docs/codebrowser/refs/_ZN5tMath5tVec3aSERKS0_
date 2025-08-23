@@ -1,0 +1,4 @@
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='224' u='c' c='_ZN5tMath4tSetERNS_5tQuatERKS0_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='228' u='c' c='_ZN5tMath4tSetERNS_5tQuatEfRKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='230' u='c' c='_ZN5tMath4tSetERNS_5tQuatERKNS_5tVec3E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='977' u='c' c='_ZN5tMath24tExtractRotationEulerXYZERNS_5tVec3ES1_RKNS_5tMat4EfNS_5tBiasE'/>

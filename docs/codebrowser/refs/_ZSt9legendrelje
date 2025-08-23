@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='986' ll='988' type='long double std::legendrel(unsigned int __l, long double __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='980'>/**
+   * Return the Legendre polynomial @f$ P_l(x) @f$ of nonnegative
+   * degree @f$ l @f$ and &lt;tt&gt;long double&lt;/tt&gt; argument @f$ |x| &lt;= 0 @f$.
+   *
+   * @see legendre for more details.
+   */</doc>

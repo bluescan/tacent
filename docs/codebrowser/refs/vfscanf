@@ -1,0 +1,6 @@
+<dec f='include/stdio.h' l='459' type='int vfscanf(FILE *__restrict __s, const char *__restrict __format, __va_list_tag * __arg)'/>
+<dec f='include/stdio.h' l='479' type='int vfscanf(FILE *__restrict __s, const char *__restrict __format, __va_list_tag * __arg)'/>
+<doc f='include/stdio.h' l='455'>/* Read formatted input from S into argument list ARG.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

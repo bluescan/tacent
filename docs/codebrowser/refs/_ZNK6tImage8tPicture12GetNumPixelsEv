@@ -1,0 +1,5 @@
+<def f='Modules/Image/Inc/Image/tPicture.h' l='187' type='int tImage::tPicture::GetNumPixels() const'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='96' u='c' c='_ZNK6tImage8tPicture4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='123' u='c' c='_ZN6tImage8tPicture4LoadERK6tChunk'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='124' u='c' c='_ZN6tImage8tPicture4LoadERK6tChunk'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='125' u='c' c='_ZN6tImage8tPicture4LoadERK6tChunk'/>

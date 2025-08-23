@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/random.h' l='292' ll='294' type='void std::linear_congruential_engine::linear_congruential_engine&lt;_UIntType, __a, __c, __m&gt;(std::linear_congruential_engine::result_type __s)'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='862' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<doc f='include/c++/11/bits/random.h' l='285'>/**
+       * @brief Constructs a %linear_congruential_engine random number
+       *        generator engine with seed @p __s.  The default seed value
+       *        is 1.
+       *
+       * @param __s The initial seed value.
+       */</doc>

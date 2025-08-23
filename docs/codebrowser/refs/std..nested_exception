@@ -1,0 +1,22 @@
+<def f='include/c++/11/bits/nested_exception.h' l='52' ll='77'/>
+<use f='include/c++/11/bits/nested_exception.h' l='59' c='_ZNSt16nested_exceptionC1ERKS_'/>
+<use f='include/c++/11/bits/nested_exception.h' l='61' c='_ZNSt16nested_exceptionaSERKS_'/>
+<use f='include/c++/11/bits/nested_exception.h' l='61' c='_ZNSt16nested_exceptionaSERKS_'/>
+<ovr f='include/c++/11/bits/nested_exception.h' l='82' c='std::_Nested_exception'/>
+<use f='include/c++/11/bits/nested_exception.h' l='82'/>
+<use f='include/c++/11/bits/nested_exception.h' l='126' c='_ZSt17throw_with_nestedOT_'/>
+<use f='include/c++/11/bits/nested_exception.h' l='145' c='_ZSt24__rethrow_if_nested_implPKT_'/>
+<size>16</size>
+<doc f='include/c++/11/bits/nested_exception.h' l='46'>/**
+   * @addtogroup exceptions
+   * @{
+   */
+
+  /// Exception class with exception_ptr data member.</doc>
+<mbr r='std::nested_exception::_M_ptr' o='64' t='std::__exception_ptr::exception_ptr'/>
+<fun r='_ZNSt16nested_exceptionC1Ev'/>
+<fun r='_ZNSt16nested_exceptionC1ERKS_'/>
+<fun r='_ZNSt16nested_exceptionaSERKS_'/>
+<fun r='_ZNSt16nested_exceptionD1Ev'/>
+<fun r='_ZNKSt16nested_exception14rethrow_nestedEv'/>
+<fun r='_ZNKSt16nested_exception10nested_ptrEv'/>

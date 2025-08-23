@@ -1,0 +1,113 @@
+<use f='include/c++/11/iosfwd' l='135'/>
+<use f='include/c++/11/iosfwd' l='175'/>
+<use f='include/c++/11/streambuf' l='53' c='_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb'/>
+<use f='include/c++/11/streambuf' l='54' c='_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb'/>
+<def f='include/c++/11/streambuf' l='122' ll='828'/>
+<use f='include/c++/11/streambuf' l='140'/>
+<use f='include/c++/11/streambuf' l='595' c='_ZNSt15basic_streambuf6setbufEPT_l'/>
+<use f='include/c++/11/streambuf' l='832' c='_ZNSt15basic_streambufC1ERKSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/streambuf' l='837' c='_ZNSt15basic_streambufaSERKSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/streambuf' l='836' c='_ZNSt15basic_streambufaSERKSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/streambuf' l='844' c='_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb'/>
+<use f='include/c++/11/streambuf' l='845' c='_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb'/>
+<use f='include/c++/11/streambuf' l='849' c='_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb'/>
+<use f='include/c++/11/streambuf' l='850' c='_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb'/>
+<use f='include/c++/11/bits/streambuf.tcc' l='45' c='_ZNSt15basic_streambuf6xsgetnEPT_l'/>
+<use f='include/c++/11/bits/streambuf.tcc' l='79' c='_ZNSt15basic_streambuf6xsputnEPKT_l'/>
+<use f='include/c++/11/bits/streambuf.tcc' l='116' c='_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb'/>
+<use f='include/c++/11/bits/streambuf.tcc' l='117' c='_ZSt21__copy_streambufs_eofPSt15basic_streambufIT_T0_ES3_Rb'/>
+<use f='include/c++/11/bits/streambuf.tcc' l='139' c='_ZSt17__copy_streambufsPSt15basic_streambufIT_T0_ES3_'/>
+<use f='include/c++/11/bits/streambuf.tcc' l='140' c='_ZSt17__copy_streambufsPSt15basic_streambufIT_T0_ES3_'/>
+<def f='include/c++/11/bits/streambuf.tcc' l='149'/>
+<use f='include/c++/11/bits/streambuf.tcc' l='149'/>
+<def f='include/c++/11/bits/streambuf.tcc' l='160'/>
+<use f='include/c++/11/bits/streambuf.tcc' l='160'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='69'/>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='250'/>
+<use f='include/c++/11/bits/basic_ios.h' l='99'/>
+<use f='include/c++/11/bits/basic_ios.h' l='270' c='_ZNSt9basic_iosC1EPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.h' l='320' c='_ZNKSt9basic_ios5rdbufEv'/>
+<use f='include/c++/11/bits/basic_ios.h' l='346' c='_ZNSt9basic_ios5rdbufEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.h' l='347' c='_ZNSt9basic_ios5rdbufEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.h' l='472' c='_ZNSt9basic_ios4initEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.h' l='505' c='_ZNSt9basic_ios9set_rdbufEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='52' c='_ZNSt9basic_ios5rdbufEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='53' c='_ZNSt9basic_ios5rdbufEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='55' c='_ZNSt9basic_ios5rdbufEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='126' c='_ZNSt9basic_ios4initEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/ostream' l='69'/>
+<use f='include/c++/11/ostream' l='758'/>
+<use f='include/c++/11/ostream' l='762' c='_ZNSt14__syncbuf_base6_S_getEPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/ostream' l='772' c='_ZNSt14__syncbuf_baseC1EPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/ostream' l='776'/>
+<size>64</size>
+<mbr r='std::basic_streambuf::_M_in_beg' t='std::basic_streambuf::char_type *'/>
+<mbr r='std::basic_streambuf::_M_in_cur' t='std::basic_streambuf::char_type *'/>
+<mbr r='std::basic_streambuf::_M_in_end' t='std::basic_streambuf::char_type *'/>
+<mbr r='std::basic_streambuf::_M_out_beg' t='std::basic_streambuf::char_type *'/>
+<mbr r='std::basic_streambuf::_M_out_cur' t='std::basic_streambuf::char_type *'/>
+<mbr r='std::basic_streambuf::_M_out_end' t='std::basic_streambuf::char_type *'/>
+<mbr r='std::basic_streambuf::_M_buf_locale' t='std::locale'/>
+<fun r='_ZNSt15basic_streambufD1Ev'/>
+<fun r='_ZNSt15basic_streambuf8pubimbueERKSt6locale'/>
+<fun r='_ZNKSt15basic_streambuf6getlocEv'/>
+<fun r='_ZNSt15basic_streambuf9pubsetbufEPT_l'/>
+<fun r='_ZNSt15basic_streambuf10pubseekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<fun r='_ZNSt15basic_streambuf10pubseekposENT0_8pos_typeESt13_Ios_Openmode'/>
+<fun r='_ZNSt15basic_streambuf7pubsyncEv'/>
+<fun r='_ZNSt15basic_streambuf8in_availEv'/>
+<fun r='_ZNSt15basic_streambuf6snextcEv'/>
+<fun r='_ZNSt15basic_streambuf6sbumpcEv'/>
+<fun r='_ZNSt15basic_streambuf5sgetcEv'/>
+<fun r='_ZNSt15basic_streambuf5sgetnEPT_l'/>
+<fun r='_ZNSt15basic_streambuf9sputbackcET_'/>
+<fun r='_ZNSt15basic_streambuf7sungetcEv'/>
+<fun r='_ZNSt15basic_streambuf5sputcET_'/>
+<fun r='_ZNSt15basic_streambuf5sputnEPKT_l'/>
+<fun r='_ZNSt15basic_streambufC1Ev'/>
+<fun r='_ZNKSt15basic_streambuf5ebackEv'/>
+<fun r='_ZNKSt15basic_streambuf4gptrEv'/>
+<fun r='_ZNKSt15basic_streambuf5egptrEv'/>
+<fun r='_ZNSt15basic_streambuf5gbumpEi'/>
+<fun r='_ZNSt15basic_streambuf4setgEPT_S1_S1_'/>
+<fun r='_ZNKSt15basic_streambuf5pbaseEv'/>
+<fun r='_ZNKSt15basic_streambuf4pptrEv'/>
+<fun r='_ZNKSt15basic_streambuf5epptrEv'/>
+<fun r='_ZNSt15basic_streambuf5pbumpEi'/>
+<fun r='_ZNSt15basic_streambuf4setpEPT_S1_'/>
+<fun r='_ZNSt15basic_streambuf5imbueERKSt6locale'/>
+<fun r='_ZNSt15basic_streambuf6setbufEPT_l'/>
+<fun r='_ZNSt15basic_streambuf7seekoffENT0_8off_typeESt12_Ios_SeekdirSt13_Ios_Openmode'/>
+<fun r='_ZNSt15basic_streambuf7seekposENT0_8pos_typeESt13_Ios_Openmode'/>
+<fun r='_ZNSt15basic_streambuf4syncEv'/>
+<fun r='_ZNSt15basic_streambuf9showmanycEv'/>
+<fun r='_ZNSt15basic_streambuf6xsgetnEPT_l'/>
+<fun r='_ZNSt15basic_streambuf9underflowEv'/>
+<fun r='_ZNSt15basic_streambuf5uflowEv'/>
+<fun r='_ZNSt15basic_streambuf9pbackfailENT0_8int_typeE'/>
+<fun r='_ZNSt15basic_streambuf6xsputnEPKT_l'/>
+<fun r='_ZNSt15basic_streambuf8overflowENT0_8int_typeE'/>
+<fun r='_ZNSt15basic_streambuf12__safe_gbumpEl'/>
+<fun r='_ZNSt15basic_streambuf12__safe_pbumpEl'/>
+<fun r='_ZNSt15basic_streambufC1ERKSt15basic_streambufIT_T0_E'/>
+<fun r='_ZNSt15basic_streambufaSERKSt15basic_streambufIT_T0_E'/>
+<fun r='_ZNSt15basic_streambuf4swapERSt15basic_streambufIT_T0_E'/>
+<fun r='_ZNSt15basic_streambufC1ERKSt15basic_streambufIT_T0_E'/>
+<fun r='_ZNSt15basic_streambufaSERKSt15basic_streambufIT_T0_E'/>
+<fun r='_ZNSt15basic_streambuf6xsgetnEPT_l'/>
+<fun r='_ZNSt15basic_streambuf6xsputnEPKT_l'/>
+<use f='include/c++/11/istream' l='69'/>
+<use f='include/c++/11/istream' l='694'/>
+<use f='include/c++/11/istream' l='915' c='_ZNSt14basic_iostreamC1EPSt15basic_streambufIT_T0_E'/>
+<use f='include/c++/11/bits/istream.tcc' l='994' c='_ZSt17__istream_extractRSt13basic_istreamIT_T0_EPS0_l'/>
+<use f='include/c++/11/bits/istream.tcc' l='1056' c='_ZSt2wsRSt13basic_istreamIT_T0_E'/>
+<use f='include/c++/11/fstream' l='85'/>
+<use f='include/c++/11/fstream' l='109'/>
+<ovr f='include/c++/11/bits/fstream.tcc' l='1086' c='std::basic_filebuf'/>
+<ovr f='include/c++/11/bits/fstream.tcc' l='1092' c='std::basic_filebuf'/>
+<use f='include/c++/11/bits/locale_conv.h' l='387'/>
+<use f='include/c++/11/bits/locale_conv.h' l='389'/>
+<use f='include/c++/11/sstream' l='72'/>
+<use f='include/c++/11/sstream' l='94'/>
+<ovr f='include/c++/11/bits/sstream.tcc' l='291' c='std::basic_stringbuf'/>
+<ovr f='include/c++/11/bits/sstream.tcc' l='297' c='std::basic_stringbuf'/>

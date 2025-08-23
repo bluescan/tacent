@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='5963' type='std::piecewise_linear_distribution::result_type std::piecewise_linear_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::piecewise_linear_distribution::param_type &amp; __p)'/>
+<def f='include/c++/11/bits/random.tcc' l='3123' ll='3157' type='typename piecewise_linear_distribution&lt;_RealType&gt;::result_type std::piecewise_linear_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::piecewise_linear_distribution::param_type &amp; __param)'/>

@@ -1,0 +1,39 @@
+<use f='Modules/Image/Contrib/WebP/include/decode.h' l='33'/>
+<def f='Modules/Image/Contrib/WebP/include/decode.h' l='412' ll='420'/>
+<size>40</size>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='382'>/*
+     // A) Init a configuration object
+     WebPDecoderConfig config;
+     CHECK(WebPInitDecoderConfig(&amp;config));
+
+     // B) optional: retrieve the bitstream&apos;s features.
+     CHECK(WebPGetFeatures(data, data_size, &amp;config.input) == VP8_STATUS_OK);
+
+     // C) Adjust &apos;config&apos;, if needed
+     config.no_fancy_upsampling = 1;
+     config.output.colorspace = MODE_BGRA;
+     // etc.
+
+     // Note that you can also make config.output point to an externally
+     // supplied memory buffer, provided it&apos;s big enough to store the decoded
+     // picture. Otherwise, config.output will just be used to allocate memory
+     // and store the decoded picture.
+
+     // D) Decode!
+     CHECK(WebPDecode(data, data_size, &amp;config) == VP8_STATUS_OK);
+
+     // E) Decoded image is now in config.output (and config.output.u.RGBA)
+
+     // F) Reclaim memory allocated in config&apos;s object. It&apos;s safe to call
+     // this function even if the memory is external and wasn&apos;t allocated
+     // by WebPDecode().
+     WebPFreeDecBuffer(&amp;config.output);
+*/
+
+// Features gathered from the bitstream</doc>
+<mbr r='WebPBitstreamFeatures::width' o='0' t='int'/>
+<mbr r='WebPBitstreamFeatures::height' o='32' t='int'/>
+<mbr r='WebPBitstreamFeatures::has_alpha' o='64' t='int'/>
+<mbr r='WebPBitstreamFeatures::has_animation' o='96' t='int'/>
+<mbr r='WebPBitstreamFeatures::format' o='128' t='int'/>
+<mbr r='WebPBitstreamFeatures::pad' o='160' t='uint32_t[5]'/>

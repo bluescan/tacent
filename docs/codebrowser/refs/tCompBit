@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='47' ll='98'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='41' c='_ZN5tMath8tMatrix24ZeroE8tCompBit'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='43' c='_ZNK5tMath8tMatrix26IsZeroE8tCompBit'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='45' c='_ZNK5tMath8tMatrix211ApproxEqualERKNS_5tMat2E8tCompBitf'/>

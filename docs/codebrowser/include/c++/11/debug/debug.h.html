@@ -1,0 +1,155 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>debug.h source code [include/c++/11/debug/debug.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/debug/debug.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>debug</a>/<a href='debug.h.html'>debug.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Debugging support implementation -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2003-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">debug/debug.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This file is a GNU debug extension to the Standard C++ Library.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u>#<span data-ppcond="29">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_DEBUG_MACRO_SWITCH_H">_GLIBCXX_DEBUG_MACRO_SWITCH_H</span></u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_DEBUG_MACRO_SWITCH_H" data-ref="_M/_GLIBCXX_DEBUG_MACRO_SWITCH_H">_GLIBCXX_DEBUG_MACRO_SWITCH_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i class="doc">/** Macros and namespaces used by the implementation outside of debug</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i class="doc"> *  wrappers to verify certain properties. The __glibcxx_requires_xxx</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i class="doc"> *  macros are merely wrappers around the __glibcxx_check_xxx wrappers</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i class="doc"> *  when we are compiling with debug mode, but disappear when we are</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i class="doc"> *  in release mode so that there is no checking performed in, e.g.,</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i class="doc"> *  the standard library algorithms.</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i class="doc">*/</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;debug/assertions.h&gt;</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i>// Debug mode namespaces.</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i class="doc"> * <span class="command">@namespace</span> <span class="verb" data-ref="std::__debug">std::__debug</span></i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i class="doc"> * <span class="command">@brief</span> GNU debug code, replaces standard behavior with debug behavior.</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><b>namespace</b> <span class="namespace">std</span>&nbsp</td></tr>
+<tr><th id="49">49</th><td>{ &nbsp</td></tr>
+<tr><th id="50">50</th><td>  <b>namespace</b> <span class="namespace">__debug</span> { } &nbsp</td></tr>
+<tr><th id="51">51</th><td>}&nbsp</td></tr>
+<tr><th id="52">52</th><td>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i class="doc">/** <span class="command">@namespace</span> <span class="verb" data-ref="__gnu_debug">__gnu_debug</span></i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i class="doc"> *  <span class="command">@brief</span> GNU debug classes for public use.</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i class="doc">*/</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><b>namespace</b> <span class="namespace">__gnu_debug</span>&nbsp</td></tr>
+<tr><th id="57">57</th><td>{&nbsp</td></tr>
+<tr><th id="58">58</th><td>  <b>using</b> <b>namespace</b> <span class="namespace">std::__debug</span>;&nbsp</td></tr>
+<tr><th id="59">59</th><td>&nbsp</td></tr>
+<tr><th id="60">60</th><td>  <b>template</b>&lt;<b>typename</b> _Ite, <b>typename</b> _Seq, <b>typename</b> _Cat&gt;&nbsp</td></tr>
+<tr><th id="61">61</th><td>    <b>struct</b> <dfn class="type" id="__gnu_debug::_Safe_iterator" title='__gnu_debug::_Safe_iterator' data-ref="__gnu_debug::_Safe_iterator">_Safe_iterator</dfn>;&nbsp</td></tr>
+<tr><th id="62">62</th><td>}&nbsp</td></tr>
+<tr><th id="63">63</th><td>&nbsp</td></tr>
+<tr><th id="64">64</th><td><u>#<span data-ppcond="64">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_DEBUG">_GLIBCXX_DEBUG</span></u>&nbsp</td></tr>
+<tr><th id="65">65</th><td>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_cond" data-ref="_M/__glibcxx_requires_cond">__glibcxx_requires_cond</dfn>(_Cond,_Msg)</u>&nbsp</td></tr>
+<tr><th id="67">67</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_valid_range" data-ref="_M/__glibcxx_requires_valid_range">__glibcxx_requires_valid_range</dfn>(_First,_Last)</u>&nbsp</td></tr>
+<tr><th id="68">68</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_can_increment" data-ref="_M/__glibcxx_requires_can_increment">__glibcxx_requires_can_increment</dfn>(_First,_Size)</u>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_can_increment_range" data-ref="_M/__glibcxx_requires_can_increment_range">__glibcxx_requires_can_increment_range</dfn>(_First1,_Last1,_First2)</u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_can_decrement_range" data-ref="_M/__glibcxx_requires_can_decrement_range">__glibcxx_requires_can_decrement_range</dfn>(_First1,_Last1,_First2)</u>&nbsp</td></tr>
+<tr><th id="71">71</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_sorted" data-ref="_M/__glibcxx_requires_sorted">__glibcxx_requires_sorted</dfn>(_First,_Last)</u>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_sorted_pred" data-ref="_M/__glibcxx_requires_sorted_pred">__glibcxx_requires_sorted_pred</dfn>(_First,_Last,_Pred)</u>&nbsp</td></tr>
+<tr><th id="73">73</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_sorted_set" data-ref="_M/__glibcxx_requires_sorted_set">__glibcxx_requires_sorted_set</dfn>(_First1,_Last1,_First2)</u>&nbsp</td></tr>
+<tr><th id="74">74</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_sorted_set_pred" data-ref="_M/__glibcxx_requires_sorted_set_pred">__glibcxx_requires_sorted_set_pred</dfn>(_First1,_Last1,_First2,_Pred)</u>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_partitioned_lower" data-ref="_M/__glibcxx_requires_partitioned_lower">__glibcxx_requires_partitioned_lower</dfn>(_First,_Last,_Value)</u>&nbsp</td></tr>
+<tr><th id="76">76</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_partitioned_upper" data-ref="_M/__glibcxx_requires_partitioned_upper">__glibcxx_requires_partitioned_upper</dfn>(_First,_Last,_Value)</u>&nbsp</td></tr>
+<tr><th id="77">77</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_partitioned_lower_pred" data-ref="_M/__glibcxx_requires_partitioned_lower_pred">__glibcxx_requires_partitioned_lower_pred</dfn>(_First,_Last,_Value,_Pred)</u>&nbsp</td></tr>
+<tr><th id="78">78</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_partitioned_upper_pred" data-ref="_M/__glibcxx_requires_partitioned_upper_pred">__glibcxx_requires_partitioned_upper_pred</dfn>(_First,_Last,_Value,_Pred)</u>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_heap" data-ref="_M/__glibcxx_requires_heap">__glibcxx_requires_heap</dfn>(_First,_Last)</u>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_heap_pred" data-ref="_M/__glibcxx_requires_heap_pred">__glibcxx_requires_heap_pred</dfn>(_First,_Last,_Pred)</u>&nbsp</td></tr>
+<tr><th id="81">81</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_string" data-ref="_M/__glibcxx_requires_string">__glibcxx_requires_string</dfn>(_String)</u>&nbsp</td></tr>
+<tr><th id="82">82</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_string_len" data-ref="_M/__glibcxx_requires_string_len">__glibcxx_requires_string_len</dfn>(_String,_Len)</u>&nbsp</td></tr>
+<tr><th id="83">83</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_irreflexive" data-ref="_M/__glibcxx_requires_irreflexive">__glibcxx_requires_irreflexive</dfn>(_First,_Last)</u>&nbsp</td></tr>
+<tr><th id="84">84</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_irreflexive2" data-ref="_M/__glibcxx_requires_irreflexive2">__glibcxx_requires_irreflexive2</dfn>(_First,_Last)</u>&nbsp</td></tr>
+<tr><th id="85">85</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_irreflexive_pred" data-ref="_M/__glibcxx_requires_irreflexive_pred">__glibcxx_requires_irreflexive_pred</dfn>(_First,_Last,_Pred)</u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><u># define <dfn class="macro" id="_M/__glibcxx_requires_irreflexive_pred2" data-ref="_M/__glibcxx_requires_irreflexive_pred2">__glibcxx_requires_irreflexive_pred2</dfn>(_First,_Last,_Pred)</u>&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#<span data-ppcond="64">else</span></u>&nbsp</td></tr>
+<tr><th id="89">89</th><td>&nbsp</td></tr>
+<tr><th id="90">90</th><td><u># include &lt;debug/macros.h&gt;</u>&nbsp</td></tr>
+<tr><th id="91">91</th><td>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u># define __glibcxx_requires_cond(_Cond,_Msg) _GLIBCXX_DEBUG_VERIFY(_Cond,_Msg)</u>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u># define __glibcxx_requires_valid_range(_First,_Last)	\</u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u>  __glibcxx_check_valid_range(_First,_Last)</u>&nbsp</td></tr>
+<tr><th id="95">95</th><td><u># define __glibcxx_requires_can_increment(_First,_Size)	\</u>&nbsp</td></tr>
+<tr><th id="96">96</th><td><u>  __glibcxx_check_can_increment(_First,_Size)</u>&nbsp</td></tr>
+<tr><th id="97">97</th><td><u># define __glibcxx_requires_can_increment_range(_First1,_Last1,_First2)	\</u>&nbsp</td></tr>
+<tr><th id="98">98</th><td><u>  __glibcxx_check_can_increment_range(_First1,_Last1,_First2)</u>&nbsp</td></tr>
+<tr><th id="99">99</th><td><u># define __glibcxx_requires_can_decrement_range(_First1,_Last1,_First2)	\</u>&nbsp</td></tr>
+<tr><th id="100">100</th><td><u>  __glibcxx_check_can_decrement_range(_First1,_Last1,_First2)</u>&nbsp</td></tr>
+<tr><th id="101">101</th><td><u># define __glibcxx_requires_sorted(_First,_Last)	\</u>&nbsp</td></tr>
+<tr><th id="102">102</th><td><u>  __glibcxx_check_sorted(_First,_Last)</u>&nbsp</td></tr>
+<tr><th id="103">103</th><td><u># define __glibcxx_requires_sorted_pred(_First,_Last,_Pred)	\</u>&nbsp</td></tr>
+<tr><th id="104">104</th><td><u>  __glibcxx_check_sorted_pred(_First,_Last,_Pred)</u>&nbsp</td></tr>
+<tr><th id="105">105</th><td><u># define __glibcxx_requires_sorted_set(_First1,_Last1,_First2)	\</u>&nbsp</td></tr>
+<tr><th id="106">106</th><td><u>  __glibcxx_check_sorted_set(_First1,_Last1,_First2)</u>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u># define __glibcxx_requires_sorted_set_pred(_First1,_Last1,_First2,_Pred) \</u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u>  __glibcxx_check_sorted_set_pred(_First1,_Last1,_First2,_Pred)</u>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u># define __glibcxx_requires_partitioned_lower(_First,_Last,_Value)	\</u>&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>  __glibcxx_check_partitioned_lower(_First,_Last,_Value)</u>&nbsp</td></tr>
+<tr><th id="111">111</th><td><u># define __glibcxx_requires_partitioned_upper(_First,_Last,_Value)	\</u>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>  __glibcxx_check_partitioned_upper(_First,_Last,_Value)</u>&nbsp</td></tr>
+<tr><th id="113">113</th><td><u># define __glibcxx_requires_partitioned_lower_pred(_First,_Last,_Value,_Pred) \</u>&nbsp</td></tr>
+<tr><th id="114">114</th><td><u>  __glibcxx_check_partitioned_lower_pred(_First,_Last,_Value,_Pred)</u>&nbsp</td></tr>
+<tr><th id="115">115</th><td><u># define __glibcxx_requires_partitioned_upper_pred(_First,_Last,_Value,_Pred) \</u>&nbsp</td></tr>
+<tr><th id="116">116</th><td><u>  __glibcxx_check_partitioned_upper_pred(_First,_Last,_Value,_Pred)</u>&nbsp</td></tr>
+<tr><th id="117">117</th><td><u># define __glibcxx_requires_heap(_First,_Last)	\</u>&nbsp</td></tr>
+<tr><th id="118">118</th><td><u>  __glibcxx_check_heap(_First,_Last)</u>&nbsp</td></tr>
+<tr><th id="119">119</th><td><u># define __glibcxx_requires_heap_pred(_First,_Last,_Pred)	\</u>&nbsp</td></tr>
+<tr><th id="120">120</th><td><u>  __glibcxx_check_heap_pred(_First,_Last,_Pred)</u>&nbsp</td></tr>
+<tr><th id="121">121</th><td><u># define __glibcxx_requires_string(_String) __glibcxx_check_string(_String)</u>&nbsp</td></tr>
+<tr><th id="122">122</th><td><u># define __glibcxx_requires_string_len(_String,_Len)	\</u>&nbsp</td></tr>
+<tr><th id="123">123</th><td><u>  __glibcxx_check_string_len(_String,_Len)</u>&nbsp</td></tr>
+<tr><th id="124">124</th><td><u># define __glibcxx_requires_irreflexive(_First,_Last)	\</u>&nbsp</td></tr>
+<tr><th id="125">125</th><td><u>  __glibcxx_check_irreflexive(_First,_Last)</u>&nbsp</td></tr>
+<tr><th id="126">126</th><td><u># define __glibcxx_requires_irreflexive2(_First,_Last)	\</u>&nbsp</td></tr>
+<tr><th id="127">127</th><td><u>  __glibcxx_check_irreflexive2(_First,_Last)</u>&nbsp</td></tr>
+<tr><th id="128">128</th><td><u># define __glibcxx_requires_irreflexive_pred(_First,_Last,_Pred)	\</u>&nbsp</td></tr>
+<tr><th id="129">129</th><td><u>  __glibcxx_check_irreflexive_pred(_First,_Last,_Pred)</u>&nbsp</td></tr>
+<tr><th id="130">130</th><td><u># define __glibcxx_requires_irreflexive_pred2(_First,_Last,_Pred)	\</u>&nbsp</td></tr>
+<tr><th id="131">131</th><td><u>  __glibcxx_check_irreflexive_pred2(_First,_Last,_Pred)</u>&nbsp</td></tr>
+<tr><th id="132">132</th><td>&nbsp</td></tr>
+<tr><th id="133">133</th><td><u># include &lt;debug/functions.h&gt;</u>&nbsp</td></tr>
+<tr><th id="134">134</th><td>&nbsp</td></tr>
+<tr><th id="135">135</th><td><u>#<span data-ppcond="64">endif</span></u>&nbsp</td></tr>
+<tr><th id="136">136</th><td>&nbsp</td></tr>
+<tr><th id="137">137</th><td><u>#<span data-ppcond="29">endif</span> // _GLIBCXX_DEBUG_MACRO_SWITCH_H</u>&nbsp</td></tr>
+<tr><th id="138">138</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

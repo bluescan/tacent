@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1208' type='int pthread_condattr_setpshared(pthread_condattr_t * __attr, int __pshared)'/>
+<doc f='include/pthread.h' l='1207'>/* Set the process-shared flag of the condition variable attribute ATTR.  */</doc>

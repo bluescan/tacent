@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='423' type='int TIFFReadScanline(TIFF * tif, void * buf, uint32 row, uint16 sample = 0)'/>

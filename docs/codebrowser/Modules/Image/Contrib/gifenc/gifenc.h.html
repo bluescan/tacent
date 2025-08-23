@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>gifenc.h source code [Modules/Image/Contrib/gifenc/gifenc.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Contrib/gifenc/gifenc.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>Modules</a>/<a href='../..'>Image</a>/<a href='..'>Contrib</a>/<a href='./'>gifenc</a>/<a href='gifenc.h.html'>gifenc.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><u>#<span data-ppcond="1">ifndef</span> <span class="macro" data-ref="_M/GIFENC_H">GIFENC_H</span></u>&nbsp</td></tr>
+<tr><th id="2">2</th><td><u>#define <dfn class="macro" id="_M/GIFENC_H" data-ref="_M/GIFENC_H">GIFENC_H</dfn></u>&nbsp</td></tr>
+<tr><th id="3">3</th><td>&nbsp</td></tr>
+<tr><th id="4">4</th><td><u>#include &lt;stdint.h&gt;</u>&nbsp</td></tr>
+<tr><th id="5">5</th><td><u>#include &lt;stdio.h&gt;</u>&nbsp</td></tr>
+<tr><th id="6">6</th><td>&nbsp</td></tr>
+<tr><th id="7">7</th><td><u>#<span data-ppcond="7">ifdef</span> <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="8">8</th><td><b>extern</b> <q>"C"</q> {&nbsp</td></tr>
+<tr><th id="9">9</th><td><u>#<span data-ppcond="7">endif</span></u>&nbsp</td></tr>
+<tr><th id="10">10</th><td>&nbsp</td></tr>
+<tr><th id="11">11</th><td><b>typedef</b> <b>struct</b> <dfn class="type def" id="ge_GIF" title='ge_GIF' data-ref="ge_GIF"><a class="type" href="#ge_GIF" title='ge_GIF' data-ref="ge_GIF">ge_GIF</a></dfn> {&nbsp</td></tr>
+<tr><th id="12">12</th><td>    <a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint16_t" title='uint16_t' data-type='__uint16_t' data-ref="uint16_t">uint16_t</a> <dfn class="decl field" id="ge_GIF::w" title='ge_GIF::w' data-ref="ge_GIF::w">w</dfn>, <dfn class="decl field" id="ge_GIF::h" title='ge_GIF::h' data-ref="ge_GIF::h">h</dfn>;&nbsp</td></tr>
+<tr><th id="13">13</th><td>    <em>int</em> <dfn class="decl field" id="ge_GIF::depth" title='ge_GIF::depth' data-ref="ge_GIF::depth">depth</dfn>;&nbsp</td></tr>
+<tr><th id="14">14</th><td>    <em>int</em> <dfn class="decl field" id="ge_GIF::bgindex" title='ge_GIF::bgindex' data-ref="ge_GIF::bgindex">bgindex</dfn>;&nbsp</td></tr>
+<tr><th id="15">15</th><td>    <a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a>* <dfn class="decl field" id="ge_GIF::filep" title='ge_GIF::filep' data-ref="ge_GIF::filep">filep</dfn>;&nbsp</td></tr>
+<tr><th id="16">16</th><td>    <em>int</em> <dfn class="decl field" id="ge_GIF::offset" title='ge_GIF::offset' data-ref="ge_GIF::offset">offset</dfn>;&nbsp</td></tr>
+<tr><th id="17">17</th><td>    <em>int</em> <dfn class="decl field" id="ge_GIF::nframes" title='ge_GIF::nframes' data-ref="ge_GIF::nframes">nframes</dfn>;&nbsp</td></tr>
+<tr><th id="18">18</th><td>    <a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint8_t" title='uint8_t' data-type='__uint8_t' data-ref="uint8_t">uint8_t</a> *<dfn class="decl field" id="ge_GIF::frame" title='ge_GIF::frame' data-ref="ge_GIF::frame">frame</dfn>, *<dfn class="decl field" id="ge_GIF::back" title='ge_GIF::back' data-ref="ge_GIF::back">back</dfn>;&nbsp</td></tr>
+<tr><th id="19">19</th><td>    <a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl field" id="ge_GIF::partial" title='ge_GIF::partial' data-ref="ge_GIF::partial">partial</dfn>;&nbsp</td></tr>
+<tr><th id="20">20</th><td>    <a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint8_t" title='uint8_t' data-type='__uint8_t' data-ref="uint8_t">uint8_t</a> <dfn class="decl field" id="ge_GIF::buffer" title='ge_GIF::buffer' data-ref="ge_GIF::buffer">buffer</dfn>[<var>0xFF</var>];&nbsp</td></tr>
+<tr><th id="21">21</th><td>} <dfn class="typedef" id="ge_GIF" title='ge_GIF' data-type='struct ge_GIF' data-ref="ge_GIF">ge_GIF</dfn>;&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td><a class="typedef" href="#ge_GIF" title='ge_GIF' data-type='struct ge_GIF' data-ref="ge_GIF">ge_GIF</a> *<dfn class="decl fn" id="ge_new_gif" title='ge_new_gif' data-ref="ge_new_gif">ge_new_gif</dfn>(&nbsp</td></tr>
+<tr><th id="24">24</th><td>    <em>const</em> <em>char</em> *<dfn class="local col8 decl" id="68fname" title='fname' data-type='const char *' data-ref="68fname">fname</dfn>, <a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint16_t" title='uint16_t' data-type='__uint16_t' data-ref="uint16_t">uint16_t</a> <dfn class="local col9 decl" id="69width" title='width' data-type='uint16_t' data-ref="69width">width</dfn>, <a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint16_t" title='uint16_t' data-type='__uint16_t' data-ref="uint16_t">uint16_t</a> <dfn class="local col0 decl" id="70height" title='height' data-type='uint16_t' data-ref="70height">height</dfn>,&nbsp</td></tr>
+<tr><th id="25">25</th><td>    <a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint8_t" title='uint8_t' data-type='__uint8_t' data-ref="uint8_t">uint8_t</a> *<dfn class="local col1 decl" id="71palette" title='palette' data-type='uint8_t *' data-ref="71palette">palette</dfn>, <em>int</em> <dfn class="local col2 decl" id="72depth" title='depth' data-type='int' data-ref="72depth">depth</dfn>, <em>int</em> <dfn class="local col3 decl" id="73bgindex" title='bgindex' data-type='int' data-ref="73bgindex">bgindex</dfn>, <em>int</em> <dfn class="local col4 decl" id="74loop" title='loop' data-type='int' data-ref="74loop">loop</dfn>&nbsp</td></tr>
+<tr><th id="26">26</th><td>);&nbsp</td></tr>
+<tr><th id="27">27</th><td><em>void</em> <dfn class="decl fn" id="ge_add_frame" title='ge_add_frame' data-ref="ge_add_frame">ge_add_frame</dfn>(<a class="typedef" href="#ge_GIF" title='ge_GIF' data-type='struct ge_GIF' data-ref="ge_GIF">ge_GIF</a> *<dfn class="local col5 decl" id="75gif" title='gif' data-type='ge_GIF *' data-ref="75gif">gif</dfn>, <a class="typedef" href="../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint16_t" title='uint16_t' data-type='__uint16_t' data-ref="uint16_t">uint16_t</a> <dfn class="local col6 decl" id="76delay" title='delay' data-type='uint16_t' data-ref="76delay">delay</dfn>);&nbsp</td></tr>
+<tr><th id="28">28</th><td><em>void</em> <dfn class="decl fn" id="ge_close_gif" title='ge_close_gif' data-ref="ge_close_gif">ge_close_gif</dfn>(<a class="typedef" href="#ge_GIF" title='ge_GIF' data-type='struct ge_GIF' data-ref="ge_GIF">ge_GIF</a>* <dfn class="local col7 decl" id="77gif" title='gif' data-type='ge_GIF *' data-ref="77gif">gif</dfn>);&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifdef</span> <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td>}&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#<span data-ppcond="30">endif</span></u>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="1">endif</span> /* GIFENC_H */</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../Src/tImageGIF.cpp.html'>Modules/Image/Src/tImageGIF.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

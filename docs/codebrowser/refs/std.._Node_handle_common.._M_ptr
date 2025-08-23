@@ -1,0 +1,15 @@
+<use f='include/c++/11/bits/node_handle.h' l='78' c='_ZNKSt19_Node_handle_commoncvbEv'/>
+<use f='include/c++/11/bits/node_handle.h' l='80' c='_ZNKSt19_Node_handle_common5emptyEv'/>
+<use f='include/c++/11/bits/node_handle.h' l='84' u='w' c='_ZNSt19_Node_handle_commonC1Ev'/>
+<use f='include/c++/11/bits/node_handle.h' l='93' u='w' c='_ZNSt19_Node_handle_commonC1EOSt19_Node_handle_commonIT_T0_E'/>
+<use f='include/c++/11/bits/node_handle.h' l='95' u='r' c='_ZNSt19_Node_handle_commonC1EOSt19_Node_handle_commonIT_T0_E'/>
+<use f='include/c++/11/bits/node_handle.h' l='112' u='c' c='_ZNSt19_Node_handle_commonaSEOSt19_Node_handle_commonIT_T0_E'/>
+<use f='include/c++/11/bits/node_handle.h' l='113' c='_ZNSt19_Node_handle_commonaSEOSt19_Node_handle_commonIT_T0_E'/>
+<use f='include/c++/11/bits/node_handle.h' l='116' u='w' c='_ZNSt19_Node_handle_commonaSEOSt19_Node_handle_commonIT_T0_E'/>
+<use f='include/c++/11/bits/node_handle.h' l='124' u='w' c='_ZNSt19_Node_handle_commonC1ENSt16allocator_traitsIT0_E7pointerERKS1_'/>
+<use f='include/c++/11/bits/node_handle.h' l='142' c='_ZNSt19_Node_handle_common7_M_swapERSt19_Node_handle_commonIT_T0_E'/>
+<use f='include/c++/11/bits/node_handle.h' l='155' u='w' c='_ZNSt19_Node_handle_common7_M_moveEOSt19_Node_handle_commonIT_T0_E'/>
+<use f='include/c++/11/bits/node_handle.h' l='166' u='c' c='_ZNSt19_Node_handle_common8_M_resetEv'/>
+<use f='include/c++/11/bits/node_handle.h' l='167' c='_ZNSt19_Node_handle_common8_M_resetEv'/>
+<use f='include/c++/11/bits/node_handle.h' l='168' u='w' c='_ZNSt19_Node_handle_common8_M_resetEv'/>
+<dec f='include/c++/11/bits/node_handle.h' l='172' type='typename _AllocTraits::pointer'/>

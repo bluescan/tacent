@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='206' type='void std::locale::locale(const std::locale &amp; __other, _Facet * __f)'/>
+<def f='include/c++/11/bits/locale_classes.tcc' l='44' ll='58' type='void std::locale::locale(const std::locale &amp; __other, _Facet * __f)'/>

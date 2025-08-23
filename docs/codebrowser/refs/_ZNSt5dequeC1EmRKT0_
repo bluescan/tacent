@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/stl_deque.h' l='856' ll='859' type='void std::deque::deque&lt;_Tp, _Alloc&gt;(std::deque::size_type __n, const std::deque::allocator_type &amp; __a = std::deque::allocator_type())'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='848'>/**
+       *  @brief  Creates a %deque with default constructed elements.
+       *  @param  __n  The number of elements to initially create.
+       *  @param  __a  An allocator.
+       *
+       *  This constructor fills the %deque with @a n default
+       *  constructed elements.
+       */</doc>

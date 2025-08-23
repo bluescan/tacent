@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3699' ll='3707'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3699'/>
+<size>48</size>
+<mbr r='VkPipelineLayoutCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineLayoutCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineLayoutCreateInfo::flags' o='128' t='VkPipelineLayoutCreateFlags'/>
+<mbr r='VkPipelineLayoutCreateInfo::setLayoutCount' o='160' t='uint32_t'/>
+<mbr r='VkPipelineLayoutCreateInfo::pSetLayouts' o='192' t='const VkDescriptorSetLayout *'/>
+<mbr r='VkPipelineLayoutCreateInfo::pushConstantRangeCount' o='256' t='uint32_t'/>
+<mbr r='VkPipelineLayoutCreateInfo::pPushConstantRanges' o='320' t='const VkPushConstantRange *'/>

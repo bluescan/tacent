@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='2017' ll='2048'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2050'/>
+<size>1</size>
+<fun r='_ZNKSt6ranges14__is_sorted_fnclET_T0_T2_T1_'/>
+<fun r='_ZNKSt6ranges14__is_sorted_fnclEOT_T1_T0_'/>

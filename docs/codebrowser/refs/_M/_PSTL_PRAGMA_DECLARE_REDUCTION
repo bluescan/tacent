@@ -1,0 +1,8 @@
+<dec f='include/c++/11/pstl/pstl_config.h' l='136'/>
+<doc f='include/c++/11/pstl/pstl_config.h' l='129'>// Declaration of reduction functor, where
+// NAME - the name of the functor
+// OP - type of the callable object with the reduction operation
+// omp_in - refers to the local partial result
+// omp_out - refers to the final value of the combiner operator
+// omp_priv - refers to the private copy of the initial value
+// omp_orig - refers to the original variable to be reduced</doc>

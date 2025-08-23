@@ -1,0 +1,9 @@
+<def f='include/c++/11/ostream' l='758' ll='779'/>
+<use f='include/c++/11/ostream' l='785' c='_ZSt13emit_on_flushRSt13basic_ostreamIT_T0_E'/>
+<use f='include/c++/11/ostream' l='794' c='_ZSt15noemit_on_flushRSt13basic_ostreamIT_T0_E'/>
+<use f='include/c++/11/ostream' l='811' c='_ZSt10flush_emitRSt13basic_ostreamIT_T0_E'/>
+<fun r='_ZNSt14__syncbuf_base6_S_getEPSt15basic_streambufIT_T0_E'/>
+<fun r='_ZNSt14__syncbuf_baseC1EPSt15basic_streambufIT_T0_E'/>
+<mbr r='std::__syncbuf_base::_M_wrapped' t='basic_streambuf&lt;_CharT, _Traits&gt; *'/>
+<mbr r='std::__syncbuf_base::_M_emit_on_sync' t='bool'/>
+<mbr r='std::__syncbuf_base::_M_needs_sync' t='bool'/>

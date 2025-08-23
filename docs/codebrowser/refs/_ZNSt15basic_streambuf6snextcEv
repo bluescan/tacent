@@ -1,0 +1,8 @@
+<def f='include/c++/11/streambuf' l='302' ll='310' type='std::basic_streambuf::int_type std::basic_streambuf::snextc()'/>
+<doc f='include/c++/11/streambuf' l='295'>/**
+       *  @brief  Getting the next character.
+       *  @return  The next character, or eof.
+       *
+       *  Calls @c sbumpc(), and if that function returns
+       *  @c traits::eof(), so does this function.  Otherwise, @c sgetc().
+      */</doc>

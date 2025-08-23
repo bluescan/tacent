@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='5534' type='void std::piecewise_constant_distribution::param_type::param_type(_InputIteratorB __bfirst, _InputIteratorB __bend, _InputIteratorW __wbegin)'/>
+<def f='include/c++/11/bits/random.tcc' l='2848' ll='2871' type='void std::piecewise_constant_distribution::param_type::param_type(_InputIteratorB __bbegin, _InputIteratorB __bend, _InputIteratorW __wbegin)'/>

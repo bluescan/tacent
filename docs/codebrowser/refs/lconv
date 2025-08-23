@@ -1,0 +1,28 @@
+<def f='include/locale.h' l='51' ll='118'/>
+<use f='include/locale.h' l='125' c='localeconv'/>
+<size>96</size>
+<doc f='include/locale.h' l='50'>/* Structure giving information about numeric and monetary notation.  */</doc>
+<mbr r='lconv::decimal_point' o='0' t='char *'/>
+<mbr r='lconv::thousands_sep' o='64' t='char *'/>
+<mbr r='lconv::grouping' o='128' t='char *'/>
+<mbr r='lconv::int_curr_symbol' o='192' t='char *'/>
+<mbr r='lconv::currency_symbol' o='256' t='char *'/>
+<mbr r='lconv::mon_decimal_point' o='320' t='char *'/>
+<mbr r='lconv::mon_thousands_sep' o='384' t='char *'/>
+<mbr r='lconv::mon_grouping' o='448' t='char *'/>
+<mbr r='lconv::positive_sign' o='512' t='char *'/>
+<mbr r='lconv::negative_sign' o='576' t='char *'/>
+<mbr r='lconv::int_frac_digits' o='640' t='char'/>
+<mbr r='lconv::frac_digits' o='648' t='char'/>
+<mbr r='lconv::p_cs_precedes' o='656' t='char'/>
+<mbr r='lconv::p_sep_by_space' o='664' t='char'/>
+<mbr r='lconv::n_cs_precedes' o='672' t='char'/>
+<mbr r='lconv::n_sep_by_space' o='680' t='char'/>
+<mbr r='lconv::p_sign_posn' o='688' t='char'/>
+<mbr r='lconv::n_sign_posn' o='696' t='char'/>
+<mbr r='lconv::int_p_cs_precedes' o='704' t='char'/>
+<mbr r='lconv::int_p_sep_by_space' o='712' t='char'/>
+<mbr r='lconv::int_n_cs_precedes' o='720' t='char'/>
+<mbr r='lconv::int_n_sep_by_space' o='728' t='char'/>
+<mbr r='lconv::int_p_sign_posn' o='736' t='char'/>
+<mbr r='lconv::int_n_sign_posn' o='744' t='char'/>

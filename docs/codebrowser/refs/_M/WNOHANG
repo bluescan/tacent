@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/waitflags.h' l='25'/>
+<doc f='include/x86_64-linux-gnu/bits/waitflags.h' l='24'>/* Bits in the third argument to `waitpid&apos;.  */</doc>

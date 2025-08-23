@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='524' type='bool tSystem::tFileTypes::Select(tSystem::tFileType )'/>
+<def f='Modules/System/Inc/System/tFile.h' l='1035' ll='1046' type='bool tSystem::tFileTypes::Select(tSystem::tFileType type)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='523'>// Selects the type only if it&apos;s already in the list. Returns success.</doc>

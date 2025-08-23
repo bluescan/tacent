@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='105'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='103'>/* Helper macro:
+   Set field X of basic descriptor block BDB */</doc>

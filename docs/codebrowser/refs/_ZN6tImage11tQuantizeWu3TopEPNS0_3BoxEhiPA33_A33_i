@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Src/tQuantizeWu.cpp' l='95' type='int32 tImage::tQuantizeWu::Top(tImage::tQuantizeWu::Box * cube, uint8 dir, int pos, int32 (*)[33][33] mmt)'/>
+<def f='Modules/Image/Src/tQuantizeWu.cpp' l='234' ll='266' type='int32 tImage::tQuantizeWu::Top(tImage::tQuantizeWu::Box * cube, uint8 dir, int pos, int32 (*)[33][33] mmt)'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='304' u='c' c='_ZN6tImage11tQuantizeWu8MaximizeERNS0_5StateEPNS0_3BoxEhiiPiiiii'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='305' u='c' c='_ZN6tImage11tQuantizeWu8MaximizeERNS0_5StateEPNS0_3BoxEhiiPiiiii'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='306' u='c' c='_ZN6tImage11tQuantizeWu8MaximizeERNS0_5StateEPNS0_3BoxEhiiPiiiii'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='307' u='c' c='_ZN6tImage11tQuantizeWu8MaximizeERNS0_5StateEPNS0_3BoxEhiiPiiiii'/>
+<doc f='Modules/Image/Src/tQuantizeWu.cpp' l='94'>// Compute remainder of Vol(cube, mmt), substituting pos for r1, g1, or b1 (depending on dir).</doc>

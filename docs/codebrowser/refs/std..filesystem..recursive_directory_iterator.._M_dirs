@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/fs_dir.h' l='529' u='m' c='_ZNSt10filesystem7__cxx11eqERKNS0_28recursive_directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='529' u='r' c='_ZNSt10filesystem7__cxx11eqERKNS0_28recursive_directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='530' u='m' c='_ZNSt10filesystem7__cxx11eqERKNS0_28recursive_directory_iteratorES3_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='530' u='r' c='_ZNSt10filesystem7__cxx11eqERKNS0_28recursive_directory_iteratorES3_'/>
+<dec f='include/c++/11/bits/fs_dir.h' l='539' type='std::__shared_ptr&lt;_Dir_stack&gt;'/>
+<offset>0</offset>

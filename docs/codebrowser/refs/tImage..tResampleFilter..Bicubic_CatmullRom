@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tResample.h' l='31' type='4'/>
+<doc f='Modules/Image/Inc/Image/tResample.h' l='31'>// Cardinal.				B=0		C=1/2</doc>
+<use f='Modules/Image/Src/tResample.cpp' l='161' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>

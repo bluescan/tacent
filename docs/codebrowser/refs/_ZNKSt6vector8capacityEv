@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/stl_vector.h' l='997' ll='1000' type='std::vector::size_type std::vector::capacity() const'/>
+<use f='include/c++/11/bits/vector.tcc' l='224' u='c' c='_ZNSt6vectoraSERKSt6vectorIT_T0_E'/>
+<use f='include/c++/11/bits/vector.tcc' l='260' u='c' c='_ZNSt6vector14_M_fill_assignEmRKT_'/>
+<use f='include/c++/11/bits/vector.tcc' l='306' u='c' c='_ZNSt6vector13_M_assign_auxETL0__S0_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/vector.tcc' l='690' u='c' c='_ZNSt6vector16_M_shrink_to_fitEv'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='993'>/**
+       *  Returns the total number of elements that the %vector can
+       *  hold before needing to allocate more memory.
+       */</doc>

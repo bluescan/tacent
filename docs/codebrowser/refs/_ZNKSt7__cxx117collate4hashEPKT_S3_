@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/locale_classes.h' l='738' ll='740' type='long std::collate::hash(const _CharT * __lo, const _CharT * __hi) const'/>
+<doc f='include/c++/11/bits/locale_classes.h' l='728'>/**
+       *  @brief  Return hash of a string.
+       *
+       *  This function computes and returns a hash on the input string.  It
+       *  does so by returning collate::do_hash().
+       *
+       *  @param __lo  Start of string.
+       *  @param __hi  End of string.
+       *  @return  Hash value.
+      */</doc>

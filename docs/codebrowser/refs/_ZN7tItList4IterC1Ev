@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='270' type='void tItList::Iter::Iter()'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='468' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='479' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='501' u='c' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>

@@ -1,0 +1,9 @@
+<def f='include/c++/11/streambuf' l='342' ll='351' type='std::basic_streambuf::int_type std::basic_streambuf::sgetc()'/>
+<doc f='include/c++/11/streambuf' l='334'>/**
+       *  @brief  Getting the next character.
+       *  @return  The next character, or eof.
+       *
+       *  If the input read position is available, returns that character,
+       *  otherwise calls and returns @c underflow().  Does not move the
+       *  read position after fetching the character.
+      */</doc>

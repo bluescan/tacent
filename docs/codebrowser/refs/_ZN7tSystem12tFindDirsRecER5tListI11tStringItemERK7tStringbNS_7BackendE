@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='641' type='bool tSystem::tFindDirsRec(tList&lt;tStringItem&gt; &amp; dirs, const tString &amp; dir = tString(), bool hidden = true, tSystem::Backend  = Backend::Native)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='638'>// Recursive variants of the functions above. &apos;files&apos; is appened to. Clear first if desired. See comments above for
+// behaviour. Because recursive queries can be dangerous if you are too close to the filesystem root, these are
+// separate functions rather than an argument switch.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='2937' ll='2945' type='bool tSystem::tFindDirsRec(tList&lt;tStringItem&gt; &amp; dirs, const tString &amp; dir = tString(), bool hidden = true, tSystem::Backend backend = Backend::Native)'/>

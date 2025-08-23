@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/semaphore_base.h' l='67' u='a' c='_ZNSt20__platform_semaphoreC1El'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='74' u='a' c='_ZNSt20__platform_semaphoreD1Ev'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='81' u='a' c='_ZNSt20__platform_semaphore10_M_acquireEv'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='96' u='a' c='_ZNSt20__platform_semaphore14_M_try_acquireEv'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='114' u='a' c='_ZNSt20__platform_semaphore10_M_releaseEl'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='136' u='a' c='_ZNSt20__platform_semaphore25_M_try_acquire_until_implERKNSt6chrono10time_pointINS0_3_V212system_clockENS0_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>
+<dec f='include/c++/11/bits/semaphore_base.h' l='183' type='sem_t'/>
+<offset>0</offset>

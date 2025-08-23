@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='538' type='int WebPEncode(const WebPConfig * config, WebPPicture * picture)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='391' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>

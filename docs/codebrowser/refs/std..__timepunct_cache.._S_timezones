@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='62' type='const _CharT *[14]'/>
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='161' type='const char *[14]'/>
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='166' type='const wchar_t *[14]'/>
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='170' ll='171' type='const _CharT *[14]'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='61'>// List of all known timezones, with GMT first.</doc>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='158'>// Specializations.</doc>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='169'>// Generic.</doc>

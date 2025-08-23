@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2146' ll='2171' type='void rgbcx::bc1_get_block_colors4(uint32_t * block_r, uint32_t * block_g, uint32_t * block_b, uint32_t lr, uint32_t lg, uint32_t lb, uint32_t hr, uint32_t hg, uint32_t hb)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2195' u='c' c='_ZN5rgbcxL20bc1_find_sels4_noerrEPKNS_7color32EjjjjjjPh'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2226' u='c' c='_ZN5rgbcxL22bc1_find_sels4_fasterrEPKNS_7color32EjjjjjjPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2274' u='c' c='_ZN5rgbcxL25bc1_find_sels4_check2_errEPKNS_7color32EjjjjjjPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2321' u='c' c='_ZN5rgbcxL22bc1_find_sels4_fullerrEPKNS_7color32EjjjjjjPhj'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='467' type='16846848'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='467'>// CBV. Each entry contains 3 indices into the colour table. The colour table may not be present on some models.</doc>
+<use f='Modules/Scene/Src/tMesh.cpp' l='236' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='424' u='r' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>

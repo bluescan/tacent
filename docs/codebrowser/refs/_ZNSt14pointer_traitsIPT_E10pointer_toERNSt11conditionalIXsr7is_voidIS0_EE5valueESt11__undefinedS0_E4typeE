@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/ptr_traits.h' l='148' ll='150' type='static std::pointer_traits&lt;type-parameter-0-0 *&gt;::pointer std::pointer_traits&lt;type-parameter-0-0 *&gt;::pointer_to(__make_not_void&lt;std::pointer_traits&lt;type-parameter-0-0 *&gt;::element_type&gt; &amp; __r)'/>
+<doc f='include/c++/11/bits/ptr_traits.h' l='143'>/**
+       *  @brief  Obtain a pointer to an object
+       *  @param  __r  A reference to an object of type @c element_type
+       *  @return @c addressof(__r)
+      */</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='673' type='tuint256 tSystem::tHashFileSHA256(const tString &amp; filename, const tuint256 iv = tHash::HashIVSHA256)'/>
+<def f='Modules/System/Src/tFile.cpp' l='3325' ll='3335' type='tuint256 tSystem::tHashFileSHA256(const tString &amp; filename, tuint256 iv = tHash::HashIVSHA256)'/>

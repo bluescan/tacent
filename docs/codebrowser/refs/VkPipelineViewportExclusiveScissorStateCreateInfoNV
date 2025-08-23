@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13714' ll='13719'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13714'/>
+<size>32</size>
+<mbr r='VkPipelineViewportExclusiveScissorStateCreateInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineViewportExclusiveScissorStateCreateInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineViewportExclusiveScissorStateCreateInfoNV::exclusiveScissorCount' o='128' t='uint32_t'/>
+<mbr r='VkPipelineViewportExclusiveScissorStateCreateInfoNV::pExclusiveScissors' o='192' t='const VkRect2D *'/>

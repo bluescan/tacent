@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='550' type='void tMath::tInvertAffine(tMath::tMat4 &amp; d, const tMath::tMat4 &amp; a)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1143' u='c' c='_ZN5tMath13tInvertAffineERNS_5tMat4E'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='529' ll='546' type='void tMath::tInvertAffine(tMath::tMat4 &amp; d, const tMath::tMat4 &amp; m)'/>

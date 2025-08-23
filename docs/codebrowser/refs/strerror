@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='419' type='char * strerror(int __errnum)'/>
+<doc f='include/string.h' l='418'>/* Return a string describing the meaning of the `errno&apos; code in ERRNUM.  */</doc>

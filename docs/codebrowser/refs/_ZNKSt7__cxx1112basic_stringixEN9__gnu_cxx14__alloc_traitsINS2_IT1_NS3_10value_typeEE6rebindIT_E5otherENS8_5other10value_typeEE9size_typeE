@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/basic_string.h' l='1037' ll='1042' type='std::basic_string::const_reference std::basic_string::operator[](std::basic_string::size_type __pos) const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1027'>/**
+       *  @brief  Subscript access to the data contained in the %string.
+       *  @param  __pos  The index of the character to access.
+       *  @return  Read-only (constant) reference to the character.
+       *
+       *  This operator allows for easy, array-style, data access.
+       *  Note that data access with this operator is unchecked and
+       *  out_of_range lookups are not defined. (For checked lookups
+       *  see at().)
+       */</doc>

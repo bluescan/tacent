@@ -1,0 +1,1 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='96' type='void tMath::tMatrix4::MakeProjParallel(const tMath::tVec3 &amp; boxMin, const tMath::tVec3 &amp; boxMax)'/>

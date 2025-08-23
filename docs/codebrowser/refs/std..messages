@@ -1,0 +1,63 @@
+<use f='include/c++/11/bits/codecvt.h' l='344'/>
+<use f='include/c++/11/bits/codecvt.h' l='407'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<inh f='include/c++/11/bits/locale_facets_nonio.h' l='1786' c='std::messages_base'/>
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1815' ll='1981'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1984'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1989' c='_ZNKSt7__cxx118messages6do_getEiiiRKNS_12basic_stringIT_St11char_traitsIS2_ESaIS2_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1994' c='_ZNKSt7__cxx118messages6do_getEiiiRKNS_12basic_stringIT_St11char_traitsIS2_ESaIS2_EEE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1999'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='44' c='_ZNSt7__cxx118messagesC1Em'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='50' c='_ZNSt7__cxx118messagesC1EP15__locale_structPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='70' c='_ZNKSt7__cxx118messages4openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6localePKc'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='69' c='_ZNKSt7__cxx118messages4openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6localePKc'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='79' c='_ZNSt7__cxx118messagesD1Ev'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='88' c='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='87' c='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='99' c='_ZNKSt7__cxx118messages8do_closeEi'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='105' c='_ZNSt7__cxx1115messages_bynameC1EPKcm'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='132' c='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='131' c='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='137' c='_ZNKSt7__cxx118messages8do_closeEi'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='142' c='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='141' c='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/messages_members.h' l='147' c='_ZNKSt7__cxx118messages8do_closeEi'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<inh f='include/c++/11/bits/locale_facets_nonio.h' l='1786' c='std::messages_base'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1419'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1419'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1420' c='std::messages_byname'/>
+<inh f='include/c++/11/bits/locale_classes.h' l='373' c='std::locale::facet'/>
+<inh f='include/c++/11/bits/locale_facets_nonio.h' l='1786' c='std::messages_base'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1494'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1494'/>
+<ovr f='include/c++/11/bits/locale_facets_nonio.tcc' l='1495' c='std::messages_byname'/>
+<size>32</size>
+<mbr r='std::messages::_M_c_locale_messages' t='std::__c_locale'/>
+<mbr r='std::messages::_M_name_messages' t='const char *'/>
+<smbr r='std::messages::id' t='locale::id'/>
+<fun r='_ZNSt7__cxx118messagesC1Em'/>
+<fun r='_ZNSt7__cxx118messagesC1EP15__locale_structPKcm'/>
+<fun r='_ZNKSt7__cxx118messages4openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<fun r='_ZNKSt7__cxx118messages4openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6localePKc'/>
+<fun r='_ZNKSt7__cxx118messages3getEiiiRKNS_12basic_stringIT_St11char_traitsIS2_ESaIS2_EEE'/>
+<fun r='_ZNKSt7__cxx118messages5closeEi'/>
+<fun r='_ZNSt7__cxx118messagesD1Ev'/>
+<fun r='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<fun r='_ZNKSt7__cxx118messages6do_getEiiiRKNS_12basic_stringIT_St11char_traitsIS2_ESaIS2_EEE'/>
+<fun r='_ZNKSt7__cxx118messages8do_closeEi'/>
+<fun r='_ZNKSt7__cxx118messages18_M_convert_to_charERKNS_12basic_stringIT_St11char_traitsIS2_ESaIS2_EEE'/>
+<fun r='_ZNKSt7__cxx118messages20_M_convert_from_charEPc'/>
+<smbr r='std::messages::id' t='locale::id'/>
+<fun r='_ZNKSt7__cxx118messages6do_getEiiiRKNS_12basic_stringIT_St11char_traitsIS2_ESaIS2_EEE'/>
+<fun r='_ZNKSt7__cxx118messages6do_getEiiiRKNS_12basic_stringIT_St11char_traitsIS2_ESaIS2_EEE'/>
+<fun r='_ZNSt7__cxx118messagesC1Em'/>
+<fun r='_ZNSt7__cxx118messagesC1EP15__locale_structPKcm'/>
+<fun r='_ZNKSt7__cxx118messages4openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6localePKc'/>
+<fun r='_ZNSt7__cxx118messagesD1Ev'/>
+<fun r='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<fun r='_ZNKSt7__cxx118messages8do_closeEi'/>
+<fun r='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<fun r='_ZNKSt7__cxx118messages8do_closeEi'/>
+<fun r='_ZNKSt7__cxx118messages7do_openERKNS_12basic_stringIcSt11char_traitsIcESaIcEEERKSt6locale'/>
+<fun r='_ZNKSt7__cxx118messages8do_closeEi'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/numeric' l='635' ll='650' macro='1' type='_OutputIterator std::transform_exclusive_scan(_InputIterator __first, _InputIterator __last, _OutputIterator __result, _Tp __init, _BinaryOperation __binary_op, _UnaryOperation __unary_op)'/>

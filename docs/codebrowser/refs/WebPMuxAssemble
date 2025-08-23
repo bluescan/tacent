@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='391' type='WebPMuxError WebPMuxAssemble(WebPMux * mux, WebPData * assembled_data)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='428' u='c' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>

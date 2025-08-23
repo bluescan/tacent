@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='518' type='int mrand48_r(struct drand48_data *__restrict __buffer, long *__restrict __result)'/>
+<doc f='include/stdlib.h' l='517'>/* Return signed, long integers in [-2^31,2^31).  */</doc>

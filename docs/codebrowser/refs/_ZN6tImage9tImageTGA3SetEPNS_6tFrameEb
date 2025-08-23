@@ -1,0 +1,5 @@
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='67' u='c' c='_ZN6tImage9tImageTGAC1EPNS_6tFrameEb'/>
+<dec f='Modules/Image/Inc/Image/tImageTGA.h' l='85' type='bool tImage::tImageTGA::Set(tImage::tFrame * , bool steal)'/>
+<doc f='Modules/Image/Inc/Image/tImageTGA.h' l='84'>// Sets from a single frame.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='66' c='_ZN6tImage10tBaseImage3SetEPNS_6tFrameEb'/>
+<def f='Modules/Image/Src/tImageTGA.cpp' l='301' ll='317' type='bool tImage::tImageTGA::Set(tImage::tFrame * frame, bool steal)'/>

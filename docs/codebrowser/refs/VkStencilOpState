@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3616' ll='3624'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3616'/>
+<size>28</size>
+<mbr r='VkStencilOpState::failOp' o='0' t='VkStencilOp'/>
+<mbr r='VkStencilOpState::passOp' o='32' t='VkStencilOp'/>
+<mbr r='VkStencilOpState::depthFailOp' o='64' t='VkStencilOp'/>
+<mbr r='VkStencilOpState::compareOp' o='96' t='VkCompareOp'/>
+<mbr r='VkStencilOpState::compareMask' o='128' t='uint32_t'/>
+<mbr r='VkStencilOpState::writeMask' o='160' t='uint32_t'/>
+<mbr r='VkStencilOpState::reference' o='192' t='uint32_t'/>

@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='218' type='void tMath::tSet(tMath::tVec4 &amp; d, const tMath::tVec2 &amp; s, float z = 0.F, float w = 0.F)'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='27' u='c' c='_ZN5tMath8tVector4C1ERKNS_5tVec2Eff'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='35' u='c' c='_ZN5tMath8tVector43SetERKNS_5tVec2Eff'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='72' u='c' c='_ZN5tMath8tVector4aSERKNS_5tVec2E'/>

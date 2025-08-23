@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='190' type='float tMath::tExp(float a)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='222' u='c' c='_ZN5tMath11tNormalDistEff'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1024' u='c' c='_ZN5tMath16tTonemapExposureEff'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3280' ll='3285'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3280'/>
+<size>520</size>
+<mbr r='VkLayerProperties::layerName' o='0' t='char[256]'/>
+<mbr r='VkLayerProperties::specVersion' o='2048' t='uint32_t'/>
+<mbr r='VkLayerProperties::implementationVersion' o='2080' t='uint32_t'/>
+<mbr r='VkLayerProperties::description' o='2112' t='char[256]'/>

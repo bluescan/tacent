@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/predefined_ops.h' l='53' ll='70'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='73' c='__gnu_cxx::__ops::__iter_less_val'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='75' c='__gnu_cxx::__ops::__iter_less_val'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='78' c='__gnu_cxx::__ops::__iter_comp_val'/>
+<use f='include/c++/11/bits/predefined_ops.h' l='80' c='__gnu_cxx::__ops::__iter_comp_val'/>
+<use f='include/c++/11/bits/stl_heap.h' l='176' c='_ZSt9push_heapT_S_'/>
+<size>1</size>
+<fun r='__gnu_cxx::__ops::_Iter_less_val::_Iter_less_val'/>
+<fun r='__gnu_cxx::__ops::_Iter_less_val::_Iter_less_val'/>
+<fun r='__gnu_cxx::__ops::_Iter_less_val::operator()'/>

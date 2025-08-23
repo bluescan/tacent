@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='219' type='int tImage::tImagePVR::GetCubemapLayers(tList&lt;tImage::tLayer&gt; * layers, uint32 faceFlags = tFaceFlag_All) const'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='217'>// Gets the layers but you&apos;re not allowed to delete them, they&apos;re not yours. Make sure the list you supply doesn&apos;t
+	// delete them when it&apos;s destructed. Returns the number of items appended to the list.</doc>
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='120' c='_ZNK6tImage10tBaseImage16GetCubemapLayersEP5tListINS_6tLayerEEj'/>
+<def f='Modules/Image/Src/tImagePVR.cpp' l='1368' ll='1392' type='int tImage::tImagePVR::GetCubemapLayers(tList&lt;tImage::tLayer&gt; * layerLists, uint32 faceFlags = tFaceFlag_All) const'/>

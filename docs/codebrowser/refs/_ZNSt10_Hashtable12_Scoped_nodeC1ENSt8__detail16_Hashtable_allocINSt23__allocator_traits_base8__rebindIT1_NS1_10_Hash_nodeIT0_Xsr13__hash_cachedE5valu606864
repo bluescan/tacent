@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/hashtable.h' l='297' ll='298' type='void std::_Hashtable::_Scoped_node::_Scoped_node(std::_Hashtable::__node_ptr __n, std::_Hashtable::__hashtable_alloc * __h)'/>
+<doc f='include/c++/11/bits/hashtable.h' l='296'>// Take ownership of a node with a constructed element.</doc>

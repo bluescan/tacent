@@ -1,0 +1,3 @@
+<use f='Modules/Image/Src/tImageKTX.cpp' l='774' u='c' c='_ZN6tImage9tImageKTX4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='791' u='c' c='_ZN6tImage9tImageKTX4LoadEPKhiRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImageKTX.cpp' l='795' ll='1136' type='bool tImage::tImageKTX::LoadFromTexture(ktxTexture * texture, const tImage::tImageKTX::LoadParams &amp; paramsIn)'/>

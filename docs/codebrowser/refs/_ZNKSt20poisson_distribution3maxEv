@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='4524' ll='4526' type='std::poisson_distribution::result_type std::poisson_distribution::max() const'/>
+<doc f='include/c++/11/bits/random.h' l='4521'>/**
+       * @brief Returns the least upper bound value of the distribution.
+       */</doc>

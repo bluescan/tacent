@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/predefined_ops.h' l='72' ll='75' macro='1' type='__gnu_cxx::__ops::_Iter_less_val __gnu_cxx::__ops::__iter_less_val()'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1500' u='c' c='_ZSt11lower_boundT_S_RKT0_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='2184' u='c' c='_ZSt11equal_rangeT_S_RKT0_'/>
+<use f='include/c++/11/bits/stl_algo.h' l='2254' u='c' c='_ZSt13binary_searchT_S_RKT0_'/>

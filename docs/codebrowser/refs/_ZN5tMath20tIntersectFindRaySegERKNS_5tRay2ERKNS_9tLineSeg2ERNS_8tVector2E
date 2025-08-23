@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='475' type='tMath::tIntersectResult tMath::tIntersectFindRaySeg(const tMath::tRay2 &amp; , const tMath::tLineSeg2 &amp; , tMath::tVector2 &amp; intersection)'/>
+<def f='Modules/Math/Src/tGeometry.cpp' l='332' ll='348' type='tMath::tIntersectResult tMath::tIntersectFindRaySeg(const tMath::tRay2 &amp; r, const tMath::tLineSeg2 &amp; b, tMath::tVector2 &amp; i)'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='366' u='c' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='376' u='c' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='388' u='c' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='400' u='c' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>

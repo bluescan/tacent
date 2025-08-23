@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/bits/thread-shared-types.h' l='110' type='int'/>
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='69' type='struct __pthread_mutex_s'/>
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='77' type='struct __pthread_cond_s'/>
+<dec f='include/x86_64-linux-gnu/bits/pthreadtypes.h' l='88' type='struct __pthread_rwlock_arch_t'/>
+<offset>0</offset>

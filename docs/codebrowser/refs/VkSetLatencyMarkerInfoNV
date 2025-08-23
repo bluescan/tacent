@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18337' ll='18342'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18337'/>
+<size>32</size>
+<mbr r='VkSetLatencyMarkerInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSetLatencyMarkerInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkSetLatencyMarkerInfoNV::presentID' o='128' t='uint64_t'/>
+<mbr r='VkSetLatencyMarkerInfoNV::marker' o='192' t='VkLatencyMarkerNV'/>

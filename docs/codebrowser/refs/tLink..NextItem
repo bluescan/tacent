@@ -1,0 +1,4 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='40' u='w' c='_ZN5tLinkC1Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='41' u='w' c='_ZN5tLinkC1ERK5tLinkIT_E'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='42' u='r' c='_ZNK5tLink4NextEv'/>
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='47' type='T *'/>

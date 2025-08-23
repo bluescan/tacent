@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='138'/>
+<doc f='include/stdio.h' l='137'>/* Maximum length of printf output for a NaN.  */</doc>

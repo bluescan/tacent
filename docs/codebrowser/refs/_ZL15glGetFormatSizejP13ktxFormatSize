@@ -1,0 +1,1 @@
+<def f='Modules/Image/Contrib/LibKTX/include/gl_format.h' l='1627' ll='2436' type='void glGetFormatSize(const GLenum internalFormat, ktxFormatSize * pFormatSize)'/>

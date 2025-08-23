@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tThrow.h' l='31' type='void tError::tError()'/>
+<def f='Modules/System/Src/tThrow.cpp' l='38' ll='41' type='void tError::tError()'/>

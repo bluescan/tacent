@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Src/tVersion.cpp' l='31' type='bool'/>
+<use f='Modules/Foundation/Src/tVersion.cpp' l='37' u='r' c='_ZN8tVersion6ParserC1EPKc'/>
+<use f='Modules/Foundation/Src/tVersion.cpp' l='46' u='w' c='_ZN8tVersion6ParserC1EPKc'/>

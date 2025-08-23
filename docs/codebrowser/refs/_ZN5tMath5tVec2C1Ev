@@ -1,0 +1,5 @@
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='552' u='c' c='_ZN5tMath12tDistBetweenERKNS_5tVec2ES2_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='553' u='c' c='_ZN5tMath14tDistBetweenSqERKNS_5tVec2ES2_'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='66' u='c' c='_ZNK5tMath8tMatrix2mlERKNS_5tVec2E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='331' u='c' c='_ZN12tChunkWriter5WriteERKN5tMath8tVector2E'/>
+<use f='Modules/System/Src/tChunk.cpp' l='481' u='c' c='_ZN12tChunkWriter5WriteEPKN5tMath8tVector2Ei'/>

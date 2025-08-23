@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/basic_string.h' l='6261' ll='6265' type='decltype(__detail::__char_traits_cmp_cat&lt;_Traits&gt;(0)) std::operator&lt;=&gt;(const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __lhs, const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __rhs)'/>

@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/cpp_type_traits.h' l='427' ll='430'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='435' ll='439'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='450'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='455'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='472'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='477'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='482'/>
+<doc f='include/c++/11/bits/cpp_type_traits.h' l='432'>// Cannot use memcpy/memmove/memcmp on volatile types even if they are
+  // trivially copyable, so ensure __memcpyable&lt;volatile int*, volatile int*&gt;
+  // and similar will be false.</doc>

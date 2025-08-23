@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/charconv.h' l='46' ll='65' macro='1' type='unsigned int std::__detail::__to_chars_len(_Tp __value, int __base = 10)'/>
+<use f='include/c++/11/bits/basic_string.h' l='6664' u='c' c='_ZNSt7__cxx119to_stringEi'/>
+<use f='include/c++/11/bits/basic_string.h' l='6673' u='c' c='_ZNSt7__cxx119to_stringEj'/>
+<use f='include/c++/11/bits/basic_string.h' l='6683' u='c' c='_ZNSt7__cxx119to_stringEl'/>
+<use f='include/c++/11/bits/basic_string.h' l='6692' u='c' c='_ZNSt7__cxx119to_stringEm'/>
+<use f='include/c++/11/bits/basic_string.h' l='6703' u='c' c='_ZNSt7__cxx119to_stringEx'/>
+<use f='include/c++/11/bits/basic_string.h' l='6712' u='c' c='_ZNSt7__cxx119to_stringEy'/>

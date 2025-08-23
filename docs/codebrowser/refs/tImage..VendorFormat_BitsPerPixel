@@ -1,0 +1,4 @@
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='472' ll='476' type='int[2]'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='477' u='r'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='477' u='r'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='544' u='r' c='_ZN6tImage16tGetBitsPerPixelENS_12tPixelFormatE'/>

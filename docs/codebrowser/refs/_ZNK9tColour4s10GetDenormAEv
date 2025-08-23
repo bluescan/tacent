@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='583' type='float tColour4s::GetDenormA() const'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='584' u='c' c='_ZNK9tColour4s9GetDenormEPf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='586' u='c' c='_ZNK9tColour4s9GetDenormERN5tMath8tVector4E'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='587' u='c' c='_ZNK9tColour4s9GetDenormERfS0_S0_S0_'/>

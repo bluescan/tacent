@@ -1,0 +1,9 @@
+<dec f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='66' type='8'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='79' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='79' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='79' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='79' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='79' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='79' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='79' u='r'/>
+<doc f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='66'>/* Blank (usually SPC and TAB).  */</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='50'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='49'>/* Set the native cpu bit order (FILLORDER_LSB2MSB or FILLORDER_MSB2LSB) */</doc>

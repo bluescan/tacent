@@ -1,0 +1,3 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='120' type='void tChunkWriter::BeginChunk(uint32 chunkID, tChunkWriter::Alignment a = Alignment::B4)'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='192' u='c' c='_ZN12tChunkWriter5BeginEjNS_9AlignmentE'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='119'>// Alignment is ignored for container chunks. Containerness is determined by the MS bit of the chunkID.</doc>

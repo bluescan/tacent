@@ -1,0 +1,12 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/functional' l='967'/>
+<def f='include/c++/11/functional' l='969' ll='971'/>
+<def f='include/c++/11/functional' l='973' ll='975'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/functional' l='981' ll='983'/>
+<use f='include/c++/11/functional' l='982'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/functional' l='985' ll='987'/>
+<use f='include/c++/11/functional' l='986'/>
+<use f='include/c++/11/functional' l='1106'/>
+<size>1</size>

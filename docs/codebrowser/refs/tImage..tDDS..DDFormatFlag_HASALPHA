@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='34' type='1'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='66' u='r'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='68' u='r'/>
+<doc f='Modules/Image/Src/tImageDDS.cpp' l='32'>// Pixel has alpha. tDDS::Format&apos;s MaskAlpha will be valid. I believe ALPHAPIXELS is only ever used in
+		// combination with RGB, YUV, or LUMINANCE. An alpha-only dds would use DDFormatFlag_A instead.</doc>

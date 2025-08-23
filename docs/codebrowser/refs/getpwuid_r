@@ -1,0 +1,1 @@
+<dec f='include/pwd.h' l='146' type='int getpwuid_r(__uid_t __uid, struct passwd *__restrict __resultbuf, char *__restrict __buffer, size_t __buflen, struct passwd **__restrict __result)'/>

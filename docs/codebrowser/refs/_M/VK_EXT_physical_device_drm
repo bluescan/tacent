@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16189'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16188'>// VK_EXT_physical_device_drm is a preprocessor guard. Do not pass it to API calls.</doc>

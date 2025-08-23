@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15851' ll='15855'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15851'/>
+<size>152</size>
+<mbr r='VkAccelerationStructureMotionInstanceNV::type' o='0' t='VkAccelerationStructureMotionInstanceTypeNV'/>
+<mbr r='VkAccelerationStructureMotionInstanceNV::flags' o='32' t='VkAccelerationStructureMotionInstanceFlagsNV'/>
+<mbr r='VkAccelerationStructureMotionInstanceNV::data' o='64' t='VkAccelerationStructureMotionInstanceDataNV'/>

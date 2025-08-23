@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='67' type='__sigval_t'/>
+<dec f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='75' type='__sigval_t'/>
+<offset>64</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='67'>/* Signal value.  */</doc>
+<doc f='include/x86_64-linux-gnu/bits/types/siginfo_t.h' l='75'>/* Signal value.  */</doc>

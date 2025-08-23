@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='956' type='_OIter std::unique_copy(_IIter , _IIter , _OIter , _BinaryPredicate )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='4534' ll='4552' macro='1' type='_OutputIterator std::unique_copy(_InputIterator __first, _InputIterator __last, _OutputIterator __result, _BinaryPredicate __binary_pred)'/>

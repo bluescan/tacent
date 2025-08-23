@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='344' type='int tChunkReader::Save(const tString &amp; filename)'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='341'>// Sometimes it is useful to load in a file and then modify the data but not the chunk structure. If this is the
+	// case, you can resave the chunk file with the possibly modified data using the function below. Returns number
+	// of written bytes.</doc>
+<def f='Modules/System/Src/tChunk.cpp' l='841' ll='854' type='int tChunkReader::Save(const tString &amp; filename)'/>

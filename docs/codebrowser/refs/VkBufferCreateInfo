@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3417' ll='3426'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3417'/>
+<size>56</size>
+<mbr r='VkBufferCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBufferCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkBufferCreateInfo::flags' o='128' t='VkBufferCreateFlags'/>
+<mbr r='VkBufferCreateInfo::size' o='192' t='VkDeviceSize'/>
+<mbr r='VkBufferCreateInfo::usage' o='256' t='VkBufferUsageFlags'/>
+<mbr r='VkBufferCreateInfo::sharingMode' o='288' t='VkSharingMode'/>
+<mbr r='VkBufferCreateInfo::queueFamilyIndexCount' o='320' t='uint32_t'/>
+<mbr r='VkBufferCreateInfo::pQueueFamilyIndices' o='384' t='const uint32_t *'/>

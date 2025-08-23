@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='229' type='541283397'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='755' macro='1' c='_ZN6tImage4tDDS24GetFormatInfo_FromFourCCERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<doc f='Modules/Image/Src/tImageDDS.cpp' l='229'>// ETC1 RGB.</doc>

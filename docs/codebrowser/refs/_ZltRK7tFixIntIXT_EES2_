@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='381' type='bool operator&lt;(const tFixInt&lt;N&gt; &amp; a, const tFixInt&lt;N&gt; &amp; b)'/>
+<def f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='1239' ll='1257' type='bool operator&lt;(const tFixInt&lt;N&gt; &amp; a, const tFixInt&lt;N&gt; &amp; b)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFixInt.h' l='378'>// Not all operators should be members, especially binary ones, if you want to be properly object oriented. tDivide is
+// here because it offers divide with remainder unlike the binary operator/(). There&apos;s also a version here that is
+// faster if you only need to divide by a smaller (positive) integer.</doc>

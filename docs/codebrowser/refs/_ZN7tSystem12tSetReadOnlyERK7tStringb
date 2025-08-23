@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='189' type='bool tSystem::tSetReadOnly(const tString &amp; path, bool readOnly = true)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='187'>// Works for both files and directories. Returns true on success. For Linux, sets the user w permission flag as
+// appropriate and the user r permission flag to true. For Windows sets the attribute.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='599' ll='654' type='bool tSystem::tSetReadOnly(const tString &amp; path, bool readOnly = true)'/>
+<use f='Modules/System/Src/tFile.cpp' l='939' u='c' c='_ZN7tSystem9tCopyFileERK7tStringS2_b'/>

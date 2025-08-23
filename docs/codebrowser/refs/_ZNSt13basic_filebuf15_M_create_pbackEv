@@ -1,0 +1,7 @@
+<def f='include/c++/11/fstream' l='203' ll='213' type='void std::basic_filebuf::_M_create_pback()'/>
+<use f='include/c++/11/bits/fstream.tcc' l='530' u='c' c='_ZNSt13basic_filebuf9pbackfailENT0_8int_typeE'/>
+<doc f='include/c++/11/fstream' l='198'>/**
+       *  Initializes pback buffers, and moves normal buffers to safety.
+       *  Assumptions:
+       *  _M_in_cur has already been moved back
+       */</doc>

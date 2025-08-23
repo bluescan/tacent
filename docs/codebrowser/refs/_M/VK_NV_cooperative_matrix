@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14213'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14212'>// VK_NV_cooperative_matrix is a preprocessor guard. Do not pass it to API calls.</doc>

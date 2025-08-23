@@ -1,0 +1,1 @@
+<def f='include/c++/11/deque' l='97' ll='104' type='typename deque&lt;_Tp, _Alloc&gt;::size_type std::erase_if(deque&lt;_Tp, _Alloc&gt; &amp; __cont, _Predicate __pred)'/>

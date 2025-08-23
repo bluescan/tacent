@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/random.h' l='1990' u='w' c='_ZNSt19normal_distribution10param_typeC1ET_S1_'/>
+<use f='include/c++/11/bits/random.h' l='1992' c='_ZNSt19normal_distribution10param_typeC1ET_S1_'/>
+<use f='include/c++/11/bits/random.h' l='2001' u='r' c='_ZNKSt19normal_distribution10param_type6stddevEv'/>
+<dec f='include/c++/11/bits/random.h' l='2014' type='_RealType'/>

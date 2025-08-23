@@ -1,0 +1,20 @@
+<inh f='Modules/Foundation/Inc/Foundation/tList.h' l='37' c='tLink'/>
+<def f='Modules/System/Inc/System/tCmdLine.h' l='124' ll='169'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='124'/>
+<size>168</size>
+<use f='Modules/System/Src/tCmdLine.cpp' l='37'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='221' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='260' c='_ZL17OptionSortFnShortRKN8tCmdLine7tOptionES2_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='260' c='_ZL17OptionSortFnShortRKN8tCmdLine7tOptionES2_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='266' c='_ZL16OptionSortFnLongRKN8tCmdLine7tOptionES2_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='266' c='_ZL16OptionSortFnLongRKN8tCmdLine7tOptionES2_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='341' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='367' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='587' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='636' c='_ZN8tCmdLine13UsageInternalEP7tStringbPKDuS3_'/>
+<size>168</size>
+<fun r='_ZN8tCmdLine7tOptionC1EPKccS2_ib'/>
+<fun r='_ZN8tCmdLine7tOptionC1EPKcS2_cib'/>
+<fun r='_ZN8tCmdLine7tOptionC1EPKccib'/>
+<fun r='_ZN8tCmdLine7tOptionC1EPKcS2_ib'/>
+<fun r='_ZNK8tCmdLine7tOption4ArgNEi'/>

@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>stdc-predef.h source code [include/stdc-predef.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/stdc-predef.h'; var root_path = '..'; var data_path = '../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='./'>include</a>/<a href='stdc-predef.h.html'>stdc-predef.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 1991-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i></i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i></i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#<span data-ppcond="18">ifndef</span>	<span class="macro" data-ref="_M/_STDC_PREDEF_H">_STDC_PREDEF_H</span></u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#define	<dfn class="macro" id="_M/_STDC_PREDEF_H" data-ref="_M/_STDC_PREDEF_H">_STDC_PREDEF_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>/* This header is separate from features.h so that the compiler can</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>   include it implicitly at the start of every compilation.  It must</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>   not itself include &lt;features.h&gt; or any other header that includes</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i>   &lt;features.h&gt; because the implicit include comes before any feature</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>   test macros that may be defined in a source file before it first</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i>   explicitly includes a system header.  GCC knows the name of this</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i>   header in order to preinclude it.  */</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i>/* glibc's intent is to support the IEC 559 math functionality, real</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>   and complex.  If the GCC (4.9 and later) predefined macros</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>   specifying compiler intent are available, use them to determine</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>   whether the overall intent is to support these features; otherwise,</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i>   presume an older compiler has intent to support these features and</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>   define these macros by default.  */</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="36">ifdef</span> <span class="macro" data-ref="_M/__GCC_IEC_559">__GCC_IEC_559</span></u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u># if __GCC_IEC_559 &gt; 0</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#  define __STDC_IEC_559__		1</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#  define __STDC_IEC_60559_BFP__ 	201404L</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#<span data-ppcond="36">else</span></u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u># define <dfn class="macro" id="_M/__STDC_IEC_559__" data-ref="_M/__STDC_IEC_559__">__STDC_IEC_559__</dfn>		1</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u># define <dfn class="macro" id="_M/__STDC_IEC_60559_BFP__" data-ref="_M/__STDC_IEC_60559_BFP__">__STDC_IEC_60559_BFP__</dfn> 	201404L</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#<span data-ppcond="36">endif</span></u>&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u>#<span data-ppcond="46">ifdef</span> <span class="macro" data-ref="_M/__GCC_IEC_559_COMPLEX">__GCC_IEC_559_COMPLEX</span></u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u># if __GCC_IEC_559_COMPLEX &gt; 0</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u>#  define __STDC_IEC_559_COMPLEX__	1</u>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#  define __STDC_IEC_60559_COMPLEX__	201404L</u>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>#<span data-ppcond="46">else</span></u>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u># define <dfn class="macro" id="_M/__STDC_IEC_559_COMPLEX__" data-ref="_M/__STDC_IEC_559_COMPLEX__">__STDC_IEC_559_COMPLEX__</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><u># define <dfn class="macro" id="_M/__STDC_IEC_60559_COMPLEX__" data-ref="_M/__STDC_IEC_60559_COMPLEX__">__STDC_IEC_60559_COMPLEX__</dfn>	201404L</u>&nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#<span data-ppcond="46">endif</span></u>&nbsp</td></tr>
+<tr><th id="55">55</th><td>&nbsp</td></tr>
+<tr><th id="56">56</th><td><i>/* wchar_t uses Unicode 10.0.0.  Version 10.0 of the Unicode Standard is</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td><i>   synchronized with ISO/IEC 10646:2017, fifth edition, plus</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i>   the following additions from Amendment 1 to the fifth edition:</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>   - 56 emoji characters</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i>   - 285 hentaigana</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i>   - 3 additional Zanabazar Square characters */</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><u>#define <dfn class="macro" id="_M/__STDC_ISO_10646__" data-ref="_M/__STDC_ISO_10646__">__STDC_ISO_10646__</dfn>		201706L</u>&nbsp</td></tr>
+<tr><th id="63">63</th><td>&nbsp</td></tr>
+<tr><th id="64">64</th><td><u>#<span data-ppcond="18">endif</span></u>&nbsp</td></tr>
+<tr><th id="65">65</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

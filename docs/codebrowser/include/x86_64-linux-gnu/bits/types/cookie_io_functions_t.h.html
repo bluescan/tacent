@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>cookie_io_functions_t.h source code [include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>x86_64-linux-gnu</a>/<a href='..'>bits</a>/<a href='./'>types</a>/<a href='cookie_io_functions_t.h.html'>cookie_io_functions_t.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 1991-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i></i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i></i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#<span data-ppcond="18">ifndef</span> <span class="macro" data-ref="_M/__cookie_io_functions_t_defined">__cookie_io_functions_t_defined</span></u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#define <dfn class="macro" id="_M/__cookie_io_functions_t_defined" data-ref="_M/__cookie_io_functions_t_defined">__cookie_io_functions_t_defined</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>/* Functions to do I/O and file management for a stream.  */</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>/* Read NBYTES bytes from COOKIE into a buffer pointed to by BUF.</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i>   Return number of bytes read.  */</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><b>typedef</b> <a class="typedef" href="../types.h.html#__ssize_t" title='__ssize_t' data-type='long' data-ref="__ssize_t">__ssize_t</a> <dfn class="typedef" id="cookie_read_function_t" title='cookie_read_function_t' data-type='__ssize_t (void *, char *, size_t)' data-ref="cookie_read_function_t">cookie_read_function_t</dfn> (<em>void</em> *<dfn class="local col5 decl" id="4525__cookie" title='__cookie' data-type='void *' data-ref="4525__cookie">__cookie</dfn>, <em>char</em> *<dfn class="local col6 decl" id="4526__buf" title='__buf' data-type='char *' data-ref="4526__buf">__buf</dfn>,&nbsp</td></tr>
+<tr><th id="28">28</th><td>                                          <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="4527__nbytes" title='__nbytes' data-type='size_t' data-ref="4527__nbytes">__nbytes</dfn>);&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>/* Write NBYTES bytes pointed to by BUF to COOKIE.  Write all NBYTES bytes</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>   unless there is an error.  Return number of bytes written.  If</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>   there is an error, return 0 and do not write anything.  If the file</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i>   has been opened for append (__mode.__append set), then set the file</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>   pointer to the end of the file and then do the write; if not, just</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i>   write at the current file pointer.  */</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><b>typedef</b> <a class="typedef" href="../types.h.html#__ssize_t" title='__ssize_t' data-type='long' data-ref="__ssize_t">__ssize_t</a> <dfn class="typedef" id="cookie_write_function_t" title='cookie_write_function_t' data-type='__ssize_t (void *, const char *, size_t)' data-ref="cookie_write_function_t">cookie_write_function_t</dfn> (<em>void</em> *<dfn class="local col8 decl" id="4528__cookie" title='__cookie' data-type='void *' data-ref="4528__cookie">__cookie</dfn>, <em>const</em> <em>char</em> *<dfn class="local col9 decl" id="4529__buf" title='__buf' data-type='const char *' data-ref="4529__buf">__buf</dfn>,&nbsp</td></tr>
+<tr><th id="37">37</th><td>                                           <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="4530__nbytes" title='__nbytes' data-type='size_t' data-ref="4530__nbytes">__nbytes</dfn>);&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i>/* Move COOKIE's file position to *POS bytes from the</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>   beginning of the file (if W is SEEK_SET),</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i>   the current position (if W is SEEK_CUR),</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i>   or the end of the file (if W is SEEK_END).</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i>   Set *POS to the new file position.</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i>   Returns zero if successful, nonzero if not.  */</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><b>typedef</b> <em>int</em> <dfn class="typedef" id="cookie_seek_function_t" title='cookie_seek_function_t' data-type='int (void *, __off64_t *, int)' data-ref="cookie_seek_function_t">cookie_seek_function_t</dfn> (<em>void</em> *<dfn class="local col1 decl" id="4531__cookie" title='__cookie' data-type='void *' data-ref="4531__cookie">__cookie</dfn>, <a class="typedef" href="../types.h.html#__off64_t" title='__off64_t' data-type='long' data-ref="__off64_t">__off64_t</a> *<dfn class="local col2 decl" id="4532__pos" title='__pos' data-type='__off64_t *' data-ref="4532__pos">__pos</dfn>, <em>int</em> <dfn class="local col3 decl" id="4533__w" title='__w' data-type='int' data-ref="4533__w">__w</dfn>);&nbsp</td></tr>
+<tr><th id="46">46</th><td>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>/* Close COOKIE.  */</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><b>typedef</b> <em>int</em> <dfn class="typedef" id="cookie_close_function_t" title='cookie_close_function_t' data-type='int (void *)' data-ref="cookie_close_function_t">cookie_close_function_t</dfn> (<em>void</em> *<dfn class="local col4 decl" id="4534__cookie" title='__cookie' data-type='void *' data-ref="4534__cookie">__cookie</dfn>);&nbsp</td></tr>
+<tr><th id="49">49</th><td>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i>/* The structure with the cookie function pointers.</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>   The tag name of this struct is _IO_cookie_io_functions_t to</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i>   preserve historic C++ mangled names for functions taking</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i>   cookie_io_functions_t arguments.  That name should not be used in</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i>   new code.  */</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><b>typedef</b> <b>struct</b> <dfn class="type def" id="_IO_cookie_io_functions_t" title='_IO_cookie_io_functions_t' data-ref="_IO_cookie_io_functions_t"><a class="type" href="#_IO_cookie_io_functions_t" title='_IO_cookie_io_functions_t' data-ref="_IO_cookie_io_functions_t">_IO_cookie_io_functions_t</a></dfn>&nbsp</td></tr>
+<tr><th id="56">56</th><td>{&nbsp</td></tr>
+<tr><th id="57">57</th><td>  <a class="typedef" href="#cookie_read_function_t" title='cookie_read_function_t' data-type='__ssize_t (void *, char *, size_t)' data-ref="cookie_read_function_t">cookie_read_function_t</a> *<dfn class="decl field" id="_IO_cookie_io_functions_t::read" title='_IO_cookie_io_functions_t::read' data-ref="_IO_cookie_io_functions_t::read">read</dfn>;		<i>/* Read bytes.  */</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td>  <a class="typedef" href="#cookie_write_function_t" title='cookie_write_function_t' data-type='__ssize_t (void *, const char *, size_t)' data-ref="cookie_write_function_t">cookie_write_function_t</a> *<dfn class="decl field" id="_IO_cookie_io_functions_t::write" title='_IO_cookie_io_functions_t::write' data-ref="_IO_cookie_io_functions_t::write">write</dfn>;	<i>/* Write bytes.  */</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td>  <a class="typedef" href="#cookie_seek_function_t" title='cookie_seek_function_t' data-type='int (void *, __off64_t *, int)' data-ref="cookie_seek_function_t">cookie_seek_function_t</a> *<dfn class="decl field" id="_IO_cookie_io_functions_t::seek" title='_IO_cookie_io_functions_t::seek' data-ref="_IO_cookie_io_functions_t::seek">seek</dfn>;		<i>/* Seek/tell file position.  */</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td>  <a class="typedef" href="#cookie_close_function_t" title='cookie_close_function_t' data-type='int (void *)' data-ref="cookie_close_function_t">cookie_close_function_t</a> *<dfn class="decl field" id="_IO_cookie_io_functions_t::close" title='_IO_cookie_io_functions_t::close' data-ref="_IO_cookie_io_functions_t::close">close</dfn>;	<i>/* Close file.  */</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td>} <dfn class="typedef" id="cookie_io_functions_t" title='cookie_io_functions_t' data-type='struct _IO_cookie_io_functions_t' data-ref="cookie_io_functions_t">cookie_io_functions_t</dfn>;&nbsp</td></tr>
+<tr><th id="62">62</th><td>&nbsp</td></tr>
+<tr><th id="63">63</th><td><u>#<span data-ppcond="18">endif</span></u>&nbsp</td></tr>
+<tr><th id="64">64</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

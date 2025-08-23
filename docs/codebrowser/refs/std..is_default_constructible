@@ -1,0 +1,10 @@
+<def f='include/c++/11/type_traits' l='961' ll='966'/>
+<use f='include/c++/11/type_traits' l='3177'/>
+<use f='include/c++/11/bits/stl_pair.h' l='239'/>
+<use f='include/c++/11/bits/stl_pair.h' l='240'/>
+<use f='include/c++/11/tuple' l='586' c='_ZNSt17_TupleConstraints37__is_explicitly_default_constructibleEv'/>
+<use f='include/c++/11/bits/hashtable.h' l='58'/>
+<use f='include/c++/11/bits/hashtable.h' l='59'/>
+<use f='include/c++/11/bits/hashtable.h' l='60'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='146'/>
+<use f='include/c++/11/fstream' l='91'/>

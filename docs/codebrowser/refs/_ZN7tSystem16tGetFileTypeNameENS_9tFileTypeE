@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='429' type='tString tSystem::tGetFileTypeName(tSystem::tFileType )'/>
+<def f='Modules/System/Inc/System/tFile.h' l='837' ll='840' type='tString tSystem::tGetFileTypeName(tSystem::tFileType fileType)'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1093' u='c' c='_ZNK7tSystem10tFileTypes17GetSelectedStringENS0_9SeparatorEi'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='427'>// For the file-type name we use the most common (default) extension string. Essentially this does the same thing as
+// tGetExtension. If we need something more descriptive we could add a tGetFileTypeDesc(...)</doc>

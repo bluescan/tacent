@@ -1,0 +1,6 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='126' type='6'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='137'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='138'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='126'>// Includes Auto but not Unspecified.</doc>
+<use f='Modules/Math/Src/tColour.cpp' l='31' u='r'/>
+<use f='Modules/Math/Src/tColour.cpp' l='43' u='r'/>

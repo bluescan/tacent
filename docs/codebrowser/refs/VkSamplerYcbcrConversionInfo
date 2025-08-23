@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5442' ll='5446'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5442'/>
+<size>24</size>
+<mbr r='VkSamplerYcbcrConversionInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSamplerYcbcrConversionInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkSamplerYcbcrConversionInfo::conversion' o='128' t='VkSamplerYcbcrConversion'/>

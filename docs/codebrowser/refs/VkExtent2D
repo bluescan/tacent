@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2862' ll='2865'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='2862'/>
+<size>8</size>
+<mbr r='VkExtent2D::width' o='0' t='uint32_t'/>
+<mbr r='VkExtent2D::height' o='32' t='uint32_t'/>

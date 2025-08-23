@@ -1,0 +1,12 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='2656' ll='2657'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='2659' ll='2661'/>
+<use f='include/c++/11/type_traits' l='2666'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/utility' l='151' ll='153'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/array' l='452' ll='454'/>
+<doc f='include/c++/11/utility' l='148'>// Various functions which give std::pair a tuple-like interface.
+
+  /// Partial specialization for std::pair</doc>

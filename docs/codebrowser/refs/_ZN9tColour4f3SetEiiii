@@ -1,0 +1,6 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='799' u='c' c='_ZN9tColour4fC1Ehhhh'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='800' u='c' c='_ZN9tColour4fC1Eiiii'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='810' u='c' c='_ZN9tColour4f3SetERK9tColour4b'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='815' type='void tColour4f::Set(int r, int g, int b, int a = 255)'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='813'>// The integer get and set methods use a range of [0, 255] for each component.
+	// @wip Can we use uint8&apos;s and get rid of the 16 suffix?</doc>

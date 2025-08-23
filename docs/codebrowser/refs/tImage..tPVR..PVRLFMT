@@ -1,0 +1,4 @@
+<def f='Modules/Image/Src/tImagePVR.cpp' l='74' ll='133'/>
+<doc f='Modules/Image/Src/tImagePVR.cpp' l='71'>// These are the PVR legacy (V1 and V2 pvr files) format IDs from the specification document at:
+	// https://powervr-graphics.github.io/WebGL_SDK/WebGL_SDK/Documentation/Specifications/PVR%20File%20Format.Specification.Legacy.pdf
+	// The names match the names in the document.</doc>

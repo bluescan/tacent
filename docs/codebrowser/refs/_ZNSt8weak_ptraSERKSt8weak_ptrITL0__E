@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/shared_ptr.h' l='722' ll='727' type='_Assignable&lt;const weak_ptr&lt;_Yp&gt; &amp;&gt; std::weak_ptr::operator=(const weak_ptr&lt;_Yp&gt; &amp; __r)'/>

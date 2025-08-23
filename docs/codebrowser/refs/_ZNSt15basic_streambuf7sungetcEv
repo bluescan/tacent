@@ -1,0 +1,10 @@
+<def f='include/c++/11/streambuf' l='401' ll='413' type='std::basic_streambuf::int_type std::basic_streambuf::sungetc()'/>
+<doc f='include/c++/11/streambuf' l='392'>/**
+       *  @brief  Moving backwards in the input stream.
+       *  @return  The previous character, if possible.
+       *
+       *  If a putback position is available, this function decrements
+       *  the input pointer and returns that character.  Otherwise,
+       *  calls and returns pbackfail().  The effect is to @a unget
+       *  the last character @a gotten.
+      */</doc>

@@ -1,0 +1,8 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='99'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='100' c='_ZN5tMath4tDivEii'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='290' c='_ZN5tMath4tDivEii'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='293' c='_ZN5tMath4tDivEii'/>
+<use f='Modules/Foundation/Inc/Foundation/tArray.h' l='144' c='_ZN6tArray6AppendEPKT_i'/>
+<size>8</size>
+<mbr r='tMath::tDivt::Quotient' o='0' t='int'/>
+<mbr r='tMath::tDivt::Remainder' o='32' t='int'/>

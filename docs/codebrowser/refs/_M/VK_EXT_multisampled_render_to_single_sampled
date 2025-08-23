@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16415'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16414'>// VK_EXT_multisampled_render_to_single_sampled is a preprocessor guard. Do not pass it to API calls.</doc>

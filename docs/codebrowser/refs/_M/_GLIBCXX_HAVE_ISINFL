@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='957'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1989' u='a'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='956'>/* Define to 1 if you have the `isinfl&apos; function. */</doc>

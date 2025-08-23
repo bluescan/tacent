@@ -1,0 +1,2 @@
+<dec f='include/c++/11/fstream' l='261' type='basic_filebuf&lt;_CharT, _Traits&gt; &amp; std::basic_filebuf::operator=(basic_filebuf&lt;_CharT, _Traits&gt; &amp;&amp; )'/>
+<def f='include/c++/11/bits/fstream.tcc' l='122' ll='149' type='basic_filebuf&lt;_CharT, _Traits&gt; &amp; std::basic_filebuf::operator=(basic_filebuf&lt;_CharT, _Traits&gt; &amp;&amp; __rhs)'/>

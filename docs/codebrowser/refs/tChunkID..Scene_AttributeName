@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='452' type='16888064'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='452'>// The attribute name.</doc>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='28' u='r' c='_ZNK6tScene10tAttribute4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='77' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>

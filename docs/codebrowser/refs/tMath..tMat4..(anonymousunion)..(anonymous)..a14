@@ -1,0 +1,31 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='190' type='float'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='586' u='w' c='_ZN5tMath14tMakeTranslateERNS_5tMat4Efff'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='587' u='w' c='_ZN5tMath14tMakeTranslateERNS_5tMat4ERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='816' u='w' c='_ZN5tMath4tSetERNS_5tMat4Effffffffffffffff'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='832' u='r' c='_ZN5tMath4tGetERfS0_S0_S0_S0_S0_S0_S0_S0_S0_S0_S0_S0_S0_S0_S0_RKNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='853' u='w' c='_ZN5tMath5tZeroERNS_5tMat4Ej'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='878' u='r' c='_ZN5tMath7tIsZeroERKNS_5tMat4Ej'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='914' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tMat4ES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='914' u='r' c='_ZN5tMath12tApproxEqualERKNS_5tMat4ES2_jf'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='939' u='r' c='_ZN5tMath6tEqualERKNS_5tMat4ES2_j'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='939' u='r' c='_ZN5tMath6tEqualERKNS_5tMat4ES2_j'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='964' u='r' c='_ZN5tMath9tNotEqualERKNS_5tMat4ES2_j'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='964' u='r' c='_ZN5tMath9tNotEqualERKNS_5tMat4ES2_j'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1089' u='w' c='_ZN5tMath15tMulByTransposeERNS_5tMat4ERKNS_5tVec4ES4_'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1106' u='a' c='_ZN5tMath10tTransposeERNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1191' u='w' c='_ZN5tMath12tMakeRotateXERNS_5tMat4Ef'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1203' u='w' c='_ZN5tMath12tMakeRotateYERNS_5tMat4Ef'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1215' u='w' c='_ZN5tMath12tMakeRotateZERNS_5tMat4Ef'/>
+<offset>384</offset>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='181' u='r' c='_ZN5tMath4tMulERNS_5tVec3ERKNS_5tMat4ERKS0_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='191' u='r' c='_ZN5tMath4tMulERNS_5tVec4ERKNS_5tMat4ERKS0_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='212' u='r' c='_ZN5tMath4tMulERNS_5tMat4ERKS0_S3_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='603' u='w' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3Ef'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='645' u='w' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3ES4_'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='660' u='w' c='_ZN5tMath14tMakeRotateXYZERNS_5tMat4Efff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='673' u='w' c='_ZN5tMath14tMakeRotateYZXERNS_5tMat4Efff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='686' u='w' c='_ZN5tMath14tMakeRotateZXYERNS_5tMat4Efff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='699' u='w' c='_ZN5tMath14tMakeRotateZYXERNS_5tMat4Efff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='714' u='w' c='_ZN5tMath14tMakeRotateXZYERNS_5tMat4Efff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='727' u='w' c='_ZN5tMath14tMakeRotateYXZERNS_5tMat4Efff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='833' u='w' c='_ZN5tMath17tMakeProjParallelERNS_5tMat4ERKNS_5tVec3ES4_'/>

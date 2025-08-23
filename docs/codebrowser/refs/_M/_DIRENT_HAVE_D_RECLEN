@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/dirent.h' l='50'/>
+<use f='include/dirent.h' l='86' u='a'/>

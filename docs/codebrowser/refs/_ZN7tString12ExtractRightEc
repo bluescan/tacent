@@ -1,0 +1,7 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='212' type='tString tString::ExtractRight(const char divider = &apos; &apos;)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='210'>// Extracts last word after and not including last divider encountered. The tString is left with the remainder,
+	// not including the divider. If divider isn&apos;t found an empty string is returned and the tString is left unmodified.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='161' ll='177' type='tString tString::ExtractRight(const char divider = &apos; &apos;)'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='374' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1603' u='c' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1604' u='c' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>

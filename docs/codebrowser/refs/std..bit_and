@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_function.h' l='893' ll='899'/>
+<def f='include/c++/11/bits/stl_function.h' l='929' ll='941'/>
+<use f='include/c++/11/bits/stl_function.h' l='930'/>
+<size>1</size>
+<fun r='_ZNKSt7bit_andclERKT_S2_'/>
+<fun r='_ZNKSt7bit_andIvEclEOT_OT0_'/>

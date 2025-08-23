@@ -1,0 +1,17 @@
+<def f='include/c++/11/bits/cpp_type_traits.h' l='511' ll='515'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='517' ll='521'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='532' ll='534'/>
+<use f='include/c++/11/bits/cpp_type_traits.h' l='533'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='536' ll='538'/>
+<def f='include/c++/11/bits/cpp_type_traits.h' l='540' ll='542'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1371' c='_ZSt30__lexicographical_compare_aux1T_S_T0_S0_'/>
+<size>1</size>
+<doc f='include/c++/11/bits/cpp_type_traits.h' l='531'>// std::byte can only be compared to itself, not to other types.</doc>
+<smbr r='std::__is_memcmp_ordered_with::__value' t='const bool'/>
+<smbr r='std::__is_memcmp_ordered_with{type-parameter-0-0,type-parameter-0-1,false}::__value' t='const bool'/>
+<smbr r='std::__is_memcmp_ordered_with{std::byte,std::byte,true}::__value' t='const bool'/>
+<smbr r='std::__is_memcmp_ordered_with{type-parameter-0-0,std::byte,_SameSize}::__value' t='const bool'/>
+<smbr r='std::__is_memcmp_ordered_with{std::byte,type-parameter-0-0,_SameSize}::__value' t='const bool'/>
+<use f='include/c++/11/bits/deque.tcc' l='1275' c='_ZSt13__lex_cmp_ditSt15_Deque_iteratorIT_T0_T1_ES3_PKT2_S6_'/>
+<use f='include/c++/11/bits/deque.tcc' l='1331' c='_ZSt30__lexicographical_compare_aux1St15_Deque_iteratorIT_T0_T1_ES3_S_IT2_T3_T4_ES7_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='3336' c='_ZNKSt6ranges28__lexicographical_compare_fnclET_T0_T1_T2_T5_T3_T4_'/>

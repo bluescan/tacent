@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='447' type='void tStringUTF16::tStringUTF16(int length)'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='950' ll='958' type='void tStringUTF16::tStringUTF16(int length)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='447'>// Reserves length+1 char16_t code units (+1 for the inernal terminator).</doc>

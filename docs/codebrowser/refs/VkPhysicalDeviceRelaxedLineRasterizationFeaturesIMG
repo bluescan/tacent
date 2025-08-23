@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12357' ll='12361'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12357'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceRelaxedLineRasterizationFeaturesIMG::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceRelaxedLineRasterizationFeaturesIMG::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceRelaxedLineRasterizationFeaturesIMG::relaxedLineRasterization' o='128' t='VkBool32'/>

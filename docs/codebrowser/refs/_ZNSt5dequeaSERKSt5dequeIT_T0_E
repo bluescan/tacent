@@ -1,0 +1,11 @@
+<dec f='include/c++/11/bits/stl_deque.h' l='1019' type='deque&lt;_Tp, _Alloc&gt; &amp; std::deque::operator=(const deque&lt;_Tp, _Alloc&gt; &amp; __x)'/>
+<def f='include/c++/11/bits/deque.tcc' l='93' ll='130' type='deque&lt;_Tp, _Alloc&gt; &amp; std::deque::operator=(const deque&lt;_Tp, _Alloc&gt; &amp; __x)'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1009'>/**
+       *  @brief  %Deque assignment operator.
+       *  @param  __x  A %deque of identical element and allocator types.
+       *
+       *  All the elements of @a x are copied.
+       *
+       *  The newly-created %deque uses a copy of the allocator object used
+       *  by @a __x (unless the allocator traits dictate a different object).
+       */</doc>

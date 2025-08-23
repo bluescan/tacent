@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='164' type='int tList::SortMerge(CompareFunc )'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='542' ll='638' type='int tList::SortMerge(CompareFunc compare)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='163'>// These return the number of compares performed.</doc>

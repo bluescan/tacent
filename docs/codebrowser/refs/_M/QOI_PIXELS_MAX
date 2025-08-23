@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/QOI/qoi.h' l='332'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='369' u='c'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='518' u='c'/>
+<doc f='Modules/Image/Contrib/QOI/qoi.h' l='328'>/* 2GB is the max file size that this implementation can safely handle. We guard
+against anything larger than that, assuming the worst case with 5 bytes per
+pixel, rounded down to a nice clean value. 400 million pixels ought to be
+enough for anybody. */</doc>

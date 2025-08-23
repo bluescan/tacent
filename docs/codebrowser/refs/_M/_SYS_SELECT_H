@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/select.h' l='22'/>
+<use f='include/x86_64-linux-gnu/bits/select.h' l='18' u='a'/>

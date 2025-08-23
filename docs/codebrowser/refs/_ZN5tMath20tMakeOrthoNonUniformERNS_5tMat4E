@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='672' type='void tMath::tMakeOrthoNonUniform(tMath::tMat4 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='673' u='c' c='_ZN5tMath10tMakeOrthoERNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='99' u='c' c='_ZN5tMath8tMatrix419MakeOrthoNonUniformEv'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='100' u='c' c='_ZN5tMath8tMatrix49MakeOrthoEv'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='887' ll='909' type='void tMath::tMakeOrthoNonUniform(tMath::tMat4 &amp; m)'/>

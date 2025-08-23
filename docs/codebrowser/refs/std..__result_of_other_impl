@@ -1,0 +1,7 @@
+<def f='include/c++/11/type_traits' l='2526' ll='2535'/>
+<ovr f='include/c++/11/type_traits' l='2538' c='std::__result_of_impl'/>
+<use f='include/c++/11/type_traits' l='2539'/>
+<size>1</size>
+<doc f='include/c++/11/type_traits' l='2525'>// [func.require] paragraph 1 bullet 5:</doc>
+<fun r='_ZNSt22__result_of_other_impl7_S_testEi'/>
+<fun r='_ZNSt22__result_of_other_impl7_S_testEz'/>

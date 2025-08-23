@@ -1,0 +1,61 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='199' ll='219'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='222' c='_Z19tGetChannelTypeName12tChannelType'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='223' c='_Z24tGetChannelTypeShortName12tChannelType'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='224' c='_Z15tGetChannelTypePKc'/>
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='111' c='_ZNK6tImage10tBaseImage14GetChannelTypeEv'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='167'>// ChannelType is additional satellite information that is not entirely specified by the pixel format so it belongs as
+// satellite information here. In particular the part that isn&apos;t specified is whether the component data of each colour
+// channel should be normalized or not afterwards. It gets a little tricky here because Vulkan, OpenGL, and DirectX
+// have all decided on variant pixel-format names with channel-type information like UNORM, SNORM, UINT, SINT, and
+// FLOAT. This naming _includes_ both information about how the data is encoded (integer or float, signed or unsigned)
+// as well as whether to normalize after decoding or not. We have a choice here, either ONLY make this satellite info
+// contain whether to normalize of not afterwards, or have a litte redundant information in order to keep the naming
+// as close as possible to UNORM, UINT, etc. I have decided on the latter.
+//
+// The reason it is not part of the pixel format is it is quite common for the data to be encoded as, say, an unsigned
+// integer, but &apos;converted&apos; to a float when it is passed off the video memory by the graphics API so it is available as
+// a float in the fragment/pixel shader. In short the ChannelType indicates intent for what should happen to the
+// value AFTER decoding. For example, UNORM means the data is stored (or decoded for compressed formats) as an unsigned
+// integer (which is already known by looking at the pixel-format) -- it is then converted to a normalized value in
+// [0.0, 1.0]. SNORM means it&apos;s stored as a signed integer and then normalized to the [0.0, 1.0] range. The actual
+// number of bits used is NOT specified here -- that is also specified by the pixel-format itself (either explicitly or
+// implicitly by inspecting the compression method used). I bring this up because, for example, the PVR3 filetype
+// &apos;channel type&apos; field does contain size information, but it doesn&apos;t need to (and probably shouldn&apos;t).
+//
+// Example 1. PixelFormat: G3B5R5G3  ChanelType: UNORM
+// We know the R and B are stored as 5-bit unsigned ints and the G with six bits. We know this from the PixelFormat
+// alone because it does not contain a &apos;s&apos;, &apos;f&apos;, or &apos;uf&apos;. We further know the intent is to &apos;normalize&apos; it after
+// decoding. R would be in [0, 31] and converted to [0.0, 1.0]. The &apos;U&apos; part of &apos;UNORM&apos; is redundant because the
+// pixel-format already told us it was an unsigned integer.
+//
+// Example 2. PixelFormat: R11G11B10uf  ChanelType: UFLOAT
+// RG stored as 11-bit unsigned floats (5 exponent, 6 mantissa, no sign bit). B stored as a 10-bit (5,5) float. In this
+// case the ChannelType is completely redundant because we already know we&apos;re using unsigned floats from the &apos;uf&apos;.
+//
+// Example 3. PixelFormat: R8G8  ChanelType: UINT
+// RG stored as 8-bit unsigned ints (from pixel-format). In this case the ChannelType indicates not to normalize so
+// each component should be read as an unsigned integer in [0, 255].</doc>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='221' c='_ZNK6tImage9tImageDDS14GetChannelTypeEv'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='233'/>
+<use f='Modules/Image/Inc/Image/tImageKTX.h' l='223'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='225' c='_ZNK6tImage9tImagePVR14GetChannelTypeEv'/>
+<use f='Modules/Image/Inc/Image/tImagePVR.h' l='241'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='514' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='515' c='_ZN6tImage4tDDS24GetFormatInfo_FromFourCCERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='516' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='520' c='_ZN6tImage4tDDS28GetFormatInfo_FromDXGIFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='714' c='_ZN6tImage4tDDS24GetFormatInfo_FromFourCCERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='793' c='_ZN6tImage4tDDS32GetFormatInfo_FromComponentMasksERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10FormatDataE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='40' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='41' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='45' c='_ZN6tImage4tKTX26GetFormatInfo_FromGLFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypejjj'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='279' c='_ZN6tImage4tKTX26GetFormatInfo_FromVKFormatERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypej'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='232' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='237' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='263' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='348' c='_ZN6tImage4tPVR26GetFormatInfo_FromV3HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_8HeaderV3E'/>
+<use f='Modules/Math/Src/tColour.cpp' l='114' c='_Z19tGetChannelTypeName12tChannelType'/>
+<use f='Modules/Math/Src/tColour.cpp' l='121' c='_Z24tGetChannelTypeShortName12tChannelType'/>
+<use f='Modules/Math/Src/tColour.cpp' l='128' c='_Z15tGetChannelTypePKc'/>
+<use f='Modules/Math/Src/tColour.cpp' l='135' c='_Z15tGetChannelTypePKc'/>
+<use f='Modules/Math/Src/tColour.cpp' l='139' c='_Z15tGetChannelTypePKc'/>

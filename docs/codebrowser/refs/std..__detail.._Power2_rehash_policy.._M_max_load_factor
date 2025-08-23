@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/hashtable_policy.h' l='525' u='w' c='_ZNSt8__detail21_Power2_rehash_policyC1Ef'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='529' u='r' c='_ZNKSt8__detail21_Power2_rehash_policy15max_load_factorEv'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='561' u='r' c='_ZNSt8__detail21_Power2_rehash_policy11_M_next_bktEm'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='569' u='r' c='_ZNKSt8__detail21_Power2_rehash_policy19_M_bkt_for_elementsEm'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='586' u='r' c='_ZNSt8__detail21_Power2_rehash_policy14_M_need_rehashEmmm'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='593' u='r' c='_ZNSt8__detail21_Power2_rehash_policy14_M_need_rehashEmmm'/>
+<dec f='include/c++/11/bits/hashtable_policy.h' l='616' type='float'/>
+<offset>0</offset>

@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/max_size_type.h' l='466' u='c' c='_ZNKSt6ranges8__detail15__max_diff_typepsEv'/>
+<use f='include/c++/11/bits/max_size_type.h' l='483' u='c' c='_ZNSt6ranges8__detail15__max_diff_typeppEi'/>
+<use f='include/c++/11/bits/max_size_type.h' l='495' u='c' c='_ZNSt6ranges8__detail15__max_diff_typemmEi'/>
+<use f='include/c++/11/bits/max_size_type.h' l='545' u='c' c='_ZNSt6ranges8__detail15__max_diff_typerMERKS1_'/>

@@ -1,0 +1,9 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='342' type='int'/>
+<offset>576</offset>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='342'>// Used for brightness adjustments.</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='634' u='w' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='650' u='r' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='651' u='w' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='664' u='a' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='689' u='r' c='_ZN6tImage8tPicture16AdjustBrightnessEfj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='712' u='r' c='_ZN6tImage8tPicture26AdjustGetDefaultBrightnessERf'/>

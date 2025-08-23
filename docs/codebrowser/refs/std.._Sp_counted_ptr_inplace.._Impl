@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='497' ll='507'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='567'/>
+<fun r='_ZNSt23_Sp_counted_ptr_inplace5_ImplC1ET0_'/>
+<fun r='_ZNSt23_Sp_counted_ptr_inplace5_Impl8_M_allocEv'/>
+<mbr r='std::_Sp_counted_ptr_inplace::_Impl::_M_storage' t='__gnu_cxx::__aligned_buffer&lt;_Tp&gt;'/>

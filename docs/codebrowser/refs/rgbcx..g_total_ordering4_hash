@@ -1,0 +1,3 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1540' type='uint16_t[4096]'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1592' u='r' c='_ZNK5rgbcx5hist427lookup_total_ordering_indexEv'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1880' u='w' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>

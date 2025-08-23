@@ -1,0 +1,4 @@
+<dec f='include/c++/11/iomanip' l='56' type='ios_base::fmtflags'/>
+<use f='include/c++/11/iomanip' l='73' c='_ZStrsRSt13basic_istreamIT_T0_ESt14_Resetiosflags'/>
+<use f='include/c++/11/iomanip' l='81' c='_ZStlsRSt13basic_ostreamIT_T0_ESt14_Resetiosflags'/>
+<offset>0</offset>

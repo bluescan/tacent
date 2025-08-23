@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='4173' type='PFN_vkVoidFunction vkGetDeviceProcAddr(VkDevice device, const char * pName)'/>

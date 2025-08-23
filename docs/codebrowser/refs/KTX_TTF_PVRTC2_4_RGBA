@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1554' type='19'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1551'>/*!&lt; Opaque-only. Almost BC1 quality, much faster to transcode
+                 and supports arbitrary texture dimensions (unlike
+                 PVRTC1 RGB). */</doc>

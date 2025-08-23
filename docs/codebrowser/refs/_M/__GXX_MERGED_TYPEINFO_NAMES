@@ -1,0 +1,4 @@
+<dec f='include/c++/11/typeinfo' l='68'/>
+<use f='include/c++/11/typeinfo' l='109' u='c'/>
+<use f='include/c++/11/typeinfo' l='145' u='c'/>
+<doc f='include/c++/11/typeinfo' l='67'>// By default, typeinfo names are not merged.</doc>

@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='212' type='void std::__timepunct::_M_put(_CharT * __s, std::size_t __maxlen, const _CharT * __format, const tm * __tm) const'/>
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='329' type='void std::__timepunct&lt;char&gt;::_M_put(char * , std::size_t , const char * , const tm * ) const'/>
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='338' type='void std::__timepunct&lt;wchar_t&gt;::_M_put(wchar_t * , std::size_t , const wchar_t * , const tm * ) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='209'>// FIXME: for error checking purposes _M_put should return the return
+      // value of strftime/wcsftime.</doc>

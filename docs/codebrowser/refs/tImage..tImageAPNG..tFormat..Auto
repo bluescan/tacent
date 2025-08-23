@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageAPNG.h' l='71' type='3'/>
+<use f='Modules/Image/Inc/Image/tImageAPNG.h' l='78' u='r' c='_ZN6tImage10tImageAPNG10SaveParams5ResetEv'/>
+<doc f='Modules/Image/Inc/Image/tImageAPNG.h' l='71'>// Save function will decide format. BPP24 if all image pixels are opaque and BPP32 otherwise.</doc>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='260' c='_ZNK6tImage10tImageAPNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

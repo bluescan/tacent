@@ -1,0 +1,20 @@
+<def f='Modules/Foundation/Inc/Foundation/tConstants.h' l='43' type='const float'/>
+<doc f='Modules/Foundation/Inc/Foundation/tConstants.h' l='41'>// The infinities below are not the special IEEE bit patterns that represent infinity. They are the very largest and
+// smallest values that may be represented without use of the special bit patterns.</doc>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='154' u='r' c='_ZN5tMath7tARect25ClearEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='154' u='r' c='_ZN5tMath7tARect25ClearEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='286' u='r' c='_ZN5tMath5tABoxC1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='286' u='r' c='_ZN5tMath5tABoxC1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='286' u='r' c='_ZN5tMath5tABoxC1Ev'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='294' u='r' c='_ZN5tMath5tABox5EmptyEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='294' u='r' c='_ZN5tMath5tABox5EmptyEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='294' u='r' c='_ZN5tMath5tABox5EmptyEv'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='184' u='r' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='184' u='r' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='184' u='r' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='186' u='r' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='186' u='r' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='186' u='r' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='188' u='r' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='188' u='r' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='188' u='r' c='_ZN5tMath37tComputeSmallEnclosingSphere_UnstableERNS_7tSphereEPKNS_8tVector3Ei'/>

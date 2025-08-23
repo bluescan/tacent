@@ -1,0 +1,98 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='218' type='int tPrintf(const char * format)'/>
+<def f='Modules/System/Inc/System/tPrint.h' l='320' ll='325' type='int tPrintf(const char * f)'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='124'>// The following print functions return the number of characters written to either stdout or to the supplied buffer.
+// Format specification strings take the form below, with [] indicating an optional field.
+//
+// %[flags][width][.precision][:typeSizeElements][!typeSizeBytes][|typeSizeBits]type
+//
+// The format string is a superset of the ANSI standard for printf. It adds more types (vectors and matrices),
+// consistent typesize fields and support for extra flags, including an alternative presentation flag. See
+// http://www.cplusplus.com/reference/cstdio/printf/ for the standard types supported.
+//
+// [flags]
+// Must be one or more of: - + SPACE 0 # _ &apos;
+//
+//		Standard:	hyphen (-) means left justify. Plus (+) means show sign for numeric types. # means force decimal
+//					point for e, E, f, g, and G. It also means prefix with 0, 0x, or 0X for o, x, and X.
+//					Using the 0 prefix flag works differently on Linux vs Windows with non-integral types like %c.
+//					Tacent behaves (on purpose) like Windows where the leading 0s are printed even though the type is
+//					not integral.
+//		Enhanced:	Underscore (_) or single-quote (&apos;) chooses a more readable decorative or alternative printing
+//					method. They do not necessarily do the same thing as each other.
+//					Integral Types:
+//						For built-in integral types, an _ inserts an underscore every 4 characters starting from the
+//						right. Handy for making binary values readable. For Tacent integer types like tint128 and
+//						tuint256, the spacing is every 8 characters.
+//						For any integral type, a &apos; will place a comma every 3 digits starting from thr right. Makes
+//						big integers readable. eg. 23,456,789. This is not really an enhancement as of POSIX 2008.
+//					Matrix Types:
+//						A _ will print the 4x4 (or 2x2) matrix in 4 (or 2) separate rows surrounded by square []
+//						brackets. Uses a default width of 9 and precision of 4, resulting in 1234.5678 for each
+//						element. Default expected matrix size is :16 (a 4x4 matrix). If you pass in a 2x2, you must
+//						specify the typesize.
+//					Vector Types:
+//						A _ causes just the components (space separated) to print. No decoration. By convention (a, b)
+//						is shorthand for the column vector:	[	a
+//																b	]
+//						Default expected vector size is :3 (3 elements). If you pass in a 2 or 4 component vector you
+//						must specify the size.
+//					Bool Types:
+//						A _ results in the bool being printed as T or F. A single-quote &apos; results in Y or N. 
+//
+// [width]
+// A number representing the minimum num chars printed, or a * to indicate read width from the vararg list.
+//
+// [precision]
+// A number representing decimal accuracy when printing floats, or a * to indicate read precision from the vararg list.
+//
+// [typeSize]
+// A number after a colon (:) or a bang (!) or a pipe (|). This is not ANSI (ANSI ones are the odd h, l, ll, I32, I64).
+// The colon means to interpret the number following as how many 32bit elements there are in the type. For example, :2,
+// :3, :4 may be used with the vector &apos;v&apos; type to indicate how many components are present. The bang (!) means
+// interpret the number as a byte (octet I suppose, but really, what processor now days has a 7-bit byte? 32-bit chars
+// are much more common). A value after a pipe symbol means the number is interpreted as a number of bits. For example,
+// |32 or |64 may be used with integer types d, i, o, u, x, X, and b to specify the bit-size of the integer to print.
+//
+// [type]
+// A single (case-sensitive) letter chosen from the types below:
+//		Integer:	b o d i u x X	For these types &apos;i&apos; is same as &apos;d&apos;. &apos;o&apos; is octal. &apos;b&apos; is binary. Handles Tacent
+//									integer types tint128, tint256, as well as all the built-in integral types.
+//		Pointer:	p				ISO C. Similar to %#010X (32bit systems) and %#018X (on 64bit systems) with the
+//									following two exceptions:
+//										a)	The prefix 0x (lower case x) is used with capital ABCDEF (normally these
+//											are forced to match).
+//										b)	The prefix is always used, even if the value is 0 (which is not the case
+//											for # in general).
+//		Float:		f g				Handles floats and doubles.
+//		Vector:		v				Use with :typesize for 2, 3, and 4 dimensional vectors. Default is 3. Must call
+//									pod(vec) or vec.Pod() for tVectors, or use tVecNb POD type. All other spec
+//									fields are per vector component. Not the whole thing.
+//		Quaternion:	q				Quaternions. Typesize is ignored. Must call pod for tQuaternions. Normal format is
+//									(w, x, y, z). Alternate _ format is (w, (x, y, z)).
+//		Matrix:		m				For use with tMatrix4 and tMatrix2 POD types. Matrix is printed on one line using
+//									() brackets. Use decorative _ flag for 4 (or 2) rows. All other spec fields are per
+//									vector component. The typesize is used to determine 2x2 or 4x4 (default).
+//		Character:	c				A single character.
+//		String:		s				You must call pod(string) or string.Pod() for tStrings, or use char*.
+//					t				Windows only. Allows passing of non-POD tString directly. Warning: You cannot pass
+//									in an tStringItem! You must either cast to an tString or call pod() and use %s.
+//		Boolean:	B				For printing a bool as either &quot;true&quot; or &quot;false&quot; or the alternate formats T or F
+//									when _ used and Y or N when &apos; used.
+//		Percent:	%				Displays percent sign.
+//
+// The functions return the number of characters printed. They do NOT care about channels in that they always report
+// what would have been printed if the channel was visible. Channels are an output filter only, not something that
+// changes behaviour depending on what machine you are on.
+//
+// Examples:
+// uint32 a = 0x1234ABCD;
+// tPrintf(&quot;%08X&quot;, a);
+//
+// uint64 b = 0x1234ABCD5678ABCDLL;
+// tPrintf(&quot;%016|64X or %016!8X or %016:2X&quot;, b, b, b);
+//
+// tuint256 c = 42;
+// tPrintf(&quot;%064|256X or %064!32X or %064:8X&quot;, c, c);</doc>
+<doc f='Modules/System/Inc/System/tPrint.h' l='218'>// Prints to generic channel.</doc>
+<doc f='Modules/System/Inc/System/tPrint.h' l='317'>// Implementation below this line.</doc>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='140' u='c' c='_ZN6tInput17tControllerSystem6DetectEv'/>

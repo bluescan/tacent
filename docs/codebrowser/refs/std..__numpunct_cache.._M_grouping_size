@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1601' type='std::size_t'/>
+<use f='include/c++/11/bits/locale_facets.h' l='1625' u='w' c='_ZNSt16__numpunct_cacheC1Em'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='88' u='w' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='89' u='r' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='90' u='r' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='91' u='r' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>

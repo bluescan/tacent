@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>c++locale.h source code [include/x86_64-linux-gnu/c++/11/bits/c++locale.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/c++/11/bits/c++locale.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>include</a>/<a href='../../..'>x86_64-linux-gnu</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='c++locale.h.html'>c++locale.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Wrapper for underlying C-language localization -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2001-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/c++locale.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{locale}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i class="doc">// ISO C++ 14882: 22.8  Standard locale categories.</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i class="doc">// Written by Benjamin Kosnik &lt;bko<span class="command">z@redhat</span>.com&gt;</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="36">ifndef</span> <span class="macro" data-ref="_M/_GLIBCXX_CXX_LOCALE_H">_GLIBCXX_CXX_LOCALE_H</span></u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_CXX_LOCALE_H" data-ref="_M/_GLIBCXX_CXX_LOCALE_H">_GLIBCXX_CXX_LOCALE_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#include &lt;clocale&gt;</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_C_LOCALE_GNU" data-ref="_M/_GLIBCXX_C_LOCALE_GNU">_GLIBCXX_C_LOCALE_GNU</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#define <dfn class="macro" id="_M/_GLIBCXX_NUM_CATEGORIES" data-ref="_M/_GLIBCXX_NUM_CATEGORIES">_GLIBCXX_NUM_CATEGORIES</dfn> 6</u>&nbsp</td></tr>
+<tr><th id="46">46</th><td>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#<span data-ppcond="47">if</span> <a class="macro" href="../../../../features.h.html#477" title="2" data-ref="_M/__GLIBC__">__GLIBC__</a> &gt; 2 || (<a class="macro" href="../../../../features.h.html#477" title="2" data-ref="_M/__GLIBC__">__GLIBC__</a> == 2 &amp;&amp; <a class="macro" href="../../../../features.h.html#478" title="35" data-ref="_M/__GLIBC_MINOR__">__GLIBC_MINOR__</a> &gt; 2)</u>&nbsp</td></tr>
+<tr><th id="48">48</th><td><b>namespace</b> <span class="namespace">__gnu_cxx</span> <a class="macro" href="c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="49">49</th><td>{&nbsp</td></tr>
+<tr><th id="50">50</th><td><a class="macro" href="c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="51">51</th><td>&nbsp</td></tr>
+<tr><th id="52">52</th><td>  <b>extern</b> <q>"C"</q> <b>__typeof</b>(<a class="ref fn" href="../../../../locale.h.html#uselocale" title='uselocale' data-ref="uselocale">uselocale</a>) <dfn class="decl fn" id="__gnu_cxx::__uselocale" title='__gnu_cxx::__uselocale' data-ref="__gnu_cxx::__uselocale">__uselocale</dfn>;&nbsp</td></tr>
+<tr><th id="53">53</th><td>&nbsp</td></tr>
+<tr><th id="54">54</th><td><a class="macro" href="c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="55">55</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u>#<span data-ppcond="47">endif</span></u>&nbsp</td></tr>
+<tr><th id="57">57</th><td>&nbsp</td></tr>
+<tr><th id="58">58</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="59">59</th><td>{&nbsp</td></tr>
+<tr><th id="60">60</th><td><a class="macro" href="c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="61">61</th><td>&nbsp</td></tr>
+<tr><th id="62">62</th><td>  <b>typedef</b> <a class="typedef" href="../../../bits/types/__locale_t.h.html#__locale_t" title='__locale_t' data-type='struct __locale_struct *' data-ref="__locale_t">__locale_t</a>		<dfn class="typedef" id="std::__c_locale" title='std::__c_locale' data-type='__locale_t' data-ref="std::__c_locale">__c_locale</dfn>;&nbsp</td></tr>
+<tr><th id="63">63</th><td>&nbsp</td></tr>
+<tr><th id="64">64</th><td>  <i>// Convert numeric value of type double and long double to string and</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i>  // return length of string.  If vsnprintf is available use it, otherwise</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i>  // fall back to the unsafe vsprintf which, in general, can be dangerous</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i>  // and should be avoided.</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td>  <b>inline</b> <em>int</em>&nbsp</td></tr>
+<tr><th id="69">69</th><td>  <dfn class="decl def fn" id="_ZSt16__convert_from_vRKP15__locale_structPciPKcz" title='std::__convert_from_v' data-ref="_ZSt16__convert_from_vRKP15__locale_structPciPKcz">__convert_from_v</dfn>(<em>const</em> <a class="typedef" href="#std::__c_locale" title='std::__c_locale' data-type='__locale_t' data-ref="std::__c_locale">__c_locale</a>&amp; <dfn class="local col4 decl" id="1184__cloc" title='__cloc' data-type='const std::__c_locale &amp;' data-ref="1184__cloc">__cloc</dfn> <b>__attribute__</b> ((__unused__)),&nbsp</td></tr>
+<tr><th id="70">70</th><td>		   <em>char</em>* <dfn class="local col5 decl" id="1185__out" title='__out' data-type='char *' data-ref="1185__out">__out</dfn>,&nbsp</td></tr>
+<tr><th id="71">71</th><td>		   <em>const</em> <em>int</em> <dfn class="local col6 decl" id="1186__size" title='__size' data-type='const int' data-ref="1186__size">__size</dfn> <b>__attribute__</b> ((__unused__)),&nbsp</td></tr>
+<tr><th id="72">72</th><td>		   <em>const</em> <em>char</em>* <dfn class="local col7 decl" id="1187__fmt" title='__fmt' data-type='const char *' data-ref="1187__fmt">__fmt</dfn>, ...)&nbsp</td></tr>
+<tr><th id="73">73</th><td>  {&nbsp</td></tr>
+<tr><th id="74">74</th><td><u>#<span data-ppcond="74">if</span> <a class="macro" href="../../../../features.h.html#477" title="2" data-ref="_M/__GLIBC__">__GLIBC__</a> &gt; 2 || (<a class="macro" href="../../../../features.h.html#477" title="2" data-ref="_M/__GLIBC__">__GLIBC__</a> == 2 &amp;&amp; <a class="macro" href="../../../../features.h.html#478" title="35" data-ref="_M/__GLIBC_MINOR__">__GLIBC_MINOR__</a> &gt; 2)</u>&nbsp</td></tr>
+<tr><th id="75">75</th><td>    <a class="typedef" href="#std::__c_locale" title='std::__c_locale' data-type='__locale_t' data-ref="std::__c_locale">__c_locale</a> <dfn class="local col8 decl" id="1188__old" title='__old' data-type='std::__c_locale' data-ref="1188__old">__old</dfn> = <span class="namespace">__gnu_cxx::</span><a class="ref fn" href="#__gnu_cxx::__uselocale" title='__gnu_cxx::__uselocale' data-ref="__gnu_cxx::__uselocale">__uselocale</a>(<a class="local col4 ref" href="#1184__cloc" title='__cloc' data-ref="1184__cloc">__cloc</a>);&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#<span data-ppcond="74">else</span></u>&nbsp</td></tr>
+<tr><th id="77">77</th><td>    <em>char</em>* __old = std::setlocale(LC_NUMERIC, <var>0</var>);&nbsp</td></tr>
+<tr><th id="78">78</th><td>    <em>char</em>* __sav = <var>0</var>;&nbsp</td></tr>
+<tr><th id="79">79</th><td>    <b>if</b> (__builtin_strcmp(__old, <q>"C"</q>))&nbsp</td></tr>
+<tr><th id="80">80</th><td>      {&nbsp</td></tr>
+<tr><th id="81">81</th><td>	<em>const</em> size_t __len = __builtin_strlen(__old) + <var>1</var>;&nbsp</td></tr>
+<tr><th id="82">82</th><td>	__sav = <b>new</b> <em>char</em>[__len];&nbsp</td></tr>
+<tr><th id="83">83</th><td>	__builtin_memcpy(__sav, __old, __len);&nbsp</td></tr>
+<tr><th id="84">84</th><td>	std::setlocale(LC_NUMERIC, <q>"C"</q>);&nbsp</td></tr>
+<tr><th id="85">85</th><td>      }&nbsp</td></tr>
+<tr><th id="86">86</th><td><u>#<span data-ppcond="74">endif</span></u>&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td>    <span class='typedef' title='__builtin_va_list' data-type='__va_list_tag[1]' data-ref="__builtin_va_list">__builtin_va_list</span> <span class='ref fn fake' title='__va_list_tag::__va_list_tag' data-ref="__va_list_tag::__va_list_tag"></span><dfn class="local col9 decl" id="1189__args" title='__args' data-type='__builtin_va_list' data-ref="1189__args">__args</dfn>;&nbsp</td></tr>
+<tr><th id="89">89</th><td>    <a class="ref fn" href="#89" title='__builtin_va_start' data-ref="__builtin_va_start">__builtin_va_start</a>(<a class="local col9 ref" href="#1189__args" title='__args' data-ref="1189__args">__args</a>, <a class="local col7 ref" href="#1187__fmt" title='__fmt' data-ref="1187__fmt">__fmt</a>);&nbsp</td></tr>
+<tr><th id="90">90</th><td>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#<span data-ppcond="91">if</span> <a class="macro" href="c++config.h.html#664" title="1" data-ref="_M/_GLIBCXX_USE_C99_STDIO">_GLIBCXX_USE_C99_STDIO</a></u>&nbsp</td></tr>
+<tr><th id="92">92</th><td>    <em>const</em> <em>int</em> <dfn class="local col0 decl" id="1190__ret" title='__ret' data-type='const int' data-ref="1190__ret">__ret</dfn> = <a class="ref fn" href="#92" title='__builtin_vsnprintf' data-ref="__builtin_vsnprintf">__builtin_vsnprintf</a>(<a class="local col5 ref" href="#1185__out" title='__out' data-ref="1185__out">__out</a>, <a class="local col6 ref" href="#1186__size" title='__size' data-ref="1186__size">__size</a>, <a class="local col7 ref" href="#1187__fmt" title='__fmt' data-ref="1187__fmt">__fmt</a>, <a class="local col9 ref" href="#1189__args" title='__args' data-ref="1189__args">__args</a>);&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>#<span data-ppcond="91">else</span></u>&nbsp</td></tr>
+<tr><th id="94">94</th><td>    <em>const</em> <em>int</em> __ret = __builtin_vsprintf(__out, __fmt, __args);&nbsp</td></tr>
+<tr><th id="95">95</th><td><u>#<span data-ppcond="91">endif</span></u>&nbsp</td></tr>
+<tr><th id="96">96</th><td>&nbsp</td></tr>
+<tr><th id="97">97</th><td>    <a class="ref fn" href="#97" title='__builtin_va_end' data-ref="__builtin_va_end">__builtin_va_end</a>(<a class="local col9 ref" href="#1189__args" title='__args' data-ref="1189__args">__args</a>);&nbsp</td></tr>
+<tr><th id="98">98</th><td>&nbsp</td></tr>
+<tr><th id="99">99</th><td><u>#<span data-ppcond="99">if</span> <a class="macro" href="../../../../features.h.html#477" title="2" data-ref="_M/__GLIBC__">__GLIBC__</a> &gt; 2 || (<a class="macro" href="../../../../features.h.html#477" title="2" data-ref="_M/__GLIBC__">__GLIBC__</a> == 2 &amp;&amp; <a class="macro" href="../../../../features.h.html#478" title="35" data-ref="_M/__GLIBC_MINOR__">__GLIBC_MINOR__</a> &gt; 2)</u>&nbsp</td></tr>
+<tr><th id="100">100</th><td>    <span class="namespace">__gnu_cxx::</span><a class="ref fn" href="#__gnu_cxx::__uselocale" title='__gnu_cxx::__uselocale' data-ref="__gnu_cxx::__uselocale">__uselocale</a>(<a class="local col8 ref" href="#1188__old" title='__old' data-ref="1188__old">__old</a>);&nbsp</td></tr>
+<tr><th id="101">101</th><td><u>#<span data-ppcond="99">else</span></u>&nbsp</td></tr>
+<tr><th id="102">102</th><td>    <b>if</b> (__sav)&nbsp</td></tr>
+<tr><th id="103">103</th><td>      {&nbsp</td></tr>
+<tr><th id="104">104</th><td>	std::setlocale(LC_NUMERIC, __sav);&nbsp</td></tr>
+<tr><th id="105">105</th><td>	<b>delete</b> [] __sav;&nbsp</td></tr>
+<tr><th id="106">106</th><td>      }&nbsp</td></tr>
+<tr><th id="107">107</th><td><u>#<span data-ppcond="99">endif</span></u>&nbsp</td></tr>
+<tr><th id="108">108</th><td>    <b>return</b> <a class="local col0 ref" href="#1190__ret" title='__ret' data-ref="1190__ret">__ret</a>;&nbsp</td></tr>
+<tr><th id="109">109</th><td>  }&nbsp</td></tr>
+<tr><th id="110">110</th><td>&nbsp</td></tr>
+<tr><th id="111">111</th><td><a class="macro" href="c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="112">112</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="113">113</th><td>&nbsp</td></tr>
+<tr><th id="114">114</th><td><u>#<span data-ppcond="36">endif</span></u>&nbsp</td></tr>
+<tr><th id="115">115</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

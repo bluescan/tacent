@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/hashtable.h' l='599' u='c' c='_ZNSt10_HashtableaSESt16initializer_listIT0_E'/>
+<dec f='include/c++/11/bits/hashtable.h' l='944' type='void std::_Hashtable::clear()'/>
+<use f='include/c++/11/bits/hashtable.h' l='1325' u='c' c='_ZNSt10_Hashtable9_M_assignEOTL0__RKTL0_0_'/>
+<use f='include/c++/11/bits/hashtable.h' l='1532' u='c' c='_ZNSt10_HashtableD1Ev'/>
+<def f='include/c++/11/bits/hashtable.h' l='2311' ll='2325' type='void std::_Hashtable::clear()'/>

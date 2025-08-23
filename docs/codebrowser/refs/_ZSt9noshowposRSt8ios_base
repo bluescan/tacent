@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/ios_base.h' l='963' ll='968' type='std::ios_base &amp; std::noshowpos(std::ios_base &amp; __base)'/>
+<doc f='include/c++/11/bits/ios_base.h' l='962'>/// Calls base.unsetf(ios_base::showpos).</doc>

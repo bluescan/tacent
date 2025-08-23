@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='418' type='2'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='106' u='m' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='228' type='int tdPrintfRendering(const char * format)'/>
+<def f='Modules/System/Inc/System/tPrint.h' l='369' ll='374' type='int tdPrintfRendering(const char * f)'/>

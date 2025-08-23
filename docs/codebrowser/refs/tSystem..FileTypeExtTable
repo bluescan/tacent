@@ -1,0 +1,12 @@
+<dec f='Modules/System/Src/tFile.cpp' l='67' type='tSystem::FileTypeExts[]'/>
+<def f='Modules/System/Src/tFile.cpp' l='1871' ll='1902' type='tSystem::FileTypeExts[28]'/>
+<use f='Modules/System/Src/tFile.cpp' l='1903' u='r'/>
+<use f='Modules/System/Src/tFile.cpp' l='1903' u='r'/>
+<use f='Modules/System/Src/tFile.cpp' l='1918' u='m' c='_ZN7tSystem25tGetFileTypeFromExtensionERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='1947' u='a' c='_ZN7tSystem14tGetExtensionsER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1959' u='a' c='_ZN7tSystem13tGetExtensionER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1970' u='a' c='_ZN7tSystem13tGetExtensionENS_9tFileTypeE'/>
+<doc f='Modules/System/Src/tFile.cpp' l='66'>// It is important not to specify the array size here so we can static-assert.</doc>
+<doc f='Modules/System/Src/tFile.cpp' l='1868'>// When more than one extension maps to the same filetype (like jpg and jpeg), always put the more common extension
+// first in the extensions array. It is important not to specify the array size here so we can static-assert that we
+// have entered the correct number of entries.</doc>

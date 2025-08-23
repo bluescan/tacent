@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='179' type='const int'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='178'>// When throwing an error this is how much of the file is supplied to give a context.</doc>
+<use f='Modules/System/Src/tScript.cpp' l='465' u='r' c='_ZNK11tExpression10GetContextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='468' u='r' c='_ZNK11tExpression10GetContextEv'/>

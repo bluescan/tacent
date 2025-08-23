@@ -1,0 +1,4 @@
+<dec f='Modules/Scene/Inc/Scene/tAttribute.h' l='31' type='-1'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='39' u='r' c='_ZN6tScene10tAttribute5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='40' u='r' c='_ZNK6tScene10tAttribute7IsValidEv'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='86' u='r' c='_ZN6tScene10tAttribute4LoadERK6tChunk'/>

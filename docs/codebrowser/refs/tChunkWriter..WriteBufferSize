@@ -1,0 +1,10 @@
+<use f='Modules/System/Inc/System/tChunk.h' l='68' u='w' c='_ZN12tChunkWriterC1ERK7tString11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='71' u='w' c='_ZN12tChunkWriterC1ERK7tString9tPlatform'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='79' u='w' c='_ZN12tChunkWriterC1EPhi11tEndianness'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='82' u='w' c='_ZN12tChunkWriterC1Ev'/>
+<dec f='Modules/System/Inc/System/tChunk.h' l='218' type='int'/>
+<offset>512</offset>
+<use f='Modules/System/Src/tChunk.cpp' l='190' u='r' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='216' u='r' c='_ZN12tChunkWriter10BeginChunkEji'/>
+<use f='Modules/System/Src/tChunk.cpp' l='276' u='r' c='_ZN12tChunkWriter8EndChunkEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='317' u='r' c='_ZN12tChunkWriter5WriteEPKvi'/>

@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='452' type='const char * strerrorname_np(int __err)'/>
+<doc f='include/string.h' l='451'>/* Return a string with the error name in ERR.  */</doc>

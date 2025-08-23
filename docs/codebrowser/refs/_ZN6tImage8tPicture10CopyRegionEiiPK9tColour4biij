@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='223' type='bool tImage::tPicture::CopyRegion(int regionW, int regionH, const tColour4b * regionPixels, int originX, int originY, comp_t channels = tCompBit_RGBA)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='222'>// Copies a supplied rectangle into the image at the specified position.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='348' ll='379' type='bool tImage::tPicture::CopyRegion(int regionW, int regionH, const tColour4b * regionPixels, int originX, int originY, comp_t channels = tCompBit_RGBA)'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='402' u='c' c='_ZN6tImage8tPicture10CopyRegionEiiPK9tColour4bNS0_6AnchorEj'/>

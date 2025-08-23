@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='760' type='int fgetpos(FILE *__restrict __stream, fpos_t *__restrict __pos)'/>
+<doc f='include/stdio.h' l='756'>/* Get STREAM&apos;s position.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

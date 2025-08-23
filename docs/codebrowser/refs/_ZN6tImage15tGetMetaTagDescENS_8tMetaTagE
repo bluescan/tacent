@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='146' type='const char * tImage::tGetMetaTagDesc(tImage::tMetaTag )'/>
+<def f='Modules/Image/Src/tMetaData.cpp' l='201' ll='204' type='const char * tImage::tGetMetaTagDesc(tImage::tMetaTag tag)'/>

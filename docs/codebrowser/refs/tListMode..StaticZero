@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='54' type='0'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='82' u='r' c='_ZN5tListC1E9tListMode'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='36' u='r'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='37' u='r'/>

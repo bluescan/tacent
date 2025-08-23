@@ -1,0 +1,3 @@
+<def f='include/c++/11/limits' l='252' type='const int'/>
+<doc f='include/c++/11/limits' l='250'>/** The maximum positive integer such that 10 raised to that power is in
+	the range of representable finite floating point numbers.  */</doc>

@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='5992' ll='5995' type='bool std::operator==(const piecewise_linear_distribution&lt;_RealType&gt; &amp; __d1, const piecewise_linear_distribution&lt;_RealType&gt; &amp; __d2)'/>
+<doc f='include/c++/11/bits/random.h' l='5988'>/**
+       * @brief Return true if two piecewise linear distributions have the
+       *        same parameters.
+       */</doc>

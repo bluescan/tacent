@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='211' type='bool rgbcx::unpack_bc3(const void * pBlock_bits, void * pPixels, rgbcx::bc1_approx_mode mode = bc1_approx_mode::cBC1Ideal)'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4155' ll='4167' type='bool rgbcx::unpack_bc3(const void * pBlock_bits, void * pPixels, rgbcx::bc1_approx_mode mode = bc1_approx_mode::cBC1Ideal)'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='210'>// Returns true if the block uses 3 color punchthrough alpha mode.</doc>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4154'>// Returns false if the block uses 3-color punchthrough alpha mode, which isn&apos;t supported on some GPU&apos;s for BC3.</doc>

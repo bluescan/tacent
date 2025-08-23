@@ -1,0 +1,9 @@
+<dec f='Modules/System/Src/tPrint.cpp' l='146' type='void tSystem::HandlerHelper_IntegerTacent(tArray&lt;char&gt; &amp; , const tSystem::FormatSpec &amp; , void * data, bool treatAsUnsigned, int bitSize, bool upperCase, int base, bool forcePrefixLowerCase = false)'/>
+<def f='Modules/System/Src/tPrint.cpp' l='1095' ll='1222' type='void tSystem::HandlerHelper_IntegerTacent(tArray&lt;char&gt; &amp; convBuf, const tSystem::FormatSpec &amp; spec, void * data, bool treatAsUnsigned, int bitSize, bool upperCase, int base, bool forcePrefixLowerCase = false)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1244' u='c' c='_ZN7tSystem9Handler_bERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1268' u='c' c='_ZN7tSystem9Handler_oERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1292' u='c' c='_ZN7tSystem9Handler_dERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1316' u='c' c='_ZN7tSystem9Handler_iERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1340' u='c' c='_ZN7tSystem9Handler_uERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1364' u='c' c='_ZN7tSystem9Handler_xERNS_8ReceiverERKNS_10FormatSpecEPv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='1388' u='c' c='_ZN7tSystem9Handler_XERNS_8ReceiverERKNS_10FormatSpecEPv'/>

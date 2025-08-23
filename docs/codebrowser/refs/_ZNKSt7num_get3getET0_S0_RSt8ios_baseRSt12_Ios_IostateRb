@@ -1,0 +1,24 @@
+<def f='include/c++/11/bits/locale_facets.h' l='2001' ll='2004' type='std::num_get::iter_type std::num_get::get(std::num_get::iter_type __in, std::num_get::iter_type __end, std::ios_base &amp; __io, ios_base::iostate &amp; __err, bool &amp; __v) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1978'>/**
+       *  @brief  Numeric parsing.
+       *
+       *  Parses the input stream into the bool @a v.  It does so by calling
+       *  num_get::do_get().
+       *
+       *  If ios_base::boolalpha is set, attempts to read
+       *  ctype&lt;CharT&gt;::truename() or ctype&lt;CharT&gt;::falsename().  Sets
+       *  @a v to true or false if successful.  Sets err to
+       *  ios_base::failbit if reading the string fails.  Sets err to
+       *  ios_base::eofbit if the stream is emptied.
+       *
+       *  If ios_base::boolalpha is not set, proceeds as with reading a long,
+       *  except if the value is 1, sets @a v to true, if the value is 0, sets
+       *  @a v to false, and otherwise set err to ios_base::failbit.
+       *
+       *  @param  __in  Start of input stream.
+       *  @param  __end  End of input stream.
+       *  @param  __io  Source of locale and flags.
+       *  @param  __err  Error flags to set.
+       *  @param  __v  Value to format and insert.
+       *  @return  Iterator after reading.
+      */</doc>

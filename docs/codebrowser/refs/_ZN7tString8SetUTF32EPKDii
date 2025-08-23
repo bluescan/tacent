@@ -1,0 +1,5 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='94' u='c' c='_ZN7tString3SetEPKDi'/>
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='387' type='int tString::SetUTF32(const char32_t * src, int srcLen = -1)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='687' u='c' c='_ZN7tString3SetEPKDii'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='699' u='c' c='_ZN7tString3SetERK12tStringUTF32'/>
+<def f='Modules/Foundation/Src/tString.cpp' l='668' ll='693' type='int tString::SetUTF32(const char32_t * src, int srcLen = -1)'/>

@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='379' type='locale::id'/>
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='755' ll='756' type='locale::id'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='376'>///@}
+
+      /// Numpunct facet id.</doc>

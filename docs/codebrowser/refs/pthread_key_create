@@ -1,0 +1,8 @@
+<dec f='include/pthread.h' l='1297' type='int pthread_key_create(pthread_key_t * __key, void (*)(void *) __destr_function)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='708' u='c' c='__gthread_key_create'/>
+<doc f='include/pthread.h' l='1291'>/* Create a key value identifying a location in the thread-specific
+   data area.  Each thread maintains a distinct thread-specific data
+   area.  DESTR_FUNCTION, if non-NULL, is called with the value
+   associated to that key when the key is destroyed.
+   DESTR_FUNCTION is not called if the value associated is NULL when
+   the key is destroyed.  */</doc>

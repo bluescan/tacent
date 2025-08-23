@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tMatrix2.h' l='48' type='void tMath::tMatrix2::Transpose()'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='162' u='c' c='_ZN6tImage8tPicture12RotateCenterEfRK9tColour4bNS_15tResampleFilterES4_'/>

@@ -1,0 +1,3 @@
+<dec f='include/zlib.h' l='121' type='uInt'/>
+<offset>288</offset>
+<doc f='include/zlib.h' l='121'>/* space at extra (only when reading header) */</doc>

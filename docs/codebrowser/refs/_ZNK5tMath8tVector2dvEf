@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='91' type='const tMath::tVector2 tMath::tVector2::operator/(float a) const'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='176' u='c' c='_ZNK5tMath7tARect213ComputeCenterEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='177' u='c' c='_ZNK5tMath7tARect214ComputeExtentsEv'/>

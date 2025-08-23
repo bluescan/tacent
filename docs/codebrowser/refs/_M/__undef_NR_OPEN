@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/bits/local_lim.h' l='25'/>
+<use f='include/x86_64-linux-gnu/bits/local_lim.h' l='41' u='a'/>
+<use f='include/x86_64-linux-gnu/bits/local_lim.h' l='43' u='w'/>

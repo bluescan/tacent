@@ -1,0 +1,3 @@
+<use f='Modules/Math/Inc/Math/tRandom.h' l='81' u='c' c='_ZN5tMath7tRandom17tGeneratorFortunaC1Ev'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='82' u='c' c='_ZN5tMath7tRandom17tGeneratorFortunaC1Ej'/>
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='86' type='void tMath::tRandom::tGeneratorFortuna::SetSeed(uint32 seed)'/>

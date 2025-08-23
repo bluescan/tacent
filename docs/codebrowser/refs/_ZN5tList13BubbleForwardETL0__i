@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='160' type='int tList::BubbleForward(CompareFunc , int maxCompares = -1)'/>
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='659' ll='713' type='int tList::BubbleForward(CompareFunc compare, int maxCompares = -1)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='157'>// These return the number of swaps performed. If 0 is returned, the items considered were already in the correct
+	// order. The maxCompares allows you to limit how many compares are performed. -1 means numItems-1 compares will be
+	// made (a full sweep). The variable gets clamped to [0, numItems) otherwise.</doc>

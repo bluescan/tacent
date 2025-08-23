@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='549' ll='551' type='float std::cyl_bessel_jf(float __nu, float __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='543'>/**
+   * Return the Bessel function of the first kind @f$ J_{\nu}(x) @f$
+   * for @c float order @f$ \nu @f$ and argument @f$ x &gt;= 0 @f$.
+   *
+   * @see cyl_bessel_j for setails.
+   */</doc>

@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='970' type='int daemon(int __nochdir, int __noclose)'/>
+<doc f='include/unistd.h' l='967'>/* Put the program in the background, and dissociate from the controlling
+   terminal.  If NOCHDIR is zero, do `chdir (&quot;/&quot;)&apos;.  If NOCLOSE is zero,
+   redirects stdin, stdout, and stderr to /dev/null.  */</doc>

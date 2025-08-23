@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImagePVR.cpp' l='749' u='c' c='_ZN6tImage9tImagePVR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImagePVR.cpp' l='756' ll='1056' type='bool tImage::tImagePVR::Load(const uint8 * pvrData, int pvrDataSize, const tImage::tImagePVR::LoadParams &amp; paramsIn = tImage::tImagePVR::LoadParams())'/>

@@ -1,0 +1,149 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='63' ll='220'/>
+<use f='Modules/Image/Inc/Image/tLayer.h' l='62' c='_ZNK6tImage6tLayer4SaveER12tChunkWriter'/>
+<size>72</size>
+<doc f='Modules/System/Inc/System/tChunk.h' l='61'>// Use this to write a tChunk file. Chunk data may be guaranteed to be aligned by various amounts from 4 bytes to
+// 512 bytes in powers of 2 only.</doc>
+<fun r='_ZN12tChunkWriterC1ERK7tString11tEndianness'/>
+<fun r='_ZN12tChunkWriterC1ERK7tString9tPlatform'/>
+<fun r='_ZN12tChunkWriterC1EPhi11tEndianness'/>
+<fun r='_ZN12tChunkWriterC1Ev'/>
+<fun r='_ZN12tChunkWriterD1Ev'/>
+<fun r='_ZN12tChunkWriter4OpenERK7tString11tEndianness'/>
+<fun r='_ZN12tChunkWriter4OpenERK7tString9tPlatform'/>
+<fun r='_ZN12tChunkWriter8OpenSafeERK7tString9tPlatform'/>
+<fun r='_ZN12tChunkWriter8OpenSafeERK7tString11tEndianness'/>
+<fun r='_ZN12tChunkWriter5CloseEv'/>
+<fun r='_ZN12tChunkWriter10BeginChunkEjNS_9AlignmentE'/>
+<fun r='_ZN12tChunkWriter10BeginChunkEji'/>
+<fun r='_ZN12tChunkWriter8EndChunkEv'/>
+<fun r='_ZN12tChunkWriter5WriteEb'/>
+<fun r='_ZN12tChunkWriter5WriteEc'/>
+<fun r='_ZN12tChunkWriter5WriteEa'/>
+<fun r='_ZN12tChunkWriter5WriteEh'/>
+<fun r='_ZN12tChunkWriter5WriteERK9tColour4b'/>
+<fun r='_ZN12tChunkWriter5WriteEPKc'/>
+<fun r='_ZN12tChunkWriter5WriteERK7tString'/>
+<fun r='_ZN12tChunkWriter5WriteERKN5tMath8tVector2E'/>
+<fun r='_ZN12tChunkWriter5WriteERKN5tMath8tVector3E'/>
+<fun r='_ZN12tChunkWriter5WriteERKN5tMath8tVector4E'/>
+<fun r='_ZN12tChunkWriter5WriteERKN5tMath11tQuaternionE'/>
+<fun r='_ZN12tChunkWriter5WriteERKN5tMath8tMatrix2E'/>
+<fun r='_ZN12tChunkWriter5WriteERKN5tMath8tMatrix4E'/>
+<fun r='_ZN12tChunkWriter5WriteERKN5tMath5tEdgeE'/>
+<fun r='_ZN12tChunkWriter5WriteERKN5tMath8tTriFaceE'/>
+<fun r='_ZN12tChunkWriter5WriteERKN5tMath9tQuadFaceE'/>
+<fun r='_ZN12tChunkWriter5WriteERKN5tMath7tSphereE'/>
+<fun r='_ZN12tChunkWriter5WriteET_'/>
+<fun r='_ZN12tChunkWriter5WriteEPKbi'/>
+<fun r='_ZN12tChunkWriter5WriteEPKci'/>
+<fun r='_ZN12tChunkWriter5WriteEPKai'/>
+<fun r='_ZN12tChunkWriter5WriteEPKhi'/>
+<fun r='_ZN12tChunkWriter5WriteEPK9tColour4bi'/>
+<fun r='_ZN12tChunkWriter5WriteEPK7tStringi'/>
+<fun r='_ZN12tChunkWriter5WriteEPKN5tMath8tVector2Ei'/>
+<fun r='_ZN12tChunkWriter5WriteEPKN5tMath8tVector3Ei'/>
+<fun r='_ZN12tChunkWriter5WriteEPKN5tMath8tVector4Ei'/>
+<fun r='_ZN12tChunkWriter5WriteEPKN5tMath11tQuaternionEi'/>
+<fun r='_ZN12tChunkWriter5WriteEPKN5tMath8tMatrix2Ei'/>
+<fun r='_ZN12tChunkWriter5WriteEPKN5tMath8tMatrix4Ei'/>
+<fun r='_ZN12tChunkWriter5WriteEPKN5tMath5tEdgeEi'/>
+<fun r='_ZN12tChunkWriter5WriteEPKN5tMath8tTriFaceEi'/>
+<fun r='_ZN12tChunkWriter5WriteEPKN5tMath9tQuadFaceEi'/>
+<fun r='_ZN12tChunkWriter5WriteEPKN5tMath7tSphereEi'/>
+<fun r='_ZN12tChunkWriter5WriteEPKT_i'/>
+<fun r='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<fun r='_ZN12tChunkWriter5BeginEjNS_9AlignmentE'/>
+<fun r='_ZN12tChunkWriter5BeginEji'/>
+<fun r='_ZN12tChunkWriter3EndEv'/>
+<fun r='_ZNK12tChunkWriter18GetNeedsEndianSwapEv'/>
+<fun r='_ZNK12tChunkWriter18GetNumBytesWrittenEv'/>
+<fun r='_ZN12tChunkWriter5WriteEPKvi'/>
+<mbr r='tChunkWriter::NeedsEndianSwap' o='0' t='bool'/>
+<mbr r='tChunkWriter::IsContainer' o='8' t='bool'/>
+<mbr r='tChunkWriter::ChunkInfos' o='64' t='tList&lt;tChunkWriter::ChunkInfo&gt;'/>
+<mbr r='tChunkWriter::ChunkFile' o='384' t='tFileHandle'/>
+<mbr r='tChunkWriter::WriteBuffer' o='448' t='uint8 *'/>
+<mbr r='tChunkWriter::WriteBufferSize' o='512' t='int'/>
+<mbr r='tChunkWriter::WriteBufferPos' o='544' t='int'/>
+<use f='Modules/Image/Inc/Image/tMetaData.h' l='190' c='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='138' c='_ZNK6tImage8tPicture4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='112' c='_ZNK6tImage8tTexture4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Image/Src/tLayer.cpp' l='45' c='_ZNK6tImage6tLayer4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Image/Src/tMetaData.cpp' l='866' c='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Image/Src/tPicture.cpp' l='83' c='_ZNK6tImage8tPicture4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Image/Src/tTexture.cpp' l='388' c='_ZNK6tImage8tTexture4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='41' c='_ZNK6tScene10tAttribute4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Inc/Scene/tAttribute.h' l='77' c='_ZNK6tScene11tAttributes4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='32' c='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='30' c='_ZNK6tScene7tCamera4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Inc/Scene/tInstance.h' l='37' c='_ZNK6tScene9tInstance4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Inc/Scene/tLight.h' l='28' c='_ZNK6tScene6tLight4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='31' c='_ZNK6tScene9tLodParam4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='54' c='_ZNK6tScene9tLodGroup4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Inc/Scene/tMaterial.h' l='37' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='56' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Inc/Scene/tPath.h' l='42' c='_ZNK6tScene5tPath4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Inc/Scene/tPolyModel.h' l='29' c='_ZNK6tScene10tPolyModel4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Inc/Scene/tSelection.h' l='32' c='_ZNK6tScene10tSelection4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='32' c='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='54' c='_ZNK6tScene5tPose4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='79' c='_ZNK6tScene9tSkeleton4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='198' c='_ZNK6tScene6tWorld13SaveMaterialsER12tChunkWriter'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='199' c='_ZNK6tScene6tWorld11SaveObjectsER12tChunkWriter'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='200' c='_ZNK6tScene6tWorld10SaveGroupsER12tChunkWriter'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='201' c='_ZNK6tScene6tWorld13SaveInstancesER12tChunkWriter'/>
+<use f='Modules/Scene/Inc/Scene/tWorld.h' l='202' c='_ZNK6tScene6tWorld14SaveSelectionsER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='21' c='_ZNK6tScene10tAttribute4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tAttribute.cpp' l='141' c='_ZNK6tScene11tAttributes4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Src/tCamera.cpp' l='47' c='_ZNK6tScene7tCamera4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Src/tInstance.cpp' l='22' c='_ZNK6tScene9tInstance4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Src/tLight.cpp' l='31' c='_ZNK6tScene6tLight4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='22' c='_ZNK6tScene9tLodParam4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='41' c='_ZNK6tScene9tLodGroup4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='78' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Src/tMesh.cpp' l='361' c='_ZNK6tScene5tMesh4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Src/tObject.cpp' l='20' c='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Src/tPath.cpp' l='39' c='_ZNK6tScene5tPath4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Src/tPolyModel.cpp' l='22' c='_ZNK6tScene10tPolyModel4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Src/tSelection.cpp' l='20' c='_ZNK6tScene10tSelection4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='23' c='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='116' c='_ZNK6tScene5tPose4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='176' c='_ZNK6tScene9tSkeleton4SaveER12tChunkWriter'/>
+<size>72</size>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1074' c='_ZNK6tScene6tWorld4SaveERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1095' c='_ZNK6tScene6tWorld13SaveMaterialsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1106' c='_ZNK6tScene6tWorld11SaveObjectsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1129' c='_ZNK6tScene6tWorld10SaveGroupsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1140' c='_ZNK6tScene6tWorld13SaveInstancesER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1151' c='_ZNK6tScene6tWorld14SaveSelectionsER12tChunkWriter'/>
+<size>72</size>

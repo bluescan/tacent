@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18438' ll='18443'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18438'/>
+<size>32</size>
+<mbr r='VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM::sType' o='0' t='VkStructureType'/>
+<mbr r='VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM::pNext' o='64' t='const void *'/>
+<mbr r='VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM::perViewRenderAreaCount' o='128' t='uint32_t'/>
+<mbr r='VkMultiviewPerViewRenderAreasRenderPassBeginInfoQCOM::pPerViewRenderAreas' o='192' t='const VkRect2D *'/>

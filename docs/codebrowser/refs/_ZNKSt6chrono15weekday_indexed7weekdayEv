@@ -1,0 +1,5 @@
+<def f='include/c++/11/chrono' l='1851' ll='1853' type='chrono::weekday std::chrono::weekday_indexed::weekday() const'/>
+<use f='include/c++/11/chrono' l='1865' u='c' c='_ZNSt6chronoeqERKNS_15weekday_indexedES2_'/>
+<use f='include/c++/11/chrono' l='1865' u='c' c='_ZNSt6chronoeqERKNS_15weekday_indexedES2_'/>
+<use f='include/c++/11/chrono' l='2794' u='c' c='_ZNKSt6chrono18year_month_weekday7weekdayEv'/>
+<use f='include/c++/11/chrono' l='2823' u='c' c='_ZNKSt6chrono18year_month_weekday2okEv'/>

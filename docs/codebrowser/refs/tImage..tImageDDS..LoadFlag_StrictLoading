@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tImageDDS.h' l='48' type='512'/>
+<doc f='Modules/Image/Inc/Image/tImageDDS.h' l='48'>// If set even mildly ill-formed dds files will not load.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1156' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1202' u='r' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>

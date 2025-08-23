@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/ranges_algobase.h' l='319' type='const std::ranges::__copy_fn'/>
+<use f='include/c++/11/bits/ranges_algobase.h' l='503' u='c' c='_ZNKSt6ranges11__copy_n_fnclET_NSt8__detail18__iter_traits_implINSt12remove_cvrefIS1_E4typeESt20incrementable_traitsIS6_EE4type15difference_typeET0_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1520' u='c' c='_ZNKSt6ranges16__rotate_copy_fnclET_S1_T0_T1_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='1523' u='c' c='_ZNKSt6ranges16__rotate_copy_fnclET_S1_T0_T1_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2544' u='c' c='_ZNKSt6ranges10__merge_fnclET_T0_T1_T2_T3_T4_T5_T6_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2546' u='c' c='_ZNKSt6ranges10__merge_fnclET_T0_T1_T2_T3_T4_T5_T6_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2694' u='c' c='_ZNKSt6ranges14__set_union_fnclET_T0_T1_T2_T3_T4_T5_T6_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2696' u='c' c='_ZNKSt6ranges14__set_union_fnclET_T0_T1_T2_T3_T4_T5_T6_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2814' u='c' c='_ZNKSt6ranges19__set_difference_fnclET_T0_T1_T2_T3_T4_T5_T6_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2876' u='c' c='_ZNKSt6ranges29__set_symmetric_difference_fnclET_T0_T1_T2_T3_T4_T5_T6_'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='2878' u='c' c='_ZNKSt6ranges29__set_symmetric_difference_fnclET_T0_T1_T2_T3_T4_T5_T6_'/>

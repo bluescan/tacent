@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1744' ll='1757'/>
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1759' ll='1769'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1760'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1773'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='1778'/>
+<ovr f='include/c++/11/bits/shared_ptr.h' l='773' c='std::owner_less'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='779'/>
+<use f='include/c++/11/bits/shared_ptr.h' l='785'/>
+<size>1</size>
+<fun r='_ZNKSt14_Sp_owner_lessclERKT_S2_'/>
+<fun r='_ZNKSt14_Sp_owner_lessclERKT_RKT0_'/>
+<fun r='_ZNKSt14_Sp_owner_lessclERKT0_RKT_'/>
+<fun r='_ZNKSt14_Sp_owner_lessIvvEclERKT_RKT0_'/>

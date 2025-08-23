@@ -1,0 +1,1 @@
+<dec f='include/pthread.h' l='1033' type='int pthread_rwlock_timedwrlock(pthread_rwlock_t *__restrict __rwlock, const struct timespec *__restrict __abstime)'/>

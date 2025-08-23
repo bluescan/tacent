@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='262' type='const uint32_t'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='263'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1255'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1547'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1886' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2842' u='r' c='_ZN5rgbcxL16try_3color_blockEPKNS_7color32EjRjiiiiiiiiiiiijRNS_18bc1_encode_resultsE'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='259'>// All total orderings for 16 pixels [0,2] 2-bit selectors.
+	// BC1 selector order: 0, 1, 2
+	// Note this is different from g_unique_total_orders4[], which reorders the selectors into linear order.</doc>

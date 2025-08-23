@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/atomic_word.h' l='36'/>
+<use f='include/c++/11/ext/atomicity.h' l='120' u='a'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/atomic_word.h' l='35'>// This is a memory order acquire fence.</doc>

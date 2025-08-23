@@ -1,0 +1,2 @@
+<def f='include/c++/11/atomic' l='1209' ll='1212' type='bool std::atomic_flag_test_and_set_explicit(volatile std::atomic_flag * __a, std::memory_order __m)'/>
+<use f='include/c++/11/atomic' l='1249' u='c' c='_ZSt24atomic_flag_test_and_setPVSt11atomic_flag'/>

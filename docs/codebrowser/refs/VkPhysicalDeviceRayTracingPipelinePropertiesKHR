@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='19008' ll='19019'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='19008'/>
+<size>48</size>
+<mbr r='VkPhysicalDeviceRayTracingPipelinePropertiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceRayTracingPipelinePropertiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceRayTracingPipelinePropertiesKHR::shaderGroupHandleSize' o='128' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceRayTracingPipelinePropertiesKHR::maxRayRecursionDepth' o='160' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceRayTracingPipelinePropertiesKHR::maxShaderGroupStride' o='192' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceRayTracingPipelinePropertiesKHR::shaderGroupBaseAlignment' o='224' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceRayTracingPipelinePropertiesKHR::shaderGroupHandleCaptureReplaySize' o='256' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceRayTracingPipelinePropertiesKHR::maxRayDispatchInvocationCount' o='288' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceRayTracingPipelinePropertiesKHR::shaderGroupHandleAlignment' o='320' t='uint32_t'/>
+<mbr r='VkPhysicalDeviceRayTracingPipelinePropertiesKHR::maxRayHitAttributeSize' o='352' t='uint32_t'/>

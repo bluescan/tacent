@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='2967' type='std::cauchy_distribution::result_type std::cauchy_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::cauchy_distribution::param_type &amp; __p)'/>
+<def f='include/c++/11/bits/random.tcc' l='2100' ll='2116' type='typename cauchy_distribution&lt;_RealType&gt;::result_type std::cauchy_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::cauchy_distribution::param_type &amp; __p)'/>

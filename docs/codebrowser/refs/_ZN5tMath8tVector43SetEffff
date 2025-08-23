@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector4.h' l='39' type='void tMath::tVector4::Set(float x, float y, float z, float w)'/>
+<use f='Modules/Scene/Inc/Scene/tSkeleton.h' l='99' u='c' c='_ZN6tScene6tJoint5ClearEv'/>

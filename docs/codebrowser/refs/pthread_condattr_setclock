@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1219' type='int pthread_condattr_setclock(pthread_condattr_t * __attr, __clockid_t __clock_id)'/>
+<doc f='include/pthread.h' l='1218'>/* Set the clock selected for the condition variable attribute ATTR.  */</doc>

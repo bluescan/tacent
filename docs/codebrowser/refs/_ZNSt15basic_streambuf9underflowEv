@@ -1,0 +1,20 @@
+<def f='include/c++/11/streambuf' l='691' ll='693' type='std::basic_streambuf::int_type std::basic_streambuf::underflow()'/>
+<doc f='include/c++/11/streambuf' l='672'>/**
+       *  @brief  Fetches more data from the controlled sequence.
+       *  @return  The first character from the &lt;em&gt;pending sequence&lt;/em&gt;.
+       *
+       *  Informally, this function is called when the input buffer is
+       *  exhausted (or does not exist, as buffering need not actually be
+       *  done).  If a buffer exists, it is @a refilled.  In either case, the
+       *  next available character is returned, or @c traits::eof() to
+       *  indicate a null pending sequence.
+       *
+       *  For a formal definition of the pending sequence, see a good text
+       *  such as Langer &amp; Kreft, or [27.5.2.4.3]/7-14.
+       *
+       *  A functioning input streambuf can be created by overriding only
+       *  this function (no buffer area will be used).  For an example, see
+       *  https://gcc.gnu.org/onlinedocs/libstdc++/manual/streambufs.html
+       *
+       *  @note  Base class version does nothing, returns eof().
+      */</doc>

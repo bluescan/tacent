@@ -1,0 +1,11 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/c++locale.h' l='68' ll='109' type='int std::__convert_from_v(const std::__c_locale &amp; __cloc, char * __out, const int __size, const char * __fmt)'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++locale.h' l='64'>// Convert numeric value of type double and long double to string and
+  // return length of string.  If vsnprintf is available use it, otherwise
+  // fall back to the unsafe vsprintf which, in general, can be dangerous
+  // and should be avoided.</doc>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1023' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1026' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1035' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1038' u='c' c='_ZNKSt7num_put15_M_insert_floatET0_RSt8ios_baseT_cTL0__'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='605' u='c' c='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_e'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='612' u='c' c='_ZNKSt7__cxx119money_put6do_putET0_bRSt8ios_baseT_e'/>

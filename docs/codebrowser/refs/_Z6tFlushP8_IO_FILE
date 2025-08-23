@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='301' type='void tFlush(tFileHandle )'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='299'>// tFlush may be called with any FileHandle such as stdout or stderr as well as other file handles opened with
+// tSystem::tOpenFile.</doc>
+<def f='Modules/System/Src/tPrint.cpp' l='691' ll='694' type='void tFlush(tFileHandle handle)'/>

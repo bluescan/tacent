@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='823' type='void std::partial_sort(_RAIter , _RAIter , _RAIter , _Compare )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='4715' ll='4734' macro='1' type='void std::partial_sort(_RandomAccessIterator __first, _RandomAccessIterator __middle, _RandomAccessIterator __last, _Compare __comp)'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18801' ll='18805'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18801'/>
+<size>24</size>
+<mbr r='VkAccelerationStructureVersionInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkAccelerationStructureVersionInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkAccelerationStructureVersionInfoKHR::pVersionData' o='128' t='const uint8_t *'/>

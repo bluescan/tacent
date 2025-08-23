@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6945' ll='6949'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6945'/>
+<size>24</size>
+<mbr r='VkDevicePrivateDataCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDevicePrivateDataCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkDevicePrivateDataCreateInfo::privateDataSlotRequestCount' o='128' t='uint32_t'/>

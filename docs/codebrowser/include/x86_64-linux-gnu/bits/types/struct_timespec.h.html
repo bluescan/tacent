@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>struct_timespec.h source code [include/x86_64-linux-gnu/bits/types/struct_timespec.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/types/struct_timespec.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>x86_64-linux-gnu</a>/<a href='..'>bits</a>/<a href='./'>types</a>/<a href='struct_timespec.h.html'>struct_timespec.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* NB: Include guard matches what &lt;linux/time.h&gt; uses.  */</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><u>#<span data-ppcond="2">ifndef</span> <span class="macro" data-ref="_M/_STRUCT_TIMESPEC">_STRUCT_TIMESPEC</span></u>&nbsp</td></tr>
+<tr><th id="3">3</th><td><u>#define <dfn class="macro" id="_M/_STRUCT_TIMESPEC" data-ref="_M/_STRUCT_TIMESPEC">_STRUCT_TIMESPEC</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="4">4</th><td>&nbsp</td></tr>
+<tr><th id="5">5</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="6">6</th><td><u>#include &lt;bits/endian.h&gt;</u>&nbsp</td></tr>
+<tr><th id="7">7</th><td><u>#include &lt;bits/types/time_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="8">8</th><td>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>/* POSIX.1b structure for a time value.  This is like a `struct timeval' but</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   has nanoseconds instead of microseconds.  */</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><b>struct</b> <dfn class="type def" id="timespec" title='timespec' data-ref="timespec">timespec</dfn>&nbsp</td></tr>
+<tr><th id="12">12</th><td>{&nbsp</td></tr>
+<tr><th id="13">13</th><td><u>#<span data-ppcond="13">ifdef</span> <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span></u>&nbsp</td></tr>
+<tr><th id="14">14</th><td>  __time64_t tv_sec;		<i>/* Seconds.  */</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#<span data-ppcond="13">else</span></u>&nbsp</td></tr>
+<tr><th id="16">16</th><td>  <a class="typedef" href="../types.h.html#__time_t" title='__time_t' data-type='long' data-ref="__time_t">__time_t</a> <dfn class="decl field" id="timespec::tv_sec" title='timespec::tv_sec' data-ref="timespec::tv_sec">tv_sec</dfn>;		<i>/* Seconds.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#<span data-ppcond="13">endif</span></u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#<span data-ppcond="18">if</span> <a class="macro" href="../wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 64 \</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>  || (defined <a class="macro" href="../wordsize.h.html#14" data-ref="_M/__SYSCALL_WORDSIZE">__SYSCALL_WORDSIZE</a> &amp;&amp; <a class="macro" href="../wordsize.h.html#14" title="64" data-ref="_M/__SYSCALL_WORDSIZE">__SYSCALL_WORDSIZE</a> == 64) \</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><u>  || (<a class="macro" href="../timesize.h.html#26" title="64" data-ref="_M/__TIMESIZE">__TIMESIZE</a> == 32 &amp;&amp; !defined <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span>)</u>&nbsp</td></tr>
+<tr><th id="21">21</th><td>  <a class="typedef" href="../types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timespec::tv_nsec" title='timespec::tv_nsec' data-ref="timespec::tv_nsec">tv_nsec</dfn>;	<i>/* Nanoseconds.  */</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#<span data-ppcond="18">else</span></u>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u># if __BYTE_ORDER == __BIG_ENDIAN</u>&nbsp</td></tr>
+<tr><th id="24">24</th><td>  <em>int</em>: <var>32</var>;           <i>/* Padding.  */</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td>  <em>long</em> <em>int</em> tv_nsec;  <i>/* Nanoseconds.  */</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="27">27</th><td>  <em>long</em> <em>int</em> tv_nsec;  <i>/* Nanoseconds.  */</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td>  <em>int</em>: <var>32</var>;           <i>/* Padding.  */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="18">endif</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td>};&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#<span data-ppcond="2">endif</span></u>&nbsp</td></tr>
+<tr><th id="34">34</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

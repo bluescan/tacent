@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/char_traits.h' l='592' ll='594' type='static std::char_traits&lt;wchar_t&gt;::int_type std::char_traits&lt;wchar_t&gt;::not_eof(const std::char_traits&lt;wchar_t&gt;::int_type &amp; __c)'/>

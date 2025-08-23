@@ -1,0 +1,4 @@
+<inh f='Modules/System/Inc/System/tStream.h' l='23' c='tSystem::tStream'/>
+<def f='Modules/System/Inc/System/tFile.h' l='664'/>
+<size>16</size>
+<fun r='_ZN7tSystem5tFileC1ERK7tStringj'/>

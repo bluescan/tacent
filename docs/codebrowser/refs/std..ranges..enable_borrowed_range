@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/ranges_base.h' l='50' type='const bool'/>
+<def f='include/c++/11/string_view' l='799' ll='801' type='const bool'/>
+<doc f='include/c++/11/string_view' l='798'>// Opt-in to borrowed_range concept</doc>
+<def f='include/c++/11/bits/ranges_util.h' l='389' ll='392' type='const bool'/>

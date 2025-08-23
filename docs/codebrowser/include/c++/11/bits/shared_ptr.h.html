@@ -1,0 +1,940 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>shared_ptr.h source code [include/c++/11/bits/shared_ptr.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::__detail::__variant::_Never_valueless_alt,std::enable_shared_from_this,std::hash,std::owner_less,std::shared_ptr,std::weak_ptr "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/shared_ptr.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='shared_ptr.h.html'>shared_ptr.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// shared_ptr and weak_ptr implementation -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2007-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i></i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i>// GCC Note: Based on files from version 1.32.0 of the Boost library.</i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i></i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i>//  shared_count.hpp</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i>//  Copyright (c) 2001, 2002, 2003 Peter Dimov and Multi Media Ltd.</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i></i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>//  shared_ptr.hpp</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>//  Copyright (C) 1998, 1999 Greg Colvin and Beman Dawes.</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>//  Copyright (C) 2001, 2002, 2003 Peter Dimov</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i></i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>//  weak_ptr.hpp</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i>//  Copyright (C) 2001, 2002, 2003 Peter Dimov</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i></i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>//  enable_shared_from_this.hpp</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i>//  Copyright (C) 2002 Peter Dimov</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i></i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>// Distributed under the Boost Software License, Version 1.0. (See</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i>// accompanying file LICENSE_1_0.txt or copy at</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i>// <a href="http://www.boost.org/LICENSE_1_0.txt">http://www.boost.org/LICENSE_1_0.txt</a>)</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i class="doc">/** <span class="command">@file</span></i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{memory}</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="49">ifndef</span> <span class="macro" data-ref="_M/_SHARED_PTR_H">_SHARED_PTR_H</span></u>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u>#define <dfn class="macro" id="_M/_SHARED_PTR_H" data-ref="_M/_SHARED_PTR_H">_SHARED_PTR_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="51">51</th><td>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u>#include &lt;iosfwd&gt;           	  // std::basic_ostream</u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><u>#include &lt;bits/shared_ptr_base.h&gt;</u>&nbsp</td></tr>
+<tr><th id="54">54</th><td>&nbsp</td></tr>
+<tr><th id="55">55</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="56">56</th><td>{&nbsp</td></tr>
+<tr><th id="57">57</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="58">58</th><td>&nbsp</td></tr>
+<tr><th id="59">59</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i class="doc">   * <span class="command">@addtogroup</span> <span class="verb">pointer_abstractions</span></i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i class="doc">   * @{</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><i class="doc">  // 20.7.2.2.11 shared_ptr I/O</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i class="doc">  /// Write the stored pointer to an ostream.</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><i class="doc">  /// <span class="command">@relates</span> <span class="verb">shared_ptr</span></i>&nbsp</td></tr>
+<tr><th id="68">68</th><td>  <b>template</b>&lt;<b>typename</b> _Ch, <b>typename</b> _Tr, <b>typename</b> _Tp, _Lock_policy _Lp&gt;&nbsp</td></tr>
+<tr><th id="69">69</th><td>    <b>inline</b> <span class="namespace">std::</span><a class="type" href="../iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_Ch, _Tr&gt;&amp;&nbsp</td></tr>
+<tr><th id="70">70</th><td>    <dfn class="decl def fn" id="_ZStlsRSt13basic_ostreamIT_T0_ERKSt12__shared_ptrIT1_XT2_EE" title='std::operator&lt;&lt;' data-ref="_ZStlsRSt13basic_ostreamIT_T0_ERKSt12__shared_ptrIT1_XT2_EE"><b>operator</b>&lt;&lt;</dfn>(<span class="namespace">std::</span><a class="type" href="../iosfwd.html#std::basic_ostream" title='std::basic_ostream' data-ref="std::basic_ostream">basic_ostream</a>&lt;_Ch, _Tr&gt;&amp; <dfn class="local col2 decl" id="192__os" title='__os' data-type='std::basic_ostream&lt;_Ch, _Tr&gt; &amp;' data-ref="192__os">__os</dfn>,&nbsp</td></tr>
+<tr><th id="71">71</th><td>	       <em>const</em> <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp, <a class="tu ref" href="#_Lp" title='_Lp' data-ref="_Lp">_Lp</a>&gt;&amp; <dfn class="local col3 decl" id="193__p" title='__p' data-type='const __shared_ptr&lt;_Tp, _Lp&gt; &amp;' data-ref="193__p">__p</dfn>)&nbsp</td></tr>
+<tr><th id="72">72</th><td>    {&nbsp</td></tr>
+<tr><th id="73">73</th><td>      <a class="local col2 ref" href="#192__os" title='__os' data-ref="192__os">__os</a> &lt;&lt; <a class="local col3 ref" href="#193__p" title='__p' data-ref="193__p">__p</a>.get();&nbsp</td></tr>
+<tr><th id="74">74</th><td>      <b>return</b> <a class="local col2 ref" href="#192__os" title='__os' data-ref="192__os">__os</a>;&nbsp</td></tr>
+<tr><th id="75">75</th><td>    }&nbsp</td></tr>
+<tr><th id="76">76</th><td>&nbsp</td></tr>
+<tr><th id="77">77</th><td>  <b>template</b>&lt;<b>typename</b> _Del, <b>typename</b> _Tp, _Lock_policy _Lp&gt;&nbsp</td></tr>
+<tr><th id="78">78</th><td>    <b>inline</b> _Del*&nbsp</td></tr>
+<tr><th id="79">79</th><td>    <dfn class="decl def fn" id="_ZSt11get_deleterRKSt12__shared_ptrIT0_XT1_EE" title='std::get_deleter' data-ref="_ZSt11get_deleterRKSt12__shared_ptrIT0_XT1_EE">get_deleter</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp, <a class="tu ref" href="#_Lp" title='_Lp' data-ref="_Lp">_Lp</a>&gt;&amp; <dfn class="local col4 decl" id="194__p" title='__p' data-type='const __shared_ptr&lt;_Tp, _Lp&gt; &amp;' data-ref="194__p">__p</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="80">80</th><td>    {&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#<span data-ppcond="81">if</span> <span class="macro" title="199711L" data-ref="_M/__cpp_rtti">__cpp_rtti</span></u>&nbsp</td></tr>
+<tr><th id="82">82</th><td>      <b>return</b> <b>static_cast</b>&lt;_Del*&gt;(<a class="local col4 ref" href="#194__p" title='__p' data-ref="194__p">__p</a>._M_get_deleter(<b>typeid</b>(_Del)));&nbsp</td></tr>
+<tr><th id="83">83</th><td><u>#<span data-ppcond="81">else</span></u>&nbsp</td></tr>
+<tr><th id="84">84</th><td>      <b>return</b> <var>0</var>;&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#<span data-ppcond="81">endif</span></u>&nbsp</td></tr>
+<tr><th id="86">86</th><td>    }&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td>  <i class="doc">/// 20.7.2.2.10 shared_ptr get_deleter</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="90">90</th><td><i class="doc">  /// If `__p` has a deleter of type `_Del`, return a pointer to it.</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><i class="doc">  /// <span class="command">@relates</span> <span class="verb">shared_ptr</span></i>&nbsp</td></tr>
+<tr><th id="92">92</th><td>  <b>template</b>&lt;<b>typename</b> _Del, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="93">93</th><td>    <b>inline</b> _Del*&nbsp</td></tr>
+<tr><th id="94">94</th><td>    <dfn class="decl def fn" id="_ZSt11get_deleterRKSt10shared_ptrIT0_E" title='std::get_deleter' data-ref="_ZSt11get_deleterRKSt10shared_ptrIT0_E">get_deleter</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&amp; <dfn class="local col5 decl" id="195__p" title='__p' data-type='const shared_ptr&lt;_Tp&gt; &amp;' data-ref="195__p">__p</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="95">95</th><td>    {&nbsp</td></tr>
+<tr><th id="96">96</th><td><u>#<span data-ppcond="96">if</span> <span class="macro" title="199711L" data-ref="_M/__cpp_rtti">__cpp_rtti</span></u>&nbsp</td></tr>
+<tr><th id="97">97</th><td>      <b>return</b> <b>static_cast</b>&lt;_Del*&gt;(<a class="local col5 ref" href="#195__p" title='__p' data-ref="195__p">__p</a>._M_get_deleter(<b>typeid</b>(_Del)));&nbsp</td></tr>
+<tr><th id="98">98</th><td><u>#<span data-ppcond="96">else</span></u>&nbsp</td></tr>
+<tr><th id="99">99</th><td>      <b>return</b> <var>0</var>;&nbsp</td></tr>
+<tr><th id="100">100</th><td><u>#<span data-ppcond="96">endif</span></u>&nbsp</td></tr>
+<tr><th id="101">101</th><td>    }&nbsp</td></tr>
+<tr><th id="102">102</th><td>&nbsp</td></tr>
+<tr><th id="103">103</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td><i class="doc">   *  <span class="command">@brief</span>  A smart pointer with reference-counted copy semantics.</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><i class="doc">   * A `shared_ptr` object is either empty or _owns_ a pointer passed</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td><i class="doc">   * to the constructor. Copies of a `shared_ptr` share ownership of</i>&nbsp</td></tr>
+<tr><th id="108">108</th><td><i class="doc">   * the same pointer. When the last `shared_ptr` that owns the pointer</i>&nbsp</td></tr>
+<tr><th id="109">109</th><td><i class="doc">   * is destroyed or reset, the owned pointer is freed (either by `delete`</i>&nbsp</td></tr>
+<tr><th id="110">110</th><td><i class="doc">   * or by invoking a custom deleter that was passed to the constructor).</i>&nbsp</td></tr>
+<tr><th id="111">111</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td><i class="doc">   * A `shared_ptr` also stores another pointer, which is usually</i>&nbsp</td></tr>
+<tr><th id="113">113</th><td><i class="doc">   * (but not always) the same pointer as it owns. The stored pointer</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td><i class="doc">   * can be retrieved by calling the `get()` member function.</i>&nbsp</td></tr>
+<tr><th id="115">115</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="116">116</th><td><i class="doc">   * The equality and relational operators for `shared_ptr` only compare</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td><i class="doc">   * the stored pointer returned by `get()`, not the owned pointer.</i>&nbsp</td></tr>
+<tr><th id="118">118</th><td><i class="doc">   * To test whether two `shared_ptr` objects share ownership of the same</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td><i class="doc">   * pointer see `std::shared_ptr::owner_before` and `std::owner_less`.</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="122">122</th><td>    <b>class</b> <dfn class="type def" id="std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</dfn> : <b>public</b> <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="123">123</th><td>    {&nbsp</td></tr>
+<tr><th id="124">124</th><td>      <b>template</b>&lt;<b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="125">125</th><td>	<b>using</b> <dfn class="typedef" id="std::shared_ptr::_Constructible" title='std::shared_ptr::_Constructible' data-type='typename enable_if&lt;is_constructible&lt;__shared_ptr&lt;_Tp&gt;, _Args...&gt;::value&gt;::type' data-ref="std::shared_ptr::_Constructible">_Constructible</dfn> = <b>typename</b> <a class="type" href="../type_traits.html#std::enable_if" title='std::enable_if' data-ref="std::enable_if">enable_if</a>&lt;&nbsp</td></tr>
+<tr><th id="126">126</th><td>	  <a class="type" href="../type_traits.html#std::is_constructible" title='std::is_constructible' data-ref="std::is_constructible">is_constructible</a>&lt;<a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;, _Args...&gt;::value&nbsp</td></tr>
+<tr><th id="127">127</th><td>	&gt;::type;&nbsp</td></tr>
+<tr><th id="128">128</th><td>&nbsp</td></tr>
+<tr><th id="129">129</th><td>      <b>template</b>&lt;<b>typename</b> _Arg&gt;&nbsp</td></tr>
+<tr><th id="130">130</th><td>	<b>using</b> <dfn class="typedef" id="std::shared_ptr::_Assignable" title='std::shared_ptr::_Assignable' data-type='typename enable_if&lt;is_assignable&lt;__shared_ptr&lt;_Tp&gt; &amp;, _Arg&gt;::value, shared_ptr&lt;_Tp&gt; &amp;&gt;::type' data-ref="std::shared_ptr::_Assignable">_Assignable</dfn> = <b>typename</b> <a class="type" href="../type_traits.html#std::enable_if" title='std::enable_if' data-ref="std::enable_if">enable_if</a>&lt;&nbsp</td></tr>
+<tr><th id="131">131</th><td>	  <a class="type" href="../type_traits.html#std::is_assignable" title='std::is_assignable' data-ref="std::is_assignable">is_assignable</a>&lt;<a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;&amp;, _Arg&gt;::value, shared_ptr&amp;&nbsp</td></tr>
+<tr><th id="132">132</th><td>	&gt;::type;&nbsp</td></tr>
+<tr><th id="133">133</th><td>&nbsp</td></tr>
+<tr><th id="134">134</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="135">135</th><td>&nbsp</td></tr>
+<tr><th id="136">136</th><td>      <i class="doc">/// The type pointed to by the stored pointer, remove_extent_t&lt;_Tp&gt;</i>&nbsp</td></tr>
+<tr><th id="137">137</th><td>      <b>using</b> <dfn class="typedef" id="std::shared_ptr::element_type" title='std::shared_ptr::element_type' data-type='typename __shared_ptr&lt;_Tp&gt;::element_type' data-ref="std::shared_ptr::element_type">element_type</dfn> = <b>typename</b> <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;::element_type;&nbsp</td></tr>
+<tr><th id="138">138</th><td>&nbsp</td></tr>
+<tr><th id="139">139</th><td><u>#<span data-ppcond="139">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="140">140</th><td><u># define <dfn class="macro" id="_M/__cpp_lib_shared_ptr_weak_type" data-ref="_M/__cpp_lib_shared_ptr_weak_type">__cpp_lib_shared_ptr_weak_type</dfn> 201606</u>&nbsp</td></tr>
+<tr><th id="141">141</th><td>      <i class="doc">/// The corresponding weak_ptr type for this shared_ptr</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td>      <b>using</b> <dfn class="typedef" id="std::shared_ptr::weak_type" title='std::shared_ptr::weak_type' data-type='weak_ptr&lt;_Tp&gt;' data-ref="std::shared_ptr::weak_type">weak_type</dfn> = <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="143">143</th><td><u>#<span data-ppcond="139">endif</span></u>&nbsp</td></tr>
+<tr><th id="144">144</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td><i class="doc">       *  <span class="command">@brief</span>  Construct an empty %shared_ptr.</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td><i class="doc">       *  <span class="command">@post</span>   use_count()==0 &amp;&amp; get()==0</i>&nbsp</td></tr>
+<tr><th id="147">147</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td>      <b>constexpr</b> <dfn class="decl def fn" id="_ZNSt10shared_ptrC1Ev" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1Ev">shared_ptr</dfn>() <b>noexcept</b> : <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;() { }&nbsp</td></tr>
+<tr><th id="149">149</th><td>&nbsp</td></tr>
+<tr><th id="150">150</th><td>      <dfn class="decl def fn" id="_ZNSt10shared_ptrC1ERKSt10shared_ptrIT_E" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1ERKSt10shared_ptrIT_E">shared_ptr</dfn>(<em>const</em> shared_ptr&amp;) <b>noexcept</b> = <b>default</b>; <i class="doc">///&lt; Copy constructor</i>&nbsp</td></tr>
+<tr><th id="151">151</th><td>&nbsp</td></tr>
+<tr><th id="152">152</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="153">153</th><td><i class="doc">       *  <span class="command">@brief</span>  Construct a %shared_ptr that owns the pointer<span class="command"> @a</span> <span class="arg">__p.</span></i>&nbsp</td></tr>
+<tr><th id="154">154</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  A pointer that is convertible to element_type*.</i>&nbsp</td></tr>
+<tr><th id="155">155</th><td><i class="doc">       *  <span class="command">@post</span>   use_count() == 1 &amp;&amp; get() == __p</i>&nbsp</td></tr>
+<tr><th id="156">156</th><td><i class="doc">       *  <span class="command">@throw</span>  std::bad_alloc, in which case<span class="command"> @c</span> <span class="arg">delete</span><span class="command"> @a</span> <span class="arg">__p</span> is called.</i>&nbsp</td></tr>
+<tr><th id="157">157</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="158">158</th><td>      <b>template</b>&lt;<b>typename</b> _Yp, <b>typename</b> = <a class="type" href="#std::shared_ptr::_Constructible" title='std::shared_ptr::_Constructible' data-ref="std::shared_ptr::_Constructible">_Constructible</a>&lt;_Yp*&gt;&gt;&nbsp</td></tr>
+<tr><th id="159">159</th><td>	<b>explicit</b>&nbsp</td></tr>
+<tr><th id="160">160</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptrC1EPTL0__" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1EPTL0__">shared_ptr</dfn>(_Yp* <dfn class="local col6 decl" id="196__p" title='__p' data-type='_Yp *' data-ref="196__p">__p</dfn>) : <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<a class="local col6 ref" href="#196__p" title='__p' data-ref="196__p">__p</a>) { }&nbsp</td></tr>
+<tr><th id="161">161</th><td>&nbsp</td></tr>
+<tr><th id="162">162</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="163">163</th><td><i class="doc">       *  <span class="command">@brief</span>  Construct a %shared_ptr that owns the pointer<span class="command"> @a</span> <span class="arg">__p</span></i>&nbsp</td></tr>
+<tr><th id="164">164</th><td><i class="doc">       *          and the deleter<span class="command"> @a</span> <span class="arg">__d.</span></i>&nbsp</td></tr>
+<tr><th id="165">165</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  A pointer.</i>&nbsp</td></tr>
+<tr><th id="166">166</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__d</span>  A deleter.</i>&nbsp</td></tr>
+<tr><th id="167">167</th><td><i class="doc">       *  <span class="command">@post</span>   use_count() == 1 &amp;&amp; get() == __p</i>&nbsp</td></tr>
+<tr><th id="168">168</th><td><i class="doc">       *  <span class="command">@throw</span>  std::bad_alloc, in which case<span class="command"> @a</span> <span class="arg">__d(__p)</span> is called.</i>&nbsp</td></tr>
+<tr><th id="169">169</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="170">170</th><td><i class="doc">       *  Requirements: _Deleter's copy constructor and destructor must</i>&nbsp</td></tr>
+<tr><th id="171">171</th><td><i class="doc">       *  not throw</i>&nbsp</td></tr>
+<tr><th id="172">172</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="173">173</th><td><i class="doc">       *  __shared_ptr will release __p by calling __d(__p)</i>&nbsp</td></tr>
+<tr><th id="174">174</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="175">175</th><td>      <b>template</b>&lt;<b>typename</b> _Yp, <b>typename</b> _Deleter,&nbsp</td></tr>
+<tr><th id="176">176</th><td>	       <b>typename</b> = <a class="type" href="#std::shared_ptr::_Constructible" title='std::shared_ptr::_Constructible' data-ref="std::shared_ptr::_Constructible">_Constructible</a>&lt;_Yp*, _Deleter&gt;&gt;&nbsp</td></tr>
+<tr><th id="177">177</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptrC1EPTL0__TL0_0_" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1EPTL0__TL0_0_">shared_ptr</dfn>(_Yp* <dfn class="local col7 decl" id="197__p" title='__p' data-type='_Yp *' data-ref="197__p">__p</dfn>, _Deleter <dfn class="local col8 decl" id="198__d" title='__d' data-type='_Deleter' data-ref="198__d">__d</dfn>)&nbsp</td></tr>
+<tr><th id="178">178</th><td>        : <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<a class="local col7 ref" href="#197__p" title='__p' data-ref="197__p">__p</a>, <span class="namespace">std::</span>move(<a class="local col8 ref" href="#198__d" title='__d' data-ref="198__d">__d</a>)) { }&nbsp</td></tr>
+<tr><th id="179">179</th><td>&nbsp</td></tr>
+<tr><th id="180">180</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="181">181</th><td><i class="doc">       *  <span class="command">@brief</span>  Construct a %shared_ptr that owns a null pointer</i>&nbsp</td></tr>
+<tr><th id="182">182</th><td><i class="doc">       *          and the deleter<span class="command"> @a</span> <span class="arg">__d.</span></i>&nbsp</td></tr>
+<tr><th id="183">183</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  A null pointer constant.</i>&nbsp</td></tr>
+<tr><th id="184">184</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__d</span>  A deleter.</i>&nbsp</td></tr>
+<tr><th id="185">185</th><td><i class="doc">       *  <span class="command">@post</span>   use_count() == 1 &amp;&amp; get() == __p</i>&nbsp</td></tr>
+<tr><th id="186">186</th><td><i class="doc">       *  <span class="command">@throw</span>  std::bad_alloc, in which case<span class="command"> @a</span> <span class="arg">__d(__p)</span> is called.</i>&nbsp</td></tr>
+<tr><th id="187">187</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="188">188</th><td><i class="doc">       *  Requirements: _Deleter's copy constructor and destructor must</i>&nbsp</td></tr>
+<tr><th id="189">189</th><td><i class="doc">       *  not throw</i>&nbsp</td></tr>
+<tr><th id="190">190</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="191">191</th><td><i class="doc">       *  The last owner will call __d(__p)</i>&nbsp</td></tr>
+<tr><th id="192">192</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="193">193</th><td>      <b>template</b>&lt;<b>typename</b> _Deleter&gt;&nbsp</td></tr>
+<tr><th id="194">194</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptrC1EDnTL0__" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1EDnTL0__">shared_ptr</dfn>(<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::nullptr_t" title='std::nullptr_t' data-type='decltype(nullptr)' data-ref="std::nullptr_t">nullptr_t</a> <dfn class="local col9 decl" id="199__p" title='__p' data-type='std::nullptr_t' data-ref="199__p">__p</dfn>, _Deleter <dfn class="local col0 decl" id="200__d" title='__d' data-type='_Deleter' data-ref="200__d">__d</dfn>)&nbsp</td></tr>
+<tr><th id="195">195</th><td>        : <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<a class="local col9 ref" href="#199__p" title='__p' data-ref="199__p">__p</a>, <span class="namespace">std::</span>move(<a class="local col0 ref" href="#200__d" title='__d' data-ref="200__d">__d</a>)) { }&nbsp</td></tr>
+<tr><th id="196">196</th><td>&nbsp</td></tr>
+<tr><th id="197">197</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="198">198</th><td><i class="doc">       *  <span class="command">@brief</span>  Construct a %shared_ptr that owns the pointer<span class="command"> @a</span> <span class="arg">__p</span></i>&nbsp</td></tr>
+<tr><th id="199">199</th><td><i class="doc">       *          and the deleter<span class="command"> @a</span> <span class="arg">__d.</span></i>&nbsp</td></tr>
+<tr><th id="200">200</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  A pointer.</i>&nbsp</td></tr>
+<tr><th id="201">201</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__d</span>  A deleter.</i>&nbsp</td></tr>
+<tr><th id="202">202</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="203">203</th><td><i class="doc">       *  <span class="command">@post</span>   use_count() == 1 &amp;&amp; get() == __p</i>&nbsp</td></tr>
+<tr><th id="204">204</th><td><i class="doc">       *  <span class="command">@throw</span>  std::bad_alloc, in which case<span class="command"> @a</span> <span class="arg">__d(__p)</span> is called.</i>&nbsp</td></tr>
+<tr><th id="205">205</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="206">206</th><td><i class="doc">       *  Requirements: _Deleter's copy constructor and destructor must</i>&nbsp</td></tr>
+<tr><th id="207">207</th><td><i class="doc">       *  not throw _Alloc's copy constructor and destructor must not</i>&nbsp</td></tr>
+<tr><th id="208">208</th><td><i class="doc">       *  throw.</i>&nbsp</td></tr>
+<tr><th id="209">209</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="210">210</th><td><i class="doc">       *  __shared_ptr will release __p by calling __d(__p)</i>&nbsp</td></tr>
+<tr><th id="211">211</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="212">212</th><td>      <b>template</b>&lt;<b>typename</b> _Yp, <b>typename</b> _Deleter, <b>typename</b> _Alloc,&nbsp</td></tr>
+<tr><th id="213">213</th><td>	       <b>typename</b> = <a class="type" href="#std::shared_ptr::_Constructible" title='std::shared_ptr::_Constructible' data-ref="std::shared_ptr::_Constructible">_Constructible</a>&lt;_Yp*, _Deleter, _Alloc&gt;&gt;&nbsp</td></tr>
+<tr><th id="214">214</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptrC1EPTL0__TL0_0_TL0_1_" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1EPTL0__TL0_0_TL0_1_">shared_ptr</dfn>(_Yp* <dfn class="local col1 decl" id="201__p" title='__p' data-type='_Yp *' data-ref="201__p">__p</dfn>, _Deleter <dfn class="local col2 decl" id="202__d" title='__d' data-type='_Deleter' data-ref="202__d">__d</dfn>, _Alloc <dfn class="local col3 decl" id="203__a" title='__a' data-type='_Alloc' data-ref="203__a">__a</dfn>)&nbsp</td></tr>
+<tr><th id="215">215</th><td>	: <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<a class="local col1 ref" href="#201__p" title='__p' data-ref="201__p">__p</a>, <span class="namespace">std::</span>move(<a class="local col2 ref" href="#202__d" title='__d' data-ref="202__d">__d</a>), <span class="namespace">std::</span>move(<a class="local col3 ref" href="#203__a" title='__a' data-ref="203__a">__a</a>)) { }&nbsp</td></tr>
+<tr><th id="216">216</th><td>&nbsp</td></tr>
+<tr><th id="217">217</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="218">218</th><td><i class="doc">       *  <span class="command">@brief</span>  Construct a %shared_ptr that owns a null pointer</i>&nbsp</td></tr>
+<tr><th id="219">219</th><td><i class="doc">       *          and the deleter<span class="command"> @a</span> <span class="arg">__d.</span></i>&nbsp</td></tr>
+<tr><th id="220">220</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  A null pointer constant.</i>&nbsp</td></tr>
+<tr><th id="221">221</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__d</span>  A deleter.</i>&nbsp</td></tr>
+<tr><th id="222">222</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="223">223</th><td><i class="doc">       *  <span class="command">@post</span>   use_count() == 1 &amp;&amp; get() == __p</i>&nbsp</td></tr>
+<tr><th id="224">224</th><td><i class="doc">       *  <span class="command">@throw</span>  std::bad_alloc, in which case<span class="command"> @a</span> <span class="arg">__d(__p)</span> is called.</i>&nbsp</td></tr>
+<tr><th id="225">225</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="226">226</th><td><i class="doc">       *  Requirements: _Deleter's copy constructor and destructor must</i>&nbsp</td></tr>
+<tr><th id="227">227</th><td><i class="doc">       *  not throw _Alloc's copy constructor and destructor must not</i>&nbsp</td></tr>
+<tr><th id="228">228</th><td><i class="doc">       *  throw.</i>&nbsp</td></tr>
+<tr><th id="229">229</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="230">230</th><td><i class="doc">       *  The last owner will call __d(__p)</i>&nbsp</td></tr>
+<tr><th id="231">231</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="232">232</th><td>      <b>template</b>&lt;<b>typename</b> _Deleter, <b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="233">233</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptrC1EDnTL0__TL0_0_" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1EDnTL0__TL0_0_">shared_ptr</dfn>(<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::nullptr_t" title='std::nullptr_t' data-type='decltype(nullptr)' data-ref="std::nullptr_t">nullptr_t</a> <dfn class="local col4 decl" id="204__p" title='__p' data-type='std::nullptr_t' data-ref="204__p">__p</dfn>, _Deleter <dfn class="local col5 decl" id="205__d" title='__d' data-type='_Deleter' data-ref="205__d">__d</dfn>, _Alloc <dfn class="local col6 decl" id="206__a" title='__a' data-type='_Alloc' data-ref="206__a">__a</dfn>)&nbsp</td></tr>
+<tr><th id="234">234</th><td>	: <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<a class="local col4 ref" href="#204__p" title='__p' data-ref="204__p">__p</a>, <span class="namespace">std::</span>move(<a class="local col5 ref" href="#205__d" title='__d' data-ref="205__d">__d</a>), <span class="namespace">std::</span>move(<a class="local col6 ref" href="#206__a" title='__a' data-ref="206__a">__a</a>)) { }&nbsp</td></tr>
+<tr><th id="235">235</th><td>&nbsp</td></tr>
+<tr><th id="236">236</th><td>      <i>// Aliasing constructor</i>&nbsp</td></tr>
+<tr><th id="237">237</th><td>&nbsp</td></tr>
+<tr><th id="238">238</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="239">239</th><td><i class="doc">       *  <span class="command">@brief</span>  Constructs a `shared_ptr` instance that stores `__p`</i>&nbsp</td></tr>
+<tr><th id="240">240</th><td><i class="doc">       *          and shares ownership with `__r`.</i>&nbsp</td></tr>
+<tr><th id="241">241</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__r</span>  A `shared_ptr`.</i>&nbsp</td></tr>
+<tr><th id="242">242</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  A pointer that will remain valid while `*__r` is valid.</i>&nbsp</td></tr>
+<tr><th id="243">243</th><td><i class="doc">       *  <span class="command">@post</span>   `get() == __p &amp;&amp; use_count() == __r.use_count()`</i>&nbsp</td></tr>
+<tr><th id="244">244</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="245">245</th><td><i class="doc">       *  This can be used to construct a `shared_ptr` to a sub-object</i>&nbsp</td></tr>
+<tr><th id="246">246</th><td><i class="doc">       *  of an object managed by an existing `shared_ptr`. The complete</i>&nbsp</td></tr>
+<tr><th id="247">247</th><td><i class="doc">       *  object will remain valid while any `shared_ptr` owns it, even</i>&nbsp</td></tr>
+<tr><th id="248">248</th><td><i class="doc">       *  if they don't store a pointer to the complete object.</i>&nbsp</td></tr>
+<tr><th id="249">249</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="250">250</th><td><i class="doc">       * <span class="command">@code</span></i>&nbsp</td></tr>
+<tr><th id="251">251</th><td><i class="doc">       *<span class="verb"> shared_ptr&lt;pair&lt;int,int&gt;&gt; pii(new pair&lt;int,int&gt;());</span></i>&nbsp</td></tr>
+<tr><th id="252">252</th><td><i class="doc"><span class="verb"></span>       *<span class="verb"> shared_ptr&lt;int&gt; pi(pii, &amp;pii-&gt;first);</span></i>&nbsp</td></tr>
+<tr><th id="253">253</th><td><i class="doc"><span class="verb"></span>       *<span class="verb"> assert(pii.use_count() == 2);</span></i>&nbsp</td></tr>
+<tr><th id="254">254</th><td><i class="doc"><span class="verb"></span>       * @endcode</i>&nbsp</td></tr>
+<tr><th id="255">255</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="256">256</th><td>      <b>template</b>&lt;<b>typename</b> _Yp&gt;&nbsp</td></tr>
+<tr><th id="257">257</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptrC1ERKSt10shared_ptrITL0__EPNSt12__shared_ptrIT_LN9__gnu_cxx12_Lock_policyE2EE12element_typeE" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1ERKSt10shared_ptrITL0__EPNSt12__shared_ptrIT_LN9__gnu_cxx12_Lock_policyE2EE12element_typeE">shared_ptr</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&amp; <dfn class="local col7 decl" id="207__r" title='__r' data-type='const shared_ptr&lt;_Yp&gt; &amp;' data-ref="207__r">__r</dfn>, <a class="typedef" href="#std::shared_ptr::element_type" title='std::shared_ptr::element_type' data-type='typename __shared_ptr&lt;_Tp&gt;::element_type' data-ref="std::shared_ptr::element_type">element_type</a>* <dfn class="local col8 decl" id="208__p" title='__p' data-type='std::shared_ptr::element_type *' data-ref="208__p">__p</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="258">258</th><td>	: <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<a class="local col7 ref" href="#207__r" title='__r' data-ref="207__r">__r</a>, <a class="local col8 ref" href="#208__p" title='__p' data-ref="208__p">__p</a>) { }&nbsp</td></tr>
+<tr><th id="259">259</th><td>&nbsp</td></tr>
+<tr><th id="260">260</th><td><u>#<span data-ppcond="260">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="261">261</th><td>      <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="262">262</th><td><i>      // 2996. Missing rvalue overloads for shared_ptr operations</i>&nbsp</td></tr>
+<tr><th id="263">263</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="264">264</th><td><i class="doc">       *  <span class="command">@brief</span>  Constructs a `shared_ptr` instance that stores `__p`</i>&nbsp</td></tr>
+<tr><th id="265">265</th><td><i class="doc">       *          and shares ownership with `__r`.</i>&nbsp</td></tr>
+<tr><th id="266">266</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__r</span>  A `shared_ptr`.</i>&nbsp</td></tr>
+<tr><th id="267">267</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  A pointer that will remain valid while `*__r` is valid.</i>&nbsp</td></tr>
+<tr><th id="268">268</th><td><i class="doc">       *  <span class="command">@post</span>   `get() == __p &amp;&amp; !__r.use_count() &amp;&amp; !__r.get()`</i>&nbsp</td></tr>
+<tr><th id="269">269</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="270">270</th><td><i class="doc">       *  This can be used to construct a `shared_ptr` to a sub-object</i>&nbsp</td></tr>
+<tr><th id="271">271</th><td><i class="doc">       *  of an object managed by an existing `shared_ptr`. The complete</i>&nbsp</td></tr>
+<tr><th id="272">272</th><td><i class="doc">       *  object will remain valid while any `shared_ptr` owns it, even</i>&nbsp</td></tr>
+<tr><th id="273">273</th><td><i class="doc">       *  if they don't store a pointer to the complete object.</i>&nbsp</td></tr>
+<tr><th id="274">274</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="275">275</th><td><i class="doc">       * <span class="command">@code</span></i>&nbsp</td></tr>
+<tr><th id="276">276</th><td><i class="doc">       *<span class="verb"> shared_ptr&lt;pair&lt;int,int&gt;&gt; pii(new pair&lt;int,int&gt;());</span></i>&nbsp</td></tr>
+<tr><th id="277">277</th><td><i class="doc"><span class="verb"></span>       *<span class="verb"> shared_ptr&lt;int&gt; pi1(pii, &amp;pii-&gt;first);</span></i>&nbsp</td></tr>
+<tr><th id="278">278</th><td><i class="doc"><span class="verb"></span>       *<span class="verb"> assert(pii.use_count() == 2);</span></i>&nbsp</td></tr>
+<tr><th id="279">279</th><td><i class="doc"><span class="verb"></span>       *<span class="verb"> shared_ptr&lt;int&gt; pi2(std::move(pii), &amp;pii-&gt;second);</span></i>&nbsp</td></tr>
+<tr><th id="280">280</th><td><i class="doc"><span class="verb"></span>       *<span class="verb"> assert(pii.use_count() == 0);</span></i>&nbsp</td></tr>
+<tr><th id="281">281</th><td><i class="doc"><span class="verb"></span>       * @endcode</i>&nbsp</td></tr>
+<tr><th id="282">282</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="283">283</th><td>      <b>template</b>&lt;<b>typename</b> _Yp&gt;&nbsp</td></tr>
+<tr><th id="284">284</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptrC1EOSt10shared_ptrITL0__EPNSt12__shared_ptrIT_LN9__gnu_cxx12_Lock_policyE2EE12element_typeE" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1EOSt10shared_ptrITL0__EPNSt12__shared_ptrIT_LN9__gnu_cxx12_Lock_policyE2EE12element_typeE">shared_ptr</dfn>(<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&amp;&amp; <dfn class="local col9 decl" id="209__r" title='__r' data-type='shared_ptr&lt;_Yp&gt; &amp;&amp;' data-ref="209__r">__r</dfn>, <a class="typedef" href="#std::shared_ptr::element_type" title='std::shared_ptr::element_type' data-type='typename __shared_ptr&lt;_Tp&gt;::element_type' data-ref="std::shared_ptr::element_type">element_type</a>* <dfn class="local col0 decl" id="210__p" title='__p' data-type='std::shared_ptr::element_type *' data-ref="210__p">__p</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="285">285</th><td>	: <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<span class="namespace">std::</span>move(<a class="local col9 ref" href="#209__r" title='__r' data-ref="209__r">__r</a>), <a class="local col0 ref" href="#210__p" title='__p' data-ref="210__p">__p</a>) { }&nbsp</td></tr>
+<tr><th id="286">286</th><td><u>#<span data-ppcond="260">endif</span></u>&nbsp</td></tr>
+<tr><th id="287">287</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="288">288</th><td><i class="doc">       *  <span class="command">@brief</span>  If<span class="command"> @a</span> <span class="arg">__r</span> is empty, constructs an empty %shared_ptr;</i>&nbsp</td></tr>
+<tr><th id="289">289</th><td><i class="doc">       *          otherwise construct a %shared_ptr that shares ownership</i>&nbsp</td></tr>
+<tr><th id="290">290</th><td><i class="doc">       *          with<span class="command"> @a</span> <span class="arg">__r.</span></i>&nbsp</td></tr>
+<tr><th id="291">291</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__r</span>  A %shared_ptr.</i>&nbsp</td></tr>
+<tr><th id="292">292</th><td><i class="doc">       *  <span class="command">@post</span>   get() == __r.get() &amp;&amp; use_count() == __r.use_count()</i>&nbsp</td></tr>
+<tr><th id="293">293</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="294">294</th><td>      <b>template</b>&lt;<b>typename</b> _Yp,&nbsp</td></tr>
+<tr><th id="295">295</th><td>	       <b>typename</b> = <a class="type" href="#std::shared_ptr::_Constructible" title='std::shared_ptr::_Constructible' data-ref="std::shared_ptr::_Constructible">_Constructible</a>&lt;<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&amp;&gt;&gt;&nbsp</td></tr>
+<tr><th id="296">296</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptrC1ERKSt10shared_ptrITL0__E" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1ERKSt10shared_ptrITL0__E">shared_ptr</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&amp; <dfn class="local col1 decl" id="211__r" title='__r' data-type='const shared_ptr&lt;_Yp&gt; &amp;' data-ref="211__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="297">297</th><td>        : <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<a class="local col1 ref" href="#211__r" title='__r' data-ref="211__r">__r</a>) { }&nbsp</td></tr>
+<tr><th id="298">298</th><td>&nbsp</td></tr>
+<tr><th id="299">299</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="300">300</th><td><i class="doc">       *  <span class="command">@brief</span>  Move-constructs a %shared_ptr instance from<span class="command"> @a</span> <span class="arg">__r.</span></i>&nbsp</td></tr>
+<tr><th id="301">301</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__r</span>  A %shared_ptr rvalue.</i>&nbsp</td></tr>
+<tr><th id="302">302</th><td><i class="doc">       *  <span class="command">@post</span>   *this contains the old value of<span class="command"> @a</span> <span class="arg">__r,</span><span class="command"> @a</span> <span class="arg">__r</span> is empty.</i>&nbsp</td></tr>
+<tr><th id="303">303</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="304">304</th><td>      <dfn class="decl def fn" id="_ZNSt10shared_ptrC1EOSt10shared_ptrIT_E" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1EOSt10shared_ptrIT_E">shared_ptr</dfn>(shared_ptr&amp;&amp; <dfn class="local col2 decl" id="212__r" title='__r' data-type='shared_ptr&lt;_Tp&gt; &amp;&amp;' data-ref="212__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="305">305</th><td>      : <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<span class="namespace">std::</span>move(<a class="local col2 ref" href="#212__r" title='__r' data-ref="212__r">__r</a>)) { }&nbsp</td></tr>
+<tr><th id="306">306</th><td>&nbsp</td></tr>
+<tr><th id="307">307</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="308">308</th><td><i class="doc">       *  <span class="command">@brief</span>  Move-constructs a %shared_ptr instance from<span class="command"> @a</span> <span class="arg">__r.</span></i>&nbsp</td></tr>
+<tr><th id="309">309</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__r</span>  A %shared_ptr rvalue.</i>&nbsp</td></tr>
+<tr><th id="310">310</th><td><i class="doc">       *  <span class="command">@post</span>   *this contains the old value of<span class="command"> @a</span> <span class="arg">__r,</span><span class="command"> @a</span> <span class="arg">__r</span> is empty.</i>&nbsp</td></tr>
+<tr><th id="311">311</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="312">312</th><td>      <b>template</b>&lt;<b>typename</b> _Yp, <b>typename</b> = <a class="type" href="#std::shared_ptr::_Constructible" title='std::shared_ptr::_Constructible' data-ref="std::shared_ptr::_Constructible">_Constructible</a>&lt;<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&gt;&gt;&nbsp</td></tr>
+<tr><th id="313">313</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptrC1EOSt10shared_ptrITL0__E" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1EOSt10shared_ptrITL0__E">shared_ptr</dfn>(<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&amp;&amp; <dfn class="local col3 decl" id="213__r" title='__r' data-type='shared_ptr&lt;_Yp&gt; &amp;&amp;' data-ref="213__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="314">314</th><td>	: <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<span class="namespace">std::</span>move(<a class="local col3 ref" href="#213__r" title='__r' data-ref="213__r">__r</a>)) { }&nbsp</td></tr>
+<tr><th id="315">315</th><td>&nbsp</td></tr>
+<tr><th id="316">316</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="317">317</th><td><i class="doc">       *  <span class="command">@brief</span>  Constructs a %shared_ptr that shares ownership with<span class="command"> @a</span> <span class="arg">__r</span></i>&nbsp</td></tr>
+<tr><th id="318">318</th><td><i class="doc">       *          and stores a copy of the pointer stored in<span class="command"> @a</span> <span class="arg">__r.</span></i>&nbsp</td></tr>
+<tr><th id="319">319</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__r</span>  A weak_ptr.</i>&nbsp</td></tr>
+<tr><th id="320">320</th><td><i class="doc">       *  <span class="command">@post</span>   use_count() == __r.use_count()</i>&nbsp</td></tr>
+<tr><th id="321">321</th><td><i class="doc">       *  <span class="command">@throw</span>  bad_weak_ptr when __r.expired(),</i>&nbsp</td></tr>
+<tr><th id="322">322</th><td><i class="doc">       *          in which case the constructor has no effect.</i>&nbsp</td></tr>
+<tr><th id="323">323</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="324">324</th><td>      <b>template</b>&lt;<b>typename</b> _Yp, <b>typename</b> = <a class="type" href="#std::shared_ptr::_Constructible" title='std::shared_ptr::_Constructible' data-ref="std::shared_ptr::_Constructible">_Constructible</a>&lt;<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Yp&gt;&amp;&gt;&gt;&nbsp</td></tr>
+<tr><th id="325">325</th><td>	<b>explicit</b> <dfn class="decl def fn" id="_ZNSt10shared_ptrC1ERKSt8weak_ptrITL0__E" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1ERKSt8weak_ptrITL0__E">shared_ptr</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Yp&gt;&amp; <dfn class="local col4 decl" id="214__r" title='__r' data-type='const weak_ptr&lt;_Yp&gt; &amp;' data-ref="214__r">__r</dfn>)&nbsp</td></tr>
+<tr><th id="326">326</th><td>	: <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<a class="local col4 ref" href="#214__r" title='__r' data-ref="214__r">__r</a>) { }&nbsp</td></tr>
+<tr><th id="327">327</th><td>&nbsp</td></tr>
+<tr><th id="328">328</th><td><u>#<span data-ppcond="328">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#88" title="1" data-ref="_M/_GLIBCXX_USE_DEPRECATED">_GLIBCXX_USE_DEPRECATED</a></u>&nbsp</td></tr>
+<tr><th id="329">329</th><td><u>#pragma GCC diagnostic push</u>&nbsp</td></tr>
+<tr><th id="330">330</th><td><u>#pragma GCC diagnostic ignored "-Wdeprecated-declarations"</u>&nbsp</td></tr>
+<tr><th id="331">331</th><td>      <b>template</b>&lt;<b>typename</b> _Yp, <b>typename</b> = <a class="type" href="#std::shared_ptr::_Constructible" title='std::shared_ptr::_Constructible' data-ref="std::shared_ptr::_Constructible">_Constructible</a>&lt;<a class="type" href="unique_ptr.h.html#std::auto_ptr" title='std::auto_ptr' data-ref="std::auto_ptr">auto_ptr</a>&lt;_Yp&gt;&gt;&gt;&nbsp</td></tr>
+<tr><th id="332">332</th><td>	<dfn class="decl fn" id="_ZNSt10shared_ptrC1EOSt8auto_ptrITL0__E" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1EOSt8auto_ptrITL0__E">shared_ptr</dfn>(<a class="type" href="unique_ptr.h.html#std::auto_ptr" title='std::auto_ptr' data-ref="std::auto_ptr">auto_ptr</a>&lt;_Yp&gt;&amp;&amp; <dfn class="local col5 decl" id="215__r" title='__r' data-type='auto_ptr&lt;_Yp&gt; &amp;&amp;' data-ref="215__r">__r</dfn>);&nbsp</td></tr>
+<tr><th id="333">333</th><td><u>#pragma GCC diagnostic pop</u>&nbsp</td></tr>
+<tr><th id="334">334</th><td><u>#<span data-ppcond="328">endif</span></u>&nbsp</td></tr>
+<tr><th id="335">335</th><td>&nbsp</td></tr>
+<tr><th id="336">336</th><td>      <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="337">337</th><td><i>      // 2399. shared_ptr's constructor from unique_ptr should be constrained</i>&nbsp</td></tr>
+<tr><th id="338">338</th><td>      <b>template</b>&lt;<b>typename</b> _Yp, <b>typename</b> _Del,&nbsp</td></tr>
+<tr><th id="339">339</th><td>	       <b>typename</b> = <a class="type" href="#std::shared_ptr::_Constructible" title='std::shared_ptr::_Constructible' data-ref="std::shared_ptr::_Constructible">_Constructible</a>&lt;<a class="type" href="unique_ptr.h.html#std::unique_ptr" title='std::unique_ptr' data-ref="std::unique_ptr">unique_ptr</a>&lt;_Yp, _Del&gt;&gt;&gt;&nbsp</td></tr>
+<tr><th id="340">340</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptrC1EOSt10unique_ptrITL0__TL0_0_E" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1EOSt10unique_ptrITL0__TL0_0_E">shared_ptr</dfn>(<a class="type" href="unique_ptr.h.html#std::unique_ptr" title='std::unique_ptr' data-ref="std::unique_ptr">unique_ptr</a>&lt;_Yp, _Del&gt;&amp;&amp; <dfn class="local col6 decl" id="216__r" title='__r' data-type='unique_ptr&lt;_Yp, _Del&gt; &amp;&amp;' data-ref="216__r">__r</dfn>)&nbsp</td></tr>
+<tr><th id="341">341</th><td>	: <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<span class="namespace">std::</span>move(<a class="local col6 ref" href="#216__r" title='__r' data-ref="216__r">__r</a>)) { }&nbsp</td></tr>
+<tr><th id="342">342</th><td>&nbsp</td></tr>
+<tr><th id="343">343</th><td><u>#<span data-ppcond="343">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201402L &amp;&amp; <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#88" title="1" data-ref="_M/_GLIBCXX_USE_DEPRECATED">_GLIBCXX_USE_DEPRECATED</a></u>&nbsp</td></tr>
+<tr><th id="344">344</th><td>      <i>// This non-standard constructor exists to support conversions that</i>&nbsp</td></tr>
+<tr><th id="345">345</th><td><i>      // were possible in C++11 and C++14 but are ill-formed in C++17.</i>&nbsp</td></tr>
+<tr><th id="346">346</th><td><i>      // If an exception is thrown this constructor has no effect.</i>&nbsp</td></tr>
+<tr><th id="347">347</th><td>      <b>template</b>&lt;<b>typename</b> _Yp, <b>typename</b> _Del,&nbsp</td></tr>
+<tr><th id="348">348</th><td>		_Constructible&lt;unique_ptr&lt;_Yp, _Del&gt;, __sp_array_delete&gt;* = <var>0</var>&gt;&nbsp</td></tr>
+<tr><th id="349">349</th><td>	shared_ptr(unique_ptr&lt;_Yp, _Del&gt;&amp;&amp; __r)&nbsp</td></tr>
+<tr><th id="350">350</th><td>	: __shared_ptr&lt;_Tp&gt;(std::move(__r), __sp_array_delete()) { }&nbsp</td></tr>
+<tr><th id="351">351</th><td><u>#<span data-ppcond="343">endif</span></u>&nbsp</td></tr>
+<tr><th id="352">352</th><td>&nbsp</td></tr>
+<tr><th id="353">353</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="354">354</th><td><i class="doc">       *  <span class="command">@brief</span>  Construct an empty %shared_ptr.</i>&nbsp</td></tr>
+<tr><th id="355">355</th><td><i class="doc">       *  <span class="command">@post</span>   use_count() == 0 &amp;&amp; get() == nullptr</i>&nbsp</td></tr>
+<tr><th id="356">356</th><td><i class="doc">       */</i>&nbsp</td></tr>
+<tr><th id="357">357</th><td>      <b>constexpr</b> <dfn class="decl def fn" id="_ZNSt10shared_ptrC1EDn" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1EDn">shared_ptr</dfn>(<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::nullptr_t" title='std::nullptr_t' data-type='decltype(nullptr)' data-ref="std::nullptr_t">nullptr_t</a>) <b>noexcept</b> : shared_ptr() { }&nbsp</td></tr>
+<tr><th id="358">358</th><td>&nbsp</td></tr>
+<tr><th id="359">359</th><td>      shared_ptr&amp; <dfn class="decl def fn" id="_ZNSt10shared_ptraSERKSt10shared_ptrIT_E" title='std::shared_ptr::operator=' data-ref="_ZNSt10shared_ptraSERKSt10shared_ptrIT_E"><b>operator</b>=</dfn>(<em>const</em> shared_ptr&amp;) <b>noexcept</b> = <b>default</b>;&nbsp</td></tr>
+<tr><th id="360">360</th><td>&nbsp</td></tr>
+<tr><th id="361">361</th><td>      <b>template</b>&lt;<b>typename</b> _Yp&gt;&nbsp</td></tr>
+<tr><th id="362">362</th><td>	<a class="type" href="#std::shared_ptr::_Assignable" title='std::shared_ptr::_Assignable' data-ref="std::shared_ptr::_Assignable">_Assignable</a>&lt;<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="363">363</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptraSERKSt10shared_ptrITL0__E" title='std::shared_ptr::operator=' data-ref="_ZNSt10shared_ptraSERKSt10shared_ptrITL0__E"><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&amp; <dfn class="local col7 decl" id="217__r" title='__r' data-type='const shared_ptr&lt;_Yp&gt; &amp;' data-ref="217__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="364">364</th><td>	{&nbsp</td></tr>
+<tr><th id="365">365</th><td>	  <b>this</b>-&gt;<a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;::<b>operator</b>=(<a class="local col7 ref" href="#217__r" title='__r' data-ref="217__r">__r</a>);&nbsp</td></tr>
+<tr><th id="366">366</th><td>	  <b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="367">367</th><td>	}&nbsp</td></tr>
+<tr><th id="368">368</th><td>&nbsp</td></tr>
+<tr><th id="369">369</th><td><u>#<span data-ppcond="369">if</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#88" title="1" data-ref="_M/_GLIBCXX_USE_DEPRECATED">_GLIBCXX_USE_DEPRECATED</a></u>&nbsp</td></tr>
+<tr><th id="370">370</th><td><u>#pragma GCC diagnostic push</u>&nbsp</td></tr>
+<tr><th id="371">371</th><td><u>#pragma GCC diagnostic ignored "-Wdeprecated-declarations"</u>&nbsp</td></tr>
+<tr><th id="372">372</th><td>      <b>template</b>&lt;<b>typename</b> _Yp&gt;&nbsp</td></tr>
+<tr><th id="373">373</th><td>	<a class="type" href="#std::shared_ptr::_Assignable" title='std::shared_ptr::_Assignable' data-ref="std::shared_ptr::_Assignable">_Assignable</a>&lt;<a class="type" href="unique_ptr.h.html#std::auto_ptr" title='std::auto_ptr' data-ref="std::auto_ptr">auto_ptr</a>&lt;_Yp&gt;&gt;&nbsp</td></tr>
+<tr><th id="374">374</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptraSEOSt8auto_ptrITL0__E" title='std::shared_ptr::operator=' data-ref="_ZNSt10shared_ptraSEOSt8auto_ptrITL0__E"><b>operator</b>=</dfn>(<a class="type" href="unique_ptr.h.html#std::auto_ptr" title='std::auto_ptr' data-ref="std::auto_ptr">auto_ptr</a>&lt;_Yp&gt;&amp;&amp; <dfn class="local col8 decl" id="218__r" title='__r' data-type='auto_ptr&lt;_Yp&gt; &amp;&amp;' data-ref="218__r">__r</dfn>)&nbsp</td></tr>
+<tr><th id="375">375</th><td>	{&nbsp</td></tr>
+<tr><th id="376">376</th><td>	  <b>this</b>-&gt;<a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;::<b>operator</b>=(<span class="namespace">std::</span>move(<a class="local col8 ref" href="#218__r" title='__r' data-ref="218__r">__r</a>));&nbsp</td></tr>
+<tr><th id="377">377</th><td>	  <b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="378">378</th><td>	}&nbsp</td></tr>
+<tr><th id="379">379</th><td><u>#pragma GCC diagnostic pop</u>&nbsp</td></tr>
+<tr><th id="380">380</th><td><u>#<span data-ppcond="369">endif</span></u>&nbsp</td></tr>
+<tr><th id="381">381</th><td>&nbsp</td></tr>
+<tr><th id="382">382</th><td>      shared_ptr&amp;&nbsp</td></tr>
+<tr><th id="383">383</th><td>      <dfn class="decl def fn" id="_ZNSt10shared_ptraSEOSt10shared_ptrIT_E" title='std::shared_ptr::operator=' data-ref="_ZNSt10shared_ptraSEOSt10shared_ptrIT_E"><b>operator</b>=</dfn>(shared_ptr&amp;&amp; <dfn class="local col9 decl" id="219__r" title='__r' data-type='shared_ptr&lt;_Tp&gt; &amp;&amp;' data-ref="219__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="384">384</th><td>      {&nbsp</td></tr>
+<tr><th id="385">385</th><td>	<b>this</b>-&gt;<a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;::<b>operator</b>=(<span class="namespace">std::</span>move(<a class="local col9 ref" href="#219__r" title='__r' data-ref="219__r">__r</a>));&nbsp</td></tr>
+<tr><th id="386">386</th><td>	<b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="387">387</th><td>      }&nbsp</td></tr>
+<tr><th id="388">388</th><td>&nbsp</td></tr>
+<tr><th id="389">389</th><td>      <b>template</b>&lt;<b>class</b> _Yp&gt;&nbsp</td></tr>
+<tr><th id="390">390</th><td>	<a class="type" href="#std::shared_ptr::_Assignable" title='std::shared_ptr::_Assignable' data-ref="std::shared_ptr::_Assignable">_Assignable</a>&lt;<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&gt;&nbsp</td></tr>
+<tr><th id="391">391</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptraSEOSt10shared_ptrITL0__E" title='std::shared_ptr::operator=' data-ref="_ZNSt10shared_ptraSEOSt10shared_ptrITL0__E"><b>operator</b>=</dfn>(<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&amp;&amp; <dfn class="local col0 decl" id="220__r" title='__r' data-type='shared_ptr&lt;_Yp&gt; &amp;&amp;' data-ref="220__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="392">392</th><td>	{&nbsp</td></tr>
+<tr><th id="393">393</th><td>	  <b>this</b>-&gt;<a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;::<b>operator</b>=(<span class="namespace">std::</span>move(<a class="local col0 ref" href="#220__r" title='__r' data-ref="220__r">__r</a>));&nbsp</td></tr>
+<tr><th id="394">394</th><td>	  <b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="395">395</th><td>	}&nbsp</td></tr>
+<tr><th id="396">396</th><td>&nbsp</td></tr>
+<tr><th id="397">397</th><td>      <b>template</b>&lt;<b>typename</b> _Yp, <b>typename</b> _Del&gt;&nbsp</td></tr>
+<tr><th id="398">398</th><td>	<a class="type" href="#std::shared_ptr::_Assignable" title='std::shared_ptr::_Assignable' data-ref="std::shared_ptr::_Assignable">_Assignable</a>&lt;<a class="type" href="unique_ptr.h.html#std::unique_ptr" title='std::unique_ptr' data-ref="std::unique_ptr">unique_ptr</a>&lt;_Yp, _Del&gt;&gt;&nbsp</td></tr>
+<tr><th id="399">399</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptraSEOSt10unique_ptrITL0__TL0_0_E" title='std::shared_ptr::operator=' data-ref="_ZNSt10shared_ptraSEOSt10unique_ptrITL0__TL0_0_E"><b>operator</b>=</dfn>(<a class="type" href="unique_ptr.h.html#std::unique_ptr" title='std::unique_ptr' data-ref="std::unique_ptr">unique_ptr</a>&lt;_Yp, _Del&gt;&amp;&amp; <dfn class="local col1 decl" id="221__r" title='__r' data-type='unique_ptr&lt;_Yp, _Del&gt; &amp;&amp;' data-ref="221__r">__r</dfn>)&nbsp</td></tr>
+<tr><th id="400">400</th><td>	{&nbsp</td></tr>
+<tr><th id="401">401</th><td>	  <b>this</b>-&gt;<a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;::<b>operator</b>=(<span class="namespace">std::</span>move(<a class="local col1 ref" href="#221__r" title='__r' data-ref="221__r">__r</a>));&nbsp</td></tr>
+<tr><th id="402">402</th><td>	  <b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="403">403</th><td>	}&nbsp</td></tr>
+<tr><th id="404">404</th><td>&nbsp</td></tr>
+<tr><th id="405">405</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="406">406</th><td>      <i>// This constructor is non-standard, it is used by allocate_shared.</i>&nbsp</td></tr>
+<tr><th id="407">407</th><td>      <b>template</b>&lt;<b>typename</b> _Alloc, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="408">408</th><td>	<dfn class="decl def fn" id="_ZNSt10shared_ptrC1ESt20_Sp_alloc_shared_tagITL0__EDpOTL0_0_" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1ESt20_Sp_alloc_shared_tagITL0__EDpOTL0_0_">shared_ptr</dfn>(<a class="type" href="shared_ptr_base.h.html#std::_Sp_alloc_shared_tag" title='std::_Sp_alloc_shared_tag' data-ref="std::_Sp_alloc_shared_tag">_Sp_alloc_shared_tag</a>&lt;_Alloc&gt; <dfn class="local col2 decl" id="222__tag" title='__tag' data-type='_Sp_alloc_shared_tag&lt;_Alloc&gt;' data-ref="222__tag">__tag</dfn>, _Args&amp;&amp;... <dfn class="local col3 decl" id="223__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="223__args">__args</dfn>)&nbsp</td></tr>
+<tr><th id="409">409</th><td>	: <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<a class="local col2 ref" href="#222__tag" title='__tag' data-ref="222__tag">__tag</a>, <span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col3 ref" href="#223__args" title='__args' data-ref="223__args">__args</a>)...)&nbsp</td></tr>
+<tr><th id="410">410</th><td>	{ }&nbsp</td></tr>
+<tr><th id="411">411</th><td>&nbsp</td></tr>
+<tr><th id="412">412</th><td>      <b>template</b>&lt;<b>typename</b> _Yp, <b>typename</b> _Alloc, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="413">413</th><td>	<b>friend</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&nbsp</td></tr>
+<tr><th id="414">414</th><td>	<dfn class="decl fn" id="_ZSt15allocate_sharedRKTL0_0_DpOTL0_1_" title='std::allocate_shared' data-ref="_ZSt15allocate_sharedRKTL0_0_DpOTL0_1_">allocate_shared</dfn>(<em>const</em> _Alloc&amp; <dfn class="local col4 decl" id="224__a" title='__a' data-type='const _Alloc &amp;' data-ref="224__a">__a</dfn>, _Args&amp;&amp;... <dfn class="local col5 decl" id="225__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="225__args">__args</dfn>);&nbsp</td></tr>
+<tr><th id="415">415</th><td>&nbsp</td></tr>
+<tr><th id="416">416</th><td>      <i>// This constructor is non-standard, it is used by weak_ptr::lock().</i>&nbsp</td></tr>
+<tr><th id="417">417</th><td>      <dfn class="decl def fn" id="_ZNSt10shared_ptrC1ERKSt8weak_ptrIT_ESt9nothrow_t" title='std::shared_ptr::shared_ptr&lt;_Tp&gt;' data-ref="_ZNSt10shared_ptrC1ERKSt8weak_ptrIT_ESt9nothrow_t">shared_ptr</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Tp&gt;&amp; <dfn class="local col6 decl" id="226__r" title='__r' data-type='const weak_ptr&lt;_Tp&gt; &amp;' data-ref="226__r">__r</dfn>, <span class="namespace">std::</span><a class="type" href="../new.html#std::nothrow_t" title='std::nothrow_t' data-ref="std::nothrow_t">nothrow_t</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="418">418</th><td>      : <a class="type" href="shared_ptr_base.h.html#std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</a>&lt;_Tp&gt;(<a class="local col6 ref" href="#226__r" title='__r' data-ref="226__r">__r</a>, <span class="namespace">std::</span><a class="ref" href="../new.html#std::nothrow" title='std::nothrow' data-ref="std::nothrow">nothrow</a>) { }&nbsp</td></tr>
+<tr><th id="419">419</th><td>&nbsp</td></tr>
+<tr><th id="420">420</th><td>      <b>friend</b> <b>class</b> <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="421">421</th><td>    };&nbsp</td></tr>
+<tr><th id="422">422</th><td>&nbsp</td></tr>
+<tr><th id="423">423</th><td><u>#<span data-ppcond="423">if</span> <span class="macro" title="201703L" data-ref="_M/__cpp_deduction_guides">__cpp_deduction_guides</span> &gt;= 201606</u>&nbsp</td></tr>
+<tr><th id="424">424</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="425">425</th><td>    <dfn class="tu decl fn" id="std::{deductionguideforshared_ptr}" title='std::&lt;deduction guide for shared_ptr&gt;' data-type='shared_ptr&lt;_Tp&gt; std::&lt;deduction guide for shared_ptr&gt;(weak_ptr&lt;_Tp&gt; )' data-ref="std::{deductionguideforshared_ptr}">shared_ptr</dfn>(<a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Tp&gt;) -&gt;  <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="426">426</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Del&gt;&nbsp</td></tr>
+<tr><th id="427">427</th><td>    <dfn class="tu decl fn" id="std::{deductionguideforshared_ptr}" title='std::&lt;deduction guide for shared_ptr&gt;' data-type='shared_ptr&lt;_Tp&gt; std::&lt;deduction guide for shared_ptr&gt;(unique_ptr&lt;_Tp, _Del&gt; )' data-ref="std::{deductionguideforshared_ptr}">shared_ptr</dfn>(<a class="type" href="unique_ptr.h.html#std::unique_ptr" title='std::unique_ptr' data-ref="std::unique_ptr">unique_ptr</a>&lt;_Tp, _Del&gt;) -&gt;  <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="428">428</th><td><u>#<span data-ppcond="423">endif</span></u>&nbsp</td></tr>
+<tr><th id="429">429</th><td>&nbsp</td></tr>
+<tr><th id="430">430</th><td>  <i>// 20.7.2.2.7 shared_ptr comparisons</i>&nbsp</td></tr>
+<tr><th id="431">431</th><td><i></i>&nbsp</td></tr>
+<tr><th id="432">432</th><td><i>  /// @relates shared_ptr @{</i>&nbsp</td></tr>
+<tr><th id="433">433</th><td><i></i>&nbsp</td></tr>
+<tr><th id="434">434</th><td><i>  /// Equality operator for shared_ptr objects, compares the stored pointers</i>&nbsp</td></tr>
+<tr><th id="435">435</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="436">436</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#131" title="[[__nodiscard__]]" data-ref="_M/_GLIBCXX_NODISCARD">_GLIBCXX_NODISCARD</a> <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="437">437</th><td>    <dfn class="decl def fn" id="_ZSteqRKSt10shared_ptrIT_ERKS_IT0_E" title='std::operator==' data-ref="_ZSteqRKSt10shared_ptrIT_ERKS_IT0_E"><b>operator</b>==</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&amp; <dfn class="local col7 decl" id="227__a" title='__a' data-type='const shared_ptr&lt;_Tp&gt; &amp;' data-ref="227__a">__a</dfn>, <em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Up&gt;&amp; <dfn class="local col8 decl" id="228__b" title='__b' data-type='const shared_ptr&lt;_Up&gt; &amp;' data-ref="228__b">__b</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="438">438</th><td>    { <b>return</b> <a class="local col7 ref" href="#227__a" title='__a' data-ref="227__a">__a</a>.get() == <a class="local col8 ref" href="#228__b" title='__b' data-ref="228__b">__b</a>.get(); }&nbsp</td></tr>
+<tr><th id="439">439</th><td>&nbsp</td></tr>
+<tr><th id="440">440</th><td>  <i class="doc">/// shared_ptr comparison with nullptr</i>&nbsp</td></tr>
+<tr><th id="441">441</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="442">442</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#131" title="[[__nodiscard__]]" data-ref="_M/_GLIBCXX_NODISCARD">_GLIBCXX_NODISCARD</a> <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="443">443</th><td>    <dfn class="decl def fn" id="_ZSteqRKSt10shared_ptrIT_EDn" title='std::operator==' data-ref="_ZSteqRKSt10shared_ptrIT_EDn"><b>operator</b>==</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&amp; <dfn class="local col9 decl" id="229__a" title='__a' data-type='const shared_ptr&lt;_Tp&gt; &amp;' data-ref="229__a">__a</dfn>, <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::nullptr_t" title='std::nullptr_t' data-type='decltype(nullptr)' data-ref="std::nullptr_t">nullptr_t</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="444">444</th><td>    { <b>return</b> !<a class="local col9 ref" href="#229__a" title='__a' data-ref="229__a">__a</a>; }&nbsp</td></tr>
+<tr><th id="445">445</th><td>&nbsp</td></tr>
+<tr><th id="446">446</th><td><u>#<span data-ppcond="446">ifdef</span> <a class="macro" href="../compare.html#42" data-ref="_M/__cpp_lib_three_way_comparison">__cpp_lib_three_way_comparison</a></u>&nbsp</td></tr>
+<tr><th id="447">447</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="448">448</th><td>    <b>inline</b> <a class="type" href="../compare.html#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>&nbsp</td></tr>
+<tr><th id="449">449</th><td>    <dfn class="decl def fn" id="_ZStssRKSt10shared_ptrIT_ERKS_IT0_E" title='std::operator&lt;=&gt;' data-ref="_ZStssRKSt10shared_ptrIT_ERKS_IT0_E"><b>operator</b>&lt;=&gt;</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&amp; <dfn class="local col0 decl" id="230__a" title='__a' data-type='const shared_ptr&lt;_Tp&gt; &amp;' data-ref="230__a">__a</dfn>,&nbsp</td></tr>
+<tr><th id="450">450</th><td>		<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Up&gt;&amp; <dfn class="local col1 decl" id="231__b" title='__b' data-type='const shared_ptr&lt;_Up&gt; &amp;' data-ref="231__b">__b</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="451">451</th><td>    { <b>return</b> <a class="type" href="../compare.html#std::compare_three_way" title='std::compare_three_way' data-ref="std::compare_three_way">compare_three_way</a><a class="ref fn" href="../compare.html#501" title='std::compare_three_way::compare_three_way' data-ref="_ZNSt17compare_three_wayC1Ev">(</a>)(<a class="local col0 ref" href="#230__a" title='__a' data-ref="230__a">__a</a>.get(), <a class="local col1 ref" href="#231__b" title='__b' data-ref="231__b">__b</a>.get()); }&nbsp</td></tr>
+<tr><th id="452">452</th><td>&nbsp</td></tr>
+<tr><th id="453">453</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="454">454</th><td>    <b>inline</b> <a class="type" href="../compare.html#std::strong_ordering" title='std::strong_ordering' data-ref="std::strong_ordering">strong_ordering</a>&nbsp</td></tr>
+<tr><th id="455">455</th><td>    <dfn class="decl def fn" id="_ZStssRKSt10shared_ptrIT_EDn" title='std::operator&lt;=&gt;' data-ref="_ZStssRKSt10shared_ptrIT_EDn"><b>operator</b>&lt;=&gt;</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&amp; <dfn class="local col2 decl" id="232__a" title='__a' data-type='const shared_ptr&lt;_Tp&gt; &amp;' data-ref="232__a">__a</dfn>, <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::nullptr_t" title='std::nullptr_t' data-type='decltype(nullptr)' data-ref="std::nullptr_t">nullptr_t</a>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="456">456</th><td>    {&nbsp</td></tr>
+<tr><th id="457">457</th><td>      <b>using</b> <dfn class="local col3 typedef" id="233pointer" title='pointer' data-type='typename shared_ptr&lt;_Tp&gt;::element_type *' data-ref="233pointer">pointer</dfn> = <b>typename</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;::element_type*;&nbsp</td></tr>
+<tr><th id="458">458</th><td>      <b>return</b> <a class="type" href="../compare.html#std::compare_three_way" title='std::compare_three_way' data-ref="std::compare_three_way">compare_three_way</a><a class="ref fn" href="../compare.html#501" title='std::compare_three_way::compare_three_way' data-ref="_ZNSt17compare_three_wayC1Ev">(</a>)(<a class="local col2 ref" href="#232__a" title='__a' data-ref="232__a">__a</a>.get(), <b>static_cast</b>&lt;<a class="local col3 typedef" href="#233pointer" title='pointer' data-type='typename shared_ptr&lt;_Tp&gt;::element_type *' data-ref="233pointer">pointer</a>&gt;(<b>nullptr</b>));&nbsp</td></tr>
+<tr><th id="459">459</th><td>    }&nbsp</td></tr>
+<tr><th id="460">460</th><td><u>#<span data-ppcond="446">else</span></u>&nbsp</td></tr>
+<tr><th id="461">461</th><td>  <i class="doc">/// shared_ptr comparison with nullptr</i>&nbsp</td></tr>
+<tr><th id="462">462</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="463">463</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="464">464</th><td>    <b>operator</b>==(nullptr_t, <em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="465">465</th><td>    { <b>return</b> !__a; }&nbsp</td></tr>
+<tr><th id="466">466</th><td>&nbsp</td></tr>
+<tr><th id="467">467</th><td>  <i class="doc">/// Inequality operator for shared_ptr objects, compares the stored pointers</i>&nbsp</td></tr>
+<tr><th id="468">468</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="469">469</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="470">470</th><td>    <b>operator</b>!=(<em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a, <em>const</em> shared_ptr&lt;_Up&gt;&amp; __b) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="471">471</th><td>    { <b>return</b> __a.get() != __b.get(); }&nbsp</td></tr>
+<tr><th id="472">472</th><td>&nbsp</td></tr>
+<tr><th id="473">473</th><td>  <i class="doc">/// shared_ptr comparison with nullptr</i>&nbsp</td></tr>
+<tr><th id="474">474</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="475">475</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="476">476</th><td>    <b>operator</b>!=(<em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a, nullptr_t) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="477">477</th><td>    { <b>return</b> (<em>bool</em>)__a; }&nbsp</td></tr>
+<tr><th id="478">478</th><td>&nbsp</td></tr>
+<tr><th id="479">479</th><td>  <i class="doc">/// shared_ptr comparison with nullptr</i>&nbsp</td></tr>
+<tr><th id="480">480</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="481">481</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="482">482</th><td>    <b>operator</b>!=(nullptr_t, <em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="483">483</th><td>    { <b>return</b> (<em>bool</em>)__a; }&nbsp</td></tr>
+<tr><th id="484">484</th><td>&nbsp</td></tr>
+<tr><th id="485">485</th><td>  <i class="doc">/// Relational operator for shared_ptr objects, compares the stored pointers</i>&nbsp</td></tr>
+<tr><th id="486">486</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="487">487</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="488">488</th><td>    <b>operator</b>&lt;(<em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a, <em>const</em> shared_ptr&lt;_Up&gt;&amp; __b) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="489">489</th><td>    {&nbsp</td></tr>
+<tr><th id="490">490</th><td>      <b>using</b> _Tp_elt = <b>typename</b> shared_ptr&lt;_Tp&gt;::element_type;&nbsp</td></tr>
+<tr><th id="491">491</th><td>      <b>using</b> _Up_elt = <b>typename</b> shared_ptr&lt;_Up&gt;::element_type;&nbsp</td></tr>
+<tr><th id="492">492</th><td>      <b>using</b> _Vp = <b>typename</b> common_type&lt;_Tp_elt*, _Up_elt*&gt;::type;&nbsp</td></tr>
+<tr><th id="493">493</th><td>      <b>return</b> less&lt;_Vp&gt;()(__a.get(), __b.get());&nbsp</td></tr>
+<tr><th id="494">494</th><td>    }&nbsp</td></tr>
+<tr><th id="495">495</th><td>&nbsp</td></tr>
+<tr><th id="496">496</th><td>  <i class="doc">/// shared_ptr comparison with nullptr</i>&nbsp</td></tr>
+<tr><th id="497">497</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="498">498</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="499">499</th><td>    <b>operator</b>&lt;(<em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a, nullptr_t) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="500">500</th><td>    {&nbsp</td></tr>
+<tr><th id="501">501</th><td>      <b>using</b> _Tp_elt = <b>typename</b> shared_ptr&lt;_Tp&gt;::element_type;&nbsp</td></tr>
+<tr><th id="502">502</th><td>      <b>return</b> less&lt;_Tp_elt*&gt;()(__a.get(), <b>nullptr</b>);&nbsp</td></tr>
+<tr><th id="503">503</th><td>    }&nbsp</td></tr>
+<tr><th id="504">504</th><td>&nbsp</td></tr>
+<tr><th id="505">505</th><td>  <i class="doc">/// shared_ptr comparison with nullptr</i>&nbsp</td></tr>
+<tr><th id="506">506</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="507">507</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="508">508</th><td>    <b>operator</b>&lt;(nullptr_t, <em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="509">509</th><td>    {&nbsp</td></tr>
+<tr><th id="510">510</th><td>      <b>using</b> _Tp_elt = <b>typename</b> shared_ptr&lt;_Tp&gt;::element_type;&nbsp</td></tr>
+<tr><th id="511">511</th><td>      <b>return</b> less&lt;_Tp_elt*&gt;()(<b>nullptr</b>, __a.get());&nbsp</td></tr>
+<tr><th id="512">512</th><td>    }&nbsp</td></tr>
+<tr><th id="513">513</th><td>&nbsp</td></tr>
+<tr><th id="514">514</th><td>  <i class="doc">/// Relational operator for shared_ptr objects, compares the stored pointers</i>&nbsp</td></tr>
+<tr><th id="515">515</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="516">516</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="517">517</th><td>    <b>operator</b>&lt;=(<em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a, <em>const</em> shared_ptr&lt;_Up&gt;&amp; __b) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="518">518</th><td>    { <b>return</b> !(__b &lt; __a); }&nbsp</td></tr>
+<tr><th id="519">519</th><td>&nbsp</td></tr>
+<tr><th id="520">520</th><td>  <i class="doc">/// shared_ptr comparison with nullptr</i>&nbsp</td></tr>
+<tr><th id="521">521</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="522">522</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="523">523</th><td>    <b>operator</b>&lt;=(<em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a, nullptr_t) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="524">524</th><td>    { <b>return</b> !(<b>nullptr</b> &lt; __a); }&nbsp</td></tr>
+<tr><th id="525">525</th><td>&nbsp</td></tr>
+<tr><th id="526">526</th><td>  <i class="doc">/// shared_ptr comparison with nullptr</i>&nbsp</td></tr>
+<tr><th id="527">527</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="528">528</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="529">529</th><td>    <b>operator</b>&lt;=(nullptr_t, <em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="530">530</th><td>    { <b>return</b> !(__a &lt; <b>nullptr</b>); }&nbsp</td></tr>
+<tr><th id="531">531</th><td>&nbsp</td></tr>
+<tr><th id="532">532</th><td>  <i class="doc">/// Relational operator for shared_ptr objects, compares the stored pointers</i>&nbsp</td></tr>
+<tr><th id="533">533</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="534">534</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="535">535</th><td>    <b>operator</b>&gt;(<em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a, <em>const</em> shared_ptr&lt;_Up&gt;&amp; __b) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="536">536</th><td>    { <b>return</b> (__b &lt; __a); }&nbsp</td></tr>
+<tr><th id="537">537</th><td>&nbsp</td></tr>
+<tr><th id="538">538</th><td>  <i class="doc">/// shared_ptr comparison with nullptr</i>&nbsp</td></tr>
+<tr><th id="539">539</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="540">540</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="541">541</th><td>    <b>operator</b>&gt;(<em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a, nullptr_t) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="542">542</th><td>    { <b>return</b> <b>nullptr</b> &lt; __a; }&nbsp</td></tr>
+<tr><th id="543">543</th><td>&nbsp</td></tr>
+<tr><th id="544">544</th><td>  <i class="doc">/// shared_ptr comparison with nullptr</i>&nbsp</td></tr>
+<tr><th id="545">545</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="546">546</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="547">547</th><td>    <b>operator</b>&gt;(nullptr_t, <em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="548">548</th><td>    { <b>return</b> __a &lt; <b>nullptr</b>; }&nbsp</td></tr>
+<tr><th id="549">549</th><td>&nbsp</td></tr>
+<tr><th id="550">550</th><td>  <i class="doc">/// Relational operator for shared_ptr objects, compares the stored pointers</i>&nbsp</td></tr>
+<tr><th id="551">551</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="552">552</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="553">553</th><td>    <b>operator</b>&gt;=(<em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a, <em>const</em> shared_ptr&lt;_Up&gt;&amp; __b) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="554">554</th><td>    { <b>return</b> !(__a &lt; __b); }&nbsp</td></tr>
+<tr><th id="555">555</th><td>&nbsp</td></tr>
+<tr><th id="556">556</th><td>  <i class="doc">/// shared_ptr comparison with nullptr</i>&nbsp</td></tr>
+<tr><th id="557">557</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="558">558</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="559">559</th><td>    <b>operator</b>&gt;=(<em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a, nullptr_t) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="560">560</th><td>    { <b>return</b> !(__a &lt; <b>nullptr</b>); }&nbsp</td></tr>
+<tr><th id="561">561</th><td>&nbsp</td></tr>
+<tr><th id="562">562</th><td>  <i class="doc">/// shared_ptr comparison with nullptr</i>&nbsp</td></tr>
+<tr><th id="563">563</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="564">564</th><td>    _GLIBCXX_NODISCARD <b>inline</b> <em>bool</em>&nbsp</td></tr>
+<tr><th id="565">565</th><td>    <b>operator</b>&gt;=(nullptr_t, <em>const</em> shared_ptr&lt;_Tp&gt;&amp; __a) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="566">566</th><td>    { <b>return</b> !(<b>nullptr</b> &lt; __a); }&nbsp</td></tr>
+<tr><th id="567">567</th><td><u>#<span data-ppcond="446">endif</span></u>&nbsp</td></tr>
+<tr><th id="568">568</th><td>&nbsp</td></tr>
+<tr><th id="569">569</th><td>  <i>// 20.7.2.2.8 shared_ptr specialized algorithms.</i>&nbsp</td></tr>
+<tr><th id="570">570</th><td><i></i>&nbsp</td></tr>
+<tr><th id="571">571</th><td><i>  /// Swap overload for shared_ptr</i>&nbsp</td></tr>
+<tr><th id="572">572</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="573">573</th><td>    <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="574">574</th><td>    <dfn class="decl def fn" id="_ZSt4swapRSt10shared_ptrIT_ES2_" title='std::swap' data-ref="_ZSt4swapRSt10shared_ptrIT_ES2_">swap</dfn>(<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&amp; <dfn class="local col4 decl" id="234__a" title='__a' data-type='shared_ptr&lt;_Tp&gt; &amp;' data-ref="234__a">__a</dfn>, <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&amp; <dfn class="local col5 decl" id="235__b" title='__b' data-type='shared_ptr&lt;_Tp&gt; &amp;' data-ref="235__b">__b</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="575">575</th><td>    { <a class="local col4 ref" href="#234__a" title='__a' data-ref="234__a">__a</a>.swap(<a class="local col5 ref" href="#235__b" title='__b' data-ref="235__b">__b</a>); }&nbsp</td></tr>
+<tr><th id="576">576</th><td>&nbsp</td></tr>
+<tr><th id="577">577</th><td>  <i>// 20.7.2.2.9 shared_ptr casts.</i>&nbsp</td></tr>
+<tr><th id="578">578</th><td><i></i>&nbsp</td></tr>
+<tr><th id="579">579</th><td><i>  /// Convert type of `shared_ptr`, via `static_cast`</i>&nbsp</td></tr>
+<tr><th id="580">580</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="581">581</th><td>    <b>inline</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="582">582</th><td>    <dfn class="decl def fn" id="_ZSt19static_pointer_castRKSt10shared_ptrIT0_E" title='std::static_pointer_cast' data-ref="_ZSt19static_pointer_castRKSt10shared_ptrIT0_E">static_pointer_cast</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Up&gt;&amp; <dfn class="local col6 decl" id="236__r" title='__r' data-type='const shared_ptr&lt;_Up&gt; &amp;' data-ref="236__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="583">583</th><td>    {&nbsp</td></tr>
+<tr><th id="584">584</th><td>      <b>using</b> <dfn class="local col7 typedef" id="237_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="237_Sp">_Sp</dfn> = <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="585">585</th><td>      <b>return</b> <a class="local col7 typedef" href="#237_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="237_Sp">_Sp</a>(<a class="local col6 ref" href="#236__r" title='__r' data-ref="236__r">__r</a>, <b>static_cast</b>&lt;<b>typename</b> <a class="local col7 typedef" href="#237_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="237_Sp">_Sp</a>::element_type*&gt;(<a class="local col6 ref" href="#236__r" title='__r' data-ref="236__r">__r</a>.get()));&nbsp</td></tr>
+<tr><th id="586">586</th><td>    }&nbsp</td></tr>
+<tr><th id="587">587</th><td>&nbsp</td></tr>
+<tr><th id="588">588</th><td>  <i class="doc">/// Convert type of `shared_ptr`, via `const_cast`</i>&nbsp</td></tr>
+<tr><th id="589">589</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="590">590</th><td>    <b>inline</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="591">591</th><td>    <dfn class="decl def fn" id="_ZSt18const_pointer_castRKSt10shared_ptrIT0_E" title='std::const_pointer_cast' data-ref="_ZSt18const_pointer_castRKSt10shared_ptrIT0_E">const_pointer_cast</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Up&gt;&amp; <dfn class="local col8 decl" id="238__r" title='__r' data-type='const shared_ptr&lt;_Up&gt; &amp;' data-ref="238__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="592">592</th><td>    {&nbsp</td></tr>
+<tr><th id="593">593</th><td>      <b>using</b> <dfn class="local col9 typedef" id="239_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="239_Sp">_Sp</dfn> = <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="594">594</th><td>      <b>return</b> <a class="local col9 typedef" href="#239_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="239_Sp">_Sp</a>(<a class="local col8 ref" href="#238__r" title='__r' data-ref="238__r">__r</a>, <b>const_cast</b>&lt;<b>typename</b> <a class="local col9 typedef" href="#239_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="239_Sp">_Sp</a>::element_type*&gt;(<a class="local col8 ref" href="#238__r" title='__r' data-ref="238__r">__r</a>.get()));&nbsp</td></tr>
+<tr><th id="595">595</th><td>    }&nbsp</td></tr>
+<tr><th id="596">596</th><td>&nbsp</td></tr>
+<tr><th id="597">597</th><td>  <i class="doc">/// Convert type of `shared_ptr`, via `dynamic_cast`</i>&nbsp</td></tr>
+<tr><th id="598">598</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="599">599</th><td>    <b>inline</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="600">600</th><td>    <dfn class="decl def fn" id="_ZSt20dynamic_pointer_castRKSt10shared_ptrIT0_E" title='std::dynamic_pointer_cast' data-ref="_ZSt20dynamic_pointer_castRKSt10shared_ptrIT0_E">dynamic_pointer_cast</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Up&gt;&amp; <dfn class="local col0 decl" id="240__r" title='__r' data-type='const shared_ptr&lt;_Up&gt; &amp;' data-ref="240__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="601">601</th><td>    {&nbsp</td></tr>
+<tr><th id="602">602</th><td>      <b>using</b> <dfn class="local col1 typedef" id="241_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="241_Sp">_Sp</dfn> = <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="603">603</th><td>      <b>if</b> (<em>auto</em>* <dfn class="local col2 decl" id="242__p" title='__p' data-type='auto *' data-ref="242__p"><a class="local col2 ref" href="#242__p" title='__p' data-ref="242__p">__p</a></dfn> = <b>dynamic_cast</b>&lt;<b>typename</b> <a class="local col1 typedef" href="#241_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="241_Sp">_Sp</a>::element_type*&gt;(<a class="local col0 ref" href="#240__r" title='__r' data-ref="240__r">__r</a>.get()))&nbsp</td></tr>
+<tr><th id="604">604</th><td>	<b>return</b> <a class="local col1 typedef" href="#241_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="241_Sp">_Sp</a>(<a class="local col0 ref" href="#240__r" title='__r' data-ref="240__r">__r</a>, <a class="local col2 ref" href="#242__p" title='__p' data-ref="242__p">__p</a>);&nbsp</td></tr>
+<tr><th id="605">605</th><td>      <b>return</b> <a class="local col1 typedef" href="#241_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="241_Sp">_Sp</a>();&nbsp</td></tr>
+<tr><th id="606">606</th><td>    }&nbsp</td></tr>
+<tr><th id="607">607</th><td>&nbsp</td></tr>
+<tr><th id="608">608</th><td><u>#<span data-ppcond="608">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="609">609</th><td>  <i class="doc">/// Convert type of `shared_ptr`, via `reinterpret_cast`</i>&nbsp</td></tr>
+<tr><th id="610">610</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="611">611</th><td>    <b>inline</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="612">612</th><td>    <dfn class="decl def fn" id="_ZSt24reinterpret_pointer_castRKSt10shared_ptrIT0_E" title='std::reinterpret_pointer_cast' data-ref="_ZSt24reinterpret_pointer_castRKSt10shared_ptrIT0_E">reinterpret_pointer_cast</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Up&gt;&amp; <dfn class="local col3 decl" id="243__r" title='__r' data-type='const shared_ptr&lt;_Up&gt; &amp;' data-ref="243__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="613">613</th><td>    {&nbsp</td></tr>
+<tr><th id="614">614</th><td>      <b>using</b> <dfn class="local col4 typedef" id="244_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="244_Sp">_Sp</dfn> = <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="615">615</th><td>      <b>return</b> <a class="local col4 typedef" href="#244_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="244_Sp">_Sp</a>(<a class="local col3 ref" href="#243__r" title='__r' data-ref="243__r">__r</a>, <b>reinterpret_cast</b>&lt;<b>typename</b> <a class="local col4 typedef" href="#244_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="244_Sp">_Sp</a>::element_type*&gt;(<a class="local col3 ref" href="#243__r" title='__r' data-ref="243__r">__r</a>.get()));&nbsp</td></tr>
+<tr><th id="616">616</th><td>    }&nbsp</td></tr>
+<tr><th id="617">617</th><td>&nbsp</td></tr>
+<tr><th id="618">618</th><td><u>#<span data-ppcond="618">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="619">619</th><td>  <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="620">620</th><td><i>  // 2996. Missing rvalue overloads for shared_ptr operations</i>&nbsp</td></tr>
+<tr><th id="621">621</th><td><i></i>&nbsp</td></tr>
+<tr><th id="622">622</th><td><i>  /// Convert type of `shared_ptr` rvalue, via `static_cast`</i>&nbsp</td></tr>
+<tr><th id="623">623</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="624">624</th><td>    <b>inline</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="625">625</th><td>    <dfn class="decl def fn" id="_ZSt19static_pointer_castOSt10shared_ptrIT0_E" title='std::static_pointer_cast' data-ref="_ZSt19static_pointer_castOSt10shared_ptrIT0_E">static_pointer_cast</dfn>(<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Up&gt;&amp;&amp; <dfn class="local col5 decl" id="245__r" title='__r' data-type='shared_ptr&lt;_Up&gt; &amp;&amp;' data-ref="245__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="626">626</th><td>    {&nbsp</td></tr>
+<tr><th id="627">627</th><td>      <b>using</b> <dfn class="local col6 typedef" id="246_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="246_Sp">_Sp</dfn> = <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="628">628</th><td>      <b>return</b> <a class="local col6 typedef" href="#246_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="246_Sp">_Sp</a>(<span class="namespace">std::</span>move(<a class="local col5 ref" href="#245__r" title='__r' data-ref="245__r">__r</a>),&nbsp</td></tr>
+<tr><th id="629">629</th><td>		 <b>static_cast</b>&lt;<b>typename</b> <a class="local col6 typedef" href="#246_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="246_Sp">_Sp</a>::element_type*&gt;(<a class="local col5 ref" href="#245__r" title='__r' data-ref="245__r">__r</a>.get()));&nbsp</td></tr>
+<tr><th id="630">630</th><td>    }&nbsp</td></tr>
+<tr><th id="631">631</th><td>&nbsp</td></tr>
+<tr><th id="632">632</th><td>  <i class="doc">/// Convert type of `shared_ptr` rvalue, via `const_cast`</i>&nbsp</td></tr>
+<tr><th id="633">633</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="634">634</th><td>    <b>inline</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="635">635</th><td>    <dfn class="decl def fn" id="_ZSt18const_pointer_castOSt10shared_ptrIT0_E" title='std::const_pointer_cast' data-ref="_ZSt18const_pointer_castOSt10shared_ptrIT0_E">const_pointer_cast</dfn>(<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Up&gt;&amp;&amp; <dfn class="local col7 decl" id="247__r" title='__r' data-type='shared_ptr&lt;_Up&gt; &amp;&amp;' data-ref="247__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="636">636</th><td>    {&nbsp</td></tr>
+<tr><th id="637">637</th><td>      <b>using</b> <dfn class="local col8 typedef" id="248_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="248_Sp">_Sp</dfn> = <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="638">638</th><td>      <b>return</b> <a class="local col8 typedef" href="#248_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="248_Sp">_Sp</a>(<span class="namespace">std::</span>move(<a class="local col7 ref" href="#247__r" title='__r' data-ref="247__r">__r</a>),&nbsp</td></tr>
+<tr><th id="639">639</th><td>		 <b>const_cast</b>&lt;<b>typename</b> <a class="local col8 typedef" href="#248_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="248_Sp">_Sp</a>::element_type*&gt;(<a class="local col7 ref" href="#247__r" title='__r' data-ref="247__r">__r</a>.get()));&nbsp</td></tr>
+<tr><th id="640">640</th><td>    }&nbsp</td></tr>
+<tr><th id="641">641</th><td>&nbsp</td></tr>
+<tr><th id="642">642</th><td>  <i class="doc">/// Convert type of `shared_ptr` rvalue, via `dynamic_cast`</i>&nbsp</td></tr>
+<tr><th id="643">643</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="644">644</th><td>    <b>inline</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="645">645</th><td>    <dfn class="decl def fn" id="_ZSt20dynamic_pointer_castOSt10shared_ptrIT0_E" title='std::dynamic_pointer_cast' data-ref="_ZSt20dynamic_pointer_castOSt10shared_ptrIT0_E">dynamic_pointer_cast</dfn>(<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Up&gt;&amp;&amp; <dfn class="local col9 decl" id="249__r" title='__r' data-type='shared_ptr&lt;_Up&gt; &amp;&amp;' data-ref="249__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="646">646</th><td>    {&nbsp</td></tr>
+<tr><th id="647">647</th><td>      <b>using</b> <dfn class="local col0 typedef" id="250_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="250_Sp">_Sp</dfn> = <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="648">648</th><td>      <b>if</b> (<em>auto</em>* <dfn class="local col1 decl" id="251__p" title='__p' data-type='auto *' data-ref="251__p"><a class="local col1 ref" href="#251__p" title='__p' data-ref="251__p">__p</a></dfn> = <b>dynamic_cast</b>&lt;<b>typename</b> <a class="local col0 typedef" href="#250_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="250_Sp">_Sp</a>::element_type*&gt;(<a class="local col9 ref" href="#249__r" title='__r' data-ref="249__r">__r</a>.get()))&nbsp</td></tr>
+<tr><th id="649">649</th><td>	<b>return</b> <a class="local col0 typedef" href="#250_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="250_Sp">_Sp</a>(<span class="namespace">std::</span>move(<a class="local col9 ref" href="#249__r" title='__r' data-ref="249__r">__r</a>), <a class="local col1 ref" href="#251__p" title='__p' data-ref="251__p">__p</a>);&nbsp</td></tr>
+<tr><th id="650">650</th><td>      <b>return</b> <a class="local col0 typedef" href="#250_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="250_Sp">_Sp</a>();&nbsp</td></tr>
+<tr><th id="651">651</th><td>    }&nbsp</td></tr>
+<tr><th id="652">652</th><td>&nbsp</td></tr>
+<tr><th id="653">653</th><td>  <i class="doc">/// Convert type of `shared_ptr` rvalue, via `reinterpret_cast`</i>&nbsp</td></tr>
+<tr><th id="654">654</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="655">655</th><td>    <b>inline</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="656">656</th><td>    <dfn class="decl def fn" id="_ZSt24reinterpret_pointer_castOSt10shared_ptrIT0_E" title='std::reinterpret_pointer_cast' data-ref="_ZSt24reinterpret_pointer_castOSt10shared_ptrIT0_E">reinterpret_pointer_cast</dfn>(<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Up&gt;&amp;&amp; <dfn class="local col2 decl" id="252__r" title='__r' data-type='shared_ptr&lt;_Up&gt; &amp;&amp;' data-ref="252__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="657">657</th><td>    {&nbsp</td></tr>
+<tr><th id="658">658</th><td>      <b>using</b> <dfn class="local col3 typedef" id="253_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="253_Sp">_Sp</dfn> = <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="659">659</th><td>      <b>return</b> <a class="local col3 typedef" href="#253_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="253_Sp">_Sp</a>(<span class="namespace">std::</span>move(<a class="local col2 ref" href="#252__r" title='__r' data-ref="252__r">__r</a>),&nbsp</td></tr>
+<tr><th id="660">660</th><td>		 <b>reinterpret_cast</b>&lt;<b>typename</b> <a class="local col3 typedef" href="#253_Sp" title='_Sp' data-type='shared_ptr&lt;_Tp&gt;' data-ref="253_Sp">_Sp</a>::element_type*&gt;(<a class="local col2 ref" href="#252__r" title='__r' data-ref="252__r">__r</a>.get()));&nbsp</td></tr>
+<tr><th id="661">661</th><td>    }&nbsp</td></tr>
+<tr><th id="662">662</th><td><u>#<span data-ppcond="618">endif</span> // C++20</u>&nbsp</td></tr>
+<tr><th id="663">663</th><td><u>#<span data-ppcond="608">endif</span> // C++17</u>&nbsp</td></tr>
+<tr><th id="664">664</th><td>&nbsp</td></tr>
+<tr><th id="665">665</th><td>  <i class="doc">/// @}</i>&nbsp</td></tr>
+<tr><th id="666">666</th><td>&nbsp</td></tr>
+<tr><th id="667">667</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="668">668</th><td><i class="doc">   * <span class="command">@brief</span>  A non-owning observer for a pointer owned by a shared_ptr</i>&nbsp</td></tr>
+<tr><th id="669">669</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="670">670</th><td><i class="doc">   * A weak_ptr provides a safe alternative to a raw pointer when you want</i>&nbsp</td></tr>
+<tr><th id="671">671</th><td><i class="doc">   * a non-owning reference to an object that is managed by a shared_ptr.</i>&nbsp</td></tr>
+<tr><th id="672">672</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="673">673</th><td><i class="doc">   * Unlike a raw pointer, a weak_ptr can be converted to a new shared_ptr</i>&nbsp</td></tr>
+<tr><th id="674">674</th><td><i class="doc">   * that shares ownership with every other shared_ptr that already owns</i>&nbsp</td></tr>
+<tr><th id="675">675</th><td><i class="doc">   * the pointer. In other words you can upgrade from a non-owning "weak"</i>&nbsp</td></tr>
+<tr><th id="676">676</th><td><i class="doc">   * reference to an owning shared_ptr, without having access to any of</i>&nbsp</td></tr>
+<tr><th id="677">677</th><td><i class="doc">   * the existing shared_ptr objects.</i>&nbsp</td></tr>
+<tr><th id="678">678</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="679">679</th><td><i class="doc">   * Also unlike a raw pointer, a weak_ptr does not become "dangling" after</i>&nbsp</td></tr>
+<tr><th id="680">680</th><td><i class="doc">   * the object it points to has been destroyed. Instead, a weak_ptr</i>&nbsp</td></tr>
+<tr><th id="681">681</th><td><i class="doc">   * becomes _expired_ and can no longer be converted to a shared_ptr that</i>&nbsp</td></tr>
+<tr><th id="682">682</th><td><i class="doc">   * owns the freed pointer, so you cannot accidentally access the pointed-to</i>&nbsp</td></tr>
+<tr><th id="683">683</th><td><i class="doc">   * object after it has been destroyed.</i>&nbsp</td></tr>
+<tr><th id="684">684</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="685">685</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="686">686</th><td>    <b>class</b> <dfn class="type def" id="std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</dfn> : <b>public</b> <a class="type" href="shared_ptr_base.h.html#std::__weak_ptr" title='std::__weak_ptr' data-ref="std::__weak_ptr">__weak_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="687">687</th><td>    {&nbsp</td></tr>
+<tr><th id="688">688</th><td>      <b>template</b>&lt;<b>typename</b> _Arg&gt;&nbsp</td></tr>
+<tr><th id="689">689</th><td>	<b>using</b> <dfn class="typedef" id="std::weak_ptr::_Constructible" title='std::weak_ptr::_Constructible' data-type='typename enable_if&lt;is_constructible&lt;__weak_ptr&lt;_Tp&gt;, _Arg&gt;::value&gt;::type' data-ref="std::weak_ptr::_Constructible">_Constructible</dfn> = <b>typename</b> <a class="type" href="../type_traits.html#std::enable_if" title='std::enable_if' data-ref="std::enable_if">enable_if</a>&lt;&nbsp</td></tr>
+<tr><th id="690">690</th><td>	  <a class="type" href="../type_traits.html#std::is_constructible" title='std::is_constructible' data-ref="std::is_constructible">is_constructible</a>&lt;<a class="type" href="shared_ptr_base.h.html#std::__weak_ptr" title='std::__weak_ptr' data-ref="std::__weak_ptr">__weak_ptr</a>&lt;_Tp&gt;, _Arg&gt;::value&nbsp</td></tr>
+<tr><th id="691">691</th><td>	&gt;::type;&nbsp</td></tr>
+<tr><th id="692">692</th><td>&nbsp</td></tr>
+<tr><th id="693">693</th><td>      <b>template</b>&lt;<b>typename</b> _Arg&gt;&nbsp</td></tr>
+<tr><th id="694">694</th><td>	<b>using</b> <dfn class="typedef" id="std::weak_ptr::_Assignable" title='std::weak_ptr::_Assignable' data-type='typename enable_if&lt;is_assignable&lt;__weak_ptr&lt;_Tp&gt; &amp;, _Arg&gt;::value, weak_ptr&lt;_Tp&gt; &amp;&gt;::type' data-ref="std::weak_ptr::_Assignable">_Assignable</dfn> = <b>typename</b> <a class="type" href="../type_traits.html#std::enable_if" title='std::enable_if' data-ref="std::enable_if">enable_if</a>&lt;&nbsp</td></tr>
+<tr><th id="695">695</th><td>	  <a class="type" href="../type_traits.html#std::is_assignable" title='std::is_assignable' data-ref="std::is_assignable">is_assignable</a>&lt;<a class="type" href="shared_ptr_base.h.html#std::__weak_ptr" title='std::__weak_ptr' data-ref="std::__weak_ptr">__weak_ptr</a>&lt;_Tp&gt;&amp;, _Arg&gt;::value, weak_ptr&amp;&nbsp</td></tr>
+<tr><th id="696">696</th><td>	&gt;::type;&nbsp</td></tr>
+<tr><th id="697">697</th><td>&nbsp</td></tr>
+<tr><th id="698">698</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="699">699</th><td>      <b>constexpr</b> <dfn class="decl def fn" id="_ZNSt8weak_ptrC1Ev" title='std::weak_ptr::weak_ptr&lt;_Tp&gt;' data-ref="_ZNSt8weak_ptrC1Ev">weak_ptr</dfn>() <b>noexcept</b> = <b>default</b>;&nbsp</td></tr>
+<tr><th id="700">700</th><td>&nbsp</td></tr>
+<tr><th id="701">701</th><td>      <b>template</b>&lt;<b>typename</b> _Yp,&nbsp</td></tr>
+<tr><th id="702">702</th><td>	       <b>typename</b> = <a class="type" href="#std::weak_ptr::_Constructible" title='std::weak_ptr::_Constructible' data-ref="std::weak_ptr::_Constructible">_Constructible</a>&lt;<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&amp;&gt;&gt;&nbsp</td></tr>
+<tr><th id="703">703</th><td>	<dfn class="decl def fn" id="_ZNSt8weak_ptrC1ERKSt10shared_ptrITL0__E" title='std::weak_ptr::weak_ptr&lt;_Tp&gt;' data-ref="_ZNSt8weak_ptrC1ERKSt10shared_ptrITL0__E">weak_ptr</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&amp; <dfn class="local col4 decl" id="254__r" title='__r' data-type='const shared_ptr&lt;_Yp&gt; &amp;' data-ref="254__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="704">704</th><td>	: <a class="type" href="shared_ptr_base.h.html#std::__weak_ptr" title='std::__weak_ptr' data-ref="std::__weak_ptr">__weak_ptr</a>&lt;_Tp&gt;(<a class="local col4 ref" href="#254__r" title='__r' data-ref="254__r">__r</a>) { }&nbsp</td></tr>
+<tr><th id="705">705</th><td>&nbsp</td></tr>
+<tr><th id="706">706</th><td>      <dfn class="decl def fn" id="_ZNSt8weak_ptrC1ERKSt8weak_ptrIT_E" title='std::weak_ptr::weak_ptr&lt;_Tp&gt;' data-ref="_ZNSt8weak_ptrC1ERKSt8weak_ptrIT_E">weak_ptr</dfn>(<em>const</em> weak_ptr&amp;) <b>noexcept</b> = <b>default</b>;&nbsp</td></tr>
+<tr><th id="707">707</th><td>&nbsp</td></tr>
+<tr><th id="708">708</th><td>      <b>template</b>&lt;<b>typename</b> _Yp, <b>typename</b> = <a class="type" href="#std::weak_ptr::_Constructible" title='std::weak_ptr::_Constructible' data-ref="std::weak_ptr::_Constructible">_Constructible</a>&lt;<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Yp&gt;&amp;&gt;&gt;&nbsp</td></tr>
+<tr><th id="709">709</th><td>	<dfn class="decl def fn" id="_ZNSt8weak_ptrC1ERKSt8weak_ptrITL0__E" title='std::weak_ptr::weak_ptr&lt;_Tp&gt;' data-ref="_ZNSt8weak_ptrC1ERKSt8weak_ptrITL0__E">weak_ptr</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Yp&gt;&amp; <dfn class="local col5 decl" id="255__r" title='__r' data-type='const weak_ptr&lt;_Yp&gt; &amp;' data-ref="255__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="710">710</th><td>	: <a class="type" href="shared_ptr_base.h.html#std::__weak_ptr" title='std::__weak_ptr' data-ref="std::__weak_ptr">__weak_ptr</a>&lt;_Tp&gt;(<a class="local col5 ref" href="#255__r" title='__r' data-ref="255__r">__r</a>) { }&nbsp</td></tr>
+<tr><th id="711">711</th><td>&nbsp</td></tr>
+<tr><th id="712">712</th><td>      <dfn class="decl def fn" id="_ZNSt8weak_ptrC1EOSt8weak_ptrIT_E" title='std::weak_ptr::weak_ptr&lt;_Tp&gt;' data-ref="_ZNSt8weak_ptrC1EOSt8weak_ptrIT_E">weak_ptr</dfn>(weak_ptr&amp;&amp;) <b>noexcept</b> = <b>default</b>;&nbsp</td></tr>
+<tr><th id="713">713</th><td>&nbsp</td></tr>
+<tr><th id="714">714</th><td>      <b>template</b>&lt;<b>typename</b> _Yp, <b>typename</b> = <a class="type" href="#std::weak_ptr::_Constructible" title='std::weak_ptr::_Constructible' data-ref="std::weak_ptr::_Constructible">_Constructible</a>&lt;<a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Yp&gt;&gt;&gt;&nbsp</td></tr>
+<tr><th id="715">715</th><td>	<dfn class="decl def fn" id="_ZNSt8weak_ptrC1EOSt8weak_ptrITL0__E" title='std::weak_ptr::weak_ptr&lt;_Tp&gt;' data-ref="_ZNSt8weak_ptrC1EOSt8weak_ptrITL0__E">weak_ptr</dfn>(<a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Yp&gt;&amp;&amp; <dfn class="local col6 decl" id="256__r" title='__r' data-type='weak_ptr&lt;_Yp&gt; &amp;&amp;' data-ref="256__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="716">716</th><td>	: <a class="type" href="shared_ptr_base.h.html#std::__weak_ptr" title='std::__weak_ptr' data-ref="std::__weak_ptr">__weak_ptr</a>&lt;_Tp&gt;(<span class="namespace">std::</span>move(<a class="local col6 ref" href="#256__r" title='__r' data-ref="256__r">__r</a>)) { }&nbsp</td></tr>
+<tr><th id="717">717</th><td>&nbsp</td></tr>
+<tr><th id="718">718</th><td>      weak_ptr&amp;&nbsp</td></tr>
+<tr><th id="719">719</th><td>      <dfn class="decl def fn" id="_ZNSt8weak_ptraSERKSt8weak_ptrIT_E" title='std::weak_ptr::operator=' data-ref="_ZNSt8weak_ptraSERKSt8weak_ptrIT_E"><b>operator</b>=</dfn>(<em>const</em> weak_ptr&amp; <dfn class="local col7 decl" id="257__r" title='__r' data-type='const weak_ptr&lt;_Tp&gt; &amp;' data-ref="257__r">__r</dfn>) <b>noexcept</b> = <b>default</b>;&nbsp</td></tr>
+<tr><th id="720">720</th><td>&nbsp</td></tr>
+<tr><th id="721">721</th><td>      <b>template</b>&lt;<b>typename</b> _Yp&gt;&nbsp</td></tr>
+<tr><th id="722">722</th><td>	<a class="type" href="#std::weak_ptr::_Assignable" title='std::weak_ptr::_Assignable' data-ref="std::weak_ptr::_Assignable">_Assignable</a>&lt;<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Yp&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="723">723</th><td>	<dfn class="decl def fn" id="_ZNSt8weak_ptraSERKSt8weak_ptrITL0__E" title='std::weak_ptr::operator=' data-ref="_ZNSt8weak_ptraSERKSt8weak_ptrITL0__E"><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Yp&gt;&amp; <dfn class="local col8 decl" id="258__r" title='__r' data-type='const weak_ptr&lt;_Yp&gt; &amp;' data-ref="258__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="724">724</th><td>	{&nbsp</td></tr>
+<tr><th id="725">725</th><td>	  <b>this</b>-&gt;<a class="type" href="shared_ptr_base.h.html#std::__weak_ptr" title='std::__weak_ptr' data-ref="std::__weak_ptr">__weak_ptr</a>&lt;_Tp&gt;::<b>operator</b>=(<a class="local col8 ref" href="#258__r" title='__r' data-ref="258__r">__r</a>);&nbsp</td></tr>
+<tr><th id="726">726</th><td>	  <b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="727">727</th><td>	}&nbsp</td></tr>
+<tr><th id="728">728</th><td>&nbsp</td></tr>
+<tr><th id="729">729</th><td>      <b>template</b>&lt;<b>typename</b> _Yp&gt;&nbsp</td></tr>
+<tr><th id="730">730</th><td>	<a class="type" href="#std::weak_ptr::_Assignable" title='std::weak_ptr::_Assignable' data-ref="std::weak_ptr::_Assignable">_Assignable</a>&lt;<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&amp;&gt;&nbsp</td></tr>
+<tr><th id="731">731</th><td>	<dfn class="decl def fn" id="_ZNSt8weak_ptraSERKSt10shared_ptrITL0__E" title='std::weak_ptr::operator=' data-ref="_ZNSt8weak_ptraSERKSt10shared_ptrITL0__E"><b>operator</b>=</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Yp&gt;&amp; <dfn class="local col9 decl" id="259__r" title='__r' data-type='const shared_ptr&lt;_Yp&gt; &amp;' data-ref="259__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="732">732</th><td>	{&nbsp</td></tr>
+<tr><th id="733">733</th><td>	  <b>this</b>-&gt;<a class="type" href="shared_ptr_base.h.html#std::__weak_ptr" title='std::__weak_ptr' data-ref="std::__weak_ptr">__weak_ptr</a>&lt;_Tp&gt;::<b>operator</b>=(<a class="local col9 ref" href="#259__r" title='__r' data-ref="259__r">__r</a>);&nbsp</td></tr>
+<tr><th id="734">734</th><td>	  <b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="735">735</th><td>	}&nbsp</td></tr>
+<tr><th id="736">736</th><td>&nbsp</td></tr>
+<tr><th id="737">737</th><td>      weak_ptr&amp;&nbsp</td></tr>
+<tr><th id="738">738</th><td>      <dfn class="decl def fn" id="_ZNSt8weak_ptraSEOSt8weak_ptrIT_E" title='std::weak_ptr::operator=' data-ref="_ZNSt8weak_ptraSEOSt8weak_ptrIT_E"><b>operator</b>=</dfn>(weak_ptr&amp;&amp; <dfn class="local col0 decl" id="260__r" title='__r' data-type='weak_ptr&lt;_Tp&gt; &amp;&amp;' data-ref="260__r">__r</dfn>) <b>noexcept</b> = <b>default</b>;&nbsp</td></tr>
+<tr><th id="739">739</th><td>&nbsp</td></tr>
+<tr><th id="740">740</th><td>      <b>template</b>&lt;<b>typename</b> _Yp&gt;&nbsp</td></tr>
+<tr><th id="741">741</th><td>	<a class="type" href="#std::weak_ptr::_Assignable" title='std::weak_ptr::_Assignable' data-ref="std::weak_ptr::_Assignable">_Assignable</a>&lt;<a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Yp&gt;&gt;&nbsp</td></tr>
+<tr><th id="742">742</th><td>	<dfn class="decl def fn" id="_ZNSt8weak_ptraSEOSt8weak_ptrITL0__E" title='std::weak_ptr::operator=' data-ref="_ZNSt8weak_ptraSEOSt8weak_ptrITL0__E"><b>operator</b>=</dfn>(<a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Yp&gt;&amp;&amp; <dfn class="local col1 decl" id="261__r" title='__r' data-type='weak_ptr&lt;_Yp&gt; &amp;&amp;' data-ref="261__r">__r</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="743">743</th><td>	{&nbsp</td></tr>
+<tr><th id="744">744</th><td>	  <b>this</b>-&gt;<a class="type" href="shared_ptr_base.h.html#std::__weak_ptr" title='std::__weak_ptr' data-ref="std::__weak_ptr">__weak_ptr</a>&lt;_Tp&gt;::<b>operator</b>=(<span class="namespace">std::</span>move(<a class="local col1 ref" href="#261__r" title='__r' data-ref="261__r">__r</a>));&nbsp</td></tr>
+<tr><th id="745">745</th><td>	  <b>return</b> *<b>this</b>;&nbsp</td></tr>
+<tr><th id="746">746</th><td>	}&nbsp</td></tr>
+<tr><th id="747">747</th><td>&nbsp</td></tr>
+<tr><th id="748">748</th><td>      <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="749">749</th><td>      <dfn class="decl def fn" id="_ZNKSt8weak_ptr4lockEv" title='std::weak_ptr::lock' data-ref="_ZNKSt8weak_ptr4lockEv">lock</dfn>() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="750">750</th><td>      { <b>return</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;(*<b>this</b>, <span class="namespace">std::</span><a class="ref" href="../new.html#std::nothrow" title='std::nothrow' data-ref="std::nothrow">nothrow</a>); }&nbsp</td></tr>
+<tr><th id="751">751</th><td>    };&nbsp</td></tr>
+<tr><th id="752">752</th><td>&nbsp</td></tr>
+<tr><th id="753">753</th><td><u>#<span data-ppcond="753">if</span> <span class="macro" title="201703L" data-ref="_M/__cpp_deduction_guides">__cpp_deduction_guides</span> &gt;= 201606</u>&nbsp</td></tr>
+<tr><th id="754">754</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="755">755</th><td>    <dfn class="tu decl fn" id="std::{deductionguideforweak_ptr}" title='std::&lt;deduction guide for weak_ptr&gt;' data-type='weak_ptr&lt;_Tp&gt; std::&lt;deduction guide for weak_ptr&gt;(shared_ptr&lt;_Tp&gt; )' data-ref="std::{deductionguideforweak_ptr}">weak_ptr</dfn>(<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;) -&gt;  <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="756">756</th><td><u>#<span data-ppcond="753">endif</span></u>&nbsp</td></tr>
+<tr><th id="757">757</th><td>&nbsp</td></tr>
+<tr><th id="758">758</th><td>  <i>// 20.7.2.3.6 weak_ptr specialized algorithms.</i>&nbsp</td></tr>
+<tr><th id="759">759</th><td><i>  /// Swap overload for weak_ptr</i>&nbsp</td></tr>
+<tr><th id="760">760</th><td><i>  /// @relates weak_ptr</i>&nbsp</td></tr>
+<tr><th id="761">761</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="762">762</th><td>    <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="763">763</th><td>    <dfn class="decl def fn" id="_ZSt4swapRSt8weak_ptrIT_ES2_" title='std::swap' data-ref="_ZSt4swapRSt8weak_ptrIT_ES2_">swap</dfn>(<a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Tp&gt;&amp; <dfn class="local col2 decl" id="262__a" title='__a' data-type='weak_ptr&lt;_Tp&gt; &amp;' data-ref="262__a">__a</dfn>, <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Tp&gt;&amp; <dfn class="local col3 decl" id="263__b" title='__b' data-type='weak_ptr&lt;_Tp&gt; &amp;' data-ref="263__b">__b</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="764">764</th><td>    { <a class="local col2 ref" href="#262__a" title='__a' data-ref="262__a">__a</a>.swap(<a class="local col3 ref" href="#263__b" title='__b' data-ref="263__b">__b</a>); }&nbsp</td></tr>
+<tr><th id="765">765</th><td>&nbsp</td></tr>
+<tr><th id="766">766</th><td>&nbsp</td></tr>
+<tr><th id="767">767</th><td>  <i class="doc">/// Primary template owner_less</i>&nbsp</td></tr>
+<tr><th id="768">768</th><td>  <b>template</b>&lt;<b>typename</b> _Tp = <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="769">769</th><td>    <b>struct</b> <a class="type" href="shared_ptr_base.h.html#std::owner_less" title='std::owner_less' data-ref="std::owner_less" id="std::owner_less">owner_less</a>;&nbsp</td></tr>
+<tr><th id="770">770</th><td>&nbsp</td></tr>
+<tr><th id="771">771</th><td>  <i class="doc">/// Void specialization of owner_less compares either shared_ptr or weak_ptr</i>&nbsp</td></tr>
+<tr><th id="772">772</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="773">773</th><td>    <b>struct</b> <dfn class="type def" id="std::owner_less" title='std::owner_less' data-ref="std::owner_less"><a class="type" href="shared_ptr_base.h.html#std::owner_less" title='std::owner_less' data-ref="std::owner_less">owner_less</a></dfn>&lt;<em>void</em>&gt; : _Sp_owner_less&lt;<em>void</em>, <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="774">774</th><td>    { };&nbsp</td></tr>
+<tr><th id="775">775</th><td>&nbsp</td></tr>
+<tr><th id="776">776</th><td>  <i class="doc">/// Partial specialization of owner_less for shared_ptr.</i>&nbsp</td></tr>
+<tr><th id="777">777</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="778">778</th><td>    <b>struct</b> <dfn class="type def" id="std::owner_less" title='std::owner_less' data-ref="std::owner_less">owner_less</dfn>&lt;<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="779">779</th><td>    : <b>public</b> <a class="type" href="shared_ptr_base.h.html#std::_Sp_owner_less" title='std::_Sp_owner_less' data-ref="std::_Sp_owner_less">_Sp_owner_less</a>&lt;<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;, <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="780">780</th><td>    { };&nbsp</td></tr>
+<tr><th id="781">781</th><td>&nbsp</td></tr>
+<tr><th id="782">782</th><td>  <i class="doc">/// Partial specialization of owner_less for weak_ptr.</i>&nbsp</td></tr>
+<tr><th id="783">783</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="784">784</th><td>    <b>struct</b> <dfn class="type def" id="std::owner_less" title='std::owner_less' data-ref="std::owner_less">owner_less</dfn>&lt;<a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="785">785</th><td>    : <b>public</b> <a class="type" href="shared_ptr_base.h.html#std::_Sp_owner_less" title='std::_Sp_owner_less' data-ref="std::_Sp_owner_less">_Sp_owner_less</a>&lt;<a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Tp&gt;, <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="786">786</th><td>    { };&nbsp</td></tr>
+<tr><th id="787">787</th><td>&nbsp</td></tr>
+<tr><th id="788">788</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="789">789</th><td><i class="doc">   *  <span class="command">@brief</span> Base class allowing use of member function shared_from_this.</i>&nbsp</td></tr>
+<tr><th id="790">790</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="791">791</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="792">792</th><td>    <b>class</b> <dfn class="type def" id="std::enable_shared_from_this" title='std::enable_shared_from_this' data-ref="std::enable_shared_from_this">enable_shared_from_this</dfn>&nbsp</td></tr>
+<tr><th id="793">793</th><td>    {&nbsp</td></tr>
+<tr><th id="794">794</th><td>    <b>protected</b>:&nbsp</td></tr>
+<tr><th id="795">795</th><td>      <b>constexpr</b> <dfn class="decl def fn" id="_ZNSt23enable_shared_from_thisC1Ev" title='std::enable_shared_from_this::enable_shared_from_this&lt;_Tp&gt;' data-ref="_ZNSt23enable_shared_from_thisC1Ev">enable_shared_from_this</dfn>() <b>noexcept</b> { }&nbsp</td></tr>
+<tr><th id="796">796</th><td>&nbsp</td></tr>
+<tr><th id="797">797</th><td>      <dfn class="decl def fn" id="_ZNSt23enable_shared_from_thisC1ERKSt23enable_shared_from_thisIT_E" title='std::enable_shared_from_this::enable_shared_from_this&lt;_Tp&gt;' data-ref="_ZNSt23enable_shared_from_thisC1ERKSt23enable_shared_from_thisIT_E">enable_shared_from_this</dfn>(<em>const</em> enable_shared_from_this&amp;) <b>noexcept</b> { }&nbsp</td></tr>
+<tr><th id="798">798</th><td>&nbsp</td></tr>
+<tr><th id="799">799</th><td>      enable_shared_from_this&amp;&nbsp</td></tr>
+<tr><th id="800">800</th><td>      <dfn class="decl def fn" id="_ZNSt23enable_shared_from_thisaSERKSt23enable_shared_from_thisIT_E" title='std::enable_shared_from_this::operator=' data-ref="_ZNSt23enable_shared_from_thisaSERKSt23enable_shared_from_thisIT_E"><b>operator</b>=</dfn>(<em>const</em> enable_shared_from_this&amp;) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="801">801</th><td>      { <b>return</b> *<b>this</b>; }&nbsp</td></tr>
+<tr><th id="802">802</th><td>&nbsp</td></tr>
+<tr><th id="803">803</th><td>      <dfn class="decl def fn" id="_ZNSt23enable_shared_from_thisD1Ev" title='std::enable_shared_from_this::~enable_shared_from_this&lt;_Tp&gt;' data-ref="_ZNSt23enable_shared_from_thisD1Ev">~enable_shared_from_this</dfn>() { }&nbsp</td></tr>
+<tr><th id="804">804</th><td>&nbsp</td></tr>
+<tr><th id="805">805</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="806">806</th><td>      <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="807">807</th><td>      <dfn class="decl def fn" id="_ZNSt23enable_shared_from_this16shared_from_thisEv" title='std::enable_shared_from_this::shared_from_this' data-ref="_ZNSt23enable_shared_from_this16shared_from_thisEv">shared_from_this</dfn>()&nbsp</td></tr>
+<tr><th id="808">808</th><td>      { <b>return</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;(<b>this</b>-&gt;_M_weak_this); }&nbsp</td></tr>
+<tr><th id="809">809</th><td>&nbsp</td></tr>
+<tr><th id="810">810</th><td>      <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;<em>const</em> _Tp&gt;&nbsp</td></tr>
+<tr><th id="811">811</th><td>      <dfn class="decl def fn" id="_ZNKSt23enable_shared_from_this16shared_from_thisEv" title='std::enable_shared_from_this::shared_from_this' data-ref="_ZNKSt23enable_shared_from_this16shared_from_thisEv">shared_from_this</dfn>() <em>const</em>&nbsp</td></tr>
+<tr><th id="812">812</th><td>      { <b>return</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;<em>const</em> _Tp&gt;(<b>this</b>-&gt;_M_weak_this); }&nbsp</td></tr>
+<tr><th id="813">813</th><td>&nbsp</td></tr>
+<tr><th id="814">814</th><td><u>#<span data-ppcond="814">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201402L || !defined(<span class="macro" data-ref="_M/__STRICT_ANSI__">__STRICT_ANSI__</span>) // c++1z or gnu++11</u>&nbsp</td></tr>
+<tr><th id="815">815</th><td><u>#define <dfn class="macro" id="_M/__cpp_lib_enable_shared_from_this" data-ref="_M/__cpp_lib_enable_shared_from_this">__cpp_lib_enable_shared_from_this</dfn> 201603</u>&nbsp</td></tr>
+<tr><th id="816">816</th><td>      <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="817">817</th><td>      <dfn class="decl def fn" id="_ZNSt23enable_shared_from_this14weak_from_thisEv" title='std::enable_shared_from_this::weak_from_this' data-ref="_ZNSt23enable_shared_from_this14weak_from_thisEv">weak_from_this</dfn>() <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="818">818</th><td>      { <b>return</b> <b>this</b>-&gt;_M_weak_this; }&nbsp</td></tr>
+<tr><th id="819">819</th><td>&nbsp</td></tr>
+<tr><th id="820">820</th><td>      <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;<em>const</em> _Tp&gt;&nbsp</td></tr>
+<tr><th id="821">821</th><td>      <dfn class="decl def fn" id="_ZNKSt23enable_shared_from_this14weak_from_thisEv" title='std::enable_shared_from_this::weak_from_this' data-ref="_ZNKSt23enable_shared_from_this14weak_from_thisEv">weak_from_this</dfn>() <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="822">822</th><td>      { <b>return</b> <b>this</b>-&gt;_M_weak_this; }&nbsp</td></tr>
+<tr><th id="823">823</th><td><u>#<span data-ppcond="814">endif</span></u>&nbsp</td></tr>
+<tr><th id="824">824</th><td>&nbsp</td></tr>
+<tr><th id="825">825</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="826">826</th><td>      <b>template</b>&lt;<b>typename</b> _Tp1&gt;&nbsp</td></tr>
+<tr><th id="827">827</th><td>	<em>void</em>&nbsp</td></tr>
+<tr><th id="828">828</th><td>	<dfn class="decl def fn" id="_ZNKSt23enable_shared_from_this14_M_weak_assignEPTL0__RKSt14__shared_countILN9__gnu_cxx12_Lock_policyE2EE" title='std::enable_shared_from_this::_M_weak_assign' data-ref="_ZNKSt23enable_shared_from_this14_M_weak_assignEPTL0__RKSt14__shared_countILN9__gnu_cxx12_Lock_policyE2EE">_M_weak_assign</dfn>(_Tp1* <dfn class="local col4 decl" id="264__p" title='__p' data-type='_Tp1 *' data-ref="264__p">__p</dfn>, <em>const</em> <a class="type" href="shared_ptr_base.h.html#std::__shared_count" title='std::__shared_count' data-ref="std::__shared_count">__shared_count</a>&lt;&gt;&amp; <dfn class="local col5 decl" id="265__n" title='__n' data-type='const __shared_count&lt;&gt; &amp;' data-ref="265__n">__n</dfn>) <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="829">829</th><td>	{ <a class="member field" href="#std::enable_shared_from_this::_M_weak_this" title='std::enable_shared_from_this::_M_weak_this' data-ref="std::enable_shared_from_this::_M_weak_this">_M_weak_this</a>._M_assign(<a class="local col4 ref" href="#264__p" title='__p' data-ref="264__p">__p</a>, <a class="local col5 ref" href="#265__n" title='__n' data-ref="265__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="830">830</th><td>&nbsp</td></tr>
+<tr><th id="831">831</th><td>      <i>// Found by ADL when this is an associated class.</i>&nbsp</td></tr>
+<tr><th id="832">832</th><td>      <b>friend</b> <em>const</em> enable_shared_from_this*&nbsp</td></tr>
+<tr><th id="833">833</th><td>      <dfn class="decl def fn" id="_ZSt30__enable_shared_from_this_baseRKSt14__shared_countILN9__gnu_cxx12_Lock_policyE2EEPKSt23enable_shared_from_thisIT_E" title='std::__enable_shared_from_this_base' data-ref="_ZSt30__enable_shared_from_this_baseRKSt14__shared_countILN9__gnu_cxx12_Lock_policyE2EEPKSt23enable_shared_from_thisIT_E">__enable_shared_from_this_base</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::__shared_count" title='std::__shared_count' data-ref="std::__shared_count">__shared_count</a>&lt;&gt;&amp;,&nbsp</td></tr>
+<tr><th id="834">834</th><td>				     <em>const</em> enable_shared_from_this* <dfn class="local col6 decl" id="266__p" title='__p' data-type='const enable_shared_from_this&lt;_Tp&gt; *' data-ref="266__p">__p</dfn>)&nbsp</td></tr>
+<tr><th id="835">835</th><td>      { <b>return</b> <a class="local col6 ref" href="#266__p" title='__p' data-ref="266__p">__p</a>; }&nbsp</td></tr>
+<tr><th id="836">836</th><td>&nbsp</td></tr>
+<tr><th id="837">837</th><td>      <b>template</b>&lt;<b>typename</b>, _Lock_policy&gt;&nbsp</td></tr>
+<tr><th id="838">838</th><td>	<b>friend</b> <b>class</b> <dfn class="type" id="std::__shared_ptr" title='std::__shared_ptr' data-ref="std::__shared_ptr">__shared_ptr</dfn>;&nbsp</td></tr>
+<tr><th id="839">839</th><td>&nbsp</td></tr>
+<tr><th id="840">840</th><td>      <em>mutable</em> <a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Tp&gt;  <dfn class="decl field" id="std::enable_shared_from_this::_M_weak_this" title='std::enable_shared_from_this::_M_weak_this' data-ref="std::enable_shared_from_this::_M_weak_this">_M_weak_this</dfn>;&nbsp</td></tr>
+<tr><th id="841">841</th><td>    };&nbsp</td></tr>
+<tr><th id="842">842</th><td>&nbsp</td></tr>
+<tr><th id="843">843</th><td>  <i class="doc">/// <span class="command">@relates</span> <span class="verb">shared_ptr @{</span></i>&nbsp</td></tr>
+<tr><th id="844">844</th><td>&nbsp</td></tr>
+<tr><th id="845">845</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="846">846</th><td><i class="doc">   *  <span class="command">@brief</span>  Create an object that is owned by a shared_ptr.</i>&nbsp</td></tr>
+<tr><th id="847">847</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__a</span>     An allocator.</i>&nbsp</td></tr>
+<tr><th id="848">848</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__args</span>  Arguments for the<span class="command"> @a</span> <span class="arg">_Tp</span> object's constructor.</i>&nbsp</td></tr>
+<tr><th id="849">849</th><td><i class="doc">   *  <span class="command">@return</span> A shared_ptr that owns the newly created object.</i>&nbsp</td></tr>
+<tr><th id="850">850</th><td><i class="doc">   *  <span class="command">@throw</span>  An exception thrown from<span class="command"> @a</span> <span class="arg">_Alloc::allocate</span> or from the</i>&nbsp</td></tr>
+<tr><th id="851">851</th><td><i class="doc">   *          constructor of<span class="command"> @a</span> <span class="arg">_Tp.</span></i>&nbsp</td></tr>
+<tr><th id="852">852</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="853">853</th><td><i class="doc">   *  A copy of<span class="command"> @a</span> <span class="arg">__a</span> will be used to allocate memory for the shared_ptr</i>&nbsp</td></tr>
+<tr><th id="854">854</th><td><i class="doc">   *  and the new object.</i>&nbsp</td></tr>
+<tr><th id="855">855</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="856">856</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Alloc, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="857">857</th><td>    <b>inline</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="858">858</th><td>    <dfn class="decl def fn" id="_ZSt15allocate_sharedRKT0_DpOT1_" title='std::allocate_shared' data-ref="_ZSt15allocate_sharedRKT0_DpOT1_">allocate_shared</dfn>(<em>const</em> _Alloc&amp; <dfn class="local col7 decl" id="267__a" title='__a' data-type='const _Alloc &amp;' data-ref="267__a">__a</dfn>, _Args&amp;&amp;... <dfn class="local col8 decl" id="268__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="268__args">__args</dfn>)&nbsp</td></tr>
+<tr><th id="859">859</th><td>    {&nbsp</td></tr>
+<tr><th id="860">860</th><td>      <b>static_assert</b>(!<a class="type" href="../type_traits.html#std::is_array" title='std::is_array' data-ref="std::is_array">is_array</a>&lt;_Tp&gt;::value, <q>"make_shared&lt;T[]&gt; not supported"</q>);&nbsp</td></tr>
+<tr><th id="861">861</th><td>&nbsp</td></tr>
+<tr><th id="862">862</th><td>      <b>return</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;(<a class="type" href="shared_ptr_base.h.html#std::_Sp_alloc_shared_tag" title='std::_Sp_alloc_shared_tag' data-ref="std::_Sp_alloc_shared_tag">_Sp_alloc_shared_tag</a>&lt;_Alloc&gt;{<a class="local col7 ref" href="#267__a" title='__a' data-ref="267__a">__a</a>},&nbsp</td></tr>
+<tr><th id="863">863</th><td>			     <span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col8 ref" href="#268__args" title='__args' data-ref="268__args">__args</a>)...);&nbsp</td></tr>
+<tr><th id="864">864</th><td>    }&nbsp</td></tr>
+<tr><th id="865">865</th><td>&nbsp</td></tr>
+<tr><th id="866">866</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="867">867</th><td><i class="doc">   *  <span class="command">@brief</span>  Create an object that is owned by a shared_ptr.</i>&nbsp</td></tr>
+<tr><th id="868">868</th><td><i class="doc">   *  <span class="command">@param</span>  <span class="arg">__args</span>  Arguments for the<span class="command"> @a</span> <span class="arg">_Tp</span> object's constructor.</i>&nbsp</td></tr>
+<tr><th id="869">869</th><td><i class="doc">   *  <span class="command">@return</span> A shared_ptr that owns the newly created object.</i>&nbsp</td></tr>
+<tr><th id="870">870</th><td><i class="doc">   *  <span class="command">@throw</span>  std::bad_alloc, or an exception thrown from the</i>&nbsp</td></tr>
+<tr><th id="871">871</th><td><i class="doc">   *          constructor of<span class="command"> @a</span> <span class="arg">_Tp.</span></i>&nbsp</td></tr>
+<tr><th id="872">872</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="873">873</th><td>  <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="874">874</th><td>    <b>inline</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="875">875</th><td>    <dfn class="decl def fn" id="_ZSt11make_sharedDpOT0_" title='std::make_shared' data-ref="_ZSt11make_sharedDpOT0_">make_shared</dfn>(_Args&amp;&amp;... <dfn class="local col9 decl" id="269__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="269__args">__args</dfn>)&nbsp</td></tr>
+<tr><th id="876">876</th><td>    {&nbsp</td></tr>
+<tr><th id="877">877</th><td>      <b>typedef</b> <b>typename</b> <span class="namespace">std::</span><a class="type" href="../type_traits.html#std::remove_cv" title='std::remove_cv' data-ref="std::remove_cv">remove_cv</a>&lt;_Tp&gt;::type <dfn class="local col0 typedef" id="270_Tp_nc" title='_Tp_nc' data-type='typename std::remove_cv&lt;_Tp&gt;::type' data-ref="270_Tp_nc">_Tp_nc</dfn>;&nbsp</td></tr>
+<tr><th id="878">878</th><td>      <b>return</b> <span class="namespace">std::</span>allocate_shared&lt;_Tp&gt;(<span class="namespace">std::</span><a class="type" href="memoryfwd.h.html#std::allocator" title='std::allocator' data-ref="std::allocator">allocator</a>&lt;<a class="local col0 typedef" href="#270_Tp_nc" title='_Tp_nc' data-type='typename std::remove_cv&lt;_Tp&gt;::type' data-ref="270_Tp_nc">_Tp_nc</a>&gt;(),&nbsp</td></tr>
+<tr><th id="879">879</th><td>				       <span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col9 ref" href="#269__args" title='__args' data-ref="269__args">__args</a>)...);&nbsp</td></tr>
+<tr><th id="880">880</th><td>    }&nbsp</td></tr>
+<tr><th id="881">881</th><td>&nbsp</td></tr>
+<tr><th id="882">882</th><td>  <i class="doc">/// std::hash specialization for shared_ptr.</i>&nbsp</td></tr>
+<tr><th id="883">883</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="884">884</th><td>    <b>struct</b> <dfn class="type def" id="std::hash" title='std::hash' data-ref="std::hash">hash</dfn>&lt;<a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="885">885</th><td>    : <b>public</b> <a class="type" href="functional_hash.h.html#std::__hash_base" title='std::__hash_base' data-ref="std::__hash_base">__hash_base</a>&lt;<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>, <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="886">886</th><td>    {&nbsp</td></tr>
+<tr><th id="887">887</th><td>      <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>&nbsp</td></tr>
+<tr><th id="888">888</th><td>      <dfn class="decl def fn" id="_ZNKSt4hashISt10shared_ptrIT_EEclERKS2_" title='std::hash&lt;shared_ptr&lt;type-parameter-0-0&gt;&gt;::operator()' data-ref="_ZNKSt4hashISt10shared_ptrIT_EEclERKS2_"><b>operator</b>()</dfn>(<em>const</em> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&amp; <dfn class="local col1 decl" id="271__s" title='__s' data-type='const shared_ptr&lt;_Tp&gt; &amp;' data-ref="271__s">__s</dfn>) <em>const</em> <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="889">889</th><td>      {&nbsp</td></tr>
+<tr><th id="890">890</th><td>	<b>return</b> <span class="namespace">std::</span><a class="type" href="functional_hash.h.html#std::hash" title='std::hash' data-ref="std::hash">hash</a>&lt;<b>typename</b> <a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;::element_type*&gt;()(<a class="local col1 ref" href="#271__s" title='__s' data-ref="271__s">__s</a>.get());&nbsp</td></tr>
+<tr><th id="891">891</th><td>      }&nbsp</td></tr>
+<tr><th id="892">892</th><td>    };&nbsp</td></tr>
+<tr><th id="893">893</th><td>&nbsp</td></tr>
+<tr><th id="894">894</th><td>  <i class="doc">/// @} relates shared_ptr</i>&nbsp</td></tr>
+<tr><th id="895">895</th><td><i class="doc">  /// @} group pointer_abstractions</i>&nbsp</td></tr>
+<tr><th id="896">896</th><td>&nbsp</td></tr>
+<tr><th id="897">897</th><td><u>#<span data-ppcond="897">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="898">898</th><td>  <b>namespace</b> <span class="namespace">__detail</span>::<span class="namespace">__variant</span>&nbsp</td></tr>
+<tr><th id="899">899</th><td>  {&nbsp</td></tr>
+<tr><th id="900">900</th><td>    <b>template</b>&lt;<b>typename</b>&gt; <b>struct</b> <a class="type" href="basic_string.h.html#std::__detail::__variant::_Never_valueless_alt" title='std::__detail::__variant::_Never_valueless_alt' data-ref="std::__detail::__variant::_Never_valueless_alt" id="std::__detail::__variant::_Never_valueless_alt">_Never_valueless_alt</a>; <i>// see &lt;variant&gt;</i>&nbsp</td></tr>
+<tr><th id="901">901</th><td>&nbsp</td></tr>
+<tr><th id="902">902</th><td>    <i>// Provide the strong exception-safety guarantee when emplacing a</i>&nbsp</td></tr>
+<tr><th id="903">903</th><td><i>    // shared_ptr into a variant.</i>&nbsp</td></tr>
+<tr><th id="904">904</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="905">905</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__variant::_Never_valueless_alt" title='std::__detail::__variant::_Never_valueless_alt' data-ref="std::__detail::__variant::_Never_valueless_alt">_Never_valueless_alt</dfn>&lt;<span class="namespace">std::</span><a class="type" href="shared_ptr_base.h.html#std::shared_ptr" title='std::shared_ptr' data-ref="std::shared_ptr">shared_ptr</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="906">906</th><td>      : <span class="namespace">std::</span><a class="typedef" href="../type_traits.html#std::true_type" title='std::true_type' data-type='integral_constant&lt;bool, true&gt;' data-ref="std::true_type">true_type</a>&nbsp</td></tr>
+<tr><th id="907">907</th><td>      { };&nbsp</td></tr>
+<tr><th id="908">908</th><td>&nbsp</td></tr>
+<tr><th id="909">909</th><td>    <i>// Provide the strong exception-safety guarantee when emplacing a</i>&nbsp</td></tr>
+<tr><th id="910">910</th><td><i>    // weak_ptr into a variant.</i>&nbsp</td></tr>
+<tr><th id="911">911</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="912">912</th><td>      <b>struct</b> <dfn class="type def" id="std::__detail::__variant::_Never_valueless_alt" title='std::__detail::__variant::_Never_valueless_alt' data-ref="std::__detail::__variant::_Never_valueless_alt">_Never_valueless_alt</dfn>&lt;<span class="namespace">std::</span><a class="type" href="shared_ptr_base.h.html#std::weak_ptr" title='std::weak_ptr' data-ref="std::weak_ptr">weak_ptr</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="913">913</th><td>      : <span class="namespace">std::</span><a class="typedef" href="../type_traits.html#std::true_type" title='std::true_type' data-type='integral_constant&lt;bool, true&gt;' data-ref="std::true_type">true_type</a>&nbsp</td></tr>
+<tr><th id="914">914</th><td>      { };&nbsp</td></tr>
+<tr><th id="915">915</th><td>  }  <i>// namespace __detail::__variant</i>&nbsp</td></tr>
+<tr><th id="916">916</th><td><u>#<span data-ppcond="897">endif</span> // C++17</u>&nbsp</td></tr>
+<tr><th id="917">917</th><td>&nbsp</td></tr>
+<tr><th id="918">918</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="919">919</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="920">920</th><td>&nbsp</td></tr>
+<tr><th id="921">921</th><td><u>#<span data-ppcond="49">endif</span> // _SHARED_PTR_H</u>&nbsp</td></tr>
+<tr><th id="922">922</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Input/Inc/Input/tContGamepad.h.html'>Modules/Input/Inc/Input/tContGamepad.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

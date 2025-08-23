@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='4081' ll='4083' type='std::geometric_distribution::result_type std::geometric_distribution::max() const'/>
+<doc f='include/c++/11/bits/random.h' l='4078'>/**
+       * @brief Returns the least upper bound value of the distribution.
+       */</doc>

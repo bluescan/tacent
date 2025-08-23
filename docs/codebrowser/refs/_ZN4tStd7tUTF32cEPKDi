@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='313' type='char32_t tStd::tUTF32c(const char32_t * srcPoint)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='313'>// Reads 1 char32 codeunit from srcPoint.</doc>
+<def f='Modules/Foundation/Src/tStandard.cpp' l='585' ll='597' type='char32_t tStd::tUTF32c(const char32_t * srcPoint)'/>

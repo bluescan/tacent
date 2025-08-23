@@ -1,0 +1,22 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/std_function.h' l='768' ll='771'/>
+<def f='include/c++/11/bits/stl_vector.h' l='1975' ll='1978'/>
+<doc f='include/c++/11/bits/std_function.h' l='766'>// Provide the strong exception-safety guarantee when emplacing a
+    // function into a variant.</doc>
+<doc f='include/c++/11/bits/stl_vector.h' l='1973'>// Provide the strong exception-safety guarantee when emplacing a
+    // vector into a variant, but only if move assignment cannot throw.</doc>
+<def f='include/c++/11/bits/basic_string.h' l='6998' ll='7004'/>
+<doc f='include/c++/11/bits/basic_string.h' l='6996'>// Provide the strong exception-safety guarantee when emplacing a
+    // basic_string into a variant, but only if moving the string cannot throw.</doc>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/unique_ptr.h' l='1021' ll='1024'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='1019'>// Provide the strong exception-safety guarantee when emplacing a
+    // unique_ptr into a variant.</doc>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/shared_ptr.h' l='904' ll='907'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/shared_ptr.h' l='911' ll='914'/>
+<doc f='include/c++/11/bits/shared_ptr.h' l='902'>// Provide the strong exception-safety guarantee when emplacing a
+    // shared_ptr into a variant.</doc>
+<doc f='include/c++/11/bits/shared_ptr.h' l='909'>// Provide the strong exception-safety guarantee when emplacing a
+    // weak_ptr into a variant.</doc>

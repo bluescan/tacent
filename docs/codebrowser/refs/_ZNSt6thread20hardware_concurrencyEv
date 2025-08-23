@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/std_thread.h' l='196' type='static unsigned int std::thread::hardware_concurrency()'/>
+<use f='include/c++/11/thread' l='184' u='c' c='_ZNSt7jthread20hardware_concurrencyEv'/>
+<doc f='include/c++/11/bits/std_thread.h' l='194'>// Returns a value that hints at the number of hardware thread contexts.</doc>

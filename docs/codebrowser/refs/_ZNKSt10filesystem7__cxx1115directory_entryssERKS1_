@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/fs_dir.h' l='289' ll='291' type='std::strong_ordering std::filesystem::directory_entry::operator&lt;=&gt;(const std::filesystem::directory_entry &amp; __rhs) const'/>

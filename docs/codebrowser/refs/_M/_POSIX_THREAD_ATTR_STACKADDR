@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='85'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='84'>/* We support user-defined stacks.  */</doc>

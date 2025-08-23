@@ -1,0 +1,29 @@
+<use f='include/c++/11/bits/stl_iterator.h' l='1801' u='w' c='_ZNSt15common_iteratorC1Ev'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1807' u='w' c='_ZNSt15common_iteratorC1ET_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1813' u='w' c='_ZNSt15common_iteratorC1ET0_'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1822' u='w' c='_ZNSt15common_iteratorC1ERKSt15common_iteratorITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1825' u='r' c='_ZNSt15common_iteratorC1ERKSt15common_iteratorITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1832' u='r' c='_ZNSt15common_iteratorC1ERKSt15common_iteratorITL0__TL0_0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1844' u='w' c='_ZNSt15common_iteratorC1ERKSt15common_iteratorIT_T0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1846' u='r' c='_ZNSt15common_iteratorC1ERKSt15common_iteratorIT_T0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1853' u='r' c='_ZNSt15common_iteratorC1ERKSt15common_iteratorIT_T0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1865' u='w' c='_ZNSt15common_iteratorC1EOSt15common_iteratorIT_T0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1867' u='r' c='_ZNSt15common_iteratorC1EOSt15common_iteratorIT_T0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1874' u='r' c='_ZNSt15common_iteratorC1EOSt15common_iteratorIT_T0_E'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1936' u='r' c='_ZNSt15common_iteratorD1Ev'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1938' u='r' c='_ZNSt15common_iteratorD1Ev'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1946' u='r' c='_ZNSt15common_iteratordeEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1954' u='r' c='_ZNKSt15common_iteratordeEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1962' u='r' c='_ZNKSt15common_iteratorptEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1977' u='r' c='_ZNSt15common_iteratorppEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='1985' u='r' c='_ZNSt15common_iteratorppEi'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2098' u='r' c='_ZNKSt15common_iterator12_M_has_valueEv'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2104' c='_ZNSt15common_iterator9_M_assignEOTL0__'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2106' u='r' c='_ZNSt15common_iterator9_M_assignEOTL0__'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2108' u='r' c='_ZNSt15common_iterator9_M_assignEOTL0__'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2113' u='r' c='_ZNSt15common_iterator9_M_assignEOTL0__'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2115' u='r' c='_ZNSt15common_iterator9_M_assignEOTL0__'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2117' u='w' c='_ZNSt15common_iterator9_M_assignEOTL0__'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='2125' u='w' c='_ZNSt15common_iterator9_M_assignEOTL0__'/>
+<dec f='include/c++/11/bits/stl_iterator.h' l='2135' type='unsigned char'/>
+<doc f='include/c++/11/bits/stl_iterator.h' l='2135'>// 0 == _M_it, 1 == _M_sent, 2 == valueless</doc>

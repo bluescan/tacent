@@ -1,0 +1,9 @@
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='27' u='w' c='_ZN9tPipeline5tRuleC1Ev'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='28' u='m' c='_ZN9tPipeline5tRuleD1Ev'/>
+<dec f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='89' type='tList&lt;tStringItem&gt;'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='37' u='m' c='_ZN9tPipeline5tRule9SetTargetERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='55' u='m' c='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='66' u='m' c='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='143' u='m' c='_ZN9tPipeline5tRule9OutOfDateEb'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='158' u='m' c='_ZN9tPipeline5tRule9OutOfDateEb'/>
+<offset>448</offset>

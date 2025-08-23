@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3946' ll='3950'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3946'/>
+<size>24</size>
+<mbr r='VkClearRect::rect' o='0' t='VkRect2D'/>
+<mbr r='VkClearRect::baseArrayLayer' o='128' t='uint32_t'/>
+<mbr r='VkClearRect::layerCount' o='160' t='uint32_t'/>

@@ -1,0 +1,8 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='52' type='float tMath::tVector3::Length() const'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='381' u='c' c='_ZN5tMath6tPlane9NormalizeEv'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='356' u='c' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='271' u='c' c='_ZN5tMath15tDistanceToLineERKNS_8tVector3ERKNS_5tLineE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='296' u='c' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='297' u='c' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='344' u='c' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='345' u='c' c='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>

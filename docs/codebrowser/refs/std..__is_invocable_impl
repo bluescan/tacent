@@ -1,0 +1,17 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='2878' ll='2882'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='2885' ll='2892'/>
+<def f='include/c++/11/type_traits' l='2897' ll='2928'/>
+<use f='include/c++/11/type_traits' l='2933'/>
+<use f='include/c++/11/type_traits' l='3021'/>
+<use f='include/c++/11/type_traits' l='3033'/>
+<use f='include/c++/11/type_traits' l='3047'/>
+<use f='include/c++/11/type_traits' l='3060'/>
+<use f='include/c++/11/bits/std_function.h' l='349'/>
+<doc f='include/c++/11/type_traits' l='2884'>// Used for valid INVOKE and INVOKE&lt;void&gt; expressions.</doc>
+<doc f='include/c++/11/type_traits' l='2896'>// Used for INVOKE&lt;R&gt; expressions to check the implicit conversion to R.</doc>
+<fun r='_ZNSt19__is_invocable_implIT_T0_Lb0EvE6_S_getEv'/>
+<fun r='_ZNSt19__is_invocable_implIT_T0_Lb0EvE7_S_convETL0__'/>
+<fun r='_ZNSt19__is_invocable_implIT_T0_Lb0EvE7_S_testEi'/>
+<fun r='_ZNSt19__is_invocable_implIT_T0_Lb0EvE7_S_testEz'/>

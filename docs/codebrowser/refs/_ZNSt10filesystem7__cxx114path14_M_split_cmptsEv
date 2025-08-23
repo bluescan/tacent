@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/fs_path.h' l='284' u='c' c='_ZNSt10filesystem7__cxx114pathC1EONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEENS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='290' u='c' c='_ZNSt10filesystem7__cxx114pathC1ERKT_NS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='296' u='c' c='_ZNSt10filesystem7__cxx114pathC1ET_S2_NS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='303' u='c' c='_ZNSt10filesystem7__cxx114pathC1ERKT_RKSt6localeNS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='311' u='c' c='_ZNSt10filesystem7__cxx114pathC1ET_S2_RKSt6localeNS1_6formatE'/>
+<use f='include/c++/11/bits/fs_path.h' l='399' u='c' c='_ZNSt10filesystem7__cxx114path5clearEv'/>
+<dec f='include/c++/11/bits/fs_path.h' l='628' type='void std::filesystem::path::_M_split_cmpts()'/>

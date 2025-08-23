@@ -1,0 +1,4 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='86' c='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<def f='Modules/Image/Inc/Image/tImageTGA.h' l='123' type='bool tImage::tImageTGA::IsValid() const'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='344' u='c' c='_ZN6tImage9tImageTGA8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='376' u='c' c='_ZNK6tImage9tImageTGA4SaveERK7tStringRKNS0_10SaveParamsE'/>

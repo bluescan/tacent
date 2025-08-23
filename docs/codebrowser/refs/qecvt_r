@@ -1,0 +1,1 @@
+<dec f='include/stdlib.h' l='917' type='int qecvt_r(long double __value, int __ndigit, int *__restrict __decpt, int *__restrict __sign, char *__restrict __buf, size_t __len)'/>

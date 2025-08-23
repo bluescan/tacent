@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='229' type='void tChunk::tChunk(uint8 * chunk, uint8 * lastChunk)'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='251' u='c' c='_ZNK6tChunk13GetFirstChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='255' u='c' c='_ZNK6tChunk12GetNextChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='259' u='c' c='_ZNK6tChunk12GetLastChunkEv'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='351' u='c' c='_ZNK12tChunkReader13GetFirstChunkEv'/>
+<def f='Modules/System/Inc/System/tChunk.h' l='715' ll='726' type='void tChunk::tChunk(uint8 * chunk, uint8 * lastChunk)'/>

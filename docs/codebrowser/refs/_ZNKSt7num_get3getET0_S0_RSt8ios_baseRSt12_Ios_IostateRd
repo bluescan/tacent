@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/locale_facets.h' l='2103' ll='2106' type='std::num_get::iter_type std::num_get::get(std::num_get::iter_type __in, std::num_get::iter_type __end, std::ios_base &amp; __io, ios_base::iostate &amp; __err, double &amp; __v) const'/>

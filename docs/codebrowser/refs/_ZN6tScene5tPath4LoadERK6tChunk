@@ -1,0 +1,4 @@
+<use f='Modules/Scene/Inc/Scene/tPath.h' l='26' u='c' c='_ZN6tScene5tPathC1ERK6tChunk'/>
+<dec f='Modules/Scene/Inc/Scene/tPath.h' l='43' type='void tScene::tPath::Load(const tChunk &amp; )'/>
+<inh f='Modules/Scene/Inc/Scene/tObject.h' l='33' c='_ZN6tScene7tObject4LoadERK6tChunk'/>
+<def f='Modules/Scene/Src/tPath.cpp' l='63' ll='89' type='void tScene::tPath::Load(const tChunk &amp; splineChunk)'/>

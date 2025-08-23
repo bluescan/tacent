@@ -1,0 +1,22 @@
+<def f='include/c++/11/chrono' l='1417' ll='1420' type='void std::chrono::month::month(unsigned int __m)'/>
+<use f='include/c++/11/chrono' l='1486' u='c' c='_ZNSt6chronoplERKNS_5monthERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='1531' u='c'/>
+<use f='include/c++/11/chrono' l='1532' u='c'/>
+<use f='include/c++/11/chrono' l='1533' u='c'/>
+<use f='include/c++/11/chrono' l='1534' u='c'/>
+<use f='include/c++/11/chrono' l='1535' u='c'/>
+<use f='include/c++/11/chrono' l='1536' u='c'/>
+<use f='include/c++/11/chrono' l='1537' u='c'/>
+<use f='include/c++/11/chrono' l='1538' u='c'/>
+<use f='include/c++/11/chrono' l='1539' u='c'/>
+<use f='include/c++/11/chrono' l='1540' u='c'/>
+<use f='include/c++/11/chrono' l='1541' u='c'/>
+<use f='include/c++/11/chrono' l='1542' u='c'/>
+<use f='include/c++/11/chrono' l='1980' u='c' c='_ZNSt6chronodvEiRKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1988' u='c' c='_ZNSt6chronodvERKNS_3dayEi'/>
+<use f='include/c++/11/chrono' l='2034' u='c' c='_ZNSt6chronodvEiNS_9last_specE'/>
+<use f='include/c++/11/chrono' l='2094' u='c' c='_ZNSt6chronodvEiRKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='2156' u='c' c='_ZNSt6chronodvEiRKNS_12weekday_lastE'/>
+<use f='include/c++/11/chrono' l='2165' u='c' c='_ZNSt6chronodvERKNS_12weekday_lastEi'/>
+<use f='include/c++/11/chrono' l='2308' u='c' c='_ZNSt6chronodvERKNS_4yearEi'/>
+<use f='include/c++/11/chrono' l='2509' u='c' c='_ZNSt6chrono14year_month_day12_S_from_daysERKNS_8durationIlSt5ratioILl86400ELl1EEEE'/>

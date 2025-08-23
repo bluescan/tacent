@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='208' type='6'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='220'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='221'/>
+<use f='Modules/Math/Src/tColour.cpp' l='99' u='r'/>
+<use f='Modules/Math/Src/tColour.cpp' l='111' u='r'/>
+<use f='Modules/Math/Src/tColour.cpp' l='133' u='r' c='_Z15tGetChannelTypePKc'/>
+<use f='Modules/Math/Src/tColour.cpp' l='137' u='r' c='_Z15tGetChannelTypePKc'/>

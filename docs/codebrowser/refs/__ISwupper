@@ -1,0 +1,9 @@
+<dec f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='58' type='0'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='71' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='71' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='71' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='71' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='71' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='71' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='71' u='r'/>
+<doc f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='58'>/* UPPERCASE.  */</doc>

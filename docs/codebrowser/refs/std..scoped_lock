@@ -1,0 +1,25 @@
+<def f='include/c++/11/mutex' l='616' ll='634'/>
+<def f='include/c++/11/mutex' l='636' ll='646'/>
+<use f='include/c++/11/mutex' l='637'/>
+<use f='include/c++/11/mutex' l='644' c='_ZNSt11scoped_lockIJEEC1ERKS0_'/>
+<use f='include/c++/11/mutex' l='645' c='_ZNSt11scoped_lockIJEEaSERKS0_'/>
+<use f='include/c++/11/mutex' l='645' c='_ZNSt11scoped_lockIJEEaSERKS0_'/>
+<def f='include/c++/11/mutex' l='648' ll='669'/>
+<size>1</size>
+<fun r='_ZNSt11scoped_lockC1EDpRT_'/>
+<fun r='_ZNSt11scoped_lockC1ESt12adopt_lock_tDpRT_'/>
+<fun r='_ZNSt11scoped_lockD1Ev'/>
+<fun r='_ZNSt11scoped_lockC1ERKSt11scoped_lockIJDpT_EE'/>
+<fun r='_ZNSt11scoped_lockaSERKSt11scoped_lockIJDpT_EE'/>
+<mbr r='std::scoped_lock::_M_devices' t='tuple&lt;_MutexTypes &amp;...&gt;'/>
+<fun r='_ZNSt11scoped_lockIJEEC1Ev'/>
+<fun r='_ZNSt11scoped_lockIJEEC1ESt12adopt_lock_t'/>
+<fun r='_ZNSt11scoped_lockIJEED1Ev'/>
+<fun r='_ZNSt11scoped_lockIJEEC1ERKS0_'/>
+<fun r='_ZNSt11scoped_lockIJEEaSERKS0_'/>
+<fun r='_ZNSt11scoped_lockIJT_EEC1ERS0_'/>
+<fun r='_ZNSt11scoped_lockIJT_EEC1ESt12adopt_lock_tRS0_'/>
+<fun r='_ZNSt11scoped_lockIJT_EED1Ev'/>
+<fun r='_ZNSt11scoped_lockIJT_EEC1ERKS_IJS0_EE'/>
+<fun r='_ZNSt11scoped_lockIJT_EEaSERKS_IJS0_EE'/>
+<mbr r='std::scoped_lock::_M_device' t='std::scoped_lock&lt;type-parameter-0-0&gt;::mutex_type &amp;'/>

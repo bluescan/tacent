@@ -1,0 +1,1 @@
+<dec f='include/zlib.h' l='1455' type='z_size_t gzfwrite(voidpc buf, z_size_t size, z_size_t nitems, gzFile file)'/>

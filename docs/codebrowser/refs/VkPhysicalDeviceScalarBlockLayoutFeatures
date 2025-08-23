@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6286' ll='6290'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6286'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceScalarBlockLayoutFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceScalarBlockLayoutFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceScalarBlockLayoutFeatures::scalarBlockLayout' o='128' t='VkBool32'/>

@@ -1,0 +1,4 @@
+<dec f='Modules/System/Src/tMachine.cpp' l='34' type='bool tSystem::tGetXDGMultipleEnvVar(tList&lt;tStringItem&gt; &amp; xdgEnvVars, const tString &amp; xdgEnvVarName, const tString &amp; xdgEnvVarDefaults)'/>
+<def f='Modules/System/Src/tMachine.cpp' l='255' ll='287' type='bool tSystem::tGetXDGMultipleEnvVar(tList&lt;tStringItem&gt; &amp; xdgEnvVars, const tString &amp; xdgEnvVarName, const tString &amp; xdgEnvVarDefaults)'/>
+<use f='Modules/System/Src/tMachine.cpp' l='334' u='c' c='_ZN7tSystem15tGetXDGDataDirsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tMachine.cpp' l='344' u='c' c='_ZN7tSystem17tGetXDGConfigDirsER5tListI11tStringItemE'/>

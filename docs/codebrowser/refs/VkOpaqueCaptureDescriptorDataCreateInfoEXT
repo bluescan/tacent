@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15581' ll='15585'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15581'/>
+<size>24</size>
+<mbr r='VkOpaqueCaptureDescriptorDataCreateInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkOpaqueCaptureDescriptorDataCreateInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkOpaqueCaptureDescriptorDataCreateInfoEXT::opaqueCaptureDescriptorData' o='128' t='const void *'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18546' ll='18550'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18546'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceCubicClampFeaturesQCOM::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceCubicClampFeaturesQCOM::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceCubicClampFeaturesQCOM::cubicRangeClamp' o='128' t='VkBool32'/>

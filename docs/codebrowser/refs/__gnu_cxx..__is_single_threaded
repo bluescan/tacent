@@ -1,0 +1,4 @@
+<def f='include/c++/11/ext/atomicity.h' l='45' ll='56' type='bool __gnu_cxx::__is_single_threaded()'/>
+<use f='include/c++/11/ext/atomicity.h' l='98' u='c' c='__gnu_cxx::__exchange_and_add_dispatch'/>
+<use f='include/c++/11/ext/atomicity.h' l='108' u='c' c='__gnu_cxx::__atomic_add_dispatch'/>
+<use f='include/c++/11/stop_token' l='262' u='c' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>

@@ -1,0 +1,14 @@
+<use f='include/c++/11/bits/random.h' l='5337' u='w' c='_ZNSt21discrete_distributionC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='5343' u='w' c='_ZNSt21discrete_distributionC1ETL0__S0_'/>
+<use f='include/c++/11/bits/random.h' l='5347' u='w' c='_ZNSt21discrete_distributionC1ESt16initializer_listIdE'/>
+<use f='include/c++/11/bits/random.h' l='5353' u='w' c='_ZNSt21discrete_distributionC1EmddTL0__'/>
+<use f='include/c++/11/bits/random.h' l='5358' u='w' c='_ZNSt21discrete_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5374' u='c' c='_ZNKSt21discrete_distribution13probabilitiesEv'/>
+<use f='include/c++/11/bits/random.h' l='5375' u='r' c='_ZNKSt21discrete_distribution13probabilitiesEv'/>
+<use f='include/c++/11/bits/random.h' l='5383' u='r' c='_ZNKSt21discrete_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='5391' u='w' c='_ZNSt21discrete_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='5406' u='c' c='_ZNKSt21discrete_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='5407' u='c' c='_ZNKSt21discrete_distribution3maxEv'/>
+<use f='include/c++/11/bits/random.h' l='5416' c='_ZNSt21discrete_distributionclERTL0__'/>
+<use f='include/c++/11/bits/random.h' l='5428' c='_ZNSt21discrete_distribution10__generateETL0__S0_RTL0_0_'/>
+<dec f='include/c++/11/bits/random.h' l='5493' type='std::discrete_distribution::param_type'/>

@@ -1,0 +1,29 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='284' ll='320'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='287' c='_ZN5tMath5tABoxC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='316' c='_ZNK5tMath5tABox8OverlapsERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='321'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='322'/>
+<size>24</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='283'>// This is an axis-aligned box in R3.</doc>
+<fun r='_ZN5tMath5tABoxC1Ev'/>
+<fun r='_ZN5tMath5tABoxC1ERKS0_'/>
+<fun r='_ZN5tMath5tABoxC1ERKNS_8tVector3Efff'/>
+<fun r='_ZN5tMath5tABoxC1ERKNS_8tVector3ES3_'/>
+<fun r='_ZN5tMath5tABoxC1Effffff'/>
+<fun r='_ZN5tMath5tABox8AddPointERKNS_8tVector3E'/>
+<fun r='_ZN5tMath5tABox6ExpandEf'/>
+<fun r='_ZN5tMath5tABox5EmptyEv'/>
+<fun r='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<fun r='_ZNK5tMath5tABox13IsPointInsideERKNS_8tVector3E'/>
+<fun r='_ZNK5tMath5tABox13IsPointInsideERKNS_8tVector3Ef'/>
+<fun r='_ZNK5tMath5tABox17IsPointInsideBiasERKNS_8tVector3ENS_5tBiasES4_S4_'/>
+<fun r='_ZNK5tMath5tABox13ComputeCenterEv'/>
+<fun r='_ZNK5tMath5tABox14ComputeExtentsEv'/>
+<fun r='_ZNK5tMath5tABox8OverlapsERKS0_'/>
+<mbr r='tMath::tABox::Min' o='0' t='tMath::tVector3'/>
+<mbr r='tMath::tABox::Max' o='96' t='tMath::tVector3'/>
+<fun r='_ZN5tMath5tABox8AddPointERKNS_8tVector3E'/>
+<fun r='_ZNK5tMath5tABox17IsPointInsideBiasERKNS_8tVector3ENS_5tBiasES4_S4_'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='44' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<size>24</size>
+<fun r='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>

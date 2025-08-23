@@ -1,0 +1,13 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16793' ll='16804'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16793'/>
+<size>72</size>
+<mbr r='VkAccelerationStructureTrianglesOpacityMicromapEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkAccelerationStructureTrianglesOpacityMicromapEXT::pNext' o='64' t='void *'/>
+<mbr r='VkAccelerationStructureTrianglesOpacityMicromapEXT::indexType' o='128' t='VkIndexType'/>
+<mbr r='VkAccelerationStructureTrianglesOpacityMicromapEXT::indexBuffer' o='192' t='VkDeviceOrHostAddressConstKHR'/>
+<mbr r='VkAccelerationStructureTrianglesOpacityMicromapEXT::indexStride' o='256' t='VkDeviceSize'/>
+<mbr r='VkAccelerationStructureTrianglesOpacityMicromapEXT::baseTriangle' o='320' t='uint32_t'/>
+<mbr r='VkAccelerationStructureTrianglesOpacityMicromapEXT::usageCountsCount' o='352' t='uint32_t'/>
+<mbr r='VkAccelerationStructureTrianglesOpacityMicromapEXT::pUsageCounts' o='384' t='const VkMicromapUsageEXT *'/>
+<mbr r='VkAccelerationStructureTrianglesOpacityMicromapEXT::ppUsageCounts' o='448' t='const VkMicromapUsageEXT *const *'/>
+<mbr r='VkAccelerationStructureTrianglesOpacityMicromapEXT::micromap' o='512' t='VkMicromapEXT'/>

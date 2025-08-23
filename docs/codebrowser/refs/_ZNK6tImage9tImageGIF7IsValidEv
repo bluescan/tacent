@@ -1,0 +1,4 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='86' c='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<def f='Modules/Image/Inc/Image/tImageGIF.h' l='113' type='bool tImage::tImageGIF::IsValid() const'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='275' u='c' c='_ZN6tImage9tImageGIF8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='285' u='c' c='_ZNK6tImage9tImageGIF4SaveERK7tStringRKNS0_10SaveParamsE'/>

@@ -1,0 +1,3 @@
+<use f='include/c++/11/bits/random.h' l='2874' u='w' c='_ZNSt19cauchy_distribution10param_typeC1ET_S1_'/>
+<use f='include/c++/11/bits/random.h' l='2879' u='r' c='_ZNKSt19cauchy_distribution10param_type1aEv'/>
+<dec f='include/c++/11/bits/random.h' l='2894' type='_RealType'/>

@@ -1,0 +1,3 @@
+<dec f='include/c++/11/compare' l='246' type='const std::strong_ordering'/>
+<def f='include/c++/11/compare' l='311' ll='312' type='const std::strong_ordering'/>
+<use f='include/c++/11/compare' l='371' u='r' c='_ZNSt8__detail16__common_cmp_catEv'/>

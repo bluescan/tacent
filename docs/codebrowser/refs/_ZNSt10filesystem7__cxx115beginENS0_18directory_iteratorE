@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/fs_dir.h' l='450' ll='452' type='std::filesystem::directory_iterator std::filesystem::begin(std::filesystem::directory_iterator __iter)'/>
+<doc f='include/c++/11/bits/fs_dir.h' l='446'>/** @brief Enable range-based `for` using directory_iterator.
+   *
+   *  e.g. `for (auto&amp; entry : std::filesystem::directory_iterator(&quot;.&quot;)) ...`
+   */</doc>

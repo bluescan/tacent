@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='319' type='int pthread_attr_setschedparam(pthread_attr_t *__restrict __attr, const struct sched_param *__restrict __param)'/>
+<doc f='include/pthread.h' l='318'>/* Set scheduling parameters (priority, etc) in *ATTR according to PARAM.  */</doc>

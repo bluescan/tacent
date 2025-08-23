@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/bcdec/bcdec.h' l='85'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='727' u='c'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='751' u='c'/>

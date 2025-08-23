@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/fs_dir.h' l='392' ll='393' type='void std::filesystem::directory_iterator::directory_iterator(const std::filesystem::path &amp; __p, std::error_code &amp; __ec)'/>
+<use f='Modules/System/Src/tFile.cpp' l='2460' u='c' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2599' u='c' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>

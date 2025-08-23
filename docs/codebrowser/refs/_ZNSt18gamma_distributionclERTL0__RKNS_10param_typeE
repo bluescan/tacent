@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/random.h' l='2537' type='std::gamma_distribution::result_type std::gamma_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::gamma_distribution::param_type &amp; __p)'/>
+<def f='include/c++/11/bits/random.tcc' l='2351' ll='2392' type='typename gamma_distribution&lt;_RealType&gt;::result_type std::gamma_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::gamma_distribution::param_type &amp; __param)'/>
+<doc f='include/c++/11/bits/random.tcc' l='2346'>/**
+   * Marsaglia, G. and Tsang, W. W.
+   * &quot;A Simple Method for Generating Gamma Variables&quot;
+   * ACM Transactions on Mathematical Software, 26, 3, 363-372, 2000.
+   */</doc>

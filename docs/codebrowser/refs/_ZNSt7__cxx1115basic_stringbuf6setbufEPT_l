@@ -1,0 +1,12 @@
+<def f='include/c++/11/sstream' l='367' ll='384' type='std::basic_stringbuf::__streambuf_type * std::basic_stringbuf::setbuf(std::basic_stringbuf::char_type * __s, std::streamsize __n)'/>
+<doc f='include/c++/11/sstream' l='356'>/**
+       *  @brief  Manipulates the buffer.
+       *  @param  __s  Pointer to a buffer area.
+       *  @param  __n  Size of @a __s.
+       *  @return  @c this
+       *
+       *  If no buffer has already been created, and both @a __s and @a __n are
+       *  non-zero, then @c __s is used as a buffer; see
+       *  https://gcc.gnu.org/onlinedocs/libstdc++/manual/streambufs.html#io.streambuf.buffering
+       *  for more.
+      */</doc>

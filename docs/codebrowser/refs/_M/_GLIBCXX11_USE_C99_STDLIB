@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1567'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1565'>/* Define if C99 functions or macros in &lt;stdlib.h&gt; should be imported in
+   &lt;cstdlib&gt; in namespace std for C++11. */</doc>

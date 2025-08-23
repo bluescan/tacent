@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tVector4.h' l='90' type='tMath::tVector4 &amp; tMath::tVector4::operator/=(float a)'/>
+<doc f='Modules/Math/Inc/Math/tVector4.h' l='89'>// Divide is not commutative so no need for friend.</doc>
+<use f='Modules/Image/Src/tResample.cpp' l='293' u='c' c='_ZN6tImage15KernelFilterBoxEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='407' u='c' c='_ZN6tImage19KernelFilterBicubicEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='455' u='c' c='_ZN6tImage19KernelFilterLanczosEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>

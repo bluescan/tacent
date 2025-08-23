@@ -1,0 +1,8 @@
+<def f='include/c++/11/streambuf' l='213' ll='220' type='std::locale std::basic_streambuf::pubimbue(const std::locale &amp; __loc)'/>
+<doc f='include/c++/11/streambuf' l='206'>/**
+       *  @brief  Entry point for imbue().
+       *  @param  __loc  The new locale.
+       *  @return  The previous locale.
+       *
+       *  Calls the derived imbue(__loc).
+      */</doc>

@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/WebP/include/encode.h' l='156' ll='163'/>
+<use f='Modules/Image/Contrib/WebP/include/encode.h' l='156'/>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='154'>// Enumerate some predefined settings for WebPConfig, depending on the type
+// of source picture. These presets are used when calling WebPConfigPreset().</doc>

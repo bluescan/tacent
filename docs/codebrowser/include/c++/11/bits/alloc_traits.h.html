@@ -1,0 +1,872 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>alloc_traits.h source code [include/c++/11/bits/alloc_traits.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="std::__allocator_traits_base,std::__is_alloc_insertable_impl,std::__is_allocator,std::__is_copy_insertable,std::__is_move_insertable,std::allocator_traits "/>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/alloc_traits.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='alloc_traits.h.html'>alloc_traits.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Allocator traits -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2011-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/alloc_traits.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{memory}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#<span data-ppcond="30">ifndef</span> <span class="macro" data-ref="_M/_ALLOC_TRAITS_H">_ALLOC_TRAITS_H</span></u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/_ALLOC_TRAITS_H" data-ref="_M/_ALLOC_TRAITS_H">_ALLOC_TRAITS_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#include &lt;bits/stl_construct.h&gt;</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#include &lt;bits/memoryfwd.h&gt;</u>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#<span data-ppcond="35">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u># include &lt;bits/allocator.h&gt;</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u># include &lt;bits/ptr_traits.h&gt;</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u># include &lt;ext/numeric_traits.h&gt;</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#<span data-ppcond="35">endif</span></u>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="42">42</th><td>{&nbsp</td></tr>
+<tr><th id="43">43</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#<span data-ppcond="45">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u>#define <dfn class="macro" id="_M/__cpp_lib_allocator_traits_is_always_equal" data-ref="_M/__cpp_lib_allocator_traits_is_always_equal">__cpp_lib_allocator_traits_is_always_equal</dfn> 201411</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td>  <i class="doc">/// <span class="command">@cond</span> <span class="verb">undocumented</span></i>&nbsp</td></tr>
+<tr><th id="49">49</th><td>  <b>struct</b> <dfn class="type def" id="std::__allocator_traits_base" title='std::__allocator_traits_base' data-ref="std::__allocator_traits_base">__allocator_traits_base</dfn>&nbsp</td></tr>
+<tr><th id="50">50</th><td>  {&nbsp</td></tr>
+<tr><th id="51">51</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up, <b>typename</b> = <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="52">52</th><td>      <b>struct</b> <dfn class="type def" id="std::__allocator_traits_base::__rebind" title='std::__allocator_traits_base::__rebind' data-ref="std::__allocator_traits_base::__rebind">__rebind</dfn> : <a class="type" href="ptr_traits.h.html#std::__replace_first_arg" title='std::__replace_first_arg' data-ref="std::__replace_first_arg">__replace_first_arg</a>&lt;_Tp, _Up&gt; { };&nbsp</td></tr>
+<tr><th id="53">53</th><td>&nbsp</td></tr>
+<tr><th id="54">54</th><td>    <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="55">55</th><td>      <b>struct</b> <dfn class="type def" id="std::__allocator_traits_base::__rebind" title='std::__allocator_traits_base::__rebind' data-ref="std::__allocator_traits_base::__rebind">__rebind</dfn>&lt;_Tp, _Up,&nbsp</td></tr>
+<tr><th id="56">56</th><td>		      <a class="type" href="../type_traits.html#std::__void_t" title='std::__void_t' data-ref="std::__void_t">__void_t</a>&lt;<b>typename</b> _Tp::<b>template</b> rebind&lt;_Up&gt;::other&gt;&gt;&nbsp</td></tr>
+<tr><th id="57">57</th><td>      { <b>using</b> <dfn class="typedef" id="std::__allocator_traits_base::__rebind{type-parameter-0-0,type-parameter-0-1}::type" title='std::__allocator_traits_base::__rebind&lt;type-parameter-0-0, type-parameter-0-1&gt;::type' data-type='typename _Tp::template rebind&lt;_Up&gt;::other' data-ref="std::__allocator_traits_base::__rebind{type-parameter-0-0,type-parameter-0-1}::type">type</dfn> = <b>typename</b> _Tp::<b>template</b> rebind&lt;_Up&gt;::other; };&nbsp</td></tr>
+<tr><th id="58">58</th><td>&nbsp</td></tr>
+<tr><th id="59">59</th><td>  <b>protected</b>:&nbsp</td></tr>
+<tr><th id="60">60</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="61">61</th><td>      <b>using</b> <dfn class="typedef" id="std::__allocator_traits_base::__pointer" title='std::__allocator_traits_base::__pointer' data-type='typename _Tp::pointer' data-ref="std::__allocator_traits_base::__pointer">__pointer</dfn> = <b>typename</b> _Tp::pointer;&nbsp</td></tr>
+<tr><th id="62">62</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="63">63</th><td>      <b>using</b> <dfn class="typedef" id="std::__allocator_traits_base::__c_pointer" title='std::__allocator_traits_base::__c_pointer' data-type='typename _Tp::const_pointer' data-ref="std::__allocator_traits_base::__c_pointer">__c_pointer</dfn> = <b>typename</b> _Tp::const_pointer;&nbsp</td></tr>
+<tr><th id="64">64</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="65">65</th><td>      <b>using</b> <dfn class="typedef" id="std::__allocator_traits_base::__v_pointer" title='std::__allocator_traits_base::__v_pointer' data-type='typename _Tp::void_pointer' data-ref="std::__allocator_traits_base::__v_pointer">__v_pointer</dfn> = <b>typename</b> _Tp::void_pointer;&nbsp</td></tr>
+<tr><th id="66">66</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="67">67</th><td>      <b>using</b> <dfn class="typedef" id="std::__allocator_traits_base::__cv_pointer" title='std::__allocator_traits_base::__cv_pointer' data-type='typename _Tp::const_void_pointer' data-ref="std::__allocator_traits_base::__cv_pointer">__cv_pointer</dfn> = <b>typename</b> _Tp::const_void_pointer;&nbsp</td></tr>
+<tr><th id="68">68</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="69">69</th><td>      <b>using</b> <dfn class="typedef" id="std::__allocator_traits_base::__pocca" title='std::__allocator_traits_base::__pocca' data-type='typename _Tp::propagate_on_container_copy_assignment' data-ref="std::__allocator_traits_base::__pocca">__pocca</dfn> = <b>typename</b> _Tp::propagate_on_container_copy_assignment;&nbsp</td></tr>
+<tr><th id="70">70</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="71">71</th><td>      <b>using</b> <dfn class="typedef" id="std::__allocator_traits_base::__pocma" title='std::__allocator_traits_base::__pocma' data-type='typename _Tp::propagate_on_container_move_assignment' data-ref="std::__allocator_traits_base::__pocma">__pocma</dfn> = <b>typename</b> _Tp::propagate_on_container_move_assignment;&nbsp</td></tr>
+<tr><th id="72">72</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="73">73</th><td>      <b>using</b> <dfn class="typedef" id="std::__allocator_traits_base::__pocs" title='std::__allocator_traits_base::__pocs' data-type='typename _Tp::propagate_on_container_swap' data-ref="std::__allocator_traits_base::__pocs">__pocs</dfn> = <b>typename</b> _Tp::propagate_on_container_swap;&nbsp</td></tr>
+<tr><th id="74">74</th><td>    <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="75">75</th><td>      <b>using</b> <dfn class="typedef" id="std::__allocator_traits_base::__equal" title='std::__allocator_traits_base::__equal' data-type='typename _Tp::is_always_equal' data-ref="std::__allocator_traits_base::__equal">__equal</dfn> = <b>typename</b> _Tp::is_always_equal;&nbsp</td></tr>
+<tr><th id="76">76</th><td>  };&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc, <b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="79">79</th><td>    <b>using</b> <dfn class="typedef" id="std::__alloc_rebind" title='std::__alloc_rebind' data-type='typename __allocator_traits_base::template __rebind&lt;_Alloc, _Up&gt;::type' data-ref="std::__alloc_rebind">__alloc_rebind</dfn>&nbsp</td></tr>
+<tr><th id="80">80</th><td>      = <b>typename</b> <a class="type" href="#std::__allocator_traits_base" title='std::__allocator_traits_base' data-ref="std::__allocator_traits_base">__allocator_traits_base</a>::<b>template</b> <a class="type" href="#std::__allocator_traits_base::__rebind" title='std::__allocator_traits_base::__rebind' data-ref="std::__allocator_traits_base::__rebind">__rebind</a>&lt;_Alloc, _Up&gt;::type;&nbsp</td></tr>
+<tr><th id="81">81</th><td>  <i class="doc">/// <span class="command">@endcond</span></i>&nbsp</td></tr>
+<tr><th id="82">82</th><td>&nbsp</td></tr>
+<tr><th id="83">83</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i class="doc">   * <span class="command">@brief</span>  Uniform interface to all allocator types.</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td><i class="doc">   * <span class="command">@headerfile</span> memory</i>&nbsp</td></tr>
+<tr><th id="86">86</th><td><i class="doc">   * <span class="command">@ingroup</span> <span class="verb">allocators</span></i>&nbsp</td></tr>
+<tr><th id="87">87</th><td><i class="doc">   * <span class="command">@since</span> C++11</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="90">90</th><td>    <b>struct</b> <dfn class="type def" id="std::allocator_traits" title='std::allocator_traits' data-ref="std::allocator_traits">allocator_traits</dfn> : <a class="type" href="#std::__allocator_traits_base" title='std::__allocator_traits_base' data-ref="std::__allocator_traits_base">__allocator_traits_base</a>&nbsp</td></tr>
+<tr><th id="91">91</th><td>    {&nbsp</td></tr>
+<tr><th id="92">92</th><td>      <i class="doc">/// The allocator type</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td>      <b>typedef</b> _Alloc <dfn class="typedef" id="std::allocator_traits::allocator_type" title='std::allocator_traits::allocator_type' data-type='_Alloc' data-ref="std::allocator_traits::allocator_type">allocator_type</dfn>;&nbsp</td></tr>
+<tr><th id="94">94</th><td>      <i class="doc">/// The allocated type</i>&nbsp</td></tr>
+<tr><th id="95">95</th><td>      <b>typedef</b> <b>typename</b> _Alloc::value_type <dfn class="typedef" id="std::allocator_traits::value_type" title='std::allocator_traits::value_type' data-type='typename _Alloc::value_type' data-ref="std::allocator_traits::value_type">value_type</dfn>;&nbsp</td></tr>
+<tr><th id="96">96</th><td>&nbsp</td></tr>
+<tr><th id="97">97</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i class="doc">       * <span class="command">@brief</span>   The allocator's pointer type.</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td><i class="doc">       *<span class="command"> @c</span> <span class="arg">Alloc::pointer</span> if that type exists, otherwise<span class="command"> @c</span> <span class="arg">value_type*</span></i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits::pointer" title='std::allocator_traits::pointer' data-type='__detected_or_t&lt;std::allocator_traits::value_type *, std::__allocator_traits_base::__pointer, _Alloc&gt;' data-ref="std::allocator_traits::pointer">pointer</dfn> = <a class="type" href="../type_traits.html#std::__detected_or_t" title='std::__detected_or_t' data-ref="std::__detected_or_t">__detected_or_t</a>&lt;<a class="typedef" href="#std::allocator_traits::value_type" title='std::allocator_traits::value_type' data-type='typename _Alloc::value_type' data-ref="std::allocator_traits::value_type">value_type</a>*, __pointer, _Alloc&gt;;&nbsp</td></tr>
+<tr><th id="103">103</th><td>&nbsp</td></tr>
+<tr><th id="104">104</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="105">105</th><td>      <i>// Select _Func&lt;_Alloc&gt; or pointer_traits&lt;pointer&gt;::rebind&lt;_Tp&gt;</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td>      <b>template</b>&lt;<b>template</b>&lt;<b>typename</b>&gt; <b>class</b> _Func, <b>typename</b> _Tp, <b>typename</b> = <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="107">107</th><td>	<b>struct</b> <dfn class="type def" id="std::allocator_traits::_Ptr" title='std::allocator_traits::_Ptr' data-ref="std::allocator_traits::_Ptr">_Ptr</dfn>&nbsp</td></tr>
+<tr><th id="108">108</th><td>	{&nbsp</td></tr>
+<tr><th id="109">109</th><td>	  <b>using</b> <dfn class="typedef" id="std::allocator_traits::_Ptr::type" title='std::allocator_traits::_Ptr::type' data-type='typename pointer_traits&lt;pointer&gt;::template rebind&lt;_Tp&gt;' data-ref="std::allocator_traits::_Ptr::type">type</dfn> = <b>typename</b> <a class="type" href="ptr_traits.h.html#std::pointer_traits" title='std::pointer_traits' data-ref="std::pointer_traits">pointer_traits</a>&lt;<a class="typedef" href="#std::allocator_traits::pointer" title='std::allocator_traits::pointer' data-type='__detected_or_t&lt;std::allocator_traits::value_type *, std::__allocator_traits_base::__pointer, _Alloc&gt;' data-ref="std::allocator_traits::pointer">pointer</a>&gt;::<b>template</b> rebind&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="110">110</th><td>	};&nbsp</td></tr>
+<tr><th id="111">111</th><td>&nbsp</td></tr>
+<tr><th id="112">112</th><td>      <b>template</b>&lt;<b>template</b>&lt;<b>typename</b>&gt; <b>class</b> _Func, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="113">113</th><td>	<b>struct</b> <dfn class="type def" id="std::allocator_traits::_Ptr" title='std::allocator_traits::_Ptr' data-ref="std::allocator_traits::_Ptr">_Ptr</dfn>&lt;_Func, _Tp, <a class="type" href="../type_traits.html#std::__void_t" title='std::__void_t' data-ref="std::__void_t">__void_t</a>&lt;<a class="type" href="#std::allocator_traits::_Ptr{_Func,type-parameter-1-1}::_Func" title='std::allocator_traits::_Ptr&lt;_Func, type-parameter-1-1&gt;::_Func' data-ref="std::allocator_traits::_Ptr{_Func,type-parameter-1-1}::_Func">_Func</a>&lt;_Alloc&gt;&gt;&gt;&nbsp</td></tr>
+<tr><th id="114">114</th><td>	{&nbsp</td></tr>
+<tr><th id="115">115</th><td>	  <b>using</b> <dfn class="typedef" id="std::allocator_traits::_Ptr{_Func,type-parameter-1-1}::type" title='std::allocator_traits::_Ptr&lt;_Func, type-parameter-1-1&gt;::type' data-type='_Func&lt;_Alloc&gt;' data-ref="std::allocator_traits::_Ptr{_Func,type-parameter-1-1}::type">type</dfn> = <a class="type" href="#std::allocator_traits::_Ptr{_Func,type-parameter-1-1}::_Func" title='std::allocator_traits::_Ptr&lt;_Func, type-parameter-1-1&gt;::_Func' data-ref="std::allocator_traits::_Ptr{_Func,type-parameter-1-1}::_Func">_Func</a>&lt;_Alloc&gt;;&nbsp</td></tr>
+<tr><th id="116">116</th><td>	};&nbsp</td></tr>
+<tr><th id="117">117</th><td>&nbsp</td></tr>
+<tr><th id="118">118</th><td>      <i>// Select _A2::difference_type or pointer_traits&lt;_Ptr&gt;::difference_type</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td>      <b>template</b>&lt;<b>typename</b> _A2, <b>typename</b> _PtrT, <b>typename</b> = <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="120">120</th><td>	<b>struct</b> <dfn class="type def" id="std::allocator_traits::_Diff" title='std::allocator_traits::_Diff' data-ref="std::allocator_traits::_Diff">_Diff</dfn>&nbsp</td></tr>
+<tr><th id="121">121</th><td>	{ <b>using</b> <dfn class="typedef" id="std::allocator_traits::_Diff::type" title='std::allocator_traits::_Diff::type' data-type='typename pointer_traits&lt;_PtrT&gt;::difference_type' data-ref="std::allocator_traits::_Diff::type">type</dfn> = <b>typename</b> <a class="type" href="ptr_traits.h.html#std::pointer_traits" title='std::pointer_traits' data-ref="std::pointer_traits">pointer_traits</a>&lt;_PtrT&gt;::difference_type; };&nbsp</td></tr>
+<tr><th id="122">122</th><td>&nbsp</td></tr>
+<tr><th id="123">123</th><td>      <b>template</b>&lt;<b>typename</b> _A2, <b>typename</b> _PtrT&gt;&nbsp</td></tr>
+<tr><th id="124">124</th><td>	<b>struct</b> <dfn class="type def" id="std::allocator_traits::_Diff" title='std::allocator_traits::_Diff' data-ref="std::allocator_traits::_Diff">_Diff</dfn>&lt;_A2, _PtrT, <a class="type" href="../type_traits.html#std::__void_t" title='std::__void_t' data-ref="std::__void_t">__void_t</a>&lt;<b>typename</b> _A2::difference_type&gt;&gt;&nbsp</td></tr>
+<tr><th id="125">125</th><td>	{ <b>using</b> <dfn class="typedef" id="std::allocator_traits::_Diff{type-parameter-1-0,type-parameter-1-1}::type" title='std::allocator_traits::_Diff&lt;type-parameter-1-0, type-parameter-1-1&gt;::type' data-type='typename _A2::difference_type' data-ref="std::allocator_traits::_Diff{type-parameter-1-0,type-parameter-1-1}::type">type</dfn> = <b>typename</b> _A2::difference_type; };&nbsp</td></tr>
+<tr><th id="126">126</th><td>&nbsp</td></tr>
+<tr><th id="127">127</th><td>      <i>// Select _A2::size_type or make_unsigned&lt;_DiffT&gt;::type</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td>      <b>template</b>&lt;<b>typename</b> _A2, <b>typename</b> _DiffT, <b>typename</b> = <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="129">129</th><td>	<b>struct</b> <dfn class="type def" id="std::allocator_traits::_Size" title='std::allocator_traits::_Size' data-ref="std::allocator_traits::_Size">_Size</dfn> : <a class="type" href="../type_traits.html#std::make_unsigned" title='std::make_unsigned' data-ref="std::make_unsigned">make_unsigned</a>&lt;_DiffT&gt; { };&nbsp</td></tr>
+<tr><th id="130">130</th><td>&nbsp</td></tr>
+<tr><th id="131">131</th><td>      <b>template</b>&lt;<b>typename</b> _A2, <b>typename</b> _DiffT&gt;&nbsp</td></tr>
+<tr><th id="132">132</th><td>	<b>struct</b> <dfn class="type def" id="std::allocator_traits::_Size" title='std::allocator_traits::_Size' data-ref="std::allocator_traits::_Size">_Size</dfn>&lt;_A2, _DiffT, <a class="type" href="../type_traits.html#std::__void_t" title='std::__void_t' data-ref="std::__void_t">__void_t</a>&lt;<b>typename</b> _A2::size_type&gt;&gt;&nbsp</td></tr>
+<tr><th id="133">133</th><td>	{ <b>using</b> <dfn class="typedef" id="std::allocator_traits::_Size{type-parameter-1-0,type-parameter-1-1}::type" title='std::allocator_traits::_Size&lt;type-parameter-1-0, type-parameter-1-1&gt;::type' data-type='typename _A2::size_type' data-ref="std::allocator_traits::_Size{type-parameter-1-0,type-parameter-1-1}::type">type</dfn> = <b>typename</b> _A2::size_type; };&nbsp</td></tr>
+<tr><th id="134">134</th><td>&nbsp</td></tr>
+<tr><th id="135">135</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="136">136</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="137">137</th><td><i class="doc">       * <span class="command">@brief</span>   The allocator's const pointer type.</i>&nbsp</td></tr>
+<tr><th id="138">138</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="139">139</th><td><i class="doc">       *<span class="command"> @c</span> <span class="arg">Alloc::const_pointer</span> if that type exists, otherwise</i>&nbsp</td></tr>
+<tr><th id="140">140</th><td><i class="doc">       * <span class="tag">&lt;tt&gt;</span> pointer_traits&lt;pointer&gt;::rebind&lt;const value_type&gt; <span class="tag">&lt;/tt&gt;</span></i>&nbsp</td></tr>
+<tr><th id="141">141</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits::const_pointer" title='std::allocator_traits::const_pointer' data-type='typename _Ptr&lt;std::__allocator_traits_base::__c_pointer, const value_type&gt;::type' data-ref="std::allocator_traits::const_pointer">const_pointer</dfn> = <b>typename</b> <a class="type" href="#std::allocator_traits::_Ptr" title='std::allocator_traits::_Ptr' data-ref="std::allocator_traits::_Ptr">_Ptr</a>&lt;__c_pointer, <em>const</em> <a class="typedef" href="#std::allocator_traits::value_type" title='std::allocator_traits::value_type' data-type='typename _Alloc::value_type' data-ref="std::allocator_traits::value_type">value_type</a>&gt;::type;&nbsp</td></tr>
+<tr><th id="143">143</th><td>&nbsp</td></tr>
+<tr><th id="144">144</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td><i class="doc">       * <span class="command">@brief</span>   The allocator's void pointer type.</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="147">147</th><td><i class="doc">       *<span class="command"> @c</span> <span class="arg">Alloc::void_pointer</span> if that type exists, otherwise</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td><i class="doc">       * <span class="tag">&lt;tt&gt;</span> pointer_traits&lt;pointer&gt;::rebind&lt;void&gt; <span class="tag">&lt;/tt&gt;</span></i>&nbsp</td></tr>
+<tr><th id="149">149</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="150">150</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits::void_pointer" title='std::allocator_traits::void_pointer' data-type='typename _Ptr&lt;std::__allocator_traits_base::__v_pointer, void&gt;::type' data-ref="std::allocator_traits::void_pointer">void_pointer</dfn> = <b>typename</b> <a class="type" href="#std::allocator_traits::_Ptr" title='std::allocator_traits::_Ptr' data-ref="std::allocator_traits::_Ptr">_Ptr</a>&lt;__v_pointer, <em>void</em>&gt;::type;&nbsp</td></tr>
+<tr><th id="151">151</th><td>&nbsp</td></tr>
+<tr><th id="152">152</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="153">153</th><td><i class="doc">       * <span class="command">@brief</span>   The allocator's const void pointer type.</i>&nbsp</td></tr>
+<tr><th id="154">154</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="155">155</th><td><i class="doc">       *<span class="command"> @c</span> <span class="arg">Alloc::const_void_pointer</span> if that type exists, otherwise</i>&nbsp</td></tr>
+<tr><th id="156">156</th><td><i class="doc">       * <span class="tag">&lt;tt&gt;</span> pointer_traits&lt;pointer&gt;::rebind&lt;const void&gt; <span class="tag">&lt;/tt&gt;</span></i>&nbsp</td></tr>
+<tr><th id="157">157</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="158">158</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits::const_void_pointer" title='std::allocator_traits::const_void_pointer' data-type='typename _Ptr&lt;std::__allocator_traits_base::__cv_pointer, const void&gt;::type' data-ref="std::allocator_traits::const_void_pointer">const_void_pointer</dfn> = <b>typename</b> <a class="type" href="#std::allocator_traits::_Ptr" title='std::allocator_traits::_Ptr' data-ref="std::allocator_traits::_Ptr">_Ptr</a>&lt;__cv_pointer, <em>const</em> <em>void</em>&gt;::type;&nbsp</td></tr>
+<tr><th id="159">159</th><td>&nbsp</td></tr>
+<tr><th id="160">160</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="161">161</th><td><i class="doc">       * <span class="command">@brief</span>   The allocator's difference type</i>&nbsp</td></tr>
+<tr><th id="162">162</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="163">163</th><td><i class="doc">       *<span class="command"> @c</span> <span class="arg">Alloc::difference_type</span> if that type exists, otherwise</i>&nbsp</td></tr>
+<tr><th id="164">164</th><td><i class="doc">       * <span class="tag">&lt;tt&gt;</span> pointer_traits&lt;pointer&gt;::difference_type <span class="tag">&lt;/tt&gt;</span></i>&nbsp</td></tr>
+<tr><th id="165">165</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="166">166</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits::difference_type" title='std::allocator_traits::difference_type' data-type='typename _Diff&lt;_Alloc, pointer&gt;::type' data-ref="std::allocator_traits::difference_type">difference_type</dfn> = <b>typename</b> <a class="type" href="#std::allocator_traits::_Diff" title='std::allocator_traits::_Diff' data-ref="std::allocator_traits::_Diff">_Diff</a>&lt;_Alloc, <a class="typedef" href="#std::allocator_traits::pointer" title='std::allocator_traits::pointer' data-type='__detected_or_t&lt;std::allocator_traits::value_type *, std::__allocator_traits_base::__pointer, _Alloc&gt;' data-ref="std::allocator_traits::pointer">pointer</a>&gt;::type;&nbsp</td></tr>
+<tr><th id="167">167</th><td>&nbsp</td></tr>
+<tr><th id="168">168</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="169">169</th><td><i class="doc">       * <span class="command">@brief</span>   The allocator's size type</i>&nbsp</td></tr>
+<tr><th id="170">170</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="171">171</th><td><i class="doc">       *<span class="command"> @c</span> <span class="arg">Alloc::size_type</span> if that type exists, otherwise</i>&nbsp</td></tr>
+<tr><th id="172">172</th><td><i class="doc">       * <span class="tag">&lt;tt&gt;</span> make_unsigned&lt;difference_type&gt;::type <span class="tag">&lt;/tt&gt;</span></i>&nbsp</td></tr>
+<tr><th id="173">173</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="174">174</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits::size_type" title='std::allocator_traits::size_type' data-type='typename _Size&lt;_Alloc, difference_type&gt;::type' data-ref="std::allocator_traits::size_type">size_type</dfn> = <b>typename</b> <a class="type" href="#std::allocator_traits::_Size" title='std::allocator_traits::_Size' data-ref="std::allocator_traits::_Size">_Size</a>&lt;_Alloc, <a class="typedef" href="#std::allocator_traits::difference_type" title='std::allocator_traits::difference_type' data-type='typename _Diff&lt;_Alloc, pointer&gt;::type' data-ref="std::allocator_traits::difference_type">difference_type</a>&gt;::type;&nbsp</td></tr>
+<tr><th id="175">175</th><td>&nbsp</td></tr>
+<tr><th id="176">176</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="177">177</th><td><i class="doc">       * <span class="command">@brief</span>   How the allocator is propagated on copy assignment</i>&nbsp</td></tr>
+<tr><th id="178">178</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="179">179</th><td><i class="doc">       *<span class="command"> @c</span> <span class="arg">Alloc::propagate_on_container_copy_assignment</span> if that type exists,</i>&nbsp</td></tr>
+<tr><th id="180">180</th><td><i class="doc">       * otherwise<span class="command"> @c</span> <span class="arg">false_type</span></i>&nbsp</td></tr>
+<tr><th id="181">181</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="182">182</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits::propagate_on_container_copy_assignment" title='std::allocator_traits::propagate_on_container_copy_assignment' data-type='__detected_or_t&lt;std::false_type, std::__allocator_traits_base::__pocca, _Alloc&gt;' data-ref="std::allocator_traits::propagate_on_container_copy_assignment">propagate_on_container_copy_assignment</dfn>&nbsp</td></tr>
+<tr><th id="183">183</th><td>	= <a class="type" href="../type_traits.html#std::__detected_or_t" title='std::__detected_or_t' data-ref="std::__detected_or_t">__detected_or_t</a>&lt;<a class="typedef" href="../type_traits.html#std::false_type" title='std::false_type' data-type='integral_constant&lt;bool, false&gt;' data-ref="std::false_type">false_type</a>, __pocca, _Alloc&gt;;&nbsp</td></tr>
+<tr><th id="184">184</th><td>&nbsp</td></tr>
+<tr><th id="185">185</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="186">186</th><td><i class="doc">       * <span class="command">@brief</span>   How the allocator is propagated on move assignment</i>&nbsp</td></tr>
+<tr><th id="187">187</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="188">188</th><td><i class="doc">       *<span class="command"> @c</span> <span class="arg">Alloc::propagate_on_container_move_assignment</span> if that type exists,</i>&nbsp</td></tr>
+<tr><th id="189">189</th><td><i class="doc">       * otherwise<span class="command"> @c</span> <span class="arg">false_type</span></i>&nbsp</td></tr>
+<tr><th id="190">190</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="191">191</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits::propagate_on_container_move_assignment" title='std::allocator_traits::propagate_on_container_move_assignment' data-type='__detected_or_t&lt;std::false_type, std::__allocator_traits_base::__pocma, _Alloc&gt;' data-ref="std::allocator_traits::propagate_on_container_move_assignment">propagate_on_container_move_assignment</dfn>&nbsp</td></tr>
+<tr><th id="192">192</th><td>	= <a class="type" href="../type_traits.html#std::__detected_or_t" title='std::__detected_or_t' data-ref="std::__detected_or_t">__detected_or_t</a>&lt;<a class="typedef" href="../type_traits.html#std::false_type" title='std::false_type' data-type='integral_constant&lt;bool, false&gt;' data-ref="std::false_type">false_type</a>, __pocma, _Alloc&gt;;&nbsp</td></tr>
+<tr><th id="193">193</th><td>&nbsp</td></tr>
+<tr><th id="194">194</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="195">195</th><td><i class="doc">       * <span class="command">@brief</span>   How the allocator is propagated on swap</i>&nbsp</td></tr>
+<tr><th id="196">196</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="197">197</th><td><i class="doc">       *<span class="command"> @c</span> <span class="arg">Alloc::propagate_on_container_swap</span> if that type exists,</i>&nbsp</td></tr>
+<tr><th id="198">198</th><td><i class="doc">       * otherwise<span class="command"> @c</span> <span class="arg">false_type</span></i>&nbsp</td></tr>
+<tr><th id="199">199</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="200">200</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits::propagate_on_container_swap" title='std::allocator_traits::propagate_on_container_swap' data-type='__detected_or_t&lt;std::false_type, std::__allocator_traits_base::__pocs, _Alloc&gt;' data-ref="std::allocator_traits::propagate_on_container_swap">propagate_on_container_swap</dfn>&nbsp</td></tr>
+<tr><th id="201">201</th><td>	= <a class="type" href="../type_traits.html#std::__detected_or_t" title='std::__detected_or_t' data-ref="std::__detected_or_t">__detected_or_t</a>&lt;<a class="typedef" href="../type_traits.html#std::false_type" title='std::false_type' data-type='integral_constant&lt;bool, false&gt;' data-ref="std::false_type">false_type</a>, __pocs, _Alloc&gt;;&nbsp</td></tr>
+<tr><th id="202">202</th><td>&nbsp</td></tr>
+<tr><th id="203">203</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="204">204</th><td><i class="doc">       * <span class="command">@brief</span>   Whether all instances of the allocator type compare equal.</i>&nbsp</td></tr>
+<tr><th id="205">205</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="206">206</th><td><i class="doc">       *<span class="command"> @c</span> <span class="arg">Alloc::is_always_equal</span> if that type exists,</i>&nbsp</td></tr>
+<tr><th id="207">207</th><td><i class="doc">       * otherwise<span class="command"> @c</span> <span class="arg">is_empty&lt;Alloc&gt;::type</span></i>&nbsp</td></tr>
+<tr><th id="208">208</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="209">209</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits::is_always_equal" title='std::allocator_traits::is_always_equal' data-type='__detected_or_t&lt;typename is_empty&lt;_Alloc&gt;::type, std::__allocator_traits_base::__equal, _Alloc&gt;' data-ref="std::allocator_traits::is_always_equal">is_always_equal</dfn>&nbsp</td></tr>
+<tr><th id="210">210</th><td>	= <a class="type" href="../type_traits.html#std::__detected_or_t" title='std::__detected_or_t' data-ref="std::__detected_or_t">__detected_or_t</a>&lt;<b>typename</b> <a class="type" href="../type_traits.html#std::is_empty" title='std::is_empty' data-ref="std::is_empty">is_empty</a>&lt;_Alloc&gt;::type, __equal, _Alloc&gt;;&nbsp</td></tr>
+<tr><th id="211">211</th><td>&nbsp</td></tr>
+<tr><th id="212">212</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="213">213</th><td>	<b>using</b> <dfn class="typedef" id="std::allocator_traits::rebind_alloc" title='std::allocator_traits::rebind_alloc' data-type='__alloc_rebind&lt;_Alloc, _Tp&gt;' data-ref="std::allocator_traits::rebind_alloc">rebind_alloc</dfn> = <a class="type" href="#std::__alloc_rebind" title='std::__alloc_rebind' data-ref="std::__alloc_rebind">__alloc_rebind</a>&lt;_Alloc, _Tp&gt;;&nbsp</td></tr>
+<tr><th id="214">214</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="215">215</th><td>	<b>using</b> <dfn class="typedef" id="std::allocator_traits::rebind_traits" title='std::allocator_traits::rebind_traits' data-type='allocator_traits&lt;rebind_alloc&lt;_Tp&gt;&gt;' data-ref="std::allocator_traits::rebind_traits">rebind_traits</dfn> = <a class="type" href="memoryfwd.h.html#std::allocator_traits" title='std::allocator_traits' data-ref="std::allocator_traits">allocator_traits</a>&lt;<a class="type" href="#std::allocator_traits::rebind_alloc" title='std::allocator_traits::rebind_alloc' data-ref="std::allocator_traits::rebind_alloc">rebind_alloc</a>&lt;_Tp&gt;&gt;;&nbsp</td></tr>
+<tr><th id="216">216</th><td>&nbsp</td></tr>
+<tr><th id="217">217</th><td>    <b>private</b>:&nbsp</td></tr>
+<tr><th id="218">218</th><td>      <b>template</b>&lt;<b>typename</b> _Alloc2&gt;&nbsp</td></tr>
+<tr><th id="219">219</th><td>	<em>static</em> <b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="220">220</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traits11_S_allocateERTL0__NS_5_SizeIT_NS_5_DiffIS3_NSt10__detectorIPNS3_10value_typeEvNSt23__allocator_traits_base9__pointerEJS3_EE4t545519" title='std::allocator_traits::_S_allocate' data-ref="_ZNSt16allocator_traits11_S_allocateERTL0__NS_5_SizeIT_NS_5_DiffIS3_NSt10__detectorIPNS3_10value_typeEvNSt23__allocator_traits_base9__pointerEJS3_EE4t545519">_S_allocate</dfn>(_Alloc2&amp; <dfn class="local col0 decl" id="5890__a" title='__a' data-type='_Alloc2 &amp;' data-ref="5890__a">__a</dfn>, <a class="typedef" href="#std::allocator_traits::size_type" title='std::allocator_traits::size_type' data-type='typename _Size&lt;_Alloc, difference_type&gt;::type' data-ref="std::allocator_traits::size_type">size_type</a> <dfn class="local col1 decl" id="5891__n" title='__n' data-type='std::allocator_traits::size_type' data-ref="5891__n">__n</dfn>, <a class="typedef" href="#std::allocator_traits::const_void_pointer" title='std::allocator_traits::const_void_pointer' data-type='typename _Ptr&lt;std::__allocator_traits_base::__cv_pointer, const void&gt;::type' data-ref="std::allocator_traits::const_void_pointer">const_void_pointer</a> <dfn class="local col2 decl" id="5892__hint" title='__hint' data-type='std::allocator_traits::const_void_pointer' data-ref="5892__hint">__hint</dfn>, <em>int</em>)&nbsp</td></tr>
+<tr><th id="221">221</th><td>	-&gt; <b>decltype</b>(<a class="local col0 ref" href="#5890__a" title='__a' data-ref="5890__a">__a</a>.allocate(<a class="local col1 ref" href="#5891__n" title='__n' data-ref="5891__n">__n</a>, <a class="local col2 ref" href="#5892__hint" title='__hint' data-ref="5892__hint">__hint</a>))&nbsp</td></tr>
+<tr><th id="222">222</th><td>	{ <b>return</b> <a class="local col0 ref" href="#5890__a" title='__a' data-ref="5890__a">__a</a>.allocate(<a class="local col1 ref" href="#5891__n" title='__n' data-ref="5891__n">__n</a>, <a class="local col2 ref" href="#5892__hint" title='__hint' data-ref="5892__hint">__hint</a>); }&nbsp</td></tr>
+<tr><th id="223">223</th><td>&nbsp</td></tr>
+<tr><th id="224">224</th><td>      <b>template</b>&lt;<b>typename</b> _Alloc2&gt;&nbsp</td></tr>
+<tr><th id="225">225</th><td>	<em>static</em> <b>constexpr</b> <a class="typedef" href="#std::allocator_traits::pointer" title='std::allocator_traits::pointer' data-type='__detected_or_t&lt;std::allocator_traits::value_type *, std::__allocator_traits_base::__pointer, _Alloc&gt;' data-ref="std::allocator_traits::pointer">pointer</a>&nbsp</td></tr>
+<tr><th id="226">226</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traits11_S_allocateERTL0__NS_5_SizeIT_NS_5_DiffIS3_NSt10__detectorIPNS3_10value_typeEvNSt23__allocator_traits_base9__pointerEJS3_EE4t12840429" title='std::allocator_traits::_S_allocate' data-ref="_ZNSt16allocator_traits11_S_allocateERTL0__NS_5_SizeIT_NS_5_DiffIS3_NSt10__detectorIPNS3_10value_typeEvNSt23__allocator_traits_base9__pointerEJS3_EE4t12840429">_S_allocate</dfn>(_Alloc2&amp; <dfn class="local col3 decl" id="5893__a" title='__a' data-type='_Alloc2 &amp;' data-ref="5893__a">__a</dfn>, <a class="typedef" href="#std::allocator_traits::size_type" title='std::allocator_traits::size_type' data-type='typename _Size&lt;_Alloc, difference_type&gt;::type' data-ref="std::allocator_traits::size_type">size_type</a> <dfn class="local col4 decl" id="5894__n" title='__n' data-type='std::allocator_traits::size_type' data-ref="5894__n">__n</dfn>, <a class="typedef" href="#std::allocator_traits::const_void_pointer" title='std::allocator_traits::const_void_pointer' data-type='typename _Ptr&lt;std::__allocator_traits_base::__cv_pointer, const void&gt;::type' data-ref="std::allocator_traits::const_void_pointer">const_void_pointer</a>, ...)&nbsp</td></tr>
+<tr><th id="227">227</th><td>	{ <b>return</b> <a class="local col3 ref" href="#5893__a" title='__a' data-ref="5893__a">__a</a>.allocate(<a class="local col4 ref" href="#5894__n" title='__n' data-ref="5894__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="228">228</th><td>&nbsp</td></tr>
+<tr><th id="229">229</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="230">230</th><td>	<b>struct</b> <dfn class="type def" id="std::allocator_traits::__construct_helper" title='std::allocator_traits::__construct_helper' data-ref="std::allocator_traits::__construct_helper">__construct_helper</dfn>&nbsp</td></tr>
+<tr><th id="231">231</th><td>	{&nbsp</td></tr>
+<tr><th id="232">232</th><td>	  <b>template</b>&lt;<b>typename</b> _Alloc2,&nbsp</td></tr>
+<tr><th id="233">233</th><td>	    <b>typename</b> = <b>decltype</b>(<span class="namespace">std::</span>declval&lt;_Alloc2*&gt;()-&gt;construct(&nbsp</td></tr>
+<tr><th id="234">234</th><td>		  <span class="namespace">std::</span>declval&lt;_Tp*&gt;(), <span class="namespace">std::</span>declval&lt;_Args&gt;()...))&gt;&nbsp</td></tr>
+<tr><th id="235">235</th><td>	    <em>static</em> <a class="typedef" href="../type_traits.html#std::true_type" title='std::true_type' data-type='integral_constant&lt;bool, true&gt;' data-ref="std::true_type">true_type</a> <dfn class="decl fn" id="_ZNSt16allocator_traits18__construct_helper6__testEi" title='std::allocator_traits::__construct_helper::__test' data-ref="_ZNSt16allocator_traits18__construct_helper6__testEi">__test</dfn>(<em>int</em>);&nbsp</td></tr>
+<tr><th id="236">236</th><td>&nbsp</td></tr>
+<tr><th id="237">237</th><td>	  <b>template</b>&lt;<b>typename</b>&gt;&nbsp</td></tr>
+<tr><th id="238">238</th><td>	    <em>static</em> <a class="typedef" href="../type_traits.html#std::false_type" title='std::false_type' data-type='integral_constant&lt;bool, false&gt;' data-ref="std::false_type">false_type</a> <dfn class="decl fn" id="_ZNSt16allocator_traits18__construct_helper6__testEz" title='std::allocator_traits::__construct_helper::__test' data-ref="_ZNSt16allocator_traits18__construct_helper6__testEz">__test</dfn>(...);&nbsp</td></tr>
+<tr><th id="239">239</th><td>&nbsp</td></tr>
+<tr><th id="240">240</th><td>	  <b>using</b> <dfn class="typedef" id="std::allocator_traits::__construct_helper::type" title='std::allocator_traits::__construct_helper::type' data-type='decltype(__test&lt;_Alloc&gt;(0))' data-ref="std::allocator_traits::__construct_helper::type">type</dfn> = <b>decltype</b>(__test&lt;_Alloc&gt;(<var>0</var>));&nbsp</td></tr>
+<tr><th id="241">241</th><td>	};&nbsp</td></tr>
+<tr><th id="242">242</th><td>&nbsp</td></tr>
+<tr><th id="243">243</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="244">244</th><td>	<b>using</b> <dfn class="typedef" id="std::allocator_traits::__has_construct" title='std::allocator_traits::__has_construct' data-type='typename __construct_helper&lt;_Tp, _Args...&gt;::type' data-ref="std::allocator_traits::__has_construct">__has_construct</dfn>&nbsp</td></tr>
+<tr><th id="245">245</th><td>	  = <b>typename</b> <a class="type" href="#std::allocator_traits::__construct_helper" title='std::allocator_traits::__construct_helper' data-ref="std::allocator_traits::__construct_helper">__construct_helper</a>&lt;_Tp, _Args...&gt;::type;&nbsp</td></tr>
+<tr><th id="246">246</th><td>&nbsp</td></tr>
+<tr><th id="247">247</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="248">248</th><td>	<em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#153" title="constexpr" data-ref="_M/_GLIBCXX14_CONSTEXPR">_GLIBCXX14_CONSTEXPR</a> <a class="type" href="../type_traits.html#std::_Require" title='std::_Require' data-ref="std::_Require">_Require</a>&lt;<a class="type" href="#std::allocator_traits::__has_construct" title='std::allocator_traits::__has_construct' data-ref="std::allocator_traits::__has_construct">__has_construct</a>&lt;_Tp, _Args...&gt;&gt;&nbsp</td></tr>
+<tr><th id="249">249</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traits12_S_constructERT_PTL0__DpOTL0_0_" title='std::allocator_traits::_S_construct' data-ref="_ZNSt16allocator_traits12_S_constructERT_PTL0__DpOTL0_0_">_S_construct</dfn>(_Alloc&amp; <dfn class="local col5 decl" id="5895__a" title='__a' data-type='_Alloc &amp;' data-ref="5895__a">__a</dfn>, _Tp* <dfn class="local col6 decl" id="5896__p" title='__p' data-type='_Tp *' data-ref="5896__p">__p</dfn>, _Args&amp;&amp;... <dfn class="local col7 decl" id="5897__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="5897__args">__args</dfn>)&nbsp</td></tr>
+<tr><th id="250">250</th><td>	<b>noexcept</b>(<b>noexcept</b>(<a class="local col5 ref" href="#5895__a" title='__a' data-ref="5895__a">__a</a>.construct(<a class="local col6 ref" href="#5896__p" title='__p' data-ref="5896__p">__p</a>, <span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col7 ref" href="#5897__args" title='__args' data-ref="5897__args">__args</a>)...)))&nbsp</td></tr>
+<tr><th id="251">251</th><td>	{ <a class="local col5 ref" href="#5895__a" title='__a' data-ref="5895__a">__a</a>.construct(<a class="local col6 ref" href="#5896__p" title='__p' data-ref="5896__p">__p</a>, <span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col7 ref" href="#5897__args" title='__args' data-ref="5897__args">__args</a>)...); }&nbsp</td></tr>
+<tr><th id="252">252</th><td>&nbsp</td></tr>
+<tr><th id="253">253</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="254">254</th><td>	<em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#153" title="constexpr" data-ref="_M/_GLIBCXX14_CONSTEXPR">_GLIBCXX14_CONSTEXPR</a>&nbsp</td></tr>
+<tr><th id="255">255</th><td>	<a class="type" href="../type_traits.html#std::_Require" title='std::_Require' data-ref="std::_Require">_Require</a>&lt;<a class="type" href="../type_traits.html#std::__and_" title='std::__and_' data-ref="std::__and_">__and_</a>&lt;<a class="type" href="../type_traits.html#std::__not_" title='std::__not_' data-ref="std::__not_">__not_</a>&lt;<a class="type" href="#std::allocator_traits::__has_construct" title='std::allocator_traits::__has_construct' data-ref="std::allocator_traits::__has_construct">__has_construct</a>&lt;_Tp, _Args...&gt;&gt;,&nbsp</td></tr>
+<tr><th id="256">256</th><td>			       <a class="type" href="../type_traits.html#std::is_constructible" title='std::is_constructible' data-ref="std::is_constructible">is_constructible</a>&lt;_Tp, _Args...&gt;&gt;&gt;&nbsp</td></tr>
+<tr><th id="257">257</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traits12_S_constructERT_PTL0__DpOTL0_0_" title='std::allocator_traits::_S_construct' data-ref="_ZNSt16allocator_traits12_S_constructERT_PTL0__DpOTL0_0_">_S_construct</dfn>(_Alloc&amp;, _Tp* <dfn class="local col8 decl" id="5898__p" title='__p' data-type='_Tp *' data-ref="5898__p">__p</dfn>, _Args&amp;&amp;... <dfn class="local col9 decl" id="5899__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="5899__args">__args</dfn>)&nbsp</td></tr>
+<tr><th id="258">258</th><td>	<b>noexcept</b>(<span class="namespace">std::</span><a class="type" href="../type_traits.html#std::is_nothrow_constructible" title='std::is_nothrow_constructible' data-ref="std::is_nothrow_constructible">is_nothrow_constructible</a>&lt;_Tp, _Args...&gt;::value)&nbsp</td></tr>
+<tr><th id="259">259</th><td>	{&nbsp</td></tr>
+<tr><th id="260">260</th><td><u>#<span data-ppcond="260">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="261">261</th><td>	  ::<b>new</b>((<em>void</em>*)__p) _Tp(std::forward&lt;_Args&gt;(__args)...);&nbsp</td></tr>
+<tr><th id="262">262</th><td><u>#<span data-ppcond="260">else</span></u>&nbsp</td></tr>
+<tr><th id="263">263</th><td>	  <span class="namespace">std::</span>construct_at(<a class="local col8 ref" href="#5898__p" title='__p' data-ref="5898__p">__p</a>, <span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col9 ref" href="#5899__args" title='__args' data-ref="5899__args">__args</a>)...);&nbsp</td></tr>
+<tr><th id="264">264</th><td><u>#<span data-ppcond="260">endif</span></u>&nbsp</td></tr>
+<tr><th id="265">265</th><td>	}&nbsp</td></tr>
+<tr><th id="266">266</th><td>&nbsp</td></tr>
+<tr><th id="267">267</th><td>      <b>template</b>&lt;<b>typename</b> _Alloc2, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="268">268</th><td>	<em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#153" title="constexpr" data-ref="_M/_GLIBCXX14_CONSTEXPR">_GLIBCXX14_CONSTEXPR</a> <em>auto</em>&nbsp</td></tr>
+<tr><th id="269">269</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traits10_S_destroyERTL0__PTL0_0_i" title='std::allocator_traits::_S_destroy' data-ref="_ZNSt16allocator_traits10_S_destroyERTL0__PTL0_0_i">_S_destroy</dfn>(_Alloc2&amp; <dfn class="local col0 decl" id="5900__a" title='__a' data-type='_Alloc2 &amp;' data-ref="5900__a">__a</dfn>, _Tp* <dfn class="local col1 decl" id="5901__p" title='__p' data-type='_Tp *' data-ref="5901__p">__p</dfn>, <em>int</em>)&nbsp</td></tr>
+<tr><th id="270">270</th><td>	<b>noexcept</b>(<b>noexcept</b>(<a class="local col0 ref" href="#5900__a" title='__a' data-ref="5900__a">__a</a>.destroy(<a class="local col1 ref" href="#5901__p" title='__p' data-ref="5901__p">__p</a>)))&nbsp</td></tr>
+<tr><th id="271">271</th><td>	-&gt; <b>decltype</b>(<a class="local col0 ref" href="#5900__a" title='__a' data-ref="5900__a">__a</a>.destroy(<a class="local col1 ref" href="#5901__p" title='__p' data-ref="5901__p">__p</a>))&nbsp</td></tr>
+<tr><th id="272">272</th><td>	{ <a class="local col0 ref" href="#5900__a" title='__a' data-ref="5900__a">__a</a>.destroy(<a class="local col1 ref" href="#5901__p" title='__p' data-ref="5901__p">__p</a>); }&nbsp</td></tr>
+<tr><th id="273">273</th><td>&nbsp</td></tr>
+<tr><th id="274">274</th><td>      <b>template</b>&lt;<b>typename</b> _Alloc2, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="275">275</th><td>	<em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#153" title="constexpr" data-ref="_M/_GLIBCXX14_CONSTEXPR">_GLIBCXX14_CONSTEXPR</a> <em>void</em>&nbsp</td></tr>
+<tr><th id="276">276</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traits10_S_destroyERTL0__PTL0_0_z" title='std::allocator_traits::_S_destroy' data-ref="_ZNSt16allocator_traits10_S_destroyERTL0__PTL0_0_z">_S_destroy</dfn>(_Alloc2&amp;, _Tp* <dfn class="local col2 decl" id="5902__p" title='__p' data-type='_Tp *' data-ref="5902__p">__p</dfn>, ...)&nbsp</td></tr>
+<tr><th id="277">277</th><td>	<b>noexcept</b>(<span class="namespace">std::</span><a class="type" href="../type_traits.html#std::is_nothrow_destructible" title='std::is_nothrow_destructible' data-ref="std::is_nothrow_destructible">is_nothrow_destructible</a>&lt;_Tp&gt;::value)&nbsp</td></tr>
+<tr><th id="278">278</th><td>	{ <span class="namespace">std::</span>_Destroy(<a class="local col2 ref" href="#5902__p" title='__p' data-ref="5902__p">__p</a>); }&nbsp</td></tr>
+<tr><th id="279">279</th><td>&nbsp</td></tr>
+<tr><th id="280">280</th><td>      <b>template</b>&lt;<b>typename</b> _Alloc2&gt;&nbsp</td></tr>
+<tr><th id="281">281</th><td>	<em>static</em> <b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="282">282</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traits11_S_max_sizeERTL0__i" title='std::allocator_traits::_S_max_size' data-ref="_ZNSt16allocator_traits11_S_max_sizeERTL0__i">_S_max_size</dfn>(_Alloc2&amp; <dfn class="local col3 decl" id="5903__a" title='__a' data-type='_Alloc2 &amp;' data-ref="5903__a">__a</dfn>, <em>int</em>)&nbsp</td></tr>
+<tr><th id="283">283</th><td>	-&gt; <b>decltype</b>(<a class="local col3 ref" href="#5903__a" title='__a' data-ref="5903__a">__a</a>.max_size())&nbsp</td></tr>
+<tr><th id="284">284</th><td>	{ <b>return</b> <a class="local col3 ref" href="#5903__a" title='__a' data-ref="5903__a">__a</a>.max_size(); }&nbsp</td></tr>
+<tr><th id="285">285</th><td>&nbsp</td></tr>
+<tr><th id="286">286</th><td>      <b>template</b>&lt;<b>typename</b> _Alloc2&gt;&nbsp</td></tr>
+<tr><th id="287">287</th><td>	<em>static</em> <b>constexpr</b> <a class="typedef" href="#std::allocator_traits::size_type" title='std::allocator_traits::size_type' data-type='typename _Size&lt;_Alloc, difference_type&gt;::type' data-ref="std::allocator_traits::size_type">size_type</a>&nbsp</td></tr>
+<tr><th id="288">288</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traits11_S_max_sizeERTL0__z" title='std::allocator_traits::_S_max_size' data-ref="_ZNSt16allocator_traits11_S_max_sizeERTL0__z">_S_max_size</dfn>(_Alloc2&amp;, ...)&nbsp</td></tr>
+<tr><th id="289">289</th><td>	{&nbsp</td></tr>
+<tr><th id="290">290</th><td>	  <i>// _GLIBCXX_RESOLVE_LIB_DEFECTS</i>&nbsp</td></tr>
+<tr><th id="291">291</th><td><i>	  // 2466. allocator_traits::max_size() default behavior is incorrect</i>&nbsp</td></tr>
+<tr><th id="292">292</th><td>	  <b>return</b> <span class="namespace">__gnu_cxx::</span><a class="type" href="../ext/numeric_traits.h.html#__gnu_cxx::__numeric_traits" title='__gnu_cxx::__numeric_traits' data-ref="__gnu_cxx::__numeric_traits">__numeric_traits</a>&lt;<a class="typedef" href="#std::allocator_traits::size_type" title='std::allocator_traits::size_type' data-type='typename _Size&lt;_Alloc, difference_type&gt;::type' data-ref="std::allocator_traits::size_type">size_type</a>&gt;::__max&nbsp</td></tr>
+<tr><th id="293">293</th><td>	    / <b>sizeof</b>(<a class="typedef" href="#std::allocator_traits::value_type" title='std::allocator_traits::value_type' data-type='typename _Alloc::value_type' data-ref="std::allocator_traits::value_type">value_type</a>);&nbsp</td></tr>
+<tr><th id="294">294</th><td>	}&nbsp</td></tr>
+<tr><th id="295">295</th><td>&nbsp</td></tr>
+<tr><th id="296">296</th><td>      <b>template</b>&lt;<b>typename</b> _Alloc2&gt;&nbsp</td></tr>
+<tr><th id="297">297</th><td>	<em>static</em> <b>constexpr</b> <em>auto</em>&nbsp</td></tr>
+<tr><th id="298">298</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traits9_S_selectERTL0__i" title='std::allocator_traits::_S_select' data-ref="_ZNSt16allocator_traits9_S_selectERTL0__i">_S_select</dfn>(_Alloc2&amp; <dfn class="local col4 decl" id="5904__a" title='__a' data-type='_Alloc2 &amp;' data-ref="5904__a">__a</dfn>, <em>int</em>)&nbsp</td></tr>
+<tr><th id="299">299</th><td>	-&gt; <b>decltype</b>(<a class="local col4 ref" href="#5904__a" title='__a' data-ref="5904__a">__a</a>.select_on_container_copy_construction())&nbsp</td></tr>
+<tr><th id="300">300</th><td>	{ <b>return</b> <a class="local col4 ref" href="#5904__a" title='__a' data-ref="5904__a">__a</a>.select_on_container_copy_construction(); }&nbsp</td></tr>
+<tr><th id="301">301</th><td>&nbsp</td></tr>
+<tr><th id="302">302</th><td>      <b>template</b>&lt;<b>typename</b> _Alloc2&gt;&nbsp</td></tr>
+<tr><th id="303">303</th><td>	<em>static</em> <b>constexpr</b> _Alloc2&nbsp</td></tr>
+<tr><th id="304">304</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traits9_S_selectERTL0__z" title='std::allocator_traits::_S_select' data-ref="_ZNSt16allocator_traits9_S_selectERTL0__z">_S_select</dfn>(_Alloc2&amp; <dfn class="local col5 decl" id="5905__a" title='__a' data-type='_Alloc2 &amp;' data-ref="5905__a">__a</dfn>, ...)&nbsp</td></tr>
+<tr><th id="305">305</th><td>	{ <b>return</b> <a class="local col5 ref" href="#5905__a" title='__a' data-ref="5905__a">__a</a>; }&nbsp</td></tr>
+<tr><th id="306">306</th><td>&nbsp</td></tr>
+<tr><th id="307">307</th><td>    <b>public</b>:&nbsp</td></tr>
+<tr><th id="308">308</th><td>&nbsp</td></tr>
+<tr><th id="309">309</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="310">310</th><td><i class="doc">       *  <span class="command">@brief</span>  Allocate memory.</i>&nbsp</td></tr>
+<tr><th id="311">311</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="312">312</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  The number of objects to allocate space for.</i>&nbsp</td></tr>
+<tr><th id="313">313</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="314">314</th><td><i class="doc">       *  Calls<span class="command"> @c</span> <span class="arg">a.allocate(n)</span></i>&nbsp</td></tr>
+<tr><th id="315">315</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="316">316</th><td>      <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#131" title="[[__nodiscard__]]" data-ref="_M/_GLIBCXX_NODISCARD">_GLIBCXX_NODISCARD</a> <em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <a class="typedef" href="#std::allocator_traits::pointer" title='std::allocator_traits::pointer' data-type='__detected_or_t&lt;std::allocator_traits::value_type *, std::__allocator_traits_base::__pointer, _Alloc&gt;' data-ref="std::allocator_traits::pointer">pointer</a>&nbsp</td></tr>
+<tr><th id="317">317</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traits8allocateERT_NS_5_SizeIS0_NS_5_DiffIS0_NSt10__detectorIPNS0_10value_typeEvNSt23__allocator_traits_base9__pointerEJS0_EE4typeEvE4typeEvE4typeE" title='std::allocator_traits::allocate' data-ref="_ZNSt16allocator_traits8allocateERT_NS_5_SizeIS0_NS_5_DiffIS0_NSt10__detectorIPNS0_10value_typeEvNSt23__allocator_traits_base9__pointerEJS0_EE4typeEvE4typeEvE4typeE">allocate</dfn>(_Alloc&amp; <dfn class="local col6 decl" id="5906__a" title='__a' data-type='_Alloc &amp;' data-ref="5906__a">__a</dfn>, <a class="typedef" href="#std::allocator_traits::size_type" title='std::allocator_traits::size_type' data-type='typename _Size&lt;_Alloc, difference_type&gt;::type' data-ref="std::allocator_traits::size_type">size_type</a> <dfn class="local col7 decl" id="5907__n" title='__n' data-type='std::allocator_traits::size_type' data-ref="5907__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="318">318</th><td>      { <b>return</b> <a class="local col6 ref" href="#5906__a" title='__a' data-ref="5906__a">__a</a>.allocate(<a class="local col7 ref" href="#5907__n" title='__n' data-ref="5907__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="319">319</th><td>&nbsp</td></tr>
+<tr><th id="320">320</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="321">321</th><td><i class="doc">       *  <span class="command">@brief</span>  Allocate memory.</i>&nbsp</td></tr>
+<tr><th id="322">322</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="323">323</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  The number of objects to allocate space for.</i>&nbsp</td></tr>
+<tr><th id="324">324</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__hint</span> Aid to locality.</i>&nbsp</td></tr>
+<tr><th id="325">325</th><td><i class="doc">       *  <span class="command">@return</span> Memory of suitable size and alignment for<span class="command"> @a</span> <span class="arg">n</span> objects</i>&nbsp</td></tr>
+<tr><th id="326">326</th><td><i class="doc">       *          of type<span class="command"> @c</span> <span class="arg">value_type</span></i>&nbsp</td></tr>
+<tr><th id="327">327</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="328">328</th><td><i class="doc">       *  Returns <span class="tag">&lt;tt&gt;</span> a.allocate(n, hint) <span class="tag">&lt;/tt&gt;</span> if that expression is</i>&nbsp</td></tr>
+<tr><th id="329">329</th><td><i class="doc">       *  well-formed, otherwise returns<span class="command"> @c</span> <span class="arg">a.allocate(n)</span></i>&nbsp</td></tr>
+<tr><th id="330">330</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="331">331</th><td>      <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#131" title="[[__nodiscard__]]" data-ref="_M/_GLIBCXX_NODISCARD">_GLIBCXX_NODISCARD</a> <em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <a class="typedef" href="#std::allocator_traits::pointer" title='std::allocator_traits::pointer' data-type='__detected_or_t&lt;std::allocator_traits::value_type *, std::__allocator_traits_base::__pointer, _Alloc&gt;' data-ref="std::allocator_traits::pointer">pointer</a>&nbsp</td></tr>
+<tr><th id="332">332</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traits8allocateERT_NS_5_SizeIS0_NS_5_DiffIS0_NSt10__detectorIPNS0_10value_typeEvNSt23__allocator_traits_base9__pointerEJS0_EE4typeEvE10146678" title='std::allocator_traits::allocate' data-ref="_ZNSt16allocator_traits8allocateERT_NS_5_SizeIS0_NS_5_DiffIS0_NSt10__detectorIPNS0_10value_typeEvNSt23__allocator_traits_base9__pointerEJS0_EE4typeEvE10146678">allocate</dfn>(_Alloc&amp; <dfn class="local col8 decl" id="5908__a" title='__a' data-type='_Alloc &amp;' data-ref="5908__a">__a</dfn>, <a class="typedef" href="#std::allocator_traits::size_type" title='std::allocator_traits::size_type' data-type='typename _Size&lt;_Alloc, difference_type&gt;::type' data-ref="std::allocator_traits::size_type">size_type</a> <dfn class="local col9 decl" id="5909__n" title='__n' data-type='std::allocator_traits::size_type' data-ref="5909__n">__n</dfn>, <a class="typedef" href="#std::allocator_traits::const_void_pointer" title='std::allocator_traits::const_void_pointer' data-type='typename _Ptr&lt;std::__allocator_traits_base::__cv_pointer, const void&gt;::type' data-ref="std::allocator_traits::const_void_pointer">const_void_pointer</a> <dfn class="local col0 decl" id="5910__hint" title='__hint' data-type='std::allocator_traits::const_void_pointer' data-ref="5910__hint">__hint</dfn>)&nbsp</td></tr>
+<tr><th id="333">333</th><td>      { <b>return</b> _S_allocate(<a class="local col8 ref" href="#5908__a" title='__a' data-ref="5908__a">__a</a>, <a class="local col9 ref" href="#5909__n" title='__n' data-ref="5909__n">__n</a>, <a class="local col0 ref" href="#5910__hint" title='__hint' data-ref="5910__hint">__hint</a>, <var>0</var>); }&nbsp</td></tr>
+<tr><th id="334">334</th><td>&nbsp</td></tr>
+<tr><th id="335">335</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="336">336</th><td><i class="doc">       *  <span class="command">@brief</span>  Deallocate memory.</i>&nbsp</td></tr>
+<tr><th id="337">337</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="338">338</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  Pointer to the memory to deallocate.</i>&nbsp</td></tr>
+<tr><th id="339">339</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  The number of objects space was allocated for.</i>&nbsp</td></tr>
+<tr><th id="340">340</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="341">341</th><td><i class="doc">       *  Calls <span class="tag">&lt;tt&gt;</span> a.deallocate(p, n) <span class="tag">&lt;/tt&gt;</span></i>&nbsp</td></tr>
+<tr><th id="342">342</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="343">343</th><td>      <em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <em>void</em>&nbsp</td></tr>
+<tr><th id="344">344</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traits10deallocateERT_NSt10__detectorIPNS0_10value_typeEvNSt23__allocator_traits_base9__pointerEJS0_EE4typeENS_5_SizeIS0_NS_5_DiffIS0_S8_vE4typeEvE4typeE" title='std::allocator_traits::deallocate' data-ref="_ZNSt16allocator_traits10deallocateERT_NSt10__detectorIPNS0_10value_typeEvNSt23__allocator_traits_base9__pointerEJS0_EE4typeENS_5_SizeIS0_NS_5_DiffIS0_S8_vE4typeEvE4typeE">deallocate</dfn>(_Alloc&amp; <dfn class="local col1 decl" id="5911__a" title='__a' data-type='_Alloc &amp;' data-ref="5911__a">__a</dfn>, <a class="typedef" href="#std::allocator_traits::pointer" title='std::allocator_traits::pointer' data-type='__detected_or_t&lt;std::allocator_traits::value_type *, std::__allocator_traits_base::__pointer, _Alloc&gt;' data-ref="std::allocator_traits::pointer">pointer</a> <dfn class="local col2 decl" id="5912__p" title='__p' data-type='std::allocator_traits::pointer' data-ref="5912__p">__p</dfn>, <a class="typedef" href="#std::allocator_traits::size_type" title='std::allocator_traits::size_type' data-type='typename _Size&lt;_Alloc, difference_type&gt;::type' data-ref="std::allocator_traits::size_type">size_type</a> <dfn class="local col3 decl" id="5913__n" title='__n' data-type='std::allocator_traits::size_type' data-ref="5913__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="345">345</th><td>      { <a class="local col1 ref" href="#5911__a" title='__a' data-ref="5911__a">__a</a>.deallocate(<a class="local col2 ref" href="#5912__p" title='__p' data-ref="5912__p">__p</a>, <a class="local col3 ref" href="#5913__n" title='__n' data-ref="5913__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="346">346</th><td>&nbsp</td></tr>
+<tr><th id="347">347</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="348">348</th><td><i class="doc">       *  <span class="command">@brief</span>  Construct an object of type `_Tp`</i>&nbsp</td></tr>
+<tr><th id="349">349</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="350">350</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  Pointer to memory of suitable size and alignment for Tp</i>&nbsp</td></tr>
+<tr><th id="351">351</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__args</span> Constructor arguments.</i>&nbsp</td></tr>
+<tr><th id="352">352</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="353">353</th><td><i class="doc">       *  Calls <span class="tag">&lt;tt&gt;</span> __a.construct(__p, std::forward&lt;Args&gt;(__args)...) <span class="tag">&lt;/tt&gt;</span></i>&nbsp</td></tr>
+<tr><th id="354">354</th><td><i class="doc">       *  if that expression is well-formed, otherwise uses placement-new</i>&nbsp</td></tr>
+<tr><th id="355">355</th><td><i class="doc">       *  to construct an object of type<span class="command"> @a</span> <span class="arg">_Tp</span> at location<span class="command"> @a</span> <span class="arg">__p</span> from the</i>&nbsp</td></tr>
+<tr><th id="356">356</th><td><i class="doc">       *  arguments<span class="command"> @a</span> <span class="arg">__args...</span></i>&nbsp</td></tr>
+<tr><th id="357">357</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="358">358</th><td>      <b>template</b>&lt;<b>typename</b> _Tp, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="359">359</th><td>	<em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <em>auto</em>&nbsp</td></tr>
+<tr><th id="360">360</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traits9constructERT_PTL0__DpOTL0_0_" title='std::allocator_traits::construct' data-ref="_ZNSt16allocator_traits9constructERT_PTL0__DpOTL0_0_">construct</dfn>(_Alloc&amp; <dfn class="local col4 decl" id="5914__a" title='__a' data-type='_Alloc &amp;' data-ref="5914__a">__a</dfn>, _Tp* <dfn class="local col5 decl" id="5915__p" title='__p' data-type='_Tp *' data-ref="5915__p">__p</dfn>, _Args&amp;&amp;... <dfn class="local col6 decl" id="5916__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="5916__args">__args</dfn>)&nbsp</td></tr>
+<tr><th id="361">361</th><td>	<b>noexcept</b>(<b>noexcept</b>(_S_construct(<a class="local col4 ref" href="#5914__a" title='__a' data-ref="5914__a">__a</a>, <a class="local col5 ref" href="#5915__p" title='__p' data-ref="5915__p">__p</a>,&nbsp</td></tr>
+<tr><th id="362">362</th><td>				       <span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col6 ref" href="#5916__args" title='__args' data-ref="5916__args">__args</a>)...)))&nbsp</td></tr>
+<tr><th id="363">363</th><td>	-&gt; <b>decltype</b>(_S_construct(<a class="local col4 ref" href="#5914__a" title='__a' data-ref="5914__a">__a</a>, <a class="local col5 ref" href="#5915__p" title='__p' data-ref="5915__p">__p</a>, <span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col6 ref" href="#5916__args" title='__args' data-ref="5916__args">__args</a>)...))&nbsp</td></tr>
+<tr><th id="364">364</th><td>	{ _S_construct(<a class="local col4 ref" href="#5914__a" title='__a' data-ref="5914__a">__a</a>, <a class="local col5 ref" href="#5915__p" title='__p' data-ref="5915__p">__p</a>, <span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col6 ref" href="#5916__args" title='__args' data-ref="5916__args">__args</a>)...); }&nbsp</td></tr>
+<tr><th id="365">365</th><td>&nbsp</td></tr>
+<tr><th id="366">366</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="367">367</th><td><i class="doc">       *  <span class="command">@brief</span>  Destroy an object of type<span class="command"> @a</span> <span class="arg">_Tp</span></i>&nbsp</td></tr>
+<tr><th id="368">368</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="369">369</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  Pointer to the object to destroy</i>&nbsp</td></tr>
+<tr><th id="370">370</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="371">371</th><td><i class="doc">       *  Calls<span class="command"> @c</span> <span class="arg">__a.destroy(__p)</span> if that expression is well-formed,</i>&nbsp</td></tr>
+<tr><th id="372">372</th><td><i class="doc">       *  otherwise calls<span class="command"> @c</span> <span class="arg">__p-&gt;~_Tp()</span></i>&nbsp</td></tr>
+<tr><th id="373">373</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="374">374</th><td>      <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="375">375</th><td>	<em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <em>void</em>&nbsp</td></tr>
+<tr><th id="376">376</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traits7destroyERT_PTL0__" title='std::allocator_traits::destroy' data-ref="_ZNSt16allocator_traits7destroyERT_PTL0__">destroy</dfn>(_Alloc&amp; <dfn class="local col7 decl" id="5917__a" title='__a' data-type='_Alloc &amp;' data-ref="5917__a">__a</dfn>, _Tp* <dfn class="local col8 decl" id="5918__p" title='__p' data-type='_Tp *' data-ref="5918__p">__p</dfn>)&nbsp</td></tr>
+<tr><th id="377">377</th><td>	<b>noexcept</b>(<b>noexcept</b>(_S_destroy(<a class="local col7 ref" href="#5917__a" title='__a' data-ref="5917__a">__a</a>, <a class="local col8 ref" href="#5918__p" title='__p' data-ref="5918__p">__p</a>, <var>0</var>)))&nbsp</td></tr>
+<tr><th id="378">378</th><td>	{ _S_destroy(<a class="local col7 ref" href="#5917__a" title='__a' data-ref="5917__a">__a</a>, <a class="local col8 ref" href="#5918__p" title='__p' data-ref="5918__p">__p</a>, <var>0</var>); }&nbsp</td></tr>
+<tr><th id="379">379</th><td>&nbsp</td></tr>
+<tr><th id="380">380</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="381">381</th><td><i class="doc">       *  <span class="command">@brief</span>  The maximum supported allocation size</i>&nbsp</td></tr>
+<tr><th id="382">382</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="383">383</th><td><i class="doc">       *  <span class="command">@return</span><span class="command"> @c</span> <span class="arg">__a.max_size()</span> or<span class="command"> @c</span> <span class="arg">numeric_limits&lt;size_type&gt;::max()</span></i>&nbsp</td></tr>
+<tr><th id="384">384</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="385">385</th><td><i class="doc">       *  Returns<span class="command"> @c</span> <span class="arg">__a.max_size()</span> if that expression is well-formed,</i>&nbsp</td></tr>
+<tr><th id="386">386</th><td><i class="doc">       *  otherwise returns<span class="command"> @c</span> <span class="arg">numeric_limits&lt;size_type&gt;::max()</span></i>&nbsp</td></tr>
+<tr><th id="387">387</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="388">388</th><td>      <em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <a class="typedef" href="#std::allocator_traits::size_type" title='std::allocator_traits::size_type' data-type='typename _Size&lt;_Alloc, difference_type&gt;::type' data-ref="std::allocator_traits::size_type">size_type</a>&nbsp</td></tr>
+<tr><th id="389">389</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traits8max_sizeERKT_" title='std::allocator_traits::max_size' data-ref="_ZNSt16allocator_traits8max_sizeERKT_">max_size</dfn>(<em>const</em> _Alloc&amp; <dfn class="local col9 decl" id="5919__a" title='__a' data-type='const _Alloc &amp;' data-ref="5919__a">__a</dfn>) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="390">390</th><td>      { <b>return</b> _S_max_size(<a class="local col9 ref" href="#5919__a" title='__a' data-ref="5919__a">__a</a>, <var>0</var>); }&nbsp</td></tr>
+<tr><th id="391">391</th><td>&nbsp</td></tr>
+<tr><th id="392">392</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="393">393</th><td><i class="doc">       *  <span class="command">@brief</span>  Obtain an allocator to use when copying a container.</i>&nbsp</td></tr>
+<tr><th id="394">394</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__rhs</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="395">395</th><td><i class="doc">       *  <span class="command">@return</span><span class="command"> @c</span> <span class="arg">__rhs.select_on_container_copy_construction()</span> or<span class="command"> @a</span> <span class="arg">__rhs</span></i>&nbsp</td></tr>
+<tr><th id="396">396</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="397">397</th><td><i class="doc">       *  Returns<span class="command"> @c</span> <span class="arg">__rhs.select_on_container_copy_construction()</span> if that</i>&nbsp</td></tr>
+<tr><th id="398">398</th><td><i class="doc">       *  expression is well-formed, otherwise returns<span class="command"> @a</span> <span class="arg">__rhs</span></i>&nbsp</td></tr>
+<tr><th id="399">399</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="400">400</th><td>      <em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> _Alloc&nbsp</td></tr>
+<tr><th id="401">401</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traits37select_on_container_copy_constructionERKT_" title='std::allocator_traits::select_on_container_copy_construction' data-ref="_ZNSt16allocator_traits37select_on_container_copy_constructionERKT_">select_on_container_copy_construction</dfn>(<em>const</em> _Alloc&amp; <dfn class="local col0 decl" id="5920__rhs" title='__rhs' data-type='const _Alloc &amp;' data-ref="5920__rhs">__rhs</dfn>)&nbsp</td></tr>
+<tr><th id="402">402</th><td>      { <b>return</b> _S_select(<a class="local col0 ref" href="#5920__rhs" title='__rhs' data-ref="5920__rhs">__rhs</a>, <var>0</var>); }&nbsp</td></tr>
+<tr><th id="403">403</th><td>    };&nbsp</td></tr>
+<tr><th id="404">404</th><td>&nbsp</td></tr>
+<tr><th id="405">405</th><td><u>#<span data-ppcond="405">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt; 201703L</u>&nbsp</td></tr>
+<tr><th id="406">406</th><td><u># define <dfn class="macro" id="_M/__cpp_lib_constexpr_dynamic_alloc" data-ref="_M/__cpp_lib_constexpr_dynamic_alloc">__cpp_lib_constexpr_dynamic_alloc</dfn> 201907L</u>&nbsp</td></tr>
+<tr><th id="407">407</th><td><u>#<span data-ppcond="405">endif</span></u>&nbsp</td></tr>
+<tr><th id="408">408</th><td>&nbsp</td></tr>
+<tr><th id="409">409</th><td>  <i class="doc">/// Partial specialization for std::allocator.</i>&nbsp</td></tr>
+<tr><th id="410">410</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="411">411</th><td>    <b>struct</b> <dfn class="type def" id="std::allocator_traits" title='std::allocator_traits' data-ref="std::allocator_traits">allocator_traits</dfn>&lt;<a class="type" href="memoryfwd.h.html#std::allocator" title='std::allocator' data-ref="std::allocator">allocator</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="412">412</th><td>    {&nbsp</td></tr>
+<tr><th id="413">413</th><td>      <i class="doc">/// The allocator type</i>&nbsp</td></tr>
+<tr><th id="414">414</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type' data-type='allocator&lt;_Tp&gt;' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type">allocator_type</dfn> = <a class="type" href="memoryfwd.h.html#std::allocator" title='std::allocator' data-ref="std::allocator">allocator</a>&lt;_Tp&gt;;&nbsp</td></tr>
+<tr><th id="415">415</th><td>&nbsp</td></tr>
+<tr><th id="416">416</th><td>      <i class="doc">/// The allocated type</i>&nbsp</td></tr>
+<tr><th id="417">417</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::value_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::value_type' data-type='_Tp' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::value_type">value_type</dfn> = _Tp;&nbsp</td></tr>
+<tr><th id="418">418</th><td>&nbsp</td></tr>
+<tr><th id="419">419</th><td>      <i class="doc">/// The allocator's pointer type.</i>&nbsp</td></tr>
+<tr><th id="420">420</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::pointer" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::pointer' data-type='_Tp *' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::pointer">pointer</dfn> = _Tp*;&nbsp</td></tr>
+<tr><th id="421">421</th><td>&nbsp</td></tr>
+<tr><th id="422">422</th><td>      <i class="doc">/// The allocator's const pointer type.</i>&nbsp</td></tr>
+<tr><th id="423">423</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::const_pointer" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::const_pointer' data-type='const _Tp *' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::const_pointer">const_pointer</dfn> = <em>const</em> _Tp*;&nbsp</td></tr>
+<tr><th id="424">424</th><td>&nbsp</td></tr>
+<tr><th id="425">425</th><td>      <i class="doc">/// The allocator's void pointer type.</i>&nbsp</td></tr>
+<tr><th id="426">426</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::void_pointer" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::void_pointer' data-type='void *' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::void_pointer">void_pointer</dfn> = <em>void</em>*;&nbsp</td></tr>
+<tr><th id="427">427</th><td>&nbsp</td></tr>
+<tr><th id="428">428</th><td>      <i class="doc">/// The allocator's const void pointer type.</i>&nbsp</td></tr>
+<tr><th id="429">429</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::const_void_pointer" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::const_void_pointer' data-type='const void *' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::const_void_pointer">const_void_pointer</dfn> = <em>const</em> <em>void</em>*;&nbsp</td></tr>
+<tr><th id="430">430</th><td>&nbsp</td></tr>
+<tr><th id="431">431</th><td>      <i class="doc">/// The allocator's difference type</i>&nbsp</td></tr>
+<tr><th id="432">432</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::difference_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::difference_type' data-type='std::ptrdiff_t' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::difference_type">difference_type</dfn> = <span class="namespace">std::</span><a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::ptrdiff_t" title='std::ptrdiff_t' data-type='long' data-ref="std::ptrdiff_t">ptrdiff_t</a>;&nbsp</td></tr>
+<tr><th id="433">433</th><td>&nbsp</td></tr>
+<tr><th id="434">434</th><td>      <i class="doc">/// The allocator's size type</i>&nbsp</td></tr>
+<tr><th id="435">435</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::size_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::size_type' data-type='std::size_t' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::size_type">size_type</dfn> = <span class="namespace">std::</span><a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>;&nbsp</td></tr>
+<tr><th id="436">436</th><td>&nbsp</td></tr>
+<tr><th id="437">437</th><td>      <i class="doc">/// How the allocator is propagated on copy assignment</i>&nbsp</td></tr>
+<tr><th id="438">438</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::propagate_on_container_copy_assignment" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::propagate_on_container_copy_assignment' data-type='std::false_type' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::propagate_on_container_copy_assignment">propagate_on_container_copy_assignment</dfn> = <a class="typedef" href="../type_traits.html#std::false_type" title='std::false_type' data-type='integral_constant&lt;bool, false&gt;' data-ref="std::false_type">false_type</a>;&nbsp</td></tr>
+<tr><th id="439">439</th><td>&nbsp</td></tr>
+<tr><th id="440">440</th><td>      <i class="doc">/// How the allocator is propagated on move assignment</i>&nbsp</td></tr>
+<tr><th id="441">441</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::propagate_on_container_move_assignment" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::propagate_on_container_move_assignment' data-type='std::true_type' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::propagate_on_container_move_assignment">propagate_on_container_move_assignment</dfn> = <a class="typedef" href="../type_traits.html#std::true_type" title='std::true_type' data-type='integral_constant&lt;bool, true&gt;' data-ref="std::true_type">true_type</a>;&nbsp</td></tr>
+<tr><th id="442">442</th><td>&nbsp</td></tr>
+<tr><th id="443">443</th><td>      <i class="doc">/// How the allocator is propagated on swap</i>&nbsp</td></tr>
+<tr><th id="444">444</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::propagate_on_container_swap" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::propagate_on_container_swap' data-type='std::false_type' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::propagate_on_container_swap">propagate_on_container_swap</dfn> = <a class="typedef" href="../type_traits.html#std::false_type" title='std::false_type' data-type='integral_constant&lt;bool, false&gt;' data-ref="std::false_type">false_type</a>;&nbsp</td></tr>
+<tr><th id="445">445</th><td>&nbsp</td></tr>
+<tr><th id="446">446</th><td>      <i class="doc">/// Whether all instances of the allocator type compare equal.</i>&nbsp</td></tr>
+<tr><th id="447">447</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::is_always_equal" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::is_always_equal' data-type='std::true_type' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::is_always_equal">is_always_equal</dfn> = <a class="typedef" href="../type_traits.html#std::true_type" title='std::true_type' data-type='integral_constant&lt;bool, true&gt;' data-ref="std::true_type">true_type</a>;&nbsp</td></tr>
+<tr><th id="448">448</th><td>&nbsp</td></tr>
+<tr><th id="449">449</th><td>      <b>template</b>&lt;<b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="450">450</th><td>	<b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::rebind_alloc" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::rebind_alloc' data-type='allocator&lt;_Up&gt;' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::rebind_alloc">rebind_alloc</dfn> = <a class="type" href="memoryfwd.h.html#std::allocator" title='std::allocator' data-ref="std::allocator">allocator</a>&lt;_Up&gt;;&nbsp</td></tr>
+<tr><th id="451">451</th><td>&nbsp</td></tr>
+<tr><th id="452">452</th><td>      <b>template</b>&lt;<b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="453">453</th><td>	<b>using</b> <dfn class="typedef" id="std::allocator_traits{allocator{type-parameter-0-0}}::rebind_traits" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::rebind_traits' data-type='allocator_traits&lt;allocator&lt;_Up&gt;&gt;' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::rebind_traits">rebind_traits</dfn> = <a class="type" href="memoryfwd.h.html#std::allocator_traits" title='std::allocator_traits' data-ref="std::allocator_traits">allocator_traits</a>&lt;<a class="type" href="memoryfwd.h.html#std::allocator" title='std::allocator' data-ref="std::allocator">allocator</a>&lt;_Up&gt;&gt;;&nbsp</td></tr>
+<tr><th id="454">454</th><td>&nbsp</td></tr>
+<tr><th id="455">455</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="456">456</th><td><i class="doc">       *  <span class="command">@brief</span>  Allocate memory.</i>&nbsp</td></tr>
+<tr><th id="457">457</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="458">458</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  The number of objects to allocate space for.</i>&nbsp</td></tr>
+<tr><th id="459">459</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="460">460</th><td><i class="doc">       *  Calls<span class="command"> @c</span> <span class="arg">a.allocate(n)</span></i>&nbsp</td></tr>
+<tr><th id="461">461</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="462">462</th><td>      <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#131" title="[[__nodiscard__]]" data-ref="_M/_GLIBCXX_NODISCARD">_GLIBCXX_NODISCARD</a> <em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::pointer" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::pointer' data-type='_Tp *' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::pointer">pointer</a>&nbsp</td></tr>
+<tr><th id="463">463</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traitsISaIT_EE8allocateERS1_m" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocate' data-ref="_ZNSt16allocator_traitsISaIT_EE8allocateERS1_m">allocate</dfn>(<a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type' data-type='allocator&lt;_Tp&gt;' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type">allocator_type</a>&amp; <dfn class="local col1 decl" id="5921__a" title='__a' data-type='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type &amp;' data-ref="5921__a">__a</dfn>, <a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::size_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::size_type' data-type='std::size_t' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::size_type">size_type</a> <dfn class="local col2 decl" id="5922__n" title='__n' data-type='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::size_type' data-ref="5922__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="464">464</th><td>      { <b>return</b> <a class="local col1 ref" href="#5921__a" title='__a' data-ref="5921__a">__a</a>.allocate(<a class="local col2 ref" href="#5922__n" title='__n' data-ref="5922__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="465">465</th><td>&nbsp</td></tr>
+<tr><th id="466">466</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="467">467</th><td><i class="doc">       *  <span class="command">@brief</span>  Allocate memory.</i>&nbsp</td></tr>
+<tr><th id="468">468</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="469">469</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  The number of objects to allocate space for.</i>&nbsp</td></tr>
+<tr><th id="470">470</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__hint</span> Aid to locality.</i>&nbsp</td></tr>
+<tr><th id="471">471</th><td><i class="doc">       *  <span class="command">@return</span> Memory of suitable size and alignment for<span class="command"> @a</span> <span class="arg">n</span> objects</i>&nbsp</td></tr>
+<tr><th id="472">472</th><td><i class="doc">       *          of type<span class="command"> @c</span> <span class="arg">value_type</span></i>&nbsp</td></tr>
+<tr><th id="473">473</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="474">474</th><td><i class="doc">       *  Returns <span class="tag">&lt;tt&gt;</span> a.allocate(n, hint) <span class="tag">&lt;/tt&gt;</span></i>&nbsp</td></tr>
+<tr><th id="475">475</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="476">476</th><td>      <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#131" title="[[__nodiscard__]]" data-ref="_M/_GLIBCXX_NODISCARD">_GLIBCXX_NODISCARD</a> <em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::pointer" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::pointer' data-type='_Tp *' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::pointer">pointer</a>&nbsp</td></tr>
+<tr><th id="477">477</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traitsISaIT_EE8allocateERS1_mPKv" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocate' data-ref="_ZNSt16allocator_traitsISaIT_EE8allocateERS1_mPKv">allocate</dfn>(<a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type' data-type='allocator&lt;_Tp&gt;' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type">allocator_type</a>&amp; <dfn class="local col3 decl" id="5923__a" title='__a' data-type='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type &amp;' data-ref="5923__a">__a</dfn>, <a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::size_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::size_type' data-type='std::size_t' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::size_type">size_type</a> <dfn class="local col4 decl" id="5924__n" title='__n' data-type='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::size_type' data-ref="5924__n">__n</dfn>, <a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::const_void_pointer" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::const_void_pointer' data-type='const void *' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::const_void_pointer">const_void_pointer</a> <dfn class="local col5 decl" id="5925__hint" title='__hint' data-type='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::const_void_pointer' data-ref="5925__hint">__hint</dfn>)&nbsp</td></tr>
+<tr><th id="478">478</th><td>      {&nbsp</td></tr>
+<tr><th id="479">479</th><td><u>#<span data-ppcond="479">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="480">480</th><td>	<b>return</b> __a.allocate(__n, __hint);&nbsp</td></tr>
+<tr><th id="481">481</th><td><u>#<span data-ppcond="479">else</span></u>&nbsp</td></tr>
+<tr><th id="482">482</th><td>	<b>return</b> <a class="local col3 ref" href="#5923__a" title='__a' data-ref="5923__a">__a</a>.allocate(<a class="local col4 ref" href="#5924__n" title='__n' data-ref="5924__n">__n</a>);&nbsp</td></tr>
+<tr><th id="483">483</th><td><u>#<span data-ppcond="479">endif</span></u>&nbsp</td></tr>
+<tr><th id="484">484</th><td>      }&nbsp</td></tr>
+<tr><th id="485">485</th><td>&nbsp</td></tr>
+<tr><th id="486">486</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="487">487</th><td><i class="doc">       *  <span class="command">@brief</span>  Deallocate memory.</i>&nbsp</td></tr>
+<tr><th id="488">488</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="489">489</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  Pointer to the memory to deallocate.</i>&nbsp</td></tr>
+<tr><th id="490">490</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__n</span>  The number of objects space was allocated for.</i>&nbsp</td></tr>
+<tr><th id="491">491</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="492">492</th><td><i class="doc">       *  Calls <span class="tag">&lt;tt&gt;</span> a.deallocate(p, n) <span class="tag">&lt;/tt&gt;</span></i>&nbsp</td></tr>
+<tr><th id="493">493</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="494">494</th><td>      <em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <em>void</em>&nbsp</td></tr>
+<tr><th id="495">495</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traitsISaIT_EE10deallocateERS1_PS0_m" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::deallocate' data-ref="_ZNSt16allocator_traitsISaIT_EE10deallocateERS1_PS0_m">deallocate</dfn>(<a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type' data-type='allocator&lt;_Tp&gt;' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type">allocator_type</a>&amp; <dfn class="local col6 decl" id="5926__a" title='__a' data-type='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type &amp;' data-ref="5926__a">__a</dfn>, <a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::pointer" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::pointer' data-type='_Tp *' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::pointer">pointer</a> <dfn class="local col7 decl" id="5927__p" title='__p' data-type='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::pointer' data-ref="5927__p">__p</dfn>, <a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::size_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::size_type' data-type='std::size_t' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::size_type">size_type</a> <dfn class="local col8 decl" id="5928__n" title='__n' data-type='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::size_type' data-ref="5928__n">__n</dfn>)&nbsp</td></tr>
+<tr><th id="496">496</th><td>      { <a class="local col6 ref" href="#5926__a" title='__a' data-ref="5926__a">__a</a>.deallocate(<a class="local col7 ref" href="#5927__p" title='__p' data-ref="5927__p">__p</a>, <a class="local col8 ref" href="#5928__n" title='__n' data-ref="5928__n">__n</a>); }&nbsp</td></tr>
+<tr><th id="497">497</th><td>&nbsp</td></tr>
+<tr><th id="498">498</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="499">499</th><td><i class="doc">       *  <span class="command">@brief</span>  Construct an object of type `_Up`</i>&nbsp</td></tr>
+<tr><th id="500">500</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="501">501</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  Pointer to memory of suitable size and alignment for</i>&nbsp</td></tr>
+<tr><th id="502">502</th><td><i class="doc">       *	       an object of type `_Up`.</i>&nbsp</td></tr>
+<tr><th id="503">503</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__args</span> Constructor arguments.</i>&nbsp</td></tr>
+<tr><th id="504">504</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="505">505</th><td><i class="doc">       *  Calls `__a.construct(__p, std::forward&lt;_Args&gt;(__args)...)`</i>&nbsp</td></tr>
+<tr><th id="506">506</th><td><i class="doc">       *  in C++11, C++14 and C++17. Changed in C++20 to call</i>&nbsp</td></tr>
+<tr><th id="507">507</th><td><i class="doc">       *  `std::construct_at(__p, std::forward&lt;_Args&gt;(__args)...)` instead.</i>&nbsp</td></tr>
+<tr><th id="508">508</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="509">509</th><td>      <b>template</b>&lt;<b>typename</b> _Up, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="510">510</th><td>	<em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <em>void</em>&nbsp</td></tr>
+<tr><th id="511">511</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traitsISaIT_EE9constructERS1_PTL0__DpOTL0_0_" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::construct' data-ref="_ZNSt16allocator_traitsISaIT_EE9constructERS1_PTL0__DpOTL0_0_">construct</dfn>(<a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type' data-type='allocator&lt;_Tp&gt;' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type">allocator_type</a>&amp; <dfn class="local col9 decl" id="5929__a" title='__a' data-type='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type &amp;' data-ref="5929__a">__a</dfn> <b>__attribute__</b>((__unused__)), _Up* <dfn class="local col0 decl" id="5930__p" title='__p' data-type='_Up *' data-ref="5930__p">__p</dfn>,&nbsp</td></tr>
+<tr><th id="512">512</th><td>		  _Args&amp;&amp;... <dfn class="local col1 decl" id="5931__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="5931__args">__args</dfn>)&nbsp</td></tr>
+<tr><th id="513">513</th><td>	<b>noexcept</b>(<span class="namespace">std::</span><a class="type" href="../type_traits.html#std::is_nothrow_constructible" title='std::is_nothrow_constructible' data-ref="std::is_nothrow_constructible">is_nothrow_constructible</a>&lt;_Up, _Args...&gt;::value)&nbsp</td></tr>
+<tr><th id="514">514</th><td>	{&nbsp</td></tr>
+<tr><th id="515">515</th><td><u>#<span data-ppcond="515">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="516">516</th><td>	  __a.construct(__p, std::forward&lt;_Args&gt;(__args)...);&nbsp</td></tr>
+<tr><th id="517">517</th><td><u>#<span data-ppcond="515">else</span></u>&nbsp</td></tr>
+<tr><th id="518">518</th><td>	  <span class="namespace">std::</span>construct_at(<a class="local col0 ref" href="#5930__p" title='__p' data-ref="5930__p">__p</a>, <span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col1 ref" href="#5931__args" title='__args' data-ref="5931__args">__args</a>)...);&nbsp</td></tr>
+<tr><th id="519">519</th><td><u>#<span data-ppcond="515">endif</span></u>&nbsp</td></tr>
+<tr><th id="520">520</th><td>	}&nbsp</td></tr>
+<tr><th id="521">521</th><td>&nbsp</td></tr>
+<tr><th id="522">522</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="523">523</th><td><i class="doc">       *  <span class="command">@brief</span>  Destroy an object of type<span class="command"> @a</span> <span class="arg">_Up</span></i>&nbsp</td></tr>
+<tr><th id="524">524</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="525">525</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  Pointer to the object to destroy</i>&nbsp</td></tr>
+<tr><th id="526">526</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="527">527</th><td><i class="doc">       *  Calls<span class="command"> @c</span> <span class="arg">__a.destroy(__p).</span></i>&nbsp</td></tr>
+<tr><th id="528">528</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="529">529</th><td>      <b>template</b>&lt;<b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="530">530</th><td>	<em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <em>void</em>&nbsp</td></tr>
+<tr><th id="531">531</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traitsISaIT_EE7destroyERS1_PTL0__" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::destroy' data-ref="_ZNSt16allocator_traitsISaIT_EE7destroyERS1_PTL0__">destroy</dfn>(<a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type' data-type='allocator&lt;_Tp&gt;' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type">allocator_type</a>&amp; <dfn class="local col2 decl" id="5932__a" title='__a' data-type='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type &amp;' data-ref="5932__a">__a</dfn> <b>__attribute__</b>((__unused__)), _Up* <dfn class="local col3 decl" id="5933__p" title='__p' data-type='_Up *' data-ref="5933__p">__p</dfn>)&nbsp</td></tr>
+<tr><th id="532">532</th><td>	<b>noexcept</b>(<a class="type" href="../type_traits.html#std::is_nothrow_destructible" title='std::is_nothrow_destructible' data-ref="std::is_nothrow_destructible">is_nothrow_destructible</a>&lt;_Up&gt;::value)&nbsp</td></tr>
+<tr><th id="533">533</th><td>	{&nbsp</td></tr>
+<tr><th id="534">534</th><td><u>#<span data-ppcond="534">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="535">535</th><td>	  __a.destroy(__p);&nbsp</td></tr>
+<tr><th id="536">536</th><td><u>#<span data-ppcond="534">else</span></u>&nbsp</td></tr>
+<tr><th id="537">537</th><td>	  <span class="namespace">std::</span>destroy_at(<a class="local col3 ref" href="#5933__p" title='__p' data-ref="5933__p">__p</a>);&nbsp</td></tr>
+<tr><th id="538">538</th><td><u>#<span data-ppcond="534">endif</span></u>&nbsp</td></tr>
+<tr><th id="539">539</th><td>	}&nbsp</td></tr>
+<tr><th id="540">540</th><td>&nbsp</td></tr>
+<tr><th id="541">541</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="542">542</th><td><i class="doc">       *  <span class="command">@brief</span>  The maximum supported allocation size</i>&nbsp</td></tr>
+<tr><th id="543">543</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="544">544</th><td><i class="doc">       *  <span class="command">@return</span><span class="command"> @c</span> <span class="arg">__a.max_size()</span></i>&nbsp</td></tr>
+<tr><th id="545">545</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="546">546</th><td>      <em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::size_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::size_type' data-type='std::size_t' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::size_type">size_type</a>&nbsp</td></tr>
+<tr><th id="547">547</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traitsISaIT_EE8max_sizeERKS1_" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::max_size' data-ref="_ZNSt16allocator_traitsISaIT_EE8max_sizeERKS1_">max_size</dfn>(<em>const</em> <a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type' data-type='allocator&lt;_Tp&gt;' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type">allocator_type</a>&amp; <dfn class="local col4 decl" id="5934__a" title='__a' data-type='const std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type &amp;' data-ref="5934__a">__a</dfn> <b>__attribute__</b>((__unused__))) <b>noexcept</b>&nbsp</td></tr>
+<tr><th id="548">548</th><td>      {&nbsp</td></tr>
+<tr><th id="549">549</th><td><u>#<span data-ppcond="549">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="550">550</th><td>	<b>return</b> __a.max_size();&nbsp</td></tr>
+<tr><th id="551">551</th><td><u>#<span data-ppcond="549">else</span></u>&nbsp</td></tr>
+<tr><th id="552">552</th><td>	<b>return</b> <a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>(-<var>1</var>) / <b>sizeof</b>(<a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::value_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::value_type' data-type='_Tp' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::value_type">value_type</a>);&nbsp</td></tr>
+<tr><th id="553">553</th><td><u>#<span data-ppcond="549">endif</span></u>&nbsp</td></tr>
+<tr><th id="554">554</th><td>      }&nbsp</td></tr>
+<tr><th id="555">555</th><td>&nbsp</td></tr>
+<tr><th id="556">556</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="557">557</th><td><i class="doc">       *  <span class="command">@brief</span>  Obtain an allocator to use when copying a container.</i>&nbsp</td></tr>
+<tr><th id="558">558</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__rhs</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="559">559</th><td><i class="doc">       *  <span class="command">@return</span><span class="command"> @c</span> <span class="arg">__rhs</span></i>&nbsp</td></tr>
+<tr><th id="560">560</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="561">561</th><td>      <em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type' data-type='allocator&lt;_Tp&gt;' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type">allocator_type</a>&nbsp</td></tr>
+<tr><th id="562">562</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traitsISaIT_EE37select_on_container_copy_constructionERKS1_" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::select_on_container_copy_construction' data-ref="_ZNSt16allocator_traitsISaIT_EE37select_on_container_copy_constructionERKS1_">select_on_container_copy_construction</dfn>(<em>const</em> <a class="typedef" href="#std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type" title='std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type' data-type='allocator&lt;_Tp&gt;' data-ref="std::allocator_traits{allocator{type-parameter-0-0}}::allocator_type">allocator_type</a>&amp; <dfn class="local col5 decl" id="5935__rhs" title='__rhs' data-type='const std::allocator_traits&lt;allocator&lt;type-parameter-0-0&gt;&gt;::allocator_type &amp;' data-ref="5935__rhs">__rhs</dfn>)&nbsp</td></tr>
+<tr><th id="563">563</th><td>      { <b>return</b> <a class="local col5 ref" href="#5935__rhs" title='__rhs' data-ref="5935__rhs">__rhs</a>; }&nbsp</td></tr>
+<tr><th id="564">564</th><td>    };&nbsp</td></tr>
+<tr><th id="565">565</th><td>&nbsp</td></tr>
+<tr><th id="566">566</th><td>  <i class="doc">/// Explicit specialization for std::allocator&lt;void&gt;.</i>&nbsp</td></tr>
+<tr><th id="567">567</th><td>  <b>template</b>&lt;&gt;&nbsp</td></tr>
+<tr><th id="568">568</th><td>    <b>struct</b> <dfn class="type def" id="std::allocator_traits" title='std::allocator_traits' data-ref="std::allocator_traits"><a class="type" href="memoryfwd.h.html#std::allocator_traits" title='std::allocator_traits' data-ref="std::allocator_traits">allocator_traits</a></dfn>&lt;<a class="type" href="memoryfwd.h.html#std::allocator" title='std::allocator' data-ref="std::allocator">allocator</a>&lt;<em>void</em>&gt;&gt;&nbsp</td></tr>
+<tr><th id="569">569</th><td>    {&nbsp</td></tr>
+<tr><th id="570">570</th><td>      <i class="doc">/// The allocator type</i>&nbsp</td></tr>
+<tr><th id="571">571</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::allocator_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::allocator_type' data-type='allocator&lt;void&gt;' data-ref="std::allocator_traits{std::allocator{void}}::allocator_type">allocator_type</dfn> = <a class="type" href="memoryfwd.h.html#std::allocator" title='std::allocator' data-ref="std::allocator">allocator</a>&lt;<em>void</em>&gt;;&nbsp</td></tr>
+<tr><th id="572">572</th><td>&nbsp</td></tr>
+<tr><th id="573">573</th><td>      <i class="doc">/// The allocated type</i>&nbsp</td></tr>
+<tr><th id="574">574</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::value_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::value_type' data-type='void' data-ref="std::allocator_traits{std::allocator{void}}::value_type">value_type</dfn> = <em>void</em>;&nbsp</td></tr>
+<tr><th id="575">575</th><td>&nbsp</td></tr>
+<tr><th id="576">576</th><td>      <i class="doc">/// The allocator's pointer type.</i>&nbsp</td></tr>
+<tr><th id="577">577</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::pointer" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::pointer' data-type='void *' data-ref="std::allocator_traits{std::allocator{void}}::pointer">pointer</dfn> = <em>void</em>*;&nbsp</td></tr>
+<tr><th id="578">578</th><td>&nbsp</td></tr>
+<tr><th id="579">579</th><td>      <i class="doc">/// The allocator's const pointer type.</i>&nbsp</td></tr>
+<tr><th id="580">580</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::const_pointer" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::const_pointer' data-type='const void *' data-ref="std::allocator_traits{std::allocator{void}}::const_pointer">const_pointer</dfn> = <em>const</em> <em>void</em>*;&nbsp</td></tr>
+<tr><th id="581">581</th><td>&nbsp</td></tr>
+<tr><th id="582">582</th><td>      <i class="doc">/// The allocator's void pointer type.</i>&nbsp</td></tr>
+<tr><th id="583">583</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::void_pointer" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::void_pointer' data-type='void *' data-ref="std::allocator_traits{std::allocator{void}}::void_pointer">void_pointer</dfn> = <em>void</em>*;&nbsp</td></tr>
+<tr><th id="584">584</th><td>&nbsp</td></tr>
+<tr><th id="585">585</th><td>      <i class="doc">/// The allocator's const void pointer type.</i>&nbsp</td></tr>
+<tr><th id="586">586</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::const_void_pointer" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::const_void_pointer' data-type='const void *' data-ref="std::allocator_traits{std::allocator{void}}::const_void_pointer">const_void_pointer</dfn> = <em>const</em> <em>void</em>*;&nbsp</td></tr>
+<tr><th id="587">587</th><td>&nbsp</td></tr>
+<tr><th id="588">588</th><td>      <i class="doc">/// The allocator's difference type</i>&nbsp</td></tr>
+<tr><th id="589">589</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::difference_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::difference_type' data-type='std::ptrdiff_t' data-ref="std::allocator_traits{std::allocator{void}}::difference_type">difference_type</dfn> = <span class="namespace">std::</span><a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::ptrdiff_t" title='std::ptrdiff_t' data-type='long' data-ref="std::ptrdiff_t">ptrdiff_t</a>;&nbsp</td></tr>
+<tr><th id="590">590</th><td>&nbsp</td></tr>
+<tr><th id="591">591</th><td>      <i class="doc">/// The allocator's size type</i>&nbsp</td></tr>
+<tr><th id="592">592</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::size_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::size_type' data-type='std::size_t' data-ref="std::allocator_traits{std::allocator{void}}::size_type">size_type</dfn> = <span class="namespace">std::</span><a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>;&nbsp</td></tr>
+<tr><th id="593">593</th><td>&nbsp</td></tr>
+<tr><th id="594">594</th><td>      <i class="doc">/// How the allocator is propagated on copy assignment</i>&nbsp</td></tr>
+<tr><th id="595">595</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::propagate_on_container_copy_assignment" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::propagate_on_container_copy_assignment' data-type='std::false_type' data-ref="std::allocator_traits{std::allocator{void}}::propagate_on_container_copy_assignment">propagate_on_container_copy_assignment</dfn> = <a class="typedef" href="../type_traits.html#std::false_type" title='std::false_type' data-type='integral_constant&lt;bool, false&gt;' data-ref="std::false_type">false_type</a>;&nbsp</td></tr>
+<tr><th id="596">596</th><td>&nbsp</td></tr>
+<tr><th id="597">597</th><td>      <i class="doc">/// How the allocator is propagated on move assignment</i>&nbsp</td></tr>
+<tr><th id="598">598</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::propagate_on_container_move_assignment" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::propagate_on_container_move_assignment' data-type='std::true_type' data-ref="std::allocator_traits{std::allocator{void}}::propagate_on_container_move_assignment">propagate_on_container_move_assignment</dfn> = <a class="typedef" href="../type_traits.html#std::true_type" title='std::true_type' data-type='integral_constant&lt;bool, true&gt;' data-ref="std::true_type">true_type</a>;&nbsp</td></tr>
+<tr><th id="599">599</th><td>&nbsp</td></tr>
+<tr><th id="600">600</th><td>      <i class="doc">/// How the allocator is propagated on swap</i>&nbsp</td></tr>
+<tr><th id="601">601</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::propagate_on_container_swap" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::propagate_on_container_swap' data-type='std::false_type' data-ref="std::allocator_traits{std::allocator{void}}::propagate_on_container_swap">propagate_on_container_swap</dfn> = <a class="typedef" href="../type_traits.html#std::false_type" title='std::false_type' data-type='integral_constant&lt;bool, false&gt;' data-ref="std::false_type">false_type</a>;&nbsp</td></tr>
+<tr><th id="602">602</th><td>&nbsp</td></tr>
+<tr><th id="603">603</th><td>      <i class="doc">/// Whether all instances of the allocator type compare equal.</i>&nbsp</td></tr>
+<tr><th id="604">604</th><td>      <b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::is_always_equal" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::is_always_equal' data-type='std::true_type' data-ref="std::allocator_traits{std::allocator{void}}::is_always_equal">is_always_equal</dfn> = <a class="typedef" href="../type_traits.html#std::true_type" title='std::true_type' data-type='integral_constant&lt;bool, true&gt;' data-ref="std::true_type">true_type</a>;&nbsp</td></tr>
+<tr><th id="605">605</th><td>&nbsp</td></tr>
+<tr><th id="606">606</th><td>      <b>template</b>&lt;<b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="607">607</th><td>	<b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::rebind_alloc" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::rebind_alloc' data-type='allocator&lt;_Up&gt;' data-ref="std::allocator_traits{std::allocator{void}}::rebind_alloc">rebind_alloc</dfn> = <a class="type" href="memoryfwd.h.html#std::allocator" title='std::allocator' data-ref="std::allocator">allocator</a>&lt;_Up&gt;;&nbsp</td></tr>
+<tr><th id="608">608</th><td>&nbsp</td></tr>
+<tr><th id="609">609</th><td>      <b>template</b>&lt;<b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="610">610</th><td>	<b>using</b> <dfn class="typedef" id="std::allocator_traits{std::allocator{void}}::rebind_traits" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::rebind_traits' data-type='allocator_traits&lt;allocator&lt;_Up&gt;&gt;' data-ref="std::allocator_traits{std::allocator{void}}::rebind_traits">rebind_traits</dfn> = <a class="type" href="memoryfwd.h.html#std::allocator_traits" title='std::allocator_traits' data-ref="std::allocator_traits">allocator_traits</a>&lt;<a class="type" href="memoryfwd.h.html#std::allocator" title='std::allocator' data-ref="std::allocator">allocator</a>&lt;_Up&gt;&gt;;&nbsp</td></tr>
+<tr><th id="611">611</th><td>&nbsp</td></tr>
+<tr><th id="612">612</th><td>      <i class="doc">/// allocate is ill-formed for allocator&lt;void&gt;</i>&nbsp</td></tr>
+<tr><th id="613">613</th><td>      <em>static</em> <em>void</em>*&nbsp</td></tr>
+<tr><th id="614">614</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traitsISaIvEE8allocateERS0_mPKv" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::allocate' data-ref="_ZNSt16allocator_traitsISaIvEE8allocateERS0_mPKv">allocate</dfn>(<a class="typedef" href="#std::allocator_traits{std::allocator{void}}::allocator_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::allocator_type' data-type='allocator&lt;void&gt;' data-ref="std::allocator_traits{std::allocator{void}}::allocator_type">allocator_type</a>&amp;, <a class="typedef" href="#std::allocator_traits{std::allocator{void}}::size_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::size_type' data-type='std::size_t' data-ref="std::allocator_traits{std::allocator{void}}::size_type">size_type</a>, <em>const</em> <em>void</em>* = <b>nullptr</b>) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="615">615</th><td>&nbsp</td></tr>
+<tr><th id="616">616</th><td>      <i class="doc">/// deallocate is ill-formed for allocator&lt;void&gt;</i>&nbsp</td></tr>
+<tr><th id="617">617</th><td>      <em>static</em> <em>void</em>&nbsp</td></tr>
+<tr><th id="618">618</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traitsISaIvEE10deallocateERS0_Pvm" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::deallocate' data-ref="_ZNSt16allocator_traitsISaIvEE10deallocateERS0_Pvm">deallocate</dfn>(<a class="typedef" href="#std::allocator_traits{std::allocator{void}}::allocator_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::allocator_type' data-type='allocator&lt;void&gt;' data-ref="std::allocator_traits{std::allocator{void}}::allocator_type">allocator_type</a>&amp;, <em>void</em>*, <a class="typedef" href="#std::allocator_traits{std::allocator{void}}::size_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::size_type' data-type='std::size_t' data-ref="std::allocator_traits{std::allocator{void}}::size_type">size_type</a>) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="619">619</th><td>&nbsp</td></tr>
+<tr><th id="620">620</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="621">621</th><td><i class="doc">       *  <span class="command">@brief</span>  Construct an object of type `_Up`</i>&nbsp</td></tr>
+<tr><th id="622">622</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="623">623</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  Pointer to memory of suitable size and alignment for</i>&nbsp</td></tr>
+<tr><th id="624">624</th><td><i class="doc">       *	       an object of type `_Up`.</i>&nbsp</td></tr>
+<tr><th id="625">625</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__args</span> Constructor arguments.</i>&nbsp</td></tr>
+<tr><th id="626">626</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="627">627</th><td><i class="doc">       *  Calls `__a.construct(__p, std::forward&lt;_Args&gt;(__args)...)`</i>&nbsp</td></tr>
+<tr><th id="628">628</th><td><i class="doc">       *  in C++11, C++14 and C++17. Changed in C++20 to call</i>&nbsp</td></tr>
+<tr><th id="629">629</th><td><i class="doc">       *  `std::construct_at(__p, std::forward&lt;_Args&gt;(__args)...)` instead.</i>&nbsp</td></tr>
+<tr><th id="630">630</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="631">631</th><td>      <b>template</b>&lt;<b>typename</b> _Up, <b>typename</b>... _Args&gt;&nbsp</td></tr>
+<tr><th id="632">632</th><td>	<em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <em>void</em>&nbsp</td></tr>
+<tr><th id="633">633</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traitsISaIvEE9constructERS0_PT_DpOT0_" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::construct' data-ref="_ZNSt16allocator_traitsISaIvEE9constructERS0_PT_DpOT0_">construct</dfn>(<a class="typedef" href="#std::allocator_traits{std::allocator{void}}::allocator_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::allocator_type' data-type='allocator&lt;void&gt;' data-ref="std::allocator_traits{std::allocator{void}}::allocator_type">allocator_type</a>&amp;, _Up* <dfn class="local col6 decl" id="5936__p" title='__p' data-type='_Up *' data-ref="5936__p">__p</dfn>, _Args&amp;&amp;... <dfn class="local col7 decl" id="5937__args" title='__args' data-type='_Args &amp;&amp;...' data-ref="5937__args">__args</dfn>)&nbsp</td></tr>
+<tr><th id="634">634</th><td>	<b>noexcept</b>(<span class="namespace">std::</span><a class="type" href="../type_traits.html#std::is_nothrow_constructible" title='std::is_nothrow_constructible' data-ref="std::is_nothrow_constructible">is_nothrow_constructible</a>&lt;_Up, _Args...&gt;::value)&nbsp</td></tr>
+<tr><th id="635">635</th><td>	{ <span class="namespace">std::</span>_Construct(<a class="local col6 ref" href="#5936__p" title='__p' data-ref="5936__p">__p</a>, <span class="namespace">std::</span>forward&lt;_Args&gt;(<a class="local col7 ref" href="#5937__args" title='__args' data-ref="5937__args">__args</a>)...); }&nbsp</td></tr>
+<tr><th id="636">636</th><td>&nbsp</td></tr>
+<tr><th id="637">637</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="638">638</th><td><i class="doc">       *  <span class="command">@brief</span>  Destroy an object of type `_Up`</i>&nbsp</td></tr>
+<tr><th id="639">639</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__a</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="640">640</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__p</span>  Pointer to the object to destroy</i>&nbsp</td></tr>
+<tr><th id="641">641</th><td><i class="doc">       *</i>&nbsp</td></tr>
+<tr><th id="642">642</th><td><i class="doc">       *  Invokes the destructor for `*__p`.</i>&nbsp</td></tr>
+<tr><th id="643">643</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="644">644</th><td>      <b>template</b>&lt;<b>typename</b> _Up&gt;&nbsp</td></tr>
+<tr><th id="645">645</th><td>	<em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <em>void</em>&nbsp</td></tr>
+<tr><th id="646">646</th><td>	<dfn class="decl def fn" id="_ZNSt16allocator_traitsISaIvEE7destroyERS0_PT_" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::destroy' data-ref="_ZNSt16allocator_traitsISaIvEE7destroyERS0_PT_">destroy</dfn>(<a class="typedef" href="#std::allocator_traits{std::allocator{void}}::allocator_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::allocator_type' data-type='allocator&lt;void&gt;' data-ref="std::allocator_traits{std::allocator{void}}::allocator_type">allocator_type</a>&amp;, _Up* <dfn class="local col8 decl" id="5938__p" title='__p' data-type='_Up *' data-ref="5938__p">__p</dfn>)&nbsp</td></tr>
+<tr><th id="647">647</th><td>	<b>noexcept</b>(<a class="type" href="../type_traits.html#std::is_nothrow_destructible" title='std::is_nothrow_destructible' data-ref="std::is_nothrow_destructible">is_nothrow_destructible</a>&lt;_Up&gt;::value)&nbsp</td></tr>
+<tr><th id="648">648</th><td>	{ <span class="namespace">std::</span>_Destroy(<a class="local col8 ref" href="#5938__p" title='__p' data-ref="5938__p">__p</a>); }&nbsp</td></tr>
+<tr><th id="649">649</th><td>&nbsp</td></tr>
+<tr><th id="650">650</th><td>      <i class="doc">/// max_size is ill-formed for allocator&lt;void&gt;</i>&nbsp</td></tr>
+<tr><th id="651">651</th><td>      <em>static</em> <a class="typedef" href="#std::allocator_traits{std::allocator{void}}::size_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::size_type' data-type='std::size_t' data-ref="std::allocator_traits{std::allocator{void}}::size_type">size_type</a>&nbsp</td></tr>
+<tr><th id="652">652</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traitsISaIvEE8max_sizeERKS0_" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::max_size' data-ref="_ZNSt16allocator_traitsISaIvEE8max_sizeERKS0_">max_size</dfn>(<em>const</em> <a class="typedef" href="#std::allocator_traits{std::allocator{void}}::allocator_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::allocator_type' data-type='allocator&lt;void&gt;' data-ref="std::allocator_traits{std::allocator{void}}::allocator_type">allocator_type</a>&amp;) = <b>delete</b>;&nbsp</td></tr>
+<tr><th id="653">653</th><td>&nbsp</td></tr>
+<tr><th id="654">654</th><td>      <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="655">655</th><td><i class="doc">       *  <span class="command">@brief</span>  Obtain an allocator to use when copying a container.</i>&nbsp</td></tr>
+<tr><th id="656">656</th><td><i class="doc">       *  <span class="command">@param</span>  <span class="arg">__rhs</span>  An allocator.</i>&nbsp</td></tr>
+<tr><th id="657">657</th><td><i class="doc">       *  <span class="command">@return</span> `__rhs`</i>&nbsp</td></tr>
+<tr><th id="658">658</th><td><i class="doc">      */</i>&nbsp</td></tr>
+<tr><th id="659">659</th><td>      <em>static</em> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#169" title="constexpr" data-ref="_M/_GLIBCXX20_CONSTEXPR">_GLIBCXX20_CONSTEXPR</a> <a class="typedef" href="#std::allocator_traits{std::allocator{void}}::allocator_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::allocator_type' data-type='allocator&lt;void&gt;' data-ref="std::allocator_traits{std::allocator{void}}::allocator_type">allocator_type</a>&nbsp</td></tr>
+<tr><th id="660">660</th><td>      <dfn class="decl def fn" id="_ZNSt16allocator_traitsISaIvEE37select_on_container_copy_constructionERKS0_" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::select_on_container_copy_construction' data-ref="_ZNSt16allocator_traitsISaIvEE37select_on_container_copy_constructionERKS0_">select_on_container_copy_construction</dfn>(<em>const</em> <a class="typedef" href="#std::allocator_traits{std::allocator{void}}::allocator_type" title='std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::allocator_type' data-type='allocator&lt;void&gt;' data-ref="std::allocator_traits{std::allocator{void}}::allocator_type">allocator_type</a>&amp; <dfn class="local col9 decl" id="5939__rhs" title='__rhs' data-type='const std::allocator_traits&lt;std::allocator&lt;void&gt;&gt;::allocator_type &amp;' data-ref="5939__rhs">__rhs</dfn>)&nbsp</td></tr>
+<tr><th id="661">661</th><td>      { <b>return</b> <a class="ref fn fake" href="allocator.h.html#72" title='std::allocator&lt;void&gt;::allocator' data-ref="_ZNSaIvEC1ERKS_"></a><a class="local col9 ref" href="#5939__rhs" title='__rhs' data-ref="5939__rhs">__rhs</a>; }&nbsp</td></tr>
+<tr><th id="662">662</th><td>    };&nbsp</td></tr>
+<tr><th id="663">663</th><td>&nbsp</td></tr>
+<tr><th id="664">664</th><td><u>#<span data-ppcond="664">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt; 201703L</u>&nbsp</td></tr>
+<tr><th id="665">665</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="666">666</th><td>    <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="667">667</th><td>    __do_alloc_on_copy(_Alloc&amp; __one, <em>const</em> _Alloc&amp; __two, true_type)&nbsp</td></tr>
+<tr><th id="668">668</th><td>    { __one = __two; }&nbsp</td></tr>
+<tr><th id="669">669</th><td>&nbsp</td></tr>
+<tr><th id="670">670</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="671">671</th><td>    <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="672">672</th><td>    __do_alloc_on_copy(_Alloc&amp;, <em>const</em> _Alloc&amp;, false_type)&nbsp</td></tr>
+<tr><th id="673">673</th><td>    { }&nbsp</td></tr>
+<tr><th id="674">674</th><td><u>#<span data-ppcond="664">endif</span></u>&nbsp</td></tr>
+<tr><th id="675">675</th><td>&nbsp</td></tr>
+<tr><th id="676">676</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="677">677</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#153" title="constexpr" data-ref="_M/_GLIBCXX14_CONSTEXPR">_GLIBCXX14_CONSTEXPR</a> <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="678">678</th><td>    <dfn class="decl def fn" id="_ZSt15__alloc_on_copyRT_RKS_" title='std::__alloc_on_copy' data-ref="_ZSt15__alloc_on_copyRT_RKS_">__alloc_on_copy</dfn>(_Alloc&amp; <dfn class="local col0 decl" id="5940__one" title='__one' data-type='_Alloc &amp;' data-ref="5940__one">__one</dfn>, <em>const</em> _Alloc&amp; <dfn class="local col1 decl" id="5941__two" title='__two' data-type='const _Alloc &amp;' data-ref="5941__two">__two</dfn>)&nbsp</td></tr>
+<tr><th id="679">679</th><td>    {&nbsp</td></tr>
+<tr><th id="680">680</th><td>      <b>typedef</b> <a class="type" href="memoryfwd.h.html#std::allocator_traits" title='std::allocator_traits' data-ref="std::allocator_traits">allocator_traits</a>&lt;_Alloc&gt; <dfn class="local col2 typedef" id="5942__traits" title='__traits' data-type='allocator_traits&lt;_Alloc&gt;' data-ref="5942__traits">__traits</dfn>;&nbsp</td></tr>
+<tr><th id="681">681</th><td>      <b>typedef</b> <b>typename</b> <a class="local col2 typedef" href="#5942__traits" title='__traits' data-type='allocator_traits&lt;_Alloc&gt;' data-ref="5942__traits">__traits</a>::propagate_on_container_copy_assignment <dfn class="local col3 typedef" id="5943__pocca" title='__pocca' data-type='typename __traits::propagate_on_container_copy_assignment' data-ref="5943__pocca">__pocca</dfn>;&nbsp</td></tr>
+<tr><th id="682">682</th><td><u>#<span data-ppcond="682">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="683">683</th><td>      <b>if</b> <b>constexpr</b> (<a class="local col3 typedef" href="#5943__pocca" title='__pocca' data-type='typename __traits::propagate_on_container_copy_assignment' data-ref="5943__pocca">__pocca</a>::value)&nbsp</td></tr>
+<tr><th id="684">684</th><td>	<a class="local col0 ref" href="#5940__one" title='__one' data-ref="5940__one">__one</a> = <a class="local col1 ref" href="#5941__two" title='__two' data-ref="5941__two">__two</a>;&nbsp</td></tr>
+<tr><th id="685">685</th><td><u>#<span data-ppcond="682">else</span></u>&nbsp</td></tr>
+<tr><th id="686">686</th><td>      __do_alloc_on_copy(__one, __two, __pocca());&nbsp</td></tr>
+<tr><th id="687">687</th><td><u>#<span data-ppcond="682">endif</span></u>&nbsp</td></tr>
+<tr><th id="688">688</th><td>    }&nbsp</td></tr>
+<tr><th id="689">689</th><td>&nbsp</td></tr>
+<tr><th id="690">690</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="691">691</th><td>    <b>constexpr</b> _Alloc&nbsp</td></tr>
+<tr><th id="692">692</th><td>    <dfn class="decl def fn" id="_ZSt15__alloc_on_copyRKT_" title='std::__alloc_on_copy' data-ref="_ZSt15__alloc_on_copyRKT_">__alloc_on_copy</dfn>(<em>const</em> _Alloc&amp; <dfn class="local col4 decl" id="5944__a" title='__a' data-type='const _Alloc &amp;' data-ref="5944__a">__a</dfn>)&nbsp</td></tr>
+<tr><th id="693">693</th><td>    {&nbsp</td></tr>
+<tr><th id="694">694</th><td>      <b>typedef</b> <a class="type" href="memoryfwd.h.html#std::allocator_traits" title='std::allocator_traits' data-ref="std::allocator_traits">allocator_traits</a>&lt;_Alloc&gt; <dfn class="local col5 typedef" id="5945__traits" title='__traits' data-type='allocator_traits&lt;_Alloc&gt;' data-ref="5945__traits">__traits</dfn>;&nbsp</td></tr>
+<tr><th id="695">695</th><td>      <b>return</b> <a class="local col5 typedef" href="#5945__traits" title='__traits' data-type='allocator_traits&lt;_Alloc&gt;' data-ref="5945__traits">__traits</a>::select_on_container_copy_construction(<a class="local col4 ref" href="#5944__a" title='__a' data-ref="5944__a">__a</a>);&nbsp</td></tr>
+<tr><th id="696">696</th><td>    }&nbsp</td></tr>
+<tr><th id="697">697</th><td>&nbsp</td></tr>
+<tr><th id="698">698</th><td><u>#<span data-ppcond="698">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt; 201703L</u>&nbsp</td></tr>
+<tr><th id="699">699</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="700">700</th><td>    <b>inline</b> <em>void</em> __do_alloc_on_move(_Alloc&amp; __one, _Alloc&amp; __two, true_type)&nbsp</td></tr>
+<tr><th id="701">701</th><td>    { __one = std::move(__two); }&nbsp</td></tr>
+<tr><th id="702">702</th><td>&nbsp</td></tr>
+<tr><th id="703">703</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="704">704</th><td>    <b>inline</b> <em>void</em> __do_alloc_on_move(_Alloc&amp;, _Alloc&amp;, false_type)&nbsp</td></tr>
+<tr><th id="705">705</th><td>    { }&nbsp</td></tr>
+<tr><th id="706">706</th><td><u>#<span data-ppcond="698">endif</span></u>&nbsp</td></tr>
+<tr><th id="707">707</th><td>&nbsp</td></tr>
+<tr><th id="708">708</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="709">709</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#153" title="constexpr" data-ref="_M/_GLIBCXX14_CONSTEXPR">_GLIBCXX14_CONSTEXPR</a> <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="710">710</th><td>    <dfn class="decl def fn" id="_ZSt15__alloc_on_moveRT_S0_" title='std::__alloc_on_move' data-ref="_ZSt15__alloc_on_moveRT_S0_">__alloc_on_move</dfn>(_Alloc&amp; <dfn class="local col6 decl" id="5946__one" title='__one' data-type='_Alloc &amp;' data-ref="5946__one">__one</dfn>, _Alloc&amp; <dfn class="local col7 decl" id="5947__two" title='__two' data-type='_Alloc &amp;' data-ref="5947__two">__two</dfn>)&nbsp</td></tr>
+<tr><th id="711">711</th><td>    {&nbsp</td></tr>
+<tr><th id="712">712</th><td>      <b>typedef</b> <a class="type" href="memoryfwd.h.html#std::allocator_traits" title='std::allocator_traits' data-ref="std::allocator_traits">allocator_traits</a>&lt;_Alloc&gt; <dfn class="local col8 typedef" id="5948__traits" title='__traits' data-type='allocator_traits&lt;_Alloc&gt;' data-ref="5948__traits">__traits</dfn>;&nbsp</td></tr>
+<tr><th id="713">713</th><td>      <b>typedef</b> <b>typename</b> <a class="local col8 typedef" href="#5948__traits" title='__traits' data-type='allocator_traits&lt;_Alloc&gt;' data-ref="5948__traits">__traits</a>::propagate_on_container_move_assignment <dfn class="local col9 typedef" id="5949__pocma" title='__pocma' data-type='typename __traits::propagate_on_container_move_assignment' data-ref="5949__pocma">__pocma</dfn>;&nbsp</td></tr>
+<tr><th id="714">714</th><td><u>#<span data-ppcond="714">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="715">715</th><td>      <b>if</b> <b>constexpr</b> (<a class="local col9 typedef" href="#5949__pocma" title='__pocma' data-type='typename __traits::propagate_on_container_move_assignment' data-ref="5949__pocma">__pocma</a>::value)&nbsp</td></tr>
+<tr><th id="716">716</th><td>	<a class="local col6 ref" href="#5946__one" title='__one' data-ref="5946__one">__one</a> = <span class="namespace">std::</span>move(<a class="local col7 ref" href="#5947__two" title='__two' data-ref="5947__two">__two</a>);&nbsp</td></tr>
+<tr><th id="717">717</th><td><u>#<span data-ppcond="714">else</span></u>&nbsp</td></tr>
+<tr><th id="718">718</th><td>      __do_alloc_on_move(__one, __two, __pocma());&nbsp</td></tr>
+<tr><th id="719">719</th><td><u>#<span data-ppcond="714">endif</span></u>&nbsp</td></tr>
+<tr><th id="720">720</th><td>    }&nbsp</td></tr>
+<tr><th id="721">721</th><td>&nbsp</td></tr>
+<tr><th id="722">722</th><td><u>#<span data-ppcond="722">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt; 201703L</u>&nbsp</td></tr>
+<tr><th id="723">723</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="724">724</th><td>    <b>inline</b> <em>void</em> __do_alloc_on_swap(_Alloc&amp; __one, _Alloc&amp; __two, true_type)&nbsp</td></tr>
+<tr><th id="725">725</th><td>    {&nbsp</td></tr>
+<tr><th id="726">726</th><td>      <b>using</b> std::swap;&nbsp</td></tr>
+<tr><th id="727">727</th><td>      swap(__one, __two);&nbsp</td></tr>
+<tr><th id="728">728</th><td>    }&nbsp</td></tr>
+<tr><th id="729">729</th><td>&nbsp</td></tr>
+<tr><th id="730">730</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="731">731</th><td>    <b>inline</b> <em>void</em> __do_alloc_on_swap(_Alloc&amp;, _Alloc&amp;, false_type)&nbsp</td></tr>
+<tr><th id="732">732</th><td>    { }&nbsp</td></tr>
+<tr><th id="733">733</th><td><u>#<span data-ppcond="722">endif</span></u>&nbsp</td></tr>
+<tr><th id="734">734</th><td>&nbsp</td></tr>
+<tr><th id="735">735</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="736">736</th><td>    <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#153" title="constexpr" data-ref="_M/_GLIBCXX14_CONSTEXPR">_GLIBCXX14_CONSTEXPR</a> <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="737">737</th><td>    <dfn class="decl def fn" id="_ZSt15__alloc_on_swapRT_S0_" title='std::__alloc_on_swap' data-ref="_ZSt15__alloc_on_swapRT_S0_">__alloc_on_swap</dfn>(_Alloc&amp; <dfn class="local col0 decl" id="5950__one" title='__one' data-type='_Alloc &amp;' data-ref="5950__one">__one</dfn>, _Alloc&amp; <dfn class="local col1 decl" id="5951__two" title='__two' data-type='_Alloc &amp;' data-ref="5951__two">__two</dfn>)&nbsp</td></tr>
+<tr><th id="738">738</th><td>    {&nbsp</td></tr>
+<tr><th id="739">739</th><td>      <b>typedef</b> <a class="type" href="memoryfwd.h.html#std::allocator_traits" title='std::allocator_traits' data-ref="std::allocator_traits">allocator_traits</a>&lt;_Alloc&gt; <dfn class="local col2 typedef" id="5952__traits" title='__traits' data-type='allocator_traits&lt;_Alloc&gt;' data-ref="5952__traits">__traits</dfn>;&nbsp</td></tr>
+<tr><th id="740">740</th><td>      <b>typedef</b> <b>typename</b> <a class="local col2 typedef" href="#5952__traits" title='__traits' data-type='allocator_traits&lt;_Alloc&gt;' data-ref="5952__traits">__traits</a>::propagate_on_container_swap <dfn class="local col3 typedef" id="5953__pocs" title='__pocs' data-type='typename __traits::propagate_on_container_swap' data-ref="5953__pocs">__pocs</dfn>;&nbsp</td></tr>
+<tr><th id="741">741</th><td><u>#<span data-ppcond="741">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201703L</u>&nbsp</td></tr>
+<tr><th id="742">742</th><td>      <b>if</b> <b>constexpr</b> (<a class="local col3 typedef" href="#5953__pocs" title='__pocs' data-type='typename __traits::propagate_on_container_swap' data-ref="5953__pocs">__pocs</a>::value)&nbsp</td></tr>
+<tr><th id="743">743</th><td>	{&nbsp</td></tr>
+<tr><th id="744">744</th><td>	  <b>using</b> <span class="namespace">std::</span>swap;&nbsp</td></tr>
+<tr><th id="745">745</th><td>	  swap(<a class="local col0 ref" href="#5950__one" title='__one' data-ref="5950__one">__one</a>, <a class="local col1 ref" href="#5951__two" title='__two' data-ref="5951__two">__two</a>);&nbsp</td></tr>
+<tr><th id="746">746</th><td>	}&nbsp</td></tr>
+<tr><th id="747">747</th><td><u>#<span data-ppcond="741">else</span></u>&nbsp</td></tr>
+<tr><th id="748">748</th><td>      __do_alloc_on_swap(__one, __two, __pocs());&nbsp</td></tr>
+<tr><th id="749">749</th><td><u>#<span data-ppcond="741">endif</span></u>&nbsp</td></tr>
+<tr><th id="750">750</th><td>    }&nbsp</td></tr>
+<tr><th id="751">751</th><td>&nbsp</td></tr>
+<tr><th id="752">752</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc, <b>typename</b> _Tp,&nbsp</td></tr>
+<tr><th id="753">753</th><td>	   <b>typename</b> _ValueT = <a class="type" href="../type_traits.html#std::__remove_cvref_t" title='std::__remove_cvref_t' data-ref="std::__remove_cvref_t">__remove_cvref_t</a>&lt;<b>typename</b> _Alloc::value_type&gt;,&nbsp</td></tr>
+<tr><th id="754">754</th><td>	   <b>typename</b> = <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="755">755</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_alloc_insertable_impl" title='std::__is_alloc_insertable_impl' data-ref="std::__is_alloc_insertable_impl">__is_alloc_insertable_impl</dfn>&nbsp</td></tr>
+<tr><th id="756">756</th><td>    : <a class="typedef" href="../type_traits.html#std::false_type" title='std::false_type' data-type='integral_constant&lt;bool, false&gt;' data-ref="std::false_type">false_type</a>&nbsp</td></tr>
+<tr><th id="757">757</th><td>    { };&nbsp</td></tr>
+<tr><th id="758">758</th><td>&nbsp</td></tr>
+<tr><th id="759">759</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc, <b>typename</b> _Tp, <b>typename</b> _ValueT&gt;&nbsp</td></tr>
+<tr><th id="760">760</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_alloc_insertable_impl" title='std::__is_alloc_insertable_impl' data-ref="std::__is_alloc_insertable_impl">__is_alloc_insertable_impl</dfn>&lt;_Alloc, _Tp, _ValueT,&nbsp</td></tr>
+<tr><th id="761">761</th><td>      <a class="type" href="../type_traits.html#std::__void_t" title='std::__void_t' data-ref="std::__void_t">__void_t</a>&lt;<b>decltype</b>(<a class="type" href="memoryfwd.h.html#std::allocator_traits" title='std::allocator_traits' data-ref="std::allocator_traits">allocator_traits</a>&lt;_Alloc&gt;::construct(&nbsp</td></tr>
+<tr><th id="762">762</th><td>		   <span class="namespace">std::</span>declval&lt;_Alloc&amp;&gt;(), <span class="namespace">std::</span>declval&lt;_ValueT*&gt;(),&nbsp</td></tr>
+<tr><th id="763">763</th><td>		   <span class="namespace">std::</span>declval&lt;_Tp&gt;()))&gt;&gt;&nbsp</td></tr>
+<tr><th id="764">764</th><td>    : <a class="typedef" href="../type_traits.html#std::true_type" title='std::true_type' data-type='integral_constant&lt;bool, true&gt;' data-ref="std::true_type">true_type</a>&nbsp</td></tr>
+<tr><th id="765">765</th><td>    { };&nbsp</td></tr>
+<tr><th id="766">766</th><td>&nbsp</td></tr>
+<tr><th id="767">767</th><td>  <i>// true if _Alloc::value_type is CopyInsertable into containers using _Alloc</i>&nbsp</td></tr>
+<tr><th id="768">768</th><td><i>  // (might be wrong if _Alloc::construct exists but is not constrained,</i>&nbsp</td></tr>
+<tr><th id="769">769</th><td><i>  // i.e. actually trying to use it would still be invalid. Use with caution.)</i>&nbsp</td></tr>
+<tr><th id="770">770</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="771">771</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_copy_insertable" title='std::__is_copy_insertable' data-ref="std::__is_copy_insertable">__is_copy_insertable</dfn>&nbsp</td></tr>
+<tr><th id="772">772</th><td>    : <a class="type" href="#std::__is_alloc_insertable_impl" title='std::__is_alloc_insertable_impl' data-ref="std::__is_alloc_insertable_impl">__is_alloc_insertable_impl</a>&lt;_Alloc,&nbsp</td></tr>
+<tr><th id="773">773</th><td>				 <b>typename</b> _Alloc::value_type <em>const</em>&amp;&gt;::type&nbsp</td></tr>
+<tr><th id="774">774</th><td>    { };&nbsp</td></tr>
+<tr><th id="775">775</th><td>&nbsp</td></tr>
+<tr><th id="776">776</th><td>  <i>// std::allocator&lt;_Tp&gt; just requires CopyConstructible</i>&nbsp</td></tr>
+<tr><th id="777">777</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="778">778</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_copy_insertable" title='std::__is_copy_insertable' data-ref="std::__is_copy_insertable">__is_copy_insertable</dfn>&lt;<a class="type" href="memoryfwd.h.html#std::allocator" title='std::allocator' data-ref="std::allocator">allocator</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="779">779</th><td>    : <a class="type" href="../type_traits.html#std::is_copy_constructible" title='std::is_copy_constructible' data-ref="std::is_copy_constructible">is_copy_constructible</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="780">780</th><td>    { };&nbsp</td></tr>
+<tr><th id="781">781</th><td>&nbsp</td></tr>
+<tr><th id="782">782</th><td>  <i>// true if _Alloc::value_type is MoveInsertable into containers using _Alloc</i>&nbsp</td></tr>
+<tr><th id="783">783</th><td><i>  // (might be wrong if _Alloc::construct exists but is not constrained,</i>&nbsp</td></tr>
+<tr><th id="784">784</th><td><i>  // i.e. actually trying to use it would still be invalid. Use with caution.)</i>&nbsp</td></tr>
+<tr><th id="785">785</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="786">786</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_move_insertable" title='std::__is_move_insertable' data-ref="std::__is_move_insertable">__is_move_insertable</dfn>&nbsp</td></tr>
+<tr><th id="787">787</th><td>    : <a class="type" href="#std::__is_alloc_insertable_impl" title='std::__is_alloc_insertable_impl' data-ref="std::__is_alloc_insertable_impl">__is_alloc_insertable_impl</a>&lt;_Alloc, <b>typename</b> _Alloc::value_type&gt;::type&nbsp</td></tr>
+<tr><th id="788">788</th><td>    { };&nbsp</td></tr>
+<tr><th id="789">789</th><td>&nbsp</td></tr>
+<tr><th id="790">790</th><td>  <i>// std::allocator&lt;_Tp&gt; just requires MoveConstructible</i>&nbsp</td></tr>
+<tr><th id="791">791</th><td>  <b>template</b>&lt;<b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="792">792</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_move_insertable" title='std::__is_move_insertable' data-ref="std::__is_move_insertable">__is_move_insertable</dfn>&lt;<a class="type" href="memoryfwd.h.html#std::allocator" title='std::allocator' data-ref="std::allocator">allocator</a>&lt;_Tp&gt;&gt;&nbsp</td></tr>
+<tr><th id="793">793</th><td>    : <a class="type" href="../type_traits.html#std::is_move_constructible" title='std::is_move_constructible' data-ref="std::is_move_constructible">is_move_constructible</a>&lt;_Tp&gt;&nbsp</td></tr>
+<tr><th id="794">794</th><td>    { };&nbsp</td></tr>
+<tr><th id="795">795</th><td>&nbsp</td></tr>
+<tr><th id="796">796</th><td>  <i>// Trait to detect Allocator-like types.</i>&nbsp</td></tr>
+<tr><th id="797">797</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc, <b>typename</b> = <em>void</em>&gt;&nbsp</td></tr>
+<tr><th id="798">798</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_allocator" title='std::__is_allocator' data-ref="std::__is_allocator">__is_allocator</dfn> : <a class="typedef" href="../type_traits.html#std::false_type" title='std::false_type' data-type='integral_constant&lt;bool, false&gt;' data-ref="std::false_type">false_type</a> { };&nbsp</td></tr>
+<tr><th id="799">799</th><td>&nbsp</td></tr>
+<tr><th id="800">800</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="801">801</th><td>    <b>struct</b> <dfn class="type def" id="std::__is_allocator" title='std::__is_allocator' data-ref="std::__is_allocator">__is_allocator</dfn>&lt;_Alloc,&nbsp</td></tr>
+<tr><th id="802">802</th><td>      <a class="type" href="../type_traits.html#std::__void_t" title='std::__void_t' data-ref="std::__void_t">__void_t</a>&lt;<b>typename</b> _Alloc::value_type,&nbsp</td></tr>
+<tr><th id="803">803</th><td>	       <b>decltype</b>(<span class="namespace">std::</span>declval&lt;_Alloc&amp;&gt;().allocate(<a class="typedef" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a>{}))&gt;&gt;&nbsp</td></tr>
+<tr><th id="804">804</th><td>    : <a class="typedef" href="../type_traits.html#std::true_type" title='std::true_type' data-type='integral_constant&lt;bool, true&gt;' data-ref="std::true_type">true_type</a> { };&nbsp</td></tr>
+<tr><th id="805">805</th><td>&nbsp</td></tr>
+<tr><th id="806">806</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="807">807</th><td>    <b>using</b> <dfn class="typedef" id="std::_RequireAllocator" title='std::_RequireAllocator' data-type='typename enable_if&lt;__is_allocator&lt;_Alloc&gt;::value, _Alloc&gt;::type' data-ref="std::_RequireAllocator">_RequireAllocator</dfn>&nbsp</td></tr>
+<tr><th id="808">808</th><td>      = <b>typename</b> <a class="type" href="../type_traits.html#std::enable_if" title='std::enable_if' data-ref="std::enable_if">enable_if</a>&lt;<a class="type" href="#std::__is_allocator" title='std::__is_allocator' data-ref="std::__is_allocator">__is_allocator</a>&lt;_Alloc&gt;::value, _Alloc&gt;::type;&nbsp</td></tr>
+<tr><th id="809">809</th><td>&nbsp</td></tr>
+<tr><th id="810">810</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="811">811</th><td>    <b>using</b> <dfn class="typedef" id="std::_RequireNotAllocator" title='std::_RequireNotAllocator' data-type='typename enable_if&lt;!__is_allocator&lt;_Alloc&gt;::value, _Alloc&gt;::type' data-ref="std::_RequireNotAllocator">_RequireNotAllocator</dfn>&nbsp</td></tr>
+<tr><th id="812">812</th><td>      = <b>typename</b> <a class="type" href="../type_traits.html#std::enable_if" title='std::enable_if' data-ref="std::enable_if">enable_if</a>&lt;!<a class="type" href="#std::__is_allocator" title='std::__is_allocator' data-ref="std::__is_allocator">__is_allocator</a>&lt;_Alloc&gt;::value, _Alloc&gt;::type;&nbsp</td></tr>
+<tr><th id="813">813</th><td>&nbsp</td></tr>
+<tr><th id="814">814</th><td><u>#<span data-ppcond="814">if</span> <span class="macro" title="201907L" data-ref="_M/__cpp_concepts">__cpp_concepts</span> &gt;= 201907L</u>&nbsp</td></tr>
+<tr><th id="815">815</th><td>  <b>template</b>&lt;<b>typename</b> _Alloc&gt;&nbsp</td></tr>
+<tr><th id="816">816</th><td>    <b>concept</b> __allocator_like = <b>requires</b> (_Alloc&amp; <dfn class="local col4 decl" id="5954__a" title='__a' data-type='_Alloc &amp;' data-ref="5954__a">__a</dfn>) {&nbsp</td></tr>
+<tr><th id="817">817</th><td>      <b>typename</b> _Alloc::value_type;&nbsp</td></tr>
+<tr><th id="818">818</th><td>      <a class="local col4 ref" href="#5954__a" title='__a' data-ref="5954__a">__a</a>.deallocate(<a class="local col4 ref" href="#5954__a" title='__a' data-ref="5954__a">__a</a>.allocate(<var>1u</var>), <var>1u</var>);&nbsp</td></tr>
+<tr><th id="819">819</th><td>    };&nbsp</td></tr>
+<tr><th id="820">820</th><td><u>#<span data-ppcond="814">endif</span></u>&nbsp</td></tr>
+<tr><th id="821">821</th><td><u>#<span data-ppcond="45">endif</span> // C++11</u>&nbsp</td></tr>
+<tr><th id="822">822</th><td>&nbsp</td></tr>
+<tr><th id="823">823</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="824">824</th><td><i class="doc">   * Destroy a range of objects using the supplied allocator.  For</i>&nbsp</td></tr>
+<tr><th id="825">825</th><td><i class="doc">   * non-default allocators we do not optimize away invocation of</i>&nbsp</td></tr>
+<tr><th id="826">826</th><td><i class="doc">   * destroy() even if _Tp has a trivial destructor.</i>&nbsp</td></tr>
+<tr><th id="827">827</th><td><i class="doc">   */</i>&nbsp</td></tr>
+<tr><th id="828">828</th><td>&nbsp</td></tr>
+<tr><th id="829">829</th><td>  <b>template</b>&lt;<b>typename</b> _ForwardIterator, <b>typename</b> _Allocator&gt;&nbsp</td></tr>
+<tr><th id="830">830</th><td>    <em>void</em>&nbsp</td></tr>
+<tr><th id="831">831</th><td>    <dfn class="decl def fn" id="_ZSt8_DestroyT_S_RT0_" title='std::_Destroy' data-ref="_ZSt8_DestroyT_S_RT0_">_Destroy</dfn>(_ForwardIterator <dfn class="local col5 decl" id="5955__first" title='__first' data-type='_ForwardIterator' data-ref="5955__first">__first</dfn>, _ForwardIterator <dfn class="local col6 decl" id="5956__last" title='__last' data-type='_ForwardIterator' data-ref="5956__last">__last</dfn>,&nbsp</td></tr>
+<tr><th id="832">832</th><td>	     _Allocator&amp; <dfn class="local col7 decl" id="5957__alloc" title='__alloc' data-type='_Allocator &amp;' data-ref="5957__alloc">__alloc</dfn>)&nbsp</td></tr>
+<tr><th id="833">833</th><td>    {&nbsp</td></tr>
+<tr><th id="834">834</th><td>      <b>for</b> (; <a class="local col5 ref" href="#5955__first" title='__first' data-ref="5955__first">__first</a> != <a class="local col6 ref" href="#5956__last" title='__last' data-ref="5956__last">__last</a>; ++<a class="local col5 ref" href="#5955__first" title='__first' data-ref="5955__first">__first</a>)&nbsp</td></tr>
+<tr><th id="835">835</th><td><u>#<span data-ppcond="835">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &lt; 201103L</u>&nbsp</td></tr>
+<tr><th id="836">836</th><td>	__alloc.destroy(std::__addressof(*__first));&nbsp</td></tr>
+<tr><th id="837">837</th><td><u>#<span data-ppcond="835">else</span></u>&nbsp</td></tr>
+<tr><th id="838">838</th><td>	<a class="type" href="memoryfwd.h.html#std::allocator_traits" title='std::allocator_traits' data-ref="std::allocator_traits">allocator_traits</a>&lt;_Allocator&gt;::destroy(<a class="local col7 ref" href="#5957__alloc" title='__alloc' data-ref="5957__alloc">__alloc</a>,&nbsp</td></tr>
+<tr><th id="839">839</th><td>					      <span class="namespace">std::</span>__addressof(*<a class="local col5 ref" href="#5955__first" title='__first' data-ref="5955__first">__first</a>));&nbsp</td></tr>
+<tr><th id="840">840</th><td><u>#<span data-ppcond="835">endif</span></u>&nbsp</td></tr>
+<tr><th id="841">841</th><td>    }&nbsp</td></tr>
+<tr><th id="842">842</th><td>&nbsp</td></tr>
+<tr><th id="843">843</th><td>  <b>template</b>&lt;<b>typename</b> _ForwardIterator, <b>typename</b> _Tp&gt;&nbsp</td></tr>
+<tr><th id="844">844</th><td>    <b>inline</b> <em>void</em>&nbsp</td></tr>
+<tr><th id="845">845</th><td>    <dfn class="decl def fn" id="_ZSt8_DestroyT_S_RSaIT0_E" title='std::_Destroy' data-ref="_ZSt8_DestroyT_S_RSaIT0_E">_Destroy</dfn>(_ForwardIterator <dfn class="local col8 decl" id="5958__first" title='__first' data-type='_ForwardIterator' data-ref="5958__first">__first</dfn>, _ForwardIterator <dfn class="local col9 decl" id="5959__last" title='__last' data-type='_ForwardIterator' data-ref="5959__last">__last</dfn>,&nbsp</td></tr>
+<tr><th id="846">846</th><td>	     <a class="type" href="memoryfwd.h.html#std::allocator" title='std::allocator' data-ref="std::allocator">allocator</a>&lt;_Tp&gt;&amp;)&nbsp</td></tr>
+<tr><th id="847">847</th><td>    {&nbsp</td></tr>
+<tr><th id="848">848</th><td>      _Destroy(<a class="local col8 ref" href="#5958__first" title='__first' data-ref="5958__first">__first</a>, <a class="local col9 ref" href="#5959__last" title='__last' data-ref="5959__last">__last</a>);&nbsp</td></tr>
+<tr><th id="849">849</th><td>    }&nbsp</td></tr>
+<tr><th id="850">850</th><td>&nbsp</td></tr>
+<tr><th id="851">851</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="852">852</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="853">853</th><td><u>#<span data-ppcond="30">endif</span> // _ALLOC_TRAITS_H</u>&nbsp</td></tr>
+<tr><th id="854">854</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

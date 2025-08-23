@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='4318' type='VkResult vkResetFences(VkDevice device, uint32_t fenceCount, const VkFence * pFences)'/>

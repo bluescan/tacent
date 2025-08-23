@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='252' type='float tMath::tColourDiffRedmean(const tColour3b &amp; a, const tColour3b &amp; b)'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='252'>// Returns value E [0.0, 764.8340]</doc>
+<use f='Modules/Image/Src/tQuantizeFixed.cpp' l='218' u='c' c='_ZN6tImage14tQuantizeFixed32FindIndexOfClosestColour_RedmeanEPK9tColour3biRS2_'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='521' u='c' c='_ZN6tImage12tQuantizeNeu32FindIndexOfClosestColour_RedmeanEPK9tColour3biRS2_'/>
+<def f='Modules/Math/Src/tColour.cpp' l='433' ll='449' type='float tMath::tColourDiffRedmean(const tColour3b &amp; aa, const tColour3b &amp; bb)'/>

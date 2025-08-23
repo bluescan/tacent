@@ -1,0 +1,7 @@
+<use f='include/c++/11/bits/ptr_traits.h' l='119'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='102'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='183'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='192'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='201'/>
+<use f='include/c++/11/bits/alloc_traits.h' l='210'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1063'/>

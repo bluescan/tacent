@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='4495' ll='4497' type='double std::poisson_distribution::mean() const'/>
+<doc f='include/c++/11/bits/random.h' l='4492'>/**
+       * @brief Returns the distribution parameter @p mean.
+       */</doc>

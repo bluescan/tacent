@@ -1,0 +1,14 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1167' ll='1169' type='std::moneypunct::string_type std::moneypunct::positive_sign() const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1154'>/**
+       *  @brief  Return positive sign string.
+       *
+       *  This function returns a string_type to use as a sign for positive
+       *  amounts.  It does so by returning returning
+       *  moneypunct&lt;char_type&gt;::do_positive_sign().
+       *
+       *  If the return value contains more than one character, the first
+       *  character appears in the position indicated by pos_format() and the
+       *  remainder appear at the end of the formatted string.
+       *
+       *  @return  @a string_type representing a positive sign.
+      */</doc>

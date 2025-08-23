@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tCmdLine.h' l='190' type='void tCmdLine::tStringSyntax(tString &amp; dest, int columnWidth = 80)'/>
+<doc f='Modules/System/Inc/System/tCmdLine.h' l='187'>// The following functions are the same as the tPrint ones above except they populate a tString instead of
+	// printing. This is handy if you need, for example, to display usage instructins in a message box or someehere
+	// other than direct stdout. For all these functions the dest string is appended to and not cleared first.</doc>
+<def f='Modules/System/Src/tCmdLine.cpp' l='512' ll='515' type='void tCmdLine::tStringSyntax(tString &amp; dest, int width = 80)'/>

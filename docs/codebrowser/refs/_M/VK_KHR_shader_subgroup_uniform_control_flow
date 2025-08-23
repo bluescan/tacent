@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10395'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10394'>// VK_KHR_shader_subgroup_uniform_control_flow is a preprocessor guard. Do not pass it to API calls.</doc>

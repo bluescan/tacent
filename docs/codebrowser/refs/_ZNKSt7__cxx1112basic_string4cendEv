@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/basic_string.h' l='892' ll='894' type='std::basic_string::const_iterator std::basic_string::cend() const'/>
+<doc f='include/c++/11/bits/basic_string.h' l='888'>/**
+       *  Returns a read-only (constant) iterator that points one past the
+       *  last character in the %string.
+       */</doc>

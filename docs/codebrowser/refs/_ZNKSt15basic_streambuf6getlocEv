@@ -1,0 +1,9 @@
+<def f='include/c++/11/streambuf' l='230' ll='232' type='std::locale std::basic_streambuf::getloc() const'/>
+<doc f='include/c++/11/streambuf' l='222'>/**
+       *  @brief  Locale access.
+       *  @return  The current locale in effect.
+       *
+       *  If pubimbue(loc) has been called, then the most recent @c loc
+       *  is returned.  Otherwise the global locale in effect at the time
+       *  of construction is returned.
+      */</doc>

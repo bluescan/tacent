@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1127' ll='1129' type='std::deque::iterator std::deque::begin()'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1123'>/**
+       *  Returns a read/write iterator that points to the first element in the
+       *  %deque.  Iteration is done in ordinary element order.
+       */</doc>

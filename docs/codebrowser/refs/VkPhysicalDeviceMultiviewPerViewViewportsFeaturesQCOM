@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18143' ll='18147'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18143'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM::multiviewPerViewViewports' o='128' t='VkBool32'/>

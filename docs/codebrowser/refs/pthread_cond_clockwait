@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1171' type='int pthread_cond_clockwait(pthread_cond_t *__restrict __cond, pthread_mutex_t *__restrict __mutex, __clockid_t __clock_id, const struct timespec *__restrict __abstime)'/>
+<use f='include/c++/11/bits/std_mutex.h' l='169' u='c' c='_ZNSt9__condvar10wait_untilERSt5mutexiR8timespec'/>

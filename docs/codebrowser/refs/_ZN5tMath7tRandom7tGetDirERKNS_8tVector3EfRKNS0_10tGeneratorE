@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='125' type='tMath::tVector3 tMath::tRandom::tGetDir(const tMath::tVector3 &amp; centerDir, float extentAngle, const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<doc f='Modules/Math/Inc/Math/tRandom.h' l='124'>// Gets a random direction centered about the input direction within extent angle. Essentially creating a cone.</doc>
+<def f='Modules/Math/Src/tRandom.cpp' l='129' ll='147' type='tMath::tVector3 tMath::tRandom::tGetDir(const tMath::tVector3 &amp; centerDir, float extentAngle, const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>

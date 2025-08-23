@@ -1,0 +1,6 @@
+<def f='include/c++/11/istream' l='268' ll='270' type='std::streamsize std::basic_istream::gcount() const'/>
+<doc f='include/c++/11/istream' l='263'>/**
+       *  @brief  Character counting
+       *  @return  The number of characters extracted by the previous
+       *           unformatted input function dispatched for this stream.
+      */</doc>

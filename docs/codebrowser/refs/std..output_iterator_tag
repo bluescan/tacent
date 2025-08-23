@@ -1,0 +1,14 @@
+<use f='include/c++/11/bits/iterator_concepts.h' l='469'/>
+<def f='include/c++/11/bits/stl_iterator_base_types.h' l='96'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='649'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='752'/>
+<use f='include/c++/11/bits/stl_iterator.h' l='859'/>
+<use f='include/c++/11/bits/stl_algobase.h' l='1086' c='_ZSt10__fill_n_aT_T0_RKT1_St19output_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1011' c='_ZSt13__unique_copyT_S_T0_T1_St20forward_iterator_tagSt19output_iterator_tag'/>
+<use f='include/c++/11/bits/stl_algo.h' l='1041' c='_ZSt13__unique_copyT_S_T0_T1_St18input_iterator_tagSt19output_iterator_tag'/>
+<size>1</size>
+<doc f='include/c++/11/bits/stl_iterator_base_types.h' l='95'>///  Marking output iterators.</doc>
+<use f='include/c++/11/bits/streambuf_iterator.h' l='239'/>
+<size>1</size>
+<use f='include/c++/11/bits/stream_iterator.h' l='177'/>
+<size>1</size>

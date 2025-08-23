@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='1006' type='int getpt()'/>
+<doc f='include/stdlib.h' l='1005'>/* Open a master pseudo terminal and return its file descriptor.  */</doc>

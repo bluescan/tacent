@@ -1,0 +1,4 @@
+<def f='Modules/System/Inc/System/tPrint.h' l='35' type='const tSystem::tChannel'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='58' u='r'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='340' u='r' c='_Z8tdPrintfPKcz'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='34'>// Debug channels. The helper print functions for the debug channels do nothing in Profile and Ship configurations.</doc>

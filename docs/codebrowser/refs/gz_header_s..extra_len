@@ -1,0 +1,3 @@
+<dec f='include/zlib.h' l='120' type='uInt'/>
+<offset>256</offset>
+<doc f='include/zlib.h' l='120'>/* extra field length (valid if extra != Z_NULL) */</doc>

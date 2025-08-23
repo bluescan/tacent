@@ -1,0 +1,8 @@
+<dec f='include/stdio.h' l='178' type='int fclose(FILE * __stream)'/>
+<doc f='include/stdio.h' l='174'>/* Close STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>
+<use f='Modules/System/Inc/System/tFile.h' l='708' u='c' c='_ZN7tSystem10tCloseFileEP8_IO_FILE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='879' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='885' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

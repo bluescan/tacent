@@ -1,0 +1,1 @@
+<dec f='include/unistd.h' l='1059' type='int ftruncate64(int __fd, __off64_t __length)'/>

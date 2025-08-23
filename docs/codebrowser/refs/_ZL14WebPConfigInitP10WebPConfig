@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/WebP/include/encode.h' l='172' ll='175' type='int WebPConfigInit(WebPConfig * config)'/>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='168'>// Should always be called, to initialize a fresh WebPConfig structure before
+// modification. Returns false in case of version mismatch. WebPConfigInit()
+// must have succeeded before using the &apos;config&apos; object.
+// Note that the default values are lossless=0 and quality=75.</doc>

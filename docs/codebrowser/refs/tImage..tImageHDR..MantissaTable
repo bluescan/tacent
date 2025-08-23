@@ -1,0 +1,5 @@
+<use f='Modules/Image/Src/tImageHDR.cpp' l='69' u='w' c='_ZN6tImage9tImageHDR16SetupGammaTablesEf'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='75' u='r' c='_ZN6tImage9tImageHDR16SetupGammaTablesEf'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='87' u='r' c='_ZN6tImage9tImageHDR18CleanupGammaTablesEv'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='87' u='r' c='_ZN6tImage9tImageHDR18CleanupGammaTablesEv'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='88' u='w' c='_ZN6tImage9tImageHDR18CleanupGammaTablesEv'/>

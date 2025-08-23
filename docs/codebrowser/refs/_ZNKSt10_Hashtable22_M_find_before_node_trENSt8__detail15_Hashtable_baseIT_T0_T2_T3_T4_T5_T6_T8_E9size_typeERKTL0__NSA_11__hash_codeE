@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/hashtable.h' l='804' type='std::_Hashtable::__node_base_ptr std::_Hashtable::_M_find_before_node_tr(std::_Hashtable::size_type , const _Kt &amp; , std::_Hashtable::__hash_code ) const'/>
+<def f='include/c++/11/bits/hashtable.h' l='1851' ll='1879' type='std::_Hashtable::__node_base_ptr std::_Hashtable::_M_find_before_node_tr(std::_Hashtable::size_type __bkt, const _Kt &amp; __k, std::_Hashtable::__hash_code __code) const'/>

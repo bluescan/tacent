@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='139' type='void tImage::tPicture::Load(const tChunk &amp; )'/>
+<def f='Modules/Image/Src/tPicture.cpp' l='104' ll='131' type='void tImage::tPicture::Load(const tChunk &amp; chunk)'/>

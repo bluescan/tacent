@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix_opt.h' l='114'/>
+<doc f='include/x86_64-linux-gnu/bits/posix_opt.h' l='113'>/* Support for prioritization is also available.  */</doc>

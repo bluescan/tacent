@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='125' type='2'/>
+<use f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='138' u='r'/>
+<doc f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='125'>// Apple&apos;s desktop OS. It&apos;s no longer called OSX.</doc>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='198' c='_Z14tGetEndianness9tPlatform'/>

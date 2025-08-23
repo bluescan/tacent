@@ -1,0 +1,1 @@
+<def f='include/c++/11/functional' l='151' ll='156' macro='1' type='decltype(std::__invoke(this-&gt;_M_pm, std::forward&lt;_Tp&gt;(__obj))) std::_Mem_fn_base&lt;type-parameter-0-0, false&gt;::operator()(_Tp &amp;&amp; __obj) const'/>

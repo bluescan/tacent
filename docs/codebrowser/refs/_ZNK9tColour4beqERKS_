@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='434' type='bool tColour4b::operator==(const tColour4b &amp; c) const'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='153' u='c' c='_ZNK6tScene5tMesh19FindVertColourIndexERK9tColour4b'/>

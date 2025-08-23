@@ -1,0 +1,7 @@
+<dec f='include/pthread.h' l='1133' type='int pthread_cond_wait(pthread_cond_t *__restrict __cond, pthread_mutex_t *__restrict __mutex)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='865' u='c' c='__gthread_cond_wait'/>
+<doc f='include/pthread.h' l='1128'>/* Wait for condition variable COND to be signaled or broadcast.
+   MUTEX is assumed to be locked before.
+
+   This function is a cancellation point and therefore not marked with
+   __THROW.  */</doc>

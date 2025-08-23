@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18974' ll='18979'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18974'/>
+<size>24</size>
+<mbr r='VkRayTracingPipelineInterfaceCreateInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRayTracingPipelineInterfaceCreateInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkRayTracingPipelineInterfaceCreateInfoKHR::maxPipelineRayPayloadSize' o='128' t='uint32_t'/>
+<mbr r='VkRayTracingPipelineInterfaceCreateInfoKHR::maxPipelineRayHitAttributeSize' o='160' t='uint32_t'/>

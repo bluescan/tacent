@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='991' type='static const std::ctype_base::mask * std::ctype&lt;char&gt;::classic_table()'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='989'>/// Returns a pointer to the C locale mask table.</doc>

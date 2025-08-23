@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1354' type='ktx_uint32_t'/>
+<offset>128</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1348'>/*!&lt; Encoding speed vs. quality tradeoff. Range is [0,5]. Higher values
+             are slower, but give higher quality. There is no default. Callers
+             must explicitly set this value. Callers can use
+             KTX_ETC1S_DEFAULT_COMPRESSION_LEVEL as a default value.
+             Currently this is 2.
+        */</doc>

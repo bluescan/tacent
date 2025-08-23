@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tQuantizeSpatial.cpp' l='170' type='array2d&lt;T&gt; tImage::tQuantizeSpatial::extract_vector_layer_2d(array2d&lt;vector_fixed&lt;T, length&gt;&gt; s, int k)'/>
+<def f='Modules/Image/Src/tQuantizeSpatial.cpp' l='340' ll='351' type='tQuantizeSpatial::array2d&lt;T&gt; tImage::tQuantizeSpatial::extract_vector_layer_2d(array2d&lt;vector_fixed&lt;T, length&gt;&gt; s, int k)'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='533' u='c' c='_ZN6tImage16tQuantizeSpatial14refine_paletteERNS0_7array2dINS0_12vector_fixedIdLi3EEEEERNS0_7array3dIdEES5_RSt6vectorIS3_SaIS3_EE'/>

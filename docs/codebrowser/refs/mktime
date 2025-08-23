@@ -1,0 +1,2 @@
+<dec f='include/time.h' l='83' type='time_t mktime(struct tm * __tp)'/>
+<doc f='include/time.h' l='82'>/* Return the `time_t&apos; representation of TP and normalize TP.  */</doc>

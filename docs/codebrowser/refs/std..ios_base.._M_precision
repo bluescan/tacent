@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/ios_base.h' l='545' type='std::streamsize'/>
+<use f='include/c++/11/bits/ios_base.h' l='720' u='r' c='_ZNKSt8ios_base9precisionEv'/>
+<use f='include/c++/11/bits/ios_base.h' l='730' u='r' c='_ZNSt8ios_base9precisionEl'/>
+<use f='include/c++/11/bits/ios_base.h' l='731' u='w' c='_ZNSt8ios_base9precisionEl'/>
+<offset>64</offset>

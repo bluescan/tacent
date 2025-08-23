@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='3234' ll='3236' type='chrono::duration&lt;long double, ratio&lt;60, 1&gt;&gt; std::operator&quot;&quot;min(long double __mins)'/>
+<doc f='include/c++/11/chrono' l='3233'>/// Literal suffix for durations representing non-integer minutes</doc>

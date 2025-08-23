@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9360'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9359'>// VK_KHR_image_format_list is a preprocessor guard. Do not pass it to API calls.</doc>

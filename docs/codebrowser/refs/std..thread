@@ -1,0 +1,46 @@
+<def f='include/c++/11/bits/std_thread.h' l='62' ll='274'/>
+<use f='include/c++/11/bits/std_thread.h' l='92'/>
+<use f='include/c++/11/bits/std_thread.h' l='118'/>
+<use f='include/c++/11/bits/std_thread.h' l='155' c='_ZNSt6threadC1ERKS_'/>
+<use f='include/c++/11/bits/std_thread.h' l='157' c='_ZNSt6threadC1EOS_'/>
+<use f='include/c++/11/bits/std_thread.h' l='160' c='_ZNSt6threadaSERKS_'/>
+<use f='include/c++/11/bits/std_thread.h' l='160' c='_ZNSt6threadaSERKS_'/>
+<use f='include/c++/11/bits/std_thread.h' l='162' c='_ZNSt6threadaSEOS_'/>
+<use f='include/c++/11/bits/std_thread.h' l='162' c='_ZNSt6threadaSEOS_'/>
+<use f='include/c++/11/bits/std_thread.h' l='171' c='_ZNSt6thread4swapERS_'/>
+<use f='include/c++/11/bits/std_thread.h' l='283' c='_ZSt4swapRSt6threadS0_'/>
+<use f='include/c++/11/bits/std_thread.h' l='283' c='_ZSt4swapRSt6threadS0_'/>
+<use f='include/c++/11/thread' l='211' c='_ZNSt7jthread9_S_createERSt11stop_sourceOT_DpOT0_'/>
+<use f='include/c++/11/thread' l='216' c='_ZNSt7jthread9_S_createERSt11stop_sourceOT_DpOT0_'/>
+<use f='include/c++/11/thread' l='224' c='_ZNSt7jthread9_S_createERSt11stop_sourceOT_DpOT0_'/>
+<use f='include/c++/11/thread' l='230'/>
+<size>8</size>
+<doc f='include/c++/11/bits/std_thread.h' l='57'>/** @addtogroup threads
+   *  @{
+   */
+
+  /// thread</doc>
+<mbr r='std::thread::_M_id' o='0' t='std::thread::id'/>
+<fun r='_ZNSt6threadC1Ev'/>
+<fun r='_ZNSt6threadC1EOT_DpOT0_'/>
+<fun r='_ZNSt6threadD1Ev'/>
+<fun r='_ZNSt6threadC1ERKS_'/>
+<fun r='_ZNSt6threadC1EOS_'/>
+<fun r='_ZNSt6threadaSERKS_'/>
+<fun r='_ZNSt6threadaSEOS_'/>
+<fun r='_ZNSt6thread4swapERS_'/>
+<fun r='_ZNKSt6thread8joinableEv'/>
+<fun r='_ZNSt6thread4joinEv'/>
+<fun r='_ZNSt6thread6detachEv'/>
+<fun r='_ZNKSt6thread6get_idEv'/>
+<fun r='_ZNSt6thread13native_handleEv'/>
+<fun r='_ZNSt6thread20hardware_concurrencyEv'/>
+<fun r='_ZNSt6thread15_M_start_threadESt10unique_ptrINS_6_StateESt14default_deleteIS1_EEPFvvE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='107'/>
+<size>8</size>
+<use f='Modules/Input/Inc/Input/tControllerSystem.h' l='81'/>
+<size>8</size>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='38' c='_ZN6tInput12tContGamepad12StartPollingEiNS_10tGamepadIDE'/>
+<size>8</size>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='71' c='_ZN6tInput17tControllerSystemC1Eii'/>
+<size>8</size>

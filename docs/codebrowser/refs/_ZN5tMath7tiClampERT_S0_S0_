@@ -1,0 +1,22 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='59' type='T &amp; tMath::tiClamp(T &amp; val, T min, T max)'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='383' u='c' c='_ZN5tMath6tRoundEff'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='563' u='c' c='_ZN5tMath8tUnitSinEfj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='573' u='c' c='_ZN5tMath12tUnitSinHalfEfj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='583' u='c' c='_ZN5tMath8tUnitPowEffj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='593' u='c' c='_ZN5tMath15tUnitPowPlateauEffj'/>
+<use f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='609' u='c' c='_ZN5tMath8tUnitArcEfj'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='624' u='c' c='_ZN6tImage8tPicture16AlphaBlendColourERK9tColour4bji'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='663' u='c' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='664' u='c' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tResample.cpp' l='329' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='330' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='331' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='332' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='133' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='137' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='52' u='c' c='_ZN6tInput19tUnitContinuousDisp18SetDisplacementRawEf'/>
+<use f='Modules/Math/Src/tColour.cpp' l='260' u='c' c='_ZN5tMath9tHSVToRGBERiS0_S0_iiiNS_10tAngleModeE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='261' u='c' c='_ZN5tMath9tHSVToRGBERiS0_S0_iiiNS_10tAngleModeE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='262' u='c' c='_ZN5tMath9tHSVToRGBERiS0_S0_iiiNS_10tAngleModeE'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='416' u='c' c='_ZNK5tMath11tBezierPath8GetPointERNS_8tVector3Ef'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='446' u='c' c='_ZNK5tMath11tBezierPath10GetTangentERNS_8tVector3Ef'/>

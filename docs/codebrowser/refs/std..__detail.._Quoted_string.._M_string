@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/quoted_string.h' l='56' u='w' c='_ZNSt8__detail14_Quoted_stringC1ET_T0_S2_'/>
+<dec f='include/c++/11/bits/quoted_string.h' l='62' type='_String'/>
+<use f='include/c++/11/bits/quoted_string.h' l='73' u='w' c='_ZNSt8__detail14_Quoted_stringISt17basic_string_viewIT_T0_ES2_EC1ES4_S2_S2_'/>
+<dec f='include/c++/11/bits/quoted_string.h' l='79' type='basic_string_view&lt;_CharT, _Traits&gt;'/>

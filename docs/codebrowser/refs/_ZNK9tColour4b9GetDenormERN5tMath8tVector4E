@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='393' type='void tColour4b::GetDenorm(tMath::tVector4 &amp; dest) const'/>
+<use f='Modules/Image/Src/tResample.cpp' l='326' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='327' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>

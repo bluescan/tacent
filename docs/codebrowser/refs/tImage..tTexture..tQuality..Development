@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tTexture.h' l='66' type='1'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='170' c='_ZN6tImage8tTexture15DetermineFilterENS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='182' c='_ZN6tImage8tTexture32DetermineBlockEncodeQualityLevelENS0_8tQualityE'/>
+<doc f='Modules/Image/Inc/Image/tTexture.h' l='66'>// Bicubic resample filter. High quality BCn compression.</doc>

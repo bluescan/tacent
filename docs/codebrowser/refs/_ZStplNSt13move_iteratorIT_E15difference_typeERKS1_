@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='1699' ll='1702' type='move_iterator&lt;_Iterator&gt; std::operator+(typename move_iterator&lt;_Iterator&gt;::difference_type __n, const move_iterator&lt;_Iterator&gt; &amp; __x)'/>

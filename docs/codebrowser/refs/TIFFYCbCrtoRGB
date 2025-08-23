@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffio.h' l='537' type='void TIFFYCbCrtoRGB(TIFFYCbCrToRGB * , uint32 , int32 , int32 , uint32 * , uint32 * , uint32 * )'/>

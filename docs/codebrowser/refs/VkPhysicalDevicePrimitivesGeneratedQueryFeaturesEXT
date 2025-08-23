@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16511' ll='16517'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='16511'/>
+<size>32</size>
+<mbr r='VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT::primitivesGeneratedQuery' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT::primitivesGeneratedQueryWithRasterizerDiscard' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDevicePrimitivesGeneratedQueryFeaturesEXT::primitivesGeneratedQueryWithNonZeroStreams' o='192' t='VkBool32'/>

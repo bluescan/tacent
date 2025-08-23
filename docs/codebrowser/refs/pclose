@@ -1,0 +1,5 @@
+<dec f='include/stdio.h' l='823' type='int pclose(FILE * __stream)'/>
+<doc f='include/stdio.h' l='819'>/* Close a stream opened by popen and return the status of its child.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>

@@ -1,0 +1,2 @@
+<use f='Modules/System/Src/tTime.cpp' l='86' u='c' c='_ZN7tSystem13tGetTimeLocalEv'/>
+<use f='Modules/System/Src/tTime.cpp' l='92' u='c' c='_ZN7tSystem19tConvertTimeToLocalEl'/>

@@ -1,0 +1,10 @@
+<dec f='include/c++/11/bits/ios_base.h' l='615' type='std::locale'/>
+<use f='include/c++/11/bits/ios_base.h' l='794' u='r' c='_ZNKSt8ios_base6getlocEv'/>
+<use f='include/c++/11/bits/ios_base.h' l='805' u='a' c='_ZNKSt8ios_base9_M_getlocEv'/>
+<use f='include/c++/11/bits/basic_ios.h' l='482' u='r' c='_ZNSt9basic_ios4moveERSt9basic_iosIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.h' l='497' u='r' c='_ZNSt9basic_ios4swapERSt9basic_iosIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='100' u='w' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='101' u='r' c='_ZNSt9basic_ios7copyfmtERKSt9basic_iosIT_T0_E'/>
+<use f='include/c++/11/bits/basic_ios.tcc' l='132' u='r' c='_ZNSt9basic_ios4initEPSt15basic_streambufIT_T0_E'/>
+<offset>1664</offset>
+<doc f='include/c++/11/bits/ios_base.h' l='614'>// Members for locale and locale caching.</doc>

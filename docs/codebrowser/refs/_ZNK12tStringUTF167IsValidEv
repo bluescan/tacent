@@ -1,0 +1,4 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='484' type='bool tStringUTF16::IsValid() const'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='485' u='c' c='_ZNK12tStringUTF167IsEmptyEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='972' u='c' c='_ZN12tStringUTF163SetERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1101' u='c' c='_ZN12tStringUTF323SetERK12tStringUTF16'/>

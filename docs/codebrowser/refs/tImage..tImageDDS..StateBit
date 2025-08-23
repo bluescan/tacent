@@ -1,0 +1,7 @@
+<def f='Modules/Image/Inc/Image/tImageDDS.h' l='105' ll='143'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='170' c='_ZNK6tImage9tImageDDS10IsStateSetENS0_8StateBitE'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='171' c='_ZN6tImage9tImageDDS12GetStateDescENS0_8StateBitE'/>
+<use f='Modules/Image/Inc/Image/tImageDDS.h' l='226' c='_ZN6tImage9tImageDDS11SetStateBitENS0_8StateBitE'/>
+<doc f='Modules/Image/Inc/Image/tImageDDS.h' l='103'>// The state of the tImage is a combination of one or more of the following enumerants.
+	// The values of the enum are used as bit indices into a bitfield.</doc>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1557' c='_ZN6tImage9tImageDDS12GetStateDescENS0_8StateBitE'/>

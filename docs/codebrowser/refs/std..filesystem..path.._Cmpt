@@ -1,0 +1,8 @@
+<use f='include/c++/11/bits/fs_path.h' l='638'/>
+<inh f='include/c++/11/bits/fs_path.h' l='248' c='std::filesystem::path'/>
+<def f='include/c++/11/bits/fs_path.h' l='805' ll='812'/>
+<size>48</size>
+<doc f='include/c++/11/bits/fs_path.h' l='803'>/// @cond undocumented</doc>
+<fun r='_ZNSt10filesystem7__cxx114path5_CmptC1ESt17basic_string_viewIcSt11char_traitsIcEENS1_5_TypeEm'/>
+<fun r='_ZNSt10filesystem7__cxx114path5_CmptC1Ev'/>
+<mbr r='std::filesystem::path::_Cmpt::_M_pos' o='320' t='std::size_t'/>

@@ -1,0 +1,23 @@
+<dec f='include/errno.h' l='37' type='int * __errno_location()'/>
+<use f='include/c++/11/ext/string_conversions.h' l='63' macro='1' u='c' c='__gnu_cxx::__stoa(_TRet(*)(const_CharT*,_CharT**,_Base...),constchar*,const_CharT*,std::size_t*,_Base...)::_Save_errno::_Save_errno'/>
+<use f='include/c++/11/ext/string_conversions.h' l='63' macro='1' u='c' c='__gnu_cxx::__stoa(_TRet(*)(const_CharT*,_CharT**,_Base...),constchar*,const_CharT*,std::size_t*,_Base...)::_Save_errno::_Save_errno'/>
+<use f='include/c++/11/ext/string_conversions.h' l='64' macro='1' u='c' c='__gnu_cxx::__stoa(_TRet(*)(const_CharT*,_CharT**,_Base...),constchar*,const_CharT*,std::size_t*,_Base...)::_Save_errno::~_Save_errno'/>
+<use f='include/c++/11/ext/string_conversions.h' l='64' macro='1' u='c' c='__gnu_cxx::__stoa(_TRet(*)(const_CharT*,_CharT**,_Base...),constchar*,const_CharT*,std::size_t*,_Base...)::_Save_errno::~_Save_errno'/>
+<use f='include/c++/11/ext/string_conversions.h' l='84' macro='1' u='c' c='__gnu_cxx::__stoa'/>
+<doc f='include/errno.h' l='36'>/* The error code set by various library functions.  */</doc>
+<use f='include/c++/11/bits/atomic_wait.h' l='111' macro='1' u='c' c='_ZNSt8__detail15__platform_waitEPKT_i'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='113' macro='1' u='c' c='_ZNSt8__detail15__platform_waitEPKT_i'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='114' macro='1' u='c' c='_ZNSt8__detail15__platform_waitEPKT_i'/>
+<use f='include/c++/11/bits/this_thread_sleep.h' l='82' macro='1' u='c' c='_ZNSt11this_thread9sleep_forERKNSt6chrono8durationIT_T0_EE'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='104' macro='1' u='c' c='_ZNSt8__detail26__platform_wait_until_implEPKiiRKNSt6chrono10time_pointINS2_3_V212steady_clockET_EE'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='106' macro='1' u='c' c='_ZNSt8__detail26__platform_wait_until_implEPKiiRKNSt6chrono10time_pointINS2_3_V212steady_clockET_EE'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='106' macro='1' u='c' c='_ZNSt8__detail26__platform_wait_until_implEPKiiRKNSt6chrono10time_pointINS2_3_V212steady_clockET_EE'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='107' macro='1' u='c' c='_ZNSt8__detail26__platform_wait_until_implEPKiiRKNSt6chrono10time_pointINS2_3_V212steady_clockET_EE'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='82' macro='1' u='c' c='_ZNSt20__platform_semaphore10_M_acquireEv'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='97' macro='1' u='c' c='_ZNSt20__platform_semaphore14_M_try_acquireEv'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='99' macro='1' u='c' c='_ZNSt20__platform_semaphore14_M_try_acquireEv'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='138' macro='1' u='c' c='_ZNSt20__platform_semaphore25_M_try_acquire_until_implERKNSt6chrono10time_pointINS0_3_V212system_clockENS0_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='140' macro='1' u='c' c='_ZNSt20__platform_semaphore25_M_try_acquire_until_implERKNSt6chrono10time_pointINS0_3_V212system_clockENS0_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='140' macro='1' u='c' c='_ZNSt20__platform_semaphore25_M_try_acquire_until_implERKNSt6chrono10time_pointINS0_3_V212system_clockENS0_8durationIlSt5ratioILl1ELl1000000000EEEEEE'/>
+<use f='include/c++/11/bits/fstream.tcc' l='475' macro='1' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='721' macro='1' u='c' c='_ZNSt13basic_filebuf6xsgetnEPT_l'/>

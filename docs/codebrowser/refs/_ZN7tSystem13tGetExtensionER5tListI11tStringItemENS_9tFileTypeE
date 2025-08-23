@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='424' type='void tSystem::tGetExtension(tList&lt;tStringItem&gt; &amp; extensions, tSystem::tFileType )'/>
+<use f='Modules/System/Inc/System/tFile.h' l='884' u='c' c='_ZN7tSystem11tExtensions3AddENS_9tFileTypeEb'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='423'>// Gets the single most common or default extension for a given filetype. Existing items in extensions are appended to.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='1954' ll='1962' type='void tSystem::tGetExtension(tList&lt;tStringItem&gt; &amp; extensions, tSystem::tFileType fileType)'/>

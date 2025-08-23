@@ -1,0 +1,11 @@
+<def f='include/x86_64-linux-gnu/bits/types/struct_sched_param.h' l='23' ll='26'/>
+<use f='include/sched.h' l='54' c='sched_setparam'/>
+<use f='include/sched.h' l='58' c='sched_getparam'/>
+<use f='include/sched.h' l='62' c='sched_setscheduler'/>
+<use f='include/pthread.h' l='315' c='pthread_attr_getschedparam'/>
+<use f='include/pthread.h' l='320' c='pthread_attr_setschedparam'/>
+<use f='include/pthread.h' l='442' c='pthread_setschedparam'/>
+<use f='include/pthread.h' l='448' c='pthread_getschedparam'/>
+<size>4</size>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_sched_param.h' l='22'>/* Data structure to describe a process&apos; schedulability.  */</doc>
+<mbr r='sched_param::sched_priority' o='0' t='int'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_base.h' l='608' ll='610' macro='1' type='void std::__atomic_base::notify_all()'/>
+<use f='include/c++/11/atomic' l='180' u='c' c='_ZNSt6atomicIbE10notify_allEv'/>

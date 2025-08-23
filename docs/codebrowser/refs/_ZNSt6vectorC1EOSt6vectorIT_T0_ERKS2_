@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_vector.h' l='607' ll='612' type='void std::vector::vector&lt;_Tp, _Alloc&gt;(vector&lt;_Tp, _Alloc&gt; &amp;&amp; __rv, const std::vector::allocator_type &amp; __m)'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='606'>/// Move constructor with alternative allocator</doc>

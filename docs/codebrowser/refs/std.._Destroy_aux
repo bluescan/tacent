@@ -1,0 +1,8 @@
+<def f='include/c++/11/bits/stl_construct.h' l='156' ll='165'/>
+<def f='include/c++/11/bits/stl_construct.h' l='167' ll='173'/>
+<use f='include/c++/11/bits/stl_construct.h' l='168'/>
+<use f='include/c++/11/bits/stl_construct.h' l='193' c='_ZSt8_DestroyT_S_'/>
+<use f='include/c++/11/bits/stl_construct.h' l='195' c='_ZSt8_DestroyT_S_'/>
+<size>1</size>
+<fun r='_ZNSt12_Destroy_aux9__destroyETL0__S0_'/>
+<fun r='_ZNSt12_Destroy_auxILb1EE9__destroyET_S1_'/>

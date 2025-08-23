@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='112' type='int'/>
+<offset>256</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='112'>// range: [0 = off .. 100 = strongest]</doc>

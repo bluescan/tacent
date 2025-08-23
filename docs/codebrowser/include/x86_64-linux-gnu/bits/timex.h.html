@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>timex.h source code [include/x86_64-linux-gnu/bits/timex.h] - Woboq Code Browser</title>
+<meta name="woboq:interestingDefinitions" content="timex "/>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/timex.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>bits</a>/<a href='timex.h.html'>timex.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Copyright (C) 1995-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i></i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i></i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i></i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#<span data-ppcond="18">ifndef</span>	<span class="macro" data-ref="_M/_BITS_TIMEX_H">_BITS_TIMEX_H</span></u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#define	<dfn class="macro" id="_M/_BITS_TIMEX_H" data-ref="_M/_BITS_TIMEX_H">_BITS_TIMEX_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#include &lt;bits/types/struct_timeval.h&gt;</u>&nbsp</td></tr>
+<tr><th id="23">23</th><td>&nbsp</td></tr>
+<tr><th id="24">24</th><td><i>/* These definitions from linux/timex.h as of 3.18.  */</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td>&nbsp</td></tr>
+<tr><th id="26">26</th><td><b>struct</b> <dfn class="type def" id="timex" title='timex' data-ref="timex">timex</dfn>&nbsp</td></tr>
+<tr><th id="27">27</th><td>{&nbsp</td></tr>
+<tr><th id="28">28</th><td><u># <span data-ppcond="28">if</span> defined <span class="macro" data-ref="_M/__USE_TIME_BITS64">__USE_TIME_BITS64</span> || (<a class="macro" href="timesize.h.html#26" title="64" data-ref="_M/__TIMESIZE">__TIMESIZE</a> == 64 &amp;&amp; <a class="macro" href="wordsize.h.html#4" title="64" data-ref="_M/__WORDSIZE">__WORDSIZE</a> == 32)</u>&nbsp</td></tr>
+<tr><th id="29">29</th><td>  <em>unsigned</em> <em>int</em> modes;          <i>/* mode selector */</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td>  <em>int</em> :<var>32</var>;                     <i>/* pad */</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td>  <em>long</em> <em>long</em> offset;            <i>/* time offset (usec) */</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td>  <em>long</em> <em>long</em> freq;              <i>/* frequency offset (scaled ppm) */</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td>  <em>long</em> <em>long</em> maxerror;          <i>/* maximum error (usec) */</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td>  <em>long</em> <em>long</em> esterror;          <i>/* estimated error (usec) */</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td>  <em>int</em> status;                  <i>/* clock command/status */</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td>  <em>int</em> :<var>32</var>;                     <i>/* pad */</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td>  <em>long</em> <em>long</em> constant;          <i>/* pll time constant */</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td>  <em>long</em> <em>long</em> precision;         <i>/* clock precision (usec) (read only) */</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td>  <em>long</em> <em>long</em> tolerance;         <i>/* clock frequency tolerance (ppm) (ro) */</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td>  <b>struct</b> timeval time;     <i>/* (read only, except for ADJ_SETOFFSET) */</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td>  <em>long</em> <em>long</em> tick;              <i>/* (modified) usecs between clock ticks */</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td>  <em>long</em> <em>long</em> ppsfreq;           <i>/* pps frequency (scaled ppm) (ro) */</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td>  <em>long</em> <em>long</em> jitter;            <i>/* pps jitter (us) (ro) */</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td>  <em>int</em> shift;                   <i>/* interval duration (s) (shift) (ro) */</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td>  <em>int</em> :<var>32</var>;                     <i>/* pad */</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td>  <em>long</em> <em>long</em> stabil;            <i>/* pps stability (scaled ppm) (ro) */</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td>  <em>long</em> <em>long</em> jitcnt;            <i>/* jitter limit exceeded (ro) */</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td>  <em>long</em> <em>long</em> calcnt;            <i>/* calibration intervals (ro) */</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td>  <em>long</em> <em>long</em> errcnt;            <i>/* calibration errors (ro) */</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td>  <em>long</em> <em>long</em> stbcnt;            <i>/* stability limit exceeded (ro) */</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td>&nbsp</td></tr>
+<tr><th id="52">52</th><td>  <em>int</em> tai;                     <i>/* TAI offset (ro) */</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td>&nbsp</td></tr>
+<tr><th id="54">54</th><td>  <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>;&nbsp</td></tr>
+<tr><th id="55">55</th><td>  <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>;&nbsp</td></tr>
+<tr><th id="56">56</th><td>  <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>;&nbsp</td></tr>
+<tr><th id="57">57</th><td><u># <span data-ppcond="28">else</span></u>&nbsp</td></tr>
+<tr><th id="58">58</th><td>  <em>unsigned</em> <em>int</em> <dfn class="decl field" id="timex::modes" title='timex::modes' data-ref="timex::modes">modes</dfn>;		<i>/* mode selector */</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::offset" title='timex::offset' data-ref="timex::offset">offset</dfn>;	<i>/* time offset (usec) */</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::freq" title='timex::freq' data-ref="timex::freq">freq</dfn>;	<i>/* frequency offset (scaled ppm) */</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::maxerror" title='timex::maxerror' data-ref="timex::maxerror">maxerror</dfn>;	<i>/* maximum error (usec) */</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::esterror" title='timex::esterror' data-ref="timex::esterror">esterror</dfn>;	<i>/* estimated error (usec) */</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td>  <em>int</em> <dfn class="decl field" id="timex::status" title='timex::status' data-ref="timex::status">status</dfn>;			<i>/* clock command/status */</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::constant" title='timex::constant' data-ref="timex::constant">constant</dfn>;	<i>/* pll time constant */</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::precision" title='timex::precision' data-ref="timex::precision">precision</dfn>;	<i>/* clock precision (usec) (ro) */</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::tolerance" title='timex::tolerance' data-ref="timex::tolerance">tolerance</dfn>;	<i>/* clock frequency tolerance (ppm) (ro) */</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td>  <b>struct</b> <a class="type" href="types/struct_timeval.h.html#timeval" title='timeval' data-ref="timeval">timeval</a> <dfn class="decl field" id="timex::time" title='timex::time' data-ref="timex::time">time</dfn>;		<i>/* (read only, except for ADJ_SETOFFSET) */</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::tick" title='timex::tick' data-ref="timex::tick">tick</dfn>;	<i>/* (modified) usecs between clock ticks */</i>&nbsp</td></tr>
+<tr><th id="69">69</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::ppsfreq" title='timex::ppsfreq' data-ref="timex::ppsfreq">ppsfreq</dfn>;	<i>/* pps frequency (scaled ppm) (ro) */</i>&nbsp</td></tr>
+<tr><th id="70">70</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::jitter" title='timex::jitter' data-ref="timex::jitter">jitter</dfn>;	<i>/* pps jitter (us) (ro) */</i>&nbsp</td></tr>
+<tr><th id="71">71</th><td>  <em>int</em> <dfn class="decl field" id="timex::shift" title='timex::shift' data-ref="timex::shift">shift</dfn>;			<i>/* interval duration (s) (shift) (ro) */</i>&nbsp</td></tr>
+<tr><th id="72">72</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::stabil" title='timex::stabil' data-ref="timex::stabil">stabil</dfn>;	<i>/* pps stability (scaled ppm) (ro) */</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::jitcnt" title='timex::jitcnt' data-ref="timex::jitcnt">jitcnt</dfn>;	<i>/* jitter limit exceeded (ro) */</i>&nbsp</td></tr>
+<tr><th id="74">74</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::calcnt" title='timex::calcnt' data-ref="timex::calcnt">calcnt</dfn>;	<i>/* calibration intervals (ro) */</i>&nbsp</td></tr>
+<tr><th id="75">75</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::errcnt" title='timex::errcnt' data-ref="timex::errcnt">errcnt</dfn>;	<i>/* calibration errors (ro) */</i>&nbsp</td></tr>
+<tr><th id="76">76</th><td>  <a class="typedef" href="types.h.html#__syscall_slong_t" title='__syscall_slong_t' data-type='long' data-ref="__syscall_slong_t">__syscall_slong_t</a> <dfn class="decl field" id="timex::stbcnt" title='timex::stbcnt' data-ref="timex::stbcnt">stbcnt</dfn>;	<i>/* stability limit exceeded (ro) */</i>&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td>  <em>int</em> <dfn class="decl field" id="timex::tai" title='timex::tai' data-ref="timex::tai">tai</dfn>;			<i>/* TAI offset (ro) */</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td>&nbsp</td></tr>
+<tr><th id="80">80</th><td>  <i>/* ??? */</i>&nbsp</td></tr>
+<tr><th id="81">81</th><td>  <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>;&nbsp</td></tr>
+<tr><th id="82">82</th><td>  <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>;&nbsp</td></tr>
+<tr><th id="83">83</th><td>  <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>; <em>int</em>  :<var>32</var>;&nbsp</td></tr>
+<tr><th id="84">84</th><td><u># <span data-ppcond="28">endif</span></u>&nbsp</td></tr>
+<tr><th id="85">85</th><td>};&nbsp</td></tr>
+<tr><th id="86">86</th><td>&nbsp</td></tr>
+<tr><th id="87">87</th><td><i>/* Mode codes (timex.mode) */</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#define <dfn class="macro" id="_M/ADJ_OFFSET" data-ref="_M/ADJ_OFFSET">ADJ_OFFSET</dfn>		0x0001	/* time offset */</u>&nbsp</td></tr>
+<tr><th id="89">89</th><td><u>#define <dfn class="macro" id="_M/ADJ_FREQUENCY" data-ref="_M/ADJ_FREQUENCY">ADJ_FREQUENCY</dfn>		0x0002	/* frequency offset */</u>&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#define <dfn class="macro" id="_M/ADJ_MAXERROR" data-ref="_M/ADJ_MAXERROR">ADJ_MAXERROR</dfn>		0x0004	/* maximum time error */</u>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#define <dfn class="macro" id="_M/ADJ_ESTERROR" data-ref="_M/ADJ_ESTERROR">ADJ_ESTERROR</dfn>		0x0008	/* estimated time error */</u>&nbsp</td></tr>
+<tr><th id="92">92</th><td><u>#define <dfn class="macro" id="_M/ADJ_STATUS" data-ref="_M/ADJ_STATUS">ADJ_STATUS</dfn>		0x0010	/* clock status */</u>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>#define <dfn class="macro" id="_M/ADJ_TIMECONST" data-ref="_M/ADJ_TIMECONST">ADJ_TIMECONST</dfn>		0x0020	/* pll time constant */</u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u>#define <dfn class="macro" id="_M/ADJ_TAI" data-ref="_M/ADJ_TAI">ADJ_TAI</dfn>			0x0080	/* set TAI offset */</u>&nbsp</td></tr>
+<tr><th id="95">95</th><td><u>#define <dfn class="macro" id="_M/ADJ_SETOFFSET" data-ref="_M/ADJ_SETOFFSET">ADJ_SETOFFSET</dfn>		0x0100	/* add 'time' to current time */</u>&nbsp</td></tr>
+<tr><th id="96">96</th><td><u>#define <dfn class="macro" id="_M/ADJ_MICRO" data-ref="_M/ADJ_MICRO">ADJ_MICRO</dfn>		0x1000	/* select microsecond resolution */</u>&nbsp</td></tr>
+<tr><th id="97">97</th><td><u>#define <dfn class="macro" id="_M/ADJ_NANO" data-ref="_M/ADJ_NANO">ADJ_NANO</dfn>		0x2000	/* select nanosecond resolution */</u>&nbsp</td></tr>
+<tr><th id="98">98</th><td><u>#define <dfn class="macro" id="_M/ADJ_TICK" data-ref="_M/ADJ_TICK">ADJ_TICK</dfn>		0x4000	/* tick value */</u>&nbsp</td></tr>
+<tr><th id="99">99</th><td><u>#define <dfn class="macro" id="_M/ADJ_OFFSET_SINGLESHOT" data-ref="_M/ADJ_OFFSET_SINGLESHOT">ADJ_OFFSET_SINGLESHOT</dfn>	0x8001	/* old-fashioned adjtime */</u>&nbsp</td></tr>
+<tr><th id="100">100</th><td><u>#define <dfn class="macro" id="_M/ADJ_OFFSET_SS_READ" data-ref="_M/ADJ_OFFSET_SS_READ">ADJ_OFFSET_SS_READ</dfn>	0xa001	/* read-only adjtime */</u>&nbsp</td></tr>
+<tr><th id="101">101</th><td>&nbsp</td></tr>
+<tr><th id="102">102</th><td><i>/* xntp 3.4 compatibility names */</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td><u>#define <dfn class="macro" id="_M/MOD_OFFSET" data-ref="_M/MOD_OFFSET">MOD_OFFSET</dfn>	ADJ_OFFSET</u>&nbsp</td></tr>
+<tr><th id="104">104</th><td><u>#define <dfn class="macro" id="_M/MOD_FREQUENCY" data-ref="_M/MOD_FREQUENCY">MOD_FREQUENCY</dfn>	ADJ_FREQUENCY</u>&nbsp</td></tr>
+<tr><th id="105">105</th><td><u>#define <dfn class="macro" id="_M/MOD_MAXERROR" data-ref="_M/MOD_MAXERROR">MOD_MAXERROR</dfn>	ADJ_MAXERROR</u>&nbsp</td></tr>
+<tr><th id="106">106</th><td><u>#define <dfn class="macro" id="_M/MOD_ESTERROR" data-ref="_M/MOD_ESTERROR">MOD_ESTERROR</dfn>	ADJ_ESTERROR</u>&nbsp</td></tr>
+<tr><th id="107">107</th><td><u>#define <dfn class="macro" id="_M/MOD_STATUS" data-ref="_M/MOD_STATUS">MOD_STATUS</dfn>	ADJ_STATUS</u>&nbsp</td></tr>
+<tr><th id="108">108</th><td><u>#define <dfn class="macro" id="_M/MOD_TIMECONST" data-ref="_M/MOD_TIMECONST">MOD_TIMECONST</dfn>	ADJ_TIMECONST</u>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>#define <dfn class="macro" id="_M/MOD_CLKB" data-ref="_M/MOD_CLKB">MOD_CLKB</dfn>	ADJ_TICK</u>&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>#define <dfn class="macro" id="_M/MOD_CLKA" data-ref="_M/MOD_CLKA">MOD_CLKA</dfn>	ADJ_OFFSET_SINGLESHOT /* 0x8000 in original */</u>&nbsp</td></tr>
+<tr><th id="111">111</th><td><u>#define <dfn class="macro" id="_M/MOD_TAI" data-ref="_M/MOD_TAI">MOD_TAI</dfn>		ADJ_TAI</u>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>#define <dfn class="macro" id="_M/MOD_MICRO" data-ref="_M/MOD_MICRO">MOD_MICRO</dfn>	ADJ_MICRO</u>&nbsp</td></tr>
+<tr><th id="113">113</th><td><u>#define <dfn class="macro" id="_M/MOD_NANO" data-ref="_M/MOD_NANO">MOD_NANO</dfn>	ADJ_NANO</u>&nbsp</td></tr>
+<tr><th id="114">114</th><td>&nbsp</td></tr>
+<tr><th id="115">115</th><td>&nbsp</td></tr>
+<tr><th id="116">116</th><td><i>/* Status codes (timex.status) */</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td><u>#define <dfn class="macro" id="_M/STA_PLL" data-ref="_M/STA_PLL">STA_PLL</dfn>		0x0001	/* enable PLL updates (rw) */</u>&nbsp</td></tr>
+<tr><th id="118">118</th><td><u>#define <dfn class="macro" id="_M/STA_PPSFREQ" data-ref="_M/STA_PPSFREQ">STA_PPSFREQ</dfn>	0x0002	/* enable PPS freq discipline (rw) */</u>&nbsp</td></tr>
+<tr><th id="119">119</th><td><u>#define <dfn class="macro" id="_M/STA_PPSTIME" data-ref="_M/STA_PPSTIME">STA_PPSTIME</dfn>	0x0004	/* enable PPS time discipline (rw) */</u>&nbsp</td></tr>
+<tr><th id="120">120</th><td><u>#define <dfn class="macro" id="_M/STA_FLL" data-ref="_M/STA_FLL">STA_FLL</dfn>		0x0008	/* select frequency-lock mode (rw) */</u>&nbsp</td></tr>
+<tr><th id="121">121</th><td>&nbsp</td></tr>
+<tr><th id="122">122</th><td><u>#define <dfn class="macro" id="_M/STA_INS" data-ref="_M/STA_INS">STA_INS</dfn>		0x0010	/* insert leap (rw) */</u>&nbsp</td></tr>
+<tr><th id="123">123</th><td><u>#define <dfn class="macro" id="_M/STA_DEL" data-ref="_M/STA_DEL">STA_DEL</dfn>		0x0020	/* delete leap (rw) */</u>&nbsp</td></tr>
+<tr><th id="124">124</th><td><u>#define <dfn class="macro" id="_M/STA_UNSYNC" data-ref="_M/STA_UNSYNC">STA_UNSYNC</dfn>	0x0040	/* clock unsynchronized (rw) */</u>&nbsp</td></tr>
+<tr><th id="125">125</th><td><u>#define <dfn class="macro" id="_M/STA_FREQHOLD" data-ref="_M/STA_FREQHOLD">STA_FREQHOLD</dfn>	0x0080	/* hold frequency (rw) */</u>&nbsp</td></tr>
+<tr><th id="126">126</th><td>&nbsp</td></tr>
+<tr><th id="127">127</th><td><u>#define <dfn class="macro" id="_M/STA_PPSSIGNAL" data-ref="_M/STA_PPSSIGNAL">STA_PPSSIGNAL</dfn>	0x0100	/* PPS signal present (ro) */</u>&nbsp</td></tr>
+<tr><th id="128">128</th><td><u>#define <dfn class="macro" id="_M/STA_PPSJITTER" data-ref="_M/STA_PPSJITTER">STA_PPSJITTER</dfn>	0x0200	/* PPS signal jitter exceeded (ro) */</u>&nbsp</td></tr>
+<tr><th id="129">129</th><td><u>#define <dfn class="macro" id="_M/STA_PPSWANDER" data-ref="_M/STA_PPSWANDER">STA_PPSWANDER</dfn>	0x0400	/* PPS signal wander exceeded (ro) */</u>&nbsp</td></tr>
+<tr><th id="130">130</th><td><u>#define <dfn class="macro" id="_M/STA_PPSERROR" data-ref="_M/STA_PPSERROR">STA_PPSERROR</dfn>	0x0800	/* PPS signal calibration error (ro) */</u>&nbsp</td></tr>
+<tr><th id="131">131</th><td>&nbsp</td></tr>
+<tr><th id="132">132</th><td><u>#define <dfn class="macro" id="_M/STA_CLOCKERR" data-ref="_M/STA_CLOCKERR">STA_CLOCKERR</dfn>	0x1000	/* clock hardware fault (ro) */</u>&nbsp</td></tr>
+<tr><th id="133">133</th><td><u>#define <dfn class="macro" id="_M/STA_NANO" data-ref="_M/STA_NANO">STA_NANO</dfn>	0x2000	/* resolution (0 = us, 1 = ns) (ro) */</u>&nbsp</td></tr>
+<tr><th id="134">134</th><td><u>#define <dfn class="macro" id="_M/STA_MODE" data-ref="_M/STA_MODE">STA_MODE</dfn>	0x4000	/* mode (0 = PLL, 1 = FLL) (ro) */</u>&nbsp</td></tr>
+<tr><th id="135">135</th><td><u>#define <dfn class="macro" id="_M/STA_CLK" data-ref="_M/STA_CLK">STA_CLK</dfn>		0x8000	/* clock source (0 = A, 1 = B) (ro) */</u>&nbsp</td></tr>
+<tr><th id="136">136</th><td>&nbsp</td></tr>
+<tr><th id="137">137</th><td><i>/* Read-only bits */</i>&nbsp</td></tr>
+<tr><th id="138">138</th><td><u>#define <dfn class="macro" id="_M/STA_RONLY" data-ref="_M/STA_RONLY">STA_RONLY</dfn> (STA_PPSSIGNAL | STA_PPSJITTER | STA_PPSWANDER \</u>&nbsp</td></tr>
+<tr><th id="139">139</th><td><u>    | STA_PPSERROR | STA_CLOCKERR | STA_NANO | STA_MODE | STA_CLK)</u>&nbsp</td></tr>
+<tr><th id="140">140</th><td>&nbsp</td></tr>
+<tr><th id="141">141</th><td><u>#<span data-ppcond="18">endif</span> /* bits/timex.h */</u>&nbsp</td></tr>
+<tr><th id="142">142</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

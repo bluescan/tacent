@@ -1,0 +1,77 @@
+<def f='include/c++/11/tr1/special_function_util.h' l='64' ll='105'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='117' c='_ZNSt8__detail18__bernoulli_seriesEj'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='159' c='_ZNSt8__detail21__log_gamma_bernoulliET_'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='208' c='_ZNSt8__detail19__log_gamma_lanczosET_'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='234' c='_ZNSt8__detail11__log_gammaET_'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='238' c='_ZNSt8__detail11__log_gammaET_'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='261' c='_ZNSt8__detail16__log_gamma_signET_'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='360' c='_ZNSt8__detail12__psi_seriesET_'/>
+<use f='include/c++/11/tr1/gamma.tcc' l='427' c='_ZNSt8__detail5__psiET_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='112' c='_ZNSt8__detail13__gamma_temmeET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='180' c='_ZNSt8__detail11__bessel_jnET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='228' c='_ZNSt8__detail11__bessel_jnET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='237' c='_ZNSt8__detail11__bessel_jnET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='240' c='_ZNSt8__detail11__bessel_jnET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='241' c='_ZNSt8__detail11__bessel_jnET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='245' c='_ZNSt8__detail11__bessel_jnET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='402' c='_ZNSt8__detail21__cyl_bessel_jn_asympET_S0_RS0_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='408' c='_ZNSt8__detail21__cyl_bessel_jn_asympET_S0_RS0_S1_'/>
+<use f='include/c++/11/tr1/bessel_function.tcc' l='579' c='_ZNSt8__detail15__sph_bessel_jnEjT_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='172' c='_ZNSt8__detail22__comp_ellint_1_seriesET_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='231' c='_ZNSt8__detail10__ellint_1ET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='234' c='_ZNSt8__detail10__ellint_1ET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='287' c='_ZNSt8__detail22__comp_ellint_2_seriesET_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='445' c='_ZNSt8__detail10__ellint_2ET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='448' c='_ZNSt8__detail10__ellint_2ET_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='713' c='_ZNSt8__detail10__ellint_3ET_S0_S0_'/>
+<use f='include/c++/11/tr1/ell_integral.tcc' l='716' c='_ZNSt8__detail10__ellint_3ET_S0_S0_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='102' c='_ZNSt8__detail18__expint_E1_seriesET_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='164' c='_ZNSt8__detail18__expint_En_seriesEjT_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='174' c='_ZNSt8__detail18__expint_En_seriesEjT_'/>
+<use f='include/c++/11/tr1/exp_integral.tcc' l='305' c='_ZNSt8__detail18__expint_Ei_seriesET_'/>
+<use f='include/c++/11/tr1/hypergeometric.tcc' l='543' c='_ZNSt8__detail16__hyperg_reflectET_S0_S0_S0_'/>
+<use f='include/c++/11/tr1/legendre_function.tcc' l='229' c='_ZNSt8__detail14__sph_legendreEjjT_'/>
+<use f='include/c++/11/tr1/legendre_function.tcc' l='261' c='_ZNSt8__detail14__sph_legendreEjjT_'/>
+<use f='include/c++/11/tr1/legendre_function.tcc' l='264' c='_ZNSt8__detail14__sph_legendreEjjT_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='159' c='_ZNSt8__detail11__bessel_ikET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='231' c='_ZNSt8__detail11__bessel_ikET_S0_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='347' c='_ZNSt8__detail15__sph_bessel_ikEjT_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='397' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='398' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='399' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='400' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='404' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='405' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='406' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='408' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='416' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='418' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='421' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='423' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='432' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/modified_bessel_func.tcc' l='438' c='_ZNSt8__detail6__airyET_RS0_S1_S1_S1_'/>
+<use f='include/c++/11/tr1/poly_laguerre.tcc' l='85' c='_ZNSt8__detail23__poly_laguerre_large_nEjT_T0_'/>
+<use f='include/c++/11/tr1/poly_laguerre.tcc' l='86' c='_ZNSt8__detail23__poly_laguerre_large_nEjT_T0_'/>
+<use f='include/c++/11/tr1/poly_laguerre.tcc' l='102' c='_ZNSt8__detail23__poly_laguerre_large_nEjT_T0_'/>
+<use f='include/c++/11/tr1/poly_laguerre.tcc' l='106' c='_ZNSt8__detail23__poly_laguerre_large_nEjT_T0_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='180' c='_ZNSt8__detail19__riemann_zeta_globET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='181' c='_ZNSt8__detail19__riemann_zeta_globET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='187' c='_ZNSt8__detail19__riemann_zeta_globET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='304' c='_ZNSt8__detail14__riemann_zetaET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='305' c='_ZNSt8__detail14__riemann_zetaET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='311' c='_ZNSt8__detail14__riemann_zetaET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='327' c='_ZNSt8__detail14__riemann_zetaET_'/>
+<use f='include/c++/11/tr1/riemann_zeta.tcc' l='328' c='_ZNSt8__detail14__riemann_zetaET_'/>
+<fun r='_ZNSt8__detail19__numeric_constants4__piEv'/>
+<fun r='_ZNSt8__detail19__numeric_constants6__pi_2Ev'/>
+<fun r='_ZNSt8__detail19__numeric_constants6__pi_3Ev'/>
+<fun r='_ZNSt8__detail19__numeric_constants6__pi_4Ev'/>
+<fun r='_ZNSt8__detail19__numeric_constants6__1_piEv'/>
+<fun r='_ZNSt8__detail19__numeric_constants10__2_sqrtpiEv'/>
+<fun r='_ZNSt8__detail19__numeric_constants7__sqrt2Ev'/>
+<fun r='_ZNSt8__detail19__numeric_constants7__sqrt3Ev'/>
+<fun r='_ZNSt8__detail19__numeric_constants10__sqrtpio2Ev'/>
+<fun r='_ZNSt8__detail19__numeric_constants9__sqrt1_2Ev'/>
+<fun r='_ZNSt8__detail19__numeric_constants6__lnpiEv'/>
+<fun r='_ZNSt8__detail19__numeric_constants9__gamma_eEv'/>
+<fun r='_ZNSt8__detail19__numeric_constants7__eulerEv'/>

@@ -1,0 +1,178 @@
+<def f='include/c++/11/bits/atomic_base.h' l='76' type='const std::memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='210' u='r' c='_ZNSt11atomic_flag12test_and_setESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='216' u='r' c='_ZNVSt11atomic_flag12test_and_setESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='225' u='r' c='_ZNKSt11atomic_flag4testESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='233' u='r' c='_ZNVKSt11atomic_flag4testESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='243' u='r' c='_ZNKSt11atomic_flag4waitEbSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='269' u='r' c='_ZNSt11atomic_flag5clearESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='281' u='r' c='_ZNVSt11atomic_flag5clearESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='385' u='r' c='_ZNSt13__atomic_baseppEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='389' u='r' c='_ZNVSt13__atomic_baseppEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='393' u='r' c='_ZNSt13__atomic_basemmEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='397' u='r' c='_ZNVSt13__atomic_basemmEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='401' u='r' c='_ZNSt13__atomic_basepLET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='405' u='r' c='_ZNVSt13__atomic_basepLET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='409' u='r' c='_ZNSt13__atomic_basemIET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='413' u='r' c='_ZNVSt13__atomic_basemIET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='417' u='r' c='_ZNSt13__atomic_baseaNET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='421' u='r' c='_ZNVSt13__atomic_baseaNET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='425' u='r' c='_ZNSt13__atomic_baseoRET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='429' u='r' c='_ZNVSt13__atomic_baseoRET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='433' u='r' c='_ZNSt13__atomic_baseeOET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='437' u='r' c='_ZNVSt13__atomic_baseeOET_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='456' u='r' c='_ZNSt13__atomic_base5storeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='469' u='r' c='_ZNVSt13__atomic_base5storeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='481' u='r' c='_ZNKSt13__atomic_base4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='492' u='r' c='_ZNVKSt13__atomic_base4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='504' u='r' c='_ZNSt13__atomic_base8exchangeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='512' u='r' c='_ZNVSt13__atomic_base8exchangeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='540' u='r' c='_ZNSt13__atomic_base21compare_exchange_weakERT_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='548' u='r' c='_ZNVSt13__atomic_base21compare_exchange_weakERT_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='577' u='r' c='_ZNSt13__atomic_base23compare_exchange_strongERT_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='585' u='r' c='_ZNVSt13__atomic_base23compare_exchange_strongERT_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='594' u='r' c='_ZNKSt13__atomic_base4waitET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='617' u='r' c='_ZNSt13__atomic_base9fetch_addET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='622' u='r' c='_ZNVSt13__atomic_base9fetch_addET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='627' u='r' c='_ZNSt13__atomic_base9fetch_subET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='632' u='r' c='_ZNVSt13__atomic_base9fetch_subET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='637' u='r' c='_ZNSt13__atomic_base9fetch_andET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='642' u='r' c='_ZNVSt13__atomic_base9fetch_andET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='647' u='r' c='_ZNSt13__atomic_base8fetch_orET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='652' u='r' c='_ZNVSt13__atomic_base8fetch_orET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='657' u='r' c='_ZNSt13__atomic_base9fetch_xorET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='662' u='r' c='_ZNVSt13__atomic_base9fetch_xorET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='732' u='r' c='_ZNSt13__atomic_baseIPT_EppEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='737' u='r' c='_ZNVSt13__atomic_baseIPT_EppEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='742' u='r' c='_ZNSt13__atomic_baseIPT_EmmEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='747' u='r' c='_ZNVSt13__atomic_baseIPT_EmmEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='752' u='r' c='_ZNSt13__atomic_baseIPT_EpLEl'/>
+<use f='include/c++/11/bits/atomic_base.h' l='757' u='r' c='_ZNVSt13__atomic_baseIPT_EpLEl'/>
+<use f='include/c++/11/bits/atomic_base.h' l='762' u='r' c='_ZNSt13__atomic_baseIPT_EmIEl'/>
+<use f='include/c++/11/bits/atomic_base.h' l='767' u='r' c='_ZNVSt13__atomic_baseIPT_EmIEl'/>
+<use f='include/c++/11/bits/atomic_base.h' l='787' u='r' c='_ZNSt13__atomic_baseIPT_E5storeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='801' u='r' c='_ZNVSt13__atomic_baseIPT_E5storeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='813' u='r' c='_ZNKSt13__atomic_baseIPT_E4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='824' u='r' c='_ZNVKSt13__atomic_baseIPT_E4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='836' u='r' c='_ZNSt13__atomic_baseIPT_E8exchangeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='844' u='r' c='_ZNVSt13__atomic_baseIPT_E8exchangeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='874' u='r' c='_ZNKSt13__atomic_baseIPT_E4waitES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='898' u='r' c='_ZNSt13__atomic_baseIPT_E9fetch_addElSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='903' u='r' c='_ZNVSt13__atomic_baseIPT_E9fetch_addElSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='908' u='r' c='_ZNSt13__atomic_baseIPT_E9fetch_subElSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='913' u='r' c='_ZNVSt13__atomic_baseIPT_E9fetch_subElSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='992' u='r' c='_ZNSt13__atomic_impl4waitEPKT_NSt15remove_volatileIS0_E4typeESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1096' c='_ZNSt13__atomic_impl15__add_fetch_fltEPT_NSt15remove_volatileIS0_E4typeE'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1109' c='_ZNSt13__atomic_impl15__sub_fetch_fltEPT_NSt15remove_volatileIS0_E4typeE'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1164' u='r' c='_ZNVSt14__atomic_float5storeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1168' u='r' c='_ZNSt14__atomic_float5storeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1172' u='r' c='_ZNVKSt14__atomic_float4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1176' u='r' c='_ZNKSt14__atomic_float4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1184' u='r' c='_ZNVSt14__atomic_float8exchangeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1189' u='r' c='_ZNSt14__atomic_float8exchangeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1234' u='r' c='_ZNSt14__atomic_float21compare_exchange_weakERT_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1243' u='r' c='_ZNVSt14__atomic_float21compare_exchange_weakERT_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1252' u='r' c='_ZNSt14__atomic_float23compare_exchange_strongERT_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1261' u='r' c='_ZNVSt14__atomic_float23compare_exchange_strongERT_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1270' u='r' c='_ZNKSt14__atomic_float4waitET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1290' u='r' c='_ZNSt14__atomic_float9fetch_addET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1295' u='r' c='_ZNVSt14__atomic_float9fetch_addET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1300' u='r' c='_ZNSt14__atomic_float9fetch_subET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1305' u='r' c='_ZNVSt14__atomic_float9fetch_subET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1375' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb0EE5storeES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1379' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb0EE4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1383' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb0EE8exchangeES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1409' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb0EE21compare_exchange_weakERS0_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1418' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb0EE23compare_exchange_strongERS0_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1427' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb0EE4waitES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1490' u='r' c='_ZNKSt12__atomic_refIT_Lb1ELb0EE5storeES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1494' u='r' c='_ZNKSt12__atomic_refIT_Lb1ELb0EE4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1499' u='r' c='_ZNKSt12__atomic_refIT_Lb1ELb0EE8exchangeES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1524' u='r' c='_ZNKSt12__atomic_refIT_Lb1ELb0EE21compare_exchange_weakERS0_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1533' u='r' c='_ZNKSt12__atomic_refIT_Lb1ELb0EE23compare_exchange_strongERS0_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1542' u='r' c='_ZNKSt12__atomic_refIT_Lb1ELb0EE4waitES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1562' u='r' c='_ZNKSt12__atomic_refIT_Lb1ELb0EE9fetch_addES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1567' u='r' c='_ZNKSt12__atomic_refIT_Lb1ELb0EE9fetch_subES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1572' u='r' c='_ZNKSt12__atomic_refIT_Lb1ELb0EE9fetch_andES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1577' u='r' c='_ZNKSt12__atomic_refIT_Lb1ELb0EE8fetch_orES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1582' u='r' c='_ZNKSt12__atomic_refIT_Lb1ELb0EE9fetch_xorES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1665' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb1EE5storeES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1669' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb1EE4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1674' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb1EE8exchangeES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1699' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb1EE21compare_exchange_weakERS0_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1708' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb1EE23compare_exchange_strongERS0_S0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1717' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb1EE4waitES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1737' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb1EE9fetch_addES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1742' u='r' c='_ZNKSt12__atomic_refIT_Lb0ELb1EE9fetch_subES0_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1794' u='r' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EE5storeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1798' u='r' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EE4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1803' u='r' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EE8exchangeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1828' u='r' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EE21compare_exchange_weakERS1_S1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1837' u='r' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EE23compare_exchange_strongERS1_S1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1846' u='r' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EE4waitES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1866' u='r' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EE9fetch_addElSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='1871' u='r' c='_ZNKSt12__atomic_refIPT_Lb0ELb0EE9fetch_subElSt12memory_order'/>
+<use f='include/c++/11/atomic' l='103' u='r' c='_ZNSt6atomicIbE5storeEbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='107' u='r' c='_ZNVSt6atomicIbE5storeEbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='111' u='r' c='_ZNKSt6atomicIbE4loadESt12memory_order'/>
+<use f='include/c++/11/atomic' l='115' u='r' c='_ZNVKSt6atomicIbE4loadESt12memory_order'/>
+<use f='include/c++/11/atomic' l='119' u='r' c='_ZNSt6atomicIbE8exchangeEbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='124' u='r' c='_ZNVSt6atomicIbE8exchangeEbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='139' u='r' c='_ZNSt6atomicIbE21compare_exchange_weakERbbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='144' u='r' c='_ZNVSt6atomicIbE21compare_exchange_weakERbbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='159' u='r' c='_ZNSt6atomicIbE23compare_exchange_strongERbbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='164' u='r' c='_ZNVSt6atomicIbE23compare_exchange_strongERbbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='169' u='r' c='_ZNKSt6atomicIbE4waitEbSt12memory_order'/>
+<use f='include/c++/11/atomic' l='269' u='r' c='_ZNSt6atomic5storeET_St12memory_order'/>
+<use f='include/c++/11/atomic' l='275' u='r' c='_ZNVSt6atomic5storeET_St12memory_order'/>
+<use f='include/c++/11/atomic' l='281' u='r' c='_ZNKSt6atomic4loadESt12memory_order'/>
+<use f='include/c++/11/atomic' l='290' u='r' c='_ZNVKSt6atomic4loadESt12memory_order'/>
+<use f='include/c++/11/atomic' l='299' u='r' c='_ZNSt6atomic8exchangeET_St12memory_order'/>
+<use f='include/c++/11/atomic' l='310' u='r' c='_ZNVSt6atomic8exchangeET_St12memory_order'/>
+<use f='include/c++/11/atomic' l='345' u='r' c='_ZNSt6atomic21compare_exchange_weakERT_S0_St12memory_order'/>
+<use f='include/c++/11/atomic' l='351' u='r' c='_ZNVSt6atomic21compare_exchange_weakERT_S0_St12memory_order'/>
+<use f='include/c++/11/atomic' l='381' u='r' c='_ZNSt6atomic23compare_exchange_strongERT_S0_St12memory_order'/>
+<use f='include/c++/11/atomic' l='387' u='r' c='_ZNVSt6atomic23compare_exchange_strongERT_S0_St12memory_order'/>
+<use f='include/c++/11/atomic' l='393' u='r' c='_ZNKSt6atomic4waitET_St12memory_order'/>
+<use f='include/c++/11/atomic' l='568' u='r' c='_ZNSt6atomicIPT_E5storeES1_St12memory_order'/>
+<use f='include/c++/11/atomic' l='573' u='r' c='_ZNVSt6atomicIPT_E5storeES1_St12memory_order'/>
+<use f='include/c++/11/atomic' l='577' u='r' c='_ZNKSt6atomicIPT_E4loadESt12memory_order'/>
+<use f='include/c++/11/atomic' l='581' u='r' c='_ZNVKSt6atomicIPT_E4loadESt12memory_order'/>
+<use f='include/c++/11/atomic' l='586' u='r' c='_ZNSt6atomicIPT_E8exchangeES1_St12memory_order'/>
+<use f='include/c++/11/atomic' l='591' u='r' c='_ZNVSt6atomicIPT_E8exchangeES1_St12memory_order'/>
+<use f='include/c++/11/atomic' l='607' u='r' c='_ZNSt6atomicIPT_E21compare_exchange_weakERS1_S1_St12memory_order'/>
+<use f='include/c++/11/atomic' l='615' u='r' c='_ZNVSt6atomicIPT_E21compare_exchange_weakERS1_S1_St12memory_order'/>
+<use f='include/c++/11/atomic' l='634' u='r' c='_ZNSt6atomicIPT_E23compare_exchange_strongERS1_S1_St12memory_order'/>
+<use f='include/c++/11/atomic' l='642' u='r' c='_ZNVSt6atomicIPT_E23compare_exchange_strongERS1_S1_St12memory_order'/>
+<use f='include/c++/11/atomic' l='650' u='r' c='_ZNKSt6atomicIPT_E4waitES1_St12memory_order'/>
+<use f='include/c++/11/atomic' l='665' u='r' c='_ZNSt6atomicIPT_E9fetch_addElSt12memory_order'/>
+<use f='include/c++/11/atomic' l='675' u='r' c='_ZNVSt6atomicIPT_E9fetch_addElSt12memory_order'/>
+<use f='include/c++/11/atomic' l='685' u='r' c='_ZNSt6atomicIPT_E9fetch_subElSt12memory_order'/>
+<use f='include/c++/11/atomic' l='695' u='r' c='_ZNVSt6atomicIPT_E9fetch_subElSt12memory_order'/>
+<use f='include/c++/11/atomic' l='1245' u='r' c='_ZSt24atomic_flag_test_and_setPSt11atomic_flag'/>
+<use f='include/c++/11/atomic' l='1249' u='r' c='_ZSt24atomic_flag_test_and_setPVSt11atomic_flag'/>
+<use f='include/c++/11/atomic' l='1253' u='r' c='_ZSt17atomic_flag_clearPSt11atomic_flag'/>
+<use f='include/c++/11/atomic' l='1257' u='r' c='_ZSt17atomic_flag_clearPVSt11atomic_flag'/>
+<use f='include/c++/11/atomic' l='1385' c='_ZSt12atomic_storePSt6atomicIT_ENSt15__type_identityIS0_E4typeE'/>
+<use f='include/c++/11/atomic' l='1390' c='_ZSt12atomic_storePVSt6atomicIT_ENSt15__type_identityIS0_E4typeE'/>
+<use f='include/c++/11/atomic' l='1395' c='_ZSt11atomic_loadPKSt6atomicIT_E'/>
+<use f='include/c++/11/atomic' l='1400' c='_ZSt11atomic_loadPVKSt6atomicIT_E'/>
+<use f='include/c++/11/atomic' l='1405' c='_ZSt15atomic_exchangePSt6atomicIT_ENSt15__type_identityIS0_E4typeE'/>
+<use f='include/c++/11/atomic' l='1411' c='_ZSt15atomic_exchangePVSt6atomicIT_ENSt15__type_identityIS0_E4typeE'/>
+<use f='include/c++/11/atomic' l='1420' c='_ZSt28atomic_compare_exchange_weakPSt6atomicIT_EPNSt15__type_identityIS0_E4typeES5_'/>
+<use f='include/c++/11/atomic' l='1421' c='_ZSt28atomic_compare_exchange_weakPSt6atomicIT_EPNSt15__type_identityIS0_E4typeES5_'/>
+<use f='include/c++/11/atomic' l='1431' c='_ZSt28atomic_compare_exchange_weakPVSt6atomicIT_EPNSt15__type_identityIS0_E4typeES6_'/>
+<use f='include/c++/11/atomic' l='1432' c='_ZSt28atomic_compare_exchange_weakPVSt6atomicIT_EPNSt15__type_identityIS0_E4typeES6_'/>
+<use f='include/c++/11/atomic' l='1442' c='_ZSt30atomic_compare_exchange_strongPSt6atomicIT_EPNSt15__type_identityIS0_E4typeES5_'/>
+<use f='include/c++/11/atomic' l='1443' c='_ZSt30atomic_compare_exchange_strongPSt6atomicIT_EPNSt15__type_identityIS0_E4typeES5_'/>
+<use f='include/c++/11/atomic' l='1453' c='_ZSt30atomic_compare_exchange_strongPVSt6atomicIT_EPNSt15__type_identityIS0_E4typeES6_'/>
+<use f='include/c++/11/atomic' l='1454' c='_ZSt30atomic_compare_exchange_strongPVSt6atomicIT_EPNSt15__type_identityIS0_E4typeES6_'/>
+<use f='include/c++/11/atomic' l='1561' c='_ZSt16atomic_fetch_addPSt6atomicIT_ENS1_15difference_typeE'/>
+<use f='include/c++/11/atomic' l='1567' c='_ZSt16atomic_fetch_addPVSt6atomicIT_ENS1_15difference_typeE'/>
+<use f='include/c++/11/atomic' l='1573' c='_ZSt16atomic_fetch_subPSt6atomicIT_ENS1_15difference_typeE'/>
+<use f='include/c++/11/atomic' l='1579' c='_ZSt16atomic_fetch_subPVSt6atomicIT_ENS1_15difference_typeE'/>
+<use f='include/c++/11/atomic' l='1585' c='_ZSt16atomic_fetch_andPSt13__atomic_baseIT_ENSt15__type_identityIS0_E4typeE'/>
+<use f='include/c++/11/atomic' l='1591' c='_ZSt16atomic_fetch_andPVSt13__atomic_baseIT_ENSt15__type_identityIS0_E4typeE'/>
+<use f='include/c++/11/atomic' l='1597' c='_ZSt15atomic_fetch_orPSt13__atomic_baseIT_ENSt15__type_identityIS0_E4typeE'/>
+<use f='include/c++/11/atomic' l='1603' c='_ZSt15atomic_fetch_orPVSt13__atomic_baseIT_ENSt15__type_identityIS0_E4typeE'/>
+<use f='include/c++/11/atomic' l='1609' c='_ZSt16atomic_fetch_xorPSt13__atomic_baseIT_ENSt15__type_identityIS0_E4typeE'/>
+<use f='include/c++/11/atomic' l='1615' c='_ZSt16atomic_fetch_xorPVSt13__atomic_baseIT_ENSt15__type_identityIS0_E4typeE'/>

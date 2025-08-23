@@ -1,0 +1,5 @@
+<def f='include/c++/11/type_traits' l='67' type='const _Tp'/>
+<use f='include/c++/11/type_traits' l='70' u='r' c='_ZNKSt17integral_constantcvT_Ev'/>
+<use f='include/c++/11/type_traits' l='75' u='r' c='_ZNKSt17integral_constantclEv'/>
+<dec f='include/c++/11/type_traits' l='80' type='const _Tp'/>
+<use f='include/c++/11/tuple' l='1371' u='r'/>

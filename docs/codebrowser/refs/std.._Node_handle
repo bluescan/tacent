@@ -1,0 +1,24 @@
+<def f='include/c++/11/bits/node_handle.h' l='239' ll='325'/>
+<def f='include/c++/11/bits/node_handle.h' l='328' ll='377'/>
+<use f='include/c++/11/bits/hashtable.h' l='387'/>
+<doc f='include/c++/11/bits/node_handle.h' l='327'>/// Node handle type for sets.</doc>
+<fun r='_ZNSt12_Node_handleC1Ev'/>
+<fun r='_ZNSt12_Node_handleD1Ev'/>
+<fun r='_ZNSt12_Node_handleC1EOSt12_Node_handleIT_T0_T1_E'/>
+<fun r='_ZNSt12_Node_handleaSEOSt12_Node_handleIT_T0_T1_E'/>
+<fun r='_ZNKSt12_Node_handle3keyEv'/>
+<fun r='_ZNKSt12_Node_handle6mappedEv'/>
+<fun r='_ZNSt12_Node_handle4swapERSt12_Node_handleIT_T0_T1_E'/>
+<fun r='_ZNSt12_Node_handleC1ENSt16allocator_traitsIT1_E7pointerERKS1_'/>
+<mbr r='std::_Node_handle::_M_pkey' t='__pointer&lt;_Key&gt;'/>
+<mbr r='std::_Node_handle::_M_pmapped' t='__pointer&lt;typename _Value::second_type&gt;'/>
+<fun r='_ZNSt12_Node_handle13_S_pointer_toERTL0__'/>
+<fun r='_ZNKSt12_Node_handle6_M_keyEv'/>
+<fun r='_ZNSt12_Node_handleIT_S0_T0_EC1Ev'/>
+<fun r='_ZNSt12_Node_handleIT_S0_T0_ED1Ev'/>
+<fun r='_ZNSt12_Node_handleIT_S0_T0_EC1EOS_IS0_S0_S1_E'/>
+<fun r='_ZNSt12_Node_handleIT_S0_T0_EaSEOS_IS0_S0_S1_E'/>
+<fun r='_ZNKSt12_Node_handleIT_S0_T0_E5valueEv'/>
+<fun r='_ZNSt12_Node_handleIT_S0_T0_E4swapERS_IS0_S0_S1_E'/>
+<fun r='_ZNSt12_Node_handleIT_S0_T0_EC1ENSt16allocator_traitsIS1_E7pointerERKS1_'/>
+<fun r='_ZNKSt12_Node_handleIT_S0_T0_E6_M_keyEv'/>

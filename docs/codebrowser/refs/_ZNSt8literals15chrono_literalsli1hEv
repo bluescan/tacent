@@ -1,0 +1,13 @@
+<def f='include/c++/11/chrono' l='3229' ll='3231' type='chrono::hours std::operator&quot;&quot;h()'/>
+<use f='include/c++/11/chrono' l='3318' u='c' c='_ZNSt6chrono5is_amERKNS_8durationIlSt5ratioILl3600ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='3318' u='c' c='_ZNSt6chrono5is_amERKNS_8durationIlSt5ratioILl3600ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='3322' u='c' c='_ZNSt6chrono5is_pmERKNS_8durationIlSt5ratioILl3600ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='3322' u='c' c='_ZNSt6chrono5is_pmERKNS_8durationIlSt5ratioILl3600ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='3327' u='c' c='_ZNSt6chrono6make12ERKNS_8durationIlSt5ratioILl3600ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='3328' u='c' c='_ZNSt6chrono6make12ERKNS_8durationIlSt5ratioILl3600ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='3329' u='c' c='_ZNSt6chrono6make12ERKNS_8durationIlSt5ratioILl3600ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='3330' u='c' c='_ZNSt6chrono6make12ERKNS_8durationIlSt5ratioILl3600ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='3339' u='c' c='_ZNSt6chrono6make24ERKNS_8durationIlSt5ratioILl3600ELl1EEEEb'/>
+<use f='include/c++/11/chrono' l='3340' u='c' c='_ZNSt6chrono6make24ERKNS_8durationIlSt5ratioILl3600ELl1EEEEb'/>
+<use f='include/c++/11/chrono' l='3346' u='c' c='_ZNSt6chrono6make24ERKNS_8durationIlSt5ratioILl3600ELl1EEEEb'/>
+<use f='include/c++/11/chrono' l='3349' u='c' c='_ZNSt6chrono6make24ERKNS_8durationIlSt5ratioILl3600ELl1EEEEb'/>

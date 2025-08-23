@@ -1,0 +1,2 @@
+<dec f='include/strings.h' l='42' type='void bzero(void * __s, size_t __n)'/>
+<doc f='include/strings.h' l='41'>/* Set N bytes of S to 0.  */</doc>

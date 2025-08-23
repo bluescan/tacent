@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1761' type='ktx_error_code_e ktxPrintKTX2InfoJSONForMemory(const ktx_uint8_t * bytes, ktx_size_t size, ktx_uint32_t base_indent, ktx_uint32_t indent_width, bool minified)'/>

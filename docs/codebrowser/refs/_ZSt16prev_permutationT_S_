@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='541' type='bool std::prev_permutation(_BIter , _BIter )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='3053' ll='3068' macro='1' type='bool std::prev_permutation(_BidirectionalIterator __first, _BidirectionalIterator __last)'/>

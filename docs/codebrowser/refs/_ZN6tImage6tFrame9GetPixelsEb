@@ -1,0 +1,15 @@
+<def f='Modules/Image/Inc/Image/tFrame.h' l='48' type='tPixel4b * tImage::tFrame::GetPixels(bool steal = false)'/>
+<doc f='Modules/Image/Inc/Image/tFrame.h' l='46'>// If steal is true the frame will be invalid after and you must delete[] the returned pixels. They are yours.
+	// If steal is false the pixels remain owned by this tFrame. You can look or modify them, but they&apos;re not yours.</doc>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='447' u='c' c='_ZN6tImage8tPicture3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='241' u='c' c='_ZN6tImage10tImageASTC3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='509' u='c' c='_ZN6tImage9tImageBMP3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='939' u='c' c='_ZN6tImage9tImageDDS3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='430' u='c' c='_ZN6tImage9tImageHDR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='228' u='c' c='_ZN6tImage9tImageJPG3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='598' u='c' c='_ZN6tImage9tImageKTX3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='329' u='c' c='_ZN6tImage9tImagePKM3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='485' u='c' c='_ZN6tImage9tImagePNG3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='700' u='c' c='_ZN6tImage9tImagePVR3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='118' u='c' c='_ZN6tImage9tImageQOI3SetEPNS_6tFrameEb'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='312' u='c' c='_ZN6tImage9tImageTGA3SetEPNS_6tFrameEb'/>

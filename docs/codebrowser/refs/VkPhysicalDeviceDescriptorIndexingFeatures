@@ -1,0 +1,25 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6203' ll='6226'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6203'/>
+<size>96</size>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::shaderInputAttachmentArrayDynamicIndexing' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::shaderUniformTexelBufferArrayDynamicIndexing' o='160' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::shaderStorageTexelBufferArrayDynamicIndexing' o='192' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::shaderUniformBufferArrayNonUniformIndexing' o='224' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::shaderSampledImageArrayNonUniformIndexing' o='256' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::shaderStorageBufferArrayNonUniformIndexing' o='288' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::shaderStorageImageArrayNonUniformIndexing' o='320' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::shaderInputAttachmentArrayNonUniformIndexing' o='352' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::shaderUniformTexelBufferArrayNonUniformIndexing' o='384' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::shaderStorageTexelBufferArrayNonUniformIndexing' o='416' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::descriptorBindingUniformBufferUpdateAfterBind' o='448' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::descriptorBindingSampledImageUpdateAfterBind' o='480' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::descriptorBindingStorageImageUpdateAfterBind' o='512' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::descriptorBindingStorageBufferUpdateAfterBind' o='544' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::descriptorBindingUniformTexelBufferUpdateAfterBind' o='576' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::descriptorBindingStorageTexelBufferUpdateAfterBind' o='608' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::descriptorBindingUpdateUnusedWhilePending' o='640' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::descriptorBindingPartiallyBound' o='672' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::descriptorBindingVariableDescriptorCount' o='704' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceDescriptorIndexingFeatures::runtimeDescriptorArray' o='736' t='VkBool32'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='1773' type='std::money_put::iter_type std::money_put::_M_insert(std::money_put::iter_type __s, std::ios_base &amp; __io, std::money_put::char_type __fill, const std::money_put::string_type &amp; __digits) const'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='421' ll='579' type='_OutIter std::money_put::_M_insert(std::money_put::iter_type __s, std::ios_base &amp; __io, std::money_put::char_type __fill, const std::money_put::string_type &amp; __digits) const'/>

@@ -1,0 +1,4 @@
+<dec f='include/c++/11/stop_token' l='139' type='std::binary_semaphore'/>
+<use f='include/c++/11/stop_token' l='263' u='m' c='_ZNSt10stop_token13_Stop_state_t15_M_request_stopEv'/>
+<use f='include/c++/11/stop_token' l='343' u='m' c='_ZNSt10stop_token13_Stop_state_t18_M_remove_callbackEPNS_8_Stop_cbE'/>
+<offset>256</offset>

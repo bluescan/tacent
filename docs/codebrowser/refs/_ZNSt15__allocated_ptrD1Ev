@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/allocated_ptr.h' l='71' ll='75' type='void std::__allocated_ptr::~__allocated_ptr&lt;_Alloc&gt;()'/>
+<doc f='include/c++/11/bits/allocated_ptr.h' l='70'>/// Deallocate the owned pointer</doc>

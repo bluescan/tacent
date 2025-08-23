@@ -1,0 +1,7 @@
+<dec f='include/stdlib.h' l='967' type='int getsubopt(char **__restrict __optionp, char *const *__restrict __tokens, char **__restrict __valuep)'/>
+<doc f='include/stdlib.h' l='961'>/* Parse comma separated suboption from *OPTIONP and match against
+   strings in TOKENS.  If found return index and set *VALUEP to
+   optional value introduced by an equal sign.  If the suboption is
+   not part of TOKENS return in *VALUEP beginning of unknown
+   suboption.  On exit *OPTIONP is set to the beginning of the next
+   token or at the terminating NUL character.  */</doc>

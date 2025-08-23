@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8116' ll='8128'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8116'/>
+<size>336</size>
+<mbr r='VkVideoCapabilitiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoCapabilitiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkVideoCapabilitiesKHR::flags' o='128' t='VkVideoCapabilityFlagsKHR'/>
+<mbr r='VkVideoCapabilitiesKHR::minBitstreamBufferOffsetAlignment' o='192' t='VkDeviceSize'/>
+<mbr r='VkVideoCapabilitiesKHR::minBitstreamBufferSizeAlignment' o='256' t='VkDeviceSize'/>
+<mbr r='VkVideoCapabilitiesKHR::pictureAccessGranularity' o='320' t='VkExtent2D'/>
+<mbr r='VkVideoCapabilitiesKHR::minCodedExtent' o='384' t='VkExtent2D'/>
+<mbr r='VkVideoCapabilitiesKHR::maxCodedExtent' o='448' t='VkExtent2D'/>
+<mbr r='VkVideoCapabilitiesKHR::maxDpbSlots' o='512' t='uint32_t'/>
+<mbr r='VkVideoCapabilitiesKHR::maxActiveReferencePictures' o='544' t='uint32_t'/>
+<mbr r='VkVideoCapabilitiesKHR::stdHeaderVersion' o='576' t='VkExtensionProperties'/>

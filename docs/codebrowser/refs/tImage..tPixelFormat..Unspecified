@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='112' type='-1'/>
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='84' u='r' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='84' u='r' c='_ZN6tImage10tBaseImage5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='124'/>
+<use f='Modules/Image/Inc/Image/tBaseImage.h' l='125'/>

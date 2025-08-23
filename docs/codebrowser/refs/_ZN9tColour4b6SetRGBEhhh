@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='367' type='void tColour4b::SetRGB(uint8 r, uint8 g, uint8 b)'/>
+<use f='Modules/Image/Src/tQuantize.cpp' l='145' u='c' c='_ZN6tImage9tQuantize15ConvertToPixelsEP9tColour4biiPK9tColour3bPKhb'/>

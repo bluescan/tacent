@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tQuantizeNeu.cpp' l='126' type='void tImage::tQuantizeNeu::altersingle(tImage::tQuantizeNeu::State &amp; , int alpha, int i, int b, int g, int r)'/>
+<def f='Modules/Image/Src/tQuantizeNeu.cpp' l='382' ll='393' type='void tImage::tQuantizeNeu::altersingle(tImage::tQuantizeNeu::State &amp; state, int alpha, int i, int b, int g, int r)'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='490' u='c' c='_ZN6tImage12tQuantizeNeu5learnERNS0_5StateE'/>

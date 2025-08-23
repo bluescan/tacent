@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='336' type='std::filesystem::file_time_type std::filesystem::last_write_time(const std::filesystem::path &amp; )'/>
+<use f='include/c++/11/bits/fs_dir.h' l='261' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry15last_write_timeEv'/>
+<dec f='include/c++/11/bits/fs_ops.h' l='291' type='std::filesystem::file_time_type std::filesystem::last_write_time(const std::filesystem::path &amp; __p)'/>

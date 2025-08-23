@@ -1,0 +1,7 @@
+<use f='Modules/Image/Src/tTexture.cpp' l='44' u='w' c='_ZN6tImage8tTexture3SetER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='85' u='w' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='149' u='w' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='394' u='r' c='_ZNK6tImage8tTexture4SaveER12tChunkWriter'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='422' u='a' c='_ZN6tImage8tTexture4LoadERK6tChunk'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='442' u='r' c='_ZNK6tImage8tTextureeqERKS0_'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='442' u='r' c='_ZNK6tImage8tTextureeqERKS0_'/>

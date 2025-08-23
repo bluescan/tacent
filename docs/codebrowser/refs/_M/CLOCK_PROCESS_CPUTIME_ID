@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/time.h' l='50'/>
+<doc f='include/x86_64-linux-gnu/bits/time.h' l='49'>/* High-resolution timer from the CPU.  */</doc>

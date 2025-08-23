@@ -1,0 +1,6 @@
+<use f='Modules/Image/Inc/Image/tPicture.h' l='97' u='c' c='_ZN6tImage8tPictureC1EPNS_6tFrameEb'/>
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='127' type='void tImage::tPicture::Set(tImage::tFrame * frame, bool steal)'/>
+<def f='Modules/Image/Inc/Image/tPicture.h' l='442' ll='451' type='void tImage::tPicture::Set(tImage::tFrame * frame, bool steal)'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='463' u='c' c='_ZN6tImage8tPicture3SetERNS_10tBaseImageEb'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='125'>// Sets from a tFrame. If steal is true the tPicture will take ownership of the tFrame. If steal is false it will
+	// copy the pixels out. The frame duration is also taken from the frame.</doc>

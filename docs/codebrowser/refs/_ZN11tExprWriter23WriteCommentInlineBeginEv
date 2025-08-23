@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='291' type='void tExprWriter::WriteCommentInlineBegin()'/>
+<use f='Modules/System/Inc/System/tScript.h' l='331' u='c' c='_ZN11tExprWriter10RemInBeginEv'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='290'>// Use these for inline { } comments that don&apos;t go to end of line. ex. [ NotComment { This is a comment } AlsoNotComment ]</doc>
+<def f='Modules/System/Src/tScript.cpp' l='998' ll='1005' type='void tExprWriter::WriteCommentInlineBegin()'/>

@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='80' type='7'/>
+<use f='include/c++/11/bits/fs_dir.h' l='221' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry9is_socketEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='225' u='r' c='_ZNKSt10filesystem7__cxx1115directory_entry9is_socketERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='263' u='r' c='_ZNSt10filesystem9is_socketENS_11file_statusE'/>

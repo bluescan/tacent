@@ -1,0 +1,4 @@
+<dec f='include/semaphore.h' l='35' type='int sem_init(sem_t * __sem, int __pshared, unsigned int __value)'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='67' u='c' c='_ZNSt20__platform_semaphoreC1El'/>
+<doc f='include/semaphore.h' l='33'>/* Initialize semaphore object SEM to VALUE.  If PSHARED then share it
+   with other processes.  */</doc>

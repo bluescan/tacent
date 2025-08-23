@@ -1,0 +1,21 @@
+<use f='include/c++/11/stop_token' l='398' u='w' c='_ZNSt10stop_token15_Stop_state_refC1ERKSt11stop_source'/>
+<use f='include/c++/11/stop_token' l='402' u='w' c='_ZNSt10stop_token15_Stop_state_refC1ERKS0_'/>
+<use f='include/c++/11/stop_token' l='402' u='r' c='_ZNSt10stop_token15_Stop_state_refC1ERKS0_'/>
+<use f='include/c++/11/stop_token' l='404' u='r' c='_ZNSt10stop_token15_Stop_state_refC1ERKS0_'/>
+<use f='include/c++/11/stop_token' l='405' u='r' c='_ZNSt10stop_token15_Stop_state_refC1ERKS0_'/>
+<use f='include/c++/11/stop_token' l='409' u='w' c='_ZNSt10stop_token15_Stop_state_refC1EOS0_'/>
+<use f='include/c++/11/stop_token' l='409' u='r' c='_ZNSt10stop_token15_Stop_state_refC1EOS0_'/>
+<use f='include/c++/11/stop_token' l='411' u='w' c='_ZNSt10stop_token15_Stop_state_refC1EOS0_'/>
+<use f='include/c++/11/stop_token' l='417' u='r' c='_ZNSt10stop_token15_Stop_state_refaSERKS0_'/>
+<use f='include/c++/11/stop_token' l='417' u='r' c='_ZNSt10stop_token15_Stop_state_refaSERKS0_'/>
+<use f='include/c++/11/stop_token' l='421' u='r' c='_ZNSt10stop_token15_Stop_state_refaSERKS0_'/>
+<use f='include/c++/11/stop_token' l='422' u='r' c='_ZNSt10stop_token15_Stop_state_refaSERKS0_'/>
+<use f='include/c++/11/stop_token' l='423' u='w' c='_ZNSt10stop_token15_Stop_state_refaSERKS0_'/>
+<use f='include/c++/11/stop_token' l='437' u='r' c='_ZNSt10stop_token15_Stop_state_refD1Ev'/>
+<use f='include/c++/11/stop_token' l='438' u='r' c='_ZNSt10stop_token15_Stop_state_refD1Ev'/>
+<use f='include/c++/11/stop_token' l='443' u='a' c='_ZNSt10stop_token15_Stop_state_ref4swapERS0_'/>
+<use f='include/c++/11/stop_token' l='443' u='a' c='_ZNSt10stop_token15_Stop_state_ref4swapERS0_'/>
+<use f='include/c++/11/stop_token' l='445' u='r' c='_ZNKSt10stop_token15_Stop_state_refcvbEv'/>
+<use f='include/c++/11/stop_token' l='447' u='r' c='_ZNKSt10stop_token15_Stop_state_refptEv'/>
+<dec f='include/c++/11/stop_token' l='465' type='std::stop_token::_Stop_state_t *'/>
+<offset>0</offset>

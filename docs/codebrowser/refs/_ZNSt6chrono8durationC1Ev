@@ -1,0 +1,2 @@
+<def f='include/c++/11/chrono' l='512' type='void std::chrono::duration::duration&lt;_Rep, _Period&gt;()'/>
+<doc f='include/c++/11/chrono' l='511'>// 20.11.5.1 construction / copy / destroy</doc>

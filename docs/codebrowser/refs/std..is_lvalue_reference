@@ -1,0 +1,12 @@
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='455' ll='456'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/type_traits' l='458' ll='460'/>
+<use f='include/c++/11/type_traits' l='558'/>
+<use f='include/c++/11/type_traits' l='3108'/>
+<use f='include/c++/11/bits/move.h' l='91' c='_ZSt7forwardONSt16remove_referenceIT_E4typeE'/>
+<use f='include/c++/11/bits/hashtable.h' l='319' c='_ZNSt10_Hashtable15__fwd_value_forERT0_'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='307' c='_ZNSt10unique_ptrC1ENSt15__uniq_ptr_implIT_T0_E7pointerENSt9enable_ifIXntsr19is_lvalue_referenceITL0__EE5valueEOS6_E4typeE'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='315' c='_ZNSt10unique_ptrC1ENSt15__uniq_ptr_implIT_T0_E7pointerENSt9enable_ifIXsr19is_lvalue_referenceITL0__EE5valueEOTL0_0_E4typeE'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='577' c='_ZNSt10unique_ptrIA_T_T0_EC1ETL0__NSt9enable_ifIXntsr19is_lvalue_referenceITL0_0_EE5valueEOS6_E4typeE'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='586' c='_ZNSt10unique_ptrIA_T_T0_EC1ETL0__NSt9enable_ifIXsr19is_lvalue_referenceITL0_0_EE5valueEOTL0_1_E4typeE'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14335' ll='14340'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14335'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceProvokingVertexFeaturesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceProvokingVertexFeaturesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceProvokingVertexFeaturesEXT::provokingVertexLast' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceProvokingVertexFeaturesEXT::transformFeedbackPreservesProvokingVertex' o='160' t='VkBool32'/>

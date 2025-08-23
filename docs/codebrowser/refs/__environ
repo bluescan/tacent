@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='564' type='char **'/>
+<doc f='include/unistd.h' l='563'>/* NULL-terminated array of &quot;NAME=VALUE&quot; environment variables.  */</doc>

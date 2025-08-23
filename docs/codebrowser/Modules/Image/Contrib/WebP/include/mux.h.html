@@ -1,0 +1,548 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>mux.h source code [Modules/Image/Contrib/WebP/include/mux.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Contrib/WebP/include/mux.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>Modules</a>/<a href='../../..'>Image</a>/<a href='../..'>Contrib</a>/<a href='..'>WebP</a>/<a href='./'>include</a>/<a href='mux.h.html'>mux.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// Copyright 2011 Google Inc. All Rights Reserved.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Use of this source code is governed by a BSD-style license</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>// that can be found in the COPYING file in the root of the source</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// tree. An additional intellectual property rights grant can be found</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// in the file PATENTS. All contributing project authors may</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// be found in the AUTHORS file in the root of the source tree.</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// -----------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>//  RIFF container manipulation and encoding for WebP images.</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// Authors: Urvang (urvang@google.com)</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>//          Vikas (vikasa@google.com)</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td>&nbsp</td></tr>
+<tr><th id="15">15</th><td><u>#<span data-ppcond="15">ifndef</span> <span class="macro" data-ref="_M/WEBP_WEBP_MUX_H_">WEBP_WEBP_MUX_H_</span></u>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#define <dfn class="macro" id="_M/WEBP_WEBP_MUX_H_" data-ref="_M/WEBP_WEBP_MUX_H_">WEBP_WEBP_MUX_H_</dfn></u>&nbsp</td></tr>
+<tr><th id="17">17</th><td>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#include "./mux_types.h"</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td>&nbsp</td></tr>
+<tr><th id="20">20</th><td><u>#<span data-ppcond="20">ifdef</span> <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="21">21</th><td><b>extern</b> <q>"C"</q> {&nbsp</td></tr>
+<tr><th id="22">22</th><td><u>#<span data-ppcond="20">endif</span></u>&nbsp</td></tr>
+<tr><th id="23">23</th><td>&nbsp</td></tr>
+<tr><th id="24">24</th><td><u>#define <dfn class="macro" id="_M/WEBP_MUX_ABI_VERSION" data-ref="_M/WEBP_MUX_ABI_VERSION">WEBP_MUX_ABI_VERSION</dfn> 0x0108        // MAJOR(8b) + MINOR(8b)</u>&nbsp</td></tr>
+<tr><th id="25">25</th><td>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i>// Mux API</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i>// This API allows manipulation of WebP container images containing features</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>// like color profile, metadata, animation.</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i>// Code Example#1: Create a WebPMux object with image data, color profile and</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i>// XMP metadata.</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i>  int copy_data = 0;</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i>  WebPMux* mux = WebPMuxNew();</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>  // ... (Prepare image data).</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i>  WebPMuxSetImage(mux, &amp;image, copy_data);</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i>  // ... (Prepare ICCP color profile data).</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i>  WebPMuxSetChunk(mux, "ICCP", &amp;icc_profile, copy_data);</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i>  // ... (Prepare XMP metadata).</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i>  WebPMuxSetChunk(mux, "XMP ", &amp;xmp, copy_data);</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i>  // Get data from mux in WebP RIFF format.</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i>  WebPMuxAssemble(mux, &amp;output_data);</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i>  WebPMuxDelete(mux);</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>  // ... (Consume output_data; e.g. write output_data.bytes to file).</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>  WebPDataClear(&amp;output_data);</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>*/</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i></i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i>// Code Example#2: Get image and color profile data from a WebP file.</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><i>  int copy_data = 0;</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><i>  // ... (Read data from file).</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><i>  WebPMux* mux = WebPMuxCreate(&amp;data, copy_data);</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><i>  WebPMuxGetFrame(mux, 1, &amp;image);</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><i>  // ... (Consume image; e.g. call WebPDecode() to decode the data).</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td><i>  WebPMuxGetChunk(mux, "ICCP", &amp;icc_profile);</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i>  // ... (Consume icc_data).</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i>  WebPMuxDelete(mux);</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i>  WebPFree(data);</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i>*/</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i></i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i>// Note: forward declaring enumerations is not allowed in (strict) C and C++,</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><i>// the types are left here for reference.</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td><i>// typedef enum WebPMuxError WebPMuxError;</i>&nbsp</td></tr>
+<tr><th id="66">66</th><td><i>// typedef enum WebPChunkId WebPChunkId;</i>&nbsp</td></tr>
+<tr><th id="67">67</th><td><b>typedef</b> <b>struct</b> <dfn class="type" id="WebPMux" title='WebPMux' data-ref="WebPMux"><a class="type" href="#WebPMux" title='WebPMux' data-ref="WebPMux">WebPMux</a></dfn> <dfn class="typedef" id="WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</dfn>;   <i>// main opaque object.</i>&nbsp</td></tr>
+<tr><th id="68">68</th><td><b>typedef</b> <b>struct</b> <a class="type" href="#WebPMuxFrameInfo" title='WebPMuxFrameInfo' data-ref="WebPMuxFrameInfo">WebPMuxFrameInfo</a> <dfn class="typedef" id="WebPMuxFrameInfo" title='WebPMuxFrameInfo' data-type='struct WebPMuxFrameInfo' data-ref="WebPMuxFrameInfo">WebPMuxFrameInfo</dfn>;&nbsp</td></tr>
+<tr><th id="69">69</th><td><b>typedef</b> <b>struct</b> <a class="type" href="#WebPMuxAnimParams" title='WebPMuxAnimParams' data-ref="WebPMuxAnimParams">WebPMuxAnimParams</a> <dfn class="typedef" id="WebPMuxAnimParams" title='WebPMuxAnimParams' data-type='struct WebPMuxAnimParams' data-ref="WebPMuxAnimParams">WebPMuxAnimParams</dfn>;&nbsp</td></tr>
+<tr><th id="70">70</th><td><b>typedef</b> <b>struct</b> <a class="type" href="#WebPAnimEncoderOptions" title='WebPAnimEncoderOptions' data-ref="WebPAnimEncoderOptions">WebPAnimEncoderOptions</a> <dfn class="typedef" id="WebPAnimEncoderOptions" title='WebPAnimEncoderOptions' data-type='struct WebPAnimEncoderOptions' data-ref="WebPAnimEncoderOptions">WebPAnimEncoderOptions</dfn>;&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td><i>// Error codes</i>&nbsp</td></tr>
+<tr><th id="73">73</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="WebPMuxError" title='WebPMuxError' data-ref="WebPMuxError"><a class="type" href="#WebPMuxError" title='WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a></dfn> {&nbsp</td></tr>
+<tr><th id="74">74</th><td>  <dfn class="enum" id="WEBP_MUX_OK" title='WEBP_MUX_OK' data-ref="WEBP_MUX_OK">WEBP_MUX_OK</dfn>                 =  <var>1</var>,&nbsp</td></tr>
+<tr><th id="75">75</th><td>  <dfn class="enum" id="WEBP_MUX_NOT_FOUND" title='WEBP_MUX_NOT_FOUND' data-ref="WEBP_MUX_NOT_FOUND">WEBP_MUX_NOT_FOUND</dfn>          =  <var>0</var>,&nbsp</td></tr>
+<tr><th id="76">76</th><td>  <dfn class="enum" id="WEBP_MUX_INVALID_ARGUMENT" title='WEBP_MUX_INVALID_ARGUMENT' data-ref="WEBP_MUX_INVALID_ARGUMENT">WEBP_MUX_INVALID_ARGUMENT</dfn>   = -<var>1</var>,&nbsp</td></tr>
+<tr><th id="77">77</th><td>  <dfn class="enum" id="WEBP_MUX_BAD_DATA" title='WEBP_MUX_BAD_DATA' data-ref="WEBP_MUX_BAD_DATA">WEBP_MUX_BAD_DATA</dfn>           = -<var>2</var>,&nbsp</td></tr>
+<tr><th id="78">78</th><td>  <dfn class="enum" id="WEBP_MUX_MEMORY_ERROR" title='WEBP_MUX_MEMORY_ERROR' data-ref="WEBP_MUX_MEMORY_ERROR">WEBP_MUX_MEMORY_ERROR</dfn>       = -<var>3</var>,&nbsp</td></tr>
+<tr><th id="79">79</th><td>  <dfn class="enum" id="WEBP_MUX_NOT_ENOUGH_DATA" title='WEBP_MUX_NOT_ENOUGH_DATA' data-ref="WEBP_MUX_NOT_ENOUGH_DATA">WEBP_MUX_NOT_ENOUGH_DATA</dfn>    = -<var>4</var>&nbsp</td></tr>
+<tr><th id="80">80</th><td>} <dfn class="typedef" id="WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</dfn>;&nbsp</td></tr>
+<tr><th id="81">81</th><td>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i>// IDs for different types of chunks.</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td><b>typedef</b> <b>enum</b> <dfn class="type def" id="WebPChunkId" title='WebPChunkId' data-ref="WebPChunkId"><a class="type" href="#WebPChunkId" title='WebPChunkId' data-ref="WebPChunkId">WebPChunkId</a></dfn> {&nbsp</td></tr>
+<tr><th id="84">84</th><td>  <dfn class="enum" id="WEBP_CHUNK_VP8X" title='WEBP_CHUNK_VP8X' data-ref="WEBP_CHUNK_VP8X">WEBP_CHUNK_VP8X</dfn>,        <i>// VP8X</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td>  <dfn class="enum" id="WEBP_CHUNK_ICCP" title='WEBP_CHUNK_ICCP' data-ref="WEBP_CHUNK_ICCP">WEBP_CHUNK_ICCP</dfn>,        <i>// ICCP</i>&nbsp</td></tr>
+<tr><th id="86">86</th><td>  <dfn class="enum" id="WEBP_CHUNK_ANIM" title='WEBP_CHUNK_ANIM' data-ref="WEBP_CHUNK_ANIM">WEBP_CHUNK_ANIM</dfn>,        <i>// ANIM</i>&nbsp</td></tr>
+<tr><th id="87">87</th><td>  <dfn class="enum" id="WEBP_CHUNK_ANMF" title='WEBP_CHUNK_ANMF' data-ref="WEBP_CHUNK_ANMF">WEBP_CHUNK_ANMF</dfn>,        <i>// ANMF</i>&nbsp</td></tr>
+<tr><th id="88">88</th><td>  <dfn class="enum" id="WEBP_CHUNK_DEPRECATED" title='WEBP_CHUNK_DEPRECATED' data-ref="WEBP_CHUNK_DEPRECATED">WEBP_CHUNK_DEPRECATED</dfn>,  <i>// (deprecated from FRGM)</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td>  <dfn class="enum" id="WEBP_CHUNK_ALPHA" title='WEBP_CHUNK_ALPHA' data-ref="WEBP_CHUNK_ALPHA">WEBP_CHUNK_ALPHA</dfn>,       <i>// ALPH</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td>  <dfn class="enum" id="WEBP_CHUNK_IMAGE" title='WEBP_CHUNK_IMAGE' data-ref="WEBP_CHUNK_IMAGE">WEBP_CHUNK_IMAGE</dfn>,       <i>// VP8/VP8L</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td>  <dfn class="enum" id="WEBP_CHUNK_EXIF" title='WEBP_CHUNK_EXIF' data-ref="WEBP_CHUNK_EXIF">WEBP_CHUNK_EXIF</dfn>,        <i>// EXIF</i>&nbsp</td></tr>
+<tr><th id="92">92</th><td>  <dfn class="enum" id="WEBP_CHUNK_XMP" title='WEBP_CHUNK_XMP' data-ref="WEBP_CHUNK_XMP">WEBP_CHUNK_XMP</dfn>,         <i>// XMP</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td>  <dfn class="enum" id="WEBP_CHUNK_UNKNOWN" title='WEBP_CHUNK_UNKNOWN' data-ref="WEBP_CHUNK_UNKNOWN">WEBP_CHUNK_UNKNOWN</dfn>,     <i>// Other chunks.</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td>  <dfn class="enum" id="WEBP_CHUNK_NIL" title='WEBP_CHUNK_NIL' data-ref="WEBP_CHUNK_NIL">WEBP_CHUNK_NIL</dfn>&nbsp</td></tr>
+<tr><th id="95">95</th><td>} <dfn class="typedef" id="WebPChunkId" title='WebPChunkId' data-type='enum WebPChunkId' data-ref="WebPChunkId">WebPChunkId</dfn>;&nbsp</td></tr>
+<tr><th id="96">96</th><td>&nbsp</td></tr>
+<tr><th id="97">97</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i></i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><i>// Returns the version number of the mux library, packed in hexadecimal using</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td><i>// 8bits for each of major/minor/revision. E.g: v2.5.7 is 0x020507.</i>&nbsp</td></tr>
+<tr><th id="101">101</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPGetMuxVersion" title='WebPGetMuxVersion' data-ref="WebPGetMuxVersion">WebPGetMuxVersion</dfn>(<em>void</em>);&nbsp</td></tr>
+<tr><th id="102">102</th><td>&nbsp</td></tr>
+<tr><th id="103">103</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td><i>// Life of a Mux object</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td><i></i>&nbsp</td></tr>
+<tr><th id="106">106</th><td><i>// Internal, version-checked, entry point</i>&nbsp</td></tr>
+<tr><th id="107">107</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="decl fn" id="WebPNewInternal" title='WebPNewInternal' data-ref="WebPNewInternal">WebPNewInternal</dfn>(<em>int</em>);&nbsp</td></tr>
+<tr><th id="108">108</th><td>&nbsp</td></tr>
+<tr><th id="109">109</th><td><i>// Creates an empty mux object.</i>&nbsp</td></tr>
+<tr><th id="110">110</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="111">111</th><td><i>//   A pointer to the newly created empty mux object.</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td><i>//   Or NULL in case of memory error.</i>&nbsp</td></tr>
+<tr><th id="113">113</th><td><em>static</em> <a class="macro" href="types.h.html#23" title="inline" data-ref="_M/WEBP_INLINE">WEBP_INLINE</a> <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="decl def fn" id="_ZL10WebPMuxNewv" title='WebPMuxNew' data-ref="_ZL10WebPMuxNewv">WebPMuxNew</dfn>(<em>void</em>) {&nbsp</td></tr>
+<tr><th id="114">114</th><td>  <b>return</b> <a class="ref fn" href="#WebPNewInternal" title='WebPNewInternal' data-ref="WebPNewInternal">WebPNewInternal</a>(<a class="macro" href="#24" title="0x0108" data-ref="_M/WEBP_MUX_ABI_VERSION">WEBP_MUX_ABI_VERSION</a>);&nbsp</td></tr>
+<tr><th id="115">115</th><td>}&nbsp</td></tr>
+<tr><th id="116">116</th><td>&nbsp</td></tr>
+<tr><th id="117">117</th><td><i>// Deletes the mux object.</i>&nbsp</td></tr>
+<tr><th id="118">118</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td><i>//   mux - (in/out) object to be deleted</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>void</em> <dfn class="decl fn" id="WebPMuxDelete" title='WebPMuxDelete' data-ref="WebPMuxDelete">WebPMuxDelete</dfn>(<a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col2 decl" id="22mux" title='mux' data-type='WebPMux *' data-ref="22mux">mux</dfn>);&nbsp</td></tr>
+<tr><th id="121">121</th><td>&nbsp</td></tr>
+<tr><th id="122">122</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="123">123</th><td><i>// Mux creation.</i>&nbsp</td></tr>
+<tr><th id="124">124</th><td><i></i>&nbsp</td></tr>
+<tr><th id="125">125</th><td><i>// Internal, version-checked, entry point</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="decl fn" id="WebPMuxCreateInternal" title='WebPMuxCreateInternal' data-ref="WebPMuxCreateInternal">WebPMuxCreateInternal</dfn>(<em>const</em> <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a>*, <em>int</em>, <em>int</em>);&nbsp</td></tr>
+<tr><th id="127">127</th><td>&nbsp</td></tr>
+<tr><th id="128">128</th><td><i>// Creates a mux object from raw data given in WebP RIFF format.</i>&nbsp</td></tr>
+<tr><th id="129">129</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td><i>//   bitstream - (in) the bitstream data in WebP RIFF format</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td><i>//   copy_data - (in) value 1 indicates given data WILL be copied to the mux</i>&nbsp</td></tr>
+<tr><th id="132">132</th><td><i>//               object and value 0 indicates data will NOT be copied.</i>&nbsp</td></tr>
+<tr><th id="133">133</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="134">134</th><td><i>//   A pointer to the mux object created from given data - on success.</i>&nbsp</td></tr>
+<tr><th id="135">135</th><td><i>//   NULL - In case of invalid data or memory error.</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td><em>static</em> <a class="macro" href="types.h.html#23" title="inline" data-ref="_M/WEBP_INLINE">WEBP_INLINE</a> <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="decl def fn" id="_ZL13WebPMuxCreatePK8WebPDatai" title='WebPMuxCreate' data-ref="_ZL13WebPMuxCreatePK8WebPDatai">WebPMuxCreate</dfn>(<em>const</em> <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a>* <dfn class="local col3 decl" id="23bitstream" title='bitstream' data-type='const WebPData *' data-ref="23bitstream">bitstream</dfn>,&nbsp</td></tr>
+<tr><th id="137">137</th><td>                                          <em>int</em> <dfn class="local col4 decl" id="24copy_data" title='copy_data' data-type='int' data-ref="24copy_data">copy_data</dfn>) {&nbsp</td></tr>
+<tr><th id="138">138</th><td>  <b>return</b> <a class="ref fn" href="#WebPMuxCreateInternal" title='WebPMuxCreateInternal' data-ref="WebPMuxCreateInternal">WebPMuxCreateInternal</a>(<a class="local col3 ref" href="#23bitstream" title='bitstream' data-ref="23bitstream">bitstream</a>, <a class="local col4 ref" href="#24copy_data" title='copy_data' data-ref="24copy_data">copy_data</a>, <a class="macro" href="#24" title="0x0108" data-ref="_M/WEBP_MUX_ABI_VERSION">WEBP_MUX_ABI_VERSION</a>);&nbsp</td></tr>
+<tr><th id="139">139</th><td>}&nbsp</td></tr>
+<tr><th id="140">140</th><td>&nbsp</td></tr>
+<tr><th id="141">141</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td><i>// Non-image chunks.</i>&nbsp</td></tr>
+<tr><th id="143">143</th><td><i></i>&nbsp</td></tr>
+<tr><th id="144">144</th><td><i>// Note: Only non-image related chunks should be managed through chunk APIs.</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td><i>// (Image related chunks are: "ANMF", "VP8 ", "VP8L" and "ALPH").</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td><i>// To add, get and delete images, use WebPMuxSetImage(), WebPMuxPushFrame(),</i>&nbsp</td></tr>
+<tr><th id="147">147</th><td><i>// WebPMuxGetFrame() and WebPMuxDeleteFrame().</i>&nbsp</td></tr>
+<tr><th id="148">148</th><td><i></i>&nbsp</td></tr>
+<tr><th id="149">149</th><td><i>// Adds a chunk with id 'fourcc' and data 'chunk_data' in the mux object.</i>&nbsp</td></tr>
+<tr><th id="150">150</th><td><i>// Any existing chunk(s) with the same id will be removed.</i>&nbsp</td></tr>
+<tr><th id="151">151</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="152">152</th><td><i>//   mux - (in/out) object to which the chunk is to be added</i>&nbsp</td></tr>
+<tr><th id="153">153</th><td><i>//   fourcc - (in) a character array containing the fourcc of the given chunk;</i>&nbsp</td></tr>
+<tr><th id="154">154</th><td><i>//                 e.g., "ICCP", "XMP ", "EXIF" etc.</i>&nbsp</td></tr>
+<tr><th id="155">155</th><td><i>//   chunk_data - (in) the chunk data to be added</i>&nbsp</td></tr>
+<tr><th id="156">156</th><td><i>//   copy_data - (in) value 1 indicates given data WILL be copied to the mux</i>&nbsp</td></tr>
+<tr><th id="157">157</th><td><i>//               object and value 0 indicates data will NOT be copied.</i>&nbsp</td></tr>
+<tr><th id="158">158</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="159">159</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux, fourcc or chunk_data is NULL</i>&nbsp</td></tr>
+<tr><th id="160">160</th><td><i>//                               or if fourcc corresponds to an image chunk.</i>&nbsp</td></tr>
+<tr><th id="161">161</th><td><i>//   WEBP_MUX_MEMORY_ERROR - on memory allocation error.</i>&nbsp</td></tr>
+<tr><th id="162">162</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="163">163</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxSetChunk" title='WebPMuxSetChunk' data-ref="WebPMuxSetChunk">WebPMuxSetChunk</dfn>(&nbsp</td></tr>
+<tr><th id="164">164</th><td>    <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col5 decl" id="25mux" title='mux' data-type='WebPMux *' data-ref="25mux">mux</dfn>, <em>const</em> <em>char</em> <dfn class="local col6 decl" id="26fourcc" title='fourcc' data-type='const char *' data-ref="26fourcc">fourcc</dfn>[<var>4</var>], <em>const</em> <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a>* <dfn class="local col7 decl" id="27chunk_data" title='chunk_data' data-type='const WebPData *' data-ref="27chunk_data">chunk_data</dfn>,&nbsp</td></tr>
+<tr><th id="165">165</th><td>    <em>int</em> <dfn class="local col8 decl" id="28copy_data" title='copy_data' data-type='int' data-ref="28copy_data">copy_data</dfn>);&nbsp</td></tr>
+<tr><th id="166">166</th><td>&nbsp</td></tr>
+<tr><th id="167">167</th><td><i>// Gets a reference to the data of the chunk with id 'fourcc' in the mux object.</i>&nbsp</td></tr>
+<tr><th id="168">168</th><td><i>// The caller should NOT free the returned data.</i>&nbsp</td></tr>
+<tr><th id="169">169</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="170">170</th><td><i>//   mux - (in) object from which the chunk data is to be fetched</i>&nbsp</td></tr>
+<tr><th id="171">171</th><td><i>//   fourcc - (in) a character array containing the fourcc of the chunk;</i>&nbsp</td></tr>
+<tr><th id="172">172</th><td><i>//                 e.g., "ICCP", "XMP ", "EXIF" etc.</i>&nbsp</td></tr>
+<tr><th id="173">173</th><td><i>//   chunk_data - (out) returned chunk data</i>&nbsp</td></tr>
+<tr><th id="174">174</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="175">175</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux, fourcc or chunk_data is NULL</i>&nbsp</td></tr>
+<tr><th id="176">176</th><td><i>//                               or if fourcc corresponds to an image chunk.</i>&nbsp</td></tr>
+<tr><th id="177">177</th><td><i>//   WEBP_MUX_NOT_FOUND - If mux does not contain a chunk with the given id.</i>&nbsp</td></tr>
+<tr><th id="178">178</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="179">179</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxGetChunk" title='WebPMuxGetChunk' data-ref="WebPMuxGetChunk">WebPMuxGetChunk</dfn>(&nbsp</td></tr>
+<tr><th id="180">180</th><td>    <em>const</em> <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col9 decl" id="29mux" title='mux' data-type='const WebPMux *' data-ref="29mux">mux</dfn>, <em>const</em> <em>char</em> <dfn class="local col0 decl" id="30fourcc" title='fourcc' data-type='const char *' data-ref="30fourcc">fourcc</dfn>[<var>4</var>], <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a>* <dfn class="local col1 decl" id="31chunk_data" title='chunk_data' data-type='WebPData *' data-ref="31chunk_data">chunk_data</dfn>);&nbsp</td></tr>
+<tr><th id="181">181</th><td>&nbsp</td></tr>
+<tr><th id="182">182</th><td><i>// Deletes the chunk with the given 'fourcc' from the mux object.</i>&nbsp</td></tr>
+<tr><th id="183">183</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="184">184</th><td><i>//   mux - (in/out) object from which the chunk is to be deleted</i>&nbsp</td></tr>
+<tr><th id="185">185</th><td><i>//   fourcc - (in) a character array containing the fourcc of the chunk;</i>&nbsp</td></tr>
+<tr><th id="186">186</th><td><i>//                 e.g., "ICCP", "XMP ", "EXIF" etc.</i>&nbsp</td></tr>
+<tr><th id="187">187</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="188">188</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux or fourcc is NULL</i>&nbsp</td></tr>
+<tr><th id="189">189</th><td><i>//                               or if fourcc corresponds to an image chunk.</i>&nbsp</td></tr>
+<tr><th id="190">190</th><td><i>//   WEBP_MUX_NOT_FOUND - If mux does not contain a chunk with the given fourcc.</i>&nbsp</td></tr>
+<tr><th id="191">191</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="192">192</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxDeleteChunk" title='WebPMuxDeleteChunk' data-ref="WebPMuxDeleteChunk">WebPMuxDeleteChunk</dfn>(&nbsp</td></tr>
+<tr><th id="193">193</th><td>    <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col2 decl" id="32mux" title='mux' data-type='WebPMux *' data-ref="32mux">mux</dfn>, <em>const</em> <em>char</em> <dfn class="local col3 decl" id="33fourcc" title='fourcc' data-type='const char *' data-ref="33fourcc">fourcc</dfn>[<var>4</var>]);&nbsp</td></tr>
+<tr><th id="194">194</th><td>&nbsp</td></tr>
+<tr><th id="195">195</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="196">196</th><td><i>// Images.</i>&nbsp</td></tr>
+<tr><th id="197">197</th><td><i></i>&nbsp</td></tr>
+<tr><th id="198">198</th><td><i>// Encapsulates data about a single frame.</i>&nbsp</td></tr>
+<tr><th id="199">199</th><td><b>struct</b> <dfn class="type def" id="WebPMuxFrameInfo" title='WebPMuxFrameInfo' data-ref="WebPMuxFrameInfo">WebPMuxFrameInfo</dfn> {&nbsp</td></tr>
+<tr><th id="200">200</th><td>  <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a>    <dfn class="decl field" id="WebPMuxFrameInfo::bitstream" title='WebPMuxFrameInfo::bitstream' data-ref="WebPMuxFrameInfo::bitstream">bitstream</dfn>;  <i>// image data: can be a raw VP8/VP8L bitstream</i>&nbsp</td></tr>
+<tr><th id="201">201</th><td>                          <i>// or a single-image WebP file.</i>&nbsp</td></tr>
+<tr><th id="202">202</th><td>  <em>int</em>         <dfn class="decl field" id="WebPMuxFrameInfo::x_offset" title='WebPMuxFrameInfo::x_offset' data-ref="WebPMuxFrameInfo::x_offset">x_offset</dfn>;   <i>// x-offset of the frame.</i>&nbsp</td></tr>
+<tr><th id="203">203</th><td>  <em>int</em>         <dfn class="decl field" id="WebPMuxFrameInfo::y_offset" title='WebPMuxFrameInfo::y_offset' data-ref="WebPMuxFrameInfo::y_offset">y_offset</dfn>;   <i>// y-offset of the frame.</i>&nbsp</td></tr>
+<tr><th id="204">204</th><td>  <em>int</em>         <dfn class="decl field" id="WebPMuxFrameInfo::duration" title='WebPMuxFrameInfo::duration' data-ref="WebPMuxFrameInfo::duration">duration</dfn>;   <i>// duration of the frame (in milliseconds).</i>&nbsp</td></tr>
+<tr><th id="205">205</th><td>&nbsp</td></tr>
+<tr><th id="206">206</th><td>  <a class="typedef" href="#WebPChunkId" title='WebPChunkId' data-type='enum WebPChunkId' data-ref="WebPChunkId">WebPChunkId</a> <dfn class="decl field" id="WebPMuxFrameInfo::id" title='WebPMuxFrameInfo::id' data-ref="WebPMuxFrameInfo::id">id</dfn>;         <i>// frame type: should be one of WEBP_CHUNK_ANMF</i>&nbsp</td></tr>
+<tr><th id="207">207</th><td>                          <i>// or WEBP_CHUNK_IMAGE</i>&nbsp</td></tr>
+<tr><th id="208">208</th><td>  <a class="typedef" href="mux_types.h.html#WebPMuxAnimDispose" title='WebPMuxAnimDispose' data-type='enum WebPMuxAnimDispose' data-ref="WebPMuxAnimDispose">WebPMuxAnimDispose</a> <dfn class="decl field" id="WebPMuxFrameInfo::dispose_method" title='WebPMuxFrameInfo::dispose_method' data-ref="WebPMuxFrameInfo::dispose_method">dispose_method</dfn>;  <i>// Disposal method for the frame.</i>&nbsp</td></tr>
+<tr><th id="209">209</th><td>  <a class="typedef" href="mux_types.h.html#WebPMuxAnimBlend" title='WebPMuxAnimBlend' data-type='enum WebPMuxAnimBlend' data-ref="WebPMuxAnimBlend">WebPMuxAnimBlend</a>   <dfn class="decl field" id="WebPMuxFrameInfo::blend_method" title='WebPMuxFrameInfo::blend_method' data-ref="WebPMuxFrameInfo::blend_method">blend_method</dfn>;    <i>// Blend operation for the frame.</i>&nbsp</td></tr>
+<tr><th id="210">210</th><td>  <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a>    <dfn class="decl field" id="WebPMuxFrameInfo::pad" title='WebPMuxFrameInfo::pad' data-ref="WebPMuxFrameInfo::pad">pad</dfn>[<var>1</var>];     <i>// padding for later use</i>&nbsp</td></tr>
+<tr><th id="211">211</th><td>};&nbsp</td></tr>
+<tr><th id="212">212</th><td>&nbsp</td></tr>
+<tr><th id="213">213</th><td><i>// Sets the (non-animated) image in the mux object.</i>&nbsp</td></tr>
+<tr><th id="214">214</th><td><i>// Note: Any existing images (including frames) will be removed.</i>&nbsp</td></tr>
+<tr><th id="215">215</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="216">216</th><td><i>//   mux - (in/out) object in which the image is to be set</i>&nbsp</td></tr>
+<tr><th id="217">217</th><td><i>//   bitstream - (in) can be a raw VP8/VP8L bitstream or a single-image</i>&nbsp</td></tr>
+<tr><th id="218">218</th><td><i>//               WebP file (non-animated)</i>&nbsp</td></tr>
+<tr><th id="219">219</th><td><i>//   copy_data - (in) value 1 indicates given data WILL be copied to the mux</i>&nbsp</td></tr>
+<tr><th id="220">220</th><td><i>//               object and value 0 indicates data will NOT be copied.</i>&nbsp</td></tr>
+<tr><th id="221">221</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="222">222</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux is NULL or bitstream is NULL.</i>&nbsp</td></tr>
+<tr><th id="223">223</th><td><i>//   WEBP_MUX_MEMORY_ERROR - on memory allocation error.</i>&nbsp</td></tr>
+<tr><th id="224">224</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="225">225</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxSetImage" title='WebPMuxSetImage' data-ref="WebPMuxSetImage">WebPMuxSetImage</dfn>(&nbsp</td></tr>
+<tr><th id="226">226</th><td>    <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col4 decl" id="34mux" title='mux' data-type='WebPMux *' data-ref="34mux">mux</dfn>, <em>const</em> <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a>* <dfn class="local col5 decl" id="35bitstream" title='bitstream' data-type='const WebPData *' data-ref="35bitstream">bitstream</dfn>, <em>int</em> <dfn class="local col6 decl" id="36copy_data" title='copy_data' data-type='int' data-ref="36copy_data">copy_data</dfn>);&nbsp</td></tr>
+<tr><th id="227">227</th><td>&nbsp</td></tr>
+<tr><th id="228">228</th><td><i>// Adds a frame at the end of the mux object.</i>&nbsp</td></tr>
+<tr><th id="229">229</th><td><i>// Notes: (1) frame.id should be WEBP_CHUNK_ANMF</i>&nbsp</td></tr>
+<tr><th id="230">230</th><td><i>//        (2) For setting a non-animated image, use WebPMuxSetImage() instead.</i>&nbsp</td></tr>
+<tr><th id="231">231</th><td><i>//        (3) Type of frame being pushed must be same as the frames in mux.</i>&nbsp</td></tr>
+<tr><th id="232">232</th><td><i>//        (4) As WebP only supports even offsets, any odd offset will be snapped</i>&nbsp</td></tr>
+<tr><th id="233">233</th><td><i>//            to an even location using: offset &amp;= ~1</i>&nbsp</td></tr>
+<tr><th id="234">234</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="235">235</th><td><i>//   mux - (in/out) object to which the frame is to be added</i>&nbsp</td></tr>
+<tr><th id="236">236</th><td><i>//   frame - (in) frame data.</i>&nbsp</td></tr>
+<tr><th id="237">237</th><td><i>//   copy_data - (in) value 1 indicates given data WILL be copied to the mux</i>&nbsp</td></tr>
+<tr><th id="238">238</th><td><i>//               object and value 0 indicates data will NOT be copied.</i>&nbsp</td></tr>
+<tr><th id="239">239</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="240">240</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux or frame is NULL</i>&nbsp</td></tr>
+<tr><th id="241">241</th><td><i>//                               or if content of 'frame' is invalid.</i>&nbsp</td></tr>
+<tr><th id="242">242</th><td><i>//   WEBP_MUX_MEMORY_ERROR - on memory allocation error.</i>&nbsp</td></tr>
+<tr><th id="243">243</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="244">244</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxPushFrame" title='WebPMuxPushFrame' data-ref="WebPMuxPushFrame">WebPMuxPushFrame</dfn>(&nbsp</td></tr>
+<tr><th id="245">245</th><td>    <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col7 decl" id="37mux" title='mux' data-type='WebPMux *' data-ref="37mux">mux</dfn>, <em>const</em> <a class="typedef" href="#WebPMuxFrameInfo" title='WebPMuxFrameInfo' data-type='struct WebPMuxFrameInfo' data-ref="WebPMuxFrameInfo">WebPMuxFrameInfo</a>* <dfn class="local col8 decl" id="38frame" title='frame' data-type='const WebPMuxFrameInfo *' data-ref="38frame">frame</dfn>, <em>int</em> <dfn class="local col9 decl" id="39copy_data" title='copy_data' data-type='int' data-ref="39copy_data">copy_data</dfn>);&nbsp</td></tr>
+<tr><th id="246">246</th><td>&nbsp</td></tr>
+<tr><th id="247">247</th><td><i>// Gets the nth frame from the mux object.</i>&nbsp</td></tr>
+<tr><th id="248">248</th><td><i>// The content of 'frame-&gt;bitstream' is allocated using WebPMalloc(), and NOT</i>&nbsp</td></tr>
+<tr><th id="249">249</th><td><i>// owned by the 'mux' object. It MUST be deallocated by the caller by calling</i>&nbsp</td></tr>
+<tr><th id="250">250</th><td><i>// WebPDataClear().</i>&nbsp</td></tr>
+<tr><th id="251">251</th><td><i>// nth=0 has a special meaning - last position.</i>&nbsp</td></tr>
+<tr><th id="252">252</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="253">253</th><td><i>//   mux - (in) object from which the info is to be fetched</i>&nbsp</td></tr>
+<tr><th id="254">254</th><td><i>//   nth - (in) index of the frame in the mux object</i>&nbsp</td></tr>
+<tr><th id="255">255</th><td><i>//   frame - (out) data of the returned frame</i>&nbsp</td></tr>
+<tr><th id="256">256</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="257">257</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux or frame is NULL.</i>&nbsp</td></tr>
+<tr><th id="258">258</th><td><i>//   WEBP_MUX_NOT_FOUND - if there are less than nth frames in the mux object.</i>&nbsp</td></tr>
+<tr><th id="259">259</th><td><i>//   WEBP_MUX_BAD_DATA - if nth frame chunk in mux is invalid.</i>&nbsp</td></tr>
+<tr><th id="260">260</th><td><i>//   WEBP_MUX_MEMORY_ERROR - on memory allocation error.</i>&nbsp</td></tr>
+<tr><th id="261">261</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="262">262</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxGetFrame" title='WebPMuxGetFrame' data-ref="WebPMuxGetFrame">WebPMuxGetFrame</dfn>(&nbsp</td></tr>
+<tr><th id="263">263</th><td>    <em>const</em> <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col0 decl" id="40mux" title='mux' data-type='const WebPMux *' data-ref="40mux">mux</dfn>, <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="local col1 decl" id="41nth" title='nth' data-type='uint32_t' data-ref="41nth">nth</dfn>, <a class="typedef" href="#WebPMuxFrameInfo" title='WebPMuxFrameInfo' data-type='struct WebPMuxFrameInfo' data-ref="WebPMuxFrameInfo">WebPMuxFrameInfo</a>* <dfn class="local col2 decl" id="42frame" title='frame' data-type='WebPMuxFrameInfo *' data-ref="42frame">frame</dfn>);&nbsp</td></tr>
+<tr><th id="264">264</th><td>&nbsp</td></tr>
+<tr><th id="265">265</th><td><i>// Deletes a frame from the mux object.</i>&nbsp</td></tr>
+<tr><th id="266">266</th><td><i>// nth=0 has a special meaning - last position.</i>&nbsp</td></tr>
+<tr><th id="267">267</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="268">268</th><td><i>//   mux - (in/out) object from which a frame is to be deleted</i>&nbsp</td></tr>
+<tr><th id="269">269</th><td><i>//   nth - (in) The position from which the frame is to be deleted</i>&nbsp</td></tr>
+<tr><th id="270">270</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="271">271</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux is NULL.</i>&nbsp</td></tr>
+<tr><th id="272">272</th><td><i>//   WEBP_MUX_NOT_FOUND - If there are less than nth frames in the mux object</i>&nbsp</td></tr>
+<tr><th id="273">273</th><td><i>//                        before deletion.</i>&nbsp</td></tr>
+<tr><th id="274">274</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="275">275</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxDeleteFrame" title='WebPMuxDeleteFrame' data-ref="WebPMuxDeleteFrame">WebPMuxDeleteFrame</dfn>(<a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col3 decl" id="43mux" title='mux' data-type='WebPMux *' data-ref="43mux">mux</dfn>, <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="local col4 decl" id="44nth" title='nth' data-type='uint32_t' data-ref="44nth">nth</dfn>);&nbsp</td></tr>
+<tr><th id="276">276</th><td>&nbsp</td></tr>
+<tr><th id="277">277</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="278">278</th><td><i>// Animation.</i>&nbsp</td></tr>
+<tr><th id="279">279</th><td><i></i>&nbsp</td></tr>
+<tr><th id="280">280</th><td><i>// Animation parameters.</i>&nbsp</td></tr>
+<tr><th id="281">281</th><td><b>struct</b> <dfn class="type def" id="WebPMuxAnimParams" title='WebPMuxAnimParams' data-ref="WebPMuxAnimParams">WebPMuxAnimParams</dfn> {&nbsp</td></tr>
+<tr><th id="282">282</th><td>  <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl field" id="WebPMuxAnimParams::bgcolor" title='WebPMuxAnimParams::bgcolor' data-ref="WebPMuxAnimParams::bgcolor">bgcolor</dfn>;  <i>// Background color of the canvas stored (in MSB order) as:</i>&nbsp</td></tr>
+<tr><th id="283">283</th><td>                     <i>// Bits 00 to 07: Alpha.</i>&nbsp</td></tr>
+<tr><th id="284">284</th><td><i>                     // Bits 08 to 15: Red.</i>&nbsp</td></tr>
+<tr><th id="285">285</th><td><i>                     // Bits 16 to 23: Green.</i>&nbsp</td></tr>
+<tr><th id="286">286</th><td><i>                     // Bits 24 to 31: Blue.</i>&nbsp</td></tr>
+<tr><th id="287">287</th><td>  <em>int</em> <dfn class="decl field" id="WebPMuxAnimParams::loop_count" title='WebPMuxAnimParams::loop_count' data-ref="WebPMuxAnimParams::loop_count">loop_count</dfn>;    <i>// Number of times to repeat the animation [0 = infinite].</i>&nbsp</td></tr>
+<tr><th id="288">288</th><td>};&nbsp</td></tr>
+<tr><th id="289">289</th><td>&nbsp</td></tr>
+<tr><th id="290">290</th><td><i>// Sets the animation parameters in the mux object. Any existing ANIM chunks</i>&nbsp</td></tr>
+<tr><th id="291">291</th><td><i>// will be removed.</i>&nbsp</td></tr>
+<tr><th id="292">292</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="293">293</th><td><i>//   mux - (in/out) object in which ANIM chunk is to be set/added</i>&nbsp</td></tr>
+<tr><th id="294">294</th><td><i>//   params - (in) animation parameters.</i>&nbsp</td></tr>
+<tr><th id="295">295</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="296">296</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux or params is NULL.</i>&nbsp</td></tr>
+<tr><th id="297">297</th><td><i>//   WEBP_MUX_MEMORY_ERROR - on memory allocation error.</i>&nbsp</td></tr>
+<tr><th id="298">298</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="299">299</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxSetAnimationParams" title='WebPMuxSetAnimationParams' data-ref="WebPMuxSetAnimationParams">WebPMuxSetAnimationParams</dfn>(&nbsp</td></tr>
+<tr><th id="300">300</th><td>    <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col5 decl" id="45mux" title='mux' data-type='WebPMux *' data-ref="45mux">mux</dfn>, <em>const</em> <a class="typedef" href="#WebPMuxAnimParams" title='WebPMuxAnimParams' data-type='struct WebPMuxAnimParams' data-ref="WebPMuxAnimParams">WebPMuxAnimParams</a>* <dfn class="local col6 decl" id="46params" title='params' data-type='const WebPMuxAnimParams *' data-ref="46params">params</dfn>);&nbsp</td></tr>
+<tr><th id="301">301</th><td>&nbsp</td></tr>
+<tr><th id="302">302</th><td><i>// Gets the animation parameters from the mux object.</i>&nbsp</td></tr>
+<tr><th id="303">303</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="304">304</th><td><i>//   mux - (in) object from which the animation parameters to be fetched</i>&nbsp</td></tr>
+<tr><th id="305">305</th><td><i>//   params - (out) animation parameters extracted from the ANIM chunk</i>&nbsp</td></tr>
+<tr><th id="306">306</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="307">307</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux or params is NULL.</i>&nbsp</td></tr>
+<tr><th id="308">308</th><td><i>//   WEBP_MUX_NOT_FOUND - if ANIM chunk is not present in mux object.</i>&nbsp</td></tr>
+<tr><th id="309">309</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="310">310</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxGetAnimationParams" title='WebPMuxGetAnimationParams' data-ref="WebPMuxGetAnimationParams">WebPMuxGetAnimationParams</dfn>(&nbsp</td></tr>
+<tr><th id="311">311</th><td>    <em>const</em> <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col7 decl" id="47mux" title='mux' data-type='const WebPMux *' data-ref="47mux">mux</dfn>, <a class="typedef" href="#WebPMuxAnimParams" title='WebPMuxAnimParams' data-type='struct WebPMuxAnimParams' data-ref="WebPMuxAnimParams">WebPMuxAnimParams</a>* <dfn class="local col8 decl" id="48params" title='params' data-type='WebPMuxAnimParams *' data-ref="48params">params</dfn>);&nbsp</td></tr>
+<tr><th id="312">312</th><td>&nbsp</td></tr>
+<tr><th id="313">313</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="314">314</th><td><i>// Misc Utilities.</i>&nbsp</td></tr>
+<tr><th id="315">315</th><td><i></i>&nbsp</td></tr>
+<tr><th id="316">316</th><td><i>// Sets the canvas size for the mux object. The width and height can be</i>&nbsp</td></tr>
+<tr><th id="317">317</th><td><i>// specified explicitly or left as zero (0, 0).</i>&nbsp</td></tr>
+<tr><th id="318">318</th><td><i>// * When width and height are specified explicitly, then this frame bound is</i>&nbsp</td></tr>
+<tr><th id="319">319</th><td><i>//   enforced during subsequent calls to WebPMuxAssemble() and an error is</i>&nbsp</td></tr>
+<tr><th id="320">320</th><td><i>//   reported if any animated frame does not completely fit within the canvas.</i>&nbsp</td></tr>
+<tr><th id="321">321</th><td><i>// * When unspecified (0, 0), the constructed canvas will get the frame bounds</i>&nbsp</td></tr>
+<tr><th id="322">322</th><td><i>//   from the bounding-box over all frames after calling WebPMuxAssemble().</i>&nbsp</td></tr>
+<tr><th id="323">323</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="324">324</th><td><i>//   mux - (in) object to which the canvas size is to be set</i>&nbsp</td></tr>
+<tr><th id="325">325</th><td><i>//   width - (in) canvas width</i>&nbsp</td></tr>
+<tr><th id="326">326</th><td><i>//   height - (in) canvas height</i>&nbsp</td></tr>
+<tr><th id="327">327</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="328">328</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux is NULL; or</i>&nbsp</td></tr>
+<tr><th id="329">329</th><td><i>//                               width or height are invalid or out of bounds</i>&nbsp</td></tr>
+<tr><th id="330">330</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="331">331</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxSetCanvasSize" title='WebPMuxSetCanvasSize' data-ref="WebPMuxSetCanvasSize">WebPMuxSetCanvasSize</dfn>(<a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col9 decl" id="49mux" title='mux' data-type='WebPMux *' data-ref="49mux">mux</dfn>,&nbsp</td></tr>
+<tr><th id="332">332</th><td>                                              <em>int</em> <dfn class="local col0 decl" id="50width" title='width' data-type='int' data-ref="50width">width</dfn>, <em>int</em> <dfn class="local col1 decl" id="51height" title='height' data-type='int' data-ref="51height">height</dfn>);&nbsp</td></tr>
+<tr><th id="333">333</th><td>&nbsp</td></tr>
+<tr><th id="334">334</th><td><i>// Gets the canvas size from the mux object.</i>&nbsp</td></tr>
+<tr><th id="335">335</th><td><i>// Note: This method assumes that the VP8X chunk, if present, is up-to-date.</i>&nbsp</td></tr>
+<tr><th id="336">336</th><td><i>// That is, the mux object hasn't been modified since the last call to</i>&nbsp</td></tr>
+<tr><th id="337">337</th><td><i>// WebPMuxAssemble() or WebPMuxCreate().</i>&nbsp</td></tr>
+<tr><th id="338">338</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="339">339</th><td><i>//   mux - (in) object from which the canvas size is to be fetched</i>&nbsp</td></tr>
+<tr><th id="340">340</th><td><i>//   width - (out) canvas width</i>&nbsp</td></tr>
+<tr><th id="341">341</th><td><i>//   height - (out) canvas height</i>&nbsp</td></tr>
+<tr><th id="342">342</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="343">343</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux, width or height is NULL.</i>&nbsp</td></tr>
+<tr><th id="344">344</th><td><i>//   WEBP_MUX_BAD_DATA - if VP8X/VP8/VP8L chunk or canvas size is invalid.</i>&nbsp</td></tr>
+<tr><th id="345">345</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="346">346</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxGetCanvasSize" title='WebPMuxGetCanvasSize' data-ref="WebPMuxGetCanvasSize">WebPMuxGetCanvasSize</dfn>(<em>const</em> <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col2 decl" id="52mux" title='mux' data-type='const WebPMux *' data-ref="52mux">mux</dfn>,&nbsp</td></tr>
+<tr><th id="347">347</th><td>                                              <em>int</em>* <dfn class="local col3 decl" id="53width" title='width' data-type='int *' data-ref="53width">width</dfn>, <em>int</em>* <dfn class="local col4 decl" id="54height" title='height' data-type='int *' data-ref="54height">height</dfn>);&nbsp</td></tr>
+<tr><th id="348">348</th><td>&nbsp</td></tr>
+<tr><th id="349">349</th><td><i>// Gets the feature flags from the mux object.</i>&nbsp</td></tr>
+<tr><th id="350">350</th><td><i>// Note: This method assumes that the VP8X chunk, if present, is up-to-date.</i>&nbsp</td></tr>
+<tr><th id="351">351</th><td><i>// That is, the mux object hasn't been modified since the last call to</i>&nbsp</td></tr>
+<tr><th id="352">352</th><td><i>// WebPMuxAssemble() or WebPMuxCreate().</i>&nbsp</td></tr>
+<tr><th id="353">353</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="354">354</th><td><i>//   mux - (in) object from which the features are to be fetched</i>&nbsp</td></tr>
+<tr><th id="355">355</th><td><i>//   flags - (out) the flags specifying which features are present in the</i>&nbsp</td></tr>
+<tr><th id="356">356</th><td><i>//           mux object. This will be an OR of various flag values.</i>&nbsp</td></tr>
+<tr><th id="357">357</th><td><i>//           Enum 'WebPFeatureFlags' can be used to test individual flag values.</i>&nbsp</td></tr>
+<tr><th id="358">358</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="359">359</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux or flags is NULL.</i>&nbsp</td></tr>
+<tr><th id="360">360</th><td><i>//   WEBP_MUX_BAD_DATA - if VP8X/VP8/VP8L chunk or canvas size is invalid.</i>&nbsp</td></tr>
+<tr><th id="361">361</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="362">362</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxGetFeatures" title='WebPMuxGetFeatures' data-ref="WebPMuxGetFeatures">WebPMuxGetFeatures</dfn>(<em>const</em> <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col5 decl" id="55mux" title='mux' data-type='const WebPMux *' data-ref="55mux">mux</dfn>,&nbsp</td></tr>
+<tr><th id="363">363</th><td>                                            <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a>* <dfn class="local col6 decl" id="56flags" title='flags' data-type='uint32_t *' data-ref="56flags">flags</dfn>);&nbsp</td></tr>
+<tr><th id="364">364</th><td>&nbsp</td></tr>
+<tr><th id="365">365</th><td><i>// Gets number of chunks with the given 'id' in the mux object.</i>&nbsp</td></tr>
+<tr><th id="366">366</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="367">367</th><td><i>//   mux - (in) object from which the info is to be fetched</i>&nbsp</td></tr>
+<tr><th id="368">368</th><td><i>//   id - (in) chunk id specifying the type of chunk</i>&nbsp</td></tr>
+<tr><th id="369">369</th><td><i>//   num_elements - (out) number of chunks with the given chunk id</i>&nbsp</td></tr>
+<tr><th id="370">370</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="371">371</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux, or num_elements is NULL.</i>&nbsp</td></tr>
+<tr><th id="372">372</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="373">373</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxNumChunks" title='WebPMuxNumChunks' data-ref="WebPMuxNumChunks">WebPMuxNumChunks</dfn>(<em>const</em> <a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col7 decl" id="57mux" title='mux' data-type='const WebPMux *' data-ref="57mux">mux</dfn>,&nbsp</td></tr>
+<tr><th id="374">374</th><td>                                          <a class="typedef" href="#WebPChunkId" title='WebPChunkId' data-type='enum WebPChunkId' data-ref="WebPChunkId">WebPChunkId</a> <dfn class="local col8 decl" id="58id" title='id' data-type='WebPChunkId' data-ref="58id">id</dfn>, <em>int</em>* <dfn class="local col9 decl" id="59num_elements" title='num_elements' data-type='int *' data-ref="59num_elements">num_elements</dfn>);&nbsp</td></tr>
+<tr><th id="375">375</th><td>&nbsp</td></tr>
+<tr><th id="376">376</th><td><i>// Assembles all chunks in WebP RIFF format and returns in 'assembled_data'.</i>&nbsp</td></tr>
+<tr><th id="377">377</th><td><i>// This function also validates the mux object.</i>&nbsp</td></tr>
+<tr><th id="378">378</th><td><i>// Note: The content of 'assembled_data' will be ignored and overwritten.</i>&nbsp</td></tr>
+<tr><th id="379">379</th><td><i>// Also, the content of 'assembled_data' is allocated using WebPMalloc(), and</i>&nbsp</td></tr>
+<tr><th id="380">380</th><td><i>// NOT owned by the 'mux' object. It MUST be deallocated by the caller by</i>&nbsp</td></tr>
+<tr><th id="381">381</th><td><i>// calling WebPDataClear(). It's always safe to call WebPDataClear() upon</i>&nbsp</td></tr>
+<tr><th id="382">382</th><td><i>// return, even in case of error.</i>&nbsp</td></tr>
+<tr><th id="383">383</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="384">384</th><td><i>//   mux - (in/out) object whose chunks are to be assembled</i>&nbsp</td></tr>
+<tr><th id="385">385</th><td><i>//   assembled_data - (out) assembled WebP data</i>&nbsp</td></tr>
+<tr><th id="386">386</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="387">387</th><td><i>//   WEBP_MUX_BAD_DATA - if mux object is invalid.</i>&nbsp</td></tr>
+<tr><th id="388">388</th><td><i>//   WEBP_MUX_INVALID_ARGUMENT - if mux or assembled_data is NULL.</i>&nbsp</td></tr>
+<tr><th id="389">389</th><td><i>//   WEBP_MUX_MEMORY_ERROR - on memory allocation error.</i>&nbsp</td></tr>
+<tr><th id="390">390</th><td><i>//   WEBP_MUX_OK - on success.</i>&nbsp</td></tr>
+<tr><th id="391">391</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPMuxError" title='WebPMuxError' data-type='enum WebPMuxError' data-ref="WebPMuxError">WebPMuxError</a> <dfn class="decl fn" id="WebPMuxAssemble" title='WebPMuxAssemble' data-ref="WebPMuxAssemble">WebPMuxAssemble</dfn>(<a class="typedef" href="#WebPMux" title='WebPMux' data-type='struct WebPMux' data-ref="WebPMux">WebPMux</a>* <dfn class="local col0 decl" id="60mux" title='mux' data-type='WebPMux *' data-ref="60mux">mux</dfn>,&nbsp</td></tr>
+<tr><th id="392">392</th><td>                                         <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a>* <dfn class="local col1 decl" id="61assembled_data" title='assembled_data' data-type='WebPData *' data-ref="61assembled_data">assembled_data</dfn>);&nbsp</td></tr>
+<tr><th id="393">393</th><td>&nbsp</td></tr>
+<tr><th id="394">394</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="395">395</th><td><i>// WebPAnimEncoder API</i>&nbsp</td></tr>
+<tr><th id="396">396</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="397">397</th><td><i>// This API allows encoding (possibly) animated WebP images.</i>&nbsp</td></tr>
+<tr><th id="398">398</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="399">399</th><td><i>// Code Example:</i>&nbsp</td></tr>
+<tr><th id="400">400</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="401">401</th><td><i>  WebPAnimEncoderOptions enc_options;</i>&nbsp</td></tr>
+<tr><th id="402">402</th><td><i>  WebPAnimEncoderOptionsInit(&amp;enc_options);</i>&nbsp</td></tr>
+<tr><th id="403">403</th><td><i>  // Tune 'enc_options' as needed.</i>&nbsp</td></tr>
+<tr><th id="404">404</th><td><i>  WebPAnimEncoder* enc = WebPAnimEncoderNew(width, height, &amp;enc_options);</i>&nbsp</td></tr>
+<tr><th id="405">405</th><td><i>  while(&lt;there are more frames&gt;) {</i>&nbsp</td></tr>
+<tr><th id="406">406</th><td><i>    WebPConfig config;</i>&nbsp</td></tr>
+<tr><th id="407">407</th><td><i>    WebPConfigInit(&amp;config);</i>&nbsp</td></tr>
+<tr><th id="408">408</th><td><i>    // Tune 'config' as needed.</i>&nbsp</td></tr>
+<tr><th id="409">409</th><td><i>    WebPAnimEncoderAdd(enc, frame, timestamp_ms, &amp;config);</i>&nbsp</td></tr>
+<tr><th id="410">410</th><td><i>  }</i>&nbsp</td></tr>
+<tr><th id="411">411</th><td><i>  WebPAnimEncoderAdd(enc, NULL, timestamp_ms, NULL);</i>&nbsp</td></tr>
+<tr><th id="412">412</th><td><i>  WebPAnimEncoderAssemble(enc, webp_data);</i>&nbsp</td></tr>
+<tr><th id="413">413</th><td><i>  WebPAnimEncoderDelete(enc);</i>&nbsp</td></tr>
+<tr><th id="414">414</th><td><i>  // Write the 'webp_data' to a file, or re-mux it further.</i>&nbsp</td></tr>
+<tr><th id="415">415</th><td><i>*/</i>&nbsp</td></tr>
+<tr><th id="416">416</th><td>&nbsp</td></tr>
+<tr><th id="417">417</th><td><b>typedef</b> <b>struct</b> <dfn class="type" id="WebPAnimEncoder" title='WebPAnimEncoder' data-ref="WebPAnimEncoder"><a class="type" href="#WebPAnimEncoder" title='WebPAnimEncoder' data-ref="WebPAnimEncoder">WebPAnimEncoder</a></dfn> <dfn class="typedef" id="WebPAnimEncoder" title='WebPAnimEncoder' data-type='struct WebPAnimEncoder' data-ref="WebPAnimEncoder">WebPAnimEncoder</dfn>;  <i>// Main opaque object.</i>&nbsp</td></tr>
+<tr><th id="418">418</th><td>&nbsp</td></tr>
+<tr><th id="419">419</th><td><i>// Forward declarations. Defined in encode.h.</i>&nbsp</td></tr>
+<tr><th id="420">420</th><td><b>struct</b> <a class="type" href="encode.h.html#WebPPicture" title='WebPPicture' data-ref="WebPPicture" id="WebPPicture">WebPPicture</a>;&nbsp</td></tr>
+<tr><th id="421">421</th><td><b>struct</b> <a class="type" href="encode.h.html#WebPConfig" title='WebPConfig' data-ref="WebPConfig" id="WebPConfig">WebPConfig</a>;&nbsp</td></tr>
+<tr><th id="422">422</th><td>&nbsp</td></tr>
+<tr><th id="423">423</th><td><i>// Global options.</i>&nbsp</td></tr>
+<tr><th id="424">424</th><td><b>struct</b> <dfn class="type def" id="WebPAnimEncoderOptions" title='WebPAnimEncoderOptions' data-ref="WebPAnimEncoderOptions">WebPAnimEncoderOptions</dfn> {&nbsp</td></tr>
+<tr><th id="425">425</th><td>  <a class="typedef" href="#WebPMuxAnimParams" title='WebPMuxAnimParams' data-type='struct WebPMuxAnimParams' data-ref="WebPMuxAnimParams">WebPMuxAnimParams</a> <dfn class="decl field" id="WebPAnimEncoderOptions::anim_params" title='WebPAnimEncoderOptions::anim_params' data-ref="WebPAnimEncoderOptions::anim_params">anim_params</dfn>;  <i>// Animation parameters.</i>&nbsp</td></tr>
+<tr><th id="426">426</th><td>  <em>int</em> <dfn class="decl field" id="WebPAnimEncoderOptions::minimize_size" title='WebPAnimEncoderOptions::minimize_size' data-ref="WebPAnimEncoderOptions::minimize_size">minimize_size</dfn>;    <i>// If true, minimize the output size (slow). Implicitly</i>&nbsp</td></tr>
+<tr><th id="427">427</th><td>                        <i>// disables key-frame insertion.</i>&nbsp</td></tr>
+<tr><th id="428">428</th><td>  <em>int</em> <dfn class="decl field" id="WebPAnimEncoderOptions::kmin" title='WebPAnimEncoderOptions::kmin' data-ref="WebPAnimEncoderOptions::kmin">kmin</dfn>;&nbsp</td></tr>
+<tr><th id="429">429</th><td>  <em>int</em> <dfn class="decl field" id="WebPAnimEncoderOptions::kmax" title='WebPAnimEncoderOptions::kmax' data-ref="WebPAnimEncoderOptions::kmax">kmax</dfn>;             <i>// Minimum and maximum distance between consecutive key</i>&nbsp</td></tr>
+<tr><th id="430">430</th><td>                        <i>// frames in the output. The library may insert some key</i>&nbsp</td></tr>
+<tr><th id="431">431</th><td><i>                        // frames as needed to satisfy this criteria.</i>&nbsp</td></tr>
+<tr><th id="432">432</th><td><i>                        // Note that these conditions should hold: kmax &gt; kmin</i>&nbsp</td></tr>
+<tr><th id="433">433</th><td><i>                        // and kmin &gt;= kmax / 2 + 1. Also, if kmax &lt;= 0, then</i>&nbsp</td></tr>
+<tr><th id="434">434</th><td><i>                        // key-frame insertion is disabled; and if kmax == 1,</i>&nbsp</td></tr>
+<tr><th id="435">435</th><td><i>                        // then all frames will be key-frames (kmin value does</i>&nbsp</td></tr>
+<tr><th id="436">436</th><td><i>                        // not matter for these special cases).</i>&nbsp</td></tr>
+<tr><th id="437">437</th><td>  <em>int</em> <dfn class="decl field" id="WebPAnimEncoderOptions::allow_mixed" title='WebPAnimEncoderOptions::allow_mixed' data-ref="WebPAnimEncoderOptions::allow_mixed">allow_mixed</dfn>;      <i>// If true, use mixed compression mode; may choose</i>&nbsp</td></tr>
+<tr><th id="438">438</th><td>                        <i>// either lossy and lossless for each frame.</i>&nbsp</td></tr>
+<tr><th id="439">439</th><td>  <em>int</em> <dfn class="decl field" id="WebPAnimEncoderOptions::verbose" title='WebPAnimEncoderOptions::verbose' data-ref="WebPAnimEncoderOptions::verbose">verbose</dfn>;          <i>// If true, print info and warning messages to stderr.</i>&nbsp</td></tr>
+<tr><th id="440">440</th><td>&nbsp</td></tr>
+<tr><th id="441">441</th><td>  <a class="typedef" href="../../../../../include/x86_64-linux-gnu/bits/stdint-uintn.h.html#uint32_t" title='uint32_t' data-type='__uint32_t' data-ref="uint32_t">uint32_t</a> <dfn class="decl field" id="WebPAnimEncoderOptions::padding" title='WebPAnimEncoderOptions::padding' data-ref="WebPAnimEncoderOptions::padding">padding</dfn>[<var>4</var>];  <i>// Padding for later use.</i>&nbsp</td></tr>
+<tr><th id="442">442</th><td>};&nbsp</td></tr>
+<tr><th id="443">443</th><td>&nbsp</td></tr>
+<tr><th id="444">444</th><td><i>// Internal, version-checked, entry point.</i>&nbsp</td></tr>
+<tr><th id="445">445</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPAnimEncoderOptionsInitInternal" title='WebPAnimEncoderOptionsInitInternal' data-ref="WebPAnimEncoderOptionsInitInternal">WebPAnimEncoderOptionsInitInternal</dfn>(&nbsp</td></tr>
+<tr><th id="446">446</th><td>    <a class="typedef" href="#WebPAnimEncoderOptions" title='WebPAnimEncoderOptions' data-type='struct WebPAnimEncoderOptions' data-ref="WebPAnimEncoderOptions">WebPAnimEncoderOptions</a>*, <em>int</em>);&nbsp</td></tr>
+<tr><th id="447">447</th><td>&nbsp</td></tr>
+<tr><th id="448">448</th><td><i>// Should always be called, to initialize a fresh WebPAnimEncoderOptions</i>&nbsp</td></tr>
+<tr><th id="449">449</th><td><i>// structure before modification. Returns false in case of version mismatch.</i>&nbsp</td></tr>
+<tr><th id="450">450</th><td><i>// WebPAnimEncoderOptionsInit() must have succeeded before using the</i>&nbsp</td></tr>
+<tr><th id="451">451</th><td><i>// 'enc_options' object.</i>&nbsp</td></tr>
+<tr><th id="452">452</th><td><em>static</em> <a class="macro" href="types.h.html#23" title="inline" data-ref="_M/WEBP_INLINE">WEBP_INLINE</a> <em>int</em> <dfn class="decl def fn" id="_ZL26WebPAnimEncoderOptionsInitP22WebPAnimEncoderOptions" title='WebPAnimEncoderOptionsInit' data-ref="_ZL26WebPAnimEncoderOptionsInitP22WebPAnimEncoderOptions">WebPAnimEncoderOptionsInit</dfn>(&nbsp</td></tr>
+<tr><th id="453">453</th><td>    <a class="typedef" href="#WebPAnimEncoderOptions" title='WebPAnimEncoderOptions' data-type='struct WebPAnimEncoderOptions' data-ref="WebPAnimEncoderOptions">WebPAnimEncoderOptions</a>* <dfn class="local col2 decl" id="62enc_options" title='enc_options' data-type='WebPAnimEncoderOptions *' data-ref="62enc_options">enc_options</dfn>) {&nbsp</td></tr>
+<tr><th id="454">454</th><td>  <b>return</b> <a class="ref fn" href="#WebPAnimEncoderOptionsInitInternal" title='WebPAnimEncoderOptionsInitInternal' data-ref="WebPAnimEncoderOptionsInitInternal">WebPAnimEncoderOptionsInitInternal</a>(<a class="local col2 ref" href="#62enc_options" title='enc_options' data-ref="62enc_options">enc_options</a>, <a class="macro" href="#24" title="0x0108" data-ref="_M/WEBP_MUX_ABI_VERSION">WEBP_MUX_ABI_VERSION</a>);&nbsp</td></tr>
+<tr><th id="455">455</th><td>}&nbsp</td></tr>
+<tr><th id="456">456</th><td>&nbsp</td></tr>
+<tr><th id="457">457</th><td><i>// Internal, version-checked, entry point.</i>&nbsp</td></tr>
+<tr><th id="458">458</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <a class="typedef" href="#WebPAnimEncoder" title='WebPAnimEncoder' data-type='struct WebPAnimEncoder' data-ref="WebPAnimEncoder">WebPAnimEncoder</a>* <dfn class="decl fn" id="WebPAnimEncoderNewInternal" title='WebPAnimEncoderNewInternal' data-ref="WebPAnimEncoderNewInternal">WebPAnimEncoderNewInternal</dfn>(&nbsp</td></tr>
+<tr><th id="459">459</th><td>    <em>int</em>, <em>int</em>, <em>const</em> <a class="typedef" href="#WebPAnimEncoderOptions" title='WebPAnimEncoderOptions' data-type='struct WebPAnimEncoderOptions' data-ref="WebPAnimEncoderOptions">WebPAnimEncoderOptions</a>*, <em>int</em>);&nbsp</td></tr>
+<tr><th id="460">460</th><td>&nbsp</td></tr>
+<tr><th id="461">461</th><td><i>// Creates and initializes a WebPAnimEncoder object.</i>&nbsp</td></tr>
+<tr><th id="462">462</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="463">463</th><td><i>//   width/height - (in) canvas width and height of the animation.</i>&nbsp</td></tr>
+<tr><th id="464">464</th><td><i>//   enc_options - (in) encoding options; can be passed NULL to pick</i>&nbsp</td></tr>
+<tr><th id="465">465</th><td><i>//                      reasonable defaults.</i>&nbsp</td></tr>
+<tr><th id="466">466</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="467">467</th><td><i>//   A pointer to the newly created WebPAnimEncoder object.</i>&nbsp</td></tr>
+<tr><th id="468">468</th><td><i>//   Or NULL in case of memory error.</i>&nbsp</td></tr>
+<tr><th id="469">469</th><td><em>static</em> <a class="macro" href="types.h.html#23" title="inline" data-ref="_M/WEBP_INLINE">WEBP_INLINE</a> <a class="typedef" href="#WebPAnimEncoder" title='WebPAnimEncoder' data-type='struct WebPAnimEncoder' data-ref="WebPAnimEncoder">WebPAnimEncoder</a>* <dfn class="decl def fn" id="_ZL18WebPAnimEncoderNewiiPK22WebPAnimEncoderOptions" title='WebPAnimEncoderNew' data-ref="_ZL18WebPAnimEncoderNewiiPK22WebPAnimEncoderOptions">WebPAnimEncoderNew</dfn>(&nbsp</td></tr>
+<tr><th id="470">470</th><td>    <em>int</em> <dfn class="local col3 decl" id="63width" title='width' data-type='int' data-ref="63width">width</dfn>, <em>int</em> <dfn class="local col4 decl" id="64height" title='height' data-type='int' data-ref="64height">height</dfn>, <em>const</em> <a class="typedef" href="#WebPAnimEncoderOptions" title='WebPAnimEncoderOptions' data-type='struct WebPAnimEncoderOptions' data-ref="WebPAnimEncoderOptions">WebPAnimEncoderOptions</a>* <dfn class="local col5 decl" id="65enc_options" title='enc_options' data-type='const WebPAnimEncoderOptions *' data-ref="65enc_options">enc_options</dfn>) {&nbsp</td></tr>
+<tr><th id="471">471</th><td>  <b>return</b> <a class="ref fn" href="#WebPAnimEncoderNewInternal" title='WebPAnimEncoderNewInternal' data-ref="WebPAnimEncoderNewInternal">WebPAnimEncoderNewInternal</a>(<a class="local col3 ref" href="#63width" title='width' data-ref="63width">width</a>, <a class="local col4 ref" href="#64height" title='height' data-ref="64height">height</a>, <a class="local col5 ref" href="#65enc_options" title='enc_options' data-ref="65enc_options">enc_options</a>,&nbsp</td></tr>
+<tr><th id="472">472</th><td>                                    <a class="macro" href="#24" title="0x0108" data-ref="_M/WEBP_MUX_ABI_VERSION">WEBP_MUX_ABI_VERSION</a>);&nbsp</td></tr>
+<tr><th id="473">473</th><td>}&nbsp</td></tr>
+<tr><th id="474">474</th><td>&nbsp</td></tr>
+<tr><th id="475">475</th><td><i>// Optimize the given frame for WebP, encode it and add it to the</i>&nbsp</td></tr>
+<tr><th id="476">476</th><td><i>// WebPAnimEncoder object.</i>&nbsp</td></tr>
+<tr><th id="477">477</th><td><i>// The last call to 'WebPAnimEncoderAdd' should be with frame = NULL, which</i>&nbsp</td></tr>
+<tr><th id="478">478</th><td><i>// indicates that no more frames are to be added. This call is also used to</i>&nbsp</td></tr>
+<tr><th id="479">479</th><td><i>// determine the duration of the last frame.</i>&nbsp</td></tr>
+<tr><th id="480">480</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="481">481</th><td><i>//   enc - (in/out) object to which the frame is to be added.</i>&nbsp</td></tr>
+<tr><th id="482">482</th><td><i>//   frame - (in/out) frame data in ARGB or YUV(A) format. If it is in YUV(A)</i>&nbsp</td></tr>
+<tr><th id="483">483</th><td><i>//           format, it will be converted to ARGB, which incurs a small loss.</i>&nbsp</td></tr>
+<tr><th id="484">484</th><td><i>//   timestamp_ms - (in) timestamp of this frame in milliseconds.</i>&nbsp</td></tr>
+<tr><th id="485">485</th><td><i>//                       Duration of a frame would be calculated as</i>&nbsp</td></tr>
+<tr><th id="486">486</th><td><i>//                       "timestamp of next frame - timestamp of this frame".</i>&nbsp</td></tr>
+<tr><th id="487">487</th><td><i>//                       Hence, timestamps should be in non-decreasing order.</i>&nbsp</td></tr>
+<tr><th id="488">488</th><td><i>//   config - (in) encoding options; can be passed NULL to pick</i>&nbsp</td></tr>
+<tr><th id="489">489</th><td><i>//            reasonable defaults.</i>&nbsp</td></tr>
+<tr><th id="490">490</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="491">491</th><td><i>//   On error, returns false and frame-&gt;error_code is set appropriately.</i>&nbsp</td></tr>
+<tr><th id="492">492</th><td><i>//   Otherwise, returns true.</i>&nbsp</td></tr>
+<tr><th id="493">493</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPAnimEncoderAdd" title='WebPAnimEncoderAdd' data-ref="WebPAnimEncoderAdd">WebPAnimEncoderAdd</dfn>(&nbsp</td></tr>
+<tr><th id="494">494</th><td>    <a class="typedef" href="#WebPAnimEncoder" title='WebPAnimEncoder' data-type='struct WebPAnimEncoder' data-ref="WebPAnimEncoder">WebPAnimEncoder</a>* <dfn class="local col6 decl" id="66enc" title='enc' data-type='WebPAnimEncoder *' data-ref="66enc">enc</dfn>, <b>struct</b> <a class="type" href="encode.h.html#WebPPicture" title='WebPPicture' data-ref="WebPPicture">WebPPicture</a>* <dfn class="local col7 decl" id="67frame" title='frame' data-type='struct WebPPicture *' data-ref="67frame">frame</dfn>, <em>int</em> <dfn class="local col8 decl" id="68timestamp_ms" title='timestamp_ms' data-type='int' data-ref="68timestamp_ms">timestamp_ms</dfn>,&nbsp</td></tr>
+<tr><th id="495">495</th><td>    <em>const</em> <b>struct</b> <a class="type" href="encode.h.html#WebPConfig" title='WebPConfig' data-ref="WebPConfig">WebPConfig</a>* <dfn class="local col9 decl" id="69config" title='config' data-type='const struct WebPConfig *' data-ref="69config">config</dfn>);&nbsp</td></tr>
+<tr><th id="496">496</th><td>&nbsp</td></tr>
+<tr><th id="497">497</th><td><i>// Assemble all frames added so far into a WebP bitstream.</i>&nbsp</td></tr>
+<tr><th id="498">498</th><td><i>// This call should be preceded by  a call to 'WebPAnimEncoderAdd' with</i>&nbsp</td></tr>
+<tr><th id="499">499</th><td><i>// frame = NULL; if not, the duration of the last frame will be internally</i>&nbsp</td></tr>
+<tr><th id="500">500</th><td><i>// estimated.</i>&nbsp</td></tr>
+<tr><th id="501">501</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="502">502</th><td><i>//   enc - (in/out) object from which the frames are to be assembled.</i>&nbsp</td></tr>
+<tr><th id="503">503</th><td><i>//   webp_data - (out) generated WebP bitstream.</i>&nbsp</td></tr>
+<tr><th id="504">504</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="505">505</th><td><i>//   True on success.</i>&nbsp</td></tr>
+<tr><th id="506">506</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>int</em> <dfn class="decl fn" id="WebPAnimEncoderAssemble" title='WebPAnimEncoderAssemble' data-ref="WebPAnimEncoderAssemble">WebPAnimEncoderAssemble</dfn>(<a class="typedef" href="#WebPAnimEncoder" title='WebPAnimEncoder' data-type='struct WebPAnimEncoder' data-ref="WebPAnimEncoder">WebPAnimEncoder</a>* <dfn class="local col0 decl" id="70enc" title='enc' data-type='WebPAnimEncoder *' data-ref="70enc">enc</dfn>,&nbsp</td></tr>
+<tr><th id="507">507</th><td>                                        <a class="typedef" href="mux_types.h.html#WebPData" title='WebPData' data-type='struct WebPData' data-ref="WebPData">WebPData</a>* <dfn class="local col1 decl" id="71webp_data" title='webp_data' data-type='WebPData *' data-ref="71webp_data">webp_data</dfn>);&nbsp</td></tr>
+<tr><th id="508">508</th><td>&nbsp</td></tr>
+<tr><th id="509">509</th><td><i>// Get error string corresponding to the most recent call using 'enc'. The</i>&nbsp</td></tr>
+<tr><th id="510">510</th><td><i>// returned string is owned by 'enc' and is valid only until the next call to</i>&nbsp</td></tr>
+<tr><th id="511">511</th><td><i>// WebPAnimEncoderAdd() or WebPAnimEncoderAssemble() or WebPAnimEncoderDelete().</i>&nbsp</td></tr>
+<tr><th id="512">512</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="513">513</th><td><i>//   enc - (in/out) object from which the error string is to be fetched.</i>&nbsp</td></tr>
+<tr><th id="514">514</th><td><i>// Returns:</i>&nbsp</td></tr>
+<tr><th id="515">515</th><td><i>//   NULL if 'enc' is NULL. Otherwise, returns the error string if the last call</i>&nbsp</td></tr>
+<tr><th id="516">516</th><td><i>//   to 'enc' had an error, or an empty string if the last call was a success.</i>&nbsp</td></tr>
+<tr><th id="517">517</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>const</em> <em>char</em>* <dfn class="decl fn" id="WebPAnimEncoderGetError" title='WebPAnimEncoderGetError' data-ref="WebPAnimEncoderGetError">WebPAnimEncoderGetError</dfn>(<a class="typedef" href="#WebPAnimEncoder" title='WebPAnimEncoder' data-type='struct WebPAnimEncoder' data-ref="WebPAnimEncoder">WebPAnimEncoder</a>* <dfn class="local col2 decl" id="72enc" title='enc' data-type='WebPAnimEncoder *' data-ref="72enc">enc</dfn>);&nbsp</td></tr>
+<tr><th id="518">518</th><td>&nbsp</td></tr>
+<tr><th id="519">519</th><td><i>// Deletes the WebPAnimEncoder object.</i>&nbsp</td></tr>
+<tr><th id="520">520</th><td><i>// Parameters:</i>&nbsp</td></tr>
+<tr><th id="521">521</th><td><i>//   enc - (in/out) object to be deleted</i>&nbsp</td></tr>
+<tr><th id="522">522</th><td><a class="macro" href="types.h.html#43" title="extern __attribute__ ((visibility (&quot;default&quot;)))" data-ref="_M/WEBP_EXTERN">WEBP_EXTERN</a> <em>void</em> <dfn class="decl fn" id="WebPAnimEncoderDelete" title='WebPAnimEncoderDelete' data-ref="WebPAnimEncoderDelete">WebPAnimEncoderDelete</dfn>(<a class="typedef" href="#WebPAnimEncoder" title='WebPAnimEncoder' data-type='struct WebPAnimEncoder' data-ref="WebPAnimEncoder">WebPAnimEncoder</a>* <dfn class="local col3 decl" id="73enc" title='enc' data-type='WebPAnimEncoder *' data-ref="73enc">enc</dfn>);&nbsp</td></tr>
+<tr><th id="523">523</th><td>&nbsp</td></tr>
+<tr><th id="524">524</th><td><i>//------------------------------------------------------------------------------</i>&nbsp</td></tr>
+<tr><th id="525">525</th><td>&nbsp</td></tr>
+<tr><th id="526">526</th><td><u>#<span data-ppcond="526">ifdef</span> <span class="macro" data-ref="_M/__cplusplus">__cplusplus</span></u>&nbsp</td></tr>
+<tr><th id="527">527</th><td>}    <i>// extern "C"</i>&nbsp</td></tr>
+<tr><th id="528">528</th><td><u>#<span data-ppcond="526">endif</span></u>&nbsp</td></tr>
+<tr><th id="529">529</th><td>&nbsp</td></tr>
+<tr><th id="530">530</th><td><u>#<span data-ppcond="15">endif</span>  // WEBP_WEBP_MUX_H_</u>&nbsp</td></tr>
+<tr><th id="531">531</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Src/tImageWEBP.cpp.html'>Modules/Image/Src/tImageWEBP.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

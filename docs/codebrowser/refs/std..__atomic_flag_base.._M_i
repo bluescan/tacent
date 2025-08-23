@@ -1,0 +1,12 @@
+<dec f='include/c++/11/bits/atomic_base.h' l='188' type='std::__atomic_flag_data_type'/>
+<use f='include/c++/11/bits/atomic_base.h' l='212' u='a' c='_ZNSt11atomic_flag12test_and_setESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='218' u='a' c='_ZNVSt11atomic_flag12test_and_setESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='228' u='a' c='_ZNKSt11atomic_flag4testESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='236' u='a' c='_ZNVKSt11atomic_flag4testESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='248' u='a' c='_ZNKSt11atomic_flag4waitEbSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='249' u='a' c='_ZNKSt11atomic_flag4waitEbSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='256' u='a' c='_ZNSt11atomic_flag10notify_oneEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='262' u='a' c='_ZNSt11atomic_flag10notify_allEv'/>
+<use f='include/c++/11/bits/atomic_base.h' l='277' u='a' c='_ZNSt11atomic_flag5clearESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='289' u='a' c='_ZNVSt11atomic_flag5clearESt12memory_order'/>
+<offset>0</offset>

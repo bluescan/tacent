@@ -1,0 +1,1 @@
+<dec f='include/stdlib.h' l='441' type='int initstate_r(unsigned int __seed, char *__restrict __statebuf, size_t __statelen, struct random_data *__restrict __buf)'/>

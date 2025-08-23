@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13250' ll='13257'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13250'/>
+<size>24</size>
+<mbr r='VkAabbPositionsKHR::minX' o='0' t='float'/>
+<mbr r='VkAabbPositionsKHR::minY' o='32' t='float'/>
+<mbr r='VkAabbPositionsKHR::minZ' o='64' t='float'/>
+<mbr r='VkAabbPositionsKHR::maxX' o='96' t='float'/>
+<mbr r='VkAabbPositionsKHR::maxY' o='128' t='float'/>
+<mbr r='VkAabbPositionsKHR::maxZ' o='160' t='float'/>

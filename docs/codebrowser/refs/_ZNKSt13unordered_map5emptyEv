@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/unordered_map.h' l='304' ll='306' type='bool std::unordered_map::empty() const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='301'>// size and capacity:
+
+      ///  Returns true if the %unordered_map is empty.</doc>

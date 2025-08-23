@@ -1,0 +1,5 @@
+<dec f='include/x86_64-linux-gnu/sys/cdefs.h' l='315'/>
+<use f='include/strings.h' l='104' u='c'/>
+<use f='include/strings.h' l='110' u='c'/>
+<use f='include/strings.h' l='112' u='c'/>
+<use f='include/errno.h' l='37' u='c'/>

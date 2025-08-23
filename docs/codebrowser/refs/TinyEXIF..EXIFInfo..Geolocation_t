@@ -1,0 +1,29 @@
+<def f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='272' ll='305'/>
+<use f='Modules/Image/Contrib/TinyEXIF/TinyEXIF.h' l='272'/>
+<size>280</size>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::Latitude' o='0' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::Longitude' o='64' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::Altitude' o='128' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::AltitudeRef' o='192' t='int8_t'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::RelativeAltitude' o='256' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::RollDegree' o='320' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::PitchDegree' o='384' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::YawDegree' o='448' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::SpeedX' o='512' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::SpeedY' o='576' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::SpeedZ' o='640' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::AccuracyXY' o='704' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::AccuracyZ' o='768' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::GPSDOP' o='832' t='double'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::GPSDifferential' o='896' t='uint16_t'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::GPSMapDatum' o='960' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::GPSTimeStamp' o='1216' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::GPSDateStamp' o='1472' t='std::string'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::LatComponents' o='1728' t='struct Coord_t'/>
+<mbr r='TinyEXIF::EXIFInfo::Geolocation_t::LonComponents' o='1984' t='struct Coord_t'/>
+<fun r='_ZN8TinyEXIF8EXIFInfo13Geolocation_t11parseCoordsEv'/>
+<fun r='_ZNK8TinyEXIF8EXIFInfo13Geolocation_t9hasLatLonEv'/>
+<fun r='_ZNK8TinyEXIF8EXIFInfo13Geolocation_t11hasAltitudeEv'/>
+<fun r='_ZNK8TinyEXIF8EXIFInfo13Geolocation_t19hasRelativeAltitudeEv'/>
+<fun r='_ZNK8TinyEXIF8EXIFInfo13Geolocation_t14hasOrientationEv'/>
+<fun r='_ZNK8TinyEXIF8EXIFInfo13Geolocation_t8hasSpeedEv'/>

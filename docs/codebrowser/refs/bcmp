@@ -1,0 +1,2 @@
+<dec f='include/strings.h' l='34' type='int bcmp(const void * __s1, const void * __s2, size_t __n)'/>
+<doc f='include/strings.h' l='33'>/* Compare N bytes of S1 and S2 (same as memcmp).  */</doc>

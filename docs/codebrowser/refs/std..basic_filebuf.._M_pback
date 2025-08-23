@@ -1,0 +1,11 @@
+<dec f='include/c++/11/fstream' l='169' type='std::basic_filebuf::char_type'/>
+<use f='include/c++/11/fstream' l='210' c='_ZNSt13basic_filebuf15_M_create_pbackEv'/>
+<use f='include/c++/11/fstream' l='210' c='_ZNSt13basic_filebuf15_M_create_pbackEv'/>
+<use f='include/c++/11/fstream' l='210' c='_ZNSt13basic_filebuf15_M_create_pbackEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='84' u='w' c='_ZNSt13basic_filebufC1Ev'/>
+<use f='include/c++/11/bits/fstream.tcc' l='108' u='w' c='_ZNSt13basic_filebufC1EOSt13basic_filebufIT_T0_E'/>
+<doc f='include/c++/11/fstream' l='164'>/**
+       *  Necessary bits for putback buffer management.
+       *
+       *  @note pbacks of over one character are not currently supported.
+       */</doc>

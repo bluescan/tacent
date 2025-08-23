@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='226' type='int tdPrintfPhysics(const char * format)'/>
+<def f='Modules/System/Inc/System/tPrint.h' l='353' ll='358' type='int tdPrintfPhysics(const char * f)'/>

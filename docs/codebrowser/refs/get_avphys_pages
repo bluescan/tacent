@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/sysinfo.h' l='43' type='long get_avphys_pages()'/>
+<doc f='include/x86_64-linux-gnu/sys/sysinfo.h' l='42'>/* Return number of available physical pages of memory in the system.  */</doc>

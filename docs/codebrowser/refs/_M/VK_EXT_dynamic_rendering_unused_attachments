@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18285'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18284'>// VK_EXT_dynamic_rendering_unused_attachments is a preprocessor guard. Do not pass it to API calls.</doc>

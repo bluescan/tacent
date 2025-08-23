@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='394' type='int pthread_attr_setaffinity_np(pthread_attr_t * __attr, size_t __cpusetsize, const cpu_set_t * __cpuset)'/>
+<doc f='include/pthread.h' l='392'>/* Thread created with attribute ATTR will be limited to run only on
+   the processors represented in CPUSET.  */</doc>

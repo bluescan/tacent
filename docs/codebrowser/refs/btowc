@@ -1,0 +1,3 @@
+<dec f='include/wchar.h' l='285' type='wint_t btowc(int __c)'/>
+<doc f='include/wchar.h' l='283'>/* Determine whether C constitutes a valid (one-byte) multibyte
+   character.  */</doc>

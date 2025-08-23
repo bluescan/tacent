@@ -1,0 +1,2 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='192' type='bool tString::IsAlphaNumeric(bool includeUnderscore = true, bool includeDecimal = false) const'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='823' ll='834' type='bool tString::IsAlphaNumeric(bool includeUnderscore = true, bool includeDecimal = false) const'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='1951' type='std::basic_istream&lt;_CharT, _Traits&gt; &amp; std::operator&gt;&gt;(std::basic_istream&lt;_CharT, _Traits&gt; &amp; , std::uniform_real_distribution&lt;_RealType&gt; &amp; )'/>
+<def f='include/c++/11/bits/random.tcc' l='981' ll='998' type='std::basic_istream&lt;_CharT, _Traits&gt; &amp; std::operator&gt;&gt;(std::basic_istream&lt;_CharT, _Traits&gt; &amp; __is, uniform_real_distribution&lt;_RealType&gt; &amp; __x)'/>

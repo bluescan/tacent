@@ -1,0 +1,3 @@
+<dec f='include/stdio.h' l='471' type='int vsscanf(const char *__restrict __s, const char *__restrict __format, __va_list_tag * __arg)'/>
+<dec f='include/stdio.h' l='487' type='int vsscanf(const char *__restrict __s, const char *__restrict __format, __va_list_tag * __arg)'/>
+<doc f='include/stdio.h' l='470'>/* Read formatted input from S into argument list ARG.  */</doc>

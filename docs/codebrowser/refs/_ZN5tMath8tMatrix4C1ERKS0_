@@ -1,0 +1,5 @@
+<use f='Modules/System/Inc/System/tScript.h' l='132' u='c' c='_ZNK11tExpressioncvN5tMath8tMatrix4EEv'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='100' u='c' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='59' u='c'/>
+<use f='Modules/Scene/Inc/Scene/tInstance.h' l='57' u='c'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='406' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>

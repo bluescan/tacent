@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='84' type='bool tMath::tInIntervalIE(const T val, const T min, const T max)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='84'>/* Returns val E [min, max)	*/</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='84'>// Implements val E [min, max)</doc>
+<use f='Modules/Image/Src/tPicture.cpp' l='333' u='c' c='_ZN6tImage8tPicture4CropEiiiiRK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='333' u='c' c='_ZN6tImage8tPicture4CropEiiiiRK9tColour4b'/>

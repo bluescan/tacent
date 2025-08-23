@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/node_handle.h' l='215' ll='220' type='_NodeAlloc std::_Node_handle_common::_Optional_alloc::release()'/>
+<doc f='include/c++/11/bits/node_handle.h' l='214'>// Precondition: _M_alloc is the active member of the union.</doc>

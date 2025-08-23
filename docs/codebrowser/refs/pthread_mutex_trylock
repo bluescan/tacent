@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='790' type='int pthread_mutex_trylock(pthread_mutex_t * __mutex)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='758' u='c' c='__gthread_mutex_trylock'/>
+<doc f='include/pthread.h' l='789'>/* Try locking a mutex.  */</doc>

@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/ios_base.h' l='380' type='const std::ios_base::fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='942' u='r' c='_ZSt9showpointRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='950' u='r' c='_ZSt11noshowpointRSt8ios_base'/>
+<doc f='include/c++/11/bits/ios_base.h' l='378'>/// Generates a decimal-point character unconditionally in generated
+    /// floating-point output.</doc>

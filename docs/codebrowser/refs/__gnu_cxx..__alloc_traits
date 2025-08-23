@@ -1,0 +1,40 @@
+<def f='include/c++/11/ext/alloc_traits.h' l='48' ll='166'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1810'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='317' c='_ZSt22__uninitialized_copy_aT_S_T0_RT1_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='367' c='_ZSt22__uninitialized_fill_aT_S_RKT0_RT1_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='393' c='_ZSt24__uninitialized_fill_n_aT_T0_RKT1_RT2_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='656' c='_ZSt25__uninitialized_default_aT_S_RT0_'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='686' c='_ZSt27__uninitialized_default_n_aT_T0_RT1_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='86'/>
+<use f='include/c++/11/bits/stl_vector.h' l='86'/>
+<use f='include/c++/11/bits/stl_vector.h' l='88'/>
+<use f='include/c++/11/bits/stl_vector.h' l='345' c='_ZNSt12_Vector_base11_M_allocateEm'/>
+<use f='include/c++/11/bits/stl_vector.h' l='352' c='_ZNSt12_Vector_base13_M_deallocateEN9__gnu_cxx14__alloc_traitsINS1_IT0_NS2_10value_typeEE6rebindIT_E5otherENS7_5other10value_typeEE7pointerEm'/>
+<use f='include/c++/11/bits/stl_vector.h' l='411'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='422'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='422'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='424'/>
+<fun r='__gnu_cxx::__alloc_traits::construct'/>
+<fun r='__gnu_cxx::__alloc_traits::destroy'/>
+<fun r='__gnu_cxx::__alloc_traits::_S_select_on_copy'/>
+<fun r='__gnu_cxx::__alloc_traits::_S_on_swap'/>
+<fun r='__gnu_cxx::__alloc_traits::_S_propagate_on_copy_assign'/>
+<fun r='__gnu_cxx::__alloc_traits::_S_propagate_on_move_assign'/>
+<fun r='__gnu_cxx::__alloc_traits::_S_propagate_on_swap'/>
+<fun r='__gnu_cxx::__alloc_traits::_S_always_equal'/>
+<fun r='__gnu_cxx::__alloc_traits::_S_nothrow_move'/>
+<use f='include/c++/11/bits/basic_string.h' l='87'/>
+<use f='include/c++/11/bits/basic_string.h' l='87'/>
+<use f='include/c++/11/bits/basic_string.h' l='89'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1175' c='_ZStplPKT_RKNSt7__cxx1112basic_stringIS_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1175' c='_ZStplPKT_RKNSt7__cxx1112basic_stringIS_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1177' c='_ZStplPKT_RKNSt7__cxx1112basic_stringIS_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1193' c='_ZStplT_RKNSt7__cxx1112basic_stringIS_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1193' c='_ZStplT_RKNSt7__cxx1112basic_stringIS_T0_T1_EE'/>
+<use f='include/c++/11/bits/basic_string.tcc' l='1195' c='_ZStplT_RKNSt7__cxx1112basic_stringIS_T0_T1_EE'/>
+<use f='include/c++/11/bits/stl_deque.h' l='412'/>
+<use f='include/c++/11/bits/stl_deque.h' l='412'/>
+<use f='include/c++/11/bits/stl_deque.h' l='414'/>
+<use f='include/c++/11/bits/stl_deque.h' l='426'/>
+<use f='include/c++/11/bits/stl_deque.h' l='561' c='_ZNSt11_Deque_base16_M_allocate_nodeEv'/>
+<use f='include/c++/11/bits/stl_deque.h' l='568' c='_ZNSt11_Deque_base18_M_deallocate_nodeEN9__gnu_cxx14__alloc_traitsINS1_IT0_NS2_10value_typeEE6rebindIT_E5otherENS7_5other10value_typeEE7pointerE'/>

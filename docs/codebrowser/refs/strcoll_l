@@ -1,0 +1,2 @@
+<dec f='include/string.h' l='175' type='int strcoll_l(const char * __s1, const char * __s2, locale_t __l)'/>
+<doc f='include/string.h' l='174'>/* Compare the collated forms of S1 and S2, using sorting rules from L.  */</doc>

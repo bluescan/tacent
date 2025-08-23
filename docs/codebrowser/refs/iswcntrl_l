@@ -1,0 +1,2 @@
+<dec f='include/wctype.h' l='72' type='int iswcntrl_l(wint_t __wc, locale_t __locale)'/>
+<doc f='include/wctype.h' l='71'>/* Test for any control wide character.  */</doc>

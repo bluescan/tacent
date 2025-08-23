@@ -1,0 +1,23 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='79' u='w' c='_ZN5tListC1Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='82' u='w' c='_ZN5tListC1E9tListMode'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='95' u='w' c='_ZN5tList5ResetEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='106' u='r' c='_ZNK5tList11GetNumItemsEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='107' u='r' c='_ZNK5tList8NumItemsEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='108' u='r' c='_ZNK5tList5CountEv'/>
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='171' type='int'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='399' u='w' c='_ZN5tList6InsertEPT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='415' u='w' c='_ZN5tList6AppendEPT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='446' u='w' c='_ZN5tList6InsertEPT_S1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='466' u='w' c='_ZN5tList6AppendEPT_S1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='484' u='w' c='_ZN5tList6RemoveEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='502' u='w' c='_ZN5tList4DropEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='519' u='w' c='_ZN5tList6RemoveEPT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='645' u='r' c='_ZN5tList10SortBubbleETL0__'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='663' u='r' c='_ZN5tList13BubbleForwardETL0__i'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='664' u='r' c='_ZN5tList13BubbleForwardETL0__i'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='665' u='r' c='_ZN5tList13BubbleForwardETL0__i'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='668' u='r' c='_ZN5tList13BubbleForwardETL0__i'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='719' u='r' c='_ZN5tList14BubbleBackwardETL0__i'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='720' u='r' c='_ZN5tList14BubbleBackwardETL0__i'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='721' u='r' c='_ZN5tList14BubbleBackwardETL0__i'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='724' u='r' c='_ZN5tList14BubbleBackwardETL0__i'/>

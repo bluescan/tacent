@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='228' type='void tChunk::tChunk(uint8 * chunk)'/>
+<def f='Modules/System/Inc/System/tChunk.h' l='699' ll='712' type='void tChunk::tChunk(uint8 * chunk)'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='696'>// Implementation below this line.</doc>

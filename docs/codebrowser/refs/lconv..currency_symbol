@@ -1,0 +1,3 @@
+<dec f='include/locale.h' l='69' type='char *'/>
+<offset>256</offset>
+<doc f='include/locale.h' l='69'>/* Local currency symbol.  */</doc>

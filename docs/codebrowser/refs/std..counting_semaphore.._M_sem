@@ -1,0 +1,10 @@
+<dec f='include/c++/11/semaphore' l='50' type='std::__semaphore_impl'/>
+<use f='include/c++/11/semaphore' l='54' u='w' c='_ZNSt18counting_semaphoreC1El'/>
+<use f='include/c++/11/semaphore' l='67' u='m' c='_ZNSt18counting_semaphore7releaseEl'/>
+<use f='include/c++/11/semaphore' l='68' u='m' c='_ZNSt18counting_semaphore7releaseEl'/>
+<use f='include/c++/11/semaphore' l='71' u='m' c='_ZNSt18counting_semaphore7acquireEv'/>
+<use f='include/c++/11/semaphore' l='72' u='m' c='_ZNSt18counting_semaphore7acquireEv'/>
+<use f='include/c++/11/semaphore' l='75' u='m' c='_ZNSt18counting_semaphore11try_acquireEv'/>
+<use f='include/c++/11/semaphore' l='76' u='m' c='_ZNSt18counting_semaphore11try_acquireEv'/>
+<use f='include/c++/11/semaphore' l='81' u='c' c='_ZNSt18counting_semaphore15try_acquire_forERKNSt6chrono8durationITL0__TL0_0_EE'/>
+<use f='include/c++/11/semaphore' l='86' u='c' c='_ZNSt18counting_semaphore17try_acquire_untilERKNSt6chrono10time_pointITL0__TL0_0_EE'/>

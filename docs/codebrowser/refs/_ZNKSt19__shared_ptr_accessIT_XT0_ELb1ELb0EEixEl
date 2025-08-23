@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/shared_ptr_base.h' l='1037' ll='1043' type='std::__shared_ptr_access&lt;type-parameter-0-0, _Lp, true, false&gt;::element_type &amp; std::__shared_ptr_access&lt;type-parameter-0-0, _Lp, true, false&gt;::operator[](std::ptrdiff_t __i) const'/>

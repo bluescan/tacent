@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/waitstatus.h' l='56'/>
+<doc f='include/x86_64-linux-gnu/bits/waitstatus.h' l='55'>/* Macros for constructing status values.  */</doc>

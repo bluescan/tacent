@@ -1,0 +1,35 @@
+<inh f='Modules/Foundation/Inc/Foundation/tList.h' l='37' c='tLink'/>
+<def f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='24' ll='95'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='24'/>
+<size>104</size>
+<fun r='_ZN9tPipeline5tRuleC1Ev'/>
+<fun r='_ZN9tPipeline5tRuleD1Ev'/>
+<fun r='_ZN9tPipeline5tRule5BuildEv'/>
+<fun r='_ZNK9tPipeline5tRule7GetNameEv'/>
+<fun r='_ZN9tPipeline5tRule8SetCleanEb'/>
+<fun r='_ZN9tPipeline5tRule9SetConfigENS0_7tConfigE'/>
+<fun r='_ZN9tPipeline5tRule9SetTargetERK7tString'/>
+<fun r='_ZN9tPipeline5tRule13AddDependencyERK7tString'/>
+<fun r='_ZN9tPipeline5tRule13AddDependencyEP11tStringItem'/>
+<fun r='_ZN9tPipeline5tRule15AddDependenciesER5tListI11tStringItemE'/>
+<fun r='_ZN9tPipeline5tRule16AddDependencyDirERK7tStringS3_'/>
+<fun r='_ZN9tPipeline5tRule19AddDependencyDirRecERK7tStringS3_'/>
+<fun r='_ZN9tPipeline5tRule9OutOfDateEb'/>
+<fun r='_ZN9tPipeline5tRule6AddDepERK7tString'/>
+<fun r='_ZN9tPipeline5tRule6AddDepEP11tStringItem'/>
+<fun r='_ZN9tPipeline5tRule7AddDepsER5tListI11tStringItemE'/>
+<fun r='_ZN9tPipeline5tRule9AddDepDirERK7tStringS3_'/>
+<fun r='_ZN9tPipeline5tRule12AddDepDirRecERK7tStringS3_'/>
+<mbr r='tPipeline::tRule::Target' o='192' t='tString'/>
+<mbr r='tPipeline::tRule::Dependencies' o='448' t='tList&lt;tStringItem&gt;'/>
+<mbr r='tPipeline::tRule::Clean' o='768' t='bool'/>
+<mbr r='tPipeline::tRule::Config' o='800' t='tPipeline::tRule::tConfig'/>
+<fun r='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
+<fun r='_ZN9tPipeline5tRule9SetTargetERK7tString'/>
+<fun r='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
+<fun r='_ZN9tPipeline5tRule13AddDependencyERK7tString'/>
+<fun r='_ZN9tPipeline5tRule13AddDependencyEP11tStringItem'/>
+<fun r='_ZN9tPipeline5tRule15AddDependenciesER5tListI11tStringItemE'/>
+<fun r='_ZN9tPipeline5tRule16AddDependencyDirERK7tStringS3_'/>
+<fun r='_ZN9tPipeline5tRule19AddDependencyDirRecERK7tStringS3_'/>
+<fun r='_ZN9tPipeline5tRule9OutOfDateEb'/>

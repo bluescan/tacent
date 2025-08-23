@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='107' type='0'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='108'/>
+<use f='Modules/System/Src/tChunk.cpp' l='162' u='r' c='_ZN12tChunkWriter10BeginChunkEji'/>

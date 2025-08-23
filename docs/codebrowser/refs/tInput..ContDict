@@ -1,0 +1,6 @@
+<def f='Modules/Input/Src/tControllerDefinitions.cpp' l='25' type='tMap&lt;tInput::tVidPid, tInput::tContDefn&gt;'/>
+<use f='Modules/Input/Src/tControllerDefinitions.cpp' l='40' u='m' c='_ZN6tInput15tLookupContDefnERKNS_7tVidPidE'/>
+<use f='Modules/Input/Src/tControllerDefinitions.cpp' l='46' u='m' c='_ZN6tInput17tPopulateContDictEv'/>
+<use f='Modules/Input/Src/tControllerDefinitions.cpp' l='56' u='m' c='_ZN6tInput17tPopulateContDictEv'/>
+<use f='Modules/Input/Src/tControllerDefinitions.cpp' l='62' u='m' c='_ZN6tInput17tPopulateContDictEv'/>
+<doc f='Modules/Input/Src/tControllerDefinitions.cpp' l='24'>// The controller dictionary. Lookup by vidpid and contains the controller definitions.</doc>

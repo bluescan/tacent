@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='392' type='void tMath::tAdd(tMath::tVec2 &amp; v, const tMath::tVec2 &amp; a)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='391'>// Addition. Computes d = a + b or vqm += a.</doc>
+<use f='Modules/Math/Inc/Math/tVector2.h' l='77' u='c' c='_ZN5tMath8tVector2pLERKNS_5tVec2E'/>

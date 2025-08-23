@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1007' ll='1009' type='std::unordered_map::size_type std::unordered_map::bucket_count() const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1002'>///@}
+
+      // bucket interface.
+
+      /// Returns the number of buckets of the %unordered_map.</doc>

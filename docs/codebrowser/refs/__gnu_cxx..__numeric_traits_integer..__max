@@ -1,0 +1,38 @@
+<dec f='include/c++/11/ext/numeric_traits.h' l='75' type='const _Value'/>
+<use f='include/c++/11/ext/numeric_traits.h' l='78' u='r'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='84' ll='85' type='const _Value'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='85' type='const unsigned long'/>
+<def f='include/c++/11/ext/numeric_traits.h' l='85' type='const long'/>
+<use f='include/c++/11/bits/stl_tempbuf.h' l='103' u='r' c='_ZSt20get_temporary_bufferl'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1782' u='r' c='_ZNSt6vector11_S_max_sizeERKNSt12_Vector_baseIT_T0_E14_Tp_alloc_typeE'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='888' u='r' c='_ZNKSt6vectorIbT_E8max_sizeEv'/>
+<doc f='include/c++/11/ext/numeric_traits.h' l='74'>// The initializers must be constants so that __max and __min are too.</doc>
+<use f='include/c++/11/string_view' l='504' u='r' c='_ZNSt17basic_string_view10_S_compareEmm'/>
+<use f='include/c++/11/string_view' l='505' u='r' c='_ZNSt17basic_string_view10_S_compareEmm'/>
+<use f='include/c++/11/bits/basic_string.h' l='413' c='_ZNSt7__cxx1112basic_string10_S_compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_'/>
+<use f='include/c++/11/bits/basic_string.h' l='414' u='r' c='_ZNSt7__cxx1112basic_string10_S_compareEN9__gnu_cxx14__alloc_traitsINS2_IT1_NS3_10value_typeEE6rebindIT_E5otherENS8_5other10value_typeEE9size_typeESC_'/>
+<use f='include/c++/11/ext/string_conversions.h' l='76' c='__gnu_cxx::__stoa(_TRet(*)(const_CharT*,_CharT**,_Base...),constchar*,const_CharT*,std::size_t*,_Base...)::_Range_chk::_S_chk'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='94' u='r' c='_ZNSt16__numpunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1293' u='r' c='_ZSt14__add_groupingPT_S_PKcmPKS_S4_'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='190' u='r'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1836' u='r' c='_ZNSt5deque11_S_max_sizeERKNSt11_Deque_baseIT_T0_E14_Tp_alloc_typeE'/>
+<use f='include/c++/11/bit' l='171' u='r' c='_ZSt13__countl_zeroT_'/>
+<use f='include/c++/11/bit' l='209' u='r' c='_ZSt13__countr_zeroT_'/>
+<use f='include/c++/11/bit' l='247' u='r' c='_ZSt10__popcountT_'/>
+<use f='include/c++/11/istream' l='861' u='r' c='_ZStrsRSt13basic_istreamIT_T0_ERAT1__S0_'/>
+<use f='include/c++/11/bits/istream.tcc' l='143' u='r' c='_ZNSt13basic_istreamrsERs'/>
+<use f='include/c++/11/bits/istream.tcc' l='146' u='r' c='_ZNSt13basic_istreamrsERs'/>
+<use f='include/c++/11/bits/istream.tcc' l='188' u='r' c='_ZNSt13basic_istreamrsERi'/>
+<use f='include/c++/11/bits/istream.tcc' l='191' u='r' c='_ZNSt13basic_istreamrsERi'/>
+<use f='include/c++/11/bits/istream.tcc' l='392' u='r' c='_ZNSt13basic_istream3getERSt15basic_streambufIT_T0_ES1_'/>
+<use f='include/c++/11/bits/istream.tcc' l='395' u='r' c='_ZNSt13basic_istream3getERSt15basic_streambufIT_T0_ES1_'/>
+<use f='include/c++/11/bits/istream.tcc' l='537' u='r' c='_ZNSt13basic_istream6ignoreEl'/>
+<use f='include/c++/11/bits/istream.tcc' l='548' u='r' c='_ZNSt13basic_istream6ignoreEl'/>
+<use f='include/c++/11/bits/istream.tcc' l='551' u='r' c='_ZNSt13basic_istream6ignoreEl'/>
+<use f='include/c++/11/bits/istream.tcc' l='602' u='r' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='614' u='r' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/istream.tcc' l='617' u='r' c='_ZNSt13basic_istream6ignoreElNT0_8int_typeE'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='92' u='r' c='_ZNSt18__moneypunct_cache8_M_cacheERKSt6locale'/>
+<use f='include/c++/11/bits/sstream.tcc' l='280' c='_ZNSt7__cxx1115basic_stringbuf8_M_pbumpEPT_S2_NT0_8off_typeE'/>
+<use f='include/c++/11/bits/sstream.tcc' l='282' c='_ZNSt7__cxx1115basic_stringbuf8_M_pbumpEPT_S2_NT0_8off_typeE'/>
+<use f='include/c++/11/bits/sstream.tcc' l='283' u='r' c='_ZNSt7__cxx1115basic_stringbuf8_M_pbumpEPT_S2_NT0_8off_typeE'/>

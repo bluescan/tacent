@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14300'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14299'>// VK_EXT_fragment_shader_interlock is a preprocessor guard. Do not pass it to API calls.</doc>

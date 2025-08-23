@@ -1,0 +1,8 @@
+<def f='include/c++/11/istream' l='92' ll='95' type='void std::basic_istream::basic_istream&lt;_CharT, _Traits&gt;(std::basic_istream::__streambuf_type * __sb)'/>
+<doc f='include/c++/11/istream' l='85'>/**
+       *  @brief  Base constructor.
+       *
+       *  This ctor is almost never called by the user directly, rather from
+       *  derived classes&apos; initialization lists, which pass a pointer to
+       *  their own stream buffer.
+      */</doc>

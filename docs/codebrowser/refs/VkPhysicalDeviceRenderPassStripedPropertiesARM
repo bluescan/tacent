@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17134' ll='17139'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17134'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceRenderPassStripedPropertiesARM::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceRenderPassStripedPropertiesARM::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceRenderPassStripedPropertiesARM::renderPassStripeGranularity' o='128' t='VkExtent2D'/>
+<mbr r='VkPhysicalDeviceRenderPassStripedPropertiesARM::maxRenderPassStripes' o='192' t='uint32_t'/>

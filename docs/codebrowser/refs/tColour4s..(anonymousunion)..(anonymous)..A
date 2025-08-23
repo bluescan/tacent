@@ -1,0 +1,37 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='547' u='w' c='_ZN9tColour4s3SetERK9tColour3si'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='548' u='w' c='_ZN9tColour4s3SetEiiii'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='549' u='w' c='_ZN9tColour4s3SetEtttt'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='567' u='w' c='_ZN9tColour4s4SetAEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='573' u='r' c='_ZNK9tColour4s4GetAEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='583' u='r' c='_ZNK9tColour4s10GetDenormAEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='594' u='w' c='_ZN9tColour4s8MakeZeroEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='595' u='w' c='_ZN9tColour4s9MakeBlackEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='596' u='w' c='_ZN9tColour4s9MakeWhiteEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='597' u='w' c='_ZN9tColour4s8MakePinkEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='599' u='w' c='_ZN9tColour4s7MakeRedEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='600' u='w' c='_ZN9tColour4s9MakeGreenEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='601' u='w' c='_ZN9tColour4s8MakeBlueEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='603' u='w' c='_ZN9tColour4s8MakeGreyEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='604' u='w' c='_ZN9tColour4s13MakeLightGreyEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='605' u='w' c='_ZN9tColour4s12MakeDarkGreyEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='607' u='w' c='_ZN9tColour4s8MakeCyanEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='608' u='w' c='_ZN9tColour4s11MakeMagentaEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='609' u='w' c='_ZN9tColour4s10MakeYellowEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='623' u='w' c='_ZN9tColour4smLEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='623' u='r' c='_ZN9tColour4smLEf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='625' u='w' c='_ZN9tColour4spLERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='625' u='r' c='_ZN9tColour4spLERKS_'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='631' u='r' c='_ZN9tColour4scvjEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='632' u='r' c='_ZNK9tColour4scvjEv'/>
+<dec f='Modules/Math/Inc/Math/tColour.h' l='656' type='uint16'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='811' u='r' c='_ZN9tColour4f3SetERK9tColour4s'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1077' u='r' c='_ZN9tColour4b3SetERK9tColour4s'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1169' u='w' c='_ZN9tColour4s3SetERK9tColour4b'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1178' u='w' c='_ZN9tColour4s3SetERK9tColour3bh'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1190' u='w' c='_ZN9tColour4s3SetERK9tColour3ft'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1206' u='r' c='_ZNK9tColour4s9IntensityEj'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1223' u='r' c='_ZNK9tColour4s5EqualERKS_j'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1223' u='r' c='_ZNK9tColour4s5EqualERKS_j'/>
+<offset>48</offset>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='837' u='r' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='916' u='r' c='_ZNK6tImage9tImagePNG8IsOpaqueEv'/>

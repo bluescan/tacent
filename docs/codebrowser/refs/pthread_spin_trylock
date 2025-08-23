@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1242' type='int pthread_spin_trylock(pthread_spinlock_t * __lock)'/>
+<doc f='include/pthread.h' l='1241'>/* Try to lock spinlock LOCK.  */</doc>

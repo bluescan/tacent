@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='558' type='void tMath::tCross(tMath::tVec3 &amp; v, const tMath::tVec3 &amp; a)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='1147' ll='1153' type='void tMath::tCross(tMath::tVec3 &amp; v, const tMath::tVec3 &amp; a)'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='557'>// Cross Product. Computes d = a X b or v X= a.</doc>

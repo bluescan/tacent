@@ -1,0 +1,30 @@
+<def f='include/c++/11/bits/ios_base.h' l='57' ll='80'/>
+<use f='include/c++/11/bits/ios_base.h' l='82' c='_ZStanSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='83' c='_ZStanSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='83' c='_ZStanSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='84' c='_ZStanSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='86' c='_ZStorSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='87' c='_ZStorSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='87' c='_ZStorSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='88' c='_ZStorSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='90' c='_ZSteoSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='91' c='_ZSteoSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='91' c='_ZSteoSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='92' c='_ZSteoSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='94' c='_ZStcoSt13_Ios_Fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='95' c='_ZStcoSt13_Ios_Fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='96' c='_ZStcoSt13_Ios_Fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='98' c='_ZStoRRSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='99' c='_ZStoRRSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='99' c='_ZStoRRSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='102' c='_ZStaNRSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='103' c='_ZStaNRSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='103' c='_ZStaNRSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='106' c='_ZSteORSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='107' c='_ZSteORSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='107' c='_ZSteORSt13_Ios_FmtflagsS_'/>
+<use f='include/c++/11/bits/ios_base.h' l='341'/>
+<doc f='include/c++/11/bits/ios_base.h' l='53'>// The following definitions of bitmask types are enums, not ints,
+  // as permitted (but not required) in the standard, in order to provide
+  // better type safety in iostream calls.  A side effect is that in C++98
+  // expressions involving them are not compile-time constants.</doc>

@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='192' type='void rgbcx::encode_bc3(uint32_t level, void * pDst, const uint8_t * pPixels)'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='4017' ll='4023' type='void rgbcx::encode_bc3(uint32_t level, void * pDst, const uint8_t * pPixels)'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='327' u='c' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='188'>// Encodes a 4x4 block of RGBA pixels to BC3 format.
+	// There are two encode_bc3() functions. 
+	// The first is the recommended function, which accepts a level parameter.
+	// The second is a low-level version that allows fine control over BC1 encoding. </doc>

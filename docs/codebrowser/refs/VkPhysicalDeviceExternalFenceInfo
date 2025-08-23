@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5554' ll='5558'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5554'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceExternalFenceInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceExternalFenceInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkPhysicalDeviceExternalFenceInfo::handleType' o='128' t='VkExternalFenceHandleTypeFlagBits'/>

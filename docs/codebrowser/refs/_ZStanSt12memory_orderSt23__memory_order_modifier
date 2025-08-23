@@ -1,0 +1,15 @@
+<def f='include/c++/11/bits/atomic_base.h' l='103' ll='107' type='std::memory_order std::operator&amp;(std::memory_order __m, std::__memory_order_modifier __mod)'/>
+<use f='include/c++/11/bits/atomic_base.h' l='120' u='c' c='_ZSt23__cmpexch_failure_orderSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='121' u='c' c='_ZSt23__cmpexch_failure_orderSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='127' u='c' c='_ZSt32__is_valid_cmpexch_failure_orderSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='128' u='c' c='_ZSt32__is_valid_cmpexch_failure_orderSt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='272' u='c' c='_ZNSt11atomic_flag5clearESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='284' u='c' c='_ZNVSt11atomic_flag5clearESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='459' u='c' c='_ZNSt13__atomic_base5storeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='472' u='c' c='_ZNVSt13__atomic_base5storeET_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='484' u='c' c='_ZNKSt13__atomic_base4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='495' u='c' c='_ZNVKSt13__atomic_base4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='790' u='c' c='_ZNSt13__atomic_baseIPT_E5storeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='804' u='c' c='_ZNVSt13__atomic_baseIPT_E5storeES1_St12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='816' u='c' c='_ZNKSt13__atomic_baseIPT_E4loadESt12memory_order'/>
+<use f='include/c++/11/bits/atomic_base.h' l='827' u='c' c='_ZNVKSt13__atomic_baseIPT_E4loadESt12memory_order'/>

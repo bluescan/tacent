@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='460' type='bool tImage::tGetAspectRatioFrac(int &amp; numerator, int &amp; denominator, tImage::tAspectRatio )'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='694' u='c' c='_ZN6tImage20tGetAspectRatioFloatENS_12tAspectRatioE'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='458'>// If Invalid/Free/User is passed in, returns false and sets numerator and denominator to 0.
+// Otherwise returns true and fills in numerator and denominator in reduced form (16:10 -&gt; 8:5).</doc>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='817' ll='833' type='bool tImage::tGetAspectRatioFrac(int &amp; numerator, int &amp; denominator, tImage::tAspectRatio aspect)'/>

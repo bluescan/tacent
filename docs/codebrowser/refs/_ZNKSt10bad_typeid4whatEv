@@ -1,0 +1,2 @@
+<dec f='include/c++/11/typeinfo' l='217' type='const char * std::bad_typeid::what() const'/>
+<doc f='include/c++/11/typeinfo' l='216'>// See comment in eh_exception.cc.</doc>

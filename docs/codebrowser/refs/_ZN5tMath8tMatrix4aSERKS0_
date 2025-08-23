@@ -1,0 +1,3 @@
+<use f='Modules/Scene/Inc/Scene/tCamera.h' l='32' u='c' c='_ZN6tScene7tCamera5ClearEv'/>
+<use f='Modules/Scene/Src/tCamera.cpp' l='40' u='c' c='_ZN6tScene7tCamera5ScaleEf'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='252' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>

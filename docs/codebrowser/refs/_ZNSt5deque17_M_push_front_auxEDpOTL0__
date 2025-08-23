@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/stl_deque.h' l='1958' type='void std::deque::_M_push_front_aux(_Args &amp;&amp;... __args)'/>
+<def f='include/c++/11/bits/deque.tcc' l='519' ll='556' type='void std::deque::_M_push_front_aux(_Args &amp;&amp;... __args)'/>
+<doc f='include/c++/11/bits/deque.tcc' l='518'>// Called only if _M_impl._M_start._M_cur == _M_impl._M_start._M_first.</doc>

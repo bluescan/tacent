@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/max_size_type.h' l='96' u='c' c='_ZNSt6ranges8__detail15__max_size_typeppEv'/>
+<def f='include/c++/11/bits/max_size_type.h' l='118' ll='126' type='std::ranges::__detail::__max_size_type &amp; std::ranges::__detail::__max_size_type::operator+=(const std::ranges::__detail::__max_size_type &amp; __r)'/>
+<use f='include/c++/11/bits/max_size_type.h' l='130' u='c' c='_ZNSt6ranges8__detail15__max_size_typemIERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='153' u='c' c='_ZNSt6ranges8__detail15__max_size_typemLES1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='312' u='c' c='_ZNSt6ranges8__detailplENS0_15__max_size_typeERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='503' u='c' c='_ZNSt6ranges8__detail15__max_diff_typepLERKS1_'/>

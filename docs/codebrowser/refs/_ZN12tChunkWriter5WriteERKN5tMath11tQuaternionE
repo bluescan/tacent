@@ -1,0 +1,3 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='148' type='int tChunkWriter::Write(const tMath::tQuaternion &amp; )'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='34' u='c' c='_ZNK6tScene6tJoint4SaveER12tChunkWriter'/>
+<def f='Modules/System/Src/tChunk.cpp' l='372' ll='384' type='int tChunkWriter::Write(const tMath::tQuaternion &amp; q)'/>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/time.h' l='69'/>
+<doc f='include/x86_64-linux-gnu/bits/time.h' l='68'>/* Flag to indicate time is absolute.  */</doc>

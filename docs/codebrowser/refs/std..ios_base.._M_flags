@@ -1,0 +1,11 @@
+<dec f='include/c++/11/bits/ios_base.h' l='547' type='std::ios_base::fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='650' u='r' c='_ZNKSt8ios_base5flagsEv'/>
+<use f='include/c++/11/bits/ios_base.h' l='662' u='r' c='_ZNSt8ios_base5flagsESt13_Ios_Fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='663' u='w' c='_ZNSt8ios_base5flagsESt13_Ios_Fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='678' u='r' c='_ZNSt8ios_base4setfESt13_Ios_Fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='679' u='w' c='_ZNSt8ios_base4setfESt13_Ios_Fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='695' u='r' c='_ZNSt8ios_base4setfESt13_Ios_FmtflagsS0_'/>
+<use f='include/c++/11/bits/ios_base.h' l='696' u='w' c='_ZNSt8ios_base4setfESt13_Ios_FmtflagsS0_'/>
+<use f='include/c++/11/bits/ios_base.h' l='697' u='w' c='_ZNSt8ios_base4setfESt13_Ios_FmtflagsS0_'/>
+<use f='include/c++/11/bits/ios_base.h' l='709' u='w' c='_ZNSt8ios_base6unsetfESt13_Ios_Fmtflags'/>
+<offset>192</offset>

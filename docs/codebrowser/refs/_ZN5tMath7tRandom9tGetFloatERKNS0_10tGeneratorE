@@ -1,0 +1,16 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='111' type='float tMath::tRandom::tGetFloat(const tMath::tRandom::tGenerator &amp;  = DefaultGenerator)'/>
+<def f='Modules/Math/Inc/Math/tRandom.h' l='166' ll='169' type='float tMath::tRandom::tGetFloat(const tMath::tRandom::tGenerator &amp; gen = DefaultGenerator)'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='182' u='c' c='_ZN5tMath7tRandom11tGetBoundedEffRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='211' u='c' c='_ZN5tMath7tRandom18tGetPointOnLineSegERKNS_8tLineSegERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='134' u='c' c='_ZN5tMath7tRandom7tGetDirERKNS_8tVector3EfRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='137' u='c' c='_ZN5tMath7tRandom7tGetDirERKNS_8tVector3EfRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='140' u='c' c='_ZN5tMath7tRandom7tGetDirERKNS_8tVector3EfRKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='157' u='c' c='_ZN5tMath7tRandom19tGetPointOnTriangleERKNS_9tTriangleERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='158' u='c' c='_ZN5tMath7tRandom19tGetPointOnTriangleERKNS_9tTriangleERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='170' u='c' c='_ZN5tMath7tRandom21tGetPointOnUnitSquareERKNS_6tPlaneERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='171' u='c' c='_ZN5tMath7tRandom21tGetPointOnUnitSquareERKNS_6tPlaneERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='252' u='c' c='_ZN5tMath7tRandom19tGetPointOnCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='265' u='c' c='_ZN5tMath7tRandom14tGetPointInBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='266' u='c' c='_ZN5tMath7tRandom14tGetPointInBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='267' u='c' c='_ZN5tMath7tRandom14tGetPointInBoxERKNS_5tABoxERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='310' u='c' c='_ZN5tMath7tRandom19tGetPointInCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>

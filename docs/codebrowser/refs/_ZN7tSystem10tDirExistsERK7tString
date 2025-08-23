@@ -1,0 +1,10 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='178' type='bool tSystem::tDirExists(const tString &amp; dir)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='174'>// Check if a directory or logical drive exists. Valid directory names include &quot;E:/&quot;, &quot;C:/Program Files/&quot; etc. Drives
+// without media in them are considered non-existent. For example, if &quot;E:/&quot; refers to a CD ROM drive without media in
+// it, you&apos;ll get a false because you can&apos;t actually enter that directory. If the drive doesn&apos;t exist on the system at
+// all you&apos;ll get a false as well. If you want to check if a drive letter exists on windows, use tDriveExists.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='477' ll='518' type='bool tSystem::tDirExists(const tString &amp; dir)'/>
+<use f='Modules/System/Src/tFile.cpp' l='1167' u='c' c='_ZN7tSystem11tDeleteFileERK7tStringbb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3131' u='c' c='_ZN7tSystem10tCreateDirERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='3146' u='c' c='_ZN7tSystem11tCreateDirsERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='3242' u='c' c='_ZN7tSystem10tDeleteDirERK7tStringb'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_iterator_base_funcs.h' l='96' ll='105' type='typename iterator_traits&lt;_RandomAccessIterator&gt;::difference_type std::__distance(_RandomAccessIterator __first, _RandomAccessIterator __last, std::random_access_iterator_tag )'/>

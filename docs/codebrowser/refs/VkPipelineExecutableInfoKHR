@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9951' ll='9956'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9951'/>
+<size>32</size>
+<mbr r='VkPipelineExecutableInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineExecutableInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineExecutableInfoKHR::pipeline' o='128' t='VkPipeline'/>
+<mbr r='VkPipelineExecutableInfoKHR::executableIndex' o='192' t='uint32_t'/>

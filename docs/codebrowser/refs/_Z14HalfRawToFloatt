@@ -1,0 +1,9 @@
+<dec f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='70' type='float HalfRawToFloat(uint16 )'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='88' u='c' c='_ZNK5tHalf5FloatEv'/>
+<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='278' ll='299' type='float HalfRawToFloat(uint16 raw)'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='332' u='c' c='_ZNK16tPackedF11F11F103GetERfS0_S0_'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='333' u='c' c='_ZNK16tPackedF11F11F103GetERfS0_S0_'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='334' u='c' c='_ZNK16tPackedF11F11F103GetERfS0_S0_'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='368' u='c' c='_ZNK16tPackedF10F11F113GetERfS0_S0_'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='369' u='c' c='_ZNK16tPackedF10F11F113GetERfS0_S0_'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='370' u='c' c='_ZNK16tPackedF10F11F113GetERfS0_S0_'/>

@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='884' ll='886' type='float std::hermitef(unsigned int __n, float __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='878'>/**
+   * Return the Hermite polynomial @f$ H_n(x) @f$ of nonnegative order n
+   * and float argument @c x.
+   *
+   * @see hermite for details.
+   */</doc>

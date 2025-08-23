@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='874' type='int tcsetpgrp(int __fd, __pid_t __pgrp_id)'/>
+<doc f='include/unistd.h' l='873'>/* Set the foreground process group ID of FD set PGRP_ID.  */</doc>

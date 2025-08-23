@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='462' type='void tMath::tMul(tMath::tMat2 &amp; d, float a, const tMath::tMat2 &amp; b)'/>
+<use f='Modules/Math/Inc/Math/tMatrix2.h' l='67' u='c' c='_ZN5tMathmlEfRKNS_5tMat2E'/>

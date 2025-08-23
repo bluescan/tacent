@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/fs_dir.h' l='553' ll='555' type='std::filesystem::recursive_directory_iterator std::filesystem::end(std::filesystem::recursive_directory_iterator )'/>
+<doc f='include/c++/11/bits/fs_dir.h' l='552'>/// Return a past-the-end recursive_directory_iterator</doc>

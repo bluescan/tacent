@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='135' type='19'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='135'>// We do not yet support V1V2 data twiddling.</doc>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='839' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>

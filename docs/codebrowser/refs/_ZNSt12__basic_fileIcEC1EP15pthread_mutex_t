@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='63' type='void std::__basic_file&lt;char&gt;::__basic_file(std::__c_lock * __lock = 0)'/>
+<use f='include/c++/11/bits/fstream.tcc' l='81' u='c' c='_ZNSt13basic_filebufC1Ev'/>

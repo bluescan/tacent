@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='2267' type='std::num_get::iter_type std::num_get::do_get(std::num_get::iter_type , std::num_get::iter_type , std::ios_base &amp; , ios_base::iostate &amp; , long double &amp; ) const'/>
+<def f='include/c++/11/bits/locale_facets.tcc' l='735' ll='748' type='_InIter std::num_get::do_get(std::num_get::iter_type __beg, std::num_get::iter_type __end, std::ios_base &amp; __io, ios_base::iostate &amp; __err, long double &amp; __v) const'/>

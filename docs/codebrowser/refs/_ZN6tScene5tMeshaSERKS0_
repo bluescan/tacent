@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Inc/Scene/tPolyModel.h' l='57' u='c' c='_ZN6tScene10tPolyModelaSERKS0_'/>
+<def f='Modules/Scene/Src/tMesh.cpp' l='23' ll='107' type='tScene::tMesh &amp; tScene::tMesh::operator=(const tScene::tMesh &amp; src)'/>

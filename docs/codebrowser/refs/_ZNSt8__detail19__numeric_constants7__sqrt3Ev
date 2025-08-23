@@ -1,0 +1,2 @@
+<def f='include/c++/11/tr1/special_function_util.h' l='88' ll='89' type='static _Tp std::__detail::__numeric_constants::__sqrt3()'/>
+<doc f='include/c++/11/tr1/special_function_util.h' l='87'>///  Constant @f$ \sqrt(3) @f$.</doc>

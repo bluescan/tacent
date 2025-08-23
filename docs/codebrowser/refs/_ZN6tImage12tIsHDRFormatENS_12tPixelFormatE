@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='276' type='bool tImage::tIsHDRFormat(tImage::tPixelFormat )'/>
+<def f='Modules/Image/Inc/Image/tPixelFormat.h' l='590' ll='623' type='bool tImage::tIsHDRFormat(tImage::tPixelFormat format)'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='628' u='c' c='_ZN6tImage12tIsLDRFormatENS_12tPixelFormatE'/>

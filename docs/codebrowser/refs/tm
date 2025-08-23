@@ -1,0 +1,33 @@
+<def f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='7' ll='26'/>
+<use f='include/time.h' l='83' c='mktime'/>
+<use f='include/time.h' l='102' c='strftime'/>
+<use f='include/time.h' l='108' c='strptime'/>
+<use f='include/time.h' l='118' c='strftime_l'/>
+<use f='include/time.h' l='124' c='strptime_l'/>
+<use f='include/time.h' l='132' c='gmtime'/>
+<use f='include/time.h' l='136' c='localtime'/>
+<use f='include/time.h' l='154' c='gmtime_r'/>
+<use f='include/time.h' l='155' c='gmtime_r'/>
+<use f='include/time.h' l='159' c='localtime_r'/>
+<use f='include/time.h' l='160' c='localtime_r'/>
+<use f='include/time.h' l='179' c='asctime'/>
+<use f='include/time.h' l='197' c='asctime_r'/>
+<use f='include/time.h' l='249' c='timegm'/>
+<use f='include/time.h' l='251' c='timelocal'/>
+<use f='include/time.h' l='422' c='getdate'/>
+<use f='include/time.h' l='437' c='getdate_r'/>
+<use f='include/wchar.h' l='854' c='wcsftime'/>
+<use f='include/wchar.h' l='861' c='wcsftime_l'/>
+<size>56</size>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='6'>/* ISO C `broken-down time&apos; structure.  */</doc>
+<mbr r='tm::tm_sec' o='0' t='int'/>
+<mbr r='tm::tm_min' o='32' t='int'/>
+<mbr r='tm::tm_hour' o='64' t='int'/>
+<mbr r='tm::tm_mday' o='96' t='int'/>
+<mbr r='tm::tm_mon' o='128' t='int'/>
+<mbr r='tm::tm_year' o='160' t='int'/>
+<mbr r='tm::tm_wday' o='192' t='int'/>
+<mbr r='tm::tm_yday' o='224' t='int'/>
+<mbr r='tm::tm_isdst' o='256' t='int'/>
+<mbr r='tm::tm_gmtoff' o='320' t='long'/>
+<mbr r='tm::tm_zone' o='384' t='const char *'/>

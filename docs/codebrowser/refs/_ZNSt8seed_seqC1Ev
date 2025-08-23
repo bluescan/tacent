@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/random.h' l='6072' ll='6074' type='void std::seed_seq::seed_seq()'/>
+<doc f='include/c++/11/bits/random.h' l='6071'>/** Default constructor. */</doc>

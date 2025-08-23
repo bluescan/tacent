@@ -1,0 +1,15 @@
+<def f='Modules/Math/Inc/Math/tVector4.h' l='31' type='void tMath::tVector4::tVector4(float x, float y, float z, float w)'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='45' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='46' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='47' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='48' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='49' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='50' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='51' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='52' u='c' c='_ZN5tMath5tABox9TransformERKNS_8tMatrix4E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='50' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='51' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='52' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='53' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='54' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='55' u='c'/>

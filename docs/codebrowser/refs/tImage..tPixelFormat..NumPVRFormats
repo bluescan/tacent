@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='239' type='2'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='402' u='r'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='417' u='r'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='470' u='r'/>

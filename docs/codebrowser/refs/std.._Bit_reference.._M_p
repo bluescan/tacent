@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/stl_bvector.h' l='74' type='std::_Bit_type *'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='78' u='w' c='_ZNSt14_Bit_referenceC1EPmm'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='80' u='w' c='_ZNSt14_Bit_referenceC1Ev'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='87' u='r' c='_ZNKSt14_Bit_referencecvbEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='93' u='r' c='_ZNSt14_Bit_referenceaSEb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='95' u='r' c='_ZNSt14_Bit_referenceaSEb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='113' u='r' c='_ZNSt14_Bit_reference4flipEv'/>
+<offset>0</offset>

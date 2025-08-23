@@ -1,0 +1,1 @@
+<def f='include/c++/11/cmath' l='554' ll='557' type='typename __gnu_cxx::__enable_if&lt;__is_integer&lt;_Tp&gt;::__value, int&gt;::__type std::fpclassify(_Tp __x)'/>

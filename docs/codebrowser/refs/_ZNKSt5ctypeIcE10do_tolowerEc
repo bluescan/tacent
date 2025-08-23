@@ -1,0 +1,15 @@
+<use f='include/c++/11/bits/locale_facets.h' l='839' u='c' c='_ZNKSt5ctypeIcE7tolowerEc'/>
+<dec f='include/c++/11/bits/locale_facets.h' l='1050' type='std::ctype&lt;char&gt;::char_type std::ctype&lt;char&gt;::do_tolower(std::ctype&lt;char&gt;::char_type __c) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1036'>/**
+       *  @brief  Convert to lowercase.
+       *
+       *  This virtual function converts the char argument to lowercase if
+       *  possible.  If not possible (for example, &apos;2&apos;), returns the argument.
+       *
+       *  do_tolower() is a hook for a derived facet to change the behavior of
+       *  lowercasing.  do_tolower() must always return the same result for
+       *  the same input.
+       *
+       *  @param __c  The char to convert.
+       *  @return  The lowercase char if convertible, else @a __c.
+      */</doc>

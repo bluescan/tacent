@@ -1,0 +1,6 @@
+<def f='include/c++/11/new' l='217' ll='220'/>
+<use f='include/c++/11/new' l='222'/>
+<size>1</size>
+<doc f='include/c++/11/new' l='215'>/// Tag type used to declare a class-specific operator delete that can
+  /// invoke the destructor before deallocating the memory.</doc>
+<fun r='_ZNSt19destroying_delete_tC1Ev'/>

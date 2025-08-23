@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='602' type='_OIter std::reverse_copy(_BIter , _BIter , _OIter )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='1171' ll='1190' macro='1' type='_OutputIterator std::reverse_copy(_BidirectionalIterator __first, _BidirectionalIterator __last, _OutputIterator __result)'/>

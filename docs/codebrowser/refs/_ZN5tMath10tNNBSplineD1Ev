@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tSpline.h' l='230' type='void tMath::tNNBSpline::~tNNBSpline()'/>
+<def f='Modules/Math/Src/tSpline.cpp' l='551' ll='553' type='void tMath::tNNBSpline::~tNNBSpline()'/>

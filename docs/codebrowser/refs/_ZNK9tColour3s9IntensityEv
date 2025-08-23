@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='508' type='int tColour3s::Intensity() const'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='508'>/* Returns intensity (average of RGB) in range [0, 65535]. */</doc>

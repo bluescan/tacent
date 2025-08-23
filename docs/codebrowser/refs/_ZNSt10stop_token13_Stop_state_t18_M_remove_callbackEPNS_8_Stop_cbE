@@ -1,0 +1,2 @@
+<def f='include/c++/11/stop_token' l='310' ll='350' type='void std::stop_token::_Stop_state_t::_M_remove_callback(std::stop_token::_Stop_cb * __cb)'/>
+<use f='include/c++/11/stop_token' l='611' u='c' c='_ZNSt13stop_callbackD1Ev'/>

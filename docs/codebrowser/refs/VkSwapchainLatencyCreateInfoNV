@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18376' ll='18380'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18376'/>
+<size>24</size>
+<mbr r='VkSwapchainLatencyCreateInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkSwapchainLatencyCreateInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkSwapchainLatencyCreateInfoNV::latencyModeEnable' o='128' t='VkBool32'/>

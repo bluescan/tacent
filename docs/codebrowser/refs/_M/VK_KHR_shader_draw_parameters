@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8557'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='8556'>// VK_KHR_shader_draw_parameters is a preprocessor guard. Do not pass it to API calls.</doc>

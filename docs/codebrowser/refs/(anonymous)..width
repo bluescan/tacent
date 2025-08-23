@@ -1,0 +1,13 @@
+<dec f='Modules/Image/Contrib/QOI/qoi.h' l='237' type='unsigned int'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='366' u='r' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='369' u='r' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='375' u='r' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='385' u='r' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='402' u='r' c='qoi_encode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='508' u='w' c='qoi_decode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='514' u='r' c='qoi_decode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='518' u='r' c='qoi_decode'/>
+<use f='Modules/Image/Contrib/QOI/qoi.h' l='527' u='r' c='qoi_decode'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='60' u='r' c='_ZN6tImage9tImageQOI4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='209' u='w' c='_ZNK6tImage9tImageQOI4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>0</offset>

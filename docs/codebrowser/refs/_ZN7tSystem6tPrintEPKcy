@@ -1,0 +1,6 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='104' type='int tSystem::tPrint(const char * string, tSystem::tChannel channels = tChannel_Default)'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='102'>// Same as above but will only print to stdout if the channel is active. Essentially it calls the above print to
+	// output to stdout if the channel is active.</doc>
+<def f='Modules/System/Src/tPrint.cpp' l='231' ll='237' type='int tSystem::tPrint(const char * text, tSystem::tChannel channels = tChannel_Default)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='474' u='c' c='_Z8tvPrintfPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='488' u='c' c='_Z8tvPrintfyPKcP13__va_list_tag'/>

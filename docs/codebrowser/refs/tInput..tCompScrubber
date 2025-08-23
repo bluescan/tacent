@@ -1,0 +1,4 @@
+<inh f='Modules/Input/Inc/Input/tComp.h' l='24' c='tInput::tComponent'/>
+<def f='Modules/Input/Inc/Input/tCompScrubber.h' l='23' ll='36'/>
+<size>88</size>
+<fun r='_ZN6tInput13tCompScrubberD1Ev'/>

@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/atomic_base.h' l='523' u='c' c='_ZNSt13__atomic_base21compare_exchange_weakERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='534' u='c' c='_ZNVSt13__atomic_base21compare_exchange_weakERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='560' u='c' c='_ZNSt13__atomic_base23compare_exchange_strongERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='571' u='c' c='_ZNVSt13__atomic_base23compare_exchange_strongERT_S0_St12memory_orderS2_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='856' u='c' c='_ZNSt13__atomic_baseIPT_E23compare_exchange_strongERS1_S1_St12memory_orderS4_'/>
+<use f='include/c++/11/bits/atomic_base.h' l='867' u='c' c='_ZNVSt13__atomic_baseIPT_E23compare_exchange_strongERS1_S1_St12memory_orderS4_'/>

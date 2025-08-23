@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_uninitialized.h' l='1001' ll='1002'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='1005' c='_ZSt14__relocate_a_1PT_S0_S0_RSaIT0_E'/>
+<inh f='include/c++/11/type_traits' l='65' c='std::integral_constant'/>
+<def f='include/c++/11/bits/stl_deque.h' l='2328' ll='2330'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='2326'>// std::allocator is safe, but it is not the only allocator
+  // for which this is valid.</doc>

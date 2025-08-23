@@ -1,0 +1,3 @@
+<def f='include/c++/11/tr1/ell_integral.tcc' l='662' ll='681' type='_Tp std::__detail::__comp_ellint_3(_Tp __k, _Tp __nu)'/>
+<use f='include/c++/11/bits/specfun.h' l='454' u='c' c='_ZSt14comp_ellint_3fff'/>
+<use f='include/c++/11/bits/specfun.h' l='464' u='c' c='_ZSt14comp_ellint_3lee'/>

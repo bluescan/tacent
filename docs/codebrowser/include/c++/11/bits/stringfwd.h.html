@@ -1,0 +1,122 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>stringfwd.h source code [include/c++/11/bits/stringfwd.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/c++/11/bits/stringfwd.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>include</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='stringfwd.h.html'>stringfwd.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// &lt;string&gt; Forward declarations -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2001-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/stringfwd.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{string}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i class="doc">// ISO C++ 14882: 21 Strings library</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><u>#<span data-ppcond="34">ifndef</span> <span class="macro" data-ref="_M/_STRINGFWD_H">_STRINGFWD_H</span></u>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#define <dfn class="macro" id="_M/_STRINGFWD_H" data-ref="_M/_STRINGFWD_H">_STRINGFWD_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><u>#pragma GCC system_header</u>&nbsp</td></tr>
+<tr><th id="38">38</th><td>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#include &lt;bits/c++config.h&gt;</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;bits/memoryfwd.h&gt;</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="43">43</th><td>{&nbsp</td></tr>
+<tr><th id="44">44</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="45">45</th><td>&nbsp</td></tr>
+<tr><th id="46">46</th><td>  <i class="doc">/**</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i class="doc">   *  <span class="command">@defgroup</span> <span class="verb">strings Strings</span></i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i class="doc">   *</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><i class="doc">   *  @{</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><i class="doc">  */</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td>&nbsp</td></tr>
+<tr><th id="52">52</th><td>  <b>template</b>&lt;<b>class</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="53">53</th><td>    <b>struct</b> <a class="type" href="char_traits.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits" id="std::char_traits">char_traits</a>;&nbsp</td></tr>
+<tr><th id="54">54</th><td>&nbsp</td></tr>
+<tr><th id="55">55</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <a class="type" href="char_traits.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits" id="std::char_traits"><a class="type" href="stl_algobase.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits">char_traits</a></a>&lt;<em>char</em>&gt;;&nbsp</td></tr>
+<tr><th id="56">56</th><td>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#<span data-ppcond="57">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1797" data-ref="_M/_GLIBCXX_USE_WCHAR_T">_GLIBCXX_USE_WCHAR_T</a></u>&nbsp</td></tr>
+<tr><th id="58">58</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <a class="type" href="char_traits.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits" id="std::char_traits"><a class="type" href="stl_algobase.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits">char_traits</a></a>&lt;<em>wchar_t</em>&gt;;&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#<span data-ppcond="57">endif</span></u>&nbsp</td></tr>
+<tr><th id="60">60</th><td>&nbsp</td></tr>
+<tr><th id="61">61</th><td><u>#<span data-ppcond="61">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#694" data-ref="_M/_GLIBCXX_USE_CHAR8_T">_GLIBCXX_USE_CHAR8_T</a></u>&nbsp</td></tr>
+<tr><th id="62">62</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <a class="type" href="char_traits.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits" id="std::char_traits"><a class="type" href="stl_algobase.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits">char_traits</a></a>&lt;<b>char8_t</b>&gt;;&nbsp</td></tr>
+<tr><th id="63">63</th><td><u>#<span data-ppcond="61">endif</span></u>&nbsp</td></tr>
+<tr><th id="64">64</th><td>&nbsp</td></tr>
+<tr><th id="65">65</th><td><u>#<span data-ppcond="65">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="66">66</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <a class="type" href="char_traits.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits" id="std::char_traits"><a class="type" href="stl_algobase.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits">char_traits</a></a>&lt;<em>char16_t</em>&gt;;&nbsp</td></tr>
+<tr><th id="67">67</th><td>  <b>template</b>&lt;&gt; <b>struct</b> <a class="type" href="char_traits.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits" id="std::char_traits"><a class="type" href="stl_algobase.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits">char_traits</a></a>&lt;<em>char32_t</em>&gt;;&nbsp</td></tr>
+<tr><th id="68">68</th><td><u>#<span data-ppcond="65">endif</span></u>&nbsp</td></tr>
+<tr><th id="69">69</th><td>&nbsp</td></tr>
+<tr><th id="70">70</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#309" title="namespace __cxx11 {" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_CXX11">_GLIBCXX_BEGIN_NAMESPACE_CXX11</a>&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td>  <b>template</b>&lt;<b>typename</b> _CharT, <b>typename</b> _Traits = <a class="type" href="stl_algobase.h.html#std::char_traits" title='std::char_traits' data-ref="std::char_traits">char_traits</a>&lt;_CharT&gt;,&nbsp</td></tr>
+<tr><th id="73">73</th><td>           <b>typename</b> _Alloc = <a class="type" href="memoryfwd.h.html#std::allocator" title='std::allocator' data-ref="std::allocator">allocator</a>&lt;_CharT&gt; &gt;&nbsp</td></tr>
+<tr><th id="74">74</th><td>    <b>class</b> <a class="type" href="basic_string.h.html#std::basic_string" title='std::basic_string' data-ref="std::basic_string" id="std::basic_string">basic_string</a>;&nbsp</td></tr>
+<tr><th id="75">75</th><td>&nbsp</td></tr>
+<tr><th id="76">76</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#310" title="}" data-ref="_M/_GLIBCXX_END_NAMESPACE_CXX11">_GLIBCXX_END_NAMESPACE_CXX11</a>&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td>  <i class="doc">/// A string of<span class="command"> @c</span> <span class="arg">char</span></i>&nbsp</td></tr>
+<tr><th id="79">79</th><td>  <b>typedef</b> <a class="type" href="#std::basic_string" title='std::basic_string' data-ref="std::basic_string">basic_string</a>&lt;<em>char</em>&gt;    <dfn class="typedef" id="std::string" title='std::string' data-type='basic_string&lt;char&gt;' data-ref="std::string">string</dfn>;   &nbsp</td></tr>
+<tr><th id="80">80</th><td>&nbsp</td></tr>
+<tr><th id="81">81</th><td><u>#<span data-ppcond="81">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#1797" data-ref="_M/_GLIBCXX_USE_WCHAR_T">_GLIBCXX_USE_WCHAR_T</a></u>&nbsp</td></tr>
+<tr><th id="82">82</th><td>  <i class="doc">/// A string of<span class="command"> @c</span> <span class="arg">wchar_t</span></i>&nbsp</td></tr>
+<tr><th id="83">83</th><td>  <b>typedef</b> <a class="type" href="#std::basic_string" title='std::basic_string' data-ref="std::basic_string">basic_string</a>&lt;<em>wchar_t</em>&gt; <dfn class="typedef" id="std::wstring" title='std::wstring' data-type='basic_string&lt;wchar_t&gt;' data-ref="std::wstring">wstring</dfn>;   &nbsp</td></tr>
+<tr><th id="84">84</th><td><u>#<span data-ppcond="81">endif</span></u>&nbsp</td></tr>
+<tr><th id="85">85</th><td>&nbsp</td></tr>
+<tr><th id="86">86</th><td><u>#<span data-ppcond="86">ifdef</span> <a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#694" data-ref="_M/_GLIBCXX_USE_CHAR8_T">_GLIBCXX_USE_CHAR8_T</a></u>&nbsp</td></tr>
+<tr><th id="87">87</th><td>  <i class="doc">/// A string of<span class="command"> @c</span> <span class="arg">char8_t</span></i>&nbsp</td></tr>
+<tr><th id="88">88</th><td>  <b>typedef</b> <a class="type" href="#std::basic_string" title='std::basic_string' data-ref="std::basic_string">basic_string</a>&lt;<b>char8_t</b>&gt; <dfn class="typedef" id="std::u8string" title='std::u8string' data-type='basic_string&lt;char8_t&gt;' data-ref="std::u8string">u8string</dfn>;&nbsp</td></tr>
+<tr><th id="89">89</th><td><u>#<span data-ppcond="86">endif</span></u>&nbsp</td></tr>
+<tr><th id="90">90</th><td>&nbsp</td></tr>
+<tr><th id="91">91</th><td><u>#<span data-ppcond="91">if</span> <span class="macro" title="202002L" data-ref="_M/__cplusplus">__cplusplus</span> &gt;= 201103L</u>&nbsp</td></tr>
+<tr><th id="92">92</th><td>  <i class="doc">/// A string of<span class="command"> @c</span> <span class="arg">char16_t</span></i>&nbsp</td></tr>
+<tr><th id="93">93</th><td>  <b>typedef</b> <a class="type" href="#std::basic_string" title='std::basic_string' data-ref="std::basic_string">basic_string</a>&lt;<em>char16_t</em>&gt; <dfn class="typedef" id="std::u16string" title='std::u16string' data-type='basic_string&lt;char16_t&gt;' data-ref="std::u16string">u16string</dfn>; &nbsp</td></tr>
+<tr><th id="94">94</th><td>&nbsp</td></tr>
+<tr><th id="95">95</th><td>  <i class="doc">/// A string of<span class="command"> @c</span> <span class="arg">char32_t</span></i>&nbsp</td></tr>
+<tr><th id="96">96</th><td>  <b>typedef</b> <a class="type" href="#std::basic_string" title='std::basic_string' data-ref="std::basic_string">basic_string</a>&lt;<em>char32_t</em>&gt; <dfn class="typedef" id="std::u32string" title='std::u32string' data-type='basic_string&lt;char32_t&gt;' data-ref="std::u32string">u32string</dfn>; &nbsp</td></tr>
+<tr><th id="97">97</th><td><u>#<span data-ppcond="91">endif</span></u>&nbsp</td></tr>
+<tr><th id="98">98</th><td>&nbsp</td></tr>
+<tr><th id="99">99</th><td>  <i class="doc">/** @}  */</i>&nbsp</td></tr>
+<tr><th id="100">100</th><td>&nbsp</td></tr>
+<tr><th id="101">101</th><td><a class="macro" href="../../../x86_64-linux-gnu/c++/11/bits/c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="102">102</th><td>} <i>// namespace std</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td>&nbsp</td></tr>
+<tr><th id="104">104</th><td><u>#<span data-ppcond="34">endif</span>	// _STRINGFWD_H</u>&nbsp</td></tr>
+<tr><th id="105">105</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../Modules/Foundation/Inc/Foundation/tBitField.h.html'>Modules/Foundation/Inc/Foundation/tBitField.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

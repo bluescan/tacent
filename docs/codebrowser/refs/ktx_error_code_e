@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='169' ll='192'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='169'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='209'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='165'>/**
+ * @~English
+ * @brief Error codes returned by library functions.
+ */</doc>

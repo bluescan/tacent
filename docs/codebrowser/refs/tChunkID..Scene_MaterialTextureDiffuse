@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tChunk.h' l='545' type='16982016'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='545'>// Specifies the diffuse texture. It&apos;s properties and texture file location (probably a tga or bmp). The file will be specified relative to the .txp file.</doc>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='101' u='r' c='_ZNK6tScene9tMaterial4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='185' c='_ZN6tScene9tMaterial4LoadERK6tChunk'/>

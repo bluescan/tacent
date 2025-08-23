@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/std_function.h' l='259' ll='301'/>
+<def f='include/c++/11/bits/std_function.h' l='304' ll='311'/>
+<use f='include/c++/11/bits/std_function.h' l='305'/>
+<use f='include/c++/11/bits/std_function.h' l='320'/>
+<ovr f='include/c++/11/bits/std_function.h' l='324' c='std::_Target_handler'/>
+<use f='include/c++/11/bits/std_function.h' l='325'/>
+<use f='include/c++/11/bits/std_function.h' l='357'/>
+<size>1</size>
+<doc f='include/c++/11/bits/std_function.h' l='303'>// Specialization for invalid types</doc>
+<fun r='_ZNSt17_Function_handlerIFT_DpT1_ET0_E10_M_managerERSt9_Any_dataRKS6_St18_Manager_operation'/>
+<fun r='_ZNSt17_Function_handlerIFT_DpT1_ET0_E9_M_invokeERKSt9_Any_dataDpOS1_'/>
+<fun r='_ZNSt17_Function_handlerIFT_DpT1_ET0_E15_S_nothrow_initEv'/>
+<fun r='_ZNSt17_Function_handlerIvvE10_M_managerERSt9_Any_dataRKS1_St18_Manager_operation'/>

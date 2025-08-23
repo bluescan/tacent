@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='266' ll='268' type='float std::assoc_legendref(unsigned int __l, unsigned int __m, float __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='260'>/**
+   * Return the associated Legendre function of degree @c l and order @c m
+   * for @c float argument.
+   *
+   * @see assoc_legendre for more details.
+   */</doc>

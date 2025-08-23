@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='250' type='const char32_t'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='250'>// U+FFFE Guaranteed not a valid character.</doc>
+<use f='Modules/Foundation/Src/tStandard.cpp' l='812' u='r' c='_ZN4tUTF10DecodeUtf8ERDiPKDu'/>

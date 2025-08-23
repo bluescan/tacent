@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/ios_base.h' l='556' type='std::ios_base::_Callback_list *'/>
+<use f='include/c++/11/bits/ios_base.h' l='563' u='w' c='_ZNSt8ios_base14_Callback_listC1EPFvNS_5eventERS_iEiPS0_'/>
+<offset>0</offset>
+<doc f='include/c++/11/bits/ios_base.h' l='555'>// Data Members</doc>

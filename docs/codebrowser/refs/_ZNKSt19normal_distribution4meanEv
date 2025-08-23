@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='2045' ll='2047' type='_RealType std::normal_distribution::mean() const'/>
+<doc f='include/c++/11/bits/random.h' l='2042'>/**
+       * @brief Returns the mean of the distribution.
+       */</doc>

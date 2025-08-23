@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9368'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9367'>// VK_KHR_sampler_ycbcr_conversion is a preprocessor guard. Do not pass it to API calls.</doc>

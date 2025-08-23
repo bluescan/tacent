@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='252' type='const char32_t'/>
+<doc f='Modules/Foundation/Inc/Foundation/tStandard.h' l='252'>// U+FEFF Byte order marker. If bytes reversed in file it&apos;s little endian and value will be cCodepoint_SpecialNonCharA.</doc>
+<use f='Modules/System/Src/tFile.cpp' l='1031' u='r' c='_ZN7tSystem11tCreateFileERK7tStringPDuib'/>
+<use f='Modules/System/Src/tFile.cpp' l='1059' u='r' c='_ZN7tSystem11tCreateFileERK7tStringPDsib'/>
+<use f='Modules/System/Src/tFile.cpp' l='1085' u='a' c='_ZN7tSystem11tCreateFileERK7tStringPDiib'/>

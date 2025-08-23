@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_uninitialized.h' l='701' ll='704' type='_ForwardIterator std::__uninitialized_default_n_a(_ForwardIterator __first, _Size __n, allocator&lt;_Tp&gt; &amp; )'/>

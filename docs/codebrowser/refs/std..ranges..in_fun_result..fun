@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/ranges_algo.h' l='159' type='_Fp'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='166' u='r' c='_ZNKRSt6ranges13in_fun_resultcvNS_13in_fun_resultITL0__TL0_0_EEEv'/>
+<use f='include/c++/11/bits/ranges_algo.h' l='172' c='_ZNOSt6ranges13in_fun_resultcvNS_13in_fun_resultITL0__TL0_0_EEEv'/>

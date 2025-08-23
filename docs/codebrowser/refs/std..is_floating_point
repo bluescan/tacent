@@ -1,0 +1,19 @@
+<def f='include/c++/11/type_traits' l='422' ll='424'/>
+<use f='include/c++/11/type_traits' l='565'/>
+<use f='include/c++/11/type_traits' l='3101'/>
+<use f='include/c++/11/chrono' l='282'/>
+<use f='include/c++/11/bits/random.h' l='166'/>
+<use f='include/c++/11/bits/random.h' l='1744'/>
+<use f='include/c++/11/bits/random.h' l='1974'/>
+<use f='include/c++/11/bits/random.h' l='2195'/>
+<use f='include/c++/11/bits/random.h' l='2406'/>
+<use f='include/c++/11/bits/random.h' l='2634'/>
+<use f='include/c++/11/bits/random.h' l='2858'/>
+<use f='include/c++/11/bits/random.h' l='3066'/>
+<use f='include/c++/11/bits/random.h' l='3298'/>
+<use f='include/c++/11/bits/random.h' l='4649'/>
+<use f='include/c++/11/bits/random.h' l='4864'/>
+<use f='include/c++/11/bits/random.h' l='5074'/>
+<use f='include/c++/11/bits/random.h' l='5516'/>
+<use f='include/c++/11/bits/random.h' l='5787'/>
+<use f='include/c++/11/bits/random.tcc' l='3350' c='_ZSt18generate_canonicalRT1_'/>

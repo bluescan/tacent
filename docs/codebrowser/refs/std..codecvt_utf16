@@ -1,0 +1,12 @@
+<def f='include/c++/11/codecvt' l='67' ll='74'/>
+<inh f='include/c++/11/codecvt' l='159' c='std::__codecvt_utf16_base'/>
+<def f='include/c++/11/codecvt' l='159' macro='1'/>
+<inh f='include/c++/11/codecvt' l='163' c='std::__codecvt_utf16_base'/>
+<def f='include/c++/11/codecvt' l='163' macro='1'/>
+<inh f='include/c++/11/codecvt' l='168' c='std::__codecvt_utf16_base'/>
+<def f='include/c++/11/codecvt' l='168' macro='1'/>
+<fun r='_ZNSt13codecvt_utf16C1Em'/>
+<fun r='_ZNSt13codecvt_utf16D1Ev'/>
+<fun r='_ZNSt13codecvt_utf16IDsXT_EXT0_EEC1Em'/>
+<fun r='_ZNSt13codecvt_utf16IDiXT_EXT0_EEC1Em'/>
+<fun r='_ZNSt13codecvt_utf16IwXT_EXT0_EEC1Em'/>

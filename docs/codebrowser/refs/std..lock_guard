@@ -1,0 +1,38 @@
+<def f='include/c++/11/bits/std_mutex.h' l='223' ll='242'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='216' c='_ZN6tsList6InsertEPT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='217' c='_ZN6tsList6InsertEPT_S1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='218' c='_ZN6tsList6AppendEPT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='219' c='_ZN6tsList6AppendEPT_S1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='220' c='_ZN6tsList6RemoveEPT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='221' c='_ZN6tsList6RemoveEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='222' c='_ZN6tsList4DropEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='223' c='_ZN6tsList5ClearEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='224' c='_ZN6tsList5ResetEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='225' c='_ZN6tsList5EmptyEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='226' c='_ZNK6tsList4HeadEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='227' c='_ZNK6tsList4TailEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='228' c='_ZNK6tsList5FirstEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='229' c='_ZNK6tsList4LastEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='230' c='_ZNK6tsList8NextCircEPKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='231' c='_ZNK6tsList8PrevCircEPKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='232' c='_ZNK6tsList11GetNumItemsEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='233' c='_ZNK6tsList8NumItemsEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='234' c='_ZNK6tsList5CountEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='236' c='_ZNK6tsList7IsEmptyEv'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='237' c='_ZNK6tsList8ContainsERKT_'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='238' c='_ZN6tsList4SortETL0__18tListSortAlgorithm'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='239' c='_ZN6tsList6InsertEPT_TL0__'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='240' c='_ZN6tsList6BubbleETL0__bi'/>
+<fun r='_ZNSt10lock_guardC1ERT_'/>
+<fun r='_ZNSt10lock_guardC1ERT_St12adopt_lock_t'/>
+<fun r='_ZNSt10lock_guardD1Ev'/>
+<fun r='_ZNSt10lock_guardC1ERKSt10lock_guardIT_E'/>
+<fun r='_ZNSt10lock_guardaSERKSt10lock_guardIT_E'/>
+<mbr r='std::lock_guard::_M_device' t='std::lock_guard::mutex_type &amp;'/>
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='35' c='_ZNK6tInput19tUnitContinuousDisp15GetDisplacementEv'/>
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='51' c='_ZN6tInput19tUnitContinuousDisp18SetDisplacementRawEf'/>
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='61' c='_ZN6tInput19tUnitContinuousDisp15SetDisplacementEf'/>
+<use f='include/c++/11/condition_variable' l='292' c='_ZNSt3_V222condition_variable_any10notify_oneEv'/>
+<use f='include/c++/11/condition_variable' l='299' c='_ZNSt3_V222condition_variable_any10notify_allEv'/>
+<use f='Modules/Input/Src/tContGamepad.cpp' l='52' c='_ZN6tInput12tContGamepad11StopPollingEv'/>
+<use f='Modules/Input/Src/tControllerSystem.cpp' l='78' c='_ZN6tInput17tControllerSystemD1Ev'/>

@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='325' type='void tImage::tGetNextMipmapLevelDims(int &amp; width, int &amp; height)'/>
+<doc f='Modules/Image/Inc/Image/tPixelFormat.h' l='322'>// Given a supplied width and height this function will return the next higher mip level dimensions. Once a dimension
+// reaches 1 it stays there. This function reads and writes width and height. Both width and height should be &gt;= 1. If
+// one of them is &lt;= 0, 0 is returned for that dimension.</doc>
+<def f='Modules/Image/Src/tPixelFormat.cpp' l='603' ll='607' type='void tImage::tGetNextMipmapLevelDims(int &amp; width, int &amp; height)'/>

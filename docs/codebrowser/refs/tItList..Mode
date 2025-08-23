@@ -1,0 +1,5 @@
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='252' u='w' c='_ZN7tItListC1Ev'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='253' u='w' c='_ZN7tItListC1E9tListMode'/>
+<use f='Modules/Foundation/Inc/Foundation/tList.h' l='344' u='r' c='_ZNK7tItList4OwnsEv'/>
+<dec f='Modules/Foundation/Inc/Foundation/tList.h' l='380' type='tListMode'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='379'>// tItList is implemented using a tList of Nodes that point to the objects.</doc>

@@ -1,0 +1,3 @@
+<use f='Modules/System/Inc/System/tScript.h' l='393' u='c' c='_ZN10tFunScriptD1Ev'/>
+<def f='Modules/System/Inc/System/tScript.h' l='395' type='void tFunScript::Clear()'/>
+<use f='Modules/System/Src/tScript.cpp' l='1130' u='c' c='_ZN10tFunScript4LoadERK7tString'/>

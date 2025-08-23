@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/GifLoad/gif_load.h' l='74' ll='84' type='long _GIF_LoadHeader(unsigned int gflg, uint8_t ** buff, void ** rpal, unsigned int fflg, long * size, long flen)'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='241' u='c' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='260' u='c' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='279' u='c' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<doc f='Modules/Image/Contrib/GifLoad/gif_load.h' l='73'>/** [ internal function, do not use ] **/</doc>

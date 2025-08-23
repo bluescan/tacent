@@ -1,0 +1,10 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='252' type='int tString::CountChar(char c) const'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='837' ll='844' type='int tString::CountChar(char c) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='251'>// Counts the number of occurrences of c. Does not stop at first null. Iterates over the full StringLength.</doc>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='257' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='707' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='708' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='709' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='710' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='328' u='c' c='_ZN7tSystem16tGetRelativePathERK7tStringS2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='417' u='c' c='_ZN7tSystem9tGetUpDirERK7tStringi'/>

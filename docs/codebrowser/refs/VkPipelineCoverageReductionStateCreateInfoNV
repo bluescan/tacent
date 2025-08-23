@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14273' ll='14278'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14273'/>
+<size>24</size>
+<mbr r='VkPipelineCoverageReductionStateCreateInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineCoverageReductionStateCreateInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineCoverageReductionStateCreateInfoNV::flags' o='128' t='VkPipelineCoverageReductionStateCreateFlagsNV'/>
+<mbr r='VkPipelineCoverageReductionStateCreateInfoNV::coverageReductionMode' o='160' t='VkCoverageReductionModeNV'/>

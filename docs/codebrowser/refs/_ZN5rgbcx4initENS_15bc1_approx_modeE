@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='95' type='void rgbcx::init(rgbcx::bc1_approx_mode mode = bc1_approx_mode::cBC1Ideal)'/>
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1852' ll='1904' type='void rgbcx::init(rgbcx::bc1_approx_mode mode = bc1_approx_mode::cBC1Ideal)'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='294' u='c' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='90'>// init() MUST be called once before using the BC1 encoder.
+	// This function may be called multiple times to change the BC1 approximation mode. 
+	// This function initializes global state, so don&apos;t call it while other threads inside the encoder.
+	// Important: If you encode textures for a specific vendor&apos;s GPU&apos;s, beware that using that texture data on other GPU&apos;s may result in ugly artifacts. 
+	// Encode to cBC1Ideal unless you know the texture data will only be deployed or used on a specific vendor&apos;s GPU.</doc>

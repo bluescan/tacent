@@ -1,0 +1,11 @@
+<dec f='Modules/Foundation/Inc/Foundation/tHash.h' l='79' type='uint32 tHash::tHashCT(const char * , uint32 iv = HashIV32)'/>
+<def f='Modules/Foundation/Inc/Foundation/tHash.h' l='149' type='uint32 tHash::tHashCT(const char * s, uint32 hash = HashIV32)'/>
+<use f='Modules/Foundation/Inc/Foundation/tHash.h' l='149' u='c' c='_ZN5tHash7tHashCTEPKcj'/>
+<doc f='Modules/Foundation/Inc/Foundation/tHash.h' l='77'>// The CT (Compile Time) variant uses the fast-hash algorithm. It is super handy for use in the &apos;case&apos; part of switch
+// statements or any time you know the string literal explicitly. In these cases the compiler can do all the work.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tHash.h' l='145'>// This (compile-time) constant expression relies on the odometer-style looping of unsigned ints to compute the hash.
+// Since it&apos;s inline, you may need to pragma warning(disable:4307), which warns of const integral overflow.
+// For the below functions, char* is for ASCII strings, char8_t is for UTF-8. The UTF-8 versions fallback to the regular
+// versions as these work fine for UTF-8 strings.</doc>
+<use f='Modules/Math/Src/tColour.cpp' l='424' u='c' c='_ZN5tMath10tGetColourEPKc'/>
+<use f='Modules/Math/Src/tColour.cpp' l='425' u='c' c='_ZN5tMath10tGetColourEPKc'/>

@@ -1,0 +1,2 @@
+<use f='Modules/System/Inc/System/tPrint.h' l='278' u='c' c='_Z8tsrPrintRKN5tMath5tVec3E'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='555' u='c' c='_ZN5tMath11tMakeLookAtERNS_5tMat4ERKNS_5tVec3ES4_S4_'/>

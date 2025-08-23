@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tStandard.h' l='356' type='1'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='357'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='372' u='r' c='_ZN4tStd10tIsSpecialEf'/>
+<use f='Modules/Foundation/Inc/Foundation/tStandard.h' l='373' u='r' c='_ZN4tStd10tIsSpecialEd'/>

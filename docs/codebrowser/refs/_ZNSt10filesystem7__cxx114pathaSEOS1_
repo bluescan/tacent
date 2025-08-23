@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/fs_path.h' l='318' type='std::filesystem::path &amp; std::filesystem::path::operator=(std::filesystem::path &amp;&amp; )'/>
+<use f='include/c++/11/bits/fs_path.h' l='325' u='c' c='_ZNSt10filesystem7__cxx114pathaSERKT_'/>
+<use f='include/c++/11/bits/fs_path.h' l='330' u='c' c='_ZNSt10filesystem7__cxx114path6assignERKT_'/>
+<use f='include/c++/11/bits/fs_path.h' l='335' u='c' c='_ZNSt10filesystem7__cxx114path6assignET_S2_'/>
+<def f='include/c++/11/bits/fs_path.h' l='946' ll='956' type='std::filesystem::path &amp; std::filesystem::path::operator=(std::filesystem::path &amp;&amp; __p)'/>
+<use f='include/c++/11/bits/fs_path.h' l='960' u='c' c='_ZNSt10filesystem7__cxx114pathaSEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/fs_path.h' l='964' u='c' c='_ZNSt10filesystem7__cxx114path6assignEONSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>

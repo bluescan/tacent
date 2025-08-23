@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tMachine.h source code [Modules/System/Inc/System/tMachine.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/System/Inc/System/tMachine.h'; var root_path = '../../../..'; var data_path = '../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../..'>Modules</a>/<a href='../..'>System</a>/<a href='..'>Inc</a>/<a href='./'>System</a>/<a href='tMachine.h.html'>tMachine.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// tMachine.h</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Hardware ans OS access functions like querying supported instruction sets, number or cores, computer name/ip.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>// Includes parsing environment variables from the XDG Base Directory Specification (Linux-only).</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// Copyright (c) 2004-2006, 2017, 2020, 2024 Tristan Grimmer.</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// granted, provided that the above copyright notice and this permission notice appear in all copies.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>// THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// PERFORMANCE OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td>&nbsp</td></tr>
+<tr><th id="16">16</th><td><u>#pragma once</u>&nbsp</td></tr>
+<tr><th id="17">17</th><td><u>#include &lt;Foundation/tString.h&gt;</u>&nbsp</td></tr>
+<tr><th id="18">18</th><td><u>#include "System/tThrow.h"</u>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#include "System/tPrint.h"</u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><b>namespace</b> <span class="namespace">tSystem</span>&nbsp</td></tr>
+<tr><th id="21">21</th><td>{&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td>	&nbsp</td></tr>
+<tr><th id="24">24</th><td><i>// Returns true if the processor and the OS support Streaming SIMD Extensions.</i>&nbsp</td></tr>
+<tr><th id="25">25</th><td><em>bool</em> <dfn class="decl fn" id="_ZN7tSystem12tSupportsSSEEv" title='tSystem::tSupportsSSE' data-ref="_ZN7tSystem12tSupportsSSEEv">tSupportsSSE</dfn>();&nbsp</td></tr>
+<tr><th id="26">26</th><td><em>bool</em> <dfn class="decl fn" id="_ZN7tSystem13tSupportsSSE2Ev" title='tSystem::tSupportsSSE2' data-ref="_ZN7tSystem13tSupportsSSE2Ev">tSupportsSSE2</dfn>();&nbsp</td></tr>
+<tr><th id="27">27</th><td>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i>// Returns the computer's name.</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a> <dfn class="decl fn" id="_ZN7tSystem16tGetComputerNameEv" title='tSystem::tGetComputerName' data-ref="_ZN7tSystem16tGetComputerNameEv">tGetComputerName</dfn>();&nbsp</td></tr>
+<tr><th id="30">30</th><td>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i>// Returns an environment variable value.</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a> <dfn class="decl fn" id="_ZN7tSystem10tGetEnvVarERK7tString" title='tSystem::tGetEnvVar' data-ref="_ZN7tSystem10tGetEnvVarERK7tString">tGetEnvVar</dfn>(<em>const</em> <a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a>&amp; <dfn class="local col1 decl" id="1envVarName" title='envVarName' data-type='const tString &amp;' data-ref="1envVarName">envVarName</dfn>);&nbsp</td></tr>
+<tr><th id="33">33</th><td>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i>// Returns the number of cores (processors) the current machine has.</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><em>int</em> <dfn class="decl fn" id="_ZN7tSystem12tGetNumCoresEv" title='tSystem::tGetNumCores' data-ref="_ZN7tSystem12tGetNumCoresEv">tGetNumCores</dfn>();&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i>// Opens the OS's file explorer for the folder and file specified. If file doesn't exist, no file will be selected.</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i>// If dir doesn't exist, an explorer window is opened at a location decided by the system.</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><em>bool</em> <dfn class="decl fn" id="_ZN7tSystem23tOpenSystemFileExplorerERK7tStringS2_" title='tSystem::tOpenSystemFileExplorer' data-ref="_ZN7tSystem23tOpenSystemFileExplorerERK7tStringS2_">tOpenSystemFileExplorer</dfn>(<em>const</em> <a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a>&amp; <dfn class="local col2 decl" id="2dir" title='dir' data-type='const tString &amp;' data-ref="2dir">dir</dfn>, <em>const</em> <a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a>&amp; <dfn class="local col3 decl" id="3file" title='file' data-type='const tString &amp;' data-ref="3file">file</dfn>);&nbsp</td></tr>
+<tr><th id="40">40</th><td><em>bool</em> <dfn class="decl fn" id="_ZN7tSystem23tOpenSystemFileExplorerERK7tString" title='tSystem::tOpenSystemFileExplorer' data-ref="_ZN7tSystem23tOpenSystemFileExplorerERK7tString">tOpenSystemFileExplorer</dfn>(<em>const</em> <a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a>&amp; <dfn class="local col4 decl" id="4fullFilename" title='fullFilename' data-type='const tString &amp;' data-ref="4fullFilename">fullFilename</dfn>);&nbsp</td></tr>
+<tr><th id="41">41</th><td>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#<span data-ppcond="42">if</span> defined(<span class="macro" data-ref="_M/PLATFORM_LINUX">PLATFORM_LINUX</span>)</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i>// These functions return the XDG environment variables in the first argument. They also respect all default values as</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i>// specified by <a href="https://specifications.freedesktop.org/basedir-spec/latest/">https://specifications.freedesktop.org/basedir-spec/latest/</a>. True is returned if the envirenment</i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i>// variable was set. False is returned if the env var was unset and the default had to be used. The paths are returned</i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i>// in Tacent's path format with trailing / for directories. All paths are absolute as defined by the spec. Clients using</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td><i>// these functions should NOT place data directly in the returned directories -- they should make a subdirectory,</i>&nbsp</td></tr>
+<tr><th id="48">48</th><td><i>// usually the name of the app in lowercase, and put their files there.</i>&nbsp</td></tr>
+<tr><th id="49">49</th><td><em>bool</em> <dfn class="decl fn" id="_ZN7tSystem15tGetXDGDataHomeER7tString" title='tSystem::tGetXDGDataHome' data-ref="_ZN7tSystem15tGetXDGDataHomeER7tString">tGetXDGDataHome</dfn>(<a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a>&amp; <dfn class="local col5 decl" id="5xdgDataHome" title='xdgDataHome' data-type='tString &amp;' data-ref="5xdgDataHome">xdgDataHome</dfn>);					<i>// $XDG_DATA_HOME</i>&nbsp</td></tr>
+<tr><th id="50">50</th><td><em>bool</em> <dfn class="decl fn" id="_ZN7tSystem17tGetXDGConfigHomeER7tString" title='tSystem::tGetXDGConfigHome' data-ref="_ZN7tSystem17tGetXDGConfigHomeER7tString">tGetXDGConfigHome</dfn>(<a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a>&amp; <dfn class="local col6 decl" id="6xdgConfigHome" title='xdgConfigHome' data-type='tString &amp;' data-ref="6xdgConfigHome">xdgConfigHome</dfn>);				<i>// $XDG_CONFIG_HOME</i>&nbsp</td></tr>
+<tr><th id="51">51</th><td><em>bool</em> <dfn class="decl fn" id="_ZN7tSystem16tGetXDGStateHomeER7tString" title='tSystem::tGetXDGStateHome' data-ref="_ZN7tSystem16tGetXDGStateHomeER7tString">tGetXDGStateHome</dfn>(<a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a>&amp; <dfn class="local col7 decl" id="7xdgStateHome" title='xdgStateHome' data-type='tString &amp;' data-ref="7xdgStateHome">xdgStateHome</dfn>);				<i>// $XDG_STATE_HOME</i>&nbsp</td></tr>
+<tr><th id="52">52</th><td><em>void</em> <dfn class="decl fn" id="_ZN7tSystem14tGetXDGExeHomeER7tString" title='tSystem::tGetXDGExeHome' data-ref="_ZN7tSystem14tGetXDGExeHomeER7tString">tGetXDGExeHome</dfn>(<a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a>&amp; <dfn class="local col8 decl" id="8xdgExeHome" title='xdgExeHome' data-type='tString &amp;' data-ref="8xdgExeHome">xdgExeHome</dfn>);					<i>// Not defined by an XDG env variable. Always: $HOME/.local/bin/</i>&nbsp</td></tr>
+<tr><th id="53">53</th><td><em>bool</em> <dfn class="decl fn" id="_ZN7tSystem15tGetXDGDataDirsER5tListI11tStringItemE" title='tSystem::tGetXDGDataDirs' data-ref="_ZN7tSystem15tGetXDGDataDirsER5tListI11tStringItemE">tGetXDGDataDirs</dfn>(<a class="type" href="../../../Foundation/Inc/Foundation/tList.h.html#tList" title='tList' data-ref="tList">tList</a>&lt;<a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tStringItem" title='tStringItem' data-ref="tStringItem">tStringItem</a>&gt;&amp; <dfn class="local col9 decl" id="9xdgDataDirs" title='xdgDataDirs' data-type='tList&lt;tStringItem&gt; &amp;' data-ref="9xdgDataDirs">xdgDataDirs</dfn>);		<i>// $XDG_DATA_DIRS. Priority list of directories to search.</i>&nbsp</td></tr>
+<tr><th id="54">54</th><td><em>bool</em> <dfn class="decl fn" id="_ZN7tSystem17tGetXDGConfigDirsER5tListI11tStringItemE" title='tSystem::tGetXDGConfigDirs' data-ref="_ZN7tSystem17tGetXDGConfigDirsER5tListI11tStringItemE">tGetXDGConfigDirs</dfn>(<a class="type" href="../../../Foundation/Inc/Foundation/tList.h.html#tList" title='tList' data-ref="tList">tList</a>&lt;<a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tStringItem" title='tStringItem' data-ref="tStringItem">tStringItem</a>&gt;&amp; <dfn class="local col0 decl" id="10xdgConfigDirs" title='xdgConfigDirs' data-type='tList&lt;tStringItem&gt; &amp;' data-ref="10xdgConfigDirs">xdgConfigDirs</dfn>);	<i>// $XDG_CONFIG_DIRS. Priority list of directories to search.</i>&nbsp</td></tr>
+<tr><th id="55">55</th><td><em>bool</em> <dfn class="decl fn" id="_ZN7tSystem16tGetXDGCacheHomeER7tString" title='tSystem::tGetXDGCacheHome' data-ref="_ZN7tSystem16tGetXDGCacheHomeER7tString">tGetXDGCacheHome</dfn>(<a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a>&amp; <dfn class="local col1 decl" id="11xdgCacheHome" title='xdgCacheHome' data-type='tString &amp;' data-ref="11xdgCacheHome">xdgCacheHome</dfn>);				<i>// $XDG_CACHE_HOME</i>&nbsp</td></tr>
+<tr><th id="56">56</th><td><em>bool</em> <dfn class="decl fn" id="_ZN7tSystem17tGetXDGRuntimeDirER7tString" title='tSystem::tGetXDGRuntimeDir' data-ref="_ZN7tSystem17tGetXDGRuntimeDirER7tString">tGetXDGRuntimeDir</dfn>(<a class="type" href="../../../Foundation/Inc/Foundation/tString.h.html#tString" title='tString' data-ref="tString">tString</a>&amp; <dfn class="local col2 decl" id="12xdgRuntimeDir" title='xdgRuntimeDir' data-type='tString &amp;' data-ref="12xdgRuntimeDir">xdgRuntimeDir</dfn>);				<i>// $XDG_RUNTIME_DIR</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u>#<span data-ppcond="42">endif</span></u>&nbsp</td></tr>
+<tr><th id="58">58</th><td>&nbsp</td></tr>
+<tr><th id="59">59</th><td>}&nbsp</td></tr>
+<tr><th id="60">60</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Image/Src/tImageASTC.cpp.html'>Modules/Image/Src/tImageASTC.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17906' ll='17918'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17906'/>
+<size>56</size>
+<mbr r='VkOpticalFlowSessionCreateInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkOpticalFlowSessionCreateInfoNV::pNext' o='64' t='void *'/>
+<mbr r='VkOpticalFlowSessionCreateInfoNV::width' o='128' t='uint32_t'/>
+<mbr r='VkOpticalFlowSessionCreateInfoNV::height' o='160' t='uint32_t'/>
+<mbr r='VkOpticalFlowSessionCreateInfoNV::imageFormat' o='192' t='VkFormat'/>
+<mbr r='VkOpticalFlowSessionCreateInfoNV::flowVectorFormat' o='224' t='VkFormat'/>
+<mbr r='VkOpticalFlowSessionCreateInfoNV::costFormat' o='256' t='VkFormat'/>
+<mbr r='VkOpticalFlowSessionCreateInfoNV::outputGridSize' o='288' t='VkOpticalFlowGridSizeFlagsNV'/>
+<mbr r='VkOpticalFlowSessionCreateInfoNV::hintGridSize' o='320' t='VkOpticalFlowGridSizeFlagsNV'/>
+<mbr r='VkOpticalFlowSessionCreateInfoNV::performanceLevel' o='352' t='VkOpticalFlowPerformanceLevelNV'/>
+<mbr r='VkOpticalFlowSessionCreateInfoNV::flags' o='384' t='VkOpticalFlowSessionCreateFlagsNV'/>

@@ -1,0 +1,37 @@
+<def f='include/c++/11/limits' l='202' ll='301'/>
+<ovr f='include/c++/11/limits' l='312' c='std::numeric_limits'/>
+<use f='include/c++/11/limits' l='312'/>
+<size>1</size>
+<doc f='include/c++/11/limits' l='192'>/**
+   *  @brief Part of std::numeric_limits.
+   *
+   *  The @c static @c const members are usable as integral constant
+   *  expressions.
+   *
+   *  @note This is a separate class for purposes of efficiency; you
+   *        should only access these members as part of an instantiation
+   *        of the std::numeric_limits class.
+  */</doc>
+<smbr r='std::__numeric_limits_base::is_specialized' t='const bool'/>
+<smbr r='std::__numeric_limits_base::digits' t='const int'/>
+<smbr r='std::__numeric_limits_base::digits10' t='const int'/>
+<smbr r='std::__numeric_limits_base::max_digits10' t='const int'/>
+<smbr r='std::__numeric_limits_base::is_signed' t='const bool'/>
+<smbr r='std::__numeric_limits_base::is_integer' t='const bool'/>
+<smbr r='std::__numeric_limits_base::is_exact' t='const bool'/>
+<smbr r='std::__numeric_limits_base::radix' t='const int'/>
+<smbr r='std::__numeric_limits_base::min_exponent' t='const int'/>
+<smbr r='std::__numeric_limits_base::min_exponent10' t='const int'/>
+<smbr r='std::__numeric_limits_base::max_exponent' t='const int'/>
+<smbr r='std::__numeric_limits_base::max_exponent10' t='const int'/>
+<smbr r='std::__numeric_limits_base::has_infinity' t='const bool'/>
+<smbr r='std::__numeric_limits_base::has_quiet_NaN' t='const bool'/>
+<smbr r='std::__numeric_limits_base::has_signaling_NaN' t='const bool'/>
+<smbr r='std::__numeric_limits_base::has_denorm' t='const std::float_denorm_style'/>
+<smbr r='std::__numeric_limits_base::has_denorm_loss' t='const bool'/>
+<smbr r='std::__numeric_limits_base::is_iec559' t='const bool'/>
+<smbr r='std::__numeric_limits_base::is_bounded' t='const bool'/>
+<smbr r='std::__numeric_limits_base::is_modulo' t='const bool'/>
+<smbr r='std::__numeric_limits_base::traps' t='const bool'/>
+<smbr r='std::__numeric_limits_base::tinyness_before' t='const bool'/>
+<smbr r='std::__numeric_limits_base::round_style' t='const std::float_round_style'/>

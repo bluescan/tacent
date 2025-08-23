@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3578' ll='3586'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3578'/>
+<size>48</size>
+<mbr r='VkPipelineViewportStateCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineViewportStateCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineViewportStateCreateInfo::flags' o='128' t='VkPipelineViewportStateCreateFlags'/>
+<mbr r='VkPipelineViewportStateCreateInfo::viewportCount' o='160' t='uint32_t'/>
+<mbr r='VkPipelineViewportStateCreateInfo::pViewports' o='192' t='const VkViewport *'/>
+<mbr r='VkPipelineViewportStateCreateInfo::scissorCount' o='256' t='uint32_t'/>
+<mbr r='VkPipelineViewportStateCreateInfo::pScissors' o='320' t='const VkRect2D *'/>

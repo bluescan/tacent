@@ -1,0 +1,12 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='27' type='3'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='28'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='38' u='r' c='_Z18tIsColourComponent5tComp'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='166' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='538' c='_ZN6tImage8tPicture6SpreadE5tComp'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='166' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='552' u='r' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='554' u='r' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='568' u='r' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='576' u='r' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='584' u='r' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='592' u='r' c='_ZN6tImage8tPicture7SwizzleE5tCompS1_S1_S1_'/>

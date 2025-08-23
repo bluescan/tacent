@@ -1,0 +1,9 @@
+<use f='Modules/System/Inc/System/tScript.h' l='249' u='w' c='_ZN11tExprWriter11SetTabWidthEi'/>
+<use f='Modules/System/Inc/System/tScript.h' l='358' u='r' c='_ZN11tExprWriter12WriteIndentsEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='358' u='r' c='_ZN11tExprWriter12WriteIndentsEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='359' u='r' c='_ZN11tExprWriter12WriteIndentsEv'/>
+<dec f='Modules/System/Inc/System/tScript.h' l='365' type='int'/>
+<offset>32</offset>
+<use f='Modules/System/Src/tScript.cpp' l='589' u='w' c='_ZN11tExprWriterC1ERK7tString'/>
+<use f='Modules/System/Src/tScript.cpp' l='1040' u='r' c='_ZN11tExprWriter7NewLineEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='1040' u='r' c='_ZN11tExprWriter7NewLineEv'/>

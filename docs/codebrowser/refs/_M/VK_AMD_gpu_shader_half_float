@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11648'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11647'>// VK_AMD_gpu_shader_half_float is a preprocessor guard. Do not pass it to API calls.</doc>

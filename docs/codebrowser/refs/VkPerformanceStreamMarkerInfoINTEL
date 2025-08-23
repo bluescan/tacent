@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13858' ll='13862'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13858'/>
+<size>24</size>
+<mbr r='VkPerformanceStreamMarkerInfoINTEL::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPerformanceStreamMarkerInfoINTEL::pNext' o='64' t='const void *'/>
+<mbr r='VkPerformanceStreamMarkerInfoINTEL::marker' o='128' t='uint32_t'/>

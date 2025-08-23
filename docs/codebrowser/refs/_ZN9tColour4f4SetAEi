@@ -1,0 +1,3 @@
+<use f='Modules/Math/Inc/Math/tColour.h' l='815' u='c' c='_ZN9tColour4f3SetEiiii'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='820' type='void tColour4f::SetA(int a)'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='638' u='c' c='_ZN6tImage8tPicture16AlphaBlendColourERK9tColour4bji'/>

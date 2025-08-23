@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Src/tImageDDS.cpp' l='38' type='2'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='69'/>
+<doc f='Modules/Image/Src/tImageDDS.cpp' l='36'>// Legacy. Some dds files use this if all they contain is an alpha channel. tDDS::Format&apos;s RGBBitCount is the
+		// number of bits used for the alpha channel and MaskAlpha will be valid.</doc>

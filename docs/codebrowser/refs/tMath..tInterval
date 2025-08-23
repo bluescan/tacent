@@ -1,0 +1,51 @@
+<def f='Modules/Math/Inc/Math/tInterval.h' l='50' ll='114'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='54' c='_ZN5tMath9tIntervalC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='68' c='_ZN5tMath9tInterval3SetERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='80' c='_ZN5tMath9tInterval13MakeInclusiveEv'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='88' c='_ZNK5tMath9tInterval8ContainsERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='89' c='_ZNK5tMath9tInterval8OverlapsERKS0_b'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='92' c='_ZN5tMath9tInterval6ExtendERKS0_b'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='95' c='_ZN5tMath9tInterval11EncapsulateERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='101' c='_ZN5tMath9tIntervalaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='101' c='_ZN5tMath9tIntervalaSERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='104' c='_ZNK5tMath9tIntervaleqERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='142' c='_ZN5tMath12tIntervalSet3SetERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='155' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='165' c='_ZNK5tMath12tIntervalSet8ContainsERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='171'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='204' c='_ZNK5tMath9tInterval7IsValidEv'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='302' c='_ZN5tMath9tInterval13MakeInclusiveEv'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='320' c='_ZNK5tMath9tInterval8ContainsERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='335' c='_ZNK5tMath9tInterval8ContainsERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='336' c='_ZNK5tMath9tInterval8ContainsERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='345' c='_ZNK5tMath9tInterval8OverlapsERKS0_b'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='352' c='_ZNK5tMath9tInterval8OverlapsERKS0_b'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='353' c='_ZNK5tMath9tInterval8OverlapsERKS0_b'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='371' c='_ZN5tMath9tInterval6ExtendERKS0_b'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='375' c='_ZN5tMath9tInterval6ExtendERKS0_b'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='376' c='_ZN5tMath9tInterval6ExtendERKS0_b'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='384' c='_ZN5tMath9tInterval11EncapsulateERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='388' c='_ZN5tMath9tInterval11EncapsulateERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='389' c='_ZN5tMath9tInterval11EncapsulateERKS0_'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='401' c='_ZNK5tMath9tInterval5CountEv'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='425' c='_ZN5tMath12tIntervalSet3SetERK7tString'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='447' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='502' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='505' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='513' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='515' c='_ZN5tMath12tIntervalSet3AddERKNS_9tIntervalE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='563' c='_ZNK5tMath12tIntervalSet8ContainsERKNS_9tIntervalE'/>
+<size>12</size>
+<doc f='Modules/Math/Inc/Math/tInterval.h' l='37'>// The tInterval type represents a single interval over integral types. The string form follows the mathematical notation
+// (a,b), (a,b], [a,b), or [a,b]. In this representation the square brackets mean inclusive and normal brackets
+// (US parens) are exclusive.
+// The interval 5     -&gt; [5,5] -&gt; { 5 }
+// The interval [0,5) -&gt; { 0 1 2 3 4 }
+// The interval (5,5) -&gt; empty
+// The interval [5,5) -&gt; empty
+// The interval (5,5] -&gt; empty
+// The interval [5,5] -&gt; { 5 }
+// The interval (4,5] -&gt; { 5 }
+// The interval (4,5) -&gt; empty
+// @todo In the future we will rename tInterval to tIntervalDiscrete and tunn it into a template that supports any
+// integral type: int, uint, int64, etc.</doc>

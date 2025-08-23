@@ -1,0 +1,2 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='370' u='c' c='_ZN5tMath6tPlaneC1ERKNS_8tVector3ES3_'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='376' type='void tMath::tPlane::Set(const tMath::tVector3 &amp; normal, const tMath::tVector3 &amp; p)'/>

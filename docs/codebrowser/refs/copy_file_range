@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='1142' type='ssize_t copy_file_range(int __infd, __off64_t * __pinoff, int __outfd, __off64_t * __poutoff, size_t __length, unsigned int __flags)'/>
+<doc f='include/unistd.h' l='1141'>/* Copy LENGTH bytes from INFD to OUTFD.  */</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13559'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13558'>// VK_AMD_memory_overallocation_behavior is a preprocessor guard. Do not pass it to API calls.</doc>

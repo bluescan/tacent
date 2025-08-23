@@ -1,0 +1,5 @@
+<dec f='Modules/System/Src/tFile.cpp' l='77' type='bool tSystem::tFindDirsRec_Native(tList&lt;tStringItem&gt; * dirs, tList&lt;tSystem::tFileInfo&gt; * infos, const tString &amp; dir, bool hidden)'/>
+<def f='Modules/System/Src/tFile.cpp' l='2910' ll='2934' type='bool tSystem::tFindDirsRec_Native(tList&lt;tStringItem&gt; * dirs, tList&lt;tSystem::tFileInfo&gt; * infos, const tString &amp; dir, bool hidden)'/>
+<use f='Modules/System/Src/tFile.cpp' l='2931' u='c' c='_ZN7tSystem19tFindDirsRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2942' u='c' c='_ZN7tSystem12tFindDirsRecER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2953' u='c' c='_ZN7tSystem12tFindDirsRecER5tListINS_9tFileInfoEERK7tStringbNS_7BackendE'/>

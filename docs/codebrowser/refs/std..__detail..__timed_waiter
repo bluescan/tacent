@@ -1,0 +1,11 @@
+<inh f='include/c++/11/bits/atomic_wait.h' l='280' c='std::__detail::__waiter_base'/>
+<def f='include/c++/11/bits/atomic_timed_wait.h' l='268' ll='379'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='381'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='382'/>
+<fun r='_ZNSt8__detail14__timed_waiterC1EPKTL0__'/>
+<fun r='_ZNSt8__detail14__timed_waiterD1Ev'/>
+<fun r='_ZNSt8__detail14__timed_waiter18_M_do_wait_until_vETL0__TL0_0_RKNSt6chrono10time_pointITL0_1_TL0_2_EE'/>
+<fun r='_ZNSt8__detail14__timed_waiter16_M_do_wait_untilETL0__iRKNSt6chrono10time_pointITL0_0_TL0_1_EE'/>
+<fun r='_ZNSt8__detail14__timed_waiter16_M_do_wait_untilETL0__RKNSt6chrono10time_pointITL0_0_TL0_1_EE'/>
+<fun r='_ZNSt8__detail14__timed_waiter16_M_do_wait_for_vETL0__TL0_0_RKNSt6chrono8durationITL0_1_TL0_2_EE'/>
+<fun r='_ZNSt8__detail14__timed_waiter14_M_do_wait_forETL0__RKNSt6chrono8durationITL0_0_TL0_1_EE'/>

@@ -1,0 +1,7 @@
+_ZSt4sortT_S_|std::sort
+_ZSt9sort_heapT_S_|std::sort_heap
+_ZN7tItList4SortETL0__18tListSortAlgorithm|tItList::Sort
+_ZN5tList4SortETL0__18tListSortAlgorithm|tList::Sort
+_ZN5tList10SortBubbleETL0__|tList::SortBubble
+_ZN5tList9SortMergeETL0__|tList::SortMerge
+_ZN6tsList4SortETL0__18tListSortAlgorithm|tsList::Sort

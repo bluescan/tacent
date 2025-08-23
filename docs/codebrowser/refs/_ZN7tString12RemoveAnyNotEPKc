@@ -1,0 +1,8 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='322' type='int tString::RemoveAnyNot(const char * theseChars)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='319'>// Removes any characters that are _not_ occurrences of characters specified in the null-terminated theseChars.
+	// eg. Calling RemoveAnyNot on &quot;abcZaIbNcGabcaab&quot; with &quot;abc&quot; yields &quot;abcabcabcaab&quot;. Returns the number of
+	// characters removed. Note that theseChars are ASCII.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='561' ll='599' type='int tString::RemoveAnyNot(const char * theseChars)'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='230' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='232' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='418' u='c' c='_ZN5tMath12tIntervalSet3SetERK7tString'/>

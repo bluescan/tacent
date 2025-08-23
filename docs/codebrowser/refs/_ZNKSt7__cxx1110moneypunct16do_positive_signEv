@@ -1,0 +1,10 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1309' ll='1311' type='std::moneypunct::string_type std::moneypunct::do_positive_sign() const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1300'>/**
+       *  @brief  Return positive sign string.
+       *
+       *  This function returns a string_type to use as a sign for positive
+       *  amounts.  This function is a hook for derived classes to change the
+       *  value returned.  @see positive_sign() for details.
+       *
+       *  @return  @a string_type representing a positive sign.
+      */</doc>

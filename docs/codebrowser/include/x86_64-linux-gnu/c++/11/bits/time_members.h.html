@@ -1,0 +1,107 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>time_members.h source code [include/x86_64-linux-gnu/c++/11/bits/time_members.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/c++/11/bits/time_members.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>include</a>/<a href='../../..'>x86_64-linux-gnu</a>/<a href='../..'>c++</a>/<a href='..'>11</a>/<a href='./'>bits</a>/<a href='time_members.h.html'>time_members.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>// std::time_get, std::time_put implementation, GNU version -*- C++ -*-</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i></i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>// Copyright (C) 2001-2021 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i>//</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>// This file is part of the GNU ISO C++ Library.  This library is free</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>// software; you can redistribute it and/or modify it under the</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>// terms of the GNU General Public License as published by the</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>// Free Software Foundation; either version 3, or (at your option)</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i>// any later version.</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i></i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>// This library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>// but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i>// GNU General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i></i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>// Under Section 7 of GPL version 3, you are granted additional</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>// permissions described in the GCC Runtime Library Exception, version</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i>// 3.1, as published by the Free Software Foundation.</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i></i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i>// You should have received a copy of the GNU General Public License and</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i>// a copy of the GCC Runtime Library Exception along with this program;</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i>// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i>// &lt;<a href="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</a>&gt;.</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><i class="doc">/** <span class="command">@file</span> <span class="verb">bits/time_members.h</span></i>&nbsp</td></tr>
+<tr><th id="26">26</th><td><i class="doc"> *  This is an internal header file, included by other library headers.</i>&nbsp</td></tr>
+<tr><th id="27">27</th><td><i class="doc"> *  Do not attempt to use it directly.<span class="command"> @headername</span>{locale}</i>&nbsp</td></tr>
+<tr><th id="28">28</th><td><i class="doc"> */</i>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i class="doc">// ISO C++ 14882: 22.2.5.1.2 - time_get functions</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i class="doc">// ISO C++ 14882: 22.2.5.3.2 - time_put functions</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i class="doc">//</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i class="doc"></i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i class="doc">// Written by Benjamin Kosnik &lt;bko<span class="command">z@redhat</span>.com&gt;</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td>&nbsp</td></tr>
+<tr><th id="37">37</th><td><b>namespace</b> <span class="namespace">std</span> <a class="macro" href="c++config.h.html#70" title="__attribute__ ((__visibility__ (&quot;default&quot;)))" data-ref="_M/_GLIBCXX_VISIBILITY">_GLIBCXX_VISIBILITY</a>(<b>default</b>)&nbsp</td></tr>
+<tr><th id="38">38</th><td>{&nbsp</td></tr>
+<tr><th id="39">39</th><td><a class="macro" href="c++config.h.html#350" title="" data-ref="_M/_GLIBCXX_BEGIN_NAMESPACE_VERSION">_GLIBCXX_BEGIN_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="40">40</th><td>&nbsp</td></tr>
+<tr><th id="41">41</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="42">42</th><td>    <a class="type" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct" title='std::__timepunct' data-ref="std::__timepunct">__timepunct</a>&lt;_CharT&gt;::<dfn class="decl def fn" id="_ZNSt11__timepunctC1Em" title='std::__timepunct::__timepunct&lt;_CharT&gt;' data-ref="_ZNSt11__timepunctC1Em">__timepunct</dfn>(<a class="typedef" href="c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col7 decl" id="897__refs" title='__refs' data-type='std::size_t' data-ref="897__refs">__refs</dfn>)&nbsp</td></tr>
+<tr><th id="43">43</th><td>    : <a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale::facet" title='std::locale::facet' data-ref="std::locale::facet">facet</a>(<a class="local col7 ref" href="#897__refs" title='__refs' data-ref="897__refs">__refs</a>), <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_data" title='std::__timepunct::_M_data' data-ref="std::__timepunct::_M_data">_M_data</a>(<var>0</var>), <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_c_locale_timepunct" title='std::__timepunct::_M_c_locale_timepunct' data-ref="std::__timepunct::_M_c_locale_timepunct">_M_c_locale_timepunct</a>(<var>0</var>),&nbsp</td></tr>
+<tr><th id="44">44</th><td>      <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_name_timepunct" title='std::__timepunct::_M_name_timepunct' data-ref="std::__timepunct::_M_name_timepunct">_M_name_timepunct</a>(<a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet13_S_get_c_nameEv" title='std::locale::facet::_S_get_c_name' data-ref="_ZNSt6locale5facet13_S_get_c_nameEv">_S_get_c_name</a>())&nbsp</td></tr>
+<tr><th id="45">45</th><td>    { <a class="member fn" href="../../../../c++/11/bits/locale_facets_nonio.h.html#_ZNSt11__timepunct23_M_initialize_timepunctEP15__locale_struct" title='std::__timepunct::_M_initialize_timepunct' data-ref="_ZNSt11__timepunct23_M_initialize_timepunctEP15__locale_struct">_M_initialize_timepunct</a>(); }&nbsp</td></tr>
+<tr><th id="46">46</th><td>&nbsp</td></tr>
+<tr><th id="47">47</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="48">48</th><td>    <a class="type" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct" title='std::__timepunct' data-ref="std::__timepunct">__timepunct</a>&lt;_CharT&gt;::<dfn class="decl def fn" id="_ZNSt11__timepunctC1EPSt17__timepunct_cacheIT_Em" title='std::__timepunct::__timepunct&lt;_CharT&gt;' data-ref="_ZNSt11__timepunctC1EPSt17__timepunct_cacheIT_Em">__timepunct</dfn>(<a class="typedef" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::__cache_type" title='std::__timepunct::__cache_type' data-type='__timepunct_cache&lt;_CharT&gt;' data-ref="std::__timepunct::__cache_type">__cache_type</a>* <dfn class="local col8 decl" id="898__cache" title='__cache' data-type='std::__timepunct::__cache_type *' data-ref="898__cache">__cache</dfn>, <a class="typedef" href="c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col9 decl" id="899__refs" title='__refs' data-type='std::size_t' data-ref="899__refs">__refs</dfn>)&nbsp</td></tr>
+<tr><th id="49">49</th><td>    : <a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale::facet" title='std::locale::facet' data-ref="std::locale::facet">facet</a>(<a class="local col9 ref" href="#899__refs" title='__refs' data-ref="899__refs">__refs</a>), <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_data" title='std::__timepunct::_M_data' data-ref="std::__timepunct::_M_data">_M_data</a>(<a class="local col8 ref" href="#898__cache" title='__cache' data-ref="898__cache">__cache</a>), <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_c_locale_timepunct" title='std::__timepunct::_M_c_locale_timepunct' data-ref="std::__timepunct::_M_c_locale_timepunct">_M_c_locale_timepunct</a>(<var>0</var>),&nbsp</td></tr>
+<tr><th id="50">50</th><td>      <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_name_timepunct" title='std::__timepunct::_M_name_timepunct' data-ref="std::__timepunct::_M_name_timepunct">_M_name_timepunct</a>(<a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet13_S_get_c_nameEv" title='std::locale::facet::_S_get_c_name' data-ref="_ZNSt6locale5facet13_S_get_c_nameEv">_S_get_c_name</a>())&nbsp</td></tr>
+<tr><th id="51">51</th><td>    { <a class="member fn" href="../../../../c++/11/bits/locale_facets_nonio.h.html#_ZNSt11__timepunct23_M_initialize_timepunctEP15__locale_struct" title='std::__timepunct::_M_initialize_timepunct' data-ref="_ZNSt11__timepunct23_M_initialize_timepunctEP15__locale_struct">_M_initialize_timepunct</a>(); }&nbsp</td></tr>
+<tr><th id="52">52</th><td>&nbsp</td></tr>
+<tr><th id="53">53</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="54">54</th><td>    <a class="type" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct" title='std::__timepunct' data-ref="std::__timepunct">__timepunct</a>&lt;_CharT&gt;::<dfn class="decl def fn" id="_ZNSt11__timepunctC1EP15__locale_structPKcm" title='std::__timepunct::__timepunct&lt;_CharT&gt;' data-ref="_ZNSt11__timepunctC1EP15__locale_structPKcm">__timepunct</dfn>(<a class="typedef" href="c++locale.h.html#std::__c_locale" title='std::__c_locale' data-type='__locale_t' data-ref="std::__c_locale">__c_locale</a> <dfn class="local col0 decl" id="900__cloc" title='__cloc' data-type='std::__c_locale' data-ref="900__cloc">__cloc</dfn>, <em>const</em> <em>char</em>* <dfn class="local col1 decl" id="901__s" title='__s' data-type='const char *' data-ref="901__s">__s</dfn>,&nbsp</td></tr>
+<tr><th id="55">55</th><td>				     <a class="typedef" href="c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col2 decl" id="902__refs" title='__refs' data-type='std::size_t' data-ref="902__refs">__refs</dfn>)&nbsp</td></tr>
+<tr><th id="56">56</th><td>    : <a class="type" href="../../../../c++/11/bits/locale_classes.h.html#std::locale::facet" title='std::locale::facet' data-ref="std::locale::facet">facet</a>(<a class="local col2 ref" href="#902__refs" title='__refs' data-ref="902__refs">__refs</a>), <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_data" title='std::__timepunct::_M_data' data-ref="std::__timepunct::_M_data">_M_data</a>(<var>0</var>), <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_c_locale_timepunct" title='std::__timepunct::_M_c_locale_timepunct' data-ref="std::__timepunct::_M_c_locale_timepunct">_M_c_locale_timepunct</a>(<var>0</var>),&nbsp</td></tr>
+<tr><th id="57">57</th><td>      <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_name_timepunct" title='std::__timepunct::_M_name_timepunct' data-ref="std::__timepunct::_M_name_timepunct">_M_name_timepunct</a>(<var>0</var>)&nbsp</td></tr>
+<tr><th id="58">58</th><td>    {&nbsp</td></tr>
+<tr><th id="59">59</th><td>      <b>if</b> (<a class="ref fn" href="../../../../c++/11/bits/codecvt.h.html#706" title='__builtin_strcmp' data-ref="__builtin_strcmp">__builtin_strcmp</a>(<a class="local col1 ref" href="#901__s" title='__s' data-ref="901__s">__s</a>, <a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet13_S_get_c_nameEv" title='std::locale::facet::_S_get_c_name' data-ref="_ZNSt6locale5facet13_S_get_c_nameEv">_S_get_c_name</a>()) != <var>0</var>)&nbsp</td></tr>
+<tr><th id="60">60</th><td>	{&nbsp</td></tr>
+<tr><th id="61">61</th><td>	  <em>const</em> <a class="typedef" href="c++config.h.html#std::size_t" title='std::size_t' data-type='unsigned long' data-ref="std::size_t">size_t</a> <dfn class="local col3 decl" id="903__len" title='__len' data-type='const std::size_t' data-ref="903__len">__len</dfn> = <a class="ref fn" href="../../../../c++/11/bits/char_traits.h.html#399" title='__builtin_strlen' data-ref="__builtin_strlen">__builtin_strlen</a>(<a class="local col1 ref" href="#901__s" title='__s' data-ref="901__s">__s</a>) + <var>1</var>;&nbsp</td></tr>
+<tr><th id="62">62</th><td>	  <em>char</em>* <dfn class="local col4 decl" id="904__tmp" title='__tmp' data-type='char *' data-ref="904__tmp">__tmp</dfn> = <b>new</b> <em>char</em>[<a class="local col3 ref" href="#903__len" title='__len' data-ref="903__len">__len</a>];&nbsp</td></tr>
+<tr><th id="63">63</th><td>	  <a class="ref fn" href="../../../../c++/11/bits/char_traits.h.html#437" title='__builtin_memcpy' data-ref="__builtin_memcpy">__builtin_memcpy</a>(<a class="local col4 ref" href="#904__tmp" title='__tmp' data-ref="904__tmp">__tmp</a>, <a class="local col1 ref" href="#901__s" title='__s' data-ref="901__s">__s</a>, <a class="local col3 ref" href="#903__len" title='__len' data-ref="903__len">__len</a>);&nbsp</td></tr>
+<tr><th id="64">64</th><td>	  <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_name_timepunct" title='std::__timepunct::_M_name_timepunct' data-ref="std::__timepunct::_M_name_timepunct">_M_name_timepunct</a> = <a class="local col4 ref" href="#904__tmp" title='__tmp' data-ref="904__tmp">__tmp</a>;&nbsp</td></tr>
+<tr><th id="65">65</th><td>	}&nbsp</td></tr>
+<tr><th id="66">66</th><td>      <b>else</b>&nbsp</td></tr>
+<tr><th id="67">67</th><td>	<a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_name_timepunct" title='std::__timepunct::_M_name_timepunct' data-ref="std::__timepunct::_M_name_timepunct">_M_name_timepunct</a> = <a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet13_S_get_c_nameEv" title='std::locale::facet::_S_get_c_name' data-ref="_ZNSt6locale5facet13_S_get_c_nameEv">_S_get_c_name</a>();&nbsp</td></tr>
+<tr><th id="68">68</th><td>&nbsp</td></tr>
+<tr><th id="69">69</th><td>      <a class="macro" href="../../../../c++/11/bits/exception_defines.h.html#40" title="try" data-ref="_M/__try">__try</a>&nbsp</td></tr>
+<tr><th id="70">70</th><td>	{ <a class="member fn" href="../../../../c++/11/bits/locale_facets_nonio.h.html#_ZNSt11__timepunct23_M_initialize_timepunctEP15__locale_struct" title='std::__timepunct::_M_initialize_timepunct' data-ref="_ZNSt11__timepunct23_M_initialize_timepunctEP15__locale_struct">_M_initialize_timepunct</a>(<a class="local col0 ref" href="#900__cloc" title='__cloc' data-ref="900__cloc">__cloc</a>); }&nbsp</td></tr>
+<tr><th id="71">71</th><td>      <a class="macro" href="../../../../c++/11/bits/exception_defines.h.html#41" title="catch(...)" data-ref="_M/__catch">__catch</a>(...)&nbsp</td></tr>
+<tr><th id="72">72</th><td>	{&nbsp</td></tr>
+<tr><th id="73">73</th><td>	  <b>if</b> (<a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_name_timepunct" title='std::__timepunct::_M_name_timepunct' data-ref="std::__timepunct::_M_name_timepunct">_M_name_timepunct</a> != <a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet13_S_get_c_nameEv" title='std::locale::facet::_S_get_c_name' data-ref="_ZNSt6locale5facet13_S_get_c_nameEv">_S_get_c_name</a>())&nbsp</td></tr>
+<tr><th id="74">74</th><td>	    <b>delete</b> [] <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_name_timepunct" title='std::__timepunct::_M_name_timepunct' data-ref="std::__timepunct::_M_name_timepunct">_M_name_timepunct</a>;&nbsp</td></tr>
+<tr><th id="75">75</th><td>	  <a class="macro" href="../../../../c++/11/bits/exception_defines.h.html#42" title="throw" data-ref="_M/__throw_exception_again">__throw_exception_again</a>;&nbsp</td></tr>
+<tr><th id="76">76</th><td>	}&nbsp</td></tr>
+<tr><th id="77">77</th><td>    }&nbsp</td></tr>
+<tr><th id="78">78</th><td>&nbsp</td></tr>
+<tr><th id="79">79</th><td>  <b>template</b>&lt;<b>typename</b> _CharT&gt;&nbsp</td></tr>
+<tr><th id="80">80</th><td>    <a class="type" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct" title='std::__timepunct' data-ref="std::__timepunct">__timepunct</a>&lt;_CharT&gt;::<dfn class="virtual decl def fn" id="_ZNSt11__timepunctD1Ev" title='std::__timepunct::~__timepunct&lt;_CharT&gt;' data-ref="_ZNSt11__timepunctD1Ev">~__timepunct</dfn>()&nbsp</td></tr>
+<tr><th id="81">81</th><td>    {&nbsp</td></tr>
+<tr><th id="82">82</th><td>      <b>if</b> (<a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_name_timepunct" title='std::__timepunct::_M_name_timepunct' data-ref="std::__timepunct::_M_name_timepunct">_M_name_timepunct</a> != <a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet13_S_get_c_nameEv" title='std::locale::facet::_S_get_c_name' data-ref="_ZNSt6locale5facet13_S_get_c_nameEv">_S_get_c_name</a>())&nbsp</td></tr>
+<tr><th id="83">83</th><td>	<b>delete</b> [] <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_name_timepunct" title='std::__timepunct::_M_name_timepunct' data-ref="std::__timepunct::_M_name_timepunct">_M_name_timepunct</a>;&nbsp</td></tr>
+<tr><th id="84">84</th><td>      <b>delete</b> <a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_data" title='std::__timepunct::_M_data' data-ref="std::__timepunct::_M_data">_M_data</a>;&nbsp</td></tr>
+<tr><th id="85">85</th><td>      <a class="member fn" href="../../../../c++/11/bits/locale_classes.h.html#_ZNSt6locale5facet19_S_destroy_c_localeERP15__locale_struct" title='std::locale::facet::_S_destroy_c_locale' data-ref="_ZNSt6locale5facet19_S_destroy_c_localeERP15__locale_struct">_S_destroy_c_locale</a>(<span class='inlayHint'>cloc&amp;:&nbsp;</span><span class='refarg'><a class="member field" href="../../../../c++/11/bits/locale_facets_nonio.h.html#std::__timepunct::_M_c_locale_timepunct" title='std::__timepunct::_M_c_locale_timepunct' data-ref="std::__timepunct::_M_c_locale_timepunct">_M_c_locale_timepunct</a></span>);&nbsp</td></tr>
+<tr><th id="86">86</th><td>    }&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td><a class="macro" href="c++config.h.html#351" title="" data-ref="_M/_GLIBCXX_END_NAMESPACE_VERSION">_GLIBCXX_END_NAMESPACE_VERSION</a>&nbsp</td></tr>
+<tr><th id="89">89</th><td>} <i>// namespace</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../../../Modules/System/Src/tFile.cpp.html'>Modules/System/Src/tFile.cpp</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

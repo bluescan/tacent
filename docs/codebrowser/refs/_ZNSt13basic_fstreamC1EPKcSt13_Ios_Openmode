@@ -1,0 +1,6 @@
+<def f='include/c++/11/fstream' l='1057' ll='1064' type='void std::basic_fstream::basic_fstream&lt;_CharT, _Traits&gt;(const char * __s, ios_base::openmode __mode = ios_base::in | ios_base::out)'/>
+<doc f='include/c++/11/fstream' l='1052'>/**
+       *  @brief  Create an input/output file stream.
+       *  @param  __s  Null terminated string specifying the filename.
+       *  @param  __mode  Open file in specified mode (see std::ios_base).
+       */</doc>

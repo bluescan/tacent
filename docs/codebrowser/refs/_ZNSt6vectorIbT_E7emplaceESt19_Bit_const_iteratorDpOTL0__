@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='1120' ll='1122' type='std::vector&lt;bool, type-parameter-0-0&gt;::iterator std::vector&lt;bool, type-parameter-0-0&gt;::emplace(std::vector&lt;bool, type-parameter-0-0&gt;::const_iterator __pos, _Args &amp;&amp;... __args)'/>

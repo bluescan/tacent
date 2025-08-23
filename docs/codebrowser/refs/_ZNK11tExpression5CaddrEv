@@ -1,0 +1,3 @@
+<def f='Modules/System/Inc/System/tScript.h' l='74' type='tExpression tExpression::Caddr() const'/>
+<use f='Modules/System/Inc/System/tScript.h' l='138' u='c' c='_ZNK11tExpression4Arg2Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='148' u='c' c='_ZNK11tExpression5Item2Ev'/>

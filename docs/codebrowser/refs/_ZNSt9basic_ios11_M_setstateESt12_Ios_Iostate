@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/basic_ios.h' l='163' ll='171' type='void std::basic_ios::_M_setstate(std::ios_base::iostate __state)'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='160'>// Flip the internal state on for the proper state bits, then
+      // rethrows the propagated exception if bit also set in
+      // exceptions().</doc>

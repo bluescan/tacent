@@ -1,0 +1,37 @@
+<def f='include/c++/11/bits/random.h' l='4421' ll='4619'/>
+<use f='include/c++/11/bits/random.h' l='4433'/>
+<use f='include/c++/11/bits/random.h' l='4434'/>
+<use f='include/c++/11/bits/random.h' l='4590' c='_ZStlsRSt13basic_ostreamITL0_0_TL0_1_ERKSt20poisson_distributionITL0__E'/>
+<use f='include/c++/11/bits/random.h' l='4605' c='_ZStrsRSt13basic_istreamITL0_0_TL0_1_ERSt20poisson_distributionITL0__E'/>
+<use f='include/c++/11/bits/random.h' l='4626' c='_ZStneRKSt20poisson_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='4627' c='_ZStneRKSt20poisson_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.tcc' l='1151' c='_ZNSt30negative_binomial_distributionclERTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='1168' c='_ZNSt30negative_binomial_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1186' c='_ZNSt30negative_binomial_distribution15__generate_implETL0__S0_RTL0_0_'/>
+<use f='include/c++/11/bits/random.tcc' l='1208' c='_ZNSt30negative_binomial_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1261' c='_ZNSt20poisson_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='1302' c='_ZNSt20poisson_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1301' c='_ZNSt20poisson_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1411' c='_ZNSt20poisson_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1426' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt20poisson_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1450' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt20poisson_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='1452' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt20poisson_distributionIT_E'/>
+<fun r='_ZNSt20poisson_distributionC1Ev'/>
+<fun r='_ZNSt20poisson_distributionC1Ed'/>
+<fun r='_ZNSt20poisson_distributionC1ERKNS_10param_typeE'/>
+<fun r='_ZNSt20poisson_distribution5resetEv'/>
+<fun r='_ZNKSt20poisson_distribution4meanEv'/>
+<fun r='_ZNKSt20poisson_distribution5paramEv'/>
+<fun r='_ZNSt20poisson_distribution5paramERKNS_10param_typeE'/>
+<fun r='_ZNKSt20poisson_distribution3minEv'/>
+<fun r='_ZNKSt20poisson_distribution3maxEv'/>
+<fun r='_ZNSt20poisson_distributionclERTL0__'/>
+<fun r='_ZNSt20poisson_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt20poisson_distribution10__generateETL0__S0_RTL0_0_'/>
+<fun r='_ZNSt20poisson_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<fun r='_ZNSt20poisson_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt20poisson_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<mbr r='std::poisson_distribution::_M_param' t='std::poisson_distribution::param_type'/>
+<mbr r='std::poisson_distribution::_M_nd' t='std::normal_distribution&lt;double&gt;'/>
+<fun r='_ZNSt20poisson_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt20poisson_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13431'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13430'>// VK_EXT_global_priority is a preprocessor guard. Do not pass it to API calls.</doc>

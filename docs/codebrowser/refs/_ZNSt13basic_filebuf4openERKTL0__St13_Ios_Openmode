@@ -1,0 +1,1 @@
+<def f='include/c++/11/fstream' l='347' ll='349' type='_If_fs_path&lt;_Path, std::basic_filebuf::__filebuf_type *&gt; std::basic_filebuf::open(const _Path &amp; __s, ios_base::openmode __mode)'/>

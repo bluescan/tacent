@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/postypes.h' l='151' ll='153' type='_StateT std::fpos::state() const'/>
+<doc f='include/c++/11/bits/postypes.h' l='150'>/// Return the last set value of @a st.</doc>

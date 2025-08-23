@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5343' ll='5347'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5343'/>
+<size>12</size>
+<mbr r='VkInputAttachmentAspectReference::subpass' o='0' t='uint32_t'/>
+<mbr r='VkInputAttachmentAspectReference::inputAttachmentIndex' o='32' t='uint32_t'/>
+<mbr r='VkInputAttachmentAspectReference::aspectMask' o='64' t='VkImageAspectFlags'/>

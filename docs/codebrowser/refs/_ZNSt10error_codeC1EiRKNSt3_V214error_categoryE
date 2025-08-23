@@ -1,0 +1,8 @@
+<def f='include/c++/11/system_error' l='202' ll='203' type='void std::error_code::error_code(int __v, const std::error_category &amp; __cat)'/>
+<use f='include/c++/11/system_error' l='257' u='c' c='_ZSt15make_error_codeSt4errc'/>
+<use f='include/c++/11/system_error' l='462' u='c' c='_ZNSt12system_errorC1EiRKNSt3_V214error_categoryEPKc'/>
+<use f='include/c++/11/system_error' l='465' u='c' c='_ZNSt12system_errorC1EiRKNSt3_V214error_categoryE'/>
+<use f='include/c++/11/system_error' l='466' u='c' c='_ZNSt12system_errorC1EiRKNSt3_V214error_categoryE'/>
+<use f='include/c++/11/system_error' l='469' u='c' c='_ZNSt12system_errorC1EiRKNSt3_V214error_categoryERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/system_error' l='470' u='c' c='_ZNSt12system_errorC1EiRKNSt3_V214error_categoryERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/bits/ios_base.h' l='211' u='c' c='_ZSt15make_error_codeSt7io_errc'/>

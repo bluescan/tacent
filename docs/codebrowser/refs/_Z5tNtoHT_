@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='197' type='T tNtoH(T val)'/>
+<def f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='283' ll='289' type='T tNtoH(T val)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='195'>// Converts to and from external data representation (XDR/Network) which is big-endian. Does not rely on the
+// PLATFORM define by performing an endianness test.</doc>

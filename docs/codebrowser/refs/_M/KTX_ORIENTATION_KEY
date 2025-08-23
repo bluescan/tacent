@@ -1,0 +1,5 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='124'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='120'>/**
+ * @~English
+ * @brief Key string for standard orientation metadata.
+ */</doc>

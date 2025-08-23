@@ -1,0 +1,6 @@
+<def f='include/c++/11/type_traits' l='2382' ll='2383'/>
+<use f='include/c++/11/type_traits' l='2389' c='_ZNSt27__result_of_memfun_ref_impl7_S_testEi'/>
+<use f='include/c++/11/type_traits' l='2408' c='_ZNSt29__result_of_memfun_deref_impl7_S_testEi'/>
+<use f='include/c++/11/type_traits' l='2427' c='_ZNSt27__result_of_memobj_ref_impl7_S_testEi'/>
+<use f='include/c++/11/type_traits' l='2446' c='_ZNSt29__result_of_memobj_deref_impl7_S_testEi'/>
+<use f='include/c++/11/type_traits' l='2529' c='_ZNSt22__result_of_other_impl7_S_testEi'/>

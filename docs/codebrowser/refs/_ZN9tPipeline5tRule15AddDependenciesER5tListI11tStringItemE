@@ -1,0 +1,8 @@
+<dec f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='63' type='void tPipeline::tRule::AddDependencies(tList&lt;tStringItem&gt; &amp; deps)'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='83' u='c' c='_ZN9tPipeline5tRule7AddDepsER5tListI11tStringItemE'/>
+<def f='Modules/Pipeline/Src/tRule.cpp' l='90' ll='111' type='void tPipeline::tRule::AddDependencies(tList&lt;tStringItem&gt; &amp; deps)'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='120' u='c' c='_ZN9tPipeline5tRule16AddDependencyDirERK7tStringS3_'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='131' u='c' c='_ZN9tPipeline5tRule19AddDependencyDirRecERK7tStringS3_'/>
+<doc f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='60'>// Adds multiple dependencies. The list is left empty and the strings are managed by the tRule. If any dependency
+	// doesn&apos;t exist a tRuleError object is thrown and that dependency is not added. All dependencies that do exist
+	// will be added if they aren&apos;t already added.</doc>

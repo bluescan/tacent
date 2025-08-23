@@ -1,0 +1,2 @@
+<dec f='include/signal.h' l='205' type='int sigaddset(sigset_t * __set, int __signo)'/>
+<doc f='include/signal.h' l='204'>/* Add SIGNO to SET.  */</doc>

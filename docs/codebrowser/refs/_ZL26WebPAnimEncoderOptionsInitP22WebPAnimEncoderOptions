@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/WebP/include/mux.h' l='452' ll='455' type='int WebPAnimEncoderOptionsInit(WebPAnimEncoderOptions * enc_options)'/>
+<doc f='Modules/Image/Contrib/WebP/include/mux.h' l='448'>// Should always be called, to initialize a fresh WebPAnimEncoderOptions
+// structure before modification. Returns false in case of version mismatch.
+// WebPAnimEncoderOptionsInit() must have succeeded before using the
+// &apos;enc_options&apos; object.</doc>

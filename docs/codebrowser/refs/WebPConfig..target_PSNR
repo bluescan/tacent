@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='108' type='float'/>
+<offset>160</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='107'>// Takes precedence over the &apos;compression&apos; parameter.</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='108'>// if non-zero, specifies the minimal distortion to</doc>

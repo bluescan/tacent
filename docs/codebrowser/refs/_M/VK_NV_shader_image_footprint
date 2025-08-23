@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13699'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13698'>// VK_NV_shader_image_footprint is a preprocessor guard. Do not pass it to API calls.</doc>

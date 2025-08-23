@@ -1,0 +1,18 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3438' ll='3454'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3438'/>
+<size>88</size>
+<mbr r='VkImageCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkImageCreateInfo::flags' o='128' t='VkImageCreateFlags'/>
+<mbr r='VkImageCreateInfo::imageType' o='160' t='VkImageType'/>
+<mbr r='VkImageCreateInfo::format' o='192' t='VkFormat'/>
+<mbr r='VkImageCreateInfo::extent' o='224' t='VkExtent3D'/>
+<mbr r='VkImageCreateInfo::mipLevels' o='320' t='uint32_t'/>
+<mbr r='VkImageCreateInfo::arrayLayers' o='352' t='uint32_t'/>
+<mbr r='VkImageCreateInfo::samples' o='384' t='VkSampleCountFlagBits'/>
+<mbr r='VkImageCreateInfo::tiling' o='416' t='VkImageTiling'/>
+<mbr r='VkImageCreateInfo::usage' o='448' t='VkImageUsageFlags'/>
+<mbr r='VkImageCreateInfo::sharingMode' o='480' t='VkSharingMode'/>
+<mbr r='VkImageCreateInfo::queueFamilyIndexCount' o='512' t='uint32_t'/>
+<mbr r='VkImageCreateInfo::pQueueFamilyIndices' o='576' t='const uint32_t *'/>
+<mbr r='VkImageCreateInfo::initialLayout' o='640' t='VkImageLayout'/>

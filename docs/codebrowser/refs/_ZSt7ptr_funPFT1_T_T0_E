@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_function.h' l='1144' ll='1146' type='pointer_to_binary_function&lt;_Arg1, _Arg2, _Result&gt; std::ptr_fun(_Result (*)(_Arg1, _Arg2) __x)'/>

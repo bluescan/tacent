@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/unordered_map.h' l='843' ll='845' type='std::unordered_map::hasher std::unordered_map::hash_function() const'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='839'>// observers.
+
+      ///  Returns the hash functor object with which the %unordered_map was
+      ///  constructed.</doc>

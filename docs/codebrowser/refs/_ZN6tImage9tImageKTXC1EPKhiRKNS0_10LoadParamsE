@@ -1,0 +1,1 @@
+<def f='Modules/Image/Src/tImageKTX.cpp' l='535' ll='539' type='void tImage::tImageKTX::tImageKTX(const uint8 * ktxFileInMemory, int numBytes, const tImage::tImageKTX::LoadParams &amp; loadParams = tImage::tImageKTX::LoadParams())'/>

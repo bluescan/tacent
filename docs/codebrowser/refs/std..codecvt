@@ -1,0 +1,175 @@
+<use f='include/c++/11/bits/localefwd.h' l='139'/>
+<use f='include/c++/11/bits/localefwd.h' l='141'/>
+<use f='include/c++/11/bits/localefwd.h' l='144'/>
+<use f='include/c++/11/bits/localefwd.h' l='145'/>
+<use f='include/c++/11/bits/localefwd.h' l='147'/>
+<use f='include/c++/11/bits/localefwd.h' l='148'/>
+<def f='include/c++/11/bits/codecvt.h' l='277' ll='334'/>
+<use f='include/c++/11/bits/codecvt.h' l='337'/>
+<inh f='include/c++/11/bits/codecvt.h' l='71' c='std::__codecvt_abstract_base'/>
+<def f='include/c++/11/bits/codecvt.h' l='340' ll='396'/>
+<use f='include/c++/11/bits/codecvt.h' l='341'/>
+<inh f='include/c++/11/bits/codecvt.h' l='71' c='std::__codecvt_abstract_base'/>
+<def f='include/c++/11/bits/codecvt.h' l='403' ll='461'/>
+<use f='include/c++/11/bits/codecvt.h' l='404'/>
+<inh f='include/c++/11/bits/codecvt.h' l='71' c='std::__codecvt_abstract_base'/>
+<def f='include/c++/11/bits/codecvt.h' l='469' ll='520'/>
+<use f='include/c++/11/bits/codecvt.h' l='470'/>
+<inh f='include/c++/11/bits/codecvt.h' l='71' c='std::__codecvt_abstract_base'/>
+<def f='include/c++/11/bits/codecvt.h' l='526' ll='577'/>
+<use f='include/c++/11/bits/codecvt.h' l='527'/>
+<inh f='include/c++/11/bits/codecvt.h' l='71' c='std::__codecvt_abstract_base'/>
+<def f='include/c++/11/bits/codecvt.h' l='584' ll='635'/>
+<use f='include/c++/11/bits/codecvt.h' l='585'/>
+<inh f='include/c++/11/bits/codecvt.h' l='71' c='std::__codecvt_abstract_base'/>
+<def f='include/c++/11/bits/codecvt.h' l='641' ll='692'/>
+<use f='include/c++/11/bits/codecvt.h' l='642'/>
+<use f='include/c++/11/bits/codecvt.h' l='699'/>
+<use f='include/c++/11/bits/codecvt.h' l='704' c='_ZNSt14codecvt_bynameC1EPKcm'/>
+<ovr f='include/c++/11/bits/codecvt.h' l='727' c='std::codecvt_byname'/>
+<use f='include/c++/11/bits/codecvt.h' l='733' c='_ZNSt14codecvt_bynameIDsc11__mbstate_tEC1EPKcm'/>
+<ovr f='include/c++/11/bits/codecvt.h' l='745' c='std::codecvt_byname'/>
+<use f='include/c++/11/bits/codecvt.h' l='751' c='_ZNSt14codecvt_bynameIDic11__mbstate_tEC1EPKcm'/>
+<ovr f='include/c++/11/bits/codecvt.h' l='764' c='std::codecvt_byname'/>
+<use f='include/c++/11/bits/codecvt.h' l='770' c='_ZNSt14codecvt_bynameIDsDu11__mbstate_tEC1EPKcm'/>
+<ovr f='include/c++/11/bits/codecvt.h' l='782' c='std::codecvt_byname'/>
+<use f='include/c++/11/bits/codecvt.h' l='788' c='_ZNSt14codecvt_bynameIDiDu11__mbstate_tEC1EPKcm'/>
+<ovr f='include/c++/11/bits/codecvt.h' l='805' c='std::codecvt_byname'/>
+<ovr f='include/c++/11/bits/codecvt.h' l='816' c='std::codecvt_byname'/>
+<use f='include/c++/11/fstream' l='113'/>
+<use f='include/c++/11/bits/locale_conv.h' l='110' c='_ZSt16__str_codecvt_inPKcS0_RNSt7__cxx1112basic_stringIT_T0_T1_EERKSt7codecvtIS3_cT2_ERS9_Rm'/>
+<use f='include/c++/11/bits/locale_conv.h' l='113' c='_ZSt16__str_codecvt_inPKcS0_RNSt7__cxx1112basic_stringIT_T0_T1_EERKSt7codecvtIS3_cT2_ERS9_Rm'/>
+<use f='include/c++/11/bits/locale_conv.h' l='118' c='_ZSt16__str_codecvt_inPKcS0_RNSt7__cxx1112basic_stringIT_T0_T1_EERKSt7codecvtIS3_cT2_ERS9_Rm'/>
+<use f='include/c++/11/bits/locale_conv.h' l='128' c='_ZSt16__str_codecvt_inPKcS0_RNSt7__cxx1112basic_stringIT_T0_T1_EERKSt7codecvtIS3_cT2_E'/>
+<use f='include/c++/11/bits/locale_conv.h' l='140' c='_ZSt20__str_codecvt_in_allPKcS0_RNSt7__cxx1112basic_stringIT_T0_T1_EERKSt7codecvtIS3_cT2_E'/>
+<use f='include/c++/11/bits/locale_conv.h' l='153' c='_ZSt17__str_codecvt_outPKT_S1_RNSt7__cxx1112basic_stringIcT0_T1_EERKSt7codecvtIS_cT2_ERS9_Rm'/>
+<use f='include/c++/11/bits/locale_conv.h' l='156' c='_ZSt17__str_codecvt_outPKT_S1_RNSt7__cxx1112basic_stringIcT0_T1_EERKSt7codecvtIS_cT2_ERS9_Rm'/>
+<use f='include/c++/11/bits/locale_conv.h' l='161' c='_ZSt17__str_codecvt_outPKT_S1_RNSt7__cxx1112basic_stringIcT0_T1_EERKSt7codecvtIS_cT2_ERS9_Rm'/>
+<use f='include/c++/11/bits/locale_conv.h' l='171' c='_ZSt17__str_codecvt_outPKT_S1_RNSt7__cxx1112basic_stringIcT0_T1_EERKSt7codecvtIS_cT2_E'/>
+<use f='include/c++/11/bits/locale_conv.h' l='183' c='_ZSt21__str_codecvt_out_allPKT_S1_RNSt7__cxx1112basic_stringIcT0_T1_EERKSt7codecvtIS_cT2_E'/>
+<use f='include/c++/11/bits/locale_conv.h' l='198' c='_ZSt17__str_codecvt_outPKT_S1_RNSt7__cxx1112basic_stringIDuT0_T1_EERKSt7codecvtIS_DuT2_ERS9_Rm'/>
+<use f='include/c++/11/bits/locale_conv.h' l='201' c='_ZSt17__str_codecvt_outPKT_S1_RNSt7__cxx1112basic_stringIDuT0_T1_EERKSt7codecvtIS_DuT2_ERS9_Rm'/>
+<use f='include/c++/11/bits/locale_conv.h' l='206' c='_ZSt17__str_codecvt_outPKT_S1_RNSt7__cxx1112basic_stringIDuT0_T1_EERKSt7codecvtIS_DuT2_ERS9_Rm'/>
+<use f='include/c++/11/bits/locale_conv.h' l='215' c='_ZSt17__str_codecvt_outPKT_S1_RNSt7__cxx1112basic_stringIDuT0_T1_EERKSt7codecvtIS_DuT2_E'/>
+<use f='include/c++/11/codecvt' l='56'/>
+<use f='include/c++/11/codecvt' l='67'/>
+<use f='include/c++/11/codecvt' l='78'/>
+<ovr f='include/c++/11/codecvt' l='158' c='std::__codecvt_utf8_base'/>
+<use f='include/c++/11/codecvt' l='99' c='_ZNSt19__codecvt_utf8_baseIDsEC1EmSt12codecvt_modem'/>
+<ovr f='include/c++/11/codecvt' l='159' c='std::__codecvt_utf16_base'/>
+<use f='include/c++/11/codecvt' l='99' c='_ZNSt20__codecvt_utf16_baseIDsEC1EmSt12codecvt_modem'/>
+<ovr f='include/c++/11/codecvt' l='160' c='std::__codecvt_utf8_utf16_base'/>
+<use f='include/c++/11/codecvt' l='99' c='_ZNSt25__codecvt_utf8_utf16_baseIDsEC1EmSt12codecvt_modem'/>
+<ovr f='include/c++/11/codecvt' l='162' c='std::__codecvt_utf8_base'/>
+<use f='include/c++/11/codecvt' l='99' c='_ZNSt19__codecvt_utf8_baseIDiEC1EmSt12codecvt_modem'/>
+<ovr f='include/c++/11/codecvt' l='163' c='std::__codecvt_utf16_base'/>
+<use f='include/c++/11/codecvt' l='99' c='_ZNSt20__codecvt_utf16_baseIDiEC1EmSt12codecvt_modem'/>
+<ovr f='include/c++/11/codecvt' l='164' c='std::__codecvt_utf8_utf16_base'/>
+<use f='include/c++/11/codecvt' l='99' c='_ZNSt25__codecvt_utf8_utf16_baseIDiEC1EmSt12codecvt_modem'/>
+<ovr f='include/c++/11/codecvt' l='167' c='std::__codecvt_utf8_base'/>
+<use f='include/c++/11/codecvt' l='99' c='_ZNSt19__codecvt_utf8_baseIwEC1EmSt12codecvt_modem'/>
+<ovr f='include/c++/11/codecvt' l='168' c='std::__codecvt_utf16_base'/>
+<use f='include/c++/11/codecvt' l='99' c='_ZNSt20__codecvt_utf16_baseIwEC1EmSt12codecvt_modem'/>
+<ovr f='include/c++/11/codecvt' l='169' c='std::__codecvt_utf8_utf16_base'/>
+<use f='include/c++/11/codecvt' l='99' c='_ZNSt25__codecvt_utf8_utf16_baseIwEC1EmSt12codecvt_modem'/>
+<use f='include/c++/11/bits/fs_path.h' l='854' c='_ZNSt10filesystem7__cxx114path10_S_convertEPKT_S4_'/>
+<use f='include/c++/11/bits/fs_path.h' l='1062' c='_ZNSt10filesystem7__cxx114path14_S_str_convertESt17basic_string_viewIcSt11char_traitsIcEERKT1_'/>
+<size>24</size>
+<doc f='include/c++/11/bits/codecvt.h' l='339'>/// class codecvt&lt;char, char, mbstate_t&gt; specialization.</doc>
+<doc f='include/c++/11/bits/codecvt.h' l='399'>/** @brief  Class codecvt&lt;wchar_t, char, mbstate_t&gt; specialization.
+   *
+   *  Converts between narrow and wide characters in the native character set
+   */</doc>
+<doc f='include/c++/11/bits/codecvt.h' l='465'>/** @brief  Class codecvt&lt;char16_t, char, mbstate_t&gt; specialization.
+   *
+   *  Converts between UTF-16 and UTF-8.
+   */</doc>
+<doc f='include/c++/11/bits/codecvt.h' l='522'>/** @brief  Class codecvt&lt;char32_t, char, mbstate_t&gt; specialization.
+   *
+   *  Converts between UTF-32 and UTF-8.
+   */</doc>
+<doc f='include/c++/11/bits/codecvt.h' l='580'>/** @brief  Class codecvt&lt;char16_t, char8_t, mbstate_t&gt; specialization.
+   *
+   *  Converts between UTF-16 and UTF-8.
+   */</doc>
+<doc f='include/c++/11/bits/codecvt.h' l='637'>/** @brief  Class codecvt&lt;char32_t, char8_t, mbstate_t&gt; specialization.
+   *
+   *  Converts between UTF-32 and UTF-8.
+   */</doc>
+<mbr r='std::codecvt::_M_c_locale_codecvt' o='128' t='std::__c_locale'/>
+<smbr r='std::codecvt::id' t='locale::id'/>
+<fun r='_ZNSt7codecvtC1Em'/>
+<fun r='_ZNSt7codecvtC1EP15__locale_structm'/>
+<fun r='_ZNSt7codecvtD1Ev'/>
+<fun r='_ZNKSt7codecvt6do_outERT1_PKT_S4_RS4_PT0_S7_RS7_'/>
+<fun r='_ZNKSt7codecvt10do_unshiftERT1_PT0_S3_RS3_'/>
+<fun r='_ZNKSt7codecvt5do_inERT1_PKT0_S4_RS4_PT_S7_RS7_'/>
+<fun r='_ZNKSt7codecvt11do_encodingEv'/>
+<fun r='_ZNKSt7codecvt16do_always_noconvEv'/>
+<fun r='_ZNKSt7codecvt9do_lengthERT1_PKT0_S4_m'/>
+<fun r='_ZNKSt7codecvt13do_max_lengthEv'/>
+<smbr r='std::codecvt::id' t='locale::id'/>
+<mbr r='std::codecvt::_M_c_locale_codecvt' o='128' t='std::__c_locale'/>
+<smbr r='std::codecvt{char,char,__mbstate_t}::id' t='locale::id'/>
+<fun r='_ZNSt7codecvtIcc11__mbstate_tEC1Em'/>
+<fun r='_ZNSt7codecvtIcc11__mbstate_tEC1EP15__locale_structm'/>
+<fun r='_ZNSt7codecvtIcc11__mbstate_tED1Ev'/>
+<fun r='_ZNKSt7codecvtIcc11__mbstate_tE6do_outERS0_PKcS4_RS4_PcS6_RS6_'/>
+<fun r='_ZNKSt7codecvtIcc11__mbstate_tE10do_unshiftERS0_PcS3_RS3_'/>
+<fun r='_ZNKSt7codecvtIcc11__mbstate_tE5do_inERS0_PKcS4_RS4_PcS6_RS6_'/>
+<fun r='_ZNKSt7codecvtIcc11__mbstate_tE11do_encodingEv'/>
+<fun r='_ZNKSt7codecvtIcc11__mbstate_tE16do_always_noconvEv'/>
+<fun r='_ZNKSt7codecvtIcc11__mbstate_tE9do_lengthERS0_PKcS4_m'/>
+<fun r='_ZNKSt7codecvtIcc11__mbstate_tE13do_max_lengthEv'/>
+<mbr r='std::codecvt::_M_c_locale_codecvt' o='128' t='std::__c_locale'/>
+<smbr r='std::codecvt{wchar_t,char,__mbstate_t}::id' t='locale::id'/>
+<fun r='_ZNSt7codecvtIwc11__mbstate_tEC1Em'/>
+<fun r='_ZNSt7codecvtIwc11__mbstate_tEC1EP15__locale_structm'/>
+<fun r='_ZNSt7codecvtIwc11__mbstate_tED1Ev'/>
+<fun r='_ZNKSt7codecvtIwc11__mbstate_tE6do_outERS0_PKwS4_RS4_PcS6_RS6_'/>
+<fun r='_ZNKSt7codecvtIwc11__mbstate_tE10do_unshiftERS0_PcS3_RS3_'/>
+<fun r='_ZNKSt7codecvtIwc11__mbstate_tE5do_inERS0_PKcS4_RS4_PwS6_RS6_'/>
+<fun r='_ZNKSt7codecvtIwc11__mbstate_tE11do_encodingEv'/>
+<fun r='_ZNKSt7codecvtIwc11__mbstate_tE16do_always_noconvEv'/>
+<fun r='_ZNKSt7codecvtIwc11__mbstate_tE9do_lengthERS0_PKcS4_m'/>
+<fun r='_ZNKSt7codecvtIwc11__mbstate_tE13do_max_lengthEv'/>
+<smbr r='std::codecvt{char16_t,char,__mbstate_t}::id' t='locale::id'/>
+<fun r='_ZNSt7codecvtIDsc11__mbstate_tEC1Em'/>
+<fun r='_ZNSt7codecvtIDsc11__mbstate_tED1Ev'/>
+<fun r='_ZNKSt7codecvtIDsc11__mbstate_tE6do_outERS0_PKDsS4_RS4_PcS6_RS6_'/>
+<fun r='_ZNKSt7codecvtIDsc11__mbstate_tE10do_unshiftERS0_PcS3_RS3_'/>
+<fun r='_ZNKSt7codecvtIDsc11__mbstate_tE5do_inERS0_PKcS4_RS4_PDsS6_RS6_'/>
+<fun r='_ZNKSt7codecvtIDsc11__mbstate_tE11do_encodingEv'/>
+<fun r='_ZNKSt7codecvtIDsc11__mbstate_tE16do_always_noconvEv'/>
+<fun r='_ZNKSt7codecvtIDsc11__mbstate_tE9do_lengthERS0_PKcS4_m'/>
+<fun r='_ZNKSt7codecvtIDsc11__mbstate_tE13do_max_lengthEv'/>
+<smbr r='std::codecvt{char32_t,char,__mbstate_t}::id' t='locale::id'/>
+<fun r='_ZNSt7codecvtIDic11__mbstate_tEC1Em'/>
+<fun r='_ZNSt7codecvtIDic11__mbstate_tED1Ev'/>
+<fun r='_ZNKSt7codecvtIDic11__mbstate_tE6do_outERS0_PKDiS4_RS4_PcS6_RS6_'/>
+<fun r='_ZNKSt7codecvtIDic11__mbstate_tE10do_unshiftERS0_PcS3_RS3_'/>
+<fun r='_ZNKSt7codecvtIDic11__mbstate_tE5do_inERS0_PKcS4_RS4_PDiS6_RS6_'/>
+<fun r='_ZNKSt7codecvtIDic11__mbstate_tE11do_encodingEv'/>
+<fun r='_ZNKSt7codecvtIDic11__mbstate_tE16do_always_noconvEv'/>
+<fun r='_ZNKSt7codecvtIDic11__mbstate_tE9do_lengthERS0_PKcS4_m'/>
+<fun r='_ZNKSt7codecvtIDic11__mbstate_tE13do_max_lengthEv'/>
+<smbr r='std::codecvt{char16_t,char8_t,__mbstate_t}::id' t='locale::id'/>
+<fun r='_ZNSt7codecvtIDsDu11__mbstate_tEC1Em'/>
+<fun r='_ZNSt7codecvtIDsDu11__mbstate_tED1Ev'/>
+<fun r='_ZNKSt7codecvtIDsDu11__mbstate_tE6do_outERS0_PKDsS4_RS4_PDuS6_RS6_'/>
+<fun r='_ZNKSt7codecvtIDsDu11__mbstate_tE10do_unshiftERS0_PDuS3_RS3_'/>
+<fun r='_ZNKSt7codecvtIDsDu11__mbstate_tE5do_inERS0_PKDuS4_RS4_PDsS6_RS6_'/>
+<fun r='_ZNKSt7codecvtIDsDu11__mbstate_tE11do_encodingEv'/>
+<fun r='_ZNKSt7codecvtIDsDu11__mbstate_tE16do_always_noconvEv'/>
+<fun r='_ZNKSt7codecvtIDsDu11__mbstate_tE9do_lengthERS0_PKDuS4_m'/>
+<fun r='_ZNKSt7codecvtIDsDu11__mbstate_tE13do_max_lengthEv'/>
+<smbr r='std::codecvt{char32_t,char8_t,__mbstate_t}::id' t='locale::id'/>
+<fun r='_ZNSt7codecvtIDiDu11__mbstate_tEC1Em'/>
+<fun r='_ZNSt7codecvtIDiDu11__mbstate_tED1Ev'/>
+<fun r='_ZNKSt7codecvtIDiDu11__mbstate_tE6do_outERS0_PKDiS4_RS4_PDuS6_RS6_'/>
+<fun r='_ZNKSt7codecvtIDiDu11__mbstate_tE10do_unshiftERS0_PDuS3_RS3_'/>
+<fun r='_ZNKSt7codecvtIDiDu11__mbstate_tE5do_inERS0_PKDuS4_RS4_PDiS6_RS6_'/>
+<fun r='_ZNKSt7codecvtIDiDu11__mbstate_tE11do_encodingEv'/>
+<fun r='_ZNKSt7codecvtIDiDu11__mbstate_tE16do_always_noconvEv'/>
+<fun r='_ZNKSt7codecvtIDiDu11__mbstate_tE9do_lengthERS0_PKDuS4_m'/>
+<fun r='_ZNKSt7codecvtIDiDu11__mbstate_tE13do_max_lengthEv'/>

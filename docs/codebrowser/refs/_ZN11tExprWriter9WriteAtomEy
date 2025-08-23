@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='261' type='void tExprWriter::WriteAtom(const uint64 )'/>
+<def f='Modules/System/Src/tScript.cpp' l='718' ll='723' type='void tExprWriter::WriteAtom(const uint64 atom)'/>

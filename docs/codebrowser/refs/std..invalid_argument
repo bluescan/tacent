@@ -1,0 +1,17 @@
+<inh f='include/c++/11/stdexcept' l='113' c='std::logic_error'/>
+<def f='include/c++/11/stdexcept' l='168' ll='180'/>
+<use f='include/c++/11/stdexcept' l='174' c='_ZNSt16invalid_argumentC1ERKS_'/>
+<use f='include/c++/11/stdexcept' l='175' c='_ZNSt16invalid_argumentaSERKS_'/>
+<use f='include/c++/11/stdexcept' l='175' c='_ZNSt16invalid_argumentaSERKS_'/>
+<use f='include/c++/11/stdexcept' l='176' c='_ZNSt16invalid_argumentC1EOS_'/>
+<use f='include/c++/11/stdexcept' l='177' c='_ZNSt16invalid_argumentaSEOS_'/>
+<use f='include/c++/11/stdexcept' l='177' c='_ZNSt16invalid_argumentaSEOS_'/>
+<size>16</size>
+<doc f='include/c++/11/stdexcept' l='167'>/** Thrown to report invalid arguments to functions.  */</doc>
+<fun r='_ZNSt16invalid_argumentC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt16invalid_argumentC1EPKc'/>
+<fun r='_ZNSt16invalid_argumentC1ERKS_'/>
+<fun r='_ZNSt16invalid_argumentaSERKS_'/>
+<fun r='_ZNSt16invalid_argumentC1EOS_'/>
+<fun r='_ZNSt16invalid_argumentaSEOS_'/>
+<fun r='_ZNSt16invalid_argumentD1Ev'/>

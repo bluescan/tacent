@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_wait.h' l='217' ll='223' type='bool std::__detail::__waiter_pool_base::_M_waiting() const'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='236' u='c' c='_ZNSt8__detail18__waiter_pool_base9_M_notifyEPibb'/>

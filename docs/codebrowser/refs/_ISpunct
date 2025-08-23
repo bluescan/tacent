@@ -1,0 +1,4 @@
+<dec f='include/ctype.h' l='58' type='4'/>
+<doc f='include/ctype.h' l='58'>/* Punctuation.  */</doc>
+<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_base.h' l='56' u='r'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_base.h' l='58'/>

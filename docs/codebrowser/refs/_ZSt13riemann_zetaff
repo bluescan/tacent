@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='1021' ll='1023' type='float std::riemann_zetaf(float __s)'/>
+<doc f='include/c++/11/bits/specfun.h' l='1015'>/**
+   * Return the Riemann zeta function @f$ \zeta(s) @f$
+   * for @c float argument @f$ s @f$.
+   *
+   * @see riemann_zeta for more details.
+   */</doc>

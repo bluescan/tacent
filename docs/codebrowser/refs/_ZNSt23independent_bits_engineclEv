@@ -1,0 +1,5 @@
+<dec f='include/c++/11/bits/random.h' l='1231' type='std::independent_bits_engine::result_type std::independent_bits_engine::operator()()'/>
+<def f='include/c++/11/bits/random.tcc' l='733' ll='800' type='typename independent_bits_engine&lt;_RandomNumberEngine, __w, _UIntType&gt;::result_type std::independent_bits_engine::operator()()'/>
+<doc f='include/c++/11/bits/random.h' l='1227'>/**
+       * @brief Gets the next value in the generated random number sequence.
+       */</doc>

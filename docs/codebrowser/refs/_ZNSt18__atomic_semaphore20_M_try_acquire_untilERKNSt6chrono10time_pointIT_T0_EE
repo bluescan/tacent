@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/semaphore_base.h' l='230' ll='238' macro='1' type='bool std::__atomic_semaphore::_M_try_acquire_until(const chrono::time_point&lt;_Clock, _Duration&gt; &amp; __atime)'/>

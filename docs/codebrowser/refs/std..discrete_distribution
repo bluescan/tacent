@@ -1,0 +1,34 @@
+<def f='include/c++/11/bits/random.h' l='5279' ll='5494'/>
+<use f='include/c++/11/bits/random.h' l='5291'/>
+<use f='include/c++/11/bits/random.h' l='5292'/>
+<use f='include/c++/11/bits/random.h' l='5467' c='_ZStlsRSt13basic_ostreamITL0_0_TL0_1_ERKSt21discrete_distributionITL0__E'/>
+<use f='include/c++/11/bits/random.h' l='5483' c='_ZStrsRSt13basic_istreamITL0_0_TL0_1_ERSt21discrete_distributionITL0__E'/>
+<use f='include/c++/11/bits/random.h' l='5502' c='_ZStneRKSt21discrete_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.h' l='5503' c='_ZStneRKSt21discrete_distributionIT_ES3_'/>
+<use f='include/c++/11/bits/random.tcc' l='2656' c='_ZNSt21discrete_distribution10param_type13_M_initializeEv'/>
+<use f='include/c++/11/bits/random.tcc' l='2681' c='_ZNSt21discrete_distribution10param_typeC1EmddTL0__'/>
+<use f='include/c++/11/bits/random.tcc' l='2698' c='_ZNSt21discrete_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2697' c='_ZNSt21discrete_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2719' c='_ZNSt21discrete_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='2749' c='_ZStlsRSt13basic_ostreamIT0_T1_ERKSt21discrete_distributionIT_E'/>
+<use f='include/c++/11/bits/random.tcc' l='2795' c='_ZStrsRSt13basic_istreamIT0_T1_ERSt21discrete_distributionIT_E'/>
+<fun r='_ZNSt21discrete_distributionC1Ev'/>
+<fun r='_ZNSt21discrete_distributionC1ETL0__S0_'/>
+<fun r='_ZNSt21discrete_distributionC1ESt16initializer_listIdE'/>
+<fun r='_ZNSt21discrete_distributionC1EmddTL0__'/>
+<fun r='_ZNSt21discrete_distributionC1ERKNS_10param_typeE'/>
+<fun r='_ZNSt21discrete_distribution5resetEv'/>
+<fun r='_ZNKSt21discrete_distribution13probabilitiesEv'/>
+<fun r='_ZNKSt21discrete_distribution5paramEv'/>
+<fun r='_ZNSt21discrete_distribution5paramERKNS_10param_typeE'/>
+<fun r='_ZNKSt21discrete_distribution3minEv'/>
+<fun r='_ZNKSt21discrete_distribution3maxEv'/>
+<fun r='_ZNSt21discrete_distributionclERTL0__'/>
+<fun r='_ZNSt21discrete_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt21discrete_distribution10__generateETL0__S0_RTL0_0_'/>
+<fun r='_ZNSt21discrete_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<fun r='_ZNSt21discrete_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt21discrete_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<mbr r='std::discrete_distribution::_M_param' t='std::discrete_distribution::param_type'/>
+<fun r='_ZNSt21discrete_distributionclERTL0__RKNS_10param_typeE'/>
+<fun r='_ZNSt21discrete_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>

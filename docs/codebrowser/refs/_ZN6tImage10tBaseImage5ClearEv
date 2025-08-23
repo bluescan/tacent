@@ -1,0 +1,39 @@
+<def f='Modules/Image/Inc/Image/tBaseImage.h' l='84' type='void tImage::tBaseImage::Clear()'/>
+<doc f='Modules/Image/Inc/Image/tBaseImage.h' l='82'>// After this call no memory will be consumed by the object and it will be invalid. The base version here can be
+	// used just to clear the members in the base class.</doc>
+<ovr f='Modules/Image/Inc/Image/tImageAPNG.h' l='172' c='_ZN6tImage10tImageAPNG5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageAPNG.h' l='174' u='c' c='_ZN6tImage10tImageAPNG5ClearEv'/>
+<ovr f='Modules/Image/Inc/Image/tImageASTC.h' l='118' c='_ZN6tImage10tImageASTC5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='120' u='c' c='_ZN6tImage10tImageASTC5ClearEv'/>
+<ovr f='Modules/Image/Inc/Image/tImageBMP.h' l='175' c='_ZN6tImage9tImageBMP5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageBMP.h' l='177' u='c' c='_ZN6tImage9tImageBMP5ClearEv'/>
+<ovr f='Modules/Image/Inc/Image/tImageEXR.h' l='156' c='_ZN6tImage9tImageEXR5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageEXR.h' l='161' u='c' c='_ZN6tImage9tImageEXR5ClearEv'/>
+<ovr f='Modules/Image/Inc/Image/tImageGIF.h' l='186' c='_ZN6tImage9tImageGIF5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageGIF.h' l='193' u='c' c='_ZN6tImage9tImageGIF5ClearEv'/>
+<ovr f='Modules/Image/Inc/Image/tImageHDR.h' l='149' c='_ZN6tImage9tImageHDR5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageHDR.h' l='155' u='c' c='_ZN6tImage9tImageHDR5ClearEv'/>
+<ovr f='Modules/Image/Inc/Image/tImageICO.h' l='143' c='_ZN6tImage9tImageICO5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageICO.h' l='148' u='c' c='_ZN6tImage9tImageICO5ClearEv'/>
+<ovr f='Modules/Image/Inc/Image/tImagePKM.h' l='116' c='_ZN6tImage9tImagePKM5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImagePKM.h' l='120' u='c' c='_ZN6tImage9tImagePKM5ClearEv'/>
+<ovr f='Modules/Image/Inc/Image/tImagePNG.h' l='162' c='_ZN6tImage9tImagePNG5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImagePNG.h' l='170' u='c' c='_ZN6tImage9tImagePNG5ClearEv'/>
+<ovr f='Modules/Image/Inc/Image/tImageQOI.h' l='115' c='_ZN6tImage9tImageQOI5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageQOI.h' l='122' u='c' c='_ZN6tImage9tImageQOI5ClearEv'/>
+<ovr f='Modules/Image/Inc/Image/tImageTGA.h' l='151' c='_ZN6tImage9tImageTGA5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageTGA.h' l='158' u='c' c='_ZN6tImage9tImageTGA5ClearEv'/>
+<ovr f='Modules/Image/Inc/Image/tImageTIFF.h' l='156' c='_ZN6tImage10tImageTIFF5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageTIFF.h' l='161' u='c' c='_ZN6tImage10tImageTIFF5ClearEv'/>
+<ovr f='Modules/Image/Inc/Image/tImageWEBP.h' l='150' c='_ZN6tImage10tImageWEBP5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageWEBP.h' l='156' u='c' c='_ZN6tImage10tImageWEBP5ClearEv'/>
+<ovr f='Modules/Image/Inc/Image/tImageXPM.h' l='88' c='_ZN6tImage9tImageXPM5ClearEv'/>
+<use f='Modules/Image/Inc/Image/tImageXPM.h' l='95' u='c' c='_ZN6tImage9tImageXPM5ClearEv'/>
+<ovr f='Modules/Image/Src/tImageDDS.cpp' l='880' c='_ZN6tImage9tImageDDS5ClearEv'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='882' u='c' c='_ZN6tImage9tImageDDS5ClearEv'/>
+<ovr f='Modules/Image/Src/tImageJPG.cpp' l='29' c='_ZN6tImage9tImageJPG5ClearEv'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='39' u='c' c='_ZN6tImage9tImageJPG5ClearEv'/>
+<ovr f='Modules/Image/Src/tImageKTX.cpp' l='542' c='_ZN6tImage9tImageKTX5ClearEv'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='561' u='c' c='_ZN6tImage9tImageKTX5ClearEv'/>
+<ovr f='Modules/Image/Src/tImagePVR.cpp' l='624' c='_ZN6tImage9tImagePVR5ClearEv'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='652' u='c' c='_ZN6tImage9tImagePVR5ClearEv'/>

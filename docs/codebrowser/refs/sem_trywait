@@ -1,0 +1,3 @@
+<dec f='include/semaphore.h' l='100' type='int sem_trywait(sem_t * __sem)'/>
+<use f='include/c++/11/bits/semaphore_base.h' l='96' u='c' c='_ZNSt20__platform_semaphore14_M_try_acquireEv'/>
+<doc f='include/semaphore.h' l='99'>/* Test whether SEM is posted.  */</doc>

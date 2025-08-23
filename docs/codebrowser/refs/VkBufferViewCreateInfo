@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3428' ll='3436'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3428'/>
+<size>56</size>
+<mbr r='VkBufferViewCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBufferViewCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkBufferViewCreateInfo::flags' o='128' t='VkBufferViewCreateFlags'/>
+<mbr r='VkBufferViewCreateInfo::buffer' o='192' t='VkBuffer'/>
+<mbr r='VkBufferViewCreateInfo::format' o='256' t='VkFormat'/>
+<mbr r='VkBufferViewCreateInfo::offset' o='320' t='VkDeviceSize'/>
+<mbr r='VkBufferViewCreateInfo::range' o='384' t='VkDeviceSize'/>

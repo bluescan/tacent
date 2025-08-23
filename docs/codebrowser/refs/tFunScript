@@ -1,0 +1,12 @@
+<def f='Modules/System/Inc/System/tScript.h' l='388' ll='407'/>
+<size>40</size>
+<fun r='_ZN10tFunScriptC1Ev'/>
+<fun r='_ZN10tFunScriptC1ERK7tString'/>
+<fun r='_ZN10tFunScriptD1Ev'/>
+<fun r='_ZN10tFunScript5ClearEv'/>
+<fun r='_ZN10tFunScript4LoadERK7tString'/>
+<fun r='_ZN10tFunScript4SaveERK7tString'/>
+<fun r='_ZNK10tFunScript5FirstEv'/>
+<fun r='_ZNK10tFunScript4LastEv'/>
+<mbr r='tFunScript::Expressions' o='0' t='tList&lt;tFunExpression&gt;'/>
+<fun r='_ZN10tFunScript19EatWhiteAndCommentsEPDu'/>

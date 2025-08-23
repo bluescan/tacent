@@ -1,0 +1,6 @@
+<def f='Modules/Image/Inc/Image/tLayer.h' l='51' type='bool tImage::tLayer::IsValid() const'/>
+<use f='Modules/Image/Inc/Image/tImageASTC.h' l='93' u='c' c='_ZNK6tImage10tImageASTC7IsValidEv'/>
+<use f='Modules/Image/Inc/Image/tImagePKM.h' l='91' u='c' c='_ZNK6tImage9tImagePKM7IsValidEv'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='606' u='c' c='_ZN6tImage4tPVR4FlipEPNS_6tLayerEb'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='31' u='c' c='_ZNK6tImage6tLayereqERKS0_'/>
+<use f='Modules/Image/Src/tLayer.cpp' l='31' u='c' c='_ZNK6tImage6tLayereqERKS0_'/>

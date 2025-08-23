@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/sys/time.h' l='193' type='int futimes(int __fd, const struct timeval * __tvp)'/>
+<doc f='include/x86_64-linux-gnu/sys/time.h' l='192'>/* Same as `utimes&apos;, but takes an open file descriptor instead of a name.  */</doc>

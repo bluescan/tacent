@@ -1,0 +1,21 @@
+<dec f='include/c++/11/bits/locale_facets_nonio.h' l='1752' type='std::money_put::iter_type std::money_put::do_put(std::money_put::iter_type __s, bool __intl, std::ios_base &amp; __io, std::money_put::char_type __fill, const std::money_put::string_type &amp; __digits) const'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='629' ll='635' type='_OutIter std::money_put::do_put(std::money_put::iter_type __s, bool __intl, std::ios_base &amp; __io, std::money_put::char_type __fill, const std::money_put::string_type &amp; __digits) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1732'>/**
+       *  @brief  Format and output a monetary value.
+       *
+       *  This function formats @a digits as a monetary value
+       *  according to moneypunct and ctype facets retrieved from
+       *  io.getloc(), and writes the resulting characters to @a __s.
+       *  For example, the string &lt;code&gt;1001&lt;/code&gt; in a US locale
+       *  would write &lt;code&gt;$10.01&lt;/code&gt; to @a __s.
+       *
+       *  This function is a hook for derived classes to change the value
+       *  returned.  @see put().
+       *
+       *  @param  __s  The stream to write to.
+       *  @param  __intl  Parameter to use_facet&lt;moneypunct&lt;CharT,intl&gt; &gt;.
+       *  @param  __io  Source of facets and io state.
+       *  @param  __fill  char_type to use for padding.
+       *  @param  __digits  Place to store result of parsing.
+       *  @return  Iterator after writing.
+       */</doc>

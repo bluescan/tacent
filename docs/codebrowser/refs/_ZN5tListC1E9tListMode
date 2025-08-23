@@ -1,0 +1,14 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='82' type='void tList::tList&lt;T&gt;(tListMode mode)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='81'>// If mode is external the objects will not be deleted when the list is destroyed. You manage item lifetime.</doc>
+<use f='Modules/Foundation/Src/tPool.cpp' l='51' u='c' c='_ZN4tMem9tFastPoolC1Eiiib'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='169' u='c' c='_ZN5tMath11tBezierPath17tFastSectionStateC1Ev'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='36' u='c'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='37' u='c'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='51' u='c' c='_ZN8tCmdLine6tParamC1EiPKcS2_b'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='74' u='c' c='_ZN8tCmdLine7tOptionC1EPKccS2_ib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='87' u='c' c='_ZN8tCmdLine7tOptionC1EPKcS2_cib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='100' u='c' c='_ZN8tCmdLine7tOptionC1EPKccib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='113' u='c' c='_ZN8tCmdLine7tOptionC1EPKcS2_ib'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='210' u='c' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='313' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='361' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>

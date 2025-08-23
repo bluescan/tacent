@@ -1,0 +1,2 @@
+<def f='include/c++/11/pstl/execution_defs.h' l='27' ll='31' type='static std::false_type __pstl::execution::sequenced_policy::__allow_unsequenced()'/>
+<doc f='include/c++/11/pstl/execution_defs.h' l='26'>// For internal use only</doc>

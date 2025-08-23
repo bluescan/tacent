@@ -1,0 +1,9 @@
+<dec f='Modules/System/Inc/System/tScript.h' l='72' type='tExpression tExpression::Car() const'/>
+<use f='Modules/System/Inc/System/tScript.h' l='136' u='c' c='_ZNK11tExpression4Arg0Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='146' u='c' c='_ZNK11tExpression5Item0Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='156' u='c' c='_ZNK11tExpression3CmdEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='157' u='c' c='_ZNK11tExpression7CommandEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='158' u='c' c='_ZNK11tExpression5FirstEv'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='71'>// Like in scheme. Contents of the Address Register from the old IBM days.</doc>
+<def f='Modules/System/Src/tScript.cpp' l='37' ll='54' type='tExpression tExpression::Car() const'/>
+<use f='Modules/System/Src/tScript.cpp' l='59' u='c' c='_ZNK11tExpression7CarCdrNEi'/>

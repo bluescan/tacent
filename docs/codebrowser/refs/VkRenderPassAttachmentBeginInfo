@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6344' ll='6349'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6344'/>
+<size>32</size>
+<mbr r='VkRenderPassAttachmentBeginInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkRenderPassAttachmentBeginInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkRenderPassAttachmentBeginInfo::attachmentCount' o='128' t='uint32_t'/>
+<mbr r='VkRenderPassAttachmentBeginInfo::pAttachments' o='192' t='const VkImageView *'/>

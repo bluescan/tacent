@@ -1,0 +1,14 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='381' type='bool std::__ctype_abstract_base::do_is(std::ctype_base::mask __m, std::__ctype_abstract_base::char_type __c) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='367'>/**
+       *  @brief  Test char_type classification.
+       *
+       *  This function finds a mask M for @a c and compares it to mask @a m.
+       *
+       *  do_is() is a hook for a derived facet to change the behavior of
+       *  classifying.  do_is() must always return the same result for the
+       *  same input.
+       *
+       *  @param __c  The char_type to find the mask of.
+       *  @param __m  The mask to compare against.
+       *  @return  (M &amp; __m) != 0.
+      */</doc>

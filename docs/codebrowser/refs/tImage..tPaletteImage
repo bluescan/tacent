@@ -1,0 +1,19 @@
+<def f='Modules/Image/Inc/Image/tPaletteImage.h' l='28' ll='92'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='34' c='_ZN6tImage13tPaletteImageC1ERKS0_'/>
+<use f='Modules/Image/Inc/Image/tPaletteImage.h' l='65' c='_ZN6tImage13tPaletteImage3SetERKS0_'/>
+<size>40</size>
+<doc f='Modules/Image/Inc/Image/tPaletteImage.h' l='25'>// A simple palettized image class supporting 1 to 8 bits per pixel-index. Origin is at the bottom-left and rows are
+// ordered left to right moving up the image. This palette only contains RGB values (no alpha). Formats like gif handle
+// (binary) alpha separately, and colour quantizers work on RGB values, so no alpha for tPaletteImage.</doc>
+<fun r='_ZN6tImage13tPaletteImageD1Ev'/>
+<use f='Modules/Image/Src/tPaletteImage.cpp' l='25' c='_ZN6tImage13tPaletteImage3SetERKS0_'/>
+<size>40</size>
+<fun r='_ZN6tImage13tPaletteImage3SetERKS0_'/>
+<fun r='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEii'/>
+<fun r='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPKhPK9tColour3b'/>
+<fun r='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour4bNS_9tQuantize6MethodE'/>
+<fun r='_ZN6tImage13tPaletteImage3SetENS_12tPixelFormatEiiPK9tColour3bNS_9tQuantize6MethodE'/>
+<fun r='_ZN6tImage13tPaletteImage3GetEP9tColour4b'/>
+<fun r='_ZN6tImage13tPaletteImage3GetEP9tColour3b'/>
+<fun r='_ZNK6tImage13tPaletteImage11GetDataSizeEv'/>
+<fun r='_ZNK6tImage13tPaletteImage14GetPaletteSizeEv'/>

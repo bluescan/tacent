@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10039' type='VkResult vkMapMemory2KHR(VkDevice device, const VkMemoryMapInfoKHR * pMemoryMapInfo, void ** ppData)'/>

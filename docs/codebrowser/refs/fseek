@@ -1,0 +1,6 @@
+<dec f='include/stdio.h' l='713' type='int fseek(FILE * __stream, long __off, int __whence)'/>
+<doc f='include/stdio.h' l='709'>/* Seek to a certain position on STREAM.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>
+<use f='Modules/System/Src/tFile.cpp' l='168' u='c' c='_ZN7tSystem9tFileSeekEP8_IO_FILEiNS_11tSeekOriginE'/>

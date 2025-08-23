@@ -1,0 +1,6 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='532' type='void tColour4s::tColour4s()'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='532'>/* Does NOT set the colour values. */</doc>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='356' u='c' c='_ZN6tImage9tImagePNG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='461' u='c' c='_ZN6tImage9tImagePNG3SetEP9tColour4siib'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='813' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='828' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

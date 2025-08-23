@@ -1,0 +1,1 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='670' type='tuint128 tSystem::tHashFile128(const tString &amp; filename, tuint128 iv = tHash::HashIV128)'/>

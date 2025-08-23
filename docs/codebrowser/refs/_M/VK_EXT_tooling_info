@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14149'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14148'>// VK_EXT_tooling_info is a preprocessor guard. Do not pass it to API calls.</doc>

@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='463' type='int pthread_setname_np(pthread_t __target_thread, const char * __name)'/>
+<doc f='include/pthread.h' l='462'>/* Set thread name visible in the kernel and its interfaces.  */</doc>

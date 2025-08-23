@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18330' ll='18335'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18330'/>
+<size>32</size>
+<mbr r='VkLatencySleepInfoNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkLatencySleepInfoNV::pNext' o='64' t='const void *'/>
+<mbr r='VkLatencySleepInfoNV::signalSemaphore' o='128' t='VkSemaphore'/>
+<mbr r='VkLatencySleepInfoNV::value' o='192' t='uint64_t'/>

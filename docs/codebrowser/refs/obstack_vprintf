@@ -1,0 +1,1 @@
+<dec f='include/stdio.h' l='856' type='int obstack_vprintf(struct obstack *__restrict __obstack, const char *__restrict __format, __va_list_tag * __args)'/>

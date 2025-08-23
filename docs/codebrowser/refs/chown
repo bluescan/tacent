@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='493' type='int chown(const char * __file, __uid_t __owner, __gid_t __group)'/>
+<doc f='include/unistd.h' l='492'>/* Change the owner and group of FILE.  */</doc>

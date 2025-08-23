@@ -1,0 +1,5 @@
+<dec f='Modules/System/Inc/System/tMachine.h' l='35' type='int tSystem::tGetNumCores()'/>
+<doc f='Modules/System/Inc/System/tMachine.h' l='34'>// Returns the number of cores (processors) the current machine has.</doc>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='167' u='c' c='_ZN6tImage9tImageEXR4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1118' u='c' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<def f='Modules/System/Src/tMachine.cpp' l='125' ll='150' type='int tSystem::tGetNumCores()'/>

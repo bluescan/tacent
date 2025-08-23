@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='82'/>
+<doc f='include/unistd.h' l='80'>/* If defined, the implementation supports the
+   Software Development Utilities Option.  */</doc>

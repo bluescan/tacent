@@ -1,0 +1,9 @@
+<def f='include/c++/11/condition_variable' l='65'/>
+<use f='include/c++/11/condition_variable' l='108' c='_ZNSt18condition_variable10wait_untilERSt11unique_lockISt5mutexERKNSt6chrono10time_pointINS4_3_V212steady_clockET_EE'/>
+<use f='include/c++/11/condition_variable' l='115' c='_ZNSt18condition_variable10wait_untilERSt11unique_lockISt5mutexERKNSt6chrono10time_pointINS4_3_V212system_clockET_EE'/>
+<use f='include/c++/11/condition_variable' l='121' c='_ZNSt18condition_variable10wait_untilERSt11unique_lockISt5mutexERKNSt6chrono10time_pointIT_T0_EE'/>
+<use f='include/c++/11/condition_variable' l='158' c='_ZNSt18condition_variable8wait_forERSt11unique_lockISt5mutexERKNSt6chrono8durationIT_T0_EE'/>
+<use f='include/c++/11/condition_variable' l='188' c='_ZNSt18condition_variable17__wait_until_implERSt11unique_lockISt5mutexERKNSt6chrono10time_pointINS4_3_V212steady_clockET_EE'/>
+<use f='include/c++/11/condition_variable' l='209' c='_ZNSt18condition_variable17__wait_until_implERSt11unique_lockISt5mutexERKNSt6chrono10time_pointINS4_3_V212system_clockET_EE'/>
+<use f='include/c++/11/condition_variable' l='326' c='_ZNSt3_V222condition_variable_any10wait_untilERT_RKNSt6chrono10time_pointIT0_T1_EE'/>
+<use f='include/c++/11/condition_variable' l='353' c='_ZNSt3_V222condition_variable_any8wait_forERT_RKNSt6chrono8durationIT0_T1_EE'/>

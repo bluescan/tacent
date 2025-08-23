@@ -1,0 +1,20 @@
+<def f='include/c++/11/bits/stl_deque.h' l='488' ll='516'/>
+<use f='include/c++/11/bits/stl_deque.h' l='500' c='_ZNSt11_Deque_base16_Deque_impl_dataC1ERKS0_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='501' c='_ZNSt11_Deque_base16_Deque_impl_dataaSERKS0_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='502' c='_ZNSt11_Deque_base16_Deque_impl_dataaSERKS0_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='504' c='_ZNSt11_Deque_base16_Deque_impl_dataC1EOS0_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='505' c='_ZNSt11_Deque_base16_Deque_impl_dataC1EOS0_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='506' c='_ZNSt11_Deque_base16_Deque_impl_dataC1EOS0_'/>
+<use f='include/c++/11/bits/stl_deque.h' l='510' c='_ZNSt11_Deque_base16_Deque_impl_data12_M_swap_dataERS0_'/>
+<ovr f='include/c++/11/bits/stl_deque.h' l='521' c='std::_Deque_base::_Deque_impl'/>
+<use f='include/c++/11/bits/stl_deque.h' l='522'/>
+<use f='include/c++/11/bits/stl_deque.h' l='541' c='_ZNSt11_Deque_base11_Deque_implC1EOS0_ON9__gnu_cxx14__alloc_traitsIT0_NS4_10value_typeEE6rebindIT_E5otherE'/>
+<mbr r='std::_Deque_base::_Deque_impl_data::_M_map' t='std::_Deque_base::_Map_pointer'/>
+<mbr r='std::_Deque_base::_Deque_impl_data::_M_map_size' t='std::size_t'/>
+<mbr r='std::_Deque_base::_Deque_impl_data::_M_start' t='std::_Deque_base::iterator'/>
+<mbr r='std::_Deque_base::_Deque_impl_data::_M_finish' t='std::_Deque_base::iterator'/>
+<fun r='_ZNSt11_Deque_base16_Deque_impl_dataC1Ev'/>
+<fun r='_ZNSt11_Deque_base16_Deque_impl_dataC1ERKS0_'/>
+<fun r='_ZNSt11_Deque_base16_Deque_impl_dataaSERKS0_'/>
+<fun r='_ZNSt11_Deque_base16_Deque_impl_dataC1EOS0_'/>
+<fun r='_ZNSt11_Deque_base16_Deque_impl_data12_M_swap_dataERS0_'/>

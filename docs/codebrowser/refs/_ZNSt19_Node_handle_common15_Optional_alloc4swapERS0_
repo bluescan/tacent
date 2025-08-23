@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/node_handle.h' l='201' ll='209' type='void std::_Node_handle_common::_Optional_alloc::swap(std::_Node_handle_common::_Optional_alloc &amp; __other)'/>
+<doc f='include/c++/11/bits/node_handle.h' l='200'>// Precondition: _M_alloc is the active member of both unions.</doc>

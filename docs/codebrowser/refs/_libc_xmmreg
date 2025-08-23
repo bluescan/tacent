@@ -1,0 +1,4 @@
+<def f='include/x86_64-linux-gnu/sys/ucontext.h' l='108' ll='111'/>
+<use f='include/x86_64-linux-gnu/sys/ucontext.h' l='125'/>
+<size>16</size>
+<mbr r='_libc_xmmreg::element' o='0' t='__uint32_t[4]'/>

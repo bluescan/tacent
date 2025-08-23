@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='138' type='const char *[6]'/>
+<def f='Modules/Math/Src/tColour.cpp' l='34' ll='42' type='const char *[6]'/>
+<use f='Modules/Math/Src/tColour.cpp' l='43' u='r'/>
+<use f='Modules/Math/Src/tColour.cpp' l='43' u='r'/>
+<use f='Modules/Math/Src/tColour.cpp' l='56' u='r' c='_Z26tGetColourProfileShortName14tColourProfile'/>

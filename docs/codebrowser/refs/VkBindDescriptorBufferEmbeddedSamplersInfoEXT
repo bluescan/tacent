@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11119' ll='11125'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11119'/>
+<size>40</size>
+<mbr r='VkBindDescriptorBufferEmbeddedSamplersInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkBindDescriptorBufferEmbeddedSamplersInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkBindDescriptorBufferEmbeddedSamplersInfoEXT::stageFlags' o='128' t='VkShaderStageFlags'/>
+<mbr r='VkBindDescriptorBufferEmbeddedSamplersInfoEXT::layout' o='192' t='VkPipelineLayout'/>
+<mbr r='VkBindDescriptorBufferEmbeddedSamplersInfoEXT::set' o='256' t='uint32_t'/>

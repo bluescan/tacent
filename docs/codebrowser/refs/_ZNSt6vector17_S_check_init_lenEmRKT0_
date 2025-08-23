@@ -1,0 +1,6 @@
+<use f='include/c++/11/bits/stl_vector.h' l='511' u='c' c='_ZNSt6vectorC1EmRKT0_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='524' u='c' c='_ZNSt6vectorC1EmRKT_RKT0_'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1582' u='c' c='_ZNSt6vector19_M_range_initializeETL0__S0_St20forward_iterator_tag'/>
+<def f='include/c++/11/bits/stl_vector.h' l='1766' ll='1773' type='static std::vector::size_type std::vector::_S_check_init_len(std::vector::size_type __n, const std::vector::allocator_type &amp; __a)'/>
+<use f='include/c++/11/bits/vector.tcc' l='308' u='c' c='_ZNSt6vector13_M_assign_auxETL0__S0_St20forward_iterator_tag'/>
+<doc f='include/c++/11/bits/stl_vector.h' l='1765'>// Called by constructors to check initial size.</doc>

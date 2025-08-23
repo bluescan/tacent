@@ -1,0 +1,12 @@
+<dec f='include/c++/11/ostream' l='316' type='std::basic_ostream::__ostream_type &amp; std::basic_ostream::put(std::basic_ostream::char_type __c)'/>
+<def f='include/c++/11/bits/ostream.tcc' l='146' ll='178' type='basic_ostream&lt;_CharT, _Traits&gt; &amp; std::basic_ostream::put(std::basic_ostream::char_type __c)'/>
+<doc f='include/c++/11/ostream' l='305'>/**
+       *  @brief  Simple insertion.
+       *  @param  __c  The character to insert.
+       *  @return  *this
+       *
+       *  Tries to insert @p __c.
+       *
+       *  @note  This function is not overloaded on signed char and
+       *         unsigned char.
+      */</doc>

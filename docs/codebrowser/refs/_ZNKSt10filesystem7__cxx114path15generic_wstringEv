@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/fs_path.h' l='440' type='std::wstring std::filesystem::path::generic_wstring() const'/>
+<def f='include/c++/11/bits/fs_path.h' l='1166' ll='1168' type='std::wstring std::filesystem::path::generic_wstring() const'/>

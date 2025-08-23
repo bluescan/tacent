@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/streambuf_iterator.h' l='144' ll='157' type='std::istreambuf_iterator::char_type std::istreambuf_iterator::operator*() const'/>
+<doc f='include/c++/11/bits/streambuf_iterator.h' l='141'>///  Return the current character pointed to by iterator.  This returns
+      ///  streambuf.sgetc().  It cannot be assigned.  NB: The result of
+      ///  operator*() on an end of stream is undefined.</doc>

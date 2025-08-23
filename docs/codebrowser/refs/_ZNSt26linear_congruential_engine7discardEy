@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='347' ll='352' type='void std::linear_congruential_engine::discard(unsigned long long __z)'/>
+<doc f='include/c++/11/bits/random.h' l='344'>/**
+       * @brief Discard a sequence of random numbers.
+       */</doc>

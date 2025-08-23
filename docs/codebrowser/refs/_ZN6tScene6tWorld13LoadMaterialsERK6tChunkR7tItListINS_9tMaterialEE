@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='516' u='c' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<def f='Modules/Scene/Src/tWorld.cpp' l='1162' ll='1176' type='void tScene::tWorld::LoadMaterials(const tChunk &amp; matListChunk, tItList&lt;tScene::tMaterial&gt; &amp; materials)'/>

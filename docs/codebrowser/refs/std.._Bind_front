@@ -1,0 +1,15 @@
+<def f='include/c++/11/functional' l='824' ll='903'/>
+<use f='include/c++/11/functional' l='907'/>
+<fun r='_ZNSt11_Bind_frontC1EiOTL0__DpOTL0_0_'/>
+<fun r='_ZNSt11_Bind_frontC1ERKSt11_Bind_frontIT_JDpT0_EE'/>
+<fun r='_ZNSt11_Bind_frontC1EOSt11_Bind_frontIT_JDpT0_EE'/>
+<fun r='_ZNSt11_Bind_frontaSERKSt11_Bind_frontIT_JDpT0_EE'/>
+<fun r='_ZNSt11_Bind_frontaSEOSt11_Bind_frontIT_JDpT0_EE'/>
+<fun r='_ZNSt11_Bind_frontD1Ev'/>
+<fun r='_ZNRSt11_Bind_frontclEDpOTL0__'/>
+<fun r='_ZNKRSt11_Bind_frontclEDpOTL0__'/>
+<fun r='_ZNOSt11_Bind_frontclEDpOTL0__'/>
+<fun r='_ZNKOSt11_Bind_frontclEDpOTL0__'/>
+<fun r='_ZNSt11_Bind_front7_S_callEOTL0__St16integer_sequenceImJXspTL0_0_EEEDpOTL0_1_'/>
+<mbr r='std::_Bind_front::_M_fd' t='_Fd'/>
+<mbr r='std::_Bind_front::_M_bound_args' t='std::tuple&lt;_BoundArgs...&gt;'/>

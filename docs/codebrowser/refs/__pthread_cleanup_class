@@ -1,0 +1,12 @@
+<def f='include/pthread.h' l='568' ll='583'/>
+<size>24</size>
+<doc f='include/pthread.h' l='567'>/* Class to handle cancellation handler invocation.  */</doc>
+<mbr r='__pthread_cleanup_class::__cancel_routine' o='0' t='void (*)(void *)'/>
+<mbr r='__pthread_cleanup_class::__cancel_arg' o='64' t='void *'/>
+<mbr r='__pthread_cleanup_class::__do_it' o='128' t='int'/>
+<mbr r='__pthread_cleanup_class::__cancel_type' o='160' t='int'/>
+<fun r='__pthread_cleanup_class::__pthread_cleanup_class'/>
+<fun r='__pthread_cleanup_class::~__pthread_cleanup_class'/>
+<fun r='__pthread_cleanup_class::__setdoit'/>
+<fun r='__pthread_cleanup_class::__defer'/>
+<fun r='__pthread_cleanup_class::__restore'/>

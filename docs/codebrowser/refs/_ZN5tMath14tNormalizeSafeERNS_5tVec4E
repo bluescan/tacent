@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='365' type='bool tMath::tNormalizeSafe(tMath::tVec4 &amp; v)'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='57' u='c' c='_ZN5tMath8tVector413NormalizeSafeEv'/>
+<doc f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='365'>/* Returns success. */</doc>

@@ -1,0 +1,4 @@
+<def f='Modules/Image/Contrib/GifLoad/gif_load.h' l='65' ll='71' type='long _GIF_SkipChunk(uint8_t ** buff, long size)'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='249' u='c' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<use f='Modules/Image/Contrib/GifLoad/gif_load.h' l='275' u='c' c='_ZL8GIF_LoadPvlPFvS_P8GIF_WHDRES3_S_lRi'/>
+<doc f='Modules/Image/Contrib/GifLoad/gif_load.h' l='64'>/** [ internal function, do not use ] **/</doc>

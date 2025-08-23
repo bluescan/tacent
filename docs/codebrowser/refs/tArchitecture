@@ -1,0 +1,7 @@
+<def f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='150' ll='158'/>
+<use f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='159' c='_Z16tGetArchitecturev'/>
+<use f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='160' c='_Z20tGetArchitectureName13tArchitecture'/>
+<use f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='161' c='_Z24tGetArchitectureNameLong13tArchitecture'/>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='91' c='_Z16tGetArchitecturev'/>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='111' c='_Z20tGetArchitectureName13tArchitecture'/>
+<use f='Modules/Foundation/Src/tPlatform.cpp' l='130' c='_Z24tGetArchitectureNameLong13tArchitecture'/>

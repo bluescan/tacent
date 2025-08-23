@@ -1,0 +1,11 @@
+<def f='include/c++/11/functional' l='104' ll='132'/>
+<def f='include/c++/11/functional' l='135' ll='157'/>
+<use f='include/c++/11/functional' l='164'/>
+<use f='include/c++/11/functional' l='166'/>
+<doc f='include/c++/11/functional' l='134'>// Partial specialization for member object pointers.</doc>
+<mbr r='std::_Mem_fn_base::_M_pmf' t='_MemFunPtr'/>
+<fun r='_ZNSt12_Mem_fn_baseC1ET_'/>
+<fun r='_ZNKSt12_Mem_fn_baseclEDpOTL0__'/>
+<mbr r='std::_Mem_fn_base::_M_pm' t='_MemObjPtr'/>
+<fun r='_ZNSt12_Mem_fn_baseIT_Lb0EEC1ES0_'/>
+<fun r='_ZNKSt12_Mem_fn_baseIT_Lb0EEclEOTL0__'/>

@@ -1,0 +1,31 @@
+<def f='include/x86_64-linux-gnu/bits/struct_stat.h' l='26' ll='99'/>
+<dec f='include/x86_64-linux-gnu/sys/stat.h' l='205' type='int stat(const char *__restrict __file, struct stat *__restrict __buf)'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='206' c='stat'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='210' c='fstat'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='265' c='fstatat'/>
+<use f='include/x86_64-linux-gnu/sys/stat.h' l='314' c='lstat'/>
+<use f='Modules/System/Src/tFile.cpp' l='470' c='_ZN7tSystem11tFileExistsERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='471' u='c' c='_ZN7tSystem11tFileExistsERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='586' c='_ZN7tSystem11tIsReadOnlyERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='587' u='c' c='_ZN7tSystem11tIsReadOnlyERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='639' c='_ZN7tSystem12tSetReadOnlyERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='640' u='c' c='_ZN7tSystem12tSetReadOnlyERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2130' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2131' u='c' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<size>144</size>
+<doc f='include/x86_64-linux-gnu/sys/stat.h' l='204'>/* Get file attributes for FILE and put them in BUF.  */</doc>
+<mbr r='stat::st_dev' o='0' t='__dev_t'/>
+<mbr r='stat::st_ino' o='64' t='__ino_t'/>
+<mbr r='stat::st_nlink' o='128' t='__nlink_t'/>
+<mbr r='stat::st_mode' o='192' t='__mode_t'/>
+<mbr r='stat::st_uid' o='224' t='__uid_t'/>
+<mbr r='stat::st_gid' o='256' t='__gid_t'/>
+<mbr r='stat::__pad0' o='288' t='int'/>
+<mbr r='stat::st_rdev' o='320' t='__dev_t'/>
+<mbr r='stat::st_size' o='384' t='__off_t'/>
+<mbr r='stat::st_blksize' o='448' t='__blksize_t'/>
+<mbr r='stat::st_blocks' o='512' t='__blkcnt_t'/>
+<mbr r='stat::st_atim' o='576' t='struct timespec'/>
+<mbr r='stat::st_mtim' o='704' t='struct timespec'/>
+<mbr r='stat::st_ctim' o='832' t='struct timespec'/>
+<mbr r='stat::__glibc_reserved' o='960' t='__syscall_slong_t[3]'/>

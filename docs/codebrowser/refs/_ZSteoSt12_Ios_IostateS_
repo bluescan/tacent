@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/ios_base.h' l='172' ll='174' type='std::_Ios_Iostate std::operator^(std::_Ios_Iostate __a, std::_Ios_Iostate __b)'/>
+<use f='include/c++/11/bits/ios_base.h' l='190' u='c' c='_ZSteORSt12_Ios_IostateS_'/>

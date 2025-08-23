@@ -1,0 +1,12 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux_types.h' l='60' type='const uint8_t *'/>
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='75' u='r' c='_ZL13WebPDataClearP8WebPData'/>
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='85' u='r' c='_ZL12WebPDataCopyPK8WebPDataPS_'/>
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='86' u='w' c='_ZL12WebPDataCopyPK8WebPDataPS_'/>
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='87' u='r' c='_ZL12WebPDataCopyPK8WebPDataPS_'/>
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='88' u='r' c='_ZL12WebPDataCopyPK8WebPDataPS_'/>
+<use f='Modules/Image/Contrib/WebP/include/mux_types.h' l='88' u='r' c='_ZL12WebPDataCopyPK8WebPDataPS_'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='56' u='w' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='101' u='r' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='399' u='w' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='431' u='r' c='_ZNK6tImage10tImageWEBP4SaveERK7tStringRKNS0_10SaveParamsE'/>
+<offset>0</offset>

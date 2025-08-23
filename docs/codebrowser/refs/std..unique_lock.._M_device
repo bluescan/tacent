@@ -1,0 +1,26 @@
+<use f='include/c++/11/bits/unique_lock.h' l='63' u='w' c='_ZNSt11unique_lockC1Ev'/>
+<use f='include/c++/11/bits/unique_lock.h' l='67' u='w' c='_ZNSt11unique_lockC1ERT_'/>
+<use f='include/c++/11/bits/unique_lock.h' l='74' u='w' c='_ZNSt11unique_lockC1ERT_St12defer_lock_t'/>
+<use f='include/c++/11/bits/unique_lock.h' l='78' u='w' c='_ZNSt11unique_lockC1ERT_St13try_to_lock_t'/>
+<use f='include/c++/11/bits/unique_lock.h' l='78' u='c' c='_ZNSt11unique_lockC1ERT_St13try_to_lock_t'/>
+<use f='include/c++/11/bits/unique_lock.h' l='82' u='w' c='_ZNSt11unique_lockC1ERT_St12adopt_lock_t'/>
+<use f='include/c++/11/bits/unique_lock.h' l='90' u='w' c='_ZNSt11unique_lockC1ERT_RKNSt6chrono10time_pointITL0__TL0_0_EE'/>
+<use f='include/c++/11/bits/unique_lock.h' l='91' u='c' c='_ZNSt11unique_lockC1ERT_RKNSt6chrono10time_pointITL0__TL0_0_EE'/>
+<use f='include/c++/11/bits/unique_lock.h' l='97' u='w' c='_ZNSt11unique_lockC1ERT_RKNSt6chrono8durationITL0__TL0_0_EE'/>
+<use f='include/c++/11/bits/unique_lock.h' l='98' u='c' c='_ZNSt11unique_lockC1ERT_RKNSt6chrono8durationITL0__TL0_0_EE'/>
+<use f='include/c++/11/bits/unique_lock.h' l='111' u='w' c='_ZNSt11unique_lockC1EOSt11unique_lockIT_E'/>
+<use f='include/c++/11/bits/unique_lock.h' l='133' u='r' c='_ZNSt11unique_lock4lockEv'/>
+<use f='include/c++/11/bits/unique_lock.h' l='139' u='c' c='_ZNSt11unique_lock4lockEv'/>
+<use f='include/c++/11/bits/unique_lock.h' l='147' u='r' c='_ZNSt11unique_lock8try_lockEv'/>
+<use f='include/c++/11/bits/unique_lock.h' l='153' u='c' c='_ZNSt11unique_lock8try_lockEv'/>
+<use f='include/c++/11/bits/unique_lock.h' l='162' u='r' c='_ZNSt11unique_lock14try_lock_untilERKNSt6chrono10time_pointITL0__TL0_0_EE'/>
+<use f='include/c++/11/bits/unique_lock.h' l='168' u='c' c='_ZNSt11unique_lock14try_lock_untilERKNSt6chrono10time_pointITL0__TL0_0_EE'/>
+<use f='include/c++/11/bits/unique_lock.h' l='177' u='r' c='_ZNSt11unique_lock12try_lock_forERKNSt6chrono8durationITL0__TL0_0_EE'/>
+<use f='include/c++/11/bits/unique_lock.h' l='183' u='c' c='_ZNSt11unique_lock12try_lock_forERKNSt6chrono8durationITL0__TL0_0_EE'/>
+<use f='include/c++/11/bits/unique_lock.h' l='193' u='r' c='_ZNSt11unique_lock6unlockEv'/>
+<use f='include/c++/11/bits/unique_lock.h' l='195' u='c' c='_ZNSt11unique_lock6unlockEv'/>
+<use f='include/c++/11/bits/unique_lock.h' l='203' c='_ZNSt11unique_lock4swapERSt11unique_lockIT_E'/>
+<use f='include/c++/11/bits/unique_lock.h' l='210' u='r' c='_ZNSt11unique_lock7releaseEv'/>
+<use f='include/c++/11/bits/unique_lock.h' l='211' u='w' c='_ZNSt11unique_lock7releaseEv'/>
+<use f='include/c++/11/bits/unique_lock.h' l='225' u='r' c='_ZNKSt11unique_lock5mutexEv'/>
+<dec f='include/c++/11/bits/unique_lock.h' l='228' type='std::unique_lock::mutex_type *'/>

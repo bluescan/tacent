@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='220' type='uint32_t'/>
+<offset>1184</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='219'>// lossless encoder statistics</doc>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='220'>// bit0:predictor bit1:cross-color transform</doc>

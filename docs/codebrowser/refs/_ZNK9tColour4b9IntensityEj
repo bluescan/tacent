@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='399' type='int tColour4b::Intensity(comp_t comps = tCompBit_RGB) const'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1108' ll='1117' type='int tColour4b::Intensity(comp_t comps = tCompBit_RGB) const'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='398'>// Returns intensity (average of chosen components) in range [0, 255].</doc>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='610' u='c' c='_ZN6tImage8tPicture9IntensityEj'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='659' u='c' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>

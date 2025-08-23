@@ -1,0 +1,8 @@
+<dec f='include/stdio.h' l='258' type='FILE * fopen(const char *__restrict __filename, const char *__restrict __modes)'/>
+<doc f='include/stdio.h' l='254'>/* Open a file and create a new stream for it.
+
+   This function is a possible cancellation point and therefore not
+   marked with __THROW.  */</doc>
+<use f='Modules/System/Inc/System/tFile.h' l='693' u='c' c='_ZN7tSystem9tOpenFileEPKDuPKc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='699' u='c' c='_ZN7tSystem9tOpenFileEPKcS1_'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='843' u='c' c='_ZNK6tImage9tImagePNG4SaveERK7tStringRKNS0_10SaveParamsE'/>

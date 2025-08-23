@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/atomic_base.h' l='546' ll='552' macro='1' type='bool std::__atomic_base::compare_exchange_weak(std::__atomic_base::__int_type &amp; __i1, std::__atomic_base::__int_type __i2, std::memory_order __m = memory_order_seq_cst)'/>
+<use f='include/c++/11/atomic' l='145' u='c' c='_ZNVSt6atomicIbE21compare_exchange_weakERbbSt12memory_order'/>

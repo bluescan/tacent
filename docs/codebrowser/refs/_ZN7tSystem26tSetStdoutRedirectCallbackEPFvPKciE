@@ -1,0 +1,2 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='86' type='void tSystem::tSetStdoutRedirectCallback(tSystem::RedirectCallback *  = nullptr)'/>
+<def f='Modules/System/Src/tPrint.cpp' l='219' ll='222' type='void tSystem::tSetStdoutRedirectCallback(tSystem::RedirectCallback * cb = nullptr)'/>

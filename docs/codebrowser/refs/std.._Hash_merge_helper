@@ -1,0 +1,13 @@
+<def f='include/c++/11/bits/hashtable.h' l='2506'/>
+<use f='include/c++/11/bits/unordered_map.h' l='816' c='_ZNSt13unordered_map5mergeERSt13unordered_mapIT_T0_TL0__TL0_0_T3_E'/>
+<use f='include/c++/11/bits/unordered_map.h' l='829' c='_ZNSt13unordered_map5mergeERSt18unordered_multimapIT_T0_TL0__TL0_0_T3_E'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1758' c='_ZNSt18unordered_multimap5mergeERSt18unordered_multimapIT_T0_TL0__TL0_0_T3_E'/>
+<use f='include/c++/11/bits/unordered_map.h' l='1772' c='_ZNSt18unordered_multimap5mergeERSt13unordered_mapIT_T0_TL0__TL0_0_T3_E'/>
+<def f='include/c++/11/bits/unordered_map.h' l='2164' ll='2185'/>
+<def f='include/c++/11/bits/unordered_map.h' l='2188' ll='2209'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='2163'>// Allow std::unordered_map access to internals of compatible maps.</doc>
+<doc f='include/c++/11/bits/unordered_map.h' l='2187'>// Allow std::unordered_multimap access to internals of compatible maps.</doc>
+<fun r='_ZNSt18_Hash_merge_helperISt13unordered_mapIT_T0_T1_T2_T3_ET4_T5_E12_S_get_tableERS0_IS1_S2_S7_S8_S5_E'/>
+<fun r='_ZNSt18_Hash_merge_helperISt13unordered_mapIT_T0_T1_T2_T3_ET4_T5_E12_S_get_tableERSt18unordered_multimapIS1_S2_S7_S8_S5_E'/>
+<fun r='_ZNSt18_Hash_merge_helperISt18unordered_multimapIT_T0_T1_T2_T3_ET4_T5_E12_S_get_tableERSt13unordered_mapIS1_S2_S7_S8_S5_E'/>
+<fun r='_ZNSt18_Hash_merge_helperISt18unordered_multimapIT_T0_T1_T2_T3_ET4_T5_E12_S_get_tableERS0_IS1_S2_S7_S8_S5_E'/>

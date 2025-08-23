@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/random.tcc' l='880' ll='896' type='std::basic_istream&lt;_CharT, _Traits&gt; &amp; std::operator&gt;&gt;(std::basic_istream&lt;_CharT, _Traits&gt; &amp; __is, shuffle_order_engine&lt;_RandomNumberEngine, __k&gt; &amp; __x)'/>

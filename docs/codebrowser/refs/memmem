@@ -1,0 +1,4 @@
+<dec f='include/string.h' l='389' type='void * memmem(const void * __haystack, size_t __haystacklen, const void * __needle, size_t __needlelen)'/>
+<doc f='include/string.h' l='386'>/* Find the first occurrence of NEEDLE in HAYSTACK.
+   NEEDLE is NEEDLELEN bytes long;
+   HAYSTACK is HAYSTACKLEN bytes long.  */</doc>

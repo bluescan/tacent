@@ -1,0 +1,3 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='914' ll='922' type='void std::vector&lt;bool, type-parameter-0-0&gt;::_M_range_check(std::vector&lt;bool, type-parameter-0-0&gt;::size_type __n) const'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='927' u='c' c='_ZNSt6vectorIbT_E2atEm'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='931' u='c' c='_ZNKSt6vectorIbT_E2atEm'/>

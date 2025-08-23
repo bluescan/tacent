@@ -1,0 +1,9 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='312' type='int tString::RemoveLast()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='311'>// Removes the last ASCII character. Length will be one less after. Returns num removed.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='516' ll='524' type='int tString::RemoveLast()'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='464' u='c' c='_ZN8tCmdLine14SyntaxInternalEP7tStringi'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='491' u='c' c='_ZN8tCmdLine14SyntaxInternalEP7tStringi'/>
+<use f='Modules/System/Src/tFile.cpp' l='111' u='c' c='_ZN7tSystem12tPathStdFileER7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='133' u='c' c='_ZN7tSystem12tPathWinFileER7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='411' u='c' c='_ZN7tSystem9tGetUpDirERK7tStringi'/>
+<use f='Modules/System/Src/tFile.cpp' l='673' u='c' c='_ZN7tSystem9tIsHiddenERK7tString'/>

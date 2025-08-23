@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='799' type='4'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='797'>/*!&lt; Load the raw key-value data instead of
+                                        creating a @c ktxHashList from it. */</doc>

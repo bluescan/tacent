@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='4059' ll='4061' type='std::geometric_distribution::param_type std::geometric_distribution::param() const'/>
+<doc f='include/c++/11/bits/random.h' l='4056'>/**
+       * @brief Returns the parameter set of the distribution.
+       */</doc>

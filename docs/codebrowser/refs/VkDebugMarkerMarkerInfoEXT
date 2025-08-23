@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11353' ll='11358'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11353'/>
+<size>40</size>
+<mbr r='VkDebugMarkerMarkerInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDebugMarkerMarkerInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkDebugMarkerMarkerInfoEXT::pMarkerName' o='128' t='const char *'/>
+<mbr r='VkDebugMarkerMarkerInfoEXT::color' o='192' t='float[4]'/>

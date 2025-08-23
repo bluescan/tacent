@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageXPM.cpp' l='38' u='c' c='_ZN6tImage9tImageXPM4LoadERK7tString'/>
+<def f='Modules/Image/Src/tImageXPM.cpp' l='45' ll='70' type='bool tImage::tImageXPM::Load(const uint8 * xpmFileInMemory, int numBytes)'/>

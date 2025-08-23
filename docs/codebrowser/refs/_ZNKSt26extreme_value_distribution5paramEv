@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='5150' ll='5152' type='std::extreme_value_distribution::param_type std::extreme_value_distribution::param() const'/>
+<doc f='include/c++/11/bits/random.h' l='5147'>/**
+       * @brief Returns the parameter set of the distribution.
+       */</doc>

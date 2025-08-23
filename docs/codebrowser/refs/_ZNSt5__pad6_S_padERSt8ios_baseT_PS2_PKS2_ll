@@ -1,0 +1,9 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='101' type='static void std::__pad::_S_pad(std::ios_base &amp; __io, _CharT __fill, _CharT * __news, const _CharT * __olds, std::streamsize __newlen, std::streamsize __oldlen)'/>
+<def f='include/c++/11/bits/locale_facets.tcc' l='1233' ll='1280' type='static void std::__pad::_S_pad(std::ios_base &amp; __io, _CharT __fill, _CharT * __news, const _CharT * __olds, std::streamsize __newlen, std::streamsize __oldlen)'/>
+<doc f='include/c++/11/bits/locale_facets.tcc' l='1226'>// Construct correctly padded string, as per 22.2.2.2.2
+  // Assumes
+  // __newlen &gt; __oldlen
+  // __news is allocated for __newlen size
+
+  // NB: Of the two parameters, _CharT can be deduced from the
+  // function arguments. The other (_Traits) has to be explicitly specified.</doc>

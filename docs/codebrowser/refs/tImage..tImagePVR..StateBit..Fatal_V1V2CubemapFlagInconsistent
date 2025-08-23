@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tImagePVR.h' l='134' type='18'/>
+<doc f='Modules/Image/Inc/Image/tImagePVR.h' l='134'>// If flag set there must be a mutiple of 6 surfaces.</doc>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='845' u='r' c='_ZN6tImage9tImagePVR4LoadEPKhiRKNS0_10LoadParamsE'/>

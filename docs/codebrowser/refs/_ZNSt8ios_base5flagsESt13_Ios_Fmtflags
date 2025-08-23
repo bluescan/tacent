@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/ios_base.h' l='659' ll='665' type='std::ios_base::fmtflags std::ios_base::flags(std::ios_base::fmtflags __fmtfl)'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='759' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRPv'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='769' u='c' c='_ZNKSt7num_get6do_getET0_S0_RSt8ios_baseRSt12_Ios_IostateRPv'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1203' u='c' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_PKv'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1211' u='c' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_PKv'/>
+<doc f='include/c++/11/bits/ios_base.h' l='652'>/**
+     *  @brief  Setting new format flags all at once.
+     *  @param  __fmtfl  The new flags to set.
+     *  @return  The previous format control flags.
+     *
+     *  This function overwrites all the format flags with @a __fmtfl.
+    */</doc>

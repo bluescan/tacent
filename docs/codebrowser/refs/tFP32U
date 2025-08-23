@@ -1,0 +1,7 @@
+<def f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='53' ll='60'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='208' c='_Z14FloatToHalfRawf'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='211' c='_Z14FloatToHalfRawf'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='281' c='_Z14HalfRawToFloatt'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='283' c='_Z14HalfRawToFloatt'/>
+<use f='Modules/Foundation/Inc/Foundation/tSmallFloat.h' l='397' c='_ZN6M999E59FloorLog2Ef'/>
+<size>4</size>

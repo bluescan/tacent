@@ -1,0 +1,13 @@
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='28' u='w' c='_ZN6tScene7tObjectC1ERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='28' u='r' c='_ZN6tScene7tObjectC1ERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='34' u='m' c='_ZN6tScene7tObject5ClearEv'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='36' u='m' c='_ZNK6tScene7tObject18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='36' u='r' c='_ZNK6tScene7tObject18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='37' u='m' c='_ZNK6tScene7tObjecteqERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='37' u='r' c='_ZNK6tScene7tObjecteqERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='39' u='w' c='_ZN6tScene7tObjectaSERKS0_'/>
+<use f='Modules/Scene/Inc/Scene/tObject.h' l='39' u='r' c='_ZN6tScene7tObjectaSERKS0_'/>
+<dec f='Modules/Scene/Inc/Scene/tObject.h' l='45' type='tScene::tAttributes'/>
+<offset>384</offset>
+<use f='Modules/Scene/Src/tObject.cpp' l='32' u='m' c='_ZNK6tScene7tObject4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tObject.cpp' l='56' u='m' c='_ZN6tScene7tObject4LoadERK6tChunk'/>

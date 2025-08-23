@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/functexcept.h' l='98' type='void std::__throw_ios_failure(const char * )'/>
+<doc f='include/c++/11/bits/functexcept.h' l='96'>// Helpers for exception objects in &lt;ios&gt;</doc>
+<use f='include/c++/11/bits/basic_ios.tcc' l='48' u='c' c='_ZNSt9basic_ios5clearESt12_Ios_Iostate'/>
+<use f='include/c++/11/bits/fstream.tcc' l='410' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='467' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='471' u='c' c='_ZNSt13basic_filebuf9underflowEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='639' u='c' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>
+<use f='include/c++/11/bits/fstream.tcc' l='660' u='c' c='_ZNSt13basic_filebuf22_M_convert_to_externalEPT_l'/>

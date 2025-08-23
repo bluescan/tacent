@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10386' ll='10390'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10386'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceFragmentShaderBarycentricPropertiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceFragmentShaderBarycentricPropertiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceFragmentShaderBarycentricPropertiesKHR::triStripVertexOrderIndependentOfProvokingVertex' o='128' t='VkBool32'/>

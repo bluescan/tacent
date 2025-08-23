@@ -1,0 +1,5 @@
+<def f='include/c++/11/iomanip' l='247'/>
+<use f='include/c++/11/iomanip' l='258' c='_ZSt9get_moneyRT_b'/>
+<use f='include/c++/11/iomanip' l='264' c='_ZStrsRSt13basic_istreamIT_T0_ESt10_Get_moneyIT1_E'/>
+<mbr r='std::_Get_money::_M_mon' t='_MoneyT &amp;'/>
+<mbr r='std::_Get_money::_M_intl' t='bool'/>

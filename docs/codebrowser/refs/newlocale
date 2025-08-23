@@ -1,0 +1,5 @@
+<dec f='include/locale.h' l='141' type='locale_t newlocale(int __category_mask, const char * __locale, locale_t __base)'/>
+<doc f='include/locale.h' l='137'>/* Return a reference to a data structure representing a set of locale
+   datasets.  Unlike for the CATEGORY parameter for `setlocale&apos; the
+   CATEGORY_MASK parameter here uses a single bit for each category,
+   made by OR&apos;ing together LC_*_MASK bits above.  */</doc>

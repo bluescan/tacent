@@ -1,0 +1,9 @@
+<use f='include/c++/11/thread' l='110' u='w' c='_ZNSt7jthreadC1Ev'/>
+<use f='include/c++/11/thread' l='118' c='_ZNSt7jthreadC1EOT_DpOT0_'/>
+<use f='include/c++/11/thread' l='147' u='a' c='_ZNSt7jthread4swapERS_'/>
+<use f='include/c++/11/thread' l='147' u='a' c='_ZNSt7jthread4swapERS_'/>
+<use f='include/c++/11/thread' l='190' u='r' c='_ZNSt7jthread15get_stop_sourceEv'/>
+<use f='include/c++/11/thread' l='196' u='m' c='_ZNKSt7jthread14get_stop_tokenEv'/>
+<use f='include/c++/11/thread' l='201' u='m' c='_ZNSt7jthread12request_stopEv'/>
+<dec f='include/c++/11/thread' l='229' type='std::stop_source'/>
+<offset>0</offset>

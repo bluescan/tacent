@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tChunk.h' l='91' type='void tChunkWriter::Open(const tString &amp; filename, tPlatform platform)'/>
+<doc f='Modules/System/Inc/System/tChunk.h' l='90'>// Same as above but bases the write endianness on the platform.</doc>

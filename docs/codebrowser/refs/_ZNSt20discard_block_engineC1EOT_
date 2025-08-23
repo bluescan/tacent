@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/random.h' l='925' ll='927' type='void std::discard_block_engine::discard_block_engine&lt;_RandomNumberEngine, __p, __r&gt;(_RandomNumberEngine &amp;&amp; __rng)'/>
+<doc f='include/c++/11/bits/random.h' l='919'>/**
+       * @brief Move constructs a %discard_block_engine engine.
+       *
+       * Copies an existing base class random number generator.
+       * @param __rng An existing (base class) engine object.
+       */</doc>

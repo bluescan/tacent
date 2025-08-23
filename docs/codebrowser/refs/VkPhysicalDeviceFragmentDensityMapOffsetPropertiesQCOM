@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17173' ll='17177'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17173'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceFragmentDensityMapOffsetPropertiesQCOM::fragmentDensityOffsetGranularity' o='128' t='VkExtent2D'/>

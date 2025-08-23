@@ -1,0 +1,5 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13833' ll='13836'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13833'/>
+<size>16</size>
+<mbr r='VkPerformanceValueINTEL::type' o='0' t='VkPerformanceValueTypeINTEL'/>
+<mbr r='VkPerformanceValueINTEL::data' o='64' t='VkPerformanceValueDataINTEL'/>

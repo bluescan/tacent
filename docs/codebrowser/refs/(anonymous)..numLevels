@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='761' type='ktx_uint32_t'/>
+<offset>256</offset>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='761'>/*!&lt; Number of mip levels in the texture. Should be
+                                 1 if @c generateMipmaps is KTX_TRUE; */</doc>

@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1125' type='ktx_uint32_t ktxTexture2_GetOETF(ktxTexture2 * This)'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1123'>// For backward compatibility</doc>

@@ -1,0 +1,12 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='36' u='m' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='64' u='m' c='_ZN6tScene6tWorld5ScaleEf'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='88' u='a' c='_ZN6tScene6tWorld10MergeSceneERS0_'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='97' u='m' c='_ZN6tScene6tWorld17AddOffsetToAllIDsEj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='210' u='m' c='_ZN6tScene6tWorld10MergeItemsEP7tItListINS_7tCameraEEPS1_INS_6tLightEEPS1_INS_5tPathEEPS1_INS_9tMaterialEEPS1_INS_9tSkeletonEEPS1_INS_10tPolyModelEEPS5786654'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='601' u='m' c='_ZN6tScene6tWorld4LoadERK7tStringj'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1116' u='m' c='_ZNK6tScene6tWorld11SaveObjectsER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1422' u='m' c='_ZNK6tScene6tWorld13GetNumCamerasERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1425' u='m' c='_ZNK6tScene6tWorld13GetNumCamerasERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1435' u='m' c='_ZN6tScene6tWorld12InsertCameraEPNS_7tCameraE'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1441' u='m' c='_ZNK6tScene6tWorld10FindCameraERK7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1451' u='m' c='_ZNK6tScene6tWorld10FindCameraEj'/>

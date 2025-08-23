@@ -1,0 +1,10 @@
+<inh f='include/c++/11/bits/exception.h' l='61' c='std::exception'/>
+<def f='include/c++/11/typeinfo' l='207' ll='218'/>
+<size>8</size>
+<doc f='include/c++/11/typeinfo' l='203'>/**
+   *  @brief Thrown when a NULL pointer in a @c typeid expression is used.
+   *  @ingroup exceptions
+   */</doc>
+<fun r='_ZNSt10bad_typeidC1Ev'/>
+<fun r='_ZNSt10bad_typeidD1Ev'/>
+<fun r='_ZNKSt10bad_typeid4whatEv'/>

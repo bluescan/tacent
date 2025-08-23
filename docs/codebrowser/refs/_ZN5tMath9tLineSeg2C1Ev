@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='98' type='void tMath::tLineSeg2::tLineSeg2()'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='358' u='c' c='_ZN5tMath21tIntersectFindRayRectERKNS_5tRay2ERKNS_7tARect2EPNS_8tVector2EPj'/>

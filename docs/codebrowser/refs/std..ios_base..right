@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/ios_base.h' l='369' type='const std::ios_base::fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='1039' u='r' c='_ZSt5rightRSt8ios_base'/>
+<doc f='include/c++/11/bits/ios_base.h' l='367'>/// Adds fill characters on the left (initial positions) of certain
+    /// generated output.  (I.e., the thing you print is flush right.)</doc>

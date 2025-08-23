@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tRandom.h' l='36' type='void tMath::tRandom::tGenerator::SetSeed(const uint32 * seeds, int numSeeds)'/>
+<ovr f='Modules/Math/Src/tRandom.cpp' l='33' c='_ZN5tMath7tRandom25tGeneratorMersenneTwister7SetSeedEPKji'/>

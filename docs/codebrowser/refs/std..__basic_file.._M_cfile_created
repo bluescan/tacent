@@ -1,0 +1,8 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='60' type='bool'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='67' u='w' c='_ZNSt12__basic_fileIcEC1EOS0_P15pthread_mutex_t'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='67' u='r' c='_ZNSt12__basic_fileIcEC1EOS0_P15pthread_mutex_t'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='70' u='w' c='_ZNSt12__basic_fileIcEC1EOS0_P15pthread_mutex_t'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='80' u='a' c='_ZNSt12__basic_fileIcE4swapERS0_'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='80' u='a' c='_ZNSt12__basic_fileIcE4swapERS0_'/>
+<offset>64</offset>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/basic_file.h' l='59'>// True iff we opened _M_cfile, and thus must close it ourselves.</doc>

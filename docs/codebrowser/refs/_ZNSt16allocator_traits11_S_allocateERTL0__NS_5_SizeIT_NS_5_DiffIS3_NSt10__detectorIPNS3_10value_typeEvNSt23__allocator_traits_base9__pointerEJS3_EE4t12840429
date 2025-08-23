@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/alloc_traits.h' l='225' ll='227' type='static std::allocator_traits::pointer std::allocator_traits::_S_allocate(_Alloc2 &amp; __a, std::allocator_traits::size_type __n, std::allocator_traits::const_void_pointer )'/>

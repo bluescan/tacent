@@ -1,0 +1,7 @@
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='151' u='w' c='_ZN10tBitArray83SetEi'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='162' u='w' c='_ZN10tBitArray83SetEPhib'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='187' u='w' c='_ZN10tBitArray83SetERKS_'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='187' u='r' c='_ZN10tBitArray83SetERKS_'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='204' u='r' c='_ZNK10tBitArray86AreAllEb'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='231' u='r' c='_ZNK10tBitArray89CountBitsEb'/>
+<use f='Modules/Foundation/Src/tBitArray.cpp' l='251' u='r' c='_ZNK10tBitArray817FindFirstClearBitEv'/>

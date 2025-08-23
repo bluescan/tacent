@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='210' type='1'/>
+<use f='include/c++/11/bits/fs_ops.h' l='302' c='_ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsENS_12perm_optionsE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='306' u='r' c='_ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsERSt10error_code'/>

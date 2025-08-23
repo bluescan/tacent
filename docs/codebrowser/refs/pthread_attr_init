@@ -1,0 +1,4 @@
+<dec f='include/pthread.h' l='285' type='int pthread_attr_init(pthread_attr_t * __attr)'/>
+<doc f='include/pthread.h' l='282'>/* Initialize thread attribute *ATTR with default attributes
+   (detachstate is PTHREAD_JOINABLE, scheduling policy is SCHED_OTHER,
+    no user-provided stack).  */</doc>

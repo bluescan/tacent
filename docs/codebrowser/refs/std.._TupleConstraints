@@ -1,0 +1,14 @@
+<def f='include/c++/11/tuple' l='554' ll='591'/>
+<def f='include/c++/11/tuple' l='595' ll='605'/>
+<use f='include/c++/11/tuple' l='614'/>
+<use f='include/c++/11/tuple' l='988'/>
+<use f='include/c++/11/tuple' l='995'/>
+<use f='include/c++/11/tuple' l='1000'/>
+<doc f='include/c++/11/tuple' l='593'>// Partial specialization used when a required precondition isn&apos;t met,
+  // e.g. when sizeof...(_Types) != sizeof...(_UTypes).</doc>
+<fun r='_ZNSt17_TupleConstraints29__is_implicitly_constructibleEv'/>
+<fun r='_ZNSt17_TupleConstraints29__is_explicitly_constructibleEv'/>
+<fun r='_ZNSt17_TupleConstraints37__is_implicitly_default_constructibleEv'/>
+<fun r='_ZNSt17_TupleConstraints37__is_explicitly_default_constructibleEv'/>
+<fun r='_ZNSt17_TupleConstraintsILb0EJDpT_EE29__is_implicitly_constructibleEv'/>
+<fun r='_ZNSt17_TupleConstraintsILb0EJDpT_EE29__is_explicitly_constructibleEv'/>

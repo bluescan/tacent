@@ -1,0 +1,5 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='185' type='float tMath::tTan(float x)'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='782' u='c' c='_ZN5tMath21tMakeProjPerspSymFovVERNS_5tMat4Effff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='791' u='c' c='_ZN5tMath21tMakeProjPerspSymFovHERNS_5tMat4Effff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='808' u='c' c='_ZN5tMath24tMakeProjPerspFovVOffsetERNS_5tMat4Effffff'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='820' u='c' c='_ZN5tMath24tMakeProjPerspFovHOffsetERNS_5tMat4Effffff'/>

@@ -1,0 +1,7 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='89' type='bool tMath::tInRange(const T val, const T min, const T max)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='89'>/* Returns val E [min, max]	*/</doc>
+<use f='Modules/Image/Src/tTexture.cpp' l='93' u='c' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='94' u='c' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='322' u='c' c='_ZN5tMath20tIntersectFindSegSegERKNS_9tLineSeg2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='322' u='c' c='_ZN5tMath20tIntersectFindSegSegERKNS_9tLineSeg2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='341' u='c' c='_ZN5tMath20tIntersectFindRaySegERKNS_5tRay2ERKNS_9tLineSeg2ERNS_8tVector2E'/>

@@ -1,0 +1,3 @@
+<dec f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='885'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='1919' u='a'/>
+<doc f='include/x86_64-linux-gnu/c++/11/bits/c++config.h' l='884'>/* Define to 1 if you have the `finitef&apos; function. */</doc>

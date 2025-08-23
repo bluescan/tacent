@@ -1,0 +1,7 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='123' type='bool tSystem::tPathsEqual(const tString &amp; pathA, const tString &amp; pathB, bool forceSimplify = false)'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='118'>// Determines if two paths point to the same filesystem object. The main reason this is needed over a simple string
+// compare is that some platforms are case-sensitive (Linux) and some are not (Windows/Mac). If one path is a dir (ends
+// with a / or \), and the other does not, the paths are always considered different. If you know the paths do not have
+// &quot;..&quot;s or &quot;.&quot;s in them you can leave forceSimplify false since it makes it more efficient. Returns true if the paths
+// point to the same filesystem object. This is a string manipulation call only -- it does not query the filesystem.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='275' ll='278' type='bool tSystem::tPathsEqual(const tString &amp; pathA, const tString &amp; pathB, bool forceSimplify = false)'/>

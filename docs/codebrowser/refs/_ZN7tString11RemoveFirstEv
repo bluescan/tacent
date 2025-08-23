@@ -1,0 +1,4 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='309' type='int tString::RemoveFirst()'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='307'>// Removes the first ASCII character. Length will be one less after. Returns num removed. Will be 0 for an empty
+	// string. Internally this one needs to do a mem-move.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='504' ll='513' type='int tString::RemoveFirst()'/>

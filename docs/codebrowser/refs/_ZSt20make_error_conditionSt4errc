@@ -1,0 +1,7 @@
+<dec f='include/c++/11/system_error' l='284' type='std::error_condition std::make_error_condition(std::errc )'/>
+<def f='include/c++/11/system_error' l='354' ll='356' type='std::error_condition std::make_error_condition(std::errc __e)'/>
+<doc f='include/c++/11/system_error' l='282'>/// @}</doc>
+<doc f='include/c++/11/system_error' l='350'>// 19.4.3.6 non-member functions
+
+  /// Create an `error_condition` representing a standard `errc` condition.
+  /// @relates error_condition</doc>

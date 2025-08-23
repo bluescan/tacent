@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_deque.h' l='2099' ll='2107' type='std::deque::iterator std::deque::_M_reserve_elements_at_back(std::deque::size_type __n)'/>
+<use f='include/c++/11/bits/deque.tcc' l='328' u='c' c='_ZNSt5deque14_M_fill_insertENSt11_Deque_baseIT_T0_E8iteratorEmRKS1_'/>
+<use f='include/c++/11/bits/deque.tcc' l='355' u='c' c='_ZNSt5deque17_M_default_appendEm'/>
+<use f='include/c++/11/bits/deque.tcc' l='622' u='c' c='_ZNSt5deque19_M_range_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_St20forward_iterator_tag'/>
+<use f='include/c++/11/bits/deque.tcc' l='729' u='c' c='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorEmRKS1_'/>
+<use f='include/c++/11/bits/deque.tcc' l='817' u='c' c='_ZNSt5deque13_M_insert_auxENSt11_Deque_baseIT_T0_E8iteratorETL0__S5_m'/>

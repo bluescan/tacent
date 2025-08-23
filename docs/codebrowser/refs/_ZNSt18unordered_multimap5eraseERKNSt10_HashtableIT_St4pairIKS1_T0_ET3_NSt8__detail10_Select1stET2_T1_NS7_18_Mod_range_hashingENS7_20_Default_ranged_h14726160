@@ -1,0 +1,12 @@
+<def f='include/c++/11/bits/unordered_map.h' l='1701' ll='1703' type='std::unordered_multimap::size_type std::unordered_multimap::erase(const std::unordered_multimap::key_type &amp; __x)'/>
+<doc f='include/c++/11/bits/unordered_map.h' l='1690'>/**
+       *  @brief Erases elements according to the provided key.
+       *  @param  __x  Key of elements to be erased.
+       *  @return  The number of elements erased.
+       *
+       *  This function erases all the elements located by the given key from
+       *  an %unordered_multimap.
+       *  Note that this function only erases the element, and that if the
+       *  element is itself a pointer, the pointed-to memory is not touched in
+       *  any way.  Managing the pointer is the user&apos;s responsibility.
+       */</doc>

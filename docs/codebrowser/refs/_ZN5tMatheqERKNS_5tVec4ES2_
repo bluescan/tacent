@@ -1,0 +1,2 @@
+<def f='Modules/Math/Inc/Math/tVector4.h' l='96' type='bool tMath::operator==(const tMath::tVec4 &amp; a, const tMath::tVec4 &amp; b)'/>
+<use f='Modules/Scene/Inc/Scene/tMesh.h' l='161' u='c' c='_ZNK6tScene5tMesh20FindVertTangentIndexERKN5tMath8tVector4E'/>

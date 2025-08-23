@@ -1,0 +1,19 @@
+<def f='include/c++/11/streambuf' l='653' ll='654' type='std::streamsize std::basic_streambuf::showmanyc()'/>
+<doc f='include/c++/11/streambuf' l='635'>/**
+       *  @brief  Investigating the data available.
+       *  @return  An estimate of the number of characters available in the
+       *           input sequence, or -1.
+       *
+       *  &lt;em&gt;If it returns a positive value, then successive calls to
+       *  @c underflow() will not return @c traits::eof() until at
+       *  least that number of characters have been supplied.  If @c
+       *  showmanyc() returns -1, then calls to @c underflow() or @c
+       *  uflow() will fail.&lt;/em&gt; [27.5.2.4.3]/1
+       *
+       *  @note  Base class version does nothing, returns zero.
+       *  @note  The standard adds that &lt;em&gt;the intention is not only that the
+       *         calls [to underflow or uflow] will not return @c eof() but
+       *         that they will return immediately.&lt;/em&gt;
+       *  @note  The standard adds that &lt;em&gt;the morphemes of @c showmanyc are
+       *         @b es-how-many-see, not @b show-manic.&lt;/em&gt;
+      */</doc>

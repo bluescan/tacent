@@ -1,0 +1,10 @@
+<use f='include/c++/11/thread' l='118' u='w' c='_ZNSt7jthreadC1EOT_DpOT0_'/>
+<use f='include/c++/11/thread' l='148' u='a' c='_ZNSt7jthread4swapERS_'/>
+<use f='include/c++/11/thread' l='148' u='a' c='_ZNSt7jthread4swapERS_'/>
+<use f='include/c++/11/thread' l='154' u='m' c='_ZNKSt7jthread8joinableEv'/>
+<use f='include/c++/11/thread' l='160' u='m' c='_ZNSt7jthread4joinEv'/>
+<use f='include/c++/11/thread' l='166' u='m' c='_ZNSt7jthread6detachEv'/>
+<use f='include/c++/11/thread' l='172' u='m' c='_ZNKSt7jthread6get_idEv'/>
+<use f='include/c++/11/thread' l='178' u='m' c='_ZNSt7jthread13native_handleEv'/>
+<dec f='include/c++/11/thread' l='230' type='std::thread'/>
+<offset>64</offset>

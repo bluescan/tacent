@@ -1,0 +1,11 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='86' ll='87' type='bool std::_Bit_reference::operator bool() const'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='101' u='c' c='_ZNSt14_Bit_referenceaSERKS_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='105' u='c' c='_ZNKSt14_Bit_referenceeqERKS_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='105' u='c' c='_ZNKSt14_Bit_referenceeqERKS_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='109' u='c' c='_ZNKSt14_Bit_referenceltERKS_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='109' u='c' c='_ZNKSt14_Bit_referenceltERKS_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='120' u='c' c='_ZSt4swapSt14_Bit_referenceS_'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='128' u='c' c='_ZSt4swapSt14_Bit_referenceRb'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='137' u='c' c='_ZSt4swapRbSt14_Bit_reference'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='348' u='c' c='_ZNKSt19_Bit_const_iteratordeEv'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='991' u='c' c='_ZNSt6vectorIbT_E4swapESt14_Bit_referenceS2_'/>

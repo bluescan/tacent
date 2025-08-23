@@ -1,0 +1,3 @@
+<def f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='53' type='T tMath::tMax(const T &amp; a, const T &amp; b, const T &amp; c, const T &amp; d)'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='193' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='194' u='c' c='_ZN6tImage8tPicture19RotateCenterNearestERKN5tMath8tMatrix2ES4_RK9tColour4b'/>

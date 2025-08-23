@@ -1,0 +1,4 @@
+<dec f='include/linux/stat.h' l='105' type='__u32'/>
+<offset>128</offset>
+<doc f='include/linux/stat.h' l='104'>/* 0x10 */</doc>
+<doc f='include/linux/stat.h' l='105'>/* Number of hard links */</doc>

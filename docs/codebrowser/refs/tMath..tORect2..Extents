@@ -1,0 +1,4 @@
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='188' u='w' c='_ZN5tMath7tORect2C1Ev'/>
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='192' type='tMath::tVector2'/>
+<offset>192</offset>
+<use f='Modules/Math/Src/tGeometry.cpp' l='33' u='m' c='_ZNK5tMath7tORect28IsInsideERKNS_8tVector2E'/>

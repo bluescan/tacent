@@ -1,0 +1,10 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='552' type='std::time_t'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1107' u='w' c='_ZN7tSystem9tFileInfoC1Ev'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1120' u='w' c='_ZN7tSystem9tFileInfoC1ERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1120' u='r' c='_ZN7tSystem9tFileInfoC1ERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='1134' u='w' c='_ZN7tSystem9tFileInfo5ClearEv'/>
+<offset>576</offset>
+<use f='Modules/System/Src/tFile.cpp' l='2042' u='w' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2145' u='w' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2146' u='r' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2147' u='w' c='_ZN7tSystem12tGetFileInfoERNS_9tFileInfoERK7tString'/>

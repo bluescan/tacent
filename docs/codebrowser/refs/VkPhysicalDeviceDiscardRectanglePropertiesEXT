@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12222' ll='12226'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12222'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceDiscardRectanglePropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceDiscardRectanglePropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceDiscardRectanglePropertiesEXT::maxDiscardRectangles' o='128' t='uint32_t'/>

@@ -1,0 +1,10 @@
+<dec f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='28' type='2'/>
+<doc f='Modules/Foundation/Inc/Foundation/tFundamentals.h' l='28'>// Circle divided into 256 angle units.</doc>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1126' u='r' c='_ZN9tColour4b8RGBToHSVEv'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='1139' u='r' c='_ZN9tColour4b8HSVToRGBEv'/>
+<use f='Modules/Math/Src/tColour.cpp' l='231' u='r' c='_ZN5tMath9tRGBToHSVERiS0_S0_iiiNS_10tAngleModeE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='233' u='r' c='_ZN5tMath9tRGBToHSVERiS0_S0_iiiNS_10tAngleModeE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='249' u='r' c='_ZN5tMath9tHSVToRGBERiS0_S0_iiiNS_10tAngleModeE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='251' u='r' c='_ZN5tMath9tHSVToRGBERiS0_S0_iiiNS_10tAngleModeE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='363' c='_ZN5tMath9tRGBToHSVERfS0_S0_fffNS_10tAngleModeE'/>
+<use f='Modules/Math/Src/tColour.cpp' l='387' c='_ZN5tMath9tHSVToRGBERfS0_S0_fffNS_10tAngleModeE'/>

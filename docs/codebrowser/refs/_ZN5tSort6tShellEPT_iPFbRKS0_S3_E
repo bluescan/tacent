@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tSort.h' l='33' type='void tSort::tShell(T * array, int numItems, bool (*)(const T &amp;, const T &amp;) compare = tCompLess&lt;T&gt;)'/>
+<def f='Modules/Foundation/Inc/Foundation/tSort.h' l='60' ll='85' type='void tSort::tShell(T * A, int N, bool (*)(const T &amp;, const T &amp;) compare = tCompLess&lt;T&gt;)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tSort.h' l='32'>// Shellsort. Fast when number of items is small. Not stable. See https://en.wikipedia.org/wiki/Shellsort</doc>

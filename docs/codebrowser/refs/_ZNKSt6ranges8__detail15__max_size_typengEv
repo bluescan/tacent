@@ -1,0 +1,9 @@
+<def f='include/c++/11/bits/max_size_type.h' l='90' ll='92' type='std::ranges::__detail::__max_size_type std::ranges::__detail::__max_size_type::operator-() const'/>
+<use f='include/c++/11/bits/max_size_type.h' l='130' u='c' c='_ZNSt6ranges8__detail15__max_size_typemIERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='470' u='c' c='_ZNKSt6ranges8__detail15__max_diff_typengEv'/>
+<use f='include/c++/11/bits/max_size_type.h' l='530' u='c' c='_ZNSt6ranges8__detail15__max_diff_typedVERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='530' u='c' c='_ZNSt6ranges8__detail15__max_diff_typedVERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='532' u='c' c='_ZNSt6ranges8__detail15__max_diff_typedVERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='532' u='c' c='_ZNSt6ranges8__detail15__max_diff_typedVERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='534' u='c' c='_ZNSt6ranges8__detail15__max_diff_typedVERKS1_'/>
+<use f='include/c++/11/bits/max_size_type.h' l='534' u='c' c='_ZNSt6ranges8__detail15__max_diff_typedVERKS1_'/>

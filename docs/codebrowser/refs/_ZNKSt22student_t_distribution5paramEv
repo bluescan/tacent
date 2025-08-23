@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='3365' ll='3367' type='std::student_t_distribution::param_type std::student_t_distribution::param() const'/>
+<doc f='include/c++/11/bits/random.h' l='3362'>/**
+       * @brief Returns the parameter set of the distribution.
+       */</doc>

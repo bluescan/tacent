@@ -1,0 +1,23 @@
+<def f='Modules/Image/Inc/Image/tPixelUtil.h' l='30' ll='40'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='41' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='51' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='52' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='53' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Inc/Image/tPixelUtil.h' l='54' c='_ZN6tImage19DecodePixelData_PVRENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<doc f='Modules/Image/Inc/Image/tPixelUtil.h' l='23'>// Given a pixel-format, pixel-data, and dimensions, this function decodes it into either an LDR buffer of tColour4b&apos;s
+// or an HDR buffer of tColour4f&apos;s. If Success returned, the function populates a width*height array of tColours in
+// either the dstLDR or dstHRD pointers you passed in. These decode buffers are now owned by you and you must delete[]
+// them. Depending on the pixel format, either LDR or HDR buffers will be populated, but not both. For safety, this
+// function expects dstLDR and dstHRD to be set to nullptr when you call. If they&apos;re not it returns BufferNotClear and
+// leaves the dst buffer pointers unmodified. If you know the colour-space of the pixelData, pass it in. This is used
+// by the ASTC decoder. @todo Support decode of PAL formats.</doc>
+<use f='Modules/Image/Src/tImageASTC.cpp' l='156' c='_ZN6tImage10tImageASTC4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageDDS.cpp' l='1439' c='_ZN6tImage9tImageDDS4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageKTX.cpp' l='1021' c='_ZN6tImage9tImageKTX15LoadFromTextureEP10ktxTextureRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='219' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='1130' c='_ZN6tImage9tImagePVR14CreateNewLayerERKNS0_10LoadParamsEPKhiii'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='62' c='_ZN6tImage15DecodePixelDataENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f14tColourProfilef'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='98' c='_ZN6tImage22DecodePixelData_PackedENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4ff'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='654' c='_ZN6tImage21DecodePixelData_BlockENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1059' c='_ZN6tImage20DecodePixelData_ASTCENS_12tPixelFormatEPKhiiiRP9tColour4f14tColourProfile'/>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='1148' c='_ZN6tImage19DecodePixelData_PVRENS_12tPixelFormatEPKhiiiRP9tColour4bRP9tColour4f'/>

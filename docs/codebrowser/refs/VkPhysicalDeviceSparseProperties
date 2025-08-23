@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3226' ll='3232'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3226'/>
+<size>20</size>
+<mbr r='VkPhysicalDeviceSparseProperties::residencyStandard2DBlockShape' o='0' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceSparseProperties::residencyStandard2DMultisampleBlockShape' o='32' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceSparseProperties::residencyStandard3DBlockShape' o='64' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceSparseProperties::residencyAlignedMipSize' o='96' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceSparseProperties::residencyNonResidentStrict' o='128' t='VkBool32'/>

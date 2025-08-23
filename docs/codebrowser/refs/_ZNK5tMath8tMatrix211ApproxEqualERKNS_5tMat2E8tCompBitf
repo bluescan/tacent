@@ -1,0 +1,1 @@
+<def f='Modules/Math/Inc/Math/tMatrix2.h' l='45' type='bool tMath::tMatrix2::ApproxEqual(const tMath::tMat2 &amp; m, tCompBit c, float e = Epsilon) const'/>

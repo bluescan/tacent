@@ -1,0 +1,17 @@
+<inh f='include/c++/11/bits/stl_bvector.h' l='142' c='std::_Bit_iterator_base'/>
+<def f='include/c++/11/bits/stl_bvector.h' l='323' ll='417'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='332'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='615'/>
+<size>16</size>
+<fun r='_ZNSt19_Bit_const_iteratorC1Ev'/>
+<fun r='_ZNSt19_Bit_const_iteratorC1EPmj'/>
+<fun r='_ZNSt19_Bit_const_iteratorC1ERKSt13_Bit_iterator'/>
+<fun r='_ZNKSt19_Bit_const_iterator13_M_const_castEv'/>
+<fun r='_ZNKSt19_Bit_const_iteratordeEv'/>
+<fun r='_ZNSt19_Bit_const_iteratorppEv'/>
+<fun r='_ZNSt19_Bit_const_iteratorppEi'/>
+<fun r='_ZNSt19_Bit_const_iteratormmEv'/>
+<fun r='_ZNSt19_Bit_const_iteratormmEi'/>
+<fun r='_ZNSt19_Bit_const_iteratorpLEl'/>
+<fun r='_ZNSt19_Bit_const_iteratormIEl'/>
+<fun r='_ZNKSt19_Bit_const_iteratorixEl'/>

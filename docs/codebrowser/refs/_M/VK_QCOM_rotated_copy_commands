@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15900'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='15899'>// VK_QCOM_rotated_copy_commands is a preprocessor guard. Do not pass it to API calls.</doc>

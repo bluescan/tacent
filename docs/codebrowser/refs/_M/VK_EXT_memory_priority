@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14088'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14087'>// VK_EXT_memory_priority is a preprocessor guard. Do not pass it to API calls.</doc>

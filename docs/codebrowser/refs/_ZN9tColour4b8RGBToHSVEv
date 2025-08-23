@@ -1,0 +1,8 @@
+<dec f='Modules/Math/Inc/Math/tColour.h' l='430' type='void tColour4b::RGBToHSV()'/>
+<def f='Modules/Math/Inc/Math/tColour.h' l='1120' ll='1130' type='void tColour4b::RGBToHSV()'/>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='425'>// When using the HSV representation of a tColour4b, the hue is in normalized angle units. See tAngleMode::Norm256.
+	// Since only one byte is used, we divide the circle into 256 equal parts. All 4 values will be E [0, 255].
+	// Consider using a tColoutf object when working in HSV space. It can more accurately represent the hue value
+	// without as much loss in precision. See the tRGBToHSV function for retrieval of hue in different angle units.
+	// Both of the functions below leave the alpha unchanged.</doc>
+<doc f='Modules/Math/Inc/Math/tColour.h' l='430'>// Assumes current values are RGB.</doc>

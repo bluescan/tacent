@@ -1,0 +1,922 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>stdio.h source code [include/stdio.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/stdio.h'; var root_path = '..'; var data_path = '../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='./'>include</a>/<a href='stdio.h.html'>stdio.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Define ISO C stdio on top of C++ iostreams.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   Copyright (C) 1991-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i></i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i></i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i></i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i> *	ISO C99 Standard: 7.19 Input/output	&lt;stdio.h&gt;</i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#<span data-ppcond="23">ifndef</span> <span class="macro" data-ref="_M/_STDIO_H">_STDIO_H</span></u>&nbsp</td></tr>
+<tr><th id="24">24</th><td><u>#define <dfn class="macro" id="_M/_STDIO_H" data-ref="_M/_STDIO_H">_STDIO_H</dfn>	1</u>&nbsp</td></tr>
+<tr><th id="25">25</th><td>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#define <dfn class="macro" id="_M/__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION" data-ref="_M/__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION">__GLIBC_INTERNAL_STARTING_HEADER_IMPLEMENTATION</dfn></u>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#include &lt;bits/libc-header-start.h&gt;</u>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#133" title="extern &quot;C&quot; {" data-ref="_M/__BEGIN_DECLS">__BEGIN_DECLS</a>&nbsp</td></tr>
+<tr><th id="30">30</th><td>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>#define <dfn class="macro" id="_M/__need_size_t" data-ref="_M/__need_size_t">__need_size_t</dfn></u>&nbsp</td></tr>
+<tr><th id="32">32</th><td><u>#define <dfn class="macro" id="_M/__need_NULL" data-ref="_M/__need_NULL">__need_NULL</dfn></u>&nbsp</td></tr>
+<tr><th id="33">33</th><td><u>#include &lt;stddef.h&gt;</u>&nbsp</td></tr>
+<tr><th id="34">34</th><td>&nbsp</td></tr>
+<tr><th id="35">35</th><td><u>#define <dfn class="macro" id="_M/__need___va_list" data-ref="_M/__need___va_list">__need___va_list</dfn></u>&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#include &lt;stdarg.h&gt;</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td>&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="39">39</th><td><u>#include &lt;bits/types/__fpos_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#include &lt;bits/types/__fpos64_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="41">41</th><td><u>#include &lt;bits/types/__FILE.h&gt;</u>&nbsp</td></tr>
+<tr><th id="42">42</th><td><u>#include &lt;bits/types/FILE.h&gt;</u>&nbsp</td></tr>
+<tr><th id="43">43</th><td><u>#include &lt;bits/types/struct_FILE.h&gt;</u>&nbsp</td></tr>
+<tr><th id="44">44</th><td>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>#<span data-ppcond="45">ifdef</span> <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u># include &lt;bits/types/cookie_io_functions_t.h&gt;</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td><u>#<span data-ppcond="45">endif</span></u>&nbsp</td></tr>
+<tr><th id="48">48</th><td>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#<span data-ppcond="49">if</span> defined <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a> || defined <a class="macro" href="features.h.html#363" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</a></u>&nbsp</td></tr>
+<tr><th id="50">50</th><td><u># <span data-ppcond="50">ifdef</span> <span class="macro" data-ref="_M/__GNUC__">__GNUC__</span></u>&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>#  <span data-ppcond="51">ifndef</span> <span class="macro" data-ref="_M/_VA_LIST_DEFINED">_VA_LIST_DEFINED</span></u>&nbsp</td></tr>
+<tr><th id="52">52</th><td><b>typedef</b> <span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class='typedef' title='va_list' data-type='__gnuc_va_list' data-ref="va_list" id="va_list">va_list</dfn>;&nbsp</td></tr>
+<tr><th id="53">53</th><td><u>#   define <dfn class="macro" id="_M/_VA_LIST_DEFINED" data-ref="_M/_VA_LIST_DEFINED">_VA_LIST_DEFINED</dfn></u>&nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#  <span data-ppcond="51">endif</span></u>&nbsp</td></tr>
+<tr><th id="55">55</th><td><u># <span data-ppcond="50">else</span></u>&nbsp</td></tr>
+<tr><th id="56">56</th><td><u>#  include &lt;stdarg.h&gt;</u>&nbsp</td></tr>
+<tr><th id="57">57</th><td><u># <span data-ppcond="50">endif</span></u>&nbsp</td></tr>
+<tr><th id="58">58</th><td><u>#<span data-ppcond="49">endif</span></u>&nbsp</td></tr>
+<tr><th id="59">59</th><td>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>#<span data-ppcond="60">if</span> defined <a class="macro" href="features.h.html#358" data-ref="_M/__USE_UNIX98">__USE_UNIX98</a> || defined <a class="macro" href="features.h.html#366" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</a></u>&nbsp</td></tr>
+<tr><th id="61">61</th><td><u># <span data-ppcond="61">ifndef</span> <a class="macro" href="x86_64-linux-gnu/sys/types.h.html#89" data-ref="_M/__off_t_defined">__off_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="62">62</th><td><u># ifndef __USE_FILE_OFFSET64</u>&nbsp</td></tr>
+<tr><th id="63">63</th><td><b>typedef</b> __off_t off_t;&nbsp</td></tr>
+<tr><th id="64">64</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="65">65</th><td><b>typedef</b> __off64_t off_t;&nbsp</td></tr>
+<tr><th id="66">66</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="67">67</th><td><u># define __off_t_defined</u>&nbsp</td></tr>
+<tr><th id="68">68</th><td><u># <span data-ppcond="61">endif</span></u>&nbsp</td></tr>
+<tr><th id="69">69</th><td><u># <span data-ppcond="69">if</span> defined <a class="macro" href="features.h.html#385" data-ref="_M/__USE_LARGEFILE64">__USE_LARGEFILE64</a> &amp;&amp; !defined <a class="macro" href="x86_64-linux-gnu/sys/types.h.html#93" data-ref="_M/__off64_t_defined">__off64_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="70">70</th><td><b>typedef</b> __off64_t off64_t;&nbsp</td></tr>
+<tr><th id="71">71</th><td><u># define __off64_t_defined</u>&nbsp</td></tr>
+<tr><th id="72">72</th><td><u># <span data-ppcond="69">endif</span></u>&nbsp</td></tr>
+<tr><th id="73">73</th><td><u>#<span data-ppcond="60">endif</span></u>&nbsp</td></tr>
+<tr><th id="74">74</th><td>&nbsp</td></tr>
+<tr><th id="75">75</th><td><u>#<span data-ppcond="75">ifdef</span> <a class="macro" href="features.h.html#363" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</a></u>&nbsp</td></tr>
+<tr><th id="76">76</th><td><u># <span data-ppcond="76">ifndef</span> <a class="macro" href="x86_64-linux-gnu/sys/types.h.html#109" data-ref="_M/__ssize_t_defined">__ssize_t_defined</a></u>&nbsp</td></tr>
+<tr><th id="77">77</th><td><b>typedef</b> __ssize_t ssize_t;&nbsp</td></tr>
+<tr><th id="78">78</th><td><u># define __ssize_t_defined</u>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u># <span data-ppcond="76">endif</span></u>&nbsp</td></tr>
+<tr><th id="80">80</th><td><u>#<span data-ppcond="75">endif</span></u>&nbsp</td></tr>
+<tr><th id="81">81</th><td>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i>/* The type of the second argument to `fgetpos' and `fsetpos'.  */</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td><u>#<span data-ppcond="83">ifndef</span> <span class="macro" data-ref="_M/__USE_FILE_OFFSET64">__USE_FILE_OFFSET64</span></u>&nbsp</td></tr>
+<tr><th id="84">84</th><td><b>typedef</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/__fpos_t.h.html#__fpos_t" title='__fpos_t' data-type='struct _G_fpos_t' data-ref="__fpos_t">__fpos_t</a> <dfn class="typedef" id="fpos_t" title='fpos_t' data-type='__fpos_t' data-ref="fpos_t">fpos_t</dfn>;&nbsp</td></tr>
+<tr><th id="85">85</th><td><u>#<span data-ppcond="83">else</span></u>&nbsp</td></tr>
+<tr><th id="86">86</th><td><b>typedef</b> __fpos64_t fpos_t;&nbsp</td></tr>
+<tr><th id="87">87</th><td><u>#<span data-ppcond="83">endif</span></u>&nbsp</td></tr>
+<tr><th id="88">88</th><td><u>#<span data-ppcond="88">ifdef</span> <a class="macro" href="features.h.html#385" data-ref="_M/__USE_LARGEFILE64">__USE_LARGEFILE64</a></u>&nbsp</td></tr>
+<tr><th id="89">89</th><td><b>typedef</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/__fpos64_t.h.html#__fpos64_t" title='__fpos64_t' data-type='struct _G_fpos64_t' data-ref="__fpos64_t">__fpos64_t</a> <dfn class="typedef" id="fpos64_t" title='fpos64_t' data-type='__fpos64_t' data-ref="fpos64_t">fpos64_t</dfn>;&nbsp</td></tr>
+<tr><th id="90">90</th><td><u>#<span data-ppcond="88">endif</span></u>&nbsp</td></tr>
+<tr><th id="91">91</th><td>&nbsp</td></tr>
+<tr><th id="92">92</th><td><i>/* The possibilities for the third argument to `setvbuf'.  */</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td><u>#define <dfn class="macro" id="_M/_IOFBF" data-ref="_M/_IOFBF">_IOFBF</dfn> 0		/* Fully buffered.  */</u>&nbsp</td></tr>
+<tr><th id="94">94</th><td><u>#define <dfn class="macro" id="_M/_IOLBF" data-ref="_M/_IOLBF">_IOLBF</dfn> 1		/* Line buffered.  */</u>&nbsp</td></tr>
+<tr><th id="95">95</th><td><u>#define <dfn class="macro" id="_M/_IONBF" data-ref="_M/_IONBF">_IONBF</dfn> 2		/* No buffering.  */</u>&nbsp</td></tr>
+<tr><th id="96">96</th><td>&nbsp</td></tr>
+<tr><th id="97">97</th><td>&nbsp</td></tr>
+<tr><th id="98">98</th><td><i>/* Default buffer size.  */</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td><u>#define <dfn class="macro" id="_M/BUFSIZ" data-ref="_M/BUFSIZ">BUFSIZ</dfn> 8192</u>&nbsp</td></tr>
+<tr><th id="100">100</th><td>&nbsp</td></tr>
+<tr><th id="101">101</th><td>&nbsp</td></tr>
+<tr><th id="102">102</th><td><i>/* The value returned by fgetc and similar functions to indicate the</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td><i>   end of the file.  */</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td><u>#define <dfn class="macro" id="_M/EOF" data-ref="_M/EOF">EOF</dfn> (-1)</u>&nbsp</td></tr>
+<tr><th id="105">105</th><td>&nbsp</td></tr>
+<tr><th id="106">106</th><td>&nbsp</td></tr>
+<tr><th id="107">107</th><td><i>/* The possibilities for the third argument to `fseek'.</i>&nbsp</td></tr>
+<tr><th id="108">108</th><td><i>   These values should not be changed.  */</i>&nbsp</td></tr>
+<tr><th id="109">109</th><td><u>#define <dfn class="macro" id="_M/SEEK_SET" data-ref="_M/SEEK_SET">SEEK_SET</dfn>	0	/* Seek from beginning of file.  */</u>&nbsp</td></tr>
+<tr><th id="110">110</th><td><u>#define <dfn class="macro" id="_M/SEEK_CUR" data-ref="_M/SEEK_CUR">SEEK_CUR</dfn>	1	/* Seek from current position.  */</u>&nbsp</td></tr>
+<tr><th id="111">111</th><td><u>#define <dfn class="macro" id="_M/SEEK_END" data-ref="_M/SEEK_END">SEEK_END</dfn>	2	/* Seek from end of file.  */</u>&nbsp</td></tr>
+<tr><th id="112">112</th><td><u>#<span data-ppcond="112">ifdef</span> <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="113">113</th><td><u># define <dfn class="macro" id="_M/SEEK_DATA" data-ref="_M/SEEK_DATA">SEEK_DATA</dfn>	3	/* Seek to next data.  */</u>&nbsp</td></tr>
+<tr><th id="114">114</th><td><u># define <dfn class="macro" id="_M/SEEK_HOLE" data-ref="_M/SEEK_HOLE">SEEK_HOLE</dfn>	4	/* Seek to next hole.  */</u>&nbsp</td></tr>
+<tr><th id="115">115</th><td><u>#<span data-ppcond="112">endif</span></u>&nbsp</td></tr>
+<tr><th id="116">116</th><td>&nbsp</td></tr>
+<tr><th id="117">117</th><td>&nbsp</td></tr>
+<tr><th id="118">118</th><td><u>#<span data-ppcond="118">if</span> defined <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> || defined <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a></u>&nbsp</td></tr>
+<tr><th id="119">119</th><td><i>/* Default path prefix for `tempnam' and `tmpnam'.  */</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td><u># define <dfn class="macro" id="_M/P_tmpdir" data-ref="_M/P_tmpdir">P_tmpdir</dfn>	"/tmp"</u>&nbsp</td></tr>
+<tr><th id="121">121</th><td><u>#<span data-ppcond="118">endif</span></u>&nbsp</td></tr>
+<tr><th id="122">122</th><td>&nbsp</td></tr>
+<tr><th id="123">123</th><td>&nbsp</td></tr>
+<tr><th id="124">124</th><td><i>/* Get the values:</i>&nbsp</td></tr>
+<tr><th id="125">125</th><td><i>   L_tmpnam	How long an array of chars must be to be passed to `tmpnam'.</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td><i>   TMP_MAX	The minimum number of unique filenames generated by tmpnam</i>&nbsp</td></tr>
+<tr><th id="127">127</th><td><i>		(and tempnam when it uses tmpnam's name space),</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td><i>		or tempnam (the two are separate).</i>&nbsp</td></tr>
+<tr><th id="129">129</th><td><i>   L_ctermid	How long an array to pass to `ctermid'.</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td><i>   L_cuserid	How long an array to pass to `cuserid'.</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td><i>   FOPEN_MAX	Minimum number of files that can be open at once.</i>&nbsp</td></tr>
+<tr><th id="132">132</th><td><i>   FILENAME_MAX	Maximum length of a filename.  */</i>&nbsp</td></tr>
+<tr><th id="133">133</th><td><u>#include &lt;bits/stdio_lim.h&gt;</u>&nbsp</td></tr>
+<tr><th id="134">134</th><td>&nbsp</td></tr>
+<tr><th id="135">135</th><td>&nbsp</td></tr>
+<tr><th id="136">136</th><td><u>#<span data-ppcond="136">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (ISOC2X)</u>&nbsp</td></tr>
+<tr><th id="137">137</th><td><i>/* Maximum length of printf output for a NaN.  */</i>&nbsp</td></tr>
+<tr><th id="138">138</th><td><u># define <dfn class="macro" id="_M/_PRINTF_NAN_LEN_MAX" data-ref="_M/_PRINTF_NAN_LEN_MAX">_PRINTF_NAN_LEN_MAX</dfn> 4</u>&nbsp</td></tr>
+<tr><th id="139">139</th><td><u>#<span data-ppcond="136">endif</span></u>&nbsp</td></tr>
+<tr><th id="140">140</th><td>&nbsp</td></tr>
+<tr><th id="141">141</th><td>&nbsp</td></tr>
+<tr><th id="142">142</th><td><i>/* Standard streams.  */</i>&nbsp</td></tr>
+<tr><th id="143">143</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl" id="stdin" title='stdin' data-ref="stdin">stdin</dfn>;		<i>/* Standard input stream.  */</i>&nbsp</td></tr>
+<tr><th id="144">144</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl" id="stdout" title='stdout' data-ref="stdout">stdout</dfn>;		<i>/* Standard output stream.  */</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl" id="stderr" title='stderr' data-ref="stderr">stderr</dfn>;		<i>/* Standard error output stream.  */</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td><i>/* C89/C99 say they're macros.  Make them happy.  */</i>&nbsp</td></tr>
+<tr><th id="147">147</th><td><u>#define <dfn class="macro" id="_M/stdin" data-ref="_M/stdin">stdin</dfn> stdin</u>&nbsp</td></tr>
+<tr><th id="148">148</th><td><u>#define <dfn class="macro" id="_M/stdout" data-ref="_M/stdout">stdout</dfn> stdout</u>&nbsp</td></tr>
+<tr><th id="149">149</th><td><u>#define <dfn class="macro" id="_M/stderr" data-ref="_M/stderr">stderr</dfn> stderr</u>&nbsp</td></tr>
+<tr><th id="150">150</th><td>&nbsp</td></tr>
+<tr><th id="151">151</th><td><i>/* Remove file FILENAME.  */</i>&nbsp</td></tr>
+<tr><th id="152">152</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="remove" title='remove' data-ref="remove">remove</dfn> (<em>const</em> <em>char</em> *<dfn class="local col5 decl" id="4535__filename" title='__filename' data-type='const char *' data-ref="4535__filename">__filename</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="153">153</th><td><i>/* Rename file OLD to NEW.  */</i>&nbsp</td></tr>
+<tr><th id="154">154</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="rename" title='rename' data-ref="rename">rename</dfn> (<em>const</em> <em>char</em> *<dfn class="local col6 decl" id="4536__old" title='__old' data-type='const char *' data-ref="4536__old">__old</dfn>, <em>const</em> <em>char</em> *<dfn class="local col7 decl" id="4537__new" title='__new' data-type='const char *' data-ref="4537__new">__new</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="155">155</th><td>&nbsp</td></tr>
+<tr><th id="156">156</th><td><u>#<span data-ppcond="156">ifdef</span> <a class="macro" href="features.h.html#399" data-ref="_M/__USE_ATFILE">__USE_ATFILE</a></u>&nbsp</td></tr>
+<tr><th id="157">157</th><td><i>/* Rename file OLD relative to OLDFD to NEW relative to NEWFD.  */</i>&nbsp</td></tr>
+<tr><th id="158">158</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="renameat" title='renameat' data-ref="renameat">renameat</dfn> (<em>int</em> <dfn class="local col8 decl" id="4538__oldfd" title='__oldfd' data-type='int' data-ref="4538__oldfd">__oldfd</dfn>, <em>const</em> <em>char</em> *<dfn class="local col9 decl" id="4539__old" title='__old' data-type='const char *' data-ref="4539__old">__old</dfn>, <em>int</em> <dfn class="local col0 decl" id="4540__newfd" title='__newfd' data-type='int' data-ref="4540__newfd">__newfd</dfn>,&nbsp</td></tr>
+<tr><th id="159">159</th><td>		     <em>const</em> <em>char</em> *<dfn class="local col1 decl" id="4541__new" title='__new' data-type='const char *' data-ref="4541__new">__new</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="160">160</th><td><u>#<span data-ppcond="156">endif</span></u>&nbsp</td></tr>
+<tr><th id="161">161</th><td>&nbsp</td></tr>
+<tr><th id="162">162</th><td><u>#<span data-ppcond="162">ifdef</span> <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="163">163</th><td><i>/* Flags for renameat2.  */</i>&nbsp</td></tr>
+<tr><th id="164">164</th><td><u># define <dfn class="macro" id="_M/RENAME_NOREPLACE" data-ref="_M/RENAME_NOREPLACE">RENAME_NOREPLACE</dfn> (1 &lt;&lt; 0)</u>&nbsp</td></tr>
+<tr><th id="165">165</th><td><u># define <dfn class="macro" id="_M/RENAME_EXCHANGE" data-ref="_M/RENAME_EXCHANGE">RENAME_EXCHANGE</dfn> (1 &lt;&lt; 1)</u>&nbsp</td></tr>
+<tr><th id="166">166</th><td><u># define <dfn class="macro" id="_M/RENAME_WHITEOUT" data-ref="_M/RENAME_WHITEOUT">RENAME_WHITEOUT</dfn> (1 &lt;&lt; 2)</u>&nbsp</td></tr>
+<tr><th id="167">167</th><td>&nbsp</td></tr>
+<tr><th id="168">168</th><td><i>/* Rename file OLD relative to OLDFD to NEW relative to NEWFD, with</i>&nbsp</td></tr>
+<tr><th id="169">169</th><td><i>   additional flags.  */</i>&nbsp</td></tr>
+<tr><th id="170">170</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="renameat2" title='renameat2' data-ref="renameat2">renameat2</dfn> (<em>int</em> <dfn class="local col2 decl" id="4542__oldfd" title='__oldfd' data-type='int' data-ref="4542__oldfd">__oldfd</dfn>, <em>const</em> <em>char</em> *<dfn class="local col3 decl" id="4543__old" title='__old' data-type='const char *' data-ref="4543__old">__old</dfn>, <em>int</em> <dfn class="local col4 decl" id="4544__newfd" title='__newfd' data-type='int' data-ref="4544__newfd">__newfd</dfn>,&nbsp</td></tr>
+<tr><th id="171">171</th><td>		      <em>const</em> <em>char</em> *<dfn class="local col5 decl" id="4545__new" title='__new' data-type='const char *' data-ref="4545__new">__new</dfn>, <em>unsigned</em> <em>int</em> <dfn class="local col6 decl" id="4546__flags" title='__flags' data-type='unsigned int' data-ref="4546__flags">__flags</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="172">172</th><td><u>#<span data-ppcond="162">endif</span></u>&nbsp</td></tr>
+<tr><th id="173">173</th><td>&nbsp</td></tr>
+<tr><th id="174">174</th><td><i>/* Close STREAM.</i>&nbsp</td></tr>
+<tr><th id="175">175</th><td><i></i>&nbsp</td></tr>
+<tr><th id="176">176</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="177">177</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="178">178</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fclose" title='fclose' data-ref="fclose">fclose</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col7 decl" id="4547__stream" title='__stream' data-type='FILE *' data-ref="4547__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="179">179</th><td>&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>#undef <span class="macro" data-ref="_M/__attr_dealloc_fclose">__attr_dealloc_fclose</span></u>&nbsp</td></tr>
+<tr><th id="181">181</th><td><u>#define <dfn class="macro" id="_M/__attr_dealloc_fclose" data-ref="_M/__attr_dealloc_fclose">__attr_dealloc_fclose</dfn> __attr_dealloc (fclose, 1)</u>&nbsp</td></tr>
+<tr><th id="182">182</th><td>&nbsp</td></tr>
+<tr><th id="183">183</th><td><i>/* Create a temporary file and open it read/write.</i>&nbsp</td></tr>
+<tr><th id="184">184</th><td><i></i>&nbsp</td></tr>
+<tr><th id="185">185</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="186">186</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="187">187</th><td><u>#<span data-ppcond="187">ifndef</span> <span class="macro" data-ref="_M/__USE_FILE_OFFSET64">__USE_FILE_OFFSET64</span></u>&nbsp</td></tr>
+<tr><th id="188">188</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl fn" id="tmpfile" title='tmpfile' data-ref="tmpfile">tmpfile</dfn> (<em>void</em>)&nbsp</td></tr>
+<tr><th id="189">189</th><td>  <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#281" title="__attribute__ ((__malloc__))" data-ref="_M/__attribute_malloc__">__attribute_malloc__</a> <a class="macro" href="#181" title="" data-ref="_M/__attr_dealloc_fclose">__attr_dealloc_fclose</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>#<span data-ppcond="187">else</span></u>&nbsp</td></tr>
+<tr><th id="191">191</th><td><u># ifdef __REDIRECT</u>&nbsp</td></tr>
+<tr><th id="192">192</th><td><b>extern</b> FILE *__REDIRECT (tmpfile, (<em>void</em>), tmpfile64)&nbsp</td></tr>
+<tr><th id="193">193</th><td>  __attribute_malloc__ __attr_dealloc_fclose __wur;&nbsp</td></tr>
+<tr><th id="194">194</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="195">195</th><td><u>#  define tmpfile tmpfile64</u>&nbsp</td></tr>
+<tr><th id="196">196</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="197">197</th><td><u>#<span data-ppcond="187">endif</span></u>&nbsp</td></tr>
+<tr><th id="198">198</th><td>&nbsp</td></tr>
+<tr><th id="199">199</th><td><u>#<span data-ppcond="199">ifdef</span> <a class="macro" href="features.h.html#385" data-ref="_M/__USE_LARGEFILE64">__USE_LARGEFILE64</a></u>&nbsp</td></tr>
+<tr><th id="200">200</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl fn" id="tmpfile64" title='tmpfile64' data-ref="tmpfile64">tmpfile64</dfn> (<em>void</em>)&nbsp</td></tr>
+<tr><th id="201">201</th><td>   <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#281" title="__attribute__ ((__malloc__))" data-ref="_M/__attribute_malloc__">__attribute_malloc__</a> <a class="macro" href="#181" title="" data-ref="_M/__attr_dealloc_fclose">__attr_dealloc_fclose</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="202">202</th><td><u>#<span data-ppcond="199">endif</span></u>&nbsp</td></tr>
+<tr><th id="203">203</th><td>&nbsp</td></tr>
+<tr><th id="204">204</th><td><i>/* Generate a temporary filename.  */</i>&nbsp</td></tr>
+<tr><th id="205">205</th><td><b>extern</b> <em>char</em> *<dfn class="decl fn" id="tmpnam" title='tmpnam' data-ref="tmpnam">tmpnam</dfn> (<em>char</em>[<a class="macro" href="x86_64-linux-gnu/bits/stdio_lim.h.html#25" title="20" data-ref="_M/L_tmpnam">L_tmpnam</a>]) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="206">206</th><td>&nbsp</td></tr>
+<tr><th id="207">207</th><td><u>#<span data-ppcond="207">ifdef</span> <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="208">208</th><td><i>/* This is the reentrant variant of `tmpnam'.  The only difference is</i>&nbsp</td></tr>
+<tr><th id="209">209</th><td><i>   that it does not allow S to be NULL.  */</i>&nbsp</td></tr>
+<tr><th id="210">210</th><td><b>extern</b> <em>char</em> *<dfn class="decl fn" id="tmpnam_r" title='tmpnam_r' data-ref="tmpnam_r">tmpnam_r</dfn> (<em>char</em> <dfn class="local col8 decl" id="4548__s" title='__s' data-type='char *' data-ref="4548__s">__s</dfn>[<a class="macro" href="x86_64-linux-gnu/bits/stdio_lim.h.html#25" title="20" data-ref="_M/L_tmpnam">L_tmpnam</a>]) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="211">211</th><td><u>#<span data-ppcond="207">endif</span></u>&nbsp</td></tr>
+<tr><th id="212">212</th><td>&nbsp</td></tr>
+<tr><th id="213">213</th><td>&nbsp</td></tr>
+<tr><th id="214">214</th><td><u>#<span data-ppcond="214">if</span> defined <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> || defined <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a></u>&nbsp</td></tr>
+<tr><th id="215">215</th><td><i>/* Generate a unique temporary filename using up to five characters of PFX</i>&nbsp</td></tr>
+<tr><th id="216">216</th><td><i>   if it is not NULL.  The directory to put this file in is searched for</i>&nbsp</td></tr>
+<tr><th id="217">217</th><td><i>   as follows: First the environment variable "TMPDIR" is checked.</i>&nbsp</td></tr>
+<tr><th id="218">218</th><td><i>   If it contains the name of a writable directory, that directory is used.</i>&nbsp</td></tr>
+<tr><th id="219">219</th><td><i>   If not and if DIR is not NULL, that value is checked.  If that fails,</i>&nbsp</td></tr>
+<tr><th id="220">220</th><td><i>   P_tmpdir is tried and finally "/tmp".  The storage for the filename</i>&nbsp</td></tr>
+<tr><th id="221">221</th><td><i>   is allocated by `malloc'.  */</i>&nbsp</td></tr>
+<tr><th id="222">222</th><td><b>extern</b> <em>char</em> *<dfn class="decl fn" id="tempnam" title='tempnam' data-ref="tempnam">tempnam</dfn> (<em>const</em> <em>char</em> *<dfn class="local col9 decl" id="4549__dir" title='__dir' data-type='const char *' data-ref="4549__dir">__dir</dfn>, <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="4550__pfx" title='__pfx' data-type='const char *' data-ref="4550__pfx">__pfx</dfn>)&nbsp</td></tr>
+<tr><th id="223">223</th><td>   <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#281" title="__attribute__ ((__malloc__))" data-ref="_M/__attribute_malloc__">__attribute_malloc__</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#694" title="" data-ref="_M/__attr_dealloc_free">__attr_dealloc_free</a>;&nbsp</td></tr>
+<tr><th id="224">224</th><td><u>#<span data-ppcond="214">endif</span></u>&nbsp</td></tr>
+<tr><th id="225">225</th><td>&nbsp</td></tr>
+<tr><th id="226">226</th><td><i>/* Flush STREAM, or all streams if STREAM is NULL.</i>&nbsp</td></tr>
+<tr><th id="227">227</th><td><i></i>&nbsp</td></tr>
+<tr><th id="228">228</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="229">229</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="230">230</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fflush" title='fflush' data-ref="fflush">fflush</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col1 decl" id="4551__stream" title='__stream' data-type='FILE *' data-ref="4551__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="231">231</th><td>&nbsp</td></tr>
+<tr><th id="232">232</th><td><u>#<span data-ppcond="232">ifdef</span> <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="233">233</th><td><i>/* Faster versions when locking is not required.</i>&nbsp</td></tr>
+<tr><th id="234">234</th><td><i></i>&nbsp</td></tr>
+<tr><th id="235">235</th><td><i>   This function is not part of POSIX and therefore no official</i>&nbsp</td></tr>
+<tr><th id="236">236</th><td><i>   cancellation point.  But due to similarity with an POSIX interface</i>&nbsp</td></tr>
+<tr><th id="237">237</th><td><i>   or due to the implementation it is a cancellation point and</i>&nbsp</td></tr>
+<tr><th id="238">238</th><td><i>   therefore not marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="239">239</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fflush_unlocked" title='fflush_unlocked' data-ref="fflush_unlocked">fflush_unlocked</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col2 decl" id="4552__stream" title='__stream' data-type='FILE *' data-ref="4552__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="240">240</th><td><u>#<span data-ppcond="232">endif</span></u>&nbsp</td></tr>
+<tr><th id="241">241</th><td>&nbsp</td></tr>
+<tr><th id="242">242</th><td><u>#<span data-ppcond="242">ifdef</span> <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="243">243</th><td><i>/* Close all streams.</i>&nbsp</td></tr>
+<tr><th id="244">244</th><td><i></i>&nbsp</td></tr>
+<tr><th id="245">245</th><td><i>   This function is not part of POSIX and therefore no official</i>&nbsp</td></tr>
+<tr><th id="246">246</th><td><i>   cancellation point.  But due to similarity with an POSIX interface</i>&nbsp</td></tr>
+<tr><th id="247">247</th><td><i>   or due to the implementation it is a cancellation point and</i>&nbsp</td></tr>
+<tr><th id="248">248</th><td><i>   therefore not marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="249">249</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fcloseall" title='fcloseall' data-ref="fcloseall">fcloseall</dfn> (<em>void</em>);&nbsp</td></tr>
+<tr><th id="250">250</th><td><u>#<span data-ppcond="242">endif</span></u>&nbsp</td></tr>
+<tr><th id="251">251</th><td>&nbsp</td></tr>
+<tr><th id="252">252</th><td>&nbsp</td></tr>
+<tr><th id="253">253</th><td><u>#<span data-ppcond="253">ifndef</span> <span class="macro" data-ref="_M/__USE_FILE_OFFSET64">__USE_FILE_OFFSET64</span></u>&nbsp</td></tr>
+<tr><th id="254">254</th><td><i>/* Open a file and create a new stream for it.</i>&nbsp</td></tr>
+<tr><th id="255">255</th><td><i></i>&nbsp</td></tr>
+<tr><th id="256">256</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="257">257</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="258">258</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl fn" id="fopen" title='fopen' data-ref="fopen">fopen</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col3 decl" id="4553__filename" title='__filename' data-type='const char *__restrict' data-ref="4553__filename">__filename</dfn>,&nbsp</td></tr>
+<tr><th id="259">259</th><td>		    <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col4 decl" id="4554__modes" title='__modes' data-type='const char *__restrict' data-ref="4554__modes">__modes</dfn>)&nbsp</td></tr>
+<tr><th id="260">260</th><td>  <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#281" title="__attribute__ ((__malloc__))" data-ref="_M/__attribute_malloc__">__attribute_malloc__</a> <a class="macro" href="#181" title="" data-ref="_M/__attr_dealloc_fclose">__attr_dealloc_fclose</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="261">261</th><td><i>/* Open a file, replacing an existing stream with it.</i>&nbsp</td></tr>
+<tr><th id="262">262</th><td><i></i>&nbsp</td></tr>
+<tr><th id="263">263</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="264">264</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="265">265</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl fn" id="freopen" title='freopen' data-ref="freopen">freopen</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col5 decl" id="4555__filename" title='__filename' data-type='const char *__restrict' data-ref="4555__filename">__filename</dfn>,&nbsp</td></tr>
+<tr><th id="266">266</th><td>		      <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col6 decl" id="4556__modes" title='__modes' data-type='const char *__restrict' data-ref="4556__modes">__modes</dfn>,&nbsp</td></tr>
+<tr><th id="267">267</th><td>		      <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col7 decl" id="4557__stream" title='__stream' data-type='FILE *__restrict' data-ref="4557__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="268">268</th><td><u>#<span data-ppcond="253">else</span></u>&nbsp</td></tr>
+<tr><th id="269">269</th><td><u># ifdef __REDIRECT</u>&nbsp</td></tr>
+<tr><th id="270">270</th><td><b>extern</b> FILE *__REDIRECT (fopen, (<em>const</em> <em>char</em> *<b>__restrict</b> __filename,&nbsp</td></tr>
+<tr><th id="271">271</th><td>				 <em>const</em> <em>char</em> *<b>__restrict</b> __modes), fopen64)&nbsp</td></tr>
+<tr><th id="272">272</th><td>  __attribute_malloc__ __attr_dealloc_fclose __wur;&nbsp</td></tr>
+<tr><th id="273">273</th><td><b>extern</b> FILE *__REDIRECT (freopen, (<em>const</em> <em>char</em> *<b>__restrict</b> __filename,&nbsp</td></tr>
+<tr><th id="274">274</th><td>				   <em>const</em> <em>char</em> *<b>__restrict</b> __modes,&nbsp</td></tr>
+<tr><th id="275">275</th><td>				   FILE *<b>__restrict</b> __stream), freopen64)&nbsp</td></tr>
+<tr><th id="276">276</th><td>  __wur;&nbsp</td></tr>
+<tr><th id="277">277</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="278">278</th><td><u>#  define fopen fopen64</u>&nbsp</td></tr>
+<tr><th id="279">279</th><td><u>#  define freopen freopen64</u>&nbsp</td></tr>
+<tr><th id="280">280</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="281">281</th><td><u>#<span data-ppcond="253">endif</span></u>&nbsp</td></tr>
+<tr><th id="282">282</th><td><u>#<span data-ppcond="282">ifdef</span> <a class="macro" href="features.h.html#385" data-ref="_M/__USE_LARGEFILE64">__USE_LARGEFILE64</a></u>&nbsp</td></tr>
+<tr><th id="283">283</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl fn" id="fopen64" title='fopen64' data-ref="fopen64">fopen64</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col8 decl" id="4558__filename" title='__filename' data-type='const char *__restrict' data-ref="4558__filename">__filename</dfn>,&nbsp</td></tr>
+<tr><th id="284">284</th><td>		      <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col9 decl" id="4559__modes" title='__modes' data-type='const char *__restrict' data-ref="4559__modes">__modes</dfn>)&nbsp</td></tr>
+<tr><th id="285">285</th><td>  <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#281" title="__attribute__ ((__malloc__))" data-ref="_M/__attribute_malloc__">__attribute_malloc__</a> <a class="macro" href="#181" title="" data-ref="_M/__attr_dealloc_fclose">__attr_dealloc_fclose</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="286">286</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl fn" id="freopen64" title='freopen64' data-ref="freopen64">freopen64</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col0 decl" id="4560__filename" title='__filename' data-type='const char *__restrict' data-ref="4560__filename">__filename</dfn>,&nbsp</td></tr>
+<tr><th id="287">287</th><td>			<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col1 decl" id="4561__modes" title='__modes' data-type='const char *__restrict' data-ref="4561__modes">__modes</dfn>,&nbsp</td></tr>
+<tr><th id="288">288</th><td>			<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col2 decl" id="4562__stream" title='__stream' data-type='FILE *__restrict' data-ref="4562__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="289">289</th><td><u>#<span data-ppcond="282">endif</span></u>&nbsp</td></tr>
+<tr><th id="290">290</th><td>&nbsp</td></tr>
+<tr><th id="291">291</th><td><u>#<span data-ppcond="291">ifdef</span>	<a class="macro" href="features.h.html#325" data-ref="_M/__USE_POSIX">__USE_POSIX</a></u>&nbsp</td></tr>
+<tr><th id="292">292</th><td><i>/* Create a new stream that refers to an existing system file descriptor.  */</i>&nbsp</td></tr>
+<tr><th id="293">293</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl fn" id="fdopen" title='fdopen' data-ref="fdopen">fdopen</dfn> (<em>int</em> <dfn class="local col3 decl" id="4563__fd" title='__fd' data-type='int' data-ref="4563__fd">__fd</dfn>, <em>const</em> <em>char</em> *<dfn class="local col4 decl" id="4564__modes" title='__modes' data-type='const char *' data-ref="4564__modes">__modes</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>&nbsp</td></tr>
+<tr><th id="294">294</th><td>  <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#281" title="__attribute__ ((__malloc__))" data-ref="_M/__attribute_malloc__">__attribute_malloc__</a> <a class="macro" href="#181" title="" data-ref="_M/__attr_dealloc_fclose">__attr_dealloc_fclose</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="295">295</th><td><u>#<span data-ppcond="291">endif</span></u>&nbsp</td></tr>
+<tr><th id="296">296</th><td>&nbsp</td></tr>
+<tr><th id="297">297</th><td><u>#<span data-ppcond="297">ifdef</span>	<a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="298">298</th><td><i>/* Create a new stream that refers to the given magic cookie,</i>&nbsp</td></tr>
+<tr><th id="299">299</th><td><i>   and uses the given functions for input and output.  */</i>&nbsp</td></tr>
+<tr><th id="300">300</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl fn" id="fopencookie" title='fopencookie' data-ref="fopencookie">fopencookie</dfn> (<em>void</em> *<b>__restrict</b> <dfn class="local col5 decl" id="4565__magic_cookie" title='__magic_cookie' data-type='void *__restrict' data-ref="4565__magic_cookie">__magic_cookie</dfn>,&nbsp</td></tr>
+<tr><th id="301">301</th><td>			  <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col6 decl" id="4566__modes" title='__modes' data-type='const char *__restrict' data-ref="4566__modes">__modes</dfn>,&nbsp</td></tr>
+<tr><th id="302">302</th><td>			  <a class="typedef" href="x86_64-linux-gnu/bits/types/cookie_io_functions_t.h.html#cookie_io_functions_t" title='cookie_io_functions_t' data-type='struct _IO_cookie_io_functions_t' data-ref="cookie_io_functions_t">cookie_io_functions_t</a> <dfn class="local col7 decl" id="4567__io_funcs" title='__io_funcs' data-type='cookie_io_functions_t' data-ref="4567__io_funcs">__io_funcs</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>&nbsp</td></tr>
+<tr><th id="303">303</th><td>  <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#281" title="__attribute__ ((__malloc__))" data-ref="_M/__attribute_malloc__">__attribute_malloc__</a> <a class="macro" href="#181" title="" data-ref="_M/__attr_dealloc_fclose">__attr_dealloc_fclose</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="304">304</th><td><u>#<span data-ppcond="297">endif</span></u>&nbsp</td></tr>
+<tr><th id="305">305</th><td>&nbsp</td></tr>
+<tr><th id="306">306</th><td><u>#<span data-ppcond="306">if</span> defined <a class="macro" href="features.h.html#363" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</a> || <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (LIB_EXT2)</u>&nbsp</td></tr>
+<tr><th id="307">307</th><td><i>/* Create a new stream that refers to a memory buffer.  */</i>&nbsp</td></tr>
+<tr><th id="308">308</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl fn" id="fmemopen" title='fmemopen' data-ref="fmemopen">fmemopen</dfn> (<em>void</em> *<dfn class="local col8 decl" id="4568__s" title='__s' data-type='void *' data-ref="4568__s">__s</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col9 decl" id="4569__len" title='__len' data-type='size_t' data-ref="4569__len">__len</dfn>, <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="4570__modes" title='__modes' data-type='const char *' data-ref="4570__modes">__modes</dfn>)&nbsp</td></tr>
+<tr><th id="309">309</th><td>  <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#281" title="__attribute__ ((__malloc__))" data-ref="_M/__attribute_malloc__">__attribute_malloc__</a> <a class="macro" href="#181" title="" data-ref="_M/__attr_dealloc_fclose">__attr_dealloc_fclose</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="310">310</th><td>&nbsp</td></tr>
+<tr><th id="311">311</th><td><i>/* Open a stream that writes into a malloc'd buffer that is expanded as</i>&nbsp</td></tr>
+<tr><th id="312">312</th><td><i>   necessary.  *BUFLOC and *SIZELOC are updated with the buffer's location</i>&nbsp</td></tr>
+<tr><th id="313">313</th><td><i>   and the number of characters written on fflush or fclose.  */</i>&nbsp</td></tr>
+<tr><th id="314">314</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl fn" id="open_memstream" title='open_memstream' data-ref="open_memstream">open_memstream</dfn> (<em>char</em> **<dfn class="local col1 decl" id="4571__bufloc" title='__bufloc' data-type='char **' data-ref="4571__bufloc">__bufloc</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<dfn class="local col2 decl" id="4572__sizeloc" title='__sizeloc' data-type='size_t *' data-ref="4572__sizeloc">__sizeloc</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>&nbsp</td></tr>
+<tr><th id="315">315</th><td>  <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#281" title="__attribute__ ((__malloc__))" data-ref="_M/__attribute_malloc__">__attribute_malloc__</a> <a class="macro" href="#181" title="" data-ref="_M/__attr_dealloc_fclose">__attr_dealloc_fclose</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="316">316</th><td>&nbsp</td></tr>
+<tr><th id="317">317</th><td><u>#<span data-ppcond="317">ifdef</span> <span class="macro" data-ref="_M/_WCHAR_H">_WCHAR_H</span></u>&nbsp</td></tr>
+<tr><th id="318">318</th><td><i>/* Like OPEN_MEMSTREAM, but the stream is wide oriented and produces</i>&nbsp</td></tr>
+<tr><th id="319">319</th><td><i>   a wide character string.  Declared here only to add attribute malloc</i>&nbsp</td></tr>
+<tr><th id="320">320</th><td><i>   and only if &lt;wchar.h&gt; has been previously #included.  */</i>&nbsp</td></tr>
+<tr><th id="321">321</th><td><b>extern</b> __FILE *open_wmemstream (<em>wchar_t</em> **__bufloc, size_t *__sizeloc) __THROW&nbsp</td></tr>
+<tr><th id="322">322</th><td>  __attribute_malloc__ __attr_dealloc_fclose;&nbsp</td></tr>
+<tr><th id="323">323</th><td><u># <span data-ppcond="317">endif</span></u>&nbsp</td></tr>
+<tr><th id="324">324</th><td><u>#<span data-ppcond="306">endif</span></u>&nbsp</td></tr>
+<tr><th id="325">325</th><td>&nbsp</td></tr>
+<tr><th id="326">326</th><td><i>/* If BUF is NULL, make STREAM unbuffered.</i>&nbsp</td></tr>
+<tr><th id="327">327</th><td><i>   Else make it use buffer BUF, of size BUFSIZ.  */</i>&nbsp</td></tr>
+<tr><th id="328">328</th><td><b>extern</b> <em>void</em> <dfn class="decl fn" id="setbuf" title='setbuf' data-ref="setbuf">setbuf</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col3 decl" id="4573__stream" title='__stream' data-type='FILE *__restrict' data-ref="4573__stream">__stream</dfn>, <em>char</em> *<b>__restrict</b> <dfn class="local col4 decl" id="4574__buf" title='__buf' data-type='char *__restrict' data-ref="4574__buf">__buf</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="329">329</th><td><i>/* Make STREAM use buffering mode MODE.</i>&nbsp</td></tr>
+<tr><th id="330">330</th><td><i>   If BUF is not NULL, use N bytes of it for buffering;</i>&nbsp</td></tr>
+<tr><th id="331">331</th><td><i>   else allocate an internal buffer N bytes long.  */</i>&nbsp</td></tr>
+<tr><th id="332">332</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="setvbuf" title='setvbuf' data-ref="setvbuf">setvbuf</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col5 decl" id="4575__stream" title='__stream' data-type='FILE *__restrict' data-ref="4575__stream">__stream</dfn>, <em>char</em> *<b>__restrict</b> <dfn class="local col6 decl" id="4576__buf" title='__buf' data-type='char *__restrict' data-ref="4576__buf">__buf</dfn>,&nbsp</td></tr>
+<tr><th id="333">333</th><td>		    <em>int</em> <dfn class="local col7 decl" id="4577__modes" title='__modes' data-type='int' data-ref="4577__modes">__modes</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col8 decl" id="4578__n" title='__n' data-type='size_t' data-ref="4578__n">__n</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="334">334</th><td>&nbsp</td></tr>
+<tr><th id="335">335</th><td><u>#<span data-ppcond="335">ifdef</span>	<a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="336">336</th><td><i>/* If BUF is NULL, make STREAM unbuffered.</i>&nbsp</td></tr>
+<tr><th id="337">337</th><td><i>   Else make it use SIZE bytes of BUF for buffering.  */</i>&nbsp</td></tr>
+<tr><th id="338">338</th><td><b>extern</b> <em>void</em> <dfn class="decl fn" id="setbuffer" title='setbuffer' data-ref="setbuffer">setbuffer</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col9 decl" id="4579__stream" title='__stream' data-type='FILE *__restrict' data-ref="4579__stream">__stream</dfn>, <em>char</em> *<b>__restrict</b> <dfn class="local col0 decl" id="4580__buf" title='__buf' data-type='char *__restrict' data-ref="4580__buf">__buf</dfn>,&nbsp</td></tr>
+<tr><th id="339">339</th><td>		       <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col1 decl" id="4581__size" title='__size' data-type='size_t' data-ref="4581__size">__size</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="340">340</th><td>&nbsp</td></tr>
+<tr><th id="341">341</th><td><i>/* Make STREAM line-buffered.  */</i>&nbsp</td></tr>
+<tr><th id="342">342</th><td><b>extern</b> <em>void</em> <dfn class="decl fn" id="setlinebuf" title='setlinebuf' data-ref="setlinebuf">setlinebuf</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col2 decl" id="4582__stream" title='__stream' data-type='FILE *' data-ref="4582__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="343">343</th><td><u>#<span data-ppcond="335">endif</span></u>&nbsp</td></tr>
+<tr><th id="344">344</th><td>&nbsp</td></tr>
+<tr><th id="345">345</th><td>&nbsp</td></tr>
+<tr><th id="346">346</th><td><i>/* Write formatted output to STREAM.</i>&nbsp</td></tr>
+<tr><th id="347">347</th><td><i></i>&nbsp</td></tr>
+<tr><th id="348">348</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="349">349</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="350">350</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fprintf" title='fprintf' data-ref="fprintf">fprintf</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col3 decl" id="4583__stream" title='__stream' data-type='FILE *__restrict' data-ref="4583__stream">__stream</dfn>,&nbsp</td></tr>
+<tr><th id="351">351</th><td>		    <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col4 decl" id="4584__format" title='__format' data-type='const char *__restrict' data-ref="4584__format">__format</dfn>, ...);&nbsp</td></tr>
+<tr><th id="352">352</th><td><i>/* Write formatted output to stdout.</i>&nbsp</td></tr>
+<tr><th id="353">353</th><td><i></i>&nbsp</td></tr>
+<tr><th id="354">354</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="355">355</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="356">356</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="printf" title='printf' data-ref="printf">printf</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col5 decl" id="4585__format" title='__format' data-type='const char *__restrict' data-ref="4585__format">__format</dfn>, ...);&nbsp</td></tr>
+<tr><th id="357">357</th><td><i>/* Write formatted output to S.  */</i>&nbsp</td></tr>
+<tr><th id="358">358</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="sprintf" title='sprintf' data-ref="sprintf">sprintf</dfn> (<em>char</em> *<b>__restrict</b> <dfn class="local col6 decl" id="4586__s" title='__s' data-type='char *__restrict' data-ref="4586__s">__s</dfn>,&nbsp</td></tr>
+<tr><th id="359">359</th><td>		    <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col7 decl" id="4587__format" title='__format' data-type='const char *__restrict' data-ref="4587__format">__format</dfn>, ...) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a>;&nbsp</td></tr>
+<tr><th id="360">360</th><td>&nbsp</td></tr>
+<tr><th id="361">361</th><td><i>/* Write formatted output to S from argument list ARG.</i>&nbsp</td></tr>
+<tr><th id="362">362</th><td><i></i>&nbsp</td></tr>
+<tr><th id="363">363</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="364">364</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="365">365</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="vfprintf" title='vfprintf' data-ref="vfprintf">vfprintf</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col8 decl" id="4588__s" title='__s' data-type='FILE *__restrict' data-ref="4588__s">__s</dfn>, <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col9 decl" id="4589__format" title='__format' data-type='const char *__restrict' data-ref="4589__format">__format</dfn>,&nbsp</td></tr>
+<tr><th id="366">366</th><td>		     <span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class="local col0 decl" id="4590__arg" title='__arg' data-type='__va_list_tag *' data-ref="4590__arg">__arg</dfn>);&nbsp</td></tr>
+<tr><th id="367">367</th><td><i>/* Write formatted output to stdout from argument list ARG.</i>&nbsp</td></tr>
+<tr><th id="368">368</th><td><i></i>&nbsp</td></tr>
+<tr><th id="369">369</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="370">370</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="371">371</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="vprintf" title='vprintf' data-ref="vprintf">vprintf</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col1 decl" id="4591__format" title='__format' data-type='const char *__restrict' data-ref="4591__format">__format</dfn>, <span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class="local col2 decl" id="4592__arg" title='__arg' data-type='__va_list_tag *' data-ref="4592__arg">__arg</dfn>);&nbsp</td></tr>
+<tr><th id="372">372</th><td><i>/* Write formatted output to S from argument list ARG.  */</i>&nbsp</td></tr>
+<tr><th id="373">373</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="vsprintf" title='vsprintf' data-ref="vsprintf">vsprintf</dfn> (<em>char</em> *<b>__restrict</b> <dfn class="local col3 decl" id="4593__s" title='__s' data-type='char *__restrict' data-ref="4593__s">__s</dfn>, <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col4 decl" id="4594__format" title='__format' data-type='const char *__restrict' data-ref="4594__format">__format</dfn>,&nbsp</td></tr>
+<tr><th id="374">374</th><td>		     <span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class="local col5 decl" id="4595__arg" title='__arg' data-type='__va_list_tag *' data-ref="4595__arg">__arg</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a>;&nbsp</td></tr>
+<tr><th id="375">375</th><td>&nbsp</td></tr>
+<tr><th id="376">376</th><td><u>#<span data-ppcond="376">if</span> defined <a class="macro" href="features.h.html#371" data-ref="_M/__USE_ISOC99">__USE_ISOC99</a> || defined <a class="macro" href="features.h.html#358" data-ref="_M/__USE_UNIX98">__USE_UNIX98</a></u>&nbsp</td></tr>
+<tr><th id="377">377</th><td><i>/* Maximum chars of output to write in MAXLEN.  */</i>&nbsp</td></tr>
+<tr><th id="378">378</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="snprintf" title='snprintf' data-ref="snprintf">snprintf</dfn> (<em>char</em> *<b>__restrict</b> <dfn class="local col6 decl" id="4596__s" title='__s' data-type='char *__restrict' data-ref="4596__s">__s</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col7 decl" id="4597__maxlen" title='__maxlen' data-type='size_t' data-ref="4597__maxlen">__maxlen</dfn>,&nbsp</td></tr>
+<tr><th id="379">379</th><td>		     <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col8 decl" id="4598__format" title='__format' data-type='const char *__restrict' data-ref="4598__format">__format</dfn>, ...)&nbsp</td></tr>
+<tr><th id="380">380</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a> <b>__attribute__</b> ((__format__ (__printf__, <var>3</var>, <var>4</var>)));&nbsp</td></tr>
+<tr><th id="381">381</th><td>&nbsp</td></tr>
+<tr><th id="382">382</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="vsnprintf" title='vsnprintf' data-ref="vsnprintf">vsnprintf</dfn> (<em>char</em> *<b>__restrict</b> <dfn class="local col9 decl" id="4599__s" title='__s' data-type='char *__restrict' data-ref="4599__s">__s</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col0 decl" id="4600__maxlen" title='__maxlen' data-type='size_t' data-ref="4600__maxlen">__maxlen</dfn>,&nbsp</td></tr>
+<tr><th id="383">383</th><td>		      <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col1 decl" id="4601__format" title='__format' data-type='const char *__restrict' data-ref="4601__format">__format</dfn>, <span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class="local col2 decl" id="4602__arg" title='__arg' data-type='__va_list_tag *' data-ref="4602__arg">__arg</dfn>)&nbsp</td></tr>
+<tr><th id="384">384</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a> <b>__attribute__</b> ((__format__ (__printf__, <var>3</var>, <var>0</var>)));&nbsp</td></tr>
+<tr><th id="385">385</th><td><u>#<span data-ppcond="376">endif</span></u>&nbsp</td></tr>
+<tr><th id="386">386</th><td>&nbsp</td></tr>
+<tr><th id="387">387</th><td><u>#<span data-ppcond="387">if</span> <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (LIB_EXT2)</u>&nbsp</td></tr>
+<tr><th id="388">388</th><td><i>/* Write formatted output to a string dynamically allocated with `malloc'.</i>&nbsp</td></tr>
+<tr><th id="389">389</th><td><i>   Store the address of the string in *PTR.  */</i>&nbsp</td></tr>
+<tr><th id="390">390</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="vasprintf" title='vasprintf' data-ref="vasprintf">vasprintf</dfn> (<em>char</em> **<b>__restrict</b> <dfn class="local col3 decl" id="4603__ptr" title='__ptr' data-type='char **__restrict' data-ref="4603__ptr">__ptr</dfn>, <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col4 decl" id="4604__f" title='__f' data-type='const char *__restrict' data-ref="4604__f">__f</dfn>,&nbsp</td></tr>
+<tr><th id="391">391</th><td>		      <span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class="local col5 decl" id="4605__arg" title='__arg' data-type='__va_list_tag *' data-ref="4605__arg">__arg</dfn>)&nbsp</td></tr>
+<tr><th id="392">392</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a> <b>__attribute__</b> ((__format__ (__printf__, <var>2</var>, <var>0</var>))) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="393">393</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="__asprintf" title='__asprintf' data-ref="__asprintf">__asprintf</dfn> (<em>char</em> **<b>__restrict</b> <dfn class="local col6 decl" id="4606__ptr" title='__ptr' data-type='char **__restrict' data-ref="4606__ptr">__ptr</dfn>,&nbsp</td></tr>
+<tr><th id="394">394</th><td>		       <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col7 decl" id="4607__fmt" title='__fmt' data-type='const char *__restrict' data-ref="4607__fmt">__fmt</dfn>, ...)&nbsp</td></tr>
+<tr><th id="395">395</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a> <b>__attribute__</b> ((__format__ (__printf__, <var>2</var>, <var>3</var>))) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="396">396</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="asprintf" title='asprintf' data-ref="asprintf">asprintf</dfn> (<em>char</em> **<b>__restrict</b> <dfn class="local col8 decl" id="4608__ptr" title='__ptr' data-type='char **__restrict' data-ref="4608__ptr">__ptr</dfn>,&nbsp</td></tr>
+<tr><th id="397">397</th><td>		     <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col9 decl" id="4609__fmt" title='__fmt' data-type='const char *__restrict' data-ref="4609__fmt">__fmt</dfn>, ...)&nbsp</td></tr>
+<tr><th id="398">398</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a> <b>__attribute__</b> ((__format__ (__printf__, <var>2</var>, <var>3</var>))) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="399">399</th><td><u>#<span data-ppcond="387">endif</span></u>&nbsp</td></tr>
+<tr><th id="400">400</th><td>&nbsp</td></tr>
+<tr><th id="401">401</th><td><u>#<span data-ppcond="401">ifdef</span> <a class="macro" href="features.h.html#363" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</a></u>&nbsp</td></tr>
+<tr><th id="402">402</th><td><i>/* Write formatted output to a file descriptor.  */</i>&nbsp</td></tr>
+<tr><th id="403">403</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="vdprintf" title='vdprintf' data-ref="vdprintf">vdprintf</dfn> (<em>int</em> <dfn class="local col0 decl" id="4610__fd" title='__fd' data-type='int' data-ref="4610__fd">__fd</dfn>, <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col1 decl" id="4611__fmt" title='__fmt' data-type='const char *__restrict' data-ref="4611__fmt">__fmt</dfn>,&nbsp</td></tr>
+<tr><th id="404">404</th><td>		     <span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class="local col2 decl" id="4612__arg" title='__arg' data-type='__va_list_tag *' data-ref="4612__arg">__arg</dfn>)&nbsp</td></tr>
+<tr><th id="405">405</th><td>     <b>__attribute__</b> ((__format__ (__printf__, <var>2</var>, <var>0</var>)));&nbsp</td></tr>
+<tr><th id="406">406</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="dprintf" title='dprintf' data-ref="dprintf">dprintf</dfn> (<em>int</em> <dfn class="local col3 decl" id="4613__fd" title='__fd' data-type='int' data-ref="4613__fd">__fd</dfn>, <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col4 decl" id="4614__fmt" title='__fmt' data-type='const char *__restrict' data-ref="4614__fmt">__fmt</dfn>, ...)&nbsp</td></tr>
+<tr><th id="407">407</th><td>     <b>__attribute__</b> ((__format__ (__printf__, <var>2</var>, <var>3</var>)));&nbsp</td></tr>
+<tr><th id="408">408</th><td><u>#<span data-ppcond="401">endif</span></u>&nbsp</td></tr>
+<tr><th id="409">409</th><td>&nbsp</td></tr>
+<tr><th id="410">410</th><td>&nbsp</td></tr>
+<tr><th id="411">411</th><td><i>/* Read formatted input from STREAM.</i>&nbsp</td></tr>
+<tr><th id="412">412</th><td><i></i>&nbsp</td></tr>
+<tr><th id="413">413</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="414">414</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="415">415</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fscanf" title='fscanf' data-ref="fscanf">fscanf</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col5 decl" id="4615__stream" title='__stream' data-type='FILE *__restrict' data-ref="4615__stream">__stream</dfn>,&nbsp</td></tr>
+<tr><th id="416">416</th><td>		   <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col6 decl" id="4616__format" title='__format' data-type='const char *__restrict' data-ref="4616__format">__format</dfn>, ...) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="417">417</th><td><i>/* Read formatted input from stdin.</i>&nbsp</td></tr>
+<tr><th id="418">418</th><td><i></i>&nbsp</td></tr>
+<tr><th id="419">419</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="420">420</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="421">421</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="scanf" title='scanf' data-ref="scanf">scanf</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col7 decl" id="4617__format" title='__format' data-type='const char *__restrict' data-ref="4617__format">__format</dfn>, ...) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="422">422</th><td><i>/* Read formatted input from S.  */</i>&nbsp</td></tr>
+<tr><th id="423">423</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="sscanf" title='sscanf' data-ref="sscanf">sscanf</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col8 decl" id="4618__s" title='__s' data-type='const char *__restrict' data-ref="4618__s">__s</dfn>,&nbsp</td></tr>
+<tr><th id="424">424</th><td>		   <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col9 decl" id="4619__format" title='__format' data-type='const char *__restrict' data-ref="4619__format">__format</dfn>, ...) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="425">425</th><td>&nbsp</td></tr>
+<tr><th id="426">426</th><td><i>/* For historical reasons, the C99-compliant versions of the scanf</i>&nbsp</td></tr>
+<tr><th id="427">427</th><td><i>   functions are at alternative names.  When __LDBL_COMPAT or</i>&nbsp</td></tr>
+<tr><th id="428">428</th><td><i>   __LDOUBLE_REDIRECTS_TO_FLOAT128_ABI are in effect, this is handled in</i>&nbsp</td></tr>
+<tr><th id="429">429</th><td><i>   bits/stdio-ldbl.h.  */</i>&nbsp</td></tr>
+<tr><th id="430">430</th><td><u>#include &lt;bits/floatn.h&gt;</u>&nbsp</td></tr>
+<tr><th id="431">431</th><td><u>#<span data-ppcond="431">if</span> !<a class="macro" href="features.h.html#186" title="0" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (DEPRECATED_SCANF) &amp;&amp; !defined <span class="macro" data-ref="_M/__LDBL_COMPAT">__LDBL_COMPAT</span> \</u>&nbsp</td></tr>
+<tr><th id="432">432</th><td><u>    &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/long-double.h.html#21" title="0" data-ref="_M/__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI">__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI</a> == 0</u>&nbsp</td></tr>
+<tr><th id="433">433</th><td><u># <span data-ppcond="433">ifdef</span> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#247" data-ref="_M/__REDIRECT">__REDIRECT</a></u>&nbsp</td></tr>
+<tr><th id="434">434</th><td><b>extern</b> <em>int</em> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#247" title="fscanf (FILE *__restrict __stream, const char *__restrict __format, ...) __asm__ (&quot;&quot; &quot;__isoc99_fscanf&quot;)" data-ref="_M/__REDIRECT">__REDIRECT</a> (<a class="decl fn" href="#fscanf" title='fscanf' data-ref="fscanf">fscanf</a>, (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col0 decl" id="4620__stream" title='__stream' data-type='FILE *__restrict' data-ref="4620__stream">__stream</dfn>,&nbsp</td></tr>
+<tr><th id="435">435</th><td>				<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col1 decl" id="4621__format" title='__format' data-type='const char *__restrict' data-ref="4621__format">__format</dfn>, ...),&nbsp</td></tr>
+<tr><th id="436">436</th><td>		       __isoc99_fscanf) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="437">437</th><td><b>extern</b> <em>int</em> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#247" title="scanf (const char *__restrict __format, ...) __asm__ (&quot;&quot; &quot;__isoc99_scanf&quot;)" data-ref="_M/__REDIRECT">__REDIRECT</a> (<a class="decl fn" href="#scanf" title='scanf' data-ref="scanf">scanf</a>, (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col2 decl" id="4622__format" title='__format' data-type='const char *__restrict' data-ref="4622__format">__format</dfn>, ...),&nbsp</td></tr>
+<tr><th id="438">438</th><td>		       __isoc99_scanf) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="439">439</th><td><b>extern</b> <em>int</em> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#249" title="sscanf (const char *__restrict __s, const char *__restrict __format, ...) noexcept (true) __asm__ (&quot;&quot; &quot;__isoc99_sscanf&quot;)" data-ref="_M/__REDIRECT_NTH">__REDIRECT_NTH</a> (<a class="decl fn" href="#sscanf" title='sscanf' data-ref="sscanf">sscanf</a>, (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col3 decl" id="4623__s" title='__s' data-type='const char *__restrict' data-ref="4623__s">__s</dfn>,&nbsp</td></tr>
+<tr><th id="440">440</th><td>				    <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col4 decl" id="4624__format" title='__format' data-type='const char *__restrict' data-ref="4624__format">__format</dfn>, ...),&nbsp</td></tr>
+<tr><th id="441">441</th><td>			   __isoc99_sscanf);&nbsp</td></tr>
+<tr><th id="442">442</th><td><u># <span data-ppcond="433">else</span></u>&nbsp</td></tr>
+<tr><th id="443">443</th><td><b>extern</b> <em>int</em> __isoc99_fscanf (FILE *<b>__restrict</b> __stream,&nbsp</td></tr>
+<tr><th id="444">444</th><td>			    <em>const</em> <em>char</em> *<b>__restrict</b> __format, ...) __wur;&nbsp</td></tr>
+<tr><th id="445">445</th><td><b>extern</b> <em>int</em> __isoc99_scanf (<em>const</em> <em>char</em> *<b>__restrict</b> __format, ...) __wur;&nbsp</td></tr>
+<tr><th id="446">446</th><td><b>extern</b> <em>int</em> __isoc99_sscanf (<em>const</em> <em>char</em> *<b>__restrict</b> __s,&nbsp</td></tr>
+<tr><th id="447">447</th><td>			    <em>const</em> <em>char</em> *<b>__restrict</b> __format, ...) __THROW;&nbsp</td></tr>
+<tr><th id="448">448</th><td><u>#  define fscanf __isoc99_fscanf</u>&nbsp</td></tr>
+<tr><th id="449">449</th><td><u>#  define scanf __isoc99_scanf</u>&nbsp</td></tr>
+<tr><th id="450">450</th><td><u>#  define sscanf __isoc99_sscanf</u>&nbsp</td></tr>
+<tr><th id="451">451</th><td><u># <span data-ppcond="433">endif</span></u>&nbsp</td></tr>
+<tr><th id="452">452</th><td><u>#<span data-ppcond="431">endif</span></u>&nbsp</td></tr>
+<tr><th id="453">453</th><td>&nbsp</td></tr>
+<tr><th id="454">454</th><td><u>#<span data-ppcond="454">ifdef</span>	<a class="macro" href="features.h.html#371" data-ref="_M/__USE_ISOC99">__USE_ISOC99</a></u>&nbsp</td></tr>
+<tr><th id="455">455</th><td><i>/* Read formatted input from S into argument list ARG.</i>&nbsp</td></tr>
+<tr><th id="456">456</th><td><i></i>&nbsp</td></tr>
+<tr><th id="457">457</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="458">458</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="459">459</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="vfscanf" title='vfscanf' data-ref="vfscanf">vfscanf</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col5 decl" id="4625__s" title='__s' data-type='FILE *__restrict' data-ref="4625__s">__s</dfn>, <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col6 decl" id="4626__format" title='__format' data-type='const char *__restrict' data-ref="4626__format">__format</dfn>,&nbsp</td></tr>
+<tr><th id="460">460</th><td>		    <span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class="local col7 decl" id="4627__arg" title='__arg' data-type='__va_list_tag *' data-ref="4627__arg">__arg</dfn>)&nbsp</td></tr>
+<tr><th id="461">461</th><td>     <b>__attribute__</b> ((__format__ (__scanf__, <var>2</var>, <var>0</var>))) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="462">462</th><td>&nbsp</td></tr>
+<tr><th id="463">463</th><td><i>/* Read formatted input from stdin into argument list ARG.</i>&nbsp</td></tr>
+<tr><th id="464">464</th><td><i></i>&nbsp</td></tr>
+<tr><th id="465">465</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="466">466</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="467">467</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="vscanf" title='vscanf' data-ref="vscanf">vscanf</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col8 decl" id="4628__format" title='__format' data-type='const char *__restrict' data-ref="4628__format">__format</dfn>, <span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class="local col9 decl" id="4629__arg" title='__arg' data-type='__va_list_tag *' data-ref="4629__arg">__arg</dfn>)&nbsp</td></tr>
+<tr><th id="468">468</th><td>     <b>__attribute__</b> ((__format__ (__scanf__, <var>1</var>, <var>0</var>))) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="469">469</th><td>&nbsp</td></tr>
+<tr><th id="470">470</th><td><i>/* Read formatted input from S into argument list ARG.  */</i>&nbsp</td></tr>
+<tr><th id="471">471</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="vsscanf" title='vsscanf' data-ref="vsscanf">vsscanf</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col0 decl" id="4630__s" title='__s' data-type='const char *__restrict' data-ref="4630__s">__s</dfn>,&nbsp</td></tr>
+<tr><th id="472">472</th><td>		    <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col1 decl" id="4631__format" title='__format' data-type='const char *__restrict' data-ref="4631__format">__format</dfn>, <span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class="local col2 decl" id="4632__arg" title='__arg' data-type='__va_list_tag *' data-ref="4632__arg">__arg</dfn>)&nbsp</td></tr>
+<tr><th id="473">473</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <b>__attribute__</b> ((__format__ (__scanf__, <var>2</var>, <var>0</var>)));&nbsp</td></tr>
+<tr><th id="474">474</th><td>&nbsp</td></tr>
+<tr><th id="475">475</th><td><i>/* Same redirection as above for the v*scanf family.  */</i>&nbsp</td></tr>
+<tr><th id="476">476</th><td><u># <span data-ppcond="476">if</span> !<a class="macro" href="features.h.html#186" title="0" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (DEPRECATED_SCANF)</u>&nbsp</td></tr>
+<tr><th id="477">477</th><td><u>#  <span data-ppcond="477">if</span> defined <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#247" data-ref="_M/__REDIRECT">__REDIRECT</a> &amp;&amp; !defined <span class="macro" data-ref="_M/__LDBL_COMPAT">__LDBL_COMPAT</span> \</u>&nbsp</td></tr>
+<tr><th id="478">478</th><td><u>      &amp;&amp; <a class="macro" href="x86_64-linux-gnu/bits/long-double.h.html#21" title="0" data-ref="_M/__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI">__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI</a> == 0</u>&nbsp</td></tr>
+<tr><th id="479">479</th><td><b>extern</b> <em>int</em> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#247" title="vfscanf (FILE *__restrict __s, const char *__restrict __format, __gnuc_va_list __arg) __asm__ (&quot;&quot; &quot;__isoc99_vfscanf&quot;)" data-ref="_M/__REDIRECT">__REDIRECT</a> (<a class="decl fn" href="#vfscanf" title='vfscanf' data-ref="vfscanf">vfscanf</a>,&nbsp</td></tr>
+<tr><th id="480">480</th><td>		       (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col3 decl" id="4633__s" title='__s' data-type='FILE *__restrict' data-ref="4633__s">__s</dfn>,&nbsp</td></tr>
+<tr><th id="481">481</th><td>			<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col4 decl" id="4634__format" title='__format' data-type='const char *__restrict' data-ref="4634__format">__format</dfn>, <span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class="local col5 decl" id="4635__arg" title='__arg' data-type='__va_list_tag *' data-ref="4635__arg">__arg</dfn>),&nbsp</td></tr>
+<tr><th id="482">482</th><td>		       __isoc99_vfscanf)&nbsp</td></tr>
+<tr><th id="483">483</th><td>     <b>__attribute__</b> ((__format__ (__scanf__, <var>2</var>, <var>0</var>))) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="484">484</th><td><b>extern</b> <em>int</em> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#247" title="vscanf (const char *__restrict __format, __gnuc_va_list __arg) __asm__ (&quot;&quot; &quot;__isoc99_vscanf&quot;)" data-ref="_M/__REDIRECT">__REDIRECT</a> (<a class="decl fn" href="#vscanf" title='vscanf' data-ref="vscanf">vscanf</a>, (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col6 decl" id="4636__format" title='__format' data-type='const char *__restrict' data-ref="4636__format">__format</dfn>,&nbsp</td></tr>
+<tr><th id="485">485</th><td>				<span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class="local col7 decl" id="4637__arg" title='__arg' data-type='__va_list_tag *' data-ref="4637__arg">__arg</dfn>), __isoc99_vscanf)&nbsp</td></tr>
+<tr><th id="486">486</th><td>     <b>__attribute__</b> ((__format__ (__scanf__, <var>1</var>, <var>0</var>))) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="487">487</th><td><b>extern</b> <em>int</em> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#249" title="vsscanf (const char *__restrict __s, const char *__restrict __format, __gnuc_va_list __arg) noexcept (true) __asm__ (&quot;&quot; &quot;__isoc99_vsscanf&quot;)" data-ref="_M/__REDIRECT_NTH">__REDIRECT_NTH</a> (<a class="decl fn" href="#vsscanf" title='vsscanf' data-ref="vsscanf">vsscanf</a>,&nbsp</td></tr>
+<tr><th id="488">488</th><td>			   (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col8 decl" id="4638__s" title='__s' data-type='const char *__restrict' data-ref="4638__s">__s</dfn>,&nbsp</td></tr>
+<tr><th id="489">489</th><td>			    <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col9 decl" id="4639__format" title='__format' data-type='const char *__restrict' data-ref="4639__format">__format</dfn>,&nbsp</td></tr>
+<tr><th id="490">490</th><td>			    <span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class="local col0 decl" id="4640__arg" title='__arg' data-type='__va_list_tag *' data-ref="4640__arg">__arg</dfn>), __isoc99_vsscanf)&nbsp</td></tr>
+<tr><th id="491">491</th><td>     <b>__attribute__</b> ((__format__ (__scanf__, <var>2</var>, <var>0</var>)));&nbsp</td></tr>
+<tr><th id="492">492</th><td><u>#  <span data-ppcond="477">elif</span> !defined __REDIRECT</u>&nbsp</td></tr>
+<tr><th id="493">493</th><td><b>extern</b> <em>int</em> __isoc99_vfscanf (FILE *<b>__restrict</b> __s,&nbsp</td></tr>
+<tr><th id="494">494</th><td>			     <em>const</em> <em>char</em> *<b>__restrict</b> __format,&nbsp</td></tr>
+<tr><th id="495">495</th><td>			     __gnuc_va_list __arg) __wur;&nbsp</td></tr>
+<tr><th id="496">496</th><td><b>extern</b> <em>int</em> __isoc99_vscanf (<em>const</em> <em>char</em> *<b>__restrict</b> __format,&nbsp</td></tr>
+<tr><th id="497">497</th><td>			    __gnuc_va_list __arg) __wur;&nbsp</td></tr>
+<tr><th id="498">498</th><td><b>extern</b> <em>int</em> __isoc99_vsscanf (<em>const</em> <em>char</em> *<b>__restrict</b> __s,&nbsp</td></tr>
+<tr><th id="499">499</th><td>			     <em>const</em> <em>char</em> *<b>__restrict</b> __format,&nbsp</td></tr>
+<tr><th id="500">500</th><td>			     __gnuc_va_list __arg) __THROW;&nbsp</td></tr>
+<tr><th id="501">501</th><td><u>#   define vfscanf __isoc99_vfscanf</u>&nbsp</td></tr>
+<tr><th id="502">502</th><td><u>#   define vscanf __isoc99_vscanf</u>&nbsp</td></tr>
+<tr><th id="503">503</th><td><u>#   define vsscanf __isoc99_vsscanf</u>&nbsp</td></tr>
+<tr><th id="504">504</th><td><u>#  <span data-ppcond="477">endif</span></u>&nbsp</td></tr>
+<tr><th id="505">505</th><td><u># <span data-ppcond="476">endif</span></u>&nbsp</td></tr>
+<tr><th id="506">506</th><td><u>#<span data-ppcond="454">endif</span> /* Use ISO C9x.  */</u>&nbsp</td></tr>
+<tr><th id="507">507</th><td>&nbsp</td></tr>
+<tr><th id="508">508</th><td>&nbsp</td></tr>
+<tr><th id="509">509</th><td><i>/* Read a character from STREAM.</i>&nbsp</td></tr>
+<tr><th id="510">510</th><td><i></i>&nbsp</td></tr>
+<tr><th id="511">511</th><td><i>   These functions are possible cancellation points and therefore not</i>&nbsp</td></tr>
+<tr><th id="512">512</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="513">513</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fgetc" title='fgetc' data-ref="fgetc">fgetc</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col1 decl" id="4641__stream" title='__stream' data-type='FILE *' data-ref="4641__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="514">514</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="getc" title='getc' data-ref="getc">getc</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col2 decl" id="4642__stream" title='__stream' data-type='FILE *' data-ref="4642__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="515">515</th><td>&nbsp</td></tr>
+<tr><th id="516">516</th><td><i>/* Read a character from stdin.</i>&nbsp</td></tr>
+<tr><th id="517">517</th><td><i></i>&nbsp</td></tr>
+<tr><th id="518">518</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="519">519</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="520">520</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="getchar" title='getchar' data-ref="getchar">getchar</dfn> (<em>void</em>);&nbsp</td></tr>
+<tr><th id="521">521</th><td>&nbsp</td></tr>
+<tr><th id="522">522</th><td><u>#<span data-ppcond="522">ifdef</span> <a class="macro" href="features.h.html#337" data-ref="_M/__USE_POSIX199506">__USE_POSIX199506</a></u>&nbsp</td></tr>
+<tr><th id="523">523</th><td><i>/* These are defined in POSIX.1:1996.</i>&nbsp</td></tr>
+<tr><th id="524">524</th><td><i></i>&nbsp</td></tr>
+<tr><th id="525">525</th><td><i>   These functions are possible cancellation points and therefore not</i>&nbsp</td></tr>
+<tr><th id="526">526</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="527">527</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="getc_unlocked" title='getc_unlocked' data-ref="getc_unlocked">getc_unlocked</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col3 decl" id="4643__stream" title='__stream' data-type='FILE *' data-ref="4643__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="528">528</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="getchar_unlocked" title='getchar_unlocked' data-ref="getchar_unlocked">getchar_unlocked</dfn> (<em>void</em>);&nbsp</td></tr>
+<tr><th id="529">529</th><td><u>#<span data-ppcond="522">endif</span> /* Use POSIX.  */</u>&nbsp</td></tr>
+<tr><th id="530">530</th><td>&nbsp</td></tr>
+<tr><th id="531">531</th><td><u>#<span data-ppcond="531">ifdef</span> <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="532">532</th><td><i>/* Faster version when locking is not necessary.</i>&nbsp</td></tr>
+<tr><th id="533">533</th><td><i></i>&nbsp</td></tr>
+<tr><th id="534">534</th><td><i>   This function is not part of POSIX and therefore no official</i>&nbsp</td></tr>
+<tr><th id="535">535</th><td><i>   cancellation point.  But due to similarity with an POSIX interface</i>&nbsp</td></tr>
+<tr><th id="536">536</th><td><i>   or due to the implementation it is a cancellation point and</i>&nbsp</td></tr>
+<tr><th id="537">537</th><td><i>   therefore not marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="538">538</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fgetc_unlocked" title='fgetc_unlocked' data-ref="fgetc_unlocked">fgetc_unlocked</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col4 decl" id="4644__stream" title='__stream' data-type='FILE *' data-ref="4644__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="539">539</th><td><u>#<span data-ppcond="531">endif</span> /* Use MISC.  */</u>&nbsp</td></tr>
+<tr><th id="540">540</th><td>&nbsp</td></tr>
+<tr><th id="541">541</th><td>&nbsp</td></tr>
+<tr><th id="542">542</th><td><i>/* Write a character to STREAM.</i>&nbsp</td></tr>
+<tr><th id="543">543</th><td><i></i>&nbsp</td></tr>
+<tr><th id="544">544</th><td><i>   These functions are possible cancellation points and therefore not</i>&nbsp</td></tr>
+<tr><th id="545">545</th><td><i>   marked with __THROW.</i>&nbsp</td></tr>
+<tr><th id="546">546</th><td><i></i>&nbsp</td></tr>
+<tr><th id="547">547</th><td><i>   These functions is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="548">548</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="549">549</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fputc" title='fputc' data-ref="fputc">fputc</dfn> (<em>int</em> <dfn class="local col5 decl" id="4645__c" title='__c' data-type='int' data-ref="4645__c">__c</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col6 decl" id="4646__stream" title='__stream' data-type='FILE *' data-ref="4646__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="550">550</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="putc" title='putc' data-ref="putc">putc</dfn> (<em>int</em> <dfn class="local col7 decl" id="4647__c" title='__c' data-type='int' data-ref="4647__c">__c</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col8 decl" id="4648__stream" title='__stream' data-type='FILE *' data-ref="4648__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="551">551</th><td>&nbsp</td></tr>
+<tr><th id="552">552</th><td><i>/* Write a character to stdout.</i>&nbsp</td></tr>
+<tr><th id="553">553</th><td><i></i>&nbsp</td></tr>
+<tr><th id="554">554</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="555">555</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="556">556</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="putchar" title='putchar' data-ref="putchar">putchar</dfn> (<em>int</em> <dfn class="local col9 decl" id="4649__c" title='__c' data-type='int' data-ref="4649__c">__c</dfn>);&nbsp</td></tr>
+<tr><th id="557">557</th><td>&nbsp</td></tr>
+<tr><th id="558">558</th><td><u>#<span data-ppcond="558">ifdef</span> <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="559">559</th><td><i>/* Faster version when locking is not necessary.</i>&nbsp</td></tr>
+<tr><th id="560">560</th><td><i></i>&nbsp</td></tr>
+<tr><th id="561">561</th><td><i>   This function is not part of POSIX and therefore no official</i>&nbsp</td></tr>
+<tr><th id="562">562</th><td><i>   cancellation point.  But due to similarity with an POSIX interface</i>&nbsp</td></tr>
+<tr><th id="563">563</th><td><i>   or due to the implementation it is a cancellation point and</i>&nbsp</td></tr>
+<tr><th id="564">564</th><td><i>   therefore not marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="565">565</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fputc_unlocked" title='fputc_unlocked' data-ref="fputc_unlocked">fputc_unlocked</dfn> (<em>int</em> <dfn class="local col0 decl" id="4650__c" title='__c' data-type='int' data-ref="4650__c">__c</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col1 decl" id="4651__stream" title='__stream' data-type='FILE *' data-ref="4651__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="566">566</th><td><u>#<span data-ppcond="558">endif</span> /* Use MISC.  */</u>&nbsp</td></tr>
+<tr><th id="567">567</th><td>&nbsp</td></tr>
+<tr><th id="568">568</th><td><u>#<span data-ppcond="568">ifdef</span> <a class="macro" href="features.h.html#337" data-ref="_M/__USE_POSIX199506">__USE_POSIX199506</a></u>&nbsp</td></tr>
+<tr><th id="569">569</th><td><i>/* These are defined in POSIX.1:1996.</i>&nbsp</td></tr>
+<tr><th id="570">570</th><td><i></i>&nbsp</td></tr>
+<tr><th id="571">571</th><td><i>   These functions are possible cancellation points and therefore not</i>&nbsp</td></tr>
+<tr><th id="572">572</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="573">573</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="putc_unlocked" title='putc_unlocked' data-ref="putc_unlocked">putc_unlocked</dfn> (<em>int</em> <dfn class="local col2 decl" id="4652__c" title='__c' data-type='int' data-ref="4652__c">__c</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col3 decl" id="4653__stream" title='__stream' data-type='FILE *' data-ref="4653__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="574">574</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="putchar_unlocked" title='putchar_unlocked' data-ref="putchar_unlocked">putchar_unlocked</dfn> (<em>int</em> <dfn class="local col4 decl" id="4654__c" title='__c' data-type='int' data-ref="4654__c">__c</dfn>);&nbsp</td></tr>
+<tr><th id="575">575</th><td><u>#<span data-ppcond="568">endif</span> /* Use POSIX.  */</u>&nbsp</td></tr>
+<tr><th id="576">576</th><td>&nbsp</td></tr>
+<tr><th id="577">577</th><td>&nbsp</td></tr>
+<tr><th id="578">578</th><td><u>#<span data-ppcond="578">if</span> defined <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a> \</u>&nbsp</td></tr>
+<tr><th id="579">579</th><td><u>    || (defined <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a> &amp;&amp; !defined <a class="macro" href="features.h.html#366" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</a>)</u>&nbsp</td></tr>
+<tr><th id="580">580</th><td><i>/* Get a word (int) from STREAM.  */</i>&nbsp</td></tr>
+<tr><th id="581">581</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="getw" title='getw' data-ref="getw">getw</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col5 decl" id="4655__stream" title='__stream' data-type='FILE *' data-ref="4655__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="582">582</th><td>&nbsp</td></tr>
+<tr><th id="583">583</th><td><i>/* Write a word (int) to STREAM.  */</i>&nbsp</td></tr>
+<tr><th id="584">584</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="putw" title='putw' data-ref="putw">putw</dfn> (<em>int</em> <dfn class="local col6 decl" id="4656__w" title='__w' data-type='int' data-ref="4656__w">__w</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col7 decl" id="4657__stream" title='__stream' data-type='FILE *' data-ref="4657__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="585">585</th><td><u>#<span data-ppcond="578">endif</span></u>&nbsp</td></tr>
+<tr><th id="586">586</th><td>&nbsp</td></tr>
+<tr><th id="587">587</th><td>&nbsp</td></tr>
+<tr><th id="588">588</th><td><i>/* Get a newline-terminated string of finite length from STREAM.</i>&nbsp</td></tr>
+<tr><th id="589">589</th><td><i></i>&nbsp</td></tr>
+<tr><th id="590">590</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="591">591</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="592">592</th><td><b>extern</b> <em>char</em> *<dfn class="decl fn" id="fgets" title='fgets' data-ref="fgets">fgets</dfn> (<em>char</em> *<b>__restrict</b> <dfn class="local col8 decl" id="4658__s" title='__s' data-type='char *__restrict' data-ref="4658__s">__s</dfn>, <em>int</em> <dfn class="local col9 decl" id="4659__n" title='__n' data-type='int' data-ref="4659__n">__n</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col0 decl" id="4660__stream" title='__stream' data-type='FILE *__restrict' data-ref="4660__stream">__stream</dfn>)&nbsp</td></tr>
+<tr><th id="593">593</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#681" title="" data-ref="_M/__fortified_attr_access">__fortified_attr_access</a> (__write_only__, <var>1</var>, <var>2</var>);&nbsp</td></tr>
+<tr><th id="594">594</th><td>&nbsp</td></tr>
+<tr><th id="595">595</th><td><u>#<span data-ppcond="595">if</span> <a class="macro" href="features.h.html#186" title="0" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (DEPRECATED_GETS)</u>&nbsp</td></tr>
+<tr><th id="596">596</th><td><i>/* Get a newline-terminated string from stdin, removing the newline.</i>&nbsp</td></tr>
+<tr><th id="597">597</th><td><i></i>&nbsp</td></tr>
+<tr><th id="598">598</th><td><i>   This function is impossible to use safely.  It has been officially</i>&nbsp</td></tr>
+<tr><th id="599">599</th><td><i>   removed from ISO C11 and ISO C++14, and we have also removed it</i>&nbsp</td></tr>
+<tr><th id="600">600</th><td><i>   from the _GNU_SOURCE feature list.  It remains available when</i>&nbsp</td></tr>
+<tr><th id="601">601</th><td><i>   explicitly using an old ISO C, Unix, or POSIX standard.</i>&nbsp</td></tr>
+<tr><th id="602">602</th><td><i></i>&nbsp</td></tr>
+<tr><th id="603">603</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="604">604</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="605">605</th><td><b>extern</b> <em>char</em> *gets (<em>char</em> *__s) __wur __attribute_deprecated__;&nbsp</td></tr>
+<tr><th id="606">606</th><td><u>#<span data-ppcond="595">endif</span></u>&nbsp</td></tr>
+<tr><th id="607">607</th><td>&nbsp</td></tr>
+<tr><th id="608">608</th><td><u>#<span data-ppcond="608">ifdef</span> <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="609">609</th><td><i>/* This function does the same as `fgets' but does not lock the stream.</i>&nbsp</td></tr>
+<tr><th id="610">610</th><td><i></i>&nbsp</td></tr>
+<tr><th id="611">611</th><td><i>   This function is not part of POSIX and therefore no official</i>&nbsp</td></tr>
+<tr><th id="612">612</th><td><i>   cancellation point.  But due to similarity with an POSIX interface</i>&nbsp</td></tr>
+<tr><th id="613">613</th><td><i>   or due to the implementation it is a cancellation point and</i>&nbsp</td></tr>
+<tr><th id="614">614</th><td><i>   therefore not marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="615">615</th><td><b>extern</b> <em>char</em> *<dfn class="decl fn" id="fgets_unlocked" title='fgets_unlocked' data-ref="fgets_unlocked">fgets_unlocked</dfn> (<em>char</em> *<b>__restrict</b> <dfn class="local col1 decl" id="4661__s" title='__s' data-type='char *__restrict' data-ref="4661__s">__s</dfn>, <em>int</em> <dfn class="local col2 decl" id="4662__n" title='__n' data-type='int' data-ref="4662__n">__n</dfn>,&nbsp</td></tr>
+<tr><th id="616">616</th><td>			     <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col3 decl" id="4663__stream" title='__stream' data-type='FILE *__restrict' data-ref="4663__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>&nbsp</td></tr>
+<tr><th id="617">617</th><td>    <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#681" title="" data-ref="_M/__fortified_attr_access">__fortified_attr_access</a> (__write_only__, <var>1</var>, <var>2</var>);&nbsp</td></tr>
+<tr><th id="618">618</th><td><u>#<span data-ppcond="608">endif</span></u>&nbsp</td></tr>
+<tr><th id="619">619</th><td>&nbsp</td></tr>
+<tr><th id="620">620</th><td>&nbsp</td></tr>
+<tr><th id="621">621</th><td><u>#<span data-ppcond="621">if</span> defined <a class="macro" href="features.h.html#363" data-ref="_M/__USE_XOPEN2K8">__USE_XOPEN2K8</a> || <a class="macro" href="features.h.html#186" title="1" data-ref="_M/__GLIBC_USE">__GLIBC_USE</a> (LIB_EXT2)</u>&nbsp</td></tr>
+<tr><th id="622">622</th><td><i>/* Read up to (and including) a DELIMITER from STREAM into *LINEPTR</i>&nbsp</td></tr>
+<tr><th id="623">623</th><td><i>   (and null-terminate it). *LINEPTR is a pointer returned from malloc (or</i>&nbsp</td></tr>
+<tr><th id="624">624</th><td><i>   NULL), pointing to *N characters of space.  It is realloc'd as</i>&nbsp</td></tr>
+<tr><th id="625">625</th><td><i>   necessary.  Returns the number of characters read (not including the</i>&nbsp</td></tr>
+<tr><th id="626">626</th><td><i>   null terminator), or -1 on error or EOF.</i>&nbsp</td></tr>
+<tr><th id="627">627</th><td><i></i>&nbsp</td></tr>
+<tr><th id="628">628</th><td><i>   These functions are not part of POSIX and therefore no official</i>&nbsp</td></tr>
+<tr><th id="629">629</th><td><i>   cancellation point.  But due to similarity with an POSIX interface</i>&nbsp</td></tr>
+<tr><th id="630">630</th><td><i>   or due to the implementation they are cancellation points and</i>&nbsp</td></tr>
+<tr><th id="631">631</th><td><i>   therefore not marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="632">632</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__ssize_t" title='__ssize_t' data-type='long' data-ref="__ssize_t">__ssize_t</a> <dfn class="decl fn" id="__getdelim" title='__getdelim' data-ref="__getdelim">__getdelim</dfn> (<em>char</em> **<b>__restrict</b> <dfn class="local col4 decl" id="4664__lineptr" title='__lineptr' data-type='char **__restrict' data-ref="4664__lineptr">__lineptr</dfn>,&nbsp</td></tr>
+<tr><th id="633">633</th><td>                             <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<b>__restrict</b> <dfn class="local col5 decl" id="4665__n" title='__n' data-type='size_t *__restrict' data-ref="4665__n">__n</dfn>, <em>int</em> <dfn class="local col6 decl" id="4666__delimiter" title='__delimiter' data-type='int' data-ref="4666__delimiter">__delimiter</dfn>,&nbsp</td></tr>
+<tr><th id="634">634</th><td>                             <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col7 decl" id="4667__stream" title='__stream' data-type='FILE *__restrict' data-ref="4667__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="635">635</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__ssize_t" title='__ssize_t' data-type='long' data-ref="__ssize_t">__ssize_t</a> <dfn class="decl fn" id="getdelim" title='getdelim' data-ref="getdelim">getdelim</dfn> (<em>char</em> **<b>__restrict</b> <dfn class="local col8 decl" id="4668__lineptr" title='__lineptr' data-type='char **__restrict' data-ref="4668__lineptr">__lineptr</dfn>,&nbsp</td></tr>
+<tr><th id="636">636</th><td>                           <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<b>__restrict</b> <dfn class="local col9 decl" id="4669__n" title='__n' data-type='size_t *__restrict' data-ref="4669__n">__n</dfn>, <em>int</em> <dfn class="local col0 decl" id="4670__delimiter" title='__delimiter' data-type='int' data-ref="4670__delimiter">__delimiter</dfn>,&nbsp</td></tr>
+<tr><th id="637">637</th><td>                           <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col1 decl" id="4671__stream" title='__stream' data-type='FILE *__restrict' data-ref="4671__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="638">638</th><td>&nbsp</td></tr>
+<tr><th id="639">639</th><td><i>/* Like `getdelim', but reads up to a newline.</i>&nbsp</td></tr>
+<tr><th id="640">640</th><td><i></i>&nbsp</td></tr>
+<tr><th id="641">641</th><td><i>   This function is not part of POSIX and therefore no official</i>&nbsp</td></tr>
+<tr><th id="642">642</th><td><i>   cancellation point.  But due to similarity with an POSIX interface</i>&nbsp</td></tr>
+<tr><th id="643">643</th><td><i>   or due to the implementation it is a cancellation point and</i>&nbsp</td></tr>
+<tr><th id="644">644</th><td><i>   therefore not marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="645">645</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__ssize_t" title='__ssize_t' data-type='long' data-ref="__ssize_t">__ssize_t</a> <dfn class="decl fn" id="getline" title='getline' data-ref="getline">getline</dfn> (<em>char</em> **<b>__restrict</b> <dfn class="local col2 decl" id="4672__lineptr" title='__lineptr' data-type='char **__restrict' data-ref="4672__lineptr">__lineptr</dfn>,&nbsp</td></tr>
+<tr><th id="646">646</th><td>                          <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> *<b>__restrict</b> <dfn class="local col3 decl" id="4673__n" title='__n' data-type='size_t *__restrict' data-ref="4673__n">__n</dfn>,&nbsp</td></tr>
+<tr><th id="647">647</th><td>                          <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col4 decl" id="4674__stream" title='__stream' data-type='FILE *__restrict' data-ref="4674__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="648">648</th><td><u>#<span data-ppcond="621">endif</span></u>&nbsp</td></tr>
+<tr><th id="649">649</th><td>&nbsp</td></tr>
+<tr><th id="650">650</th><td>&nbsp</td></tr>
+<tr><th id="651">651</th><td><i>/* Write a string to STREAM.</i>&nbsp</td></tr>
+<tr><th id="652">652</th><td><i></i>&nbsp</td></tr>
+<tr><th id="653">653</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="654">654</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="655">655</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fputs" title='fputs' data-ref="fputs">fputs</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col5 decl" id="4675__s" title='__s' data-type='const char *__restrict' data-ref="4675__s">__s</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col6 decl" id="4676__stream" title='__stream' data-type='FILE *__restrict' data-ref="4676__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="656">656</th><td>&nbsp</td></tr>
+<tr><th id="657">657</th><td><i>/* Write a string, followed by a newline, to stdout.</i>&nbsp</td></tr>
+<tr><th id="658">658</th><td><i></i>&nbsp</td></tr>
+<tr><th id="659">659</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="660">660</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="661">661</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="puts" title='puts' data-ref="puts">puts</dfn> (<em>const</em> <em>char</em> *<dfn class="local col7 decl" id="4677__s" title='__s' data-type='const char *' data-ref="4677__s">__s</dfn>);&nbsp</td></tr>
+<tr><th id="662">662</th><td>&nbsp</td></tr>
+<tr><th id="663">663</th><td>&nbsp</td></tr>
+<tr><th id="664">664</th><td><i>/* Push a character back onto the input buffer of STREAM.</i>&nbsp</td></tr>
+<tr><th id="665">665</th><td><i></i>&nbsp</td></tr>
+<tr><th id="666">666</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="667">667</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="668">668</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="ungetc" title='ungetc' data-ref="ungetc">ungetc</dfn> (<em>int</em> <dfn class="local col8 decl" id="4678__c" title='__c' data-type='int' data-ref="4678__c">__c</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col9 decl" id="4679__stream" title='__stream' data-type='FILE *' data-ref="4679__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="669">669</th><td>&nbsp</td></tr>
+<tr><th id="670">670</th><td>&nbsp</td></tr>
+<tr><th id="671">671</th><td><i>/* Read chunks of generic data from STREAM.</i>&nbsp</td></tr>
+<tr><th id="672">672</th><td><i></i>&nbsp</td></tr>
+<tr><th id="673">673</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="674">674</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="675">675</th><td><b>extern</b> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl fn" id="fread" title='fread' data-ref="fread">fread</dfn> (<em>void</em> *<b>__restrict</b> <dfn class="local col0 decl" id="4680__ptr" title='__ptr' data-type='void *__restrict' data-ref="4680__ptr">__ptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col1 decl" id="4681__size" title='__size' data-type='size_t' data-ref="4681__size">__size</dfn>,&nbsp</td></tr>
+<tr><th id="676">676</th><td>		     <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col2 decl" id="4682__n" title='__n' data-type='size_t' data-ref="4682__n">__n</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col3 decl" id="4683__stream" title='__stream' data-type='FILE *__restrict' data-ref="4683__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="677">677</th><td><i>/* Write chunks of generic data to STREAM.</i>&nbsp</td></tr>
+<tr><th id="678">678</th><td><i></i>&nbsp</td></tr>
+<tr><th id="679">679</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="680">680</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="681">681</th><td><b>extern</b> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl fn" id="fwrite" title='fwrite' data-ref="fwrite">fwrite</dfn> (<em>const</em> <em>void</em> *<b>__restrict</b> <dfn class="local col4 decl" id="4684__ptr" title='__ptr' data-type='const void *__restrict' data-ref="4684__ptr">__ptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col5 decl" id="4685__size" title='__size' data-type='size_t' data-ref="4685__size">__size</dfn>,&nbsp</td></tr>
+<tr><th id="682">682</th><td>		      <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="4686__n" title='__n' data-type='size_t' data-ref="4686__n">__n</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col7 decl" id="4687__s" title='__s' data-type='FILE *__restrict' data-ref="4687__s">__s</dfn>);&nbsp</td></tr>
+<tr><th id="683">683</th><td>&nbsp</td></tr>
+<tr><th id="684">684</th><td><u>#<span data-ppcond="684">ifdef</span> <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="685">685</th><td><i>/* This function does the same as `fputs' but does not lock the stream.</i>&nbsp</td></tr>
+<tr><th id="686">686</th><td><i></i>&nbsp</td></tr>
+<tr><th id="687">687</th><td><i>   This function is not part of POSIX and therefore no official</i>&nbsp</td></tr>
+<tr><th id="688">688</th><td><i>   cancellation point.  But due to similarity with an POSIX interface</i>&nbsp</td></tr>
+<tr><th id="689">689</th><td><i>   or due to the implementation it is a cancellation point and</i>&nbsp</td></tr>
+<tr><th id="690">690</th><td><i>   therefore not marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="691">691</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fputs_unlocked" title='fputs_unlocked' data-ref="fputs_unlocked">fputs_unlocked</dfn> (<em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col8 decl" id="4688__s" title='__s' data-type='const char *__restrict' data-ref="4688__s">__s</dfn>,&nbsp</td></tr>
+<tr><th id="692">692</th><td>			   <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col9 decl" id="4689__stream" title='__stream' data-type='FILE *__restrict' data-ref="4689__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="693">693</th><td><u>#<span data-ppcond="684">endif</span></u>&nbsp</td></tr>
+<tr><th id="694">694</th><td>&nbsp</td></tr>
+<tr><th id="695">695</th><td><u>#<span data-ppcond="695">ifdef</span> <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="696">696</th><td><i>/* Faster versions when locking is not necessary.</i>&nbsp</td></tr>
+<tr><th id="697">697</th><td><i></i>&nbsp</td></tr>
+<tr><th id="698">698</th><td><i>   These functions are not part of POSIX and therefore no official</i>&nbsp</td></tr>
+<tr><th id="699">699</th><td><i>   cancellation point.  But due to similarity with an POSIX interface</i>&nbsp</td></tr>
+<tr><th id="700">700</th><td><i>   or due to the implementation they are cancellation points and</i>&nbsp</td></tr>
+<tr><th id="701">701</th><td><i>   therefore not marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="702">702</th><td><b>extern</b> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl fn" id="fread_unlocked" title='fread_unlocked' data-ref="fread_unlocked">fread_unlocked</dfn> (<em>void</em> *<b>__restrict</b> <dfn class="local col0 decl" id="4690__ptr" title='__ptr' data-type='void *__restrict' data-ref="4690__ptr">__ptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col1 decl" id="4691__size" title='__size' data-type='size_t' data-ref="4691__size">__size</dfn>,&nbsp</td></tr>
+<tr><th id="703">703</th><td>			      <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col2 decl" id="4692__n" title='__n' data-type='size_t' data-ref="4692__n">__n</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col3 decl" id="4693__stream" title='__stream' data-type='FILE *__restrict' data-ref="4693__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="704">704</th><td><b>extern</b> <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="decl fn" id="fwrite_unlocked" title='fwrite_unlocked' data-ref="fwrite_unlocked">fwrite_unlocked</dfn> (<em>const</em> <em>void</em> *<b>__restrict</b> <dfn class="local col4 decl" id="4694__ptr" title='__ptr' data-type='const void *__restrict' data-ref="4694__ptr">__ptr</dfn>, <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col5 decl" id="4695__size" title='__size' data-type='size_t' data-ref="4695__size">__size</dfn>,&nbsp</td></tr>
+<tr><th id="705">705</th><td>			       <span class='typedef' title='size_t' data-type='unsigned long' data-ref="size_t">size_t</span> <dfn class="local col6 decl" id="4696__n" title='__n' data-type='size_t' data-ref="4696__n">__n</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col7 decl" id="4697__stream" title='__stream' data-type='FILE *__restrict' data-ref="4697__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="706">706</th><td><u>#<span data-ppcond="695">endif</span></u>&nbsp</td></tr>
+<tr><th id="707">707</th><td>&nbsp</td></tr>
+<tr><th id="708">708</th><td>&nbsp</td></tr>
+<tr><th id="709">709</th><td><i>/* Seek to a certain position on STREAM.</i>&nbsp</td></tr>
+<tr><th id="710">710</th><td><i></i>&nbsp</td></tr>
+<tr><th id="711">711</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="712">712</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="713">713</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fseek" title='fseek' data-ref="fseek">fseek</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col8 decl" id="4698__stream" title='__stream' data-type='FILE *' data-ref="4698__stream">__stream</dfn>, <em>long</em> <em>int</em> <dfn class="local col9 decl" id="4699__off" title='__off' data-type='long' data-ref="4699__off">__off</dfn>, <em>int</em> <dfn class="local col0 decl" id="4700__whence" title='__whence' data-type='int' data-ref="4700__whence">__whence</dfn>);&nbsp</td></tr>
+<tr><th id="714">714</th><td><i>/* Return the current position of STREAM.</i>&nbsp</td></tr>
+<tr><th id="715">715</th><td><i></i>&nbsp</td></tr>
+<tr><th id="716">716</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="717">717</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="718">718</th><td><b>extern</b> <em>long</em> <em>int</em> <dfn class="decl fn" id="ftell" title='ftell' data-ref="ftell">ftell</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col1 decl" id="4701__stream" title='__stream' data-type='FILE *' data-ref="4701__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="719">719</th><td><i>/* Rewind to the beginning of STREAM.</i>&nbsp</td></tr>
+<tr><th id="720">720</th><td><i></i>&nbsp</td></tr>
+<tr><th id="721">721</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="722">722</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="723">723</th><td><b>extern</b> <em>void</em> <dfn class="decl fn" id="rewind" title='rewind' data-ref="rewind">rewind</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col2 decl" id="4702__stream" title='__stream' data-type='FILE *' data-ref="4702__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="724">724</th><td>&nbsp</td></tr>
+<tr><th id="725">725</th><td><i>/* The Single Unix Specification, Version 2, specifies an alternative,</i>&nbsp</td></tr>
+<tr><th id="726">726</th><td><i>   more adequate interface for the two functions above which deal with</i>&nbsp</td></tr>
+<tr><th id="727">727</th><td><i>   file offset.  `long int' is not the right type.  These definitions</i>&nbsp</td></tr>
+<tr><th id="728">728</th><td><i>   are originally defined in the Large File Support API.  */</i>&nbsp</td></tr>
+<tr><th id="729">729</th><td>&nbsp</td></tr>
+<tr><th id="730">730</th><td><u>#<span data-ppcond="730">if</span> defined <a class="macro" href="features.h.html#381" data-ref="_M/__USE_LARGEFILE">__USE_LARGEFILE</a> || defined <a class="macro" href="features.h.html#366" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</a></u>&nbsp</td></tr>
+<tr><th id="731">731</th><td><u># <span data-ppcond="731">ifndef</span> <span class="macro" data-ref="_M/__USE_FILE_OFFSET64">__USE_FILE_OFFSET64</span></u>&nbsp</td></tr>
+<tr><th id="732">732</th><td><i>/* Seek to a certain position on STREAM.</i>&nbsp</td></tr>
+<tr><th id="733">733</th><td><i></i>&nbsp</td></tr>
+<tr><th id="734">734</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="735">735</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="736">736</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fseeko" title='fseeko' data-ref="fseeko">fseeko</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col3 decl" id="4703__stream" title='__stream' data-type='FILE *' data-ref="4703__stream">__stream</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__off_t" title='__off_t' data-type='long' data-ref="__off_t">__off_t</a> <dfn class="local col4 decl" id="4704__off" title='__off' data-type='__off_t' data-ref="4704__off">__off</dfn>, <em>int</em> <dfn class="local col5 decl" id="4705__whence" title='__whence' data-type='int' data-ref="4705__whence">__whence</dfn>);&nbsp</td></tr>
+<tr><th id="737">737</th><td><i>/* Return the current position of STREAM.</i>&nbsp</td></tr>
+<tr><th id="738">738</th><td><i></i>&nbsp</td></tr>
+<tr><th id="739">739</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="740">740</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="741">741</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__off_t" title='__off_t' data-type='long' data-ref="__off_t">__off_t</a> <dfn class="decl fn" id="ftello" title='ftello' data-ref="ftello">ftello</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col6 decl" id="4706__stream" title='__stream' data-type='FILE *' data-ref="4706__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="742">742</th><td><u># <span data-ppcond="731">else</span></u>&nbsp</td></tr>
+<tr><th id="743">743</th><td><u>#  ifdef __REDIRECT</u>&nbsp</td></tr>
+<tr><th id="744">744</th><td><b>extern</b> <em>int</em> __REDIRECT (fseeko,&nbsp</td></tr>
+<tr><th id="745">745</th><td>		       (FILE *__stream, __off64_t __off, <em>int</em> __whence),&nbsp</td></tr>
+<tr><th id="746">746</th><td>		       fseeko64);&nbsp</td></tr>
+<tr><th id="747">747</th><td><b>extern</b> __off64_t __REDIRECT (ftello, (FILE *__stream), ftello64);&nbsp</td></tr>
+<tr><th id="748">748</th><td><u>#  else</u>&nbsp</td></tr>
+<tr><th id="749">749</th><td><u>#   define fseeko fseeko64</u>&nbsp</td></tr>
+<tr><th id="750">750</th><td><u>#   define ftello ftello64</u>&nbsp</td></tr>
+<tr><th id="751">751</th><td><u>#  endif</u>&nbsp</td></tr>
+<tr><th id="752">752</th><td><u># <span data-ppcond="731">endif</span></u>&nbsp</td></tr>
+<tr><th id="753">753</th><td><u>#<span data-ppcond="730">endif</span></u>&nbsp</td></tr>
+<tr><th id="754">754</th><td>&nbsp</td></tr>
+<tr><th id="755">755</th><td><u>#<span data-ppcond="755">ifndef</span> <span class="macro" data-ref="_M/__USE_FILE_OFFSET64">__USE_FILE_OFFSET64</span></u>&nbsp</td></tr>
+<tr><th id="756">756</th><td><i>/* Get STREAM's position.</i>&nbsp</td></tr>
+<tr><th id="757">757</th><td><i></i>&nbsp</td></tr>
+<tr><th id="758">758</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="759">759</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="760">760</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fgetpos" title='fgetpos' data-ref="fgetpos">fgetpos</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col7 decl" id="4707__stream" title='__stream' data-type='FILE *__restrict' data-ref="4707__stream">__stream</dfn>, <a class="typedef" href="#fpos_t" title='fpos_t' data-type='__fpos_t' data-ref="fpos_t">fpos_t</a> *<b>__restrict</b> <dfn class="local col8 decl" id="4708__pos" title='__pos' data-type='fpos_t *__restrict' data-ref="4708__pos">__pos</dfn>);&nbsp</td></tr>
+<tr><th id="761">761</th><td><i>/* Set STREAM's position.</i>&nbsp</td></tr>
+<tr><th id="762">762</th><td><i></i>&nbsp</td></tr>
+<tr><th id="763">763</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="764">764</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="765">765</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fsetpos" title='fsetpos' data-ref="fsetpos">fsetpos</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col9 decl" id="4709__stream" title='__stream' data-type='FILE *' data-ref="4709__stream">__stream</dfn>, <em>const</em> <a class="typedef" href="#fpos_t" title='fpos_t' data-type='__fpos_t' data-ref="fpos_t">fpos_t</a> *<dfn class="local col0 decl" id="4710__pos" title='__pos' data-type='const fpos_t *' data-ref="4710__pos">__pos</dfn>);&nbsp</td></tr>
+<tr><th id="766">766</th><td><u>#<span data-ppcond="755">else</span></u>&nbsp</td></tr>
+<tr><th id="767">767</th><td><u># ifdef __REDIRECT</u>&nbsp</td></tr>
+<tr><th id="768">768</th><td><b>extern</b> <em>int</em> __REDIRECT (fgetpos, (FILE *<b>__restrict</b> __stream,&nbsp</td></tr>
+<tr><th id="769">769</th><td>				 fpos_t *<b>__restrict</b> __pos), fgetpos64);&nbsp</td></tr>
+<tr><th id="770">770</th><td><b>extern</b> <em>int</em> __REDIRECT (fsetpos,&nbsp</td></tr>
+<tr><th id="771">771</th><td>		       (FILE *__stream, <em>const</em> fpos_t *__pos), fsetpos64);&nbsp</td></tr>
+<tr><th id="772">772</th><td><u># else</u>&nbsp</td></tr>
+<tr><th id="773">773</th><td><u>#  define fgetpos fgetpos64</u>&nbsp</td></tr>
+<tr><th id="774">774</th><td><u>#  define fsetpos fsetpos64</u>&nbsp</td></tr>
+<tr><th id="775">775</th><td><u># endif</u>&nbsp</td></tr>
+<tr><th id="776">776</th><td><u>#<span data-ppcond="755">endif</span></u>&nbsp</td></tr>
+<tr><th id="777">777</th><td>&nbsp</td></tr>
+<tr><th id="778">778</th><td><u>#<span data-ppcond="778">ifdef</span> <a class="macro" href="features.h.html#385" data-ref="_M/__USE_LARGEFILE64">__USE_LARGEFILE64</a></u>&nbsp</td></tr>
+<tr><th id="779">779</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fseeko64" title='fseeko64' data-ref="fseeko64">fseeko64</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col1 decl" id="4711__stream" title='__stream' data-type='FILE *' data-ref="4711__stream">__stream</dfn>, <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__off64_t" title='__off64_t' data-type='long' data-ref="__off64_t">__off64_t</a> <dfn class="local col2 decl" id="4712__off" title='__off' data-type='__off64_t' data-ref="4712__off">__off</dfn>, <em>int</em> <dfn class="local col3 decl" id="4713__whence" title='__whence' data-type='int' data-ref="4713__whence">__whence</dfn>);&nbsp</td></tr>
+<tr><th id="780">780</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types.h.html#__off64_t" title='__off64_t' data-type='long' data-ref="__off64_t">__off64_t</a> <dfn class="decl fn" id="ftello64" title='ftello64' data-ref="ftello64">ftello64</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col4 decl" id="4714__stream" title='__stream' data-type='FILE *' data-ref="4714__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="781">781</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fgetpos64" title='fgetpos64' data-ref="fgetpos64">fgetpos64</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<b>__restrict</b> <dfn class="local col5 decl" id="4715__stream" title='__stream' data-type='FILE *__restrict' data-ref="4715__stream">__stream</dfn>, <a class="typedef" href="#fpos64_t" title='fpos64_t' data-type='__fpos64_t' data-ref="fpos64_t">fpos64_t</a> *<b>__restrict</b> <dfn class="local col6 decl" id="4716__pos" title='__pos' data-type='fpos64_t *__restrict' data-ref="4716__pos">__pos</dfn>);&nbsp</td></tr>
+<tr><th id="782">782</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fsetpos64" title='fsetpos64' data-ref="fsetpos64">fsetpos64</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col7 decl" id="4717__stream" title='__stream' data-type='FILE *' data-ref="4717__stream">__stream</dfn>, <em>const</em> <a class="typedef" href="#fpos64_t" title='fpos64_t' data-type='__fpos64_t' data-ref="fpos64_t">fpos64_t</a> *<dfn class="local col8 decl" id="4718__pos" title='__pos' data-type='const fpos64_t *' data-ref="4718__pos">__pos</dfn>);&nbsp</td></tr>
+<tr><th id="783">783</th><td><u>#<span data-ppcond="778">endif</span></u>&nbsp</td></tr>
+<tr><th id="784">784</th><td>&nbsp</td></tr>
+<tr><th id="785">785</th><td><i>/* Clear the error and EOF indicators for STREAM.  */</i>&nbsp</td></tr>
+<tr><th id="786">786</th><td><b>extern</b> <em>void</em> <dfn class="decl fn" id="clearerr" title='clearerr' data-ref="clearerr">clearerr</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col9 decl" id="4719__stream" title='__stream' data-type='FILE *' data-ref="4719__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="787">787</th><td><i>/* Return the EOF indicator for STREAM.  */</i>&nbsp</td></tr>
+<tr><th id="788">788</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="feof" title='feof' data-ref="feof">feof</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col0 decl" id="4720__stream" title='__stream' data-type='FILE *' data-ref="4720__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="789">789</th><td><i>/* Return the error indicator for STREAM.  */</i>&nbsp</td></tr>
+<tr><th id="790">790</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="ferror" title='ferror' data-ref="ferror">ferror</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col1 decl" id="4721__stream" title='__stream' data-type='FILE *' data-ref="4721__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="791">791</th><td>&nbsp</td></tr>
+<tr><th id="792">792</th><td><u>#<span data-ppcond="792">ifdef</span> <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="793">793</th><td><i>/* Faster versions when locking is not required.  */</i>&nbsp</td></tr>
+<tr><th id="794">794</th><td><b>extern</b> <em>void</em> <dfn class="decl fn" id="clearerr_unlocked" title='clearerr_unlocked' data-ref="clearerr_unlocked">clearerr_unlocked</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col2 decl" id="4722__stream" title='__stream' data-type='FILE *' data-ref="4722__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="795">795</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="feof_unlocked" title='feof_unlocked' data-ref="feof_unlocked">feof_unlocked</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col3 decl" id="4723__stream" title='__stream' data-type='FILE *' data-ref="4723__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="796">796</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="ferror_unlocked" title='ferror_unlocked' data-ref="ferror_unlocked">ferror_unlocked</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col4 decl" id="4724__stream" title='__stream' data-type='FILE *' data-ref="4724__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="797">797</th><td><u>#<span data-ppcond="792">endif</span></u>&nbsp</td></tr>
+<tr><th id="798">798</th><td>&nbsp</td></tr>
+<tr><th id="799">799</th><td>&nbsp</td></tr>
+<tr><th id="800">800</th><td><i>/* Print a message describing the meaning of the value of errno.</i>&nbsp</td></tr>
+<tr><th id="801">801</th><td><i></i>&nbsp</td></tr>
+<tr><th id="802">802</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="803">803</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="804">804</th><td><b>extern</b> <em>void</em> <dfn class="decl fn" id="perror" title='perror' data-ref="perror">perror</dfn> (<em>const</em> <em>char</em> *<dfn class="local col5 decl" id="4725__s" title='__s' data-type='const char *' data-ref="4725__s">__s</dfn>);&nbsp</td></tr>
+<tr><th id="805">805</th><td>&nbsp</td></tr>
+<tr><th id="806">806</th><td>&nbsp</td></tr>
+<tr><th id="807">807</th><td><u>#<span data-ppcond="807">ifdef</span>	<a class="macro" href="features.h.html#325" data-ref="_M/__USE_POSIX">__USE_POSIX</a></u>&nbsp</td></tr>
+<tr><th id="808">808</th><td><i>/* Return the system file descriptor for STREAM.  */</i>&nbsp</td></tr>
+<tr><th id="809">809</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fileno" title='fileno' data-ref="fileno">fileno</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col6 decl" id="4726__stream" title='__stream' data-type='FILE *' data-ref="4726__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="810">810</th><td><u>#<span data-ppcond="807">endif</span> /* Use POSIX.  */</u>&nbsp</td></tr>
+<tr><th id="811">811</th><td>&nbsp</td></tr>
+<tr><th id="812">812</th><td><u>#<span data-ppcond="812">ifdef</span> <a class="macro" href="features.h.html#395" data-ref="_M/__USE_MISC">__USE_MISC</a></u>&nbsp</td></tr>
+<tr><th id="813">813</th><td><i>/* Faster version when locking is not required.  */</i>&nbsp</td></tr>
+<tr><th id="814">814</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="fileno_unlocked" title='fileno_unlocked' data-ref="fileno_unlocked">fileno_unlocked</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col7 decl" id="4727__stream" title='__stream' data-type='FILE *' data-ref="4727__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="815">815</th><td><u>#<span data-ppcond="812">endif</span></u>&nbsp</td></tr>
+<tr><th id="816">816</th><td>&nbsp</td></tr>
+<tr><th id="817">817</th><td>&nbsp</td></tr>
+<tr><th id="818">818</th><td><u>#<span data-ppcond="818">ifdef</span> <a class="macro" href="features.h.html#329" data-ref="_M/__USE_POSIX2">__USE_POSIX2</a></u>&nbsp</td></tr>
+<tr><th id="819">819</th><td><i>/* Close a stream opened by popen and return the status of its child.</i>&nbsp</td></tr>
+<tr><th id="820">820</th><td><i></i>&nbsp</td></tr>
+<tr><th id="821">821</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="822">822</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="823">823</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="pclose" title='pclose' data-ref="pclose">pclose</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col8 decl" id="4728__stream" title='__stream' data-type='FILE *' data-ref="4728__stream">__stream</dfn>);&nbsp</td></tr>
+<tr><th id="824">824</th><td>&nbsp</td></tr>
+<tr><th id="825">825</th><td><i>/* Create a new stream connected to a pipe running the given command.</i>&nbsp</td></tr>
+<tr><th id="826">826</th><td><i></i>&nbsp</td></tr>
+<tr><th id="827">827</th><td><i>   This function is a possible cancellation point and therefore not</i>&nbsp</td></tr>
+<tr><th id="828">828</th><td><i>   marked with __THROW.  */</i>&nbsp</td></tr>
+<tr><th id="829">829</th><td><b>extern</b> <a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="decl fn" id="popen" title='popen' data-ref="popen">popen</dfn> (<em>const</em> <em>char</em> *<dfn class="local col9 decl" id="4729__command" title='__command' data-type='const char *' data-ref="4729__command">__command</dfn>, <em>const</em> <em>char</em> *<dfn class="local col0 decl" id="4730__modes" title='__modes' data-type='const char *' data-ref="4730__modes">__modes</dfn>)&nbsp</td></tr>
+<tr><th id="830">830</th><td>  <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#281" title="__attribute__ ((__malloc__))" data-ref="_M/__attribute_malloc__">__attribute_malloc__</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#693" title="" data-ref="_M/__attr_dealloc">__attr_dealloc</a> (pclose, <var>1</var>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="831">831</th><td>&nbsp</td></tr>
+<tr><th id="832">832</th><td><u>#<span data-ppcond="818">endif</span></u>&nbsp</td></tr>
+<tr><th id="833">833</th><td>&nbsp</td></tr>
+<tr><th id="834">834</th><td>&nbsp</td></tr>
+<tr><th id="835">835</th><td><u>#<span data-ppcond="835">ifdef</span>	<a class="macro" href="features.h.html#325" data-ref="_M/__USE_POSIX">__USE_POSIX</a></u>&nbsp</td></tr>
+<tr><th id="836">836</th><td><i>/* Return the name of the controlling terminal.  */</i>&nbsp</td></tr>
+<tr><th id="837">837</th><td><b>extern</b> <em>char</em> *<dfn class="decl fn" id="ctermid" title='ctermid' data-ref="ctermid">ctermid</dfn> (<em>char</em> *<dfn class="local col1 decl" id="4731__s" title='__s' data-type='char *' data-ref="4731__s">__s</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>&nbsp</td></tr>
+<tr><th id="838">838</th><td>  <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#682" title="" data-ref="_M/__attr_access">__attr_access</a> ((__write_only__, <var>1</var>));&nbsp</td></tr>
+<tr><th id="839">839</th><td><u>#<span data-ppcond="835">endif</span> /* Use POSIX.  */</u>&nbsp</td></tr>
+<tr><th id="840">840</th><td>&nbsp</td></tr>
+<tr><th id="841">841</th><td>&nbsp</td></tr>
+<tr><th id="842">842</th><td><u>#<span data-ppcond="842">if</span> (defined <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a> &amp;&amp; !defined <a class="macro" href="features.h.html#366" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</a>) || defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="843">843</th><td><i>/* Return the name of the current user.  */</i>&nbsp</td></tr>
+<tr><th id="844">844</th><td><b>extern</b> <em>char</em> *<dfn class="decl fn" id="cuserid" title='cuserid' data-ref="cuserid">cuserid</dfn> (<em>char</em> *<dfn class="local col2 decl" id="4732__s" title='__s' data-type='char *' data-ref="4732__s">__s</dfn>)&nbsp</td></tr>
+<tr><th id="845">845</th><td>  <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#682" title="" data-ref="_M/__attr_access">__attr_access</a> ((__write_only__, <var>1</var>));&nbsp</td></tr>
+<tr><th id="846">846</th><td><u>#<span data-ppcond="842">endif</span> /* Use X/Open, but not issue 6.  */</u>&nbsp</td></tr>
+<tr><th id="847">847</th><td>&nbsp</td></tr>
+<tr><th id="848">848</th><td>&nbsp</td></tr>
+<tr><th id="849">849</th><td><u>#<span data-ppcond="849">ifdef</span>	<a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="850">850</th><td><b>struct</b> <dfn class="type" id="obstack" title='obstack' data-ref="obstack">obstack</dfn>;			<i>/* See &lt;obstack.h&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="851">851</th><td>&nbsp</td></tr>
+<tr><th id="852">852</th><td><i>/* Write formatted output to an obstack.  */</i>&nbsp</td></tr>
+<tr><th id="853">853</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="obstack_printf" title='obstack_printf' data-ref="obstack_printf">obstack_printf</dfn> (<b>struct</b> <a class="type" href="#obstack" title='obstack' data-ref="obstack">obstack</a> *<b>__restrict</b> <dfn class="local col3 decl" id="4733__obstack" title='__obstack' data-type='struct obstack *__restrict' data-ref="4733__obstack">__obstack</dfn>,&nbsp</td></tr>
+<tr><th id="854">854</th><td>			   <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col4 decl" id="4734__format" title='__format' data-type='const char *__restrict' data-ref="4734__format">__format</dfn>, ...)&nbsp</td></tr>
+<tr><th id="855">855</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a> <b>__attribute__</b> ((__format__ (__printf__, <var>2</var>, <var>3</var>)));&nbsp</td></tr>
+<tr><th id="856">856</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="obstack_vprintf" title='obstack_vprintf' data-ref="obstack_vprintf">obstack_vprintf</dfn> (<b>struct</b> <a class="type" href="#obstack" title='obstack' data-ref="obstack">obstack</a> *<b>__restrict</b> <dfn class="local col5 decl" id="4735__obstack" title='__obstack' data-type='struct obstack *__restrict' data-ref="4735__obstack">__obstack</dfn>,&nbsp</td></tr>
+<tr><th id="857">857</th><td>			    <em>const</em> <em>char</em> *<b>__restrict</b> <dfn class="local col6 decl" id="4736__format" title='__format' data-type='const char *__restrict' data-ref="4736__format">__format</dfn>,&nbsp</td></tr>
+<tr><th id="858">858</th><td>			    <span class='typedef' title='__gnuc_va_list' data-type='__builtin_va_list' data-ref="__gnuc_va_list">__gnuc_va_list</span> <dfn class="local col7 decl" id="4737__args" title='__args' data-type='__va_list_tag *' data-ref="4737__args">__args</dfn>)&nbsp</td></tr>
+<tr><th id="859">859</th><td>     <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#90" title="noexcept (true)" data-ref="_M/__THROWNL">__THROWNL</a> <b>__attribute__</b> ((__format__ (__printf__, <var>2</var>, <var>0</var>)));&nbsp</td></tr>
+<tr><th id="860">860</th><td><u>#<span data-ppcond="849">endif</span> /* Use GNU.  */</u>&nbsp</td></tr>
+<tr><th id="861">861</th><td>&nbsp</td></tr>
+<tr><th id="862">862</th><td>&nbsp</td></tr>
+<tr><th id="863">863</th><td><u>#<span data-ppcond="863">ifdef</span> <a class="macro" href="features.h.html#337" data-ref="_M/__USE_POSIX199506">__USE_POSIX199506</a></u>&nbsp</td></tr>
+<tr><th id="864">864</th><td><i>/* These are defined in POSIX.1:1996.  */</i>&nbsp</td></tr>
+<tr><th id="865">865</th><td>&nbsp</td></tr>
+<tr><th id="866">866</th><td><i>/* Acquire ownership of STREAM.  */</i>&nbsp</td></tr>
+<tr><th id="867">867</th><td><b>extern</b> <em>void</em> <dfn class="decl fn" id="flockfile" title='flockfile' data-ref="flockfile">flockfile</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col8 decl" id="4738__stream" title='__stream' data-type='FILE *' data-ref="4738__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="868">868</th><td>&nbsp</td></tr>
+<tr><th id="869">869</th><td><i>/* Try to acquire ownership of STREAM but do not block if it is not</i>&nbsp</td></tr>
+<tr><th id="870">870</th><td><i>   possible.  */</i>&nbsp</td></tr>
+<tr><th id="871">871</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="ftrylockfile" title='ftrylockfile' data-ref="ftrylockfile">ftrylockfile</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col9 decl" id="4739__stream" title='__stream' data-type='FILE *' data-ref="4739__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a> <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#415" title="" data-ref="_M/__wur">__wur</a>;&nbsp</td></tr>
+<tr><th id="872">872</th><td>&nbsp</td></tr>
+<tr><th id="873">873</th><td><i>/* Relinquish the ownership granted for STREAM.  */</i>&nbsp</td></tr>
+<tr><th id="874">874</th><td><b>extern</b> <em>void</em> <dfn class="decl fn" id="funlockfile" title='funlockfile' data-ref="funlockfile">funlockfile</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *<dfn class="local col0 decl" id="4740__stream" title='__stream' data-type='FILE *' data-ref="4740__stream">__stream</dfn>) <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#86" title="noexcept (true)" data-ref="_M/__THROW">__THROW</a>;&nbsp</td></tr>
+<tr><th id="875">875</th><td><u>#<span data-ppcond="863">endif</span> /* POSIX */</u>&nbsp</td></tr>
+<tr><th id="876">876</th><td>&nbsp</td></tr>
+<tr><th id="877">877</th><td><u>#<span data-ppcond="877">if</span> defined <a class="macro" href="features.h.html#355" data-ref="_M/__USE_XOPEN">__USE_XOPEN</a> &amp;&amp; !defined <a class="macro" href="features.h.html#366" data-ref="_M/__USE_XOPEN2K">__USE_XOPEN2K</a> &amp;&amp; !defined <a class="macro" href="features.h.html#407" data-ref="_M/__USE_GNU">__USE_GNU</a></u>&nbsp</td></tr>
+<tr><th id="878">878</th><td><i>/*  X/Open Issues 1-5 required getopt to be declared in this</i>&nbsp</td></tr>
+<tr><th id="879">879</th><td><i>   header.  It was removed in Issue 6.  GNU follows Issue 6.  */</i>&nbsp</td></tr>
+<tr><th id="880">880</th><td><u># include &lt;bits/getopt_posix.h&gt;</u>&nbsp</td></tr>
+<tr><th id="881">881</th><td><u>#<span data-ppcond="877">endif</span></u>&nbsp</td></tr>
+<tr><th id="882">882</th><td>&nbsp</td></tr>
+<tr><th id="883">883</th><td><i>/* Slow-path routines used by the optimized inline functions in</i>&nbsp</td></tr>
+<tr><th id="884">884</th><td><i>   bits/stdio.h.  */</i>&nbsp</td></tr>
+<tr><th id="885">885</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="__uflow" title='__uflow' data-ref="__uflow">__uflow</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *);&nbsp</td></tr>
+<tr><th id="886">886</th><td><b>extern</b> <em>int</em> <dfn class="decl fn" id="__overflow" title='__overflow' data-ref="__overflow">__overflow</dfn> (<a class="typedef" href="x86_64-linux-gnu/bits/types/FILE.h.html#FILE" title='FILE' data-type='struct _IO_FILE' data-ref="FILE">FILE</a> *, <em>int</em>);&nbsp</td></tr>
+<tr><th id="887">887</th><td>&nbsp</td></tr>
+<tr><th id="888">888</th><td><i>/* If we are compiling with optimizing read this file.  It contains</i>&nbsp</td></tr>
+<tr><th id="889">889</th><td><i>   several optimizing inline functions and macros.  */</i>&nbsp</td></tr>
+<tr><th id="890">890</th><td><u>#<span data-ppcond="890">ifdef</span> <span class="macro" data-ref="_M/__USE_EXTERN_INLINES">__USE_EXTERN_INLINES</span></u>&nbsp</td></tr>
+<tr><th id="891">891</th><td><u># include &lt;bits/stdio.h&gt;</u>&nbsp</td></tr>
+<tr><th id="892">892</th><td><u>#<span data-ppcond="890">endif</span></u>&nbsp</td></tr>
+<tr><th id="893">893</th><td><u>#<span data-ppcond="893">if</span> <a class="macro" href="features.h.html#428" title="0" data-ref="_M/__USE_FORTIFY_LEVEL">__USE_FORTIFY_LEVEL</a> &gt; 0 &amp;&amp; defined <a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#461" data-ref="_M/__fortify_function">__fortify_function</a></u>&nbsp</td></tr>
+<tr><th id="894">894</th><td><u># include &lt;bits/stdio2.h&gt;</u>&nbsp</td></tr>
+<tr><th id="895">895</th><td><u>#<span data-ppcond="893">endif</span></u>&nbsp</td></tr>
+<tr><th id="896">896</th><td>&nbsp</td></tr>
+<tr><th id="897">897</th><td><u>#include &lt;bits/floatn.h&gt;</u>&nbsp</td></tr>
+<tr><th id="898">898</th><td><u>#<span data-ppcond="898">if</span> defined <span class="macro" data-ref="_M/__LDBL_COMPAT">__LDBL_COMPAT</span> || <a class="macro" href="x86_64-linux-gnu/bits/long-double.h.html#21" title="0" data-ref="_M/__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI">__LDOUBLE_REDIRECTS_TO_FLOAT128_ABI</a> == 1</u>&nbsp</td></tr>
+<tr><th id="899">899</th><td><u># include &lt;bits/stdio-ldbl.h&gt;</u>&nbsp</td></tr>
+<tr><th id="900">900</th><td><u>#<span data-ppcond="898">endif</span></u>&nbsp</td></tr>
+<tr><th id="901">901</th><td>&nbsp</td></tr>
+<tr><th id="902">902</th><td><a class="macro" href="x86_64-linux-gnu/sys/cdefs.h.html#134" title="}" data-ref="_M/__END_DECLS">__END_DECLS</a>&nbsp</td></tr>
+<tr><th id="903">903</th><td>&nbsp</td></tr>
+<tr><th id="904">904</th><td><u>#<span data-ppcond="23">endif</span> /* &lt;stdio.h&gt; included.  */</u>&nbsp</td></tr>
+<tr><th id="905">905</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

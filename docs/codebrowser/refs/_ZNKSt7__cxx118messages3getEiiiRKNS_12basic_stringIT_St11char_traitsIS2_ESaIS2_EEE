@@ -1,0 +1,16 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1905' ll='1907' type='std::messages::string_type std::messages::get(std::messages_base::catalog __c, int __set, int __msgid, const std::messages::string_type &amp; __s) const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1890'>/*
+       *  @brief  Look up a string in a message catalog.
+       *
+       *  This function retrieves and returns a message from a catalog by
+       *  returning do_get(c, set, msgid, s).
+       *
+       *  For gnu, @a __set and @a msgid are ignored.  Returns gettext(s).
+       *  For default, returns s. For ieee, returns catgets(c,set,msgid,s).
+       *
+       *  @param  __c  The catalog to access.
+       *  @param  __set  Implementation-defined.
+       *  @param  __msgid  Implementation-defined.
+       *  @param  __s  Default return value if retrieval fails.
+       *  @return  Retrieved message or @a __s if get fails.
+      */</doc>

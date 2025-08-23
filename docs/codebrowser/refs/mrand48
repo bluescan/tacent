@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='477' type='long mrand48()'/>
+<doc f='include/stdlib.h' l='476'>/* Return signed, long integers in [-2^31,2^31).  */</doc>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_pair.h' l='414' ll='423' macro='1' type='typename enable_if&lt;__and_&lt;is_assignable&lt;_T1 &amp;, const _U1 &amp;&gt;, is_assignable&lt;_T2 &amp;, const _U2 &amp;&gt;&gt;::value, pair&lt;_T1, _T2&gt; &amp;&gt;::type std::pair::operator=(const pair&lt;_U1, _U2&gt; &amp; __p)'/>

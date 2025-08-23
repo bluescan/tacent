@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12882'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12881'>// VK_EXT_descriptor_indexing is a preprocessor guard. Do not pass it to API calls.</doc>

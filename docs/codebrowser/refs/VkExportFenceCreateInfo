@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5568' ll='5572'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='5568'/>
+<size>24</size>
+<mbr r='VkExportFenceCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkExportFenceCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkExportFenceCreateInfo::handleTypes' o='128' t='VkExternalFenceHandleTypeFlags'/>

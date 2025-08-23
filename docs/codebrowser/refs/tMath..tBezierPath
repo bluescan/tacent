@@ -1,0 +1,21 @@
+<def f='Modules/Math/Inc/Math/tSpline.h' l='94' ll='217'/>
+<use f='Modules/Math/Inc/Math/tSpline.h' l='123' c='_ZN5tMath11tBezierPathC1ERKS0_'/>
+<size>32</size>
+<doc f='Modules/Math/Inc/Math/tSpline.h' l='91'>// A tBezierPath is made of a collection of Bezier curves. If two points are supplied they become the end points of one
+// BezierCurve and the 2 interior CVs are generated, creating a small straight line. For 3 points the middle point will
+// be on both BezierCurves and each curve will have equal tangents at that point.</doc>
+<fun r='_ZN5tMath11tBezierPathD1Ev'/>
+<use f='Modules/Math/Src/tSpline.cpp' l='194' c='_ZN5tMath11tBezierPathC1ERKS0_'/>
+<size>32</size>
+<fun r='_ZN5tMath11tBezierPathC1ERKS0_'/>
+<fun r='_ZN5tMath11tBezierPath5ClearEv'/>
+<fun r='_ZNK5tMath11tBezierPath35ComputeApproxParamPerCoordinateUnitEj'/>
+<fun r='_ZN5tMath11tBezierPath17InterpolatePointsEPKNS_8tVector3EiNS0_5tTypeE'/>
+<fun r='_ZN5tMath11tBezierPath15SetControlVertsEPKNS_8tVector3EiNS0_5tModeENS0_5tTypeE'/>
+<fun r='_ZNK5tMath11tBezierPath8GetPointERNS_8tVector3Ef'/>
+<fun r='_ZNK5tMath11tBezierPath10GetTangentERNS_8tVector3Ef'/>
+<fun r='_ZNK5tMath11tBezierPath15GetClosestParamERKNS_8tVector3EjfRKNS0_17tFastSectionStateE'/>
+<use f='Modules/Scene/Inc/Scene/tPath.h' l='27' c='_ZN6tScene5tPathC1ERKN5tMath11tBezierPathERK7tStringj'/>
+<size>32</size>
+<use f='Modules/Scene/Src/tPath.cpp' l='21' c='_ZN6tScene5tPathC1ERKN5tMath11tBezierPathERK7tStringj'/>
+<size>32</size>

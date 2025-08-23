@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_deque.h' l='1225' ll='1227' type='std::deque::const_reverse_iterator std::deque::crend() const'/>
+<doc f='include/c++/11/bits/stl_deque.h' l='1220'>/**
+       *  Returns a read-only (constant) reverse iterator that points
+       *  to one before the first element in the %deque.  Iteration is
+       *  done in reverse element order.
+       */</doc>

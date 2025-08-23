@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1708' type='ktxHashListEntry * ktxHashList_Next(ktxHashListEntry * entry)'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1704'>/*
+ * Return the next entry in a ktxHashList.
+ */</doc>

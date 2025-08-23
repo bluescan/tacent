@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18124' ll='18128'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18124'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceAmigoProfilingFeaturesSEC::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceAmigoProfilingFeaturesSEC::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceAmigoProfilingFeaturesSEC::amigoProfiling' o='128' t='VkBool32'/>

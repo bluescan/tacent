@@ -1,0 +1,12 @@
+<dec f='include/stdio.h' l='181'/>
+<use f='include/stdio.h' l='189' u='c'/>
+<use f='include/stdio.h' l='201' u='c'/>
+<use f='include/stdio.h' l='260' u='c'/>
+<use f='include/stdio.h' l='285' u='c'/>
+<use f='include/stdio.h' l='294' u='c'/>
+<use f='include/stdio.h' l='303' u='c'/>
+<use f='include/stdio.h' l='309' u='c'/>
+<use f='include/stdio.h' l='315' u='c'/>
+<use f='include/wchar.h' l='566' u='a'/>
+<use f='include/wchar.h' l='575' u='a'/>
+<use f='include/wchar.h' l='582' u='c'/>

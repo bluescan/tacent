@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/locale_classes.h' l='286' type='bool std::locale::operator()(const basic_string&lt;_Char, _Traits, _Alloc&gt; &amp; __s1, const basic_string&lt;_Char, _Traits, _Alloc&gt; &amp; __s2) const'/>
+<def f='include/c++/11/bits/locale_classes.tcc' l='79' ll='88' type='bool std::locale::operator()(const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __s1, const basic_string&lt;_CharT, _Traits, _Alloc&gt; &amp; __s2) const'/>

@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='861' type='_FIter1 std::search(_FIter1 , _FIter1 , _FIter2 , _FIter2 , _BinaryPredicate )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='4163' ll='4180' macro='1' type='_ForwardIterator1 std::search(_ForwardIterator1 __first1, _ForwardIterator1 __last1, _ForwardIterator2 __first2, _ForwardIterator2 __last2, _BinaryPredicate __predicate)'/>

@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/atomic_lockfree_defines.h' l='60'/>
+<use f='include/c++/11/atomic' l='931' u='c'/>
+<use f='include/c++/11/atomic' l='954' u='c'/>

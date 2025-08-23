@@ -1,0 +1,10 @@
+<def f='include/c++/11/sstream' l='791' ll='793' type='void std::basic_ostringstream::basic_ostringstream&lt;_CharT, _Traits, _Alloc&gt;()'/>
+<doc f='include/c++/11/sstream' l='782'>/**
+       *  @brief  Default constructor starts with an empty string buffer.
+       *
+       *  Initializes @c sb using @c mode|out, and passes @c &amp;sb to the base
+       *  class initializer.  Does not allocate any buffer.
+       *
+       *  That&apos;s a lie.  We initialize the base class with NULL, because the
+       *  string class does its own memory management.
+      */</doc>

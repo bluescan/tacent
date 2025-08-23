@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='232' type='bool tImage::tPicture::HasBorders(const tColour4b &amp;  = tColour4b::transparent, comp_t channels = tCompBit_A) const'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='231'>// Same as above but only check if borders exist. Does not modify picture.</doc>
+<def f='Modules/Image/Src/tPicture.cpp' l='518' ll='525' type='bool tImage::tPicture::HasBorders(const tColour4b &amp; colour = tColour4b::transparent, comp_t channels = tCompBit_A) const'/>

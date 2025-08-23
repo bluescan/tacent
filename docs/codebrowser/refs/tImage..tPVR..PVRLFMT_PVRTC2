@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Src/tImagePVR.cpp' l='88' type='12'/>
+<use f='Modules/Image/Src/tImagePVR.cpp' l='291' macro='1' c='_ZN6tImage4tPVR28GetFormatInfo_FromV1V2HeaderERNS_12tPixelFormatER14tColourProfileR10tAlphaModeR12tChannelTypeRKNS0_10HeaderV1V2E'/>
+<doc f='Modules/Image/Src/tImagePVR.cpp' l='88'>// Better name would be PVRTCIBPP2 but want to match docs.</doc>

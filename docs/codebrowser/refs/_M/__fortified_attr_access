@@ -1,0 +1,17 @@
+<dec f='include/x86_64-linux-gnu/sys/cdefs.h' l='681'/>
+<use f='include/string.h' l='467' u='c'/>
+<use f='include/stdlib.h' l='948' u='c'/>
+<use f='include/stdlib.h' l='1003' u='c'/>
+<use f='include/stdio.h' l='593' u='c'/>
+<use f='include/stdio.h' l='617' u='c'/>
+<use f='include/unistd.h' l='372' u='c'/>
+<use f='include/unistd.h' l='391' u='c'/>
+<use f='include/unistd.h' l='424' u='c'/>
+<use f='include/unistd.h' l='645' u='c'/>
+<use f='include/unistd.h' l='712' u='c'/>
+<use f='include/unistd.h' l='805' u='c'/>
+<use f='include/unistd.h' l='841' u='c'/>
+<use f='include/unistd.h' l='854' u='c'/>
+<use f='include/unistd.h' l='890' u='c'/>
+<use f='include/unistd.h' l='912' u='c'/>
+<use f='include/unistd.h' l='932' u='c'/>

@@ -1,0 +1,14 @@
+<def f='Modules/Image/Contrib/gifenc/gifenc.h' l='11' ll='21'/>
+<use f='Modules/Image/Contrib/gifenc/gifenc.h' l='11'/>
+<size>312</size>
+<mbr r='ge_GIF::w' o='0' t='uint16_t'/>
+<mbr r='ge_GIF::h' o='16' t='uint16_t'/>
+<mbr r='ge_GIF::depth' o='32' t='int'/>
+<mbr r='ge_GIF::bgindex' o='64' t='int'/>
+<mbr r='ge_GIF::filep' o='128' t='FILE *'/>
+<mbr r='ge_GIF::offset' o='192' t='int'/>
+<mbr r='ge_GIF::nframes' o='224' t='int'/>
+<mbr r='ge_GIF::frame' o='256' t='uint8_t *'/>
+<mbr r='ge_GIF::back' o='320' t='uint8_t *'/>
+<mbr r='ge_GIF::partial' o='384' t='uint32_t'/>
+<mbr r='ge_GIF::buffer' o='416' t='uint8_t[255]'/>

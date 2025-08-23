@@ -1,0 +1,4 @@
+<use f='Modules/Scene/Inc/Scene/tLight.h' l='25' u='c' c='_ZN6tScene6tLightC1ERK6tChunk'/>
+<dec f='Modules/Scene/Inc/Scene/tLight.h' l='29' type='void tScene::tLight::Load(const tChunk &amp; )'/>
+<inh f='Modules/Scene/Inc/Scene/tObject.h' l='33' c='_ZN6tScene7tObject4LoadERK6tChunk'/>
+<def f='Modules/Scene/Src/tLight.cpp' l='56' ll='81' type='void tScene::tLight::Load(const tChunk &amp; lightChunk)'/>

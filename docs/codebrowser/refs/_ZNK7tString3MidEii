@@ -1,0 +1,3 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='203' type='tString tString::Mid(int start, int count) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='203'>// Returns count chars from start (inclusive), or what&apos;s available if start+count &gt; length.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='106' ll='118' type='tString tString::Mid(int start, int count) const'/>

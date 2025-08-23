@@ -1,0 +1,7 @@
+<def f='Modules/Image/Inc/Image/tPicture.h' l='149' type='tPixel4b * tImage::tPicture::GetPixelPointer(int x = 0, int y = 0) const'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='986' u='c' c='_ZN6tImage8tPicture14GenerateLayersER5tListINS_6tLayerEENS_15tResampleFilterENS_17tResampleEdgeModeEb'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='994' u='c' c='_ZN6tImage8tPicture14GenerateLayersER5tListINS_6tLayerEENS_15tResampleFilterENS_17tResampleEdgeModeEb'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='1008' u='c' c='_ZN6tImage8tPicture14GenerateLayersER5tListINS_6tLayerEENS_15tResampleFilterENS_17tResampleEdgeModeEb'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='203' u='c' c='_ZN6tImage8tTexture33ProcessImageTo_R8G8B8_Or_R8G8B8A8ERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='252' u='c' c='_ZN6tImage8tTexture23ProcessImageTo_G3B5R5G3ERNS_8tPictureEbNS0_8tQualityE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='317' u='c' c='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>

@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tQuantize.h' l='119' type='double tImage::tQuantizeSpatial::ComputeBaseDither(int width, int height, int numColours)'/>
+<def f='Modules/Image/Src/tQuantizeSpatial.cpp' l='828' ll='835' type='double tImage::tQuantizeSpatial::ComputeBaseDither(int width, int height, int numColours)'/>
+<use f='Modules/Image/Src/tQuantizeSpatial.cpp' l='851' u='c' c='_ZN6tImage16tQuantizeSpatial13QuantizeImageEiiiPK9tColour3bPS1_Phbdi'/>
+<doc f='Modules/Image/Src/tQuantizeSpatial.cpp' l='823'>//
+// The functions below make up the external interface.
+//</doc>

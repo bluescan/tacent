@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/GifLoad/gif_load.h' l='62' type='2'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='89' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='102' u='r' c='_ZN6tImage9tImageGIF17FrameLoadCallbackEP8GIF_WHDR'/>

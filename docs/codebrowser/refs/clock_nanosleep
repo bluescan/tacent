@@ -1,0 +1,1 @@
+<dec f='include/time.h' l='311' type='int clock_nanosleep(clockid_t __clock_id, int __flags, const struct timespec * __req, struct timespec * __rem)'/>

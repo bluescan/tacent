@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='4718' ll='4720' type='_RealType std::exponential_distribution::lambda() const'/>
+<doc f='include/c++/11/bits/random.h' l='4715'>/**
+       * @brief Returns the inverse scale parameter of the distribution.
+       */</doc>

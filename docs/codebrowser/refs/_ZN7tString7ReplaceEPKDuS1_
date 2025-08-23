@@ -1,0 +1,22 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='287' type='int tString::Replace(const char8_t * search, const char8_t * replace)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='288' u='c' c='_ZN7tString7ReplaceEPKcS1_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='294' u='c' c='_ZN7tString6RemoveEPKDu'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='281'>// Replace all occurrences of string search with string replace. Returns the number of replacements. The replacement
+	// is done in a forward direction. If replace is a larger size than search, memory may need to be managed to
+	// accomadate the larger size if the capacity isn&apos;t big enough. If they are the same size, the function is faster
+	// and doesn&apos;t need to mess with memory. If replace is &quot;&quot; or nullptr, all occurrences of search will be removed
+	// (replaced by nothing). It is valid to perform this for ASCII strings as well as UTF-8 so the function is
+	// overridden for const char*. The input strings are assumed to be null-terminated. Returns nomber of replacements.</doc>
+<def f='Modules/Foundation/Src/tString.cpp' l='300' ll='403' type='int tString::Replace(const char8_t * search, const char8_t * replace)'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='762' u='c' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringS6_'/>
+<use f='Modules/System/Src/tChunk.cpp' l='696' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='697' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='698' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='699' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='700' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='701' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='702' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tChunk.cpp' l='703' u='c' c='_ZN12tChunkWriter5WriteEPKvRK7tString'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='289' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='290' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='291' u='c' c='_ZN8tCmdLine6tParseEPKDubb'/>

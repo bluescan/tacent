@@ -1,0 +1,4 @@
+<dec f='include/wchar.h' l='434' type='unsigned long wcstoul(const wchar_t *__restrict __nptr, wchar_t **__restrict __endptr, int __base)'/>
+<use f='include/c++/11/bits/basic_string.h' l='6761' u='a' c='_ZNSt7__cxx115stoulERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPmi'/>
+<doc f='include/wchar.h' l='432'>/* Convert initial portion of wide string NPTR to `unsigned long int&apos;
+   representation.  */</doc>

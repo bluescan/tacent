@@ -1,0 +1,33 @@
+<use f='Modules/Image/Contrib/WebP/include/mux.h' l='495' c='WebPAnimEncoderAdd'/>
+<use f='Modules/Image/Contrib/WebP/include/encode.h' l='31'/>
+<def f='Modules/Image/Contrib/WebP/include/encode.h' l='95' ll='152'/>
+<size>116</size>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='94'>// Compression parameters.</doc>
+<mbr r='WebPConfig::lossless' o='0' t='int'/>
+<mbr r='WebPConfig::quality' o='32' t='float'/>
+<mbr r='WebPConfig::method' o='64' t='int'/>
+<mbr r='WebPConfig::image_hint' o='96' t='WebPImageHint'/>
+<mbr r='WebPConfig::target_size' o='128' t='int'/>
+<mbr r='WebPConfig::target_PSNR' o='160' t='float'/>
+<mbr r='WebPConfig::segments' o='192' t='int'/>
+<mbr r='WebPConfig::sns_strength' o='224' t='int'/>
+<mbr r='WebPConfig::filter_strength' o='256' t='int'/>
+<mbr r='WebPConfig::filter_sharpness' o='288' t='int'/>
+<mbr r='WebPConfig::filter_type' o='320' t='int'/>
+<mbr r='WebPConfig::autofilter' o='352' t='int'/>
+<mbr r='WebPConfig::alpha_compression' o='384' t='int'/>
+<mbr r='WebPConfig::alpha_filtering' o='416' t='int'/>
+<mbr r='WebPConfig::alpha_quality' o='448' t='int'/>
+<mbr r='WebPConfig::pass' o='480' t='int'/>
+<mbr r='WebPConfig::show_compressed' o='512' t='int'/>
+<mbr r='WebPConfig::preprocessing' o='544' t='int'/>
+<mbr r='WebPConfig::partitions' o='576' t='int'/>
+<mbr r='WebPConfig::partition_limit' o='608' t='int'/>
+<mbr r='WebPConfig::emulate_jpeg_size' o='640' t='int'/>
+<mbr r='WebPConfig::thread_level' o='672' t='int'/>
+<mbr r='WebPConfig::low_memory' o='704' t='int'/>
+<mbr r='WebPConfig::near_lossless' o='736' t='int'/>
+<mbr r='WebPConfig::exact' o='768' t='int'/>
+<mbr r='WebPConfig::use_delta_palette' o='800' t='int'/>
+<mbr r='WebPConfig::use_sharp_yuv' o='832' t='int'/>
+<mbr r='WebPConfig::pad' o='864' t='uint32_t[2]'/>

@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/ranges_algo.h' l='1266' ll='1273' type='unique_copy_result&lt;borrowed_iterator_t&lt;_Range&gt;, _Out&gt; std::ranges::__unique_copy_fn::operator()(_Range &amp;&amp; __r, _Out __result, _Comp __comp = {}, _Proj __proj = {}) const'/>

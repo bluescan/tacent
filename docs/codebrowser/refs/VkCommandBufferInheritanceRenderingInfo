@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7270' ll='7280'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7270'/>
+<size>56</size>
+<mbr r='VkCommandBufferInheritanceRenderingInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkCommandBufferInheritanceRenderingInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkCommandBufferInheritanceRenderingInfo::flags' o='128' t='VkRenderingFlags'/>
+<mbr r='VkCommandBufferInheritanceRenderingInfo::viewMask' o='160' t='uint32_t'/>
+<mbr r='VkCommandBufferInheritanceRenderingInfo::colorAttachmentCount' o='192' t='uint32_t'/>
+<mbr r='VkCommandBufferInheritanceRenderingInfo::pColorAttachmentFormats' o='256' t='const VkFormat *'/>
+<mbr r='VkCommandBufferInheritanceRenderingInfo::depthAttachmentFormat' o='320' t='VkFormat'/>
+<mbr r='VkCommandBufferInheritanceRenderingInfo::stencilAttachmentFormat' o='352' t='VkFormat'/>
+<mbr r='VkCommandBufferInheritanceRenderingInfo::rasterizationSamples' o='384' t='VkSampleCountFlagBits'/>

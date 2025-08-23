@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/iterator_concepts.h' l='948' type='void std::ranges::__cust_access::begin(auto &amp; )'/>
+<doc f='include/c++/11/bits/iterator_concepts.h' l='947'>// Poison pills so that unqualified lookup doesn&apos;t find std::begin.</doc>

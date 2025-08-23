@@ -1,0 +1,1 @@
+<dec f='include/x86_64-linux-gnu/bits/mathcalls.h' l='416' macro='1' type='int totalordermagf32(const _Float32 * __x, const _Float32 * __y)'/>

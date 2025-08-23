@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18693' ll='18698'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18693'/>
+<size>16</size>
+<mbr r='VkAccelerationStructureBuildRangeInfoKHR::primitiveCount' o='0' t='uint32_t'/>
+<mbr r='VkAccelerationStructureBuildRangeInfoKHR::primitiveOffset' o='32' t='uint32_t'/>
+<mbr r='VkAccelerationStructureBuildRangeInfoKHR::firstVertex' o='64' t='uint32_t'/>
+<mbr r='VkAccelerationStructureBuildRangeInfoKHR::transformOffset' o='96' t='uint32_t'/>

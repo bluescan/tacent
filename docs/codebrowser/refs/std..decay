@@ -1,0 +1,15 @@
+<def f='include/c++/11/type_traits' l='2159' ll='2165'/>
+<use f='include/c++/11/type_traits' l='2184'/>
+<use f='include/c++/11/type_traits' l='2575'/>
+<use f='include/c++/11/bits/std_function.h' l='343'/>
+<use f='include/c++/11/functional' l='764'/>
+<use f='include/c++/11/functional' l='769'/>
+<use f='include/c++/11/functional' l='771'/>
+<use f='include/c++/11/functional' l='772'/>
+<use f='include/c++/11/functional' l='798'/>
+<use f='include/c++/11/functional' l='800'/>
+<use f='include/c++/11/functional' l='802'/>
+<use f='include/c++/11/bits/nested_exception.h' l='120' c='_ZSt17throw_with_nestedOT_'/>
+<use f='include/c++/11/bits/std_thread.h' l='129' c='_ZNSt6threadC1EOT_DpOT0_'/>
+<use f='include/c++/11/bits/std_thread.h' l='130' c='_ZNSt6threadC1EOT_DpOT0_'/>
+<use f='include/c++/11/bits/std_thread.h' l='272'/>

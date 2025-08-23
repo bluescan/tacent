@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='29'/>
+<use f='Modules/Image/Contrib/LibTIFF/include/tiff.h' l='76' u='c'/>
+<doc f='Modules/Image/Contrib/LibTIFF/include/tiffconf.h' l='28'>/* Unsigned 64-bit type */</doc>

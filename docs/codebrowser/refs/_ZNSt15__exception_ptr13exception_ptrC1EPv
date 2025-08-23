@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/exception_ptr.h' l='94' type='void std::__exception_ptr::exception_ptr::exception_ptr(void * __e)'/>
+<use f='include/c++/11/bits/exception_ptr.h' l='250' u='c' c='_ZSt18make_exception_ptrT_'/>

@@ -1,0 +1,7 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='389' type='void tMath::tPlane::ComputeOrthogonalBasisVectors(tMath::tVector3 &amp; u, tMath::tVector3 &amp; v) const'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='387'>// Computes two unit vectors for the plane that form an orthogonal basis. The plane d-value is irrelevant and the
+	// plane may be considered to go through the origin. The plane does not need to be normalized before calling.</doc>
+<def f='Modules/Math/Src/tGeometry.cpp' l='72' ll='93' type='void tMath::tPlane::ComputeOrthogonalBasisVectors(tMath::tVector3 &amp; u, tMath::tVector3 &amp; v) const'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='168' u='c' c='_ZN5tMath7tRandom21tGetPointOnUnitSquareERKNS_6tPlaneERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='250' u='c' c='_ZN5tMath7tRandom19tGetPointOnCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Src/tRandom.cpp' l='308' u='c' c='_ZN5tMath7tRandom19tGetPointInCylinderERKNS_9tCylinderERKNS0_10tGeneratorE'/>

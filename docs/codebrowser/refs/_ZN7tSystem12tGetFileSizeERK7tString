@@ -1,0 +1,8 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='181' type='int tSystem::tGetFileSize(const tString &amp; file)'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='354' u='c' c='_ZN12tChunkReader19GetBufferSizeNeededERK7tString'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='180'>// Returns 0 if the file doesn&apos;t exist. Also returns 0 if the file exists and its size is actually 0.</doc>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='53' u='c' c='_ZN6tImage9tImageJPG4LoadERK7tStringRKNS0_10LoadParamsE'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='30' u='c' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='75' u='c' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<def f='Modules/System/Src/tFile.cpp' l='521' ll='557' type='int tSystem::tGetFileSize(const tString &amp; file)'/>
+<use f='Modules/System/Src/tFile.cpp' l='1234' u='c' c='_ZN7tSystem9tLoadFileERK7tStringRS0_c'/>

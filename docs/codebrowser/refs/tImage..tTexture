@@ -1,0 +1,23 @@
+<inh f='Modules/Foundation/Inc/Foundation/tList.h' l='37' c='tLink'/>
+<def f='Modules/Image/Inc/Image/tTexture.h' l='38' ll='140'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='38'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='121' c='_ZNK6tImage8tTextureeqERKS0_'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='122' c='_ZNK6tImage8tTextureneERKS0_'/>
+<size>72</size>
+<doc f='Modules/Image/Inc/Image/tTexture.h' l='36'>// @todo This class needs some work. It&apos;s too strongly linked to tImageDDS. It should probably just take in layers and
+// also be able to convert frames to layers and support various types of conversion/compression.</doc>
+<fun r='_ZN6tImage8tTextureD1Ev'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='437' c='_ZNK6tImage8tTextureeqERKS0_'/>
+<size>72</size>
+<smbr r='tImage::tTexture::BC7EncInitialized' t='bool'/>
+<fun r='_ZN6tImage8tTexture3SetER5tListINS_6tLayerEE'/>
+<fun r='_ZN6tImage8tTexture4LoadERK7tStringNS_10tFaceIndexEb'/>
+<fun r='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>
+<fun r='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<fun r='_ZN6tImage8tTexture33ProcessImageTo_R8G8B8_Or_R8G8B8A8ERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<fun r='_ZN6tImage8tTexture23ProcessImageTo_G3B5R5G3ERNS_8tPictureEbNS0_8tQualityE'/>
+<fun r='_ZN6tImage8tTexture19ProcessImageTo_BCTCERNS_8tPictureENS_12tPixelFormatEbNS0_8tQualityE'/>
+<fun r='_ZNK6tImage8tTexture25ComputeMaxNumberOfMipmapsEv'/>
+<fun r='_ZNK6tImage8tTexture4SaveER12tChunkWriter'/>
+<fun r='_ZN6tImage8tTexture4LoadERK6tChunk'/>
+<fun r='_ZNK6tImage8tTextureeqERKS0_'/>

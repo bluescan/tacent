@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/unique_ptr.h' l='659' u='c' c='_ZNKSt10unique_ptrIA_T_T0_EixEm'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='660' u='c' c='_ZNKSt10unique_ptrIA_T_T0_EixEm'/>
+<def f='include/c++/11/bits/unique_ptr.h' l='664' ll='666' type='std::unique_ptr&lt;type-parameter-0-0[], type-parameter-0-1&gt;::pointer std::unique_ptr&lt;type-parameter-0-0[], type-parameter-0-1&gt;::get() const'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='680' u='c' c='_ZNKSt10unique_ptrIA_T_T0_EcvbEv'/>
+<doc f='include/c++/11/bits/unique_ptr.h' l='663'>/// Return the stored pointer.</doc>

@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/typesizes.h' l='90'/>
+<doc f='include/x86_64-linux-gnu/bits/typesizes.h' l='89'>/* And for fsblkcnt_t, fsblkcnt64_t, fsfilcnt_t and fsfilcnt64_t.  */</doc>

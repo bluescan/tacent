@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/hash_bytes.h' l='47' type='std::size_t std::_Hash_bytes(const void * __ptr, std::size_t __len, std::size_t __seed)'/>
+<use f='include/c++/11/bits/functional_hash.h' l='198' u='c' c='_ZNSt10_Hash_impl4hashEPKvmm'/>
+<use f='include/c++/11/typeinfo' l='146' u='c' c='_ZNKSt9type_info9hash_codeEv'/>
+<doc f='include/c++/11/bits/hash_bytes.h' l='41'>// Hash function implementation for the nontrivial specialization.
+  // All of them are based on a primitive that hashes a pointer to a
+  // byte array. The actual hash algorithm is not guaranteed to stay
+  // the same from release to release -- it may be updated or tuned to
+  // improve hash quality or speed.</doc>

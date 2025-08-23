@@ -1,0 +1,15 @@
+<use f='Modules/Image/Inc/Image/tFrame.h' l='32' u='c' c='_ZN6tImage6tFrameC1EPK9tColour4biif'/>
+<dec f='Modules/Image/Inc/Image/tFrame.h' l='38' type='bool tImage::tFrame::Set(const tPixel4b * src, int width, int height, float duration = 0.F)'/>
+<def f='Modules/Image/Inc/Image/tFrame.h' l='92' ll='106' type='bool tImage::tFrame::Set(const tPixel4b * srcPixels, int width, int height, float duration = 0.F)'/>
+<use f='Modules/Image/Src/tImageAPNG.cpp' l='162' u='c' c='_ZN6tImage10tImageAPNG3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageBMP.cpp' l='554' u='c' c='_ZN6tImage9tImageBMP8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageEXR.cpp' l='322' u='c' c='_ZN6tImage9tImageEXR3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageGIF.cpp' l='217' u='c' c='_ZN6tImage9tImageGIF3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='475' u='c' c='_ZN6tImage9tImageHDR8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageICO.cpp' l='204' u='c' c='_ZN6tImage9tImageICO3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageJPG.cpp' l='274' u='c' c='_ZN6tImage9tImageJPG8GetFrameEb'/>
+<use f='Modules/Image/Src/tImagePNG.cpp' l='530' u='c' c='_ZN6tImage9tImagePNG8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageQOI.cpp' l='163' u='c' c='_ZN6tImage9tImageQOI8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageTGA.cpp' l='357' u='c' c='_ZN6tImage9tImageTGA8GetFrameEb'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='169' u='c' c='_ZN6tImage10tImageTIFF3SetEP9tColour4biib'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='256' u='c' c='_ZN6tImage10tImageWEBP3SetEP9tColour4biib'/>

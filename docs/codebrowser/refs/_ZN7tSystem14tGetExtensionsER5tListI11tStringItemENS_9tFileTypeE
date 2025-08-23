@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tFile.h' l='421' type='void tSystem::tGetExtensions(tList&lt;tStringItem&gt; &amp; extensions, tSystem::tFileType )'/>
+<use f='Modules/System/Inc/System/tFile.h' l='886' u='c' c='_ZN7tSystem11tExtensions3AddENS_9tFileTypeEb'/>
+<doc f='Modules/System/Inc/System/tFile.h' l='420'>// Get all extensions used by a particular filetype. Any existing items in extensions are appended to.</doc>
+<def f='Modules/System/Src/tFile.cpp' l='1942' ll='1951' type='void tSystem::tGetExtensions(tList&lt;tStringItem&gt; &amp; extensions, tSystem::tFileType fileType)'/>

@@ -1,0 +1,9 @@
+<dec f='include/c++/11/istream' l='302' type='std::basic_istream::int_type std::basic_istream::get()'/>
+<def f='include/c++/11/bits/istream.tcc' l='241' ll='275' type='typename basic_istream&lt;_CharT, _Traits&gt;::int_type std::basic_istream::get()'/>
+<doc f='include/c++/11/istream' l='294'>/**
+       *  @brief  Simple extraction.
+       *  @return  A character, or eof().
+       *
+       *  Tries to extract a character.  If none are available, sets failbit
+       *  and returns traits::eof().
+      */</doc>

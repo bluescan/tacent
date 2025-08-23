@@ -1,0 +1,6 @@
+<use f='Modules/Input/Inc/Input/tUnit.h' l='34' u='w' c='_ZN6tInput5tUnitC1ERK5tNameRSt5mutex'/>
+<dec f='Modules/Input/Inc/Input/tUnit.h' l='38' type='std::mutex &amp;'/>
+<offset>320</offset>
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='35' u='a' c='_ZNK6tInput19tUnitContinuousDisp15GetDisplacementEv'/>
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='51' u='a' c='_ZN6tInput19tUnitContinuousDisp18SetDisplacementRawEf'/>
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='61' u='a' c='_ZN6tInput19tUnitContinuousDisp15SetDisplacementEf'/>

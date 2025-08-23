@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14535'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14534'>// VK_EXT_host_image_copy is a preprocessor guard. Do not pass it to API calls.</doc>

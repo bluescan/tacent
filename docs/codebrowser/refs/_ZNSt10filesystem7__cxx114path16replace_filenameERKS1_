@@ -1,0 +1,3 @@
+<dec f='include/c++/11/bits/fs_path.h' l='403' type='std::filesystem::path &amp; std::filesystem::path::replace_filename(const std::filesystem::path &amp; __replacement)'/>
+<use f='include/c++/11/bits/fs_dir.h' l='140' u='c' c='_ZNSt10filesystem7__cxx1115directory_entry16replace_filenameERKNS0_4pathE'/>
+<use f='include/c++/11/bits/fs_dir.h' l='147' u='c' c='_ZNSt10filesystem7__cxx1115directory_entry16replace_filenameERKNS0_4pathERSt10error_code'/>

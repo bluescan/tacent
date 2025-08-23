@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tList.h' l='104' type='T * tList::PrevCirc(const T * here) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tList.h' l='104'>/* Circular. Gets item before here. */</doc>

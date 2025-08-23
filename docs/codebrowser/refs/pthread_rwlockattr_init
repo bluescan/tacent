@@ -1,0 +1,2 @@
+<dec f='include/pthread.h' l='1078' type='int pthread_rwlockattr_init(pthread_rwlockattr_t * __attr)'/>
+<doc f='include/pthread.h' l='1077'>/* Initialize attribute object ATTR with default values.  */</doc>

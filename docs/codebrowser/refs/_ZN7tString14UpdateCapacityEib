@@ -1,0 +1,39 @@
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='58' u='c' c='_ZN7tStringC1Ev'/>
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='412' type='void tString::UpdateCapacity(int capNeeded, bool preserve)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='618' u='c' c='_ZN7tString3SetERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='629' u='c' c='_ZN7tString3SetEi'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='637' u='c' c='_ZN7tString3SetEc'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='647' u='c' c='_ZN7tString3SetEPKDu'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='661' u='c' c='_ZN7tString3SetEPKDui'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='739' u='c' c='_ZN7tStringaSERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='778' u='c' c='_ZN7tString6AppendERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='940' u='c' c='_ZN7tString9SetLengthEib'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1217' u='c' c='_ZN11tStringItemaSERKS_'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='390'>// The basic idea behind this function is you ask it for a specific amount of room that you know you will need -- to
+	// do say an append operaion. It guarantees that the capacity afterwards will be at least as big as what you requested.
+	//
+	// It makes sure CurrCapacity is at least as big as capNeeded. If it already is, it does nothing. If it
+	// is not, it updates CurrCapacity (and the CodeUnits) to have enough room plus whatever extra is dictated by the
+	// GrowParam.
+	//
+	// In some cases you care if the original string is preserved (eg. For an append) and in some cases you do not
+	// (eg. For a Set call, the old contents are cleared). If you don&apos;t need the string preserved, call this with
+	// preserve = false. It will save a memcpy (and the string length will be 0 afterwards).
+	// If the string is empty, it doesn&apos;t really matter what preserve is set to.
+	//
+	// If called with preserve true the function is nondestructive and expects StringLength to be set correctly and be
+	// the current length, not the potential future length (do not modify StringLength first). It is illegal to call
+	// with preserve true and a capNeeded that is less than the StringLength.
+	//
+	// This function respects MinCapactity. If capNeeded + (possible grow amount) is under MinCapacity,
+	// MinCapacity will be used instead. Calling with capNeeded = 0 is special, it will not add any extra grow amount.
+	// This results in MinCapacity being used. When calling with 0 you still need to meet the StringLenghth requirement if
+	// preserve is true (i.e. StringLength would need to be 0).
+	//
+	// This function never shrinks the capacity. Use Reserve, Shrink, or Grow (with negative input) for that.</doc>
+<use f='Modules/Foundation/Src/tString.cpp' l='393' u='c' c='_ZN7tString7ReplaceEPKDuS1_'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='652' u='c' c='_ZN7tString8SetUTF16EPKDsi'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='658' u='c' c='_ZN7tString8SetUTF16EPKDsi'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='680' u='c' c='_ZN7tString8SetUTF32EPKDii'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='686' u='c' c='_ZN7tString8SetUTF32EPKDii'/>
+<def f='Modules/Foundation/Src/tString.cpp' l='696' ll='733' type='void tString::UpdateCapacity(int capNeeded, bool preserve)'/>

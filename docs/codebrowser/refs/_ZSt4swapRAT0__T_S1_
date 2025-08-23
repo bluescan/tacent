@@ -1,0 +1,2 @@
+<dec f='include/c++/11/type_traits' l='2684' type='__enable_if_t&lt;__is_swappable&lt;_Tp&gt;::value&gt; std::swap(_Tp (&amp;)[_Nm] __a, _Tp (&amp;)[_Nm] __b)'/>
+<def f='include/c++/11/bits/move.h' l='213' ll='225' macro='1' type='typename enable_if&lt;__is_swappable&lt;_Tp&gt;::value&gt;::type std::swap(_Tp (&amp;)[_Nm] __a, _Tp (&amp;)[_Nm] __b)'/>

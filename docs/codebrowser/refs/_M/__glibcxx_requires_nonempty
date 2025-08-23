@@ -1,0 +1,16 @@
+<dec f='include/c++/11/debug/assertions.h' l='44'/>
+<use f='include/c++/11/array' l='226' u='c'/>
+<use f='include/c++/11/array' l='234' u='c'/>
+<use f='include/c++/11/array' l='242' u='c'/>
+<use f='include/c++/11/array' l='250' u='c'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1123' u='c'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1134' u='c'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1145' u='c'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1156' u='c'/>
+<use f='include/c++/11/bits/stl_vector.h' l='1227' u='c'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1407' u='c'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1418' u='c'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1429' u='c'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1442' u='c'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1534' u='c'/>
+<use f='include/c++/11/bits/stl_deque.h' l='1557' u='c'/>

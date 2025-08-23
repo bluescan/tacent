@@ -1,0 +1,13 @@
+<dec f='Modules/Foundation/Inc/Foundation/tMemory.h' l='21' type='void * tMem::tMalloc(int size, int align = DefaultAlignment)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tMemory.h' l='21'>// Align must be a power of 2.</doc>
+<def f='Modules/Foundation/Src/tMemory.cpp' l='19' ll='41' type='void * tMem::tMalloc(int size, int alignSize = DefaultAlignment)'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='27' u='c' c='_ZN4tMem9tFastPool9SlotBlock4InitEii'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='73' u='c' c='_ZN4tMem9tFastPoolC1Eiiib'/>
+<use f='Modules/Foundation/Src/tPool.cpp' l='100' u='c' c='_ZN4tMem9tFastPool8GrowPoolEv'/>
+<use f='Modules/System/Src/tChunk.cpp' l='787' u='c' c='_ZN12tChunkReader4LoadERK7tStringPh'/>
+<use f='Modules/System/Src/tChunk.cpp' l='828' u='c' c='_ZN12tChunkReader8LoadSafeERK7tString'/>
+<use f='Modules/System/Src/tRegex.cpp' l='111' u='c' c='_ZN7tSystem6tRegex7NewNodeEi'/>
+<use f='Modules/System/Src/tRegex.cpp' l='766' u='c' c='_ZN7tSystem6tRegex15CompileInternalEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='789' u='c' c='_ZN7tSystem6tRegex15CompileInternalEv'/>
+<use f='Modules/System/Src/tRegex.cpp' l='826' u='c' c='_ZN7tSystem6tRegex7CompileERK7tString'/>
+<use f='Modules/System/Src/tRegex.cpp' l='842' u='c' c='_ZN7tSystem6tRegex7CompileEPKc'/>

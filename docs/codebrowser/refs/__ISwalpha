@@ -1,0 +1,9 @@
+<dec f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='60' type='2'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='73' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='73' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='73' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='73' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='73' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='73' u='r'/>
+<use f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='73' u='r'/>
+<doc f='include/x86_64-linux-gnu/bits/wctype-wchar.h' l='60'>/* Alphabetic.  */</doc>

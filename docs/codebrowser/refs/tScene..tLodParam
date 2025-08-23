@@ -1,0 +1,13 @@
+<def f='Modules/Scene/Inc/Scene/tLodGroup.h' l='24' ll='43'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='60'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='64' c='_ZN6tScene9tLodGroup16ThresholdCompareERKNS_9tLodParamES3_'/>
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='64' c='_ZN6tScene9tLodGroup16ThresholdCompareERKNS_9tLodParamES3_'/>
+<size>16</size>
+<fun r='_ZN6tScene9tLodParamD1Ev'/>
+<use f='Modules/Scene/Src/tLodGroup.cpp' l='78' c='_ZN6tScene9tLodGroup4LoadERK6tChunk'/>
+<size>16</size>
+<fun r='_ZNK6tScene9tLodParam4SaveER12tChunkWriter'/>
+<fun r='_ZN6tScene9tLodParam4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1623' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1623' c='_ZN6tScene6tWorld42GenerateLodGroupsFromModelNamingConventionEv'/>
+<size>16</size>

@@ -1,0 +1,23 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='110' type='void tString::SetLength(int length, bool preserve = true)'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='140' u='c' c='_ZN7tString20ShrinkNullTerminatedEv'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='936' ll='947' type='void tString::SetLength(int length, bool preserve = true)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='102'>// Some external functions write directly into the CodeUnits and need to manually set the StringLength first. This
+	// function allows you to do that. It also writes the internal null terminator. If you call this with a length &gt;
+	// capacity, it updates the capacity to be &gt;= the requested length. This function preserves all existing characters
+	// if it can. Calling with a number &lt; the current length will cut off the end characters. If you call with a value &gt;
+	// current length, it sets the extra characters (up to length) with zeros. In all cases the string length will be
+	// left at what you called this with. It is illegal to call with a negative value.
+	// For efficiency you can opt to set preserve to false. In this case the characters may be completely uninitialized
+	// and it is your responsibility to populate them with something valid. Internal null still written.</doc>
+<use f='Modules/System/Src/tFile.cpp' l='372' u='c' c='_ZN7tSystem7tGetDirERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='423' u='c' c='_ZN7tSystem9tGetUpDirERK7tStringi'/>
+<use f='Modules/System/Src/tFile.cpp' l='1241' u='c' c='_ZN7tSystem9tLoadFileERK7tStringRS0_c'/>
+<use f='Modules/System/Src/tFile.cpp' l='1368' u='c' c='_ZN7tSystem14tGetProgramDirEv'/>
+<use f='Modules/System/Src/tPrint.cpp' l='520' u='c' c='_Z9tsvPrintfR7tStringPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='543' u='c' c='_Z10tsavPrintfR7tStringPKcP13__va_list_tag'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2142' u='c' c='_ZN7tSystem7tFtostrER7tStringfb'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2164' u='c' c='_ZN7tSystem7tFtostrER7tStringfb'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2187' u='c' c='_ZN7tSystem7tDtostrER7tStringdb'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2209' u='c' c='_ZN7tSystem7tDtostrER7tStringdb'/>
+<use f='Modules/System/Src/tScript.cpp' l='469' u='c' c='_ZNK11tExpression10GetContextEv'/>
+<use f='Modules/System/Src/tScript.cpp' l='475' u='c' c='_ZNK11tExpression10GetContextEv'/>

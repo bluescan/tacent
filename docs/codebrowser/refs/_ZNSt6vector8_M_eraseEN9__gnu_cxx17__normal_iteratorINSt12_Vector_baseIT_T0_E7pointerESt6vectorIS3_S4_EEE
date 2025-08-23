@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_vector.h' l='1804' type='std::vector::iterator std::vector::_M_erase(std::vector::iterator __position)'/>
+<def f='include/c++/11/bits/vector.tcc' l='169' ll='180' type='typename vector&lt;_Tp, _Alloc&gt;::iterator std::vector::_M_erase(std::vector::iterator __position)'/>

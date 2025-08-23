@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='657' ll='659' type='long double std::cyl_neumannl(long double __nu, long double __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='651'>/**
+   * Return the Neumann function @f$ N_{\nu}(x) @f$
+   * of &lt;tt&gt;long double&lt;/tt&gt; order @f$ \nu @f$ and argument @f$ x @f$.
+   *
+   * @see cyl_neumann for setails.
+   */</doc>

@@ -1,0 +1,8 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='435' type='bool tColour4b::operator!=(const tColour4b &amp; c) const'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='654' u='c' c='_ZNK6tImage8tPictureeqERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='52' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='53' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='54' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='60' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='61' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>
+<use f='Modules/Scene/Src/tMaterial.cpp' l='62' u='c' c='_ZNK6tScene9tMaterial18IsFunctionallySameERKS0_'/>

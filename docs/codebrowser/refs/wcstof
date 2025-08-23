@@ -1,0 +1,3 @@
+<dec f='include/wchar.h' l='383' type='float wcstof(const wchar_t *__restrict __nptr, wchar_t **__restrict __endptr)'/>
+<use f='include/c++/11/bits/basic_string.h' l='6777' u='a' c='_ZNSt7__cxx114stofERKNS_12basic_stringIwSt11char_traitsIwESaIwEEEPm'/>
+<doc f='include/wchar.h' l='382'>/* Likewise for `float&apos; and `long double&apos; sizes of floating-point numbers.  */</doc>

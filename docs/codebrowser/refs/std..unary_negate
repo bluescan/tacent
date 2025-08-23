@@ -1,0 +1,6 @@
+<def f='include/c++/11/bits/stl_function.h' l='1020' ll='1035'/>
+<use f='include/c++/11/bits/stl_function.h' l='1040' c='_ZSt4not1RKT_'/>
+<use f='include/c++/11/bits/stl_function.h' l='1042' c='_ZSt4not1RKT_'/>
+<mbr r='std::unary_negate::_M_pred' t='_Predicate'/>
+<fun r='_ZNSt12unary_negateC1ERKT_'/>
+<fun r='_ZNKSt12unary_negateclERKNT_13argument_typeE'/>

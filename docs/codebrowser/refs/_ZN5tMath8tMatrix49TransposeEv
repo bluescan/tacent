@@ -1,0 +1,4 @@
+<def f='Modules/Math/Inc/Math/tMatrix4.h' l='66' type='void tMath::tMatrix4::Transpose()'/>
+<doc f='Modules/Math/Inc/Math/tMatrix4.h' l='66'>/* Will invert a purely orthogonal matrix. */</doc>
+<use f='Modules/Math/Src/tGeometry.cpp' l='90' u='c' c='_ZNK5tMath6tPlane29ComputeOrthogonalBasisVectorsERNS_8tVector3ES2_'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='101' u='c' c='_ZN5tMath8tFrustum3SetERKNS_8tMatrix4E'/>

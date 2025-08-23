@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/algorithmfwd.h' l='911' type='_OIter std::set_union(_IIter1 , _IIter1 , _IIter2 , _IIter2 , _OIter )'/>
+<def f='include/c++/11/bits/stl_algo.h' l='5150' ll='5177' macro='1' type='_OutputIterator std::set_union(_InputIterator1 __first1, _InputIterator1 __last1, _InputIterator2 __first2, _InputIterator2 __last2, _OutputIterator __result)'/>

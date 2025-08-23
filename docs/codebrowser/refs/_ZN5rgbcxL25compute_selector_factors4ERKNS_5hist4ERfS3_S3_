@@ -1,0 +1,2 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1806' ll='1826' type='void rgbcx::compute_selector_factors4(const rgbcx::hist4 &amp; h, float &amp; iz00, float &amp; iz10, float &amp; iz11)'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1883' u='c' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>

@@ -1,0 +1,14 @@
+<dec f='include/unistd.h' l='1091' type='long syscall(long __sysno)'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='108' u='c' c='_ZNSt8__detail15__platform_waitEPKT_i'/>
+<use f='include/c++/11/bits/atomic_wait.h' l='121' u='c' c='_ZNSt8__detail17__platform_notifyEPKT_b'/>
+<use f='include/c++/11/bits/atomic_timed_wait.h' l='95' u='c' c='_ZNSt8__detail26__platform_wait_until_implEPKiiRKNSt6chrono10time_pointINS2_3_V212steady_clockET_EE'/>
+<doc f='include/unistd.h' l='1081'>/* Invoke `system call&apos; number SYSNO, passing it the remaining arguments.
+   This is completely system-dependent, and not often useful.
+
+   In Unix, `syscall&apos; sets `errno&apos; for all errors and most calls return -1
+   for errors; in many systems you cannot pass arguments or get return
+   values for all system calls (`pipe&apos;, `fork&apos;, and `getppid&apos; typically
+   among them).
+
+   In Mach, all system calls take normal arguments and always return an
+   error code (zero for success).  */</doc>

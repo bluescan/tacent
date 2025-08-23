@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='874' type='int pthread_mutexattr_init(pthread_mutexattr_t * __attr)'/>
+<doc f='include/pthread.h' l='872'>/* Initialize mutex attribute object ATTR with default attributes
+   (kind is PTHREAD_MUTEX_TIMED_NP).  */</doc>

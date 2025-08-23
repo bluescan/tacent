@@ -1,0 +1,8 @@
+<def f='include/c++/11/type_traits' l='449' ll='451'/>
+<use f='include/c++/11/type_traits' l='588'/>
+<use f='include/c++/11/type_traits' l='3105'/>
+<use f='include/c++/11/ext/alloc_traits.h' l='74'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='145'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='517'/>
+<use f='include/c++/11/bits/unique_ptr.h' l='699'/>
+<use f='include/c++/11/bits/quoted_string.h' l='52'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/std_function.h' l='172' ll='176' type='static void std::_Function_base::_Base_manager::_M_destroy(std::_Any_data &amp; __victim, std::false_type )'/>
+<doc f='include/c++/11/bits/std_function.h' l='171'>// Destroy an object located on the heap.</doc>

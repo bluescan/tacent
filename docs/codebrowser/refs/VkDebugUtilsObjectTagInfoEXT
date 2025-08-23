@@ -1,0 +1,10 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12449' ll='12457'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='12449'/>
+<size>56</size>
+<mbr r='VkDebugUtilsObjectTagInfoEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkDebugUtilsObjectTagInfoEXT::pNext' o='64' t='const void *'/>
+<mbr r='VkDebugUtilsObjectTagInfoEXT::objectType' o='128' t='VkObjectType'/>
+<mbr r='VkDebugUtilsObjectTagInfoEXT::objectHandle' o='192' t='uint64_t'/>
+<mbr r='VkDebugUtilsObjectTagInfoEXT::tagName' o='256' t='uint64_t'/>
+<mbr r='VkDebugUtilsObjectTagInfoEXT::tagSize' o='320' t='size_t'/>
+<mbr r='VkDebugUtilsObjectTagInfoEXT::pTag' o='384' t='const void *'/>

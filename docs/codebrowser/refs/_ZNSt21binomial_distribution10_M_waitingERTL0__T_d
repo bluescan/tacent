@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='3953' type='std::binomial_distribution::result_type std::binomial_distribution::_M_waiting(_UniformRandomNumberGenerator &amp; __urng, _IntType __t, double __q)'/>
+<def f='include/c++/11/bits/random.tcc' l='1519' ll='1542' type='typename binomial_distribution&lt;_IntType&gt;::result_type std::binomial_distribution::_M_waiting(_UniformRandomNumberGenerator &amp; __urng, _IntType __t, double __q)'/>

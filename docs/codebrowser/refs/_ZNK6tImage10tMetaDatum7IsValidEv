@@ -1,0 +1,2 @@
+<def f='Modules/Image/Inc/Image/tMetaData.h' l='161' type='bool tImage::tMetaDatum::IsValid() const'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='878' u='c' c='_ZNK6tImage9tMetaData4SaveER12tChunkWriter'/>

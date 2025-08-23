@@ -1,0 +1,1 @@
+<def f='include/c++/11/atomic' l='385' ll='389' type='bool std::atomic::compare_exchange_strong(_Tp &amp; __e, _Tp __i, std::memory_order __m = memory_order_seq_cst)'/>

@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13499' ll='13503'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13499'/>
+<size>24</size>
+<mbr r='VkPipelineCompilerControlCreateInfoAMD::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineCompilerControlCreateInfoAMD::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineCompilerControlCreateInfoAMD::compilerControlFlags' o='128' t='VkPipelineCompilerControlFlagsAMD'/>

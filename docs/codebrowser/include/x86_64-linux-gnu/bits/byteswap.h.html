@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>byteswap.h source code [include/x86_64-linux-gnu/bits/byteswap.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'include/x86_64-linux-gnu/bits/byteswap.h'; var root_path = '../../..'; var data_path = '../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../..'>include</a>/<a href='..'>x86_64-linux-gnu</a>/<a href='./'>bits</a>/<a href='byteswap.h.html'>byteswap.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/* Macros and inline functions to swap the order of bytes in integer values.</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i>   Copyright (C) 1997-2022 Free Software Foundation, Inc.</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i>   This file is part of the GNU C Library.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i></i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i>   The GNU C Library is free software; you can redistribute it and/or</i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i>   modify it under the terms of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i>   License as published by the Free Software Foundation; either</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i>   version 2.1 of the License, or (at your option) any later version.</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i></i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i>   The GNU C Library is distributed in the hope that it will be useful,</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i>   but WITHOUT ANY WARRANTY; without even the implied warranty of</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i>   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU</i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i>   Lesser General Public License for more details.</i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i></i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i>   You should have received a copy of the GNU Lesser General Public</i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i>   License along with the GNU C Library; if not, see</i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i>   &lt;<a href="https://www.gnu.org/licenses/">https://www.gnu.org/licenses/</a>&gt;.  */</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td>&nbsp</td></tr>
+<tr><th id="19">19</th><td><u>#<span data-ppcond="19">if</span> !defined <span class="macro" data-ref="_M/_BYTESWAP_H">_BYTESWAP_H</span> &amp;&amp; !defined <span class="macro" data-ref="_M/_NETINET_IN_H">_NETINET_IN_H</span> &amp;&amp; !defined <a class="macro" href="../../endian.h.html#19" data-ref="_M/_ENDIAN_H">_ENDIAN_H</a></u>&nbsp</td></tr>
+<tr><th id="20">20</th><td><u># error "Never use &lt;bits/byteswap.h&gt; directly; include &lt;byteswap.h&gt; instead."</u>&nbsp</td></tr>
+<tr><th id="21">21</th><td><u>#<span data-ppcond="19">endif</span></u>&nbsp</td></tr>
+<tr><th id="22">22</th><td>&nbsp</td></tr>
+<tr><th id="23">23</th><td><u>#<span data-ppcond="23">ifndef</span> <span class="macro" data-ref="_M/_BITS_BYTESWAP_H">_BITS_BYTESWAP_H</span></u>&nbsp</td></tr>
+<tr><th id="24">24</th><td><u>#define <dfn class="macro" id="_M/_BITS_BYTESWAP_H" data-ref="_M/_BITS_BYTESWAP_H">_BITS_BYTESWAP_H</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="25">25</th><td>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#include &lt;features.h&gt;</u>&nbsp</td></tr>
+<tr><th id="27">27</th><td><u>#include &lt;bits/types.h&gt;</u>&nbsp</td></tr>
+<tr><th id="28">28</th><td>&nbsp</td></tr>
+<tr><th id="29">29</th><td><i>/* Swap bytes in 16-bit value.  */</i>&nbsp</td></tr>
+<tr><th id="30">30</th><td><u>#define <dfn class="macro" id="_M/__bswap_constant_16" data-ref="_M/__bswap_constant_16">__bswap_constant_16</dfn>(x)					\</u>&nbsp</td></tr>
+<tr><th id="31">31</th><td><u>  ((<a class="typedef" href="types.h.html#__uint16_t" title='__uint16_t' data-type='unsigned short' data-ref="__uint16_t">__uint16_t</a>) ((((x) &gt;&gt; 8) &amp; 0xff) | (((x) &amp; 0xff) &lt;&lt; 8)))</u>&nbsp</td></tr>
+<tr><th id="32">32</th><td>&nbsp</td></tr>
+<tr><th id="33">33</th><td><em>static</em> <b>__inline</b> <a class="typedef" href="types.h.html#__uint16_t" title='__uint16_t' data-type='unsigned short' data-ref="__uint16_t">__uint16_t</a>&nbsp</td></tr>
+<tr><th id="34">34</th><td><dfn class="decl def fn" id="__bswap_16" title='__bswap_16' data-ref="__bswap_16">__bswap_16</dfn> (<a class="typedef" href="types.h.html#__uint16_t" title='__uint16_t' data-type='unsigned short' data-ref="__uint16_t">__uint16_t</a> <dfn class="local col1 decl" id="291__bsx" title='__bsx' data-type='__uint16_t' data-ref="291__bsx">__bsx</dfn>)&nbsp</td></tr>
+<tr><th id="35">35</th><td>{&nbsp</td></tr>
+<tr><th id="36">36</th><td><u>#<span data-ppcond="36">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (8))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4, 8)</u>&nbsp</td></tr>
+<tr><th id="37">37</th><td>  <b>return</b> __builtin_bswap16 (__bsx);&nbsp</td></tr>
+<tr><th id="38">38</th><td><u>#<span data-ppcond="36">else</span></u>&nbsp</td></tr>
+<tr><th id="39">39</th><td>  <b>return</b> <a class="macro" href="#30" title="((__uint16_t) ((((__bsx) &gt;&gt; 8) &amp; 0xff) | (((__bsx) &amp; 0xff) &lt;&lt; 8)))" data-ref="_M/__bswap_constant_16">__bswap_constant_16</a> (<a class="local col1 ref" href="#291__bsx" title='__bsx' data-ref="291__bsx">__bsx</a>);&nbsp</td></tr>
+<tr><th id="40">40</th><td><u>#<span data-ppcond="36">endif</span></u>&nbsp</td></tr>
+<tr><th id="41">41</th><td>}&nbsp</td></tr>
+<tr><th id="42">42</th><td>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i>/* Swap bytes in 32-bit value.  */</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><u>#define <dfn class="macro" id="_M/__bswap_constant_32" data-ref="_M/__bswap_constant_32">__bswap_constant_32</dfn>(x)					\</u>&nbsp</td></tr>
+<tr><th id="45">45</th><td><u>  ((((x) &amp; 0xff000000u) &gt;&gt; 24) | (((x) &amp; 0x00ff0000u) &gt;&gt; 8)	\</u>&nbsp</td></tr>
+<tr><th id="46">46</th><td><u>   | (((x) &amp; 0x0000ff00u) &lt;&lt; 8) | (((x) &amp; 0x000000ffu) &lt;&lt; 24))</u>&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td><em>static</em> <b>__inline</b> <a class="typedef" href="types.h.html#__uint32_t" title='__uint32_t' data-type='unsigned int' data-ref="__uint32_t">__uint32_t</a>&nbsp</td></tr>
+<tr><th id="49">49</th><td><dfn class="decl def fn" id="__bswap_32" title='__bswap_32' data-ref="__bswap_32">__bswap_32</dfn> (<a class="typedef" href="types.h.html#__uint32_t" title='__uint32_t' data-type='unsigned int' data-ref="__uint32_t">__uint32_t</a> <dfn class="local col2 decl" id="292__bsx" title='__bsx' data-type='__uint32_t' data-ref="292__bsx">__bsx</dfn>)&nbsp</td></tr>
+<tr><th id="50">50</th><td>{&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>#<span data-ppcond="51">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (3))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4, 3)</u>&nbsp</td></tr>
+<tr><th id="52">52</th><td>  <b>return</b> __builtin_bswap32 (__bsx);&nbsp</td></tr>
+<tr><th id="53">53</th><td><u>#<span data-ppcond="51">else</span></u>&nbsp</td></tr>
+<tr><th id="54">54</th><td>  <b>return</b> <a class="macro" href="#44" title="((((__bsx) &amp; 0xff000000u) &gt;&gt; 24) | (((__bsx) &amp; 0x00ff0000u) &gt;&gt; 8) | (((__bsx) &amp; 0x0000ff00u) &lt;&lt; 8) | (((__bsx) &amp; 0x000000ffu) &lt;&lt; 24))" data-ref="_M/__bswap_constant_32">__bswap_constant_32</a> (<a class="local col2 ref" href="#292__bsx" title='__bsx' data-ref="292__bsx">__bsx</a>);&nbsp</td></tr>
+<tr><th id="55">55</th><td><u>#<span data-ppcond="51">endif</span></u>&nbsp</td></tr>
+<tr><th id="56">56</th><td>}&nbsp</td></tr>
+<tr><th id="57">57</th><td>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i>/* Swap bytes in 64-bit value.  */</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><u>#define <dfn class="macro" id="_M/__bswap_constant_64" data-ref="_M/__bswap_constant_64">__bswap_constant_64</dfn>(x)			\</u>&nbsp</td></tr>
+<tr><th id="60">60</th><td><u>  ((((x) &amp; 0xff00000000000000ull) &gt;&gt; 56)	\</u>&nbsp</td></tr>
+<tr><th id="61">61</th><td><u>   | (((x) &amp; 0x00ff000000000000ull) &gt;&gt; 40)	\</u>&nbsp</td></tr>
+<tr><th id="62">62</th><td><u>   | (((x) &amp; 0x0000ff0000000000ull) &gt;&gt; 24)	\</u>&nbsp</td></tr>
+<tr><th id="63">63</th><td><u>   | (((x) &amp; 0x000000ff00000000ull) &gt;&gt; 8)	\</u>&nbsp</td></tr>
+<tr><th id="64">64</th><td><u>   | (((x) &amp; 0x00000000ff000000ull) &lt;&lt; 8)	\</u>&nbsp</td></tr>
+<tr><th id="65">65</th><td><u>   | (((x) &amp; 0x0000000000ff0000ull) &lt;&lt; 24)	\</u>&nbsp</td></tr>
+<tr><th id="66">66</th><td><u>   | (((x) &amp; 0x000000000000ff00ull) &lt;&lt; 40)	\</u>&nbsp</td></tr>
+<tr><th id="67">67</th><td><u>   | (((x) &amp; 0x00000000000000ffull) &lt;&lt; 56))</u>&nbsp</td></tr>
+<tr><th id="68">68</th><td>&nbsp</td></tr>
+<tr><th id="69">69</th><td><b>__extension__</b> <em>static</em> <b>__inline</b> <a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a>&nbsp</td></tr>
+<tr><th id="70">70</th><td><dfn class="decl def fn" id="__bswap_64" title='__bswap_64' data-ref="__bswap_64">__bswap_64</dfn> (<a class="typedef" href="types.h.html#__uint64_t" title='__uint64_t' data-type='unsigned long' data-ref="__uint64_t">__uint64_t</a> <dfn class="local col3 decl" id="293__bsx" title='__bsx' data-type='__uint64_t' data-ref="293__bsx">__bsx</dfn>)&nbsp</td></tr>
+<tr><th id="71">71</th><td>{&nbsp</td></tr>
+<tr><th id="72">72</th><td><u>#<span data-ppcond="72">if</span> <a class="macro" href="../../features.h.html#168" title="((4 &lt;&lt; 16) + 2 &gt;= ((4) &lt;&lt; 16) + (3))" data-ref="_M/__GNUC_PREREQ">__GNUC_PREREQ</a> (4, 3)</u>&nbsp</td></tr>
+<tr><th id="73">73</th><td>  <b>return</b> __builtin_bswap64 (__bsx);&nbsp</td></tr>
+<tr><th id="74">74</th><td><u>#<span data-ppcond="72">else</span></u>&nbsp</td></tr>
+<tr><th id="75">75</th><td>  <b>return</b> <a class="macro" href="#59" title="((((__bsx) &amp; 0xff00000000000000ull) &gt;&gt; 56) | (((__bsx) &amp; 0x00ff000000000000ull) &gt;&gt; 40) | (((__bsx) &amp; 0x0000ff0000000000ull) &gt;&gt; 24) | (((__bsx) &amp; 0x000000ff00000000ull) &gt;&gt; 8) | (((__bsx) &amp; 0x00000000ff000000ull) &lt;&lt; 8) | (((__bsx) &amp; 0x0000000000ff0000ull) &lt;&lt; 24) | (((__bsx) &amp; 0x000000000000ff00ull) &lt;&lt; 40) | (((__bsx) &amp; 0x00000000000000ffull) &lt;&lt; 56))" data-ref="_M/__bswap_constant_64">__bswap_constant_64</a> (<a class="local col3 ref" href="#293__bsx" title='__bsx' data-ref="293__bsx">__bsx</a>);&nbsp</td></tr>
+<tr><th id="76">76</th><td><u>#<span data-ppcond="72">endif</span></u>&nbsp</td></tr>
+<tr><th id="77">77</th><td>}&nbsp</td></tr>
+<tr><th id="78">78</th><td>&nbsp</td></tr>
+<tr><th id="79">79</th><td><u>#<span data-ppcond="23">endif</span> /* _BITS_BYTESWAP_H */</u>&nbsp</td></tr>
+<tr><th id="80">80</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Modules/Foundation/Inc/Foundation/tArray.h.html'>Modules/Foundation/Inc/Foundation/tArray.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

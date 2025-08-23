@@ -1,0 +1,1 @@
+<def f='include/c++/11/cmath' l='1784' ll='1787' type='typename __gnu_cxx::__enable_if&lt;__is_integer&lt;_Tp&gt;::__value, double&gt;::__type std::scalbln(_Tp __x, long __ex)'/>

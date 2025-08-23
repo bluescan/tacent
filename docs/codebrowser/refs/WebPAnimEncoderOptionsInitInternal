@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/mux.h' l='445' type='int WebPAnimEncoderOptionsInitInternal(WebPAnimEncoderOptions * , int )'/>
+<use f='Modules/Image/Contrib/WebP/include/mux.h' l='454' u='c' c='_ZL26WebPAnimEncoderOptionsInitP22WebPAnimEncoderOptions'/>

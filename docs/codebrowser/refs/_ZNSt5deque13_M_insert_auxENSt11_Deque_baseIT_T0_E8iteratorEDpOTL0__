@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/stl_deque.h' l='2017' type='std::deque::iterator std::deque::_M_insert_aux(std::deque::iterator __pos, _Args &amp;&amp;... __args)'/>
+<def f='include/c++/11/bits/deque.tcc' l='641' ll='681' type='typename deque&lt;_Tp, _Alloc&gt;::iterator std::deque::_M_insert_aux(std::deque::iterator __pos, _Args &amp;&amp;... __args)'/>

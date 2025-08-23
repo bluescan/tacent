@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tMachine.h' l='29' type='tString tSystem::tGetComputerName()'/>
+<doc f='Modules/System/Inc/System/tMachine.h' l='28'>// Returns the computer&apos;s name.</doc>
+<def f='Modules/System/Src/tMachine.cpp' l='82' ll='112' type='tString tSystem::tGetComputerName()'/>
+<use f='Modules/System/Src/tPrint.cpp' l='197' u='c' c='_ZN7tSystem9tRegisterEjy'/>

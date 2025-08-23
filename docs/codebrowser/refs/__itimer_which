@@ -1,0 +1,2 @@
+<def f='include/x86_64-linux-gnu/sys/time.h' l='114' ll='126'/>
+<doc f='include/x86_64-linux-gnu/sys/time.h' l='113'>/* Values for the first argument to `getitimer&apos; and `setitimer&apos;.  */</doc>

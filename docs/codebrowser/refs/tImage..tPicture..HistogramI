@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Inc/Image/tPicture.h' l='351' type='float[256]'/>
+<offset>33504</offset>
+<use f='Modules/Image/Src/tPicture.cpp' l='640' u='r' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='640' u='r' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='659' u='w' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='673' u='r' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>
+<use f='Modules/Image/Src/tPicture.cpp' l='673' u='r' c='_ZN6tImage8tPicture15AdjustmentBeginEv'/>

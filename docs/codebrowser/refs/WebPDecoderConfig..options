@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='466' type='WebPDecoderOptions'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='100' u='m' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>
+<offset>1280</offset>
+<doc f='Modules/Image/Contrib/WebP/include/decode.h' l='466'>// Decoding options</doc>

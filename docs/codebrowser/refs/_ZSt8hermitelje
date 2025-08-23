@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/specfun.h' l='894' ll='896' type='long double std::hermitel(unsigned int __n, long double __x)'/>
+<doc f='include/c++/11/bits/specfun.h' l='888'>/**
+   * Return the Hermite polynomial @f$ H_n(x) @f$ of nonnegative order n
+   * and &lt;tt&gt;long double&lt;/tt&gt; argument @c x.
+   *
+   * @see hermite for details.
+   */</doc>

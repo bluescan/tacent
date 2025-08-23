@@ -1,0 +1,12 @@
+<def f='include/c++/11/ext/new_allocator.h' l='55' ll='205'/>
+<use f='include/c++/11/ext/new_allocator.h' l='86' c='__gnu_cxx::new_allocator::new_allocator{_Tp}'/>
+<use f='include/c++/11/ext/new_allocator.h' l='183' c='__gnu_cxx::operator=='/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/c++allocator.h' l='48'/>
+<ovr f='include/c++/11/bits/allocator.h' l='261' c='std::allocator'/>
+<ovr f='include/c++/11/bits/allocator.h' l='262' c='std::allocator'/>
+<fun r='__gnu_cxx::new_allocator::new_allocator{_Tp}'/>
+<fun r='__gnu_cxx::new_allocator::new_allocator{_Tp}'/>
+<fun r='__gnu_cxx::new_allocator::new_allocator{_Tp}'/>
+<fun r='__gnu_cxx::new_allocator::allocate'/>
+<fun r='__gnu_cxx::new_allocator::deallocate'/>
+<fun r='__gnu_cxx::new_allocator::_M_max_size'/>

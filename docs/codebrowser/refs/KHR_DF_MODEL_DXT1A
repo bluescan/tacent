@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='272' type='128'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='269'>/** DXT1 &quot;channels&quot; are RGB (0), Alpha (1)
+        DXT1/BC1 with one channel is opaque
+        DXT1/BC1 with a cosited alpha sample is transparent */</doc>

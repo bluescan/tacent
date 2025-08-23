@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/unique_ptr.h' l='576' ll='580' type='void std::unique_ptr&lt;type-parameter-0-0[], type-parameter-0-1&gt;::unique_ptr&lt;type-parameter-0-0[], type-parameter-0-1&gt;(_Up __p, __enable_if_t&lt;!is_lvalue_reference&lt;_Del&gt;::value, _Del &amp;&amp;&gt; __d)'/>

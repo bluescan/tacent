@@ -1,0 +1,3 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='671' type='void tMath::tMakeOrthoUniform(tMath::tMat4 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='98' u='c' c='_ZN5tMath8tMatrix416MakeOrthoUniformEv'/>
+<def f='Modules/Math/Src/tLinearAlgebra.cpp' l='866' ll='884' type='void tMath::tMakeOrthoUniform(tMath::tMat4 &amp; m)'/>

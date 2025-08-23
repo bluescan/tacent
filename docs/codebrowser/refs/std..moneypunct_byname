@@ -1,0 +1,20 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1414' ll='1445'/>
+<use f='include/c++/11/bits/locale_facets_nonio.h' l='1448'/>
+<inh f='include/c++/11/bits/locale_facets_nonio.tcc' l='1408' c='std::moneypunct'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1410'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1410'/>
+<inh f='include/c++/11/bits/locale_facets_nonio.tcc' l='1409' c='std::moneypunct'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1411'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1411'/>
+<inh f='include/c++/11/bits/locale_facets_nonio.tcc' l='1483' c='std::moneypunct'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1485'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1485'/>
+<inh f='include/c++/11/bits/locale_facets_nonio.tcc' l='1484' c='std::moneypunct'/>
+<def f='include/c++/11/bits/locale_facets_nonio.tcc' l='1486'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1486'/>
+<size>24</size>
+<smbr r='std::moneypunct_byname::intl' t='const bool'/>
+<fun r='_ZNSt7__cxx1117moneypunct_bynameC1EPKcm'/>
+<fun r='_ZNSt7__cxx1117moneypunct_bynameC1ERKNS_12basic_stringIcSt11char_traitsIcESaIcEEEm'/>
+<fun r='_ZNSt7__cxx1117moneypunct_bynameD1Ev'/>
+<smbr r='std::moneypunct_byname::intl' t='const bool'/>

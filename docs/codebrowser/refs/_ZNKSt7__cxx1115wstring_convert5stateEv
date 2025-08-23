@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/locale_conv.h' l='370' type='std::wstring_convert::state_type std::wstring_convert::state() const'/>
+<doc f='include/c++/11/bits/locale_conv.h' l='369'>/// The final conversion state of the last conversion.</doc>

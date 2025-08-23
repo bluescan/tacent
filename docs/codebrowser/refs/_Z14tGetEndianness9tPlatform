@@ -1,0 +1,7 @@
+<dec f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='184' type='tEndianness tGetEndianness(tPlatform )'/>
+<doc f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='183'>// If you want to know the endianness based on the platform define just test for ENDIAN_BIG or ENDIAN_LITTLE.</doc>
+<doc f='Modules/Foundation/Inc/Foundation/tPlatform.h' l='184'>// Returns the native endianness of the tPlatform.</doc>
+<def f='Modules/Foundation/Src/tPlatform.cpp' l='192' ll='205' type='tEndianness tGetEndianness(tPlatform plat)'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='71' u='c' c='_ZN12tChunkWriterC1ERK7tString9tPlatform'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='91' u='c' c='_ZN12tChunkWriter4OpenERK7tString9tPlatform'/>
+<use f='Modules/System/Inc/System/tChunk.h' l='94' u='c' c='_ZN12tChunkWriter8OpenSafeERK7tString9tPlatform'/>

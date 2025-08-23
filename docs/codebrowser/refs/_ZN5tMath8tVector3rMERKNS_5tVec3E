@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tVector3.h' l='92' type='tMath::tVector3 &amp; tMath::tVector3::operator%=(const tMath::tVec3 &amp; v)'/>
+<doc f='Modules/Math/Inc/Math/tVector3.h' l='92'>/* Cross product for 3D vectors. */</doc>
+<use f='Modules/Math/Src/tGeometry.cpp' l='269' u='c' c='_ZN5tMath15tDistanceToLineERKNS_8tVector3ERKNS_5tLineE'/>

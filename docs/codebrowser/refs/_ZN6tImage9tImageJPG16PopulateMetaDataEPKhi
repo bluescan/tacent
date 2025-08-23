@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tImageJPG.cpp' l='81' u='c' c='_ZN6tImage9tImageJPG4LoadEPKhiRKNS0_10LoadParamsE'/>
+<def f='Modules/Image/Src/tImageJPG.cpp' l='417' ll='422' type='bool tImage::tImageJPG::PopulateMetaData(const uint8 * jpgFileInMemory, int numBytes)'/>

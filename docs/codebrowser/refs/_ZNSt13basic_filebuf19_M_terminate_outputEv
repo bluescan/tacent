@@ -1,0 +1,6 @@
+<dec f='include/c++/11/fstream' l='449' type='bool std::basic_filebuf::_M_terminate_output()'/>
+<use f='include/c++/11/bits/fstream.tcc' l='276' u='c' c='_ZNSt13basic_filebuf5closeEv'/>
+<use f='include/c++/11/bits/fstream.tcc' l='911' u='c' c='_ZNSt13basic_filebuf7_M_seekENT0_8off_typeESt12_Ios_SeekdirNS0_10state_typeE'/>
+<def f='include/c++/11/bits/fstream.tcc' l='949' ll='1008' type='bool std::basic_filebuf::_M_terminate_output()'/>
+<use f='include/c++/11/bits/fstream.tcc' l='1072' u='c' c='_ZNSt13basic_filebuf5imbueERKSt6locale'/>
+<doc f='include/c++/11/fstream' l='447'>// Flushes output buffer, then writes unshift sequence.</doc>

@@ -1,0 +1,10 @@
+<def f='include/c++/11/condition_variable' l='254' ll='280'/>
+<use f='include/c++/11/condition_variable' l='309' c='_ZNSt3_V222condition_variable_any4waitERT_'/>
+<use f='include/c++/11/condition_variable' l='332' c='_ZNSt3_V222condition_variable_any10wait_untilERT_RKNSt6chrono10time_pointIT0_T1_EE'/>
+<use f='include/c++/11/condition_variable' l='386' c='_ZNSt3_V222condition_variable_any4waitERT_St10stop_tokenT0_'/>
+<use f='include/c++/11/condition_variable' l='415' c='_ZNSt3_V222condition_variable_any10wait_untilERT_St10stop_tokenRKNSt6chrono10time_pointIT0_T1_EET2_'/>
+<fun r='_ZNSt3_V222condition_variable_any7_UnlockC1ERT_'/>
+<fun r='_ZNSt3_V222condition_variable_any7_UnlockD1Ev'/>
+<fun r='_ZNSt3_V222condition_variable_any7_UnlockC1ERKNS0_7_UnlockIT_EE'/>
+<fun r='_ZNSt3_V222condition_variable_any7_UnlockaSERKNS0_7_UnlockIT_EE'/>
+<mbr r='std::condition_variable_any::_Unlock::_M_lock' t='_Lock &amp;'/>

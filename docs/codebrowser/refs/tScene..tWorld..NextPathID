@@ -1,0 +1,2 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='52' u='w' c='_ZN6tScene6tWorld5ClearEv'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='737' u='w' c='_ZN6tScene6tWorld14CorrectPathIDsER7tItListINS_5tPathEERS1_INS_9tInstanceEE'/>

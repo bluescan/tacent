@@ -1,0 +1,14 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='1329' type='std::ctype&lt;wchar_t&gt;::char_type std::ctype&lt;wchar_t&gt;::do_toupper(std::ctype&lt;wchar_t&gt;::char_type __c) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1315'>/**
+       *  @brief  Convert to uppercase.
+       *
+       *  This virtual function converts the wchar_t argument to uppercase if
+       *  possible.  If not possible (for example, &apos;2&apos;), returns the argument.
+       *
+       *  do_toupper() is a hook for a derived facet to change the behavior of
+       *  uppercasing.  do_toupper() must always return the same result for
+       *  the same input.
+       *
+       *  @param __c  The wchar_t to convert.
+       *  @return  The uppercase wchar_t if convertible, else @a __c.
+      */</doc>

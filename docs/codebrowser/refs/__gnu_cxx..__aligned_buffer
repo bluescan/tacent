@@ -1,0 +1,11 @@
+<def f='include/c++/11/ext/aligned_buffer.h' l='90' ll='120'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='234'/>
+<use f='include/c++/11/bits/hashtable_policy.h' l='1326'/>
+<mbr r='__gnu_cxx::__aligned_buffer::_M_storage' t='typename std::aligned_storage&lt;sizeof(_Tp), __alignof(_Tp)&gt;::type'/>
+<fun r='__gnu_cxx::__aligned_buffer::__aligned_buffer{_Tp}'/>
+<fun r='__gnu_cxx::__aligned_buffer::__aligned_buffer{_Tp}'/>
+<fun r='__gnu_cxx::__aligned_buffer::_M_addr'/>
+<fun r='__gnu_cxx::__aligned_buffer::_M_addr'/>
+<fun r='__gnu_cxx::__aligned_buffer::_M_ptr'/>
+<fun r='__gnu_cxx::__aligned_buffer::_M_ptr'/>
+<use f='include/c++/11/bits/shared_ptr_base.h' l='506'/>

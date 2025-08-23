@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9809'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9808'>// VK_KHR_separate_depth_stencil_layouts is a preprocessor guard. Do not pass it to API calls.</doc>

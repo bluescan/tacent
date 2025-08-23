@@ -1,0 +1,5 @@
+<dec f='include/c++/11/functional' l='1163' type='std::vector&lt;__diff_type&gt;'/>
+<use f='include/c++/11/functional' l='1223' u='w' c='_ZNSt20boyer_moore_searcherC1ET_S0_T0_T1_'/>
+<use f='include/c++/11/functional' l='1233' u='w' c='_ZNSt20boyer_moore_searcherC1ET_S0_T0_T1_'/>
+<use f='include/c++/11/functional' l='1240' u='w' c='_ZNSt20boyer_moore_searcherC1ET_S0_T0_T1_'/>
+<use f='include/c++/11/functional' l='1271' c='_ZNKSt20boyer_moore_searcherclETL0__S0_'/>

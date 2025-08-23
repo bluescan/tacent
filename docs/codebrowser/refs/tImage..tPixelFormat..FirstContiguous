@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='115' type='0'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='116'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='236' u='r'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='487' u='r' c='_ZN6tImage19tIsContiguousFormatENS_12tPixelFormatE'/>

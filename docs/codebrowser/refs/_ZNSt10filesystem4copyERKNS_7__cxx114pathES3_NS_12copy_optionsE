@@ -1,0 +1,4 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='318' type='void std::filesystem::copy(const std::filesystem::path &amp; __from, const std::filesystem::path &amp; __to, std::filesystem::copy_options __options)'/>
+<use f='include/c++/11/bits/fs_ops.h' l='61' u='c' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_'/>
+<dec f='include/c++/11/bits/fs_ops.h' l='67' type='void std::filesystem::copy(const std::filesystem::path &amp; __from, const std::filesystem::path &amp; __to, std::filesystem::copy_options __options)'/>
+<doc f='include/c++/11/bits/fs_fwd.h' l='316'>// operational functions</doc>

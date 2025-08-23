@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='152' type='4'/>
+<use f='Modules/Image/Contrib/WebP/include/decode.h' l='171' u='r' c='_ZL15WebPIsAlphaMode13WEBP_CSP_MODE'/>
+<dec f='Modules/Image/Contrib/WebP/include/decode.h' l='157' type='9'/>
+<use f='Modules/Image/Contrib/WebP/include/decode.h' l='166' u='r' c='_ZL23WebPIsPremultipliedMode13WEBP_CSP_MODE'/>

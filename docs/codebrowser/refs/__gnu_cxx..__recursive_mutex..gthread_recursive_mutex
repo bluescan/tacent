@@ -1,0 +1,2 @@
+<def f='include/c++/11/ext/concurrence.h' l='221' ll='222' type='__gthread_recursive_mutex_t * __gnu_cxx::__recursive_mutex::gthread_recursive_mutex()'/>
+<use f='include/c++/11/ext/concurrence.h' l='303' u='c' c='__gnu_cxx::__cond::wait_recursive'/>

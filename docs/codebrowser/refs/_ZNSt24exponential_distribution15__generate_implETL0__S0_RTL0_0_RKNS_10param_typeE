@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/random.h' l='4804' type='void std::exponential_distribution::__generate_impl(_ForwardIterator __f, _ForwardIterator __t, _UniformRandomNumberGenerator &amp; __urng, const std::exponential_distribution::param_type &amp; __p)'/>
+<def f='include/c++/11/bits/random.tcc' l='1735' ll='1749' type='void std::exponential_distribution::__generate_impl(_ForwardIterator __f, _ForwardIterator __t, _UniformRandomNumberGenerator &amp; __urng, const std::exponential_distribution::param_type &amp; __p)'/>

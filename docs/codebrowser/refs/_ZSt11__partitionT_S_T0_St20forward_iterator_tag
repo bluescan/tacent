@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algo.h' l='1459' ll='1481' macro='1' type='_ForwardIterator std::__partition(_ForwardIterator __first, _ForwardIterator __last, _Predicate __pred, std::forward_iterator_tag )'/>

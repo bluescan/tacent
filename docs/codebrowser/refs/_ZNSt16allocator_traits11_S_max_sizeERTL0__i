@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/alloc_traits.h' l='281' ll='284' type='static decltype(__a.max_size()) std::allocator_traits::_S_max_size(_Alloc2 &amp; __a, int )'/>

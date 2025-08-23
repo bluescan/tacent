@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13929'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13928'>// VK_EXT_pci_bus_info is a preprocessor guard. Do not pass it to API calls.</doc>

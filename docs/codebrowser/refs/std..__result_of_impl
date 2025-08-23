@@ -1,0 +1,6 @@
+<def f='include/c++/11/type_traits' l='2508' ll='2511'/>
+<def f='include/c++/11/type_traits' l='2513' ll='2517'/>
+<def f='include/c++/11/type_traits' l='2519' ll='2523'/>
+<inh f='include/c++/11/type_traits' l='2526' c='std::__result_of_other_impl'/>
+<def f='include/c++/11/type_traits' l='2537' ll='2542'/>
+<use f='include/c++/11/type_traits' l='2547'/>

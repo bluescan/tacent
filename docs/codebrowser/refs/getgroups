@@ -1,0 +1,4 @@
+<dec f='include/unistd.h' l='711' type='int getgroups(int __size, __gid_t * __list)'/>
+<doc f='include/unistd.h' l='708'>/* If SIZE is zero, return the number of supplementary groups
+   the calling process is in.  Otherwise, fill in the group IDs
+   of its supplementary groups in LIST and return the number written.  */</doc>

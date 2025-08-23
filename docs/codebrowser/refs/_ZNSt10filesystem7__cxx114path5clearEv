@@ -1,0 +1,5 @@
+<use f='include/c++/11/bits/fs_path.h' l='280' u='c' c='_ZNSt10filesystem7__cxx114pathC1EOS1_'/>
+<def f='include/c++/11/bits/fs_path.h' l='399' type='void std::filesystem::path::clear()'/>
+<use f='include/c++/11/bits/fs_path.h' l='954' u='c' c='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>
+<use f='include/c++/11/bits/fs_dir.h' l='114' u='c' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathERSt10error_code'/>
+<doc f='include/c++/11/bits/fs_path.h' l='397'>// modifiers</doc>

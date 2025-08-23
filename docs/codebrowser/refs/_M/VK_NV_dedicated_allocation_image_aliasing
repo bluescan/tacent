@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14106'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='14105'>// VK_NV_dedicated_allocation_image_aliasing is a preprocessor guard. Do not pass it to API calls.</doc>

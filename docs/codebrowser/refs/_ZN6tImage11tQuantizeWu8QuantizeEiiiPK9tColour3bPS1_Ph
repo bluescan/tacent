@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Src/tQuantizeWu.cpp' l='109' type='void tImage::tQuantizeWu::Quantize(int numColours, int width, int height, const tPixel3b * pixels, tColour3b * destPalette, uint8 * destIndices)'/>
+<def f='Modules/Image/Src/tQuantizeWu.cpp' l='408' ll='524' type='void tImage::tQuantizeWu::Quantize(int numColours, int width, int height, const tPixel3b * pixels, tColour3b * destPalette, uint8 * destIndices)'/>
+<use f='Modules/Image/Src/tQuantizeWu.cpp' l='548' u='c' c='_ZN6tImage11tQuantizeWu13QuantizeImageEiiiPK9tColour3bPS1_Phb'/>
+<doc f='Modules/Image/Src/tQuantizeWu.cpp' l='108'>// By the time this is called all parameters must be valid. It assumes the first 3 arguments are &gt; 0 and the latter 3 non-null.</doc>

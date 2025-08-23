@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='57' type='17'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='57'>//	float	Length of velocity vector. m/s. Speed is always &gt;= 0.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='356' u='m' c='_ZN6tImage9tMetaData19SetTags_GeoLocationERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='705' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

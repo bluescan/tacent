@@ -1,0 +1,3 @@
+<def f='Modules/Math/Inc/Math/tQuaternion.h' l='27' type='void tMath::tQuaternion::tQuaternion(float x, float y, float z, float w)'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='57' u='c'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='58' u='c'/>

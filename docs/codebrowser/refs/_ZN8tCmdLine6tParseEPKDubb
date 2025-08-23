@@ -1,0 +1,4 @@
+<dec f='Modules/System/Inc/System/tCmdLine.h' l='173' type='void tCmdLine::tParse(const char8_t * commandLine, bool fullCommandLine = false, bool sortOptions = true)'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='164' u='c' c='_ZN8tCmdLine6tParseEiPPcb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='196' u='c' c='_ZN8tCmdLine6tParseEiPPDsb'/>
+<def f='Modules/System/Src/tCmdLine.cpp' l='272' ll='405' type='void tCmdLine::tParse(const char8_t * commandLine, bool fullCommandLine = false, bool sortOptions = true)'/>

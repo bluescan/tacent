@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1200' ll='1229'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1200'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1196'>/**
+ * @~English
+ * @brief Options specifiying ASTC encoding block dimensions
+ */</doc>

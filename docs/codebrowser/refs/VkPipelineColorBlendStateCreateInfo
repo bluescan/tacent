@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3652' ll='3661'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3652'/>
+<size>56</size>
+<mbr r='VkPipelineColorBlendStateCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPipelineColorBlendStateCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkPipelineColorBlendStateCreateInfo::flags' o='128' t='VkPipelineColorBlendStateCreateFlags'/>
+<mbr r='VkPipelineColorBlendStateCreateInfo::logicOpEnable' o='160' t='VkBool32'/>
+<mbr r='VkPipelineColorBlendStateCreateInfo::logicOp' o='192' t='VkLogicOp'/>
+<mbr r='VkPipelineColorBlendStateCreateInfo::attachmentCount' o='224' t='uint32_t'/>
+<mbr r='VkPipelineColorBlendStateCreateInfo::pAttachments' o='256' t='const VkPipelineColorBlendAttachmentState *'/>
+<mbr r='VkPipelineColorBlendStateCreateInfo::blendConstants' o='320' t='float[4]'/>

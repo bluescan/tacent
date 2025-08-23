@@ -1,0 +1,4 @@
+<use f='Modules/Scene/Inc/Scene/tLodGroup.h' l='50' u='c' c='_ZN6tScene9tLodGroupC1ERK6tChunk'/>
+<dec f='Modules/Scene/Inc/Scene/tLodGroup.h' l='53' type='void tScene::tLodGroup::Load(const tChunk &amp; )'/>
+<inh f='Modules/Scene/Inc/Scene/tObject.h' l='33' c='_ZN6tScene7tObject4LoadERK6tChunk'/>
+<def f='Modules/Scene/Src/tLodGroup.cpp' l='59' ll='85' type='void tScene::tLodGroup::Load(const tChunk &amp; lodChunk)'/>

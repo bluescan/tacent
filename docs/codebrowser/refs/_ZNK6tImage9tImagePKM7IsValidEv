@@ -1,0 +1,5 @@
+<inh f='Modules/Image/Inc/Image/tBaseImage.h' l='86' c='_ZNK6tImage10tBaseImage7IsValidEv'/>
+<def f='Modules/Image/Inc/Image/tImagePKM.h' l='91' type='bool tImage::tImagePKM::IsValid() const'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='296' u='c' c='_ZN6tImage9tImagePKM4LoadEPKhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='362' u='c' c='_ZN6tImage9tImagePKM8GetFrameEb'/>
+<use f='Modules/Image/Src/tImagePKM.cpp' l='388' u='c' c='_ZNK6tImage9tImagePKM8IsOpaqueEv'/>

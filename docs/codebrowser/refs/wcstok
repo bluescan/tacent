@@ -1,0 +1,2 @@
+<dec f='include/wchar.h' l='218' type='wchar_t * wcstok(wchar_t *__restrict __s, const wchar_t *__restrict __delim, wchar_t **__restrict __ptr)'/>
+<doc f='include/wchar.h' l='217'>/* Divide WCS into tokens separated by characters in DELIM.  */</doc>

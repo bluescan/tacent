@@ -1,0 +1,6 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='330' type='bool std::filesystem::is_other(std::filesystem::file_status )'/>
+<use f='include/c++/11/bits/fs_dir.h' l='205' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry8is_otherEv'/>
+<use f='include/c++/11/bits/fs_dir.h' l='209' u='c' c='_ZNKSt10filesystem7__cxx1115directory_entry8is_otherERSt10error_code'/>
+<def f='include/c++/11/bits/fs_ops.h' l='228' ll='233' type='bool std::filesystem::is_other(std::filesystem::file_status __s)'/>
+<use f='include/c++/11/bits/fs_ops.h' l='238' u='c' c='_ZNSt10filesystem8is_otherERKNS_7__cxx114pathE'/>
+<use f='include/c++/11/bits/fs_ops.h' l='243' u='c' c='_ZNSt10filesystem8is_otherERKNS_7__cxx114pathERSt10error_code'/>

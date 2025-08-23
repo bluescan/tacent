@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9715' ll='9720'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9715'/>
+<size>32</size>
+<mbr r='VkPhysicalDeviceFragmentShadingRateKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRateKHR::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRateKHR::sampleCounts' o='128' t='VkSampleCountFlags'/>
+<mbr r='VkPhysicalDeviceFragmentShadingRateKHR::fragmentSize' o='160' t='VkExtent2D'/>

@@ -1,0 +1,2 @@
+<def f='include/c++/11/stop_token' l='414' ll='426' type='std::stop_token::_Stop_state_ref &amp; std::stop_token::_Stop_state_ref::operator=(const std::stop_token::_Stop_state_ref &amp; __other)'/>
+<use f='include/c++/11/stop_token' l='501' u='c' c='_ZNSt11stop_sourceaSERKS_'/>

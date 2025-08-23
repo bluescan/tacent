@@ -1,0 +1,26 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='221' ll='227'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='225' c='_ZN5tMath8tLineSegC1ERKS0_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='235' c='_ZN5tMath4tRayC1ERKNS_8tLineSegE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='237' c='_ZN5tMath4tRay3SetERKNS_8tLineSegE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='249' c='_ZN5tMath5tLineC1ERKNS_8tLineSegE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='251' c='_ZN5tMath5tLine3SetERKNS_8tLineSegE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='262' c='_ZN5tMath9tCylinderC1ERKNS_8tLineSegEf'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='487' c='_ZN5tMath27tIntersectTestLineSegSphereERKNS_8tLineSegERKNS_7tSphereE'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='506' c='_ZN5tMath29IntersectFindTriangleTriangleERNS_8tLineSegERKNS_9tTriangleES4_'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='609' c='_ZN5tMath26tIntersectTestCapsulePointERKNS_9tCylinderERKNS_8tVector3E'/>
+<size>24</size>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='217'>// Primitives in 3D space.
+
+
+// A line segment has the same members as a line, but only goes from A to B (inclusive).</doc>
+<fun r='_ZN5tMath8tLineSegC1Ev'/>
+<fun r='_ZN5tMath8tLineSegC1ERKNS_8tVector3ES3_'/>
+<fun r='_ZN5tMath8tLineSegC1ERKS0_'/>
+<mbr r='tMath::tLineSeg::A' o='0' t='tMath::tVector3'/>
+<mbr r='tMath::tLineSeg::B' o='96' t='tMath::tVector3'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='128' c='_ZN5tMath7tRandom18tGetPointOnLineSegERKNS_8tLineSegERKNS0_10tGeneratorE'/>
+<use f='Modules/Math/Inc/Math/tRandom.h' l='209' c='_ZN5tMath7tRandom18tGetPointOnLineSegERKNS_8tLineSegERKNS0_10tGeneratorE'/>
+<size>24</size>
+<use f='Modules/Math/Src/tGeometry.cpp' l='448' c='_ZN5tMath27tIntersectTestLineSegSphereERKNS_8tLineSegERKNS_7tSphereE'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='451' c='_ZN5tMath27tIntersectTestLineSegSphereERKNS_8tLineSegERKNS_7tSphereE'/>
+<size>24</size>

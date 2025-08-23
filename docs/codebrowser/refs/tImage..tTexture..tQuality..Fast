@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tTexture.h' l='65' type='0'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='169' c='_ZN6tImage8tTexture15DetermineFilterENS0_8tQualityE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='181' c='_ZN6tImage8tTexture32DetermineBlockEncodeQualityLevelENS0_8tQualityE'/>
+<doc f='Modules/Image/Inc/Image/tTexture.h' l='65'>// Bilinear resample filter. Fast BCn compress mode.</doc>

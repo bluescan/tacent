@@ -1,0 +1,9 @@
+<dec f='Modules/Foundation/Inc/Foundation/tString.h' l='481' type='void tStringUTF16::SetLength(int length, bool preserve = true)'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='1048' ll='1076' type='void tStringUTF16::SetLength(int length, bool preserve = true)'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='474'>// Some external functions write directly into the CodeUnits and need to manually set the StringLength first. This
+	// function allows you to do that. It also writes the internal null terminator. This function preserves all existing
+	// code-units if it can. Calling with a number &lt; the current length will cut off the end units. If you call with a
+	// value &gt; current length it sets the extra characters (up to length) with zeros. In all cases the string length
+	// will be left at what you called this with. It is illegal to call with a negative value.
+	// For efficiency you can opt to set preserve to false. In this case the characters may be completely uninitialized
+	// and it is your responsibility to populate them with something valid. Internal null still written.</doc>

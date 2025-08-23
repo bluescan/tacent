@@ -1,0 +1,2 @@
+<def f='Modules/Image/Inc/Image/tPicture.h' l='147' type='tPixel4b * tImage::tPicture::operator[](int i)'/>
+<doc f='Modules/Image/Inc/Image/tPicture.h' l='147'>/* Syntax: image[y][x] = colour;  No bounds checking performed. */</doc>

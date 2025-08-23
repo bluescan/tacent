@@ -1,0 +1,2 @@
+<dec f='include/c++/11/bits/fs_fwd.h' l='159' type='65535'/>
+<use f='include/c++/11/bits/fs_dir.h' l='61' c='_ZNSt10filesystem11file_statusC1ENS_9file_typeENS_5permsE'/>

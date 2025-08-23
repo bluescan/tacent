@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/random.h' l='1173' ll='1175' type='void std::independent_bits_engine::seed()'/>
+<doc f='include/c++/11/bits/random.h' l='1169'>/**
+       * @brief Reseeds the %independent_bits_engine object with the default
+       *        seed for the underlying base class generator engine.
+       */</doc>

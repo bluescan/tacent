@@ -1,0 +1,6 @@
+<def f='Modules/Image/Inc/Image/tBaseImage.h' l='98' type='tImage::tPixelFormat tImage::tBaseImage::GetPixelFormat() const'/>
+<doc f='Modules/Image/Inc/Image/tBaseImage.h' l='93'>// Returns the current in-memory pixel format of this image object. Load paramters often modify it from the source
+	// pixel format. For example, if you load a DDS and decide to decode, this format will return the decoded format,
+	// often R8G8B8A8. If you decide not to decode, it will match the source format. Another example is loading a
+	// RLE-compressed TGA, it also gets uncompressed to R8G8B8A8. Some tImage classes like tImagePNG support decodeing
+	// to R16G16B16A16, and in the future some might support R32G32B32A32f for the decompressed/generic HDR format.</doc>

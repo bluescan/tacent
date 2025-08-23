@@ -1,0 +1,7 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7192' ll='7197'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='7192'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceInlineUniformBlockFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceInlineUniformBlockFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceInlineUniformBlockFeatures::inlineUniformBlock' o='128' t='VkBool32'/>
+<mbr r='VkPhysicalDeviceInlineUniformBlockFeatures::descriptorBindingInlineUniformBlockUpdateAfterBind' o='160' t='VkBool32'/>

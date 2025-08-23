@@ -1,0 +1,49 @@
+<use f='include/c++/11/chrono' l='1402' c='_ZNSt6chronodvERKNS_10year_monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='1504' c='_ZNSt6chronodvERKNS_4yearERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='1674' c='_ZNSt6chronodvERKNS_4yearEi'/>
+<use f='include/c++/11/chrono' l='1880' c='_ZNSt6chronodvERKNS_10year_monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='1921' c='_ZNSt6chronodvERKNS_10year_monthERKNS_12weekday_lastE'/>
+<def f='include/c++/11/chrono' l='2195' ll='2317'/>
+<use f='include/c++/11/chrono' l='2218' c='_ZNSt6chrono10year_monthpLERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2226' c='_ZNSt6chrono10year_monthmIERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2233' c='_ZNSt6chrono10year_monthpLERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2240' c='_ZNSt6chrono10year_monthmIERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2252' c='_ZNSt6chronoeqERKNS_10year_monthES2_'/>
+<use f='include/c++/11/chrono' l='2252' c='_ZNSt6chronoeqERKNS_10year_monthES2_'/>
+<use f='include/c++/11/chrono' l='2256' c='_ZNSt6chronossERKNS_10year_monthES2_'/>
+<use f='include/c++/11/chrono' l='2256' c='_ZNSt6chronossERKNS_10year_monthES2_'/>
+<use f='include/c++/11/chrono' l='2260' c='_ZNSt6chronoplERKNS_10year_monthERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2261' c='_ZNSt6chronoplERKNS_10year_monthERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2273' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl2629746ELl1EEEERKNS_10year_monthE'/>
+<use f='include/c++/11/chrono' l='2274' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl2629746ELl1EEEERKNS_10year_monthE'/>
+<use f='include/c++/11/chrono' l='2278' c='_ZNSt6chronomiERKNS_10year_monthERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2279' c='_ZNSt6chronomiERKNS_10year_monthERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2283' c='_ZNSt6chronomiERKNS_10year_monthES2_'/>
+<use f='include/c++/11/chrono' l='2283' c='_ZNSt6chronomiERKNS_10year_monthES2_'/>
+<use f='include/c++/11/chrono' l='2290' c='_ZNSt6chronoplERKNS_10year_monthERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2291' c='_ZNSt6chronoplERKNS_10year_monthERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2294' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl31556952ELl1EEEERKNS_10year_monthE'/>
+<use f='include/c++/11/chrono' l='2295' c='_ZNSt6chronoplERKNS_8durationIlSt5ratioILl31556952ELl1EEEERKNS_10year_monthE'/>
+<use f='include/c++/11/chrono' l='2298' c='_ZNSt6chronomiERKNS_10year_monthERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2299' c='_ZNSt6chronomiERKNS_10year_monthERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<use f='include/c++/11/chrono' l='2302' c='_ZNSt6chronodvERKNS_4yearERKNS_5monthE'/>
+<use f='include/c++/11/chrono' l='2306' c='_ZNSt6chronodvERKNS_4yearEi'/>
+<use f='include/c++/11/chrono' l='2311' c='_ZNSt6chronodvERKNS_10year_monthEi'/>
+<use f='include/c++/11/chrono' l='2314' c='_ZNSt6chronodvERKNS_10year_monthENS_9last_specE'/>
+<use f='include/c++/11/chrono' l='2446' c='_ZNSt6chronodvERKNS_10year_monthERKNS_3dayE'/>
+<use f='include/c++/11/chrono' l='2450' c='_ZNSt6chronodvERKNS_10year_monthEi'/>
+<use f='include/c++/11/chrono' l='2679' c='_ZNSt6chronodvERKNS_10year_monthENS_9last_specE'/>
+<use f='include/c++/11/chrono' l='2870' c='_ZNSt6chronodvERKNS_10year_monthERKNS_15weekday_indexedE'/>
+<use f='include/c++/11/chrono' l='3017' c='_ZNSt6chronodvERKNS_10year_monthERKNS_12weekday_lastE'/>
+<size>4</size>
+<mbr r='std::chrono::year_month::_M_y' o='0' t='chrono::year'/>
+<mbr r='std::chrono::year_month::_M_m' o='16' t='chrono::month'/>
+<fun r='_ZNSt6chrono10year_monthC1Ev'/>
+<fun r='_ZNSt6chrono10year_monthC1ERKNS_4yearERKNS_5monthE'/>
+<fun r='_ZNKSt6chrono10year_month4yearEv'/>
+<fun r='_ZNKSt6chrono10year_month5monthEv'/>
+<fun r='_ZNSt6chrono10year_monthpLERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<fun r='_ZNSt6chrono10year_monthmIERKNS_8durationIlSt5ratioILl2629746ELl1EEEE'/>
+<fun r='_ZNSt6chrono10year_monthpLERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<fun r='_ZNSt6chrono10year_monthmIERKNS_8durationIlSt5ratioILl31556952ELl1EEEE'/>
+<fun r='_ZNKSt6chrono10year_month2okEv'/>

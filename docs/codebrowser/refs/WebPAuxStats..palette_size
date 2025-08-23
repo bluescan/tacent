@@ -1,0 +1,3 @@
+<dec f='Modules/Image/Contrib/WebP/include/encode.h' l='225' type='int'/>
+<offset>1312</offset>
+<doc f='Modules/Image/Contrib/WebP/include/encode.h' l='225'>// number of color in palette, if used</doc>

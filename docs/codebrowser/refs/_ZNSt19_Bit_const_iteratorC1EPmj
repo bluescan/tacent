@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_bvector.h' l='336' ll='337' type='void std::_Bit_const_iterator::_Bit_const_iterator(std::_Bit_type * __x, unsigned int __y)'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1132' u='c' c='_ZNSt6vectorIbT_E15_M_copy_alignedESt19_Bit_const_iteratorS2_St13_Bit_iterator'/>

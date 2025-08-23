@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='229' ll='320'/>
+<use f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='229'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/KHR/khr_df.h' l='225'>/** @~English
+   @brief Model in which the color coordinate space is defined.
+   There is no requirement that a color format use all the
+   channel types that are defined in the color model. */</doc>

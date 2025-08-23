@@ -1,0 +1,4 @@
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='135' u='r' c='_ZNK6tScene5tPose4SaveER12tChunkWriter'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='167' u='w' c='_ZN6tScene5tPose4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='168' u='r' c='_ZN6tScene5tPose4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='276' u='r' c='_ZN6tScene9tSkeleton4PoseEi'/>

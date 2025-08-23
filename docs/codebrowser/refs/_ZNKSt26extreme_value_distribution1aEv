@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='5136' ll='5138' type='_RealType std::extreme_value_distribution::a() const'/>
+<doc f='include/c++/11/bits/random.h' l='5133'>/**
+       * @brief Return the @f$a@f$ parameter of the distribution.
+       */</doc>

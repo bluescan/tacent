@@ -1,0 +1,12 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10174' ll='10184'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10174'/>
+<size>56</size>
+<mbr r='VkVideoEncodeCapabilitiesKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkVideoEncodeCapabilitiesKHR::pNext' o='64' t='void *'/>
+<mbr r='VkVideoEncodeCapabilitiesKHR::flags' o='128' t='VkVideoEncodeCapabilityFlagsKHR'/>
+<mbr r='VkVideoEncodeCapabilitiesKHR::rateControlModes' o='160' t='VkVideoEncodeRateControlModeFlagsKHR'/>
+<mbr r='VkVideoEncodeCapabilitiesKHR::maxRateControlLayers' o='192' t='uint32_t'/>
+<mbr r='VkVideoEncodeCapabilitiesKHR::maxBitrate' o='256' t='uint64_t'/>
+<mbr r='VkVideoEncodeCapabilitiesKHR::maxQualityLevels' o='320' t='uint32_t'/>
+<mbr r='VkVideoEncodeCapabilitiesKHR::encodeInputPictureGranularity' o='352' t='VkExtent2D'/>
+<mbr r='VkVideoEncodeCapabilitiesKHR::supportedEncodeFeedbackFlags' o='416' t='VkVideoEncodeFeedbackFlagsKHR'/>

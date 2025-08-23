@@ -1,0 +1,5 @@
+<dec f='Modules/Foundation/Src/tHash.cpp' l='224' type='void tHash_MD5::Transform(uint32 * state, const uint8 * block)'/>
+<def f='Modules/Foundation/Src/tHash.cpp' l='265' ll='354' type='void tHash_MD5::Transform(uint32 * state, const uint8 * block)'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='374' u='c' c='_ZN9tHash_MD56UpdateEPjS0_PKhjPh'/>
+<use f='Modules/Foundation/Src/tHash.cpp' l='378' u='c' c='_ZN9tHash_MD56UpdateEPjS0_PKhjPh'/>
+<doc f='Modules/Foundation/Src/tHash.cpp' l='223'>// Apply MD5 algo on a block.</doc>

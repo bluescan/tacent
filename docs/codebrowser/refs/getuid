@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='697' type='__uid_t getuid()'/>
+<doc f='include/unistd.h' l='696'>/* Get the real user ID of the calling process.  */</doc>
+<use f='Modules/System/Src/tFile.cpp' l='1313' u='c' c='_ZN7tSystem11tGetHomeDirEv'/>

@@ -1,0 +1,3 @@
+<dec f='include/unistd.h' l='814' type='int ttyslot()'/>
+<doc f='include/unistd.h' l='812'>/* Return the index into the active-logins file (utmp) for
+   the controlling terminal.  */</doc>

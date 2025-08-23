@@ -1,0 +1,32 @@
+<def f='include/c++/11/bits/locale_facets_nonio.h' l='1236' ll='1238' type='std::money_base::pattern std::moneypunct::pos_format() const'/>
+<doc f='include/c++/11/bits/locale_facets_nonio.h' l='1205'>/**
+       *  @brief  Return pattern for money values.
+       *
+       *  This function returns a pattern describing the formatting of a
+       *  positive or negative valued money amount.  It does so by returning
+       *  returning moneypunct&lt;char_type&gt;::do_pos_format() or
+       *  moneypunct&lt;char_type&gt;::do_neg_format().
+       *
+       *  The pattern has 4 fields describing the ordering of symbol, sign,
+       *  value, and none or space.  There must be one of each in the pattern.
+       *  The none and space enums may not appear in the first field and space
+       *  may not appear in the final field.
+       *
+       *  The parts of a money string must appear in the order indicated by
+       *  the fields of the pattern.  The symbol field indicates that the
+       *  value of curr_symbol() may be present.  The sign field indicates
+       *  that the value of positive_sign() or negative_sign() must be
+       *  present.  The value field indicates that the absolute value of the
+       *  money amount is present.  none indicates 0 or more whitespace
+       *  characters, except at the end, where it permits no whitespace.
+       *  space indicates that 1 or more whitespace characters must be
+       *  present.
+       *
+       *  For example, for the US locale and pos_format() pattern
+       *  {symbol,sign,value,none}, curr_symbol() == &amp;apos;$&amp;apos;
+       *  positive_sign() == &amp;apos;+&amp;apos;, and value 10.01, and
+       *  options set to force the symbol, the corresponding string is
+       *  &lt;code&gt;$+10.01&lt;/code&gt;.
+       *
+       *  @return  Pattern for money values.
+      */</doc>

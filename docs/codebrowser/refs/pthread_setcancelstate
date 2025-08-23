@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='521' type='int pthread_setcancelstate(int __state, int * __oldstate)'/>
+<doc f='include/pthread.h' l='519'>/* Set cancelability state of current thread to STATE, returning old
+   state in *OLDSTATE if OLDSTATE is not NULL.  */</doc>

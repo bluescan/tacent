@@ -1,0 +1,9 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11881' ll='11888'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='11881'/>
+<size>32</size>
+<mbr r='VkPhysicalDevicePipelineRobustnessPropertiesEXT::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDevicePipelineRobustnessPropertiesEXT::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDevicePipelineRobustnessPropertiesEXT::defaultRobustnessStorageBuffers' o='128' t='VkPipelineRobustnessBufferBehaviorEXT'/>
+<mbr r='VkPhysicalDevicePipelineRobustnessPropertiesEXT::defaultRobustnessUniformBuffers' o='160' t='VkPipelineRobustnessBufferBehaviorEXT'/>
+<mbr r='VkPhysicalDevicePipelineRobustnessPropertiesEXT::defaultRobustnessVertexInputs' o='192' t='VkPipelineRobustnessBufferBehaviorEXT'/>
+<mbr r='VkPhysicalDevicePipelineRobustnessPropertiesEXT::defaultRobustnessImages' o='224' t='VkPipelineRobustnessImageBehaviorEXT'/>

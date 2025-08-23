@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9919'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='9918'>// VK_KHR_pipeline_executable_properties is a preprocessor guard. Do not pass it to API calls.</doc>

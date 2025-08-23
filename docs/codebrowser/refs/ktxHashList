@@ -1,0 +1,5 @@
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='211'>/**
+ * @class ktxHashList
+ * @~English
+ * @brief Opaque handle to a ktxHashList.
+ */</doc>

@@ -1,0 +1,1 @@
+<dec f='include/c++/11/bits/stl_algobase.h' l='1078' type='::__gnu_debug::_Safe_iterator&lt;_Ite, _Seq, _Cat&gt; std::__fill_n_a(const ::__gnu_debug::_Safe_iterator&lt;_Ite, _Seq, _Cat&gt; &amp; __first, _Size __n, const _Tp &amp; __value, std::input_iterator_tag )'/>

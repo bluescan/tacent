@@ -1,0 +1,162 @@
+<inh f='Modules/Foundation/Inc/Foundation/tList.h' l='37' c='tLink'/>
+<inh f='Modules/Foundation/Inc/Foundation/tString.h' l='56' c='tString'/>
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='581' ll='596'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='581'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='595' c='_ZN11tStringItemaSERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='595' c='_ZN11tStringItemaSERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='607' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringc'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='608' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringS6_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1212' c='_ZN11tStringItemaSERKS_'/>
+<use f='Modules/Foundation/Inc/Foundation/tString.h' l='1212' c='_ZN11tStringItemaSERKS_'/>
+<size>48</size>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='580'>// The tStringItem class is just the tString class except they can be placed on tLists.</doc>
+<fun r='_ZN11tStringItemC1Ev'/>
+<fun r='_ZN11tStringItemC1ERK7tString'/>
+<fun r='_ZN11tStringItemC1ERK12tStringUTF16'/>
+<fun r='_ZN11tStringItemC1ERK12tStringUTF32'/>
+<fun r='_ZN11tStringItemC1Ei'/>
+<fun r='_ZN11tStringItemC1EPKDu'/>
+<fun r='_ZN11tStringItemC1Ec'/>
+<fun r='_ZN11tStringItemaSERKS_'/>
+<fun r='_ZN11tStringItemaSERKS_'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='736' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='743' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='748' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringc'/>
+<use f='Modules/Foundation/Src/tString.cpp' l='754' c='_ZN4tStd8tExplodeER5tListI11tStringItemERK7tStringS6_'/>
+<size>48</size>
+<use f='Modules/Foundation/Src/tVersion.cpp' l='40' c='_ZN8tVersion6ParserC1EPKc'/>
+<use f='Modules/Foundation/Src/tVersion.cpp' l='43' c='_ZN8tVersion6ParserC1EPKc'/>
+<size>48</size>
+<use f='Modules/System/Inc/System/tFile.h' l='421' c='_ZN7tSystem14tGetExtensionsER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='424' c='_ZN7tSystem13tGetExtensionER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='465' c='_ZNK7tSystem11tExtensions5FirstEv'/>
+<use f='Modules/System/Inc/System/tFile.h' l='469'/>
+<use f='Modules/System/Inc/System/tFile.h' l='604' c='_ZN7tSystem9tFindDirsER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='613' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='622' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='630' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='641' c='_ZN7tSystem12tFindDirsRecER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='643' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='644' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='645' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Inc/System/tFile.h' l='851' c='_ZN7tSystem11tExtensions3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='852' c='_ZN7tSystem11tExtensions3AddERKS0_'/>
+<use f='Modules/System/Inc/System/tFile.h' l='863' c='_ZN7tSystem11tExtensions3AddEPKc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='863' c='_ZN7tSystem11tExtensions3AddEPKc'/>
+<use f='Modules/System/Inc/System/tFile.h' l='903' c='_ZNK7tSystem11tExtensions8ContainsERK7tString'/>
+<use f='Modules/System/Inc/System/tFile.h' l='959' c='_ZN7tSystem10tFileTypes3AddERKNS_11tExtensionsE'/>
+<size>48</size>
+<use f='Modules/System/Inc/System/tMachine.h' l='53' c='_ZN7tSystem15tGetXDGDataDirsER5tListI11tStringItemE'/>
+<use f='Modules/System/Inc/System/tMachine.h' l='54' c='_ZN7tSystem17tGetXDGConfigDirsER5tListI11tStringItemE'/>
+<size>48</size>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='336' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='342' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='344' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<size>48</size>
+<use f='Modules/System/Inc/System/tScript.h' l='381' c='_ZN14tFunExpressionD1Ev'/>
+<use f='Modules/System/Inc/System/tScript.h' l='384'/>
+<size>48</size>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='422' c='_ZN5tMath12tIntervalSet3SetERK7tString'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='424' c='_ZN5tMath12tIntervalSet3SetERK7tString'/>
+<size>48</size>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='58' c='_ZN9tPipeline5tRule13AddDependencyEP11tStringItem'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='63' c='_ZN9tPipeline5tRule15AddDependenciesER5tListI11tStringItemE'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='82' c='_ZN9tPipeline5tRule6AddDepEP11tStringItem'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='83' c='_ZN9tPipeline5tRule7AddDepsER5tListI11tStringItemE'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tRule.h' l='89'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='37' c='_ZN9tPipeline5tRule9SetTargetERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='55' c='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='66' c='_ZN9tPipeline5tRule37MaybeAddToDependenciesCaseInsensitiveERK7tString'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='81' c='_ZN9tPipeline5tRule13AddDependencyEP11tStringItem'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='90' c='_ZN9tPipeline5tRule15AddDependenciesER5tListI11tStringItemE'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='95' c='_ZN9tPipeline5tRule15AddDependenciesER5tListI11tStringItemE'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='116' c='_ZN9tPipeline5tRule16AddDependencyDirERK7tStringS3_'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='127' c='_ZN9tPipeline5tRule19AddDependencyDirRecERK7tStringS3_'/>
+<use f='Modules/Pipeline/Src/tRule.cpp' l='143' c='_ZN9tPipeline5tRule9OutOfDateEb'/>
+<size>48</size>
+<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='34'/>
+<use f='Modules/Pipeline/Inc/Pipeline/tSolution.h' l='45'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='60' c='_ZN9tPipeline21tVisualStudioSolutionC1ERK7tString'/>
+<use f='Modules/Pipeline/Src/tSolution.cpp' l='108' c='_ZN9tPipeline20tVisualStudioProjectC1ERK7tString'/>
+<size>48</size>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='108' c='_ZN8tCmdLine6tParam3SetERK7tString'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='118'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='149' c='_ZNK8tCmdLine7tOption7GetArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='166'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='217' c='_ZNK8tCmdLine7tOption7GetArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='222' c='_ZNK8tCmdLine7tOption7GetArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Inc/System/tCmdLine.h' l='223' c='_ZNK8tCmdLine7tOption7GetArgsER5tListI11tStringItemE'/>
+<size>48</size>
+<use f='Modules/System/Src/tCmdLine.cpp' l='28' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='132' c='_ZNK8tCmdLine7tOption4ArgNEi'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='208' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='210' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='211' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='242' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='249' c='_ZN8tCmdLine10ExpandArgsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='313' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='317' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='328' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='343' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='351' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='351' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='361' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='362' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='364' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='385' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='385' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='397' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<use f='Modules/System/Src/tCmdLine.cpp' l='401' c='_ZN8tCmdLine6tParseEPKDubb'/>
+<size>48</size>
+<use f='Modules/System/Src/tFile.cpp' l='70' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='71' c='_ZN7tSystem16tFindDirs_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='73' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='74' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='76' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='77' c='_ZN7tSystem19tFindDirsRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='79' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='80' c='_ZN7tSystem20tFindFilesRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='1942' c='_ZN7tSystem14tGetExtensionsER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1950' c='_ZN7tSystem14tGetExtensionsER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1954' c='_ZN7tSystem13tGetExtensionER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Src/tFile.cpp' l='1961' c='_ZN7tSystem13tGetExtensionER5tListI11tStringItemENS_9tFileTypeE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2453' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2483' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2497' c='_ZN7tSystem16tFindDirs_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2563' c='_ZN7tSystem9tFindDirsER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2585' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2625' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2639' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2764' c='_ZN7tSystem17tFindFiles_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2782' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2794' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2810' c='_ZN7tSystem10tFindFilesER5tListI11tStringItemERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2862' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2896' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2910' c='_ZN7tSystem19tFindDirsRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2913' c='_ZN7tSystem19tFindDirsRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2919' c='_ZN7tSystem19tFindDirsRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2920' c='_ZN7tSystem19tFindDirsRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2930' c='_ZN7tSystem19tFindDirsRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2937' c='_ZN7tSystem12tFindDirsRecER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='2959' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2999' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3013' c='_ZN7tSystem20tFindFilesRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3019' c='_ZN7tSystem20tFindFilesRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3021' c='_ZN7tSystem20tFindFilesRec_NativeEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3028' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringbNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3040' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringS6_bNS_7BackendE'/>
+<use f='Modules/System/Src/tFile.cpp' l='3056' c='_ZN7tSystem13tFindFilesRecER5tListI11tStringItemERK7tStringRKNS_11tExtensionsEbNS_7BackendE'/>
+<size>48</size>
+<use f='Modules/System/Src/tMachine.cpp' l='34' c='_ZN7tSystem21tGetXDGMultipleEnvVarER5tListI11tStringItemERK7tStringS6_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='255' c='_ZN7tSystem21tGetXDGMultipleEnvVarER5tListI11tStringItemERK7tStringS6_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='263' c='_ZN7tSystem21tGetXDGMultipleEnvVarER5tListI11tStringItemERK7tStringS6_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='268' c='_ZN7tSystem21tGetXDGMultipleEnvVarER5tListI11tStringItemERK7tStringS6_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='280' c='_ZN7tSystem21tGetXDGMultipleEnvVarER5tListI11tStringItemERK7tStringS6_'/>
+<use f='Modules/System/Src/tMachine.cpp' l='328' c='_ZN7tSystem15tGetXDGDataDirsER5tListI11tStringItemE'/>
+<use f='Modules/System/Src/tMachine.cpp' l='338' c='_ZN7tSystem17tGetXDGConfigDirsER5tListI11tStringItemE'/>
+<size>48</size>
+<use f='Modules/System/Src/tScript.cpp' l='1121' c='_ZN14tFunExpressionC1EPKDu'/>
+<use f='Modules/System/Src/tScript.cpp' l='1121' c='_ZN14tFunExpressionC1EPKDu'/>
+<use f='Modules/System/Src/tScript.cpp' l='1185' c='_ZN10tFunScript4SaveERK7tString'/>
+<size>48</size>

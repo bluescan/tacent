@@ -1,0 +1,4 @@
+<use f='include/c++/11/bits/stl_deque.h' l='2130' u='c' c='_ZNSt5deque22_M_reserve_map_at_backEm'/>
+<use f='include/c++/11/bits/stl_deque.h' l='2138' u='c' c='_ZNSt5deque23_M_reserve_map_at_frontEm'/>
+<dec f='include/c++/11/bits/stl_deque.h' l='2142' type='void std::deque::_M_reallocate_map(std::deque::size_type __nodes_to_add, bool __add_at_front)'/>
+<def f='include/c++/11/bits/deque.tcc' l='929' ll='973' type='void std::deque::_M_reallocate_map(std::deque::size_type __nodes_to_add, bool __add_at_front)'/>

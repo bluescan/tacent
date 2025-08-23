@@ -1,0 +1,2 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='370' type='bool tStd::tIsNAN(float v)'/>
+<use f='Modules/System/Src/tPrint.cpp' l='2128' u='c' c='_ZN7tSystem7tFtostrER7tStringfb'/>

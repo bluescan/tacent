@@ -1,0 +1,2 @@
+<dec f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='135'/>
+<doc f='include/x86_64-linux-gnu/bits/posix1_lim.h' l='134'>/* Maximum number of characters in a tty name.  */</doc>

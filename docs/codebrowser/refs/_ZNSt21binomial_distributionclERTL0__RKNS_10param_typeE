@@ -1,0 +1,12 @@
+<dec f='include/c++/11/bits/random.h' l='3872' type='std::binomial_distribution::result_type std::binomial_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::binomial_distribution::param_type &amp; __p)'/>
+<def f='include/c++/11/bits/random.tcc' l='1554' ll='1671' type='typename binomial_distribution&lt;_IntType&gt;::result_type std::binomial_distribution::operator()(_UniformRandomNumberGenerator &amp; __urng, const std::binomial_distribution::param_type &amp; __param)'/>
+<doc f='include/c++/11/bits/random.tcc' l='1544'>/**
+   * A rejection algorithm when t * p &gt;= 8 and a simple waiting time
+   * method - the second in the referenced book - otherwise.
+   * NB: The former is available only if _GLIBCXX_USE_C99_MATH_TR1
+   * is defined.
+   *
+   * Reference:
+   * Devroye, L. Non-Uniform Random Variates Generation. Springer-Verlag,
+   * New York, 1986, Ch. X, Sect. 4 (+ Errata!).
+   */</doc>

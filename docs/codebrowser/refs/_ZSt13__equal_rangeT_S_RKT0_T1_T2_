@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_algo.h' l='2114' ll='2149' macro='1' type='pair&lt;_ForwardIterator, _ForwardIterator&gt; std::__equal_range(_ForwardIterator __first, _ForwardIterator __last, const _Tp &amp; __val, _CompareItTp __comp_it_val, _CompareTpIt __comp_val_it)'/>

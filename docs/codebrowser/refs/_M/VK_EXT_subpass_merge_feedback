@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17668'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='17667'>// VK_EXT_subpass_merge_feedback is a preprocessor guard. Do not pass it to API calls.</doc>

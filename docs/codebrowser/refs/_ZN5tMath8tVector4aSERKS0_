@@ -1,0 +1,3 @@
+<use f='Modules/Image/Src/tResample.cpp' l='328' u='c' c='_ZN6tImage20KernelFilterBilinearEPK9tColour4biiffNS_15FilterDirectionENS_17tResampleEdgeModeERKNS_12FilterParamsE'/>
+<use f='Modules/Scene/Src/tMesh.cpp' l='352' u='c' c='_ZN6tScene5tMesh4LoadERK6tChunk'/>
+<use f='Modules/Scene/Src/tSkeleton.cpp' l='276' u='c' c='_ZN6tScene9tSkeleton4PoseEi'/>

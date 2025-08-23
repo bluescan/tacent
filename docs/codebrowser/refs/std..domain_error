@@ -1,0 +1,18 @@
+<inh f='include/c++/11/stdexcept' l='113' c='std::logic_error'/>
+<def f='include/c++/11/stdexcept' l='153' ll='165'/>
+<use f='include/c++/11/stdexcept' l='159' c='_ZNSt12domain_errorC1ERKS_'/>
+<use f='include/c++/11/stdexcept' l='160' c='_ZNSt12domain_erroraSERKS_'/>
+<use f='include/c++/11/stdexcept' l='160' c='_ZNSt12domain_erroraSERKS_'/>
+<use f='include/c++/11/stdexcept' l='161' c='_ZNSt12domain_errorC1EOS_'/>
+<use f='include/c++/11/stdexcept' l='162' c='_ZNSt12domain_erroraSEOS_'/>
+<use f='include/c++/11/stdexcept' l='162' c='_ZNSt12domain_erroraSEOS_'/>
+<size>16</size>
+<doc f='include/c++/11/stdexcept' l='151'>/** Thrown by the library, or by you, to report domain errors (domain in
+   *  the mathematical sense).  */</doc>
+<fun r='_ZNSt12domain_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<fun r='_ZNSt12domain_errorC1EPKc'/>
+<fun r='_ZNSt12domain_errorC1ERKS_'/>
+<fun r='_ZNSt12domain_erroraSERKS_'/>
+<fun r='_ZNSt12domain_errorC1EOS_'/>
+<fun r='_ZNSt12domain_erroraSEOS_'/>
+<fun r='_ZNSt12domain_errorD1Ev'/>

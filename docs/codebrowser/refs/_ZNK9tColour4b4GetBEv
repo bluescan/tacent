@@ -1,0 +1,5 @@
+<def f='Modules/Math/Inc/Math/tColour.h' l='379' type='float tColour4b::GetB() const'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='381' u='c' c='_ZNK9tColour4b3GetEPf'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='382' u='c' c='_ZNK9tColour4b3GetERN5tMath8tVector3E'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='383' u='c' c='_ZNK9tColour4b3GetERN5tMath8tVector4E'/>
+<use f='Modules/Math/Inc/Math/tColour.h' l='384' u='c' c='_ZNK9tColour4b3GetERfS0_S0_S0_'/>

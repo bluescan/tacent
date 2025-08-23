@@ -1,0 +1,3 @@
+<dec f='include/pwd.h' l='55' type='__gid_t'/>
+<offset>160</offset>
+<doc f='include/pwd.h' l='55'>/* Group ID.  */</doc>

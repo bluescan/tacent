@@ -1,0 +1,5 @@
+<def f='Modules/Input/Inc/Input/tCompTrigger.h' l='26' ll='28' type='void tInput::tCompTrigger::tCompTrigger(const tName &amp; name, std::mutex &amp; mutex)'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='43' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='44' macro='1' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='62' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='63' macro='1' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>

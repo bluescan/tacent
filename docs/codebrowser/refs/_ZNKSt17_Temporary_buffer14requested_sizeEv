@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/stl_tempbuf.h' l='159' ll='161' type='std::_Temporary_buffer::size_type std::_Temporary_buffer::requested_size() const'/>
+<doc f='include/c++/11/bits/stl_tempbuf.h' l='158'>/// Returns the size requested by the constructor; may be &gt;size().</doc>

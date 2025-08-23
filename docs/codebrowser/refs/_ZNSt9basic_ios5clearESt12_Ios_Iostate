@@ -1,0 +1,9 @@
+<dec f='include/c++/11/bits/basic_ios.h' l='148' type='void std::basic_ios::clear(std::ios_base::iostate __state = goodbit)'/>
+<def f='include/c++/11/bits/basic_ios.tcc' l='39' ll='49' type='void std::basic_ios::clear(std::ios_base::iostate __state = goodbit)'/>
+<doc f='include/c++/11/bits/basic_ios.h' l='140'>/**
+       *  @brief  [Re]sets the error state.
+       *  @param  __state  The new state flag(s) to set.
+       *
+       *  See std::ios_base::iostate for the possible bit values.  Most
+       *  users will not need to pass an argument.
+      */</doc>

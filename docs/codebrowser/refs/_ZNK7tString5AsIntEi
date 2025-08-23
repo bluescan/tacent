@@ -1,0 +1,6 @@
+<def f='Modules/Foundation/Inc/Foundation/tString.h' l='357' type='int tString::AsInt(int base = -1) const'/>
+<doc f='Modules/Foundation/Inc/Foundation/tString.h' l='356'>// Shorter synonyms.</doc>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='346' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='347' u='c' c='_ZN6tImage9tImageHDR4LoadEPhiRKNS0_10LoadParamsE'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='261' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>
+<use f='Modules/Math/Inc/Math/tInterval.h' l='262' u='c' c='_ZN5tMath9tInterval3SetERK7tString'/>

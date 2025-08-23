@@ -1,0 +1,8 @@
+<dec f='Modules/Image/Inc/Image/tMetaData.h' l='105' type='33'/>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='101'>//			0: Unknown.
+					//			1: Compulsory Flash Firing.
+					//			2: Compulsory Flash Suppression.
+					//			3: Auto.</doc>
+<doc f='Modules/Image/Inc/Image/tMetaData.h' l='105'>//	uint32	Red eye reduction.</doc>
+<use f='Modules/Image/Src/tMetaData.cpp' l='504' u='m' c='_ZN6tImage9tMetaData19SetTags_CamSettingsERKN8TinyEXIF8EXIFInfoE'/>
+<use f='Modules/Image/Src/tMetaData.cpp' l='795' c='_ZNK6tImage9tMetaData14GetPrettyValueENS_8tMetaTagE'/>

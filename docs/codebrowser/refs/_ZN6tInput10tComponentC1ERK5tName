@@ -1,0 +1,11 @@
+<use f='Modules/Input/Inc/Input/tCompButton.h' l='27' u='c' c='_ZN6tInput11tCompButtonC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompDial.h' l='27' u='c' c='_ZN6tInput9tCompDialC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompDirPad.h' l='27' u='c' c='_ZN6tInput11tCompDirPadC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompJoystick.h' l='28' u='c' c='_ZN6tInput13tCompJoystickC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompPedal.h' l='27' u='c' c='_ZN6tInput10tCompPedalC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompScrubber.h' l='27' u='c' c='_ZN6tInput13tCompScrubberC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompSelector.h' l='27' u='c' c='_ZN6tInput13tCompSelectorC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompSlider.h' l='27' u='c' c='_ZN6tInput11tCompSliderC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompSwitch.h' l='27' u='c' c='_ZN6tInput11tCompSwitchC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompTrigger.h' l='27' u='c' c='_ZN6tInput12tCompTriggerC1ERK5tNameRSt5mutex'/>
+<use f='Modules/Input/Inc/Input/tCompWheel.h' l='27' u='c' c='_ZN6tInput10tCompWheelC1ERK5tNameRSt5mutex'/>

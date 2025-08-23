@@ -1,0 +1,2 @@
+<def f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='696' ll='703' type='int __gthread_once(__gthread_once_t * __once, void (*)() __func)'/>
+<use f='include/c++/11/mutex' l='783' u='c' c='_ZSt9call_onceRSt9once_flagOT_DpOT0_'/>

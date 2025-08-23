@@ -1,0 +1,19 @@
+<def f='include/c++/11/bits/locale_facets.h' l='933' ll='942' type='char std::ctype&lt;char&gt;::narrow(std::ctype&lt;char&gt;::char_type __c, char __dfault) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='915'>/**
+       *  @brief  Narrow char
+       *
+       *  This function converts the char to char using the simplest
+       *  reasonable transformation.  If the conversion fails, dfault is
+       *  returned instead.  For an underived ctype&lt;char&gt; facet, @a c
+       *  will be returned unchanged.
+       *
+       *  This function works as if it returns ctype&lt;char&gt;::do_narrow(c).
+       *  do_narrow() must always return the same result for the same input.
+       *
+       *  Note: this is not what you want for codepage conversions.  See
+       *  codecvt for that.
+       *
+       *  @param __c  The char to convert.
+       *  @param __dfault  Char to return if conversion fails.
+       *  @return  The converted character.
+      */</doc>

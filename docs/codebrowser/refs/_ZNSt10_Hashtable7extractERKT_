@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/hashtable.h' l='1034' ll='1043' type='std::_Hashtable::node_type std::_Hashtable::extract(const _Key &amp; __k)'/>
+<doc f='include/c++/11/bits/hashtable.h' l='1033'>/// Extract a node.</doc>

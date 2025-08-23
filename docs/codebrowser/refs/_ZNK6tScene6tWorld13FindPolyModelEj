@@ -1,0 +1,3 @@
+<use f='Modules/Scene/Src/tWorld.cpp' l='272' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='335' u='c' c='_ZN6tScene6tWorld25CombinePolyModelInstancesER7tItListINS_9tInstanceEE7tString'/>
+<def f='Modules/Scene/Src/tWorld.cpp' l='1409' ll='1416' type='tScene::tPolyModel * tScene::tWorld::FindPolyModel(uint32 id) const'/>

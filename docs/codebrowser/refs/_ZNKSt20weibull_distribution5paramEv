@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='4940' ll='4942' type='std::weibull_distribution::param_type std::weibull_distribution::param() const'/>
+<doc f='include/c++/11/bits/random.h' l='4937'>/**
+       * @brief Returns the parameter set of the distribution.
+       */</doc>

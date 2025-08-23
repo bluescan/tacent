@@ -1,0 +1,8 @@
+<dec f='include/c++/11/bits/ios_base.h' l='396' type='const std::ios_base::fmtflags'/>
+<use f='include/c++/11/bits/ios_base.h' l='1023' u='r' c='_ZSt8internalRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='1031' u='r' c='_ZSt4leftRSt8ios_base'/>
+<use f='include/c++/11/bits/ios_base.h' l='1039' u='r' c='_ZSt5rightRSt8ios_base'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1155' u='r' c='_ZNKSt7num_put6do_putET0_RSt8ios_baseT_b'/>
+<use f='include/c++/11/bits/locale_facets.tcc' l='1240' u='r' c='_ZNSt5__pad6_S_padERSt8ios_baseT_PS2_PKS2_ll'/>
+<doc f='include/c++/11/bits/ios_base.h' l='395'>/// A mask of left|right|internal.  Useful for the 2-arg form of @c setf.</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='509' u='r' c='_ZNKSt7__cxx119money_put9_M_insertET0_RSt8ios_baseT_RKNS_12basic_stringIS4_St11char_traitsIS4_ESaIS4_EEE'/>

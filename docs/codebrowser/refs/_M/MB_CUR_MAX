@@ -1,0 +1,2 @@
+<dec f='include/stdlib.h' l='97'/>
+<doc f='include/stdlib.h' l='96'>/* Maximum length of a multibyte character in the current locale.  */</doc>

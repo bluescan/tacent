@@ -1,0 +1,4 @@
+<def f='Modules/Image/Inc/Image/tBaseImage.h' l='103' type='tColourProfile tImage::tBaseImage::GetColourProfileSrc() const'/>
+<doc f='Modules/Image/Inc/Image/tBaseImage.h' l='100'>// Returns the original (source) colour profile of the image. See comment for GetPixelFormatSrc. It is worth noting
+	// that many image types do not store colour-space information at all, in which case the ColourProfile members will
+	// remain unspecified.</doc>

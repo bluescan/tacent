@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1509' type='2'/>
+<use f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1600'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1504'>/*!&lt; Opaque+alpha. EAC_A8 block followed by an ETC1 block. The
+                 alpha channel will be opaque for textures without an alpha
+                 channel. */
+
+        // BC1-5, BC7 (desktop, some mobile devices)</doc>

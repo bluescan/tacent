@@ -1,0 +1,3 @@
+<dec f='include/string.h' l='397' type='void * __mempcpy(void *__restrict __dest, const void *__restrict __src, size_t __n)'/>
+<doc f='include/string.h' l='395'>/* Copy N bytes of SRC to DEST, return pointer to bytes after the
+   last written byte.  */</doc>

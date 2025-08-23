@@ -1,0 +1,2 @@
+<def f='include/c++/11/bits/fs_path.h' l='646' type='std::filesystem::path::_List &amp; std::filesystem::path::_List::operator=(std::filesystem::path::_List &amp;&amp; )'/>
+<use f='include/c++/11/bits/fs_path.h' l='953' u='c' c='_ZNSt10filesystem7__cxx114pathaSEOS1_'/>

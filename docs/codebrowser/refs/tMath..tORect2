@@ -1,0 +1,7 @@
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='186' ll='193'/>
+<size>32</size>
+<fun r='_ZN5tMath7tORect2C1Ev'/>
+<fun r='_ZNK5tMath7tORect28IsInsideERKNS_8tVector2E'/>
+<mbr r='tMath::tORect2::Center' o='0' t='tMath::tVector2'/>
+<mbr r='tMath::tORect2::Axes' o='64' t='tMath::tVector2[2]'/>
+<mbr r='tMath::tORect2::Extents' o='192' t='tMath::tVector2'/>

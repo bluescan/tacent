@@ -1,0 +1,11 @@
+<dec f='include/time.h' l='436' type='int getdate_r(const char *__restrict __string, struct tm *__restrict __resbufp)'/>
+<doc f='include/time.h' l='426'>/* Since `getdate&apos; is not reentrant because of the use of `getdate_err&apos;
+   and the static buffer to return the result in, we provide a thread-safe
+   variant.  The functionality is the same.  The result is returned in
+   the buffer pointed to by RESBUFP and in case of an error the return
+   value is != 0 with the same values as given above for `getdate_err&apos;.
+
+   This function is not part of POSIX and therefore no official
+   cancellation point.  But due to similarity with an POSIX interface
+   or due to the implementation it is a cancellation point and
+   therefore not marked with __THROW.  */</doc>

@@ -1,0 +1,3 @@
+<dec f='include/pthread.h' l='786' type='int pthread_mutex_destroy(pthread_mutex_t * __mutex)'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/gthr-default.h' l='740' u='c' c='__gthread_mutex_destroy'/>
+<doc f='include/pthread.h' l='785'>/* Destroy a mutex.  */</doc>

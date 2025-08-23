@@ -1,0 +1,20 @@
+<dec f='Modules/Image/Contrib/bcdec/bcdec.h' l='82'/>
+<doc f='Modules/Image/Contrib/bcdec/bcdec.h' l='63'>/*  Used information sources:
+    https://docs.microsoft.com/en-us/windows/win32/direct3d10/d3d10-graphics-programming-guide-resources-block-compression
+    https://docs.microsoft.com/en-us/windows/win32/direct3d11/bc6h-format
+    https://docs.microsoft.com/en-us/windows/win32/direct3d11/bc7-format
+    https://docs.microsoft.com/en-us/windows/win32/direct3d11/bc7-format-mode-reference
+
+    ! WARNING ! Khronos&apos;s BPTC partitions tables contain mistakes, do not use them!
+    https://www.khronos.org/registry/DataFormat/specs/1.1/dataformat.1.1.html#BPTC
+
+    ! Use tables from here instead !
+    https://www.khronos.org/registry/OpenGL/extensions/ARB/ARB_texture_compression_bptc.txt
+
+    Leaving it here as it&apos;s a nice read
+    https://fgiesen.wordpress.com/2021/10/04/gpu-bcn-decoding/
+
+    Fast half to float function from here
+    https://gist.github.com/rygorous/2144712
+*/</doc>
+<use f='Modules/Image/Src/tPixelUtil.cpp' l='686' u='c'/>

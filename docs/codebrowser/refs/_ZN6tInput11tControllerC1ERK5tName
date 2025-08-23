@@ -1,0 +1,3 @@
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='39' u='c' c='_ZN6tInput12tContGamepadC1EOS0_'/>
+<use f='Modules/Input/Inc/Input/tContGamepad.h' l='58' u='c' c='_ZN6tInput12tContGamepadC1ERK5tNameNS_10tGamepadIDE'/>
+<use f='Modules/Input/Inc/Input/tContRacingWheel.h' l='24' u='c' c='_ZN6tInput16tContRacingWheelC1ERK5tName'/>

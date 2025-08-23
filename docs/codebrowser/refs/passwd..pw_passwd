@@ -1,0 +1,4 @@
+<dec f='include/pwd.h' l='52' type='char *'/>
+<offset>64</offset>
+<doc f='include/pwd.h' l='52'>/* Hashed passphrase, if shadow database
+                                   not in use (see shadow.h).  */</doc>

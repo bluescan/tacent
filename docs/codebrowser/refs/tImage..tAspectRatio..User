@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Inc/Image/tPixelFormat.h' l='445' type='65'/>
+<use f='Modules/Image/Inc/Image/tPixelFormat.h' l='690' c='_ZN6tImage20tGetAspectRatioFloatENS_12tAspectRatioE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='822' c='_ZN6tImage19tGetAspectRatioFracERiS0_NS_12tAspectRatioE'/>
+<use f='Modules/Image/Src/tPixelFormat.cpp' l='859' u='r' c='_ZN6tImage15tGetAspectRatioEii'/>

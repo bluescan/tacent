@@ -1,0 +1,1 @@
+<def f='Modules/Foundation/Inc/Foundation/tStandard.h' l='241' type='bool tStd::tItoa(char8_t * str, int strSize, int32 value, int base = 10)'/>

@@ -1,0 +1,11 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3471' ll='3480'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='3471'/>
+<size>80</size>
+<mbr r='VkImageViewCreateInfo::sType' o='0' t='VkStructureType'/>
+<mbr r='VkImageViewCreateInfo::pNext' o='64' t='const void *'/>
+<mbr r='VkImageViewCreateInfo::flags' o='128' t='VkImageViewCreateFlags'/>
+<mbr r='VkImageViewCreateInfo::image' o='192' t='VkImage'/>
+<mbr r='VkImageViewCreateInfo::viewType' o='256' t='VkImageViewType'/>
+<mbr r='VkImageViewCreateInfo::format' o='288' t='VkFormat'/>
+<mbr r='VkImageViewCreateInfo::components' o='320' t='VkComponentMapping'/>
+<mbr r='VkImageViewCreateInfo::subresourceRange' o='448' t='VkImageSubresourceRange'/>

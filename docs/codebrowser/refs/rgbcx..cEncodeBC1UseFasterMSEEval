@@ -1,0 +1,7 @@
+<dec f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='133' type='128'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2358' u='r' c='_ZN5rgbcxL14bc1_find_sels4EjPKNS_7color32EjjjjjjPhj'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2941' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2945' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2949' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='2954' u='r' c='_ZN5rgbcx10encode_bc1EjPvPKhbb'/>
+<doc f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='132'>// Use a slightly lower quality, but ~30% faster MSE evaluation function for 4-color blocks.</doc>

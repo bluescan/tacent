@@ -1,0 +1,2 @@
+<dec f='include/stdio.h' l='403' type='int vdprintf(int __fd, const char *__restrict __fmt, __va_list_tag * __arg)'/>
+<doc f='include/stdio.h' l='402'>/* Write formatted output to a file descriptor.  */</doc>

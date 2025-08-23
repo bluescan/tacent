@@ -1,0 +1,2 @@
+<dec f='include/ctype.h' l='135' type='int isctype(int __c, int __mask)'/>
+<doc f='include/ctype.h' l='134'>/* Test C for a set of character classes according to MASK.  */</doc>

@@ -1,0 +1,4 @@
+<dec f='Modules/Image/Src/tQuantizeNeu.cpp' l='123' type='void tImage::tQuantizeNeu::learn(tImage::tQuantizeNeu::State &amp; )'/>
+<def f='Modules/Image/Src/tQuantizeNeu.cpp' l='440' ll='511' type='void tImage::tQuantizeNeu::learn(tImage::tQuantizeNeu::State &amp; state)'/>
+<use f='Modules/Image/Src/tQuantizeNeu.cpp' l='560' u='c' c='_ZN6tImage12tQuantizeNeu13QuantizeImageEiiiPK9tColour3bPS1_Phbi'/>
+<doc f='Modules/Image/Src/tQuantizeNeu.cpp' l='122'>// Main Learning Loop.</doc>

@@ -1,0 +1,2 @@
+<use f='Modules/Image/Src/tTexture.cpp' l='163' u='c' c='_ZN6tImage8tTexture3SetERNS_8tPictureEbNS_12tPixelFormatENS0_8tQualityEii'/>
+<def f='Modules/Image/Src/tTexture.cpp' l='233' ll='281' type='void tImage::tTexture::ProcessImageTo_G3B5R5G3(tImage::tPicture &amp; image, bool generateMipmaps, tImage::tTexture::tQuality quality)'/>

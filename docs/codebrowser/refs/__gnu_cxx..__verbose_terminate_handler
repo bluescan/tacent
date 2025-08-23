@@ -1,0 +1,17 @@
+<dec f='include/c++/11/exception' l='143' type='void __gnu_cxx::__verbose_terminate_handler()'/>
+<doc f='include/c++/11/exception' l='127'>/**
+   *  @brief A replacement for the standard terminate_handler which
+   *  prints more information about the terminating exception (if any)
+   *  on stderr.
+   *
+   *  @ingroup exceptions
+   *
+   *  Call
+   *   @code
+   *     std::set_terminate(__gnu_cxx::__verbose_terminate_handler)
+   *   @endcode
+   *  to use.  For more info, see
+   *  http://gcc.gnu.org/onlinedocs/libstdc++/manual/bk01pt02ch06s02.html
+   *
+   *  In 3.4 and later, this is on by default.
+   */</doc>

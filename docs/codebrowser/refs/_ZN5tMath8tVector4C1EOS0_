@@ -1,0 +1,7 @@
+<use f='Modules/Math/Inc/Math/tVector4.h' l='78' u='c' c='_ZNK5tMath8tVector4plERKNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='81' u='c' c='_ZNK5tMath8tVector4miERKNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='82' u='c' c='_ZNK5tMath8tVector4ngEv'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='85' u='c' c='_ZN5tMathmlERKNS_5tVec4Ef'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='86' u='c' c='_ZN5tMathmlEfRKNS_5tVec4E'/>
+<use f='Modules/Math/Inc/Math/tVector4.h' l='91' u='c' c='_ZNK5tMath8tVector4dvEf'/>
+<use f='Modules/System/Src/tScript.cpp' l='336' u='c' c='_ZNK11tExpression14GetAtomVector4Ev'/>

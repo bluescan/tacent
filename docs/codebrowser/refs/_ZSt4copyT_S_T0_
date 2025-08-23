@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/stl_algobase.h' l='609' ll='621' macro='1' type='_OI std::copy(_II __first, _II __last, _OI __result)'/>
+<dec f='include/c++/11/bits/algorithmfwd.h' l='235' type='_OIter std::copy(_IIter , _IIter , _OIter )'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1131' u='c' c='_ZNSt6vectorIbT_E15_M_copy_alignedESt19_Bit_const_iteratorS2_St13_Bit_iterator'/>
+<use f='include/c++/11/bits/stl_bvector.h' l='1132' u='c' c='_ZNSt6vectorIbT_E15_M_copy_alignedESt19_Bit_const_iteratorS2_St13_Bit_iterator'/>

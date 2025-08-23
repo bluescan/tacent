@@ -1,0 +1,16 @@
+<use f='include/c++/11/bits/locale_facets.h' l='856' u='c' c='_ZNKSt5ctypeIcE7tolowerEPcPKc'/>
+<dec f='include/c++/11/bits/locale_facets.h' l='1067' type='const std::ctype&lt;char&gt;::char_type * std::ctype&lt;char&gt;::do_tolower(std::ctype&lt;char&gt;::char_type * __lo, const std::ctype&lt;char&gt;::char_type * __hi) const'/>
+<doc f='include/c++/11/bits/locale_facets.h' l='1052'>/**
+       *  @brief  Convert array to lowercase.
+       *
+       *  This virtual function converts each char in the range [lo,hi) to
+       *  lowercase if possible.  Other chars remain untouched.
+       *
+       *  do_tolower() is a hook for a derived facet to change the behavior of
+       *  lowercasing.  do_tolower() must always return the same result for
+       *  the same input.
+       *
+       *  @param __lo  Pointer to first char in range.
+       *  @param __hi  Pointer to end of range.
+       *  @return  @a __hi.
+      */</doc>

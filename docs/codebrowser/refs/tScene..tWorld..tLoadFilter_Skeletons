@@ -1,0 +1,2 @@
+<dec f='Modules/Scene/Inc/Scene/tWorld.h' l='58' type='16'/>
+<use f='Modules/Scene/Src/tWorld.cpp' l='1198' u='r' c='_ZN6tScene6tWorld11LoadObjectsERK6tChunkR7tItListINS_10tPolyModelEERS4_INS_9tSkeletonEERS4_INS_7tCameraEERS4_INS_6tLightEERS4_INS_5tPathEEj'/>

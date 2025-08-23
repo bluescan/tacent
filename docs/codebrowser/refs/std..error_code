@@ -1,0 +1,160 @@
+<use f='include/c++/11/system_error' l='141' c='_ZNKSt3_V214error_category10equivalentERKSt10error_codei'/>
+<use f='include/c++/11/system_error' l='177' c='_ZSt15make_error_codeSt4errc'/>
+<def f='include/c++/11/system_error' l='196' ll='249'/>
+<use f='include/c++/11/system_error' l='255' c='_ZSt15make_error_codeSt4errc'/>
+<use f='include/c++/11/system_error' l='257' c='_ZSt15make_error_codeSt4errc'/>
+<use f='include/c++/11/system_error' l='261' c='_ZStssRKSt10error_codeS1_'/>
+<use f='include/c++/11/system_error' l='261' c='_ZStssRKSt10error_codeS1_'/>
+<use f='include/c++/11/system_error' l='279' c='_ZStlsRSt13basic_ostreamIT_T0_ERKSt10error_code'/>
+<use f='include/c++/11/system_error' l='362' c='_ZSteqRKSt10error_codeS1_'/>
+<use f='include/c++/11/system_error' l='362' c='_ZSteqRKSt10error_codeS1_'/>
+<use f='include/c++/11/system_error' l='368' c='_ZSteqRKSt10error_codeRKSt15error_condition'/>
+<use f='include/c++/11/system_error' l='449'/>
+<use f='include/c++/11/system_error' l='452' c='_ZNSt12system_errorC1ESt10error_code'/>
+<use f='include/c++/11/system_error' l='452' c='_ZNSt12system_errorC1ESt10error_code'/>
+<use f='include/c++/11/system_error' l='455' c='_ZNSt12system_errorC1ESt10error_codeRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/system_error' l='458' c='_ZNSt12system_errorC1ESt10error_codePKc'/>
+<use f='include/c++/11/system_error' l='462' c='_ZNSt12system_errorC1EiRKNSt3_V214error_categoryEPKc'/>
+<use f='include/c++/11/system_error' l='465' c='_ZNSt12system_errorC1EiRKNSt3_V214error_categoryE'/>
+<use f='include/c++/11/system_error' l='469' c='_ZNSt12system_errorC1EiRKNSt3_V214error_categoryERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE'/>
+<use f='include/c++/11/system_error' l='479' c='_ZNKSt12system_error4codeEv'/>
+<use f='include/c++/11/system_error' l='497'/>
+<use f='include/c++/11/system_error' l='501' c='_ZNKSt4hashISt10error_codeEclERKS0_'/>
+<size>16</size>
+<doc f='include/c++/11/system_error' l='179'>/** Class error_code
+   *
+   * This class is a value type storing an integer error number and a
+   * category that gives meaning to the error number. Typically this is done
+   * close the the point where the error happens, to capture the original
+   * error value.
+   *
+   * An `error_code` object can be used to store the original error value
+   * emitted by some subsystem, with a category relevant to the subsystem.
+   * For example, errors from POSIX library functions can be represented by
+   * an `errno` value and the &quot;generic&quot; category, but errors from an HTTP
+   * library might be represented by an HTTP response status code (e.g. 404)
+   * and a custom category defined by the library.
+   *
+   * @since C++11
+   * @ingroup diagnostics
+   */</doc>
+<fun r='_ZNSt10error_codeC1Ev'/>
+<fun r='_ZNSt10error_codeC1EiRKNSt3_V214error_categoryE'/>
+<fun r='_ZNSt10error_codeC1ET_'/>
+<fun r='_ZNSt10error_code6assignEiRKNSt3_V214error_categoryE'/>
+<fun r='_ZNSt10error_code5clearEv'/>
+<fun r='_ZNSt10error_codeaSET_'/>
+<fun r='_ZNKSt10error_code5valueEv'/>
+<fun r='_ZNKSt10error_code8categoryEv'/>
+<fun r='_ZNKSt10error_code23default_error_conditionEv'/>
+<fun r='_ZNKSt10error_code7messageB5cxx11Ev'/>
+<fun r='_ZNKSt10error_codecvbEv'/>
+<mbr r='std::error_code::_M_value' o='0' t='int'/>
+<mbr r='std::error_code::_M_cat' o='64' t='const std::error_category *'/>
+<use f='include/c++/11/bits/ios_base.h' l='209' c='_ZSt15make_error_codeSt7io_errc'/>
+<use f='include/c++/11/bits/ios_base.h' l='211' c='_ZSt15make_error_codeSt7io_errc'/>
+<use f='include/c++/11/bits/ios_base.h' l='263' c='_ZNSt8ios_base7failureB5cxx11C1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKSt10error_code'/>
+<use f='include/c++/11/bits/ios_base.h' l='266' c='_ZNSt8ios_base7failureB5cxx11C1EPKcRKSt10error_code'/>
+<size>16</size>
+<use f='include/c++/11/bits/fs_fwd.h' l='320' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_NS_12copy_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='324' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_NS_12copy_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='333' c='_ZNSt10filesystem9file_sizeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='335' c='_ZNSt10filesystem15hard_link_countERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='337' c='_ZNSt10filesystem15last_write_timeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='339' c='_ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsENS_12perm_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='341' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='342' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='344' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='347' c='_ZNSt10filesystem6statusERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_fwd.h' l='352' c='_ZNSt10filesystem14symlink_statusERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_path.h' l='702' c='_ZNSt10filesystem7__cxx1116filesystem_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt10error_code'/>
+<use f='include/c++/11/bits/fs_path.h' l='705' c='_ZNSt10filesystem7__cxx1116filesystem_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS0_4pathESt10error_code'/>
+<use f='include/c++/11/bits/fs_path.h' l='708' c='_ZNSt10filesystem7__cxx1116filesystem_errorC1ERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERKNS0_4pathESC_St10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='109' c='_ZNSt10filesystem7__cxx1115directory_entryC1ERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='131' c='_ZNSt10filesystem7__cxx1115directory_entry6assignERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='145' c='_ZNSt10filesystem7__cxx1115directory_entry16replace_filenameERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='156' c='_ZNSt10filesystem7__cxx1115directory_entry7refreshERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='168' c='_ZNKSt10filesystem7__cxx1115directory_entry6existsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='176' c='_ZNKSt10filesystem7__cxx1115directory_entry13is_block_fileERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='184' c='_ZNKSt10filesystem7__cxx1115directory_entry17is_character_fileERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='192' c='_ZNKSt10filesystem7__cxx1115directory_entry12is_directoryERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='200' c='_ZNKSt10filesystem7__cxx1115directory_entry7is_fifoERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='208' c='_ZNKSt10filesystem7__cxx1115directory_entry8is_otherERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='216' c='_ZNKSt10filesystem7__cxx1115directory_entry15is_regular_fileERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='224' c='_ZNKSt10filesystem7__cxx1115directory_entry9is_socketERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='236' c='_ZNKSt10filesystem7__cxx1115directory_entry10is_symlinkERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='248' c='_ZNKSt10filesystem7__cxx1115directory_entry9file_sizeERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='256' c='_ZNKSt10filesystem7__cxx1115directory_entry15hard_link_countERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='265' c='_ZNKSt10filesystem7__cxx1115directory_entry15last_write_timeERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='273' c='_ZNKSt10filesystem7__cxx1115directory_entry6statusERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='281' c='_ZNKSt10filesystem7__cxx1115directory_entry14symlink_statusERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='342' c='_ZNKSt10filesystem7__cxx1115directory_entry12_M_file_typeERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='392' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='396' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathENS_17directory_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='414' c='_ZNSt10filesystem7__cxx1118directory_iterator9incrementERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='424' c='_ZNSt10filesystem7__cxx1118directory_iteratorC1ERKNS0_4pathENS_17directory_optionsEPSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='480' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathENS_17directory_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='483' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='508' c='_ZNSt10filesystem7__cxx1128recursive_directory_iterator9incrementERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='518' c='_ZNSt10filesystem7__cxx1128recursive_directory_iterator3popERSt10error_code'/>
+<use f='include/c++/11/bits/fs_dir.h' l='523' c='_ZNSt10filesystem7__cxx1128recursive_directory_iteratorC1ERKNS0_4pathENS_17directory_optionsEPSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='51' c='_ZNSt10filesystem8absoluteERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='57' c='_ZNSt10filesystem9canonicalERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='64' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='69' c='_ZNSt10filesystem4copyERKNS_7__cxx114pathES3_NS_12copy_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='76' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='81' c='_ZNSt10filesystem9copy_fileERKNS_7__cxx114pathES3_NS_12copy_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='85' c='_ZNSt10filesystem12copy_symlinkERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='88' c='_ZNSt10filesystem18create_directoriesERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='91' c='_ZNSt10filesystem16create_directoryERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='95' c='_ZNSt10filesystem16create_directoryERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='99' c='_ZNSt10filesystem24create_directory_symlinkERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='103' c='_ZNSt10filesystem16create_hard_linkERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='107' c='_ZNSt10filesystem14create_symlinkERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='113' c='_ZNSt10filesystem12current_pathB5cxx11ERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='116' c='_ZNSt10filesystem12current_pathERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='124' c='_ZNSt10filesystem10equivalentERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='138' c='_ZNSt10filesystem6existsERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='153' c='_ZNSt10filesystem9file_sizeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='159' c='_ZNSt10filesystem15hard_link_countERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='173' c='_ZNSt10filesystem13is_block_fileERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='188' c='_ZNSt10filesystem17is_character_fileERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='203' c='_ZNSt10filesystem12is_directoryERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='210' c='_ZNSt10filesystem8is_emptyERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='224' c='_ZNSt10filesystem7is_fifoERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='242' c='_ZNSt10filesystem8is_otherERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='257' c='_ZNSt10filesystem15is_regular_fileERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='272' c='_ZNSt10filesystem9is_socketERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='287' c='_ZNSt10filesystem10is_symlinkERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='294' c='_ZNSt10filesystem15last_write_timeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='298' c='_ZNSt10filesystem15last_write_timeERKNS_7__cxx114pathENSt6chrono10time_pointINS_12__file_clockENS4_8durationIlSt5ratioILl1ELl1000000000EEEEEERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='305' c='_ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='310' c='_ZNSt10filesystem11permissionsERKNS_7__cxx114pathENS_5permsENS_12perm_optionsERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='313' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='320' c='_ZNSt10filesystem9proximateERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='326' c='_ZNSt10filesystem12read_symlinkERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='329' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='336' c='_ZNSt10filesystem8relativeERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='339' c='_ZNSt10filesystem6removeERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='342' c='_ZNSt10filesystem10remove_allERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='345' c='_ZNSt10filesystem6renameERKNS_7__cxx114pathES3_RSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='348' c='_ZNSt10filesystem11resize_fileERKNS_7__cxx114pathEmRSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='354' c='_ZNSt10filesystem5spaceERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='360' c='_ZNSt10filesystem6statusERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='370' c='_ZNSt10filesystem14symlink_statusERKNS_7__cxx114pathERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='376' c='_ZNSt10filesystem19temp_directory_pathB5cxx11ERSt10error_code'/>
+<use f='include/c++/11/bits/fs_ops.h' l='382' c='_ZNSt10filesystem16weakly_canonicalERKNS_7__cxx114pathERSt10error_code'/>
+<use f='Modules/System/Src/tFile.cpp' l='977' c='_ZN7tSystem11tRenameFileERK7tStringS2_S2_'/>
+<use f='Modules/System/Src/tFile.cpp' l='1171' c='_ZN7tSystem11tDeleteFileERK7tStringbb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2025' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2062' c='_ZN7tSystem17tPopulateFileInfoERNS_9tFileInfoERKNSt10filesystem7__cxx1115directory_entryERK7tString'/>
+<use f='Modules/System/Src/tFile.cpp' l='2459' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2469' c='_ZN7tSystem16tFindDirs_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2598' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2607' c='_ZN7tSystem17tFindFiles_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2869' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2879' c='_ZN7tSystem19tFindDirsRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2972' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='2981' c='_ZN7tSystem20tFindFilesRec_StndrdEP5tListI11tStringItemEPS0_INS_9tFileInfoEERK7tStringPKNS_11tExtensionsEb'/>
+<use f='Modules/System/Src/tFile.cpp' l='3249' c='_ZN7tSystem10tDeleteDirERK7tStringb'/>
+<size>16</size>

@@ -1,0 +1,7 @@
+<dec f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='13' type='int'/>
+<offset>128</offset>
+<doc f='include/x86_64-linux-gnu/bits/types/struct_tm.h' l='13'>/* Month.	[0-11] */</doc>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='743' u='w' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='752' u='w' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='806' u='w' c='_ZNKSt7__cxx118time_get21_M_extract_via_formatET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tmPKT_'/>
+<use f='include/c++/11/bits/locale_facets_nonio.tcc' l='1192' u='w' c='_ZNKSt7__cxx118time_get16do_get_monthnameET0_S1_RSt8ios_baseRSt12_Ios_IostateP2tm'/>

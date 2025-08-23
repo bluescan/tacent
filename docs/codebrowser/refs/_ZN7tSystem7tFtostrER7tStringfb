@@ -1,0 +1,8 @@
+<dec f='Modules/System/Inc/System/tPrint.h' l='115' type='bool tSystem::tFtostr(tString &amp; dest, float value, bool incBitRep = true)'/>
+<use f='Modules/System/Inc/System/tPrint.h' l='119' u='c' c='_ZN7tSystem5tFtoaER7tStringfb'/>
+<doc f='Modules/System/Inc/System/tPrint.h' l='111'>// These are the counterparts to the tStd functions tStrtof and tStrtod. They take a float/double and convert to a
+	// base-10 string. If incBitRep is true, these functions include the hash(#) and the binary representation in hex
+	// after it. Due to the large variability in the size needed for the destination string, these functions have been
+	// implemented using tStrings as the result will always be of the correct size.</doc>
+<def f='Modules/System/Src/tPrint.cpp' l='2125' ll='2167' type='bool tSystem::tFtostr(tString &amp; dest, float f, bool incBitRep = true)'/>
+<use f='Modules/System/Src/tScript.cpp' l='737' u='c' c='_ZN11tExprWriter9WriteAtomEfb'/>

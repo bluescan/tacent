@@ -1,0 +1,1 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='1068' type='ktx_error_code_e ktxTexture2_Create(const ktxTextureCreateInfo *const createInfo, ktxTextureCreateStorageEnum storageAllocation, ktxTexture2 ** newTex)'/>

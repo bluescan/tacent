@@ -1,0 +1,4 @@
+<def f='include/c++/11/bits/random.h' l='5381' ll='5383' type='std::discrete_distribution::param_type std::discrete_distribution::param() const'/>
+<doc f='include/c++/11/bits/random.h' l='5378'>/**
+       * @brief Returns the parameter set of the distribution.
+       */</doc>

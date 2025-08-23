@@ -1,0 +1,7 @@
+<dec f='include/c++/11/bits/locale_facets.h' l='697' type='const std::ctype_base::mask *'/>
+<use f='include/c++/11/bits/locale_facets.h' l='987' u='r' c='_ZNKSt5ctypeIcE5tableEv'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h' l='44' u='r' c='_ZNKSt5ctypeIcE2isEtc'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h' l='51' u='r' c='_ZNKSt5ctypeIcE2isEPKcS2_Pt'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h' l='60' u='r' c='_ZNKSt5ctypeIcE7scan_isEtPKcS2_'/>
+<use f='include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h' l='70' u='r' c='_ZNKSt5ctypeIcE8scan_notEtPKcS2_'/>
+<offset>384</offset>

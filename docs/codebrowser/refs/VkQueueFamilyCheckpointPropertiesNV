@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13749' ll='13753'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='13749'/>
+<size>24</size>
+<mbr r='VkQueueFamilyCheckpointPropertiesNV::sType' o='0' t='VkStructureType'/>
+<mbr r='VkQueueFamilyCheckpointPropertiesNV::pNext' o='64' t='void *'/>
+<mbr r='VkQueueFamilyCheckpointPropertiesNV::checkpointExecutionStageMask' o='128' t='VkPipelineStageFlags'/>

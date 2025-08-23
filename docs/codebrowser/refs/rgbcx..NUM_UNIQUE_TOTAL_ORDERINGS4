@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='220' type='const uint32_t'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='224'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='278'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1541'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='1868' u='r' c='_ZN5rgbcx4initENS_15bc1_approx_modeE'/>
+<use f='Modules/Image/Contrib/BC7Enc/rgbcx.h' l='3741' u='r' c='_ZN5rgbcx10encode_bc1EPvPKhjjj'/>

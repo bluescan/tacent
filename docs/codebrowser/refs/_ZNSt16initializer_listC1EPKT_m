@@ -1,0 +1,2 @@
+<def f='include/c++/11/initializer_list' l='62' ll='63' type='void std::initializer_list::initializer_list&lt;_E&gt;(std::initializer_list::const_iterator __a, std::initializer_list::size_type __l)'/>
+<doc f='include/c++/11/initializer_list' l='61'>// The compiler can call a private constructor.</doc>

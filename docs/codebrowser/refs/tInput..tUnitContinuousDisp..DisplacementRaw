@@ -1,0 +1,5 @@
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='53' u='w' c='_ZN6tInput19tUnitContinuousDisp18SetDisplacementRawEf'/>
+<use f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='62' u='w' c='_ZN6tInput19tUnitContinuousDisp15SetDisplacementEf'/>
+<dec f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='65' type='float'/>
+<offset>384</offset>
+<doc f='Modules/Input/Inc/Input/tUnitContinuousDisp.h' l='65'>// Mutex protected.</doc>

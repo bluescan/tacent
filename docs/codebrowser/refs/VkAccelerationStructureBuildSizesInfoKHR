@@ -1,0 +1,8 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18831' ll='18837'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='18831'/>
+<size>40</size>
+<mbr r='VkAccelerationStructureBuildSizesInfoKHR::sType' o='0' t='VkStructureType'/>
+<mbr r='VkAccelerationStructureBuildSizesInfoKHR::pNext' o='64' t='const void *'/>
+<mbr r='VkAccelerationStructureBuildSizesInfoKHR::accelerationStructureSize' o='128' t='VkDeviceSize'/>
+<mbr r='VkAccelerationStructureBuildSizesInfoKHR::updateScratchSize' o='192' t='VkDeviceSize'/>
+<mbr r='VkAccelerationStructureBuildSizesInfoKHR::buildScratchSize' o='256' t='VkDeviceSize'/>

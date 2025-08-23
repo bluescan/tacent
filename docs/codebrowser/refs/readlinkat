@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='851' type='ssize_t readlinkat(int __fd, const char *__restrict __path, char *__restrict __buf, size_t __len)'/>
+<doc f='include/unistd.h' l='850'>/* Like readlink but a relative PATH is interpreted relative to FD.  */</doc>

@@ -1,0 +1,4 @@
+<def f='Modules/System/Inc/System/tScript.h' l='101' type='int tExpression::GetAtomInt() const'/>
+<use f='Modules/System/Inc/System/tScript.h' l='122' u='c' c='_ZNK11tExpressioncviEv'/>
+<use f='Modules/System/Inc/System/tScript.h' l='124' u='c' c='_ZNK11tExpressioncvlEv'/>
+<use f='Modules/Image/Src/tImageTIFF.cpp' l='50' u='c' c='_ZNK6tImage10tImageTIFF24ReadSoftwarePageDurationEP4tiff'/>

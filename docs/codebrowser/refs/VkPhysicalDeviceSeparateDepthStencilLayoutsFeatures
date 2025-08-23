@@ -1,0 +1,6 @@
+<def f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6363' ll='6367'/>
+<use f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='6363'/>
+<size>24</size>
+<mbr r='VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures::sType' o='0' t='VkStructureType'/>
+<mbr r='VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures::pNext' o='64' t='void *'/>
+<mbr r='VkPhysicalDeviceSeparateDepthStencilLayoutsFeatures::separateDepthStencilLayouts' o='128' t='VkBool32'/>

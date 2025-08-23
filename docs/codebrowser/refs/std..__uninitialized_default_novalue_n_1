@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/stl_uninitialized.h' l='740' ll='759'/>
+<def f='include/c++/11/bits/stl_uninitialized.h' l='761' ll='768'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='762'/>
+<use f='include/c++/11/bits/stl_uninitialized.h' l='794' c='_ZSt33__uninitialized_default_novalue_nT_T0_'/>
+<size>1</size>
+<fun r='_ZNSt35__uninitialized_default_novalue_n_126__uninit_default_novalue_nETL0__TL0_0_'/>
+<fun r='_ZNSt35__uninitialized_default_novalue_n_1ILb1EE26__uninit_default_novalue_nET_T0_'/>

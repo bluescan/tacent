@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/WebP/include/demux.h' l='180' type='void WebPDemuxReleaseIterator(WebPIterator * iter)'/>
+<use f='Modules/Image/Src/tImageWEBP.cpp' l='154' u='c' c='_ZN6tImage10tImageWEBP4LoadEPKhi'/>

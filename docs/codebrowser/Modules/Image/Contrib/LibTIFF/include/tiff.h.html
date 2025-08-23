@@ -1,0 +1,818 @@
+<!doctype html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>tiff.h source code [Modules/Image/Contrib/LibTIFF/include/tiff.h] - Woboq Code Browser</title>
+<link rel="stylesheet" href="../../../../../../data/qtcreator.css" title="QtCreator"/>
+<link rel="alternate stylesheet" href="../../../../../../data/kdevelop.css" title="KDevelop"/>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../../../data/jquery/jquery-ui.min.js"></script>
+<script>var file = 'Modules/Image/Contrib/LibTIFF/include/tiff.h'; var root_path = '../../../../..'; var data_path = '../../../../../../data'; var ecma_script_api_version = 2;</script>
+<script src='../../../../../../data/codebrowser.js'></script>
+</head>
+<body><div id='header'><h1 id='breadcrumb'><span>Source File </span><a href='../../../..'>Modules</a>/<a href='../../..'>Image</a>/<a href='../..'>Contrib</a>/<a href='..'>LibTIFF</a>/<a href='./'>include</a>/<a href='tiff.h.html'>tiff.h</a><br><a href='/index.md'>Home Page</a> &nbsp &nbsp &nbsp &nbsp <a href='/codebrowser/Modules/index.html'>Browse Root</a></h1></div>
+<hr/><div id='content'><table class="code">
+<tr><th id="1">1</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="2">2</th><td><i> * Copyright (c) 1988-1997 Sam Leffler</i>&nbsp</td></tr>
+<tr><th id="3">3</th><td><i> * Copyright (c) 1991-1997 Silicon Graphics, Inc.</i>&nbsp</td></tr>
+<tr><th id="4">4</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="5">5</th><td><i> * Permission to use, copy, modify, distribute, and sell this software and </i>&nbsp</td></tr>
+<tr><th id="6">6</th><td><i> * its documentation for any purpose is hereby granted without fee, provided</i>&nbsp</td></tr>
+<tr><th id="7">7</th><td><i> * that (i) the above copyright notices and this permission notice appear in</i>&nbsp</td></tr>
+<tr><th id="8">8</th><td><i> * all copies of the software and related documentation, and (ii) the names of</i>&nbsp</td></tr>
+<tr><th id="9">9</th><td><i> * Sam Leffler and Silicon Graphics may not be used in any advertising or</i>&nbsp</td></tr>
+<tr><th id="10">10</th><td><i> * publicity relating to the software without the specific, prior written</i>&nbsp</td></tr>
+<tr><th id="11">11</th><td><i> * permission of Sam Leffler and Silicon Graphics.</i>&nbsp</td></tr>
+<tr><th id="12">12</th><td><i> * </i>&nbsp</td></tr>
+<tr><th id="13">13</th><td><i> * THE SOFTWARE IS PROVIDED "AS-IS" AND WITHOUT WARRANTY OF ANY KIND, </i>&nbsp</td></tr>
+<tr><th id="14">14</th><td><i> * EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY </i>&nbsp</td></tr>
+<tr><th id="15">15</th><td><i> * WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.  </i>&nbsp</td></tr>
+<tr><th id="16">16</th><td><i> * </i>&nbsp</td></tr>
+<tr><th id="17">17</th><td><i> * IN NO EVENT SHALL SAM LEFFLER OR SILICON GRAPHICS BE LIABLE FOR</i>&nbsp</td></tr>
+<tr><th id="18">18</th><td><i> * ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND,</i>&nbsp</td></tr>
+<tr><th id="19">19</th><td><i> * OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS,</i>&nbsp</td></tr>
+<tr><th id="20">20</th><td><i> * WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF </i>&nbsp</td></tr>
+<tr><th id="21">21</th><td><i> * LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE </i>&nbsp</td></tr>
+<tr><th id="22">22</th><td><i> * OF THIS SOFTWARE.</i>&nbsp</td></tr>
+<tr><th id="23">23</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="24">24</th><td>&nbsp</td></tr>
+<tr><th id="25">25</th><td><u>#<span data-ppcond="25">ifndef</span> <span class="macro" data-ref="_M/_TIFF_">_TIFF_</span></u>&nbsp</td></tr>
+<tr><th id="26">26</th><td><u>#define	<dfn class="macro" id="_M/_TIFF_" data-ref="_M/_TIFF_">_TIFF_</dfn></u>&nbsp</td></tr>
+<tr><th id="27">27</th><td>&nbsp</td></tr>
+<tr><th id="28">28</th><td><u>#include "tiffconf.h"</u>&nbsp</td></tr>
+<tr><th id="29">29</th><td>&nbsp</td></tr>
+<tr><th id="30">30</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="31">31</th><td><i> * Tag Image File Format (TIFF)</i>&nbsp</td></tr>
+<tr><th id="32">32</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="33">33</th><td><i> * Based on Rev 6.0 from:</i>&nbsp</td></tr>
+<tr><th id="34">34</th><td><i> *    Developer's Desk</i>&nbsp</td></tr>
+<tr><th id="35">35</th><td><i> *    Aldus Corporation</i>&nbsp</td></tr>
+<tr><th id="36">36</th><td><i> *    411 First Ave. South</i>&nbsp</td></tr>
+<tr><th id="37">37</th><td><i> *    Suite 200</i>&nbsp</td></tr>
+<tr><th id="38">38</th><td><i> *    Seattle, WA  98104</i>&nbsp</td></tr>
+<tr><th id="39">39</th><td><i> *    206-622-5500</i>&nbsp</td></tr>
+<tr><th id="40">40</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="41">41</th><td><i> *    (<a href="http://partners.adobe.com/asn/developer/PDFS/TN/TIFF6.pdf">http://partners.adobe.com/asn/developer/PDFS/TN/TIFF6.pdf</a>)</i>&nbsp</td></tr>
+<tr><th id="42">42</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="43">43</th><td><i> * For BigTIFF design notes see the following links</i>&nbsp</td></tr>
+<tr><th id="44">44</th><td><i> *    <a href="http://www.remotesensing.org/libtiff/bigtiffdesign.html">http://www.remotesensing.org/libtiff/bigtiffdesign.html</a></i>&nbsp</td></tr>
+<tr><th id="45">45</th><td><i> *    <a href="http://www.awaresystems.be/imaging/tiff/bigtiff.html">http://www.awaresystems.be/imaging/tiff/bigtiff.html</a></i>&nbsp</td></tr>
+<tr><th id="46">46</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="47">47</th><td>&nbsp</td></tr>
+<tr><th id="48">48</th><td><u>#define <dfn class="macro" id="_M/TIFF_VERSION_CLASSIC" data-ref="_M/TIFF_VERSION_CLASSIC">TIFF_VERSION_CLASSIC</dfn> 42</u>&nbsp</td></tr>
+<tr><th id="49">49</th><td><u>#define <dfn class="macro" id="_M/TIFF_VERSION_BIG" data-ref="_M/TIFF_VERSION_BIG">TIFF_VERSION_BIG</dfn> 43</u>&nbsp</td></tr>
+<tr><th id="50">50</th><td>&nbsp</td></tr>
+<tr><th id="51">51</th><td><u>#define <dfn class="macro" id="_M/TIFF_BIGENDIAN" data-ref="_M/TIFF_BIGENDIAN">TIFF_BIGENDIAN</dfn>      0x4d4d</u>&nbsp</td></tr>
+<tr><th id="52">52</th><td><u>#define <dfn class="macro" id="_M/TIFF_LITTLEENDIAN" data-ref="_M/TIFF_LITTLEENDIAN">TIFF_LITTLEENDIAN</dfn>   0x4949</u>&nbsp</td></tr>
+<tr><th id="53">53</th><td><u>#define <dfn class="macro" id="_M/MDI_LITTLEENDIAN" data-ref="_M/MDI_LITTLEENDIAN">MDI_LITTLEENDIAN</dfn>    0x5045</u>&nbsp</td></tr>
+<tr><th id="54">54</th><td><u>#define <dfn class="macro" id="_M/MDI_BIGENDIAN" data-ref="_M/MDI_BIGENDIAN">MDI_BIGENDIAN</dfn>       0x4550</u>&nbsp</td></tr>
+<tr><th id="55">55</th><td>&nbsp</td></tr>
+<tr><th id="56">56</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="57">57</th><td><i> * Intrinsic data types required by the file format:</i>&nbsp</td></tr>
+<tr><th id="58">58</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="59">59</th><td><i> * 8-bit quantities     int8/uint8</i>&nbsp</td></tr>
+<tr><th id="60">60</th><td><i> * 16-bit quantities    int16/uint16</i>&nbsp</td></tr>
+<tr><th id="61">61</th><td><i> * 32-bit quantities    int32/uint32</i>&nbsp</td></tr>
+<tr><th id="62">62</th><td><i> * 64-bit quantities    int64/uint64</i>&nbsp</td></tr>
+<tr><th id="63">63</th><td><i> * strings              unsigned char*</i>&nbsp</td></tr>
+<tr><th id="64">64</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="65">65</th><td>&nbsp</td></tr>
+<tr><th id="66">66</th><td><b>typedef</b> <a class="macro" href="tiffconf.h.html#20" title="signed char" data-ref="_M/TIFF_INT8_T">TIFF_INT8_T</a>   <a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#int8" title='int8' data-type='signed char' data-ref="int8" id="int8">int8</a>;&nbsp</td></tr>
+<tr><th id="67">67</th><td><b>typedef</b> <a class="macro" href="tiffconf.h.html#32" title="unsigned char" data-ref="_M/TIFF_UINT8_T">TIFF_UINT8_T</a>  <a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint8" title='uint8' data-type='unsigned char' data-ref="uint8" id="uint8">uint8</a>;&nbsp</td></tr>
+<tr><th id="68">68</th><td>&nbsp</td></tr>
+<tr><th id="69">69</th><td><b>typedef</b> <a class="macro" href="tiffconf.h.html#11" title="signed short" data-ref="_M/TIFF_INT16_T">TIFF_INT16_T</a>  <a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#int16" title='int16' data-type='short' data-ref="int16" id="int16">int16</a>;&nbsp</td></tr>
+<tr><th id="70">70</th><td><b>typedef</b> <a class="macro" href="tiffconf.h.html#23" title="unsigned short" data-ref="_M/TIFF_UINT16_T">TIFF_UINT16_T</a> <a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint16" title='uint16' data-type='unsigned short' data-ref="uint16" id="uint16">uint16</a>;&nbsp</td></tr>
+<tr><th id="71">71</th><td>&nbsp</td></tr>
+<tr><th id="72">72</th><td><b>typedef</b> <a class="macro" href="tiffconf.h.html#14" title="signed int" data-ref="_M/TIFF_INT32_T">TIFF_INT32_T</a>  <a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#int32" title='int32' data-type='int' data-ref="int32" id="int32">int32</a>;&nbsp</td></tr>
+<tr><th id="73">73</th><td><b>typedef</b> <a class="macro" href="tiffconf.h.html#26" title="unsigned int" data-ref="_M/TIFF_UINT32_T">TIFF_UINT32_T</a> <a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint32" title='uint32' data-type='unsigned int' data-ref="uint32" id="uint32">uint32</a>;&nbsp</td></tr>
+<tr><th id="74">74</th><td>&nbsp</td></tr>
+<tr><th id="75">75</th><td><b>typedef</b> <a class="macro" href="tiffconf.h.html#17" title="signed long long" data-ref="_M/TIFF_INT64_T">TIFF_INT64_T</a>  <a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#int64" title='int64' data-type='long long' data-ref="int64" id="int64">int64</a>;&nbsp</td></tr>
+<tr><th id="76">76</th><td><b>typedef</b> <a class="macro" href="tiffconf.h.html#29" title="unsigned long long" data-ref="_M/TIFF_UINT64_T">TIFF_UINT64_T</a> <a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint64" title='uint64' data-type='unsigned long long' data-ref="uint64" id="uint64">uint64</a>;&nbsp</td></tr>
+<tr><th id="77">77</th><td>&nbsp</td></tr>
+<tr><th id="78">78</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="79">79</th><td><i> * Some types as promoted in a variable argument list</i>&nbsp</td></tr>
+<tr><th id="80">80</th><td><i> * We use uint16_vap rather then directly using int, because this way</i>&nbsp</td></tr>
+<tr><th id="81">81</th><td><i> * we document the type we actually want to pass through, conceptually,</i>&nbsp</td></tr>
+<tr><th id="82">82</th><td><i> * rather then confusing the issue by merely stating the type it gets</i>&nbsp</td></tr>
+<tr><th id="83">83</th><td><i> * promoted to</i>&nbsp</td></tr>
+<tr><th id="84">84</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="85">85</th><td>&nbsp</td></tr>
+<tr><th id="86">86</th><td><b>typedef</b> <em>int</em> <dfn class="typedef" id="uint16_vap" title='uint16_vap' data-type='int' data-ref="uint16_vap">uint16_vap</dfn>;&nbsp</td></tr>
+<tr><th id="87">87</th><td>&nbsp</td></tr>
+<tr><th id="88">88</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="89">89</th><td><i> * TIFF header.</i>&nbsp</td></tr>
+<tr><th id="90">90</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="91">91</th><td><b>typedef</b> <b>struct</b> {&nbsp</td></tr>
+<tr><th id="92">92</th><td>	<a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint16" title='uint16' data-type='unsigned short' data-ref="uint16">uint16</a> <dfn class="decl field" id="(anonymous)::tiff_magic" title='(anonymous struct)::tiff_magic' data-ref="(anonymous)::tiff_magic">tiff_magic</dfn>;      <i>/* magic number (defines byte order) */</i>&nbsp</td></tr>
+<tr><th id="93">93</th><td>	<a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint16" title='uint16' data-type='unsigned short' data-ref="uint16">uint16</a> <dfn class="decl field" id="(anonymous)::tiff_version" title='(anonymous struct)::tiff_version' data-ref="(anonymous)::tiff_version">tiff_version</dfn>;    <i>/* TIFF version number */</i>&nbsp</td></tr>
+<tr><th id="94">94</th><td>} <dfn class="typedef" id="TIFFHeaderCommon" title='TIFFHeaderCommon' data-type='struct TIFFHeaderCommon' data-ref="TIFFHeaderCommon">TIFFHeaderCommon</dfn>;&nbsp</td></tr>
+<tr><th id="95">95</th><td><b>typedef</b> <b>struct</b> {&nbsp</td></tr>
+<tr><th id="96">96</th><td>	<a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint16" title='uint16' data-type='unsigned short' data-ref="uint16">uint16</a> <dfn class="decl field" id="(anonymous)::tiff_magic" title='(anonymous struct)::tiff_magic' data-ref="(anonymous)::tiff_magic">tiff_magic</dfn>;      <i>/* magic number (defines byte order) */</i>&nbsp</td></tr>
+<tr><th id="97">97</th><td>	<a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint16" title='uint16' data-type='unsigned short' data-ref="uint16">uint16</a> <dfn class="decl field" id="(anonymous)::tiff_version" title='(anonymous struct)::tiff_version' data-ref="(anonymous)::tiff_version">tiff_version</dfn>;    <i>/* TIFF version number */</i>&nbsp</td></tr>
+<tr><th id="98">98</th><td>	<a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint32" title='uint32' data-type='unsigned int' data-ref="uint32">uint32</a> <dfn class="decl field" id="(anonymous)::tiff_diroff" title='(anonymous struct)::tiff_diroff' data-ref="(anonymous)::tiff_diroff">tiff_diroff</dfn>;     <i>/* byte offset to first directory */</i>&nbsp</td></tr>
+<tr><th id="99">99</th><td>} <dfn class="typedef" id="TIFFHeaderClassic" title='TIFFHeaderClassic' data-type='struct TIFFHeaderClassic' data-ref="TIFFHeaderClassic">TIFFHeaderClassic</dfn>;&nbsp</td></tr>
+<tr><th id="100">100</th><td><b>typedef</b> <b>struct</b> {&nbsp</td></tr>
+<tr><th id="101">101</th><td>	<a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint16" title='uint16' data-type='unsigned short' data-ref="uint16">uint16</a> <dfn class="decl field" id="(anonymous)::tiff_magic" title='(anonymous struct)::tiff_magic' data-ref="(anonymous)::tiff_magic">tiff_magic</dfn>;      <i>/* magic number (defines byte order) */</i>&nbsp</td></tr>
+<tr><th id="102">102</th><td>	<a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint16" title='uint16' data-type='unsigned short' data-ref="uint16">uint16</a> <dfn class="decl field" id="(anonymous)::tiff_version" title='(anonymous struct)::tiff_version' data-ref="(anonymous)::tiff_version">tiff_version</dfn>;    <i>/* TIFF version number */</i>&nbsp</td></tr>
+<tr><th id="103">103</th><td>	<a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint16" title='uint16' data-type='unsigned short' data-ref="uint16">uint16</a> <dfn class="decl field" id="(anonymous)::tiff_offsetsize" title='(anonymous struct)::tiff_offsetsize' data-ref="(anonymous)::tiff_offsetsize">tiff_offsetsize</dfn>; <i>/* size of offsets, should be 8 */</i>&nbsp</td></tr>
+<tr><th id="104">104</th><td>	<a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint16" title='uint16' data-type='unsigned short' data-ref="uint16">uint16</a> <dfn class="decl field" id="(anonymous)::tiff_unused" title='(anonymous struct)::tiff_unused' data-ref="(anonymous)::tiff_unused">tiff_unused</dfn>;     <i>/* unused word, should be 0 */</i>&nbsp</td></tr>
+<tr><th id="105">105</th><td>	<a class="typedef" href="../../../../Foundation/Inc/Foundation/tPlatform.h.html#uint64" title='uint64' data-type='unsigned long long' data-ref="uint64">uint64</a> <dfn class="decl field" id="(anonymous)::tiff_diroff" title='(anonymous struct)::tiff_diroff' data-ref="(anonymous)::tiff_diroff">tiff_diroff</dfn>;     <i>/* byte offset to first directory */</i>&nbsp</td></tr>
+<tr><th id="106">106</th><td>} <dfn class="typedef" id="TIFFHeaderBig" title='TIFFHeaderBig' data-type='struct TIFFHeaderBig' data-ref="TIFFHeaderBig">TIFFHeaderBig</dfn>;&nbsp</td></tr>
+<tr><th id="107">107</th><td>&nbsp</td></tr>
+<tr><th id="108">108</th><td>&nbsp</td></tr>
+<tr><th id="109">109</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="110">110</th><td><i> * NB: In the comments below,</i>&nbsp</td></tr>
+<tr><th id="111">111</th><td><i> *  - items marked with a + are obsoleted by revision 5.0,</i>&nbsp</td></tr>
+<tr><th id="112">112</th><td><i> *  - items marked with a ! are introduced in revision 6.0.</i>&nbsp</td></tr>
+<tr><th id="113">113</th><td><i> *  - items marked with a % are introduced post revision 6.0.</i>&nbsp</td></tr>
+<tr><th id="114">114</th><td><i> *  - items marked with a $ are obsoleted by revision 6.0.</i>&nbsp</td></tr>
+<tr><th id="115">115</th><td><i> *  - items marked with a &amp; are introduced by Adobe DNG specification.</i>&nbsp</td></tr>
+<tr><th id="116">116</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="117">117</th><td>&nbsp</td></tr>
+<tr><th id="118">118</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="119">119</th><td><i> * Tag data type information.</i>&nbsp</td></tr>
+<tr><th id="120">120</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="121">121</th><td><i> * Note: RATIONALs are the ratio of two 32-bit integer values.</i>&nbsp</td></tr>
+<tr><th id="122">122</th><td><i> *--:</i>&nbsp</td></tr>
+<tr><th id="123">123</th><td><i> * Note2: TIFF_IFD8 data type is used in tiffFields[]-tag definition in order to distinguish the write-handling </i>&nbsp</td></tr>
+<tr><th id="124">124</th><td><i>          of those tags between ClassicTIFF and BigTiff:</i>&nbsp</td></tr>
+<tr><th id="125">125</th><td><i>		  For ClassicTIFF libtiff writes a 32-bit value and the TIFF_IFD type-id into the file</i>&nbsp</td></tr>
+<tr><th id="126">126</th><td><i>		  For BigTIFF     libtiff writes a 64-bit value and the TIFF_IFD8 type-id into the file</i>&nbsp</td></tr>
+<tr><th id="127">127</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="128">128</th><td><b>typedef</b> <b>enum</b> {&nbsp</td></tr>
+<tr><th id="129">129</th><td>	<dfn class="enum" id="TIFF_NOTYPE" title='TIFF_NOTYPE' data-ref="TIFF_NOTYPE">TIFF_NOTYPE</dfn> = <var>0</var>,      <i>/* placeholder */</i>&nbsp</td></tr>
+<tr><th id="130">130</th><td>	<dfn class="enum" id="TIFF_BYTE" title='TIFF_BYTE' data-ref="TIFF_BYTE">TIFF_BYTE</dfn> = <var>1</var>,        <i>/* 8-bit unsigned integer */</i>&nbsp</td></tr>
+<tr><th id="131">131</th><td>	<dfn class="enum" id="TIFF_ASCII" title='TIFF_ASCII' data-ref="TIFF_ASCII">TIFF_ASCII</dfn> = <var>2</var>,       <i>/* 8-bit bytes w/ last byte null */</i>&nbsp</td></tr>
+<tr><th id="132">132</th><td>	<dfn class="enum" id="TIFF_SHORT" title='TIFF_SHORT' data-ref="TIFF_SHORT">TIFF_SHORT</dfn> = <var>3</var>,       <i>/* 16-bit unsigned integer */</i>&nbsp</td></tr>
+<tr><th id="133">133</th><td>	<dfn class="enum" id="TIFF_LONG" title='TIFF_LONG' data-ref="TIFF_LONG">TIFF_LONG</dfn> = <var>4</var>,        <i>/* 32-bit unsigned integer */</i>&nbsp</td></tr>
+<tr><th id="134">134</th><td>	<dfn class="enum" id="TIFF_RATIONAL" title='TIFF_RATIONAL' data-ref="TIFF_RATIONAL">TIFF_RATIONAL</dfn> = <var>5</var>,    <i>/* 64-bit unsigned fraction */</i>&nbsp</td></tr>
+<tr><th id="135">135</th><td>	<dfn class="enum" id="TIFF_SBYTE" title='TIFF_SBYTE' data-ref="TIFF_SBYTE">TIFF_SBYTE</dfn> = <var>6</var>,       <i>/* !8-bit signed integer */</i>&nbsp</td></tr>
+<tr><th id="136">136</th><td>	<dfn class="enum" id="TIFF_UNDEFINED" title='TIFF_UNDEFINED' data-ref="TIFF_UNDEFINED">TIFF_UNDEFINED</dfn> = <var>7</var>,   <i>/* !8-bit untyped data */</i>&nbsp</td></tr>
+<tr><th id="137">137</th><td>	<dfn class="enum" id="TIFF_SSHORT" title='TIFF_SSHORT' data-ref="TIFF_SSHORT">TIFF_SSHORT</dfn> = <var>8</var>,      <i>/* !16-bit signed integer */</i>&nbsp</td></tr>
+<tr><th id="138">138</th><td>	<dfn class="enum" id="TIFF_SLONG" title='TIFF_SLONG' data-ref="TIFF_SLONG">TIFF_SLONG</dfn> = <var>9</var>,       <i>/* !32-bit signed integer */</i>&nbsp</td></tr>
+<tr><th id="139">139</th><td>	<dfn class="enum" id="TIFF_SRATIONAL" title='TIFF_SRATIONAL' data-ref="TIFF_SRATIONAL">TIFF_SRATIONAL</dfn> = <var>10</var>,  <i>/* !64-bit signed fraction */</i>&nbsp</td></tr>
+<tr><th id="140">140</th><td>	<dfn class="enum" id="TIFF_FLOAT" title='TIFF_FLOAT' data-ref="TIFF_FLOAT">TIFF_FLOAT</dfn> = <var>11</var>,      <i>/* !32-bit IEEE floating point */</i>&nbsp</td></tr>
+<tr><th id="141">141</th><td>	<dfn class="enum" id="TIFF_DOUBLE" title='TIFF_DOUBLE' data-ref="TIFF_DOUBLE">TIFF_DOUBLE</dfn> = <var>12</var>,     <i>/* !64-bit IEEE floating point */</i>&nbsp</td></tr>
+<tr><th id="142">142</th><td>	<dfn class="enum" id="TIFF_IFD" title='TIFF_IFD' data-ref="TIFF_IFD">TIFF_IFD</dfn> = <var>13</var>,        <i>/* %32-bit unsigned integer (offset) */</i>&nbsp</td></tr>
+<tr><th id="143">143</th><td>	<dfn class="enum" id="TIFF_LONG8" title='TIFF_LONG8' data-ref="TIFF_LONG8">TIFF_LONG8</dfn> = <var>16</var>,      <i>/* BigTIFF 64-bit unsigned integer */</i>&nbsp</td></tr>
+<tr><th id="144">144</th><td>	<dfn class="enum" id="TIFF_SLONG8" title='TIFF_SLONG8' data-ref="TIFF_SLONG8">TIFF_SLONG8</dfn> = <var>17</var>,     <i>/* BigTIFF 64-bit signed integer */</i>&nbsp</td></tr>
+<tr><th id="145">145</th><td>	<dfn class="enum" id="TIFF_IFD8" title='TIFF_IFD8' data-ref="TIFF_IFD8">TIFF_IFD8</dfn> = <var>18</var>        <i>/* BigTIFF 64-bit unsigned integer (offset) */</i>&nbsp</td></tr>
+<tr><th id="146">146</th><td>} <dfn class="typedef" id="TIFFDataType" title='TIFFDataType' data-type='enum TIFFDataType' data-ref="TIFFDataType">TIFFDataType</dfn>;&nbsp</td></tr>
+<tr><th id="147">147</th><td>&nbsp</td></tr>
+<tr><th id="148">148</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="149">149</th><td><i> * TIFF Tag Definitions.</i>&nbsp</td></tr>
+<tr><th id="150">150</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="151">151</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_SUBFILETYPE" data-ref="_M/TIFFTAG_SUBFILETYPE">TIFFTAG_SUBFILETYPE</dfn>		254	/* subfile data descriptor */</u>&nbsp</td></tr>
+<tr><th id="152">152</th><td><u>#define	    <dfn class="macro" id="_M/FILETYPE_REDUCEDIMAGE" data-ref="_M/FILETYPE_REDUCEDIMAGE">FILETYPE_REDUCEDIMAGE</dfn>	0x1	/* reduced resolution version */</u>&nbsp</td></tr>
+<tr><th id="153">153</th><td><u>#define	    <dfn class="macro" id="_M/FILETYPE_PAGE" data-ref="_M/FILETYPE_PAGE">FILETYPE_PAGE</dfn>		0x2	/* one page of many */</u>&nbsp</td></tr>
+<tr><th id="154">154</th><td><u>#define	    <dfn class="macro" id="_M/FILETYPE_MASK" data-ref="_M/FILETYPE_MASK">FILETYPE_MASK</dfn>		0x4	/* transparency mask */</u>&nbsp</td></tr>
+<tr><th id="155">155</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_OSUBFILETYPE" data-ref="_M/TIFFTAG_OSUBFILETYPE">TIFFTAG_OSUBFILETYPE</dfn>		255	/* +kind of data in subfile */</u>&nbsp</td></tr>
+<tr><th id="156">156</th><td><u>#define	    <dfn class="macro" id="_M/OFILETYPE_IMAGE" data-ref="_M/OFILETYPE_IMAGE">OFILETYPE_IMAGE</dfn>		1	/* full resolution image data */</u>&nbsp</td></tr>
+<tr><th id="157">157</th><td><u>#define	    <dfn class="macro" id="_M/OFILETYPE_REDUCEDIMAGE" data-ref="_M/OFILETYPE_REDUCEDIMAGE">OFILETYPE_REDUCEDIMAGE</dfn>	2	/* reduced size image data */</u>&nbsp</td></tr>
+<tr><th id="158">158</th><td><u>#define	    <dfn class="macro" id="_M/OFILETYPE_PAGE" data-ref="_M/OFILETYPE_PAGE">OFILETYPE_PAGE</dfn>		3	/* one page of many */</u>&nbsp</td></tr>
+<tr><th id="159">159</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_IMAGEWIDTH" data-ref="_M/TIFFTAG_IMAGEWIDTH">TIFFTAG_IMAGEWIDTH</dfn>		256	/* image width in pixels */</u>&nbsp</td></tr>
+<tr><th id="160">160</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_IMAGELENGTH" data-ref="_M/TIFFTAG_IMAGELENGTH">TIFFTAG_IMAGELENGTH</dfn>		257	/* image height in pixels */</u>&nbsp</td></tr>
+<tr><th id="161">161</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_BITSPERSAMPLE" data-ref="_M/TIFFTAG_BITSPERSAMPLE">TIFFTAG_BITSPERSAMPLE</dfn>		258	/* bits per channel (sample) */</u>&nbsp</td></tr>
+<tr><th id="162">162</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_COMPRESSION" data-ref="_M/TIFFTAG_COMPRESSION">TIFFTAG_COMPRESSION</dfn>		259	/* data compression technique */</u>&nbsp</td></tr>
+<tr><th id="163">163</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_NONE" data-ref="_M/COMPRESSION_NONE">COMPRESSION_NONE</dfn>		1	/* dump mode */</u>&nbsp</td></tr>
+<tr><th id="164">164</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_CCITTRLE" data-ref="_M/COMPRESSION_CCITTRLE">COMPRESSION_CCITTRLE</dfn>	2	/* CCITT modified Huffman RLE */</u>&nbsp</td></tr>
+<tr><th id="165">165</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_CCITTFAX3" data-ref="_M/COMPRESSION_CCITTFAX3">COMPRESSION_CCITTFAX3</dfn>	3	/* CCITT Group 3 fax encoding */</u>&nbsp</td></tr>
+<tr><th id="166">166</th><td><u>#define     <dfn class="macro" id="_M/COMPRESSION_CCITT_T4" data-ref="_M/COMPRESSION_CCITT_T4">COMPRESSION_CCITT_T4</dfn>        3       /* CCITT T.4 (TIFF 6 name) */</u>&nbsp</td></tr>
+<tr><th id="167">167</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_CCITTFAX4" data-ref="_M/COMPRESSION_CCITTFAX4">COMPRESSION_CCITTFAX4</dfn>	4	/* CCITT Group 4 fax encoding */</u>&nbsp</td></tr>
+<tr><th id="168">168</th><td><u>#define     <dfn class="macro" id="_M/COMPRESSION_CCITT_T6" data-ref="_M/COMPRESSION_CCITT_T6">COMPRESSION_CCITT_T6</dfn>        4       /* CCITT T.6 (TIFF 6 name) */</u>&nbsp</td></tr>
+<tr><th id="169">169</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_LZW" data-ref="_M/COMPRESSION_LZW">COMPRESSION_LZW</dfn>		5       /* Lempel-Ziv  &amp; Welch */</u>&nbsp</td></tr>
+<tr><th id="170">170</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_OJPEG" data-ref="_M/COMPRESSION_OJPEG">COMPRESSION_OJPEG</dfn>		6	/* !6.0 JPEG */</u>&nbsp</td></tr>
+<tr><th id="171">171</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_JPEG" data-ref="_M/COMPRESSION_JPEG">COMPRESSION_JPEG</dfn>		7	/* %JPEG DCT compression */</u>&nbsp</td></tr>
+<tr><th id="172">172</th><td><u>#define     <dfn class="macro" id="_M/COMPRESSION_T85" data-ref="_M/COMPRESSION_T85">COMPRESSION_T85</dfn>			9	/* !TIFF/FX T.85 JBIG compression */</u>&nbsp</td></tr>
+<tr><th id="173">173</th><td><u>#define     <dfn class="macro" id="_M/COMPRESSION_T43" data-ref="_M/COMPRESSION_T43">COMPRESSION_T43</dfn>			10	/* !TIFF/FX T.43 colour by layered JBIG compression */</u>&nbsp</td></tr>
+<tr><th id="174">174</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_NEXT" data-ref="_M/COMPRESSION_NEXT">COMPRESSION_NEXT</dfn>		32766	/* NeXT 2-bit RLE */</u>&nbsp</td></tr>
+<tr><th id="175">175</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_CCITTRLEW" data-ref="_M/COMPRESSION_CCITTRLEW">COMPRESSION_CCITTRLEW</dfn>	32771	/* #1 w/ word alignment */</u>&nbsp</td></tr>
+<tr><th id="176">176</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_PACKBITS" data-ref="_M/COMPRESSION_PACKBITS">COMPRESSION_PACKBITS</dfn>	32773	/* Macintosh RLE */</u>&nbsp</td></tr>
+<tr><th id="177">177</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_THUNDERSCAN" data-ref="_M/COMPRESSION_THUNDERSCAN">COMPRESSION_THUNDERSCAN</dfn>	32809	/* ThunderScan RLE */</u>&nbsp</td></tr>
+<tr><th id="178">178</th><td><i>/* codes 32895-32898 are reserved for ANSI IT8 TIFF/IT &lt;dkelly@apago.com) */</i>&nbsp</td></tr>
+<tr><th id="179">179</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_IT8CTPAD" data-ref="_M/COMPRESSION_IT8CTPAD">COMPRESSION_IT8CTPAD</dfn>	32895   /* IT8 CT w/padding */</u>&nbsp</td></tr>
+<tr><th id="180">180</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_IT8LW" data-ref="_M/COMPRESSION_IT8LW">COMPRESSION_IT8LW</dfn>		32896   /* IT8 Linework RLE */</u>&nbsp</td></tr>
+<tr><th id="181">181</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_IT8MP" data-ref="_M/COMPRESSION_IT8MP">COMPRESSION_IT8MP</dfn>		32897   /* IT8 Monochrome picture */</u>&nbsp</td></tr>
+<tr><th id="182">182</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_IT8BL" data-ref="_M/COMPRESSION_IT8BL">COMPRESSION_IT8BL</dfn>		32898   /* IT8 Binary line art */</u>&nbsp</td></tr>
+<tr><th id="183">183</th><td><i>/* compression codes 32908-32911 are reserved for Pixar */</i>&nbsp</td></tr>
+<tr><th id="184">184</th><td><u>#define     <dfn class="macro" id="_M/COMPRESSION_PIXARFILM" data-ref="_M/COMPRESSION_PIXARFILM">COMPRESSION_PIXARFILM</dfn>	32908   /* Pixar companded 10bit LZW */</u>&nbsp</td></tr>
+<tr><th id="185">185</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_PIXARLOG" data-ref="_M/COMPRESSION_PIXARLOG">COMPRESSION_PIXARLOG</dfn>	32909   /* Pixar companded 11bit ZIP */</u>&nbsp</td></tr>
+<tr><th id="186">186</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_DEFLATE" data-ref="_M/COMPRESSION_DEFLATE">COMPRESSION_DEFLATE</dfn>		32946	/* Deflate compression */</u>&nbsp</td></tr>
+<tr><th id="187">187</th><td><u>#define     <dfn class="macro" id="_M/COMPRESSION_ADOBE_DEFLATE" data-ref="_M/COMPRESSION_ADOBE_DEFLATE">COMPRESSION_ADOBE_DEFLATE</dfn>   8       /* Deflate compression,</u>&nbsp</td></tr>
+<tr><th id="188">188</th><td><u>						   as recognized by Adobe */</u>&nbsp</td></tr>
+<tr><th id="189">189</th><td><i>/* compression code 32947 is reserved for Oceana Matrix &lt;dev@oceana.com&gt; */</i>&nbsp</td></tr>
+<tr><th id="190">190</th><td><u>#define     <dfn class="macro" id="_M/COMPRESSION_DCS" data-ref="_M/COMPRESSION_DCS">COMPRESSION_DCS</dfn>             32947   /* Kodak DCS encoding */</u>&nbsp</td></tr>
+<tr><th id="191">191</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_JBIG" data-ref="_M/COMPRESSION_JBIG">COMPRESSION_JBIG</dfn>		34661	/* ISO JBIG */</u>&nbsp</td></tr>
+<tr><th id="192">192</th><td><u>#define     <dfn class="macro" id="_M/COMPRESSION_SGILOG" data-ref="_M/COMPRESSION_SGILOG">COMPRESSION_SGILOG</dfn>		34676	/* SGI Log Luminance RLE */</u>&nbsp</td></tr>
+<tr><th id="193">193</th><td><u>#define     <dfn class="macro" id="_M/COMPRESSION_SGILOG24" data-ref="_M/COMPRESSION_SGILOG24">COMPRESSION_SGILOG24</dfn>	34677	/* SGI Log 24-bit packed */</u>&nbsp</td></tr>
+<tr><th id="194">194</th><td><u>#define     <dfn class="macro" id="_M/COMPRESSION_JP2000" data-ref="_M/COMPRESSION_JP2000">COMPRESSION_JP2000</dfn>          34712   /* Leadtools JPEG2000 */</u>&nbsp</td></tr>
+<tr><th id="195">195</th><td><u>#define     <dfn class="macro" id="_M/COMPRESSION_LERC" data-ref="_M/COMPRESSION_LERC">COMPRESSION_LERC</dfn>            34887   /* ESRI Lerc codec: https://github.com/Esri/lerc */</u>&nbsp</td></tr>
+<tr><th id="196">196</th><td><i>/* compression codes 34887-34889 are reserved for ESRI */</i>&nbsp</td></tr>
+<tr><th id="197">197</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_LZMA" data-ref="_M/COMPRESSION_LZMA">COMPRESSION_LZMA</dfn>		34925	/* LZMA2 */</u>&nbsp</td></tr>
+<tr><th id="198">198</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_ZSTD" data-ref="_M/COMPRESSION_ZSTD">COMPRESSION_ZSTD</dfn>		50000	/* ZSTD: WARNING not registered in Adobe-maintained registry */</u>&nbsp</td></tr>
+<tr><th id="199">199</th><td><u>#define	    <dfn class="macro" id="_M/COMPRESSION_WEBP" data-ref="_M/COMPRESSION_WEBP">COMPRESSION_WEBP</dfn>		50001	/* WEBP: WARNING not registered in Adobe-maintained registry */</u>&nbsp</td></tr>
+<tr><th id="200">200</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_PHOTOMETRIC" data-ref="_M/TIFFTAG_PHOTOMETRIC">TIFFTAG_PHOTOMETRIC</dfn>		262	/* photometric interpretation */</u>&nbsp</td></tr>
+<tr><th id="201">201</th><td><u>#define	    <dfn class="macro" id="_M/PHOTOMETRIC_MINISWHITE" data-ref="_M/PHOTOMETRIC_MINISWHITE">PHOTOMETRIC_MINISWHITE</dfn>	0	/* min value is white */</u>&nbsp</td></tr>
+<tr><th id="202">202</th><td><u>#define	    <dfn class="macro" id="_M/PHOTOMETRIC_MINISBLACK" data-ref="_M/PHOTOMETRIC_MINISBLACK">PHOTOMETRIC_MINISBLACK</dfn>	1	/* min value is black */</u>&nbsp</td></tr>
+<tr><th id="203">203</th><td><u>#define	    <dfn class="macro" id="_M/PHOTOMETRIC_RGB" data-ref="_M/PHOTOMETRIC_RGB">PHOTOMETRIC_RGB</dfn>		2	/* RGB color model */</u>&nbsp</td></tr>
+<tr><th id="204">204</th><td><u>#define	    <dfn class="macro" id="_M/PHOTOMETRIC_PALETTE" data-ref="_M/PHOTOMETRIC_PALETTE">PHOTOMETRIC_PALETTE</dfn>		3	/* color map indexed */</u>&nbsp</td></tr>
+<tr><th id="205">205</th><td><u>#define	    <dfn class="macro" id="_M/PHOTOMETRIC_MASK" data-ref="_M/PHOTOMETRIC_MASK">PHOTOMETRIC_MASK</dfn>		4	/* $holdout mask */</u>&nbsp</td></tr>
+<tr><th id="206">206</th><td><u>#define	    <dfn class="macro" id="_M/PHOTOMETRIC_SEPARATED" data-ref="_M/PHOTOMETRIC_SEPARATED">PHOTOMETRIC_SEPARATED</dfn>	5	/* !color separations */</u>&nbsp</td></tr>
+<tr><th id="207">207</th><td><u>#define	    <dfn class="macro" id="_M/PHOTOMETRIC_YCBCR" data-ref="_M/PHOTOMETRIC_YCBCR">PHOTOMETRIC_YCBCR</dfn>		6	/* !CCIR 601 */</u>&nbsp</td></tr>
+<tr><th id="208">208</th><td><u>#define	    <dfn class="macro" id="_M/PHOTOMETRIC_CIELAB" data-ref="_M/PHOTOMETRIC_CIELAB">PHOTOMETRIC_CIELAB</dfn>		8	/* !1976 CIE L*a*b* */</u>&nbsp</td></tr>
+<tr><th id="209">209</th><td><u>#define	    <dfn class="macro" id="_M/PHOTOMETRIC_ICCLAB" data-ref="_M/PHOTOMETRIC_ICCLAB">PHOTOMETRIC_ICCLAB</dfn>		9	/* ICC L*a*b* [Adobe TIFF Technote 4] */</u>&nbsp</td></tr>
+<tr><th id="210">210</th><td><u>#define	    <dfn class="macro" id="_M/PHOTOMETRIC_ITULAB" data-ref="_M/PHOTOMETRIC_ITULAB">PHOTOMETRIC_ITULAB</dfn>		10	/* ITU L*a*b* */</u>&nbsp</td></tr>
+<tr><th id="211">211</th><td><u>#define	    <dfn class="macro" id="_M/PHOTOMETRIC_CFA" data-ref="_M/PHOTOMETRIC_CFA">PHOTOMETRIC_CFA</dfn>		32803	/* color filter array */</u>&nbsp</td></tr>
+<tr><th id="212">212</th><td><u>#define     <dfn class="macro" id="_M/PHOTOMETRIC_LOGL" data-ref="_M/PHOTOMETRIC_LOGL">PHOTOMETRIC_LOGL</dfn>		32844	/* CIE Log2(L) */</u>&nbsp</td></tr>
+<tr><th id="213">213</th><td><u>#define     <dfn class="macro" id="_M/PHOTOMETRIC_LOGLUV" data-ref="_M/PHOTOMETRIC_LOGLUV">PHOTOMETRIC_LOGLUV</dfn>		32845	/* CIE Log2(L) (u',v') */</u>&nbsp</td></tr>
+<tr><th id="214">214</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_THRESHHOLDING" data-ref="_M/TIFFTAG_THRESHHOLDING">TIFFTAG_THRESHHOLDING</dfn>		263	/* +thresholding used on data */</u>&nbsp</td></tr>
+<tr><th id="215">215</th><td><u>#define	    <dfn class="macro" id="_M/THRESHHOLD_BILEVEL" data-ref="_M/THRESHHOLD_BILEVEL">THRESHHOLD_BILEVEL</dfn>		1	/* b&amp;w art scan */</u>&nbsp</td></tr>
+<tr><th id="216">216</th><td><u>#define	    <dfn class="macro" id="_M/THRESHHOLD_HALFTONE" data-ref="_M/THRESHHOLD_HALFTONE">THRESHHOLD_HALFTONE</dfn>		2	/* or dithered scan */</u>&nbsp</td></tr>
+<tr><th id="217">217</th><td><u>#define	    <dfn class="macro" id="_M/THRESHHOLD_ERRORDIFFUSE" data-ref="_M/THRESHHOLD_ERRORDIFFUSE">THRESHHOLD_ERRORDIFFUSE</dfn>	3	/* usually floyd-steinberg */</u>&nbsp</td></tr>
+<tr><th id="218">218</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_CELLWIDTH" data-ref="_M/TIFFTAG_CELLWIDTH">TIFFTAG_CELLWIDTH</dfn>		264	/* +dithering matrix width */</u>&nbsp</td></tr>
+<tr><th id="219">219</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_CELLLENGTH" data-ref="_M/TIFFTAG_CELLLENGTH">TIFFTAG_CELLLENGTH</dfn>		265	/* +dithering matrix height */</u>&nbsp</td></tr>
+<tr><th id="220">220</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_FILLORDER" data-ref="_M/TIFFTAG_FILLORDER">TIFFTAG_FILLORDER</dfn>		266	/* data order within a byte */</u>&nbsp</td></tr>
+<tr><th id="221">221</th><td><u>#define	    <dfn class="macro" id="_M/FILLORDER_MSB2LSB" data-ref="_M/FILLORDER_MSB2LSB">FILLORDER_MSB2LSB</dfn>		1	/* most significant -&gt; least */</u>&nbsp</td></tr>
+<tr><th id="222">222</th><td><u>#define	    <dfn class="macro" id="_M/FILLORDER_LSB2MSB" data-ref="_M/FILLORDER_LSB2MSB">FILLORDER_LSB2MSB</dfn>		2	/* least significant -&gt; most */</u>&nbsp</td></tr>
+<tr><th id="223">223</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_DOCUMENTNAME" data-ref="_M/TIFFTAG_DOCUMENTNAME">TIFFTAG_DOCUMENTNAME</dfn>		269	/* name of doc. image is from */</u>&nbsp</td></tr>
+<tr><th id="224">224</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_IMAGEDESCRIPTION" data-ref="_M/TIFFTAG_IMAGEDESCRIPTION">TIFFTAG_IMAGEDESCRIPTION</dfn>	270	/* info about image */</u>&nbsp</td></tr>
+<tr><th id="225">225</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MAKE" data-ref="_M/TIFFTAG_MAKE">TIFFTAG_MAKE</dfn>			271	/* scanner manufacturer name */</u>&nbsp</td></tr>
+<tr><th id="226">226</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MODEL" data-ref="_M/TIFFTAG_MODEL">TIFFTAG_MODEL</dfn>			272	/* scanner model name/number */</u>&nbsp</td></tr>
+<tr><th id="227">227</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_STRIPOFFSETS" data-ref="_M/TIFFTAG_STRIPOFFSETS">TIFFTAG_STRIPOFFSETS</dfn>		273	/* offsets to data strips */</u>&nbsp</td></tr>
+<tr><th id="228">228</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_ORIENTATION" data-ref="_M/TIFFTAG_ORIENTATION">TIFFTAG_ORIENTATION</dfn>		274	/* +image orientation */</u>&nbsp</td></tr>
+<tr><th id="229">229</th><td><u>#define	    <dfn class="macro" id="_M/ORIENTATION_TOPLEFT" data-ref="_M/ORIENTATION_TOPLEFT">ORIENTATION_TOPLEFT</dfn>		1	/* row 0 top, col 0 lhs */</u>&nbsp</td></tr>
+<tr><th id="230">230</th><td><u>#define	    <dfn class="macro" id="_M/ORIENTATION_TOPRIGHT" data-ref="_M/ORIENTATION_TOPRIGHT">ORIENTATION_TOPRIGHT</dfn>	2	/* row 0 top, col 0 rhs */</u>&nbsp</td></tr>
+<tr><th id="231">231</th><td><u>#define	    <dfn class="macro" id="_M/ORIENTATION_BOTRIGHT" data-ref="_M/ORIENTATION_BOTRIGHT">ORIENTATION_BOTRIGHT</dfn>	3	/* row 0 bottom, col 0 rhs */</u>&nbsp</td></tr>
+<tr><th id="232">232</th><td><u>#define	    <dfn class="macro" id="_M/ORIENTATION_BOTLEFT" data-ref="_M/ORIENTATION_BOTLEFT">ORIENTATION_BOTLEFT</dfn>		4	/* row 0 bottom, col 0 lhs */</u>&nbsp</td></tr>
+<tr><th id="233">233</th><td><u>#define	    <dfn class="macro" id="_M/ORIENTATION_LEFTTOP" data-ref="_M/ORIENTATION_LEFTTOP">ORIENTATION_LEFTTOP</dfn>		5	/* row 0 lhs, col 0 top */</u>&nbsp</td></tr>
+<tr><th id="234">234</th><td><u>#define	    <dfn class="macro" id="_M/ORIENTATION_RIGHTTOP" data-ref="_M/ORIENTATION_RIGHTTOP">ORIENTATION_RIGHTTOP</dfn>	6	/* row 0 rhs, col 0 top */</u>&nbsp</td></tr>
+<tr><th id="235">235</th><td><u>#define	    <dfn class="macro" id="_M/ORIENTATION_RIGHTBOT" data-ref="_M/ORIENTATION_RIGHTBOT">ORIENTATION_RIGHTBOT</dfn>	7	/* row 0 rhs, col 0 bottom */</u>&nbsp</td></tr>
+<tr><th id="236">236</th><td><u>#define	    <dfn class="macro" id="_M/ORIENTATION_LEFTBOT" data-ref="_M/ORIENTATION_LEFTBOT">ORIENTATION_LEFTBOT</dfn>		8	/* row 0 lhs, col 0 bottom */</u>&nbsp</td></tr>
+<tr><th id="237">237</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_SAMPLESPERPIXEL" data-ref="_M/TIFFTAG_SAMPLESPERPIXEL">TIFFTAG_SAMPLESPERPIXEL</dfn>		277	/* samples per pixel */</u>&nbsp</td></tr>
+<tr><th id="238">238</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_ROWSPERSTRIP" data-ref="_M/TIFFTAG_ROWSPERSTRIP">TIFFTAG_ROWSPERSTRIP</dfn>		278	/* rows per strip of data */</u>&nbsp</td></tr>
+<tr><th id="239">239</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_STRIPBYTECOUNTS" data-ref="_M/TIFFTAG_STRIPBYTECOUNTS">TIFFTAG_STRIPBYTECOUNTS</dfn>		279	/* bytes counts for strips */</u>&nbsp</td></tr>
+<tr><th id="240">240</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MINSAMPLEVALUE" data-ref="_M/TIFFTAG_MINSAMPLEVALUE">TIFFTAG_MINSAMPLEVALUE</dfn>		280	/* +minimum sample value */</u>&nbsp</td></tr>
+<tr><th id="241">241</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MAXSAMPLEVALUE" data-ref="_M/TIFFTAG_MAXSAMPLEVALUE">TIFFTAG_MAXSAMPLEVALUE</dfn>		281	/* +maximum sample value */</u>&nbsp</td></tr>
+<tr><th id="242">242</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_XRESOLUTION" data-ref="_M/TIFFTAG_XRESOLUTION">TIFFTAG_XRESOLUTION</dfn>		282	/* pixels/resolution in x */</u>&nbsp</td></tr>
+<tr><th id="243">243</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_YRESOLUTION" data-ref="_M/TIFFTAG_YRESOLUTION">TIFFTAG_YRESOLUTION</dfn>		283	/* pixels/resolution in y */</u>&nbsp</td></tr>
+<tr><th id="244">244</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_PLANARCONFIG" data-ref="_M/TIFFTAG_PLANARCONFIG">TIFFTAG_PLANARCONFIG</dfn>		284	/* storage organization */</u>&nbsp</td></tr>
+<tr><th id="245">245</th><td><u>#define	    <dfn class="macro" id="_M/PLANARCONFIG_CONTIG" data-ref="_M/PLANARCONFIG_CONTIG">PLANARCONFIG_CONTIG</dfn>		1	/* single image plane */</u>&nbsp</td></tr>
+<tr><th id="246">246</th><td><u>#define	    <dfn class="macro" id="_M/PLANARCONFIG_SEPARATE" data-ref="_M/PLANARCONFIG_SEPARATE">PLANARCONFIG_SEPARATE</dfn>	2	/* separate planes of data */</u>&nbsp</td></tr>
+<tr><th id="247">247</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_PAGENAME" data-ref="_M/TIFFTAG_PAGENAME">TIFFTAG_PAGENAME</dfn>		285	/* page name image is from */</u>&nbsp</td></tr>
+<tr><th id="248">248</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_XPOSITION" data-ref="_M/TIFFTAG_XPOSITION">TIFFTAG_XPOSITION</dfn>		286	/* x page offset of image lhs */</u>&nbsp</td></tr>
+<tr><th id="249">249</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_YPOSITION" data-ref="_M/TIFFTAG_YPOSITION">TIFFTAG_YPOSITION</dfn>		287	/* y page offset of image lhs */</u>&nbsp</td></tr>
+<tr><th id="250">250</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_FREEOFFSETS" data-ref="_M/TIFFTAG_FREEOFFSETS">TIFFTAG_FREEOFFSETS</dfn>		288	/* +byte offset to free block */</u>&nbsp</td></tr>
+<tr><th id="251">251</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_FREEBYTECOUNTS" data-ref="_M/TIFFTAG_FREEBYTECOUNTS">TIFFTAG_FREEBYTECOUNTS</dfn>		289	/* +sizes of free blocks */</u>&nbsp</td></tr>
+<tr><th id="252">252</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_GRAYRESPONSEUNIT" data-ref="_M/TIFFTAG_GRAYRESPONSEUNIT">TIFFTAG_GRAYRESPONSEUNIT</dfn>	290	/* $gray scale curve accuracy */</u>&nbsp</td></tr>
+<tr><th id="253">253</th><td><u>#define	    <dfn class="macro" id="_M/GRAYRESPONSEUNIT_10S" data-ref="_M/GRAYRESPONSEUNIT_10S">GRAYRESPONSEUNIT_10S</dfn>	1	/* tenths of a unit */</u>&nbsp</td></tr>
+<tr><th id="254">254</th><td><u>#define	    <dfn class="macro" id="_M/GRAYRESPONSEUNIT_100S" data-ref="_M/GRAYRESPONSEUNIT_100S">GRAYRESPONSEUNIT_100S</dfn>	2	/* hundredths of a unit */</u>&nbsp</td></tr>
+<tr><th id="255">255</th><td><u>#define	    <dfn class="macro" id="_M/GRAYRESPONSEUNIT_1000S" data-ref="_M/GRAYRESPONSEUNIT_1000S">GRAYRESPONSEUNIT_1000S</dfn>	3	/* thousandths of a unit */</u>&nbsp</td></tr>
+<tr><th id="256">256</th><td><u>#define	    <dfn class="macro" id="_M/GRAYRESPONSEUNIT_10000S" data-ref="_M/GRAYRESPONSEUNIT_10000S">GRAYRESPONSEUNIT_10000S</dfn>	4	/* ten-thousandths of a unit */</u>&nbsp</td></tr>
+<tr><th id="257">257</th><td><u>#define	    <dfn class="macro" id="_M/GRAYRESPONSEUNIT_100000S" data-ref="_M/GRAYRESPONSEUNIT_100000S">GRAYRESPONSEUNIT_100000S</dfn>	5	/* hundred-thousandths */</u>&nbsp</td></tr>
+<tr><th id="258">258</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_GRAYRESPONSECURVE" data-ref="_M/TIFFTAG_GRAYRESPONSECURVE">TIFFTAG_GRAYRESPONSECURVE</dfn>	291	/* $gray scale response curve */</u>&nbsp</td></tr>
+<tr><th id="259">259</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_GROUP3OPTIONS" data-ref="_M/TIFFTAG_GROUP3OPTIONS">TIFFTAG_GROUP3OPTIONS</dfn>		292	/* 32 flag bits */</u>&nbsp</td></tr>
+<tr><th id="260">260</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_T4OPTIONS" data-ref="_M/TIFFTAG_T4OPTIONS">TIFFTAG_T4OPTIONS</dfn>		292	/* TIFF 6.0 proper name alias */</u>&nbsp</td></tr>
+<tr><th id="261">261</th><td><u>#define	    <dfn class="macro" id="_M/GROUP3OPT_2DENCODING" data-ref="_M/GROUP3OPT_2DENCODING">GROUP3OPT_2DENCODING</dfn>	0x1	/* 2-dimensional coding */</u>&nbsp</td></tr>
+<tr><th id="262">262</th><td><u>#define	    <dfn class="macro" id="_M/GROUP3OPT_UNCOMPRESSED" data-ref="_M/GROUP3OPT_UNCOMPRESSED">GROUP3OPT_UNCOMPRESSED</dfn>	0x2	/* data not compressed */</u>&nbsp</td></tr>
+<tr><th id="263">263</th><td><u>#define	    <dfn class="macro" id="_M/GROUP3OPT_FILLBITS" data-ref="_M/GROUP3OPT_FILLBITS">GROUP3OPT_FILLBITS</dfn>		0x4	/* fill to byte boundary */</u>&nbsp</td></tr>
+<tr><th id="264">264</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_GROUP4OPTIONS" data-ref="_M/TIFFTAG_GROUP4OPTIONS">TIFFTAG_GROUP4OPTIONS</dfn>		293	/* 32 flag bits */</u>&nbsp</td></tr>
+<tr><th id="265">265</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_T6OPTIONS" data-ref="_M/TIFFTAG_T6OPTIONS">TIFFTAG_T6OPTIONS</dfn>               293     /* TIFF 6.0 proper name */</u>&nbsp</td></tr>
+<tr><th id="266">266</th><td><u>#define	    <dfn class="macro" id="_M/GROUP4OPT_UNCOMPRESSED" data-ref="_M/GROUP4OPT_UNCOMPRESSED">GROUP4OPT_UNCOMPRESSED</dfn>	0x2	/* data not compressed */</u>&nbsp</td></tr>
+<tr><th id="267">267</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_RESOLUTIONUNIT" data-ref="_M/TIFFTAG_RESOLUTIONUNIT">TIFFTAG_RESOLUTIONUNIT</dfn>		296	/* units of resolutions */</u>&nbsp</td></tr>
+<tr><th id="268">268</th><td><u>#define	    <dfn class="macro" id="_M/RESUNIT_NONE" data-ref="_M/RESUNIT_NONE">RESUNIT_NONE</dfn>		1	/* no meaningful units */</u>&nbsp</td></tr>
+<tr><th id="269">269</th><td><u>#define	    <dfn class="macro" id="_M/RESUNIT_INCH" data-ref="_M/RESUNIT_INCH">RESUNIT_INCH</dfn>		2	/* english */</u>&nbsp</td></tr>
+<tr><th id="270">270</th><td><u>#define	    <dfn class="macro" id="_M/RESUNIT_CENTIMETER" data-ref="_M/RESUNIT_CENTIMETER">RESUNIT_CENTIMETER</dfn>		3	/* metric */</u>&nbsp</td></tr>
+<tr><th id="271">271</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_PAGENUMBER" data-ref="_M/TIFFTAG_PAGENUMBER">TIFFTAG_PAGENUMBER</dfn>		297	/* page numbers of multi-page */</u>&nbsp</td></tr>
+<tr><th id="272">272</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_COLORRESPONSEUNIT" data-ref="_M/TIFFTAG_COLORRESPONSEUNIT">TIFFTAG_COLORRESPONSEUNIT</dfn>	300	/* $color curve accuracy */</u>&nbsp</td></tr>
+<tr><th id="273">273</th><td><u>#define	    <dfn class="macro" id="_M/COLORRESPONSEUNIT_10S" data-ref="_M/COLORRESPONSEUNIT_10S">COLORRESPONSEUNIT_10S</dfn>	1	/* tenths of a unit */</u>&nbsp</td></tr>
+<tr><th id="274">274</th><td><u>#define	    <dfn class="macro" id="_M/COLORRESPONSEUNIT_100S" data-ref="_M/COLORRESPONSEUNIT_100S">COLORRESPONSEUNIT_100S</dfn>	2	/* hundredths of a unit */</u>&nbsp</td></tr>
+<tr><th id="275">275</th><td><u>#define	    <dfn class="macro" id="_M/COLORRESPONSEUNIT_1000S" data-ref="_M/COLORRESPONSEUNIT_1000S">COLORRESPONSEUNIT_1000S</dfn>	3	/* thousandths of a unit */</u>&nbsp</td></tr>
+<tr><th id="276">276</th><td><u>#define	    <dfn class="macro" id="_M/COLORRESPONSEUNIT_10000S" data-ref="_M/COLORRESPONSEUNIT_10000S">COLORRESPONSEUNIT_10000S</dfn>	4	/* ten-thousandths of a unit */</u>&nbsp</td></tr>
+<tr><th id="277">277</th><td><u>#define	    <dfn class="macro" id="_M/COLORRESPONSEUNIT_100000S" data-ref="_M/COLORRESPONSEUNIT_100000S">COLORRESPONSEUNIT_100000S</dfn>	5	/* hundred-thousandths */</u>&nbsp</td></tr>
+<tr><th id="278">278</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_TRANSFERFUNCTION" data-ref="_M/TIFFTAG_TRANSFERFUNCTION">TIFFTAG_TRANSFERFUNCTION</dfn>	301	/* !colorimetry info */</u>&nbsp</td></tr>
+<tr><th id="279">279</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_SOFTWARE" data-ref="_M/TIFFTAG_SOFTWARE">TIFFTAG_SOFTWARE</dfn>		305	/* name &amp; release */</u>&nbsp</td></tr>
+<tr><th id="280">280</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_DATETIME" data-ref="_M/TIFFTAG_DATETIME">TIFFTAG_DATETIME</dfn>		306	/* creation date and time */</u>&nbsp</td></tr>
+<tr><th id="281">281</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_ARTIST" data-ref="_M/TIFFTAG_ARTIST">TIFFTAG_ARTIST</dfn>			315	/* creator of image */</u>&nbsp</td></tr>
+<tr><th id="282">282</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_HOSTCOMPUTER" data-ref="_M/TIFFTAG_HOSTCOMPUTER">TIFFTAG_HOSTCOMPUTER</dfn>		316	/* machine where created */</u>&nbsp</td></tr>
+<tr><th id="283">283</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_PREDICTOR" data-ref="_M/TIFFTAG_PREDICTOR">TIFFTAG_PREDICTOR</dfn>		317	/* prediction scheme w/ LZW */</u>&nbsp</td></tr>
+<tr><th id="284">284</th><td><u>#define     <dfn class="macro" id="_M/PREDICTOR_NONE" data-ref="_M/PREDICTOR_NONE">PREDICTOR_NONE</dfn>		1	/* no prediction scheme used */</u>&nbsp</td></tr>
+<tr><th id="285">285</th><td><u>#define     <dfn class="macro" id="_M/PREDICTOR_HORIZONTAL" data-ref="_M/PREDICTOR_HORIZONTAL">PREDICTOR_HORIZONTAL</dfn>	2	/* horizontal differencing */</u>&nbsp</td></tr>
+<tr><th id="286">286</th><td><u>#define     <dfn class="macro" id="_M/PREDICTOR_FLOATINGPOINT" data-ref="_M/PREDICTOR_FLOATINGPOINT">PREDICTOR_FLOATINGPOINT</dfn>	3	/* floating point predictor */</u>&nbsp</td></tr>
+<tr><th id="287">287</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_WHITEPOINT" data-ref="_M/TIFFTAG_WHITEPOINT">TIFFTAG_WHITEPOINT</dfn>		318	/* image white point */</u>&nbsp</td></tr>
+<tr><th id="288">288</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_PRIMARYCHROMATICITIES" data-ref="_M/TIFFTAG_PRIMARYCHROMATICITIES">TIFFTAG_PRIMARYCHROMATICITIES</dfn>	319	/* !primary chromaticities */</u>&nbsp</td></tr>
+<tr><th id="289">289</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_COLORMAP" data-ref="_M/TIFFTAG_COLORMAP">TIFFTAG_COLORMAP</dfn>		320	/* RGB map for palette image */</u>&nbsp</td></tr>
+<tr><th id="290">290</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_HALFTONEHINTS" data-ref="_M/TIFFTAG_HALFTONEHINTS">TIFFTAG_HALFTONEHINTS</dfn>		321	/* !highlight+shadow info */</u>&nbsp</td></tr>
+<tr><th id="291">291</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_TILEWIDTH" data-ref="_M/TIFFTAG_TILEWIDTH">TIFFTAG_TILEWIDTH</dfn>		322	/* !tile width in pixels */</u>&nbsp</td></tr>
+<tr><th id="292">292</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_TILELENGTH" data-ref="_M/TIFFTAG_TILELENGTH">TIFFTAG_TILELENGTH</dfn>		323	/* !tile height in pixels */</u>&nbsp</td></tr>
+<tr><th id="293">293</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_TILEOFFSETS" data-ref="_M/TIFFTAG_TILEOFFSETS">TIFFTAG_TILEOFFSETS</dfn>		324	/* !offsets to data tiles */</u>&nbsp</td></tr>
+<tr><th id="294">294</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_TILEBYTECOUNTS" data-ref="_M/TIFFTAG_TILEBYTECOUNTS">TIFFTAG_TILEBYTECOUNTS</dfn>		325	/* !byte counts for tiles */</u>&nbsp</td></tr>
+<tr><th id="295">295</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_BADFAXLINES" data-ref="_M/TIFFTAG_BADFAXLINES">TIFFTAG_BADFAXLINES</dfn>		326	/* lines w/ wrong pixel count */</u>&nbsp</td></tr>
+<tr><th id="296">296</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_CLEANFAXDATA" data-ref="_M/TIFFTAG_CLEANFAXDATA">TIFFTAG_CLEANFAXDATA</dfn>		327	/* regenerated line info */</u>&nbsp</td></tr>
+<tr><th id="297">297</th><td><u>#define	    <dfn class="macro" id="_M/CLEANFAXDATA_CLEAN" data-ref="_M/CLEANFAXDATA_CLEAN">CLEANFAXDATA_CLEAN</dfn>		0	/* no errors detected */</u>&nbsp</td></tr>
+<tr><th id="298">298</th><td><u>#define	    <dfn class="macro" id="_M/CLEANFAXDATA_REGENERATED" data-ref="_M/CLEANFAXDATA_REGENERATED">CLEANFAXDATA_REGENERATED</dfn>	1	/* receiver regenerated lines */</u>&nbsp</td></tr>
+<tr><th id="299">299</th><td><u>#define	    <dfn class="macro" id="_M/CLEANFAXDATA_UNCLEAN" data-ref="_M/CLEANFAXDATA_UNCLEAN">CLEANFAXDATA_UNCLEAN</dfn>	2	/* uncorrected errors exist */</u>&nbsp</td></tr>
+<tr><th id="300">300</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_CONSECUTIVEBADFAXLINES" data-ref="_M/TIFFTAG_CONSECUTIVEBADFAXLINES">TIFFTAG_CONSECUTIVEBADFAXLINES</dfn>	328	/* max consecutive bad lines */</u>&nbsp</td></tr>
+<tr><th id="301">301</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_SUBIFD" data-ref="_M/TIFFTAG_SUBIFD">TIFFTAG_SUBIFD</dfn>			330	/* subimage descriptors */</u>&nbsp</td></tr>
+<tr><th id="302">302</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_INKSET" data-ref="_M/TIFFTAG_INKSET">TIFFTAG_INKSET</dfn>			332	/* !inks in separated image */</u>&nbsp</td></tr>
+<tr><th id="303">303</th><td><u>#define	    <dfn class="macro" id="_M/INKSET_CMYK" data-ref="_M/INKSET_CMYK">INKSET_CMYK</dfn>			1	/* !cyan-magenta-yellow-black color */</u>&nbsp</td></tr>
+<tr><th id="304">304</th><td><u>#define	    <dfn class="macro" id="_M/INKSET_MULTIINK" data-ref="_M/INKSET_MULTIINK">INKSET_MULTIINK</dfn>		2	/* !multi-ink or hi-fi color */</u>&nbsp</td></tr>
+<tr><th id="305">305</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_INKNAMES" data-ref="_M/TIFFTAG_INKNAMES">TIFFTAG_INKNAMES</dfn>		333	/* !ascii names of inks */</u>&nbsp</td></tr>
+<tr><th id="306">306</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_NUMBEROFINKS" data-ref="_M/TIFFTAG_NUMBEROFINKS">TIFFTAG_NUMBEROFINKS</dfn>		334	/* !number of inks */</u>&nbsp</td></tr>
+<tr><th id="307">307</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_DOTRANGE" data-ref="_M/TIFFTAG_DOTRANGE">TIFFTAG_DOTRANGE</dfn>		336	/* !0% and 100% dot codes */</u>&nbsp</td></tr>
+<tr><th id="308">308</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_TARGETPRINTER" data-ref="_M/TIFFTAG_TARGETPRINTER">TIFFTAG_TARGETPRINTER</dfn>		337	/* !separation target */</u>&nbsp</td></tr>
+<tr><th id="309">309</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_EXTRASAMPLES" data-ref="_M/TIFFTAG_EXTRASAMPLES">TIFFTAG_EXTRASAMPLES</dfn>		338	/* !info about extra samples */</u>&nbsp</td></tr>
+<tr><th id="310">310</th><td><u>#define	    <dfn class="macro" id="_M/EXTRASAMPLE_UNSPECIFIED" data-ref="_M/EXTRASAMPLE_UNSPECIFIED">EXTRASAMPLE_UNSPECIFIED</dfn>	0	/* !unspecified data */</u>&nbsp</td></tr>
+<tr><th id="311">311</th><td><u>#define	    <dfn class="macro" id="_M/EXTRASAMPLE_ASSOCALPHA" data-ref="_M/EXTRASAMPLE_ASSOCALPHA">EXTRASAMPLE_ASSOCALPHA</dfn>	1	/* !associated alpha data */</u>&nbsp</td></tr>
+<tr><th id="312">312</th><td><u>#define	    <dfn class="macro" id="_M/EXTRASAMPLE_UNASSALPHA" data-ref="_M/EXTRASAMPLE_UNASSALPHA">EXTRASAMPLE_UNASSALPHA</dfn>	2	/* !unassociated alpha data */</u>&nbsp</td></tr>
+<tr><th id="313">313</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_SAMPLEFORMAT" data-ref="_M/TIFFTAG_SAMPLEFORMAT">TIFFTAG_SAMPLEFORMAT</dfn>		339	/* !data sample format */</u>&nbsp</td></tr>
+<tr><th id="314">314</th><td><u>#define	    <dfn class="macro" id="_M/SAMPLEFORMAT_UINT" data-ref="_M/SAMPLEFORMAT_UINT">SAMPLEFORMAT_UINT</dfn>		1	/* !unsigned integer data */</u>&nbsp</td></tr>
+<tr><th id="315">315</th><td><u>#define	    <dfn class="macro" id="_M/SAMPLEFORMAT_INT" data-ref="_M/SAMPLEFORMAT_INT">SAMPLEFORMAT_INT</dfn>		2	/* !signed integer data */</u>&nbsp</td></tr>
+<tr><th id="316">316</th><td><u>#define	    <dfn class="macro" id="_M/SAMPLEFORMAT_IEEEFP" data-ref="_M/SAMPLEFORMAT_IEEEFP">SAMPLEFORMAT_IEEEFP</dfn>		3	/* !IEEE floating point data */</u>&nbsp</td></tr>
+<tr><th id="317">317</th><td><u>#define	    <dfn class="macro" id="_M/SAMPLEFORMAT_VOID" data-ref="_M/SAMPLEFORMAT_VOID">SAMPLEFORMAT_VOID</dfn>		4	/* !untyped data */</u>&nbsp</td></tr>
+<tr><th id="318">318</th><td><u>#define	    <dfn class="macro" id="_M/SAMPLEFORMAT_COMPLEXINT" data-ref="_M/SAMPLEFORMAT_COMPLEXINT">SAMPLEFORMAT_COMPLEXINT</dfn>	5	/* !complex signed int */</u>&nbsp</td></tr>
+<tr><th id="319">319</th><td><u>#define	    <dfn class="macro" id="_M/SAMPLEFORMAT_COMPLEXIEEEFP" data-ref="_M/SAMPLEFORMAT_COMPLEXIEEEFP">SAMPLEFORMAT_COMPLEXIEEEFP</dfn>	6	/* !complex ieee floating */</u>&nbsp</td></tr>
+<tr><th id="320">320</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_SMINSAMPLEVALUE" data-ref="_M/TIFFTAG_SMINSAMPLEVALUE">TIFFTAG_SMINSAMPLEVALUE</dfn>		340	/* !variable MinSampleValue */</u>&nbsp</td></tr>
+<tr><th id="321">321</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_SMAXSAMPLEVALUE" data-ref="_M/TIFFTAG_SMAXSAMPLEVALUE">TIFFTAG_SMAXSAMPLEVALUE</dfn>		341	/* !variable MaxSampleValue */</u>&nbsp</td></tr>
+<tr><th id="322">322</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_CLIPPATH" data-ref="_M/TIFFTAG_CLIPPATH">TIFFTAG_CLIPPATH</dfn>		343	/* %ClipPath</u>&nbsp</td></tr>
+<tr><th id="323">323</th><td><u>						   [Adobe TIFF technote 2] */</u>&nbsp</td></tr>
+<tr><th id="324">324</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_XCLIPPATHUNITS" data-ref="_M/TIFFTAG_XCLIPPATHUNITS">TIFFTAG_XCLIPPATHUNITS</dfn>		344	/* %XClipPathUnits</u>&nbsp</td></tr>
+<tr><th id="325">325</th><td><u>						   [Adobe TIFF technote 2] */</u>&nbsp</td></tr>
+<tr><th id="326">326</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_YCLIPPATHUNITS" data-ref="_M/TIFFTAG_YCLIPPATHUNITS">TIFFTAG_YCLIPPATHUNITS</dfn>		345	/* %YClipPathUnits</u>&nbsp</td></tr>
+<tr><th id="327">327</th><td><u>						   [Adobe TIFF technote 2] */</u>&nbsp</td></tr>
+<tr><th id="328">328</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_INDEXED" data-ref="_M/TIFFTAG_INDEXED">TIFFTAG_INDEXED</dfn>			346	/* %Indexed</u>&nbsp</td></tr>
+<tr><th id="329">329</th><td><u>						   [Adobe TIFF Technote 3] */</u>&nbsp</td></tr>
+<tr><th id="330">330</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JPEGTABLES" data-ref="_M/TIFFTAG_JPEGTABLES">TIFFTAG_JPEGTABLES</dfn>		347	/* %JPEG table stream */</u>&nbsp</td></tr>
+<tr><th id="331">331</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_OPIPROXY" data-ref="_M/TIFFTAG_OPIPROXY">TIFFTAG_OPIPROXY</dfn>		351	/* %OPI Proxy [Adobe TIFF technote] */</u>&nbsp</td></tr>
+<tr><th id="332">332</th><td><i>/* Tags 400-435 are from the TIFF/FX spec */</i>&nbsp</td></tr>
+<tr><th id="333">333</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_GLOBALPARAMETERSIFD" data-ref="_M/TIFFTAG_GLOBALPARAMETERSIFD">TIFFTAG_GLOBALPARAMETERSIFD</dfn>	400	/* ! */</u>&nbsp</td></tr>
+<tr><th id="334">334</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_PROFILETYPE" data-ref="_M/TIFFTAG_PROFILETYPE">TIFFTAG_PROFILETYPE</dfn>			401	/* ! */</u>&nbsp</td></tr>
+<tr><th id="335">335</th><td><u>#define     <dfn class="macro" id="_M/PROFILETYPE_UNSPECIFIED" data-ref="_M/PROFILETYPE_UNSPECIFIED">PROFILETYPE_UNSPECIFIED</dfn>	0	/* ! */</u>&nbsp</td></tr>
+<tr><th id="336">336</th><td><u>#define     <dfn class="macro" id="_M/PROFILETYPE_G3_FAX" data-ref="_M/PROFILETYPE_G3_FAX">PROFILETYPE_G3_FAX</dfn>		1	/* ! */</u>&nbsp</td></tr>
+<tr><th id="337">337</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_FAXPROFILE" data-ref="_M/TIFFTAG_FAXPROFILE">TIFFTAG_FAXPROFILE</dfn>			402	/* ! */</u>&nbsp</td></tr>
+<tr><th id="338">338</th><td><u>#define     <dfn class="macro" id="_M/FAXPROFILE_S" data-ref="_M/FAXPROFILE_S">FAXPROFILE_S</dfn>			1	/* !TIFF/FX FAX profile S */</u>&nbsp</td></tr>
+<tr><th id="339">339</th><td><u>#define     <dfn class="macro" id="_M/FAXPROFILE_F" data-ref="_M/FAXPROFILE_F">FAXPROFILE_F</dfn>			2	/* !TIFF/FX FAX profile F */</u>&nbsp</td></tr>
+<tr><th id="340">340</th><td><u>#define     <dfn class="macro" id="_M/FAXPROFILE_J" data-ref="_M/FAXPROFILE_J">FAXPROFILE_J</dfn>			3	/* !TIFF/FX FAX profile J */</u>&nbsp</td></tr>
+<tr><th id="341">341</th><td><u>#define     <dfn class="macro" id="_M/FAXPROFILE_C" data-ref="_M/FAXPROFILE_C">FAXPROFILE_C</dfn>			4	/* !TIFF/FX FAX profile C */</u>&nbsp</td></tr>
+<tr><th id="342">342</th><td><u>#define     <dfn class="macro" id="_M/FAXPROFILE_L" data-ref="_M/FAXPROFILE_L">FAXPROFILE_L</dfn>			5	/* !TIFF/FX FAX profile L */</u>&nbsp</td></tr>
+<tr><th id="343">343</th><td><u>#define     <dfn class="macro" id="_M/FAXPROFILE_M" data-ref="_M/FAXPROFILE_M">FAXPROFILE_M</dfn>			6	/* !TIFF/FX FAX profile LM */</u>&nbsp</td></tr>
+<tr><th id="344">344</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_CODINGMETHODS" data-ref="_M/TIFFTAG_CODINGMETHODS">TIFFTAG_CODINGMETHODS</dfn>		403	/* !TIFF/FX coding methods */</u>&nbsp</td></tr>
+<tr><th id="345">345</th><td><u>#define     <dfn class="macro" id="_M/CODINGMETHODS_T4_1D" data-ref="_M/CODINGMETHODS_T4_1D">CODINGMETHODS_T4_1D</dfn>		(1 &lt;&lt; 1)	/* !T.4 1D */</u>&nbsp</td></tr>
+<tr><th id="346">346</th><td><u>#define     <dfn class="macro" id="_M/CODINGMETHODS_T4_2D" data-ref="_M/CODINGMETHODS_T4_2D">CODINGMETHODS_T4_2D</dfn>		(1 &lt;&lt; 2)	/* !T.4 2D */</u>&nbsp</td></tr>
+<tr><th id="347">347</th><td><u>#define     <dfn class="macro" id="_M/CODINGMETHODS_T6" data-ref="_M/CODINGMETHODS_T6">CODINGMETHODS_T6</dfn>		(1 &lt;&lt; 3)	/* !T.6 */</u>&nbsp</td></tr>
+<tr><th id="348">348</th><td><u>#define     <dfn class="macro" id="_M/CODINGMETHODS_T85" data-ref="_M/CODINGMETHODS_T85">CODINGMETHODS_T85</dfn> 		(1 &lt;&lt; 4)	/* !T.85 JBIG */</u>&nbsp</td></tr>
+<tr><th id="349">349</th><td><u>#define     <dfn class="macro" id="_M/CODINGMETHODS_T42" data-ref="_M/CODINGMETHODS_T42">CODINGMETHODS_T42</dfn> 		(1 &lt;&lt; 5)	/* !T.42 JPEG */</u>&nbsp</td></tr>
+<tr><th id="350">350</th><td><u>#define     <dfn class="macro" id="_M/CODINGMETHODS_T43" data-ref="_M/CODINGMETHODS_T43">CODINGMETHODS_T43</dfn>		(1 &lt;&lt; 6)	/* !T.43 colour by layered JBIG */</u>&nbsp</td></tr>
+<tr><th id="351">351</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_VERSIONYEAR" data-ref="_M/TIFFTAG_VERSIONYEAR">TIFFTAG_VERSIONYEAR</dfn>			404	/* !TIFF/FX version year */</u>&nbsp</td></tr>
+<tr><th id="352">352</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_MODENUMBER" data-ref="_M/TIFFTAG_MODENUMBER">TIFFTAG_MODENUMBER</dfn>			405	/* !TIFF/FX mode number */</u>&nbsp</td></tr>
+<tr><th id="353">353</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DECODE" data-ref="_M/TIFFTAG_DECODE">TIFFTAG_DECODE</dfn>				433	/* !TIFF/FX decode */</u>&nbsp</td></tr>
+<tr><th id="354">354</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IMAGEBASECOLOR" data-ref="_M/TIFFTAG_IMAGEBASECOLOR">TIFFTAG_IMAGEBASECOLOR</dfn>		434	/* !TIFF/FX image base colour */</u>&nbsp</td></tr>
+<tr><th id="355">355</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_T82OPTIONS" data-ref="_M/TIFFTAG_T82OPTIONS">TIFFTAG_T82OPTIONS</dfn>			435	/* !TIFF/FX T.82 options */</u>&nbsp</td></tr>
+<tr><th id="356">356</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="357">357</th><td><i> * Tags 512-521 are obsoleted by Technical Note #2 which specifies a</i>&nbsp</td></tr>
+<tr><th id="358">358</th><td><i> * revised JPEG-in-TIFF scheme.</i>&nbsp</td></tr>
+<tr><th id="359">359</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="360">360</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JPEGPROC" data-ref="_M/TIFFTAG_JPEGPROC">TIFFTAG_JPEGPROC</dfn>		512	/* !JPEG processing algorithm */</u>&nbsp</td></tr>
+<tr><th id="361">361</th><td><u>#define	    <dfn class="macro" id="_M/JPEGPROC_BASELINE" data-ref="_M/JPEGPROC_BASELINE">JPEGPROC_BASELINE</dfn>		1	/* !baseline sequential */</u>&nbsp</td></tr>
+<tr><th id="362">362</th><td><u>#define	    <dfn class="macro" id="_M/JPEGPROC_LOSSLESS" data-ref="_M/JPEGPROC_LOSSLESS">JPEGPROC_LOSSLESS</dfn>		14	/* !Huffman coded lossless */</u>&nbsp</td></tr>
+<tr><th id="363">363</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JPEGIFOFFSET" data-ref="_M/TIFFTAG_JPEGIFOFFSET">TIFFTAG_JPEGIFOFFSET</dfn>		513	/* !pointer to SOI marker */</u>&nbsp</td></tr>
+<tr><th id="364">364</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JPEGIFBYTECOUNT" data-ref="_M/TIFFTAG_JPEGIFBYTECOUNT">TIFFTAG_JPEGIFBYTECOUNT</dfn>		514	/* !JFIF stream length */</u>&nbsp</td></tr>
+<tr><th id="365">365</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JPEGRESTARTINTERVAL" data-ref="_M/TIFFTAG_JPEGRESTARTINTERVAL">TIFFTAG_JPEGRESTARTINTERVAL</dfn>	515	/* !restart interval length */</u>&nbsp</td></tr>
+<tr><th id="366">366</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JPEGLOSSLESSPREDICTORS" data-ref="_M/TIFFTAG_JPEGLOSSLESSPREDICTORS">TIFFTAG_JPEGLOSSLESSPREDICTORS</dfn>	517	/* !lossless proc predictor */</u>&nbsp</td></tr>
+<tr><th id="367">367</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JPEGPOINTTRANSFORM" data-ref="_M/TIFFTAG_JPEGPOINTTRANSFORM">TIFFTAG_JPEGPOINTTRANSFORM</dfn>	518	/* !lossless point transform */</u>&nbsp</td></tr>
+<tr><th id="368">368</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JPEGQTABLES" data-ref="_M/TIFFTAG_JPEGQTABLES">TIFFTAG_JPEGQTABLES</dfn>		519	/* !Q matrix offsets */</u>&nbsp</td></tr>
+<tr><th id="369">369</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JPEGDCTABLES" data-ref="_M/TIFFTAG_JPEGDCTABLES">TIFFTAG_JPEGDCTABLES</dfn>		520	/* !DCT table offsets */</u>&nbsp</td></tr>
+<tr><th id="370">370</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JPEGACTABLES" data-ref="_M/TIFFTAG_JPEGACTABLES">TIFFTAG_JPEGACTABLES</dfn>		521	/* !AC coefficient offsets */</u>&nbsp</td></tr>
+<tr><th id="371">371</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_YCBCRCOEFFICIENTS" data-ref="_M/TIFFTAG_YCBCRCOEFFICIENTS">TIFFTAG_YCBCRCOEFFICIENTS</dfn>	529	/* !RGB -&gt; YCbCr transform */</u>&nbsp</td></tr>
+<tr><th id="372">372</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_YCBCRSUBSAMPLING" data-ref="_M/TIFFTAG_YCBCRSUBSAMPLING">TIFFTAG_YCBCRSUBSAMPLING</dfn>	530	/* !YCbCr subsampling factors */</u>&nbsp</td></tr>
+<tr><th id="373">373</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_YCBCRPOSITIONING" data-ref="_M/TIFFTAG_YCBCRPOSITIONING">TIFFTAG_YCBCRPOSITIONING</dfn>	531	/* !subsample positioning */</u>&nbsp</td></tr>
+<tr><th id="374">374</th><td><u>#define	    <dfn class="macro" id="_M/YCBCRPOSITION_CENTERED" data-ref="_M/YCBCRPOSITION_CENTERED">YCBCRPOSITION_CENTERED</dfn>	1	/* !as in PostScript Level 2 */</u>&nbsp</td></tr>
+<tr><th id="375">375</th><td><u>#define	    <dfn class="macro" id="_M/YCBCRPOSITION_COSITED" data-ref="_M/YCBCRPOSITION_COSITED">YCBCRPOSITION_COSITED</dfn>	2	/* !as in CCIR 601-1 */</u>&nbsp</td></tr>
+<tr><th id="376">376</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_REFERENCEBLACKWHITE" data-ref="_M/TIFFTAG_REFERENCEBLACKWHITE">TIFFTAG_REFERENCEBLACKWHITE</dfn>	532	/* !colorimetry info */</u>&nbsp</td></tr>
+<tr><th id="377">377</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_STRIPROWCOUNTS" data-ref="_M/TIFFTAG_STRIPROWCOUNTS">TIFFTAG_STRIPROWCOUNTS</dfn>		559 /* !TIFF/FX strip row counts */</u>&nbsp</td></tr>
+<tr><th id="378">378</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_XMLPACKET" data-ref="_M/TIFFTAG_XMLPACKET">TIFFTAG_XMLPACKET</dfn>		700	/* %XML packet</u>&nbsp</td></tr>
+<tr><th id="379">379</th><td><u>						   [Adobe XMP Specification,</u>&nbsp</td></tr>
+<tr><th id="380">380</th><td><u>						   January 2004 */</u>&nbsp</td></tr>
+<tr><th id="381">381</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_OPIIMAGEID" data-ref="_M/TIFFTAG_OPIIMAGEID">TIFFTAG_OPIIMAGEID</dfn>		32781	/* %OPI ImageID</u>&nbsp</td></tr>
+<tr><th id="382">382</th><td><u>						   [Adobe TIFF technote] */</u>&nbsp</td></tr>
+<tr><th id="383">383</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_TIFFANNOTATIONDATA" data-ref="_M/TIFFTAG_TIFFANNOTATIONDATA">TIFFTAG_TIFFANNOTATIONDATA</dfn>	32932	/* http://web.archive.org/web/20050309141348/http://www.kofile.com/support%20pro/faqs/annospec.htm */</u>&nbsp</td></tr>
+<tr><th id="384">384</th><td><i>/* tags 32952-32956 are private tags registered to Island Graphics */</i>&nbsp</td></tr>
+<tr><th id="385">385</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_REFPTS" data-ref="_M/TIFFTAG_REFPTS">TIFFTAG_REFPTS</dfn>			32953	/* image reference points */</u>&nbsp</td></tr>
+<tr><th id="386">386</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_REGIONTACKPOINT" data-ref="_M/TIFFTAG_REGIONTACKPOINT">TIFFTAG_REGIONTACKPOINT</dfn>		32954	/* region-xform tack point */</u>&nbsp</td></tr>
+<tr><th id="387">387</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_REGIONWARPCORNERS" data-ref="_M/TIFFTAG_REGIONWARPCORNERS">TIFFTAG_REGIONWARPCORNERS</dfn>	32955	/* warp quadrilateral */</u>&nbsp</td></tr>
+<tr><th id="388">388</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_REGIONAFFINE" data-ref="_M/TIFFTAG_REGIONAFFINE">TIFFTAG_REGIONAFFINE</dfn>		32956	/* affine transformation mat */</u>&nbsp</td></tr>
+<tr><th id="389">389</th><td><i>/* tags 32995-32999 are private tags registered to SGI */</i>&nbsp</td></tr>
+<tr><th id="390">390</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MATTEING" data-ref="_M/TIFFTAG_MATTEING">TIFFTAG_MATTEING</dfn>		32995	/* $use ExtraSamples */</u>&nbsp</td></tr>
+<tr><th id="391">391</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_DATATYPE" data-ref="_M/TIFFTAG_DATATYPE">TIFFTAG_DATATYPE</dfn>		32996	/* $use SampleFormat */</u>&nbsp</td></tr>
+<tr><th id="392">392</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_IMAGEDEPTH" data-ref="_M/TIFFTAG_IMAGEDEPTH">TIFFTAG_IMAGEDEPTH</dfn>		32997	/* z depth of image */</u>&nbsp</td></tr>
+<tr><th id="393">393</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_TILEDEPTH" data-ref="_M/TIFFTAG_TILEDEPTH">TIFFTAG_TILEDEPTH</dfn>		32998	/* z depth/data tile */</u>&nbsp</td></tr>
+<tr><th id="394">394</th><td><i>/* tags 33300-33309 are private tags registered to Pixar */</i>&nbsp</td></tr>
+<tr><th id="395">395</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="396">396</th><td><i> * TIFFTAG_PIXAR_IMAGEFULLWIDTH and TIFFTAG_PIXAR_IMAGEFULLLENGTH</i>&nbsp</td></tr>
+<tr><th id="397">397</th><td><i> * are set when an image has been cropped out of a larger image.  </i>&nbsp</td></tr>
+<tr><th id="398">398</th><td><i> * They reflect the size of the original uncropped image.</i>&nbsp</td></tr>
+<tr><th id="399">399</th><td><i> * The TIFFTAG_XPOSITION and TIFFTAG_YPOSITION can be used</i>&nbsp</td></tr>
+<tr><th id="400">400</th><td><i> * to determine the position of the smaller image in the larger one.</i>&nbsp</td></tr>
+<tr><th id="401">401</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="402">402</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_PIXAR_IMAGEFULLWIDTH" data-ref="_M/TIFFTAG_PIXAR_IMAGEFULLWIDTH">TIFFTAG_PIXAR_IMAGEFULLWIDTH</dfn>    33300   /* full image size in x */</u>&nbsp</td></tr>
+<tr><th id="403">403</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_PIXAR_IMAGEFULLLENGTH" data-ref="_M/TIFFTAG_PIXAR_IMAGEFULLLENGTH">TIFFTAG_PIXAR_IMAGEFULLLENGTH</dfn>   33301   /* full image size in y */</u>&nbsp</td></tr>
+<tr><th id="404">404</th><td> <i>/* Tags 33302-33306 are used to identify special image modes and data</i>&nbsp</td></tr>
+<tr><th id="405">405</th><td><i>  * used by Pixar's texture formats.</i>&nbsp</td></tr>
+<tr><th id="406">406</th><td><i>  */</i>&nbsp</td></tr>
+<tr><th id="407">407</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_PIXAR_TEXTUREFORMAT" data-ref="_M/TIFFTAG_PIXAR_TEXTUREFORMAT">TIFFTAG_PIXAR_TEXTUREFORMAT</dfn>	33302	/* texture map format */</u>&nbsp</td></tr>
+<tr><th id="408">408</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_PIXAR_WRAPMODES" data-ref="_M/TIFFTAG_PIXAR_WRAPMODES">TIFFTAG_PIXAR_WRAPMODES</dfn>		33303	/* s &amp; t wrap modes */</u>&nbsp</td></tr>
+<tr><th id="409">409</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_PIXAR_FOVCOT" data-ref="_M/TIFFTAG_PIXAR_FOVCOT">TIFFTAG_PIXAR_FOVCOT</dfn>		33304	/* cotan(fov) for env. maps */</u>&nbsp</td></tr>
+<tr><th id="410">410</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_PIXAR_MATRIX_WORLDTOSCREEN" data-ref="_M/TIFFTAG_PIXAR_MATRIX_WORLDTOSCREEN">TIFFTAG_PIXAR_MATRIX_WORLDTOSCREEN</dfn> 33305</u>&nbsp</td></tr>
+<tr><th id="411">411</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_PIXAR_MATRIX_WORLDTOCAMERA" data-ref="_M/TIFFTAG_PIXAR_MATRIX_WORLDTOCAMERA">TIFFTAG_PIXAR_MATRIX_WORLDTOCAMERA</dfn> 33306</u>&nbsp</td></tr>
+<tr><th id="412">412</th><td><i>/* tag 33405 is a private tag registered to Eastman Kodak */</i>&nbsp</td></tr>
+<tr><th id="413">413</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_WRITERSERIALNUMBER" data-ref="_M/TIFFTAG_WRITERSERIALNUMBER">TIFFTAG_WRITERSERIALNUMBER</dfn>      33405   /* device serial number */</u>&nbsp</td></tr>
+<tr><th id="414">414</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_CFAREPEATPATTERNDIM" data-ref="_M/TIFFTAG_CFAREPEATPATTERNDIM">TIFFTAG_CFAREPEATPATTERNDIM</dfn>	33421	/* dimensions of CFA pattern */</u>&nbsp</td></tr>
+<tr><th id="415">415</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_CFAPATTERN" data-ref="_M/TIFFTAG_CFAPATTERN">TIFFTAG_CFAPATTERN</dfn>		33422	/* color filter array pattern */</u>&nbsp</td></tr>
+<tr><th id="416">416</th><td><i>/* tag 33432 is listed in the 6.0 spec w/ unknown ownership */</i>&nbsp</td></tr>
+<tr><th id="417">417</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_COPYRIGHT" data-ref="_M/TIFFTAG_COPYRIGHT">TIFFTAG_COPYRIGHT</dfn>		33432	/* copyright string */</u>&nbsp</td></tr>
+<tr><th id="418">418</th><td><i>/* Tags 33445-33452 are used for GEL fileformat, see</i>&nbsp</td></tr>
+<tr><th id="419">419</th><td><i> * <a href="http://research.stowers-institute.org/mcm/efg/ScientificSoftware/Utility/TiffTags/GEL-FileFormat.pdf">http://research.stowers-institute.org/mcm/efg/ScientificSoftware/Utility/TiffTags/GEL-FileFormat.pdf</a></i>&nbsp</td></tr>
+<tr><th id="420">420</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="421">421</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MD_FILETAG" data-ref="_M/TIFFTAG_MD_FILETAG">TIFFTAG_MD_FILETAG</dfn>		33445	/* http://research.stowers-institute.org/mcm/efg/ScientificSoftware/Utility/TiffTags/GEL-FileFormat.pdf */</u>&nbsp</td></tr>
+<tr><th id="422">422</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MD_SCALEPIXEL" data-ref="_M/TIFFTAG_MD_SCALEPIXEL">TIFFTAG_MD_SCALEPIXEL</dfn>	33446	/* http://research.stowers-institute.org/mcm/efg/ScientificSoftware/Utility/TiffTags/GEL-FileFormat.pdf */</u>&nbsp</td></tr>
+<tr><th id="423">423</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MD_COLORTABLE" data-ref="_M/TIFFTAG_MD_COLORTABLE">TIFFTAG_MD_COLORTABLE</dfn>	33447	/* http://research.stowers-institute.org/mcm/efg/ScientificSoftware/Utility/TiffTags/GEL-FileFormat.pdf */</u>&nbsp</td></tr>
+<tr><th id="424">424</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MD_LABNAME" data-ref="_M/TIFFTAG_MD_LABNAME">TIFFTAG_MD_LABNAME</dfn>	33448	/* http://research.stowers-institute.org/mcm/efg/ScientificSoftware/Utility/TiffTags/GEL-FileFormat.pdf */</u>&nbsp</td></tr>
+<tr><th id="425">425</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MD_SAMPLEINFO" data-ref="_M/TIFFTAG_MD_SAMPLEINFO">TIFFTAG_MD_SAMPLEINFO</dfn>	33449	/* http://research.stowers-institute.org/mcm/efg/ScientificSoftware/Utility/TiffTags/GEL-FileFormat.pdf */</u>&nbsp</td></tr>
+<tr><th id="426">426</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MD_PREPDATE" data-ref="_M/TIFFTAG_MD_PREPDATE">TIFFTAG_MD_PREPDATE</dfn>	33450	/* http://research.stowers-institute.org/mcm/efg/ScientificSoftware/Utility/TiffTags/GEL-FileFormat.pdf */</u>&nbsp</td></tr>
+<tr><th id="427">427</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MD_PREPTIME" data-ref="_M/TIFFTAG_MD_PREPTIME">TIFFTAG_MD_PREPTIME</dfn>	33451	/* http://research.stowers-institute.org/mcm/efg/ScientificSoftware/Utility/TiffTags/GEL-FileFormat.pdf */</u>&nbsp</td></tr>
+<tr><th id="428">428</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MD_FILEUNITS" data-ref="_M/TIFFTAG_MD_FILEUNITS">TIFFTAG_MD_FILEUNITS</dfn>	33452	/* http://research.stowers-institute.org/mcm/efg/ScientificSoftware/Utility/TiffTags/GEL-FileFormat.pdf */</u>&nbsp</td></tr>
+<tr><th id="429">429</th><td><i>/* IPTC TAG from RichTIFF specifications */</i>&nbsp</td></tr>
+<tr><th id="430">430</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_RICHTIFFIPTC" data-ref="_M/TIFFTAG_RICHTIFFIPTC">TIFFTAG_RICHTIFFIPTC</dfn>		33723</u>&nbsp</td></tr>
+<tr><th id="431">431</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_INGR_PACKET_DATA_TAG" data-ref="_M/TIFFTAG_INGR_PACKET_DATA_TAG">TIFFTAG_INGR_PACKET_DATA_TAG</dfn>	33918	/* Intergraph Application specific storage. */</u>&nbsp</td></tr>
+<tr><th id="432">432</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_INGR_FLAG_REGISTERS" data-ref="_M/TIFFTAG_INGR_FLAG_REGISTERS">TIFFTAG_INGR_FLAG_REGISTERS</dfn>	33919	/* Intergraph Application specific flags. */</u>&nbsp</td></tr>
+<tr><th id="433">433</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_IRASB_TRANSORMATION_MATRIX" data-ref="_M/TIFFTAG_IRASB_TRANSORMATION_MATRIX">TIFFTAG_IRASB_TRANSORMATION_MATRIX</dfn>	33920	/* Originally part of Intergraph's GeoTIFF tags, but likely understood by IrasB only. */</u>&nbsp</td></tr>
+<tr><th id="434">434</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_MODELTIEPOINTTAG" data-ref="_M/TIFFTAG_MODELTIEPOINTTAG">TIFFTAG_MODELTIEPOINTTAG</dfn>	33922	/* GeoTIFF */</u>&nbsp</td></tr>
+<tr><th id="435">435</th><td><i>/* 34016-34029 are reserved for ANSI IT8 TIFF/IT &lt;dkelly@apago.com) */</i>&nbsp</td></tr>
+<tr><th id="436">436</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8SITE" data-ref="_M/TIFFTAG_IT8SITE">TIFFTAG_IT8SITE</dfn>			34016	/* site name */</u>&nbsp</td></tr>
+<tr><th id="437">437</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8COLORSEQUENCE" data-ref="_M/TIFFTAG_IT8COLORSEQUENCE">TIFFTAG_IT8COLORSEQUENCE</dfn>	34017	/* color seq. [RGB,CMYK,etc] */</u>&nbsp</td></tr>
+<tr><th id="438">438</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8HEADER" data-ref="_M/TIFFTAG_IT8HEADER">TIFFTAG_IT8HEADER</dfn>		34018	/* DDES Header */</u>&nbsp</td></tr>
+<tr><th id="439">439</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8RASTERPADDING" data-ref="_M/TIFFTAG_IT8RASTERPADDING">TIFFTAG_IT8RASTERPADDING</dfn>	34019	/* raster scanline padding */</u>&nbsp</td></tr>
+<tr><th id="440">440</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8BITSPERRUNLENGTH" data-ref="_M/TIFFTAG_IT8BITSPERRUNLENGTH">TIFFTAG_IT8BITSPERRUNLENGTH</dfn>	34020	/* # of bits in short run */</u>&nbsp</td></tr>
+<tr><th id="441">441</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8BITSPEREXTENDEDRUNLENGTH" data-ref="_M/TIFFTAG_IT8BITSPEREXTENDEDRUNLENGTH">TIFFTAG_IT8BITSPEREXTENDEDRUNLENGTH</dfn> 34021/* # of bits in long run */</u>&nbsp</td></tr>
+<tr><th id="442">442</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8COLORTABLE" data-ref="_M/TIFFTAG_IT8COLORTABLE">TIFFTAG_IT8COLORTABLE</dfn>		34022	/* LW colortable */</u>&nbsp</td></tr>
+<tr><th id="443">443</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8IMAGECOLORINDICATOR" data-ref="_M/TIFFTAG_IT8IMAGECOLORINDICATOR">TIFFTAG_IT8IMAGECOLORINDICATOR</dfn>	34023	/* BP/BL image color switch */</u>&nbsp</td></tr>
+<tr><th id="444">444</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8BKGCOLORINDICATOR" data-ref="_M/TIFFTAG_IT8BKGCOLORINDICATOR">TIFFTAG_IT8BKGCOLORINDICATOR</dfn>	34024	/* BP/BL bg color switch */</u>&nbsp</td></tr>
+<tr><th id="445">445</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8IMAGECOLORVALUE" data-ref="_M/TIFFTAG_IT8IMAGECOLORVALUE">TIFFTAG_IT8IMAGECOLORVALUE</dfn>	34025	/* BP/BL image color value */</u>&nbsp</td></tr>
+<tr><th id="446">446</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8BKGCOLORVALUE" data-ref="_M/TIFFTAG_IT8BKGCOLORVALUE">TIFFTAG_IT8BKGCOLORVALUE</dfn>	34026	/* BP/BL bg color value */</u>&nbsp</td></tr>
+<tr><th id="447">447</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8PIXELINTENSITYRANGE" data-ref="_M/TIFFTAG_IT8PIXELINTENSITYRANGE">TIFFTAG_IT8PIXELINTENSITYRANGE</dfn>	34027	/* MP pixel intensity value */</u>&nbsp</td></tr>
+<tr><th id="448">448</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8TRANSPARENCYINDICATOR" data-ref="_M/TIFFTAG_IT8TRANSPARENCYINDICATOR">TIFFTAG_IT8TRANSPARENCYINDICATOR</dfn> 34028	/* HC transparency switch */</u>&nbsp</td></tr>
+<tr><th id="449">449</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8COLORCHARACTERIZATION" data-ref="_M/TIFFTAG_IT8COLORCHARACTERIZATION">TIFFTAG_IT8COLORCHARACTERIZATION</dfn> 34029	/* color character. table */</u>&nbsp</td></tr>
+<tr><th id="450">450</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8HCUSAGE" data-ref="_M/TIFFTAG_IT8HCUSAGE">TIFFTAG_IT8HCUSAGE</dfn>		34030	/* HC usage indicator */</u>&nbsp</td></tr>
+<tr><th id="451">451</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8TRAPINDICATOR" data-ref="_M/TIFFTAG_IT8TRAPINDICATOR">TIFFTAG_IT8TRAPINDICATOR</dfn>	34031	/* Trapping indicator</u>&nbsp</td></tr>
+<tr><th id="452">452</th><td><u>						   (untrapped=0, trapped=1) */</u>&nbsp</td></tr>
+<tr><th id="453">453</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IT8CMYKEQUIVALENT" data-ref="_M/TIFFTAG_IT8CMYKEQUIVALENT">TIFFTAG_IT8CMYKEQUIVALENT</dfn>	34032	/* CMYK color equivalents */</u>&nbsp</td></tr>
+<tr><th id="454">454</th><td><i>/* tags 34232-34236 are private tags registered to Texas Instruments */</i>&nbsp</td></tr>
+<tr><th id="455">455</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_FRAMECOUNT" data-ref="_M/TIFFTAG_FRAMECOUNT">TIFFTAG_FRAMECOUNT</dfn>              34232   /* Sequence Frame Count */</u>&nbsp</td></tr>
+<tr><th id="456">456</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_MODELTRANSFORMATIONTAG" data-ref="_M/TIFFTAG_MODELTRANSFORMATIONTAG">TIFFTAG_MODELTRANSFORMATIONTAG</dfn>	34264	/* Used in interchangeable GeoTIFF files */</u>&nbsp</td></tr>
+<tr><th id="457">457</th><td><i>/* tag 34377 is private tag registered to Adobe for PhotoShop */</i>&nbsp</td></tr>
+<tr><th id="458">458</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_PHOTOSHOP" data-ref="_M/TIFFTAG_PHOTOSHOP">TIFFTAG_PHOTOSHOP</dfn>		34377</u> &nbsp</td></tr>
+<tr><th id="459">459</th><td><i>/* tags 34665, 34853 and 40965 are documented in EXIF specification */</i>&nbsp</td></tr>
+<tr><th id="460">460</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_EXIFIFD" data-ref="_M/TIFFTAG_EXIFIFD">TIFFTAG_EXIFIFD</dfn>			34665	/* Pointer to EXIF private directory */</u>&nbsp</td></tr>
+<tr><th id="461">461</th><td><i>/* tag 34750 is a private tag registered to Adobe? */</i>&nbsp</td></tr>
+<tr><th id="462">462</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_ICCPROFILE" data-ref="_M/TIFFTAG_ICCPROFILE">TIFFTAG_ICCPROFILE</dfn>		34675	/* ICC profile data */</u>&nbsp</td></tr>
+<tr><th id="463">463</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_IMAGELAYER" data-ref="_M/TIFFTAG_IMAGELAYER">TIFFTAG_IMAGELAYER</dfn>		34732	/* !TIFF/FX image layer information */</u>&nbsp</td></tr>
+<tr><th id="464">464</th><td><i>/* tag 34750 is a private tag registered to Pixel Magic */</i>&nbsp</td></tr>
+<tr><th id="465">465</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JBIGOPTIONS" data-ref="_M/TIFFTAG_JBIGOPTIONS">TIFFTAG_JBIGOPTIONS</dfn>		34750	/* JBIG options */</u>&nbsp</td></tr>
+<tr><th id="466">466</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_GPSIFD" data-ref="_M/TIFFTAG_GPSIFD">TIFFTAG_GPSIFD</dfn>			34853	/* Pointer to GPS private directory */</u>&nbsp</td></tr>
+<tr><th id="467">467</th><td><i>/* tags 34908-34914 are private tags registered to SGI */</i>&nbsp</td></tr>
+<tr><th id="468">468</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_FAXRECVPARAMS" data-ref="_M/TIFFTAG_FAXRECVPARAMS">TIFFTAG_FAXRECVPARAMS</dfn>		34908	/* encoded Class 2 ses. parms */</u>&nbsp</td></tr>
+<tr><th id="469">469</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_FAXSUBADDRESS" data-ref="_M/TIFFTAG_FAXSUBADDRESS">TIFFTAG_FAXSUBADDRESS</dfn>		34909	/* received SubAddr string */</u>&nbsp</td></tr>
+<tr><th id="470">470</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_FAXRECVTIME" data-ref="_M/TIFFTAG_FAXRECVTIME">TIFFTAG_FAXRECVTIME</dfn>		34910	/* receive time (secs) */</u>&nbsp</td></tr>
+<tr><th id="471">471</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_FAXDCS" data-ref="_M/TIFFTAG_FAXDCS">TIFFTAG_FAXDCS</dfn>			34911	/* encoded fax ses. params, Table 2/T.30 */</u>&nbsp</td></tr>
+<tr><th id="472">472</th><td><i>/* tags 37439-37443 are registered to SGI &lt;gregl@sgi.com&gt; */</i>&nbsp</td></tr>
+<tr><th id="473">473</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_STONITS" data-ref="_M/TIFFTAG_STONITS">TIFFTAG_STONITS</dfn>			37439	/* Sample value to Nits */</u>&nbsp</td></tr>
+<tr><th id="474">474</th><td><i>/* tag 34929 is a private tag registered to FedEx */</i>&nbsp</td></tr>
+<tr><th id="475">475</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_FEDEX_EDR" data-ref="_M/TIFFTAG_FEDEX_EDR">TIFFTAG_FEDEX_EDR</dfn>		34929	/* unknown use */</u>&nbsp</td></tr>
+<tr><th id="476">476</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_IMAGESOURCEDATA" data-ref="_M/TIFFTAG_IMAGESOURCEDATA">TIFFTAG_IMAGESOURCEDATA</dfn>		37724	/* http://justsolve.archiveteam.org/wiki/PSD, http://www.adobe.com/devnet-apps/photoshop/fileformatashtml/ */</u>&nbsp</td></tr>
+<tr><th id="477">477</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_INTEROPERABILITYIFD" data-ref="_M/TIFFTAG_INTEROPERABILITYIFD">TIFFTAG_INTEROPERABILITYIFD</dfn>	40965	/* Pointer to Interoperability private directory */</u>&nbsp</td></tr>
+<tr><th id="478">478</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_GDAL_METADATA" data-ref="_M/TIFFTAG_GDAL_METADATA">TIFFTAG_GDAL_METADATA</dfn>		42112	/* Used by the GDAL library */</u>&nbsp</td></tr>
+<tr><th id="479">479</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_GDAL_NODATA" data-ref="_M/TIFFTAG_GDAL_NODATA">TIFFTAG_GDAL_NODATA</dfn>		42113	/* Used by the GDAL library */</u>&nbsp</td></tr>
+<tr><th id="480">480</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_OCE_SCANJOB_DESCRIPTION" data-ref="_M/TIFFTAG_OCE_SCANJOB_DESCRIPTION">TIFFTAG_OCE_SCANJOB_DESCRIPTION</dfn>	50215	/* Used in the Oce scanning process */</u>&nbsp</td></tr>
+<tr><th id="481">481</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_OCE_APPLICATION_SELECTOR" data-ref="_M/TIFFTAG_OCE_APPLICATION_SELECTOR">TIFFTAG_OCE_APPLICATION_SELECTOR</dfn>	50216	/* Used in the Oce scanning process. */</u>&nbsp</td></tr>
+<tr><th id="482">482</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_OCE_IDENTIFICATION_NUMBER" data-ref="_M/TIFFTAG_OCE_IDENTIFICATION_NUMBER">TIFFTAG_OCE_IDENTIFICATION_NUMBER</dfn>	50217</u>&nbsp</td></tr>
+<tr><th id="483">483</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_OCE_IMAGELOGIC_CHARACTERISTICS" data-ref="_M/TIFFTAG_OCE_IMAGELOGIC_CHARACTERISTICS">TIFFTAG_OCE_IMAGELOGIC_CHARACTERISTICS</dfn>	50218</u>&nbsp</td></tr>
+<tr><th id="484">484</th><td>&nbsp</td></tr>
+<tr><th id="485">485</th><td><i>/* tags 50674 to 50677 are reserved for ESRI */</i>&nbsp</td></tr>
+<tr><th id="486">486</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_LERC_PARAMETERS" data-ref="_M/TIFFTAG_LERC_PARAMETERS">TIFFTAG_LERC_PARAMETERS</dfn>         50674   /* Stores LERC version and additional compression method */</u>&nbsp</td></tr>
+<tr><th id="487">487</th><td><i>/* Adobe Digital Negative (DNG) format tags */</i>&nbsp</td></tr>
+<tr><th id="488">488</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DNGVERSION" data-ref="_M/TIFFTAG_DNGVERSION">TIFFTAG_DNGVERSION</dfn>		50706	/* &amp;DNG version number */</u>&nbsp</td></tr>
+<tr><th id="489">489</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DNGBACKWARDVERSION" data-ref="_M/TIFFTAG_DNGBACKWARDVERSION">TIFFTAG_DNGBACKWARDVERSION</dfn>	50707	/* &amp;DNG compatibility version */</u>&nbsp</td></tr>
+<tr><th id="490">490</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_UNIQUECAMERAMODEL" data-ref="_M/TIFFTAG_UNIQUECAMERAMODEL">TIFFTAG_UNIQUECAMERAMODEL</dfn>	50708	/* &amp;name for the camera model */</u>&nbsp</td></tr>
+<tr><th id="491">491</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_LOCALIZEDCAMERAMODEL" data-ref="_M/TIFFTAG_LOCALIZEDCAMERAMODEL">TIFFTAG_LOCALIZEDCAMERAMODEL</dfn>	50709	/* &amp;localized camera model</u>&nbsp</td></tr>
+<tr><th id="492">492</th><td><u>						   name */</u>&nbsp</td></tr>
+<tr><th id="493">493</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_CFAPLANECOLOR" data-ref="_M/TIFFTAG_CFAPLANECOLOR">TIFFTAG_CFAPLANECOLOR</dfn>		50710	/* &amp;CFAPattern-&gt;LinearRaw space</u>&nbsp</td></tr>
+<tr><th id="494">494</th><td><u>						   mapping */</u>&nbsp</td></tr>
+<tr><th id="495">495</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_CFALAYOUT" data-ref="_M/TIFFTAG_CFALAYOUT">TIFFTAG_CFALAYOUT</dfn>		50711	/* &amp;spatial layout of the CFA */</u>&nbsp</td></tr>
+<tr><th id="496">496</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_LINEARIZATIONTABLE" data-ref="_M/TIFFTAG_LINEARIZATIONTABLE">TIFFTAG_LINEARIZATIONTABLE</dfn>	50712	/* &amp;lookup table description */</u>&nbsp</td></tr>
+<tr><th id="497">497</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_BLACKLEVELREPEATDIM" data-ref="_M/TIFFTAG_BLACKLEVELREPEATDIM">TIFFTAG_BLACKLEVELREPEATDIM</dfn>	50713	/* &amp;repeat pattern size for</u>&nbsp</td></tr>
+<tr><th id="498">498</th><td><u>						   the BlackLevel tag */</u>&nbsp</td></tr>
+<tr><th id="499">499</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_BLACKLEVEL" data-ref="_M/TIFFTAG_BLACKLEVEL">TIFFTAG_BLACKLEVEL</dfn>		50714	/* &amp;zero light encoding level */</u>&nbsp</td></tr>
+<tr><th id="500">500</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_BLACKLEVELDELTAH" data-ref="_M/TIFFTAG_BLACKLEVELDELTAH">TIFFTAG_BLACKLEVELDELTAH</dfn>	50715	/* &amp;zero light encoding level</u>&nbsp</td></tr>
+<tr><th id="501">501</th><td><u>						   differences (columns) */</u>&nbsp</td></tr>
+<tr><th id="502">502</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_BLACKLEVELDELTAV" data-ref="_M/TIFFTAG_BLACKLEVELDELTAV">TIFFTAG_BLACKLEVELDELTAV</dfn>	50716	/* &amp;zero light encoding level</u>&nbsp</td></tr>
+<tr><th id="503">503</th><td><u>						   differences (rows) */</u>&nbsp</td></tr>
+<tr><th id="504">504</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_WHITELEVEL" data-ref="_M/TIFFTAG_WHITELEVEL">TIFFTAG_WHITELEVEL</dfn>		50717	/* &amp;fully saturated encoding</u>&nbsp</td></tr>
+<tr><th id="505">505</th><td><u>						   level */</u>&nbsp</td></tr>
+<tr><th id="506">506</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DEFAULTSCALE" data-ref="_M/TIFFTAG_DEFAULTSCALE">TIFFTAG_DEFAULTSCALE</dfn>		50718	/* &amp;default scale factors */</u>&nbsp</td></tr>
+<tr><th id="507">507</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DEFAULTCROPORIGIN" data-ref="_M/TIFFTAG_DEFAULTCROPORIGIN">TIFFTAG_DEFAULTCROPORIGIN</dfn>	50719	/* &amp;origin of the final image</u>&nbsp</td></tr>
+<tr><th id="508">508</th><td><u>						   area */</u>&nbsp</td></tr>
+<tr><th id="509">509</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DEFAULTCROPSIZE" data-ref="_M/TIFFTAG_DEFAULTCROPSIZE">TIFFTAG_DEFAULTCROPSIZE</dfn>		50720	/* &amp;size of the final image </u>&nbsp</td></tr>
+<tr><th id="510">510</th><td><u>						   area */</u>&nbsp</td></tr>
+<tr><th id="511">511</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_COLORMATRIX1" data-ref="_M/TIFFTAG_COLORMATRIX1">TIFFTAG_COLORMATRIX1</dfn>		50721	/* &amp;XYZ-&gt;reference color space</u>&nbsp</td></tr>
+<tr><th id="512">512</th><td><u>						   transformation matrix 1 */</u>&nbsp</td></tr>
+<tr><th id="513">513</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_COLORMATRIX2" data-ref="_M/TIFFTAG_COLORMATRIX2">TIFFTAG_COLORMATRIX2</dfn>		50722	/* &amp;XYZ-&gt;reference color space</u>&nbsp</td></tr>
+<tr><th id="514">514</th><td><u>						   transformation matrix 2 */</u>&nbsp</td></tr>
+<tr><th id="515">515</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_CAMERACALIBRATION1" data-ref="_M/TIFFTAG_CAMERACALIBRATION1">TIFFTAG_CAMERACALIBRATION1</dfn>	50723	/* &amp;calibration matrix 1 */</u>&nbsp</td></tr>
+<tr><th id="516">516</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_CAMERACALIBRATION2" data-ref="_M/TIFFTAG_CAMERACALIBRATION2">TIFFTAG_CAMERACALIBRATION2</dfn>	50724	/* &amp;calibration matrix 2 */</u>&nbsp</td></tr>
+<tr><th id="517">517</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_REDUCTIONMATRIX1" data-ref="_M/TIFFTAG_REDUCTIONMATRIX1">TIFFTAG_REDUCTIONMATRIX1</dfn>	50725	/* &amp;dimensionality reduction</u>&nbsp</td></tr>
+<tr><th id="518">518</th><td><u>						   matrix 1 */</u>&nbsp</td></tr>
+<tr><th id="519">519</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_REDUCTIONMATRIX2" data-ref="_M/TIFFTAG_REDUCTIONMATRIX2">TIFFTAG_REDUCTIONMATRIX2</dfn>	50726	/* &amp;dimensionality reduction</u>&nbsp</td></tr>
+<tr><th id="520">520</th><td><u>						   matrix 2 */</u>&nbsp</td></tr>
+<tr><th id="521">521</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_ANALOGBALANCE" data-ref="_M/TIFFTAG_ANALOGBALANCE">TIFFTAG_ANALOGBALANCE</dfn>		50727	/* &amp;gain applied the stored raw</u>&nbsp</td></tr>
+<tr><th id="522">522</th><td><u>						   values*/</u>&nbsp</td></tr>
+<tr><th id="523">523</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_ASSHOTNEUTRAL" data-ref="_M/TIFFTAG_ASSHOTNEUTRAL">TIFFTAG_ASSHOTNEUTRAL</dfn>		50728	/* &amp;selected white balance in</u>&nbsp</td></tr>
+<tr><th id="524">524</th><td><u>						   linear reference space */</u>&nbsp</td></tr>
+<tr><th id="525">525</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_ASSHOTWHITEXY" data-ref="_M/TIFFTAG_ASSHOTWHITEXY">TIFFTAG_ASSHOTWHITEXY</dfn>		50729	/* &amp;selected white balance in</u>&nbsp</td></tr>
+<tr><th id="526">526</th><td><u>						   x-y chromaticity</u>&nbsp</td></tr>
+<tr><th id="527">527</th><td><u>						   coordinates */</u>&nbsp</td></tr>
+<tr><th id="528">528</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_BASELINEEXPOSURE" data-ref="_M/TIFFTAG_BASELINEEXPOSURE">TIFFTAG_BASELINEEXPOSURE</dfn>	50730	/* &amp;how much to move the zero</u>&nbsp</td></tr>
+<tr><th id="529">529</th><td><u>						   point */</u>&nbsp</td></tr>
+<tr><th id="530">530</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_BASELINENOISE" data-ref="_M/TIFFTAG_BASELINENOISE">TIFFTAG_BASELINENOISE</dfn>		50731	/* &amp;relative noise level */</u>&nbsp</td></tr>
+<tr><th id="531">531</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_BASELINESHARPNESS" data-ref="_M/TIFFTAG_BASELINESHARPNESS">TIFFTAG_BASELINESHARPNESS</dfn>	50732	/* &amp;relative amount of</u>&nbsp</td></tr>
+<tr><th id="532">532</th><td><u>						   sharpening */</u>&nbsp</td></tr>
+<tr><th id="533">533</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_BAYERGREENSPLIT" data-ref="_M/TIFFTAG_BAYERGREENSPLIT">TIFFTAG_BAYERGREENSPLIT</dfn>		50733	/* &amp;how closely the values of</u>&nbsp</td></tr>
+<tr><th id="534">534</th><td><u>						   the green pixels in the</u>&nbsp</td></tr>
+<tr><th id="535">535</th><td><u>						   blue/green rows track the</u>&nbsp</td></tr>
+<tr><th id="536">536</th><td><u>						   values of the green pixels</u>&nbsp</td></tr>
+<tr><th id="537">537</th><td><u>						   in the red/green rows */</u>&nbsp</td></tr>
+<tr><th id="538">538</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_LINEARRESPONSELIMIT" data-ref="_M/TIFFTAG_LINEARRESPONSELIMIT">TIFFTAG_LINEARRESPONSELIMIT</dfn>	50734	/* &amp;non-linear encoding range */</u>&nbsp</td></tr>
+<tr><th id="539">539</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_CAMERASERIALNUMBER" data-ref="_M/TIFFTAG_CAMERASERIALNUMBER">TIFFTAG_CAMERASERIALNUMBER</dfn>	50735	/* &amp;camera's serial number */</u>&nbsp</td></tr>
+<tr><th id="540">540</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_LENSINFO" data-ref="_M/TIFFTAG_LENSINFO">TIFFTAG_LENSINFO</dfn>		50736	/* info about the lens */</u>&nbsp</td></tr>
+<tr><th id="541">541</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_CHROMABLURRADIUS" data-ref="_M/TIFFTAG_CHROMABLURRADIUS">TIFFTAG_CHROMABLURRADIUS</dfn>	50737	/* &amp;chroma blur radius */</u>&nbsp</td></tr>
+<tr><th id="542">542</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_ANTIALIASSTRENGTH" data-ref="_M/TIFFTAG_ANTIALIASSTRENGTH">TIFFTAG_ANTIALIASSTRENGTH</dfn>	50738	/* &amp;relative strength of the</u>&nbsp</td></tr>
+<tr><th id="543">543</th><td><u>						   camera's anti-alias filter */</u>&nbsp</td></tr>
+<tr><th id="544">544</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_SHADOWSCALE" data-ref="_M/TIFFTAG_SHADOWSCALE">TIFFTAG_SHADOWSCALE</dfn>		50739	/* &amp;used by Adobe Camera Raw */</u>&nbsp</td></tr>
+<tr><th id="545">545</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DNGPRIVATEDATA" data-ref="_M/TIFFTAG_DNGPRIVATEDATA">TIFFTAG_DNGPRIVATEDATA</dfn>		50740	/* &amp;manufacturer's private data */</u>&nbsp</td></tr>
+<tr><th id="546">546</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_MAKERNOTESAFETY" data-ref="_M/TIFFTAG_MAKERNOTESAFETY">TIFFTAG_MAKERNOTESAFETY</dfn>		50741	/* &amp;whether the EXIF MakerNote</u>&nbsp</td></tr>
+<tr><th id="547">547</th><td><u>						   tag is safe to preserve</u>&nbsp</td></tr>
+<tr><th id="548">548</th><td><u>						   along with the rest of the</u>&nbsp</td></tr>
+<tr><th id="549">549</th><td><u>						   EXIF data */</u>&nbsp</td></tr>
+<tr><th id="550">550</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_CALIBRATIONILLUMINANT1" data-ref="_M/TIFFTAG_CALIBRATIONILLUMINANT1">TIFFTAG_CALIBRATIONILLUMINANT1</dfn>	50778	/* &amp;illuminant 1 */</u>&nbsp</td></tr>
+<tr><th id="551">551</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_CALIBRATIONILLUMINANT2" data-ref="_M/TIFFTAG_CALIBRATIONILLUMINANT2">TIFFTAG_CALIBRATIONILLUMINANT2</dfn>	50779	/* &amp;illuminant 2 */</u>&nbsp</td></tr>
+<tr><th id="552">552</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_BESTQUALITYSCALE" data-ref="_M/TIFFTAG_BESTQUALITYSCALE">TIFFTAG_BESTQUALITYSCALE</dfn>	50780	/* &amp;best quality multiplier */</u>&nbsp</td></tr>
+<tr><th id="553">553</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_RAWDATAUNIQUEID" data-ref="_M/TIFFTAG_RAWDATAUNIQUEID">TIFFTAG_RAWDATAUNIQUEID</dfn>		50781	/* &amp;unique identifier for</u>&nbsp</td></tr>
+<tr><th id="554">554</th><td><u>						   the raw image data */</u>&nbsp</td></tr>
+<tr><th id="555">555</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_ORIGINALRAWFILENAME" data-ref="_M/TIFFTAG_ORIGINALRAWFILENAME">TIFFTAG_ORIGINALRAWFILENAME</dfn>	50827	/* &amp;file name of the original</u>&nbsp</td></tr>
+<tr><th id="556">556</th><td><u>						   raw file */</u>&nbsp</td></tr>
+<tr><th id="557">557</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_ORIGINALRAWFILEDATA" data-ref="_M/TIFFTAG_ORIGINALRAWFILEDATA">TIFFTAG_ORIGINALRAWFILEDATA</dfn>	50828	/* &amp;contents of the original</u>&nbsp</td></tr>
+<tr><th id="558">558</th><td><u>						   raw file */</u>&nbsp</td></tr>
+<tr><th id="559">559</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_ACTIVEAREA" data-ref="_M/TIFFTAG_ACTIVEAREA">TIFFTAG_ACTIVEAREA</dfn>		50829	/* &amp;active (non-masked) pixels</u>&nbsp</td></tr>
+<tr><th id="560">560</th><td><u>						   of the sensor */</u>&nbsp</td></tr>
+<tr><th id="561">561</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_MASKEDAREAS" data-ref="_M/TIFFTAG_MASKEDAREAS">TIFFTAG_MASKEDAREAS</dfn>		50830	/* &amp;list of coordinates</u>&nbsp</td></tr>
+<tr><th id="562">562</th><td><u>						   of fully masked pixels */</u>&nbsp</td></tr>
+<tr><th id="563">563</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_ASSHOTICCPROFILE" data-ref="_M/TIFFTAG_ASSHOTICCPROFILE">TIFFTAG_ASSHOTICCPROFILE</dfn>	50831	/* &amp;these two tags used to */</u>&nbsp</td></tr>
+<tr><th id="564">564</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_ASSHOTPREPROFILEMATRIX" data-ref="_M/TIFFTAG_ASSHOTPREPROFILEMATRIX">TIFFTAG_ASSHOTPREPROFILEMATRIX</dfn>	50832	/* map cameras's color space</u>&nbsp</td></tr>
+<tr><th id="565">565</th><td><u>						   into ICC profile space */</u>&nbsp</td></tr>
+<tr><th id="566">566</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_CURRENTICCPROFILE" data-ref="_M/TIFFTAG_CURRENTICCPROFILE">TIFFTAG_CURRENTICCPROFILE</dfn>	50833	/* &amp; */</u>&nbsp</td></tr>
+<tr><th id="567">567</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_CURRENTPREPROFILEMATRIX" data-ref="_M/TIFFTAG_CURRENTPREPROFILEMATRIX">TIFFTAG_CURRENTPREPROFILEMATRIX</dfn>	50834	/* &amp; */</u>&nbsp</td></tr>
+<tr><th id="568">568</th><td>&nbsp</td></tr>
+<tr><th id="569">569</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_RPCCOEFFICIENT" data-ref="_M/TIFFTAG_RPCCOEFFICIENT">TIFFTAG_RPCCOEFFICIENT</dfn>          50844   /* Define by GDAL for geospatial georeferencing through RPC: http://geotiff.maptools.org/rpc_prop.html */</u>&nbsp</td></tr>
+<tr><th id="570">570</th><td>&nbsp</td></tr>
+<tr><th id="571">571</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_ALIAS_LAYER_METADATA" data-ref="_M/TIFFTAG_ALIAS_LAYER_METADATA">TIFFTAG_ALIAS_LAYER_METADATA</dfn>	50784	/* Alias Sketchbook Pro layer usage description. */</u>&nbsp</td></tr>
+<tr><th id="572">572</th><td>&nbsp</td></tr>
+<tr><th id="573">573</th><td><i>/* GeoTIFF DGIWG */</i>&nbsp</td></tr>
+<tr><th id="574">574</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_TIFF_RSID" data-ref="_M/TIFFTAG_TIFF_RSID">TIFFTAG_TIFF_RSID</dfn>               50908   /* https://www.awaresystems.be/imaging/tiff/tifftags/tiff_rsid.html */</u>&nbsp</td></tr>
+<tr><th id="575">575</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_GEO_METADATA" data-ref="_M/TIFFTAG_GEO_METADATA">TIFFTAG_GEO_METADATA</dfn>            50909   /* https://www.awaresystems.be/imaging/tiff/tifftags/geo_metadata.html */</u>&nbsp</td></tr>
+<tr><th id="576">576</th><td>&nbsp</td></tr>
+<tr><th id="577">577</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_EXTRACAMERAPROFILES" data-ref="_M/TIFFTAG_EXTRACAMERAPROFILES">TIFFTAG_EXTRACAMERAPROFILES</dfn> 50933  /* http://wwwimages.adobe.com/www.adobe.com/content/dam/Adobe/en/products/photoshop/pdfs/dng_spec_1.4.0.0.pdf */</u>&nbsp</td></tr>
+<tr><th id="578">578</th><td>&nbsp</td></tr>
+<tr><th id="579">579</th><td><i>/* tag 65535 is an undefined tag used by Eastman Kodak */</i>&nbsp</td></tr>
+<tr><th id="580">580</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DCSHUESHIFTVALUES" data-ref="_M/TIFFTAG_DCSHUESHIFTVALUES">TIFFTAG_DCSHUESHIFTVALUES</dfn>       65535   /* hue shift correction data */</u>&nbsp</td></tr>
+<tr><th id="581">581</th><td>&nbsp</td></tr>
+<tr><th id="582">582</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="583">583</th><td><i> * The following are ``pseudo tags'' that can be used to control</i>&nbsp</td></tr>
+<tr><th id="584">584</th><td><i> * codec-specific functionality.  These tags are not written to file.</i>&nbsp</td></tr>
+<tr><th id="585">585</th><td><i> * Note that these values start at 0xffff+1 so that they'll never</i>&nbsp</td></tr>
+<tr><th id="586">586</th><td><i> * collide with Aldus-assigned tags.</i>&nbsp</td></tr>
+<tr><th id="587">587</th><td><i> *</i>&nbsp</td></tr>
+<tr><th id="588">588</th><td><i> * If you want your private pseudo tags ``registered'' (i.e. added to</i>&nbsp</td></tr>
+<tr><th id="589">589</th><td><i> * this file), please post a bug report via the tracking system at</i>&nbsp</td></tr>
+<tr><th id="590">590</th><td><i> * <a href="http://www.remotesensing.org/libtiff/bugs.html">http://www.remotesensing.org/libtiff/bugs.html</a> with the appropriate</i>&nbsp</td></tr>
+<tr><th id="591">591</th><td><i> * C definitions to add.</i>&nbsp</td></tr>
+<tr><th id="592">592</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="593">593</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_FAXMODE" data-ref="_M/TIFFTAG_FAXMODE">TIFFTAG_FAXMODE</dfn>			65536	/* Group 3/4 format control */</u>&nbsp</td></tr>
+<tr><th id="594">594</th><td><u>#define	    <dfn class="macro" id="_M/FAXMODE_CLASSIC" data-ref="_M/FAXMODE_CLASSIC">FAXMODE_CLASSIC</dfn>	0x0000		/* default, include RTC */</u>&nbsp</td></tr>
+<tr><th id="595">595</th><td><u>#define	    <dfn class="macro" id="_M/FAXMODE_NORTC" data-ref="_M/FAXMODE_NORTC">FAXMODE_NORTC</dfn>	0x0001		/* no RTC at end of data */</u>&nbsp</td></tr>
+<tr><th id="596">596</th><td><u>#define	    <dfn class="macro" id="_M/FAXMODE_NOEOL" data-ref="_M/FAXMODE_NOEOL">FAXMODE_NOEOL</dfn>	0x0002		/* no EOL code at end of row */</u>&nbsp</td></tr>
+<tr><th id="597">597</th><td><u>#define	    <dfn class="macro" id="_M/FAXMODE_BYTEALIGN" data-ref="_M/FAXMODE_BYTEALIGN">FAXMODE_BYTEALIGN</dfn>	0x0004		/* byte align row */</u>&nbsp</td></tr>
+<tr><th id="598">598</th><td><u>#define	    <dfn class="macro" id="_M/FAXMODE_WORDALIGN" data-ref="_M/FAXMODE_WORDALIGN">FAXMODE_WORDALIGN</dfn>	0x0008		/* word align row */</u>&nbsp</td></tr>
+<tr><th id="599">599</th><td><u>#define	    <dfn class="macro" id="_M/FAXMODE_CLASSF" data-ref="_M/FAXMODE_CLASSF">FAXMODE_CLASSF</dfn>	FAXMODE_NORTC	/* TIFF Class F */</u>&nbsp</td></tr>
+<tr><th id="600">600</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JPEGQUALITY" data-ref="_M/TIFFTAG_JPEGQUALITY">TIFFTAG_JPEGQUALITY</dfn>		65537	/* Compression quality level */</u>&nbsp</td></tr>
+<tr><th id="601">601</th><td><i>/* Note: quality level is on the IJG 0-100 scale.  Default value is 75 */</i>&nbsp</td></tr>
+<tr><th id="602">602</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JPEGCOLORMODE" data-ref="_M/TIFFTAG_JPEGCOLORMODE">TIFFTAG_JPEGCOLORMODE</dfn>		65538	/* Auto RGB&lt;=&gt;YCbCr convert? */</u>&nbsp</td></tr>
+<tr><th id="603">603</th><td><u>#define	    <dfn class="macro" id="_M/JPEGCOLORMODE_RAW" data-ref="_M/JPEGCOLORMODE_RAW">JPEGCOLORMODE_RAW</dfn>	0x0000		/* no conversion (default) */</u>&nbsp</td></tr>
+<tr><th id="604">604</th><td><u>#define	    <dfn class="macro" id="_M/JPEGCOLORMODE_RGB" data-ref="_M/JPEGCOLORMODE_RGB">JPEGCOLORMODE_RGB</dfn>	0x0001		/* do auto conversion */</u>&nbsp</td></tr>
+<tr><th id="605">605</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_JPEGTABLESMODE" data-ref="_M/TIFFTAG_JPEGTABLESMODE">TIFFTAG_JPEGTABLESMODE</dfn>		65539	/* What to put in JPEGTables */</u>&nbsp</td></tr>
+<tr><th id="606">606</th><td><u>#define	    <dfn class="macro" id="_M/JPEGTABLESMODE_QUANT" data-ref="_M/JPEGTABLESMODE_QUANT">JPEGTABLESMODE_QUANT</dfn> 0x0001		/* include quantization tbls */</u>&nbsp</td></tr>
+<tr><th id="607">607</th><td><u>#define	    <dfn class="macro" id="_M/JPEGTABLESMODE_HUFF" data-ref="_M/JPEGTABLESMODE_HUFF">JPEGTABLESMODE_HUFF</dfn>	0x0002		/* include Huffman tbls */</u>&nbsp</td></tr>
+<tr><th id="608">608</th><td><i>/* Note: default is JPEGTABLESMODE_QUANT | JPEGTABLESMODE_HUFF */</i>&nbsp</td></tr>
+<tr><th id="609">609</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_FAXFILLFUNC" data-ref="_M/TIFFTAG_FAXFILLFUNC">TIFFTAG_FAXFILLFUNC</dfn>		65540	/* G3/G4 fill function */</u>&nbsp</td></tr>
+<tr><th id="610">610</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_PIXARLOGDATAFMT" data-ref="_M/TIFFTAG_PIXARLOGDATAFMT">TIFFTAG_PIXARLOGDATAFMT</dfn>		65549	/* PixarLogCodec I/O data sz */</u>&nbsp</td></tr>
+<tr><th id="611">611</th><td><u>#define	    <dfn class="macro" id="_M/PIXARLOGDATAFMT_8BIT" data-ref="_M/PIXARLOGDATAFMT_8BIT">PIXARLOGDATAFMT_8BIT</dfn>	0	/* regular u_char samples */</u>&nbsp</td></tr>
+<tr><th id="612">612</th><td><u>#define	    <dfn class="macro" id="_M/PIXARLOGDATAFMT_8BITABGR" data-ref="_M/PIXARLOGDATAFMT_8BITABGR">PIXARLOGDATAFMT_8BITABGR</dfn>	1	/* ABGR-order u_chars */</u>&nbsp</td></tr>
+<tr><th id="613">613</th><td><u>#define	    <dfn class="macro" id="_M/PIXARLOGDATAFMT_11BITLOG" data-ref="_M/PIXARLOGDATAFMT_11BITLOG">PIXARLOGDATAFMT_11BITLOG</dfn>	2	/* 11-bit log-encoded (raw) */</u>&nbsp</td></tr>
+<tr><th id="614">614</th><td><u>#define	    <dfn class="macro" id="_M/PIXARLOGDATAFMT_12BITPICIO" data-ref="_M/PIXARLOGDATAFMT_12BITPICIO">PIXARLOGDATAFMT_12BITPICIO</dfn>	3	/* as per PICIO (1.0==2048) */</u>&nbsp</td></tr>
+<tr><th id="615">615</th><td><u>#define	    <dfn class="macro" id="_M/PIXARLOGDATAFMT_16BIT" data-ref="_M/PIXARLOGDATAFMT_16BIT">PIXARLOGDATAFMT_16BIT</dfn>	4	/* signed short samples */</u>&nbsp</td></tr>
+<tr><th id="616">616</th><td><u>#define	    <dfn class="macro" id="_M/PIXARLOGDATAFMT_FLOAT" data-ref="_M/PIXARLOGDATAFMT_FLOAT">PIXARLOGDATAFMT_FLOAT</dfn>	5	/* IEEE float samples */</u>&nbsp</td></tr>
+<tr><th id="617">617</th><td><i>/* 65550-65556 are allocated to Oceana Matrix &lt;dev@oceana.com&gt; */</i>&nbsp</td></tr>
+<tr><th id="618">618</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DCSIMAGERTYPE" data-ref="_M/TIFFTAG_DCSIMAGERTYPE">TIFFTAG_DCSIMAGERTYPE</dfn>           65550   /* imager model &amp; filter */</u>&nbsp</td></tr>
+<tr><th id="619">619</th><td><u>#define     <dfn class="macro" id="_M/DCSIMAGERMODEL_M3" data-ref="_M/DCSIMAGERMODEL_M3">DCSIMAGERMODEL_M3</dfn>           0       /* M3 chip (1280 x 1024) */</u>&nbsp</td></tr>
+<tr><th id="620">620</th><td><u>#define     <dfn class="macro" id="_M/DCSIMAGERMODEL_M5" data-ref="_M/DCSIMAGERMODEL_M5">DCSIMAGERMODEL_M5</dfn>           1       /* M5 chip (1536 x 1024) */</u>&nbsp</td></tr>
+<tr><th id="621">621</th><td><u>#define     <dfn class="macro" id="_M/DCSIMAGERMODEL_M6" data-ref="_M/DCSIMAGERMODEL_M6">DCSIMAGERMODEL_M6</dfn>           2       /* M6 chip (3072 x 2048) */</u>&nbsp</td></tr>
+<tr><th id="622">622</th><td><u>#define     <dfn class="macro" id="_M/DCSIMAGERFILTER_IR" data-ref="_M/DCSIMAGERFILTER_IR">DCSIMAGERFILTER_IR</dfn>          0       /* infrared filter */</u>&nbsp</td></tr>
+<tr><th id="623">623</th><td><u>#define     <dfn class="macro" id="_M/DCSIMAGERFILTER_MONO" data-ref="_M/DCSIMAGERFILTER_MONO">DCSIMAGERFILTER_MONO</dfn>        1       /* monochrome filter */</u>&nbsp</td></tr>
+<tr><th id="624">624</th><td><u>#define     <dfn class="macro" id="_M/DCSIMAGERFILTER_CFA" data-ref="_M/DCSIMAGERFILTER_CFA">DCSIMAGERFILTER_CFA</dfn>         2       /* color filter array */</u>&nbsp</td></tr>
+<tr><th id="625">625</th><td><u>#define     <dfn class="macro" id="_M/DCSIMAGERFILTER_OTHER" data-ref="_M/DCSIMAGERFILTER_OTHER">DCSIMAGERFILTER_OTHER</dfn>       3       /* other filter */</u>&nbsp</td></tr>
+<tr><th id="626">626</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DCSINTERPMODE" data-ref="_M/TIFFTAG_DCSINTERPMODE">TIFFTAG_DCSINTERPMODE</dfn>           65551   /* interpolation mode */</u>&nbsp</td></tr>
+<tr><th id="627">627</th><td><u>#define     <dfn class="macro" id="_M/DCSINTERPMODE_NORMAL" data-ref="_M/DCSINTERPMODE_NORMAL">DCSINTERPMODE_NORMAL</dfn>        0x0     /* whole image, default */</u>&nbsp</td></tr>
+<tr><th id="628">628</th><td><u>#define     <dfn class="macro" id="_M/DCSINTERPMODE_PREVIEW" data-ref="_M/DCSINTERPMODE_PREVIEW">DCSINTERPMODE_PREVIEW</dfn>       0x1     /* preview of image (384x256) */</u>&nbsp</td></tr>
+<tr><th id="629">629</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DCSBALANCEARRAY" data-ref="_M/TIFFTAG_DCSBALANCEARRAY">TIFFTAG_DCSBALANCEARRAY</dfn>         65552   /* color balance values */</u>&nbsp</td></tr>
+<tr><th id="630">630</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DCSCORRECTMATRIX" data-ref="_M/TIFFTAG_DCSCORRECTMATRIX">TIFFTAG_DCSCORRECTMATRIX</dfn>        65553   /* color correction values */</u>&nbsp</td></tr>
+<tr><th id="631">631</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DCSGAMMA" data-ref="_M/TIFFTAG_DCSGAMMA">TIFFTAG_DCSGAMMA</dfn>                65554   /* gamma value */</u>&nbsp</td></tr>
+<tr><th id="632">632</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DCSTOESHOULDERPTS" data-ref="_M/TIFFTAG_DCSTOESHOULDERPTS">TIFFTAG_DCSTOESHOULDERPTS</dfn>       65555   /* toe &amp; shoulder points */</u>&nbsp</td></tr>
+<tr><th id="633">633</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DCSCALIBRATIONFD" data-ref="_M/TIFFTAG_DCSCALIBRATIONFD">TIFFTAG_DCSCALIBRATIONFD</dfn>        65556   /* calibration file desc */</u>&nbsp</td></tr>
+<tr><th id="634">634</th><td><i>/* Note: quality level is on the ZLIB 1-9 scale. Default value is -1 */</i>&nbsp</td></tr>
+<tr><th id="635">635</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_ZIPQUALITY" data-ref="_M/TIFFTAG_ZIPQUALITY">TIFFTAG_ZIPQUALITY</dfn>		65557	/* compression quality level */</u>&nbsp</td></tr>
+<tr><th id="636">636</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_PIXARLOGQUALITY" data-ref="_M/TIFFTAG_PIXARLOGQUALITY">TIFFTAG_PIXARLOGQUALITY</dfn>		65558	/* PixarLog uses same scale */</u>&nbsp</td></tr>
+<tr><th id="637">637</th><td><i>/* 65559 is allocated to Oceana Matrix &lt;dev@oceana.com&gt; */</i>&nbsp</td></tr>
+<tr><th id="638">638</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_DCSCLIPRECTANGLE" data-ref="_M/TIFFTAG_DCSCLIPRECTANGLE">TIFFTAG_DCSCLIPRECTANGLE</dfn>	65559	/* area of image to acquire */</u>&nbsp</td></tr>
+<tr><th id="639">639</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_SGILOGDATAFMT" data-ref="_M/TIFFTAG_SGILOGDATAFMT">TIFFTAG_SGILOGDATAFMT</dfn>		65560	/* SGILog user data format */</u>&nbsp</td></tr>
+<tr><th id="640">640</th><td><u>#define     <dfn class="macro" id="_M/SGILOGDATAFMT_FLOAT" data-ref="_M/SGILOGDATAFMT_FLOAT">SGILOGDATAFMT_FLOAT</dfn>		0	/* IEEE float samples */</u>&nbsp</td></tr>
+<tr><th id="641">641</th><td><u>#define     <dfn class="macro" id="_M/SGILOGDATAFMT_16BIT" data-ref="_M/SGILOGDATAFMT_16BIT">SGILOGDATAFMT_16BIT</dfn>		1	/* 16-bit samples */</u>&nbsp</td></tr>
+<tr><th id="642">642</th><td><u>#define     <dfn class="macro" id="_M/SGILOGDATAFMT_RAW" data-ref="_M/SGILOGDATAFMT_RAW">SGILOGDATAFMT_RAW</dfn>		2	/* uninterpreted data */</u>&nbsp</td></tr>
+<tr><th id="643">643</th><td><u>#define     <dfn class="macro" id="_M/SGILOGDATAFMT_8BIT" data-ref="_M/SGILOGDATAFMT_8BIT">SGILOGDATAFMT_8BIT</dfn>		3	/* 8-bit RGB monitor values */</u>&nbsp</td></tr>
+<tr><th id="644">644</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_SGILOGENCODE" data-ref="_M/TIFFTAG_SGILOGENCODE">TIFFTAG_SGILOGENCODE</dfn>		65561 /* SGILog data encoding control*/</u>&nbsp</td></tr>
+<tr><th id="645">645</th><td><u>#define     <dfn class="macro" id="_M/SGILOGENCODE_NODITHER" data-ref="_M/SGILOGENCODE_NODITHER">SGILOGENCODE_NODITHER</dfn>	0     /* do not dither encoded values*/</u>&nbsp</td></tr>
+<tr><th id="646">646</th><td><u>#define     <dfn class="macro" id="_M/SGILOGENCODE_RANDITHER" data-ref="_M/SGILOGENCODE_RANDITHER">SGILOGENCODE_RANDITHER</dfn>	1     /* randomly dither encd values */</u>&nbsp</td></tr>
+<tr><th id="647">647</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_LZMAPRESET" data-ref="_M/TIFFTAG_LZMAPRESET">TIFFTAG_LZMAPRESET</dfn>		65562	/* LZMA2 preset (compression level) */</u>&nbsp</td></tr>
+<tr><th id="648">648</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_PERSAMPLE" data-ref="_M/TIFFTAG_PERSAMPLE">TIFFTAG_PERSAMPLE</dfn>       65563	/* interface for per sample tags */</u>&nbsp</td></tr>
+<tr><th id="649">649</th><td><u>#define     <dfn class="macro" id="_M/PERSAMPLE_MERGED" data-ref="_M/PERSAMPLE_MERGED">PERSAMPLE_MERGED</dfn>        0	/* present as a single value */</u>&nbsp</td></tr>
+<tr><th id="650">650</th><td><u>#define     <dfn class="macro" id="_M/PERSAMPLE_MULTI" data-ref="_M/PERSAMPLE_MULTI">PERSAMPLE_MULTI</dfn>         1	/* present as multiple values */</u>&nbsp</td></tr>
+<tr><th id="651">651</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_ZSTD_LEVEL" data-ref="_M/TIFFTAG_ZSTD_LEVEL">TIFFTAG_ZSTD_LEVEL</dfn>      65564    /* ZSTD compression level */</u>&nbsp</td></tr>
+<tr><th id="652">652</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_LERC_VERSION" data-ref="_M/TIFFTAG_LERC_VERSION">TIFFTAG_LERC_VERSION</dfn>            65565 /* LERC version */</u>&nbsp</td></tr>
+<tr><th id="653">653</th><td><u>#define     <dfn class="macro" id="_M/LERC_VERSION_2_4" data-ref="_M/LERC_VERSION_2_4">LERC_VERSION_2_4</dfn>            4</u>&nbsp</td></tr>
+<tr><th id="654">654</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_LERC_ADD_COMPRESSION" data-ref="_M/TIFFTAG_LERC_ADD_COMPRESSION">TIFFTAG_LERC_ADD_COMPRESSION</dfn>    65566 /* LERC additional compression */</u>&nbsp</td></tr>
+<tr><th id="655">655</th><td><u>#define     <dfn class="macro" id="_M/LERC_ADD_COMPRESSION_NONE" data-ref="_M/LERC_ADD_COMPRESSION_NONE">LERC_ADD_COMPRESSION_NONE</dfn>    0</u>&nbsp</td></tr>
+<tr><th id="656">656</th><td><u>#define     <dfn class="macro" id="_M/LERC_ADD_COMPRESSION_DEFLATE" data-ref="_M/LERC_ADD_COMPRESSION_DEFLATE">LERC_ADD_COMPRESSION_DEFLATE</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="657">657</th><td><u>#define     <dfn class="macro" id="_M/LERC_ADD_COMPRESSION_ZSTD" data-ref="_M/LERC_ADD_COMPRESSION_ZSTD">LERC_ADD_COMPRESSION_ZSTD</dfn>    2</u>&nbsp</td></tr>
+<tr><th id="658">658</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_LERC_MAXZERROR" data-ref="_M/TIFFTAG_LERC_MAXZERROR">TIFFTAG_LERC_MAXZERROR</dfn>          65567    /* LERC maximum error */</u>&nbsp</td></tr>
+<tr><th id="659">659</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_WEBP_LEVEL" data-ref="_M/TIFFTAG_WEBP_LEVEL">TIFFTAG_WEBP_LEVEL</dfn>		  65568	/* WebP compression level */</u>&nbsp</td></tr>
+<tr><th id="660">660</th><td><u>#define <dfn class="macro" id="_M/TIFFTAG_WEBP_LOSSLESS" data-ref="_M/TIFFTAG_WEBP_LOSSLESS">TIFFTAG_WEBP_LOSSLESS</dfn>		65569	/* WebP lossless/lossy */</u>&nbsp</td></tr>
+<tr><th id="661">661</th><td><u>#define	<dfn class="macro" id="_M/TIFFTAG_DEFLATE_SUBCODEC" data-ref="_M/TIFFTAG_DEFLATE_SUBCODEC">TIFFTAG_DEFLATE_SUBCODEC</dfn>	65570	/* ZIP codec: to get/set the sub-codec to use. Will default to libdeflate when available */</u>&nbsp</td></tr>
+<tr><th id="662">662</th><td><u>#define     <dfn class="macro" id="_M/DEFLATE_SUBCODEC_ZLIB" data-ref="_M/DEFLATE_SUBCODEC_ZLIB">DEFLATE_SUBCODEC_ZLIB</dfn>       0</u>&nbsp</td></tr>
+<tr><th id="663">663</th><td><u>#define     <dfn class="macro" id="_M/DEFLATE_SUBCODEC_LIBDEFLATE" data-ref="_M/DEFLATE_SUBCODEC_LIBDEFLATE">DEFLATE_SUBCODEC_LIBDEFLATE</dfn> 1</u>&nbsp</td></tr>
+<tr><th id="664">664</th><td>&nbsp</td></tr>
+<tr><th id="665">665</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="666">666</th><td><i> * EXIF tags</i>&nbsp</td></tr>
+<tr><th id="667">667</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="668">668</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_EXPOSURETIME" data-ref="_M/EXIFTAG_EXPOSURETIME">EXIFTAG_EXPOSURETIME</dfn>		33434	/* Exposure time */</u>&nbsp</td></tr>
+<tr><th id="669">669</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_FNUMBER" data-ref="_M/EXIFTAG_FNUMBER">EXIFTAG_FNUMBER</dfn>			33437	/* F number */</u>&nbsp</td></tr>
+<tr><th id="670">670</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_EXPOSUREPROGRAM" data-ref="_M/EXIFTAG_EXPOSUREPROGRAM">EXIFTAG_EXPOSUREPROGRAM</dfn>		34850	/* Exposure program */</u>&nbsp</td></tr>
+<tr><th id="671">671</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SPECTRALSENSITIVITY" data-ref="_M/EXIFTAG_SPECTRALSENSITIVITY">EXIFTAG_SPECTRALSENSITIVITY</dfn>	34852	/* Spectral sensitivity */</u>&nbsp</td></tr>
+<tr><th id="672">672</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_ISOSPEEDRATINGS" data-ref="_M/EXIFTAG_ISOSPEEDRATINGS">EXIFTAG_ISOSPEEDRATINGS</dfn>		34855	/* ISO speed rating */</u>&nbsp</td></tr>
+<tr><th id="673">673</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_PHOTOGRAPHICSENSITIVITY" data-ref="_M/EXIFTAG_PHOTOGRAPHICSENSITIVITY">EXIFTAG_PHOTOGRAPHICSENSITIVITY</dfn>	34855 /* Photographic Sensitivity (new name for tag 34855) */</u>&nbsp</td></tr>
+<tr><th id="674">674</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_OECF" data-ref="_M/EXIFTAG_OECF">EXIFTAG_OECF</dfn>			34856	/* Optoelectric conversion factor */</u>&nbsp</td></tr>
+<tr><th id="675">675</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_EXIFVERSION" data-ref="_M/EXIFTAG_EXIFVERSION">EXIFTAG_EXIFVERSION</dfn>		36864	/* Exif version */</u>&nbsp</td></tr>
+<tr><th id="676">676</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_DATETIMEORIGINAL" data-ref="_M/EXIFTAG_DATETIMEORIGINAL">EXIFTAG_DATETIMEORIGINAL</dfn>	36867	/* Date and time of original</u>&nbsp</td></tr>
+<tr><th id="677">677</th><td><u>						   data generation */</u>&nbsp</td></tr>
+<tr><th id="678">678</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_DATETIMEDIGITIZED" data-ref="_M/EXIFTAG_DATETIMEDIGITIZED">EXIFTAG_DATETIMEDIGITIZED</dfn>	36868	/* Date and time of digital</u>&nbsp</td></tr>
+<tr><th id="679">679</th><td><u>						   data generation */</u>&nbsp</td></tr>
+<tr><th id="680">680</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_COMPONENTSCONFIGURATION" data-ref="_M/EXIFTAG_COMPONENTSCONFIGURATION">EXIFTAG_COMPONENTSCONFIGURATION</dfn>	37121	/* Meaning of each component */</u>&nbsp</td></tr>
+<tr><th id="681">681</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_COMPRESSEDBITSPERPIXEL" data-ref="_M/EXIFTAG_COMPRESSEDBITSPERPIXEL">EXIFTAG_COMPRESSEDBITSPERPIXEL</dfn>	37122	/* Image compression mode */</u>&nbsp</td></tr>
+<tr><th id="682">682</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SHUTTERSPEEDVALUE" data-ref="_M/EXIFTAG_SHUTTERSPEEDVALUE">EXIFTAG_SHUTTERSPEEDVALUE</dfn>	37377	/* Shutter speed */</u>&nbsp</td></tr>
+<tr><th id="683">683</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_APERTUREVALUE" data-ref="_M/EXIFTAG_APERTUREVALUE">EXIFTAG_APERTUREVALUE</dfn>		37378	/* Aperture */</u>&nbsp</td></tr>
+<tr><th id="684">684</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_BRIGHTNESSVALUE" data-ref="_M/EXIFTAG_BRIGHTNESSVALUE">EXIFTAG_BRIGHTNESSVALUE</dfn>		37379	/* Brightness */</u>&nbsp</td></tr>
+<tr><th id="685">685</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_EXPOSUREBIASVALUE" data-ref="_M/EXIFTAG_EXPOSUREBIASVALUE">EXIFTAG_EXPOSUREBIASVALUE</dfn>	37380	/* Exposure bias */</u>&nbsp</td></tr>
+<tr><th id="686">686</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_MAXAPERTUREVALUE" data-ref="_M/EXIFTAG_MAXAPERTUREVALUE">EXIFTAG_MAXAPERTUREVALUE</dfn>	37381	/* Maximum lens aperture */</u>&nbsp</td></tr>
+<tr><th id="687">687</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SUBJECTDISTANCE" data-ref="_M/EXIFTAG_SUBJECTDISTANCE">EXIFTAG_SUBJECTDISTANCE</dfn>		37382	/* Subject distance */</u>&nbsp</td></tr>
+<tr><th id="688">688</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_METERINGMODE" data-ref="_M/EXIFTAG_METERINGMODE">EXIFTAG_METERINGMODE</dfn>		37383	/* Metering mode */</u>&nbsp</td></tr>
+<tr><th id="689">689</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_LIGHTSOURCE" data-ref="_M/EXIFTAG_LIGHTSOURCE">EXIFTAG_LIGHTSOURCE</dfn>		37384	/* Light source */</u>&nbsp</td></tr>
+<tr><th id="690">690</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_FLASH" data-ref="_M/EXIFTAG_FLASH">EXIFTAG_FLASH</dfn>			37385	/* Flash */</u>&nbsp</td></tr>
+<tr><th id="691">691</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_FOCALLENGTH" data-ref="_M/EXIFTAG_FOCALLENGTH">EXIFTAG_FOCALLENGTH</dfn>		37386	/* Lens focal length */</u>&nbsp</td></tr>
+<tr><th id="692">692</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SUBJECTAREA" data-ref="_M/EXIFTAG_SUBJECTAREA">EXIFTAG_SUBJECTAREA</dfn>		37396	/* Subject area */</u>&nbsp</td></tr>
+<tr><th id="693">693</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_MAKERNOTE" data-ref="_M/EXIFTAG_MAKERNOTE">EXIFTAG_MAKERNOTE</dfn>		37500	/* Manufacturer notes */</u>&nbsp</td></tr>
+<tr><th id="694">694</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_USERCOMMENT" data-ref="_M/EXIFTAG_USERCOMMENT">EXIFTAG_USERCOMMENT</dfn>		37510	/* User comments */</u>&nbsp</td></tr>
+<tr><th id="695">695</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SUBSECTIME" data-ref="_M/EXIFTAG_SUBSECTIME">EXIFTAG_SUBSECTIME</dfn>		37520	/* DateTime subseconds */</u>&nbsp</td></tr>
+<tr><th id="696">696</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SUBSECTIMEORIGINAL" data-ref="_M/EXIFTAG_SUBSECTIMEORIGINAL">EXIFTAG_SUBSECTIMEORIGINAL</dfn>	37521	/* DateTimeOriginal subseconds */</u>&nbsp</td></tr>
+<tr><th id="697">697</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SUBSECTIMEDIGITIZED" data-ref="_M/EXIFTAG_SUBSECTIMEDIGITIZED">EXIFTAG_SUBSECTIMEDIGITIZED</dfn>	37522	/* DateTimeDigitized subseconds */</u>&nbsp</td></tr>
+<tr><th id="698">698</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_FLASHPIXVERSION" data-ref="_M/EXIFTAG_FLASHPIXVERSION">EXIFTAG_FLASHPIXVERSION</dfn>		40960	/* Supported Flashpix version */</u>&nbsp</td></tr>
+<tr><th id="699">699</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_COLORSPACE" data-ref="_M/EXIFTAG_COLORSPACE">EXIFTAG_COLORSPACE</dfn>		40961	/* Color space information */</u>&nbsp</td></tr>
+<tr><th id="700">700</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_PIXELXDIMENSION" data-ref="_M/EXIFTAG_PIXELXDIMENSION">EXIFTAG_PIXELXDIMENSION</dfn>		40962	/* Valid image width */</u>&nbsp</td></tr>
+<tr><th id="701">701</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_PIXELYDIMENSION" data-ref="_M/EXIFTAG_PIXELYDIMENSION">EXIFTAG_PIXELYDIMENSION</dfn>		40963	/* Valid image height */</u>&nbsp</td></tr>
+<tr><th id="702">702</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_RELATEDSOUNDFILE" data-ref="_M/EXIFTAG_RELATEDSOUNDFILE">EXIFTAG_RELATEDSOUNDFILE</dfn>	40964	/* Related audio file */</u>&nbsp</td></tr>
+<tr><th id="703">703</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_FLASHENERGY" data-ref="_M/EXIFTAG_FLASHENERGY">EXIFTAG_FLASHENERGY</dfn>		41483	/* Flash energy */</u>&nbsp</td></tr>
+<tr><th id="704">704</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SPATIALFREQUENCYRESPONSE" data-ref="_M/EXIFTAG_SPATIALFREQUENCYRESPONSE">EXIFTAG_SPATIALFREQUENCYRESPONSE</dfn> 41484	/* Spatial frequency response */</u>&nbsp</td></tr>
+<tr><th id="705">705</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_FOCALPLANEXRESOLUTION" data-ref="_M/EXIFTAG_FOCALPLANEXRESOLUTION">EXIFTAG_FOCALPLANEXRESOLUTION</dfn>	41486	/* Focal plane X resolution */</u>&nbsp</td></tr>
+<tr><th id="706">706</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_FOCALPLANEYRESOLUTION" data-ref="_M/EXIFTAG_FOCALPLANEYRESOLUTION">EXIFTAG_FOCALPLANEYRESOLUTION</dfn>	41487	/* Focal plane Y resolution */</u>&nbsp</td></tr>
+<tr><th id="707">707</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_FOCALPLANERESOLUTIONUNIT" data-ref="_M/EXIFTAG_FOCALPLANERESOLUTIONUNIT">EXIFTAG_FOCALPLANERESOLUTIONUNIT</dfn> 41488	/* Focal plane resolution unit */</u>&nbsp</td></tr>
+<tr><th id="708">708</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SUBJECTLOCATION" data-ref="_M/EXIFTAG_SUBJECTLOCATION">EXIFTAG_SUBJECTLOCATION</dfn>		41492	/* Subject location */</u>&nbsp</td></tr>
+<tr><th id="709">709</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_EXPOSUREINDEX" data-ref="_M/EXIFTAG_EXPOSUREINDEX">EXIFTAG_EXPOSUREINDEX</dfn>		41493	/* Exposure index */</u>&nbsp</td></tr>
+<tr><th id="710">710</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SENSINGMETHOD" data-ref="_M/EXIFTAG_SENSINGMETHOD">EXIFTAG_SENSINGMETHOD</dfn>		41495	/* Sensing method */</u>&nbsp</td></tr>
+<tr><th id="711">711</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_FILESOURCE" data-ref="_M/EXIFTAG_FILESOURCE">EXIFTAG_FILESOURCE</dfn>		41728	/* File source */</u>&nbsp</td></tr>
+<tr><th id="712">712</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SCENETYPE" data-ref="_M/EXIFTAG_SCENETYPE">EXIFTAG_SCENETYPE</dfn>		41729	/* Scene type */</u>&nbsp</td></tr>
+<tr><th id="713">713</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_CFAPATTERN" data-ref="_M/EXIFTAG_CFAPATTERN">EXIFTAG_CFAPATTERN</dfn>		41730	/* CFA pattern */</u>&nbsp</td></tr>
+<tr><th id="714">714</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_CUSTOMRENDERED" data-ref="_M/EXIFTAG_CUSTOMRENDERED">EXIFTAG_CUSTOMRENDERED</dfn>		41985	/* Custom image processing */</u>&nbsp</td></tr>
+<tr><th id="715">715</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_EXPOSUREMODE" data-ref="_M/EXIFTAG_EXPOSUREMODE">EXIFTAG_EXPOSUREMODE</dfn>		41986	/* Exposure mode */</u>&nbsp</td></tr>
+<tr><th id="716">716</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_WHITEBALANCE" data-ref="_M/EXIFTAG_WHITEBALANCE">EXIFTAG_WHITEBALANCE</dfn>		41987	/* White balance */</u>&nbsp</td></tr>
+<tr><th id="717">717</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_DIGITALZOOMRATIO" data-ref="_M/EXIFTAG_DIGITALZOOMRATIO">EXIFTAG_DIGITALZOOMRATIO</dfn>	41988	/* Digital zoom ratio */</u>&nbsp</td></tr>
+<tr><th id="718">718</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_FOCALLENGTHIN35MMFILM" data-ref="_M/EXIFTAG_FOCALLENGTHIN35MMFILM">EXIFTAG_FOCALLENGTHIN35MMFILM</dfn>	41989	/* Focal length in 35 mm film */</u>&nbsp</td></tr>
+<tr><th id="719">719</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SCENECAPTURETYPE" data-ref="_M/EXIFTAG_SCENECAPTURETYPE">EXIFTAG_SCENECAPTURETYPE</dfn>	41990	/* Scene capture type */</u>&nbsp</td></tr>
+<tr><th id="720">720</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_GAINCONTROL" data-ref="_M/EXIFTAG_GAINCONTROL">EXIFTAG_GAINCONTROL</dfn>		41991	/* Gain control */</u>&nbsp</td></tr>
+<tr><th id="721">721</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_CONTRAST" data-ref="_M/EXIFTAG_CONTRAST">EXIFTAG_CONTRAST</dfn>		41992	/* Contrast */</u>&nbsp</td></tr>
+<tr><th id="722">722</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SATURATION" data-ref="_M/EXIFTAG_SATURATION">EXIFTAG_SATURATION</dfn>		41993	/* Saturation */</u>&nbsp</td></tr>
+<tr><th id="723">723</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SHARPNESS" data-ref="_M/EXIFTAG_SHARPNESS">EXIFTAG_SHARPNESS</dfn>		41994	/* Sharpness */</u>&nbsp</td></tr>
+<tr><th id="724">724</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_DEVICESETTINGDESCRIPTION" data-ref="_M/EXIFTAG_DEVICESETTINGDESCRIPTION">EXIFTAG_DEVICESETTINGDESCRIPTION</dfn> 41995	/* Device settings description */</u>&nbsp</td></tr>
+<tr><th id="725">725</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SUBJECTDISTANCERANGE" data-ref="_M/EXIFTAG_SUBJECTDISTANCERANGE">EXIFTAG_SUBJECTDISTANCERANGE</dfn>	41996	/* Subject distance range */</u>&nbsp</td></tr>
+<tr><th id="726">726</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_IMAGEUNIQUEID" data-ref="_M/EXIFTAG_IMAGEUNIQUEID">EXIFTAG_IMAGEUNIQUEID</dfn>		42016	/* Unique image ID */</u>&nbsp</td></tr>
+<tr><th id="727">727</th><td>&nbsp</td></tr>
+<tr><th id="728">728</th><td><i>/*--: New for EXIF-Version 2.32, May 2019 ... */</i>&nbsp</td></tr>
+<tr><th id="729">729</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SENSITIVITYTYPE" data-ref="_M/EXIFTAG_SENSITIVITYTYPE">EXIFTAG_SENSITIVITYTYPE</dfn>		34864		/* The SensitivityType tag indicates which one of the parameters of ISO12232 is the PhotographicSensitivity tag. */</u>&nbsp</td></tr>
+<tr><th id="730">730</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_STANDARDOUTPUTSENSITIVITY" data-ref="_M/EXIFTAG_STANDARDOUTPUTSENSITIVITY">EXIFTAG_STANDARDOUTPUTSENSITIVITY</dfn>		34865		/* This tag indicates the standard output sensitivity value of a camera or input device defined in ISO 12232. */</u>&nbsp</td></tr>
+<tr><th id="731">731</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_RECOMMENDEDEXPOSUREINDEX" data-ref="_M/EXIFTAG_RECOMMENDEDEXPOSUREINDEX">EXIFTAG_RECOMMENDEDEXPOSUREINDEX</dfn>		34866		/* recommended exposure index */</u>&nbsp</td></tr>
+<tr><th id="732">732</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_ISOSPEED" data-ref="_M/EXIFTAG_ISOSPEED">EXIFTAG_ISOSPEED</dfn>		34867		/* ISO speed value */</u>&nbsp</td></tr>
+<tr><th id="733">733</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_ISOSPEEDLATITUDEYYY" data-ref="_M/EXIFTAG_ISOSPEEDLATITUDEYYY">EXIFTAG_ISOSPEEDLATITUDEYYY</dfn>		34868		/* ISO speed latitude yyy */</u>&nbsp</td></tr>
+<tr><th id="734">734</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_ISOSPEEDLATITUDEZZZ" data-ref="_M/EXIFTAG_ISOSPEEDLATITUDEZZZ">EXIFTAG_ISOSPEEDLATITUDEZZZ</dfn>		34869		/* ISO speed latitude zzz */</u>&nbsp</td></tr>
+<tr><th id="735">735</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_OFFSETTIME" data-ref="_M/EXIFTAG_OFFSETTIME">EXIFTAG_OFFSETTIME</dfn>		36880		/* offset from UTC of the time of DateTime tag. */</u>&nbsp</td></tr>
+<tr><th id="736">736</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_OFFSETTIMEORIGINAL" data-ref="_M/EXIFTAG_OFFSETTIMEORIGINAL">EXIFTAG_OFFSETTIMEORIGINAL</dfn>		36881		/* offset from UTC of the time of DateTimeOriginal tag. */</u>&nbsp</td></tr>
+<tr><th id="737">737</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_OFFSETTIMEDIGITIZED" data-ref="_M/EXIFTAG_OFFSETTIMEDIGITIZED">EXIFTAG_OFFSETTIMEDIGITIZED</dfn>		36882		/* offset from UTC of the time of DateTimeDigitized tag. */</u>&nbsp</td></tr>
+<tr><th id="738">738</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_TEMPERATURE" data-ref="_M/EXIFTAG_TEMPERATURE">EXIFTAG_TEMPERATURE</dfn>		37888		/* Temperature as the ambient situation at the shot in dergee Celsius */</u>&nbsp</td></tr>
+<tr><th id="739">739</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_HUMIDITY" data-ref="_M/EXIFTAG_HUMIDITY">EXIFTAG_HUMIDITY</dfn>		37889		/* Humidity as the ambient situation at the shot in percent */</u>&nbsp</td></tr>
+<tr><th id="740">740</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_PRESSURE" data-ref="_M/EXIFTAG_PRESSURE">EXIFTAG_PRESSURE</dfn>		37890		/* Pressure as the ambient situation at the shot hecto-Pascal (hPa) */</u>&nbsp</td></tr>
+<tr><th id="741">741</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_WATERDEPTH" data-ref="_M/EXIFTAG_WATERDEPTH">EXIFTAG_WATERDEPTH</dfn>		37891		/* WaterDepth as the ambient situation at the shot in meter (m) */</u>&nbsp</td></tr>
+<tr><th id="742">742</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_ACCELERATION" data-ref="_M/EXIFTAG_ACCELERATION">EXIFTAG_ACCELERATION</dfn>		37892		/* Acceleration (a scalar regardless of direction) as the ambient situation at the shot in units of mGal (10-5 m/s^2) */</u>&nbsp</td></tr>
+<tr><th id="743">743</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_CAMERAELEVATIONANGLE" data-ref="_M/EXIFTAG_CAMERAELEVATIONANGLE">EXIFTAG_CAMERAELEVATIONANGLE</dfn>		37893		/* Elevation/depression. angle of the orientation of the camera(imaging optical axis) as the ambient situation at the shot in degree from -180deg to +180deg. */</u>&nbsp</td></tr>
+<tr><th id="744">744</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_CAMERAOWNERNAME" data-ref="_M/EXIFTAG_CAMERAOWNERNAME">EXIFTAG_CAMERAOWNERNAME</dfn>		42032		/* owner of a camera */</u>&nbsp</td></tr>
+<tr><th id="745">745</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_BODYSERIALNUMBER" data-ref="_M/EXIFTAG_BODYSERIALNUMBER">EXIFTAG_BODYSERIALNUMBER</dfn>		42033		/* serial number of the body of the camera */</u>&nbsp</td></tr>
+<tr><th id="746">746</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_LENSSPECIFICATION" data-ref="_M/EXIFTAG_LENSSPECIFICATION">EXIFTAG_LENSSPECIFICATION</dfn>		42034		/* minimum focal length (in mm), maximum focal length (in mm), minimum F number in the minimum focal length, and minimum F number in the maximum focal length, */</u>&nbsp</td></tr>
+<tr><th id="747">747</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_LENSMAKE" data-ref="_M/EXIFTAG_LENSMAKE">EXIFTAG_LENSMAKE</dfn>		42035		/* the lens manufacturer */</u>&nbsp</td></tr>
+<tr><th id="748">748</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_LENSMODEL" data-ref="_M/EXIFTAG_LENSMODEL">EXIFTAG_LENSMODEL</dfn>		42036		/* the lens model name and model number */</u>&nbsp</td></tr>
+<tr><th id="749">749</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_LENSSERIALNUMBER" data-ref="_M/EXIFTAG_LENSSERIALNUMBER">EXIFTAG_LENSSERIALNUMBER</dfn>		42037		/* the serial number of the interchangeable lens */</u>&nbsp</td></tr>
+<tr><th id="750">750</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_GAMMA" data-ref="_M/EXIFTAG_GAMMA">EXIFTAG_GAMMA</dfn>		42240		/* value of coefficient gamma */</u>&nbsp</td></tr>
+<tr><th id="751">751</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_COMPOSITEIMAGE" data-ref="_M/EXIFTAG_COMPOSITEIMAGE">EXIFTAG_COMPOSITEIMAGE</dfn>		42080	/* composite image */</u>&nbsp</td></tr>
+<tr><th id="752">752</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SOURCEIMAGENUMBEROFCOMPOSITEIMAGE" data-ref="_M/EXIFTAG_SOURCEIMAGENUMBEROFCOMPOSITEIMAGE">EXIFTAG_SOURCEIMAGENUMBEROFCOMPOSITEIMAGE</dfn>		42081	/* source image number of composite image */</u>&nbsp</td></tr>
+<tr><th id="753">753</th><td><u>#define <dfn class="macro" id="_M/EXIFTAG_SOURCEEXPOSURETIMESOFCOMPOSITEIMAGE" data-ref="_M/EXIFTAG_SOURCEEXPOSURETIMESOFCOMPOSITEIMAGE">EXIFTAG_SOURCEEXPOSURETIMESOFCOMPOSITEIMAGE</dfn>		42082	/* source exposure times of composite image */</u>&nbsp</td></tr>
+<tr><th id="754">754</th><td>&nbsp</td></tr>
+<tr><th id="755">755</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="756">756</th><td><i> * EXIF-GPS tags  (Version 2.31, July 2016)</i>&nbsp</td></tr>
+<tr><th id="757">757</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="758">758</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_VERSIONID" data-ref="_M/GPSTAG_VERSIONID">GPSTAG_VERSIONID</dfn>		0			/* 	Indicates the version of GPSInfoIFD.	 */</u>&nbsp</td></tr>
+<tr><th id="759">759</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_LATITUDEREF" data-ref="_M/GPSTAG_LATITUDEREF">GPSTAG_LATITUDEREF</dfn>		1			/* 	Indicates whether the latitude is north or south latitude.	 */</u>&nbsp</td></tr>
+<tr><th id="760">760</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_LATITUDE" data-ref="_M/GPSTAG_LATITUDE">GPSTAG_LATITUDE</dfn>		2			/* 	Indicates the latitude.	 */</u>&nbsp</td></tr>
+<tr><th id="761">761</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_LONGITUDEREF" data-ref="_M/GPSTAG_LONGITUDEREF">GPSTAG_LONGITUDEREF</dfn>		3			/* 	Indicates whether the longitude is east or west longitude.	 */</u>&nbsp</td></tr>
+<tr><th id="762">762</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_LONGITUDE" data-ref="_M/GPSTAG_LONGITUDE">GPSTAG_LONGITUDE</dfn>		4			/* 	Indicates the longitude.	 */</u>&nbsp</td></tr>
+<tr><th id="763">763</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_ALTITUDEREF" data-ref="_M/GPSTAG_ALTITUDEREF">GPSTAG_ALTITUDEREF</dfn>		5			/* 	Indicates the altitude used as the reference altitude.	 */</u>&nbsp</td></tr>
+<tr><th id="764">764</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_ALTITUDE" data-ref="_M/GPSTAG_ALTITUDE">GPSTAG_ALTITUDE</dfn>		6			/* 	Indicates the altitude based on the reference in GPSAltitudeRef.	 */</u>&nbsp</td></tr>
+<tr><th id="765">765</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_TIMESTAMP" data-ref="_M/GPSTAG_TIMESTAMP">GPSTAG_TIMESTAMP</dfn>		7			/* 	Indicates the time as UTC (Coordinated Universal Time).	 */</u>&nbsp</td></tr>
+<tr><th id="766">766</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_SATELLITES" data-ref="_M/GPSTAG_SATELLITES">GPSTAG_SATELLITES</dfn>		8			/* 	Indicates the GPS satellites used for measurements.	 */</u>&nbsp</td></tr>
+<tr><th id="767">767</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_STATUS" data-ref="_M/GPSTAG_STATUS">GPSTAG_STATUS</dfn>		9			/* 	Indicates the status of the GPS receiver when the image is recorded.	 */</u>&nbsp</td></tr>
+<tr><th id="768">768</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_MEASUREMODE" data-ref="_M/GPSTAG_MEASUREMODE">GPSTAG_MEASUREMODE</dfn>		10			/* 	Indicates the GPS measurement mode.	 */</u>&nbsp</td></tr>
+<tr><th id="769">769</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_DOP" data-ref="_M/GPSTAG_DOP">GPSTAG_DOP</dfn>		11			/* 	Indicates the GPS DOP (data degree of precision).	 */</u>&nbsp</td></tr>
+<tr><th id="770">770</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_SPEEDREF" data-ref="_M/GPSTAG_SPEEDREF">GPSTAG_SPEEDREF</dfn>		12			/* 	Indicates the unit used to express the GPS receiver speed of movement.	 */</u>&nbsp</td></tr>
+<tr><th id="771">771</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_SPEED" data-ref="_M/GPSTAG_SPEED">GPSTAG_SPEED</dfn>		13			/* 	Indicates the speed of GPS receiver movement.	 */</u>&nbsp</td></tr>
+<tr><th id="772">772</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_TRACKREF" data-ref="_M/GPSTAG_TRACKREF">GPSTAG_TRACKREF</dfn>		14			/* 	Indicates the reference for giving the direction of GPS receiver movement.	 */</u>&nbsp</td></tr>
+<tr><th id="773">773</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_TRACK" data-ref="_M/GPSTAG_TRACK">GPSTAG_TRACK</dfn>		15			/* 	Indicates the direction of GPS receiver movement.	 */</u>&nbsp</td></tr>
+<tr><th id="774">774</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_IMGDIRECTIONREF" data-ref="_M/GPSTAG_IMGDIRECTIONREF">GPSTAG_IMGDIRECTIONREF</dfn>		16			/* 	Indicates the reference for giving the direction of the image when it is captured.	 */</u>&nbsp</td></tr>
+<tr><th id="775">775</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_IMGDIRECTION" data-ref="_M/GPSTAG_IMGDIRECTION">GPSTAG_IMGDIRECTION</dfn>		17			/* 	Indicates the direction of the image when it was captured.	 */</u>&nbsp</td></tr>
+<tr><th id="776">776</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_MAPDATUM" data-ref="_M/GPSTAG_MAPDATUM">GPSTAG_MAPDATUM</dfn>		18			/* 	Indicates the geodetic survey data used by the GPS receiver. (e.g. WGS-84)	 */</u>&nbsp</td></tr>
+<tr><th id="777">777</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_DESTLATITUDEREF" data-ref="_M/GPSTAG_DESTLATITUDEREF">GPSTAG_DESTLATITUDEREF</dfn>		19			/* 	Indicates whether the latitude of the destination point is north or south latitude.	 */</u>&nbsp</td></tr>
+<tr><th id="778">778</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_DESTLATITUDE" data-ref="_M/GPSTAG_DESTLATITUDE">GPSTAG_DESTLATITUDE</dfn>		20			/* 	Indicates the latitude of the destination point.	 */</u>&nbsp</td></tr>
+<tr><th id="779">779</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_DESTLONGITUDEREF" data-ref="_M/GPSTAG_DESTLONGITUDEREF">GPSTAG_DESTLONGITUDEREF</dfn>		21			/* 	Indicates whether the longitude of the destination point is east or west longitude.	 */</u>&nbsp</td></tr>
+<tr><th id="780">780</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_DESTLONGITUDE" data-ref="_M/GPSTAG_DESTLONGITUDE">GPSTAG_DESTLONGITUDE</dfn>		22			/* 	Indicates the longitude of the destination point.	 */</u>&nbsp</td></tr>
+<tr><th id="781">781</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_DESTBEARINGREF" data-ref="_M/GPSTAG_DESTBEARINGREF">GPSTAG_DESTBEARINGREF</dfn>		23			/* 	Indicates the reference used for giving the bearing to the destination point.	 */</u>&nbsp</td></tr>
+<tr><th id="782">782</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_DESTBEARING" data-ref="_M/GPSTAG_DESTBEARING">GPSTAG_DESTBEARING</dfn>		24			/* 	Indicates the bearing to the destination point.	 */</u>&nbsp</td></tr>
+<tr><th id="783">783</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_DESTDISTANCEREF" data-ref="_M/GPSTAG_DESTDISTANCEREF">GPSTAG_DESTDISTANCEREF</dfn>		25			/* 	Indicates the unit used to express the distance to the destination point.	 */</u>&nbsp</td></tr>
+<tr><th id="784">784</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_DESTDISTANCE" data-ref="_M/GPSTAG_DESTDISTANCE">GPSTAG_DESTDISTANCE</dfn>		26			/* 	Indicates the distance to the destination point.	 */</u>&nbsp</td></tr>
+<tr><th id="785">785</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_PROCESSINGMETHOD" data-ref="_M/GPSTAG_PROCESSINGMETHOD">GPSTAG_PROCESSINGMETHOD</dfn>		27			/* 	A character string recording the name of the method used for location finding.	 */</u>&nbsp</td></tr>
+<tr><th id="786">786</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_AREAINFORMATION" data-ref="_M/GPSTAG_AREAINFORMATION">GPSTAG_AREAINFORMATION</dfn>		28			/* 	A character string recording the name of the GPS area.	 */</u>&nbsp</td></tr>
+<tr><th id="787">787</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_DATESTAMP" data-ref="_M/GPSTAG_DATESTAMP">GPSTAG_DATESTAMP</dfn>		29			/* 	A character string recording date and time information relative to UTC (Coordinated Universal Time).	 */</u>&nbsp</td></tr>
+<tr><th id="788">788</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_DIFFERENTIAL" data-ref="_M/GPSTAG_DIFFERENTIAL">GPSTAG_DIFFERENTIAL</dfn>		30			/* 	Indicates whether differential correction is applied to the GPS receiver.	 */</u>&nbsp</td></tr>
+<tr><th id="789">789</th><td><u>#define		<dfn class="macro" id="_M/GPSTAG_GPSHPOSITIONINGERROR" data-ref="_M/GPSTAG_GPSHPOSITIONINGERROR">GPSTAG_GPSHPOSITIONINGERROR</dfn>		31			/* Indicates horizontal positioning errors in meters.		 */</u>&nbsp</td></tr>
+<tr><th id="790">790</th><td>&nbsp</td></tr>
+<tr><th id="791">791</th><td><u>#<span data-ppcond="25">endif</span> /* _TIFF_ */</u>&nbsp</td></tr>
+<tr><th id="792">792</th><td>&nbsp</td></tr>
+<tr><th id="793">793</th><td><i>/* vim: set ts=8 sts=8 sw=8 noet: */</i>&nbsp</td></tr>
+<tr><th id="794">794</th><td><i>/*</i>&nbsp</td></tr>
+<tr><th id="795">795</th><td><i> * Local Variables:</i>&nbsp</td></tr>
+<tr><th id="796">796</th><td><i> * mode: c</i>&nbsp</td></tr>
+<tr><th id="797">797</th><td><i> * c-basic-offset: 8</i>&nbsp</td></tr>
+<tr><th id="798">798</th><td><i> * fill-column: 78</i>&nbsp</td></tr>
+<tr><th id="799">799</th><td><i> * End:</i>&nbsp</td></tr>
+<tr><th id="800">800</th><td><i> */</i>&nbsp</td></tr>
+<tr><th id="801">801</th><td></td></tr>
+</table><hr/><p id='footer'>
+Generated while processing <a href='../../../Inc/Image/tImageTIFF.h.html'>Modules/Image/Inc/Image/tImageTIFF.h</a><br/>Generated on <em>2025-Aug-23</em><br />Powered by Woboq Code Browser 2.1
+<br/></p>
+</div></body></html>

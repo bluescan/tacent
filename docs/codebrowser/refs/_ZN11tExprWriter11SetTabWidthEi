@@ -1,0 +1,2 @@
+<def f='Modules/System/Inc/System/tScript.h' l='249' type='void tExprWriter::SetTabWidth(int tabWidth = 0)'/>
+<doc f='Modules/System/Inc/System/tScript.h' l='248'>// If you call this with a value &gt; 0 the writer starts using spaces instead of tabs. Zero means use tabs (default).</doc>

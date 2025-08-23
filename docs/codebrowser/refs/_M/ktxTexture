@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='734'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/ktx.h' l='729'>/**
+     * @brief Helper for casting ktxTexture1 and ktxTexture2 to ktxTexture.
+     *
+     * Use with caution.
+     */</doc>

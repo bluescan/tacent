@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='633' type='long pathconf(const char * __path, int __name)'/>
+<doc f='include/unistd.h' l='632'>/* Get file-specific configuration information about PATH.  */</doc>

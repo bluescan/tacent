@@ -1,0 +1,1 @@
+<def f='include/c++/11/bits/stl_iterator.h' l='366' ll='368' macro='1' type='std::reverse_iterator::reference std::reverse_iterator::operator[](std::reverse_iterator::difference_type __n) const'/>

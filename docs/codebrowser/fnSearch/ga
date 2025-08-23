@@ -1,0 +1,8 @@
+_ZN9tColour4f13GammaToLinearEfj|tColour4f::GammaToLinear
+_ZNKSt18gamma_distribution5alphaEv|std::gamma_distribution::alpha
+_ZNKSt18gamma_distribution4betaEv|std::gamma_distribution::beta
+_ZNKSt18gamma_distribution3maxEv|std::gamma_distribution::max
+_ZNKSt18gamma_distribution3minEv|std::gamma_distribution::min
+_ZNSt18gamma_distributionclERTL0__|std::gamma_distribution::operator()
+_ZNKSt18gamma_distribution5paramEv|std::gamma_distribution::param
+_ZNSt18gamma_distribution5resetEv|std::gamma_distribution::reset

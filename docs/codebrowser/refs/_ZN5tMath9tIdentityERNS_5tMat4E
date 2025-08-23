@@ -1,0 +1,12 @@
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='529' type='void tMath::tIdentity(tMath::tMat4 &amp; m)'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='586' u='c' c='_ZN5tMath14tMakeTranslateERNS_5tMat4Efff'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='587' u='c' c='_ZN5tMath14tMakeTranslateERNS_5tMat4ERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='616' u='c' c='_ZN5tMath10tMakeScaleERNS_5tMat4Ef'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='617' u='c' c='_ZN5tMath10tMakeScaleERNS_5tMat4Efff'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='618' u='c' c='_ZN5tMath10tMakeScaleERNS_5tMat4ERKNS_5tVec3E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='620' u='c' c='_ZN5tMath14tMakeReflectXYERNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='621' u='c' c='_ZN5tMath14tMakeReflectXZERNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='622' u='c' c='_ZN5tMath14tMakeReflectYZERNS_5tMat4E'/>
+<use f='Modules/Math/Inc/Math/tMatrix4.h' l='65' u='c' c='_ZN5tMath8tMatrix48IdentityEv'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='581' u='c' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3Ef'/>
+<use f='Modules/Math/Src/tLinearAlgebra.cpp' l='619' u='c' c='_ZN5tMath11tMakeRotateERNS_5tMat4ERKNS_5tVec3ES4_'/>

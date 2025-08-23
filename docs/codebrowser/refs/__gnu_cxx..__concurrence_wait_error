@@ -1,0 +1,5 @@
+<inh f='include/c++/11/bits/exception.h' l='61' c='std::exception'/>
+<def f='include/c++/11/ext/concurrence.h' l='88' ll='94'/>
+<use f='include/c++/11/ext/concurrence.h' l='112' c='__gnu_cxx::__throw_concurrence_wait_error'/>
+<size>8</size>
+<fun r='__gnu_cxx::__concurrence_wait_error::what'/>

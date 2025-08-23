@@ -1,0 +1,16 @@
+<use f='include/c++/11/chrono' l='522' u='w' c='_ZNSt6chrono8durationC1ERKTL0__'/>
+<use f='include/c++/11/chrono' l='530' u='w' c='_ZNSt6chrono8durationC1ERKNS_8durationITL0__TL0_0_EE'/>
+<use f='include/c++/11/chrono' l='538' u='r' c='_ZNKSt6chrono8duration5countEv'/>
+<use f='include/c++/11/chrono' l='544' u='r' c='_ZNKSt6chrono8durationpsEv'/>
+<use f='include/c++/11/chrono' l='548' c='_ZNKSt6chrono8durationngEv'/>
+<use f='include/c++/11/chrono' l='553' u='w' c='_ZNSt6chrono8durationppEv'/>
+<use f='include/c++/11/chrono' l='559' u='w' c='_ZNSt6chrono8durationppEi'/>
+<use f='include/c++/11/chrono' l='564' u='w' c='_ZNSt6chrono8durationmmEv'/>
+<use f='include/c++/11/chrono' l='570' u='w' c='_ZNSt6chrono8durationmmEi'/>
+<use f='include/c++/11/chrono' l='575' u='w' c='_ZNSt6chrono8durationpLERKNS_8durationIT_T0_EE'/>
+<use f='include/c++/11/chrono' l='582' u='w' c='_ZNSt6chrono8durationmIERKNS_8durationIT_T0_EE'/>
+<use f='include/c++/11/chrono' l='589' u='w' c='_ZNSt6chrono8durationmLERKT_'/>
+<use f='include/c++/11/chrono' l='596' u='w' c='_ZNSt6chrono8durationdVERKT_'/>
+<use f='include/c++/11/chrono' l='607' u='w' c='_ZNSt6chrono8durationrMERKT_'/>
+<use f='include/c++/11/chrono' l='617' u='w' c='_ZNSt6chrono8durationrMERKNS_8durationIT_T0_EE'/>
+<dec f='include/c++/11/chrono' l='635' type='std::chrono::duration::rep'/>

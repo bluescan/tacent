@@ -1,0 +1,23 @@
+<def f='include/c++/11/bits/random.h' l='3990' ll='4025'/>
+<use f='include/c++/11/bits/random.h' l='3995' c='_ZNSt22geometric_distribution10param_typeC1Ev'/>
+<use f='include/c++/11/bits/random.h' l='4010' c='_ZSteqRKNSt22geometric_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='4010' c='_ZSteqRKNSt22geometric_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='4014' c='_ZStneRKNSt22geometric_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='4014' c='_ZStneRKNSt22geometric_distribution10param_typeES2_'/>
+<use f='include/c++/11/bits/random.h' l='4037' c='_ZNSt22geometric_distributionC1ERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4059' c='_ZNKSt22geometric_distribution5paramEv'/>
+<use f='include/c++/11/bits/random.h' l='4068' c='_ZNSt22geometric_distribution5paramERKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4096' c='_ZNSt22geometric_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4110' c='_ZNSt22geometric_distribution10__generateETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4117' c='_ZNSt22geometric_distribution10__generateEPT_S1_RTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4135' c='_ZNSt22geometric_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.h' l='4137'/>
+<use f='include/c++/11/bits/random.tcc' l='1046' c='_ZNSt22geometric_distributionclERTL0__RKNS_10param_typeE'/>
+<use f='include/c++/11/bits/random.tcc' l='1073' c='_ZNSt22geometric_distribution15__generate_implETL0__S0_RTL0_0_RKNS_10param_typeE'/>
+<doc f='include/c++/11/bits/random.h' l='3989'>/** Parameter type. */</doc>
+<fun r='_ZNSt22geometric_distribution10param_typeC1Ev'/>
+<fun r='_ZNSt22geometric_distribution10param_typeC1Ed'/>
+<fun r='_ZNKSt22geometric_distribution10param_type1pEv'/>
+<fun r='_ZNSt22geometric_distribution10param_type13_M_initializeEv'/>
+<mbr r='std::geometric_distribution::param_type::_M_p' t='double'/>
+<mbr r='std::geometric_distribution::param_type::_M_log_1_p' t='double'/>

@@ -1,0 +1,11 @@
+<dec f='include/stdio.h' l='104'/>
+<doc f='include/stdio.h' l='102'>/* The value returned by fgetc and similar functions to indicate the
+   end of the file.  */</doc>
+<use f='Modules/System/Inc/System/tFile.h' l='751' u='c'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='107' u='c'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='140' u='c'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='150' u='c'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='168' u='c'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='176' u='c'/>
+<use f='Modules/Image/Src/tImageHDR.cpp' l='191' u='c'/>
+<use f='Modules/System/Src/tFile.cpp' l='1219' u='c'/>

@@ -1,0 +1,7 @@
+<def f='include/c++/11/bits/basic_string.h' l='1632' ll='1634' type='std::basic_string::iterator std::basic_string::insert(std::basic_string::const_iterator __p, initializer_list&lt;_CharT&gt; __l)'/>
+<doc f='include/c++/11/bits/basic_string.h' l='1626'>/**
+       *  @brief  Insert an initializer_list of characters.
+       *  @param __p  Iterator referencing location in string to insert at.
+       *  @param __l  The initializer_list of characters to insert.
+       *  @throw  std::length_error  If new length exceeds @c max_size().
+       */</doc>

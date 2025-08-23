@@ -1,0 +1,2 @@
+<dec f='include/unistd.h' l='296' type='int eaccess(const char * __name, int __type)'/>
+<doc f='include/unistd.h' l='295'>/* An alias for `euidaccess&apos;, used by some other systems.  */</doc>

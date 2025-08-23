@@ -1,0 +1,2 @@
+<dec f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='336' type='bool tMath::tNotEqual(const tMath::tMat4 &amp; a, const tMath::tMat4 &amp; b, comp_t c)'/>
+<def f='Modules/Math/Inc/Math/tLinearAlgebra.h' l='946' ll='968' type='bool tMath::tNotEqual(const tMath::tMat4 &amp; a, const tMath::tMat4 &amp; b, comp_t c)'/>

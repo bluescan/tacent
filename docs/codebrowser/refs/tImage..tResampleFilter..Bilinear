@@ -1,0 +1,6 @@
+<dec f='Modules/Image/Inc/Image/tResample.h' l='25' type='2'/>
+<use f='Modules/Image/Inc/Image/tResample.h' l='83' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='310' c='_ZN6tImage8tPicture8ResampleEiiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<use f='Modules/Image/Inc/Image/tPicture.h' l='315' c='_ZN6tImage8tPicture6ResizeEiiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>
+<use f='Modules/Image/Inc/Image/tTexture.h' l='169' u='r' c='_ZN6tImage8tTexture15DetermineFilterENS0_8tQualityE'/>
+<use f='Modules/Image/Src/tResample.cpp' l='151' c='_ZN6tImage8ResampleEP9tColour4biiS1_iiNS_15tResampleFilterENS_17tResampleEdgeModeE'/>

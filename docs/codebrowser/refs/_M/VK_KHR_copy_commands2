@@ -1,0 +1,2 @@
+<dec f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10430'/>
+<doc f='Modules/Image/Contrib/LibKTX/include/vulkan_core.h' l='10429'>// VK_KHR_copy_commands2 is a preprocessor guard. Do not pass it to API calls.</doc>

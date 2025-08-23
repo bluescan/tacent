@@ -1,0 +1,5 @@
+<def f='include/c++/11/bits/std_function.h' l='368' ll='369' type='void std::function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt;::function&lt;type-parameter-0-0 (type-parameter-0-1...)&gt;()'/>
+<doc f='include/c++/11/bits/std_function.h' l='364'>/**
+       *  @brief Default construct creates an empty function call wrapper.
+       *  @post `!(bool)*this`
+       */</doc>

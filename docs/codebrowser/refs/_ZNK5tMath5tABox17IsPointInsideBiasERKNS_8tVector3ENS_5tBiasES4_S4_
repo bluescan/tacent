@@ -1,0 +1,5 @@
+<dec f='Modules/Math/Inc/Math/tGeometry.h' l='306' type='bool tMath::tABox::IsPointInsideBias(const tMath::tVector3 &amp; point, tMath::tBias biasX = tBias::Low, tMath::tBias biasY = tBias::Low, tMath::tBias biasZ = tBias::Low) const'/>
+<def f='Modules/Math/Inc/Math/tGeometry.h' l='573' ll='588' type='bool tMath::tABox::IsPointInsideBias(const tMath::tVector3 &amp; point, tMath::tBias biasX = tBias::Low, tMath::tBias biasY = tBias::Low, tMath::tBias biasZ = tBias::Low) const'/>
+<doc f='Modules/Math/Inc/Math/tGeometry.h' l='303'>// Similar to above except you can control which boundary planes are included. With default bias values this
+	// function includes the 3 minimum boundary planes and does not include the 3 maximum planes. This is useful for
+	// situations such as spatial partitioning where a single point must not be inside multiple adjacent boxes.</doc>

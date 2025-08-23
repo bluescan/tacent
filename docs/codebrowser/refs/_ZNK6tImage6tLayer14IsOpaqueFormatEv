@@ -1,0 +1,4 @@
+<def f='Modules/Image/Inc/Image/tLayer.h' l='72' type='bool tImage::tLayer::IsOpaqueFormat() const'/>
+<doc f='Modules/Image/Inc/Image/tLayer.h' l='71'>// This just checks the pixel format to see if it supports alpha. It does NOT check the data.</doc>
+<use f='Modules/Image/Src/tTexture.cpp' l='44' u='c' c='_ZN6tImage8tTexture3SetER5tListINS_6tLayerEE'/>
+<use f='Modules/Image/Src/tTexture.cpp' l='85' u='c' c='_ZN6tImage8tTexture3SetERNS_9tImageDDSENS_10tFaceIndexE'/>

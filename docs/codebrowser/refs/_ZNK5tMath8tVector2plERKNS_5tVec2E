@@ -1,0 +1,7 @@
+<def f='Modules/Math/Inc/Math/tVector2.h' l='78' type='const tMath::tVector2 tMath::tVector2::operator+(const tMath::tVec2 &amp; a) const'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='176' u='c' c='_ZNK5tMath7tARect213ComputeCenterEv'/>
+<use f='Modules/Math/Inc/Math/tGeometry.h' l='539' u='c' c='_ZNK5tMath7tARect28OverlapsERKS0_'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='310' u='c' c='_ZN5tMath22tIntersectFindLineLineERKNS_6tLine2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='324' u='c' c='_ZN5tMath20tIntersectFindSegSegERKNS_9tLineSeg2ES2_RNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='334' u='c' c='_ZN5tMath20tIntersectFindRaySegERKNS_5tRay2ERKNS_9tLineSeg2ERNS_8tVector2E'/>
+<use f='Modules/Math/Src/tGeometry.cpp' l='343' u='c' c='_ZN5tMath20tIntersectFindRaySegERKNS_5tRay2ERKNS_9tLineSeg2ERNS_8tVector2E'/>

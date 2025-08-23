@@ -1,0 +1,3 @@
+_ZNSt7jthread4joinEv|std::jthread::join
+_ZNKSt7jthread8joinableEv|std::jthread::joinable
+_ZNKSt6thread8joinableEv|std::thread::joinable
