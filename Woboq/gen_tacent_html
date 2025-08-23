@@ -5,7 +5,6 @@ rm -rf ./www/Tacent
 ./codebrowser_generator -a -b ./compile_commands_generated.json -o ./www/Tacent -p Modules:../Modules:Ver1.0
 ./codebrowser_indexgenerator ./www/Tacent
 
-#scp -r ./www/ root@158.69.215.102:"/home/homepage/www/"
-# Removed 'v' verbose flag.
-rsync -aP ./www/ root@158.69.215.102:"/home/homepage/www/"
-
+##scp -r ./www/ root@158.69.215.102:"/home/homepage/www/"
+## Removed 'v' verbose flag.
+#rsync -aP ./www/ root@158.69.215.102:"/home/homepage/www/"
