@@ -241,13 +241,12 @@ $(function() {
         }
     });
 	// @tacent
-    //$("#footer").before("<div><br>&nbsp&nbsp<a href='/tacent.php'>Home</a></div>")
+    //$("#footer").before("<div><br>&nbsp&nbsp<a href='/tacent.html'>Home</a></div>")
 
-//    $("#footer").before("<div id='whatisit'><h3>What is this ?</h3><p>This is an online code browser that allows you to browse C/C++ code just like in your IDE, "
-//                        +  "with <b>semantic highlighting</b> and contextual <b>tooltips</b> that show you the usages and cross references.<br/>"
-//						+  "Open a C or C++ file and try it by hovering over the symbols!<br />"
-//						+  "Or take the <a href='https://woboq.com/codebrowser-features.html'>feature tour</a>."
-//						+  "</p></div>")
-
+    //$("#footer").before("<div id='whatisit'><h3>What is this ?</h3><p>This is an online code browser that allows you to browse C/C++ code just like in your IDE, "
+    //                    +  "with <b>semantic highlighting</b> and contextual <b>tooltips</b> that show you the usages and cross references.<br/>"
+	//					+  "Open a C or C++ file and try it by hovering over the symbols!<br />"
+	//					+  "Or take the <a href='https://woboq.com/codebrowser-features.html'>feature tour</a>."
+	//					+  "</p></div>")
 });
 

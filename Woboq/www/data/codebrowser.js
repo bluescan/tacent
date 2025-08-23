@@ -81,6 +81,15 @@ $(function () {
     var start = new Date().getTime();
     var elapsed;
 
+    // ATTENTION: Keep in sync with C++ function of the same name in filesystem.cpp and `Generator::escapeAttrForFilename`
+    var replace_invalid_filename_chars = function (str) {
+        if(window.ecma_script_api_version && window.ecma_script_api_version >= 2) {
+            return str.replace(new RegExp(':', 'g'), '.');
+        }
+
+        return str;
+    }
+
     var escape_selector = function (str) {
         return str.replace(/([ #;&,.+*~\':"!^$[\]()=<>|\/@{}\\])/g,'\\$1')
     }
@@ -412,10 +421,24 @@ $(function () {
     if (/^\d+$/.test(anchor_id)) {
         highlighted_items = $("#" + anchor_id);
         highlighted_items.addClass("highlight")
+        scrollToAnchor(anchor_id, false);
+    } else if (/^\d+-\d+$/.test(anchor_id)) {
+        var m = anchor_id.match(/^(\d+)-(\d+)$/);
+        var a = parseInt(m[1]);
+        var b = parseInt(m[2]);
+        if (a && b && a <= b) {
+            var select = "#" + a;
+            for (var x = a + 1; x <= b; ++x) {
+                select += ",#" + x;
+            }
+        }
+        highlighted_items = $(select);
+        highlighted_items.addClass("highlight")
+        scrollToAnchor("" + a, false);
     } else if (anchor_id != "") {
         highlight_items(anchor_id);
+        scrollToAnchor(anchor_id, false);
     }
-    scrollToAnchor(anchor_id, false);
 
 /*-------------------------------------------------------------------------------------*/
     var skipHighlightTimerId = null;
@@ -494,7 +517,7 @@ $(function () {
         var proj_root_path = root_path;
         if (proj) { proj_root_path = projects[proj]; }
 
-        var url = proj_root_path + "/refs/" + ref;
+        var url = proj_root_path + "/refs/" + replace_invalid_filename_chars(ref);
 
         if (!$(this).hasClass("highlight")) {
             highlight_items(ref);
@@ -1003,7 +1026,8 @@ $(function () {
                 window.location = root_path + '/' +  searchTerms[val].file + ".html";
             } else if (type == "ref") {
                 var ref = searchTerms[val].ref;
-                var url = root_path + "/refs/" + ref;
+
+                var url = root_path + "/refs/" + replace_invalid_filename_chars(ref);
                 $.get(url, function(data) {
                     var res = $("<data>"+data+"</data>");
                     var def =  res.find("def");
@@ -1176,7 +1200,6 @@ $(function () {
         lineNumberShown = !lineNumberShown;
         return false;
     });
-
     $(".opt_style").change(function(e) {
         switchStylestyleAndSetCookie(this.options[this.selectedIndex].value);
         //return false;
