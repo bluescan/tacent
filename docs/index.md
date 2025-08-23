@@ -12,7 +12,7 @@ _Tacent_ is a C++ library designed to be the foundation for a game pipeline or o
 ---
 ## Source Browser
 
-_Tacent_ source code can be ![Browsed Online.](/tacent/codebrowser/Modules/index.html)
+_Tacent_ source code can be ![Browsed Online.](https://bluescan.github.io/tacent/codebrowser/Modules/index.html)
 
 ---
 ## Overview

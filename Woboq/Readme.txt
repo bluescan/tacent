@@ -5,3 +5,4 @@ To generate static web pages of all the Tacent library code:
 3) Edit WoboqTacent.cfg
 4) Run in WSL terminal gen_tacent_html
 5) Copy what you see in www/Tacent into docs/codebrowser
+6) Copy what you see in www/data into docs/data
