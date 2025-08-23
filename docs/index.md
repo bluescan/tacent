@@ -12,7 +12,7 @@ _Tacent_ is a C++ library designed to be the foundation for a game pipeline or o
 ---
 ## Source Browser
 
-_Tacent_ source code can be browsed online.
+_Tacent_ source code can be ![Browsed Online.](/tacent/codebrowser/Modules/index.html)
 
 ---
 ## Overview
@@ -30,6 +30,9 @@ File IO, path and file string parsing functions, chunk-based binary format, conf
 
 * __Image__
 Image loading, saving, manipulation, mipmapping, texture generation, and colour quantization. Depends on Foundation, Math, and System.
+
+* __Input__
+Input system for reading gamepads and controllers. Per device polling rates plus hardware lookup of controller specifications. Depends on Foundation, Math, and System.
 
 * __Pipeline__
 Process launching with captured output and exit codes, dependency rule checking. Depends on Foundation, Math, and System.
