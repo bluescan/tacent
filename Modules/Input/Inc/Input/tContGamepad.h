@@ -86,13 +86,15 @@ public:
 	tCompButton AButton;
 	tCompButton BButton;
 
-	void StartPolling(int pollingPeriod, tGamepadID);
+	void StartPolling(int pollingPeriod_ns);
 	void StopPolling();
 	bool IsPolling() const { return PollingThread.joinable(); }
 	bool IsConnected() const { return IsPolling(); }
 	void Update();
 
 private:
+	void SetDefinition();
+	void ClearDefinition();
 
 	// This function runs on the polling thread for this controller.
 	void Poll();
@@ -107,8 +109,7 @@ private:
 	std::thread PollingThread;
 
 	ulong PollingPacketNumber = ulong(-1);
-	tGamepadID PollingGamepadID = tGamepadID::Invalid;
-	int PollingPeriod = 0;
+	int PollingPeriod_ns = 0;
 };
 
 

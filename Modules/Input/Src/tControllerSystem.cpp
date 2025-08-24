@@ -24,17 +24,8 @@
 #include "Input/tControllerDefinitions.h"
 
 
-// Missing from xinput.h.
 #ifdef PLATFORM_WINDOWS
-struct XINPUT_CAPABILITIES_EX
-{
-    XINPUT_CAPABILITIES Capabilities;
-    WORD vendorId;
-    WORD productId;
-    WORD revisionId;
-    DWORD a4; //unknown
-};
-typedef DWORD(_stdcall* _XInputGetCapabilitiesEx)(DWORD a1, DWORD dwUserIndex, DWORD dwFlags, XINPUT_CAPABILITIES_EX* pCapabilities);
+// Missing from xinput.h.
 _XInputGetCapabilitiesEx XInputGetCapabilitiesEx;
 #endif
 
@@ -43,7 +34,8 @@ namespace tInput
 {
 
 
-tControllerSystem::tControllerSystem(int pollingPeriod, int detectionPeriod)
+tControllerSystem::tControllerSystem(int pollingPeriod_ns, int detectionPeriod_ms) :
+	PollingPeriod_ns(pollingPeriod_ns)
 {
 	Gamepads.reserve(int(tGamepadID::NumGamepads));
 	Gamepads.emplace_back("Gamepad1", tGamepadID::GP0);
@@ -51,14 +43,7 @@ tControllerSystem::tControllerSystem(int pollingPeriod, int detectionPeriod)
 	Gamepads.emplace_back("Gamepad3", tGamepadID::GP2);
 	Gamepads.emplace_back("Gamepad4", tGamepadID::GP3);
 
-	// If auto-detect is turned on there is no need to set the PollingPeriod.
-	if (pollingPeriod > 0)
-		PollingPeriod = pollingPeriod;
-	else
-		PollingPeriodAutoDetect = true;
-
-	if (detectionPeriod > 0)
-		DetectPeriod = detectionPeriod;
+	DetectPeriod_ms = (detectionPeriod_ms > 0) ? detectionPeriod_ms : 1000;
 
 	#ifdef PLATFORM_WINDOWS
 	// This is better than LoadLibrary(TEXT("XInput1_4.dll") in two ways:
@@ -108,21 +93,10 @@ void tControllerSystem::Detect()
 				if (Gamepads[g].IsPolling())
 					continue;
 
-				// Controller connected. Can go ahead and try to figure out polling rate to use.
-				int pollingPeriod = PollingPeriod;
-				if (PollingPeriodAutoDetect)
-				{
-					// In auto detect mode we try to determin the polling rate from the hardware.
-					// Do not modify pollingPeriod if detection fails.
-					int optimalPollingPeriod = DetermineGamepadPollingPeriodFromHardwareInfo(tGamepadID(g));
-					if (optimalPollingPeriod)
-						pollingPeriod = optimalPollingPeriod;
-				}
-				tAssert(pollingPeriod > 0);
-
-				// Now we need to start polling the controller and queue a message that a controller has
-				// been connected for the main Update to pick up.
-				Gamepads[g].StartPolling(pollingPeriod, tGamepadID(g));
+				// Controller connected. Now we need to start polling the controller and queue a message that a
+				// controller has been connected for the main Update to pick up. If polling period is set to 0 the
+				// gamepad will do a hrdware lookup to determine the polling period.
+				Gamepads[g].StartPolling(PollingPeriod_ns);
 			}
 			else
 			{
@@ -130,6 +104,7 @@ void tControllerSystem::Detect()
 				if (Gamepads[g].IsPolling())
 				{
 					// Now we need to stop polling and queue a disconnect message to for the main update to pick up.
+					// Since the gamepad is now disconnected
 					Gamepads[g].StopPolling();
 				}
 			}
@@ -142,44 +117,10 @@ void tControllerSystem::Detect()
 		// This unique_lock is just a more powerful version of lock_guard. Supports subsequent unlocking/locking which
 		// is presumably needed by wait_for. In any case, wait_for needs this type of lock.
 		std::unique_lock<std::mutex> lock(Mutex);
-		bool exitRequested = DetectExitCondition.wait_for(lock, std::chrono::milliseconds(DetectPeriod), [this]{ return DetectExitRequested; });
+		bool exitRequested = DetectExitCondition.wait_for(lock, std::chrono::milliseconds(DetectPeriod_ms), [this]{ return DetectExitRequested; });
 		if (exitRequested)
 			break;
 	}
-}
-
-
-int tControllerSystem::DetermineGamepadPollingPeriodFromHardwareInfo(tGamepadID g)
-{
-	#ifdef PLATFORM_WINDOWS
-
-    int i = int(g);
-	tPrintf("Gamepad %d ", i);
-
-	WinXInputCapabilitiesEx capsEx;
-	tStd::tMemclr(&capsEx, sizeof(WinXInputCapabilitiesEx));
-	if (XInputGetCapabilitiesEx(1, i, 0, &capsEx) == WinErrorSuccess)
-	{
-		tVidPid vidpid(uint16(capsEx.vendorId), uint16(capsEx.productId));
-		const tContDefn* defn = tLookupContDefn(vidpid);
-		const char* vendor = defn ? defn->Vendor : "unknown";
-		const char* product = defn ? defn->Product : "unknown";
-		tPrintf
-		(
-			"connected. vid = 0x%04X pid = 0x%04X Vendor:%s Product:%s\n",
-			int(capsEx.vendorId), int(capsEx.productId), vendor, product
-		);
-		if (defn && defn->MaxPollingFreq)
-			return int(1000000.0f/defn->MaxPollingFreq);
-	}
-	else
-	{
-		tPrintf("not connected\n");
-	}
-
-	#else
-	#endif
-	return 0;
 }
 
 

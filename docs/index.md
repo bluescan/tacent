@@ -4,11 +4,6 @@ title: Homepage
 
 [![latest](https://img.shields.io/github/v/release/bluescan/tacent.svg)](https://github.com/bluescan/tacent/releases) ![Unit Tests](https://github.com/bluescan/tacent/workflows/Unit%20Tests/badge.svg)
 
-
-## Introduction
-
-_Tacent_ is a C++ library designed to be the foundation for a game pipeline or other interactive project. It implements support for linear algebra, text and file IO, UTF-N conversions, containers, image loading/saving, image quantization/filtering, command-line parsing, etc. Modern CMake (target-based) is used to generate the build files. Generators for makefiles, ninja, NMake, and Visual Studio solutions have been tested. Tacent may be compiled with gcc, clang, or msvc.
-
 ---
 ## Source Browser
 

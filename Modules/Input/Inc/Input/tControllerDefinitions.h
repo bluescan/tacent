@@ -16,7 +16,28 @@
 // PERFORMANCE OF THIS SOFTWARE.
 
 #pragma once
+#ifdef PLATFORM_WINDOWS
+#include <windows.h>
+#include <xinput.h>
+#endif
 #include <Foundation/tStandard.h>
+
+
+#ifdef PLATFORM_WINDOWS
+// Missing from xinput.h.
+struct XINPUT_CAPABILITIES_EX
+{
+    XINPUT_CAPABILITIES Capabilities;
+    WORD vendorId;
+    WORD productId;
+    WORD revisionId;
+    DWORD a4; //unknown
+};
+typedef DWORD(_stdcall* _XInputGetCapabilitiesEx)(DWORD a1, DWORD dwUserIndex, DWORD dwFlags, XINPUT_CAPABILITIES_EX* pCapabilities);
+extern _XInputGetCapabilitiesEx XInputGetCapabilitiesEx;
+#endif
+
+
 namespace tInput
 {
 
@@ -52,6 +73,11 @@ enum class tDispTech
 // definitions are used in the table below.
 struct tContDefn
 {
+	// I want to keep tContDefn as an aggregrate type. For this reason if you need to set the parameters to a reasonable
+	// 'generic' set of values, call this function.
+	void SetGeneric();
+	void Clear();
+
 	const char* Vendor;
 	const char* Product;
 
@@ -86,8 +112,50 @@ struct tContDefn
 };
 
 
-// The lookup calls are fast since the dictionary uses a tMap. The Find calls are slow because they have to iterate.
+// The lookup calls are fast since the dictionary uses a tMap. The Find calls, that don't exist at the moment, are slow
+// because they have to iterate. tLookupContDefn returns nullptr if the vidpid can't be found. When nullptr is returned
+// you may optionally default construct a tContDefn. It will represent a 'generic' controller with a 125Hz polling rate.
 const tContDefn* tLookupContDefn(const tVidPid& vidpid);
+
+
+}
+
+
+// Implementation below this line.
+
+
+inline void tInput::tContDefn::SetGeneric()
+{
+	Vendor				= "Unknown";
+	Product				= "Generic";
+	MaxPollingFreq		= 125;
+	DispTechSticks		= tDispTech::UNK;
+	DispTechTriggers	= tDispTech::UNK;
+
+	// The XInput deadzones are really too big (like 24%). We're choosing 15% for a generic controller.
+	StickDeadZone		= 0.15f;
+	TriggerDeadZone		= 0.05f;
+	LatencyAxes			= 5.50f;
+	LatencyButtons		= 5.50f;
+	JitterAxes			= 2.25f;
+	JitterButtons		= 2.25f;
+}
+
+
+inline void tInput::tContDefn::Clear()
+{
+	Vendor				= "";
+	Product				= "";
+	MaxPollingFreq		= 0;
+	DispTechSticks		= tDispTech::UNK;
+	DispTechTriggers	= tDispTech::UNK;
+	StickDeadZone		= 0.00f;
+	TriggerDeadZone		= 0.00f;
+	LatencyAxes			= 0.00f;
+	LatencyButtons		= 0.00f;
+	JitterAxes			= 0.00f;
+	JitterButtons		= 0.00f;
+}
 
 
 #if 0
@@ -671,5 +739,3 @@ f766:0001 GreystormPcGamepad
 f766:0005 BrutalLegendTest
 #endif
 
-
-}

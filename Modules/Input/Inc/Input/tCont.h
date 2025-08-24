@@ -16,6 +16,7 @@
 #include <mutex>
 #include <Foundation/tStandard.h>
 #include <Foundation/tName.h>
+#include "Input/tControllerDefinitions.h"
 #define InitCompMove(n) n(src.Name+"|" #n, Mutex)
 #define InitCompCopy(n) n(name+"|" #n, Mutex)
 namespace tInput
@@ -25,11 +26,14 @@ namespace tInput
 class tController
 {
 public:
-	tController(const tName& name)																						: Name(name) { }
+	tController(const tName& name)																						: Name(name) { Definition.Clear(); }
 	virtual ~tController()																								{ }
 
-	// @todo Move stuff from tContGamepad once it's all working.
+	// All controllers have a name.
 	tName Name;
+
+	// All connected controllers have a definition which will indicate what polling rate should be used.
+	tContDefn Definition;
 
 	// Protects updates to all the components since they may be read by the main thread at any time.
 	// Protects PollExitRequested.

@@ -24,19 +24,22 @@ namespace tInput
 {
 
 
-void tContGamepad::StartPolling(int pollingPeriod, tGamepadID gamepadID)
+void tContGamepad::StartPolling(int pollingPeriod_ns)
 {
-	tAssert((pollingPeriod >= 1) && (gamepadID != tGamepadID::Invalid) && (gamepadID != tGamepadID::NumGamepads));
-
 	// If it's already running do nothing. We also don't update the period if we're already running.
 	if (IsPolling())
 		return;
 
-	// PollingPeriod and PollingGamepadID is only ever set before the thread starts and doesn't change. We don't need to Mutex protect it.
-	PollingGamepadID = gamepadID;
-	PollingPeriod = pollingPeriod;
-	PollingThread = std::thread(&tContGamepad::Poll, this);
+	// Set the controller definition.
+	SetDefinition();
 
+	// PollingPeriod is only ever set before the thread starts and doesn't change. We don't need to Mutex protect it.
+	if (pollingPeriod_ns <= 0)
+		PollingPeriod_ns = int(1000000.0f/Definition.MaxPollingFreq);
+	else
+		PollingPeriod_ns = pollingPeriod_ns;
+
+	PollingThread = std::thread(&tContGamepad::Poll, this);
 }
 
 
@@ -55,7 +58,7 @@ void tContGamepad::StopPolling()
 
 	// Joins back up to the detection thread.
 	PollingThread.join();
-	PollingGamepadID = tGamepadID::Invalid;
+	ClearDefinition();
 }
 
 
@@ -70,7 +73,7 @@ void tContGamepad::Poll()
 		// Get the state of the controller from XInput. From what I can tell reading different gamepads on different
 		// threads does not require a mutex to protect this call. Only this thread instance will read this particular
 		// controller and so two calls to XInputGetState for the same controller will never happed at the same time.
-		WinDWord result = XInputGetState(int(PollingGamepadID), &state);
+		WinDWord result = XInputGetState(int(GamepadID), &state);
 
 		if (result == WinErrorSuccess)
 		{
@@ -130,7 +133,7 @@ void tContGamepad::Poll()
 		// This unique_lock is just a more powerful version of lock_guard. Supports subsequent unlocking/locking which
 		// is presumably needed by wait_for. In any case, wait_for needs this type of lock.
 		std::unique_lock<std::mutex> lock(Mutex);
-		bool exitRequested = PollingExitCondition.wait_for(lock, std::chrono::nanoseconds(PollingPeriod), [this]{ return PollingExitRequested; });
+		bool exitRequested = PollingExitCondition.wait_for(lock, std::chrono::nanoseconds(PollingPeriod_ns), [this]{ return PollingExitRequested; });
 		if (exitRequested)
 			break;
 	}
@@ -152,6 +155,47 @@ void tContGamepad::Update()
 	YButton.Update();
 	AButton.Update();
 	BButton.Update();
+}
+
+
+void tContGamepad::SetDefinition()
+{
+	#ifdef PLATFORM_WINDOWS
+
+	tPrintf("Gamepad %d Set Definition", int(GamepadID));
+	WinXInputCapabilitiesEx capsEx;
+	tStd::tMemclr(&capsEx, sizeof(WinXInputCapabilitiesEx));
+	if (XInputGetCapabilitiesEx(1, int(GamepadID), 0, &capsEx) == WinErrorSuccess)
+	{
+		tVidPid vidpid(uint16(capsEx.vendorId), uint16(capsEx.productId));
+		const tContDefn* defn = tLookupContDefn(vidpid);
+		const char* vendor = defn ? defn->Vendor : "unknown";
+		const char* product = defn ? defn->Product : "unknown";
+		tPrintf
+		(
+			"Gamepad vid = 0x%04X pid = 0x%04X Vendor:%s Product:%s\n",
+			int(capsEx.vendorId), int(capsEx.productId), vendor, product
+		);
+		if (defn)
+			Definition = *defn;
+		else
+			Definition.SetGeneric();
+	}
+	else
+	{
+		tPrintf("Using generic definition\n");
+		Definition.SetGeneric();
+	}
+
+	#else
+	Definition.SetGeneric();
+	#endif
+}
+
+
+void tContGamepad::ClearDefinition()
+{
+	Definition.Clear();
 }
 
 
