@@ -45,6 +45,7 @@
 
 #pragma once
 #include "Foundation/tFundamentals.h"
+#include "Foundation/tAssert.h"
 
 
 #pragma pack(push, 2)
